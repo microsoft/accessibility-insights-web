@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AssessmentReportFooter renders 1`] = `
+<footer
+  className="report-footer"
+>
+  This assessment report was generated using 
+  Accessibility Insights for Web
+   
+  test-extension-version
+   (Axe 
+  axeVersion
+  ), a tool that helps debug and find accessibility issues earlier on 
+  chromeVersion
+  . Get more information & download this tool at 
+  <a
+    className="link report-footer-link"
+    href="http://aka.ms/AccessibilityInsights"
+    target="_blank"
+  >
+    http://aka.ms/AccessibilityInsights
+  </a>
+</footer>
+`;

@@ -1,0 +1,53 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@function make-font-family($fonts) {
+    $comma: "";
+    $family: "";
+    @each $font in $fonts {
+      $font: if(str-index($font, " ") == null and str-index($font, "-") != 1, $font, "\"#{$font}\"");
+      $family: $family + $comma + $font;
+      $comma: ",";
+    }
+    @return unquote($family);
+}
+
+// Fonts
+$fonts: (
+    "Segoe UI",
+    "-apple-system",
+    "BlinkMacSystemFont",
+    "Roboto",
+    "Helvetica Neue",
+    "Helvetica",
+    "Ubuntu",
+    "Arial",
+    "sans-serif",
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol"
+);
+
+$common-font-family: make-font-family($fonts) !default;
+
+$fontFamily: $common-font-family !default;
+$fontStack: $common-font-family !default;
+$toolbarFontFamily: $common-font-family !default;
+$fontWeightHeavy: bold !default;
+$fontWeightNormal: normal !default;
+$fontWeightLighter: 200 !default;
+$fontWeightSemiBold: 600 !default;
+$gridFontSize: 12px !default;
+$toolbarFontSize: 12px !default;
+$toolbarFontSemiLight: 500 $toolbarFontSize $toolbarFontFamily !default;
+$fontSizeXS: 10px !default;
+$fontSizeS: 11px !default;
+$fontSize: 12px !default;
+$fontSizeM: 14px !default;
+$fontSizeML: 16px !default;
+$fontSizeL: 18px !default;
+$fontSizeLL: 24px !default;
+$fontSizeXL: 36px !default;
+$fontSizeXXL: 40px !default;
+$fontSizeXXXL: 56px !default;
+$fontSizeXXXXL: 72px !default;
+$codeFontFamily: Menlo, Consolas, Courier New, monospace !default;

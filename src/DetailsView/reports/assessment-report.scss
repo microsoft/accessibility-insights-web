@@ -1,0 +1,183 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../common/styles/colors.scss';
+@import './components/outcome.scss';
+@import './components/assessment-report-header.scss';
+@import './components/assessment-report-summary.scss';
+@import './components/assessment-summary-details.scss';
+@import './components/assessment-scan-details.scss';
+@import './components/assessment-report-body-header.scss';
+
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    -webkit-print-color-adjust: exact;
+    /* Chrome, Safari */
+    color-adjust: exact;
+    /*Firefox*/
+}
+
+body {
+    max-width: 768px;
+    min-width: 480px;
+    margin: auto;
+}
+
+header {
+    margin-bottom: 24px;
+}
+
+.details-section {
+    border-bottom: $neutral-alpha-20 solid 1px;
+}
+
+.details-section-header {
+    margin: 0px 0px 32px 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.details-section-header-title {
+    font-size: 21px;
+    font-family: Segoe UI Semibold;
+    line-height: 32px;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+.assessment-details {
+    margin: 0px 0px 32px 0px;
+}
+
+.assessment-header {
+    margin: 0px 0px 32px 0px;
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.assessment-header-name {
+    font-size: 17px;
+    font-family: Segoe UI Semibold;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+.step-details {
+    margin: 0px 0px 24px 48px;
+
+    &:last-child {
+        margin-bottom: 0px;
+    }
+}
+
+.step-header {
+    padding-bottom: 12px;
+}
+
+.step-header-name {
+    font-size: 15px;
+    font-family: Segoe UI;
+    display: inline;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    font-weight: normal;
+}
+
+.step-header-description {
+    font-size: 15px;
+    font-family: Segoe UI;
+    padding-left: 8px;
+    padding-right: 8px;
+    display: inline;
+}
+
+.step-header-message {
+    font-size: 15px;
+    font-family: Segoe UI;
+    padding-left: 8px;
+    padding-right: 8px;
+    display: inline;
+}
+
+.instance-details {
+    padding-left: 12px;
+    padding-top: 12px;
+    width: 100%;
+
+    &:not(:last-child) {
+        padding-bottom: 14px;
+        border-bottom: $neutral-8 solid 1px;
+    }
+}
+
+.instance-pair-details>td {
+    padding-bottom: 8px;
+    line-height: 16px;
+}
+
+.instance-value {
+    font-size: 12px;
+    font-family: Segoe UI;
+    vertical-align: top;
+    word-break: break-all;
+}
+
+.instance-key {
+    font-size: 12px;
+    font-family: Segoe UI Semibold;
+    vertical-align: top;
+    text-align: left;
+    width: 140px;
+}
+
+.instance-subsection-header {
+    @extend .instance-key;
+    text-align: left;
+}
+
+.instance-key-indented {
+    @extend .instance-key;
+    padding-left: 30px;
+}
+
+.test-guidance-links-group {
+    display: inline;
+    color: $primary-text;
+    font-size: 14px;
+    font-family: Segoe UI;
+    padding-right: 8px;
+    padding-left: 8px;
+}
+
+
+.report-footer {
+    font-size: 14px;
+    font-family: Segoe UI;
+    color: $secondary-text;
+    padding-top: 24px;
+    padding-bottom: 36px;
+    padding-left: 12px;
+    line-height: 20px;
+}
+
+.report-footer-link {
+    font-size: 14px;
+    font-family: Segoe UI;
+    text-decoration: none;
+}
+
+.ms-Link, .link {
+    color: $communication-shade-10;
+    &:hover {
+        color: $communication-shade-30;
+    }
+}
+
+@media print {
+    .ms-Link, .link {
+        text-decoration: none;
+        color: $primary-text;
+    }
+}

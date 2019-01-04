@@ -1,0 +1,161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DetailsGroupHeader renders with Guidance links: DetailsGroupHeader baseline 1`] = `
+<div
+  aria-label="name"
+  className="ms-GroupHeader root_d3e32388"
+  data-is-focusable={true}
+  onClick={[Function]}
+  style={Object {}}
+>
+  <FocusZone
+    className="groupHeaderContainer_d3e32388"
+    direction={1}
+    isCircularNavigation={false}
+  >
+    <span
+      className="ms-GroupSpacer root_d53e2dba"
+      style={
+        Object {
+          "width": 36,
+        }
+      }
+    />
+    <div
+      className="ms-GroupHeader-dropIcon dropIcon_d3e32388"
+    >
+      <StyledIconBase
+        iconName="Tag"
+      />
+    </div>
+    <button
+      className="ms-GroupHeader-expand expand_d3e32388"
+      onClick={[Function]}
+      type="button"
+    >
+      <StyledIconBase
+        className=""
+        iconName="ChevronDown"
+      />
+    </button>
+    <div
+      className="ms-GroupHeader-title title_d3e32388"
+    >
+      <div
+        className="rule-link-wrap"
+      >
+        <NewTabLink
+          href="test rule url"
+          onClick={[Function]}
+        >
+          key
+        </NewTabLink>
+        : 
+      </div>
+      <span>
+        name
+      </span>
+      <span
+        className="headerCount_d3e32388"
+      >
+        (
+        2
+        )
+      </span>
+      <GuidanceLinks
+        links={
+          Array [
+            Object {
+              "href": "url",
+              "text": "test name",
+            },
+          ]
+        }
+      />
+    </div>
+  </FocusZone>
+</div>
+`;
+
+exports[`DetailsGroupHeader renders with Guidance links: GroupHeader baseline - changes should be matched in DetailsGroupHeader baseline 1`] = `
+<div
+  aria-label="name"
+  className="ms-GroupHeader root_d3e32388"
+  data-is-focusable={true}
+  onClick={[Function]}
+  style={Object {}}
+>
+  <FocusZone
+    className="groupHeaderContainer_d3e32388"
+    direction={1}
+    isCircularNavigation={false}
+  >
+    <span
+      className="ms-GroupSpacer root_d53e2dba"
+      style={
+        Object {
+          "width": 36,
+        }
+      }
+    />
+    <div
+      className="ms-GroupHeader-dropIcon dropIcon_d3e32388"
+    >
+      <StyledIconBase
+        iconName="Tag"
+      />
+    </div>
+    <button
+      className="ms-GroupHeader-expand expand_d3e32388"
+      onClick={[Function]}
+      type="button"
+    >
+      <StyledIconBase
+        className=""
+        iconName="ChevronDown"
+      />
+    </button>
+    <div
+      className="ms-GroupHeader-title title_d3e32388"
+    >
+      <span>
+        name
+      </span>
+      <span
+        className="headerCount_d3e32388"
+      >
+        (
+        2
+        )
+      </span>
+    </div>
+  </FocusZone>
+</div>
+`;
+
+exports[`DetailsGroupHeader renders with Guidance links: expected Guidance Links 1`] = `
+<GuidanceLinks
+  links={
+    Array [
+      Object {
+        "href": "url",
+        "text": "test name",
+      },
+    ]
+  }
+/>
+`;
+
+exports[`DetailsGroupHeader renders with Guidance links: expected NewTabLink inside div 1`] = `
+<div
+  className="rule-link-wrap"
+>
+  <NewTabLink
+    href="test rule url"
+    onClick={[Function]}
+  >
+    key
+  </NewTabLink>
+  : 
+</div>
+`;

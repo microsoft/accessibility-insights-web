@@ -1,0 +1,37 @@
+{
+    "tslint.configFile": "tslint.json",
+    "typescript.reportStyleChecksAsWarnings": true,
+    "typescript.preferences.importModuleSpecifier": "relative",
+
+    "psi-header.changes-tracking": {
+        "autoHeader": "autoSave",
+        "isActive": true
+
+    },
+    "psi-header.config" : {
+        "forceToTop": true
+    },
+    "psi-header.lang-config": [
+        {
+            "language": "*",
+            "begin": "",
+            "end": "",
+            "prefix": "// "
+        },
+        {
+            "language": "html",
+            "begin": "<!--",
+            "end": "-->",
+            "prefix": ""
+        }
+    ],
+    "psi-header.templates": [
+        {
+            "language": "*",
+            "template": [
+                "Copyright (c) Microsoft Corporation. All rights reserved.",
+                "Licensed under the MIT License."
+            ]
+        }
+    ]
+}

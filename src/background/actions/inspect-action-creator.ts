@@ -1,0 +1,44 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+import { Messages } from '../../common/messages';
+import * as TelemetryEvents from '../../common/telemetry-events';
+import { IChromeAdapter } from '../browser-adapter';
+import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
+import { IInspectPayload, InspectActions } from './inspect-actions';
+
+export class InspectActionCreator {
+    private inspectActions: InspectActions;
+    private browserAdapter: IChromeAdapter;
+    private telemetryEventHandler: TelemetryEventHandler;
+    private registerTypeToPayloadCallback: IRegisterTypeToPayloadCallback;
+
+    constructor(
+        inspectActions: InspectActions,
+        telemetryEventHandler: TelemetryEventHandler,
+        browserAdapter: IChromeAdapter,
+        registerTypeToPayloadCallback: IRegisterTypeToPayloadCallback,
+    ) {
+        this.inspectActions = inspectActions;
+        this.telemetryEventHandler = telemetryEventHandler;
+        this.browserAdapter = browserAdapter;
+        this.registerTypeToPayloadCallback = registerTypeToPayloadCallback;
+    }
+
+    public registerCallbacks(): void {
+        this.registerTypeToPayloadCallback(Messages.Inspect.ChangeInspectMode, (payload: IInspectPayload, tabId: number) =>
+            this.onChangeInspectMode(payload, tabId),
+        );
+        this.registerTypeToPayloadCallback(Messages.Inspect.GetCurrentState, () => this.onGetInspectCurrentState());
+    }
+
+    private onChangeInspectMode(payload: IInspectPayload, tabId: number): void {
+        const eventName = TelemetryEvents.CHANGE_INSPECT_MODE;
+        this.telemetryEventHandler.publishTelemetry(eventName, payload, tabId);
+        this.browserAdapter.switchToTab(tabId);
+        this.inspectActions.changeInspectMode.invoke(payload);
+    }
+
+    private onGetInspectCurrentState(): void {
+        this.inspectActions.getCurrentState.invoke(null);
+    }
+}

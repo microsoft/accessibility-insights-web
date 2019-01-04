@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AssessmentReportStepHeader matches snapshot 1`] = `
+<div
+  className="step-header"
+>
+  <h4
+    className="step-header-name"
+  >
+    REQUIREMENT
+    :
+  </h4>
+  <span
+    className="step-header-description"
+  >
+    <p>
+      DESCRIPTION
+    </p>
+  </span>
+  -
+  <GuidanceLinks
+    classNameForDiv="test-guidance-links-group"
+    links={
+      Array [
+        Object {
+          "href": "LINK_URL",
+          "text": "LINK_TEXT",
+        },
+      ]
+    }
+  />
+  <OutcomeChip
+    count={42}
+    outcomeType="fail"
+  />
+</div>
+`;

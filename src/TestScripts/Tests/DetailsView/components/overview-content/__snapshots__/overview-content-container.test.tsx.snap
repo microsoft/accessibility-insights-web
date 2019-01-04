@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OverviewContainer component is defined and matches snapshot 1`] = `
+<div
+  className="overview"
+>
+  <TargetChangeDialog
+    actionMessageCreator={Object {}}
+    newTab={
+      Object {
+        "id": -1,
+        "title": "some title",
+        "url": "some url",
+      }
+    }
+    prevTab={-2}
+  />
+  <section
+    className="overview-text-summary-section"
+  >
+    <OverviewHeading />
+    <AssessmentReportSummary />
+  </section>
+  <section
+    className="overview-help-section"
+  >
+    <OverviewHelpSection
+      deps={
+        Object {
+          "actionInitiators": Object {
+            "openExternalLink": [MockFunction],
+          },
+          "assessmentsProvider": Object {
+            "all": [Function],
+          },
+          "detailsViewActionMessageCreator": Object {},
+          "getAssessmentSummaryModelFromProviderAndStoreData": [MockFunction],
+        }
+      }
+      linkDataSource={
+        Array [
+          Object {
+            "href": "https://msit.microsoftstream.com/video/7fa02042-3b76-408d-b70b-334ffc269aab?channelId=66d47e66-d99c-488b-b9ea-98a153d2a4d4",
+            "text": "Getting started",
+          },
+          Object {
+            "href": "https://msit.microsoftstream.com/video/8f1183cb-434e-4d0c-8a31-7b277eb7a004",
+            "text": "How to complete a test",
+          },
+          Object {
+            "href": "https://stackoverflow.microsoft.com/questions/ask?tags=accessibility-insights",
+            "text": "Ask a question",
+          },
+        ]
+      }
+    />
+  </section>
+</div>
+`;

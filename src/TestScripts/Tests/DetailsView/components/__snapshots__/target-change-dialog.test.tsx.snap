@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TargetChangeDialog snapshot: render when target tab id changed 1`] = `
+<StyledCustomizedDialog
+  dialogContentProps={
+    Object {
+      "title": "Assessment in progress",
+      "type": 0,
+    }
+  }
+  hidden={false}
+  modalProps={
+    Object {
+      "className": "target-change-dialog-modal",
+      "containerClassName": "insights-dialog-main-override target-change-dialog",
+      "isBlocking": true,
+    }
+  }
+>
+  <div>
+    There is already an assessment running on 
+    <TooltipHost
+      calloutProps={
+        Object {
+          "gapSpace": 0,
+        }
+      }
+      content="https://www.abc.com"
+      delay={1}
+      id="previous-target-page-link"
+    >
+      <NewTabLink
+        className="target-page-link"
+        href="https://www.abc.com"
+        role="link"
+      >
+        test title 1
+      </NewTabLink>
+    </TooltipHost>
+    . Would you like to continue your current assessment on the new target of 
+    <TooltipHost
+      calloutProps={
+        Object {
+          "gapSpace": 0,
+        }
+      }
+      content="https://www.def.com"
+      delay={1}
+      id="current-target-page-link"
+    >
+      <StyledCustomizedLink
+        className="target-page-link"
+        role="link"
+      >
+        test title 2
+      </StyledCustomizedLink>
+    </TooltipHost>
+    ?
+  </div>
+  <p>
+    <Term>
+      Note
+    </Term>
+    : If ‘Continue previous’ is selected, the previous assessment will be connected to this new page.
+  </p>
+  <p>
+    If ‘Start new’ is selected, all previous progress will be lost.
+  </p>
+  <StyledCustomizedDialogFooter>
+    <div
+      className="target-change-dialog-button-container"
+    >
+      <div
+        className="button ms-Grid-col  action-cancel-button-col restart-button"
+      >
+        <CustomizedDefaultButton
+          text="Start new"
+        />
+      </div>
+      <div
+        className="button ms-Grid-col  action-cancel-button-col continue-button"
+      >
+        <CustomizedDefaultButton
+          componentRef={[Function]}
+          text="Continue previous"
+        />
+      </div>
+    </div>
+  </StyledCustomizedDialogFooter>
+</StyledCustomizedDialog>
+`;

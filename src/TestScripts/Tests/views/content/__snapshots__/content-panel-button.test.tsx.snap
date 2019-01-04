@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContentPanelButton renders from content 1`] = `
+<CustomizedActionButton
+  iconProps={
+    Object {
+      "iconName": "iconName",
+    }
+  }
+  onClick={[Function]}
+>
+  TEXT
+</CustomizedActionButton>
+`;
+
+exports[`ContentPanelButton renders from path 1`] = `
+<CustomizedActionButton
+  iconProps={
+    Object {
+      "iconName": "iconName",
+    }
+  }
+  onClick={[Function]}
+>
+  TEXT
+</CustomizedActionButton>
+`;

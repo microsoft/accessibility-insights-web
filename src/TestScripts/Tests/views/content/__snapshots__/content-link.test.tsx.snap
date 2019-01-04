@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContentLink render null when reference is not defined 1`] = `""`;
+
+exports[`ContentLink renders from content, only have the icon 1`] = `
+"<NewTabLink href=\\"/insights.html#/content/for/testing\\" title=\\"Guidance\\" onClick={[Function: onClick]}>
+  <StyledIconBase iconName=\\"test icon 1\\" />
+</NewTabLink>"
+`;
+
+exports[`ContentLink renders from path, only have the icon 1`] = `
+"<NewTabLink href=\\"/insights.html#/content/for/testing\\" title=\\"Guidance\\" onClick={[Function: onClick]}>
+  <StyledIconBase iconName=\\"test icon 2\\" />
+</NewTabLink>"
+`;
+
+exports[`ContentLink renders with both text and icon 1`] = `
+"<NewTabLink href=\\"/insights.html#/content/for/testing\\" title=\\"Guidance\\" onClick={[Function: onClick]}>
+  <StyledIconBase iconName=\\"test icon\\" />
+  test
+</NewTabLink>"
+`;
+
+exports[`ContentLink renders with only text 1`] = `
+"<NewTabLink href=\\"/insights.html#/content/for/testing\\" title=\\"Guidance\\" onClick={[Function: onClick]}>
+  test
+</NewTabLink>"
+`;

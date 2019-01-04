@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AdhocIssuesTestView should return issues table with scanning to false 1`] = `"<IssuesTable deps={{...}} title=\\"test title\\" issuesTableHandler={{...}} issuesEnabled={true} violations={{...}} issuesSelection={{...}} selectedIdToRuleResultMap={{...}} pageTitle={[undefined]} pageUrl={[undefined]} scanning={false} toggleClickHandler={[Function: clickHandlerStub]} visualizationConfigurationFactory={[undefined]} featureFlags={[undefined]} scanResult={{...}} reportGenerator={{...}} />"`;
+
+exports[`AdhocIssuesTestView should return issues table with violations to null 1`] = `
+<IssuesTable
+  deps={
+    Object {
+      "detailsViewActionMessageCreator": Object {},
+    }
+  }
+  issuesEnabled={true}
+  issuesSelection={Object {}}
+  issuesTableHandler={Object {}}
+  reportGenerator={Object {}}
+  scanResult={null}
+  scanning={true}
+  selectedIdToRuleResultMap={null}
+  title="test title"
+  toggleClickHandler={[Function]}
+  violations={null}
+/>
+`;
+
+exports[`AdhocIssuesTestView should return target page changed view as tab is changed 1`] = `"<TargetPageChangedView displayableData={{...}} type={-1} toggleClickHandler={[Function: clickHandlerStub]} />"`;

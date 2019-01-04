@@ -1,0 +1,254 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+import * as React from 'react';
+
+import { Code, Emphasis, Tag, Term } from '../../assessments/markup';
+import { CheckIcon } from '../../common/icons/check-icon';
+import { CrossIcon } from '../../common/icons/cross-icon';
+import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
+
+type PassFailProps = {
+    passText: JSX.Element,
+    passExample?: React.ReactNode,
+    failText: JSX.Element,
+    failExample?: React.ReactNode,
+};
+
+type CodeExampleProps = {
+    title?: React.ReactNode,
+    children: string,
+};
+
+export type Markup = {
+    Tag: React.SFC,
+    Code: React.SFC,
+    Term: React.SFC,
+    Emphasis: React.SFC,
+    Do: React.SFC,
+    Dont: React.SFC,
+    Pass: React.SFC,
+    Fail: React.SFC,
+    PassFail: React.SFC<PassFailProps>,
+    Columns: React.SFC,
+    Column: React.SFC,
+    HyperLink: React.SFC<{ href: string }>,
+    Title: React.SFC,
+    CodeExample: React.SFC<CodeExampleProps>,
+    Links: React.SFC,
+    Table: React.SFC,
+    LandmarkLegend: React.SFC<{ role: string }>,
+    ProblemList: React.SFC,
+};
+
+export type MarkupDeps = { contentActionMessageCreator: ContentActionMessageCreator };
+
+export const createMarkup = (deps: MarkupDeps) => {
+
+    const { openContentHyperLink } = deps.contentActionMessageCreator;
+
+    function Title(props: { children: React.ReactNode }): JSX.Element {
+        return <h1>{props.children}</h1>;
+    }
+
+    function HyperLink(props: { href: string, children: React.ReactNode }): JSX.Element {
+        const { href } = props;
+
+        return <a
+            href={href}
+            target="_blank"
+            onClick={e => openContentHyperLink(e, href)}>
+            {props.children}
+        </a>;
+    }
+
+    function Links(props: { children: React.ReactNode }): JSX.Element {
+        return <>{
+            React.Children.map(props.children, el => <div>{el}</div>)
+        }</>;
+    }
+
+    function Do(props: { children: React.ReactNode }): JSX.Element {
+        return <Column>
+            <div className="do-header">
+                <h2>Do</h2>
+                <CheckIcon />
+            </div>
+            <div className="do-section">
+                {props.children}
+            </div>
+        </Column>;
+    }
+
+    function Dont(props: { children: React.ReactNode }): JSX.Element {
+        return <Column>
+            <div className="dont-header">
+                <h2>Don't</h2>
+                <CrossIcon />
+            </div>
+            <div className="dont-section">
+                {props.children}
+            </div>
+        </Column>;
+    }
+
+    function Pass(props: { children: React.ReactNode }): JSX.Element {
+        return <Column>
+            <div className="pass-header">
+                <CheckIcon />
+                {' '}
+                <h3>Pass</h3>
+            </div>
+            <div className="pass-section">
+                {props.children}
+            </div>
+        </Column>;
+    }
+
+    function Fail(props: { children: React.ReactNode }): JSX.Element {
+        return <Column>
+            <div className="fail-header">
+                <CrossIcon />
+                {' '}
+                <h3>Fail</h3>
+            </div>
+            <div className="fail-section">
+                {props.children}
+            </div>
+        </Column>;
+    }
+
+    function LandmarkLegend(props: { role: string, children: React.ReactNode }): JSX.Element {
+        return <span className={`landmarks-legend ${props.role}-landmark`}>{props.children}</span>;
+    }
+
+    function Table(props: { children: React.ReactNode }): JSX.Element {
+        return <ul className="table">{props.children}</ul>;
+    }
+
+    function ProblemList(props: { children: React.ReactNode }): JSX.Element {
+        return <ul className="accessibility-problems-list">{props.children}</ul>;
+    }
+
+    function Columns(props: { children: React.ReactNode }): JSX.Element {
+        return <div className="columns">{props.children}</div>;
+    }
+
+    function Column(props: { children: React.ReactNode }): JSX.Element {
+        return <div className="column">{props.children}</div>;
+    }
+
+    function CodeExample(props: CodeExampleProps): JSX.Element {
+
+        const { title, children } = props;
+
+        function getRegions(code: string): string[] {
+
+            if (code.length === 0) {
+                return [];
+            }
+
+            if (code[0] === '[') {
+                const end = code.indexOf(']');
+                if (end > 0) {
+                    return [code.slice(0, end + 1), ...getRegions(code.slice(end + 1))];
+                } else {
+                    return [code + ']'];
+                }
+            }
+
+            const start = code.indexOf('[');
+            if (start > 0) {
+                return [code.slice(0, start), ...getRegions(code.slice(start))];
+            } else {
+                return [code];
+            }
+        }
+
+        function renderRegion(str: string, index: number) {
+            if (str[0] === '[') {
+                return <span key={index} className="highlight">{str.slice(1, -1)}</span>;
+            } else {
+                return str;
+            }
+        }
+
+        const regions = getRegions(children);
+        const formattedCode = regions.map(renderRegion);
+
+        return <div className="code-example">
+            {props.title &&
+                <div className="code-example-title">
+                    <h4>
+                        {props.title}
+                    </h4>
+                </div>
+            }
+            <div className="code-example-code">
+                <Code>{formattedCode}</Code>
+            </div>
+        </div>;
+    }
+
+    function PassFail(props: PassFailProps): React.ReactNode {
+        const { passText, passExample, failText, failExample } = props;
+
+        function formatExample(example: string | React.ReactNode): React.ReactNode {
+            if (typeof example === 'string') {
+                return <CodeExample>{example}</CodeExample>;
+            }
+            return example;
+        }
+
+        return (
+            <div className="pass-fail-grid">
+                <div className="fail-section">
+                    <div className="fail-header">
+                        <CrossIcon />
+                        {' '}
+                        <h3>Fail</h3>
+                    </div>
+                    {failText}
+                </div>
+                {failExample &&
+                    <div className="fail-example">
+                        {formatExample(failExample)}
+                    </div>
+                }
+                <div className="pass-section">
+                    <div className="pass-header">
+                        <CheckIcon />
+                        {' '}
+                        <h3>Pass</h3>
+                    </div>
+                    {passText}
+                </div>
+                {passExample &&
+                    <div className="pass-example">
+                        {formatExample(passExample)}
+                    </div>
+                }
+            </div>
+        );
+    }
+
+    return {
+        Tag,
+        Code,
+        Term,
+        Emphasis,
+        Do,
+        Dont,
+        Pass,
+        Fail,
+        PassFail,
+        Columns,
+        Column,
+        HyperLink,
+        Title,
+        CodeExample,
+        Links,
+        LandmarkLegend,
+        Table,
+        ProblemList,
+    } as Markup;
+};

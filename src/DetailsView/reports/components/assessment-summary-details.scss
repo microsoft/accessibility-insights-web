@@ -1,0 +1,38 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../../common/styles/colors.scss';
+
+.assessment-summary-details {
+    display: flex;
+    flex-direction: row;
+}
+
+.assessment-summary-details-column {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.test-summary {
+    display: flex;
+justify-content: space-between;
+    width: 94%;
+    margin-left: 2%;
+    margin-right: 2%;
+    padding: 2% 1% 2% 1%;
+}
+
+.test-summary + .test-summary {
+    border-top: $neutral-alpha-8 solid 1px;
+}
+
+.test-summary-status {
+    display: flex;
+    align-items: center;
+}
+
+.test-summary-display-name {
+    font-family: Segoe UI Semibold;
+    font-size: 14px;
+    line-height: 20px;
+}

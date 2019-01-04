@@ -1,0 +1,79 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+jobs:
+
+- job: build
+
+  pool:
+    vmImage: 'macOS-10.13'
+
+  steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '8.x'
+    displayName: use node 8.x
+
+  - task: Npm@1
+    inputs:
+      command: install
+    displayName: npm install
+
+  - task: Npm@1
+    inputs:
+      command: custom
+      customCommand: run tslint
+    displayName: npm run tslint
+
+  - task: Npm@1
+    inputs:
+      command: custom
+      customCommand: test
+    displayName: npm test
+
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFiles: junit.xml
+      testRunTitle: accessibility-insights-web
+    condition: always()
+    displayName: publish test results
+
+
+  - task: PublishCodeCoverageResults@1
+    inputs:
+      codeCoverageTool: Cobertura
+      summaryFileLocation: $(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml
+      reportDirectory: $(System.DefaultWorkingDirectory)/coverage/lcov-report
+      failIfCoverageEmpty: true
+    displayName: publish code coverage
+
+  - task: Npm@1
+    inputs:
+      command: custom
+      customCommand: run drop
+    displayName: npm run drop
+
+  - task: CopyFiles@2
+    inputs:
+      sourceFolder: drop
+      contents: '**/*'
+      cleanTargetFolder: true
+      publishLocation: 'filePath'
+      targetFolder: $(Build.ArtifactStagingDirectory)
+    displayName: copy drop
+
+  - task: PublishBuildArtifacts@1
+
+  # only on CI builds
+  - task: ComponentGovernanceComponentDetection@0
+    displayName: 'Component Detection'
+    condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
+    inputs:
+      verbosity: Normal
+
+  # only on PR builds
+  - task: Npm@1
+    displayName: check copyright headers
+    condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
+    inputs:
+      command: custom
+      customCommand: run copyrightheaders

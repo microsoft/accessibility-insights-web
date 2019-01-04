@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContentPanel renders closed 1`] = `
+"<Panel isOpen={false} onDismiss={[undefined]} type={3} isLightDismiss={true} closeButtonAriaLabel=\\"Close panel\\" isHiddenOnDismiss={false} isBlocking={true} hasCloseButton={true}>
+  <div className=\\"content\\">
+    <ContentPageComponent deps={{...}} />
+  </div>
+</Panel>"
+`;
+
+exports[`ContentPanel renders from content 1`] = `
+"<Panel isOpen={true} onDismiss={[undefined]} type={3} isLightDismiss={true} closeButtonAriaLabel=\\"Close panel\\" isHiddenOnDismiss={false} isBlocking={true} hasCloseButton={true}>
+  <div className=\\"content\\">
+    <ContentPageComponent deps={{...}} />
+  </div>
+</Panel>"
+`;
+
+exports[`ContentPanel renders from path 1`] = `
+"<Panel isOpen={true} onDismiss={[undefined]} type={3} isLightDismiss={true} closeButtonAriaLabel=\\"Close panel\\" isHiddenOnDismiss={false} isBlocking={true} hasCloseButton={true}>
+  <div className=\\"content\\">
+    <ContentPageComponent deps={{...}} />
+  </div>
+</Panel>"
+`;

@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: add instance 1`] = `
+"<Fragment>
+  <CustomizedActionButton iconProps={{...}} onClick={[Function: bound ]}>
+    Add a failure instance
+  </CustomizedActionButton>
+  <GenericPanel isOpen={false} className=\\"failure-instance-panel\\" onDismiss={[Function: bound ]} title=\\"Add a failure instance\\" hasCloseButton={false} closeButtonAriaLabel={{...}}>
+    <TextField label=\\"Observed failure\\" multiline={true} rows={8} value=\\"\\" onChanged={[Function: bound ]} resizable={true} autoAdjustHeight={false} underlined={false} borderless={false} onBeforeChange={[Function: onBeforeChange]} onNotifyValidationResult={[Function: onNotifyValidationResult]} onGetErrorMessage={[Function: onGetErrorMessage]} deferredValidationTime={200} errorMessage=\\"\\" validateOnFocusIn={false} validateOnFocusOut={false} validateOnLoad={true} />
+    <ActionAndCancelButtonsComponent isHidden={false} primaryButtonDisabled={true} primaryButtonText=\\"Add\\" primaryButtonOnClick={[Function: bound ]} cancelButtonOnClick={[Function: bound ]} />
+  </GenericPanel>
+</Fragment>"
+`;
+
+exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edit instance 1`] = `
+"<Fragment>
+  <StyledCustomizedLink className=\\"edit-button\\" onClick={[Function: bound ]}>
+    <StyledIconBase iconName=\\"edit\\" ariaLabel=\\"edit instance\\" />
+  </StyledCustomizedLink>
+  <GenericPanel isOpen={false} className=\\"failure-instance-panel\\" onDismiss={[Function: bound ]} title=\\"Edit failure instance\\" hasCloseButton={false} closeButtonAriaLabel={{...}}>
+    <TextField label=\\"Observed failure\\" multiline={true} rows={8} value=\\"\\" onChanged={[Function: bound ]} resizable={true} autoAdjustHeight={false} underlined={false} borderless={false} onBeforeChange={[Function: onBeforeChange]} onNotifyValidationResult={[Function: onNotifyValidationResult]} onGetErrorMessage={[Function: onGetErrorMessage]} deferredValidationTime={200} errorMessage=\\"\\" validateOnFocusIn={false} validateOnFocusOut={false} validateOnLoad={true} />
+    <ActionAndCancelButtonsComponent isHidden={false} primaryButtonDisabled={true} primaryButtonText=\\"Save\\" primaryButtonOnClick={[Function: bound ]} cancelButtonOnClick={[Function: bound ]} />
+  </GenericPanel>
+</Fragment>"
+`;

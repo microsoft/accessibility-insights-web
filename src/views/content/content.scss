@@ -1,0 +1,257 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import "../../common/icons/icon.scss";
+@import '../../common/styles/colors.scss';
+
+.content-container {
+    display: flex;
+
+    .content-left,.content-right {
+        flex-grow: 1;
+        max-width: 150px;
+    }
+}
+
+.content {
+    flex-grow: 10;
+    max-width: 1120px;
+
+    font-family: "Segoe UI";
+    font-size: 14px;
+    margin: 10px;
+    
+
+    h1 {
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -.04em;
+        line-height: 40px;
+    }
+    
+    h2 {
+        font-size: 21px;
+        font-weight: 700;
+        letter-spacing: -.02em;
+        line-height: 32px;
+    }
+    
+    h3 {
+        font-size: 14px;
+    }
+
+    h4 {
+        font-weight: 400;
+        font-size: 14px;
+        margin-bottom: 4px;
+    }
+
+    h5 {
+        font-weight: 700;
+        font-size: 14px;
+        margin-bottom: 4px;
+    }
+
+    a {
+        font-weight: 400;
+    }
+
+    .code-example {
+
+        .code-example-code {
+            font-family: monospace;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+        }
+
+        .code-example-title {
+            h4 {
+                display: inline;
+                margin-block-start: 0;
+            }
+        }
+    }
+
+    .columns {
+        display: flex;
+        margin-top: 40px;
+    }
+
+    .column {
+        padding: 10px;
+        flex-grow: 1;
+        flex-basis: 0;
+        max-width: 520px;
+    }
+
+    .column+.column {
+        margin-left: 80px;
+    }
+
+    $icon-size: 16px;
+    $do-color: $positive-outcome;
+    $dont-color: $negative-outcome;
+    
+    .insights-code {
+        font-family: monospace;
+    }
+
+    .pass-fail-grid {
+        display: grid;
+        grid-template-areas: 
+            "fail-section pass-section"
+            "fail-example pass-example";
+            border: 1px solid $neutral-60;
+        }
+
+    .fail-section, .fail-example, .pass-section, .pass-example {
+        padding: 15px;
+    }
+  
+    .fail-example, .pass-example {
+        border-top: 1px solid $neutral-60;
+    }
+
+    .fail-section, .fail-example {
+        border-right: 1px solid $neutral-60;
+    }
+
+    .fail-section {
+        grid-area: fail-section;
+    }
+
+    .fail-example {
+        grid-area: fail-example;
+    }
+    
+    .pass-section {
+        grid-area: pass-section;
+    }
+
+    .pass-example {
+        grid-area: pass-example;
+    }
+
+    .do-header, .pass-header, .dont-header, .fail-header {
+        width: 100%;
+    }
+
+    .do-header, .dont-header {
+        .check-container {
+            margin-top: 9px;
+            float: right;
+        }
+
+        h2 {
+            display: inline;
+        }
+    }
+
+    .pass-header, .fail-header {
+        h3 {
+            display: inline;
+        }
+    }
+
+    .do-header, .pass-header {
+        .check-container {
+            border-color: $do-color;
+            background-color: $do-color;
+        }
+    }
+
+    .dont-header, .fail-header {
+        .check-container {
+            border-color: $dont-color;
+            background-color: $dont-color;
+        }
+    }
+
+    .do-section, .pass-section, .pass-example {
+        .highlight {
+            color: $do-color;
+            font-weight: bold;
+        }
+    }
+
+    .dont-section, .fail-section, .fail-example {
+        .highlight {
+            color: $dont-color;
+            font-weight: bold;
+        }
+    }
+
+    .do-header {
+        @include check-icon-styles($icon-size, 0px);
+        border-bottom: 2px solid $do-color;
+    }
+
+    .dont-header {
+        @include cross-icon-styles($icon-size, 0px);
+        border-bottom: 2px solid $dont-color;
+    }
+
+    .pass-header {
+        @include check-icon-styles(12px, 0px);
+    }
+
+    .fail-header {
+        @include cross-icon-styles(12px, 0px);
+    }
+
+    .table {
+        list-style: none;
+        margin-top: 12px;
+        display: table;
+        border-collapse: separate;
+        border-spacing: 5px;
+        padding-left: 18px;
+    }
+
+    .accessibility-problems-list {
+        background: $neutral-6;
+        list-style-type: disc;
+    }
+
+    .landmarks-legend {
+        color: $neutral-100;
+        font-size: 14px;
+        display: table-cell;
+        width: 110px;
+        text-align: center;
+        font-weight: 400;
+        padding: 4px;
+        vertical-align: middle;
+
+        &.contentinfo-landmark {
+            background-color: $landmark-contentinfo;
+        }
+
+        &.main-landmark {
+            background-color: $landmark-main;
+        }
+
+        &.complementary-landmark {
+            background-color: $landmark-complementary;
+        }
+
+        &.banner-landmark {
+            background-color: $landmark-banner;
+        }
+
+        &.region-landmark {
+            background-color: $landmark-region;
+        }
+
+        &.navigation-landmark {
+            background-color: $landmark-navigation;
+        }
+
+        &.search-landmark {
+            background-color: $landmark-search;
+        }
+
+        &.form-landmark {
+            background-color: $landmark-form;
+        }
+}
+}

@@ -1,0 +1,651 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../common/styles/common.scss';
+
+body {
+    margin: 0;
+    overflow-y: auto;
+    height: 0px;
+}
+
+.telemetry-permission-dialog-modal {
+    .ms-Overlay {
+        background-color: $neutral-alpha-20;
+    }
+}
+
+div.insights-dialog-main-override.telemetry-permission-dialog {
+    border-radius: 6px;
+    box-shadow: 0 0 10px 0 $neutral-alpha-60;
+    width: 368px;
+
+    .ms-Dialog-title {
+        font-weight: $fontWeightSemiBold;
+    }
+
+    .ms-Checkbox-checkbox {
+        border-radius: 4px;
+    }
+
+    .telemetry-permission-details {
+        font-size: 14px;
+    }
+
+    .start-using-product-button {
+        border-radius: 2px;
+    }
+    .telemetry-checkbox-section {
+        font-size: 12px;
+        color: $secondary-text;
+        padding-top: 10px;
+    }
+    .telemetry-agree-checkbox {
+        padding-bottom: 4px;
+    }
+}
+
+html {
+    height: 0px; //required for properly resize the popup when zoom in/out
+}
+
+#popup-container,
+#popup-container * {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+#popup-container [role="heading"] {
+    width: fit-content;
+    padding-left: 0;
+
+    &.old {
+        padding-left: 8px;
+    }
+}
+
+#popup-container .launch-panel {
+    width: 296px;
+    margin: 10px 0px 10px 0px;
+}
+
+#popup-container .ad-hoc-tools-panel {
+    width: 540px;
+    margin: 10px 0px 20px 0px;
+}
+
+#popup-container .insights-spinner {
+    margin: 4px;
+}
+
+#popup-container .getting-started-dialog {
+    width: 38em;
+}
+
+#popup-container .feedback-dialog {
+    width: 38em;
+    margin: 20px 14px 20px 14px;
+}
+
+#popup-container .unsupported-url-info-panel {
+    width: 25em;
+    margin: 20px 14px 20px 14px;
+}
+
+#popup-container .toggle-label {
+    font-size: 16px;
+}
+
+#popup-container .popup-submit-button {
+    margin-top: 19px;
+}
+
+#popup-container .getting-started-dialog-header {
+    margin: 0 0 5px 0;
+    width: 100%;
+    padding: 3%;
+    background: $neutral-100;
+}
+
+#popup-container .main-section {
+    margin-left: 14px;
+    margin-right: 14px;
+}
+
+#popup-container .main-section label {
+    padding: 0;
+}
+
+#popup-container .main-section .ms-Toggle-stateText {
+    font-size: 11px;
+    padding-top: 3px;
+    color: $secondary-text;
+}
+
+#popup-container .launch-panel-header {
+    margin-bottom: 12px;
+    margin-left: 14px;
+    margin-right: 14px;
+}
+
+#popup-container .gear-options-button-component {
+    display: inline-block;
+
+    button {
+        margin-right: 5px;
+    }
+
+    .sign-in-link {
+        margin-top: 6px;
+    }
+
+    button.gear-button {
+        margin-top: 10px;
+    }
+}
+
+#popup-container .feedback-dialog-header {
+    margin-bottom: 12px;
+}
+
+.popup-menu .ms-ContextualMenu-icon {
+    color: $communication-shade-10;
+    max-height: 30px;
+}
+
+#popup-container .launch-panel-header .header-title {
+    height: 32px;
+}
+
+#popup-container .launch-panel-header .feedback-collapseMenuButton-col {
+    padding-right: 0;
+    padding-left: 0;
+    float: right;
+}
+
+#popup-container .getting-started-dialog-exit-button {
+    color: $neutral-0;
+}
+
+#popup-container .main-section .shortcut-label {
+    text-align: right;
+    padding-top: 3px;
+    padding-bottom: 0px;
+}
+
+#popup-container .main-section .ad-hoc-tools-panel-group-0 {
+    padding-right: 15px;
+}
+
+#popup-container .main-section .ad-hoc-tools-panel-group-1 {
+    padding-left: 15px;
+}
+
+#popup-container .main-section .ad-hoc-tools-panel-footer {
+    margin-top: 24px;
+}
+
+#popup-container #getting-started-main-section {
+    margin: 0 8px;
+}
+
+#popup-container #feed-back-dialog-main-section {
+    margin: 0 8px;
+}
+
+#popup-container .main-section h3 {
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+#popup-container .main-section p {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+#popup-container .main-section .italic-text-container {
+    margin-left: 0px;
+    margin-top: 5px;
+}
+
+#popup-container .main-section .ms-Grid-row .italic-text-container {
+    margin-left: 20px;
+    margin-top: -2px;
+    color: $secondary-text;
+}
+
+#popup-container .main-section .getting-started-hr {
+    margin-top: 10px;
+    margin-bottom: 3px;
+}
+
+#popup-container .main-section .launch-panel-hr {
+    margin-top: 14px;
+    margin-bottom: 14px;
+    cursor: default;
+    display: block;
+    height: 1px;
+    background-color: $neutral-8;
+    position: relative;
+}
+
+#popup-container .main-section .footer {
+    padding-top: 11px;
+    padding-bottom: 10px;
+}
+
+#popup-container .main-section .ad-hoc-tools-panel-footer {
+    font-size: 11px;
+}
+
+#popup-container .main-section .ms-Toggle {
+    padding-top: 2px;
+    margin-bottom: 0px;
+}
+
+#popup-container .main-section .ms-Spinner {
+    padding-top: 3px;
+}
+
+#popup-container .main-section .view-toggle-row {
+    height: 25px;
+}
+
+#popup-container .main-section .view-toggle-col {
+    padding-right: 0;
+    text-align: right;
+}
+
+#popup-container .main-section .ms-Checkbox-checkbox {
+    margin: 0;
+}
+
+button[disabled]:not(.ms-ContextualMenu-link) {
+    border: none;
+}
+
+button[disabled]:hover:not(.ms-ContextualMenu-link) {
+    border: none;
+}
+
+button[disabled]:focus:not(.ms-ContextualMenu-link) {
+    border: none;
+}
+
+#popup-container .feedback-dialog-button {
+    width: 92px;
+}
+
+#popup-container .right-float-button-row {
+    float: right;
+}
+
+#popup-container .left-float-text-container {
+    text-align: left;
+}
+
+#popup-container .centered-text-container {
+    text-align: center;
+}
+
+#popup-container .right-float-text-container {
+    text-align: right;
+}
+
+#popup-container .right-float-text-container-alias {
+    text-align: right;
+}
+
+#popup-container .feedback-dialog .ms-TextField-field {
+    height: 100px;
+}
+
+#popup-container .launch-panel-general-container {
+    margin-bottom: 20px;
+}
+
+#popup-container .ask-a-question-button {
+    height: 0px;
+}
+
+#popup-container {
+    .ms-Link {
+        color: $communication-shade-10;
+        font-weight: 600;
+    }
+
+    .launch-pad-title {
+        font-size: 14px;
+        margin-bottom: -4px;
+    }
+
+    .main-section {
+        .launch-pad-footer {
+
+            color: $neutral-60;
+            font-weight: 300;
+            font-size: 11px;
+
+            margin-bottom: 12px;
+            margin-top: 12px;
+
+            div+div {
+                margin-top: 1vh;
+            }
+
+            a {
+                font-weight: 600;
+            }
+        }
+
+        .launch-pad-hr {
+            margin: 12px 0px 0px 0px;
+            border-width: 1px 0px 0px 0px;
+            padding: 0px;
+            border-style: solid;
+            border-color: $neutral-8;
+        }
+
+        .launch-pad-item-title {
+            margin: 5px 0px 5px 0px;
+            padding: 0px;
+            height: 20px;
+
+            .ms-Link {
+                font-weight: 600
+            }
+        }
+    }
+}
+
+#popup-container #new-launch-pad {
+    width: 400px;
+}
+
+#popup-container .launch-panel {
+    width: 296px;
+
+    .launch-pad-main-section #getting-started-heading {
+        margin: 0px;
+        height: 20px;
+        padding: 0px;
+    }
+
+    .getting-started-dialog-header-title {
+        height: 28px;
+        width: 180px;
+        color: $neutral-100;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 21px;
+        line-height: 25px;
+        padding: 0px 8px;
+    }
+
+    .getting-started-dialog-header-subtitle {
+        color: $neutral-100;
+        height: 15px;
+        font-size: 11px;
+        line-height: 13px;
+        font-style: normal;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        padding: 0px;
+    }
+
+    .getting-started-dialog-exit-button {
+        color: $secondary-text;
+        height: 17px;
+        width: 17px;
+        font-size: 17px;
+        line-height: 20px;
+        font-style: normal;
+        position: relative;
+        left: 10px;
+    }
+
+    .popup-submit-button {
+        margin: 0px;
+    }
+
+    .getting-started-dialog-header-fast-pass {
+        margin: 0px 0px 12px 0px;
+        width: 256px;
+        height: 42px;
+        background: $neutral-0;
+        padding: 0px;
+    }
+
+    .launch-pad-main-section {
+        width: 100%;
+        margin: 0px;
+    }
+
+    .launch-pad-item-description {
+        width: 280px;
+    }
+
+    .popup-submit-button-disabled {
+        color: $neutral-20;
+        background-color: $neutral-8;
+        border-style: solid;
+        border-width: 1px 1px 1px 0px;
+        border-color: $neutral-20;
+    }
+
+    .popup-submit-button-enabled {
+        color: $neutral-0;
+        background-color: $communication-primary;
+        border-style: solid;
+        border-width: 1px 1px 1px 0px;
+        border-color: $communication-primary;
+    }
+
+    .popup-submit-button-submitted {
+        color: $accent2-dark;
+        background-color: $neutral-0;
+        border-style: solid;
+        border-width: 1px 1px 1px 0px;
+        border-color: $neutral-20;
+    }
+
+    .popup-start-dialog-icon-circle {
+        border-radius: 50%;
+        width: 59px;
+        height: 59px;
+        background-color: $communication-tint-30;
+        margin-top: 12px;
+        padding: 12px 14px 14px 14px;
+    }
+
+    .launch-pad-main-section {
+        .ms-Button-icon {
+            width: 31px;
+            height: 31px;
+            font-size: 31px;
+            line-height: 36px;
+            color: $secondary-text;
+            font-style: normal;
+        }
+
+        .popup-start-dialog-icon {
+            width: 31px;
+            height: 31px;
+            font-size: 31px;
+            line-height: 36px;
+            color: $secondary-text;
+            font-style: normal;
+        }
+
+        .getting-started-dialog-panel-item-description {
+            margin: 0px;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+    }
+
+    ::placeholder {
+        font-style: italic;
+    }
+}
+
+#popup-container #getting-started-dialog-fast-pass {
+    width: 296px;
+    height: 502px;
+    padding: 20px;
+
+    #getting-started-main-section #getting-started-heading {
+        margin: 0px;
+        height: 20px;
+        padding: 0px;
+    }
+
+    .getting-started-dialog-header-title {
+        height: 28px;
+        width: 180px;
+        color: $neutral-100;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 21px;
+        line-height: 25px;
+        padding: 0px 8px;
+    }
+
+    .getting-started-dialog-header-subtitle {
+        color: $neutral-100;
+        height: 15px;
+        font-size: 11px;
+        line-height: 13px;
+        font-style: normal;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        padding: 0px;
+    }
+
+    .getting-started-dialog-exit-button {
+        color: $secondary-text;
+        height: 17px;
+        width: 17px;
+        font-size: 17px;
+        line-height: 20px;
+        font-style: normal;
+        position: relative;
+        left: 10px;
+    }
+
+    .popup-submit-button {
+        margin: 0px;
+    }
+
+    .getting-started-dialog-header-fast-pass {
+        margin: 0px 0px 12px 0px;
+        width: 256px;
+        height: 42px;
+        background: $neutral-0;
+        padding: 0px;
+    }
+
+    #getting-started-main-section {
+        width: 100%;
+        margin: 0px;
+    }
+
+    #getting-started-main-section .getting-started-hr {
+        margin: 12px 0px 0px 0px;
+        border-width: 1px 0px 0px 0px;
+        padding: 0px;
+        border-style: solid;
+        border-color: $neutral-8;
+    }
+
+    .popup-submit-button-disabled {
+        color: $neutral-20;
+        background-color: $neutral-8;
+        border-style: solid;
+        border-width: 1px 1px 1px 0px;
+        border-color: $neutral-20;
+    }
+
+    .popup-submit-button-enabled {
+        color: $neutral-0;
+        background-color: $communication-primary;
+        border-style: solid;
+        border-width: 1px 1px 1px 0px;
+        border-color: $communication-primary;
+    }
+
+    .popup-submit-button-submitted {
+        color: $accent2-dark;
+        background-color: $neutral-0;
+        border-style: solid;
+        border-width: 1px 1px 1px 0px;
+        border-color: $neutral-20;
+    }
+
+    .popup-start-dialog-icon-circle {
+        border-radius: 50%;
+        width: 59px;
+        height: 59px;
+        background-color: $neutral-10;
+        margin-top: 16px;
+        padding: 12px 14px 14px 14px;
+    }
+
+    #getting-started-main-section .getting-started-dialog-panel {
+        h3 {
+            margin: 16px 0px 0px 0px;
+            padding: 0px;
+            height: 20px;
+        }
+
+        .ms-Button-icon {
+            width: 31px;
+            height: 31px;
+            font-size: 31px;
+            line-height: 36px;
+            color: $secondary-text;
+            font-style: normal;
+        }
+
+        .popup-start-dialog-icon {
+            width: 31px;
+            height: 31px;
+            font-size: 31px;
+            line-height: 36px;
+            color: $secondary-text;
+            font-style: normal;
+        }
+
+        .getting-started-dialog-panel-item-description {
+            height: 38px;
+            margin: 0px;
+        }
+    }
+
+    ::placeholder {
+        font-style: italic;
+    }
+}
+
+#popup-container .fast-pass-launch-panel {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    background: $communication-tint-40;
+    line-height: 16px;
+    margin-bottom: 14px;
+}
+
+#popup-container .fast-pass-title,
+#popup-container .fast-pass-description {
+    padding-bottom: 10px;
+}
+
+#popup-container .fast-pass-rocket-large {
+    position: absolute;
+    font-size: 124px;
+    top: 87px;
+    left: 155px;
+    color: $communication-alpha-5;
+}
+
+.gear-options-icon {
+    padding-right: 5px;
+}

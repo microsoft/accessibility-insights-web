@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BaseLeftNav should render 1`] = `
+<StyledCustomizedNav
+  className="details-view-test-nav-area"
+  groups={
+    Array [
+      Object {
+        "links": Array [
+          Object {},
+        ],
+      },
+    ]
+  }
+  onLinkClick={[Function]}
+  onRenderLink={[Function]}
+  selectedKey="some key"
+/>
+`;

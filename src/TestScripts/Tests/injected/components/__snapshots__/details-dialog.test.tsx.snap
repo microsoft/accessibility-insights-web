@@ -1,0 +1,739 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = false 1`] = `
+<StyledCustomizedDialog
+  dialogContentProps={
+    Object {
+      "type": 0,
+    }
+  }
+  hidden={false}
+  modalProps={
+    Object {
+      "containerClassName": "insights-dialog-main-override",
+      "isBlocking": false,
+    }
+  }
+  onDismiss={Object {}}
+  onLayerDidMount={Object {}}
+  title="help"
+>
+  <div>
+    <div
+      className="insights-dialog-rule-container"
+    >
+      <StyledIconBase
+        iconName="StatusErrorFull"
+      />
+      <div
+        className="ms-fontSize-mPlus insights-dialog-rule-link"
+      >
+        Rule name: 
+        <NewTabLink
+          href="help1"
+        >
+          ruleId
+        </NewTabLink>
+      </div>
+    </div>
+    <div
+      className="insights-dialog-target-container"
+    >
+      <div
+        className="ms-fontWeight-semibold"
+      >
+        Path:
+      </div>
+      <div
+        className="insights-dialog-instance-selector"
+      >
+        ruleId
+      </div>
+      <div
+        className="insights-dialog-target-button-container"
+      >
+        <CustomizedDefaultButton
+          className="insights-dialog-button-inspect"
+          disabled={true}
+          iconProps={
+            Object {
+              "iconName": "FileHTML",
+            }
+          }
+          onClick={[Function]}
+          text="Inspect HTML"
+        />
+        <React.Fragment>
+          <CopyIssueDetailsButton
+            deps={
+              Object {
+                "issueDetailsTextGenerator": null,
+                "targetPageActionMessageCreator": Object {
+                  "copyIssueDetailsClicked": [Function],
+                },
+                "windowUtils": null,
+              }
+            }
+            issueDetailsData={
+              Object {
+                "pageTitle": "",
+                "pageUrl": "http://localhost/",
+                "ruleResult": Object {
+                  "all": Array [],
+                  "any": Array [],
+                  "failureSummary": "failureSummary",
+                  "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                  "guidanceLinks": Array [],
+                  "help": "help",
+                  "helpUrl": "help1",
+                  "html": "html",
+                  "id": "id1",
+                  "none": Array [],
+                  "ruleId": "ruleId",
+                  "selector": "selector",
+                  "snippet": "html",
+                  "status": false,
+                },
+              }
+            }
+            onClick={[Function]}
+          />
+          <FlaggedComponent
+            enableJSXElement={
+              <CustomizedDefaultButton
+                className="insights-dialog-button-create-bug"
+                iconProps={
+                  Object {
+                    "iconName": "add",
+                  }
+                }
+                text="New bug"
+              />
+            }
+            featureFlag="showBugFiling"
+            featureFlagStoreData={
+              Object {
+                "shadowDialog": false,
+              }
+            }
+          />
+        </React.Fragment>
+        <div
+          className="insights-dialog-inspect-disabled"
+        >
+          To enable the Inspect HTML button, open the Chrome dev tools (shortcut).
+        </div>
+      </div>
+    </div>
+    <div
+      className="insights-dialog-fix-instruction-container"
+    >
+      <FixInstructionPanel
+        checkType={0}
+        checks={Array []}
+      />
+      <FixInstructionPanel
+        checkType={1}
+        checks={Array []}
+      />
+    </div>
+    <div
+      className="ms-Grid"
+    >
+      <div
+        className="ms-Grid-row"
+      >
+        <div
+          className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left"
+        >
+          <CustomizedPrimaryButton
+            data-automation-id="back"
+            disabled={true}
+            onClick={Object {}}
+            text="< Back"
+          />
+        </div>
+        <div
+          className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 insights-dialog-footer"
+        >
+          <div>
+            Failure 1 of 1 for this target
+          </div>
+        </div>
+        <div
+          className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-right"
+        >
+          <CustomizedPrimaryButton
+            data-automation-id="next"
+            disabled={true}
+            onClick={Object {}}
+            text="Next >"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</StyledCustomizedDialog>
+`;
+
+exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 1`] = `
+<div
+  className="insights-dialog-main-override-shadow"
+  style={
+    Object {
+      "visibility": "visible",
+    }
+  }
+>
+  <div
+    className="insights-dialog-container"
+  >
+    <div
+      className="insights-dialog-header"
+    >
+      <p
+        className="ms-Dialog-title"
+      >
+        help
+      </p>
+      <div
+        className="ms-Dialog-topButton"
+      >
+        <button
+          aria-label="Close"
+          className="ms-Dialog-button ms-Dialog-button--close ms-Button ms-Button--icon insights-dialog-close"
+          data-is-focusable="true"
+          type="button"
+        >
+          <div
+            className="ms-button-flex-container"
+          >
+            <StyledIconBase
+              iconName="Cancel"
+            />
+          </div>
+        </button>
+      </div>
+    </div>
+    <div>
+      <div
+        className="insights-dialog-rule-container"
+      >
+        <StyledIconBase
+          iconName="StatusErrorFull"
+        />
+        <div
+          className="ms-fontSize-mPlus insights-dialog-rule-link"
+        >
+          Rule name: 
+          <NewTabLink
+            href="help1"
+          >
+            ruleId
+          </NewTabLink>
+        </div>
+      </div>
+      <div
+        className="insights-dialog-target-container"
+      >
+        <div
+          className="ms-fontWeight-semibold"
+        >
+          Path:
+        </div>
+        <div
+          className="insights-dialog-instance-selector"
+        >
+          ruleId
+        </div>
+        <div
+          className="insights-dialog-target-button-container"
+        >
+          <CustomizedDefaultButton
+            className="insights-dialog-button-inspect"
+            disabled={true}
+            iconProps={
+              Object {
+                "iconName": "FileHTML",
+              }
+            }
+            onClick={null}
+            text="Inspect HTML"
+          />
+          <React.Fragment>
+            <CopyIssueDetailsButton
+              deps={
+                Object {
+                  "issueDetailsTextGenerator": null,
+                  "targetPageActionMessageCreator": Object {
+                    "copyIssueDetailsClicked": [Function],
+                  },
+                  "windowUtils": null,
+                }
+              }
+              issueDetailsData={
+                Object {
+                  "pageTitle": "",
+                  "pageUrl": "http://localhost/",
+                  "ruleResult": Object {
+                    "all": Array [],
+                    "any": Array [],
+                    "failureSummary": "failureSummary",
+                    "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                    "guidanceLinks": Array [],
+                    "help": "help",
+                    "helpUrl": "help1",
+                    "html": "html",
+                    "id": "id1",
+                    "none": Array [],
+                    "ruleId": "ruleId",
+                    "selector": "selector",
+                    "snippet": "html",
+                    "status": false,
+                  },
+                }
+              }
+              onClick={[Function]}
+            />
+            <FlaggedComponent
+              enableJSXElement={
+                <CustomizedDefaultButton
+                  className="insights-dialog-button-create-bug"
+                  iconProps={
+                    Object {
+                      "iconName": "add",
+                    }
+                  }
+                  text="New bug"
+                />
+              }
+              featureFlag="showBugFiling"
+              featureFlagStoreData={
+                Object {
+                  "shadowDialog": true,
+                }
+              }
+            />
+          </React.Fragment>
+          <div
+            className="insights-dialog-inspect-disabled"
+          >
+            To enable the Inspect HTML button, open the Chrome dev tools (shortcut).
+          </div>
+        </div>
+      </div>
+      <div
+        className="insights-dialog-fix-instruction-container"
+      >
+        <FixInstructionPanel
+          checkType={0}
+          checks={Array []}
+        />
+        <FixInstructionPanel
+          checkType={1}
+          checks={Array []}
+        />
+      </div>
+      <div
+        className="ms-Grid"
+      >
+        <div
+          className="ms-Grid-row"
+        >
+          <div
+            className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left"
+          >
+            <CustomizedPrimaryButton
+              data-automation-id="back"
+              disabled={true}
+              onClick={null}
+              text="< Back"
+            />
+          </div>
+          <div
+            className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 insights-dialog-footer"
+          >
+            <div>
+              Failure 1 of 1 for this target
+            </div>
+          </div>
+          <div
+            className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-right"
+          >
+            <CustomizedPrimaryButton
+              data-automation-id="next"
+              disabled={true}
+              onClick={null}
+              text="Next >"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 2`] = `
+<StyledCustomizedDialog
+  dialogContentProps={
+    Object {
+      "type": 0,
+    }
+  }
+  hidden={false}
+  modalProps={
+    Object {
+      "containerClassName": "insights-dialog-main-override",
+      "isBlocking": false,
+    }
+  }
+  onDismiss={Object {}}
+  onLayerDidMount={Object {}}
+  title="help"
+>
+  <div>
+    <div
+      className="insights-dialog-rule-container"
+    >
+      <StyledIconBase
+        iconName="StatusErrorFull"
+      />
+      <div
+        className="ms-fontSize-mPlus insights-dialog-rule-link"
+      >
+        Rule name: 
+        <NewTabLink
+          href="help1"
+        >
+          ruleId
+        </NewTabLink>
+      </div>
+    </div>
+    <div
+      className="insights-dialog-target-container"
+    >
+      <div
+        className="ms-fontWeight-semibold"
+      >
+        Path:
+      </div>
+      <div
+        className="insights-dialog-instance-selector"
+      >
+        ruleId
+      </div>
+      <div
+        className="insights-dialog-target-button-container"
+      >
+        <CustomizedDefaultButton
+          className="insights-dialog-button-inspect"
+          disabled={false}
+          iconProps={
+            Object {
+              "iconName": "FileHTML",
+            }
+          }
+          onClick={[Function]}
+          text="Inspect HTML"
+        />
+        <React.Fragment>
+          <CopyIssueDetailsButton
+            deps={
+              Object {
+                "issueDetailsTextGenerator": null,
+                "targetPageActionMessageCreator": Object {
+                  "copyIssueDetailsClicked": [Function],
+                },
+                "windowUtils": null,
+              }
+            }
+            issueDetailsData={
+              Object {
+                "pageTitle": "",
+                "pageUrl": "http://localhost/",
+                "ruleResult": Object {
+                  "all": Array [],
+                  "any": Array [],
+                  "failureSummary": "failureSummary",
+                  "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                  "guidanceLinks": Array [],
+                  "help": "help",
+                  "helpUrl": "help1",
+                  "html": "html",
+                  "id": "id1",
+                  "none": Array [],
+                  "ruleId": "ruleId",
+                  "selector": "selector",
+                  "snippet": "html",
+                  "status": false,
+                },
+              }
+            }
+            onClick={[Function]}
+          />
+          <FlaggedComponent
+            enableJSXElement={
+              <CustomizedDefaultButton
+                className="insights-dialog-button-create-bug"
+                iconProps={
+                  Object {
+                    "iconName": "add",
+                  }
+                }
+                text="New bug"
+              />
+            }
+            featureFlag="showBugFiling"
+            featureFlagStoreData={
+              Object {
+                "shadowDialog": false,
+              }
+            }
+          />
+        </React.Fragment>
+      </div>
+    </div>
+    <div
+      className="insights-dialog-fix-instruction-container"
+    >
+      <FixInstructionPanel
+        checkType={0}
+        checks={Array []}
+      />
+      <FixInstructionPanel
+        checkType={1}
+        checks={Array []}
+      />
+    </div>
+    <div
+      className="ms-Grid"
+    >
+      <div
+        className="ms-Grid-row"
+      >
+        <div
+          className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left"
+        >
+          <CustomizedPrimaryButton
+            data-automation-id="back"
+            disabled={true}
+            onClick={Object {}}
+            text="< Back"
+          />
+        </div>
+        <div
+          className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 insights-dialog-footer"
+        >
+          <div>
+            Failure 1 of 1 for this target
+          </div>
+        </div>
+        <div
+          className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-right"
+        >
+          <CustomizedPrimaryButton
+            data-automation-id="next"
+            disabled={true}
+            onClick={Object {}}
+            text="Next >"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</StyledCustomizedDialog>
+`;
+
+exports[`DetailsDialogTest render: isDevToolsOpen = true, shadowDialog = true 1`] = `
+<div
+  className="insights-dialog-main-override-shadow"
+  style={
+    Object {
+      "visibility": "visible",
+    }
+  }
+>
+  <div
+    className="insights-dialog-container"
+  >
+    <div
+      className="insights-dialog-header"
+    >
+      <p
+        className="ms-Dialog-title"
+      >
+        help
+      </p>
+      <div
+        className="ms-Dialog-topButton"
+      >
+        <button
+          aria-label="Close"
+          className="ms-Dialog-button ms-Dialog-button--close ms-Button ms-Button--icon insights-dialog-close"
+          data-is-focusable="true"
+          type="button"
+        >
+          <div
+            className="ms-button-flex-container"
+          >
+            <StyledIconBase
+              iconName="Cancel"
+            />
+          </div>
+        </button>
+      </div>
+    </div>
+    <div>
+      <div
+        className="insights-dialog-rule-container"
+      >
+        <StyledIconBase
+          iconName="StatusErrorFull"
+        />
+        <div
+          className="ms-fontSize-mPlus insights-dialog-rule-link"
+        >
+          Rule name: 
+          <NewTabLink
+            href="help1"
+          >
+            ruleId
+          </NewTabLink>
+        </div>
+      </div>
+      <div
+        className="insights-dialog-target-container"
+      >
+        <div
+          className="ms-fontWeight-semibold"
+        >
+          Path:
+        </div>
+        <div
+          className="insights-dialog-instance-selector"
+        >
+          ruleId
+        </div>
+        <div
+          className="insights-dialog-target-button-container"
+        >
+          <CustomizedDefaultButton
+            className="insights-dialog-button-inspect"
+            disabled={false}
+            iconProps={
+              Object {
+                "iconName": "FileHTML",
+              }
+            }
+            onClick={null}
+            text="Inspect HTML"
+          />
+          <React.Fragment>
+            <CopyIssueDetailsButton
+              deps={
+                Object {
+                  "issueDetailsTextGenerator": null,
+                  "targetPageActionMessageCreator": Object {
+                    "copyIssueDetailsClicked": [Function],
+                  },
+                  "windowUtils": null,
+                }
+              }
+              issueDetailsData={
+                Object {
+                  "pageTitle": "",
+                  "pageUrl": "http://localhost/",
+                  "ruleResult": Object {
+                    "all": Array [],
+                    "any": Array [],
+                    "failureSummary": "failureSummary",
+                    "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                    "guidanceLinks": Array [],
+                    "help": "help",
+                    "helpUrl": "help1",
+                    "html": "html",
+                    "id": "id1",
+                    "none": Array [],
+                    "ruleId": "ruleId",
+                    "selector": "selector",
+                    "snippet": "html",
+                    "status": false,
+                  },
+                }
+              }
+              onClick={[Function]}
+            />
+            <FlaggedComponent
+              enableJSXElement={
+                <CustomizedDefaultButton
+                  className="insights-dialog-button-create-bug"
+                  iconProps={
+                    Object {
+                      "iconName": "add",
+                    }
+                  }
+                  text="New bug"
+                />
+              }
+              featureFlag="showBugFiling"
+              featureFlagStoreData={
+                Object {
+                  "shadowDialog": true,
+                }
+              }
+            />
+          </React.Fragment>
+        </div>
+      </div>
+      <div
+        className="insights-dialog-fix-instruction-container"
+      >
+        <FixInstructionPanel
+          checkType={0}
+          checks={Array []}
+        />
+        <FixInstructionPanel
+          checkType={1}
+          checks={Array []}
+        />
+      </div>
+      <div
+        className="ms-Grid"
+      >
+        <div
+          className="ms-Grid-row"
+        >
+          <div
+            className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left"
+          >
+            <CustomizedPrimaryButton
+              data-automation-id="back"
+              disabled={true}
+              onClick={null}
+              text="< Back"
+            />
+          </div>
+          <div
+            className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 insights-dialog-footer"
+          >
+            <div>
+              Failure 1 of 1 for this target
+            </div>
+          </div>
+          <div
+            className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-right"
+          >
+            <CustomizedPrimaryButton
+              data-automation-id="next"
+              disabled={true}
+              onClick={null}
+              text="Next >"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
