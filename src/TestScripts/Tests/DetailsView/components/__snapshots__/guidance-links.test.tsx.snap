@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GuidanceLinksTest links is empty 1`] = `""`;
+
+exports[`GuidanceLinksTest links is not null 1`] = `
+"<span className=\\"className\\">
+  <NewTabLink href=\\"https://url1\\" onClick={[Function: onClick]}>
+    TEXT1
+  </NewTabLink>
+  <span>
+    , 
+  </span>
+  <NewTabLink href=\\"https://url2\\" onClick={[Function: onClick]}>
+    TEXT2
+  </NewTabLink>
+</span>"
+`;
+
+exports[`GuidanceLinksTest links is null 1`] = `""`;

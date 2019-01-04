@@ -1,0 +1,154 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CollapsibleComponentTest render expanded with content-class-name 1`] = `
+<div
+  className="collapsible-component"
+>
+  <CustomizedActionButton
+    className="collapsible"
+    iconProps={
+      Object {
+        "class": "collapsible-icon",
+        "iconName": "ChevronDown",
+      }
+    }
+    onClick={[Function]}
+  >
+    <span
+      className="collapsible-title"
+    >
+      <div>
+        Some header
+      </div>
+    </span>
+  </CustomizedActionButton>
+  <div
+    className="content-class-name collapsible-content"
+  >
+    <div>
+      Some content
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CollapsibleComponentTest render expanded without content-class-name 1`] = `
+<div
+  className="collapsible-component"
+>
+  <CustomizedActionButton
+    className="collapsible"
+    iconProps={
+      Object {
+        "class": "collapsible-icon",
+        "iconName": "ChevronDown",
+      }
+    }
+    onClick={[Function]}
+  >
+    <span
+      className="collapsible-title"
+    >
+      <div>
+        Some header
+      </div>
+    </span>
+  </CustomizedActionButton>
+  <div
+    className="collapsible-content"
+  >
+    <div>
+      Some content
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CollapsibleComponentTest render with container-class-name 1`] = `
+<div
+  className="a-container collapsible-component"
+>
+  <CustomizedActionButton
+    className="collapsible"
+    iconProps={
+      Object {
+        "class": "collapsible-icon",
+        "iconName": "ChevronDown",
+      }
+    }
+    onClick={[Function]}
+  >
+    <span
+      className="collapsible-title"
+    >
+      <div>
+        Some header
+      </div>
+    </span>
+  </CustomizedActionButton>
+  <div
+    className="collapsible-content"
+  >
+    <div>
+      Some content
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CollapsibleComponentTest toggle from expaneded to collapsed: collapsed 1`] = `
+<div
+  className="collapsible-component"
+>
+  <CustomizedActionButton
+    className="collapsible"
+    iconProps={
+      Object {
+        "class": "collapsible-icon",
+        "iconName": "ChevronRight",
+      }
+    }
+    onClick={[Function]}
+  >
+    <span
+      className="collapsible-title"
+    >
+      <div>
+        Some header
+      </div>
+    </span>
+  </CustomizedActionButton>
+</div>
+`;
+
+exports[`CollapsibleComponentTest toggle from expaneded to collapsed: expaneded 1`] = `
+<div
+  className="collapsible-component"
+>
+  <CustomizedActionButton
+    className="collapsible"
+    iconProps={
+      Object {
+        "class": "collapsible-icon",
+        "iconName": "ChevronDown",
+      }
+    }
+    onClick={[Function]}
+  >
+    <span
+      className="collapsible-title"
+    >
+      <div>
+        Some header
+      </div>
+    </span>
+  </CustomizedActionButton>
+  <div
+    className="collapsible-content"
+  >
+    <div>
+      Some content
+    </div>
+  </div>
+</div>
+`;

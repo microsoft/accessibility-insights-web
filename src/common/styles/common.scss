@@ -1,0 +1,65 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import "high-contrast-override.scss";
+@import "colors.scss";
+@import "fonts.scss";
+
+$focus-ring-color: $neutral-100;
+
+@mixin set-focus-ring-styles($property: "border") {
+    #{$property}: 1px solid $focus-ring-color;
+    @include ms-high-contrast-override {
+        #{$property}: 1px dashed windowtext !important;
+    }
+}
+
+.ms-Fabric.is-focusVisible .ms-Nav-group .ms-nav-linkButton:focus::after {
+    @include set-focus-ring-styles('border');
+}
+
+button::after {
+    content: '';
+    position: absolute;
+}
+
+.ms-Button.ms-Button--primary:not(.is-disabled) {
+    background: $communication-shade-10;
+
+    &:hover {
+        background: $communication-shade-20;
+    }
+}
+
+.ms-fontColor-neutralPrimary, .ms-fontColor-neutralPrimary--hover:hover{
+    color: $neutral-100 !important;
+}
+
+.ms-Fabric {
+    color: $neutral-100;
+}
+
+.generic-toggle-component {
+    margin-bottom: 4vh;
+    .toggle-container {
+        margin-bottom: 1vh;
+        .toggle-name {
+            display: inline-block;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .toggle {
+            float: right;
+        }
+    }
+}
+
+$normalTitleFontWeight: 300 !default;
+
+$pivotItemLeftBorderWidth: 3px !default;
+$pivotItemBorderStyle: solid !default;
+$detailsViewHeaderBarHeight: 40px !default;
+$detailsViewNavPivotsHeight: 41px !default;
+$detailsViewCommandBarHeight: 40px !default;
+
+$detailsViewManNavWidth: 185px !default;

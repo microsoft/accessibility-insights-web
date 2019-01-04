@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getLinksTest getLinks: NO TITLE FOUND index=0 1`] = `
+<TestViewLeftNavLink
+  link={
+    Object {
+      "forceAnchor": true,
+      "iconProps": Object {
+        "className": "hidden",
+      },
+      "index": 1,
+      "key": "Headings",
+      "name": "NO TITLE FOUND",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "url": "",
+    }
+  }
+  renderIcon={[Function]}
+/>
+`;
+
+exports[`getLinksTest getLinks: NO TITLE FOUND index=1 1`] = `
+<TestViewLeftNavLink
+  link={
+    Object {
+      "forceAnchor": true,
+      "iconProps": Object {
+        "className": "hidden",
+      },
+      "index": 2,
+      "key": "Landmarks",
+      "name": "NO TITLE FOUND",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "url": "",
+    }
+  }
+  renderIcon={[Function]}
+/>
+`;
+
+exports[`getLinksTest getLinks: test title index=0 1`] = `
+<TestViewLeftNavLink
+  link={
+    Object {
+      "forceAnchor": true,
+      "iconProps": Object {
+        "className": "hidden",
+      },
+      "index": 1,
+      "key": "Headings",
+      "name": "test title",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "url": "",
+    }
+  }
+  renderIcon={[Function]}
+/>
+`;
+
+exports[`getLinksTest getLinks: test title index=1 1`] = `
+<TestViewLeftNavLink
+  link={
+    Object {
+      "forceAnchor": true,
+      "iconProps": Object {
+        "className": "hidden",
+      },
+      "index": 2,
+      "key": "Landmarks",
+      "name": "test title",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "url": "",
+    }
+  }
+  renderIcon={[Function]}
+/>
+`;

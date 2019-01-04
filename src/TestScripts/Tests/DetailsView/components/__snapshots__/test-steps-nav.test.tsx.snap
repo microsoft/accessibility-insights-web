@@ -1,0 +1,118 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TestStepsNav renders assisted tests: getRenderNavLink 1`] = `
+<TestStepLink
+  link={
+    Object {
+      "description": null,
+      "forceAnchor": true,
+      "index": 1,
+      "key": "assessment-1-step-1",
+      "name": null,
+      "renderRequirementDescription": [Function],
+      "url": "",
+    }
+  }
+  renderRequirementDescription={[Function]}
+  status={1}
+/>
+`;
+
+exports[`TestStepsNav renders assisted tests: render 1`] = `
+<StyledCustomizedNav
+  ariaLabel="test"
+  className="test-step-nav"
+  groups={
+    Array [
+      Object {
+        "links": Array [
+          Object {
+            "description": null,
+            "forceAnchor": true,
+            "index": 1,
+            "key": "assessment-1-step-1",
+            "name": null,
+            "renderRequirementDescription": [Function],
+            "url": "",
+          },
+          Object {
+            "description": null,
+            "forceAnchor": true,
+            "index": 2,
+            "key": "assessment-1-step-2",
+            "name": null,
+            "renderRequirementDescription": [Function],
+            "url": "",
+          },
+          Object {
+            "description": null,
+            "forceAnchor": true,
+            "index": 3,
+            "key": "assessment-1-step-3",
+            "name": null,
+            "renderRequirementDescription": [Function],
+            "url": "",
+          },
+        ],
+      },
+    ]
+  }
+  onLinkClick={[Function]}
+  onRenderLink={[Function]}
+  selectedKey="assessment-1-step-1"
+/>
+`;
+
+exports[`TestStepsNav renders automated tests: getRenderNavLink 1`] = `
+<TestStepLink
+  link={
+    Object {
+      "description": null,
+      "forceAnchor": true,
+      "index": 1,
+      "key": "assessment-3-step-2",
+      "name": null,
+      "renderRequirementDescription": [Function],
+      "url": "",
+    }
+  }
+  renderRequirementDescription={[Function]}
+  status={1}
+/>
+`;
+
+exports[`TestStepsNav renders automated tests: render 1`] = `
+<StyledCustomizedNav
+  ariaLabel="test"
+  className="test-step-nav"
+  groups={
+    Array [
+      Object {
+        "links": Array [
+          Object {
+            "description": null,
+            "forceAnchor": true,
+            "index": 1,
+            "key": "assessment-3-step-2",
+            "name": null,
+            "renderRequirementDescription": [Function],
+            "url": "",
+          },
+          Object {
+            "description": null,
+            "forceAnchor": true,
+            "index": 2,
+            "key": "assessment-3-step-1",
+            "name": null,
+            "renderRequirementDescription": [Function],
+            "url": "",
+          },
+        ],
+      },
+    ]
+  }
+  onLinkClick={[Function]}
+  onRenderLink={[Function]}
+  selectedKey="assessment-3-step-2"
+/>
+`;

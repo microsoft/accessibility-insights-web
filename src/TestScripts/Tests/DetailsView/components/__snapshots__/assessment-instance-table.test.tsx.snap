@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AssessmentInstanceTableTest renders default instance table header disabled with instance 1`] = `
+<CustomizedActionButton
+  disabled={true}
+  iconProps={
+    Object {
+      "iconName": "skypeCheck",
+    }
+  }
+  onClick={[Function]}
+>
+  Pass unmarked instances
+</CustomizedActionButton>
+`;
+
+exports[`AssessmentInstanceTableTest renders default instance table header disabled without instance 1`] = `
+<CustomizedActionButton
+  disabled={true}
+  iconProps={
+    Object {
+      "iconName": "skypeCheck",
+    }
+  }
+  onClick={[Function]}
+>
+  Pass unmarked instances
+</CustomizedActionButton>
+`;
+
+exports[`AssessmentInstanceTableTest renders default instance table header enabled 1`] = `
+<CustomizedActionButton
+  disabled={false}
+  iconProps={
+    Object {
+      "iconName": "skypeCheck",
+    }
+  }
+  onClick={[Function]}
+>
+  Pass unmarked instances
+</CustomizedActionButton>
+`;

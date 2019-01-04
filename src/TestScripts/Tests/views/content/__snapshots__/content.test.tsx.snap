@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`content view renders 1`] = `
+"<Page>
+  <div className=\\"content-container\\">
+    <div className=\\"content-left\\" />
+    <div className=\\"content\\">
+      <THE-CONTENT deps={{...}} />
+    </div>
+    <div className=\\"content-right\\" />
+  </div>
+</Page>"
+`;

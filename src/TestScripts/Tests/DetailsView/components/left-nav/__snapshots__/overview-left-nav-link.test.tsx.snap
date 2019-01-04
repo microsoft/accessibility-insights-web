@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OverviewLeftNavLink renders 1`] = `
+<div
+  aria-hidden="true"
+  className="button-flex-container"
+>
+  <div>
+    <StyledIconBase
+      className="status-icon dark-gray"
+      iconName="home"
+    />
+  </div>
+  <div
+    className="ms-Button-label overview-label"
+  >
+    <div
+      className="overview-name"
+    >
+      test-props-link-name
+    </div>
+    <div
+      className="overview-percent"
+    >
+      42
+      % Completed
+    </div>
+  </div>
+</div>
+`;

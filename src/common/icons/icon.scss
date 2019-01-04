@@ -1,0 +1,78 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@mixin getCheckContainerStyle($height, $border-size: 1px) {
+    position: relative;
+    width: ($height - $border-size * 2);
+    height: ($height - $border-size * 2);
+    display: inline-block;
+    border-radius: 50%;
+    border: $border-size solid $neutral-0;
+}
+
+@mixin check-icon-styles($iconSize, $border-size: 1px) {
+    // maxTickLength = iconSize - borderthickness - spacingBetweenCircleAndTick
+    $maxTickLength: ($iconSize - $border-size * 2 - 2);
+    $check-height: ($maxTickLength / 2);
+    $bottom-value: (($maxTickLength - $check-height) /2 + 1);
+    $left-value: ($bottom-value);
+    $check-line-thickness: (2/14 * $iconSize);
+
+    .check-container {
+        @include getCheckContainerStyle($iconSize, $border-size);
+
+        .check-icon {
+            height: $check-height;
+            width: ($check-height / 2);
+            transform: scaleX(-1) rotate(135deg);
+            border-right: $check-line-thickness solid $neutral-0;
+            border-top: $check-line-thickness solid $neutral-0;
+            content: '';
+            left: $left-value;
+            bottom: $bottom-value;
+            position: absolute;
+        }
+    }
+}
+
+@mixin cross-icon-styles($iconSize, $border-size: 1px) {
+    $true-icon-size: ($iconSize - $border-size * 2);
+    $width-value: (2/14 * $true-icon-size);
+
+    .check-container {
+        @include getCheckContainerStyle($iconSize, $border-size);
+        $cross-line-height: (8/14 * $true-icon-size);
+        $bottom-value: (($true-icon-size - $cross-line-height) / 2);
+        $left-value: (($true-icon-size - $width-value) / 2);
+
+        .cross-icon {
+            position: absolute;
+            width: $true-icon-size;
+            height: $true-icon-size;
+
+            &:before {
+                transform: rotate(45deg);
+            }
+
+            &:after {
+                transform: rotate(-45deg);
+            }
+
+            &:before,
+            &:after {
+                position: absolute;
+                left: $left-value;
+                content: ' ';
+                height: $cross-line-height;
+                width: $width-value;
+                bottom: $bottom-value;
+                background-color: $neutral-0;
+            }
+        }
+    }
+}
+
+@mixin incomplete-icon-styles($iconSize, $border-size: 1px) {
+    .check-container {
+        @include getCheckContainerStyle($iconSize, $border-size);
+    }
+}

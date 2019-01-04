@@ -1,0 +1,148 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AssessmentReportStepListTest renders fail 1`] = `
+<div>
+  <div
+    className="step-details"
+  >
+    <AssessmentReportStepHeader
+      defaultMessageComponent={null}
+      header={
+        Object {
+          "description": null,
+          "displayName": "Step2A",
+          "guidanceLinks": Array [],
+          "requirementType": "assisted",
+        }
+      }
+      instanceCount={1}
+      status={2}
+    />
+    <AssessmentReportInstanceList
+      instances={
+        Array [
+          Object {
+            "props": Array [
+              Object {
+                "key": "Path",
+                "value": "target1",
+              },
+              Object {
+                "key": "Snippet",
+                "value": "someHtml",
+              },
+            ],
+          },
+        ]
+      }
+    />
+  </div>
+  <div
+    className="step-details"
+  >
+    <AssessmentReportStepHeader
+      defaultMessageComponent={null}
+      header={
+        Object {
+          "description": null,
+          "displayName": "Step4A",
+          "guidanceLinks": Array [],
+          "requirementType": "manual",
+        }
+      }
+      instanceCount={1}
+      status={2}
+    />
+    <AssessmentReportInstanceList
+      instances={
+        Array [
+          Object {
+            "props": Array [
+              Object {
+                "key": "Comment",
+                "value": "comment",
+              },
+            ],
+          },
+        ]
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`AssessmentReportStepListTest renders incomplete 1`] = `
+<div>
+  <div
+    className="step-details"
+  >
+    <AssessmentReportStepHeader
+      defaultMessageComponent={null}
+      header={
+        Object {
+          "description": null,
+          "displayName": "Step3A",
+          "guidanceLinks": Array [],
+          "requirementType": "assisted",
+        }
+      }
+      instanceCount={1}
+      status={1}
+    />
+  </div>
+</div>
+`;
+
+exports[`AssessmentReportStepListTest renders pass 1`] = `
+<div>
+  <div
+    className="step-details"
+  >
+    <AssessmentReportStepHeader
+      defaultMessageComponent={null}
+      header={
+        Object {
+          "description": null,
+          "displayName": "Step1A",
+          "guidanceLinks": Array [
+            Object {
+              "href": "link1A",
+              "text": "link1A",
+            },
+          ],
+          "requirementType": "assisted",
+        }
+      }
+      instanceCount={1}
+      status={0}
+    />
+  </div>
+</div>
+`;
+
+exports[`AssessmentReportStepListTest renders pass without instances when showInstances is false 1`] = `
+<div>
+  <div
+    className="step-details"
+  >
+    <AssessmentReportStepHeader
+      defaultMessageComponent={null}
+      header={
+        Object {
+          "description": null,
+          "displayName": "Step1A",
+          "guidanceLinks": Array [
+            Object {
+              "href": "link1A",
+              "text": "link1A",
+            },
+          ],
+          "requirementType": "assisted",
+        }
+      }
+      instanceCount={1}
+      status={0}
+    />
+  </div>
+</div>
+`;

@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IssuesDetailsPaneTest render with single selection, test copy to clipboard 1`] = `
+"<div>
+  <div>
+    <h2>
+      Failure details
+    </h2>
+    <CopyIssueDetailsButton deps={{...}} issueDetailsData={{...}} onClick={[Function: copyIssueDetailsClicked]} />
+    <table className=\\"issue-detail-table\\">
+      <tbody>
+        <tr>
+          <td>
+            Rule
+          </td>
+          <td>
+            <NewTabLink href=\\"http://help-url/\\">
+              rule-id
+            </NewTabLink>
+            : 
+            rule-help
+             
+             
+            <GuidanceLinks links={{...}} />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            How to fix
+          </td>
+          <td className=\\"fix-content\\">
+            <FixInstructionPanel checkType={0} checks={{...}} />
+            <FixInstructionPanel checkType={1} checks={{...}} />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Snippet
+          </td>
+          <td className=\\"snippet-content\\" />
+        </tr>
+        <tr>
+          <td>
+            Path
+          </td>
+          <td className=\\"path-content\\" />
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>"
+`;

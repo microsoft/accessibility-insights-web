@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`page view renders 1`] = `
+<React.Fragment>
+  <header>
+    <img
+      alt=""
+      className="header-icon"
+      src="../../icons/brand/white/brand-white-48px.png"
+    />
+    <div
+      className="ms-font-m header-text"
+    >
+      EXTENSION_NAME
+    </div>
+  </header>
+  <main>
+    INSIDE
+  </main>
+</React.Fragment>
+`;

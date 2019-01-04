@@ -1,0 +1,32 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import "../../common/styles/common.scss";
+
+body {
+    margin: 0;
+}
+
+header {
+    background-color: $ada-blue;
+    height: $detailsViewHeaderBarHeight;
+
+    .header-text {
+        padding-top: 11px;
+        color: $neutral-0;
+        display: inline-block;
+    }
+
+    .header-icon {
+        float: left;
+        padding: 13px 8px;
+        height: 16px;
+    }
+}
+
+main {
+    overflow: auto;
+    position: absolute;
+    top: $detailsViewHeaderBarHeight;
+    bottom: 0;
+    width: 100%;
+}

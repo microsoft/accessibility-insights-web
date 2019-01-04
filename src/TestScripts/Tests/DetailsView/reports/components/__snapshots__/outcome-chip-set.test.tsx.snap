@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OutcomeChipSet render render all zero 1`] = `
+<div
+  className="outcome-chip-set"
+/>
+`;
+
+exports[`OutcomeChipSet render render incomplete zero 1`] = `
+<div
+  className="outcome-chip-set"
+>
+  <OutcomeChip
+    count={3}
+    outcomeType="pass"
+  />
+  <OutcomeChip
+    count={4}
+    outcomeType="fail"
+  />
+</div>
+`;
+
+exports[`OutcomeChipSet render render with all properties 1`] = `
+<div
+  className="outcome-chip-set"
+>
+  <OutcomeChip
+    count={3}
+    outcomeType="pass"
+  />
+  <OutcomeChip
+    count={2}
+    outcomeType="incomplete"
+  />
+  <OutcomeChip
+    count={4}
+    outcomeType="fail"
+  />
+</div>
+`;

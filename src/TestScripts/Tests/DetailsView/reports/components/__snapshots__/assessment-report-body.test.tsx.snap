@@ -1,0 +1,277 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AssessmentReportBody render 1`] = `
+<div
+  className="assessment-report-body"
+  role="main"
+>
+  <AssessmentReportBodyHeader />
+  <AssessmentReportSummary
+    summary={
+      Object {
+        "byPercentage": Object {
+          "fail": 50,
+          "incomplete": 37,
+          "pass": 13,
+        },
+        "byRequirement": Object {
+          "fail": 3,
+          "incomplete": 2,
+          "pass": 1,
+        },
+        "reportSummaryDetailsData": Array [
+          Object {
+            "displayName": "Assessment1",
+            "fail": 2,
+            "incomplete": 1,
+            "pass": 1,
+          },
+          Object {
+            "displayName": "Assessment2",
+            "fail": 1,
+            "incomplete": 1,
+            "pass": 0,
+          },
+        ],
+      }
+    }
+  />
+  <AssessmentScanDetails
+    description="test-description"
+    details={
+      Object {
+        "reportDate": 2000-01-01T00:00:00.000Z,
+        "targetPage": "title",
+        "url": "url",
+      }
+    }
+  />
+  <div
+    className="details-section"
+  >
+    <div
+      className="details-section-header"
+    >
+      <h2
+        className="details-section-header-title"
+      >
+        Failed tests
+      </h2>
+      <OutcomeChip
+        count={3}
+        outcomeType="fail"
+      />
+    </div>
+    <AssessmentReportAssessmentList
+      assessments={
+        Array [
+          Object {
+            "displayName": "Assessment1",
+            "key": "assessment1",
+            "steps": Array [
+              Object {
+                "defaultMessageComponent": null,
+                "header": Object {
+                  "description": null,
+                  "displayName": "Step2A",
+                  "guidanceLinks": Array [],
+                  "requirementType": "assisted",
+                },
+                "instances": Array [
+                  Object {
+                    "props": Array [
+                      Object {
+                        "key": "Path",
+                        "value": "target1",
+                      },
+                      Object {
+                        "key": "Snippet",
+                        "value": "someHtml",
+                      },
+                    ],
+                  },
+                ],
+                "key": "step2a",
+                "showPassingInstances": false,
+              },
+              Object {
+                "defaultMessageComponent": null,
+                "header": Object {
+                  "description": null,
+                  "displayName": "Step4A",
+                  "guidanceLinks": Array [],
+                  "requirementType": "manual",
+                },
+                "instances": Array [
+                  Object {
+                    "props": Array [
+                      Object {
+                        "key": "Comment",
+                        "value": "comment",
+                      },
+                    ],
+                  },
+                ],
+                "key": "step4a",
+                "showPassingInstances": false,
+              },
+            ],
+          },
+          Object {
+            "displayName": "Assessment2",
+            "key": "assessment2",
+            "steps": Array [
+              Object {
+                "defaultMessageComponent": null,
+                "header": Object {
+                  "description": null,
+                  "displayName": "Step2B",
+                  "guidanceLinks": Array [],
+                  "requirementType": "manual",
+                },
+                "instances": Array [],
+                "key": "step2b",
+                "showPassingInstances": true,
+              },
+            ],
+          },
+        ]
+      }
+      status={2}
+    />
+  </div>
+  <div
+    className="details-section"
+  >
+    <div
+      className="details-section-header"
+    >
+      <h2
+        className="details-section-header-title"
+      >
+        Incomplete tests
+      </h2>
+      <OutcomeChip
+        count={2}
+        outcomeType="incomplete"
+      />
+    </div>
+    <AssessmentReportAssessmentList
+      assessments={
+        Array [
+          Object {
+            "displayName": "Assessment1",
+            "key": "assessment1",
+            "steps": Array [
+              Object {
+                "defaultMessageComponent": null,
+                "header": Object {
+                  "description": null,
+                  "displayName": "Step3A",
+                  "guidanceLinks": Array [],
+                  "requirementType": "assisted",
+                },
+                "instances": Array [
+                  Object {
+                    "props": Array [
+                      Object {
+                        "key": "Path",
+                        "value": "target2",
+                      },
+                      Object {
+                        "key": "Snippet",
+                        "value": "someHtml",
+                      },
+                    ],
+                  },
+                ],
+                "key": "step3a",
+                "showPassingInstances": false,
+              },
+            ],
+          },
+          Object {
+            "displayName": "Assessment2",
+            "key": "assessment2",
+            "steps": Array [
+              Object {
+                "defaultMessageComponent": null,
+                "header": Object {
+                  "description": null,
+                  "displayName": "Step1B",
+                  "guidanceLinks": Array [],
+                  "requirementType": "assisted",
+                },
+                "instances": Array [],
+                "key": "step1b",
+                "showPassingInstances": true,
+              },
+            ],
+          },
+        ]
+      }
+      status={1}
+    />
+  </div>
+  <div
+    className="details-section"
+  >
+    <div
+      className="details-section-header"
+    >
+      <h2
+        className="details-section-header-title"
+      >
+        Passed tests
+      </h2>
+      <OutcomeChip
+        count={1}
+        outcomeType="pass"
+      />
+    </div>
+    <AssessmentReportAssessmentList
+      assessments={
+        Array [
+          Object {
+            "displayName": "Assessment1",
+            "key": "assessment1",
+            "steps": Array [
+              Object {
+                "defaultMessageComponent": null,
+                "header": Object {
+                  "description": null,
+                  "displayName": "Step1A",
+                  "guidanceLinks": Array [
+                    Object {
+                      "href": "link1A",
+                      "text": "link1A",
+                    },
+                  ],
+                  "requirementType": "assisted",
+                },
+                "instances": Array [
+                  Object {
+                    "props": Array [
+                      Object {
+                        "key": "Path",
+                        "value": "target1",
+                      },
+                      Object {
+                        "key": "Snippet",
+                        "value": "someHtml",
+                      },
+                    ],
+                  },
+                ],
+                "key": "step1a",
+                "showPassingInstances": false,
+              },
+            ],
+          },
+        ]
+      }
+      status={0}
+    />
+  </div>
+</div>
+`;

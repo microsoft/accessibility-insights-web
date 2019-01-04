@@ -1,0 +1,126 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PopupViewController render actual content render toggles view: ad-hoc tools 1`] = `
+"<Fragment>
+  <div className=\\"ms-Fabric ad-hoc-tools-panel\\">
+    <LaunchPanelHeader deps={{...}} title=\\"test title\\" subtitle=\\"test subtitle\\" clickhandler={{...}} supportLinkHandler={{...}} popupWindow={[undefined]} openAdhocToolsPanel={[Function]} featureFlags={{...}} />
+    <AdHocToolsPanel backLinkHandler={[Function]} diagnosticViewToggleFactory={[undefined]} />
+  </div>
+  <TelemetryPermissionDialog deps={{...}} isFirstTime={true} />
+</Fragment>"
+`;
+
+exports[`PopupViewController render actual content render toggles view: launch pad 1`] = `
+"<Fragment>
+  <div className=\\"ms-Fabric launch-panel\\" id=\\"new-launch-pad\\">
+    <LaunchPanelHeader deps={{...}} title=\\"test title\\" subtitle={{...}} clickhandler={{...}} supportLinkHandler={{...}} popupWindow={[undefined]} openAdhocToolsPanel={[Function]} featureFlags={{...}} />
+    <LaunchPad deps={{...}} productName=\\"test title\\" rowConfigs={[undefined]} version=\\"2\\" />
+  </div>
+  <TelemetryPermissionDialog deps={{...}} isFirstTime={true} />
+</Fragment>"
+`;
+
+exports[`PopupViewController render actual content render toggles view: launch pad: subtitle 1`] = `
+"<Fragment>
+  test subtitle
+    
+  |
+    
+  Watch
+   
+  <NewTabLink href=\\"https://msit.microsoftstream.com/video/7817f7b2-7c17-4ad8-a644-42d82ae697a2?channelId=66d47e66-d99c-488b-b9ea-98a153d2a4d4&channelName=Accessibility%20Tools\\" aria-label=\\"demo video\\" title=\\"watch the 3 minute video introduction\\" onClick={[Function: onClickTutorialLink]}>
+    3-minute video
+  </NewTabLink>
+   
+  introduction
+</Fragment>"
+`;
+
+exports[`PopupViewController render actual content renderAdHocToolsPanel 1`] = `
+"<Fragment>
+  <div className=\\"ms-Fabric ad-hoc-tools-panel\\">
+    <LaunchPanelHeader deps={{...}} title=\\"test title\\" subtitle=\\"test subtitle\\" clickhandler={{...}} supportLinkHandler={{...}} popupWindow={[undefined]} openAdhocToolsPanel={[Function]} featureFlags={{...}} />
+    <AdHocToolsPanel backLinkHandler={[Function]} diagnosticViewToggleFactory={{...}} />
+  </div>
+  <TelemetryPermissionDialog deps={{...}} isFirstTime={true} />
+</Fragment>"
+`;
+
+exports[`PopupViewController render spinner 1`] = `
+<StyledCustomizedSpinner
+  className="insights-spinner"
+  label="Loading..."
+  size={3}
+/>
+`;
+
+exports[`PopupViewController renderFailureMsgPanelForChromeUrl 1`] = `
+<div
+  className="ms-Fabric unsupported-url-info-panel"
+>
+  <Header
+    subtitle="test subtitle"
+    title="test title"
+  />
+  <div
+    className="ms-Grid main-section"
+  >
+    <div
+      className="launch-panel-general-container"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "Accessibility Insights for Web can't run on this URL.</br>You'll need to go to a different page.",
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`PopupViewController renderFailureMsgPanelForFileUrl 1`] = `
+<div
+  className="ms-Fabric unsupported-url-info-panel"
+>
+  <Header
+    subtitle="test subtitle"
+    title="test title"
+  />
+  <div
+    className="ms-Grid main-section"
+  >
+    <div
+      className="launch-panel-general-container"
+    >
+      Your Chrome settings don't allow Accessibility Insights for Web to run on file URLs.
+    </div>
+    <div>
+      <div>
+        To allow this extension to run on file URLs:
+      </div>
+      <div>
+        1. Go to chrome://extensions.
+      </div>
+      <div>
+        2. Find 
+        <span
+          className="ms-fontWeight-semibold"
+        >
+          test title
+           - 
+          test subtitle
+        </span>
+        .
+      </div>
+      <div>
+        3. Check 
+        <span
+          className="ms-fontWeight-semibold"
+        >
+          Allow Access to file URLs
+        </span>
+        .
+      </div>
+    </div>
+  </div>
+</div>
+`;

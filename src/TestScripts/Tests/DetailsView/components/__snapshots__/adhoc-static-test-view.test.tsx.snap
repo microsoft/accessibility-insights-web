@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AdhocStaticTestView should return static content details view 1`] = `"<StaticContentDetailsView visualizationEnabled={true} onToggleClick={[Function: clickHandlerStub]} title=\\"test title\\" toggleLabel=\\"test toggle label\\" content={{...}} />"`;
+
+exports[`AdhocStaticTestView should return target page changed view as tab is changed 1`] = `"<TargetPageChangedView displayableData={{...}} type={-1} toggleClickHandler={[Function: clickHandlerStub]} />"`;

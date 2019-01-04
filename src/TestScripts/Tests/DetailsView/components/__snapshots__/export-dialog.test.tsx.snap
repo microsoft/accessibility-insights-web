@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExportDialog renders as hidden when not open 1`] = `
+<StyledCustomizedDialog
+  dialogContentProps={
+    Object {
+      "subText": "Optional: please describe the result (it will be saved in the report).",
+      "title": "Provide result description",
+      "type": 0,
+    }
+  }
+  hidden={true}
+  modalProps={
+    Object {
+      "containerClassName": "insights-dialog-main-override",
+      "isBlocking": false,
+    }
+  }
+  onDismiss={[Function]}
+>
+  <TextField
+    ariaLabel="Provide result description"
+    autoAdjustHeight={false}
+    autoFocus={true}
+    borderless={false}
+    deferredValidationTime={200}
+    errorMessage=""
+    multiline={true}
+    onBeforeChange={[Function]}
+    onChanged={[Function]}
+    onGetErrorMessage={[Function]}
+    onNotifyValidationResult={[Function]}
+    resizable={false}
+    rows={8}
+    underlined={false}
+    validateOnFocusIn={false}
+    validateOnFocusOut={false}
+    validateOnLoad={true}
+    value="description"
+  />
+  <StyledCustomizedDialogFooter>
+    <StyledCustomizedLink
+      className="download-report-link"
+      download="AssessmentReport.html"
+      href="data:text/html,<html><body>test-html</body></html>"
+      onClick={[Function]}
+    >
+      Export
+    </StyledCustomizedLink>
+  </StyledCustomizedDialogFooter>
+</StyledCustomizedDialog>
+`;
+
+exports[`ExportDialog renders as shown when open 1`] = `
+<StyledCustomizedDialog
+  dialogContentProps={
+    Object {
+      "subText": "Optional: please describe the result (it will be saved in the report).",
+      "title": "Provide result description",
+      "type": 0,
+    }
+  }
+  hidden={false}
+  modalProps={
+    Object {
+      "containerClassName": "insights-dialog-main-override",
+      "isBlocking": false,
+    }
+  }
+  onDismiss={[Function]}
+>
+  <TextField
+    ariaLabel="Provide result description"
+    autoAdjustHeight={false}
+    autoFocus={true}
+    borderless={false}
+    deferredValidationTime={200}
+    errorMessage=""
+    multiline={true}
+    onBeforeChange={[Function]}
+    onChanged={[Function]}
+    onGetErrorMessage={[Function]}
+    onNotifyValidationResult={[Function]}
+    resizable={false}
+    rows={8}
+    underlined={false}
+    validateOnFocusIn={false}
+    validateOnFocusOut={false}
+    validateOnLoad={true}
+    value="description"
+  />
+  <StyledCustomizedDialogFooter>
+    <StyledCustomizedLink
+      className="download-report-link"
+      download="AssessmentReport.html"
+      href="data:text/html,<html><body>test-html</body></html>"
+      onClick={[Function]}
+    >
+      Export
+    </StyledCustomizedLink>
+  </StyledCustomizedDialogFooter>
+</StyledCustomizedDialog>
+`;

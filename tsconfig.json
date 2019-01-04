@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    "extendedDiagnostics": true,
+    "target": "es5",
+    "module": "amd",
+    "lib": ["es5", "es6", "es2015.promise", "dom", "scripthost"],
+    "jsx": "react",
+    "declaration": true,
+    "declarationDir": "./ref/",
+    "sourceMap": true,
+    "outDir": "./dist/",
+    "rootDir": "./",
+    "stripInternal": true,
+    "noEmitOnError": true,
+    "skipLibCheck": true,
+    "suppressExcessPropertyErrors": true,
+    "alwaysStrict": false,
+    "noImplicitUseStrict": true,
+    "moduleResolution": "node",
+    "inlineSources": true,
+    "experimentalDecorators": true,
+    "strictFunctionTypes": false,
+    "strictPropertyInitialization": false,
+    "noErrorTruncation": false,
+    "noStrictGenericChecks": false,
+    "allowJs": false,
+    "typeRoots": ["node_modules/@types"],
+    "plugins": [
+        { "name": "tslint-language-service" }
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "*": ["*"],
+      "typemoq": ["typemoq/typemoq"]
+    }
+  },
+  "include":[
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "references.ts"
+  ],
+  "exclude":[
+    "src/common/references.ts",
+    "src/webpack.config.js"
+  ]
+}

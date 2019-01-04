@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GenericToggleTest verify if the classname passed from prop is added properly 1`] = `
+<div
+  className="generic-toggle-component"
+>
+  <div
+    className="toggle-container"
+  >
+    <div
+      className="toggle-name"
+    >
+      test name
+    </div>
+    <CustomizedToggle
+      checked={true}
+      className="toggle"
+      offAriaLabel="test name"
+      offText="Off"
+      onAriaLabel="test name"
+      onClick={[Function]}
+      onText="On"
+    />
+  </div>
+  <div
+    className="toggle-description"
+  >
+    test description
+  </div>
+</div>
+`;

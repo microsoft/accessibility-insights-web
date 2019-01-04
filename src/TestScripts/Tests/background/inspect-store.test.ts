@@ -1,0 +1,82 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+import { IInspectPayload, InspectActions } from '../../../background/actions/inspect-actions';
+import { TabActions } from '../../../background/actions/tab-actions';
+import { InspectMode } from '../../../background/inspect-modes';
+import { InspectStore } from '../../../background/stores/inspect-store';
+import { StoreNames } from '../../../common/stores/store-names';
+import { createStoreWithNullParams, StoreTester } from '../../Common/store-tester';
+
+describe('InspectStoreTest', () => {
+    test('constructor  no side effects', () => {
+        const testObject = createStoreWithNullParams(InspectStore);
+        expect(testObject).toBeDefined();
+    });
+
+    test('getId', () => {
+        const testObject = createStoreWithNullParams(InspectStore);
+        expect(testObject.getId()).toEqual(StoreNames[StoreNames.InspectStore]);
+    });
+
+    test('check defaultState is off', () => {
+        const defaultState = getDefaultState();
+        expect(defaultState.inspectMode).toEqual(InspectMode.off);
+    });
+
+    test('on getCurrentState', () => {
+        const initialState = getDefaultState();
+        const finalState = getDefaultState();
+
+        createStoreForInspectActions('getCurrentState')
+            .testListenerToBeCalledOnce(initialState, finalState);
+    });
+
+    test('on changeMode', () => {
+        const initialState = getDefaultState();
+        const payload: IInspectPayload = {
+            inspectMode: InspectMode.scopingAddInclude,
+        };
+
+        const finalState = getDefaultState();
+        finalState.inspectMode = payload.inspectMode;
+        createStoreForInspectActions('changeInspectMode')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, finalState);
+    });
+
+    test('on setHoveredOverSelector', () => {
+        const initialState = getDefaultState();
+        const payload: string[]  = ['some selector'];
+        const finalState = getDefaultState();
+        finalState.hoveredOverSelector = payload;
+        createStoreForInspectActions('setHoveredOverSelector')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, finalState);
+    });
+
+    test('on tabChange', () => {
+        const initialState = getDefaultState();
+        initialState.hoveredOverSelector = ['some selector'];
+        initialState.inspectMode = InspectMode.scopingAddInclude;
+        const finalState = getDefaultState();
+        createStoreForTabActions('tabChange')
+            .withActionParam(null)
+            .testListenerToBeCalledOnce(initialState, finalState);
+    });
+
+    function getDefaultState() {
+        return createStoreWithNullParams(InspectStore).getDefaultState();
+    }
+
+    function createStoreForInspectActions(actionName: keyof InspectActions) {
+        const tabActions = new TabActions();
+        const factory = (actions: InspectActions) => new InspectStore(actions, tabActions);
+
+        return new StoreTester(InspectActions, actionName, factory);
+    }
+
+    function createStoreForTabActions(actionName: keyof TabActions) {
+        const factory = (actions: TabActions) => new InspectStore(new InspectActions(), actions);
+        return new StoreTester(TabActions, actionName, factory);
+    }
+});

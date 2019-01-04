@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DetailsViewLeftNavTest render: newAssessmentExperience 1`] = `"<FlaggedComponent featureFlagStoreData={{...}} featureFlag=\\"newAssessmentExperience\\" enableJSXElement={{...}} disableJSXElement={{...}} />"`;
+
+exports[`DetailsViewLeftNavTest renderNav 1`] = `
+<StyledCustomizedNav
+  className="details-view-test-nav-area"
+  groups={
+    Array [
+      Object {
+        "links": Array [
+          Object {
+            "name": "link-name-1",
+          },
+          Object {
+            "name": "link-name-2",
+          },
+        ],
+      },
+    ]
+  }
+  onLinkClick={[Function]}
+  onRenderLink={[Function]}
+  selectedKey="selected-key"
+/>
+`;
+
+exports[`DetailsViewLeftNavTest renderNavLink 1`] = `
+<div>
+  <i>
+    link-title-1
+  </i>
+  <div>
+    link-name-1
+  </div>
+</div>
+`;

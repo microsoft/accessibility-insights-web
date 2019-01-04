@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BugButtonTest render new bug button 1`] = `
+<StyledCustomizedLink
+  className="bugs-details-view"
+>
+  <StyledIconBase
+    className="create-bug-button"
+    iconName="Add"
+  />
+  New bug
+</StyledCustomizedLink>
+`;
