@@ -47,13 +47,11 @@ You can install the extension from one of the following links.
   - Click on the 3-dotted-menu in the upper right corner and then select "More Tools" and then "Extensions".
   - Verify that **developer mode** is enabled in the upper right.
   - Click on the **Load unpacked** button
-  - Choose one of the following directories
+  - Choose the following directory
 
-    `./drop/staging/extension/` - bundled like a production release
+    `./drop/dev/extension/` - bundled like a production release
 
-    `./drop/dev/extension/` - unbundled for debugging purposes
-
-  > IMPORTANT: Ensure that you are testing locally using the **staging** version before pushing a change.
+  > IMPORTANT: Ensure that you are testing locally before pushing a change.
 
 - Look for the icon with the extensions and there is the extension.
 ## More Information
