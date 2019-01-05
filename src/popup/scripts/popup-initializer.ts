@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
 import { autobind } from '@uifabric/utilities';
 import * as Q from 'q';
 import * as ReactDOM from 'react-dom';
@@ -43,8 +46,6 @@ import { PopupViewControllerHandler } from './handlers/popup-view-controller-han
 import { LaunchPadRowConfigurationFactory } from './launch-pad-row-configuration-factory';
 import { MainRenderer, MainRendererDeps } from './main-renderer';
 
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License.
 declare var window: AutoChecker & Window;
 
 export class PopupInitializer {
