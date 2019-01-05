@@ -54,6 +54,10 @@ button::after {
     }
 }
 
+.insights-link {
+    color: $communication-shade-10 !important;
+}
+
 $normalTitleFontWeight: 300 !default;
 
 $pivotItemLeftBorderWidth: 3px !default;

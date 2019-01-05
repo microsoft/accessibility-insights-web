@@ -6,6 +6,6 @@ import * as React from 'react';
 
 export class NewTabLink extends BaseComponent<ILinkProps> {
     public render(): JSX.Element {
-        return <Link className="insights-links" {...this.props} target="_blank" />;
+        return <Link className="insights-link" {...this.props} target="_blank" />;
     }
 }

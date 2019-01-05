@@ -13,13 +13,12 @@ export type ExternalLinkProps = {
     deps: ExternalLinkDeps;
     href: string;
     title?: string;
-    className?: string;
 };
 
-export const ExternalLink = NamedSFC<ExternalLinkProps>('ExternalLink', ({ deps, href, title, children, className }) => {
+export const ExternalLink = NamedSFC<ExternalLinkProps>('ExternalLink', ({ deps, href, title, children }) => {
     const onClick = e => deps.actionInitiators.openExternalLink(e, { href });
     return (
-        <Link className={className} target="_blank" href={href} title={title} onClick={onClick}>
+        <Link className="insights-link" target="_blank" href={href} title={title} onClick={onClick}>
             {children}
         </Link>
     );
