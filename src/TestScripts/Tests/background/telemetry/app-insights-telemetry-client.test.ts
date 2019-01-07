@@ -252,7 +252,9 @@ describe('AppInsights telemetry client tests', () => {
             .setup(ai =>
                 ai.downloadAndSetup(
                     It.isValue({
-                        instrumentationKey: aiKey, disableTelemetry: true,
+                        instrumentationKey: aiKey,
+                        disableTelemetry: true,
+                        disableAjaxTracking: true,
                     } as Microsoft.ApplicationInsights.IConfig)))
             .verifiable(Times.once());
     }
