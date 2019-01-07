@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LeftNavIndexIcon render 1`] = `
+<div
+  className="index-circle"
+>
+  1
+</div>
+`;
+
+exports[`LeftNavStatusIcon render 1`] = `
+<div>
+  <StatusIcon
+    className="dark-gray"
+    status={0}
+  />
+</div>
+`;
