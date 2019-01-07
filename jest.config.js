@@ -10,7 +10,7 @@ module.exports = {
   },
 
   setupFiles: [
-    '<rootDir>/src/TestScripts/jest-setup.ts'
+    '<rootDir>/src/tests/unit/jest-setup.ts'
   ],
 
   moduleDirectories: [
@@ -24,14 +24,14 @@ module.exports = {
   ],
 
   roots: [
-    "<rootDir>/src/TestScripts"
+    "<rootDir>/src/tests/unit"
   ],
 
   collectCoverage: true,
 
   "collectCoverageFrom": [
     "**/src/**/*.{ts,tsx}",
-    "!**/TestScripts/**"
+    "!**/tests/**"
   ],
 
   "coverageReporters": [
@@ -49,7 +49,7 @@ module.exports = {
   testEnvironment: "jsdom",
 
   testMatch: [
-    "<rootDir>/src/TestScripts/Tests/**/*.test.(ts|tsx|js)"
+    "<rootDir>/src/tests/unit/tests/**/*.test.(ts|tsx|js)"
   ],
 
   testPathIgnorePatterns: [
