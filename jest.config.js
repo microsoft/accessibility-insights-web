@@ -15,7 +15,6 @@ module.exports = {
 
   moduleDirectories: [
     "node_modules",
-    "external_modules"
   ],
 
   moduleFileExtensions: [
