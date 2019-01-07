@@ -27,6 +27,7 @@ export class AppInsightsTelemetryClient implements TelemetryClient {
         private readonly coreTelemetryDataFactory: ApplicationTelemetryDataFactory,
         private readonly logger: TelemetryLogger,
     ) {
+
     }
 
     private initialize() {
@@ -38,6 +39,7 @@ export class AppInsightsTelemetryClient implements TelemetryClient {
 
         this.appInsights.downloadAndSetup({
             instrumentationKey: config.getOption('appInsightsInstrumentationKey'),
+            disableAjaxTracking: true,
             // start with telemetry disabled, to avoid sending past queued telemetry data
             disableTelemetry: true,
         });
@@ -70,13 +72,15 @@ export class AppInsightsTelemetryClient implements TelemetryClient {
     }
 
     private updateTelemetryState() {
+        const disableTelemetry = () => {
+            this.appInsights.config.disableTelemetry = !this.enabled;
+        };
+
         if (this.appInsights.queue) {
-            this.appInsights.queue.push(() => {
-                this.appInsights.config.disableTelemetry = !this.enabled;
-            });
+            this.appInsights.queue.push(disableTelemetry);
         }
         else {
-            this.appInsights.config.disableTelemetry = !this.enabled;
+            disableTelemetry();
         }
     }
 
