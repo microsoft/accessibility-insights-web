@@ -56,9 +56,9 @@ exports[`ContentPage .Markup <Fail> renders 1`] = `
 `;
 
 exports[`ContentPage .Markup <HyperLink> renders 1`] = `
-"<a href=\\"http://my.link\\" target=\\"_blank\\" onClick={[Function: onClick]}>
+"<NewTabLink href=\\"http://my.link\\" target=\\"_blank\\" onClick={[Function: onClick]}>
   LINK TEXT
-</a>"
+</NewTabLink>"
 `;
 
 exports[`ContentPage .Markup <LandmarkLegend> renders 1`] = `
@@ -83,17 +83,13 @@ exports[`ContentPage .Markup <LandmarkLegend> renders 2`] = `
 
 exports[`ContentPage .Markup <Links> renders with many links 1`] = `
 "<Fragment>
-  <div>
+  <div className=\\"content-hyperlinks\\">
     <HyperLink href=\\"about:blank\\">
       One
     </HyperLink>
-  </div>
-  <div>
     <HyperLink href=\\"about:blank\\">
       Two
     </HyperLink>
-  </div>
-  <div>
     <HyperLink href=\\"about:blank\\">
       Three
     </HyperLink>
@@ -103,7 +99,7 @@ exports[`ContentPage .Markup <Links> renders with many links 1`] = `
 
 exports[`ContentPage .Markup <Links> renders with one link 1`] = `
 "<Fragment>
-  <div>
+  <div className=\\"content-hyperlinks\\">
     <HyperLink href=\\"about:blank\\">
       One
     </HyperLink>
@@ -113,7 +109,7 @@ exports[`ContentPage .Markup <Links> renders with one link 1`] = `
 
 exports[`ContentPage .Markup <Links> renders with text 1`] = `
 "<Fragment>
-  <div>
+  <div className=\\"content-hyperlinks\\">
     Some text
   </div>
 </Fragment>"
