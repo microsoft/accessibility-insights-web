@@ -4,6 +4,11 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { ReportCheckListProps, ReportCheckList } from '../../../../../DetailsView/reports/components/report-check-list';
+
+
+
+
+
 import { RuleResult } from '../../../../../scanner/iruleresults';
 
 describe('ReportCheckListTest', () => {

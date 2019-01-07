@@ -284,17 +284,17 @@ ShallowWrapper {
               rule-id-1
               :
             </NewTabLink>
-
+             
             <span
               id="check-help-test1-0"
             >
               rule-help-1
             </span>
-
+             
             <span>
               (
               2
-              )
+              ) 
             </span>
             <GuidanceLinks
               links={
@@ -337,17 +337,17 @@ ShallowWrapper {
                 rule-id-1
                 :
               </NewTabLink>
-
+               
               <span
                 id="check-help-test1-0"
               >
                 rule-help-1
               </span>
-
+               
               <span>
                 (
                 2
-                )
+                ) 
               </span>
               <GuidanceLinks
                 links={
@@ -396,7 +396,7 @@ ShallowWrapper {
                 <span>
                   (
                   2
-                  )
+                  ) 
                 </span>,
                 <GuidanceLinks
                   links={
@@ -524,17 +524,17 @@ ShallowWrapper {
                 rule-id-1
                 :
               </NewTabLink>
-
+               
               <span
                 id="check-help-test1-0"
               >
                 rule-help-1
               </span>
-
+               
               <span>
                 (
                 2
-                )
+                ) 
               </span>
               <GuidanceLinks
                 links={
@@ -577,17 +577,17 @@ ShallowWrapper {
                   rule-id-1
                   :
                 </NewTabLink>
-
+                 
                 <span
                   id="check-help-test1-0"
                 >
                   rule-help-1
                 </span>
-
+                 
                 <span>
                   (
                   2
-                  )
+                  ) 
                 </span>
                 <GuidanceLinks
                   links={
@@ -636,7 +636,7 @@ ShallowWrapper {
                   <span>
                     (
                     2
-                    )
+                    ) 
                   </span>,
                   <GuidanceLinks
                     links={
@@ -836,17 +836,17 @@ ShallowWrapper {
               rule-id-1
               :
             </NewTabLink>
-
+             
             <span
               id="check-help-test2-0"
             >
               rule-help-1
             </span>
-
+             
             <span>
               (
               2
-              )
+              ) 
             </span>
             <GuidanceLinks
               links={
@@ -881,17 +881,17 @@ ShallowWrapper {
               rule-id-2
               :
             </NewTabLink>
-
+             
             <span
               id="check-help-test2-1"
             >
               rule-help-2
             </span>
-
+             
             <span>
               (
               1
-              )
+              ) 
             </span>
             <GuidanceLinks
               links={
@@ -933,17 +933,17 @@ ShallowWrapper {
                 rule-id-1
                 :
               </NewTabLink>
-
+               
               <span
                 id="check-help-test2-0"
               >
                 rule-help-1
               </span>
-
+               
               <span>
                 (
                 2
-                )
+                ) 
               </span>
               <GuidanceLinks
                 links={
@@ -992,7 +992,7 @@ ShallowWrapper {
                 <span>
                   (
                   2
-                  )
+                  ) 
                 </span>,
                 <GuidanceLinks
                   links={
@@ -1113,17 +1113,17 @@ ShallowWrapper {
                 rule-id-2
                 :
               </NewTabLink>
-
+               
               <span
                 id="check-help-test2-1"
               >
                 rule-help-2
               </span>
-
+               
               <span>
                 (
                 1
-                )
+                ) 
               </span>
               <GuidanceLinks
                 links={
@@ -1171,7 +1171,7 @@ ShallowWrapper {
                 <span>
                   (
                   1
-                  )
+                  ) 
                 </span>,
                 <GuidanceLinks
                   links={
@@ -1298,17 +1298,17 @@ ShallowWrapper {
                 rule-id-1
                 :
               </NewTabLink>
-
+               
               <span
                 id="check-help-test2-0"
               >
                 rule-help-1
               </span>
-
+               
               <span>
                 (
                 2
-                )
+                ) 
               </span>
               <GuidanceLinks
                 links={
@@ -1343,17 +1343,17 @@ ShallowWrapper {
                 rule-id-2
                 :
               </NewTabLink>
-
+               
               <span
                 id="check-help-test2-1"
               >
                 rule-help-2
               </span>
-
+               
               <span>
                 (
                 1
-                )
+                ) 
               </span>
               <GuidanceLinks
                 links={
@@ -1395,17 +1395,17 @@ ShallowWrapper {
                   rule-id-1
                   :
                 </NewTabLink>
-
+                 
                 <span
                   id="check-help-test2-0"
                 >
                   rule-help-1
                 </span>
-
+                 
                 <span>
                   (
                   2
-                  )
+                  ) 
                 </span>
                 <GuidanceLinks
                   links={
@@ -1454,7 +1454,7 @@ ShallowWrapper {
                   <span>
                     (
                     2
-                    )
+                    ) 
                   </span>,
                   <GuidanceLinks
                     links={
@@ -1575,17 +1575,17 @@ ShallowWrapper {
                   rule-id-2
                   :
                 </NewTabLink>
-
+                 
                 <span
                   id="check-help-test2-1"
                 >
                   rule-help-2
                 </span>
-
+                 
                 <span>
                   (
                   1
-                  )
+                  ) 
                 </span>
                 <GuidanceLinks
                   links={
@@ -1633,7 +1633,7 @@ ShallowWrapper {
                   <span>
                     (
                     1
-                    )
+                    ) 
                   </span>,
                   <GuidanceLinks
                     links={
@@ -1832,13 +1832,13 @@ ShallowWrapper {
               rule-id-1
               :
             </NewTabLink>
-
+             
             <span
               id="check-help-test2-0"
             >
               rule-help-1
             </span>
-
+             
             <GuidanceLinks
               links={
                 Array [
@@ -1872,13 +1872,13 @@ ShallowWrapper {
               rule-id-2
               :
             </NewTabLink>
-
+             
             <span
               id="check-help-test2-1"
             >
               rule-help-2
             </span>
-
+             
             <GuidanceLinks
               links={
                 Array [
@@ -1919,13 +1919,13 @@ ShallowWrapper {
                 rule-id-1
                 :
               </NewTabLink>
-
+               
               <span
                 id="check-help-test2-0"
               >
                 rule-help-1
               </span>
-
+               
               <GuidanceLinks
                 links={
                   Array [
@@ -2072,13 +2072,13 @@ ShallowWrapper {
                 rule-id-2
                 :
               </NewTabLink>
-
+               
               <span
                 id="check-help-test2-1"
               >
                 rule-help-2
               </span>
-
+               
               <GuidanceLinks
                 links={
                   Array [
@@ -2230,13 +2230,13 @@ ShallowWrapper {
                 rule-id-1
                 :
               </NewTabLink>
-
+               
               <span
                 id="check-help-test2-0"
               >
                 rule-help-1
               </span>
-
+               
               <GuidanceLinks
                 links={
                   Array [
@@ -2270,13 +2270,13 @@ ShallowWrapper {
                 rule-id-2
                 :
               </NewTabLink>
-
+               
               <span
                 id="check-help-test2-1"
               >
                 rule-help-2
               </span>
-
+               
               <GuidanceLinks
                 links={
                   Array [
@@ -2317,13 +2317,13 @@ ShallowWrapper {
                   rule-id-1
                   :
                 </NewTabLink>
-
+                 
                 <span
                   id="check-help-test2-0"
                 >
                   rule-help-1
                 </span>
-
+                 
                 <GuidanceLinks
                   links={
                     Array [
@@ -2470,13 +2470,13 @@ ShallowWrapper {
                   rule-id-2
                   :
                 </NewTabLink>
-
+                 
                 <span
                   id="check-help-test2-1"
                 >
                   rule-help-2
                 </span>
-
+                 
                 <GuidanceLinks
                   links={
                     Array [
@@ -2700,17 +2700,17 @@ ShallowWrapper {
               rule-id-1
               :
             </NewTabLink>
-
+             
             <span
               id="check-help-test2-0"
             >
               rule-help-1
             </span>
-
+             
             <span>
               (
               2
-              )
+              ) 
             </span>
             <GuidanceLinks
               links={
@@ -2737,17 +2737,17 @@ ShallowWrapper {
               rule-id-2
               :
             </NewTabLink>
-
+             
             <span
               id="check-help-test2-1"
             >
               rule-help-2
             </span>
-
+             
             <span>
               (
               1
-              )
+              ) 
             </span>
             <GuidanceLinks
               links={
@@ -2782,17 +2782,17 @@ ShallowWrapper {
                 rule-id-1
                 :
               </NewTabLink>
-
+               
               <span
                 id="check-help-test2-0"
               >
                 rule-help-1
               </span>
-
+               
               <span>
                 (
                 2
-                )
+                ) 
               </span>
               <GuidanceLinks
                 links={
@@ -2834,7 +2834,7 @@ ShallowWrapper {
                 <span>
                   (
                   2
-                  )
+                  ) 
                 </span>,
                 <GuidanceLinks
                   links={
@@ -2942,17 +2942,17 @@ ShallowWrapper {
                 rule-id-2
                 :
               </NewTabLink>
-
+               
               <span
                 id="check-help-test2-1"
               >
                 rule-help-2
               </span>
-
+               
               <span>
                 (
                 1
-                )
+                ) 
               </span>
               <GuidanceLinks
                 links={
@@ -2994,7 +2994,7 @@ ShallowWrapper {
                 <span>
                   (
                   1
-                  )
+                  ) 
                 </span>,
                 <GuidanceLinks
                   links={
@@ -3109,17 +3109,17 @@ ShallowWrapper {
                 rule-id-1
                 :
               </NewTabLink>
-
+               
               <span
                 id="check-help-test2-0"
               >
                 rule-help-1
               </span>
-
+               
               <span>
                 (
                 2
-                )
+                ) 
               </span>
               <GuidanceLinks
                 links={
@@ -3146,17 +3146,17 @@ ShallowWrapper {
                 rule-id-2
                 :
               </NewTabLink>
-
+               
               <span
                 id="check-help-test2-1"
               >
                 rule-help-2
               </span>
-
+               
               <span>
                 (
                 1
-                )
+                ) 
               </span>
               <GuidanceLinks
                 links={
@@ -3191,17 +3191,17 @@ ShallowWrapper {
                   rule-id-1
                   :
                 </NewTabLink>
-
+                 
                 <span
                   id="check-help-test2-0"
                 >
                   rule-help-1
                 </span>
-
+                 
                 <span>
                   (
                   2
-                  )
+                  ) 
                 </span>
                 <GuidanceLinks
                   links={
@@ -3243,7 +3243,7 @@ ShallowWrapper {
                   <span>
                     (
                     2
-                    )
+                    ) 
                   </span>,
                   <GuidanceLinks
                     links={
@@ -3351,17 +3351,17 @@ ShallowWrapper {
                   rule-id-2
                   :
                 </NewTabLink>
-
+                 
                 <span
                   id="check-help-test2-1"
                 >
                   rule-help-2
                 </span>
-
+                 
                 <span>
                   (
                   1
-                  )
+                  ) 
                 </span>
                 <GuidanceLinks
                   links={
@@ -3403,7 +3403,7 @@ ShallowWrapper {
                   <span>
                     (
                     1
-                    )
+                    ) 
                   </span>,
                   <GuidanceLinks
                     links={
