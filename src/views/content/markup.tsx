@@ -6,6 +6,7 @@ import { Code, Emphasis, Tag, Term } from '../../assessments/markup';
 import { CheckIcon } from '../../common/icons/check-icon';
 import { CrossIcon } from '../../common/icons/cross-icon';
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
+import { NewTabLink } from '../../common/components/new-tab-link';
 
 type PassFailProps = {
     passText: JSX.Element,
@@ -53,9 +54,9 @@ export const createMarkup = (deps: MarkupDeps) => {
         const { href } = props;
 
         return (
-                <a className="insights-link" href={href} target="_blank" onClick={e => openContentHyperLink(e, href)}>
+                <NewTabLink href={href} target="_blank" onClick={e => openContentHyperLink(e, href)}>
                     {props.children}
-                </a>
+                </NewTabLink>
 
         );
     }
@@ -100,7 +101,9 @@ export const createMarkup = (deps: MarkupDeps) => {
         return (
             <Column>
                 <div className="pass-header">
-                    <CheckIcon /> <h3>Pass</h3>
+                    <CheckIcon />
+                    {' '}
+                    <h3>Pass</h3>
                 </div>
                 <div className="pass-section">{props.children}</div>
             </Column>
@@ -111,7 +114,9 @@ export const createMarkup = (deps: MarkupDeps) => {
         return (
             <Column>
                 <div className="fail-header">
-                    <CrossIcon /> <h3>Fail</h3>
+                    <CrossIcon />
+                    {' '}
+                    <h3>Fail</h3>
                 </div>
                 <div className="fail-section">{props.children}</div>
             </Column>
