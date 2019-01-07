@@ -9,6 +9,7 @@ import { NamedSFC } from '../react/named-sfc';
 export type ExternalLinkDeps = {
     actionInitiators: Pick<ActionInitiators, 'openExternalLink'>,
 };
+
 export type ExternalLinkProps = {
     deps: ExternalLinkDeps,
     href: string,
@@ -17,7 +18,9 @@ export type ExternalLinkProps = {
 
 export const ExternalLink = NamedSFC<ExternalLinkProps>('ExternalLink', ({ deps, href, title, children }) => {
     const onClick = e => deps.actionInitiators.openExternalLink(e, { href });
-    return <Link target="_blank" href={href} title={title} onClick={onClick}>
-        {children}
-    </Link>;
+    return (
+        <Link className="insights-link" target="_blank" href={href} title={title} onClick={onClick}>
+            {children}
+        </Link>
+    );
 });
