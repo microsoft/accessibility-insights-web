@@ -54,7 +54,7 @@ export const createMarkup = (deps: MarkupDeps) => {
         const { href } = props;
 
         return (
-                <NewTabLink href={href} target="_blank" onClick={e => openContentHyperLink(e, href)}>
+                <NewTabLink href={href} onClick={e => openContentHyperLink(e, href)}>
                     {props.children}
                 </NewTabLink>
 
