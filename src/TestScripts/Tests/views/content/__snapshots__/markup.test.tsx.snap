@@ -56,7 +56,7 @@ exports[`ContentPage .Markup <Fail> renders 1`] = `
 `;
 
 exports[`ContentPage .Markup <HyperLink> renders 1`] = `
-"<NewTabLink href=\\"http://my.link\\" target=\\"_blank\\" onClick={[Function: onClick]}>
+"<NewTabLink href=\\"http://my.link\\" onClick={[Function: onClick]}>
   LINK TEXT
 </NewTabLink>"
 `;
