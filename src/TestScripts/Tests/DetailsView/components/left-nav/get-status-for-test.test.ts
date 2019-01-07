@@ -1,3 +1,5 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
 import { OutcomeStats } from '../../../../../DetailsView/reports/components/outcome-type';
 import { getStatusForTest } from '../../../../../DetailsView/components/left-nav/get-status-for-test';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
