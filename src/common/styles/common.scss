@@ -56,6 +56,9 @@ button::after {
 
 .insights-link {
     color: $communication-shade-10 !important;
+    &:hover {
+        color: $communication-shade-30;
+    }
 }
 
 $normalTitleFontWeight: 300 !default;
