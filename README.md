@@ -8,7 +8,7 @@ Licensed under the MIT License.
 
 Accessibility Insights for Web is a Google Chrome extension for assessing the accessibility of web sites and web applications.
 ## Running the extension
-You can install the extension from one of the following links.
+You can install the extension from one of the following links
 - ![Daily Logo](./src/icons/brand/red/brand-red-16px.png) [Daily](https://chrome.google.com/webstore/detail/hbcplehnakffdldhldncjlnbpfgogbem) (released continuously)
 - ![Staging Logo](./src/icons/brand/violet/brand-violet-16px.png) [Staging](https://chrome.google.com/webstore/detail/nnmjfbmebeckhpejobgjjjnchlljiagp) (on feature completion)
 - ![Production Logo](./src/icons/brand/blue/brand-blue-16px.png) [Production](https://chrome.google.com/webstore/detail/pbjjkligggfmakdaogkfomddhfmpjeni) (after validation in staging)
@@ -31,21 +31,20 @@ You can install the extension from one of the following links.
   ``` bash
   npm install
   ```
-
 ### 3. Build and run unit tests
-- Build and run the unit tests.
+- Build and run the unit tests
   ``` bash
   npm test
   ```
   There are more details in the Testing section below.
-### 4. Test and run locally
-- Assemble the code drop
+### 4. Load the extension locally
+- Build the (unpacked) extension
   ``` bash
-  npm run drop
+  npm run build
   ```
 - Add the extension to your Chrome browser
-  - Click on the 3-dotted-menu in the upper right corner and then select "More Tools" and then "Extensions".
-  - Verify that **developer mode** is enabled in the upper right.
+  - Click on the 3-dotted-menu in the upper right corner and then select "More Tools" and then "Extensions"
+  - Verify that **developer mode** is enabled in the upper right
   - Click on the **Load unpacked** button
   - Choose the following directory
 
@@ -53,7 +52,7 @@ You can install the extension from one of the following links.
 
   > IMPORTANT: Ensure that you are testing locally before pushing a change.
 
-- Look for the icon with the extensions and there is the extension.
+- Look for the ![Dev Logo](./src/icons/brand/gray/brand-gray-16px.png) extension icon to the right of the address bar
 ## More Information
 
   [Developer Workflow](./docs/workflow.md)
