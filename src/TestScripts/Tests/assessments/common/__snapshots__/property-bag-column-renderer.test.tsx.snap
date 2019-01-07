@@ -4,24 +4,24 @@ exports[`PropertyBagColumnRendererTest render with a combination of expanded and
 "<div className=\\"property-bag-container\\">
   <div className=\\"property-bag-div\\">
     <span className=\\"display-name\\">
-      display e:
+      display e: 
     </span>
     <div className=\\"expanded-property-div\\">
       <span className=\\"display-name\\">
-        key1:
+        key1: 
       </span>
       value1
     </div>
     <div className=\\"expanded-property-div\\">
       <span className=\\"display-name\\">
-        key2:
+        key2: 
       </span>
       value2
     </div>
   </div>
   <div className=\\"property-bag-div\\">
     <span className=\\"display-name\\">
-      display b:
+      display b: 
     </span>
     -1
   </div>
@@ -32,17 +32,17 @@ exports[`PropertyBagColumnRendererTest render with expanded object 1`] = `
 "<div className=\\"property-bag-container\\">
   <div className=\\"property-bag-div\\">
     <span className=\\"display-name\\">
-      display e:
+      display e: 
     </span>
     <div className=\\"expanded-property-div\\">
       <span className=\\"display-name\\">
-        key1:
+        key1: 
       </span>
       value1
     </div>
     <div className=\\"expanded-property-div\\">
       <span className=\\"display-name\\">
-        key2:
+        key2: 
       </span>
       value2
     </div>
@@ -54,11 +54,11 @@ exports[`PropertyBagColumnRendererTest render with expanded object where some ha
 "<div className=\\"property-bag-container\\">
   <div className=\\"property-bag-div\\">
     <span className=\\"display-name\\">
-      display null values:
+      display null values: 
     </span>
     <div className=\\"expanded-property-div\\">
       <span className=\\"display-name\\">
-        key1:
+        key1: 
       </span>
       value1
     </div>
@@ -75,13 +75,13 @@ exports[`PropertyBagColumnRendererTest render, default value 1`] = `
 "<div className=\\"property-bag-container\\">
   <div className=\\"property-bag-div\\">
     <span className=\\"display-name\\">
-      display a:
+      display a: 
     </span>
     is a default value
   </div>
   <div className=\\"property-bag-div\\">
     <span className=\\"display-name\\">
-      display b:
+      display b: 
     </span>
     -1
   </div>
@@ -92,7 +92,7 @@ exports[`PropertyBagColumnRendererTest render, empty object 1`] = `
 "<div className=\\"property-bag-container\\">
   <div className=\\"property-bag-div\\">
     <span className=\\"display-name\\">
-      display f:
+      display f: 
     </span>
     default
   </div>
@@ -125,7 +125,7 @@ ShallowWrapper {
           <span
             className="display-name"
           >
-            display name:
+            display name: 
           </span>
           <React.Fragment>
             string value
@@ -145,7 +145,7 @@ ShallowWrapper {
             <span
               className="display-name"
             >
-              display name:
+              display name: 
             </span>,
             <React.Fragment>
               string value
@@ -197,7 +197,7 @@ ShallowWrapper {
             <span
               className="display-name"
             >
-              display name:
+              display name: 
             </span>
             <React.Fragment>
               string value
@@ -217,7 +217,7 @@ ShallowWrapper {
               <span
                 className="display-name"
               >
-                display name:
+                display name: 
               </span>,
               <React.Fragment>
                 string value
@@ -283,13 +283,13 @@ exports[`PropertyBagColumnRendererTest render, several properties from the bag 1
 "<div className=\\"property-bag-container\\">
   <div className=\\"property-bag-div\\">
     <span className=\\"display-name\\">
-      display a:
+      display a: 
     </span>
     string value
   </div>
   <div className=\\"property-bag-div\\">
     <span className=\\"display-name\\">
-      display b:
+      display b: 
     </span>
     -1
   </div>
