@@ -7,12 +7,13 @@ import { ActionInitiators } from '../action/action-initiator';
 import { NamedSFC } from '../react/named-sfc';
 
 export type ExternalLinkDeps = {
-    actionInitiators: Pick<ActionInitiators, 'openExternalLink'>;
+    actionInitiators: Pick<ActionInitiators, 'openExternalLink'>,
 };
+
 export type ExternalLinkProps = {
-    deps: ExternalLinkDeps;
-    href: string;
-    title?: string;
+    deps: ExternalLinkDeps,
+    href: string,
+    title?: string,
 };
 
 export const ExternalLink = NamedSFC<ExternalLinkProps>('ExternalLink', ({ deps, href, title, children }) => {
