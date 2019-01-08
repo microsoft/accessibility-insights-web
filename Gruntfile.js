@@ -73,7 +73,7 @@ module.exports = function (grunt) {
             scripts: {
                 files: [
                     'src/**/*',
-                    '!src/TestScripts/**/*',
+                    '!src/tests/**/*',
                 ],
                 tasks: ['dev']
             },

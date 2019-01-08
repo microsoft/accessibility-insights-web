@@ -3,7 +3,7 @@
 /ref/
 /extension/
 /coverage/
-/junit.xml
+junit.xml
 /drop/
 
 # Dependency directories
