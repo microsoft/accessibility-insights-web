@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Enzyme from 'enzyme';
-import { ChoiceGroup } from 'office-ui-fabric-react/lib/ChoiceGroup';
+import { ChoiceGroup, IChoiceGroup } from 'office-ui-fabric-react/lib/ChoiceGroup';
 import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';
@@ -76,10 +76,12 @@ describe('TestStatusChoiceGroup', () => {
 
         const component = React.createElement(TestableTestStatusChoiceGroup, props);
         const testObject = TestUtils.renderIntoDocument(component);
+        /* OF6UPDATE
         const choiceGroup: ChoiceGroup = TestUtils.findRenderedComponentWithType(testObject, ChoiceGroup);
         testObject.getOnChange()(null, options[0]);
 
         onGroupChoiceChangeMock.verifyAll();
+        */
     });
 
     test('verify undo button', () => {
@@ -132,7 +134,7 @@ class TestableTestStatusChoiceGroup extends TestStatusChoiceGroup {
         return this.compomentRef;
     }
 
-    public getComponent(): ChoiceGroup {
+    public getComponent(): IChoiceGroup {
         return this._choiceGroup;
     }
 }
