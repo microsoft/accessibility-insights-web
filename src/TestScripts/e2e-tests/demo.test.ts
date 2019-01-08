@@ -20,4 +20,10 @@ describe('puppeteer demo', () => {
     // This is temporarily hardcoded, we'll want to come up with some sort of ???/test-results/screenshots/ structure or something
     await page.screenshot({path: 'Q:/temp/test-screenshot-2.png', fullPage: true, omitBackground: false});
   });
+
+  it ('should show popup.html when navigated directly', async () => {
+    // Doing it like this would require setting up a stable extension ID
+    await page.goto('chrome-extension://lkfaipobhebhfepokjjdnbpmolmmnnhe/popup/popup.html');
+    await page.screenshot({path: 'Q:/temp/test-popup-screenshot-1.png', fullPage: true, omitBackground: false}); 
+  });
 });
