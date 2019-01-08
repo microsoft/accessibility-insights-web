@@ -23,7 +23,16 @@ describe('puppeteer demo', () => {
 
   it ('should show popup.html when navigated directly', async () => {
     // Doing it like this would require setting up a stable extension ID
-    await page.goto('chrome-extension://lkfaipobhebhfepokjjdnbpmolmmnnhe/popup/popup.html');
-    await page.screenshot({path: 'Q:/temp/test-popup-screenshot-1.png', fullPage: true, omitBackground: false}); 
+    await page.goto('chrome-extension://dcjikolnijkefoijmkabeiljojkacmik/popup/popup.html');
+    await page.screenshot({path: 'Q:/temp/test-popup-screenshot-1.png', fullPage: true, omitBackground: false});
   });
+
+  it ('should identify the popup.html url dynamically', async() => {
+    const allTargets = await browser.targets();
+    const backgroundPageTargets = allTargets.find(t => {
+      return t.type() === 'background_page';
+    });
+
+    // todo: execute code in background page to identify extension url
+  })
 });
