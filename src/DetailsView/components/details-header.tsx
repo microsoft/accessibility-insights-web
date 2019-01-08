@@ -3,6 +3,9 @@
 import { IDetailsHeaderProps } from 'office-ui-fabric-react/lib/DetailsList';
 import { DetailsHeader as FabricDetailsHeader } from 'office-ui-fabric-react/lib/components/DetailsList/DetailsHeader';
 
+export const DetailsHeader = FabricDetailsHeader;
+
+/* OF6UPDATE
 export class DetailsHeader extends FabricDetailsHeader {
     // this is a workaround, since DetailsHeader, doesn't honor the initial state if the selection.
     constructor(props: IDetailsHeaderProps) {
@@ -13,3 +16,4 @@ export class DetailsHeader extends FabricDetailsHeader {
         };
     }
 }
+*/

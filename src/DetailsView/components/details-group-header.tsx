@@ -17,6 +17,9 @@ export interface GroupHeaderProps extends IGroupDividerProps {
     group: DetailsGroup;
 }
 
+export const DetailsGroupHeader = GroupHeader;
+
+/* OF6UPDATE
 export class DetailsGroupHeader extends GroupHeader {
     public render(): JSX.Element {
         const props = this.props as GroupHeaderProps;
@@ -108,3 +111,4 @@ export class DetailsGroupHeader extends GroupHeader {
         event.stopPropagation();
     }
 }
+*/

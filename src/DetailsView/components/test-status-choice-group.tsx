@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ChoiceGroup, IChoiceGroupOption } from 'office-ui-fabric-react/lib/ChoiceGroup';
+import { ChoiceGroup, IChoiceGroupOption, IChoiceGroup } from 'office-ui-fabric-react/lib/ChoiceGroup';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import { autobind } from '@uifabric/utilities';
@@ -21,7 +21,7 @@ export interface ITestStatusChoiceGroupProps {
 }
 
 export class TestStatusChoiceGroup extends React.Component<ITestStatusChoiceGroupProps> {
-    protected _choiceGroup: ChoiceGroup;
+    protected _choiceGroup: IChoiceGroup;
 
     public render(): JSX.Element {
         return (
@@ -70,7 +70,7 @@ export class TestStatusChoiceGroup extends React.Component<ITestStatusChoiceGrou
     }
 
     @autobind
-    protected compomentRef(component: ChoiceGroup): void {
+    protected compomentRef(component: IChoiceGroup): void {
         this._choiceGroup = component;
     }
 
