@@ -19,7 +19,7 @@
     font-family: "Segoe UI";
     font-size: 14px;
     margin: 10px;
-    
+
 
     h1 {
         font-size: 28px;
@@ -27,14 +27,14 @@
         letter-spacing: -.04em;
         line-height: 40px;
     }
-    
+
     h2 {
         font-size: 21px;
         font-weight: 700;
         letter-spacing: -.02em;
         line-height: 32px;
     }
-    
+
     h3 {
         font-size: 14px;
     }
@@ -55,6 +55,13 @@
         font-weight: 400;
     }
 
+    .content-hyperlinks {
+        .insights-link {
+            line-height: 20px;
+            margin-bottom: 6px;
+            display: block;
+        }
+    }
     .code-example {
 
         .code-example-code {
@@ -90,14 +97,14 @@
     $icon-size: 16px;
     $do-color: $positive-outcome;
     $dont-color: $negative-outcome;
-    
+
     .insights-code {
         font-family: monospace;
     }
 
     .pass-fail-grid {
         display: grid;
-        grid-template-areas: 
+        grid-template-areas:
             "fail-section pass-section"
             "fail-example pass-example";
             border: 1px solid $neutral-60;
@@ -106,7 +113,7 @@
     .fail-section, .fail-example, .pass-section, .pass-example {
         padding: 15px;
     }
-  
+
     .fail-example, .pass-example {
         border-top: 1px solid $neutral-60;
     }
@@ -122,7 +129,7 @@
     .fail-example {
         grid-area: fail-example;
     }
-    
+
     .pass-section {
         grid-area: pass-section;
     }

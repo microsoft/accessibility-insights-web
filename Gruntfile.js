@@ -20,7 +20,6 @@ module.exports = function (grunt) {
             "./dist",
             "./drop",
             "./extension",
-            "./external_modules",
             "./node_modules",
             "./copyright-header.txt",
             "./src/assessments/color/test-steps/flashing-text-example.html",
@@ -74,7 +73,7 @@ module.exports = function (grunt) {
             scripts: {
                 files: [
                     'src/**/*',
-                    '!src/TestScripts/**/*',
+                    '!src/tests/**/*',
                 ],
                 tasks: ['dev']
             },

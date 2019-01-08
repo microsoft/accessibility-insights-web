@@ -43,7 +43,7 @@ const developmentConfig = {
                     experimentalWatchApi: true
                 }
             }],
-            exclude: ['/node_modules/', '/external_modules/']
+            exclude: ['/node_modules/']
         }]
     },
     output: {
@@ -53,7 +53,6 @@ const developmentConfig = {
     resolve: {
         modules: [
             path.resolve(__dirname, 'node_modules'),
-            path.resolve(__dirname, "external_modules"),
         ],
         extensions: ['.tsx', '.ts', '.js']
     },

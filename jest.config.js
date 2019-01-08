@@ -5,17 +5,16 @@ module.exports = {
   coverageDirectory: "coverage",
   globals: {
     "ts-jest": {
-      "tsConfigFile": "tsconfig.jest.json"
+      "tsConfig": "<rootDir>/tsconfig.jest.json"
     }
   },
 
   setupFiles: [
-    '<rootDir>/src/TestScripts/jest-setup.ts'
+    '<rootDir>/src/tests/unit/jest-setup.ts'
   ],
 
   moduleDirectories: [
     "node_modules",
-    "external_modules"
   ],
 
   moduleFileExtensions: [
@@ -25,14 +24,14 @@ module.exports = {
   ],
 
   roots: [
-    "<rootDir>/src/TestScripts"
+    "<rootDir>/src/tests/unit"
   ],
 
   collectCoverage: true,
 
   "collectCoverageFrom": [
-    "**/src/**/*.{ts,tsx}",
-    "!**/TestScripts/**"
+    "<rootDir>/src/**/*.{ts,tsx}",
+    "!<rootDir>/src/tests/**"
   ],
 
   "coverageReporters": [
@@ -50,7 +49,7 @@ module.exports = {
   testEnvironment: "jsdom",
 
   testMatch: [
-    "<rootDir>/src/TestScripts/Tests/**/*.test.(ts|tsx|js)"
+    "**/*.test.(ts|tsx|js)"
   ],
 
   testPathIgnorePatterns: [
