@@ -3,8 +3,10 @@ Copyright (c) Microsoft Corporation. All rights reserved.
 Licensed under the MIT License.
 -->
 # Accessibility Insights for Web
-
 ![Product Logo](./src/icons/brand/blue/brand-blue-128px.png)
+
+[![Build Status](https://dev.azure.com/mseng/1ES/_apis/build/status/Microsoft.accessibility-insights-web-CI?branchName=master)](https://dev.azure.com/mseng/1ES/_build/latest?definitionId=7896?branchName=master)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/Microsoft/accessibility-insights-web/graphs/commit-activity)
 
 Accessibility Insights for Web is a Google Chrome extension for assessing the accessibility of web sites and web applications.
 ## Running the extension
