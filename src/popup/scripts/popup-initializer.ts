@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
 import { autobind } from '@uifabric/utilities';
-import * as Q from 'q';
 import * as ReactDOM from 'react-dom';
 
 import { IChromeAdapter } from '../../background/browser-adapter';
@@ -11,7 +9,6 @@ import { VisualizationConfigurationFactory } from '../../common/configs/visualiz
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 import { EnumHelper } from '../../common/enum-helper';
 import { HTMLElementUtils } from '../../common/html-element-utils';
-import { ITab } from '../../common/itab';
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
 import { DropdownActionMessageCreator } from '../../common/message-creators/dropdown-action-message-creator';
 import { StoreActionMessageCreatorFactory } from '../../common/message-creators/store-action-message-creator-factory';
@@ -25,7 +22,6 @@ import { ICommandStoreData } from '../../common/types/store-data/icommand-store-
 import { ILaunchPanelStoreData } from '../../common/types/store-data/ilaunch-panel-store-data';
 import { IVisualizationStoreData } from '../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
-import { UrlValidator } from '../../common/url-validator';
 import { WindowUtils } from '../../common/window-utils';
 import { ScannerUtils } from '../../injected/scanner-utils';
 import { scan } from '../../scanner/exposed-apis';
@@ -45,23 +41,26 @@ import { LaunchPanelHeaderClickHandler } from './handlers/launch-panel-header-cl
 import { PopupViewControllerHandler } from './handlers/popup-view-controller-handler';
 import { LaunchPadRowConfigurationFactory } from './launch-pad-row-configuration-factory';
 import { MainRenderer, MainRendererDeps } from './main-renderer';
+import { TargetTabFinder, TargetTabInfo } from './target-tab-finder';
+
 
 declare var window: AutoChecker & Window;
 
 export class PopupInitializer {
-    private _chromeAdapter: IChromeAdapter;
-    private _targetTab: ITab;
-    private _urlValidator: UrlValidator;
-    private _hasAccess: boolean;
+    private targetTabInfo: TargetTabInfo;
 
-    constructor(chromeAdapter: IChromeAdapter, urlValidator: UrlValidator) {
-        this._chromeAdapter = chromeAdapter;
-        this._urlValidator = urlValidator;
+    constructor(
+        private readonly chromeAdapter: IChromeAdapter,
+        private readonly targetTabFinder: TargetTabFinder,
+    ) {
+        this.chromeAdapter = chromeAdapter;
     }
 
-    public initialize(): Q.IPromise<void> {
-        return this.getTabInfo()
-            .then(this.checkAccessUrl)
+    public initialize(): PromiseLike<void> {
+        return this.targetTabFinder.getTargetTab()
+            .then(tabInfo => {
+                this.targetTabInfo = tabInfo;
+            })
             .then(this.initializePopup,
                 err => {
                     console.log('Error occurred at popup initialization:', err);
@@ -72,38 +71,38 @@ export class PopupInitializer {
     private initializePopup(): void {
         const telemetryFactory = new TelemetryDataFactory();
         const visualizationActionCreator = new VisualizationActionMessageCreator(
-            this._chromeAdapter.sendMessageToFrames,
-            this._targetTab.id,
+            this.chromeAdapter.sendMessageToFrames,
+            this.targetTabInfo.tab.id,
         );
 
         const popupActionMessageCreator = new PopupActionMessageCreator(
-            this._chromeAdapter.sendMessageToFrames,
-            this._targetTab.id,
+            this.chromeAdapter.sendMessageToFrames,
+            this.targetTabInfo.tab.id,
             telemetryFactory,
         );
 
         const userConfigMessageCreator = new UserConfigMessageCreator(
-            this._chromeAdapter.sendMessageToFrames,
-            this._targetTab.id,
+            this.chromeAdapter.sendMessageToFrames,
+            this.targetTabInfo.tab.id,
         );
 
         const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(
-            this._chromeAdapter.sendMessageToFrames,
-            this._targetTab.id,
+            this.chromeAdapter.sendMessageToFrames,
+            this.targetTabInfo.tab.id,
         );
 
         const popupViewStoreActionMessageCreator = storeActionMessageCreatorFactory.forPopup();
 
         const contentActionMessageCreator = new ContentActionMessageCreator(
-            this._chromeAdapter.sendMessageToFrames,
-            this._targetTab.id,
+            this.chromeAdapter.sendMessageToFrames,
+            this.targetTabInfo.tab.id,
             telemetryFactory,
             TelemetryEventSource.DetailsView,
         );
 
         const dropdownActionMessageCreator = new DropdownActionMessageCreator(
-            this._chromeAdapter.sendMessageToFrames,
-            this._targetTab.id,
+            this.chromeAdapter.sendMessageToFrames,
+            this.targetTabInfo.tab.id,
             telemetryFactory,
         );
 
@@ -113,18 +112,18 @@ export class PopupInitializer {
         const launchPanelStateStoreName = StoreNames[StoreNames.LaunchPanelStateStore];
         const userConfigurationStoreName = StoreNames[StoreNames.UserConfigurationStore];
 
-        const visualizationStore = new StoreProxy<IVisualizationStoreData>(visualizationStoreName, this._chromeAdapter);
-        const launchPanelStateStore = new StoreProxy<ILaunchPanelStoreData>(launchPanelStateStoreName, this._chromeAdapter);
-        const commandStore = new StoreProxy<ICommandStoreData>(commandStoreName, this._chromeAdapter);
-        const featureFlagStore = new StoreProxy<FeatureFlagStoreData>(featureFlagStoreName, this._chromeAdapter);
-        const userConfigurationStore = new StoreProxy<UserConfigurationStoreData>(userConfigurationStoreName, this._chromeAdapter);
+        const visualizationStore = new StoreProxy<IVisualizationStoreData>(visualizationStoreName, this.chromeAdapter);
+        const launchPanelStateStore = new StoreProxy<ILaunchPanelStoreData>(launchPanelStateStoreName, this.chromeAdapter);
+        const commandStore = new StoreProxy<ICommandStoreData>(commandStoreName, this.chromeAdapter);
+        const featureFlagStore = new StoreProxy<FeatureFlagStoreData>(featureFlagStoreName, this.chromeAdapter);
+        const userConfigurationStore = new StoreProxy<UserConfigurationStoreData>(userConfigurationStoreName, this.chromeAdapter);
         const windowUtils = new WindowUtils();
 
-        visualizationStore.setTabId(this._targetTab.id);
-        commandStore.setTabId(this._targetTab.id);
-        featureFlagStore.setTabId(this._targetTab.id);
-        launchPanelStateStore.setTabId(this._targetTab.id);
-        userConfigurationStore.setTabId(this._targetTab.id);
+        visualizationStore.setTabId(this.targetTabInfo.tab.id);
+        commandStore.setTabId(this.targetTabInfo.tab.id);
+        featureFlagStore.setTabId(this.targetTabInfo.tab.id);
+        launchPanelStateStore.setTabId(this.targetTabInfo.tab.id);
+        userConfigurationStore.setTabId(this.targetTabInfo.tab.id);
 
         const visualizationConfigurationFactory = new VisualizationConfigurationFactory();
         const launchPadRowConfigurationFactory = new LaunchPadRowConfigurationFactory();
@@ -138,7 +137,7 @@ export class PopupInitializer {
         const popupViewControllerHandler = new PopupViewControllerHandler();
         const dropdownClickHandler = new DropdownClickHandler(dropdownActionMessageCreator, TelemetryEventSource.LaunchPad);
         const feedbackMenuClickHandler = new LaunchPanelHeaderClickHandler();
-        const supportLinkHandler = new SupportLinkHandler(this._chromeAdapter, windowUtils);
+        const supportLinkHandler = new SupportLinkHandler(this.chromeAdapter, windowUtils);
 
         const popupHandlers: IPopupHandlers = {
             diagnosticViewClickHandler: diagnosticViewClickHandler,
@@ -188,9 +187,9 @@ export class PopupInitializer {
             ReactDOM.render,
             document,
             window,
-            this._chromeAdapter,
-            this._targetTab.url,
-            this._hasAccess,
+            this.chromeAdapter,
+            this.targetTabInfo.tab.url,
+            this.targetTabInfo.hasAccess,
             launchPadRowConfigurationFactory,
             diagnosticViewToggleFactory,
             dropdownClickHandler,
@@ -200,26 +199,5 @@ export class PopupInitializer {
 
         const a11ySelfValidator = new A11YSelfValidator(new ScannerUtils(scan), new HTMLElementUtils());
         window.A11YSelfValidator = a11ySelfValidator;
-    }
-
-    @autobind
-    protected getTabInfo(): Q.IPromise<void> {
-        const defer = Q.defer<void>();
-        this._chromeAdapter.tabsQuery({
-            active: true,
-            currentWindow: true,
-        }, (tabs: ITab[]): void => {
-            this._targetTab = tabs.pop();
-            defer.resolve();
-        });
-        return defer.promise;
-    }
-
-    @autobind
-    private checkAccessUrl(): Q.IPromise<void> {
-        return this._urlValidator.isSupportedUrl(this._targetTab.url, this._chromeAdapter)
-            .then(hasAccess => {
-                this._hasAccess = hasAccess;
-            });
     }
 }

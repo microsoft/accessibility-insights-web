@@ -33,6 +33,7 @@ import { IVisualizationScanResultData } from '../common/types/store-data/ivisual
 import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
 import { IScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
+import { UrlParser } from '../common/url-parser';
 import { contentPages } from '../content';
 import { DetailsDialogHandler } from '../injected/details-dialog-handler';
 import { ScannerUtils } from '../injected/scanner-utils';
@@ -73,7 +74,7 @@ declare const window: AutoChecker & Window;
 
 const chromeAdapter = new ChromeAdapter();
 const url = new URL(window.location.href);
-const tabId = parseInt(url.searchParams.get('tabId'), 10);
+const tabId = new UrlParser().getIntParam(window.location.href, 'tabId');
 const dom = document;
 const documentElementSetter = new DocumentManipulator(dom);
 
