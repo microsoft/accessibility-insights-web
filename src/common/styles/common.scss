@@ -57,7 +57,7 @@ button::after {
 .insights-link {
     color: $communication-shade-10 !important;
     &:hover {
-        color: $communication-shade-30;
+        color: $communication-shade-30 !important;
     }
 }
 

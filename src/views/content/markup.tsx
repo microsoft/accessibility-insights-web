@@ -6,6 +6,7 @@ import { Code, Emphasis, Tag, Term } from '../../assessments/markup';
 import { CheckIcon } from '../../common/icons/check-icon';
 import { CrossIcon } from '../../common/icons/cross-icon';
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
+import { NewTabLink } from '../../common/components/new-tab-link';
 
 type PassFailProps = {
     passText: JSX.Element,
@@ -43,81 +44,86 @@ export type Markup = {
 export type MarkupDeps = { contentActionMessageCreator: ContentActionMessageCreator };
 
 export const createMarkup = (deps: MarkupDeps) => {
-
     const { openContentHyperLink } = deps.contentActionMessageCreator;
 
     function Title(props: { children: React.ReactNode }): JSX.Element {
         return <h1>{props.children}</h1>;
     }
 
-    function HyperLink(props: { href: string, children: React.ReactNode }): JSX.Element {
+    function HyperLink(props: { href: string; children: React.ReactNode }): JSX.Element {
         const { href } = props;
 
-        return <a
-            href={href}
-            target="_blank"
-            onClick={e => openContentHyperLink(e, href)}>
-            {props.children}
-        </a>;
+        return (
+                <NewTabLink href={href} onClick={e => openContentHyperLink(e, href)}>
+                    {props.children}
+                </NewTabLink>
+
+        );
     }
 
     function Links(props: { children: React.ReactNode }): JSX.Element {
-        return <>{
-            React.Children.map(props.children, el => <div>{el}</div>)
-        }</>;
+        return (
+            <>
+                <div className="content-hyperlinks">
+                    {React.Children.map(props.children, el => (
+                        el
+                    ))}
+                </div>
+            </>
+        );
     }
 
     function Do(props: { children: React.ReactNode }): JSX.Element {
-        return <Column>
-            <div className="do-header">
-                <h2>Do</h2>
-                <CheckIcon />
-            </div>
-            <div className="do-section">
-                {props.children}
-            </div>
-        </Column>;
+        return (
+            <Column>
+                <div className="do-header">
+                    <h2>Do</h2>
+                    <CheckIcon />
+                </div>
+                <div className="do-section">{props.children}</div>
+            </Column>
+        );
     }
 
     function Dont(props: { children: React.ReactNode }): JSX.Element {
-        return <Column>
-            <div className="dont-header">
-                <h2>Don't</h2>
-                <CrossIcon />
-            </div>
-            <div className="dont-section">
-                {props.children}
-            </div>
-        </Column>;
+        return (
+            <Column>
+                <div className="dont-header">
+                    <h2>Don't</h2>
+                    <CrossIcon />
+                </div>
+                <div className="dont-section">{props.children}</div>
+            </Column>
+        );
     }
 
     function Pass(props: { children: React.ReactNode }): JSX.Element {
-        return <Column>
-            <div className="pass-header">
-                <CheckIcon />
-                {' '}
-                <h3>Pass</h3>
-            </div>
-            <div className="pass-section">
-                {props.children}
-            </div>
-        </Column>;
+        return (
+            <Column>
+                <div className="pass-header">
+                    <CheckIcon />
+                    {' '}
+                    <h3>Pass</h3>
+                </div>
+                <div className="pass-section">{props.children}</div>
+            </Column>
+        );
     }
 
     function Fail(props: { children: React.ReactNode }): JSX.Element {
-        return <Column>
-            <div className="fail-header">
-                <CrossIcon />
-                {' '}
-                <h3>Fail</h3>
-            </div>
-            <div className="fail-section">
-                {props.children}
-            </div>
-        </Column>;
+        return (
+            <Column>
+                <div className="fail-header">
+                    <CrossIcon />
+                    {' '}
+                    <h3>Fail</h3>
+                </div>
+                <div className="fail-section">{props.children}</div>
+            </Column>
+        );
     }
 
-    function LandmarkLegend(props: { role: string, children: React.ReactNode }): JSX.Element {
+    function LandmarkLegend(props: { role: string; children: React.ReactNode }): JSX.Element {
         return <span className={`landmarks-legend ${props.role}-landmark`}>{props.children}</span>;
     }
 
@@ -138,11 +144,9 @@ export const createMarkup = (deps: MarkupDeps) => {
     }
 
     function CodeExample(props: CodeExampleProps): JSX.Element {
-
         const { title, children } = props;
 
         function getRegions(code: string): string[] {
-
             if (code.length === 0) {
                 return [];
             }
@@ -166,7 +170,11 @@ export const createMarkup = (deps: MarkupDeps) => {
 
         function renderRegion(str: string, index: number) {
             if (str[0] === '[') {
-                return <span key={index} className="highlight">{str.slice(1, -1)}</span>;
+                return (
+                    <span key={index} className="highlight">
+                        {str.slice(1, -1)}
+                    </span>
+                );
             } else {
                 return str;
             }
@@ -175,18 +183,18 @@ export const createMarkup = (deps: MarkupDeps) => {
         const regions = getRegions(children);
         const formattedCode = regions.map(renderRegion);
 
-        return <div className="code-example">
-            {props.title &&
-                <div className="code-example-title">
-                    <h4>
-                        {props.title}
-                    </h4>
+        return (
+            <div className="code-example">
+                {props.title && (
+                    <div className="code-example-title">
+                        <h4>{props.title}</h4>
+                    </div>
+                )}
+                <div className="code-example-code">
+                    <Code>{formattedCode}</Code>
                 </div>
-            }
-            <div className="code-example-code">
-                <Code>{formattedCode}</Code>
             </div>
-        </div>;
+        );
     }
 
     function PassFail(props: PassFailProps): React.ReactNode {
@@ -203,30 +211,18 @@ export const createMarkup = (deps: MarkupDeps) => {
             <div className="pass-fail-grid">
                 <div className="fail-section">
                     <div className="fail-header">
-                        <CrossIcon />
-                        {' '}
-                        <h3>Fail</h3>
+                        <CrossIcon /> <h3>Fail</h3>
                     </div>
                     {failText}
                 </div>
-                {failExample &&
-                    <div className="fail-example">
-                        {formatExample(failExample)}
-                    </div>
-                }
+                {failExample && <div className="fail-example">{formatExample(failExample)}</div>}
                 <div className="pass-section">
                     <div className="pass-header">
-                        <CheckIcon />
-                        {' '}
-                        <h3>Pass</h3>
+                        <CheckIcon /> <h3>Pass</h3>
                     </div>
                     {passText}
                 </div>
-                {passExample &&
-                    <div className="pass-example">
-                        {formatExample(passExample)}
-                    </div>
-                }
+                {passExample && <div className="pass-example">{formatExample(passExample)}</div>}
             </div>
         );
     }
