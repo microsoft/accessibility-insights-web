@@ -41,6 +41,11 @@ module.exports = {
     "cobertura"
   ],
 
+  // See https://github.com/OfficeDev/office-ui-fabric-react/wiki/Fabric-6-Release-Notes#webpack-tree-shaking
+  moduleNameMapper: {
+    "office-ui-fabric-react/lib/(.*)$": "office-ui-fabric-react/lib-commonjs/$1",
+  },
+
   "reporters": [
     "default",
     "jest-junit"
