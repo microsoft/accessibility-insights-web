@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 import { IMock, Mock } from 'typemoq';
 
-import { IClientChromeAdapter } from '../../../../../common/client-browser-adapter';
+import { ClientBrowserAdapter } from '../../../../../common/client-browser-adapter';
 import { IWindowMessage, WindowMessageMarshaller } from '../../../../../injected/frameCommunicators/window-message-marshaller';
 
 describe('WindowMessageMarshallerTests', () => {
     let testSubject: WindowMessageMarshaller;
     let messageIdToBeReturned: string;
-    let browserAdapter: IMock<IClientChromeAdapter>;
+    let browserAdapter: IMock<ClientBrowserAdapter>;
     const messageSourceId = 'app id';
     const messageVersion = 'app version';
     let manifest: chrome.runtime.Manifest;
@@ -19,7 +19,7 @@ describe('WindowMessageMarshallerTests', () => {
             version: messageVersion,
         } as chrome.runtime.Manifest;
 
-        browserAdapter = Mock.ofType<IClientChromeAdapter>();
+        browserAdapter = Mock.ofType<ClientBrowserAdapter>();
         browserAdapter
             .setup(b => b.getManifest())
             .returns(() => manifest);

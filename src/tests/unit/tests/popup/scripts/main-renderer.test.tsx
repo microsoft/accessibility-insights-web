@@ -4,7 +4,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { IMock, It, Mock } from 'typemoq';
 
-import { ChromeAdapter, IChromeAdapter } from '../../../../../background/browser-adapter';
+import { ChromeAdapter, BrowserAdapter } from '../../../../../background/browser-adapter';
 import { CommandStore } from '../../../../../background/stores/global/command-store';
 import { FeatureFlagStore } from '../../../../../background/stores/global/feature-flag-store';
 import { LaunchPanelStore } from '../../../../../background/stores/global/launch-panel-store';
@@ -54,7 +54,7 @@ describe('MainRenderer', () => {
         const renderMock: IMock<typeof ReactDOM.render> = Mock.ofInstance(() => null);
 
         const popupWindowMock = Mock.ofInstance(window);
-        const browserAdapterMock = Mock.ofType<IChromeAdapter>(ChromeAdapter);
+        const browserAdapterMock = Mock.ofType<BrowserAdapter>(ChromeAdapter);
         const hasAccess = true;
         const targetTabUrl = 'url';
 

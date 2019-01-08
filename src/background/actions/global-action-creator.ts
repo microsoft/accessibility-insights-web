@@ -7,7 +7,7 @@ import * as TelemetryEvents from '../../common/telemetry-events';
 import { FeatureFlagActions } from '../actions/feature-flag-actions';
 import { GlobalActionHub } from '../actions/global-action-hub';
 import { LaunchPanelStateActions } from '../actions/launch-panel-state-action';
-import { IChromeAdapter } from '../browser-adapter';
+import { BrowserAdapter } from '../browser-adapter';
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import { IPayloadWIthEventName, ISetLaunchPanelState, SetTelemetryStatePayload } from './action-payloads';
@@ -17,7 +17,7 @@ import { UserConfigurationActions } from './user-configuration-actions';
 
 export class GlobalActionCreator {
     private _interpreter: Interpreter;
-    private _browserAdapter: IChromeAdapter;
+    private _browserAdapter: BrowserAdapter;
     private _telemetryEventHandler: TelemetryEventHandler;
 
     private _commandActions: CommandActions;
@@ -29,7 +29,7 @@ export class GlobalActionCreator {
     constructor(
         globalActionHub: GlobalActionHub,
         interpreter: Interpreter,
-        browserAdapter: IChromeAdapter,
+        browserAdapter: BrowserAdapter,
         telemetryEventHandler: TelemetryEventHandler,
     ) {
         this._interpreter = interpreter;

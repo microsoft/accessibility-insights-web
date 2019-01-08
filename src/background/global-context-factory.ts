@@ -7,7 +7,7 @@ import { IAssessmentsProvider } from './../assessments/types/iassessments-provid
 import { AssessmentActionCreator } from './actions/assessment-action-creator';
 import { GlobalActionCreator } from './actions/global-action-creator';
 import { GlobalActionHub } from './actions/global-action-hub';
-import { IChromeAdapter } from './browser-adapter';
+import { BrowserAdapter } from './browser-adapter';
 import { CompletedTestStepTelemetryCreator } from './completed-test-step-telemetry-creator';
 import { FeatureFlagsController } from './feature-flags-controller';
 import { PersistedData } from './get-persisted-data';
@@ -19,7 +19,7 @@ import { TelemetryEventHandler } from './telemetry/telemetry-event-handler';
 
 export class GlobalContextFactory {
     public static createContext(
-        browserAdapter: IChromeAdapter,
+        browserAdapter: BrowserAdapter,
         telemetryEventHandler: TelemetryEventHandler,
         userData: ILocalStorageData,
         assessmentsProvider: IAssessmentsProvider,

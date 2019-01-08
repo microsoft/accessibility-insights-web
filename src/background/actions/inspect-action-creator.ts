@@ -2,20 +2,20 @@
 // Licensed under the MIT License.
 import { Messages } from '../../common/messages';
 import * as TelemetryEvents from '../../common/telemetry-events';
-import { IChromeAdapter } from '../browser-adapter';
+import { BrowserAdapter } from '../browser-adapter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import { IInspectPayload, InspectActions } from './inspect-actions';
 
 export class InspectActionCreator {
     private inspectActions: InspectActions;
-    private browserAdapter: IChromeAdapter;
+    private browserAdapter: BrowserAdapter;
     private telemetryEventHandler: TelemetryEventHandler;
     private registerTypeToPayloadCallback: IRegisterTypeToPayloadCallback;
 
     constructor(
         inspectActions: InspectActions,
         telemetryEventHandler: TelemetryEventHandler,
-        browserAdapter: IChromeAdapter,
+        browserAdapter: BrowserAdapter,
         registerTypeToPayloadCallback: IRegisterTypeToPayloadCallback,
     ) {
         this.inspectActions = inspectActions;

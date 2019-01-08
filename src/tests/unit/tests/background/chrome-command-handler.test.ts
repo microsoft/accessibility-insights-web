@@ -4,7 +4,7 @@ import * as Q from 'q';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { IVisualizationTogglePayload } from '../../../../background/actions/action-payloads';
-import { ChromeAdapter, IChromeAdapter } from '../../../../background/browser-adapter';
+import { ChromeAdapter, BrowserAdapter } from '../../../../background/browser-adapter';
 import { ChromeCommandHandler } from '../../../../background/chrome-command-handler';
 import { Interpreter } from '../../../../background/interpreter';
 import { TabContextStoreHub } from '../../../../background/stores/tab-context-store-hub';
@@ -23,7 +23,7 @@ import { UrlValidator } from '../../../../common/url-validator';
 import { VisualizationStoreDataBuilder } from '../../Common/visualization-store-data-builder';
 
 let testSubject: ChromeCommandHandler;
-let chromeAdapterMock: IMock<IChromeAdapter>;
+let chromeAdapterMock: IMock<BrowserAdapter>;
 let urlValidatorMock: IMock<UrlValidator>;
 let tabToContextMap: TabToContextMap;
 let visualizationStoreMock: IMock<IBaseStore<IVisualizationStoreData>>;

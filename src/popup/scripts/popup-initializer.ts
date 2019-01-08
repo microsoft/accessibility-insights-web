@@ -5,7 +5,7 @@ import { autobind } from '@uifabric/utilities';
 import * as Q from 'q';
 import * as ReactDOM from 'react-dom';
 
-import { IChromeAdapter } from '../../background/browser-adapter';
+import { BrowserAdapter } from '../../background/browser-adapter';
 import { A11YSelfValidator } from '../../common/a11y-self-validator';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
@@ -49,12 +49,12 @@ import { MainRenderer, MainRendererDeps } from './main-renderer';
 declare var window: AutoChecker & Window;
 
 export class PopupInitializer {
-    private _chromeAdapter: IChromeAdapter;
+    private _chromeAdapter: BrowserAdapter;
     private _targetTab: ITab;
     private _urlValidator: UrlValidator;
     private _hasAccess: boolean;
 
-    constructor(chromeAdapter: IChromeAdapter, urlValidator: UrlValidator) {
+    constructor(chromeAdapter: BrowserAdapter, urlValidator: UrlValidator) {
         this._chromeAdapter = chromeAdapter;
         this._urlValidator = urlValidator;
     }

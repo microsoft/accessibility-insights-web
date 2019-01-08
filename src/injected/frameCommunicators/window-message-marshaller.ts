@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IClientChromeAdapter } from '../../common/client-browser-adapter';
+import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 
 export interface IWindowMessage {
     messageId: string;
@@ -21,7 +21,7 @@ export class WindowMessageMarshaller {
     public readonly messageSourceId: string;
     public readonly messageVersion: string;
 
-    constructor(browserAdapter: IClientChromeAdapter, private readonly generateUIDFunc: () => string) {
+    constructor(browserAdapter: ClientBrowserAdapter, private readonly generateUIDFunc: () => string) {
         const manifest = browserAdapter.getManifest();
         this.messageSourceId = manifest.name;
         this.messageVersion = manifest.version;

@@ -2,15 +2,15 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash/index';
 
-import { IChromeAdapter } from '../background/browser-adapter';
+import { BrowserAdapter } from '../background/browser-adapter';
 import { VisualizationType } from '../common/types/visualization-type';
 import { VisualizationConfigurationFactory } from './configs/visualization-configuration-factory';
 
 export class NotificationCreator {
-    private chromeAdapter: IChromeAdapter;
+    private chromeAdapter: BrowserAdapter;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
 
-    constructor(chromeAdapter: IChromeAdapter, visualizationConfigurationFactory: VisualizationConfigurationFactory) {
+    constructor(chromeAdapter: BrowserAdapter, visualizationConfigurationFactory: VisualizationConfigurationFactory) {
         this.chromeAdapter = chromeAdapter;
         this.visualizationConfigurationFactory = visualizationConfigurationFactory;
     }
