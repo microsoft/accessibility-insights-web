@@ -21,11 +21,11 @@ module.exports = {
   ],
 
   roots: [
-    "<rootDir>/src/TestScripts"
+    "<rootDir>/src/tests"
   ],
 
   testMatch: [
-    "<rootDir>/src/TestScripts/e2e-tests/**/*.test.(ts|tsx|js)"
+    "<rootDir>/src/tests/end-to-end/**/*.test.(ts|tsx|js)"
   ],
 
   testPathIgnorePatterns: [
