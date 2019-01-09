@@ -35,7 +35,7 @@ export const VisualizationBasedLeftNav = NamedSFC<VisualizationBasedLeftNavProps
     const links = [];
     visualizations.forEach((type, index) => {
         const config = visualizationConfigurationFactory.getConfiguration(type);
-        links.push(leftNavLinkBuilder.withVisualizationConfiguration(config, onLinkClick, type, index + 1));
+        links.push(leftNavLinkBuilder.buildVisualizationConfigurationLink(config, onLinkClick, type, index + 1));
     });
 
     return (

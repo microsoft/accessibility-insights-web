@@ -52,7 +52,7 @@ describe('VisualizationBasedLeftNav', () => {
                 .returns(() => configStub);
 
             leftNavLinkBuilderMock
-                .setup(lnlbm => lnlbm.withVisualizationConfiguration(configStub, onLinkClickStub, type, index + 1))
+                .setup(lnlbm => lnlbm.buildVisualizationConfigurationLink(configStub, onLinkClickStub, type, index + 1))
                 .returns(() => linkStub);
         });
     });

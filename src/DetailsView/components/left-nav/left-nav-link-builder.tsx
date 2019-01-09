@@ -27,7 +27,7 @@ export type VisualizationConfigurationLinkBuilderDeps = {
 };
 
 export class LeftNavLinkBuilder {
-    public withOverviewLink(
+    public buildOverviewLink(
         deps: OverviewLinkBuilderDeps,
         onLinkClick: onBaseLeftNavItemClick,
         assessmentsProvider: IAssessmentsProvider,
@@ -58,7 +58,7 @@ export class LeftNavLinkBuilder {
         return overviewLink;
     }
 
-    public withAssessmentLinks(
+    public buildAssessmentTestLinks(
         deps: AssessmentLinkBuilderDeps,
         onLinkClick: onBaseLeftNavItemClick,
         assessmentsProvider: IAssessmentsProvider,
@@ -102,7 +102,7 @@ export class LeftNavLinkBuilder {
         return testLinks;
     }
 
-    public withVisualizationConfiguration(
+    public buildVisualizationConfigurationLink(
         configuration: IVisualizationConfiguration,
         onLinkClick: onBaseLeftNavItemClick,
         type: VisualizationType,

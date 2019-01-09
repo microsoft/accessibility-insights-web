@@ -50,7 +50,7 @@ describe('LeftNavBuilder', () => {
         testSubject = new LeftNavLinkBuilder();
     });
 
-    describe('withOverviewLink', () => {
+    describe('buildOverviewLink', () => {
         it('should build overview link', () => {
             const index = -1;
             const incomplete = 25;
@@ -66,7 +66,7 @@ describe('LeftNavBuilder', () => {
                 .setup(mock => mock(assessmentProviderMock.object, assessmentsDataStub))
                 .returns(() => reportModelStub);
 
-            const actual = testSubject.withOverviewLink(
+            const actual = testSubject.buildOverviewLink(
                 deps,
                 onLinkClickMock.object,
                 assessmentProviderMock.object,
@@ -93,7 +93,7 @@ describe('LeftNavBuilder', () => {
         });
     });
 
-    describe('withVisualizationConfiguration', () => {
+    describe('buildVisualizationConfigurationLink', () => {
         it('should build link using configuration', () => {
             const index = -1;
             const visualizationTypeStub = 1;
@@ -104,7 +104,7 @@ describe('LeftNavBuilder', () => {
                 },
             } as IVisualizationConfiguration;
 
-            const actual = testSubject.withVisualizationConfiguration(
+            const actual = testSubject.buildVisualizationConfigurationLink(
                 configStub,
                 onLinkClickMock.object,
                 visualizationTypeStub,
@@ -128,7 +128,7 @@ describe('LeftNavBuilder', () => {
         });
     });
 
-    describe('withAssessmentLinks', () => {
+    describe('buildAssessmentTestLinks', () => {
         it('should build links for assessments', () => {
             const startingIndexStub = -1;
             const assessmentStub = {
@@ -162,7 +162,7 @@ describe('LeftNavBuilder', () => {
                 .setup(mock => mock(testStatusStub))
                 .returns(() => narratorStatusStub);
 
-            const links = testSubject.withAssessmentLinks(
+            const links = testSubject.buildAssessmentTestLinks(
                 deps,
                 onLinkClickMock.object,
                 assessmentProviderMock.object,

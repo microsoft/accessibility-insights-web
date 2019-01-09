@@ -47,7 +47,7 @@ describe('AssessmentLeftNavV2', () => {
         };
 
         leftNavLinkBuilderMock
-            .setup(lnlbm => lnlbm.withOverviewLink(
+            .setup(lnlbm => lnlbm.buildOverviewLink(
                 deps,
                 navLinkHandlerMock.onOverviewClick,
                 assessmentsProviderStub,
@@ -57,7 +57,7 @@ describe('AssessmentLeftNavV2', () => {
             .returns(() => linkStub);
 
         leftNavLinkBuilderMock
-            .setup(lnlbm => lnlbm.withAssessmentLinks(
+            .setup(lnlbm => lnlbm.buildAssessmentTestLinks(
                 deps,
                 navLinkHandlerMock.onAssessmentTestClickV2,
                 assessmentsProviderStub,

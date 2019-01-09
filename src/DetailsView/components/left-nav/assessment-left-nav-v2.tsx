@@ -50,8 +50,8 @@ export const AssessmentLeftNavV2 = NamedSFC<AssessmentLeftNavV2Props>('Assessmen
     };
 
     let links = [];
-    links.push(leftNavLinkBuilder.withOverviewLink(deps, navLinkHandler.onOverviewClick, assessmentsProvider, assessmentsData, 0));
-    links = links.concat(leftNavLinkBuilder.withAssessmentLinks(
+    links.push(leftNavLinkBuilder.buildOverviewLink(deps, navLinkHandler.onOverviewClick, assessmentsProvider, assessmentsData, 0));
+    links = links.concat(leftNavLinkBuilder.buildAssessmentTestLinks(
         deps,
         navLinkHandler.onAssessmentTestClickV2,
         assessmentsProvider,
