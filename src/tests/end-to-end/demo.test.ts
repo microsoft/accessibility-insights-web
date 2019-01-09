@@ -18,5 +18,4 @@ describe('puppeteer demo', () => {
     await page.goto(`${idWithURL}/popup/popup.html`);
     await page.screenshot({path: 'C:/temp/test-popup-screenshot-1.png', fullPage: true, omitBackground: false});
   });
-
 });

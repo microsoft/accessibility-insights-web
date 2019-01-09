@@ -11,7 +11,7 @@
     "build": "grunt",
     "watch": "grunt watch",
     "test": "jest",
-    "test:e2e": "grunt && jest --config=jest.e2e.config.js",
+    "test:e2e": "jest --config=jest.e2e.config.js",
     "tslint": "grunt lint",
     "tslint:fix": "grunt lint.fix",
     "drop": "grunt layout all-drops",
