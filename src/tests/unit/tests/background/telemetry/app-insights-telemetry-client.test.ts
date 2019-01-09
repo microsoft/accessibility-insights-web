@@ -8,12 +8,7 @@ import { ApplicationTelemetryDataFactory } from '../../../../../background/telem
 import { TelemetryLogger } from '../../../../../background/telemetry/telemetry-logger';
 import { configMutator } from '../../../../../common/configuration';
 
-type TrackEventType = (name: string, properties?: Object) => void;
-
 describe('AppInsights telemetry client tests', () => {
-    const applicationBuildStub: string = 'application build id';
-    const installationId: string = 'some id';
-
     let addTelemetryInitializerStrictMock: IMock<(callback) => void>;
     let appInsightsStrictMock: IMock<Microsoft.ApplicationInsights.IAppInsights>;
     let coreTelemetryDataFactoryMock: IMock<ApplicationTelemetryDataFactory>;

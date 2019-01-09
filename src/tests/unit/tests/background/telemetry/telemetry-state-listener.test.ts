@@ -8,9 +8,9 @@ import { TelemetryEventHandler } from '../../../../../background/telemetry/telem
 import { TelemetryStateListener } from '../../../../../background/telemetry/telemetry-state-listener';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 
-interface TestCase {
+type TestCase = {
     userConfigState: UserConfigurationStoreData;
-}
+};
 
 describe('TelemetryStateListenerTest', () => {
     let userConfigStoreMock: IMock<UserConfigurationStore>;
@@ -64,7 +64,7 @@ describe('TelemetryStateListenerTest', () => {
             },
         ];
 
-        test.each(disableCases)('disable telemetry', (testCase: TestCase) => {
+        test.each(disableCases)('disable telemetry: %o', (testCase: TestCase) => {
             userConfigState = testCase.userConfigState;
 
             setupDisableTelemetry();

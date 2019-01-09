@@ -57,7 +57,7 @@ describe('WindowMessageMarshallerTests', () => {
             messageId: '12',
         } as IWindowMessage),
 
-    ])('handleParsingUnknownData', message => {
+    ])('handleParsingUnknownData: %#', message => {
         expect(testSubject.parseMessage(message)).toBeNull();
     });
 
@@ -79,7 +79,7 @@ describe('WindowMessageMarshallerTests', () => {
         messageId: 'id1',
         command: 'someCommand',
     } as IWindowMessage, // without message
-    ])('handleParsingValidData', message => {
+    ])('handleParsingValidData: %#', message => {
 
         expect(testSubject.parseMessage(JSON.stringify(message))).toEqual(message);
     });

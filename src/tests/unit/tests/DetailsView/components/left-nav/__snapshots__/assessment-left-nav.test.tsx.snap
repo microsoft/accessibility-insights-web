@@ -1,26 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AssessmentLeftNav render assessments: with status FAIL 1`] = `
-"<div>
-  Overview
-  <div>
-    <StatusIcon status={[undefined]} className=\\"dark-gray\\" />
-  </div>
-  <OverviewLeftNavLink link={{...}} renderIcon={[Function: renderAssessmentIcon]} />
-  assessment 1
-  <div>
-    <StatusIcon status={2} className=\\"dark-gray\\" />
-  </div>
-  <TestViewLeftNavLink link={{...}} renderIcon={[Function: renderAssessmentIcon]} />
-  assessment 2
-  <div>
-    <StatusIcon status={0} className=\\"dark-gray\\" />
-  </div>
-  <TestViewLeftNavLink link={{...}} renderIcon={[Function: renderAssessmentIcon]} />
-</div>"
-`;
-
-exports[`AssessmentLeftNav render assessments: with status PASS 1`] = `
+exports[`AssessmentLeftNav render assessments - status : 0: with status PASS 1`] = `
 "<div>
   Overview
   <div>
@@ -40,7 +20,7 @@ exports[`AssessmentLeftNav render assessments: with status PASS 1`] = `
 </div>"
 `;
 
-exports[`AssessmentLeftNav render assessments: with status UNKNOWN 1`] = `
+exports[`AssessmentLeftNav render assessments - status : 1: with status UNKNOWN 1`] = `
 "<div>
   Overview
   <div>
@@ -50,6 +30,26 @@ exports[`AssessmentLeftNav render assessments: with status UNKNOWN 1`] = `
   assessment 1
   <div className=\\"index-circle\\">
     1
+  </div>
+  <TestViewLeftNavLink link={{...}} renderIcon={[Function: renderAssessmentIcon]} />
+  assessment 2
+  <div>
+    <StatusIcon status={0} className=\\"dark-gray\\" />
+  </div>
+  <TestViewLeftNavLink link={{...}} renderIcon={[Function: renderAssessmentIcon]} />
+</div>"
+`;
+
+exports[`AssessmentLeftNav render assessments - status : 2: with status FAIL 1`] = `
+"<div>
+  Overview
+  <div>
+    <StatusIcon status={[undefined]} className=\\"dark-gray\\" />
+  </div>
+  <OverviewLeftNavLink link={{...}} renderIcon={[Function: renderAssessmentIcon]} />
+  assessment 1
+  <div>
+    <StatusIcon status={2} className=\\"dark-gray\\" />
   </div>
   <TestViewLeftNavLink link={{...}} renderIcon={[Function: renderAssessmentIcon]} />
   assessment 2
