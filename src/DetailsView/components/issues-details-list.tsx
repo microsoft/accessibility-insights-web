@@ -103,7 +103,6 @@ export class IssuesDetailsList extends React.Component<IssuesDetailsListProps, {
                     }}
                     items={this.items}
                     groups={this.groups}
-                    // onRenderDetailsHeader={this.onRenderDetailsHeader}
                     columns={instanceColumns}
                     ariaLabelForSelectAllCheckbox="Toggle selection for all items"
                     ariaLabelForSelectionColumn="Toggle selection"
