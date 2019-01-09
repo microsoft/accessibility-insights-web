@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Enzyme from 'enzyme';
-import { DefaultButton, IButton } from 'office-ui-fabric-react/lib/Button';
 import Dialog from 'office-ui-fabric-react/lib/Dialog';
 import { TooltipHost } from 'office-ui-fabric-react/lib/Tooltip';
 import * as React from 'react';
