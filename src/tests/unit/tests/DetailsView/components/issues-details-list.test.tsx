@@ -89,16 +89,6 @@ describe('IssuesDetailsListTest', () => {
         testRendering(null, instanceColumns, featureFlagData);
     });
 
-    test('onRenderDetailsHeader', () => {
-        const issuesDetailsListProps = new TestPropsBuilder().build();
-        const testObject = new IssuesDetailsList(issuesDetailsListProps);
-
-        const result: JSX.Element = (testObject as any).onRenderDetailsHeader({ testProp: 'testValue' }, null);
-
-        expect((result.type as any).name).toBe('DetailsHeader');
-        expect(result.props.testProp).toBe('testValue');
-    });
-
     test('onRenderGroupHeader', () => {
         const issuesDetailsListProps = new TestPropsBuilder().build();
         const testObject = new IssuesDetailsList(issuesDetailsListProps);
