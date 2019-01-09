@@ -1,3 +1,5 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
 import { isMatch } from 'lodash';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
