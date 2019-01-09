@@ -63,7 +63,7 @@ export class TargetChangeDialog extends React.Component<ITargetChangeDialogProps
 
                         <div className="button ms-Grid-col  action-cancel-button-col continue-button">
                             <DefaultButton
-                                componentRef={this.setFocusToComponent}
+                                autoFocus={true}
                                 text="Continue previous"
                                 onClick={this.props.actionMessageCreator.continuePreviousAssessment}
                             />
@@ -72,11 +72,6 @@ export class TargetChangeDialog extends React.Component<ITargetChangeDialogProps
                 </DialogFooter>
             </Dialog>
         );
-    }
-
-    @autobind
-    private setFocusToComponent(component: IButton): void {
-        component.focus();
     }
 
     private renderPreviousTabLink(tab: ITab): JSX.Element {
