@@ -3,14 +3,14 @@
 
 import { ExtensionPuppeteerConnection } from '../common/extension-puppeteer-connection';
 
-describe('puppeteer demo', () => {
+describe('Launchpad (popup page)', () => {
     let extensionConnection: ExtensionPuppeteerConnection;
 
     beforeAll(async () => {
         extensionConnection = await ExtensionPuppeteerConnection.connect(browser);
     });
 
-    it('Popup page should include telemetry opt-in', async () => {
+    it('should open the telemetry prompt on first run', async () => {
         const targetPage = await browser.newPage();
         await targetPage.goto('https://bing.com');
 
@@ -21,11 +21,19 @@ describe('puppeteer demo', () => {
             });
         });
 
-        const popupPage = await browser.newPage();
+        const popupPage = page;
         await popupPage.goto(`${extensionBaseUrl}/popup/popup.html?tabId=${activeTabId}`);
 
         await popupPage.waitForSelector('#Dialog3-title');
         const title = await popupPage.$eval('#Dialog3-title', element => element.textContent);
         expect(title).toEqual('We need your help');
+    });
+
+    it('should dismiss the telemetry prompt after hitting "okay"', async () => {
+        throw 'notimpl';
+    });
+
+    it('should dismiss the telemetry prompt after hitting "okay"', async () => {
+        throw 'notimpl';
     });
 });
