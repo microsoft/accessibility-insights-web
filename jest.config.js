@@ -45,6 +45,7 @@ module.exports = {
   moduleNameMapper: {
     "office-ui-fabric-react/lib/(.*)$": "office-ui-fabric-react/lib-commonjs/$1",
     "@uifabric/utilities": "@uifabric/utilities/lib-commonjs",
+    "@uifabric/styling": "@uifabric/styling/lib-commonjs",
   },
 
   "reporters": [
