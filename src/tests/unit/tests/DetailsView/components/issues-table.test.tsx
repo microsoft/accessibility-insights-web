@@ -154,7 +154,7 @@ describe('IssuesTableTest', () => {
         const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
 
         actionMessageCreatorMock
-            .setup(a => a.exportAutomatedResultsClicked(exportData, eventStub))
+            .setup(a => a.exportResultsClicked('AutomatedChecks', exportData, eventStub))
             .verifiable(Times.once());
 
         testStateChangedByHandlerCalledWithParam(

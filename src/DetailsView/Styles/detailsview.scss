@@ -1570,19 +1570,6 @@ div.insights-dialog-main-override {
     }
 }
 
-.download-report-link {
-    display: inline-block;
-    padding: 4px 20px;
-    background-color: $communication-shade-10;
-    color: $neutral-0 !important;
-    font-size: 14px;
-    font-weight: 600;
-
-    &:hover {
-        background-color: $communication-shade-20;
-    }
-}
-
 .ms-GroupHeader-expand {
     i {
         transform: rotate(-180deg);

@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-import { BaseButton, Button } from 'office-ui-fabric-react/lib/Button';
+import { PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
-import { Link } from 'office-ui-fabric-react/lib/Link';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 
+import { ExportResultType } from '../../common/telemetry-events';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 
 export interface ExportDialogProps {
@@ -16,6 +16,7 @@ export interface ExportDialogProps {
     html: string;
     onClose: () => void;
     onDescriptionChanged: (value: string) => void;
+    exportResultsType: ExportResultType;
 }
 
 export interface ExportDialogDeps {
@@ -53,30 +54,27 @@ export class ExportDialog extends React.Component<ExportDialogProps> {
                     ariaLabel="Provide result description"
                 />
                 <DialogFooter>
-                    <Link
+                    <PrimaryButton
                         onClick={this.onExportLinkClick}
-                        className="download-report-link"
                         download="AssessmentReport.html"
                         href={'data:text/html,' + this.props.html}
                     >
                         Export
-                    </Link>
+                    </PrimaryButton>
                 </DialogFooter>
             </Dialog>
         );
     }
 
     @autobind
-    private onDismiss(
-        event: React.MouseEvent<HTMLDivElement | HTMLAnchorElement | HTMLButtonElement | BaseButton | Button>,
-    ): void {
+    private onDismiss(): void {
         this.props.onClose();
     }
 
     @autobind
     private onExportLinkClick(event: React.MouseEvent<HTMLDivElement>): void {
         const { detailsViewActionMessageCreator } = this.props.deps;
-        detailsViewActionMessageCreator.exportAssessmentResultsClicked(this.props.html, event);
+        detailsViewActionMessageCreator.exportResultsClicked(this.props.exportResultsType, this.props.html, event);
         this.props.onClose();
     }
 
