@@ -45,13 +45,13 @@ jobs:
       failIfCoverageEmpty: true
     displayName: publish code coverage
 
-  # e2e tests must run after the drop, depends on dev drop
   - task: Npm@1
     inputs:
       command: custom
       customCommand: run drop
     displayName: npm run drop
 
+  # e2e tests must run after the drop, depends on dev drop
   - task: Npm@1
     inputs:
       command: custom
