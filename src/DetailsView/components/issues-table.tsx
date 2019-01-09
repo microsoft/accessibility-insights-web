@@ -2,11 +2,9 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 import * as _ from 'lodash';
-import { ActionButton, BaseButton, Button, PrimaryButton } from 'office-ui-fabric-react/lib/Button';
+import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
-import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
-import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 
 import { VisualizationToggle } from '../../common/components/visualization-toggle';
@@ -21,10 +19,10 @@ import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { RuleResult, ScanResults } from '../../scanner/iruleresults';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { ReportGenerator } from '../reports/report-generator';
+import { ExportDialog } from './export-dialog';
 import { IssuesDetailsList } from './issues-details-list';
 import { IssuesDetailsPane, IssuesDetailsPaneDeps } from './Issues-details-pane';
 import { IssuesTableHandler } from './issues-table-handler';
-import { ExportDialog } from './export-dialog';
 
 export type IssuesTableDeps = IssuesDetailsPaneDeps & {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
@@ -136,6 +134,7 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
                 html={this.state.exportData}
                 onClose={this.onDismissExportDialog}
                 onDescriptionChanged={this.onExportDescriptitonChange}
+                exportResultsType="AutomatedChecks"
             />
         );
     }

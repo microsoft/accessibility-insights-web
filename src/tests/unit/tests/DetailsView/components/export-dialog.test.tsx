@@ -30,6 +30,7 @@ describe('ExportDialog', () => {
             onClose: onCloseMock.object,
             onDescriptionChanged: onDescriptionChangedMock.object,
             actionMessageCreator: actionMessageCreatorMock.object,
+            exportResultsType: 'Assessment',
         };
 
         testSubject = new ExportDialog(props);
@@ -61,7 +62,7 @@ describe('ExportDialog', () => {
             .verifiable(Times.once());
 
         actionMessageCreatorMock
-            .setup(a => a.exportAssessmentResultsClicked(props.html, eventStub))
+            .setup(a => a.exportResultsClicked(props.exportResultsType, props.html, eventStub))
             .verifiable(Times.once());
 
         invokeHandler('onExportLinkClick', eventStub);

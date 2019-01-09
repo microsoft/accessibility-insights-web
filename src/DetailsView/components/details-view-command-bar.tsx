@@ -108,6 +108,7 @@ export class DetailsViewCommandBar extends React.Component<IDetailsViewCommandBa
                     html={this.state.exportHtmlWithDescription}
                     onClose={this.onExportDialogClose}
                     onDescriptionChanged={this.onExportDialogDescriptionChanged}
+                    exportResultsType="Assessment"
                 />
             </div>
         );

@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { PivotItem } from 'office-ui-fabric-react/lib/Pivot';
 import { autobind } from '@uifabric/utilities';
 
 import { IOnDetailsViewPivotSelected, ISelectTestStepPayload } from '../../background/actions/action-payloads';
@@ -19,7 +18,6 @@ import {
     IEditFailureInstancePayload,
     IOnDetailsViewOpenPayload,
     IRemoveFailureInstancePayload,
-    ISetBaseUrlPayload,
     ISwitchToTargetTabPayLoad,
     IToggleActionPayload,
 } from './../../background/actions/action-payloads';
@@ -27,9 +25,9 @@ import { IFeatureFlagPayload } from './../../background/actions/feature-flag-act
 import { TelemetryDataFactory } from './../../common/telemetry-data-factory';
 import * as TelemetryEvents from './../../common/telemetry-events';
 import { VisualizationType } from './../../common/types/visualization-type';
-import { WindowUtils } from './../../common/window-utils';
 import { ExportResultType } from './../../common/telemetry-events';
 import { DetailsViewRightContentPanelType } from '../components/left-nav/details-view-right-content-panel-type';
+import { WindowUtils } from './../../common/window-utils';
 
 const messages = Messages.Visualizations;
 
@@ -114,15 +112,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     }
 
-    public exportAssessmentResultsClicked(exportedHtml: string, event: React.MouseEvent<HTMLElement>): void {
-        this.exportResultsClicked('Assessment', exportedHtml, event);
-    }
-
-    public exportAutomatedResultsClicked(exportedHtml: string, event: React.MouseEvent<any>): void {
-        this.exportResultsClicked('AutomatedChecks', exportedHtml, event);
-    }
-
-    private exportResultsClicked(exportResultsType: ExportResultType, exportedHtml: string, event: React.MouseEvent<HTMLElement>): void {
+    public exportResultsClicked(exportResultsType: ExportResultType, exportedHtml: string, event: React.MouseEvent<HTMLElement>): void {
         const telemetryData = this.telemetryFactory.forExportedHtml(
             exportResultsType,
             exportedHtml,

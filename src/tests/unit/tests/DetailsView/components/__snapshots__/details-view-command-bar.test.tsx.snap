@@ -4,16 +4,16 @@ exports[`DetailsViewCommandBar renders with export button and dialog 1`] = `
 "<div className=\\"details-view-command-bar\\">
   <div className=\\"details-view-target-page\\">
     Target page: 
-    <StyledCustomizedLink role=\\"link\\" className=\\"target-page-link\\" onClick={[Function: switchToTargetTabStub]}>
+    <StyledLinkBase role=\\"link\\" className=\\"target-page-link\\" onClick={[Function: switchToTargetTabStub]}>
       command-bar-test-tab-title
-    </StyledCustomizedLink>
+    </StyledLinkBase>
   </div>
   <div className=\\"details-view-command-buttons\\">
     <CustomizedActionButton iconProps={{...}} onClick={[Function: bound ]}>
       Export result
     </CustomizedActionButton>
     <StartOverDropdown testName=\\"test title\\" test={-1} requirementKey={[undefined]} actionMessageCreator={{...}} />
-    <ExportDialog deps={{...}} isOpen={false} description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChanged={[Function: bound ]} />
+    <ExportDialog deps={{...}} isOpen={false} description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChanged={[Function: bound ]} exportResultsType=\\"Assessment\\" />
   </div>
 </div>"
 `;
@@ -22,9 +22,9 @@ exports[`DetailsViewCommandBar renders without export button and dialog 1`] = `
 "<div className=\\"details-view-command-bar\\">
   <div className=\\"details-view-target-page\\">
     Target page: 
-    <StyledCustomizedLink role=\\"link\\" className=\\"target-page-link\\" onClick={[Function: switchToTargetTabStub]}>
+    <StyledLinkBase role=\\"link\\" className=\\"target-page-link\\" onClick={[Function: switchToTargetTabStub]}>
       command-bar-test-tab-title
-    </StyledCustomizedLink>
+    </StyledLinkBase>
   </div>
 </div>"
 `;
