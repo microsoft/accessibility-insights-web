@@ -3,7 +3,7 @@
 exports[`DetailsViewLeftNavTest render: newAssessmentExperience 1`] = `"<FlaggedComponent featureFlagStoreData={{...}} featureFlag=\\"newAssessmentExperience\\" enableJSXElement={{...}} disableJSXElement={{...}} />"`;
 
 exports[`DetailsViewLeftNavTest renderNav 1`] = `
-<StyledCustomizedNav
+<StyledNavBase
   className="details-view-test-nav-area"
   groups={
     Array [
