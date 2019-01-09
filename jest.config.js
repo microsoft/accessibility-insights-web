@@ -1,63 +1,25 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+var common = require('./jest.common.config');
+
 module.exports = {
-  clearMocks: true,
-  coverageDirectory: "coverage",
-  globals: {
-    "ts-jest": {
-      "tsConfig": "<rootDir>/tsconfig.jest.json"
-    }
-  },
+  ...common,
 
-  setupFiles: [
-    '<rootDir>/src/tests/unit/jest-setup.ts'
-  ],
+    coverageDirectory: 'coverage',
 
-  moduleDirectories: [
-    "node_modules",
-  ],
+    setupFiles: ['<rootDir>/src/tests/unit/jest-setup.ts'],
 
-  moduleFileExtensions: [
-    "ts",
-    "tsx",
-    "js"
-  ],
+    moduleFileExtensions: ['ts', 'tsx', 'js'],
 
-  roots: [
-    "<rootDir>/src/tests/unit"
-  ],
+    roots: ['<rootDir>/src/tests/unit'],
 
-  collectCoverage: true,
+    collectCoverage: true,
 
-  "collectCoverageFrom": [
-    "<rootDir>/src/**/*.{ts,tsx}",
-    "!<rootDir>/src/tests/**"
-  ],
+    collectCoverageFrom: ['<rootDir>/src/**/*.{ts,tsx}', '!<rootDir>/src/tests/**'],
 
-  "coverageReporters": [
-    "json",
-    "lcov",
-    "text",
-    "cobertura"
-  ],
+    coverageReporters: ['json', 'lcov', 'text', 'cobertura'],
 
-  "reporters": [
-    "default",
-    "jest-junit"
-  ],
+    reporters: ['default', 'jest-junit'],
 
-  testEnvironment: "jsdom",
-
-  testMatch: [
-    "**/*.test.(ts|tsx|js)"
-  ],
-
-  testPathIgnorePatterns: [
-  ],
-
-  transform: {
-    "^.+\\.(ts|tsx)$": "ts-jest"
-  },
-
-  verbose: true,
+    testEnvironment: 'jsdom',
 };
