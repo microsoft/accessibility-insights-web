@@ -37,7 +37,6 @@ jobs:
     condition: always()
     displayName: publish test results
 
-
   - task: PublishCodeCoverageResults@1
     inputs:
       codeCoverageTool: Cobertura
@@ -51,6 +50,20 @@ jobs:
       command: custom
       customCommand: run drop
     displayName: npm run drop
+
+  # e2e tests must run after the drop, depends on dev drop
+  - task: Npm@1
+    inputs:
+      command: custom
+      customCommand: run test:e2e
+    displayName: npm run test:e2e
+
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFiles: junit-e2e.xml
+      testRunTitle: accessibility-insights-web e2e
+    condition: always()
+    displayName: publish e2e test results
 
   - task: CopyFiles@2
     inputs:
