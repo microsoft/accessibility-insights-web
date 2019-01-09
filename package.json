@@ -14,7 +14,7 @@
     "test:e2e": "jest --config=jest.e2e.config.js",
     "tslint": "grunt lint",
     "tslint:fix": "grunt lint.fix",
-    "drop": "grunt layout all-drops",
+    "drop": "grunt layout drop:dev all-drops",
     "copyrightheaders": "grunt copyright-check",
     "copyrightheaders:fix": "grunt copyright-add"
   },
