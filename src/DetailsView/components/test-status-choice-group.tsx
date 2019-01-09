@@ -24,12 +24,11 @@ export class TestStatusChoiceGroup extends React.Component<ITestStatusChoiceGrou
     protected _choiceGroup: IChoiceGroup;
     
     public render(): JSX.Element {
-        const str = `radio-button-group ${ManualTestStatus[this.props.status] }`;
         return (
             <div>
-                <div className={str}>
+                <div className='radio-button-group'>
                     <ChoiceGroup
-                        className={str}
+                        className={ManualTestStatus[this.props.status]}
                         onChange={this.onChange}
                         componentRef={this.compomentRef}
                         selectedKey={ManualTestStatus[this.props.status]}
