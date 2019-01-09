@@ -26,7 +26,7 @@ export class TestStatusChoiceGroup extends React.Component<ITestStatusChoiceGrou
     public render(): JSX.Element {
         return (
             <div>
-                <div className='radio-button-group'>
+                <div className="radio-button-group">
                     <ChoiceGroup
                         className={ManualTestStatus[this.props.status]}
                         onChange={this.onChange}
