@@ -2,9 +2,7 @@
 // Licensed under the MIT License.
 import { Panel, PanelType } from 'office-ui-fabric-react/lib/Panel';
 import * as React from 'react';
-import { IMock, Mock } from 'typemoq';
 
-import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { GenericPanel, GenericPanelProps } from '../../../../../DetailsView/components/generic-panel';
 
 export class TestableDetailsViewPanel extends GenericPanel {
@@ -14,18 +12,12 @@ export class TestableDetailsViewPanel extends GenericPanel {
 }
 
 describe('DetailsViewPanelTest', () => {
-    let actionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
-
-    beforeEach(() => {
-        actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
-    });
-
     test('constructor', () => {
         const testSubject = new GenericPanel({} as GenericPanelProps);
         expect(testSubject).toBeDefined();
     });
 
-    test.each([true, false])('render', (isPanelOpen: boolean) => {
+    test.each([true, false])('render - isPanelOpen: %s', (isPanelOpen: boolean) => {
         const childContent =  (
             <div>child content</div>
         );

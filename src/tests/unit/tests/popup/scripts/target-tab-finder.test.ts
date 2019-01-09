@@ -37,7 +37,7 @@ describe('TargetTabFinderTest', () => {
         testSubject = new TargetTabFinder(windowStub, browserAdapterMock.object, urlValidatorMock.object, urlParserMock.object);
     });
 
-    type TestCase  = {
+    type TestCase = {
         hasTabIdInUrl: boolean;
         isUrlSupported: boolean;
     };
@@ -59,7 +59,7 @@ describe('TargetTabFinderTest', () => {
         isUrlSupported: false,
     }];
 
-    test.each(testCases)('get target tab info %j', async (testCase: TestCase) => {
+    test.each(testCases)('get target tab info - %o', async (testCase: TestCase) => {
         if (testCase.hasTabIdInUrl) {
             setupGetTabIdParamFromUrl(tabId);
             setupGetTabCall();
@@ -86,10 +86,10 @@ describe('TargetTabFinderTest', () => {
 
     function setupGetTabCall() {
         browserAdapterMock
-        .setup(b => b.getTab(tabId, It.isAny()))
-        .callback((id, cb) => {
-            cb(tabStub);
-        });
+            .setup(b => b.getTab(tabId, It.isAny()))
+            .callback((id, cb) => {
+                cb(tabStub);
+            });
     }
 
     function setupTabQueryCall() {

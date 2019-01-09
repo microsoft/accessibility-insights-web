@@ -10,24 +10,27 @@ import { NavLinkForLeftNav } from '../../../../../../DetailsView/components/deta
 import { getTestLinks } from '../../../../../../DetailsView/components/left-nav/links-provider';
 
 describe('getLinksTest', () => {
-    const testData = [
-        [
-            {
+    type TestCase = {
+        config: any;
+        expectedTitle: string
+    };
+    const testCases: TestCase[] = [
+        {
+            config: {
                 displayableData: { title: 'test title' },
             },
-            'test title',
-        ],
-        [
-            {
+            expectedTitle: 'test title',
+        },
+        {
+            config: {
                 displayableData: null,
             },
-            'NO TITLE FOUND',
-        ],
-    ];
+            expectedTitle: 'NO TITLE FOUND',
+        }];
 
-    test.each(testData)('getLinks', (configuration, expectedTitle) => {
+    test.each(testCases)('getLinks - %o', (testCase: TestCase) => {
         const type = DetailsViewPivotType.fastPass;
-        const onClickStub = () => {};
+        const onClickStub = () => { };
 
         const pivotConfiguration: VisualizationType[] = [
             VisualizationType.Headings,
@@ -42,17 +45,17 @@ describe('getLinksTest', () => {
         const visualizationConfigurationFactoryMock = Mock.ofType<VisualizationConfigurationFactory>();
         visualizationConfigurationFactoryMock
             .setup(factory => factory.getConfiguration(It.isAny()))
-            .returns(() => configuration);
+            .returns(() => testCase.config);
 
         const result = getTestLinks(type, pivotConfigurationMock.object, visualizationConfigurationFactoryMock.object, onClickStub);
 
         result.forEach((navLink: NavLinkForLeftNav, index) => {
-            expect(navLink.name).toEqual(expectedTitle);
+            expect(navLink.name).toEqual(testCase.expectedTitle);
             expect(navLink.key).toEqual(VisualizationType[pivotConfiguration[index]]);
             expect(navLink.forceAnchor).toBe(true);
             expect(navLink.url).toBe('');
             expect(navLink.index).toEqual(index + 1);
-            expect(navLink.onRenderNavLink(navLink, () => null)).toMatchSnapshot(`${expectedTitle} index=${index}`);
+            expect(navLink.onRenderNavLink(navLink, () => null)).toMatchSnapshot(`${testCase.expectedTitle} index=${index}`);
             expect(navLink.iconProps.className).toBe('hidden');
             expect(navLink.onClickNavLink).toEqual(onClickStub);
         });

@@ -35,10 +35,10 @@ describe('SettingsPanelTest', () => {
         expect(testSubject).toBeDefined();
     });
 
-    interface RenderTestCase {
+    type RenderTestCase = {
         isPanelOpen: boolean;
         enableTelemetry: boolean;
-    }
+    };
 
     test.each([
         {
@@ -49,7 +49,7 @@ describe('SettingsPanelTest', () => {
             isPanelOpen: true,
             enableTelemetry: false,
         } as RenderTestCase,
-    ])('render', (testCase: RenderTestCase) => {
+    ])('render - %o', (testCase: RenderTestCase) => {
         userConfigStoreData = { enableTelemetry: testCase.enableTelemetry } as UserConfigurationStoreData;
         const testProps: SettingsPanelProps = {
             isOpen: testCase.isPanelOpen,
@@ -84,7 +84,7 @@ describe('SettingsPanelTest', () => {
         expect(testSubject.render()).toEqual(expected);
     });
 
-    test.each([true, false])('verify toggle click', telemetrySettingState => {
+    test.each([true, false])('verify toggle click - telemetrySettingState : %s', telemetrySettingState => {
         userConfigStoreData = {} as UserConfigurationStoreData;
         const testProps: SettingsPanelProps = {
             isOpen: true,

@@ -80,7 +80,7 @@ describe('gear-options-button-component.test', () => {
             getPreviewFeatureMenuItem(),
             getScopingFeatureMenuItem(),
         ],
-    }] as TestCase[])('verify rendering with menu items', (testCase: TestCase) => {
+    }] as TestCase[])('verify rendering with menu items: %#', (testCase: TestCase) => {
         verifyRendering(testCase.featureFlags, testCase.expectedMenuItems);
     });
 
