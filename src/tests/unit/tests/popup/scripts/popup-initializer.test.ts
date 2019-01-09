@@ -29,6 +29,7 @@ describe('PopupInitializerTests', () => {
         (testSubject as any).initializePopup = initializePopupMock.object;
 
         const promise = testSubject.initialize();
+
         promise.then(result => {
             targetTabFinder.verifyAll();
             initializePopupMock.verifyAll();

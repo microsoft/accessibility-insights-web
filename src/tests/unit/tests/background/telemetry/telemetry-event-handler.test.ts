@@ -4,13 +4,13 @@ import * as _ from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { BaseActionPayload } from '../../../../../background/actions/action-payloads';
-import { ChromeAdapter, IChromeAdapter } from '../../../../../background/browser-adapter';
+import { ChromeAdapter, BrowserAdapter } from '../../../../../background/browser-adapter';
 import { TelemetryClient } from '../../../../../background/telemetry/telemetry-client';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
 import { ITab } from '../../../../../common/itab';
 
 describe('TelemetryEventHandlerTest', () => {
-    let browserAdapterMock: IMock<IChromeAdapter>;
+    let browserAdapterMock: IMock<BrowserAdapter>;
     let telemetryClientStrictMock: IMock<TelemetryClient>;
     let testEventName;
     let testTelemetryPayload;

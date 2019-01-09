@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash/index';
 
-import { IChromeAdapter } from './browser-adapter';
+import { BrowserAdapter } from './browser-adapter';
 
 export class UserStoredDataCleaner {
-    private _browserAdapter: IChromeAdapter;
+    private _browserAdapter: BrowserAdapter;
 
-    constructor(adapter: IChromeAdapter) {
+    constructor(adapter: BrowserAdapter) {
         this._browserAdapter = adapter;
     }
 

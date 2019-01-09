@@ -2,14 +2,14 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 
-import { IChromeAdapter } from './browser-adapter';
+import { BrowserAdapter } from './browser-adapter';
 
 export class DetailsViewController {
     private _tabIdToDetailsViewMap: IDictionaryStringTo<number> = {};
-    private _browserAdapter: IChromeAdapter;
+    private _browserAdapter: BrowserAdapter;
     private _detailsViewRemovedHandler: (tabId: number) => void;
 
-    constructor(adapter: IChromeAdapter) {
+    constructor(adapter: BrowserAdapter) {
         this._browserAdapter = adapter;
         this._browserAdapter.addListenerToTabsOnRemoved(this.onRemoveTab);
         this._browserAdapter.addListenerToTabsOnUpdated(this.onUpdateTab);

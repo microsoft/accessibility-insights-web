@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import * as Q from 'q';
 
-import { IClientChromeAdapter } from '../common/client-browser-adapter';
+import { ClientBrowserAdapter } from '../common/client-browser-adapter';
 import { FileRequestHelper } from '../common/file-request-helper';
 import { HTMLElementUtils } from './../common/html-element-utils';
 
 export class ShadowInitializer {
-    private chromeAdapter: IClientChromeAdapter;
+    private chromeAdapter: ClientBrowserAdapter;
     private q: typeof Q;
     private htmlElementUtils: HTMLElementUtils;
     private fileRequestHlper: FileRequestHelper;
@@ -15,7 +15,7 @@ export class ShadowInitializer {
     public static readonly injectedCssPath: string = 'injected/styles/default/injected.css';
 
     constructor(
-        chromeAdapter: IClientChromeAdapter,
+        chromeAdapter: ClientBrowserAdapter,
         q: typeof Q,
         htmlElementUtils: HTMLElementUtils,
         fileRequestHelper: FileRequestHelper,

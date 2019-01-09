@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 
-import { ClientChromeAdapter, IClientChromeAdapter } from '../common/client-browser-adapter';
+import { ClientChromeAdapter, ClientBrowserAdapter } from '../common/client-browser-adapter';
 
 export interface TabActiveInfo {
     tabId: number;
@@ -13,14 +13,14 @@ export interface TabChangeInfo {
     url: string;
 }
 
-export interface INotificationOptions {
+export interface NotificationOptions {
     message: string;
     title: string;
     iconUrl: string;
     type?: string;
 }
 
-export interface IChromeAdapter extends IClientChromeAdapter {
+export interface BrowserAdapter extends ClientBrowserAdapter {
     getAllWindows(getInfo: chrome.windows.GetInfo, callback: (chromeWindows: chrome.windows.Window[]) => void);
     getSelectedTabInWindow(windowId: number, callback: (activeTab: chrome.tabs.Tab) => void);
     addListenerToTabsOnActivated(callback: (activeInfo: chrome.tabs.TabActiveInfo) => void);
@@ -45,7 +45,7 @@ export interface IChromeAdapter extends IClientChromeAdapter {
     injectJs(tabId, file: string, callback: Function);
     injectCss(tabId, file: string, callback: Function);
     getRunTimeId(): string;
-    createNotification(options: INotificationOptions): void;
+    createNotification(options: NotificationOptions): void;
     getRuntimeLastError();
     isAllowedFileSchemeAccess?(callback: Function);
     addListenerToLocalStorage?(callback: (changes: object) => void);
@@ -54,7 +54,7 @@ export interface IChromeAdapter extends IClientChromeAdapter {
     createPopupWindow(url: string, callback: (window: chrome.windows.Window) => void): void;
 }
 
-export class ChromeAdapter extends ClientChromeAdapter implements IChromeAdapter {
+export class ChromeAdapter extends ClientChromeAdapter implements BrowserAdapter {
 
     public getAllWindows(getInfo: chrome.windows.GetInfo, callback: (chromeWindows: chrome.windows.Window[]) => void): void {
         chrome.windows.getAll(getInfo, callback);
@@ -210,7 +210,7 @@ export class ChromeAdapter extends ClientChromeAdapter implements IChromeAdapter
         return chrome.runtime.lastError;
     }
 
-    public createNotification(options: INotificationOptions): void {
+    public createNotification(options: NotificationOptions): void {
         chrome.notifications.create({
             type: options.type || 'basic',
             iconUrl: options.iconUrl,

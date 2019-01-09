@@ -15,7 +15,7 @@ import { InspectActionCreator } from './actions/inspect-action-creator';
 import { ScopingActionCreator } from './actions/scoping-action-creator';
 import { TabActionCreator } from './actions/tab-action-creator';
 import { AssessmentScanPolicyRunner } from './assessment-scan-policy-runner';
-import { IChromeAdapter } from './browser-adapter';
+import { BrowserAdapter } from './browser-adapter';
 import { ChromeFeatureController } from './chrome-feature-controller';
 import { DetailsViewController } from './details-view-controller';
 import { DetailsViewPivotValidator } from './details-view-pivot-validator';
@@ -45,7 +45,7 @@ export class TabContextFactory {
 
     public createTabContext(
         broadcastMessage: (message) => void,
-        browserAdapter: IChromeAdapter,
+        browserAdapter: BrowserAdapter,
         detailsViewController: DetailsViewController,
         tabId: number,
     ): TabContext {

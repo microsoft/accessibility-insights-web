@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as Q from 'q';
 
-import { IChromeAdapter } from '../browser-adapter';
+import { BrowserAdapter } from '../browser-adapter';
 
 export class ContentScriptInjector {
     public static readonly jsFiles: string[] = ['bundle/injected.bundle.js'];
@@ -13,10 +13,10 @@ export class ContentScriptInjector {
     ];
 
     public static timeoutInMilliSec = 5e4;
-    private readonly _chromeAdapter: IChromeAdapter;
+    private readonly _chromeAdapter: BrowserAdapter;
     private readonly _q: typeof Q;
 
-    constructor(chromeAdapter: IChromeAdapter, q: typeof Q) {
+    constructor(chromeAdapter: BrowserAdapter, q: typeof Q) {
         this._chromeAdapter = chromeAdapter;
         this._q = q;
     }

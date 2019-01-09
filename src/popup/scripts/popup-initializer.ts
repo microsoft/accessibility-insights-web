@@ -3,7 +3,7 @@
 import { autobind } from '@uifabric/utilities';
 import * as ReactDOM from 'react-dom';
 
-import { IChromeAdapter } from '../../background/browser-adapter';
+import { BrowserAdapter } from '../../background/browser-adapter';
 import { A11YSelfValidator } from '../../common/a11y-self-validator';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
@@ -50,7 +50,7 @@ export class PopupInitializer {
     private targetTabInfo: TargetTabInfo;
 
     constructor(
-        private readonly chromeAdapter: IChromeAdapter,
+        private readonly chromeAdapter: BrowserAdapter,
         private readonly targetTabFinder: TargetTabFinder,
     ) {
         this.chromeAdapter = chromeAdapter;

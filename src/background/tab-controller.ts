@@ -4,14 +4,14 @@ import { autobind } from '@uifabric/utilities';
 
 import { Messages } from '../common/messages';
 import { IPageVisibilityChangeTabPayLoad } from './actions/action-payloads';
-import { IChromeAdapter } from './browser-adapter';
+import { BrowserAdapter } from './browser-adapter';
 import { DetailsViewController } from './details-view-controller';
 import { TabToContextMap } from './tab-context';
 import { TabContextBroadcaster } from './tab-context-broadcaster';
 import { TabContextFactory } from './tab-context-factory';
 
 export class TabController {
-    private chromeAdapter: IChromeAdapter;
+    private chromeAdapter: BrowserAdapter;
     private readonly tabIdToContextMap: TabToContextMap;
     private readonly broadcaster: TabContextBroadcaster;
     private readonly detailsViewController: DetailsViewController;
@@ -20,7 +20,7 @@ export class TabController {
     constructor(
         tabToInterpreterMap: TabToContextMap,
         broadcaster: TabContextBroadcaster,
-        chromeAdapter: IChromeAdapter,
+        chromeAdapter: BrowserAdapter,
         detailsViewController: DetailsViewController,
         tabContextFactory: TabContextFactory,
     ) {

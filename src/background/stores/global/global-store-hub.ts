@@ -5,7 +5,7 @@ import { IBaseStore } from '../../../common/istore';
 import { StoreType } from '../../../common/types/store-type';
 import { generateUID } from '../../../common/uid-generator';
 import { GlobalActionHub } from '../../actions/global-action-hub';
-import { IChromeAdapter } from '../../browser-adapter';
+import { BrowserAdapter } from '../../browser-adapter';
 import { PersistedData } from '../../get-persisted-data';
 import { ILocalStorageData } from '../../storage-data';
 import { TelemetryEventHandler } from '../../telemetry/telemetry-event-handler';
@@ -31,7 +31,7 @@ export class GlobalStoreHub implements IStoreHub {
     constructor(
         globalActionHub: GlobalActionHub,
         telemetryEventHandler: TelemetryEventHandler,
-        browserAdapter: IChromeAdapter,
+        browserAdapter: BrowserAdapter,
         userData: ILocalStorageData,
         assessmentsProvider: IAssessmentsProvider,
         indexedDbInstance: IndexedDBAPI,

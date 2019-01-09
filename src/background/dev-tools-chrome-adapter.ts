@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ChromeAdapter, IChromeAdapter } from './browser-adapter';
-export interface IDevToolsChromeAdapter extends IChromeAdapter {
+import { ChromeAdapter, BrowserAdapter } from './browser-adapter';
+export interface IDevToolsChromeAdapter extends BrowserAdapter {
     getInspectedWindowTabId(): number;
     executeScriptInInspectedWindow(script: string, frameUrl: string): void;
 }
