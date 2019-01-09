@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Enzyme from 'enzyme';
-import { DefaultButton, IButton } from 'office-ui-fabric-react/lib/Button';
 import Dialog from 'office-ui-fabric-react/lib/Dialog';
 import { TooltipHost } from 'office-ui-fabric-react/lib/Tooltip';
 import * as React from 'react';
@@ -92,37 +91,5 @@ describe('TargetChangeDialog', () => {
 
         const component = new TargetChangeDialog(targetChangeProps);
         expect(component.render()).toMatchSnapshot();
-    });
-
-    test('focus set to the continue button after render', () => {
-        const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
-        const focusMock = jest.fn();
-        const buttonStub: IButton = {
-            focus: focusMock,
-            dismissMenu: null,
-            openMenu: null,
-        } as IButton;
-
-        const targetChangeProps: ITargetChangeDialogProps = {
-            prevTab: {
-                id: 111,
-                url: 'https://www.abc.com',
-                title: 'test title 1',
-            },
-            newTab: {
-                id: 123,
-                url: 'https://www.def.com',
-                title: 'test title 2',
-            },
-            actionMessageCreator: actionMessageCreatorMock.object,
-        };
-        const wrapper = Enzyme.shallow(<TargetChangeDialog {...targetChangeProps} />);
-        const continueBtn = wrapper.find(DefaultButton).at(1);
-
-        /* OF6UPDATE
-        continueBtn.props().componentRef(buttonStub);
-
-        expect(focusMock).toBeCalled();
-        */
     });
 });
