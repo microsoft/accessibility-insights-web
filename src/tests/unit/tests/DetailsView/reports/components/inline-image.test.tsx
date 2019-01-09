@@ -10,14 +10,11 @@ describe('InlineImageTest', () => {
         testInlineImage(InlineImageType.PassIcon, 'Pass icon');
         testInlineImage(InlineImageType.FailIcon, 'Fail icon');
         testInlineImage(InlineImageType.NotApplicableIcon, 'Not applicable icon');
+        testInlineImage(InlineImageType.AdaTheCat, 'Ada the cat');
     });
 
     test('Invalid type returns null', () => {
         testInvalidImage(1234);
-    });
-
-    test('Ada is on vacation', () => {
-        testInvalidImage(InlineImageType.AdaTheCat);
     });
 
     function testInvalidImage(type: InlineImageType): void {
