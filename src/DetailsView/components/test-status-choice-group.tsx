@@ -22,7 +22,7 @@ export interface ITestStatusChoiceGroupProps {
 
 export class TestStatusChoiceGroup extends React.Component<ITestStatusChoiceGroupProps> {
     protected _choiceGroup: IChoiceGroup;
-    
+
     public render(): JSX.Element {
         return (
             <div>
