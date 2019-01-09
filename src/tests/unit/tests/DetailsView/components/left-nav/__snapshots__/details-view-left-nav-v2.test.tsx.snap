@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DetailsViewLeftNavV2 should render from switcher nav 1`] = `
+<div
+  className="left-nav main-nav"
+>
+  <test
+    assessmentStoreData={
+      Object {
+        "assessments": Object {
+          "x": Object {
+            "testStepStatus": Object {},
+          },
+        },
+      }
+    }
+    assessmentsData={
+      Object {
+        "x": Object {},
+      }
+    }
+    assessmentsProvider={Object {}}
+    deps={
+      Object {
+        "assessmentsProvider": Object {},
+        "assessmentsProviderWithFeaturesEnabled": [Function],
+      }
+    }
+    featureFlagStoreData={Object {}}
+    rightPanelConfiguration={
+      Object {
+        "GetLeftNavSelectedKey": [Function],
+      }
+    }
+    selectedKey="some key"
+    selectedTest={-1}
+    switcherNavConfiguration={
+      Object {
+        "LeftNav": [Function],
+      }
+    }
+  />
+</div>
+`;
