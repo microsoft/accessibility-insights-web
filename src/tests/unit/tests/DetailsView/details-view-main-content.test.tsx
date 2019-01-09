@@ -25,6 +25,7 @@ import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/ha
 import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
+import { DetailsViewLeftNavV2 } from '../../../../DetailsView/components/left-nav/details-view-left-nav-v2';
 
 describe('DetailsViewMainContentTest', () => {
     let selectedTest: VisualizationType;
@@ -45,11 +46,14 @@ describe('DetailsViewMainContentTest', () => {
                 = NamedSFC<IDetailsViewMainContentProps>('test', _ => null);
             const CommandBarStub: Readonly<ReactSFCWithDisplayName<IDetailsViewMainContentProps>>
                 = NamedSFC<IDetailsViewMainContentProps>('test', _ => null);
+            const LeftNavStub: Readonly<ReactSFCWithDisplayName<IDetailsViewMainContentProps>>
+                = NamedSFC<IDetailsViewMainContentProps>('test', _ => null);
             rightPanelConfig = {
                 RightPanel: RightPanelStub,
             } as DetailsRightPanelConfiguration;
             switcherNavConfig = {
                 CommandBar: CommandBarStub,
+                LeftNav: LeftNavStub,
             } as DetailsViewSwitcherNavConfiguration;
             configFactoryMock = Mock.ofType(VisualizationConfigurationFactory, MockBehavior.Strict);
             clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory, MockBehavior.Strict);
@@ -189,18 +193,9 @@ describe('DetailsViewMainContentTest', () => {
 
     function buildLeftNav(givenProps: IDetailsViewMainContentProps): JSX.Element {
         return (
-            <div className="left-nav main-nav">
-                <DetailsViewLeftNav
-                    deps={givenProps.deps}
-                    featureFlagStoreData={givenProps.featureFlagStoreData}
-                    selectedDetailsView={givenProps.selectedTest}
-                    selectedPivot={givenProps.visualizationStoreData.selectedDetailsViewPivot}
-                    actionCreator={givenProps.deps.detailsViewActionMessageCreator}
-                    assessmentsProvider={givenProps.assessmentsProvider}
-                    assessmentsData={mapValues(givenProps.assessmentStoreData.assessments, data => data.testStepStatus)}
-                    rightPanelConfiguration={givenProps.rightPanelConfiguration}
-                />
-            </div>
+            <DetailsViewLeftNavV2
+                {...givenProps}
+            />
         );
     }
 
