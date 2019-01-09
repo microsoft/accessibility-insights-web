@@ -45,6 +45,13 @@ jobs:
       failIfCoverageEmpty: true
     displayName: publish code coverage
 
+  # e2e tests must run after the drop, depends on dev drop
+  - task: Npm@1
+    inputs:
+      command: custom
+      customCommand: run drop
+    displayName: npm run drop
+
   - task: Npm@1
     inputs:
       command: custom
@@ -57,12 +64,6 @@ jobs:
       testRunTitle: accessibility-insights-web e2e
     condition: always()
     displayName: publish e2e test results
-
-  - task: Npm@1
-    inputs:
-      command: custom
-      customCommand: run drop
-    displayName: npm run drop
 
   - task: CopyFiles@2
     inputs:
