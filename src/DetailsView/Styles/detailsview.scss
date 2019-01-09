@@ -660,32 +660,32 @@ div.insights-dialog-main-override {
                 }
             }
 
-            .ms-ChoiceField {
-                float: left;
-                margin-top: 0px !important;
-            }
+            // .ms-ChoiceField {
+            //     float: left;
+            //     margin-top: 0px !important;
+            // }
 
-            .ms-ChoiceField:nth-of-type(1) {
-                .ms-ChoiceField-field.is-checked::before {
-                    border: 1px solid $positive-outcome;
-                }
+            // .ms-ChoiceField:nth-of-type(1) {
+            //     .ms-ChoiceField-field.is-checked::before {
+            //         border: 1px solid $positive-outcome;
+            //     }
 
-                .ms-ChoiceField-field.is-checked::after {
-                    border: 5px solid $positive-outcome;
-                }
+            //     .ms-ChoiceField-field.is-checked::after {
+            //         border: 5px solid $positive-outcome;
+            //     }
 
-                margin-right: 8px;
-            }
+            //     margin-right: 8px;
+            // }
 
-            .ms-ChoiceField:nth-of-type(2) {
-                .ms-ChoiceField-field.is-checked::before {
-                    border: 1px solid $negative-outcome;
-                }
+            // .ms-ChoiceField:nth-of-type(2) {
+            //     .ms-ChoiceField-field.is-checked::before {
+            //         border: 1px solid $negative-outcome;
+            //     }
 
-                .ms-ChoiceField-field.is-checked::after {
-                    border: 5px solid $negative-outcome;
-                }
-            }
+            //     .ms-ChoiceField-field.is-checked::after {
+            //         border: 5px solid $negative-outcome;
+            //     }
+            // }
 
             .assessment-instance-label {
                 width: 24px;
@@ -720,6 +720,52 @@ div.insights-dialog-main-override {
             .radio-button-group {
                 float: left;
                 line-height: 24px;
+
+                .ms-ChoiceField {
+                    float: left;
+                    margin-top: 0px !important;
+                }
+
+                .ms-Label {
+                    font-size: 14px;
+                    padding: 0 0 0 26px;
+                    display: inline-block;
+                }
+
+                .ms-ChoiceField:nth-of-type(1) {
+                    margin-right: 8px;
+                }
+
+                .PASS {
+                    .ms-ChoiceField:nth-of-type(1) {
+                        .ms-ChoiceField-field::before {
+                            border: 1px solid $positive-outcome;
+                        }
+        
+                        .ms-ChoiceField-field::after {
+                            border: 5px solid $positive-outcome;
+                        }
+                    }
+                    .ms-ChoiceField-input {
+                        position: absolute;
+                    }
+                }
+    
+                .Fail {
+                    .ms-ChoiceField:nth-of-type(2) {
+                        .ms-ChoiceField-field::before {
+                            border: 1px solid $negative-outcome;
+                        }
+        
+                        .ms-ChoiceField-field::after {
+                            border: 5px solid $negative-outcome;
+                        }
+                    }
+                    .ms-ChoiceField-input {
+                        position: absolute;
+                    }
+                }
+                
             }
 
             .undo-button {

@@ -13,7 +13,7 @@ export interface ITestStatusChoiceGroupProps {
     test: VisualizationType;
     step: string;
     selector?: string;
-    status: number;
+    status: ManualTestStatus;
     originalStatus: number;
     isLabelVisible?: boolean;
     onGroupChoiceChange: (status, test, step, selector?) => void;
@@ -22,12 +22,14 @@ export interface ITestStatusChoiceGroupProps {
 
 export class TestStatusChoiceGroup extends React.Component<ITestStatusChoiceGroupProps> {
     protected _choiceGroup: IChoiceGroup;
-
+    
     public render(): JSX.Element {
+        const str = `radio-button-group ${ManualTestStatus[this.props.status] }`;
         return (
             <div>
-                <div className="radio-button-group">
+                <div className={str}>
                     <ChoiceGroup
+                        className={str}
                         onChange={this.onChange}
                         componentRef={this.compomentRef}
                         selectedKey={ManualTestStatus[this.props.status]}
