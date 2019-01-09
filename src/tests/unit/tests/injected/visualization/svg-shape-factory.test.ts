@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IPoint } from '@uifabric/utilities/lib';
+import { IPoint } from '@uifabric/utilities';
 import { Mock } from 'typemoq';
 
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
