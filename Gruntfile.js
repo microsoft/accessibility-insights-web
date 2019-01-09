@@ -377,7 +377,7 @@ module.exports = function (grunt) {
         console.log(`${targetName} extension is in ${path.join('drop', targetName, 'extension')}`)
     });
 
-    grunt.registerTask("all-drops", function () {
+    grunt.registerTask("release-drops", function () {
         releaseTargets.forEach(targetName => {
             grunt.task.run('drop:' + targetName);
         });
