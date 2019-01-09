@@ -15,8 +15,8 @@ jobs:
 
   - task: Npm@1
     inputs:
-      command: ci
-    displayName: npm ci
+      command: install
+    displayName: npm install
 
   - task: Npm@1
     inputs:
