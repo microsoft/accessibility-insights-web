@@ -1,11 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-import * as _ from 'lodash/index';
-import { ActionButton, BaseButton, Button } from 'office-ui-fabric-react/lib/Button';
+import * as _ from 'lodash';
+import { ActionButton, BaseButton, Button, PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
-import { Link } from 'office-ui-fabric-react/lib/Link';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
@@ -25,6 +24,7 @@ import { ReportGenerator } from '../reports/report-generator';
 import { IssuesDetailsList } from './issues-details-list';
 import { IssuesDetailsPane, IssuesDetailsPaneDeps } from './Issues-details-pane';
 import { IssuesTableHandler } from './issues-table-handler';
+import { ExportDialog } from './export-dialog';
 
 export type IssuesTableDeps = IssuesDetailsPaneDeps & {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
@@ -129,39 +129,14 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
         }
 
         return (
-            <Dialog
-                hidden={!this.state.isExportDialogOpen}
-                onDismiss={this.onDismissExportDialog}
-                dialogContentProps={{
-                    type: DialogType.normal,
-                    title: IssuesTable.exportTextareaLabel,
-                    subText: IssuesTable.exportInstructions,
-                }}
-                modalProps={{
-                    isBlocking: false,
-                    containerClassName: 'insights-dialog-main-override',
-                }}
-            >
-                <TextField
-                    multiline
-                    autoFocus
-                    rows={8}
-                    resizable={false}
-                    onChanged={this.onExportDescriptitonChange}
-                    value={this.state.exportDescription}
-                    ariaLabel={IssuesTable.exportTextareaLabel}
-                />
-                <DialogFooter>
-                    <Link
-                        onClick={this.onExportLinkClick}
-                        className="download-report-link"
-                        download={this.state.exportName}
-                        href={'data:text/html,' + this.state.exportData}
-                    >
-                        Export
-                    </Link>
-                </DialogFooter>
-            </Dialog>
+            <ExportDialog
+                deps={this.props.deps}
+                isOpen={this.state.isExportDialogOpen}
+                description={this.state.exportDescription}
+                html={this.state.exportData}
+                onClose={this.onDismissExportDialog}
+                onDescriptionChanged={this.onExportDescriptitonChange}
+            />
         );
     }
 
@@ -240,9 +215,7 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
     private descriptionPlaceholder: string = 'd68d50a0-8249-464d-b2fd-709049c89ee4';
 
     @autobind
-    private onExportButtonClick(
-        event: React.MouseEvent<HTMLDivElement | HTMLAnchorElement | HTMLButtonElement | BaseButton | Button>,
-    ): void {
+    private onExportButtonClick(): void {
         const scanDate = new Date(this.props.scanResult.timestamp);
         const exportName = this.props.reportGenerator.generateName(scanDate, this.props.pageTitle);
         const exportDataWithPlaceholder = this.props.reportGenerator.generateHtml(
@@ -263,15 +236,7 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
     }
 
     @autobind
-    private onExportLinkClick(event: React.MouseEvent<HTMLElement>): void {
-        this.props.deps.detailsViewActionMessageCreator.exportAutomatedResultsClicked(this.state.exportData, event);
-        this.setState({ isExportDialogOpen: false });
-    }
-
-    @autobind
-    private onDismissExportDialog(
-        event: React.MouseEvent<HTMLDivElement | HTMLAnchorElement | HTMLButtonElement | BaseButton | Button>,
-    ): void {
+    private onDismissExportDialog(): void {
         this.setState({ isExportDialogOpen: false });
     }
 

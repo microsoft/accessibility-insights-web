@@ -118,7 +118,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         this.exportResultsClicked('Assessment', exportedHtml, event);
     }
 
-    public exportAutomatedResultsClicked(exportedHtml: string, event: React.MouseEvent<HTMLElement>): void {
+    public exportAutomatedResultsClicked(exportedHtml: string, event: React.MouseEvent<any>): void {
         this.exportResultsClicked('AutomatedChecks', exportedHtml, event);
     }
 

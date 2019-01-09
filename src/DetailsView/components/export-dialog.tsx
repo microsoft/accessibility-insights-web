@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-import { BaseButton, Button } from 'office-ui-fabric-react/lib/Button';
+import { BaseButton, Button, PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
@@ -53,14 +53,14 @@ export class ExportDialog extends React.Component<ExportDialogProps> {
                     ariaLabel="Provide result description"
                 />
                 <DialogFooter>
-                    <Link
+                    <PrimaryButton
                         onClick={this.onExportLinkClick}
                         className="download-report-link"
                         download="AssessmentReport.html"
                         href={'data:text/html,' + this.props.html}
                     >
                         Export
-                    </Link>
+                    </PrimaryButton>
                 </DialogFooter>
             </Dialog>
         );
