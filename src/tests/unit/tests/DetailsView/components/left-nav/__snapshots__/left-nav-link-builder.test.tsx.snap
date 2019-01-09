@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LeftNavBuilder withAssessmentLinks should build links for assessments 1`] = `
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments 1`] = `
 <TestViewLeftNavLink
   link={
     Object {
@@ -22,7 +22,7 @@ exports[`LeftNavBuilder withAssessmentLinks should build links for assessments 1
 />
 `;
 
-exports[`LeftNavBuilder withAssessmentLinks should build links for assessments 2`] = `
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments 2`] = `
 <TestViewLeftNavLink
   link={
     Object {
@@ -44,7 +44,7 @@ exports[`LeftNavBuilder withAssessmentLinks should build links for assessments 2
 />
 `;
 
-exports[`LeftNavBuilder withOverviewLink should build overview link 1`] = `
+exports[`LeftNavBuilder buildOverviewLink should build overview link 1`] = `
 <OverviewLeftNavLink
   link={
     Object {
@@ -66,7 +66,7 @@ exports[`LeftNavBuilder withOverviewLink should build overview link 1`] = `
 />
 `;
 
-exports[`LeftNavBuilder withVisualizationConfiguration should build link using configuration 1`] = `
+exports[`LeftNavBuilder buildVisualizationConfigurationLink should build link using configuration 1`] = `
 <TestViewLeftNavLink
   link={
     Object {

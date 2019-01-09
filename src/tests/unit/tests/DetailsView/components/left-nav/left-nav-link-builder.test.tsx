@@ -2,21 +2,21 @@ import { isMatch } from 'lodash';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { AssessmentsProvider } from '../../../../../../assessments/assessments-provider';
+import { IAssessment } from '../../../../../../assessments/types/iassessment';
 import { IAssessmentsProvider } from '../../../../../../assessments/types/iassessments-provider';
+import { IVisualizationConfiguration } from '../../../../../../common/configs/visualization-configuration-factory';
 import { IManualTestStatus, ManualTestStatus } from '../../../../../../common/types/manual-test-status';
-import { onBaseLeftNavItemClick, BaseLeftNavLink } from '../../../../../../DetailsView/components/base-left-nav';
+import { VisualizationType } from '../../../../../../common/types/visualization-type';
+import { BaseLeftNavLink, onBaseLeftNavItemClick } from '../../../../../../DetailsView/components/base-left-nav';
 import {
     LeftNavLinkBuilder,
     LeftNavLinkBuilderDeps,
 } from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';
+import { IOverviewSummaryReportModel } from '../../../../../../DetailsView/reports/assessment-report-model';
+import { OutcomeStats, OutcomeType } from '../../../../../../DetailsView/reports/components/outcome-type';
 import {
     GetAssessmentSummaryModelFromProviderAndStatusData,
 } from '../../../../../../DetailsView/reports/get-assessment-summary-model';
-import { IOverviewSummaryReportModel } from '../../../../../../DetailsView/reports/assessment-report-model';
-import { OutcomeStats, OutcomeType } from '../../../../../../DetailsView/reports/components/outcome-type';
-import { IAssessment } from '../../../../../../assessments/types/iassessment';
-import { VisualizationType } from '../../../../../../common/types/visualization-type';
-import { IVisualizationConfiguration } from '../../../../../../common/configs/visualization-configuration-factory';
 
 describe('LeftNavBuilder', () => {
     let deps: LeftNavLinkBuilderDeps;
