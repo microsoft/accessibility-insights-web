@@ -24,6 +24,7 @@ module.exports = function (grunt) {
             "./copyright-header.txt",
             "./src/assessments/color/test-steps/flashing-text-example.html",
             "./junit.xml",
+            "./junit-e2e.xml"
         ],
         file_type_method: "INCLUDE",
         file_types: [
