@@ -14,8 +14,7 @@ describe('puppeteer demo', () => {
     idWithURL = url.match(/(.*)\/background\/background.html/)[1];
   });
 
-  it ('should identify the popup.html url dynamically', async () => {
+  it ('should successfully be able to navigate to extensions popup', async () => {
     await page.goto(`${idWithURL}/popup/popup.html`);
-    await page.screenshot({path: 'C:/temp/test-popup-screenshot-1.png', fullPage: true, omitBackground: false});
   });
 });
