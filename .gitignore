@@ -4,6 +4,7 @@
 /extension/
 /coverage/
 junit.xml
+junit-e2e.xml
 /drop/
 
 # Dependency directories

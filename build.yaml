@@ -37,7 +37,6 @@ jobs:
     condition: always()
     displayName: publish test results
 
-
   - task: PublishCodeCoverageResults@1
     inputs:
       codeCoverageTool: Cobertura
@@ -45,6 +44,19 @@ jobs:
       reportDirectory: $(System.DefaultWorkingDirectory)/coverage/lcov-report
       failIfCoverageEmpty: true
     displayName: publish code coverage
+
+  - task: Npm@1
+    inputs:
+      command: custom
+      customCommand: run test:e2e
+    displayName: npm run test:e2e
+
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFiles: junit-e2e.xml
+      testRunTitle: accessibility-insights-web e2e
+    condition: always()
+    displayName: publish e2e test results
 
   - task: Npm@1
     inputs:

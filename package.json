@@ -49,7 +49,7 @@
     "grunt-sass": "2.1.0",
     "grunt-tslint": "^5.0.2",
     "jest": "^23.5.0",
-    "jest-junit": "^5.1.0",
+    "jest-junit": "^5.2.0",
     "jest-puppeteer": "^3.7.0",
     "license-check-and-add": "2.3.6",
     "node-sass": "^4.9.3",
