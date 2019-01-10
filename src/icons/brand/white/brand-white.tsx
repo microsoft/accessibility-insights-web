@@ -28,12 +28,12 @@ export const BrandWhite = NamedSFC<BrandWhiteProps>('BrandWhite', ({ size }) =>
                 <rect x="4.54834" y="6.88206" width="16.3577" height="42.2726" transform="rotate(-45 4.54834 6.88206)" fill="url(#paint2_linear)" />
             </g>
             <g filter="url(#filter0_d)">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M34.0764 27.3564C39.8071 27.3483 44.4461 22.6961 44.438 16.9655C44.4299 11.2349 39.7778 6.59585 34.0472 6.60393C28.3165 6.61201 23.6775 11.2642 23.6856 16.9948C23.6888 19.2829 24.4324 21.397 25.6895 23.1108L23.4287 25.3788C22.8852 25.395 22.3466 25.6109 21.9324 26.0265L17.1218 30.8526C16.4185 31.5582 16.4203 32.7005 17.126 33.4038L17.6952 33.9713C18.4009 34.6746 19.5431 34.6728 20.2465 33.9671L25.057 29.141C25.4715 28.7252 25.6857 28.1855 25.6998 27.6415L27.9603 25.3737C29.6766 26.6235 31.7907 27.3596 34.0764 27.3564ZM34.0368 23.2439C37.4964 23.2579 40.3122 20.4647 40.3262 17.0051C40.3401 13.5456 37.5469 10.7298 34.0874 10.7158C30.6279 10.7018 27.812 13.495 27.7981 16.9545C27.7841 20.4141 30.5773 23.2299 34.0368 23.2439Z" fill="#004880" />
+                <path fillRule="evenodd" clipRule="evenodd" d="M34.0764 27.3564C39.8071 27.3483 44.4461 22.6961 44.438 16.9655C44.4299 11.2349 39.7778 6.59585 34.0472 6.60393C28.3165 6.61201 23.6775 11.2642 23.6856 16.9948C23.6888 19.2829 24.4324 21.397 25.6895 23.1108L23.4287 25.3788C22.8852 25.395 22.3466 25.6109 21.9324 26.0265L17.1218 30.8526C16.4185 31.5582 16.4203 32.7005 17.126 33.4038L17.6952 33.9713C18.4009 34.6746 19.5431 34.6728 20.2465 33.9671L25.057 29.141C25.4715 28.7252 25.6857 28.1855 25.6998 27.6415L27.9603 25.3737C29.6766 26.6235 31.7907 27.3596 34.0764 27.3564ZM34.0368 23.2439C37.4964 23.2579 40.3122 20.4647 40.3262 17.0051C40.3401 13.5456 37.5469 10.7298 34.0874 10.7158C30.6279 10.7018 27.812 13.495 27.7981 16.9545C27.7841 20.4141 30.5773 23.2299 34.0368 23.2439Z" fill="#004880" />
             </g>
         </g>
         <defs>
-            <filter id="filter0_d" x="15.748" y="6.50654" width="29.5246" height="29.5269" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <filter id="filter0_d" x="15.748" y="6.50654" width="29.5246" height="29.5269" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
                 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
                 <feOffset dy="0.725705" />
                 <feGaussianBlur stdDeviation="0.40317" />
@@ -42,16 +42,16 @@ export const BrandWhite = NamedSFC<BrandWhiteProps>('BrandWhite', ({ size }) =>
                 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
             </filter>
             <linearGradient id="paint0_linear" x1="14.3166" y1="16.8744" x2="5.92409" y2="8.23504" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#073A5F" stop-opacity="0.3" />
-                <stop offset="1" stop-color="#CFEBFF" stop-opacity="0" />
+                <stop stopColor="#073A5F" stopOpacity="0.3" />
+                <stop offset="1" stopColor="#CFEBFF" stopOpacity="0" />
             </linearGradient>
             <linearGradient id="paint1_linear" x1="14.3166" y1="16.8744" x2="5.92409" y2="8.23504" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#165B8E" stop-opacity="0.29" />
-                <stop offset="1" stop-color="white" stop-opacity="0" />
+                <stop stopColor="#165B8E" stopOpacity="0.29" />
+                <stop offset="1" stopColor="white" stopOpacity="0" />
             </linearGradient>
             <linearGradient id="paint2_linear" x1="11.3179" y1="20.1024" x2="11.0819" y2="11.1606" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#165B8E" stop-opacity="0.29" />
-                <stop offset="1" stop-color="#D6E9F7" stop-opacity="0" />
+                <stop stopColor="#165B8E" stopOpacity="0.29" />
+                <stop offset="1" stopColor="#D6E9F7" stopOpacity="0" />
             </linearGradient>
         </defs>
     </svg>);

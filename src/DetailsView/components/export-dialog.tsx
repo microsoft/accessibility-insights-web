@@ -49,7 +49,7 @@ export class ExportDialog extends React.Component<ExportDialogProps> {
                     autoFocus
                     rows={8}
                     resizable={false}
-                    onChanged={this.onDescriptionChanged}
+                    onChange={this.onDescriptionChanged}
                     value={this.props.description}
                     ariaLabel="Provide result description"
                 />
@@ -79,7 +79,7 @@ export class ExportDialog extends React.Component<ExportDialogProps> {
     }
 
     @autobind
-    private onDescriptionChanged(value: string): void {
+    private onDescriptionChanged(event, value: string): void {
         this.props.onDescriptionChanged(value);
     }
 }

@@ -28,7 +28,7 @@ describe('IssuesTableTest', () => {
     test('render spinner, issuesEnabled == null', () => {
         const props = new TestPropsBuilder().build();
 
-        const wrapped = shallow(<IssuesTable {...props}/>);
+        const wrapped = shallow(<IssuesTable {...props} />);
 
         expect(wrapped.debug()).toMatchSnapshot();
     });
@@ -78,7 +78,7 @@ describe('IssuesTableTest', () => {
             .setToggleClickHandler(toggleClickHandlerMock.object)
             .build();
 
-        const wrapped = shallow(<IssuesTable {...props}/>);
+        const wrapped = shallow(<IssuesTable {...props} />);
 
         expect(wrapped.debug()).toMatchSnapshot();
     });
@@ -112,7 +112,7 @@ describe('IssuesTableTest', () => {
             .setIssuesEnabled({} as any)
             .build();
 
-        const wrapper = shallow(<IssuesTable {...props}/>);
+        const wrapper = shallow(<IssuesTable {...props} />);
 
         expect(wrapper.debug());
 
@@ -142,31 +142,6 @@ describe('IssuesTableTest', () => {
 
         testStateChangedByHandlerCalledWithParam('onExportButtonClick', eventStub, stateDiff, Times.once(), reportGeneratorMock.object);
         reportGeneratorMock.verifyAll();
-    });
-
-    test('onExportLinkClick', () => {
-        const beforeState: IssuesTableState = getDefaultState();
-        const eventStub = {} as any;
-        const stateDiff = { isExportDialogOpen: false };
-        const exportData = 'export html';
-        beforeState.exportData = exportData;
-
-        const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
-
-        actionMessageCreatorMock
-            .setup(a => a.exportResultsClicked('AutomatedChecks', exportData, eventStub))
-            .verifiable(Times.once());
-
-        testStateChangedByHandlerCalledWithParam(
-            'onExportLinkClick',
-            eventStub,
-            stateDiff,
-            Times.once(),
-            null,
-            actionMessageCreatorMock.object,
-            beforeState,
-        );
-        actionMessageCreatorMock.verifyAll();
     });
 
     test('onDismissExportDialog: blocked', () => {
@@ -334,7 +309,7 @@ describe('IssuesTableTest', () => {
                         autoFocus
                         rows={8}
                         resizable={false}
-                        onChanged={onExportDiscriptitonChangeStub}
+                        onChange={onExportDiscriptitonChangeStub}
                         value={state.exportDescription}
                         ariaLabel={IssuesTable.exportTextareaLabel}
                     />

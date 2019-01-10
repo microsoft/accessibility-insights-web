@@ -25,8 +25,7 @@ export class GenericToggle extends React.Component<GenericToggleProps> {
                         onClick={this.onClick}
                         onText={'On'}
                         offText={'Off'}
-                        onAriaLabel={this.props.name}
-                        offAriaLabel={this.props.name}
+                        ariaLabel={this.props.name}
                     />
                 </div>
                 <div className={'toggle-description'}>
