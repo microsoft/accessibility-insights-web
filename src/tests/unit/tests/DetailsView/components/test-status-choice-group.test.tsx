@@ -1,13 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Enzyme from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { ChoiceGroup, IChoiceGroup } from 'office-ui-fabric-react/lib/ChoiceGroup';
 import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';
 
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
-import { ITestStatusChoiceGroupProps, TestStatusChoiceGroup } from '../../../../../DetailsView/components/test-status-choice-group';
+import {
+    ITestStatusChoiceGroupProps,
+    TestStatusChoiceGroup,
+} from '../../../../../DetailsView/components/test-status-choice-group';
 
 describe('TestStatusChoiceGroup', () => {
     const options = [
@@ -35,7 +38,7 @@ describe('TestStatusChoiceGroup', () => {
             .setup(o => o(props.status, props.test, props.step, props.selector))
             .verifiable(Times.once());
 
-        const wrapper = Enzyme.mount(<TestStatusChoiceGroup {...props} />);
+        const wrapper = mount(<TestStatusChoiceGroup {...props} />);
         const labels = wrapper.find('.ms-Label');
 
         expect(wrapper.find('.radio-button-group').exists()).toBe(true);
@@ -74,14 +77,11 @@ describe('TestStatusChoiceGroup', () => {
             .setup(o => o(ManualTestStatus.PASS, props.test, props.step, props.selector))
             .verifiable(Times.once());
 
-        const component = React.createElement(TestableTestStatusChoiceGroup, props);
-        const testObject = TestUtils.renderIntoDocument(component);
-        /* OF6UPDATE
-        const choiceGroup: ChoiceGroup = TestUtils.findRenderedComponentWithType(testObject, ChoiceGroup);
-        testObject.getOnChange()(null, options[0]);
+        const testObject = shallow(<TestableTestStatusChoiceGroup {...props} />);
+        const choiceGroup = testObject.find(ChoiceGroup);
+        choiceGroup.prop('onChange')(null, options[0]);
 
         onGroupChoiceChangeMock.verifyAll();
-        */
     });
 
     test('verify undo button', () => {
