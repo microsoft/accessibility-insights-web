@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-export interface IClientChromeAdapter {
+export interface ClientBrowserAdapter {
     addListenerOnConnect(callback: (port: chrome.runtime.Port) => void);
     addListenerOnMessage(callback: (message: any, sender: chrome.runtime.MessageSender, sendResponse: (response: any) => void) => void);
 
@@ -13,22 +13,28 @@ export interface IClientChromeAdapter {
     getUrl(urlPart: string): string;
 }
 
-export class ClientChromeAdapter implements IClientChromeAdapter {
-
+export class ClientChromeAdapter implements ClientBrowserAdapter {
     public addListenerOnConnect(callback: (port: chrome.runtime.Port) => void) {
         chrome.runtime.onConnect.addListener(callback);
     }
 
-    public addListenerOnMessage(callback: (message: any, sender: chrome.runtime.MessageSender, sendResponse: (response: any) => void) => void) {
+    public addListenerOnMessage(
+        callback: (message: any, sender: chrome.runtime.MessageSender, sendResponse: (response: any) => void) => void,
+    ) {
         chrome.runtime.onMessage.addListener(callback);
     }
 
-    public removeListenerOnMessage(callback: (message: any, sender: chrome.runtime.MessageSender, sendResponse: (response: any) => void) => void) {
+    public removeListenerOnMessage(
+        callback: (message: any, sender: chrome.runtime.MessageSender, sendResponse: (response: any) => void) => void,
+    ) {
         chrome.runtime.onMessage.removeListener(callback);
     }
 
     public connect(connectionInfo?: chrome.runtime.ConnectInfo): chrome.runtime.Port {
-        return chrome.runtime.connect(chrome.runtime.id, connectionInfo);
+        return chrome.runtime.connect(
+            chrome.runtime.id,
+            connectionInfo,
+        );
     }
 
     public getManifest(): chrome.runtime.Manifest {
@@ -43,5 +49,3 @@ export class ClientChromeAdapter implements IClientChromeAdapter {
         return chrome.extension.getURL(urlPart);
     }
 }
-
-

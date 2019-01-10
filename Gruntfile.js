@@ -24,6 +24,7 @@ module.exports = function (grunt) {
             "./copyright-header.txt",
             "./src/assessments/color/test-steps/flashing-text-example.html",
             "./junit.xml",
+            "./junit-e2e.xml"
         ],
         file_type_method: "INCLUDE",
         file_types: [
@@ -376,7 +377,7 @@ module.exports = function (grunt) {
         console.log(`${targetName} extension is in ${path.join('drop', targetName, 'extension')}`)
     });
 
-    grunt.registerTask("all-drops", function () {
+    grunt.registerTask("release-drops", function () {
         releaseTargets.forEach(targetName => {
             grunt.task.run('drop:' + targetName);
         });

@@ -2,15 +2,15 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 
-import { IChromeAdapter } from './browser-adapter';
+import { BrowserAdapter } from './browser-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { VisualizationType } from '../common/types/visualization-type';
 
 export class TargetTabController {
-    private browserAdapter: IChromeAdapter;
+    private browserAdapter: BrowserAdapter;
     private configurationFactory: VisualizationConfigurationFactory;
 
-    constructor(adapter: IChromeAdapter, configurationFactory: VisualizationConfigurationFactory) {
+    constructor(adapter: BrowserAdapter, configurationFactory: VisualizationConfigurationFactory) {
         this.browserAdapter = adapter;
         this.configurationFactory = configurationFactory;
     }

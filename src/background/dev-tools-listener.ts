@@ -4,7 +4,7 @@ import { IOnDevToolOpenPayload } from './actions/action-payloads';
 import { ConnectionNames } from '../common/constants/connection-names';
 import { Messages } from '../common/messages';
 import { IDevToolsOpenMessage } from '../common/types/dev-tools-open-message';
-import { IChromeAdapter } from './browser-adapter';
+import { BrowserAdapter } from './browser-adapter';
 import { TabToContextMap } from './tab-context';
 
 export interface PortWithTabId extends chrome.runtime.Port {
@@ -13,9 +13,9 @@ export interface PortWithTabId extends chrome.runtime.Port {
 
 export class DevToolsListener {
     private _tabIdToContextMap: TabToContextMap;
-    private _chromeAdapter: IChromeAdapter;
+    private _chromeAdapter: BrowserAdapter;
 
-    constructor(tabIdToContextMap: TabToContextMap, chromeAdapter: IChromeAdapter) {
+    constructor(tabIdToContextMap: TabToContextMap, chromeAdapter: BrowserAdapter) {
         this._tabIdToContextMap = tabIdToContextMap;
         this._chromeAdapter = chromeAdapter;
     }

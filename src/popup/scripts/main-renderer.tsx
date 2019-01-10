@@ -3,7 +3,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { IChromeAdapter } from '../../background/browser-adapter';
+import { BrowserAdapter } from '../../background/browser-adapter';
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 import { IStoreActionMessageCreator } from '../../common/message-creators/istore-action-message-creator';
 import { IClientStoresHub } from '../../common/stores/iclient-stores-hub';
@@ -24,7 +24,7 @@ export class MainRenderer {
         private readonly renderer: typeof ReactDOM.render,
         private readonly dom: NodeSelector & Node,
         private readonly popupWindow: Window,
-        private readonly browserAdapter: IChromeAdapter,
+        private readonly browserAdapter: BrowserAdapter,
         private readonly targetTabUrl: string,
         private readonly hasAccess: boolean,
         private readonly launchPadRowConfigurationFactory: LaunchPadRowConfigurationFactory,

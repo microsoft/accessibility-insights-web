@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 
-import { IChromeAdapter } from '../../background/browser-adapter';
+import { BrowserAdapter } from '../../background/browser-adapter';
 import { ITab } from '../../common/itab';
 import { UrlParser } from '../../common/url-parser';
 import { UrlValidator } from '../../common/url-validator';
@@ -15,7 +15,7 @@ export interface TargetTabInfo {
 export class TargetTabFinder {
     constructor(
         private readonly win: Window,
-        private readonly browserAdapter: IChromeAdapter,
+        private readonly browserAdapter: BrowserAdapter,
         private readonly urlValidator: UrlValidator,
         private readonly urlParser: UrlParser,
     ) {

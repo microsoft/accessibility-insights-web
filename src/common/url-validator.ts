@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IChromeAdapter } from '../background/browser-adapter';
+import { BrowserAdapter } from '../background/browser-adapter';
 import * as Q from 'q';
 
 export class UrlValidator {
-    public isSupportedUrl(url: string, chromeAdapter: IChromeAdapter): Q.IPromise<boolean> {
+    public isSupportedUrl(url: string, chromeAdapter: BrowserAdapter): Q.IPromise<boolean> {
         const deferred = Q.defer<boolean>();
 
         const lowerCasedUrl: string = url.toLowerCase();
@@ -27,7 +27,7 @@ export class UrlValidator {
         return url.toLowerCase().match('file://*/*') != null;
     }
 
-    private checkAccessToFileUrl(chromeAdapter: IChromeAdapter): Q.IPromise<boolean> {
+    private checkAccessToFileUrl(chromeAdapter: BrowserAdapter): Q.IPromise<boolean> {
         const defer = Q.defer<boolean>();
         chromeAdapter.isAllowedFileSchemeAccess(allowed => {
             defer.resolve(allowed);

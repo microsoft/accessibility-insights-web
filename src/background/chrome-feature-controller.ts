@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IChromeAdapter } from './browser-adapter';
+import { BrowserAdapter } from './browser-adapter';
 
 export class ChromeFeatureController {
     public static configureCommandTabUrl: string = 'chrome://extensions/configureCommands';
-    private _browserAdapter: IChromeAdapter;
+    private _browserAdapter: BrowserAdapter;
 
-    constructor(adapter: IChromeAdapter) {
+    constructor(adapter: BrowserAdapter) {
         this._browserAdapter = adapter;
     }
 

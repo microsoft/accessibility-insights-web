@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { Messages } from '../../common/messages';
 import { SWITCH_BACK_TO_TARGET } from '../../common/telemetry-events';
-import { IChromeAdapter } from '../browser-adapter';
+import { BrowserAdapter } from '../browser-adapter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import { ISwitchToTargetTabPayLoad } from './action-payloads';
 import { TabActions } from './tab-actions';
@@ -10,12 +10,12 @@ import { TabActions } from './tab-actions';
 export class TabActionCreator {
     private tabActions: TabActions;
     private registerTypeToPayloadCallback: IRegisterTypeToPayloadCallback;
-    private browserAdapter: IChromeAdapter;
+    private browserAdapter: BrowserAdapter;
     private telemetryEventHandler: TelemetryEventHandler;
 
     constructor(
         registerTypeToPayloadCallback: IRegisterTypeToPayloadCallback,
-        browserAdapter: IChromeAdapter,
+        browserAdapter: BrowserAdapter,
         telemetryEventHandler: TelemetryEventHandler,
         tabActions: TabActions,
     ) {

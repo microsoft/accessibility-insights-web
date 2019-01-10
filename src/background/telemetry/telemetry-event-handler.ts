@@ -5,12 +5,12 @@ import * as _ from 'lodash';
 import { ITab } from '../../common/itab';
 import { TelemetryEventSource } from '../../common/telemetry-events';
 import { BaseActionPayload } from '../actions/action-payloads';
-import { IChromeAdapter } from '../browser-adapter';
+import { BrowserAdapter } from '../browser-adapter';
 import { TelemetryClient } from './telemetry-client';
 
 export class TelemetryEventHandler {
     constructor(
-        private readonly browserAdapter: IChromeAdapter,
+        private readonly browserAdapter: BrowserAdapter,
         private readonly telemetryClient: TelemetryClient,
     ) {
     }

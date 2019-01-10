@@ -5,7 +5,7 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { InspectActionCreator } from '../../../../../background/actions/inspect-action-creator';
 import { IInspectPayload, InspectActions } from '../../../../../background/actions/inspect-actions';
-import { ChromeAdapter, IChromeAdapter } from '../../../../../background/browser-adapter';
+import { ChromeAdapter, BrowserAdapter } from '../../../../../background/browser-adapter';
 import { InspectMode } from '../../../../../background/inspect-modes';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
 import { Action } from '../../../../../common/flux/action';
@@ -17,7 +17,7 @@ describe('InspectActionCreatorTest', () => {
     let inspectActionsMock: IMock<InspectActions>;
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
     let registerTypeToPayloadCallbackMock: IMock<IRegisterTypeToPayloadCallback>;
-    let browserAdapterMock: IMock<IChromeAdapter>;
+    let browserAdapterMock: IMock<BrowserAdapter>;
 
     let testObject: InspectActionCreator;
 

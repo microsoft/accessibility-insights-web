@@ -6,17 +6,19 @@ import * as React from 'react';
 
 import { DetailsViewLeftNav } from './details-view-left-nav';
 
+export type onBaseLeftNavItemClick = (event: React.MouseEvent<HTMLElement>, item: BaseLeftNavLink) => void;
+export type onBaseLeftNavItemRender = (link: BaseLeftNavLink, renderIcon: (link: BaseLeftNavLink) => JSX.Element) => JSX.Element;
+
 export type BaseLeftNavProps = {
     selectedKey: string,
     links: BaseLeftNavLink[],
     renderIcon: (link: BaseLeftNavLink) => JSX.Element,
-    onItemClick: (event: React.MouseEvent<HTMLElement>, item: BaseLeftNavLink) => void;
 };
 
 export interface BaseLeftNavLink extends INavLink {
     percentComplete?: number;
-    onRenderNavLink: (link: BaseLeftNavLink, renderIcon: (link: BaseLeftNavLink) => JSX.Element) => JSX.Element;
-    onClickNavLink: (event: React.MouseEvent<HTMLElement>, item: BaseLeftNavLink) => void;
+    onRenderNavLink: onBaseLeftNavItemRender;
+    onClickNavLink: onBaseLeftNavItemClick;
 }
 
 export class BaseLeftNav extends React.Component<BaseLeftNavProps> {

@@ -99,7 +99,7 @@ describe('AssessmentLeftNav', () => {
         ManualTestStatus.UNKNOWN,
     ];
 
-    test.each(statuses)('render assessments', status => {
+    test.each(statuses)('render assessments - status : %s', status => {
         const assessmentProvider = CreateTestAssessmentProvider();
         const summaryModel = { byPercentage: { incomplete: 58 }};
         const getAssessmentSummaryModelFromProviderAndStatusDataMock = jest.fn(() => summaryModel);

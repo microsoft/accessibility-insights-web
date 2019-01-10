@@ -3,7 +3,7 @@
 import { autobind } from '@uifabric/utilities';
 
 import { ITab } from './../common/itab.d';
-import { IChromeAdapter } from './browser-adapter';
+import { BrowserAdapter } from './browser-adapter';
 import { GlobalContext } from './global-context';
 import { TabToContextMap } from './tab-context';
 import { TabContextBroadcaster } from './tab-context-broadcaster';
@@ -19,12 +19,12 @@ export class MessageDistributor implements IMessageDistributor {
     private readonly _tabtoContextMap: TabToContextMap;
     private readonly _globalContext: GlobalContext;
     private readonly _broadcaster: TabContextBroadcaster;
-    private _browserAdapter: IChromeAdapter;
+    private _browserAdapter: BrowserAdapter;
 
     constructor(
         globalContext: GlobalContext,
         tabIdToContextMap: TabToContextMap,
-        browserAdapter: IChromeAdapter,
+        browserAdapter: BrowserAdapter,
     ) {
         this._globalContext = globalContext;
         this._tabtoContextMap = tabIdToContextMap;

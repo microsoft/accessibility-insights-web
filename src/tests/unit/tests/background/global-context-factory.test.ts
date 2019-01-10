@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
 
-import { ChromeAdapter, IChromeAdapter } from '../../../../background/browser-adapter';
+import { ChromeAdapter, BrowserAdapter } from '../../../../background/browser-adapter';
 import { PersistedData } from '../../../../background/get-persisted-data';
 import { GlobalContext } from '../../../../background/global-context';
 import { GlobalContextFactory } from '../../../../background/global-context-factory';
@@ -17,7 +17,7 @@ import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory'
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
 
 describe('GlobalContextFactoryTest', () => {
-    let _mockChromeAdapter: IMock<IChromeAdapter>;
+    let _mockChromeAdapter: IMock<BrowserAdapter>;
     let _mocktelemetryEventHandler: IMock<TelemetryEventHandler>;
     let _mockTelemetryDataFactory: IMock<TelemetryDataFactory>;
     let userDataStub: ILocalStorageData;

@@ -246,11 +246,13 @@ describe('AssessmentActionCreatorTest', () => {
         actionMock.verifyAll();
     });
 
-    test('onUpdateInstanceVisibility', () => {
+    test('onAssessmentScanCompleted', () => {
         const payload: BaseActionPayload = {};
-
+        const updateTabIdActionMock = createActionMock(tabId);
         const actionMock = createActionMock(payload);
+
         setupAssessmentActionsMock('scanCompleted', actionMock);
+        setupAssessmentActionsMock('updateTargetTabId', updateTabIdActionMock);
         setupRegisterTypeToPayloadCallbackMock(AssessmentMessages.AssessmentScanCompleted, payload, tabId);
 
         testObject.registerCallbacks();
