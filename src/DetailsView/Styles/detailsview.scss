@@ -1578,18 +1578,6 @@ div.insights-dialog-main-override {
     }
 }
 
-.ms-GroupHeader-expand {
-    i {
-        transform: rotate(-180deg);
-        transform-origin: 50% 50%;
-        transition: transform .1s linear;
-    }
-
-    i.is-collapsed {
-        transform: rotate(0deg);
-    }
-}
-
 .table {
     display: -webkit-flex;
     display: flex;
