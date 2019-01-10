@@ -1,27 +1,74 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Browser, Page } from 'puppeteer';
+import * as puppeteer from 'puppeteer';
 
 export class ExtensionPuppeteerConnection {
     private constructor(
         private readonly extensionBaseUrl: string,
-        public readonly backgroundPage: Page,
+        public readonly browser: puppeteer.Browser,
+        public readonly backgroundPage: puppeteer.Page,
     ) { }
 
     public getExtensionUrl(relativePath: string) {
         return `${this.extensionBaseUrl}/${relativePath}`;
     }
 
-    public static async connect(browser: Browser): Promise<ExtensionPuppeteerConnection> {
-        const allTargets = await browser.targets();
-        const backgroundPageTarget = allTargets.find(t => {
-            return t.type() === 'background_page' && t.url().endsWith('background.html');
-        });
-
-        const backgroundPageUrl = await backgroundPageTarget.url();
-        const extensionBaseUrl = backgroundPageUrl.match(/(.*)\/background\/background.html/)[1];
-        const backgroundPage = await backgroundPageTarget.page();
-
-        return new ExtensionPuppeteerConnection(extensionBaseUrl, backgroundPage);
+    public async newBlankPage(): Promise<puppeteer.Page> {
+        return await this.browser.newPage();
     }
+
+    public async newExtensionPopupPage(targetTabId: number): Promise<puppeteer.Page> {
+        return await this.newPage(this.getExtensionUrl(`popup/popup.html?tabId=${targetTabId}`));
+    }
+
+    public async getTabId(page: puppeteer.Page): Promise<number> {
+        page.bringToFront();
+
+        return this.backgroundPage.evaluate(() => {
+            return new Promise(resolve => {
+                chrome.tabs.query({ active: true, currentWindow: true }, tabs => resolve(tabs[0].id));
+            });
+        });
+    }
+
+    public async newPage(url: string): Promise<puppeteer.Page> {
+        const page = await this.newBlankPage();
+        page.goto(url);
+        return page;
+    }
+
+    public tearDown() {
+        this.browser.close();
+    }
+
+    public static async connect(): Promise<ExtensionPuppeteerConnection> {
+        const browser = await ExtensionPuppeteerConnection.launchNewBrowser();
+        const backgroundPage = await ExtensionPuppeteerConnection.waitForExtensionBackgroundPage(browser);
+
+        const backgroundPageUrl = await backgroundPage.url();
+        const extensionBaseUrl = backgroundPageUrl.match(/(.*)\/background\/background.html/)[1];
+
+        return new ExtensionPuppeteerConnection(extensionBaseUrl, browser, backgroundPage);
+    }
+
+    private static launchNewBrowser(): Promise<puppeteer.Browser> {
+        const extensionPath = `${process.cwd()}/drop/dev/extension/`;
+        return puppeteer.launch({
+            // Headless doesn't support extensions, see https://github.com/GoogleChrome/puppeteer/issues/659
+            headless: false,
+            args: [
+                // Required to work around https://github.com/GoogleChrome/puppeteer/pull/774
+                `--disable-extensions-except=${extensionPath}`,
+                `--load-extension=${extensionPath}`,
+            ],
+        });
+    }
+
+    private static async waitForExtensionBackgroundPage(browser: puppeteer.Browser): Promise<puppeteer.Page> {
+        const backgroundPageTarget = await browser
+            .waitForTarget(t => t.type() === 'background_page' && t.url().endsWith('background.html'));
+
+        return backgroundPageTarget.page();
+    }
+
 }

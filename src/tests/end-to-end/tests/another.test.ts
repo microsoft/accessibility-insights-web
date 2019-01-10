@@ -4,7 +4,7 @@ import { Page } from 'puppeteer';
 
 import { ExtensionPuppeteerConnection } from '../common/extension-puppeteer-connection';
 
-describe('Launchpad (popup page)', () => {
+describe('Another test', () => {
     let extensionConnection: ExtensionPuppeteerConnection;
     let targetPage: Page;
     let targetPageTabId: number;
@@ -17,14 +17,11 @@ describe('Launchpad (popup page)', () => {
 
         targetPageTabId = await extensionConnection.getTabId(targetPage);
 
+        // We re-use the default jest-puppeteer page because it automatically handles failing on console.error
         popupPage = await extensionConnection.newExtensionPopupPage(targetPageTabId);
 
         // This is important; without this, UI simulation (like click()) will time out.
         popupPage.bringToFront();
-    });
-
-    beforeEach(() => {
-
     });
 
     afterAll(async () => {
