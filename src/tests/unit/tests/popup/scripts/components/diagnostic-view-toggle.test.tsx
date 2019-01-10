@@ -1,10 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { shallow, ShallowWrapper } from 'enzyme';
+import * as Enzyme from 'enzyme';
 import * as _ from 'lodash';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
-import { IToggle } from 'office-ui-fabric-react/lib/Toggle';
+import { Toggle, IToggle, ToggleBase } from 'office-ui-fabric-react/lib/Toggle';
 import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { It, Mock, Times } from 'typemoq';
@@ -189,7 +190,7 @@ describe('DiagnosticViewToggleTest', () => {
         expect(renderAction).toThrowError(`Cannot find command for name: ${commandName}`);
     });
 
-    test('componentDidMount', () => {
+    test('set focus when componentDidMount', () => {
         const type = VisualizationType.TabStops;
         const event = eventStubFactory.createKeypressEvent();
 
@@ -197,16 +198,19 @@ describe('DiagnosticViewToggleTest', () => {
 
         const props: IDiagnosticViewToggleProps = propsBuilder.build();
 
-        const testObject = new DiagnosticViewToggle(props);
+        const wrapper = Enzyme.mount(<DiagnosticViewToggle {...props} />);
+        wrapper.setState({
+            isFocused: true,
+        });
+        const toggle = wrapper.find(VisualizationToggle).props().componentRef.current;
+        jest.spyOn(toggle, 'focus');
 
-        testObject.componentDidMount();
+        wrapper.instance().componentDidMount();
 
-        expect((testObject as any)._isMounted).toBeTruthy();
+        expect(toggle.focus).toHaveBeenCalledTimes(1);
     });
 
-    test('setFocus', () => {
-        const focusMock = Mock.ofInstance(() => {});
-
+    test('componentDidUpdate', () => {
         const type = VisualizationType.TabStops;
         const event = eventStubFactory.createKeypressEvent();
 
@@ -214,37 +218,16 @@ describe('DiagnosticViewToggleTest', () => {
 
         const props: IDiagnosticViewToggleProps = propsBuilder.build();
 
-        const component = React.createElement(DiagnosticViewToggle, props);
-
-        const testObject = TestUtils.renderIntoDocument(component);
-
-        (testObject as any)._isMounted = true;
-
-        (testObject as any).state = {
+        const wrapper = Enzyme.mount(<DiagnosticViewToggle {...props} />);
+        wrapper.setState({
             isFocused: true,
-        };
+        });
+        const toggle = wrapper.find(VisualizationToggle).props().componentRef.current;
+        jest.spyOn(toggle, 'focus');
 
-        const forceUpdateMock = Mock.ofInstance(() => {});
+        wrapper.instance().componentDidUpdate(props, props);
 
-        const testToggleMock: IToggle = {
-            focus: focusMock.object,
-        };
-
-        forceUpdateMock
-            .setup(fum => fum())
-            .verifiable(Times.once());
-
-        focusMock
-            .setup(fM => fM())
-            .verifiable(Times.once());
-
-        testObject.forceUpdate = forceUpdateMock.object;
-        const setFocusFunction = (testObject as any).setFocus;
-        setFocusFunction(testToggleMock);
-
-        expect((testObject as any)._toggle).toBe(testToggleMock);
-        forceUpdateMock.verifyAll();
-        focusMock.verifyAll();
+        expect(toggle.focus).toHaveBeenCalledTimes(1);
     });
 
     test('onFocusHandler', () => {
@@ -383,8 +366,8 @@ class DiagnosticViewTogglePropsBuilder {
     private clickHandlerMock = Mock.ofType(DiagnosticViewClickHandler);
     private telemetrySource: TelemetryEventSource;
     private shortcutCommands: chrome.commands.Command[] = ShortcutCommandsTestData;
-    private querySelectorMock = Mock.ofInstance(selector => {});
-    private addEventListenerMock = Mock.ofInstance((e, ev) => {});
+    private querySelectorMock = Mock.ofInstance(selector => { });
+    private addEventListenerMock = Mock.ofInstance((e, ev) => { });
     private featureFlags: IDictionaryStringTo<boolean> = {};
     private deps: ContentLinkDeps = {} as ContentLinkDeps;
     private configurationStub: IVisualizationConfiguration;

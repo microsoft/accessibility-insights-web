@@ -133,7 +133,7 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
                 description={this.state.exportDescription}
                 html={this.state.exportData}
                 onClose={this.onDismissExportDialog}
-                onDescriptionChanged={this.onExportDescriptitonChange}
+                onDescriptionChanged={this.onExportDescriptionChange}
                 exportResultsType="AutomatedChecks"
             />
         );
@@ -240,7 +240,7 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
     }
 
     @autobind
-    private onExportDescriptitonChange(value: string): void {
+    private onExportDescriptionChange(value: string): void {
         const exportData = this.state.exportDataWithPlaceholder.replace(this.descriptionPlaceholder, _.escape(value));
         this.setState({ exportDescription: value, exportData: exportData });
     }
