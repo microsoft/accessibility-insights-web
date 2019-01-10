@@ -123,7 +123,6 @@ export class IssuesDetailsList extends React.Component<IssuesDetailsListProps, {
         const groupHeaderProps: GroupHeaderProps = {
             ...props,
             countIcon: <Icon iconName="statusErrorFull" className="details-icon-error" />,
-            insertButtonLabels: true,
         };
 
         return <DetailsGroupHeader {...groupHeaderProps} />;
