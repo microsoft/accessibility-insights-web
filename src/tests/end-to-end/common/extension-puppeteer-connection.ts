@@ -3,12 +3,10 @@
 import { Browser, Page } from 'puppeteer';
 
 export class ExtensionPuppeteerConnection {
-    constructor(
+    private constructor(
         private readonly extensionBaseUrl: string,
         public readonly backgroundPage: Page,
-    ) {
-        // Intentionally blank
-    }
+    ) { }
 
     public getExtensionUrl(relativePath: string) {
         return `${this.extensionBaseUrl}/${relativePath}`;
