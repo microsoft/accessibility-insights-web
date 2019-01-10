@@ -5,14 +5,14 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
-import { NavLinkForLeftNav } from '../../../../../DetailsView/components/details-view-left-nav';
+import { BaseLeftNavLink } from '../../../../../DetailsView/components/base-left-nav';
 import { NavLinkHandler } from '../../../../../DetailsView/components/left-nav/nav-link-handler';
 
 describe('NavLinkHandler', () => {
     let actionMessageCreator: IMock<DetailsViewActionMessageCreator>;
     let testSubject: NavLinkHandler;
     let eventStub: React.MouseEvent<HTMLElement>;
-    let link: NavLinkForLeftNav;
+    let link: BaseLeftNavLink;
 
     beforeEach(() => {
         actionMessageCreator = Mock.ofType(DetailsViewActionMessageCreator, MockBehavior.Strict);
@@ -20,7 +20,7 @@ describe('NavLinkHandler', () => {
         eventStub = {} as React.MouseEvent<HTMLElement>;
         link = {
             key: 'test',
-        } as NavLinkForLeftNav;
+        } as BaseLeftNavLink;
     });
 
     describe('onAssessmentTestClick', () => {
