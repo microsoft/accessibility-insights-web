@@ -22,7 +22,7 @@ describe('FirstTimeDialogTest', () => {
     });
 
     afterEach(async () => {
-        extensionConnection.tearDown();
+        await extensionConnection.tearDown();
     });
 
     it('verify first time dialog content', async () => {
@@ -48,6 +48,7 @@ describe('FirstTimeDialogTest', () => {
     async function setupNewTargetPage() {
         targetPage = await extensionConnection.newPage('https://bing.com');
 
-        targetPageTabId = await extensionConnection.getTabId(targetPage);
+        await targetPage.bringToFront();
+        targetPageTabId = await extensionConnection.getActivePageTabId();
     }
 });

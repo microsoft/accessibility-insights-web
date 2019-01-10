@@ -14,16 +14,19 @@ export class ExtensionPuppeteerConnection {
     }
 
     public async newBlankPage(): Promise<puppeteer.Page> {
-        return await this.browser.newPage();
+        const page =  await this.browser.newPage();
+        page.on('pageerror', error => {
+            process.emit('uncaughtException', new Error(`console error in page - '${page.url()}' : ${error}`));
+        });
+
+        return page;
     }
 
     public async newExtensionPopupPage(targetTabId: number): Promise<puppeteer.Page> {
         return await this.newPage(this.getExtensionUrl(`popup/popup.html?tabId=${targetTabId}`));
     }
 
-    public async getTabId(page: puppeteer.Page): Promise<number> {
-        page.bringToFront();
-
+    public async getActivePageTabId(): Promise<number> {
         return this.backgroundPage.evaluate(() => {
             return new Promise(resolve => {
                 chrome.tabs.query({ active: true, currentWindow: true }, tabs => resolve(tabs[0].id));
@@ -33,25 +36,27 @@ export class ExtensionPuppeteerConnection {
 
     public async newPage(url: string): Promise<puppeteer.Page> {
         const page = await this.newBlankPage();
-        page.goto(url);
+        await page.goto(url);
+
         return page;
     }
 
-    public tearDown() {
-        this.browser.close();
+    public async tearDown() {
+        await this.browser.close();
     }
 
     public static async connect(): Promise<ExtensionPuppeteerConnection> {
         const browser = await ExtensionPuppeteerConnection.launchNewBrowser();
         const backgroundPage = await ExtensionPuppeteerConnection.waitForExtensionBackgroundPage(browser);
 
-        const backgroundPageUrl = await backgroundPage.url();
+        const backgroundPageUrl = backgroundPage.url();
         const extensionBaseUrl = backgroundPageUrl.match(/(.*)\/background\/background.html/)[1];
 
         return new ExtensionPuppeteerConnection(extensionBaseUrl, browser, backgroundPage);
     }
 
     private static launchNewBrowser(): Promise<puppeteer.Browser> {
+        // only unpacked extension paths are supported
         const extensionPath = `${process.cwd()}/drop/dev/extension/`;
         return puppeteer.launch({
             // Headless doesn't support extensions, see https://github.com/GoogleChrome/puppeteer/issues/659
