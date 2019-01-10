@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { mapValues } from 'lodash';
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
@@ -11,21 +10,26 @@ import {
 } from '../../../../common/configs/visualization-configuration-factory';
 import { NamedSFC, ReactSFCWithDisplayName } from '../../../../common/react/named-sfc';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
-import { IAssessmentData, IAssessmentNavState, IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
+import {
+    IAssessmentData,
+    IAssessmentNavState,
+    IAssessmentStoreData,
+} from '../../../../common/types/store-data/iassessment-result-data';
 import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';
 import { IScanData, ITestsEnabledState } from '../../../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../DetailsView/actions/details-view-action-message-creator';
-import { DetailsViewLeftNav } from '../../../../DetailsView/components/details-view-left-nav';
 import { DetailsRightPanelConfiguration } from '../../../../DetailsView/components/details-view-right-panel';
 import { DetailsViewSwitcherNavConfiguration } from '../../../../DetailsView/components/details-view-switcher-nav';
+import { DetailsViewLeftNavV2 } from '../../../../DetailsView/components/left-nav/details-view-left-nav-v2';
 import { TabInfo } from '../../../../DetailsView/components/tab-info';
 import { DetailsViewMainContent, IDetailsViewMainContentProps } from '../../../../DetailsView/details-view-main-content';
-import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
+import {
+    DetailsViewToggleClickHandlerFactory,
+} from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
-import { DetailsViewLeftNavV2 } from '../../../../DetailsView/components/left-nav/details-view-left-nav-v2';
 
 describe('DetailsViewMainContentTest', () => {
     let selectedTest: VisualizationType;

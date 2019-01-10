@@ -5,9 +5,9 @@ import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import * as React from 'react';
 
 import { NamedSFC } from '../../../common/react/named-sfc';
-import { LeftNavLinkProps } from '../details-view-left-nav';
+import { BaseLeftNavLinkProps } from '../base-left-nav';
 
-export const OverviewLeftNavLink = NamedSFC<LeftNavLinkProps>('OverviewLeftNavLink', ({ link }) => {
+export const OverviewLeftNavLink = NamedSFC<BaseLeftNavLinkProps>('OverviewLeftNavLink', ({ link }) => {
     return (
         <div
             className={'button-flex-container'}

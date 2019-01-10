@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { mapValues } from 'lodash';
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
@@ -16,15 +15,14 @@ import { IVisualizationScanResultData } from '../common/types/store-data/ivisual
 import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DetailsViewCommandBarDeps } from './components/details-view-command-bar';
-import { DetailsViewLeftNav, DetailsViewLeftNavDeps } from './components/details-view-left-nav';
 import { DetailsRightPanelConfiguration, DetailsViewContentDeps } from './components/details-view-right-panel';
 import { DetailsViewSwitcherNavConfiguration } from './components/details-view-switcher-nav';
 import { IssuesTableHandler } from './components/issues-table-handler';
+import { DetailsViewLeftNavV2, DetailsViewLeftNavV2Deps } from './components/left-nav/details-view-left-nav-v2';
 import { TabInfo } from './components/tab-info';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { ReportGenerator } from './reports/report-generator';
-import { DetailsViewLeftNavV2, DetailsViewLeftNavV2Deps } from './components/left-nav/details-view-left-nav-v2';
 
 export type DetailsViewMainContentDeps = DetailsViewContentDeps & DetailsViewLeftNavV2Deps & DetailsViewCommandBarDeps;
 
