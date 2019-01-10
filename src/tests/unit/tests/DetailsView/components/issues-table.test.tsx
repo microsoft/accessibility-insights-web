@@ -22,7 +22,7 @@ import { VisualizationConfigurationFactory } from '../../../../../common/configs
 describe('IssuesTableTest', () => {
     const onExportButtonClickStub = () => { };
     const onDismissExportDialogStub = () => { };
-    const onExportDiscriptitonChangeStub = () => { };
+    const onExportDescriptionChangeStub = () => { };
     const onSaveExportResultStub = () => { };
 
     test('render spinner, issuesEnabled == null', () => {
@@ -144,31 +144,6 @@ describe('IssuesTableTest', () => {
         reportGeneratorMock.verifyAll();
     });
 
-    test('onExportLinkClick', () => {
-        const beforeState: IssuesTableState = getDefaultState();
-        const eventStub = {} as any;
-        const stateDiff = { isExportDialogOpen: false };
-        const exportData = 'export html';
-        beforeState.exportData = exportData;
-
-        const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
-
-        actionMessageCreatorMock
-            .setup(a => a.exportResultsClicked('AutomatedChecks', exportData, eventStub))
-            .verifiable(Times.once());
-
-        testStateChangedByHandlerCalledWithParam(
-            'onExportLinkClick',
-            eventStub,
-            stateDiff,
-            Times.once(),
-            null,
-            actionMessageCreatorMock.object,
-            beforeState,
-        );
-        actionMessageCreatorMock.verifyAll();
-    });
-
     test('onDismissExportDialog: blocked', () => {
         const stateDiff = {};
         const eventStub = {
@@ -185,10 +160,10 @@ describe('IssuesTableTest', () => {
         testStateChangedByHandlerCalledWithParam('onDismissExportDialog', eventStub, stateDiff);
     });
 
-    test('onExportDescriptitonChange', () => {
+    test('onExportDescriptionChange', () => {
         const text = 'text';
         const stateDiff = { exportDescription: text, exportData: '' };
-        testStateChangedByHandlerCalledWithParam('onExportDescriptitonChange', text, stateDiff);
+        testStateChangedByHandlerCalledWithParam('onExportDescriptionChange', text, stateDiff);
     });
 
     function testStateChangedByHandlerCalledWithParam(
@@ -287,7 +262,7 @@ describe('IssuesTableTest', () => {
     function setupHandlersOnTestObject(testObject): void {
         testObject.onExportButtonClick = onExportButtonClickStub;
         testObject.onDismissExportDialog = onDismissExportDialogStub;
-        testObject.onExportDiscriptitonChange = onExportButtonClickStub;
+        testObject.onExportDescriptionChange = onExportButtonClickStub;
         testObject.onSaveExportResult = onSaveExportResultStub;
     }
 
@@ -334,7 +309,7 @@ describe('IssuesTableTest', () => {
                         autoFocus
                         rows={8}
                         resizable={false}
-                        onChanged={onExportDiscriptitonChangeStub}
+                        onChanged={onExportDescriptionChangeStub}
                         value={state.exportDescription}
                         ariaLabel={IssuesTable.exportTextareaLabel}
                     />
