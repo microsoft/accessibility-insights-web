@@ -144,31 +144,6 @@ describe('IssuesTableTest', () => {
         reportGeneratorMock.verifyAll();
     });
 
-    test('onExportLinkClick', () => {
-        const beforeState: IssuesTableState = getDefaultState();
-        const eventStub = {} as any;
-        const stateDiff = { isExportDialogOpen: false };
-        const exportData = 'export html';
-        beforeState.exportData = exportData;
-
-        const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
-
-        actionMessageCreatorMock
-            .setup(a => a.exportResultsClicked('AutomatedChecks', exportData, eventStub))
-            .verifiable(Times.once());
-
-        testStateChangedByHandlerCalledWithParam(
-            'onExportLinkClick',
-            eventStub,
-            stateDiff,
-            Times.once(),
-            null,
-            actionMessageCreatorMock.object,
-            beforeState,
-        );
-        actionMessageCreatorMock.verifyAll();
-    });
-
     test('onDismissExportDialog: blocked', () => {
         const stateDiff = {};
         const eventStub = {
