@@ -25,7 +25,7 @@ describe('Launchpad (popup page)', () => {
         popupPage = page;
 
         // This is important; without this, UI simulation (like click()) will time out.
-        page.bringToFront();
+        popupPage.bringToFront();
     });
 
     afterAll(async () => {
