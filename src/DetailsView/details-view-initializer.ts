@@ -69,6 +69,10 @@ import { ReactStaticRenderer } from './reports/react-static-renderer';
 import { ReportGenerator } from './reports/report-generator';
 import { ReportHtmlGenerator } from './reports/report-html-generator';
 import { ReportNameGenerator } from './reports/report-name-generator';
+import { LeftNavLinkBuilder } from './components/left-nav/left-nav-link-builder';
+import { getStatusForTest } from './components/left-nav/get-status-for-test';
+import { outcomeTypeFromTestStatus, outcomeStatsFromManualTestStatus } from './reports/components/outcome-type';
+import { assessmentsProviderWithFeaturesEnabled } from '../assessments/assessments-feature-flag-filter';
 
 declare const window: AutoChecker & Window;
 
@@ -246,6 +250,11 @@ if (isNaN(tabId) === false) {
                     navLinkHandler: new NavLinkHandler(actionMessageCreator),
                     getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration,
                     userConfigMessageCreator,
+                    leftNavLinkBuilder: new LeftNavLinkBuilder(),
+                    getStatusForTest,
+                    outcomeTypeFromTestStatus,
+                    outcomeStatsFromManualTestStatus,
+                    assessmentsProviderWithFeaturesEnabled,
                 };
 
                 const renderer = new DetailsViewRenderer(

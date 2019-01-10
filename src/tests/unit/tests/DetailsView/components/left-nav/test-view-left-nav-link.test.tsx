@@ -3,15 +3,15 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { LeftNavLinkProps, NavLinkForLeftNav } from '../../../../../../DetailsView/components/details-view-left-nav';
+import { BaseLeftNavLink, BaseLeftNavLinkProps } from '../../../../../../DetailsView/components/base-left-nav';
 import { TestViewLeftNavLink } from '../../../../../../DetailsView/components/left-nav/test-view-left-nav-link';
 
 describe('TestViewLeftNavLink', () => {
     it('renders', () => {
-        const props: LeftNavLinkProps = {
+        const props: BaseLeftNavLinkProps = {
             link: {
                 name: 'test-props-link-name',
-            } as NavLinkForLeftNav,
+            } as BaseLeftNavLink,
             renderIcon: () => <i>test-props-renderIcon</i>,
         };
 
