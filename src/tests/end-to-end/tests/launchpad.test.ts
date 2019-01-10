@@ -19,6 +19,9 @@ describe('Launchpad (popup page)', () => {
                 chrome.tabs.query({ active: true, currentWindow: true }, tabs => resolve(tabs[0].id));
             });
         });
+
+        // This is important; without this, UI simulation (like click()) will time out.
+        page.bringToFront();
     });
 
     afterAll(async () => {
@@ -29,16 +32,21 @@ describe('Launchpad (popup page)', () => {
         const popupPage = page;
         await popupPage.goto(extensionConnection.getExtensionUrl(`popup/popup.html?tabId=${targetPageTabId}`));
 
-        await popupPage.waitForSelector('#Dialog3-title');
-        const title = await popupPage.$eval('#Dialog3-title', element => element.textContent);
-        expect(title).toEqual('We need your help');
+        await popupPage.waitForSelector('.telemetry-permission-dialog-modal');
+
+        const title = await popupPage.$eval('#telemetry-permission-title', element => element.textContent);
+
+        expect(title).toBe('We need your help');
     });
 
-    it('should dismiss the telemetry prompt after hitting "okay"', async () => {
-        throw 'notimpl';
-    });
+    it('should dismiss the telemetry prompt after hitting "OK"', async () => {
+        const popupPage = page;
+        await popupPage.goto(extensionConnection.getExtensionUrl(`popup/popup.html?tabId=${targetPageTabId}`));
 
-    it('should dismiss the telemetry prompt after hitting "okay"', async () => {
-        throw 'notimpl';
+        await popupPage.waitForSelector('.telemetry-permission-dialog-modal');
+
+        await popupPage.click('button.start-using-product-button');
+
+        await popupPage.waitFor(() => !document.querySelector('.telemetry-permission-dialog-modal'), {timeout: 1000});
     });
 });
