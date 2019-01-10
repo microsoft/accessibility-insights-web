@@ -18,7 +18,7 @@ describe('FirstTimeDialogTest', () => {
         popupPage = await extensionConnection.newExtensionPopupPage(targetPageTabId);
 
         // This is important; without this, UI simulation (like click()) will time out.
-        popupPage.bringToFront();
+        await popupPage.bringToFront();
     });
 
     afterEach(async () => {
@@ -39,9 +39,9 @@ describe('FirstTimeDialogTest', () => {
         await popupPage.waitFor(() => !document.querySelector('.telemetry-permission-dialog-modal'));
 
         // verify telemetry dialog doesn't show up in new popup
-        setupNewTargetPage();
+        await setupNewTargetPage();
         popupPage = await extensionConnection.newExtensionPopupPage(targetPageTabId);
-        popupPage.waitForSelector('#new-launch-pad');
+        await popupPage.waitForSelector('#new-launch-pad');
         await popupPage.waitFor(() => !document.querySelector('.telemetry-permission-dialog-modal'));
     });
 
