@@ -1,6 +1,7 @@
 {
   "rules": {
     "arrow-parens": [true, "ban-single-arg-parens"],
+    "await-promise": true,
     "class-name": true,
     "comment-format": [true, "check-space", { "ignore-words": ["TODO", "HACK", "NOTE"] }],
     "curly": true,
@@ -27,6 +28,7 @@
     "no-duplicate-variable": true,
     "no-empty": [true, "allow-empty-functions"],
     "no-eval": true,
+    "no-floating-promises": true,
     "no-inferrable-types": false,
     "no-internal-module": true,
     "no-invalid-this": [true, "check-function-in-method"],
