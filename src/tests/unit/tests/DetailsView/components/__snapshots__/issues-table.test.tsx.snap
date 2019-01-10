@@ -82,7 +82,7 @@ exports[`IssuesTableTest render table with 0 issues, export FF on 1`] = `
         Export result
       </CustomizedActionButton>
     </div>
-    <ExportDialog deps={[undefined]} isOpen={false} description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChanged={[Function: bound ]} exportResultsType=\\"AutomatedChecks\\" />
+    <ExportDialog deps={[undefined]} isOpen={false} description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChange={[Function: bound ]} exportResultsType=\\"AutomatedChecks\\" />
     <div className=\\"issues-table-details\\">
       <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" featureFlagData={{...}} />
       <div className=\\"issue-detail-outer-container ms-Fabric\\">
@@ -124,7 +124,7 @@ exports[`IssuesTableTest render table with 1 issue, export FF on 1`] = `
         Export result
       </CustomizedActionButton>
     </div>
-    <ExportDialog deps={[undefined]} isOpen={false} description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChanged={[Function: bound ]} exportResultsType=\\"AutomatedChecks\\" />
+    <ExportDialog deps={[undefined]} isOpen={false} description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChange={[Function: bound ]} exportResultsType=\\"AutomatedChecks\\" />
     <div className=\\"issues-table-details\\">
       <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" featureFlagData={{...}} />
       <div className=\\"issue-detail-outer-container ms-Fabric\\">
@@ -166,7 +166,7 @@ exports[`IssuesTableTest render table with 2 issues, export FF on 1`] = `
         Export result
       </CustomizedActionButton>
     </div>
-    <ExportDialog deps={[undefined]} isOpen={false} description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChanged={[Function: bound ]} exportResultsType=\\"AutomatedChecks\\" />
+    <ExportDialog deps={[undefined]} isOpen={false} description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChange={[Function: bound ]} exportResultsType=\\"AutomatedChecks\\" />
     <div className=\\"issues-table-details\\">
       <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" featureFlagData={{...}} />
       <div className=\\"issue-detail-outer-container ms-Fabric\\">

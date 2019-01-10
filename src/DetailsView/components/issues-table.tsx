@@ -133,7 +133,7 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
                 description={this.state.exportDescription}
                 html={this.state.exportData}
                 onClose={this.onDismissExportDialog}
-                onDescriptionChanged={this.onExportDescriptionChange}
+                onDescriptionChange={this.onExportDescriptionChange}
                 exportResultsType="AutomatedChecks"
             />
         );

@@ -15,7 +15,7 @@ export interface ExportDialogProps {
     description: string;
     html: string;
     onClose: () => void;
-    onDescriptionChanged: (value: string) => void;
+    onDescriptionChange: (value: string) => void;
     exportResultsType: ExportResultType;
 }
 
@@ -49,7 +49,7 @@ export class ExportDialog extends React.Component<ExportDialogProps> {
                     autoFocus
                     rows={8}
                     resizable={false}
-                    onChanged={this.onDescriptionChanged}
+                    onChange={this.onDescriptionChange}
                     value={this.props.description}
                     ariaLabel="Provide result description"
                 />
@@ -79,8 +79,8 @@ export class ExportDialog extends React.Component<ExportDialogProps> {
     }
 
     @autobind
-    private onDescriptionChanged(value: string): void {
-        this.props.onDescriptionChanged(value);
+    private onDescriptionChange(event, value: string): void {
+        this.props.onDescriptionChange(value);
     }
 }
 

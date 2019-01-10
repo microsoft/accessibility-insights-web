@@ -28,7 +28,7 @@ describe('IssuesTableTest', () => {
     test('render spinner, issuesEnabled == null', () => {
         const props = new TestPropsBuilder().build();
 
-        const wrapped = shallow(<IssuesTable {...props}/>);
+        const wrapped = shallow(<IssuesTable {...props} />);
 
         expect(wrapped.debug()).toMatchSnapshot();
     });
@@ -78,7 +78,7 @@ describe('IssuesTableTest', () => {
             .setToggleClickHandler(toggleClickHandlerMock.object)
             .build();
 
-        const wrapped = shallow(<IssuesTable {...props}/>);
+        const wrapped = shallow(<IssuesTable {...props} />);
 
         expect(wrapped.debug()).toMatchSnapshot();
     });
@@ -112,7 +112,7 @@ describe('IssuesTableTest', () => {
             .setIssuesEnabled({} as any)
             .build();
 
-        const wrapper = shallow(<IssuesTable {...props}/>);
+        const wrapper = shallow(<IssuesTable {...props} />);
 
         expect(wrapper.debug());
 
@@ -309,7 +309,7 @@ describe('IssuesTableTest', () => {
                         autoFocus
                         rows={8}
                         resizable={false}
-                        onChanged={onExportDescriptionChangeStub}
+                        onChange={onExportDescriptionChangeStub}
                         value={state.exportDescription}
                         ariaLabel={IssuesTable.exportTextareaLabel}
                     />

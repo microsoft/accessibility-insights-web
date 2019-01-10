@@ -12,10 +12,12 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = false 
     Object {
       "containerClassName": "insights-dialog-main-override",
       "isBlocking": false,
+      "layerProps": Object {
+        "onLayerDidMount": Object {},
+      },
     }
   }
   onDismiss={Object {}}
-  onLayerDidMount={Object {}}
   title="help"
 >
   <div>
@@ -386,10 +388,12 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 2
     Object {
       "containerClassName": "insights-dialog-main-override",
       "isBlocking": false,
+      "layerProps": Object {
+        "onLayerDidMount": Object {},
+      },
     }
   }
   onDismiss={Object {}}
-  onLayerDidMount={Object {}}
   title="help"
 >
   <div>

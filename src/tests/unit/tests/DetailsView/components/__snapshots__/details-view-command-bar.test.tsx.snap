@@ -13,7 +13,7 @@ exports[`DetailsViewCommandBar renders with export button and dialog 1`] = `
       Export result
     </CustomizedActionButton>
     <StartOverDropdown testName=\\"test title\\" test={-1} requirementKey={[undefined]} actionMessageCreator={{...}} />
-    <ExportDialog deps={{...}} isOpen={false} description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChanged={[Function: bound ]} exportResultsType=\\"Assessment\\" />
+    <ExportDialog deps={{...}} isOpen={false} description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChange={[Function: bound ]} exportResultsType=\\"Assessment\\" />
   </div>
 </div>"
 `;

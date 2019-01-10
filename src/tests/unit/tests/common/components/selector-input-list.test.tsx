@@ -62,7 +62,7 @@ describe('SelectorInputListTest', () => {
     });
 
     test('add selector with no space after semicolon', () => {
-        const addSelectorMock = Mock.ofInstance((event: React.MouseEvent<HTMLButtonElement>, inputType: string, selector: string[]) => {});
+        const addSelectorMock = Mock.ofInstance((event: React.MouseEvent<HTMLButtonElement>, inputType: string, selector: string[]) => { });
         const givenInput = 'include';
         const givenSelector = 'iframe;selector';
         const parsedSelector = ['iframe', 'selector'];
@@ -84,7 +84,7 @@ describe('SelectorInputListTest', () => {
     });
 
     test('add selector with multiple separators', () => {
-        const addSelectorMock = Mock.ofInstance((event: React.MouseEvent<HTMLButtonElement>, inputType: string, selector: string[]) => {});
+        const addSelectorMock = Mock.ofInstance((event: React.MouseEvent<HTMLButtonElement>, inputType: string, selector: string[]) => { });
         const givenSelector = 'iframe;selector;selectorAgain  ;    lastSelector';
         const parsedSelector = ['iframe', 'selector', 'selectorAgain', 'lastSelector'];
         const givenInput = 'include';
@@ -106,7 +106,7 @@ describe('SelectorInputListTest', () => {
     });
 
     test('change inspection mode', () => {
-        const changeInspectionMock = Mock.ofInstance((event: React.MouseEvent<HTMLButtonElement>, inspectMode: string) => {});
+        const changeInspectionMock = Mock.ofInstance((event: React.MouseEvent<HTMLButtonElement>, inspectMode: string) => { });
         const givenMode = 'scopingAddInclude';
         const givenInput = 'include';
         changeInspectionMock
@@ -128,7 +128,7 @@ describe('SelectorInputListTest', () => {
 
     test('delete selector with no space after semicolon', () => {
         const deleteSelectorMock = Mock.ofInstance(
-            (event: React.MouseEvent<HTMLButtonElement>, inputType: string, selector: string[]) => {},
+            (event: React.MouseEvent<HTMLButtonElement>, inputType: string, selector: string[]) => { },
         );
         const givenInput = 'include';
         const parsedSelector = ['iframe', 'selector'];
@@ -271,7 +271,7 @@ describe('SelectorInputListTest', () => {
 
     test('restore sets textfield value to initial value upon entering a valid selector', () => {
         const givenInput = 'include';
-        const addSelectorMock = Mock.ofInstance((event: React.MouseEvent<HTMLButtonElement>, inputType: string, selector: string[]) => {});
+        const addSelectorMock = Mock.ofInstance((event: React.MouseEvent<HTMLButtonElement>, inputType: string, selector: string[]) => { });
         const givenSelector = 'selector';
         const parsedSelector = ['selector'];
         addSelectorMock
@@ -355,6 +355,6 @@ describe('SelectorInputListTest', () => {
 
 class TestableSelectorInputList extends SelectorInputList {
     public setTextFieldValue(value: string): void {
-        this.setTextField({ value, focus: () => {} } as ITextField);
+        this.setTextField({ value, focus: () => { } } as ITextField);
     }
 }
