@@ -22,7 +22,7 @@ import { VisualizationConfigurationFactory } from '../../../../../common/configs
 describe('IssuesTableTest', () => {
     const onExportButtonClickStub = () => { };
     const onDismissExportDialogStub = () => { };
-    const onExportDiscriptitonChangeStub = () => { };
+    const onExportDescriptionChangeStub = () => { };
     const onSaveExportResultStub = () => { };
 
     test('render spinner, issuesEnabled == null', () => {
@@ -160,10 +160,10 @@ describe('IssuesTableTest', () => {
         testStateChangedByHandlerCalledWithParam('onDismissExportDialog', eventStub, stateDiff);
     });
 
-    test('onExportDescriptitonChange', () => {
+    test('onExportDescriptionChange', () => {
         const text = 'text';
         const stateDiff = { exportDescription: text, exportData: '' };
-        testStateChangedByHandlerCalledWithParam('onExportDescriptitonChange', text, stateDiff);
+        testStateChangedByHandlerCalledWithParam('onExportDescriptionChange', text, stateDiff);
     });
 
     function testStateChangedByHandlerCalledWithParam(
@@ -262,7 +262,7 @@ describe('IssuesTableTest', () => {
     function setupHandlersOnTestObject(testObject): void {
         testObject.onExportButtonClick = onExportButtonClickStub;
         testObject.onDismissExportDialog = onDismissExportDialogStub;
-        testObject.onExportDiscriptitonChange = onExportButtonClickStub;
+        testObject.onExportDescriptionChange = onExportButtonClickStub;
         testObject.onSaveExportResult = onSaveExportResultStub;
     }
 
@@ -309,7 +309,7 @@ describe('IssuesTableTest', () => {
                         autoFocus
                         rows={8}
                         resizable={false}
-                        onChanged={onExportDiscriptitonChangeStub}
+                        onChanged={onExportDescriptionChangeStub}
                         value={state.exportDescription}
                         ariaLabel={IssuesTable.exportTextareaLabel}
                     />
