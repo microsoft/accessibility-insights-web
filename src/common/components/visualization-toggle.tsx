@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IToggleProps, Toggle, IToggle } from 'office-ui-fabric-react/lib/Toggle';
+import { IRefObject } from '@uifabric/utilities';
+import { IToggle, IToggleProps, Toggle } from 'office-ui-fabric-react/lib/Toggle';
 import * as React from 'react';
 
 export interface IVisualizationToggleProps {
@@ -10,7 +11,7 @@ export interface IVisualizationToggleProps {
     label?: string;
     className?: string;
     visualizationName: string;
-    componentRef?: (component: IToggle) => void;
+    componentRef?: IRefObject<IToggle>;
     onBlur?: (ev) => void;
     onFocus?: (ev) => void;
 }
