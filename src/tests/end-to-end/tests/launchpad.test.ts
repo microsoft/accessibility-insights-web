@@ -34,21 +34,17 @@ describe('Launchpad (popup page)', () => {
 
     it('should open the telemetry prompt on first run', async () => {
         await popupPage.goto(extensionConnection.getExtensionUrl(`popup/popup.html?tabId=${targetPageTabId}`));
-
         await popupPage.waitForSelector('.telemetry-permission-dialog-modal');
 
         const title = await popupPage.$eval('#telemetry-permission-title', element => element.textContent);
-
         expect(title).toBe('We need your help');
     });
 
     it('should dismiss the telemetry prompt after hitting "OK"', async () => {
         await popupPage.goto(extensionConnection.getExtensionUrl(`popup/popup.html?tabId=${targetPageTabId}`));
-
         await popupPage.waitForSelector('.telemetry-permission-dialog-modal');
-
         await popupPage.click('button.start-using-product-button');
 
-        await popupPage.waitFor(() => !document.querySelector('.telemetry-permission-dialog-modal'), {timeout: 1000});
+        await popupPage.waitFor(() => !document.querySelector('.telemetry-permission-dialog-modal'));
     });
 });
