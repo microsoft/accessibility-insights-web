@@ -95,7 +95,7 @@ export class FailureInstancePanelControl extends React.Component<IFailureInstanc
                     multiline={true}
                     rows={8}
                     value={this.state.failureDescription}
-                    onChange={this.onFailureDescriptitonChange}
+                    onChange={this.onFailureDescriptionChange}
                 />
                 <ActionAndCancelButtonsComponent
                     isHidden={false}
@@ -113,7 +113,7 @@ export class FailureInstancePanelControl extends React.Component<IFailureInstanc
     }
 
     @autobind
-    protected onFailureDescriptitonChange(event, value: string): void {
+    protected onFailureDescriptionChange(event, value: string): void {
         this.setState({ failureDescription: value });
     }
 
