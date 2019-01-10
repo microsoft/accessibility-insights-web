@@ -87,16 +87,16 @@ describe('UserConfigurationStoreTest', () => {
         storeTester.testListenerToBeCalledOnce(initialStoreData, cloneDeep(initialStoreData));
     });
 
-    interface SetUserConfigTestCase {
+    type SetUserConfigTestCase = {
         isFirstTime: boolean;
         enableTelemetry: boolean;
-    }
+    };
     test.each([
         { enableTelemetry: true, isFirstTime: true } as SetUserConfigTestCase,
         { enableTelemetry: true, isFirstTime: false } as SetUserConfigTestCase,
         { enableTelemetry: false, isFirstTime: false } as SetUserConfigTestCase,
         { enableTelemetry: false, isFirstTime: true } as SetUserConfigTestCase,
-    ])('setUserConfiguration action', (testCase: SetUserConfigTestCase) => {
+    ])('setUserConfiguration action: %o', (testCase: SetUserConfigTestCase) => {
         const storeTester = createStoreToTestAction('setTelemetryState');
         initialStoreData = {
             enableTelemetry: testCase.enableTelemetry,

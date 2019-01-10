@@ -6,7 +6,7 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { IPageVisibilityChangeTabPayLoad, ISwitchToTargetTabPayLoad } from '../../../../../background/actions/action-payloads';
 import { TabActionCreator } from '../../../../../background/actions/tab-action-creator';
 import { TabActions } from '../../../../../background/actions/tab-actions';
-import { ChromeAdapter, IChromeAdapter } from '../../../../../background/browser-adapter';
+import { ChromeAdapter, BrowserAdapter } from '../../../../../background/browser-adapter';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
 import { Action } from '../../../../../common/flux/action';
 import { ITab } from '../../../../../common/itab';
@@ -15,7 +15,7 @@ import { SWITCH_BACK_TO_TARGET, TelemetryEventSource } from '../../../../../comm
 
 describe('TestActionCreatorTest', () => {
     let tabActionsMock: IMock<TabActions>;
-    let browserAdapterMock: IMock<IChromeAdapter>;
+    let browserAdapterMock: IMock<BrowserAdapter>;
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
     let registerTypeToPayloadCallbackMock: IMock<IRegisterTypeToPayloadCallback>;
     let testObject: TabActionCreator;

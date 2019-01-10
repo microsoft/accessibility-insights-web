@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { ChromeAdapter, IChromeAdapter } from '../../../../background/browser-adapter';
+import { ChromeAdapter, BrowserAdapter } from '../../../../background/browser-adapter';
 import { DetailsViewController } from '../../../../background/details-view-controller';
 import { Interpreter } from '../../../../background/interpreter';
 import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
@@ -16,7 +16,7 @@ import { Messages } from '../../../../common/messages';
 describe('TabControllerTest', () => {
     let testSubject: TabController;
     let mockBroadcasterStrictMock: IMock<TabContextBroadcaster>;
-    let mockChromeAdapter: IMock<IChromeAdapter>;
+    let mockChromeAdapter: IMock<BrowserAdapter>;
     let mockDetailsViewController: IMock<DetailsViewController>;
     let tabInterpreterMap: TabToContextMap;
     let featureFlagStoreMock: IMock<FeatureFlagStore>;

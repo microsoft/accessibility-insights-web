@@ -9,14 +9,14 @@ exports[`StartOverDropdownTest render 1`] = `
 exports[`StartOverDropdownTest render ContextualMenu 1`] = `
 "<div>
   <CustomizedActionButton iconProps={{...}} text=\\"Start over\\" onClick={[Function: bound ]} />
-  <CustomizedContextualMenu onDismiss={[Function: onDismiss]} target=\\"test target\\" items={{...}} shouldFocusOnMount={true} gapSpace={0} directionalHint={7} beakWidth={16} getMenuClassNames={[Function: memoizedFunction]} />
+  <StyledWithResponsiveMode onDismiss={[Function: onDismiss]} target=\\"test target\\" items={{...}} />
 </div>"
 `;
 
 exports[`StartOverDropdownTest render GenericDialog for start over a test 1`] = `
 "<div>
   <CustomizedActionButton iconProps={{...}} text=\\"Start over\\" onClick={[Function: bound ]} />
-  <CustomizedContextualMenu onDismiss={[Function: onDismiss]} target=\\"test target\\" items={{...}} shouldFocusOnMount={true} gapSpace={0} directionalHint={7} beakWidth={16} getMenuClassNames={[Function: memoizedFunction]} />
+  <StyledWithResponsiveMode onDismiss={[Function: onDismiss]} target=\\"test target\\" items={{...}} />
   <GenericDialog title=\\"Start over\\" messageText=\\"Starting over will clear all existing results from the test name test. Are you sure you want to start over?\\" onCancelButtonClick={[Function: bound ]} onPrimaryButtonClick={[Function: bound ]} primaryButtonText=\\"Start over\\" />
 </div>"
 `;
@@ -24,7 +24,7 @@ exports[`StartOverDropdownTest render GenericDialog for start over a test 1`] = 
 exports[`StartOverDropdownTest render GenericDialog for start over the whole assessment 1`] = `
 "<div>
   <CustomizedActionButton iconProps={{...}} text=\\"Start over\\" onClick={[Function: bound ]} />
-  <CustomizedContextualMenu onDismiss={[Function: onDismiss]} target=\\"test target\\" items={{...}} shouldFocusOnMount={true} gapSpace={0} directionalHint={7} beakWidth={16} getMenuClassNames={[Function: memoizedFunction]} />
+  <StyledWithResponsiveMode onDismiss={[Function: onDismiss]} target=\\"test target\\" items={{...}} />
   <GenericDialog title=\\"Start over\\" messageText=\\"Starting over will clear all existing results from the Assessment. This will clear results and progress of all tests and requirements. Are you sure you want to start over?\\" onCancelButtonClick={[Function: bound ]} onPrimaryButtonClick={[Function: bound ]} primaryButtonText=\\"Start over\\" />
 </div>"
 `;

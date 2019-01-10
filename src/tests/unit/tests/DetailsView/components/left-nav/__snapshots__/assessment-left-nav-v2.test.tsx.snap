@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AssessmentLeftNavV2 render with index icon 1`] = `
+<BaseLeftNav
+  links={
+    Array [
+      Object {
+        "status": 1,
+      },
+      Object {
+        "status": 1,
+      },
+    ]
+  }
+  renderIcon={[Function]}
+  selectedKey="some key"
+/>
+`;
+
+exports[`AssessmentLeftNavV2 render with index icon 2`] = `
+<div
+  className="index-circle"
+/>
+`;
+
+exports[`AssessmentLeftNavV2 render with status icon 1`] = `
+<BaseLeftNav
+  links={
+    Array [
+      Object {
+        "status": -1,
+      },
+      Object {
+        "status": -1,
+      },
+    ]
+  }
+  renderIcon={[Function]}
+  selectedKey="some key"
+/>
+`;
+
+exports[`AssessmentLeftNavV2 render with status icon 2`] = `
+<div>
+  <StatusIcon
+    className="dark-gray"
+    status={-1}
+  />
+</div>
+`;

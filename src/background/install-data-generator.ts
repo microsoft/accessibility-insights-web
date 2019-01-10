@@ -1,16 +1,21 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IInstallationData } from './installation-data';
-import { IChromeAdapter } from './browser-adapter';
+import { BrowserAdapter } from './browser-adapter';
 import { LocalStorageDataKeys } from './local-storage-data-keys';
 
 export class InstallDataGenerator {
     private generateGuid: () => string;
     private dateGetter: () => Date;
     private installationData: IInstallationData;
-    private browserAdapter: IChromeAdapter;
+    private browserAdapter: BrowserAdapter;
 
-    constructor(initialInstallationData: IInstallationData, generateGuid: () => string, dateGetter: () => Date, browserAdapter: IChromeAdapter) {
+    constructor(
+        initialInstallationData: IInstallationData,
+        generateGuid: () => string,
+        dateGetter: () => Date,
+        browserAdapter: BrowserAdapter,
+    ) {
         this.generateGuid = generateGuid;
         this.dateGetter = dateGetter;
         this.installationData = initialInstallationData;
@@ -22,8 +27,7 @@ export class InstallDataGenerator {
 
         if (this.installationData == null || this.isInstallationDataStale(currentDate)) {
             return this.generateInstallationData(currentDate);
-        }
-        else {
+        } else {
             return this.installationData.id;
         }
     }
@@ -42,7 +46,7 @@ export class InstallDataGenerator {
             year: currentDate.getUTCFullYear(),
         };
 
-        this.browserAdapter.setUserData({[LocalStorageDataKeys.installationData]: this.installationData});
+        this.browserAdapter.setUserData({ [LocalStorageDataKeys.installationData]: this.installationData });
         return this.installationData.id;
     }
 }

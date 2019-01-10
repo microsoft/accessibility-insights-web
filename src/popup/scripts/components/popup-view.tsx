@@ -4,7 +4,7 @@ import { autobind } from '@uifabric/utilities';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
 
-import { IChromeAdapter } from '../../../background/browser-adapter';
+import { BrowserAdapter } from '../../../background/browser-adapter';
 import { NewTabLink } from '../../../common/components/new-tab-link';
 import { withStoreSubscription } from '../../../common/components/with-store-subscription';
 import { DisplayableStrings } from '../../../common/constants/displayable-strings';
@@ -34,7 +34,7 @@ export interface IPopupViewProps {
     subtitle: string;
     popupHandlers: IPopupHandlers;
     popupWindow: Window;
-    browserAdapter: IChromeAdapter;
+    browserAdapter: BrowserAdapter;
     storeActionCreator: IStoreActionMessageCreator;
     targetTabUrl: string;
     hasAccess: boolean;

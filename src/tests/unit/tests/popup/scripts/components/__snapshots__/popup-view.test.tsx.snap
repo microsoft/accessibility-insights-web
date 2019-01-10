@@ -47,7 +47,7 @@ exports[`PopupViewController render actual content renderAdHocToolsPanel 1`] = `
 `;
 
 exports[`PopupViewController render spinner 1`] = `
-<StyledCustomizedSpinner
+<StyledSpinnerBase
   className="insights-spinner"
   label="Loading..."
   size={3}

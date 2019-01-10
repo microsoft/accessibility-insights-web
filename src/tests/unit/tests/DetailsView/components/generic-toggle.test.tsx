@@ -25,7 +25,7 @@ describe('GenericToggleTest', () => {
     });
 
 
-    test.each([true, false])('render with string content', (toggleState: boolean) => {
+    test.each([true, false])('render with string content - toggleState : %s', (toggleState: boolean) => {
         const props: GenericToggleProps = {
             name: 'test name',
             description: 'test description',

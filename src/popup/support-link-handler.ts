@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IChromeAdapter } from '../background/browser-adapter';
+import { BrowserAdapter } from '../background/browser-adapter';
 import { WindowUtils } from '../common/window-utils';
 import { config } from '../common/configuration';
 
 export class SupportLinkHandler {
-    private _chromeAdapter: IChromeAdapter;
+    private _chromeAdapter: BrowserAdapter;
     private _windowUtils: WindowUtils;
 
-    constructor(chromeAdapter: IChromeAdapter, windowUtils: WindowUtils) {
+    constructor(chromeAdapter: BrowserAdapter, windowUtils: WindowUtils) {
         this._chromeAdapter = chromeAdapter;
         this._windowUtils = windowUtils;
     }

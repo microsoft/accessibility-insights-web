@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock } from 'typemoq';
 
-import { IChromeAdapter } from '../../../../../background/browser-adapter';
+import { BrowserAdapter } from '../../../../../background/browser-adapter';
 import { ITab } from '../../../../../common/itab';
 import { UrlParser } from '../../../../../common/url-parser';
 import { UrlValidator } from '../../../../../common/url-validator';
@@ -11,7 +11,7 @@ import { TargetTabFinder } from '../../../../../popup/scripts/target-tab-finder'
 describe('TargetTabFinderTest', () => {
     let testSubject: TargetTabFinder;
     let windowStub: Window;
-    let browserAdapterMock: IMock<IChromeAdapter>;
+    let browserAdapterMock: IMock<BrowserAdapter>;
     let urlParserMock: IMock<UrlParser>;
     let urlValidatorMock: IMock<UrlValidator>;
     const tabId: number = 15;
@@ -30,14 +30,14 @@ describe('TargetTabFinderTest', () => {
             url: 'target page url',
         };
 
-        browserAdapterMock = Mock.ofType<IChromeAdapter>();
+        browserAdapterMock = Mock.ofType<BrowserAdapter>();
         urlParserMock = Mock.ofType(UrlParser);
         urlValidatorMock = Mock.ofType(UrlValidator);
 
         testSubject = new TargetTabFinder(windowStub, browserAdapterMock.object, urlValidatorMock.object, urlParserMock.object);
     });
 
-    type TestCase  = {
+    type TestCase = {
         hasTabIdInUrl: boolean;
         isUrlSupported: boolean;
     };
@@ -59,7 +59,7 @@ describe('TargetTabFinderTest', () => {
         isUrlSupported: false,
     }];
 
-    test.each(testCases)('get target tab info %j', async (testCase: TestCase) => {
+    test.each(testCases)('get target tab info - %o', async (testCase: TestCase) => {
         if (testCase.hasTabIdInUrl) {
             setupGetTabIdParamFromUrl(tabId);
             setupGetTabCall();
@@ -86,10 +86,10 @@ describe('TargetTabFinderTest', () => {
 
     function setupGetTabCall() {
         browserAdapterMock
-        .setup(b => b.getTab(tabId, It.isAny()))
-        .callback((id, cb) => {
-            cb(tabStub);
-        });
+            .setup(b => b.getTab(tabId, It.isAny()))
+            .callback((id, cb) => {
+                cb(tabStub);
+            });
     }
 
     function setupTabQueryCall() {

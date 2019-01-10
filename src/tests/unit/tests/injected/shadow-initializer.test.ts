@@ -3,7 +3,7 @@
 import * as Q from 'q';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { ClientChromeAdapter, IClientChromeAdapter } from '../../../../common/client-browser-adapter';
+import { ClientChromeAdapter, ClientBrowserAdapter } from '../../../../common/client-browser-adapter';
 import { FileRequestHelper } from '../../../../common/file-request-helper';
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
 import { ShadowInitializer } from '../../../../injected/shadow-initializer';
@@ -13,7 +13,7 @@ import { HtmlElementStubBuilder } from '../../stubs/html-element-stub-builder';
 describe('ShadowInitializerTests', () => {
     const cssFileUrl: string = 'cssFileUrl';
     let testSubject: ShadowInitializer;
-    let chromeAdapter: IMock<IClientChromeAdapter>;
+    let chromeAdapter: IMock<ClientBrowserAdapter>;
     let docUtils: IMock<HTMLElementUtils>;
     let fileRequestHelperMock: IMock<FileRequestHelper>;
     let shadowRoot: ShadowRoot;

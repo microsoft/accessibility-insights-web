@@ -13,7 +13,7 @@ import { IScanData, IVisualizationStoreData } from '../common/types/store-data/i
 import { VisualizationType } from '../common/types/visualization-type';
 import { UrlValidator } from '../common/url-validator';
 import { IVisualizationTogglePayload } from './actions/action-payloads';
-import { IChromeAdapter } from './browser-adapter';
+import { BrowserAdapter } from './browser-adapter';
 import { TabToContextMap } from './tab-context';
 
 const VisualizationMessages = Messages.Visualizations;
@@ -25,7 +25,7 @@ export class ExceptionsDuringScanning {
 
 export class ChromeCommandHandler {
     private tabToContextMap: TabToContextMap;
-    private chromeAdapter: IChromeAdapter;
+    private chromeAdapter: BrowserAdapter;
     private urlValidator: UrlValidator;
     private targetTabUrl: string;
     private notificationCreator: NotificationCreator;
@@ -35,7 +35,7 @@ export class ChromeCommandHandler {
 
     constructor(
         tabIdToInterpreterMap: TabToContextMap,
-        chromeAdapter: IChromeAdapter,
+        chromeAdapter: BrowserAdapter,
         urlValidator: UrlValidator,
         notificationCreator: NotificationCreator,
         visualizationConfigurationFactory: VisualizationConfigurationFactory,

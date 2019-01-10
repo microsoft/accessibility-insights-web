@@ -159,6 +159,7 @@ export class AssessmentActionCreator {
 
     @autobind
     private onAssessmentScanCompleted(payload: IScanCompletedPayload<any>, tabId: number): void {
+        this.assessmentActions.updateTargetTabId.invoke(tabId);
         this.assessmentActions.scanCompleted.invoke(payload);
     }
 

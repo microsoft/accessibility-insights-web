@@ -9,14 +9,14 @@ import { StoreNames } from '../../../common/stores/store-names';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
 import { FeatureFlagActions, IFeatureFlagPayload } from '../../actions/feature-flag-actions';
 import { BaseStore } from '../base-store';
-import { IChromeAdapter } from './../../browser-adapter';
+import { BrowserAdapter } from './../../browser-adapter';
 
 export class FeatureFlagStore extends BaseStore<FeatureFlagStoreData> {
     private featureFlagActions: FeatureFlagActions;
-    private browserAdapter: IChromeAdapter;
+    private browserAdapter: BrowserAdapter;
     private userData: ILocalStorageData;
 
-    constructor(featureFlagActions: FeatureFlagActions, browserAdapter: IChromeAdapter, userData: ILocalStorageData) {
+    constructor(featureFlagActions: FeatureFlagActions, browserAdapter: BrowserAdapter, userData: ILocalStorageData) {
         super(StoreNames.FeatureFlagStore);
 
         this.featureFlagActions = featureFlagActions;

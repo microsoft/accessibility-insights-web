@@ -35,7 +35,7 @@ import {
 } from './../actions/action-payloads';
 import { AssessmentActions } from './../actions/assessment-actions';
 import { AssessmentDataRemover } from './../assessment-data-remover';
-import { IChromeAdapter } from './../browser-adapter';
+import { BrowserAdapter } from './../browser-adapter';
 import { BaseStore } from './base-store';
 
 export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
@@ -44,12 +44,12 @@ export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
     private assessmentDataRemover: AssessmentDataRemover;
     private assessmentsProvider: IAssessmentsProvider;
     private idbInstance: IndexedDBAPI;
-    private browserAdapter: IChromeAdapter;
+    private browserAdapter: BrowserAdapter;
     private persistedData: IAssessmentStoreData;
     private initialAssessmentStoreDataGenerator;
 
     constructor(
-        browserAdapter: IChromeAdapter,
+        browserAdapter: BrowserAdapter,
         assessmentActions: AssessmentActions,
         assessmentDataConverter: AssessmentDataConverter,
         assessmentDataRemover: AssessmentDataRemover,
