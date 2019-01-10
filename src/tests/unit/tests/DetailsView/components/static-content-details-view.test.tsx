@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Toggle } from 'office-ui-fabric-react/lib/Toggle';
+import { shallow } from 'enzyme';
 import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { IMock, It, Mock, Times } from 'typemoq';
@@ -48,25 +48,17 @@ describe('StaticContentDetailsViewTest', () => {
 
     test('click the toggle', () => {
         const event = new EventStubFactory().createMouseClickEvent() as any;
-
         const clickHandlerMock = Mock.ofInstance(event => {});
         clickHandlerMock
             .setup(chm => chm(event))
             .verifiable(Times.once());
 
         const propsBuilder = new StaticContentDetailsViewPropsBuilder().setupOnToggleClickMock(event);
-
         const props: IStaticContentDetailsViewProps = propsBuilder.build();
-
-        const component = React.createElement(StaticContentDetailsView, props);
-        const testObject = TestUtils.renderIntoDocument(component);
-
-        /* OF6UPDATE
-        const visualizationToggle = TestUtils.findRenderedComponentWithType(testObject, Toggle);
-
-        visualizationToggle.props.onClick(event);
+        const testObject = shallow(<StaticContentDetailsView {...props} />);
+        const visualizationToggle = testObject.find(VisualizationToggle);
+        visualizationToggle.prop('onClick')(event);
         propsBuilder.verifyAll();
-        */
     });
 });
 
