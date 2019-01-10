@@ -715,24 +715,16 @@ div.insights-dialog-main-override {
 
                 .PASS {
                     .ms-ChoiceField:nth-of-type(1) {
-                        .ms-ChoiceField-field::before {
-                            border: 1px solid $positive-outcome;
-                        }
-        
-                        .ms-ChoiceField-field::after {
-                            border: 5px solid $positive-outcome;
+                        .ms-ChoiceField-field::before, .ms-ChoiceField-field::after {
+                            border-color: $positive-outcome;
                         }
                     }
                 }
     
                 .FAIL {
                     .ms-ChoiceField:nth-of-type(2) {
-                        .ms-ChoiceField-field::before {
-                            border: 1px solid $negative-outcome;
-                        }
-        
-                        .ms-ChoiceField-field::after {
-                            border: 5px solid $negative-outcome;
+                        .ms-ChoiceField-field::before, .ms-ChoiceField-field::after {
+                            border-color: $negative-outcome;
                         }
                     }
                 }
