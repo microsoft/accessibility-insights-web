@@ -7,6 +7,7 @@ describe('Launchpad (popup page)', () => {
     let extensionConnection: ExtensionPuppeteerConnection;
     let targetPage: Page;
     let targetPageTabId: number;
+    let popupPage: Page;
 
     beforeAll(async () => {
         extensionConnection = await ExtensionPuppeteerConnection.connect(browser);
@@ -20,6 +21,9 @@ describe('Launchpad (popup page)', () => {
             });
         });
 
+        // We re-use the default jest-puppeteer page because it automatically handles failing on console.error
+        popupPage = page;
+
         // This is important; without this, UI simulation (like click()) will time out.
         page.bringToFront();
     });
@@ -29,7 +33,6 @@ describe('Launchpad (popup page)', () => {
     });
 
     it('should open the telemetry prompt on first run', async () => {
-        const popupPage = page;
         await popupPage.goto(extensionConnection.getExtensionUrl(`popup/popup.html?tabId=${targetPageTabId}`));
 
         await popupPage.waitForSelector('.telemetry-permission-dialog-modal');
@@ -40,7 +43,6 @@ describe('Launchpad (popup page)', () => {
     });
 
     it('should dismiss the telemetry prompt after hitting "OK"', async () => {
-        const popupPage = page;
         await popupPage.goto(extensionConnection.getExtensionUrl(`popup/popup.html?tabId=${targetPageTabId}`));
 
         await popupPage.waitForSelector('.telemetry-permission-dialog-modal');
