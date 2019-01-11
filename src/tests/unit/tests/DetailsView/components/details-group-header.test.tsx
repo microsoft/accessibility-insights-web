@@ -30,7 +30,7 @@ describe('DetailsGroupHeader', () => {
 
     it('renders', () => {
         const actual = shallow(<DetailsGroupHeader {...props} />);
-        const onRenderTitle = actual.prop('onRenderTitle');
+        const onRenderTitle: () => JSX.Element = actual.prop('onRenderTitle');
         const renderedTitle = shallow(onRenderTitle());
 
         expect(actual.getElement()).toMatchSnapshot();
