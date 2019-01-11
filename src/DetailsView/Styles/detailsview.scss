@@ -1237,6 +1237,8 @@ div.insights-dialog-main-override {
                 .details-icon-error {
                     color: $negative-outcome;
                     padding-right: 0.3em;
+                    padding-bottom: 0.1em; 
+                    vertical-align: text-bottom;
                 }
 
                 .details-disabled-message,
@@ -1268,10 +1270,6 @@ div.insights-dialog-main-override {
                         }
                     }
 
-                    .guidance-links {
-                        padding-left: 0.3em;
-                    }
-
                     .ms-Link {
                         color: $communication-shade-10;
                     }
@@ -1280,14 +1278,10 @@ div.insights-dialog-main-override {
                         color: $communication-shade-30;
                     }
 
-                    .ms-GroupHeader-title {
+                    .details-group-header-title {
                         font-size: $fontSizeM;
                         color: $neutral-100;
                         font-weight: $fontWeightSemiBold;
-
-                        .ms-Link {
-                            padding: 1px 3px;
-                        }
                     }
 
                     .ms-GroupHeader-expand {

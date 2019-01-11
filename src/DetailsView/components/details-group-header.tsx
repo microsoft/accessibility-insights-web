@@ -26,7 +26,7 @@ export class DetailsGroupHeader extends React.Component<DetailsGroupHeaderProps>
 
     @autobind
     public onRenderTitle(): JSX.Element {
-        return <>
+        return <div className="details-group-header-title">
             {this.renderRuleLink(this.props.group)}
             {': '}
             {this.props.group.name}
@@ -34,18 +34,16 @@ export class DetailsGroupHeader extends React.Component<DetailsGroupHeaderProps>
             {this.renderCount(this.props)}
             {' '}
             {this.renderGuidanceLinks(this.props.group)}
-        </>;
+        </div>;
     }
 
     private renderRuleLink(group: DetailsGroup): JSX.Element {
-        return (
-            <NewTabLink
-                href={group.ruleUrl}
-                onClick={this.onRuleLinkClick}
-            >
-                {group.key}
-            </NewTabLink>
-        );
+        return <NewTabLink
+            href={group.ruleUrl}
+            onClick={this.onRuleLinkClick}
+        >
+            {group.key}
+        </NewTabLink>;
     }
 
     private renderCount(props: DetailsGroupHeaderProps): JSX.Element {
