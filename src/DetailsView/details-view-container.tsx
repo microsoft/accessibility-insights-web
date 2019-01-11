@@ -6,7 +6,6 @@ import * as React from 'react';
 
 import { IAssessmentsProvider } from '../assessments/types/iassessments-provider';
 import { withStoreSubscription } from '../common/components/with-store-subscription';
-import { PivotConfiguration } from '../common/configs/pivot-configuration';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
@@ -33,7 +32,6 @@ import { DetailsViewMainContent, DetailsViewMainContentDeps } from './details-vi
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
-import { SelectedDetailsViewProvider } from './handlers/selected-details-view-provider';
 import { ReportGenerator } from './reports/report-generator';
 
 export type DetailsViewContainerDeps = {
@@ -49,7 +47,6 @@ export interface IDetailsViewContainerProps {
     storeActionCreator: IStoreActionMessageCreator;
     scopingActionMessageCreator: ScopingActionMessageCreator;
     inspectActionMessageCreator: InspectActionMessageCreator;
-    pivotConfiguration: PivotConfiguration;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     storesHub: IClientStoresHub<IDetailsViewContainerState>;
     issuesTableHandler: IssuesTableHandler;
@@ -58,7 +55,6 @@ export interface IDetailsViewContainerProps {
     previewFeatureFlagsHandler: PreviewFeatureFlagsHandler;
     scopingFlagsHandler: PreviewFeatureFlagsHandler;
     dropdownClickHandler: DropdownClickHandler;
-    selectedDetailsViewHelper: SelectedDetailsViewProvider;
     assessmentsProvider: IAssessmentsProvider;
     storeState: IDetailsViewContainerState;
 }
@@ -176,17 +172,17 @@ export class DetailsViewContainer extends React.Component<IDetailsViewContainerP
             this.props.deps.getDetailsSwitcherNavConfiguration({
                 selectedDetailsViewPivot: storeState.visualizationStoreData.selectedDetailsViewPivot,
             });
+        const selectedTest = selectedDetailsViewSwitcherNavConfiguration.getSelectedDetailsView(storeState);
         return (
             <DetailsViewMainContent
                 deps={deps}
                 tabStoreData={storeState.tabStoreData}
                 assessmentStoreData={storeState.assessmentStoreData}
                 featureFlagStoreData={storeState.featureFlagStoreData}
-                selectedTest={this.props.selectedDetailsViewHelper.getSelectedDetailsView(storeState)}
+                selectedTest={selectedTest}
                 detailsViewStoreData={storeState.detailsViewStoreData}
                 visualizationStoreData={storeState.visualizationStoreData}
                 visualizationScanResultData={storeState.visualizationScanResultStoreData}
-                pivotConfiguration={this.props.pivotConfiguration}
                 visualizationConfigurationFactory={this.props.visualizationConfigurationFactory}
                 assessmentsProvider={this.props.assessmentsProvider}
                 dropdownClickHandler={this.props.dropdownClickHandler}
