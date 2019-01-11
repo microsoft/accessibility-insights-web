@@ -10,12 +10,12 @@ import { NewTabLink } from '../../common/components/new-tab-link';
 import { GuidanceLinks } from './guidance-links';
 import { DetailsGroup } from './issues-table-handler';
 
-export interface GroupHeaderProps extends IGroupDividerProps {
+export interface DetailsGroupHeaderProps extends IGroupDividerProps {
     countIcon?: JSX.Element;
     group: DetailsGroup;
 }
 
-export class DetailsGroupHeader extends React.Component<GroupHeaderProps> {
+export class DetailsGroupHeader extends React.Component<DetailsGroupHeaderProps> {
     public render(): JSX.Element {
         return (
             <GroupHeader
@@ -28,32 +28,40 @@ export class DetailsGroupHeader extends React.Component<GroupHeaderProps> {
     @autobind
     private onRenderTitle(): JSX.Element {
         return <>
-            {this.renderRuleLink(this.props)}
+            {this.renderRuleLink(this.props.group)}
             {': '}
             {this.props.group.name}
-            {' ('}
-            {this.props.countIcon}
             {' '}
-            {this.props.group.count}
-            {') '}
-            {this.renderGuidanceLinks(this.props)}
+            {this.renderCount(this.props)}
+            {' '}
+            {this.renderGuidanceLinks(this.props.group)}
         </>;
     }
 
-    private renderRuleLink(props: GroupHeaderProps): JSX.Element {
+    private renderRuleLink(group: DetailsGroup): JSX.Element {
         return (
             <NewTabLink
-                href={props.group.ruleUrl}
+                href={group.ruleUrl}
                 onClick={this.onRuleLinkClick}
             >
-                {props.group.key}
+                {group.key}
             </NewTabLink>
         );
     }
 
-    private renderGuidanceLinks(props: GroupHeaderProps): JSX.Element {
+    private renderCount(props: DetailsGroupHeaderProps): JSX.Element {
+        return <>
+            {'('}
+            {this.props.countIcon}
+            {' '}
+            {this.props.group.count}
+            {')'}
+        </>;
+    }
+
+    private renderGuidanceLinks(group: DetailsGroup): JSX.Element {
         return <GuidanceLinks
-            links={props.group.guidanceLinks}
+            links={group.guidanceLinks}
         />;
     }
 

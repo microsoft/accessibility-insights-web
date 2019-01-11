@@ -4,11 +4,11 @@ import { cloneDeep } from 'lodash';
 import { GroupHeader } from 'office-ui-fabric-react/lib/components/GroupedList/GroupHeader';
 import * as React from 'react';
 
-import { DetailsGroupHeader, GroupHeaderProps } from '../../../../../DetailsView/components/details-group-header';
+import { DetailsGroupHeader, DetailsGroupHeaderProps } from '../../../../../DetailsView/components/details-group-header';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('DetailsGroupHeader', () => {
-    let props: GroupHeaderProps;
+    let props: DetailsGroupHeaderProps;
 
     beforeEach(() => {
         props = {
