@@ -108,8 +108,6 @@ export class BrowserController {
                 // Required to work around https://github.com/GoogleChrome/puppeteer/pull/774
                 `--disable-extensions-except=${extensionPath}`,
                 `--load-extension=${extensionPath}`,
-                '--disable-dev-shm-usage',
-                '--no-sandbox',
             ],
         });
 

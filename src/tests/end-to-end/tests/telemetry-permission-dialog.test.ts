@@ -1,13 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserController } from '../common/browser-controller';
+import { getTestResourceUrl } from '../common/test-resources';
 import { E2E_TEST_TIMEOUT } from '../common/timeouts';
 
 describe('telemetry-permission-dialog', () => {
+    const arbitraryTargetUrl = getTestResourceUrl('all.html');
     let browserController: BrowserController;
-
-    // Replace this with the in-repo target URL once that user story is complete
-    const arbitraryTargetUrl = 'https://bing.com';
 
     beforeEach(async () => {
         browserController = await BrowserController.launch();

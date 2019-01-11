@@ -33,5 +33,7 @@
                 "Licensed under the MIT License."
             ]
         }
-    ]
+    ],
+    "editor.tabSize": 4,
+    "html.format.endWithNewline": true
 }
