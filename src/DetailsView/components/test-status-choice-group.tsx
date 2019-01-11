@@ -31,7 +31,7 @@ export class TestStatusChoiceGroup extends React.Component<ITestStatusChoiceGrou
                         className={ManualTestStatus[this.props.status]}
                         onChange={this.onChange}
                         componentRef={this.compomentRef}
-                        selectedKey={ManualTestStatus[this.props.status]}
+                        selectedKey={this.props.status === ManualTestStatus.UNKNOWN ? undefined : ManualTestStatus[this.props.status]}
                         options={[
                             { key: ManualTestStatus[ManualTestStatus.PASS], text: 'Pass', onRenderLabel: this.onRenderLabel },
                             { key: ManualTestStatus[ManualTestStatus.FAIL], text: 'Fail', onRenderLabel: this.onRenderLabel },

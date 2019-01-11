@@ -61,6 +61,26 @@ describe('TestStatusChoiceGroup', () => {
         expect(labels.at(1).getDOMNode().innerHTML).toBe('');
     });
 
+    test('render: selectedKey is set to undefined as status is UNKNOWN', () => {
+        const props: ITestStatusChoiceGroupProps = {
+            status: ManualTestStatus.UNKNOWN,
+        } as ITestStatusChoiceGroupProps;
+
+        const actual = shallow(<TestStatusChoiceGroup {...props} />);
+
+        expect(actual.getElement()).toMatchSnapshot();
+    });
+
+    test('render: selectedKey is not set to undefined as status is PASS', () => {
+        const props: ITestStatusChoiceGroupProps = {
+            status: ManualTestStatus.PASS,
+        } as ITestStatusChoiceGroupProps;
+
+        const actual = shallow(<TestStatusChoiceGroup {...props} />);
+
+        expect(actual.getElement()).toMatchSnapshot();
+    })
+
     test('verify onChange', () => {
         const onGroupChoiceChangeMock = Mock.ofInstance((status, test, step, selector) => {});
         const onUndoMock = Mock.ofInstance((test, step, selector) => {});
