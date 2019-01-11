@@ -6,9 +6,11 @@ export interface NewLaunchpadPageOptions {
     suppressFirstTimeTelemetryDialog: boolean;
 }
 
-// We want this to be a precise as possible because we use it to identify our own extension's background page
-// and want to avoid accidentally matching any other built-in extensions' background pages
+// We want these to be as precise as possible, to avoid accidentally matching other built-in extensions
+// that might also be running concurrently (we've seen this even though we use --disable-extensions-except=ours
+// when we launch puppeteer).
 const backgroundPageUrlRegex = /(^chrome-extension:\/\/\w+)\/background\/background.html$/;
+const detailsViewUrlRegex = /(^chrome-extension:\/\/\w+)\/DetailsView\/detailsView.html(\?tabId=(\d+))?$/;
 
 export class BrowserController {
     private alreadySuppressedTelemetryDialog: boolean = false;
@@ -23,7 +25,10 @@ export class BrowserController {
         const browser = await BrowserController.launchNewBrowser();
         const backgroundPage = await BrowserController.waitForExtensionBackgroundPage(browser);
 
-        const backgroundPageUrl = backgroundPage.url();
+        // It's important to use .target().url() instead of just .url() here because there is an inconsistent
+        // race condition where sometimes backgroundPage.mainFrame() doesn't get populated correctly, and so
+        // url() (which is implemented in terms of mainFrame()) shows as ':' incorrectly
+        const backgroundPageUrl = backgroundPage.target().url();
         const extensionBaseUrl = backgroundPageUrl.match(backgroundPageUrlRegex)[1];
 
         return new BrowserController(extensionBaseUrl, browser, backgroundPage);
@@ -36,7 +41,9 @@ export class BrowserController {
 
     public async newPage(url: string): Promise<Puppeteer.Page> {
         const page = await this.browser.newPage();
-        page.on('pageerror', BrowserController.onPageError);
+        page.on('pageerror', error => {
+            BrowserController.forceTestFailure(`Unhandled pageerror (console.error) emitted from page '${page.url()}': ${error}`);
+        });
         await page.goto(url);
         return page;
     }
@@ -51,6 +58,13 @@ export class BrowserController {
         const launchpadPage = await this.newLaunchpadPageForExistingTarget(targetTabId, options);
 
         return launchpadPage;
+    }
+
+    public async waitForDetailsPage() {
+        const detailsPageTarget = await this.browser.waitForTarget(t => detailsViewUrlRegex.test(t.url()));
+        const detailsPage = await detailsPageTarget.page();
+        detailsPage.waitFor('header', {timeout: 2000});
+        return detailsPage;
     }
 
     public async closeAllPages() {
@@ -101,10 +115,6 @@ export class BrowserController {
 
         browser.on('disconnected', BrowserController.onBrowserDisconnected);
         return browser;
-    }
-
-    private static onPageError(error: Error) {
-        BrowserController.forceTestFailure(`Unhandled pageerror (console.error) emitted from page '${page.url()}': ${error}`);
     }
 
     private static onBrowserDisconnected() {

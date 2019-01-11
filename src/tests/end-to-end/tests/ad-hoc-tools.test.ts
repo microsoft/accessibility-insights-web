@@ -24,6 +24,7 @@ describe('Ad hoc tools', () => {
         expect(title).toBe('Accessibility Insights for Web');
     });
 
+    /*
     it ('should toggle automated check visualizations when the "Automated checks" Ad hoc tool switch is toggled', async () => {
         throw 'not implemented';
     });
@@ -55,4 +56,5 @@ describe('Ad hoc tools', () => {
     it ('should maintain the state of Ad hoc tools when dismissing and repening the Launchpad', async () => {
         throw 'not implemented';
     });
+    */
 });
