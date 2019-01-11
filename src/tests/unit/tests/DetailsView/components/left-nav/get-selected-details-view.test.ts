@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IAssessmentStoreData } from '../../../../../../common/types/store-data/iassessment-result-data';
 import {
     getAssessmentSelectedDetailsView,
-    GetSelectedDetailsViewProps,
+    GetAssessmentSelectedDetailsViewProps,
     getFastPassSelectedDetailsView,
+    GetFastPassSelectedDetailsViewProps,
 } from '../../../../../../DetailsView/components/left-nav/get-selected-details-view';
 
 describe('getAssessmentSelectedDetailsView', () => {
@@ -16,7 +16,7 @@ describe('getAssessmentSelectedDetailsView', () => {
                     selectedTestType: expectedValue,
                 },
             },
-        } as GetSelectedDetailsViewProps;
+        } as GetAssessmentSelectedDetailsViewProps;
 
         expect(getAssessmentSelectedDetailsView(props)).toEqual(expectedValue);
     });
@@ -29,7 +29,7 @@ describe('getFastPassSelectedDetailsView', () => {
             visualizationStoreData: {
                 selectedFastPassDetailsView: expectedValue,
             },
-        } as GetSelectedDetailsViewProps;
+        } as GetFastPassSelectedDetailsViewProps;
 
         expect(getFastPassSelectedDetailsView(props)).toEqual(expectedValue);
     });
