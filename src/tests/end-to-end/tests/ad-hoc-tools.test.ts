@@ -2,12 +2,7 @@
 // Licensed under the MIT License.
 import { BrowserController } from '../common/browser-controller';
 
-// We want this to be greater than default timeout of puppeteer's waitFor* functions (30s),
-// because test failures of the form "such and such puppeteer operation timed out" are much
-// more actionable than test failures of the form "such and such test timed out".
-const E2E_TEST_TIMEOUT = 60000;
-
-describe('Launchpad', () => {
+describe('Ad hoc tools', () => {
     let browserController: BrowserController;
 
     // Replace this with the in-repo target URL once that user story is complete
@@ -27,25 +22,37 @@ describe('Launchpad', () => {
         await launchpadPage.waitForSelector('[role="heading"]');
         const title = await launchpadPage.$eval('[role="heading"]', e => e.textContent);
         expect(title).toBe('Accessibility Insights for Web');
-    }, E2E_TEST_TIMEOUT);
+    });
 
-    it('should open a FastPass details view with Automated checks selected when the FastPass link is clicked', async () => {
+    it ('should toggle automated check visualizations when the "Automated checks" Ad hoc tool switch is toggled', async () => {
         throw 'not implemented';
     });
 
-    it('should open an Assessment details view when the Assessment link is clicked', async () => {
+    it ('should toggle images to be monochrome when the "Color" Ad hoc tool switch is toggled', async () => {
         throw 'not implemented';
     });
 
-    it('should switch to the Ad hoc tools view when the Ad hoc tools link is clicked', async () => {
+    it ('should toggle heading visualizations when the "Headings" Ad hoc tool switch is toggled', async () => {
         throw 'not implemented';
     });
 
-    it('should open a details view with the Settings panel visible when the settings icon is clicked', async () => {
+    it ('should toggle landmark visualizations when the "Landmarks" Ad hoc tool switch is toggled', async () => {
         throw 'not implemented';
     });
 
-    it('should open a details view with the Settings panel visible when the settings icon is clicked', async () => {
+    it ('should refocus on the target page when the "Tab stops" Ad hoc tool switch is enabled', async () => {
+        throw 'not implemented';
+    });
+
+    it ('should toggle tab stop visualizations when the "Tab stops" Ad hoc tool switch is toggled', async () => {
+        throw 'not implemented';
+    });
+
+    it ('should switch to the main Launchpad view when the "Back to launch pad" link is clicked', async () => {
+        throw 'not implemented';
+    });
+
+    it ('should maintain the state of Ad hoc tools when dismissing and repening the Launchpad', async () => {
         throw 'not implemented';
     });
 });
