@@ -19,9 +19,9 @@ describe('Ad hoc tools', () => {
     it('should display the correct title', async () => {
         const launchpadPage = await browserController.newLaunchpadPage(arbitraryTargetUrl);
 
-        await launchpadPage.waitForSelector('[role="heading"]');
-        const title = await launchpadPage.$eval('[role="heading"]', e => e.textContent);
-        expect(title).toBe('Accessibility Insights for Web');
+        await expect(launchpadPage).toClick('button', { text: 'Ad hoc tools' });
+
+        await expect(launchpadPage).toFill('[role="heading"]', 'Accessibility Insights for Web');
     });
 
     /*
