@@ -3,7 +3,6 @@
 import { autobind } from '@uifabric/utilities';
 import { GroupHeader } from 'office-ui-fabric-react/lib/components/GroupedList/GroupHeader';
 import { IGroupDividerProps } from 'office-ui-fabric-react/lib/DetailsList';
-import { FocusZone } from 'office-ui-fabric-react/lib/FocusZone';
 import * as React from 'react';
 
 import { NewTabLink } from '../../common/components/new-tab-link';
@@ -11,8 +10,8 @@ import { GuidanceLinks } from './guidance-links';
 import { DetailsGroup } from './issues-table-handler';
 
 export interface DetailsGroupHeaderProps extends IGroupDividerProps {
-    countIcon?: JSX.Element;
     group: DetailsGroup;
+    countIcon: JSX.Element;
 }
 
 export class DetailsGroupHeader extends React.Component<DetailsGroupHeaderProps> {

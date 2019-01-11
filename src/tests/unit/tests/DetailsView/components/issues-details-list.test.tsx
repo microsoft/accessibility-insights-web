@@ -121,7 +121,7 @@ describe('IssuesDetailsListTest', () => {
         const rowData = {
             selector: 'testSelector',
             bugButton: showBugFiling ? <BugButton/> : null,
-        }
+        };
         return [rowData as IDetailsRowData, rowData as IDetailsRowData];
     }
 

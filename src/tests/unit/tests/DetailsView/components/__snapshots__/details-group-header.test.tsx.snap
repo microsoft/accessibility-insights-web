@@ -2,6 +2,11 @@
 
 exports[`DetailsGroupHeader renders 1`] = `
 <StyledGroupHeaderBase
+  countIcon={
+    <i
+      className="test-icon"
+    />
+  }
   group={
     Object {
       "count": 2,
@@ -34,6 +39,9 @@ exports[`DetailsGroupHeader renders the title 1`] = `
    
   <React.Fragment>
     (
+    <i
+      className="test-icon"
+    />
      
     2
     )

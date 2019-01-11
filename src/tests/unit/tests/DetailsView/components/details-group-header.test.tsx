@@ -25,6 +25,7 @@ describe('DetailsGroupHeader', () => {
                 ],
                 ruleUrl: 'test rule url',
             },
+            countIcon: <i className="test-icon"></i>,
         };
     });
 
@@ -42,20 +43,6 @@ describe('DetailsGroupHeader', () => {
         const actual = testObject.onRenderTitle();
 
         expect(actual).toMatchSnapshot();
-    });
-
-    it('renders provided countIcon in header', () => {
-        const testIcon = <i className="test-icon"></i>;
-        props.countIcon = testIcon;
-
-        const testObject = new DetailsGroupHeader(props);
-        const actual = testObject.render();
-        const focusZoneActual = actual.props.children;
-        const groupHeaderTitleActual = focusZoneActual.props.children[4];
-        const headerCountActual = groupHeaderTitleActual.props.children[2];
-        const headerCountIconActual = headerCountActual.props.children[1];
-
-        expect(headerCountIconActual).toEqual(testIcon);
     });
 
     it('stops event propagation when rule link clicked', () => {
