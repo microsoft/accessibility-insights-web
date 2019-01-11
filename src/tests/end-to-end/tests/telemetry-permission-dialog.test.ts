@@ -24,8 +24,7 @@ describe('telemetry-permission-dialog', () => {
 
         await launchpadPage.waitForSelector('.telemetry-permission-dialog-modal');
 
-        const title = await launchpadPage.$eval('#telemetry-permission-title', element => element.textContent);
-        expect(title).toBe('We need your help');
+        await expect(launchpadPage).toFill('#telemetry-permission-title', 'We need your help');
     }, E2E_TEST_TIMEOUT);
 
     it('should be dismissed by clicking the OK button', async () => {
@@ -35,7 +34,7 @@ describe('telemetry-permission-dialog', () => {
 
         // Click the OK button on the dialog
         await launchpadPage.waitForSelector('.telemetry-permission-dialog-modal');
-        await launchpadPage.click('button.start-using-product-button');
+        await expect(launchpadPage).toClick('button.start-using-product-button');
 
         // Verify the dialog is dismissed from the original launchpad
         await launchpadPage.waitFor(() => !document.querySelector('.telemetry-permission-dialog-modal'));

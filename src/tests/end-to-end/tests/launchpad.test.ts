@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { BrowserController } from '../common/browser-controller';
 import { E2E_TEST_TIMEOUT } from '../common/timeouts';
+import { expect } from 'expect-puppeteer';
 
 describe('Launchpad', () => {
     let browserController: BrowserController;
@@ -20,9 +21,7 @@ describe('Launchpad', () => {
     it('should display the correct title', async () => {
         const launchpadPage = await browserController.newLaunchpadPage(arbitraryTargetUrl);
 
-        await launchpadPage.waitForSelector('[role="heading"]');
-        const title = await launchpadPage.$eval('[role="heading"]', e => e.textContent);
-        expect(title).toBe('Accessibility Insights for Web');
+        await expect(launchpadPage).toFill('[role="heading"]', 'Accessibility Insights for Web');
     }, E2E_TEST_TIMEOUT);
 
     it('should open a FastPass details view with Automated checks selected when the FastPass link is clicked', async () => {
