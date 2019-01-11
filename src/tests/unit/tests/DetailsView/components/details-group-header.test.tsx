@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { cloneDeep } from 'lodash';
-import { GroupHeader } from 'office-ui-fabric-react/lib/components/GroupedList/GroupHeader';
 import * as React from 'react';
 
 import { DetailsGroupHeader, DetailsGroupHeaderProps } from '../../../../../DetailsView/components/details-group-header';

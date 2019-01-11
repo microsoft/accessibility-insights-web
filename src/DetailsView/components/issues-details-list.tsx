@@ -6,7 +6,6 @@ import {
     DetailsList,
     DetailsListLayoutMode,
     IColumn,
-    IDetailsHeaderProps,
     ISelection,
     SelectionMode,
 } from 'office-ui-fabric-react/lib/DetailsList';
@@ -18,7 +17,7 @@ import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag
 import { RuleResult } from '../../scanner/iruleresults';
 import { DetailsGroupHeader, DetailsGroupHeaderProps } from './details-group-header';
 import { FailureDetails } from './failure-details';
-import { IDetailsRowData, DetailsGroup, IssuesTableHandler } from './issues-table-handler';
+import { DetailsGroup, IDetailsRowData, IssuesTableHandler } from './issues-table-handler';
 
 export interface IssuesDetailsListProps {
     violations: (RuleResult)[];
