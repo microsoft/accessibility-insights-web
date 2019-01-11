@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { BrowserController } from '../common/browser-controller';
 import { E2E_TEST_TIMEOUT } from '../common/timeouts';
-import { expect } from 'expect-puppeteer';
 
 describe('Launchpad', () => {
     let browserController: BrowserController;
