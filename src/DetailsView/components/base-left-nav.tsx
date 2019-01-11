@@ -4,8 +4,6 @@ import { autobind } from '@uifabric/utilities';
 import { INavLink, Nav } from 'office-ui-fabric-react/lib/Nav';
 import * as React from 'react';
 
-import { DetailsViewLeftNav } from './details-view-left-nav';
-
 export type onBaseLeftNavItemClick = (event: React.MouseEvent<HTMLElement>, item: BaseLeftNavLink) => void;
 export type onBaseLeftNavItemRender = (link: BaseLeftNavLink, renderIcon: (link: BaseLeftNavLink) => JSX.Element) => JSX.Element;
 
@@ -21,7 +19,13 @@ export interface BaseLeftNavLink extends INavLink {
     onClickNavLink: onBaseLeftNavItemClick;
 }
 
+export interface BaseLeftNavLinkProps {
+    link: BaseLeftNavLink;
+    renderIcon: (link: BaseLeftNavLink) => JSX.Element;
+}
+
 export class BaseLeftNav extends React.Component<BaseLeftNavProps> {
+    public static pivotItemsClassName = 'details-view-test-nav-area';
     public render(): JSX.Element {
         const {
             selectedKey,
@@ -30,7 +34,7 @@ export class BaseLeftNav extends React.Component<BaseLeftNavProps> {
 
         return (
             <Nav
-                className={DetailsViewLeftNav.pivotItemsClassName}
+                className={BaseLeftNav.pivotItemsClassName}
                 selectedKey={selectedKey}
                 groups={[{
                     links,

@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { mapValues } from 'lodash';
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
@@ -11,17 +10,23 @@ import {
 } from '../../../../common/configs/visualization-configuration-factory';
 import { NamedSFC, ReactSFCWithDisplayName } from '../../../../common/react/named-sfc';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
-import { IAssessmentData, IAssessmentNavState, IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
+import {
+    IAssessmentData,
+    IAssessmentNavState,
+    IAssessmentStoreData,
+} from '../../../../common/types/store-data/iassessment-result-data';
 import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';
 import { IScanData, ITestsEnabledState } from '../../../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../DetailsView/actions/details-view-action-message-creator';
-import { DetailsViewLeftNav } from '../../../../DetailsView/components/details-view-left-nav';
 import { DetailsRightPanelConfiguration } from '../../../../DetailsView/components/details-view-right-panel';
 import { DetailsViewSwitcherNavConfiguration } from '../../../../DetailsView/components/details-view-switcher-nav';
+import { DetailsViewLeftNavV2 } from '../../../../DetailsView/components/left-nav/details-view-left-nav-v2';
 import { TabInfo } from '../../../../DetailsView/components/tab-info';
 import { DetailsViewMainContent, IDetailsViewMainContentProps } from '../../../../DetailsView/details-view-main-content';
-import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
+import {
+    DetailsViewToggleClickHandlerFactory,
+} from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
@@ -45,11 +50,14 @@ describe('DetailsViewMainContentTest', () => {
                 = NamedSFC<IDetailsViewMainContentProps>('test', _ => null);
             const CommandBarStub: Readonly<ReactSFCWithDisplayName<IDetailsViewMainContentProps>>
                 = NamedSFC<IDetailsViewMainContentProps>('test', _ => null);
+            const LeftNavStub: Readonly<ReactSFCWithDisplayName<IDetailsViewMainContentProps>>
+                = NamedSFC<IDetailsViewMainContentProps>('test', _ => null);
             rightPanelConfig = {
                 RightPanel: RightPanelStub,
             } as DetailsRightPanelConfiguration;
             switcherNavConfig = {
                 CommandBar: CommandBarStub,
+                LeftNav: LeftNavStub,
             } as DetailsViewSwitcherNavConfiguration;
             configFactoryMock = Mock.ofType(VisualizationConfigurationFactory, MockBehavior.Strict);
             clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory, MockBehavior.Strict);
@@ -189,18 +197,9 @@ describe('DetailsViewMainContentTest', () => {
 
     function buildLeftNav(givenProps: IDetailsViewMainContentProps): JSX.Element {
         return (
-            <div className="left-nav main-nav">
-                <DetailsViewLeftNav
-                    deps={givenProps.deps}
-                    featureFlagStoreData={givenProps.featureFlagStoreData}
-                    selectedDetailsView={givenProps.selectedTest}
-                    selectedPivot={givenProps.visualizationStoreData.selectedDetailsViewPivot}
-                    actionCreator={givenProps.deps.detailsViewActionMessageCreator}
-                    assessmentsProvider={givenProps.assessmentsProvider}
-                    assessmentsData={mapValues(givenProps.assessmentStoreData.assessments, data => data.testStepStatus)}
-                    rightPanelConfiguration={givenProps.rightPanelConfiguration}
-                />
-            </div>
+            <DetailsViewLeftNavV2
+                {...givenProps}
+            />
         );
     }
 

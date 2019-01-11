@@ -3,9 +3,9 @@
 import * as React from 'react';
 
 import { NamedSFC } from '../../../common/react/named-sfc';
-import { LeftNavLinkProps } from '../details-view-left-nav';
+import { BaseLeftNavLinkProps } from '../base-left-nav';
 
-export const TestViewLeftNavLink = NamedSFC<LeftNavLinkProps>('TestViewLeftNavLink', ({ link, renderIcon }) => {
+export const TestViewLeftNavLink = NamedSFC<BaseLeftNavLinkProps>('TestViewLeftNavLink', ({ link, renderIcon }) => {
     return (
         <div
             className={'button-flex-container'}
