@@ -24,7 +24,6 @@ import { DetailsViewContainerDeps, IDetailsViewContainerProps } from '../../../.
 import { AssessmentInstanceTableHandler } from '../../../../DetailsView/handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from '../../../../DetailsView/handlers/preview-feature-flags-handler';
-import { SelectedDetailsViewProvider } from '../../../../DetailsView/handlers/selected-details-view-provider';
 import { StoreMocks } from './store-mocks';
 
 export class DetailsViewContainerPropsBuilder {
@@ -47,7 +46,6 @@ export class DetailsViewContainerPropsBuilder {
     private scopingFlagsHandler: PreviewFeatureFlagsHandler;
     private dropdownClickHandler: DropdownClickHandler;
     private assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
-    private selectedDetailsViewHelper: SelectedDetailsViewProvider;
     private selectedDetailsViewType: VisualizationType;
     private isSelectedDetailsViewSet: boolean = false;
     private assessmentProvider: IAssessmentsProvider;
@@ -128,11 +126,6 @@ export class DetailsViewContainerPropsBuilder {
         return this;
     }
 
-    public setSelectedDetailsViewHelper(selectedDetailsViewHelper: SelectedDetailsViewProvider): DetailsViewContainerPropsBuilder {
-        this.selectedDetailsViewHelper = selectedDetailsViewHelper;
-        return this;
-    }
-
     public setStoresHubMock(hub: BaseClientStoresHub<any>): DetailsViewContainerPropsBuilder{
         this.storesHub = hub;
         return this;
@@ -162,14 +155,6 @@ export class DetailsViewContainerPropsBuilder {
 
         const storeState = this.storesHub ? this.storesHub.getAllStoreData() : null;
 
-        if (this.isSelectedDetailsViewSet) {
-            const selectedDetailsViewHelperMock = Mock.ofType(SelectedDetailsViewProvider);
-            selectedDetailsViewHelperMock
-                .setup(s => s.getSelectedDetailsView(It.isAny()))
-                .returns(() => this.selectedDetailsViewType);
-            this.selectedDetailsViewHelper = selectedDetailsViewHelperMock.object;
-        }
-
         return {
             deps: this.deps,
             storeActionCreator: this.storeActionCreator,
@@ -185,7 +170,6 @@ export class DetailsViewContainerPropsBuilder {
             scopingFlagsHandler: this.scopingFlagsHandler,
             dropdownClickHandler: this.dropdownClickHandler,
             assessmentInstanceTableHandler: this.assessmentInstanceTableHandler,
-            selectedDetailsViewHelper: this.selectedDetailsViewHelper,
             scopingActionMessageCreator: this.scopingActionMessageCreator,
             inspectActionMessageCreator: this.inspectActionMessageCreator,
             assessmentsProvider: this.assessmentProvider,

@@ -19,7 +19,6 @@ import { DetailsViewContainerDeps, IDetailsViewContainerState, IDetailsViewConta
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
-import { SelectedDetailsViewProvider } from './handlers/selected-details-view-provider';
 import { ReportGenerator } from './reports/report-generator';
 import { withStoreSubscription } from '../common/components/with-store-subscription';
 
@@ -44,7 +43,6 @@ export class DetailsViewRenderer implements IDetailsViewRenderer {
     private previewFeatureFlagsHandler: PreviewFeatureFlagsHandler;
     private scopingFlagsHandler: PreviewFeatureFlagsHandler;
     private dropdownClickHandler: DropdownClickHandler;
-    private selectedDetailsViewHelper: SelectedDetailsViewProvider;
     private assessmentsProvider: IAssessmentsProvider;
 
     constructor(
@@ -65,7 +63,6 @@ export class DetailsViewRenderer implements IDetailsViewRenderer {
         previewFeatureFlagsHandler: PreviewFeatureFlagsHandler,
         scopingFlagsHandler: PreviewFeatureFlagsHandler,
         dropdownClickHandler: DropdownClickHandler,
-        selectedDetailsViewHelper: SelectedDetailsViewProvider,
         assessmentsProvider: IAssessmentsProvider,
         private documentManipulator: DocumentManipulator,
     ) {
@@ -87,7 +84,6 @@ export class DetailsViewRenderer implements IDetailsViewRenderer {
         this.previewFeatureFlagsHandler = previewFeatureFlagsHandler;
         this.scopingFlagsHandler = scopingFlagsHandler;
         this.dropdownClickHandler = dropdownClickHandler;
-        this.selectedDetailsViewHelper = selectedDetailsViewHelper;
         this.assessmentsProvider = assessmentsProvider;
     }
 
@@ -111,7 +107,6 @@ export class DetailsViewRenderer implements IDetailsViewRenderer {
                 previewFeatureFlagsHandler={this.previewFeatureFlagsHandler}
                 scopingFlagsHandler={this.scopingFlagsHandler}
                 dropdownClickHandler={this.dropdownClickHandler}
-                selectedDetailsViewHelper={this.selectedDetailsViewHelper}
                 scopingActionMessageCreator={this.scopingActionMessageCreator}
                 inspectActionMessageCreator={this.inspectActionMessageCreator}
                 assessmentsProvider={this.assessmentsProvider}

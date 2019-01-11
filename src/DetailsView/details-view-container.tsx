@@ -33,7 +33,6 @@ import { DetailsViewMainContent, DetailsViewMainContentDeps } from './details-vi
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
-import { SelectedDetailsViewProvider } from './handlers/selected-details-view-provider';
 import { ReportGenerator } from './reports/report-generator';
 
 export type DetailsViewContainerDeps = {
@@ -58,7 +57,6 @@ export interface IDetailsViewContainerProps {
     previewFeatureFlagsHandler: PreviewFeatureFlagsHandler;
     scopingFlagsHandler: PreviewFeatureFlagsHandler;
     dropdownClickHandler: DropdownClickHandler;
-    selectedDetailsViewHelper: SelectedDetailsViewProvider;
     assessmentsProvider: IAssessmentsProvider;
     storeState: IDetailsViewContainerState;
 }
@@ -176,13 +174,14 @@ export class DetailsViewContainer extends React.Component<IDetailsViewContainerP
             this.props.deps.getDetailsSwitcherNavConfiguration({
                 selectedDetailsViewPivot: storeState.visualizationStoreData.selectedDetailsViewPivot,
             });
+        const selectedTest = selectedDetailsViewSwitcherNavConfiguration.getSelectedDetailsView(storeState);
         return (
             <DetailsViewMainContent
                 deps={deps}
                 tabStoreData={storeState.tabStoreData}
                 assessmentStoreData={storeState.assessmentStoreData}
                 featureFlagStoreData={storeState.featureFlagStoreData}
-                selectedTest={this.props.selectedDetailsViewHelper.getSelectedDetailsView(storeState)}
+                selectedTest={selectedTest}
                 detailsViewStoreData={storeState.detailsViewStoreData}
                 visualizationStoreData={storeState.visualizationStoreData}
                 visualizationScanResultData={storeState.visualizationScanResultStoreData}

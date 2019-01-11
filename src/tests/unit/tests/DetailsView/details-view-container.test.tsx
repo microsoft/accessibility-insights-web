@@ -5,7 +5,6 @@ import { ISelection, Selection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { PivotConfiguration } from '../../../../common/configs/pivot-configuration';
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
 import { IStoreActionMessageCreator } from '../../../../common/message-creators/istore-action-message-creator';
 import { StoreActionMessageCreator } from '../../../../common/message-creators/store-action-message-creator';
@@ -27,7 +26,10 @@ import {
     GetDetailsSwitcherNavConfigurationProps,
 } from '../../../../DetailsView/components/details-view-switcher-nav';
 import { Header } from '../../../../DetailsView/components/header';
-import { DetailsViewRightContentPanelType } from '../../../../DetailsView/components/left-nav/details-view-right-content-panel-type';
+import {
+    DetailsViewRightContentPanelType,
+} from '../../../../DetailsView/components/left-nav/details-view-right-content-panel-type';
+import { GetSelectedDetailsViewProps } from '../../../../DetailsView/components/left-nav/get-selected-details-view';
 import {
     DetailsViewContainer,
     DetailsViewContainerDeps,
@@ -35,9 +37,10 @@ import {
     IDetailsViewContainerState,
 } from '../../../../DetailsView/details-view-container';
 import { DetailsViewMainContent } from '../../../../DetailsView/details-view-main-content';
-import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
+import {
+    DetailsViewToggleClickHandlerFactory,
+} from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from '../../../../DetailsView/handlers/preview-feature-flags-handler';
-import { SelectedDetailsViewProvider } from '../../../../DetailsView/handlers/selected-details-view-provider';
 import { DetailsViewStoreDataBuilder } from '../../common/details-view-store-data-builder';
 import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
 import { CreateTestAssessmentProviderWithFeatureFlag } from '../../common/test-assessment-provider';
@@ -147,7 +150,12 @@ describe('DetailsViewContainer', () => {
         it('render twice; should not call details view opened on 2nd render', () => {
             const storeActionCreator = Mock.ofType(StoreActionMessageCreator, MockBehavior.Strict);
             const clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory);
+            const getSelectedDetailsViewMock = Mock.ofInstance((props: GetSelectedDetailsViewProps) => null, MockBehavior.Strict);
             const rightContentPanelType = 'TestView';
+            const viewType = VisualizationType.Headings;
+            const switcherNavConfig = {
+                getSelectedDetailsView: getSelectedDetailsViewMock.object,
+            } as DetailsViewSwitcherNavConfiguration;
 
             const visualizationStoreData = new VisualizationStoreDataBuilder()
                 .build();
@@ -159,7 +167,7 @@ describe('DetailsViewContainer', () => {
                 .build();
 
             setupGetDetailsRightPanelConfiguration(rightContentPanelType, visualizationStoreData.selectedDetailsViewPivot, null);
-            setupGetSwitcherNavConfiguration(visualizationStoreData.selectedDetailsViewPivot, null);
+            setupGetSwitcherNavConfiguration(visualizationStoreData.selectedDetailsViewPivot, switcherNavConfig);
             setupActionMessageCreatorMock(detailsViewActionMessageCreator, visualizationStoreData.selectedDetailsViewPivot, 1);
 
             const storeMocks = new StoreMocks()
@@ -170,13 +178,21 @@ describe('DetailsViewContainer', () => {
             const props = new DetailsViewContainerPropsBuilder(deps)
                 .setStoreMocks(storeMocks)
                 .setStoreActionMessageCreator(storeActionCreator.object)
-                .setSelectedDetailsViewType(VisualizationType.Headings)
+                .setSelectedDetailsViewType(viewType)
                 .setClickHandlerFactory(clickHandlerFactoryMock.object)
                 .setStoresHubMock(createStoresHubMock(storeMocks).object)
                 .build();
 
             const testObject = new DetailsViewContainer(props);
+            const state = getState(storeMocks, -1, null);
             testObject.state = getState(storeMocks, -1, null);
+
+            getSelectedDetailsViewMock
+                .setup(gsdvm => gsdvm(It.isObjectWith({
+                    assessmentStoreData: state.assessmentStoreData,
+                    visualizationStoreData: state.visualizationStoreData,
+                })))
+                .returns(() => viewType);
 
             testObject.render();
 
@@ -364,17 +380,16 @@ describe('DetailsViewContainer', () => {
         const clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory);
         const previewFeatureFlagsHandlerMock = Mock.ofType(PreviewFeatureFlagsHandler);
         const dropdownClickHandler = Mock.ofType(DropdownClickHandler);
+        const getSelectedDetailsViewMock = Mock.ofInstance((props: GetSelectedDetailsViewProps) => null, MockBehavior.Strict);
         const rightContentPanelType = 'TestView';
         const rightContentPanelConfig = {} as DetailsRightPanelConfiguration;
-        const switcherNavConfig = {} as DetailsViewSwitcherNavConfiguration;
+        const switcherNavConfig = {
+            getSelectedDetailsView: getSelectedDetailsViewMock.object,
+        } as DetailsViewSwitcherNavConfiguration;
 
         const visualizationStoreData = new VisualizationStoreDataBuilder()
             .withSelectedDetailsViewPivot(DetailsViewPivotType.fastPass)
             .with('selectedAdhocDetailsView', viewType)
-            .build();
-
-        const tabStoreData = new TabStoreDataBuilder()
-            .with('isClosed', false)
             .build();
 
         setupActionMessageCreatorMock(
@@ -390,13 +405,6 @@ describe('DetailsViewContainer', () => {
         );
 
         setupGetSwitcherNavConfiguration(visualizationStoreData.selectedDetailsViewPivot, switcherNavConfig);
-
-        const selectedDetailsViewHelperMock = Mock.ofType(SelectedDetailsViewProvider);
-        selectedDetailsViewHelperMock
-            .setup(s => s.getSelectedDetailsView(It.isAny()))
-            .returns(() => viewType);
-
-        const pivotConfigurationMock = Mock.ofType(PivotConfiguration);
 
         const detailsViewState = new DetailsViewStoreDataBuilder()
             .withPreviewFeaturesOpen(isPreviewFeaturesOpen)
@@ -415,15 +423,21 @@ describe('DetailsViewContainer', () => {
             .setDropdownClickHandler(dropdownClickHandler.object)
             .setIssuesSelection(selectionMock.object)
             .setClickHandlerFactory(clickHandlerFactoryMock.object)
-            .setPivotConfiguration(pivotConfigurationMock.object)
             .setPreviewFeatureFlagsHandler(previewFeatureFlagsHandlerMock.object)
-            .setSelectedDetailsViewHelper(selectedDetailsViewHelperMock.object)
             .setAssessmentProvider(assessmentProviderMock.object)
             .setStoresHubMock(storesHubMock.object)
             .build();
 
         const testObject = new DetailsViewContainer(props);
-        testObject.state = getState(storeMocks, viewType, rightContentPanelConfig);
+        const state = getState(storeMocks, viewType, rightContentPanelConfig);
+        testObject.state = state;
+
+        getSelectedDetailsViewMock
+            .setup(gsdvm => gsdvm(It.isObjectWith({
+                assessmentStoreData: state.assessmentStoreData,
+                visualizationStoreData: state.visualizationStoreData,
+            })))
+            .returns(() => viewType);
 
         const expected: JSX.Element = (
             <div className="table column-layout main-wrapper">

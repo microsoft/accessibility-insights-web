@@ -20,7 +20,6 @@ import { DetailsViewRenderer } from '../../../../DetailsView/details-view-render
 import { AssessmentInstanceTableHandler } from '../../../../DetailsView/handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from '../../../../DetailsView/handlers/preview-feature-flags-handler';
-import { SelectedDetailsViewProvider } from '../../../../DetailsView/handlers/selected-details-view-provider';
 import { ReportGenerator } from '../../../../DetailsView/reports/report-generator';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
 
@@ -47,7 +46,6 @@ describe('DetailsViewRendererTest', () => {
         const scopingFlagsHandlerMock = Mock.ofType(PreviewFeatureFlagsHandler);
         const dropdownClickHandlerMock = Mock.ofType(DropdownClickHandler);
         const assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
-        const selectedDetailsViewHelperMock = Mock.ofType(SelectedDetailsViewProvider);
         const reportGeneratorMock = Mock.ofType(ReportGenerator);
         const assessmentsProviderMock = Mock.ofInstance(CreateTestAssessmentProvider());
 
@@ -82,7 +80,6 @@ describe('DetailsViewRendererTest', () => {
                             scopingFlagsHandler={scopingFlagsHandlerMock.object}
                             reportGenerator={reportGeneratorMock.object}
                             dropdownClickHandler={dropdownClickHandlerMock.object}
-                            selectedDetailsViewHelper={selectedDetailsViewHelperMock.object}
                             assessmentsProvider={assessmentsProviderMock.object}
                             storeState={null}
                         />,
@@ -110,7 +107,6 @@ describe('DetailsViewRendererTest', () => {
             previewFeatureFlagsHandlerMock.object,
             scopingFlagsHandlerMock.object,
             dropdownClickHandlerMock.object,
-            selectedDetailsViewHelperMock.object,
             assessmentsProviderMock.object,
             documentManipulatorMock.object,
         );

@@ -58,7 +58,6 @@ import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-t
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { MasterCheckBoxConfigProvider } from './handlers/master-checkbox-config-provider';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
-import { SelectedDetailsViewProvider } from './handlers/selected-details-view-provider';
 import { AssessmentReportHtmlGenerator } from './reports/assessment-report-html-generator';
 import { AssessmentReportModelBuilderFactory } from './reports/assessment-report-model-builder-factory';
 import {
@@ -128,7 +127,6 @@ if (isNaN(tabId) === false) {
                 ]);
 
                 const pivotConfiguration = new PivotConfiguration(featureFlagStore);
-                const selectedDetailsViewHelper: SelectedDetailsViewProvider = new SelectedDetailsViewProvider(pivotConfiguration);
                 const actionMessageCreator = new DetailsViewActionMessageCreator(
                     chromeAdapter.sendMessageToFrames,
                     tab.id,
@@ -223,8 +221,8 @@ if (isNaN(tabId) === false) {
                     visualizationStore,
                     assessmentStore,
                     GetDetailsRightPanelConfiguration,
+                    GetDetailsSwitcherNavConfiguration,
                     visualizationConfigurationFactory,
-                    selectedDetailsViewHelper,
                     dom,
                 );
                 documentTitleUpdater.initialize();
@@ -266,7 +264,6 @@ if (isNaN(tabId) === false) {
                     previewFeatureFlagsHandler,
                     scopingFlagsHandler,
                     dropdownClickHandler,
-                    selectedDetailsViewHelper,
                     Assessments,
                     documentElementSetter,
                 );
@@ -284,7 +281,6 @@ function createNullifiedRenderer(doc, render): DetailsViewRenderer {
         null,
         doc,
         render,
-        null,
         null,
         null,
         null,
