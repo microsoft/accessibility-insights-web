@@ -189,10 +189,12 @@ module.exports = function (grunt) {
                 options: {
                     // can be a configuration object or a filepath to tslint.json
                     configuration: "./tslint.json",
+                    project: "./tsconfig.json",
                     // If set to true, tslint errors will be reported, but not fail the task
                     // If set to false, tslint errors will be reported, and the task will fail
                     force: true,
                     fix: false,
+
                 },
                 files: {
                     src: ['src/**/*.{ts,tsx}'],
@@ -201,6 +203,7 @@ module.exports = function (grunt) {
             fix: {
                 options: {
                     configuration: "./tslint.json",
+                    project: "./tsconfig.json",
                     force: false,
                     fix: true,
                 },
