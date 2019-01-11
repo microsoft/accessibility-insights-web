@@ -13,10 +13,8 @@ export type GetFastPassSelectedDetailsViewProps = {
     visualizationStoreData: IVisualizationStoreData,
 };
 
-export const getAssessmentSelectedDetailsView = (props: GetAssessmentSelectedDetailsViewProps) => {
-    return props.assessmentStoreData.assessmentNavState.selectedTestType;
-};
+export const getAssessmentSelectedDetailsView =
+    (props: GetAssessmentSelectedDetailsViewProps) => props.assessmentStoreData.assessmentNavState.selectedTestType;
 
-export const getFastPassSelectedDetailsView = (props: GetFastPassSelectedDetailsViewProps) => {
-    return props.visualizationStoreData.selectedFastPassDetailsView;
-};
+export const getFastPassSelectedDetailsView =
+    (props: GetFastPassSelectedDetailsViewProps) => props.visualizationStoreData.selectedFastPassDetailsView;
