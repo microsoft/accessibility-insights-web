@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { DetailsGroupHeader, DetailsGroupHeaderProps } from '../../../../../DetailsView/components/details-group-header';
@@ -28,19 +29,12 @@ describe('DetailsGroupHeader', () => {
     });
 
     it('renders', () => {
-        const testObject = new DetailsGroupHeader(props);
+        const actual = shallow(<DetailsGroupHeader {...props} />);
+        const onRenderTitle = actual.prop('onRenderTitle');
+        const renderedTitle = shallow(onRenderTitle());
 
-        const actual = testObject.render();
-
-        expect(actual).toMatchSnapshot();
-    });
-
-    it('renders the title', () => {
-        const testObject = new DetailsGroupHeader(props);
-
-        const actual = testObject.onRenderTitle();
-
-        expect(actual).toMatchSnapshot();
+        expect(actual.getElement()).toMatchSnapshot();
+        expect(renderedTitle.getElement()).toMatchSnapshot();
     });
 
     it('stops event propagation when rule link clicked', () => {

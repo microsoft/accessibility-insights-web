@@ -26,7 +26,7 @@ exports[`DetailsGroupHeader renders 1`] = `
 />
 `;
 
-exports[`DetailsGroupHeader renders the title 1`] = `
+exports[`DetailsGroupHeader renders 2`] = `
 <div
   className="details-group-header-title"
 >
