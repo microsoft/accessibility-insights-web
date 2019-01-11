@@ -3,6 +3,7 @@
 import { Page } from 'puppeteer';
 
 import { ExtensionPuppeteerConnection } from '../common/extension-puppeteer-connection';
+import { getTestResourceUrl } from '../common/test-resources';
 
 describe('FirstTimeDialogTest', () => {
     let extensionConnection: ExtensionPuppeteerConnection;
@@ -46,7 +47,7 @@ describe('FirstTimeDialogTest', () => {
     });
 
     async function setupNewTargetPage() {
-        targetPage = await extensionConnection.newPage('https://bing.com');
+        targetPage = await extensionConnection.newPage(getTestResourceUrl('all.html'));
 
         await targetPage.bringToFront();
         targetPageTabId = await extensionConnection.getActivePageTabId();
