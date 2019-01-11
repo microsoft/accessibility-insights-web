@@ -6,6 +6,10 @@ export interface NewLaunchpadPageOptions {
     suppressFirstTimeTelemetryDialog: boolean;
 }
 
+// We want this to be a precise as possible because we use it to identify our own extension's background page
+// and want to avoid accidentally matching any other built-in extensions' background pages
+const backgroundPageUrlRegex = /(^chrome-extension:\/\/\w+)\/background\/background.html$/;
+
 export class BrowserController {
     private alreadySuppressedTelemetryDialog: boolean = false;
 
@@ -20,7 +24,7 @@ export class BrowserController {
         const backgroundPage = await BrowserController.waitForExtensionBackgroundPage(browser);
 
         const backgroundPageUrl = backgroundPage.url();
-        const extensionBaseUrl = backgroundPageUrl.match(/(.*)\/background\/background.html/)[1];
+        const extensionBaseUrl = backgroundPageUrl.match(backgroundPageUrlRegex)[1];
 
         return new BrowserController(extensionBaseUrl, browser, backgroundPage);
     }
@@ -100,7 +104,7 @@ export class BrowserController {
     }
 
     private static onPageError(error: Error) {
-        this.forceTestFailure(`Unhandled pageerror (console.error) emitted from page '${page.url()}': ${error}`);
+        BrowserController.forceTestFailure(`Unhandled pageerror (console.error) emitted from page '${page.url()}': ${error}`);
     }
 
     private static onBrowserDisconnected() {
@@ -109,19 +113,19 @@ export class BrowserController {
                 - BrowserController's browser instance was .close() or .disconnect()ed without going through BrowserController.tearDown()
                 - Chromium crashed (this is most commonly an out-of-memory issue)`;
 
-        this.forceTestFailure(errorMessage);
+        // This is best-effort - in many/most cases, a disconnected browser will cause an async puppeteer operation in
+        // progress to fail (causing a test failure with a less useful error message) before this handler gets called.
+        BrowserController.forceTestFailure(errorMessage);
     }
 
     private static forceTestFailure(errorMessage: string) {
-        // This will cause any in-progress tests to fail
         process.emit('uncaughtException', new Error(errorMessage));
     }
 
     private static async waitForExtensionBackgroundPage(browser: Puppeteer.Browser): Promise<Puppeteer.Page> {
         const backgroundPageTarget = await browser
-            .waitForTarget(t => t.type() === 'background_page' && t.url().endsWith('background.html'));
+            .waitForTarget(t => t.type() === 'background_page' && backgroundPageUrlRegex.test(t.url()));
 
-        return backgroundPageTarget.page();
+        return await backgroundPageTarget.page();
     }
-
 }
