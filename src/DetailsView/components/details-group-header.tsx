@@ -50,11 +50,10 @@ export class DetailsGroupHeader extends React.Component<DetailsGroupHeaderProps>
 
     private renderCount(props: DetailsGroupHeaderProps): JSX.Element {
         return <>
-            {'('}
+            (
             {this.props.countIcon}
-            {' '}
             {this.props.group.count}
-            {')'}
+            )
         </>;
     }
 

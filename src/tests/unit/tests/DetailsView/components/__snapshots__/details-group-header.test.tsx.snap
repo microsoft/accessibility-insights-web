@@ -42,7 +42,6 @@ exports[`DetailsGroupHeader renders the title 1`] = `
     <i
       className="test-icon"
     />
-     
     2
     )
   </React.Fragment>
