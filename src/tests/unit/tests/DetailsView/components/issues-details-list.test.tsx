@@ -104,7 +104,7 @@ describe('IssuesDetailsListTest', () => {
 
         const result: JSX.Element = (testObject as any).onRenderGroupHeader({ testProp: 'testValue', group: group }, null);
 
-        expect((result.type as any).name).toBe('Wrapped');
+        expect((result.type as any).name).toBe('DetailsGroupHeader');
         expect(result.props.testProp).toBe('testValue');
         expect(result.props.countIcon.props.className).toEqual(iconClassName);
         expect(result.props.countIcon.props.iconName).toEqual('statusErrorFull');

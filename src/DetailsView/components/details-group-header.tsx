@@ -26,7 +26,7 @@ export class DetailsGroupHeader extends React.Component<DetailsGroupHeaderProps>
     }
 
     @autobind
-    private onRenderTitle(): JSX.Element {
+    public onRenderTitle(): JSX.Element {
         return <>
             {this.renderRuleLink(this.props.group)}
             {': '}

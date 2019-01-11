@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DetailsGroupHeader renders 1`] = `
+<StyledGroupHeaderBase
+  group={
+    Object {
+      "count": 2,
+      "guidanceLinks": Array [
+        Object {
+          "href": "url",
+          "text": "test name",
+        },
+      ],
+      "key": "key",
+      "name": "name",
+      "ruleUrl": "test rule url",
+      "startIndex": 0,
+    }
+  }
+  onRenderTitle={[Function]}
+/>
+`;
+
+exports[`DetailsGroupHeader renders the title 1`] = `
+<React.Fragment>
+  <NewTabLink
+    href="test rule url"
+    onClick={[Function]}
+  >
+    key
+  </NewTabLink>
+  : 
+  name
+   
+  <React.Fragment>
+    (
+     
+    2
+    )
+  </React.Fragment>
+   
+  <GuidanceLinks
+    links={
+      Array [
+        Object {
+          "href": "url",
+          "text": "test name",
+        },
+      ]
+    }
+  />
+</React.Fragment>
+`;
