@@ -7,7 +7,6 @@ import { Assessments } from '../assessments/assessments';
 import { ChromeAdapter } from '../background/browser-adapter';
 import { IssueDetailsTextGenerator } from '../background/issue-details-text-generator';
 import { A11YSelfValidator } from '../common/a11y-self-validator';
-import { PivotConfiguration } from '../common/configs/pivot-configuration';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DateProvider } from '../common/date-provider';
 import { DocumentManipulator } from '../common/document-manipulator';
@@ -130,7 +129,6 @@ if (isNaN(tabId) === false) {
                     userConfigStore,
                 ]);
 
-                const pivotConfiguration = new PivotConfiguration(featureFlagStore);
                 const actionMessageCreator = new DetailsViewActionMessageCreator(
                     chromeAdapter.sendMessageToFrames,
                     tab.id,
@@ -242,7 +240,6 @@ if (isNaN(tabId) === false) {
                     windowUtils: new WindowUtils(),
                     getAssessmentSummaryModelFromProviderAndStoreData: getAssessmentSummaryModelFromProviderAndStoreData,
                     getAssessmentSummaryModelFromProviderAndStatusData: getAssessmentSummaryModelFromProviderAndStatusData,
-                    pivotConfiguration,
                     visualizationConfigurationFactory,
                     getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration,
                     navLinkHandler: new NavLinkHandler(actionMessageCreator),
@@ -264,7 +261,6 @@ if (isNaN(tabId) === false) {
                     detailsViewStoreActionMessageCreator,
                     issuesSelection,
                     clickHandlerFactory,
-                    pivotConfiguration,
                     visualizationConfigurationFactory,
                     storesHub,
                     issuesTableHandler,
@@ -290,7 +286,6 @@ function createNullifiedRenderer(doc, render): DetailsViewRenderer {
         null,
         doc,
         render,
-        null,
         null,
         null,
         null,

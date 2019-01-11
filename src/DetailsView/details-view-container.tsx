@@ -6,7 +6,6 @@ import * as React from 'react';
 
 import { IAssessmentsProvider } from '../assessments/types/iassessments-provider';
 import { withStoreSubscription } from '../common/components/with-store-subscription';
-import { PivotConfiguration } from '../common/configs/pivot-configuration';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
@@ -48,7 +47,6 @@ export interface IDetailsViewContainerProps {
     storeActionCreator: IStoreActionMessageCreator;
     scopingActionMessageCreator: ScopingActionMessageCreator;
     inspectActionMessageCreator: InspectActionMessageCreator;
-    pivotConfiguration: PivotConfiguration;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     storesHub: IClientStoresHub<IDetailsViewContainerState>;
     issuesTableHandler: IssuesTableHandler;
@@ -185,7 +183,6 @@ export class DetailsViewContainer extends React.Component<IDetailsViewContainerP
                 detailsViewStoreData={storeState.detailsViewStoreData}
                 visualizationStoreData={storeState.visualizationStoreData}
                 visualizationScanResultData={storeState.visualizationScanResultStoreData}
-                pivotConfiguration={this.props.pivotConfiguration}
                 visualizationConfigurationFactory={this.props.visualizationConfigurationFactory}
                 assessmentsProvider={this.props.assessmentsProvider}
                 dropdownClickHandler={this.props.dropdownClickHandler}

@@ -5,7 +5,6 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
 
-import { PivotConfiguration } from '../../../../common/configs/pivot-configuration';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { configMutator } from '../../../../common/configuration';
 import { DocumentManipulator } from '../../../../common/document-manipulator';
@@ -18,7 +17,9 @@ import { IssuesTableHandler } from '../../../../DetailsView/components/issues-ta
 import { DetailsView, DetailsViewContainerDeps } from '../../../../DetailsView/details-view-container';
 import { DetailsViewRenderer } from '../../../../DetailsView/details-view-renderer';
 import { AssessmentInstanceTableHandler } from '../../../../DetailsView/handlers/assessment-instance-table-handler';
-import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
+import {
+    DetailsViewToggleClickHandlerFactory,
+} from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from '../../../../DetailsView/handlers/preview-feature-flags-handler';
 import { ReportGenerator } from '../../../../DetailsView/reports/report-generator';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
@@ -37,7 +38,6 @@ describe('DetailsViewRendererTest', () => {
         const renderMock: IMock<typeof ReactDOM.render> = Mock.ofInstance(() => null);
         const selectionMock = Mock.ofType<ISelection>(Selection);
         const clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory);
-        const pivotConfigurationMock = Mock.ofType(PivotConfiguration);
         const visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
 
         const storesHubStub = {} as IClientStoresHub<any>;
@@ -71,7 +71,6 @@ describe('DetailsViewRendererTest', () => {
                             document={dom as any}
                             issuesSelection={selectionMock.object}
                             clickHandlerFactory={clickHandlerFactoryMock.object}
-                            pivotConfiguration={pivotConfigurationMock.object}
                             visualizationConfigurationFactory={visualizationConfigurationFactoryMock.object}
                             storesHub={storesHubStub}
                             issuesTableHandler={issuesTableHandlerMock.object}
@@ -98,7 +97,6 @@ describe('DetailsViewRendererTest', () => {
             detailsViewStoreActionCreatorStrictMock.object,
             selectionMock.object,
             clickHandlerFactoryMock.object,
-            pivotConfigurationMock.object,
             visualizationConfigurationFactoryMock.object,
             storesHubStub,
             issuesTableHandlerMock.object,

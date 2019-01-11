@@ -87,7 +87,6 @@ describe('DetailsViewContainer', () => {
 
             const props = new DetailsViewContainerPropsBuilder(deps)
                 .setStoreMocks(storeMocks)
-                .setSelectedDetailsViewType(VisualizationType.Headings)
                 .setStoresHubMock(createStoresHubMock(storeMocks, true, false).object)
                 .setDetailsViewStoreActionMessageCreator(detailsViewStoreActionMessageCreatorMock.object)
                 .build();
@@ -138,7 +137,6 @@ describe('DetailsViewContainer', () => {
             const props = new DetailsViewContainerPropsBuilder(deps)
                 .setStoreMocks(storeMocks)
                 .setStoreActionMessageCreator(storeActionCreator.object)
-                .setSelectedDetailsViewType(null)
                 .setDetailsViewStoreActionMessageCreator(detailsViewStoreActionCreatorMock.object)
                 .setStoresHubMock(createStoresHubMock(storeMocks, false).object)
                 .build();
@@ -178,7 +176,6 @@ describe('DetailsViewContainer', () => {
             const props = new DetailsViewContainerPropsBuilder(deps)
                 .setStoreMocks(storeMocks)
                 .setStoreActionMessageCreator(storeActionCreator.object)
-                .setSelectedDetailsViewType(viewType)
                 .setClickHandlerFactory(clickHandlerFactoryMock.object)
                 .setStoresHubMock(createStoresHubMock(storeMocks).object)
                 .build();
@@ -224,7 +221,6 @@ describe('DetailsViewContainer', () => {
                 .setStoreMocks(storeMocks)
                 .setClickHandlerFactory(clickHandlerFactoryMock.object)
                 .setStoreActionMessageCreator(storeActionCreator.object)
-                .setSelectedDetailsViewType(null)
                 .setStoresHubMock(createStoresHubMock(storeMocks, false).object)
                 .build();
 
@@ -287,7 +283,6 @@ describe('DetailsViewContainer', () => {
             detailsViewStoreData={storeMocks.detailsViewStoreData}
             visualizationStoreData={storeMocks.visualizationStoreData}
             visualizationScanResultData={storeMocks.visualizationScanResultsStoreData}
-            pivotConfiguration={props.pivotConfiguration}
             visualizationConfigurationFactory={props.visualizationConfigurationFactory}
             assessmentsProvider={props.assessmentsProvider}
             dropdownClickHandler={props.dropdownClickHandler}
