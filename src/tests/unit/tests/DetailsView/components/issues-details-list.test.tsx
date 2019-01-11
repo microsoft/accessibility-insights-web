@@ -10,17 +10,22 @@ import {
     SelectionMode,
 } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
-import { It, Mock } from 'typemoq';
+import { Mock } from 'typemoq';
+
 import { FeatureFlags } from '../../../../../common/feature-flags';
-import { IssuesDetailsList, IssuesDetailsListProps } from '../../../../../DetailsView/components/issues-details-list';
-import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
-import { IDetailsRowData, DetailsGroup, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
+import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
+import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { BugButton } from '../../../../../DetailsView/components/bug-button';
+import { FailureDetails } from '../../../../../DetailsView/components/failure-details';
+import { IssuesDetailsList, IssuesDetailsListProps } from '../../../../../DetailsView/components/issues-details-list';
+import {
+    DetailsGroup,
+    IDetailsRowData,
+    IssuesTableHandler,
+} from '../../../../../DetailsView/components/issues-table-handler';
+import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { RuleResult } from '../../../../../scanner/iruleresults';
 import { VisualizationScanResultStoreDataBuilder } from '../../../common/visualization-scan-result-store-data-builder';
-import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { FailureDetails } from '../../../../../DetailsView/components/failure-details';
-import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 
 describe('IssuesDetailsListTest', () => {
     const bugFilingColumn = {
@@ -104,7 +109,7 @@ describe('IssuesDetailsListTest', () => {
 
         const result: JSX.Element = (testObject as any).onRenderGroupHeader({ testProp: 'testValue', group: group }, null);
 
-        expect((result.type as any).name).toBe('Wrapped');
+        expect((result.type as any).name).toBe('DetailsGroupHeader');
         expect(result.props.testProp).toBe('testValue');
         expect(result.props.countIcon.props.className).toEqual(iconClassName);
         expect(result.props.countIcon.props.iconName).toEqual('statusErrorFull');
@@ -121,7 +126,7 @@ describe('IssuesDetailsListTest', () => {
         const rowData = {
             selector: 'testSelector',
             bugButton: showBugFiling ? <BugButton/> : null,
-        }
+        };
         return [rowData as IDetailsRowData, rowData as IDetailsRowData];
     }
 

@@ -287,6 +287,7 @@ div.insights-dialog-main-override {
     .ms-DetailsRow,
     .ms-GroupHeader {
         user-select: text;
+        border-bottom: 0px;
     }
 
     .ms-DetailsRow {
@@ -1277,18 +1278,10 @@ div.insights-dialog-main-override {
                         color: $communication-shade-30;
                     }
 
-                    .ms-GroupHeader-title {
+                    .details-group-header-title {
                         font-size: $fontSizeM;
                         color: $neutral-100;
                         font-weight: $fontWeightSemiBold;
-
-                        .rule-link-wrap {
-                            display: inline;
-                        }
-
-                        .ms-Link {
-                            padding: 1px 3px;
-                        }
                     }
 
                     .ms-GroupHeader-expand {
@@ -1312,7 +1305,6 @@ div.insights-dialog-main-override {
                     .ms-DetailsRow {
                         min-width: 100% !important;
                         max-width: 100% !important;
-                        border-bottom-width: 0px;
 
                         &.is-selected {
                             background-color: $communication-tint-40;

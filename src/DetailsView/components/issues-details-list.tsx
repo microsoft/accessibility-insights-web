@@ -6,7 +6,6 @@ import {
     DetailsList,
     DetailsListLayoutMode,
     IColumn,
-    IDetailsHeaderProps,
     ISelection,
     SelectionMode,
 } from 'office-ui-fabric-react/lib/DetailsList';
@@ -16,9 +15,9 @@ import * as React from 'react';
 import { FeatureFlags } from '../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { RuleResult } from '../../scanner/iruleresults';
-import { DetailsGroupHeader, GroupHeaderProps } from './details-group-header';
+import { DetailsGroupHeader, DetailsGroupHeaderProps } from './details-group-header';
 import { FailureDetails } from './failure-details';
-import { IDetailsRowData, DetailsGroup, IssuesTableHandler } from './issues-table-handler';
+import { DetailsGroup, IDetailsRowData, IssuesTableHandler } from './issues-table-handler';
 
 export interface IssuesDetailsListProps {
     violations: (RuleResult)[];
@@ -119,11 +118,10 @@ export class IssuesDetailsList extends React.Component<IssuesDetailsListProps, {
     }
 
     @autobind
-    private onRenderGroupHeader(props?: GroupHeaderProps): JSX.Element {
-        const groupHeaderProps: GroupHeaderProps = {
+    private onRenderGroupHeader(props?: DetailsGroupHeaderProps): JSX.Element {
+        const groupHeaderProps: DetailsGroupHeaderProps = {
             ...props,
             countIcon: <Icon iconName="statusErrorFull" className="details-icon-error" />,
-            insertButtonLabels: true,
         };
 
         return <DetailsGroupHeader {...groupHeaderProps} />;
