@@ -27,8 +27,7 @@
                 "${workspaceRoot}/node_modules/jest/bin/jest.js",
                 "--runInBand",
                 "--config=${workspaceRoot}/jest.e2e.config.js",
-                "${relativeFile}",
-                "--detectOpenHandles"
+                "${relativeFile}"
             ],
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen",
