@@ -48,9 +48,9 @@ describe('Ad hoc tools', () => {
 
         await popupPage.waitForSelector('.ad-hoc-tools-panel-footer');
 
-        await popupPage.waitForSelector('#launch-pad-main');
+        await popupPage.waitForSelector('#adhoc-tools-panel-main');
 
-        const mainAdhocPanel = await popupPage.$x('//*[@id="launch-pad-main"]');
+        const mainAdhocPanel = await popupPage.$x('//*[@id="adhoc-tools-panel-main"]');
 
         expect(mainAdhocPanel).toBeDefined();
         expect(mainAdhocPanel.length).toBe(1);
