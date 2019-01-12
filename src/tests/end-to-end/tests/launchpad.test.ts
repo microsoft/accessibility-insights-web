@@ -4,6 +4,12 @@ import { Page } from 'puppeteer';
 import { ExtensionPuppeteerConnection } from '../common/extension-puppeteer-connection';
 import { getTestResourceUrl } from '../common/test-resources';
 
+function generateFormattedHtml(innerHTMLString: string) {
+    const template = document.createElement('template');
+    template.innerHTML = innerHTMLString.trim();
+    return template.content.cloneNode(true);
+}
+
 describe('Adhoc Panel test', () => {
     let extensionConnection: ExtensionPuppeteerConnection;
     let targetPage: Page;
@@ -43,6 +49,13 @@ describe('Adhoc Panel test', () => {
         expect(launchpadTitle).toBe('Launch pad');
     });
 
+    it('test snapshot for launchpad', async () => {
+        await popupPage.waitForSelector('#new-launch-pad');
+        const launchPad = await popupPage.$eval('#new-launch-pad', el => el.innerHTML);
+
+        expect(generateFormattedHtml(launchPad)).toMatchSnapshot();
+    });
+
     it('test if text for all the links in launchpad show properly', async () => {
         await popupPage.waitForSelector('.launch-pad-item-description');
         const launchPadItemListText = await popupPage.evaluate(() => {
@@ -52,6 +65,7 @@ describe('Adhoc Panel test', () => {
             });
             return links;
         });
+
         expect(launchPadItemListText.length).toBe(3);
         expect(launchPadItemListText).toEqual(['FastPass', 'Assessment', 'Ad hoc tools']);
     });

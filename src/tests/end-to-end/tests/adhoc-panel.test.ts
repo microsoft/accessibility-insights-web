@@ -39,6 +39,7 @@ describe('Ad hoc tools', () => {
         await popupPage.waitForSelector('.launch-pad-item-description');
 
         const adhocButton = await popupPage.$x("//button[text()='Ad hoc tools']");
+
         expect(adhocButton).toBeDefined();
         expect(adhocButton.length).toBe(1);
 

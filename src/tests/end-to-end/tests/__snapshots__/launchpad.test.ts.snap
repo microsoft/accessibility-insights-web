@@ -1,0 +1,253 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Adhoc Panel test test snapshot for launchpad 1`] = `
+<DocumentFragment>
+  <header
+    class="ms-Grid launch-panel-header"
+  >
+    <div
+      class="ms-Grid-row header-title"
+    >
+      <div
+        aria-level="1"
+        class="ms-Grid-col ms-u-sm10 ms-fontColor-neutralPrimary ms-font-xl old"
+        role="heading"
+      >
+        Accessibility Insights for Web
+      </div>
+      <div
+        class="ms-Grid-col ms-u-sm2 feedback-collapseMenuButton-col"
+      >
+        <div
+          class="gear-options-button-component"
+        >
+          <div
+            class="details-view-dropdown"
+          >
+            <button
+              class="ms-Link gear-button root-42"
+            >
+              <i
+                aria-label="Manage Settings"
+                class="gear-options-icon root-44"
+                data-icon-name="Gear"
+              >
+                
+              </i>
+            </button>
+          </div>
+        </div>
+        <button
+          aria-label="Help and Feedback menu"
+          class="ms-Button ms-Button--icon root-45"
+          data-is-focusable="true"
+          id="feedback-collapse-menu-button"
+          type="button"
+        >
+          <div
+            class="ms-Button-flexContainer flexContainer-46"
+          >
+            <i
+              aria-hidden="true"
+              class="ms-Button-icon icon-52"
+              data-icon-name="GlobalNavButton"
+              role="presentation"
+            >
+              
+            </i>
+          </div>
+        </button>
+      </div>
+    </div>
+    <div
+      class="ms-fontColor-neutralSecondary ms-fontWeight-semilight ms-fontSize-xs"
+    >
+      formerly Keros for Web  |  Watch 
+      <a
+        aria-label="demo video"
+        class="ms-Link insights-link root-53"
+        href="https://msit.microsoftstream.com/video/7817f7b2-7c17-4ad8-a644-42d82ae697a2?channelId=66d47e66-d99c-488b-b9ea-98a153d2a4d4&channelName=Accessibility%20Tools"
+        target="_blank"
+        title="watch the 3 minute video introduction"
+      >
+        3-minute video
+      </a>
+       introduction
+    </div>
+  </header>
+  <div
+    class="ms-Grid main-section"
+  >
+    <main>
+      <div
+        aria-level="1"
+        class="launch-pad-title ms-fontWeight-semibold"
+        role="heading"
+      >
+        Launch pad
+      </div>
+      <hr
+        class="ms-fontColor-neutralTertiaryAlt launch-pad-hr"
+      />
+      <div
+        class="launch-pad-main-section"
+      >
+        <div>
+          <div
+            class="ms-Grid"
+          >
+            <div
+              class="ms-Grid-row"
+            >
+              <div
+                class="ms-Grid-col ms-sm3 popup-start-dialog-icon-circle"
+              >
+                <i
+                  aria-hidden="true"
+                  class="popup-start-dialog-icon root-44"
+                  data-icon-name="Rocket"
+                  role="presentation"
+                >
+                  
+                </i>
+              </div>
+              <div
+                class="ms-Grid-col ms-sm9"
+              >
+                <div
+                  class="launch-pad-item-title"
+                >
+                  <button
+                    aria-describedby="launch-pad-item-description-1"
+                    class="ms-Link root-42"
+                    role="link"
+                  >
+                    FastPass
+                  </button>
+                </div>
+                <div
+                  class="launch-pad-item-description"
+                  id="launch-pad-item-description-1"
+                >
+                  Run two tests before check-in to find 25% of accessibility issues in less than 5 minutes.
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr
+            class="ms-fontColor-neutralTertiaryAlt launch-pad-hr"
+          />
+        </div>
+        <div>
+          <div
+            class="ms-Grid"
+          >
+            <div
+              class="ms-Grid-row"
+            >
+              <div
+                class="ms-Grid-col ms-sm3 popup-start-dialog-icon-circle"
+              >
+                <i
+                  aria-hidden="true"
+                  class="popup-start-dialog-icon root-44"
+                  data-icon-name="testBeaker"
+                  role="presentation"
+                >
+                  
+                </i>
+              </div>
+              <div
+                class="ms-Grid-col ms-sm9"
+              >
+                <div
+                  class="launch-pad-item-title"
+                >
+                  <button
+                    aria-describedby="launch-pad-item-description-2"
+                    class="ms-Link root-42"
+                    role="link"
+                  >
+                    Assessment
+                  </button>
+                </div>
+                <div
+                  class="launch-pad-item-description"
+                  id="launch-pad-item-description-2"
+                >
+                  Walk through a guided process for assessing accessibility compliance.
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr
+            class="ms-fontColor-neutralTertiaryAlt launch-pad-hr"
+          />
+        </div>
+        <div>
+          <div
+            class="ms-Grid"
+          >
+            <div
+              class="ms-Grid-row"
+            >
+              <div
+                class="ms-Grid-col ms-sm3 popup-start-dialog-icon-circle"
+              >
+                <i
+                  aria-hidden="true"
+                  class="popup-start-dialog-icon root-44"
+                  data-icon-name="Medical"
+                  role="presentation"
+                >
+                  
+                </i>
+              </div>
+              <div
+                class="ms-Grid-col ms-sm9"
+              >
+                <div
+                  class="launch-pad-item-title"
+                >
+                  <button
+                    aria-describedby="launch-pad-item-description-3"
+                    class="ms-Link root-42"
+                    role="link"
+                  >
+                    Ad hoc tools
+                  </button>
+                </div>
+                <div
+                  class="launch-pad-item-description"
+                  id="launch-pad-item-description-3"
+                >
+                  Get quick access to all automated and assisted checks.
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr
+            class="ms-fontColor-neutralTertiaryAlt launch-pad-hr"
+          />
+        </div>
+      </div>
+    </main>
+    <div
+      class="launch-pad-footer"
+      role="complementary"
+    >
+      <div>
+        Version 1.0.4  |  Powered by 
+        <a
+          class="ms-Link insights-link root-53"
+          href="https://www.npmjs.com/package/axe-core"
+          target="_blank"
+          title="Navigate to axe-core npm page"
+        >
+          axe-core
+        </a>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
