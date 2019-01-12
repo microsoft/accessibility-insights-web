@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AdHocToolsPanelTest adhoc panel matches snapshot 1`] = `
+<div
+  className="ms-Grid main-section"
+>
+  <main
+    id="launch-pad-main"
+  >
+    <div
+      className="ms-Grid-row"
+    >
+      <div
+        className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 ad-hoc-tools-panel-group-0"
+      >
+        <div>
+          fisrt
+        </div>
+        <div
+          className="ms-fontColor-neutralLight launch-panel-hr"
+        />
+        <div>
+          second
+        </div>
+        <div
+          className="ms-fontColor-neutralLight launch-panel-hr"
+        />
+        <div>
+          third
+        </div>
+      </div>
+      <div
+        className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 ad-hoc-tools-panel-group-1"
+      >
+        <div>
+          fourth
+        </div>
+        <div
+          className="ms-fontColor-neutralLight launch-panel-hr"
+        />
+        <div>
+          fifth
+        </div>
+      </div>
+    </div>
+  </main>
+  <div
+    className="ad-hoc-tools-panel-footer"
+    role="navigation"
+  >
+    <StyledCustomizedLink
+      onClick={null}
+    >
+      <StyledIconBase
+        iconName="back"
+      />
+        Back to launch pad
+    </StyledCustomizedLink>
+  </div>
+</div>
+`;
+
+exports[`AdHocToolsPanelTest adhocpanel matches snapshot 1`] = `
+<div
+  className="ms-Grid main-section"
+>
+  <main
+    id="launch-pad-main"
+  >
+    <div
+      className="ms-Grid-row"
+    >
+      <div
+        className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 ad-hoc-tools-panel-group-0"
+      >
+        <div>
+          fisrt
+        </div>
+        <div
+          className="ms-fontColor-neutralLight launch-panel-hr"
+        />
+        <div>
+          second
+        </div>
+        <div
+          className="ms-fontColor-neutralLight launch-panel-hr"
+        />
+        <div>
+          third
+        </div>
+      </div>
+      <div
+        className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 ad-hoc-tools-panel-group-1"
+      >
+        <div>
+          fourth
+        </div>
+        <div
+          className="ms-fontColor-neutralLight launch-panel-hr"
+        />
+        <div>
+          fifth
+        </div>
+      </div>
+    </div>
+  </main>
+  <div
+    className="ad-hoc-tools-panel-footer"
+    role="navigation"
+  >
+    <StyledCustomizedLink
+      onClick={null}
+    >
+      <StyledIconBase
+        iconName="back"
+      />
+        Back to launch pad
+    </StyledCustomizedLink>
+  </div>
+</div>
+`;
