@@ -28,8 +28,8 @@ export class BrowserController {
         // It's important to use .target().url() instead of just .url() here because there is an inconsistent
         // race condition where sometimes backgroundPage.mainFrame() doesn't get populated correctly, and so
         // url() (which is implemented in terms of mainFrame()) shows as ':' incorrectly
-        const backgroundPageUrl = backgroundPage.target().url();
-        const extensionBaseUrl = backgroundPageUrl.match(backgroundPageUrlRegex)[1];
+        const backgroundPageUrl = new URL(backgroundPage.target().url());
+        const extensionBaseUrl = backgroundPageUrl.origin;
 
         return new BrowserController(extensionBaseUrl, browser, backgroundPage);
     }

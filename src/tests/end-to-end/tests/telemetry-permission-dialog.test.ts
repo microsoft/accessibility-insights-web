@@ -3,6 +3,7 @@
 import { BrowserController } from '../common/browser-controller';
 import { getTestResourceUrl } from '../common/test-resources';
 import { E2E_TEST_TIMEOUT } from '../common/timeouts';
+import '../common/puppeteer-expect-matchers';
 
 describe('telemetry-permission-dialog', () => {
     const arbitraryTargetUrl = getTestResourceUrl('all.html');
@@ -23,7 +24,8 @@ describe('telemetry-permission-dialog', () => {
 
         await launchpadPage.waitForSelector('.telemetry-permission-dialog-modal');
 
-        await expect(launchpadPage).toFill('#telemetry-permission-title', 'We need your help');
+        const dialogTitle = await launchpadPage.waitForSelector('#telemetry-permission-title');
+        await expect(dialogTitle).toHaveTextContent('We need your help');
     }, E2E_TEST_TIMEOUT);
 
     it('should be dismissed by clicking the OK button', async () => {
