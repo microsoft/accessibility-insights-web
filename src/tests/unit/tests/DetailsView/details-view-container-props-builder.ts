@@ -1,10 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
-import { It, Mock } from 'typemoq';
 
 import { IAssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
-import { PivotConfiguration } from '../../../../common/configs/pivot-configuration';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
 import { IBaseStore } from '../../../../common/istore';
@@ -22,9 +20,10 @@ import { VisualizationType } from '../../../../common/types/visualization-type';
 import { IssuesTableHandler } from '../../../../DetailsView/components/issues-table-handler';
 import { DetailsViewContainerDeps, IDetailsViewContainerProps } from '../../../../DetailsView/details-view-container';
 import { AssessmentInstanceTableHandler } from '../../../../DetailsView/handlers/assessment-instance-table-handler';
-import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
+import {
+    DetailsViewToggleClickHandlerFactory,
+} from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from '../../../../DetailsView/handlers/preview-feature-flags-handler';
-import { SelectedDetailsViewProvider } from '../../../../DetailsView/handlers/selected-details-view-provider';
 import { StoreMocks } from './store-mocks';
 
 export class DetailsViewContainerPropsBuilder {
@@ -41,15 +40,11 @@ export class DetailsViewContainerPropsBuilder {
     private document: Document = document;
     private issuesSelection: ISelection;
     private clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
-    private pivotConfiguration: PivotConfiguration;
     private issuesTableHandler: IssuesTableHandler;
     private previewFeatureFlagsHandler: PreviewFeatureFlagsHandler;
     private scopingFlagsHandler: PreviewFeatureFlagsHandler;
     private dropdownClickHandler: DropdownClickHandler;
     private assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
-    private selectedDetailsViewHelper: SelectedDetailsViewProvider;
-    private selectedDetailsViewType: VisualizationType;
-    private isSelectedDetailsViewSet: boolean = false;
     private assessmentProvider: IAssessmentsProvider;
     private configFactory: VisualizationConfigurationFactory;
     private storesHub: BaseClientStoresHub<any>;
@@ -67,17 +62,6 @@ export class DetailsViewContainerPropsBuilder {
 
     public setVisualizationConfigurationFactory(configFactory: VisualizationConfigurationFactory) {
         this.configFactory = configFactory;
-        return this;
-    }
-
-    public setSelectedDetailsViewType(selectedDetailsViewType: VisualizationType): DetailsViewContainerPropsBuilder {
-        this.selectedDetailsViewType = selectedDetailsViewType;
-        this.isSelectedDetailsViewSet = true;
-        return this;
-    }
-
-    public setPivotConfiguration(config: PivotConfiguration): DetailsViewContainerPropsBuilder {
-        this.pivotConfiguration = config;
         return this;
     }
 
@@ -128,11 +112,6 @@ export class DetailsViewContainerPropsBuilder {
         return this;
     }
 
-    public setSelectedDetailsViewHelper(selectedDetailsViewHelper: SelectedDetailsViewProvider): DetailsViewContainerPropsBuilder {
-        this.selectedDetailsViewHelper = selectedDetailsViewHelper;
-        return this;
-    }
-
     public setStoresHubMock(hub: BaseClientStoresHub<any>): DetailsViewContainerPropsBuilder{
         this.storesHub = hub;
         return this;
@@ -162,21 +141,12 @@ export class DetailsViewContainerPropsBuilder {
 
         const storeState = this.storesHub ? this.storesHub.getAllStoreData() : null;
 
-        if (this.isSelectedDetailsViewSet) {
-            const selectedDetailsViewHelperMock = Mock.ofType(SelectedDetailsViewProvider);
-            selectedDetailsViewHelperMock
-                .setup(s => s.getSelectedDetailsView(It.isAny()))
-                .returns(() => this.selectedDetailsViewType);
-            this.selectedDetailsViewHelper = selectedDetailsViewHelperMock.object;
-        }
-
         return {
             deps: this.deps,
             storeActionCreator: this.storeActionCreator,
             document: this.document,
             issuesSelection: this.issuesSelection,
             clickHandlerFactory: this.clickHandlerFactory,
-            pivotConfiguration: this.pivotConfiguration,
             visualizationConfigurationFactory: this.configFactory,
             storesHub: storesHub,
             issuesTableHandler: this.issuesTableHandler,
@@ -185,7 +155,6 @@ export class DetailsViewContainerPropsBuilder {
             scopingFlagsHandler: this.scopingFlagsHandler,
             dropdownClickHandler: this.dropdownClickHandler,
             assessmentInstanceTableHandler: this.assessmentInstanceTableHandler,
-            selectedDetailsViewHelper: this.selectedDetailsViewHelper,
             scopingActionMessageCreator: this.scopingActionMessageCreator,
             inspectActionMessageCreator: this.inspectActionMessageCreator,
             assessmentsProvider: this.assessmentProvider,

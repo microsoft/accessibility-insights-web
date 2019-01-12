@@ -4,7 +4,6 @@ import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
 import { IAssessmentsProvider } from '../assessments/types/iassessments-provider';
-import { PivotConfiguration } from '../common/configs/pivot-configuration';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
@@ -35,7 +34,6 @@ export interface IDetailsViewMainContentProps {
     selectedTest: VisualizationType;
     visualizationStoreData: IVisualizationStoreData;
     visualizationScanResultData: IVisualizationScanResultData;
-    pivotConfiguration: PivotConfiguration;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     assessmentsProvider: IAssessmentsProvider;
     dropdownClickHandler: DropdownClickHandler;

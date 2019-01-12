@@ -1,44 +1,58 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Mock, Times } from 'typemoq';
+import { IMock, It, Mock, MockBehavior } from 'typemoq';
 
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';
+import { VisualizationType } from '../../../../common/types/visualization-type';
 import { title } from '../../../../content/strings/application';
 import {
     DetailsRightPanelConfiguration,
     GetDetailsRightPanelConfigurationProps,
 } from '../../../../DetailsView/components/details-view-right-panel';
+import {
+    DetailsViewSwitcherNavConfiguration,
+    GetDetailsSwitcherNavConfiguration,
+} from '../../../../DetailsView/components/details-view-switcher-nav';
+import { GetSelectedDetailsViewProps } from '../../../../DetailsView/components/left-nav/get-selected-details-view';
 import { DocumentTitleUpdater } from '../../../../DetailsView/document-title-updater';
 import { GetTestViewTitleProps } from '../../../../DetailsView/handlers/get-document-title';
-import { SelectedDetailsViewProvider } from '../../../../DetailsView/handlers/selected-details-view-provider';
 import { StoreMocks } from './store-mocks';
 
 describe('DocumentTitleUpdater', () => {
     let storeMocks: StoreMocks;
     let testObject: DocumentTitleUpdater;
     let getPanelConfigMock: IMock<((props: GetDetailsRightPanelConfigurationProps) => DetailsRightPanelConfiguration)>;
+    let getSwitcherNavConfigMock: IMock<GetDetailsSwitcherNavConfiguration>;
     let visualizationConfigFactoryMock: IMock<VisualizationConfigurationFactory>;
-    let selectedDetailsViewHelperMock: IMock<SelectedDetailsViewProvider>;
     let doc;
     let onStoreChange: () => void;
+    let switcherNavConfigStub: DetailsViewSwitcherNavConfiguration;
+    let getSelectedDetailsViewMock: IMock<(props: GetSelectedDetailsViewProps) => VisualizationType>;
 
     beforeEach(() => {
         storeMocks = new StoreMocks();
         getPanelConfigMock = Mock.ofInstance((props: GetDetailsRightPanelConfigurationProps) => null);
+        getSelectedDetailsViewMock = Mock.ofInstance((props: GetSelectedDetailsViewProps) => null, MockBehavior.Strict);
+        getSwitcherNavConfigMock = Mock.ofInstance(_ => null, MockBehavior.Strict);
         visualizationConfigFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
-        selectedDetailsViewHelperMock = Mock.ofType(SelectedDetailsViewProvider);
+
+        switcherNavConfigStub = {
+            getSelectedDetailsView: getSelectedDetailsViewMock.object,
+        } as DetailsViewSwitcherNavConfiguration;
+
         doc = {
             title: null,
         };
+
         testObject = new DocumentTitleUpdater(
             storeMocks.tabStoreMock.object,
             storeMocks.detailsViewStoreMock.object,
             storeMocks.visualizationStoreMock.object,
             storeMocks.assessmentStoreMock.object,
             getPanelConfigMock.object,
+            getSwitcherNavConfigMock.object,
             visualizationConfigFactoryMock.object,
-            selectedDetailsViewHelperMock.object,
             doc,
         );
         setupStoreListenersAdded();
@@ -50,25 +64,7 @@ describe('DocumentTitleUpdater', () => {
         storeMocks.verifyAll();
     });
 
-    test('no selected view', () => {
-        selectedDetailsViewHelperMock
-            .setup(s => s.getSelectedDetailsView(It.isAny()))
-            .returns(() => null)
-            .verifiable(Times.once());
-        setupStoreGetState();
-
-        testObject.initialize();
-        onStoreChange();
-
-        expect(doc.title).toEqual(title);
-        selectedDetailsViewHelperMock.verifyAll();
-    });
-
     test('no detailsViewStore data', () => {
-        selectedDetailsViewHelperMock
-            .setup(s => s.getSelectedDetailsView(It.isAny()))
-            .returns(() => -1)
-            .verifiable(Times.once());
         storeMocks.setDetailsViewStoreData(null);
         setupStoreGetState();
 
@@ -76,14 +72,9 @@ describe('DocumentTitleUpdater', () => {
         onStoreChange();
 
         expect(doc.title).toEqual(title);
-        selectedDetailsViewHelperMock.verifyAll();
     });
 
     test('no tabStore data', () => {
-        selectedDetailsViewHelperMock
-            .setup(s => s.getSelectedDetailsView(It.isAny()))
-            .returns(() => -1)
-            .verifiable(Times.once());
         storeMocks.setTabStoreData(null);
         setupStoreGetState();
 
@@ -91,14 +82,9 @@ describe('DocumentTitleUpdater', () => {
         onStoreChange();
 
         expect(doc.title).toEqual(title);
-        selectedDetailsViewHelperMock.verifyAll();
     });
 
     test('tab is closed', () => {
-        selectedDetailsViewHelperMock
-            .setup(s => s.getSelectedDetailsView(It.isAny()))
-            .returns(() => -1)
-            .verifiable(Times.once());
         storeMocks.setTabStoreData({ isClosed: true } as ITabStoreData);
         setupStoreGetState();
 
@@ -106,7 +92,6 @@ describe('DocumentTitleUpdater', () => {
         onStoreChange();
 
         expect(doc.title).toEqual(title);
-        selectedDetailsViewHelperMock.verifyAll();
     });
 
     test('get title from configuration', () => {
@@ -116,14 +101,23 @@ describe('DocumentTitleUpdater', () => {
             visualizationConfigurationFactory: visualizationConfigFactoryMock.object,
             selectedDetailsView,
         };
+
         getTitleMock
             .setup(g => g(It.isValue(expectedParam)))
             .returns(() => 'Test Title')
             .verifiable();
-        selectedDetailsViewHelperMock
-            .setup(s => s.getSelectedDetailsView(It.isAny()))
-            .returns(() => selectedDetailsView)
-            .verifiable(Times.once());
+
+        getSwitcherNavConfigMock
+            .setup(mock => mock({ selectedDetailsViewPivot: storeMocks.visualizationStoreData.selectedDetailsViewPivot }))
+            .returns(() => switcherNavConfigStub);
+
+        getSelectedDetailsViewMock
+            .setup(mock => mock({
+                assessmentStoreData: storeMocks.assessmentStoreData,
+                visualizationStoreData: storeMocks.visualizationStoreData,
+            }))
+            .returns(() => selectedDetailsView);
+
         setupStoreGetState();
 
         getPanelConfigMock
@@ -136,7 +130,6 @@ describe('DocumentTitleUpdater', () => {
         onStoreChange();
 
         expect(doc.title).toEqual(`Test Title - ${title}`);
-        selectedDetailsViewHelperMock.verifyAll();
         getTitleMock.verifyAll();
         getPanelConfigMock.verifyAll();
     });
