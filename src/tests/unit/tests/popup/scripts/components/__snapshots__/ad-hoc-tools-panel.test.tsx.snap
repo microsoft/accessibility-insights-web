@@ -46,14 +46,14 @@ exports[`AdHocToolsPanelTest adhoc panel matches snapshot 1`] = `
     className="ad-hoc-tools-panel-footer"
     role="navigation"
   >
-    <StyledCustomizedLink
+    <StyledLinkBase
       onClick={null}
     >
       <StyledIconBase
         iconName="back"
       />
         Back to launch pad
-    </StyledCustomizedLink>
+    </StyledLinkBase>
   </div>
 </div>
 `;
