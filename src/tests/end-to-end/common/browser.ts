@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Puppeteer from 'puppeteer';
+
 import { forceTestFailure } from './force-test-failure';
 import { Page } from './page';
 
@@ -9,7 +10,7 @@ export interface NewPopupPageOptions {
 }
 
 export class Browser {
-    private memoizedBackgroundPage: Page;
+    private memorizedBackgroundPage: Page;
 
     constructor(
         private readonly underlyingBrowser: Puppeteer.Browser,
@@ -32,6 +33,10 @@ export class Browser {
     public async newExtensionPage(relativePath: string): Promise<Page> {
         const url = await this.getExtensionUrl(relativePath);
         return await this.newPage(url);
+    }
+
+    public async newExtensionPopupPage(targetTabId: number): Promise<Page> {
+        return await this.newExtensionPage(`popup/popup.html?tabId=${targetTabId}`);
     }
 
     public async closeAllPages() {
@@ -63,16 +68,16 @@ export class Browser {
     }
 
     private async waitForExtensionBackgroundPage(): Promise<Page> {
-        if (this.memoizedBackgroundPage) {
-            return this.memoizedBackgroundPage;
+        if (this.memorizedBackgroundPage) {
+            return this.memorizedBackgroundPage;
         }
 
         const backgroundPageTarget = await this.underlyingBrowser
             .waitForTarget(t => t.type() === 'background_page' && new URL(t.url()).pathname === '/background/background.html');
 
-        this.memoizedBackgroundPage = new Page(await backgroundPageTarget.page());
+        this.memorizedBackgroundPage = new Page(await backgroundPageTarget.page());
 
-        return this.memoizedBackgroundPage;
+        return this.memorizedBackgroundPage;
     }
 }
 

@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { getTestResourceUrl } from '../common/test-resources';
-import { DEFAULT_E2E_TEST_TIMEOUT_MS } from '../common/timeouts';
-import { launchBrowser } from '../common/browser-factory';
-import { Browser } from '../common/browser';
-import { popupPageSelectors } from '../common/popup-page-selectors';
-import { Page } from '../common/page';
+import { Browser } from '../../common/browser';
+import { launchBrowser } from '../../common/browser-factory';
+import { Page } from '../../common/page';
+import { popupPageSelectors } from '../../common/popup-page-selectors';
+import { getTestResourceUrl } from '../../common/test-resources';
+import { DEFAULT_E2E_TEST_TIMEOUT_MS } from '../../common/timeouts';
 
 describe('telemetry-permission-dialog', () => {
     let browser: Browser;
@@ -28,7 +28,7 @@ describe('telemetry-permission-dialog', () => {
     }
 
     async function newPopupPage(): Promise<Page> {
-        return await browser.newExtensionPage(`popup/popup.html?tabId=${targetPageTabId}`);
+        return await browser.newExtensionPopupPage(targetPageTabId);
     }
 
     it('should be dismissed by clicking the OK button', async () => {

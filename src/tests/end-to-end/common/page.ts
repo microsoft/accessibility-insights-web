@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Puppeteer from 'puppeteer';
+
 import { forceTestFailure } from './force-test-failure';
-import { DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS, DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS } from './timeouts';
+import { DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS, DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from './timeouts';
 
 export class Page {
     constructor(
@@ -27,6 +28,17 @@ export class Page {
 
     public async evaluate(fn: Puppeteer.EvaluateFn, ...args: any[]): Promise<any> {
         return await this.underlyingPage.evaluate(fn, args);
+    }
+
+    public async getMatchingElements<T>(page: Page, selector: string, mapFunc: (element: Element) => T): Promise<T> {
+        return await page.evaluate(
+            (selectorInEvaluate, mapFuncInEvaluate) => {
+                const elements = Array.from(document.querySelectorAll(selectorInEvaluate));
+                return elements.map(mapFuncInEvaluate);
+            },
+            selector,
+            mapFunc,
+        );
     }
 
     public async waitForSelector(selector: string): Promise<Puppeteer.ElementHandle<Element>> {
