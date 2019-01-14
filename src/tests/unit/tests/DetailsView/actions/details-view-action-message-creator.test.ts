@@ -752,7 +752,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         testSubject.changeAssessmentVisualizationStateForAll(true, 1, 'step');
     });
 
-    test('exportAssessmentResultsClicked', () => {
+    test('exportResultsClicked', () => {
         const html = 'html content';
         const event = eventStubFactory.createMouseClickEvent() as any;
 
@@ -778,7 +778,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             .verifiable(Times.once());
         setupPostMessage(expectedMessage);
 
-        testSubject.exportAssessmentResultsClicked(html, event);
+        testSubject.exportResultsClicked('Assessment', html, event);
 
         setupPostMessage(expectedMessage);
 
@@ -815,39 +815,6 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         telemetryFactoryMock.verifyAll();
         postMessageMock.verifyAll();
-    });
-
-    test('exportAutomatedChecksClicked', () => {
-        const html = 'html content';
-        const event = eventStubFactory.createMouseClickEvent() as any;
-
-        const telemetry: ExportResultsTelemetryData = {
-            source: TelemetryEventSource.DetailsView,
-            triggeredBy: 'mouse',
-            exportResultsData: 12,
-            exportResultsType: 'export result type',
-        };
-
-        const expectedMessage = {
-            tabId: tabId,
-            type: Messages.Telemetry.Send,
-            payload: {
-                eventName: EXPORT_RESULTS,
-                telemetry,
-            },
-        };
-
-        telemetryFactoryMock
-            .setup(tf => tf.forExportedHtml('AutomatedChecks', html, event, TelemetryEventSource.DetailsView))
-            .returns(() => telemetry)
-            .verifiable(Times.once());
-        setupPostMessage(expectedMessage);
-
-        testSubject.exportAutomatedResultsClicked(html, event);
-
-        setupPostMessage(expectedMessage);
-
-        telemetryFactoryMock.verifyAll();
     });
 
     test('cancelStartOver', () => {

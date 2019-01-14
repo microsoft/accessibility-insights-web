@@ -1,16 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DefaultButton, IButton } from 'office-ui-fabric-react/lib/Button';
+import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import { Link } from 'office-ui-fabric-react/lib/Link';
+import { TooltipHost } from 'office-ui-fabric-react/lib/Tooltip';
 import * as React from 'react';
 
 import * as Markup from '../../assessments/markup';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { ITab } from '../../common/itab';
 import { DetailsViewActionMessageCreator } from '../../DetailsView/actions/details-view-action-message-creator';
-import { TooltipHost } from 'office-ui-fabric-react/lib/Tooltip';
-import { autobind } from 'office-ui-fabric-react/lib/Utilities';
 
 export interface ITargetChangeDialogProps {
     prevTab: ITab;
@@ -63,7 +62,7 @@ export class TargetChangeDialog extends React.Component<ITargetChangeDialogProps
 
                         <div className="button ms-Grid-col  action-cancel-button-col continue-button">
                             <DefaultButton
-                                componentRef={this.setFocusToComponent}
+                                autoFocus={true}
                                 text="Continue previous"
                                 onClick={this.props.actionMessageCreator.continuePreviousAssessment}
                             />
@@ -72,11 +71,6 @@ export class TargetChangeDialog extends React.Component<ITargetChangeDialogProps
                 </DialogFooter>
             </Dialog>
         );
-    }
-
-    @autobind
-    private setFocusToComponent(component: IButton): void {
-        component.focus();
     }
 
     private renderPreviousTabLink(tab: ITab): JSX.Element {

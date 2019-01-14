@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`telemetry-permission-dialog should have HTML content that matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="ms-Modal is-open ms-Dialog telemetry-permission-dialog-modal root-56"
+  >
+    <div
+      class="ms-Overlay root-62"
+    />
+    <div
+      class="ms-Dialog-main insights-dialog-main-override telemetry-permission-dialog main-57"
+    >
+      <div
+        class="ms-Modal-scrollableContent scrollableContent-58"
+      >
+        <div
+          class="content-63"
+        >
+          <div
+            class="ms-Dialog-header header-65"
+          >
+            <p
+              aria-level="2"
+              class="ms-Dialog-title title-69"
+              id="telemetry-permission-title"
+              role="heading"
+            >
+              We need your help
+            </p>
+            <div
+              class="topButton-70"
+            />
+          </div>
+          <div
+            class="ms-Dialog-inner inner-67"
+          >
+            <div
+              class="ms-Dialog-content innerContent-68"
+            >
+              <p
+                class="telemetry-permission-details"
+              />
+              <p>
+                By opting into telemetry, you help the community develop inclusive software.
+              </p>
+              <p>
+                We collect anonymized data to identify the top accessibility issues found by the users. This will help focus the accessibility tools and standards community to improve guidelines, rules engines, and features.
+              </p>
+              <p />
+              <div
+                class="telemetry-checkbox-section"
+              >
+                <button
+                  aria-checked="true"
+                  class="ms-Checkbox is-checked is-enabled telemetry-agree-checkbox root-71"
+                  id="checkbox-5"
+                  role="checkbox"
+                  type="button"
+                >
+                  <label
+                    class="ms-Checkbox-label label-72"
+                    for="checkbox-5"
+                  >
+                    <div
+                      class="ms-Checkbox-checkbox checkbox-73"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="ms-Checkbox-checkmark checkmark-76"
+                        data-icon-name="CheckMark"
+                        role="presentation"
+                      >
+                        
+                      </i>
+                    </div>
+                    <span
+                      class="ms-Checkbox-text text-75"
+                    >
+                      I agree to help
+                    </span>
+                  </label>
+                </button>
+                You can change this choice anytime in settings. Read our 
+                <a
+                  class="ms-Link insights-link root-53"
+                  href="http://go.microsoft.com/fwlink/?LinkId=521839"
+                  target="_blank"
+                >
+                   privacy statement
+                </a>
+                 to learn more.
+              </div>
+            </div>
+            <div
+              class="ms-Dialog-actions actions-77"
+            >
+              <div
+                class="ms-Dialog-actionsRight actionsRight-79"
+              >
+                <span
+                  class="ms-Dialog-action action-78"
+                >
+                  <button
+                    class="ms-Button ms-Button--primary start-using-product-button root-80"
+                    data-is-focusable="true"
+                    type="button"
+                  >
+                    <div
+                      class="ms-Button-flexContainer flexContainer-46"
+                    >
+                      <div
+                        class="ms-Button-textContainer textContainer-47"
+                      >
+                        <div
+                          class="ms-Button-label label-81"
+                          id="id__6"
+                        >
+                          OK
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

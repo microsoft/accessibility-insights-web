@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TestStatusChoiceGroup render: selectedKey is not set to undefined as status is PASS 1`] = `
+<div>
+  <div
+    className="radio-button-group"
+  >
+    <StyledChoiceGroupBase
+      className="PASS"
+      componentRef={[Function]}
+      onChange={[Function]}
+      options={
+        Array [
+          Object {
+            "key": "PASS",
+            "onRenderLabel": [Function],
+            "text": "Pass",
+          },
+          Object {
+            "key": "FAIL",
+            "onRenderLabel": [Function],
+            "text": "Fail",
+          },
+        ]
+      }
+      selectedKey="PASS"
+    />
+  </div>
+  <div />
+</div>
+`;
+
+exports[`TestStatusChoiceGroup render: selectedKey is set to undefined as status is UNKNOWN 1`] = `
+<div>
+  <div
+    className="radio-button-group"
+  >
+    <StyledChoiceGroupBase
+      className="UNKNOWN"
+      componentRef={[Function]}
+      onChange={[Function]}
+      options={
+        Array [
+          Object {
+            "key": "PASS",
+            "onRenderLabel": [Function],
+            "text": "Pass",
+          },
+          Object {
+            "key": "FAIL",
+            "onRenderLabel": [Function],
+            "text": "Fail",
+          },
+        ]
+      }
+    />
+  </div>
+  <div />
+</div>
+`;

@@ -12,12 +12,11 @@ exports[`GenericToggleTest verify if the classname passed from prop is added pro
     >
       test name
     </div>
-    <CustomizedToggle
+    <StyledToggleBase
+      ariaLabel="test name"
       checked={true}
       className="toggle"
-      offAriaLabel="test name"
       offText="Off"
-      onAriaLabel="test name"
       onClick={[Function]}
       onText="On"
     />

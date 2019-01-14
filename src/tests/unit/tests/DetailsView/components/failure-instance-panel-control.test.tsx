@@ -24,14 +24,14 @@ describe('FailureInstancePanelControlTest', () => {
     test('render FailureInstancePanelControl: add instance', () => {
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
 
-        const rendered = shallow(<FailureInstancePanelControl {...props}/>);
+        const rendered = shallow(<FailureInstancePanelControl {...props} />);
         expect(rendered.debug()).toMatchSnapshot();
     });
 
     test('render FailureInstancePanelControl: edit instance', () => {
         const props = createPropsWithType(CapturedInstanceActionType.EDIT);
 
-        const rendered = shallow(<FailureInstancePanelControl {...props}/>);
+        const rendered = shallow(<FailureInstancePanelControl {...props} />);
         expect(rendered.debug()).toMatchSnapshot();
     });
 
@@ -39,7 +39,7 @@ describe('FailureInstancePanelControlTest', () => {
         const description = 'abc';
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
         const wrapper = shallow(<FailureInstancePanelControl {...props} />);
-        wrapper.find(TextField).props().onChanged(description);
+        wrapper.find(TextField).props().onChange(null, description);
 
         expect(wrapper.state().failureDescription).toEqual(description);
     });
@@ -75,7 +75,7 @@ describe('FailureInstancePanelControlTest', () => {
 
         const wrapper = Enzyme.shallow(<FailureInstancePanelControl {...props} />);
 
-        wrapper.find(TextField).props().onChanged(description);
+        wrapper.find(TextField).props().onChange(null, description);
         wrapper.find(ActionAndCancelButtonsComponent).props().primaryButtonOnClick(null);
 
         expect(wrapper.state().isPanelOpen).toBe(false);
@@ -93,7 +93,7 @@ describe('FailureInstancePanelControlTest', () => {
 
         const wrapper = Enzyme.shallow(<FailureInstancePanelControl {...props} />);
 
-        wrapper.find(TextField).props().onChanged(description);
+        wrapper.find(TextField).props().onChange(null, description);
         wrapper.find(ActionAndCancelButtonsComponent).props().primaryButtonOnClick(null);
 
         expect(wrapper.state().isPanelOpen).toBe(false);

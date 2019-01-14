@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-import { css } from '@uifabric/utilities/lib';
+import { css } from '@uifabric/utilities';
 import { WindowUtils } from '../window-utils';
 
 export type ToastDeps = {
@@ -18,7 +18,7 @@ export class Toast extends React.Component<ToastProps> {
     private timeoutId: number;
     private hidden: boolean;
 
-    static defaultProps = { 
+    static defaultProps = {
         timeoutLength: 1000,
     };
 

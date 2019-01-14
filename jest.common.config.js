@@ -9,6 +9,11 @@ module.exports = {
     },
     moduleDirectories: ['node_modules'],
     moduleFileExtensions: ['ts', 'js'],
+    moduleNameMapper: {
+        "office-ui-fabric-react/lib/(.*)$": "office-ui-fabric-react/lib-commonjs/$1",
+        "@uifabric/utilities": "@uifabric/utilities/lib-commonjs",
+        "@uifabric/styling": "@uifabric/styling/lib-commonjs",
+    },
     testPathIgnorePatterns: [],
     transform: {
         '^.+\\.(ts|tsx)$': 'ts-jest',

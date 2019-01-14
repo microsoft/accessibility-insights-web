@@ -14,12 +14,12 @@ import {
 import { KeyCodeConstants } from '../../../common/constants/keycode-constants';
 import { FeatureFlags } from '../../../common/feature-flags';
 import { TelemetryEventSource } from '../../../common/telemetry-events';
+import { DetailsViewPivotType } from '../../../common/types/details-view-pivot-type';
 import { IVisualizationStoreData } from '../../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
-import { ContentLinkDeps, ContentLink } from '../../../views/content/content-link';
+import { ContentLink, ContentLinkDeps } from '../../../views/content/content-link';
 import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
 import { DiagnosticViewClickHandler } from '../handlers/diagnostic-view-toggle-click-handler';
-import { DetailsViewPivotType } from '../../../common/types/details-view-pivot-type';
 
 export interface IDiagnosticViewToggleProps {
     deps: DiagnosticViewToggleDeps;
@@ -42,7 +42,7 @@ export interface IDiagnosticViewToggleState {
 
 export class DiagnosticViewToggle extends React.Component<IDiagnosticViewToggleProps, IDiagnosticViewToggleState> {
     private configuration: IVisualizationConfiguration;
-    private _toggle: IToggle;
+    private _toggle: React.RefObject<IToggle> = React.createRef<IToggle>();
     private dom: NodeSelector & Node;
     private _isMounted: boolean;
     private _userEventListenerAdded: boolean;
@@ -107,7 +107,7 @@ export class DiagnosticViewToggle extends React.Component<IDiagnosticViewToggleP
                 disabled={disabled}
                 onClick={ev => this.props.clickHandler.toggleVisualization(this.props.visualizationStoreData, this.props.type, ev)}
                 visualizationName={this.configuration.displayableData.title}
-                componentRef={this.setFocus}
+                componentRef={this._toggle}
                 onFocus={this.onFocusHandler}
                 onBlur={this.onBlurHandler}
             />;
@@ -116,14 +116,16 @@ export class DiagnosticViewToggle extends React.Component<IDiagnosticViewToggleP
 
     public componentDidMount() {
         this._isMounted = true;
+        this.setFocus();
     }
 
-    @autobind
-    private setFocus(toggle: IToggle): void {
-        if (this._isMounted && this.state.isFocused) {
-            this._toggle = toggle;
-            this._toggle.focus();
-            this.forceUpdate();
+    public componentDidUpdate() {
+        this.setFocus();
+    }
+
+    private setFocus(): void {
+        if (this._isMounted && this.state.isFocused && this._toggle.current) {
+            this._toggle.current.focus();
         }
     }
 

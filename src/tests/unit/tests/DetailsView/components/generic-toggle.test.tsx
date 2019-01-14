@@ -45,8 +45,7 @@ describe('GenericToggleTest', () => {
                         onClick={testSubject.getOnClick()}
                         onText={'On'}
                         offText={'Off'}
-                        onAriaLabel={props.name}
-                        offAriaLabel={props.name}
+                        ariaLabel={props.name}
                     />
                 </div>
                 <div className={'toggle-description'}>{props.description}</div>
@@ -77,8 +76,7 @@ describe('GenericToggleTest', () => {
                         onClick={testSubject.getOnClick()}
                         onText={'On'}
                         offText={'Off'}
-                        onAriaLabel={props.name}
-                        offAriaLabel={props.name}
+                        ariaLabel={props.name}
                     />
                 </div>
                 <div className={'toggle-description'}>{props.description}</div>
