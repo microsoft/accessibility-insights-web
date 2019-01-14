@@ -31,7 +31,7 @@ describe('AssessmentLeftNav', () => {
         leftNavLinkBuilderMock = Mock.ofType(LeftNavLinkBuilder);
         navLinkHandlerMock = {
             onOverviewClick: () => {},
-            onAssessmentTestClickV2: (x, y) => {},
+            onAssessmentTestClick: (x, y) => {},
         } as NavLinkHandler;
         linkStub = {
             status: ManualTestStatus.UNKNOWN,
@@ -61,7 +61,7 @@ describe('AssessmentLeftNav', () => {
         leftNavLinkBuilderMock
             .setup(lnlbm => lnlbm.buildAssessmentTestLinks(
                 deps,
-                navLinkHandlerMock.onAssessmentTestClickV2,
+                navLinkHandlerMock.onAssessmentTestClick,
                 assessmentsProviderStub,
                 assessmentsDataStub,
                 1,

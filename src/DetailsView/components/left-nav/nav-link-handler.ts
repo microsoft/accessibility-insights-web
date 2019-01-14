@@ -14,17 +14,6 @@ export class NavLinkHandler {
     ) {}
 
     @autobind
-    public onTestClick(event: React.MouseEvent<HTMLElement>, item: BaseLeftNavLink, selectedPivot: DetailsViewPivotType): void {
-        this.detailsViewActionMessageCreator.selectDetailsView(event, VisualizationType[item.key], selectedPivot);
-    }
-
-    @autobind
-    public onAssessmentTestClick(event: React.MouseEvent<HTMLElement>, item: BaseLeftNavLink, selectedPivot: DetailsViewPivotType): void {
-        this.detailsViewActionMessageCreator.selectDetailsView(event, VisualizationType[item.key], selectedPivot);
-        this.detailsViewActionMessageCreator.changeRightContentPanel('TestView');
-    }
-
-    @autobind
     public onOverviewClick(): void {
         this.detailsViewActionMessageCreator.changeRightContentPanel('Overview');
     }
@@ -33,11 +22,7 @@ export class NavLinkHandler {
         this.detailsViewActionMessageCreator.selectDetailsView(event, VisualizationType[item.key], DetailsViewPivotType.fastPass);
     }
 
-    public onAllTestsTestClick = (event: React.MouseEvent<HTMLElement>, item: BaseLeftNavLink) => {
-        this.detailsViewActionMessageCreator.selectDetailsView(event, VisualizationType[item.key], DetailsViewPivotType.allTest);
-    }
-
-    public onAssessmentTestClickV2 = (event: React.MouseEvent<HTMLElement>, item: BaseLeftNavLink) => {
+    public onAssessmentTestClick = (event: React.MouseEvent<HTMLElement>, item: BaseLeftNavLink) => {
         this.detailsViewActionMessageCreator.selectDetailsView(event, VisualizationType[item.key], DetailsViewPivotType.assessment);
         this.detailsViewActionMessageCreator.changeRightContentPanel('TestView');
     }
