@@ -3,7 +3,7 @@
 import * as Puppeteer from 'puppeteer';
 import { DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS } from './timeouts';
 
-export interface NewLaunchpadPageOptions {
+export interface NewPopupPageOptions {
     suppressFirstTimeTelemetryDialog: boolean;
 }
 
@@ -46,7 +46,7 @@ export class BrowserController {
 
     public async newPopupPage(
         targetPageUrl: string,
-        options: NewLaunchpadPageOptions = {suppressFirstTimeTelemetryDialog: true},
+        options: NewPopupPageOptions = {suppressFirstTimeTelemetryDialog: true},
     ): Promise<Puppeteer.Page> {
         const targetPage = await this.newPage(targetPageUrl);
         await targetPage.bringToFront();
@@ -82,7 +82,7 @@ export class BrowserController {
         return `${pageUrl.protocol}//${pageUrl.host}`;
     }
 
-    private async newPopupPageForTarget(targetTabId: number, options: NewLaunchpadPageOptions): Promise<Puppeteer.Page> {
+    private async newPopupPageForTarget(targetTabId: number, options: NewPopupPageOptions): Promise<Puppeteer.Page> {
         // Ideally we'd be asking puppeteer to invoke our extension's browser action; opening popup.html
         // with an explicit tab ID is a workaround until puppeteer supports invoking browser actions.
         const page = await this.newPage(this.getExtensionUrl(`popup/popup.html?tabId=${targetTabId}`));
