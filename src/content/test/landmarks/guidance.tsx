@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { React, create} from '../../common';
+import { LandmarkTable } from './landmark-table';
 
 export const guidance = create(({ Markup, Link }) => <>
 
@@ -34,6 +35,8 @@ export const guidance = create(({ Markup, Link }) => <>
         <ul>
             <li>In the visual helper, each landmark role has a unique color, and the role is displayed in its tag.</li>
         </ul>
+        <LandmarkTable markup={Markup} />
+
         <h3>Provide exactly one main landmark in every page. (<Link.WCAG_1_3_1/>, <Link.WCAG_2_4_1/>)</h3>
         <ul>
             <li>An automated check will fail if the page contains more than one main landmark.</li>
