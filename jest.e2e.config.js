@@ -12,6 +12,5 @@ module.exports = {
         'js'
     ],
     roots: ['<rootDir>/src/tests/end-to-end'],
-    reporters: ['default', ['jest-junit', { outputDirectory: '.', outputName: './junit-e2e.xml' }]],
-    setupTestFrameworkScriptFile: 'expect-puppeteer',
+    reporters: ['default', ['jest-junit', { outputDirectory: '.', outputName: './junit-e2e.xml' }]]
 };

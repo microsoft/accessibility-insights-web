@@ -3,46 +3,50 @@
 import { BrowserController } from '../common/browser-controller';
 import { getTestResourceUrl } from '../common/test-resources';
 import { E2E_TEST_TIMEOUT } from '../common/timeouts';
-import '../common/puppeteer-expect-matchers';
 
 describe('telemetry-permission-dialog', () => {
     const arbitraryTargetUrl = getTestResourceUrl('all.html');
     let browserController: BrowserController;
 
     beforeEach(async () => {
-        browserController = await BrowserController.launch();
+        browserController = await BrowserController.start();
     });
 
     afterEach(async () => {
-        await browserController.close();
+        await browserController.stop();
     });
 
     it('should be visible with the expected title the first time a launchpad is opened', async () => {
-        const launchpadPage = await browserController.newLaunchpadPage(
+        const launchpadPage = await browserController.newPopupPage(
             arbitraryTargetUrl,
             { suppressFirstTimeTelemetryDialog: false });
 
         await launchpadPage.waitForSelector('.telemetry-permission-dialog-modal');
 
         const dialogTitle = await launchpadPage.waitForSelector('#telemetry-permission-title');
-        await expect(dialogTitle).toHaveTextContent('We need your help');
+        const textContentPropertyHandle = await dialogTitle.getProperty('textContent');
+        const dialogTitleText = await textContentPropertyHandle.jsonValue();
+
+        expect(dialogTitleText).toBe('We need your help');
     }, E2E_TEST_TIMEOUT);
 
     it('should be dismissed by clicking the OK button', async () => {
-        let launchpadPage = await browserController.newLaunchpadPage(
+        let launchpadPage = await browserController.newPopupPage(
             arbitraryTargetUrl,
             { suppressFirstTimeTelemetryDialog: false });
 
         // Click the OK button on the dialog
         await launchpadPage.waitForSelector('.telemetry-permission-dialog-modal');
-        await expect(launchpadPage).toClick('button.start-using-product-button');
+
+        const okButton = await launchpadPage.waitForSelector('.telemetry-permission-dialog-modal button.start-using-product-button');
+        await okButton.click();
 
         // Verify the dialog is dismissed from the original launchpad
         await launchpadPage.waitFor(() => !document.querySelector('.telemetry-permission-dialog-modal'));
 
         // Open a new separate launchpad
         await browserController.closeAllPages();
-        launchpadPage = await browserController.newLaunchpadPage(
+        launchpadPage = await browserController.newPopupPage(
             arbitraryTargetUrl,
             { suppressFirstTimeTelemetryDialog: false });
 
@@ -53,7 +57,7 @@ describe('telemetry-permission-dialog', () => {
 
     // Sanity check for the sake of other test files
     it('should be suppressed by BrowserController.newLaunchpadPage by default', async () => {
-        const launchpadPage = await browserController.newLaunchpadPage(arbitraryTargetUrl);
+        const launchpadPage = await browserController.newPopupPage(arbitraryTargetUrl);
 
         await launchpadPage.waitForSelector('#new-launch-pad');
         await launchpadPage.waitFor(() => !document.querySelector('.telemetry-permission-dialog-modal'));

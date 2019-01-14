@@ -21,20 +21,15 @@ export class BrowserController {
         public readonly backgroundPage: Puppeteer.Page,
     ) { }
 
-    public static async launch(): Promise<BrowserController> {
+    public static async start(): Promise<BrowserController> {
         const browser = await BrowserController.launchNewBrowser();
         const backgroundPage = await BrowserController.waitForExtensionBackgroundPage(browser);
-
-        // It's important to use .target().url() instead of just .url() here because there is an inconsistent
-        // race condition where sometimes backgroundPage.mainFrame() doesn't get populated correctly, and so
-        // url() (which is implemented in terms of mainFrame()) shows as ':' incorrectly
-        const backgroundPageUrl = new URL(backgroundPage.target().url());
-        const extensionBaseUrl = backgroundPageUrl.origin;
+        const extensionBaseUrl = BrowserController.getExtensionBaseUrl(backgroundPage);
 
         return new BrowserController(extensionBaseUrl, browser, backgroundPage);
     }
 
-    public async close() {
+    public async stop() {
         this.browser.removeListener('disconnected', BrowserController.onBrowserDisconnected);
         await this.browser.close();
     }
@@ -48,14 +43,14 @@ export class BrowserController {
         return page;
     }
 
-    public async newLaunchpadPage(
+    public async newPopupPage(
         targetPageUrl: string,
         options: NewLaunchpadPageOptions = {suppressFirstTimeTelemetryDialog: true},
     ): Promise<Puppeteer.Page> {
         const targetPage = await this.newPage(targetPageUrl);
         await targetPage.bringToFront();
         const targetTabId = await this.getActivePageTabId();
-        const launchpadPage = await this.newLaunchpadPageForExistingTarget(targetTabId, options);
+        const launchpadPage = await this.newPopupPageForTarget(targetTabId, options);
 
         return launchpadPage;
     }
@@ -76,7 +71,17 @@ export class BrowserController {
         return `${this.extensionBaseUrl}/${relativePath}`;
     }
 
-    private async newLaunchpadPageForExistingTarget(targetTabId: number, options: NewLaunchpadPageOptions): Promise<Puppeteer.Page> {
+    private static getExtensionBaseUrl(extensionPage: Puppeteer.Page): string {
+        // It's important to use .target().url() instead of just .url() here because there is an inconsistent
+        // race condition where sometimes backgroundPage.mainFrame() doesn't get populated correctly, and so
+        // url() (which is implemented in terms of mainFrame()) shows as ':' incorrectly
+        const pageUrl = new URL(extensionPage.target().url());
+
+        // pageUrl.origin would be correct here, but it doesn't get populated correctly in all node.js versions we build
+        return `${pageUrl.protocol}//${pageUrl.host}`;
+    }
+
+    private async newPopupPageForTarget(targetTabId: number, options: NewLaunchpadPageOptions): Promise<Puppeteer.Page> {
         // Ideally we'd be asking puppeteer to invoke our extension's browser action; opening popup.html
         // with an explicit tab ID is a workaround until puppeteer supports invoking browser actions.
         const page = await this.newPage(this.getExtensionUrl(`popup/popup.html?tabId=${targetTabId}`));
