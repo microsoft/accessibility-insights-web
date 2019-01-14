@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { BrowserController } from '../common/browser-controller';
 import { getTestResourceUrl } from '../common/test-resources';
-import { E2E_TEST_TIMEOUT } from '../common/timeouts';
+import { DEFAULT_E2E_TEST_TIMEOUT_MS } from '../common/timeouts';
 
 describe('telemetry-permission-dialog', () => {
     const arbitraryTargetUrl = getTestResourceUrl('all.html');
@@ -28,7 +28,7 @@ describe('telemetry-permission-dialog', () => {
         const dialogTitleText = await textContentPropertyHandle.jsonValue();
 
         expect(dialogTitleText).toBe('We need your help');
-    }, E2E_TEST_TIMEOUT);
+    }, DEFAULT_E2E_TEST_TIMEOUT_MS);
 
     it('should be dismissed by clicking the OK button', async () => {
         let launchpadPage = await browserController.newPopupPage(
@@ -53,7 +53,7 @@ describe('telemetry-permission-dialog', () => {
         // Verify the dialog is suppressed in the second launchpad instance
         await launchpadPage.waitForSelector('#new-launch-pad');
         await launchpadPage.waitFor(() => !document.querySelector('.telemetry-permission-dialog-modal'));
-    }, E2E_TEST_TIMEOUT);
+    }, DEFAULT_E2E_TEST_TIMEOUT_MS);
 
     // Sanity check for the sake of other test files
     it('should be suppressed by BrowserController.newLaunchpadPage by default', async () => {
@@ -61,5 +61,5 @@ describe('telemetry-permission-dialog', () => {
 
         await launchpadPage.waitForSelector('#new-launch-pad');
         await launchpadPage.waitFor(() => !document.querySelector('.telemetry-permission-dialog-modal'));
-    }, E2E_TEST_TIMEOUT);
+    }, DEFAULT_E2E_TEST_TIMEOUT_MS);
 });

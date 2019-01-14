@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Puppeteer from 'puppeteer';
+import { DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS } from './timeouts';
 
 export interface NewLaunchpadPageOptions {
     suppressFirstTimeTelemetryDialog: boolean;
@@ -58,7 +59,7 @@ export class BrowserController {
     public async waitForDetailsPage() {
         const detailsPageTarget = await this.browser.waitForTarget(t => detailsViewUrlRegex.test(t.url()));
         const detailsPage = await detailsPageTarget.page();
-        detailsPage.waitFor('header', {timeout: 2000});
+        detailsPage.waitFor('header', {timeout: DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS});
         return detailsPage;
     }
 
