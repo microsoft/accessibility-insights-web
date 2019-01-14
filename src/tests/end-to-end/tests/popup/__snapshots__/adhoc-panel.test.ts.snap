@@ -1,0 +1,388 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Ad hoc tools snapshot test for mainAdhocPanel 1`] = `
+<DocumentFragment>
+  <main>
+    <div
+      class="ms-Grid-row"
+    >
+      <div
+        class="ms-Grid-col ms-sm6 ms-md6 ms-lg6 ad-hoc-tools-panel-group-0"
+      >
+        <div>
+          <div
+            class="ms-Grid-row view-toggle-row"
+          >
+            <div
+              class="ms-Grid-col ms-sm7"
+            >
+              <div
+                class="ms-fontColor-neutralPrimary ms-fontWeight-semibold ms-fontSize-mPlus"
+              >
+                Automated checks
+              </div>
+            </div>
+            <div
+              class="ms-Grid-col ms-sm5 view-toggle-col"
+              style="float: right;"
+            >
+              <div
+                class="ms-Toggle is-enabled root-78"
+              >
+                <div
+                  class="ms-Toggle-innerContainer container-80"
+                >
+                  <button
+                    aria-disabled="false"
+                    aria-label="Automated checks"
+                    aria-pressed="false"
+                    class="ms-Toggle-background pill-81"
+                    data-is-focusable="true"
+                    id="Toggle9"
+                    type="button"
+                  >
+                    <div
+                      class="ms-Toggle-thumb thumb-82"
+                    />
+                  </button>
+                  <label
+                    class="ms-Label ms-Toggle-stateText text-84"
+                    for="Toggle9"
+                  >
+                    Off
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="ms-Grid-row"
+          >
+            <div
+              class="ms-Grid-col ms-sm8"
+            >
+              <a
+                class="ms-Link root-53"
+                href="#"
+              >
+                List view and filtering
+              </a>
+            </div>
+            <div
+              class="ms-Grid-col ms-sm4 shortcut-label"
+              style="float: right;"
+            >
+              <div
+                class="ms-fontColor-neutralSecondary ms-fontWeight-semilight ms-font-xs"
+              >
+                Ctrl+Shift+1
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ms-fontColor-neutralLight launch-panel-hr"
+        />
+        <div>
+          <div
+            class="ms-Grid-row view-toggle-row"
+          >
+            <div
+              class="ms-Grid-col ms-sm7"
+            >
+              <div
+                class="ms-fontColor-neutralPrimary ms-fontWeight-semibold ms-fontSize-mPlus"
+              >
+                Color
+              </div>
+            </div>
+            <div
+              class="ms-Grid-col ms-sm5 view-toggle-col"
+              style="float: right;"
+            >
+              <div
+                class="ms-Toggle is-enabled root-78"
+              >
+                <div
+                  class="ms-Toggle-innerContainer container-80"
+                >
+                  <button
+                    aria-disabled="false"
+                    aria-label="Color"
+                    aria-pressed="false"
+                    class="ms-Toggle-background pill-81"
+                    data-is-focusable="true"
+                    id="Toggle10"
+                    type="button"
+                  >
+                    <div
+                      class="ms-Toggle-thumb thumb-82"
+                    />
+                  </button>
+                  <label
+                    class="ms-Label ms-Toggle-stateText text-84"
+                    for="Toggle10"
+                  >
+                    Off
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="ms-Grid-row"
+          >
+            <div
+              class="ms-Grid-col ms-sm8"
+            >
+              <a
+                class="ms-Link insights-link root-53"
+                href="/insights.html#/content/adhoc/color/guidance"
+                target="_blank"
+                title="Guidance"
+              >
+                How to test color
+              </a>
+            </div>
+            <div
+              class="ms-Grid-col ms-sm4 shortcut-label"
+              style="float: right;"
+            >
+              <div
+                class="ms-fontColor-neutralSecondary ms-fontWeight-semilight ms-font-xs"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="ms-fontColor-neutralLight launch-panel-hr"
+        />
+        <div>
+          <div
+            class="ms-Grid-row view-toggle-row"
+          >
+            <div
+              class="ms-Grid-col ms-sm7"
+            >
+              <div
+                class="ms-fontColor-neutralPrimary ms-fontWeight-semibold ms-fontSize-mPlus"
+              >
+                Headings
+              </div>
+            </div>
+            <div
+              class="ms-Grid-col ms-sm5 view-toggle-col"
+              style="float: right;"
+            >
+              <div
+                class="ms-Toggle is-enabled root-78"
+              >
+                <div
+                  class="ms-Toggle-innerContainer container-80"
+                >
+                  <button
+                    aria-disabled="false"
+                    aria-label="Headings"
+                    aria-pressed="false"
+                    class="ms-Toggle-background pill-81"
+                    data-is-focusable="true"
+                    id="Toggle11"
+                    type="button"
+                  >
+                    <div
+                      class="ms-Toggle-thumb thumb-82"
+                    />
+                  </button>
+                  <label
+                    class="ms-Label ms-Toggle-stateText text-84"
+                    for="Toggle11"
+                  >
+                    Off
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="ms-Grid-row"
+          >
+            <div
+              class="ms-Grid-col ms-sm8"
+            >
+              <a
+                class="ms-Link insights-link root-53"
+                href="/insights.html#/content/adhoc/headings/guidance"
+                target="_blank"
+                title="Guidance"
+              >
+                How to test headings
+              </a>
+            </div>
+            <div
+              class="ms-Grid-col ms-sm4 shortcut-label"
+              style="float: right;"
+            >
+              <div
+                class="ms-fontColor-neutralSecondary ms-fontWeight-semilight ms-font-xs"
+              >
+                Ctrl+Shift+3
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="ms-Grid-col ms-sm6 ms-md6 ms-lg6 ad-hoc-tools-panel-group-1"
+      >
+        <div>
+          <div
+            class="ms-Grid-row view-toggle-row"
+          >
+            <div
+              class="ms-Grid-col ms-sm7"
+            >
+              <div
+                class="ms-fontColor-neutralPrimary ms-fontWeight-semibold ms-fontSize-mPlus"
+              >
+                Landmarks
+              </div>
+            </div>
+            <div
+              class="ms-Grid-col ms-sm5 view-toggle-col"
+              style="float: right;"
+            >
+              <div
+                class="ms-Toggle is-enabled root-78"
+              >
+                <div
+                  class="ms-Toggle-innerContainer container-80"
+                >
+                  <button
+                    aria-disabled="false"
+                    aria-label="Landmarks"
+                    aria-pressed="false"
+                    class="ms-Toggle-background pill-81"
+                    data-is-focusable="true"
+                    id="Toggle12"
+                    type="button"
+                  >
+                    <div
+                      class="ms-Toggle-thumb thumb-82"
+                    />
+                  </button>
+                  <label
+                    class="ms-Label ms-Toggle-stateText text-84"
+                    for="Toggle12"
+                  >
+                    Off
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="ms-Grid-row"
+          >
+            <div
+              class="ms-Grid-col ms-sm8"
+            >
+              <a
+                class="ms-Link insights-link root-53"
+                href="/insights.html#/content/adhoc/landmarks/guidance"
+                target="_blank"
+                title="Guidance"
+              >
+                How to test landmarks
+              </a>
+            </div>
+            <div
+              class="ms-Grid-col ms-sm4 shortcut-label"
+              style="float: right;"
+            >
+              <div
+                class="ms-fontColor-neutralSecondary ms-fontWeight-semilight ms-font-xs"
+              >
+                Ctrl+Shift+2
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ms-fontColor-neutralLight launch-panel-hr"
+        />
+        <div>
+          <div
+            class="ms-Grid-row view-toggle-row"
+          >
+            <div
+              class="ms-Grid-col ms-sm7"
+            >
+              <div
+                class="ms-fontColor-neutralPrimary ms-fontWeight-semibold ms-fontSize-mPlus"
+              >
+                Tab stops
+              </div>
+            </div>
+            <div
+              class="ms-Grid-col ms-sm5 view-toggle-col"
+              style="float: right;"
+            >
+              <div
+                class="ms-Toggle is-enabled root-78"
+              >
+                <div
+                  class="ms-Toggle-innerContainer container-80"
+                >
+                  <button
+                    aria-disabled="false"
+                    aria-label="Tab stops"
+                    aria-pressed="false"
+                    class="ms-Toggle-background pill-81"
+                    data-is-focusable="true"
+                    id="Toggle13"
+                    type="button"
+                  >
+                    <div
+                      class="ms-Toggle-thumb thumb-82"
+                    />
+                  </button>
+                  <label
+                    class="ms-Label ms-Toggle-stateText text-84"
+                    for="Toggle13"
+                  >
+                    Off
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="ms-Grid-row"
+          >
+            <div
+              class="ms-Grid-col ms-sm8"
+            >
+              <a
+                class="ms-Link insights-link root-53"
+                href="/insights.html#/content/adhoc/tabstops/guidance"
+                target="_blank"
+                title="Guidance"
+              >
+                How to test tab stops
+              </a>
+            </div>
+            <div
+              class="ms-Grid-col ms-sm4 shortcut-label"
+              style="float: right;"
+            >
+              <div
+                class="ms-fontColor-neutralSecondary ms-fontWeight-semilight ms-font-xs"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</DocumentFragment>
+`;

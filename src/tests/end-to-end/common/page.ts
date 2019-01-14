@@ -58,6 +58,11 @@ export class Page {
         await element.click();
     }
 
+    public async clickSelectorXPath(xPathString: string) {
+        const element = await this.underlyingPage.waitForXPath(xPathString, { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS });
+        await element.click();
+    }
+
     public url(): URL {
         // We use target().url() instead of just url() here because:
         // * They ought to be equivalent in every case we care to test
@@ -71,9 +76,6 @@ export class Page {
         return generateFormattedHtml(html);
     }
 
-    public async getElementByXPath(xPathString: string) {
-        return this.underlyingPage.$x(xPathString);
-    }
 }
 
 function generateFormattedHtml(innerHTMLString: string) {

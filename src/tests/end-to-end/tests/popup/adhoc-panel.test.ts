@@ -38,13 +38,8 @@ describe('Ad hoc tools', () => {
         await popupPage.clickSelector(popupPageSelectors.startUsingProductButton);
     }
 
-    it('adhoc title button exists and clicking on it takes us to the adhoc panel', async () => {
-        const adhocButton = await popupPage.getElementByXPath("//button[text()='Ad hoc tools']");
-
-        expect(adhocButton).toBeDefined();
-        expect(adhocButton.length).toBe(1);
-
-        await adhocButton[0].click();
+    it('clicking the adhoc panel takes us to main page', async () => {
+        await popupPage.clickSelectorXPath("//button[text()='Ad hoc tools']");
 
         await popupPage.waitForSelector('.ad-hoc-tools-panel-footer');
 
@@ -58,6 +53,13 @@ describe('Ad hoc tools', () => {
 
         expect(mainAdhocPanel).toBeDefined();
         expect(mainAdhocPanel.length).toBe(1);
+    });
+
+    it('snapshot test for mainAdhocPanel', async () => {
+        await popupPage.clickSelectorXPath("//button[text()='Ad hoc tools']");
+
+        const mainAdhocPanelHtml = await popupPage.getPrintableHtmlElement('main');
+        expect(mainAdhocPanelHtml).toMatchSnapshot();
     });
 
 });
