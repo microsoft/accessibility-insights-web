@@ -5,7 +5,6 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { IAssessmentsProvider } from '../assessments/types/iassessments-provider';
-import { PivotConfiguration } from '../common/configs/pivot-configuration';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { config } from '../common/configuration';
 import { DocumentManipulator } from '../common/document-manipulator';
@@ -15,13 +14,11 @@ import { IStoreActionMessageCreator } from '../common/message-creators/istore-ac
 import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
 import { IClientStoresHub } from '../common/stores/iclient-stores-hub';
 import { IssuesTableHandler } from './components/issues-table-handler';
-import { DetailsViewContainerDeps, IDetailsViewContainerState, IDetailsViewContainerProps, DetailsViewContainer, DetailsView } from './details-view-container';
+import { DetailsView, DetailsViewContainerDeps, IDetailsViewContainerState } from './details-view-container';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
-import { SelectedDetailsViewProvider } from './handlers/selected-details-view-provider';
 import { ReportGenerator } from './reports/report-generator';
-import { withStoreSubscription } from '../common/components/with-store-subscription';
 
 export interface IDetailsViewRenderer {
     render(backgroundConnection: chrome.runtime.Port, tabId: number): void;
@@ -35,7 +32,6 @@ export class DetailsViewRenderer implements IDetailsViewRenderer {
     private detailsViewStoreActionCreator: IStoreActionMessageCreator;
     private issuesSelection: ISelection;
     private clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
-    private pivotConfiguration: PivotConfiguration;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
     private storesHub: IClientStoresHub<IDetailsViewContainerState>;
     private issuesTableHandler: IssuesTableHandler;
@@ -44,7 +40,6 @@ export class DetailsViewRenderer implements IDetailsViewRenderer {
     private previewFeatureFlagsHandler: PreviewFeatureFlagsHandler;
     private scopingFlagsHandler: PreviewFeatureFlagsHandler;
     private dropdownClickHandler: DropdownClickHandler;
-    private selectedDetailsViewHelper: SelectedDetailsViewProvider;
     private assessmentsProvider: IAssessmentsProvider;
 
     constructor(
@@ -56,7 +51,6 @@ export class DetailsViewRenderer implements IDetailsViewRenderer {
         detailsViewStoreActionCreator: IStoreActionMessageCreator,
         issuesSelection: ISelection,
         clickHandlerFactory: DetailsViewToggleClickHandlerFactory,
-        pivotConfiguration: PivotConfiguration,
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
         storesHub: IClientStoresHub<IDetailsViewContainerState>,
         issuesTableHandler: IssuesTableHandler,
@@ -65,7 +59,6 @@ export class DetailsViewRenderer implements IDetailsViewRenderer {
         previewFeatureFlagsHandler: PreviewFeatureFlagsHandler,
         scopingFlagsHandler: PreviewFeatureFlagsHandler,
         dropdownClickHandler: DropdownClickHandler,
-        selectedDetailsViewHelper: SelectedDetailsViewProvider,
         assessmentsProvider: IAssessmentsProvider,
         private documentManipulator: DocumentManipulator,
     ) {
@@ -77,7 +70,6 @@ export class DetailsViewRenderer implements IDetailsViewRenderer {
         this.detailsViewStoreActionCreator = detailsViewStoreActionCreator;
         this.issuesSelection = issuesSelection;
         this.clickHandlerFactory = clickHandlerFactory;
-        this.pivotConfiguration = pivotConfiguration;
         this.visualizationConfigurationFactory = visualizationConfigurationFactory;
 
         this.storesHub = storesHub;
@@ -87,7 +79,6 @@ export class DetailsViewRenderer implements IDetailsViewRenderer {
         this.previewFeatureFlagsHandler = previewFeatureFlagsHandler;
         this.scopingFlagsHandler = scopingFlagsHandler;
         this.dropdownClickHandler = dropdownClickHandler;
-        this.selectedDetailsViewHelper = selectedDetailsViewHelper;
         this.assessmentsProvider = assessmentsProvider;
     }
 
@@ -102,7 +93,6 @@ export class DetailsViewRenderer implements IDetailsViewRenderer {
                 issuesSelection={this.issuesSelection}
                 clickHandlerFactory={this.clickHandlerFactory}
                 storeActionCreator={this.detailsViewStoreActionCreator}
-                pivotConfiguration={this.pivotConfiguration}
                 visualizationConfigurationFactory={this.visualizationConfigurationFactory}
                 storesHub={this.storesHub}
                 issuesTableHandler={this.issuesTableHandler}
@@ -111,7 +101,6 @@ export class DetailsViewRenderer implements IDetailsViewRenderer {
                 previewFeatureFlagsHandler={this.previewFeatureFlagsHandler}
                 scopingFlagsHandler={this.scopingFlagsHandler}
                 dropdownClickHandler={this.dropdownClickHandler}
-                selectedDetailsViewHelper={this.selectedDetailsViewHelper}
                 scopingActionMessageCreator={this.scopingActionMessageCreator}
                 inspectActionMessageCreator={this.inspectActionMessageCreator}
                 assessmentsProvider={this.assessmentsProvider}

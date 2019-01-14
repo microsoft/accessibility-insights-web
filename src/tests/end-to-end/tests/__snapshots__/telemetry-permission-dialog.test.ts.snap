@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`telemetry-permission-dialog should have HTML content that matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="ms-Modal root_40cbea6c ms-Dialog telemetry-permission-dialog-modal root-38 is-open rootIsVisible_40cbea6c"
+  >
+    <div
+      class="ms-Overlay root-58"
+    />
+    <div
+      class="ms-Dialog-main main_40cbea6c insights-dialog-main-override telemetry-permission-dialog main-54"
+    >
+      <div
+        class="content-59"
+      >
+        <div
+          class="ms-Dialog-header header-61"
+        >
+          <p
+            class="ms-Dialog-title title-65"
+            id="telemetry-permission-title"
+            role="heading"
+          >
+            We need your help
+          </p>
+          <div
+            class="topButton-66"
+          />
+        </div>
+        <div
+          class="ms-Dialog-inner inner-63"
+        >
+          <div
+            class="ms-Dialog-content innerContent-64"
+          >
+            <p
+              class="telemetry-permission-details"
+            />
+            <p>
+              By opting into telemetry, you help the community develop inclusive software.
+            </p>
+            <p>
+              We collect anonymized data to identify the top accessibility issues found by the users. This will help focus the accessibility tools and standards community to improve guidelines, rules engines, and features.
+            </p>
+            <p />
+            <div
+              class="telemetry-checkbox-section"
+            >
+              <button
+                aria-checked="true"
+                aria-describedby=""
+                class="ms-Checkbox is-checked is-enabled telemetry-agree-checkbox css-67"
+                id="checkbox-5"
+                role="checkbox"
+                type="button"
+              >
+                <label
+                  class="ms-Checkbox-label css-68"
+                  for="checkbox-5"
+                >
+                  <div
+                    class="ms-Checkbox-checkbox css-69"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="root-72"
+                      data-icon-name="CheckMark"
+                      role="presentation"
+                    >
+                      
+                    </i>
+                  </div>
+                  <span
+                    class="ms-Checkbox-text css-71"
+                  >
+                    I agree to help
+                  </span>
+                </label>
+              </button>
+              You can change this choice anytime in settings. Read our 
+              <a
+                class="ms-Link insights-link root-53"
+                href="http://go.microsoft.com/fwlink/?LinkId=521839"
+                target="_blank"
+              >
+                 privacy statement
+              </a>
+               to learn more.
+            </div>
+          </div>
+          <div
+            class="ms-Dialog-actions actions-73"
+          >
+            <div
+              class="ms-Dialog-actionsRight actionsRight-75"
+            >
+              <span
+                class="ms-Dialog-action action-74"
+              >
+                <button
+                  class="ms-Button start-using-product-button ms-Button--primary root-76"
+                  data-is-focusable="true"
+                  type="button"
+                >
+                  <div
+                    class="ms-Button-flexContainer flexContainer-46"
+                  >
+                    <div
+                      class="ms-Button-textContainer textContainer-47"
+                    >
+                      <div
+                        class="ms-Button-label label-77"
+                        id="id__6"
+                      >
+                        OK
+                      </div>
+                    </div>
+                  </div>
+                </button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

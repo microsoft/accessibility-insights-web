@@ -4,6 +4,7 @@ import * as Puppeteer from 'puppeteer';
 import { forceTestFailure } from './force-test-failure';
 import { Page } from './page';
 import { DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS } from './timeouts';
+import { popupPageSelectors } from './popup-page-selectors';
 
 export interface NewPopupPageOptions {
     suppressFirstTimeTelemetryDialog: boolean;
@@ -71,18 +72,6 @@ export class Browser {
         return this.memoizedBackgroundPage;
     }
 
-    public async newPopupPage(
-        targetPageUrl: string,
-        options: NewPopupPageOptions = {suppressFirstTimeTelemetryDialog: true},
-    ): Promise<Page> {
-        const targetPage = await this.newPage(targetPageUrl);
-        await targetPage.bringToFront();
-        const targetTabId = await this.getActivePageTabId();
-
-        const popupPage = await this.newPopupPageForTarget(targetTabId, options);
-        return popupPage;
-    }
-
     public async waitForDetailsPage() {
         const detailsViewUrlRegex = /(^chrome-extension:\/\/\w+)\/DetailsView\/detailsView.html(\?tabId=(\d+))?$/;
         const detailsPageTarget = await this.underlyingBrowser.waitForTarget(t => detailsViewUrlRegex.test(t.url()));
@@ -91,13 +80,18 @@ export class Browser {
         return detailsPage;
     }
 
-    private async newPopupPageForTarget(targetTabId: number, options: NewPopupPageOptions): Promise<Page> {
+    public async newPopupPageForTarget(targetTabId: number, options?: NewPopupPageOptions): Promise<Page> {
+        options = {
+            suppressFirstTimeTelemetryDialog: true,
+            ...options,
+        };
+
         // Ideally we'd be asking puppeteer to invoke our extension's browser action; opening popup.html
         // with an explicit tab ID is a workaround until puppeteer supports invoking browser actions.
         const page = await this.newExtensionPage(`popup/popup.html?tabId=${targetTabId}`);
 
         if (!this.alreadySuppressedTelemetryDialog && options.suppressFirstTimeTelemetryDialog) {
-            await page.click('.telemetry-permission-dialog-modal button.start-using-product-button');
+            await page.clickSelector(popupPageSelectors.startUsingProductButton);
             this.alreadySuppressedTelemetryDialog = true;
         }
 

@@ -7,7 +7,6 @@ import { Assessments } from '../assessments/assessments';
 import { ChromeAdapter } from '../background/browser-adapter';
 import { IssueDetailsTextGenerator } from '../background/issue-details-text-generator';
 import { A11YSelfValidator } from '../common/a11y-self-validator';
-import { PivotConfiguration } from '../common/configs/pivot-configuration';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DateProvider } from '../common/date-provider';
 import { DocumentManipulator } from '../common/document-manipulator';
@@ -58,7 +57,6 @@ import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-t
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { MasterCheckBoxConfigProvider } from './handlers/master-checkbox-config-provider';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
-import { SelectedDetailsViewProvider } from './handlers/selected-details-view-provider';
 import { AssessmentReportHtmlGenerator } from './reports/assessment-report-html-generator';
 import { AssessmentReportModelBuilderFactory } from './reports/assessment-report-model-builder-factory';
 import {
@@ -131,8 +129,6 @@ if (isNaN(tabId) === false) {
                     userConfigStore,
                 ]);
 
-                const pivotConfiguration = new PivotConfiguration(featureFlagStore);
-                const selectedDetailsViewHelper: SelectedDetailsViewProvider = new SelectedDetailsViewProvider(pivotConfiguration);
                 const actionMessageCreator = new DetailsViewActionMessageCreator(
                     chromeAdapter.sendMessageToFrames,
                     tab.id,
@@ -227,8 +223,8 @@ if (isNaN(tabId) === false) {
                     visualizationStore,
                     assessmentStore,
                     GetDetailsRightPanelConfiguration,
+                    GetDetailsSwitcherNavConfiguration,
                     visualizationConfigurationFactory,
-                    selectedDetailsViewHelper,
                     dom,
                 );
                 documentTitleUpdater.initialize();
@@ -244,7 +240,6 @@ if (isNaN(tabId) === false) {
                     windowUtils: new WindowUtils(),
                     getAssessmentSummaryModelFromProviderAndStoreData: getAssessmentSummaryModelFromProviderAndStoreData,
                     getAssessmentSummaryModelFromProviderAndStatusData: getAssessmentSummaryModelFromProviderAndStatusData,
-                    pivotConfiguration,
                     visualizationConfigurationFactory,
                     getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration,
                     navLinkHandler: new NavLinkHandler(actionMessageCreator),
@@ -266,7 +261,6 @@ if (isNaN(tabId) === false) {
                     detailsViewStoreActionMessageCreator,
                     issuesSelection,
                     clickHandlerFactory,
-                    pivotConfiguration,
                     visualizationConfigurationFactory,
                     storesHub,
                     issuesTableHandler,
@@ -275,7 +269,6 @@ if (isNaN(tabId) === false) {
                     previewFeatureFlagsHandler,
                     scopingFlagsHandler,
                     dropdownClickHandler,
-                    selectedDetailsViewHelper,
                     Assessments,
                     documentElementSetter,
                 );
@@ -293,8 +286,6 @@ function createNullifiedRenderer(doc, render): DetailsViewRenderer {
         null,
         doc,
         render,
-        null,
-        null,
         null,
         null,
         null,

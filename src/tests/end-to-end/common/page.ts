@@ -21,6 +21,10 @@ export class Page {
         await this.underlyingPage.goto(url, { timeout: DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS });
     }
 
+    public async close(): Promise<void> {
+        await this.underlyingPage.close();
+    }
+
     public async bringToFront(): Promise<void> {
         await this.underlyingPage.bringToFront();
     }
@@ -41,18 +45,9 @@ export class Page {
         );
     }
 
-    public async click(selector: string, options?: PageClickOptions): Promise<void> {
-        options = {
-            waitForElementFirst: true,
-            ...options,
-        };
-
-        if (options.waitForElementFirst) {
-            const element = await this.waitForSelector(selector);
-            await element.click();
-        } else {
-            await this.underlyingPage.click(selector);
-        }
+    public async clickSelector(selector: string): Promise<void> {
+        const element = await this.waitForSelector(selector);
+        await element.click();
     }
 
     public url(): URL {
@@ -62,4 +57,15 @@ export class Page {
         //   mis-populating url() but not target().url() as ':'
         return new URL(this.underlyingPage.target().url());
     }
+
+    public async getPrintableHtmlElement(selector: string) {
+        const html = await this.underlyingPage.$eval(selector, el => el.outerHTML);
+        return generateFormattedHtml(html);
+    }
+}
+
+function generateFormattedHtml(innerHTMLString: string) {
+    const template = document.createElement('template');
+    template.innerHTML = innerHTMLString.trim();
+    return template.content.cloneNode(true);
 }
