@@ -3,6 +3,8 @@
 import { Page } from 'puppeteer';
 
 import { ExtensionPuppeteerConnection } from '../common/extension-puppeteer-connection';
+import { getPrintableHtmlElement, waitForElementToDisappear } from '../common/page-utils';
+import { popupPageSelectors } from '../common/popup-page-selectors';
 import { getTestResourceUrl } from '../common/test-resources';
 
 describe('FirstTimeDialogTest', () => {
@@ -27,23 +29,23 @@ describe('FirstTimeDialogTest', () => {
     });
 
     it('verify first time dialog content', async () => {
-        await popupPage.waitForSelector('.telemetry-permission-dialog-modal');
+        await popupPage.waitForSelector(popupPageSelectors.telemetryDialog);
 
-        const title = await popupPage.$eval('#telemetry-permission-title', element => element.textContent);
-        expect(title).toBe('We need your help');
+        const element = await getPrintableHtmlElement(popupPage, popupPageSelectors.telemetryDialog);
+        expect(element).toMatchSnapshot();
     });
 
     it('should not show telemetry dialog after dismissed', async () => {
-        await popupPage.waitForSelector('.telemetry-permission-dialog-modal');
-        await popupPage.click('button.start-using-product-button');
+        await popupPage.waitForSelector(popupPageSelectors.telemetryDialog);
+        await popupPage.click(popupPageSelectors.startUsingProductButton);
 
-        await popupPage.waitFor(() => !document.querySelector('.telemetry-permission-dialog-modal'));
+        await waitForElementToDisappear(popupPage, popupPageSelectors.telemetryDialog);
 
         // verify telemetry dialog doesn't show up in new popup
         await setupNewTargetPage();
         popupPage = await extensionConnection.newExtensionPopupPage(targetPageTabId);
-        await popupPage.waitForSelector('#new-launch-pad');
-        await popupPage.waitFor(() => !document.querySelector('.telemetry-permission-dialog-modal'));
+        await popupPage.waitForSelector(popupPageSelectors.launchPad);
+        await waitForElementToDisappear(popupPage, popupPageSelectors.telemetryDialog);
     });
 
     async function setupNewTargetPage() {
