@@ -72,12 +72,10 @@ export class Browser {
         return this.memoizedBackgroundPage;
     }
 
-    public async waitForDetailsPage() {
-        const detailsViewUrlRegex = /(^chrome-extension:\/\/\w+)\/DetailsView\/detailsView.html(\?tabId=(\d+))?$/;
-        const detailsPageTarget = await this.underlyingBrowser.waitForTarget(t => detailsViewUrlRegex.test(t.url()));
-        const detailsPage = await detailsPageTarget.page();
-        detailsPage.waitFor('header', {timeout: DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS});
-        return detailsPage;
+    public async waitForPageMatchingUrl(urlMatchFn: (url: string) => boolean): Promise<Page> {
+        const underlyingTarget = await this.underlyingBrowser.waitForTarget(t => urlMatchFn(t.url()));
+        const underlyingPage = await underlyingTarget.page();
+        return new Page(underlyingPage);
     }
 
     public async newPopupPageForTarget(targetTabId: number, options?: NewPopupPageOptions): Promise<Page> {
