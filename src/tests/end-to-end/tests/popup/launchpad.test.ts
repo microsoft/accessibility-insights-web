@@ -1,48 +1,48 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Page } from 'puppeteer';
 
-import { ExtensionPuppeteerConnection } from '../common/extension-puppeteer-connection';
-import { getPrintableHtmlElement, waitForElementToDisappear } from '../common/page-utils';
-import { popupPageSelectors } from '../common/popup-page-selectors';
-import { getTestResourceUrl } from '../common/test-resources';
+import { launchBrowser } from '../../common/browser-factory';
+import { popupPageSelectors } from '../../common/popup-page-selectors';
+import { getTestResourceUrl } from '../../common/test-resources';
+import { Browser } from '../../common/browser';
+import { Page } from '../../common/page';
 
 describe('Adhoc Panel test', () => {
-    let extensionConnection: ExtensionPuppeteerConnection;
+    let browser: Browser;
     let targetPage: Page;
     let targetPageTabId: number;
     let popupPage: Page;
 
     beforeEach(async () => {
-        extensionConnection = await ExtensionPuppeteerConnection.connect();
+        browser = await launchBrowser();
 
         await setupNewTargetPage();
-        popupPage = await extensionConnection.newExtensionPopupPage(targetPageTabId);
+        popupPage = await browser.newExtensionPopupPage(targetPageTabId);
         await popupPage.bringToFront();
         await dismissTelemetryDialog();
-        await waitForElementToDisappear(popupPage, popupPageSelectors.telemetryDialog);
+        await popupPage.waitForSelectorToDisappear(popupPageSelectors.telemetryDialog);
     });
 
     afterEach(async () => {
-        await extensionConnection.tearDown();
+        await browser.stop();
     });
 
     async function setupNewTargetPage() {
-        targetPage = await extensionConnection.newPage(getTestResourceUrl('all.html'));
+        targetPage = await browser.newPage(getTestResourceUrl('all.html'));
 
         await targetPage.bringToFront();
-        targetPageTabId = await extensionConnection.getActivePageTabId();
+        targetPageTabId = await browser.getActivePageTabId();
     }
 
     async function dismissTelemetryDialog() {
         await popupPage.waitForSelector(popupPageSelectors.telemetryDialog);
-        await popupPage.click(popupPageSelectors.startUsingProductButton);
+        await popupPage.clickSelector(popupPageSelectors.startUsingProductButton);
     }
 
     it('test snapshot for launchpad', async () => {
         await popupPage.waitForSelector('#new-launch-pad');
 
-        const element = await getPrintableHtmlElement(popupPage, '#new-launch-pad');
+        const element = await popupPage.getPrintableHtmlElement('#new-launch-pad');
         expect(element).toMatchSnapshot();
     });
 

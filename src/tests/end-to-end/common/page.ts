@@ -70,6 +70,10 @@ export class Page {
         const html = await this.underlyingPage.$eval(selector, el => el.outerHTML);
         return generateFormattedHtml(html);
     }
+
+    public async getElementByXPath(xPathString: string) {
+        return this.underlyingPage.$x(xPathString);
+    }
 }
 
 function generateFormattedHtml(innerHTMLString: string) {
