@@ -45,7 +45,7 @@ describe('Switcher', () => {
             .verifiable(Times.once());
         const renderer = shallow(<Switcher {...defaultProps} />);
 
-        renderer.find(Dropdown).prop('onChanged')({
+        renderer.find(Dropdown).props().onChange(null, {
             data: {
                 key: DetailsViewPivotType.fastPass,
             },

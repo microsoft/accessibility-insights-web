@@ -7,7 +7,7 @@ import { ExportDialog, ExportDialogProps } from '../../../../../DetailsView/comp
 
 describe('ExportDialog', () => {
     let onCloseMock: IMock<() => void>;
-    let onDescriptionChangedMock: IMock<(value: string) => void>;
+    let onDescriptionChangeMock: IMock<(value: string) => void>;
     let actionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     const eventStub = 'event stub' as any;
     let props: ExportDialogProps;
@@ -15,7 +15,7 @@ describe('ExportDialog', () => {
 
     beforeEach(() => {
         onCloseMock = Mock.ofInstance(() => { });
-        onDescriptionChangedMock = Mock.ofInstance((value: string) => { });
+        onDescriptionChangeMock = Mock.ofInstance((value: string) => { });
         actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator, MockBehavior.Strict);
 
         const deps = {
@@ -28,8 +28,9 @@ describe('ExportDialog', () => {
             html: '<html><body>test-html</body></html>',
             description: 'description',
             onClose: onCloseMock.object,
-            onDescriptionChanged: onDescriptionChangedMock.object,
+            onDescriptionChange: onDescriptionChangeMock.object,
             actionMessageCreator: actionMessageCreatorMock.object,
+            exportResultsType: 'Assessment',
         };
 
         testSubject = new ExportDialog(props);
@@ -48,10 +49,10 @@ describe('ExportDialog', () => {
             .setup(oc => oc())
             .verifiable(Times.once());
 
-        invokeHandler('onDismiss', eventStub);
+        invokeHandler('onDismiss', [eventStub]);
 
         onCloseMock.verifyAll();
-        onDescriptionChangedMock.verifyAll();
+        onDescriptionChangeMock.verifyAll();
         actionMessageCreatorMock.verifyAll();
     });
 
@@ -61,31 +62,31 @@ describe('ExportDialog', () => {
             .verifiable(Times.once());
 
         actionMessageCreatorMock
-            .setup(a => a.exportAssessmentResultsClicked(props.html, eventStub))
+            .setup(a => a.exportResultsClicked(props.exportResultsType, props.html, eventStub))
             .verifiable(Times.once());
 
-        invokeHandler('onExportLinkClick', eventStub);
+        invokeHandler('onExportLinkClick', [eventStub]);
 
         onCloseMock.verifyAll();
-        onDescriptionChangedMock.verifyAll();
+        onDescriptionChangeMock.verifyAll();
         actionMessageCreatorMock.verifyAll();
     });
 
     test('onDescriptionChanged calls props.onDescriptionChange', () => {
         const changedDescription = 'changed-description';
-        onDescriptionChangedMock
+        onDescriptionChangeMock
             .setup(odc => odc(changedDescription))
             .verifiable(Times.once());
 
-        invokeHandler('onDescriptionChanged', changedDescription);
+        invokeHandler('onDescriptionChange', [null, changedDescription]);
 
         onCloseMock.verifyAll();
-        onDescriptionChangedMock.verifyAll();
+        onDescriptionChangeMock.verifyAll();
         actionMessageCreatorMock.verifyAll();
     });
 
     function invokeHandler(handlerName: string, parameter: any): void {
-        (testSubject as any)[handlerName](parameter);
+        (testSubject as any)[handlerName](...parameter);
     }
 
     function testRender(isDialogOpen: boolean): void {

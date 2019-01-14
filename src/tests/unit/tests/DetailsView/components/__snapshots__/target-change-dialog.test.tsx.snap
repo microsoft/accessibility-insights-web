@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TargetChangeDialog snapshot: render when target tab id changed 1`] = `
-<StyledCustomizedDialog
+<StyledWithResponsiveMode
   dialogContentProps={
     Object {
       "title": "Assessment in progress",
@@ -19,14 +19,13 @@ exports[`TargetChangeDialog snapshot: render when target tab id changed 1`] = `
 >
   <div>
     There is already an assessment running on 
-    <TooltipHost
+    <StyledTooltipHostBase
       calloutProps={
         Object {
           "gapSpace": 0,
         }
       }
       content="https://www.abc.com"
-      delay={1}
       id="previous-target-page-link"
     >
       <NewTabLink
@@ -36,25 +35,24 @@ exports[`TargetChangeDialog snapshot: render when target tab id changed 1`] = `
       >
         test title 1
       </NewTabLink>
-    </TooltipHost>
+    </StyledTooltipHostBase>
     . Would you like to continue your current assessment on the new target of 
-    <TooltipHost
+    <StyledTooltipHostBase
       calloutProps={
         Object {
           "gapSpace": 0,
         }
       }
       content="https://www.def.com"
-      delay={1}
       id="current-target-page-link"
     >
-      <StyledCustomizedLink
+      <StyledLinkBase
         className="target-page-link"
         role="link"
       >
         test title 2
-      </StyledCustomizedLink>
-    </TooltipHost>
+      </StyledLinkBase>
+    </StyledTooltipHostBase>
     ?
   </div>
   <p>
@@ -66,7 +64,7 @@ exports[`TargetChangeDialog snapshot: render when target tab id changed 1`] = `
   <p>
     If ‘Start new’ is selected, all previous progress will be lost.
   </p>
-  <StyledCustomizedDialogFooter>
+  <StyledDialogFooterBase>
     <div
       className="target-change-dialog-button-container"
     >
@@ -81,11 +79,11 @@ exports[`TargetChangeDialog snapshot: render when target tab id changed 1`] = `
         className="button ms-Grid-col  action-cancel-button-col continue-button"
       >
         <CustomizedDefaultButton
-          componentRef={[Function]}
+          autoFocus={true}
           text="Continue previous"
         />
       </div>
     </div>
-  </StyledCustomizedDialogFooter>
-</StyledCustomizedDialog>
+  </StyledDialogFooterBase>
+</StyledWithResponsiveMode>
 `;

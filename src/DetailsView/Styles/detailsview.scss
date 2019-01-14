@@ -287,6 +287,7 @@ div.insights-dialog-main-override {
     .ms-DetailsRow,
     .ms-GroupHeader {
         user-select: text;
+        border-bottom: 0px;
     }
 
     .ms-DetailsRow {
@@ -660,33 +661,6 @@ div.insights-dialog-main-override {
                 }
             }
 
-            .ms-ChoiceField {
-                float: left;
-                margin-top: 0px !important;
-            }
-
-            .ms-ChoiceField:nth-of-type(1) {
-                .ms-ChoiceField-field.is-checked::before {
-                    border: 1px solid $positive-outcome;
-                }
-
-                .ms-ChoiceField-field.is-checked::after {
-                    border: 5px solid $positive-outcome;
-                }
-
-                margin-right: 8px;
-            }
-
-            .ms-ChoiceField:nth-of-type(2) {
-                .ms-ChoiceField-field.is-checked::before {
-                    border: 1px solid $negative-outcome;
-                }
-
-                .ms-ChoiceField-field.is-checked::after {
-                    border: 5px solid $negative-outcome;
-                }
-            }
-
             .assessment-instance-label {
                 width: 24px;
                 font-size: 14px;
@@ -720,6 +694,41 @@ div.insights-dialog-main-override {
             .radio-button-group {
                 float: left;
                 line-height: 24px;
+
+                .ms-ChoiceField {
+                    float: left;
+                    margin-top: 0px !important;
+                }
+
+                .ms-Label {
+                    font-size: 14px;
+                    padding: 0 0 0 26px;
+                    display: inline-block;
+                }
+
+                .ms-ChoiceField:nth-of-type(1) {
+                    margin-right: 8px;
+                }
+
+                .ms-ChoiceField-input {
+                    position: absolute;
+                }
+
+                .PASS {
+                    .ms-ChoiceField:nth-of-type(1) {
+                        .ms-ChoiceField-field::before, .ms-ChoiceField-field::after {
+                            border-color: $positive-outcome;
+                        }
+                    }
+                }
+    
+                .FAIL {
+                    .ms-ChoiceField:nth-of-type(2) {
+                        .ms-ChoiceField-field::before, .ms-ChoiceField-field::after {
+                            border-color: $negative-outcome;
+                        }
+                    }
+                }
             }
 
             .undo-button {
@@ -1269,18 +1278,10 @@ div.insights-dialog-main-override {
                         color: $communication-shade-30;
                     }
 
-                    .ms-GroupHeader-title {
+                    .details-group-header-title {
                         font-size: $fontSizeM;
                         color: $neutral-100;
                         font-weight: $fontWeightSemiBold;
-
-                        .rule-link-wrap {
-                            display: inline;
-                        }
-
-                        .ms-Link {
-                            padding: 1px 3px;
-                        }
                     }
 
                     .ms-GroupHeader-expand {
@@ -1304,7 +1305,6 @@ div.insights-dialog-main-override {
                     .ms-DetailsRow {
                         min-width: 100% !important;
                         max-width: 100% !important;
-                        border-bottom-width: 0px;
 
                         &.is-selected {
                             background-color: $communication-tint-40;
@@ -1567,31 +1567,6 @@ div.insights-dialog-main-override {
                 }
             }
         }
-    }
-}
-
-.download-report-link {
-    display: inline-block;
-    padding: 4px 20px;
-    background-color: $communication-shade-10;
-    color: $neutral-0 !important;
-    font-size: 14px;
-    font-weight: 600;
-
-    &:hover {
-        background-color: $communication-shade-20;
-    }
-}
-
-.ms-GroupHeader-expand {
-    i {
-        transform: rotate(-180deg);
-        transform-origin: 50% 50%;
-        transition: transform .1s linear;
-    }
-
-    i.is-collapsed {
-        transform: rotate(0deg);
     }
 }
 

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IToggleProps, Toggle, IToggle } from 'office-ui-fabric-react/lib/Toggle';
+import { IToggle, IToggleProps, Toggle } from 'office-ui-fabric-react/lib/Toggle';
 import * as React from 'react';
 
 export interface IVisualizationToggleProps {
@@ -10,7 +10,7 @@ export interface IVisualizationToggleProps {
     label?: string;
     className?: string;
     visualizationName: string;
-    componentRef?: (component: IToggle) => void;
+    componentRef?: React.RefObject<IToggle>;
     onBlur?: (ev) => void;
     onFocus?: (ev) => void;
 }
@@ -25,8 +25,7 @@ export class VisualizationToggle extends React.Component<IVisualizationTogglePro
             className: this.props.className,
             onText: 'On',
             offText: 'Off',
-            onAriaLabel: this.props.visualizationName,
-            offAriaLabel: this.props.visualizationName,
+            ariaLabel: this.props.visualizationName,
             componentRef: this.props.componentRef,
             onBlur: this.props.onBlur,
             onFocus: this.props.onFocus,

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TelemetryPermissionDialogTest render dialog 1`] = `
-<StyledCustomizedDialog
+<StyledWithResponsiveMode
   dialogContentProps={
     Object {
       "title": "We need your help",
@@ -35,8 +35,7 @@ exports[`TelemetryPermissionDialogTest render dialog 1`] = `
   <div
     className="telemetry-checkbox-section"
   >
-    <CustomizedCheckbox
-      boxSide="start"
+    <StyledCheckboxBase
       checked={true}
       className="telemetry-agree-checkbox"
       label="I agree to help"
@@ -55,12 +54,12 @@ exports[`TelemetryPermissionDialogTest render dialog 1`] = `
       </React.Fragment>
     </React.Fragment>
   </div>
-  <StyledCustomizedDialogFooter>
+  <StyledDialogFooterBase>
     <CustomizedPrimaryButton
       className="start-using-product-button"
       onClick={[Function]}
       text="OK"
     />
-  </StyledCustomizedDialogFooter>
-</StyledCustomizedDialog>
+  </StyledDialogFooterBase>
+</StyledWithResponsiveMode>
 `;

@@ -9,7 +9,7 @@ exports[`IssuesTableTest render spinner for scanning state 1`] = `
     <div className=\\"details-view-command-bar\\">
       <VisualizationToggle label=\\"Show failures\\" checked={true} disabled={true} onClick={[Function: proxy]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
     </div>
-    <StyledCustomizedSpinner className=\\"details-view-spinner\\" size={3} label=\\"Scanning...\\" />
+    <StyledSpinnerBase className=\\"details-view-spinner\\" size={3} label=\\"Scanning...\\" />
   </div>
 </div>"
 `;
@@ -19,7 +19,7 @@ exports[`IssuesTableTest render spinner, issuesEnabled == null 1`] = `
   <h1>
     test title
   </h1>
-  <StyledCustomizedSpinner className=\\"details-view-spinner\\" size={3} label=\\"Loading...\\" />
+  <StyledSpinnerBase className=\\"details-view-spinner\\" size={3} label=\\"Loading...\\" />
 </div>"
 `;
 
@@ -42,7 +42,7 @@ exports[`IssuesTableTest render spinner, issuesEnabled.scanResult == null 1`] = 
         visualizationName="Automated checks"
       />
     </div>
-    <StyledCustomizedSpinner
+    <StyledSpinnerBase
       className="details-view-spinner"
       label="Loading data..."
       size={3}
@@ -82,14 +82,7 @@ exports[`IssuesTableTest render table with 0 issues, export FF on 1`] = `
         Export result
       </CustomizedActionButton>
     </div>
-    <StyledCustomizedDialog hidden={true} onDismiss={[Function: bound ]} dialogContentProps={{...}} modalProps={{...}}>
-      <TextField multiline={true} autoFocus={true} rows={8} resizable={false} onChanged={[Function: bound ]} value=\\"\\" ariaLabel=\\"Provide result description\\" autoAdjustHeight={false} underlined={false} borderless={false} onBeforeChange={[Function: onBeforeChange]} onNotifyValidationResult={[Function: onNotifyValidationResult]} onGetErrorMessage={[Function: onGetErrorMessage]} deferredValidationTime={200} errorMessage=\\"\\" validateOnFocusIn={false} validateOnFocusOut={false} validateOnLoad={true} />
-      <StyledCustomizedDialogFooter>
-        <StyledCustomizedLink onClick={[Function: bound ]} className=\\"download-report-link\\" download=\\"\\" href=\\"data:text/html,\\">
-          Export
-        </StyledCustomizedLink>
-      </StyledCustomizedDialogFooter>
-    </StyledCustomizedDialog>
+    <ExportDialog deps={[undefined]} isOpen={false} description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChange={[Function: bound ]} exportResultsType=\\"AutomatedChecks\\" />
     <div className=\\"issues-table-details\\">
       <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" featureFlagData={{...}} />
       <div className=\\"issue-detail-outer-container ms-Fabric\\">
@@ -131,14 +124,7 @@ exports[`IssuesTableTest render table with 1 issue, export FF on 1`] = `
         Export result
       </CustomizedActionButton>
     </div>
-    <StyledCustomizedDialog hidden={true} onDismiss={[Function: bound ]} dialogContentProps={{...}} modalProps={{...}}>
-      <TextField multiline={true} autoFocus={true} rows={8} resizable={false} onChanged={[Function: bound ]} value=\\"\\" ariaLabel=\\"Provide result description\\" autoAdjustHeight={false} underlined={false} borderless={false} onBeforeChange={[Function: onBeforeChange]} onNotifyValidationResult={[Function: onNotifyValidationResult]} onGetErrorMessage={[Function: onGetErrorMessage]} deferredValidationTime={200} errorMessage=\\"\\" validateOnFocusIn={false} validateOnFocusOut={false} validateOnLoad={true} />
-      <StyledCustomizedDialogFooter>
-        <StyledCustomizedLink onClick={[Function: bound ]} className=\\"download-report-link\\" download=\\"\\" href=\\"data:text/html,\\">
-          Export
-        </StyledCustomizedLink>
-      </StyledCustomizedDialogFooter>
-    </StyledCustomizedDialog>
+    <ExportDialog deps={[undefined]} isOpen={false} description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChange={[Function: bound ]} exportResultsType=\\"AutomatedChecks\\" />
     <div className=\\"issues-table-details\\">
       <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" featureFlagData={{...}} />
       <div className=\\"issue-detail-outer-container ms-Fabric\\">
@@ -180,14 +166,7 @@ exports[`IssuesTableTest render table with 2 issues, export FF on 1`] = `
         Export result
       </CustomizedActionButton>
     </div>
-    <StyledCustomizedDialog hidden={true} onDismiss={[Function: bound ]} dialogContentProps={{...}} modalProps={{...}}>
-      <TextField multiline={true} autoFocus={true} rows={8} resizable={false} onChanged={[Function: bound ]} value=\\"\\" ariaLabel=\\"Provide result description\\" autoAdjustHeight={false} underlined={false} borderless={false} onBeforeChange={[Function: onBeforeChange]} onNotifyValidationResult={[Function: onNotifyValidationResult]} onGetErrorMessage={[Function: onGetErrorMessage]} deferredValidationTime={200} errorMessage=\\"\\" validateOnFocusIn={false} validateOnFocusOut={false} validateOnLoad={true} />
-      <StyledCustomizedDialogFooter>
-        <StyledCustomizedLink onClick={[Function: bound ]} className=\\"download-report-link\\" download=\\"\\" href=\\"data:text/html,\\">
-          Export
-        </StyledCustomizedLink>
-      </StyledCustomizedDialogFooter>
-    </StyledCustomizedDialog>
+    <ExportDialog deps={[undefined]} isOpen={false} description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChange={[Function: bound ]} exportResultsType=\\"AutomatedChecks\\" />
     <div className=\\"issues-table-details\\">
       <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" featureFlagData={{...}} />
       <div className=\\"issue-detail-outer-container ms-Fabric\\">

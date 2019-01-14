@@ -18,13 +18,13 @@ describe('DetailsViewPanelTest', () => {
     });
 
     test.each([true, false])('render - isPanelOpen: %s', (isPanelOpen: boolean) => {
-        const childContent =  (
+        const childContent = (
             <div>child content</div>
         );
 
         const testProps: GenericPanelProps = {
             isOpen: isPanelOpen,
-            onDismiss: () => {},
+            onDismiss: () => { },
             title: 'panel title',
             className: 'panel-custom-class',
             closeButtonAriaLabel: 'close button label',
@@ -42,7 +42,9 @@ describe('DetailsViewPanelTest', () => {
                 className={'generic-panel panel-custom-class'}
                 onDismiss={testProps.onDismiss}
                 onRenderHeader={testSubject.getRenderHeader()}
-                closeButtonAriaLabel={testProps.closeButtonAriaLabel}>
+                closeButtonAriaLabel={testProps.closeButtonAriaLabel}
+                hasCloseButton={true}
+            >
                 {childContent}
             </Panel>
         );
@@ -54,7 +56,7 @@ describe('DetailsViewPanelTest', () => {
         const panelTitle = 'panel title';
         const testProps: GenericPanelProps = {
             isOpen: true,
-            onDismiss: () => {},
+            onDismiss: () => { },
             title: panelTitle,
             className: 'panel-custom-class',
             closeButtonAriaLabel: 'close button label',
