@@ -3,15 +3,12 @@
 import * as Puppeteer from 'puppeteer';
 import { forceTestFailure } from './force-test-failure';
 import { Page } from './page';
-import { DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS } from './timeouts';
-import { popupPageSelectors } from './popup-page-selectors';
 
 export interface NewPopupPageOptions {
     suppressFirstTimeTelemetryDialog: boolean;
 }
 
 export class Browser {
-    private alreadySuppressedTelemetryDialog: boolean = false;
     private memoizedBackgroundPage: Page;
 
     constructor(
@@ -51,6 +48,12 @@ export class Browser {
         });
     }
 
+    public async waitForPageMatchingUrl(urlMatchFn: (url: string) => boolean): Promise<Page> {
+        const underlyingTarget = await this.underlyingBrowser.waitForTarget(t => urlMatchFn(t.url()));
+        const underlyingPage = await underlyingTarget.page();
+        return new Page(underlyingPage);
+    }
+
     private async getExtensionUrl(relativePath: string): Promise<string> {
         const backgroundPage = await this.waitForExtensionBackgroundPage();
         const pageUrl = backgroundPage.url();
@@ -70,30 +73,6 @@ export class Browser {
         this.memoizedBackgroundPage = new Page(await backgroundPageTarget.page());
 
         return this.memoizedBackgroundPage;
-    }
-
-    public async waitForPageMatchingUrl(urlMatchFn: (url: string) => boolean): Promise<Page> {
-        const underlyingTarget = await this.underlyingBrowser.waitForTarget(t => urlMatchFn(t.url()));
-        const underlyingPage = await underlyingTarget.page();
-        return new Page(underlyingPage);
-    }
-
-    public async newPopupPageForTarget(targetTabId: number, options?: NewPopupPageOptions): Promise<Page> {
-        options = {
-            suppressFirstTimeTelemetryDialog: true,
-            ...options,
-        };
-
-        // Ideally we'd be asking puppeteer to invoke our extension's browser action; opening popup.html
-        // with an explicit tab ID is a workaround until puppeteer supports invoking browser actions.
-        const page = await this.newExtensionPage(`popup/popup.html?tabId=${targetTabId}`);
-
-        if (!this.alreadySuppressedTelemetryDialog && options.suppressFirstTimeTelemetryDialog) {
-            await page.clickSelector(popupPageSelectors.startUsingProductButton);
-            this.alreadySuppressedTelemetryDialog = true;
-        }
-
-        return page;
     }
 }
 

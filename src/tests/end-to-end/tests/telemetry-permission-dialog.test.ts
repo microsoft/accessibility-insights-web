@@ -14,35 +14,39 @@ describe('telemetry-permission-dialog', () => {
 
     beforeEach(async () => {
         browser = await launchBrowser();
-
-        targetPage = await browser.newPage(getTestResourceUrl('all.html'));
-        await targetPage.bringToFront();
-        targetPageTabId = await browser.getActivePageTabId();
+        await setupTargetPage();
     });
 
     afterEach(async () => {
         await browser.stop();
     });
 
+    async function setupTargetPage(): Promise<void> {
+        targetPage = await browser.newPage(getTestResourceUrl('all.html'));
+        await targetPage.bringToFront();
+        targetPageTabId = await browser.getActivePageTabId();
+    }
+
+    async function newPopupPage(): Promise<Page> {
+        return await browser.newExtensionPage(`popup/popup.html?tabId=${targetPageTabId}`);
+    }
+
     it('should be dismissed by clicking the OK button', async () => {
-        let launchpadPage = await browser.newPopupPageForTarget(targetPageTabId, {suppressFirstTimeTelemetryDialog: false});
+        const firstPopupPage = await newPopupPage();
+        await firstPopupPage.clickSelector(popupPageSelectors.startUsingProductButton);
+        await firstPopupPage.waitForSelectorToDisappear(popupPageSelectors.telemetryDialog);
+        await firstPopupPage.close();
 
-        await launchpadPage.clickSelector(popupPageSelectors.startUsingProductButton);
-
-        await launchpadPage.waitForSelectorToDisappear(popupPageSelectors.telemetryDialog);
-
-        await launchpadPage.close();
-        launchpadPage = await browser.newPopupPageForTarget(targetPageTabId, {suppressFirstTimeTelemetryDialog: false});
-
-        await launchpadPage.waitForSelector(popupPageSelectors.launchPad);
-        await launchpadPage.waitForSelectorToDisappear(popupPageSelectors.telemetryDialog);
+        const secondPopupPage = await newPopupPage();
+        await secondPopupPage.waitForSelector(popupPageSelectors.launchPad);
+        await secondPopupPage.waitForSelectorToDisappear(popupPageSelectors.telemetryDialog);
     }, DEFAULT_E2E_TEST_TIMEOUT_MS);
 
     it('should have HTML content that matches the snapshot', async () => {
-        const launchpadPage = await browser.newPopupPageForTarget(targetPageTabId, {suppressFirstTimeTelemetryDialog: false});
-        await launchpadPage.waitForSelector(popupPageSelectors.telemetryDialog);
+        const popupPage = await newPopupPage();
+        await popupPage.waitForSelector(popupPageSelectors.telemetryDialog);
 
-        const element = await launchpadPage.getPrintableHtmlElement(popupPageSelectors.telemetryDialog);
+        const element = await popupPage.getPrintableHtmlElement(popupPageSelectors.telemetryDialog);
         expect(element).toMatchSnapshot();
     }, DEFAULT_E2E_TEST_TIMEOUT_MS);
 });

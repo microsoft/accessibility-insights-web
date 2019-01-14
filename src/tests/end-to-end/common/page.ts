@@ -4,13 +4,9 @@ import * as Puppeteer from 'puppeteer';
 import { forceTestFailure } from './force-test-failure';
 import { DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS, DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS } from './timeouts';
 
-export interface PageClickOptions {
-    waitForElementFirst: boolean;
-}
-
 export class Page {
     constructor(
-        private readonly underlyingPage: Puppeteer.Page
+        private readonly underlyingPage: Puppeteer.Page,
     ) {
         underlyingPage.on('pageerror', error => {
             forceTestFailure(`Unhandled pageerror (console.error) emitted from page '${underlyingPage.url()}': ${error}`);
