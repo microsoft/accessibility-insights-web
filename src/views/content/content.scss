@@ -225,8 +225,27 @@
 
     .landmark-table {
 
+        border-spacing: 5px;
+        padding-left: 32px;
+
         .landmark-role {
             text-align: center;
+        }
+
+        td,th {
+            padding: 5px;
+            vertical-align: text-top;
+        }
+
+        th {
+            background: $neutral-100;
+            color: $neutral-0;
+            font-weight: 400;
+        }
+
+        td {
+            background: $neutral-10;
+            color: $neutral-100;
         }
 
         .contentinfo-landmark {
