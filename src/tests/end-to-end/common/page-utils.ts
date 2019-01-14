@@ -3,16 +3,10 @@
 import { Page } from 'puppeteer';
 
 export async function waitForElementToDisappear(page: Page, selector: string) {
-    await page.waitFor(
-        selectorInEvaluate => !document.querySelector(selectorInEvaluate),
-        {},
-        selector,
-    );
+    await page.waitFor(selectorInEvaluate => !document.querySelector(selectorInEvaluate), {}, selector);
 }
 
-export async function getMatchingElements<T>
-    (page: Page, selector: string, mapFunc: (element: Element) => T): Promise<T> {
-
+export async function getMatchingElements<T>(page: Page, selector: string, mapFunc: (element: Element) => T): Promise<T> {
     return await page.evaluate(
         (selectorInEvaluate, mapFuncInEvaluate) => {
             const elements = Array.from(document.querySelectorAll(selectorInEvaluate));

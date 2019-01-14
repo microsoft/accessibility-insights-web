@@ -13,16 +13,17 @@ describe('Adhoc Panel test', () => {
     let targetPageTabId: number;
     let popupPage: Page;
 
-    beforeAll(async () => {
+    beforeEach(async () => {
         extensionConnection = await ExtensionPuppeteerConnection.connect();
 
         await setupNewTargetPage();
         popupPage = await extensionConnection.newExtensionPopupPage(targetPageTabId);
         await popupPage.bringToFront();
+        await dismissTelemetryDialog();
         await waitForElementToDisappear(popupPage, popupPageSelectors.telemetryDialog);
     });
 
-    afterAll(async () => {
+    afterEach(async () => {
         await extensionConnection.tearDown();
     });
 
@@ -33,6 +34,11 @@ describe('Adhoc Panel test', () => {
         targetPageTabId = await extensionConnection.getActivePageTabId();
     }
 
+    async function dismissTelemetryDialog() {
+        await popupPage.waitForSelector(popupPageSelectors.telemetryDialog);
+        await popupPage.click(popupPageSelectors.startUsingProductButton);
+    }
+
     it('test snapshot for launchpad', async () => {
         await popupPage.waitForSelector('#new-launch-pad');
 
@@ -41,7 +47,6 @@ describe('Adhoc Panel test', () => {
     });
 
     it('test if text for all the links in launchpad show properly', async () => {
-        await popupPage.waitForSelector('.launch-pad-item-description');
         const launchPadItemListText = await popupPage.evaluate(() => {
             const elements = Array.from(document.querySelectorAll('.launch-pad-item-title'));
             const links = elements.map(element => {

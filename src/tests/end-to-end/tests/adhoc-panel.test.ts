@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Page } from 'puppeteer';
+
 import { ExtensionPuppeteerConnection } from '../common/extension-puppeteer-connection';
+import { waitForElementToDisappear } from '../common/page-utils';
+import { popupPageSelectors } from '../common/popup-page-selectors';
 import { getTestResourceUrl } from '../common/test-resources';
 
 describe('Ad hoc tools', () => {
@@ -12,10 +15,12 @@ describe('Ad hoc tools', () => {
 
     beforeEach(async () => {
         extensionConnection = await ExtensionPuppeteerConnection.connect();
+
         await setupNewTargetPage();
         popupPage = await extensionConnection.newExtensionPopupPage(targetPageTabId);
         await popupPage.bringToFront();
-        await dismissTelemetryPopup();
+        await dismissTelemetryDialog();
+        await waitForElementToDisappear(popupPage, popupPageSelectors.telemetryDialog);
     });
 
     afterEach(async () => {
@@ -29,13 +34,13 @@ describe('Ad hoc tools', () => {
         targetPageTabId = await extensionConnection.getActivePageTabId();
     }
 
-    async function dismissTelemetryPopup() {
-        await popupPage.waitForSelector('.telemetry-permission-dialog-modal');
-        await popupPage.click('button.start-using-product-button');
-        await popupPage.waitFor(() => !document.querySelector('.telemetry-permission-dialog-modal'));
+    async function dismissTelemetryDialog() {
+        await popupPage.waitForSelector(popupPageSelectors.telemetryDialog);
+        await popupPage.click(popupPageSelectors.startUsingProductButton);
     }
 
     it('adhoc title button exists and clicking on it takes us to the adhoc panel', async () => {
+
         await popupPage.waitForSelector('.launch-pad-item-description');
 
         const adhocButton = await popupPage.$x("//button[text()='Ad hoc tools']");
