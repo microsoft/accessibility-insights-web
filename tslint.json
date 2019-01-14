@@ -7,6 +7,6 @@
     "interface-name": [true, "never-prefix"],
     "max-line-length": [true, 140],
     "no-shadowed-variable": true, // Disallows shadowing variable declarations
-    "variable-name": [true, "check-format", "allow-pascal-case", "allow-trailing-underscore", "ban-keywords"],
+    "variable-name": [true, "check-format", "allow-pascal-case", "allow-trailing-underscore", "ban-keywords"]
   }
 }
