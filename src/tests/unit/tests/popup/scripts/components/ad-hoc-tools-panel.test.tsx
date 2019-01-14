@@ -38,7 +38,7 @@ describe('AdHocToolsPanelTest', () => {
 
         const expectedElements: JSX.Element = (
             <div className="ms-Grid main-section">
-                <main id="adhoc-tools-panel-main">
+                <main>
                     <div className="ms-Grid-row">
                         <div key="visualization-toggle-group-0" className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 ad-hoc-tools-panel-group-0">
                             <div key="first">fisrt</div>

@@ -20,7 +20,7 @@ export class AdHocToolsPanel extends React.Component<IAdHocToolsPanelProps, {}> 
 
         return (
             <div className="ms-Grid main-section">
-                <main id="adhoc-tools-panel-main">
+                <main>
                     <div className="ms-Grid-row">
                         {groups}
                     </div>

@@ -52,11 +52,16 @@ describe('Ad hoc tools', () => {
 
         await popupPage.waitForSelector('.ad-hoc-tools-panel-footer');
 
-        await popupPage.waitForSelector('#adhoc-tools-panel-main');
+        await popupPage.waitForSelector('main');
 
-        const mainAdhocPanel = await popupPage.$x('//*[@id="adhoc-tools-panel-main"]');
+        const mainAdhocPanel = await popupPage.evaluate(() => {
+            const elements = Array.from(document.querySelectorAll('main'));
+            const html = elements.map(e => e.outerHTML);
+            return html;
+        });
 
         expect(mainAdhocPanel).toBeDefined();
         expect(mainAdhocPanel.length).toBe(1);
     });
+
 });
