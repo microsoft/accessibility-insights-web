@@ -20,6 +20,10 @@
     font-size: 14px;
     margin: 10px;
 
+    table {
+        font-family: "Segoe UI";
+        font-size: 14px;
+    }
 
     h1 {
         font-size: 28px;
@@ -217,6 +221,64 @@
     .accessibility-problems-list {
         background: $neutral-6;
         list-style-type: disc;
+    }
+
+    .landmark-table {
+
+        border-spacing: 5px;
+        padding-left: 32px;
+
+        .landmark-role {
+            text-align: center;
+        }
+
+        td,th {
+            padding: 5px;
+            vertical-align: text-top;
+        }
+
+        th {
+            background: $neutral-100;
+            color: $neutral-0;
+            font-weight: 400;
+        }
+
+        td {
+            background: $neutral-10;
+            color: $neutral-100;
+        }
+
+        .contentinfo-landmark {
+            background-color: $landmark-contentinfo;
+        }
+
+        .main-landmark {
+            background-color: $landmark-main;
+        }
+
+        .complementary-landmark {
+            background-color: $landmark-complementary;
+        }
+
+        .banner-landmark {
+            background-color: $landmark-banner;
+        }
+
+        .region-landmark {
+            background-color: $landmark-region;
+        }
+
+        .navigation-landmark {
+            background-color: $landmark-navigation;
+        }
+
+        .search-landmark {
+            background-color: $landmark-search;
+        }
+
+        .form-landmark {
+            background-color: $landmark-form;
+        }
     }
 
     .landmarks-legend {
