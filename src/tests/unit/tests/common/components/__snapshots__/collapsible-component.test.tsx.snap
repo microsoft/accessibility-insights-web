@@ -5,6 +5,7 @@ exports[`CollapsibleComponentTest render expanded with content-class-name 1`] = 
   className="collapsible-component"
 >
   <CustomizedActionButton
+    aria-expanded={true}
     className="collapsible"
     iconProps={
       Object {
@@ -37,6 +38,7 @@ exports[`CollapsibleComponentTest render expanded without content-class-name 1`]
   className="collapsible-component"
 >
   <CustomizedActionButton
+    aria-expanded={true}
     className="collapsible"
     iconProps={
       Object {
@@ -69,6 +71,7 @@ exports[`CollapsibleComponentTest render with container-class-name 1`] = `
   className="a-container collapsible-component"
 >
   <CustomizedActionButton
+    aria-expanded={true}
     className="collapsible"
     iconProps={
       Object {
@@ -101,6 +104,7 @@ exports[`CollapsibleComponentTest toggle from expaneded to collapsed: collapsed 
   className="collapsible-component"
 >
   <CustomizedActionButton
+    aria-expanded={false}
     className="collapsible"
     iconProps={
       Object {
@@ -126,6 +130,7 @@ exports[`CollapsibleComponentTest toggle from expaneded to collapsed: expaneded 
   className="collapsible-component"
 >
   <CustomizedActionButton
+    aria-expanded={true}
     className="collapsible"
     iconProps={
       Object {
