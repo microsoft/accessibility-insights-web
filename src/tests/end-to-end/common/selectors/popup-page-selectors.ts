@@ -4,4 +4,5 @@ export const popupPageSelectors = {
     telemetryDialog: '.telemetry-permission-dialog-modal',
     startUsingProductButton: 'button.start-using-product-button',
     launchPad: '#new-launch-pad',
+    launchPadItemTitle: '.launch-pad-item-title',
 };

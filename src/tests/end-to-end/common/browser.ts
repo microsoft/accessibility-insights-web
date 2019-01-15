@@ -1,15 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Puppeteer from 'puppeteer';
+
 import { forceTestFailure } from './force-test-failure';
 import { Page } from './page';
-
-export interface NewPopupPageOptions {
-    suppressFirstTimeTelemetryDialog: boolean;
-}
+import { getTestResourceUrl } from './test-resources';
 
 export class Browser {
     private memoizedBackgroundPage: Page;
+    private pages: Array<Page> = [];
 
     constructor(
         private readonly underlyingBrowser: Puppeteer.Browser,
@@ -17,7 +16,7 @@ export class Browser {
         underlyingBrowser.on('disconnected', onBrowserDisconnected);
     }
 
-    public async stop() {
+    public async close() {
         this.underlyingBrowser.removeListener('disconnected', onBrowserDisconnected);
         await this.underlyingBrowser.close();
     }
@@ -26,6 +25,7 @@ export class Browser {
         const underlyingPage = await this.underlyingBrowser.newPage();
         const page = new Page(underlyingPage);
         await page.goto(url);
+        this.pages.push(page);
         return page;
     }
 
@@ -34,9 +34,37 @@ export class Browser {
         return await this.newPage(url);
     }
 
+    public async newTestResourcePage(relativePath: string): Promise<Page> {
+        const url = await getTestResourceUrl(relativePath);
+        return await this.newPage(url);
+    }
+
+    public async newExtensionPopupPage(targetTabId: number): Promise<Page> {
+        return await this.newPage(await this.getPopupPageUrl(targetTabId));
+    }
+
+    public async newExtensionDetailsViewPage(targetTabId: number): Promise<Page> {
+        return await this.newPage(await this.getDetailsViewPageUrl(targetTabId));
+    }
+
+    public async getPopupPageUrl(targetTabId: number): Promise<string> {
+        return await this.getExtensionUrl(`popup/popup.html?tabId=${targetTabId}`);
+    }
+
+    public async getDetailsViewPageUrl(targetTabId: number): Promise<string> {
+        return this.getExtensionUrl(`detailsView/detailsView.html?tabId=${targetTabId}`);
+    }
+
     public async closeAllPages() {
-        const pages = await this.underlyingBrowser.pages();
-        await Promise.all(pages.map(page => page.close()));
+        for (let pos = 0; pos < this.pages.length; pos++) {
+            await this.pages[pos].close(true);
+        }
+    }
+
+    public async getLastOpenPage(): Promise<Page> {
+        const targets = await this.underlyingBrowser.targets();
+        const puppeteerPage = await targets[targets.length - 1].page();
+        return new Page(puppeteerPage);
     }
 
     public async getActivePageTabId(): Promise<number> {
@@ -48,8 +76,8 @@ export class Browser {
         });
     }
 
-    public async waitForPageMatchingUrl(urlMatchFn: (url: string) => boolean): Promise<Page> {
-        const underlyingTarget = await this.underlyingBrowser.waitForTarget(t => urlMatchFn(t.url()));
+    public async waitForPageMatchingUrl(url: string): Promise<Page> {
+        const underlyingTarget = await this.underlyingBrowser.waitForTarget(t => t.url().toLowerCase() === url.toLowerCase());
         const underlyingPage = await underlyingTarget.page();
         return new Page(underlyingPage);
     }
@@ -68,11 +96,15 @@ export class Browser {
         }
 
         const backgroundPageTarget = await this.underlyingBrowser
-            .waitForTarget(t => t.type() === 'background_page' && new URL(t.url()).pathname === '/background/background.html');
+            .waitForTarget(t => t.type() === 'background_page' && Browser.isExtensionBackgroundPage(t.url()));
 
         this.memoizedBackgroundPage = new Page(await backgroundPageTarget.page());
 
         return this.memoizedBackgroundPage;
+    }
+
+    private static isExtensionBackgroundPage(url: string): boolean {
+        return new URL(url).pathname === '/background/background.html';
     }
 }
 

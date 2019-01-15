@@ -10,9 +10,10 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = false 
   hidden={false}
   modalProps={
     Object {
-      "containerClassName": "insights-dialog-main-override",
+      "containerClassName": "insights-dialog-main-container",
       "isBlocking": false,
       "layerProps": Object {
+        "className": "insights-dialog-main-override",
         "onLayerDidMount": Object {},
       },
     }
@@ -386,9 +387,10 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 2
   hidden={false}
   modalProps={
     Object {
-      "containerClassName": "insights-dialog-main-override",
+      "containerClassName": "insights-dialog-main-container",
       "isBlocking": false,
       "layerProps": Object {
+        "className": "insights-dialog-main-override",
         "onLayerDidMount": Object {},
       },
     }

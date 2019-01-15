@@ -6,11 +6,11 @@ import * as React from 'react';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { NamedSFC } from '../../common/react/named-sfc';
 
-const url = 'https://idwebelements/GroupManagement.aspx?Group=keros-updates&Operation=join';
+const url = 'https://idwebelements/GroupManagement.aspx?Group=a11yInsightsUpdates&Operation=join';
 
 export const RebrandingMessageBar = NamedSFC('RebrandingMessageBar', () =>
 
     <MessageBar className="info-message-bar">
-        Keros for Web has been rebranded to Accessibility Insights for Web.
-        Join <NewTabLink href={url}>Keros Updates and Discussions</NewTabLink> to receive an email announcement in January 2019.
+        Keros for Web has been rebranded to Accessibility Insights for Web.{' '}
+        <NewTabLink href={url}>Join Accessibility Insights Updates and Discussions</NewTabLink> to receive email announcements.
     </MessageBar>);
