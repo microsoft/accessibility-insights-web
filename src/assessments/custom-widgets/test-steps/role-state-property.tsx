@@ -97,4 +97,4 @@ export const RoleStateProperty: TestStep = {
     getDrawer: provider => provider.createHighlightBoxDrawer(),
     updateVisibility: false,
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props}/>,
-}
+};

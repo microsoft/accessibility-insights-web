@@ -58,7 +58,7 @@ export class InstanceVisibilityChecker {
     private generateCheckVisibilityFunction(
         drawerIdentifier: string,
         visualizationType: VisualizationType,
-        currentFrameResults: IAssessmentVisualizationInstance[]
+        currentFrameResults: IAssessmentVisualizationInstance[],
     ): Function {
         return () => {
             const payloadBatch: IUpdateInstanceVisibilityPayload[] = currentFrameResults.map(elementResult => {

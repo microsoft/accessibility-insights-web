@@ -34,7 +34,7 @@ export class DetailsViewDropDown extends React.Component<IDetailsViewDropDownPro
                     <Icon
                         className="gear-options-icon"
                         iconName="Gear"
-                        ariaLabel={"Manage Settings"}
+                        ariaLabel={'Manage Settings'}
                     />
                 </Link>
                 {this.renderContextMenu()}
@@ -56,7 +56,6 @@ export class DetailsViewDropDown extends React.Component<IDetailsViewDropDownPro
                 directionalHint={DirectionalHint.bottomRightEdge}
                 directionalHintForRTL={DirectionalHint.bottomLeftEdge}
                 items={this.props.menuItems}
-                
             />
         );
     }

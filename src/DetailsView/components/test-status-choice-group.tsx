@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ChoiceGroup, IChoiceGroupOption } from 'office-ui-fabric-react/lib/ChoiceGroup';
+import { ChoiceGroup, IChoiceGroupOption, IChoiceGroup } from 'office-ui-fabric-react/lib/ChoiceGroup';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import { autobind } from '@uifabric/utilities';
@@ -13,7 +13,7 @@ export interface ITestStatusChoiceGroupProps {
     test: VisualizationType;
     step: string;
     selector?: string;
-    status: number;
+    status: ManualTestStatus;
     originalStatus: number;
     isLabelVisible?: boolean;
     onGroupChoiceChange: (status, test, step, selector?) => void;
@@ -21,16 +21,17 @@ export interface ITestStatusChoiceGroupProps {
 }
 
 export class TestStatusChoiceGroup extends React.Component<ITestStatusChoiceGroupProps> {
-    protected _choiceGroup: ChoiceGroup;
+    protected _choiceGroup: IChoiceGroup;
 
     public render(): JSX.Element {
         return (
             <div>
                 <div className="radio-button-group">
                     <ChoiceGroup
+                        className={ManualTestStatus[this.props.status]}
                         onChange={this.onChange}
                         componentRef={this.compomentRef}
-                        selectedKey={ManualTestStatus[this.props.status]}
+                        selectedKey={this.props.status === ManualTestStatus.UNKNOWN ? undefined : ManualTestStatus[this.props.status]}
                         options={[
                             { key: ManualTestStatus[ManualTestStatus.PASS], text: 'Pass', onRenderLabel: this.onRenderLabel },
                             { key: ManualTestStatus[ManualTestStatus.FAIL], text: 'Fail', onRenderLabel: this.onRenderLabel },
@@ -70,7 +71,7 @@ export class TestStatusChoiceGroup extends React.Component<ITestStatusChoiceGrou
     }
 
     @autobind
-    protected compomentRef(component: ChoiceGroup): void {
+    protected compomentRef(component: IChoiceGroup): void {
         this._choiceGroup = component;
     }
 

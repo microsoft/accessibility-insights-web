@@ -17,17 +17,17 @@ export class FrameFormatter extends FailureInstanceFormatter {
         'frame': {
             borderColor: '#0066CC',
             fontColor: '#FFFFFF',
-            contentText: "F",
+            contentText: 'F',
         },
         'iframe': {
             borderColor: '#00CC00',
             fontColor: '#FFFFFF',
-            contentText: "I",
+            contentText: 'I',
         },
         'default': {
             borderColor: '#C00000',
             fontColor: '#FFFFFF',
-            contentText: "",
+            contentText: '',
         },
     };
 
@@ -49,7 +49,7 @@ export class FrameFormatter extends FailureInstanceFormatter {
             textAlign: 'center',
         };
 
-        drawerConfig.showVisualization = true; 
+        drawerConfig.showVisualization = true;
 
         drawerConfig.failureBoxConfig = this.getFailureBoxConfig(data);
 

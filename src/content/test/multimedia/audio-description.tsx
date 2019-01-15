@@ -16,7 +16,7 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
     <h3>From a user's perspective</h3>
     <p>"Provide an audio description track for pre-recorded videos or so I can understand the story as the content creator imagined it. Provide information on scene changes, actors etc. This allows me to understand, enjoy and share the story with others."</p>
 
-    
+
     <h3>How to fix</h3>
     <ul>
         <li>If the audio description is missing, add it using one of these methods:

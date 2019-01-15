@@ -47,7 +47,7 @@ export class IssuesTableHandler {
 
                 detailsRow.selector = node.target.join(';');
                 detailsRow.key = node.instanceId;
-                if(showBugFiling) {
+                if (showBugFiling) {
                     detailsRow.bugButton = <BugButton />;
                 }
                 items.push(detailsRow);

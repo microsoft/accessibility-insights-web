@@ -82,7 +82,7 @@ export class AssessmentInstanceTable extends React.Component<IAssessmentInstance
             <div onClick={() => this.updateFocusedTarget(props.item)}>
                 {defaultRender(props)}
             </div>
-        )
+        );
     }
 
     @autobind

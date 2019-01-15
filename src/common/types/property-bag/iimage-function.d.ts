@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { ColumnValueBag } from './column-value-bag';
 
-export interface IImageFunctionPropertyBag extends ColumnValueBag{
+export interface IImageFunctionPropertyBag extends ColumnValueBag {
     imageType: string;
     accessibleName: string;
     codedAs: string;

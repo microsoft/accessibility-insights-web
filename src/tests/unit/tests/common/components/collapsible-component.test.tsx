@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Enzyme from 'enzyme';
+import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { CollapsibleComponent, ICollapsibleComponentProps } from '../../../../../common/components/collapsible-component';
@@ -12,7 +12,7 @@ describe('CollapsibleComponentTest', () => {
             content: <div>Some content</div>,
             contentClassName: 'content-class-name',
         };
-        const result = Enzyme.shallow(<CollapsibleComponent {...props} />);
+        const result = shallow(<CollapsibleComponent {...props} />);
         expect(result.getElement()).toMatchSnapshot();
     });
 
@@ -21,7 +21,7 @@ describe('CollapsibleComponentTest', () => {
             header: <div>Some header</div>,
             content: <div>Some content</div>,
         };
-        const result = Enzyme.shallow(<CollapsibleComponent {...props} />);
+        const result = shallow(<CollapsibleComponent {...props} />);
         expect(result.getElement()).toMatchSnapshot();
     });
 
@@ -32,7 +32,7 @@ describe('CollapsibleComponentTest', () => {
             containerClassName: 'a-container',
         };
 
-        const result = Enzyme.shallow(<CollapsibleComponent {...props} />);
+        const result = shallow(<CollapsibleComponent {...props} />);
         expect(result.getElement()).toMatchSnapshot();
     });
 
@@ -42,7 +42,7 @@ describe('CollapsibleComponentTest', () => {
             content: <div>Some content</div>,
         };
 
-        const result = Enzyme.shallow(<CollapsibleComponent {...props} />);
+        const result = shallow(<CollapsibleComponent {...props} />);
         expect(result.hasClass('collapsible-component')).toBe(true);
     });
 
@@ -51,7 +51,7 @@ describe('CollapsibleComponentTest', () => {
             header: <div>Some header</div>,
             content: <div>Some content</div>,
         };
-        const result = Enzyme.shallow(<CollapsibleComponent {...props} />);
+        const result = shallow(<CollapsibleComponent {...props} />);
         expect(result.getElement()).toMatchSnapshot('expaneded');
         const button = result.find('CustomizedActionButton');
         button.simulate('click');

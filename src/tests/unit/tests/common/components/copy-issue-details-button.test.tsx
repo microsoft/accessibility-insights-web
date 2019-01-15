@@ -6,7 +6,10 @@ import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { IssueDetailsTextGenerator } from '../../../../../background/issue-details-text-generator';
-import { CopyIssueDetailsButton, CopyIssueDetailsButtonProps } from '../../../../../common/components/copy-issue-details-button';
+import {
+    CopyIssueDetailsButton,
+    CopyIssueDetailsButtonProps,
+} from '../../../../../common/components/copy-issue-details-button';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 
 
@@ -19,7 +22,7 @@ describe('CopyIssueDetailsButtonTest', () => {
             deps: {
                 windowUtils: null,
                 issueDetailsTextGenerator: {
-                    buildText:_ => 'sample text',
+                    buildText: _ => 'sample text',
                 } as IssueDetailsTextGenerator,
             },
             issueDetailsData: {

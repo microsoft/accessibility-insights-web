@@ -4,9 +4,9 @@ import { StoreType } from './store-type';
 
 export interface StoreUpdateMessage<TPayloadType> {
     isStoreUpdateMessage: boolean;
-    type: string,
-    storeType: StoreType,
-    storeId: string,
-    payload: TPayloadType,
+    type: string;
+    storeType: StoreType;
+    storeId: string;
+    payload: TPayloadType;
     tabId?: number;
 }

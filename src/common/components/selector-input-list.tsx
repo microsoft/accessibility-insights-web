@@ -45,7 +45,7 @@ export class SelectorInputList extends React.Component<ISelectorInputListProps, 
         const shouldUpdateState = !(_.isEqual(this.props, previousProps));
 
         if (shouldUpdateState) {
-            this.updateFieldValueValidState(this.textField.value);
+            this.updateFieldValueValidState(null, this.textField.value);
         }
     }
 
@@ -60,7 +60,7 @@ export class SelectorInputList extends React.Component<ISelectorInputListProps, 
                         ariaLabel={this.props.subtitle}
                         componentRef={this.setTextField}
                         value={this.state.value}
-                        onChanged={this.updateFieldValueValidState}
+                        onChange={this.updateFieldValueValidState}
                         placeholder="Enter element selector here"
                     />
                     <div className="add-selector-buttons">
@@ -72,7 +72,7 @@ export class SelectorInputList extends React.Component<ISelectorInputListProps, 
                             text="Add Selector"
                         />
                         <IconButton
-                            iconProps={{iconName: 'scopeTemplate', className: 'inspect-add-selector-button'}}
+                            iconProps={{ iconName: 'scopeTemplate', className: 'inspect-add-selector-button' }}
                             onClick={this.onChangeSelectorHandler}
                         />
                     </div>
@@ -96,31 +96,31 @@ export class SelectorInputList extends React.Component<ISelectorInputListProps, 
     private onRenderCell(item: string[]): JSX.Element {
         return (
             <div className="selector-input-itemCell" data-is-focusable={true}>
-              <div className="selector-input-itemContent">
-                <div className="selector-input-itemName">{this.renderItemName(item)}</div>
-                <IconButton
-                    className="delete-selector-button"
-                    iconProps={{ iconName: 'cancel', className: 'delete-selector-icon'}}
-                    onClick={this.getDeleteSelectorHandler(item)}
-                />
-              </div>
+                <div className="selector-input-itemContent">
+                    <div className="selector-input-itemName">{this.renderItemName(item)}</div>
+                    <IconButton
+                        className="delete-selector-button"
+                        iconProps={{ iconName: 'cancel', className: 'delete-selector-icon' }}
+                        onClick={this.getDeleteSelectorHandler(item)}
+                    />
+                </div>
             </div>
-          );
+        );
     }
 
     private renderItemName(selector: string[]): string {
-        return(selector.join('; '));
+        return (selector.join('; '));
     }
 
     @autobind
-    private updateFieldValueValidState(textFieldValue: string): void {
+    private updateFieldValueValidState(event, textFieldValue: string): void {
         this.setState({
             value: textFieldValue,
         });
         const formattedSelector = this.formatSelector(textFieldValue);
         const selectorIsValid = !_.isEqual(formattedSelector, ['']) && !_.find(this.props.items, value => { return _.isEqual(formattedSelector, value); });
 
-        this.setState({isTextFieldValueValid: selectorIsValid});
+        this.setState({ isTextFieldValueValid: selectorIsValid });
     }
 
     @autobind

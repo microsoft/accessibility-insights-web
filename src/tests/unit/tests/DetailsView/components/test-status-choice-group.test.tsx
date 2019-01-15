@@ -1,13 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Enzyme from 'enzyme';
-import { ChoiceGroup } from 'office-ui-fabric-react/lib/ChoiceGroup';
+import { mount, shallow } from 'enzyme';
+import { ChoiceGroup, IChoiceGroup } from 'office-ui-fabric-react/lib/ChoiceGroup';
 import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';
 
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
-import { ITestStatusChoiceGroupProps, TestStatusChoiceGroup } from '../../../../../DetailsView/components/test-status-choice-group';
+import {
+    ITestStatusChoiceGroupProps,
+    TestStatusChoiceGroup,
+} from '../../../../../DetailsView/components/test-status-choice-group';
 
 describe('TestStatusChoiceGroup', () => {
     const options = [
@@ -35,7 +38,7 @@ describe('TestStatusChoiceGroup', () => {
             .setup(o => o(props.status, props.test, props.step, props.selector))
             .verifiable(Times.once());
 
-        const wrapper = Enzyme.mount(<TestStatusChoiceGroup {...props} />);
+        const wrapper = mount(<TestStatusChoiceGroup {...props} />);
         const labels = wrapper.find('.ms-Label');
 
         expect(wrapper.find('.radio-button-group').exists()).toBe(true);
@@ -58,6 +61,26 @@ describe('TestStatusChoiceGroup', () => {
         expect(labels.at(1).getDOMNode().innerHTML).toBe('');
     });
 
+    test('render: selectedKey is set to undefined as status is UNKNOWN', () => {
+        const props: ITestStatusChoiceGroupProps = {
+            status: ManualTestStatus.UNKNOWN,
+        } as ITestStatusChoiceGroupProps;
+
+        const actual = shallow(<TestStatusChoiceGroup {...props} />);
+
+        expect(actual.getElement()).toMatchSnapshot();
+    });
+
+    test('render: selectedKey is not set to undefined as status is PASS', () => {
+        const props: ITestStatusChoiceGroupProps = {
+            status: ManualTestStatus.PASS,
+        } as ITestStatusChoiceGroupProps;
+
+        const actual = shallow(<TestStatusChoiceGroup {...props} />);
+
+        expect(actual.getElement()).toMatchSnapshot();
+    });
+
     test('verify onChange', () => {
         const onGroupChoiceChangeMock = Mock.ofInstance((status, test, step, selector) => {});
         const onUndoMock = Mock.ofInstance((test, step, selector) => {});
@@ -74,10 +97,9 @@ describe('TestStatusChoiceGroup', () => {
             .setup(o => o(ManualTestStatus.PASS, props.test, props.step, props.selector))
             .verifiable(Times.once());
 
-        const component = React.createElement(TestableTestStatusChoiceGroup, props);
-        const testObject = TestUtils.renderIntoDocument(component);
-        const choiceGroup: ChoiceGroup = TestUtils.findRenderedComponentWithType(testObject, ChoiceGroup);
-        testObject.getOnChange()(null, options[0]);
+        const testObject = shallow(<TestableTestStatusChoiceGroup {...props} />);
+        const choiceGroup = testObject.find(ChoiceGroup);
+        choiceGroup.prop('onChange')(null, options[0]);
 
         onGroupChoiceChangeMock.verifyAll();
     });
@@ -132,7 +154,7 @@ class TestableTestStatusChoiceGroup extends TestStatusChoiceGroup {
         return this.compomentRef;
     }
 
-    public getComponent(): ChoiceGroup {
+    public getComponent(): IChoiceGroup {
         return this._choiceGroup;
     }
 }

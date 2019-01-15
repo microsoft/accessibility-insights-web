@@ -16,7 +16,7 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
 
     <h2>How to fix</h2>
     <p>
-        For each auditory cue, also provide a visible cue. 
+        For each auditory cue, also provide a visible cue.
     </p>
 
    <h2>Example</h2>

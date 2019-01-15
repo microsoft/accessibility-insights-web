@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = false 1`] = `
-<StyledCustomizedDialog
+<StyledWithResponsiveMode
   dialogContentProps={
     Object {
       "type": 0,
@@ -12,10 +12,12 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = false 
     Object {
       "containerClassName": "insights-dialog-main-override",
       "isBlocking": false,
+      "layerProps": Object {
+        "onLayerDidMount": Object {},
+      },
     }
   }
   onDismiss={Object {}}
-  onLayerDidMount={Object {}}
   title="help"
 >
   <div>
@@ -173,7 +175,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = false 
       </div>
     </div>
   </div>
-</StyledCustomizedDialog>
+</StyledWithResponsiveMode>
 `;
 
 exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 1`] = `
@@ -375,7 +377,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 1
 `;
 
 exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 2`] = `
-<StyledCustomizedDialog
+<StyledWithResponsiveMode
   dialogContentProps={
     Object {
       "type": 0,
@@ -386,10 +388,12 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 2
     Object {
       "containerClassName": "insights-dialog-main-override",
       "isBlocking": false,
+      "layerProps": Object {
+        "onLayerDidMount": Object {},
+      },
     }
   }
   onDismiss={Object {}}
-  onLayerDidMount={Object {}}
   title="help"
 >
   <div>
@@ -542,7 +546,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 2
       </div>
     </div>
   </div>
-</StyledCustomizedDialog>
+</StyledWithResponsiveMode>
 `;
 
 exports[`DetailsDialogTest render: isDevToolsOpen = true, shadowDialog = true 1`] = `

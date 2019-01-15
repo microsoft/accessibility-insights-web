@@ -9,5 +9,5 @@ export const page  = {
     guidance,
     pageTitle,
     frameTitles,
-    generalNavigation
+    generalNavigation,
 };

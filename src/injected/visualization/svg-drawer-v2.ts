@@ -278,7 +278,7 @@ export class SVGDrawerV2 extends BaseDrawer {
                 _.chain(tabbed.focusIndicator)
                     .values()
                     .compact()
-                    .value()
+                    .value(),
             )
             .flatten()
             .value();

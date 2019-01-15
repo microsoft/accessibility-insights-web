@@ -44,7 +44,7 @@ describe('DetailsViewCommandBar', () => {
         assessmentStoreData = {
             assessmentNavState: {
                 selectedTestType: -1,
-            }
+            },
         } as IAssessmentStoreData;
         assessmentsProviderMock
             .setup(provider => provider.forType(-1))

@@ -105,7 +105,7 @@ describe('ContentPage', () => {
                 expect(wrapper.debug()).toMatchSnapshot();
             });
 
-        })
+        });
 
         describe('<HyperLink>', () => {
             const href = 'http://my.link';

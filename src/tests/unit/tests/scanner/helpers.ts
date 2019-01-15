@@ -5,8 +5,8 @@ import { createNativeWidgetConfiguration, evaluateNativeWidget, nativeWidgetSele
 export function createNodeStub(tag: string, attributes: IDictionaryStringTo<string>): HTMLElement {
     return {
         tagName: tag.toUpperCase(),
-        hasAttribute: (attr) => attr in attributes,
-        getAttribute: (attr) => {
+        hasAttribute: attr => attr in attributes,
+        getAttribute: attr => {
             if (attr in attributes) {
                 return attributes[attr] === null ? '' : attributes[attr];
             }

@@ -19,7 +19,7 @@ exports[`TestStepsNav renders assisted tests: getRenderNavLink 1`] = `
 `;
 
 exports[`TestStepsNav renders assisted tests: render 1`] = `
-<StyledCustomizedNav
+<StyledNavBase
   ariaLabel="test"
   className="test-step-nav"
   groups={
@@ -82,7 +82,7 @@ exports[`TestStepsNav renders automated tests: getRenderNavLink 1`] = `
 `;
 
 exports[`TestStepsNav renders automated tests: render 1`] = `
-<StyledCustomizedNav
+<StyledNavBase
   ariaLabel="test"
   className="test-step-nav"
   groups={

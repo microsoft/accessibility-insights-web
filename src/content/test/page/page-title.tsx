@@ -19,11 +19,11 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
             }
 
             failExample={
-                `<html> 
-                <head> 
-                <title>flu-page</title> 
-                </head> 
-                <body> 
+                `<html>
+                <head>
+                <title>flu-page</title>
+                </head>
+                <body>
                 ...`
             }
 
@@ -32,15 +32,15 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
             }
 
             passExample={
-                `<html> 
-                <head> 
-                <title>Tips for treating your child's flu</title> 
-                </head> 
-                <body> 
+                `<html>
+                <head>
+                <title>Tips for treating your child's flu</title>
+                </head>
+                <body>
                 ...`
             }
         />
-            
+
     <h2>More examples</h2>
 
     <h3>WCAG success criteria</h3>

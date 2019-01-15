@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { shallow } from 'enzyme';
 import { DirectionalHint } from 'office-ui-fabric-react/lib/Callout';
-import { LinkBase } from 'office-ui-fabric-react/lib/components/Link/Link.base';
 import { ContextualMenu, IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { Link } from 'office-ui-fabric-react/lib/Link';
@@ -48,7 +48,7 @@ describe('DetailsViewDropDownTest', () => {
                     <Icon
                         className="gear-options-icon"
                         iconName="Gear"
-                        ariaLabel={"Manage Settings"}
+                        ariaLabel={'Manage Settings'}
                     />
                 </Link>
                 <ContextualMenu
@@ -80,17 +80,15 @@ describe('DetailsViewDropDownTest', () => {
             isContextMenuVisible: false,
             target: null,
         };
-        const component = React.createElement(TestableDetailsViewDropDown, props);
-        const testObject = TestUtils.renderIntoDocument(component);
-        const link = TestUtils.findRenderedComponentWithType(testObject, LinkBase);
+        const testObject = shallow(<TestableDetailsViewDropDown {...props} />);
+        const link = testObject.find(Link);
+        link.prop('onClick')(target as React.MouseEvent<HTMLElement>);
 
-        link.props.onClick(target as React.MouseEvent<HTMLElement>);
+        expect(testObject.state()).toEqual(expectedMenuOpenState);
 
-        expect(testObject.state).toEqual(expectedMenuOpenState);
+        const contextualMenu = testObject.find(ContextualMenu);
+        contextualMenu.prop('onDismiss')();
 
-        const contextualMenu = TestUtils.findRenderedComponentWithType(testObject, ContextualMenu);
-        contextualMenu.props.onDismiss();
-
-        expect(testObject.state).toEqual(expectedMenuClosedState);
+        expect(testObject.state()).toEqual(expectedMenuClosedState);
     });
 });

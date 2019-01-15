@@ -23,11 +23,11 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
             }
 
             failExample={
-                `<body> 
-                ... 
-                <iframe src="https://holds.htm" title="Hold"> 
-                </iframe> 
-                ... 
+                `<body>
+                ...
+                <iframe src="https://holds.htm" title="Hold">
+                </iframe>
+                ...
                 </body>`
             }
 
@@ -36,15 +36,15 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
             }
 
             passExample={
-                `<body> 
-                ... 
-                <iframe src="https://holds.htm" title="Books on Hold: Clive County Library"> 
-                </iframe> 
-                ... 
+                `<body>
+                ...
+                <iframe src="https://holds.htm" title="Books on Hold: Clive County Library">
+                </iframe>
+                ...
                 </body>`
             }
         />
-            
+
     <h2>More examples</h2>
 
     <h3>WCAG success criteria</h3>

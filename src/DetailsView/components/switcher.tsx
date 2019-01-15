@@ -49,7 +49,7 @@ export const Switcher = NamedSFC<SwitcherProps>('Switcher', props => {
     const { deps, pivotKey } = props;
     const { detailsViewActionMessageCreator } = deps;
 
-    const onOptionClick = (option?: IDropdownOption): void => {
+    const onOptionClick = (event, option?: IDropdownOption): void => {
         detailsViewActionMessageCreator.sendPivotItemClicked(DetailsViewPivotType[option.data.key]);
     };
 
@@ -59,7 +59,7 @@ export const Switcher = NamedSFC<SwitcherProps>('Switcher', props => {
             selectedKey={pivotKey}
             onRenderOption={onRenderOption}
             onRenderTitle={onRenderTitle}
-            onChanged={onOptionClick}
+            onChange={onOptionClick}
             options={[
                 {
                     key: DetailsViewPivotType.fastPass, text: 'FastPass', data: {

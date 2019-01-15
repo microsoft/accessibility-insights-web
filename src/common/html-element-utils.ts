@@ -42,19 +42,19 @@ export class HTMLElementUtils {
         return element.matches(selectors);
     }
 
-    public getComputedStyle(element: Element) : CSSStyleDeclaration {
-        return this.clientWindow.getComputedStyle(element)
+    public getComputedStyle(element: Element): CSSStyleDeclaration {
+        return this.clientWindow.getComputedStyle(element);
     }
 
-    public getClientRects(element: Element) : ClientRectList {
+    public getClientRects(element: Element): ClientRectList {
         return element.getClientRects();
     }
 
-    public getOffsetHeight(element: HTMLElement) : number {
+    public getOffsetHeight(element: HTMLElement): number {
         return element.offsetHeight;
     }
 
-    public getOffsetWidth(element: HTMLElement) : number {
+    public getOffsetWidth(element: HTMLElement): number {
         return element.offsetWidth;
     }
 }

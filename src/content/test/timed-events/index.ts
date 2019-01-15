@@ -11,5 +11,5 @@ export const timedEvents  = {
     timeLimits,
     movingContent,
     autoUpdatingContent,
-    audioControl
+    audioControl,
 };

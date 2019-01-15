@@ -21,7 +21,7 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
                     <p>At the top of the comments sidebar is an 'Update comments' dropdown that allows users to choose the frequency of updates. One option is 'Never.'</p>
                 }
             />
-            
+
     <h2>More examples </h2>
 
     <h3>WCAG success criteria</h3>

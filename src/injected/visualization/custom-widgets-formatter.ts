@@ -13,13 +13,13 @@ export class CustomWidgetsFormatter extends HighlightBoxFormatter {
     public getDrawerConfiguration(element: HTMLElement, data: IAssessmentVisualizationInstance): IDrawerConfiguration {
         const drawerConfig: IDrawerConfiguration = {
             ...super.getDrawerConfiguration(element, data),
-            getBoundingRect: (element) => {
+            getBoundingRect: element => {
                 if (this.isCompositeCustomWidget(element)) {
                     return DrawerUtils.getBoundingClientRectIncludingChildren(element);
                 } else {
                     return element.getBoundingClientRect();
                 }
-            }
+            },
         };
 
         return drawerConfig;

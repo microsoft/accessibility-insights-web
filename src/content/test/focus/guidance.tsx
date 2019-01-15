@@ -16,7 +16,7 @@ export const guidance = create(({ Markup, Link }) => <>
 
 
     <Markup.Columns>
-        <Markup.Do>        
+        <Markup.Do>
             <h3>Provide a visible focus indicator on the interactive element that has the input focus. (<Link.WCAG_2_4_7/>)</h3>
             <ul>
                 <li>Input focus is commonly indicated by a solid or dotted border surrounding the element, but other visible changes are acceptable.</li>

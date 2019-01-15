@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-import { css } from '@uifabric/utilities/lib';
+import { css } from '@uifabric/utilities';
 import { WindowUtils } from '../window-utils';
 
 export type ToastDeps = {
     windowUtils: WindowUtils;
-}
+};
 
 export type ToastProps = {
     deps: ToastDeps,
@@ -18,7 +18,7 @@ export class Toast extends React.Component<ToastProps> {
     private timeoutId: number;
     private hidden: boolean;
 
-    static defaultProps = { 
+    public static defaultProps = {
         timeoutLength: 1000,
     };
 
@@ -41,9 +41,9 @@ export class Toast extends React.Component<ToastProps> {
 
     public render(): JSX.Element {
         return this.hidden ? null : (
-            <div className={css('ms-fadeIn100','toast')}>
+            <div className={css('ms-fadeIn100', 'toast')}>
                 {this.props.children}
             </div>
         );
     }
-};
+}

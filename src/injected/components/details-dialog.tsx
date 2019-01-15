@@ -275,10 +275,12 @@ export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetails
                 dialogContentProps={{
                     type: DialogType.normal,
                 }}
-                onLayerDidMount={this.onLayoutDidMount}
                 modalProps={{
                     isBlocking: false,
                     containerClassName: 'insights-dialog-main-override',
+                    layerProps: {
+                        onLayerDidMount: this.onLayoutDidMount,
+                    },
                 }}
                 onDismiss={this.onHideDialog}
                 title={rule.help}

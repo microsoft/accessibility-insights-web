@@ -85,7 +85,7 @@ export class Messages {
             PivotSelect: 'insights/details-view/pivot/select',
             Close: 'insights/details-view/closed',
             SetDetailsViewRightContentPanel: 'insights/details-view/setRightContentPanel',
-            GetState: 'insights/details-view/state/current'
+            GetState: 'insights/details-view/state/current',
         },
     };
 
