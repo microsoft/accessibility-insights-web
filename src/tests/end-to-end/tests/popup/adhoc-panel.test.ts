@@ -6,6 +6,7 @@ import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { Page } from '../../common/page';
 import { async } from 'q';
+import { DEFAULT_E2E_TEST_TIMEOUT_MS } from '../../common/timeouts';
 
 describe('Ad hoc tools', () => {
     const isMac = process.platform === 'darwin';
@@ -56,5 +57,5 @@ describe('Ad hoc tools', () => {
 
         expect(mainAdhocPanel).toBeDefined();
         expect(mainAdhocPanel.length).toBe(1);
-    });
+    }, DEFAULT_E2E_TEST_TIMEOUT_MS);
 });
