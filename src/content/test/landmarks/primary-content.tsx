@@ -27,7 +27,7 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
 
         failExample={
             `<header>…</header>
-            <nav>…</nav> 
+            <nav>…</nav>
             <main>Some of the page's primary content is here</main>
             [<div>Some of the page's primary content is here</div>]
             <footer>…</footer>`
