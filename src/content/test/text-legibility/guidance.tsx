@@ -40,7 +40,7 @@ export const guidance = create(({ Markup, Link }) => <>
     <h2>Learn more</h2>
 
     <h3>Ensure text is resizable</h3>
-    
+
     <h4>WCAG success criteria</h4>
     <Markup.Links>
         <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Understanding/resize-text.html">

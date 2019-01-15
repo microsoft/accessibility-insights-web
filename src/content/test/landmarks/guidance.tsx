@@ -25,7 +25,7 @@ export const guidance = create(({ Markup, Link }) => <>
 
 
     <Markup.Columns>
-        <Markup.Do>        
+        <Markup.Do>
         <h3>Contain all visible content within landmark regions. (<Link.WCAG_1_3_1/>)</h3>
         <ul>
             <li>Turn on the <Markup.Term>Landmarks</Markup.Term> visual helper, then zoom out so you can see the entire page. If you see any visible content (like text, images, or controls) outside the dashed borders, that’s a failure.</li>
@@ -42,9 +42,9 @@ export const guidance = create(({ Markup, Link }) => <>
             <li>An automated check will fail if the page contains more than one main landmark.</li>
             <li>Exception: If the page contains nested document or application roles, each one can have its own <Markup.Term>banner</Markup.Term>, <Markup.Term>main</Markup.Term> and <Markup.Term>contentinfo</Markup.Term> landmarks.</li>
         </ul>
-        
+
         <h3>Include all of the page's primary content in the main landmark. (<Link.WCAG_1_3_1/>, <Link.WCAG_2_4_1/>)</h3>
-        
+
         <h3>If you use the same landmark role more than once in a page, give each instance a unique accessible label. (<Link.WCAG_2_4_1/>)</h3>
         <ul>
             <li>In the visual helper, accessible labels (<Markup.Term>aria-label</Markup.Term> or <Markup.Term>aria-labelledby</Markup.Term>) are enclosed in quotes.</li>

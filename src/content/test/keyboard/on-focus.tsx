@@ -21,11 +21,11 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
         failText={
             <p>Tabbing to a 'sponsored' link opens an ad in a new browser window.</p>
         }
-        
+
         passText={
             <p>The ad opens only when the user activates the sponsored link.</p>
         }
-        
+
     />
     <h2>More examples</h2>
 
@@ -40,7 +40,7 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G107">
             Using "activate" rather than "focus" as a trigger for changes of context</Markup.HyperLink>
         </Markup.Links>
-        
+
         <h3>Common failures </h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F52">

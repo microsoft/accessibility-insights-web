@@ -83,4 +83,4 @@ export const KeyboardInteraction: TestStep = {
     getDrawer: provider => provider.createHighlightBoxDrawer(),
     updateVisibility: false,
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props}/>,
-}
+};

@@ -103,7 +103,7 @@ export class WindowMessageHandler {
     }
 
     private notifySubscriber(target: Window, data: IWindowMessage): void {
-        let subscriber = this._messageSubscribers[data.command];
+        const subscriber = this._messageSubscribers[data.command];
         if (subscriber) {
             subscriber(data.message, data.error, target, this.createFrameResponderCallback(target, data.command, data.messageId));
         }

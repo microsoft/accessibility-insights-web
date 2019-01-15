@@ -4,7 +4,7 @@ import { VisualizationType } from '../../../common/types/visualization-type';
 
 export type GetLeftNavSelectedKeyProps = {
     type: VisualizationType,
-}
+};
 
 export function getOverviewKey(): string {
     return 'Overview';

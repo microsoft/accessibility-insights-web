@@ -599,6 +599,6 @@ describe('TabStopsListenerTest', () => {
         const action = () => {
             onGetTabbedElementsFunc(tabStopEventStub, null, srcWindowStub as any);
         };
-        expect(action).toThrowError( 'unable to get frame element for the tabbed element')
+        expect(action).toThrowError( 'unable to get frame element for the tabbed element');
     });
 });

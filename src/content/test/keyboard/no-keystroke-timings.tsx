@@ -19,11 +19,11 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
         failText={
             <p>A web app goes into a desired state when the user presses and holds a key.</p>
         }
-        
+
         passText={
             <p>The web app allows the user to invoke the desired state by activating a button.</p>
         }
-        
+
     />
 
     <h2>More examples</h2>

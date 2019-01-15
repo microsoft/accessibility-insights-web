@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { AxeNodeResult, AxeRule } from './iruleresults';
 
-export module Processor {
+export namespace Processor {
     export let suppressedMessages = [
         // add messages to suppress here. Remove comment when non-empty.
     ].map(normalizeText);

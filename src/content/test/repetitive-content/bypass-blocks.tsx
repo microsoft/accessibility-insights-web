@@ -6,19 +6,19 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
 
     <h1>Bypass blocks</h1>
     <p>
-        A page must provide a keyboard-accessible method to bypass repetitive content. 
+        A page must provide a keyboard-accessible method to bypass repetitive content.
     </p>
-    
+
     <h2>Why it matters</h2>
     <p>
-        Web pages typically have blocks of content that repeat across multiple pages, such as banners and site navigation menus. 
-        A person who uses a mouse can visually skim past that repeated content to access a link or other control within the primary content with a single click. 
+        Web pages typically have blocks of content that repeat across multiple pages, such as banners and site navigation menus.
+        A person who uses a mouse can visually skim past that repeated content to access a link or other control within the primary content with a single click.
         Similarly, a bypass mechanism allows keyboard users to navigate directly to the page’s main content.
-        
-        Otherwise, reaching the primary cotent could require dozens of keystrokes. 
+
+        Otherwise, reaching the primary cotent could require dozens of keystrokes.
         People with limited mobility could find this task difficult or painful, and people who use screen readers could find it tedious to listen as each repeated element is announced.
     </p>
-    
+
     <h2>How to fix</h2>
     <p>
         Implement one or more of the following keyboard-accessible methods for bypassing repetitive content:
@@ -31,7 +31,7 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
                 </li>
                 <li> <Markup.Links><Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G123">
                         Add a link at the beginning of a block of repeated content that navigates to the end of the block</Markup.HyperLink> </Markup.Links>
-                        
+
                 </li>
                 <li><Markup.Links><Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G124">
                     Add links at the top of the page that navigate to each section of content</Markup.HyperLink></Markup.Links>
@@ -64,13 +64,13 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
            `<body>
                 ...
                 <main>
-                <p>It was Ralph Waldo Emerson who said, "Build a better mousetrap, and the world will beat a path to your door."</p> 
+                <p>It was Ralph Waldo Emerson who said, "Build a better mousetrap, and the world will beat a path to your door."</p>
             `
         }
 
         passText={
             <p>
-            A skip link is added as the first item in the page. In this case, the skip link is always visible, 
+            A skip link is added as the first item in the page. In this case, the skip link is always visible,
             but it could be <Markup.HyperLink href="https://webaim.org/techniques/css/invisiblecontent/#skipnavlinks">hidden using CSS.</Markup.HyperLink>
             </p>
         }
@@ -90,7 +90,7 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Understanding/bypass-blocks">
             Understanding Success Criterion 2.4.1: Bypass Blocks</Markup.HyperLink>
          </Markup.Links>
-        
+
     <h3>Sufficient techniques</h3>
         <p>Use one of these techniques to provide a link for bypassing repeated content:</p>
 
@@ -104,7 +104,7 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
         </Markup.Links>
 
         <p>OR use one of these techniques to group blocks of repeated content so they can be bypassed:</p>
-        
+
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA11">
             Using ARIA landmarks to identify regions of a page</Markup.HyperLink>
@@ -114,10 +114,10 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
             Using frame elements to group blocks of repeated content</Markup.HyperLink> and <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H64">
             Using the title attribute of the frame and iframe elements</Markup.HyperLink>
         </Markup.Links>
-        
+
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/client-side-script/SCR28">
             Containing repeated content in a collapsible menu</Markup.HyperLink>
         </Markup.Links>
- 
+
 </>);

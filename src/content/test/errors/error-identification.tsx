@@ -27,7 +27,7 @@ export const infoAndExamples = create(({ Markup }) => <>
                 failText={
                     <p>A web page uses colored borders to identify input fields with errors.</p>
                 }
-                
+
                 passText={
                     <p>In addition to colored borders, the page uses text to identify input fields with errors. It also uses an aria-live region to notify users when an input error is detected. See a <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/working-examples/aria-invalid-required-fields/">working example</Markup.HyperLink>.</p>
                 }

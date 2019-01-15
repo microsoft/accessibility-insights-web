@@ -7,4 +7,4 @@ export type IAnalyzerTelemetryCallback = ForRuleAnalyzerScanCallback;
 
 export type ForRuleAnalyzerScanCallback = (analyzerResult: AxeAnalyzerResult, scanDuration: number, elementsScanned: number, testName: string, requirementName?: string) => RuleAnalyzerScanTelemetryData;
 
-export type ForIssuesAnalyzerScanCallback = (analyzerResult: AxeAnalyzerResult, scanDuration: number, elementsScanned: number, testName: string,) => IssuesAnalyzerScanTelemetryData;
+export type ForIssuesAnalyzerScanCallback = (analyzerResult: AxeAnalyzerResult, scanDuration: number, elementsScanned: number, testName: string) => IssuesAnalyzerScanTelemetryData;

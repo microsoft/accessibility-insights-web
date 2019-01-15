@@ -25,7 +25,7 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
             <p>In addition to the navigation menu, each page has a search mechanism that allows users to find pages that contain specific words or phrases.</p>
         }
     />
-            
+
     <h2>More examples</h2>
 
     <h3>WCAG success criteria</h3>

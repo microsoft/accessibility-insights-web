@@ -22,7 +22,7 @@ describe('CopyIssueDetailsButtonTest', () => {
             deps: {
                 windowUtils: null,
                 issueDetailsTextGenerator: {
-                    buildText:_ => 'sample text',
+                    buildText: _ => 'sample text',
                 } as IssueDetailsTextGenerator,
             },
             issueDetailsData: {

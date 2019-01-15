@@ -11,8 +11,8 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
 
     <h2>Why it matters</h2>
     <p>
-        When a passage has the correct language attribute, browsers and assistive technologies can render the text more accurately; 
-        screen readers can use the correct pronunciation; visual browsers can display the correct characters; and media players can show captions correctly. 
+        When a passage has the correct language attribute, browsers and assistive technologies can render the text more accurately;
+        screen readers can use the correct pronunciation; visual browsers can display the correct characters; and media players can show captions correctly.
         All users find it easier to understand the page's content.
     </p>
 

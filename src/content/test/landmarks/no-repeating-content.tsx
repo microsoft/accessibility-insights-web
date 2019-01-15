@@ -26,13 +26,13 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
         }
 
         failExample={
-            `<header>…</header> 
-            <main> 
+            `<header>…</header>
+            <main>
             [<nav>Site navigation links are
             here</nav>]
-            <div>Primary content starts 
-            here</div> 
-            </main> 
+            <div>Primary content starts
+            here</div>
+            </main>
             <footer>…</footer>`
         }
 

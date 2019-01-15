@@ -16,7 +16,7 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
 
     <h2>How to fix</h2>
     <p>
-        Where possible, narrate events "real time", as they are happening onscreen. When events are naturally accompanied by audio (such as spoken dialog or sound effects), it’s usually best to narrate events just before they happen. 
+        Where possible, narrate events "real time", as they are happening onscreen. When events are naturally accompanied by audio (such as spoken dialog or sound effects), it’s usually best to narrate events just before they happen.
     </p>
 
     <Markup.PassFail

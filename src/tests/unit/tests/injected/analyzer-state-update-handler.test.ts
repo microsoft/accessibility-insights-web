@@ -20,7 +20,7 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
         startScanMock = Mock.ofInstance(id => { });
         teardownMock = Mock.ofInstance(id => { });
         testObject = new TestableAnalyzerStateUpdateHandler(visualizationConfigurationFactoryMock.object);
-        testObject.setupHandlers(startScanMock.object, teardownMock.object)
+        testObject.setupHandlers(startScanMock.object, teardownMock.object);
     });
 
     test('constructor', () => {
@@ -40,7 +40,7 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
         testObject.getTeardownDelegate()(id);
 
         startScanMock.verifyAll();
-        teardownMock.verifyAll()
+        teardownMock.verifyAll();
     });
 
 
@@ -55,7 +55,7 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
 
         testObject.handleUpdate(state);
 
-        startScanMock.verifyAll()
+        startScanMock.verifyAll();
     });
 
 
@@ -107,7 +107,7 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
 
         testObject.handleUpdate(state);
 
-        startScanMock.verifyAll()
+        startScanMock.verifyAll();
     });
 
 

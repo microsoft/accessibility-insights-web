@@ -9,5 +9,5 @@ export const adhoc = {
     color,
     headings,
     landmarks,
-    tabstops
+    tabstops,
 };

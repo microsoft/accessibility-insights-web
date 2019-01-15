@@ -20,7 +20,7 @@ interface IAnalyzer<TResult> {
     teardown(): void;
 }
 
-interface IScanCompletedPayload<TSelectorValue> extends IScanBasePayload{
+interface IScanCompletedPayload<TSelectorValue> extends IScanBasePayload {
     selectorMap: IDictionaryStringTo<TSelectorValue>;
     scanResult: ScanResults;
 }

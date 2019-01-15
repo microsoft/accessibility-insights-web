@@ -19,11 +19,11 @@ describe('assertions', () => {
     });
 
     test('fail', () => {
-        expect(() => assert.fail("message")).toThrow();
+        expect(() => assert.fail('message')).toThrow();
     });
 
     test('verifyErrorThrown', () => {
-        const thrower = () => { throw new Error('Correct message') };
+        const thrower = () => { throw new Error('Correct message'); };
         expect(() => assert.verifyErrorThrown(thrower, null)).not.toThrow();
         expect(() => assert.verifyErrorThrown(thrower, null, 'Correct message')).not.toThrow();
         expect(() => assert.verifyErrorThrown(thrower, null, 'Wrong message')).toThrow();
@@ -39,42 +39,42 @@ describe('assertions', () => {
         {
             typeName: 'string',
             original: ['a', 'b', 'c'],
-            different: ['x', 'y', 'z']
+            different: ['x', 'y', 'z'],
         },
         {
             typeName: 'number',
             original: [1, 2, 3],
-            different: [4, 5, 6]
+            different: [4, 5, 6],
         },
         {
             typeName: 'boolean',
             isUnorderable: true,
             original: [true, true, false],
-            different: [false, true, false]
+            different: [false, true, false],
         },
         {
             typeName: 'object',
             isObject: true,
             original: [{ a: 1 }, { b: 2 }, { c: 3 }],
-            different: [{ x: 4 }, { y: 5 }, { z: 6 }]
+            different: [{ x: 4 }, { y: 5 }, { z: 6 }],
         },
         {
             typeName: 'undefined and null',
             isUnorderable: true,
             original: [null, undefined, undefined],
-            different: [undefined, null, undefined]
+            different: [undefined, null, undefined],
         },
         {
             typeName: 'mixed',
             original: [1, 'a', { a: 1 }, null, undefined],
-            different: ['b', 2, { b: 2 }, undefined, null]
-        }
+            different: ['b', 2, { b: 2 }, undefined, null],
+        },
     ].forEach(({
         typeName,
         isObject,
         isUnorderable,
         original,
-        different
+        different,
     }) => {
         const copy = _.cloneDeep(original);
         const reverse = _.reverse(_.cloneDeep(original));

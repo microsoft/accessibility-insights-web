@@ -101,7 +101,7 @@ export class DrawerUtils {
         return Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight);
     }
 
-    public static getBoundingClientRectIncludingChildren(element: Element) : ClientRect {
+    public static getBoundingClientRectIncludingChildren(element: Element): ClientRect {
         const rects: ClientRect[] = [];
         for (let i = 0; i < element.children.length; i++) {
             const boundingRect = element.children[i].getBoundingClientRect();
@@ -120,8 +120,8 @@ export class DrawerUtils {
             top = Math.min(top, r.top);
             right = Math.max(right, r.right);
             bottom = Math.max(bottom, r.bottom);
-        })
-        
+        });
+
         return {
             left,
             x: left,
@@ -131,6 +131,6 @@ export class DrawerUtils {
             right,
             width: right - left,
             height: bottom - top,
-        }; 
+        };
     }
 }

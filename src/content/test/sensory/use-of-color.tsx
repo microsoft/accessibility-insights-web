@@ -6,13 +6,13 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
 
    <h1>Color as meaning</h1>
     <p>
-        Color must not be used as the only visual means for conveying meaning. 
+        Color must not be used as the only visual means for conveying meaning.
     </p>
 
     <h2>Why it matters</h2>
     <p>
-        Use of color in web content can enhance aesthetic appeal, usability, and accessibility. 
-        However, information conveyed <Markup.Emphasis>only</Markup.Emphasis> through color isn't available to people with limited color vision. 
+        Use of color in web content can enhance aesthetic appeal, usability, and accessibility.
+        However, information conveyed <Markup.Emphasis>only</Markup.Emphasis> through color isn't available to people with limited color vision.
     </p>
     <p>
         Note: This requirement is intended specifically to help people with who have difficulty distinguishing colors. Other requirements, related to programmatic access, are intended to help people who are blind or have low vision.
@@ -20,7 +20,7 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
 
     <h2>How to fix</h2>
     <p>
-        Add text or other visual characteristics to supplement the use of color. 
+        Add text or other visual characteristics to supplement the use of color.
     </p>
 
 
@@ -31,12 +31,12 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
         }
         failExample={
            `CSS
-            [.req {color: red;}] 
+            [.req {color: red;}]
 
             HTML
             <p> Required fields have <span class="req">red</span> labels.</p>
             <form action="http://www.test.com" method="post">
-            <label for="firstname">[<span class="req">First name</span>]: </label> 
+            <label for="firstname">[<span class="req">First name</span>]: </label>
             <input type="text" name="firstname" id="firstname" />`
         }
 
@@ -50,7 +50,7 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
             HTML
             <p> Required fields are marked with a red asterisk (<span class="req">*</span>).</p>
             <form action="http://www.test.com" method="post">
-            <label for="firstname">[<span class="req">* </span>First name]: </label> 
+            <label for="firstname">[<span class="req">* </span>First name]: </label>
             <input type="text" name="firstname" id="firstname" />`
         }
     />

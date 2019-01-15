@@ -157,7 +157,7 @@ export class DetailsDialogHandler {
     }
 
     private addEventListenerToInspectButton(shadowRoot: ShadowRoot, dialog: DetailsDialog): void {
-        const inspectButtonListener =ev => {
+        const inspectButtonListener = ev => {
             if (!dialog.isInspectButtonDisabled()) {
                 dialog.onClickInspectButton(ev);
                 this.closeWindow(shadowRoot);
@@ -173,7 +173,7 @@ export class DetailsDialogHandler {
 
     private hasStore(dialog: DetailsDialog): boolean {
         return (dialog.props != null)
-            && (dialog.props.devToolStore != null)
+            && (dialog.props.devToolStore != null);
     }
 
     private addShadowClickEventListener(shadowRoot: ShadowRoot, selector: string, listener: (ev?) => void): void {

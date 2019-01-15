@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IHtmlElementAxeResults } from "../scanner-utils";
+import { IHtmlElementAxeResults } from '../scanner-utils';
 
 interface IDrawerConfiguration {
     outlineStyle?: string;
@@ -14,11 +14,11 @@ interface IDrawerConfiguration {
     getBoundingRect?: (e: Element) => ClientRect | DOMRect;
 }
 
-interface ITextBoxConfig extends IBoxConfig{
+interface ITextBoxConfig extends IBoxConfig {
     boxHeight?: string;
 }
 
-interface IFailureBoxConfig extends IBoxConfig{
+interface IFailureBoxConfig extends IBoxConfig {
     hasDialogView?: boolean;
 }
 

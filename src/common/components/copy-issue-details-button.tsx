@@ -13,7 +13,7 @@ import * as CopyToClipboard from 'react-copy-to-clipboard';
 export type CopyIssueDetailsButtonDeps = {
     windowUtils: WindowUtils;
     issueDetailsTextGenerator: IssueDetailsTextGenerator;
-}
+};
 
 export type CopyIssueDetailsButtonProps = {
     deps: CopyIssueDetailsButtonDeps,
@@ -23,7 +23,7 @@ export type CopyIssueDetailsButtonProps = {
 
 export type CopyIssueDetailsButtonState = {
     showingCopyToast: boolean;
-}
+};
 
 export class CopyIssueDetailsButton extends React.Component<CopyIssueDetailsButtonProps, CopyIssueDetailsButtonState> {
     constructor(props: CopyIssueDetailsButtonProps) {
@@ -31,12 +31,12 @@ export class CopyIssueDetailsButton extends React.Component<CopyIssueDetailsButt
         this.state = { showingCopyToast: false };
     }
 
-    private getIssueDetailsText(result: DecoratedAxeNodeResult) : string {
+    private getIssueDetailsText(result: DecoratedAxeNodeResult): string {
         const data: CreateIssueDetailsTextData = {
             pageTitle: this.props.issueDetailsData.pageTitle,
             pageUrl: this.props.issueDetailsData.pageUrl,
             ruleResult: result,
-        }
+        };
         return this.props.deps.issueDetailsTextGenerator.buildText(data);
     }
 
@@ -70,4 +70,4 @@ export class CopyIssueDetailsButton extends React.Component<CopyIssueDetailsButt
             </>
         );
     }
-};
+}

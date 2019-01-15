@@ -93,7 +93,7 @@ export class PortOnMessageStub implements chrome.runtime.PortMessageEvent {
 namespace Helpers {
     export function arrayHasCallback(array: Function[], callback: Function): boolean {
         for (let i = 0; i < array.length; i++) {
-            let currentCallback = array[i];
+            const currentCallback = array[i];
 
             if (currentCallback.toString() === callback.toString()) {
                 return true;

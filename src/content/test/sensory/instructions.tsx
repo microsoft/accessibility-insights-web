@@ -6,7 +6,7 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
 
    <h1>Instructions</h1>
     <p>
-        Instructions must not rely <Markup.Emphasis>solely</Markup.Emphasis> on color or other sensory characteristics. 
+        Instructions must not rely <Markup.Emphasis>solely</Markup.Emphasis> on color or other sensory characteristics.
     </p>
 
     <h2>Why it matters</h2>
@@ -52,7 +52,7 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
     />
 
     <h2>More examples</h2>
-        
+
     <h3>WCAG success criteria</h3>
     <Markup.Links>
         <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Understanding/sensory-characteristics.html">

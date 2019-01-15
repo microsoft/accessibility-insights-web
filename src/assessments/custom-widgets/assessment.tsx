@@ -25,12 +25,12 @@ const gettingStarted: JSX.Element = (
       A <Markup.Emphasis>widget</Markup.Emphasis> is an interactive interface component, such as a link, button, or combo box.
     </p>
     <p>
-      A <Markup.Emphasis>custom widget</Markup.Emphasis> is an interactive interface component other than a link or native HTML element. 
-      Custom widgets can be simple (e.g., a link or a button) or complex (e.g., a text field, listbox, and button that together function as a combo box).  
+      A <Markup.Emphasis>custom widget</Markup.Emphasis> is an interactive interface component other than a link or native HTML element.
+      Custom widgets can be simple (e.g., a link or a button) or complex (e.g., a text field, listbox, and button that together function as a combo box).
     </p>
     <p>
       Each custom widget should follow the <NewTabLink href="https://www.w3.org/TR/wai-aria-practices-1.1/">
-       ARIA design pattern 
+       ARIA design pattern
       </NewTabLink> that best describes its function.
     </p>
   </React.Fragment>

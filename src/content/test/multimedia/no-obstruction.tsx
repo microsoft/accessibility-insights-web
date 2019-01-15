@@ -6,7 +6,7 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
 
     <h1>No obstruction</h1>
     <p>
-        Captions must not obscure or obstruct relevant information in the video. 
+        Captions must not obscure or obstruct relevant information in the video.
     </p>
 
     <h2>Why it matters</h2>
@@ -16,7 +16,7 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
 
     <h2>How to fix</h2>
     <p>
-        Adjust the positioning or timing of captions to avoid obstructing meaningful visual content.  
+        Adjust the positioning or timing of captions to avoid obstructing meaningful visual content.
     </p>
 
     <Markup.PassFail

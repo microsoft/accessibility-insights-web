@@ -20,11 +20,11 @@ describe('native widgets default', () => {
 
     describe('verify createNativeWidgetConfiguration', () => {
         it('creates expected configuration shape when default evaluate and matches are both overwritten', () => {
-            testNativeWidgetConfiguration('rule id', 'check id', (node) => { return false }, (node) => { return true });
+            testNativeWidgetConfiguration('rule id', 'check id', node => { return false; }, node => { return true; });
         });
 
         it('creates expected configuration shape when default evaluate is overwritten', () => {
-            testNativeWidgetConfiguration('rule id', 'check id', (node) => { return false });
+            testNativeWidgetConfiguration('rule id', 'check id', node => { return false; });
         });
 
         it('creates expected configuration shape when neither default evaluate nor matches is overwritten', () => {

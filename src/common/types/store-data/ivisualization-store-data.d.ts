@@ -31,9 +31,9 @@ export interface IVisualizationStoreData {
 
 export interface ITestsEnabledState {
     assessments: {
-        [key: string]: IAssessmentScanData
+        [key: string]: IAssessmentScanData,
     };
     adhoc: {
-        [key: string]: IScanData
+        [key: string]: IScanData,
     };
 }

@@ -127,7 +127,7 @@ export class ChromeAdapter extends ClientChromeAdapter implements BrowserAdapter
         chrome.windows.create({
             url: url,
             focused: true,
-        },window => {
+        }, window => {
                 callback(window.tabs[0]);
             },
         );
@@ -146,7 +146,7 @@ export class ChromeAdapter extends ClientChromeAdapter implements BrowserAdapter
             width: width,
             height: height,
             type: 'popup',
-        },window => {
+        }, window => {
             callback(window);
         });
     }
@@ -170,7 +170,7 @@ export class ChromeAdapter extends ClientChromeAdapter implements BrowserAdapter
             active: true,
         };
 
-        chrome.tabs.update(tabId, props,tab => {
+        chrome.tabs.update(tabId, props, tab => {
             chrome.windows.update(tab.windowId, { focused: true });
         });
     }
@@ -183,7 +183,7 @@ export class ChromeAdapter extends ClientChromeAdapter implements BrowserAdapter
     public sendMessageToAllFramesAndTabs(message: any): void {
         chrome.runtime.sendMessage(message);
 
-        chrome.tabs.query({},tabs => {
+        chrome.tabs.query({}, tabs => {
             for (let i = 0; i < tabs.length; ++i) {
                 chrome.tabs.sendMessage(tabs[i].id, message);
             }
