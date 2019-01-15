@@ -3,9 +3,9 @@
 exports[`RebrandingMessageBar renders as expected 1`] = `
 "<StyledMessageBarBase className=\\"info-message-bar\\">
   Keros for Web has been rebranded to Accessibility Insights for Web. Join 
-  <NewTabLink href=\\"https://idwebelements/GroupManagement.aspx?Group=keros-updates&Operation=join\\">
-    Keros Updates and Discussions
+  <NewTabLink href=\\"https://idwebelements/GroupManagement.aspx?Group=a11yInsightsUpdates&Operation=join\\">
+    Accessibility Insights Updates and Discussions
   </NewTabLink>
-   to receive an email announcement in January 2019.
+   to receive email announcements.
 </StyledMessageBarBase>"
 `;
