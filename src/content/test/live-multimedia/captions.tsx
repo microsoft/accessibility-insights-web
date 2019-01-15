@@ -29,7 +29,7 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
         }
 
         passText={
-            <p>The website provides real-time captions for the audio track. 
+            <p>The website provides real-time captions for the audio track.
             The captions include all speech, identify the speakers, and describe other significant audio, such as the buzzers that start and end each match and audience applause.</p>
         }
     />

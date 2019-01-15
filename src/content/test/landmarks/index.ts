@@ -9,5 +9,5 @@ export const landmarks = {
     guidance,
     landmarkRoles,
     noRepeatingContent,
-    primaryContent
+    primaryContent,
 };

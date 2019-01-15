@@ -12,7 +12,7 @@ export class UserStoredDataCleaner {
     }
 
     public cleanUserData(userDataKeys: string[], callback?: () => void): void {
-        this._browserAdapter.getUserData(userDataKeys,userDataKeysMap => {
+        this._browserAdapter.getUserData(userDataKeys, userDataKeysMap => {
             _.each(userDataKeysMap, (value, key) => {
                 this._browserAdapter.removeUserData(key);
             });

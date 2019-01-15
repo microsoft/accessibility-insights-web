@@ -11,7 +11,7 @@ import { test as content } from '../../content/test';
 
 const key = 'repetitiveContent';
 const title = 'Repetitive content';
-const { guidance } = content.repetitiveContent; 
+const { guidance } = content.repetitiveContent;
 
 const gettingStartedText: JSX.Element = <React.Fragment>
     <p>When interacting with a website or web app, keyboard users need a way to skip repetitive content and navigate directly to the page's primary content.</p>

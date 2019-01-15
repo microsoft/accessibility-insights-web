@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IHtmlElementAxeResults } from "../scanner-utils";
-import { FeatureFlagStoreData } from "../../common/types/store-data/feature-flag-store-data";
+import { IHtmlElementAxeResults } from '../scanner-utils';
+import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 
 interface IDrawer {
     initialize(config: IDrawerInitData<any>);
@@ -11,6 +11,6 @@ interface IDrawer {
 }
 
 interface IDrawerInitData<T> {
-    data: T[],
-    featureFlagStoreData: FeatureFlagStoreData
+    data: T[];
+    featureFlagStoreData: FeatureFlagStoreData;
 }

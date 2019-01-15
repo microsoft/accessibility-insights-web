@@ -48,7 +48,7 @@ describe('DetailsViewDropDownTest', () => {
                     <Icon
                         className="gear-options-icon"
                         iconName="Gear"
-                        ariaLabel={"Manage Settings"}
+                        ariaLabel={'Manage Settings'}
                     />
                 </Link>
                 <ContextualMenu

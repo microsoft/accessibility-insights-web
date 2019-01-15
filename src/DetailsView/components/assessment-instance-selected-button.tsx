@@ -34,7 +34,7 @@ export class AssessmentInstanceSelectedButton extends React.Component<IAssessmen
                 iconProps={
                     {
                         className: iconPropsStyling,
-                        iconName: this.props.isVisible ? this.props.isVisualizationEnabled ? 'view' : 'checkBox' : 'hide2'
+                        iconName: this.props.isVisible ? this.props.isVisualizationEnabled ? 'view' : 'checkBox' : 'hide2',
                     }
                 }
                 disabled={!this.props.isVisible}

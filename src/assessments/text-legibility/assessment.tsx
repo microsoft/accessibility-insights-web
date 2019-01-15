@@ -40,7 +40,7 @@ export const TextLegibilityAssessment: IAssessment = AssessmentBuilder.Assisted(
     steps: [
         HighContrastMode,
         ResizeText,
-        Contrast
+        Contrast,
     ],
     storeDataKey: 'textLegibilityAssessment',
 });

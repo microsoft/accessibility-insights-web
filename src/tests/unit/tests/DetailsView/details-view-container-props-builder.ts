@@ -112,7 +112,7 @@ export class DetailsViewContainerPropsBuilder {
         return this;
     }
 
-    public setStoresHubMock(hub: BaseClientStoresHub<any>): DetailsViewContainerPropsBuilder{
+    public setStoresHubMock(hub: BaseClientStoresHub<any>): DetailsViewContainerPropsBuilder {
         this.storesHub = hub;
         return this;
     }

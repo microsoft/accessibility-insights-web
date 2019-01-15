@@ -10,7 +10,7 @@ export interface IAssessmentStoreData {
     targetTab: ITab;
     assessments: {
         [key: string]: IAssessmentData;
-    }
+    };
     assessmentNavState: IAssessmentNavState;
 }
 
@@ -37,7 +37,7 @@ export interface IUserCapturedInstance {
     selector?: string;
 }
 
-export interface IGeneratedAssessmentInstance<T={}, K={}> {
+export interface IGeneratedAssessmentInstance<T= {}, K= {}> {
     target: string[];
     html: string;
     testStepResults: IAssessmentResultType<K>;
@@ -74,5 +74,5 @@ export interface ILandmarksAssessmentProperties {
     label: string;
 }
 
-export type IAssessmentInstancesMap<T={}, K ={}> = IDictionaryStringTo<IGeneratedAssessmentInstance<T, K>>;
+export type IAssessmentInstancesMap<T= {}, K = {}> = IDictionaryStringTo<IGeneratedAssessmentInstance<T, K>>;
 export type IAssessmentResultType<K> = {[testStepName in keyof K]: ITestStepResult };

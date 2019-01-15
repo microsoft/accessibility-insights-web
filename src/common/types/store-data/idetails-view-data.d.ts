@@ -3,7 +3,7 @@
 import { DetailsViewRightContentPanelType } from '../../../DetailsView/components/left-nav/details-view-right-content-panel-type';
 
 export interface IDetailsViewData {
-    detailsViewRightContentPanel: DetailsViewRightContentPanelType,
+    detailsViewRightContentPanel: DetailsViewRightContentPanelType;
     currentPanel: ICurrentPanel;
     contentPath: string;
 }

@@ -92,4 +92,4 @@ export const DesignPattern: TestStep = {
     getDrawer: provider => provider.createCustomWidgetsDrawer(),
     updateVisibility: false,
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props}/>,
-}
+};

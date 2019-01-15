@@ -6,7 +6,7 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
 
   <h1>Language of page</h1>
     <p>
-        A page must have the correct default language. 
+        A page must have the correct default language.
     </p>
 
     <h2>Why it matters</h2>
@@ -37,7 +37,7 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
         }
     />
 
-    <h2>More examples</h2> 
+    <h2>More examples</h2>
     <h3>WCAG success criteria</h3>
     <Markup.Links>
         <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Understanding/language-of-page.html">

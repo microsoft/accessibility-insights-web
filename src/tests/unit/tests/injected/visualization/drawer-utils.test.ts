@@ -69,8 +69,8 @@ describe('getBoundingClientRectIncludingChildren', () => {
                     right,
                     height: bottom - top,
                     width: right - left,
-                }
-            }
-        }
+                };
+            },
+        };
     }
 });

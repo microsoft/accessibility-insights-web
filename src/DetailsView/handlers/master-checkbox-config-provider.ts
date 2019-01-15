@@ -5,7 +5,7 @@ import { AssessmentTableColumnConfigHandler } from './../components/assessment-t
 import { IAssessmentNavState } from '../../common/types/store-data/iassessment-result-data';
 import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 import { autobind } from '@uifabric/utilities';
-import * as classNames from 'classnames'
+import * as classNames from 'classnames';
 
 export class MasterCheckBoxConfigProvider {
     private static MASTER_CHECKBOX_ICON_NAME_ENABLED: string = 'view';
@@ -18,7 +18,7 @@ export class MasterCheckBoxConfigProvider {
 
     public getMasterCheckBoxProperty(assessmentNavState: IAssessmentNavState, allEnabled: boolean): Partial<IColumn> {
         const iconName = allEnabled ? MasterCheckBoxConfigProvider.MASTER_CHECKBOX_ICON_NAME_ENABLED : MasterCheckBoxConfigProvider.MASTER_CHECKBOX_ICON_NAME_DISABLED;
-        const iconClassName = classNames({'master-visualization-column-header-selected': (iconName === "view")})
+        const iconClassName = classNames({'master-visualization-column-header-selected': (iconName === 'view')});
         const name = 'toggle all visualization';
         const onColumnClick = this.getMasterCheckBoxClickHandler(assessmentNavState, allEnabled);
 

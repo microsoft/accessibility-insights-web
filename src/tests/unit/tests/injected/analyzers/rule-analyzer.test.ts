@@ -67,7 +67,7 @@ describe('RuleAnalyzer', () => {
             .setup(v => v.getConfiguration(typeStub))
             .returns(() => {
                 return {
-                    displayableData: { title : testName}
+                    displayableData: { title : testName},
                 } as IVisualizationConfiguration;
             })
             .verifiable();

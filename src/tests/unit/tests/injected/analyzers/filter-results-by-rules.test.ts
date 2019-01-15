@@ -22,7 +22,7 @@ describe('filterResultsByRules', () => {
             inapplicable: [getRuleResultStub(ruleToKeep)],
             incomplete: [getRuleResultStub(ruleToKeep)],
             violations: [getRuleResultStub(ruleToKeep)],
-        }
+        };
 
         const actual = filterResultsByRules(given, [ruleToKeep]);
         expect(actual).toEqual(expected);
@@ -42,7 +42,7 @@ describe('filterResultsByRules', () => {
         };
         const expected: ScanResults = {
             ...given,
-        }
+        };
 
         const actual = filterResultsByRules(given, null);
         expect(actual).toEqual(expected);

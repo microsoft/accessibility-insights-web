@@ -3,7 +3,7 @@
 
 import * as Axe from 'axe-core';
 
-export module AxeRuleOverrides {
+export namespace AxeRuleOverrides {
     export const overrideConfiguration = {
         checks: [{
             id: 'aria-allowed-attr',

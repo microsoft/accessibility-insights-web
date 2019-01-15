@@ -83,4 +83,4 @@ export const Instructions: TestStep = {
     getDrawer: provider => provider.createHighlightBoxDrawer(),
     updateVisibility: false,
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props}/>,
-}
+};

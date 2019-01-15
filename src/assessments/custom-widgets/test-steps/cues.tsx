@@ -109,4 +109,4 @@ export const Cues: TestStep = {
     getDrawer: provider => provider.createHighlightBoxDrawer(),
     updateVisibility: false,
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props}/>,
-}
+};

@@ -6,7 +6,7 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
 
    <h1>No conflict</h1>
     <p>
-        An audio description must not conflict with audible information in the sound track. 
+        An audio description must not conflict with audible information in the sound track.
     </p>
 
     <h2>Why it matters</h2>

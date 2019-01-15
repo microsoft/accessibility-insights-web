@@ -21,7 +21,7 @@ describe('InstanceVisibilityCheckerTest', () => {
     let sendMessageMock: IMock<(message) => void>;
     let htmlElementUtilsMock: IMock<HTMLElementUtils>;
     let testSubject: InstanceVisibilityChecker;
-    let assessmentsProvider: IAssessmentsProvider = Assessments;
+    const assessmentsProvider: IAssessmentsProvider = Assessments;
     let configFactoryMock: IMock<VisualizationConfigurationFactory>;
     let configStub: IVisualizationConfiguration;
     let getInstanceIdentiferGeneratorMock: IMock<(step: string) => Function>;
@@ -77,7 +77,7 @@ describe('InstanceVisibilityCheckerTest', () => {
                 html: 'testhtml',
                 isVisible: true,
                 identifier: frameResultIds[1],
-            }
+            },
         ];
         const testStepDrawerId = 'headingFunction';
 
@@ -335,7 +335,7 @@ describe('InstanceVisibilityCheckerTest', () => {
             generateInstanceIdentifierMock
                 .setup(giim => giim(It.isValue(instance)))
                 .returns(() => returnedIdentifiers[i]);
-        })
+        });
     }
 
     function verifyMocks(): void {

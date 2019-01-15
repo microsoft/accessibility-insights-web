@@ -26,7 +26,7 @@ export class InspectHandler {
             }
         });
 
-        let backgroundPageConnection = this._devToolsChromeAdapter.connect({
+        const backgroundPageConnection = this._devToolsChromeAdapter.connect({
             name: ConnectionNames.devTools,
         });
 

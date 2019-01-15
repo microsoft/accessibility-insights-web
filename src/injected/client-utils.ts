@@ -28,7 +28,7 @@ export class ClientUtils {
     }
 
     public getOffset(element: IBoundRectAccessor): ClientRectOffset {
-        let elementRect = element.getBoundingClientRect();
+        const elementRect = element.getBoundingClientRect();
 
         return {
             left: elementRect.left + this.scroll.scrollX,

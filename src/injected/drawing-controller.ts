@@ -172,7 +172,7 @@ export class DrawingController {
         for (let i = 0; i < iframes.length; i++) {
             const iframe = iframes[i];
             if (iframe != null) {
-                let message: VisualizationWindowMessage = {
+                const message: VisualizationWindowMessage = {
                     isEnabled: false,
                     visualizationType: visualizationType,
                     configId: configId,
@@ -213,7 +213,7 @@ export class DrawingController {
     }
 
     public dispose(): void {
-        for (let key in this._drawers) {
+        for (const key in this._drawers) {
             this._drawers[key].eraseLayout();
         }
     }

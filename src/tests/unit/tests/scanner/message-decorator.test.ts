@@ -29,9 +29,9 @@ describe('MessageDecorator', () => {
 
     describe('decorateResultsWithMessages', () => {
         it('should add messages to all checks via check message creator & execute decorateNode from config', () => {
-            configuration[0].rule.decorateNode = (node) => node.snippet = "test snippet";
+            configuration[0].rule.decorateNode = node => node.snippet = 'test snippet';
             const expectedResult = generateAxeResultStubWithStatus(configuration[0]);
-            expectedResult.nodes[0].snippet = "test snippet";
+            expectedResult.nodes[0].snippet = 'test snippet';
             const testSubject = new MessageDecorator(configuration, checkMessageTransformerMock.object);
             testBasicDecorateMessage(expectedResult, testSubject);
         });

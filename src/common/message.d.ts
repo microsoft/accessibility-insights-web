@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 interface IMessage {
-    type: string,
-    tabId?: number,
-    payload?: any
+    type: string;
+    tabId?: number;
+    payload?: any;
 }
 
 interface IPayloadCallback {
@@ -11,5 +11,5 @@ interface IPayloadCallback {
 }
 
 interface IRegisterTypeToPayloadCallback {
-    (messageType: string, callback: IPayloadCallback): void
+    (messageType: string, callback: IPayloadCallback): void;
 }

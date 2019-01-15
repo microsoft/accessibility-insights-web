@@ -79,7 +79,7 @@ describe('TestStatusChoiceGroup', () => {
         const actual = shallow(<TestStatusChoiceGroup {...props} />);
 
         expect(actual.getElement()).toMatchSnapshot();
-    })
+    });
 
     test('verify onChange', () => {
         const onGroupChoiceChangeMock = Mock.ofInstance((status, test, step, selector) => {});

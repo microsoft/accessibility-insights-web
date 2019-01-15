@@ -10,7 +10,7 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
     <p>Content that moves or conveys a sense of motion can be distracting, especially to people with attention deficit disorders. People who have reading or cognitive disorders that make it difficult to read stationary text might struggle to read moving text.</p>
 
     <h3>From a user's perspective</h3>
-    <p><Markup.Emphasis>"I enjoy content and operate interface screen reader and keyboard. Objects that refresh, or start automatically interrupt me. 
+    <p><Markup.Emphasis>"I enjoy content and operate interface screen reader and keyboard. Objects that refresh, or start automatically interrupt me.
     If it is essential to the solution that something updates or plays content automatically, provide me a way to pause, stop or disable that content so I can focus on my work."</Markup.Emphasis></p>
 
     <h2>How to fix</h2>

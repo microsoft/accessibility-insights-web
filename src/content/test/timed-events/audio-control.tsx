@@ -11,7 +11,7 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
     <p>Audio that plays automatically can be distracting, especially to people with attention deficit disorders.</p>
 
     <h3>From a user's perspective</h3>
-    <p><Markup.Emphasis>"I use a screen reader and keyboard to operate software and enjoy content. Audio that plays automatically can interrupt the screen reader voice and break my concentration. 
+    <p><Markup.Emphasis>"I use a screen reader and keyboard to operate software and enjoy content. Audio that plays automatically can interrupt the screen reader voice and break my concentration.
     Do not play audio automatically. If auto-playing audio is essential, provide me an immediate way to stop, pause, mute and control volume so I can focus on the task at hand."</Markup.Emphasis></p>
 
     <h2>How to fix</h2>
@@ -23,7 +23,7 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
     </ul>
     <p>The first two solutions are preferred, as audio content that plays automatically can make it difficult for a person using a screen reader to find a mechanism for controlling the audio.</p>
 
-    
+
     <h2>Example</h2>
     <Markup.PassFail
             failText={
@@ -33,7 +33,7 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
                 <p>Music does not start automatically. The user can start the music by selecting a 'Play' button at the top of the page.</p>
             }
         />
-            
+
     <h2>More examples </h2>
 
     <h3>WCAG success criteria</h3>
