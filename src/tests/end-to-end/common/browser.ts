@@ -10,7 +10,7 @@ export interface NewPopupPageOptions {
 }
 
 export class Browser {
-    private memorizedBackgroundPage: Page;
+    private memoizedBackgroundPage: Page;
 
     constructor(
         private readonly underlyingBrowser: Puppeteer.Browser,
@@ -68,16 +68,16 @@ export class Browser {
     }
 
     private async waitForExtensionBackgroundPage(): Promise<Page> {
-        if (this.memorizedBackgroundPage) {
-            return this.memorizedBackgroundPage;
+        if (this.memoizedBackgroundPage) {
+            return this.memoizedBackgroundPage;
         }
 
         const backgroundPageTarget = await this.underlyingBrowser
             .waitForTarget(t => t.type() === 'background_page' && new URL(t.url()).pathname === '/background/background.html');
 
-        this.memorizedBackgroundPage = new Page(await backgroundPageTarget.page());
+        this.memoizedBackgroundPage = new Page(await backgroundPageTarget.page());
 
-        return this.memorizedBackgroundPage;
+        return this.memoizedBackgroundPage;
     }
 }
 
