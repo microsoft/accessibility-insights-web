@@ -60,7 +60,7 @@ describe('DetailsViewDropDownTest', () => {
                     directionalHint={DirectionalHint.bottomRightEdge}
                     directionalHintForRTL={DirectionalHint.bottomLeftEdge}
                     items={menuItemsStub}
-                    className="settings-dropdown-menu"
+                    id="settings-dropdown-menu"
                 />
             </div>
         );
