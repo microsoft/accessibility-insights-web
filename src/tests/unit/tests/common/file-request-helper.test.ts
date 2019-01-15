@@ -20,7 +20,7 @@ describe('FileRequestHelperTests', () => {
         testSubject = new FileRequestHelper(Q, xmlHttpRequestFactoryMock.object);
     });
 
-    test('fetch file content', async done => {
+    test('fetch file content', async () => {
         const fileUrl = 'file url1';
         const expectedResponseText = 'response text';
 
@@ -50,10 +50,8 @@ describe('FileRequestHelperTests', () => {
 
         httpRequestMock.object.onload(null);
 
-        promise.then(responseText => {
-            expect(responseText).toBe(expectedResponseText);
-            done();
-        });
+        const responseText = await promise;
+        expect(responseText).toBe(expectedResponseText);
     });
 
     test('fail if request fails', async done => {
