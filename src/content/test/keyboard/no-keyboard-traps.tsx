@@ -11,7 +11,7 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
 
     <h2>Why it matters</h2>
         <p>
-            If a keyboard-only user navigates to an interactive interface component but can't navigate <Markup.Emphasis>away</Markup.Emphasis>, 
+            If a keyboard-only user navigates to an interactive interface component but can't navigate <Markup.Emphasis>away</Markup.Emphasis>,
             they can become completely unable to interact with their computer.
         </p>
     <h3>From a user's perspective </h3>
@@ -34,15 +34,15 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
             <p>Users can't tab away from a text field because scripting keeps returning focus to it.</p>
         }
         failExample={
-           `<script type="text/javascript"> 
-            function check() { 
-                if (isValid()) { 
+           `<script type="text/javascript">
+            function check() {
+                if (isValid()) {
                 document. getElementById("name1"). focus();
-                } 
-            } 
-            </script> 
-            <label for="name1"> First name</label> 
-            <input onBlur="check();" type="text" 
+                }
+            }
+            </script>
+            <label for="name1"> First name</label>
+            <input onBlur="check();" type="text"
             id="name1">`
         }
 

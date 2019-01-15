@@ -25,10 +25,10 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
             <p>A web form is submitted automatically when the user tabs out of the last field in the form.</p>
         }
         failExample={
-           `<form method="get" id="form1"> 
-            <input type="text" name="text1" size="3" maxlength="3"> … 
-            <input type="text" name="text2" size="3" maxlength="3"> … 
-            <input type="text" name="text3" size="4" maxlength="4" [onchange="form1.submit();]"> 
+           `<form method="get" id="form1">
+            <input type="text" name="text1" size="3" maxlength="3"> …
+            <input type="text" name="text2" size="3" maxlength="3"> …
+            <input type="text" name="text3" size="4" maxlength="4" [onchange="form1.submit();]">
             </form>`
         }
 
@@ -36,10 +36,10 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
             <p>Tabbing away from the last field moves focus to a 'Save' button. Activating the button submits the form. </p>
         }
         passExample={
-            `<form method="get" id="form1"> 
-            <input type="text" name="text1" size="3" maxlength="3"> … 
-            <input type="text" name="text2" size="3" maxlength="3"> … 
-            <input type="text" name="text3" size="4" maxlength="4"> … 
+            `<form method="get" id="form1">
+            <input type="text" name="text1" size="3" maxlength="3"> …
+            <input type="text" name="text2" size="3" maxlength="3"> …
+            <input type="text" name="text3" size="4" maxlength="4"> …
             [<input type="submit" name="submit" value="Save">… ]
             </form>`
         }
@@ -74,7 +74,7 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F37">
             Failure due to launching a new window without prior warning when the status of a radio button, check box or select list is changed</Markup.HyperLink>
         </Markup.Links>
-        
+
         <h3>Best practices </h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G201">
