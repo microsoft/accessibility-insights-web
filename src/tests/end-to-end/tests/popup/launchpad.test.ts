@@ -6,7 +6,6 @@ import { Page } from '../../common/page';
 import { popupPageSelectors } from '../../common/selectors/popup-page-selectors';
 import { DEFAULT_E2E_TEST_TIMEOUT_MS } from '../../common/timeouts';
 
-
 describe('Adhoc Panel test', () => {
     let browser: Browser;
     let targetPage: Page;
@@ -14,7 +13,7 @@ describe('Adhoc Panel test', () => {
     let popupPage: Page;
 
     beforeAll(async () => {
-        browser = await launchBrowser({dismissFirstTimeDialog: true});
+        browser = await launchBrowser({ dismissFirstTimeDialog: true });
     });
 
     beforeEach(async () => {
@@ -43,14 +42,12 @@ describe('Adhoc Panel test', () => {
 
         const element = await popupPage.getPrintableHtmlElement(popupPageSelectors.launchPad);
         expect(element).toMatchSnapshot();
-    }, DEFAULT_E2E_TEST_TIMEOUT_MS);
+    });
 
     it('test if text for all the links in launchpad show properly', async () => {
         await popupPage.waitForSelector(popupPageSelectors.launchPad);
 
-        const launchPadItemListText = await popupPage.getMatchingElements(
-            popupPageSelectors.launchPadItemTitle,
-            'textContent');
+        const launchPadItemListText = await popupPage.getMatchingElements(popupPageSelectors.launchPadItemTitle, 'textContent');
 
         expect(launchPadItemListText.length).toBe(3);
         expect(launchPadItemListText).toEqual(['FastPass', 'Assessment', 'Ad hoc tools']);
