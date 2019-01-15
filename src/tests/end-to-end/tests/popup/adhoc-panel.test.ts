@@ -5,8 +5,11 @@ import { getTestResourceUrl } from '../../common/test-resources';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { Page } from '../../common/page';
+import { async } from 'q';
 
 describe('Ad hoc tools', () => {
+    const isMac = process.platform === 'darwin';
+
     let browser: Browser;
     let targetPage: Page;
     let targetPageTabId: number;
@@ -55,11 +58,11 @@ describe('Ad hoc tools', () => {
         expect(mainAdhocPanel.length).toBe(1);
     });
 
-    // it('snapshot test for mainAdhocPanel', async () => {
-    //     await popupPage.clickSelectorXPath("//button[text()='Ad hoc tools']");
+    it(`snapshot test for mainAdhocPanel (is it a mac - ${isMac})`, async () => {
+        await popupPage.clickSelectorXPath("//button[text()='Ad hoc tools']");
 
-    //     const mainAdhocPanelHtml = await popupPage.getPrintableHtmlElement('main');
-    //     expect(mainAdhocPanelHtml).toMatchSnapshot();
-    // });
+        const mainAdhocPanelHtml = await popupPage.getPrintableHtmlElement('main');
+        expect(mainAdhocPanelHtml).toMatchSnapshot();
+    });
 
 });

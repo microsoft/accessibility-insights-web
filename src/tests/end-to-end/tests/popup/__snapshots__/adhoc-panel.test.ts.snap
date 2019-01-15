@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Ad hoc tools snapshot test for mainAdhocPanel 1`] = `
+exports[`Ad hoc tools snapshot test for mainAdhocPanel (is it a mac - false) 1`] = `
 <DocumentFragment>
   <main>
     <div
