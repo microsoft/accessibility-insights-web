@@ -27,6 +27,27 @@ jobs:
   - task: Npm@1
     inputs:
       command: custom
+      customCommand: test
+    displayName: npm test
+
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFiles: junit.xml
+      testRunTitle: accessibility-insights-web
+    condition: always()
+    displayName: publish test results
+
+  - task: PublishCodeCoverageResults@1
+    inputs:
+      codeCoverageTool: Cobertura
+      summaryFileLocation: $(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml
+      reportDirectory: $(System.DefaultWorkingDirectory)/coverage/lcov-report
+      failIfCoverageEmpty: true
+    displayName: publish code coverage
+
+  - task: Npm@1
+    inputs:
+      command: custom
       customCommand: run drop
     displayName: npm run drop
 
@@ -60,52 +81,12 @@ jobs:
       command: custom
       customCommand: run copyrightheaders
 
-# test pipeline runs in parallel
-- job: test
-
-  pool:
-    vmImage: 'macOS-10.13'
-
-  steps:
-    - task: NodeTool@0
-    inputs:
-      versionSpec: '8.x'
-    displayName: use node 8.x
-
-  - task: Npm@1
-    inputs:
-      command: install
-    displayName: npm install
-
-  - task: Npm@1
-    inputs:
-      command: custom
-      customCommand: test
-    displayName: npm test
-
-  - task: PublishTestResults@2
-    inputs:
-      testResultsFiles: junit.xml
-      testRunTitle: accessibility-insights-web
-    condition: always()
-    displayName: publish test results
-
-  - task: PublishCodeCoverageResults@1
-    inputs:
-      codeCoverageTool: Cobertura
-      summaryFileLocation: $(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml
-      reportDirectory: $(System.DefaultWorkingDirectory)/coverage/lcov-report
-      failIfCoverageEmpty: true
-    displayName: publish code coverage
-
-# e2e pipeline runs in parallel
 - job: e2e
 
   pool:
     vmImage: 'macOS-10.13'
 
   steps:
-
   - task: NodeTool@0
     inputs:
       versionSpec: '8.x'
