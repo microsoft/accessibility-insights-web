@@ -2,19 +2,16 @@
 // Licensed under the MIT License.
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
-import { dismissFirstTimeUsagePrompt } from '../../common/dismiss-first-time-usage-prompt';
 import { Page } from '../../common/page';
 import { CommonSelectors } from '../../common/selectors/common-selectors';
 import { detailsViewSelectors } from '../../common/selectors/details-view-selectors';
-import { DEFAULT_E2E_TEST_TIMEOUT_MS } from '../../common/timeouts';
 
 describe('PreviewFeaturesTest', () => {
     let browser: Browser;
     let targetTabId: number;
 
     beforeAll(async () => {
-        browser = await launchBrowser();
-        await dismissFirstTimeUsagePrompt(browser);
+        browser =  await launchBrowser({dismissFirstTimeDialog: true});
     });
 
     beforeEach(async () => {
@@ -37,11 +34,11 @@ describe('PreviewFeaturesTest', () => {
 
         const detailsViewPage = await openDetailsViewWithSettingsPanel(popupPage);
 
-        await detailsViewPage.waitForSelector(detailsViewSelectors.previewFeaturesPanel);
+        await detailsViewPage.waitForSelector(detailsViewSelectors.previewFeaturesPanelToggleList);
 
         const previewFeaturesPanel = await detailsViewPage.getPrintableHtmlElement(detailsViewSelectors.previewFeaturesPanel);
         expect(previewFeaturesPanel).toMatchSnapshot();
-    }, DEFAULT_E2E_TEST_TIMEOUT_MS);
+    });
 
     async function openDetailsViewWithSettingsPanel(popupPage: Page) {
         let detailsViewPage: Page;

@@ -56,7 +56,7 @@ export class DetailsViewDropDown extends React.Component<IDetailsViewDropDownPro
                 directionalHint={DirectionalHint.bottomRightEdge}
                 directionalHintForRTL={DirectionalHint.bottomLeftEdge}
                 items={this.props.menuItems}
-                className="settings-dropdown-menu"
+                id="settings-dropdown-menu"
             />
         );
     }

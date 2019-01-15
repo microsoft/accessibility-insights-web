@@ -2,10 +2,8 @@
 // Licensed under the MIT License.
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
-import { dismissFirstTimeUsagePrompt } from '../../common/dismiss-first-time-usage-prompt';
 import { Page } from '../../common/page';
 import { getTestResourceUrl } from '../../common/test-resources';
-import { DEFAULT_E2E_TEST_TIMEOUT_MS } from '../../common/timeouts';
 
 describe('Ad hoc tools', () => {
     let browser: Browser;
@@ -14,8 +12,7 @@ describe('Ad hoc tools', () => {
     let popupPage: Page;
 
     beforeEach(async () => {
-        browser = await launchBrowser();
-        await dismissFirstTimeUsagePrompt(browser);
+        browser = await launchBrowser({dismissFirstTimeDialog: true});
         await setupNewTargetPage();
         popupPage = await browser.newExtensionPopupPage(targetPageTabId);
         await popupPage.bringToFront();
@@ -47,5 +44,5 @@ describe('Ad hoc tools', () => {
 
         expect(mainAdhocPanel).toBeDefined();
         expect(mainAdhocPanel.length).toBe(1);
-    }, DEFAULT_E2E_TEST_TIMEOUT_MS);
+    });
 });

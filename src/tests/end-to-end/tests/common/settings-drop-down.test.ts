@@ -2,18 +2,15 @@
 // Licensed under the MIT License.
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
-import { dismissFirstTimeUsagePrompt } from '../../common/dismiss-first-time-usage-prompt';
 import { Page } from '../../common/page';
 import { CommonSelectors } from '../../common/selectors/common-selectors';
-import { DEFAULT_E2E_TEST_TIMEOUT_MS } from '../../common/timeouts';
 
 describe('SettingsDropDownTest', () => {
     let browser: Browser;
     let targetTabId: number;
 
     beforeAll(async () => {
-        browser = await launchBrowser();
-        await dismissFirstTimeUsagePrompt(browser);
+        browser = await launchBrowser({ dismissFirstTimeDialog: true });
     });
 
     beforeEach(async () => {
@@ -39,7 +36,7 @@ describe('SettingsDropDownTest', () => {
 
         expect(popupDropdownElement).toEqual(detailsViewDropdownElement);
         expect(popupDropdownElement).toMatchSnapshot();
-    }, DEFAULT_E2E_TEST_TIMEOUT_MS);
+    });
 
     async function getDropdownPanelElement(page: Page) {
         await page.clickSelector(CommonSelectors.settingsGearButton);

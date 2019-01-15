@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
-import { dismissFirstTimeUsagePrompt } from '../../common/dismiss-first-time-usage-prompt';
 import { Page } from '../../common/page';
 import { popupPageSelectors } from '../../common/selectors/popup-page-selectors';
 import { DEFAULT_E2E_TEST_TIMEOUT_MS } from '../../common/timeouts';
@@ -15,8 +14,7 @@ describe('Adhoc Panel test', () => {
     let popupPage: Page;
 
     beforeAll(async () => {
-        browser = await launchBrowser();
-        await dismissFirstTimeUsagePrompt(browser);
+        browser = await launchBrowser({dismissFirstTimeDialog: true});
     });
 
     beforeEach(async () => {
@@ -56,5 +54,5 @@ describe('Adhoc Panel test', () => {
 
         expect(launchPadItemListText.length).toBe(3);
         expect(launchPadItemListText).toEqual(['FastPass', 'Assessment', 'Ad hoc tools']);
-    }, DEFAULT_E2E_TEST_TIMEOUT_MS);
+    });
 });

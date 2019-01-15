@@ -4,15 +4,14 @@ import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { Page } from '../../common/page';
 import { popupPageSelectors } from '../../common/selectors/popup-page-selectors';
-import { DEFAULT_E2E_TEST_TIMEOUT_MS } from '../../common/timeouts';
 
-describe('telemetry-permission-dialog', () => {
+describe('First time Dialog Tests', () => {
     let browser: Browser;
     let targetPage: Page;
     let targetPageTabId: number;
 
     beforeEach(async () => {
-        browser = await launchBrowser();
+        browser = await launchBrowser({dismissFirstTimeDialog : false});
         await setupTargetPage();
     });
 
@@ -42,7 +41,6 @@ describe('telemetry-permission-dialog', () => {
             await secondPopupPage.waitForSelector(popupPageSelectors.launchPad);
             await secondPopupPage.waitForSelectorToDisappear(popupPageSelectors.telemetryDialog);
         },
-        DEFAULT_E2E_TEST_TIMEOUT_MS,
     );
 
     it('should have HTML content that matches the snapshot', async () => {
@@ -52,6 +50,5 @@ describe('telemetry-permission-dialog', () => {
             const element = await popupPage.getPrintableHtmlElement(popupPageSelectors.telemetryDialog);
             expect(element).toMatchSnapshot();
         },
-        DEFAULT_E2E_TEST_TIMEOUT_MS,
     );
 });

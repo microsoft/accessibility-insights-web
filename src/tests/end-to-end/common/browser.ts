@@ -6,10 +6,6 @@ import { forceTestFailure } from './force-test-failure';
 import { Page } from './page';
 import { getTestResourceUrl } from './test-resources';
 
-export interface NewPopupPageOptions {
-    suppressFirstTimeTelemetryDialog: boolean;
-}
-
 export class Browser {
     private memoizedBackgroundPage: Page;
     private pages: Array<Page> = [];

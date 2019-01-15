@@ -2,4 +2,5 @@
 // Licensed under the MIT License.
 export const detailsViewSelectors = {
     previewFeaturesPanel : '.preview-features-panel',
+    previewFeaturesPanelToggleList : '.preview-feature-toggle-list',
 };
