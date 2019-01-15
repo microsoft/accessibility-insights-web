@@ -107,8 +107,8 @@ jobs:
   - task: Npm@1
     inputs:
       command: custom
-      customCommand: run test:e2e
-    displayName: npm run test:e2e
+      customCommand: run test:e2e-ci
+    displayName: npm run test:e2e-ci
 
   - task: PublishTestResults@2
     inputs:
