@@ -12,4 +12,4 @@ export const DEFAULT_E2E_TEST_TIMEOUT_MS = 60000;
 export const DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS = 5000;
 
 // How long to wait for a new page to load in response to the UI action that launched it
-export const DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS = 2000;
+export const DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS = 5000;

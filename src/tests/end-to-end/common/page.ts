@@ -18,7 +18,10 @@ export class Page {
         await this.underlyingPage.goto(url, { timeout: DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS });
     }
 
-    public async close(): Promise<void> {
+    public async close(ignoreIfAlreadyClosed: boolean = false): Promise<void> {
+        if (ignoreIfAlreadyClosed && this.underlyingPage.isClosed()) {
+            return;
+        }
         await this.underlyingPage.close();
     }
 
@@ -27,17 +30,17 @@ export class Page {
     }
 
     public async evaluate(fn: Puppeteer.EvaluateFn, ...args: any[]): Promise<any> {
-        return await this.underlyingPage.evaluate(fn, args);
+        return await this.underlyingPage.evaluate(fn, ...args);
     }
 
-    public async getMatchingElements<T>(page: Page, selector: string, mapFunc: (element: Element) => T): Promise<T> {
-        return await page.evaluate(
-            (selectorInEvaluate, mapFuncInEvaluate) => {
+    public async getMatchingElements<T>(selector: string, elementProperty: keyof Element): Promise<T[]> {
+        return await this.evaluate(
+            (selectorInEvaluate, elementPropertyInEvaluate) => {
                 const elements = Array.from(document.querySelectorAll(selectorInEvaluate));
-                return elements.map(mapFuncInEvaluate);
+                return elements.map(element => element[elementPropertyInEvaluate]);
             },
             selector,
-            mapFunc,
+            elementProperty,
         );
     }
 
@@ -80,6 +83,14 @@ export class Page {
 
 function generateFormattedHtml(innerHTMLString: string) {
     const template = document.createElement('template');
+
+    // office fabric generates a random class & id name which changes every time.
+    // We remove the random number before snapshot comparison to avoid flakiness
+    innerHTMLString = innerHTMLString.replace(/(class|id)="[\w\s-]+[\d]+"/g, (subString, args) => {
+        return subString.replace(/[\d]+/g, '000');
+    });
+
     template.innerHTML = innerHTMLString.trim();
+
     return template.content.cloneNode(true);
 }

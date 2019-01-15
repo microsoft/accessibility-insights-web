@@ -3,8 +3,7 @@
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { Page } from '../../common/page';
-import { popupPageSelectors } from '../../common/popup-page-selectors';
-import { getTestResourceUrl } from '../../common/test-resources';
+import { popupPageSelectors } from '../../common/selectors/popup-page-selectors';
 import { DEFAULT_E2E_TEST_TIMEOUT_MS } from '../../common/timeouts';
 
 describe('telemetry-permission-dialog', () => {
@@ -18,11 +17,11 @@ describe('telemetry-permission-dialog', () => {
     });
 
     afterEach(async () => {
-        await browser.stop();
+        await browser.close();
     });
 
     async function setupTargetPage(): Promise<void> {
-        targetPage = await browser.newPage(getTestResourceUrl('all.html'));
+        targetPage = await browser.newTestResourcePage('all.html');
         await targetPage.bringToFront();
         targetPageTabId = await browser.getActivePageTabId();
     }

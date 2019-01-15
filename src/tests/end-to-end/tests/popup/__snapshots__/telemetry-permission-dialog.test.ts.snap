@@ -3,40 +3,40 @@
 exports[`telemetry-permission-dialog should have HTML content that matches the snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="ms-Modal is-open ms-Dialog telemetry-permission-dialog-modal root-56"
+    class="ms-Modal is-open ms-Dialog telemetry-permission-dialog-modal root-000"
   >
     <div
-      class="ms-Overlay root-62"
+      class="ms-Overlay root-000"
     />
     <div
-      class="ms-Dialog-main insights-dialog-main-override telemetry-permission-dialog main-57"
+      class="ms-Dialog-main insights-dialog-main-override telemetry-permission-dialog main-000"
     >
       <div
-        class="ms-Modal-scrollableContent scrollableContent-58"
+        class="ms-Modal-scrollableContent scrollableContent-000"
       >
         <div
-          class="content-63"
+          class="content-000"
         >
           <div
-            class="ms-Dialog-header header-65"
+            class="ms-Dialog-header header-000"
           >
             <p
               aria-level="2"
-              class="ms-Dialog-title title-69"
+              class="ms-Dialog-title title-000"
               id="telemetry-permission-title"
               role="heading"
             >
               We need your help
             </p>
             <div
-              class="topButton-70"
+              class="topButton-000"
             />
           </div>
           <div
-            class="ms-Dialog-inner inner-67"
+            class="ms-Dialog-inner inner-000"
           >
             <div
-              class="ms-Dialog-content innerContent-68"
+              class="ms-Dialog-content innerContent-000"
             >
               <p
                 class="telemetry-permission-details"
@@ -53,21 +53,21 @@ exports[`telemetry-permission-dialog should have HTML content that matches the s
               >
                 <button
                   aria-checked="true"
-                  class="ms-Checkbox is-checked is-enabled telemetry-agree-checkbox root-71"
-                  id="checkbox-5"
+                  class="ms-Checkbox is-checked is-enabled telemetry-agree-checkbox root-000"
+                  id="checkbox-000"
                   role="checkbox"
                   type="button"
                 >
                   <label
-                    class="ms-Checkbox-label label-72"
+                    class="ms-Checkbox-label label-000"
                     for="checkbox-5"
                   >
                     <div
-                      class="ms-Checkbox-checkbox checkbox-73"
+                      class="ms-Checkbox-checkbox checkbox-000"
                     >
                       <i
                         aria-hidden="true"
-                        class="ms-Checkbox-checkmark checkmark-76"
+                        class="ms-Checkbox-checkmark checkmark-000"
                         data-icon-name="CheckMark"
                         role="presentation"
                       >
@@ -75,7 +75,7 @@ exports[`telemetry-permission-dialog should have HTML content that matches the s
                       </i>
                     </div>
                     <span
-                      class="ms-Checkbox-text text-75"
+                      class="ms-Checkbox-text text-000"
                     >
                       I agree to help
                     </span>
@@ -83,7 +83,7 @@ exports[`telemetry-permission-dialog should have HTML content that matches the s
                 </button>
                 You can change this choice anytime in settings. Read our 
                 <a
-                  class="ms-Link insights-link root-53"
+                  class="ms-Link insights-link root-000"
                   href="http://go.microsoft.com/fwlink/?LinkId=521839"
                   target="_blank"
                 >
@@ -93,28 +93,28 @@ exports[`telemetry-permission-dialog should have HTML content that matches the s
               </div>
             </div>
             <div
-              class="ms-Dialog-actions actions-77"
+              class="ms-Dialog-actions actions-000"
             >
               <div
-                class="ms-Dialog-actionsRight actionsRight-79"
+                class="ms-Dialog-actionsRight actionsRight-000"
               >
                 <span
-                  class="ms-Dialog-action action-78"
+                  class="ms-Dialog-action action-000"
                 >
                   <button
-                    class="ms-Button ms-Button--primary start-using-product-button root-80"
+                    class="ms-Button ms-Button--primary start-using-product-button root-000"
                     data-is-focusable="true"
                     type="button"
                   >
                     <div
-                      class="ms-Button-flexContainer flexContainer-46"
+                      class="ms-Button-flexContainer flexContainer-000"
                     >
                       <div
-                        class="ms-Button-textContainer textContainer-47"
+                        class="ms-Button-textContainer textContainer-000"
                       >
                         <div
-                          class="ms-Button-label label-81"
-                          id="id__6"
+                          class="ms-Button-label label-000"
+                          id="id__000"
                         >
                           OK
                         </div>

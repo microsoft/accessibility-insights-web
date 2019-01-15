@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
-import { launchBrowser } from '../../common/browser-factory';
-import { popupPageSelectors } from '../../common/popup-page-selectors';
-import { getTestResourceUrl } from '../../common/test-resources';
 import { Browser } from '../../common/browser';
+import { launchBrowser } from '../../common/browser-factory';
+import { dismissFirstTimeUsagePrompt } from '../../common/dismiss-first-time-usage-prompt';
 import { Page } from '../../common/page';
+import { popupPageSelectors } from '../../common/selectors/popup-page-selectors';
 import { DEFAULT_E2E_TEST_TIMEOUT_MS } from '../../common/timeouts';
+
 
 describe('Adhoc Panel test', () => {
     let browser: Browser;
@@ -14,47 +14,45 @@ describe('Adhoc Panel test', () => {
     let targetPageTabId: number;
     let popupPage: Page;
 
-    beforeEach(async () => {
+    beforeAll(async () => {
         browser = await launchBrowser();
+        await dismissFirstTimeUsagePrompt(browser);
+    });
 
+    beforeEach(async () => {
         await setupNewTargetPage();
         popupPage = await browser.newExtensionPopupPage(targetPageTabId);
         await popupPage.bringToFront();
-        await dismissTelemetryDialog();
-        await popupPage.waitForSelectorToDisappear(popupPageSelectors.telemetryDialog);
     });
 
     afterEach(async () => {
-        await browser.stop();
+        await browser.closeAllPages();
+    });
+
+    afterAll(async () => {
+        await browser.close();
     });
 
     async function setupNewTargetPage() {
-        targetPage = await browser.newPage(getTestResourceUrl('all.html'));
+        targetPage = await browser.newTestResourcePage('all.html');
 
         await targetPage.bringToFront();
         targetPageTabId = await browser.getActivePageTabId();
     }
 
-    async function dismissTelemetryDialog() {
-        await popupPage.waitForSelector(popupPageSelectors.telemetryDialog);
-        await popupPage.clickSelector(popupPageSelectors.startUsingProductButton);
-    }
-
     it('test snapshot for launchpad', async () => {
-        await popupPage.waitForSelector('#new-launch-pad');
+        await popupPage.waitForSelector(popupPageSelectors.launchPad);
 
-        const element = await popupPage.getPrintableHtmlElement('#new-launch-pad');
+        const element = await popupPage.getPrintableHtmlElement(popupPageSelectors.launchPad);
         expect(element).toMatchSnapshot();
     }, DEFAULT_E2E_TEST_TIMEOUT_MS);
 
     it('test if text for all the links in launchpad show properly', async () => {
-        const launchPadItemListText = await popupPage.evaluate(() => {
-            const elements = Array.from(document.querySelectorAll('.launch-pad-item-title'));
-            const links = elements.map(element => {
-                return element.textContent;
-            });
-            return links;
-        });
+        await popupPage.waitForSelector(popupPageSelectors.launchPad);
+
+        const launchPadItemListText = await popupPage.getMatchingElements(
+            popupPageSelectors.launchPadItemTitle,
+            'textContent');
 
         expect(launchPadItemListText.length).toBe(3);
         expect(launchPadItemListText).toEqual(['FastPass', 'Assessment', 'Ad hoc tools']);

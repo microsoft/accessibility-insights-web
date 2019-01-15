@@ -1,0 +1,123 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PreviewFeaturesTest preview features content in details view 1`] = `
+<DocumentFragment>
+  <div
+    class="ms-Panel is-open ms-Panel--hasCloseButton ms-Panel--custom generic-panel preview-features-panel root-000"
+    type="7"
+  >
+    <div
+      class="ms-Overlay overlay-000"
+    />
+    <div
+      class="ms-Panel-main main-000"
+      style="width: 550px;"
+    >
+      <div
+        class="ms-Panel-commands commands-000"
+        data-is-visible="true"
+      >
+        <div
+          class="ms-Panel-navigation navigation-000"
+        >
+          <button
+            aria-label="Close preview features panel"
+            class="ms-Button ms-Button--icon ms-Panel-closeButton ms-PanelAction-close closeButton-000"
+            data-is-focusable="true"
+            data-is-visible="true"
+            type="button"
+          >
+            <div
+              class="ms-Button-flexContainer flexContainer-000"
+            >
+              <i
+                aria-hidden="true"
+                class="ms-Button-icon icon-000"
+                data-icon-name="Cancel"
+                role="presentation"
+              >
+                
+              </i>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div
+        class="ms-Panel-contentInner contentInner-000"
+      >
+        <div>
+          <h1
+            class="header-text"
+          >
+            Preview features
+          </h1>
+        </div>
+        <div
+          class="ms-Panel-scrollableContent scrollableContent-000"
+          data-is-scrollable="true"
+        >
+          <div
+            class="ms-Panel-content content-000"
+          >
+            <div>
+              <div
+                class="preview-features-description"
+              >
+                The following preview features are available for your evalution. Help us make them better!
+              </div>
+              <div
+                class="preview-feature-toggle-list"
+              >
+                <div
+                  class="generic-toggle-component"
+                >
+                  <div
+                    class="toggle-container"
+                  >
+                    <div
+                      class="toggle-name"
+                    >
+                      Improved dialog styling
+                    </div>
+                    <div
+                      class="ms-Toggle is-enabled toggle root-000"
+                    >
+                      <div
+                        class="ms-Toggle-innerContainer container-000"
+                      >
+                        <button
+                          aria-checked="false"
+                          aria-label="Improved dialog styling"
+                          class="ms-Toggle-background pill-000"
+                          data-is-focusable="true"
+                          id="Toggle000"
+                          role="switch"
+                          type="button"
+                        >
+                          <div
+                            class="ms-Toggle-thumb thumb-000"
+                          />
+                        </button>
+                        <label
+                          class="ms-Label ms-Toggle-stateText text-000"
+                        >
+                          Off
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="toggle-description"
+                  >
+                    Avoids styling problems in failure dialogs by rendering them in shadow DOM. (You'll need to refresh the target page to see the new dialog styling.)
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
