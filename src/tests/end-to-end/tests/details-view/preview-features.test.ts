@@ -11,7 +11,7 @@ describe('PreviewFeaturesTest', () => {
     let targetTabId: number;
 
     beforeAll(async () => {
-        browser =  await launchBrowser({dismissFirstTimeDialog: true});
+        browser = await launchBrowser({ dismissFirstTimeDialog: true });
     });
 
     beforeEach(async () => {

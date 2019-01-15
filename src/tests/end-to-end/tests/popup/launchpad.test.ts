@@ -4,7 +4,6 @@ import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { Page } from '../../common/page';
 import { popupPageSelectors } from '../../common/selectors/popup-page-selectors';
-import { DEFAULT_E2E_TEST_TIMEOUT_MS } from '../../common/timeouts';
 
 describe('Adhoc Panel test', () => {
     let browser: Browser;

@@ -12,7 +12,7 @@ describe('Ad hoc tools', () => {
     let popupPage: Page;
 
     beforeEach(async () => {
-        browser = await launchBrowser({dismissFirstTimeDialog: true});
+        browser = await launchBrowser({ dismissFirstTimeDialog: true });
         await setupNewTargetPage();
         popupPage = await browser.newExtensionPopupPage(targetPageTabId);
         await popupPage.bringToFront();

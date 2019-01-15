@@ -19,8 +19,7 @@ export async function launchBrowser(extensionOptions: ExtensionOptions): Promise
     return browser;
 }
 
-
-export async function dismissFirstTimeUsagePrompt(browser: Browser) {
+async function dismissFirstTimeUsagePrompt(browser: Browser) {
     const targetPage = await browser.newTestResourcePage('all.html');
 
     await targetPage.bringToFront();
@@ -33,7 +32,6 @@ export async function dismissFirstTimeUsagePrompt(browser: Browser) {
     await targetPage.close();
     await popupPage.close();
 }
-
 
 async function launchNewBrowser(): Promise<Puppeteer.Browser> {
     // only unpacked extension paths are supported
