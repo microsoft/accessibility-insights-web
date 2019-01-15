@@ -25,6 +25,7 @@ import { SVGShapeFactory } from './svg-shape-factory';
 import { SVGSolidShadowFilterFactory } from './svg-solid-shadow-filter-factory';
 import { TabStopsFormatter } from './tab-stops-formatter';
 import { CustomWidgetsFormatter } from './custom-widgets-formatter';
+import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 
 export type IPartialSVGDrawerConfiguration = DeepPartial<ISVGDrawerConfiguration>;
 
@@ -43,6 +44,7 @@ export class DrawerProvider {
         clientUtils: ClientUtils,
         dom: Document,
         frameCommunicator: FrameCommunicator,
+        private readonly clientBrowserAdapter: ClientBrowserAdapter,
     ) {
         this.windowUtils = windowUtils;
         this.shadowUtils = shadowUtils;
@@ -98,7 +100,7 @@ export class DrawerProvider {
     }
 
     public createIssuesDrawer(): IDrawer {
-        const formatter = new IssuesFormatter(this.frameCommunicator, this.windowUtils, this.shadowUtils);
+        const formatter = new IssuesFormatter(this.frameCommunicator, this.windowUtils, this.shadowUtils, this.clientBrowserAdapter);
         return this.createDrawer('insights-issues', formatter);
     }
 

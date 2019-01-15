@@ -58,6 +58,9 @@ describe('DetailsDialogTest', () => {
             targetPageActionMessageCreator: {
                 copyIssueDetailsClicked: () => { },
             } as any,
+            clientBrowserAdapter: {
+                getUrl: url => 'http://extension/' + url,
+            } as any,
         };
 
         const props: IDetailsDialogProps = {

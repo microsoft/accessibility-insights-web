@@ -8,6 +8,7 @@ import { IHtmlElementAxeResults } from '../../../../../injected/scanner-utils';
 import { ShadowUtils } from '../../../../../injected/shadow-utils';
 import { IHeadingStyleConfiguration } from '../../../../../injected/visualization/heading-formatter';
 import { IssuesFormatter } from '../../../../../injected/visualization/issues-formatter';
+import { ClientBrowserAdapter } from '../../../../../common/client-browser-adapter';
 
 describe('IssuesFormatterTests', () => {
     let testSubject: IssuesFormatter;
@@ -19,7 +20,8 @@ describe('IssuesFormatterTests', () => {
         const frameCommunicator: IMock<FrameCommunicator> = Mock.ofType(FrameCommunicator);
         const windowUtils: IMock<WindowUtils> = Mock.ofType(WindowUtils);
         const shadowUtils: IMock<ShadowUtils> = Mock.ofType(ShadowUtils);
-        testSubject = new IssuesFormatter(frameCommunicator.object, windowUtils.object, shadowUtils.object);
+        const clientBrowserAdapter = Mock.ofType<ClientBrowserAdapter>();
+        testSubject = new IssuesFormatter(frameCommunicator.object, windowUtils.object, shadowUtils.object, clientBrowserAdapter.object);
     });
 
     test('tooltip for the failed rules from the axe result', () => {

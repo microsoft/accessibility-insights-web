@@ -12,12 +12,25 @@ import { IHtmlElementAxeResults } from '../scanner-utils';
 import { ShadowUtils } from '../shadow-utils';
 import { IHeadingStyleConfiguration } from './heading-formatter';
 import { IDrawerConfiguration, IFormatter } from './iformatter';
+import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 
 export class IssuesFormatter implements IFormatter {
     private dialogRenderer: DialogRenderer;
 
-    constructor(frameCommunicator: FrameCommunicator, windowUtils: WindowUtils, shadowUtils: ShadowUtils) {
-        this.dialogRenderer = new DialogRenderer(document, ReactDOM.render, frameCommunicator, windowUtils, shadowUtils);
+    constructor(
+        frameCommunicator: FrameCommunicator,
+        windowUtils: WindowUtils,
+        shadowUtils: ShadowUtils,
+        clientBrowserAdapter: ClientBrowserAdapter,
+    ) {
+        this.dialogRenderer = new DialogRenderer(
+            document,
+            ReactDOM.render,
+            frameCommunicator,
+            windowUtils,
+            shadowUtils,
+            clientBrowserAdapter,
+        );
     }
 
     public static style: IHeadingStyleConfiguration = {

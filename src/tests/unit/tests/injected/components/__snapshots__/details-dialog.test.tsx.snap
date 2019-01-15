@@ -33,7 +33,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = false 
       >
         Rule name: 
         <NewTabLink
-          href="help1"
+          href="http://extension/help1"
         >
           ruleId
         </NewTabLink>
@@ -70,6 +70,9 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = false 
           <CopyIssueDetailsButton
             deps={
               Object {
+                "clientBrowserAdapter": Object {
+                  "getUrl": [Function],
+                },
                 "issueDetailsTextGenerator": null,
                 "targetPageActionMessageCreator": Object {
                   "copyIssueDetailsClicked": [Function],
@@ -230,7 +233,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 1
         >
           Rule name: 
           <NewTabLink
-            href="help1"
+            href="http://extension/help1"
           >
             ruleId
           </NewTabLink>
@@ -267,6 +270,9 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 1
             <CopyIssueDetailsButton
               deps={
                 Object {
+                  "clientBrowserAdapter": Object {
+                    "getUrl": [Function],
+                  },
                   "issueDetailsTextGenerator": null,
                   "targetPageActionMessageCreator": Object {
                     "copyIssueDetailsClicked": [Function],
@@ -410,7 +416,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 2
       >
         Rule name: 
         <NewTabLink
-          href="help1"
+          href="http://extension/help1"
         >
           ruleId
         </NewTabLink>
@@ -447,6 +453,9 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 2
           <CopyIssueDetailsButton
             deps={
               Object {
+                "clientBrowserAdapter": Object {
+                  "getUrl": [Function],
+                },
                 "issueDetailsTextGenerator": null,
                 "targetPageActionMessageCreator": Object {
                   "copyIssueDetailsClicked": [Function],
@@ -602,7 +611,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = true, shadowDialog = true 1`
         >
           Rule name: 
           <NewTabLink
-            href="help1"
+            href="http://extension/help1"
           >
             ruleId
           </NewTabLink>
@@ -639,6 +648,9 @@ exports[`DetailsDialogTest render: isDevToolsOpen = true, shadowDialog = true 1`
             <CopyIssueDetailsButton
               deps={
                 Object {
+                  "clientBrowserAdapter": Object {
+                    "getUrl": [Function],
+                  },
                   "issueDetailsTextGenerator": null,
                   "targetPageActionMessageCreator": Object {
                     "copyIssueDetailsClicked": [Function],

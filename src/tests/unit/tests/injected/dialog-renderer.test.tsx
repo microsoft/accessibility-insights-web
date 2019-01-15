@@ -16,12 +16,14 @@ import { MainWindowContext } from '../../../../injected/main-window-context';
 import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from '../../../../injected/scanner-utils';
 import { ShadowUtils } from '../../../../injected/shadow-utils';
 import { TargetPageActionMessageCreator } from '../../../../injected/target-page-action-message-creator';
+import { ClientBrowserAdapter } from '../../../../common/client-browser-adapter';
 
 describe('DialogRendererTests', () => {
     const windowUtilsMock: IMock<WindowUtils> = Mock.ofType(WindowUtils);
     let frameCommunicator: IMock<FrameCommunicator>;
     let mainWindowContext: MainWindowContext;
     const shadowUtilMock: IMock<ShadowUtils> = Mock.ofType(ShadowUtils);
+    const clientBrowserAdapter = Mock.ofType<ClientBrowserAdapter>();
     let shadowContainerMock: IMock<HTMLElement>;
     let domMock: IMock<Document>;
     let shadowRootMock: IMock<Element>;
@@ -534,6 +536,7 @@ describe('DialogRendererTests', () => {
             frameCommunicator.object,
             windowUtilsMock.object,
             shadowUtilMock.object,
+            clientBrowserAdapter.object,
         );
     }
 });
