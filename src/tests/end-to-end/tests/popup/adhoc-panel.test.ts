@@ -5,12 +5,9 @@ import { getTestResourceUrl } from '../../common/test-resources';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { Page } from '../../common/page';
-import { async } from 'q';
 import { DEFAULT_E2E_TEST_TIMEOUT_MS } from '../../common/timeouts';
 
 describe('Ad hoc tools', () => {
-    const isMac = process.platform === 'darwin';
-
     let browser: Browser;
     let targetPage: Page;
     let targetPageTabId: number;
