@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Puppeteer from 'puppeteer';
+
 import { forceTestFailure } from './force-test-failure';
 import { Page } from './page';
 
@@ -32,6 +33,10 @@ export class Browser {
     public async newExtensionPage(relativePath: string): Promise<Page> {
         const url = await this.getExtensionUrl(relativePath);
         return await this.newPage(url);
+    }
+
+    public async newExtensionPopupPage(targetTabId: number): Promise<Page> {
+        return await this.newExtensionPage(`popup/popup.html?tabId=${targetTabId}`);
     }
 
     public async closeAllPages() {

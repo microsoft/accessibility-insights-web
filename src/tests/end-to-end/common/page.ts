@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Puppeteer from 'puppeteer';
+
 import { forceTestFailure } from './force-test-failure';
-import { DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS, DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS } from './timeouts';
+import { DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS, DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from './timeouts';
 
 export class Page {
     constructor(
@@ -29,6 +30,17 @@ export class Page {
         return await this.underlyingPage.evaluate(fn, args);
     }
 
+    public async getMatchingElements<T>(page: Page, selector: string, mapFunc: (element: Element) => T): Promise<T> {
+        return await page.evaluate(
+            (selectorInEvaluate, mapFuncInEvaluate) => {
+                const elements = Array.from(document.querySelectorAll(selectorInEvaluate));
+                return elements.map(mapFuncInEvaluate);
+            },
+            selector,
+            mapFunc,
+        );
+    }
+
     public async waitForSelector(selector: string): Promise<Puppeteer.ElementHandle<Element>> {
         return await this.underlyingPage.waitForSelector(selector, { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS });
     }
@@ -46,6 +58,11 @@ export class Page {
         await element.click();
     }
 
+    public async clickSelectorXPath(xPathString: string) {
+        const element = await this.underlyingPage.waitForXPath(xPathString, { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS });
+        await element.click();
+    }
+
     public url(): URL {
         // We use target().url() instead of just url() here because:
         // * They ought to be equivalent in every case we care to test
@@ -58,6 +75,7 @@ export class Page {
         const html = await this.underlyingPage.$eval(selector, el => el.outerHTML);
         return generateFormattedHtml(html);
     }
+
 }
 
 function generateFormattedHtml(innerHTMLString: string) {

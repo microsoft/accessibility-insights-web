@@ -51,20 +51,6 @@ jobs:
       customCommand: run drop
     displayName: npm run drop
 
-  # e2e tests must run after the drop, depends on dev drop
-  - task: Npm@1
-    inputs:
-      command: custom
-      customCommand: run test:e2e
-    displayName: npm run test:e2e
-
-  - task: PublishTestResults@2
-    inputs:
-      testResultsFiles: junit-e2e.xml
-      testRunTitle: accessibility-insights-web e2e
-    condition: always()
-    displayName: publish e2e test results
-
   - task: CopyFiles@2
     inputs:
       sourceFolder: drop
@@ -94,3 +80,39 @@ jobs:
     inputs:
       command: custom
       customCommand: run copyrightheaders
+
+- job: e2e
+
+  pool:
+    vmImage: 'macOS-10.13'
+
+  steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '8.x'
+    displayName: use node 8.x
+
+  - task: Npm@1
+    inputs:
+      command: install
+    displayName: npm install
+
+  - task: Npm@1
+    inputs:
+      command: custom
+      customCommand: run drop
+    displayName: npm run drop
+
+  # e2e tests must run after the drop, depends on dev drop
+  - task: Npm@1
+    inputs:
+      command: custom
+      customCommand: run test:e2e-ci
+    displayName: npm run test:e2e-ci
+
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFiles: junit-e2e.xml
+      testRunTitle: accessibility-insights-web e2e
+    condition: always()
+    displayName: publish e2e test results

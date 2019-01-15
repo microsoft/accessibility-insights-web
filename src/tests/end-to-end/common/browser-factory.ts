@@ -3,7 +3,7 @@
 import * as Puppeteer from 'puppeteer';
 import { Browser } from './browser';
 
-export async function launchBrowser() {
+export async function launchBrowser(): Promise<Browser> {
     const puppeteerBrowser = await launchNewBrowser();
 
     return new Browser(puppeteerBrowser);
