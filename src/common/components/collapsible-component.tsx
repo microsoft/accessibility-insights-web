@@ -33,19 +33,28 @@ export class CollapsibleComponent extends React.Component<ICollapsibleComponentP
     }
 
     public render(): JSX.Element {
+        const showContent = this.state.showContent;
+        let iconName = this.iconNameUp;
+        let content = null;
+
+        if (showContent) {
+            iconName = this.iconNameDown;
+            content = <div className={css(this.props.contentClassName, 'collapsible-content')}>{this.props.content}</div>;
+        }
+
         return (
             <div className={css(this.props.containerClassName, 'collapsible-component')}>
                 <ActionButton
                     className="collapsible"
-                    iconProps={{ iconName: this.state.showContent ? this.iconNameDown : this.iconNameUp, class: 'collapsible-icon' }}
+                    iconProps={{ iconName: iconName, class: 'collapsible-icon' }}
                     onClick={this.onClick}
+                    aria-expanded={showContent}
                 >
                     <span className="collapsible-title">
                         {this.props.header}
                     </span>
                 </ActionButton>
-                {this.state.showContent ?
-                    <div className={css(this.props.contentClassName, 'collapsible-content')}>{this.props.content}</div> : null}
+                {content}
             </div>
         );
     }
