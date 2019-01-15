@@ -55,11 +55,11 @@ describe('Ad hoc tools', () => {
         expect(mainAdhocPanel.length).toBe(1);
     });
 
-    it('snapshot test for mainAdhocPanel', async () => {
-        await popupPage.clickSelectorXPath("//button[text()='Ad hoc tools']");
+    // it('snapshot test for mainAdhocPanel', async () => {
+    //     await popupPage.clickSelectorXPath("//button[text()='Ad hoc tools']");
 
-        const mainAdhocPanelHtml = await popupPage.getPrintableHtmlElement('main');
-        expect(mainAdhocPanelHtml).toMatchSnapshot();
-    });
+    //     const mainAdhocPanelHtml = await popupPage.getPrintableHtmlElement('main');
+    //     expect(mainAdhocPanelHtml).toMatchSnapshot();
+    // });
 
 });
