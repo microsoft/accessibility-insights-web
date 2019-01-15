@@ -36,12 +36,12 @@ export function withStoreSubscription<P extends WithStoreSubscriptionProps<S>, S
             this.props.storesHub.removeChangedListenerFromAllStores(this.onStoreChange);
         }
 
-        onStoreChange = () => {
+        public onStoreChange = () => {
             const storeData = this.props.storesHub.getAllStoreData();
             this.setState(storeData);
         }
 
-        hasStores = () => {
+        public hasStores = () => {
             return this.props.storesHub && this.props.storesHub.hasStores();
         }
 
