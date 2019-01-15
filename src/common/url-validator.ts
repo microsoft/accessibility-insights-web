@@ -23,8 +23,8 @@ export class UrlValidator {
         return url.toLowerCase().match('file://*/*') != null;
     }
 
-    private async checkAccessToFileUrl(chromeAdapter: BrowserAdapter): Promise<boolean> {
-        return await new Promise<boolean>(resolve => {
+    private checkAccessToFileUrl(chromeAdapter: BrowserAdapter): Promise<boolean> {
+        return new Promise<boolean>(resolve => {
             chromeAdapter.isAllowedFileSchemeAccess(resolve);
         });
     }

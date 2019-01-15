@@ -673,9 +673,9 @@ function setupTabQueryCall() {
         .verifiable();
 }
 
-function setupUrlValidator(url: string, resolvable: boolean) {
+function setupUrlValidator(url: string, isSupportedUrl: boolean) {
     urlValidatorMock
         .setup(uV => uV.isSupportedUrl(url, chromeAdapterMock.object))
-        .returns(async () => { return resolvable; })
+        .returns(async () => { return isSupportedUrl; })
         .verifiable();
 }
