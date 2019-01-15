@@ -57,12 +57,4 @@ describe('Ad hoc tools', () => {
         expect(mainAdhocPanel).toBeDefined();
         expect(mainAdhocPanel.length).toBe(1);
     });
-
-    it(`snapshot test for mainAdhocPanel (is it a mac - ${isMac})`, async () => {
-        await popupPage.clickSelectorXPath("//button[text()='Ad hoc tools']");
-
-        const mainAdhocPanelHtml = await popupPage.getPrintableHtmlElement('main');
-        expect(mainAdhocPanelHtml).toMatchSnapshot();
-    });
-
 });
