@@ -62,12 +62,21 @@ jobs:
 
 # test pipeline runs in parallel
 - job: test
-  dependsOn: build
 
   pool:
     vmImage: 'macOS-10.13'
 
   steps:
+    - task: NodeTool@0
+    inputs:
+      versionSpec: '8.x'
+    displayName: use node 8.x
+
+  - task: Npm@1
+    inputs:
+      command: install
+    displayName: npm install
+
   - task: Npm@1
     inputs:
       command: custom
@@ -91,12 +100,27 @@ jobs:
 
 # e2e pipeline runs in parallel
 - job: e2e
-  dependsOn: build
 
   pool:
     vmImage: 'macOS-10.13'
 
   steps:
+
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '8.x'
+    displayName: use node 8.x
+
+  - task: Npm@1
+    inputs:
+      command: install
+    displayName: npm install
+
+  - task: Npm@1
+    inputs:
+      command: custom
+      customCommand: run drop
+    displayName: npm run drop
 
   # e2e tests must run after the drop, depends on dev drop
   - task: Npm@1
