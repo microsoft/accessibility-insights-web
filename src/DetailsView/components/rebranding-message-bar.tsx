@@ -12,5 +12,5 @@ export const RebrandingMessageBar = NamedSFC('RebrandingMessageBar', () =>
 
     <MessageBar className="info-message-bar">
         Keros for Web has been rebranded to Accessibility Insights for Web.
-        Join <NewTabLink href={url}>Accessibility Insights Updates and Discussions</NewTabLink> to receive email announcements.
+        <NewTabLink href={url}>Join Accessibility Insights Updates and Discussions</NewTabLink> to receive email announcements.
     </MessageBar>);
