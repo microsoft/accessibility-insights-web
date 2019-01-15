@@ -10,7 +10,6 @@
     "max-classes-per-file": [true, 2],
     "max-line-length": [true, 140],
     "no-default-export": true,
-    "no-floating-promises": true,
     "no-invalid-this": [true, "check-function-in-method"],
     "no-shadowed-variable": true, // Disallows shadowing variable declarations
     "no-var-keyword": true,
