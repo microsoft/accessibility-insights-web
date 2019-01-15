@@ -14,4 +14,5 @@ module.exports = {
     ],
     roots: ['<rootDir>/src/tests/end-to-end'],
     reporters: ['default', ['jest-junit', { outputDirectory: '.', outputName: './junit-e2e.xml' }]],
+    setupTestFrameworkScriptFile: '<rootDir>/src/tests/end-to-end/setup/test-setup.ts',
 };

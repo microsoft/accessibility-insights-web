@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind, getRTL, IPoint } from '@uifabric/utilities';
+import { autobind, IPoint } from '@uifabric/utilities';
 import { DirectionalHint } from 'office-ui-fabric-react/lib/Callout';
 import { ContextualMenu, IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
@@ -56,6 +56,7 @@ export class DetailsViewDropDown extends React.Component<IDetailsViewDropDownPro
                 directionalHint={DirectionalHint.bottomRightEdge}
                 directionalHintForRTL={DirectionalHint.bottomLeftEdge}
                 items={this.props.menuItems}
+                id="settings-dropdown-menu"
             />
         );
     }

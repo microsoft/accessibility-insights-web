@@ -29,11 +29,11 @@ exports[`Adhoc Panel test test snapshot for launchpad 1`] = `
               class="details-view-dropdown"
             >
               <button
-                class="ms-Link gear-button root-42"
+                class="ms-Link gear-button root-000"
               >
                 <i
                   aria-label="Manage Settings"
-                  class="gear-options-icon root-44"
+                  class="gear-options-icon root-000"
                   data-icon-name="Gear"
                 >
                   
@@ -43,17 +43,17 @@ exports[`Adhoc Panel test test snapshot for launchpad 1`] = `
           </div>
           <button
             aria-label="Help and Feedback menu"
-            class="ms-Button ms-Button--icon root-45"
+            class="ms-Button ms-Button--icon root-000"
             data-is-focusable="true"
             id="feedback-collapse-menu-button"
             type="button"
           >
             <div
-              class="ms-Button-flexContainer flexContainer-46"
+              class="ms-Button-flexContainer flexContainer-000"
             >
               <i
                 aria-hidden="true"
-                class="ms-Button-icon icon-52"
+                class="ms-Button-icon icon-000"
                 data-icon-name="GlobalNavButton"
                 role="presentation"
               >
@@ -69,7 +69,7 @@ exports[`Adhoc Panel test test snapshot for launchpad 1`] = `
         formerly Keros for Web  |  Watch 
         <a
           aria-label="demo video"
-          class="ms-Link insights-link root-53"
+          class="ms-Link insights-link root-000"
           href="https://msit.microsoftstream.com/video/7817f7b2-7c17-4ad8-a644-42d82ae697a2?channelId=66d47e66-d99c-488b-b9ea-98a153d2a4d4&channelName=Accessibility%20Tools"
           target="_blank"
           title="watch the 3 minute video introduction"
@@ -108,7 +108,7 @@ exports[`Adhoc Panel test test snapshot for launchpad 1`] = `
                 >
                   <i
                     aria-hidden="true"
-                    class="popup-start-dialog-icon root-44"
+                    class="popup-start-dialog-icon root-000"
                     data-icon-name="Rocket"
                     role="presentation"
                   >
@@ -116,14 +116,14 @@ exports[`Adhoc Panel test test snapshot for launchpad 1`] = `
                   </i>
                 </div>
                 <div
-                  class="ms-Grid-col ms-sm9"
+                  class="ms-Grid-col ms-sm000"
                 >
                   <div
                     class="launch-pad-item-title"
                   >
                     <button
                       aria-describedby="launch-pad-item-description-1"
-                      class="ms-Link root-42"
+                      class="ms-Link root-000"
                       role="link"
                     >
                       FastPass
@@ -131,7 +131,7 @@ exports[`Adhoc Panel test test snapshot for launchpad 1`] = `
                   </div>
                   <div
                     class="launch-pad-item-description"
-                    id="launch-pad-item-description-1"
+                    id="launch-pad-item-description-000"
                   >
                     Run two tests before check-in to find 25% of accessibility issues in less than 5 minutes.
                   </div>
@@ -154,7 +154,7 @@ exports[`Adhoc Panel test test snapshot for launchpad 1`] = `
                 >
                   <i
                     aria-hidden="true"
-                    class="popup-start-dialog-icon root-44"
+                    class="popup-start-dialog-icon root-000"
                     data-icon-name="testBeaker"
                     role="presentation"
                   >
@@ -162,14 +162,14 @@ exports[`Adhoc Panel test test snapshot for launchpad 1`] = `
                   </i>
                 </div>
                 <div
-                  class="ms-Grid-col ms-sm9"
+                  class="ms-Grid-col ms-sm000"
                 >
                   <div
                     class="launch-pad-item-title"
                   >
                     <button
                       aria-describedby="launch-pad-item-description-2"
-                      class="ms-Link root-42"
+                      class="ms-Link root-000"
                       role="link"
                     >
                       Assessment
@@ -177,7 +177,7 @@ exports[`Adhoc Panel test test snapshot for launchpad 1`] = `
                   </div>
                   <div
                     class="launch-pad-item-description"
-                    id="launch-pad-item-description-2"
+                    id="launch-pad-item-description-000"
                   >
                     Walk through a guided process for assessing accessibility compliance.
                   </div>
@@ -200,7 +200,7 @@ exports[`Adhoc Panel test test snapshot for launchpad 1`] = `
                 >
                   <i
                     aria-hidden="true"
-                    class="popup-start-dialog-icon root-44"
+                    class="popup-start-dialog-icon root-000"
                     data-icon-name="Medical"
                     role="presentation"
                   >
@@ -208,14 +208,14 @@ exports[`Adhoc Panel test test snapshot for launchpad 1`] = `
                   </i>
                 </div>
                 <div
-                  class="ms-Grid-col ms-sm9"
+                  class="ms-Grid-col ms-sm000"
                 >
                   <div
                     class="launch-pad-item-title"
                   >
                     <button
                       aria-describedby="launch-pad-item-description-3"
-                      class="ms-Link root-42"
+                      class="ms-Link root-000"
                       role="link"
                     >
                       Ad hoc tools
@@ -223,7 +223,7 @@ exports[`Adhoc Panel test test snapshot for launchpad 1`] = `
                   </div>
                   <div
                     class="launch-pad-item-description"
-                    id="launch-pad-item-description-3"
+                    id="launch-pad-item-description-000"
                   >
                     Get quick access to all automated and assisted checks.
                   </div>
@@ -243,7 +243,7 @@ exports[`Adhoc Panel test test snapshot for launchpad 1`] = `
         <div>
           Version 1.0.4  |  Powered by 
           <a
-            class="ms-Link insights-link root-53"
+            class="ms-Link insights-link root-000"
             href="https://www.npmjs.com/package/axe-core"
             target="_blank"
             title="Navigate to axe-core npm page"

@@ -53,6 +53,7 @@ export class GearOptionsButtonComponent extends React.Component<IGearOptionsButt
             },
             onClick: this.props.dropdownClickHandler.openPreviewFeaturesPanelHandler,
             name: 'Preview features',
+            className: 'preview-features-drop-down-button',
         };
     }
 

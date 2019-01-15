@@ -1,11 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { popupPageSelectors } from '../../common/popup-page-selectors';
-import { getTestResourceUrl } from '../../common/test-resources';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { Page } from '../../common/page';
-import { DEFAULT_E2E_TEST_TIMEOUT_MS } from '../../common/timeouts';
+import { getTestResourceUrl } from '../../common/test-resources';
 
 describe('Ad hoc tools', () => {
     let browser: Browser;
@@ -14,17 +12,14 @@ describe('Ad hoc tools', () => {
     let popupPage: Page;
 
     beforeEach(async () => {
-        browser = await launchBrowser();
-
+        browser = await launchBrowser({ dismissFirstTimeDialog: true });
         await setupNewTargetPage();
         popupPage = await browser.newExtensionPopupPage(targetPageTabId);
         await popupPage.bringToFront();
-        await dismissTelemetryDialog();
-        await popupPage.waitForSelectorToDisappear(popupPageSelectors.telemetryDialog);
     });
 
     afterEach(async () => {
-        await browser.stop();
+        await browser.close();
     });
 
     async function setupNewTargetPage() {
@@ -32,11 +27,6 @@ describe('Ad hoc tools', () => {
 
         await targetPage.bringToFront();
         targetPageTabId = await browser.getActivePageTabId();
-    }
-
-    async function dismissTelemetryDialog() {
-        await popupPage.waitForSelector(popupPageSelectors.telemetryDialog);
-        await popupPage.clickSelector(popupPageSelectors.startUsingProductButton);
     }
 
     it('clicking the adhoc panel takes us to main page', async () => {
@@ -54,5 +44,5 @@ describe('Ad hoc tools', () => {
 
         expect(mainAdhocPanel).toBeDefined();
         expect(mainAdhocPanel.length).toBe(1);
-    }, DEFAULT_E2E_TEST_TIMEOUT_MS);
+    });
 });
