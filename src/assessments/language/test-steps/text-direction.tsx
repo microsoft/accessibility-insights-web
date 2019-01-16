@@ -15,7 +15,7 @@ const textDirectionDescription: JSX.Element = <span>If a page or a passage uses 
 const textDirectionHowToTest: JSX.Element = (
     <div>
         <ol>
-            <li>Examine the target page to determine whether the page uses a <NewTabLink href="https://www.w3.org/International/questions/qa-scripts">script</NewTabLink> be read right-to-left, such as Arabic, Hebrew, Persian or Urdu.</li>
+            <li>Examine the target page to determine whether the page uses a <NewTabLink href="https://www.w3.org/International/questions/qa-scripts">right-to-left script</NewTabLink> - such as Arabic, Hebrew, Persian or Urdu.</li>
             <li>If the page or a passage <Markup.Emphasis>does</Markup.Emphasis> use a right-to-left script, examine the containing element's HTML to verify that it has the correct direction attribute (<Markup.Term>dir="rtl"</Markup.Term>).</li>
             <ManualTestRecordYourResults
                 isMultipleFailurePossible={true}
