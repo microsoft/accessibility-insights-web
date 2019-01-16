@@ -40,8 +40,8 @@ jobs:
   - task: PublishCodeCoverageResults@1
     inputs:
       codeCoverageTool: Cobertura
-      summaryFileLocation: $(System.DefaultWorkingDirectory)/test-results/coverage/cobertura-coverage.xml
-      reportDirectory: $(System.DefaultWorkingDirectory)/test-results/coverage/lcov-report
+      summaryFileLocation: $(System.DefaultWorkingDirectory)/test-results/unit/coverage/cobertura-coverage.xml
+      reportDirectory: $(System.DefaultWorkingDirectory)/test-results/unit/coverage/lcov-report
       failIfCoverageEmpty: true
     displayName: publish code coverage
 
