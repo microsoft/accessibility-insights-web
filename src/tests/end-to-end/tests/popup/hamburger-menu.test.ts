@@ -17,7 +17,7 @@ describe('Hamburger menu', () => {
     });
 
     afterAll(async () => {
-        browser.close();
+        await browser.close();
     });
 
     it('should have content matching snapshot', async () => {
