@@ -117,10 +117,18 @@ jobs:
     condition: always()
     displayName: publish e2e test results
 
+  - task: CopyFiles@2
+    inputs:
+      sourceFolder: '$(System.DefaultWorkingDirectory)/src/tests/end-to-end/failure-screenshots'
+      contents: '*'
+      cleanTargetFolder: true
+      targetFolder: '$(Build.ArtifactStagingDirectory)/e2e-failure-screenshots'
+    displayName: copy failure screenshots
+
   # Publish artifacts for screenshots
   - task: PublishBuildArtifacts@1
     inputs:
-      pathtoPublish: '$(System.DefaultWorkingDirectory)/src/tests/end-to-end/failure-screenshots'
+      pathtoPublish: '$(Build.ArtifactStagingDirectory)/e2e-failure-screenshots'
       artifactName: 'e2e-failure-screenshots'
     condition: always()
     continueOnError: true
