@@ -36,20 +36,20 @@ describe('UrlValidatorTest', () => {
             })
             .verifiable();
 
-        const isSupported = await testSubject.isSupportedUrl(url, It.isAny());
+        const isSupported = await testSubject.isSupportedUrl(url, browserAdapterMock.object);
         expect(isSupported).toBe(true);
 
         browserAdapterMock.verifyAll();
     });
 
-    test('isNotSupportedUrl: chrome://', async done => {
+    test('isNotSupportedUrl: chrome://', async () => {
         const url: string = 'chrome://are/you/ok?';
         testSubject = new UrlValidator();
         const isSupported = await testSubject.isSupportedUrl(url, It.isAny());
         expect(isSupported).toBe(false);
     });
 
-    test('isFileUrl, but have no access, so isNotSupportedUrl', async done => {
+    test('isFileUrl, but have no access, so isNotSupportedUrl', async () => {
         const url: string = 'file://yes/I/am!';
         testSubject = new UrlValidator();
         const browserAdapterMock = Mock.ofType(ChromeAdapter);
@@ -62,7 +62,7 @@ describe('UrlValidatorTest', () => {
             })
             .verifiable();
 
-        const isSupported = await testSubject.isSupportedUrl(url, It.isAny());
+        const isSupported = await testSubject.isSupportedUrl(url, browserAdapterMock.object);
         expect(isSupported).toBe(false);
 
         browserAdapterMock.verifyAll();

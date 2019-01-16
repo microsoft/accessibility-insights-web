@@ -80,8 +80,7 @@ describe('FileRequestHelper', () => {
 
         httpRequestMock.object.onerror(null);
 
-        // tslint:disable-next-line:no-floating-promises - this isn't floating, the "await expect()" confuses tslint
-        (await expect(getFileContentPromise)).rejects.toThrow();
+        await expect(getFileContentPromise).rejects.toEqual(null);
         httpRequestMock.verifyAll();
     });
 
@@ -114,8 +113,7 @@ describe('FileRequestHelper', () => {
 
         httpRequestMock.object.ontimeout(null);
 
-        // tslint:disable-next-line:no-floating-promises - this isn't floating, the "await expect()" confuses tslint
-        (await expect(getFileContentPromise)).rejects.toThrow();
+        await expect(getFileContentPromise).rejects.toEqual(null);
         httpRequestMock.verifyAll();
     });
 });
