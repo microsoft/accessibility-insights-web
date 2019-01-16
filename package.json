@@ -81,7 +81,6 @@
     "react": "^16.7.0",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.7.0",
-    "react-helmet": "^5.2.0",
     "react-router-dom": "^4.3.1",
     "requirejs": "2.3.5",
     "uuid": "^3.3.2"
