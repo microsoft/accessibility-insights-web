@@ -123,4 +123,5 @@ jobs:
       pathtoPublish: '$(System.DefaultWorkingDirectory)/src/tests/end-to-end/failure-screenshots'
       artifactName: 'e2e-failure-screenshots'
     condition: always()
+    continueOnError: true
     displayName: publish e2e test results
