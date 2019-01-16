@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AssessmentLeftNavV2 render with index icon 1`] = `
+exports[`AssessmentLeftNav render with index icon 1`] = `
 <BaseLeftNav
   links={
     Array [
@@ -17,13 +17,13 @@ exports[`AssessmentLeftNavV2 render with index icon 1`] = `
 />
 `;
 
-exports[`AssessmentLeftNavV2 render with index icon 2`] = `
+exports[`AssessmentLeftNav render with index icon 2`] = `
 <div
   className="index-circle"
 />
 `;
 
-exports[`AssessmentLeftNavV2 render with status icon 1`] = `
+exports[`AssessmentLeftNav render with status icon 1`] = `
 <BaseLeftNav
   links={
     Array [
@@ -40,7 +40,7 @@ exports[`AssessmentLeftNavV2 render with status icon 1`] = `
 />
 `;
 
-exports[`AssessmentLeftNavV2 render with status icon 2`] = `
+exports[`AssessmentLeftNav render with status icon 2`] = `
 <div>
   <StatusIcon
     className="dark-gray"

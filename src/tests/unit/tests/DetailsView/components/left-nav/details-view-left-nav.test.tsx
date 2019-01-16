@@ -12,13 +12,13 @@ import { VisualizationType } from '../../../../../../common/types/visualization-
 import { DetailsRightPanelConfiguration } from '../../../../../../DetailsView/components/details-view-right-panel';
 import { DetailsViewSwitcherNavConfiguration } from '../../../../../../DetailsView/components/details-view-switcher-nav';
 import {
-    DetailsViewLeftNavV2,
-    DetailsViewLeftNavV2Deps,
-    DetailsViewLeftNavV2Props,
-} from '../../../../../../DetailsView/components/left-nav/details-view-left-nav-v2';
+    DetailsViewLeftNav,
+    DetailsViewLeftNavDeps,
+    DetailsViewLeftNavProps,
+} from '../../../../../../DetailsView/components/left-nav/details-view-left-nav';
 import { GetLeftNavSelectedKeyProps } from '../../../../../../DetailsView/components/left-nav/get-left-nav-selected-key';
 
-describe('DetailsViewLeftNavV2', () => {
+describe('DetailsViewLeftNav', () => {
     it('should render from switcher nav', () => {
         const selectedTestStub: VisualizationType = -1;
         const selectedKeyStub: string = 'some key';
@@ -27,8 +27,8 @@ describe('DetailsViewLeftNavV2', () => {
         const assessmentProviderStub = {} as IAssessmentsProvider;
         const filteredProviderStub = {} as IAssessmentsProvider;
         const GetLeftNavSelectedKeyMock = Mock.ofInstance((props: GetLeftNavSelectedKeyProps) => null, MockBehavior.Strict);
-        const LeftNavStub: Readonly<ReactSFCWithDisplayName<DetailsViewLeftNavV2Props>>
-            = NamedSFC<DetailsViewLeftNavV2Props>('test', _ => null);
+        const LeftNavStub: Readonly<ReactSFCWithDisplayName<DetailsViewLeftNavProps>>
+            = NamedSFC<DetailsViewLeftNavProps>('test', _ => null);
         const assessmentDataStub: {[key: string]: IAssessmentData} = {'x': {testStepStatus: {}} as IAssessmentData};
         const assessmentStoreDataStub = {
             assessments: assessmentDataStub,
@@ -45,7 +45,7 @@ describe('DetailsViewLeftNavV2', () => {
         const deps = {
             assessmentsProvider: assessmentProviderStub,
             assessmentsProviderWithFeaturesEnabled: assessmentsProviderWithFeaturesEnabledMock.object,
-        } as DetailsViewLeftNavV2Deps;
+        } as DetailsViewLeftNavDeps;
 
         const props = {
             deps,
@@ -54,7 +54,7 @@ describe('DetailsViewLeftNavV2', () => {
             switcherNavConfiguration: switcherNavConfig,
             rightPanelConfiguration: rightPanelConfig,
             assessmentStoreData: assessmentStoreDataStub,
-        } as DetailsViewLeftNavV2Props;
+        } as DetailsViewLeftNavProps;
 
         GetLeftNavSelectedKeyMock
             .setup(glnsm => glnsm(It.isValue({ type: selectedTestStub })))
@@ -64,7 +64,7 @@ describe('DetailsViewLeftNavV2', () => {
             .setup(ap => ap(assessmentProviderStub, featureFlagDataStub))
             .returns(() => filteredProviderStub);
 
-        const actual = shallow(<DetailsViewLeftNavV2 {...props} />);
+        const actual = shallow(<DetailsViewLeftNav {...props} />);
         expect(actual.getElement()).toMatchSnapshot();
     });
 });

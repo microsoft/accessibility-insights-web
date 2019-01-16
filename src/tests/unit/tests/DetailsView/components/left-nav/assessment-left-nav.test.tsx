@@ -8,18 +8,18 @@ import { IAssessmentsProvider } from '../../../../../../assessments/types/iasses
 import { IManualTestStatus, ManualTestStatus } from '../../../../../../common/types/manual-test-status';
 import {
     AssessmentLeftNavLink,
-    AssessmentLeftNavV2,
-    AssessmentLeftNavV2Deps,
-    AssessmentLeftNavV2Props,
-} from '../../../../../../DetailsView/components/left-nav/assessment-left-nav-v2';
+    AssessmentLeftNav,
+    AssessmentLeftNavDeps,
+    AssessmentLeftNavProps,
+} from '../../../../../../DetailsView/components/left-nav/assessment-left-nav';
 import { LeftNavLinkBuilder } from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';
 import { NavLinkHandler } from '../../../../../../DetailsView/components/left-nav/nav-link-handler';
 
 
-describe('AssessmentLeftNavV2', () => {
+describe('AssessmentLeftNav', () => {
     let linkStub: AssessmentLeftNavLink;
-    let deps: AssessmentLeftNavV2Deps;
-    let props: AssessmentLeftNavV2Props;
+    let deps: AssessmentLeftNavDeps;
+    let props: AssessmentLeftNavProps;
     let leftNavLinkBuilderMock: IMock<LeftNavLinkBuilder>;
     let navLinkHandlerMock: NavLinkHandler;
     let assessmentsProviderStub: IAssessmentsProvider;
@@ -31,7 +31,7 @@ describe('AssessmentLeftNavV2', () => {
         leftNavLinkBuilderMock = Mock.ofType(LeftNavLinkBuilder);
         navLinkHandlerMock = {
             onOverviewClick: () => {},
-            onAssessmentTestClickV2: (x, y) => {},
+            onAssessmentTestClick: (x, y) => {},
         } as NavLinkHandler;
         linkStub = {
             status: ManualTestStatus.UNKNOWN,
@@ -39,7 +39,7 @@ describe('AssessmentLeftNavV2', () => {
         deps = {
             leftNavLinkBuilder: leftNavLinkBuilderMock.object,
             navLinkHandler: navLinkHandlerMock,
-        } as AssessmentLeftNavV2Deps;
+        } as AssessmentLeftNavDeps;
         props = {
             deps,
             selectedKey: 'some key',
@@ -61,7 +61,7 @@ describe('AssessmentLeftNavV2', () => {
         leftNavLinkBuilderMock
             .setup(lnlbm => lnlbm.buildAssessmentTestLinks(
                 deps,
-                navLinkHandlerMock.onAssessmentTestClickV2,
+                navLinkHandlerMock.onAssessmentTestClick,
                 assessmentsProviderStub,
                 assessmentsDataStub,
                 1,
@@ -70,7 +70,7 @@ describe('AssessmentLeftNavV2', () => {
     });
 
     it('render with index icon', () => {
-        const actual = shallow(<AssessmentLeftNavV2 {...props} />);
+        const actual = shallow(<AssessmentLeftNav {...props} />);
         const renderIcon: (link: AssessmentLeftNavLink) => JSX.Element = actual.prop('renderIcon');
         const renderedIcon = shallow(renderIcon(linkStub));
 
@@ -80,7 +80,7 @@ describe('AssessmentLeftNavV2', () => {
 
     it('render with status icon', () => {
         linkStub.status = -1;
-        const actual = shallow(<AssessmentLeftNavV2 {...props} />);
+        const actual = shallow(<AssessmentLeftNav {...props} />);
         const renderIcon: (link: AssessmentLeftNavLink) => JSX.Element = actual.prop('renderIcon');
         const renderedIcon = shallow(renderIcon(linkStub));
 

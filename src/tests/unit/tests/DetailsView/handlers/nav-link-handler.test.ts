@@ -23,36 +23,6 @@ describe('NavLinkHandler', () => {
         } as BaseLeftNavLink;
     });
 
-    describe('onAssessmentTestClick', () => {
-        it('should call selectDetailsView and changeRightContentPanel with appropriate params', () => {
-            const selectedPivot = -1;
-
-            actionMessageCreator
-                .setup(amc => amc.selectDetailsView(eventStub, VisualizationType[link.key], selectedPivot))
-                .verifiable();
-
-            actionMessageCreator
-                .setup(amc => amc.changeRightContentPanel('TestView'))
-                .verifiable();
-
-            testSubject.onAssessmentTestClick(eventStub, link, selectedPivot);
-            actionMessageCreator.verifyAll();
-        });
-    });
-
-    describe('onTestClick', () => {
-        it('should call selectDetailsView with appropriate params', () => {
-            const selectedPivot = -1;
-
-            actionMessageCreator
-                .setup(amc => amc.selectDetailsView(eventStub, VisualizationType[link.key], selectedPivot))
-                .verifiable();
-
-            testSubject.onTestClick(eventStub, link, selectedPivot);
-            actionMessageCreator.verifyAll();
-        });
-    });
-
     describe('onOverviewClick', () => {
         it('should call changeRightContentPanel with appropriate params', () => {
             actionMessageCreator
@@ -76,18 +46,7 @@ describe('NavLinkHandler', () => {
         });
     });
 
-    describe('onAllTestsTestClick', () => {
-        it('should call selectDetailsView with appropriate params', () => {
-            actionMessageCreator
-                .setup(amc => amc.selectDetailsView(eventStub, VisualizationType[link.key], DetailsViewPivotType.allTest))
-                .verifiable();
-
-            testSubject.onAllTestsTestClick(eventStub, link);
-            actionMessageCreator.verifyAll();
-        });
-    });
-
-    describe('onAssessmentTestClickV2', () => {
+    describe('onAssessmentTestClick', () => {
         it('should call selectDetailsView and changeRightContentPanel with appropriate params', () => {
             actionMessageCreator
                 .setup(amc => amc.selectDetailsView(eventStub, VisualizationType[link.key], DetailsViewPivotType.assessment))
@@ -97,7 +56,7 @@ describe('NavLinkHandler', () => {
                 .setup(amc => amc.changeRightContentPanel('TestView'))
                 .verifiable();
 
-            testSubject.onAssessmentTestClickV2(eventStub, link);
+            testSubject.onAssessmentTestClick(eventStub, link);
             actionMessageCreator.verifyAll();
         });
     });
