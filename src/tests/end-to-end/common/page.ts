@@ -86,8 +86,10 @@ export class Page {
     }
 
     public async getPrintableHtmlElement(selector: string): Promise<Node> {
-        const html = await this.underlyingPage.$eval(selector, el => el.outerHTML);
-        return generateFormattedHtml(html);
+        return await this.screenshotOnError(async () => {
+            const html = await this.underlyingPage.$eval(selector, el => el.outerHTML);
+            return generateFormattedHtml(html);
+        });
     }
 
     private async screenshotOnError<T>(fn: () => Promise<T>): Promise<T> {
