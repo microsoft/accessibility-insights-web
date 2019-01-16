@@ -6,6 +6,6 @@
 junit.xml
 junit-e2e.xml
 /drop/
-
+failure-screenshots
 # Dependency directories
 node_modules/

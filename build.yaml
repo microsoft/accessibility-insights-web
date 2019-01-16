@@ -116,3 +116,11 @@ jobs:
       testRunTitle: accessibility-insights-web e2e
     condition: always()
     displayName: publish e2e test results
+
+  - task: PublishFailingScreenshots@2
+    inputs:
+      sourceFolder: '$(System.DefaultWorkingDirectory)/src/tests/end-to-end/failure-screenshots'
+      contents: '**/*'
+      cleanTargetFolder: true
+      targetFolder: $(Build.ArtifactStagingDirectory)
+    displayName: Publish failure screenshots
