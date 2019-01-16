@@ -117,10 +117,10 @@ jobs:
     condition: always()
     displayName: publish e2e test results
 
-  - task: PublishTestResults@2
+  # Publish artifacts for screenshots
+  - task: PublishBuildArtifacts@1
     inputs:
-      sourceFolder: '$(System.DefaultWorkingDirectory)/src/tests/end-to-end/failure-screenshots'
-      contents: '**/*'
-      cleanTargetFolder: true
-      targetFolder: $(Build.ArtifactStagingDirectory)
-    displayName: Publish failure screenshots
+      pathtoPublish: '$(System.DefaultWorkingDirectory)/src/tests/end-to-end/failure-screenshots'
+      artifactName: 'e2e-failure-screenshots'
+    condition: always()
+    displayName: publish e2e test results
