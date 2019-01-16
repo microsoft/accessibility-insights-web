@@ -95,7 +95,7 @@ export class LeftNavLinkBuilder {
             const assessmentLink = {
                 ...baselink,
                 status,
-                title: `${index} of ${total} tests ${name} test ${narratorTestStatus}`,
+                title: `${index} of ${total} ${name} ${narratorTestStatus} test`,
             };
 
             index++;
