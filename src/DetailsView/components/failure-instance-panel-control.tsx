@@ -55,6 +55,8 @@ export class FailureInstancePanelControl extends React.Component<IFailureInstanc
         if (this.props.actionType === CapturedInstanceActionType.CREATE) {
             return (
                 <ActionButton
+                    ariaLabel="Add failure instance"
+                    ariaDescription="Open add a failure instance panel"
                     iconProps={{ iconName: 'Add' }}
                     onClick={this.openFailureInstancePanel}
                 >

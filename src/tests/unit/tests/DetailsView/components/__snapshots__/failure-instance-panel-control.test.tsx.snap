@@ -2,7 +2,7 @@
 
 exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: add instance 1`] = `
 "<Fragment>
-  <CustomizedActionButton iconProps={{...}} onClick={[Function: bound ]}>
+  <CustomizedActionButton ariaLabel=\\"Add failure instance\\" ariaDescription=\\"Open add a failure instance panel\\" iconProps={{...}} onClick={[Function: bound ]}>
     Add a failure instance
   </CustomizedActionButton>
   <GenericPanel isOpen={false} className=\\"failure-instance-panel\\" onDismiss={[Function: bound ]} title=\\"Add a failure instance\\" hasCloseButton={false} closeButtonAriaLabel={{...}}>
