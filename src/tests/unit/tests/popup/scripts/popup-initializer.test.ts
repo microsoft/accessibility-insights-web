@@ -7,7 +7,7 @@ import { PopupInitializer } from '../../../../../popup/scripts/popup-initializer
 import { TargetTabFinder, TargetTabInfo } from '../../../../../popup/scripts/target-tab-finder';
 
 describe('PopupInitializerTests', () => {
-    test('initializePopup', async done => {
+    test('initializePopup', async () => {
         const targetTabStub: TargetTabInfo = {
             tab: {
                 id: 1,
@@ -28,14 +28,11 @@ describe('PopupInitializerTests', () => {
         const testSubject: PopupInitializer = new PopupInitializer(browserAdapterMock.object, targetTabFinder.object);
         (testSubject as any).initializePopup = initializePopupMock.object;
 
-        const promise = testSubject.initialize();
+        await testSubject.initialize();
 
-        promise.then(result => {
-            targetTabFinder.verifyAll();
-            initializePopupMock.verifyAll();
-            browserAdapterMock.verifyAll();
-            done();
-        });
+        targetTabFinder.verifyAll();
+        initializePopupMock.verifyAll();
+        browserAdapterMock.verifyAll();
     });
 });
 
