@@ -44,7 +44,9 @@ export class WindowInitializer {
     protected scannerUtils: ScannerUtils;
     protected visualizationConfigurationFactory: VisualizationConfigurationFactory;
 
-    public initialize() {
+    public async initialize(): Promise<void> {
+        const asyncInitializationSteps: Promise<void>[] = [];
+
         this.clientChromeAdapter = new ClientChromeAdapter();
         this.windowUtils = new WindowUtils();
         const htmlElementUtils = new HTMLElementUtils();
@@ -52,8 +54,8 @@ export class WindowInitializer {
         this.clientUtils = new ClientUtils(window);
         this.scannerUtils = new ScannerUtils(scan);
 
-        this.shadowInitializer = new ShadowInitializer(this.clientChromeAdapter, Q, htmlElementUtils, new FileRequestHelper(Q, xmlHttpRequestFactory));
-        this.shadowInitializer.initialize();
+        this.shadowInitializer = new ShadowInitializer(this.clientChromeAdapter, htmlElementUtils, new FileRequestHelper(xmlHttpRequestFactory));
+        asyncInitializationSteps.push(this.shadowInitializer.initialize());
 
         this.visualizationConfigurationFactory = new VisualizationConfigurationFactory();
 
@@ -77,6 +79,8 @@ export class WindowInitializer {
 
         this.elementFinderByPosition = new ElementFinderByPosition(this.frameCommunicator, this.clientUtils, this.scannerUtils, Q, document);
         this.elementFinderByPosition.initialize();
+
+        await Promise.all(asyncInitializationSteps);
     }
 
     @autobind

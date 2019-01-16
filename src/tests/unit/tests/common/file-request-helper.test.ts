@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Q from 'q';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 import { XMLHttpRequestFactory } from '../../../../background/xml-http-request-factory';
 import { FileRequestHelper } from '../../../../common/file-request-helper';
 import { XmlHttpRequestStubBuilder } from '../../Stubs/xml-http-request-stub-builder';
+import { passMessageStub } from '../scanner/custom-rules-configuration-stub';
 
-describe('FileRequestHelperTests', () => {
+describe('FileRequestHelper', () => {
     let testSubject: FileRequestHelper;
 
     let httpRequestMock: IMock<XMLHttpRequest>;
@@ -17,10 +17,10 @@ describe('FileRequestHelperTests', () => {
         xmlHttpRequestFactoryMock = Mock.ofType(XMLHttpRequestFactory, MockBehavior.Strict);
         httpRequestMock = Mock.ofInstance(XmlHttpRequestStubBuilder.build(), MockBehavior.Loose);
         httpRequestMock.callBase = true;
-        testSubject = new FileRequestHelper(Q, xmlHttpRequestFactoryMock.object);
+        testSubject = new FileRequestHelper(xmlHttpRequestFactoryMock.object);
     });
 
-    test('fetch file content', async () => {
+    it('propagates the underlying request\'s responseText when the request succeeds', async () => {
         const fileUrl = 'file url1';
         const expectedResponseText = 'response text';
 
@@ -38,23 +38,21 @@ describe('FileRequestHelperTests', () => {
             .setup(x => x.send())
             .verifiable();
 
-        const promise = testSubject.getFileContent(fileUrl);
+        const getFileContentPromise = testSubject.getFileContent(fileUrl);
 
         httpRequestMock.verifyAll();
         xmlHttpRequestFactoryMock.verifyAll();
-
-        expect(promise.isPending()).toBe(true);
 
         httpRequestMock
             .setup(x => x.responseText).returns(() => expectedResponseText);
 
         httpRequestMock.object.onload(null);
 
-        const responseText = await promise;
+        const responseText = await getFileContentPromise;
         expect(responseText).toBe(expectedResponseText);
     });
 
-    test('fail if request fails', async done => {
+    it('propagates error events from the underlying request as an error', async () => {
         const fileUrl = 'file url1';
 
         xmlHttpRequestFactoryMock
@@ -71,12 +69,10 @@ describe('FileRequestHelperTests', () => {
             .setup(x => x.send())
             .verifiable();
 
-        const promise = testSubject.getFileContent(fileUrl);
+        const getFileContentPromise = testSubject.getFileContent(fileUrl);
 
         httpRequestMock.verifyAll();
         xmlHttpRequestFactoryMock.verifyAll();
-
-        expect(promise.isPending()).toBe(true);
 
         httpRequestMock
             .setup(x => x.responseText)
@@ -84,13 +80,12 @@ describe('FileRequestHelperTests', () => {
 
         httpRequestMock.object.onerror(null);
 
-        promise.then(null, error => {
-            httpRequestMock.verifyAll();
-            done();
-        });
+        // tslint:disable-next-line:no-floating-promises - this isn't floating, the "await expect()" confuses tslint
+        (await expect(getFileContentPromise)).rejects.toThrow();
+        httpRequestMock.verifyAll();
     });
 
-    test('timeout if request takes more time', async done => {
+    test('propagates timeout events from the underlying request as an error', async () => {
         const fileUrl = 'file url1';
 
         xmlHttpRequestFactoryMock
@@ -108,12 +103,10 @@ describe('FileRequestHelperTests', () => {
             .setup(x => x.send())
             .verifiable();
 
-        const promise = testSubject.getFileContent(fileUrl);
+        const getFileContentPromise = testSubject.getFileContent(fileUrl);
 
         httpRequestMock.verifyAll();
         xmlHttpRequestFactoryMock.verifyAll();
-
-        expect(promise.isPending()).toBe(true);
 
         httpRequestMock
             .setup(x => x.responseText)
@@ -121,9 +114,8 @@ describe('FileRequestHelperTests', () => {
 
         httpRequestMock.object.ontimeout(null);
 
-        promise.then(null, error => {
-            httpRequestMock.verifyAll();
-            done();
-        });
+        // tslint:disable-next-line:no-floating-promises - this isn't floating, the "await expect()" confuses tslint
+        (await expect(getFileContentPromise)).rejects.toThrow();
+        httpRequestMock.verifyAll();
     });
 });
