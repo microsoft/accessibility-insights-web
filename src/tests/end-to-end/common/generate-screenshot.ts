@@ -6,7 +6,7 @@ import * as path from 'path';
 import { generateUID } from '../../../common/uid-generator';
 
 
-const screenshotsPath = path.resolve(__dirname, '../failure-screenshots');
+const screenshotsPath = path.resolve(__dirname, '../../../../test-results/e2e/failure-screenshots');
 
 const toFilename = (s: string) => s.replace(/[^a-z0-9.-]+/gi, '_');
 
