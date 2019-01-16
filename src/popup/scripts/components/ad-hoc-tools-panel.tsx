@@ -28,7 +28,7 @@ export class AdHocToolsPanel extends React.Component<IAdHocToolsPanelProps, {}> 
                 <div role="navigation" className="ad-hoc-tools-panel-footer">
                     <Link
                         onClick={this.props.backLinkHandler}
-                        id = "back-to-launchpad-link"
+                        id="back-to-launchpad-link"
                     >
                         <Icon iconName="back" />&nbsp;
                         Back to launch pad

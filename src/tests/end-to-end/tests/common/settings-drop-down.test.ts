@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
+import { CommonSelectors } from '../../common/element-identifiers/common-selectors';
 import { Page } from '../../common/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
-import { CommonSelectors } from '../../common/selectors/common-selectors';
 
 describe('SettingsDropDownTest', () => {
     let browser: Browser;
@@ -39,11 +39,13 @@ describe('SettingsDropDownTest', () => {
         expect(popupDropdownElement).toMatchSnapshot();
     });
 
-    it('a11y validation', async () => {
+    it('should pass accessibility validation', async () => {
         const popupPage = await browser.newExtensionPopupPage(targetTabId);
         await popupPage.clickSelector(CommonSelectors.settingsGearButton);
 
         const results = await scanForAccessibilityIssues(popupPage, CommonSelectors.settingsDropdownMenu);
+        // we are using snapshot comparison since we have some known issues in this dropdown
+        // & we don't want to add new issues
         expect(results).toMatchSnapshot();
     });
 

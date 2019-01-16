@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
+import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
 import { Page } from '../../common/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
-import { popupPageSelectors } from '../../common/selectors/popup-page-selectors';
 
 describe('Adhoc Panel test', () => {
     let browser: Browser;
@@ -38,23 +38,23 @@ describe('Adhoc Panel test', () => {
     }
 
     it('test snapshot for launchpad', async () => {
-        await popupPage.waitForSelector(popupPageSelectors.launchPad);
+        await popupPage.waitForSelector(popupPageElementIdentifiers.launchPad);
 
-        const element = await popupPage.getPrintableHtmlElement(popupPageSelectors.launchPad);
+        const element = await popupPage.getPrintableHtmlElement(popupPageElementIdentifiers.launchPad);
         expect(element).toMatchSnapshot();
     });
 
     it('test if text for all the links in launchpad show properly', async () => {
-        await popupPage.waitForSelector(popupPageSelectors.launchPad);
+        await popupPage.waitForSelector(popupPageElementIdentifiers.launchPad);
 
-        const launchPadItemListText = await popupPage.getMatchingElements(popupPageSelectors.launchPadItemTitle, 'textContent');
+        const launchPadItemListText = await popupPage.getMatchingElements(popupPageElementIdentifiers.launchPadItemTitle, 'textContent');
 
         expect(launchPadItemListText.length).toBe(3);
         expect(launchPadItemListText).toEqual(['FastPass', 'Assessment', 'Ad hoc tools']);
     });
 
-    it('a11y validation', async () => {
-        await popupPage.waitForSelector(popupPageSelectors.launchPad);
+    it('should pass accessibility validation', async () => {
+        await popupPage.waitForSelector(popupPageElementIdentifiers.launchPad);
 
         const results = await scanForAccessibilityIssues(popupPage, '*');
         expect(results).toHaveLength(0);

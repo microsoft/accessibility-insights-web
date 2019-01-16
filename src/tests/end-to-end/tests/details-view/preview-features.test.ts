@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
+import { CommonSelectors } from '../../common/element-identifiers/common-selectors';
+import { detailsViewSelectors } from '../../common/element-identifiers/details-view-selectors';
 import { Page } from '../../common/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
-import { CommonSelectors } from '../../common/selectors/common-selectors';
-import { detailsViewSelectors } from '../../common/selectors/details-view-selectors';
 
 describe('PreviewFeaturesTest', () => {
     let browser: Browser;
@@ -27,18 +27,18 @@ describe('PreviewFeaturesTest', () => {
         await browser.close();
     });
 
-    it('preview features content in details view', async () => {
+    it('should match preview features content in snapshot', async () => {
         const detailsViewPage = await openPreviewFeaturesPanel();
 
         const previewFeaturesPanel = await detailsViewPage.getPrintableHtmlElement(detailsViewSelectors.previewFeaturesPanel);
         expect(previewFeaturesPanel).toMatchSnapshot();
     });
 
-    it('a11y validation', async () => {
+    it('should pass accessibility validation', async () => {
         const detailsViewPage = await openPreviewFeaturesPanel();
 
         const results = await scanForAccessibilityIssues(detailsViewPage, detailsViewSelectors.previewFeaturesPanel);
-        expect(results).toMatchSnapshot();
+        expect(results).toHaveLength(0);
     });
 
     async function openPreviewFeaturesPanel(): Promise<Page> {

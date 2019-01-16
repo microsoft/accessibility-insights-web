@@ -3,7 +3,7 @@
 import * as Puppeteer from 'puppeteer';
 
 import { Browser } from './browser';
-import { popupPageSelectors } from './selectors/popup-page-selectors';
+import { popupPageElementIdentifiers } from './element-identifiers/popup-page-element-identifiers';
 
 export interface ExtensionOptions {
     suppressFirstTimeDialog: boolean;
@@ -27,7 +27,7 @@ async function suppressFirstTimeUsagePrompt(browser: Browser) {
     const targetPageId = await browser.getActivePageTabId();
     const popupPage = await browser.newExtensionPopupPage(targetPageId);
 
-    await popupPage.clickSelector(popupPageSelectors.startUsingProductButton);
+    await popupPage.clickSelector(popupPageElementIdentifiers.startUsingProductButton);
 
     await targetPage.close();
     await popupPage.close();

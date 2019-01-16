@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
+import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
 import { Page } from '../../common/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
-import { popupPageSelectors } from '../../common/selectors/popup-page-selectors';
 import { getTestResourceUrl } from '../../common/test-resources';
 
 describe('Ad hoc tools', () => {
@@ -32,40 +32,40 @@ describe('Ad hoc tools', () => {
     }
 
     it('adhoc launchpad link takes us to adhoc panel & is sticky', async () => {
-        await popupPage.clickSelectorXPath(popupPageSelectors.adhocLaunchPadLinkXPath);
+        await popupPage.clickSelectorXPath(popupPageElementIdentifiers.adhocLaunchPadLinkXPath);
 
         await verifyAdhocPanelLoaded();
 
         // verify adhoc panel state is sticky
-        setupNewTargetPage();
+        await setupNewTargetPage();
         popupPage = await browser.newExtensionPopupPage(targetPageTabId);
         await verifyAdhocPanelLoaded();
     });
 
     it('Back to Launch pad link takes us to launch pad & is sticky', async () => {
-        await popupPage.clickSelectorXPath(popupPageSelectors.adhocLaunchPadLinkXPath);
-        await popupPage.clickSelector(popupPageSelectors.backToLaunchPadLink);
+        await popupPage.clickSelectorXPath(popupPageElementIdentifiers.adhocLaunchPadLinkXPath);
+        await popupPage.clickSelector(popupPageElementIdentifiers.backToLaunchPadLink);
 
         await verifyLaunchPadLoaded();
 
         // verify adhoc panel state is sticky
-        setupNewTargetPage();
+        await setupNewTargetPage();
         popupPage = await browser.newExtensionPopupPage(targetPageTabId);
         await verifyLaunchPadLoaded();
     });
 
-    it('a11y validation', async () => {
-        await popupPage.clickSelectorXPath(popupPageSelectors.adhocLaunchPadLinkXPath);
+    it('should pass accessibility validation', async () => {
+        await popupPage.clickSelectorXPath(popupPageElementIdentifiers.adhocLaunchPadLinkXPath);
 
         const results = await scanForAccessibilityIssues(popupPage, '*');
         expect(results).toHaveLength(0);
     });
 
     async function verifyAdhocPanelLoaded() {
-        await popupPage.waitForSelector(popupPageSelectors.adhocPanel);
+        await popupPage.waitForSelector(popupPageElementIdentifiers.adhocPanel);
     }
 
     async function verifyLaunchPadLoaded() {
-        await popupPage.waitForSelector(popupPageSelectors.launchPad);
+        await popupPage.waitForSelector(popupPageElementIdentifiers.launchPad);
     }
 });
