@@ -22,7 +22,7 @@ describe('Ad hoc tools', () => {
         await browser.close();
     });
 
-    async function setupNewTargetPage() {
+    async function setupNewTargetPage(): Promise<void> {
         targetPage = await browser.newPage(getTestResourceUrl('all.html'));
 
         await targetPage.bringToFront();

@@ -38,7 +38,7 @@ describe('SettingsDropDownTest', () => {
         expect(popupDropdownElement).toMatchSnapshot();
     });
 
-    async function getDropdownPanelElement(page: Page) {
+    async function getDropdownPanelElement(page: Page): Promise<Node> {
         await page.clickSelector(CommonSelectors.settingsGearButton);
 
         return await page.getPrintableHtmlElement(CommonSelectors.settingsDropdownMenu);
