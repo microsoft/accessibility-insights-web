@@ -3,7 +3,6 @@
   // We eventually want there to only be one tslint.json file, and to have all checks be build-enforced
   "extends": "./tslint.build-enforced.json",
   "rules": {
-    "await-promise": true,
     "forin": true,
     "indent": [true, "spaces"],
     "interface-name": [true, "never-prefix"],

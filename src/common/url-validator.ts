@@ -1,37 +1,31 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserAdapter } from '../background/browser-adapter';
-import * as Q from 'q';
 
 export class UrlValidator {
-    public isSupportedUrl(url: string, chromeAdapter: BrowserAdapter): Q.IPromise<boolean> {
-        const deferred = Q.defer<boolean>();
-
+    public async isSupportedUrl(url: string, chromeAdapter: BrowserAdapter): Promise<boolean> {
         const lowerCasedUrl: string = url.toLowerCase();
         if (lowerCasedUrl.match('http://*/*')
             || lowerCasedUrl.match('https://*/*')
         ) {
-            deferred.resolve(lowerCasedUrl.indexOf('https://chrome.google.com') !== 0);
+            return lowerCasedUrl.indexOf('https://chrome.google.com') !== 0;
         }
 
         else if (UrlValidator.isFileUrl(lowerCasedUrl)) {
-            return this.checkAccessToFileUrl(chromeAdapter);
+            return await this.checkAccessToFileUrl(chromeAdapter);
         }
         else {
-            deferred.resolve(false);
+            return false;
         }
-        return deferred.promise;
     }
 
     public static isFileUrl(url: string): boolean {
         return url.toLowerCase().match('file://*/*') != null;
     }
 
-    private checkAccessToFileUrl(chromeAdapter: BrowserAdapter): Q.IPromise<boolean> {
-        const defer = Q.defer<boolean>();
-        chromeAdapter.isAllowedFileSchemeAccess(allowed => {
-            defer.resolve(allowed);
+    private checkAccessToFileUrl(chromeAdapter: BrowserAdapter): Promise<boolean> {
+        return new Promise<boolean>(resolve => {
+            chromeAdapter.isAllowedFileSchemeAccess(resolve);
         });
-        return defer.promise;
     }
 }

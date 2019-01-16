@@ -22,7 +22,7 @@ function buildAutomatedCheckStep(rule: ScannerRuleInfo): TestStep {
     const howToTest = (
         <React.Fragment>
             {infoElement}
-            <NewTabLink href={rule.url}> See more info here.</NewTabLink>
+            <NewTabLink href={rule.url} aria-label={`See more info about ${rule.id} rule`}> See more info here.</NewTabLink>
         </React.Fragment>
     );
     const getAnalyzer = (provider: AnalyzerProvider) => {
@@ -54,7 +54,7 @@ function buildAutomatedCheckStep(rule: ScannerRuleInfo): TestStep {
         renderInstanceTableHeader: () => null,
         renderRequirementDescription: testStepLink => testStepLink.renderRequirementDescriptionWithoutIndex(),
         getDefaultMessage: defaultMessageGenerator => defaultMessageGenerator.getNoFailingInstanceMesage,
-        getVisualHelperToggle: props => <AutomatedChecksVisualizationToggle {...props}/>,
+        getVisualHelperToggle: props => <AutomatedChecksVisualizationToggle {...props} />,
     };
 
     return testStepConfig;

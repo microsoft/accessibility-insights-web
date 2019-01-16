@@ -1,6 +1,7 @@
 {
   "rules": {
     "arrow-parens": [true, "ban-single-arg-parens"],
+    "await-promise": true,
     "class-name": true,
     "comment-format": [true, "check-space", { "ignore-words": ["TODO", "HACK", "NOTE"] }],
     "curly": true,
