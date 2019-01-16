@@ -21,11 +21,11 @@ export class Page {
         if (ignoreIfAlreadyClosed && this.underlyingPage.isClosed()) {
             return;
         }
-        return await this.screenshotOnError(async () => await this.underlyingPage.close());
+        await this.screenshotOnError(async () => await this.underlyingPage.close());
     }
 
     public async bringToFront(): Promise<void> {
-        return await this.screenshotOnError(async () => await this.underlyingPage.bringToFront());
+        await this.screenshotOnError(async () => await this.underlyingPage.bringToFront());
     }
 
     public async evaluate(fn: Puppeteer.EvaluateFn, ...args: any[]): Promise<any> {
@@ -52,7 +52,7 @@ export class Page {
         );
     }
 
-    public async waitForSelectorToDisappear(selector: string) {
+    public async waitForSelectorToDisappear(selector: string): Promise<void> {
         await this.screenshotOnError(
             async () =>
                 await this.underlyingPage.waitFor(
@@ -64,14 +64,14 @@ export class Page {
     }
 
     public async clickSelector(selector: string): Promise<void> {
-        return await this.screenshotOnError(async () => {
-            const element = await this.waitForSelector(selector);
+        const element = await this.waitForSelector(selector);
+        await this.screenshotOnError(async () => {
             await element.click();
         });
     }
 
-    public async clickSelectorXPath(xPathString: string) {
-        return await this.screenshotOnError(async () => {
+    public async clickSelectorXPath(xPathString: string): Promise<void> {
+        await this.screenshotOnError(async () => {
             const element = await this.underlyingPage.waitForXPath(xPathString, { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS });
             await element.click();
         });
