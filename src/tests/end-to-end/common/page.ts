@@ -100,7 +100,7 @@ export class Page {
     }
 }
 
-function generateFormattedHtml(innerHTMLString: string) {
+function generateFormattedHtml(innerHTMLString: string): Node {
     const template = document.createElement('template');
 
     // office fabric generates a random class & id name which changes every time.

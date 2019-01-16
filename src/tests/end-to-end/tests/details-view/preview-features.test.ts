@@ -40,7 +40,7 @@ describe('PreviewFeaturesTest', () => {
         expect(previewFeaturesPanel).toMatchSnapshot();
     });
 
-    async function openDetailsViewWithSettingsPanel(popupPage: Page) {
+    async function openDetailsViewWithSettingsPanel(popupPage: Page): Promise<Page> {
         let detailsViewPage: Page;
 
         await Promise.all(

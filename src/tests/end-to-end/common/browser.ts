@@ -16,7 +16,7 @@ export class Browser {
         underlyingBrowser.on('disconnected', onBrowserDisconnected);
     }
 
-    public async close() {
+    public async close(): Promise<void> {
         this.underlyingBrowser.removeListener('disconnected', onBrowserDisconnected);
         await this.underlyingBrowser.close();
     }
@@ -55,7 +55,7 @@ export class Browser {
         return this.getExtensionUrl(`detailsView/detailsView.html?tabId=${targetTabId}`);
     }
 
-    public async closeAllPages() {
+    public async closeAllPages(): Promise<void> {
         for (let pos = 0; pos < this.pages.length; pos++) {
             await this.pages[pos].close(true);
         }
@@ -108,7 +108,7 @@ export class Browser {
     }
 }
 
-function onBrowserDisconnected() {
+function onBrowserDisconnected(): void {
     const errorMessage =
         `Browser disconnected unexpectedly; test results past this point should not be trusted. This probably means that either:
             - BrowserController's browser instance was .close() or .disconnect()ed without going through BrowserController.tearDown()
