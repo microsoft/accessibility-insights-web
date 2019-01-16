@@ -1,28 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as mkdirp from 'mkdirp';
-import * as path from 'path';
 import * as Puppeteer from 'puppeteer';
 
-import { generateUID } from '../../../common/uid-generator';
 import { forceTestFailure } from './force-test-failure';
+import { takeScreenshot } from './generate-screenshot';
 import { DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS, DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from './timeouts';
-import { async } from 'q';
-
-const screenshotsPath = path.resolve(__dirname, '../failure-screenshots');
-
-const toFilename = (s: string) => s.replace(/[^a-z0-9.-]+/gi, '_');
-
-async function takeScreenshot(pageInstance) {
-    mkdirp.sync(screenshotsPath);
-    const screenshotName = generateUID();
-    const filePath = path.join(screenshotsPath, toFilename(`${screenshotName}.png`));
-    console.log(`Screenshot file is located at: ${filePath}`);
-    return await pageInstance.screenshot({
-        path: filePath,
-        fullPage: true,
-    });
-}
 
 export class Page {
     constructor(private readonly underlyingPage: Puppeteer.Page) {

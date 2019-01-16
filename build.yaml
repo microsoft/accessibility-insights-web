@@ -119,8 +119,8 @@ jobs:
 
   - task: CopyFiles@2
     inputs:
-      sourceFolder: '$(System.DefaultWorkingDirectory)/src/tests/end-to-end/failure-screenshots'
-      contents: '*'
+      sourceFolder: '$(System.DefaultWorkingDirectory)/src/tests/end-to-end'
+      contents: '/failure-screenshots/**/*'
       cleanTargetFolder: true
       targetFolder: '$(Build.ArtifactStagingDirectory)/e2e-failure-screenshots'
     displayName: copy failure screenshots
