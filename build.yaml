@@ -32,7 +32,7 @@ jobs:
 
   - task: PublishTestResults@2
     inputs:
-      testResultsFiles: junit.xml
+      testResultsFiles: test-results\unit\junit.xml
       testRunTitle: accessibility-insights-web
     condition: always()
     displayName: publish test results
@@ -40,8 +40,8 @@ jobs:
   - task: PublishCodeCoverageResults@1
     inputs:
       codeCoverageTool: Cobertura
-      summaryFileLocation: $(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml
-      reportDirectory: $(System.DefaultWorkingDirectory)/coverage/lcov-report
+      summaryFileLocation: $(System.DefaultWorkingDirectory)/test-results/coverage/cobertura-coverage.xml
+      reportDirectory: $(System.DefaultWorkingDirectory)/test-results/coverage/lcov-report
       failIfCoverageEmpty: true
     displayName: publish code coverage
 
@@ -112,7 +112,7 @@ jobs:
 
   - task: PublishTestResults@2
     inputs:
-      testResultsFiles: junit-e2e.xml
+      testResultsFiles: test-results\e2e\junit-e2e.xml
       testRunTitle: accessibility-insights-web e2e
     condition: always()
     displayName: publish e2e test results

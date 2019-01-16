@@ -2,9 +2,7 @@
 /dist/
 /ref/
 /extension/
-/coverage/
-junit.xml
-junit-e2e.xml
+/test-results/
 /drop/
 failure-screenshots
 # Dependency directories
