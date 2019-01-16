@@ -6,20 +6,20 @@ import { Browser } from './browser';
 import { popupPageSelectors } from './selectors/popup-page-selectors';
 
 export interface ExtensionOptions {
-    dismissFirstTimeDialog: boolean;
+    suppressFirstTimeDialog: boolean;
 }
 
 export async function launchBrowser(extensionOptions: ExtensionOptions): Promise<Browser> {
     const puppeteerBrowser = await launchNewBrowser();
     const browser = new Browser(puppeteerBrowser);
 
-    if (extensionOptions.dismissFirstTimeDialog) {
-        await dismissFirstTimeUsagePrompt(browser);
+    if (extensionOptions.suppressFirstTimeDialog) {
+        await suppressFirstTimeUsagePrompt(browser);
     }
     return browser;
 }
 
-async function dismissFirstTimeUsagePrompt(browser: Browser) {
+async function suppressFirstTimeUsagePrompt(browser: Browser) {
     const targetPage = await browser.newTestResourcePage('all.html');
 
     await targetPage.bringToFront();

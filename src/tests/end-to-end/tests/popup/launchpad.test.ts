@@ -3,6 +3,7 @@
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { Page } from '../../common/page';
+import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 import { popupPageSelectors } from '../../common/selectors/popup-page-selectors';
 
 describe('Adhoc Panel test', () => {
@@ -12,7 +13,7 @@ describe('Adhoc Panel test', () => {
     let popupPage: Page;
 
     beforeAll(async () => {
-        browser = await launchBrowser({ dismissFirstTimeDialog: true });
+        browser = await launchBrowser({ suppressFirstTimeDialog: true });
     });
 
     beforeEach(async () => {
@@ -50,5 +51,12 @@ describe('Adhoc Panel test', () => {
 
         expect(launchPadItemListText.length).toBe(3);
         expect(launchPadItemListText).toEqual(['FastPass', 'Assessment', 'Ad hoc tools']);
+    });
+
+    it('a11y validation', async () => {
+        await popupPage.waitForSelector(popupPageSelectors.launchPad);
+
+        const results = await scanForAccessibilityIssues(popupPage, '*');
+        expect(results).toHaveLength(0);
     });
 });

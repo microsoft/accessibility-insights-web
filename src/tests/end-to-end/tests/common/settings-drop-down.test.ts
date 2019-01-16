@@ -3,6 +3,7 @@
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { Page } from '../../common/page';
+import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 import { CommonSelectors } from '../../common/selectors/common-selectors';
 
 describe('SettingsDropDownTest', () => {
@@ -10,7 +11,7 @@ describe('SettingsDropDownTest', () => {
     let targetTabId: number;
 
     beforeAll(async () => {
-        browser = await launchBrowser({ dismissFirstTimeDialog: true });
+        browser = await launchBrowser({ suppressFirstTimeDialog: true });
     });
 
     beforeEach(async () => {
@@ -36,6 +37,14 @@ describe('SettingsDropDownTest', () => {
 
         expect(popupDropdownElement).toEqual(detailsViewDropdownElement);
         expect(popupDropdownElement).toMatchSnapshot();
+    });
+
+    it('a11y validation', async () => {
+        const popupPage = await browser.newExtensionPopupPage(targetTabId);
+        await popupPage.clickSelector(CommonSelectors.settingsGearButton);
+
+        const results = await scanForAccessibilityIssues(popupPage, CommonSelectors.settingsDropdownMenu);
+        expect(results).toMatchSnapshot();
     });
 
     async function getDropdownPanelElement(page: Page) {

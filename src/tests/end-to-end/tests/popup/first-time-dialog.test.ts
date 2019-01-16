@@ -3,6 +3,7 @@
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { Page } from '../../common/page';
+import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 import { popupPageSelectors } from '../../common/selectors/popup-page-selectors';
 
 describe('First time Dialog Tests', () => {
@@ -11,7 +12,7 @@ describe('First time Dialog Tests', () => {
     let targetPageTabId: number;
 
     beforeEach(async () => {
-        browser = await launchBrowser({ dismissFirstTimeDialog: false });
+        browser = await launchBrowser({ suppressFirstTimeDialog: false });
         await setupTargetPage();
     });
 
@@ -40,15 +41,21 @@ describe('First time Dialog Tests', () => {
         const secondPopupPage = await newPopupPage();
         await secondPopupPage.waitForSelector(popupPageSelectors.launchPad);
         await secondPopupPage.waitForSelectorToDisappear(popupPageSelectors.telemetryDialog);
-    },
-    );
+    });
 
-    it('should have HTML content that matches the snapshot', async () => {
+    it('verify first time dialog snapshot', async () => {
         const popupPage = await newPopupPage();
         await popupPage.waitForSelector(popupPageSelectors.telemetryDialog);
 
         const element = await popupPage.getPrintableHtmlElement(popupPageSelectors.telemetryDialog);
         expect(element).toMatchSnapshot();
-    },
-    );
+    });
+
+    it('a11y validation', async () => {
+        const popupPage = await newPopupPage();
+        await popupPage.waitForSelector(popupPageSelectors.telemetryDialog);
+
+        const results = await scanForAccessibilityIssues(popupPage, popupPageSelectors.telemetryDialog);
+        expect(results).toHaveLength(0);
+    });
 });

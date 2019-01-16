@@ -3,6 +3,7 @@
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { Page } from '../../common/page';
+import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 import { CommonSelectors } from '../../common/selectors/common-selectors';
 import { detailsViewSelectors } from '../../common/selectors/details-view-selectors';
 
@@ -11,7 +12,7 @@ describe('PreviewFeaturesTest', () => {
     let targetTabId: number;
 
     beforeAll(async () => {
-        browser = await launchBrowser({ dismissFirstTimeDialog: true });
+        browser = await launchBrowser({ suppressFirstTimeDialog: true });
     });
 
     beforeEach(async () => {
@@ -27,20 +28,32 @@ describe('PreviewFeaturesTest', () => {
     });
 
     it('preview features content in details view', async () => {
-        const popupPage = await browser.newExtensionPopupPage(targetTabId);
-
-
-        await popupPage.clickSelector(CommonSelectors.settingsGearButton);
-
-        const detailsViewPage = await openDetailsViewWithSettingsPanel(popupPage);
-
-        await detailsViewPage.waitForSelector(detailsViewSelectors.previewFeaturesPanelToggleList);
+        const detailsViewPage = await openPreviewFeaturesPanel();
 
         const previewFeaturesPanel = await detailsViewPage.getPrintableHtmlElement(detailsViewSelectors.previewFeaturesPanel);
         expect(previewFeaturesPanel).toMatchSnapshot();
     });
 
-    async function openDetailsViewWithSettingsPanel(popupPage: Page) {
+    it('a11y validation', async () => {
+        const detailsViewPage = await openPreviewFeaturesPanel();
+
+        const results = await scanForAccessibilityIssues(detailsViewPage, detailsViewSelectors.previewFeaturesPanel);
+        expect(results).toMatchSnapshot();
+    });
+
+    async function openPreviewFeaturesPanel(): Promise<Page> {
+        const popupPage = await browser.newExtensionPopupPage(targetTabId);
+
+        await popupPage.clickSelector(CommonSelectors.settingsGearButton);
+
+        const detailsViewPage = await waitForDetailsViewWithPreviewFeaturesPanel(popupPage);
+
+        await detailsViewPage.waitForSelector(detailsViewSelectors.previewFeaturesPanelToggleList);
+
+        return detailsViewPage;
+    }
+
+    async function waitForDetailsViewWithPreviewFeaturesPanel(popupPage: Page) {
         let detailsViewPage: Page;
 
         await Promise.all(
