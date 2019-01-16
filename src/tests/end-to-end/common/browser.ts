@@ -35,7 +35,7 @@ export class Browser {
     }
 
     public async newTestResourcePage(relativePath: string): Promise<Page> {
-        const url = await getTestResourceUrl(relativePath);
+        const url = getTestResourceUrl(relativePath);
         return await this.newPage(url);
     }
 
