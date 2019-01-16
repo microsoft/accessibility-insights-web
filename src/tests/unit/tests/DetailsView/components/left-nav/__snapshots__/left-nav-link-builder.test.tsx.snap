@@ -14,7 +14,7 @@ exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessme
       "onClickNavLink": [Function],
       "onRenderNavLink": [Function],
       "status": -2,
-      "title": "-1 some title [object Object]",
+      "title": "-1 of 2 some title [object Object] test",
       "url": "",
     }
   }
@@ -36,7 +36,7 @@ exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessme
       "onClickNavLink": [Function],
       "onRenderNavLink": [Function],
       "status": -2,
-      "title": "0 some title [object Object]",
+      "title": "0 of 2 some title [object Object] test",
       "url": "",
     }
   }

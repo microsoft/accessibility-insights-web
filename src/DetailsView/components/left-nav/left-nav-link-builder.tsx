@@ -38,7 +38,7 @@ export class LeftNavLinkBuilder {
     ): BaseLeftNavLink {
         const {
             getAssessmentSummaryModelFromProviderAndStatusData,
-        } =  deps;
+        } = deps;
 
         const reportModel = getAssessmentSummaryModelFromProviderAndStatusData(assessmentsProvider, assessmentsData);
         const percentComplete = 100 - reportModel.byPercentage.incomplete;
@@ -71,11 +71,12 @@ export class LeftNavLinkBuilder {
             getStatusForTest,
             outcomeTypeFromTestStatus,
             outcomeStatsFromManualTestStatus,
-        } =  deps;
+        } = deps;
 
         const assessments = assessmentsProvider.all();
         let index = startingIndex;
 
+        const total = assessments.length;
         const testLinks = map(assessments, assessment => {
             const stepStatus = assessmentsData[assessment.key];
             const stats = outcomeStatsFromManualTestStatus(stepStatus);
@@ -94,7 +95,7 @@ export class LeftNavLinkBuilder {
             const assessmentLink = {
                 ...baselink,
                 status,
-                title: `${index} ${name} ${narratorTestStatus}`,
+                title: `${index} of ${total} ${name} ${narratorTestStatus} test`,
             };
 
             index++;
