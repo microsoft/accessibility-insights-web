@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PreviewFeaturesTest preview features content in details view 1`] = `
+exports[`Preview Features Panel should match content in snapshot 1`] = `
 <DocumentFragment>
   <div
     class="ms-Panel is-open ms-Panel--hasCloseButton ms-Panel--custom generic-panel preview-features-panel root-000"

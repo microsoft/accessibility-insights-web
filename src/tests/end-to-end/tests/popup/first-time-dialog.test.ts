@@ -2,16 +2,17 @@
 // Licensed under the MIT License.
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
+import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
 import { Page } from '../../common/page';
-import { popupPageSelectors } from '../../common/selectors/popup-page-selectors';
+import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
-describe('First time Dialog Tests', () => {
+describe('First time Dialog', () => {
     let browser: Browser;
     let targetPage: Page;
     let targetPageTabId: number;
 
     beforeEach(async () => {
-        browser = await launchBrowser({ dismissFirstTimeDialog: false });
+        browser = await launchBrowser({ suppressFirstTimeDialog: false });
         await setupTargetPage();
     });
 
@@ -33,22 +34,28 @@ describe('First time Dialog Tests', () => {
         const firstPopupPage = await newPopupPage();
         await firstPopupPage.bringToFront();
 
-        await firstPopupPage.clickSelector(popupPageSelectors.startUsingProductButton);
-        await firstPopupPage.waitForSelectorToDisappear(popupPageSelectors.telemetryDialog);
+        await firstPopupPage.clickSelector(popupPageElementIdentifiers.startUsingProductButton);
+        await firstPopupPage.waitForSelectorToDisappear(popupPageElementIdentifiers.telemetryDialog);
         await firstPopupPage.close();
 
         const secondPopupPage = await newPopupPage();
-        await secondPopupPage.waitForSelector(popupPageSelectors.launchPad);
-        await secondPopupPage.waitForSelectorToDisappear(popupPageSelectors.telemetryDialog);
-    },
-    );
+        await secondPopupPage.waitForSelector(popupPageElementIdentifiers.launchPad);
+        await secondPopupPage.waitForSelectorToDisappear(popupPageElementIdentifiers.telemetryDialog);
+    });
 
-    it('should have HTML content that matches the snapshot', async () => {
+    it('content should match snapshot', async () => {
         const popupPage = await newPopupPage();
-        await popupPage.waitForSelector(popupPageSelectors.telemetryDialog);
+        await popupPage.waitForSelector(popupPageElementIdentifiers.telemetryDialog);
 
-        const element = await popupPage.getPrintableHtmlElement(popupPageSelectors.telemetryDialog);
+        const element = await popupPage.getPrintableHtmlElement(popupPageElementIdentifiers.telemetryDialog);
         expect(element).toMatchSnapshot();
-    },
-    );
+    });
+
+    it('should pass accessibility validation', async () => {
+        const popupPage = await newPopupPage();
+        await popupPage.waitForSelector(popupPageElementIdentifiers.telemetryDialog);
+
+        const results = await scanForAccessibilityIssues(popupPage, popupPageElementIdentifiers.telemetryDialog);
+        expect(results).toHaveLength(0);
+    });
 });

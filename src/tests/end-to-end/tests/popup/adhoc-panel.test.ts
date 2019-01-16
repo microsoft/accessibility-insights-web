@@ -2,7 +2,9 @@
 // Licensed under the MIT License.
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
+import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
 import { Page } from '../../common/page';
+import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 import { getTestResourceUrl } from '../../common/test-resources';
 
 describe('Ad hoc tools', () => {
@@ -12,7 +14,7 @@ describe('Ad hoc tools', () => {
     let popupPage: Page;
 
     beforeEach(async () => {
-        browser = await launchBrowser({ dismissFirstTimeDialog: true });
+        browser = await launchBrowser({ suppressFirstTimeDialog: true });
         await setupNewTargetPage();
         popupPage = await browser.newExtensionPopupPage(targetPageTabId);
         await popupPage.bringToFront();
@@ -29,20 +31,41 @@ describe('Ad hoc tools', () => {
         targetPageTabId = await browser.getActivePageTabId();
     }
 
-    it('clicking the adhoc panel takes us to main page', async () => {
-        await popupPage.clickSelectorXPath("//button[text()='Ad hoc tools']");
+    it('should have launchpad link that takes us to adhoc panel & is sticky', async () => {
+        await popupPage.clickSelectorXPath(popupPageElementIdentifiers.adhocLaunchPadLinkXPath);
 
-        await popupPage.waitForSelector('.ad-hoc-tools-panel-footer');
+        await verifyAdhocPanelLoaded();
 
-        await popupPage.waitForSelector('main');
-
-        const mainAdhocPanel = await popupPage.evaluate(() => {
-            const elements = Array.from(document.querySelectorAll('main'));
-            const html = elements.map(e => e.outerHTML);
-            return html;
-        });
-
-        expect(mainAdhocPanel).toBeDefined();
-        expect(mainAdhocPanel.length).toBe(1);
+        // verify adhoc panel state is sticky
+        await setupNewTargetPage();
+        popupPage = await browser.newExtensionPopupPage(targetPageTabId);
+        await verifyAdhocPanelLoaded();
     });
+
+    it('should take back to Launch pad on clicking "Back to Launch pad" link & is sticky', async () => {
+        await popupPage.clickSelectorXPath(popupPageElementIdentifiers.adhocLaunchPadLinkXPath);
+        await popupPage.clickSelector(popupPageElementIdentifiers.backToLaunchPadLink);
+
+        await verifyLaunchPadLoaded();
+
+        // verify adhoc panel state is sticky
+        await setupNewTargetPage();
+        popupPage = await browser.newExtensionPopupPage(targetPageTabId);
+        await verifyLaunchPadLoaded();
+    });
+
+    it('should pass accessibility validation', async () => {
+        await popupPage.clickSelectorXPath(popupPageElementIdentifiers.adhocLaunchPadLinkXPath);
+
+        const results = await scanForAccessibilityIssues(popupPage, '*');
+        expect(results).toHaveLength(0);
+    });
+
+    async function verifyAdhocPanelLoaded() {
+        await popupPage.waitForSelector(popupPageElementIdentifiers.adhocPanel);
+    }
+
+    async function verifyLaunchPadLoaded() {
+        await popupPage.waitForSelector(popupPageElementIdentifiers.launchPad);
+    }
 });

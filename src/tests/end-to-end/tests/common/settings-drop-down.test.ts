@@ -2,15 +2,16 @@
 // Licensed under the MIT License.
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
+import { CommonSelectors } from '../../common/element-identifiers/common-selectors';
 import { Page } from '../../common/page';
-import { CommonSelectors } from '../../common/selectors/common-selectors';
+import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
-describe('SettingsDropDownTest', () => {
+describe('Settings Dropdown', () => {
     let browser: Browser;
     let targetTabId: number;
 
     beforeAll(async () => {
-        browser = await launchBrowser({ dismissFirstTimeDialog: true });
+        browser = await launchBrowser({ suppressFirstTimeDialog: true });
     });
 
     beforeEach(async () => {
@@ -27,7 +28,7 @@ describe('SettingsDropDownTest', () => {
         await browser.close();
     });
 
-    it('settings drop down content', async () => {
+    it('content should match snapshot', async () => {
         const popupPage = await browser.newExtensionPopupPage(targetTabId);
         const popupDropdownElement = await getDropdownPanelElement(popupPage);
 
@@ -36,6 +37,16 @@ describe('SettingsDropDownTest', () => {
 
         expect(popupDropdownElement).toEqual(detailsViewDropdownElement);
         expect(popupDropdownElement).toMatchSnapshot();
+    });
+
+    it('should pass accessibility validation', async () => {
+        const popupPage = await browser.newExtensionPopupPage(targetTabId);
+        await popupPage.clickSelector(CommonSelectors.settingsGearButton);
+
+        const results = await scanForAccessibilityIssues(popupPage, CommonSelectors.settingsDropdownMenu);
+        // we are using snapshot comparison since we have some known issues in this dropdown
+        // & we don't want to add new issues
+        expect(results).toMatchSnapshot();
     });
 
     async function getDropdownPanelElement(page: Page): Promise<Node> {
