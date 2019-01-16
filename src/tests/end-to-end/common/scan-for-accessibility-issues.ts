@@ -4,7 +4,7 @@ import { AxeResults, ElementContext } from 'axe-core';
 
 import { Page } from './page';
 
-// we are using axe object in target page scope. so we shouldnt be importing axe object via axe-core
+// we are using axe object in target page scope. so we shouldn't be importing axe object via axe-core
 declare var axe;
 
 export interface PrintableNode {
