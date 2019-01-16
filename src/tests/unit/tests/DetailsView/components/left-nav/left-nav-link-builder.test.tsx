@@ -184,7 +184,7 @@ describe('LeftNavBuilder', () => {
                     },
                     onClickNavLink: onLinkClickMock.object,
                     status: testStatusStub,
-                    title: `${startingIndexStub + linkIndex} ${assessmentStub.title} ${narratorStatusStub}`,
+                    title: `${startingIndexStub + linkIndex} of ${links.length} tests ${assessmentStub.title} test ${narratorStatusStub}`,
                 };
                 expect(isMatch(actual, expected)).toBeTruthy();
                 expect(actual.onRenderNavLink(actual, renderIconStub)).toMatchSnapshot();
