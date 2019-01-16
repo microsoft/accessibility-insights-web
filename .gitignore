@@ -4,6 +4,5 @@
 /extension/
 /test-results/
 /drop/
-failure-screenshots
 # Dependency directories
 node_modules/
