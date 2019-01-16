@@ -56,7 +56,7 @@ export class PopupInitializer {
         this.chromeAdapter = chromeAdapter;
     }
 
-    public initialize(): PromiseLike<void> {
+    public initialize(): Promise<void> {
         return this.targetTabFinder.getTargetTab()
             .then(tabInfo => {
                 this.targetTabInfo = tabInfo;

@@ -21,13 +21,13 @@ export class TargetTabFinder {
     ) {
     }
 
-    public getTargetTab(): PromiseLike<TargetTabInfo> {
-        return this.getTabInfo()
-            .then(this.createTargetTabInfo);
+    public async getTargetTab(): Promise<TargetTabInfo> {
+        const tabInfo = await this.getTabInfo();
+        return await this.createTargetTabInfo(tabInfo);
     }
 
     @autobind
-    private getTabInfo(): PromiseLike<ITab> {
+    private getTabInfo(): Promise<ITab> {
         return new Promise((resolve, reject) => {
             const tabIdInUrl = this.urlParser.getIntParam(this.win.location.href, 'tabId');
 
@@ -48,15 +48,13 @@ export class TargetTabFinder {
     }
 
     @autobind
-    private createTargetTabInfo(tab: ITab): PromiseLike<TargetTabInfo> {
-        return this.urlValidator.isSupportedUrl(tab.url, this.browserAdapter)
-            .then(hasAccess => {
-                const targetTab: TargetTabInfo = {
-                    tab: tab,
-                    hasAccess,
-                };
-                return targetTab;
-            });
+    private async createTargetTabInfo(tab: ITab): Promise<TargetTabInfo> {
+        const hasAccess = await this.urlValidator.isSupportedUrl(tab.url, this.browserAdapter);
+        const targetTab: TargetTabInfo = {
+            tab: tab,
+            hasAccess,
+        };
+        return targetTab;
     }
 
 }

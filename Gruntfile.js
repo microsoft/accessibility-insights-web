@@ -16,15 +16,13 @@ module.exports = function (grunt) {
         exact_paths: [
             "./.vscode",
             "./.git",
-            "./coverage",
             "./dist",
             "./drop",
             "./extension",
             "./node_modules",
             "./copyright-header.txt",
             "./src/assessments/color/test-steps/flashing-text-example.html",
-            "./junit.xml",
-            "./junit-e2e.xml"
+            "./test-results",
         ],
         file_type_method: "INCLUDE",
         file_types: [

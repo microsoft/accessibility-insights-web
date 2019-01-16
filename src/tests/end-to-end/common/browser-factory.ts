@@ -19,7 +19,7 @@ export async function launchBrowser(extensionOptions: ExtensionOptions): Promise
     return browser;
 }
 
-async function suppressFirstTimeUsagePrompt(browser: Browser) {
+async function suppressFirstTimeUsagePrompt(browser: Browser): Promise<void> {
     const targetPage = await browser.newTestResourcePage('all.html');
 
     await targetPage.bringToFront();

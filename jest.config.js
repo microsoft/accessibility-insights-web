@@ -4,7 +4,7 @@ var common = require('./jest.common.config');
 
 module.exports = {
     ...common,
-    coverageDirectory: 'coverage',
+    coverageDirectory: './test-results/unit/coverage',
     setupFiles: ['<rootDir>/src/tests/unit/jest-setup.ts'],
     moduleFileExtensions: ['ts', 'tsx', 'js'],
     roots: ['<rootDir>/src/tests/unit'],
@@ -12,5 +12,5 @@ module.exports = {
     collectCoverageFrom: ['<rootDir>/src/**/*.{ts,tsx}', '!<rootDir>/src/tests/**'],
     coverageReporters: ['json', 'lcov', 'text', 'cobertura'],
     testEnvironment: 'jsdom',
-    reporters: ['default', ['jest-junit', { outputDirectory: '.', outputName: "./junit.xml" }]],
+    reporters: ['default', ['jest-junit', { outputDirectory: '.', outputName: "./test-results/unit/junit.xml" }]],
 };

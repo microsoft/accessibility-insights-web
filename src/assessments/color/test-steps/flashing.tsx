@@ -15,7 +15,7 @@ const flashingHowToTest: JSX.Element = (
             <li>Examine the target page to identify any content that flashes.</li>
             <li>If you find such content, determine whether it flashes faster than three times per second.
                 <ol>
-                    <li>Use this <NewTabLink href="../../assessments/color/test-steps/flashing-text-example.html">link</NewTabLink> to see an example of content that flashes three times per second. (The example will open in a new browser window.)</li>
+                    <li>Use this <NewTabLink aria-label="Go to a page with an example of flashing content" href="../../assessments/color/test-steps/flashing-text-example.html">link</NewTabLink> to see an example of content that flashes three times per second. (The example will open in a new browser window.)</li>
                 </ol>
             </li>
              <li>

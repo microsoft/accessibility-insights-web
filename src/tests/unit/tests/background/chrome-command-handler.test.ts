@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Q from 'q';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { IVisualizationTogglePayload } from '../../../../background/actions/action-payloads';
@@ -674,13 +673,9 @@ function setupTabQueryCall() {
         .verifiable();
 }
 
-function setupUrlValidator(url: string, resolvable: boolean) {
+function setupUrlValidator(url: string, isSupportedUrl: boolean) {
     urlValidatorMock
         .setup(uV => uV.isSupportedUrl(url, chromeAdapterMock.object))
-        .returns(() => {
-            const deferred = Q.defer<boolean>();
-            deferred.resolve(resolvable);
-            return deferred.promise;
-        })
+        .returns(async () => { return isSupportedUrl; })
         .verifiable();
 }

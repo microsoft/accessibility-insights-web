@@ -30,7 +30,7 @@ describe('Launch Pad', () => {
         await browser.close();
     });
 
-    async function setupNewTargetPage() {
+    async function setupNewTargetPage(): Promise<void> {
         targetPage = await browser.newTestResourcePage('all.html');
 
         await targetPage.bringToFront();

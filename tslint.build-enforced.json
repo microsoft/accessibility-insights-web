@@ -1,6 +1,7 @@
 {
   "rules": {
     "arrow-parens": [true, "ban-single-arg-parens"],
+    "await-promise": true,
     "class-name": true,
     "comment-format": [true, "check-space", { "ignore-words": ["TODO", "HACK", "NOTE"] }],
     "curly": true,
@@ -40,7 +41,6 @@
     "trailing-comma": [true, { "multiline": "always", "singleline": "never" }],
     "triple-equals": [true, "allow-null-check", "allow-undefined-check"],
     "typedef-whitespace": [
-      // Determines if a space is required or not before the colon in a type specifier
       true,
       {
         "call-signature": "nospace",

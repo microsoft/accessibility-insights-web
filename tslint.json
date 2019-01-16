@@ -3,7 +3,6 @@
   // We eventually want there to only be one tslint.json file, and to have all checks be build-enforced
   "extends": "./tslint.build-enforced.json",
   "rules": {
-    "await-promise": true,
     "forin": true,
     "indent": [true, "spaces"],
     "interface-name": [true, "never-prefix"],
@@ -16,6 +15,7 @@
     "no-var-keyword": true,
     "prefer-const": [true, { "destructuring": "all" }],
     "switch-default": true,
+    "typedef": [true, "call-signature", "property-declaration"],
     "variable-name": [true, "check-format", "allow-pascal-case", "allow-trailing-underscore", "ban-keywords"]
   }
 }

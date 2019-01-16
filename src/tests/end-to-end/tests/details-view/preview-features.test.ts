@@ -53,7 +53,7 @@ describe('Preview Features Panel', () => {
         return detailsViewPage;
     }
 
-    async function waitForDetailsViewWithPreviewFeaturesPanel(popupPage: Page) {
+    async function waitForDetailsViewWithPreviewFeaturesPanel(popupPage: Page): Promise<Page> {
         let detailsViewPage: Page;
 
         await Promise.all(
