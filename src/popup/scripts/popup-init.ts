@@ -12,4 +12,6 @@ const browserAdapter = new ChromeAdapter();
 const urlValidator = new UrlValidator();
 const targetTabFinder = new TargetTabFinder(window, browserAdapter, urlValidator, new UrlParser());
 const popupInitializer: PopupInitializer = new PopupInitializer(browserAdapter, targetTabFinder);
+
+// tslint:disable-next-line:no-floating-promises - top-level entry points are intentionally floating promises
 popupInitializer.initialize();
