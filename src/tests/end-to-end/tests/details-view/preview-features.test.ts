@@ -7,7 +7,7 @@ import { detailsViewSelectors } from '../../common/element-identifiers/details-v
 import { Page } from '../../common/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
-describe('PreviewFeaturesTest', () => {
+describe('Preview Features Panel', () => {
     let browser: Browser;
     let targetTabId: number;
 
@@ -27,7 +27,7 @@ describe('PreviewFeaturesTest', () => {
         await browser.close();
     });
 
-    it('should match preview features content in snapshot', async () => {
+    it('should match content in snapshot', async () => {
         const detailsViewPage = await openPreviewFeaturesPanel();
 
         const previewFeaturesPanel = await detailsViewPage.getPrintableHtmlElement(detailsViewSelectors.previewFeaturesPanel);

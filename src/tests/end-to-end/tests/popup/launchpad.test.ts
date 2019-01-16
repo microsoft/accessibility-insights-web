@@ -6,7 +6,7 @@ import { popupPageElementIdentifiers } from '../../common/element-identifiers/po
 import { Page } from '../../common/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
-describe('Adhoc Panel test', () => {
+describe('Launch Pad', () => {
     let browser: Browser;
     let targetPage: Page;
     let targetPageTabId: number;
@@ -37,20 +37,11 @@ describe('Adhoc Panel test', () => {
         targetPageTabId = await browser.getActivePageTabId();
     }
 
-    it('test snapshot for launchpad', async () => {
+    it('content should match snapshot', async () => {
         await popupPage.waitForSelector(popupPageElementIdentifiers.launchPad);
 
         const element = await popupPage.getPrintableHtmlElement(popupPageElementIdentifiers.launchPad);
         expect(element).toMatchSnapshot();
-    });
-
-    it('test if text for all the links in launchpad show properly', async () => {
-        await popupPage.waitForSelector(popupPageElementIdentifiers.launchPad);
-
-        const launchPadItemListText = await popupPage.getMatchingElements(popupPageElementIdentifiers.launchPadItemTitle, 'textContent');
-
-        expect(launchPadItemListText.length).toBe(3);
-        expect(launchPadItemListText).toEqual(['FastPass', 'Assessment', 'Ad hoc tools']);
     });
 
     it('should pass accessibility validation', async () => {

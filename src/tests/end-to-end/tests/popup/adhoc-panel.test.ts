@@ -31,7 +31,7 @@ describe('Ad hoc tools', () => {
         targetPageTabId = await browser.getActivePageTabId();
     }
 
-    it('adhoc launchpad link takes us to adhoc panel & is sticky', async () => {
+    it('should have launchpad link that takes us to adhoc panel & is sticky', async () => {
         await popupPage.clickSelectorXPath(popupPageElementIdentifiers.adhocLaunchPadLinkXPath);
 
         await verifyAdhocPanelLoaded();
@@ -42,7 +42,7 @@ describe('Ad hoc tools', () => {
         await verifyAdhocPanelLoaded();
     });
 
-    it('Back to Launch pad link takes us to launch pad & is sticky', async () => {
+    it('should take back to Launch pad on clicking "Back to Launch pad" link & is sticky', async () => {
         await popupPage.clickSelectorXPath(popupPageElementIdentifiers.adhocLaunchPadLinkXPath);
         await popupPage.clickSelector(popupPageElementIdentifiers.backToLaunchPadLink);
 

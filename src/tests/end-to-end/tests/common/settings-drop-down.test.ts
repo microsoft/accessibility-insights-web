@@ -6,7 +6,7 @@ import { CommonSelectors } from '../../common/element-identifiers/common-selecto
 import { Page } from '../../common/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
-describe('SettingsDropDownTest', () => {
+describe('Settings Dropdown', () => {
     let browser: Browser;
     let targetTabId: number;
 
@@ -28,7 +28,7 @@ describe('SettingsDropDownTest', () => {
         await browser.close();
     });
 
-    it('settings drop down content', async () => {
+    it('content should match snapshot', async () => {
         const popupPage = await browser.newExtensionPopupPage(targetTabId);
         const popupDropdownElement = await getDropdownPanelElement(popupPage);
 

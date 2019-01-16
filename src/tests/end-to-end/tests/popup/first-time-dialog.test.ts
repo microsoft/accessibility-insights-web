@@ -6,7 +6,7 @@ import { popupPageElementIdentifiers } from '../../common/element-identifiers/po
 import { Page } from '../../common/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
-describe('First time Dialog Tests', () => {
+describe('First time Dialog', () => {
     let browser: Browser;
     let targetPage: Page;
     let targetPageTabId: number;
@@ -43,7 +43,7 @@ describe('First time Dialog Tests', () => {
         await secondPopupPage.waitForSelectorToDisappear(popupPageElementIdentifiers.telemetryDialog);
     });
 
-    it('verify first time dialog snapshot', async () => {
+    it('content should match snapshot', async () => {
         const popupPage = await newPopupPage();
         await popupPage.waitForSelector(popupPageElementIdentifiers.telemetryDialog);
 

@@ -8,4 +8,6 @@ export const popupPageElementIdentifiers = {
     adhocPanel: '.ad-hoc-tools-panel',
     adhocLaunchPadLinkXPath: "//button[text()='Ad hoc tools']",
     backToLaunchPadLink: '#back-to-launchpad-link',
+    hamburgerMenuButton: '#feedback-collapse-menu-button',
+    hamburgerMenu: '.popup-menu',
 };
