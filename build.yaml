@@ -32,7 +32,7 @@ jobs:
 
   - task: PublishTestResults@2
     inputs:
-      testResultsFiles: $(System.DefaultWorkingDirectory/test-results/unit/junit.xml
+      testResultsFiles: $(System.DefaultWorkingDirectory)/test-results/unit/junit.xml
       testRunTitle: accessibility-insights-web
     condition: always()
     displayName: publish test results
