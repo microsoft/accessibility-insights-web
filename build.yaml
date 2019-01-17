@@ -48,21 +48,15 @@ jobs:
       # reportDirectory: $(System.DefaultWorkingDirectory)/test-results/unit/coverage/lcov-report
     displayName: publish code coverage
 
-  #Commenting out because PR build is broken with below error. Refer https://dev.azure.com/mseng/1ES/_build/results?buildId=8182658
-  #Failed to download task 'ComponentGovernanceComponentDetection'. Error No task definition found matching id f2f0881f-4b99-4a1c-80ea-f5b13fd6cec4 and version 0.2001.6. You must register the task definition before uploading the package.
-  #Failed to download task 'ComponentGovernanceComponentDetection'. Error No task definition found matching id f2f0881f-4b99-4a1c-80ea-f5b13fd6cec4 and version 0.2001.6. You must register the task definition before uploading the package.
-  #No task definition found matching id f2f0881f-4b99-4a1c-80ea-f5b13fd6cec4 and version 0.2001.6. You must register the task definition before uploading the package.
-  # only on CI builds
-  #- task: ComponentGovernanceComponentDetection@0
-  #  displayName: 'Component Detection'
-  #  condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
-  #  inputs:
-  #    verbosity: Normal
+  # CI build only
+  - task: ComponentGovernanceComponentDetection@0
+    displayName: 'Component Detection'
+    condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
+    inputs:
+      verbosity: Normal
 
-  # only on PR builds
   - task: Npm@1
     displayName: check copyright headers
-    condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
     inputs:
       command: custom
       customCommand: run copyrightheaders
