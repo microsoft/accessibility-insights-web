@@ -2,7 +2,7 @@
 # Licensed under the MIT License.
 jobs:
 
-- job: build
+- job: 'tslint_and_unit_tests'
 
   pool:
     vmImage: 'macOS-10.13'
@@ -41,26 +41,12 @@ jobs:
     inputs:
       codeCoverageTool: Cobertura
       summaryFileLocation: $(System.DefaultWorkingDirectory)/test-results/unit/coverage/cobertura-coverage.xml
-      reportDirectory: $(System.DefaultWorkingDirectory)/test-results/unit/coverage/lcov-report
       failIfCoverageEmpty: true
+      # We care most about the summary information; adding the detailed files doesn't give enough extra information
+      # to be worth the 1min it adds to the build.
+      # Consider re-enabling this once https://github.com/Microsoft/azure-pipelines-tasks/issues/4945 is resolved.
+      # reportDirectory: $(System.DefaultWorkingDirectory)/test-results/unit/coverage/lcov-report
     displayName: publish code coverage
-
-  - task: Npm@1
-    inputs:
-      command: custom
-      customCommand: run drop
-    displayName: npm run drop
-
-  - task: CopyFiles@2
-    inputs:
-      sourceFolder: drop
-      contents: '**/*'
-      cleanTargetFolder: true
-      publishLocation: 'filePath'
-      targetFolder: $(Build.ArtifactStagingDirectory)
-    displayName: copy drop
-
-  - task: PublishBuildArtifacts@1
 
   #Commenting out because PR build is broken with below error. Refer https://dev.azure.com/mseng/1ES/_build/results?buildId=8182658
   #Failed to download task 'ComponentGovernanceComponentDetection'. Error No task definition found matching id f2f0881f-4b99-4a1c-80ea-f5b13fd6cec4 and version 0.2001.6. You must register the task definition before uploading the package.
@@ -81,7 +67,7 @@ jobs:
       command: custom
       customCommand: run copyrightheaders
 
-- job: e2e
+- job: 'e2e_tests_and_publish_drop'
 
   pool:
     vmImage: 'macOS-10.13'
@@ -103,7 +89,7 @@ jobs:
       customCommand: run drop
     displayName: npm run drop
 
-  # e2e tests must run after the drop, depends on dev drop
+  # e2e tests depend on npm run drop
   - task: Npm@1
     inputs:
       command: custom
@@ -117,11 +103,25 @@ jobs:
     condition: always()
     displayName: publish e2e test results
 
-
   - task: PublishBuildArtifacts@1
     inputs:
       pathtoPublish: '$(System.DefaultWorkingDirectory)/test-results/e2e'
       artifactName: 'e2e-failure-screenshots'
     condition: always()
     continueOnError: true
-    displayName: publish e2e artifacts
+    displayName: publish e2e-failure-screenshots
+
+  - task: CopyFiles@2
+    inputs:
+      sourceFolder: drop
+      contents: '**/*'
+      cleanTargetFolder: true
+      publishLocation: 'filePath'
+      targetFolder: $(Build.ArtifactStagingDirectory)/drop
+    displayName: copy drop
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: '$(System.DefaultWorkingDirectory)/drop'
+      artifactName: 'drop'
+    displayName: publish drop
