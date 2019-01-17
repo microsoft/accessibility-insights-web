@@ -87,10 +87,12 @@ export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
      */
     protected emitChanged(): void {
         const assessmentStoreData = this.getState();
+
+        // tslint:disable-next-line:no-floating-promises - grandfathered-in pre-existing violation
         this.persistAssessmentData(assessmentStoreData);
+
         super.emitChanged();
     }
-
 
     protected addActionListeners(): void {
         this.assessmentActions.getCurrentState.addListener(this.onGetCurrentState);

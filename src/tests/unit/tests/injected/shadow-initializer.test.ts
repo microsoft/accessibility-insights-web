@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Q from 'q';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { ClientChromeAdapter, ClientBrowserAdapter } from '../../../../common/client-browser-adapter';
@@ -41,14 +40,14 @@ describe('ShadowInitializerTests', () => {
             .returns(() => cssFileUrl)
             .verifiable();
 
-        testSubject = new ShadowInitializer(chromeAdapter.object, Q, docUtils.object, fileRequestHelperMock.object);
+        testSubject = new ShadowInitializer(chromeAdapter.object, docUtils.object, fileRequestHelperMock.object);
     });
 
     afterEach(() => {
         docUtils.verifyAll();
     });
 
-    test('remove existing & create new shadow container on initialize', () => {
+    test('remove existing & create new shadow container on initialize', async () => {
         const oldContainerMock = Mock.ofInstance(HtmlElementStubBuilder.build());
 
         docUtils
@@ -62,14 +61,14 @@ describe('ShadowInitializerTests', () => {
 
         fileRequestHelperMock
             .setup(x => x.getFileContent(cssFileUrl))
-            .returns(() => Q.defer<string>().promise)
+            .returns(async() => 'new style content')
             .verifiable(Times.once());
 
-        testSubject.initialize();
+        await testSubject.initialize();
 
         expect(bodyElement.querySelectorAll('#insights-shadow-host').length).toEqual(1);
         expect(shadowRoot.querySelectorAll('div#insights-shadow-container').length).toEqual(1);
-        expect(shadowRoot.querySelectorAll('div#insights-shadow-container *').length).toEqual(0);
+        expect(shadowRoot.querySelectorAll('div#insights-shadow-container *').length).toEqual(1);
 
         docUtils.verifyAll();
         oldContainerMock.verifyAll();
@@ -77,9 +76,8 @@ describe('ShadowInitializerTests', () => {
         chromeAdapter.verifyAll();
     });
 
-    test('add style data to shadow container', async done => {
+    test('add style data to shadow container', async () => {
         const styleContent = 'style content';
-        const injectedCssContentPromise = Q.defer<string>();
 
         docUtils
             .setup(x => x.querySelectorAll('#insights-shadow-host'))
@@ -88,20 +86,16 @@ describe('ShadowInitializerTests', () => {
 
         fileRequestHelperMock
             .setup(x => x.getFileContent(cssFileUrl))
-            .returns(() => injectedCssContentPromise.promise)
+            .returns(async () => styleContent)
             .verifiable(Times.once());
 
         expect(shadowRoot.querySelectorAll('div#insights-shadow-container style').length).toEqual(0);
-        testSubject.initialize();
 
-        injectedCssContentPromise.resolve(styleContent);
+        await testSubject.initialize();
 
-        Q.all([injectedCssContentPromise.promise]).then((fileContents: string[]) => {
-            expect(shadowRoot.querySelectorAll('div#insights-shadow-container style').length).toEqual(1);
-            const styleElement = shadowRoot.querySelector('div#insights-shadow-container style');
-            expect(styleElement.innerHTML).toEqual(styleContent);
-            done();
-        });
+        expect(shadowRoot.querySelectorAll('div#insights-shadow-container style').length).toEqual(1);
+        const styleElement = shadowRoot.querySelector('div#insights-shadow-container style');
+        expect(styleElement.innerHTML).toEqual(styleContent);
 
         docUtils.verifyAll();
         fileRequestHelperMock.verifyAll();

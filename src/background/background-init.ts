@@ -43,6 +43,8 @@ const backgroundInitCleaner = new UserStoredDataCleaner(browserAdapter);
 const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil();
 
 backgroundInitCleaner.cleanUserData(deprecatedStorageDataKeys);
+
+// tslint:disable-next-line:no-floating-promises - top-level entry points are intentionally floating promises
 getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
     browserAdapter.getUserData(storageDataKeys, (userData: ILocalStorageData) => {
         const assessmentsProvider = Assessments;

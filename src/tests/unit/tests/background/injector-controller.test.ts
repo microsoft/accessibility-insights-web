@@ -23,7 +23,7 @@ describe('InjectorControllerTest', () => {
         validator = new InjectorControllerValidator();
     });
 
-    test('initialize: inject occurs', async done => {
+    test('initialize: inject occurs', async () => {
         const visualizationData = new VisualizationStoreDataBuilder().with('injectingInProgress', true).build();
 
         validator
@@ -44,13 +44,11 @@ describe('InjectorControllerTest', () => {
 
         validator.resetVerify();
         validator.setupVerifyInjectionCompletedActionCalled(tabId, 2);
-        validator.invokeInjectedPromise().then(() => {
-            validator.verifyAll();
-            done();
-        });
+        await validator.invokeInjectedPromise();
+        validator.verifyAll();
     });
 
-    test('inject occurs when inspect mode changes', async done => {
+    test('inject occurs when inspect mode changes', async () => {
         const visualizationData = new VisualizationStoreDataBuilder().build();
 
         validator
@@ -70,13 +68,11 @@ describe('InjectorControllerTest', () => {
 
         validator.resetVerify();
         validator.setupVerifyInjectionCompletedActionCalled(tabId);
-        validator.invokeInjectedPromise().then(() => {
-            validator.verifyAll();
-            done();
-        });
+        await validator.invokeInjectedPromise();
+        validator.verifyAll();
     });
 
-    test("inject doesn't occur when inspect mode changed to off", async done => {
+    test("inject doesn't occur when inspect mode changed to off", async () => {
         const visualizationData = new VisualizationStoreDataBuilder().with('injectingInProgress', false).build();
 
         validator
@@ -94,10 +90,8 @@ describe('InjectorControllerTest', () => {
         validator.verifyAll();
 
         validator.resetVerify();
-        validator.invokeInjectedPromise().then(() => {
-            validator.verifyAll();
-            done();
-        });
+        await validator.invokeInjectedPromise();
+        validator.verifyAll();
     });
 
     test('initialize: already injecting => no inject', () => {

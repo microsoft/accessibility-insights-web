@@ -23,6 +23,7 @@
     "no-duplicate-variable": true,
     "no-empty": [true, "allow-empty-functions"],
     "no-eval": true,
+    "no-floating-promises": true,
     "no-inferrable-types": false,
     "no-internal-module": true,
     "no-null-keyword": false,

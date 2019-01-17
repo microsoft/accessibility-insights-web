@@ -57,8 +57,9 @@ export class MainWindowInitializer extends WindowInitializer {
     private tabStoreProxy: StoreProxy<ITabStoreData>;
     private devToolStoreProxy: StoreProxy<DevToolState>;
 
-    public initialize() {
-        super.initialize();
+    public async initialize() {
+        const asyncInitializationSteps: Promise<void>[] = [];
+        asyncInitializationSteps.push(super.initialize());
 
         this.visualizationStoreProxy = new StoreProxy<IVisualizationStoreData>(
             StoreNames[StoreNames.VisualizationStore], this.clientChromeAdapter);
@@ -169,6 +170,8 @@ export class MainWindowInitializer extends WindowInitializer {
         );
 
         this.inspectController.listenToStore();
+
+        await Promise.all(asyncInitializationSteps);
     }
 
     @autobind

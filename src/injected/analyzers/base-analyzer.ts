@@ -26,6 +26,11 @@ export class BaseAnalyzer implements IAnalyzer<void> {
 
     public analyze(): void {
         const results = this.getResults();
+
+        // We intentionally float this promise; the current analyzer API is that analyze starts the
+        // analysis and it's allowed to continue running for arbitrarily long until teardown() is called.
+        //
+        // tslint:disable-next-line:no-floating-promises
         results.then(this.onResolve);
     }
 

@@ -41,6 +41,7 @@ export class UserConfigurationStore extends BaseStore<UserConfigurationStoreData
         this.state.isFirstTime = false;
         this.state.enableTelemetry = payload.enableTelemetry;
 
+        // tslint:disable-next-line:no-floating-promises - grandfathered-in pre-existing violation
         this.indexDbApi.setItem(IndexedDBDataKeys.userConfiguration, this.state);
         this.emitChanged();
     }
