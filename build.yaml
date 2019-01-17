@@ -2,7 +2,7 @@
 # Licensed under the MIT License.
 jobs:
 
-- job: 'unit_tests'
+- job: 'tslint_and_unit_tests'
 
   pool:
     vmImage: 'macOS-10.13'
