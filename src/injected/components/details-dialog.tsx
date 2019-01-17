@@ -200,13 +200,21 @@ export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetails
     }
 
     private renderRuleContainer(rule: DecoratedAxeNodeResult): JSX.Element {
-        const { clientBrowserAdapter } = this.props.deps;
-        const url = clientBrowserAdapter.getUrl(rule.helpUrl);
+
+        const fixUrl = (url: string) => {
+            if (url.indexOf('://') >= 0) {
+                return url;
+            } else {
+                const { clientBrowserAdapter } = this.props.deps;
+                return clientBrowserAdapter.getUrl(url);
+            }
+        }
+
         return (
             <div className="insights-dialog-rule-container" >
                 <Icon iconName="StatusErrorFull" />
                 <div className="ms-fontSize-mPlus insights-dialog-rule-link">
-                    Rule name: <NewTabLink href={url}>{rule.ruleId}</NewTabLink>
+                    Rule name: <NewTabLink href={fixUrl(rule.helpUrl)}>{rule.ruleId}</NewTabLink>
                 </div>
             </div>
         );
