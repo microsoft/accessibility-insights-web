@@ -1,12 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { React, create} from '../../common';
+import { React, create, GuidanceTitle } from '../../common';
 import { productName } from '../../strings/application';
-import { GuidanceTitle } from '../guidance-title';
 
 const name = 'Automated checks';
 export const guidance = create(({ Markup }) => <>
-    {GuidanceTitle(name)}
+    <GuidanceTitle name={name}/>
     <h1>{name}</h1>
     <p>
         The automated checks in {productName} can identify more than 40 types of critical accessibility issues in seconds.
