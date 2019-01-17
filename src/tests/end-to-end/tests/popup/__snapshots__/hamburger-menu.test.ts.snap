@@ -27,7 +27,6 @@ exports[`Hamburger menu should have content matching snapshot 1`] = `
             class="ms-ContextualMenu-linkContent linkContent-000"
           >
             <i
-              aria-hidden="true"
               class="ms-ContextualMenu-icon icon-000"
               data-icon-name="Rocket"
               role="presentation"
@@ -59,7 +58,6 @@ exports[`Hamburger menu should have content matching snapshot 1`] = `
             class="ms-ContextualMenu-linkContent linkContent-000"
           >
             <i
-              aria-hidden="true"
               class="ms-ContextualMenu-icon icon-000"
               data-icon-name="testBeakerSolid"
               role="presentation"
@@ -91,7 +89,6 @@ exports[`Hamburger menu should have content matching snapshot 1`] = `
             class="ms-ContextualMenu-linkContent linkContent-000"
           >
             <i
-              aria-hidden="true"
               class="ms-ContextualMenu-icon icon-000"
               data-icon-name="Medical"
               role="presentation"
@@ -128,7 +125,6 @@ exports[`Hamburger menu should have content matching snapshot 1`] = `
             class="ms-ContextualMenu-linkContent linkContent-000"
           >
             <i
-              aria-hidden="true"
               class="ms-ContextualMenu-icon icon-000"
               role="presentation"
             />
@@ -158,7 +154,6 @@ exports[`Hamburger menu should have content matching snapshot 1`] = `
             class="ms-ContextualMenu-linkContent linkContent-000"
           >
             <i
-              aria-hidden="true"
               class="ms-ContextualMenu-icon icon-000"
               data-icon-name="Unknown"
               role="presentation"
@@ -195,7 +190,6 @@ exports[`Hamburger menu should have content matching snapshot 1`] = `
             class="ms-ContextualMenu-linkContent linkContent-000"
           >
             <i
-              aria-hidden="true"
               class="ms-ContextualMenu-icon icon-000"
               data-icon-name="Mail"
               role="presentation"
