@@ -20,7 +20,11 @@ export interface ITestStatusChoiceGroupProps {
     onUndoClicked: (test, step, selector?) => void;
 }
 
-export class TestStatusChoiceGroup extends React.Component<ITestStatusChoiceGroupProps, { selectedkey: string }> {
+interface ChoiceGroupState {
+    selectedkey: string;
+}
+
+export class TestStatusChoiceGroup extends React.Component<ITestStatusChoiceGroupProps, ChoiceGroupState> {
     protected _choiceGroup: IChoiceGroup;
 
     constructor(props) {
