@@ -15,18 +15,18 @@ export class StatusIcon extends React.Component<IStatusIconProps> {
     public render(): JSX.Element {
         switch (this.props.status) {
             case ManualTestStatus.PASS:
-                return this.renderIcon('completedSolid', css('positive-outcome-icon', this.props.className));
+                return this.renderIcon('completedSolid', 'passed requirement', css('positive-outcome-icon', this.props.className));
             case ManualTestStatus.FAIL:
-                return this.renderIcon('StatusErrorFull', css('negative-outcome-icon', this.props.className));
+                return this.renderIcon('StatusErrorFull', 'failed requirement', css('negative-outcome-icon', this.props.className));
             case ManualTestStatus.UNKNOWN:
             default:
-                return this.renderIcon('circleRing');
+                return this.renderIcon('circleRing', 'incompleted requirement');
         }
     }
 
-    private renderIcon(iconName: string, className?: String) {
+    private renderIcon(iconName: string, ariaLabel: string, className?: String): JSX.Element {
         return (
-            <Icon iconName={iconName} className={css('status-icon', className)} />
+            <Icon iconName={iconName} className={css('status-icon', className)} ariaLabel={ariaLabel} />
         );
     }
 }
