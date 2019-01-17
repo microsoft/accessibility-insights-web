@@ -10,7 +10,10 @@ const commonPlugins = [
         maxChunks: 1, // Must be greater than or equal to one
         minChunkSize: 1000000
     }),
+    // This runs typechecking and tslint against all files that tsconfig.json specifies,
+    // even those which are not dependencies of any entry points, eg, tests
     new ForkTsCheckerWebpackPlugin({
+        tsconfig: './tsconfig.json',
         tslint: './tslint.build-enforced.json'
     })
 ];
@@ -35,6 +38,7 @@ const commonConfig = {
             use: [{
                 loader: 'ts-loader',
                 options: {
+                    // This disables typechecking during the webpack pipeline; we use ForkTsCheckerWebpackPlugin instead
                     transpileOnly: true,
                     experimentalWatchApi: true
                 }
