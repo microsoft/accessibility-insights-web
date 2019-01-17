@@ -17,7 +17,7 @@ import { CreateIssueDetailsTextData } from '../../common/types/create-issue-deta
 import { CopyIssueDetailsButton, CopyIssueDetailsButtonDeps } from '../../common/components/copy-issue-details-button';
 import { TargetPageActionMessageCreator } from '../target-page-action-message-creator';
 import { FlaggedComponent } from '../../common/components/flagged-component';
-import { ClientBrowserAdapter, ClientChromeAdapter2 } from '../../common/client-browser-adapter';
+import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 
 export enum CheckType {
     All,
