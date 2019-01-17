@@ -32,9 +32,14 @@ You can install the extension from one of the following links
   npm install
   ```
 ### 3. Build and run unit tests
-- Build and run the unit tests
+- Run the unit tests
   ``` bash
   npm test
+  ```
+- Build and run the end-to-end tests
+  ``` bash
+  npm run build
+  npm run test:e2e
   ```
   There are more details in the Testing section below.
 ### 4. Load the extension locally
@@ -58,15 +63,16 @@ You can install the extension from one of the following links
   [Developer Workflow](./docs/workflow.md)
 
 ## Testing
-We use [jest](https://github.com/facebook/jest).
+We use [jest](https://github.com/facebook/jest) as our test framework and [puppeteer](https://github.com/GoogleChrome/puppeteer) for browser automation in our end-to-end UI tests.
+
 ### Using VS Code
 To run a task from the command palette, press **Ctrl + Shift + P**, select `Tasks: Run Task`, and select the task you want to run.
 
 To run all tests described in `jest.config.js`, run the `npm: test` task.
 
-To run the currently opened test file, run the `Test current file` task.
+To run the currently opened (non-end-to-end) test file, run the `Test current file` task.
 
-To debug inside VS Code, set a breakpoint and click the debug button or press **F5**.
+To debug inside VS Code, set a breakpoint and click the debug button or press **F5**. Note that there are 2 debug targets (one for unit tests and one for end-to-end tests).
 
 To debug using an external tool, run the `Debug current test file outside VS Code` task. In Chrome, for example, navigate to `chrome://inspect` and click `Open dedicated DevTools for Node`.
 
@@ -74,7 +80,9 @@ You can start an interactive watch session that automatically runs tests affecte
 
 ### Using the terminal
 
-To run all tests described in `jest.config.js`, run `npm test`.
+To run all tests described in `jest.config.js` (everything except the end-to-end tests), run `npm test`.
+
+To run all tests described in `jest.e2e.config.js`, run `npm run test:e2e`
 
 To run a single or small number of test files, run `npm test -- {FILE_NAME_REGEX}`
 

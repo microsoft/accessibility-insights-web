@@ -2,7 +2,7 @@
 # Licensed under the MIT License.
 jobs:
 
-- job: 'tslint_and_unit_tests'
+- job: 'unit_tests'
 
   pool:
     vmImage: 'macOS-10.13'
@@ -17,12 +17,6 @@ jobs:
     inputs:
       command: install
     displayName: npm install
-
-  - task: Npm@1
-    inputs:
-      command: custom
-      customCommand: run tslint
-    displayName: npm run tslint
 
   - task: Npm@1
     inputs:
@@ -80,10 +74,10 @@ jobs:
   - task: Npm@1
     inputs:
       command: custom
-      customCommand: run drop
-    displayName: npm run drop
+      customCommand: run build:all
+    displayName: npm run build:all
 
-  # e2e tests depend on npm run drop
+  # e2e tests depend on npm run build
   - task: Npm@1
     inputs:
       command: custom
@@ -116,6 +110,6 @@ jobs:
 
   - task: PublishBuildArtifacts@1
     inputs:
-      pathtoPublish: '$(System.DefaultWorkingDirectory)/drop'
+      pathtoPublish: '$(System.ArtifactStagingDirectory)/drop'
       artifactName: 'drop'
     displayName: publish drop
