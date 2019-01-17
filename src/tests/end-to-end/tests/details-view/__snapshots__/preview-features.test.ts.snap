@@ -31,7 +31,6 @@ exports[`Preview Features Panel should match content in snapshot 1`] = `
               class="ms-Button-flexContainer flexContainer-000"
             >
               <i
-                aria-hidden="true"
                 class="ms-Button-icon icon-000"
                 data-icon-name="Cancel"
                 role="presentation"

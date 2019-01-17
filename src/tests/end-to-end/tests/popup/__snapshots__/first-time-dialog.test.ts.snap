@@ -13,6 +13,7 @@ exports[`First time Dialog content should match snapshot 1`] = `
     >
       <div
         class="ms-Modal-scrollableContent scrollableContent-000"
+        data-is-scrollable="true"
       >
         <div
           class="content-000"
@@ -51,13 +52,15 @@ exports[`First time Dialog content should match snapshot 1`] = `
               <div
                 class="telemetry-checkbox-section"
               >
-                <button
-                  aria-checked="true"
+                <div
                   class="ms-Checkbox is-checked is-enabled telemetry-agree-checkbox root-000"
-                  id="checkbox-000"
-                  role="checkbox"
-                  type="button"
                 >
+                  <input
+                    checked=""
+                    class="input-000"
+                    id="checkbox-000"
+                    type="checkbox"
+                  />
                   <label
                     class="ms-Checkbox-label label-000"
                     for="checkbox-5"
@@ -66,7 +69,6 @@ exports[`First time Dialog content should match snapshot 1`] = `
                       class="ms-Checkbox-checkbox checkbox-000"
                     >
                       <i
-                        aria-hidden="true"
                         class="ms-Checkbox-checkmark checkmark-000"
                         data-icon-name="CheckMark"
                         role="presentation"
@@ -80,7 +82,7 @@ exports[`First time Dialog content should match snapshot 1`] = `
                       I agree to help
                     </span>
                   </label>
-                </button>
+                </div>
                 You can change this choice anytime in settings. Read our 
                 <a
                   class="ms-Link insights-link root-000"

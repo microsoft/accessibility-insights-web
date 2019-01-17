@@ -52,7 +52,6 @@ exports[`Launch Pad content should match snapshot 1`] = `
               class="ms-Button-flexContainer flexContainer-000"
             >
               <i
-                aria-hidden="true"
                 class="ms-Button-icon icon-000"
                 data-icon-name="GlobalNavButton"
                 role="presentation"
@@ -107,7 +106,6 @@ exports[`Launch Pad content should match snapshot 1`] = `
                   class="ms-Grid-col ms-sm3 popup-start-dialog-icon-circle"
                 >
                   <i
-                    aria-hidden="true"
                     class="popup-start-dialog-icon root-000"
                     data-icon-name="Rocket"
                     role="presentation"
@@ -153,7 +151,6 @@ exports[`Launch Pad content should match snapshot 1`] = `
                   class="ms-Grid-col ms-sm3 popup-start-dialog-icon-circle"
                 >
                   <i
-                    aria-hidden="true"
                     class="popup-start-dialog-icon root-000"
                     data-icon-name="testBeaker"
                     role="presentation"
@@ -199,7 +196,6 @@ exports[`Launch Pad content should match snapshot 1`] = `
                   class="ms-Grid-col ms-sm3 popup-start-dialog-icon-circle"
                 >
                   <i
-                    aria-hidden="true"
                     class="popup-start-dialog-icon root-000"
                     data-icon-name="Medical"
                     role="presentation"
