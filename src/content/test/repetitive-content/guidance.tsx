@@ -1,8 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { React, create } from '../../common';
+import { GuidanceTitle } from '../guidance-title';
+
+const name = 'Repetitive Content';
 export const guidance = create(({ Markup, Link }) => <>
-    <h1>Repetitive Content</h1>
+    {GuidanceTitle(name)}
+    <h1>{name}</h1>
     <h2>Why it matters</h2>
     <p>
         When interacting with a website or web app, keyboard users need a way to skip repetitive content and navigate directly to the page's primary content.

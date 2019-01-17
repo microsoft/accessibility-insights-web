@@ -1,9 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { React, create } from '../../common';
+import { GuidanceTitle } from '../guidance-title';
+
+const name = 'Page Navigation';
 export const guidance = create(({ Markup, Link }) => <>
-    <h1>Page Navigation</h1>
-    <h2>Why it matters</h2>
+    {GuidanceTitle(name)}
+    <h1>{name}</h1>
     <p>
         Providing multiple methods for locating and navigating to pages in a website ensures everyone has a method that works for them.
         Good page titles help all users quickly judge whether a web page contains relevant content. Good frame and iframe names are similarly helpful to people who use assistive technologies.

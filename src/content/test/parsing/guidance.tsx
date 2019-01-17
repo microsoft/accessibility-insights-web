@@ -1,8 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { React, create } from '../../common';
+import { GuidanceTitle } from '../guidance-title';
+
+const name = 'Parsing';
 export const guidance = create(({ Markup, Link }) => <>
-    <h1>Parsing</h1>
+    {GuidanceTitle(name)}
+    <h1>{name}</h1>
     <h2>Why it matters</h2>
     <p>
         Certain parsing errors can prevent assistive technologies from accurately interpreting web content.

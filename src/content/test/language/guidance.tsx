@@ -1,9 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { React, create } from '../../common';
-export const guidance = create(({ Markup, Link }) => <>
+import { GuidanceTitle } from '../guidance-title';
 
-    <h1>Language</h1>
+const name = 'Language';
+export const guidance = create(({ Markup, Link }) => <>
+    {GuidanceTitle(name)}
+    <h1>{name}</h1>
     <h2>Why it matters</h2>
     <p>
         When the correct language is programmatically identified, browsers and assistive technologies can render the text more accurately; screen readers can use the correct pronunciation; visual browsers can display the correct characters;

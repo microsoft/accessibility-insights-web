@@ -1,8 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { React, create } from '../../common';
+import { GuidanceTitle } from '../guidance-title';
+
+const name = 'Errors';
 export const guidance = create(({ Markup, Link }) => <>
-    <h1>Errors</h1>
+    {GuidanceTitle(name)}
+    <h1>{name}</h1>
     <p>
         If an input error is automatically detected, the item in error must be identified, and the error described, in text.
 
