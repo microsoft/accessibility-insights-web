@@ -36,6 +36,11 @@ export class TabStopsAnalyzer extends BaseAnalyzer implements IAnalyzer<any> {
     }
 
     public analyze(): void {
+        // We intentionally float this promise; the current analyzer API is that analyze starts the
+        // analysis and it's allowed to continue running for arbitrarily long until teardown() is called.
+        // We use a Promise for this internally only so we can reuse Q's "onprogress" behavior.
+        //
+        // tslint:disable-next-line:no-floating-promises
         this.getResults()
             .progress(this.onProgress);
     }
