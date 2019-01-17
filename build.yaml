@@ -48,9 +48,9 @@ jobs:
       # reportDirectory: $(System.DefaultWorkingDirectory)/test-results/unit/coverage/lcov-report
     displayName: publish code coverage
 
+  # CI build only
   - task: ComponentGovernanceComponentDetection@0
     displayName: 'Component Detection'
-    # The CI-builds-only condition is here at the request of the Component Governance team (scaling reasons on their end)
     condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
     inputs:
       verbosity: Normal
