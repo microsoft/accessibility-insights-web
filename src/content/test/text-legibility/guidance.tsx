@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { React, create } from '../../common';
+import { React, create, GuidanceTitle } from '../../common';
+
 export const guidance = create(({ Markup, Link }) => <>
-    <h1>Text legibility</h1>
+    <GuidanceTitle name={'Text legibility'}/>
     <h2>Why it matters</h2>
     <p>
         Most people find it easier to read text when it is sufficiently large and has a sufficiently high contrast against its background.
