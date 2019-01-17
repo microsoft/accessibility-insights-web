@@ -72,16 +72,18 @@
     "webpack-cli": "^3.1.2"
   },
   "dependencies": {
+    "@types/react-helmet": "^5.0.8",
     "applicationinsights-js": "^1.0.20",
     "axe-core": "3.1.1",
     "classnames": "^2.2.6",
     "jquery": "^3.3.1",
     "lodash": "^4.17.11",
-    "office-ui-fabric-react": "6.121.0",
+    "office-ui-fabric-react": "6.127.0",
     "q": "1.0.1",
     "react": "^16.7.0",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.7.0",
+    "react-helmet": "^5.2.0",
     "react-router-dom": "^4.3.1",
     "requirejs": "2.3.5",
     "uuid": "^3.3.2"

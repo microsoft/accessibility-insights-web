@@ -33,7 +33,6 @@ exports[`Settings Dropdown content should match snapshot 1`] = `
               class="ms-ContextualMenu-linkContent linkContent-000"
             >
               <i
-                aria-hidden="true"
                 class="ms-ContextualMenu-icon icon-000"
                 data-icon-name="gear"
                 role="presentation"
@@ -65,7 +64,6 @@ exports[`Settings Dropdown content should match snapshot 1`] = `
               class="ms-ContextualMenu-linkContent linkContent-000"
             >
               <i
-                aria-hidden="true"
                 class="ms-ContextualMenu-icon icon-000"
                 data-icon-name="giftboxOpen"
                 role="presentation"

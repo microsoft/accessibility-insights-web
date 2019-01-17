@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { React, create} from '../../common';
+import { React, create, GuidanceTitle } from '../../common';
 
 export const guidance = create(({ Markup, Link }) => <>
-
-   <h1>Focus</h1>
+    <GuidanceTitle name={'Focus'}/>
 
     <h2>Why it matters </h2>
     <p>

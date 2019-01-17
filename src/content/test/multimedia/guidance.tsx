@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { React, create } from '../../common';
+import { React, create, GuidanceTitle } from '../../common';
+
 export const guidance = create(({ Markup, Link }) => <>
-    <h1>Multimedia</h1>
+    <GuidanceTitle name={'Multimedia'}/>
     <h2>Why it matters</h2>
     <p>
         When pre-recorded multimedia content (synchronized video and audio) is provided, equivalent alternatives also must be provided for people who either can't hear the audio or can't see the video.

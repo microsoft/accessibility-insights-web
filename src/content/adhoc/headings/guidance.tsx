@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { create } from '../../common';
+import { create, GuidanceTitle } from '../../common';
 import * as React from 'react';
 import { toolName } from '../../strings/application';
 
 export const guidance = create(({ Markup, Link }) => <React.Fragment>
-    <h1>Headings</h1>
+    <GuidanceTitle name={'Headings'}/>
 
     <h2>Why headings matter</h2>
 

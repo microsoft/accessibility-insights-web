@@ -17,7 +17,8 @@ describe('content', () => {
         const ThisPage = contentPages.getPage(path);
         expect(ThisPage.displayName).toEqual('ContentPageComponent');
         const result = shallow(<ThisPage deps={deps} />);
-        expect(result.find('h1').exists()).toBeTruthy();
+        const headerExists = result.find('h1').exists() || result.find('GuidanceTitle').exists();
+        expect(headerExists).toBeTruthy();
 
     }));
 

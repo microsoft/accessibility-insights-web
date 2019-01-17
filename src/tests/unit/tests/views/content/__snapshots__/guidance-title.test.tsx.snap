@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`guidance title has correct structure 1`] = `
+<React.Fragment>
+  <HelmetWrapper
+    defer={true}
+    encodeSpecialCharacters={true}
+  >
+    <title>
+      Guidance for 
+      test
+       - 
+      Accessibility Insights for Web
+    </title>
+  </HelmetWrapper>
+  <h1>
+    test
+  </h1>
+</React.Fragment>
+`;
