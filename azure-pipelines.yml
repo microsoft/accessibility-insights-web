@@ -1,0 +1,19 @@
+
+
+pool:
+  vmImage: 'macOS-10.13'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '8.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install
+    npm run drop
+  displayName: 'npm install and build'
+
+- script: |
+    npm run test:e2e
+  displayName: 'npm run test:e2e'
