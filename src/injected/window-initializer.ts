@@ -61,7 +61,15 @@ export class WindowInitializer {
         this.frameCommunicator = new FrameCommunicator(windowMessageHandler, htmlElementUtils, this.windowUtils, Q);
         this.tabStopsListener = new TabStopsListener(this.frameCommunicator, this.windowUtils, htmlElementUtils, this.scannerUtils);
         this.instanceVisibilityChecker = new InstanceVisibilityChecker(this.clientChromeAdapter.sendMessageToFrames, this.windowUtils, htmlElementUtils, this.visualizationConfigurationFactory);
-        const drawerProvider = new DrawerProvider(this.windowUtils, new ShadowUtils(new HTMLElementUtils()), new DrawerUtils(document), this.clientUtils, document, this.frameCommunicator);
+        const drawerProvider = new DrawerProvider(
+            this.windowUtils,
+            new ShadowUtils(new HTMLElementUtils()),
+            new DrawerUtils(document),
+            this.clientUtils,
+            document,
+            this.frameCommunicator,
+            this.clientChromeAdapter,
+        );
         this.drawingController = new DrawingController(this.frameCommunicator, this.instanceVisibilityChecker, new HtmlElementAxeResultsHelper(htmlElementUtils), htmlElementUtils, this.visualizationConfigurationFactory, drawerProvider, Assessments);
         this.scrollingController = new ScrollingController(this.frameCommunicator, htmlElementUtils);
         this.frameUrlFinder = new FrameUrlFinder(this.frameCommunicator, this.windowUtils, htmlElementUtils);

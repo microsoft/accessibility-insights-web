@@ -19,6 +19,7 @@ import { MainWindowContext } from './main-window-context';
 import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from './scanner-utils';
 import { ShadowUtils } from './shadow-utils';
 import { getPlatform } from '../common/platform';
+import { ClientBrowserAdapter } from '../common/client-browser-adapter';
 
 export interface DetailsDialogWindowMessage {
     data: IHtmlElementAxeResults;
@@ -39,6 +40,7 @@ export class DialogRenderer {
         frameCommunicator: FrameCommunicator,
         windowUtils: WindowUtils,
         shadowUtils: ShadowUtils,
+        private readonly clientBrowserAdapter: ClientBrowserAdapter,
     ) {
         this.dom = dom;
         this.renderer = renderer;
@@ -78,6 +80,7 @@ export class DialogRenderer {
                 issueDetailsTextGenerator: new IssueDetailsTextGenerator(new NavigatorUtils(window.navigator).getBrowserSpec()),
                 windowUtils: this.windowUtils,
                 targetPageActionMessageCreator: mainWindowContext.getTargetPageActionMessageCreator(),
+                clientBrowserAdapter: this.clientBrowserAdapter,
             };
 
             this.renderer(

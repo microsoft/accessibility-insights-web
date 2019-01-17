@@ -21,7 +21,21 @@ describe('DetailsDialogTest', () => {
         testRender(true, true);
     });
 
-    function testRender(isDevToolOpen: boolean, shadowDialog: boolean): void {
+    test('render: with relative help url', () => {
+        testRender(
+            false,
+            false,
+            'help-relative',
+            'http://extension/help-relative',
+        );
+    });
+
+    function testRender(
+        isDevToolOpen: boolean,
+        shadowDialog: boolean,
+        helpUrl = 'http://extension/help1',
+        expectedHelpUrl = 'http://extension/help1',
+    ): void {
         const fingerprint: string = '12345678-9ABC-1234-1234-123456789ABC';
         const ruleId: string = 'ruleId';
         const help: string = 'help';
@@ -38,7 +52,7 @@ describe('DetailsDialogTest', () => {
             fingerprint: fingerprint,
             id: 'id1',
             guidanceLinks: [],
-            helpUrl: 'help1',
+            helpUrl,
             snippet: 'html',
         };
         const expectedFailedRules: IDictionaryStringTo<DecoratedAxeNodeResult> = {};
@@ -57,6 +71,9 @@ describe('DetailsDialogTest', () => {
             issueDetailsTextGenerator: null,
             targetPageActionMessageCreator: {
                 copyIssueDetailsClicked: () => { },
+            } as any,
+            clientBrowserAdapter: {
+                getUrl: url => expectedHelpUrl,
             } as any,
         };
 

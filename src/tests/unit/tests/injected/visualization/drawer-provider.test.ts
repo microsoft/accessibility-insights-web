@@ -12,6 +12,7 @@ import { DrawerProvider } from '../../../../../injected/visualization/drawer-pro
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
 import { NullDrawer } from '../../../../../injected/visualization/null-drawer';
 import { SVGDrawerV2 } from '../../../../../injected/visualization/svg-drawer-v2';
+import { ClientBrowserAdapter } from '../../../../../common/client-browser-adapter';
 
 describe('DrawerProviderTests', () => {
     let testObject: DrawerProvider;
@@ -21,6 +22,7 @@ describe('DrawerProviderTests', () => {
     let clientUtils: IMock<ClientUtils>;
     let domStub: Document;
     let frameCommunicator: IMock<FrameCommunicator>;
+    const clientBrowserAdapter = Mock.ofType<ClientBrowserAdapter>();
 
     beforeEach(() => {
         windowUtils = Mock.ofType(WindowUtils);
@@ -36,6 +38,7 @@ describe('DrawerProviderTests', () => {
             clientUtils.object,
             domStub,
             frameCommunicator.object,
+            clientBrowserAdapter.object,
         );
     });
 

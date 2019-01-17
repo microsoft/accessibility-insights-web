@@ -17,6 +17,7 @@ import { CreateIssueDetailsTextData } from '../../common/types/create-issue-deta
 import { CopyIssueDetailsButton, CopyIssueDetailsButtonDeps } from '../../common/components/copy-issue-details-button';
 import { TargetPageActionMessageCreator } from '../target-page-action-message-creator';
 import { FlaggedComponent } from '../../common/components/flagged-component';
+import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 
 export enum CheckType {
     All,
@@ -26,6 +27,7 @@ export enum CheckType {
 
 export type DetailsDialogDeps = CopyIssueDetailsButtonDeps & {
     targetPageActionMessageCreator: TargetPageActionMessageCreator;
+    clientBrowserAdapter: ClientBrowserAdapter
 };
 
 export interface IDetailsDialogProps {
@@ -198,11 +200,21 @@ export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetails
     }
 
     private renderRuleContainer(rule: DecoratedAxeNodeResult): JSX.Element {
+
+        const fixUrl = (url: string) => {
+            if (url.indexOf('://') >= 0) {
+                return url;
+            } else {
+                const { clientBrowserAdapter } = this.props.deps;
+                return clientBrowserAdapter.getUrl(url);
+            }
+        };
+
         return (
             <div className="insights-dialog-rule-container" >
                 <Icon iconName="StatusErrorFull" />
                 <div className="ms-fontSize-mPlus insights-dialog-rule-link">
-                    Rule name: <NewTabLink href={rule.helpUrl}>{rule.ruleId}</NewTabLink>
+                    Rule name: <NewTabLink href={fixUrl(rule.helpUrl)}>{rule.ruleId}</NewTabLink>
                 </div>
             </div>
         );

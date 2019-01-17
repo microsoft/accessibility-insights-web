@@ -33,7 +33,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = false 
       >
         Rule name: 
         <NewTabLink
-          href="help1"
+          href="http://extension/help1"
         >
           ruleId
         </NewTabLink>
@@ -70,6 +70,9 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = false 
           <CopyIssueDetailsButton
             deps={
               Object {
+                "clientBrowserAdapter": Object {
+                  "getUrl": [Function],
+                },
                 "issueDetailsTextGenerator": null,
                 "targetPageActionMessageCreator": Object {
                   "copyIssueDetailsClicked": [Function],
@@ -88,7 +91,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = false 
                   "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
                   "guidanceLinks": Array [],
                   "help": "help",
-                  "helpUrl": "help1",
+                  "helpUrl": "http://extension/help1",
                   "html": "html",
                   "id": "id1",
                   "none": Array [],
@@ -230,7 +233,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 1
         >
           Rule name: 
           <NewTabLink
-            href="help1"
+            href="http://extension/help1"
           >
             ruleId
           </NewTabLink>
@@ -267,6 +270,9 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 1
             <CopyIssueDetailsButton
               deps={
                 Object {
+                  "clientBrowserAdapter": Object {
+                    "getUrl": [Function],
+                  },
                   "issueDetailsTextGenerator": null,
                   "targetPageActionMessageCreator": Object {
                     "copyIssueDetailsClicked": [Function],
@@ -285,7 +291,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 1
                     "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
                     "guidanceLinks": Array [],
                     "help": "help",
-                    "helpUrl": "help1",
+                    "helpUrl": "http://extension/help1",
                     "html": "html",
                     "id": "id1",
                     "none": Array [],
@@ -410,7 +416,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 2
       >
         Rule name: 
         <NewTabLink
-          href="help1"
+          href="http://extension/help1"
         >
           ruleId
         </NewTabLink>
@@ -447,6 +453,9 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 2
           <CopyIssueDetailsButton
             deps={
               Object {
+                "clientBrowserAdapter": Object {
+                  "getUrl": [Function],
+                },
                 "issueDetailsTextGenerator": null,
                 "targetPageActionMessageCreator": Object {
                   "copyIssueDetailsClicked": [Function],
@@ -465,7 +474,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 2
                   "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
                   "guidanceLinks": Array [],
                   "help": "help",
-                  "helpUrl": "help1",
+                  "helpUrl": "http://extension/help1",
                   "html": "html",
                   "id": "id1",
                   "none": Array [],
@@ -602,7 +611,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = true, shadowDialog = true 1`
         >
           Rule name: 
           <NewTabLink
-            href="help1"
+            href="http://extension/help1"
           >
             ruleId
           </NewTabLink>
@@ -639,6 +648,9 @@ exports[`DetailsDialogTest render: isDevToolsOpen = true, shadowDialog = true 1`
             <CopyIssueDetailsButton
               deps={
                 Object {
+                  "clientBrowserAdapter": Object {
+                    "getUrl": [Function],
+                  },
                   "issueDetailsTextGenerator": null,
                   "targetPageActionMessageCreator": Object {
                     "copyIssueDetailsClicked": [Function],
@@ -657,7 +669,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = true, shadowDialog = true 1`
                     "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
                     "guidanceLinks": Array [],
                     "help": "help",
-                    "helpUrl": "help1",
+                    "helpUrl": "http://extension/help1",
                     "html": "html",
                     "id": "id1",
                     "none": Array [],
@@ -742,4 +754,186 @@ exports[`DetailsDialogTest render: isDevToolsOpen = true, shadowDialog = true 1`
     </div>
   </div>
 </div>
+`;
+
+exports[`DetailsDialogTest render: with relative help url 1`] = `
+<StyledWithResponsiveMode
+  dialogContentProps={
+    Object {
+      "type": 0,
+    }
+  }
+  hidden={false}
+  modalProps={
+    Object {
+      "containerClassName": "insights-dialog-main-container",
+      "isBlocking": false,
+      "layerProps": Object {
+        "className": "insights-dialog-main-override",
+        "onLayerDidMount": Object {},
+      },
+    }
+  }
+  onDismiss={Object {}}
+  title="help"
+>
+  <div>
+    <div
+      className="insights-dialog-rule-container"
+    >
+      <StyledIconBase
+        iconName="StatusErrorFull"
+      />
+      <div
+        className="ms-fontSize-mPlus insights-dialog-rule-link"
+      >
+        Rule name: 
+        <NewTabLink
+          href="http://extension/help-relative"
+        >
+          ruleId
+        </NewTabLink>
+      </div>
+    </div>
+    <div
+      className="insights-dialog-target-container"
+    >
+      <div
+        className="ms-fontWeight-semibold"
+      >
+        Path:
+      </div>
+      <div
+        className="insights-dialog-instance-selector"
+      >
+        ruleId
+      </div>
+      <div
+        className="insights-dialog-target-button-container"
+      >
+        <CustomizedDefaultButton
+          className="insights-dialog-button-inspect"
+          disabled={true}
+          iconProps={
+            Object {
+              "iconName": "FileHTML",
+            }
+          }
+          onClick={[Function]}
+          text="Inspect HTML"
+        />
+        <React.Fragment>
+          <CopyIssueDetailsButton
+            deps={
+              Object {
+                "clientBrowserAdapter": Object {
+                  "getUrl": [Function],
+                },
+                "issueDetailsTextGenerator": null,
+                "targetPageActionMessageCreator": Object {
+                  "copyIssueDetailsClicked": [Function],
+                },
+                "windowUtils": null,
+              }
+            }
+            issueDetailsData={
+              Object {
+                "pageTitle": "",
+                "pageUrl": "http://localhost/",
+                "ruleResult": Object {
+                  "all": Array [],
+                  "any": Array [],
+                  "failureSummary": "failureSummary",
+                  "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                  "guidanceLinks": Array [],
+                  "help": "help",
+                  "helpUrl": "help-relative",
+                  "html": "html",
+                  "id": "id1",
+                  "none": Array [],
+                  "ruleId": "ruleId",
+                  "selector": "selector",
+                  "snippet": "html",
+                  "status": false,
+                },
+              }
+            }
+            onClick={[Function]}
+          />
+          <FlaggedComponent
+            enableJSXElement={
+              <CustomizedDefaultButton
+                className="insights-dialog-button-create-bug"
+                iconProps={
+                  Object {
+                    "iconName": "add",
+                  }
+                }
+                text="New bug"
+              />
+            }
+            featureFlag="showBugFiling"
+            featureFlagStoreData={
+              Object {
+                "shadowDialog": false,
+              }
+            }
+          />
+        </React.Fragment>
+        <div
+          className="insights-dialog-inspect-disabled"
+        >
+          To enable the Inspect HTML button, open the Chrome dev tools (shortcut).
+        </div>
+      </div>
+    </div>
+    <div
+      className="insights-dialog-fix-instruction-container"
+    >
+      <FixInstructionPanel
+        checkType={0}
+        checks={Array []}
+      />
+      <FixInstructionPanel
+        checkType={1}
+        checks={Array []}
+      />
+    </div>
+    <div
+      className="ms-Grid"
+    >
+      <div
+        className="ms-Grid-row"
+      >
+        <div
+          className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left"
+        >
+          <CustomizedPrimaryButton
+            data-automation-id="back"
+            disabled={true}
+            onClick={Object {}}
+            text="< Back"
+          />
+        </div>
+        <div
+          className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 insights-dialog-footer"
+        >
+          <div>
+            Failure 1 of 1 for this target
+          </div>
+        </div>
+        <div
+          className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-right"
+        >
+          <CustomizedPrimaryButton
+            data-automation-id="next"
+            disabled={true}
+            onClick={Object {}}
+            text="Next >"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</StyledWithResponsiveMode>
 `;
