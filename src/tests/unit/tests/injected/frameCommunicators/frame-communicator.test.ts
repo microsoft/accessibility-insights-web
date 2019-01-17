@@ -11,6 +11,10 @@ import { NodeListBuilder } from '../../../common/node-list-builder';
 import { IsSameObject } from '../../../common/typemoq-helper';
 import { QStub } from '../../../stubs/q-stub';
 
+// These tests were written before we started enforcing no-floating-promises, and we've grandfathered in
+// their warnings because they pervasively use a Q-mocking strategy that consistently trips the check.
+// tslint:disable:no-floating-promises
+
 export interface IFrameInfo {
     frameElement: HTMLIFrameElement;
     window: Window;
