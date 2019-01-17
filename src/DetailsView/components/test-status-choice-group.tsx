@@ -20,8 +20,13 @@ export interface ITestStatusChoiceGroupProps {
     onUndoClicked: (test, step, selector?) => void;
 }
 
-export class TestStatusChoiceGroup extends React.Component<ITestStatusChoiceGroupProps> {
+export class TestStatusChoiceGroup extends React.Component<ITestStatusChoiceGroupProps, { selectedkey: string }> {
     protected _choiceGroup: IChoiceGroup;
+
+    constructor(props) {
+        super(props);
+        this.state = { selectedkey: this.props.status === ManualTestStatus.UNKNOWN ? undefined : ManualTestStatus[this.props.status] };
+    }
 
     public render(): JSX.Element {
         return (
@@ -31,7 +36,7 @@ export class TestStatusChoiceGroup extends React.Component<ITestStatusChoiceGrou
                         className={ManualTestStatus[this.props.status]}
                         onChange={this.onChange}
                         componentRef={this.compomentRef}
-                        selectedKey={this.props.status === ManualTestStatus.UNKNOWN ? undefined : ManualTestStatus[this.props.status]}
+                        selectedKey={this.state.selectedkey}
                         options={[
                             { key: ManualTestStatus[ManualTestStatus.PASS], text: 'Pass', onRenderLabel: this.onRenderLabel },
                             { key: ManualTestStatus[ManualTestStatus.FAIL], text: 'Fail', onRenderLabel: this.onRenderLabel },
@@ -77,11 +82,13 @@ export class TestStatusChoiceGroup extends React.Component<ITestStatusChoiceGrou
 
     @autobind
     protected onChange(ev: React.FocusEvent<HTMLElement>, option: IChoiceGroupOption): void {
+        this.setState({ selectedkey: option.key });
         this.props.onGroupChoiceChange(ManualTestStatus[option.key], this.props.test, this.props.step, this.props.selector);
     }
 
     @autobind
     protected onUndoClicked(): void {
+        this.setState({ selectedkey: undefined });
         this._choiceGroup.focus();
         this.props.onUndoClicked(this.props.test, this.props.step, this.props.selector);
     }

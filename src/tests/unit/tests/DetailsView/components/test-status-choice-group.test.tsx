@@ -19,12 +19,22 @@ describe('TestStatusChoiceGroup', () => {
     ];
 
     test('constructor', () => {
-        expect(new TestStatusChoiceGroup({} as ITestStatusChoiceGroupProps)).toBeDefined();
+        const props: ITestStatusChoiceGroupProps = {
+            test: 1,
+            step: 'step',
+            selector: 'selector',
+            status: ManualTestStatus.PASS,
+            originalStatus: null,
+            onGroupChoiceChange: null,
+            onUndoClicked: null,
+        };
+        const component = new TestStatusChoiceGroup(props);
+        expect(component.state).toMatchObject({selectedkey: 'PASS'});
     });
 
     test('render', () => {
-        const onGroupChoiceChangeMock = Mock.ofInstance((status, test, step, selector) => {});
-        const onUndoMock = Mock.ofInstance((test, step, selector) => {});
+        const onGroupChoiceChangeMock = Mock.ofInstance((status, test, step, selector) => { });
+        const onUndoMock = Mock.ofInstance((test, step, selector) => { });
         const props: ITestStatusChoiceGroupProps = {
             test: 1,
             step: 'step',
@@ -38,27 +48,8 @@ describe('TestStatusChoiceGroup', () => {
             .setup(o => o(props.status, props.test, props.step, props.selector))
             .verifiable(Times.once());
 
-        const wrapper = mount(<TestStatusChoiceGroup {...props} />);
-        const labels = wrapper.find('.ms-Label');
-
-        expect(wrapper.find('.radio-button-group').exists()).toBe(true);
-        expect(wrapper.find(ChoiceGroup).exists()).toBe(true);
-        expect(wrapper.find(ChoiceGroup).props().options[0].text).toBe('Pass');
-        expect(wrapper.find(ChoiceGroup).props().options[1].text).toBe('Fail');
-        expect(
-            labels
-                .at(0)
-                .getDOMNode()
-                .getAttribute('aria-label'),
-        ).toBe('Pass');
-        expect(
-            labels
-                .at(1)
-                .getDOMNode()
-                .getAttribute('aria-label'),
-        ).toBe('Fail');
-        expect(labels.at(0).getDOMNode().innerHTML).toBe('');
-        expect(labels.at(1).getDOMNode().innerHTML).toBe('');
+        const wrapper = shallow(<TestStatusChoiceGroup {...props} />);
+        expect(wrapper.getElement()).toMatchSnapshot();
     });
 
     test('render: selectedKey is set to undefined as status is UNKNOWN', () => {
@@ -82,8 +73,8 @@ describe('TestStatusChoiceGroup', () => {
     });
 
     test('verify onChange', () => {
-        const onGroupChoiceChangeMock = Mock.ofInstance((status, test, step, selector) => {});
-        const onUndoMock = Mock.ofInstance((test, step, selector) => {});
+        const onGroupChoiceChangeMock = Mock.ofInstance((status, test, step, selector) => { });
+        const onUndoMock = Mock.ofInstance((test, step, selector) => { });
         const props: ITestStatusChoiceGroupProps = {
             test: 1,
             step: 'step',
@@ -105,9 +96,9 @@ describe('TestStatusChoiceGroup', () => {
     });
 
     test('verify undo button', () => {
-        const focusMock = Mock.ofInstance(() => {});
-        const onGroupChoiceChangeMock = Mock.ofInstance((status, test, step, selector) => {});
-        const onUndoMock = Mock.ofInstance((test, step, selector) => {});
+        const focusMock = Mock.ofInstance(() => { });
+        const onGroupChoiceChangeMock = Mock.ofInstance((status, test, step, selector) => { });
+        const onUndoMock = Mock.ofInstance((test, step, selector) => { });
         const props: ITestStatusChoiceGroupProps = {
             test: 1,
             step: 'step',
