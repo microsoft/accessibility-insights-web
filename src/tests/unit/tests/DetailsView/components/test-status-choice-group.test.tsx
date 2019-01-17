@@ -29,7 +29,7 @@ describe('TestStatusChoiceGroup', () => {
             onUndoClicked: null,
         };
         const component = new TestStatusChoiceGroup(props);
-        expect(component.state).toMatchObject({selectedkey: 'PASS'});
+        expect(component.state).toMatchObject({ selectedkey: 'PASS' });
     });
 
     test('render', () => {
@@ -52,7 +52,7 @@ describe('TestStatusChoiceGroup', () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    test('render: selectedKey is set to undefined as status is UNKNOWN', () => {
+    test('render: selectedKey is set to UNKNOWN as status is UNKNOWN', () => {
         const props: ITestStatusChoiceGroupProps = {
             status: ManualTestStatus.UNKNOWN,
         } as ITestStatusChoiceGroupProps;

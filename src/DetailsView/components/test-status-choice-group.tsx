@@ -29,7 +29,7 @@ export class TestStatusChoiceGroup extends React.Component<ITestStatusChoiceGrou
 
     constructor(props) {
         super(props);
-        this.state = { selectedkey: this.props.status === ManualTestStatus.UNKNOWN ? undefined : ManualTestStatus[this.props.status] };
+        this.state = { selectedkey: ManualTestStatus[this.props.status] };
     }
 
     public render(): JSX.Element {
@@ -92,7 +92,7 @@ export class TestStatusChoiceGroup extends React.Component<ITestStatusChoiceGrou
 
     @autobind
     protected onUndoClicked(): void {
-        this.setState({ selectedkey: undefined });
+        this.setState({ selectedkey: ManualTestStatus[ManualTestStatus.UNKNOWN] });
         this._choiceGroup.focus();
         this.props.onUndoClicked(this.props.test, this.props.step, this.props.selector);
     }

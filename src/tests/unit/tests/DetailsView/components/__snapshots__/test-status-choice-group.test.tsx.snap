@@ -60,7 +60,7 @@ exports[`TestStatusChoiceGroup render: selectedKey is not set to undefined as st
 </div>
 `;
 
-exports[`TestStatusChoiceGroup render: selectedKey is set to undefined as status is UNKNOWN 1`] = `
+exports[`TestStatusChoiceGroup render: selectedKey is set to UNKNOWN as status is UNKNOWN 1`] = `
 <div>
   <div
     className="radio-button-group"
@@ -83,6 +83,7 @@ exports[`TestStatusChoiceGroup render: selectedKey is set to undefined as status
           },
         ]
       }
+      selectedKey="UNKNOWN"
     />
   </div>
   <div />
