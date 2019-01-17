@@ -10,4 +10,9 @@ describe('guidance title', () => {
         const wrapper = shallow(<GuidanceTitle name={'test'}/>);
         expect(wrapper.find('title').text()).toEqual(`Guidance for test - ${productName}`);
     });
+
+    test('has correct structure', () => {
+        const wrapper = shallow(<GuidanceTitle name={'test'}/>);
+        expect(wrapper.getElement()).toMatchSnapshot();
+    });
 });

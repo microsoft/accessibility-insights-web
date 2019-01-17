@@ -2,10 +2,8 @@
 // Licensed under the MIT License.
 import { React, create, GuidanceTitle } from '../../common';
 
-const name = 'Timed Events';
 export const guidance = create(({ Markup, Link }) => <>
-    <GuidanceTitle name={name}/>
-    <h1>{name}</h1>
+    <GuidanceTitle name={'Timed Events'}/>
     <h2>Why it matters</h2>
     <p>
         People who use screen readers or voice input and people with cognitive disabilities might need more time than other users to understand the information and use the controls on a website or web app.

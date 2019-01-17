@@ -3,10 +3,8 @@
 import { React, create, GuidanceTitle } from '../../common';
 import { LandmarkTable } from './landmark-table';
 
-const name = 'Landmarks';
 export const guidance = create(({ Markup, Link }) => <>
-    <GuidanceTitle name={name}/>
-    <h1>{name}</h1>
+    <GuidanceTitle name={'Landmarks'}/>
 
     <h2>Why it matters</h2>
     <p>

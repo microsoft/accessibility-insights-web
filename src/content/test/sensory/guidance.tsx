@@ -2,10 +2,8 @@
 // Licensed under the MIT License.
 import { React, create, GuidanceTitle } from '../../common';
 
-const name = 'Sensory';
 export const guidance = create(({ Markup, Link }) => <>
-    <GuidanceTitle name={name}/>
-    <h1>{name}</h1>
+    <GuidanceTitle name={'Sensory'}/>
     <h2>Why it matters</h2>
     <p>
         When color, shape, location, audio, or other sensory characteristics are the <Markup.Emphasis>only</Markup.Emphasis> means used to convey information, people with disabilities do not have access to the same information that others have.

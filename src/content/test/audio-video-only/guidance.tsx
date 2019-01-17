@@ -2,10 +2,8 @@
 // Licensed under the MIT License.
 import { React, create, GuidanceTitle } from '../../common';
 
-const name = 'Audio-only / video-only';
 export const guidance = create(({ Markup, Link }) => <>
-    <GuidanceTitle name={name}/>
-    <h1>{name}</h1>
+    <GuidanceTitle name={'Audio-only / video-only'}/>
 
     <h2>Why alternatives matter</h2>
 

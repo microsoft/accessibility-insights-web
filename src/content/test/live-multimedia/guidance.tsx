@@ -2,10 +2,8 @@
 // Licensed under the MIT License.
 import { React, create, GuidanceTitle } from '../../common';
 
-const name = 'Live multimedia';
 export const guidance = create(({ Markup, Link }) => <>
-    <GuidanceTitle name={name}/>
-    <h1>{name}</h1>
+    <GuidanceTitle name={'Live multimedia'}/>
 
     <h2>Why it matters</h2>
 

@@ -13,4 +13,5 @@ export const GuidanceTitle = NamedSFC<GuidanceTitleProps>('GuidanceTitle', ({nam
     <Helmet>
         <title>Guidance for {name} - {productName}</title>
     </Helmet>
+    <h1>{name}</h1>
 </>);

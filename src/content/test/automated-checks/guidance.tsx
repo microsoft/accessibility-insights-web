@@ -3,10 +3,8 @@
 import { React, create, GuidanceTitle } from '../../common';
 import { productName } from '../../strings/application';
 
-const name = 'Automated checks';
 export const guidance = create(({ Markup }) => <>
-    <GuidanceTitle name={name}/>
-    <h1>{name}</h1>
+    <GuidanceTitle name={'Automated checks'}/>
     <p>
         The automated checks in {productName} can identify more than 40 types of critical accessibility issues in seconds.
     </p>
