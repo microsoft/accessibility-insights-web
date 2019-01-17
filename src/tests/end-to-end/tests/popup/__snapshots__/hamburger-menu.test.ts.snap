@@ -1,0 +1,216 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Hamburger menu should have content matching snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="ms-FocusZone ms-ContextualMenu is-open popup-menu root-000"
+    data-focuszone-id="FocusZone000"
+    role="presentation"
+  >
+    <ul
+      class="ms-ContextualMenu-list is-open list-000"
+    >
+      <li
+        class="ms-ContextualMenu-item item-000"
+        role="presentation"
+      >
+        <button
+          aria-disabled="false"
+          aria-posinset="1"
+          aria-setsize="6"
+          class="ms-ContextualMenu-link root-000"
+          name="FastPass"
+          role="menuitem"
+          tabindex="0"
+        >
+          <div
+            class="ms-ContextualMenu-linkContent linkContent-000"
+          >
+            <i
+              aria-hidden="true"
+              class="ms-ContextualMenu-icon icon-000"
+              data-icon-name="Rocket"
+              role="presentation"
+            >
+              
+            </i>
+            <span
+              class="ms-ContextualMenu-itemText label-000"
+            >
+              FastPass
+            </span>
+          </div>
+        </button>
+      </li>
+      <li
+        class="ms-ContextualMenu-item item-000"
+        role="presentation"
+      >
+        <button
+          aria-disabled="false"
+          aria-posinset="2"
+          aria-setsize="6"
+          class="ms-ContextualMenu-link root-000"
+          name="Assessment"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <div
+            class="ms-ContextualMenu-linkContent linkContent-000"
+          >
+            <i
+              aria-hidden="true"
+              class="ms-ContextualMenu-icon icon-000"
+              data-icon-name="testBeakerSolid"
+              role="presentation"
+            >
+              
+            </i>
+            <span
+              class="ms-ContextualMenu-itemText label-000"
+            >
+              Assessment
+            </span>
+          </div>
+        </button>
+      </li>
+      <li
+        class="ms-ContextualMenu-item item-000"
+        role="presentation"
+      >
+        <button
+          aria-disabled="false"
+          aria-posinset="3"
+          aria-setsize="6"
+          class="ms-ContextualMenu-link root-000"
+          name="Ad hoc tools"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <div
+            class="ms-ContextualMenu-linkContent linkContent-000"
+          >
+            <i
+              aria-hidden="true"
+              class="ms-ContextualMenu-icon icon-000"
+              data-icon-name="Medical"
+              role="presentation"
+            >
+              
+            </i>
+            <span
+              class="ms-ContextualMenu-itemText label-000"
+            >
+              Ad hoc tools
+            </span>
+          </div>
+        </button>
+      </li>
+      <li
+        aria-hidden="true"
+        class="ms-ContextualMenu-divider divider-000"
+        role="separator"
+      />
+      <li
+        class="ms-ContextualMenu-item item-000"
+        role="presentation"
+      >
+        <button
+          aria-disabled="false"
+          aria-posinset="4"
+          aria-setsize="6"
+          class="ms-ContextualMenu-link root-000"
+          name="Keyboard shortcuts"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <div
+            class="ms-ContextualMenu-linkContent linkContent-000"
+          >
+            <i
+              aria-hidden="true"
+              class="ms-ContextualMenu-icon icon-000"
+              role="presentation"
+            />
+            <span
+              class="ms-ContextualMenu-itemText label-000"
+            >
+              Keyboard shortcuts
+            </span>
+          </div>
+        </button>
+      </li>
+      <li
+        class="ms-ContextualMenu-item item-000"
+        role="presentation"
+      >
+        <button
+          aria-disabled="false"
+          aria-posinset="5"
+          aria-setsize="6"
+          class="ms-ContextualMenu-link root-000"
+          data="https://aka.ms/accessibilityinsights-stackoverflow"
+          name="Help"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <div
+            class="ms-ContextualMenu-linkContent linkContent-000"
+          >
+            <i
+              aria-hidden="true"
+              class="ms-ContextualMenu-icon icon-000"
+              data-icon-name="Unknown"
+              role="presentation"
+            >
+              
+            </i>
+            <span
+              class="ms-ContextualMenu-itemText label-000"
+            >
+              Help
+            </span>
+          </div>
+        </button>
+      </li>
+      <li
+        aria-hidden="true"
+        class="ms-ContextualMenu-divider divider-000"
+        role="separator"
+      />
+      <li
+        class="ms-ContextualMenu-item item-000"
+        role="presentation"
+      >
+        <button
+          aria-disabled="false"
+          aria-posinset="6"
+          aria-setsize="6"
+          class="ms-ContextualMenu-link root-000"
+          name="Ask a question"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <div
+            class="ms-ContextualMenu-linkContent linkContent-000"
+          >
+            <i
+              aria-hidden="true"
+              class="ms-ContextualMenu-icon icon-000"
+              data-icon-name="Mail"
+              role="presentation"
+            >
+              
+            </i>
+            <span
+              class="ms-ContextualMenu-itemText label-000"
+            >
+              Ask a question
+            </span>
+          </div>
+        </button>
+      </li>
+    </ul>
+  </div>
+</DocumentFragment>
+`;

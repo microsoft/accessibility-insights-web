@@ -2,17 +2,18 @@
 // Licensed under the MIT License.
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
+import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
 import { Page } from '../../common/page';
-import { popupPageSelectors } from '../../common/selectors/popup-page-selectors';
+import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
-describe('Adhoc Panel test', () => {
+describe('Launch Pad', () => {
     let browser: Browser;
     let targetPage: Page;
     let targetPageTabId: number;
     let popupPage: Page;
 
     beforeAll(async () => {
-        browser = await launchBrowser({ dismissFirstTimeDialog: true });
+        browser = await launchBrowser({ suppressFirstTimeDialog: true });
     });
 
     beforeEach(async () => {
@@ -29,26 +30,24 @@ describe('Adhoc Panel test', () => {
         await browser.close();
     });
 
-    async function setupNewTargetPage() {
+    async function setupNewTargetPage(): Promise<void> {
         targetPage = await browser.newTestResourcePage('all.html');
 
         await targetPage.bringToFront();
         targetPageTabId = await browser.getActivePageTabId();
     }
 
-    it('test snapshot for launchpad', async () => {
-        await popupPage.waitForSelector(popupPageSelectors.launchPad);
+    it('content should match snapshot', async () => {
+        await popupPage.waitForSelector(popupPageElementIdentifiers.launchPad);
 
-        const element = await popupPage.getPrintableHtmlElement(popupPageSelectors.launchPad);
+        const element = await popupPage.getPrintableHtmlElement(popupPageElementIdentifiers.launchPad);
         expect(element).toMatchSnapshot();
     });
 
-    it('test if text for all the links in launchpad show properly', async () => {
-        await popupPage.waitForSelector(popupPageSelectors.launchPad);
+    it('should pass accessibility validation', async () => {
+        await popupPage.waitForSelector(popupPageElementIdentifiers.launchPad);
 
-        const launchPadItemListText = await popupPage.getMatchingElements(popupPageSelectors.launchPadItemTitle, 'textContent');
-
-        expect(launchPadItemListText.length).toBe(3);
-        expect(launchPadItemListText).toEqual(['FastPass', 'Assessment', 'Ad hoc tools']);
+        const results = await scanForAccessibilityIssues(popupPage, '*');
+        expect(results).toHaveLength(0);
     });
 });

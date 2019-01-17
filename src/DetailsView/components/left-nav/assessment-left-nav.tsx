@@ -10,13 +10,13 @@ import { LeftNavIndexIcon, LeftNavStatusIcon } from './left-nav-icon';
 import { AssessmentLinkBuilderDeps, LeftNavLinkBuilder, OverviewLinkBuilderDeps } from './left-nav-link-builder';
 import { NavLinkHandler } from './nav-link-handler';
 
-export type AssessmentLeftNavV2Deps = {
+export type AssessmentLeftNavDeps = {
     leftNavLinkBuilder: LeftNavLinkBuilder,
     navLinkHandler: NavLinkHandler,
 } & OverviewLinkBuilderDeps & AssessmentLinkBuilderDeps;
 
-export type AssessmentLeftNavV2Props = {
-    deps: AssessmentLeftNavV2Deps;
+export type AssessmentLeftNavProps = {
+    deps: AssessmentLeftNavDeps;
     selectedKey: string,
     assessmentsProvider: IAssessmentsProvider,
     assessmentsData: IDictionaryStringTo<IManualTestStatus>;
@@ -26,7 +26,7 @@ export type AssessmentLeftNavLink  = {
     status: ManualTestStatus;
 } & BaseLeftNavLink;
 
-export const AssessmentLeftNavV2 = NamedSFC<AssessmentLeftNavV2Props>('AssessmentLeftNavV2', props => {
+export const AssessmentLeftNav = NamedSFC<AssessmentLeftNavProps>('AssessmentLeftNav', props => {
     const {
         deps,
         selectedKey,
@@ -55,7 +55,7 @@ export const AssessmentLeftNavV2 = NamedSFC<AssessmentLeftNavV2Props>('Assessmen
     links.push(leftNavLinkBuilder.buildOverviewLink(deps, navLinkHandler.onOverviewClick, assessmentsProvider, assessmentsData, 0));
     links = links.concat(leftNavLinkBuilder.buildAssessmentTestLinks(
         deps,
-        navLinkHandler.onAssessmentTestClickV2,
+        navLinkHandler.onAssessmentTestClick,
         assessmentsProvider,
         assessmentsData,
         1,

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SettingsDropDownTest settings drop down content 1`] = `
+exports[`Settings Dropdown content should match snapshot 1`] = `
 <DocumentFragment>
   <div
     class="ms-ContextualMenu-container container-000"
@@ -84,4 +84,21 @@ exports[`SettingsDropDownTest settings drop down content 1`] = `
     </div>
   </div>
 </DocumentFragment>
+`;
+
+exports[`Settings Dropdown should pass accessibility validation 1`] = `
+Array [
+  Object {
+    "id": "list",
+    "nodes": Array [
+      Object {
+        "failureSummary": "Fix all of the following:
+  List element has direct children that are not allowed inside <li> elements",
+        "selector": Array [
+          "ul",
+        ],
+      },
+    ],
+  },
+]
 `;

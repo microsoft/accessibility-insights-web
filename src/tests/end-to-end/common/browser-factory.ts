@@ -3,23 +3,23 @@
 import * as Puppeteer from 'puppeteer';
 
 import { Browser } from './browser';
-import { popupPageSelectors } from './selectors/popup-page-selectors';
+import { popupPageElementIdentifiers } from './element-identifiers/popup-page-element-identifiers';
 
 export interface ExtensionOptions {
-    dismissFirstTimeDialog: boolean;
+    suppressFirstTimeDialog: boolean;
 }
 
 export async function launchBrowser(extensionOptions: ExtensionOptions): Promise<Browser> {
     const puppeteerBrowser = await launchNewBrowser();
     const browser = new Browser(puppeteerBrowser);
 
-    if (extensionOptions.dismissFirstTimeDialog) {
-        await dismissFirstTimeUsagePrompt(browser);
+    if (extensionOptions.suppressFirstTimeDialog) {
+        await suppressFirstTimeUsagePrompt(browser);
     }
     return browser;
 }
 
-async function dismissFirstTimeUsagePrompt(browser: Browser) {
+async function suppressFirstTimeUsagePrompt(browser: Browser): Promise<void> {
     const targetPage = await browser.newTestResourcePage('all.html');
 
     await targetPage.bringToFront();
@@ -27,7 +27,7 @@ async function dismissFirstTimeUsagePrompt(browser: Browser) {
     const targetPageId = await browser.getActivePageTabId();
     const popupPage = await browser.newExtensionPopupPage(targetPageId);
 
-    await popupPage.clickSelector(popupPageSelectors.startUsingProductButton);
+    await popupPage.clickSelector(popupPageElementIdentifiers.startUsingProductButton);
 
     await targetPage.close();
     await popupPage.close();

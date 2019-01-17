@@ -42,7 +42,6 @@
     "trailing-comma": [true, { "multiline": "always", "singleline": "never" }],
     "triple-equals": [true, "allow-null-check", "allow-undefined-check"],
     "typedef-whitespace": [
-      // Determines if a space is required or not before the colon in a type specifier
       true,
       {
         "call-signature": "nospace",

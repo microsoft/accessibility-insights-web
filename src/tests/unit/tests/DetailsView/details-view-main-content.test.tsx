@@ -21,7 +21,7 @@ import { VisualizationType } from '../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../DetailsView/actions/details-view-action-message-creator';
 import { DetailsRightPanelConfiguration } from '../../../../DetailsView/components/details-view-right-panel';
 import { DetailsViewSwitcherNavConfiguration } from '../../../../DetailsView/components/details-view-switcher-nav';
-import { DetailsViewLeftNavV2 } from '../../../../DetailsView/components/left-nav/details-view-left-nav-v2';
+import { DetailsViewLeftNav } from '../../../../DetailsView/components/left-nav/details-view-left-nav';
 import { TabInfo } from '../../../../DetailsView/components/tab-info';
 import { DetailsViewMainContent, IDetailsViewMainContentProps } from '../../../../DetailsView/details-view-main-content';
 import {
@@ -197,7 +197,7 @@ describe('DetailsViewMainContentTest', () => {
 
     function buildLeftNav(givenProps: IDetailsViewMainContentProps): JSX.Element {
         return (
-            <DetailsViewLeftNavV2
+            <DetailsViewLeftNav
                 {...givenProps}
             />
         );

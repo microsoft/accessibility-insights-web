@@ -55,7 +55,7 @@ describe('AdHocToolsPanelTest', () => {
                     </div>
                 </main>
                 <div role="navigation" className="ad-hoc-tools-panel-footer">
-                    <Link onClick={props.backLinkHandler}>
+                    <Link onClick={props.backLinkHandler} id="back-to-launchpad-link">
                         <Icon iconName="back" />
                         &nbsp; Back to launch pad
                     </Link>

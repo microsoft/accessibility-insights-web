@@ -11,13 +11,13 @@ import { VisualizationType } from '../../../common/types/visualization-type';
 import { DetailsRightPanelConfiguration } from '../details-view-right-panel';
 import { DetailsViewSwitcherNavConfiguration, LeftNavDeps } from '../details-view-switcher-nav';
 
-export type DetailsViewLeftNavV2Deps = {
+export type DetailsViewLeftNavDeps = {
     assessmentsProvider: IAssessmentsProvider,
     assessmentsProviderWithFeaturesEnabled: (assessmentProvider: IAssessmentsProvider, flags: FeatureFlagStoreData) => IAssessmentsProvider,
 } & LeftNavDeps;
 
-export type DetailsViewLeftNavV2Props = {
-    deps: DetailsViewLeftNavV2Deps;
+export type DetailsViewLeftNavProps = {
+    deps: DetailsViewLeftNavDeps;
     selectedTest: VisualizationType;
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
     rightPanelConfiguration: DetailsRightPanelConfiguration;
@@ -25,7 +25,7 @@ export type DetailsViewLeftNavV2Props = {
     assessmentStoreData: IAssessmentStoreData;
 };
 
-export const DetailsViewLeftNavV2 = NamedSFC<DetailsViewLeftNavV2Props>('DetailsViewLeftNavV2', props => {
+export const DetailsViewLeftNav = NamedSFC<DetailsViewLeftNavProps>('DetailsViewLeftNav', props => {
     const {
         deps,
         selectedTest,

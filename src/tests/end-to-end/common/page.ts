@@ -3,67 +3,78 @@
 import * as Puppeteer from 'puppeteer';
 
 import { forceTestFailure } from './force-test-failure';
+import { takeScreenshot } from './generate-screenshot';
 import { DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS, DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from './timeouts';
 
 export class Page {
-    constructor(
-        private readonly underlyingPage: Puppeteer.Page,
-    ) {
+    constructor(private readonly underlyingPage: Puppeteer.Page) {
         underlyingPage.on('pageerror', error => {
             forceTestFailure(`Unhandled pageerror (console.error) emitted from page '${underlyingPage.url()}': ${error}`);
         });
     }
 
     public async goto(url: string): Promise<void> {
-        await this.underlyingPage.goto(url, { timeout: DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS });
+        await this.screenshotOnError(async () => await this.underlyingPage.goto(url, { timeout: DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS }));
     }
 
     public async close(ignoreIfAlreadyClosed: boolean = false): Promise<void> {
         if (ignoreIfAlreadyClosed && this.underlyingPage.isClosed()) {
             return;
         }
-        await this.underlyingPage.close();
+        await this.screenshotOnError(async () => await this.underlyingPage.close());
     }
 
     public async bringToFront(): Promise<void> {
-        await this.underlyingPage.bringToFront();
+        await this.screenshotOnError(async () => await this.underlyingPage.bringToFront());
     }
 
     public async evaluate(fn: Puppeteer.EvaluateFn, ...args: any[]): Promise<any> {
-        return await this.underlyingPage.evaluate(fn, ...args);
+        return await this.screenshotOnError(async () => await this.underlyingPage.evaluate(fn, ...args));
     }
 
     public async getMatchingElements<T>(selector: string, elementProperty: keyof Element): Promise<T[]> {
-        return await this.evaluate(
-            (selectorInEvaluate, elementPropertyInEvaluate) => {
-                const elements = Array.from(document.querySelectorAll(selectorInEvaluate));
-                return elements.map(element => element[elementPropertyInEvaluate]);
-            },
-            selector,
-            elementProperty,
+        return await this.screenshotOnError(
+            async () =>
+                await this.evaluate(
+                    (selectorInEvaluate, elementPropertyInEvaluate) => {
+                        const elements = Array.from(document.querySelectorAll(selectorInEvaluate));
+                        return elements.map(element => element[elementPropertyInEvaluate]);
+                    },
+                    selector,
+                    elementProperty,
+                ),
         );
     }
 
     public async waitForSelector(selector: string): Promise<Puppeteer.ElementHandle<Element>> {
-        return await this.underlyingPage.waitForSelector(selector, { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS });
+        return await this.screenshotOnError(
+            async () => await this.underlyingPage.waitForSelector(selector, { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS }),
+        );
     }
 
-    public async waitForSelectorToDisappear(selector: string) {
-        await this.underlyingPage.waitFor(
-            selectorInEvaluate => !document.querySelector(selectorInEvaluate),
-            { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS },
-            selector,
+    public async waitForSelectorToDisappear(selector: string): Promise<void> {
+        await this.screenshotOnError(
+            async () =>
+                await this.underlyingPage.waitFor(
+                    selectorInEvaluate => !document.querySelector(selectorInEvaluate),
+                    { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS },
+                    selector,
+                ),
         );
     }
 
     public async clickSelector(selector: string): Promise<void> {
         const element = await this.waitForSelector(selector);
-        await element.click();
+        await this.screenshotOnError(async () => {
+            await element.click();
+        });
     }
 
-    public async clickSelectorXPath(xPathString: string) {
-        const element = await this.underlyingPage.waitForXPath(xPathString, { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS });
-        await element.click();
+    public async clickSelectorXPath(xPathString: string): Promise<void> {
+        await this.screenshotOnError(async () => {
+            const element = await this.underlyingPage.waitForXPath(xPathString, { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS });
+            await element.click();
+        });
     }
 
     public url(): URL {
@@ -74,14 +85,24 @@ export class Page {
         return new URL(this.underlyingPage.target().url());
     }
 
-    public async getPrintableHtmlElement(selector: string) {
-        const html = await this.underlyingPage.$eval(selector, el => el.outerHTML);
-        return generateFormattedHtml(html);
+    public async getPrintableHtmlElement(selector: string): Promise<Node> {
+        return await this.screenshotOnError(async () => {
+            const html = await this.underlyingPage.$eval(selector, el => el.outerHTML);
+            return generateFormattedHtml(html);
+        });
     }
 
+    private async screenshotOnError<T>(fn: () => Promise<T>): Promise<T> {
+        try {
+            return await fn();
+        } catch (error) {
+            await takeScreenshot(this.underlyingPage);
+            throw error;
+        }
+    }
 }
 
-function generateFormattedHtml(innerHTMLString: string) {
+function generateFormattedHtml(innerHTMLString: string): Node {
     const template = document.createElement('template');
 
     // office fabric generates a random class & id name which changes every time.
