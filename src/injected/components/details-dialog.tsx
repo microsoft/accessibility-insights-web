@@ -208,8 +208,8 @@ export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetails
                 const { clientBrowserAdapter } = this.props.deps;
                 return clientBrowserAdapter.getUrl(url);
             }
-        }
-
+        };
+        
         return (
             <div className="insights-dialog-rule-container" >
                 <Icon iconName="StatusErrorFull" />
