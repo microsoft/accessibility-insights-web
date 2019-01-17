@@ -51,7 +51,7 @@ jobs:
   # only on CI builds
   - task: ComponentGovernanceComponentDetection@0
     displayName: 'Component Detection'
-    condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
+    #condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
     inputs:
       verbosity: Normal
 
