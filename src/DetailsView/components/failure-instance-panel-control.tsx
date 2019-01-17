@@ -34,6 +34,8 @@ export enum CapturedInstanceActionType {
 }
 
 export class FailureInstancePanelControl extends React.Component<IFailureInstancePanelControlProps, IFailureInstancePanelControlState> {
+    private static readonly addFailureInstanceLabel: string = 'Add a failure instance';
+
     constructor(props) {
         super(props);
         this.state = {
@@ -55,10 +57,12 @@ export class FailureInstancePanelControl extends React.Component<IFailureInstanc
         if (this.props.actionType === CapturedInstanceActionType.CREATE) {
             return (
                 <ActionButton
+                    ariaLabel={FailureInstancePanelControl.addFailureInstanceLabel}
+                    ariaDescription="Open add a failure instance panel"
                     iconProps={{ iconName: 'Add' }}
                     onClick={this.openFailureInstancePanel}
                 >
-                    Add a failure instance
+                    {FailureInstancePanelControl.addFailureInstanceLabel}
                 </ActionButton>
             );
         } else {
@@ -82,7 +86,8 @@ export class FailureInstancePanelControl extends React.Component<IFailureInstanc
             isOpen: this.state.isPanelOpen,
             className: 'failure-instance-panel',
             onDismiss: this.closeFailureInstancePanel,
-            title: this.props.actionType === CapturedInstanceActionType.CREATE ? 'Add a failure instance' : 'Edit failure instance',
+            title: this.props.actionType === CapturedInstanceActionType.CREATE ?
+                FailureInstancePanelControl.addFailureInstanceLabel : 'Edit failure instance',
             hasCloseButton: false,
             closeButtonAriaLabel: null,
         };
