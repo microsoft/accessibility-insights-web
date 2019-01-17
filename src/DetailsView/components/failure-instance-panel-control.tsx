@@ -34,7 +34,7 @@ export enum CapturedInstanceActionType {
 }
 
 export class FailureInstancePanelControl extends React.Component<IFailureInstancePanelControlProps, IFailureInstancePanelControlState> {
-    private static readonly addFailureInstanceLabel: string = "Add a failure instance";
+    private static readonly addFailureInstanceLabel: string = 'Add a failure instance';
 
     constructor(props) {
         super(props);
