@@ -95,10 +95,6 @@ module.exports = function (grunt) {
         },
         'webpack': {
             'dev': devWebpackConfig,
-            'dev-watch': {
-                ...devWebpackConfig,
-                watch: true
-            },
             'prod': prodWebpackConfig,
             'all': allWebpackConfigs
         },
@@ -357,8 +353,6 @@ module.exports = function (grunt) {
         "drop:dev",
         "release-drops"
     ]);
-
-    grunt.registerTask('watch', 'webpack:dev-watch');
 
     grunt.registerTask("default", ["build-dev"]);
 };
