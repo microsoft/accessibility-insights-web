@@ -5,24 +5,8 @@ const path = require('path');
 const targets = require('./targets.config');
 const merge = require('lodash/merge');
 const { run: copyrightCheckAndAdd } = require('license-check-and-add');
-const allWebpackConfigs = require('./webpack.config');
 
 module.exports = function (grunt) {
-    let devWebpackConfig = allWebpackConfigs.find(c => c.name === 'dev');
-    let prodWebpackConfig = allWebpackConfigs.find(c => c.name === 'prod');
-
-    // Progress notifications cause inconsistent failures in CI, so build.yaml passes --no-progress to suppress them
-    if (grunt.option('no-progress')) {
-        devWebpackConfig = {
-            ...devWebpackConfig,
-            progress: false
-        };
-        prodWebpackConfig = {
-            ...prodWebpackConfig,
-            progress: false
-        };
-    }    
-
     const extensionPath = 'extension';
     const copyrightCheckAndAddConfig = {
         folder: "./",
@@ -105,10 +89,10 @@ module.exports = function (grunt) {
                 expand: true,
             },
         },
-        'webpack': {
-            'dev': devWebpackConfig,
-            'prod': prodWebpackConfig,
-            'all': [devWebpackConfig, prodWebpackConfig]
+        'exec': {
+            'webpack-dev': `${path.resolve('./node_modules/.bin/webpack')} --config-name dev`,
+            'webpack-prod': `${path.resolve('./node_modules/.bin/webpack')} --config-name prod`,
+            'webpack-all': path.resolve('./node_modules/.bin/webpack')
         },
         "copy": {
             code: {
@@ -256,8 +240,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-bom-removal');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-exec');
     grunt.loadNpmTasks('grunt-sass');
-    grunt.loadNpmTasks('grunt-webpack');
 
     grunt.registerTask("copyright-check", 'grunt task to check copyright header', function () {
         copyrightCheckAndAdd(copyrightCheckAndAddConfig);
@@ -346,21 +330,21 @@ module.exports = function (grunt) {
     // Main entry points for npm scripts:
     grunt.registerTask('build-dev', [
         "pre-webpack",
-        "webpack:dev",
+        "exec:webpack-dev",
         "post-webpack-pre-drop",
         "drop:dev"
     ]);
 
     grunt.registerTask('build-prod', [
         "pre-webpack",
-        "webpack:prod",
+        "exec:webpack-prod",
         "post-webpack-pre-drop",
         "release-drops"
     ]);
 
     grunt.registerTask('build-all', [
         "pre-webpack",
-        "webpack:all",
+        "exec:webpack-all",
         "post-webpack-pre-drop",
         "drop:dev",
         "release-drops"
