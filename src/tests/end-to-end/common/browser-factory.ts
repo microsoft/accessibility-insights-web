@@ -4,6 +4,7 @@ import * as Puppeteer from 'puppeteer';
 
 import { Browser } from './browser';
 import { popupPageElementIdentifiers } from './element-identifiers/popup-page-element-identifiers';
+import { DEFAULT_BROWSER_LAUNCH_TIMEOUT_MS } from './timeouts';
 
 export interface ExtensionOptions {
     suppressFirstTimeDialog: boolean;
@@ -47,6 +48,7 @@ async function launchNewBrowser(): Promise<Puppeteer.Browser> {
         // This causes Chromium's stdout/stderr to be piped for Jest to see, which is useful for debugging
         // launch issues with the browser (especially in a CI environment)
         dumpio: true,
+        timeout: DEFAULT_BROWSER_LAUNCH_TIMEOUT_MS,
     });
 
     return browser;
