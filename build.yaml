@@ -84,7 +84,7 @@ jobs:
   - task: Npm@1
     inputs:
       command: custom
-      customCommand: run test:e2e -- --forceExit --detectOpenHandles
+      customCommand: run test:e2e
     displayName: npm run test:e2e
 
   - task: PublishTestResults@2
@@ -102,9 +102,8 @@ jobs:
     continueOnError: true
     displayName: publish e2e-failure-screenshots
 
-  - task: PublishBuildArtifacts@1
-    inputs:
-      pathtoPublish: '$(System.DefaultWorkingDirectory)/drop'
-      artifactName: 'drop'
-    displayName: publish drop
-    condition: always()
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(System.DefaultWorkingDirectory)/drop'
+    artifactName: 'drop'
+  displayName: publish drop
