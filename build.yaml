@@ -102,8 +102,8 @@ jobs:
     continueOnError: true
     displayName: publish e2e-failure-screenshots
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathtoPublish: '$(System.DefaultWorkingDirectory)/drop'
-    artifactName: 'drop'
-  displayName: publish drop
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: '$(System.DefaultWorkingDirectory)/drop'
+      artifactName: 'drop'
+    displayName: publish drop
