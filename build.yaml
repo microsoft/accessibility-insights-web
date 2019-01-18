@@ -1,7 +1,11 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-jobs:
+variables:
+  # This propagates as an environment variable, which jest understands to mean
+  # "write stdout in a way that is friendlier to Pipelines' output processing"
+  CI: true
 
+jobs:
 - job: 'unit_tests'
 
   pool:
