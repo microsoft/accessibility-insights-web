@@ -71,15 +71,6 @@ module.exports = function (grunt) {
     }
 
     grunt.initConfig({
-        'watch': {
-            scripts: {
-                files: [
-                    'src/**/*',
-                    '!src/tests/**/*',
-                ],
-                tasks: ['webpack:dev-watch']
-            },
-        },
         "sass": {
             options: {
                 implementation: sass,
@@ -257,7 +248,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-bom-removal');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-webpack');
 
@@ -367,6 +357,8 @@ module.exports = function (grunt) {
         "drop:dev",
         "release-drops"
     ]);
+
+    grunt.registerTask('watch', 'webpack:dev-watch');
 
     grunt.registerTask("default", ["build-dev"]);
 };
