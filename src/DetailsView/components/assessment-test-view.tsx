@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
+
 import { AssessmentDefaultMessageGenerator } from '../../assessments/assessment-default-message-generator';
 import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { AssessmentTestResult } from '../../common/assessment/assessment-test-result';
@@ -51,7 +52,6 @@ export const AssessmentTestView = NamedSFC<IAssessmentTestViewProps>('Assessment
         isEnabled={isEnabled}
         assessmentNavState={props.assessmentStoreData.assessmentNavState}
         assessmentInstanceTableHandler={props.assessmentInstanceTableHandler}
-        assessmentProvider={deps.assessmentsProvider}
         assessmentData={assessmentData}
         currentTarget={currentTarget}
         prevTarget={prevTarget}
