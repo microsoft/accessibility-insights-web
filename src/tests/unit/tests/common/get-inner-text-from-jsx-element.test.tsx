@@ -10,9 +10,9 @@ describe('Get Inner Text from jsx element', () => {
         const jsxContent = (
             <div id={'div1'}>
                 sample {' '}
-                 <span className={'span1'}>
+                <span className={'span1'}>
                     text inside jsx {' '}
-                 </span>
+                </span>
                 <i>123</i>
             </div>
         );
@@ -31,7 +31,7 @@ describe('Get Inner Text from jsx element', () => {
     });
 
     it('should return inner text for string', () => {
-        const jsxContent = ('sample content');
+        const jsxContent = 'sample content';
         const expectedString = 'sample content';
         const actualString = getInnerTextFromJsxElement(jsxContent as any);
 
@@ -39,7 +39,7 @@ describe('Get Inner Text from jsx element', () => {
     });
 
     it('should return inner text for number', () => {
-        const jsxContent = (123);
+        const jsxContent = 123;
         const expectedString = '123';
         const actualString = getInnerTextFromJsxElement(jsxContent as any);
 
@@ -47,7 +47,7 @@ describe('Get Inner Text from jsx element', () => {
     });
 
     it('should return inner text for boolean', () => {
-        const jsxContent = (true);
+        const jsxContent = true;
         const expectedString = 'true';
         const actualString = getInnerTextFromJsxElement(jsxContent as any);
 
