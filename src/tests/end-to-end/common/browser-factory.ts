@@ -43,9 +43,9 @@ async function verifyExtensionIsBuilt(extensionPath: string): Promise<void> {
     const manifestPath = `${extensionPath}/manifest.json`;
     if (!await fileExists(manifestPath)) {
         throw new Error(
-            `Cannot launch extension-enabled browser instance because extension has not been built.
-            Expected manifest file ${manifestPath} does not exist.
-            Have you run 'npm run build'?`);
+            `Cannot launch extension-enabled browser instance because extension has not been built.\n` +
+            `Expected manifest file ${manifestPath} does not exist.\n` +
+            `Have you run 'npm run build'?`);
     }
 }
 
