@@ -2,10 +2,12 @@
 # Licensed under the MIT License.
 jobs:
 
-- job: 'tslint_and_unit_tests'
+- job: 'unit_tests'
 
   pool:
     vmImage: 'macOS-10.13'
+
+  timeoutInMinutes: 15
 
   steps:
   - task: NodeTool@0
@@ -17,12 +19,6 @@ jobs:
     inputs:
       command: install
     displayName: npm install
-
-  - task: Npm@1
-    inputs:
-      command: custom
-      customCommand: run tslint
-    displayName: npm run tslint
 
   - task: Npm@1
     inputs:
@@ -66,6 +62,8 @@ jobs:
   pool:
     vmImage: 'macOS-10.13'
 
+  timeoutInMinutes: 15
+
   steps:
   - task: NodeTool@0
     inputs:
@@ -80,10 +78,10 @@ jobs:
   - task: Npm@1
     inputs:
       command: custom
-      customCommand: run drop
-    displayName: npm run drop
+      customCommand: run build:all
+    displayName: npm run build:all
 
-  # e2e tests depend on npm run drop
+  # e2e tests depend on npm run build
   - task: Npm@1
     inputs:
       command: custom
@@ -104,15 +102,6 @@ jobs:
     condition: always()
     continueOnError: true
     displayName: publish e2e-failure-screenshots
-
-  - task: CopyFiles@2
-    inputs:
-      sourceFolder: drop
-      contents: '**/*'
-      cleanTargetFolder: true
-      publishLocation: 'filePath'
-      targetFolder: $(Build.ArtifactStagingDirectory)/drop
-    displayName: copy drop
 
   - task: PublishBuildArtifacts@1
     inputs:
