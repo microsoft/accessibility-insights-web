@@ -11,12 +11,27 @@ describe('Get Inner Text from jsx element', () => {
             <div id={'div1'}>
                 sample {' '}
                 <span className={'span1'}>
-                    text inside jsx {' '}
+                    text <i>inside jsx </i>
                 </span>
                 <i>123</i>
             </div>
         );
         const expectedString = 'sample text inside jsx 123';
+        const actualString = getInnerTextFromJsxElement(jsxContent);
+
+        expect(actualString).toBe(expectedString);
+    });
+
+    it('should return inner text for nested elements without space', () => {
+        const jsxContent = (
+            <div id={'div1'}>
+                text
+                <span className={'span1'}>without
+                <span>space</span>
+                </span>
+            </div>
+        );
+        const expectedString = 'textwithoutspace';
         const actualString = getInnerTextFromJsxElement(jsxContent);
 
         expect(actualString).toBe(expectedString);
@@ -54,3 +69,5 @@ describe('Get Inner Text from jsx element', () => {
         expect(actualString).toBe(expectedString);
     });
 });
+
+
