@@ -5,12 +5,24 @@ const path = require('path');
 const targets = require('./targets.config');
 const merge = require('lodash/merge');
 const { run: copyrightCheckAndAdd } = require('license-check-and-add');
-
 const allWebpackConfigs = require('./webpack.config');
-const devWebpackConfig = allWebpackConfigs.find(c => c.name === 'dev');
-const prodWebpackConfig = allWebpackConfigs.find(c => c.name === 'prod');
 
 module.exports = function (grunt) {
+    let devWebpackConfig = allWebpackConfigs.find(c => c.name === 'dev');
+    let prodWebpackConfig = allWebpackConfigs.find(c => c.name === 'prod');
+
+    // Progress notifications cause inconsistent failures in CI, so build.yaml passes --no-progress to suppress them
+    if (grunt.option('no-progress')) {
+        devWebpackConfig = {
+            ...devWebpackConfig,
+            progress: false
+        };
+        prodWebpackConfig = {
+            ...prodWebpackConfig,
+            progress: false
+        };
+    }    
+
     const extensionPath = 'extension';
     const copyrightCheckAndAddConfig = {
         folder: "./",
@@ -96,16 +108,7 @@ module.exports = function (grunt) {
         'webpack': {
             'dev': devWebpackConfig,
             'prod': prodWebpackConfig,
-            'all': [
-                {
-                    ...devWebpackConfig,
-                    progress: false
-                },
-                {
-                    ...prodWebpackConfig,
-                    progress: false
-                }
-            ]
+            'all': [devWebpackConfig, prodWebpackConfig]
         },
         "copy": {
             code: {

@@ -78,7 +78,7 @@ jobs:
   - task: Npm@1
     inputs:
       command: custom
-      customCommand: run build:all
+      customCommand: run build:all -- --no-progress
     displayName: npm run build:all
 
   # e2e tests depend on npm run build
