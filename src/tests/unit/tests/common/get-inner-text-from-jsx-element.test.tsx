@@ -22,6 +22,17 @@ describe('Get Inner Text from jsx element', () => {
         expect(actualString).toBe(expectedString);
     });
 
+    it('should return inner text for empty element', () => {
+        const jsxContent = (
+            <div>
+            </div>
+        );
+        const expectedString = '';
+        const actualString = getInnerTextFromJsxElement(jsxContent);
+
+        expect(actualString).toBe(expectedString);
+    });
+
     it('should return inner text for nested elements without space', () => {
         const jsxContent = (
             <div id={'div1'}>

@@ -9,7 +9,7 @@ function getInnerTextFromJsxElementRecursive(element: JSX.Element): string {
     let content = '';
 
     if (typeof element === 'object') {
-        const childProps = element.props.children;
+        const childProps = element.props.children || [];
 
         for (let pos = 0; pos < childProps.length; pos++) {
             content += getInnerTextFromJsxElementRecursive(childProps[pos]);
