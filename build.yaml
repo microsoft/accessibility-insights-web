@@ -99,17 +99,8 @@ jobs:
     continueOnError: true
     displayName: publish e2e-failure-screenshots
 
-  - task: CopyFiles@2
-    inputs:
-      sourceFolder: drop
-      contents: '**/*'
-      cleanTargetFolder: true
-      publishLocation: 'filePath'
-      targetFolder: $(Build.ArtifactStagingDirectory)/drop
-    displayName: copy drop
-
   - task: PublishBuildArtifacts@1
     inputs:
-      pathtoPublish: '$(System.ArtifactStagingDirectory)/drop'
+      pathtoPublish: '$(System.DefaultWorkingDirectory)/drop'
       artifactName: 'drop'
     displayName: publish drop
