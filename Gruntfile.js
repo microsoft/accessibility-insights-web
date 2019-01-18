@@ -89,6 +89,8 @@ module.exports = function (grunt) {
                 expand: true,
             },
         },
+        // We use grunt-exec rather than grunt-webpack because grunt-webpack appears to cause inconsistent CI build
+        // issues where webpack+grunt sometimes exit 0 without actually completing their work.
         'exec': {
             'webpack-dev': `${path.resolve('./node_modules/.bin/webpack')} --config-name dev`,
             'webpack-prod': `${path.resolve('./node_modules/.bin/webpack')} --config-name prod`,
