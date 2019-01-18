@@ -96,11 +96,7 @@ module.exports = function (grunt) {
         'webpack': {
             'dev': devWebpackConfig,
             'prod': prodWebpackConfig,
-            'all': {
-                ...allWebpackConfigs,
-                // This improves the log output of CI builds, where most build-all calls happen
-                progress: false
-            }
+            'all': allWebpackConfigs
         },
         "copy": {
             code: {
