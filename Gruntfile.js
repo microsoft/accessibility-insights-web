@@ -96,7 +96,16 @@ module.exports = function (grunt) {
         'webpack': {
             'dev': devWebpackConfig,
             'prod': prodWebpackConfig,
-            'all': allWebpackConfigs
+            'all': [
+                {
+                    ...devWebpackConfig,
+                    progress: false
+                },
+                {
+                    ...prodWebpackConfig,
+                    progress: false
+                }
+            ]
         },
         "copy": {
             code: {
