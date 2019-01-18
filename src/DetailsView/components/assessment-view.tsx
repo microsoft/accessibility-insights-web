@@ -17,14 +17,15 @@ import { detailsViewExtensionPoint } from '../extensions/details-view-extension-
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 import { TargetChangeDialog } from './target-change-dialog';
 import { TestStepView, TestStepViewDeps } from './test-step-view';
-import { TestStepsNav } from './test-steps-nav';
+import { TestStepNavDeps, TestStepsNav } from './test-steps-nav';
 
 export type WithAssessmentTestResult = { assessmentTestResult: AssessmentTestResult };
 export const AssessmentViewMainContentExtensionPoint =
     reactExtensionPoint<WithAssessmentTestResult>('AssessmentViewMainContentExtensionPoint');
 
-export type AssessmentViewDeps = ContentLinkDeps & TestStepViewDeps & {
+export type AssessmentViewDeps = ContentLinkDeps & TestStepViewDeps & TestStepNavDeps & {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator,
+    assessmentsProvider: IAssessmentsProvider,
 };
 
 export interface IAssessmentViewProps {
@@ -33,7 +34,6 @@ export interface IAssessmentViewProps {
     isEnabled: boolean;
     assessmentNavState: IAssessmentNavState;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
-    assessmentProvider: IAssessmentsProvider;
     assessmentData: IAssessmentData;
     currentTarget: ITab;
     prevTarget: ITab;
@@ -117,7 +117,7 @@ export class AssessmentView extends React.Component<IAssessmentViewProps> {
     }
 
     private visualHelperDisabledByDefault(test: VisualizationType, step: string): boolean {
-        return this.props.assessmentProvider.getStep(test, step).doNotScanByDefault === true;
+        return this.props.deps.assessmentsProvider.getStep(test, step).doNotScanByDefault === true;
     }
 
     public componentWillUnmount(): void {
@@ -176,12 +176,11 @@ export class AssessmentView extends React.Component<IAssessmentViewProps> {
             <div className="details-view-assessment-content">
                 <div className="test-steps-nav-container">
                     <TestStepsNav
+                        deps={this.props.deps}
                         ariaLabel={AssessmentView.requirementsTitle}
                         selectedTest={assessmentTestResult.type}
                         selectedTestStep={selectedRequirement.definition.key}
-                        actionMessageCreator={this.props.deps.detailsViewActionMessageCreator}
                         stepStatus={this.props.assessmentData.testStepStatus}
-                        assessmentsProvider={this.props.assessmentProvider}
                     />
                 </div>
                 <div className="test-step-view-container">
@@ -195,7 +194,7 @@ export class AssessmentView extends React.Component<IAssessmentViewProps> {
                         assessmentInstanceTableHandler={this.props.assessmentInstanceTableHandler}
                         manualTestStepResultMap={this.props.assessmentData.manualTestStepResultMap}
                         actionMessageCreator={this.props.deps.detailsViewActionMessageCreator}
-                        assessmentsProvider={this.props.assessmentProvider}
+                        assessmentsProvider={this.props.deps.assessmentsProvider}
                         isStepEnabled={this.props.isEnabled}
                         isStepScanned={isStepScanned}
                         assessmentDefaultMessageGenerator={this.props.assessmentDefaultMessageGenerator}

@@ -11,12 +11,17 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { TestStepLink } from './test-step-link';
 
+
+export interface TestStepNavDeps {
+    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    assessmentsProvider: IAssessmentsProvider;
+}
+
 export interface ITestStepNavProps {
+    deps: TestStepNavDeps;
     selectedTest: VisualizationType;
     selectedTestStep: string;
     stepStatus: IManualTestStatus;
-    actionMessageCreator: DetailsViewActionMessageCreator;
-    assessmentsProvider: IAssessmentsProvider;
     ariaLabel: string;
 }
 
@@ -26,30 +31,12 @@ export class TestStepsNav extends React.Component<ITestStepNavProps> {
     }
 
     public render(): JSX.Element {
-
-        const { assessmentsProvider, selectedTest, selectedTestStep, stepStatus } = this.props;
-
-        const results = getRequirementsResults(
-            assessmentsProvider,
-            selectedTest,
-            stepStatus);
-
-        const links = results.map(result => {
-            const { definition: step } = result;
-            return {
-                key: step.key,
-                name: step.name,
-                description: step.description,
-                url: '',
-                index: step.order,
-                forceAnchor: true,
-                renderRequirementDescription: step.renderRequirementDescription,
-            } as INavLink;
-        });
+        const { ariaLabel, selectedTestStep } = this.props;
+        const links = this.getLinks();
 
         return (
             <Nav
-                ariaLabel={this.props.ariaLabel}
+                ariaLabel={ariaLabel}
                 className={'test-step-nav'}
                 selectedKey={selectedTestStep}
                 groups={[{
@@ -74,7 +61,28 @@ export class TestStepsNav extends React.Component<ITestStepNavProps> {
     @autobind
     protected onTestStepSelected(event?: React.MouseEvent<HTMLElement>, item?: INavLink): void {
         if (item) {
-            this.props.actionMessageCreator.selectTestStep(event, item.key, this.props.selectedTest);
+            this.props.deps.detailsViewActionMessageCreator.selectTestStep(event, item.key, this.props.selectedTest);
         }
     }
+
+    private getLinks(): INavLink[] {
+        const { selectedTest, stepStatus } = this.props;
+        const { assessmentsProvider } = this.props.deps;
+        const results = getRequirementsResults(assessmentsProvider, selectedTest, stepStatus);
+
+        return results.map(result => {
+            const { definition: step } = result;
+
+            return {
+                key: step.key,
+                name: step.name,
+                description: step.description,
+                url: '',
+                index: step.order,
+                forceAnchor: true,
+                renderRequirementDescription: step.renderRequirementDescription,
+            } as INavLink;
+        });
+    }
+
 }

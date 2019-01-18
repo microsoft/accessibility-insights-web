@@ -19,7 +19,7 @@ exports[`AssessmentViewTest render 1`] = `
     </div>
     <div className=\\"details-view-assessment-content\\">
       <div className=\\"test-steps-nav-container\\">
-        <TestStepsNav ariaLabel=\\"Requirements\\" selectedTest={-1} selectedTestStep=\\"assessment-1-step-1\\" actionMessageCreator={{...}} stepStatus={{...}} assessmentsProvider={{...}} />
+        <TestStepsNav deps={{...}} ariaLabel=\\"Requirements\\" selectedTest={-1} selectedTestStep=\\"assessment-1-step-1\\" stepStatus={{...}} />
       </div>
       <div className=\\"test-step-view-container\\">
         <TestStepView deps={{...}} isScanning={false} testStep={{...}} renderStaticContent={[undefined]} instancesMap={{...}} assessmentNavState={{...}} assessmentInstanceTableHandler={{...}} manualTestStepResultMap={{...}} actionMessageCreator={{...}} assessmentsProvider={{...}} isStepEnabled={false} isStepScanned={false} assessmentDefaultMessageGenerator={{...}} />
