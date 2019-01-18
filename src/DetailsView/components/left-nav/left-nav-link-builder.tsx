@@ -2,15 +2,16 @@
 // Licensed under the MIT License.
 import { map } from 'lodash';
 import * as React from 'react';
-import { GetAssessmentSummaryModelFromProviderAndStatusData } from '../../reports/get-assessment-summary-model';
-import { OutcomeStats, OutcomeType } from '../../reports/components/outcome-type';
-import { ManualTestStatus, IManualTestStatus } from '../../../common/types/manual-test-status';
-import { onBaseLeftNavItemClick, BaseLeftNavLink, onBaseLeftNavItemRender } from '../base-left-nav';
+
 import { IAssessmentsProvider } from '../../../assessments/types/iassessments-provider';
-import { OverviewLeftNavLink } from './overview-left-nav-link';
-import { VisualizationType } from '../../../common/types/visualization-type';
-import { TestViewLeftNavLink } from './test-view-left-nav-link';
 import { IVisualizationConfiguration } from '../../../common/configs/visualization-configuration-factory';
+import { IManualTestStatus, ManualTestStatus } from '../../../common/types/manual-test-status';
+import { VisualizationType } from '../../../common/types/visualization-type';
+import { OutcomeStats, OutcomeType } from '../../reports/components/outcome-type';
+import { GetAssessmentSummaryModelFromProviderAndStatusData } from '../../reports/get-assessment-summary-model';
+import { BaseLeftNavLink, onBaseLeftNavItemClick, onBaseLeftNavItemRender } from '../base-left-nav';
+import { OverviewLeftNavLink } from './overview-left-nav-link';
+import { TestViewLeftNavLink } from './test-view-left-nav-link';
 
 
 export type LeftNavLinkBuilderDeps = OverviewLinkBuilderDeps & AssessmentLinkBuilderDeps & VisualizationConfigurationLinkBuilderDeps;
@@ -95,7 +96,7 @@ export class LeftNavLinkBuilder {
             const assessmentLink = {
                 ...baselink,
                 status,
-                title: `${index} of ${total} ${name} ${narratorTestStatus} test`,
+                title: `${index} ${name} ${narratorTestStatus} test`,
             };
 
             index++;
