@@ -3,9 +3,12 @@
 const sass = require('node-sass');
 const path = require('path');
 const targets = require('./targets.config');
-const allWebpackConfigs = require('./webpack.config');
 const merge = require('lodash/merge');
 const { run: copyrightCheckAndAdd } = require('license-check-and-add');
+
+const allWebpackConfigs = require('./webpack.config');
+const devWebpackConfig = allWebpackConfigs.find(c => c.name === 'dev');
+const prodWebpackConfig = allWebpackConfigs.find(c => c.name === 'prod');
 
 module.exports = function (grunt) {
     const extensionPath = 'extension';
@@ -68,15 +71,6 @@ module.exports = function (grunt) {
     }
 
     grunt.initConfig({
-        'watch': {
-            scripts: {
-                files: [
-                    'src/**/*',
-                    '!src/tests/**/*',
-                ],
-                tasks: ['dev']
-            },
-        },
         "sass": {
             options: {
                 implementation: sass,
@@ -100,8 +94,12 @@ module.exports = function (grunt) {
             },
         },
         'webpack': {
-            'dev': allWebpackConfigs.find(c => c.name === 'dev'),
-            'prod': allWebpackConfigs.find(c => c.name === 'prod'),
+            'dev': devWebpackConfig,
+            'dev-watch': {
+                ...devWebpackConfig,
+                watch: true
+            },
+            'prod': prodWebpackConfig,
             'all': allWebpackConfigs
         },
         "copy": {
@@ -250,7 +248,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-bom-removal');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-webpack');
 
@@ -360,6 +357,8 @@ module.exports = function (grunt) {
         "drop:dev",
         "release-drops"
     ]);
+
+    grunt.registerTask('watch', 'webpack:dev-watch');
 
     grunt.registerTask("default", ["build-dev"]);
 };
