@@ -66,13 +66,14 @@ You can install the extension from one of the following links
 We use [jest](https://github.com/facebook/jest) as our test framework and [puppeteer](https://github.com/GoogleChrome/puppeteer) for browser automation in our end-to-end UI tests.
 
 ### Using VS Code
-To run a task from the command palette, press **Ctrl + Shift + P**, select `Tasks: Run Task`, and select the task you want to run.
+To run a task from the command palette, press **Ctrl + Shift + P**, select `Tasks: Run Task`, and select the task you want to run:
 
-To run all tests described in `jest.config.js`, run the `npm: test` task.
+- `npm: test` runs all unit tests
+- `Test current file in VSCode` runs just the unit tests in the currently-opened file
+- `npm: test:e2e` runs all end-to-end tests
+- `E2E test current file in VSCode` runs just the end-to-end tests in the currently-opened file
 
-To run the currently opened (non-end-to-end) test file, run the `Test current file` task.
-
-To debug inside VS Code, set a breakpoint and click the debug button or press **F5**. Note that there are 2 debug targets (one for unit tests and one for end-to-end tests).
+To debug inside VS Code, set a breakpoint and click the debug button or press **F5**. Note that there are 2 debug targets (one for unit tests and one for end-to-end tests); be sure to use the appropriate one for the test you are debugging.
 
 To debug using an external tool, run the `Debug current test file outside VS Code` task. In Chrome, for example, navigate to `chrome://inspect` and click `Open dedicated DevTools for Node`.
 
@@ -80,9 +81,9 @@ You can start an interactive watch session that automatically runs tests affecte
 
 ### Using the terminal
 
-To run all tests described in `jest.config.js` (everything except the end-to-end tests), run `npm test`.
+`npm test` runs all unit tests.
 
-To run all tests described in `jest.e2e.config.js`, run `npm run test:e2e`
+`npm run test:e2e` runs all end-to-end tests - you'll need to run `npm run build` first if you've changed non-test code.
 
 To run a single or small number of test files, run `npm test -- {FILE_NAME_REGEX}`
 
