@@ -107,3 +107,4 @@ jobs:
       pathtoPublish: '$(System.DefaultWorkingDirectory)/drop'
       artifactName: 'drop'
     displayName: publish drop
+    condition: always()
