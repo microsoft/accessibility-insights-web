@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ManualTestStatus, IManualTestStatus } from '../../../common/types/manual-test-status';
 import { countBy, values } from 'lodash';
+
+import { IManualTestStatus, ManualTestStatus } from '../../../common/types/manual-test-status';
 
 export type OutcomeType = 'pass' | 'incomplete' | 'fail';
 
@@ -17,9 +18,13 @@ export function outcomeTypeFromTestStatus(testStatus: ManualTestStatus) {
     return statusMap[testStatus];
 }
 
-type OutcomeTypeSemantic = {
+export function outcomeTypeSemanticsFromTestStatus(testStatus: ManualTestStatus): OutcomeTypeSemantic {
+    return outcomeTypeSemantics[outcomeTypeFromTestStatus(testStatus)];
+}
+
+export interface OutcomeTypeSemantic {
     pastTense: string;
-};
+}
 
 export const outcomeTypeSemantics: { [OT in OutcomeType]: OutcomeTypeSemantic } = {
     pass: { pastTense: 'passed' },
