@@ -7,7 +7,7 @@ jobs:
   pool:
     vmImage: 'macOS-10.13'
 
-  timeoutInMinutes: 6 # Typically takes 3-4
+  timeoutInMinutes: 15
 
   steps:
   - task: NodeTool@0
@@ -62,7 +62,7 @@ jobs:
   pool:
     vmImage: 'macOS-10.13'
 
-  timeoutInMinutes: 6 # Typically takes 3-4
+  timeoutInMinutes: 15
 
   steps:
   - task: NodeTool@0
