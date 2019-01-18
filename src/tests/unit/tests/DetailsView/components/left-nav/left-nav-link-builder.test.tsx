@@ -10,15 +10,10 @@ import { IVisualizationConfiguration } from '../../../../../../common/configs/vi
 import { IManualTestStatus, ManualTestStatus } from '../../../../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
 import { BaseLeftNavLink, onBaseLeftNavItemClick } from '../../../../../../DetailsView/components/base-left-nav';
-import {
-    LeftNavLinkBuilder,
-    LeftNavLinkBuilderDeps,
-} from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';
+import { LeftNavLinkBuilder, LeftNavLinkBuilderDeps } from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';
 import { IOverviewSummaryReportModel } from '../../../../../../DetailsView/reports/assessment-report-model';
 import { OutcomeStats, OutcomeType } from '../../../../../../DetailsView/reports/components/outcome-type';
-import {
-    GetAssessmentSummaryModelFromProviderAndStatusData,
-} from '../../../../../../DetailsView/reports/get-assessment-summary-model';
+import { GetAssessmentSummaryModelFromProviderAndStatusData } from '../../../../../../DetailsView/reports/get-assessment-summary-model';
 
 describe('LeftNavBuilder', () => {
     let deps: LeftNavLinkBuilderDeps;
@@ -184,7 +179,7 @@ describe('LeftNavBuilder', () => {
                     },
                     onClickNavLink: onLinkClickMock.object,
                     status: testStatusStub,
-                    title: `${startingIndexStub + linkIndex} of ${links.length} ${assessmentStub.title} ${narratorStatusStub} test`,
+                    title: `${startingIndexStub + linkIndex} ${assessmentStub.title} ${narratorStatusStub} test`,
                 };
                 expect(isMatch(actual, expected)).toBeTruthy();
                 expect(actual.onRenderNavLink(actual, renderIconStub)).toMatchSnapshot();
