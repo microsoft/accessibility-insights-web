@@ -44,6 +44,9 @@ async function launchNewBrowser(): Promise<Puppeteer.Browser> {
             // Required to work around https://github.com/GoogleChrome/puppeteer/pull/774
             `--disable-extensions-except=${extensionPath}`,
             `--load-extension=${extensionPath}`,
+            '--enable-extension-activity-logging',
+            '--enable-logging',
+            '--log-level=0',
         ],
         // This causes Chromium's stdout/stderr to be piped for Jest to see, which is useful for debugging
         // launch issues with the browser (especially in a CI environment)
