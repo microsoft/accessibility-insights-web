@@ -7,7 +7,7 @@ import { IAssessmentsProvider } from '../../../assessments/types/iassessments-pr
 import { IVisualizationConfiguration } from '../../../common/configs/visualization-configuration-factory';
 import { IManualTestStatus, ManualTestStatus } from '../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../common/types/visualization-type';
-import { OutcomeStats, OutcomeType } from '../../reports/components/outcome-type';
+import { OutcomeStats, OutcomeTypeSemantic } from '../../reports/components/outcome-type';
 import { GetAssessmentSummaryModelFromProviderAndStatusData } from '../../reports/get-assessment-summary-model';
 import { BaseLeftNavLink, onBaseLeftNavItemClick, onBaseLeftNavItemRender } from '../base-left-nav';
 import { OverviewLeftNavLink } from './overview-left-nav-link';
@@ -22,7 +22,7 @@ export type OverviewLinkBuilderDeps = {
 
 export type AssessmentLinkBuilderDeps = {
     getStatusForTest: (stats: OutcomeStats) => ManualTestStatus;
-    outcomeTypeFromTestStatus: (testStatus: ManualTestStatus) => OutcomeType;
+    outcomeTypeSemanticsFromTestStatus: (testStatus: ManualTestStatus) => OutcomeTypeSemantic;
     outcomeStatsFromManualTestStatus: (testStepStatus: IManualTestStatus) => OutcomeStats;
 };
 
@@ -70,7 +70,7 @@ export class LeftNavLinkBuilder {
     ): BaseLeftNavLink[] {
         const {
             getStatusForTest,
-            outcomeTypeFromTestStatus,
+            outcomeTypeSemanticsFromTestStatus,
             outcomeStatsFromManualTestStatus,
         } = deps;
 
@@ -82,7 +82,7 @@ export class LeftNavLinkBuilder {
             const stepStatus = assessmentsData[assessment.key];
             const stats = outcomeStatsFromManualTestStatus(stepStatus);
             const status = getStatusForTest(stats);
-            const narratorTestStatus = outcomeTypeFromTestStatus(status);
+            const narratorTestStatus = outcomeTypeSemanticsFromTestStatus(status).pastTense;
             const name = assessment.title;
 
             const baselink = this.buildLink(
@@ -96,7 +96,7 @@ export class LeftNavLinkBuilder {
             const assessmentLink = {
                 ...baselink,
                 status,
-                title: `${index} ${name} ${narratorTestStatus} test`,
+                title: `${index} ${name} ${narratorTestStatus}`,
             };
 
             index++;
