@@ -51,12 +51,12 @@ export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
 
     function Title(props: { children: string }): JSX.Element {
 
-        const setPageTitle = <Helmet>
+        const helmet = <Helmet>
             <title>{props.children} - {productName}</title>
         </Helmet>;
 
         return <>
-            {options && options.setPageTitle && setPageTitle}
+            {options && options.setPageTitle && helmet}
             <h1>{props.children}</h1>
         </>;
     }
