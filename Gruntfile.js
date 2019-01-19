@@ -192,7 +192,7 @@ module.exports = function (grunt) {
                     files: [
                         "extension/devBundle/**/*.js",
                     ],
-                    tasks: ['build-dev']
+                    tasks: ['post-webpack']
                 },
             },
             "drop": {
