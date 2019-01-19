@@ -36,7 +36,7 @@ export type Markup = {
     Columns: React.SFC,
     Column: React.SFC,
     HyperLink: React.SFC<{ href: string }>,
-    Title: React.SFC,
+    Title: React.SFC<{ children: string }>,
     CodeExample: React.SFC<CodeExampleProps>,
     Links: React.SFC,
     Table: React.SFC,
@@ -49,7 +49,7 @@ export type MarkupDeps = { contentActionMessageCreator: ContentActionMessageCrea
 export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
     const { openContentHyperLink } = deps.contentActionMessageCreator;
 
-    function Title(props: { children: React.ReactNode }): JSX.Element {
+    function Title(props: { children: string }): JSX.Element {
 
         const setPageTitle = <Helmet>
             <title>{props.children} - {productName}</title>
