@@ -40,23 +40,11 @@ describe('ContentPage', () => {
             expect(wrapper.debug()).toMatchSnapshot();
         });
 
-        it('<Title> renders where setPageTitle === null', () => {
-            const Markup = createMarkup(deps, { setPageTitle: null });
-            const wrapper = shallow(<Title>TEST</Title>);
-            expect(wrapper.debug()).toMatchSnapshot();
-        });
-
-        it('<Title> renders where setPageTitle === false', () => {
-            const Markup = createMarkup(deps, { setPageTitle: false });
+        [true, false, null].forEach(value => it(`<Title> renders where setPageTitle === ${value}`, () => {
+            const Markup = createMarkup(deps, { setPageTitle: value });
             const wrapper = shallow(<Markup.Title>TEST</Markup.Title>);
             expect(wrapper.debug()).toMatchSnapshot();
-        });
-
-        it('<Title> renders where setPageTitle === true', () => {
-            const Markup = createMarkup(deps, { setPageTitle: true });
-            const wrapper = shallow(<Markup.Title>TEST</Markup.Title>);
-            expect(wrapper.debug()).toMatchSnapshot();
-        });
+        }));
 
         it('<LandmarkLegend> renders', () => {
             const wrapper = shallow(<LandmarkLegend role="test">TEST</LandmarkLegend>);
