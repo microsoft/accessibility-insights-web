@@ -37,7 +37,7 @@ describe('AssessmentInstanceSelectedButton', () => {
                 iconProps={{ className: 'test-instance-selected test-instance-selected-visible', iconName: 'view' }}
                 onClick={onButtonClickedStub}
                 disabled={false}
-                ariaLabel={'Visualization of the instance true'}
+                ariaLabel={'Instance visualization enabled'}
             />
         );
 
@@ -65,7 +65,7 @@ describe('AssessmentInstanceSelectedButton', () => {
                 iconProps={{ className: 'test-instance-selected test-instance-selected-hidden', iconName: 'hide2' }}
                 onClick={onButtonClickedStub}
                 disabled={true}
-                ariaLabel={'Visualization of the instance true'}
+                ariaLabel={'Instance visualization enabled'}
             />
         );
 
@@ -93,7 +93,7 @@ describe('AssessmentInstanceSelectedButton', () => {
                 iconProps={{ className: '', iconName: 'checkBox' }}
                 onClick={onButtonClickedStub}
                 disabled={false}
-                ariaLabel={'Visualization of the instance false'}
+                ariaLabel={'Instance visualization disabled'}
             />
         );
 
@@ -121,7 +121,7 @@ describe('AssessmentInstanceSelectedButton', () => {
                 iconProps={{ className: '', iconName: 'hide2' }}
                 onClick={onButtonClickedStub}
                 disabled={true}
-                ariaLabel={'Visualization of the instance false'}
+                ariaLabel={'Instance visualization disabled'}
             />
         );
 
