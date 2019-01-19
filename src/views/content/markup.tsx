@@ -1,12 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
+import Helmet from 'react-helmet';
 
 import { Code, Emphasis, Tag, Term } from '../../assessments/markup';
 import { CheckIcon } from '../../common/icons/check-icon';
 import { CrossIcon } from '../../common/icons/cross-icon';
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
 import { NewTabLink } from '../../common/components/new-tab-link';
+import { ContentPageOptions } from './content-page';
+import { productName } from '../../content/strings/application';
 
 type PassFailProps = {
     passText: JSX.Element,
@@ -43,20 +46,28 @@ export type Markup = {
 
 export type MarkupDeps = { contentActionMessageCreator: ContentActionMessageCreator };
 
-export const createMarkup = (deps: MarkupDeps) => {
+export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
     const { openContentHyperLink } = deps.contentActionMessageCreator;
 
     function Title(props: { children: React.ReactNode }): JSX.Element {
-        return <h1>{props.children}</h1>;
+
+        const setPageTitle = <Helmet>
+            <title>{props.children} - {productName}</title>
+        </Helmet>;
+
+        return <>
+            {options && options.setPageTitle && setPageTitle}
+            <h1>{props.children}</h1>
+        </>;
     }
 
     function HyperLink(props: { href: string; children: React.ReactNode }): JSX.Element {
         const { href } = props;
 
         return (
-                <NewTabLink href={href} onClick={e => openContentHyperLink(e, href)}>
-                    {props.children}
-                </NewTabLink>
+            <NewTabLink href={href} onClick={e => openContentHyperLink(e, href)}>
+                {props.children}
+            </NewTabLink>
 
         );
     }
@@ -168,7 +179,7 @@ export const createMarkup = (deps: MarkupDeps) => {
             }
         }
 
-        function renderRegion(str: string, index: number) {
+        function renderRegion(str: string, index: number): string | JSX.Element {
             if (str[0] === '[') {
                 return (
                     <span key={index} className="highlight">
@@ -246,5 +257,6 @@ export const createMarkup = (deps: MarkupDeps) => {
         LandmarkLegend,
         Table,
         ProblemList,
+        options,
     } as Markup;
 };

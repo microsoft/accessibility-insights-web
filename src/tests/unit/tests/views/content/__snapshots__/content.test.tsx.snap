@@ -5,7 +5,7 @@ exports[`content view renders 1`] = `
   <div className=\\"content-container\\">
     <div className=\\"content-left\\" />
     <div className=\\"content\\">
-      <THE-CONTENT deps={{...}} />
+      <THE-CONTENT deps={{...}} options={{...}} />
     </div>
     <div className=\\"content-right\\" />
   </div>
