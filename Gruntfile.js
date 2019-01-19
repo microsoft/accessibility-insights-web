@@ -187,6 +187,14 @@ module.exports = function (grunt) {
         const debug = config.options.debug;
 
         grunt.config.merge({
+            'watch': {
+                scripts: {
+                    files: [
+                        "extension/devBundle/**/*.js",
+                    ],
+                    tasks: ['build-dev']
+                },
+            },
             "drop": {
                 [targetName]: {
                     debug
@@ -246,6 +254,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-webpack');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.registerTask("copyright-check", 'grunt task to check copyright header', function () {
         copyrightCheckAndAdd(copyrightCheckAndAddConfig);
@@ -335,9 +344,13 @@ module.exports = function (grunt) {
     grunt.registerTask('build-dev', [
         "pre-webpack",
         "webpack:dev",
+        "post-webpack"
+    ]);
+
+    grunt.registerTask('post-webpack', [
         "post-webpack-pre-drop",
         "drop:dev"
-    ]);
+    ])
 
     grunt.registerTask('build-prod', [
         "pre-webpack",
