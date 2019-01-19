@@ -1,0 +1,14 @@
+drop/
+dist/
+extension/
+.github/
+test-results/
+
+copyright-header.txt
+LICENSE
+package-lock.json
+.prettierignore
+
+**/*.snap
+**/*.png
+**/*.gitignore
