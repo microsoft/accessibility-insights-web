@@ -5,6 +5,7 @@ import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';
 
 import { IAssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
+import { TestStep } from '../../../../../assessments/types/test-step';
 import { getInnerTextFromJsxElement } from '../../../../../common/get-inner-text-from-jsx-element';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
@@ -66,13 +67,7 @@ describe('TestStepsNav', () => {
             ariaLabel: 'test',
         };
 
-        assessment.steps.forEach((step, index) => {
-            props.stepStatus[step.key] = {
-                stepFinalResult: index % 2 === 0 ? ManualTestStatus.UNKNOWN : ManualTestStatus.PASS,
-                isStepScanned: false,
-                name: step.name,
-            };
-        });
+        generateStepStatus(assessment.steps, props);
 
         actionMessageCreatorMock
             .setup(a => a.selectTestStep(eventStub, item.key, props.selectedTest))
@@ -88,6 +83,15 @@ describe('TestStepsNav', () => {
         actionMessageCreatorMock.verifyAll();
     }
 
+    function generateStepStatus(testSteps: TestStep[], props: ITestStepNavProps): void {
+        testSteps.forEach((step, index) => {
+            props.stepStatus[step.key] = {
+                stepFinalResult: index % 2 === 0 ? ManualTestStatus.UNKNOWN : ManualTestStatus.PASS,
+                isStepScanned: false,
+                name: step.name,
+            };
+        });
+    }
     function createOutcomeTypeSemanticsFromTestStatusStub(): typeof outcomeTypeSemanticsFromTestStatus {
         const outcomeTypeSemanticsFromTestStatusMock = Mock.ofInstance(outcomeTypeSemanticsFromTestStatus);
 
