@@ -8,7 +8,7 @@ export const keyboardBookmarkletInstructions = create(({ Markup, Link }) => <>
     <ol>
         <li>Open the Chrome <Markup.Term>Bookmarks Manager</Markup.Term>:</li>
         <ol type="a">
-            <li>In Chrome, type <Markup.Term>Ctrl + Shift + o.</Markup.Term></li>
+            <li>In Chrome, type <Markup.Term>Ctrl + Shift + o</Markup.Term> or <Markup.Term>⌘ + Option + b</Markup.Term></li>
             <li>A new browser tab called <Markup.Term>Bookmarks</Markup.Term> will open.</li>
         </ol>
 
