@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 const path = require('path')
 const webpack = require('webpack');
-const ExtraWatchWebpackPlugin = require('extra-watch-webpack-plugin');
+//const ExtraWatchWebpackPlugin = require('extra-watch-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
@@ -66,10 +66,11 @@ const devConfig = {
     devtool: 'source-map',
     plugins: [
         ...commonPlugins,
-        // This ensures that "grunt watch" will catch tslint errors in test files
-        new ExtraWatchWebpackPlugin({
-            files: ['src/**/*.ts', 'src/**/*.tsx']
-        })
+        // commenting out to see if this change causes webpack to crash
+        // // This ensures that "grunt watch" will catch tslint errors in test files
+        // new ExtraWatchWebpackPlugin({
+        //     files: ['src/**/*.ts', 'src/**/*.tsx']
+        // })
     ],
     output: {
         path: path.join(__dirname, "extension/devBundle"),
