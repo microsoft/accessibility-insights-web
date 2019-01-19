@@ -1,139 +1,188 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ContentPage .Markup <Column> renders 1`] = `
-"<div className=\\"column\\">
+<div
+  className="column"
+>
   INSIDE COLUMN
-</div>"
+</div>
 `;
 
 exports[`ContentPage .Markup <Columns> renders 1`] = `
-"<div className=\\"columns\\">
+<div
+  className="columns"
+>
   INSIDE COLUMNS
-</div>"
+</div>
 `;
 
 exports[`ContentPage .Markup <Do> renders 1`] = `
-"<Column>
-  <div className=\\"do-header\\">
+<Column>
+  <div
+    className="do-header"
+  >
     <h2>
       Do
     </h2>
     <CheckIcon />
   </div>
-  <div className=\\"do-section\\">
+  <div
+    className="do-section"
+  >
     THINGS TO DO
   </div>
-</Column>"
+</Column>
 `;
 
 exports[`ContentPage .Markup <Dont> renders 1`] = `
-"<Column>
-  <div className=\\"dont-header\\">
+<Column>
+  <div
+    className="dont-header"
+  >
     <h2>
-      Don&#39;t
+      Don't
     </h2>
     <CrossIcon />
   </div>
-  <div className=\\"dont-section\\">
-    DON&#39;T DO THIS
+  <div
+    className="dont-section"
+  >
+    DON'T DO THIS
   </div>
-</Column>"
+</Column>
 `;
 
 exports[`ContentPage .Markup <Fail> renders 1`] = `
-"<Column>
-  <div className=\\"fail-header\\">
+<Column>
+  <div
+    className="fail-header"
+  >
     <CrossIcon />
      
     <h3>
       Fail
     </h3>
   </div>
-  <div className=\\"fail-section\\">
+  <div
+    className="fail-section"
+  >
     I FAILED :(
   </div>
-</Column>"
+</Column>
 `;
 
 exports[`ContentPage .Markup <HyperLink> renders 1`] = `
-"<NewTabLink href=\\"http://my.link\\" onClick={[Function: onClick]}>
+<NewTabLink
+  href="http://my.link"
+  onClick={[Function]}
+>
   LINK TEXT
-</NewTabLink>"
+</NewTabLink>
 `;
 
 exports[`ContentPage .Markup <LandmarkLegend> renders 1`] = `
-"<span className=\\"landmarks-legend test-landmark\\">
+<span
+  className="landmarks-legend test-landmark"
+>
   TEST
-</span>"
+</span>
 `;
 
 exports[`ContentPage .Markup <LandmarkLegend> renders 2`] = `
-"<Column>
-  <div className=\\"do-header\\">
+<Column>
+  <div
+    className="do-header"
+  >
     <h2>
       Do
     </h2>
     <CheckIcon />
   </div>
-  <div className=\\"do-section\\">
+  <div
+    className="do-section"
+  >
     THINGS TO DO
   </div>
-</Column>"
+</Column>
 `;
 
 exports[`ContentPage .Markup <Links> renders with many links 1`] = `
-"<Fragment>
-  <div className=\\"content-hyperlinks\\">
-    <HyperLink href=\\"about:blank\\">
+<React.Fragment>
+  <div
+    className="content-hyperlinks"
+  >
+    <HyperLink
+      href="about:blank"
+    >
       One
     </HyperLink>
-    <HyperLink href=\\"about:blank\\">
+    <HyperLink
+      href="about:blank"
+    >
       Two
     </HyperLink>
-    <HyperLink href=\\"about:blank\\">
+    <HyperLink
+      href="about:blank"
+    >
       Three
     </HyperLink>
   </div>
-</Fragment>"
+</React.Fragment>
 `;
 
 exports[`ContentPage .Markup <Links> renders with one link 1`] = `
-"<Fragment>
-  <div className=\\"content-hyperlinks\\">
-    <HyperLink href=\\"about:blank\\">
+<React.Fragment>
+  <div
+    className="content-hyperlinks"
+  >
+    <HyperLink
+      href="about:blank"
+    >
       One
     </HyperLink>
   </div>
-</Fragment>"
+</React.Fragment>
 `;
 
 exports[`ContentPage .Markup <Links> renders with text 1`] = `
-"<Fragment>
-  <div className=\\"content-hyperlinks\\">
+<React.Fragment>
+  <div
+    className="content-hyperlinks"
+  >
     Some text
   </div>
-</Fragment>"
+</React.Fragment>
 `;
 
 exports[`ContentPage .Markup <Pass> renders 1`] = `
-"<Column>
-  <div className=\\"pass-header\\">
+<Column>
+  <div
+    className="pass-header"
+  >
     <CheckIcon />
      
     <h3>
       Pass
     </h3>
   </div>
-  <div className=\\"pass-section\\">
+  <div
+    className="pass-section"
+  >
     I PASSED :)
   </div>
-</Column>"
+</Column>
 `;
 
 exports[`ContentPage .Markup <PassFail> renders with example headers 1`] = `
-"<div className=\\"pass-fail-grid\\">
-  <div className=\\"fail-section\\">
-    <div className=\\"fail-header\\">
+<div
+  className="pass-fail-grid"
+>
+  <div
+    className="fail-section"
+  >
+    <div
+      className="fail-header"
+    >
       <CrossIcon />
        
       <h3>
@@ -144,13 +193,21 @@ exports[`ContentPage .Markup <PassFail> renders with example headers 1`] = `
       I FAILED :(
     </p>
   </div>
-  <div className=\\"fail-example\\">
-    <CodeExample title=\\"How I failed\\">
+  <div
+    className="fail-example"
+  >
+    <CodeExample
+      title="How I failed"
+    >
       This is the failure [example].
     </CodeExample>
   </div>
-  <div className=\\"pass-section\\">
-    <div className=\\"pass-header\\">
+  <div
+    className="pass-section"
+  >
+    <div
+      className="pass-header"
+    >
       <CheckIcon />
        
       <h3>
@@ -161,18 +218,35 @@ exports[`ContentPage .Markup <PassFail> renders with example headers 1`] = `
       I PASSED!
     </p>
   </div>
-  <div className=\\"pass-example\\">
-    <CodeExample title={{...}}>
+  <div
+    className="pass-example"
+  >
+    <CodeExample
+      title={
+        <React.Fragment>
+          How I 
+          <b>
+            passed
+          </b>
+        </React.Fragment>
+      }
+    >
       This is the passing [example].
     </CodeExample>
   </div>
-</div>"
+</div>
 `;
 
 exports[`ContentPage .Markup <PassFail> renders without example headers 1`] = `
-"<div className=\\"pass-fail-grid\\">
-  <div className=\\"fail-section\\">
-    <div className=\\"fail-header\\">
+<div
+  className="pass-fail-grid"
+>
+  <div
+    className="fail-section"
+  >
+    <div
+      className="fail-header"
+    >
       <CrossIcon />
        
       <h3>
@@ -183,13 +257,19 @@ exports[`ContentPage .Markup <PassFail> renders without example headers 1`] = `
       I FAILED :(
     </p>
   </div>
-  <div className=\\"fail-example\\">
+  <div
+    className="fail-example"
+  >
     <CodeExample>
       This is the failure [example].
     </CodeExample>
   </div>
-  <div className=\\"pass-section\\">
-    <div className=\\"pass-header\\">
+  <div
+    className="pass-section"
+  >
+    <div
+      className="pass-header"
+    >
       <CheckIcon />
        
       <h3>
@@ -200,53 +280,62 @@ exports[`ContentPage .Markup <PassFail> renders without example headers 1`] = `
       I PASSED!
     </p>
   </div>
-  <div className=\\"pass-example\\">
+  <div
+    className="pass-example"
+  >
     <CodeExample>
       This is the passing [example].
     </CodeExample>
   </div>
-</div>"
+</div>
 `;
 
 exports[`ContentPage .Markup <ProblemList> renders 1`] = `
-"<ul className=\\"accessibility-problems-list\\">
+<ul
+  className="accessibility-problems-list"
+>
   list contetn
-</ul>"
+</ul>
 `;
 
 exports[`ContentPage .Markup <Table> renders 1`] = `
-"<ul className=\\"table\\">
+<ul
+  className="table"
+>
   table contetn
-</ul>"
+</ul>
 `;
 
 exports[`ContentPage .Markup <Title> renders where options not specified 1`] = `
-"<Fragment>
+<React.Fragment>
   <h1>
     TEST
   </h1>
-</Fragment>"
+</React.Fragment>
 `;
 
 exports[`ContentPage .Markup <Title> renders where setPageTitle === false 1`] = `
-"<Fragment>
+<React.Fragment>
   <h1>
     TEST
   </h1>
-</Fragment>"
+</React.Fragment>
 `;
 
 exports[`ContentPage .Markup <Title> renders where setPageTitle === null 1`] = `
-"<Fragment>
+<React.Fragment>
   <h1>
     TEST
   </h1>
-</Fragment>"
+</React.Fragment>
 `;
 
 exports[`ContentPage .Markup <Title> renders where setPageTitle === true 1`] = `
-"<Fragment>
-  <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
+<React.Fragment>
+  <HelmetWrapper
+    defer={true}
+    encodeSpecialCharacters={true}
+  >
     <title>
       TEST
        - 
@@ -256,5 +345,5 @@ exports[`ContentPage .Markup <Title> renders where setPageTitle === true 1`] = `
   <h1>
     TEST
   </h1>
-</Fragment>"
+</React.Fragment>
 `;
