@@ -34,7 +34,7 @@ export interface IAssessmentInstanceRowData<P = {}> extends IObjectWithKey {
 
 export interface ICapturedInstanceRowData extends IObjectWithKey {
     instance: IUserCapturedInstance;
-    removeButton: JSX.Element;
+    instanceActionButtons: JSX.Element;
 }
 
 export class AssessmentInstanceTable extends React.Component<IAssessmentInstanceTableProps> {
