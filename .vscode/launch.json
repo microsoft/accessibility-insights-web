@@ -34,6 +34,18 @@
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen",
             "port": 9229
-        }
+        },
+        {
+            "name": "Attach debugger to DetailsView in running Chrome instance (must launch Chrome with --remote-debugging-port=9230)",
+            "type": "chrome",
+            "request": "attach",
+            "port": 9230,
+            "preLaunchTask": "",
+            "urlFilter": "chrome-extension://*/DetailsView/*",
+            "webRoot": "${workspaceFolder}/drop/dev/extension",
+            "sourceMapPathOverrides": {
+                "webpack:///./*": "${workspaceFolder}/*"
+            }
+        },
     ]
 }
