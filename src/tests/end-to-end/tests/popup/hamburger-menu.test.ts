@@ -13,11 +13,11 @@ describe('Hamburger menu', () => {
     });
 
     afterEach(async () => {
-        await browser.closeAllPages();
+        if (browser) { await browser.closeAllPages(); }
     });
 
     afterAll(async () => {
-        await browser.close();
+        if (browser) { await browser.close(); browser = undefined; }
     });
 
     it('should have content matching snapshot', async () => {

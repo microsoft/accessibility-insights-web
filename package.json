@@ -50,6 +50,7 @@
     "grunt-sass": "2.1.0",
     "grunt-tslint": "^5.0.2",
     "jest": "^23.5.0",
+    "jest-circus": "^23.6.0",
     "jest-junit": "^5.2.0",
     "license-check-and-add": "2.3.6",
     "make-dir": "^1.3.0",

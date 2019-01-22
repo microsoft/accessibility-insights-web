@@ -23,11 +23,11 @@ describe('Launch Pad', () => {
     });
 
     afterEach(async () => {
-        await browser.closeAllPages();
+        if (browser) { await browser.closeAllPages(); }
     });
 
     afterAll(async () => {
-        await browser.close();
+        if (browser) { await browser.close(); browser = undefined; }
     });
 
     async function setupNewTargetPage(): Promise<void> {
