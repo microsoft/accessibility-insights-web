@@ -36,5 +36,5 @@
     "editor.tabSize": 4,
     "html.format.endWithNewline": true,
     "files.insertFinalNewline": true,
-    "prettier.requireConfig": true,
+    "prettier.requireConfig": true
 }
