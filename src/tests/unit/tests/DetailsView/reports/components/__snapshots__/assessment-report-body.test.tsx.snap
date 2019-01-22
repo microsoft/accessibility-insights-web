@@ -49,19 +49,15 @@ exports[`AssessmentReportBody render 1`] = `
   <div
     className="details-section"
   >
-    <div
+    <h2
       className="details-section-header"
     >
-      <h2
-        className="details-section-header-title"
-      >
-        Failed tests
-      </h2>
+      Failed tests
       <OutcomeChip
         count={3}
         outcomeType="fail"
       />
-    </div>
+    </h2>
     <AssessmentReportAssessmentList
       assessments={
         Array [
@@ -143,19 +139,15 @@ exports[`AssessmentReportBody render 1`] = `
   <div
     className="details-section"
   >
-    <div
+    <h2
       className="details-section-header"
     >
-      <h2
-        className="details-section-header-title"
-      >
-        Incomplete tests
-      </h2>
+      Incomplete tests
       <OutcomeChip
         count={2}
         outcomeType="incomplete"
       />
-    </div>
+    </h2>
     <AssessmentReportAssessmentList
       assessments={
         Array [
@@ -216,19 +208,15 @@ exports[`AssessmentReportBody render 1`] = `
   <div
     className="details-section"
   >
-    <div
+    <h2
       className="details-section-header"
     >
-      <h2
-        className="details-section-header-title"
-      >
-        Passed tests
-      </h2>
+      Passed tests
       <OutcomeChip
         count={1}
         outcomeType="pass"
       />
-    </div>
+    </h2>
     <AssessmentReportAssessmentList
       assessments={
         Array [

@@ -45,19 +45,20 @@ describe('AssessmentReportAssessmentListTest', () => {
         assessments.assessments.forEach((assessment, index) => {
             const assessmentDiv = wrapper.childAt(index);
             expect(assessmentDiv.children()).toHaveLength(2);
-            expect(assessmentDiv.hasClass('assessment-details')).toBeTruthy();
+            expect(assessmentDiv.hasClass('assessment-details')).toBe(true);
             expect(assessmentDiv.key()).toEqual(assessment.key);
 
             testAssessmentHeader(assessment, assessmentDiv.childAt(0));
         });
+
+        expect(wrapper.getElement()).toMatchSnapshot();
     }
 
     function testAssessmentHeader(assessment: IAssessmentDetailsReportModel, assessmentHeader: Enzyme.ShallowWrapper<any, any>): void {
-        expect(assessmentHeader.hasClass('assessment-header')).toBeTruthy();
+        expect(assessmentHeader.hasClass('assessment-header')).toBe(true);
         expect(assessmentHeader.children()).toHaveLength(2);
 
         const headerName = assessmentHeader.childAt(0);
-        expect(headerName.hasClass('assessment-header-name')).toBeTruthy();
         expect(headerName.text()).toEqual(assessment.displayName);
     }
 });
