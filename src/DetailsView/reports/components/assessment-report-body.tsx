@@ -72,16 +72,13 @@ export class AssessmentReportBody extends React.Component<IAssessmentReportBodyP
     }
     private renderDetailsSectionHeader(title: string, count: number, status: ManualTestStatus): JSX.Element {
         return (
-            <div className="details-section-header">
-                <h2 className="details-section-header-title">
-                    {title}
-                </h2>
-
+            <h2 className="details-section-header">
+                {title}
                 <OutcomeChip
                     count={count}
                     outcomeType={allOutcomeTypes[status]}
                 />
-            </div>
+            </h2>
         );
     }
 }
