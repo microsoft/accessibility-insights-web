@@ -104,7 +104,7 @@ export class FailureInstancePanelControl extends React.Component<IFailureInstanc
                 />
                 <ActionAndCancelButtonsComponent
                     isHidden={false}
-                    primaryButtonDisabled={this.state.failureDescription === ''}
+                    primaryButtonDisabled={this.state.isPanelOpen && this.state.failureDescription === ''}
                     primaryButtonText={this.props.actionType === CapturedInstanceActionType.CREATE ? 'Add' : 'Save'}
                     primaryButtonOnClick={
                         this.props.actionType === CapturedInstanceActionType.CREATE ?
