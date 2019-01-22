@@ -99,7 +99,7 @@ export class AssessmentInstanceTableHandler {
         return instances.map((instance: IUserCapturedInstance) => {
             return {
                 instance: instance,
-                removeButton: this.renderRemoveButton(instance, test, step),
+                instanceActionButtons: this.renderInstanceActionButtons(instance, test, step),
             };
         });
     }
@@ -147,7 +147,7 @@ export class AssessmentInstanceTableHandler {
     }
 
     @autobind
-    private renderRemoveButton(instance: IUserCapturedInstance, test: VisualizationType, step: string): JSX.Element {
+    private renderInstanceActionButtons(instance: IUserCapturedInstance, test: VisualizationType, step: string): JSX.Element {
         return (
             <AssessmentInstanceEditAndRemoveControl
                 test={test}

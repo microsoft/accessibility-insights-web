@@ -133,7 +133,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             assessmentNavState.selectedTestStep,
         );
 
-        const removeButton: JSX.Element = (
+        const instanceActionButtons: JSX.Element = (
             <AssessmentInstanceEditAndRemoveControl
                 test={assessmentNavState.selectedTestType}
                 step={assessmentNavState.selectedTestStep}
@@ -147,7 +147,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
         const expectedRows: ICapturedInstanceRowData[] = [
             {
                 instance: instance,
-                removeButton: removeButton,
+                instanceActionButtons: instanceActionButtons,
             },
         ];
         actionMessageCreatorMock.verifyAll();

@@ -92,7 +92,7 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
                 id: 'id',
                 description: 'comment',
             },
-            removeButton: null,
+            instanceActionButtons: null,
         };
         const expected = (
             <AssessmentInstanceDetailsColumn
@@ -126,10 +126,10 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
                 isResizable: true,
             },
             {
-                key: 'removeButton',
-                name: 'remove instance',
-                ariaLabel: 'remove instance',
-                fieldName: 'removeButton',
+                key: 'instanceActionButtons',
+                name: 'instance actions',
+                ariaLabel: 'Instance actions',
+                fieldName: 'instanceActionButtons',
                 minWidth: 100,
                 maxWidth: 100,
                 isResizable: false,
