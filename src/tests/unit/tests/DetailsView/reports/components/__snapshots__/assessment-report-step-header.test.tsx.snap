@@ -5,6 +5,7 @@ exports[`AssessmentReportStepHeader matches snapshot 1`] = `
   className="step-header"
 >
   <h4
+    aria-label="REQUIREMENT 42 failed"
     className="step-header-name"
   >
     REQUIREMENT

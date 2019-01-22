@@ -8,7 +8,7 @@ import { ManualTestStatus } from '../../../common/types/manual-test-status';
 import { GuidanceLinks } from '../../components/guidance-links';
 import { IRequirementHeaderReportModel } from '../assessment-report-model';
 import { OutcomeChip } from './outcome-chip';
-import { allOutcomeTypes } from './outcome-type';
+import { allOutcomeTypes, outcomeTypeSemanticsFromTestStatus } from './outcome-type';
 
 export interface AssessmentReportStepHeaderProps {
     status: ManualTestStatus;
@@ -29,9 +29,12 @@ export const AssessmentReportStepHeader = NamedSFC<AssessmentReportStepHeaderPro
         message = defaultMessageComponent.message;
     }
 
+    const outcomePastTense = outcomeTypeSemanticsFromTestStatus(status).pastTense;
+    const ariaLabel = `${header.displayName} ${count} ${outcomePastTense}`;
+
     return (
         <div className="step-header">
-            <h4 className="step-header-name">{header.displayName}:</h4>
+            <h4 className="step-header-name" aria-label={ariaLabel}>{header.displayName}:</h4>
             <span className="step-header-description">{header.description}</span>
             -
             <GuidanceLinks
