@@ -42,7 +42,7 @@ export class AssessmentTableColumnConfigHandler {
             key: 'instanceActionButtons',
             name: 'instance actions',
             isIconOnly: true,
-            ariaLabel: 'instance actions',
+            ariaLabel: 'Instance actions',
             fieldName: 'instanceActionButtons',
             minWidth: 100,
             maxWidth: 100,

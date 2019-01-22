@@ -128,7 +128,7 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
             {
                 key: 'instanceActionButtons',
                 name: 'instance actions',
-                ariaLabel: 'instance actions',
+                ariaLabel: 'Instance actions',
                 fieldName: 'instanceActionButtons',
                 minWidth: 100,
                 maxWidth: 100,
