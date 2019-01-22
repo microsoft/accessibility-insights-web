@@ -23,7 +23,6 @@ module.exports = function (grunt) {
             "./copyright-header.txt",
             "./src/assessments/color/test-steps/flashing-text-example.html",
             "./test-results",
-            "./.prettierignore"
         ],
         file_type_method: "INCLUDE",
         file_types: [
@@ -37,10 +36,7 @@ module.exports = function (grunt) {
             ".yaml",
             ".md",
             ".txt",
-            ".npmrc",
-            ".gitignore",
             ".xml",
-            ".npmignore"
         ],
         insert_license: false,
         license_formats: {
