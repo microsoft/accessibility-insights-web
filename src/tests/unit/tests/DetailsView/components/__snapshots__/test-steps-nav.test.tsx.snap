@@ -4,11 +4,13 @@ exports[`TestStepsNav renders assisted tests: getRenderNavLink 1`] = `
 <TestStepLink
   link={
     Object {
-      "description": null,
+      "description": <div>
+         assessment-1-step-1 description
+      </div>,
       "forceAnchor": true,
       "index": 1,
       "key": "assessment-1-step-1",
-      "name": null,
+      "name": "assessment-1-step-1-name",
       "renderRequirementDescription": [Function],
       "url": "",
     }
@@ -27,30 +29,39 @@ exports[`TestStepsNav renders assisted tests: render 1`] = `
       Object {
         "links": Array [
           Object {
-            "description": null,
+            "description": <div>
+               assessment-1-step-1 description
+            </div>,
             "forceAnchor": true,
             "index": 1,
             "key": "assessment-1-step-1",
-            "name": null,
+            "name": "assessment-1-step-1-name",
             "renderRequirementDescription": [Function],
+            "title": "assessment-1-step-1-name. unknown. some test step description",
             "url": "",
           },
           Object {
-            "description": null,
+            "description": <div>
+               assessment-1-step-2 description
+            </div>,
             "forceAnchor": true,
             "index": 2,
             "key": "assessment-1-step-2",
-            "name": null,
+            "name": "assessment-1-step-2-name",
             "renderRequirementDescription": [Function],
+            "title": "assessment-1-step-2-name. passed. some test step description",
             "url": "",
           },
           Object {
-            "description": null,
+            "description": <div>
+               assessment-1-step-3 description
+            </div>,
             "forceAnchor": true,
             "index": 3,
             "key": "assessment-1-step-3",
-            "name": null,
+            "name": "assessment-1-step-3-name",
             "renderRequirementDescription": [Function],
+            "title": "assessment-1-step-3-name. unknown. some test step description",
             "url": "",
           },
         ],
@@ -71,7 +82,7 @@ exports[`TestStepsNav renders automated tests: getRenderNavLink 1`] = `
       "forceAnchor": true,
       "index": 1,
       "key": "assessment-3-step-2",
-      "name": null,
+      "name": "assessment-3-step-2-name",
       "renderRequirementDescription": [Function],
       "url": "",
     }
@@ -94,8 +105,9 @@ exports[`TestStepsNav renders automated tests: render 1`] = `
             "forceAnchor": true,
             "index": 1,
             "key": "assessment-3-step-2",
-            "name": null,
+            "name": "assessment-3-step-2-name",
             "renderRequirementDescription": [Function],
+            "title": "assessment-3-step-2-name. unknown. some test step description",
             "url": "",
           },
           Object {
@@ -103,8 +115,9 @@ exports[`TestStepsNav renders automated tests: render 1`] = `
             "forceAnchor": true,
             "index": 2,
             "key": "assessment-3-step-1",
-            "name": null,
+            "name": "assessment-3-step-1-name",
             "renderRequirementDescription": [Function],
+            "title": "assessment-3-step-1-name. passed. some test step description",
             "url": "",
           },
         ],

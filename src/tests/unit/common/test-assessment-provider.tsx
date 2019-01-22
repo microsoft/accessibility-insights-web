@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
+import * as React from 'react';
 
 import { AssessmentsProvider } from '../../../assessments/assessments-provider';
 import { IAssessment } from '../../../assessments/types/iassessment';
@@ -22,10 +23,10 @@ export const contentProvider = ContentPage.provider(content);
 
 export function createTestStepStatuses(initialData: ITestStepData) {
     return {
-        'assessment-1' : {
-            'assessment-1-step-1' : initialData,
-            'assessment-1-step-2' : initialData,
-            'assessment-1-step-3' : initialData,
+        'assessment-1': {
+            'assessment-1-step-1': initialData,
+            'assessment-1-step-2': initialData,
+            'assessment-1-step-3': initialData,
         },
     };
 }
@@ -39,8 +40,8 @@ const assessmentWithColumns: IAssessment = {
     steps: [
         {
             key: 'assessment-1-step-1',
-            description: null,
-            name: null,
+            description: (<div> assessment-1-step-1 description</div>),
+            name: 'assessment-1-step-1-name',
             howToTest: null,
             isManual: null,
             guidanceLinks: [],
@@ -61,8 +62,8 @@ const assessmentWithColumns: IAssessment = {
         },
         {
             key: 'assessment-1-step-2',
-            description: null,
-            name: null,
+            description: (<div> assessment-1-step-2 description</div>),
+            name: 'assessment-1-step-2-name',
             howToTest: null,
             isManual: true,
             guidanceLinks: [],
@@ -72,8 +73,8 @@ const assessmentWithColumns: IAssessment = {
         },
         {
             key: 'assessment-1-step-3',
-            description: null,
-            name: null,
+            description: (<div> assessment-1-step-3 description</div>),
+            name: 'assessment-1-step-3-name',
             howToTest: null,
             isManual: null,
             guidanceLinks: [],
@@ -98,7 +99,7 @@ const simpleAssessment = {
         {
             key: 'assessment-2-step-1',
             description: null,
-            name: null,
+            name: 'assessment-2-step-1-name',
             howToTest: null,
             isManual: null,
             guidanceLinks: [],
@@ -108,7 +109,7 @@ const simpleAssessment = {
         {
             key: 'assessment-2-step-2',
             description: null,
-            name: null,
+            name: 'assessment-2-step-2-name',
             howToTest: null,
             isManual: null,
             guidanceLinks: [],
@@ -133,7 +134,7 @@ const automatedAssessment = {
         {
             key: 'assessment-3-step-2',
             description: null,
-            name: null,
+            name: 'assessment-3-step-2-name',
             howToTest: null,
             isManual: null,
             guidanceLinks: [],
@@ -146,7 +147,7 @@ const automatedAssessment = {
         {
             key: 'assessment-3-step-1',
             description: null,
-            name: null,
+            name: 'assessment-3-step-1-name',
             howToTest: null,
             isManual: null,
             guidanceLinks: [],

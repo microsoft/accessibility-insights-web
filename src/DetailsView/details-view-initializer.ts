@@ -4,6 +4,7 @@ import * as ReactDOM from 'react-dom';
 
 import { AssessmentDefaultMessageGenerator } from '../assessments/assessment-default-message-generator';
 import { Assessments } from '../assessments/assessments';
+import { assessmentsProviderWithFeaturesEnabled } from '../assessments/assessments-feature-flag-filter';
 import { ChromeAdapter } from '../background/browser-adapter';
 import { IssueDetailsTextGenerator } from '../background/issue-details-text-generator';
 import { A11YSelfValidator } from '../common/a11y-self-validator';
@@ -12,6 +13,7 @@ import { DateProvider } from '../common/date-provider';
 import { DocumentManipulator } from '../common/document-manipulator';
 import { initializeFabricIcons } from '../common/fabric-icons';
 import { getAllFeatureFlagDetails } from '../common/feature-flags';
+import { getInnerTextFromJsxElement } from '../common/get-inner-text-from-jsx-element';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { ITab } from '../common/itab';
 import { ContentActionMessageCreator } from '../common/message-creators/content-action-message-creator';
@@ -49,6 +51,8 @@ import { AssessmentTableColumnConfigHandler } from './components/assessment-tabl
 import { GetDetailsRightPanelConfiguration } from './components/details-view-right-panel';
 import { GetDetailsSwitcherNavConfiguration } from './components/details-view-switcher-nav';
 import { IssuesTableHandler } from './components/issues-table-handler';
+import { getStatusForTest } from './components/left-nav/get-status-for-test';
+import { LeftNavLinkBuilder } from './components/left-nav/left-nav-link-builder';
 import { NavLinkHandler } from './components/left-nav/nav-link-handler';
 import { DetailsViewContainerDeps, IDetailsViewContainerState } from './details-view-container';
 import { DetailsViewRenderer } from './details-view-renderer';
@@ -60,6 +64,11 @@ import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-han
 import { AssessmentReportHtmlGenerator } from './reports/assessment-report-html-generator';
 import { AssessmentReportModelBuilderFactory } from './reports/assessment-report-model-builder-factory';
 import {
+    outcomeStatsFromManualTestStatus,
+    outcomeTypeFromTestStatus,
+    outcomeTypeSemanticsFromTestStatus,
+} from './reports/components/outcome-type';
+import {
     getAssessmentSummaryModelFromProviderAndStatusData,
     getAssessmentSummaryModelFromProviderAndStoreData,
 } from './reports/get-assessment-summary-model';
@@ -67,10 +76,6 @@ import { ReactStaticRenderer } from './reports/react-static-renderer';
 import { ReportGenerator } from './reports/report-generator';
 import { ReportHtmlGenerator } from './reports/report-html-generator';
 import { ReportNameGenerator } from './reports/report-name-generator';
-import { LeftNavLinkBuilder } from './components/left-nav/left-nav-link-builder';
-import { getStatusForTest } from './components/left-nav/get-status-for-test';
-import { outcomeTypeFromTestStatus, outcomeStatsFromManualTestStatus } from './reports/components/outcome-type';
-import { assessmentsProviderWithFeaturesEnabled } from '../assessments/assessments-feature-flag-filter';
 
 declare const window: AutoChecker & Window;
 
@@ -250,6 +255,8 @@ if (isNaN(tabId) === false) {
                     outcomeTypeFromTestStatus,
                     outcomeStatsFromManualTestStatus,
                     assessmentsProviderWithFeaturesEnabled,
+                    outcomeTypeSemanticsFromTestStatus,
+                    getInnerTextFromJsxElement,
                 };
 
                 const renderer = new DetailsViewRenderer(

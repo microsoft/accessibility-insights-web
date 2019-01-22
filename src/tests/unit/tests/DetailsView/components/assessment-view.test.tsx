@@ -7,6 +7,7 @@ import { IMock, It, Mock, Times } from 'typemoq';
 import { AssessmentDefaultMessageGenerator } from '../../../../../assessments/assessment-default-message-generator';
 import { IAssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
 import { AssessmentTestResult } from '../../../../../common/assessment/assessment-test-result';
+import { getInnerTextFromJsxElement } from '../../../../../common/get-inner-text-from-jsx-element';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { IAssessmentData } from '../../../../../common/types/store-data/iassessment-result-data';
@@ -14,7 +15,7 @@ import { VisualizationType } from '../../../../../common/types/visualization-typ
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { AssessmentView, AssessmentViewDeps, IAssessmentViewProps } from '../../../../../DetailsView/components/assessment-view';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
-import { outcomeTypeFromTestStatus } from '../../../../../DetailsView/reports/components/outcome-type';
+import { outcomeTypeFromTestStatus, outcomeTypeSemanticsFromTestStatus } from '../../../../../DetailsView/reports/components/outcome-type';
 import { contentProvider, CreateTestAssessmentProvider } from '../../../common/test-assessment-provider';
 
 describe('AssessmentViewTest', () => {
@@ -234,6 +235,8 @@ class AssessmentViewPropsBuilder {
             detailsViewActionMessageCreator: this.actionMessageCreatorMock.object,
             assessmentsProvider: this.provider,
             outcomeTypeFromTestStatus: Mock.ofInstance(outcomeTypeFromTestStatus).object,
+            getInnerTextFromJsxElement: Mock.ofInstance(getInnerTextFromJsxElement).object,
+            outcomeTypeSemanticsFromTestStatus: Mock.ofInstance(outcomeTypeSemanticsFromTestStatus).object,
         };
         const assessment = this.provider.all()[0];
         const firstStep = assessment.steps[0];

@@ -6,15 +6,18 @@ import * as React from 'react';
 
 import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { getRequirementsResults } from '../../common/assessment/requirement';
-import { IManualTestStatus } from '../../common/types/manual-test-status';
+import { IManualTestStatus, ManualTestStatus } from '../../common/types/manual-test-status';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
+import { OutcomeTypeSemantic } from '../reports/components/outcome-type';
 import { TestStepLink } from './test-step-link';
 
 
 export interface TestStepNavDeps {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     assessmentsProvider: IAssessmentsProvider;
+    outcomeTypeSemanticsFromTestStatus(testStatus: ManualTestStatus): OutcomeTypeSemantic;
+    getInnerTextFromJsxElement(element: JSX.Element): string;
 }
 
 export interface ITestStepNavProps {
@@ -53,9 +56,13 @@ export class TestStepsNav extends React.Component<ITestStepNavProps> {
     protected renderNavLink(link: INavLink): JSX.Element {
         return <TestStepLink
             link={link}
-            status={this.props.stepStatus[link.key].stepFinalResult}
+            status={this.getStepStatus(link.key)}
             renderRequirementDescription={link.renderRequirementDescription}
         />;
+    }
+
+    private getStepStatus(key: string): ManualTestStatus {
+        return this.props.stepStatus[key].stepFinalResult;
     }
 
     @autobind
@@ -67,11 +74,14 @@ export class TestStepsNav extends React.Component<ITestStepNavProps> {
 
     private getLinks(): INavLink[] {
         const { selectedTest, stepStatus } = this.props;
-        const { assessmentsProvider } = this.props.deps;
+        const { assessmentsProvider, getInnerTextFromJsxElement, outcomeTypeSemanticsFromTestStatus } = this.props.deps;
         const results = getRequirementsResults(assessmentsProvider, selectedTest, stepStatus);
 
         return results.map(result => {
             const { definition: step } = result;
+            const status = this.getStepStatus(step.key);
+            const uiDisplayableStatus = outcomeTypeSemanticsFromTestStatus(status).pastTense;
+            const title = `${step.name}. ${uiDisplayableStatus}. ${getInnerTextFromJsxElement(step.description)}`;
 
             return {
                 key: step.key,
@@ -81,6 +91,7 @@ export class TestStepsNav extends React.Component<ITestStepNavProps> {
                 index: step.order,
                 forceAnchor: true,
                 renderRequirementDescription: step.renderRequirementDescription,
+                title: title,
             } as INavLink;
         });
     }
