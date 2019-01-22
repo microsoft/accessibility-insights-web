@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
+import { IColumn, ColumnActionsMode } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
 import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
@@ -31,22 +31,22 @@ export class AssessmentTableColumnConfigHandler {
         {
             key: 'failureDescription',
             name: 'Failure description',
-            ariaLabel: 'Failure description',
             fieldName: 'description',
             minWidth: 200,
             maxWidth: 400,
             isResizable: true,
             onRender: this.onRenderCapturedInstanceDetailsColumn,
+            columnActionsMode: ColumnActionsMode.disabled,
         },
         {
             key: 'instanceActionButtons',
             name: 'instance actions',
             isIconOnly: true,
-            ariaLabel: 'Instance actions',
             fieldName: 'instanceActionButtons',
             minWidth: 100,
             maxWidth: 100,
             isResizable: false,
+            columnActionsMode: ColumnActionsMode.disabled,
         },
     ];
 
