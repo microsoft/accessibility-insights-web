@@ -3,7 +3,12 @@
 import { times } from 'lodash';
 
 import { IManualTestStatus, ManualTestStatus } from '../../../../../../common/types/manual-test-status';
-import { outcomeStatsFromManualTestStatus, outcomeTypeFromTestStatus } from '../../../../../../DetailsView/reports/components/outcome-type';
+import {
+    outcomeStatsFromManualTestStatus,
+    outcomeTypeFromTestStatus,
+    OutcomeTypeSemantic,
+    outcomeTypeSemanticsFromTestStatus,
+} from '../../../../../../DetailsView/reports/components/outcome-type';
 
 describe('OutcomeType', () => {
 
@@ -13,6 +18,12 @@ describe('OutcomeType', () => {
         expect(outcomeTypeFromTestStatus(ManualTestStatus.FAIL)).toEqual('fail');
         expect(outcomeTypeFromTestStatus(ManualTestStatus.UNKNOWN)).toEqual('incomplete');
 
+    });
+
+    it('translates test status to outcomeTypeSemantics', () => {
+        expect(outcomeTypeSemanticsFromTestStatus(ManualTestStatus.PASS)).toEqual({pastTense: 'passed'} as OutcomeTypeSemantic);
+        expect(outcomeTypeSemanticsFromTestStatus(ManualTestStatus.FAIL)).toEqual({pastTense: 'failed'} as OutcomeTypeSemantic);
+        expect(outcomeTypeSemanticsFromTestStatus(ManualTestStatus.UNKNOWN)).toEqual({pastTense: 'incomplete'} as OutcomeTypeSemantic);
     });
 
     describe('outcomeStatsFromManualTestStatus', () => {

@@ -219,3 +219,42 @@ exports[`ContentPage .Markup <Table> renders 1`] = `
   table contetn
 </ul>"
 `;
+
+exports[`ContentPage .Markup <Title> renders where options not specified 1`] = `
+"<Fragment>
+  <h1>
+    TEST
+  </h1>
+</Fragment>"
+`;
+
+exports[`ContentPage .Markup <Title> renders where setPageTitle === false 1`] = `
+"<Fragment>
+  <h1>
+    TEST
+  </h1>
+</Fragment>"
+`;
+
+exports[`ContentPage .Markup <Title> renders where setPageTitle === null 1`] = `
+"<Fragment>
+  <h1>
+    TEST
+  </h1>
+</Fragment>"
+`;
+
+exports[`ContentPage .Markup <Title> renders where setPageTitle === true 1`] = `
+"<Fragment>
+  <HelmetWrapper defer={true} encodeSpecialCharacters={true}>
+    <title>
+      TEST
+       - 
+      Accessibility Insights for Web
+    </title>
+  </HelmetWrapper>
+  <h1>
+    TEST
+  </h1>
+</Fragment>"
+`;

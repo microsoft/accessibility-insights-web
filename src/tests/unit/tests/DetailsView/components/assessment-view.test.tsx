@@ -14,6 +14,7 @@ import { VisualizationType } from '../../../../../common/types/visualization-typ
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { AssessmentView, AssessmentViewDeps, IAssessmentViewProps } from '../../../../../DetailsView/components/assessment-view';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
+import { outcomeTypeFromTestStatus } from '../../../../../DetailsView/reports/components/outcome-type';
 import { contentProvider, CreateTestAssessmentProvider } from '../../../common/test-assessment-provider';
 
 describe('AssessmentViewTest', () => {
@@ -32,7 +33,7 @@ describe('AssessmentViewTest', () => {
 
         const props = builder.buildProps();
 
-        const rendered = shallow(<AssessmentView {...props}/>);
+        const rendered = shallow(<AssessmentView {...props} />);
         expect(rendered.debug()).toMatchSnapshot();
     });
 
@@ -231,6 +232,8 @@ class AssessmentViewPropsBuilder {
             contentProvider,
             contentActionMessageCreator: Mock.ofType(ContentActionMessageCreator).object,
             detailsViewActionMessageCreator: this.actionMessageCreatorMock.object,
+            assessmentsProvider: this.provider,
+            outcomeTypeFromTestStatus: Mock.ofInstance(outcomeTypeFromTestStatus).object,
         };
         const assessment = this.provider.all()[0];
         const firstStep = assessment.steps[0];

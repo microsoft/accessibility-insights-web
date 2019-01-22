@@ -24,6 +24,17 @@ describe('ContentPage', () => {
 
         });
 
+        it('passes options through to Markup', () => {
+
+            const MyPage = ContentPage.create(({ Markup }) => {
+                return <>{(Markup as any).options.testString}</>;
+            });
+
+            const result = shallowRender(<MyPage deps={deps} options={{ setPageTitle: true, testString: 'TEST STRING' }} />);
+            expect(result.props.children).toEqual('TEST STRING');
+
+        });
+
     });
 
 

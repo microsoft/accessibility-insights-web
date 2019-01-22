@@ -6,11 +6,8 @@ const targets = require('./targets.config');
 const merge = require('lodash/merge');
 const { run: copyrightCheckAndAdd } = require('license-check-and-add');
 
-const allWebpackConfigs = require('./webpack.config');
-const devWebpackConfig = allWebpackConfigs.find(c => c.name === 'dev');
-const prodWebpackConfig = allWebpackConfigs.find(c => c.name === 'prod');
-
 module.exports = function (grunt) {
+
     const extensionPath = 'extension';
     const copyrightCheckAndAddConfig = {
         folder: "./",
@@ -71,6 +68,15 @@ module.exports = function (grunt) {
     }
 
     grunt.initConfig({
+        'watch': {
+            scripts: {
+                files: [
+                    'src/**/*',
+                    '!src/tests/**/*',
+                ],
+                tasks: ['dev']
+            },
+        },
         "sass": {
             options: {
                 implementation: sass,
@@ -93,14 +99,13 @@ module.exports = function (grunt) {
                 expand: true,
             },
         },
-        'webpack': {
-            'dev': devWebpackConfig,
-            'dev-watch': {
-                ...devWebpackConfig,
-                watch: true
-            },
-            'prod': prodWebpackConfig,
-            'all': allWebpackConfigs
+        'exec': {
+            webpack: {
+                cmd: path.resolve("./node_modules/.bin/webpack"),
+                cwd: path.resolve("./"),
+                stdout: 'inherit',
+                stderr: 'inherit'
+            }
         },
         "copy": {
             code: {
@@ -174,7 +179,36 @@ module.exports = function (grunt) {
             },
         },
         'clean': {
-            intermediates: ['dist', 'ref', extensionPath]
+            compile: ['dist', 'ref'],
+            layout: [extensionPath],
+        },
+        "tslint": {
+            report: {
+                options: {
+                    // can be a configuration object or a filepath to tslint.json
+                    configuration: "./tslint.build-enforced.json",
+                    project: "./tsconfig.json",
+                    // If set to true, tslint errors will be reported, but not fail the task
+                    // If set to false, tslint errors will be reported, and the task will fail
+                    force: false,
+                    fix: false,
+
+                },
+                files: {
+                    src: ['src/**/*.{ts,tsx}'],
+                },
+            },
+            fix: {
+                options: {
+                    configuration: "./tslint.json",
+                    project: "./tsconfig.json",
+                    force: false,
+                    fix: true,
+                },
+                files: {
+                    src: ['src/**/*.{ts,tsx}'],
+                },
+            }
         },
         "bom": {
             cwd: path.resolve("./src/**/*.{ts,tsx,js,snap,html,scss,css}"),
@@ -245,11 +279,30 @@ module.exports = function (grunt) {
         });
     });
 
-    grunt.loadNpmTasks('grunt-bom-removal');
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-exec');
+    grunt.loadNpmTasks("grunt-contrib-copy");
+    grunt.loadNpmTasks("grunt-contrib-clean");
     grunt.loadNpmTasks('grunt-sass');
-    grunt.loadNpmTasks('grunt-webpack');
+    grunt.loadNpmTasks('grunt-tslint');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-bom-removal');
+
+    grunt.registerTask("compile", [
+        "clean:compile",
+        "sass",
+        "webpack"
+    ]);
+    grunt.registerTask("layout", [
+        "clean:layout",
+        "compile",
+        "copy:code",
+        "copy:styles",
+        "embed-styles:code",
+        "copy:images",
+    ]);
+    grunt.registerTask("webpack", [
+        "exec:webpack"
+    ]);
 
     grunt.registerTask("copyright-check", 'grunt task to check copyright header', function () {
         copyrightCheckAndAdd(copyrightCheckAndAddConfig);
@@ -259,6 +312,14 @@ module.exports = function (grunt) {
         copyrightCheckAndAddConfig.insert_license = true;
         copyrightCheckAndAdd(copyrightCheckAndAddConfig);
     });
+
+    grunt.registerTask("lint", [
+        "tslint:report"
+    ]);
+
+    grunt.registerTask("lint.fix", [
+        "tslint:fix"
+    ]);
 
     grunt.registerMultiTask('embed-styles', function () {
         this.files.forEach(file => {
@@ -323,42 +384,10 @@ module.exports = function (grunt) {
         });
     });
 
-    grunt.registerTask("pre-webpack", [
-        "clean:intermediates",
-        "sass"
-    ]);
-
-    grunt.registerTask("post-webpack-pre-drop", [
-        "copy:code",
-        "copy:styles",
-        "embed-styles:code",
-        "copy:images",
-    ]);
-
-    // Main entry points for npm scripts:
-    grunt.registerTask('build-dev', [
-        "pre-webpack",
-        "webpack:dev",
-        "post-webpack-pre-drop",
+    grunt.registerTask("dev", [
+        "layout",
         "drop:dev"
     ]);
 
-    grunt.registerTask('build-prod', [
-        "pre-webpack",
-        "webpack:prod",
-        "post-webpack-pre-drop",
-        "release-drops"
-    ]);
-
-    grunt.registerTask('build-all', [
-        "pre-webpack",
-        "webpack:all",
-        "post-webpack-pre-drop",
-        "drop:dev",
-        "release-drops"
-    ]);
-
-    grunt.registerTask('watch', 'webpack:dev-watch');
-
-    grunt.registerTask("default", ["build-dev"]);
+    grunt.registerTask("default", ["dev"]);
 };

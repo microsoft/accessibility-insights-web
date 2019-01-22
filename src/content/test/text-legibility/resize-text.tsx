@@ -10,11 +10,15 @@ export const infoAndExamples = create(({ Markup }) => <>
 
     <h2>Why it matters</h2>
     <p>
-        Most people find it easier to read text when it is sufficiently large. People with mild visual disabilities, low vision, or limited color perception are likely to find text unreadable when text is too small.
+        Most people find it easier to read text when it is sufficiently large.
+        People with mild visual disabilities, low vision, or limited color perception
+        are likely to find text unreadable when text is too small.
     </p>
     <p>
-        People with <Markup.HyperLink href="https://en.wikipedia.org/wiki/Presbyopia">presbyopia</Markup.HyperLink> also struggle to read small or low-contrast text.
-        A <Markup.HyperLink href="https://www.sciencedirect.com/science/article/pii/S0161642017337971">2018 study</Markup.HyperLink> found that 1.8 billion people worldwide have presbyopia. (All people are affected by presbyopia to some degree as they age.)
+        People with <Markup.HyperLink href="https://en.wikipedia.org/wiki/Presbyopia">presbyopia</Markup.HyperLink> also
+        struggle to read small or low-contrast text.
+        A <Markup.HyperLink href="https://www.sciencedirect.com/science/article/pii/S0161642017337971">2018 study</Markup.HyperLink> found
+        that 1.8 billion people worldwide have presbyopia. (All people are affected by presbyopia to some degree as they age.)
     </p>
 
     <h2>How to fix</h2>
@@ -53,7 +57,7 @@ export const infoAndExamples = create(({ Markup }) => <>
         }
 
         passText={
-            <p>Both the text and its container are sized scalable.</p>
+            <p>Both the text and its container are sized scalably.</p>
         }
         passExample={
             `<html>
@@ -110,7 +114,8 @@ export const infoAndExamples = create(({ Markup }) => <>
     <h3>Common failures</h3>
     <Markup.Links>
         <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F69">
-            Failure of Success Criterion 1.4.4 when resizing visually rendered text up to 200 percent causes the text, image or controls to be clipped, truncated or obscured
+            Failure of Success Criterion 1.4.4 when resizing visually rendered text up to
+            200 percent causes the text, image or controls to be clipped, truncated or obscured
         </Markup.HyperLink>
         <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F80">
             Failure of Success Criterion 1.4.4 when text-based form controls do not resize when visually rendered text is resized up to 200%

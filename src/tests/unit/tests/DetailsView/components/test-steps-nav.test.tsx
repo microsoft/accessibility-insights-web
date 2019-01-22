@@ -51,9 +51,12 @@ describe('TestStepsNav', () => {
         };
 
         const props: ITestStepNavProps = {
+            deps: {
+                detailsViewActionMessageCreator: actionMessageCreatorMock.object,
+                assessmentsProvider: assessmentProvider,
+            },
             selectedTest: assessment.type,
             selectedTestStep: firstStep.key,
-            actionMessageCreator: actionMessageCreatorMock.object,
             stepStatus: {},
             assessmentsProvider: assessmentProvider,
             ariaLabel: 'test',

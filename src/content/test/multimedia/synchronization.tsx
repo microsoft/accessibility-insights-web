@@ -57,8 +57,8 @@ export const infoAndExamples = create(({ Markup, Link }) => <>
         Using the track element to provide audio descriptions</Markup.HyperLink>
         <Markup.HyperLink href="http://joeclark.org/access/description/ad-principles.html">
         Standard Techniques in Audio Description</Markup.HyperLink>
-        <Markup.HyperLink href="https://youtu.be/7-XOHN2BWG4">
-        A scene from "The Lion King" with audio description (YouTube video)</Markup.HyperLink>
+        <Markup.HyperLink href="https://www.youtube.com/watch?v=fVytpQy3eaE">
+        Microsoft Build: AI for Accessibility (Audio Description) (YouTube video)</Markup.HyperLink>
         <Markup.HyperLink href="http://www.acb.org/adp/samples.html">
         Samples of Audio Description</Markup.HyperLink>
     </Markup.Links>
