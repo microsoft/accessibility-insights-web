@@ -6,9 +6,8 @@
     "psi-header.changes-tracking": {
         "autoHeader": "autoSave",
         "isActive": true
-
     },
-    "psi-header.config" : {
+    "psi-header.config": {
         "forceToTop": true
     },
     "psi-header.lang-config": [
@@ -28,13 +27,19 @@
     "psi-header.templates": [
         {
             "language": "*",
-            "template": [
-                "Copyright (c) Microsoft Corporation. All rights reserved.",
-                "Licensed under the MIT License."
-            ]
+            "template": ["Copyright (c) Microsoft Corporation. All rights reserved.", "Licensed under the MIT License."]
         }
     ],
     "editor.tabSize": 4,
     "html.format.endWithNewline": true,
-    "files.insertFinalNewline": true
+    "files.insertFinalNewline": true,
+    "prettier.bracketSpacing": true,
+    "prettier.endOfLine": "lf",
+    "prettier.printWidth": 140,
+    "prettier.semi": true,
+    "prettier.singleQuote": true,
+    "prettier.tabWidth": 4,
+    "prettier.trailingComma": "all",
+    "prettier.useTabs": false,
+    "prettier.jsxBracketSameLine": false
 }
