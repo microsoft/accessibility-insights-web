@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Puppeteer from 'puppeteer';
-
+import * as fs from 'fs';
 import { Browser } from './browser';
 import { popupPageElementIdentifiers } from './element-identifiers/popup-page-element-identifiers';
+import { DEFAULT_BROWSER_LAUNCH_TIMEOUT_MS } from './timeouts';
 
 export interface ExtensionOptions {
     suppressFirstTimeDialog: boolean;
@@ -33,9 +34,30 @@ async function suppressFirstTimeUsagePrompt(browser: Browser): Promise<void> {
     await popupPage.close();
 }
 
+
+function fileExists(path: string): Promise<boolean> {
+    return new Promise(resolve => fs.exists(path, resolve));
+}
+
+async function verifyExtensionIsBuilt(extensionPath: string): Promise<void> {
+    const manifestPath = `${extensionPath}/manifest.json`;
+    if (!await fileExists(manifestPath)) {
+        throw new Error(
+            `Cannot launch extension-enabled browser instance because extension has not been built.\n` +
+            `Expected manifest file ${manifestPath} does not exist.\n` +
+            `Have you run 'npm run build'?`);
+    }
+}
+
 async function launchNewBrowser(): Promise<Puppeteer.Browser> {
     // only unpacked extension paths are supported
     const extensionPath = `${process.cwd()}/drop/dev/extension/`;
+
+    // It's important that we verify this before calling Puppeteer.launch because its behavior if the
+    // extension can't be loaded is "the Chromium instance hangs with an alert and everything on Puppeteer's
+    // end shows up as a generic timeout error with no meaningful logging".
+    await verifyExtensionIsBuilt(extensionPath);
+
     const browser = await Puppeteer.launch({
         // Headless doesn't support extensions, see https://github.com/GoogleChrome/puppeteer/issues/659
         headless: false,
@@ -44,6 +66,7 @@ async function launchNewBrowser(): Promise<Puppeteer.Browser> {
             `--disable-extensions-except=${extensionPath}`,
             `--load-extension=${extensionPath}`,
         ],
+        timeout: DEFAULT_BROWSER_LAUNCH_TIMEOUT_MS,
     });
 
     return browser;
