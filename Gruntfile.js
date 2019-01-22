@@ -36,10 +36,7 @@ module.exports = function (grunt) {
             ".yaml",
             ".md",
             ".txt",
-            ".npmrc",
-            ".gitignore",
             ".xml",
-            ".npmignore"
         ],
         insert_license: false,
         license_formats: {
