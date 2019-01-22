@@ -36,11 +36,10 @@ export class AssessmentReportAssessmentList extends React.Component<AssessmentRe
 
     private renderAssessmentHeader(assessment: IAssessmentDetailsReportModel): JSX.Element {
         return (
-            <div className="assessment-header">
-                <h3 className="assessment-header-name">{assessment.displayName}</h3>
-
+            <h3 className="assessment-header">
+                {assessment.displayName}
                 <OutcomeChip count={assessment.steps.length} outcomeType={allOutcomeTypes[this.props.status]} />
-            </div>
+            </h3>
         );
     }
 }
