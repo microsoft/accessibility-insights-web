@@ -46,8 +46,9 @@ describe('FailureInstancePanelControlTest', () => {
 
     test('openFailureInstancePanel', () => {
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
-        props.originalText = 'ot';
+        props.originalText = 'original text';
         const wrapper = shallow(<FailureInstancePanelControl {...props} />);
+        wrapper.find(TextField).props().onChange(null, 'a previously entered description');
         wrapper.find(ActionButton).props().onClick(null);
 
         expect(wrapper.state().isPanelOpen).toBe(true);
@@ -55,12 +56,17 @@ describe('FailureInstancePanelControlTest', () => {
     });
 
     test('closeFailureInstancePanel', () => {
+        const description = 'description';
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
         const wrapper = shallow(<FailureInstancePanelControl {...props} />);
+        wrapper.find(TextField).props().onChange(null, description);
+
         wrapper.find(GenericPanel).props().onDismiss();
 
         expect(wrapper.state().isPanelOpen).toBe(false);
-        expect(wrapper.state().failureDescription).toEqual('');
+
+        // This shouldn't be cleared because it stays briefly visible as the panel close animation happens
+        expect(wrapper.state().failureDescription).toEqual(description);
     });
 
     test('onSaveEditedFailureInstance', () => {
@@ -79,11 +85,9 @@ describe('FailureInstancePanelControlTest', () => {
         wrapper.find(ActionAndCancelButtonsComponent).props().primaryButtonOnClick(null);
 
         expect(wrapper.state().isPanelOpen).toBe(false);
-        expect(wrapper.state().failureDescription).toEqual('');
 
-        // The save button shouldn't become disabled as a result of pressing it because if it does,
-        // NVDA reads a spurious "unavailable" message as the panel is closing.
-        expect(wrapper.find(ActionAndCancelButtonsComponent).props().primaryButtonDisabled).toBe(false);
+        // This shouldn't be cleared because it stays briefly visible as the panel close animation happens
+        expect(wrapper.state().failureDescription).toEqual(description);
 
         editInstanceMock.verifyAll();
     });
@@ -102,11 +106,9 @@ describe('FailureInstancePanelControlTest', () => {
         wrapper.find(ActionAndCancelButtonsComponent).props().primaryButtonOnClick(null);
 
         expect(wrapper.state().isPanelOpen).toBe(false);
-        expect(wrapper.state().failureDescription).toEqual('');
 
-        // The add button shouldn't become disabled as a result of pressing it because if it does,
-        // NVDA reads a spurious "unavailable" message as the panel is closing.
-        expect(wrapper.find(ActionAndCancelButtonsComponent).props().primaryButtonDisabled).toBe(false);
+        // This shouldn't be cleared because it stays briefly visible as the panel close animation happens
+        expect(wrapper.state().failureDescription).toEqual(description);
 
         addInstanceMock.verifyAll();
     });

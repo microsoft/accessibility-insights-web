@@ -104,7 +104,7 @@ export class FailureInstancePanelControl extends React.Component<IFailureInstanc
                 />
                 <ActionAndCancelButtonsComponent
                     isHidden={false}
-                    primaryButtonDisabled={this.state.isPanelOpen && this.state.failureDescription === ''}
+                    primaryButtonDisabled={this.state.failureDescription === ''}
                     primaryButtonText={this.props.actionType === CapturedInstanceActionType.CREATE ? 'Add' : 'Save'}
                     primaryButtonOnClick={
                         this.props.actionType === CapturedInstanceActionType.CREATE ?
@@ -125,13 +125,13 @@ export class FailureInstancePanelControl extends React.Component<IFailureInstanc
     @autobind
     protected onAddFailureInstance(): void {
         this.props.addFailureInstance(this.state.failureDescription, this.props.test, this.props.step);
-        this.setState({ isPanelOpen: false, failureDescription: '' });
+        this.setState({ isPanelOpen: false });
     }
 
     @autobind
     protected onSaveEditedFailureInstance(): void {
         this.props.editFailureInstance(this.state.failureDescription, this.props.test, this.props.step, this.props.instanceId);
-        this.setState({ isPanelOpen: false, failureDescription: '' });
+        this.setState({ isPanelOpen: false });
     }
 
     @autobind
@@ -141,6 +141,6 @@ export class FailureInstancePanelControl extends React.Component<IFailureInstanc
 
     @autobind
     protected closeFailureInstancePanel(): void {
-        this.setState({ isPanelOpen: false, failureDescription: '' });
+        this.setState({ isPanelOpen: false });
     }
 }
