@@ -81,7 +81,7 @@ describe('FailureInstancePanelControlTest', () => {
         expect(wrapper.state().isPanelOpen).toBe(false);
         expect(wrapper.state().failureDescription).toEqual('');
 
-        // The save button shouldn't become disabled as a results of pressing it because if it does,
+        // The save button shouldn't become disabled as a result of pressing it because if it does,
         // NVDA reads a spurious "unavailable" message as the panel is closing.
         expect(wrapper.find(ActionAndCancelButtonsComponent).props().primaryButtonDisabled).toBe(false);
 
@@ -104,7 +104,7 @@ describe('FailureInstancePanelControlTest', () => {
         expect(wrapper.state().isPanelOpen).toBe(false);
         expect(wrapper.state().failureDescription).toEqual('');
 
-        // The add button shouldn't become disabled as a results of pressing it because if it does,
+        // The add button shouldn't become disabled as a result of pressing it because if it does,
         // NVDA reads a spurious "unavailable" message as the panel is closing.
         expect(wrapper.find(ActionAndCancelButtonsComponent).props().primaryButtonDisabled).toBe(false);
 
