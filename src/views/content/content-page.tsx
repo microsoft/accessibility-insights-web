@@ -14,14 +14,18 @@ export function linkTo(text: string, href: string): HyperlinkDefinition {
 }
 
 export type ContentPageDeps = MarkupDeps;
-export type ContentPageProps = { deps: ContentPageDeps };
+export interface ContentPageOptions {
+    setPageTitle?: boolean;
+}
+export type ContentPageProps = { deps: ContentPageDeps, options?: ContentPageOptions };
 export type ContentPageComponent = React.SFC<ContentPageProps> & { displayName: 'ContentPageComponent' };
 export type ContentReference = string | ContentPageComponent;
 type CreateProps<M extends HyperlinkDefinitionMap> = {
     Markup: Markup,
     Link: HyperlinkComponentMap<M>,
 };
-export function ContentCreator<M extends HyperlinkDefinitionMap>(linkMap?: M) {
+export function ContentCreator<M extends HyperlinkDefinitionMap>(linkMap?: M):
+    (fn: (props: CreateProps<M>) => JSX.Element) => ContentPageComponent {
 
     function mapLinks(markup: Markup): HyperlinkComponentMap<M> {
         const map: Partial<HyperlinkComponentMap<M>> = {};
@@ -38,8 +42,8 @@ export function ContentCreator<M extends HyperlinkDefinitionMap>(linkMap?: M) {
     function create(fn: (props: CreateProps<M>) => JSX.Element): ContentPageComponent {
 
         return NamedSFC<ContentPageProps>('ContentPageComponent', props => {
-            const { deps } = props;
-            const markup = createMarkup(deps);
+            const { deps, options } = props;
+            const markup = createMarkup(deps, options);
             return fn({ Markup: markup, Link: mapLinks(markup) });
         }) as ContentPageComponent;
     }
@@ -97,7 +101,7 @@ export function ContentProvider(root: ContentTree): ContentProvider {
         }
     }
 
-    function getPage(path: string) {
+    function getPage(path: string): ContentPageComponent {
         return findPage(root, path.split('/')) || notFoundPage(path);
     }
 
