@@ -114,12 +114,11 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
             .verifiable();
     }
 
-    function getExpectedCapturedHeadingInstanceTableConfigs() {
+    function getExpectedCapturedHeadingInstanceTableConfigs(): IColumn[] {
         return [
             {
                 key: 'failureDescription',
                 name: 'Failure description',
-                ariaLabel: 'Failure description',
                 fieldName: 'description',
                 minWidth: 200,
                 maxWidth: 400,
@@ -128,7 +127,6 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
             {
                 key: 'instanceActionButtons',
                 name: 'instance actions',
-                ariaLabel: 'Instance actions',
                 fieldName: 'instanceActionButtons',
                 minWidth: 100,
                 maxWidth: 100,
@@ -148,7 +146,6 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
 
             if (col.key !== 'visualizationButton' && col.key !== 'instanceDetails') {
                 expect(actual[index].name).toBe(col.name);
-                expect(actual[index].ariaLabel).toBe(col.ariaLabel);
             }
         });
     }
