@@ -40,8 +40,7 @@ export class TabContextFactory {
         private targetTabController: TargetTabController,
         private assessmentStore: AssessmentStore,
         private assessmentsProvider: IAssessmentsProvider,
-    ) {
-    }
+    ) {}
 
     public createTabContext(
         broadcastMessage: (message) => void,

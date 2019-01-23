@@ -11,7 +11,8 @@ export class DevToolsActionCreator {
     private telemetryEventHandler: TelemetryEventHandler;
     private registerTypeToPayloadCallback: IRegisterTypeToPayloadCallback;
 
-    constructor(devToolsAction: DevToolActions,
+    constructor(
+        devToolsAction: DevToolActions,
         telemetryEventHandler: TelemetryEventHandler,
         registerTypeToPayloadCallback: IRegisterTypeToPayloadCallback,
     ) {
@@ -21,17 +22,15 @@ export class DevToolsActionCreator {
     }
 
     public registerCallbacks(): void {
-        this.registerTypeToPayloadCallback(
-            Messages.DevTools.DevtoolStatus, payload => this.onDevToolOpened(payload));
+        this.registerTypeToPayloadCallback(Messages.DevTools.DevtoolStatus, payload => this.onDevToolOpened(payload));
 
-        this.registerTypeToPayloadCallback(
-            Messages.DevTools.InspectElement, (payload, tabId) => this.onDevToolInspectElement(payload, tabId));
+        this.registerTypeToPayloadCallback(Messages.DevTools.InspectElement, (payload, tabId) =>
+            this.onDevToolInspectElement(payload, tabId),
+        );
 
-        this.registerTypeToPayloadCallback(
-            Messages.DevTools.InspectFrameUrl, payload => this.onDevToolInspectFrameUrl(payload));
+        this.registerTypeToPayloadCallback(Messages.DevTools.InspectFrameUrl, payload => this.onDevToolInspectFrameUrl(payload));
 
-        this.registerTypeToPayloadCallback(
-            Messages.DevTools.Get, () => this.onDevToolGetCurrentState());
+        this.registerTypeToPayloadCallback(Messages.DevTools.Get, () => this.onDevToolGetCurrentState());
     }
 
     private onDevToolOpened(payload: IOnDevToolOpenPayload): void {

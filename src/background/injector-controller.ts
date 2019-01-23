@@ -22,7 +22,14 @@ export class InjectorController {
 
     private _oldInspectType = InspectMode.off;
 
-    constructor(injector: ContentScriptInjector, visualizationStore: VisualizationStore, interpreter: Interpreter, tabStore: TabStore, inspectStore: InspectStore, windowUtils?: WindowUtils) {
+    constructor(
+        injector: ContentScriptInjector,
+        visualizationStore: VisualizationStore,
+        interpreter: Interpreter,
+        tabStore: TabStore,
+        inspectStore: InspectStore,
+        windowUtils?: WindowUtils,
+    ) {
         this._injector = injector;
         this._visualizationStore = visualizationStore;
         this._tabStore = tabStore;
@@ -42,17 +49,17 @@ export class InjectorController {
         const visualizationStoreState = this._visualizationStore.getState();
         const inspectStoreState = this._inspectStore.getState();
 
-
-        if  (((this._oldInspectType !== inspectStoreState.inspectMode && inspectStoreState.inspectMode !== InspectMode.off) || visualizationStoreState.injectingInProgress === true) && !visualizationStoreState.injectingStarted) {
-
-            this._windowUtils.setTimeout(
-                () => {
-                    this._interpreter.interpret({
-                        type: Messages.Visualizations.State.InjectionStarted,
-                        tabId: tabId,
-                    });
-                },
-                InjectorController.injectionStartedWaitTime);
+        if (
+            ((this._oldInspectType !== inspectStoreState.inspectMode && inspectStoreState.inspectMode !== InspectMode.off) ||
+                visualizationStoreState.injectingInProgress === true) &&
+            !visualizationStoreState.injectingStarted
+        ) {
+            this._windowUtils.setTimeout(() => {
+                this._interpreter.interpret({
+                    type: Messages.Visualizations.State.InjectionStarted,
+                    tabId: tabId,
+                });
+            }, InjectorController.injectionStartedWaitTime);
 
             this._injector.injectScripts(tabId).then(() => {
                 this._interpreter.interpret({

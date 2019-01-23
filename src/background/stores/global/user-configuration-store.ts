@@ -12,7 +12,6 @@ import { IndexedDBDataKeys } from '../../IndexedDBDataKeys';
 import { BaseStore } from '../base-store';
 
 export class UserConfigurationStore extends BaseStore<UserConfigurationStoreData> {
-
     public static readonly defaultState: UserConfigurationStoreData = {
         enableTelemetry: false,
         isFirstTime: true,
@@ -21,14 +20,13 @@ export class UserConfigurationStore extends BaseStore<UserConfigurationStoreData
     constructor(
         private readonly initialState: UserConfigurationStoreData,
         private readonly userConfigActions: UserConfigurationActions,
-        private readonly indexDbApi: IndexedDBAPI) {
+        private readonly indexDbApi: IndexedDBAPI,
+    ) {
         super(StoreNames.UserConfigurationStore);
     }
 
     public getDefaultState(): UserConfigurationStoreData {
-        return this.initialState ?
-            cloneDeep(this.initialState) :
-            cloneDeep(UserConfigurationStore.defaultState);
+        return this.initialState ? cloneDeep(this.initialState) : cloneDeep(UserConfigurationStore.defaultState);
     }
 
     protected addActionListeners(): void {

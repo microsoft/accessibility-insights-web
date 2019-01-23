@@ -6,22 +6,19 @@ import { UserConfigurationStore } from '../stores/global/user-configuration-stor
 import { TelemetryEventHandler } from './telemetry-event-handler';
 
 export class TelemetryStateListener {
-    constructor(private readonly userConfigStore: UserConfigurationStore,
-        private readonly telemetryEventHandler: TelemetryEventHandler) {
+    constructor(private readonly userConfigStore: UserConfigurationStore, private readonly telemetryEventHandler: TelemetryEventHandler) {}
 
-        }
+    public initialize(): void {
+        this.userConfigStore.addChangedListener(this.onStateChanged);
+        this.onStateChanged();
+    }
 
-        public initialize(): void {
-            this.userConfigStore.addChangedListener(this.onStateChanged);
-            this.onStateChanged();
+    @autobind
+    private onStateChanged(): void {
+        if (this.userConfigStore.getState().enableTelemetry) {
+            this.telemetryEventHandler.enableTelemetry();
+        } else {
+            this.telemetryEventHandler.disableTelemetry();
         }
-
-        @autobind
-        private onStateChanged(): void {
-            if (this.userConfigStore.getState().enableTelemetry) {
-                this.telemetryEventHandler.enableTelemetry();
-            } else {
-                this.telemetryEventHandler.disableTelemetry();
-            }
-        }
+    }
 }

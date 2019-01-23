@@ -49,7 +49,6 @@ export class InspectStore extends BaseStore<IInspectStoreData> {
         this.emitChanged();
     }
 
-
     @autobind
     private onTabChange(): void {
         this.state = this.getDefaultState();

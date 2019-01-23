@@ -7,10 +7,7 @@ import { BrowserAdapter } from '../browser-adapter';
 export class ContentScriptInjector {
     public static readonly jsFiles: string[] = ['bundle/injected.bundle.js'];
 
-    public static readonly cssFiles: string[] = [
-        'injected/styles/default/injected.css',
-        'common/styles/fabric.min.css',
-    ];
+    public static readonly cssFiles: string[] = ['injected/styles/default/injected.css', 'common/styles/fabric.min.css'];
 
     public static timeoutInMilliSec = 5e4;
     private readonly _chromeAdapter: BrowserAdapter;
@@ -40,8 +37,7 @@ export class ContentScriptInjector {
             this._chromeAdapter.injectJs(tabId, files[0], () => {
                 this.injectJsFiles(tabId, files.slice(1, files.length), callback);
             });
-        }
-        else {
+        } else {
             callback();
         }
     }

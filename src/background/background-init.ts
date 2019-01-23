@@ -60,16 +60,9 @@ getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
             installDataGenerator,
         );
 
-        const appInsightsTelemetry = new AppInsightsTelemetryClient(
-            AppInsights,
-            coreTelemetryDataFactory,
-            telemetryLogger,
-        );
+        const appInsightsTelemetry = new AppInsightsTelemetryClient(AppInsights, coreTelemetryDataFactory, telemetryLogger);
 
-        const telemetryEventHandler = new TelemetryEventHandler(
-            browserAdapter,
-            appInsightsTelemetry,
-        );
+        const telemetryEventHandler = new TelemetryEventHandler(browserAdapter, appInsightsTelemetry);
         const globalContext = GlobalContextFactory.createContext(
             browserAdapter,
             telemetryEventHandler,
@@ -81,10 +74,7 @@ getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
         );
         telemetryLogger.initialize(globalContext.featureFlagsController);
 
-        const telemetryStateListener = new TelemetryStateListener(
-            globalContext.stores.userConfigurationStore,
-            telemetryEventHandler,
-        );
+        const telemetryStateListener = new TelemetryStateListener(globalContext.stores.userConfigurationStore, telemetryEventHandler);
         telemetryStateListener.initialize();
 
         const broadcaster = new TabContextBroadcaster(browserAdapter.sendMessageToFramesAndTab);
@@ -120,13 +110,7 @@ getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
             assessmentsProvider,
         );
 
-        const clientHandler = new TabController(
-            tabToContextMap,
-            broadcaster,
-            browserAdapter,
-            detailsViewController,
-            tabContextFactory,
-        );
+        const clientHandler = new TabController(tabToContextMap, broadcaster, browserAdapter, detailsViewController, tabContextFactory);
 
         clientHandler.initialize();
 
