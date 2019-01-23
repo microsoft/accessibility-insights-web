@@ -30,11 +30,14 @@ export const AssessmentReportStepHeader = NamedSFC<AssessmentReportStepHeaderPro
     }
 
     const outcomePastTense = outcomeTypeSemanticsFromTestStatus(status).pastTense;
-    const ariaLabel = `${header.displayName} ${count} ${outcomePastTense}`;
+    const outcomeText = `${count} ${outcomePastTense}`;
 
     return (
         <div className="step-header">
-            <h4 className="step-header-name" aria-label={ariaLabel}>{header.displayName}:</h4>
+            <h4 className="step-header-name">
+                {header.displayName}:
+                <span className="screen-reader-only">{outcomeText}</span>
+            </h4>
             <span className="step-header-description">{header.description}</span>
             -
             <GuidanceLinks
