@@ -14,7 +14,8 @@ const commonPlugins = [
     // This runs typechecking and tslint against all files that tsconfig.json specifies,
     // even those which are not dependencies of any entry points, eg, tests
     new ForkTsCheckerWebpackPlugin({
-        tsconfig: './tsconfig.json'
+        tsconfig: './tsconfig.json',
+        tslint: './tslint.build-enforced.json'
     })
 ];
 
