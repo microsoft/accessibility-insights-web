@@ -7,18 +7,16 @@ import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
 import * as content from '../../../content/test/headings/heading-function';
-import {
-    AssessmentVisualizationEnabledToggle,
-} from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
+import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
 import * as Markup from '../../markup';
-import { TestStep } from '../../types/test-step';
 import { ReportInstanceField } from '../../types/report-instance-field';
+import { TestStep } from '../../types/test-step';
 import { headingsAssessmentInstanceDetailsColumnRenderer } from './../headings-instance-details-column-renderer';
 import { HeadingsTestStep } from './test-steps';
 
-export const headingFunctionDescription: JSX.Element = (
+const headingFunctionDescription: JSX.Element = (
     <span>
         An element <Markup.Emphasis>coded</Markup.Emphasis> as a heading must <Markup.Emphasis>function</Markup.Emphasis> as a heading.
     </span>

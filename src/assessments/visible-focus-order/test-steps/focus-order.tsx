@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
+
 import { Messages } from '../../../common/messages';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { generateUID } from '../../../common/uid-generator';
@@ -12,7 +13,7 @@ import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
 import { visibleFfocusOrderTestStep } from './test-steps';
 
-export const description: JSX.Element = (<span>Components must receive focus in an order that preserves meaning and operability.</span>);
+const description: JSX.Element = (<span>Components must receive focus in an order that preserves meaning and operability.</span>);
 
 const howToTest: JSX.Element = (
     <div>

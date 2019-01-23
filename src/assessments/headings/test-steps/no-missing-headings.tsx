@@ -5,16 +5,14 @@ import * as React from 'react';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import * as content from '../../../content/test/headings/no-missing-headings';
-import {
-    AssessmentVisualizationEnabledToggle,
-} from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
+import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import ManualTestRecordYourResults from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
 import { HeadingsTestStep } from './test-steps';
 
-export const missingHeadingsDescription: JSX.Element = (<span>Text that <Markup.Emphasis>looks like</Markup.Emphasis> a heading must be <Markup.Emphasis>coded</Markup.Emphasis> as a heading.</span>);
+const missingHeadingsDescription: JSX.Element = (<span>Text that <Markup.Emphasis>looks like</Markup.Emphasis> a heading must be <Markup.Emphasis>coded</Markup.Emphasis> as a heading.</span>);
 
 const missingHeadingsHowToTest: JSX.Element = (<div>
     <p>The visual helper for this requirement highlights coded headings in the target page.</p>

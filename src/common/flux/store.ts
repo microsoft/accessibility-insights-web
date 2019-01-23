@@ -2,12 +2,7 @@
 // Licensed under the MIT License.
 import { EventHandlerList } from './event-handler-list';
 
-export interface IStore {
-    addChangedListener(handler: Function): void;
-    removeChangedListener(handler: Function): void;
-}
-
-export class Store implements IStore {
+export class Store {
     private _changedHandlers = new EventHandlerList();
 
 

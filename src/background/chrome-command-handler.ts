@@ -18,11 +18,6 @@ import { TabToContextMap } from './tab-context';
 
 const VisualizationMessages = Messages.Visualizations;
 
-export class ExceptionsDuringScanning {
-    public static readonly fileUrlDoesNotHaveAccess = 'ex01_fileNoAccess';
-    public static readonly chromeUrlNotScannable = 'ex02_chromeNotScannable';
-}
-
 export class ChromeCommandHandler {
     private tabToContextMap: TabToContextMap;
     private chromeAdapter: BrowserAdapter;

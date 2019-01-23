@@ -5,9 +5,7 @@ import * as React from 'react';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import * as content from '../../../content/test/sensory/use-of-color';
-import {
-    AssessmentVisualizationEnabledToggle,
-} from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
+import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import ManualTestRecordYourResults from '../../common/manual-test-record-your-results';
 import { TestStep } from '../../types/test-step';
@@ -37,7 +35,7 @@ const useOfColorHowToTest: JSX.Element = (
     </div>
 );
 
-export const useOfColorDescription: JSX.Element = <span>Color must not be used as the only visual means for conveying meaning.</span>;
+const useOfColorDescription: JSX.Element = <span>Color must not be used as the only visual means for conveying meaning.</span>;
 
 export const UseOfColor: TestStep = {
     key: ColorSensoryTestStep.useOfColor,

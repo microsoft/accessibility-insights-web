@@ -9,7 +9,7 @@ import { Term } from '../../markup';
 import { TestStep } from '../../types/test-step';
 import { PageTestStep } from './test-steps';
 
-export const generalNavigationDescription: JSX.Element = (<span>Users must have multiple ways to navigate to a page.</span>);
+const generalNavigationDescription: JSX.Element = (<span>Users must have multiple ways to navigate to a page.</span>);
 
 const generalNavigationHowToTest: JSX.Element = (
     <div>

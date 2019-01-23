@@ -4,12 +4,11 @@ import { IAssessment } from '../../assessments/types/iassessment';
 import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { OutcomeStats, outcomeStatsFromManualTestStatus } from '../../DetailsView/reports/components/outcome-type';
 import { IManualTestStatus } from '../types/manual-test-status';
-import { IAssessmentData, IAssessmentNavState } from '../types/store-data/iassessment-result-data';
+import { IAssessmentData } from '../types/store-data/iassessment-result-data';
 import { VisualizationType } from '../types/visualization-type';
 import { getRequirementsResults, RequirementResult } from './requirement';
 
 export type AssessmentTestDefinition = IAssessment;
-export type AssessmentTestData = IAssessmentData;
 
 export type AssessmentTestProviderDeps = {
     outcomeStatsFromManualTestStatus: (testStepStatus: IManualTestStatus) => OutcomeStats,

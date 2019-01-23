@@ -1,17 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-export interface IScanComplete {
-    ScanCompleted: string;
-}
-
-export interface ISetData {
-    SetData: string;
-}
-
-export interface ITargetAndSelection {
-    UpdateSelectedTargets: string;
-    UpdateFocusedInstance: string;
-}
 
 export interface IStateMessages {
     GetCurrentVisualizationToggleState: string;
@@ -29,7 +17,11 @@ export interface IDetailsViewMessages {
     GetState: string;
 }
 
-export type IIssuesMessages = ITargetAndSelection;
+export interface IIssuesMessages {
+    UpdateSelectedTargets: string;
+    UpdateFocusedInstance: string;
+}
+
 export interface ITabStopsMessages {
     TabbedElementAdded: string;
     RecordingCompleted: string;

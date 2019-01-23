@@ -9,7 +9,7 @@ import { FailureInstanceFormatter } from './failure-instance-formatter';
 import { IHeadingStyleConfiguration } from './heading-formatter';
 import { IDrawerConfiguration } from './iformatter';
 
-export interface ElemData {
+interface ElemData {
     role: string;
     label: string;
 }

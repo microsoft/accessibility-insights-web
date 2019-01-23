@@ -18,11 +18,7 @@ import { VisualizationType } from '../../../../../common/types/visualization-typ
 import { BugButton } from '../../../../../DetailsView/components/bug-button';
 import { FailureDetails } from '../../../../../DetailsView/components/failure-details';
 import { IssuesDetailsList, IssuesDetailsListProps } from '../../../../../DetailsView/components/issues-details-list';
-import {
-    DetailsGroup,
-    IDetailsRowData,
-    IssuesTableHandler,
-} from '../../../../../DetailsView/components/issues-table-handler';
+import { DetailsGroup, IDetailsRowData, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { RuleResult } from '../../../../../scanner/iruleresults';
 import { VisualizationScanResultStoreDataBuilder } from '../../../common/visualization-scan-result-store-data-builder';
@@ -249,7 +245,7 @@ describe('IssuesDetailsListTest', () => {
 
 });
 
-export class TestPropsBuilder {
+class TestPropsBuilder {
     private violations: RuleResult[];
     private issuesTableHandler: IssuesTableHandler;
     private issuesSelection: ISelection;

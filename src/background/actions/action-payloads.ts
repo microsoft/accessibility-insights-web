@@ -100,10 +100,6 @@ export interface IAddTabbedElementPayload extends BaseActionPayload {
     tabbedElements: ITabStopEvent[];
 }
 
-export interface ISetBaseUrlPayload extends BaseActionPayload {
-    url: string;
-}
-
 export interface ISetLaunchPanelState extends BaseActionPayload {
     launchPanelType: LaunchPanelType;
 }
@@ -120,10 +116,6 @@ export interface IInspectFrameUrlPayload extends BaseActionPayload {
     frameUrl: string;
 }
 
-export interface IToggleFeatureFlagPayload extends BaseActionPayload {
-    featureFlagId: string;
-    enabled: boolean;
-}
 export interface SetTelemetryStatePayload extends BaseActionPayload {
     enableTelemetry: boolean;
 }

@@ -31,10 +31,6 @@ export interface IAxeConfiguration {
     rules?: IRuleConfiguration[];
 }
 
-export interface IAxeBranding {
-    brand?: string;
-    application?: string;
-}
 export interface IRuleConfiguration {
     id: string;
     selector: string;

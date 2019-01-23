@@ -5,17 +5,15 @@ import * as React from 'react';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import * as content from '../../../content/test/page/page-title';
-import {
-    AssessmentVisualizationEnabledToggle,
-} from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
+import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { Term } from '../../markup';
-import { TestStep } from '../../types/test-step';
 import { ReportInstanceField } from '../../types/report-instance-field';
+import { TestStep } from '../../types/test-step';
 import { pageTitleInstanceDetailsColumnRenderer } from '../pagetitle-instance-details-column-renderer';
 import { PageTestStep } from './test-steps';
 
-export const pageTitleDescription: JSX.Element = (<span>A web page must have a title that describes its topic or purpose.</span>);
+const pageTitleDescription: JSX.Element = (<span>A web page must have a title that describes its topic or purpose.</span>);
 
 const pageTitleHowToTest: JSX.Element = (
     <div>

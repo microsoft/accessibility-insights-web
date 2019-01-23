@@ -37,7 +37,7 @@ export function isImage(node: HTMLElement, virtualNode: HTMLElement): boolean {
     return false;
 }
 
-export function evaluateImageFunction(node: HTMLElement): boolean {
+function evaluateImageFunction(node: HTMLElement): boolean {
     const accessibleName: string = AxeUtils.getAccessibleText(node, false);
     const codedAs: string = AxeUtils.getImageCodedAs(node);
     const imageType: string = AxeUtils.getImageType(node);

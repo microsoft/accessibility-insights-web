@@ -36,7 +36,7 @@ const flashingHowToTest: JSX.Element = (
     </React.Fragment>
 );
 
-export const flashingDescription: JSX.Element = <span>Web pages must not have content that flashes more than three times per second.</span>;
+const flashingDescription: JSX.Element = <span>Web pages must not have content that flashes more than three times per second.</span>;
 
 export const Flashing: TestStep = {
     key: ColorSensoryTestStep.flashing,
