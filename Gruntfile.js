@@ -92,6 +92,7 @@ module.exports = function (grunt) {
         // We use grunt-exec rather than grunt-webpack because grunt-webpack appears to cause inconsistent CI build
         // issues where webpack+grunt sometimes exit 0 without actually completing their work.
         'exec': {
+            'mkdrop': `mkdir -p ${path.resolve('./drop')}`,
             'webpack-dev': `${path.resolve('./node_modules/.bin/webpack')} --config-name dev`,
             'webpack-prod': `${path.resolve('./node_modules/.bin/webpack')} --config-name prod`,
             'webpack-all': `${path.resolve('./node_modules/.bin/webpack')} > ${path.resolve('./drop/webpack-all.log')}`
@@ -319,6 +320,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask("pre-webpack", [
         "clean:intermediates",
+        "exec:mkdrop",
         "sass"
     ]);
 
