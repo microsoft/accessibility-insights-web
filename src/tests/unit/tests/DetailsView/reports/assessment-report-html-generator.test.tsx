@@ -10,9 +10,12 @@ import { ITabStoreData } from '../../../../../common/types/store-data/itab-store
 import { AssessmentReportHtmlGenerator } from '../../../../../DetailsView/reports/assessment-report-html-generator';
 import { IReportModel } from '../../../../../DetailsView/reports/assessment-report-model';
 import { AssessmentReportModelBuilder } from '../../../../../DetailsView/reports/assessment-report-model-builder';
-import { AssessmentReportModelBuilderFactory } from '../../../../../DetailsView/reports/assessment-report-model-builder-factory';
+import {
+    AssessmentReportModelBuilderFactory,
+} from '../../../../../DetailsView/reports/assessment-report-model-builder-factory';
 import * as reportStyles from '../../../../../DetailsView/reports/assessment-report.styles';
-import { AssessmentReport } from '../../../../../DetailsView/reports/components/assessment-report';
+import { AssessmentReport, AssessmentReportDeps } from '../../../../../DetailsView/reports/components/assessment-report';
+import { outcomeTypeSemanticsFromTestStatus } from '../../../../../DetailsView/reports/components/outcome-type';
 import { ReactStaticRenderer } from '../../../../../DetailsView/reports/react-static-renderer';
 import { CreateTestAssessmentProviderWithFeatureFlag } from '../../../common/test-assessment-provider';
 
@@ -28,6 +31,11 @@ describe('AssessmentReportHtmlGenerator', () => {
         const tabStoreData: ITabStoreData = { stub: 'tabStoreData' } as any;
         const description = 'generateHtml-description';
 
+        // TODO: Make this a local test function rather than importing the actual one
+        const deps: AssessmentReportDeps = {
+            outcomeTypeSemanticsFromTestStatus: outcomeTypeSemanticsFromTestStatus,
+        };
+
         const modelBuilderMock = Mock.ofType(AssessmentReportModelBuilder, MockBehavior.Strict);
         const model: IReportModel = { stub: 'model' } as any;
 
@@ -39,6 +47,7 @@ describe('AssessmentReportHtmlGenerator', () => {
                 </head>
                 <body>
                     <AssessmentReport
+                        deps={deps}
                         data={model}
                         description={description}
                         extensionVersion="ProductVersion"
@@ -78,6 +87,8 @@ describe('AssessmentReportHtmlGenerator', () => {
             'axeVersion',
             'chromeVersion',
             assessmentDefaultMessageGenerator,
+            // TODO: Use mock here?
+            outcomeTypeSemanticsFromTestStatus,
         );
 
         const actualHtml = testSubject.generateHtml(

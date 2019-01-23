@@ -7,13 +7,21 @@ import { ManualTestStatus } from '../../../../../../common/types/manual-test-sta
 import { IAssessmentDetailsReportModel } from '../../../../../../DetailsView/reports/assessment-report-model';
 import {
     AssessmentReportAssessmentList,
-    AssessmentReportAssessmentProps,
+    AssessmentReportAssessmentListProps,
+    AssessmentReportAssessmentListDeps,
 } from '../../../../../../DetailsView/reports/components/assessment-report-assessment-list';
 import { AssessmentReportBuilderTestHelper } from '../../assessment-report-builder-test-helper';
+import { outcomeTypeSemanticsFromTestStatus } from '../../../../../../DetailsView/reports/components/outcome-type';
 
 describe('AssessmentReportAssessmentListTest', () => {
+    // TODO: Make this a local test function rather than importing the actual one
+    const deps: AssessmentReportAssessmentListDeps = {
+        outcomeTypeSemanticsFromTestStatus: outcomeTypeSemanticsFromTestStatus,
+    };
+
     test('render: pass', () => {
-        const assessments: AssessmentReportAssessmentProps = {
+        const assessments: AssessmentReportAssessmentListProps = {
+            deps: deps,
             status: ManualTestStatus.PASS,
             assessments: AssessmentReportBuilderTestHelper.getAssessmentDetailsReportModelPass(),
         };
@@ -22,7 +30,8 @@ describe('AssessmentReportAssessmentListTest', () => {
     });
 
     test('render: fail', () => {
-        const assessments: AssessmentReportAssessmentProps = {
+        const assessments: AssessmentReportAssessmentListProps = {
+            deps: deps,
             status: ManualTestStatus.FAIL,
             assessments: AssessmentReportBuilderTestHelper.getAssessmentDetailsReportModelFail(),
         };
@@ -31,7 +40,8 @@ describe('AssessmentReportAssessmentListTest', () => {
     });
 
     test('render: incomplete', () => {
-        const assessments: AssessmentReportAssessmentProps = {
+        const assessments: AssessmentReportAssessmentListProps = {
+            deps: deps,
             status: ManualTestStatus.UNKNOWN,
             assessments: AssessmentReportBuilderTestHelper.getAssessmentDetailsReportModelUnknown(),
         };
@@ -39,7 +49,7 @@ describe('AssessmentReportAssessmentListTest', () => {
         testAssessments(assessments);
     });
 
-    function testAssessments(assessments: AssessmentReportAssessmentProps): void {
+    function testAssessments(assessments: AssessmentReportAssessmentListProps): void {
         const wrapper = Enzyme.shallow(<AssessmentReportAssessmentList {...assessments} />);
 
         assessments.assessments.forEach((assessment, index) => {

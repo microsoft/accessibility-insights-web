@@ -4,11 +4,14 @@ import * as React from 'react';
 
 import { ManualTestStatus } from '../../../common/types/manual-test-status';
 import { IAssessmentDetailsReportModel } from '../assessment-report-model';
-import { AssessmentReportStepList } from './assessment-report-step-list';
+import { AssessmentReportStepList, AssessmentReportStepListDeps } from './assessment-report-step-list';
 import { OutcomeChip } from './outcome-chip';
 import { allOutcomeTypes } from './outcome-type';
 
-export interface AssessmentReportAssessmentProps {
+export type AssessmentReportAssessmentListDeps = AssessmentReportStepListDeps;
+
+export interface AssessmentReportAssessmentListProps {
+    deps: AssessmentReportAssessmentListDeps;
     status: ManualTestStatus;
     assessments: IAssessmentDetailsReportModel[];
 }
@@ -18,7 +21,7 @@ export interface IconWithCountProps {
     count: number;
 }
 
-export class AssessmentReportAssessmentList extends React.Component<AssessmentReportAssessmentProps> {
+export class AssessmentReportAssessmentList extends React.Component<AssessmentReportAssessmentListProps> {
     public render(): JSX.Element {
         return <div>{this.renderAssessments()}</div>;
     }
@@ -28,7 +31,7 @@ export class AssessmentReportAssessmentList extends React.Component<AssessmentRe
             return (
                 <div className="assessment-details" key={assessment.key}>
                     {this.renderAssessmentHeader(assessment)}
-                    <AssessmentReportStepList status={this.props.status} steps={assessment.steps} />
+                    <AssessmentReportStepList deps={this.props.deps} status={this.props.status} steps={assessment.steps} />
                 </div>
             );
         });

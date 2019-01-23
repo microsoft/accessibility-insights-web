@@ -4,19 +4,22 @@ import * as React from 'react';
 
 import { ManualTestStatus } from '../../../common/types/manual-test-status';
 import { IAssessmentDetailsReportModel, IReportModel } from '../assessment-report-model';
-import { AssessmentReportAssessmentList } from './assessment-report-assessment-list';
+import { AssessmentReportAssessmentList, AssessmentReportAssessmentListDeps } from './assessment-report-assessment-list';
 import { AssessmentReportBodyHeader } from './assessment-report-body-header';
 import { AssessmentReportSummary } from './assessment-report-summary';
 import { AssessmentScanDetails } from './assessment-scan-details';
 import { OutcomeChip } from './outcome-chip';
 import { allOutcomeTypes } from './outcome-type';
 
-export interface IAssessmentReportBodyProps {
+export type AssessmentReportBodyDeps = AssessmentReportAssessmentListDeps;
+
+export interface AssessmentReportBodyProps {
+    deps: AssessmentReportBodyDeps;
     data: IReportModel;
     description: string;
 }
 
-export class AssessmentReportBody extends React.Component<IAssessmentReportBodyProps> {
+export class AssessmentReportBody extends React.Component<AssessmentReportBodyProps> {
 
     public render(): JSX.Element {
         return (
@@ -65,6 +68,7 @@ export class AssessmentReportBody extends React.Component<IAssessmentReportBodyP
             <div className="details-section">
                 {this.renderDetailsSectionHeader(title, count, status)}
                 <AssessmentReportAssessmentList
+                    deps={this.props.deps}
                     status={status}
                     assessments={detailsData}
                 />

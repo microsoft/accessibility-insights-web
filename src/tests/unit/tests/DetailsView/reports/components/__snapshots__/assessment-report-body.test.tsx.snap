@@ -133,6 +133,11 @@ exports[`AssessmentReportBody render 1`] = `
           },
         ]
       }
+      deps={
+        Object {
+          "outcomeTypeSemanticsFromTestStatus": [Function],
+        }
+      }
       status={2}
     />
   </div>
@@ -202,6 +207,11 @@ exports[`AssessmentReportBody render 1`] = `
           },
         ]
       }
+      deps={
+        Object {
+          "outcomeTypeSemanticsFromTestStatus": [Function],
+        }
+      }
       status={1}
     />
   </div>
@@ -257,6 +267,11 @@ exports[`AssessmentReportBody render 1`] = `
             ],
           },
         ]
+      }
+      deps={
+        Object {
+          "outcomeTypeSemanticsFromTestStatus": [Function],
+        }
       }
       status={0}
     />

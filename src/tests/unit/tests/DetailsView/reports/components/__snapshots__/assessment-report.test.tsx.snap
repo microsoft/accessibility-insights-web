@@ -203,6 +203,11 @@ exports[`AssessmentReport render 1`] = `
         },
       }
     }
+    deps={
+      Object {
+        "outcomeTypeSemanticsFromTestStatus": [Function],
+      }
+    }
     description="test string"
   />
   <AssessmentReportFooter

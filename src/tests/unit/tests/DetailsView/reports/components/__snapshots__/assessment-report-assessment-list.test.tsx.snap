@@ -15,6 +15,11 @@ exports[`AssessmentReportAssessmentListTest render: fail 1`] = `
       />
     </h3>
     <AssessmentReportStepList
+      deps={
+        Object {
+          "outcomeTypeSemanticsFromTestStatus": [Function],
+        }
+      }
       status={2}
       steps={
         Array [
@@ -81,6 +86,11 @@ exports[`AssessmentReportAssessmentListTest render: fail 1`] = `
       />
     </h3>
     <AssessmentReportStepList
+      deps={
+        Object {
+          "outcomeTypeSemanticsFromTestStatus": [Function],
+        }
+      }
       status={2}
       steps={
         Array [
@@ -118,6 +128,11 @@ exports[`AssessmentReportAssessmentListTest render: incomplete 1`] = `
       />
     </h3>
     <AssessmentReportStepList
+      deps={
+        Object {
+          "outcomeTypeSemanticsFromTestStatus": [Function],
+        }
+      }
       status={1}
       steps={
         Array [
@@ -163,6 +178,11 @@ exports[`AssessmentReportAssessmentListTest render: incomplete 1`] = `
       />
     </h3>
     <AssessmentReportStepList
+      deps={
+        Object {
+          "outcomeTypeSemanticsFromTestStatus": [Function],
+        }
+      }
       status={1}
       steps={
         Array [
@@ -200,6 +220,11 @@ exports[`AssessmentReportAssessmentListTest render: pass 1`] = `
       />
     </h3>
     <AssessmentReportStepList
+      deps={
+        Object {
+          "outcomeTypeSemanticsFromTestStatus": [Function],
+        }
+      }
       status={0}
       steps={
         Array [

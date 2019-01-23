@@ -9,9 +9,11 @@ import { IAssessmentStoreData } from '../../common/types/store-data/iassessment-
 import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
 import { AssessmentReportModelBuilderFactory } from './assessment-report-model-builder-factory';
 import * as reportStyles from './assessment-report.styles';
-import { AssessmentReport } from './components/assessment-report';
+import { AssessmentReport, AssessmentReportDeps } from './components/assessment-report';
 import { ReactStaticRenderer } from './react-static-renderer';
 import { AssessmentDefaultMessageGenerator } from '../../assessments/assessment-default-message-generator';
+import { ManualTestStatus } from '../../common/types/manual-test-status';
+import { OutcomeTypeSemantic } from './components/outcome-type';
 
 
 
@@ -24,6 +26,7 @@ export class AssessmentReportHtmlGenerator {
         private axeVersion: string,
         private chromeVersion: string,
         private assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator,
+        private outcomeTypeSemanticsFromTestStatus: (testStatus: ManualTestStatus) => OutcomeTypeSemantic,
     ) {
     }
 
@@ -47,6 +50,10 @@ export class AssessmentReportHtmlGenerator {
             this.assessmentDefaultMessageGenerator,
         );
 
+        const deps: AssessmentReportDeps = {
+            outcomeTypeSemanticsFromTestStatus: this.outcomeTypeSemanticsFromTestStatus,
+        };
+
         const model = modelBuilder.getReportModelData();
 
         const reportElement = (
@@ -57,6 +64,7 @@ export class AssessmentReportHtmlGenerator {
                 </head>
                 <body>
                     <AssessmentReport
+                        deps={deps}
                         data={model}
                         description={description}
                         extensionVersion={this.extensionVersion}

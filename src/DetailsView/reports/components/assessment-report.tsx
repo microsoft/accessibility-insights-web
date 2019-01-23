@@ -3,11 +3,14 @@
 import * as React from 'react';
 
 import { IReportModel } from '../assessment-report-model';
-import { AssessmentReportBody } from './assessment-report-body';
+import { AssessmentReportBody, AssessmentReportBodyDeps } from './assessment-report-body';
 import { AssessmentReportFooter } from './assessment-report-footer';
 import { AssessmentReportHeader } from './assessment-report-header';
 
-export interface IAssessmentReportProps {
+export type AssessmentReportDeps = AssessmentReportBodyDeps;
+
+export interface AssessmentReportProps {
+    deps: AssessmentReportDeps;
     data: IReportModel;
     description: string;
     extensionVersion: string;
@@ -15,7 +18,7 @@ export interface IAssessmentReportProps {
     chromeVersion: string;
 }
 
-export class AssessmentReport extends React.Component<IAssessmentReportProps> {
+export class AssessmentReport extends React.Component<AssessmentReportProps> {
     public render(): JSX.Element {
         return (
             <React.Fragment>
@@ -24,6 +27,7 @@ export class AssessmentReport extends React.Component<IAssessmentReportProps> {
                     targetPageUrl={this.props.data.scanDetails.url}
                 />
                 <AssessmentReportBody
+                    deps={this.props.deps}
                     data={this.props.data}
                     description={this.props.description}
                 />

@@ -5,15 +5,23 @@ import * as React from 'react';
 import { ManualTestStatus } from '../../../../../../common/types/manual-test-status';
 import {
     AssessmentReportStepList,
-    AssessmentReportStepProps,
+    AssessmentReportStepListProps,
+    AssessmentReportStepListDeps,
 } from '../../../../../../DetailsView/reports/components/assessment-report-step-list';
 import { shallowRender } from '../../../../Common/shallow-render';
 import { AssessmentReportBuilderTestHelper } from '../../assessment-report-builder-test-helper';
+import { outcomeTypeSemanticsFromTestStatus } from '../../../../../../DetailsView/reports/components/outcome-type';
 
 describe('AssessmentReportStepListTest', () => {
 
+    // TODO: Make this a local test function rather than importing the actual one
+    const deps: AssessmentReportStepListDeps = {
+        outcomeTypeSemanticsFromTestStatus: outcomeTypeSemanticsFromTestStatus,
+    };
+
     it('renders pass', () => {
-        const props: AssessmentReportStepProps = {
+        const props: AssessmentReportStepListProps = {
+            deps: deps,
             status: ManualTestStatus.PASS,
             steps: AssessmentReportBuilderTestHelper.getRequirementReportModelPass(),
         };
@@ -25,7 +33,8 @@ describe('AssessmentReportStepListTest', () => {
     it('renders pass without instances when showInstances is false', () => {
         const steps = AssessmentReportBuilderTestHelper.getRequirementReportModelPass();
         steps[0].showPassingInstances = false;
-        const props: AssessmentReportStepProps = {
+        const props: AssessmentReportStepListProps = {
+            deps: deps,
             status: ManualTestStatus.PASS,
             steps,
         };
@@ -35,7 +44,8 @@ describe('AssessmentReportStepListTest', () => {
     });
 
     it('renders fail', () => {
-        const props: AssessmentReportStepProps = {
+        const props: AssessmentReportStepListProps = {
+            deps: deps,
             status: ManualTestStatus.FAIL,
             steps: AssessmentReportBuilderTestHelper.getRequirementReportModelFail(),
         };
@@ -45,7 +55,8 @@ describe('AssessmentReportStepListTest', () => {
     });
 
     it('renders incomplete', () => {
-        const props: AssessmentReportStepProps = {
+        const props: AssessmentReportStepListProps = {
+            deps: deps,
             status: ManualTestStatus.UNKNOWN,
             steps: AssessmentReportBuilderTestHelper.getRequirementReportModelUnknownStep3(),
         };
