@@ -2,6 +2,7 @@
     "recommendations": [
         "psioniq.psi-header",
         "eg2.tslint",
-        "esbenp.prettier-vscode"
+        "esbenp.prettier-vscode",
+        "msjsdiag.debugger-for-chrome"
     ]
 }
