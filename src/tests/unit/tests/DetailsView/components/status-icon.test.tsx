@@ -18,18 +18,18 @@ describe('StatusIcon', () => {
     });
 
     test('render for FAIL', () => {
-        const wrapper = Enzyme.shallow(<StatusIcon status={ManualTestStatus.FAIL} level="test"/>);
+        const wrapper = Enzyme.shallow(<StatusIcon status={ManualTestStatus.FAIL} level="requirement"/>);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
     test('render for UNKNOWN', () => {
-        const wrapper = Enzyme.shallow(<StatusIcon status={ManualTestStatus.UNKNOWN} level="test"/>);
+        const wrapper = Enzyme.shallow(<StatusIcon status={ManualTestStatus.UNKNOWN} level="requirement"/>);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
     test('render for default', () => {
         const status: ManualTestStatus = -1 as ManualTestStatus;
-        const wrapper = Enzyme.shallow(<StatusIcon status={status} level="test"/>);
+        const wrapper = Enzyme.shallow(<StatusIcon status={status} level="requirement"/>);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 });

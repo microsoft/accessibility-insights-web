@@ -3,7 +3,7 @@
 exports[`StatusIcon render for FAIL 1`] = `
 <StyledIconBase
   aria-live="polite"
-  ariaLabel="failed test"
+  ariaLabel="failed requirement"
   className="status-icon negative-outcome-icon"
   iconName="StatusErrorFull"
 />
@@ -30,7 +30,7 @@ exports[`StatusIcon render for PASS with extra class name 1`] = `
 exports[`StatusIcon render for UNKNOWN 1`] = `
 <StyledIconBase
   aria-live="polite"
-  ariaLabel="incompleted test"
+  ariaLabel="incomplete requirement"
   className="status-icon"
   iconName="circleRing"
 />
@@ -39,7 +39,7 @@ exports[`StatusIcon render for UNKNOWN 1`] = `
 exports[`StatusIcon render for default 1`] = `
 <StyledIconBase
   aria-live="polite"
-  ariaLabel="incompleted test"
+  ariaLabel="incomplete requirement"
   className="status-icon"
   iconName="circleRing"
 />
