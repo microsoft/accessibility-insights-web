@@ -21,7 +21,7 @@ export interface ITestStatusChoiceGroupProps {
 }
 
 interface ChoiceGroupState {
-    selectedkey: string;
+    selectedKey: string;
 }
 
 export class TestStatusChoiceGroup extends React.Component<ITestStatusChoiceGroupProps, ChoiceGroupState> {
@@ -29,7 +29,7 @@ export class TestStatusChoiceGroup extends React.Component<ITestStatusChoiceGrou
 
     constructor(props) {
         super(props);
-        this.state = { selectedkey: ManualTestStatus[this.props.status] };
+        this.state = { selectedKey: ManualTestStatus[this.props.status] };
     }
 
     public render(): JSX.Element {
@@ -40,7 +40,7 @@ export class TestStatusChoiceGroup extends React.Component<ITestStatusChoiceGrou
                         className={ManualTestStatus[this.props.status]}
                         onChange={this.onChange}
                         componentRef={this.compomentRef}
-                        selectedKey={this.state.selectedkey}
+                        selectedKey={this.state.selectedKey}
                         options={[
                             { key: ManualTestStatus[ManualTestStatus.PASS], text: 'Pass', onRenderLabel: this.onRenderLabel },
                             { key: ManualTestStatus[ManualTestStatus.FAIL], text: 'Fail', onRenderLabel: this.onRenderLabel },
@@ -86,13 +86,13 @@ export class TestStatusChoiceGroup extends React.Component<ITestStatusChoiceGrou
 
     @autobind
     protected onChange(ev: React.FocusEvent<HTMLElement>, option: IChoiceGroupOption): void {
-        this.setState({ selectedkey: option.key });
+        this.setState({ selectedKey: option.key });
         this.props.onGroupChoiceChange(ManualTestStatus[option.key], this.props.test, this.props.step, this.props.selector);
     }
 
     @autobind
     protected onUndoClicked(): void {
-        this.setState({ selectedkey: ManualTestStatus[ManualTestStatus.UNKNOWN] });
+        this.setState({ selectedKey: ManualTestStatus[ManualTestStatus.UNKNOWN] });
         this._choiceGroup.focus();
         this.props.onUndoClicked(this.props.test, this.props.step, this.props.selector);
     }
