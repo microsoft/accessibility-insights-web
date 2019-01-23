@@ -15,7 +15,9 @@ const commonPlugins = [
     // even those which are not dependencies of any entry points, eg, tests
     new ForkTsCheckerWebpackPlugin({
         tsconfig: './tsconfig.json',
-        tslint: './tslint.build-enforced.json'
+        tslint: './tslint.build-enforced.json',
+        useTypescriptIncrementalApi: true,
+        memoryLimit: 4096
     })
 ];
 
