@@ -17,6 +17,7 @@ describe('ContentPage', () => {
     });
 
     const {
+        Title,
         Do,
         Dont,
         Pass,
@@ -30,9 +31,20 @@ describe('ContentPage', () => {
         LandmarkLegend,
         Table,
         ProblemList,
-    } = createMarkup(deps);
+    } = createMarkup(deps, null);
 
     describe('.Markup', () => {
+
+        it('<Title> renders where options not specified', () => {
+            const wrapper = shallow(<Title>TEST</Title>);
+            expect(wrapper.debug()).toMatchSnapshot();
+        });
+
+        [true, false, null].forEach(value => it(`<Title> renders where setPageTitle === ${value}`, () => {
+            const Markup = createMarkup(deps, { setPageTitle: value });
+            const wrapper = shallow(<Markup.Title>TEST</Markup.Title>);
+            expect(wrapper.debug()).toMatchSnapshot();
+        }));
 
         it('<LandmarkLegend> renders', () => {
             const wrapper = shallow(<LandmarkLegend role="test">TEST</LandmarkLegend>);

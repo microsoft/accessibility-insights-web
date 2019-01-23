@@ -5,9 +5,12 @@ import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';
 
 import { IAssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
+import { TestStep } from '../../../../../assessments/types/test-step';
+import { getInnerTextFromJsxElement } from '../../../../../common/get-inner-text-from-jsx-element';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { ITestStepNavProps, TestStepsNav } from '../../../../../DetailsView/components/test-steps-nav';
+import { OutcomeTypeSemantic, outcomeTypeSemanticsFromTestStatus } from '../../../../../DetailsView/reports/components/outcome-type';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 import { CreateTestAssessmentProvider, CreateTestAssessmentProviderAutomated } from '../../../common/test-assessment-provider';
 
@@ -54,6 +57,8 @@ describe('TestStepsNav', () => {
             deps: {
                 detailsViewActionMessageCreator: actionMessageCreatorMock.object,
                 assessmentsProvider: assessmentProvider,
+                getInnerTextFromJsxElement: getInnerTextFromJsxElementStub(),
+                outcomeTypeSemanticsFromTestStatus: createOutcomeTypeSemanticsFromTestStatusStub(),
             },
             selectedTest: assessment.type,
             selectedTestStep: firstStep.key,
@@ -62,12 +67,7 @@ describe('TestStepsNav', () => {
             ariaLabel: 'test',
         };
 
-        assessment.steps.forEach(step => {
-            props.stepStatus[step.key] = {
-                stepFinalResult: ManualTestStatus.UNKNOWN,
-                isStepScanned: false,
-            };
-        });
+        generateStepStatus(assessment.steps, props);
 
         actionMessageCreatorMock
             .setup(a => a.selectTestStep(eventStub, item.key, props.selectedTest))
@@ -81,6 +81,34 @@ describe('TestStepsNav', () => {
         expect(rendered).toMatchSnapshot('render');
         expect(testObject.getRenderNavLink()(item)).toMatchSnapshot('getRenderNavLink');
         actionMessageCreatorMock.verifyAll();
+    }
+
+    function generateStepStatus(testSteps: TestStep[], props: ITestStepNavProps): void {
+        testSteps.forEach((step, index) => {
+            props.stepStatus[step.key] = {
+                stepFinalResult: index % 2 === 0 ? ManualTestStatus.UNKNOWN : ManualTestStatus.PASS,
+                isStepScanned: false,
+                name: step.name,
+            };
+        });
+    }
+    function createOutcomeTypeSemanticsFromTestStatusStub(): typeof outcomeTypeSemanticsFromTestStatus {
+        const outcomeTypeSemanticsFromTestStatusMock = Mock.ofInstance(outcomeTypeSemanticsFromTestStatus);
+
+        outcomeTypeSemanticsFromTestStatusMock
+            .setup(f => f(ManualTestStatus.PASS))
+            .returns(() => { return { pastTense: 'passed' } as OutcomeTypeSemantic; });
+        outcomeTypeSemanticsFromTestStatusMock
+            .setup(f => f(ManualTestStatus.UNKNOWN))
+            .returns(() => { return { pastTense: 'unknown' } as OutcomeTypeSemantic; });
+
+        return outcomeTypeSemanticsFromTestStatusMock.object;
+    }
+
+    function getInnerTextFromJsxElementStub(): typeof getInnerTextFromJsxElement {
+        return status => {
+            return 'some test step description';
+        };
     }
 });
 

@@ -18,7 +18,7 @@ export const Content = NamedSFC<ContentProps>('Content', ({ deps, reference }) =
             <div className="content-left">
             </div>
             <div className="content">
-                <ContentPage deps={deps} />
+                <ContentPage deps={deps} options={{ setPageTitle: true }} />
             </div>
             <div className="content-right">
             </div>

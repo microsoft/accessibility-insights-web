@@ -19,14 +19,15 @@ export class MasterCheckBoxConfigProvider {
     public getMasterCheckBoxProperty(assessmentNavState: IAssessmentNavState, allEnabled: boolean): Partial<IColumn> {
         const iconName = allEnabled ? MasterCheckBoxConfigProvider.MASTER_CHECKBOX_ICON_NAME_ENABLED : MasterCheckBoxConfigProvider.MASTER_CHECKBOX_ICON_NAME_DISABLED;
         const iconClassName = classNames({'master-visualization-column-header-selected': (iconName === 'view')});
-        const name = 'toggle all visualization';
+        const name = 'Visualization toggle';
+        const label = `Toggle all visualizations ${allEnabled ? 'enabled' : 'disabled'}`;
         const onColumnClick = this.getMasterCheckBoxClickHandler(assessmentNavState, allEnabled);
 
         return {
             iconName: iconName,
             iconClassName: iconClassName,
             name: name,
-            ariaLabel: name,
+            ariaLabel: label,
             onColumnClick: onColumnClick,
         };
     }

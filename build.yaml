@@ -7,8 +7,6 @@ jobs:
   pool:
     vmImage: 'macOS-10.13'
 
-  timeoutInMinutes: 15
-
   steps:
   - task: NodeTool@0
     inputs:
@@ -62,8 +60,6 @@ jobs:
   pool:
     vmImage: 'macOS-10.13'
 
-  timeoutInMinutes: 15
-
   steps:
   - task: NodeTool@0
     inputs:
@@ -81,7 +77,7 @@ jobs:
       customCommand: run build:all
     displayName: npm run build:all
 
-  # e2e tests depend on npm run build
+  # e2e tests depend on npm run drop
   - task: Npm@1
     inputs:
       command: custom

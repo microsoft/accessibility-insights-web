@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { forEach } from 'lodash';
-import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
+import { IColumn, ColumnActionsMode } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
 
@@ -92,7 +92,7 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
                 id: 'id',
                 description: 'comment',
             },
-            removeButton: null,
+            instanceActionButtons: null,
         };
         const expected = (
             <AssessmentInstanceDetailsColumn
@@ -114,25 +114,25 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
             .verifiable();
     }
 
-    function getExpectedCapturedHeadingInstanceTableConfigs() {
+    function getExpectedCapturedHeadingInstanceTableConfigs(): IColumn[] {
         return [
             {
                 key: 'failureDescription',
                 name: 'Failure description',
-                ariaLabel: 'Failure description',
                 fieldName: 'description',
                 minWidth: 200,
                 maxWidth: 400,
                 isResizable: true,
+                columnActionsMode: ColumnActionsMode.disabled,
             },
             {
-                key: 'removeButton',
-                name: 'remove instance',
-                ariaLabel: 'remove instance',
-                fieldName: 'removeButton',
+                key: 'instanceActionButtons',
+                name: 'instance actions',
+                fieldName: 'instanceActionButtons',
                 minWidth: 100,
                 maxWidth: 100,
                 isResizable: false,
+                columnActionsMode: ColumnActionsMode.disabled,
             },
         ];
     }
@@ -148,7 +148,7 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
 
             if (col.key !== 'visualizationButton' && col.key !== 'instanceDetails') {
                 expect(actual[index].name).toBe(col.name);
-                expect(actual[index].ariaLabel).toBe(col.ariaLabel);
+                expect(actual[index].columnActionsMode).toBe(col.columnActionsMode);
             }
         });
     }

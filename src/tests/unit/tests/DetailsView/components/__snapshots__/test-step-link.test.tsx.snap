@@ -2,6 +2,7 @@
 
 exports[`TestStepLink renders with index 1`] = `
 <div
+  aria-hidden="true"
   className="button-flex-container"
 >
   <div
@@ -30,6 +31,7 @@ exports[`TestStepLink renders with index 1`] = `
 
 exports[`TestStepLink renders without index 1`] = `
 <div
+  aria-hidden="true"
   className="button-flex-container"
 >
   <div
