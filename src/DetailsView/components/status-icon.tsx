@@ -9,18 +9,19 @@ import { ManualTestStatus } from '../../common/types/manual-test-status';
 export interface IStatusIconProps {
     status: ManualTestStatus;
     className?: string;
+    level: 'test' | 'requirement';
 }
 
 export class StatusIcon extends React.Component<IStatusIconProps> {
     public render(): JSX.Element {
         switch (this.props.status) {
             case ManualTestStatus.PASS:
-                return this.renderIcon('completedSolid', 'passed requirement', css('positive-outcome-icon', this.props.className));
+                return this.renderIcon('completedSolid', `passed ${this.props.level}`, css('positive-outcome-icon', this.props.className));
             case ManualTestStatus.FAIL:
-                return this.renderIcon('StatusErrorFull', 'failed requirement', css('negative-outcome-icon', this.props.className));
+                return this.renderIcon('StatusErrorFull', `failed ${this.props.level}`, css('negative-outcome-icon', this.props.className));
             case ManualTestStatus.UNKNOWN:
             default:
-                return this.renderIcon('circleRing', 'incompleted requirement');
+                return this.renderIcon('circleRing', `incompleted ${this.props.level}`);
         }
     }
 

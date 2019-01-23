@@ -22,6 +22,7 @@ export class TestStepLink extends React.Component<ITestStepLinkProps> {
                 {this.props.renderRequirementDescription(this)}
                 <StatusIcon
                     status={this.props.status}
+                    level="requirement"
                 />
             </div>
         );

@@ -17,6 +17,7 @@ export const LeftNavStatusIcon = NamedSFC<LeftNavIconProps>('LeftNavStatusIcon',
             <StatusIcon
                 status={item.status}
                 className={'dark-gray'}
+                level="test"
             />
         </div>
     );
