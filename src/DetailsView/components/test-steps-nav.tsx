@@ -80,8 +80,7 @@ export class TestStepsNav extends React.Component<ITestStepNavProps> {
         return results.map(result => {
             const { definition: step } = result;
             const status = this.getStepStatus(step.key);
-            const uiDisplayableStatus = outcomeTypeSemanticsFromTestStatus(status).pastTense;
-            const title = `${step.name}. ${uiDisplayableStatus}. ${getInnerTextFromJsxElement(step.description)}`;
+            const title = `${step.name}. ${getInnerTextFromJsxElement(step.description)}`;
 
             return {
                 key: step.key,
@@ -95,5 +94,4 @@ export class TestStepsNav extends React.Component<ITestStepNavProps> {
             } as INavLink;
         });
     }
-
 }

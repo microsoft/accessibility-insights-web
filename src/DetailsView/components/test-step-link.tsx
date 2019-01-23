@@ -17,9 +17,10 @@ export class TestStepLink extends React.Component<ITestStepLinkProps> {
         return (
             <div
                 className={'button-flex-container'}
-                aria-hidden="true"
             >
-                {this.props.renderRequirementDescription(this)}
+                <span aria-hidden="true">
+                    {this.props.renderRequirementDescription(this)}
+                </span>
                 <StatusIcon
                     status={this.props.status}
                 />
