@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
+import React from 'react';
 
 import { VisualizationType } from '../../common/types/visualization-type';
 import { test as content } from '../../content/test';

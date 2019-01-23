@@ -24,6 +24,7 @@
     "noErrorTruncation": false,
     "noStrictGenericChecks": false,
     "allowJs": false,
+    "allowSyntheticDefaultImports": true,
     "typeRoots": ["node_modules/@types"],
     "plugins": [
         { "name": "tslint-language-service" }
