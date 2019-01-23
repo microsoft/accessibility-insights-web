@@ -1,20 +1,20 @@
 {
-  // This file contains checks for which there are still grandfathered-in pre-existing violations in the codebase
-  // We eventually want there to only be one tslint.json file, and to have all checks be build-enforced
-  "extends": "./tslint.build-enforced.json",
-  "rules": {
-    "forin": true,
-    "indent": [true, "spaces"],
-    "interface-name": [true, "never-prefix"],
-    "max-classes-per-file": [true, 2],
-    "max-line-length": [true, 140],
-    "no-default-export": true,
-    "no-invalid-this": [true, "check-function-in-method"],
-    "no-shadowed-variable": true, // Disallows shadowing variable declarations
-    "no-var-keyword": true,
-    "prefer-const": [true, { "destructuring": "all" }],
-    "switch-default": true,
-    "typedef": [true, "call-signature", "property-declaration"],
-    "variable-name": [true, "check-format", "allow-pascal-case", "allow-trailing-underscore", "ban-keywords"]
-  }
+    // This file contains checks for which there are still grandfathered-in pre-existing violations in the codebase
+    // We eventually want there to only be one tslint.json file, and to have all checks be build-enforced
+    "extends": "./tslint.build-enforced.json",
+    "rules": {
+        "forin": true,
+        "indent": [true, "spaces"],
+        "interface-name": [true, "never-prefix"],
+        "max-classes-per-file": [true, 2],
+        "max-line-length": [true, 140],
+        "no-default-export": true,
+        "no-invalid-this": [true, "check-function-in-method"],
+        "no-shadowed-variable": true, // Disallows shadowing variable declarations
+        "no-var-keyword": true,
+        "prefer-const": [true, { "destructuring": "all" }],
+        "switch-default": true,
+        "typedef": [true, "call-signature", "property-declaration"],
+        "variable-name": [true, "check-format", "allow-pascal-case", "allow-trailing-underscore", "ban-keywords"]
+    }
 }
