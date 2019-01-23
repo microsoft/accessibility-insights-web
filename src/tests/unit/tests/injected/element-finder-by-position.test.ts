@@ -12,7 +12,7 @@ import { IErrorMessageContent } from '../../../../injected/frameCommunicators/wi
 import { ScannerUtils } from '../../../../injected/scanner-utils';
 import { QStub } from '../../stubs/q-stub';
 
-export class TestableElementFinder extends ElementFinderByPosition {
+class TestableElementFinder extends ElementFinderByPosition {
     public getOnfindElementByPosition(): (message: ElementFinderByPositionMessage, error: IErrorMessageContent, sourceWin: Window, responder?: FrameMessageResponseCallback) => void {
         return this.onfindElementByPosition;
     }

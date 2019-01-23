@@ -9,7 +9,7 @@ import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
 import { KeyboardInteractionTestStep } from './test-steps';
 
-export const description: JSX.Element = (
+const description: JSX.Element = (
     <span>
         Users must be able to <Markup.Emphasis>navigate away</Markup.Emphasis> from all components using a keyboard.
     </span>

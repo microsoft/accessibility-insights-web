@@ -9,7 +9,7 @@ import { ScopingListener } from '../../../../injected/scoping-listener';
 import { ShadowUtils } from '../../../../injected/shadow-utils';
 
 
-export class TestableScopingListener extends ScopingListener {
+class TestableScopingListener extends ScopingListener {
     public getOnClick(): (event: MouseEvent) => void {
         return this.onClick;
     }

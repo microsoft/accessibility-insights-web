@@ -11,13 +11,6 @@ export interface IAssessmentScanData extends IScanData {
     stepStatus: IDictionaryStringTo<boolean>;
 }
 
-export type ILandmarksData = IScanData;
-export type IHeadingsData = IScanData;
-export type IHeadingsAssessmentData = IScanData;
-export type ITabStopsData = IScanData;
-export type IColorData = IScanData;
-export type IColorSensoryAssessmentData = IScanData;
-
 export interface IVisualizationStoreData {
     tests: ITestsEnabledState;
     scanning: string;

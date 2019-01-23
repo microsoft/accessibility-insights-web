@@ -8,7 +8,7 @@ import ManualTestRecordYourResults from '../../common/manual-test-record-your-re
 import { TestStep } from '../../types/test-step';
 import { KeyboardInteractionTestStep } from './test-steps';
 
-export const description: JSX.Element = (<span>Components must not require specific timings for individual keystrokes.</span>);
+const description: JSX.Element = (<span>Components must not require specific timings for individual keystrokes.</span>);
 
 const howToTest: JSX.Element = (
     <div>

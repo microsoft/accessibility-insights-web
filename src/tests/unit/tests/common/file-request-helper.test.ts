@@ -5,7 +5,6 @@ import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 import { XMLHttpRequestFactory } from '../../../../background/xml-http-request-factory';
 import { FileRequestHelper } from '../../../../common/file-request-helper';
 import { XmlHttpRequestStubBuilder } from '../../Stubs/xml-http-request-stub-builder';
-import { passMessageStub } from '../scanner/custom-rules-configuration-stub';
 
 describe('FileRequestHelper', () => {
     let testSubject: FileRequestHelper;

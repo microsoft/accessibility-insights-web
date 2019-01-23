@@ -14,7 +14,7 @@ import { GenericPanel } from '../../../../../DetailsView/components/generic-pane
 import { GenericToggle } from '../../../../../DetailsView/components/generic-toggle';
 import { SettingsPanel, SettingsPanelProps } from '../../../../../DetailsView/components/settings-panel';
 
-export class TestableSettingsPanel extends SettingsPanel {
+class TestableSettingsPanel extends SettingsPanel {
     public getOnEnableTelemetryToggleClick() {
         return this.onEnableTelemetryToggleClick;
     }

@@ -20,11 +20,7 @@ import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-to
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
 import { ReportGenerator } from './reports/report-generator';
 
-export interface IDetailsViewRenderer {
-    render(backgroundConnection: chrome.runtime.Port, tabId: number): void;
-}
-
-export class DetailsViewRenderer implements IDetailsViewRenderer {
+export class DetailsViewRenderer {
     private renderer: typeof ReactDOM.render;
     private dom: NodeSelector & Node;
     private scopingActionMessageCreator: ScopingActionMessageCreator;

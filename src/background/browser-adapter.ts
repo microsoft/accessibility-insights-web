@@ -1,17 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
-
-import { ClientChromeAdapter, ClientBrowserAdapter } from '../common/client-browser-adapter';
-
-export interface TabActiveInfo {
-    tabId: number;
-}
-
-export interface TabChangeInfo {
-    status: string;
-    url: string;
-}
+import { ClientBrowserAdapter, ClientChromeAdapter } from '../common/client-browser-adapter';
 
 export interface NotificationOptions {
     message: string;
