@@ -108,20 +108,20 @@ jobs:
 # Temporary addition to test for build flakiness
 - template: build.build-all-job-template.yaml
   parameters:
-    name: build-job-1
+    name: build_job_1
 
 - template: build.build-all-job-template.yaml
   parameters:
-    name: build-job-2
+    name: build_job_2
 
 - template: build.build-all-job-template.yaml
   parameters:
-    name: build-job-3
+    name: build_job_3
 
 - template: build.build-all-job-template.yaml
   parameters:
-    name: build-job-4
+    name: build_job_4
 
 - template: build.build-all-job-template.yaml
   parameters:
-    name: build-job-5
+    name: build_job_5
