@@ -17,7 +17,7 @@ const commonPlugins = [
         tsconfig: './tsconfig.json',
         tslint: './tslint.build-enforced.json',
         useTypescriptIncrementalApi: true,
-        memoryLimit: 4096
+        async: false
     })
 ];
 
