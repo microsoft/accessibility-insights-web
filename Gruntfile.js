@@ -94,7 +94,7 @@ module.exports = function (grunt) {
         'exec': {
             'webpack-dev': `${path.resolve('./node_modules/.bin/webpack')} --config-name dev`,
             'webpack-prod': `${path.resolve('./node_modules/.bin/webpack')} --config-name prod`,
-            'webpack-all': path.resolve('./node_modules/.bin/webpack')
+            'webpack-all': `${path.resolve('./node_modules/.bin/webpack')} > ${path.resolve('./drop/webpack-all.log')}`
         },
         "copy": {
             code: {
