@@ -10,8 +10,8 @@ jobs:
   steps:
   - task: NodeTool@0
     inputs:
-      versionSpec: '8.x'
-    displayName: use node 8.x
+      versionSpec: '^10.15.0'
+    displayName: use node 10.15.0
 
   - task: Npm@1
     inputs:
@@ -63,8 +63,8 @@ jobs:
   steps:
   - task: NodeTool@0
     inputs:
-      versionSpec: '8.x'
-    displayName: use node 8.x
+      versionSpec: '^10.15.0'
+    displayName: use node 10.15.0
 
   - task: Npm@1
     inputs:
