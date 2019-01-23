@@ -3,20 +3,25 @@
 exports[`AssessmentSummaryDetails render Correct composition 1`] = `
 <div
   className="assessment-summary-details"
+  role="table"
 >
   <div
-    className="assessment-summary-details-column"
+    className="assessment-summary-details-body"
+    role="rowgroup"
   >
     <div
       className="test-summary"
+      role="row"
     >
       <div
         className="test-summary-display-name"
+        role="cell"
       >
         Assessment1
       </div>
       <div
         className="test-summary-status"
+        role="cell"
       >
         <OutcomeIconSet
           displayName="Assessment1"
@@ -26,20 +31,19 @@ exports[`AssessmentSummaryDetails render Correct composition 1`] = `
         />
       </div>
     </div>
-  </div>
-  <div
-    className="assessment-summary-details-column"
-  >
     <div
       className="test-summary"
+      role="row"
     >
       <div
         className="test-summary-display-name"
+        role="cell"
       >
         Assessment2
       </div>
       <div
         className="test-summary-status"
+        role="cell"
       >
         <OutcomeIconSet
           displayName="Assessment2"
@@ -56,20 +60,25 @@ exports[`AssessmentSummaryDetails render Correct composition 1`] = `
 exports[`AssessmentSummaryDetails render Renders an OutcomeChipSet for 8 items 1`] = `
 <div
   className="assessment-summary-details"
+  role="table"
 >
   <div
-    className="assessment-summary-details-column"
+    className="assessment-summary-details-body"
+    role="rowgroup"
   >
     <div
       className="test-summary"
+      role="row"
     >
       <div
         className="test-summary-display-name"
+        role="cell"
       >
         test
       </div>
       <div
         className="test-summary-status"
+        role="cell"
       >
         <OutcomeChipSet
           displayName="test"
@@ -86,20 +95,25 @@ exports[`AssessmentSummaryDetails render Renders an OutcomeChipSet for 8 items 1
 exports[`AssessmentSummaryDetails render Renders an OutcomeIconSet for 7 items 1`] = `
 <div
   className="assessment-summary-details"
+  role="table"
 >
   <div
-    className="assessment-summary-details-column"
+    className="assessment-summary-details-body"
+    role="rowgroup"
   >
     <div
       className="test-summary"
+      role="row"
     >
       <div
         className="test-summary-display-name"
+        role="cell"
       >
         test
       </div>
       <div
         className="test-summary-status"
+        role="cell"
       >
         <OutcomeIconSet
           displayName="test"
