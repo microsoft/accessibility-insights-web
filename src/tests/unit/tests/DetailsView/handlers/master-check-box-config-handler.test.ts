@@ -25,8 +25,8 @@ describe('MasterCheckBoxConfigProviderTest', () => {
 
         expect(config.iconName).toBe('view');
         expect(config.iconClassName).toBe('master-visualization-column-header-selected');
-        expect(config.name).toBe('toggle all visualization');
-        expect(config.ariaLabel).toBe('toggle all visualization');
+        expect(config.name).toBe('Visualization toggle');
+        expect(config.ariaLabel).toBe('Toggle all visualizations enabled');
 
         actionMessageCreatorMock.verifyAll();
     });
@@ -45,7 +45,7 @@ describe('MasterCheckBoxConfigProviderTest', () => {
         expect(config.iconName).toBe('checkbox');
         expect(config.iconClassName).toBeDefined();
         expect(config.iconClassName.trim()).toHaveLength(0);
-        expect(config.name).toBe('toggle all visualization');
-        expect(config.ariaLabel).toBe('toggle all visualization');
+        expect(config.name).toBe('Visualization toggle');
+        expect(config.ariaLabel).toBe('Toggle all visualizations disabled');
     });
 });
