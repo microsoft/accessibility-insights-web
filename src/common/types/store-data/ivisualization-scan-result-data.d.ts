@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IHtmlElementAxeResults, DecoratedAxeNodeResult } from '../../../injected/scanner-utils';
-import { ITabStopEvent } from '../../../injected/tab-stops-listener';
+import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from '../../../injected/scanner-utils';
 import { ITabOrderPropertyBag } from '../../../injected/tab-order-property-bag';
+import { ITabStopEvent } from '../../../injected/tab-stops-listener';
 
-export interface IScanResultData<TSelector> {
+interface IScanResultData<TSelector> {
     fullAxeResultsMap: IDictionaryStringTo<TSelector>;
     scanResult?: ScanResults;
 }
@@ -14,10 +14,6 @@ export interface IIssuesScanResultData extends IScanResultData<IHtmlElementAxeRe
     selectedIdToRuleResultMap: IDictionaryStringTo<DecoratedAxeNodeResult>;
     fullIdToRuleResultMap: IDictionaryStringTo<DecoratedAxeNodeResult>;
 }
-
-export type ILandmarksScanResultData = IScanResultData<IHtmlElementAxeResults>;
-export type IHeadingsScanResultData = IScanResultData<IHtmlElementAxeResults>;
-export type IColorScanResultData = IScanResultData<IHtmlElementAxeResults>;
 
 export interface ITabbedElementData extends ITabStopEvent {
     tabOrder: number;

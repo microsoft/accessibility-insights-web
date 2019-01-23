@@ -8,7 +8,7 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { ContentPageComponent } from '../../views/content/content-page';
 import { TestStep } from './test-step';
 
-export interface IBaseAssessment {
+interface IBaseAssessment {
     key: string;
     type: VisualizationType;
     title: string;

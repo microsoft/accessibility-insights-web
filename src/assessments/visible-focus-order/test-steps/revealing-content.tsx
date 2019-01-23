@@ -8,7 +8,7 @@ import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
 import { visibleFfocusOrderTestStep } from './test-steps';
 
-export const description: JSX.Element = (<span>Activating a component that reveals hidden content must move input focus into the revealed content.</span>);
+const description: JSX.Element = (<span>Activating a component that reveals hidden content must move input focus into the revealed content.</span>);
 
 const howToTest: JSX.Element = (
     <div>

@@ -9,7 +9,7 @@ import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
 import { KeyboardInteractionTestStep } from './test-steps';
 
-export const description: JSX.Element = (<span>Changing a component's settings must not trigger any unexpected change of context.</span>);
+const description: JSX.Element = (<span>Changing a component's settings must not trigger any unexpected change of context.</span>);
 
 const howToTest: JSX.Element = (
     <div>

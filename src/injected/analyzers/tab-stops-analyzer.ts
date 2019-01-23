@@ -3,13 +3,10 @@
 import { autobind } from '@uifabric/utilities';
 import * as Q from 'q';
 
-import { IVisualizationConfiguration } from '../../common/configs/visualization-configuration-factory';
-import { Messages } from '../../common/messages';
-import { VisualizationType } from './../../common/types/visualization-type';
 import { WindowUtils } from './../../common/window-utils';
 import { ITabStopEvent, TabStopsListener } from './../tab-stops-listener';
-import { AxeAnalyzerResult, IAnalyzer, IFocusAnalyzerConfiguration, IScanBasePayload, IScanUpdatePayload } from './ianalyzer';
 import { BaseAnalyzer } from './base-analyzer';
+import { AxeAnalyzerResult, IAnalyzer, IFocusAnalyzerConfiguration, IScanBasePayload, IScanUpdatePayload } from './ianalyzer';
 
 export interface IProgressResult<T> {
     result: T;

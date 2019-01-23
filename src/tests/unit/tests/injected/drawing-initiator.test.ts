@@ -9,7 +9,7 @@ import { DrawingInitiator } from '../../../../injected/drawing-initiator';
 import { IAssessmentVisualizationInstance } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { IPropertyBags, IVisualizationInstanceProcessorCallback } from '../../../../injected/visualization-instance-processor';
 
-export class DrawingControllerStub extends DrawingController {
+class DrawingControllerStub extends DrawingController {
     public processRequest(message: VisualizationWindowMessage) { }
 }
 

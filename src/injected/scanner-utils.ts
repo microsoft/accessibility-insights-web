@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 
-import { ScanOptions, scan as scanRunner } from '../scanner/exposed-apis';
-import { RuleDecorations, ScanResults, RuleResult } from '../scanner/iruleresults';
+import { scan as scanRunner, ScanOptions } from '../scanner/exposed-apis';
+import { RuleResult, ScanResults } from '../scanner/iruleresults';
 import { HyperlinkDefinition } from '../views/content/content-page';
 
 declare var axe: any;
@@ -25,13 +25,10 @@ export interface DecoratedAxeNodeResult {
     snippet: string;
 }
 
-export interface IHtmlElementAxeResults extends IBaseHtmlElementResults {
+export interface IHtmlElementAxeResults {
     ruleResults: IDictionaryStringTo<DecoratedAxeNodeResult>;
     isVisible: boolean;
     propertyBag?: any;
-}
-
-export interface IBaseHtmlElementResults {
     target: string[];
 }
 

@@ -17,15 +17,20 @@ export interface IAssessmentInstanceSelectedButtonProps {
 
 export class AssessmentInstanceSelectedButton extends React.Component<IAssessmentInstanceSelectedButtonProps> {
     public render(): JSX.Element {
+        const {
+            isVisualizationEnabled,
+            isVisible,
+        } = this.props;
+
         const iconStyling = classNames({
             'instance-visibility-button': true,
-            'test-instance-selected-hidden-button': !this.props.isVisible,
+            'test-instance-selected-hidden-button': !isVisible,
         });
 
         const iconPropsStyling = classNames({
-            'test-instance-selected': this.props.isVisualizationEnabled,
-            'test-instance-selected-hidden': !this.props.isVisible && this.props.isVisualizationEnabled,
-            'test-instance-selected-visible': this.props.isVisible && this.props.isVisualizationEnabled,
+            'test-instance-selected': isVisualizationEnabled,
+            'test-instance-selected-hidden': !isVisible && isVisualizationEnabled,
+            'test-instance-selected-visible': isVisible && isVisualizationEnabled,
         });
 
         return (
@@ -34,12 +39,12 @@ export class AssessmentInstanceSelectedButton extends React.Component<IAssessmen
                 iconProps={
                     {
                         className: iconPropsStyling,
-                        iconName: this.props.isVisible ? this.props.isVisualizationEnabled ? 'view' : 'checkBox' : 'hide2',
+                        iconName: isVisible ? isVisualizationEnabled ? 'view' : 'checkBox' : 'hide2',
                     }
                 }
-                disabled={!this.props.isVisible}
+                disabled={!isVisible}
                 onClick={this.onButtonClicked}
-                ariaLabel={`Visualization of the instance ${this.props.isVisualizationEnabled}`}
+                ariaLabel={`Visualization ${isVisualizationEnabled ? 'enabled' : 'disabled'}`}
             />
         );
     }

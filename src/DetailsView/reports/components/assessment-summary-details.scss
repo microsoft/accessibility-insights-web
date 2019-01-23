@@ -4,35 +4,32 @@
 
 .assessment-summary-details {
     display: flex;
-    flex-direction: row;
-}
 
-.assessment-summary-details-column {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-}
+    .assessment-summary-details-body {
+        column-count: 2;
+        column-gap: 2%;
+        display: block;
+        width: 100%;
 
-.test-summary {
-    display: flex;
-justify-content: space-between;
-    width: 94%;
-    margin-left: 2%;
-    margin-right: 2%;
-    padding: 2% 1% 2% 1%;
-}
+        .test-summary {
+            display: flex;
+            width: 98%;
+            padding: 2% 1% 2% 1%;
+            justify-content: space-between;
+        }
 
-.test-summary + .test-summary {
-    border-top: $neutral-alpha-8 solid 1px;
-}
+        .test-summary {
+            border-bottom: $neutral-alpha-8 solid 1px;
+        }
+        .test-summary-status {
+            display: flex;
+            align-items: center;
+        }
 
-.test-summary-status {
-    display: flex;
-    align-items: center;
-}
-
-.test-summary-display-name {
-    font-family: Segoe UI Semibold;
-    font-size: 14px;
-    line-height: 20px;
+        .test-summary-display-name {
+            font-family: Segoe UI Semibold;
+            font-size: 14px;
+            line-height: 20px;
+        }
+    }
 }

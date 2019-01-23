@@ -8,14 +8,11 @@ import { GlobalContext } from './global-context';
 import { TabToContextMap } from './tab-context';
 import { TabContextBroadcaster } from './tab-context-broadcaster';
 
-export interface IMessageDistributor {
-}
-
 export interface ISender {
     tab?: ITab;
 }
 
-export class MessageDistributor implements IMessageDistributor {
+export class MessageDistributor {
     private readonly _tabtoContextMap: TabToContextMap;
     private readonly _globalContext: GlobalContext;
     private readonly _broadcaster: TabContextBroadcaster;

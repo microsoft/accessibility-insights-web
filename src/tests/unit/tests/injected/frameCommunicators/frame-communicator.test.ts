@@ -15,7 +15,7 @@ import { QStub } from '../../../stubs/q-stub';
 // their warnings because they pervasively use a Q-mocking strategy that consistently trips the check.
 // tslint:disable:no-floating-promises
 
-export interface IFrameInfo {
+interface IFrameInfo {
     frameElement: HTMLIFrameElement;
     window: Window;
 }

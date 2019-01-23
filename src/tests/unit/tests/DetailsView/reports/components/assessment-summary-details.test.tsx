@@ -22,8 +22,6 @@ describe('AssessmentSummaryDetails', () => {
                     .reportSummaryDetailsData,
             };
 
-            const component = shallow(<AssessmentSummaryDetails {...props} />);
-            expect(component.find('.assessment-summary-details-column').length).toBe(2);
             expect(shallowRender(<AssessmentSummaryDetails {...props} />)).toMatchSnapshot();
         });
 

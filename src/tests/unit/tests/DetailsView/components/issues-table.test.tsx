@@ -8,16 +8,17 @@ import { Link } from 'office-ui-fabric-react/lib/Link';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 import { It, Mock, Times } from 'typemoq';
-import { IssuesTable, IssuesTableState, IssuesTableProps, IssuesTableDeps } from '../../../../../DetailsView/components/issues-table';
-import { IssuesTableHandler, IDetailsRowData } from '../../../../../DetailsView/components/issues-table-handler';
-import { ShallowRenderer } from '../../../common/shallow-renderer';
-import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
-import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
-import { RuleResult } from '../../../../../scanner/iruleresults';
-import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
-import { FeatureFlags } from '../../../../../common/feature-flags';
+
 import { VisualizationToggle } from '../../../../../common/components/visualization-toggle';
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
+import { FeatureFlags } from '../../../../../common/feature-flags';
+import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
+import { IssuesTable, IssuesTableDeps, IssuesTableProps, IssuesTableState } from '../../../../../DetailsView/components/issues-table';
+import { IDetailsRowData, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
+import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
+import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
+import { RuleResult } from '../../../../../scanner/iruleresults';
+import { ShallowRenderer } from '../../../common/shallow-renderer';
 
 describe('IssuesTableTest', () => {
     const onExportButtonClickStub = () => { };
@@ -349,7 +350,7 @@ describe('IssuesTableTest', () => {
     }
 });
 
-export class TestPropsBuilder {
+class TestPropsBuilder {
     private title: string = 'test title';
     private issuesTableHandler: IssuesTableHandler;
     private issuesEnabled: boolean;

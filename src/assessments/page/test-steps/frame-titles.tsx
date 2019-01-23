@@ -16,7 +16,7 @@ import { ReportInstanceField } from '../../types/report-instance-field';
 import { frameTitleInstanceDetailsColumnRenderer } from '../frametitle-instance-details-column-renderer';
 import { PageTestStep } from './test-steps';
 
-export const frameTitleDescription: JSX.Element = (<span>A frame or iframe must have a title that describes its content.</span>);
+const frameTitleDescription: JSX.Element = (<span>A frame or iframe must have a title that describes its content.</span>);
 
 const frameTitleHowToTest: JSX.Element = (
     <div>

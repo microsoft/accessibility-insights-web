@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { GenericPanel, GenericPanelProps } from '../../../../../DetailsView/components/generic-panel';
 
-export class TestableDetailsViewPanel extends GenericPanel {
+class TestableDetailsViewPanel extends GenericPanel {
     public getRenderHeader() {
         return this.renderHeader;
     }

@@ -7,7 +7,7 @@ export interface PlatformConfiguration {
 }
 const MAC_SHORTCUT = 'Command+Option+I';
 const WIN_LINUX_SHORTCUT = 'F12';
-export type OSType = 'windows' | 'mac' | 'default';
+type OSType = 'windows' | 'mac' | 'default';
 const platform: { [key in OSType]: PlatformConfiguration } = {
     windows: { devToolsShortcut: WIN_LINUX_SHORTCUT },
     mac: { devToolsShortcut: MAC_SHORTCUT },
