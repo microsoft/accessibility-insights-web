@@ -125,3 +125,15 @@ jobs:
 - template: build.build-all-job-template.yaml
   parameters:
     name: build_job_5
+
+- template: build.build-all-job-template.yaml
+  parameters:
+    name: build_job_6
+
+- template: build.build-all-job-template.yaml
+  parameters:
+    name: build_job_7
+
+- template: build.build-all-job-template.yaml
+  parameters:
+    name: build_job_8
