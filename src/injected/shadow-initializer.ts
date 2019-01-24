@@ -11,11 +11,7 @@ export class ShadowInitializer {
 
     public static readonly injectedCssPath: string = 'injected/styles/default/injected.css';
 
-    constructor(
-        chromeAdapter: ClientBrowserAdapter,
-        htmlElementUtils: HTMLElementUtils,
-        fileRequestHelper: FileRequestHelper,
-    ) {
+    constructor(chromeAdapter: ClientBrowserAdapter, htmlElementUtils: HTMLElementUtils, fileRequestHelper: FileRequestHelper) {
         this.chromeAdapter = chromeAdapter;
         this.htmlElementUtils = htmlElementUtils;
         this.fileRequestHlper = fileRequestHelper;

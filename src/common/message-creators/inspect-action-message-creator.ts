@@ -12,7 +12,12 @@ export class InspectActionMessageCreator extends BaseActionMessageCreator {
     private telemetryFactory: TelemetryDataFactory;
     private source: TelemetryEventSource;
 
-    constructor(postMessage: (message: IMessage) => void, tabId: number, telemetryFactory: TelemetryDataFactory, source: TelemetryEventSource) {
+    constructor(
+        postMessage: (message: IMessage) => void,
+        tabId: number,
+        telemetryFactory: TelemetryDataFactory,
+        source: TelemetryEventSource,
+    ) {
         super(postMessage, tabId);
         this.telemetryFactory = telemetryFactory;
         this.source = source;

@@ -88,25 +88,21 @@ const documentElementSetter = new DocumentManipulator(dom);
 initializeFabricIcons();
 
 if (isNaN(tabId) === false) {
-    chromeAdapter.getTab(tabId,
+    chromeAdapter.getTab(
+        tabId,
         (tab: ITab): void => {
             if (chromeAdapter.getRuntimeLastError()) {
-                const renderer = createNullifiedRenderer(
-                    document,
-                    ReactDOM.render,
-                );
+                const renderer = createNullifiedRenderer(document, ReactDOM.render);
                 renderer.render();
-            } {
+            }
+            {
                 const telemetryFactory = new TelemetryDataFactory();
 
                 const visualizationStore = new StoreProxy<IVisualizationStoreData>(
                     StoreNames[StoreNames.VisualizationStore],
                     chromeAdapter,
                 );
-                const tabStore = new StoreProxy<ITabStoreData>(
-                    StoreNames[StoreNames.TabStore],
-                    chromeAdapter,
-                );
+                const tabStore = new StoreProxy<ITabStoreData>(StoreNames[StoreNames.TabStore], chromeAdapter);
                 const visualizationScanResultStore = new StoreProxy<IVisualizationScanResultData>(
                     StoreNames[StoreNames.VisualizationScanResultStore],
                     chromeAdapter,
@@ -158,10 +154,7 @@ if (isNaN(tabId) === false) {
                     telemetryFactory,
                 );
 
-                const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(
-                    chromeAdapter.sendMessageToFrames,
-                    tab.id,
-                );
+                const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(chromeAdapter.sendMessageToFrames, tab.id);
 
                 const contentActionMessageCreator = new ContentActionMessageCreator(
                     chromeAdapter.sendMessageToFrames,
@@ -311,4 +304,3 @@ function createNullifiedRenderer(doc, render): DetailsViewRenderer {
         documentElementSetter,
     );
 }
-

@@ -24,7 +24,11 @@ export class DiagnosticViewClickHandler {
         this.visualizationActionCreator = visualizationActionCreator;
     }
 
-    public toggleVisualization(visualizationStoreData: IVisualizationStoreData, visualizationType: VisualizationType, event: React.MouseEvent<HTMLElement>): void {
+    public toggleVisualization(
+        visualizationStoreData: IVisualizationStoreData,
+        visualizationType: VisualizationType,
+        event: React.MouseEvent<HTMLElement>,
+    ): void {
         const configuration = this.visualizationConfigurationFactory.getConfiguration(visualizationType);
         const scanData = configuration.getStoreData(visualizationStoreData.tests);
         const newValue = !scanData.enabled;

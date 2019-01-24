@@ -56,8 +56,7 @@ export class CenterPositionCalculator {
     }
 
     private getAreaElementCenterPosition(element: HTMLAreaElement): IPoint {
-        const mapImageElement = this.tabbableElementsHelper
-            .getMappedImage(this.tabbableElementsHelper.getAncestorMap(element));
+        const mapImageElement = this.tabbableElementsHelper.getMappedImage(this.tabbableElementsHelper.getAncestorMap(element));
 
         const myDocument = this.drawerUtils.getDocumentElement();
         const body = myDocument.querySelector('body');
@@ -96,7 +95,13 @@ export class CenterPositionCalculator {
 
             switch (shape) {
                 case 'default':
-                    const minHeight = this.drawerUtils.getContainerHeight(offset, dom, elementBoundingClientRect.height, bodyStyle, docStyle);
+                    const minHeight = this.drawerUtils.getContainerHeight(
+                        offset,
+                        dom,
+                        elementBoundingClientRect.height,
+                        bodyStyle,
+                        docStyle,
+                    );
                     const minWidth = this.drawerUtils.getContainerWidth(offset, dom, elementBoundingClientRect.width, bodyStyle, docStyle);
                     deltaX = minWidth / 2;
                     deltaY = minHeight / 2;
@@ -110,8 +115,7 @@ export class CenterPositionCalculator {
                     coords.forEach((coordValue, index) => {
                         if (index % 2 === 0) {
                             sumX += parseInt(coordValue, 10);
-                        }
-                        else {
+                        } else {
                             sumY += parseInt(coordValue, 10);
                         }
                     });
@@ -136,7 +140,6 @@ export class CenterPositionCalculator {
                 y += deltaY;
             }
         }
-
 
         return { x, y };
     }

@@ -60,7 +60,7 @@ export class AssessmentReportHtmlGenerator {
             <React.Fragment>
                 <head>
                     <title>Assessment report</title>
-                    <style>{reportStyles.styleSheet}</style>
+                    <style dangerouslySetInnerHTML={{__html: reportStyles.styleSheet}}></style>
                 </head>
                 <body>
                     <AssessmentReport

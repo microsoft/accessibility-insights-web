@@ -43,28 +43,24 @@ import { LaunchPadRowConfigurationFactory } from './launch-pad-row-configuration
 import { MainRenderer, MainRendererDeps } from './main-renderer';
 import { TargetTabFinder, TargetTabInfo } from './target-tab-finder';
 
-
 declare var window: AutoChecker & Window;
 
 export class PopupInitializer {
     private targetTabInfo: TargetTabInfo;
 
-    constructor(
-        private readonly chromeAdapter: BrowserAdapter,
-        private readonly targetTabFinder: TargetTabFinder,
-    ) {
+    constructor(private readonly chromeAdapter: BrowserAdapter, private readonly targetTabFinder: TargetTabFinder) {
         this.chromeAdapter = chromeAdapter;
     }
 
     public initialize(): Promise<void> {
-        return this.targetTabFinder.getTargetTab()
+        return this.targetTabFinder
+            .getTargetTab()
             .then(tabInfo => {
                 this.targetTabInfo = tabInfo;
             })
-            .then(this.initializePopup,
-                err => {
-                    console.log('Error occurred at popup initialization:', err);
-                });
+            .then(this.initializePopup, err => {
+                console.log('Error occurred at popup initialization:', err);
+            });
     }
 
     @autobind
@@ -81,10 +77,7 @@ export class PopupInitializer {
             telemetryFactory,
         );
 
-        const userConfigMessageCreator = new UserConfigMessageCreator(
-            this.chromeAdapter.sendMessageToFrames,
-            this.targetTabInfo.tab.id,
-        );
+        const userConfigMessageCreator = new UserConfigMessageCreator(this.chromeAdapter.sendMessageToFrames, this.targetTabInfo.tab.id);
 
         const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(
             this.chromeAdapter.sendMessageToFrames,

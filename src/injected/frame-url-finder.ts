@@ -44,8 +44,7 @@ export class FrameUrlFinder {
                     frameUrl: this.windowUtils.getWindow().location.href,
                 },
             } as IMessageRequest<IFrameUrlMessage>);
-        }
-        else if (target.length > 1) {
+        } else if (target.length > 1) {
             this.frameCommunicator.sendMessage({
                 command: FrameUrlFinder.GetTargetFrameUrlCommand,
                 frame: this.htmlElementUtils.querySelector(target[0]) as HTMLIFrameElement,

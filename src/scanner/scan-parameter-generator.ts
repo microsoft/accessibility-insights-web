@@ -4,7 +4,6 @@ import { ScanOptions } from './exposed-apis';
 import { AxeOptions, AxeScanContext } from './launcher';
 import { RuleSifter } from './rule-sifter';
 
-
 export class ScanParamaterGenerator {
     constructor(private ruleSifter: RuleSifter) {}
 
@@ -18,8 +17,7 @@ export class ScanParamaterGenerator {
 
         if (options == null || options.testsToRun == null) {
             result.runOnly.values = this.ruleSifter.getSiftedRules().map(rule => rule.id);
-        }
-        else {
+        } else {
             result.runOnly.values = options.testsToRun;
         }
 
@@ -33,17 +31,14 @@ export class ScanParamaterGenerator {
 
         if (options.dom) {
             return options.dom;
-        }
-        else if (options.selector) {
+        } else if (options.selector) {
             return options.selector;
-        }
-        else if (options.include || options.exclude) {
+        } else if (options.include || options.exclude) {
             return {
                 include: options.include,
                 exclude: options.exclude,
             };
-        }
-        else {
+        } else {
             return dom;
         }
     }

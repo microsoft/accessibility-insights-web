@@ -2,6 +2,6 @@
 // Licensed under the MIT License.
 import { guidance } from './guidance';
 
-export const customWidgets  = {
+export const customWidgets = {
     guidance,
 };

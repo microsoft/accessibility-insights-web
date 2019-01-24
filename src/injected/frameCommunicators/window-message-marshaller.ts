@@ -33,9 +33,8 @@ export class WindowMessageMarshaller {
         }
         try {
             data = JSON.parse(serializedData);
-        // tslint:disable-next-line:no-empty
-        } catch (ex) {
-        }
+            // tslint:disable-next-line:no-empty
+        } catch (ex) {}
 
         if (!this.isMessageOurs(data)) {
             return null;
@@ -68,9 +67,11 @@ export class WindowMessageMarshaller {
     }
 
     protected isMessageOurs(postedMessage: IWindowMessage): boolean {
-        return postedMessage &&
+        return (
+            postedMessage &&
             postedMessage.messageSourceId === this.messageSourceId &&
             postedMessage.messageVersion === this.messageVersion &&
-            typeof postedMessage.messageId === 'string';
+            typeof postedMessage.messageId === 'string'
+        );
     }
 }

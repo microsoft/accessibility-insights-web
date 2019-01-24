@@ -22,7 +22,7 @@ class Configuration implements IConfigAccessor, IConfigMutator {
         window[globalVariableName] = value;
     }
     public get config(): InsightsConfiguration {
-        return window[globalVariableName] = defaultsDeep(window[globalVariableName], defaults);
+        return (window[globalVariableName] = defaultsDeep(window[globalVariableName], defaults));
     }
 
     public reset(): IConfigMutator {

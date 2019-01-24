@@ -30,8 +30,6 @@ export class ReportNameGenerator {
     }
 
     private isValidCharForTitle(character: string) {
-        return ((('0' <= character) && (character <= '9')) ||
-            (('A' <= character) && (character <= 'Z')) ||
-            (('a' <= character) && (character <= 'z')));
+        return ('0' <= character && character <= '9') || ('A' <= character && character <= 'Z') || ('a' <= character && character <= 'z');
     }
 }

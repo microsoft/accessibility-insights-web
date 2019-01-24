@@ -10,11 +10,7 @@ import { autobind } from '@uifabric/utilities';
 export class TargetPageActionMessageCreator extends BaseActionMessageCreator {
     protected telemetryFactory: TelemetryDataFactory;
 
-    constructor(
-        postMessage: (message: IMessage) => void,
-        tabId: number,
-        telemetryFactory: TelemetryDataFactory,
-    ) {
+    constructor(postMessage: (message: IMessage) => void, tabId: number, telemetryFactory: TelemetryDataFactory) {
         super(postMessage, tabId);
         this.telemetryFactory = telemetryFactory;
     }

@@ -92,4 +92,3 @@ export interface RuleDecorations {
     guidanceLinks?: HyperlinkDefinition[];
     helpUrl?: string;
 }
-

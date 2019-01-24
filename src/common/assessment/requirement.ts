@@ -11,8 +11,8 @@ export type RequirementDefinition = TestStep;
 export type RequirementData = ITestStepData;
 
 export type RequirementResult = {
-    definition: RequirementDefinition,
-    data: RequirementData,
+    definition: RequirementDefinition;
+    data: RequirementData;
 };
 export type RequirementOrdering = RequirementOrderPart | RequirementOrderPart[];
 export type RequirementOrderPart = (result: RequirementResult) => string | number;
@@ -20,9 +20,8 @@ export type RequirementOrderPart = (result: RequirementResult) => string | numbe
 export function getRequirementsResults(
     provider: IAssessmentsProvider,
     type: VisualizationType,
-    stepStatus: IManualTestStatus)
-    : RequirementResult[] {
-
+    stepStatus: IManualTestStatus,
+): RequirementResult[] {
     const test = provider.forType(type);
 
     function result(key): RequirementResult {
@@ -35,4 +34,3 @@ export function getRequirementsResults(
 
     return sortBy(unsorted, test.requirementOrder);
 }
-

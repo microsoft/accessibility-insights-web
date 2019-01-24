@@ -7,7 +7,7 @@ import { OutcomeStats } from './outcome-type';
 function percentageComplete(stats: OutcomeStats) {
     const complete = stats.pass + stats.fail;
     const total = stats.pass + stats.fail + stats.incomplete;
-    return Math.round(100 * complete / total);
+    return Math.round((100 * complete) / total);
 }
 
 function normalize(stats: OutcomeStats) {
@@ -32,7 +32,6 @@ function weightedPercentage(statsArray: OutcomeStats[]) {
 }
 
 function percentize(stats: OutcomeStats) {
-
     const normal = normalize(stats);
 
     const pass = Math.round(normal.pass * 100);
@@ -47,4 +46,3 @@ export const OutcomeMath = {
     weightedPercentage,
     percentageComplete,
 };
-

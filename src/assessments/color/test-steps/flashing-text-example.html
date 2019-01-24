@@ -1,62 +1,95 @@
 <html>
+    <head>
+        <style>
+            /* @group Blink */
+            .blink {
+                -webkit-animation: blink 0.33s linear infinite;
+                -moz-animation: blink 0.33s linear infinite;
+                -ms-animation: blink 0.33s linear infinite;
+                -o-animation: blink 0.33s linear infinite;
+                animation: blink 0.33s linear infinite;
+            }
+            @-webkit-keyframes blink {
+                0% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 1;
+                }
+                50.01% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 0;
+                }
+            }
+            @-moz-keyframes blink {
+                0% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 1;
+                }
+                50.01% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 0;
+                }
+            }
+            @-ms-keyframes blink {
+                0% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 1;
+                }
+                50.01% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 0;
+                }
+            }
+            @-o-keyframes blink {
+                0% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 1;
+                }
+                50.01% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 0;
+                }
+            }
+            @keyframes blink {
+                0% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 1;
+                }
+                50.01% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 0;
+                }
+            }
+            /* @end */
+        </style>
+    </head>
 
-<head>
-<style>
+    <body lang="EN-US">
+        <div>
+            <h1>Flashing example</h1>
 
-/* @group Blink */
-.blink {
-	-webkit-animation: blink .33s linear infinite;
-	-moz-animation: blink .33s linear infinite;
-	-ms-animation: blink .33s linear infinite;
-	-o-animation: blink .33s linear infinite;
-	 animation: blink .33s linear infinite;
-}
-@-webkit-keyframes blink {
-	0% { opacity: 1; }
-	50% { opacity: 1; }
-	50.01% { opacity: 0; }
-	100% { opacity: 0; }
-}
-@-moz-keyframes blink {
-	0% { opacity: 1; }
-	50% { opacity: 1; }
-	50.01% { opacity: 0; }
-	100% { opacity: 0; }
-}
-@-ms-keyframes blink {
-	0% { opacity: 1; }
-	50% { opacity: 1; }
-	50.01% { opacity: 0; }
-	100% { opacity: 0; }
-}
-@-o-keyframes blink {
-	0% { opacity: 1; }
-	50% { opacity: 1; }
-	50.01% { opacity: 0; }
-	100% { opacity: 0; }
-}
-@keyframes blink {
-	0% { opacity: 1; }
-	50% { opacity: 1; }
-	50.01% { opacity: 0; }
-	100% { opacity: 0; }
-}
-/* @end */
-</style>
-</head>
+            <p>This text flashes at 3Hz (3 flashes per second):</p>
 
-<body lang=EN-US>
-
-<div>
-
-<h1>Flashing example</h1>
-
-<p>This text flashes at 3Hz (3 flashes per second):</p>
-
-<p class="blink">FLASHING TEXT</p>
-
-</div>
-
-</body>
-
+            <p class="blink">FLASHING TEXT</p>
+        </div>
+    </body>
 </html>

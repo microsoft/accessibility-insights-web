@@ -38,8 +38,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer implements IAnalyzer<any> {
         // We use a Promise for this internally only so we can reuse Q's "onprogress" behavior.
         //
         // tslint:disable-next-line:no-floating-promises
-        this.getResults()
-            .progress(this.onProgress);
+        this.getResults().progress(this.onProgress);
     }
 
     protected getResults(): Q.Promise<AxeAnalyzerResult> {
