@@ -27,7 +27,7 @@ jobs:
             inputs:
                 command: custom
                 customCommand: run format-check
-            displayName: check code style
+            displayName: check code formatting
 
           - task: Npm@1
             inputs:
