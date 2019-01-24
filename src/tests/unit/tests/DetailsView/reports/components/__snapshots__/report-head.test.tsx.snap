@@ -6,8 +6,10 @@ exports[`ReportHeadTest renders 1`] = `
     Accessibility Insights for Web
      automated checks result
   </title>
-  <style>
-    
+  <style
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "
         body, h1, p, div {
             color: black;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -110,7 +112,9 @@ exports[`ReportHeadTest renders 1`] = `
             padding-top: 10px;
             font-size: 12px;
         }
-    
-  </style>
+    ",
+      }
+    }
+  />
 </head>
 `;
