@@ -15,6 +15,7 @@ exports[`Settings Dropdown content should match snapshot 1`] = `
     >
       <ul
         class="ms-ContextualMenu-list is-open list-000"
+        role="menu"
       >
         <li
           class="ms-ContextualMenu-item item-000"
@@ -84,19 +85,4 @@ exports[`Settings Dropdown content should match snapshot 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Settings Dropdown should pass accessibility validation 1`] = `
-Array [
-  Object {
-    "id": "list",
-    "nodes": Array [
-      Object {
-        "failureSummary": "Fix all of the following:
-  List element has direct children that are not allowed inside <li> elements",
-        "selector": Array [
-          "ul",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Settings Dropdown should pass accessibility validation 1`] = `Array []`;
