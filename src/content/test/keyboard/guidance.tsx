@@ -94,7 +94,7 @@ export const guidance = create(({ Markup, Link }) => (
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H91">Using HTML form controls and links</Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G90">
-                Providing keyboard-triggered event handlers 
+                Providing keyboard-triggered event handlers{' '}
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/client-side-script/SCR20">
                 Using both keyboard and other device-specific functions

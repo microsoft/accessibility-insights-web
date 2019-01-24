@@ -38,7 +38,7 @@ export const guidance = create(({ Markup, Link }) => (
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H74">
                 Ensuring that opening and closing tags are used according to specification
             </Markup.HyperLink>{' '}
-            and 
+            and{' '}
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H93">
                 Ensuring that id attributes are unique on a Web page
             </Markup.HyperLink>{' '}

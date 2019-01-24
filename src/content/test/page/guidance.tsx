@@ -43,7 +43,7 @@ export const guidance = create(({ Markup, Link }) => (
         <h4>Sufficient techniques</h4>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G88">
-                Providing descriptive titles for Web pages 
+                Providing descriptive titles for Web pages{' '}
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H25">
                 Providing a title using the title element
