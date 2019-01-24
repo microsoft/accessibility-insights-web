@@ -68,7 +68,7 @@ describe('DetailsViewPanelTest', () => {
 
         const expected = (
             <div>
-                <h1 className={'header-text'}>{panelTitle}</h1>
+                <h1 className={'header-text'} aria-label={panelTitle}>{panelTitle}</h1>
             </div>
         );
 

@@ -12,6 +12,7 @@ export interface GenericPanelProps {
     className?: string;
     closeButtonAriaLabel: string;
     hasCloseButton: boolean;
+
 }
 
 export class GenericPanel extends React.Component<GenericPanelProps> {
@@ -37,7 +38,7 @@ export class GenericPanel extends React.Component<GenericPanelProps> {
     @autobind
     protected renderHeader(): JSX.Element {
         return <div>
-            <h1 className="header-text">{this.props.title}</h1>
+            <h1 className="header-text" aria-label={this.props.title}>{this.props.title}</h1>
         </div>;
     }
 }
