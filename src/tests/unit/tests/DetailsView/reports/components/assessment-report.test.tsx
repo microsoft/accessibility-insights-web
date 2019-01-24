@@ -9,7 +9,7 @@ import { AssessmentReportBuilderTestHelper } from '../../assessment-report-build
 describe('AssessmentReport', () => {
     test('render', () => {
         const deps: AssessmentReportDeps = {
-            outcomeTypeSemanticsFromTestStatus: null,
+            outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
         };
 
         const data = AssessmentReportBuilderTestHelper.getAssessmentReportModel();

@@ -17,7 +17,9 @@ exports[`AssessmentReportAssessmentListTest render: fail 1`] = `
     <AssessmentReportStepList
       deps={
         Object {
-          "outcomeTypeSemanticsFromTestStatus": null,
+          "outcomeTypeSemanticsFromTestStatus": Object {
+            "stub": "outcomeTypeSemanticsFromTestStatus",
+          },
         }
       }
       status={2}
@@ -88,7 +90,9 @@ exports[`AssessmentReportAssessmentListTest render: fail 1`] = `
     <AssessmentReportStepList
       deps={
         Object {
-          "outcomeTypeSemanticsFromTestStatus": null,
+          "outcomeTypeSemanticsFromTestStatus": Object {
+            "stub": "outcomeTypeSemanticsFromTestStatus",
+          },
         }
       }
       status={2}
@@ -130,7 +134,9 @@ exports[`AssessmentReportAssessmentListTest render: incomplete 1`] = `
     <AssessmentReportStepList
       deps={
         Object {
-          "outcomeTypeSemanticsFromTestStatus": null,
+          "outcomeTypeSemanticsFromTestStatus": Object {
+            "stub": "outcomeTypeSemanticsFromTestStatus",
+          },
         }
       }
       status={1}
@@ -180,7 +186,9 @@ exports[`AssessmentReportAssessmentListTest render: incomplete 1`] = `
     <AssessmentReportStepList
       deps={
         Object {
-          "outcomeTypeSemanticsFromTestStatus": null,
+          "outcomeTypeSemanticsFromTestStatus": Object {
+            "stub": "outcomeTypeSemanticsFromTestStatus",
+          },
         }
       }
       status={1}
@@ -222,7 +230,9 @@ exports[`AssessmentReportAssessmentListTest render: pass 1`] = `
     <AssessmentReportStepList
       deps={
         Object {
-          "outcomeTypeSemanticsFromTestStatus": null,
+          "outcomeTypeSemanticsFromTestStatus": Object {
+            "stub": "outcomeTypeSemanticsFromTestStatus",
+          },
         }
       }
       status={0}

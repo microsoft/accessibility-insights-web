@@ -14,7 +14,7 @@ import { AssessmentReportBuilderTestHelper } from '../../assessment-report-build
 describe('AssessmentReportStepListTest', () => {
 
     const deps: AssessmentReportStepListDeps = {
-        outcomeTypeSemanticsFromTestStatus: null,
+        outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
     };
 
     it('renders pass', () => {

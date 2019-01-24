@@ -135,7 +135,9 @@ exports[`AssessmentReportBody render 1`] = `
       }
       deps={
         Object {
-          "outcomeTypeSemanticsFromTestStatus": null,
+          "outcomeTypeSemanticsFromTestStatus": Object {
+            "stub": "outcomeTypeSemanticsFromTestStatus",
+          },
         }
       }
       status={2}
@@ -209,7 +211,9 @@ exports[`AssessmentReportBody render 1`] = `
       }
       deps={
         Object {
-          "outcomeTypeSemanticsFromTestStatus": null,
+          "outcomeTypeSemanticsFromTestStatus": Object {
+            "stub": "outcomeTypeSemanticsFromTestStatus",
+          },
         }
       }
       status={1}
@@ -270,7 +274,9 @@ exports[`AssessmentReportBody render 1`] = `
       }
       deps={
         Object {
-          "outcomeTypeSemanticsFromTestStatus": null,
+          "outcomeTypeSemanticsFromTestStatus": Object {
+            "stub": "outcomeTypeSemanticsFromTestStatus",
+          },
         }
       }
       status={0}

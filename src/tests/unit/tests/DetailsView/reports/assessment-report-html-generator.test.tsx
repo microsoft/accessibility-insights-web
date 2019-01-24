@@ -31,7 +31,7 @@ describe('AssessmentReportHtmlGenerator', () => {
         const description = 'generateHtml-description';
 
         const deps: AssessmentReportDeps = {
-            outcomeTypeSemanticsFromTestStatus: null,
+            outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
         };
 
         const modelBuilderMock = Mock.ofType(AssessmentReportModelBuilder, MockBehavior.Strict);
@@ -85,7 +85,7 @@ describe('AssessmentReportHtmlGenerator', () => {
             'axeVersion',
             'chromeVersion',
             assessmentDefaultMessageGenerator,
-            null,
+            deps.outcomeTypeSemanticsFromTestStatus,
         );
 
         const actualHtml = testSubject.generateHtml(
