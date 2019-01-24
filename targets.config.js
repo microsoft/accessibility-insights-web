@@ -6,7 +6,7 @@ function iconSet(key) {
         icon16: `icons/brand/${key}/brand-${key}-16px.png`,
         icon48: `icons/brand/${key}/brand-${key}-48px.png`,
         icon128: `icons/brand/${key}/brand-${key}-128px.png`,
-    }
+    };
 }
 
 const icons = {
@@ -15,7 +15,7 @@ const icons = {
     staging: iconSet('violet'),
     daily: iconSet('red'),
     production: iconSet('blue'),
-}
+};
 
 const commonOptions = {
     extensionFullName: 'Accessibility Insights for Web',
@@ -43,7 +43,7 @@ module.exports = {
                 debug: true,
                 extensionFullName: 'Accessibility Insights for Web - Dev',
                 telemetryBuildName: 'Dev',
-            }
+            },
         },
     },
     'dev-internal': {
@@ -54,7 +54,7 @@ module.exports = {
                 debug: true,
                 extensionFullName: 'Accessibility Insights for Web - dev-internal',
                 telemetryBuildName: 'DevInternal',
-            }
+            },
         },
     },
     'dev-internal-release': {
@@ -64,7 +64,7 @@ module.exports = {
                 ...icons.dev,
                 extensionFullName: 'Accessibility Insights for Web - dev-internal-release',
                 telemetryBuildName: 'DevInternalRelease',
-            }
+            },
         },
     },
     'dev-public': {
@@ -143,5 +143,5 @@ module.exports = {
                 telemetryBuildName: 'Preview',
             },
         },
-    }
+    },
 };
