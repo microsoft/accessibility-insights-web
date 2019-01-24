@@ -7,9 +7,7 @@ import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
 import * as content from '../../../content/test/images/images-of-text';
-import {
-    AssessmentVisualizationEnabledToggle,
-} from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
+import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
 import { IPropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
@@ -18,22 +16,14 @@ import { TestStep } from '../../types/test-step';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { ImagesTestStep } from './test-steps';
 
-const description: JSX.Element = (
-    <span>
-        Images of text are allowed only where a specific appearance is required (e.g., logotypes).
-    </span>
-);
+const description: JSX.Element = <span>Images of text are allowed only where a specific appearance is required (e.g., logotypes).</span>;
 
 const howToTest: JSX.Element = (
     <div>
         For this requirement, {productName} highlights images that are coded as meaningful.
         <ol>
-            <li>
-                In the target page, examine each image to identify any images of text.
-            </li>
-            <li>
-                If you find an image of text, verify that it is used only where a specific appearance required, such as text in a logo.
-            </li>
+            <li>In the target page, examine each image to identify any images of text.</li>
+            <li>If you find an image of text, verify that it is used only where a specific appearance required, such as text in a logo.</li>
             <AssistedTestRecordYourResults />
         </ol>
     </div>
@@ -61,17 +51,22 @@ export const ImagesOfText: TestStep = {
     isManual: false,
     ...content,
     guidanceLinks: [link.WCAG_1_4_5],
-    columnsConfig: [{
-        key: 'image-info',
-        name: 'Image info',
-        onRender: PropertyBagColumnRendererFactory.get(propertyBagConfig),
-    }],
+    columnsConfig: [
+        {
+            key: 'image-info',
+            name: 'Image info',
+            onRender: PropertyBagColumnRendererFactory.get(propertyBagConfig),
+        },
+    ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),
-    getAnalyzer: provider => provider.createRuleAnalyzer(AnalyzerConfigurationFactory.forScanner({
-        rules: ['accessible-image'],
-        key,
-        testType: VisualizationType.ImagesAssessment,
-    })),
+    getAnalyzer: provider =>
+        provider.createRuleAnalyzer(
+            AnalyzerConfigurationFactory.forScanner({
+                rules: ['accessible-image'],
+                key,
+                testType: VisualizationType.ImagesAssessment,
+            }),
+        ),
     getDrawer: provider => provider.createHighlightBoxDrawer(),
-    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props}/>,
+    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
 };

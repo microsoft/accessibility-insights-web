@@ -8,20 +8,24 @@ import { InlineImage, InlineImageType } from './inline-image';
 
 export interface IReportHeaderProps {
     scanResult: ScanResults;
-
 }
 
 export class ReportHeader extends React.Component<IReportHeaderProps> {
     public render(): JSX.Element {
         return (
             <div className="report-header" role="banner">
-                <h1><InlineImage type={InlineImageType.InsightsLogo48} alt="" />{title} automated checks result</h1>
+                <h1>
+                    <InlineImage type={InlineImageType.InsightsLogo48} alt="" />
+                    {title} automated checks result
+                </h1>
                 <h2>Summary</h2>
                 <nav>
                     <div>
                         <InlineImage type={InlineImageType.FailIcon} alt="" />
-                        <a href="#failed">{this.props.scanResult.violations.length} failed
-                        checks {this.renderFailureCountIfNonzero(this.props.scanResult.violations)}</a>
+                        <a href="#failed">
+                            {this.props.scanResult.violations.length} failed checks{' '}
+                            {this.renderFailureCountIfNonzero(this.props.scanResult.violations)}
+                        </a>
                     </div>
                     <div>
                         <InlineImage type={InlineImageType.PassIcon} alt="" />

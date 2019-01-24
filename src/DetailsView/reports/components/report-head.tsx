@@ -118,4 +118,3 @@ export class ReportHead extends React.Component {
         );
     }
 }
-

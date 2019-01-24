@@ -4,7 +4,6 @@ import { autobind, css } from '@uifabric/utilities';
 import { Panel, PanelType } from 'office-ui-fabric-react/lib/Panel';
 import * as React from 'react';
 
-
 export interface GenericPanelProps {
     isOpen: boolean;
     onDismiss: () => void;
@@ -15,7 +14,6 @@ export interface GenericPanelProps {
 }
 
 export class GenericPanel extends React.Component<GenericPanelProps> {
-
     public render(): JSX.Element {
         return (
             <Panel
@@ -36,8 +34,10 @@ export class GenericPanel extends React.Component<GenericPanelProps> {
 
     @autobind
     protected renderHeader(): JSX.Element {
-        return <div>
-            <h1 className="header-text">{this.props.title}</h1>
-        </div>;
+        return (
+            <div>
+                <h1 className="header-text">{this.props.title}</h1>
+            </div>
+        );
     }
 }

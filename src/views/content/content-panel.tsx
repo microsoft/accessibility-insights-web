@@ -8,18 +8,17 @@ import { NamedSFC } from '../../common/react/named-sfc';
 import { ContentPageDeps, ContentProvider, ContentReference } from './content-page';
 
 export type ContentPanelDeps = {
-    contentProvider: ContentProvider,
+    contentProvider: ContentProvider;
     contentActionMessageCreator: ContentActionMessageCreator;
 } & ContentPageDeps;
 
 export type ContentPanelProps = {
-    deps: ContentPanelDeps,
-    content: ContentReference,
+    deps: ContentPanelDeps;
+    content: ContentReference;
     isOpen: boolean;
 };
 
 export const ContentPanel = NamedSFC<ContentPanelProps>('ContentPanel', ({ deps, content, isOpen }) => {
-
     const { contentProvider, contentActionMessageCreator } = deps;
 
     if (!content) {
@@ -28,17 +27,17 @@ export const ContentPanel = NamedSFC<ContentPanelProps>('ContentPanel', ({ deps,
 
     const ContentPage = contentProvider.contentFromReference(content);
 
-    return <Panel
-        isOpen={isOpen}
-        onDismiss={contentActionMessageCreator.closeContentPanel}
-        type={PanelType.medium}
-        isLightDismiss={true}
-        closeButtonAriaLabel="Close panel"
-    >
-        <div className="content">
-            <ContentPage deps={deps} />
-        </div>
-    </Panel>;
-
+    return (
+        <Panel
+            isOpen={isOpen}
+            onDismiss={contentActionMessageCreator.closeContentPanel}
+            type={PanelType.medium}
+            isLightDismiss={true}
+            closeButtonAriaLabel="Close panel"
+        >
+            <div className="content">
+                <ContentPage deps={deps} />
+            </div>
+        </Panel>
+    );
 });
-

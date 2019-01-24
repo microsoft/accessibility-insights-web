@@ -8,9 +8,7 @@ import { IWidgetFunctionPropertyBag } from '../../../common/types/property-bag/i
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
-import {
-    AssessmentVisualizationEnabledToggle,
-} from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
+import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
 import { IPropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
@@ -28,14 +26,14 @@ const description: JSX.Element = (
 const howToTest: JSX.Element = (
     <div>
         <p>
-          For this requirement, {productName} highlights native widgets that are possible custom widgets. These elements
-          don't have an ARIA widget role, but they do have some custom widget markup, such as
-          <Markup.CodeTerm> tabindex="-1"</Markup.CodeTerm>, an ARIA attribute, or a non-widget role.
+            For this requirement, {productName} highlights native widgets that are possible custom widgets. These elements don't have an
+            ARIA widget role, but they do have some custom widget markup, such as
+            <Markup.CodeTerm> tabindex="-1"</Markup.CodeTerm>, an ARIA attribute, or a non-widget role.
         </p>
         <ol>
             <li>
-              In the target page, examine each highlighted widget to verify that it <Markup.Emphasis>functions </Markup.Emphasis>
-              as a simple native widget.
+                In the target page, examine each highlighted widget to verify that it <Markup.Emphasis>functions </Markup.Emphasis>
+                as a simple native widget.
             </li>
             <AssistedTestRecordYourResults />
         </ol>
@@ -86,13 +84,16 @@ export const WidgetFunction: TestStep = {
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),
-    getAnalyzer: provider => provider.createRuleAnalyzer(AnalyzerConfigurationFactory.forScanner({
-        rules: ['widget-function'],
-        key: NativeWidgetsTestStep.widgetFunction,
-        testType: VisualizationType.NativeWidgets,
-        resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
-    })),
+    getAnalyzer: provider =>
+        provider.createRuleAnalyzer(
+            AnalyzerConfigurationFactory.forScanner({
+                rules: ['widget-function'],
+                key: NativeWidgetsTestStep.widgetFunction,
+                testType: VisualizationType.NativeWidgets,
+                resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
+            }),
+        ),
     getDrawer: provider => provider.createHighlightBoxDrawer(),
     updateVisibility: false,
-    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props}/>,
+    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
 };

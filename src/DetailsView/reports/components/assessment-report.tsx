@@ -23,10 +23,7 @@ export class AssessmentReport extends React.Component<IAssessmentReportProps> {
                     targetPageTitle={this.props.data.scanDetails.targetPage}
                     targetPageUrl={this.props.data.scanDetails.url}
                 />
-                <AssessmentReportBody
-                    data={this.props.data}
-                    description={this.props.description}
-                />
+                <AssessmentReportBody data={this.props.data} description={this.props.description} />
 
                 <AssessmentReportFooter
                     extensionVersion={this.props.extensionVersion}

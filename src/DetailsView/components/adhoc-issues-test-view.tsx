@@ -3,10 +3,7 @@
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
-import {
-    IVisualizationConfiguration,
-    VisualizationConfigurationFactory,
-} from '../../common/configs/visualization-configuration-factory';
+import { IVisualizationConfiguration, VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
@@ -47,28 +44,26 @@ export const AdhocIssuesTestView = NamedSFC<IAdhocIssuesTestViewProps>('AdhocIss
     const title = props.configuration.displayableData.title;
 
     if (props.tabStoreData.isChanged) {
-        return <TargetPageChangedView
-            displayableData={displayableData}
-            type={type}
-            toggleClickHandler={clickHandler}
-        />;
+        return <TargetPageChangedView displayableData={displayableData} type={type} toggleClickHandler={clickHandler} />;
     }
 
-    return <IssuesTable
-        deps={props.deps}
-        title={title}
-        issuesTableHandler={props.issuesTableHandler}
-        issuesEnabled={scanData.enabled}
-        violations={scanResult != null ? scanResult.violations : null}
-        issuesSelection={props.issuesSelection}
-        selectedIdToRuleResultMap={selectedIdToRuleResultMap}
-        pageTitle={props.tabStoreData.title}
-        pageUrl={props.tabStoreData.url}
-        scanning={isScanning}
-        toggleClickHandler={clickHandler}
-        visualizationConfigurationFactory={props.visualizationConfigurationFactory}
-        featureFlags={props.featureFlagStoreData}
-        scanResult={scanResult}
-        reportGenerator={props.reportGenerator}
-    />;
+    return (
+        <IssuesTable
+            deps={props.deps}
+            title={title}
+            issuesTableHandler={props.issuesTableHandler}
+            issuesEnabled={scanData.enabled}
+            violations={scanResult != null ? scanResult.violations : null}
+            issuesSelection={props.issuesSelection}
+            selectedIdToRuleResultMap={selectedIdToRuleResultMap}
+            pageTitle={props.tabStoreData.title}
+            pageUrl={props.tabStoreData.url}
+            scanning={isScanning}
+            toggleClickHandler={clickHandler}
+            visualizationConfigurationFactory={props.visualizationConfigurationFactory}
+            featureFlags={props.featureFlagStoreData}
+            scanResult={scanResult}
+            reportGenerator={props.reportGenerator}
+        />
+    );
 });

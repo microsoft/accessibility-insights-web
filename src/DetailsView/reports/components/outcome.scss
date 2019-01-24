@@ -3,14 +3,13 @@
 @import '../../../common/icons/icon.scss';
 @import '../../../common/styles/colors.scss';
 
-.screen-reader-only
-{
-    position:absolute;
-    left:-10000px;
-    top:auto;
-    width:1px;
-    height:1px;
-    overflow:hidden;
+.screen-reader-only {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
 }
 
 $outcome-pass-color: $positive-outcome;
@@ -21,7 +20,6 @@ $outcome-fail-color: $negative-outcome;
 $outcome-fail-summary-color: $negative-outcome;
 
 @mixin outcome-chip-color($outcome-color) {
-
     .check-container,
     .count {
         background-color: $outcome-color;
@@ -29,7 +27,6 @@ $outcome-fail-summary-color: $negative-outcome;
 }
 
 @mixin outcome-icon-set-color($color) {
-
     .check-container {
         border-color: $color;
         background-color: $color;
@@ -77,8 +74,6 @@ $outcome-fail-summary-color: $negative-outcome;
     }
 }
 
-
-
 .outcome-icon-set {
     $outcome-icon-size: 14px;
 
@@ -113,7 +108,6 @@ $outcome-fail-summary-color: $negative-outcome;
     height: 32px;
     $outcome-summary-icon-size: 22px;
     margin-bottom: 40px;
-
 
     .block {
         font-family: Segoe UI;
@@ -167,6 +161,6 @@ $outcome-fail-summary-color: $negative-outcome;
             margin-right: 2px;
         }
 
-        background-color:$outcome-fail-summary-color;
+        background-color: $outcome-fail-summary-color;
     }
 }

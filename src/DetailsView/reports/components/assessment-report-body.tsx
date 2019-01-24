@@ -17,18 +17,12 @@ export interface IAssessmentReportBodyProps {
 }
 
 export class AssessmentReportBody extends React.Component<IAssessmentReportBodyProps> {
-
     public render(): JSX.Element {
         return (
             <div className="assessment-report-body" role="main">
                 <AssessmentReportBodyHeader />
-                <AssessmentReportSummary
-                    summary={this.props.data.summary}
-                />
-                <AssessmentScanDetails
-                    details={this.props.data.scanDetails}
-                    description={this.props.description}
-                />
+                <AssessmentReportSummary summary={this.props.data.summary} />
+                <AssessmentScanDetails details={this.props.data.scanDetails} description={this.props.description} />
 
                 {this.renderDetailsSection(
                     this.props.data.failedDetailsData,
@@ -50,7 +44,6 @@ export class AssessmentReportBody extends React.Component<IAssessmentReportBodyP
                     this.props.data.summary.byRequirement.pass,
                     ManualTestStatus.PASS,
                 )}
-
             </div>
         );
     }
@@ -64,23 +57,16 @@ export class AssessmentReportBody extends React.Component<IAssessmentReportBodyP
         return (
             <div className="details-section">
                 {this.renderDetailsSectionHeader(title, count, status)}
-                <AssessmentReportAssessmentList
-                    status={status}
-                    assessments={detailsData}
-                />
-            </div>);
+                <AssessmentReportAssessmentList status={status} assessments={detailsData} />
+            </div>
+        );
     }
     private renderDetailsSectionHeader(title: string, count: number, status: ManualTestStatus): JSX.Element {
         return (
             <div className="details-section-header">
-                <h2 className="details-section-header-title">
-                    {title}
-                </h2>
+                <h2 className="details-section-header-title">{title}</h2>
 
-                <OutcomeChip
-                    count={count}
-                    outcomeType={allOutcomeTypes[status]}
-                />
+                <OutcomeChip count={count} outcomeType={allOutcomeTypes[status]} />
             </div>
         );
     }

@@ -18,6 +18,4 @@ const iconMap = {
     fail: <CrossIcon />,
 };
 
-export const OutcomeIcon = NamedSFC<OutcomeIconProps>('OutcomeIcon', props =>
-    iconMap[props.outcomeType]);
-
+export const OutcomeIcon = NamedSFC<OutcomeIconProps>('OutcomeIcon', props => iconMap[props.outcomeType]);

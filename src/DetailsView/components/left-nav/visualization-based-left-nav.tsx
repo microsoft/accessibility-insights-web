@@ -10,29 +10,22 @@ import { LeftNavIndexIcon } from './left-nav-icon';
 import { AssessmentLinkBuilderDeps, LeftNavLinkBuilder, OverviewLinkBuilderDeps } from './left-nav-link-builder';
 
 export type VisualizationBasedLeftNavDeps = {
-    leftNavLinkBuilder: LeftNavLinkBuilder,
+    leftNavLinkBuilder: LeftNavLinkBuilder;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
-} & OverviewLinkBuilderDeps & AssessmentLinkBuilderDeps;
+} & OverviewLinkBuilderDeps &
+    AssessmentLinkBuilderDeps;
 
 export type VisualizationBasedLeftNavProps = {
     deps: VisualizationBasedLeftNavDeps;
-    selectedKey: string,
-    onLinkClick: onBaseLeftNavItemClick,
+    selectedKey: string;
+    onLinkClick: onBaseLeftNavItemClick;
     visualizations: VisualizationType[];
 };
 
 export const VisualizationBasedLeftNav = NamedSFC<VisualizationBasedLeftNavProps>('VisualizationBasedLeftNav', props => {
-    const {
-        deps,
-        selectedKey,
-        onLinkClick,
-        visualizations,
-    } = props;
+    const { deps, selectedKey, onLinkClick, visualizations } = props;
 
-    const {
-        leftNavLinkBuilder,
-        visualizationConfigurationFactory,
-    } = deps;
+    const { leftNavLinkBuilder, visualizationConfigurationFactory } = deps;
 
     const links = [];
     visualizations.forEach((type, index) => {
@@ -40,11 +33,5 @@ export const VisualizationBasedLeftNav = NamedSFC<VisualizationBasedLeftNavProps
         links.push(leftNavLinkBuilder.buildVisualizationConfigurationLink(config, onLinkClick, type, index + 1));
     });
 
-    return (
-        <BaseLeftNav
-            renderIcon={link => <LeftNavIndexIcon item={link} />}
-            selectedKey={selectedKey}
-            links={links}
-        />
-    );
+    return <BaseLeftNav renderIcon={link => <LeftNavIndexIcon item={link} />} selectedKey={selectedKey} links={links} />;
 });

@@ -17,10 +17,9 @@ const { guidance } = content.images;
 
 const gettingStarted: JSX.Element = (
     <React.Fragment>
-        Screen reader software cannot interpret images.
-        The software will, however, read text that has been associated with images.
-        The interpretation (meaning) of an image must be conveyed textually in the HTML
-        (via the alt attribute associated with each img element).
+        Screen reader software cannot interpret images. The software will, however, read text that has been associated with images. The
+        interpretation (meaning) of an image must be conveyed textually in the HTML (via the alt attribute associated with each img
+        element).
     </React.Fragment>
 );
 
@@ -30,11 +29,6 @@ export const ImagesAssessment: IAssessment = AssessmentBuilder.Assisted({
     title,
     gettingStarted,
     guidance,
-    steps: [
-        ImageFunction,
-        TextAlternative,
-        ImagesOfText,
-        Captchas,
-    ],
+    steps: [ImageFunction, TextAlternative, ImagesOfText, Captchas],
     storeDataKey: 'imageAssessment',
 });

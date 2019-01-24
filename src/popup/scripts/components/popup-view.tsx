@@ -71,8 +71,12 @@ export class PopupView extends React.Component<IPopupViewProps> {
         super(props);
         this.handler = props.popupHandlers.popupViewControllerHandler;
         this.versionNumber = props.browserAdapter.getManifest().version;
-        this._openTogglesView = () => { this.handler.openLaunchPad(this); };
-        this._openAdhocToolsPanel = () => { this.handler.openAdhocToolsPanel(this); };
+        this._openTogglesView = () => {
+            this.handler.openLaunchPad(this);
+        };
+        this._openAdhocToolsPanel = () => {
+            this.handler.openAdhocToolsPanel(this);
+        };
     }
 
     public render(): JSX.Element {
@@ -82,8 +86,7 @@ export class PopupView extends React.Component<IPopupViewProps> {
             } else {
                 return this.renderUnsupportedMsgPanelForChromeUrl();
             }
-        }
-        else if (this.props.storesHub.hasStoreData()) {
+        } else if (this.props.storesHub.hasStoreData()) {
             return (
                 <React.Fragment>
                     {this.renderLaunchPanel()}
@@ -138,11 +141,11 @@ export class PopupView extends React.Component<IPopupViewProps> {
     private renderLaunchPad(): JSX.Element {
         const { popupActionMessageCreator, dropdownClickHandler } = this.props.deps;
 
-        const rowConfigs: LaunchPadRowConfiguration[] = this.props.launchPadRowConfigurationFactory
-            .createRowConfigs(this,
-                popupActionMessageCreator,
-                this.props.popupHandlers.popupViewControllerHandler,
-                this.props.storeState.featureFlagStoreData[FeatureFlags.newAssessmentExperience],
+        const rowConfigs: LaunchPadRowConfiguration[] = this.props.launchPadRowConfigurationFactory.createRowConfigs(
+            this,
+            popupActionMessageCreator,
+            this.props.popupHandlers.popupViewControllerHandler,
+            this.props.storeState.featureFlagStoreData[FeatureFlags.newAssessmentExperience],
         );
 
         const onClickTutorialLink = event => popupActionMessageCreator.openTutorial(event);
@@ -152,22 +155,21 @@ export class PopupView extends React.Component<IPopupViewProps> {
                 <LaunchPanelHeader
                     deps={this.props.deps}
                     title={this.props.title}
-                    subtitle={<React.Fragment>
-                        {this.props.subtitle}
-                        {'  '}
-                        |
-                        {'  '}
-                        Watch
-                        {' '}
-                        <NewTabLink
-                            href={LaunchPad.demoLink}
-                            aria-label="demo video"
-                            title="watch the 3 minute video introduction"
-                            onClick={onClickTutorialLink}
-                        >3-minute video</NewTabLink>
-                        {' '}
-                        introduction
-                    </React.Fragment>
+                    subtitle={
+                        <React.Fragment>
+                            {this.props.subtitle}
+                            {'  '}|{'  '}
+                            Watch{' '}
+                            <NewTabLink
+                                href={LaunchPad.demoLink}
+                                aria-label="demo video"
+                                title="watch the 3 minute video introduction"
+                                onClick={onClickTutorialLink}
+                            >
+                                3-minute video
+                            </NewTabLink>{' '}
+                            introduction
+                        </React.Fragment>
                     }
                     clickhandler={this.props.popupHandlers.launchPanelHeaderClickHandler}
                     supportLinkHandler={this.props.popupHandlers.supportLinkHandler}
@@ -175,24 +177,13 @@ export class PopupView extends React.Component<IPopupViewProps> {
                     openAdhocToolsPanel={this._openAdhocToolsPanel}
                     featureFlags={this.props.storeState.featureFlagStoreData}
                 />
-                <LaunchPad
-                    deps={this.props.deps}
-                    productName={this.props.title}
-                    rowConfigs={rowConfigs}
-                    version={this.versionNumber}
-                />
+                <LaunchPad deps={this.props.deps} productName={this.props.title} rowConfigs={rowConfigs} version={this.versionNumber} />
             </div>
         );
     }
 
     private renderSpinner(): JSX.Element {
-        return (
-            <Spinner
-                size={SpinnerSize.large}
-                label="Loading..."
-                className="insights-spinner"
-            />
-        );
+        return <Spinner size={SpinnerSize.large} label="Loading..." className="insights-spinner" />;
     }
 
     private renderUnsupportedMsgPanelForChromeUrl(): JSX.Element {
@@ -218,8 +209,16 @@ export class PopupView extends React.Component<IPopupViewProps> {
                     <div>
                         <div>To allow this extension to run on file URLs:</div>
                         <div>1. Go to chrome://extensions.</div>
-                        <div>2. Find <span className="ms-fontWeight-semibold">{this.props.title} - {this.props.subtitle}</span>.</div>
-                        <div>3. Check <span className="ms-fontWeight-semibold">Allow Access to file URLs</span>.</div>
+                        <div>
+                            2. Find{' '}
+                            <span className="ms-fontWeight-semibold">
+                                {this.props.title} - {this.props.subtitle}
+                            </span>
+                            .
+                        </div>
+                        <div>
+                            3. Check <span className="ms-fontWeight-semibold">Allow Access to file URLs</span>.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -227,10 +226,7 @@ export class PopupView extends React.Component<IPopupViewProps> {
     }
 
     private renderDefaultHeader(): JSX.Element {
-        return (<Header
-            title={this.props.title}
-            subtitle={this.props.subtitle}
-        />);
+        return <Header title={this.props.title} subtitle={this.props.subtitle} />;
     }
 
     @autobind
@@ -240,6 +236,4 @@ export class PopupView extends React.Component<IPopupViewProps> {
     }
 }
 
-export const PopupViewWithStoreSubscription = withStoreSubscription<IPopupViewProps, IPopupViewControllerState>(
-    PopupView,
-);
+export const PopupViewWithStoreSubscription = withStoreSubscription<IPopupViewProps, IPopupViewControllerState>(PopupView);

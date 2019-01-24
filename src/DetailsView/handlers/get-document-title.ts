@@ -8,13 +8,11 @@ export interface GetTestViewTitleProps {
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
 }
 
-export function getTestViewTitle(
-    props: GetTestViewTitleProps,
-): string {
-        const configuration = props.visualizationConfigurationFactory.getConfiguration(props.selectedDetailsView);
-        const displayableData = configuration.displayableData;
+export function getTestViewTitle(props: GetTestViewTitleProps): string {
+    const configuration = props.visualizationConfigurationFactory.getConfiguration(props.selectedDetailsView);
+    const displayableData = configuration.displayableData;
 
-        return displayableData.title;
+    return displayableData.title;
 }
 
 export function getOverviewTitle(): string {

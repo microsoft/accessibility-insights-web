@@ -7,9 +7,7 @@ import { ICustomWidgetPropertyBag } from '../../../common/types/property-bag/icu
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
-import {
-    AssessmentVisualizationEnabledToggle,
-} from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
+import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
 import * as Markup from '../../markup';
@@ -20,16 +18,12 @@ import { CustomWidgetsColumnRendererFactory } from '../custom-widgets-column-ren
 import { CustomWidgetsTestStep } from './test-steps';
 
 const cuesDescription: JSX.Element = (
-    <span>
-        If a custom widget adopts certain interactive states, it must communicate those states programmatically.
-    </span>
+    <span>If a custom widget adopts certain interactive states, it must communicate those states programmatically.</span>
 );
 
 const cuesHowToTest: JSX.Element = (
     <div>
-        <p>
-            For this requirement, {productName} highlights custom widgets.
-        </p>
+        <p>For this requirement, {productName} highlights custom widgets.</p>
         <ol>
             <li>
                 In the target page, interact with each custom widget to determine whether it adopts any of these states:
@@ -95,18 +89,22 @@ export const Cues: TestStep = {
     ],
     reportInstanceFields: [
         ReportInstanceField.fromColumnValueBagField<ICustomWidgetPropertyBag>('Widget role', 'role'),
-        ReportInstanceField.fromPropertyBagFunction<ICustomWidgetPropertyBag>('Design pattern', 'designPattern',
-            pb => getFlatDesignPatternStringFromRole(pb.role)),
+        ReportInstanceField.fromPropertyBagFunction<ICustomWidgetPropertyBag>('Design pattern', 'designPattern', pb =>
+            getFlatDesignPatternStringFromRole(pb.role),
+        ),
         ReportInstanceField.fromColumnValueBagField<ICustomWidgetPropertyBag>('HTML cues', 'htmlCues'),
         ReportInstanceField.fromColumnValueBagField<ICustomWidgetPropertyBag>('ARIA cues', 'ariaCues'),
     ],
-    getAnalyzer: provider => provider.createRuleAnalyzer(AnalyzerConfigurationFactory.forScanner({
-        rules: ['custom-widget'],
-        key: CustomWidgetsTestStep.cues,
-        testType: VisualizationType.CustomWidgets,
-        resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
-    })),
+    getAnalyzer: provider =>
+        provider.createRuleAnalyzer(
+            AnalyzerConfigurationFactory.forScanner({
+                rules: ['custom-widget'],
+                key: CustomWidgetsTestStep.cues,
+                testType: VisualizationType.CustomWidgets,
+                resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
+            }),
+        ),
     getDrawer: provider => provider.createHighlightBoxDrawer(),
     updateVisibility: false,
-    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props}/>,
+    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
 };

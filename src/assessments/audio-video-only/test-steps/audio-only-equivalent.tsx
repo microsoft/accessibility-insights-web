@@ -25,26 +25,19 @@ const howToTest: JSX.Element = (
                         </ol>
                     </li>
                     <li>
-                        Audio-only content <Markup.Emphasis>does</Markup.Emphasis> include audio accompanied by simple static visuals,
-                        such as the title of a speech and the speaker's name.
+                        Audio-only content <Markup.Emphasis>does</Markup.Emphasis> include audio accompanied by simple static visuals, such
+                        as the title of a speech and the speaker's name.
                     </li>
                 </ol>
             </li>
+            <li>Determine whether the audio-only content is accompanied by a text transcript.</li>
             <li>
-            	Determine whether the audio-only content is accompanied by a text transcript.
+                If you find any audio-only content that doesn't have a transcript, select <Markup.Term>Fail</Markup.Term>, then add the
+                failure instance.
             </li>
-            <li>
-            	If you find any audio-only content that doesn't have a transcript, select <Markup.Term>Fail</Markup.Term>, then add the failure instance.
-            </li>
-            <li>
-                Compare the audio-only content to the transcript.
-            </li>
-            <li>
-                Verify that the transcript provides an accurate and complete description of the audio content.
-            </li>
-            <ManualTestRecordYourResults
-                isMultipleFailurePossible={true}
-            />
+            <li>Compare the audio-only content to the transcript.</li>
+            <li>Verify that the transcript provides an accurate and complete description of the audio content.</li>
+            <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
     </div>
 );

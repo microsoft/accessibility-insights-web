@@ -31,8 +31,7 @@ export interface IOverviewSummaryReportModel {
     reportSummaryDetailsData: IAssessmentSummaryReportModel[];
 }
 
-export interface IAssessmentSummaryReportStats extends OutcomeStats {
-}
+export interface IAssessmentSummaryReportStats extends OutcomeStats {}
 
 export interface IAssessmentSummaryReportModel extends IAssessmentSummaryReportStats {
     displayName: string;
@@ -63,4 +62,3 @@ export interface IInstancePairReportModel {
     key: InstanceElementKey;
     value: ColumnValue;
 }
-

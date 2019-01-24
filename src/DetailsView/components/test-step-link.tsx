@@ -15,14 +15,9 @@ export interface ITestStepLinkProps {
 export class TestStepLink extends React.Component<ITestStepLinkProps> {
     public render(): JSX.Element {
         return (
-            <div
-                className={'button-flex-container'}
-                aria-hidden="true"
-            >
+            <div className={'button-flex-container'} aria-hidden="true">
                 {this.props.renderRequirementDescription(this)}
-                <StatusIcon
-                    status={this.props.status}
-                />
+                <StatusIcon status={this.props.status} />
             </div>
         );
     }

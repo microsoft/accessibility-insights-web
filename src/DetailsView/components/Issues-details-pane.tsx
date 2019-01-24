@@ -36,11 +36,7 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
     }
 
     public render(): JSX.Element {
-        return (
-            <div>
-                {this.renderContent()}
-            </div>
-        );
+        return <div>{this.renderContent()}</div>;
     }
     private renderContent(): JSX.Element {
         const ids = Object.keys(this.props.selectedIdToRuleResultMap);
@@ -80,29 +76,17 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
                         <tr>
                             <td>Rule</td>
                             <td>
-                                <NewTabLink href={result.helpUrl}>
-                                    {result.ruleId}
-                                </NewTabLink>
+                                <NewTabLink href={result.helpUrl}>{result.ruleId}</NewTabLink>
                                 :&nbsp;
                                 {result.help}
-                                &nbsp;
-                                {' '}
-                                <GuidanceLinks
-                                    links={result.guidanceLinks}
-                                />
+                                &nbsp; <GuidanceLinks links={result.guidanceLinks} />
                             </td>
                         </tr>
                         <tr>
                             <td>How to fix</td>
                             <td className="fix-content">
-                                <FixInstructionPanel
-                                    checkType={CheckType.All}
-                                    checks={result.all.concat(result.none)}
-                                />
-                                <FixInstructionPanel
-                                    checkType={CheckType.Any}
-                                    checks={result.any}
-                                />
+                                <FixInstructionPanel checkType={CheckType.All} checks={result.all.concat(result.none)} />
+                                <FixInstructionPanel checkType={CheckType.Any} checks={result.any} />
                             </td>
                         </tr>
                         <tr>

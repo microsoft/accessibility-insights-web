@@ -7,7 +7,6 @@ import { AxeResultsWithFrameLevel, IAssessmentVisualizationInstance } from '../f
 import { IDrawerConfiguration, IFormatter } from './iformatter';
 import { FailureInstanceFormatter } from './failure-instance-formatter';
 
-
 export interface IHeadingStyleConfiguration {
     borderColor: string;
     fontColor: string;
@@ -18,7 +17,6 @@ export interface IStyleComputer {
 }
 
 export class HeadingFormatter extends FailureInstanceFormatter {
-
     private styleComputer: IStyleComputer;
     private clientUtils: ClientUtils;
 
@@ -53,13 +51,15 @@ export class HeadingFormatter extends FailureInstanceFormatter {
             borderColor: '#996633',
             fontColor: '#FFFFFF',
         },
-        'blank': {
+        blank: {
             borderColor: '#C00000',
             fontColor: '#FFFFFF',
         },
     };
 
-    public getDialogRenderer() { return null; }
+    public getDialogRenderer() {
+        return null;
+    }
 
     public getDrawerConfiguration(element: HTMLElement, data: IAssessmentVisualizationInstance): IDrawerConfiguration {
         const level = this.isHTag(element) ? this.getHTagLevel(element) : this.getAriaLevel(element);

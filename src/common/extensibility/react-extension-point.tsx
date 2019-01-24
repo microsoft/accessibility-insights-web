@@ -5,27 +5,27 @@ import { NamedSFC } from '../react/named-sfc';
 import { AnyExtension } from './extension-point';
 
 export type Extension<C> = {
-    type: 'Extension',
-    extensionPointKey: string,
-    extensionType: string,
-    component: C,
+    type: 'Extension';
+    extensionPointKey: string;
+    extensionType: string;
+    component: C;
 };
 
 type ExtensionPoint<C> = {
-    type: 'ExtensionPoint',
-    extensionPointKey: string,
-    extensionType: string,
-    apply: (component: C) => Extension<C>,
+    type: 'ExtensionPoint';
+    extensionPointKey: string;
+    extensionType: string;
+    apply: (component: C) => Extension<C>;
 };
 
 type ReactExtension<P> = Extension<React.SFC<P>> & {
-    extensionType: 'reactComponent',
+    extensionType: 'reactComponent';
 };
 
 type ReactExtensionPoint<P extends {}> = ExtensionPoint<React.SFC<P>> & {
-    extensionType: 'reactComponent',
-    create: (component: React.SFC<P>) => ReactExtension<P>,
-    component: React.SFC<P & { extensions: AnyExtension[] }>,
+    extensionType: 'reactComponent';
+    create: (component: React.SFC<P>) => ReactExtension<P>;
+    component: React.SFC<P & { extensions: AnyExtension[] }>;
 };
 
 function isReactExtension(extension: Extension<any>): extension is ReactExtension<any> {
@@ -33,9 +33,7 @@ function isReactExtension(extension: Extension<any>): extension is ReactExtensio
 }
 
 export function reactExtensionPoint<P extends {}>(extensionPointKey: string): ReactExtensionPoint<P> {
-
     const component = NamedSFC<P & { extensions: Extension<any>[] }>(extensionPointKey, props => {
-
         const { children, extensions } = props;
 
         let result = <>{children}</>;
@@ -54,7 +52,6 @@ export function reactExtensionPoint<P extends {}>(extensionPointKey: string): Re
     });
 
     function create(extensionComponent: React.SFC<P>): ReactExtension<P> {
-
         const Wrap = extensionComponent;
         const wrapComponent = NamedSFC<P>(extensionPointKey, props => <Wrap {...props} />);
         wrapComponent.displayName = extensionPointKey;

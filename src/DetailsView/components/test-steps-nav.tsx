@@ -12,7 +12,6 @@ import { DetailsViewActionMessageCreator } from '../actions/details-view-action-
 import { OutcomeTypeSemantic } from '../reports/components/outcome-type';
 import { TestStepLink } from './test-step-link';
 
-
 export interface TestStepNavDeps {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     assessmentsProvider: IAssessmentsProvider;
@@ -42,23 +41,26 @@ export class TestStepsNav extends React.Component<ITestStepNavProps> {
                 ariaLabel={ariaLabel}
                 className={'test-step-nav'}
                 selectedKey={selectedTestStep}
-                groups={[{
-                    links,
-                }]}
+                groups={[
+                    {
+                        links,
+                    },
+                ]}
                 onLinkClick={this.onTestStepSelected}
                 onRenderLink={this.renderNavLink}
             />
         );
-
     }
 
     @autobind
     protected renderNavLink(link: INavLink): JSX.Element {
-        return <TestStepLink
-            link={link}
-            status={this.getStepStatus(link.key)}
-            renderRequirementDescription={link.renderRequirementDescription}
-        />;
+        return (
+            <TestStepLink
+                link={link}
+                status={this.getStepStatus(link.key)}
+                renderRequirementDescription={link.renderRequirementDescription}
+            />
+        );
     }
 
     private getStepStatus(key: string): ManualTestStatus {
@@ -95,5 +97,4 @@ export class TestStepsNav extends React.Component<ITestStepNavProps> {
             } as INavLink;
         });
     }
-
 }

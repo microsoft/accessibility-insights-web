@@ -65,22 +65,16 @@ export class DiagnosticViewToggle extends React.Component<IDiagnosticViewToggleP
             <div>
                 <div className="ms-Grid-row view-toggle-row">
                     <div className="ms-Grid-col ms-sm7">
-                        <div className="ms-fontColor-neutralPrimary ms-fontWeight-semibold ms-fontSize-mPlus">
-                            {displayableData.title}
-                        </div>
+                        <div className="ms-fontColor-neutralPrimary ms-fontWeight-semibold ms-fontSize-mPlus">{displayableData.title}</div>
                     </div>
                     <div className="ms-Grid-col ms-sm5 view-toggle-col" style={{ float: 'right' }}>
                         {this.renderToggleOrSpinner()}
                     </div>
                 </div>
                 <div className="ms-Grid-row">
-                    <div className="ms-Grid-col ms-sm8">
-                        {this.renderLink(displayableData.linkToDetailsViewText)}
-                    </div>
+                    <div className="ms-Grid-col ms-sm8">{this.renderLink(displayableData.linkToDetailsViewText)}</div>
                     <div className="ms-Grid-col ms-sm4 shortcut-label" style={{ float: 'right' }}>
-                        <div className="ms-fontColor-neutralSecondary ms-fontWeight-semilight ms-font-xs">
-                            {shortcut}
-                        </div>
+                        <div className="ms-fontColor-neutralSecondary ms-fontWeight-semilight ms-font-xs">{shortcut}</div>
                     </div>
                 </div>
             </div>
@@ -93,24 +87,20 @@ export class DiagnosticViewToggle extends React.Component<IDiagnosticViewToggleP
         const _scanData = this.configuration.getStoreData(this.props.visualizationStoreData.tests);
 
         if (_scanning === id) {
+            return <Spinner size={SpinnerSize.small} componentRef={this.addUserEventListener} />;
+        } else {
+            const disabled = _scanning != null;
             return (
-                <Spinner
-                    size={SpinnerSize.small}
-                    componentRef={this.addUserEventListener}
+                <VisualizationToggle
+                    checked={_scanData.enabled}
+                    disabled={disabled}
+                    onClick={ev => this.props.clickHandler.toggleVisualization(this.props.visualizationStoreData, this.props.type, ev)}
+                    visualizationName={this.configuration.displayableData.title}
+                    componentRef={this._toggle}
+                    onFocus={this.onFocusHandler}
+                    onBlur={this.onBlurHandler}
                 />
             );
-        }
-        else {
-            const disabled = _scanning != null;
-            return <VisualizationToggle
-                checked={_scanData.enabled}
-                disabled={disabled}
-                onClick={ev => this.props.clickHandler.toggleVisualization(this.props.visualizationStoreData, this.props.type, ev)}
-                visualizationName={this.configuration.displayableData.title}
-                componentRef={this._toggle}
-                onFocus={this.onFocusHandler}
-                onBlur={this.onBlurHandler}
-            />;
         }
     }
 
@@ -170,13 +160,7 @@ export class DiagnosticViewToggle extends React.Component<IDiagnosticViewToggleP
     private renderLink(linkText: string): JSX.Element {
         const isAssessmentEnabled = this.props.featureFlags[FeatureFlags.newAssessmentExperience];
         if (isAssessmentEnabled && this.configuration.guidance) {
-            return (
-                <ContentLink
-                    deps={this.props.deps}
-                    reference={this.configuration.guidance}
-                    linkText={linkText}
-                />
-            );
+            return <ContentLink deps={this.props.deps} reference={this.configuration.guidance} linkText={linkText} />;
         }
 
         const pivot = isAssessmentEnabled ? DetailsViewPivotType.fastPass : DetailsViewPivotType.allTest;
@@ -184,7 +168,9 @@ export class DiagnosticViewToggle extends React.Component<IDiagnosticViewToggleP
         return (
             <Link
                 href="#"
-                onClick={ev => this.props.actionMessageCreator.openDetailsView(ev as any, this.props.type, this.props.telemetrySource, pivot)}
+                onClick={ev =>
+                    this.props.actionMessageCreator.openDetailsView(ev as any, this.props.type, this.props.telemetrySource, pivot)
+                }
             >
                 {linkText}
             </Link>

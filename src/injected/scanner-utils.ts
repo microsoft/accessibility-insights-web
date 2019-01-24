@@ -43,11 +43,14 @@ export class ScannerUtils {
 
     public scan(options: ScanOptions, callback: (results: ScanResults) => void): void {
         this.scanRunner(
-            options, axeResults => {
+            options,
+            axeResults => {
                 callback(axeResults);
-            }, err => {
+            },
+            err => {
                 console.log(`failed to scan with error - ${err}`);
-            });
+            },
+        );
     }
 
     public getUniqueSelector(element: HTMLElement): string {
@@ -99,34 +102,29 @@ export class ScannerUtils {
         return resultsMap;
     }
 
-    private addPassesToDictionary(dictionary: IDictionaryStringTo<IHtmlElementAxeResults>,
-        axeRules: RuleResult[]): void {
+    private addPassesToDictionary(dictionary: IDictionaryStringTo<IHtmlElementAxeResults>, axeRules: RuleResult[]): void {
         this.addResultstoDictionary(dictionary, axeRules, true);
     }
 
-    private addIncompletesToDictionary(dictionary: IDictionaryStringTo<IHtmlElementAxeResults>,
-        axeRules: RuleResult[]): void {
+    private addIncompletesToDictionary(dictionary: IDictionaryStringTo<IHtmlElementAxeResults>, axeRules: RuleResult[]): void {
         this.addResultstoDictionary(dictionary, axeRules, undefined);
     }
 
-    private addFailuresToDictionary(dictionary: IDictionaryStringTo<IHtmlElementAxeResults>,
-        axeRules: RuleResult[]): void {
+    private addFailuresToDictionary(dictionary: IDictionaryStringTo<IHtmlElementAxeResults>, axeRules: RuleResult[]): void {
         this.addResultstoDictionary(dictionary, axeRules, false);
     }
 
-    private addResultstoDictionary(dictionary: IDictionaryStringTo<IHtmlElementAxeResults>,
-        axeRules: RuleResult[], status: boolean): void {
+    private addResultstoDictionary(dictionary: IDictionaryStringTo<IHtmlElementAxeResults>, axeRules: RuleResult[], status: boolean): void {
         axeRules.forEach(ruleResult => {
             ruleResult.nodes.forEach(node => {
                 const selectorKey = node.target.join(';');
                 node.instanceId = this.generateUID ? this.generateUID() : null;
 
-                const elementResult = dictionary[selectorKey] ||
-                    {
-                        target: node.target,
-                        ruleResults: {},
-                        isVisible: true,
-                    };
+                const elementResult = dictionary[selectorKey] || {
+                    target: node.target,
+                    ruleResults: {},
+                    isVisible: true,
+                };
 
                 dictionary[selectorKey] = elementResult;
                 elementResult.ruleResults[ruleResult.id] = {

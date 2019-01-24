@@ -6,7 +6,7 @@ import { INavLink } from 'office-ui-fabric-react/lib/Nav';
 import { StatusIcon } from '../status-icon';
 
 export type LeftNavIconProps = {
-    item: INavLink,
+    item: INavLink;
 };
 
 export const LeftNavStatusIcon = NamedSFC<LeftNavIconProps>('LeftNavStatusIcon', props => {
@@ -14,10 +14,7 @@ export const LeftNavStatusIcon = NamedSFC<LeftNavIconProps>('LeftNavStatusIcon',
 
     return (
         <div>
-            <StatusIcon
-                status={item.status}
-                className={'dark-gray'}
-            />
+            <StatusIcon status={item.status} className={'dark-gray'} />
         </div>
     );
 });
@@ -25,9 +22,5 @@ export const LeftNavStatusIcon = NamedSFC<LeftNavIconProps>('LeftNavStatusIcon',
 export const LeftNavIndexIcon = NamedSFC<LeftNavIconProps>('LeftNavIndexIcon', props => {
     const { item } = props;
 
-    return (
-        <div className={'index-circle'}>
-            {item.index}
-        </div>
-    );
+    return <div className={'index-circle'}>{item.index}</div>;
 });

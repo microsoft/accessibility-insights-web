@@ -34,10 +34,7 @@ export const AssessmentReportStepHeader = NamedSFC<AssessmentReportStepHeaderPro
             <h4 className="step-header-name">{header.displayName}:</h4>
             <span className="step-header-description">{header.description}</span>
             -
-            <GuidanceLinks
-                classNameForDiv={`test-guidance-links-group`}
-                links={header.guidanceLinks}
-            />
+            <GuidanceLinks classNameForDiv={`test-guidance-links-group`} links={header.guidanceLinks} />
             <OutcomeChip count={count} outcomeType={outcomeType} />
             {message && <span className="step-header-message">{message}</span>}
         </div>

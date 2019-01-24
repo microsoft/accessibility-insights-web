@@ -21,7 +21,8 @@ export class AnalyzerProvider {
     private telemetryDataFactory: TelemetryDataFactory;
     private dateGetter: () => Date;
 
-    constructor(tabStopsListener: TabStopsListener,
+    constructor(
+        tabStopsListener: TabStopsListener,
         scopingStore: IBaseStore<IScopingStoreData>,
         sendMessageDelegate: (message) => void,
         scanner: ScannerUtils,

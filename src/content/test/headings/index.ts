@@ -5,7 +5,6 @@ import * as headingFunction from './heading-function';
 import * as headingLevel from './heading-level';
 import * as noMissingHeadings from './no-missing-headings';
 
-
 export const headings = {
     guidance,
     headingFunction,

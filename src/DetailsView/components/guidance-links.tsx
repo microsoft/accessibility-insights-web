@@ -25,24 +25,18 @@ export const GuidanceLinks = NamedSFC('GuidanceLinks', (props: GuidanceLinksProp
     };
 
     const renderLink = (link: HyperlinkDefinition, index: number, length: number): JSX.Element => {
-        const addComma: boolean = (index !== length - 1);
+        const addComma: boolean = index !== length - 1;
         const comma = addComma ? <span>,&nbsp;</span> : null;
         return (
             <React.Fragment key={`guidance-link-${index}`}>
-                <NewTabLink
-                    href={link.href}
-                    onClick={event => event.stopPropagation()}
-                >
+                <NewTabLink href={link.href} onClick={event => event.stopPropagation()}>
                     {link.text.toUpperCase()}
                 </NewTabLink>
                 {comma}
-            </React.Fragment>);
+            </React.Fragment>
+        );
     };
 
     const spanClassName = classNameForDiv || 'guidance-links';
-    return (
-        <span className={spanClassName}>
-            {renderLinks()}
-        </span>
-    );
+    return <span className={spanClassName}>{renderLinks()}</span>;
 });

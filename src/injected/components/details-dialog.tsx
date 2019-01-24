@@ -27,7 +27,7 @@ export enum CheckType {
 
 export type DetailsDialogDeps = CopyIssueDetailsButtonDeps & {
     targetPageActionMessageCreator: TargetPageActionMessageCreator;
-    clientBrowserAdapter: ClientBrowserAdapter
+    clientBrowserAdapter: ClientBrowserAdapter;
 };
 
 export interface IDetailsDialogProps {
@@ -58,22 +58,45 @@ export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetails
     public isNextButtonDisabled: () => boolean;
     public isInspectButtonDisabled: () => boolean;
 
-
     constructor(props: IDetailsDialogProps) {
         super(props);
 
-        this.onHideDialog = () => { this.props.dialogHandler.hideDialog(this); };
-        this.onClickNextButton = () => { this.props.dialogHandler.nextButtonClickHandler(this); };
-        this.onClickBackButton = () => { this.props.dialogHandler.backButtonClickHandler(this); };
-        this.onClickInspectButton = (ev: React.SyntheticEvent<MouseEvent>) => { this.props.dialogHandler.inspectButtonClickHandler(this, ev); };
-        this.onLayoutDidMount = () => { this.props.dialogHandler.onLayoutDidMount(); };
-        this.componentDidMount = () => { this.props.dialogHandler.componentDidMount(this); };
-        this.componentWillUnmount = () => { this.props.dialogHandler.componentWillUnmount(this); };
-        this.onClickNextButton = () => { this.props.dialogHandler.nextButtonClickHandler(this); };
-        this.onClickBackButton = () => { this.props.dialogHandler.backButtonClickHandler(this); };
-        this.isBackButtonDisabled = () => { return this.props.dialogHandler.isBackButtonDisabled(this); };
-        this.isNextButtonDisabled = () => { return this.props.dialogHandler.isNextButtonDisabled(this); };
-        this.isInspectButtonDisabled = () => { return this.props.dialogHandler.isInspectButtonDisabled(this); };
+        this.onHideDialog = () => {
+            this.props.dialogHandler.hideDialog(this);
+        };
+        this.onClickNextButton = () => {
+            this.props.dialogHandler.nextButtonClickHandler(this);
+        };
+        this.onClickBackButton = () => {
+            this.props.dialogHandler.backButtonClickHandler(this);
+        };
+        this.onClickInspectButton = (ev: React.SyntheticEvent<MouseEvent>) => {
+            this.props.dialogHandler.inspectButtonClickHandler(this, ev);
+        };
+        this.onLayoutDidMount = () => {
+            this.props.dialogHandler.onLayoutDidMount();
+        };
+        this.componentDidMount = () => {
+            this.props.dialogHandler.componentDidMount(this);
+        };
+        this.componentWillUnmount = () => {
+            this.props.dialogHandler.componentWillUnmount(this);
+        };
+        this.onClickNextButton = () => {
+            this.props.dialogHandler.nextButtonClickHandler(this);
+        };
+        this.onClickBackButton = () => {
+            this.props.dialogHandler.backButtonClickHandler(this);
+        };
+        this.isBackButtonDisabled = () => {
+            return this.props.dialogHandler.isBackButtonDisabled(this);
+        };
+        this.isNextButtonDisabled = () => {
+            return this.props.dialogHandler.isNextButtonDisabled(this);
+        };
+        this.isInspectButtonDisabled = () => {
+            return this.props.dialogHandler.isInspectButtonDisabled(this);
+        };
 
         this.state = {
             showDialog: true,
@@ -97,8 +120,7 @@ export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetails
     private getOnClickWhenNotInShadowDom(func: (ev: any) => void): (ev: any) => void {
         if (this.props.featureFlagStoreData[FeatureFlags.shadowDialog]) {
             return null;
-        }
-        else {
+        } else {
             return func;
         }
     }
@@ -126,13 +148,7 @@ export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetails
     }
 
     private renderCreateBugButton(): JSX.Element {
-        return (
-            <DefaultButton
-                className="insights-dialog-button-create-bug"
-                iconProps={{ iconName: 'add' }}
-                text="New bug"
-            />
-        );
+        return <DefaultButton className="insights-dialog-button-create-bug" iconProps={{ iconName: 'add' }} text="New bug" />;
     }
 
     private renderIssueButtons(): JSX.Element {
@@ -200,7 +216,6 @@ export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetails
     }
 
     private renderRuleContainer(rule: DecoratedAxeNodeResult): JSX.Element {
-
         const fixUrl = (url: string) => {
             if (url.indexOf('://') >= 0) {
                 return url;
@@ -211,7 +226,7 @@ export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetails
         };
 
         return (
-            <div className="insights-dialog-rule-container" >
+            <div className="insights-dialog-rule-container">
                 <Icon iconName="StatusErrorFull" />
                 <div className="ms-fontSize-mPlus insights-dialog-rule-link">
                     Rule name: <NewTabLink href={fixUrl(rule.helpUrl)}>{rule.ruleId}</NewTabLink>
@@ -223,15 +238,9 @@ export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetails
     private renderFixInstructions(ruleResult: DecoratedAxeNodeResult): JSX.Element {
         return (
             <div className="insights-dialog-fix-instruction-container">
-                <FixInstructionPanel
-                    checkType={CheckType.All}
-                    checks={ruleResult.all.concat(ruleResult.none)}
-                />
+                <FixInstructionPanel checkType={CheckType.All} checks={ruleResult.all.concat(ruleResult.none)} />
 
-                <FixInstructionPanel
-                    checkType={CheckType.Any}
-                    checks={ruleResult.any}
-                />
+                <FixInstructionPanel checkType={CheckType.Any} checks={ruleResult.any} />
             </div>
         );
     }
@@ -239,9 +248,7 @@ export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetails
     private renderTargetContainer(): JSX.Element {
         return (
             <div className="insights-dialog-target-container">
-                <div className="ms-fontWeight-semibold">
-                    Path:
-                        </div>
+                <div className="ms-fontWeight-semibold">Path:</div>
                 <div className="insights-dialog-instance-selector">{this.props.elementSelector}</div>
                 {this.renderButtonContainer()}
             </div>
@@ -262,11 +269,16 @@ export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetails
     private withshadowDomTurnedOn(rule: DecoratedAxeNodeResult): JSX.Element {
         return (
             <div style={{ visibility: this.state.showDialog ? 'visible' : 'hidden' }} className="insights-dialog-main-override-shadow">
-                <div className="insights-dialog-container" >
+                <div className="insights-dialog-container">
                     <div className="insights-dialog-header">
                         <p className="ms-Dialog-title">{rule.help}</p>
                         <div className="ms-Dialog-topButton">
-                            <button type="button" className="ms-Dialog-button ms-Dialog-button--close ms-Button ms-Button--icon insights-dialog-close" aria-label="Close" data-is-focusable="true">
+                            <button
+                                type="button"
+                                className="ms-Dialog-button ms-Dialog-button--close ms-Button ms-Button--icon insights-dialog-close"
+                                aria-label="Close"
+                                data-is-focusable="true"
+                            >
                                 <div className="ms-button-flex-container">
                                     <Icon iconName="Cancel" />
                                 </div>

@@ -12,10 +12,12 @@ export function frameTitleInstanceDetailsColumnRenderer(item: IAssessmentInstanc
     const frameType = propertyBag ? propertyBag.frameType : 'default';
     const frameConfig = FrameFormatter.frameStyles[frameType];
 
-    return <AssessmentInstanceDetailsColumn
-        background={frameConfig.borderColor}
-        labelText={frameConfig.contentText}
-        textContent={frameTitle}
-        tooltipId={null}
-    />;
+    return (
+        <AssessmentInstanceDetailsColumn
+            background={frameConfig.borderColor}
+            labelText={frameConfig.contentText}
+            textContent={frameTitle}
+            tooltipId={null}
+        />
+    );
 }

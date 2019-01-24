@@ -2,18 +2,11 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash/index';
 
-import {
-    AssessmentDefaultMessageGenerator,
-    DefaultMessageInterface,
-} from '../../assessments/assessment-default-message-generator';
+import { AssessmentDefaultMessageGenerator, DefaultMessageInterface } from '../../assessments/assessment-default-message-generator';
 import { IAssessment } from '../../assessments/types/iassessment';
 import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
-import {
-    IAssessmentData,
-    IAssessmentStoreData,
-    TestStepInstance,
-} from '../../common/types/store-data/iassessment-result-data';
+import { IAssessmentData, IAssessmentStoreData, TestStepInstance } from '../../common/types/store-data/iassessment-result-data';
 import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
 import { assessmentReportExtensionPoint } from '../extensions/assessment-report-extension-point';
 import {
@@ -34,7 +27,7 @@ export class AssessmentReportModelBuilder {
         private readonly tabStoreData: ITabStoreData,
         private readonly reportDate: Date,
         private assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator,
-    ) { }
+    ) {}
 
     public getReportModelData(): IReportModel {
         const assessmentDefaultMessageGeneratorInstance = this.assessmentDefaultMessageGenerator;
@@ -57,11 +50,7 @@ export class AssessmentReportModelBuilder {
             incompleteDetailsData: getDetails(ManualTestStatus.UNKNOWN),
         } as IReportModel;
 
-        function getDefaultMessageComponent(
-            getDefaultMessage,
-            instancesMap,
-            selectedStep,
-        ): DefaultMessageInterface {
+        function getDefaultMessageComponent(getDefaultMessage, instancesMap, selectedStep): DefaultMessageInterface {
             const defaultMessageGenerator = getDefaultMessage(assessmentDefaultMessageGeneratorInstance);
             const defaultMessageComponent = defaultMessageGenerator(instancesMap, selectedStep);
             return defaultMessageComponent;

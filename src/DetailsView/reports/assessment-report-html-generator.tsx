@@ -13,8 +13,6 @@ import { AssessmentReport } from './components/assessment-report';
 import { ReactStaticRenderer } from './react-static-renderer';
 import { AssessmentDefaultMessageGenerator } from '../../assessments/assessment-default-message-generator';
 
-
-
 export class AssessmentReportHtmlGenerator {
     constructor(
         private renderer: ReactStaticRenderer,
@@ -24,8 +22,7 @@ export class AssessmentReportHtmlGenerator {
         private axeVersion: string,
         private chromeVersion: string,
         private assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator,
-    ) {
-    }
+    ) {}
 
     public generateHtml(
         assessmentStoreData: IAssessmentStoreData,
@@ -34,10 +31,7 @@ export class AssessmentReportHtmlGenerator {
         tabStoreData: ITabStoreData,
         description: string,
     ): string {
-        const filteredProvider = assessmentsProviderWithFeaturesEnabled(
-            assessmentsProvider,
-            featureFlagStoreData,
-        );
+        const filteredProvider = assessmentsProviderWithFeaturesEnabled(assessmentsProvider, featureFlagStoreData);
 
         const modelBuilder = this.assessmentReportModelBuilderFactory.create(
             filteredProvider,

@@ -14,7 +14,13 @@ export class SVGShapeFactory {
         this.drawerUtils = drawerUtils;
     }
 
-    public createLine(source: IPoint, destination: IPoint, configuration: ILineConfiguration, filterName: string, circleRadius: number): Element {
+    public createLine(
+        source: IPoint,
+        destination: IPoint,
+        configuration: ILineConfiguration,
+        filterName: string,
+        circleRadius: number,
+    ): Element {
         const myDocument = this.drawerUtils.getDocumentElement();
         const line = myDocument.createElementNS(SVGNamespaceUrl, 'line');
 
@@ -41,8 +47,7 @@ export class SVGShapeFactory {
 
         if (configuration.strokeDasharray != null) {
             element.setAttributeNS(null, 'stroke-dasharray', configuration.strokeDasharray);
-        }
-        else {
+        } else {
             element.removeAttributeNS(null, 'stroke-dasharray');
         }
     }

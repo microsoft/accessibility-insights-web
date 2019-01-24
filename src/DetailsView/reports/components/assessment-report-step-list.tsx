@@ -14,14 +14,12 @@ export interface AssessmentReportStepProps {
 }
 
 export const AssessmentReportStepList = NamedSFC<AssessmentReportStepProps>('AssessmentReportStepList', props => {
-
     const { status, steps } = props;
 
     return <div>{renderSteps()}</div>;
 
     function renderSteps() {
         return steps.map(({ key, header, instances, defaultMessageComponent, showPassingInstances }) => {
-
             const showInstances = status !== ManualTestStatus.PASS || showPassingInstances;
 
             return (
@@ -46,4 +44,3 @@ export const AssessmentReportStepList = NamedSFC<AssessmentReportStepProps>('Ass
         return <AssessmentReportInstanceList instances={instances} />;
     }
 });
-

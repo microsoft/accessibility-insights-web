@@ -25,8 +25,6 @@ export class StatusIcon extends React.Component<IStatusIconProps> {
     }
 
     private renderIcon(iconName: string, ariaLabel: string, className?: String): JSX.Element {
-        return (
-            <Icon iconName={iconName} className={css('status-icon', className)} ariaLabel={ariaLabel} aria-live="polite" />
-        );
+        return <Icon iconName={iconName} className={css('status-icon', className)} ariaLabel={ariaLabel} aria-live="polite" />;
     }
 }

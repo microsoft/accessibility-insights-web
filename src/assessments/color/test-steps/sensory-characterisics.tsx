@@ -8,12 +8,15 @@ import ManualTestRecordYourResults from '../../common/manual-test-record-your-re
 import { TestStep } from '../../types/test-step';
 import { ColorSensoryTestStep } from './test-steps';
 
-const sensoryCharacterisicsDescription: JSX.Element = <span>Instructions must not rely solely on color or other sensory characteristics.</span>;
+const sensoryCharacterisicsDescription: JSX.Element = (
+    <span>Instructions must not rely solely on color or other sensory characteristics.</span>
+);
 
 const sensoryCharacterisicsHowToTest: JSX.Element = (
     <div>
         <ol>
-            <li>Examine the target page to identify any instances where instructions refer to an element's sensory characteristics, such as:
+            <li>
+                Examine the target page to identify any instances where instructions refer to an element's sensory characteristics, such as:
                 <ol>
                     <li>Color</li>
                     <li>Shape</li>
@@ -23,10 +26,11 @@ const sensoryCharacterisicsHowToTest: JSX.Element = (
                     <li>Sound</li>
                 </ol>
             </li>
-            <li>For each instance, verify that the instructions also include additional information sufficient to locate and identify the element without knowing its sensory characteristics. (For example, "Press the green button").</li>
-            <ManualTestRecordYourResults
-                isMultipleFailurePossible={true}
-            />
+            <li>
+                For each instance, verify that the instructions also include additional information sufficient to locate and identify the
+                element without knowing its sensory characteristics. (For example, "Press the green button").
+            </li>
+            <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
     </div>
 );

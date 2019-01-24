@@ -12,9 +12,7 @@ export class ReportInstanceList extends React.Component<IReportInstanceListProps
             <div className="report-instances">
                 <p>Failed elements:</p>
                 <table className="report-instance-table">
-                    <tbody>
-                        {this.renderInstances()}
-                    </tbody>
+                    <tbody>{this.renderInstances()}</tbody>
                 </table>
             </div>
         );

@@ -15,22 +15,22 @@ const useOfColorHowToTest: JSX.Element = (
     <div>
         <p>The visual helper for this requirement displays the target page in grayscale. </p>
         <ol>
-            <li>Examine the target page to identify any instances where color is used to communicate meaning, such as:
+            <li>
+                Examine the target page to identify any instances where color is used to communicate meaning, such as:
                 <ol>
                     <li>Communicating status</li>
                     <li>Prompting a response</li>
                     <li>Identifying an error</li>
                 </ol>
             </li>
-            <li>For each instance, verify that at least one of these visual alternatives is also provided:
+            <li>
+                For each instance, verify that at least one of these visual alternatives is also provided:
                 <ol>
                     <li>On-screen text that identifies the color itself and/or describes the meaning conveyed by the color</li>
                     <li>Visual differentiation (e.g., shape, position, size, underline) and a clear indication of its meaning</li>
                 </ol>
             </li>
-            <ManualTestRecordYourResults
-                isMultipleFailurePossible={true}
-            />
+            <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
     </div>
 );
@@ -45,11 +45,14 @@ export const UseOfColor: TestStep = {
     isManual: true,
     ...content,
     guidanceLinks: [link.WCAG_2_4_1],
-    getAnalyzer: provider => provider.createRuleAnalyzer(AnalyzerConfigurationFactory.forScanner({
-        rules: ['select-body'],
-        key: ColorSensoryTestStep.useOfColor,
-        testType: VisualizationType.ColorSensoryAssessment,
-    })),
+    getAnalyzer: provider =>
+        provider.createRuleAnalyzer(
+            AnalyzerConfigurationFactory.forScanner({
+                rules: ['select-body'],
+                key: ColorSensoryTestStep.useOfColor,
+                testType: VisualizationType.ColorSensoryAssessment,
+            }),
+        ),
     updateVisibility: false,
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
     getDrawer: provider => provider.createColorDrawer(),

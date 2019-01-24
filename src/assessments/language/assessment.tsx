@@ -13,12 +13,12 @@ const key = 'language';
 const title = 'Language';
 const { guidance } = content.language;
 
-const gettingStartedText: JSX.Element = <React.Fragment>
-    Screen reader technologies can adjust their pronunciation based on language,
-    but only if the language is coded correctly.
-    If language changes are not identified, for a screen reader user,
-    the speech will sound awkward at best, or unintelligible at worst.
-    </React.Fragment>;
+const gettingStartedText: JSX.Element = (
+    <React.Fragment>
+        Screen reader technologies can adjust their pronunciation based on language, but only if the language is coded correctly. If
+        language changes are not identified, for a screen reader user, the speech will sound awkward at best, or unintelligible at worst.
+    </React.Fragment>
+);
 
 export const LanguageAssessment = AssessmentBuilder.Manual({
     type: VisualizationType.LanguageAssessment,
@@ -26,9 +26,5 @@ export const LanguageAssessment = AssessmentBuilder.Manual({
     title,
     gettingStarted: gettingStartedText,
     guidance,
-    steps: [
-        LanguageOfPage,
-        LanguageOfParts,
-        TextDirection,
-    ],
+    steps: [LanguageOfPage, LanguageOfParts, TextDirection],
 });

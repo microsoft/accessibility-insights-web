@@ -16,18 +16,25 @@ import { TestStep } from '../../types/test-step';
 import { headingsAssessmentInstanceDetailsColumnRenderer } from './../headings-instance-details-column-renderer';
 import { HeadingsTestStep } from './test-steps';
 
-const headingLevelDescription: JSX.Element = <span>A heading's <Markup.Emphasis>programmatic</Markup.Emphasis> level
-    must match the level that's presented <Markup.Emphasis>visually</Markup.Emphasis>.</span>;
+const headingLevelDescription: JSX.Element = (
+    <span>
+        A heading's <Markup.Emphasis>programmatic</Markup.Emphasis> level must match the level that's presented{' '}
+        <Markup.Emphasis>visually</Markup.Emphasis>.
+    </span>
+);
 
 const headingLevelHowToTest: JSX.Element = (
     <div>
         <p>For this requirement, {productName} highlights coded headings in the target page.</p>
         <ol>
-            <li>In the target page, examine each heading to verify that its <Markup.Emphasis>programmatic</Markup.Emphasis>
+            <li>
+                In the target page, examine each heading to verify that its <Markup.Emphasis>programmatic</Markup.Emphasis>
                 level matches the level that's presented <Markup.Emphasis>visually</Markup.Emphasis> (through font style).
                 <ol>
-                    <li>Lower-level headings should be more prominent than higher-level headings.
-                        (Level 1 should be the most prominent, level 6 the least.)</li>
+                    <li>
+                        Lower-level headings should be more prominent than higher-level headings. (Level 1 should be the most prominent,
+                        level 6 the least.)
+                    </li>
                     <li>Headings of the same level should have the same font style.</li>
                 </ol>
             </li>
@@ -51,14 +58,15 @@ export const HeadingLevel: TestStep = {
             onRender: headingsAssessmentInstanceDetailsColumnRenderer,
         },
     ],
-    reportInstanceFields: [
-        ReportInstanceField.fromPropertyBagField<IHeadingsAssessmentProperties>('Heading text', 'headingText'),
-    ],
-    getAnalyzer: provider => provider.createRuleAnalyzer(AnalyzerConfigurationFactory.forScanner({
-        rules: ['collect-headings'],
-        key: HeadingsTestStep.headingLevel,
-        testType: VisualizationType.HeadingsAssessment,
-    })),
+    reportInstanceFields: [ReportInstanceField.fromPropertyBagField<IHeadingsAssessmentProperties>('Heading text', 'headingText')],
+    getAnalyzer: provider =>
+        provider.createRuleAnalyzer(
+            AnalyzerConfigurationFactory.forScanner({
+                rules: ['collect-headings'],
+                key: HeadingsTestStep.headingLevel,
+                testType: VisualizationType.HeadingsAssessment,
+            }),
+        ),
     getDrawer: provider => provider.createHeadingsDrawer(),
-    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props}/>,
+    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
 };

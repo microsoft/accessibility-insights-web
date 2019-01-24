@@ -9,9 +9,7 @@ import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
 
 const highContrastModeDescription: JSX.Element = (
-    <span>
-        Websites and web apps must honor high contrast appearance settings and functions.
-    </span>
+    <span>Websites and web apps must honor high contrast appearance settings and functions.</span>
 );
 
 const highContrastModeHowToTest: JSX.Element = (
@@ -19,11 +17,12 @@ const highContrastModeHowToTest: JSX.Element = (
         Chrome does not support Windows' high contrast mode.
         <ol>
             <li>Open the target page in Microsoft Edge.</li>
-            <li>Use <Markup.Term>Windows Settings</Markup.Term> > <Markup.Term>Ease of Access</Markup.Term> > <Markup.Term>Color & high contrast</Markup.Term> to apply a high contrast theme.</li>
+            <li>
+                Use <Markup.Term>Windows Settings</Markup.Term> > <Markup.Term>Ease of Access</Markup.Term> >{' '}
+                <Markup.Term>Color & high contrast</Markup.Term> to apply a high contrast theme.
+            </li>
             <li>Verify that the target page adopts the colors specified for the theme.</li>
-            <ManualTestRecordYourResults
-                isMultipleFailurePossible={true}
-            />
+            <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
     </div>
 );

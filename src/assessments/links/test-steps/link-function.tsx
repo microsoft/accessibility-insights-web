@@ -8,9 +8,7 @@ import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { title } from '../../../content/strings/application';
 import * as content from '../../../content/test/links/link-function';
-import {
-    AssessmentVisualizationEnabledToggle,
-} from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
+import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
@@ -26,14 +24,13 @@ const LinkFunctionDescription: JSX.Element = (
 
 const LinkFunctionHowToTest: JSX.Element = (
     <div>
-        For this requirement, {title} highlights anchor elements that are possible custom widgets.
-        These elements don't have an ARIA widget role, but they do have some custom widget markup,
-        such as <Markup.Term>tabindex="-1"</Markup.Term>, an ARIA attribute, a non-widget
+        For this requirement, {title} highlights anchor elements that are possible custom widgets. These elements don't have an ARIA widget
+        role, but they do have some custom widget markup, such as <Markup.Term>tabindex="-1"</Markup.Term>, an ARIA attribute, a non-widget
         role, or no <Markup.Term>href</Markup.Term>.
         <ol>
             <li>
-                In the target page, examine each highlighted anchor element to verify that it functions
-                as a link (i.e., it navigates to new content in the current page or in a new page).
+                In the target page, examine each highlighted anchor element to verify that it functions as a link (i.e., it navigates to new
+                content in the current page or in a new page).
             </li>
             <AssistedTestRecordYourResults />
         </ol>
@@ -85,12 +82,15 @@ export const LinkFunction: TestStep = {
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),
-    getAnalyzer: provider => provider.createRuleAnalyzer(AnalyzerConfigurationFactory.forScanner({
-        rules: ['link-function'],
-        key: LinksTestStep.linkFunction,
-        testType: VisualizationType.LinksAssessment,
-        resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
-    })),
+    getAnalyzer: provider =>
+        provider.createRuleAnalyzer(
+            AnalyzerConfigurationFactory.forScanner({
+                rules: ['link-function'],
+                key: LinksTestStep.linkFunction,
+                testType: VisualizationType.LinksAssessment,
+                resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
+            }),
+        ),
     getDrawer: provider => provider.createHighlightBoxDrawer(),
     updateVisibility: false,
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,

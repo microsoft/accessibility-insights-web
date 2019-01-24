@@ -19,8 +19,8 @@ export const TabStopsAdHocVisualization: IVisualizationConfiguration = {
     key: AdHocTestkeys.TabStops,
     testMode: TestMode.Adhoc,
     getStoreData: data => data.adhoc.tabStops,
-    enableTest: (data, _) => data.enabled = true,
-    disableTest: data => data.enabled = false,
+    enableTest: (data, _) => (data.enabled = true),
+    disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
     displayableData: {
         title: 'Tab stops',
@@ -35,13 +35,14 @@ export const TabStopsAdHocVisualization: IVisualizationConfiguration = {
     analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
     analyzerProgressMessageType: Messages.Visualizations.TabStops.TabbedElementAdded,
     analyzerTerminatedMessageType: Messages.Visualizations.TabStops.TerminateScan,
-    getAnalyzer: provider => provider.createFocusTrackingAnalyzer({
-        key: AdHocTestkeys.TabStops,
-        testType: VisualizationType.TabStops,
-        analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
-        analyzerProgressMessageType: Messages.Visualizations.TabStops.TabbedElementAdded,
-        analyzerTerminatedMessageType: Messages.Visualizations.TabStops.TerminateScan,
-    }),
+    getAnalyzer: provider =>
+        provider.createFocusTrackingAnalyzer({
+            key: AdHocTestkeys.TabStops,
+            testType: VisualizationType.TabStops,
+            analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
+            analyzerProgressMessageType: Messages.Visualizations.TabStops.TabbedElementAdded,
+            analyzerTerminatedMessageType: Messages.Visualizations.TabStops.TerminateScan,
+        }),
     getIdentifier: () => AdHocTestkeys.TabStops,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
     getDrawer: provider => provider.createSVGDrawer(),

@@ -9,7 +9,7 @@ import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
 import { KeyboardInteractionTestStep } from './test-steps';
 
-const description: JSX.Element = (<span>Changing a component's settings must not trigger any unexpected change of context.</span>);
+const description: JSX.Element = <span>Changing a component's settings must not trigger any unexpected change of context.</span>;
 
 const howToTest: JSX.Element = (
     <div>
@@ -20,25 +20,17 @@ const howToTest: JSX.Element = (
                     <li>
                         Enter data in each text field and then <Markup.Term>Tab</Markup.Term> away from the field.
                     </li>
-                    <li>
-                        Change selections for selectable components such as toggle buttons, radio buttons, check boxes, and list boxes.
-                    </li>
+                    <li>Change selections for selectable components such as toggle buttons, radio buttons, check boxes, and list boxes.</li>
                 </ol>
             </li>
             <li>
                 Verify that changing the component's settings does not trigger any unexpected change in context, such as:
                 <ol>
-                    <li>
-                        Submitting a form automatically
-                    </li>
-                    <li>
-                        Launching a new window
-                    </li>
+                    <li>Submitting a form automatically</li>
+                    <li>Launching a new window</li>
                 </ol>
             </li>
-            <ManualTestRecordYourResults
-                isMultipleFailurePossible={true}
-            />
+            <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
     </div>
 );

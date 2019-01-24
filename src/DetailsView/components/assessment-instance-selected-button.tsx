@@ -17,10 +17,7 @@ export interface IAssessmentInstanceSelectedButtonProps {
 
 export class AssessmentInstanceSelectedButton extends React.Component<IAssessmentInstanceSelectedButtonProps> {
     public render(): JSX.Element {
-        const {
-            isVisualizationEnabled,
-            isVisible,
-        } = this.props;
+        const { isVisualizationEnabled, isVisible } = this.props;
 
         const iconStyling = classNames({
             'instance-visibility-button': true,
@@ -36,12 +33,10 @@ export class AssessmentInstanceSelectedButton extends React.Component<IAssessmen
         return (
             <IconButton
                 className={iconStyling}
-                iconProps={
-                    {
-                        className: iconPropsStyling,
-                        iconName: isVisible ? isVisualizationEnabled ? 'view' : 'checkBox' : 'hide2',
-                    }
-                }
+                iconProps={{
+                    className: iconPropsStyling,
+                    iconName: isVisible ? (isVisualizationEnabled ? 'view' : 'checkBox') : 'hide2',
+                }}
                 disabled={!isVisible}
                 onClick={this.onButtonClicked}
                 ariaLabel={`Visualization ${isVisualizationEnabled ? 'enabled' : 'disabled'}`}

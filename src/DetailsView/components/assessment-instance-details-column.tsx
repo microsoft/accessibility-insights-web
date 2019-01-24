@@ -21,21 +21,14 @@ export class AssessmentInstanceDetailsColumn extends React.Component<IAssessment
 
         return (
             <div>
-                 { showLabel ?
-                <div className={classNames}
-                    style={{ background: this.props.background }}
-                >
-                    {this.props.labelText}
-                </div>
-                 : null }
+                {showLabel ? (
+                    <div className={classNames} style={{ background: this.props.background }}>
+                        {this.props.labelText}
+                    </div>
+                ) : null}
                 <div>
-                    <TooltipHost
-                        content={textContent}
-                        calloutProps={{ gapSpace: 0 }}
-                    >
-                        <div className="assessment-instance-textContent">
-                            {textContent}
-                        </div>
+                    <TooltipHost content={textContent} calloutProps={{ gapSpace: 0 }}>
+                        <div className="assessment-instance-textContent">{textContent}</div>
                     </TooltipHost>
                 </div>
             </div>

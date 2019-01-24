@@ -16,11 +16,11 @@ export class FileRequestHelper {
 
             xhttp.timeout = FileRequestHelper.timeoutInMilliSec;
 
-            xhttp.onload = function () {
+            xhttp.onload = function() {
                 resolve(xhttp.responseText);
             };
 
-            xhttp.onerror = function (error) {
+            xhttp.onerror = function(error) {
                 console.log('responce code - ' + error + xhttp.status + '. Unable to fetch metadata for url - ' + url);
                 reject(null);
             };

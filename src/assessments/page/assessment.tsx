@@ -14,7 +14,9 @@ const key = 'page';
 const pageAssessmentTitle = 'Page navigation';
 const { guidance } = content.page;
 
-const pageGettingStartedText: JSX.Element = (<p>This test addresses a variety of page-level requirements that ensure users can find the pages they want.</p>);
+const pageGettingStartedText: JSX.Element = (
+    <p>This test addresses a variety of page-level requirements that ensure users can find the pages they want.</p>
+);
 
 export const PageAssessment: IAssessment = AssessmentBuilder.Assisted({
     key,
@@ -22,10 +24,6 @@ export const PageAssessment: IAssessment = AssessmentBuilder.Assisted({
     gettingStarted: pageGettingStartedText,
     title: pageAssessmentTitle,
     guidance,
-    steps: [
-        PageTitle,
-        FrameTitle,
-        GeneralNavigation,
-    ],
+    steps: [PageTitle, FrameTitle, GeneralNavigation],
     storeDataKey: 'pageAssessment',
 });

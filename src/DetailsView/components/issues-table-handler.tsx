@@ -24,7 +24,6 @@ export interface DetailsGroup extends IGroup {
 }
 
 export class IssuesTableHandler {
-
     public getListProps(failedRules: RuleResult[], showBugFiling: boolean): IListProps {
         let listProps: IListProps;
         const groups: DetailsGroup[] = [];
@@ -61,5 +60,4 @@ export class IssuesTableHandler {
 
         return listProps;
     }
-
 }

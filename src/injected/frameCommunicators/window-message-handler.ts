@@ -5,7 +5,12 @@ import { autobind } from '@uifabric/utilities';
 import { WindowUtils } from '../../common/window-utils';
 import { IErrorMessageContent, IWindowMessage, WindowMessageMarshaller } from './window-message-marshaller';
 
-export type FrameMessageResponseCallback = (result: any, error: IErrorMessageContent, messageSourceWindow: Window,  responder?: FrameMessageResponseCallback) => void;
+export type FrameMessageResponseCallback = (
+    result: any,
+    error: IErrorMessageContent,
+    messageSourceWindow: Window,
+    responder?: FrameMessageResponseCallback,
+) => void;
 
 export class WindowMessageHandler {
     private _windowUtils: WindowUtils;
@@ -42,13 +47,7 @@ export class WindowMessageHandler {
         this._windowUtils.removeEventListener(window, 'message', this.windowMessageHandler, false);
     }
 
-    public post(
-        win: Window,
-        command: string,
-        message: any,
-        callback?: FrameMessageResponseCallback,
-        responseId?: string,
-    ): void {
+    public post(win: Window, command: string, message: any, callback?: FrameMessageResponseCallback, responseId?: string): void {
         const data = this._windowMessageParser.createMessage(command, message, responseId);
 
         this.updateResponseCallbackMap(data.messageId, callback);
@@ -68,12 +67,10 @@ export class WindowMessageHandler {
         try {
             if (callback) {
                 this.processResponseFromPreviousRequest(e.source, data, callback);
-            }
-            else {
+            } else {
                 this.processNewMessage(e.source, data);
             }
-        }
-        catch (err) {
+        } catch (err) {
             this.post(e.source, data.command, err, null, messageId);
         }
     }

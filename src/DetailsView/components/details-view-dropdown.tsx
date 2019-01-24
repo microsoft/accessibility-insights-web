@@ -28,14 +28,8 @@ export class DetailsViewDropDown extends React.Component<IDetailsViewDropDownPro
     public render(): JSX.Element {
         return (
             <div className="details-view-dropdown">
-                <Link
-                    className={'gear-button'}
-                    onClick={this.openDropdown}>
-                    <Icon
-                        className="gear-options-icon"
-                        iconName="Gear"
-                        ariaLabel={'Manage Settings'}
-                    />
+                <Link className={'gear-button'} onClick={this.openDropdown}>
+                    <Icon className="gear-options-icon" iconName="Gear" ariaLabel={'Manage Settings'} />
                 </Link>
                 {this.renderContextMenu()}
             </div>

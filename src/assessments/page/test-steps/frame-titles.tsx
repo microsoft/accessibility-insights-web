@@ -16,17 +16,24 @@ import { ReportInstanceField } from '../../types/report-instance-field';
 import { frameTitleInstanceDetailsColumnRenderer } from '../frametitle-instance-details-column-renderer';
 import { PageTestStep } from './test-steps';
 
-const frameTitleDescription: JSX.Element = (<span>A frame or iframe must have a title that describes its content.</span>);
+const frameTitleDescription: JSX.Element = <span>A frame or iframe must have a title that describes its content.</span>;
 
 const frameTitleHowToTest: JSX.Element = (
     <div>
-        <p>For this requirement, {productName} highlights all <Tag tagName="frame" isBold={false} /> and
-        <Tag tagName="iframe" isBold={false} /> elements with visible content.</p>
-        <Markup.Emphasis> Note: If a frame or iframe doesn't have a title, it will fail an automated check and
-            will not be displayed in the list of instances for this requirement. </Markup.Emphasis>
+        <p>
+            For this requirement, {productName} highlights all <Tag tagName="frame" isBold={false} /> and
+            <Tag tagName="iframe" isBold={false} /> elements with visible content.
+        </p>
+        <Markup.Emphasis>
+            {' '}
+            Note: If a frame or iframe doesn't have a title, it will fail an automated check and will not be displayed in the list of
+            instances for this requirement.{' '}
+        </Markup.Emphasis>
         <ol>
-            <li>Examine each <Tag tagName="frame" isBold={false} /> or <Tag tagName="iframe" isBold={false} />
-                in the <Term>Instances</Term> list below to verify that that its title describes its content.</li>
+            <li>
+                Examine each <Tag tagName="frame" isBold={false} /> or <Tag tagName="iframe" isBold={false} />
+                in the <Term>Instances</Term> list below to verify that that its title describes its content.
+            </li>
             <AssistedTestRecordYourResults />
         </ol>
     </div>
@@ -47,15 +54,16 @@ export const FrameTitle: TestStep = {
             onRender: frameTitleInstanceDetailsColumnRenderer,
         },
     ],
-    reportInstanceFields: [
-        ReportInstanceField.fromPropertyBagField('Frame title', 'frameTitle'),
-    ],
-    getAnalyzer: provider => provider.createRuleAnalyzer(AnalyzerConfigurationFactory.forScanner({
-        rules: ['get-frame-title'],
-        key: PageTestStep.frameTitle,
-        resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
-        testType: VisualizationType.PageAssessment,
-    })),
+    reportInstanceFields: [ReportInstanceField.fromPropertyBagField('Frame title', 'frameTitle')],
+    getAnalyzer: provider =>
+        provider.createRuleAnalyzer(
+            AnalyzerConfigurationFactory.forScanner({
+                rules: ['get-frame-title'],
+                key: PageTestStep.frameTitle,
+                resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
+                testType: VisualizationType.PageAssessment,
+            }),
+        ),
     getDrawer: provider => provider.createFrameDrawer(),
-    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props}/>,
+    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
 };

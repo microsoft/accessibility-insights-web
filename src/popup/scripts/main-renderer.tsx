@@ -15,7 +15,6 @@ import { LaunchPadRowConfigurationFactory } from './launch-pad-row-configuration
 
 export type MainRendererDeps = PopupViewControllerDeps;
 export class MainRenderer {
-
     constructor(
         private readonly deps: MainRendererDeps,
         private readonly popupHandlers: IPopupHandlers,
@@ -30,7 +29,7 @@ export class MainRenderer {
         private readonly launchPadRowConfigurationFactory: LaunchPadRowConfigurationFactory,
         private readonly diagnosticViewToggleFactory: DiagnosticViewToggleFactory,
         private readonly dropdownClickHandler: DropdownClickHandler,
-    ) { }
+    ) {}
 
     public render(): void {
         const container = this.dom.querySelector('#popup-container');

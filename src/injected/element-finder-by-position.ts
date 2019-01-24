@@ -32,17 +32,24 @@ export class ElementFinderByPosition {
     }
 
     public initialize(): void {
-        this.frameCommunicator.subscribe(ElementFinderByPosition.findElementByPositionCommand,
-            this.onfindElementByPosition);
+        this.frameCommunicator.subscribe(ElementFinderByPosition.findElementByPositionCommand, this.onfindElementByPosition);
     }
 
     @autobind
-    protected onfindElementByPosition(message: ElementFinderByPositionMessage, error: IErrorMessageContent, sourceWin: Window, responder?: FrameMessageResponseCallback): void {
-        this.processRequest(message).then(result => {
-            responder(result, null, sourceWin);
-        }, (err => {
-            responder(null, err, sourceWin);
-        }));
+    protected onfindElementByPosition(
+        message: ElementFinderByPositionMessage,
+        error: IErrorMessageContent,
+        sourceWin: Window,
+        responder?: FrameMessageResponseCallback,
+    ): void {
+        this.processRequest(message).then(
+            result => {
+                responder(result, null, sourceWin);
+            },
+            err => {
+                responder(null, err, sourceWin);
+            },
+        );
     }
 
     public processRequest(message: ElementFinderByPositionMessage): Q.IPromise<string[]> {
@@ -64,21 +71,25 @@ export class ElementFinderByPosition {
 
         const elementRect = this.clientUtils.getOffset(element as IBoundRectAccessor);
 
-        this.frameCommunicator.sendMessage<ElementFinderByPositionMessage, string[]>({
-            command: ElementFinderByPosition.findElementByPositionCommand,
-            frame: element as HTMLIFrameElement,
-            message: {
-                x: (message.x + window.scrollX) - elementRect.left,
-                y: (message.y + window.scrollY) - elementRect.top,
-            } as ElementFinderByPositionMessage,
+        this.frameCommunicator
+            .sendMessage<ElementFinderByPositionMessage, string[]>({
+                command: ElementFinderByPosition.findElementByPositionCommand,
+                frame: element as HTMLIFrameElement,
+                message: {
+                    x: message.x + window.scrollX - elementRect.left,
+                    y: message.y + window.scrollY - elementRect.top,
+                } as ElementFinderByPositionMessage,
+            })
+            .then(
+                result => {
+                    path = path.concat(result);
 
-        }).then(result => {
-            path = path.concat(result);
-
-            deferred.resolve(path);
-        }, err => {
-            deferred.reject(null);
-        });
+                    deferred.resolve(path);
+                },
+                err => {
+                    deferred.reject(null);
+                },
+            );
 
         return deferred.promise;
     }

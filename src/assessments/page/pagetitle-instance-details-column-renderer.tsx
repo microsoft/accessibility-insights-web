@@ -5,13 +5,8 @@ import { IAssessmentInstanceRowData } from '../../DetailsView/components/assessm
 import { AssessmentInstanceDetailsColumn } from '../../DetailsView/components/assessment-instance-details-column';
 
 export function pageTitleInstanceDetailsColumnRenderer(item: IAssessmentInstanceRowData<any>): JSX.Element {
-
     const propertyBag = item.instance.propertyBag;
     const textContent = propertyBag ? propertyBag.pageTitle : null;
 
-    return <AssessmentInstanceDetailsColumn
-        background={null}
-        textContent={textContent}
-        tooltipId={null}
-    />;
+    return <AssessmentInstanceDetailsColumn background={null} textContent={textContent} tooltipId={null} />;
 }

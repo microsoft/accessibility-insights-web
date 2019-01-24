@@ -17,7 +17,6 @@ interface ICollapsibleComponentState {
 }
 
 export class CollapsibleComponent extends React.Component<ICollapsibleComponentProps, ICollapsibleComponentState> {
-
     private readonly iconNameDown = 'ChevronDown';
     private readonly iconNameUp = 'ChevronRight';
 
@@ -50,9 +49,7 @@ export class CollapsibleComponent extends React.Component<ICollapsibleComponentP
                     onClick={this.onClick}
                     aria-expanded={showContent}
                 >
-                    <span className="collapsible-title">
-                        {this.props.header}
-                    </span>
+                    <span className="collapsible-title">{this.props.header}</span>
                 </ActionButton>
                 {content}
             </div>

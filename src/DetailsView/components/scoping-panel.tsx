@@ -29,20 +29,21 @@ export class ScopingPanel extends React.Component<IScopingPanelProps> {
                 className="scoping-panel"
                 onDismiss={this.props.actionMessageCreator.closeScopingPanel}
                 closeButtonAriaLabel="Close scoping feature panel"
-                hasCloseButton={true}>
-                    <ScopingContainer
-                        featureFlagData={this.props.featureFlagData}
-                        actionMessageCreator={this.props.actionMessageCreator}
-                        scopingSelectorsData={this.props.scopingSelectorsData}
-                        scopingActionMessageCreator={this.props.scopingActionMessageCreator}
-                        inspectActionMessageCreator={this.props.inspectActionMessageCreator}
-                    />
-                    <DefaultButton
-                        className="closing-scoping-panel"
-                        primary={true}
-                        text="OK"
-                        onClick={this.props.actionMessageCreator.closeScopingPanel}
-                    />
+                hasCloseButton={true}
+            >
+                <ScopingContainer
+                    featureFlagData={this.props.featureFlagData}
+                    actionMessageCreator={this.props.actionMessageCreator}
+                    scopingSelectorsData={this.props.scopingSelectorsData}
+                    scopingActionMessageCreator={this.props.scopingActionMessageCreator}
+                    inspectActionMessageCreator={this.props.inspectActionMessageCreator}
+                />
+                <DefaultButton
+                    className="closing-scoping-panel"
+                    primary={true}
+                    text="OK"
+                    onClick={this.props.actionMessageCreator.closeScopingPanel}
+                />
             </GenericPanel>
         );
     }

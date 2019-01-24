@@ -22,7 +22,10 @@ export const OutcomeChip = NamedSFC<OutcomeChipProps>('OutcomeChip', props => {
             <span className="icon">
                 <OutcomeIcon outcomeType={outcomeType} />
             </span>
-            <span className="count" aria-hidden="true"> {count}</span>
+            <span className="count" aria-hidden="true">
+                {' '}
+                {count}
+            </span>
             <span className="screen-reader-only">{text}</span>
         </span>
     );

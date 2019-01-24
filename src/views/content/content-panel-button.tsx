@@ -8,18 +8,17 @@ import { NamedSFC } from '../../common/react/named-sfc';
 import { ContentProvider, ContentReference } from './content-page';
 
 export type ContentPanelButtonDeps = {
-    contentProvider: ContentProvider,
-    contentActionMessageCreator: ContentActionMessageCreator,
+    contentProvider: ContentProvider;
+    contentActionMessageCreator: ContentActionMessageCreator;
 };
 
 export type ContentPanelButtonProps = {
-    deps: ContentPanelButtonDeps,
-    reference: ContentReference,
-    iconName: string,
+    deps: ContentPanelButtonDeps;
+    reference: ContentReference;
+    iconName: string;
 };
 
 export const ContentPanelButton = NamedSFC<ContentPanelButtonProps>('ContentPanelButton', ({ deps, reference, children, iconName }) => {
-
     const { contentProvider, contentActionMessageCreator } = deps;
 
     if (!reference) {
@@ -29,11 +28,9 @@ export const ContentPanelButton = NamedSFC<ContentPanelButtonProps>('ContentPane
     const contentPath = contentProvider.pathFromReference(reference);
     const onClick = ev => contentActionMessageCreator.openContentPanel(ev, contentPath);
 
-    return <ActionButton
-        iconProps={{ iconName }}
-        onClick={onClick}>
-        {children}
-    </ActionButton>;
-
+    return (
+        <ActionButton iconProps={{ iconName }} onClick={onClick}>
+            {children}
+        </ActionButton>
+    );
 });
-

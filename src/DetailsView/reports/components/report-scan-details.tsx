@@ -25,9 +25,7 @@ export class ReportScanDetails extends React.Component<IReportScanDetailsProps> 
                         <tr>
                             <td className="label">Target page</td>
                             <td>
-                                <span id="page-title">{this.props.pageTitle}</span>
-                                {' '}
-                                (
+                                <span id="page-title">{this.props.pageTitle}</span> (
                                 <NewTabLink href={this.props.pageUrl} aria-labelledby="page-title" title="Navigate to target page">
                                     {this.props.pageUrl}
                                 </NewTabLink>
@@ -40,7 +38,9 @@ export class ReportScanDetails extends React.Component<IReportScanDetailsProps> 
                         </tr>
                         <tr>
                             <td className="label">Scan date/time</td>
-                            <td><FormattedDate date={this.props.scanDate} /></td>
+                            <td>
+                                <FormattedDate date={this.props.scanDate} />
+                            </td>
                         </tr>
                         <tr>
                             <td className="label">Environment</td>
@@ -48,7 +48,9 @@ export class ReportScanDetails extends React.Component<IReportScanDetailsProps> 
                         </tr>
                         <tr>
                             <td className="label">Tool version</td>
-                            <td>{title} {this.props.extensionVersion}; Axe {this.props.axeVersion}</td>
+                            <td>
+                                {title} {this.props.extensionVersion}; Axe {this.props.axeVersion}
+                            </td>
                         </tr>
                     </tbody>
                 </table>

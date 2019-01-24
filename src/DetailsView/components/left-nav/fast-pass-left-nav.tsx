@@ -7,34 +7,20 @@ import { VisualizationType } from '../../../common/types/visualization-type';
 import { NavLinkHandler } from './nav-link-handler';
 import { VisualizationBasedLeftNav, VisualizationBasedLeftNavDeps } from './visualization-based-left-nav';
 
-
 export type FastPassLeftNavDeps = {
     navLinkHandler: NavLinkHandler;
 } & VisualizationBasedLeftNavDeps;
 export type FastPassLeftNavProps = {
-    deps: FastPassLeftNavDeps,
-    selectedKey: string,
+    deps: FastPassLeftNavDeps;
+    selectedKey: string;
 };
 
 export const FastPassLeftNav = NamedSFC<FastPassLeftNavProps>('FastPassLeftNav', props => {
-    const {
-        deps,
-    } = props;
+    const { deps } = props;
 
-    const {
-        navLinkHandler,
-    } = deps;
+    const { navLinkHandler } = deps;
 
-    const tests = [
-        VisualizationType.Issues,
-        VisualizationType.TabStops,
-    ];
+    const tests = [VisualizationType.Issues, VisualizationType.TabStops];
 
-    return (
-        <VisualizationBasedLeftNav
-            {...props}
-            onLinkClick={navLinkHandler.onFastPassTestClick}
-            visualizations={tests}
-        />
-    );
+    return <VisualizationBasedLeftNav {...props} onLinkClick={navLinkHandler.onFastPassTestClick} visualizations={tests} />;
 });

@@ -17,11 +17,15 @@ const audioHowToTest: JSX.Element = (
             <li>Examine the target page to identify any pre-recorded multimedia content (video with synchronized audio).</li>
             <li>Enable audio descriptions, then play the multimedia content.</li>
             <li>Verify that the multimedia content has an audio description.</li>
-            <li>If you find any pre-recorded multimedia content that doesn't have an audio description, select <Markup.Term>Fail</Markup.Term>, then add the failure instance.</li>
-            <li>Verify that the audio description adequately describes important visual content in the media, including information about actions, characters, scene changes, and on-screen text.</li>
-            <ManualTestRecordYourResults
-                isMultipleFailurePossible={true}
-            />
+            <li>
+                If you find any pre-recorded multimedia content that doesn't have an audio description, select{' '}
+                <Markup.Term>Fail</Markup.Term>, then add the failure instance.
+            </li>
+            <li>
+                Verify that the audio description adequately describes important visual content in the media, including information about
+                actions, characters, scene changes, and on-screen text.
+            </li>
+            <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
     </div>
 );

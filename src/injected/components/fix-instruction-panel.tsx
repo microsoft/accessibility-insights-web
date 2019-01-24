@@ -20,12 +20,9 @@ export class FixInstructionPanel extends React.Component<IFixInstructionPanelPro
         return (
             <div>
                 <div className="insights-fix-instruction-title">{title}</div>
-                <ul className="insights-fix-instruction-list">
-                    {this.renderInstructions(this.props.checkType)}
-                </ul>
+                <ul className="insights-fix-instruction-list">{this.renderInstructions(this.props.checkType)}</ul>
             </div>
         );
-
     }
 
     private getPanelTitle(checkType: CheckType, checkCount: number): string {
@@ -41,11 +38,8 @@ export class FixInstructionPanel extends React.Component<IFixInstructionPanelPro
 
     private renderInstructions(checkType: CheckType): JSX.Element[] {
         const instructionList = this.props.checks.map((check, checkIndex) => {
-            return (
-                <li key={`instruction-${CheckType[checkType]}-${checkIndex + 1}`}>{check.message}</li>
-            );
+            return <li key={`instruction-${CheckType[checkType]}-${checkIndex + 1}`}>{check.message}</li>;
         });
         return instructionList;
     }
 }
-

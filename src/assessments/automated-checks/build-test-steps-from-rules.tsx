@@ -22,7 +22,10 @@ function buildAutomatedCheckStep(rule: ScannerRuleInfo): TestStep {
     const howToTest = (
         <React.Fragment>
             {infoElement}
-            <NewTabLink href={rule.url} aria-label={`See more info about ${rule.id} rule`}> See more info here.</NewTabLink>
+            <NewTabLink href={rule.url} aria-label={`See more info about ${rule.id} rule`}>
+                {' '}
+                See more info here.
+            </NewTabLink>
         </React.Fragment>
     );
     const getAnalyzer = (provider: AnalyzerProvider) => {
@@ -83,23 +86,27 @@ function onRenderPathColumn(item: IAssessmentInstanceRowData): JSX.Element {
         textContent = item.instance.target.join(';');
     }
 
-    return <AssessmentInstanceDetailsColumn
-        background={null}
-        labelText={null}
-        textContent={textContent}
-        tooltipId={null}
-        customClassName="not-applicable"
-    />;
+    return (
+        <AssessmentInstanceDetailsColumn
+            background={null}
+            labelText={null}
+            textContent={textContent}
+            tooltipId={null}
+            customClassName="not-applicable"
+        />
+    );
 }
 
 function onRenderSnippetColumn(item: IAssessmentInstanceRowData): JSX.Element {
-    return <AssessmentInstanceDetailsColumn
-        background={null}
-        labelText={null}
-        textContent={item.instance.html}
-        tooltipId={null}
-        customClassName="not-applicable"
-    />;
+    return (
+        <AssessmentInstanceDetailsColumn
+            background={null}
+            labelText={null}
+            textContent={item.instance.html}
+            tooltipId={null}
+            customClassName="not-applicable"
+        />
+    );
 }
 
 function getInstanceStatus(result: DecoratedAxeNodeResult): ManualTestStatus {

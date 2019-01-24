@@ -16,10 +16,7 @@ export interface IRuleWithA11YCriteria {
 
 export class RuleSifter {
     private readonly bestPracticeText = 'Best Practice';
-    constructor(
-        private ruleSet: IRuleInfo[],
-        private ruleToLinksMap: IDictionaryStringTo<HyperlinkDefinition[]>,
-    ) {}
+    constructor(private ruleSet: IRuleInfo[], private ruleToLinksMap: IDictionaryStringTo<HyperlinkDefinition[]>) {}
 
     public getSiftedRules(): IRuleWithA11YCriteria[] {
         return this.ruleSet.reduce((filteredArray: IRuleWithA11YCriteria[], rule: IRuleInfo) => {

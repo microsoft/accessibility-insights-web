@@ -21,7 +21,8 @@ import { TestViewDeps } from './test-view';
 
 export type TestViewContainerDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-} & TestViewDeps & OverviewContainerDeps;
+} & TestViewDeps &
+    OverviewContainerDeps;
 
 export interface TestViewContainerProps {
     deps: TestViewContainerDeps;
@@ -39,10 +40,8 @@ export interface TestViewContainerProps {
     issuesTableHandler: IssuesTableHandler;
 }
 
-export const TestViewContainer = NamedSFC<TestViewContainerProps>(
-    'TestViewContainer', props => {
-        const configuration = props.visualizationConfigurationFactory.getConfiguration(props.selectedTest);
-        const testViewProps = { configuration, ...props };
-        return configuration.getTestView(testViewProps);
-    },
-);
+export const TestViewContainer = NamedSFC<TestViewContainerProps>('TestViewContainer', props => {
+    const configuration = props.visualizationConfigurationFactory.getConfiguration(props.selectedTest);
+    const testViewProps = { configuration, ...props };
+    return configuration.getTestView(testViewProps);
+});

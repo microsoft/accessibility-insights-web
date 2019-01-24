@@ -2,5 +2,4 @@
 // Licensed under the MIT License.
 export class ConnectionNames {
     public static readonly devTools: string = 'insights-dev-tools';
-
 }

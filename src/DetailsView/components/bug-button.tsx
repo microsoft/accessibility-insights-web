@@ -6,12 +6,11 @@ import * as React from 'react';
 
 export class BugButton extends React.Component {
     public render(): JSX.Element {
-            return (
-                <Link className="bugs-details-view">
-                    <Icon className="create-bug-button" iconName="Add" />
-                    {'New bug'}
-                </Link>
-            );
+        return (
+            <Link className="bugs-details-view">
+                <Icon className="create-bug-button" iconName="Add" />
+                {'New bug'}
+            </Link>
+        );
     }
 }
-

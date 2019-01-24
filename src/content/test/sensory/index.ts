@@ -6,7 +6,7 @@ import * as flashing from './flashing';
 import * as instructions from './instructions';
 import * as useOfColor from './use-of-color';
 
-export const sensory  = {
+export const sensory = {
     guidance,
     auditoryCues,
     flashing,

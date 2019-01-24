@@ -20,35 +20,29 @@ const key = 'customWidgets';
 const title = 'Custom widgets';
 const { guidance } = content.customWidgets;
 const gettingStarted: JSX.Element = (
-  <React.Fragment>
-    <p>
-      A <Markup.Emphasis>widget</Markup.Emphasis> is an interactive interface component, such as a link, button, or combo box.
-    </p>
-    <p>
-      A <Markup.Emphasis>custom widget</Markup.Emphasis> is an interactive interface component other than a link or native HTML element.
-      Custom widgets can be simple (e.g., a link or a button) or complex (e.g., a text field, listbox, and button that together function as a combo box).
-    </p>
-    <p>
-      Each custom widget should follow the <NewTabLink href="https://www.w3.org/TR/wai-aria-practices-1.1/">
-       ARIA design pattern
-      </NewTabLink> that best describes its function.
-    </p>
-  </React.Fragment>
+    <React.Fragment>
+        <p>
+            A <Markup.Emphasis>widget</Markup.Emphasis> is an interactive interface component, such as a link, button, or combo box.
+        </p>
+        <p>
+            A <Markup.Emphasis>custom widget</Markup.Emphasis> is an interactive interface component other than a link or native HTML
+            element. Custom widgets can be simple (e.g., a link or a button) or complex (e.g., a text field, listbox, and button that
+            together function as a combo box).
+        </p>
+        <p>
+            Each custom widget should follow the{' '}
+            <NewTabLink href="https://www.w3.org/TR/wai-aria-practices-1.1/">ARIA design pattern</NewTabLink> that best describes its
+            function.
+        </p>
+    </React.Fragment>
 );
 
 export const CustomWidgets: IAssessment = AssessmentBuilder.Assisted({
-  key,
-  type: VisualizationType.CustomWidgets,
-  title,
-  gettingStarted,
-  guidance,
-  steps: [
-    DesignPattern,
-    Instructions,
-    Label,
-    RoleStateProperty,
-    Cues,
-    KeyboardInteraction,
-  ],
-  storeDataKey: 'customWidgetsAssessment',
+    key,
+    type: VisualizationType.CustomWidgets,
+    title,
+    gettingStarted,
+    guidance,
+    steps: [DesignPattern, Instructions, Label, RoleStateProperty, Cues, KeyboardInteraction],
+    storeDataKey: 'customWidgetsAssessment',
 });

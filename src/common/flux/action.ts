@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 export class Action<TPayload> {
-
     /**
      * A mutex to ensure that only one action in a given scope is executing at any time.
      * This prevents cascading actions.

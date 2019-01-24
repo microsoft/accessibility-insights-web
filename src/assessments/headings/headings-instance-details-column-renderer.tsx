@@ -9,7 +9,6 @@ import { HeadingFormatter } from '../../injected/visualization/heading-formatter
 export function headingsAssessmentInstanceDetailsColumnRenderer(
     item: IAssessmentInstanceRowData<IHeadingsAssessmentProperties>,
 ): JSX.Element {
-
     const propertyBag = item.instance.propertyBag;
     const textContent = propertyBag ? propertyBag.headingText : null;
     const headingLevel = propertyBag ? propertyBag.headingLevel : null;
@@ -21,11 +20,13 @@ export function headingsAssessmentInstanceDetailsColumnRenderer(
         customClass = 'not-applicable';
     }
 
-    return <AssessmentInstanceDetailsColumn
-        background={background}
-        labelText={labelText}
-        textContent={textContent}
-        tooltipId={null}
-        customClassName={customClass}
-    />;
+    return (
+        <AssessmentInstanceDetailsColumn
+            background={background}
+            labelText={labelText}
+            textContent={textContent}
+            tooltipId={null}
+            customClassName={customClass}
+        />
+    );
 }

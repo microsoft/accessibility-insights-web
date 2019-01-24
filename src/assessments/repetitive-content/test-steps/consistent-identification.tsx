@@ -8,16 +8,25 @@ import ManualTestRecordYourResults from '../../common/manual-test-record-your-re
 import { TestStep } from '../../types/test-step';
 import { RepetitiveContentTestStep } from './test-steps';
 
-const consistentIdentificationDescription: JSX.Element = <span>Functional components that appear on multiple pages must be identified consistently.</span>;
+const consistentIdentificationDescription: JSX.Element = (
+    <span>Functional components that appear on multiple pages must be identified consistently.</span>
+);
 
 const consistentIdentificationHowToTest: JSX.Element = (
     <div>
         <ol>
-            <li>Examine the target page to identify any functional components (such as links, widgets, icons, images, headings, etc.) that appear on multiple pages.</li>
-            <li>Use the <NewTabLink href="https://developers.google.com/web/updates/2018/01/devtools">Accessibility pane in the Chrome Developer Tools</NewTabLink> to verify that the component has the same accessible name each time it appears.</li>
-            <ManualTestRecordYourResults
-                isMultipleFailurePossible={true}
-            />
+            <li>
+                Examine the target page to identify any functional components (such as links, widgets, icons, images, headings, etc.) that
+                appear on multiple pages.
+            </li>
+            <li>
+                Use the{' '}
+                <NewTabLink href="https://developers.google.com/web/updates/2018/01/devtools">
+                    Accessibility pane in the Chrome Developer Tools
+                </NewTabLink>{' '}
+                to verify that the component has the same accessible name each time it appears.
+            </li>
+            <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
     </div>
 );
