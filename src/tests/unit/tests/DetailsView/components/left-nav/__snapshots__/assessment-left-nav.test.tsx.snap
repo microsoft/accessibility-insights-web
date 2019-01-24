@@ -44,6 +44,7 @@ exports[`AssessmentLeftNav render with status icon 2`] = `
 <div>
   <StatusIcon
     className="dark-gray"
+    level="test"
     status={-1}
   />
 </div>

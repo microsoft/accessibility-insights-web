@@ -24,6 +24,7 @@ exports[`TestStepLink renders with index 1`] = `
     </span>
   </div>
   <StatusIcon
+    level="requirement"
     status={0}
   />
 </div>
@@ -48,6 +49,7 @@ exports[`TestStepLink renders without index 1`] = `
     </span>
   </div>
   <StatusIcon
+    level="requirement"
     status={0}
   />
 </div>
