@@ -46,6 +46,6 @@
             "sourceMapPathOverrides": {
                 "webpack:///./*": "${workspaceFolder}/*"
             }
-        },
+        }
     ]
 }
