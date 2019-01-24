@@ -84,5 +84,3 @@ exports[`Settings Dropdown content should match snapshot 1`] = `
   </div>
 </DocumentFragment>
 `;
-
-exports[`Settings Dropdown should pass accessibility validation 1`] = `Array []`;
