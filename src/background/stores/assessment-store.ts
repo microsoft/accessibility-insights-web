@@ -201,10 +201,11 @@ export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
     private onRemoveFailureInstance(payload: IRemoveFailureInstancePayload): void {
         const config = this.assessmentsProvider.forType(payload.test).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
-        assessmentData.manualTestStepResultMap[payload.step].instances = assessmentData.manualTestStepResultMap[payload.step].instances
-            .filter(instance => {
-                return instance.id !== payload.id;
-            });
+        assessmentData.manualTestStepResultMap[payload.step].instances = assessmentData.manualTestStepResultMap[
+            payload.step
+        ].instances.filter(instance => {
+            return instance.id !== payload.id;
+        });
         this.updateManualTestStepStatus(assessmentData, payload.step, payload.test);
 
         this.emitChanged();

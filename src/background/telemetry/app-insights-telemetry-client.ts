@@ -26,9 +26,7 @@ export class AppInsightsTelemetryClient implements TelemetryClient {
         private readonly appInsights: Microsoft.ApplicationInsights.IAppInsights,
         private readonly coreTelemetryDataFactory: ApplicationTelemetryDataFactory,
         private readonly logger: TelemetryLogger,
-    ) {
-
-    }
+    ) {}
 
     private initialize() {
         if (this.initialized) {
@@ -78,8 +76,7 @@ export class AppInsightsTelemetryClient implements TelemetryClient {
 
         if (this.appInsights.queue) {
             this.appInsights.queue.push(disableTelemetry);
-        }
-        else {
+        } else {
             disableTelemetry();
         }
     }

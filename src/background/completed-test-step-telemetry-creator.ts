@@ -63,8 +63,10 @@ export class CompletedTestStepTelemetryCreator {
     private isNewCompletedTestStep(assessment: IAssessment, step: TestStep): boolean {
         const newStatus = this.store.getState().assessments[assessment.key].testStepStatus;
         const oldStatus = this.oldTestStates[assessment.key];
-        return newStatus[step.key].stepFinalResult !== oldStatus[step.key].stepFinalResult &&
-            newStatus[step.key].stepFinalResult !== ManualTestStatus.UNKNOWN;
+        return (
+            newStatus[step.key].stepFinalResult !== oldStatus[step.key].stepFinalResult &&
+            newStatus[step.key].stepFinalResult !== ManualTestStatus.UNKNOWN
+        );
     }
 
     private createTelemetryInfo(assessment: IAssessment, step: TestStep): RequirementStatusTelemetryData {
@@ -75,7 +77,8 @@ export class CompletedTestStepTelemetryCreator {
             assessment.type,
             step.key,
             newStatus[step.key].stepFinalResult === ManualTestStatus.PASS,
-            numInstances);
+            numInstances,
+        );
     }
 
     private getNumInstances(step: TestStep, assessmentData: IAssessmentData): number {

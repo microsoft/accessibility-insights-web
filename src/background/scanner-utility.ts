@@ -9,9 +9,7 @@ import { WindowUtils } from '../common/window-utils';
 
 export class ScannerUtility {
     public static scanTimeoutMilliSeconds = 0;
-    constructor(
-        private interpreter: Interpreter,
-        private windowUtils: WindowUtils) {}
+    constructor(private interpreter: Interpreter, private windowUtils: WindowUtils) {}
 
     public executeScan = (test: VisualizationType, step: string, tabId: number): void => {
         const payload: IAssessmentToggleActionPayload = {
@@ -29,5 +27,5 @@ export class ScannerUtility {
         this.windowUtils.setTimeout(() => {
             this.interpreter.interpret(message);
         }, ScannerUtility.scanTimeoutMilliSeconds);
-    }
+    };
 }

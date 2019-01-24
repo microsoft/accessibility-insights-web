@@ -18,11 +18,7 @@ export class MessageDistributor {
     private readonly _broadcaster: TabContextBroadcaster;
     private _browserAdapter: BrowserAdapter;
 
-    constructor(
-        globalContext: GlobalContext,
-        tabIdToContextMap: TabToContextMap,
-        browserAdapter: BrowserAdapter,
-    ) {
+    constructor(globalContext: GlobalContext, tabIdToContextMap: TabToContextMap, browserAdapter: BrowserAdapter) {
         this._globalContext = globalContext;
         this._tabtoContextMap = tabIdToContextMap;
         this._browserAdapter = browserAdapter;
@@ -42,20 +38,17 @@ export class MessageDistributor {
         if (!isInterpretedUsingGlobalContext && !isInterpretedUsingTabContext) {
             console.log('Unable to interpret message - ', message);
         }
-
     }
 
     private getTabId(message: IMessage, sender?: ISender): number {
         if (message != null && message.tabId != null) {
             return message.tabId;
-        }
-        else if (sender != null && sender.tab != null && sender.tab.id != null) {
+        } else if (sender != null && sender.tab != null && sender.tab.id != null) {
             return sender.tab.id;
         }
 
         return null;
     }
-
 
     private tryInterpretUsingTabContext(message: IMessage) {
         let hasInterpreted: boolean;

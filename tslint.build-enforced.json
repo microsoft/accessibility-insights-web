@@ -38,7 +38,7 @@
         "one-variable-per-declaration": [true, "ignore-for-loop"],
         "quotemark": [true, "single", "avoid-escape", "jsx-double"],
         "radix": true,
-        "semicolon": [true, "always"],
+        "semicolon": [true, "always", "ignore-bound-class-methods"],
         "trailing-comma": [true, { "multiline": "always", "singleline": "never" }],
         "triple-equals": [true, "allow-null-check", "allow-undefined-check"],
         "typedef-whitespace": [

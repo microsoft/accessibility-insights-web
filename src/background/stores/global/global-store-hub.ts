@@ -53,7 +53,8 @@ export class GlobalStoreHub implements IStoreHub {
         this.userConfigurationStore = new UserConfigurationStore(
             persistedData.userConfigurationData,
             globalActionHub.userConfigurationActions,
-            indexedDbInstance);
+            indexedDbInstance,
+        );
     }
 
     public initialize(): void {

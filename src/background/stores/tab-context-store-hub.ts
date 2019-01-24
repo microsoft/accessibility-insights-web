@@ -20,10 +20,7 @@ export class TabContextStoreHub implements IStoreHub {
     public detailsViewStore: DetailsViewStore;
     public inspectStore: InspectStore;
 
-    constructor(
-        actionHub: ActionHub,
-        visualizationConfigurationFactory: VisualizationConfigurationFactory,
-    ) {
+    constructor(actionHub: ActionHub, visualizationConfigurationFactory: VisualizationConfigurationFactory) {
         this.visualizationStore = new VisualizationStore(
             actionHub.visualizationActions,
             actionHub.tabActions,

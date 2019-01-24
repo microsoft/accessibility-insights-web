@@ -54,11 +54,9 @@ export class CommandStore extends BaseStore<ICommandStoreData> {
             return [];
         }
 
-        const modifiedCommands: chrome.commands.Command[] = currentCommands.filter(
-            (command: chrome.commands.Command, index: number) => {
-                return command.shortcut !== this.state.commands[index].shortcut;
-            },
-        );
+        const modifiedCommands: chrome.commands.Command[] = currentCommands.filter((command: chrome.commands.Command, index: number) => {
+            return command.shortcut !== this.state.commands[index].shortcut;
+        });
 
         return modifiedCommands;
     }

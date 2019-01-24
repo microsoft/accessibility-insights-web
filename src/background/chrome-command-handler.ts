@@ -57,30 +57,27 @@ export class ChromeCommandHandler {
     private onCommand(commandId: string) {
         const tabQueryParams: chrome.tabs.QueryInfo = { active: true, currentWindow: true };
 
-        this.chromeAdapter.tabsQuery(
-            tabQueryParams,
-            (tabs: chrome.tabs.Tab[]) => {
-                const currentTab = tabs && tabs[0];
+        this.chromeAdapter.tabsQuery(tabQueryParams, (tabs: chrome.tabs.Tab[]) => {
+            const currentTab = tabs && tabs[0];
 
-                if (!currentTab) {
-                    return;
-                }
+            if (!currentTab) {
+                return;
+            }
 
-                const tabId = currentTab.id;
-                const tabContext = this.tabToContextMap[tabId];
-                this.targetTabUrl = currentTab.url;
+            const tabId = currentTab.id;
+            const tabContext = this.tabToContextMap[tabId];
+            this.targetTabUrl = currentTab.url;
 
-                if (!tabContext) {
-                    return;
-                }
+            if (!tabContext) {
+                return;
+            }
 
-                this.checkAccessUrl().then(hasAccess => {
-
+            this.checkAccessUrl().then(
+                hasAccess => {
                     if (hasAccess === false) {
                         if (UrlValidator.isFileUrl(currentTab.url)) {
                             this.notificationCreator.createNotification(DisplayableStrings.fileUrlDoesNotHaveAccess);
-                        }
-                        else {
+                        } else {
                             this.notificationCreator.createNotification(DisplayableStrings.urlNotScannable.join('\n'));
                         }
 
@@ -100,10 +97,12 @@ export class ChromeCommandHandler {
                         this.createEnableNotificationIfCurrentStateIsDisabled(visualizationType, state);
                         this.invokeToggleAction(visualizationType, state, tabId);
                     }
-                }, err => {
+                },
+                err => {
                     console.log('Error occurred at chrome command handler:', err);
-                });
-            });
+                },
+            );
+        });
     }
 
     private getVisualizationTypeFromCommand(commandId: string): VisualizationType {
