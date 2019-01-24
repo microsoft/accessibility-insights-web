@@ -17,23 +17,25 @@ export type AssessmentLevel = 'test' | 'requirement';
 
 export class StatusIcon extends React.Component<IStatusIconProps> {
     public render(): JSX.Element {
+        const outcomeTypeSemantics = outcomeTypeSemanticsFromTestStatus(this.props.status);
+        const pastTenseOutCome = outcomeTypeSemantics && outcomeTypeSemantics.pastTense;
         switch (this.props.status) {
             case ManualTestStatus.PASS:
                 return this.renderIcon(
                     'completedSolid',
-                    `${outcomeTypeSemanticsFromTestStatus(this.props.status).pastTense} ${this.props.level}`,
+                    `${pastTenseOutCome} ${this.props.level}`,
                     css('positive-outcome-icon', this.props.className),
                 );
             case ManualTestStatus.FAIL:
                 return this.renderIcon(
-                    'StatusErrorFull', `${outcomeTypeSemanticsFromTestStatus(this.props.status).pastTense} ${this.props.level}`,
+                    'StatusErrorFull', `${pastTenseOutCome} ${this.props.level}`,
                     css('negative-outcome-icon', this.props.className),
                 );
             case ManualTestStatus.UNKNOWN:
             default:
                 return this.renderIcon(
                     'circleRing',
-                    `${outcomeTypeSemanticsFromTestStatus(ManualTestStatus.UNKNOWN).pastTense} ${this.props.level}`,
+                    `incomplete ${this.props.level}`,
                 );
         }
     }
