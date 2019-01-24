@@ -4,7 +4,6 @@ import { AxeResultsWithFrameLevel, IAssessmentVisualizationInstance } from '../f
 import { IDrawerConfiguration, IFormatter } from './iformatter';
 import { FailureInstanceFormatter } from './failure-instance-formatter';
 
-
 export interface IFrameStyleConfiguration {
     borderColor: string;
     fontColor: string;
@@ -12,26 +11,27 @@ export interface IFrameStyleConfiguration {
 }
 
 export class FrameFormatter extends FailureInstanceFormatter {
-
     public static frameStyles: { [frameType: string]: IFrameStyleConfiguration } = {
-        'frame': {
+        frame: {
             borderColor: '#0066CC',
             fontColor: '#FFFFFF',
             contentText: 'F',
         },
-        'iframe': {
+        iframe: {
             borderColor: '#00CC00',
             fontColor: '#FFFFFF',
             contentText: 'I',
         },
-        'default': {
+        default: {
             borderColor: '#C00000',
             fontColor: '#FFFFFF',
             contentText: '',
         },
     };
 
-    public getDialogRenderer() { return null; }
+    public getDialogRenderer() {
+        return null;
+    }
 
     public getDrawerConfiguration(element: HTMLElement, data: IAssessmentVisualizationInstance): IDrawerConfiguration {
         const frameType = element.tagName.toLowerCase();
@@ -56,4 +56,3 @@ export class FrameFormatter extends FailureInstanceFormatter {
         return drawerConfig;
     }
 }
-

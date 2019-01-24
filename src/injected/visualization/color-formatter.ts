@@ -11,7 +11,6 @@ import { WindowUtils } from '../../common/window-utils';
 import { IDrawerConfiguration, IFormatter, IColorDrawerConfiguration } from './iformatter';
 
 export class ColorFormatter implements IFormatter {
-
     public getDrawerConfiguration(): IColorDrawerConfiguration {
         const config: IColorDrawerConfiguration = {
             grayScaleClassName: 'insights-grey-scale-container',

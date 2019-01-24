@@ -66,5 +66,4 @@ export class IssuesFormatter implements IFormatter {
         const ruleIds = Object.keys(data.ruleResults);
         return `Failed rules: ${ruleIds.join(', ')}`;
     }
-
 }

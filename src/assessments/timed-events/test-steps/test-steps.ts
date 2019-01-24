@@ -4,5 +4,5 @@ export enum TimedEventsTestStep {
     audioControl = 'audio-control',
     timeLimits = 'time-limits',
     movingContent = 'moving-content',
-    autoUpdatingContent= 'auto-updating-content',
+    autoUpdatingContent = 'auto-updating-content',
 }

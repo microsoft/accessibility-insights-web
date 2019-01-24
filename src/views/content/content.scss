@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import "../../common/icons/icon.scss";
+@import '../../common/icons/icon.scss';
 @import '../../common/styles/colors.scss';
 
 .content-container {
     display: flex;
 
-    .content-left,.content-right {
+    .content-left,
+    .content-right {
         flex-grow: 1;
         max-width: 150px;
     }
@@ -16,26 +17,26 @@
     flex-grow: 10;
     max-width: 1120px;
 
-    font-family: "Segoe UI";
+    font-family: 'Segoe UI';
     font-size: 14px;
     margin: 10px;
 
     table {
-        font-family: "Segoe UI";
+        font-family: 'Segoe UI';
         font-size: 14px;
     }
 
     h1 {
         font-size: 28px;
         font-weight: 700;
-        letter-spacing: -.04em;
+        letter-spacing: -0.04em;
         line-height: 40px;
     }
 
     h2 {
         font-size: 21px;
         font-weight: 700;
-        letter-spacing: -.02em;
+        letter-spacing: -0.02em;
         line-height: 32px;
     }
 
@@ -67,7 +68,6 @@
         }
     }
     .code-example {
-
         .code-example-code {
             font-family: monospace;
             margin-block-start: 1em;
@@ -94,7 +94,7 @@
         max-width: 520px;
     }
 
-    .column+.column {
+    .column + .column {
         margin-left: 80px;
     }
 
@@ -109,20 +109,25 @@
     .pass-fail-grid {
         display: grid;
         grid-template-areas:
-            "fail-section pass-section"
-            "fail-example pass-example";
-            border: 1px solid $neutral-60;
-        }
+            'fail-section pass-section'
+            'fail-example pass-example';
+        border: 1px solid $neutral-60;
+    }
 
-    .fail-section, .fail-example, .pass-section, .pass-example {
+    .fail-section,
+    .fail-example,
+    .pass-section,
+    .pass-example {
         padding: 15px;
     }
 
-    .fail-example, .pass-example {
+    .fail-example,
+    .pass-example {
         border-top: 1px solid $neutral-60;
     }
 
-    .fail-section, .fail-example {
+    .fail-section,
+    .fail-example {
         border-right: 1px solid $neutral-60;
     }
 
@@ -142,11 +147,15 @@
         grid-area: pass-example;
     }
 
-    .do-header, .pass-header, .dont-header, .fail-header {
+    .do-header,
+    .pass-header,
+    .dont-header,
+    .fail-header {
         width: 100%;
     }
 
-    .do-header, .dont-header {
+    .do-header,
+    .dont-header {
         .check-container {
             margin-top: 9px;
             float: right;
@@ -157,34 +166,41 @@
         }
     }
 
-    .pass-header, .fail-header {
+    .pass-header,
+    .fail-header {
         h3 {
             display: inline;
         }
     }
 
-    .do-header, .pass-header {
+    .do-header,
+    .pass-header {
         .check-container {
             border-color: $do-color;
             background-color: $do-color;
         }
     }
 
-    .dont-header, .fail-header {
+    .dont-header,
+    .fail-header {
         .check-container {
             border-color: $dont-color;
             background-color: $dont-color;
         }
     }
 
-    .do-section, .pass-section, .pass-example {
+    .do-section,
+    .pass-section,
+    .pass-example {
         .highlight {
             color: $do-color;
             font-weight: bold;
         }
     }
 
-    .dont-section, .fail-section, .fail-example {
+    .dont-section,
+    .fail-section,
+    .fail-example {
         .highlight {
             color: $dont-color;
             font-weight: bold;
@@ -224,7 +240,6 @@
     }
 
     .landmark-table {
-
         border-spacing: 5px;
         padding-left: 32px;
 
@@ -232,7 +247,8 @@
             text-align: center;
         }
 
-        td,th {
+        td,
+        th {
             padding: 5px;
             vertical-align: text-top;
         }
@@ -322,5 +338,5 @@
         &.form-landmark {
             background-color: $landmark-form;
         }
-}
+    }
 }

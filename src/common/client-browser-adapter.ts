@@ -31,10 +31,7 @@ export class ClientChromeAdapter implements ClientBrowserAdapter {
     }
 
     public connect(connectionInfo?: chrome.runtime.ConnectInfo): chrome.runtime.Port {
-        return chrome.runtime.connect(
-            chrome.runtime.id,
-            connectionInfo,
-        );
+        return chrome.runtime.connect(chrome.runtime.id, connectionInfo);
     }
 
     public getManifest(): chrome.runtime.Manifest {

@@ -21,8 +21,30 @@ export const customWidgetConfiguration: RuleConfiguration = {
 };
 
 function createSelector(): string {
-    const roles = ['alert', 'alertdialog', 'button', 'checkbox', 'combobox', 'dialog', 'feed', 'grid', 'link', 'listbox', 'menu', 'menubar',
-        'radiogroup', 'separator', 'slider', 'spinbutton', 'table', 'tablist', 'toolbar', 'tooltip', 'tree', 'treegrid'];
+    const roles = [
+        'alert',
+        'alertdialog',
+        'button',
+        'checkbox',
+        'combobox',
+        'dialog',
+        'feed',
+        'grid',
+        'link',
+        'listbox',
+        'menu',
+        'menubar',
+        'radiogroup',
+        'separator',
+        'slider',
+        'spinbutton',
+        'table',
+        'tablist',
+        'toolbar',
+        'tooltip',
+        'tree',
+        'treegrid',
+    ];
 
     const selectors = [];
     roles.forEach((role: string) => {

@@ -7,11 +7,8 @@ import { VisualizationType } from '../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../actions/details-view-action-message-creator';
 import { BaseLeftNavLink } from '../base-left-nav';
 
-
 export class NavLinkHandler {
-    constructor(
-        private detailsViewActionMessageCreator: DetailsViewActionMessageCreator,
-    ) {}
+    constructor(private detailsViewActionMessageCreator: DetailsViewActionMessageCreator) {}
 
     @autobind
     public onOverviewClick(): void {
@@ -20,10 +17,10 @@ export class NavLinkHandler {
 
     public onFastPassTestClick = (event: React.MouseEvent<HTMLElement>, item: BaseLeftNavLink) => {
         this.detailsViewActionMessageCreator.selectDetailsView(event, VisualizationType[item.key], DetailsViewPivotType.fastPass);
-    }
+    };
 
     public onAssessmentTestClick = (event: React.MouseEvent<HTMLElement>, item: BaseLeftNavLink) => {
         this.detailsViewActionMessageCreator.selectDetailsView(event, VisualizationType[item.key], DetailsViewPivotType.assessment);
         this.detailsViewActionMessageCreator.changeRightContentPanel('TestView');
-    }
+    };
 }

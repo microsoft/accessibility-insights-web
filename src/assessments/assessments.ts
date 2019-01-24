@@ -23,7 +23,6 @@ import { TimedEventsAssessment } from './timed-events/assessment';
 import { IAssessmentsProvider } from './types/iassessments-provider';
 import { VisibleFocusOrderAssessment } from './visible-focus-order/assessment';
 
-
 export const Assessments: IAssessmentsProvider = AssessmentsProvider.Create([
     AutomatedChecks,
     KeyboardInteraction,

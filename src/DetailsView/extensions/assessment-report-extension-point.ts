@@ -4,7 +4,7 @@ import { createCallChainExtensionPoint } from '../../common/extensibility/extens
 import { IRequirementReportModel } from '../reports/assessment-report-model';
 
 const defaultComponent = {
-    alterRequirementReportModel: (model: IRequirementReportModel) => { },
+    alterRequirementReportModel: (model: IRequirementReportModel) => {},
 };
 
 export const assessmentReportExtensionPoint = createCallChainExtensionPoint('assessmentReportExtensionPoint', defaultComponent);

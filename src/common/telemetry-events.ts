@@ -159,13 +159,13 @@ export interface IssuesAnalyzerScanTelemetryData extends RuleAnalyzerScanTelemet
 }
 
 export type TelemetryData =
-    ToggleTelemetryData |
-    FeatureFlagToggleTelemetryData |
-    DetailsViewOpenTelemetryData |
-    DetailsViewPivotSelectedTelemetryData |
-    DetailsViewTargetLinkClickTelemetryData |
-    ModifiedCommandsTelemetryData |
-    InspectTelemetryData |
-    AssessmentTelemetryData |
-    TestStepActionTelemetryData |
-    RequirementStatusTelemetryData;
+    | ToggleTelemetryData
+    | FeatureFlagToggleTelemetryData
+    | DetailsViewOpenTelemetryData
+    | DetailsViewPivotSelectedTelemetryData
+    | DetailsViewTargetLinkClickTelemetryData
+    | ModifiedCommandsTelemetryData
+    | InspectTelemetryData
+    | AssessmentTelemetryData
+    | TestStepActionTelemetryData
+    | RequirementStatusTelemetryData;

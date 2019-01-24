@@ -11,8 +11,8 @@ import { getRequirementsResults, RequirementResult } from './requirement';
 export type AssessmentTestDefinition = IAssessment;
 
 export type AssessmentTestProviderDeps = {
-    outcomeStatsFromManualTestStatus: (testStepStatus: IManualTestStatus) => OutcomeStats,
-    getRequirementsResults: (provider: IAssessmentsProvider, type: VisualizationType, stepStatus: IManualTestStatus) => RequirementResult[],
+    outcomeStatsFromManualTestStatus: (testStepStatus: IManualTestStatus) => OutcomeStats;
+    getRequirementsResults: (provider: IAssessmentsProvider, type: VisualizationType, stepStatus: IManualTestStatus) => RequirementResult[];
 };
 
 const depDefaults = {
@@ -25,7 +25,8 @@ export class AssessmentTestResult {
         private readonly assessmentProvider: IAssessmentsProvider,
         public readonly type: VisualizationType,
         public readonly data: IAssessmentData,
-        private readonly deps: AssessmentTestProviderDeps = depDefaults) { }
+        private readonly deps: AssessmentTestProviderDeps = depDefaults,
+    ) {}
 
     public getRequirementResult(requirementKey: string): RequirementResult {
         return this.getRequirementResults().find(r => r.definition.key === requirementKey);
@@ -43,4 +44,3 @@ export class AssessmentTestResult {
         return this.assessmentProvider.forType(this.type);
     }
 }
-

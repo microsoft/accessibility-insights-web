@@ -14,20 +14,13 @@ export class ReportGenerator {
         private reportNameGenerator: ReportNameGenerator,
         private reportHtmlGenerator: ReportHtmlGenerator,
         private assessmentReportHtmlGenerator: AssessmentReportHtmlGenerator,
-    ) {
-    }
+    ) {}
 
     public generateName(scanDate: Date, pageTitle: string): string {
         return this.reportNameGenerator.generateName(scanDate, pageTitle);
     }
 
-    public generateHtml(
-        scanResult: ScanResults,
-        scanDate: Date,
-        pageTitle: string,
-        pageUrl: string,
-        description: string,
-    ): string {
+    public generateHtml(scanResult: ScanResults, scanDate: Date, pageTitle: string, pageUrl: string, description: string): string {
         return this.reportHtmlGenerator.generateHtml(scanResult, scanDate, pageTitle, pageUrl, description);
     }
 
@@ -38,7 +31,8 @@ export class ReportGenerator {
         tabStoreData: ITabStoreData,
         description: string,
     ): string {
-        return this.assessmentReportHtmlGenerator.generateHtml(assessmentStoreData,
+        return this.assessmentReportHtmlGenerator.generateHtml(
+            assessmentStoreData,
             assessmentsProvider,
             featureFlagStoreData,
             tabStoreData,

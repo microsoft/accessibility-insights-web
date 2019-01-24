@@ -24,7 +24,14 @@ export abstract class BaseDrawer implements IDrawer {
 
     private _shadowUtils: ShadowUtils;
 
-    constructor(dom: NodeSelector & Node, containerClass: string, windowUtils: WindowUtils, shadowUtils: ShadowUtils, drawerUtils: DrawerUtils, formatter: IFormatter = null) {
+    constructor(
+        dom: NodeSelector & Node,
+        containerClass: string,
+        windowUtils: WindowUtils,
+        shadowUtils: ShadowUtils,
+        drawerUtils: DrawerUtils,
+        formatter: IFormatter = null,
+    ) {
         this.dom = dom;
         this.containerClass = containerClass;
         this.formatter = formatter;

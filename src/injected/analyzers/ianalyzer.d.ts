@@ -42,7 +42,7 @@ interface IAnalyzerConfiguration {
 
 interface RuleAnalyzerConfiguration extends IAnalyzerConfiguration {
     rules: string[];
-    resultProcessor: (scanner: ScannerUtils) => ((results: ScanResults) => IDictionaryStringTo<IHtmlElementAxeResults>);
+    resultProcessor: (scanner: ScannerUtils) => (results: ScanResults) => IDictionaryStringTo<IHtmlElementAxeResults>;
     telemetryProcessor: TelemetryProcessor<IAnalyzerTelemetryCallback>;
 }
 

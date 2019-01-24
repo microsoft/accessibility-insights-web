@@ -8,19 +8,16 @@ import { IBaseStore } from '../common/istore';
 import { IInspectStoreData } from '../common/types/store-data/inspect-store-data';
 import { ScopingListener } from './scoping-listener';
 
-
-
 export class InspectController {
     private currentMode: string;
 
     constructor(
         private readonly inspectStore: IBaseStore<IInspectStoreData>,
         private readonly scopingListener: ScopingListener,
-        private readonly changeInspectMode: ((event: React.MouseEvent<HTMLElement> | MouseEvent, inspectMode: InspectMode) => void),
+        private readonly changeInspectMode: (event: React.MouseEvent<HTMLElement> | MouseEvent, inspectMode: InspectMode) => void,
         private readonly inspectConfigurationFactory: InspectConfigurationFactory,
         private readonly onHover: (selector: string[]) => void,
-    ) {
-    }
+    ) {}
 
     public listenToStore() {
         this.inspectStore.addChangedListener(this.onChangedState);

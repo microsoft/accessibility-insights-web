@@ -6,7 +6,6 @@ import { AxeResponseHandler } from './axe-response-handler';
 import { ScanOptions } from './exposed-apis';
 import { ScanParamaterGenerator } from './scan-parameter-generator';
 
-
 export interface AxeOptions {
     runOnly?: Axe.RunOnly;
     restoreScroll?: Boolean; // missing from axe options.

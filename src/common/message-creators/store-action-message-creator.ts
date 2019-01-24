@@ -6,11 +6,7 @@ import { IStoreActionMessageCreator } from './istore-action-message-creator';
 export class StoreActionMessageCreator extends BaseActionMessageCreator implements IStoreActionMessageCreator {
     private getStateMessages: string[];
 
-    constructor(
-        messages: string[],
-        postMessage: (message: IMessage) => void,
-        tabId: number,
-    ) {
+    constructor(messages: string[], postMessage: (message: IMessage) => void, tabId: number) {
         super(postMessage, tabId);
         this.getStateMessages = messages;
     }

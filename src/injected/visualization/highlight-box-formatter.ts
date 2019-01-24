@@ -10,7 +10,9 @@ export class HighlightBoxFormatter extends FailureInstanceFormatter {
         super();
     }
 
-    public getDialogRenderer() { return null; }
+    public getDialogRenderer() {
+        return null;
+    }
 
     public getDrawerConfiguration(element: HTMLElement, data: IAssessmentVisualizationInstance): IDrawerConfiguration {
         const drawerConfig: IDrawerConfiguration = {

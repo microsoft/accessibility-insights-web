@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import "high-contrast-override.scss";
-@import "colors.scss";
-@import "fonts.scss";
+@import 'high-contrast-override.scss';
+@import 'colors.scss';
+@import 'fonts.scss';
 
 $focus-ring-color: $neutral-100;
 
-@mixin set-focus-ring-styles($property: "border") {
+@mixin set-focus-ring-styles($property: 'border') {
     #{$property}: 1px solid $focus-ring-color;
     @include ms-high-contrast-override {
         #{$property}: 1px dashed windowtext !important;
@@ -30,7 +30,8 @@ button::after {
     }
 }
 
-.ms-fontColor-neutralPrimary, .ms-fontColor-neutralPrimary--hover:hover{
+.ms-fontColor-neutralPrimary,
+.ms-fontColor-neutralPrimary--hover:hover {
     color: $neutral-100 !important;
 }
 

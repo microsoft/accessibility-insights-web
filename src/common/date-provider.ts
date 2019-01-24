@@ -7,6 +7,16 @@ export class DateProvider {
 
     public static getUTCDate(): Date {
         const date = new Date();
-        return new Date(Date.UTC(date.getUTCFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds()));
+        return new Date(
+            Date.UTC(
+                date.getUTCFullYear(),
+                date.getMonth(),
+                date.getDate(),
+                date.getHours(),
+                date.getMinutes(),
+                date.getSeconds(),
+                date.getMilliseconds(),
+            ),
+        );
     }
 }

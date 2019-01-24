@@ -3,10 +3,7 @@
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DrawingController, VisualizationWindowMessage } from './drawing-controller';
-import {
-    AxeResultsWithFrameLevel,
-    IAssessmentVisualizationInstance,
-} from './frameCommunicators/html-element-axe-results-helper';
+import { AxeResultsWithFrameLevel, IAssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
 import { IVisualizationInstanceProcessorCallback, IPropertyBags } from './visualization-instance-processor';
 
 export class DrawingInitiator {

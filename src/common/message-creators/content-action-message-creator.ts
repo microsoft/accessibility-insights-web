@@ -11,7 +11,6 @@ import { BaseActionMessageCreator } from './base-action-message-creator';
 import { ActionInitiators } from '../action/action-initiator';
 
 export class ContentActionMessageCreator extends BaseActionMessageCreator {
-
     public initiators: Pick<ActionInitiators, 'openExternalLink'> = {
         openExternalLink: this.openExternalLink,
     };
