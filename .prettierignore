@@ -14,4 +14,4 @@ package-lock.json
 **/*.gitignore
 **/*.gitattributes
 
-/src
+/src/tests
