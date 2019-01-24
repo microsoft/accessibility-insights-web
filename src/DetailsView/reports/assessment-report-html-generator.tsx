@@ -67,7 +67,7 @@ export class AssessmentReportHtmlGenerator {
             </React.Fragment>
         );
 
-        const reportBody = this.renderer.renderToStaticMarkup(reportElement, 'html');
+        const reportBody = this.renderer.renderToStaticMarkup(reportElement);
 
         return `<html lang="en">${reportBody}</html>`;
     }

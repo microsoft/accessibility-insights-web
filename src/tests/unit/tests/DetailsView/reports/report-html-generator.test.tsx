@@ -35,11 +35,11 @@ describe('ReportHtmlGeneratorTest', () => {
 
         const renderer = Mock.ofType(ReactStaticRenderer, MockBehavior.Strict);
         renderer
-            .setup(r => r.renderToStaticMarkup(It.isObjectWith(headElement), It.isValue('html')))
+            .setup(r => r.renderToStaticMarkup(It.isObjectWith(headElement)))
             .returns(() => '<head-markup />')
             .verifiable(Times.once());
         renderer
-            .setup(r => r.renderToStaticMarkup(It.isObjectWith(bodyElement), It.isValue('html')))
+            .setup(r => r.renderToStaticMarkup(It.isObjectWith(bodyElement)))
             .returns(() => '<body-markup />')
             .verifiable(Times.once());
 

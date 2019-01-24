@@ -9,6 +9,7 @@ exports[`Hamburger menu should have content matching snapshot 1`] = `
   >
     <ul
       class="ms-ContextualMenu-list is-open list-000"
+      role="menu"
     >
       <li
         class="ms-ContextualMenu-item item-000"
