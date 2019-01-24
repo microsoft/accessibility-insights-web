@@ -9,14 +9,15 @@
     },
     "scripts": {
         "build": "grunt",
-        "watch": "grunt watch",
+        "copyrightheaders": "grunt copyright-check",
+        "copyrightheaders:fix": "grunt copyright-add",
+        "drop": "grunt layout drop:dev release-drops",
+        "format": "./node_modules/.bin/prettier --config prettier.config.js --write **/*",
         "test": "jest",
         "test:e2e": "jest --config=jest.e2e.config.js --runInBand",
         "tslint": "grunt lint",
         "tslint:fix": "grunt lint.fix",
-        "drop": "grunt layout drop:dev release-drops",
-        "copyrightheaders": "grunt copyright-check",
-        "copyrightheaders:fix": "grunt copyright-add"
+        "watch": "grunt watch"
     },
     "devDependencies": {
         "@types/applicationinsights-js": "^1.0.7",
