@@ -12,7 +12,6 @@ export interface GenericPanelProps {
     className?: string;
     closeButtonAriaLabel: string;
     hasCloseButton: boolean;
-
 }
 
 export class GenericPanel extends React.Component<GenericPanelProps> {
