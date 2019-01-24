@@ -7,16 +7,14 @@ import {
     AssessmentReportBodyDeps,
     AssessmentReportBodyProps,
 } from '../../../../../../DetailsView/reports/components/assessment-report-body';
-import { outcomeTypeSemanticsFromTestStatus } from '../../../../../../DetailsView/reports/components/outcome-type';
 import { shallowRender } from '../../../../common/shallow-render';
 import { AssessmentReportBuilderTestHelper } from '../../assessment-report-builder-test-helper';
 
 describe('AssessmentReportBody', () => {
 
     test('render', () => {
-        // TODO: Make this a local test function rather than importing the actual one
         const deps: AssessmentReportBodyDeps = {
-            outcomeTypeSemanticsFromTestStatus: outcomeTypeSemanticsFromTestStatus,
+            outcomeTypeSemanticsFromTestStatus: null,
         };
 
         const props: AssessmentReportBodyProps = {

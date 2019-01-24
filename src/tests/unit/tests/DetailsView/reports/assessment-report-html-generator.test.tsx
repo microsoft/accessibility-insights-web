@@ -15,7 +15,6 @@ import {
 } from '../../../../../DetailsView/reports/assessment-report-model-builder-factory';
 import * as reportStyles from '../../../../../DetailsView/reports/assessment-report.styles';
 import { AssessmentReport, AssessmentReportDeps } from '../../../../../DetailsView/reports/components/assessment-report';
-import { outcomeTypeSemanticsFromTestStatus } from '../../../../../DetailsView/reports/components/outcome-type';
 import { ReactStaticRenderer } from '../../../../../DetailsView/reports/react-static-renderer';
 import { CreateTestAssessmentProviderWithFeatureFlag } from '../../../common/test-assessment-provider';
 
@@ -31,9 +30,8 @@ describe('AssessmentReportHtmlGenerator', () => {
         const tabStoreData: ITabStoreData = { stub: 'tabStoreData' } as any;
         const description = 'generateHtml-description';
 
-        // TODO: Make this a local test function rather than importing the actual one
         const deps: AssessmentReportDeps = {
-            outcomeTypeSemanticsFromTestStatus: outcomeTypeSemanticsFromTestStatus,
+            outcomeTypeSemanticsFromTestStatus: null,
         };
 
         const modelBuilderMock = Mock.ofType(AssessmentReportModelBuilder, MockBehavior.Strict);
@@ -87,8 +85,7 @@ describe('AssessmentReportHtmlGenerator', () => {
             'axeVersion',
             'chromeVersion',
             assessmentDefaultMessageGenerator,
-            // TODO: Use mock here?
-            outcomeTypeSemanticsFromTestStatus,
+            null,
         );
 
         const actualHtml = testSubject.generateHtml(

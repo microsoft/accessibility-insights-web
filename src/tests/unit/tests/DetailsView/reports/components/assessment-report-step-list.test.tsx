@@ -5,18 +5,16 @@ import * as React from 'react';
 import { ManualTestStatus } from '../../../../../../common/types/manual-test-status';
 import {
     AssessmentReportStepList,
-    AssessmentReportStepListProps,
     AssessmentReportStepListDeps,
+    AssessmentReportStepListProps,
 } from '../../../../../../DetailsView/reports/components/assessment-report-step-list';
 import { shallowRender } from '../../../../Common/shallow-render';
 import { AssessmentReportBuilderTestHelper } from '../../assessment-report-builder-test-helper';
-import { outcomeTypeSemanticsFromTestStatus } from '../../../../../../DetailsView/reports/components/outcome-type';
 
 describe('AssessmentReportStepListTest', () => {
 
-    // TODO: Make this a local test function rather than importing the actual one
     const deps: AssessmentReportStepListDeps = {
-        outcomeTypeSemanticsFromTestStatus: outcomeTypeSemanticsFromTestStatus,
+        outcomeTypeSemanticsFromTestStatus: null,
     };
 
     it('renders pass', () => {

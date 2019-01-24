@@ -7,16 +7,14 @@ import { ManualTestStatus } from '../../../../../../common/types/manual-test-sta
 import { IAssessmentDetailsReportModel } from '../../../../../../DetailsView/reports/assessment-report-model';
 import {
     AssessmentReportAssessmentList,
-    AssessmentReportAssessmentListProps,
     AssessmentReportAssessmentListDeps,
+    AssessmentReportAssessmentListProps,
 } from '../../../../../../DetailsView/reports/components/assessment-report-assessment-list';
 import { AssessmentReportBuilderTestHelper } from '../../assessment-report-builder-test-helper';
-import { outcomeTypeSemanticsFromTestStatus } from '../../../../../../DetailsView/reports/components/outcome-type';
 
 describe('AssessmentReportAssessmentListTest', () => {
-    // TODO: Make this a local test function rather than importing the actual one
     const deps: AssessmentReportAssessmentListDeps = {
-        outcomeTypeSemanticsFromTestStatus: outcomeTypeSemanticsFromTestStatus,
+        outcomeTypeSemanticsFromTestStatus: null,
     };
 
     test('render: pass', () => {

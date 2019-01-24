@@ -13,7 +13,7 @@ import {
     AssessmentReportStepHeaderDeps,
 } from '../../../../../../DetailsView/reports/components/assessment-report-step-header';
 import { OutcomeChip } from '../../../../../../DetailsView/reports/components/outcome-chip';
-import { OutcomeType, outcomeTypeSemanticsFromTestStatus } from '../../../../../../DetailsView/reports/components/outcome-type';
+import { OutcomeType } from '../../../../../../DetailsView/reports/components/outcome-type';
 import { shallowRender } from '../../../../Common/shallow-render';
 
 describe('AssessmentReportStepHeader', () => {
@@ -28,9 +28,8 @@ describe('AssessmentReportStepHeader', () => {
 
     const { PASS, UNKNOWN, FAIL } = ManualTestStatus;
 
-    // TODO: Make this a local test function rather than importing the actual one
     const deps: AssessmentReportStepHeaderDeps = {
-        outcomeTypeSemanticsFromTestStatus: outcomeTypeSemanticsFromTestStatus,
+        outcomeTypeSemanticsFromTestStatus: testStatus => { return { pastTense: ManualTestStatus[testStatus] + '-tested' }; },
     };
 
     test('matches snapshot', () => {
@@ -43,7 +42,7 @@ describe('AssessmentReportStepHeader', () => {
                 header={header}
                 instanceCount={42}
                 defaultMessageComponent={null}
-                />,
+            />,
         );
         expect(actual).toMatchSnapshot();
     });

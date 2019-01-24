@@ -9,7 +9,7 @@ exports[`AssessmentReportStepListTest renders fail 1`] = `
       defaultMessageComponent={null}
       deps={
         Object {
-          "outcomeTypeSemanticsFromTestStatus": [Function],
+          "outcomeTypeSemanticsFromTestStatus": null,
         }
       }
       header={
@@ -49,7 +49,7 @@ exports[`AssessmentReportStepListTest renders fail 1`] = `
       defaultMessageComponent={null}
       deps={
         Object {
-          "outcomeTypeSemanticsFromTestStatus": [Function],
+          "outcomeTypeSemanticsFromTestStatus": null,
         }
       }
       header={
@@ -90,7 +90,7 @@ exports[`AssessmentReportStepListTest renders incomplete 1`] = `
       defaultMessageComponent={null}
       deps={
         Object {
-          "outcomeTypeSemanticsFromTestStatus": [Function],
+          "outcomeTypeSemanticsFromTestStatus": null,
         }
       }
       header={
@@ -117,7 +117,7 @@ exports[`AssessmentReportStepListTest renders pass 1`] = `
       defaultMessageComponent={null}
       deps={
         Object {
-          "outcomeTypeSemanticsFromTestStatus": [Function],
+          "outcomeTypeSemanticsFromTestStatus": null,
         }
       }
       header={
@@ -149,7 +149,7 @@ exports[`AssessmentReportStepListTest renders pass without instances when showIn
       defaultMessageComponent={null}
       deps={
         Object {
-          "outcomeTypeSemanticsFromTestStatus": [Function],
+          "outcomeTypeSemanticsFromTestStatus": null,
         }
       }
       header={
