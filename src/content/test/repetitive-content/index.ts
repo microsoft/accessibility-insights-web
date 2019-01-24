@@ -3,7 +3,7 @@
 import { guidance } from './guidance';
 import * as bypassBlocks from './bypass-blocks';
 
-export const repetitiveContent  = {
+export const repetitiveContent = {
     guidance,
     bypassBlocks,
 };

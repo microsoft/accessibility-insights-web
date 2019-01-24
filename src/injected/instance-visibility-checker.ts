@@ -64,8 +64,7 @@ export class InstanceVisibilityChecker {
             const payloadBatch: IUpdateInstanceVisibilityPayload[] = currentFrameResults.map(elementResult => {
                 const element = this._htmlElementUtils.querySelector(elementResult.target[elementResult.targetIndex]) as HTMLElement;
                 const elementFoundMatchesStoredInstance =
-                    this.elementIsVisible(element) &&
-                    this.identifiersMatch(visualizationType, drawerIdentifier, elementResult, element);
+                    this.elementIsVisible(element) && this.identifiersMatch(visualizationType, drawerIdentifier, elementResult, element);
 
                 return {
                     test: visualizationType,

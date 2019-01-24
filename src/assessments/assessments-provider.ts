@@ -43,7 +43,7 @@ export class AssessmentsProvider implements IAssessmentsProvider {
         if (index === -1) {
             return null;
         }
-        return { ...(steps[index]), order: (index + 1) };
+        return { ...steps[index], order: index + 1 };
     }
 
     public getStepMap(type: VisualizationType): IDictionaryStringTo<TestStep> {

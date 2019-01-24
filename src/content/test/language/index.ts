@@ -5,7 +5,7 @@ import * as languageOfParts from './language-of-parts';
 import * as languageOfPage from './language-of-page';
 import * as textDirection from './text-direction';
 
-export const language  = {
+export const language = {
     guidance,
     languageOfPage,
     languageOfParts,

@@ -104,6 +104,8 @@ export class AnalyzerController {
     }
 
     private hasInitializedStores(): boolean {
-        return this.visualizationstore.getState() != null && this.scopingStore.getState() != null && this.featureFlagStore.getState() != null;
+        return (
+            this.visualizationstore.getState() != null && this.scopingStore.getState() != null && this.featureFlagStore.getState() != null
+        );
     }
 }

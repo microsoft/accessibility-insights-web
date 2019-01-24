@@ -4,7 +4,7 @@ import { createCallChainExtensionPoint } from '../../common/extensibility/extens
 import { IAssessmentViewProps } from '../components/assessment-view';
 
 const defaultComponent = {
-    onAssessmentViewUpdate: (prevProps: IAssessmentViewProps, curProps: IAssessmentViewProps) => { },
+    onAssessmentViewUpdate: (prevProps: IAssessmentViewProps, curProps: IAssessmentViewProps) => {},
 };
 
 export const detailsViewExtensionPoint = createCallChainExtensionPoint('detailsViewExtensionPoint', defaultComponent);

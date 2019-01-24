@@ -95,10 +95,11 @@ export class Drawer extends BaseDrawer {
         wrapper.style.outlineColor = drawerConfig.borderColor;
         wrapper.style.top = this.drawerUtils.getContainerTopOffset(offset).toString() + 'px';
         wrapper.style.left = this.drawerUtils.getContainerLeftOffset(offset).toString() + 'px';
-        wrapper.style.minWidth = this.drawerUtils
-            .getContainerWidth(offset, currentDom, elementBoundingClientRect.width, bodyStyle, docStyle).toString() + 'px';
-        wrapper.style.minHeight = this.drawerUtils
-            .getContainerHeight(offset, currentDom, elementBoundingClientRect.height, bodyStyle, docStyle).toString() + 'px';
+        wrapper.style.minWidth =
+            this.drawerUtils.getContainerWidth(offset, currentDom, elementBoundingClientRect.width, bodyStyle, docStyle).toString() + 'px';
+        wrapper.style.minHeight =
+            this.drawerUtils.getContainerHeight(offset, currentDom, elementBoundingClientRect.height, bodyStyle, docStyle).toString() +
+            'px';
 
         if (drawerConfig.textBoxConfig) {
             const textBox = this.createtBox(wrapper, drawerConfig, drawerConfig.textBoxConfig, currentDom);
@@ -122,7 +123,12 @@ export class Drawer extends BaseDrawer {
         return wrapper;
     }
 
-    private createtBox(wrapper: HTMLDivElement, drawerConfig: IDrawerConfiguration, boxConfig: IBoxConfig, currentDom: Document): HTMLDivElement {
+    private createtBox(
+        wrapper: HTMLDivElement,
+        drawerConfig: IDrawerConfiguration,
+        boxConfig: IBoxConfig,
+        currentDom: Document,
+    ): HTMLDivElement {
         const box = currentDom.createElement('div');
         box.classList.add('insights-highlight-text');
         box.innerText = boxConfig.text || '';

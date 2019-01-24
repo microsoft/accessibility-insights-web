@@ -16,57 +16,59 @@ interface ElemData {
 
 export class LandmarkFormatter extends FailureInstanceFormatter {
     public static landmarkStyles: { [role: string]: IHeadingStyleConfiguration } = {
-        'banner': {
+        banner: {
             borderColor: '#ff9900',
             fontColor: '#000000',
         },
-        'complementary': {
+        complementary: {
             borderColor: '#00cccc',
             fontColor: '#000000',
         },
-        'contentinfo': {
+        contentinfo: {
             borderColor: '#00cc00',
             fontColor: '#000000',
         },
-        'form': {
+        form: {
             borderColor: '#999999',
             fontColor: '#000000',
         },
-        'main': {
+        main: {
             borderColor: '#ff66ff',
             fontColor: '#000000',
         },
-        'navigation': {
+        navigation: {
             borderColor: '#ffcc00',
             fontColor: '#000000',
         },
-        'region': {
+        region: {
             borderColor: '#3399ff',
             fontColor: '#000000',
         },
-        'header': {
+        header: {
             borderColor: '#ff9900',
             fontColor: '#000000',
         },
-        'aside': {
+        aside: {
             borderColor: '#00cccc',
             fontColor: '#000000',
         },
-        'search': {
+        search: {
             borderColor: '#9955ff',
             fontColor: '#000000',
         },
-        'footer': {
+        footer: {
             borderColor: '#00cc00',
             fontColor: '#000000',
         },
-        'blank': {
+        blank: {
             borderColor: '#C00000',
             fontColor: '#FFFFFF',
         },
     };
 
-    public getDialogRenderer() { return null; }
+    public getDialogRenderer() {
+        return null;
+    }
 
     public getDrawerConfiguration(element: Node, data: IAssessmentVisualizationInstance): IDrawerConfiguration {
         // parse down the IHtmlElementAxeResult to see if it is contained in the map
@@ -121,8 +123,7 @@ export class LandmarkFormatter extends FailureInstanceFormatter {
 
         if (elemData.label != null) {
             labelToAssign = `"${elemData.label}" ${elemData.role} LM`;
-        }
-        else {
+        } else {
             labelToAssign = `${elemData.role} LM`;
         }
         return {

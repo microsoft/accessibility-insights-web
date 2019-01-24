@@ -7,7 +7,7 @@ import * as noKeystrokeTimings from './no-keystroke-timings';
 import * as onFocus from './on-focus';
 import * as onInput from './on-input';
 
-export const keyboard  = {
+export const keyboard = {
     guidance,
     keyboardNavigation,
     noKeyboardTraps,

@@ -4,7 +4,6 @@ import { initializeFabricIcons } from '../common/fabric-icons';
 import { MainWindowInitializer } from './main-window-initializer';
 import { WindowInitializer } from './window-initializer';
 
-
 /// <reference path='./Window.d.ts' />
 
 if (!window.windowInitializer) {
@@ -12,8 +11,7 @@ if (!window.windowInitializer) {
 
     if (window.top === window) {
         window.windowInitializer = new MainWindowInitializer();
-    }
-    else {
+    } else {
         window.windowInitializer = new WindowInitializer();
     }
 

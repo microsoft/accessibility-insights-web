@@ -5,7 +5,6 @@ import { EventHandlerList } from './event-handler-list';
 export class Store {
     private _changedHandlers = new EventHandlerList();
 
-
     public addChangedListener(handler: Function): void {
         this._changedHandlers.subscribe(handler as any);
     }

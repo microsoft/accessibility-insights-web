@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import "../../common/styles/common.scss";
+@import '../../common/styles/common.scss';
 @import '../../common/components/toast.scss';
 
 .insights-dialog-main-override-shadow {
@@ -11,7 +11,7 @@
     bottom: 0;
     background-color: $neutral-alpha-60;
     z-index: 2147483647;
-    font-family: "Segoe UI Web (West European)", "Segoe UI", "Helvetica Neue", sans-serif;
+    font-family: 'Segoe UI Web (West European)', 'Segoe UI', 'Helvetica Neue', sans-serif;
 }
 
 div.insights-dialog-main-container {
@@ -22,7 +22,7 @@ div.insights-dialog-main-container {
 }
 
 #insights-inspect-selector-layout {
-    z-index: 999999999 !important
+    z-index: 999999999 !important;
 }
 
 .insights-modal {
@@ -31,7 +31,7 @@ div.insights-dialog-main-container {
 
 .insights-dialog-main-override-shadow {
     .ms-Dialog-title {
-        font-family: "Segoe UI Web (West European)", "Segoe UI", "Helvetica Neue", sans-serif;
+        font-family: 'Segoe UI Web (West European)', 'Segoe UI', 'Helvetica Neue', sans-serif;
     }
     .ms-button-flex-container {
         display: flex;
@@ -87,7 +87,7 @@ div.insights-dialog-main-container {
 
 .insights-dialog-main-override .insights-dialog-button-right {
     float: right !important;
-    text-align: right!important;
+    text-align: right !important;
 }
 
 .insights-dialog-main-override .insights-dialog-footer {
@@ -168,7 +168,7 @@ div.insights-dialog-main-container {
 .insights-dialog-main-override-shadow .ms-Grid .ms-Grid-row {
     button {
         position: relative;
-        font-family: "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+        font-family: 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
         -webkit-font-smoothing: antialiased;
         font-size: 14px;
         font-weight: 400;
@@ -239,7 +239,7 @@ div.insights-dialog-main-container {
     margin-top: 4px;
     button {
         position: relative;
-        font-family: "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+        font-family: 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
         -webkit-font-smoothing: antialiased;
         font-size: 14px;
         font-weight: 400;
@@ -327,7 +327,7 @@ div.insights-dialog-main-container {
     cursor: default !important;
     pointer-events: all !important;
     font-size: 1em !important;
-    padding: .3em !important;
+    padding: 0.3em !important;
     float: right !important;
     position: relative !important;
     text-align: center !important;

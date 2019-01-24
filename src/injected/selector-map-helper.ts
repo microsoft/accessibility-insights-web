@@ -15,7 +15,6 @@ export class SelectorMapHelper {
     private assessmentStore: IBaseStore<IAssessmentStoreData>;
     private assessmentsProvider: IAssessmentsProvider;
 
-
     constructor(
         scanResultStore: IBaseStore<IVisualizationScanResultData>,
         assessmentStore: IBaseStore<IAssessmentStoreData>,
@@ -46,14 +45,16 @@ export class SelectorMapHelper {
     }
 
     private isAdHocVisualization(type: VisualizationType): boolean {
-        return _.includes([
-            VisualizationType.Issues,
-            VisualizationType.Headings,
-            VisualizationType.Landmarks,
-            VisualizationType.TabStops,
-            VisualizationType.Color,
-        ],
-        type);
+        return _.includes(
+            [
+                VisualizationType.Issues,
+                VisualizationType.Headings,
+                VisualizationType.Landmarks,
+                VisualizationType.TabStops,
+                VisualizationType.Color,
+            ],
+            type,
+        );
     }
 
     private getAdHocVisualizationSelectorMap(type: VisualizationType): IDictionaryStringTo<IAssessmentVisualizationInstance> {

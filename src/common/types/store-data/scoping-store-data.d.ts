@@ -4,7 +4,6 @@ import { ScopingInputTypes } from '../../../background/actions/scoping-inputs';
 
 export type ISingleElementSelector = string[];
 export interface IScopingStoreData {
-
     selectors: {
         [key: ScopingInputTypes]: ISingleElementSelector[];
     };

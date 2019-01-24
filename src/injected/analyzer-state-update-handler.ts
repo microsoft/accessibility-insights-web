@@ -47,13 +47,22 @@ export class AnalyzerStateUpdateHandler {
 
     private startAnalyzers(prevState: IVisualizationStoreData, currState: IVisualizationStoreData): void {
         if (currState.scanning != null && currState.injectingInProgress !== true) {
-            if (prevState == null || prevState.scanning !== currState.scanning || prevState.injectingInProgress !== currState.injectingInProgress) {
+            if (
+                prevState == null ||
+                prevState.scanning !== currState.scanning ||
+                prevState.injectingInProgress !== currState.injectingInProgress
+            ) {
                 this.startScan(currState.scanning);
             }
         }
     }
 
-    private isTestTerminated(config: IVisualizationConfiguration, prevState: IVisualizationStoreData, currState: IVisualizationStoreData, step: string): boolean {
+    private isTestTerminated(
+        config: IVisualizationConfiguration,
+        prevState: IVisualizationStoreData,
+        currState: IVisualizationStoreData,
+        step: string,
+    ): boolean {
         const prevScanState = config.getStoreData(prevState.tests);
         const currScanState = config.getStoreData(currState.tests);
         const prevEnabled = config.getTestStatus(prevScanState, step);

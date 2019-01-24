@@ -19,7 +19,8 @@ export function getAccessibleText(node: HTMLElement, isLabelledByContext: boolea
 }
 
 export function getAccessibleDescription(node: HTMLElement): string {
-    return axe.commons.dom.idrefs(node, 'aria-describedby')
+    return axe.commons.dom
+        .idrefs(node, 'aria-describedby')
         .filter(ref => ref != null)
         .map(ref => axe.commons.text.accessibleText(ref))
         .join(' ');
@@ -41,12 +42,12 @@ export function getPropertyValuesMatching(node: HTMLElement, regex: RegExp): IDi
 
 export function getAttributes(node: HTMLElement, attributes: string[]): IDictionaryStringTo<string> {
     const retDict: IDictionaryStringTo<string> = {};
-    attributes.filter(atributeName => node.hasAttribute(atributeName))
+    attributes
+        .filter(atributeName => node.hasAttribute(atributeName))
         .forEach(attributeName => {
             const attributeValue = node.getAttribute(attributeName);
             retDict[attributeName] = attributeValue.length > 0 ? attributeValue : null;
-        },
-    );
+        });
 
     return retDict;
 }

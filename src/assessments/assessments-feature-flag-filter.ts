@@ -9,9 +9,7 @@ import { AssessmentsProvider } from './assessments-provider';
 
 function assessmentIsFeatureEnabled(flags: FeatureFlagStoreData): (assessment: IAssessment) => boolean {
     return assessment =>
-        !assessment.featureFlag ||
-        !assessment.featureFlag.required ||
-        _.every(assessment.featureFlag.required, f => flags[f]);
+        !assessment.featureFlag || !assessment.featureFlag.required || _.every(assessment.featureFlag.required, f => flags[f]);
 }
 
 export function assessmentsProviderWithFeaturesEnabled(

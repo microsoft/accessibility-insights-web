@@ -4,7 +4,7 @@ import { guidance } from './guidance';
 import * as contrast from './contrast';
 import * as resizeText from './resize-text';
 
-export const textLegibility  = {
+export const textLegibility = {
     guidance,
     contrast,
     resizeText,

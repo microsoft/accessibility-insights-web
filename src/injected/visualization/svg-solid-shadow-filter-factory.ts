@@ -66,16 +66,12 @@ export class SVGSolidShadowFilterFactory {
     }
 
     private createFloodElement(doc: Document, floodColor: string): Element {
-        return new FeElementBuilder<FeFloodParams>(this.drawerUtils, 'feFlood')
-            .setupParam('flood-color', floodColor)
-            .build();
+        return new FeElementBuilder<FeFloodParams>(this.drawerUtils, 'feFlood').setupParam('flood-color', floodColor).build();
     }
 
     private createMergeElement(doc: Document, mergeNodeIns: string[], result?: string): Element {
         const mergeNodes: Element[] = _.map(mergeNodeIns, inParam => {
-            return new FeElementBuilder<FeMergeNodeParams>(this.drawerUtils, 'feMergeNode')
-                .setupParam('in', inParam)
-                .build();
+            return new FeElementBuilder<FeMergeNodeParams>(this.drawerUtils, 'feMergeNode').setupParam('in', inParam).build();
         });
 
         return new FeElementBuilder<FeMergeParams>(this.drawerUtils, 'feMerge')
@@ -95,7 +91,7 @@ export class SVGSolidShadowFilterFactory {
 
     private createFilterElement(doc: Document): Element {
         return new FeElementBuilder<FilterParams>(this.drawerUtils, 'filter')
-            .setupParam('id' , this.filterId)
+            .setupParam('id', this.filterId)
             .setupParam('filterUnits', 'userSpaceOnUse')
             .build();
     }
@@ -145,7 +141,10 @@ class FeElementBuilder<TParams> {
         return this;
     }
 
-    public setupParam<TKey extends keyof TParams, TType extends TParams[TKey]>(paramKey: TKey, paramValue: TType): FeElementBuilder<TParams> {
+    public setupParam<TKey extends keyof TParams, TType extends TParams[TKey]>(
+        paramKey: TKey,
+        paramValue: TType,
+    ): FeElementBuilder<TParams> {
         this.params[paramKey] = paramValue;
         return this;
     }

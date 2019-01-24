@@ -97,8 +97,12 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
     @autobind
     public setFeatureFlag(featureFlagId: string, enabled: boolean, event: React.MouseEvent<HTMLElement>): void {
         const type = Messages.FeatureFlags.SetFeatureFlag;
-        const telemetry = this.telemetryFactory.forFeatureFlagToggle(event, enabled,
-            TelemetryEvents.TelemetryEventSource.DetailsView, featureFlagId);
+        const telemetry = this.telemetryFactory.forFeatureFlagToggle(
+            event,
+            enabled,
+            TelemetryEvents.TelemetryEventSource.DetailsView,
+            featureFlagId,
+        );
         const payload: IFeatureFlagPayload = {
             feature: featureFlagId,
             enabled: enabled,
@@ -321,10 +325,12 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
     }
 
     @autobind
-    public changeAssessmentVisualizationState(isVisualizationEnabled: boolean,
+    public changeAssessmentVisualizationState(
+        isVisualizationEnabled: boolean,
         test: VisualizationType,
         step: string,
-        selector: string): void {
+        selector: string,
+    ): void {
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
         const payload: IChangeInstanceSelectionPayload = {
             test,

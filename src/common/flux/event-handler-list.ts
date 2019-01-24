@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 export class EventHandlerList<TSender, TEventArgs> {
-
     private _handlers: IFunctionPPR<TSender, TEventArgs, any>[] = [];
 
     public subscribe(handler: IFunctionPPR<TSender, TEventArgs, any>) {

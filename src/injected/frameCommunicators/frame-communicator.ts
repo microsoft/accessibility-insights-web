@@ -41,15 +41,21 @@ export class FrameCommunicator {
         if (!this.initialized) {
             this.initialized = true;
 
-            this.subscribe(FrameCommunicator.PingCommand, (data: any, error: IErrorMessageContent, messageSourceWindow: Window, callback: Function) => {
-                this.invokeMethodIfExists(callback, data);
-            });
-
-            this.subscribe(FrameCommunicator.DisposeCommand, (data: any, error: IErrorMessageContent, messageSourceWindow: Window, callback: Function) => {
-                this.dispose().then(() => {
+            this.subscribe(
+                FrameCommunicator.PingCommand,
+                (data: any, error: IErrorMessageContent, messageSourceWindow: Window, callback: Function) => {
                     this.invokeMethodIfExists(callback, data);
-                });
-            });
+                },
+            );
+
+            this.subscribe(
+                FrameCommunicator.DisposeCommand,
+                (data: any, error: IErrorMessageContent, messageSourceWindow: Window, callback: Function) => {
+                    this.dispose().then(() => {
+                        this.invokeMethodIfExists(callback, data);
+                    });
+                },
+            );
         }
     }
 
@@ -92,8 +98,7 @@ export class FrameCommunicator {
             console.log('cannot connect to sandboxed frame', messageRequest.frame);
             defered.reject('cannot connect to sandboxed frame' + messageRequest.frame);
             return defered.promise;
-        }
-        else {
+        } else {
             // give the window / frame .5s to respond to 'insights.ping', else log failed response
             const pingDeferred = this._q.defer<boolean>();
 
@@ -101,30 +106,39 @@ export class FrameCommunicator {
             this.windowMessageHandler.post(win, FrameCommunicator.PingCommand, null, () => pingDeferred.resolve(true));
             const timeoutPingPromise = this._q.timeout(pingDeferred.promise, 500);
 
-            timeoutPingPromise.then(() => {
-                this.windowMessageHandler.post(win, messageRequest.command, messageRequest.message, data => {
-
-                    if (data instanceof Error) {
-                        defered.reject(data);
-                    } else {
-                        defered.resolve(data);
-                    }
-                });
-            }, () => {
-                console.log('cannot connect to ', elementToReportOnFailure);
-                defered.reject('cannot connect to ' + elementToReportOnFailure);
-            });
+            timeoutPingPromise.then(
+                () => {
+                    this.windowMessageHandler.post(win, messageRequest.command, messageRequest.message, data => {
+                        if (data instanceof Error) {
+                            defered.reject(data);
+                        } else {
+                            defered.resolve(data);
+                        }
+                    });
+                },
+                () => {
+                    console.log('cannot connect to ', elementToReportOnFailure);
+                    defered.reject('cannot connect to ' + elementToReportOnFailure);
+                },
+            );
         }
         return this._q.timeout(defered.promise, FrameCommunicator.minWaitTimeForAllFrameResponse);
     }
 
     private doesFrameSupportScripting(frame: HTMLIFrameElement) {
-        return !frame.hasAttribute('sandbox') || frame.getAttribute('sandbox').toLocaleLowerCase().lastIndexOf('allow-scripts') >= 0;
+        return (
+            !frame.hasAttribute('sandbox') ||
+            frame
+                .getAttribute('sandbox')
+                .toLocaleLowerCase()
+                .lastIndexOf('allow-scripts') >= 0
+        );
     }
 
     public executeRequestForAllFrameRequests<T>(
         frameMessageRequests: IMessageRequest<T>[],
-        timeOut: number): Q.IPromise<Q.PromiseState<FrameMessageResponseCallback>[]> {
+        timeOut: number,
+    ): Q.IPromise<Q.PromiseState<FrameMessageResponseCallback>[]> {
         const frameMessageRequestsLength = frameMessageRequests.length;
 
         const frameRequestPromises: Q.IPromise<FrameMessageResponseCallback>[] = [];

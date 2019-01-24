@@ -12,7 +12,6 @@ import { IVisualizationStoreData } from './../common/types/store-data/ivisualiza
 import { GetDetailsRightPanelConfiguration } from './components/details-view-right-panel';
 import { GetDetailsSwitcherNavConfiguration } from './components/details-view-switcher-nav';
 
-
 export class DocumentTitleUpdater {
     constructor(
         private readonly tabStore: IBaseStore<ITabStoreData>,
@@ -23,7 +22,7 @@ export class DocumentTitleUpdater {
         private readonly getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration,
         private readonly visualizationConfigurationFactory: VisualizationConfigurationFactory,
         private readonly doc: Document,
-    ) { }
+    ) {}
 
     public initialize() {
         this.tabStore.addChangedListener(this.onStoreChange);
@@ -41,9 +40,7 @@ export class DocumentTitleUpdater {
     }
 
     private getDocumentTitle(): string {
-        if (!this.hasAllStoreData() ||
-            this.tabStore.getState().isClosed
-        ) {
+        if (!this.hasAllStoreData() || this.tabStore.getState().isClosed) {
             return '';
         }
 
@@ -71,11 +68,8 @@ export class DocumentTitleUpdater {
     }
 
     private hasAllStoreData(): boolean {
-        return [
-            this.tabStore,
-            this.detailsViewStore,
-            this.visualizationStore,
-            this.assessmentStore,
-        ].every(store => store.getState() != null);
+        return [this.tabStore, this.detailsViewStore, this.visualizationStore, this.assessmentStore].every(
+            store => store.getState() != null,
+        );
     }
 }
