@@ -79,7 +79,6 @@ export class TestStepsNav extends React.Component<ITestStepNavProps> {
 
         return results.map(result => {
             const { definition: step } = result;
-            const status = this.getStepStatus(step.key);
             const title = `${step.name}. ${getInnerTextFromJsxElement(step.description)}`;
 
             return {

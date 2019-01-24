@@ -2,27 +2,30 @@
 
 exports[`TestStepLink renders with index 1`] = `
 <div
-  aria-hidden="true"
   className="button-flex-container"
 >
-  <div
-    className="ms-Button-label req-description"
+  <span
+    aria-hidden="true"
   >
-    <span
-      className="req-index"
+    <div
+      className="ms-Button-label req-description"
     >
-      5
-    </span>
-    <span
-      className="req-name"
-    >
-      Link with index name
-      .
-    </span>
-    <span>
-      Link with index description
-    </span>
-  </div>
+      <span
+        className="req-index"
+      >
+        5
+      </span>
+      <span
+        className="req-name"
+      >
+        Link with index name
+        .
+      </span>
+      <span>
+        Link with index description
+      </span>
+    </div>
+  </span>
   <StatusIcon
     status={0}
   />
@@ -31,22 +34,25 @@ exports[`TestStepLink renders with index 1`] = `
 
 exports[`TestStepLink renders without index 1`] = `
 <div
-  aria-hidden="true"
   className="button-flex-container"
 >
-  <div
-    className="ms-Button-label req-description"
+  <span
+    aria-hidden="true"
   >
-    <span
-      className="req-name"
+    <div
+      className="ms-Button-label req-description"
     >
-      Link without index name
-      .
-    </span>
-    <span>
-      Link without index description
-    </span>
-  </div>
+      <span
+        className="req-name"
+      >
+        Link without index name
+        .
+      </span>
+      <span>
+        Link without index description
+      </span>
+    </div>
+  </span>
   <StatusIcon
     status={0}
   />

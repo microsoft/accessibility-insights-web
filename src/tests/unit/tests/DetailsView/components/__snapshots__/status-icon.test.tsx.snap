@@ -6,6 +6,7 @@ exports[`StatusIcon render for FAIL 1`] = `
   ariaLabel="failed requirement"
   className="status-icon negative-outcome-icon"
   iconName="StatusErrorFull"
+  tabIndex={-1}
 />
 `;
 
@@ -15,6 +16,7 @@ exports[`StatusIcon render for PASS 1`] = `
   ariaLabel="passed requirement"
   className="status-icon positive-outcome-icon"
   iconName="completedSolid"
+  tabIndex={-1}
 />
 `;
 
@@ -24,6 +26,7 @@ exports[`StatusIcon render for PASS with extra class name 1`] = `
   ariaLabel="passed requirement"
   className="status-icon positive-outcome-icon test"
   iconName="completedSolid"
+  tabIndex={-1}
 />
 `;
 
@@ -33,6 +36,7 @@ exports[`StatusIcon render for UNKNOWN 1`] = `
   ariaLabel="incompleted requirement"
   className="status-icon"
   iconName="circleRing"
+  tabIndex={-1}
 />
 `;
 
@@ -42,5 +46,6 @@ exports[`StatusIcon render for default 1`] = `
   ariaLabel="incompleted requirement"
   className="status-icon"
   iconName="circleRing"
+  tabIndex={-1}
 />
 `;
