@@ -64,7 +64,7 @@ export class FeatureFlagStore extends BaseStore<FeatureFlagStoreData> {
     @autobind
     private onSetFeatureFlags(payload: IFeatureFlagPayload): void {
         this.state[payload.feature] = payload.enabled;
-        this.browserAdapter.setUserData({[LocalStorageDataKeys.featureFlags]: this.state});
+        this.browserAdapter.setUserData({ [LocalStorageDataKeys.featureFlags]: this.state });
         this.emitChanged();
     }
 

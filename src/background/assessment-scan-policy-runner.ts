@@ -6,7 +6,6 @@ import { VisualizationType } from '../common/types/visualization-type';
 import { AssessmentStore } from './stores/assessment-store';
 import { VisualizationStore } from './stores/visualization-store';
 
-
 export type IScheduleScan = (test: VisualizationType, step: string, tabId: number) => void;
 export type IIsAnAssessmentSelected = (testData: ITestsEnabledState) => boolean;
 
@@ -30,10 +29,12 @@ export class AssessmentScanPolicyRunner {
         const assessmentState = this.assessmentStore.getState();
         const selectedAssessment = this.getSelectedAssessmentTest(visualizationState.tests);
 
-        if (assessmentState.targetTab == null ||
+        if (
+            assessmentState.targetTab == null ||
             this.tabId !== assessmentState.targetTab.id ||
             visualizationState.scanning != null ||
-            selectedAssessment === false) {
+            selectedAssessment === false
+        ) {
             return;
         }
 
@@ -45,5 +46,5 @@ export class AssessmentScanPolicyRunner {
         };
 
         assessmentConfig.executeAssessmentScanPolicy(scanStep, visualizationConfig.getAssessmentData(assessmentState));
-    }
+    };
 }

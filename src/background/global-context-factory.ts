@@ -44,12 +44,7 @@ export class GlobalContextFactory {
 
         globalStoreHub.initialize();
 
-        const actionCreator = new GlobalActionCreator(
-            globalActionsHub,
-            interpreter,
-            browserAdapter,
-            telemetryEventHandler,
-        );
+        const actionCreator = new GlobalActionCreator(globalActionsHub, interpreter, browserAdapter, telemetryEventHandler);
         const assessmentActionCreator = new AssessmentActionCreator(
             globalActionsHub.assessmentActions,
             telemetryEventHandler,

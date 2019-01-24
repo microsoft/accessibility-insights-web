@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-const path = require("path")
+const path = require('path');
 const webpack = require('webpack');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -8,9 +8,9 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const commonPlugins = [
     new webpack.optimize.LimitChunkCountPlugin({
         maxChunks: 1, // Must be greater than or equal to one
-        minChunkSize: 1000000
+        minChunkSize: 1000000,
     }),
-    new ForkTsCheckerWebpackPlugin()
+    new ForkTsCheckerWebpackPlugin(),
 ];
 
 const productionPlugins = commonPlugins.slice();
@@ -26,43 +26,45 @@ const entryFiles = {
     background: [
         'script-loader!' + path.resolve(__dirname, 'node_modules/jquery/dist/jquery.min.js'),
         path.resolve(__dirname, 'src/background/background-init.ts'),
-    ]
-}
+    ],
+};
 
 const developmentConfig = {
     entry: entryFiles,
     mode: 'development',
     devtool: 'source-map',
     module: {
-        rules: [{
-            test: /\.tsx?$/,
-            use: [{
-                loader: 'ts-loader',
-                options: {
-                    transpileOnly: true,
-                    experimentalWatchApi: true
-                }
-            }],
-            exclude: ['/node_modules/']
-        }]
+        rules: [
+            {
+                test: /\.tsx?$/,
+                use: [
+                    {
+                        loader: 'ts-loader',
+                        options: {
+                            transpileOnly: true,
+                            experimentalWatchApi: true,
+                        },
+                    },
+                ],
+                exclude: ['/node_modules/'],
+            },
+        ],
     },
     output: {
-        path: path.join(__dirname, "extension/devBundle"),
+        path: path.join(__dirname, 'extension/devBundle'),
         filename: '[name].bundle.js',
     },
     resolve: {
-        modules: [
-            path.resolve(__dirname, 'node_modules'),
-        ],
-        extensions: ['.tsx', '.ts', '.js']
+        modules: [path.resolve(__dirname, 'node_modules')],
+        extensions: ['.tsx', '.ts', '.js'],
     },
     plugins: devPlugins,
     node: {
-        setImmediate: false
+        setImmediate: false,
     },
     optimization: {
         splitChunks: false,
-    }
+    },
 };
 
 module.exports = [
@@ -73,25 +75,26 @@ module.exports = [
         mode: 'production',
         plugins: productionPlugins,
         output: {
-            path: path.join(__dirname, "extension/prodBundle"),
+            path: path.join(__dirname, 'extension/prodBundle'),
             filename: '[name].bundle.js',
             pathinfo: false,
         },
         optimization: {
             splitChunks: false,
-            minimizer: [new UglifyJsPlugin({
-                sourceMap: false,
-                uglifyOptions: {
-                    compress: false,
-                    mangle: false,
-                    output: {
-                        ascii_only: true,
-                        comments: /^\**!|@preserve|@license|@cc_on/i,
-                        beautify: false,
-                    }
-                }
-            })]
-        }
-
-    }
+            minimizer: [
+                new UglifyJsPlugin({
+                    sourceMap: false,
+                    uglifyOptions: {
+                        compress: false,
+                        mangle: false,
+                        output: {
+                            ascii_only: true,
+                            comments: /^\**!|@preserve|@license|@cc_on/i,
+                            beautify: false,
+                        },
+                    },
+                }),
+            ],
+        },
+    },
 ];

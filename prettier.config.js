@@ -3,7 +3,6 @@
 module.exports = {
     endOfLine: 'lf',
     printWidth: 140,
-    requirePragma: true,
     singleQuote: true,
     tabWidth: 4,
     trailingComma: 'all',

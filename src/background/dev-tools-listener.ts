@@ -36,7 +36,6 @@ export class DevToolsListener {
                     devToolsConnection.onMessage.removeListener(devToolsListener);
                 });
             }
-
         });
     }
 

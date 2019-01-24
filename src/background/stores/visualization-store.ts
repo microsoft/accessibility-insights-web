@@ -3,16 +3,18 @@
 import { autobind } from '@uifabric/utilities';
 
 import { TestMode } from '../../common/configs/test-mode';
-import {
-    IVisualizationConfiguration,
-    VisualizationConfigurationFactory,
-} from '../../common/configs/visualization-configuration-factory';
+import { IVisualizationConfiguration, VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { ITab } from '../../common/itab.d';
 import { StoreNames } from '../../common/stores/store-names';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { ITestsEnabledState, IVisualizationStoreData, IAssessmentScanData } from '../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
-import { IToggleActionPayload, IUpdateSelectedDetailsViewPayload, IUpdateSelectedPivot, IAssessmentToggleActionPayload } from '../actions/action-payloads';
+import {
+    IToggleActionPayload,
+    IUpdateSelectedDetailsViewPayload,
+    IUpdateSelectedPivot,
+    IAssessmentToggleActionPayload,
+} from '../actions/action-payloads';
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationActions } from '../actions/visualization-actions';
 import { EnumHelper } from './../../common/enum-helper';
@@ -277,5 +279,4 @@ export class VisualizationStore extends BaseStore<IVisualizationStoreData> {
 
         return updated;
     }
-
 }

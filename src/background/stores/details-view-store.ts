@@ -37,7 +37,6 @@ export class DetailsViewStore extends BaseStore<IDetailsViewData> {
     }
 
     protected addActionListeners(): void {
-
         this.previewFeaturesActions.openPreviewFeatures.addListener(() => this.onOpen('isPreviewFeaturesOpen'));
         this.previewFeaturesActions.closePreviewFeatures.addListener(() => this.onClose('isPreviewFeaturesOpen'));
 
@@ -47,11 +46,10 @@ export class DetailsViewStore extends BaseStore<IDetailsViewData> {
         this.detailsViewActions.openSettingsPanel.addListener(() => this.onOpen('isSettingsOpen'));
         this.detailsViewActions.closeSettingsPanel.addListener(() => this.onClose('isSettingsOpen'));
 
-
-        this.contentActions.openContentPanel.addListener(contentPayload => this.onOpen('isContentOpen',
-            state => state.contentPath = contentPayload.contentPath));
-        this.contentActions.closeContentPanel.addListener(() => this.onClose('isContentOpen',
-            state => state.contentPath = null));
+        this.contentActions.openContentPanel.addListener(contentPayload =>
+            this.onOpen('isContentOpen', state => (state.contentPath = contentPayload.contentPath)),
+        );
+        this.contentActions.closeContentPanel.addListener(() => this.onClose('isContentOpen', state => (state.contentPath = null)));
 
         this.detailsViewActions.setSelectedDetailsViewRightContentPanel.addListener(this.onSetSelectedDetailsViewRightContentPanel);
         this.detailsViewActions.getCurrentState.addListener(this.onGetCurrentState);
@@ -59,7 +57,9 @@ export class DetailsViewStore extends BaseStore<IDetailsViewData> {
 
     @autobind
     private onOpen(flagName: keyof ICurrentPanel, mutator?: (IDetailsViewData) => void): void {
-        Object.keys(this.state.currentPanel).forEach(key => { this.state.currentPanel[key] = false; });
+        Object.keys(this.state.currentPanel).forEach(key => {
+            this.state.currentPanel[key] = false;
+        });
         this.state.currentPanel[flagName] = true;
 
         if (mutator != null) {

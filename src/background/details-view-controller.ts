@@ -49,9 +49,10 @@ export class DetailsViewController {
     }
 
     private hasUrlChange(changeInfo: chrome.tabs.TabChangeInfo, targetTabId): boolean {
-        return changeInfo.url &&
-            !this.stringEndsWith(changeInfo.url.toLocaleLowerCase(),
-                this.getDetailsUrlWithExtensionId(targetTabId).toLocaleLowerCase());
+        return (
+            changeInfo.url &&
+            !this.stringEndsWith(changeInfo.url.toLocaleLowerCase(), this.getDetailsUrlWithExtensionId(targetTabId).toLocaleLowerCase())
+        );
     }
 
     private stringEndsWith(str: string, suffix: string): boolean {
@@ -81,8 +82,7 @@ export class DetailsViewController {
     private onRemoveTab(tabId: number, removeInfo: chrome.tabs.TabRemoveInfo): void {
         if (this._tabIdToDetailsViewMap[tabId]) {
             delete this._tabIdToDetailsViewMap[tabId];
-        }
-        else {
+        } else {
             const targetTabId = this.getTargetTabIdForDetailsTabId(tabId);
             if (targetTabId) {
                 delete this._tabIdToDetailsViewMap[targetTabId];

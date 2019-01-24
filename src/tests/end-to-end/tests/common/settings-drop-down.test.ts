@@ -44,14 +44,11 @@ describe('Settings Dropdown', () => {
         await popupPage.clickSelector(CommonSelectors.settingsGearButton);
 
         const results = await scanForAccessibilityIssues(popupPage, CommonSelectors.settingsDropdownMenu);
-        // we are using snapshot comparison since we have some known issues in this dropdown
-        // & we don't want to add new issues
-        expect(results).toMatchSnapshot();
+        expect(results).toHaveLength(0);
     });
 
     async function getDropdownPanelElement(page: Page): Promise<Node> {
         await page.clickSelector(CommonSelectors.settingsGearButton);
-
         return await page.getPrintableHtmlElement(CommonSelectors.settingsDropdownMenu);
     }
 });

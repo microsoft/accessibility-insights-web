@@ -21,7 +21,6 @@ import {
 } from './action-payloads';
 import { AssessmentActions } from './assessment-actions';
 
-
 const AssessmentMessages = Messages.Assessment;
 
 export class AssessmentActionCreator {

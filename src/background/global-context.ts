@@ -4,7 +4,6 @@ import { FeatureFlagsController } from './feature-flags-controller';
 import { Interpreter } from './interpreter';
 import { GlobalStoreHub } from './stores/global/global-store-hub';
 
-
 export class GlobalContext {
     public readonly interpreter: Interpreter;
     public readonly featureFlagsController: FeatureFlagsController;

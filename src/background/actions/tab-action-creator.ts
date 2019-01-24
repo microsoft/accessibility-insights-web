@@ -31,7 +31,9 @@ export class TabActionCreator {
         this.registerTypeToPayloadCallback(Messages.Tab.Remove, () => this.tabActions.tabRemove.invoke(null));
         this.registerTypeToPayloadCallback(Messages.Tab.Change, payload => this.tabActions.tabChange.invoke(payload));
         this.registerTypeToPayloadCallback(Messages.Tab.Switch, (payload, tabId) => this.onSwitchToTargetTab(payload, tabId));
-        this.registerTypeToPayloadCallback(Messages.Tab.VisibilityChange, payload => this.tabActions.tabVisibilityChange.invoke(payload.hidden));
+        this.registerTypeToPayloadCallback(Messages.Tab.VisibilityChange, payload =>
+            this.tabActions.tabVisibilityChange.invoke(payload.hidden),
+        );
     }
 
     private onSwitchToTargetTab(payload: ISwitchToTargetTabPayLoad, tabId: number): void {

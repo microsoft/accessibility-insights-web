@@ -2,76 +2,93 @@
 Copyright (c) Microsoft Corporation. All rights reserved.
 Licensed under the MIT License.
 -->
+
 # Accessibility Insights for Web
 
 ![Product Logo](./src/icons/brand/blue/brand-blue-128px.png)
 
 Accessibility Insights for Web is a Google Chrome extension for assessing the accessibility of web sites and web applications.
+
 ## Running the extension
+
 You can install the extension from one of the following links
-- ![Daily Logo](./src/icons/brand/red/brand-red-16px.png) [Daily](https://chrome.google.com/webstore/detail/hbcplehnakffdldhldncjlnbpfgogbem) (released continuously)
-- ![Staging Logo](./src/icons/brand/violet/brand-violet-16px.png) [Staging](https://chrome.google.com/webstore/detail/nnmjfbmebeckhpejobgjjjnchlljiagp) (on feature completion)
-- ![Production Logo](./src/icons/brand/blue/brand-blue-16px.png) [Production](https://chrome.google.com/webstore/detail/pbjjkligggfmakdaogkfomddhfmpjeni) (after validation in staging)
+
+-   ![Daily Logo](./src/icons/brand/red/brand-red-16px.png) [Daily](https://chrome.google.com/webstore/detail/hbcplehnakffdldhldncjlnbpfgogbem) (released continuously)
+-   ![Staging Logo](./src/icons/brand/violet/brand-violet-16px.png) [Staging](https://chrome.google.com/webstore/detail/nnmjfbmebeckhpejobgjjjnchlljiagp) (on feature completion)
+-   ![Production Logo](./src/icons/brand/blue/brand-blue-16px.png) [Production](https://chrome.google.com/webstore/detail/pbjjkligggfmakdaogkfomddhfmpjeni) (after validation in staging)
+
 ## Building the code
+
 ### 1. Clone the repository
-- Clone the repository using one of the following commands
-  ``` bash
-  git clone https://github.com/Microsoft/accessibility-insights-web.git
-  ```
-  or
-  ``` bash
-  git clone git@github.com:Microsoft/accessibility-insights-web.git
-  ```
-- Select the created directory
-  ``` bash
-  cd accessibility-insights-web
-  ```
+
+-   Clone the repository using one of the following commands
+    ```bash
+    git clone https://github.com/Microsoft/accessibility-insights-web.git
+    ```
+    or
+    ```bash
+    git clone git@github.com:Microsoft/accessibility-insights-web.git
+    ```
+-   Select the created directory
+    ```bash
+    cd accessibility-insights-web
+    ```
+
 ### 2. Install packages
-- Install the packages
-  ``` bash
-  npm install
-  ```
+
+-   Install the packages
+    ```bash
+    npm install
+    ```
+
 ### 3. Build and run unit tests
-- Run the unit tests
-  ``` bash
-  npm test
-  ```
-- Build and run the end-to-end tests
-  ``` bash
-  npm run build
-  npm run test:e2e
-  ```
-  There are more details in the Testing section below.
+
+-   Run the unit tests
+    ```bash
+    npm test
+    ```
+-   Build and run the end-to-end tests
+    ```bash
+    npm run build
+    npm run test:e2e
+    ```
+    There are more details in the Testing section below.
+
 ### 4. Load the extension locally
-- Build the (unpacked) extension
-  ``` bash
-  npm run build
-  ```
-- Add the extension to your Chrome browser
-  - Click on the 3-dotted-menu in the upper right corner and then select "More Tools" and then "Extensions"
-  - Verify that **developer mode** is enabled in the upper right
-  - Click on the **Load unpacked** button
-  - Choose the following directory
 
-    `./drop/dev/extension/` - bundled like a production release
+-   Build the (unpacked) extension
+    ```bash
+    npm run build
+    ```
+-   Add the extension to your Chrome browser
 
-  > IMPORTANT: Ensure that you are testing locally before pushing a change.
+    -   Click on the 3-dotted-menu in the upper right corner and then select "More Tools" and then "Extensions"
+    -   Verify that **developer mode** is enabled in the upper right
+    -   Click on the **Load unpacked** button
+    -   Choose the following directory
 
-- Look for the ![Dev Logo](./src/icons/brand/gray/brand-gray-16px.png) extension icon to the right of the address bar
+        `./drop/dev/extension/` - bundled like a production release
+
+    > IMPORTANT: Ensure that you are testing locally before pushing a change.
+
+-   Look for the ![Dev Logo](./src/icons/brand/gray/brand-gray-16px.png) extension icon to the right of the address bar
+
 ## More Information
 
-  [Developer Workflow](./docs/workflow.md)
+[Developer Workflow](./docs/workflow.md)
 
 ## Testing
+
 We use [jest](https://github.com/facebook/jest) as our test framework and [puppeteer](https://github.com/GoogleChrome/puppeteer) for browser automation in our end-to-end UI tests.
 
 ### Using VS Code
+
 To run a task from the command palette, press **Ctrl + Shift + P**, select `Tasks: Run Task`, and select the task you want to run:
 
-- `npm: test` runs all unit tests
-- `Test current file in VSCode` runs just the unit tests in the currently-opened file
-- `npm: test:e2e` runs all end-to-end tests
-- `E2E test current file in VSCode` runs just the end-to-end tests in the currently-opened file
+-   `npm: test` runs all unit tests
+-   `Test current file in VSCode` runs just the unit tests in the currently-opened file
+-   `npm: test:e2e` runs all end-to-end tests
+-   `E2E test current file in VSCode` runs just the end-to-end tests in the currently-opened file
 
 To debug inside VS Code, set a breakpoint and click the debug button or press **F5**. Note that there are 2 debug targets (one for unit tests and one for end-to-end tests); be sure to use the appropriate one for the test you are debugging.
 
@@ -93,7 +110,7 @@ To debug using an external tool, run `node --inspect-brk ./node_modules/jest/bin
 
 # Contributing
 
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
+This project welcomes contributions and suggestions. Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
 the rights to use your contribution. For details, visit https://cla.microsoft.com.
 

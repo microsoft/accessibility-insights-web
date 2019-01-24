@@ -12,7 +12,7 @@ export class VisualizationActions {
 
     public readonly updateFocusedInstance = new Action<string[]>();
 
-    public readonly scanCompleted =  new Action<void>();
+    public readonly scanCompleted = new Action<void>();
     public readonly scrollRequested = new Action();
     public readonly getCurrentState = new Action();
 

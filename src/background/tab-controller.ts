@@ -78,19 +78,20 @@ export class TabController {
 
     @autobind
     private onWindowFocusChanged(windowId: number): void {
-
-        this.chromeAdapter.getAllWindows({ populate: false, windowTypes: ['normal', 'popup'] }, (chromeWindows: chrome.windows.Window[]) => {
-            chromeWindows.forEach((chromeWindow: chrome.windows.Window) => {
-
-                this.chromeAdapter.getSelectedTabInWindow(chromeWindow.id, (activeTab: chrome.tabs.Tab) => {
-                    if (!this.chromeAdapter.getRuntimeLastError()) {
-                        if (activeTab) {
-                            this.sendTabVisibilityChangeAction(activeTab.id, chromeWindow.state === 'minimized');
+        this.chromeAdapter.getAllWindows(
+            { populate: false, windowTypes: ['normal', 'popup'] },
+            (chromeWindows: chrome.windows.Window[]) => {
+                chromeWindows.forEach((chromeWindow: chrome.windows.Window) => {
+                    this.chromeAdapter.getSelectedTabInWindow(chromeWindow.id, (activeTab: chrome.tabs.Tab) => {
+                        if (!this.chromeAdapter.getRuntimeLastError()) {
+                            if (activeTab) {
+                                this.sendTabVisibilityChangeAction(activeTab.id, chromeWindow.state === 'minimized');
+                            }
                         }
-                    }
+                    });
                 });
-            });
-        });
+            },
+        );
     }
 
     @autobind
@@ -175,7 +176,6 @@ export class TabController {
                 tabId: tabId,
             });
         }
-
     }
 
     @autobind

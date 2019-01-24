@@ -1,121 +1,120 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 jobs:
+    - job: 'tslint_and_unit_tests'
 
-- job: 'tslint_and_unit_tests'
+      pool:
+          vmImage: 'macOS-10.13'
 
-  pool:
-    vmImage: 'macOS-10.13'
+      steps:
+          - task: NodeTool@0
+            inputs:
+                versionSpec: '8.x'
+            displayName: use node 8.x
 
-  steps:
-  - task: NodeTool@0
-    inputs:
-      versionSpec: '8.x'
-    displayName: use node 8.x
+          - task: Npm@1
+            inputs:
+                command: install
+            displayName: npm install
 
-  - task: Npm@1
-    inputs:
-      command: install
-    displayName: npm install
+          - task: Npm@1
+            inputs:
+                command: custom
+                customCommand: run tslint
+            displayName: npm run tslint
 
-  - task: Npm@1
-    inputs:
-      command: custom
-      customCommand: run tslint
-    displayName: npm run tslint
+          - task: Npm@1
+            inputs:
+                command: custom
+                customCommand: test
+            displayName: npm test
 
-  - task: Npm@1
-    inputs:
-      command: custom
-      customCommand: test
-    displayName: npm test
+          - task: PublishTestResults@2
+            inputs:
+                testResultsFiles: $(System.DefaultWorkingDirectory)/test-results/unit/junit.xml
+                testRunTitle: accessibility-insights-web
+            condition: always()
+            displayName: publish test results
 
-  - task: PublishTestResults@2
-    inputs:
-      testResultsFiles: $(System.DefaultWorkingDirectory)/test-results/unit/junit.xml
-      testRunTitle: accessibility-insights-web
-    condition: always()
-    displayName: publish test results
+          - task: PublishCodeCoverageResults@1
+            inputs:
+                codeCoverageTool: Cobertura
+                summaryFileLocation: $(System.DefaultWorkingDirectory)/test-results/unit/coverage/cobertura-coverage.xml
+                failIfCoverageEmpty: true
+                # We care most about the summary information; adding the detailed files doesn't give enough extra information
+                # to be worth the 1min it adds to the build.
+                # Consider re-enabling this once https://github.com/Microsoft/azure-pipelines-tasks/issues/4945 is resolved.
+                # reportDirectory: $(System.DefaultWorkingDirectory)/test-results/unit/coverage/lcov-report
+            displayName: publish code coverage
 
-  - task: PublishCodeCoverageResults@1
-    inputs:
-      codeCoverageTool: Cobertura
-      summaryFileLocation: $(System.DefaultWorkingDirectory)/test-results/unit/coverage/cobertura-coverage.xml
-      failIfCoverageEmpty: true
-      # We care most about the summary information; adding the detailed files doesn't give enough extra information
-      # to be worth the 1min it adds to the build.
-      # Consider re-enabling this once https://github.com/Microsoft/azure-pipelines-tasks/issues/4945 is resolved.
-      # reportDirectory: $(System.DefaultWorkingDirectory)/test-results/unit/coverage/lcov-report
-    displayName: publish code coverage
+          # CI build only
+          - task: ComponentGovernanceComponentDetection@0
+            displayName: 'Component Detection'
+            condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
+            inputs:
+                verbosity: Normal
 
-  # CI build only
-  - task: ComponentGovernanceComponentDetection@0
-    displayName: 'Component Detection'
-    condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
-    inputs:
-      verbosity: Normal
+          - task: Npm@1
+            displayName: check copyright headers
+            inputs:
+                command: custom
+                customCommand: run copyrightheaders
 
-  - task: Npm@1
-    displayName: check copyright headers
-    inputs:
-      command: custom
-      customCommand: run copyrightheaders
+    - job: 'e2e_tests_and_publish_drop'
 
-- job: 'e2e_tests_and_publish_drop'
+      pool:
+          vmImage: 'macOS-10.13'
 
-  pool:
-    vmImage: 'macOS-10.13'
+      steps:
+          - task: NodeTool@0
+            inputs:
+                versionSpec: '8.x'
+            displayName: use node 8.x
 
-  steps:
-  - task: NodeTool@0
-    inputs:
-      versionSpec: '8.x'
-    displayName: use node 8.x
+          - task: Npm@1
+            inputs:
+                command: install
+            displayName: npm install
 
-  - task: Npm@1
-    inputs:
-      command: install
-    displayName: npm install
+          - task: Npm@1
+            inputs:
+                command: custom
+                customCommand: run drop
+            displayName: npm run drop
 
-  - task: Npm@1
-    inputs:
-      command: custom
-      customCommand: run drop
-    displayName: npm run drop
+          # e2e tests depend on npm run drop
+          - task: Npm@1
+            inputs:
+                command: custom
+                customCommand: run test:e2e
+            displayName: npm run test:e2e
 
-  # e2e tests depend on npm run drop
-  - task: Npm@1
-    inputs:
-      command: custom
-      customCommand: run test:e2e
-    displayName: npm run test:e2e
+          - task: PublishTestResults@2
+            inputs:
+                testResultsFiles: test-results/e2e/junit-e2e.xml
+                testRunTitle: accessibility-insights-web e2e
+            condition: always()
+            displayName: publish e2e test results
 
-  - task: PublishTestResults@2
-    inputs:
-      testResultsFiles: test-results/e2e/junit-e2e.xml
-      testRunTitle: accessibility-insights-web e2e
-    condition: always()
-    displayName: publish e2e test results
+          - task: PublishBuildArtifacts@1
+            inputs:
+                pathtoPublish: '$(System.DefaultWorkingDirectory)/test-results/e2e'
+                artifactName: 'e2e-failure-screenshots'
+            condition: always()
+            continueOnError: true
+            displayName: publish e2e-failure-screenshots
 
-  - task: PublishBuildArtifacts@1
-    inputs:
-      pathtoPublish: '$(System.DefaultWorkingDirectory)/test-results/e2e'
-      artifactName: 'e2e-failure-screenshots'
-    condition: always()
-    continueOnError: true
-    displayName: publish e2e-failure-screenshots
+          - task: CopyFiles@2
+            inputs:
+                sourceFolder: drop
+                contents: '**/*'
+                cleanTargetFolder: true
+                publishLocation: 'filePath'
+                targetFolder: $(Build.ArtifactStagingDirectory)/drop
+            displayName: copy drop
 
-  - task: CopyFiles@2
-    inputs:
-      sourceFolder: drop
-      contents: '**/*'
-      cleanTargetFolder: true
-      publishLocation: 'filePath'
-      targetFolder: $(Build.ArtifactStagingDirectory)/drop
-    displayName: copy drop
-
-  - task: PublishBuildArtifacts@1
-    inputs:
-      pathtoPublish: '$(System.DefaultWorkingDirectory)/drop'
-      artifactName: 'drop'
-    displayName: publish drop
+          - task: PublishBuildArtifacts@1
+            inputs:
+                pathtoPublish: '$(System.DefaultWorkingDirectory)/drop'
+                artifactName: 'drop'
+            displayName: publish drop

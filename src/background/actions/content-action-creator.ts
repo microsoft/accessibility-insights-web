@@ -12,14 +12,12 @@ export class ContentActionCreator {
         private readonly contentActions: ContentActions,
         private readonly telemetryEventHandler: TelemetryEventHandler,
         private readonly registerTypeToPayloadCallback: IRegisterTypeToPayloadCallback,
-        private readonly detailsViewController: DetailsViewController) {
-    }
+        private readonly detailsViewController: DetailsViewController,
+    ) {}
 
     public registerCallbacks(): void {
-        this.registerTypeToPayloadCallback(
-            Messages.ContentPanel.OpenPanel, (payload, tabId) => this.onOpenContentPanel(payload, tabId));
-        this.registerTypeToPayloadCallback(
-            Messages.ContentPanel.ClosePanel, (payload, tabId) => this.onCloseContentPanel(payload, tabId));
+        this.registerTypeToPayloadCallback(Messages.ContentPanel.OpenPanel, (payload, tabId) => this.onOpenContentPanel(payload, tabId));
+        this.registerTypeToPayloadCallback(Messages.ContentPanel.ClosePanel, (payload, tabId) => this.onCloseContentPanel(payload, tabId));
     }
 
     private onOpenContentPanel(payload: ContentPayload, tabId: number): void {

@@ -88,9 +88,11 @@ export class ActionCreator {
         this.registerTypeToPayloadCallback(visualizationMessages.Issues.UpdateFocusedInstance, this.onUpdateFocusedInstance);
 
         this.registerTypeToPayloadCallback(visualizationMessages.State.InjectionCompleted, this.injectionCompleted);
-    this.registerTypeToPayloadCallback(visualizationMessages.State.InjectionStarted, this.injectionStarted);
-    this.registerTypeToPayloadCallback(visualizationMessages.State.GetCurrentVisualizationToggleState,
-            this.getVisualizationToggleCurrentState);
+        this.registerTypeToPayloadCallback(visualizationMessages.State.InjectionStarted, this.injectionStarted);
+        this.registerTypeToPayloadCallback(
+            visualizationMessages.State.GetCurrentVisualizationToggleState,
+            this.getVisualizationToggleCurrentState,
+        );
         this.registerTypeToPayloadCallback(visualizationMessages.State.GetCurrentVisualizationResultState, this.getScanResultsCurrentState);
 
         this.registerTypeToPayloadCallback(visualizationMessages.TabStops.TabbedElementAdded, this.onTabbedElementAdded);
@@ -188,7 +190,6 @@ export class ActionCreator {
         this.visualizationActions.disableAssessmentVisualizations.invoke(null);
     }
 
-
     @autobind
     private onAssessmentScanCompleted(payload: IScanCompletedPayload<any>, tabId: number): void {
         const eventName = TelemetryEvents.ASSESSMENT_SCAN_COMPLETED;
@@ -197,7 +198,6 @@ export class ActionCreator {
         this.notificationCreator.createNotificationByVisualizationKey(payload.selectorMap, payload.key, payload.testType);
         this.targetTabController.showTargetTab(tabId, payload.testType, payload.key);
     }
-
 
     @autobind
     private onOpenPreviewFeaturesPanel(payload: BaseActionPayload, tabId: number): void {
@@ -258,7 +258,7 @@ export class ActionCreator {
 
     @autobind
     private onScanCompleted(payload: IScanCompletedPayload<any>, tabId: number): void {
-        const telemetryEventName =  TelemetryEvents.ADHOC_SCAN_COMPLETED;
+        const telemetryEventName = TelemetryEvents.ADHOC_SCAN_COMPLETED;
         this.telemetryEventHandler.publishTelemetry(telemetryEventName, payload, tabId);
         this.visualizationScanResultActions.scanCompleted.invoke(payload);
         this.visualizationActions.scanCompleted.invoke(null);
@@ -281,9 +281,11 @@ export class ActionCreator {
     }
 
     private shouldEnableToggleOnDetailsViewOpen(visualizationType: VisualizationType): boolean {
-        return visualizationType != null &&
+        return (
+            visualizationType != null &&
             visualizationType !== VisualizationType.TabStops &&
-            this.visualizationConfigurationFactory.getConfiguration(visualizationType).testMode !== TestMode.Assessments;
+            this.visualizationConfigurationFactory.getConfiguration(visualizationType).testMode !== TestMode.Assessments
+        );
     }
 
     private enableToggleOnDetailsViewOpen(test: VisualizationType, tabId: number): void {
@@ -325,8 +327,7 @@ export class ActionCreator {
 
         if (payload.enabled) {
             this.visualizationActions.enableVisualization.invoke(payload);
-        }
-        else {
+        } else {
             this.visualizationActions.disableVisualization.invoke(payload.test);
         }
     }

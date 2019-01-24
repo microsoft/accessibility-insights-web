@@ -55,7 +55,7 @@ describe('AssessmentReportHtmlGenerator', () => {
                 </body>
             </React.Fragment>
         );
-        const expectedBody = '<head>styles</head><body>report-body</body>';
+        const expectedBody: string = '<head>styles</head><body>report-body</body>';
         const expectedHtml = `<html lang="en">${expectedBody}</html>`;
 
         const testDate = new Date(2018, 9, 19, 11, 25);
@@ -74,7 +74,7 @@ describe('AssessmentReportHtmlGenerator', () => {
             .returns(() => model);
 
         rendererMock
-            .setup(r => r.renderToStaticMarkup(It.isObjectWith(expectedComponent), 'html'))
+            .setup(r => r.renderToStaticMarkup(It.isObjectWith(expectedComponent)))
             .returns(() => expectedBody);
 
         const testSubject = new AssessmentReportHtmlGenerator(

@@ -9,11 +9,7 @@ import { BrowserAdapter } from '../browser-adapter';
 import { TelemetryClient } from './telemetry-client';
 
 export class TelemetryEventHandler {
-    constructor(
-        private readonly browserAdapter: BrowserAdapter,
-        private readonly telemetryClient: TelemetryClient,
-    ) {
-    }
+    constructor(private readonly browserAdapter: BrowserAdapter, private readonly telemetryClient: TelemetryClient) {}
 
     public enableTelemetry(): void {
         this.telemetryClient.enableTelemetry();

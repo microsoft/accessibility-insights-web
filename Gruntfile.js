@@ -6,55 +6,42 @@ const targets = require('./targets.config');
 const merge = require('lodash/merge');
 const { run: copyrightCheckAndAdd } = require('license-check-and-add');
 
-module.exports = function (grunt) {
-
+module.exports = function(grunt) {
     const extensionPath = 'extension';
     const copyrightCheckAndAddConfig = {
-        folder: "./",
-        license: "copyright-header.txt",
-        exact_paths_method: "EXCLUDE",
+        folder: './',
+        license: 'copyright-header.txt',
+        exact_paths_method: 'EXCLUDE',
         exact_paths: [
-            "./.vscode",
-            "./.git",
-            "./dist",
-            "./drop",
-            "./extension",
-            "./node_modules",
-            "./copyright-header.txt",
-            "./src/assessments/color/test-steps/flashing-text-example.html",
-            "./test-results",
+            './.vscode',
+            './.git',
+            './dist',
+            './drop',
+            './extension',
+            './node_modules',
+            './copyright-header.txt',
+            './src/assessments/color/test-steps/flashing-text-example.html',
+            './test-results',
         ],
-        file_type_method: "INCLUDE",
-        file_types: [
-            ".ts",
-            ".tsx",
-            ".d.ts",
-            ".js",
-            ".html",
-            ".css",
-            ".scss",
-            ".yaml",
-            ".md",
-            ".txt",
-            ".xml",
-        ],
+        file_type_method: 'INCLUDE',
+        file_types: ['.ts', '.tsx', '.d.ts', '.js', '.html', '.css', '.scss', '.yaml', '.md', '.txt', '.xml'],
         insert_license: false,
         license_formats: {
-            "yaml|npmrc": {
+            'yaml|npmrc': {
                 eachLine: {
-                    prepend: "# "
-                }
+                    prepend: '# ',
+                },
             },
-            "md": {
-                prepend: "<!--",
-                append: "-->"
+            md: {
+                prepend: '<!--',
+                append: '-->',
             },
-            "snap|ts|tsx|d.ts|js|scss|css": {
+            'snap|ts|tsx|d.ts|js|scss|css': {
                 eachLine: {
-                    prepend: "// "
-                }
-            }
-        }
+                    prepend: '// ',
+                },
+            },
+        },
     };
 
     function mustExist(file, reason) {
@@ -65,28 +52,27 @@ module.exports = function (grunt) {
     }
 
     grunt.initConfig({
-        'watch': {
+        watch: {
             scripts: {
-                files: [
-                    'src/**/*',
-                    '!src/tests/**/*',
-                ],
-                tasks: ['dev']
+                files: ['src/**/*', '!src/tests/**/*'],
+                tasks: ['dev'],
             },
         },
-        "sass": {
+        sass: {
             options: {
                 implementation: sass,
-                outputStyle: 'expanded'
+                outputStyle: 'expanded',
             },
             dist: {
-                files: [{
-                    src: "src/**/*.scss",
-                    dest: 'dist',
-                    expand: true,
-                    ext: '.css'
-                }]
-            }
+                files: [
+                    {
+                        src: 'src/**/*.scss',
+                        dest: 'dist',
+                        expand: true,
+                        ext: '.css',
+                    },
+                ],
+            },
         },
         'embed-styles': {
             code: {
@@ -96,100 +82,102 @@ module.exports = function (grunt) {
                 expand: true,
             },
         },
-        'exec': {
+        exec: {
             webpack: {
-                cmd: path.resolve("./node_modules/.bin/webpack"),
-                cwd: path.resolve("./"),
+                cmd: path.resolve('./node_modules/.bin/webpack'),
+                cwd: path.resolve('./'),
                 stdout: 'inherit',
-                stderr: 'inherit'
-            }
+                stderr: 'inherit',
+            },
         },
-        "copy": {
+        copy: {
             code: {
                 files: [
                     {
                         cwd: './src',
-                        src: ["manifest.json"],
+                        src: ['manifest.json'],
                         dest: extensionPath,
-                        expand: true
+                        expand: true,
                     },
                     {
                         cwd: './src',
-                        src: ["./**/*.html"],
+                        src: ['./**/*.html'],
                         dest: extensionPath,
-                        expand: true
+                        expand: true,
                     },
                     {
                         cwd: './deploy/extension',
-                        src: ["*"],
+                        src: ['*'],
                         dest: extensionPath,
-                        expand: true
-                    }
-                ]
+                        expand: true,
+                    },
+                ],
             },
             images: {
-                files: [{
-                    cwd: './src',
-                    src: "./**/*.png",
-                    dest: extensionPath,
-                    expand: true
-                }],
+                files: [
+                    {
+                        cwd: './src',
+                        src: './**/*.png',
+                        dest: extensionPath,
+                        expand: true,
+                    },
+                ],
             },
             styles: {
-                files: [{
-                    cwd: './src',
-                    src: "**/*.css",
-                    dest: extensionPath,
-                    expand: true
-                },
-                {
-                    cwd: './dist/src/views',
-                    src: "**/*.css",
-                    dest: path.join(extensionPath, 'views'),
-                    expand: true
-                },
-                {
-                    cwd: './dist/src/DetailsView/Styles',
-                    src: "*.css",
-                    dest: path.join(extensionPath, 'DetailsView/styles/default'),
-                    expand: true
-                },
-                {
-                    cwd: './dist/src/injected/styles',
-                    src: "*.css",
-                    dest: path.join(extensionPath, 'injected/styles/default'),
-                    expand: true
-                },
-                {
-                    cwd: './dist/src/popup/Styles',
-                    src: "*.css",
-                    dest: path.join(extensionPath, 'popup/styles/default'),
-                    expand: true
-                },
-                {
-                    cwd: './node_modules/office-ui-fabric-react/dist/css',
-                    src: "fabric.min.css",
-                    dest: path.join(extensionPath, 'common/styles/'),
-                    expand: true
-                }
+                files: [
+                    {
+                        cwd: './src',
+                        src: '**/*.css',
+                        dest: extensionPath,
+                        expand: true,
+                    },
+                    {
+                        cwd: './dist/src/views',
+                        src: '**/*.css',
+                        dest: path.join(extensionPath, 'views'),
+                        expand: true,
+                    },
+                    {
+                        cwd: './dist/src/DetailsView/Styles',
+                        src: '*.css',
+                        dest: path.join(extensionPath, 'DetailsView/styles/default'),
+                        expand: true,
+                    },
+                    {
+                        cwd: './dist/src/injected/styles',
+                        src: '*.css',
+                        dest: path.join(extensionPath, 'injected/styles/default'),
+                        expand: true,
+                    },
+                    {
+                        cwd: './dist/src/popup/Styles',
+                        src: '*.css',
+                        dest: path.join(extensionPath, 'popup/styles/default'),
+                        expand: true,
+                    },
+                    {
+                        cwd: './node_modules/office-ui-fabric-react/dist/css',
+                        src: 'fabric.min.css',
+                        dest: path.join(extensionPath, 'common/styles/'),
+                        expand: true,
+                    },
                 ],
             },
         },
-        'clean': {
+        clean: {
             compile: ['dist', 'ref'],
             layout: [extensionPath],
         },
-        "tslint": {
+        tslint: {
             report: {
                 options: {
                     // can be a configuration object or a filepath to tslint.json
-                    configuration: "./tslint.build-enforced.json",
-                    project: "./tsconfig.json",
+                    configuration: './tslint.build-enforced.json',
+                    project: './tsconfig.json',
                     // If set to true, tslint errors will be reported, but not fail the task
                     // If set to false, tslint errors will be reported, and the task will fail
                     force: false,
                     fix: false,
-
                 },
                 files: {
                     src: ['src/**/*.{ts,tsx}'],
@@ -197,18 +185,18 @@ module.exports = function (grunt) {
             },
             fix: {
                 options: {
-                    configuration: "./tslint.json",
-                    project: "./tsconfig.json",
+                    configuration: './tslint.json',
+                    project: './tsconfig.json',
                     force: false,
                     fix: true,
                 },
                 files: {
                     src: ['src/**/*.{ts,tsx}'],
                 },
-            }
+            },
         },
-        "bom": {
-            cwd: path.resolve("./src/**/*.{ts,tsx,js,snap,html,scss,css}"),
+        bom: {
+            cwd: path.resolve('./src/**/*.{ts,tsx,js,snap,html,scss,css}'),
         },
     });
 
@@ -222,105 +210,92 @@ module.exports = function (grunt) {
         const debug = config.options.debug;
 
         grunt.config.merge({
-            "drop": {
+            drop: {
                 [targetName]: {
-                    debug
-                }
+                    debug,
+                },
             },
-            "configure": {
+            configure: {
                 [targetName]: {
                     configJSPath: path.join(dropExtensionPath, 'insights.config.js'),
                     configJSONPath: path.join(dropExtensionPath, 'insights.config.json'),
                     config,
-                }
+                },
             },
-            "manifest": {
+            manifest: {
                 [targetName]: {
                     manifestSrc: path.join('src', 'manifest.json'),
                     manifestDest: path.join(dropExtensionPath, 'manifest.json'),
                     config,
-                }
+                },
             },
-            'copy': {
+            copy: {
                 [targetName]: {
-                    files: [{
-                        cwd: debug ? path.resolve(extensionPath, 'devBundle') : path.resolve(extensionPath, 'prodBundle'),
-                        src: ['*.js', '*.js.map'],
-                        dest: path.resolve(dropExtensionPath, 'bundle'),
-                        expand: true
-                    },
-                    {
-                        cwd: extensionPath,
-                        src: ['**/*.png', '**/*.css', '**/*.woff'],
-                        dest: dropExtensionPath,
-                        expand: true
-                    },
-                    {
-                        cwd: "deploy",
-                        src: ["Gruntfile.js", "package.json"],
-                        dest: dropPath,
-                        expand: true
-                    },
-                    {
-                        cwd: extensionPath,
-                        src: ['**/*.html'],
-                        dest: dropExtensionPath,
-                        expand: true
-                    }
-                    ]
-                }
+                    files: [
+                        {
+                            cwd: debug ? path.resolve(extensionPath, 'devBundle') : path.resolve(extensionPath, 'prodBundle'),
+                            src: ['*.js', '*.js.map'],
+                            dest: path.resolve(dropExtensionPath, 'bundle'),
+                            expand: true,
+                        },
+                        {
+                            cwd: extensionPath,
+                            src: ['**/*.png', '**/*.css', '**/*.woff'],
+                            dest: dropExtensionPath,
+                            expand: true,
+                        },
+                        {
+                            cwd: 'deploy',
+                            src: ['Gruntfile.js', 'package.json'],
+                            dest: dropPath,
+                            expand: true,
+                        },
+                        {
+                            cwd: extensionPath,
+                            src: ['**/*.html'],
+                            dest: dropExtensionPath,
+                            expand: true,
+                        },
+                    ],
+                },
             },
-            'clean': {
-                [targetName]: dropPath
-            }
+            clean: {
+                [targetName]: dropPath,
+            },
         });
     });
 
     grunt.loadNpmTasks('grunt-exec');
-    grunt.loadNpmTasks("grunt-contrib-copy");
-    grunt.loadNpmTasks("grunt-contrib-clean");
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-tslint');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-bom-removal');
 
-    grunt.registerTask("compile", [
-        "clean:compile",
-        "sass",
-        "webpack"
-    ]);
-    grunt.registerTask("layout", [
-        "clean:layout",
-        "compile",
-        "copy:code",
-        "copy:styles",
-        "embed-styles:code",
-        "copy:images",
-    ]);
-    grunt.registerTask("webpack", [
-        "exec:webpack"
-    ]);
+    grunt.registerTask('compile', ['clean:compile', 'sass', 'webpack']);
+    grunt.registerTask('layout', ['clean:layout', 'compile', 'copy:code', 'copy:styles', 'embed-styles:code', 'copy:images']);
+    grunt.registerTask('webpack', ['exec:webpack']);
 
-    grunt.registerTask("copyright-check", 'grunt task to check copyright header', function () {
+    grunt.registerTask('copyright-check', 'grunt task to check copyright header', function() {
         copyrightCheckAndAdd(copyrightCheckAndAddConfig);
     });
 
-    grunt.registerTask("copyright-add", 'grunt task to add copyright header', function () {
+    grunt.registerTask('copyright-add', 'grunt task to add copyright header', function() {
         copyrightCheckAndAddConfig.insert_license = true;
         copyrightCheckAndAdd(copyrightCheckAndAddConfig);
     });
 
-    grunt.registerTask("lint", [
-        "tslint:report"
-    ]);
+    grunt.registerTask('lint', ['tslint:report']);
 
-    grunt.registerTask("lint.fix", [
-        "tslint:fix"
-    ]);
+    grunt.registerTask('lint.fix', ['tslint:fix']);
 
-    grunt.registerMultiTask('embed-styles', function () {
+    grunt.registerMultiTask('embed-styles', function() {
         this.files.forEach(file => {
-            const { src: [src], dest } = file;
+            const {
+                src: [src],
+                dest,
+            } = file;
             grunt.log.writeln(`embedding style in ${src}`);
             const fileOptions = { options: { encoding: 'utf8' } };
             const input = grunt.file.read(src, fileOptions);
@@ -333,10 +308,10 @@ module.exports = function (grunt) {
             });
             grunt.file.write(dest, output, fileOptions);
             grunt.log.writeln(`    written to ${dest}`);
-        })
+        });
     });
 
-    grunt.registerMultiTask('configure', function () {
+    grunt.registerMultiTask('configure', function() {
         const { config, configJSONPath, configJSPath } = this.data;
         const configJSON = JSON.stringify(config, undefined, 4);
         grunt.file.write(configJSONPath, configJSON);
@@ -345,7 +320,7 @@ module.exports = function (grunt) {
         grunt.file.write(configJSPath, configJS);
     });
 
-    grunt.registerMultiTask('manifest', function () {
+    grunt.registerMultiTask('manifest', function() {
         const { config, manifestSrc, manifestDest } = this.data;
         const manifestJSON = grunt.file.readJSON(manifestSrc);
         merge(manifestJSON, {
@@ -355,12 +330,12 @@ module.exports = function (grunt) {
                 '16': config.options.icon16,
                 '48': config.options.icon48,
                 '128': config.options.icon128,
-            }
+            },
         });
         grunt.file.write(manifestDest, JSON.stringify(manifestJSON, undefined, 2));
     });
 
-    grunt.registerMultiTask("drop", function () {
+    grunt.registerMultiTask('drop', function() {
         const debug = this.data.debug;
         if (debug) {
             mustExist('extension/devBundle/background.bundle.js', 'Have you run webpack?');
@@ -372,19 +347,16 @@ module.exports = function (grunt) {
         grunt.task.run('copy:' + targetName);
         grunt.task.run('configure:' + targetName);
         grunt.task.run('manifest:' + targetName);
-        console.log(`${targetName} extension is in ${path.join('drop', targetName, 'extension')}`)
+        console.log(`${targetName} extension is in ${path.join('drop', targetName, 'extension')}`);
     });
 
-    grunt.registerTask("release-drops", function () {
+    grunt.registerTask('release-drops', function() {
         releaseTargets.forEach(targetName => {
             grunt.task.run('drop:' + targetName);
         });
     });
 
-    grunt.registerTask("dev", [
-        "layout",
-        "drop:dev"
-    ]);
+    grunt.registerTask('dev', ['layout', 'drop:dev']);
 
-    grunt.registerTask("default", ["dev"]);
+    grunt.registerTask('default', ['dev']);
 };

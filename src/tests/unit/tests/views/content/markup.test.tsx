@@ -37,63 +37,63 @@ describe('ContentPage', () => {
 
         it('<Title> renders where options not specified', () => {
             const wrapper = shallow(<Title>TEST</Title>);
-            expect(wrapper.debug()).toMatchSnapshot();
+            expect(wrapper.getElement()).toMatchSnapshot();
         });
 
         [true, false, null].forEach(value => it(`<Title> renders where setPageTitle === ${value}`, () => {
             const Markup = createMarkup(deps, { setPageTitle: value });
             const wrapper = shallow(<Markup.Title>TEST</Markup.Title>);
-            expect(wrapper.debug()).toMatchSnapshot();
+            expect(wrapper.getElement()).toMatchSnapshot();
         }));
 
         it('<LandmarkLegend> renders', () => {
             const wrapper = shallow(<LandmarkLegend role="test">TEST</LandmarkLegend>);
-            expect(wrapper.debug()).toMatchSnapshot();
+            expect(wrapper.getElement()).toMatchSnapshot();
         });
 
         it('<Table> renders', () => {
             const wrapper = shallow(<Table>table contetn</Table>);
-            expect(wrapper.debug()).toMatchSnapshot();
+            expect(wrapper.getElement()).toMatchSnapshot();
         });
 
         it('<ProblemList> renders', () => {
             const wrapper = shallow(<ProblemList>list contetn</ProblemList>);
-            expect(wrapper.debug()).toMatchSnapshot();
+            expect(wrapper.getElement()).toMatchSnapshot();
         });
 
         it('<LandmarkLegend> renders', () => {
             const wrapper = shallow(<Do>THINGS TO DO</Do>);
-            expect(wrapper.debug()).toMatchSnapshot();
+            expect(wrapper.getElement()).toMatchSnapshot();
         });
 
         it('<Do> renders', () => {
             const wrapper = shallow(<Do>THINGS TO DO</Do>);
-            expect(wrapper.debug()).toMatchSnapshot();
+            expect(wrapper.getElement()).toMatchSnapshot();
         });
 
         it('<Dont> renders', () => {
             const wrapper = shallow(<Dont>DON'T DO THIS</Dont>);
-            expect(wrapper.debug()).toMatchSnapshot();
+            expect(wrapper.getElement()).toMatchSnapshot();
         });
 
         it('<Pass> renders', () => {
             const wrapper = shallow(<Pass>I PASSED :)</Pass>);
-            expect(wrapper.debug()).toMatchSnapshot();
+            expect(wrapper.getElement()).toMatchSnapshot();
         });
 
         it('<Fail> renders', () => {
             const wrapper = shallow(<Fail>I FAILED :(</Fail>);
-            expect(wrapper.debug()).toMatchSnapshot();
+            expect(wrapper.getElement()).toMatchSnapshot();
         });
 
         it('<Columns> renders', () => {
             const wrapper = shallow(<Columns>INSIDE COLUMNS</Columns>);
-            expect(wrapper.debug()).toMatchSnapshot();
+            expect(wrapper.getElement()).toMatchSnapshot();
         });
 
         it('<Column> renders', () => {
             const wrapper = shallow(<Column>INSIDE COLUMN</Column>);
-            expect(wrapper.debug()).toMatchSnapshot();
+            expect(wrapper.getElement()).toMatchSnapshot();
         });
 
         describe('<PassFail>', () => {
@@ -104,7 +104,7 @@ describe('ContentPage', () => {
                     passText={<p>I PASSED!</p>}
                     passExample="This is the passing [example]."
                 />);
-                expect(wrapper.debug()).toMatchSnapshot();
+                expect(wrapper.getElement()).toMatchSnapshot();
             });
 
             it('renders with example headers', () => {
@@ -114,7 +114,7 @@ describe('ContentPage', () => {
                     passText={<p>I PASSED!</p>}
                     passExample={<CodeExample title={<>How I <b>passed</b></>}>This is the passing [example].</CodeExample>}
                 />);
-                expect(wrapper.debug()).toMatchSnapshot();
+                expect(wrapper.getElement()).toMatchSnapshot();
             });
 
         });
@@ -125,7 +125,7 @@ describe('ContentPage', () => {
             const wrapper = shallow(<HyperLink href={href}>LINK TEXT</HyperLink>);
 
             it('renders', () => {
-                expect(wrapper.debug()).toMatchSnapshot();
+                expect(wrapper.getElement()).toMatchSnapshot();
             });
 
             it('registers click with event', () => {
@@ -213,17 +213,17 @@ describe('ContentPage', () => {
 
             it('renders with text', () => {
                 const wrapper = shallow(<Links>Some text</Links>);
-                expect(wrapper.debug()).toMatchSnapshot();
+                expect(wrapper.getElement()).toMatchSnapshot();
             });
 
             it('renders with one link', () => {
                 const wrapper = shallow(<Links>{link1}</Links>);
-                expect(wrapper.debug()).toMatchSnapshot();
+                expect(wrapper.getElement()).toMatchSnapshot();
             });
 
             it('renders with many links', () => {
                 const wrapper = shallow(<Links>{link1}{link2}{link3}</Links>);
-                expect(wrapper.debug()).toMatchSnapshot();
+                expect(wrapper.getElement()).toMatchSnapshot();
             });
         });
 
