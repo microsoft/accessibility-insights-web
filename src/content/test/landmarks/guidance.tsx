@@ -15,7 +15,7 @@ export const guidance = create(({ Markup, Link }) => (
             technologies, like browser extensions, can use this information to enable or enhance navigation.
         </p>
         <p>
-            For more information about how to use ARIA landmarks, see 
+            For more information about how to use ARIA landmarks, see{' '}
             <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-practices-1.1/">
                 WAI-ARIA Authoring Practices 1.1: Landmark Regions
             </Markup.HyperLink>
@@ -53,7 +53,7 @@ export const guidance = create(({ Markup, Link }) => (
                 <ul>
                     <li>An automated check will fail if the page contains more than one main landmark.</li>
                     <li>
-                        Exception: If the page contains nested document or application roles, each one can have its own 
+                        Exception: If the page contains nested document or application roles, each one can have its own{' '}
                         <Markup.Term>banner</Markup.Term>, <Markup.Term>main</Markup.Term> and <Markup.Term>contentinfo</Markup.Term>
                          landmarks.
                     </li>
@@ -69,7 +69,7 @@ export const guidance = create(({ Markup, Link }) => (
                 </h3>
                 <ul>
                     <li>
-                        In the visual helper, accessible labels (<Markup.Term>aria-label</Markup.Term> or 
+                        In the visual helper, accessible labels (<Markup.Term>aria-label</Markup.Term> or{' '}
                         <Markup.Term>aria-labelledby</Markup.Term>) are enclosed in quotes.
                     </li>
                     <li>

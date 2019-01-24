@@ -38,10 +38,10 @@ export const guidance = create(({ Markup, Link }) => (
         <h4>Sufficient techniques</h4>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G9">
-                Creating captions for live synchronized media 
+                Creating captions for live synchronized media{' '}
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G93">
-                Providing open (always visible) captions 
+                Providing open (always visible) captions{' '}
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G87">Providing closed captions</Markup.HyperLink>
         </Markup.Links>
