@@ -44,10 +44,7 @@ describe('ScannerUtilsTest', () => {
 
         const expectedAxeResults: ScanResults = {
             passes: [getSampleRule('rule1', [selectors[0]]), getSampleRule('rule2', selectors)],
-            violations: [
-                getSampleRule('rule1', [selectors[1]]),
-                getSampleRule('rule3', [selectors[0], selectors[1]]),
-            ],
+            violations: [getSampleRule('rule1', [selectors[1]]), getSampleRule('rule3', [selectors[0], selectors[1]])],
             inapplicable: [],
             incomplete: [],
             timestamp: '0',
@@ -56,16 +53,20 @@ describe('ScannerUtilsTest', () => {
         };
 
         scannerMock
-            .setup(sm => sm(
-                It.isValue({
-                    testsToRun: rulesToRun,
-                    include: testInclude,
-                    exclude: testExclude,
-                }), It.isAny(), It.isAny()))
+            .setup(sm =>
+                sm(
+                    It.isValue({
+                        testsToRun: rulesToRun,
+                        include: testInclude,
+                        exclude: testExclude,
+                    }),
+                    It.isAny(),
+                    It.isAny(),
+                ),
+            )
             .callback((rulesToBeRun, successCallback, errorCallback) => {
                 successCallback(expectedAxeResults);
-            },
-        );
+            });
 
         testSubject.scan(scanOptions, results => {
             expect(results).toEqual(expectedAxeResults);
@@ -80,14 +81,8 @@ describe('ScannerUtilsTest', () => {
         const element2Selector = expectedElementSelectors[1];
 
         const axeResults: ScanResults = {
-            passes: [
-                getSampleRule('rule1', [element1Selector]),
-                getSampleRule('rule2', selectors),
-            ],
-            violations: [
-                getSampleRule('rule1', [element2Selector]),
-                getSampleRule('rule3', [element1Selector, element2Selector]),
-            ],
+            passes: [getSampleRule('rule1', [element1Selector]), getSampleRule('rule2', selectors)],
+            violations: [getSampleRule('rule1', [element2Selector]), getSampleRule('rule3', [element1Selector, element2Selector])],
             inapplicable: [],
             incomplete: [],
             timestamp: '0',
@@ -98,12 +93,12 @@ describe('ScannerUtilsTest', () => {
 
         expect(Object.keys(selectorMap)).toEqual(expectedElementSelectors);
         const expectedElement1RuleResults: IDictionaryStringTo<boolean> = {
-            'rule3': false,
+            rule3: false,
         };
 
         const expectedElement2RuleResults: IDictionaryStringTo<boolean> = {
-            'rule1': false,
-            'rule3': false,
+            rule1: false,
+            rule3: false,
         };
 
         verifyElementSelector(selectorMap[element1Selector], element1Selector, expectedElement1RuleResults);
@@ -118,11 +113,8 @@ describe('ScannerUtilsTest', () => {
         const element2Selector = expectedElementSelectors[1];
 
         const axeResults: ScanResults = {
-            passes: [getSampleRule('rule1', [element1Selector]),
-            getSampleRule('rule2', [element1Selector, element2Selector])],
-            violations: [
-                getSampleRule('rule3', selectors),
-            ],
+            passes: [getSampleRule('rule1', [element1Selector]), getSampleRule('rule2', [element1Selector, element2Selector])],
+            violations: [getSampleRule('rule3', selectors)],
             inapplicable: [],
             incomplete: [],
             timestamp: '0',
@@ -133,12 +125,12 @@ describe('ScannerUtilsTest', () => {
 
         expect(Object.keys(selectorMap)).toEqual(expectedElementSelectors);
         const expectedElement1RuleResults: IDictionaryStringTo<boolean> = {
-            'rule1': true,
-            'rule2': true,
+            rule1: true,
+            rule2: true,
         };
 
         const expectedElement2RuleResults: IDictionaryStringTo<boolean> = {
-            'rule2': true,
+            rule2: true,
         };
 
         verifyElementSelector(selectorMap[element1Selector], element1Selector, expectedElement1RuleResults);
@@ -153,11 +145,8 @@ describe('ScannerUtilsTest', () => {
         const element2Selector = expectedElementSelectors[1];
 
         const axeResults: ScanResults = {
-            passes: [getSampleRule('rule1', [element1Selector], true),
-            getSampleRule('rule2', [element1Selector, element2Selector])],
-            violations: [
-                getSampleRule('rule3', selectors),
-            ],
+            passes: [getSampleRule('rule1', [element1Selector], true), getSampleRule('rule2', [element1Selector, element2Selector])],
+            violations: [getSampleRule('rule3', selectors)],
             inapplicable: [],
             incomplete: [],
             timestamp: '0',
@@ -168,12 +157,12 @@ describe('ScannerUtilsTest', () => {
 
         expect(Object.keys(selectorMap)).toEqual(expectedElementSelectors);
         const expectedElement1RuleResults: IDictionaryStringTo<boolean> = {
-            'rule1': true,
-            'rule2': true,
+            rule1: true,
+            rule2: true,
         };
 
         const expectedElement2RuleResults: IDictionaryStringTo<boolean> = {
-            'rule2': true,
+            rule2: true,
         };
 
         verifyElementSelector(selectorMap[element1Selector], element1Selector, expectedElement1RuleResults);
@@ -191,10 +180,7 @@ describe('ScannerUtilsTest', () => {
             passes: [getSampleRule('rule1', [element1Selector]), getSampleRule('rule2', selectors)],
             violations: [],
             inapplicable: [],
-            incomplete: [
-                getSampleRule('rule1', [element2Selector]),
-                getSampleRule('rule3', [element1Selector, element2Selector]),
-            ],
+            incomplete: [getSampleRule('rule1', [element2Selector]), getSampleRule('rule3', [element1Selector, element2Selector])],
             timestamp: '0',
             targetPageUrl: 'test url',
             targetPageTitle: 'test title',
@@ -203,12 +189,12 @@ describe('ScannerUtilsTest', () => {
 
         expect(Object.keys(selectorMap)).toEqual(expectedElementSelectors);
         const expectedElement1RuleResults: IDictionaryStringTo<boolean> = {
-            'rule3': undefined,
+            rule3: undefined,
         };
 
         const expectedElement2RuleResults: IDictionaryStringTo<boolean> = {
-            'rule1': undefined,
-            'rule3': undefined,
+            rule1: undefined,
+            rule3: undefined,
         };
 
         verifyElementSelector(selectorMap[element1Selector], element1Selector, expectedElement1RuleResults);
@@ -217,12 +203,16 @@ describe('ScannerUtilsTest', () => {
     });
 
     test('getAllCompletedInstances with IDs', () => {
-        const generateUIDMock = Mock.ofInstance(() => { return null; });
+        const generateUIDMock = Mock.ofInstance(() => {
+            return null;
+        });
         testSubject = new ScannerUtils(scannerMock.object, generateUIDMock.object);
 
         generateUIDMock
             .setup(generate => generate())
-            .returns(() => { return 1; })
+            .returns(() => {
+                return 1;
+            })
             .verifiable(Times.once());
 
         const axeResults: ScanResults = {
@@ -264,14 +254,8 @@ describe('ScannerUtilsTest', () => {
         const element2Selector = expectedElementSelectors[1];
 
         const axeResults: ScanResults = {
-            passes: [
-                getSampleRule('rule1', [element1Selector]),
-                getSampleRule('rule2', selectors),
-            ],
-            violations: [
-                getSampleRule('rule1', [element2Selector]),
-                getSampleRule('rule3', [element1Selector, element2Selector]),
-            ],
+            passes: [getSampleRule('rule1', [element1Selector]), getSampleRule('rule2', selectors)],
+            violations: [getSampleRule('rule1', [element2Selector]), getSampleRule('rule3', [element1Selector, element2Selector])],
             inapplicable: [],
             incomplete: [],
             timestamp: '0',
@@ -291,10 +275,7 @@ describe('ScannerUtilsTest', () => {
         const element1Selector = expectedElementSelectors[0];
 
         const axeResults: ScanResults = {
-            passes: [
-                getSampleRule('rule1', [element1Selector]),
-                getSampleRule('rule2', selectors),
-            ],
+            passes: [getSampleRule('rule1', [element1Selector]), getSampleRule('rule2', selectors)],
             violations: [],
             inapplicable: [],
             incomplete: [],
@@ -317,12 +298,12 @@ describe('ScannerUtilsTest', () => {
         const element3Selector = expectedElementSelectors[2];
 
         const axeResults: ScanResults = {
-            passes: [getSampleRule('rule1', [element2Selector]), getSampleRule('rule2', selectors),
-            getSampleRule('rule3', [element2Selector])],
-            violations: [
-                getSampleRule('rule1', [element3Selector]),
-                getSampleRule('rule3', [element1Selector, element3Selector]),
+            passes: [
+                getSampleRule('rule1', [element2Selector]),
+                getSampleRule('rule2', selectors),
+                getSampleRule('rule3', [element2Selector]),
             ],
+            violations: [getSampleRule('rule1', [element3Selector]), getSampleRule('rule3', [element1Selector, element3Selector])],
             inapplicable: [],
             incomplete: [],
             timestamp: '0',
@@ -334,20 +315,20 @@ describe('ScannerUtilsTest', () => {
 
         expect(Object.keys(selectorMap)).toEqual(expectedElementSelectors);
         const expectedElement1RuleResults: IDictionaryStringTo<boolean> = {
-            'rule2': true,
-            'rule3': false,
+            rule2: true,
+            rule3: false,
         };
 
         const expectedElement2RuleResults: IDictionaryStringTo<boolean> = {
-            'rule1': true,
-            'rule2': true,
-            'rule3': true,
+            rule1: true,
+            rule2: true,
+            rule3: true,
         };
 
         const expectedElement3RuleResults: IDictionaryStringTo<boolean> = {
-            'rule1': false,
-            'rule2': true,
-            'rule3': false,
+            rule1: false,
+            rule2: true,
+            rule3: false,
         };
 
         verifyElementSelector(selectorMap[element1Selector], element1Selector, expectedElement1RuleResults);
@@ -400,15 +381,13 @@ describe('ScannerUtilsTest', () => {
     function verifyElementSelector(
         elementResult: IHtmlElementAxeResults,
         selector: string,
-        ruleResultMap:
-        IDictionaryStringTo<boolean>,
+        ruleResultMap: IDictionaryStringTo<boolean>,
         includeSnippet?: boolean,
     ): void {
         expect([selector]).toEqual(elementResult.target);
 
         const ruleIds = Object.keys(ruleResultMap);
         expect(ruleIds.sort()).toEqual(Object.keys(elementResult.ruleResults).sort());
-
 
         const ruleResults: IDictionaryStringTo<DecoratedAxeNodeResult> = {};
 

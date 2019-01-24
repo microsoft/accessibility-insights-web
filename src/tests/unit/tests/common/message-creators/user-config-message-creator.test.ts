@@ -12,8 +12,7 @@ describe('UserConfigMessageCreatorTest', () => {
     let tabId: number;
 
     beforeEach(() => {
-
-        postMessageMock = Mock.ofInstance(message => { }, MockBehavior.Strict);
+        postMessageMock = Mock.ofInstance(message => {}, MockBehavior.Strict);
         tabId = 1;
 
         testSubject = new UserConfigMessageCreator(postMessageMock.object, tabId);
@@ -34,9 +33,7 @@ describe('UserConfigMessageCreatorTest', () => {
             payload,
         };
 
-        postMessageMock
-            .setup(pm => pm(It.isValue(expectedMessage)))
-            .verifiable(Times.once());
+        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
 
         testSubject.setTelemetryState(enableTelemetry);
 

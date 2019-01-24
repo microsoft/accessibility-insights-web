@@ -18,11 +18,11 @@ export interface PrintableResult {
 }
 
 export async function scanForAccessibilityIssues(page: Page, selector: string): Promise<PrintableResult[]> {
-    const axeResults = await page.evaluate(selectorInEvaluate => {
+    const axeResults = (await page.evaluate(selectorInEvaluate => {
         return axe.run({
             include: [selectorInEvaluate],
         } as ElementContext);
-    }, selector) as AxeResults;
+    }, selector)) as AxeResults;
 
     const violations = axeResults.violations;
     const printableViolations: PrintableResult[] = violations.map(result => {

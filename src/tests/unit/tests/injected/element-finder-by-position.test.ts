@@ -13,7 +13,12 @@ import { ScannerUtils } from '../../../../injected/scanner-utils';
 import { QStub } from '../../stubs/q-stub';
 
 class TestableElementFinder extends ElementFinderByPosition {
-    public getOnfindElementByPosition(): (message: ElementFinderByPositionMessage, error: IErrorMessageContent, sourceWin: Window, responder?: FrameMessageResponseCallback) => void {
+    public getOnfindElementByPosition(): (
+        message: ElementFinderByPositionMessage,
+        error: IErrorMessageContent,
+        sourceWin: Window,
+        responder?: FrameMessageResponseCallback,
+    ) => void {
         return this.onfindElementByPosition;
     }
 }
@@ -36,13 +41,15 @@ describe('ElementFinderByPositionTest', () => {
         clientUtilsMock = Mock.ofType(ClientUtils);
         scannerUtils = Mock.ofType(ScannerUtils);
         mockQ = Mock.ofType(QStub, MockBehavior.Strict) as any;
-        elementsFromPointMock = Mock.ofInstance((x: number, y: number) => { return null; });
+        elementsFromPointMock = Mock.ofInstance((x: number, y: number) => {
+            return null;
+        });
         domStub = {
             elementsFromPoint: elementsFromPointMock.object,
         } as Document;
-        resolveMock = Mock.ofInstance(value => { });
-        rejectMock = Mock.ofInstance(value => { });
-        promiseHandlerMock = Mock.ofInstance(callback => { });
+        resolveMock = Mock.ofInstance(value => {});
+        rejectMock = Mock.ofInstance(value => {});
+        promiseHandlerMock = Mock.ofInstance(callback => {});
         deferredObjectStub = {
             promise: promiseStub,
             resolve: resolveMock.object,
@@ -62,9 +69,11 @@ describe('ElementFinderByPositionTest', () => {
     });
 
     test('initialize', () => {
-        const responderMock = Mock.ofInstance(((result: any, error: IErrorMessageContent, messageSourceWindow: Window) => { }));
-        const processRequestPromiseHandlerMock = Mock.ofInstance((successCallback, errorCallback) => { });
-        const processRequestMock = Mock.ofInstance(message => { return null; });
+        const responderMock = Mock.ofInstance((result: any, error: IErrorMessageContent, messageSourceWindow: Window) => {});
+        const processRequestPromiseHandlerMock = Mock.ofInstance((successCallback, errorCallback) => {});
+        const processRequestMock = Mock.ofInstance(message => {
+            return null;
+        });
         const subscribeCallback = testSubject.getOnfindElementByPosition();
         let successCallback;
         let errorCallback;
@@ -93,13 +102,9 @@ describe('ElementFinderByPositionTest', () => {
                 errorCallback = error;
             });
 
-        responderMock
-            .setup(rm => rm(resultsStub, null, windowStub))
-            .verifiable();
+        responderMock.setup(rm => rm(resultsStub, null, windowStub)).verifiable();
 
-        responderMock
-            .setup(rm => rm(null, errorStub, windowStub))
-            .verifiable();
+        responderMock.setup(rm => rm(null, errorStub, windowStub)).verifiable();
 
         testSubject.initialize();
         testSubject.processRequest = processRequestMock.object;
@@ -113,7 +118,6 @@ describe('ElementFinderByPositionTest', () => {
         processRequestMock.verifyAll();
     });
 
-
     test('process request when element is null', () => {
         const messageStub = {
             x: 1,
@@ -122,15 +126,12 @@ describe('ElementFinderByPositionTest', () => {
 
         setupElementsFromPointMock(messageStub, []);
 
-        mockQ
-            .setup(mockQ => mockQ.defer())
-            .returns(() => deferredObjectStub);
+        mockQ.setup(mockQ => mockQ.defer()).returns(() => deferredObjectStub);
 
         setupResolveMock([]);
 
         testSubject.processRequest(messageStub);
     });
-
 
     test('process request when element is not iframe', () => {
         const messageStub = {
@@ -143,20 +144,17 @@ describe('ElementFinderByPositionTest', () => {
         setupElementsFromPointMock(messageStub, [elementStub]);
         setupGetUniqueSelector(elementStub, selector);
 
-        mockQ
-            .setup(mockQ => mockQ.defer())
-            .returns(() => deferredObjectStub);
+        mockQ.setup(mockQ => mockQ.defer()).returns(() => deferredObjectStub);
 
         setupResolveMock([selector]);
 
         testSubject.processRequest(messageStub);
     });
 
-
     test('process request when element is in iframe', () => {
         let successCallback;
         let errorCallback;
-        const sendMessagePromiseHandlerMock = Mock.ofInstance((successCallback, errorCallback) => { });
+        const sendMessagePromiseHandlerMock = Mock.ofInstance((successCallback, errorCallback) => {});
         const sendMessageReturnStub = {
             then: sendMessagePromiseHandlerMock.object,
         } as Q.IPromise<string[]>;
@@ -175,8 +173,8 @@ describe('ElementFinderByPositionTest', () => {
             command: ElementFinderByPosition.findElementByPositionCommand,
             frame: elementStub as HTMLIFrameElement,
             message: {
-                x: (messageStub.x + window.scrollX) - elementRectStub.left,
-                y: (messageStub.y + window.scrollY) - elementRectStub.top,
+                x: messageStub.x + window.scrollX - elementRectStub.left,
+                y: messageStub.y + window.scrollY - elementRectStub.top,
             } as ElementFinderByPositionMessage,
         };
 
@@ -193,9 +191,7 @@ describe('ElementFinderByPositionTest', () => {
             .returns(() => elementRectStub)
             .verifiable();
 
-        mockQ
-            .setup(mockQ => mockQ.defer())
-            .returns(() => deferredObjectStub);
+        mockQ.setup(mockQ => mockQ.defer()).returns(() => deferredObjectStub);
 
         sendMessagePromiseHandlerMock
             .setup(prp => prp(It.isAny(), It.isAny()))
@@ -229,14 +225,10 @@ describe('ElementFinderByPositionTest', () => {
     }
 
     function setupResolveMock(selectors: string[]): void {
-        resolveMock
-            .setup(rm => rm(It.isValue(selectors)))
-            .verifiable();
+        resolveMock.setup(rm => rm(It.isValue(selectors))).verifiable();
     }
     function setupRejectMock(): void {
-        rejectMock
-            .setup(rm => rm(null))
-            .verifiable();
+        rejectMock.setup(rm => rm(null)).verifiable();
     }
 
     function verifyAll(): void {

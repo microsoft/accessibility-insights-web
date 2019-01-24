@@ -30,7 +30,7 @@ describe('TestActionCreatorTest', () => {
         tabActionsMock = Mock.ofType(TabActions, MockBehavior.Strict);
         browserAdapterMock = Mock.ofType(ChromeAdapter, MockBehavior.Strict);
         telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler, MockBehavior.Strict);
-        registerTypeToPayloadCallbackMock = Mock.ofInstance((type, callback) => { });
+        registerTypeToPayloadCallbackMock = Mock.ofInstance((type, callback) => {});
 
         testObject = new TabActionCreator(
             registerTypeToPayloadCallbackMock.object,
@@ -77,9 +77,7 @@ describe('TestActionCreatorTest', () => {
     });
 
     test('on Tab.Switch', () => {
-        browserAdapterMock
-            .setup(ba => ba.switchToTab(tabId))
-            .verifiable(Times.once());
+        browserAdapterMock.setup(ba => ba.switchToTab(tabId)).verifiable(Times.once());
 
         const payload: ISwitchToTargetTabPayLoad = {
             telemetry: {
@@ -88,9 +86,7 @@ describe('TestActionCreatorTest', () => {
             },
         };
 
-        telemetryEventHandlerMock
-            .setup(tp => tp.publishTelemetry(SWITCH_BACK_TO_TARGET, payload, tabId))
-            .verifiable(Times.once());
+        telemetryEventHandlerMock.setup(tp => tp.publishTelemetry(SWITCH_BACK_TO_TARGET, payload, tabId)).verifiable(Times.once());
 
         setupRegisterTypeToPayloadCallbackMock(Messages.Tab.Switch, payload, tabId);
 
@@ -115,17 +111,13 @@ describe('TestActionCreatorTest', () => {
 
     function createActionMock<T>(actionPayload: T): IMock<Action<T>> {
         const actionMock = Mock.ofType<Action<T>>(Action);
-        actionMock
-            .setup(action => action.invoke(actionPayload))
-            .verifiable(Times.once());
+        actionMock.setup(action => action.invoke(actionPayload)).verifiable(Times.once());
 
         return actionMock;
     }
 
     function setupTabActionsMock(actionName: keyof TabActions, actionMock: IMock<Action<any>>) {
-        tabActionsMock
-            .setup(actions => actions[actionName])
-            .returns(() => actionMock.object);
+        tabActionsMock.setup(actions => actions[actionName]).returns(() => actionMock.object);
     }
 
     function setupRegisterTypeToPayloadCallbackMock(message: string, actionPayload: any, _tabId: number) {

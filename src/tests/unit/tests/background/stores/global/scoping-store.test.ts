@@ -25,15 +25,13 @@ describe('ScopingStoreTest', () => {
         Object.keys(ScopingInputTypes).forEach(inputType => {
             expect(defaultState.selectors[inputType]).toEqual(emptyArray);
         });
-
     });
 
     test('on getCurrentState', () => {
         const initialState = getDefaultState();
         const finalState = getDefaultState();
 
-        createStoreForScopingActions('getCurrentState')
-            .testListenerToBeCalledOnce(initialState, finalState);
+        createStoreForScopingActions('getCurrentState').testListenerToBeCalledOnce(initialState, finalState);
     });
 
     test('on addSelector', () => {

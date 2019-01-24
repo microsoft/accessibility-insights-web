@@ -15,14 +15,7 @@ import { VisualizationType } from '../../../../common/types/visualization-type';
 describe('AssessmentScanPolicyRunner', () => {
     describe('constructor', () => {
         it('exists', () => {
-            expect(new AssessmentScanPolicyRunner(
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-            )).toBeDefined();
+            expect(new AssessmentScanPolicyRunner(null, null, null, null, null, null)).toBeDefined();
         });
     });
 
@@ -41,18 +34,13 @@ describe('AssessmentScanPolicyRunner', () => {
         const testType = -1;
         const currentTabId = -2;
 
-
         beforeEach(() => {
             storeChangeCallback = null;
             assessmentStoreMock = Mock.ofType(AssessmentStore, MockBehavior.Strict);
             visualizationStore = Mock.ofType(VisualizationStore, MockBehavior.Strict);
             assessmentProviderMock = Mock.ofType(AssessmentsProvider, MockBehavior.Strict);
             getSelectedAssessmentTestMock = Mock.ofInstance((testData: ITestsEnabledState) => null, MockBehavior.Strict);
-            scheduleScanMock = Mock.ofInstance((
-                test: VisualizationType,
-                step: string,
-                tabId: number,
-            ) => null, MockBehavior.Strict);
+            scheduleScanMock = Mock.ofInstance((test: VisualizationType, step: string, tabId: number) => null, MockBehavior.Strict);
             testSubject = new AssessmentScanPolicyRunner(
                 assessmentStoreMock.object,
                 visualizationStore.object,
@@ -79,7 +67,7 @@ describe('AssessmentScanPolicyRunner', () => {
             setupStoreMockForCallback(visualizationStore);
             setupGetSelectedAssessmentTest(false);
             setupStoreGetState<IVisualizationStoreData>(visualizationStore, { tests: testData } as IVisualizationStoreData);
-            setupStoreGetState<IAssessmentStoreData>(assessmentStoreMock, { targetTab: { id: currentTabId }} as IAssessmentStoreData);
+            setupStoreGetState<IAssessmentStoreData>(assessmentStoreMock, { targetTab: { id: currentTabId } } as IAssessmentStoreData);
 
             testSubject.beginListeningToStores();
             storeChangeCallback();
@@ -92,7 +80,7 @@ describe('AssessmentScanPolicyRunner', () => {
             setupStoreMockForCallback(assessmentStoreMock);
             setupStoreMockForCallback(visualizationStore);
             setupStoreGetState<IVisualizationStoreData>(visualizationStore, { tests: testData } as IVisualizationStoreData);
-            setupStoreGetState<IAssessmentStoreData>(assessmentStoreMock, { targetTab: { id: 1 }} as IAssessmentStoreData);
+            setupStoreGetState<IAssessmentStoreData>(assessmentStoreMock, { targetTab: { id: 1 } } as IAssessmentStoreData);
             setupGetSelectedAssessmentTest(true);
 
             testSubject.beginListeningToStores();
@@ -121,8 +109,8 @@ describe('AssessmentScanPolicyRunner', () => {
             setupStoreMockForCallback(assessmentStoreMock);
             setupStoreMockForCallback(visualizationStore);
             setupGetSelectedAssessmentTest(true);
-            setupStoreGetState<IVisualizationStoreData>(visualizationStore,  visualizationStateStub as IVisualizationStoreData);
-            setupStoreGetState<IAssessmentStoreData>(assessmentStoreMock, { targetTab: { id: currentTabId }} as IAssessmentStoreData);
+            setupStoreGetState<IVisualizationStoreData>(visualizationStore, visualizationStateStub as IVisualizationStoreData);
+            setupStoreGetState<IAssessmentStoreData>(assessmentStoreMock, { targetTab: { id: currentTabId } } as IAssessmentStoreData);
 
             testSubject.beginListeningToStores();
             storeChangeCallback();
@@ -170,9 +158,7 @@ describe('AssessmentScanPolicyRunner', () => {
                 })
                 .verifiable();
 
-            scheduleScanMock
-                .setup(ssm => ssm(testType, stepStub, currentTabId))
-                .verifiable();
+            scheduleScanMock.setup(ssm => ssm(testType, stepStub, currentTabId)).verifiable();
 
             getAssessmentDataMock
                 .setup(gadm => gadm(assessmentStoreDataStub as IAssessmentStoreData))
@@ -215,8 +201,7 @@ describe('AssessmentScanPolicyRunner', () => {
         }
 
         function setupAssessmentsProvider(mock: IMock<AssessmentsProvider>, config: IAssessment): void {
-            mock
-                .setup(m => m.forType(testType))
+            mock.setup(m => m.forType(testType))
                 .returns(() => config)
                 .verifiable();
         }

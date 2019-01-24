@@ -78,7 +78,6 @@ describe('GlobalActionCreatorTest', () => {
         actionCreator.registerCallbacks();
 
         validator.verifyAll();
-
     });
 
     test('registerCallback for on onGetScopingState', () => {
@@ -92,7 +91,6 @@ describe('GlobalActionCreatorTest', () => {
         actionCreator.registerCallbacks();
 
         validator.verifyAll();
-
     });
 
     test('registerCallback for onAddSelector', () => {
@@ -113,7 +111,6 @@ describe('GlobalActionCreatorTest', () => {
         actionCreator.registerCallbacks();
 
         validator.verifyAll();
-
     });
 
     test('registerCallback for onDeleteSelector', () => {
@@ -134,7 +131,6 @@ describe('GlobalActionCreatorTest', () => {
         actionCreator.registerCallbacks();
 
         validator.verifyAll();
-
     });
 
     test('registerCallback for on onSendTelemetry', () => {
@@ -148,7 +144,6 @@ describe('GlobalActionCreatorTest', () => {
         actionCreator.registerCallbacks();
 
         validator.verifyAll();
-
     });
 
     test('registerCallback for on UserConfig.GetCurrentState', () => {
@@ -242,9 +237,7 @@ class GlobalActionCreatorValidator {
     }
 
     public setupSetUserData(data: any): GlobalActionCreatorValidator {
-        this.browserAdapterMock
-            .setup(bam => bam.setUserData(It.isValue(data)))
-            .verifiable(Times.once());
+        this.browserAdapterMock.setup(bam => bam.setUserData(It.isValue(data))).verifiable(Times.once());
         return this;
     }
 
@@ -254,7 +247,8 @@ class GlobalActionCreatorValidator {
 
     public setupLaunchPanelActionWithInvokeParameter(
         actionName: keyof LaunchPanelStateActions,
-        expectedInvokeParam: any): GlobalActionCreatorValidator {
+        expectedInvokeParam: any,
+    ): GlobalActionCreatorValidator {
         return this.setupActionWithInvokeParameter(actionName, expectedInvokeParam, this.launchPanelActionsMockMap);
     }
 
@@ -264,7 +258,8 @@ class GlobalActionCreatorValidator {
 
     public setupUserConfigActionWithInvokeParameter(
         actionName: keyof UserConfigurationActions,
-         expectedInvokeParam: any): GlobalActionCreatorValidator {
+        expectedInvokeParam: any,
+    ): GlobalActionCreatorValidator {
         return this.setupActionWithInvokeParameter(actionName, expectedInvokeParam, this.userConfigMockMap);
     }
 
@@ -275,9 +270,7 @@ class GlobalActionCreatorValidator {
     ): GlobalActionCreatorValidator {
         const action = this.getOrCreateAction(actionName, actionsMockMap);
 
-        action
-            .setup(am => am.invoke(It.isValue(expectedInvokeParam)))
-            .verifiable(Times.once());
+        action.setup(am => am.invoke(It.isValue(expectedInvokeParam))).verifiable(Times.once());
 
         return this;
     }
@@ -300,7 +293,8 @@ class GlobalActionCreatorValidator {
         const action = this.getOrCreateAction(actionName, actionsMapMock);
 
         actionsContainerMock
-            .setup(vam => vam[actionName]).returns(() => action.object)
+            .setup(vam => vam[actionName])
+            .returns(() => action.object)
             .verifiable(Times.once());
 
         this.actionsSetup = true;

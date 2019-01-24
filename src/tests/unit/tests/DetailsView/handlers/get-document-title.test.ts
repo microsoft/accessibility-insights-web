@@ -18,9 +18,7 @@ describe('getTestViewTitle', () => {
         const type = -1;
         const configStub = { displayableData: displayableDataStub } as IVisualizationConfiguration;
 
-        configFactory
-            .setup(cf => cf.getConfiguration(type))
-            .returns(() => configStub);
+        configFactory.setup(cf => cf.getConfiguration(type)).returns(() => configStub);
 
         const props: GetTestViewTitleProps = {
             visualizationConfigurationFactory: configFactory.object,

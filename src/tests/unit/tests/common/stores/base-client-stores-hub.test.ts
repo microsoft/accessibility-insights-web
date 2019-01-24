@@ -42,7 +42,7 @@ describe('BaseClientStoresHubTest', () => {
     });
 
     test('removeChangedListenerFromAllStores', () => {
-        const listenerMock = Mock.ofInstance(() => { }, MockBehavior.Strict);
+        const listenerMock = Mock.ofInstance(() => {}, MockBehavior.Strict);
         setupRemoveChangedListeners(1);
         const testObject = createDefaultClientStoreHub();
 
@@ -52,7 +52,7 @@ describe('BaseClientStoresHubTest', () => {
     });
 
     test('removeChangedListenerFromAllStores (no stores)', () => {
-        const listenerMock = Mock.ofInstance(() => { }, MockBehavior.Strict);
+        const listenerMock = Mock.ofInstance(() => {}, MockBehavior.Strict);
         setupRemoveChangedListeners(0);
         const testObject = createDefaultClientStoreHub();
         testObject.stores = null;
@@ -120,17 +120,15 @@ describe('BaseClientStoresHubTest', () => {
         store2Mock.setupGetState(null);
         store2Mock.setupGetId('store2');
         const expected = {
-            'store1Data': store1State,
-            'store2Data': null,
+            store1Data: store1State,
+            store2Data: null,
         };
         expect(testObject.getAllStoreData()).toMatchObject(expected);
     });
 
     function createListenerMock(times: Times): IMock<() => void> {
-        const listenerMock = Mock.ofInstance(() => { }, MockBehavior.Strict);
-        listenerMock
-            .setup(l => l())
-            .verifiable(times);
+        const listenerMock = Mock.ofInstance(() => {}, MockBehavior.Strict);
+        listenerMock.setup(l => l()).verifiable(times);
 
         return listenerMock;
     }
@@ -142,11 +140,7 @@ describe('BaseClientStoresHubTest', () => {
     }
 
     function createDefaultClientStoreHub(): BaseClientStoresHub<TestStoreData> {
-        return new BaseClientStoresHub([
-            store1Mock.getObject(),
-            store2Mock.getObject(),
-            store3Mock.getObject(),
-        ]);
+        return new BaseClientStoresHub([store1Mock.getObject(), store2Mock.getObject(), store3Mock.getObject()]);
     }
 
     function invokeChangedListeners(): void {
@@ -168,11 +162,7 @@ describe('BaseClientStoresHubTest', () => {
     }
 
     function getConstructorArgsForHasStoresReturningFalse(): IBaseStore<TestStoreData>[][] {
-        const argsPrototype: IBaseStore<TestStoreData>[] = [
-            store1Mock.getObject(),
-            store2Mock.getObject(),
-            store3Mock.getObject(),
-        ];
+        const argsPrototype: IBaseStore<TestStoreData>[] = [store1Mock.getObject(), store2Mock.getObject(), store3Mock.getObject()];
 
         const argsLength = size(argsPrototype);
 
@@ -211,4 +201,4 @@ describe('BaseClientStoresHubTest', () => {
     }
 });
 
-interface TestStoreData { }
+interface TestStoreData {}

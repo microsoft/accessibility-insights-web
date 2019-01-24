@@ -18,7 +18,8 @@ describe('AxeConfigurator', () => {
                         {
                             id: 'check1',
                             evaluate: null,
-                        }, {
+                        },
+                        {
                             id: 'check2',
                             evaluate: null,
                         },
@@ -27,7 +28,8 @@ describe('AxeConfigurator', () => {
                         id: 'rule1',
                         selector: 's1',
                     },
-                }, {
+                },
+                {
                     checks: [
                         {
                             id: 'check3',
@@ -46,10 +48,12 @@ describe('AxeConfigurator', () => {
                     {
                         id: 'check1',
                         evaluate: null,
-                    }, {
+                    },
+                    {
                         id: 'check2',
                         evaluate: null,
-                    }, {
+                    },
+                    {
                         id: 'check3',
                         evaluate: null,
                     },
@@ -66,13 +70,9 @@ describe('AxeConfigurator', () => {
                 ],
             };
 
-            configureMock
-                .setup(c => c(It.isValue(axeConfig)))
-                .verifiable();
+            configureMock.setup(c => c(It.isValue(axeConfig))).verifiable();
 
-            configureMock
-                .setup(cm => cm(It.isValue({ locale: localeConfiguration })))
-                .verifiable();
+            configureMock.setup(cm => cm(It.isValue({ locale: localeConfiguration }))).verifiable();
 
             const axeStub = {
                 configure: configureMock.object,

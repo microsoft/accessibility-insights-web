@@ -18,47 +18,43 @@ describe('InspectActionMessageCreatorTest', () => {
     const tabId: number = -1;
 
     beforeEach(() => {
-        postMessageMock = Mock.ofInstance(message => { return null; });
+        postMessageMock = Mock.ofInstance(message => {
+            return null;
+        });
         telemetryFactoryMock = Mock.ofType(TelemetryDataFactory, MockBehavior.Strict);
-        testSubject = new InspectActionMessageCreator(
-            postMessageMock.object,
-            tabId,
-            telemetryFactoryMock.object,
-            testSource);
+        testSubject = new InspectActionMessageCreator(postMessageMock.object, tabId, telemetryFactoryMock.object, testSource);
     });
 
     test('changeMode', () => {
-            const event = eventStubFactory.createMouseClickEvent() as any;
-            const telemetry = {
-                triggeredBy: 'mouseclick',
-                source: testSource,
-            };
+        const event = eventStubFactory.createMouseClickEvent() as any;
+        const telemetry = {
+            triggeredBy: 'mouseclick',
+            source: testSource,
+        };
 
-            const inspectMode = InspectMode.scopingAddInclude;
+        const inspectMode = InspectMode.scopingAddInclude;
 
-            const expectedMessage = {
-                tabId: tabId,
-                type: Messages.Inspect.ChangeInspectMode,
-                payload: {
-                    inspectMode,
-                    telemetry,
-                },
-            };
+        const expectedMessage = {
+            tabId: tabId,
+            type: Messages.Inspect.ChangeInspectMode,
+            payload: {
+                inspectMode,
+                telemetry,
+            },
+        };
 
-            telemetryFactoryMock
-                .setup(tf => tf.withTriggeredByAndSource(event, testSource))
-                .returns(() => telemetry)
-                .verifiable(Times.once());
+        telemetryFactoryMock
+            .setup(tf => tf.withTriggeredByAndSource(event, testSource))
+            .returns(() => telemetry)
+            .verifiable(Times.once());
 
-            setupPostMessage(expectedMessage);
-            testSubject.changeInspectMode(event, inspectMode);
-            postMessageMock.verifyAll();
-            telemetryFactoryMock.verifyAll();
+        setupPostMessage(expectedMessage);
+        testSubject.changeInspectMode(event, inspectMode);
+        postMessageMock.verifyAll();
+        telemetryFactoryMock.verifyAll();
     });
 
     function setupPostMessage(expectedMessage): void {
-        postMessageMock
-            .setup(post => post(It.isValue(expectedMessage)))
-            .verifiable(Times.once());
+        postMessageMock.setup(post => post(It.isValue(expectedMessage))).verifiable(Times.once());
     }
 });

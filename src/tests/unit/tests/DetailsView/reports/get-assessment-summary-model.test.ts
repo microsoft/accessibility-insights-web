@@ -87,9 +87,7 @@ describe('getAssessmentSummaryModel', () => {
         reportSummaryDetailsData: [],
     };
 
-    const singleRequirementAll: IAssessmentSubsetForSummary[] = [
-        sampleTests.test1,
-    ];
+    const singleRequirementAll: IAssessmentSubsetForSummary[] = [sampleTests.test1];
     const singleAssessmentsProvider: IAssessmentsProvider = createTestAssessmentsProvider(singleRequirementAll);
     const singleRequirementStatusData: AssessmentStatusData = {
         [sampleTests.test1.key]: sampleResults[sampleTests.test1.key].storeData.testStepStatus,
@@ -99,9 +97,7 @@ describe('getAssessmentSummaryModel', () => {
             [sampleTests.test1.key]: sampleResults[sampleTests.test1.key].storeData,
         },
     } as any;
-    const singleRequirementResults: AssessmentSummaryResult[] = [
-        sampleResults[sampleTests.test1.key],
-    ];
+    const singleRequirementResults: AssessmentSummaryResult[] = [sampleResults[sampleTests.test1.key]];
     const singleRequirementModel: IOverviewSummaryReportModel = {
         byPercentage: {
             fail: 0,
@@ -123,10 +119,7 @@ describe('getAssessmentSummaryModel', () => {
         ],
     };
 
-    const multipleRequirementsAll: IAssessmentSubsetForSummary[] = [
-        sampleTests.test1,
-        sampleTests.test2,
-    ];
+    const multipleRequirementsAll: IAssessmentSubsetForSummary[] = [sampleTests.test1, sampleTests.test2];
     const multipleAssessmentsProvider: IAssessmentsProvider = createTestAssessmentsProvider(multipleRequirementsAll);
     const multipleRequirementsStatusData: AssessmentStatusData = {
         [sampleTests.test1.key]: sampleResults[sampleTests.test1.key].storeData.testStepStatus,

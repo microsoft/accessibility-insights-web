@@ -22,7 +22,7 @@ import { StoreMocks } from './store-mocks';
 describe('DocumentTitleUpdater', () => {
     let storeMocks: StoreMocks;
     let testObject: DocumentTitleUpdater;
-    let getPanelConfigMock: IMock<((props: GetDetailsRightPanelConfigurationProps) => DetailsRightPanelConfiguration)>;
+    let getPanelConfigMock: IMock<(props: GetDetailsRightPanelConfigurationProps) => DetailsRightPanelConfiguration>;
     let getSwitcherNavConfigMock: IMock<GetDetailsSwitcherNavConfiguration>;
     let visualizationConfigFactoryMock: IMock<VisualizationConfigurationFactory>;
     let doc;
@@ -112,10 +112,12 @@ describe('DocumentTitleUpdater', () => {
             .returns(() => switcherNavConfigStub);
 
         getSelectedDetailsViewMock
-            .setup(mock => mock({
-                assessmentStoreData: storeMocks.assessmentStoreData,
-                visualizationStoreData: storeMocks.visualizationStoreData,
-            }))
+            .setup(mock =>
+                mock({
+                    assessmentStoreData: storeMocks.assessmentStoreData,
+                    visualizationStoreData: storeMocks.visualizationStoreData,
+                }),
+            )
             .returns(() => selectedDetailsView);
 
         setupStoreGetState();
@@ -123,7 +125,7 @@ describe('DocumentTitleUpdater', () => {
         getPanelConfigMock
             .setup(g => g(It.isAny()))
             .returns(() => {
-                return {GetTitle: getTitleMock.object} as DetailsRightPanelConfiguration;
+                return { GetTitle: getTitleMock.object } as DetailsRightPanelConfiguration;
             });
 
         testObject.initialize();
@@ -137,34 +139,26 @@ describe('DocumentTitleUpdater', () => {
     function setupStoreListenersAdded() {
         storeMocks.tabStoreMock
             .setup(store => store.addChangedListener(It.isAny()))
-            .callback(cb => onStoreChange = cb)
+            .callback(cb => (onStoreChange = cb))
             .verifiable();
         storeMocks.detailsViewStoreMock
             .setup(store => store.addChangedListener(It.isAny()))
-            .callback(cb => onStoreChange = cb)
+            .callback(cb => (onStoreChange = cb))
             .verifiable();
         storeMocks.visualizationStoreMock
             .setup(store => store.addChangedListener(It.isAny()))
-            .callback(cb => onStoreChange = cb)
+            .callback(cb => (onStoreChange = cb))
             .verifiable();
         storeMocks.assessmentStoreMock
             .setup(store => store.addChangedListener(It.isAny()))
-            .callback(cb => onStoreChange = cb)
+            .callback(cb => (onStoreChange = cb))
             .verifiable();
     }
 
     function setupStoreGetState() {
-        storeMocks.tabStoreMock
-            .setup(store => store.getState())
-            .returns(() => storeMocks.tabStoreData);
-        storeMocks.detailsViewStoreMock
-            .setup(store => store.getState())
-            .returns(() => storeMocks.detailsViewStoreData);
-        storeMocks.visualizationStoreMock
-            .setup(store => store.getState())
-            .returns(() => storeMocks.visualizationStoreData);
-        storeMocks.assessmentStoreMock
-            .setup(store => store.getState())
-            .returns(() => storeMocks.assessmentStoreData);
+        storeMocks.tabStoreMock.setup(store => store.getState()).returns(() => storeMocks.tabStoreData);
+        storeMocks.detailsViewStoreMock.setup(store => store.getState()).returns(() => storeMocks.detailsViewStoreData);
+        storeMocks.visualizationStoreMock.setup(store => store.getState()).returns(() => storeMocks.visualizationStoreData);
+        storeMocks.assessmentStoreMock.setup(store => store.getState()).returns(() => storeMocks.assessmentStoreData);
     }
 });

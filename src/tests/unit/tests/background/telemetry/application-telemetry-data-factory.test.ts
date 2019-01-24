@@ -45,7 +45,8 @@ describe('ApplicationTelemetryDataFactoryTest', () => {
         testSubject = new ApplicationTelemetryDataFactory(
             browserAdapterMock.object,
             applicationBuildGeneratorMock.object,
-            installDataGeneratorMock.object);
+            installDataGeneratorMock.object,
+        );
     });
 
     test('verifyCoreData', () => {
@@ -68,5 +69,4 @@ describe('ApplicationTelemetryDataFactoryTest', () => {
             name: 'test',
         };
     }
-
 });

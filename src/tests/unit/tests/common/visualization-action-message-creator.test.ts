@@ -50,8 +50,6 @@ describe('VisualizationActionMessageCreatorTest', () => {
     });
 
     function setupPostMessageMock(expectedMessage): void {
-        postMessageMock
-            .setup(post => post(It.isValue(expectedMessage)))
-            .verifiable(Times.once());
+        postMessageMock.setup(post => post(It.isValue(expectedMessage))).verifiable(Times.once());
     }
 });

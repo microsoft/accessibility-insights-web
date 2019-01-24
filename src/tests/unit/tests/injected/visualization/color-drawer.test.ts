@@ -30,9 +30,11 @@ describe('ColorDrawerTests', () => {
         const testSubject = new ColorDrawer(drawerUtilsMock.object, formatterMock.object);
 
         const drawerInfo: IDrawerInitData<IHtmlElementAxeResults> = {
-            data: [{
-                target: ['body'],
-            }] as IHtmlElementAxeResults[],
+            data: [
+                {
+                    target: ['body'],
+                },
+            ] as IHtmlElementAxeResults[],
             featureFlagStoreData: getDefaultFeatureFlagValues(),
         };
 
@@ -52,9 +54,11 @@ describe('ColorDrawerTests', () => {
         const testSubject = new ColorDrawer(drawerUtilsMock.object, formatterMock.object);
 
         const drawerInfo: IDrawerInitData<IHtmlElementAxeResults> = {
-            data: [{
-                target: ['body'],
-            }] as IHtmlElementAxeResults[],
+            data: [
+                {
+                    target: ['body'],
+                },
+            ] as IHtmlElementAxeResults[],
             featureFlagStoreData: getDefaultFeatureFlagValues(),
         };
 
@@ -81,9 +85,11 @@ describe('ColorDrawerTests', () => {
         const testSubject = new ColorDrawer(drawerUtilsMock.object, formatterMock.object);
 
         const drawerInfo: IDrawerInitData<IHtmlElementAxeResults> = {
-            data: [{
-                target: ['body'],
-            }] as IHtmlElementAxeResults[],
+            data: [
+                {
+                    target: ['body'],
+                },
+            ] as IHtmlElementAxeResults[],
             featureFlagStoreData: getDefaultFeatureFlagValues(),
         };
 
@@ -110,9 +116,11 @@ describe('ColorDrawerTests', () => {
         const testSubject = new ColorDrawer(drawerUtilsMock.object, formatterMock.object);
 
         const drawerInfo: IDrawerInitData<IHtmlElementAxeResults> = {
-            data: [{
-                target: ['body'],
-            }] as IHtmlElementAxeResults[],
+            data: [
+                {
+                    target: ['body'],
+                },
+            ] as IHtmlElementAxeResults[],
             featureFlagStoreData: getDefaultFeatureFlagValues(),
         };
 
@@ -132,7 +140,9 @@ describe('ColorDrawerTests', () => {
     function setupDrawerUtilsMockDefault(dom) {
         drawerUtilsMock
             .setup(d => d.getDocumentElement())
-            .returns(() => { return dom.ownerDocument || dom as Document; })
+            .returns(() => {
+                return dom.ownerDocument || (dom as Document);
+            })
             .verifiable(Times.atLeastOnce());
     }
 
@@ -145,7 +155,5 @@ describe('ColorDrawerTests', () => {
                 } as IColorDrawerConfiguration;
             })
             .verifiable(Times.atLeastOnce());
-
     }
 });
-

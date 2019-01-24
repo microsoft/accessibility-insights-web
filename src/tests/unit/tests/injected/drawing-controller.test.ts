@@ -136,33 +136,28 @@ describe('DrawingControllerTest', () => {
             .setup(fcm => fcm.subscribe(It.isValue(DrawingController.triggerVisualizationCommand), It.isAny()))
             .returns((cmd, func) => {
                 subscribeCallback = func;
-            }).verifiable(Times.once());
+            })
+            .verifiable(Times.once());
 
-        axeResultsHelperMock
-            .setup(am => am.splitResultsByFrame(It.isAny()))
-            .verifiable(Times.never());
+        axeResultsHelperMock.setup(am => am.splitResultsByFrame(It.isAny())).verifiable(Times.never());
 
         const message: VisualizationWindowMessage = new VisualizationWindowMessageStubBuilder(VisualizationType.Headings, configId)
             .setVisualizationDisabled()
             .setElementResults([])
             .build();
 
-        const responderMock = Mock.ofInstance((data: any) => { });
-        responderMock
-            .setup(rm => rm(It.isValue(null)))
-            .verifiable(Times.once());
+        const responderMock = Mock.ofInstance((data: any) => {});
+        responderMock.setup(rm => rm(It.isValue(null))).verifiable(Times.once());
 
         hTMLElementUtils
             .setup(dm => dm.getAllElementsByTagName(It.isValue('iframe')))
-            .returns((() => {
+            .returns(() => {
                 return [] as any;
-            }))
+            })
             .verifiable(Times.once());
 
         const drawerMock = Mock.ofType(Drawer, MockBehavior.Strict);
-        drawerMock
-            .setup(m => m.eraseLayout())
-            .verifiable(Times.once());
+        drawerMock.setup(m => m.eraseLayout()).verifiable(Times.once());
 
         setupDrawerFetches(drawerMock, Times.exactly(numVisualizationTypes));
 
@@ -175,7 +170,6 @@ describe('DrawingControllerTest', () => {
             drawerProvider.object,
             assessmentProvider.object,
         );
-
 
         testObject.initialize();
         subscribeCallback(message, null, null, responderMock.object);
@@ -230,20 +224,25 @@ describe('DrawingControllerTest', () => {
             .setup(fcm => fcm.subscribe(It.isValue(DrawingController.triggerVisualizationCommand), It.isAny()))
             .returns((cmd, func) => {
                 subscribeCallback = func;
-            }).verifiable(Times.once());
+            })
+            .verifiable(Times.once());
 
         frameCommunicatorMock
-            .setup(fm => fm.sendMessage(It.isValue({
-                command: DrawingController.triggerVisualizationCommand,
-                frame: iframeElement as any,
-                message: {
-                    isEnabled: true,
-                    elementResults: iframeResults,
-                    visualizationType: VisualizationType.Headings,
-                    featureFlagStoreData,
-                    configId: configId,
-                },
-            })))
+            .setup(fm =>
+                fm.sendMessage(
+                    It.isValue({
+                        command: DrawingController.triggerVisualizationCommand,
+                        frame: iframeElement as any,
+                        message: {
+                            isEnabled: true,
+                            elementResults: iframeResults,
+                            visualizationType: VisualizationType.Headings,
+                            featureFlagStoreData,
+                            configId: configId,
+                        },
+                    }),
+                ),
+            )
             .verifiable(Times.once());
 
         const instanceVisibilityCheckerTimes = showInstanceVisibilityFF ? Times.once() : Times.never();
@@ -258,21 +257,15 @@ describe('DrawingControllerTest', () => {
             })
             .verifiable(Times.once());
 
-        hTMLElementUtils
-            .setup(dm => dm.getAllElementsByTagName(It.isAny()))
-            .verifiable(Times.never());
+        hTMLElementUtils.setup(dm => dm.getAllElementsByTagName(It.isAny())).verifiable(Times.never());
 
         const expected: IDrawerInitData<IHtmlElementAxeResults> = {
             data: [visibleResultStub],
             featureFlagStoreData,
         };
-        drawerMock
-            .setup(dm => dm.initialize(It.isValue(expected)))
-            .verifiable(Times.once());
+        drawerMock.setup(dm => dm.initialize(It.isValue(expected))).verifiable(Times.once());
 
-        drawerMock
-            .setup(dm => dm.drawLayout())
-            .verifiable(Times.once());
+        drawerMock.setup(dm => dm.drawLayout()).verifiable(Times.once());
 
         setupDrawerFetches(drawerMock, Times.exactly(numVisualizationTypes));
 
@@ -316,25 +309,28 @@ describe('DrawingControllerTest', () => {
             .setup(fcm => fcm.subscribe(It.isValue(DrawingController.triggerVisualizationCommand), It.isAny()))
             .returns((cmd, func) => {
                 subscribeCallback = func;
-            }).verifiable(Times.once());
-
-        frameCommunicatorMock
-            .setup(fm => fm.sendMessage(It.isValue({
-                command: DrawingController.triggerVisualizationCommand,
-                frame: iframeElement as any,
-                message: {
-                    isEnabled: true,
-                    elementResults: null,
-                    visualizationType: VisualizationType.TabStops,
-                    featureFlagStoreData: getDefaultFeatureFlagValues(),
-                    configId: configId,
-                },
-            })))
+            })
             .verifiable(Times.once());
 
-        axeResultsHelperMock
-            .setup(am => am.splitResultsByFrame(It.isAny()))
-            .verifiable(Times.never());
+        frameCommunicatorMock
+            .setup(fm =>
+                fm.sendMessage(
+                    It.isValue({
+                        command: DrawingController.triggerVisualizationCommand,
+                        frame: iframeElement as any,
+                        message: {
+                            isEnabled: true,
+                            elementResults: null,
+                            visualizationType: VisualizationType.TabStops,
+                            featureFlagStoreData: getDefaultFeatureFlagValues(),
+                            configId: configId,
+                        },
+                    }),
+                ),
+            )
+            .verifiable(Times.once());
+
+        axeResultsHelperMock.setup(am => am.splitResultsByFrame(It.isAny())).verifiable(Times.never());
 
         hTMLElementUtils
             .setup(dm => dm.getAllElementsByTagName('iframe'))
@@ -344,9 +340,7 @@ describe('DrawingControllerTest', () => {
         drawerMock
             .setup(dm => dm.initialize(It.isValue({ data: null, featureFlagStoreData: getDefaultFeatureFlagValues() })))
             .verifiable(Times.once());
-        drawerMock
-            .setup(dm => dm.drawLayout())
-            .verifiable(Times.once());
+        drawerMock.setup(dm => dm.drawLayout()).verifiable(Times.once());
 
         setupDrawerFetches(drawerMock, Times.exactly(numVisualizationTypes));
 
@@ -359,7 +353,6 @@ describe('DrawingControllerTest', () => {
             drawerProvider.object,
             assessmentProvider.object,
         );
-
 
         testObject.initialize();
         subscribeCallback(message, null, null);
@@ -393,25 +386,25 @@ describe('DrawingControllerTest', () => {
             .setup(tlp => tlp.clearVisibilityCheck(configId, VisualizationType.HeadingsAssessment))
             .verifiable(Times.once());
 
-        drawerMock
-            .setup(dm => dm.drawLayout())
-            .verifiable(Times.never());
-        drawerMock
-            .setup(dm => dm.eraseLayout())
-            .verifiable(Times.once());
+        drawerMock.setup(dm => dm.drawLayout()).verifiable(Times.never());
+        drawerMock.setup(dm => dm.eraseLayout()).verifiable(Times.once());
 
         setupDrawerFetches(drawerMock, Times.exactly(numVisualizationTypes));
 
         frameCommunicatorMock
-            .setup(fm => fm.sendMessage(It.isValue({
-                command: DrawingController.triggerVisualizationCommand,
-                frame: iframes[0] as any,
-                message: {
-                    isEnabled: false,
-                    visualizationType: VisualizationType.HeadingsAssessment,
-                    configId: configId,
-                },
-            })))
+            .setup(fm =>
+                fm.sendMessage(
+                    It.isValue({
+                        command: DrawingController.triggerVisualizationCommand,
+                        frame: iframes[0] as any,
+                        message: {
+                            isEnabled: false,
+                            visualizationType: VisualizationType.HeadingsAssessment,
+                            configId: configId,
+                        },
+                    }),
+                ),
+            )
             .verifiable(Times.once());
 
         const testObject = new DrawingController(
@@ -446,21 +439,16 @@ describe('DrawingControllerTest', () => {
             .setVisualizationEnabled()
             .build();
         const drawerMock = Mock.ofType(Drawer, MockBehavior.Strict);
-        drawerMock
-            .setup(dm => dm.initialize(It.isAny()))
-            .verifiable(Times.once());
-        drawerMock
-            .setup(dm => dm.drawLayout())
-            .verifiable(Times.once());
-        drawerMock
-            .setup(dm => dm.eraseLayout())
-            .verifiable(Times.atLeastOnce());
+        drawerMock.setup(dm => dm.initialize(It.isAny())).verifiable(Times.once());
+        drawerMock.setup(dm => dm.drawLayout()).verifiable(Times.once());
+        drawerMock.setup(dm => dm.eraseLayout()).verifiable(Times.atLeastOnce());
 
         const resultsByFrames = [
             {
                 frame: null,
                 elementResults: ['abc'],
-            }];
+            },
+        ];
 
         axeResultsHelperMock
             .setup(am => am.splitResultsByFrame(It.isAny()))
@@ -490,9 +478,7 @@ describe('DrawingControllerTest', () => {
         testObject.processRequest(enableMessage);
 
         drawerMock.reset();
-        drawerMock
-            .setup(x => x.eraseLayout())
-            .verifiable(Times.once());
+        drawerMock.setup(x => x.eraseLayout()).verifiable(Times.once());
 
         testObject.dispose();
 

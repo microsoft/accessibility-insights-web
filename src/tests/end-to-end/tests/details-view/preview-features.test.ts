@@ -20,11 +20,16 @@ describe('Preview Features Panel', () => {
     });
 
     afterEach(async () => {
-        if (browser) { await browser.closeAllPages(); }
+        if (browser) {
+            await browser.closeAllPages();
+        }
     });
 
     afterAll(async () => {
-        if (browser) { await browser.close(); browser = undefined; }
+        if (browser) {
+            await browser.close();
+            browser = undefined;
+        }
     });
 
     it('should match content in snapshot', async () => {
@@ -56,13 +61,10 @@ describe('Preview Features Panel', () => {
     async function waitForDetailsViewWithPreviewFeaturesPanel(popupPage: Page): Promise<Page> {
         let detailsViewPage: Page;
 
-        await Promise.all(
-            [
-                browser.waitForPageMatchingUrl(await browser.getDetailsViewPageUrl(targetTabId))
-                    .then(page => detailsViewPage = page),
-                popupPage.clickSelector(CommonSelectors.previewFeaturesDropdownButton),
-            ],
-        );
+        await Promise.all([
+            browser.waitForPageMatchingUrl(await browser.getDetailsViewPageUrl(targetTabId)).then(page => (detailsViewPage = page)),
+            popupPage.clickSelector(CommonSelectors.previewFeaturesDropdownButton),
+        ]);
 
         return detailsViewPage;
     }

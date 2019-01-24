@@ -10,14 +10,12 @@ describe('StoreTest', () => {
     let handlerMock: IMock<(store: TestableStore, args: any) => void>;
 
     beforeEach(() => {
-        handlerMock = Mock.ofInstance((store, args) => { });
+        handlerMock = Mock.ofInstance((store, args) => {});
         testObject = new TestableStore();
     });
 
     test('addChangedListener', () => {
-        handlerMock
-            .setup(h => h(IsSameObject(testObject), It.isAny()))
-            .verifiable(Times.once());
+        handlerMock.setup(h => h(IsSameObject(testObject), It.isAny())).verifiable(Times.once());
 
         testObject.addChangedListener(handlerMock.object);
 
@@ -27,9 +25,7 @@ describe('StoreTest', () => {
     });
 
     test('removeChangedListener', () => {
-        handlerMock
-            .setup(h => h(IsSameObject(testObject), It.isAny()))
-            .verifiable(Times.once());
+        handlerMock.setup(h => h(IsSameObject(testObject), It.isAny())).verifiable(Times.once());
 
         testObject.addChangedListener(handlerMock.object);
 
@@ -39,9 +35,7 @@ describe('StoreTest', () => {
 
         handlerMock.reset();
 
-        handlerMock
-            .setup(h => h(It.isAny(), It.isAny()))
-            .verifiable(Times.never());
+        handlerMock.setup(h => h(It.isAny(), It.isAny())).verifiable(Times.never());
 
         testObject.removeChangedListener(handlerMock.object);
 
@@ -59,4 +53,3 @@ describe('StoreTest', () => {
         }
     }
 });
-

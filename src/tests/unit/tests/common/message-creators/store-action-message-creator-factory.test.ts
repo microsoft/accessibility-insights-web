@@ -7,11 +7,11 @@ import { StoreActionMessageCreatorFactory } from '../../../../../common/message-
 import { Messages } from '../../../../../common/messages';
 
 describe('StoreActionMessageCreatorFactoryTest', () => {
-    let postMessageMock: IMock<((_message: IMessage) => void)>;
+    let postMessageMock: IMock<(_message: IMessage) => void>;
     const tabId: number = -1;
 
     beforeEach(() => {
-        postMessageMock = Mock.ofInstance(_message => { }, MockBehavior.Strict);
+        postMessageMock = Mock.ofInstance(_message => {}, MockBehavior.Strict);
     });
 
     test('forPopup', () => {
@@ -62,9 +62,7 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
     ): void {
         messages.forEach(message => setupPostMessageMock(message));
 
-        const testObject = new StoreActionMessageCreatorFactory(
-            postMessageMock.object,
-            tabId);
+        const testObject = new StoreActionMessageCreatorFactory(postMessageMock.object, tabId);
 
         const creator = getter(testObject);
 
@@ -74,10 +72,13 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
     }
 
     function setupPostMessageMock(message: string): void {
-        postMessageMock
-            .setup(pm => pm(It.isValue({
-                type: message,
-                tabId: tabId,
-            })));
+        postMessageMock.setup(pm =>
+            pm(
+                It.isValue({
+                    type: message,
+                    tabId: tabId,
+                }),
+            ),
+        );
     }
 });

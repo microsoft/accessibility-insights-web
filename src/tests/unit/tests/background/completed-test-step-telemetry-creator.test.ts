@@ -54,9 +54,7 @@ function testBeforeAfterAssessmentData(
         isPageHidden: false,
     };
 
-    interpreterMock
-        .setup(m => m.interpret(It.isValue(expectedMessage)))
-        .verifiable(expectedTimes);
+    interpreterMock.setup(m => m.interpret(It.isValue(expectedMessage))).verifiable(expectedTimes);
 
     telemetryFactoryMock
         .setup(m => m.forRequirementStatus(It.isAny(), It.isAny(), It.isAny(), It.isAny()))
@@ -198,9 +196,7 @@ describe('CompletedTestStepTelemetryCreatorTest', () => {
         const expectedMessage: IMessage = {
             type: Messages.Telemetry.Send,
         };
-        interpreterMock
-            .setup(im => im.interpret(It.isValue(expectedMessage)))
-            .verifiable(Times.never());
+        interpreterMock.setup(im => im.interpret(It.isValue(expectedMessage))).verifiable(Times.never());
 
         testSubject.initialize();
         callback();
@@ -241,8 +237,7 @@ describe('CompletedTestStepTelemetryCreatorTest', () => {
             interpreterMock.object,
         );
 
-        tabStoreMock
-            .setup(m => m.getState()).returns(() => tabStoreData);
+        tabStoreMock.setup(m => m.getState()).returns(() => tabStoreData);
 
         telemetryFactoryMock
             .setup(m => m.forRequirementStatus(It.isAny(), It.isAny(), It.isAny(), It.isAny()))
@@ -261,9 +256,7 @@ describe('CompletedTestStepTelemetryCreatorTest', () => {
             .returns(() => data)
             .verifiable(Times.atLeastOnce());
 
-        interpreterMock
-            .setup(im => im.interpret(It.isValue(expectedMessage)))
-            .verifiable(Times.once());
+        interpreterMock.setup(im => im.interpret(It.isValue(expectedMessage))).verifiable(Times.once());
 
         testSubject.initialize();
         data.assessments['assessment-1'].testStepStatus['assessment-1-step-1'].stepFinalResult = ManualTestStatus.PASS;

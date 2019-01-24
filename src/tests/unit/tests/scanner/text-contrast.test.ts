@@ -11,13 +11,11 @@ function testTextContrast(
     expectedData: any,
     axeUtilsMock: IGlobalMock<typeof AxeUtils.getEvaluateFromCheck>,
     windowMock: IGlobalMock<typeof window.getComputedStyle>,
-    dataSetterMock: IMock<(data) => void>) {
+    dataSetterMock: IMock<(data) => void>,
+) {
+    windowMock.setup(m => m(It.isAny())).returns(node => ({ getPropertyValue: property => node[property] } as CSSStyleDeclaration));
 
-    windowMock.setup(m => m(It.isAny()))
-        .returns(node => ({ getPropertyValue: property => node[property] } as CSSStyleDeclaration));
-
-    dataSetterMock
-        .setup(d => d(expectedData));
+    dataSetterMock.setup(d => d(expectedData));
 
     let result;
     GlobalScope.using(windowMock, axeUtilsMock).with(() => {
@@ -47,14 +45,13 @@ describe('text contrast', () => {
         const windowMock = GlobalMock.ofInstance(window.getComputedStyle, 'getComputedStyle', window, MockBehavior.Strict);
 
         beforeEach(() => {
-            dataSetterMock = Mock.ofInstance(data => { });
-            axeUtilsMock.setup(m => m(It.isAnyString()))
-                .returns(_ => (node, options, virtualNode, context) => false);
+            dataSetterMock = Mock.ofInstance(data => {});
+            axeUtilsMock.setup(m => m(It.isAnyString())).returns(_ => (node, options, virtualNode, context) => false);
         });
 
         it('large font size / regular font weight', () => {
             const node = {
-                'innerText': 'hello',
+                innerText: 'hello',
                 'font-size': '26px',
                 'font-weight': '200',
             };
@@ -67,7 +64,7 @@ describe('text contrast', () => {
 
         it('set size to be large for font size >= 14pt bold text', () => {
             const node = {
-                'innerText': 'hello',
+                innerText: 'hello',
                 'font-size': '20px',
                 'font-weight': '700',
             };
@@ -80,7 +77,7 @@ describe('text contrast', () => {
 
         it('set size to be regular for font size < 18pt non bold text', () => {
             const node = {
-                'innerText': 'hello',
+                innerText: 'hello',
                 'font-size': '15px',
                 'font-weight': '200',
             };

@@ -27,7 +27,6 @@ describe('UserConfigurationStoreTest', () => {
         const testSubject = new UserConfigurationStore(initialStoreData, new UserConfigurationActions(), indexDbStrictMock.object);
 
         expect(testSubject.getState()).toBeUndefined();
-
     });
 
     test('verify initial state when null', () => {
@@ -42,7 +41,8 @@ describe('UserConfigurationStoreTest', () => {
         const testSubject = new UserConfigurationStore(
             cloneDeep(initialStoreData),
             new UserConfigurationActions(),
-            indexDbStrictMock.object);
+            indexDbStrictMock.object,
+        );
 
         testSubject.initialize();
 
@@ -111,9 +111,7 @@ describe('UserConfigurationStoreTest', () => {
             isFirstTime: false,
         };
 
-        indexDbStrictMock
-            .setup(i => i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)))
-            .verifiable(Times.once());
+        indexDbStrictMock.setup(i => i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState))).verifiable(Times.once());
 
         storeTester
             .withActionParam(setTelemetryStateData)

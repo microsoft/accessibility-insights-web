@@ -38,20 +38,20 @@ describe('BatchedRuleAnalyzer', () => {
 
     beforeEach(() => {
         typeStub = -1 as VisualizationType;
-        sendMessageMock = Mock.ofInstance(message => { });
+        sendMessageMock = Mock.ofInstance(message => {});
         resultConfigFilterMock = Mock.ofInstance((results, rules) => null);
         scannerUtilsMock = Mock.ofType(ScannerUtils);
         scopingStoreMock = Mock.ofType(ScopingStore);
         telemetryDataFactoryMock = Mock.ofType(TelemetryDataFactory);
         visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
         const dateStub = {
-            getTime: () => { return null; },
+            getTime: () => {
+                return null;
+            },
         };
         dateMock = Mock.ofInstance(dateStub as Date);
         dateGetterMock = Mock.ofInstance(() => null);
-        dateGetterMock
-            .setup(dgm => dgm())
-            .returns(() => dateMock.object);
+        dateGetterMock.setup(dgm => dgm()).returns(() => dateMock.object);
         scopingState = {
             selectors: {
                 [ScopingInputTypes.include]: ['fake include selector'],
@@ -66,7 +66,7 @@ describe('BatchedRuleAnalyzer', () => {
             .setup(v => v.getConfiguration(typeStub))
             .returns(() => {
                 return {
-                    displayableData: { title : testName},
+                    displayableData: { title: testName },
                 } as IVisualizationConfiguration;
             })
             .verifiable();
@@ -88,8 +88,10 @@ describe('BatchedRuleAnalyzer', () => {
         const resultOne: RuleResult = {
             id: ruleOne,
         } as RuleResult;
-        const resultProcessorMockOne: IMock<(results: ScanResults) => IDictionaryStringTo<IHtmlElementAxeResults>> =
-            Mock.ofInstance(results => null, MockBehavior.Strict);
+        const resultProcessorMockOne: IMock<(results: ScanResults) => IDictionaryStringTo<IHtmlElementAxeResults>> = Mock.ofInstance(
+            results => null,
+            MockBehavior.Strict,
+        );
         const configOne = {
             rules: [ruleOne],
             analyzerMessageType: 'sample message type',
@@ -99,8 +101,10 @@ describe('BatchedRuleAnalyzer', () => {
             resultProcessor: scanner => resultProcessorMockOne.object,
         };
         const ruleTwo = 'the second rule';
-        const resultProcessorMockTwo: IMock<(results: ScanResults) => IDictionaryStringTo<IHtmlElementAxeResults>> =
-            Mock.ofInstance(results => null, MockBehavior.Strict);
+        const resultProcessorMockTwo: IMock<(results: ScanResults) => IDictionaryStringTo<IHtmlElementAxeResults>> = Mock.ofInstance(
+            results => null,
+            MockBehavior.Strict,
+        );
         const configTwo = {
             ...clone(configOne),
             rules: [ruleTwo],
@@ -121,18 +125,8 @@ describe('BatchedRuleAnalyzer', () => {
         const firstExpectedMessage = getExpectedMessage(configOne, scanResultsOne, expectedTelemetryStub);
         const secondExpectedMessage = getExpectedMessage(configTwo, scanResultsTwo, expectedTelemetryStub);
 
-        setupProcessingMocks(
-            resultProcessorMockOne,
-            configOne,
-            completeRuleResults,
-            scanResultsOne,
-        );
-        setupProcessingMocks(
-            resultProcessorMockTwo,
-            configTwo,
-            completeRuleResults,
-            scanResultsTwo,
-        );
+        setupProcessingMocks(resultProcessorMockOne, configOne, completeRuleResults, scanResultsOne);
+        setupProcessingMocks(resultProcessorMockTwo, configTwo, completeRuleResults, scanResultsTwo);
 
         const testSubjects = [testSubjectOne, testSubjectTwo];
 
@@ -152,15 +146,13 @@ describe('BatchedRuleAnalyzer', () => {
                 .verifiable();
 
             sendMessageMock.reset();
-            sendMessageMock
-                .setup(sm => sm(It.isValue(firstExpectedMessage)))
-                .verifiable();
+            sendMessageMock.setup(sm => sm(It.isValue(firstExpectedMessage))).verifiable();
 
             sendMessageMock
                 .setup(sm => sm(It.isValue(secondExpectedMessage)))
                 .returns(() => {
                     sendMessageMock.verifyAll();
-                    if ((index + 1) === testSubjects.length) {
+                    if (index + 1 === testSubjects.length) {
                         done();
                     }
                 })
@@ -176,17 +168,11 @@ describe('BatchedRuleAnalyzer', () => {
         completeResults: ScanResults,
         filteredResults: ScanResults,
     ) {
-        resultProcessorMock
-            .setup(processor => processor(It.isValue(completeResults)))
-            .returns(() => null);
+        resultProcessorMock.setup(processor => processor(It.isValue(completeResults))).returns(() => null);
 
-        resultProcessorMock
-            .setup(processor => processor(It.isValue(filteredResults)))
-            .returns(() => mockAllInstances);
+        resultProcessorMock.setup(processor => processor(It.isValue(filteredResults))).returns(() => mockAllInstances);
 
-        resultConfigFilterMock
-            .setup(rcfm => rcfm(It.isValue(completeResults), config.rules))
-            .returns(() => filteredResults);
+        resultConfigFilterMock.setup(rcfm => rcfm(It.isValue(completeResults), config.rules)).returns(() => filteredResults);
     }
 
     function createTelemetryStub(elapsedTime: number, testName: string, requirementName: string): RuleAnalyzerScanTelemetryData {

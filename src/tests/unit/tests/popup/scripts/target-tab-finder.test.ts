@@ -42,29 +42,30 @@ describe('TargetTabFinderTest', () => {
         isUrlSupported: boolean;
     };
 
-    const testCases = [{
-        hasTabIdInUrl: true,
-        isUrlSupported: true,
-    },
-    {
-        hasTabIdInUrl: true,
-        isUrlSupported: false,
-    },
-    {
-        hasTabIdInUrl: false,
-        isUrlSupported: true,
-    },
-    {
-        hasTabIdInUrl: false,
-        isUrlSupported: false,
-    }];
+    const testCases = [
+        {
+            hasTabIdInUrl: true,
+            isUrlSupported: true,
+        },
+        {
+            hasTabIdInUrl: true,
+            isUrlSupported: false,
+        },
+        {
+            hasTabIdInUrl: false,
+            isUrlSupported: true,
+        },
+        {
+            hasTabIdInUrl: false,
+            isUrlSupported: false,
+        },
+    ];
 
     test.each(testCases)('get target tab info - %o', async (testCase: TestCase) => {
         if (testCase.hasTabIdInUrl) {
             setupGetTabIdParamFromUrl(tabId);
             setupGetTabCall();
-        }
-        else {
+        } else {
             setupGetTabIdParamFromUrl(NaN);
             setupTabQueryCall();
         }
@@ -79,9 +80,7 @@ describe('TargetTabFinderTest', () => {
     });
 
     function setupGetTabIdParamFromUrl(tabIdValue: number) {
-        urlParserMock
-            .setup(p => p.getIntParam(windowStub.location.href, 'tabId'))
-            .returns(() => tabIdValue);
+        urlParserMock.setup(p => p.getIntParam(windowStub.location.href, 'tabId')).returns(() => tabIdValue);
     }
 
     function setupGetTabCall() {
@@ -94,19 +93,21 @@ describe('TargetTabFinderTest', () => {
 
     function setupTabQueryCall() {
         browserAdapterMock
-            .setup(b => b.tabsQuery({
-                active: true,
-                currentWindow: true,
-            }, It.isAny()))
+            .setup(b =>
+                b.tabsQuery(
+                    {
+                        active: true,
+                        currentWindow: true,
+                    },
+                    It.isAny(),
+                ),
+            )
             .callback((id, cb) => {
                 cb([tabStub]);
             });
     }
 
     function setupIsSupportedCall(isSupported: boolean) {
-        urlValidatorMock
-            .setup(v => v.isSupportedUrl(tabStub.url, browserAdapterMock.object))
-            .returns(() => Promise.resolve(isSupported));
+        urlValidatorMock.setup(v => v.isSupportedUrl(tabStub.url, browserAdapterMock.object)).returns(() => Promise.resolve(isSupported));
     }
-
 });

@@ -15,9 +15,7 @@ describe('isAnAssessmentSelectedTest', () => {
                     enabled: true,
                 },
             },
-            assessments: {
-
-            },
+            assessments: {},
         };
 
         const actual = isAnAssessmentSelected(testData);
@@ -26,8 +24,7 @@ describe('isAnAssessmentSelectedTest', () => {
 
     it('returns false when all assessments are not selected', () => {
         const testData: ITestsEnabledState = {
-            adhoc: {
-            },
+            adhoc: {},
             assessments: {
                 'some-test-2': {
                     enabled: false,
@@ -43,8 +40,7 @@ describe('isAnAssessmentSelectedTest', () => {
     it('returns true when an assessment is selected', () => {
         const testStub = 'some test';
         const testData: ITestsEnabledState = {
-            adhoc: {
-            },
+            adhoc: {},
             assessments: {
                 [testStub]: {
                     enabled: true,

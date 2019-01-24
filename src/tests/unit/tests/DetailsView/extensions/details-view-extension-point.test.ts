@@ -4,12 +4,10 @@ import { IAssessmentViewProps } from '../../../../../DetailsView/components/asse
 import { detailsViewExtensionPoint } from '../../../../../DetailsView/extensions/details-view-extension-point';
 
 describe('detailsViewExtensionPoint', () => {
-
     const prev = { isScanning: false } as IAssessmentViewProps;
     const cur = { isScanning: true } as IAssessmentViewProps;
 
     it('supports onAssessmentViewUpdate', () => {
-
         const onAssessmentViewUpdate = jest.fn();
 
         const addIn = detailsViewExtensionPoint.define({ onAssessmentViewUpdate });
@@ -21,7 +19,6 @@ describe('detailsViewExtensionPoint', () => {
     });
 
     it('supports non-add-in items in the list', () => {
-
         const onAssessmentViewUpdate = jest.fn();
 
         const addIn = detailsViewExtensionPoint.define({ onAssessmentViewUpdate });
@@ -34,17 +31,12 @@ describe('detailsViewExtensionPoint', () => {
     });
 
     it('supports empty list', () => {
-
         const apply = detailsViewExtensionPoint.apply([]);
         apply.onAssessmentViewUpdate(prev, cur);
-
     });
 
     it('supports null list', () => {
-
         const apply = detailsViewExtensionPoint.apply(null);
         apply.onAssessmentViewUpdate(prev, cur);
-
     });
-
 });

@@ -31,15 +31,15 @@ describe('HeadingFormatterTests', () => {
     });
 
     test('verifyStylingForH1Tag', () => {
-            const headingElement = createHeadingWithInnerText('<h1>HEADING</h1>');
+        const headingElement = createHeadingWithInnerText('<h1>HEADING</h1>');
 
-            const config = testSubject.getDrawerConfiguration(headingElement, null);
+        const config = testSubject.getDrawerConfiguration(headingElement, null);
 
-            const headingStyle = getHeadingStyle('1');
+        const headingStyle = getHeadingStyle('1');
 
-            verifyHeadingStyle(config, headingStyle, 'H1');
+        verifyHeadingStyle(config, headingStyle, 'H1');
 
-            headingElement.remove();
+        headingElement.remove();
     });
 
     test('verifyStylingForH2Tag', () => {
@@ -195,13 +195,13 @@ describe('HeadingFormatterTests', () => {
     });
 
     function createDisplayNoneStyleComputer(): IStyleComputer {
-        const getComputedStyleMock = Mock.ofInstance(element => { });
+        const getComputedStyleMock = Mock.ofInstance(element => {});
 
         getComputedStyleMock
             .setup(get => get(It.isAny()))
-                .returns(() => {
-                    return { display: 'none' };
-                });
+            .returns(() => {
+                return { display: 'none' };
+            });
 
         const computedStyle = {
             getComputedStyle: getComputedStyleMock.object,
@@ -209,7 +209,6 @@ describe('HeadingFormatterTests', () => {
 
         return computedStyle as IStyleComputer;
     }
-
 
     function verifyHeadingStyle(config: IDrawerConfiguration, headingStyle: IHeadingStyleConfiguration, text: string): void {
         expect(config.showVisualization).toBe(true);
@@ -228,7 +227,6 @@ describe('HeadingFormatterTests', () => {
         };
         expect(failureBoxConfig).toEqual(expected);
     }
-
 
     function getHeadingStyle(key: string) {
         const headingStyle = HeadingFormatter.headingStyles[key];

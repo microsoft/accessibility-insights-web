@@ -13,7 +13,7 @@ describe('BaseAnalyzerTest', () => {
     let typeStub: VisualizationType;
 
     beforeEach(() => {
-        sendMessageMock = Mock.ofInstance(message => { });
+        sendMessageMock = Mock.ofInstance(message => {});
         typeStub = -1 as VisualizationType;
         configStub = {
             analyzerMessageType: 'sample message type',

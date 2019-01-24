@@ -23,7 +23,7 @@ describe('PopupInitializerTests', () => {
             .returns(() => Promise.resolve(targetTabStub))
             .verifiable();
 
-        const initializePopupMock = Mock.ofInstance(result => { });
+        const initializePopupMock = Mock.ofInstance(result => {});
         initializePopupMock.setup(i => i(It.isAny())).verifiable();
         const testSubject: PopupInitializer = new PopupInitializer(browserAdapterMock.object, targetTabFinder.object);
         (testSubject as any).initializePopup = initializePopupMock.object;
@@ -35,4 +35,3 @@ describe('PopupInitializerTests', () => {
         browserAdapterMock.verifyAll();
     });
 });
-

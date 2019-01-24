@@ -19,7 +19,6 @@ import { SelectorMapHelper } from '../../../../injected/selector-map-helper';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 
-
 describe('SelectorMapHelperTest', () => {
     let scanResultStoreMock: IMock<IBaseStore<IVisualizationScanResultData>>;
     let assessmentStoreMock: IMock<IBaseStore<IAssessmentStoreData>>;
@@ -39,9 +38,7 @@ describe('SelectorMapHelperTest', () => {
                 isVisible: true,
                 isVisualizationEnabled: true,
                 propertyBag: {},
-                target: [
-                    'element2',
-                ],
+                target: ['element2'],
                 identifier: 'key2',
                 ruleResults: null,
             },
@@ -50,7 +47,7 @@ describe('SelectorMapHelperTest', () => {
             key1: {
                 target: ['element1'],
                 testStepResults: {
-                    'step1': {
+                    step1: {
                         status: ManualTestStatus.FAIL,
                         isVisualizationEnabled: true,
                         isVisible: true,
@@ -62,7 +59,7 @@ describe('SelectorMapHelperTest', () => {
             key2: {
                 target: ['element2'],
                 testStepResults: {
-                    'step2': {
+                    step2: {
                         status: ManualTestStatus.FAIL,
                         isVisualizationEnabled: true,
                         isVisible: true,
@@ -73,11 +70,7 @@ describe('SelectorMapHelperTest', () => {
             },
         };
 
-        testSubject = new SelectorMapHelper(
-            scanResultStoreMock.object,
-            assessmentStoreMock.object,
-            assessmentsProvider,
-        );
+        testSubject = new SelectorMapHelper(scanResultStoreMock.object, assessmentStoreMock.object, assessmentsProvider);
     });
 
     test('constructor', () => {
@@ -86,9 +79,7 @@ describe('SelectorMapHelperTest', () => {
 
     test('getState: issues', () => {
         const selectorMap = { key1: { target: ['element1'] } };
-        const state = new VisualizationScanResultStoreDataBuilder()
-            .withIssuesSelectedTargets(selectorMap as any)
-            .build();
+        const state = new VisualizationScanResultStoreDataBuilder().withIssuesSelectedTargets(selectorMap as any).build();
 
         scanResultStoreMock
             .setup(ss => ss.getState())
@@ -104,9 +95,7 @@ describe('SelectorMapHelperTest', () => {
     test('getState: headings', () => {
         const type = VisualizationType.Headings;
         const selectorMap = { key1: { target: ['element1'] } };
-        const state = new VisualizationScanResultStoreDataBuilder()
-            .withSelectorMap(type, selectorMap)
-            .build();
+        const state = new VisualizationScanResultStoreDataBuilder().withSelectorMap(type, selectorMap).build();
 
         scanResultStoreMock
             .setup(ss => ss.getState())
@@ -122,9 +111,7 @@ describe('SelectorMapHelperTest', () => {
     test('getState: landmarks', () => {
         const type = VisualizationType.Landmarks;
         const selectorMap = { key1: { target: ['element1'] } };
-        const state = new VisualizationScanResultStoreDataBuilder()
-            .withSelectorMap(type, selectorMap)
-            .build();
+        const state = new VisualizationScanResultStoreDataBuilder().withSelectorMap(type, selectorMap).build();
 
         scanResultStoreMock
             .setup(ss => ss.getState())
@@ -140,9 +127,7 @@ describe('SelectorMapHelperTest', () => {
     test('getState: color', () => {
         const type = VisualizationType.Color;
         const selectorMap = { key1: { target: ['element1'] } };
-        const state = new VisualizationScanResultStoreDataBuilder()
-            .withSelectorMap(type, selectorMap)
-            .build();
+        const state = new VisualizationScanResultStoreDataBuilder().withSelectorMap(type, selectorMap).build();
 
         scanResultStoreMock
             .setup(ss => ss.getState())
@@ -157,8 +142,7 @@ describe('SelectorMapHelperTest', () => {
 
     test('getState: tabStops', () => {
         const type = VisualizationType.TabStops;
-        const state = new VisualizationScanResultStoreDataBuilder()
-            .build();
+        const state = new VisualizationScanResultStoreDataBuilder().build();
 
         state.tabStops.tabbedElements = [];
 
@@ -182,7 +166,7 @@ describe('SelectorMapHelperTest', () => {
             key1: {
                 target: ['element1'],
                 testStepResults: {
-                    'step1': {
+                    step1: {
                         status: ManualTestStatus.FAIL,
                         isVisualizationEnabled: true,
                         isVisible: true,
@@ -231,9 +215,7 @@ describe('SelectorMapHelperTest', () => {
                 isVisible: true,
                 isVisualizationEnabled: true,
                 propertyBag: {},
-                target: [
-                    'element2',
-                ],
+                target: ['element2'],
                 identifier: assessment.key,
                 ruleResults: null,
             },
@@ -273,14 +255,10 @@ describe('SelectorMapHelperTest', () => {
     });
 
     function setAssessmentStore(): void {
-        assessmentStoreMock
-            .setup(a => a.getState())
-            .verifiable();
+        assessmentStoreMock.setup(a => a.getState()).verifiable();
     }
 
     function setScanResultStore(): void {
-        scanResultStoreMock
-            .setup(a => a.getState())
-            .verifiable();
+        scanResultStoreMock.setup(a => a.getState()).verifiable();
     }
 });

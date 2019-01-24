@@ -6,9 +6,7 @@ import { VisualizationType } from '../../../common/types/visualization-type';
 import { IHtmlElementAxeResults } from '../../../injected/scanner-utils';
 import { BaseDataBuilder } from './base-data-builder';
 
-
 export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<IVisualizationScanResultData> {
-
     constructor() {
         super();
         this.data = new VisualizationScanResultStore(null, null).getDefaultState();

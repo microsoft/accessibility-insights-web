@@ -21,10 +21,8 @@ describe('FeedbackMenuClickHandlerTest', () => {
             data: 'url',
         } as any;
 
-        const openTabMock = Mock.ofInstance(url => { });
-        openTabMock
-            .setup(ot => ot(itemStub.data))
-            .verifiable();
+        const openTabMock = Mock.ofInstance(url => {});
+        openTabMock.setup(ot => ot(itemStub.data)).verifiable();
 
         const windowStub = {
             open: openTabMock.object,
@@ -40,10 +38,8 @@ describe('FeedbackMenuClickHandlerTest', () => {
     test('onClickLink null item', () => {
         const itemStub = null;
 
-        const openTabMock = Mock.ofInstance(url => { });
-        openTabMock
-            .setup(ot => ot(It.isAny()))
-            .verifiable(Times.never());
+        const openTabMock = Mock.ofInstance(url => {});
+        openTabMock.setup(ot => ot(It.isAny())).verifiable(Times.never());
 
         const windowStub = {
             open: openTabMock.object,
@@ -57,7 +53,7 @@ describe('FeedbackMenuClickHandlerTest', () => {
     });
 
     test('onCollapseMenuClick', () => {
-        const setStateMock = Mock.ofInstance((state: any) => { });
+        const setStateMock = Mock.ofInstance((state: any) => {});
         const stateStub = {
             target: 'currentTarget',
             isContextMenuVisible: true,
@@ -65,9 +61,7 @@ describe('FeedbackMenuClickHandlerTest', () => {
         const eventStub = {
             currentTarget: 'currentTarget',
         };
-        setStateMock
-            .setup(sm => sm(It.isValue(stateStub)))
-            .verifiable();
+        setStateMock.setup(sm => sm(It.isValue(stateStub))).verifiable();
 
         const deps: LaunchPanelHeaderDeps = {
             popupActionMessageCreator: null,
@@ -94,16 +88,14 @@ describe('FeedbackMenuClickHandlerTest', () => {
     });
 
     test('onDismissFeedbackMenu', () => {
-        const setStateMock = Mock.ofInstance((state: any) => { });
+        const setStateMock = Mock.ofInstance((state: any) => {});
         const stateStub = {
             isContextMenuVisible: false,
         };
         const eventStub = {
             currentTarget: 'currentTarget',
         };
-        setStateMock
-            .setup(sm => sm(It.isValue(stateStub)))
-            .verifiable();
+        setStateMock.setup(sm => sm(It.isValue(stateStub))).verifiable();
 
         const deps: LaunchPanelHeaderDeps = {
             popupActionMessageCreator: null,
@@ -130,10 +122,8 @@ describe('FeedbackMenuClickHandlerTest', () => {
     });
 
     test('openAdhocToolsPanel', () => {
-        const openAdhocToolsPanelMock = Mock.ofInstance(() => { });
-        openAdhocToolsPanelMock
-            .setup(o => o())
-            .verifiable();
+        const openAdhocToolsPanelMock = Mock.ofInstance(() => {});
+        openAdhocToolsPanelMock.setup(o => o()).verifiable();
 
         const deps: LaunchPanelHeaderDeps = {
             popupActionMessageCreator: null,
@@ -146,7 +136,7 @@ describe('FeedbackMenuClickHandlerTest', () => {
             subtitle: 'subtitle',
             openAdhocToolsPanel: openAdhocToolsPanelMock.object,
             clickhandler: {
-                onDismissFeedbackMenu: () => { },
+                onDismissFeedbackMenu: () => {},
             } as any,
             supportLinkHandler: null,
             popupWindow: null,

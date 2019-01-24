@@ -21,9 +21,7 @@ export class AssessmentStoreTester<TStoreData, TActions> extends StoreTester<TSt
     }
 
     public testListenerToBeCalledOnce(initial: TStoreData, expected: TStoreData, getItemReturnValue: TStoreData = null): void {
-        this.indexDbMock
-            .setup(idm => idm.setItem(IndexedDBDataKeys.assessmentStore, It.isValue(expected)))
-            .verifiable(Times.once());
+        this.indexDbMock.setup(idm => idm.setItem(IndexedDBDataKeys.assessmentStore, It.isValue(expected))).verifiable(Times.once());
         super.testListenerToBeCalledOnce(initial, expected);
     }
 }

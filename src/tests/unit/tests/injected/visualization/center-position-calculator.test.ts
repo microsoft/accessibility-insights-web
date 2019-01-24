@@ -16,15 +16,15 @@ describe('CenterPositionCalculatorTest', () => {
     let tabbableElementsHelperMock: IMock<TabbableElementsHelper>;
     let querySelectorMock: IMock<any>;
     let documentMock;
-    const bodyStub = {bodyStub: true} as any;
-    const styleStub = {styleStub: true} as any;
+    const bodyStub = { bodyStub: true } as any;
+    const styleStub = { styleStub: true } as any;
 
     beforeEach(() => {
         windowUtilsMock = Mock.ofType(WindowUtils);
         tabbableElementsHelperMock = Mock.ofType(TabbableElementsHelper);
         querySelectorMock = Mock.ofInstance(() => HTMLElement);
         documentMock = {
-            documentElement: {docElement: true},
+            documentElement: { docElement: true },
             querySelector: querySelectorMock.object,
         };
     });

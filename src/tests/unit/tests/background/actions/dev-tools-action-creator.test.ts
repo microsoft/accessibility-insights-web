@@ -22,7 +22,7 @@ describe('DevToolsActionCreatorTest', () => {
     beforeEach(() => {
         devtoolActionsMock = Mock.ofType(DevToolActions, MockBehavior.Strict);
         telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler, MockBehavior.Strict);
-        registerTypeToPayloadCallback = Mock.ofInstance((_type, _callback) => { });
+        registerTypeToPayloadCallback = Mock.ofInstance((_type, _callback) => {});
 
         testObject = new DevToolsActionCreator(
             devtoolActionsMock.object,
@@ -97,24 +97,20 @@ describe('DevToolsActionCreatorTest', () => {
     });
 
     function setupDevToolsActionsMock(actionName: keyof DevToolActions, actionMock: IMock<Action<any>>) {
-        devtoolActionsMock
-            .setup(actions => actions[actionName])
-            .returns(() => actionMock.object);
+        devtoolActionsMock.setup(actions => actions[actionName]).returns(() => actionMock.object);
     }
 
-    function createActionMock<TPayload>(actionPayload: TPayload): IMock < Action < TPayload >> {
-            const getCurrentStateAction = Mock.ofType<Action<TPayload>>(Action, MockBehavior.Strict);
+    function createActionMock<TPayload>(actionPayload: TPayload): IMock<Action<TPayload>> {
+        const getCurrentStateAction = Mock.ofType<Action<TPayload>>(Action, MockBehavior.Strict);
 
-            getCurrentStateAction
-            .setup(action => action.invoke(actionPayload))
-                    .verifiable(Times.once());
+        getCurrentStateAction.setup(action => action.invoke(actionPayload)).verifiable(Times.once());
 
-            return getCurrentStateAction;
-        }
+        return getCurrentStateAction;
+    }
 
     function setupRegisterTypeToPayloadCallbackMock(message: string, payload: any, _tabId: number) {
-            registerTypeToPayloadCallback
-                .setup(registrar => registrar(message, It.is(_.isFunction)))
-                .callback((_message, listener) => listener(payload, _tabId));
-        }
+        registerTypeToPayloadCallback
+            .setup(registrar => registrar(message, It.is(_.isFunction)))
+            .callback((_message, listener) => listener(payload, _tabId));
+    }
 });

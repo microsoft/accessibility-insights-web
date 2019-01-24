@@ -27,8 +27,7 @@ describe('InspectStoreTest', () => {
         const initialState = getDefaultState();
         const finalState = getDefaultState();
 
-        createStoreForInspectActions('getCurrentState')
-            .testListenerToBeCalledOnce(initialState, finalState);
+        createStoreForInspectActions('getCurrentState').testListenerToBeCalledOnce(initialState, finalState);
     });
 
     test('on changeMode', () => {
@@ -46,7 +45,7 @@ describe('InspectStoreTest', () => {
 
     test('on setHoveredOverSelector', () => {
         const initialState = getDefaultState();
-        const payload: string[]  = ['some selector'];
+        const payload: string[] = ['some selector'];
         const finalState = getDefaultState();
         finalState.hoveredOverSelector = payload;
         createStoreForInspectActions('setHoveredOverSelector')

@@ -38,7 +38,7 @@ describe('AnalyzerProviderTests', () => {
         keyStub = 'test key';
         analyzerMessageTypeStub = 'analyzer message stub';
 
-        sendMessageMock = Mock.ofInstance(message => { });
+        sendMessageMock = Mock.ofInstance(message => {});
         dateGetterMock = Mock.ofInstance(() => null);
         tabStopsListener = Mock.ofType(TabStopsListener);
         scopingStoreMock = Mock.ofType(ScopingStore);

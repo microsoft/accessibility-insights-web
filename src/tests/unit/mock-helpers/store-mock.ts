@@ -5,7 +5,6 @@ import { IMock, It, Mock, Times } from 'typemoq';
 import { DevToolStore } from '../../../background/stores/dev-tools-store';
 import { IBaseStore } from '../../../common/istore';
 
-
 export class StoreMock<TStoreState> {
     private _store: IMock<IBaseStore<TStoreState>> = Mock.ofType(DevToolStore as any);
 

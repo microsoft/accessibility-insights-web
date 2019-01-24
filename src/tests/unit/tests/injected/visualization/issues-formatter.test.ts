@@ -29,7 +29,7 @@ describe('IssuesFormatterTests', () => {
             target: ['html'],
             isVisible: true,
             ruleResults: {
-                'rule1': {
+                rule1: {
                     any: [],
                     none: [],
                     all: [],
@@ -45,7 +45,7 @@ describe('IssuesFormatterTests', () => {
                     fingerprint: 'fp1',
                     snippet: 'html',
                 },
-                'rule2': {
+                rule2: {
                     any: [],
                     none: [],
                     all: [],
