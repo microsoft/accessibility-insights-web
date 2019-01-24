@@ -1,8 +1,3 @@
 {
-    "recommendations": [
-        "psioniq.psi-header",
-        "eg2.tslint",
-        "esbenp.prettier-vscode",
-        "msjsdiag.debugger-for-chrome"
-    ]
+    "recommendations": ["psioniq.psi-header", "eg2.tslint", "esbenp.prettier-vscode", "msjsdiag.debugger-for-chrome"]
 }

@@ -1,16 +1,16 @@
 {
-  "name": "accessibility-insights-web-deployment",
-  "version": "1.0.0",
-  "description": "Accessibility Insights for Web - Deployment",
-  "license": "MIT",
-  "repository": {
-    "type" : "git",
-    "url" : "https://github.com/Microsoft/accessibility-insights-web"
-  }, 
-  "devDependencies": {
-    "grunt": "^1.0.3",
-    "grunt-cli": "^1.3.1",
-    "grunt-contrib-compress": "^1.4.3",
-    "grunt-webstore-upload": "^0.9.23"
-  }
+    "name": "accessibility-insights-web-deployment",
+    "version": "1.0.0",
+    "description": "Accessibility Insights for Web - Deployment",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Microsoft/accessibility-insights-web"
+    },
+    "devDependencies": {
+        "grunt": "^1.0.3",
+        "grunt-cli": "^1.3.1",
+        "grunt-contrib-compress": "^1.4.3",
+        "grunt-webstore-upload": "^0.9.23"
+    }
 }
