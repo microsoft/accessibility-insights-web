@@ -39,7 +39,7 @@ exports[`StatusIcon render for UNKNOWN 1`] = `
 exports[`StatusIcon render for default 1`] = `
 <StyledIconBase
   aria-live="polite"
-  ariaLabel="undefined requirement"
+  ariaLabel="incomplete requirement"
   className="status-icon"
   iconName="circleRing"
 />

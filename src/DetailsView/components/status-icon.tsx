@@ -17,7 +17,8 @@ export type AssessmentLevel = 'test' | 'requirement';
 
 export class StatusIcon extends React.Component<IStatusIconProps> {
     public render(): JSX.Element {
-        const outcomeTypeSemantics = outcomeTypeSemanticsFromTestStatus(this.props.status);
+        const outcomeTypeSemantics = outcomeTypeSemanticsFromTestStatus(this.props.status) ||
+            outcomeTypeSemanticsFromTestStatus(ManualTestStatus.UNKNOWN);
         const pastTenseOutCome = outcomeTypeSemantics && outcomeTypeSemantics.pastTense;
         const label = `${pastTenseOutCome} ${this.props.level}`;
 
