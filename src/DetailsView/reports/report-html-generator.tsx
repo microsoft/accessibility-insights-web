@@ -23,7 +23,7 @@ export class ReportHtmlGenerator {
         description: string,
     ): string {
         const headElement: JSX.Element = <ReportHead />;
-        const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(headElement, 'html');
+        const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(headElement);
 
         const bodyElement: JSX.Element =
             <ReportBody
@@ -36,7 +36,7 @@ export class ReportHtmlGenerator {
                 extensionVersion={this.extensionVersion}
                 axeVersion={this.axeVersion}
             />;
-        const bodyMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(bodyElement, 'html');
+        const bodyMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(bodyElement);
 
         return '<html lang="en">' + headMarkup + bodyMarkup + '</html>';
     }
