@@ -26,6 +26,12 @@ jobs:
           - task: Npm@1
             inputs:
                 command: custom
+                customCommand: run format-check
+            displayName: check code style
+
+          - task: Npm@1
+            inputs:
+                command: custom
                 customCommand: test
             displayName: npm test
 
