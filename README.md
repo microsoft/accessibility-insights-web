@@ -47,7 +47,7 @@ You can install the extension from one of the following links
     ```bash
     npm test
     ```
--   Build and run the end-to-end tests (**please do not use admin mode cli**)
+-   Build and run the end-to-end tests (note: you must use a **non**-admin prompt to avoid [this issue](https://stackoverflow.com/questions/36835130))
     ```bash
     npm run build
     npm run test:e2e
