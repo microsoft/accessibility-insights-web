@@ -5,13 +5,11 @@ import { IDetailsViewData } from '../../../common/types/store-data/idetails-view
 import { DetailsViewRightContentPanelType } from '../../../DetailsView/components/left-nav/details-view-right-content-panel-type';
 import { BaseDataBuilder } from './base-data-builder';
 
-
 export class DetailsViewStoreDataBuilder extends BaseDataBuilder<IDetailsViewData> {
     constructor() {
         super();
         this.data = new DetailsViewStore(null, null, null, null).getDefaultState();
     }
-
 
     public withPreviewFeaturesOpen(isPreviewFeaturesOpen: boolean): DetailsViewStoreDataBuilder {
         this.data.currentPanel.isPreviewFeaturesOpen = isPreviewFeaturesOpen;

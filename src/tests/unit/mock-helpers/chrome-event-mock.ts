@@ -22,9 +22,7 @@ export class ChromeEventMock {
     }
 
     public setupRemoveListener(): ChromeEventMock {
-        this._eventMock
-            .setup(x => x.removeListener(It.isAny()))
-            .verifiable(Times.once());
+        this._eventMock.setup(x => x.removeListener(It.isAny())).verifiable(Times.once());
 
         return this;
     }

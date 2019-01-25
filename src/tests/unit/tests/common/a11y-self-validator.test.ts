@@ -24,7 +24,6 @@ describe('A11YAutoCheckTest', () => {
         htmlElementUtils = Mock.ofType(HTMLElementUtils, MockBehavior.Strict);
         testObject = new A11YSelfValidator(scannerUtilsMock.object, htmlElementUtils.object);
         consoleLogMock = GlobalMock.ofInstance(console.log, 'log', console, MockBehavior.Strict);
-
     });
 
     test('scan', () => {
@@ -34,7 +33,8 @@ describe('A11YAutoCheckTest', () => {
             .setup(ksu => ksu.scan(null, It.is(param => typeof param === 'function')))
             .callback((rules, handleAxeResult) => {
                 handleAxeResult(scannerResultStub);
-            }).verifiable(Times.once());
+            })
+            .verifiable(Times.once());
 
         failedSelectors.forEach(selector => {
             htmlElementUtils
@@ -43,15 +43,11 @@ describe('A11YAutoCheckTest', () => {
                 .verifiable(Times.once());
         });
 
-        consoleLogMock
-            .setup(log => log(It.isValue(getLoggedViolationScanResult())))
-            .verifiable(Times.once());
+        consoleLogMock.setup(log => log(It.isValue(getLoggedViolationScanResult()))).verifiable(Times.once());
 
-        GlobalScope
-            .using(consoleLogMock)
-            .with(() => {
-                testObject.validate();
-            });
+        GlobalScope.using(consoleLogMock).with(() => {
+            testObject.validate();
+        });
 
         scannerUtilsMock.verifyAll();
         htmlElementUtils.verifyAll();
@@ -69,9 +65,11 @@ describe('A11YAutoCheckTest', () => {
         return [
             {
                 id: 'passed-rule1',
-                nodes: [{
-                    target: ['head'],
-                }],
+                nodes: [
+                    {
+                        target: ['head'],
+                    },
+                ],
             },
         ] as AxeRule[];
     }
@@ -83,14 +81,16 @@ describe('A11YAutoCheckTest', () => {
             violationRules.push({
                 id: 'failed-rule' + index,
                 help: 'help content',
-                nodes: [{
-                    target: [failedSelector],
-                    all: [],
-                    any: null,
-                    none: [],
-                    failureSummary: 'failure summary',
-                    html: 'html data',
-                }],
+                nodes: [
+                    {
+                        target: [failedSelector],
+                        all: [],
+                        any: null,
+                        none: [],
+                        failureSummary: 'failure summary',
+                        html: 'html data',
+                    },
+                ],
             } as AxeRule);
         });
 

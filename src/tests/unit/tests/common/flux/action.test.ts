@@ -5,7 +5,7 @@ import { IMock, Mock, Times } from 'typemoq';
 import { Action } from '../../../../../common/flux/action';
 
 describe('ActionTest', () => {
-    let listenerMock: IMock<((payload: ITestPayload) => void)>;
+    let listenerMock: IMock<(payload: ITestPayload) => void>;
     const testPayload: ITestPayload = { key: 'value' };
     let testObject: Action<ITestPayload>;
 
@@ -15,9 +15,7 @@ describe('ActionTest', () => {
     });
 
     test('addListener, invoke', () => {
-        listenerMock
-            .setup(l => l(testPayload))
-            .verifiable(Times.once());
+        listenerMock.setup(l => l(testPayload)).verifiable(Times.once());
 
         testObject.addListener(listenerMock.object);
 

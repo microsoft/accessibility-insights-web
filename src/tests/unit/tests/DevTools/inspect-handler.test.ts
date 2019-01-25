@@ -27,9 +27,7 @@ describe('InspectHandlerTests', () => {
 
     test('initialize - send about dev tools open message to background ', () => {
         devtoolsStoreProxyMock.setupAddChangedListener();
-        backgrountConnectionMock
-            .setup(x => x.postMessage(It.isObjectWith({ tabId: inspectedWindowId })))
-            .verifiable();
+        backgrountConnectionMock.setup(x => x.postMessage(It.isObjectWith({ tabId: inspectedWindowId }))).verifiable();
         chromeAdapterMock.setupGetInspectedWindowTabId(inspectedWindowId);
 
         testObjec.initialize();
@@ -101,7 +99,6 @@ describe('InspectHandlerTests', () => {
 
         devtoolsStoreProxyMock.verifyAll();
         chromeAdapterMock.verifyAll();
-
     });
 
     test("initialize - don't inspect if inspect element length > 1 and frame Url not set", () => {

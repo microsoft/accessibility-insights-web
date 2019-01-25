@@ -19,14 +19,13 @@ describe('text alternative', () => {
         });
     });
 
-
     describe('verify matches', () => {
         let fixture: HTMLElement;
         let axeReference;
 
         beforeEach(() => {
             fixture = createTestFixture('test-fixture', '');
-            axeReference = (Axe as any);
+            axeReference = Axe as any;
         });
 
         afterEach(() => {
@@ -86,9 +85,9 @@ describe('text alternative', () => {
         );
 
         beforeEach(() => {
-            dataSetterMock = Mock.ofInstance(data => { });
+            dataSetterMock = Mock.ofInstance(data => {});
             fixture = createTestFixture('test-fixture', '');
-            axeReference = (Axe as any);
+            axeReference = Axe as any;
         });
 
         afterEach(() => {
@@ -102,12 +101,9 @@ describe('text alternative', () => {
             const element1 = fixture.querySelector('#el1');
             axeReference._tree = axeReference.utils.getFlattenedTree(document.documentElement);
 
-            getAccessibleDescriptionMock
-                .setup(get => get(It.isAny()))
-                .returns(() => '');
+            getAccessibleDescriptionMock.setup(get => get(It.isAny())).returns(() => '');
 
-            dataSetterMock
-                .setup(d => d(It.isAny()));
+            dataSetterMock.setup(d => d(It.isAny()));
             let result;
             GlobalScope.using(getAccessibleDescriptionMock).with(() => {
                 result = textAlternativeConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, element1);
@@ -125,18 +121,14 @@ describe('text alternative', () => {
             const element1 = fixture.querySelector('#el1');
 
             axeReference._tree = axeReference.utils.getFlattenedTree(document.documentElement);
-            getAccessibleDescriptionMock
-                .setup(get => get(It.isAny()))
-                .returns(() => 'hello');
+            getAccessibleDescriptionMock.setup(get => get(It.isAny())).returns(() => 'hello');
 
             const expectedData = {
                 imageType: '<img>',
                 accessibleName: 'accessibleName',
                 accessibleDescription: 'hello',
             };
-            dataSetterMock
-                .setup(d => d(It.isValue(expectedData)))
-                .verifiable(Times.once());
+            dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
             let result;
             GlobalScope.using(getAccessibleDescriptionMock).with(() => {
                 result = textAlternativeConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, element1);

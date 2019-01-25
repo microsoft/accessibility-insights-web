@@ -4,5 +4,5 @@ import * as _ from 'lodash';
 import { It } from 'typemoq';
 
 export function IsSameObject<T>(object: T): T {
-    return  It.is(expectedObj => _.isEqual(expectedObj, object));
+    return It.is(expectedObj => _.isEqual(expectedObj, object));
 }

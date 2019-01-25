@@ -23,9 +23,7 @@ describe('SVGShapeFactoryTest', () => {
     beforeAll(() => {
         const div = document.createElement('div');
 
-        drawerUtilsMock
-            .setup(du => du.getDocumentElement())
-            .returns(() => div.ownerDocument);
+        drawerUtilsMock.setup(du => du.getDocumentElement()).returns(() => div.ownerDocument);
     });
 
     beforeEach(() => {
@@ -72,7 +70,7 @@ describe('SVGShapeFactoryTest', () => {
 
         const line = testObject.createLine(source, destination, defaultTestLineConfiguration, defaultTestFilterName, defaultCircleRadius);
 
-        const angle = 3 * Math.PI / 4;
+        const angle = (3 * Math.PI) / 4;
         const expectedSource: IPoint = {
             x: (defaultCircleRadius + expectedLineBuffer) * Math.cos(angle),
             y: (defaultCircleRadius + expectedLineBuffer) * Math.sin(angle),
@@ -99,7 +97,7 @@ describe('SVGShapeFactoryTest', () => {
 
         const line = testObject.createLine(source, destination, defaultTestLineConfiguration, defaultTestFilterName, defaultCircleRadius);
 
-        const angle = 5 * Math.PI / 4;
+        const angle = (5 * Math.PI) / 4;
         const expectedSource: IPoint = {
             x: (defaultCircleRadius + expectedLineBuffer) * Math.cos(angle),
             y: (defaultCircleRadius + expectedLineBuffer) * Math.sin(angle),
@@ -126,7 +124,7 @@ describe('SVGShapeFactoryTest', () => {
 
         const line = testObject.createLine(source, destination, defaultTestLineConfiguration, defaultTestFilterName, defaultCircleRadius);
 
-        const angle = 7 * Math.PI / 4;
+        const angle = (7 * Math.PI) / 4;
         const expectedSource: IPoint = {
             x: (defaultCircleRadius + expectedLineBuffer) * Math.cos(angle),
             y: (defaultCircleRadius + expectedLineBuffer) * Math.sin(angle),
@@ -154,7 +152,7 @@ describe('SVGShapeFactoryTest', () => {
         const line = testObject.createLine(source, destination, defaultTestLineConfiguration, defaultTestFilterName, defaultCircleRadius);
 
         const expectedSource: IPoint = {
-            x: (defaultCircleRadius + expectedLineBuffer),
+            x: defaultCircleRadius + expectedLineBuffer,
             y: 0,
         };
 
@@ -164,7 +162,6 @@ describe('SVGShapeFactoryTest', () => {
         };
 
         verifyLinePoints(line, expectedSource, expectedDestination);
-
     });
 
     test('create line, horizontal, right to left', () => {
@@ -186,7 +183,7 @@ describe('SVGShapeFactoryTest', () => {
         };
 
         const expectedDestination: IPoint = {
-            x: (defaultCircleRadius + expectedLineBuffer),
+            x: defaultCircleRadius + expectedLineBuffer,
             y: 0,
         };
 
@@ -213,7 +210,7 @@ describe('SVGShapeFactoryTest', () => {
 
         const expectedDestination: IPoint = {
             x: 0,
-            y: (defaultCircleRadius + expectedLineBuffer),
+            y: defaultCircleRadius + expectedLineBuffer,
         };
 
         verifyLinePoints(line, expectedSource, expectedDestination);
@@ -234,7 +231,7 @@ describe('SVGShapeFactoryTest', () => {
 
         const expectedSource: IPoint = {
             x: 0,
-            y: (defaultCircleRadius + expectedLineBuffer),
+            y: defaultCircleRadius + expectedLineBuffer,
         };
 
         const expectedDestination: IPoint = {
@@ -243,7 +240,6 @@ describe('SVGShapeFactoryTest', () => {
         };
 
         verifyLinePoints(line, expectedSource, expectedDestination);
-
     });
 
     test('create line (full params)', () => {
@@ -349,8 +345,7 @@ describe('SVGShapeFactoryTest', () => {
 
         if (configuration.strokeDasharray != null) {
             expect(strokeDasharray).toEqual(configuration.strokeDasharray);
-        }
-        else {
+        } else {
             expect(strokeDasharray == null || strokeDasharray === '').toBe(true);
         }
 

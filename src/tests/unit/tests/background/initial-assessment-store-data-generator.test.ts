@@ -10,9 +10,6 @@ import {
 } from '../../../../common/types/store-data/iassessment-result-data';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
 
-
-
-
 describe('InitialAssessmentStoreDataGeneratorTest', () => {
     const assesssmentsProvider = CreateTestAssessmentProvider();
     const targetTab = { id: 1, url: 'url', title: 'title' };
@@ -33,7 +30,6 @@ describe('InitialAssessmentStoreDataGeneratorTest', () => {
     let knownManualRequirementResult;
     let unknownManualRequirementResult;
 
-
     beforeAll(() => {
         knownTestIds = assesssmentsProvider.all().map(test => test.key);
         assesssmentsProvider.all().forEach(test => {
@@ -52,7 +48,6 @@ describe('InitialAssessmentStoreDataGeneratorTest', () => {
         instanceDataWithoutKnownRequirementResult = createInstance('id2', [unknownRequirement1]);
         knownManualRequirementResult = createManualRequirementResult(knownRequirement1, userInpuut);
         unknownManualRequirementResult = createManualRequirementResult(unknownRequirement1, userInpuut);
-
     });
 
     it('get the default state', () => {

@@ -20,16 +20,13 @@ describe('UserStoredDataCleanerTest', () => {
         const userDataRes = { alias: 'userAlias' };
 
         browserAdapterMock
-            .setup(mB => mB.getUserData(It.isValue(userData),
-                It.is(isFunction)))
+            .setup(mB => mB.getUserData(It.isValue(userData), It.is(isFunction)))
             .callback((data, cb) => {
                 cb(userDataRes);
             })
             .verifiable(Times.once());
 
-        browserAdapterMock
-            .setup(adapter => adapter.removeUserData('alias'))
-            .verifiable(Times.once());
+        browserAdapterMock.setup(adapter => adapter.removeUserData('alias')).verifiable(Times.once());
 
         testObject.cleanUserData(userData, () => {
             browserAdapterMock.verifyAll();

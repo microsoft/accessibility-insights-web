@@ -17,7 +17,9 @@ describe('ScopingActionMessageCreatorTest', () => {
     const tabId: number = -1;
 
     beforeEach(() => {
-        postMessageMock = Mock.ofInstance(message => { return null; });
+        postMessageMock = Mock.ofInstance(message => {
+            return null;
+        });
         telemetryFactoryMock = Mock.ofType(TelemetryDataFactory, MockBehavior.Strict);
         testSubject = new ScopingActionMessageCreator(postMessageMock.object, tabId, telemetryFactoryMock.object, testSource);
     });
@@ -87,8 +89,6 @@ describe('ScopingActionMessageCreatorTest', () => {
     });
 
     function setupPostMessage(expectedMessage): void {
-        postMessageMock
-            .setup(post => post(It.isValue(expectedMessage)))
-            .verifiable(Times.once());
+        postMessageMock.setup(post => post(It.isValue(expectedMessage))).verifiable(Times.once());
     }
 });

@@ -11,11 +11,8 @@ import { IManualTestStatus, ManualTestStatus } from '../../../../../common/types
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 
 describe('Requirement', () => {
-
     describe('getRequirementsResults', () => {
-
         it('merges and sorts data as expected', () => {
-
             const steps = [
                 { key: 'gamma', name: 'at the top' },
                 { key: 'alpha', name: 'in the middle' },
@@ -39,33 +36,25 @@ describe('Requirement', () => {
             const type = -3 as VisualizationType;
 
             const providerMock = Mock.ofType<IAssessmentsProvider>();
-            providerMock
-                .setup(p => p.forType(type))
-                .returns(() => test);
-            providerMock
-                .setup(p => p.getStep(type, It.isAnyString()))
-                .returns((_, key) => getStep(key));
+            providerMock.setup(p => p.forType(type)).returns(() => test);
+            providerMock.setup(p => p.getStep(type, It.isAnyString())).returns((_, key) => getStep(key));
 
             const results = getRequirementsResults(providerMock.object, type, stepStatus);
 
-            expect(results).toEqual(
-                [
-                    {
-                        data: stepStatus.gamma,
-                        definition: getStep('gamma'),
-                    },
-                    {
-                        data: stepStatus.alpha,
-                        definition: getStep('alpha'),
-                    },
-                    {
-                        data: stepStatus.beta,
-                        definition: getStep('beta'),
-                    },
-                ]);
-
+            expect(results).toEqual([
+                {
+                    data: stepStatus.gamma,
+                    definition: getStep('gamma'),
+                },
+                {
+                    data: stepStatus.alpha,
+                    definition: getStep('alpha'),
+                },
+                {
+                    data: stepStatus.beta,
+                    definition: getStep('beta'),
+                },
+            ]);
         });
-
     });
-
 });

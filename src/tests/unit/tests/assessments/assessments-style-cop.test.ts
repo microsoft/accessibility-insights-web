@@ -25,7 +25,6 @@ describe('assessments-style-cop', () => {
             assessment.steps.forEach(step => {
                 assertIsProperlyStyled(step.name, assessment.key + '.' + step.key);
             });
-
         });
     });
 
@@ -48,36 +47,24 @@ describe('assessments-style-cop', () => {
     test('findFirstDuplicateTestStepKey finds first duplicate as promised', () => {
         const assessmentWithNoDuplicates = [
             {
-                steps: [
-                    { key: 'A' },
-                    { key: 'B' },
-                ],
+                steps: [{ key: 'A' }, { key: 'B' }],
             },
             {
-                steps: [
-                    { key: 'C' },
-                    { key: 'D' },
-                ],
+                steps: [{ key: 'C' }, { key: 'D' }],
             },
         ];
 
         const assessmentWithOneDuplicate = [
             ...assessmentWithNoDuplicates,
             {
-                steps: [
-                    { key: 'E' },
-                    { key: 'C' },
-                ],
+                steps: [{ key: 'E' }, { key: 'C' }],
             },
         ];
 
         const assessmentWithTwoDuplicates = [
             ...assessmentWithNoDuplicates,
             {
-                steps: [
-                    { key: 'B' },
-                    { key: 'C' },
-                ],
+                steps: [{ key: 'B' }, { key: 'C' }],
             },
         ];
 

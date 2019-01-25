@@ -193,7 +193,5 @@ function setupFeatureFlagStoreMockWithData(data) {
 }
 
 function setupInterpreterMockWithMessage(message, times) {
-    interpreterMock
-        .setup(im => im.interpret(It.isValue(message)))
-        .verifiable(times);
+    interpreterMock.setup(im => im.interpret(It.isValue(message))).verifiable(times);
 }

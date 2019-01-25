@@ -20,8 +20,7 @@ describe('DevToolsStoreTest', () => {
         const initialState = getDefaultState();
         const expectedState = getDefaultState();
 
-        createStoreTesterForDevToolsActions('getCurrentState')
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        createStoreTesterForDevToolsActions('getCurrentState').testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     test('on setDevToolState, isOpen value change', () => {

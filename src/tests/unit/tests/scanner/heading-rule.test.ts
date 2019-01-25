@@ -5,7 +5,6 @@ import { It, Mock, Times } from 'typemoq';
 import { headingConfiguration } from '../../../../scanner/heading-rule';
 
 describe('HeadingRule', () => {
-
     describe('evaluateCodedHeadings for heading with aria level', () => {
         it('should return aria heading level', () => {
             const elementStub = {
@@ -16,10 +15,8 @@ describe('HeadingRule', () => {
                 headingLevel: 5,
                 headingText: 'H5',
             };
-            const dataSetterMock = Mock.ofInstance(data => { });
-            dataSetterMock
-                .setup(d => d(It.isValue(expectedData)))
-                .verifiable(Times.once());
+            const dataSetterMock = Mock.ofInstance(data => {});
+            dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
             headingConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, elementStub);
             dataSetterMock.verifyAll();
         });
@@ -38,10 +35,8 @@ describe('HeadingRule', () => {
                 headingLevel: 2,
                 headingText: 'H2',
             };
-            const dataSetterMock = Mock.ofInstance(data => { });
-            dataSetterMock
-                .setup(d => d(It.isValue(expectedData)))
-                .verifiable(Times.once());
+            const dataSetterMock = Mock.ofInstance(data => {});
+            dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
             headingConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, elementStub);
             dataSetterMock.verifyAll();
         });

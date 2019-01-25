@@ -109,12 +109,8 @@ describe('VisualizationStoreTest', () => {
 
     test('onUpdateSelectedDetailsView when view changes to null', () => {
         const actionName = 'updateSelectedPivotChild';
-        const expectedState = new VisualizationStoreDataBuilder()
-            .with('selectedAdhocDetailsView', VisualizationType.Landmarks)
-            .build();
-        const initialState = new VisualizationStoreDataBuilder()
-            .with('selectedAdhocDetailsView', VisualizationType.Landmarks)
-            .build();
+        const expectedState = new VisualizationStoreDataBuilder().with('selectedAdhocDetailsView', VisualizationType.Landmarks).build();
+        const initialState = new VisualizationStoreDataBuilder().with('selectedAdhocDetailsView', VisualizationType.Landmarks).build();
 
         const payload: IUpdateSelectedDetailsViewPayload = {
             detailsViewType: VisualizationType.Issues,
@@ -128,12 +124,9 @@ describe('VisualizationStoreTest', () => {
 
     test('onUpdateSelectedDetailsView when view is different', () => {
         const actionName = 'updateSelectedPivotChild';
-        const initialState = new VisualizationStoreDataBuilder()
-            .build();
+        const initialState = new VisualizationStoreDataBuilder().build();
 
-        const expectedState = new VisualizationStoreDataBuilder()
-            .with('selectedAdhocDetailsView', VisualizationType.Issues)
-            .build();
+        const expectedState = new VisualizationStoreDataBuilder().with('selectedAdhocDetailsView', VisualizationType.Issues).build();
 
         const payload: IUpdateSelectedDetailsViewPayload = {
             detailsViewType: VisualizationType.Headings,
@@ -147,9 +140,7 @@ describe('VisualizationStoreTest', () => {
 
     test('onUpdateSelectedDetailsView when view is null', () => {
         const actionName = 'updateSelectedPivotChild';
-        const initialState = new VisualizationStoreDataBuilder()
-            .with('selectedAdhocDetailsView', VisualizationType.Issues)
-            .build();
+        const initialState = new VisualizationStoreDataBuilder().with('selectedAdhocDetailsView', VisualizationType.Issues).build();
         const expectedState = _.cloneDeep(initialState);
 
         const payload: IUpdateSelectedDetailsViewPayload = {
@@ -165,13 +156,9 @@ describe('VisualizationStoreTest', () => {
     test('onUpdateSelectedPivot when pivot value is same as before', () => {
         const actionName = 'updateSelectedPivot';
         const oldPivotValue = DetailsViewPivotType.fastPass;
-        const initialState = new VisualizationStoreDataBuilder()
-            .with('selectedDetailsViewPivot', oldPivotValue)
-            .build();
+        const initialState = new VisualizationStoreDataBuilder().with('selectedDetailsViewPivot', oldPivotValue).build();
 
-        const expectedState = new VisualizationStoreDataBuilder()
-            .with('selectedDetailsViewPivot', oldPivotValue)
-            .build();
+        const expectedState = new VisualizationStoreDataBuilder().with('selectedDetailsViewPivot', oldPivotValue).build();
 
         const payload: IUpdateSelectedPivot = {
             pivotKey: oldPivotValue,
@@ -257,13 +244,9 @@ describe('VisualizationStoreTest', () => {
             test: VisualizationType.Headings,
         };
 
-        const initialState = new VisualizationStoreDataBuilder()
-            .withHeadingsEnable()
-            .build();
+        const initialState = new VisualizationStoreDataBuilder().withHeadingsEnable().build();
 
-        const expectedState = new VisualizationStoreDataBuilder()
-            .withHeadingsEnable()
-            .build();
+        const expectedState = new VisualizationStoreDataBuilder().withHeadingsEnable().build();
 
         createStoreTesterForVisualizationActions(actionName)
             .withActionParam(payload)
@@ -276,9 +259,7 @@ describe('VisualizationStoreTest', () => {
             test: VisualizationType.Headings,
         };
 
-        const initialState = new VisualizationStoreDataBuilder()
-            .withHeadingsAssessment(true, HeadingsTestStep.missingHeadings)
-            .build();
+        const initialState = new VisualizationStoreDataBuilder().withHeadingsAssessment(true, HeadingsTestStep.missingHeadings).build();
 
         const expectedState = new VisualizationStoreDataBuilder()
             .withHeadingsEnable()
@@ -322,9 +303,7 @@ describe('VisualizationStoreTest', () => {
             step: HeadingsTestStep.missingHeadings,
         };
 
-        const initialState = new VisualizationStoreDataBuilder()
-            .withLandmarksAssessment(true, LandmarkTestStep.landmarkRoles)
-            .build();
+        const initialState = new VisualizationStoreDataBuilder().withLandmarksAssessment(true, LandmarkTestStep.landmarkRoles).build();
 
         const expectedState = new VisualizationStoreDataBuilder()
             .withLandmarksAssessment(false, LandmarkTestStep.landmarkRoles)
@@ -345,9 +324,7 @@ describe('VisualizationStoreTest', () => {
             step: HeadingsTestStep.missingHeadings,
         };
 
-        const initialState = new VisualizationStoreDataBuilder()
-            .withHeadingsAssessment(true, HeadingsTestStep.headingFunction)
-            .build();
+        const initialState = new VisualizationStoreDataBuilder().withHeadingsAssessment(true, HeadingsTestStep.headingFunction).build();
 
         const expectedState = new VisualizationStoreDataBuilder()
             .withHeadingsAssessment(false, HeadingsTestStep.headingFunction)
@@ -369,9 +346,7 @@ describe('VisualizationStoreTest', () => {
             step: HeadingsTestStep.headingFunction,
         };
 
-        const initialState = dataBuilder
-            .withAllAdhocEnabled()
-            .build();
+        const initialState = dataBuilder.withAllAdhocEnabled().build();
 
         const expectedState = new VisualizationStoreDataBuilder()
             .withHeadingsAssessment(true, payload.step)
@@ -436,13 +411,9 @@ describe('VisualizationStoreTest', () => {
         const payload: IToggleActionPayload = {
             test: VisualizationType.TabStops,
         };
-        const initialState = new VisualizationStoreDataBuilder()
-            .withTabStopsEnable()
-            .build();
+        const initialState = new VisualizationStoreDataBuilder().withTabStopsEnable().build();
 
-        const expectedState = new VisualizationStoreDataBuilder()
-            .withTabStopsEnable()
-            .build();
+        const expectedState = new VisualizationStoreDataBuilder().withTabStopsEnable().build();
 
         createStoreTesterForVisualizationActions(actionName)
             .withActionParam(payload)
@@ -521,13 +492,9 @@ describe('VisualizationStoreTest', () => {
         const payload: IToggleActionPayload = {
             test: VisualizationType.Landmarks,
         };
-        const initialState = new VisualizationStoreDataBuilder()
-            .withLandmarksEnable()
-            .build();
+        const initialState = new VisualizationStoreDataBuilder().withLandmarksEnable().build();
 
-        const expectedState = new VisualizationStoreDataBuilder()
-            .withLandmarksEnable()
-            .build();
+        const expectedState = new VisualizationStoreDataBuilder().withLandmarksEnable().build();
 
         createStoreTesterForVisualizationActions(actionName)
             .withActionParam(payload)
@@ -565,8 +532,7 @@ describe('VisualizationStoreTest', () => {
     test('onEnableIssues when issues is disable', () => {
         const actionName = 'enableVisualization';
 
-        const initialState = new VisualizationStoreDataBuilder()
-            .build();
+        const initialState = new VisualizationStoreDataBuilder().build();
 
         const payload: IToggleActionPayload = {
             test: VisualizationType.Issues,
@@ -590,13 +556,9 @@ describe('VisualizationStoreTest', () => {
         const payload: IToggleActionPayload = {
             test: VisualizationType.Issues,
         };
-        const initialState = new VisualizationStoreDataBuilder()
-            .withIssuesEnable()
-            .build();
+        const initialState = new VisualizationStoreDataBuilder().withIssuesEnable().build();
 
-        const expectedState = new VisualizationStoreDataBuilder()
-            .withIssuesEnable()
-            .build();
+        const expectedState = new VisualizationStoreDataBuilder().withIssuesEnable().build();
 
         createStoreTesterForVisualizationActions(actionName)
             .withActionParam(payload)
@@ -634,8 +596,7 @@ describe('VisualizationStoreTest', () => {
     test('onEnableColor when color is disable', () => {
         const actionName = 'enableVisualization';
 
-        const initialState = new VisualizationStoreDataBuilder()
-            .build();
+        const initialState = new VisualizationStoreDataBuilder().build();
 
         const payload: IToggleActionPayload = {
             test: VisualizationType.Color,
@@ -660,9 +621,7 @@ describe('VisualizationStoreTest', () => {
             test: VisualizationType.Color,
         };
         const expectedState = dataBuilder.build();
-        const initialState = dataBuilder
-            .withColorEnable()
-            .build();
+        const initialState = dataBuilder.withColorEnable().build();
 
         createStoreTesterForVisualizationActions(actionName)
             .withActionParam(payload.test)
@@ -674,8 +633,7 @@ describe('VisualizationStoreTest', () => {
         const initialState = new VisualizationStoreDataBuilder().build();
         const expectedState = new VisualizationStoreDataBuilder().build();
 
-        createStoreTesterForVisualizationActions(actionName)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        createStoreTesterForVisualizationActions(actionName).testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     test('enableVisualization when already scanning', () => {
@@ -683,13 +641,9 @@ describe('VisualizationStoreTest', () => {
         const payload: IToggleActionPayload = {
             test: VisualizationType.Issues,
         };
-        const initialState = new VisualizationStoreDataBuilder()
-            .with('scanning', 'headings')
-            .build();
+        const initialState = new VisualizationStoreDataBuilder().with('scanning', 'headings').build();
 
-        const expectedState = new VisualizationStoreDataBuilder()
-            .with('scanning', 'headings')
-            .build();
+        const expectedState = new VisualizationStoreDataBuilder().with('scanning', 'headings').build();
 
         createStoreTesterForVisualizationActions(actionName)
             .withActionParam(payload)
@@ -699,60 +653,48 @@ describe('VisualizationStoreTest', () => {
     test('injectionCompleted', () => {
         const actionName = 'injectionCompleted';
 
-        const initialState = new VisualizationStoreDataBuilder()
-            .build();
+        const initialState = new VisualizationStoreDataBuilder().build();
 
         const expectedState = new VisualizationStoreDataBuilder()
             .with('injectingInProgress', false)
             .with('injectingStarted', false)
             .build();
 
-        createStoreTesterForVisualizationActions(actionName)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        createStoreTesterForVisualizationActions(actionName).testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     test('injectionStarted when injectingStarted is false', () => {
         const actionName = 'injectionStarted';
 
-        const initialState = new VisualizationStoreDataBuilder()
-            .with('injectingStarted', false)
-            .build();
+        const initialState = new VisualizationStoreDataBuilder().with('injectingStarted', false).build();
 
         const expectedState = new VisualizationStoreDataBuilder()
             .with('injectingInProgress', true)
             .with('injectingStarted', true)
             .build();
 
-        createStoreTesterForVisualizationActions(actionName)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        createStoreTesterForVisualizationActions(actionName).testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     test('injectionStarted when injectingStarted is true', () => {
         const actionName = 'injectionStarted';
 
-        const initialState = new VisualizationStoreDataBuilder()
-            .with('injectingStarted', true)
-            .build();
+        const initialState = new VisualizationStoreDataBuilder().with('injectingStarted', true).build();
 
         const expectedState = new VisualizationStoreDataBuilder()
             .with('injectingInProgress', null)
             .with('injectingStarted', true)
             .build();
 
-        createStoreTesterForVisualizationActions(actionName)
-            .testListenerToNeverBeCalled(initialState, expectedState);
+        createStoreTesterForVisualizationActions(actionName).testListenerToNeverBeCalled(initialState, expectedState);
     });
 
     test('onScrollRequested', () => {
         const actionName = 'scrollRequested';
 
-        const initialState = new VisualizationStoreDataBuilder()
-            .with('focusedTarget', ['target'])
-            .build();
+        const initialState = new VisualizationStoreDataBuilder().with('focusedTarget', ['target']).build();
 
-        const expectedState = new VisualizationStoreDataBuilder()
-            .with('focusedTarget', null)
-            .build();
+        const expectedState = new VisualizationStoreDataBuilder().with('focusedTarget', null).build();
 
         const payload = {};
 
@@ -761,17 +703,12 @@ describe('VisualizationStoreTest', () => {
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-
     test('onScanColorCompleted', () => {
         const actionName = 'scanCompleted';
 
-        const initialState = new VisualizationStoreDataBuilder()
-            .with('scanning', 'color')
-            .build();
+        const initialState = new VisualizationStoreDataBuilder().with('scanning', 'color').build();
 
-        const expectedState = new VisualizationStoreDataBuilder()
-            .with('scanning', null)
-            .build();
+        const expectedState = new VisualizationStoreDataBuilder().with('scanning', null).build();
 
         const payload = {};
 
@@ -782,13 +719,9 @@ describe('VisualizationStoreTest', () => {
 
     test('onScanIssuesCompleted', () => {
         const actionName = 'scanCompleted';
-        const initialState = new VisualizationStoreDataBuilder()
-            .with('scanning', 'issues')
-            .build();
+        const initialState = new VisualizationStoreDataBuilder().with('scanning', 'issues').build();
 
-        const expectedState = new VisualizationStoreDataBuilder()
-            .with('scanning', null)
-            .build();
+        const expectedState = new VisualizationStoreDataBuilder().with('scanning', null).build();
 
         const payload = {};
 
@@ -799,13 +732,9 @@ describe('VisualizationStoreTest', () => {
 
     test('onScanHeadingsCompleted', () => {
         const actionName = 'scanCompleted';
-        const initialState = new VisualizationStoreDataBuilder()
-            .with('scanning', 'headings')
-            .build();
+        const initialState = new VisualizationStoreDataBuilder().with('scanning', 'headings').build();
 
-        const expectedState = new VisualizationStoreDataBuilder()
-            .with('scanning', null)
-            .build();
+        const expectedState = new VisualizationStoreDataBuilder().with('scanning', null).build();
 
         const payload = {};
 
@@ -816,13 +745,9 @@ describe('VisualizationStoreTest', () => {
 
     test('onScanLandmarksCompleted', () => {
         const actionName = 'scanCompleted';
-        const initialState = new VisualizationStoreDataBuilder()
-            .with('scanning', 'landmarks')
-            .build();
+        const initialState = new VisualizationStoreDataBuilder().with('scanning', 'landmarks').build();
 
-        const expectedState = new VisualizationStoreDataBuilder()
-            .with('scanning', null)
-            .build();
+        const expectedState = new VisualizationStoreDataBuilder().with('scanning', null).build();
 
         const payload = {};
 
@@ -838,9 +763,7 @@ describe('VisualizationStoreTest', () => {
 
         const payload = ['1'];
 
-        const expectedState = new VisualizationStoreDataBuilder()
-            .withFocusedTarget(payload)
-            .build();
+        const expectedState = new VisualizationStoreDataBuilder().withFocusedTarget(payload).build();
 
         createStoreTesterForVisualizationActions(actionName)
             .withActionParam(payload)
@@ -862,8 +785,7 @@ describe('VisualizationStoreTest', () => {
             .withLandmarksEnable()
             .build();
 
-        createStoreTesterForTabActions(actionName)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        createStoreTesterForTabActions(actionName).testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     function createStoreTesterForTabActions(actionName: keyof TabActions) {

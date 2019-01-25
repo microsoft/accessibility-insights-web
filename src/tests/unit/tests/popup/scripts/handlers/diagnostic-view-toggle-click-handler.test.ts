@@ -15,78 +15,76 @@ describe('DiagnosticViewToggleClickHandlerTest', () => {
     const eventStubFactory = new EventStubFactory();
 
     test('toggleVisualization to enabled', () => {
-            const event = eventStubFactory.createKeypressEvent() as any;
-            const source = TelemetryEventSource.AdHocTools;
+        const event = eventStubFactory.createKeypressEvent() as any;
+        const source = TelemetryEventSource.AdHocTools;
 
-            const expectedTelemetryInfo: ToggleTelemetryData = {
-                triggeredBy: 'keypress',
-                enabled: true,
-                source,
-            };
+        const expectedTelemetryInfo: ToggleTelemetryData = {
+            triggeredBy: 'keypress',
+            enabled: true,
+            source,
+        };
 
-            const visualizationStoreData = new VisualizationStoreDataBuilder()
-                .build();
+        const visualizationStoreData = new VisualizationStoreDataBuilder().build();
 
-            const visualizationType = VisualizationType.Headings;
+        const visualizationType = VisualizationType.Headings;
 
-            const visualizationActionCreatorMock = Mock.ofType(VisualizationActionMessageCreator);
+        const visualizationActionCreatorMock = Mock.ofType(VisualizationActionMessageCreator);
 
-            visualizationActionCreatorMock
-                .setup(ac => ac.setVisualizationState(visualizationType, true, It.isValue(expectedTelemetryInfo)))
-                .verifiable();
+        visualizationActionCreatorMock
+            .setup(ac => ac.setVisualizationState(visualizationType, true, It.isValue(expectedTelemetryInfo)))
+            .verifiable();
 
-            const telemetryFactoryMock = Mock.ofType(TelemetryDataFactory);
-            telemetryFactoryMock
-                .setup(tf => tf.forToggle(event, true, source))
-                .returns(() => expectedTelemetryInfo)
-                .verifiable();
+        const telemetryFactoryMock = Mock.ofType(TelemetryDataFactory);
+        telemetryFactoryMock
+            .setup(tf => tf.forToggle(event, true, source))
+            .returns(() => expectedTelemetryInfo)
+            .verifiable();
 
-            const testObject = new DiagnosticViewClickHandler(
-                telemetryFactoryMock.object,
-                visualizationActionCreatorMock.object,
-                new VisualizationConfigurationFactory());
-            testObject.toggleVisualization(visualizationStoreData, visualizationType, event);
+        const testObject = new DiagnosticViewClickHandler(
+            telemetryFactoryMock.object,
+            visualizationActionCreatorMock.object,
+            new VisualizationConfigurationFactory(),
+        );
+        testObject.toggleVisualization(visualizationStoreData, visualizationType, event);
 
-            visualizationActionCreatorMock.verifyAll();
-            telemetryFactoryMock.verifyAll();
+        visualizationActionCreatorMock.verifyAll();
+        telemetryFactoryMock.verifyAll();
     });
 
     test('toggleVisualization to disabled', () => {
-            const event = eventStubFactory.createKeypressEvent() as any;
-            const source = TelemetryEventSource.AdHocTools;
+        const event = eventStubFactory.createKeypressEvent() as any;
+        const source = TelemetryEventSource.AdHocTools;
 
-            const expectedTelemetryInfo: ToggleTelemetryData = {
-                triggeredBy: 'keypress',
-                enabled: false,
-                source,
-            };
+        const expectedTelemetryInfo: ToggleTelemetryData = {
+            triggeredBy: 'keypress',
+            enabled: false,
+            source,
+        };
 
-            const visualizationType = VisualizationType.Headings;
+        const visualizationType = VisualizationType.Headings;
 
-            const visualizationStoreData = new VisualizationStoreDataBuilder()
-                .withEnable(visualizationType)
-                .build();
+        const visualizationStoreData = new VisualizationStoreDataBuilder().withEnable(visualizationType).build();
 
-            const visualizationActionCreatorMock = Mock.ofType(VisualizationActionMessageCreator);
+        const visualizationActionCreatorMock = Mock.ofType(VisualizationActionMessageCreator);
 
-            visualizationActionCreatorMock
-                .setup(ac => ac.setVisualizationState(visualizationType, false, It.isValue(expectedTelemetryInfo)))
-                .verifiable();
+        visualizationActionCreatorMock
+            .setup(ac => ac.setVisualizationState(visualizationType, false, It.isValue(expectedTelemetryInfo)))
+            .verifiable();
 
-            const telemetryFactoryMock = Mock.ofType(TelemetryDataFactory);
-            telemetryFactoryMock
-                .setup(tf => tf.forToggle(event, false, source))
-                .returns(() => expectedTelemetryInfo)
-                .verifiable();
+        const telemetryFactoryMock = Mock.ofType(TelemetryDataFactory);
+        telemetryFactoryMock
+            .setup(tf => tf.forToggle(event, false, source))
+            .returns(() => expectedTelemetryInfo)
+            .verifiable();
 
-            const testObject = new DiagnosticViewClickHandler(
-                telemetryFactoryMock.object,
-                visualizationActionCreatorMock.object,
-                new VisualizationConfigurationFactory(),
-            );
-            testObject.toggleVisualization(visualizationStoreData, visualizationType, event);
+        const testObject = new DiagnosticViewClickHandler(
+            telemetryFactoryMock.object,
+            visualizationActionCreatorMock.object,
+            new VisualizationConfigurationFactory(),
+        );
+        testObject.toggleVisualization(visualizationStoreData, visualizationType, event);
 
-            visualizationActionCreatorMock.verifyAll();
-            telemetryFactoryMock.verifyAll();
+        visualizationActionCreatorMock.verifyAll();
+        telemetryFactoryMock.verifyAll();
     });
 });

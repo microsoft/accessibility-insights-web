@@ -5,7 +5,6 @@ import { It, Mock, Times } from 'typemoq';
 import { frameTitleConfiguration } from '../../../../scanner/frame-title';
 
 describe('FrameTitleRule', () => {
-
     describe('selector and check', () => {
         it('should return the type and title of iframes', () => {
             const selector = frameTitleConfiguration.rule.selector;
@@ -24,9 +23,7 @@ describe('FrameTitleRule', () => {
             };
 
             const dataSetterMock = Mock.ofInstance(data => {});
-            dataSetterMock
-                .setup(d => d(It.isValue(expectedData)))
-                .verifiable(Times.once());
+            dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
 
             expect(iframe.matches(selector)).toBeTruthy();
             frameTitleConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, elementStub);
@@ -54,14 +51,11 @@ describe('FrameTitleRule', () => {
             };
 
             const dataSetterMock = Mock.ofInstance(data => {});
-            dataSetterMock
-                .setup(d => d(It.isValue(expectedData)))
-                .verifiable(Times.once());
+            dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
 
             expect(frame.matches(selector)).toBeTruthy();
             frameTitleConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, elementStub);
             dataSetterMock.verifyAll();
         });
     });
-
 });

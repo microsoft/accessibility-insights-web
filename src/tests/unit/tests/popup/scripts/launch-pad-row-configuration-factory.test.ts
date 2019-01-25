@@ -34,16 +34,9 @@ describe('LaunchPadRowConfigurationFactoryTests', () => {
             description: 'Get quick access to all automated and assisted checks.',
             onClickTitle: null,
         };
-        const expectedConfig: LaunchPadRowConfiguration[] = [
-            fastPassRowConfig, allTestRowConfig, adhocRowConfig,
-        ];
+        const expectedConfig: LaunchPadRowConfiguration[] = [fastPassRowConfig, allTestRowConfig, adhocRowConfig];
 
-        const configs = testSubject.createRowConfigs(
-            componentStub as any,
-            actionMessageCreatorMock.object,
-            handlerMock.object,
-            false,
-        );
+        const configs = testSubject.createRowConfigs(componentStub as any, actionMessageCreatorMock.object, handlerMock.object, false);
 
         compareStaticProperties(expectedConfig, configs);
     });
@@ -72,16 +65,9 @@ describe('LaunchPadRowConfigurationFactoryTests', () => {
             onClickTitle: null,
         };
 
-        const expectedConfig: LaunchPadRowConfiguration[] = [
-            fastPassRowConfig, assessmentRowConfig, adhocRowConfig,
-        ];
+        const expectedConfig: LaunchPadRowConfiguration[] = [fastPassRowConfig, assessmentRowConfig, adhocRowConfig];
 
-        const configs = testSubject.createRowConfigs(
-            componentStub as any,
-            actionMessageCreatorMock.object,
-            handlerMock.object,
-            true,
-        );
+        const configs = testSubject.createRowConfigs(componentStub as any, actionMessageCreatorMock.object, handlerMock.object, true);
 
         compareStaticProperties(expectedConfig, configs);
     });
@@ -94,29 +80,23 @@ describe('LaunchPadRowConfigurationFactoryTests', () => {
 
         actionMessageCreatorMock
             .setup(a =>
-                a.openDetailsView(null, VisualizationType.Issues, TelemetryEventSource.LaunchPadFastPass, DetailsViewPivotType.fastPass))
+                a.openDetailsView(null, VisualizationType.Issues, TelemetryEventSource.LaunchPadFastPass, DetailsViewPivotType.fastPass),
+            )
             .verifiable(Times.once());
 
         actionMessageCreatorMock
             .setup(a =>
-                a.openDetailsView(null, VisualizationType.Issues, TelemetryEventSource.LaunchPadAllTests, DetailsViewPivotType.allTest))
+                a.openDetailsView(null, VisualizationType.Issues, TelemetryEventSource.LaunchPadAllTests, DetailsViewPivotType.allTest),
+            )
             .verifiable(Times.once());
 
         actionMessageCreatorMock
-            .setup(a =>
-                a.openDetailsView(null, null, TelemetryEventSource.LaunchPadAssessment, DetailsViewPivotType.assessment))
+            .setup(a => a.openDetailsView(null, null, TelemetryEventSource.LaunchPadAssessment, DetailsViewPivotType.assessment))
             .verifiable(Times.once());
 
-        handlerMock
-            .setup(h => h.openAdhocToolsPanel(componentStub as any))
-            .verifiable(Times.once());
+        handlerMock.setup(h => h.openAdhocToolsPanel(componentStub as any)).verifiable(Times.once());
 
-        const configs = testSubject.createRowConfigs(
-            componentStub as any,
-            actionMessageCreatorMock.object,
-            handlerMock.object,
-            false,
-        );
+        const configs = testSubject.createRowConfigs(componentStub as any, actionMessageCreatorMock.object, handlerMock.object, false);
 
         const configsForFFEnabled = testSubject.createRowConfigs(
             componentStub as any,

@@ -5,7 +5,6 @@ import { It, Mock, Times } from 'typemoq';
 import { pageConfiguration } from '../../../../scanner/page-title';
 
 describe('PageTitleRule', () => {
-
     describe('selector and check', () => {
         it('should return the title of the page', () => {
             const selector = pageConfiguration.rule.selector;
@@ -17,10 +16,8 @@ describe('PageTitleRule', () => {
             const expectedData = {
                 pageTitle: pageTitle,
             };
-            const dataSetterMock = Mock.ofInstance(data => { });
-            dataSetterMock
-                .setup(d => d(It.isValue(expectedData)))
-                .verifiable(Times.once());
+            const dataSetterMock = Mock.ofInstance(data => {});
+            dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
 
             expect(document.documentElement.matches(selector)).toBeTruthy();
             check.evaluate.call({ data: dataSetterMock.object }, null);
@@ -35,15 +32,12 @@ describe('PageTitleRule', () => {
 
             document.title = '';
 
-            const dataSetterMock = Mock.ofInstance(data => { });
-            dataSetterMock
-                .setup(d => d({}))
-                .verifiable(Times.never());
+            const dataSetterMock = Mock.ofInstance(data => {});
+            dataSetterMock.setup(d => d({})).verifiable(Times.never());
 
             expect(document.documentElement.matches(selector)).toBeTruthy();
             check.evaluate.call({ data: dataSetterMock.object }, null);
             dataSetterMock.verifyAll();
         });
     });
-
 });

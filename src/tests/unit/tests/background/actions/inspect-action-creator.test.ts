@@ -25,7 +25,7 @@ describe('InspectActionCreatorTest', () => {
         inspectActionsMock = Mock.ofType(InspectActions, MockBehavior.Strict);
         telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler, MockBehavior.Strict);
         browserAdapterMock = Mock.ofType(ChromeAdapter, MockBehavior.Strict);
-        registerTypeToPayloadCallbackMock = Mock.ofInstance((_type, _callback) => { });
+        registerTypeToPayloadCallbackMock = Mock.ofInstance((_type, _callback) => {});
 
         testObject = new InspectActionCreator(
             inspectActionsMock.object,
@@ -55,9 +55,7 @@ describe('InspectActionCreatorTest', () => {
             .setup(publisher => publisher.publishTelemetry(TelemetryEvents.CHANGE_INSPECT_MODE, payload, tabId))
             .verifiable(Times.once());
 
-        browserAdapterMock
-            .setup(ba => ba.switchToTab(tabId))
-            .verifiable(Times.once());
+        browserAdapterMock.setup(ba => ba.switchToTab(tabId)).verifiable(Times.once());
 
         const changeInspectModeMock = createActionMock(payload);
 
@@ -71,9 +69,7 @@ describe('InspectActionCreatorTest', () => {
 
     function createActionMock<TPayload>(actionPayload: TPayload): IMock<Action<TPayload>> {
         const getCurrentStateMock = Mock.ofType<Action<TPayload>>(Action, MockBehavior.Strict);
-        getCurrentStateMock
-            .setup(action => action.invoke(actionPayload))
-            .verifiable(Times.once());
+        getCurrentStateMock.setup(action => action.invoke(actionPayload)).verifiable(Times.once());
 
         return getCurrentStateMock;
     }

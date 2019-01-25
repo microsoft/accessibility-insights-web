@@ -69,23 +69,22 @@ describe('ResultDecorator', () => {
                 targetPageTitle: 'test title',
                 targetPageUrl: 'https://test_url',
             };
-            const suppressChecksByMessagesMock = GlobalMock.ofInstance(Processor.suppressChecksByMessages,
+            const suppressChecksByMessagesMock = GlobalMock.ofInstance(
+                Processor.suppressChecksByMessages,
                 'suppressChecksByMessages',
                 Processor,
                 MockBehavior.Strict,
             );
 
-            messageDecoratorMock
-                .setup(mdm => mdm.decorateResultWithMessages(instanceStub))
-                .verifiable(Times.once());
+            messageDecoratorMock.setup(mdm => mdm.decorateResultWithMessages(instanceStub)).verifiable(Times.once());
 
-            getHelpUrlMock
-                .setup(gchm => gchm(instanceStub.id, It.isAny()))
-                .returns(() => urlStub);
+            getHelpUrlMock.setup(gchm => gchm(instanceStub.id, It.isAny())).returns(() => urlStub);
 
             suppressChecksByMessagesMock
                 .setup(scbmm => scbmm(instanceStub, true))
-                .returns(result => { return result; })
+                .returns(result => {
+                    return result;
+                })
                 .verifiable();
 
             const testSubject = new ResultDecorator(documentUtilsMock.object, messageDecoratorMock.object, getHelpUrlMock.object);
@@ -105,9 +104,7 @@ describe('ResultDecorator', () => {
         it('should call success callback with correct result', () => {
             const guidanceLink = {} as any;
             const configuration = {
-                'test-rule': [
-                    guidanceLink,
-                ],
+                'test-rule': [guidanceLink],
             };
             const resultStubWithGuidacenLinks = {
                 passes: [],
@@ -126,23 +123,22 @@ describe('ResultDecorator', () => {
                 targetPageTitle: 'test title',
                 targetPageUrl: 'https://test_url',
             };
-            const suppressChecksByMessagesMock = GlobalMock.ofInstance(Processor.suppressChecksByMessages,
+            const suppressChecksByMessagesMock = GlobalMock.ofInstance(
+                Processor.suppressChecksByMessages,
                 'suppressChecksByMessages',
                 Processor,
                 MockBehavior.Strict,
             );
 
-            messageDecoratorMock
-                .setup(mdm => mdm.decorateResultWithMessages(instanceStub))
-                .verifiable(Times.once());
+            messageDecoratorMock.setup(mdm => mdm.decorateResultWithMessages(instanceStub)).verifiable(Times.once());
 
-            getHelpUrlMock
-                .setup(gchm => gchm(instanceStub.id, It.isAny()))
-                .returns(() => urlStub);
+            getHelpUrlMock.setup(gchm => gchm(instanceStub.id, It.isAny())).returns(() => urlStub);
 
             suppressChecksByMessagesMock
                 .setup(scbmm => scbmm(instanceStub, true))
-                .returns(result => { return result; })
+                .returns(result => {
+                    return result;
+                })
                 .verifiable();
 
             const testSubject = new ResultDecorator(documentUtilsMock.object, messageDecoratorMock.object, getHelpUrlMock.object);
@@ -177,12 +173,8 @@ describe('ResultDecorator', () => {
             };
             const guidaceLinkStub = {} as any;
             const configuration = {
-                'test-rule': [
-                    guidaceLinkStub,
-                ],
-                'test-inapplicable-rule': [
-                    guidaceLinkStub,
-                ],
+                'test-rule': [guidaceLinkStub],
+                'test-inapplicable-rule': [guidaceLinkStub],
             };
             const resultStubWithGuidacenLinks = {
                 passes: [],
@@ -195,46 +187,45 @@ describe('ResultDecorator', () => {
                         helpUrl: urlStub,
                     },
                 ],
-                inapplicable: [{
-                    ...inapplicableInstance,
-                    guidanceLinks: [guidaceLinkStub],
-                    helpUrl: urlStub,
-                }],
+                inapplicable: [
+                    {
+                        ...inapplicableInstance,
+                        guidanceLinks: [guidaceLinkStub],
+                        helpUrl: urlStub,
+                    },
+                ],
                 incomplete: [],
                 timestamp: 100,
                 targetPageTitle: 'test title',
                 targetPageUrl: 'https://test_url',
             };
-            const suppressChecksByMessagesMock = GlobalMock.ofInstance(Processor.suppressChecksByMessages,
+            const suppressChecksByMessagesMock = GlobalMock.ofInstance(
+                Processor.suppressChecksByMessages,
                 'suppressChecksByMessages',
                 Processor,
                 MockBehavior.Strict,
             );
 
-            messageDecoratorMock
-                .setup(mdm => mdm.decorateResultWithMessages(instanceStub))
-                .verifiable(Times.once());
+            messageDecoratorMock.setup(mdm => mdm.decorateResultWithMessages(instanceStub)).verifiable(Times.once());
 
-            messageDecoratorMock
-                .setup(mdm => mdm.decorateResultWithMessages(inapplicableInstance))
-                .verifiable(Times.once());
+            messageDecoratorMock.setup(mdm => mdm.decorateResultWithMessages(inapplicableInstance)).verifiable(Times.once());
 
-            getHelpUrlMock
-                .setup(gchm => gchm(instanceStub.id, It.isAny()))
-                .returns(() => urlStub);
+            getHelpUrlMock.setup(gchm => gchm(instanceStub.id, It.isAny())).returns(() => urlStub);
 
-            getHelpUrlMock
-                .setup(gchm => gchm(inapplicableInstance.id, It.isAny()))
-                .returns(() => urlStub);
+            getHelpUrlMock.setup(gchm => gchm(inapplicableInstance.id, It.isAny())).returns(() => urlStub);
 
             suppressChecksByMessagesMock
                 .setup(scbmm => scbmm(instanceStub, true))
-                .returns(result => { return result; })
+                .returns(result => {
+                    return result;
+                })
                 .verifiable();
 
             suppressChecksByMessagesMock
                 .setup(scbmm => scbmm(inapplicableInstance, false))
-                .returns(result => { return result; })
+                .returns(result => {
+                    return result;
+                })
                 .verifiable();
 
             const testSubject = new ResultDecorator(documentUtilsMock.object, messageDecoratorMock.object, getHelpUrlMock.object);
@@ -255,9 +246,7 @@ describe('ResultDecorator', () => {
         it('should call success callback with correct result', () => {
             const guidanceLinkStub = {} as any;
             const configuration = {
-                'test-rule': [
-                    guidanceLinkStub,
-                ],
+                'test-rule': [guidanceLinkStub],
             };
             const emptyResultsStub = {
                 passes: [],
@@ -268,7 +257,8 @@ describe('ResultDecorator', () => {
                 targetPageTitle: 'test title',
                 targetPageUrl: 'https://test_url',
             };
-            const suppressChecksByMessagesMock = GlobalMock.ofInstance(Processor.suppressChecksByMessages,
+            const suppressChecksByMessagesMock = GlobalMock.ofInstance(
+                Processor.suppressChecksByMessages,
                 'suppressChecksByMessages',
                 Processor,
                 MockBehavior.Strict,
@@ -276,13 +266,13 @@ describe('ResultDecorator', () => {
 
             instanceStub.nodes = [];
 
-            messageDecoratorMock
-                .setup(mdm => mdm.decorateResultWithMessages(instanceStub))
-                .verifiable(Times.once());
+            messageDecoratorMock.setup(mdm => mdm.decorateResultWithMessages(instanceStub)).verifiable(Times.once());
 
             suppressChecksByMessagesMock
                 .setup(scbmm => scbmm(instanceStub, true))
-                .returns(result => { return null; })
+                .returns(result => {
+                    return null;
+                })
                 .verifiable();
 
             const testSubject = new ResultDecorator(documentUtilsMock.object, messageDecoratorMock.object, getHelpUrlMock.object);

@@ -17,11 +17,8 @@ describe('TargetPageActionMessageCreatorTest', () => {
 
     beforeEach(() => {
         tabId = -1;
-        postMessageMock = Mock.ofInstance(message => { });
-        testSubject = new TargetPageActionMessageCreator(
-            postMessageMock.object,
-            tabId,
-            new TelemetryDataFactory());
+        postMessageMock = Mock.ofInstance(message => {});
+        testSubject = new TargetPageActionMessageCreator(postMessageMock.object, tabId, new TelemetryDataFactory());
         eventStubFactory = new EventStubFactory();
     });
 
@@ -30,9 +27,7 @@ describe('TargetPageActionMessageCreatorTest', () => {
             type: Messages.Visualizations.Common.ScrollRequested,
         };
 
-        postMessageMock
-            .setup(pm => pm(It.isValue(expectedMessage)))
-            .verifiable();
+        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable();
 
         testSubject.scrollRequested();
 
@@ -53,9 +48,7 @@ describe('TargetPageActionMessageCreatorTest', () => {
             payload: payload,
         };
 
-        postMessageMock
-            .setup(pm => pm(It.isValue(expectedMessage)))
-            .verifiable();
+        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable();
 
         testSubject.openIssuesDialog();
 
@@ -71,9 +64,7 @@ describe('TargetPageActionMessageCreatorTest', () => {
             payload: selector,
         };
 
-        postMessageMock
-            .setup(pm => pm(It.isValue(expectedMessage)))
-            .verifiable();
+        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable();
 
         testSubject.setHoveredOverSelector(selector);
 

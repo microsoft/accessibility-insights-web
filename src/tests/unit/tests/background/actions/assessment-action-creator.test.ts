@@ -24,7 +24,7 @@ describe('AssessmentActionCreatorTest', () => {
         assessmentActionsMock = Mock.ofType(AssessmentActions, MockBehavior.Strict);
         telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler, MockBehavior.Strict);
         const browserAdapterMock = Mock.ofType(ChromeAdapter);
-        registerTypeToPayloadCallbackMock = Mock.ofInstance((type, callback) => { });
+        registerTypeToPayloadCallbackMock = Mock.ofInstance((type, callback) => {});
 
         testObject = new AssessmentActionCreator(
             assessmentActionsMock.object,
@@ -339,17 +339,13 @@ describe('AssessmentActionCreatorTest', () => {
 
     function createActionMock<T>(actionPayload: T): IMock<Action<T>> {
         const actionMock = Mock.ofType<Action<T>>(Action);
-        actionMock
-            .setup(action => action.invoke(actionPayload))
-            .verifiable(Times.once());
+        actionMock.setup(action => action.invoke(actionPayload)).verifiable(Times.once());
 
         return actionMock;
     }
 
     function setupAssessmentActionsMock(actionName: keyof AssessmentActions, actionMock: IMock<Action<any>>) {
-        assessmentActionsMock
-            .setup(actions => actions[actionName])
-            .returns(() => actionMock.object);
+        assessmentActionsMock.setup(actions => actions[actionName]).returns(() => actionMock.object);
     }
 
     function setupRegisterTypeToPayloadCallbackMock(message: string, actionPayload: any, tabId: number) {

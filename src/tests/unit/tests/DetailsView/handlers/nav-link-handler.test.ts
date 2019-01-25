@@ -25,13 +25,10 @@ describe('NavLinkHandler', () => {
 
     describe('onOverviewClick', () => {
         it('should call changeRightContentPanel with appropriate params', () => {
-            actionMessageCreator
-                .setup(amc => amc.changeRightContentPanel('Overview'))
-                .verifiable();
+            actionMessageCreator.setup(amc => amc.changeRightContentPanel('Overview')).verifiable();
 
             testSubject.onOverviewClick();
             actionMessageCreator.verifyAll();
-
         });
     });
 
@@ -52,9 +49,7 @@ describe('NavLinkHandler', () => {
                 .setup(amc => amc.selectDetailsView(eventStub, VisualizationType[link.key], DetailsViewPivotType.assessment))
                 .verifiable();
 
-            actionMessageCreator
-                .setup(amc => amc.changeRightContentPanel('TestView'))
-                .verifiable();
+            actionMessageCreator.setup(amc => amc.changeRightContentPanel('TestView')).verifiable();
 
             testSubject.onAssessmentTestClick(eventStub, link);
             actionMessageCreator.verifyAll();

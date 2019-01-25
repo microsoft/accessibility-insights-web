@@ -503,12 +503,7 @@ describe('ActionCreatorTest', () => {
         const actionName = 'scanCompleted';
         const message = VisualizationMessage.Common.ScanCompleted;
         const telemetryEventName = TelemetryEvents.ADHOC_SCAN_COMPLETED;
-        testScanCompleteWithExpectedParams(
-            key,
-            message,
-            actionName,
-            telemetryEventName,
-        );
+        testScanCompleteWithExpectedParams(key, message, actionName, telemetryEventName);
     });
 
     test('registerCallback for injectionCompleted', () => {
@@ -564,7 +559,6 @@ describe('ActionCreatorTest', () => {
 
         builder.verifyAll();
     });
-
 
     test('registerCallback for tabbed element added', () => {
         const tabbedElement: IAddTabbedElementPayload = {
@@ -1044,9 +1038,11 @@ class ActionCreatorValidator {
     private devToolActionsContainerMock = Mock.ofType(DevToolActions);
 
     private contentScriptInjectorStrictMock = Mock.ofType<ContentScriptInjector>(null, MockBehavior.Strict);
-    private registerCallbackMock = Mock.ofInstance((messageType: string, callback: IPayloadCallback) => { });
-    private getManifestMock = Mock.ofInstance(() => { return null; });
-    private switchToTabMock = Mock.ofInstance((tabId: number) => { }, MockBehavior.Strict);
+    private registerCallbackMock = Mock.ofInstance((messageType: string, callback: IPayloadCallback) => {});
+    private getManifestMock = Mock.ofInstance(() => {
+        return null;
+    });
+    private switchToTabMock = Mock.ofInstance((tabId: number) => {}, MockBehavior.Strict);
 
     private actionHubMock: ActionHub = {
         visualizationActions: this.visualizationActionsContainerMock.object,
@@ -1065,15 +1061,14 @@ class ActionCreatorValidator {
     private telemetryEventHandlerStrictMock = Mock.ofType<TelemetryEventHandler>(null, MockBehavior.Strict);
     private notificationCreatorStrictMock = Mock.ofType<NotificationCreator>(null, MockBehavior.Strict);
     private targetTabControllerStrictMock = Mock.ofType<TargetTabController>(null, MockBehavior.Strict);
-    private detailsViewControllerStrictMock: IMock<DetailsViewController> =
-        Mock.ofType<DetailsViewController>(null, MockBehavior.Strict);
-    private chromeFeatureControllerStrictMock: IMock<ChromeFeatureController> =
-        Mock.ofType<ChromeFeatureController>(null, MockBehavior.Strict);
+    private detailsViewControllerStrictMock: IMock<DetailsViewController> = Mock.ofType<DetailsViewController>(null, MockBehavior.Strict);
+    private chromeFeatureControllerStrictMock: IMock<ChromeFeatureController> = Mock.ofType<ChromeFeatureController>(
+        null,
+        MockBehavior.Strict,
+    );
 
     public setupSwithToTab(tabId: number): ActionCreatorValidator {
-        this.switchToTabMock
-            .setup(stt => stt(tabId))
-            .verifiable(Times.once());
+        this.switchToTabMock.setup(stt => stt(tabId)).verifiable(Times.once());
 
         return this;
     }
@@ -1090,23 +1085,23 @@ class ActionCreatorValidator {
             actionsMap[actionName] = action;
         }
 
-        action
-            .setup(am => am.invoke(It.isValue(expectedInvokeParam)))
-            .verifiable(Times.once());
+        action.setup(am => am.invoke(It.isValue(expectedInvokeParam))).verifiable(Times.once());
 
         return this;
     }
 
     public setupVisualizationActionWithInvokeParameter(
         actionName: keyof VisualizationActions,
-        expectedInvokeParam: any): ActionCreatorValidator {
+        expectedInvokeParam: any,
+    ): ActionCreatorValidator {
         this.setupActionWithInvokeParameter(actionName, expectedInvokeParam, this.visualizationActionMocks);
         return this;
     }
 
     public setupPreviewFeaturesActionWithInvokeParameter(
         actionName: keyof PreviewFeaturesActions,
-        expectedInvokeParam: any): ActionCreatorValidator {
+        expectedInvokeParam: any,
+    ): ActionCreatorValidator {
         this.setupActionWithInvokeParameter(actionName, expectedInvokeParam, this.previewFeaturesActionMocks);
         return this;
     }
@@ -1118,7 +1113,8 @@ class ActionCreatorValidator {
 
     public setupVisualizationScanResultActionWithInvokeParameter(
         actionName: keyof VisualizationScanResultActions,
-        expectedInvokeParam: any): ActionCreatorValidator {
+        expectedInvokeParam: any,
+    ): ActionCreatorValidator {
         this.setupActionWithInvokeParameter(actionName, expectedInvokeParam, this.visualizationScanResultActionMocks);
         return this;
     }
@@ -1135,7 +1131,8 @@ class ActionCreatorValidator {
 
     public setupDetailsViewActionWithInvokeParameter(
         actionName: keyof DetailsViewActions,
-        expectedInvokeParam: any): ActionCreatorValidator {
+        expectedInvokeParam: any,
+    ): ActionCreatorValidator {
         this.setupActionWithInvokeParameter(actionName, expectedInvokeParam, this.detailsViewActionsMocks);
         return this;
     }
@@ -1153,58 +1150,34 @@ class ActionCreatorValidator {
     }
 
     public setupCreateNotification(message: string): ActionCreatorValidator {
-        this.notificationCreatorStrictMock
-            .setup(x => x.createNotification(message))
-            .verifiable();
+        this.notificationCreatorStrictMock.setup(x => x.createNotification(message)).verifiable();
 
         return this;
     }
 
     public setupShowTargetTab(tabId: number, testType: VisualizationType, step: string): ActionCreatorValidator {
-        this.targetTabControllerStrictMock
-            .setup(ttcm => ttcm.showTargetTab(tabId, testType, step))
-            .verifiable();
+        this.targetTabControllerStrictMock.setup(ttcm => ttcm.showTargetTab(tabId, testType, step)).verifiable();
 
         return this;
     }
 
     public setupManifest(manifest): ActionCreatorValidator {
-        this.getManifestMock
-            .setup(getManifestMock => getManifestMock())
-            .returns(() => manifest);
+        this.getManifestMock.setup(getManifestMock => getManifestMock()).returns(() => manifest);
 
         return this;
     }
 
-    public setupTelemetrySend(
-        eventName: string,
-        telemetryInfo: any,
-        tabId: number,
-    ): ActionCreatorValidator {
+    public setupTelemetrySend(eventName: string, telemetryInfo: any, tabId: number): ActionCreatorValidator {
         this.telemetryEventHandlerStrictMock
-            .setup(tsm => tsm.publishTelemetry(
-                It.isValue(eventName),
-                It.isValue(telemetryInfo),
-                It.isValue(tabId),
-            ))
+            .setup(tsm => tsm.publishTelemetry(It.isValue(eventName), It.isValue(telemetryInfo), It.isValue(tabId)))
             .verifiable(Times.once());
 
         return this;
     }
 
-
-    public setupTelemetrySendExcludeUrl(
-        eventName: string,
-        telemetryInfo: any,
-        tabId: number,
-    ): ActionCreatorValidator {
+    public setupTelemetrySendExcludeUrl(eventName: string, telemetryInfo: any, tabId: number): ActionCreatorValidator {
         this.telemetryEventHandlerStrictMock
-            .setup(tsm => tsm.publishTelemetry(
-                It.isValue(eventName),
-                It.isValue(telemetryInfo),
-                It.isValue(tabId),
-                false,
-            ))
+            .setup(tsm => tsm.publishTelemetry(It.isValue(eventName), It.isValue(telemetryInfo), It.isValue(tabId), false))
             .verifiable(Times.once());
 
         return this;
@@ -1218,9 +1191,7 @@ class ActionCreatorValidator {
             actionsMap[actionName] = action;
         }
 
-        actionsContainerMock
-            .setup(x => x[actionName])
-            .returns(() => action.object);
+        actionsContainerMock.setup(x => x[actionName]).returns(() => action.object);
 
         return this;
     }
@@ -1266,8 +1237,7 @@ class ActionCreatorValidator {
             .callback((messageType, callback) => {
                 if (callbackParams) {
                     callback.apply(null, callbackParams);
-                }
-                else {
+                } else {
                     callback();
                 }
             })
@@ -1277,9 +1247,7 @@ class ActionCreatorValidator {
     }
 
     public setupShowDetailsView(tabId: number): ActionCreatorValidator {
-        this.detailsViewControllerStrictMock
-            .setup(ct => ct.showDetailsView(It.isValue(tabId)))
-            .verifiable();
+        this.detailsViewControllerStrictMock.setup(ct => ct.showDetailsView(It.isValue(tabId))).verifiable();
 
         return this;
     }
@@ -1313,9 +1281,7 @@ class ActionCreatorValidator {
     }
 
     public setupChromeFeatureController() {
-        this.chromeFeatureControllerStrictMock
-            .setup(cfc => cfc.openCommandConfigureTab())
-            .verifiable();
+        this.chromeFeatureControllerStrictMock.setup(cfc => cfc.openCommandConfigureTab()).verifiable();
 
         return this;
     }

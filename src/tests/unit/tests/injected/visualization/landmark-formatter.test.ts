@@ -33,12 +33,11 @@ describe('LandmarkFormatterTests', () => {
         'blank',
     ];
 
-    test.each(roles)
-        ('verifyStylingFor - %s', role => {
-            const axeData = getAxeData(role);
-            const config = testSubject.getDrawerConfiguration(null, axeData);
-            testStyling(config, role);
-        });
+    test.each(roles)('verifyStylingFor - %s', role => {
+        const axeData = getAxeData(role);
+        const config = testSubject.getDrawerConfiguration(null, axeData);
+        testStyling(config, role);
+    });
 
     test('verifyStylingForFailureInstacne', () => {
         const role = 'blank';
@@ -72,14 +71,16 @@ describe('LandmarkFormatterTests', () => {
             identifier: 'some id',
             ruleResults: {
                 'unique-landmark': {
-                    any: [{
-                        id: 'unique-landmark',
-                        message: 'message for none-check1',
-                        data: {
-                            role: givenRole,
-                            label: 'test banner',
+                    any: [
+                        {
+                            id: 'unique-landmark',
+                            message: 'message for none-check1',
+                            data: {
+                                role: givenRole,
+                                label: 'test banner',
+                            },
                         },
-                    }],
+                    ],
                     none: [],
                     all: [],
                     status: true,
@@ -94,7 +95,7 @@ describe('LandmarkFormatterTests', () => {
                     fingerprint: 'fp1',
                     snippet: 'html',
                 },
-                'rule2': {
+                rule2: {
                     any: [],
                     none: [],
                     all: [],

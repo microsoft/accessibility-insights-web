@@ -20,9 +20,7 @@ import { VisualizationType } from '../../../../common/types/visualization-type';
 import { IssuesTableHandler } from '../../../../DetailsView/components/issues-table-handler';
 import { DetailsViewContainerDeps, IDetailsViewContainerProps } from '../../../../DetailsView/details-view-container';
 import { AssessmentInstanceTableHandler } from '../../../../DetailsView/handlers/assessment-instance-table-handler';
-import {
-    DetailsViewToggleClickHandlerFactory,
-} from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
+import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from '../../../../DetailsView/handlers/preview-feature-flags-handler';
 import { StoreMocks } from './store-mocks';
 
@@ -48,7 +46,7 @@ export class DetailsViewContainerPropsBuilder {
     private assessmentProvider: IAssessmentsProvider;
     private configFactory: VisualizationConfigurationFactory;
     private storesHub: BaseClientStoresHub<any>;
-    constructor(private deps: DetailsViewContainerDeps) { }
+    constructor(private deps: DetailsViewContainerDeps) {}
 
     public setDetailsViewStoreActionMessageCreator(creator: IStoreActionMessageCreator) {
         this.storeActionCreator = creator;
@@ -129,15 +127,17 @@ export class DetailsViewContainerPropsBuilder {
     }
 
     public build(): IDetailsViewContainerProps {
-        const storesHub = this.storesHub || new BaseClientStoresHub([
-            this.detailsViewStore,
-            this.featureFlagStore,
-            this.tabStore,
-            this.visualizationScanResultStore,
-            this.visualizationStore,
-            this.assessmentStore,
-            this.scopingStateStore,
-        ]);
+        const storesHub =
+            this.storesHub ||
+            new BaseClientStoresHub([
+                this.detailsViewStore,
+                this.featureFlagStore,
+                this.tabStore,
+                this.visualizationScanResultStore,
+                this.visualizationStore,
+                this.assessmentStore,
+                this.scopingStateStore,
+            ]);
 
         const storeState = this.storesHub ? this.storesHub.getAllStoreData() : null;
 
@@ -162,4 +162,3 @@ export class DetailsViewContainerPropsBuilder {
         };
     }
 }
-

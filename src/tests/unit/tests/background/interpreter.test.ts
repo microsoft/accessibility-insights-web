@@ -27,9 +27,7 @@ describe('InterpreterTest', () => {
         const sampleCallback = Mock.ofInstance((payload, tabId) => {});
         testSubject.setMessageToActionMapping({ test: sampleCallback.object });
 
-        sampleCallback
-            .setup(x => x('payload', 1))
-            .verifiable();
+        sampleCallback.setup(x => x('payload', 1)).verifiable();
 
         expect(
             testSubject.interpret({
@@ -47,9 +45,7 @@ describe('InterpreterTest', () => {
         const sampleCallback = Mock.ofInstance((payload, tabId) => {});
         testSubject.setMessageToActionMapping({ test: sampleCallback.object });
 
-        sampleCallback
-            .setup(x => x('payload', 1))
-            .verifiable(Times.never());
+        sampleCallback.setup(x => x('payload', 1)).verifiable(Times.never());
 
         expect(
             testSubject.interpret({

@@ -7,14 +7,14 @@ describe('RoleUtils', () => {
     describe('isValidRoleIfPresent', () => {
         it('should return true if it is a valid role', () => {
             const testElement = createNodeStub('button', {
-                'role' : 'button',
+                role: 'button',
             });
             expect(RoleUtils.isValidRoleIfPresent(testElement)).toBeTruthy();
         });
 
         it('should return false if it is an invalid role', () => {
             const testElement = createNodeStub('button', {
-                'role' : 'randomRole',
+                role: 'randomRole',
             });
             expect(RoleUtils.isValidRoleIfPresent(testElement)).toBeFalsy();
         });
@@ -26,7 +26,7 @@ describe('RoleUtils', () => {
 
         it('should return false if role is empty or whitespace', () => {
             const testElement = createNodeStub('button', {
-                'role' : '',
+                role: '',
             });
             expect(RoleUtils.isValidRoleIfPresent(testElement)).toBeFalsy();
         });

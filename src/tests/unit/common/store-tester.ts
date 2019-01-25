@@ -8,7 +8,6 @@ import { IBaseStore } from '../../../common/istore';
 import { IDefaultConstructor } from '../../../common/types/idefault-constructor';
 import * as assert from './assertions';
 
-
 export class StoreTester<TStoreData, TActions> {
     private actionName: string;
     private actionParam: any;
@@ -17,11 +16,7 @@ export class StoreTester<TStoreData, TActions> {
     private storeFactory: (actions) => BaseStore<TStoreData>;
     private postListenerMock: IMock<any>;
 
-    constructor(
-        actions: IDefaultConstructor<TActions>,
-        actionName: keyof TActions,
-        storeFactory: (actions) => BaseStore<TStoreData>,
-    ) {
+    constructor(actions: IDefaultConstructor<TActions>, actionName: keyof TActions, storeFactory: (actions) => BaseStore<TStoreData>) {
         this.actionName = actionName as string;
         this.storeFactory = storeFactory;
         this.actions = actions;
@@ -75,9 +70,7 @@ export class StoreTester<TStoreData, TActions> {
         const actionMock = this.createActionMock();
 
         const actionsMock = Mock.ofType(this.actions, MockBehavior.Loose);
-        actionsMock
-            .setup(a => a[this.actionName])
-            .returns(() => actionMock.object);
+        actionsMock.setup(a => a[this.actionName]).returns(() => actionMock.object);
 
         return actionsMock;
     }
@@ -85,31 +78,26 @@ export class StoreTester<TStoreData, TActions> {
     private createActionMock() {
         const actionMock = Mock.ofType(Action);
 
-        actionMock
-            .setup(a => a.addListener(It.is(param => param instanceof Function)))
-            .callback(listener => this.listener = listener);
+        actionMock.setup(a => a.addListener(It.is(param => param instanceof Function))).callback(listener => (this.listener = listener));
 
         return actionMock;
     }
 
     private createChangeListener(store: IBaseStore<TStoreData>, times: Times) {
-        const listenerMock = Mock.ofInstance((store, args) => { });
+        const listenerMock = Mock.ofInstance((store, args) => {});
 
-        listenerMock
-            .setup(l => l(this.isSameStoreTypeMatcher(store), It.isAny()))
-            .verifiable(times);
+        listenerMock.setup(l => l(this.isSameStoreTypeMatcher(store), It.isAny())).verifiable(times);
 
         return listenerMock;
     }
 
     private isSameStoreTypeMatcher(expectedStore: IBaseStore<TStoreData>): IBaseStore<TStoreData> {
-        return It.is(actualStore =>
-            expectedStore.getId() === actualStore.getId());
+        return It.is(actualStore => expectedStore.getId() === actualStore.getId());
     }
 }
 
 export type CtorWithArgs<T> = {
-    new(...ctorArgs: any[]): T;
+    new (...ctorArgs: any[]): T;
     prototype: Object;
 };
 

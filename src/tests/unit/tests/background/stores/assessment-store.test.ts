@@ -282,7 +282,7 @@ describe('AssessmentStoreTest', () => {
         const initialState = getStateWithAssessment(assessmentData);
 
         const finalState = getDefaultState();
-        const getVisualizationConfigurationMock = Mock.ofInstance(() => { });
+        const getVisualizationConfigurationMock = Mock.ofInstance(() => {});
         const visualizationConfigStub = {
             getAssessmentData: state => {
                 return state.assessments[assessmentKey];
@@ -298,9 +298,11 @@ describe('AssessmentStoreTest', () => {
         const assessmentStub = {
             getVisualizationConfiguration: getVisualizationConfigurationMock.object,
             key: assessmentKey,
-            steps: [{
-                key: stepKey,
-            }],
+            steps: [
+                {
+                    key: stepKey,
+                },
+            ],
         } as IAssessment;
 
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
@@ -329,7 +331,7 @@ describe('AssessmentStoreTest', () => {
         const initialState = getStateWithAssessment(assessmentData);
 
         const finalState = getDefaultState();
-        const getVisualizationConfigurationMock = Mock.ofInstance(() => { });
+        const getVisualizationConfigurationMock = Mock.ofInstance(() => {});
         const visualizationConfigStub = {
             getAssessmentData: state => {
                 return state.assessments[assessmentKey];
@@ -345,9 +347,11 @@ describe('AssessmentStoreTest', () => {
         const assessmentStub = {
             getVisualizationConfiguration: getVisualizationConfigurationMock.object,
             key: assessmentKey,
-            steps: [{
-                key: stepKey,
-            }],
+            steps: [
+                {
+                    key: stepKey,
+                },
+            ],
         } as IAssessment;
 
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
@@ -377,7 +381,7 @@ describe('AssessmentStoreTest', () => {
         const initialState = getStateWithAssessment(assessmentData);
 
         const finalState = getDefaultState();
-        const getVisualizationConfigurationMock = Mock.ofInstance(() => { });
+        const getVisualizationConfigurationMock = Mock.ofInstance(() => {});
         const visualizationConfigStub = {
             getAssessmentData: state => {
                 return state.assessments[assessmentKey];
@@ -393,9 +397,11 @@ describe('AssessmentStoreTest', () => {
         const assessmentStub = {
             getVisualizationConfiguration: getVisualizationConfigurationMock.object,
             key: assessmentKey,
-            steps: [{
-                key: stepKey,
-            }],
+            steps: [
+                {
+                    key: stepKey,
+                },
+            ],
         } as IAssessment;
 
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
@@ -411,7 +417,6 @@ describe('AssessmentStoreTest', () => {
             .withPostListenerMock(indexDBInstanceMock)
             .testListenerToBeCalledOnce(initialState, finalState);
     });
-
 
     test('onResetAllAssessmentsData', () => {
         const oldTabId = 1;
@@ -1405,9 +1410,7 @@ describe('AssessmentStoreTest', () => {
             pivotType: DetailsViewPivotType.assessment,
         };
 
-        assessmentsProviderMock
-            .setup(apm => apm.forType(testType))
-            .verifiable(Times.never());
+        assessmentsProviderMock.setup(apm => apm.forType(testType)).verifiable(Times.never());
 
         const initialState = new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object)
             .withSelectedTestStep('step')
@@ -1431,9 +1434,7 @@ describe('AssessmentStoreTest', () => {
             pivotType: DetailsViewPivotType.allTest,
         };
 
-        assessmentsProviderMock
-            .setup(apm => apm.forType(assessmentType))
-            .verifiable(Times.never());
+        assessmentsProviderMock.setup(apm => apm.forType(assessmentType)).verifiable(Times.never());
 
         const initialState = new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object)
             .withSelectedTestStep('step')
@@ -1513,4 +1514,3 @@ describe('AssessmentStoreTest', () => {
         return new AssessmentStoreTester(AssessmentActions, actionName, factory, indexDBInstanceMock);
     }
 });
-

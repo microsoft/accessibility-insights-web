@@ -10,9 +10,7 @@ export class Browser {
     private memoizedBackgroundPage: Page;
     private pages: Array<Page> = [];
 
-    constructor(
-        private readonly underlyingBrowser: Puppeteer.Browser,
-    ) {
+    constructor(private readonly underlyingBrowser: Puppeteer.Browser) {
         underlyingBrowser.on('disconnected', onBrowserDisconnected);
     }
 
@@ -95,8 +93,9 @@ export class Browser {
             return this.memoizedBackgroundPage;
         }
 
-        const backgroundPageTarget = await this.underlyingBrowser
-            .waitForTarget(t => t.type() === 'background_page' && Browser.isExtensionBackgroundPage(t.url()));
+        const backgroundPageTarget = await this.underlyingBrowser.waitForTarget(
+            t => t.type() === 'background_page' && Browser.isExtensionBackgroundPage(t.url()),
+        );
 
         this.memoizedBackgroundPage = new Page(await backgroundPageTarget.page());
 
@@ -109,8 +108,7 @@ export class Browser {
 }
 
 function onBrowserDisconnected(): void {
-    const errorMessage =
-        `Browser disconnected unexpectedly; test results past this point should not be trusted. This probably means that either:
+    const errorMessage = `Browser disconnected unexpectedly; test results past this point should not be trusted. This probably means that either:
             - BrowserController's browser instance was .close() or .disconnect()ed without going through BrowserController.tearDown()
             - Chromium crashed (this is most commonly an out-of-memory issue)`;
 

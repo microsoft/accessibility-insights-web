@@ -8,7 +8,7 @@ describe('axe.commons.text.accessibleText examples', () => {
 
     beforeEach(() => {
         fixture = createTestFixture('test-fixture', '');
-        _axe = (Axe as any);
+        _axe = Axe as any;
     });
 
     it('should find accessible text by following aria-labelledby', () => {

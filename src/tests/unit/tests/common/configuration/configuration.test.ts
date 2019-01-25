@@ -3,7 +3,6 @@
 import { config, configMutator } from '../../../../../common/configuration';
 
 describe('configuration', () => {
-
     beforeEach(configMutator.reset);
     afterAll(configMutator.reset);
 
@@ -15,7 +14,6 @@ describe('configuration', () => {
         expect(config.config.options.extensionFullName).toBe(defaultName);
     });
 
-
     test('telemetryBuildName default', () => {
         const defaultTelemetryBuildName = 'unknownBuild';
 
@@ -24,9 +22,7 @@ describe('configuration', () => {
     });
 
     test('extensionFullName set', () => {
-        configMutator
-            .reset()
-            .setOption('extensionFullName', newName);
+        configMutator.reset().setOption('extensionFullName', newName);
         expect(config.getOption('extensionFullName')).toBe(newName);
         expect(config.config.options.extensionFullName).toBe(newName);
     });

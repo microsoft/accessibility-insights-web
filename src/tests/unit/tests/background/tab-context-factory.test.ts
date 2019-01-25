@@ -47,7 +47,7 @@ describe('TabContextFactoryTest', () => {
         const tabId = -1;
         const featureFlagStore = Mock.ofType(FeatureFlagStore);
         const windowUtilsStub = Mock.ofType(WindowUtils);
-        const broadcastMock = Mock.ofInstance(message => { }, MockBehavior.Strict);
+        const broadcastMock = Mock.ofInstance(message => {}, MockBehavior.Strict);
         const telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler);
         const targetTabControllerMock = Mock.ofType(TargetTabController);
         const assessmentStore = Mock.ofType(AssessmentStore);
@@ -68,17 +68,11 @@ describe('TabContextFactoryTest', () => {
                 .verifiable(Times.once());
         });
 
-        mockBrowserAdapter
-            .setup(ba => ba.addListenerToTabsOnRemoved(It.isAny()))
-            .verifiable();
-        mockBrowserAdapter
-            .setup(ba => ba.addListenerToTabsOnUpdated(It.isAny()))
-            .verifiable();
+        mockBrowserAdapter.setup(ba => ba.addListenerToTabsOnRemoved(It.isAny())).verifiable();
+        mockBrowserAdapter.setup(ba => ba.addListenerToTabsOnUpdated(It.isAny())).verifiable();
 
         const visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
-        visualizationConfigurationFactoryMock
-            .setup(vcfm => vcfm.getConfiguration(It.isAny()))
-            .returns(type => getConfigs(type));
+        visualizationConfigurationFactoryMock.setup(vcfm => vcfm.getConfiguration(It.isAny())).returns(type => getConfigs(type));
 
         const testObject = new TabContextFactory(
             visualizationConfigurationFactoryMock.object,
@@ -97,9 +91,7 @@ describe('TabContextFactoryTest', () => {
             })
             .verifiable();
 
-        featureFlagStore
-            .setup(ffsm => ffsm.addChangedListener(It.isAny()))
-            .verifiable();
+        featureFlagStore.setup(ffsm => ffsm.addChangedListener(It.isAny())).verifiable();
 
         const tabContext = testObject.createTabContext(
             broadcastMock.object,
@@ -112,9 +104,7 @@ describe('TabContextFactoryTest', () => {
         broadcastMock.reset();
 
         broadcastMock
-            .setup(bm =>
-                bm(It.isObjectWith({ storeId: StoreNames[StoreNames.VisualizationScanResultStore] } as StoreUpdateMessage<any>)),
-        )
+            .setup(bm => bm(It.isObjectWith({ storeId: StoreNames[StoreNames.VisualizationScanResultStore] } as StoreUpdateMessage<any>)))
             .verifiable(Times.once());
 
         tabContext.interpreter.interpret({

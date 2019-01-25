@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 export class PortDisconnectStub implements chrome.runtime.PortDisconnectEvent {
-
     public listeners: any[];
     public callbackForDisconnect: any[];
 
@@ -47,7 +46,6 @@ export class PortDisconnectStub implements chrome.runtime.PortDisconnectEvent {
 }
 
 export class PortOnMessageStub implements chrome.runtime.PortMessageEvent {
-
     public listeners: any[];
 
     constructor() {
@@ -129,4 +127,3 @@ export class PortStub implements chrome.runtime.Port {
         this.onMessage.sendMessage(message);
     }
 }
-

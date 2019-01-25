@@ -8,9 +8,7 @@ import { ChromeFeatureController } from '../../../../background/chrome-feature-c
 describe('ChromeFeatureControllerTest', () => {
     test('openCommandConfigureTab', () => {
         const browserAdapterMock = Mock.ofType(ChromeAdapter);
-        browserAdapterMock
-            .setup(ba => ba.createTab('chrome://extensions/configureCommands'))
-            .verifiable();
+        browserAdapterMock.setup(ba => ba.createTab('chrome://extensions/configureCommands')).verifiable();
 
         const testSubject = new ChromeFeatureController(browserAdapterMock.object);
         testSubject.openCommandConfigureTab();
@@ -18,4 +16,3 @@ describe('ChromeFeatureControllerTest', () => {
         browserAdapterMock.verifyAll();
     });
 });
-
