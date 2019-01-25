@@ -20,16 +20,22 @@ export class ReportHeader extends React.Component<IReportHeaderProps> {
                 <nav>
                     <div>
                         <InlineImage type={InlineImageType.FailIcon} alt="" />
-                        <a href="#failed">{this.props.scanResult.violations.length} failed
-                        checks {this.renderFailureCountIfNonzero(this.props.scanResult.violations)}</a>
+                        <a href="#failed">{this.props.scanResult.violations.length}
+                            {' failed checks '}
+                            {this.renderFailureCountIfNonzero(this.props.scanResult.violations)}
+                        </a>
                     </div>
                     <div>
                         <InlineImage type={InlineImageType.PassIcon} alt="" />
-                        <a href="#passed">{this.props.scanResult.passes.length} passed checks</a>
+                        <a href="#passed">
+                            {`${this.props.scanResult.passes.length} passed checks `}
+                        </a>
                     </div>
                     <div>
                         <InlineImage type={InlineImageType.NotApplicableIcon} alt="" />
-                        <a href="#notapplicable">{this.props.scanResult.inapplicable.length} not applicable checks</a>
+                        <a href="#notapplicable">
+                            {`${this.props.scanResult.inapplicable.length} not applicable checks`}
+                        </a>
                     </div>
                 </nav>
             </div>

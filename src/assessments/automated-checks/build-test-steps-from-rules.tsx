@@ -22,7 +22,10 @@ function buildAutomatedCheckStep(rule: ScannerRuleInfo): TestStep {
     const howToTest = (
         <React.Fragment>
             {infoElement}
-            <NewTabLink href={rule.url} aria-label={`See more info about ${rule.id} rule`}> See more info here.</NewTabLink>
+            <NewTabLink href={rule.url} aria-label={`See more info about ${rule.id} rule`}>
+            {' '}
+            See more info here.
+            </NewTabLink>
         </React.Fragment>
     );
     const getAnalyzer = (provider: AnalyzerProvider) => {

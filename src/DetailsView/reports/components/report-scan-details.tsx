@@ -26,8 +26,7 @@ export class ReportScanDetails extends React.Component<IReportScanDetailsProps> 
                             <td className="label">Target page</td>
                             <td>
                                 <span id="page-title">{this.props.pageTitle}</span>
-                                {' '}
-                                (
+                                {' ('}
                                 <NewTabLink href={this.props.pageUrl} aria-labelledby="page-title" title="Navigate to target page">
                                     {this.props.pageUrl}
                                 </NewTabLink>

@@ -68,11 +68,8 @@ export class LaunchPad extends React.Component<ILaunchPadProps, undefined> {
                 </main>
                 <div role="complementary" className="launch-pad-footer">
                     <div>
-                        Version {this.props.version}
-                        {'  '}
-                        |
-                        {'  '}
-                        Powered by <ExternalLink
+                        {`Version ${this.props.version} | Powered by `}
+                        <ExternalLink
                             deps={this.props.deps}
                             title="Navigate to axe-core npm page"
                             href="https://www.npmjs.com/package/axe-core">axe-core</ExternalLink>

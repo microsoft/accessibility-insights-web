@@ -97,7 +97,7 @@ describe('LaunchPad', () => {
                 </main>
                 <div role="complementary" className="launch-pad-footer">
                     <div>
-                        {'Version \nver.si.on\n  \n|\n  \nPowered by '}
+                        {`Version ${props.version} | Powered by `}
                         <ExternalLink deps={deps}
                             title="Navigate to axe-core npm page"
                             href="https://www.npmjs.com/package/axe-core">axe-core</ExternalLink>

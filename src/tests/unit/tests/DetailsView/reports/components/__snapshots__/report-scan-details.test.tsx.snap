@@ -18,8 +18,7 @@ exports[`ReportScanDetailsTest renders 1`] = `
           >
             page-title
           </span>
-           
-          (
+           (
           <NewTabLink
             aria-labelledby="page-title"
             href="https://page-url/"

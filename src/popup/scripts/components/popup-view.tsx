@@ -153,12 +153,7 @@ export class PopupView extends React.Component<IPopupViewProps> {
                     deps={this.props.deps}
                     title={this.props.title}
                     subtitle={<React.Fragment>
-                        {this.props.subtitle}
-                        {'  '}
-                        |
-                        {'  '}
-                        Watch
-                        {' '}
+                        {`${this.props.subtitle} | Watch `}
                         <NewTabLink
                             href={LaunchPad.demoLink}
                             aria-label="demo video"
@@ -218,8 +213,8 @@ export class PopupView extends React.Component<IPopupViewProps> {
                     <div>
                         <div>To allow this extension to run on file URLs:</div>
                         <div>1. Go to chrome://extensions.</div>
-                        <div>2. Find <span className="ms-fontWeight-semibold">{this.props.title} - {this.props.subtitle}</span>.</div>
-                        <div>3. Check <span className="ms-fontWeight-semibold">Allow Access to file URLs</span>.</div>
+                        <div>{'2. Find '}<span className="ms-fontWeight-semibold">{this.props.title} - {this.props.subtitle}</span>.</div>
+                        <div>{'3. Check '}<span className="ms-fontWeight-semibold">Allow Access to file URLs</span>.</div>
                     </div>
                 </div>
             </div>

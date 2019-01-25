@@ -12,7 +12,8 @@ exports[`AssessmentReportFooter renders 1`] = `
   axeVersion
   ), a tool that helps debug and find accessibility issues earlier on 
   chromeVersion
-  . Get more information & download this tool at 
+  . Get more information & download this tool at
+   
   <a
     className="link report-footer-link"
     href="http://aka.ms/AccessibilityInsights"

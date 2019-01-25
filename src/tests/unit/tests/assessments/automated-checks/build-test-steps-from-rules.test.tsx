@@ -41,7 +41,10 @@ describe('buildTestStepsFromRules', () => {
         const expectedHowToTest = (
             <React.Fragment>
                 {expectedDescription}
-                <NewTabLink href={rule.url} aria-label={`See more info about ${rule.id} rule`}> See more info here.</NewTabLink>
+                <NewTabLink href={rule.url} aria-label={`See more info about ${rule.id} rule`}>
+                {' '}
+                See more info here.
+                </NewTabLink>
             </React.Fragment>
         );
 
