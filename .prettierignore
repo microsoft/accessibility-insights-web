@@ -13,6 +13,3 @@ package-lock.json
 **/*.png
 **/*.gitignore
 **/*.gitattributes
-
-src/content/test/**/*.tsx
-src/tests/**/*.tsx
