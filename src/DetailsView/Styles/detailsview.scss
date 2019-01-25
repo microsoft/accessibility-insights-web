@@ -97,33 +97,8 @@ div.insights-dialog-main-override {
     color: $neutral-100;
 
     .header-text {
-        padding-left: 16px;
-        padding-right: 16px;
-    }
-
-    @media (min-width: 768px) {
-        .header-text {
-            padding-left: 32px;
-            padding-right: 32px;
-        }
-    }
-
-    @media (min-width: 1366px) {
-        .header-text {
-            padding-left: 40px;
-            padding-right: 40px;
-        }
-    }
-
-    .header-text {
-        font-weight: lighter;
-    }
-
-    /*
-        Office Fabric (v5.x) panel breaks in certain scenarios when the viewport is decreased to a certain size (e.g. when splitting in half on a 1080p screen)
-    */
-    .ms-Panel-main {
-        left: auto !important;
+        color: $neutral-100;
+        font-size: 2em;
     }
 }
 
@@ -224,11 +199,6 @@ div.insights-dialog-main-override {
     .header-text {
         margin-top: 30px;
         font-size: 21px;
-    }
-    .ms-Panel-main {
-        .ms-TextField {
-            margin-bottom: 12px;
-        }
     }
 }
 
