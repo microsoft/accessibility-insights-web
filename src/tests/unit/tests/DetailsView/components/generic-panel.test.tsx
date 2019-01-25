@@ -38,6 +38,7 @@ describe('DetailsViewPanelTest', () => {
                 closeButtonAriaLabel={testProps.closeButtonAriaLabel}
                 hasCloseButton={true}
                 headerText={testProps.title}
+                headerClassName="header-text"
             >
                 {childContent}
             </Panel>

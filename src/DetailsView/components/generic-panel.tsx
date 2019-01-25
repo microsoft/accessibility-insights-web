@@ -28,6 +28,7 @@ export class GenericPanel extends React.Component<GenericPanelProps> {
                 closeButtonAriaLabel={this.props.closeButtonAriaLabel}
                 hasCloseButton={this.props.hasCloseButton}
                 headerText={this.props.title}
+                headerClassName="header-text"
             >
                 {this.props.children}
             </Panel>
