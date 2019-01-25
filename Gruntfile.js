@@ -315,15 +315,13 @@ module.exports = function(grunt) {
         });
     });
 
-    grunt.registerTask('pre-webpack', ['clean:intermediates', 'exec:mkdrop', 'sass']);
+    grunt.registerTask('pre-webpack', ['clean:intermediates', 'sass']);
 
     grunt.registerTask('post-webpack-pre-drop', ['copy:code', 'copy:styles', 'embed-styles:code', 'copy:images']);
 
     // Main entry points for npm scripts:
     grunt.registerTask('build-dev', ['pre-webpack', 'exec:webpack-dev', 'post-webpack-pre-drop', 'drop:dev']);
-
     grunt.registerTask('build-prod', ['pre-webpack', 'exec:webpack-prod', 'post-webpack-pre-drop', 'release-drops']);
-
     grunt.registerTask('build-all', ['pre-webpack', 'exec:webpack-all', 'post-webpack-pre-drop', 'drop:dev', 'release-drops']);
 
     grunt.registerTask('default', ['build-dev']);
