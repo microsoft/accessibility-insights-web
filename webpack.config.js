@@ -56,6 +56,11 @@ const commonConfig = {
     node: {
         setImmediate: false,
     },
+    performance: {
+        // We allow higher-than-normal sizes because our users only have to do local fetches of our bundles
+        maxEntrypointSize: 10 * 1024 * 1024,
+        maxAssetSize: 10 * 1024 * 1024,
+    },
 };
 
 const devConfig = {
