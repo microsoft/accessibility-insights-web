@@ -5,24 +5,27 @@ import { NamedSFC } from '../../../common/react/named-sfc';
 import { Markup } from '../../../views/content/markup';
 
 type LandmarkRoleProps = {
-    markup: Markup,
-    role: string,
-    element: string,
-    description: string,
+    markup: Markup;
+    role: string;
+    element: string;
+    description: string;
 };
 
-export const LandmarkRole = NamedSFC<LandmarkRoleProps>('LandmarkRole', ({ markup, role, element, description }) =>
+export const LandmarkRole = NamedSFC<LandmarkRoleProps>('LandmarkRole', ({ markup, role, element, description }) => (
     <tr>
         <td className={`landmark-role ${role}-landmark`}>{role}</td>
-        <td><markup.Code>{element}</markup.Code></td>
+        <td>
+            <markup.Code>{element}</markup.Code>
+        </td>
         <td>{description}</td>
-    </tr>);
+    </tr>
+));
 
 type LandmarkTableProps = {
-    markup: Markup,
+    markup: Markup;
 };
 
-export const LandmarkTable = NamedSFC<LandmarkTableProps>('LandmarkTable', ({ markup }) =>
+export const LandmarkTable = NamedSFC<LandmarkTableProps>('LandmarkTable', ({ markup }) => (
     <table className="landmark-table">
         <tr>
             <th>Role</th>
@@ -54,12 +57,7 @@ export const LandmarkTable = NamedSFC<LandmarkTableProps>('LandmarkTable', ({ ma
             element="<form>"
             description="An area of the page containing a collection of form-related elements."
         />
-        <LandmarkRole
-            markup={markup}
-            role="main"
-            element="<main>"
-            description="The area containing the page's primary content."
-        />
+        <LandmarkRole markup={markup} role="main" element="<main>" description="The area containing the page's primary content." />
         <LandmarkRole
             markup={markup}
             role="navigation"
@@ -78,4 +76,5 @@ export const LandmarkTable = NamedSFC<LandmarkTableProps>('LandmarkTable', ({ ma
             element='<form role="search">'
             description="An area of the page containing search functionality."
         />
-    </table>);
+    </table>
+));
