@@ -196,6 +196,12 @@ module.exports = function(grunt) {
                 [targetName]: {
                     files: [
                         {
+                            cwd: debug ? path.resolve(extensionPath, 'devBundle') : path.resolve(extensionPath, 'prodBundle'),
+                            src: ['*.js', '*.js.map'],
+                            dest: path.resolve(dropExtensionPath, 'bundle'),
+                            expand: true,
+                        },
+                        {
                             cwd: extensionPath,
                             src: ['**/*.png', '**/*.css', '**/*.woff'],
                             dest: dropExtensionPath,
@@ -220,25 +226,6 @@ module.exports = function(grunt) {
                 [targetName]: dropPath,
             },
         });
-
-        if (!debug) {
-            grunt.config.merge({
-                copy: {
-                    [targetName]: {
-                        files: [
-                            {
-                                // The dev bundle gets placed directly into the dev drop by webpack,
-                                // because this allows for a more optimized watch:build.
-                                cwd: path.resolve(extensionPath, 'prodBundle'),
-                                src: ['*.js', '*.js.map'],
-                                dest: path.resolve(dropExtensionPath, 'bundle'),
-                                expand: true,
-                            },
-                        ],
-                    },
-                },
-            });
-        }
     });
 
     grunt.loadNpmTasks('grunt-bom-removal');
@@ -303,7 +290,9 @@ module.exports = function(grunt) {
 
     grunt.registerMultiTask('drop', function() {
         const debug = this.data.debug;
-        if (!debug) {
+        if (debug) {
+            mustExist('extension/devBundle/background.bundle.js', 'Have you run webpack?');
+        } else {
             mustExist('extension/prodBundle/background.bundle.js', 'Have you run webpack?');
         }
         const targetName = this.target;
