@@ -115,14 +115,6 @@ export class DrawerProvider {
     }
 
     private createDrawer(containerClass: string, formatter: IFormatter): IDrawer {
-        return new Drawer(
-            this.dom,
-            containerClass,
-            this.windowUtils,
-            this.shadowUtils,
-            this.drawerUtils,
-            this.clientUtils,
-            formatter,
-        );
+        return new Drawer(this.dom, containerClass, this.windowUtils, this.shadowUtils, this.drawerUtils, this.clientUtils, formatter);
     }
 }

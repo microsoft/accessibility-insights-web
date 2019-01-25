@@ -54,15 +54,27 @@ export class WindowInitializer {
         this.clientUtils = new ClientUtils(window);
         this.scannerUtils = new ScannerUtils(scan);
 
-        this.shadowInitializer = new ShadowInitializer(this.clientChromeAdapter, htmlElementUtils, new FileRequestHelper(xmlHttpRequestFactory));
+        this.shadowInitializer = new ShadowInitializer(
+            this.clientChromeAdapter,
+            htmlElementUtils,
+            new FileRequestHelper(xmlHttpRequestFactory),
+        );
         asyncInitializationSteps.push(this.shadowInitializer.initialize());
 
         this.visualizationConfigurationFactory = new VisualizationConfigurationFactory();
 
-        const windowMessageHandler = new WindowMessageHandler(this.windowUtils, new WindowMessageMarshaller(this.clientChromeAdapter, generateUID));
+        const windowMessageHandler = new WindowMessageHandler(
+            this.windowUtils,
+            new WindowMessageMarshaller(this.clientChromeAdapter, generateUID),
+        );
         this.frameCommunicator = new FrameCommunicator(windowMessageHandler, htmlElementUtils, this.windowUtils, Q);
         this.tabStopsListener = new TabStopsListener(this.frameCommunicator, this.windowUtils, htmlElementUtils, this.scannerUtils);
-        this.instanceVisibilityChecker = new InstanceVisibilityChecker(this.clientChromeAdapter.sendMessageToFrames, this.windowUtils, htmlElementUtils, this.visualizationConfigurationFactory);
+        this.instanceVisibilityChecker = new InstanceVisibilityChecker(
+            this.clientChromeAdapter.sendMessageToFrames,
+            this.windowUtils,
+            htmlElementUtils,
+            this.visualizationConfigurationFactory,
+        );
         const drawerProvider = new DrawerProvider(
             this.windowUtils,
             new ShadowUtils(new HTMLElementUtils()),
@@ -72,7 +84,15 @@ export class WindowInitializer {
             this.frameCommunicator,
             this.clientChromeAdapter,
         );
-        this.drawingController = new DrawingController(this.frameCommunicator, this.instanceVisibilityChecker, new HtmlElementAxeResultsHelper(htmlElementUtils), htmlElementUtils, this.visualizationConfigurationFactory, drawerProvider, Assessments);
+        this.drawingController = new DrawingController(
+            this.frameCommunicator,
+            this.instanceVisibilityChecker,
+            new HtmlElementAxeResultsHelper(htmlElementUtils),
+            htmlElementUtils,
+            this.visualizationConfigurationFactory,
+            drawerProvider,
+            Assessments,
+        );
         this.scrollingController = new ScrollingController(this.frameCommunicator, htmlElementUtils);
         this.frameUrlFinder = new FrameUrlFinder(this.frameCommunicator, this.windowUtils, htmlElementUtils);
         windowMessageHandler.initialize();
@@ -85,7 +105,13 @@ export class WindowInitializer {
         const port = this.clientChromeAdapter.connect();
         port.onDisconnect.addListener(this.dispose);
 
-        this.elementFinderByPosition = new ElementFinderByPosition(this.frameCommunicator, this.clientUtils, this.scannerUtils, Q, document);
+        this.elementFinderByPosition = new ElementFinderByPosition(
+            this.frameCommunicator,
+            this.clientUtils,
+            this.scannerUtils,
+            Q,
+            document,
+        );
         this.elementFinderByPosition.initialize();
 
         await Promise.all(asyncInitializationSteps);

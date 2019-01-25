@@ -112,7 +112,7 @@ header {
     }
 }
 
-.instance-pair-details>td {
+.instance-pair-details > td {
     padding-bottom: 8px;
     line-height: 16px;
 }
@@ -151,7 +151,6 @@ header {
     padding-left: 8px;
 }
 
-
 .report-footer {
     font-size: 14px;
     font-family: Segoe UI;
@@ -168,7 +167,8 @@ header {
     text-decoration: none;
 }
 
-.ms-Link, .link {
+.ms-Link,
+.link {
     color: $communication-shade-10;
     &:hover {
         color: $communication-shade-30;
@@ -176,7 +176,8 @@ header {
 }
 
 @media print {
-    .ms-Link, .link {
+    .ms-Link,
+    .link {
         text-decoration: none;
         color: $primary-text;
     }

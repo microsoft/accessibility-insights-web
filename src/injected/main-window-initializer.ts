@@ -62,42 +62,48 @@ export class MainWindowInitializer extends WindowInitializer {
         asyncInitializationSteps.push(super.initialize());
 
         this.visualizationStoreProxy = new StoreProxy<IVisualizationStoreData>(
-            StoreNames[StoreNames.VisualizationStore], this.clientChromeAdapter);
-        this.scopingStoreProxy = new StoreProxy<IScopingStoreData>(
-            StoreNames[StoreNames.ScopingPanelStateStore], this.clientChromeAdapter);
+            StoreNames[StoreNames.VisualizationStore],
+            this.clientChromeAdapter,
+        );
+        this.scopingStoreProxy = new StoreProxy<IScopingStoreData>(StoreNames[StoreNames.ScopingPanelStateStore], this.clientChromeAdapter);
         this.featureFlagStoreProxy = new StoreProxy<FeatureFlagStoreData>(
-            StoreNames[StoreNames.FeatureFlagStore], this.clientChromeAdapter);
+            StoreNames[StoreNames.FeatureFlagStore],
+            this.clientChromeAdapter,
+        );
         this.visualizationScanResultStoreProxy = new StoreProxy<IVisualizationScanResultData>(
-            StoreNames[StoreNames.VisualizationScanResultStore], this.clientChromeAdapter);
-        this.assessmentStoreProxy = new StoreProxy<IAssessmentStoreData>(
-            StoreNames[StoreNames.AssessmentStore], this.clientChromeAdapter);
+            StoreNames[StoreNames.VisualizationScanResultStore],
+            this.clientChromeAdapter,
+        );
+        this.assessmentStoreProxy = new StoreProxy<IAssessmentStoreData>(StoreNames[StoreNames.AssessmentStore], this.clientChromeAdapter);
         this.tabStoreProxy = new StoreProxy<ITabStoreData>(StoreNames[StoreNames.TabStore], this.clientChromeAdapter);
         this.devToolStoreProxy = new StoreProxy<DevToolState>(StoreNames[StoreNames.DevToolsStore], this.clientChromeAdapter);
         this.inspectStoreProxy = new StoreProxy<IInspectStoreData>(StoreNames[StoreNames.InspectStore], this.clientChromeAdapter);
 
-        const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(
-            this.clientChromeAdapter.sendMessageToFrames,
-            null,
-        );
+        const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(this.clientChromeAdapter.sendMessageToFrames, null);
 
         const storeActionMessageCreator = storeActionMessageCreatorFactory.forInjected();
         storeActionMessageCreator.getAllStates();
 
         const telemetryDataFactory = new TelemetryDataFactory();
         const devToolActionMessageCreator = new DevToolActionMessageCreator(
-            this.clientChromeAdapter.sendMessageToFrames, null, telemetryDataFactory);
-        const targetPageActionMessageCreator = new TargetPageActionMessageCreator(
-            this.clientChromeAdapter.sendMessageToFrames, null, telemetryDataFactory);
-        MainWindowContext.initialize(
-            this.devToolStoreProxy,
-            devToolActionMessageCreator,
-            targetPageActionMessageCreator,
+            this.clientChromeAdapter.sendMessageToFrames,
+            null,
+            telemetryDataFactory,
         );
+        const targetPageActionMessageCreator = new TargetPageActionMessageCreator(
+            this.clientChromeAdapter.sendMessageToFrames,
+            null,
+            telemetryDataFactory,
+        );
+        MainWindowContext.initialize(this.devToolStoreProxy, devToolActionMessageCreator, targetPageActionMessageCreator);
 
         const drawingInitiator = new DrawingInitiator(this.drawingController);
         const selectorMapHelper = new SelectorMapHelper(this.visualizationScanResultStoreProxy, this.assessmentStoreProxy, Assessments);
         const frameUrlMessageDispatcher = new FrameUrlMessageDispatcher(
-            devToolActionMessageCreator, this.frameUrlFinder, this.frameCommunicator);
+            devToolActionMessageCreator,
+            this.frameUrlFinder,
+            this.frameCommunicator,
+        );
         frameUrlMessageDispatcher.initialize();
 
         this.clientViewController = new ClientViewController(

@@ -35,8 +35,7 @@ export const outcomeTypeSemantics: { [OT in OutcomeType]: OutcomeTypeSemantic } 
 export type OutcomeStats = { [OT in OutcomeType]: number };
 
 export function outcomeStatsFromManualTestStatus(testStepStatus: IManualTestStatus): OutcomeStats {
-    const outcomeTypeSet = values(testStepStatus)
-        .map(s => outcomeTypeFromTestStatus(s.stepFinalResult));
+    const outcomeTypeSet = values(testStepStatus).map(s => outcomeTypeFromTestStatus(s.stepFinalResult));
     const stats = countBy(outcomeTypeSet) as OutcomeStats;
     stats.pass = stats.pass || 0;
     stats.incomplete = stats.incomplete || 0;

@@ -22,15 +22,25 @@ export class LaunchPadRowConfigurationFactory {
             iconName: 'Rocket',
             title: 'FastPass',
             description: 'Run two tests before check-in to find 25% of accessibility issues in less than 5 minutes.',
-            onClickTitle: event => actionMessageCreator.openDetailsView(
-                event, VisualizationType.Issues, TelemetryEventSource.LaunchPadFastPass, DetailsViewPivotType.fastPass),
+            onClickTitle: event =>
+                actionMessageCreator.openDetailsView(
+                    event,
+                    VisualizationType.Issues,
+                    TelemetryEventSource.LaunchPadFastPass,
+                    DetailsViewPivotType.fastPass,
+                ),
         };
         const allTestRowConfig = {
             iconName: 'testBeaker',
             title: 'All available tests',
             description: 'Walk through a guided process for assessing accessibility compliance.',
-            onClickTitle: event => actionMessageCreator.openDetailsView(
-                event, VisualizationType.Issues, TelemetryEventSource.LaunchPadAllTests, DetailsViewPivotType.allTest),
+            onClickTitle: event =>
+                actionMessageCreator.openDetailsView(
+                    event,
+                    VisualizationType.Issues,
+                    TelemetryEventSource.LaunchPadAllTests,
+                    DetailsViewPivotType.allTest,
+                ),
         };
         const adhocRowConfig = {
             iconName: 'Medical',
@@ -42,16 +52,17 @@ export class LaunchPadRowConfigurationFactory {
             iconName: 'testBeaker',
             title: 'Assessment',
             description: 'Walk through a guided process for assessing accessibility compliance.',
-            onClickTitle: event => actionMessageCreator.openDetailsView(
-                event, null, TelemetryEventSource.LaunchPadAssessment, DetailsViewPivotType.assessment),
+            onClickTitle: event =>
+                actionMessageCreator.openDetailsView(
+                    event,
+                    null,
+                    TelemetryEventSource.LaunchPadAssessment,
+                    DetailsViewPivotType.assessment,
+                ),
         };
-        const configForAssessmentDisabled: LaunchPadRowConfiguration[] = [
-            fastPassRowConfig, allTestRowConfig, adhocRowConfig,
-        ];
+        const configForAssessmentDisabled: LaunchPadRowConfiguration[] = [fastPassRowConfig, allTestRowConfig, adhocRowConfig];
 
-        const configForAssessmentEnabled: LaunchPadRowConfiguration[] = [
-            fastPassRowConfig, assessmentRowConfig, adhocRowConfig,
-        ];
+        const configForAssessmentEnabled: LaunchPadRowConfiguration[] = [fastPassRowConfig, assessmentRowConfig, adhocRowConfig];
 
         return isNewAssessmentExperienceEnabled ? configForAssessmentEnabled : configForAssessmentDisabled;
     }

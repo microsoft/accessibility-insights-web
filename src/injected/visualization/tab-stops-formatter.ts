@@ -76,5 +76,7 @@ export class TabStopsFormatter implements IFormatter {
         return TabStopsFormatter.ELLIPSE_RX_CALCULATOR_OFFSET + TabStopsFormatter.ELLIPSE_RX_CALCULATOR_SLOPE * value;
     }
 
-    public getDialogRenderer() { return null; }
+    public getDialogRenderer() {
+        return null;
+    }
 }

@@ -52,8 +52,7 @@ export class TabStopsListener {
     public setTabEventListenerOnMainWindow(callback: (tabbedItems: ITabStopEvent) => void): void {
         if (this.windowUtils.isTopWindow()) {
             this.tabEventListener = callback;
-        }
-        else {
+        } else {
             throw new Error('Tabstop Listener callback only supported on main window');
         }
     }
@@ -67,7 +66,12 @@ export class TabStopsListener {
     }
 
     @autobind
-    private onGetTabbedElements(tabStopEvent: ITabStopEvent, error: IErrorMessageContent, messageSourceWin: Window, responder?: FrameMessageResponseCallback): void {
+    private onGetTabbedElements(
+        tabStopEvent: ITabStopEvent,
+        error: IErrorMessageContent,
+        messageSourceWin: Window,
+        responder?: FrameMessageResponseCallback,
+    ): void {
         const messageSourceFrame = this.getFrameElementForWindow(messageSourceWin);
 
         if (messageSourceFrame != null) {
@@ -75,8 +79,7 @@ export class TabStopsListener {
             tabStopEvent.target.splice(0, 0, frameSelector);
 
             this.sendTabbedElements(tabStopEvent);
-        }
-        else {
+        } else {
             throw new Error('unable to get frame element for the tabbed element');
         }
     }
@@ -86,12 +89,10 @@ export class TabStopsListener {
         if (this.windowUtils.isTopWindow()) {
             if (this.tabEventListener) {
                 this.tabEventListener(tabStopEvent);
-            }
-            else {
+            } else {
                 throw new Error('Tab Listener not setup in main window');
             }
-        }
-        else {
+        } else {
             this.sendTabbedElementsToParent(tabStopEvent);
         }
     }

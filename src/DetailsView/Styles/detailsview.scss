@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import "../../common/styles/common.scss";
-@import "../../views/content/content.scss";
+@import '../../common/styles/common.scss';
+@import '../../views/content/content.scss';
 @import '../../DetailsView/reports/components/outcome.scss';
 @import '../../DetailsView/reports/components/assessment-report-header.scss';
 @import '../../DetailsView/reports/components/assessment-report-summary.scss';
@@ -159,7 +159,7 @@ div.insights-dialog-main-override {
                     border-bottom: solid $neutral-20 1px;
                 }
 
-                .ms-List-cell+.ms-List-cell {
+                .ms-List-cell + .ms-List-cell {
                     border-top: solid $neutral-20 1px;
                 }
 
@@ -255,7 +255,7 @@ div.insights-dialog-main-override {
             }
         }
 
-        .preview-feature-toggle-container+.preview-feature-toggle-container {
+        .preview-feature-toggle-container + .preview-feature-toggle-container {
             margin-top: 4vh;
         }
     }
@@ -299,13 +299,13 @@ div.insights-dialog-main-override {
 
     .ms-DetailsHeader {
         .content-header {
-            >span:first-of-type {
+            > span:first-of-type {
                 padding-left: 5px;
             }
         }
 
-        .content-header  ~ .content-header  {
-            >span:first-of-type {
+        .content-header ~ .content-header {
+            > span:first-of-type {
                 padding-left: 0px;
             }
         }
@@ -423,7 +423,7 @@ div.insights-dialog-main-override {
         flex-grow: 1;
 
         .details-view-nav-pivots {
-            >:first-child {
+            > :first-child {
                 height: $detailsViewNavPivotsHeight;
             }
 
@@ -566,7 +566,7 @@ div.insights-dialog-main-override {
                 }
 
                 .test-step-instructions {
-                    font-family: "Segoe UI", Tahoma, sans-serif;
+                    font-family: 'Segoe UI', Tahoma, sans-serif;
 
                     p,
                     ol,
@@ -614,7 +614,7 @@ div.insights-dialog-main-override {
                 }
 
                 .test-instance-selected {
-                    padding : 2px;
+                    padding: 2px;
                     color: $neutral-0;
                 }
 
@@ -630,7 +630,7 @@ div.insights-dialog-main-override {
                 .master-visualization-column-header-selected {
                     background-color: $communication-primary;
                     color: $neutral-0;
-                    display: inline
+                    display: inline;
                 }
 
                 .test-instance-selected-hidden-button {
@@ -644,7 +644,7 @@ div.insights-dialog-main-override {
                     font-size: 14px;
                     line-height: 24px;
 
-                    *+*.property-bag-div {
+                    * + *.property-bag-div {
                         margin-top: 4px;
                     }
 
@@ -717,15 +717,17 @@ div.insights-dialog-main-override {
 
                 .PASS {
                     .ms-ChoiceField:nth-of-type(1) {
-                        .ms-ChoiceField-field::before, .ms-ChoiceField-field::after {
+                        .ms-ChoiceField-field::before,
+                        .ms-ChoiceField-field::after {
                             border-color: $positive-outcome;
                         }
                     }
                 }
-    
+
                 .FAIL {
                     .ms-ChoiceField:nth-of-type(2) {
-                        .ms-ChoiceField-field::before, .ms-ChoiceField-field::after {
+                        .ms-ChoiceField-field::before,
+                        .ms-ChoiceField-field::after {
                             border-color: $negative-outcome;
                         }
                     }
@@ -916,7 +918,7 @@ div.insights-dialog-main-override {
             padding-bottom: 1px;
             overflow: auto;
 
-            >div {
+            > div {
                 min-width: 600px;
                 height: auto;
             }
@@ -925,7 +927,7 @@ div.insights-dialog-main-override {
                 background-color: $communication-tint-40;
 
                 .ms-MessageBar-icon {
-                    color: $communication-shade-10
+                    color: $communication-shade-10;
                 }
 
                 .ms-link {
@@ -956,7 +958,7 @@ div.insights-dialog-main-override {
                 }
 
                 .target-page-link {
-                    font-family: "Segoe UI", Tahoma, sans-serif;
+                    font-family: 'Segoe UI', Tahoma, sans-serif;
                 }
             }
 
@@ -979,13 +981,13 @@ div.insights-dialog-main-override {
                     display: flex;
                     flex-direction: column;
 
-                    >h1,
+                    > h1,
                     .details-view-toggle,
                     .details-disabled-message {
                         margin-left: 24px;
                     }
 
-                    >div {
+                    > div {
                         height: 100%;
                         display: flex;
                         flex-direction: column;
@@ -1055,7 +1057,7 @@ div.insights-dialog-main-override {
                     height: 60%;
                     min-height: 150px;
 
-                    >.ms-Viewport {
+                    > .ms-Viewport {
                         display: flex;
                         height: 100%;
                         width: 100%;
@@ -1262,11 +1264,11 @@ div.insights-dialog-main-override {
                     overflow-x: auto;
                     overflow-y: auto;
 
-                    >[role=grid] {
+                    > [role='grid'] {
                         width: 100%;
                         min-width: fit-content;
 
-                        >[role=presentation]:nth-child(2) {
+                        > [role='presentation']:nth-child(2) {
                             min-width: fit-content;
                         }
                     }
@@ -1441,7 +1443,7 @@ div.insights-dialog-main-override {
                     height: 40%;
                     min-height: 150px;
 
-                    >div {
+                    > div {
                         border-top: 1px solid $neutral-8;
                     }
 
@@ -1463,7 +1465,7 @@ div.insights-dialog-main-override {
                         padding: 0;
                         border-collapse: collapse;
 
-                        tr>td {
+                        tr > td {
                             border-bottom: 1px solid $neutral-8;
                             padding-top: 10px;
                             padding-bottom: 10px;
@@ -1472,11 +1474,11 @@ div.insights-dialog-main-override {
                             font-size: 14px;
                         }
 
-                        tr>td:first-child {
+                        tr > td:first-child {
                             width: 100px;
                         }
 
-                        tr:last-child>td {
+                        tr:last-child > td {
                             border-bottom: none;
                         }
 
@@ -1490,7 +1492,7 @@ div.insights-dialog-main-override {
                             font-size: 12px;
                         }
 
-                        .fix-content>div:nth-child(2) {
+                        .fix-content > div:nth-child(2) {
                             margin-top: 6px;
                         }
 
@@ -1544,7 +1546,7 @@ div.insights-dialog-main-override {
                                 font-size: 17px;
                                 margin: 0px 0px 21px 0px;
                                 padding: 0;
-                            };
+                            }
                         }
                     }
 
@@ -1578,7 +1580,7 @@ div.insights-dialog-main-override {
 }
 
 .table.row-layout {
-    flex-direction: row
+    flex-direction: row;
 }
 
 .table.column-layout {

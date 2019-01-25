@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 export type InsightsConfiguration = {
-    options: InsightsConfigurationOptions,
+    options: InsightsConfigurationOptions;
 };
 export type InsightsConfigurationOptions = {
-    extensionFullName?: string,
-    icon16?: string,
-    icon48?: string,
-    icon128?: string,
-    appInsightsInstrumentationKey?: string,
-    emailHelpAlias?: string,
-    bundled?: string,
-    telemetryBuildName?: string,
+    extensionFullName?: string;
+    icon16?: string;
+    icon48?: string;
+    icon128?: string;
+    appInsightsInstrumentationKey?: string;
+    emailHelpAlias?: string;
+    bundled?: string;
+    telemetryBuildName?: string;
 };

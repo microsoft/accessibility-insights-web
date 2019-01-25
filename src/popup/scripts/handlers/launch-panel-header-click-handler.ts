@@ -6,7 +6,6 @@ import * as React from 'react';
 import { LaunchPanelHeader } from '../components/launch-panel-header';
 
 export class LaunchPanelHeaderClickHandler {
-
     public onClickLink(popupWindow: Window, ev?: React.MouseEvent<HTMLElement>, item?: IContextualMenuItem): void {
         if (item == null) {
             return;

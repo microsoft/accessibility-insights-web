@@ -7,13 +7,13 @@ import { BaseActionMessageCreator } from './base-action-message-creator';
 export class UserConfigMessageCreator extends BaseActionMessageCreator {
     public setTelemetryState(enableTelemetry: boolean): void {
         const payload: SetTelemetryStatePayload = {
-          enableTelemetry,
+            enableTelemetry,
         };
 
         this.dispatchMessage({
-          type: Messages.UserConfig.SetUserConfig,
-          tabId: this._tabId,
-          payload,
+            type: Messages.UserConfig.SetUserConfig,
+            tabId: this._tabId,
+            payload,
         });
-      }
+    }
 }

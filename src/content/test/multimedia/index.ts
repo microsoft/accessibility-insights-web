@@ -7,7 +7,7 @@ import * as noConflict from './no-conflict';
 import * as noObstruction from './no-obstruction';
 import * as synchronization from './synchronization';
 
-export const multimedia  = {
+export const multimedia = {
     guidance,
     captions,
     audioDescription,

@@ -23,7 +23,7 @@ export class ColorDrawer implements IDrawer {
         this.eraseLayout();
         const elementResults = drawerInfo.data;
         const myDocument = this.drawerUtils.getDocumentElement();
-        this.clientBody = elementResults[0] ? myDocument.querySelector(elementResults[0].target[0]) as HTMLElement : null;
+        this.clientBody = elementResults[0] ? (myDocument.querySelector(elementResults[0].target[0]) as HTMLElement) : null;
     }
 
     public drawLayout(): void {
@@ -46,5 +46,4 @@ export class ColorDrawer implements IDrawer {
     public get isOverlayEnabled(): boolean {
         return this.isEnabled;
     }
-
 }

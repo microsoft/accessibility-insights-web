@@ -46,7 +46,7 @@ export interface IAssesssmentVisualizationConfiguration {
     setAssessmentData?: (data: IAssessmentStoreData, selectorMap: IDictionaryStringTo<any>, instanceMap?: IDictionaryStringTo<any>) => void;
     analyzerMessageType: string;
     analyzerProgressMessageType?: string;
-    resultProcessor?: (scanner: ScannerUtils) => ((results: ScanResults) => IDictionaryStringTo<IHtmlElementAxeResults>);
+    resultProcessor?: (scanner: ScannerUtils) => (results: ScanResults) => IDictionaryStringTo<IHtmlElementAxeResults>;
     telemetryProcessor?: TelemetryProcessor<IAnalyzerTelemetryCallback>;
     getAnalyzer: (analyzerProvider: AnalyzerProvider, testStep?: string) => IAnalyzer<any>;
     getIdentifier: (testStep?: string) => string;

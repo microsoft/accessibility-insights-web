@@ -39,7 +39,8 @@ export function getAllFeatureFlagDetails(): IFeatureFlagDetail[] {
             id: FeatureFlags.shadowDialog,
             defaultValue: false,
             displayableName: 'Improved dialog styling',
-            displayableDescription: 'Avoids styling problems in failure dialogs by rendering them in shadow DOM. ' +
+            displayableDescription:
+                'Avoids styling problems in failure dialogs by rendering them in shadow DOM. ' +
                 "(You'll need to refresh the target page to see the new dialog styling.)",
             isPreviewFeature: true,
             forceDefault: false,
@@ -96,7 +97,8 @@ export function getAllFeatureFlagDetails(): IFeatureFlagDetail[] {
             id: FeatureFlags.showInstanceVisibility,
             defaultValue: false,
             displayableName: 'Show instance visibility in assessment',
-            displayableDescription: 'Shows visibility of instances in assessment requirement lists. May impact performance. ' +
+            displayableDescription:
+                'Shows visibility of instances in assessment requirement lists. May impact performance. ' +
                 "(You'll need to go to a different requirement and come back for it to take effect.)",
             isPreviewFeature: false,
             forceDefault: false,

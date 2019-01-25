@@ -64,8 +64,7 @@ export class SVGDrawerV2 extends BaseDrawer {
             if (diffFound || this.shouldRedraw(oldStateElement, newStateElement, pos)) {
                 diffFound = true;
                 this.tabbedElements[pos] = this.getNewTabbedElement(oldStateElement, newStateElement, pos, dom);
-            }
-            else {
+            } else {
                 this.tabbedElements[pos].shouldRedraw = false;
             }
         }
@@ -217,9 +216,7 @@ export class SVGDrawerV2 extends BaseDrawer {
             return null;
         }
 
-        const prevElementPos = this.centerPositionCalculator.getElementCenterPosition(
-            this.tabbedElements[curElementIndex - 1].element,
-        );
+        const prevElementPos = this.centerPositionCalculator.getElementCenterPosition(this.tabbedElements[curElementIndex - 1].element);
 
         if (prevElementPos == null) {
             return null;
@@ -241,8 +238,7 @@ export class SVGDrawerV2 extends BaseDrawer {
 
     private shouldBreakGraph(curElementIndex: number): boolean {
         return (
-            curElementIndex === 0 ||
-            this.tabbedElements[curElementIndex - 1].tabOrder !== this.tabbedElements[curElementIndex].tabOrder - 1
+            curElementIndex === 0 || this.tabbedElements[curElementIndex - 1].tabOrder !== this.tabbedElements[curElementIndex].tabOrder - 1
         );
     }
 

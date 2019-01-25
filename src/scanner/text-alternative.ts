@@ -40,4 +40,3 @@ function evaluateTextAlternative(node: HTMLElement): boolean {
 
     return true;
 }
-

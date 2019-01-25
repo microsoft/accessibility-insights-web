@@ -37,11 +37,7 @@ export class ClientUtils {
     }
 
     public matchesSelector(element: IElementMatcher, selectorString: string) {
-        const selector = (
-            element.matches ||
-            element.webkitMatchesSelector ||
-            element.msMatchesSelector)
-        .bind(element);
+        const selector = (element.matches || element.webkitMatchesSelector || element.msMatchesSelector).bind(element);
 
         return selector(selectorString);
     }

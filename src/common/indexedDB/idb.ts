@@ -16,7 +16,7 @@ export class Store {
         });
     }
 
-    public _withIDBStore(type: IDBTransactionMode, callback: ((store: IDBObjectStore) => void)): Promise<void> {
+    public _withIDBStore(type: IDBTransactionMode, callback: (store: IDBObjectStore) => void): Promise<void> {
         return this._dbp.then(
             db =>
                 new Promise<void>((resolve, reject) => {
@@ -66,7 +66,7 @@ export function keys(defaultStore = getDefaultStore()): Promise<IDBValidKey[]> {
         ._withIDBStore('readonly', (s: any) => {
             s.getAllKeys().onsuccess = function(event) {
                 keyArray = event.target.result;
-              };
+            };
         })
         .then(() => keyArray);
 }

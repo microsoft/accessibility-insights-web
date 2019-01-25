@@ -5,13 +5,11 @@ import { TestStepInstance } from '../../common/types/store-data/iassessment-resu
 import { IPropertyBagColumnRendererConfig } from '../common/property-bag-column-renderer';
 
 export type ReportInstanceField = {
-    key: string,
-    label: string,
-    getValue: (instance: Partial<TestStepInstance>) => ColumnValue,
+    key: string;
+    label: string;
+    getValue: (instance: Partial<TestStepInstance>) => ColumnValue;
 };
-export type ReportInstanceFieldMap = {
-    [KEY in string]?: ReportInstanceField;
-};
+export type ReportInstanceFieldMap = { [KEY in string]?: ReportInstanceField };
 
 export type ReportInstanceFields = ReportInstanceField[];
 
@@ -61,16 +59,9 @@ function isValid(value: ColumnValue): ColumnValue {
 }
 
 function fromColumns<T extends ColumnValueBag>(cfg: IPropertyBagColumnRendererConfig<T>[]) {
-
     return cfg.map(fromColumnConfig);
 
-    function fromColumnConfig({
-        propertyName,
-        defaultValue,
-        displayName,
-    }: IPropertyBagColumnRendererConfig<T>): ReportInstanceField {
-
-
+    function fromColumnConfig({ propertyName, defaultValue, displayName }: IPropertyBagColumnRendererConfig<T>): ReportInstanceField {
         const getValue = (inst: HasPropertyBag<T>) => {
             const value = inst.propertyBag && inst.propertyBag[propertyName];
             return isValid(value) ? value : defaultValue;

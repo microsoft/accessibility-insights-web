@@ -48,12 +48,10 @@ export class HtmlElementAxeResultsHelper {
                         elementResults: frameResults,
                         frame: iframe,
                     } as IFrameResult);
-                }
-                else {
+                } else {
                     console.log('unable to find frame to highlight', selectorKey);
                 }
-            }
-            else {
+            } else {
                 results.push({
                     elementResults: frameResults,
                     frame: null,
@@ -67,7 +65,9 @@ export class HtmlElementAxeResultsHelper {
     private addMissingFrameResults(frameResults: IFrameResult[]): void {
         const missingFrames: HTMLIFrameElement[] = [];
 
-        const allFramesIncludingCurrentFrames = Array.prototype.slice.call(this._htmlElementUtils.getAllElementsByTagName('iframe') as NodeListOf<HTMLIFrameElement>);
+        const allFramesIncludingCurrentFrames = Array.prototype.slice.call(this._htmlElementUtils.getAllElementsByTagName(
+            'iframe',
+        ) as NodeListOf<HTMLIFrameElement>);
         allFramesIncludingCurrentFrames.push(null); // current frame
 
         for (let framePos = 0; framePos < allFramesIncludingCurrentFrames.length; framePos++) {
@@ -106,13 +106,11 @@ export class HtmlElementAxeResultsHelper {
                 // current frame
                 elementResultsByFrame[''] = elementResultsByFrame[''] || [];
                 elementResultsByFrame[''].push(elementResult);
-            }
-            else if (targetLength > elementResult.targetIndex + 1) {
+            } else if (targetLength > elementResult.targetIndex + 1) {
                 const frameSelector = elementResult.target[elementResult.targetIndex++];
                 elementResultsByFrame[frameSelector] = elementResultsByFrame[frameSelector] || [];
                 elementResultsByFrame[frameSelector].push(elementResult);
-            }
-            else {
+            } else {
                 console.log('Unable to find selector for result ', elementResult);
             }
         }

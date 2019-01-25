@@ -16,85 +16,78 @@ import { LaunchPanelType } from '../components/popup-view';
 const visualizationMessages = Messages.Visualizations;
 
 export class PopupActionMessageCreator extends BaseActionMessageCreator {
-  private telemetryFactory: TelemetryDataFactory;
-  private windowUtils: WindowUtils;
+    private telemetryFactory: TelemetryDataFactory;
+    private windowUtils: WindowUtils;
 
-  constructor(
-    postMessage: (message: IMessage) => void,
-    tabId: number,
-    telemetryFactory: TelemetryDataFactory,
-    windowUtils?: WindowUtils,
-  ) {
-    super(postMessage, tabId);
-    this.telemetryFactory = telemetryFactory;
-    this.windowUtils = windowUtils || new WindowUtils();
-  }
+    constructor(
+        postMessage: (message: IMessage) => void,
+        tabId: number,
+        telemetryFactory: TelemetryDataFactory,
+        windowUtils?: WindowUtils,
+    ) {
+        super(postMessage, tabId);
+        this.telemetryFactory = telemetryFactory;
+        this.windowUtils = windowUtils || new WindowUtils();
+    }
 
-  public openTutorial(event: React.MouseEvent<HTMLElement>): void {
-    this.sendTelemetry(
-      TelemetryEvents.TUTORIAL_OPEN,
-      this.telemetryFactory.fromLaunchPad(event),
-    );
-  }
+    public openTutorial(event: React.MouseEvent<HTMLElement>): void {
+        this.sendTelemetry(TelemetryEvents.TUTORIAL_OPEN, this.telemetryFactory.fromLaunchPad(event));
+    }
 
-  public popupInitialized(): void {
-    this.sendTelemetryExcludingUrl(TelemetryEvents.POPUP_INITIALIZED, {
-      source: TelemetryEventSource.LaunchPad,
-    });
-  }
+    public popupInitialized(): void {
+        this.sendTelemetryExcludingUrl(TelemetryEvents.POPUP_INITIALIZED, {
+            source: TelemetryEventSource.LaunchPad,
+        });
+    }
 
-  public openLaunchPad(panelType: LaunchPanelType): void {
-    this.sendTelemetryExcludingUrl(TelemetryEvents.LAUNCH_PANEL_OPEN, {
-      source: TelemetryEventSource.LaunchPad,
-      launchPanelType: panelType,
-    });
-  }
+    public openLaunchPad(panelType: LaunchPanelType): void {
+        this.sendTelemetryExcludingUrl(TelemetryEvents.LAUNCH_PANEL_OPEN, {
+            source: TelemetryEventSource.LaunchPad,
+            launchPanelType: panelType,
+        });
+    }
 
-  public openDetailsView(
-    event: React.SyntheticEvent<MouseEvent>,
-    viewType: VisualizationType,
-    source: TelemetryEventSource,
-    pivotType = DetailsViewPivotType.allTest,
-  ): void {
-    const payload: IOnDetailsViewOpenPayload = {
-      telemetry: this.telemetryFactory.forOpenDetailsView(
-        event,
-        viewType,
-        source,
-      ),
-      detailsViewType: viewType,
-      pivotType: pivotType,
-    };
+    public openDetailsView(
+        event: React.SyntheticEvent<MouseEvent>,
+        viewType: VisualizationType,
+        source: TelemetryEventSource,
+        pivotType = DetailsViewPivotType.allTest,
+    ): void {
+        const payload: IOnDetailsViewOpenPayload = {
+            telemetry: this.telemetryFactory.forOpenDetailsView(event, viewType, source),
+            detailsViewType: viewType,
+            pivotType: pivotType,
+        };
 
-    this.dispatchMessage({
-      type: visualizationMessages.DetailsView.Open,
-      tabId: this._tabId,
-      payload: payload,
-    });
+        this.dispatchMessage({
+            type: visualizationMessages.DetailsView.Open,
+            tabId: this._tabId,
+            payload: payload,
+        });
 
-    this.windowUtils.closeWindow();
-  }
+        this.windowUtils.closeWindow();
+    }
 
-  public openShortcutConfigureTab(event: React.MouseEvent<HTMLElement>): void {
-    const telemetry = this.telemetryFactory.fromHamburgetMenu(event);
-    const payload: BaseActionPayload = {
-      telemetry,
-    };
-    this.dispatchMessage({
-      type: Messages.ChromeFeature.configureCommand,
-      tabId: this._tabId,
-      payload,
-    });
-  }
+    public openShortcutConfigureTab(event: React.MouseEvent<HTMLElement>): void {
+        const telemetry = this.telemetryFactory.fromHamburgetMenu(event);
+        const payload: BaseActionPayload = {
+            telemetry,
+        };
+        this.dispatchMessage({
+            type: Messages.ChromeFeature.configureCommand,
+            tabId: this._tabId,
+            payload,
+        });
+    }
 
-  public setLaunchPanelType(type: LaunchPanelType): void {
-    const payload: ISetLaunchPanelState = {
-      launchPanelType: type,
-    };
-    this.dispatchMessage({
-      type: Messages.LaunchPanel.Set,
-      tabId: this._tabId,
-      payload,
-    });
-  }
+    public setLaunchPanelType(type: LaunchPanelType): void {
+        const payload: ISetLaunchPanelState = {
+            launchPanelType: type,
+        };
+        this.dispatchMessage({
+            type: Messages.LaunchPanel.Set,
+            tabId: this._tabId,
+            payload,
+        });
+    }
 }

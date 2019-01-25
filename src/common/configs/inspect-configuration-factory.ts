@@ -7,8 +7,6 @@ import { ScopingInputTypes } from '../../background/scoping-input-types';
 import { ScopingActionMessageCreator } from '../message-creators/scoping-action-message-creator';
 import { ISingleElementSelector } from '../types/store-data/scoping-store-data';
 
-
-
 export type IInspectCallback = (event: MouseEvent, selector: ISingleElementSelector) => void;
 
 export class InspectConfigurationFactory {
@@ -22,8 +20,8 @@ export class InspectConfigurationFactory {
         [InspectMode.scopingAddExclude]: this.addExcludeSelector,
     };
 
-    public getConfigurationByKey(key: string): ((event: MouseEvent, selector: string[]) => void) {
-        const configuration =  this.configurationByType[key];
+    public getConfigurationByKey(key: string): (event: MouseEvent, selector: string[]) => void {
+        const configuration = this.configurationByType[key];
         if (configuration == null) {
             throw new Error(`Unsupported type: ${key}`);
         }
@@ -37,6 +35,6 @@ export class InspectConfigurationFactory {
 
     @autobind
     private addExcludeSelector(event: MouseEvent, selector: string[]): void {
-       this.scopingActionMessageCreator.addSelector(event, ScopingInputTypes.exclude, selector);
+        this.scopingActionMessageCreator.addSelector(event, ScopingInputTypes.exclude, selector);
     }
 }

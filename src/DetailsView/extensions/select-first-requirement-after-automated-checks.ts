@@ -10,7 +10,6 @@ function isRunning(props: IAssessmentViewProps): boolean {
 }
 
 function onAssessmentViewUpdate(prevProps: IAssessmentViewProps, curProps: IAssessmentViewProps) {
-
     const { assessmentTestResult } = curProps;
     const prevIsRunning = isRunning(prevProps);
     const nowIsRunning = isRunning(curProps);
@@ -18,7 +17,8 @@ function onAssessmentViewUpdate(prevProps: IAssessmentViewProps, curProps: IAsse
         curProps.deps.detailsViewActionMessageCreator.selectTestStep(
             null,
             assessmentTestResult.getRequirementResults()[0].definition.key,
-            assessmentTestResult.type);
+            assessmentTestResult.type,
+        );
     }
 }
 
