@@ -25,19 +25,13 @@ export class GenericPanel extends React.Component<GenericPanelProps> {
                 className={css('generic-panel', this.props.className)}
                 isLightDismiss={true}
                 onDismiss={this.props.onDismiss}
-                onRenderHeader={this.renderHeader}
                 closeButtonAriaLabel={this.props.closeButtonAriaLabel}
                 hasCloseButton={this.props.hasCloseButton}
+                headerText={this.props.title}
+                headerClassName="header-text"
             >
                 {this.props.children}
             </Panel>
         );
-    }
-
-    @autobind
-    protected renderHeader(): JSX.Element {
-        return <div>
-            <h1 className="header-text">{this.props.title}</h1>
-        </div>;
     }
 }
