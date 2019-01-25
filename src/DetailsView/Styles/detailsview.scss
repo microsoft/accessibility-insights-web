@@ -96,14 +96,19 @@ div.insights-dialog-main-override {
     margin-right: auto;
     color: $neutral-100;
 
-    .header-text {
+    .ms-Panel-header {
         padding-left: 16px;
         padding-right: 16px;
     }
 
+    .ms-Panel-headerText {
+        color: $neutral-100;
+        font-size: 2em;
+    }
+
     @media (min-width: 768px) {
 
-        .header-text {
+        .ms-Panel-header {
             padding-left: 32px;
             padding-right: 32px;
         }
@@ -111,14 +116,10 @@ div.insights-dialog-main-override {
 
     @media (min-width: 1366px) {
 
-        .header-text {
+        .ms-Panel-header {
             padding-left: 40px;
             padding-right: 40px;
         }
-    }
-
-    .header-text {
-        font-weight: lighter;
     }
 
     /*
