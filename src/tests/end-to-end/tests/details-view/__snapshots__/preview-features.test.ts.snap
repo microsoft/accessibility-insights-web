@@ -44,12 +44,17 @@ exports[`Preview Features Panel should match content in snapshot 1`] = `
       <div
         class="ms-Panel-contentInner contentInner-000"
       >
-        <div>
-          <h1
-            class="header-text"
+        <div
+          class="ms-Panel-header header-000"
+        >
+          <p
+            aria-level="2"
+            class="ms-Panel-headerText headerText-000"
+            id="Panel11-headerText"
+            role="heading"
           >
             Preview features
-          </h1>
+          </p>
         </div>
         <div
           class="ms-Panel-scrollableContent scrollableContent-000"
