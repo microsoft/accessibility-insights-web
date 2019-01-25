@@ -32,25 +32,17 @@ describe('AppInsights telemetry client tests', () => {
         queue = [];
         aiConfig = {};
         configMutator.setOption('appInsightsInstrumentationKey', aiKey);
-        addTelemetryInitializerStrictMock = Mock.ofInstance(callback => { }, MockBehavior.Strict);
+        addTelemetryInitializerStrictMock = Mock.ofInstance(callback => {}, MockBehavior.Strict);
 
         loggerMock = Mock.ofType<TelemetryLogger>();
-        loggerMock
-            .setup(l => l.log(It.isAny()));
-
+        loggerMock.setup(l => l.log(It.isAny()));
 
         appInsightsStrictMock = Mock.ofType<Microsoft.ApplicationInsights.IAppInsights>(null, MockBehavior.Strict);
         coreTelemetryDataFactoryMock = Mock.ofType<ApplicationTelemetryDataFactory>();
 
-        coreTelemetryDataFactoryMock
-            .setup(c => c.getData())
-            .returns(() => _.cloneDeep(coreTelemetryData as any));
+        coreTelemetryDataFactoryMock.setup(c => c.getData()).returns(() => _.cloneDeep(coreTelemetryData as any));
 
-        testSubject = new AppInsightsTelemetryClient(
-            appInsightsStrictMock.object,
-            coreTelemetryDataFactoryMock.object,
-            loggerMock.object,
-        );
+        testSubject = new AppInsightsTelemetryClient(appInsightsStrictMock.object, coreTelemetryDataFactoryMock.object, loggerMock.object);
     });
 
     describe('enableTelemetry', () => {
@@ -112,7 +104,6 @@ describe('AppInsights telemetry client tests', () => {
             expect(aiConfig).toEqual({ disableTelemetry: false } as Microsoft.ApplicationInsights.IConfig);
         });
 
-
         test('do nothing if already enabled', () => {
             appInsightsStrictMock.setup(ai => ai.config).returns(() => aiConfig);
             invokeFirstEnableTelemetryCall();
@@ -149,7 +140,6 @@ describe('AppInsights telemetry client tests', () => {
             expect(aiConfig.disableTelemetry).toBe(true);
         });
 
-
         test('when initialization has completed (queue is null)', () => {
             invokeFirstEnableTelemetryCallWithCallbacks();
 
@@ -173,9 +163,7 @@ describe('AppInsights telemetry client tests', () => {
                 test: 'a',
             };
 
-            appInsightsStrictMock
-                .setup(ai => ai.trackEvent(eventName, eventObject))
-                .verifiable(Times.once());
+            appInsightsStrictMock.setup(ai => ai.trackEvent(eventName, eventObject)).verifiable(Times.once());
 
             testSubject.trackEvent(eventName, eventObject);
 
@@ -193,11 +181,9 @@ describe('AppInsights telemetry client tests', () => {
     });
 
     function verifyBaseDataProperties(extendedEnvelop: ExtendedEnvelop) {
-        expect(extendedEnvelop.data.baseData.properties)
-            .toMatchObject(coreTelemetryData);
+        expect(extendedEnvelop.data.baseData.properties).toMatchObject(coreTelemetryData);
 
-        expect(extendedEnvelop.data.baseData)
-            .toMatchObject(getEnvelopStub().data.baseData);
+        expect(extendedEnvelop.data.baseData).toMatchObject(getEnvelopStub().data.baseData);
     }
 
     function setupAddTelemetryInitializerCall() {
@@ -211,9 +197,9 @@ describe('AppInsights telemetry client tests', () => {
             )
             .returns(callback => {
                 addTelemetryInitializerCallback = callback;
-            }).verifiable(Times.once());
+            })
+            .verifiable(Times.once());
     }
-
 
     function getEnvelopStub(): ExtendedEnvelop {
         return {
@@ -228,9 +214,7 @@ describe('AppInsights telemetry client tests', () => {
     }
 
     function setupAppInsightsContext() {
-        appInsightsStrictMock
-            .setup(ai => ai.context)
-            .returns(() => getAppInsightsContext() as any);
+        appInsightsStrictMock.setup(ai => ai.context).returns(() => getAppInsightsContext() as any);
     }
 
     function getAppInsightsContext() {
@@ -250,7 +234,9 @@ describe('AppInsights telemetry client tests', () => {
                         instrumentationKey: aiKey,
                         disableTelemetry: true,
                         disableAjaxTracking: true,
-                    } as Microsoft.ApplicationInsights.IConfig)))
+                    } as Microsoft.ApplicationInsights.IConfig),
+                ),
+            )
             .verifiable(Times.once());
     }
 
@@ -291,4 +277,3 @@ describe('AppInsights telemetry client tests', () => {
         appInsightsStrictMock.setup(ai => ai.config).returns(() => aiConfig);
     }
 });
-

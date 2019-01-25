@@ -31,7 +31,13 @@ describe('ShadowInitializerTests', () => {
             .verifiable();
 
         docUtils
-            .setup(x => x.attachShadow(It.is(element => { return element.id === 'insights-shadow-host'; })))
+            .setup(x =>
+                x.attachShadow(
+                    It.is(element => {
+                        return element.id === 'insights-shadow-host';
+                    }),
+                ),
+            )
             .returns(() => shadowRoot)
             .verifiable();
 
@@ -55,13 +61,11 @@ describe('ShadowInitializerTests', () => {
             .returns(() => NodeListBuilder.createNodeList([oldContainerMock.object]))
             .verifiable();
 
-        oldContainerMock
-            .setup(x => x.remove())
-            .verifiable();
+        oldContainerMock.setup(x => x.remove()).verifiable();
 
         fileRequestHelperMock
             .setup(x => x.getFileContent(cssFileUrl))
-            .returns(async() => 'new style content')
+            .returns(async () => 'new style content')
             .verifiable(Times.once());
 
         await testSubject.initialize();

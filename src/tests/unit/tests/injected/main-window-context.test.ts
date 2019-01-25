@@ -7,13 +7,8 @@ describe('MainWindowContextTest', () => {
     const devToolActionMessageCreator: any = { name: 'devToolActionMessageCreator' };
     const targetPageActionMessageCreator: any = { name: 'targetPageActionMessageCreator' };
 
-
     test('save and retrieve from instance', () => {
-        const testSubject = new MainWindowContext(
-            devToolStore,
-            devToolActionMessageCreator,
-            targetPageActionMessageCreator,
-        );
+        const testSubject = new MainWindowContext(devToolStore, devToolActionMessageCreator, targetPageActionMessageCreator);
 
         expect(testSubject.getDevToolStore()).toEqual(devToolStore);
         expect(testSubject.getDevToolActionMessageCreator()).toEqual(devToolActionMessageCreator);
@@ -21,11 +16,7 @@ describe('MainWindowContextTest', () => {
     });
 
     test('save and retrieve from window', () => {
-        MainWindowContext.initialize(
-            devToolStore,
-            devToolActionMessageCreator,
-            targetPageActionMessageCreator,
-        );
+        MainWindowContext.initialize(devToolStore, devToolActionMessageCreator, targetPageActionMessageCreator);
 
         expect(MainWindowContext.get().getDevToolStore()).toEqual(devToolStore);
         expect(MainWindowContext.get().getDevToolActionMessageCreator()).toEqual(devToolActionMessageCreator);
@@ -33,11 +24,7 @@ describe('MainWindowContextTest', () => {
     });
 
     test('getIfNotGiven', () => {
-        MainWindowContext.initialize(
-            devToolStore,
-            devToolActionMessageCreator,
-            targetPageActionMessageCreator,
-        );
+        MainWindowContext.initialize(devToolStore, devToolActionMessageCreator, targetPageActionMessageCreator);
 
         const devToolStoreLocal: any = { name: 'devToolStoreLocal' };
         const devToolActionMessageCreatorLocal: any = { name: 'devToolActionMessageCreatorLocal' };

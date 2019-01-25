@@ -33,11 +33,9 @@ describe('link purpose', () => {
         );
 
         beforeEach(() => {
-            dataSetterMock = Mock.ofInstance(data => { });
-            getAccessibleTextMock.setup(m => m(It.isAny(), false))
-                .returns(_ => 'accessible-text');
-            getAccessibleDescriptionMock.setup(m => m(It.isAny()))
-                .returns(_ => 'accessible-description');
+            dataSetterMock = Mock.ofInstance(data => {});
+            getAccessibleTextMock.setup(m => m(It.isAny(), false)).returns(_ => 'accessible-text');
+            getAccessibleDescriptionMock.setup(m => m(It.isAny())).returns(_ => 'accessible-description');
         });
 
         it('get the right data', () => {
@@ -52,9 +50,7 @@ describe('link purpose', () => {
                 url,
             };
 
-            dataSetterMock
-                .setup(m => m(It.isValue(expectedData)))
-                .verifiable(Times.once());
+            dataSetterMock.setup(m => m(It.isValue(expectedData))).verifiable(Times.once());
 
             let result;
             GlobalScope.using(getAccessibleTextMock, getAccessibleDescriptionMock).with(() => {

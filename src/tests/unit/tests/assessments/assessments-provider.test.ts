@@ -6,7 +6,6 @@ import { AssessmentsProvider } from '../../../../assessments/assessments-provide
 import { IAssessment } from '../../../../assessments/types/iassessment';
 import { TestStep } from '../../../../assessments/types/test-step';
 
-
 describe('AssessmentsProviderTest', () => {
     const firstType = 45;
     const secondType = 21;
@@ -110,10 +109,7 @@ describe('AssessmentsProviderTest', () => {
         const beta = 'BETA';
         const gamma = 'GAMMA';
         const delta = 'DELTA';
-        const assessments = [
-            makeAssessment(firstType, [alpha, beta]),
-            makeAssessment(secondType, [gamma, delta]),
-        ];
+        const assessments = [makeAssessment(firstType, [alpha, beta]), makeAssessment(secondType, [gamma, delta])];
         const provider = AssessmentsProvider.Create(assessments);
 
         const firstSteps = provider.getStepMap(firstType);

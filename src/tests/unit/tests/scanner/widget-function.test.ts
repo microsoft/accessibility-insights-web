@@ -23,12 +23,15 @@ describe('widget function', () => {
 
     describe('evaluate', () => {
         it('sets correct data and returns true', () => {
-            const getAttributesMock = GlobalMock.ofInstance(AxeUtils.getAttributes,
-                'getAttributes', AxeUtils, MockBehavior.Strict);
-            const getAccessibleTextMock = GlobalMock.ofInstance(AxeUtils.getAccessibleText,
-                'getAccessibleText', AxeUtils, MockBehavior.Strict);
+            const getAttributesMock = GlobalMock.ofInstance(AxeUtils.getAttributes, 'getAttributes', AxeUtils, MockBehavior.Strict);
+            const getAccessibleTextMock = GlobalMock.ofInstance(
+                AxeUtils.getAccessibleText,
+                'getAccessibleText',
+                AxeUtils,
+                MockBehavior.Strict,
+            );
 
-            const dataSetterMock = Mock.ofInstance(data => { });
+            const dataSetterMock = Mock.ofInstance(data => {});
             const expectedData = {
                 element: 'button',
                 accessibleName: 'name',
@@ -40,20 +43,14 @@ describe('widget function', () => {
             };
 
             const nodeStub = createNodeStub(expectedData.element, {
-                'role': expectedData.role,
-                'tabindex': expectedData.tabIndex,
+                role: expectedData.role,
+                tabindex: expectedData.tabIndex,
                 'aria-property': 'value',
             });
 
-            dataSetterMock
-                .setup(m => m(It.isValue(expectedData)))
-                .verifiable(Times.once());
-            getAttributesMock
-                .setup(m => m(It.isValue(nodeStub), It.isAny()))
-                .returns(v => expectedData.ariaAttributes);
-            getAccessibleTextMock
-                .setup(m => m(nodeStub, false))
-                .returns(n => expectedData.accessibleName);
+            dataSetterMock.setup(m => m(It.isValue(expectedData))).verifiable(Times.once());
+            getAttributesMock.setup(m => m(It.isValue(nodeStub), It.isAny())).returns(v => expectedData.ariaAttributes);
+            getAccessibleTextMock.setup(m => m(nodeStub, false)).returns(n => expectedData.accessibleName);
 
             let result;
             GlobalScope.using(getAttributesMock, getAccessibleTextMock).with(() => {
@@ -66,8 +63,7 @@ describe('widget function', () => {
 });
 
 describe('verify widget function data', () => {
-    const getAccessibleTextMock = GlobalMock.ofInstance(AxeUtils.getAccessibleText,
-        'getAccessibleText', AxeUtils, MockBehavior.Loose);
+    const getAccessibleTextMock = GlobalMock.ofInstance(AxeUtils.getAccessibleText, 'getAccessibleText', AxeUtils, MockBehavior.Loose);
 
     const fixture = createTestFixture('test_fixture', '');
 
@@ -75,12 +71,31 @@ describe('verify widget function data', () => {
     const overlappingHTMLAttributes = map(allAriaAttributes, s => s.replace('aria-', ''));
     const allAttributes = allAriaAttributes.concat(overlappingHTMLAttributes);
     // tslint:disable-next-line:max-line-length
-    const expectedAttributes = ['aria-autocomplete', 'aria-checked', 'aria-expanded', 'aria-level', 'aria-modal', 'aria-multiline', 'aria-multiselectable', 'aria-orientation', 'aria-placeholder', 'aria-pressed', 'aria-readonly', 'aria-required', 'aria-selected', 'aria-sort', 'aria-valuemax', 'aria-valuemin', 'aria-valuenow', 'aria-valuetext'];
+    const expectedAttributes = [
+        'aria-autocomplete',
+        'aria-checked',
+        'aria-expanded',
+        'aria-level',
+        'aria-modal',
+        'aria-multiline',
+        'aria-multiselectable',
+        'aria-orientation',
+        'aria-placeholder',
+        'aria-pressed',
+        'aria-readonly',
+        'aria-required',
+        'aria-selected',
+        'aria-sort',
+        'aria-valuemax',
+        'aria-valuemin',
+        'aria-valuenow',
+        'aria-valuetext',
+    ];
     const unexpectedAttributes = difference(allAttributes, expectedAttributes);
 
     const context = {
         _data: null,
-        data: function (d: any) {
+        data: function(d: any) {
             // tslint:disable-next-line:no-invalid-this
             this._data = d;
         },
@@ -92,9 +107,12 @@ describe('verify widget function data', () => {
 
     expectedAttributes.forEach((attribute: string) => {
         it('expects attribute ' + attribute, () => {
-            fixture.innerHTML = `
+            fixture.innerHTML =
+                `
         <div id="myElement"
-        ` + attribute + `="value" />
+        ` +
+                attribute +
+                `="value" />
         `;
 
             const node = fixture.querySelector('#myElement');
@@ -102,16 +120,18 @@ describe('verify widget function data', () => {
             GlobalScope.using(getAccessibleTextMock).with(() => {
                 widgetFunctionConfiguration.checks[0].evaluate.call(context, node);
             });
-            expect(context._data.ariaAttributes[attribute])
-                .toEqual('value');
+            expect(context._data.ariaAttributes[attribute]).toEqual('value');
         });
     }); // for expected attributes
 
     unexpectedAttributes.forEach((attribute: string) => {
         it('does not expect attribute ' + attribute, () => {
-            fixture.innerHTML = `
+            fixture.innerHTML =
+                `
         <div id="myElement"
-        ` + attribute + `="value" />
+        ` +
+                attribute +
+                `="value" />
         `;
 
             const node = fixture.querySelector('#myElement');
@@ -119,8 +139,7 @@ describe('verify widget function data', () => {
             GlobalScope.using(getAccessibleTextMock).with(() => {
                 widgetFunctionConfiguration.checks[0].evaluate.call(context, node);
             });
-            expect(context._data.ariaAttributes[attribute])
-                .toBeUndefined();
+            expect(context._data.ariaAttributes[attribute]).toBeUndefined();
         });
     }); // for unexpected attributes
 });
@@ -132,4 +151,3 @@ function createTestFixture(id: string, content: string): HTMLDivElement {
     testFixture.innerHTML = content;
     return testFixture;
 }
-

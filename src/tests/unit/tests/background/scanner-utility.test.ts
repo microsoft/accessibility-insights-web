@@ -33,13 +33,13 @@ describe('ScannerUtility', () => {
             payload: expectedPayload,
         };
 
-        interpreterMock
-            .setup(im => im.interpret(It.isValue(expectedMessage)))
-            .verifiable();
+        interpreterMock.setup(im => im.interpret(It.isValue(expectedMessage))).verifiable();
 
         windowUtilsMock
             .setup(wum => wum.setTimeout(It.isAny(), ScannerUtility.scanTimeoutMilliSeconds))
-            .callback(timeoutCallback => { callback = timeoutCallback; });
+            .callback(timeoutCallback => {
+                callback = timeoutCallback;
+            });
 
         const testSubject = new ScannerUtility(interpreterMock.object, windowUtilsMock.object);
         testSubject.executeScan(testStub, step, tabId);

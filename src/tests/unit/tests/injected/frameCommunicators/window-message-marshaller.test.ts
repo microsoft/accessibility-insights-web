@@ -20,9 +20,7 @@ describe('WindowMessageMarshallerTests', () => {
         } as chrome.runtime.Manifest;
 
         browserAdapter = Mock.ofType<ClientBrowserAdapter>();
-        browserAdapter
-            .setup(b => b.getManifest())
-            .returns(() => manifest);
+        browserAdapter.setup(b => b.getManifest()).returns(() => manifest);
 
         testSubject = new WindowMessageMarshaller(browserAdapter.object, () => {
             return messageIdToBeReturned;
@@ -56,31 +54,30 @@ describe('WindowMessageMarshallerTests', () => {
             messageSourceId: messageSourceId,
             messageId: '12',
         } as IWindowMessage),
-
     ])('handleParsingUnknownData: %#', message => {
         expect(testSubject.parseMessage(message)).toBeNull();
     });
 
-    test.each([{
-        message: { a: 1 },
-        error: {
-            message: 'error msg',
-            stack: 'stack',
-            name: 'name',
-        },
-        messageSourceId: messageSourceId,
-        messageVersion: messageVersion,
-        messageId: 'id1',
-        command: 'someCommand',
-    } as IWindowMessage, // with message
-    {
-        messageSourceId: messageSourceId,
-        messageVersion: messageVersion,
-        messageId: 'id1',
-        command: 'someCommand',
-    } as IWindowMessage, // without message
+    test.each([
+        {
+            message: { a: 1 },
+            error: {
+                message: 'error msg',
+                stack: 'stack',
+                name: 'name',
+            },
+            messageSourceId: messageSourceId,
+            messageVersion: messageVersion,
+            messageId: 'id1',
+            command: 'someCommand',
+        } as IWindowMessage, // with message
+        {
+            messageSourceId: messageSourceId,
+            messageVersion: messageVersion,
+            messageId: 'id1',
+            command: 'someCommand',
+        } as IWindowMessage, // without message
     ])('handleParsingValidData: %#', message => {
-
         expect(testSubject.parseMessage(JSON.stringify(message))).toEqual(message);
     });
 

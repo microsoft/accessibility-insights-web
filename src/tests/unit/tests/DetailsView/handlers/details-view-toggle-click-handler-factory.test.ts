@@ -25,9 +25,7 @@ describe('DetailsViewToggleClickHandlerFactoryTest', () => {
 
         const actionCreatorMock = Mock.ofType(VisualizationActionMessageCreator);
 
-        actionCreatorMock
-            .setup(ac => ac.setVisualizationState(type, toEnabled, It.isValue(telemetryInfo)))
-            .verifiable();
+        actionCreatorMock.setup(ac => ac.setVisualizationState(type, toEnabled, It.isValue(telemetryInfo))).verifiable();
 
         const event = eventStubFactory.createKeypressEvent() as any;
 

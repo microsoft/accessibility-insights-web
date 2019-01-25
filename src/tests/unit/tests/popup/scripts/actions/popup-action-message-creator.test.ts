@@ -27,7 +27,7 @@ describe('PopupActionMessageCreatorTest', () => {
         eventStubFactory = new EventStubFactory();
         mockWindowUtils = Mock.ofType(WindowUtils, MockBehavior.Strict);
 
-        postMessageMock = Mock.ofInstance(message => { }, MockBehavior.Strict);
+        postMessageMock = Mock.ofInstance(message => {}, MockBehavior.Strict);
         telemetryFactoryMock = Mock.ofType(TelemetryDataFactory, MockBehavior.Strict);
         tabId = 1;
 
@@ -54,9 +54,7 @@ describe('PopupActionMessageCreatorTest', () => {
             payload: payload,
         };
 
-        postMessageMock
-            .setup(pm => pm(It.isValue(expectedMessage)))
-            .verifiable();
+        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable();
 
         testSubject.popupInitialized();
 
@@ -79,9 +77,7 @@ describe('PopupActionMessageCreatorTest', () => {
             payload: payload,
         };
 
-        postMessageMock
-            .setup(pm => pm(It.isValue(expectedMessage)))
-            .verifiable();
+        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable();
 
         testSubject.openLaunchPad(panelType);
 
@@ -111,18 +107,14 @@ describe('PopupActionMessageCreatorTest', () => {
             payload: expectedPayload,
         };
 
-        postMessageMock
-            .setup(pm => pm(It.isValue(expectedMessage)))
-            .verifiable();
+        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable();
 
         telemetryFactoryMock
             .setup(tf => tf.forOpenDetailsView(event, viewType, testSource))
             .returns(() => telemetry)
             .verifiable();
 
-        mockWindowUtils
-            .setup(x => x.closeWindow())
-            .verifiable(Times.once());
+        mockWindowUtils.setup(x => x.closeWindow()).verifiable(Times.once());
 
         testSubject.openDetailsView(event, VisualizationType.Headings, testSource, pivotType);
 
@@ -153,18 +145,14 @@ describe('PopupActionMessageCreatorTest', () => {
             payload: expectedPayload,
         };
 
-        postMessageMock
-            .setup(pm => pm(It.isValue(expectedMessage)))
-            .verifiable();
+        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable();
 
         telemetryFactoryMock
             .setup(tf => tf.forOpenDetailsView(event, viewType, testSource))
             .returns(() => telemetry)
             .verifiable();
 
-        mockWindowUtils
-            .setup(x => x.closeWindow())
-            .verifiable(Times.once());
+        mockWindowUtils.setup(x => x.closeWindow()).verifiable(Times.once());
 
         testSubject.openDetailsView(event, VisualizationType.Headings, testSource);
 
@@ -192,9 +180,7 @@ describe('PopupActionMessageCreatorTest', () => {
             .returns(() => telemetry)
             .verifiable();
 
-        postMessageMock
-            .setup(pm => pm(It.isValue(expectedMessage)))
-            .verifiable();
+        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable();
 
         testSubject.openShortcutConfigureTab(event);
 
@@ -222,9 +208,7 @@ describe('PopupActionMessageCreatorTest', () => {
             .returns(() => telemetry)
             .verifiable(Times.once());
 
-        postMessageMock
-            .setup(pm => pm(It.isValue(expectedMessage)))
-            .verifiable(Times.once());
+        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
 
         testSubject.openTutorial(event);
 

@@ -3,7 +3,6 @@
 import { colorConfiguration, isInTopWindow } from '../../../../scanner/color-rule';
 
 describe('ColorRule', () => {
-
     describe('verify color configs', () => {
         it('should have correct props', () => {
             expect(colorConfiguration.checks[0].evaluate(null, null, null, null)).toBeTruthy();

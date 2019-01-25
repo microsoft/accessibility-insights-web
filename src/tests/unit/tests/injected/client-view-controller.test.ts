@@ -32,7 +32,6 @@ import { VisualizationScanResultStoreDataBuilder } from '../../common/visualizat
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 
 describe('ClientViewControllerTest', () => {
-
     test('initialize', () => {
         let privateListenerVisStore;
         let privateListenerVisScanStore;
@@ -92,220 +91,167 @@ describe('ClientViewControllerTest', () => {
         expect(privateListenerAssessmentStore).toEqual(testObject.onChangedState);
     });
 
-
     test('onChangedState: currently scanning', () => {
-        const builder = new MocksAndTestSubjectBuilder()
-            .setScanning('headings');
+        const builder = new MocksAndTestSubjectBuilder().setScanning('headings');
 
         const testSubject = builder.build();
         testSubject.onChangedState();
 
         builder.verifyAll();
     });
-
 
     test('onChangedState: one or more store is null', () => {
-        const builder = new MocksAndTestSubjectBuilder()
-            .fromFeatureFlagState(null);
+        const builder = new MocksAndTestSubjectBuilder().fromFeatureFlagState(null);
 
         const testSubject = builder.build();
         testSubject.onChangedState();
 
         builder.verifyAll();
     });
-
 
     test('onChangedState: enabling headings when headings is disabled', () => {
-        const builder = new MocksAndTestSubjectBuilder()
-            .fromDisabled(VisualizationType.Headings)
-            .toEnabled(VisualizationType.Headings);
+        const builder = new MocksAndTestSubjectBuilder().fromDisabled(VisualizationType.Headings).toEnabled(VisualizationType.Headings);
 
         const testSubject = builder.build();
         testSubject.onChangedState();
 
         builder.verifyAll();
     });
-
 
     test('onChangedState: enabling headings when headings is already enabled', () => {
-        const builder = new MocksAndTestSubjectBuilder()
-            .fromEnabled(VisualizationType.Headings)
-            .toEnabled(VisualizationType.Headings);
+        const builder = new MocksAndTestSubjectBuilder().fromEnabled(VisualizationType.Headings).toEnabled(VisualizationType.Headings);
 
         const testSubject = builder.build();
         testSubject.onChangedState();
 
         builder.verifyAll();
     });
-
 
     test('onChangedState: disabling headings when headings is enabled', () => {
-        const builder = new MocksAndTestSubjectBuilder()
-            .fromEnabled(VisualizationType.Headings)
-            .toDisabled(VisualizationType.Headings);
+        const builder = new MocksAndTestSubjectBuilder().fromEnabled(VisualizationType.Headings).toDisabled(VisualizationType.Headings);
 
         const testSubject = builder.build();
         testSubject.onChangedState();
 
         builder.verifyAll();
     });
-
 
     test('onChangedState: disabling headings when headings is already disabled', () => {
-        const builder = new MocksAndTestSubjectBuilder()
-            .fromDisabled(VisualizationType.Headings)
-            .toDisabled(VisualizationType.Headings);
+        const builder = new MocksAndTestSubjectBuilder().fromDisabled(VisualizationType.Headings).toDisabled(VisualizationType.Headings);
 
         const testSubject = builder.build();
         testSubject.onChangedState();
 
         builder.verifyAll();
     });
-
 
     test('onChangedState: enabling landmarks when landmarks is disabled', () => {
-        const builder = new MocksAndTestSubjectBuilder()
-            .fromDisabled(VisualizationType.Landmarks)
-            .toEnabled(VisualizationType.Landmarks);
+        const builder = new MocksAndTestSubjectBuilder().fromDisabled(VisualizationType.Landmarks).toEnabled(VisualizationType.Landmarks);
 
         const testSubject = builder.build();
         testSubject.onChangedState();
 
         builder.verifyAll();
     });
-
 
     test('onChangedState: enabling landmarks when landmarks is already enabled', () => {
-        const builder = new MocksAndTestSubjectBuilder()
-            .fromEnabled(VisualizationType.Landmarks)
-            .toEnabled(VisualizationType.Landmarks);
+        const builder = new MocksAndTestSubjectBuilder().fromEnabled(VisualizationType.Landmarks).toEnabled(VisualizationType.Landmarks);
 
         const testSubject = builder.build();
         testSubject.onChangedState();
 
         builder.verifyAll();
     });
-
 
     test('onChangedState: disabling landmarks when landmarks is enabled', () => {
-        const builder = new MocksAndTestSubjectBuilder()
-            .fromEnabled(VisualizationType.Landmarks)
-            .toDisabled(VisualizationType.Landmarks);
+        const builder = new MocksAndTestSubjectBuilder().fromEnabled(VisualizationType.Landmarks).toDisabled(VisualizationType.Landmarks);
 
         const testSubject = builder.build();
         testSubject.onChangedState();
 
         builder.verifyAll();
     });
-
 
     test('onChangedState: disabling landmarks when landmarks is already disabled', () => {
-        const builder = new MocksAndTestSubjectBuilder()
-            .fromDisabled(VisualizationType.Landmarks)
-            .toDisabled(VisualizationType.Landmarks);
+        const builder = new MocksAndTestSubjectBuilder().fromDisabled(VisualizationType.Landmarks).toDisabled(VisualizationType.Landmarks);
 
         const testSubject = builder.build();
         testSubject.onChangedState();
 
         builder.verifyAll();
     });
-
 
     test('onChangedState: enabling color when color is disabled', () => {
-        const builder = new MocksAndTestSubjectBuilder()
-            .fromDisabled(VisualizationType.Color)
-            .toEnabled(VisualizationType.Color);
+        const builder = new MocksAndTestSubjectBuilder().fromDisabled(VisualizationType.Color).toEnabled(VisualizationType.Color);
 
         const testSubject = builder.build();
         testSubject.onChangedState();
 
         builder.verifyAll();
     });
-
 
     test('onChangedState: enablings color when color is already enabled', () => {
-        const builder = new MocksAndTestSubjectBuilder()
-            .fromEnabled(VisualizationType.Color)
-            .toEnabled(VisualizationType.Color);
+        const builder = new MocksAndTestSubjectBuilder().fromEnabled(VisualizationType.Color).toEnabled(VisualizationType.Color);
 
         const testSubject = builder.build();
         testSubject.onChangedState();
 
         builder.verifyAll();
     });
-
 
     test('onChangedState: disabling color when color is enabled', () => {
-        const builder = new MocksAndTestSubjectBuilder()
-            .fromEnabled(VisualizationType.Color)
-            .toDisabled(VisualizationType.Color);
+        const builder = new MocksAndTestSubjectBuilder().fromEnabled(VisualizationType.Color).toDisabled(VisualizationType.Color);
 
         const testSubject = builder.build();
         testSubject.onChangedState();
 
         builder.verifyAll();
     });
-
 
     test('onChangedState: disabling color when color is already disabled', () => {
-        const builder = new MocksAndTestSubjectBuilder()
-            .fromDisabled(VisualizationType.Color)
-            .toDisabled(VisualizationType.Color);
+        const builder = new MocksAndTestSubjectBuilder().fromDisabled(VisualizationType.Color).toDisabled(VisualizationType.Color);
 
         const testSubject = builder.build();
         testSubject.onChangedState();
 
         builder.verifyAll();
     });
-
 
     test('onChangedState: enabling issues when issues is disabled', () => {
-        const builder = new MocksAndTestSubjectBuilder()
-            .fromDisabled(VisualizationType.Issues)
-            .toEnabled(VisualizationType.Issues);
+        const builder = new MocksAndTestSubjectBuilder().fromDisabled(VisualizationType.Issues).toEnabled(VisualizationType.Issues);
 
         const testSubject = builder.build();
         testSubject.onChangedState();
 
         builder.verifyAll();
     });
-
 
     test('onChangedState: enablings issues when issues is already enabled', () => {
-        const builder = new MocksAndTestSubjectBuilder()
-            .fromEnabled(VisualizationType.Issues)
-            .toEnabled(VisualizationType.Issues);
+        const builder = new MocksAndTestSubjectBuilder().fromEnabled(VisualizationType.Issues).toEnabled(VisualizationType.Issues);
 
         const testSubject = builder.build();
         testSubject.onChangedState();
 
         builder.verifyAll();
     });
-
 
     test('onChangedState: disabling issues when issues is enabled', () => {
-        const builder = new MocksAndTestSubjectBuilder()
-            .fromEnabled(VisualizationType.Issues)
-            .toDisabled(VisualizationType.Issues);
+        const builder = new MocksAndTestSubjectBuilder().fromEnabled(VisualizationType.Issues).toDisabled(VisualizationType.Issues);
 
         const testSubject = builder.build();
         testSubject.onChangedState();
 
         builder.verifyAll();
     });
-
 
     test('onChangedState: disabling issues when issues is already disabled', () => {
-        const builder = new MocksAndTestSubjectBuilder()
-            .fromDisabled(VisualizationType.Issues)
-            .toDisabled(VisualizationType.Issues);
+        const builder = new MocksAndTestSubjectBuilder().fromDisabled(VisualizationType.Issues).toDisabled(VisualizationType.Issues);
 
         const testSubject = builder.build();
         testSubject.onChangedState();
 
         builder.verifyAll();
     });
-
 
     test('onChangedState: from disable to enable for headings and issues at the same time', () => {
         const builder = new MocksAndTestSubjectBuilder()
@@ -349,7 +295,6 @@ describe('ClientViewControllerTest', () => {
         builder.verifyAll();
     });
 
-
     test('onChangedState: headings, issues and landmarks changing at the same time', () => {
         const builder = new MocksAndTestSubjectBuilder()
             .fromEnabled(VisualizationType.Headings)
@@ -364,7 +309,6 @@ describe('ClientViewControllerTest', () => {
 
         builder.verifyAll();
     });
-
 
     test('onChangedState: headings, issues landmarks and color changing at the same time', () => {
         const builder = new MocksAndTestSubjectBuilder()
@@ -383,7 +327,6 @@ describe('ClientViewControllerTest', () => {
         builder.verifyAll();
     });
 
-
     test('onChangedState: focusedInstance changed', () => {
         const selector = ['a', 'b', 'c'];
         const message: ScrollingWindowMessage = {
@@ -399,7 +342,6 @@ describe('ClientViewControllerTest', () => {
 
         builder.verifyAll();
     });
-
 
     test('onChangedState: disabling headingsAssessment when target has changed', () => {
         const builder = new MocksAndTestSubjectBuilder()
@@ -463,7 +405,9 @@ class MocksAndTestSubjectBuilder {
     private _visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
     private _actualVisualizationConfigurationFactory: VisualizationConfigurationFactory;
     private _visualizationInstanceProcessorStub: IVisualizationInstanceProcessorCallback<IPropertyBags, IPropertyBags>;
-    private _getVisualizationInstanceProcessorMock: IMock<(testStep?: string) => IVisualizationInstanceProcessorCallback<IPropertyBags, IPropertyBags>>;
+    private _getVisualizationInstanceProcessorMock: IMock<
+        (testStep?: string) => IVisualizationInstanceProcessorCallback<IPropertyBags, IPropertyBags>
+    >;
     private _targetPageActionMessageCreatorMock: IMock<TargetPageActionMessageCreator>;
 
     public setScanning(id: string): MocksAndTestSubjectBuilder {
@@ -523,15 +467,11 @@ class MocksAndTestSubjectBuilder {
 
     public setupScrolling(times: Times, message: ScrollingWindowMessage): MocksAndTestSubjectBuilder {
         this._scrollingControllerMock = Mock.ofType(ScrollingController);
-        this._scrollingControllerMock
-            .setup(s => s.processRequest(It.isValue(message)))
-            .verifiable(times);
+        this._scrollingControllerMock.setup(s => s.processRequest(It.isValue(message))).verifiable(times);
         this.IsScrollingInitiatorSetup = true;
 
         this._targetPageActionMessageCreatorMock = Mock.ofType(TargetPageActionMessageCreator);
-        this._targetPageActionMessageCreatorMock
-            .setup(m => m.scrollRequested())
-            .verifiable(times);
+        this._targetPageActionMessageCreatorMock.setup(m => m.scrollRequested()).verifiable(times);
 
         return this;
     }
@@ -563,7 +503,6 @@ class MocksAndTestSubjectBuilder {
         (controller as any).currentAssessmentState = this._assessmentStoreMock.object.getState();
         (controller as any).currentTabState = this._tabStoreMock.object.getState();
 
-
         controller.setPreviousVisualizationStatesStub(this._initializedVisualizationState);
         controller.setPreviousVisualizationSelectorMapStatesStub(this._initializedVisualizationSelectorMapState);
         this._actualVisualizationConfigurationFactory = new VisualizationConfigurationFactory();
@@ -593,14 +532,14 @@ class MocksAndTestSubjectBuilder {
             const config = factory.getConfiguration(type);
             if (config.testMode === TestMode.Adhoc) {
                 const id = config.getIdentifier();
-                this._initializedVisualizationState[id] = (this.getFromStateForType(type) ? this.getFromStateForType(type).enabled : false);
+                this._initializedVisualizationState[id] = this.getFromStateForType(type) ? this.getFromStateForType(type).enabled : false;
             }
         });
     }
 
     private buildPreviousSelectorMapStatesStub(): void {
         const types = EnumHelper.getNumericValues<VisualizationType>(VisualizationType);
-        types.forEach(type => this._initializedVisualizationSelectorMapState[type] = this._selectorMap);
+        types.forEach(type => (this._initializedVisualizationSelectorMapState[type] = this._selectorMap));
     }
 
     private setupScrollingControllerMock(): void {
@@ -619,25 +558,17 @@ class MocksAndTestSubjectBuilder {
 
     private setupStatesAndSelectorMap(): void {
         const assessmentsProviderMock = Mock.ofType(AssessmentsProvider);
-        assessmentsProviderMock
-            .setup(ap => ap.all())
-            .returns(() => []);
+        assessmentsProviderMock.setup(ap => ap.all()).returns(() => []);
         const assessmentDataConverterMock = Mock.ofType(AssessmentDataConverter);
-        assessmentDataConverterMock
-            .setup(acdm => acdm.getNewManualTestStepResult(It.isAny()))
-            .returns(() => null);
+        assessmentDataConverterMock.setup(acdm => acdm.getNewManualTestStepResult(It.isAny())).returns(() => null);
         this._fromVisualizationStoreState = this._dataBuilderForFromVisualizationStoreState.build();
         this._toVisualizationStoreState = this._dataBuilderForToVisualizationStoreState.build();
         this._fromVisualizationScanStoreState = this._dataBuilderForFromVisualizationScanStoreState.build();
         this._toVisualizationScanStoreState = this._dataBuilderForToVisualizationScanStoreState.build();
-        this._fromAssessmentStoreState = new AssessmentsStoreDataBuilder(
-            assessmentsProviderMock.object,
-            assessmentDataConverterMock.object)
+        this._fromAssessmentStoreState = new AssessmentsStoreDataBuilder(assessmentsProviderMock.object, assessmentDataConverterMock.object)
             .withTargetTab(this._fromTargetTabId, null, null)
             .build();
-        this._toAssessmentStoreState = new AssessmentsStoreDataBuilder(
-            assessmentsProviderMock.object,
-            assessmentDataConverterMock.object)
+        this._toAssessmentStoreState = new AssessmentsStoreDataBuilder(assessmentsProviderMock.object, assessmentDataConverterMock.object)
             .withTargetTab(this._toTargetTabId, null, null)
             .build();
         this._fromTabStoreState = { id: 1 } as ITabStoreData;
@@ -672,46 +603,28 @@ class MocksAndTestSubjectBuilder {
         this._visualizationScanResultStoreMock = Mock.ofType(VisualizationScanResultStore);
         this._featureFlagStoreMock = Mock.ofType(FeatureFlagStore);
 
-        this._visualizationStore
-            .setup(sm => sm.getState())
-            .returns(() => this._fromVisualizationStoreState);
+        this._visualizationStore.setup(sm => sm.getState()).returns(() => this._fromVisualizationStoreState);
 
-        this._visualizationStore
-            .setup(sm => sm.getState())
-            .returns(() => this._toVisualizationStoreState);
+        this._visualizationStore.setup(sm => sm.getState()).returns(() => this._toVisualizationStoreState);
 
-        this._visualizationScanResultStoreMock
-            .setup(sm => sm.getState())
-            .returns(() => this._fromVisualizationScanStoreState);
+        this._visualizationScanResultStoreMock.setup(sm => sm.getState()).returns(() => this._fromVisualizationScanStoreState);
 
-        this._visualizationScanResultStoreMock
-            .setup(sm => sm.getState())
-            .returns(() => this._toVisualizationScanStoreState);
+        this._visualizationScanResultStoreMock.setup(sm => sm.getState()).returns(() => this._toVisualizationScanStoreState);
 
-        this._assessmentStoreMock
-            .setup(sm => sm.getState())
-            .returns(() => this._fromAssessmentStoreState);
+        this._assessmentStoreMock.setup(sm => sm.getState()).returns(() => this._fromAssessmentStoreState);
 
-        this._assessmentStoreMock
-            .setup(sm => sm.getState())
-            .returns(() => this._toAssessmentStoreState);
+        this._assessmentStoreMock.setup(sm => sm.getState()).returns(() => this._toAssessmentStoreState);
 
         this._tabStoreMock
             .setup(sm => sm.getState())
             .returns(() => this._fromTabStoreState)
             .verifiable();
 
-        this._tabStoreMock
-            .setup(sm => sm.getState())
-            .returns(() => this._toTabStoreState);
+        this._tabStoreMock.setup(sm => sm.getState()).returns(() => this._toTabStoreState);
 
-        this._featureFlagStoreMock
-            .setup(sm => sm.getState())
-            .returns(() => this._fromFeatureFlagStoreState);
+        this._featureFlagStoreMock.setup(sm => sm.getState()).returns(() => this._fromFeatureFlagStoreState);
 
-        this._featureFlagStoreMock
-            .setup(sm => sm.getState())
-            .returns(() => this._toFeatureFlagStoreState);
+        this._featureFlagStoreMock.setup(sm => sm.getState()).returns(() => this._toFeatureFlagStoreState);
     }
 
     private setupEnableDisableVisualizationMock(type: VisualizationType) {
@@ -724,12 +637,10 @@ class MocksAndTestSubjectBuilder {
         if (toStateForType.enabled === fromStateForType.enabled) {
             enableTimes = Times.never();
             disableTimes = Times.never();
-        }
-        else if (toStateForType.enabled) {
+        } else if (toStateForType.enabled) {
             enableTimes = Times.once();
             disableTimes = Times.never();
-        }
-        else {
+        } else {
             enableTimes = Times.never();
             disableTimes = Times.once();
         }
@@ -755,7 +666,15 @@ class MocksAndTestSubjectBuilder {
             });
 
         this._drawingInitiatorMock
-            .setup(dw => dw.enableVisualization(type, this._fromFeatureFlagStoreState, this._selectorMap, It.isAny(), this._visualizationInstanceProcessorStub))
+            .setup(dw =>
+                dw.enableVisualization(
+                    type,
+                    this._fromFeatureFlagStoreState,
+                    this._selectorMap,
+                    It.isAny(),
+                    this._visualizationInstanceProcessorStub,
+                ),
+            )
             .verifiable(enableTimes);
 
         this._drawingInitiatorMock

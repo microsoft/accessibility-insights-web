@@ -39,20 +39,20 @@ describe('RuleAnalyzer', () => {
 
     beforeEach(() => {
         typeStub = -1 as VisualizationType;
-        sendMessageMock = Mock.ofInstance(message => { });
+        sendMessageMock = Mock.ofInstance(message => {});
         resultProcessorMock = Mock.ofInstance(results => null);
         scannerUtilsMock = Mock.ofType(ScannerUtils);
         scopingStoreMock = Mock.ofType(ScopingStore);
         telemetryDataFactoryMock = Mock.ofType(TelemetryDataFactory);
         visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
         const dateStub = {
-            getTime: () => { return null; },
+            getTime: () => {
+                return null;
+            },
         };
         dateMock = Mock.ofInstance(dateStub as Date);
         dateGetterMock = Mock.ofInstance(() => null);
-        dateGetterMock
-            .setup(dgm => dgm())
-            .returns(() => dateMock.object);
+        dateGetterMock.setup(dgm => dgm()).returns(() => dateMock.object);
         scopingState = {
             selectors: {
                 [ScopingInputTypes.include]: ['fake include selector'],
@@ -67,15 +67,15 @@ describe('RuleAnalyzer', () => {
             .setup(v => v.getConfiguration(typeStub))
             .returns(() => {
                 return {
-                    displayableData: { title : testName},
+                    displayableData: { title: testName },
                 } as IVisualizationConfiguration;
             })
             .verifiable();
     });
 
-        test('analyze', async done => {
-            testGetResults(done);
-        });
+    test('analyze', async done => {
+        testGetResults(done);
+    });
 
     function createTelemetryStub(elapsedTime: number, testName: string, requirementName: string): RuleAnalyzerScanTelemetryData {
         const telemetryStub: RuleAnalyzerScanTelemetryData = {
@@ -108,7 +108,8 @@ describe('RuleAnalyzer', () => {
         };
         setupScannerUtilsMock(configStub.rules);
 
-        const testSubject = new RuleAnalyzer(configStub,
+        const testSubject = new RuleAnalyzer(
+            configStub,
             scannerUtilsMock.object,
             scopingStoreMock.object,
             sendMessageMock.object,
@@ -130,9 +131,7 @@ describe('RuleAnalyzer', () => {
             },
         };
 
-        resultProcessorMock
-            .setup(processor => processor(scanResults))
-            .returns(() => mockAllInstances);
+        resultProcessorMock.setup(processor => processor(scanResults)).returns(() => mockAllInstances);
 
         sendMessageMock
             .setup(sm => sm(It.isValue(expectedMessage)))
@@ -175,8 +174,6 @@ describe('RuleAnalyzer', () => {
                 scanCallback = callback;
             })
             .verifiable(Times.once());
-
-
     }
 
     function createTestResults(): ScanResults {

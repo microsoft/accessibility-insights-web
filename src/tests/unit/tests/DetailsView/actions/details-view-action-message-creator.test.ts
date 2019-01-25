@@ -38,7 +38,9 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
     beforeEach(() => {
         windowUtilsMock = Mock.ofType(WindowUtils);
-        postMessageMock = Mock.ofInstance(message => { return null; });
+        postMessageMock = Mock.ofInstance(message => {
+            return null;
+        });
         telemetryFactoryMock = Mock.ofType(TelemetryDataFactory);
         tabId = 1;
         testSubject = new DetailsViewActionMessageCreator(
@@ -48,7 +50,6 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             windowUtilsMock.object,
         );
     });
-
 
     afterEach(() => {
         windowUtilsMock.verifyAll();
@@ -274,7 +275,6 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         testSubject.closeSettingsPanel();
     });
 
-
     test('detailsViewOpened', () => {
         const telemetry = {
             triggeredBy: TriggeredByNotApplicable,
@@ -291,9 +291,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             },
         };
 
-        telemetryFactoryMock
-            .setup(tfm => tfm.forDetailsViewOpened(1))
-            .returns(() => telemetry);
+        telemetryFactoryMock.setup(tfm => tfm.forDetailsViewOpened(1)).returns(() => telemetry);
 
         setupPostMessage(expectedMessage);
         testSubject.detailsViewOpened(1);
@@ -521,9 +519,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             },
         };
 
-        telemetryFactoryMock
-            .setup(tfm => tfm.forTestStepFromDetailsView(1, 'step'))
-            .returns(() => telemetry);
+        telemetryFactoryMock.setup(tfm => tfm.forTestStepFromDetailsView(1, 'step')).returns(() => telemetry);
 
         setupPostMessage(expectedMessage);
 
@@ -549,9 +545,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             },
         };
 
-        telemetryFactoryMock
-            .setup(tfm => tfm.forTestStepFromDetailsView(1, 'step'))
-            .returns(() => telemetry);
+        telemetryFactoryMock.setup(tfm => tfm.forTestStepFromDetailsView(1, 'step')).returns(() => telemetry);
 
         setupPostMessage(expectedMessage);
 
@@ -577,9 +571,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             },
         };
 
-        telemetryFactoryMock
-            .setup(tfm => tfm.forTestStepFromDetailsView(1, 'step'))
-            .returns(() => telemetry);
+        telemetryFactoryMock.setup(tfm => tfm.forTestStepFromDetailsView(1, 'step')).returns(() => telemetry);
         setupPostMessage(expectedMessage);
 
         testSubject.changeManualTestStepStatus(1, 1, 'step');
@@ -837,9 +829,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         };
 
         setupPostMessage(expectedMessage);
-        telemetryFactoryMock
-            .setup(tf => tf.forCancelStartOver(event, test, step))
-            .returns(() => telemetry);
+        telemetryFactoryMock.setup(tf => tf.forCancelStartOver(event, test, step)).returns(() => telemetry);
 
         testSubject.cancelStartOver(event, test, step);
     });
@@ -860,9 +850,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         };
 
         setupPostMessage(expectedMessage);
-        telemetryFactoryMock
-            .setup(tf => tf.fromDetailsView(event))
-            .returns(() => telemetry);
+        telemetryFactoryMock.setup(tf => tf.fromDetailsView(event)).returns(() => telemetry);
 
         testSubject.cancelStartOverAllAssessments(event);
         postMessageMock.verifyAll();
@@ -882,9 +870,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
     });
 
     function setupPostMessage(expectedMessage): void {
-        postMessageMock
-            .setup(pm => pm(It.isValue(expectedMessage)))
-            .verifiable(Times.once());
+        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
     }
 
     function setupTelemetryFactory(methodName: keyof TelemetryDataFactory, telemetry: any, event?: any): void {

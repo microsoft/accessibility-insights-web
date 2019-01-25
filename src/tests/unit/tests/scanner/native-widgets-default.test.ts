@@ -20,11 +20,22 @@ describe('native widgets default', () => {
 
     describe('verify createNativeWidgetConfiguration', () => {
         it('creates expected configuration shape when default evaluate and matches are both overwritten', () => {
-            testNativeWidgetConfiguration('rule id', 'check id', node => { return false; }, node => { return true; });
+            testNativeWidgetConfiguration(
+                'rule id',
+                'check id',
+                node => {
+                    return false;
+                },
+                node => {
+                    return true;
+                },
+            );
         });
 
         it('creates expected configuration shape when default evaluate is overwritten', () => {
-            testNativeWidgetConfiguration('rule id', 'check id', node => { return false; });
+            testNativeWidgetConfiguration('rule id', 'check id', node => {
+                return false;
+            });
         });
 
         it('creates expected configuration shape when neither default evaluate nor matches is overwritten', () => {
@@ -34,10 +45,18 @@ describe('native widgets default', () => {
 
     describe('evaluate', () => {
         it('sets correct data and returns true', () => {
-            const getAccessibleDescriptionMock = GlobalMock.ofInstance(AxeUtils.getAccessibleDescription,
-                'getAccessibleDescription', AxeUtils, MockBehavior.Strict);
-            const getAccessibleTextMock = GlobalMock.ofInstance(AxeUtils.getAccessibleText,
-                'getAccessibleText', AxeUtils, MockBehavior.Strict);
+            const getAccessibleDescriptionMock = GlobalMock.ofInstance(
+                AxeUtils.getAccessibleDescription,
+                'getAccessibleDescription',
+                AxeUtils,
+                MockBehavior.Strict,
+            );
+            const getAccessibleTextMock = GlobalMock.ofInstance(
+                AxeUtils.getAccessibleText,
+                'getAccessibleText',
+                AxeUtils,
+                MockBehavior.Strict,
+            );
 
             const dataSetterMock = Mock.ofInstance(data => {});
             const expectedData = {
@@ -48,15 +67,9 @@ describe('native widgets default', () => {
 
             const nodeStub = createNodeStub(expectedData.element, {});
 
-            dataSetterMock
-                .setup(m => m(It.isValue(expectedData)))
-                .verifiable(Times.once());
-            getAccessibleDescriptionMock
-                .setup(m => m(nodeStub))
-                .returns(v => expectedData.accessibleDescription);
-            getAccessibleTextMock
-                .setup(m => m(nodeStub, false))
-                .returns(n => expectedData.accessibleName);
+            dataSetterMock.setup(m => m(It.isValue(expectedData))).verifiable(Times.once());
+            getAccessibleDescriptionMock.setup(m => m(nodeStub)).returns(v => expectedData.accessibleDescription);
+            getAccessibleTextMock.setup(m => m(nodeStub, false)).returns(n => expectedData.accessibleName);
 
             let result;
             GlobalScope.using(getAccessibleDescriptionMock, getAccessibleTextMock).with(() => {
@@ -89,7 +102,7 @@ describe('native widgets default', () => {
 
         it('returns input with type properly', () => {
             const node = createNodeStub('input', {
-                'type' : 'text',
+                type: 'text',
             });
             const type = getNativeWidgetElementType(node);
             expect(type).toBe('input type="text"');
@@ -97,7 +110,7 @@ describe('native widgets default', () => {
 
         it('returns input list properly', () => {
             const node = createNodeStub('input', {
-                'list' : null,
+                list: null,
             });
             const type = getNativeWidgetElementType(node);
             expect(type).toBe('input list');

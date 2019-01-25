@@ -9,8 +9,6 @@ import { IAssessmentScanData, IVisualizationStoreData } from '../../../common/ty
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { BaseDataBuilder } from './base-data-builder';
 
-
-
 export class VisualizationStoreDataBuilder extends BaseDataBuilder<IVisualizationStoreData> {
     constructor() {
         super();

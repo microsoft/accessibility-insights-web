@@ -141,9 +141,7 @@ describe('ChromeCommandHandlerTest', () => {
         const configuration = visualizationConfigurationFactory.getConfiguration(test);
         const enableMessage = configuration.displayableData.enableMessage;
 
-        notificationCreatorMock
-            .setup(nc => nc.createNotification(enableMessage))
-            .verifiable();
+        notificationCreatorMock.setup(nc => nc.createNotification(enableMessage)).verifiable();
 
         setupTabQueryCall();
         commandCallback(configuration.chromeCommand);
@@ -242,9 +240,7 @@ describe('ChromeCommandHandlerTest', () => {
 
         const enableMessage = configuration.displayableData.enableMessage;
 
-        notificationCreatorMock
-            .setup(nc => nc.createNotification(enableMessage))
-            .verifiable();
+        notificationCreatorMock.setup(nc => nc.createNotification(enableMessage)).verifiable();
 
         tabQueryCallback([{ id: existingTabId, url: 'testurl' } as chrome.tabs.Tab]);
     });
@@ -342,9 +338,7 @@ describe('ChromeCommandHandlerTest', () => {
 
         const enableMessage = configuration.displayableData.enableMessage;
 
-        notificationCreatorMock
-            .setup(nc => nc.createNotification(enableMessage))
-            .verifiable();
+        notificationCreatorMock.setup(nc => nc.createNotification(enableMessage)).verifiable();
 
         tabQueryCallback([{ id: existingTabId, url: 'testurl' } as chrome.tabs.Tab]);
     });
@@ -442,9 +436,7 @@ describe('ChromeCommandHandlerTest', () => {
 
         const enableMessage = configuration.displayableData.enableMessage;
 
-        notificationCreatorMock
-            .setup(nc => nc.createNotification(enableMessage))
-            .verifiable(Times.never());
+        notificationCreatorMock.setup(nc => nc.createNotification(enableMessage)).verifiable(Times.never());
 
         tabQueryCallback([{ id: existingTabId, url: 'testurl' } as chrome.tabs.Tab]);
     });
@@ -542,9 +534,7 @@ describe('ChromeCommandHandlerTest', () => {
 
         const enableMessage = configuration.displayableData.enableMessage;
 
-        notificationCreatorMock
-            .setup(nc => nc.createNotification(enableMessage))
-            .verifiable();
+        notificationCreatorMock.setup(nc => nc.createNotification(enableMessage)).verifiable();
 
         tabQueryCallback([{ id: existingTabId, url: 'testurl' } as chrome.tabs.Tab]);
     });
@@ -606,9 +596,7 @@ describe('ChromeCommandHandlerTest', () => {
         const configuration = visualizationConfigurationFactory.getConfiguration(VisualizationType.Issues);
         commandCallback(configuration.chromeCommand);
 
-        interpreterMock
-            .setup(x => x.interpret(It.isAny()))
-            .verifiable(Times.never());
+        interpreterMock.setup(x => x.interpret(It.isAny())).verifiable(Times.never());
 
         tabQueryCallback([{ id: existingTabId, url: 'testurl' } as chrome.tabs.Tab]);
         urlValidatorMock.verifyAll();
@@ -620,9 +608,7 @@ describe('ChromeCommandHandlerTest', () => {
         const url = 'file://url';
         setupUrlValidator(url, false);
 
-        notificationCreatorMock
-            .setup(nc => nc.createNotification(DisplayableStrings.fileUrlDoesNotHaveAccess))
-            .verifiable();
+        notificationCreatorMock.setup(nc => nc.createNotification(DisplayableStrings.fileUrlDoesNotHaveAccess)).verifiable();
 
         const type = VisualizationType.Issues;
         storeState = new VisualizationStoreDataBuilder().withEnable(type).build();
@@ -641,13 +627,9 @@ describe('ChromeCommandHandlerTest', () => {
 
         setupUrlValidator(url, false);
 
-        notificationCreatorMock
-            .setup(nc => nc.createNotification(DisplayableStrings.fileUrlDoesNotHaveAccess))
-            .verifiable();
+        notificationCreatorMock.setup(nc => nc.createNotification(DisplayableStrings.fileUrlDoesNotHaveAccess)).verifiable();
 
-        notificationCreatorMock
-            .setup(nc => nc.createNotification(DisplayableStrings.urlNotScannable.join('\n')))
-            .verifiable();
+        notificationCreatorMock.setup(nc => nc.createNotification(DisplayableStrings.urlNotScannable.join('\n'))).verifiable();
 
         const type = VisualizationType.Issues;
         storeState = new VisualizationStoreDataBuilder().withEnable(type).build();
@@ -676,6 +658,8 @@ function setupTabQueryCall() {
 function setupUrlValidator(url: string, isSupportedUrl: boolean) {
     urlValidatorMock
         .setup(uV => uV.isSupportedUrl(url, chromeAdapterMock.object))
-        .returns(async () => { return isSupportedUrl; })
+        .returns(async () => {
+            return isSupportedUrl;
+        })
         .verifiable();
 }

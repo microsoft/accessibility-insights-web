@@ -11,7 +11,7 @@ describe('DropdownClickHandlerTest', () => {
     const eventStubFactory = new EventStubFactory();
     let eventStub;
     let actionMessageCreatorMock: IMock<DropdownActionMessageCreator>;
-    const sourceStub: TelemetryEventSource =  -1 as TelemetryEventSource;
+    const sourceStub: TelemetryEventSource = -1 as TelemetryEventSource;
     let testSubject: DropdownClickHandler;
 
     beforeEach(() => {
@@ -26,9 +26,7 @@ describe('DropdownClickHandlerTest', () => {
     });
 
     test('openPreviewFeaturesPanelHandler', () => {
-        actionMessageCreatorMock
-            .setup(acm => acm.openPreviewFeaturesPanel(eventStub, sourceStub))
-            .verifiable(Times.once());
+        actionMessageCreatorMock.setup(acm => acm.openPreviewFeaturesPanel(eventStub, sourceStub)).verifiable(Times.once());
 
         testSubject.openPreviewFeaturesPanelHandler(eventStub);
 
@@ -36,9 +34,7 @@ describe('DropdownClickHandlerTest', () => {
     });
 
     test('openScopingPanelHandler', () => {
-        actionMessageCreatorMock
-            .setup(acm => acm.openScopingPanel(eventStub, sourceStub))
-            .verifiable(Times.once());
+        actionMessageCreatorMock.setup(acm => acm.openScopingPanel(eventStub, sourceStub)).verifiable(Times.once());
 
         testSubject.openScopingPanelHandler(eventStub);
 
@@ -46,9 +42,7 @@ describe('DropdownClickHandlerTest', () => {
     });
 
     test('openSettingsPanelHandler', () => {
-        actionMessageCreatorMock
-            .setup(acm => acm.openSettingsPanel(eventStub, sourceStub))
-            .verifiable(Times.once());
+        actionMessageCreatorMock.setup(acm => acm.openSettingsPanel(eventStub, sourceStub)).verifiable(Times.once());
 
         testSubject.openSettingsPanelHandler(eventStub);
 

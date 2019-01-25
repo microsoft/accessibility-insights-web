@@ -10,7 +10,6 @@ import { IManualTestStatus, ManualTestStatus } from '../../../../../common/types
 import { IAssessmentData } from '../../../../../common/types/store-data/iassessment-result-data';
 
 describe('AssessmentTestResult', () => {
-
     const type = -2112;
     const key = 'TheKey';
     const definition = { key, type } as IAssessment;
@@ -49,39 +48,26 @@ describe('AssessmentTestResult', () => {
     const testObject = new AssessmentTestResult(assessmentProvider, type, assessmentData, depsMock.object);
 
     it('provides definition', () => {
-
         expect(testObject.definition.key).toEqual(key);
-
     });
 
     it('provides data', () => {
-
         expect(testObject.data).toEqual(assessmentData);
-
     });
 
     it('provides RequirementResult', () => {
-
         expect(testObject.getRequirementResult('beta')).toEqual(requirementsResults[1]);
-
     });
 
     it('provides requirementResults', () => {
-
         expect(testObject.getRequirementResults()).toEqual(requirementsResults);
-
     });
 
     it('provides type', () => {
-
         expect(testObject.type).toEqual(type);
-
     });
 
     it('provides outcomeStats', () => {
-
         expect(testObject.getOutcomeStats()).toEqual(outcomeStats);
-
     });
-
 });

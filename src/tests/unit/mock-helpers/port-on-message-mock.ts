@@ -6,7 +6,6 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 import { PortOnMessageStub } from '../Stubs/chrome-adapter-stub';
 
 export class PortOnMessageMock extends ChromeEventMock {
-
     private _portOnMessageMock: IMock<PortOnMessageStub>;
 
     constructor() {

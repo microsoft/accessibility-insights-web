@@ -5,7 +5,6 @@ import { JSDOM } from 'jsdom';
 import { DocumentManipulator } from '../../../../common/document-manipulator';
 
 describe('test shortcut icon', () => {
-
     test('shortcut icon exists', () => {
         const expectedHref = 'defaultIcon.png';
         const jsdom = new JSDOM('<html><head><link rel="shortcut icon" type="image/x-icon" href="badIcon.png" /></head></html>');
@@ -14,7 +13,10 @@ describe('test shortcut icon', () => {
 
         setter.setShortcutIcon(expectedHref);
 
-        const actualHref = document.querySelector('link').getAttribute('href').valueOf();
+        const actualHref = document
+            .querySelector('link')
+            .getAttribute('href')
+            .valueOf();
         expect(actualHref).toEqual(expectedHref);
     });
 

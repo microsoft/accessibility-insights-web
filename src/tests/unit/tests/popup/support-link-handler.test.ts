@@ -29,9 +29,7 @@ describe('SupportLinkHandlerTest', () => {
             })
             .verifiable();
 
-        chromeAdapterMock
-            .setup(ca => ca.closeTab(tabStub.id))
-            .verifiable();
+        chromeAdapterMock.setup(ca => ca.closeTab(tabStub.id)).verifiable();
 
         const windowUtilsMock = Mock.ofType(WindowUtils);
         windowUtilsMock

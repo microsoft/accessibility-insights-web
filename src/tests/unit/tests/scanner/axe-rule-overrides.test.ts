@@ -6,14 +6,11 @@ import { Mock, MockBehavior, Times } from 'typemoq';
 import { AxeRuleOverrides } from '../../../../scanner/axe-rule-overrides';
 
 describe('AriaAllowedAttrOveride', () => {
-
     describe('overide', () => {
         it('should call configure with the configuration', () => {
             const axeMock = Mock.ofInstance({ configure: config => null }, MockBehavior.Strict);
 
-            axeMock
-                .setup(am => am.configure(AxeRuleOverrides.overrideConfiguration))
-                .verifiable(Times.once());
+            axeMock.setup(am => am.configure(AxeRuleOverrides.overrideConfiguration)).verifiable(Times.once());
 
             AxeRuleOverrides.overide(axeMock.object as typeof Axe);
             axeMock.verifyAll();

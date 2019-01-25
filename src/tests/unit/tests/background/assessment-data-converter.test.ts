@@ -43,11 +43,13 @@ describe('AssessmentDataConverterTest', () => {
         const selectorMap: IDictionaryStringTo<IHtmlElementAxeResults> = {
             [selectorStub]: {
                 ruleResults: {
-                    'rule1': {
-                        any: [{
-                            id: 'rule1',
-                            data: expectedPropertyBag,
-                        }],
+                    rule1: {
+                        any: [
+                            {
+                                id: 'rule1',
+                                data: expectedPropertyBag,
+                            },
+                        ],
                         html: htmlStub,
                         id: 'id1',
                         status: true,
@@ -72,144 +74,140 @@ describe('AssessmentDataConverterTest', () => {
 
     test(`generateAssessmentInstancesMap: previouslyGeneratedInstances is null,
             new rule result is not false and any data is there.`, () => {
-            const selectorMap: IDictionaryStringTo<IHtmlElementAxeResults> = {
-                [selectorStub]: {
-                    ruleResults: {
-                        'rule1': {
-                            any: [{
+        const selectorMap: IDictionaryStringTo<IHtmlElementAxeResults> = {
+            [selectorStub]: {
+                ruleResults: {
+                    rule1: {
+                        any: [
+                            {
                                 id: 'rule1',
                                 data: { someProperty: 1 },
-                            }],
-                            html: htmlStub,
-                            id: 'id1',
-                            status: true,
-                        } as DecoratedAxeNodeResult,
-                    },
-                    target: [selectorStub],
-                    isVisible: true,
+                            },
+                        ],
+                        html: htmlStub,
+                        id: 'id1',
+                        status: true,
+                    } as DecoratedAxeNodeResult,
                 },
-            };
-            const expectedResult = {
-                [identifierStub]: {
-                    html: htmlStub,
-                    propertyBag: { someProperty: 1 },
-                    target: [selectorStub],
-                    testStepResults: {
-                        [testStep]: {
-                            id: 'id1',
-                            status: ManualTestStatus.UNKNOWN,
-                            isCapturedByUser: false,
-                            failureSummary: undefined,
-                            isVisible: true,
-                            isVisualizationEnabled: false,
-                        },
+                target: [selectorStub],
+                isVisible: true,
+            },
+        };
+        const expectedResult = {
+            [identifierStub]: {
+                html: htmlStub,
+                propertyBag: { someProperty: 1 },
+                target: [selectorStub],
+                testStepResults: {
+                    [testStep]: {
+                        id: 'id1',
+                        status: ManualTestStatus.UNKNOWN,
+                        isCapturedByUser: false,
+                        failureSummary: undefined,
+                        isVisible: true,
+                        isVisualizationEnabled: false,
                     },
                 },
-            };
+            },
+        };
 
-            setupGenerateInstanceIdentifierMock({ target: [selectorStub], html: htmlStub }, identifierStub);
-            const instanceMap = testSubject.generateAssessmentInstancesMap(
-                null,
-                selectorMap,
-                testStep,
-                generateInstanceIdentifierMock.object,
-                () => ManualTestStatus.UNKNOWN,
-            );
+        setupGenerateInstanceIdentifierMock({ target: [selectorStub], html: htmlStub }, identifierStub);
+        const instanceMap = testSubject.generateAssessmentInstancesMap(
+            null,
+            selectorMap,
+            testStep,
+            generateInstanceIdentifierMock.object,
+            () => ManualTestStatus.UNKNOWN,
+        );
 
-            expect(instanceMap).toEqual(expectedResult);
-        });
+        expect(instanceMap).toEqual(expectedResult);
+    });
 
     test(`generateAssessmentInstancesMap: previouslyGeneratedInstances is null,
             new rule result is null (shouldn't happen but covered).`, () => {
-            const selectorMap: IDictionaryStringTo<IHtmlElementAxeResults> = {
-                [selectorStub]: {
-                    ruleResults: {
-                    },
-                    target: [selectorStub],
-                    isVisible: true,
-                },
-            };
-            const expectedResult = {};
-            const instanceMap = testSubject.generateAssessmentInstancesMap(
-                null,
-                selectorMap,
-                testStep,
-                undefined,
-                null);
+        const selectorMap: IDictionaryStringTo<IHtmlElementAxeResults> = {
+            [selectorStub]: {
+                ruleResults: {},
+                target: [selectorStub],
+                isVisible: true,
+            },
+        };
+        const expectedResult = {};
+        const instanceMap = testSubject.generateAssessmentInstancesMap(null, selectorMap, testStep, undefined, null);
 
-            expect(instanceMap).toEqual(expectedResult);
-        });
+        expect(instanceMap).toEqual(expectedResult);
+    });
 
     test(`generateAssessmentInstancesMap: previouslyGeneratedInstances is not null,
             new rule result is null (shouldn't happen but covered).`, () => {
-            const selectorMap: IDictionaryStringTo<IHtmlElementAxeResults> = {
-                [selectorStub]: {
-                    ruleResults: {
-                    },
-                    target: [selectorStub],
-                    isVisible: true,
-                },
-            };
-            const previouslyGeneratedInstances = {};
-            const instanceMap = testSubject.generateAssessmentInstancesMap(
-                previouslyGeneratedInstances,
-                selectorMap,
-                testStep,
-                undefined,
-                null);
+        const selectorMap: IDictionaryStringTo<IHtmlElementAxeResults> = {
+            [selectorStub]: {
+                ruleResults: {},
+                target: [selectorStub],
+                isVisible: true,
+            },
+        };
+        const previouslyGeneratedInstances = {};
+        const instanceMap = testSubject.generateAssessmentInstancesMap(
+            previouslyGeneratedInstances,
+            selectorMap,
+            testStep,
+            undefined,
+            null,
+        );
 
-            expect(instanceMap).toEqual(previouslyGeneratedInstances);
-        });
+        expect(instanceMap).toEqual(previouslyGeneratedInstances);
+    });
 
     test(`generateAssessmentInstancesMap: previouslyGeneratedInstances is
             empty/does not match any new instances and any data is not there`, () => {
-            const selectorMap: IDictionaryStringTo<IHtmlElementAxeResults> = {
-                [selectorStub]: {
-                    ruleResults: {
-                        'rule1': {
-                            html: htmlStub,
-                            id: 'id1',
-                            status: false,
-                        } as DecoratedAxeNodeResult,
-                    },
-                    target: [selectorStub],
-                    isVisible: true,
+        const selectorMap: IDictionaryStringTo<IHtmlElementAxeResults> = {
+            [selectorStub]: {
+                ruleResults: {
+                    rule1: {
+                        html: htmlStub,
+                        id: 'id1',
+                        status: false,
+                    } as DecoratedAxeNodeResult,
                 },
-            };
-            const expectedResult = {
-                [identifierStub]: {
-                    html: htmlStub,
-                    propertyBag: null,
-                    target: [selectorStub],
-                    testStepResults: {
-                        [testStep]: {
-                            id: 'id1',
-                            status: ManualTestStatus.UNKNOWN,
-                            isCapturedByUser: false,
-                            failureSummary: undefined,
-                            isVisible: true,
-                            isVisualizationEnabled: false,
-                        },
+                target: [selectorStub],
+                isVisible: true,
+            },
+        };
+        const expectedResult = {
+            [identifierStub]: {
+                html: htmlStub,
+                propertyBag: null,
+                target: [selectorStub],
+                testStepResults: {
+                    [testStep]: {
+                        id: 'id1',
+                        status: ManualTestStatus.UNKNOWN,
+                        isCapturedByUser: false,
+                        failureSummary: undefined,
+                        isVisible: true,
+                        isVisualizationEnabled: false,
                     },
                 },
-            };
-            setupGenerateInstanceIdentifierMock({ target: [selectorStub], html: htmlStub }, identifierStub);
-            const instanceMap = testSubject.generateAssessmentInstancesMap(
-                {},
-                selectorMap,
-                testStep,
-                generateInstanceIdentifierMock.object,
-                () => ManualTestStatus.UNKNOWN,
-            );
+            },
+        };
+        setupGenerateInstanceIdentifierMock({ target: [selectorStub], html: htmlStub }, identifierStub);
+        const instanceMap = testSubject.generateAssessmentInstancesMap(
+            {},
+            selectorMap,
+            testStep,
+            generateInstanceIdentifierMock.object,
+            () => ManualTestStatus.UNKNOWN,
+        );
 
-            expect(instanceMap).toEqual(expectedResult);
-        });
+        expect(instanceMap).toEqual(expectedResult);
+    });
 
     test('generateAssessmentInstancesMap: automated check status should be FAIL', () => {
         const selectorMap: IDictionaryStringTo<IHtmlElementAxeResults> = {
             [selectorStub]: {
                 ruleResults: {
-                    'rule1': {
+                    rule1: {
                         html: htmlStub,
                         id: 'id1',
                         status: false,
@@ -253,11 +251,13 @@ describe('AssessmentDataConverterTest', () => {
         const selectorMap: IDictionaryStringTo<IHtmlElementAxeResults> = {
             [selectorStub]: {
                 ruleResults: {
-                    'rule1': {
-                        any: [{
-                            id: 'rule1',
-                            data: { someProperty: 1 },
-                        }],
+                    rule1: {
+                        any: [
+                            {
+                                id: 'rule1',
+                                data: { someProperty: 1 },
+                            },
+                        ],
                         html: htmlStub,
                         id: 'id1',
                         status: false,
@@ -350,7 +350,8 @@ describe('AssessmentDataConverterTest', () => {
             previouslyGeneratedInstances,
             [eventStub],
             stepName,
-            generateInstanceIdentifierMock.object);
+            generateInstanceIdentifierMock.object,
+        );
 
         expect(actual).toEqual(expectedGeneratedInstance);
     });
@@ -388,7 +389,8 @@ describe('AssessmentDataConverterTest', () => {
             previouslyGeneratedInstances,
             [eventStub],
             stepName,
-            generateInstanceIdentifierMock.object);
+            generateInstanceIdentifierMock.object,
+        );
 
         expect(actual).toEqual(expectedGeneratedInstance);
     });
@@ -438,7 +440,8 @@ describe('AssessmentDataConverterTest', () => {
             previouslyGeneratedInstances,
             [eventStub],
             stepNameTwo,
-            generateInstanceIdentifierMock.object);
+            generateInstanceIdentifierMock.object,
+        );
 
         expect(actual).toEqual(expectedGeneratedInstance);
     });
@@ -454,8 +457,6 @@ describe('AssessmentDataConverterTest', () => {
     });
 
     function setupGenerateInstanceIdentifierMock(instance: IUniquelyIdentifiableInstances, identifier: string): void {
-        generateInstanceIdentifierMock
-            .setup(giim => giim(It.isValue(instance)))
-            .returns(() => identifier);
+        generateInstanceIdentifierMock.setup(giim => giim(It.isValue(instance))).returns(() => identifier);
     }
 });

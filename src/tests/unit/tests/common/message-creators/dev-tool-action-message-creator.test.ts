@@ -16,7 +16,7 @@ describe('DevToolActionMessageCreatorTest', () => {
 
     beforeEach(() => {
         eventStubFactory = new EventStubFactory();
-        postMessageMock = Mock.ofInstance(message => { });
+        postMessageMock = Mock.ofInstance(message => {});
         testSubject = new DevToolActionMessageCreator(postMessageMock.object, tabId, new TelemetryDataFactory());
     });
 
@@ -30,9 +30,7 @@ describe('DevToolActionMessageCreatorTest', () => {
             } as IOnDevToolOpenPayload,
         };
 
-        postMessageMock
-            .setup(post => post(It.isObjectWith(expectedMessage)))
-            .verifiable();
+        postMessageMock.setup(post => post(It.isObjectWith(expectedMessage))).verifiable();
 
         testSubject.setDevToolStatus(status);
 
@@ -53,9 +51,7 @@ describe('DevToolActionMessageCreatorTest', () => {
             } as IInspectElementPayload,
         };
 
-        postMessageMock
-            .setup(post => post(It.isObjectWith(expectedMessage)))
-            .verifiable();
+        postMessageMock.setup(post => post(It.isObjectWith(expectedMessage))).verifiable();
 
         testSubject.setInspectElement(event, target);
 
@@ -72,9 +68,7 @@ describe('DevToolActionMessageCreatorTest', () => {
             } as IInspectFrameUrlPayload,
         };
 
-        postMessageMock
-            .setup(post => post(It.isObjectWith(expectedMessage)))
-            .verifiable();
+        postMessageMock.setup(post => post(It.isObjectWith(expectedMessage))).verifiable();
 
         testSubject.setInspectFrameUrl(frameUrl);
 

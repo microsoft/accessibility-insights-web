@@ -7,7 +7,6 @@ import { AxeRule, RuleConfiguration } from '../../../../scanner/iruleresults';
 import { MessageDecorator } from '../../../../scanner/message-decorator';
 import { CustomRulesConfigurationStub } from './custom-rules-configuration-stub';
 
-
 describe('MessageDecorator', () => {
     let axeResultStub: AxeRule;
     let passedAxeResultStub: AxeRule;
@@ -29,7 +28,7 @@ describe('MessageDecorator', () => {
 
     describe('decorateResultsWithMessages', () => {
         it('should add messages to all checks via check message creator & execute decorateNode from config', () => {
-            configuration[0].rule.decorateNode = node => node.snippet = 'test snippet';
+            configuration[0].rule.decorateNode = node => (node.snippet = 'test snippet');
             const expectedResult = generateAxeResultStubWithStatus(configuration[0]);
             expectedResult.nodes[0].snippet = 'test snippet';
             const testSubject = new MessageDecorator(configuration, checkMessageTransformerMock.object);

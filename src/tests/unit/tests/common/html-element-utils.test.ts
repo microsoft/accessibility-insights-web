@@ -19,10 +19,8 @@ describe('HTMLElementUtilsTest', () => {
     });
 
     test('scrollIntoView', () => {
-        const scrollMock = Mock.ofInstance(() => { });
-        scrollMock
-            .setup(s => s())
-            .verifiable(Times.once());
+        const scrollMock = Mock.ofInstance(() => {});
+        scrollMock.setup(s => s()).verifiable(Times.once());
 
         const element = {
             scrollIntoView: scrollMock.object,
@@ -39,9 +37,7 @@ describe('HTMLElementUtilsTest', () => {
 
         const expectedElement = 'element' as any;
         const getElementsMock = Mock.ofInstance((_: string) => new Element());
-        getElementsMock
-            .setup(get => get(tagName))
-            .returns(() => expectedElement);
+        getElementsMock.setup(get => get(tagName)).returns(() => expectedElement);
 
         const dom = {
             getElementsByTagName: getElementsMock.object,
@@ -59,9 +55,7 @@ describe('HTMLElementUtilsTest', () => {
 
         const expectedElement = 'element' as any;
         const querySelectorMock = Mock.ofInstance((_: string) => new Element());
-        querySelectorMock
-            .setup(qs => qs(selector))
-            .returns(() => expectedElement);
+        querySelectorMock.setup(qs => qs(selector)).returns(() => expectedElement);
 
         const dom = {
             querySelector: querySelectorMock.object,
@@ -82,9 +76,7 @@ describe('HTMLElementUtilsTest', () => {
         const expectedElements: NodeListOf<Element> = NodeListBuilder.createNodeList(elements);
 
         const querySelectorAllMock = Mock.ofInstance((_: string) => null as NodeListOf<Element>);
-        querySelectorAllMock
-            .setup(qs => qs(selector))
-            .returns(() => expectedElements);
+        querySelectorAllMock.setup(qs => qs(selector)).returns(() => expectedElements);
 
         const dom = {
             querySelectorAll: querySelectorAllMock.object,
@@ -98,10 +90,8 @@ describe('HTMLElementUtilsTest', () => {
     });
 
     test('attachShadow', () => {
-        const attachMock = Mock.ofInstance((_: { mode: string }) => { });
-        attachMock
-            .setup(a => a(It.isValue({ mode: 'open' })))
-            .verifiable(Times.once());
+        const attachMock = Mock.ofInstance((_: { mode: string }) => {});
+        attachMock.setup(a => a(It.isValue({ mode: 'open' }))).verifiable(Times.once());
 
         const element = {
             attachShadow: attachMock.object,
@@ -144,9 +134,7 @@ describe('HTMLElementUtilsTest', () => {
 
         const expectedResult = true;
         const matchesMock = Mock.ofInstance((_: string) => true);
-        matchesMock
-            .setup(m => m(selectors))
-            .returns(() => expectedResult);
+        matchesMock.setup(m => m(selectors)).returns(() => expectedResult);
 
         const element = {
             matches: matchesMock.object,
@@ -160,13 +148,11 @@ describe('HTMLElementUtilsTest', () => {
 
     test('getComputedStyle', () => {
         const element = 'element' as any;
-        const style = { 'style': 'computed' } as any as CSSStyleDeclaration;
+        const style = ({ style: 'computed' } as any) as CSSStyleDeclaration;
 
         const getComputedStyle = Mock.ofInstance((_: Element) => style);
-        getComputedStyle
-            .setup(fn => fn(element))
-            .returns(() => style);
-        const win = { getComputedStyle: getComputedStyle.object } as any as Window;
+        getComputedStyle.setup(fn => fn(element)).returns(() => style);
+        const win = ({ getComputedStyle: getComputedStyle.object } as any) as Window;
 
         const utils = new HTMLElementUtils(null, win);
 
@@ -176,9 +162,9 @@ describe('HTMLElementUtilsTest', () => {
     });
 
     test('getClientRects', () => {
-        const rects = { length: 42 } as any as ClientRectList;
+        const rects = ({ length: 42 } as any) as ClientRectList;
 
-        const element = { getClientRects: () => rects } as any as Element;
+        const element = ({ getClientRects: () => rects } as any) as Element;
 
         const utils = new HTMLElementUtils(null, null);
 
@@ -190,7 +176,7 @@ describe('HTMLElementUtilsTest', () => {
     test('getOffsetHeight', () => {
         const expected = 42;
 
-        const element = { offsetHeight: expected } as any as HTMLElement;
+        const element = ({ offsetHeight: expected } as any) as HTMLElement;
 
         const utils = new HTMLElementUtils(null, null);
 
@@ -202,7 +188,7 @@ describe('HTMLElementUtilsTest', () => {
     test('getOffsetWidth', () => {
         const expected = 2112;
 
-        const element = { offsetWidth: expected } as any as HTMLElement;
+        const element = ({ offsetWidth: expected } as any) as HTMLElement;
 
         const utils = new HTMLElementUtils(null, null);
 

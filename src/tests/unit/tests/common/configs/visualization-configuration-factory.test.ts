@@ -9,7 +9,6 @@ import { IScanData, IVisualizationStoreData } from '../../../../../common/types/
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { VisualizationStoreDataBuilder } from '../../../common/visualization-store-data-builder';
 
-
 describe('VisualizationConfigurationFactoryTest', () => {
     const testObject = new VisualizationConfigurationFactory();
 
@@ -125,8 +124,7 @@ describe('VisualizationConfigurationFactoryTest', () => {
 
             if (configuration.chromeCommand != null) {
                 expect(type).toBe(result[configuration.chromeCommand]);
-            }
-            else {
+            } else {
                 expect(result[type]).toBeUndefined();
             }
         });
@@ -161,9 +159,7 @@ describe('VisualizationConfigurationFactoryTest', () => {
     }
 
     function testGetStoreData(type: VisualizationType, getExpectedData: (data: IVisualizationStoreData) => IScanData): void {
-        const data = new VisualizationStoreDataBuilder()
-            .withEnable(type)
-            .build();
+        const data = new VisualizationStoreDataBuilder().withEnable(type).build();
 
         const configuration = testObject.getConfiguration(type);
 

@@ -23,12 +23,12 @@ describe('StateDispatcherTest', () => {
 
         const storeMock: IMock<IBaseStore<StoreStubData>> = Mock.ofType<IBaseStore<StoreStubData>>();
         const storeHubStrictMock = Mock.ofType<StoreHubStub>(null, MockBehavior.Strict);
-        storeHubStrictMock.
-            setup(x => x.getAllStores())
+        storeHubStrictMock
+            .setup(x => x.getAllStores())
             .returns(() => [storeMock.object])
             .verifiable(Times.once());
-        storeHubStrictMock.
-            setup(x => x.getStoreType())
+        storeHubStrictMock
+            .setup(x => x.getStoreType())
             .returns(() => StoreType.TabContextStore)
             .verifiable(Times.once());
 
@@ -41,11 +41,9 @@ describe('StateDispatcherTest', () => {
             .returns(() => newstoreData)
             .verifiable();
 
-        const defaultBoardcastMessage = (message: Object) => { };
+        const defaultBoardcastMessage = (message: Object) => {};
         const broadcastMock = Mock.ofInstance<(message: Object) => void>(defaultBoardcastMessage);
-        broadcastMock
-            .setup(bc => bc(It.isValue(expectedMessage)))
-            .verifiable();
+        broadcastMock.setup(bc => bc(It.isValue(expectedMessage))).verifiable();
 
         const stateDispatcher = new StateDispatcher(broadcastMock.object, storeHubStrictMock.object);
         stateDispatcher.initialize();
@@ -68,23 +66,23 @@ describe('StateDispatcherTest', () => {
         const storeMock: IMock<IBaseStore<StoreStubData>> = Mock.ofType<IBaseStore<StoreStubData>>(StoreStub);
         const storeHubMock = Mock.ofType<StoreHubStub>(null, MockBehavior.Strict);
 
-        storeHubMock.
-            setup(x => x.getAllStores())
-            .returns(() => [storeMock.object]);
-        storeHubMock.
-            setup(x => x.getStoreType())
-            .returns(() => StoreType.TabContextStore);
+        storeHubMock.setup(x => x.getAllStores()).returns(() => [storeMock.object]);
+        storeHubMock.setup(x => x.getStoreType()).returns(() => StoreType.TabContextStore);
+        storeMock.setup(sm => sm.getId()).returns(() => expectedMessage.storeId);
+        storeMock.setup(sm => sm.getState()).returns(() => newstoreData);
         storeMock
-            .setup(sm => sm.getId())
-            .returns(() => expectedMessage.storeId);
-        storeMock
-            .setup(sm => sm.getState())
-            .returns(() => newstoreData);
-        storeMock
-            .setup(sm => sm.addChangedListener(It.is<Function>(handler => { return handler !== null; })))
-            .callback(action => { privateDispatcher = action; });
+            .setup(sm =>
+                sm.addChangedListener(
+                    It.is<Function>(handler => {
+                        return handler !== null;
+                    }),
+                ),
+            )
+            .callback(action => {
+                privateDispatcher = action;
+            });
 
-        const defaultBoardcastMessage = (message: Object) => { };
+        const defaultBoardcastMessage = (message: Object) => {};
         const broadcastMock = Mock.ofInstance<(message: Object) => void>(defaultBoardcastMessage);
 
         const stateDispatcher = new StateDispatcher(broadcastMock.object, storeHubMock.object);

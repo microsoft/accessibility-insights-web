@@ -27,7 +27,9 @@ describe('StoreProxyTest', () => {
         const clientChromeAdapterMock = Mock.ofType(ClientChromeAdapter);
         clientChromeAdapterMock
             .setup(it => it.addListenerOnMessage(It.isAny()))
-            .callback(callback => { onChange = callback; })
+            .callback(callback => {
+                onChange = callback;
+            })
             .verifiable();
 
         const storeProxy = new TestableStoreProxy('TestStore', clientChromeAdapterMock.object);
@@ -54,7 +56,9 @@ describe('StoreProxyTest', () => {
 
         clientChromeAdapterMock
             .setup(it => it.addListenerOnMessage(It.isAny()))
-            .callback(callback => { onChange = callback; })
+            .callback(callback => {
+                onChange = callback;
+            })
             .verifiable();
 
         const storeProxy = new TestableStoreProxy('TestStore', clientChromeAdapterMock.object);
@@ -86,7 +90,9 @@ describe('StoreProxyTest', () => {
         const clientChromeAdapterMock = Mock.ofType(ClientChromeAdapter);
         clientChromeAdapterMock
             .setup(it => it.addListenerOnMessage(It.isAny()))
-            .callback(callback => { onChange = callback; })
+            .callback(callback => {
+                onChange = callback;
+            })
             .verifiable();
 
         const storeProxy = new TestableStoreProxy('TestStore', clientChromeAdapterMock.object);
@@ -111,7 +117,9 @@ describe('StoreProxyTest', () => {
         const clientChromeAdapterMock = Mock.ofType(ClientChromeAdapter);
         clientChromeAdapterMock
             .setup(it => it.addListenerOnMessage(It.isAny()))
-            .callback(callback => { onChange = callback; })
+            .callback(callback => {
+                onChange = callback;
+            })
             .verifiable();
 
         const storeProxy = new TestableStoreProxy('TestStore', clientChromeAdapterMock.object);
@@ -137,7 +145,9 @@ describe('StoreProxyTest', () => {
         const clientChromeAdapterMock = Mock.ofType(ClientChromeAdapter);
         clientChromeAdapterMock
             .setup(it => it.addListenerOnMessage(It.isAny()))
-            .callback(callback => { onChange = callback; })
+            .callback(callback => {
+                onChange = callback;
+            })
             .verifiable();
 
         const storeProxy = new TestableStoreProxy('GlobalStoreProxy', clientChromeAdapterMock.object);
@@ -151,7 +161,6 @@ describe('StoreProxyTest', () => {
             payload: expectedData,
         } as StoreUpdateMessage<string>);
 
-
         expect(storeProxy.getState()).toEqual(expectedData);
         expect(storeProxy.emitChangedCallCount).toBe(1);
         clientChromeAdapterMock.verifyAll();
@@ -162,7 +171,9 @@ describe('StoreProxyTest', () => {
         const clientChromeAdapterMock = Mock.ofType(ClientChromeAdapter);
         clientChromeAdapterMock
             .setup(it => it.addListenerOnMessage(It.isAny()))
-            .callback(callback => { onChange = callback; })
+            .callback(callback => {
+                onChange = callback;
+            })
             .verifiable();
 
         const storeProxy = new TestableStoreProxy('TestStore', clientChromeAdapterMock.object);
@@ -187,7 +198,9 @@ describe('StoreProxyTest', () => {
         const clientChromeAdapterMock = Mock.ofType(ClientChromeAdapter);
         clientChromeAdapterMock
             .setup(it => it.addListenerOnMessage(It.isAny()))
-            .callback(callback => { onChange = callback; })
+            .callback(callback => {
+                onChange = callback;
+            })
             .verifiable();
 
         const storeProxy = new TestableStoreProxy('TestStore', clientChromeAdapterMock.object);
@@ -212,7 +225,9 @@ describe('StoreProxyTest', () => {
         const clientChromeAdapterMock = Mock.ofType(ClientChromeAdapter);
         clientChromeAdapterMock
             .setup(it => it.addListenerOnMessage(It.isAny()))
-            .callback(callback => { onChange = callback; })
+            .callback(callback => {
+                onChange = callback;
+            })
             .verifiable();
 
         const storeProxy = new TestableStoreProxy('TestStore', clientChromeAdapterMock.object);

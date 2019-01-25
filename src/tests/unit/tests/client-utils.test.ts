@@ -25,7 +25,9 @@ describe('ClientUtilsTest', () => {
     });
 
     test('matchesSelector: msMatchesSelector', () => {
-        const matchesMock = Mock.ofInstance((selector: string) => { return true; });
+        const matchesMock = Mock.ofInstance((selector: string) => {
+            return true;
+        });
         const elementStub = {
             msMatchesSelector: matchesMock.object,
         } as IElementMatcher;
@@ -36,20 +38,18 @@ describe('ClientUtilsTest', () => {
         const matches1 = true;
         const matches2 = false;
 
-        matchesMock
-            .setup(m => m(selector1))
-            .returns(() => matches1);
+        matchesMock.setup(m => m(selector1)).returns(() => matches1);
 
-        matchesMock
-            .setup(m => m(selector2))
-            .returns(() => matches2);
+        matchesMock.setup(m => m(selector2)).returns(() => matches2);
 
         expect(testObject.matchesSelector(elementStub, selector1)).toEqual(matches1);
         expect(testObject.matchesSelector(elementStub, selector2)).toEqual(matches2);
     });
 
     test('matchesSelector: webkitMatchesSelector', () => {
-        const matchesMock = Mock.ofInstance((selector: string) => { return true; });
+        const matchesMock = Mock.ofInstance((selector: string) => {
+            return true;
+        });
         const elementStub: IElementMatcher = {
             webkitMatchesSelector: matchesMock.object,
         };
@@ -60,20 +60,18 @@ describe('ClientUtilsTest', () => {
         const matches1 = true;
         const matches2 = false;
 
-        matchesMock
-            .setup(m => m(selector1))
-            .returns(() => matches1);
+        matchesMock.setup(m => m(selector1)).returns(() => matches1);
 
-        matchesMock
-            .setup(m => m(selector2))
-            .returns(() => matches2);
+        matchesMock.setup(m => m(selector2)).returns(() => matches2);
 
         expect(testObject.matchesSelector(elementStub, selector1)).toEqual(matches1);
         expect(testObject.matchesSelector(elementStub, selector2)).toEqual(matches2);
     });
 
     test('matchesSelector: matches', () => {
-        const matchesMock = Mock.ofInstance((selector: string) => { return true; });
+        const matchesMock = Mock.ofInstance((selector: string) => {
+            return true;
+        });
         const elementStub = {
             matches: matchesMock.object,
         } as IElementMatcher;
@@ -84,13 +82,9 @@ describe('ClientUtilsTest', () => {
         const matches1 = true;
         const matches2 = false;
 
-        matchesMock
-            .setup(m => m(selector1))
-            .returns(() => matches1);
+        matchesMock.setup(m => m(selector1)).returns(() => matches1);
 
-        matchesMock
-            .setup(m => m(selector2))
-            .returns(() => matches2);
+        matchesMock.setup(m => m(selector2)).returns(() => matches2);
 
         expect(testObject.matchesSelector(elementStub, selector1)).toEqual(matches1);
         expect(testObject.matchesSelector(elementStub, selector2)).toEqual(matches2);
@@ -100,13 +94,9 @@ describe('ClientUtilsTest', () => {
         const initialScrollX = 10;
         const initialScrollY = 20;
 
-        scrollGetterMock
-            .setup(sg => sg.scrollX)
-            .returns(() => initialScrollX);
+        scrollGetterMock.setup(sg => sg.scrollX).returns(() => initialScrollX);
 
-        scrollGetterMock
-            .setup(sg => sg.scrollY)
-            .returns(() => initialScrollY);
+        scrollGetterMock.setup(sg => sg.scrollY).returns(() => initialScrollY);
 
         const elementTop = 100;
         const elementLeft = 25;

@@ -19,7 +19,7 @@ describe('FileRequestHelper', () => {
         testSubject = new FileRequestHelper(xmlHttpRequestFactoryMock.object);
     });
 
-    it('propagates the underlying request\'s responseText when the request succeeds', async () => {
+    it("propagates the underlying request's responseText when the request succeeds", async () => {
         const fileUrl = 'file url1';
         const expectedResponseText = 'response text';
 
@@ -30,20 +30,15 @@ describe('FileRequestHelper', () => {
             })
             .verifiable(Times.once());
 
-        httpRequestMock
-            .setup(x => x.open('GET', fileUrl, true))
-            .verifiable();
-        httpRequestMock
-            .setup(x => x.send())
-            .verifiable();
+        httpRequestMock.setup(x => x.open('GET', fileUrl, true)).verifiable();
+        httpRequestMock.setup(x => x.send()).verifiable();
 
         const getFileContentPromise = testSubject.getFileContent(fileUrl);
 
         httpRequestMock.verifyAll();
         xmlHttpRequestFactoryMock.verifyAll();
 
-        httpRequestMock
-            .setup(x => x.responseText).returns(() => expectedResponseText);
+        httpRequestMock.setup(x => x.responseText).returns(() => expectedResponseText);
 
         httpRequestMock.object.onload(null);
 
@@ -61,21 +56,15 @@ describe('FileRequestHelper', () => {
             })
             .verifiable(Times.once());
 
-        httpRequestMock
-            .setup(x => x.open('GET', fileUrl, true))
-            .verifiable();
-        httpRequestMock
-            .setup(x => x.send())
-            .verifiable();
+        httpRequestMock.setup(x => x.open('GET', fileUrl, true)).verifiable();
+        httpRequestMock.setup(x => x.send()).verifiable();
 
         const getFileContentPromise = testSubject.getFileContent(fileUrl);
 
         httpRequestMock.verifyAll();
         xmlHttpRequestFactoryMock.verifyAll();
 
-        httpRequestMock
-            .setup(x => x.responseText)
-            .verifiable(Times.never());
+        httpRequestMock.setup(x => x.responseText).verifiable(Times.never());
 
         httpRequestMock.object.onerror(null);
 
@@ -93,22 +82,16 @@ describe('FileRequestHelper', () => {
             })
             .verifiable(Times.once());
 
-        httpRequestMock
-            .setup(x => x.open('GET', fileUrl, true))
-            .verifiable();
+        httpRequestMock.setup(x => x.open('GET', fileUrl, true)).verifiable();
 
-        httpRequestMock
-            .setup(x => x.send())
-            .verifiable();
+        httpRequestMock.setup(x => x.send()).verifiable();
 
         const getFileContentPromise = testSubject.getFileContent(fileUrl);
 
         httpRequestMock.verifyAll();
         xmlHttpRequestFactoryMock.verifyAll();
 
-        httpRequestMock
-            .setup(x => x.responseText)
-            .verifiable(Times.never());
+        httpRequestMock.setup(x => x.responseText).verifiable(Times.never());
 
         httpRequestMock.object.ontimeout(null);
 

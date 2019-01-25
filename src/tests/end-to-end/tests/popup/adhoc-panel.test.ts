@@ -21,7 +21,10 @@ describe('Ad hoc tools', () => {
     });
 
     afterEach(async () => {
-        if (browser) { await browser.close(); browser = undefined; }
+        if (browser) {
+            await browser.close();
+            browser = undefined;
+        }
     });
 
     async function setupNewTargetPage(): Promise<void> {

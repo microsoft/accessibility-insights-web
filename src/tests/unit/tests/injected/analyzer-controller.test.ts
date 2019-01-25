@@ -54,9 +54,15 @@ describe('AnalyzerControllerTests', () => {
 
     beforeEach(() => {
         testType = -1 as VisualizationType;
-        getStoreDataMock = Mock.ofInstance(data => { return null; });
-        getAnalyzerMock = Mock.ofInstance((provider: AnalyzerProvider) => { return null; });
-        getIdentifierMock = Mock.ofInstance(() => { return null; });
+        getStoreDataMock = Mock.ofInstance(data => {
+            return null;
+        });
+        getAnalyzerMock = Mock.ofInstance((provider: AnalyzerProvider) => {
+            return null;
+        });
+        getIdentifierMock = Mock.ofInstance(() => {
+            return null;
+        });
         configStub = {
             getStoreData: getStoreDataMock.object,
             getAnalyzer: getAnalyzerMock.object,
@@ -70,17 +76,11 @@ describe('AnalyzerControllerTests', () => {
         featureFlagStoreStoreMock = Mock.ofType<FeatureFlagStore>();
         scopingStoreMock = Mock.ofType<ScopingStore>(ScopingStore);
 
-        visualizationStoreMock
-            .setup(sm => sm.getState())
-            .returns(() => visualizationStoreState);
+        visualizationStoreMock.setup(sm => sm.getState()).returns(() => visualizationStoreState);
 
-        featureFlagStoreStoreMock
-            .setup(sm => sm.getState())
-            .returns(() => featureFlagStoreState);
+        featureFlagStoreStoreMock.setup(sm => sm.getState()).returns(() => featureFlagStoreState);
 
-        scopingStoreMock
-            .setup(sm => sm.getState())
-            .returns(() => scopingStoreState);
+        scopingStoreMock.setup(sm => sm.getState()).returns(() => scopingStoreState);
 
         analyzerProviderStrictMock = Mock.ofType<AnalyzerProvider>(null, MockBehavior.Strict);
         analyzerStateUpdateHandlerStrictMock = Mock.ofType<AnalyzerStateUpdateHandler>(null, MockBehavior.Strict);
@@ -98,7 +98,7 @@ describe('AnalyzerControllerTests', () => {
         visualizationStoreState = null;
         scopingStoreState = null;
 
-        sendMessageMock = Mock.ofInstance(message => { }, MockBehavior.Strict);
+        sendMessageMock = Mock.ofInstance(message => {}, MockBehavior.Strict);
 
         EnumHelper.getNumericValues(VisualizationType).forEach((test: VisualizationType) => {
             setupVisualizationConfigurationFactory(test, configStub);
@@ -131,23 +131,17 @@ describe('AnalyzerControllerTests', () => {
         featureFlagStoreState = {};
     });
 
-
     test('handleUpdate when stores are initialized', () => {
         assessmentsMock
             .setup(mock => mock.isValidType(It.isAny()))
             .returns(() => false)
             .verifiable(Times.atLeastOnce());
 
-        visualizationStoreState = new VisualizationStoreDataBuilder()
-            .with('scanning', testType.toString())
-            .build();
+        visualizationStoreState = new VisualizationStoreDataBuilder().with('scanning', testType.toString()).build();
 
-        scopingStoreState = new ScopingStoreDataBuilder()
-            .build();
+        scopingStoreState = new ScopingStoreDataBuilder().build();
 
-        analyzerStateUpdateHandlerStrictMock
-            .setup(handler => handler.handleUpdate(visualizationStoreState))
-            .verifiable(Times.once());
+        analyzerStateUpdateHandlerStrictMock.setup(handler => handler.handleUpdate(visualizationStoreState)).verifiable(Times.once());
 
         testObject.listenToStore();
 
@@ -156,12 +150,10 @@ describe('AnalyzerControllerTests', () => {
         getIdentifierMock.verifyAll();
     });
 
-
     test('do not scan on if any store state is null', () => {
         visualizationStoreState = null;
 
-        scopingStoreState = new ScopingStoreDataBuilder()
-            .build();
+        scopingStoreState = new ScopingStoreDataBuilder().build();
 
         setupVisualizationConfigurationFactory(testType, configStub);
         assessmentsMock
@@ -169,9 +161,7 @@ describe('AnalyzerControllerTests', () => {
             .returns(() => false)
             .verifiable(Times.atLeastOnce());
 
-        analyzerStateUpdateHandlerStrictMock
-            .setup(handler => handler.handleUpdate(visualizationStoreState))
-            .verifiable(Times.never());
+        analyzerStateUpdateHandlerStrictMock.setup(handler => handler.handleUpdate(visualizationStoreState)).verifiable(Times.never());
 
         testObject.listenToStore();
 
@@ -179,7 +169,6 @@ describe('AnalyzerControllerTests', () => {
         getAnalyzerMock.verifyAll();
         getIdentifierMock.verifyAll();
     });
-
 
     test('startScan', () => {
         testObject.listenToStore();
@@ -195,7 +184,6 @@ describe('AnalyzerControllerTests', () => {
         getIdentifierMock.verifyAll();
         analyzerMock.verifyAll();
     });
-
 
     test('teardown', () => {
         testObject.listenToStore();
@@ -213,17 +201,12 @@ describe('AnalyzerControllerTests', () => {
     });
 
     function setupAnalyzeCall() {
-        analyzerMock
-            .setup(am => am.analyze())
-            .verifiable();
+        analyzerMock.setup(am => am.analyze()).verifiable();
     }
 
     function setupTeardownCall() {
-        analyzerMock
-            .setup(am => am.teardown())
-            .verifiable();
+        analyzerMock.setup(am => am.teardown()).verifiable();
     }
-
 
     function setupGetIdentifierMock(key: string, times): void {
         getIdentifierMock
@@ -246,9 +229,7 @@ describe('AnalyzerControllerTests', () => {
             .verifiable(Times.never());
     }
 
-    function setupVisualizationConfigurationFactory(type: VisualizationType,
-        returnedConfig: IVisualizationConfiguration,
-    ): void {
+    function setupVisualizationConfigurationFactory(type: VisualizationType, returnedConfig: IVisualizationConfiguration): void {
         visualizationConfigurationFactoryMock
             .setup(v => v.getConfiguration(type))
             .returns((visType: VisualizationType) => {
@@ -257,9 +238,7 @@ describe('AnalyzerControllerTests', () => {
     }
 
     function setupGetStoreDataMock(tests: ITestsEnabledState, scanData: IScanData): void {
-        getStoreDataMock
-            .setup(gcdm => gcdm(tests))
-            .returns(() => scanData);
+        getStoreDataMock.setup(gcdm => gcdm(tests)).returns(() => scanData);
     }
 });
 

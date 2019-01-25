@@ -20,7 +20,7 @@ describe('TabStopsAnalyzerTests', () => {
 
     beforeEach(() => {
         windowUtilsMock = Mock.ofType(WindowUtils);
-        sendMessageMock = Mock.ofInstance(message => { }, MockBehavior.Strict);
+        sendMessageMock = Mock.ofInstance(message => {}, MockBehavior.Strict);
         configStub = {
             analyzerProgressMessageType: 'sample progress message type',
             analyzerTerminatedMessageType: 'fun terminated message',
@@ -31,12 +31,7 @@ describe('TabStopsAnalyzerTests', () => {
         tabEventHandler = null;
         setTimeOutCallBack = null;
         tabStopsListenerMock = Mock.ofType(TabStopsListener);
-        testSubject = new TabStopsAnalyzer(
-            configStub,
-            tabStopsListenerMock.object,
-            windowUtilsMock.object,
-            sendMessageMock.object,
-        );
+        testSubject = new TabStopsAnalyzer(configStub, tabStopsListenerMock.object, windowUtilsMock.object, sendMessageMock.object);
         typeStub = -1 as VisualizationType;
     });
 
@@ -132,9 +127,7 @@ describe('TabStopsAnalyzerTests', () => {
     });
 
     test('teardown', () => {
-        tabStopsListenerMock
-            .setup(tslm => tslm.stopListenToTabStops())
-            .verifiable(Times.once());
+        tabStopsListenerMock.setup(tslm => tslm.stopListenToTabStops()).verifiable(Times.once());
 
         const payload: IScanBasePayload = {
             key: configStub.key,
@@ -165,9 +158,7 @@ describe('TabStopsAnalyzerTests', () => {
             })
             .verifiable(Times.once());
 
-        tabStopsListenerMock
-            .setup(t => t.startListenToTabStops())
-            .verifiable(Times.once());
+        tabStopsListenerMock.setup(t => t.startListenToTabStops()).verifiable(Times.once());
     }
 
     function setupWindowUtils(): void {

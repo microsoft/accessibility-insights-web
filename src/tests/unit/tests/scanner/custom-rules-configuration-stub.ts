@@ -22,6 +22,4 @@ const fakeRuleConfigurationA: RuleConfiguration = {
     },
 };
 
-export const CustomRulesConfigurationStub: RuleConfiguration[] = [
-    fakeRuleConfigurationA,
-];
+export const CustomRulesConfigurationStub: RuleConfiguration[] = [fakeRuleConfigurationA];

@@ -14,7 +14,6 @@ import { IDrawerInitData } from '../../../../../injected/visualization/idrawer';
 import { IDrawerConfiguration, IFormatter } from '../../../../../injected/visualization/iformatter';
 import { TestDocumentCreator } from '../../../common/test-document-creator';
 
-
 describe('Drawer', () => {
     const defaultStyleStub: CSSStyleDeclaration = {
         overflowX: null,
@@ -37,10 +36,8 @@ describe('Drawer', () => {
     });
 
     test('eraseLayout called when initialize', () => {
-        const eraseLayoutMock = Mock.ofInstance(() => { });
-        eraseLayoutMock
-            .setup(e => e())
-            .verifiable(Times.once());
+        const eraseLayoutMock = Mock.ofInstance(() => {});
+        eraseLayoutMock.setup(e => e()).verifiable(Times.once());
 
         const testSubject = createDrawerBuilder().build();
 
@@ -80,16 +77,20 @@ describe('Drawer', () => {
         const overlays = findCurrentDrawerOverlays();
 
         expect(overlays.length).toEqual(2);
-        overlays.forEach((overlay => {
+        overlays.forEach(overlay => {
             verifyOverlayStyle(overlay);
-        }));
+        });
         windowUtilsMock.verifyAll();
     });
 
     test('verifyDefaultStyling: visualizations fully visible in client view', () => {
         const domMock: IMock<Document> = Mock.ofInstance({
-            querySelectorAll: selector => { return null; },
-            createElement: selector => { return null; },
+            querySelectorAll: selector => {
+                return null;
+            },
+            createElement: selector => {
+                return null;
+            },
             documentElement: {
                 scrollWidth: 1000,
                 scrollHeight: 1000,
@@ -100,12 +101,14 @@ describe('Drawer', () => {
                 scrollWidth: 1000,
                 scrollHeight: 1000,
             },
-            querySelector: selector => { return null; },
-            appendChild: node => { },
+            querySelector: selector => {
+                return null;
+            },
+            appendChild: node => {},
         } as any);
 
         const shadowContainerMock: IMock<HTMLElement> = Mock.ofInstance({
-            appendChild: child => { },
+            appendChild: child => {},
         } as any);
 
         shadowContainer = shadowContainerMock.object;
@@ -132,34 +135,46 @@ describe('Drawer', () => {
 
         domMock
             .setup(it => it.querySelectorAll('#id1'))
-            .returns(selector => { return [elementStub] as any; })
+            .returns(selector => {
+                return [elementStub] as any;
+            })
             .verifiable();
 
         domMock
             .setup(it => it.createElement('div'))
-            .returns(selector => { return document.createElement(selector); })
+            .returns(selector => {
+                return document.createElement(selector);
+            })
             .verifiable(Times.exactly(3));
 
         domMock
             .setup(it => it.querySelector('body'))
-            .returns(stuff => { return bodyStub; });
+            .returns(stuff => {
+                return bodyStub;
+            });
 
         shadowContainerMock
-            .setup(it => it.appendChild(It.is((wrapper: HTMLElement) => {
-                const child = wrapper.childNodes[0] as HTMLElement;
-                return (
-                    child.style != null &&
-                    child.style.minWidth === '50px' &&
-                    child.style.minHeight === '50px' &&
-                    child.style.top === '10px' &&
-                    child.style.left === '10px'
-                );
-            })))
+            .setup(it =>
+                it.appendChild(
+                    It.is((wrapper: HTMLElement) => {
+                        const child = wrapper.childNodes[0] as HTMLElement;
+                        return (
+                            child.style != null &&
+                            child.style.minWidth === '50px' &&
+                            child.style.minHeight === '50px' &&
+                            child.style.top === '10px' &&
+                            child.style.left === '10px'
+                        );
+                    }),
+                ),
+            )
             .verifiable();
 
         clientUtilsMock
             .setup(cu => cu.getOffset(elementStub))
-            .returns(el => { return { left: 10, top: 10 }; });
+            .returns(el => {
+                return { left: 10, top: 10 };
+            });
 
         const windowUtilsMock = Mock.ofType(WindowUtils);
 
@@ -199,8 +214,12 @@ describe('Drawer', () => {
 
     test('verifyDefaultStyling: visualizations not fully visible in client view', () => {
         const domMock: IMock<Document> = Mock.ofInstance({
-            querySelectorAll: selector => { return null; },
-            createElement: selector => { return null; },
+            querySelectorAll: selector => {
+                return null;
+            },
+            createElement: selector => {
+                return null;
+            },
             documentElement: {
                 scrollWidth: 1000,
                 scrollHeight: 1000,
@@ -211,12 +230,14 @@ describe('Drawer', () => {
                 scrollWidth: 1000,
                 scrollHeight: 1000,
             },
-            querySelector: selector => { return null; },
-            appendChild: node => { },
+            querySelector: selector => {
+                return null;
+            },
+            appendChild: node => {},
         } as any);
 
         const shadowContainerMock: IMock<HTMLElement> = Mock.ofInstance({
-            appendChild: child => { },
+            appendChild: child => {},
         } as any);
 
         shadowContainer = shadowContainerMock.object;
@@ -244,34 +265,46 @@ describe('Drawer', () => {
 
         domMock
             .setup(it => it.querySelectorAll('#id1'))
-            .returns(selector => { return [elementStub] as any; })
+            .returns(selector => {
+                return [elementStub] as any;
+            })
             .verifiable();
 
         domMock
             .setup(it => it.createElement('div'))
-            .returns(selector => { return document.createElement(selector); })
+            .returns(selector => {
+                return document.createElement(selector);
+            })
             .verifiable(Times.exactly(3));
 
         domMock
             .setup(it => it.querySelector('body'))
-            .returns(stuff => { return bodyStub; });
+            .returns(stuff => {
+                return bodyStub;
+            });
 
         shadowContainerMock
-            .setup(it => it.appendChild(It.is((wrapper: HTMLElement) => {
-                const child = wrapper.childNodes[0] as HTMLElement;
-                return (
-                    child.style != null &&
-                    child.style.minWidth === '990px' &&
-                    child.style.minHeight === '990px' &&
-                    child.style.top === '5px' &&
-                    child.style.left === '5px'
-                );
-            })))
+            .setup(it =>
+                it.appendChild(
+                    It.is((wrapper: HTMLElement) => {
+                        const child = wrapper.childNodes[0] as HTMLElement;
+                        return (
+                            child.style != null &&
+                            child.style.minWidth === '990px' &&
+                            child.style.minHeight === '990px' &&
+                            child.style.top === '5px' &&
+                            child.style.left === '5px'
+                        );
+                    }),
+                ),
+            )
             .verifiable();
 
         clientUtilsMock
             .setup(cu => cu.getOffset(elementStub))
-            .returns(_ => { return { left: 0, top: 0 }; });
+            .returns(_ => {
+                return { left: 0, top: 0 };
+            });
 
         const windowUtilsMock = Mock.ofType(WindowUtils);
 
@@ -311,8 +344,12 @@ describe('Drawer', () => {
 
     test('verifyDefaultStyling: visualizations fully not visible in client view', () => {
         const domMock: IMock<Document> = Mock.ofInstance({
-            querySelectorAll: selector => { return null; },
-            createElement: selector => { return null; },
+            querySelectorAll: selector => {
+                return null;
+            },
+            createElement: selector => {
+                return null;
+            },
             documentElement: {
                 scrollWidth: 5,
                 scrollHeight: 5,
@@ -323,12 +360,14 @@ describe('Drawer', () => {
                 scrollWidth: 5,
                 scrollHeight: 5,
             },
-            querySelector: selector => { return null; },
-            appendChild: node => { },
+            querySelector: selector => {
+                return null;
+            },
+            appendChild: node => {},
         } as any);
 
         const shadowContainerMock: IMock<HTMLElement> = Mock.ofInstance({
-            appendChild: child => { },
+            appendChild: child => {},
         } as any);
 
         shadowContainer = shadowContainerMock.object;
@@ -357,29 +396,31 @@ describe('Drawer', () => {
 
         domMock
             .setup(it => it.createElement(It.isAny()))
-            .returns(
-                () => {
-                    return document.createElement('div');
-                },
-        )
+            .returns(() => {
+                return document.createElement('div');
+            })
             .verifiable();
 
         domMock
             .setup(it => it.querySelectorAll('#id1'))
-            .returns(selector => { return [elementStub] as any; })
+            .returns(selector => {
+                return [elementStub] as any;
+            })
             .verifiable();
 
         domMock
             .setup(it => it.querySelector('body'))
-            .returns(stuff => { return bodyStub; });
+            .returns(stuff => {
+                return bodyStub;
+            });
 
-        shadowContainerMock
-            .setup(it => it.appendChild(It.isAny()))
-            .verifiable();
+        shadowContainerMock.setup(it => it.appendChild(It.isAny())).verifiable();
 
         clientUtilsMock
             .setup(cu => cu.getOffset(elementStub))
-            .returns(_ => { return { left: 10, top: 10 }; });
+            .returns(_ => {
+                return { left: 10, top: 10 };
+            });
 
         const windowUtilsMock = Mock.ofType(WindowUtils);
 
@@ -419,8 +460,12 @@ describe('Drawer', () => {
 
     test('verifyDefaultStyling: visualizations not fully visible in client view when body/html overflowX is hidden', () => {
         const domMock: IMock<Document> = Mock.ofInstance({
-            querySelectorAll: selector => { return null; },
-            createElement: selector => { return null; },
+            querySelectorAll: selector => {
+                return null;
+            },
+            createElement: selector => {
+                return null;
+            },
             documentElement: {
                 scrollWidth: 1000,
                 scrollHeight: 1000,
@@ -431,12 +476,14 @@ describe('Drawer', () => {
                 scrollWidth: 1000,
                 scrollHeight: 1000,
             },
-            querySelector: selector => { return null; },
-            appendChild: node => { },
+            querySelector: selector => {
+                return null;
+            },
+            appendChild: node => {},
         } as any);
 
         const shadowContainerMock: IMock<HTMLElement> = Mock.ofInstance({
-            appendChild: child => { },
+            appendChild: child => {},
         } as any);
 
         shadowContainer = shadowContainerMock.object;
@@ -465,34 +512,46 @@ describe('Drawer', () => {
 
         domMock
             .setup(it => it.querySelectorAll('#id1'))
-            .returns(selector => { return [elementStub] as any; })
+            .returns(selector => {
+                return [elementStub] as any;
+            })
             .verifiable();
 
         domMock
             .setup(it => it.createElement('div'))
-            .returns(selector => { return document.createElement(selector); })
+            .returns(selector => {
+                return document.createElement(selector);
+            })
             .verifiable(Times.exactly(3));
 
         domMock
             .setup(it => it.querySelector('body'))
-            .returns(stuff => { return bodyStub; });
+            .returns(stuff => {
+                return bodyStub;
+            });
 
         shadowContainerMock
-            .setup(it => it.appendChild(It.is((wrapper: HTMLElement) => {
-                const child = wrapper.childNodes[0] as HTMLElement;
-                return (
-                    child.style != null &&
-                    child.style.minWidth === '490px' &&
-                    child.style.minHeight === '990px' &&
-                    child.style.top === '5px' &&
-                    child.style.left === '5px'
-                );
-            })))
+            .setup(it =>
+                it.appendChild(
+                    It.is((wrapper: HTMLElement) => {
+                        const child = wrapper.childNodes[0] as HTMLElement;
+                        return (
+                            child.style != null &&
+                            child.style.minWidth === '490px' &&
+                            child.style.minHeight === '990px' &&
+                            child.style.top === '5px' &&
+                            child.style.left === '5px'
+                        );
+                    }),
+                ),
+            )
             .verifiable();
 
         clientUtilsMock
             .setup(cu => cu.getOffset(elementStub))
-            .returns(element => { return { left: 0, top: 0 }; });
+            .returns(element => {
+                return { left: 0, top: 0 };
+            });
 
         const windowUtilsMock = Mock.ofType(WindowUtils);
 
@@ -532,8 +591,12 @@ describe('Drawer', () => {
 
     test('verifyDefaultStyling: visualizations not fully visible in client view when body/html overflowY is hidden', () => {
         const domMock: IMock<Document> = Mock.ofInstance({
-            querySelectorAll: selector => { return null; },
-            createElement: selector => { return null; },
+            querySelectorAll: selector => {
+                return null;
+            },
+            createElement: selector => {
+                return null;
+            },
             documentElement: {
                 scrollWidth: 1000,
                 scrollHeight: 1000,
@@ -544,12 +607,14 @@ describe('Drawer', () => {
                 scrollWidth: 1000,
                 scrollHeight: 1000,
             },
-            querySelector: selector => { return null; },
-            appendChild: node => { },
+            querySelector: selector => {
+                return null;
+            },
+            appendChild: node => {},
         } as any);
 
         const shadowContainerMock: IMock<HTMLElement> = Mock.ofInstance({
-            appendChild: child => { },
+            appendChild: child => {},
         } as any);
 
         shadowContainer = shadowContainerMock.object;
@@ -577,34 +642,46 @@ describe('Drawer', () => {
 
         domMock
             .setup(it => it.querySelectorAll('#id1'))
-            .returns(selector => { return [elementStub] as any; })
+            .returns(selector => {
+                return [elementStub] as any;
+            })
             .verifiable();
 
         domMock
             .setup(it => it.createElement('div'))
-            .returns(selector => { return document.createElement(selector); })
+            .returns(selector => {
+                return document.createElement(selector);
+            })
             .verifiable(Times.exactly(3));
 
         domMock
             .setup(it => it.querySelector('body'))
-            .returns(stuff => { return bodyStub; });
+            .returns(stuff => {
+                return bodyStub;
+            });
 
         shadowContainerMock
-            .setup(it => it.appendChild(It.is((wrapper: HTMLElement) => {
-                const child = wrapper.childNodes[0] as HTMLElement;
-                return (
-                    child.style != null &&
-                    child.style.minWidth === '990px' &&
-                    child.style.minHeight === '490px' &&
-                    child.style.top === '5px' &&
-                    child.style.left === '5px'
-                );
-            })))
+            .setup(it =>
+                it.appendChild(
+                    It.is((wrapper: HTMLElement) => {
+                        const child = wrapper.childNodes[0] as HTMLElement;
+                        return (
+                            child.style != null &&
+                            child.style.minWidth === '990px' &&
+                            child.style.minHeight === '490px' &&
+                            child.style.top === '5px' &&
+                            child.style.left === '5px'
+                        );
+                    }),
+                ),
+            )
             .verifiable();
 
         clientUtilsMock
             .setup(cu => cu.getOffset(elementStub))
-            .returns(_ => { return { left: 0, top: 0 }; });
+            .returns(_ => {
+                return { left: 0, top: 0 };
+            });
 
         const windowUtilsMock = Mock.ofType(WindowUtils);
 
@@ -644,8 +721,12 @@ describe('Drawer', () => {
 
     test('verify createContainerElement not called if containerElement already exists', () => {
         const domMock: IMock<Document> = Mock.ofInstance({
-            querySelectorAll: selector => { return null; },
-            createElement: selector => { return null; },
+            querySelectorAll: selector => {
+                return null;
+            },
+            createElement: selector => {
+                return null;
+            },
             documentElement: {
                 scrollWidth: 1000,
                 scrollHeight: 1000,
@@ -656,8 +737,10 @@ describe('Drawer', () => {
                 scrollWidth: 1000,
                 scrollHeight: 1000,
             },
-            querySelector: selector => { return null; },
-            appendChild: node => { },
+            querySelector: selector => {
+                return null;
+            },
+            appendChild: node => {},
         } as any);
 
         const windowUtilsMock = Mock.ofType(WindowUtils);
@@ -668,10 +751,8 @@ describe('Drawer', () => {
             .build();
 
         (testSubject as any).containerElement = true;
-        const createContainerElementMock = Mock.ofInstance(() => { });
-        createContainerElementMock
-            .setup(c => c())
-            .verifiable(Times.never());
+        const createContainerElementMock = Mock.ofInstance(() => {});
+        createContainerElementMock.setup(c => c()).verifiable(Times.never());
         (testSubject as any).createContainerElementMock = createContainerElementMock;
 
         createContainerElementMock.verifyAll();
@@ -694,8 +775,8 @@ describe('Drawer', () => {
         testSubject.initialize(createDrawerInfo(elementResults));
         expect(testSubject.isOverlayEnabled).toEqual(false);
         const callbacks: any[] = [];
-        const registerHandlerFunc: typeof windowUtilsMock.object.addEventListener = (
-            window, eventName, handler, useCapture) => callbacks.push(handler);
+        const registerHandlerFunc: typeof windowUtilsMock.object.addEventListener = (window, eventName, handler, useCapture) =>
+            callbacks.push(handler);
 
         // draw
         windowUtilsMock.reset();
@@ -727,7 +808,6 @@ describe('Drawer', () => {
         const windowUtilsMock = Mock.ofType(WindowUtils);
         setupWindow();
         setupGetComputedStyleNotCalled();
-
 
         const elementResults = createElementResults(['#id1']);
 
@@ -767,8 +847,8 @@ describe('Drawer', () => {
         testSubject.initialize(createDrawerInfo(elementResults));
         expect(testSubject.isOverlayEnabled).toEqual(false);
         let scrollCallback: Function;
-        const registerHandlerFunc: typeof windowUtilsMock.object.addEventListener =
-            (window, eventName, handler, useCapture) => scrollCallback = handler;
+        const registerHandlerFunc: typeof windowUtilsMock.object.addEventListener = (window, eventName, handler, useCapture) =>
+            (scrollCallback = handler);
 
         // draw
         setupWindow();
@@ -778,14 +858,13 @@ describe('Drawer', () => {
         // invoke scroll listener
         let timeOutCallback: Function;
         const timeOutId = 10;
-        const registerTimeOutHandlerFunc: typeof window.setTimeout = (handler, timeout) => timeOutCallback = handler;
+        const registerTimeOutHandlerFunc: typeof window.setTimeout = (handler, timeout) => (timeOutCallback = handler);
 
-        windowUtilsMock
-            .setup(x => x.clearTimeout(It.isAny()))
-            .verifiable(Times.never());
+        windowUtilsMock.setup(x => x.clearTimeout(It.isAny())).verifiable(Times.never());
         windowUtilsMock
             .setup(x => x.setTimeout(It.isAny(), Drawer.recalculationTimeout))
-            .callback(registerTimeOutHandlerFunc).returns(() => timeOutId)
+            .callback(registerTimeOutHandlerFunc)
+            .returns(() => timeOutId)
             .verifiable();
 
         scrollCallback();
@@ -796,8 +875,11 @@ describe('Drawer', () => {
         windowUtilsMock.reset();
 
         windowUtilsMock.setup(x => x.clearTimeout(timeOutId)).verifiable();
-        windowUtilsMock.setup(x => x.setTimeout(It.isAny(), Drawer.recalculationTimeout))
-            .callback(registerTimeOutHandlerFunc).returns(() => timeOutId).verifiable();
+        windowUtilsMock
+            .setup(x => x.setTimeout(It.isAny(), Drawer.recalculationTimeout))
+            .callback(registerTimeOutHandlerFunc)
+            .returns(() => timeOutId)
+            .verifiable();
         scrollCallback();
 
         windowUtilsMock.verifyAll();
@@ -819,8 +901,8 @@ describe('Drawer', () => {
         testSubject.initialize(createDrawerInfo(elementResults));
         expect(testSubject.isOverlayEnabled).toEqual(false);
         let scrollCallback: Function;
-        const registerHandlerFunc: typeof windowUtilsMock.object.addEventListener =
-            (window, eventName, handler, useCapture) => scrollCallback = handler;
+        const registerHandlerFunc: typeof windowUtilsMock.object.addEventListener = (window, eventName, handler, useCapture) =>
+            (scrollCallback = handler);
 
         setupWindow();
         setupAddEventListerCalled(registerHandlerFunc);
@@ -831,15 +913,18 @@ describe('Drawer', () => {
         // invoke scroll listener
         let timeOutCallback: Function;
         const timeOutId = 10;
-        const registerTimeOutHandlerFunc: typeof window.setTimeout = (handler, timeout) => timeOutCallback = handler;
+        const registerTimeOutHandlerFunc: typeof window.setTimeout = (handler, timeout) => (timeOutCallback = handler);
 
-        windowUtilsMock.setup(x => x.setTimeout(It.isAny(), Drawer.recalculationTimeout))
-            .callback(registerTimeOutHandlerFunc).returns(() => timeOutId).verifiable();
+        windowUtilsMock
+            .setup(x => x.setTimeout(It.isAny(), Drawer.recalculationTimeout))
+            .callback(registerTimeOutHandlerFunc)
+            .returns(() => timeOutId)
+            .verifiable();
 
         scrollCallback();
 
         // invoke timeout callback (should invoke draw)
-        const mockDraw = Mock.ofInstance(() => { });
+        const mockDraw = Mock.ofInstance(() => {});
         mockDraw.setup(it => it()).verifiable();
         (testSubject as any).draw = mockDraw.object;
         timeOutCallback();
@@ -967,7 +1052,6 @@ describe('Drawer', () => {
             `);
         const elementResults = createElementResults(['#id1', '#id2']);
 
-
         windowUtilsMock
             .setup(it => it.getComputedStyle(It.isAny()))
             .returns(() => {
@@ -1009,9 +1093,9 @@ describe('Drawer', () => {
 
         windowUtilsMock.verifyAll();
         expect(overlays.length).toEqual(4);
-        overlays.forEach((overlay => {
+        overlays.forEach(overlay => {
             verifyOverlayStyle(overlay);
-        }));
+        });
     });
 
     test('verifyFormatter', () => {
@@ -1087,7 +1171,8 @@ describe('Drawer', () => {
 
         function addMockForElement(selector: string, config: IDrawerConfiguration) {
             const elementResult = elementResults.filter(el => el.target[0] === selector)[0];
-            formatterMock.setup(it => it.getDrawerConfiguration(dom.querySelector(selector), elementResult))
+            formatterMock
+                .setup(it => it.getDrawerConfiguration(dom.querySelector(selector), elementResult))
                 .returns(() => config)
                 .verifiable();
         }
@@ -1167,8 +1252,9 @@ describe('Drawer', () => {
     }
 
     function verifyOverlayStyle(
-        overlay: { container: HTMLDivElement, label: HTMLDivElement; failureLabel: HTMLDivElement },
-        drawerConfig: IDrawerConfiguration = Drawer.defaultConfiguration) {
+        overlay: { container: HTMLDivElement; label: HTMLDivElement; failureLabel: HTMLDivElement },
+        drawerConfig: IDrawerConfiguration = Drawer.defaultConfiguration,
+    ) {
         expect(overlay.container.style.outlineStyle).toEqual(drawerConfig.outlineStyle);
         expect(overlay.container.style.outlineColor).toEqual(drawerConfig.borderColor);
         expect(overlay.container.style.top).toEqual('5px');
@@ -1193,10 +1279,11 @@ describe('Drawer', () => {
         }
     }
 
-    function findCurrentDrawerOverlays(): { container: HTMLDivElement, label: HTMLDivElement; failureLabel: HTMLDivElement }[] {
+    function findCurrentDrawerOverlays(): { container: HTMLDivElement; label: HTMLDivElement; failureLabel: HTMLDivElement }[] {
         const overlays: { container: HTMLDivElement; label: HTMLDivElement; failureLabel: HTMLDivElement }[] = [];
-        const containers = shadowContainer
-            .querySelectorAll(`.insights-container.insights-highlight-container.${containerClass} .insights-highlight-box`);
+        const containers = shadowContainer.querySelectorAll(
+            `.insights-container.insights-highlight-container.${containerClass} .insights-highlight-box`,
+        );
 
         for (let containerPos = 0; containerPos < containers.length; containerPos++) {
             overlays.push({
@@ -1273,15 +1360,11 @@ describe('Drawer', () => {
     }
 
     function setupWindow() {
-        windowUtilsMock
-            .setup(w => w.getWindow())
-            .returns((() => windowStub));
+        windowUtilsMock.setup(w => w.getWindow()).returns(() => windowStub);
     }
 
     function setupGetComputedStyleNotCalled() {
-        windowUtilsMock
-            .setup(it => it.getComputedStyle(It.isAny()))
-            .verifiable(Times.never());
+        windowUtilsMock.setup(it => it.getComputedStyle(It.isAny())).verifiable(Times.never());
     }
 
     function setupGetComputedStyleCalled() {
@@ -1297,21 +1380,13 @@ describe('Drawer', () => {
     }
 
     function setupRemoveEventListerCalled() {
-        windowUtilsMock
-            .setup(x => x.removeEventListener(windowStub, 'resize', It.isAny(), true))
-            .verifiable();
-        windowUtilsMock
-            .setup(x => x.removeEventListener(windowStub, 'scroll', It.isAny(), true))
-            .verifiable();
+        windowUtilsMock.setup(x => x.removeEventListener(windowStub, 'resize', It.isAny(), true)).verifiable();
+        windowUtilsMock.setup(x => x.removeEventListener(windowStub, 'scroll', It.isAny(), true)).verifiable();
     }
 
     function setupRemoveEventListerNotCalled() {
-        windowUtilsMock
-            .setup(x => x.removeEventListener(windowStub, 'resize', It.isAny(), true))
-            .verifiable(Times.never());
-        windowUtilsMock
-            .setup(x => x.removeEventListener(windowStub, 'scroll', It.isAny(), true))
-            .verifiable(Times.never());
+        windowUtilsMock.setup(x => x.removeEventListener(windowStub, 'resize', It.isAny(), true)).verifiable(Times.never());
+        windowUtilsMock.setup(x => x.removeEventListener(windowStub, 'scroll', It.isAny(), true)).verifiable(Times.never());
     }
 
     function setupAddEventListerCalled(callback: IActionN<any>) {
@@ -1326,11 +1401,7 @@ describe('Drawer', () => {
     }
 
     function setupAddEventListerNotCalled() {
-        windowUtilsMock
-            .setup(x => x.addEventListener(windowStub, 'resize', It.isAny(), It.isAny()))
-            .verifiable(Times.never());
-        windowUtilsMock
-            .setup(x => x.addEventListener(windowStub, 'scroll', It.isAny(), It.isAny()))
-            .verifiable(Times.never());
+        windowUtilsMock.setup(x => x.addEventListener(windowStub, 'resize', It.isAny(), It.isAny())).verifiable(Times.never());
+        windowUtilsMock.setup(x => x.addEventListener(windowStub, 'scroll', It.isAny(), It.isAny())).verifiable(Times.never());
     }
 });

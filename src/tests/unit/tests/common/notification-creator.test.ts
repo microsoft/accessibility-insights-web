@@ -35,7 +35,9 @@ describe('NotificationCreator', () => {
 
         browserAdapterMock
             .setup(x => x.getManifest())
-            .returns(() => { return { name: 'testname', icons: { 128: 'iconUrl' } } as any; })
+            .returns(() => {
+                return { name: 'testname', icons: { 128: 'iconUrl' } } as any;
+            })
             .verifiable(Times.once());
 
         browserAdapterMock
@@ -59,7 +61,9 @@ describe('NotificationCreator', () => {
 
         browserAdapterMock
             .setup(x => x.getManifest())
-            .returns(() => { return { name: 'testname', icons: { 128: 'iconUrl' } } as any; })
+            .returns(() => {
+                return { name: 'testname', icons: { 128: 'iconUrl' } } as any;
+            })
             .verifiable(Times.once());
 
         browserAdapterMock

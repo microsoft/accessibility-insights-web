@@ -19,12 +19,9 @@ describe('HtmlElementAxeResultsHelperTest', () => {
     });
 
     test('splitResultsByFrame_ShouldIncludeResultsForMissingFrames', () => {
-
         const framesInWindow = NodeListBuilder.createNodeList([document.createElement('iframe'), document.createElement('iframe')]);
 
-        mockDocumentElementUtils
-            .setup(x => x.getAllElementsByTagName('iframe')).returns(() =>
-             framesInWindow);
+        mockDocumentElementUtils.setup(x => x.getAllElementsByTagName('iframe')).returns(() => framesInWindow);
         const resultsByFrame = testSubject.splitResultsByFrame([]);
 
         expect(resultsByFrame.length).toEqual(3);
@@ -53,7 +50,8 @@ describe('HtmlElementAxeResultsHelperTest', () => {
         };
 
         mockDocumentElementUtils
-            .setup(x => x.getAllElementsByTagName('iframe')).returns(() => framesInWindow)
+            .setup(x => x.getAllElementsByTagName('iframe'))
+            .returns(() => framesInWindow)
             .verifiable();
 
         const resultsByFrame = testSubject.splitResultsByFrame([currentFrameResultInstance1, currentFrameResultInstance2]);
@@ -66,7 +64,6 @@ describe('HtmlElementAxeResultsHelperTest', () => {
     });
 
     test('splitResultsByFrame_WithUndefinedTargetIndex_ShouldIncrementTargetIndexByOne', () => {
-
         const frame1 = document.createElement('iframe');
         const framesInWindow = NodeListBuilder.createNodeList([frame1]);
         const frameResult: AxeResultsWithFrameLevel = {
@@ -84,13 +81,13 @@ describe('HtmlElementAxeResultsHelperTest', () => {
         };
 
         mockDocumentElementUtils
-            .setup(x => x.getAllElementsByTagName('iframe')).returns(() => framesInWindow)
+            .setup(x => x.getAllElementsByTagName('iframe'))
+            .returns(() => framesInWindow)
             .verifiable();
         mockDocumentElementUtils
-            .setup(x => x.querySelector('#frame1')).returns(() => frame1)
+            .setup(x => x.querySelector('#frame1'))
+            .returns(() => frame1)
             .verifiable();
-
-
 
         const resultsByFrame = testSubject.splitResultsByFrame([frameResult]);
 
@@ -101,7 +98,6 @@ describe('HtmlElementAxeResultsHelperTest', () => {
     });
 
     test('splitResultsByFrame_ShoulNotCrashIfSelectorIsEmpty', () => {
-
         const frame1 = document.createElement('iframe');
         const framesInWindow = NodeListBuilder.createNodeList([frame1]);
         const frameResult: AxeResultsWithFrameLevel = {
@@ -110,9 +106,9 @@ describe('HtmlElementAxeResultsHelperTest', () => {
             isVisible: true,
         };
 
-
         mockDocumentElementUtils
-            .setup(x => x.getAllElementsByTagName('iframe')).returns(() => framesInWindow)
+            .setup(x => x.getAllElementsByTagName('iframe'))
+            .returns(() => framesInWindow)
             .verifiable();
 
         const resultsByFrame = testSubject.splitResultsByFrame([frameResult]);
@@ -143,10 +139,12 @@ describe('HtmlElementAxeResultsHelperTest', () => {
         };
 
         mockDocumentElementUtils
-            .setup(x => x.getAllElementsByTagName('iframe')).returns(() => framesInWindow)
+            .setup(x => x.getAllElementsByTagName('iframe'))
+            .returns(() => framesInWindow)
             .verifiable();
         mockDocumentElementUtils
-            .setup(x => x.querySelector('#frame1')).returns(() => null)
+            .setup(x => x.querySelector('#frame1'))
+            .returns(() => null)
             .verifiable();
 
         const resultsByFrame = testSubject.splitResultsByFrame([frameResult]);
@@ -159,7 +157,6 @@ describe('HtmlElementAxeResultsHelperTest', () => {
     });
 
     test('splitResultsByFrame: Invalid targetIndex', () => {
-
         const frame1 = document.createElement('iframe');
         const framesInWindow = NodeListBuilder.createNodeList([frame1]);
         const frameResult: AxeResultsWithFrameLevel = {
@@ -169,9 +166,7 @@ describe('HtmlElementAxeResultsHelperTest', () => {
             isVisible: true,
         };
 
-        mockDocumentElementUtils
-            .setup(x => x.getAllElementsByTagName('iframe')).returns(() =>
-             framesInWindow);
+        mockDocumentElementUtils.setup(x => x.getAllElementsByTagName('iframe')).returns(() => framesInWindow);
 
         const resultsByFrame = testSubject.splitResultsByFrame([frameResult]);
         const resultsForTargetFrame = resultsByFrame.filter(result => result.frame === frame1)[0];

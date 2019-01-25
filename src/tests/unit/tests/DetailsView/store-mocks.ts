@@ -68,20 +68,15 @@ export class StoreMocks {
     public assessmentStoreData: IAssessmentStoreData;
 
     constructor() {
-        this.assessmentsProviderMock
-            .setup(ap => ap.all())
-            .returns(() => []);
+        this.assessmentsProviderMock.setup(ap => ap.all()).returns(() => []);
 
         const assessmentDataConverterMock = Mock.ofType(AssessmentDataConverter);
-        assessmentDataConverterMock
-            .setup(acdm => acdm.getNewManualTestStepResult(It.isAny()))
-            .returns(() => null);
+        assessmentDataConverterMock.setup(acdm => acdm.getNewManualTestStepResult(It.isAny())).returns(() => null);
 
         this.assessmentStoreData = new AssessmentsStoreDataBuilder(
             this.assessmentsProviderMock.object,
             assessmentDataConverterMock.object,
-        )
-            .build();
+        ).build();
     }
 
     public scopingSelectorsData: IScopingStoreData = {

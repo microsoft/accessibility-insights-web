@@ -17,7 +17,7 @@ describe('filter by feature flag', () => {
     const create = flags => assessmentsProviderWithFeaturesEnabled(baseProvider, flags);
 
     test('none enabled', () => {
-        const provider = create({ });
+        const provider = create({});
         const keys = provider.all().map(p => p.key);
         expect(keys).toEqual(['empty', 'missing']);
     });

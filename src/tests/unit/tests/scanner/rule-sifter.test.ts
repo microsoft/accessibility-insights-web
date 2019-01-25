@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { IRuleWithA11YCriteria, RuleSifter } from '../../../../scanner/rule-sifter';
 
-
 describe('RuleSifter', () => {
     describe('constructor', () => {
         it('should construct the sifter', () => {
@@ -13,14 +12,16 @@ describe('RuleSifter', () => {
 
     describe('getSiftedRules', () => {
         it('should return rule-b which has only nonfiltered rule', () => {
-            const ruleSetStub = [{
-                id: 'rule-a',
-                enabled: true,
-            },
-            {
-                id: 'rule-b',
-                enabled: true,
-            }];
+            const ruleSetStub = [
+                {
+                    id: 'rule-a',
+                    enabled: true,
+                },
+                {
+                    id: 'rule-b',
+                    enabled: true,
+                },
+            ];
 
             const bestPracticeRule = {
                 text: 'Best Practice',
@@ -37,24 +38,28 @@ describe('RuleSifter', () => {
                 'rule-b': [nonFilteredRule],
             };
 
-            const expectedRules: IRuleWithA11YCriteria[] = [{
-                id: 'rule-b',
-                a11yCriteria: [nonFilteredRule],
-            }];
+            const expectedRules: IRuleWithA11YCriteria[] = [
+                {
+                    id: 'rule-b',
+                    a11yCriteria: [nonFilteredRule],
+                },
+            ];
 
             const sifter = new RuleSifter(ruleSetStub, ruleToLinksMap);
             expect(sifter.getSiftedRules()).toEqual(expectedRules);
         });
 
         it('should return rule-b since rule-a does not have rule to link mapping', () => {
-            const ruleSetStub = [{
-                id: 'rule-a',
-                enabled: true,
-            },
-            {
-                id: 'rule-b',
-                enabled: true,
-            }];
+            const ruleSetStub = [
+                {
+                    id: 'rule-a',
+                    enabled: true,
+                },
+                {
+                    id: 'rule-b',
+                    enabled: true,
+                },
+            ];
 
             const nonFilteredRule = {
                 text: 'nonFilteredRule',
@@ -65,24 +70,28 @@ describe('RuleSifter', () => {
                 'rule-b': [nonFilteredRule],
             };
 
-            const expectedRules: IRuleWithA11YCriteria[] = [{
-                id: 'rule-b',
-                a11yCriteria: [nonFilteredRule],
-            }];
+            const expectedRules: IRuleWithA11YCriteria[] = [
+                {
+                    id: 'rule-b',
+                    a11yCriteria: [nonFilteredRule],
+                },
+            ];
 
             const sifter = new RuleSifter(ruleSetStub, ruleToLinkMap);
             expect(sifter.getSiftedRules()).toEqual(expectedRules);
         });
 
         it('should return rule-b since rule-a does not have any rule-to-link mappings', () => {
-            const ruleSetStub = [{
-                id: 'rule-a',
-                enabled: true,
-            },
-            {
-                id: 'rule-b',
-                enabled: true,
-            }];
+            const ruleSetStub = [
+                {
+                    id: 'rule-a',
+                    enabled: true,
+                },
+                {
+                    id: 'rule-b',
+                    enabled: true,
+                },
+            ];
 
             const nonFilteredRule = {
                 text: 'nonFilteredRule',
@@ -94,24 +103,28 @@ describe('RuleSifter', () => {
                 'rule-b': [nonFilteredRule],
             };
 
-            const expectedRules: IRuleWithA11YCriteria[] = [{
-                id: 'rule-b',
-                a11yCriteria: [nonFilteredRule],
-            }];
+            const expectedRules: IRuleWithA11YCriteria[] = [
+                {
+                    id: 'rule-b',
+                    a11yCriteria: [nonFilteredRule],
+                },
+            ];
 
             const sifter = new RuleSifter(ruleSetStub, ruleToLinkMap);
             expect(sifter.getSiftedRules()).toEqual(expectedRules);
         });
 
         it('should return rule-b since rule-a is not enabled', () => {
-            const ruleSetStub = [{
-                id: 'rule-a',
-                enabled: false,
-            },
-            {
-                id: 'rule-b',
-                enabled: true,
-            }];
+            const ruleSetStub = [
+                {
+                    id: 'rule-a',
+                    enabled: false,
+                },
+                {
+                    id: 'rule-b',
+                    enabled: true,
+                },
+            ];
 
             const nonFilteredRule = {
                 text: 'nonFilteredRule',
@@ -123,10 +136,12 @@ describe('RuleSifter', () => {
                 'rule-b': [nonFilteredRule],
             };
 
-            const expectedRules: IRuleWithA11YCriteria[] = [{
-                id: 'rule-b',
-                a11yCriteria: [nonFilteredRule],
-            }];
+            const expectedRules: IRuleWithA11YCriteria[] = [
+                {
+                    id: 'rule-b',
+                    a11yCriteria: [nonFilteredRule],
+                },
+            ];
 
             const sifter = new RuleSifter(ruleSetStub, ruleToLinkMap);
             expect(sifter.getSiftedRules()).toEqual(expectedRules);

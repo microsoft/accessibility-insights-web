@@ -35,8 +35,7 @@ describe('LaunchPanelStateStoreTest', () => {
 
         const expectedState = getDefaultState();
 
-        createStoreForLaunchPanelStateActions('getCurrentState')
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        createStoreForLaunchPanelStateActions('getCurrentState').testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     test('initialize, user data is not null', () => {
@@ -61,9 +60,7 @@ describe('LaunchPanelStateStoreTest', () => {
             [LocalStorageDataKeys.launchPanelSetting]: payload,
         };
 
-        browserAdapterMock
-            .setup(bA => bA.setUserData(It.isValue(expecetedSetUserData)))
-            .verifiable(Times.once());
+        browserAdapterMock.setup(bA => bA.setUserData(It.isValue(expecetedSetUserData))).verifiable(Times.once());
 
         createStoreForLaunchPanelStateActions('setLaunchPanelType')
             .withActionParam(payload)

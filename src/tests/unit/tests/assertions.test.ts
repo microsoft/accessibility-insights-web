@@ -23,7 +23,9 @@ describe('assertions', () => {
     });
 
     test('verifyErrorThrown', () => {
-        const thrower = () => { throw new Error('Correct message'); };
+        const thrower = () => {
+            throw new Error('Correct message');
+        };
         expect(() => assert.verifyErrorThrown(thrower, null)).not.toThrow();
         expect(() => assert.verifyErrorThrown(thrower, null, 'Correct message')).not.toThrow();
         expect(() => assert.verifyErrorThrown(thrower, null, 'Wrong message')).toThrow();
@@ -69,18 +71,11 @@ describe('assertions', () => {
             original: [1, 'a', { a: 1 }, null, undefined],
             different: ['b', 2, { b: 2 }, undefined, null],
         },
-    ].forEach(({
-        typeName,
-        isObject,
-        isUnorderable,
-        original,
-        different,
-    }) => {
+    ].forEach(({ typeName, isObject, isUnorderable, original, different }) => {
         const copy = _.cloneDeep(original);
         const reverse = _.reverse(_.cloneDeep(original));
 
         describe(`comparison tests with ${typeName}`, () => {
-
             test('areEqual', () => {
                 expect(() => assert.areEqual(original[0], original[0])).not.toThrow();
                 if (isObject) {
@@ -114,7 +109,6 @@ describe('assertions', () => {
                     expect(() => assert.arrayUnorderedEquals(original, different)).not.toThrow();
                 } else {
                     expect(() => assert.arrayUnorderedEquals(original, different)).toThrow();
-
                 }
                 expect(() => assert.arrayUnorderedEquals(original, reverse)).not.toThrow();
             });

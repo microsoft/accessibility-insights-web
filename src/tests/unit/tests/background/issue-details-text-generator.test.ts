@@ -4,7 +4,6 @@ import { IssueDetailsTextGenerator } from '../../../../background/issue-details-
 import { CreateIssueDetailsTextData } from '../../../../common/types/create-issue-details-text-data';
 
 describe('Issue details text builder', () => {
-
     let testSubject: IssueDetailsTextGenerator;
     let sampleIssueDetailsData: CreateIssueDetailsTextData;
 
@@ -16,10 +15,7 @@ describe('Issue details text builder', () => {
             pageUrl: 'pageUrl',
             ruleResult: {
                 failureSummary: 'RR-failureSummary',
-                guidanceLinks: [
-                    { text: 'WCAG-1.4.1' },
-                    { text: 'wcag-2.8.2' },
-                ],
+                guidanceLinks: [{ text: 'WCAG-1.4.1' }, { text: 'wcag-2.8.2' }],
                 help: 'RR-help',
                 html: 'RR-html',
                 ruleId: 'RR-rule-id',
@@ -65,7 +61,6 @@ describe('Issue details text builder', () => {
     const manyStandardTags = ['WCAG-1.4.1', 'WCAG-2.8.2', 'WCAG-4.1.4'];
 
     describe('buildTitle', () => {
-
         test('no standard tags', () => {
             const expected = 'RR-help (RR-selector<x>)';
             const actual = testSubject.buildTitle(sampleIssueDetailsData, noStandardTags);
@@ -86,11 +81,9 @@ describe('Issue details text builder', () => {
 
             expect(actual).toEqual(expected);
         });
-
     });
 
     describe('buildTags', () => {
-
         test('no standard tags', () => {
             const expected = 'Accessibility, RR-rule-id';
             const actual = testSubject.buildTags(sampleIssueDetailsData, noStandardTags);
@@ -111,7 +104,6 @@ describe('Issue details text builder', () => {
 
             expect(actual).toEqual(expected);
         });
-
     });
 
     test('getSelectorLastPart', () => {

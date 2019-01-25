@@ -31,7 +31,7 @@ describe('InstanceVisibilityCheckerTest', () => {
 
     beforeEach(() => {
         windowUtilsMock = Mock.ofType(WindowUtils);
-        sendMessageMock = Mock.ofInstance(message => { });
+        sendMessageMock = Mock.ofInstance(message => {});
         htmlElementUtilsMock = Mock.ofType(HTMLElementUtils);
         configFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
         generateInstanceIdentifierMock = Mock.ofInstance(instance => null);
@@ -43,7 +43,8 @@ describe('InstanceVisibilityCheckerTest', () => {
             getUpdateVisibility: getUpdateVisibilityMock.object,
         } as IVisualizationConfiguration;
 
-        testSubject = new InstanceVisibilityChecker(sendMessageMock.object,
+        testSubject = new InstanceVisibilityChecker(
+            sendMessageMock.object,
             windowUtilsMock.object,
             htmlElementUtilsMock.object,
             configFactoryMock.object,
@@ -142,9 +143,7 @@ describe('InstanceVisibilityCheckerTest', () => {
             },
         };
 
-        sendMessageMock
-            .setup(sm => sm(It.isValue(expectedPayload)))
-            .verifiable(Times.once());
+        sendMessageMock.setup(sm => sm(It.isValue(expectedPayload))).verifiable(Times.once());
 
         testSubject.createVisibilityCheckerInterval(testStepDrawerId, testType, frameResults);
         verifyMocks();
@@ -188,27 +187,22 @@ describe('InstanceVisibilityCheckerTest', () => {
             .returns(() => element)
             .verifiable(Times.once());
 
-        setupConfigurationFactoryMocks(
-            testType,
-            testStepDrawerId,
-            [expectedUniquelyIdentifiableInstance],
-            [elementFoundGeneratedId],
-        );
+        setupConfigurationFactoryMocks(testType, testStepDrawerId, [expectedUniquelyIdentifiableInstance], [elementFoundGeneratedId]);
 
         const expectedPayload: IMessage = {
             type: Messages.Assessment.UpdateInstanceVisibility,
             payload: {
-                payloadBatch: [{
-                    test: testType,
-                    selector: frameResultId,
-                    isVisible: true,
-                }],
+                payloadBatch: [
+                    {
+                        test: testType,
+                        selector: frameResultId,
+                        isVisible: true,
+                    },
+                ],
             },
         };
 
-        sendMessageMock
-            .setup(sm => sm(It.isValue(expectedPayload)))
-            .verifiable(Times.once());
+        sendMessageMock.setup(sm => sm(It.isValue(expectedPayload))).verifiable(Times.once());
 
         testSubject.createVisibilityCheckerInterval(testStepDrawerId, testType, [frameResult]);
         verifyMocks();
@@ -235,13 +229,9 @@ describe('InstanceVisibilityCheckerTest', () => {
             })
             .verifiable(Times.once());
 
-        configFactoryMock
-            .setup(cfm => cfm.getConfiguration(testType))
-            .returns(() => configStub);
+        configFactoryMock.setup(cfm => cfm.getConfiguration(testType)).returns(() => configStub);
 
-        getUpdateVisibilityMock
-            .setup(guvm => guvm(testStepDrawerId))
-            .returns(() => true);
+        getUpdateVisibilityMock.setup(guvm => guvm(testStepDrawerId)).returns(() => true);
 
         htmlElementUtilsMock
             .setup(hU => hU.querySelector('target0'))
@@ -251,17 +241,17 @@ describe('InstanceVisibilityCheckerTest', () => {
         const expectedPayload: IMessage = {
             type: Messages.Assessment.UpdateInstanceVisibility,
             payload: {
-                payloadBatch: [{
-                    test: testType,
-                    selector: frameResultId,
-                    isVisible: false,
-                }],
+                payloadBatch: [
+                    {
+                        test: testType,
+                        selector: frameResultId,
+                        isVisible: false,
+                    },
+                ],
             },
         };
 
-        sendMessageMock
-            .setup(sm => sm(It.isValue(expectedPayload)))
-            .verifiable(Times.once());
+        sendMessageMock.setup(sm => sm(It.isValue(expectedPayload))).verifiable(Times.once());
 
         testSubject.createVisibilityCheckerInterval(testStepDrawerId, testType, [frameResult]);
         verifyMocks();
@@ -273,9 +263,7 @@ describe('InstanceVisibilityCheckerTest', () => {
             [id]: 10,
         };
 
-        windowUtilsMock
-            .setup(wU => wU.clearInterval(It.isAny()))
-            .verifiable(Times.once());
+        windowUtilsMock.setup(wU => wU.clearInterval(It.isAny())).verifiable(Times.once());
 
         testSubject.clearVisibilityCheck(id, testType);
         expect((testSubject as any).setIntervalFunc).toBeUndefined();
@@ -296,13 +284,9 @@ describe('InstanceVisibilityCheckerTest', () => {
         };
         const testStepDrawerId = 'headingFunction';
 
-        getUpdateVisibilityMock
-            .setup(guvm => guvm(testStepDrawerId))
-            .returns(() => false);
+        getUpdateVisibilityMock.setup(guvm => guvm(testStepDrawerId)).returns(() => false);
 
-        configFactoryMock
-            .setup(cfm => cfm.getConfiguration(testType))
-            .returns(() => configStub);
+        configFactoryMock.setup(cfm => cfm.getConfiguration(testType)).returns(() => configStub);
 
         windowUtilsMock
             .setup(wU => wU.setInterval(It.isAny(), InstanceVisibilityChecker.recalculationTimeInterval))
@@ -312,29 +296,20 @@ describe('InstanceVisibilityCheckerTest', () => {
         verifyMocks();
     });
 
-
     function setupConfigurationFactoryMocks(
         getConfigType: VisualizationType,
         drawerIdentifier: string,
         instances: IUniquelyIdentifiableInstances[],
         returnedIdentifiers: string[],
     ): void {
-        getUpdateVisibilityMock
-            .setup(guvm => guvm(drawerIdentifier))
-            .returns(() => true);
+        getUpdateVisibilityMock.setup(guvm => guvm(drawerIdentifier)).returns(() => true);
 
-        configFactoryMock
-            .setup(cfm => cfm.getConfiguration(getConfigType))
-            .returns(() => configStub);
+        configFactoryMock.setup(cfm => cfm.getConfiguration(getConfigType)).returns(() => configStub);
 
-        getInstanceIdentiferGeneratorMock
-            .setup(giigm => giigm(drawerIdentifier))
-            .returns(() => generateInstanceIdentifierMock.object);
+        getInstanceIdentiferGeneratorMock.setup(giigm => giigm(drawerIdentifier)).returns(() => generateInstanceIdentifierMock.object);
 
         instances.forEach((instance, i) => {
-            generateInstanceIdentifierMock
-                .setup(giim => giim(It.isValue(instance)))
-                .returns(() => returnedIdentifiers[i]);
+            generateInstanceIdentifierMock.setup(giim => giim(It.isValue(instance))).returns(() => returnedIdentifiers[i]);
         });
     }
 

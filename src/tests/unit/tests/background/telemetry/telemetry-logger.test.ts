@@ -24,14 +24,10 @@ describe('TelemetryLoggerTest', () => {
             },
         };
 
-        controllerMock
-            .setup(cm => cm.isEnabled(FeatureFlags.logTelemetryToConsole))
-            .returns(() => true);
+        controllerMock.setup(cm => cm.isEnabled(FeatureFlags.logTelemetryToConsole)).returns(() => true);
 
         const consoleLogMock = GlobalMock.ofInstance(console.log, 'log', console, MockBehavior.Strict);
-        consoleLogMock
-            .setup(log => log('eventName: ', data.name, '; customProperties: ', data.properties))
-            .verifiable(Times.once());
+        consoleLogMock.setup(log => log('eventName: ', data.name, '; customProperties: ', data.properties)).verifiable(Times.once());
 
         GlobalScope.using(consoleLogMock).with(() => {
             testObject.log(data);
@@ -41,9 +37,7 @@ describe('TelemetryLoggerTest', () => {
     });
 
     test('log (flag: disabled)', () => {
-        controllerMock
-            .setup(cm => cm.isEnabled(FeatureFlags.logTelemetryToConsole))
-            .returns(() => false);
+        controllerMock.setup(cm => cm.isEnabled(FeatureFlags.logTelemetryToConsole)).returns(() => false);
 
         const data: TelemetryBaseData = {
             name: 'test name',
@@ -53,15 +47,12 @@ describe('TelemetryLoggerTest', () => {
         };
 
         const consoleLogMock = GlobalMock.ofInstance(console.log, 'log', console, MockBehavior.Strict);
-        consoleLogMock
-            .setup(log => log(It.isAny()))
-            .verifiable(Times.never());
+        consoleLogMock.setup(log => log(It.isAny())).verifiable(Times.never());
 
         GlobalScope.using(consoleLogMock).with(() => {
             testObject.log(data);
         });
 
         consoleLogMock.verifyAll();
-
     });
 });

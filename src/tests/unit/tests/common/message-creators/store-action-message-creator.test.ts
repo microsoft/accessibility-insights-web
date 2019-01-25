@@ -9,22 +9,13 @@ describe('StateActionMessageCreator', () => {
     let postMessageMock: IMock<(message: IMessage) => void>;
 
     test('getAllStates', () => {
-        const messages = [
-            'a',
-            'b',
-            'c',
-            'd',
-        ];
+        const messages = ['a', 'b', 'c', 'd'];
 
-        postMessageMock = Mock.ofInstance((_message: IMessage) => { }, MockBehavior.Strict);
+        postMessageMock = Mock.ofInstance((_message: IMessage) => {}, MockBehavior.Strict);
 
         messages.forEach(message => setupPostMessageMock(message));
 
-        const testObject = new StoreActionMessageCreator(
-            messages,
-            postMessageMock.object,
-            tabId,
-        );
+        const testObject = new StoreActionMessageCreator(messages, postMessageMock.object, tabId);
 
         testObject.getAllStates();
 
@@ -32,11 +23,13 @@ describe('StateActionMessageCreator', () => {
     });
 
     function setupPostMessageMock(message: string): void {
-        postMessageMock
-            .setup(pm => pm(It.isValue({
-                type: message,
-                tabId: tabId,
-            })));
+        postMessageMock.setup(pm =>
+            pm(
+                It.isValue({
+                    type: message,
+                    tabId: tabId,
+                }),
+            ),
+        );
     }
 });
-

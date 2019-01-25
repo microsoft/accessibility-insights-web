@@ -25,11 +25,9 @@ describe('GetPersistedDataTest', () => {
 
         const data = await getPersistedData(indexedDBInstanceStrictMock.object);
 
-        expect(data).toEqual(
-            {
-                assessmentStoreData: assessmentStoreData,
-                userConfigurationData: userConfigurationData,
-            } as PersistedData);
+        expect(data).toEqual({
+            assessmentStoreData: assessmentStoreData,
+            userConfigurationData: userConfigurationData,
+        } as PersistedData);
     });
-
 });
