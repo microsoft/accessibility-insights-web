@@ -21,9 +21,8 @@ function buildAutomatedCheckStep(rule: ScannerRuleInfo): TestStep {
     const infoElement = <span>{rule.help}.</span>;
     const howToTest = (
         <React.Fragment>
-            {infoElement}
+            {infoElement}{' '}
             <NewTabLink href={rule.url} aria-label={`See more info about ${rule.id} rule`}>
-                {' '}
                 See more info here.
             </NewTabLink>
         </React.Fragment>

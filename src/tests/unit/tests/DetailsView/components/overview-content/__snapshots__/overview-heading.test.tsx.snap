@@ -9,13 +9,10 @@ exports[`OverviewHeading match snapshot 1`] = `
       Overview
     </h1>
     <div>
-      This summary indicates the overall accessibility of the website or web app, through a combination of automated and manual tests, covering all WCAG 2.0 AA success criteria. Each manual test covers a set of related accessibility
-       
-      requirements, with provided step-by-step testing instructions and guidance. Where possible, 
+      This summary indicates the overall accessibility of the website or web app, through a combination of automated and manual tests, covering all WCAG 2.0 AA success criteria. Each manual test covers a set of related accessibility requirements, with provided step-by-step testing instructions and guidance. Where possible, 
       Accessibility Insights for Web
        "assists" the manual test process by generating a list of instances to evaluate and highlighting them on the screen. 
       Accessibility Insights for Web
-       
       also allows you to manually record failure instances.
     </div>
   </div>
