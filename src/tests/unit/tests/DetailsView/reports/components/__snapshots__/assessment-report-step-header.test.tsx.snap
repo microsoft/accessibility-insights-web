@@ -9,6 +9,11 @@ exports[`AssessmentReportStepHeader matches snapshot 1`] = `
   >
     REQUIREMENT
     :
+    <span
+      className="screen-reader-only"
+    >
+      42 FAIL-tested
+    </span>
   </h4>
   <span
     className="step-header-description"

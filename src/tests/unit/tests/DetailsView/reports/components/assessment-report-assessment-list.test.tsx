@@ -7,13 +7,19 @@ import { ManualTestStatus } from '../../../../../../common/types/manual-test-sta
 import { IAssessmentDetailsReportModel } from '../../../../../../DetailsView/reports/assessment-report-model';
 import {
     AssessmentReportAssessmentList,
-    AssessmentReportAssessmentProps,
+    AssessmentReportAssessmentListDeps,
+    AssessmentReportAssessmentListProps,
 } from '../../../../../../DetailsView/reports/components/assessment-report-assessment-list';
 import { AssessmentReportBuilderTestHelper } from '../../assessment-report-builder-test-helper';
 
 describe('AssessmentReportAssessmentListTest', () => {
+    const deps: AssessmentReportAssessmentListDeps = {
+        outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
+    };
+
     test('render: pass', () => {
-        const assessments: AssessmentReportAssessmentProps = {
+        const assessments: AssessmentReportAssessmentListProps = {
+            deps: deps,
             status: ManualTestStatus.PASS,
             assessments: AssessmentReportBuilderTestHelper.getAssessmentDetailsReportModelPass(),
         };
@@ -22,7 +28,8 @@ describe('AssessmentReportAssessmentListTest', () => {
     });
 
     test('render: fail', () => {
-        const assessments: AssessmentReportAssessmentProps = {
+        const assessments: AssessmentReportAssessmentListProps = {
+            deps: deps,
             status: ManualTestStatus.FAIL,
             assessments: AssessmentReportBuilderTestHelper.getAssessmentDetailsReportModelFail(),
         };
@@ -31,7 +38,8 @@ describe('AssessmentReportAssessmentListTest', () => {
     });
 
     test('render: incomplete', () => {
-        const assessments: AssessmentReportAssessmentProps = {
+        const assessments: AssessmentReportAssessmentListProps = {
+            deps: deps,
             status: ManualTestStatus.UNKNOWN,
             assessments: AssessmentReportBuilderTestHelper.getAssessmentDetailsReportModelUnknown(),
         };
@@ -39,25 +47,26 @@ describe('AssessmentReportAssessmentListTest', () => {
         testAssessments(assessments);
     });
 
-    function testAssessments(assessments: AssessmentReportAssessmentProps): void {
+    function testAssessments(assessments: AssessmentReportAssessmentListProps): void {
         const wrapper = Enzyme.shallow(<AssessmentReportAssessmentList {...assessments} />);
 
         assessments.assessments.forEach((assessment, index) => {
             const assessmentDiv = wrapper.childAt(index);
             expect(assessmentDiv.children()).toHaveLength(2);
-            expect(assessmentDiv.hasClass('assessment-details')).toBeTruthy();
+            expect(assessmentDiv.hasClass('assessment-details')).toBe(true);
             expect(assessmentDiv.key()).toEqual(assessment.key);
 
             testAssessmentHeader(assessment, assessmentDiv.childAt(0));
         });
+
+        expect(wrapper.getElement()).toMatchSnapshot();
     }
 
     function testAssessmentHeader(assessment: IAssessmentDetailsReportModel, assessmentHeader: Enzyme.ShallowWrapper<any, any>): void {
-        expect(assessmentHeader.hasClass('assessment-header')).toBeTruthy();
+        expect(assessmentHeader.hasClass('assessment-header')).toBe(true);
         expect(assessmentHeader.children()).toHaveLength(2);
 
         const headerName = assessmentHeader.childAt(0);
-        expect(headerName.hasClass('assessment-header-name')).toBeTruthy();
         expect(headerName.text()).toEqual(assessment.displayName);
     }
 });

@@ -8,9 +8,14 @@ import { ManualTestStatus } from '../../../common/types/manual-test-status';
 import { GuidanceLinks } from '../../components/guidance-links';
 import { IRequirementHeaderReportModel } from '../assessment-report-model';
 import { OutcomeChip } from './outcome-chip';
-import { allOutcomeTypes } from './outcome-type';
+import { allOutcomeTypes, OutcomeTypeSemantic } from './outcome-type';
+
+export type AssessmentReportStepHeaderDeps = {
+    outcomeTypeSemanticsFromTestStatus: (testStatus: ManualTestStatus) => OutcomeTypeSemantic;
+};
 
 export interface AssessmentReportStepHeaderProps {
+    deps: AssessmentReportStepHeaderDeps;
     status: ManualTestStatus;
     header: IRequirementHeaderReportModel;
     instanceCount: number;
@@ -18,7 +23,9 @@ export interface AssessmentReportStepHeaderProps {
 }
 
 export const AssessmentReportStepHeader = NamedSFC<AssessmentReportStepHeaderProps>('AssessmentReportStepHeader', props => {
-    const { header, instanceCount, status, defaultMessageComponent } = props;
+    const { deps, header, instanceCount, status, defaultMessageComponent } = props;
+    const { outcomeTypeSemanticsFromTestStatus } = deps;
+
     const outcomeType = allOutcomeTypes[status];
     const minCount = header.requirementType === 'manual' && outcomeType === 'pass' ? 1 : 0;
     let count = Math.max(minCount, instanceCount);
@@ -29,9 +36,15 @@ export const AssessmentReportStepHeader = NamedSFC<AssessmentReportStepHeaderPro
         message = defaultMessageComponent.message;
     }
 
+    const outcomePastTense = outcomeTypeSemanticsFromTestStatus(status).pastTense;
+    const outcomeText = `${count} ${outcomePastTense}`;
+
     return (
         <div className="step-header">
-            <h4 className="step-header-name">{header.displayName}:</h4>
+            <h4 className="step-header-name">
+                {header.displayName}:
+                <span className="screen-reader-only">{outcomeText}</span>
+            </h4>
             <span className="step-header-description">{header.description}</span>
             -
             <GuidanceLinks

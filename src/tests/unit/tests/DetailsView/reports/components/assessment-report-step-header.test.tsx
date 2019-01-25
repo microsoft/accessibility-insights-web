@@ -4,8 +4,14 @@ import * as Enzyme from 'enzyme';
 import * as React from 'react';
 
 import { ManualTestStatus } from '../../../../../../common/types/manual-test-status';
-import { IRequirementHeaderReportModel, RequirementType } from '../../../../../../DetailsView/reports/assessment-report-model';
-import { AssessmentReportStepHeader } from '../../../../../../DetailsView/reports/components/assessment-report-step-header';
+import {
+    IRequirementHeaderReportModel,
+    RequirementType,
+} from '../../../../../../DetailsView/reports/assessment-report-model';
+import {
+    AssessmentReportStepHeader,
+    AssessmentReportStepHeaderDeps,
+} from '../../../../../../DetailsView/reports/components/assessment-report-step-header';
 import { OutcomeChip } from '../../../../../../DetailsView/reports/components/outcome-chip';
 import { OutcomeType } from '../../../../../../DetailsView/reports/components/outcome-type';
 import { shallowRender } from '../../../../Common/shallow-render';
@@ -22,17 +28,21 @@ describe('AssessmentReportStepHeader', () => {
 
     const { PASS, UNKNOWN, FAIL } = ManualTestStatus;
 
+    const deps: AssessmentReportStepHeaderDeps = {
+        outcomeTypeSemanticsFromTestStatus: testStatus => { return { pastTense: ManualTestStatus[testStatus] + '-tested' }; },
+    };
+
     test('matches snapshot', () => {
         const header = genHeader('assisted');
 
-
         const actual = shallowRender(
             <AssessmentReportStepHeader
+                deps={deps}
                 status={FAIL}
                 header={header}
                 instanceCount={42}
                 defaultMessageComponent={null}
-                />,
+            />,
         );
         expect(actual).toMatchSnapshot();
     });
@@ -61,6 +71,7 @@ describe('AssessmentReportStepHeader', () => {
                             };
                             const component = (
                                 <AssessmentReportStepHeader
+                                    deps={deps}
                                     status={status}
                                     header={header}
                                     instanceCount={instanceCount}
@@ -79,14 +90,14 @@ describe('AssessmentReportStepHeader', () => {
 
                             if (defaultMessageComponent && outcomeType === 'pass') {
                                 it('will have a message about no instances', () => {
-                                    expect(messageWrapper.exists()).toBeTruthy();
+                                    expect(messageWrapper.exists()).toBe(true);
                                     expect(messageWrapper.getElement()).toEqual(
                                         <div className="no-failure-view">No failing instances</div>,
                                     );
                                 });
                             } else {
                                 it('will have no message', () => {
-                                    expect(messageWrapper.exists()).toBeFalsy();
+                                    expect(messageWrapper.exists()).toBe(false);
                                 });
                             }
                         }),

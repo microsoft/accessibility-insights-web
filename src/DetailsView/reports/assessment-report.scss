@@ -33,16 +33,10 @@ header {
 .details-section-header {
     margin: 0px 0px 32px 0px;
     display: flex;
-    flex-direction: row;
     align-items: center;
-}
-
-.details-section-header-title {
     font-size: 21px;
     font-family: Segoe UI Semibold;
     line-height: 32px;
-    margin-block-start: 0;
-    margin-block-end: 0;
 }
 
 .assessment-details {
@@ -53,15 +47,9 @@ header {
     margin: 0px 0px 32px 0px;
     flex-wrap: wrap;
     display: flex;
-    flex-direction: row;
     align-items: center;
-}
-
-.assessment-header-name {
     font-size: 17px;
     font-family: Segoe UI Semibold;
-    margin-block-start: 0;
-    margin-block-end: 0;
 }
 
 .step-details {
