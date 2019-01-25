@@ -21,7 +21,7 @@ describe('ReportHtmlGeneratorTest', () => {
         const description: string = 'description';
 
         const headElement: JSX.Element = <ReportHead />;
-        const bodyElement: JSX.Element =
+        const bodyElement: JSX.Element = (
             <ReportBody
                 scanResult={scanResult}
                 pageTitle={pageTitle}
@@ -31,7 +31,8 @@ describe('ReportHtmlGeneratorTest', () => {
                 browserSpec={userAgent}
                 extensionVersion={version}
                 axeVersion={axeVersion}
-            />;
+            />
+        );
 
         const renderer = Mock.ofType(ReactStaticRenderer, MockBehavior.Strict);
         renderer
@@ -43,12 +44,7 @@ describe('ReportHtmlGeneratorTest', () => {
             .returns(() => '<body-markup />')
             .verifiable(Times.once());
 
-        const testObject = new ReportHtmlGenerator(
-            renderer.object,
-            userAgent,
-            version,
-            axeVersion,
-        );
+        const testObject = new ReportHtmlGenerator(renderer.object, userAgent, version, axeVersion);
         const actual = testObject.generateHtml(scanResult, scanDate, pageTitle, pageUrl, description);
 
         const expected = '<html lang="en"><head-markup /><body-markup /></html>';

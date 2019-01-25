@@ -6,11 +6,9 @@ import { AssessmentReportBodyHeader } from '../../../../../../DetailsView/report
 import { shallowRender } from '../../../../Common/shallow-render';
 
 describe('AssessmentReportBodyHeader', () => {
-
     describe('render', () => {
         test('render function test', () => {
             expect(shallowRender(<AssessmentReportBodyHeader />)).toMatchSnapshot();
         });
     });
-
 });

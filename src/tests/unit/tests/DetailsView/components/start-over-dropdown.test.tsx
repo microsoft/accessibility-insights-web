@@ -45,14 +45,22 @@ describe('StartOverDropdownTest', () => {
     it('render GenericDialog for start over a test', () => {
         const rendered = shallow(<StartOverDropdown {...defaultProps} />);
         rendered.find(ActionButton).simulate('click', event);
-        rendered.find(ContextualMenu).prop('items').find(elem => elem.key === 'test').onClick();
+        rendered
+            .find(ContextualMenu)
+            .prop('items')
+            .find(elem => elem.key === 'test')
+            .onClick();
         expect(rendered.debug()).toMatchSnapshot();
     });
 
     it('render GenericDialog for start over the whole assessment', () => {
         const rendered = shallow(<StartOverDropdown {...defaultProps} />);
         rendered.find(ActionButton).simulate('click', event);
-        rendered.find(ContextualMenu).prop('items').find(elem => elem.key === 'assessment').onClick();
+        rendered
+            .find(ContextualMenu)
+            .prop('items')
+            .find(elem => elem.key === 'assessment')
+            .onClick();
         expect(rendered.debug()).toMatchSnapshot();
     });
 
@@ -63,7 +71,11 @@ describe('StartOverDropdownTest', () => {
 
         const rendered = shallow(<StartOverDropdown {...defaultProps} />);
         rendered.find(ActionButton).simulate('click', event);
-        rendered.find(ContextualMenu).prop('items').find(elem => elem.key === 'test').onClick();
+        rendered
+            .find(ContextualMenu)
+            .prop('items')
+            .find(elem => elem.key === 'test')
+            .onClick();
         rendered.find(GenericDialog).prop('onCancelButtonClick')(event);
 
         expect(rendered.state().dialogState).toEqual('none');
@@ -71,13 +83,15 @@ describe('StartOverDropdownTest', () => {
     });
 
     it('should dissmiss the start assessment over dialog', () => {
-        actionCreatorMock
-            .setup(creator => creator.cancelStartOverAllAssessments(event))
-            .verifiable(Times.once());
+        actionCreatorMock.setup(creator => creator.cancelStartOverAllAssessments(event)).verifiable(Times.once());
 
         const rendered = shallow(<StartOverDropdown {...defaultProps} />);
         rendered.find(ActionButton).simulate('click', event);
-        rendered.find(ContextualMenu).prop('items').find(elem => elem.key === 'assessment').onClick();
+        rendered
+            .find(ContextualMenu)
+            .prop('items')
+            .find(elem => elem.key === 'assessment')
+            .onClick();
         rendered.find(GenericDialog).prop('onCancelButtonClick')(event);
 
         expect(rendered.state().dialogState).toEqual('none');
@@ -91,7 +105,11 @@ describe('StartOverDropdownTest', () => {
 
         const rendered = shallow(<StartOverDropdown {...defaultProps} />);
         rendered.find(ActionButton).simulate('click', event);
-        rendered.find(ContextualMenu).prop('items').find(elem => elem.key === 'test').onClick();
+        rendered
+            .find(ContextualMenu)
+            .prop('items')
+            .find(elem => elem.key === 'test')
+            .onClick();
         rendered.find(GenericDialog).prop('onPrimaryButtonClick')(event);
 
         expect(rendered.state().dialogState).toEqual('none');
@@ -99,13 +117,15 @@ describe('StartOverDropdownTest', () => {
     });
 
     it('should start over the whole assessment', () => {
-        actionCreatorMock
-            .setup(creator => creator.startOverAllAssessments(event))
-            .verifiable(Times.once());
+        actionCreatorMock.setup(creator => creator.startOverAllAssessments(event)).verifiable(Times.once());
 
         const rendered = shallow(<StartOverDropdown {...defaultProps} />);
         rendered.find(ActionButton).simulate('click', event);
-        rendered.find(ContextualMenu).prop('items').find(elem => elem.key === 'assessment').onClick();
+        rendered
+            .find(ContextualMenu)
+            .prop('items')
+            .find(elem => elem.key === 'assessment')
+            .onClick();
         rendered.find(GenericDialog).prop('onPrimaryButtonClick')(event);
 
         expect(rendered.state().dialogState).toEqual('none');
@@ -120,5 +140,4 @@ describe('StartOverDropdownTest', () => {
         expect(rendered.state().isContextMenuVisible).toBe(false);
         expect(rendered.state().target).toBeNull();
     });
-
 });

@@ -12,9 +12,7 @@ describe('AssessmentReportInstanceListTest', () => {
             const props = {
                 instances: AssessmentReportBuilderTestHelper.getInstanceReportModelStep1PassStep2Fail(),
             };
-            const tree = renderer
-                .create(<AssessmentReportInstanceList {...props} />)
-                .toJSON();
+            const tree = renderer.create(<AssessmentReportInstanceList {...props} />).toJSON();
 
             expect(tree).toMatchSnapshot();
         });
@@ -23,9 +21,7 @@ describe('AssessmentReportInstanceListTest', () => {
             const props = {
                 instances: AssessmentReportBuilderTestHelper.getInstanceReportModelManualStep4Fail(),
             };
-            const tree = renderer
-                .create(<AssessmentReportInstanceList {...props} />)
-                .toJSON();
+            const tree = renderer.create(<AssessmentReportInstanceList {...props} />).toJSON();
 
             expect(tree).toMatchSnapshot();
         });
@@ -34,9 +30,7 @@ describe('AssessmentReportInstanceListTest', () => {
             const props = {
                 instances: AssessmentReportBuilderTestHelper.getInstanceWithObjectValueProp(),
             };
-            const tree = renderer
-                .create(<AssessmentReportInstanceList {...props} />)
-                .toJSON();
+            const tree = renderer.create(<AssessmentReportInstanceList {...props} />).toJSON();
 
             expect(tree).toMatchSnapshot();
         });
@@ -45,9 +39,7 @@ describe('AssessmentReportInstanceListTest', () => {
             const props = {
                 instances: AssessmentReportBuilderTestHelper.getInstanceWithMixOfSimpleAndComplexValues(),
             };
-            const tree = renderer
-                .create(<AssessmentReportInstanceList {...props} />)
-                .toJSON();
+            const tree = renderer.create(<AssessmentReportInstanceList {...props} />).toJSON();
 
             expect(tree).toMatchSnapshot();
         });

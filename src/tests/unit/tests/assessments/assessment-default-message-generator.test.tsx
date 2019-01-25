@@ -102,7 +102,6 @@ describe('AssessmentDefaultMessageGenerator', () => {
         expect(testSubject.getNoMatchingInstanceMessage(instancesMap, 'step1')).toEqual(expected);
     });
 
-
     test('the getNoFailingInstanceMesage returns no failing instances message when there are instances but no failing ones', () => {
         const instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance> = {
             selector1: {
@@ -138,10 +137,8 @@ describe('AssessmentDefaultMessageGenerator', () => {
         expect(testSubject.getNoFailingInstanceMesage(instancesMap, 'step1')).not.toBeNull();
         expect(testSubject.getNoFailingInstanceMesage(instancesMap, 'step2')).toBeNull();
 
-
         expect(testSubject.getNoFailingInstanceMesage(instancesMap, 'step1')).toEqual(expected);
         expect(testSubject.getNoFailingInstanceMesage(instancesMap, 'step2')).toEqual(null);
-
     });
 
     test('if the getNoMatchingInstanceMessage returns no failing instances message when there are instances but no failing ones', () => {
@@ -170,7 +167,6 @@ describe('AssessmentDefaultMessageGenerator', () => {
                 },
             },
         };
-
 
         expect(testSubject.getNoMatchingInstanceMessage(instancesMap, 'step1')).toBeNull();
         expect(testSubject.getNoMatchingInstanceMessage(instancesMap, 'step2')).toBeNull();

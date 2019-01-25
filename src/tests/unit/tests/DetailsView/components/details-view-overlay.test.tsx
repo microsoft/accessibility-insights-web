@@ -29,8 +29,7 @@ describe('DetailsViewOverlay', () => {
         addSelector: null,
     } as ScopingActionMessageCreator;
 
-    const userConfigMessageCreatorStub = {
-    } as UserConfigMessageCreator;
+    const userConfigMessageCreatorStub = {} as UserConfigMessageCreator;
 
     const inspectActionMessageCreatorStub = {
         changeInspectMode: null,
@@ -42,9 +41,7 @@ describe('DetailsViewOverlay', () => {
         },
     } as IDetailsViewData;
 
-    const userConfigStoreData = {
-
-    } as UserConfigurationStoreData;
+    const userConfigStoreData = {} as UserConfigurationStoreData;
     const featureFlagStoreData = {};
     const scopingStoreData: IScopingStoreData = {} as IScopingStoreData;
     const deps: DetailsViewOverlayDeps = {

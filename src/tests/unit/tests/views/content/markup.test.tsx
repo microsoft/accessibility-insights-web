@@ -8,7 +8,6 @@ import { ContentActionMessageCreator } from '../../../../../common/message-creat
 import { createMarkup } from '../../../../../views/content/markup';
 
 describe('ContentPage', () => {
-
     const mock = Mock.ofType<ContentActionMessageCreator>();
     const deps = { contentActionMessageCreator: mock.object };
 
@@ -34,17 +33,18 @@ describe('ContentPage', () => {
     } = createMarkup(deps, null);
 
     describe('.Markup', () => {
-
         it('<Title> renders where options not specified', () => {
             const wrapper = shallow(<Title>TEST</Title>);
             expect(wrapper.getElement()).toMatchSnapshot();
         });
 
-        [true, false, null].forEach(value => it(`<Title> renders where setPageTitle === ${value}`, () => {
-            const Markup = createMarkup(deps, { setPageTitle: value });
-            const wrapper = shallow(<Markup.Title>TEST</Markup.Title>);
-            expect(wrapper.getElement()).toMatchSnapshot();
-        }));
+        [true, false, null].forEach(value =>
+            it(`<Title> renders where setPageTitle === ${value}`, () => {
+                const Markup = createMarkup(deps, { setPageTitle: value });
+                const wrapper = shallow(<Markup.Title>TEST</Markup.Title>);
+                expect(wrapper.getElement()).toMatchSnapshot();
+            }),
+        );
 
         it('<LandmarkLegend> renders', () => {
             const wrapper = shallow(<LandmarkLegend role="test">TEST</LandmarkLegend>);
@@ -98,25 +98,38 @@ describe('ContentPage', () => {
 
         describe('<PassFail>', () => {
             it('renders without example headers', () => {
-                const wrapper = shallow(<PassFail
-                    failText={<p>I FAILED :(</p>}
-                    failExample="This is the failure [example]."
-                    passText={<p>I PASSED!</p>}
-                    passExample="This is the passing [example]."
-                />);
+                const wrapper = shallow(
+                    <PassFail
+                        failText={<p>I FAILED :(</p>}
+                        failExample="This is the failure [example]."
+                        passText={<p>I PASSED!</p>}
+                        passExample="This is the passing [example]."
+                    />,
+                );
                 expect(wrapper.getElement()).toMatchSnapshot();
             });
 
             it('renders with example headers', () => {
-                const wrapper = shallow(<PassFail
-                    failText={<p>I FAILED :(</p>}
-                    failExample={<CodeExample title="How I failed">This is the failure [example].</CodeExample>}
-                    passText={<p>I PASSED!</p>}
-                    passExample={<CodeExample title={<>How I <b>passed</b></>}>This is the passing [example].</CodeExample>}
-                />);
+                const wrapper = shallow(
+                    <PassFail
+                        failText={<p>I FAILED :(</p>}
+                        failExample={<CodeExample title="How I failed">This is the failure [example].</CodeExample>}
+                        passText={<p>I PASSED!</p>}
+                        passExample={
+                            <CodeExample
+                                title={
+                                    <>
+                                        How I <b>passed</b>
+                                    </>
+                                }
+                            >
+                                This is the passing [example].
+                            </CodeExample>
+                        }
+                    />,
+                );
                 expect(wrapper.getElement()).toMatchSnapshot();
             });
-
         });
 
         describe('<HyperLink>', () => {
@@ -136,7 +149,6 @@ describe('ContentPage', () => {
         });
 
         describe('<CodeExample>', () => {
-
             function getHighlights(wrapper): string[] {
                 const code = wrapper.find('Code');
                 return code.children().map(node => {
@@ -153,63 +165,45 @@ describe('ContentPage', () => {
                 expect(wrapper.find('.code-example-title').getElement()).toEqual(
                     <div className="code-example-title">
                         <h4>title</h4>
-                    </div>);
+                    </div>,
+                );
             });
 
             it('renders with no title', () => {
-                const wrapper = shallow(<CodeExample >code</CodeExample>);
+                const wrapper = shallow(<CodeExample>code</CodeExample>);
                 expect(wrapper.find('.code-example-title').isEmpty()).toEqual(true);
             });
 
             it('renders with no highlighted region', () => {
                 const wrapper = shallow(<CodeExample>No highlight</CodeExample>);
-                expect(getHighlights(wrapper)).toEqual([
-                    'No highlight',
-                ]);
+                expect(getHighlights(wrapper)).toEqual(['No highlight']);
             });
 
             it('renders with one highlighted region', () => {
                 const wrapper = shallow(<CodeExample>One [single] highlight</CodeExample>);
-                expect(getHighlights(wrapper)).toEqual([
-                    'One ',
-                    '[single]',
-                    ' highlight']);
+                expect(getHighlights(wrapper)).toEqual(['One ', '[single]', ' highlight']);
             });
 
             it('renders with empty highlighted region', () => {
                 const wrapper = shallow(<CodeExample>Empty [] highlight</CodeExample>);
-                expect(getHighlights(wrapper)).toEqual([
-                    'Empty ',
-                    '[]',
-                    ' highlight']);
+                expect(getHighlights(wrapper)).toEqual(['Empty ', '[]', ' highlight']);
             });
 
             it('renders with unterminated highlighted region', () => {
                 const wrapper = shallow(<CodeExample>One [unterminated highlight</CodeExample>);
-                expect(getHighlights(wrapper)).toEqual([
-                    'One ',
-                    '[unterminated highlight]']);
+                expect(getHighlights(wrapper)).toEqual(['One ', '[unterminated highlight]']);
             });
 
             it('renders with many highlighted regions', () => {
                 const wrapper = shallow(<CodeExample>With [quite] a [number] of [highlights].</CodeExample>);
-                expect(getHighlights(wrapper)).toEqual([
-                    'With ',
-                    '[quite]',
-                    ' a ',
-                    '[number]',
-                    ' of ',
-                    '[highlights]',
-                    '.']);
+                expect(getHighlights(wrapper)).toEqual(['With ', '[quite]', ' a ', '[number]', ' of ', '[highlights]', '.']);
             });
         });
 
         describe('<Links>', () => {
-
             const link1 = <HyperLink href="about:blank">One</HyperLink>;
             const link2 = <HyperLink href="about:blank">Two</HyperLink>;
             const link3 = <HyperLink href="about:blank">Three</HyperLink>;
-
 
             it('renders with text', () => {
                 const wrapper = shallow(<Links>Some text</Links>);
@@ -222,12 +216,15 @@ describe('ContentPage', () => {
             });
 
             it('renders with many links', () => {
-                const wrapper = shallow(<Links>{link1}{link2}{link3}</Links>);
+                const wrapper = shallow(
+                    <Links>
+                        {link1}
+                        {link2}
+                        {link3}
+                    </Links>,
+                );
                 expect(wrapper.getElement()).toMatchSnapshot();
             });
         });
-
     });
-
 });
-

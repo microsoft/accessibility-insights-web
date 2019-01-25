@@ -7,39 +7,29 @@ import { ContentPage, ContentPageDeps } from '../../../../../views/content/conte
 import { shallowRender } from '../../../common/shallow-render';
 
 describe('ContentPage', () => {
-
     const deps = Mock.ofType<ContentPageDeps>().object;
 
     describe('.create', () => {
-
         it('renders', () => {
-
             const MyPage = ContentPage.create(({ Markup, Link }) => {
-
                 return <>MY CONTENT</>;
             });
 
             const result = shallowRender(<MyPage deps={deps} />);
             expect(result.props.children).toEqual('MY CONTENT');
-
         });
 
         it('passes options through to Markup', () => {
-
             const MyPage = ContentPage.create(({ Markup }) => {
                 return <>{(Markup as any).options.testString}</>;
             });
 
             const result = shallowRender(<MyPage deps={deps} options={{ setPageTitle: true, testString: 'TEST STRING' }} />);
             expect(result.props.children).toEqual('TEST STRING');
-
         });
-
     });
 
-
     describe('.provider', () => {
-
         const thePage = ContentPage.create(() => <>THE PAGE</>);
         const z = ContentPage.create(() => <>X-Y-Z</>);
         const notInTree = ContentPage.create(() => <>NOT IN TREE</>);
@@ -79,22 +69,13 @@ describe('ContentPage', () => {
             expect(result.props.children).toEqual('THE PAGE');
         });
 
-        [
-            'forest',
-            'notForest/thePage',
-            'forest/notThePage',
-            'extraPath/forest/thePage',
-            'thePage',
-        ].forEach(page => it(`doesn't find ${page}`, () => {
-
-            const MyPage = provider.getPage(page);
-            expect(MyPage.displayName).toEqual('ContentPageComponent');
-            const result = shallowRender(<MyPage deps={deps} />);
-            expect(result.props.children).toEqual(['Cannot find ', page]);
-
-        }));
-
+        ['forest', 'notForest/thePage', 'forest/notThePage', 'extraPath/forest/thePage', 'thePage'].forEach(page =>
+            it(`doesn't find ${page}`, () => {
+                const MyPage = provider.getPage(page);
+                expect(MyPage.displayName).toEqual('ContentPageComponent');
+                const result = shallowRender(<MyPage deps={deps} />);
+                expect(result.props.children).toEqual(['Cannot find ', page]);
+            }),
+        );
     });
-
 });
-

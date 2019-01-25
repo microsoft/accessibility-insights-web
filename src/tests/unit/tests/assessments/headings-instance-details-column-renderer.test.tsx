@@ -2,14 +2,11 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import {
-    headingsAssessmentInstanceDetailsColumnRenderer,
-} from '../../../../assessments/headings/headings-instance-details-column-renderer';
+import { headingsAssessmentInstanceDetailsColumnRenderer } from '../../../../assessments/headings/headings-instance-details-column-renderer';
 import { IHeadingsAssessmentProperties } from '../../../../common/types/store-data/iassessment-result-data';
 import { AssessmentInstanceDetailsColumn } from '../../../../DetailsView/components/assessment-instance-details-column';
 import { IAssessmentInstanceRowData } from '../../../../DetailsView/components/assessment-instance-table';
 import { HeadingFormatter } from '../../../../injected/visualization/heading-formatter';
-
 
 describe('HeadingsInstanceDetailsColumnRendererTest', () => {
     test('render: propertyBag is null', () => {

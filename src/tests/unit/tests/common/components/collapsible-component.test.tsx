@@ -58,4 +58,3 @@ describe('CollapsibleComponentTest', () => {
         expect(result.getElement()).toMatchSnapshot('collapsed');
     });
 });
-

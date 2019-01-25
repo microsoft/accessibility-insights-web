@@ -6,7 +6,6 @@ import * as React from 'react';
 import { OverviewHeading } from '../../../../../../DetailsView/components/overview-content/overview-heading';
 
 describe('OverviewHeading', () => {
-
     test('overview-heading content is defined', () => {
         expect(<OverviewHeading />).toBeDefined();
     });

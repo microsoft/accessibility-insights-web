@@ -50,4 +50,3 @@ describe('OverviewContainer', () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 });
-

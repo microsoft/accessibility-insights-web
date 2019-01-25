@@ -97,10 +97,8 @@ describe('DetailsViewCommandBar', () => {
 
     test('onExportDialogClose sets state isExportDialogOpen to false', () => {
         const stateChange = { isExportDialogOpen: false };
-        const setStateMock = Mock.ofInstance(state => { });
-        setStateMock
-            .setup(s => s(It.isValue(stateChange)))
-            .verifiable(Times.once());
+        const setStateMock = Mock.ofInstance(state => {});
+        setStateMock.setup(s => s(It.isValue(stateChange))).verifiable(Times.once());
 
         const testSubject = getTestSubject();
         (testSubject as any).setState = setStateMock.object;
@@ -117,14 +115,16 @@ describe('DetailsViewCommandBar', () => {
         const deps = getProps().deps;
 
         reportGeneratorMock
-            .setup(rb => rb.generateAssessmentHtml(
-                deps,
-                assessmentStoreData,
-                assessmentsProviderMock.object,
-                featureFlagStoreData,
-                tabStoreData,
-                descriptionPlaceholder,
-            ))
+            .setup(rb =>
+                rb.generateAssessmentHtml(
+                    deps,
+                    assessmentStoreData,
+                    assessmentsProviderMock.object,
+                    featureFlagStoreData,
+                    tabStoreData,
+                    descriptionPlaceholder,
+                ),
+            )
             .returns(() => testHtmlWithPlaceholder)
             .verifiable();
 
@@ -134,10 +134,8 @@ describe('DetailsViewCommandBar', () => {
             exportHtmlWithPlaceholder: testHtmlWithPlaceholder,
             exportHtmlWithDescription: testHtmlWithDescription,
         };
-        const setStateMock = Mock.ofInstance(state => { });
-        setStateMock
-            .setup(s => s(It.isValue(stateChange)))
-            .verifiable(Times.once());
+        const setStateMock = Mock.ofInstance(state => {});
+        setStateMock.setup(s => s(It.isValue(stateChange))).verifiable(Times.once());
 
         const testSubject = getTestSubject();
         (testSubject as any).setState = setStateMock.object;
@@ -161,10 +159,8 @@ describe('DetailsViewCommandBar', () => {
             exportDialogDescription: description,
             exportHtmlWithDescription: testHtmlWithDescription,
         };
-        const setStateMock = Mock.ofInstance(state => { });
-        setStateMock
-            .setup(s => s(It.isValue(stateChange)))
-            .verifiable(Times.once());
+        const setStateMock = Mock.ofInstance(state => {});
+        setStateMock.setup(s => s(It.isValue(stateChange))).verifiable(Times.once());
 
         const testSubject = getTestSubject();
         (testSubject as any).state = stateBefore;
@@ -176,10 +172,8 @@ describe('DetailsViewCommandBar', () => {
     });
 
     function testOnPivot(givenRenderExportAndStartOver: boolean): void {
-        const switchToTargetTabStub = () => { };
-        actionMessageCreatorMock
-            .setup(amc => amc.switchToTargetTab)
-            .returns(() => switchToTargetTabStub);
+        const switchToTargetTabStub = () => {};
+        actionMessageCreatorMock.setup(amc => amc.switchToTargetTab).returns(() => switchToTargetTabStub);
         renderExportAndStartOver = givenRenderExportAndStartOver;
 
         const rendered = shallow(<DetailsViewCommandBar {...getProps()} />);

@@ -15,7 +15,6 @@ import {
 import { LeftNavLinkBuilder } from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';
 import { NavLinkHandler } from '../../../../../../DetailsView/components/left-nav/nav-link-handler';
 
-
 describe('AssessmentLeftNav', () => {
     let linkStub: AssessmentLeftNavLink;
     let deps: AssessmentLeftNavDeps;
@@ -49,23 +48,21 @@ describe('AssessmentLeftNav', () => {
         };
 
         leftNavLinkBuilderMock
-            .setup(lnlbm => lnlbm.buildOverviewLink(
-                deps,
-                navLinkHandlerMock.onOverviewClick,
-                assessmentsProviderStub,
-                assessmentsDataStub,
-                0,
-            ))
+            .setup(lnlbm =>
+                lnlbm.buildOverviewLink(deps, navLinkHandlerMock.onOverviewClick, assessmentsProviderStub, assessmentsDataStub, 0),
+            )
             .returns(() => linkStub);
 
         leftNavLinkBuilderMock
-            .setup(lnlbm => lnlbm.buildAssessmentTestLinks(
-                deps,
-                navLinkHandlerMock.onAssessmentTestClick,
-                assessmentsProviderStub,
-                assessmentsDataStub,
-                1,
-            ))
+            .setup(lnlbm =>
+                lnlbm.buildAssessmentTestLinks(
+                    deps,
+                    navLinkHandlerMock.onAssessmentTestClick,
+                    assessmentsProviderStub,
+                    assessmentsDataStub,
+                    1,
+                ),
+            )
             .returns(() => [linkStub]);
     });
 

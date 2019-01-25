@@ -34,8 +34,7 @@ describe('AdhocStaticTestView', () => {
             enabled: true,
         };
         visualizationStoreDataStub = {
-            tests: {
-            },
+            tests: {},
         } as IVisualizationStoreData;
         clickHandlerStub = () => {};
         selectedTest = -1;

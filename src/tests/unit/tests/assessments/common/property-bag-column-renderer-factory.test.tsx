@@ -58,4 +58,3 @@ describe('PropertyBagColumnRendererFactoryTest', () => {
         expect(`${configs[0].displayName}: `).toBe(displayNameSpan.text());
     });
 });
-

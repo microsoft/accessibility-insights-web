@@ -73,7 +73,6 @@ describe('IssuesDetailsListTest', () => {
     const iconClassName = 'details-icon-error';
 
     test('render with bug filing enabled', () => {
-
         const featureFlagData = {
             [FeatureFlags.showBugFiling]: true,
         };
@@ -82,7 +81,6 @@ describe('IssuesDetailsListTest', () => {
     });
 
     test('render with bug filing disabled', () => {
-
         const featureFlagData: IDictionaryStringTo<boolean> = {
             [FeatureFlags.showBugFiling]: false,
         };
@@ -121,7 +119,7 @@ describe('IssuesDetailsListTest', () => {
     function getSampleItems(showBugFiling = false): IDetailsRowData[] {
         const rowData = {
             selector: 'testSelector',
-            bugButton: showBugFiling ? <BugButton/> : null,
+            bugButton: showBugFiling ? <BugButton /> : null,
         };
         return [rowData as IDetailsRowData, rowData as IDetailsRowData];
     }
@@ -203,9 +201,7 @@ describe('IssuesDetailsListTest', () => {
         };
 
         issuesTableHandlerMock
-            .setup(handler => handler.getListProps(
-                issuesData.scanResult.violations,
-                featureFlagData[FeatureFlags.showBugFiling]))
+            .setup(handler => handler.getListProps(issuesData.scanResult.violations, featureFlagData[FeatureFlags.showBugFiling]))
             .returns(failedRules => listGroups)
             .verifiable();
 
@@ -217,32 +213,35 @@ describe('IssuesDetailsListTest', () => {
             .setFeatureFlagStoreData(featureFlagData)
             .build();
         const testObject = new IssuesDetailsList(props);
-        const expected: JSX.Element = (<div className="issues-details-list">
-            <FailureDetails items={items} />
-            <DetailsList
-                groupProps={{
-                    isAllGroupsCollapsed: true,
-                    onRenderHeader: (testObject as any).onRenderGroupHeader,
-                }}
-                items={items}
-                groups={groups}
-                onRenderDetailsHeader={(testObject as any).onRenderDetailsHeader}
-                columns={columns}
-                ariaLabelForSelectAllCheckbox="Toggle selection for all items"
-                ariaLabelForSelectionColumn="Toggle selection"
-                constrainMode={ConstrainMode.unconstrained}
-                selectionMode={SelectionMode.multiple}
-                selection={props.issuesSelection}
-                selectionPreservedOnEmptyClick={true}
-                setKey="key" className="details-list"
-                layoutMode={DetailsListLayoutMode.fixedColumns} />
-        </div>);
+        const expected: JSX.Element = (
+            <div className="issues-details-list">
+                <FailureDetails items={items} />
+                <DetailsList
+                    groupProps={{
+                        isAllGroupsCollapsed: true,
+                        onRenderHeader: (testObject as any).onRenderGroupHeader,
+                    }}
+                    items={items}
+                    groups={groups}
+                    onRenderDetailsHeader={(testObject as any).onRenderDetailsHeader}
+                    columns={columns}
+                    ariaLabelForSelectAllCheckbox="Toggle selection for all items"
+                    ariaLabelForSelectionColumn="Toggle selection"
+                    constrainMode={ConstrainMode.unconstrained}
+                    selectionMode={SelectionMode.multiple}
+                    selection={props.issuesSelection}
+                    selectionPreservedOnEmptyClick={true}
+                    setKey="key"
+                    className="details-list"
+                    layoutMode={DetailsListLayoutMode.fixedColumns}
+                />
+            </div>
+        );
 
         expect(testObject.render()).toEqual(expected);
         expect(testObject.shouldComponentUpdate()).toBe(false);
         issuesTableHandlerMock.verifyAll();
     }
-
 });
 
 class TestPropsBuilder {
@@ -282,4 +281,3 @@ class TestPropsBuilder {
         };
     }
 }
-

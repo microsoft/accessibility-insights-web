@@ -39,9 +39,7 @@ describe('DiagnosticViewToggleTest', () => {
 
     test('render spinner', () => {
         const type = VisualizationType.Headings;
-        const data = new VisualizationStoreDataBuilder()
-            .with('scanning', 'headings')
-            .build();
+        const data = new VisualizationStoreDataBuilder().with('scanning', 'headings').build();
 
         const props: IDiagnosticViewToggleProps = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource)
             .setupVisualizationStoreData(data)
@@ -56,9 +54,7 @@ describe('DiagnosticViewToggleTest', () => {
 
     test('render toggle when scanning', () => {
         const type = VisualizationType.Headings;
-        const data = new VisualizationStoreDataBuilder()
-            .with('scanning', 'landmarks')
-            .build();
+        const data = new VisualizationStoreDataBuilder().with('scanning', 'landmarks').build();
 
         const props: IDiagnosticViewToggleProps = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource)
             .setupVisualizationStoreData(data)
@@ -144,9 +140,7 @@ describe('DiagnosticViewToggleTest', () => {
 
     test('click details view toggle when spinner is present', () => {
         const type = VisualizationType.Issues;
-        const data = new VisualizationStoreDataBuilder()
-            .with('scanning', 'issues')
-            .build();
+        const data = new VisualizationStoreDataBuilder().with('scanning', 'issues').build();
 
         const event = eventStubFactory.createKeypressEvent();
 
@@ -366,8 +360,8 @@ class DiagnosticViewTogglePropsBuilder {
     private clickHandlerMock = Mock.ofType(DiagnosticViewClickHandler);
     private telemetrySource: TelemetryEventSource;
     private shortcutCommands: chrome.commands.Command[] = ShortcutCommandsTestData;
-    private querySelectorMock = Mock.ofInstance(selector => { });
-    private addEventListenerMock = Mock.ofInstance((e, ev) => { });
+    private querySelectorMock = Mock.ofInstance(selector => {});
+    private addEventListenerMock = Mock.ofInstance((e, ev) => {});
     private featureFlags: IDictionaryStringTo<boolean> = {};
     private deps: ContentLinkDeps = {} as ContentLinkDeps;
     private configurationStub: IVisualizationConfiguration;
@@ -396,9 +390,7 @@ class DiagnosticViewTogglePropsBuilder {
     }
 
     public setupToggleVisualizationCall(event): DiagnosticViewTogglePropsBuilder {
-        this.clickHandlerMock
-            .setup(ch => ch.toggleVisualization(this.data, this.type, event))
-            .verifiable(Times.once());
+        this.clickHandlerMock.setup(ch => ch.toggleVisualization(this.data, this.type, event)).verifiable(Times.once());
 
         return this;
     }

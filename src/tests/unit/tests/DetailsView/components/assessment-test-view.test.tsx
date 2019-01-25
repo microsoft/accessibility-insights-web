@@ -15,7 +15,6 @@ import {
 } from '../../../../../DetailsView/components/assessment-test-view';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
 
-
 describe('AssessmentTestView', () => {
     let props: IAssessmentTestViewProps;
     let getStoreDataMock: IMock<(data: ITestsEnabledState) => IScanData>;
@@ -40,8 +39,7 @@ describe('AssessmentTestView', () => {
             enabled: true,
         };
         visualizationStoreDataStub = {
-            tests: {
-            },
+            tests: {},
             scanning: 'test-scanning',
         } as IVisualizationStoreData;
         configuration = {
@@ -88,7 +86,6 @@ describe('AssessmentTestView', () => {
             .setup(gtsm => gtsm(scanDataStub, selectedTestStep))
             .returns(() => testStatusStub)
             .verifiable();
-
     });
     test('assessment view, isScanning is true', () => {
         const actual = shallow(<AssessmentTestView {...props} />);

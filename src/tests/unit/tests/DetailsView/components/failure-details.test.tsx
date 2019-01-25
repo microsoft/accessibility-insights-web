@@ -83,18 +83,15 @@ describe('FailureDetailsTests', () => {
     });
 
     function createExpectedSpan(variableText: string): JSX.Element[] {
-        return ([
+        return [
             <span role="alert" key="at-readable-text">
                 {variableText}
             </span>,
-            <span key="coda-text">
-                {` ${FailureDetails.failureDetailCoda}`}
-            </span>,
-        ]);
+            <span key="coda-text">{` ${FailureDetails.failureDetailCoda}`}</span>,
+        ];
     }
 
     function createExpectedIcon(): JSX.Element {
         return <Icon iconName="statusErrorFull" className="details-icon-error" />;
     }
 });
-

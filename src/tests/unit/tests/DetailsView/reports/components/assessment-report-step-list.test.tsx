@@ -12,7 +12,6 @@ import { shallowRender } from '../../../../Common/shallow-render';
 import { AssessmentReportBuilderTestHelper } from '../../assessment-report-builder-test-helper';
 
 describe('AssessmentReportStepListTest', () => {
-
     const deps: AssessmentReportStepListDeps = {
         outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
     };

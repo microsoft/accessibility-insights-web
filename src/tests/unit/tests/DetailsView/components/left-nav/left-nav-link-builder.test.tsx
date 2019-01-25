@@ -137,27 +137,19 @@ describe('LeftNavBuilder', () => {
             const stepStatusStub: IManualTestStatus = {};
             const outcomeStatsStub = {} as OutcomeStats;
             const testStatusStub = -2 as ManualTestStatus;
-            const narratorStatusStub = {pastTense: 'passed'} as OutcomeTypeSemantic;
+            const narratorStatusStub = { pastTense: 'passed' } as OutcomeTypeSemantic;
 
             assessmentsDataStub = {
                 [assessmentStub.key]: stepStatusStub,
             };
 
-            assessmentProviderMock
-                .setup(apm => apm.all())
-                .returns(() => assessmentsStub);
+            assessmentProviderMock.setup(apm => apm.all()).returns(() => assessmentsStub);
 
-            outcomeStatsFromManualTestStatusMock
-                .setup(mock => mock(stepStatusStub))
-                .returns(() => outcomeStatsStub);
+            outcomeStatsFromManualTestStatusMock.setup(mock => mock(stepStatusStub)).returns(() => outcomeStatsStub);
 
-            getStatusForTestMock
-                .setup(mock => mock(outcomeStatsStub))
-                .returns(() => testStatusStub);
+            getStatusForTestMock.setup(mock => mock(outcomeStatsStub)).returns(() => testStatusStub);
 
-            outcomeTypeFromTestStatusMock
-                .setup(mock => mock(testStatusStub))
-                .returns(() => narratorStatusStub);
+            outcomeTypeFromTestStatusMock.setup(mock => mock(testStatusStub)).returns(() => narratorStatusStub);
 
             const links = testSubject.buildAssessmentTestLinks(
                 deps,

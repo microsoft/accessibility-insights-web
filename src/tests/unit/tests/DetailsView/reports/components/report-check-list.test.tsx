@@ -12,10 +12,12 @@ describe('ReportCheckListTest', () => {
         helpUrl: 'https://help-url-1/',
         id: 'rule-id-1',
         help: 'rule-help-1',
-        guidanceLinks: [{
-            href: 'test href 1',
-            text: 'test text 1',
-        }],
+        guidanceLinks: [
+            {
+                href: 'test href 1',
+                text: 'test text 1',
+            },
+        ],
         nodes: [{} as AxeNodeResult, {} as AxeNodeResult],
     };
 
@@ -24,10 +26,12 @@ describe('ReportCheckListTest', () => {
         helpUrl: 'https://help-url-2/',
         id: 'rule-id-2',
         help: 'rule-help-2',
-        guidanceLinks: [{
-            href: 'test href 2',
-            text: 'test text 2',
-        }],
+        guidanceLinks: [
+            {
+                href: 'test href 2',
+                text: 'test text 2',
+            },
+        ],
         nodes: [{} as AxeNodeResult],
     };
 
@@ -69,10 +73,7 @@ describe('ReportCheckListTest', () => {
 
     test('render 2 results', () => {
         const props: ReportCheckListProps = {
-            results: [
-                result1 as any,
-                result2 as any,
-            ],
+            results: [result1 as any, result2 as any],
             idPrefix: 'test2',
             showInstanceCount: true,
             showInstances: true,
@@ -84,10 +85,7 @@ describe('ReportCheckListTest', () => {
 
     test('render, showInstanceCount = false', () => {
         const props: ReportCheckListProps = {
-            results: [
-                result1 as any,
-                result2 as any,
-            ],
+            results: [result1 as any, result2 as any],
             idPrefix: 'test2',
             showInstanceCount: false,
             showInstances: true,
@@ -99,10 +97,7 @@ describe('ReportCheckListTest', () => {
 
     test('render, showInstances = false', () => {
         const props: ReportCheckListProps = {
-            results: [
-                result1 as any,
-                result2 as any,
-            ],
+            results: [result1 as any, result2 as any],
             idPrefix: 'test2',
             showInstanceCount: true,
             showInstances: false,

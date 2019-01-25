@@ -69,8 +69,8 @@ describe('SettingsPanelTest', () => {
                 onDismiss={detailsActionMessageCreatorMock.object.closeScopingPanel}
                 closeButtonAriaLabel={'Close settings panel'}
                 hasCloseButton={true}
-                title="Settings">
-
+                title="Settings"
+            >
                 <GenericToggle
                     enabled={userConfigStoreData.enableTelemetry}
                     id="enable-telemetry"

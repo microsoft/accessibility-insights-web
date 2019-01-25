@@ -7,7 +7,6 @@ import { IHeadingsAssessmentProperties } from '../../../../common/types/store-da
 import { AssessmentInstanceDetailsColumn } from '../../../../DetailsView/components/assessment-instance-details-column';
 import { IAssessmentInstanceRowData } from '../../../../DetailsView/components/assessment-instance-table';
 
-
 describe('PageTitleInstanceDetailsColumnRendererTest', () => {
     test('render: propertyBag is null', () => {
         const item = {
@@ -32,4 +31,3 @@ describe('PageTitleInstanceDetailsColumnRendererTest', () => {
         expect(expected).toEqual(pageTitleInstanceDetailsColumnRenderer(item));
     });
 });
-

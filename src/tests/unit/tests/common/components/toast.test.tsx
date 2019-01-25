@@ -35,9 +35,7 @@ describe('ToastTest', () => {
             .setup(m => m.setTimeout(It.isAny(), 2000))
             .returns(() => timeoutId)
             .verifiable(Times.once());
-            onTimeoutMock
-            .setup(m => m())
-            .verifiable(Times.never());
+        onTimeoutMock.setup(m => m()).verifiable(Times.never());
         const subject = new Toast(props);
         subject.componentDidMount();
         windowUtilsMock.verifyAll();
@@ -50,13 +48,11 @@ describe('ToastTest', () => {
         let callback;
         windowUtilsMock
             .setup(m => m.setTimeout(It.isAny(), 2000))
-            .callback((func, _) => callback = func)
+            .callback((func, _) => (callback = func))
             .returns(() => timeoutId)
             .verifiable(Times.once());
 
-        onTimeoutMock
-            .setup(m => m())
-            .verifiable(Times.once());
+        onTimeoutMock.setup(m => m()).verifiable(Times.once());
 
         const subject = new Toast(props);
         subject.componentDidMount();
@@ -70,9 +66,7 @@ describe('ToastTest', () => {
 
     test('clearTimeout upon componentWillUnmount', () => {
         const timeoutId = 1;
-        windowUtilsMock
-            .setup(m => m.clearTimeout(timeoutId))
-            .verifiable(Times.once());
+        windowUtilsMock.setup(m => m.clearTimeout(timeoutId)).verifiable(Times.once());
         const subject = new Toast(props);
         (subject as any).timeoutId = timeoutId;
         subject.componentWillUnmount();
@@ -81,12 +75,9 @@ describe('ToastTest', () => {
     });
 
     test('clearTimeout upon componentWillUnmount without existing timeout, no-op', () => {
-        windowUtilsMock
-            .setup(m => m.clearTimeout(It.isAny()))
-            .verifiable(Times.never());
+        windowUtilsMock.setup(m => m.clearTimeout(It.isAny())).verifiable(Times.never());
         const subject = new Toast(props);
         subject.componentWillUnmount();
         windowUtilsMock.verifyAll();
     });
 });
-

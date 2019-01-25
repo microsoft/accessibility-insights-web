@@ -84,9 +84,7 @@ describe('DiagnosticViewToggleFactoryTest', () => {
             .setup(vcf => vcf.getConfiguration(thirdAlwaysDisabledVisualizationTypeStub))
             .returns(() => alwaysDisabledConfiguration);
 
-        visualizationStoreMock
-            .setup(vs => vs.getState())
-            .returns(() => visualizationStoreData);
+        visualizationStoreMock.setup(vs => vs.getState()).returns(() => visualizationStoreData);
 
         featureFlagStoreMock
             .setup(ff => ff.getState())

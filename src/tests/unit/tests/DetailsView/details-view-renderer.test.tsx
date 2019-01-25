@@ -17,9 +17,7 @@ import { IssuesTableHandler } from '../../../../DetailsView/components/issues-ta
 import { DetailsView, DetailsViewContainerDeps } from '../../../../DetailsView/details-view-container';
 import { DetailsViewRenderer } from '../../../../DetailsView/details-view-renderer';
 import { AssessmentInstanceTableHandler } from '../../../../DetailsView/handlers/assessment-instance-table-handler';
-import {
-    DetailsViewToggleClickHandlerFactory,
-} from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
+import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from '../../../../DetailsView/handlers/preview-feature-flags-handler';
 import { ReportGenerator } from '../../../../DetailsView/reports/report-generator';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
@@ -52,9 +50,7 @@ describe('DetailsViewRendererTest', () => {
         const expectedIcon16 = 'icon16.png';
         configMutator.setOption('icon16', expectedIcon16);
         const documentManipulatorMock = Mock.ofType(DocumentManipulator);
-        documentManipulatorMock
-            .setup(des => des.setShortcutIcon('../' + expectedIcon16))
-            .verifiable();
+        documentManipulatorMock.setup(des => des.setShortcutIcon('../' + expectedIcon16)).verifiable();
 
         detailsViewContainer.setAttribute('id', 'details-container');
         dom.appendChild(detailsViewContainer);
@@ -85,7 +81,7 @@ describe('DetailsViewRendererTest', () => {
                     ),
                     detailsViewContainer,
                 ),
-        )
+            )
             .verifiable();
 
         const renderer = new DetailsViewRenderer(

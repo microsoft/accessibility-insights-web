@@ -77,14 +77,10 @@ describe('AdHocToolsPanelTest', () => {
     });
 
     test('back link clicked', () => {
-        diagnosticViewToggleFactoryMock
-            .setup(factory => factory.createTogglesForAdhocToolsPanel())
-            .returns(() => []);
+        diagnosticViewToggleFactoryMock.setup(factory => factory.createTogglesForAdhocToolsPanel()).returns(() => []);
 
-        const backLinkHandlerMock = Mock.ofInstance(() => { });
-        backLinkHandlerMock
-            .setup(b => b())
-            .verifiable(Times.once());
+        const backLinkHandlerMock = Mock.ofInstance(() => {});
+        backLinkHandlerMock.setup(b => b()).verifiable(Times.once());
 
         const props: IAdHocToolsPanelProps = {
             backLinkHandler: backLinkHandlerMock.object,

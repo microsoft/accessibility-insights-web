@@ -22,7 +22,6 @@ import { DrawerProvider } from '../../../../../injected/visualization/drawer-pro
 import { ScannerRuleInfo } from '../../../../../scanner/scanner-rule-info';
 import { HyperlinkDefinition } from '../../../../../views/content/content-page';
 
-
 describe('buildTestStepsFromRules', () => {
     it('should exist', () => {
         expect(buildTestStepsFromRules).toBeDefined();
@@ -42,7 +41,7 @@ describe('buildTestStepsFromRules', () => {
             <React.Fragment>
                 {expectedDescription}{' '}
                 <NewTabLink href={rule.url} aria-label={`See more info about ${rule.id} rule`}>
-                See more info here.
+                    See more info here.
                 </NewTabLink>
             </React.Fragment>
         );
@@ -100,9 +99,7 @@ describe('buildTestStepsFromRules', () => {
     function validateDrawer(actual: TestStep): void {
         const drawerProviderMock = Mock.ofType(DrawerProvider, MockBehavior.Strict);
 
-        drawerProviderMock
-            .setup(dpm => dpm.createHighlightBoxDrawer())
-            .verifiable();
+        drawerProviderMock.setup(dpm => dpm.createHighlightBoxDrawer()).verifiable();
 
         actual.getDrawer(drawerProviderMock.object);
         drawerProviderMock.verifyAll();
@@ -140,12 +137,7 @@ describe('buildTestStepsFromRules', () => {
         validateInstanceColumnsRender(actual.columnsConfig, ['A', 'B'], 'XY', 'two');
     }
 
-    function validateInstanceColumnsRender(
-        actualColumns: IInstanceTableColumn[],
-        target: string[],
-        html: string,
-        message: string,
-    ): void {
+    function validateInstanceColumnsRender(actualColumns: IInstanceTableColumn[], target: string[], html: string, message: string): void {
         const item: IAssessmentInstanceRowData = {
             statusChoiceGroup: null,
             visualizationButton: null,

@@ -10,7 +10,10 @@ import { ManualTestStatus } from '../../../../../common/types/manual-test-status
 import { IManualTestStepResult } from '../../../../../common/types/store-data/iassessment-result-data';
 import { CreateTestAssessmentProvider } from '../../../common/test-assessment-provider';
 import { TestStatusChoiceGroup } from '../../../../../DetailsView/components/test-status-choice-group';
-import { FailureInstancePanelControl, CapturedInstanceActionType } from '../../../../../DetailsView/components/failure-instance-panel-control';
+import {
+    FailureInstancePanelControl,
+    CapturedInstanceActionType,
+} from '../../../../../DetailsView/components/failure-instance-panel-control';
 
 describe('ManualTestStepView', () => {
     test('constructor: default', () => {

@@ -7,7 +7,6 @@ import { IMock, Mock, Times } from 'typemoq';
 
 import { IVisualizationToggleProps, VisualizationToggle } from '../../../../../common/components/visualization-toggle';
 
-
 describe('VisualizationToggleTest', () => {
     test('constructor', () => {
         const testObject = new VisualizationToggle({} as IVisualizationToggleProps);
@@ -45,11 +44,9 @@ describe('VisualizationToggleTest', () => {
     });
 
     test('verify onClick being called when toggle clicked', () => {
-        const onClickMock = Mock.ofInstance(event => { });
+        const onClickMock = Mock.ofInstance(event => {});
         const clickEventStub = {};
-        onClickMock
-            .setup(onClick => onClick(clickEventStub))
-            .verifiable(Times.once());
+        onClickMock.setup(onClick => onClick(clickEventStub)).verifiable(Times.once());
 
         const props: IVisualizationToggleProps = new IVisualizationTogglePropsBuilder()
             .setLabel('my test label')
@@ -86,14 +83,14 @@ describe('VisualizationToggleTest', () => {
 
 class IVisualizationTogglePropsBuilder {
     private checked: boolean = false;
-    private onClickMock: IMock<(event) => void> = Mock.ofInstance(event => { });
+    private onClickMock: IMock<(event) => void> = Mock.ofInstance(event => {});
     private disabled: boolean;
     private label: string;
     private className: string;
     private visualizationName: string = 'visualizationName';
     private componentRefStub: React.RefObject<any> = {} as React.RefObject<any>;
-    private onBlurMock: IMock<(event) => void> = Mock.ofInstance(event => { });
-    private onFocusMock: IMock<(event) => void> = Mock.ofInstance(event => { });
+    private onBlurMock: IMock<(event) => void> = Mock.ofInstance(event => {});
+    private onFocusMock: IMock<(event) => void> = Mock.ofInstance(event => {});
 
     public setClassName(className: string): IVisualizationTogglePropsBuilder {
         this.className = className;

@@ -53,9 +53,7 @@ describe('AssessmentViewTest', () => {
 
     test('componentDidMount: avoid enabling assessment by default according to config', () => {
         const builder = new AssessmentViewPropsBuilder(assessmentsProvider, assessmentDefaultMessageGenerator);
-        builder.actionMessageCreatorMock
-            .setup(a => a.enableVisualHelper(It.isAny(), It.isAny(), It.isAny()))
-            .verifiable(Times.never());
+        builder.actionMessageCreatorMock.setup(a => a.enableVisualHelper(It.isAny(), It.isAny(), It.isAny())).verifiable(Times.never());
         const props = builder.buildProps();
         setStepNotToScanByDefault(props);
         const testObject = new AssessmentView(props);
@@ -92,9 +90,7 @@ describe('AssessmentViewTest', () => {
         builder.actionMessageCreatorMock
             .setup(a => a.enableVisualHelper(firstAssessment.type, stepName, true, true))
             .verifiable(Times.once());
-        builder.actionMessageCreatorMock
-            .setup(a => a.disableVisualHelpersForTest(prevTest))
-            .verifiable(Times.once());
+        builder.actionMessageCreatorMock.setup(a => a.disableVisualHelpersForTest(prevTest)).verifiable(Times.once());
 
         const testObject = new AssessmentView(props);
 
@@ -112,12 +108,8 @@ describe('AssessmentViewTest', () => {
         prevProps.assessmentNavState.selectedTestStep = prevStep;
         prevProps.assessmentNavState.selectedTestType = prevTest;
 
-        builder.actionMessageCreatorMock
-            .setup(a => a.enableVisualHelper(firstAssessment.type, stepName, true))
-            .verifiable(Times.never());
-        builder.actionMessageCreatorMock
-            .setup(a => a.disableVisualHelpersForTest(prevTest))
-            .verifiable(Times.once());
+        builder.actionMessageCreatorMock.setup(a => a.enableVisualHelper(firstAssessment.type, stepName, true)).verifiable(Times.never());
+        builder.actionMessageCreatorMock.setup(a => a.disableVisualHelpersForTest(prevTest)).verifiable(Times.once());
 
         const testObject = new AssessmentView(props);
 
@@ -137,12 +129,8 @@ describe('AssessmentViewTest', () => {
         prevProps.assessmentNavState.selectedTestType = prevTest;
         props.assessmentNavState.selectedTestStep = newStep;
 
-        builder.actionMessageCreatorMock
-            .setup(a => a.enableVisualHelper(firstAssessment.type, stepName, true))
-            .verifiable(Times.never());
-        builder.actionMessageCreatorMock
-            .setup(a => a.disableVisualHelpersForTest(prevTest))
-            .verifiable(Times.once());
+        builder.actionMessageCreatorMock.setup(a => a.enableVisualHelper(firstAssessment.type, stepName, true)).verifiable(Times.never());
+        builder.actionMessageCreatorMock.setup(a => a.disableVisualHelpersForTest(prevTest)).verifiable(Times.once());
 
         const testObject = new AssessmentView(props);
 
@@ -157,7 +145,7 @@ describe('AssessmentViewTest', () => {
             .setup(a => a.enableVisualHelper(firstAssessment.type, stepName, false, true))
             .verifiable(Times.once());
 
-        const props = builder.setHasScanData(true).buildProps({ 'selector': {} }, false, true);
+        const props = builder.setHasScanData(true).buildProps({ selector: {} }, false, true);
         const testObject = new AssessmentView(props);
 
         testObject.componentDidMount();
@@ -166,14 +154,12 @@ describe('AssessmentViewTest', () => {
 
     test('componentDidMount: already enabled', () => {
         const builder = new AssessmentViewPropsBuilder(assessmentsProvider, assessmentDefaultMessageGenerator);
-        builder.actionMessageCreatorMock
-            .setup(a => a.enableVisualHelper(firstAssessment.type, stepName, false))
-            .verifiable(Times.never());
+        builder.actionMessageCreatorMock.setup(a => a.enableVisualHelper(firstAssessment.type, stepName, false)).verifiable(Times.never());
 
         const props = builder
             .setHasScanData(true)
             .setIsEnabled(true)
-            .buildProps({ 'selector': {} });
+            .buildProps({ selector: {} });
         const testObject = new AssessmentView(props);
 
         testObject.componentDidMount();
@@ -182,9 +168,7 @@ describe('AssessmentViewTest', () => {
 
     test('componentWillUnmount', () => {
         const builder = new AssessmentViewPropsBuilder(assessmentsProvider, assessmentDefaultMessageGenerator);
-        builder.actionMessageCreatorMock
-            .setup(a => a.disableVisualHelpersForTest(firstAssessment.type))
-            .verifiable(Times.once());
+        builder.actionMessageCreatorMock.setup(a => a.disableVisualHelpersForTest(firstAssessment.type)).verifiable(Times.once());
 
         const props = builder.buildProps();
         const testObject = new AssessmentView(props);
@@ -224,11 +208,7 @@ class AssessmentViewPropsBuilder {
         return this;
     }
 
-    public buildProps(
-        generatedAssessmentInstancesMap = {},
-        isTargetChanged = false,
-        isStepScanned = false,
-    ): IAssessmentViewProps {
+    public buildProps(generatedAssessmentInstancesMap = {}, isTargetChanged = false, isStepScanned = false): IAssessmentViewProps {
         const deps: AssessmentViewDeps = {
             contentProvider,
             contentActionMessageCreator: Mock.ofType(ContentActionMessageCreator).object,

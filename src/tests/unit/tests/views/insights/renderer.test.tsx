@@ -8,12 +8,11 @@ import { renderer, RendererDeps } from '../../../../../views/insights/renderer';
 import { Router } from '../../../../../views/insights/router';
 
 describe('insights renderer', () => {
-
-    const deps = {
+    const deps = ({
         dom: document,
         render: jest.fn<ReactDOM.Renderer>(),
         initializeFabricIcons: jest.fn(),
-    } as Partial<RendererDeps> as RendererDeps;
+    } as Partial<RendererDeps>) as RendererDeps;
 
     beforeEach(() => {
         document.head.innerHTML = '<link rel="shortcut icon" type="image/x-icon" href="../old-icon.png" />';

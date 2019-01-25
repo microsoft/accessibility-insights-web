@@ -14,15 +14,17 @@ describe('AssessmentReport', () => {
 
         const data = AssessmentReportBuilderTestHelper.getAssessmentReportModel();
 
-        expect(shallowRender(
-            <AssessmentReport
-                deps={deps}
-                data={data}
-                description="test string"
-                extensionVersion="ProductVersion"
-                axeVersion="axeVersion"
-                chromeVersion="chromeVersion"
-            />,
-        )).toMatchSnapshot();
+        expect(
+            shallowRender(
+                <AssessmentReport
+                    deps={deps}
+                    data={data}
+                    description="test string"
+                    extensionVersion="ProductVersion"
+                    axeVersion="axeVersion"
+                    chromeVersion="chromeVersion"
+                />,
+            ),
+        ).toMatchSnapshot();
     });
 });

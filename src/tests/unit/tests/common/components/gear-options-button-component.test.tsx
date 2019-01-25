@@ -22,17 +22,11 @@ describe('gear-options-button-component.test', () => {
     beforeEach(() => {
         dropdownClickHandlerMock = Mock.ofType(DropdownClickHandler);
 
-        dropdownClickHandlerMock
-            .setup(acm => acm.openPreviewFeaturesPanelHandler)
-            .returns(event => openPreviewFeaturesClickHandler);
+        dropdownClickHandlerMock.setup(acm => acm.openPreviewFeaturesPanelHandler).returns(event => openPreviewFeaturesClickHandler);
 
-        dropdownClickHandlerMock
-            .setup(acm => acm.openScopingPanelHandler)
-            .returns(event => openScopingPanelClickHandler);
+        dropdownClickHandlerMock.setup(acm => acm.openScopingPanelHandler).returns(event => openScopingPanelClickHandler);
 
-        dropdownClickHandlerMock
-            .setup(acm => acm.openSettingsPanelHandler)
-            .returns(event => openSettingsPanelClickHandler);
+        dropdownClickHandlerMock.setup(acm => acm.openSettingsPanelHandler).returns(event => openSettingsPanelClickHandler);
     });
 
     test('constructor', () => {
@@ -41,46 +35,35 @@ describe('gear-options-button-component.test', () => {
     });
 
     type TestCase = {
-        featureFlags: IDictionaryStringTo<boolean>,
-        expectedMenuItems: IContextualMenuItem[],
+        featureFlags: IDictionaryStringTo<boolean>;
+        expectedMenuItems: IContextualMenuItem[];
     };
-    test.each([{
-        featureFlags: {
-            [FeatureFlags[FeatureFlags.scoping]]: true,
+    test.each([
+        {
+            featureFlags: {
+                [FeatureFlags[FeatureFlags.scoping]]: true,
+            },
+            expectedMenuItems: [getSettingsFeatureMenuItem(), getPreviewFeatureMenuItem(), getScopingFeatureMenuItem()],
         },
-        expectedMenuItems: [
-            getSettingsFeatureMenuItem(),
-            getPreviewFeatureMenuItem(),
-            getScopingFeatureMenuItem(),
-        ],
-
-    }, {
-        featureFlags: {
-            [FeatureFlags[FeatureFlags.scoping]]: false,
+        {
+            featureFlags: {
+                [FeatureFlags[FeatureFlags.scoping]]: false,
+            },
+            expectedMenuItems: [getSettingsFeatureMenuItem(), getPreviewFeatureMenuItem()],
         },
-        expectedMenuItems: [
-            getSettingsFeatureMenuItem(),
-            getPreviewFeatureMenuItem(),
-        ],
-    }, {
-        featureFlags: {
-            [FeatureFlags[FeatureFlags.scoping]]: false,
+        {
+            featureFlags: {
+                [FeatureFlags[FeatureFlags.scoping]]: false,
+            },
+            expectedMenuItems: [getSettingsFeatureMenuItem(), getPreviewFeatureMenuItem()],
         },
-        expectedMenuItems: [
-            getSettingsFeatureMenuItem(),
-            getPreviewFeatureMenuItem(),
-        ],
-    },
-    {
-        featureFlags: {
-            [FeatureFlags[FeatureFlags.scoping]]: true,
+        {
+            featureFlags: {
+                [FeatureFlags[FeatureFlags.scoping]]: true,
+            },
+            expectedMenuItems: [getSettingsFeatureMenuItem(), getPreviewFeatureMenuItem(), getScopingFeatureMenuItem()],
         },
-        expectedMenuItems: [
-            getSettingsFeatureMenuItem(),
-            getPreviewFeatureMenuItem(),
-            getScopingFeatureMenuItem(),
-        ],
-    }] as TestCase[])('verify rendering with menu items: %#', (testCase: TestCase) => {
+    ] as TestCase[])('verify rendering with menu items: %#', (testCase: TestCase) => {
         verifyRendering(testCase.featureFlags, testCase.expectedMenuItems);
     });
 
@@ -138,5 +121,3 @@ describe('gear-options-button-component.test', () => {
         expect(dropDownWrapper.type()).toEqual(expectedDropdown);
     }
 });
-
-

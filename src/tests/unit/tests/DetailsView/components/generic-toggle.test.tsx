@@ -17,13 +17,12 @@ describe('GenericToggleTest', () => {
     let onClickMock: IMock<(id: string, enabled: boolean, event: React.MouseEvent<HTMLElement>) => void>;
 
     beforeEach(() => {
-        onClickMock = Mock.ofInstance((id: string, enabled: boolean, event: React.MouseEvent<HTMLElement>) => { });
+        onClickMock = Mock.ofInstance((id: string, enabled: boolean, event: React.MouseEvent<HTMLElement>) => {});
     });
     test('constructor', () => {
         const testSubject = new GenericToggle({} as GenericToggleProps);
         expect(testSubject).toBeDefined();
     });
-
 
     test.each([true, false])('render with string content - toggleState : %s', (toggleState: boolean) => {
         const props: GenericToggleProps = {
@@ -59,7 +58,7 @@ describe('GenericToggleTest', () => {
     test('render with jsx content', () => {
         const props: GenericToggleProps = {
             name: 'test name',
-            description: (<h1>hello</h1>),
+            description: <h1>hello</h1>,
             enabled: true,
             onClick: onClickMock.object,
             id: 'test-id-1',

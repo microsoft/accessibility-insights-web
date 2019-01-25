@@ -47,8 +47,7 @@ describe('AdhocIssuesTestView', () => {
             enabled: true,
         };
         visualizationStoreDataStub = {
-            tests: {
-            },
+            tests: {},
             scanning: 'test-scanning',
         } as IVisualizationStoreData;
         clickHandlerStub = () => {};

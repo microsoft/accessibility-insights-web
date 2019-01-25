@@ -8,18 +8,16 @@ import { ContentActionMessageCreator } from '../../../../common/message-creators
 import { contentPages } from '../../../../content';
 
 describe('content', () => {
-
     const contentActionMessageCreator = Mock.ofType<ContentActionMessageCreator>().object;
     const deps = { contentActionMessageCreator };
 
-    contentPages.allPaths().forEach(path => it(`can render ${path}`, () => {
-
-        const ThisPage = contentPages.getPage(path);
-        expect(ThisPage.displayName).toEqual('ContentPageComponent');
-        const result = shallow(<ThisPage deps={deps} />);
-        const headerExists = result.find('h1').exists() || result.find('Title').exists() || result.find('GuidanceTitle').exists();
-        expect(headerExists).toBe(true);
-
-    }));
-
+    contentPages.allPaths().forEach(path =>
+        it(`can render ${path}`, () => {
+            const ThisPage = contentPages.getPage(path);
+            expect(ThisPage.displayName).toEqual('ContentPageComponent');
+            const result = shallow(<ThisPage deps={deps} />);
+            const headerExists = result.find('h1').exists() || result.find('Title').exists() || result.find('GuidanceTitle').exists();
+            expect(headerExists).toBe(true);
+        }),
+    );
 });

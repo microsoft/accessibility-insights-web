@@ -23,7 +23,6 @@ describe('TabInfo', () => {
 
     scenarios.forEach(scenario => {
         describe(scenario.name, () => {
-
             let actionCreatorMock: IMock<DetailsViewActionMessageCreator>;
             let dropdownClickHandlerMock: IMock<DropdownClickHandler>;
             let testProps: ITabInfoProps;
@@ -46,19 +45,18 @@ describe('TabInfo', () => {
             });
 
             function getExpectedWarningMessageBar(): JSX.Element {
-                const text =
+                const text = (
                     <div>
-                        The Target page is in a hidden state. For better performance, use the Target page link above to make the page visible.
-                    </div>;
+                        The Target page is in a hidden state. For better performance, use the Target page link above to make the page
+                        visible.
+                    </div>
+                );
                 return getMessageBar(text, MessageBarType.warning, 'waring-message-bar');
             }
 
             function getMessageBar(messageContent: JSX.Element, messageBarType: MessageBarType, className: string): JSX.Element {
                 return (
-                    <MessageBar
-                        messageBarType={messageBarType}
-                        className={className}
-                    >
+                    <MessageBar messageBarType={messageBarType} className={className}>
                         {messageContent}
                     </MessageBar>
                 );
@@ -68,11 +66,7 @@ describe('TabInfo', () => {
                 return (
                     <div className="target-tab-info">
                         Target page:&nbsp;
-                                <Link
-                            role="link"
-                            className={'target-page-link'}
-                            onClick={testProps.actionCreator.switchToTargetTab}
-                        >
+                        <Link role="link" className={'target-page-link'} onClick={testProps.actionCreator.switchToTargetTab}>
                             {testProps.title}
                         </Link>
                         &nbsp;({testProps.url})
@@ -80,10 +74,7 @@ describe('TabInfo', () => {
                 ) as JSX.Element;
             }
 
-            function getExpectedComponentRendered(
-                warningMessageBar: JSX.Element,
-                tabInfo: JSX.Element,
-            ): JSX.Element {
+            function getExpectedComponentRendered(warningMessageBar: JSX.Element, tabInfo: JSX.Element): JSX.Element {
                 return (
                     <div>
                         <RebrandingMessageBar />
@@ -99,10 +90,7 @@ describe('TabInfo', () => {
 
                 const warningMessageBar = null;
                 const tabInfo = getTargetPageInfo();
-                const expectedComponent = getExpectedComponentRendered(
-                    warningMessageBar,
-                    tabInfo,
-                );
+                const expectedComponent = getExpectedComponentRendered(warningMessageBar, tabInfo);
 
                 expect(testObject.render()).toEqual(expectedComponent);
             });
@@ -115,10 +103,7 @@ describe('TabInfo', () => {
 
                 const warningMessageBar = null;
                 const tabInfo = getTargetPageInfo();
-                const expectedComponent = getExpectedComponentRendered(
-                    warningMessageBar,
-                    tabInfo,
-                );
+                const expectedComponent = getExpectedComponentRendered(warningMessageBar, tabInfo);
 
                 expect(testObject.render()).toEqual(expectedComponent);
             });
@@ -131,10 +116,7 @@ describe('TabInfo', () => {
 
                 const warningMessageBar = null;
                 const tabInfo = getTargetPageInfo();
-                const expectedComponent = getExpectedComponentRendered(
-                    warningMessageBar,
-                    tabInfo,
-                );
+                const expectedComponent = getExpectedComponentRendered(warningMessageBar, tabInfo);
 
                 expect(testObject.render()).toEqual(expectedComponent);
             });
@@ -148,10 +130,7 @@ describe('TabInfo', () => {
 
                 const warningMessageBar = null;
                 const tabInfo = null;
-                const expectedComponent = getExpectedComponentRendered(
-                    warningMessageBar,
-                    tabInfo,
-                );
+                const expectedComponent = getExpectedComponentRendered(warningMessageBar, tabInfo);
 
                 expect(testObject.render()).toEqual(expectedComponent);
             });
@@ -164,10 +143,7 @@ describe('TabInfo', () => {
 
                 const warningMessageBar = null;
                 const tabInfo = getTargetPageInfo();
-                const expectedComponent = getExpectedComponentRendered(
-                    warningMessageBar,
-                    tabInfo,
-                );
+                const expectedComponent = getExpectedComponentRendered(warningMessageBar, tabInfo);
 
                 expect(testObject.render()).toEqual(expectedComponent);
             });
@@ -180,14 +156,10 @@ describe('TabInfo', () => {
 
                 const warningMessageBar = getExpectedWarningMessageBar();
                 const tabInfo = getTargetPageInfo();
-                const expectedComponent = getExpectedComponentRendered(
-                    warningMessageBar,
-                    tabInfo,
-                );
+                const expectedComponent = getExpectedComponentRendered(warningMessageBar, tabInfo);
 
                 expect(testObject.render()).toEqual(expectedComponent);
             });
         });
-
     });
 });

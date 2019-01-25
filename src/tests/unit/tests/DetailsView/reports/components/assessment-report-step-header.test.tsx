@@ -4,10 +4,7 @@ import * as Enzyme from 'enzyme';
 import * as React from 'react';
 
 import { ManualTestStatus } from '../../../../../../common/types/manual-test-status';
-import {
-    IRequirementHeaderReportModel,
-    RequirementType,
-} from '../../../../../../DetailsView/reports/assessment-report-model';
+import { IRequirementHeaderReportModel, RequirementType } from '../../../../../../DetailsView/reports/assessment-report-model';
 import {
     AssessmentReportStepHeader,
     AssessmentReportStepHeaderDeps,
@@ -29,20 +26,16 @@ describe('AssessmentReportStepHeader', () => {
     const { PASS, UNKNOWN, FAIL } = ManualTestStatus;
 
     const deps: AssessmentReportStepHeaderDeps = {
-        outcomeTypeSemanticsFromTestStatus: testStatus => { return { pastTense: ManualTestStatus[testStatus] + '-tested' }; },
+        outcomeTypeSemanticsFromTestStatus: testStatus => {
+            return { pastTense: ManualTestStatus[testStatus] + '-tested' };
+        },
     };
 
     test('matches snapshot', () => {
         const header = genHeader('assisted');
 
         const actual = shallowRender(
-            <AssessmentReportStepHeader
-                deps={deps}
-                status={FAIL}
-                header={header}
-                instanceCount={42}
-                defaultMessageComponent={null}
-            />,
+            <AssessmentReportStepHeader deps={deps} status={FAIL} header={header} instanceCount={42} defaultMessageComponent={null} />,
         );
         expect(actual).toMatchSnapshot();
     });

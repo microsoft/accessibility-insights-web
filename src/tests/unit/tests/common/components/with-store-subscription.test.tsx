@@ -45,9 +45,7 @@ describe('withStoreSubscription', () => {
     });
 
     test('componentDidMount: store hub is null', () => {
-        storeActionCreatorMock
-            .setup(d => d.getAllStates())
-            .verifiable(Times.never());
+        storeActionCreatorMock.setup(d => d.getAllStates()).verifiable(Times.never());
         const props: testProps = {
             storeActionCreator: storeActionCreatorMock.object,
             storesHub: null,
@@ -67,9 +65,7 @@ describe('withStoreSubscription', () => {
         storesHubStub.getAllStoreData = () => null;
         storesHubStub.addChangedListenerToAllStores = jest.fn();
         storesHubStub.hasStores = hasStoresMock;
-        storeActionCreatorMock
-            .setup(d => d.getAllStates())
-            .verifiable(Times.never());
+        storeActionCreatorMock.setup(d => d.getAllStates()).verifiable(Times.never());
         const props: testProps = {
             storeActionCreator: storeActionCreatorMock.object,
             storesHub: storesHubStub,
@@ -91,9 +87,7 @@ describe('withStoreSubscription', () => {
         storesHubStub.getAllStoreData = () => null;
         storesHubStub.addChangedListenerToAllStores = jest.fn();
         storesHubStub.hasStores = hasStoresMock;
-        storeActionCreatorMock
-            .setup(d => d.getAllStates())
-            .verifiable(Times.once());
+        storeActionCreatorMock.setup(d => d.getAllStates()).verifiable(Times.once());
         const props: testProps = {
             storeActionCreator: storeActionCreatorMock.object,
             storesHub: storesHubStub,
@@ -152,16 +146,12 @@ describe('withStoreSubscription', () => {
         const storesHubStub: IClientStoresHub<any> = {} as IClientStoresHub<any>;
         hasStoresMock.mockReturnValue(true);
         storesHubStub.getAllStoreData = () => null;
-        addListenerMock
-            .mockImplementation(cb => listenerAdded = cb);
-        removeListenerMock
-            .mockImplementation(cb => listenerRemoved = cb);
+        addListenerMock.mockImplementation(cb => (listenerAdded = cb));
+        removeListenerMock.mockImplementation(cb => (listenerRemoved = cb));
         storesHubStub.addChangedListenerToAllStores = addListenerMock;
         storesHubStub.removeChangedListenerFromAllStores = removeListenerMock;
         storesHubStub.hasStores = hasStoresMock;
-        storeActionCreatorMock
-            .setup(d => d.getAllStates())
-            .verifiable(Times.once());
+        storeActionCreatorMock.setup(d => d.getAllStates()).verifiable(Times.once());
         const props: testProps = {
             storeActionCreator: storeActionCreatorMock.object,
             storesHub: storesHubStub,
@@ -182,11 +172,10 @@ describe('withStoreSubscription', () => {
         const hasStoresMock = jest.fn();
         const getStoreDataMock = jest.fn();
         const addChangedListenerToAllStoresMock = jest.fn();
-        addChangedListenerToAllStoresMock
-            .mockImplementation(cb => { onStoreChange = cb; });
-        getStoreDataMock
-            .mockReturnValueOnce({ message: 'before change' })
-            .mockReturnValueOnce({ message: 'after change' });
+        addChangedListenerToAllStoresMock.mockImplementation(cb => {
+            onStoreChange = cb;
+        });
+        getStoreDataMock.mockReturnValueOnce({ message: 'before change' }).mockReturnValueOnce({ message: 'after change' });
 
         hasStoresMock.mockReturnValue(true);
         const storesHubStub: IClientStoresHub<any> = {} as IClientStoresHub<any>;

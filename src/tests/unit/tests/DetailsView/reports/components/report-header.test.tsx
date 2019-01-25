@@ -5,7 +5,6 @@ import * as React from 'react';
 import { IReportHeaderProps, ReportHeader } from '../../../../../../DetailsView/reports/components/report-header';
 import { shallowRender } from '../../../../Common/shallow-render';
 
-
 describe('ReportHeaderTest', () => {
     it('renders with failures, without inapplicable', () => {
         const props: IReportHeaderProps = {
@@ -18,9 +17,7 @@ describe('ReportHeaderTest', () => {
                         nodes: [{}, {}],
                     },
                 ] as any,
-                passes: [
-                    {},
-                ] as any,
+                passes: [{}] as any,
                 inapplicable: [],
                 incomplete: [],
                 timestamp: '',

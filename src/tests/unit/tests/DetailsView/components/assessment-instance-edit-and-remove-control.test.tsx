@@ -33,9 +33,7 @@ describe('AssessmentInstanceRemoveButton', () => {
             onEdit: null,
             assessmentsProvider: CreateTestAssessmentProvider(),
         };
-        onRemoveMock
-            .setup(r => r(props.test, props.step, props.id))
-            .verifiable(Times.once());
+        onRemoveMock.setup(r => r(props.test, props.step, props.id)).verifiable(Times.once());
 
         const testSubject = new TestableAssessmentInstanceRemoveButton(props);
         const expected = (

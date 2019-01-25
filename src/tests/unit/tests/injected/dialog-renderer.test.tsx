@@ -29,7 +29,11 @@ describe('DialogRendererTests', () => {
     let shadowRootMock: IMock<Element>;
     let shadowRoot: Element;
     let renderMock: IMock<typeof ReactDOM.render>;
-    let subscribeCallback: (message: DetailsDialogWindowMessage, error: IErrorMessageContent, responder?: FrameMessageResponseCallback) => void;
+    let subscribeCallback: (
+        message: DetailsDialogWindowMessage,
+        error: IErrorMessageContent,
+        responder?: FrameMessageResponseCallback,
+    ) => void;
     let getMainWindoContextMock: IGlobalMock<() => MainWindowContext>;
 
     beforeEach(() => {
@@ -41,12 +45,12 @@ describe('DialogRendererTests', () => {
                 appendChild: selector => null,
             },
             querySelector: selector => null,
-            appendChild: node => { },
+            appendChild: node => {},
         } as any);
 
         shadowContainerMock = Mock.ofInstance({
-            querySelector: selector => { },
-            appendChild: node => { },
+            querySelector: selector => {},
+            appendChild: node => {},
         } as any);
         shadowRootMock = Mock.ofInstance({
             querySelector: selector => null,
@@ -383,17 +387,13 @@ describe('DialogRendererTests', () => {
 
     function setupRenderMockForVerifiable() {
         renderMock
-            .setup(render => render(
-                It.is((detailsDialog: any) => detailsDialog != null),
-                It.is((container: any) => container != null)))
+            .setup(render => render(It.is((detailsDialog: any) => detailsDialog != null), It.is((container: any) => container != null)))
             .verifiable(Times.once());
     }
 
     function setupRenderMockForNeverVisited() {
         renderMock
-            .setup(it => it(
-                It.is((detailsDialog: any) => detailsDialog != null),
-                It.is((container: any) => container != null)))
+            .setup(it => it(It.is((detailsDialog: any) => detailsDialog != null), It.is((container: any) => container != null)))
             .verifiable(Times.never());
     }
 
@@ -405,33 +405,40 @@ describe('DialogRendererTests', () => {
         const win = 'this is main window';
         windowUtilsMock
             .setup(wum => wum.getTopWindow())
-            .returns(() => { return win as any; })
+            .returns(() => {
+                return win as any;
+            })
             .verifiable(Times.atLeastOnce());
         windowUtilsMock
             .setup(wum => wum.getWindow())
-            .returns(() => { return win as any; })
+            .returns(() => {
+                return win as any;
+            })
             .verifiable(Times.atLeastOnce());
-        windowUtilsMock
-            .setup(wum => wum.getPlatform())
-            .returns(() => 'Win32');
+        windowUtilsMock.setup(wum => wum.getPlatform()).returns(() => 'Win32');
         frameCommunicator
-            .setup(fcm => fcm.subscribe(
-                It.isValue('insights.detailsDialog'),
-                It.is((param: (
-                    message: DetailsDialogWindowMessage,
-                    error: IErrorMessageContent,
-                    sourceWin: Window,
-                    responder?: FrameMessageResponseCallback,
-                ) => void) => {
-                    return param instanceof Function;
-                })))
+            .setup(fcm =>
+                fcm.subscribe(
+                    It.isValue('insights.detailsDialog'),
+                    It.is(
+                        (
+                            param: (
+                                message: DetailsDialogWindowMessage,
+                                error: IErrorMessageContent,
+                                sourceWin: Window,
+                                responder?: FrameMessageResponseCallback,
+                            ) => void,
+                        ) => {
+                            return param instanceof Function;
+                        },
+                    ),
+                ),
+            )
             .callback((command, cb) => {
                 subscribeCallback = cb;
             })
             .verifiable(Times.once());
-        frameCommunicator
-            .setup(fcm => fcm.sendMessage(It.isAny()))
-            .verifiable(Times.never());
+        frameCommunicator.setup(fcm => fcm.sendMessage(It.isAny())).verifiable(Times.never());
     }
 
     function setupWindowUtilsMockAndFrameCommunicatorVerify(): void {
@@ -442,19 +449,19 @@ describe('DialogRendererTests', () => {
     function setupWindowUtilsMockAndFrameCommunicatorInIframe(windowMessageRequest: IMessageRequest<DetailsDialogWindowMessage>) {
         windowUtilsMock
             .setup(wum => wum.getTopWindow())
-            .returns(() => { return 'this is main window' as any; })
+            .returns(() => {
+                return 'this is main window' as any;
+            })
             .verifiable(Times.atLeastOnce());
         windowUtilsMock
             .setup(wum => wum.getWindow())
-            .returns(() => { return 'this is iframe' as any; })
+            .returns(() => {
+                return 'this is iframe' as any;
+            })
             .verifiable(Times.atLeastOnce());
 
-        frameCommunicator
-            .setup(fcm => fcm.subscribe(It.isAny(), It.isAny()))
-            .verifiable(Times.never());
-        frameCommunicator
-            .setup(fcm => fcm.sendMessage(It.isValue(windowMessageRequest)))
-            .verifiable(Times.once());
+        frameCommunicator.setup(fcm => fcm.subscribe(It.isAny(), It.isAny())).verifiable(Times.never());
+        frameCommunicator.setup(fcm => fcm.sendMessage(It.isValue(windowMessageRequest))).verifiable(Times.once());
     }
 
     function getDefaultFeatureFlagValuesWithShadowOn(): FeatureFlagStoreData {
@@ -483,9 +490,7 @@ describe('DialogRendererTests', () => {
             .verifiable(Times.once());
 
         if (needAppendChild) {
-            shadowContainerMock
-                .setup(it => it.appendChild(It.isAny()))
-                .verifiable(Times.once());
+            shadowContainerMock.setup(it => it.appendChild(It.isAny())).verifiable(Times.once());
         }
     }
 
@@ -502,7 +507,12 @@ describe('DialogRendererTests', () => {
         }
     }
 
-    function setupDomMock(underShadowDom: boolean = true, needCreateElement: boolean = false, needAppendChild: boolean = false, dialogAlreadyExists: boolean = false): void {
+    function setupDomMock(
+        underShadowDom: boolean = true,
+        needCreateElement: boolean = false,
+        needAppendChild: boolean = false,
+        dialogAlreadyExists: boolean = false,
+    ): void {
         if (!underShadowDom) {
             const spanDiv = dialogAlreadyExists ? document.createElement('div') : null;
             domMock
@@ -519,9 +529,7 @@ describe('DialogRendererTests', () => {
         }
 
         if (needAppendChild) {
-            domMock
-                .setup(dom => dom.body.appendChild(It.isAny()))
-                .verifiable(Times.once());
+            domMock.setup(dom => dom.body.appendChild(It.isAny())).verifiable(Times.once());
         }
     }
 

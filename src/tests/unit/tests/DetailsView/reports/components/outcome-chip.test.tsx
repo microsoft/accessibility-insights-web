@@ -6,9 +6,7 @@ import { OutcomeChip } from '../../../../../../DetailsView/reports/components/ou
 import { shallowRender } from '../../../../Common/shallow-render';
 
 describe('OutcomeChip', () => {
-
     describe('render', () => {
-
         test('pass', () => {
             expect(shallowRender(<OutcomeChip outcomeType="pass" count={3} />)).toMatchSnapshot();
         });
@@ -21,5 +19,4 @@ describe('OutcomeChip', () => {
             expect(shallowRender(<OutcomeChip outcomeType="fail" count={4} />)).toMatchSnapshot();
         });
     });
-
 });

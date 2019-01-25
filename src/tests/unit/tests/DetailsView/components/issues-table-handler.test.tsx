@@ -7,7 +7,6 @@ import { DetailsGroup, IListProps, IssuesTableHandler } from '../../../../../Det
 import { RuleResult } from '../../../../../scanner/iruleresults';
 
 describe('IssuesTableHandlerTests', () => {
-
     test('get list props with bug filing', () => {
         testGetListProps(true);
     });
@@ -17,7 +16,6 @@ describe('IssuesTableHandlerTests', () => {
     });
 
     function testGetListProps(showBugFiling: boolean) {
-
         const node1: AxeNodeResult = {
             any: [],
             none: [],
@@ -74,10 +72,24 @@ describe('IssuesTableHandlerTests', () => {
 
         const testSubject = new IssuesTableHandler();
 
-
-        const detailsRow1 = { ...node1, key: node1.instanceId, selector: 'target1;id1', bugButton: showBugFiling ? <BugButton/> : undefined };
-        const detailsRow2 = { ...node2, key: node2.instanceId, selector: 'target2;id2', bugButton: showBugFiling ? <BugButton/> : undefined };
-        const detailsRow3 = { ...node3, key: node3.instanceId, selector: 'target3;id3', bugButton: showBugFiling ? <BugButton/> : undefined };
+        const detailsRow1 = {
+            ...node1,
+            key: node1.instanceId,
+            selector: 'target1;id1',
+            bugButton: showBugFiling ? <BugButton /> : undefined,
+        };
+        const detailsRow2 = {
+            ...node2,
+            key: node2.instanceId,
+            selector: 'target2;id2',
+            bugButton: showBugFiling ? <BugButton /> : undefined,
+        };
+        const detailsRow3 = {
+            ...node3,
+            key: node3.instanceId,
+            selector: 'target3;id3',
+            bugButton: showBugFiling ? <BugButton /> : undefined,
+        };
 
         const expectedGroups: DetailsGroup[] = [
             {
@@ -117,5 +129,4 @@ describe('IssuesTableHandlerTests', () => {
 
         expect(testSubject.getListProps(failedRules, showBugFiling)).toEqual(expectedListGroups);
     }
-
 });

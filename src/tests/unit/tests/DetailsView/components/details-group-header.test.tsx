@@ -24,7 +24,7 @@ describe('DetailsGroupHeader', () => {
                 ],
                 ruleUrl: 'test rule url',
             },
-            countIcon: <i className="test-icon"></i>,
+            countIcon: <i className="test-icon" />,
         };
     });
 
@@ -48,5 +48,4 @@ describe('DetailsGroupHeader', () => {
 
         expect(stopPropagationMock).toHaveBeenCalledTimes(1);
     });
-
 });

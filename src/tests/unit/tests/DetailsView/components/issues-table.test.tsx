@@ -21,10 +21,10 @@ import { RuleResult } from '../../../../../scanner/iruleresults';
 import { ShallowRenderer } from '../../../common/shallow-renderer';
 
 describe('IssuesTableTest', () => {
-    const onExportButtonClickStub = () => { };
-    const onDismissExportDialogStub = () => { };
-    const onExportDescriptionChangeStub = () => { };
-    const onSaveExportResultStub = () => { };
+    const onExportButtonClickStub = () => {};
+    const onDismissExportDialogStub = () => {};
+    const onExportDescriptionChangeStub = () => {};
+    const onSaveExportResultStub = () => {};
 
     test('render spinner, issuesEnabled == null', () => {
         const props = new TestPropsBuilder().build();
@@ -39,7 +39,7 @@ describe('IssuesTableTest', () => {
         const selectionMock = Mock.ofType<ISelection>(Selection);
 
         const issuesTableHandlerMock = Mock.ofType<IssuesTableHandler>(IssuesTableHandler);
-        const toggleClickHandlerMock = Mock.ofInstance(event => { });
+        const toggleClickHandlerMock = Mock.ofInstance(event => {});
 
         const props = new TestPropsBuilder()
             .setIssuesEnabled(issuesEnabled)
@@ -71,7 +71,7 @@ describe('IssuesTableTest', () => {
 
     test('render spinner for scanning state', () => {
         const issuesEnabled = true;
-        const toggleClickHandlerMock = Mock.ofInstance(event => { });
+        const toggleClickHandlerMock = Mock.ofInstance(event => {});
 
         const props = new TestPropsBuilder()
             .setIssuesEnabled(issuesEnabled)
@@ -109,9 +109,7 @@ describe('IssuesTableTest', () => {
     });
 
     test('render spinner, issuesEnabled.scanResult == null', () => {
-        const props = new TestPropsBuilder()
-            .setIssuesEnabled({} as any)
-            .build();
+        const props = new TestPropsBuilder().setIssuesEnabled({} as any).build();
 
         const wrapper = shallow(<IssuesTable {...props} />);
 
@@ -188,11 +186,9 @@ describe('IssuesTableTest', () => {
                 windowUtils: null,
             })
             .build();
-        const setStateMock = Mock.ofInstance(state => { });
+        const setStateMock = Mock.ofInstance(state => {});
 
-        setStateMock
-            .setup(s => s(It.isValue(stateDiff)))
-            .verifiable(times);
+        setStateMock.setup(s => s(It.isValue(stateDiff))).verifiable(times);
 
         const testObject = new IssuesTable(props);
         (testObject as any).setState = setStateMock.object;
@@ -217,7 +213,7 @@ describe('IssuesTableTest', () => {
         const issuesEnabled = true;
         const issuesTableHandlerMock = Mock.ofType<IssuesTableHandler>(IssuesTableHandler);
         const selectionMock = Mock.ofType<ISelection>(Selection);
-        const toggleClickHandlerMock = Mock.ofInstance(event => { });
+        const toggleClickHandlerMock = Mock.ofInstance(event => {});
 
         const props = new TestPropsBuilder()
             .setIssuesEnabled(issuesEnabled)

@@ -5,11 +5,10 @@ import * as React from 'react';
 import { getInnerTextFromJsxElement } from '../../../../common/get-inner-text-from-jsx-element';
 
 describe('Get Inner Text from jsx element', () => {
-
     it('should return inner text for nested elements', () => {
         const jsxContent = (
             <div id={'div1'}>
-                sample {' '}
+                sample{' '}
                 <span className={'span1'}>
                     text <i>inside jsx </i>
                 </span>
@@ -23,10 +22,7 @@ describe('Get Inner Text from jsx element', () => {
     });
 
     it('should return inner text for empty element', () => {
-        const jsxContent = (
-            <div>
-            </div>
-        );
+        const jsxContent = <div />;
         const expectedString = '';
         const actualString = getInnerTextFromJsxElement(jsxContent);
 
@@ -37,8 +33,9 @@ describe('Get Inner Text from jsx element', () => {
         const jsxContent = (
             <div id={'div1'}>
                 text
-                <span className={'span1'}>without
-                <span>space</span>
+                <span className={'span1'}>
+                    without
+                    <span>space</span>
                 </span>
             </div>
         );
@@ -80,5 +77,3 @@ describe('Get Inner Text from jsx element', () => {
         expect(actualString).toBe(expectedString);
     });
 });
-
-
