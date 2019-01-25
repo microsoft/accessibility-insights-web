@@ -21,9 +21,11 @@
         "test:e2e": "jest --config=jest.e2e.config.js --runInBand",
         "tslint": "tslint -c ./tslint.build-enforced.json -p ./tsconfig.json",
         "tslint:fix": "tslint --fix -c ./tslint.build-enforced.json -p ./tsconfig.json",
-        "watch": "npm-run-all --parallel --race --print-label watch:build watch:test",
-        "watch:build": "webpack --watch --config-name dev --colors --display minimal",
-        "watch:test": "jest --watch --coverage false --colors"
+        "watch": "npm-run-all --parallel --race --print-label watch:grunt watch:test watch:webpack",
+        "watch:build": "npm-run-all --parallel --race --print-label watch:grunt watch:webpack",
+        "watch:grunt": "grunt watch",
+        "watch:test": "jest --watch --coverage false --colors",
+        "watch:webpack": "webpack --watch --config-name dev --colors --progress"
     },
     "devDependencies": {
         "@types/applicationinsights-js": "^1.0.7",

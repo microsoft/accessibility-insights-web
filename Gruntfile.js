@@ -161,6 +161,25 @@ module.exports = function(grunt) {
                 ],
             },
         },
+        watch: {
+            images: {
+                files: ['src/**/*.png'],
+                tasks: ['copy:images', 'drop:dev'],
+            },
+            'non-webpack-code': {
+                files: ['src/**/*.html', 'src/manifest.json'],
+                tasks: ['copy:code', 'drop:dev'],
+            },
+            scss: {
+                files: ['src/**/*.scss'],
+                tasks: ['sass', 'copy:styles', 'embed-styles:code', 'drop:dev'],
+            },
+            // We assume webpack --watch is running separately (usually via 'npm run watch')
+            'webpack-output': {
+                files: ['extension/devBundle/**/*.js'],
+                tasks: ['embed-styles:code', 'drop:dev'],
+            },
+        },
     });
 
     const targetNames = Object.keys(targets);
@@ -231,6 +250,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-bom-removal');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-exec');
     grunt.loadNpmTasks('grunt-sass');
 
@@ -309,14 +329,12 @@ module.exports = function(grunt) {
         });
     });
 
-    grunt.registerTask('pre-webpack', ['clean:intermediates', 'sass']);
-
-    grunt.registerTask('post-webpack-pre-drop', ['copy:code', 'copy:styles', 'embed-styles:code', 'copy:images']);
+    grunt.registerTask('build-assets', ['sass', 'copy:code', 'copy:styles', 'embed-styles:code', 'copy:images']);
 
     // Main entry points for npm scripts:
-    grunt.registerTask('build-dev', ['pre-webpack', 'exec:webpack-dev', 'post-webpack-pre-drop', 'drop:dev']);
-    grunt.registerTask('build-prod', ['pre-webpack', 'exec:webpack-prod', 'post-webpack-pre-drop', 'release-drops']);
-    grunt.registerTask('build-all', ['pre-webpack', 'exec:webpack-all', 'post-webpack-pre-drop', 'drop:dev', 'release-drops']);
+    grunt.registerTask('build-dev', ['clean:intermediates', 'exec:webpack-dev', 'build-assets', 'drop:dev']);
+    grunt.registerTask('build-prod', ['clean:intermediates', 'exec:webpack-prod', 'build-assets', 'release-drops']);
+    grunt.registerTask('build-all', ['clean:intermediates', 'exec:webpack-all', 'build-assets', 'drop:dev', 'release-drops']);
 
     grunt.registerTask('default', ['build-dev']);
 };
