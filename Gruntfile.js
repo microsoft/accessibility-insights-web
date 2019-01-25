@@ -52,34 +52,11 @@ module.exports = function(grunt) {
     }
 
     grunt.initConfig({
-        sass: {
-            options: {
-                implementation: sass,
-                outputStyle: 'expanded',
-            },
-            dist: {
-                files: [
-                    {
-                        src: 'src/**/*.scss',
-                        dest: 'dist',
-                        expand: true,
-                        ext: '.css',
-                    },
-                ],
-            },
+        bom: {
+            cwd: path.resolve('./src/**/*.{ts,tsx,js,snap,html,scss,css}'),
         },
-        'embed-styles': {
-            code: {
-                cwd: extensionPath,
-                src: '**/*bundle.js',
-                dest: extensionPath,
-                expand: true,
-            },
-        },
-        exec: {
-            'webpack-dev': `${path.resolve('./node_modules/.bin/webpack')} --config-name dev`,
-            'webpack-prod': `${path.resolve('./node_modules/.bin/webpack')} --config-name prod`,
-            'webpack-all': `${path.resolve('./node_modules/.bin/webpack')}`,
+        clean: {
+            intermediates: ['dist', extensionPath],
         },
         copy: {
             code: {
@@ -155,11 +132,34 @@ module.exports = function(grunt) {
                 ],
             },
         },
-        clean: {
-            intermediates: ['dist', 'ref', extensionPath],
+        'embed-styles': {
+            code: {
+                cwd: extensionPath,
+                src: '**/*bundle.js',
+                dest: extensionPath,
+                expand: true,
+            },
         },
-        bom: {
-            cwd: path.resolve('./src/**/*.{ts,tsx,js,snap,html,scss,css}'),
+        exec: {
+            'webpack-dev': `${path.resolve('./node_modules/.bin/webpack')} --config-name dev`,
+            'webpack-prod': `${path.resolve('./node_modules/.bin/webpack')} --config-name prod`,
+            'webpack-all': `${path.resolve('./node_modules/.bin/webpack')}`,
+        },
+        sass: {
+            options: {
+                implementation: sass,
+                outputStyle: 'expanded',
+            },
+            dist: {
+                files: [
+                    {
+                        src: 'src/**/*.scss',
+                        dest: 'dist',
+                        expand: true,
+                        ext: '.css',
+                    },
+                ],
+            },
         },
     });
 
