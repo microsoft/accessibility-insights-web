@@ -245,9 +245,6 @@ module.exports = function(grunt) {
         copyrightCheckAndAdd(copyrightCheckAndAddConfig);
     });
 
-    grunt.registerTask('lint', ['tslint:report']);
-    grunt.registerTask('lint.fix', ['tslint:fix']);
-
     grunt.registerMultiTask('embed-styles', function() {
         this.files.forEach(file => {
             const {
