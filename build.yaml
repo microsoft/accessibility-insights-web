@@ -115,36 +115,3 @@ jobs:
                 pathtoPublish: '$(System.DefaultWorkingDirectory)/drop'
                 artifactName: 'drop'
             displayName: publish drop
-
-    # Temporary addition to test for build flakiness
-    - template: build.build-all-job-template.yaml
-      parameters:
-          name: build_job_1
-
-    - template: build.build-all-job-template.yaml
-      parameters:
-          name: build_job_2
-
-    - template: build.build-all-job-template.yaml
-      parameters:
-          name: build_job_3
-
-    - template: build.build-all-job-template.yaml
-      parameters:
-          name: build_job_4
-
-    - template: build.build-all-job-template.yaml
-      parameters:
-          name: build_job_5
-
-    - template: build.build-all-job-template.yaml
-      parameters:
-          name: build_job_6
-
-    - template: build.build-all-job-template.yaml
-      parameters:
-          name: build_job_7
-
-    - template: build.build-all-job-template.yaml
-      parameters:
-          name: build_job_8
