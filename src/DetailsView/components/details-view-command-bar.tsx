@@ -37,7 +37,6 @@ export interface IDetailsViewCommandBarState {
 }
 
 export class DetailsViewCommandBar extends React.Component<IDetailsViewCommandBarProps, IDetailsViewCommandBarState> {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -49,9 +48,7 @@ export class DetailsViewCommandBar extends React.Component<IDetailsViewCommandBa
     }
 
     public render(): JSX.Element {
-        const shouldRender =
-            !this.props.tabStoreData.isClosed &&
-            this.props.featureFlagStoreData[FeatureFlags.newAssessmentExperience];
+        const shouldRender = !this.props.tabStoreData.isClosed && this.props.featureFlagStoreData[FeatureFlags.newAssessmentExperience];
         if (!shouldRender) {
             return null;
         }
@@ -68,11 +65,7 @@ export class DetailsViewCommandBar extends React.Component<IDetailsViewCommandBa
         return (
             <div className="details-view-target-page">
                 Target page:&nbsp;
-                <Link
-                    role="link"
-                    className="target-page-link"
-                    onClick={this.props.actionMessageCreator.switchToTargetTab}
-                >
+                <Link role="link" className="target-page-link" onClick={this.props.actionMessageCreator.switchToTargetTab}>
                     {this.props.tabStoreData.title}
                 </Link>
             </div>
@@ -89,10 +82,7 @@ export class DetailsViewCommandBar extends React.Component<IDetailsViewCommandBa
 
         return (
             <div className="details-view-command-buttons">
-                <ActionButton
-                    iconProps={{ iconName: 'Export' }}
-                    onClick={this.onExportButtonClick}
-                >
+                <ActionButton iconProps={{ iconName: 'Export' }} onClick={this.onExportButtonClick}>
                     Export result
                 </ActionButton>
                 <StartOverDropdown

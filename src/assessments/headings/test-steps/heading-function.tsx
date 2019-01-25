@@ -24,14 +24,14 @@ const headingFunctionDescription: JSX.Element = (
 
 const headingFunctionHowToTest: JSX.Element = (
     <div>
-        <p>For this requirement, {productName} highlights coded headings in the target page.
-           Coded headings include HTML tags <Markup.Tag tagName="h1" /> through <Markup.Tag tagName="h6" /> and
-           elements with <Markup.Term>role="heading"</Markup.Term>.
+        <p>
+            For this requirement, {productName} highlights coded headings in the target page. Coded headings include HTML tags{' '}
+            <Markup.Tag tagName="h1" /> through <Markup.Tag tagName="h6" /> and elements with <Markup.Term>role="heading"</Markup.Term>.
         </p>
         <ol>
             <li>
-                In the target page, examine each highlighted element to verify that
-                it <Markup.Emphasis>functions</Markup.Emphasis> as a heading:
+                In the target page, examine each highlighted element to verify that it <Markup.Emphasis>functions</Markup.Emphasis> as a
+                heading:
                 <ol>
                     <li>
                         An element functions as a heading if it serves as a descriptive label for the section of content that follows it.
@@ -59,14 +59,15 @@ export const HeadingFunction: TestStep = {
             onRender: headingsAssessmentInstanceDetailsColumnRenderer,
         },
     ],
-    reportInstanceFields: [
-        ReportInstanceField.fromPropertyBagField<IHeadingsAssessmentProperties>('Heading text', 'headingText'),
-    ],
-    getAnalyzer: provider => provider.createRuleAnalyzer(AnalyzerConfigurationFactory.forScanner({
-        rules: ['collect-headings'],
-        key: HeadingsTestStep.headingFunction,
-        testType: VisualizationType.HeadingsAssessment,
-    })),
+    reportInstanceFields: [ReportInstanceField.fromPropertyBagField<IHeadingsAssessmentProperties>('Heading text', 'headingText')],
+    getAnalyzer: provider =>
+        provider.createRuleAnalyzer(
+            AnalyzerConfigurationFactory.forScanner({
+                rules: ['collect-headings'],
+                key: HeadingsTestStep.headingFunction,
+                testType: VisualizationType.HeadingsAssessment,
+            }),
+        ),
     getDrawer: provider => provider.createHeadingsDrawer(),
-    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props}/>,
+    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
 };

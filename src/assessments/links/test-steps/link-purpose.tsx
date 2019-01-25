@@ -8,9 +8,7 @@ import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { title } from '../../../content/strings/application';
 import * as content from '../../../content/test/links/link-purpose';
-import {
-    AssessmentVisualizationEnabledToggle,
-} from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
+import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
@@ -29,18 +27,12 @@ const LinkPurposeHowToTest: JSX.Element = (
         For this requirement, {title} highlights links in the target page..
         <ol>
             <li>
-                In the <Markup.Term>Instances</Markup.Term> list below, examine each link to verify
-                that its accessible name describes its purpose.
+                In the <Markup.Term>Instances</Markup.Term> list below, examine each link to verify that its accessible name describes its
+                purpose.
                 <ol>
-                    <li>
-                        If a link navigates to a document or web page, the name of the document or page is sufficient.
-                    </li>
-                    <li>
-                        Links with different destinations should have different link text.
-                    </li>
-                    <li>
-                        Links with the same destination should have the same link text.
-                    </li>
+                    <li>If a link navigates to a document or web page, the name of the document or page is sufficient.</li>
+                    <li>Links with different destinations should have different link text.</li>
+                    <li>Links with the same destination should have the same link text.</li>
                 </ol>
             </li>
             <li>
@@ -51,15 +43,9 @@ const LinkPurposeHowToTest: JSX.Element = (
                 context of the target page to verify that its purpose is described by the link together with its preceding page context,
                 which includes:
                 <ol>
-                    <li>
-                        Text in the same sentence, paragraph, list item, or table cell as the link
-                    </li>
-                    <li>
-                        Text in a parent list item
-                    </li>
-                    <li>
-                        Text in the table header cell that's associated with cell that contains the link
-                    </li>
+                    <li>Text in the same sentence, paragraph, list item, or table cell as the link</li>
+                    <li>Text in a parent list item</li>
+                    <li>Text in the table header cell that's associated with cell that contains the link</li>
                 </ol>
             </li>
             <AssistedTestRecordYourResults />
@@ -101,14 +87,16 @@ export const LinkPurpose: TestStep = {
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),
-    getAnalyzer: provider => provider.createRuleAnalyzer(AnalyzerConfigurationFactory.forScanner({
-        rules: ['link-purpose'],
-        key: LinksTestStep.linkPurpose,
-        testType: VisualizationType.LinksAssessment,
-        resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
-    })),
+    getAnalyzer: provider =>
+        provider.createRuleAnalyzer(
+            AnalyzerConfigurationFactory.forScanner({
+                rules: ['link-purpose'],
+                key: LinksTestStep.linkPurpose,
+                testType: VisualizationType.LinksAssessment,
+                resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
+            }),
+        ),
     getDrawer: provider => provider.createHighlightBoxDrawer(),
     updateVisibility: false,
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
 };
-

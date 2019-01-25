@@ -8,7 +8,9 @@ import ManualTestRecordYourResults from '../../common/manual-test-record-your-re
 import { TestStep } from '../../types/test-step';
 import { TimedEventsTestStep } from './test-steps';
 
-const description: JSX.Element = <span>If content updates automatically, users must be able to pause, stop, hide, or control frequency of the updates.</span>;
+const description: JSX.Element = (
+    <span>If content updates automatically, users must be able to pause, stop, hide, or control frequency of the updates.</span>
+);
 
 const howToTest: JSX.Element = (
     <div>
@@ -16,26 +18,14 @@ const howToTest: JSX.Element = (
             <li>
                 Examine the target page to identify any content that:
                 <ol>
-                    <li>
-                        Updates, and
-                    </li>
-                    <li>
-                        Starts automatically, and
-                    </li>
-                    <li>
-                        Is presented in parallel with other content, and
-                    </li>
-                    <li>
-                        Is not part of an activity where it is essential.
-                    </li>
+                    <li>Updates, and</li>
+                    <li>Starts automatically, and</li>
+                    <li>Is presented in parallel with other content, and</li>
+                    <li>Is not part of an activity where it is essential.</li>
                 </ol>
             </li>
-            <li>
-                If you find such content, verify that you can pause, stop, or hide it, or control the update frequency.
-            </li>
-            <ManualTestRecordYourResults
-                isMultipleFailurePossible={true}
-            />
+            <li>If you find such content, verify that you can pause, stop, or hide it, or control the update frequency.</li>
+            <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
     </div>
 );

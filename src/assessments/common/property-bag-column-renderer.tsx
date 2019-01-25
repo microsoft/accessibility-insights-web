@@ -17,7 +17,6 @@ export function propertyBagColumnRenderer<TPropertyBag extends ColumnValueBag>(
     item: IAssessmentInstanceRowData<TPropertyBag>,
     configs: IPropertyBagColumnRendererConfig<TPropertyBag>[],
 ): JSX.Element {
-
     const mapper = (config: IPropertyBagColumnRendererConfig<TPropertyBag>, index: number) => {
         const value = item.instance.propertyBag[config.propertyName];
         if (value == null && config.defaultValue == null) {
@@ -61,16 +60,15 @@ export function propertyBagColumnRenderer<TPropertyBag extends ColumnValueBag>(
     const renderInnerKeyValue = (key: string, value: string) => {
         if (value === null) {
             return <span className="display-name">{`${key}`}</span>;
-        }
-        else {
-            return <React.Fragment><span className="display-name">{`${key}: `}</span>{value}</React.Fragment>;
+        } else {
+            return (
+                <React.Fragment>
+                    <span className="display-name">{`${key}: `}</span>
+                    {value}
+                </React.Fragment>
+            );
         }
     };
 
-    return (
-        <div className="property-bag-container">
-            {configs.map(mapper)}
-        </div>
-    );
+    return <div className="property-bag-container">{configs.map(mapper)}</div>;
 }
-

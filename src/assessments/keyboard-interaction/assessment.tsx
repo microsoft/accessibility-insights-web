@@ -41,13 +41,7 @@ export const KeyboardInteraction: IAssessment = AssessmentBuilder.Assisted({
     gettingStarted: keyboardInteractionGettingStarted,
     guidance,
     type: VisualizationType.KeyboardInteraction,
-    steps: [
-        KeyboardNavigation,
-        NoKeyboardTraps,
-        OnFocus,
-        OnInput,
-        NoKeystrokeTiming,
-    ],
+    steps: [KeyboardNavigation, NoKeyboardTraps, OnFocus, OnInput, NoKeystrokeTiming],
     storeDataKey: 'keyboardInteractionAssessment',
     visualizationConfiguration: {
         key: key,

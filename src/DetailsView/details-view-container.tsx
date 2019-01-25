@@ -35,9 +35,12 @@ import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-han
 import { ReportGenerator } from './reports/report-generator';
 
 export type DetailsViewContainerDeps = {
-    getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration,
-    getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration,
-} & DetailsViewMainContentDeps & DetailsViewOverlayDeps & DetailsViewCommandBarDeps & HeaderDeps;
+    getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration;
+    getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration;
+} & DetailsViewMainContentDeps &
+    DetailsViewOverlayDeps &
+    DetailsViewCommandBarDeps &
+    HeaderDeps;
 
 export interface IDetailsViewContainerProps {
     deps: DetailsViewContainerDeps;
@@ -98,7 +101,9 @@ export class DetailsViewContainer extends React.Component<IDetailsViewContainerP
         }
 
         if (this.initialRender) {
-            this.props.deps.detailsViewActionMessageCreator.detailsViewOpened(this.props.storeState.visualizationStoreData.selectedDetailsViewPivot);
+            this.props.deps.detailsViewActionMessageCreator.detailsViewOpened(
+                this.props.storeState.visualizationStoreData.selectedDetailsViewPivot,
+            );
             this.initialRender = false;
         }
 
@@ -106,28 +111,21 @@ export class DetailsViewContainer extends React.Component<IDetailsViewContainerP
     }
 
     private isTargetPageClosed() {
-        return !this.hasStores() || this.props.storesHub.hasStoreData() && this.props.storeState.tabStoreData.isClosed;
+        return !this.hasStores() || (this.props.storesHub.hasStoreData() && this.props.storeState.tabStoreData.isClosed);
     }
 
     private renderSpinner(): JSX.Element {
-        return (
-            <Spinner
-                className="details-view-spinner"
-                size={SpinnerSize.large}
-                label="Loading..."
-            />
-        );
+        return <Spinner className="details-view-spinner" size={SpinnerSize.large} label="Loading..." />;
     }
 
     private renderContent(): JSX.Element {
         return (
             <div className="table column-layout main-wrapper">
                 {this.renderHeader()}
-                <div className="table column-layout details-view-body">
-                    {this.renderDetailsView()}
-                </div>
+                <div className="table column-layout details-view-body">{this.renderDetailsView()}</div>
                 {this.renderOverlay()}
-            </div>);
+            </div>
+        );
     }
 
     private renderHeader(): JSX.Element {
@@ -163,15 +161,13 @@ export class DetailsViewContainer extends React.Component<IDetailsViewContainerP
 
     private renderDetailsView(): JSX.Element {
         const { deps, storeState } = this.props;
-        const selectedDetailsRightPanelConfiguration =
-            this.props.deps.getDetailsRightPanelConfiguration({
-                selectedDetailsViewPivot: storeState.visualizationStoreData.selectedDetailsViewPivot,
-                detailsViewRightContentPanel: storeState.detailsViewStoreData.detailsViewRightContentPanel,
-            });
-        const selectedDetailsViewSwitcherNavConfiguration =
-            this.props.deps.getDetailsSwitcherNavConfiguration({
-                selectedDetailsViewPivot: storeState.visualizationStoreData.selectedDetailsViewPivot,
-            });
+        const selectedDetailsRightPanelConfiguration = this.props.deps.getDetailsRightPanelConfiguration({
+            selectedDetailsViewPivot: storeState.visualizationStoreData.selectedDetailsViewPivot,
+            detailsViewRightContentPanel: storeState.detailsViewStoreData.detailsViewRightContentPanel,
+        });
+        const selectedDetailsViewSwitcherNavConfiguration = this.props.deps.getDetailsSwitcherNavConfiguration({
+            selectedDetailsViewPivot: storeState.visualizationStoreData.selectedDetailsViewPivot,
+        });
         const selectedTest = selectedDetailsViewSwitcherNavConfiguration.getSelectedDetailsView(storeState);
         return (
             <DetailsViewMainContent
@@ -202,6 +198,4 @@ export class DetailsViewContainer extends React.Component<IDetailsViewContainerP
     }
 }
 
-export const DetailsView = withStoreSubscription<IDetailsViewContainerProps, IDetailsViewContainerState>(
-    DetailsViewContainer,
-);
+export const DetailsView = withStoreSubscription<IDetailsViewContainerProps, IDetailsViewContainerState>(DetailsViewContainer);

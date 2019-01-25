@@ -21,17 +21,12 @@ export class AdHocToolsPanel extends React.Component<IAdHocToolsPanelProps, {}> 
         return (
             <div className="ms-Grid main-section">
                 <main>
-                    <div className="ms-Grid-row">
-                        {groups}
-                    </div>
+                    <div className="ms-Grid-row">{groups}</div>
                 </main>
                 <div role="navigation" className="ad-hoc-tools-panel-footer">
-                    <Link
-                        onClick={this.props.backLinkHandler}
-                        id="back-to-launchpad-link"
-                    >
-                        <Icon iconName="back" />&nbsp;
-                        Back to launch pad
+                    <Link onClick={this.props.backLinkHandler} id="back-to-launchpad-link">
+                        <Icon iconName="back" />
+                        &nbsp; Back to launch pad
                     </Link>
                 </div>
             </div>
@@ -63,8 +58,11 @@ export class AdHocToolsPanel extends React.Component<IAdHocToolsPanelProps, {}> 
 
     private insertDivider(toggles: JSX.Element[], groupIndex: number): void {
         for (let index = 1; index < toggles.length; index += 2) {
-            toggles.splice(index, 0, <div key={`diagnostic-view-toggle-divider-${groupIndex}-${index}`} className="ms-fontColor-neutralLight launch-panel-hr"></div>);
+            toggles.splice(
+                index,
+                0,
+                <div key={`diagnostic-view-toggle-divider-${groupIndex}-${index}`} className="ms-fontColor-neutralLight launch-panel-hr" />,
+            );
         }
     }
 }
-

@@ -12,36 +12,36 @@ import { ContentPageOptions } from './content-page';
 import { productName } from '../../content/strings/application';
 
 type PassFailProps = {
-    passText: JSX.Element,
-    passExample?: React.ReactNode,
-    failText: JSX.Element,
-    failExample?: React.ReactNode,
+    passText: JSX.Element;
+    passExample?: React.ReactNode;
+    failText: JSX.Element;
+    failExample?: React.ReactNode;
 };
 
 type CodeExampleProps = {
-    title?: React.ReactNode,
-    children: string,
+    title?: React.ReactNode;
+    children: string;
 };
 
 export type Markup = {
-    Tag: React.SFC,
-    Code: React.SFC,
-    Term: React.SFC,
-    Emphasis: React.SFC,
-    Do: React.SFC,
-    Dont: React.SFC,
-    Pass: React.SFC,
-    Fail: React.SFC,
-    PassFail: React.SFC<PassFailProps>,
-    Columns: React.SFC,
-    Column: React.SFC,
-    HyperLink: React.SFC<{ href: string }>,
-    Title: React.SFC<{ children: string }>,
-    CodeExample: React.SFC<CodeExampleProps>,
-    Links: React.SFC,
-    Table: React.SFC,
-    LandmarkLegend: React.SFC<{ role: string }>,
-    ProblemList: React.SFC,
+    Tag: React.SFC;
+    Code: React.SFC;
+    Term: React.SFC;
+    Emphasis: React.SFC;
+    Do: React.SFC;
+    Dont: React.SFC;
+    Pass: React.SFC;
+    Fail: React.SFC;
+    PassFail: React.SFC<PassFailProps>;
+    Columns: React.SFC;
+    Column: React.SFC;
+    HyperLink: React.SFC<{ href: string }>;
+    Title: React.SFC<{ children: string }>;
+    CodeExample: React.SFC<CodeExampleProps>;
+    Links: React.SFC;
+    Table: React.SFC;
+    LandmarkLegend: React.SFC<{ role: string }>;
+    ProblemList: React.SFC;
 };
 
 export type MarkupDeps = { contentActionMessageCreator: ContentActionMessageCreator };
@@ -50,15 +50,20 @@ export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
     const { openContentHyperLink } = deps.contentActionMessageCreator;
 
     function Title(props: { children: string }): JSX.Element {
+        const helmet = (
+            <Helmet>
+                <title>
+                    {props.children} - {productName}
+                </title>
+            </Helmet>
+        );
 
-        const helmet = <Helmet>
-            <title>{props.children} - {productName}</title>
-        </Helmet>;
-
-        return <>
-            {options && options.setPageTitle && helmet}
-            <h1>{props.children}</h1>
-        </>;
+        return (
+            <>
+                {options && options.setPageTitle && helmet}
+                <h1>{props.children}</h1>
+            </>
+        );
     }
 
     function HyperLink(props: { href: string; children: React.ReactNode }): JSX.Element {
@@ -68,18 +73,13 @@ export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
             <NewTabLink href={href} onClick={e => openContentHyperLink(e, href)}>
                 {props.children}
             </NewTabLink>
-
         );
     }
 
     function Links(props: { children: React.ReactNode }): JSX.Element {
         return (
             <>
-                <div className="content-hyperlinks">
-                    {React.Children.map(props.children, el => (
-                        el
-                    ))}
-                </div>
+                <div className="content-hyperlinks">{React.Children.map(props.children, el => el)}</div>
             </>
         );
     }
@@ -112,9 +112,7 @@ export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
         return (
             <Column>
                 <div className="pass-header">
-                    <CheckIcon />
-                    {' '}
-                    <h3>Pass</h3>
+                    <CheckIcon /> <h3>Pass</h3>
                 </div>
                 <div className="pass-section">{props.children}</div>
             </Column>
@@ -125,9 +123,7 @@ export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
         return (
             <Column>
                 <div className="fail-header">
-                    <CrossIcon />
-                    {' '}
-                    <h3>Fail</h3>
+                    <CrossIcon /> <h3>Fail</h3>
                 </div>
                 <div className="fail-section">{props.children}</div>
             </Column>

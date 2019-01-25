@@ -19,18 +19,18 @@ export class PreviewFeaturesPanel extends React.Component<PreviewFeaturesPanelPr
     public render(): JSX.Element {
         return (
             <GenericPanel
-                title = "Preview features"
+                title="Preview features"
                 isOpen={this.props.isOpen}
                 className="preview-features-panel"
                 onDismiss={this.props.actionMessageCreator.closePreviewFeaturesPanel}
                 closeButtonAriaLabel="Close preview features panel"
                 hasCloseButton={true}
-                >
-                    <PreviewFeaturesContainer
-                        featureFlagData={this.props.featureFlagData}
-                        actionMessageCreator={this.props.actionMessageCreator}
-                        previewFeatureFlagsHandler={this.props.previewFeatureFlagsHandler}
-                    />
+            >
+                <PreviewFeaturesContainer
+                    featureFlagData={this.props.featureFlagData}
+                    actionMessageCreator={this.props.actionMessageCreator}
+                    previewFeatureFlagsHandler={this.props.previewFeatureFlagsHandler}
+                />
             </GenericPanel>
         );
     }

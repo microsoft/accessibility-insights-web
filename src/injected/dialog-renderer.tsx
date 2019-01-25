@@ -49,10 +49,7 @@ export class DialogRenderer {
         this.shadowUtils = shadowUtils;
 
         if (this.isInMainWindow()) {
-            this.frameCommunicator.subscribe(
-                DialogRenderer.renderDetailsDialogCommand,
-                this.processRequest,
-            );
+            this.frameCommunicator.subscribe(DialogRenderer.renderDetailsDialogCommand, this.processRequest);
         }
     }
 
@@ -74,7 +71,9 @@ export class DialogRenderer {
             const elementSelector: string = this.getElementSelector(data);
             const failedRules: IDictionaryStringTo<DecoratedAxeNodeResult> = this.getFailedRules(data);
             const target: string[] = this.getTarget(data);
-            const dialogContainer: HTMLDivElement = featureFlagStoreData[FeatureFlags.shadowDialog] ? this.initializeDialogContainerInShadowDom() : this.appendDialogContainer();
+            const dialogContainer: HTMLDivElement = featureFlagStoreData[FeatureFlags.shadowDialog]
+                ? this.initializeDialogContainerInShadowDom()
+                : this.appendDialogContainer();
 
             const deps = {
                 issueDetailsTextGenerator: new IssueDetailsTextGenerator(new NavigatorUtils(window.navigator).getBrowserSpec()),
@@ -108,7 +107,12 @@ export class DialogRenderer {
     }
 
     @autobind
-    private processRequest(message: DetailsDialogWindowMessage, error: IErrorMessageContent, sourceWin: Window, responder?: FrameMessageResponseCallback): void {
+    private processRequest(
+        message: DetailsDialogWindowMessage,
+        error: IErrorMessageContent,
+        sourceWin: Window,
+        responder?: FrameMessageResponseCallback,
+    ): void {
         this.render(message.data, message.featureFlagStoreData);
     }
 

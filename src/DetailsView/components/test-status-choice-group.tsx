@@ -48,9 +48,7 @@ export class TestStatusChoiceGroup extends React.Component<ITestStatusChoiceGrou
                     />
                 </div>
 
-                <div>
-                    {this.renderUndoButton()}
-                </div>
+                <div>{this.renderUndoButton()}</div>
             </div>
         );
     }
@@ -58,7 +56,9 @@ export class TestStatusChoiceGroup extends React.Component<ITestStatusChoiceGrou
     @autobind
     private onRenderLabel(option: IChoiceGroupOption): JSX.Element {
         return (
-            <span id={option.labelId} className="ms-Label" aria-label={option.text}>{this.props.isLabelVisible ? option.text : ''}</span>
+            <span id={option.labelId} className="ms-Label" aria-label={option.text}>
+                {this.props.isLabelVisible ? option.text : ''}
+            </span>
         );
     }
 
@@ -68,13 +68,8 @@ export class TestStatusChoiceGroup extends React.Component<ITestStatusChoiceGrou
         }
 
         return (
-            <Link className="undo-button"
-                onClick={this.onUndoClicked}
-            >
-                <Icon
-                    iconName="undo"
-                    ariaLabel={'undo'}
-                />
+            <Link className="undo-button" onClick={this.onUndoClicked}>
+                <Icon iconName="undo" ariaLabel={'undo'} />
             </Link>
         );
     }

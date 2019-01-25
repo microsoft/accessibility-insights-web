@@ -13,11 +13,10 @@ import { BaseLeftNavLink, onBaseLeftNavItemClick, onBaseLeftNavItemRender } from
 import { OverviewLeftNavLink } from './overview-left-nav-link';
 import { TestViewLeftNavLink } from './test-view-left-nav-link';
 
-
 export type LeftNavLinkBuilderDeps = OverviewLinkBuilderDeps & AssessmentLinkBuilderDeps & VisualizationConfigurationLinkBuilderDeps;
 
 export type OverviewLinkBuilderDeps = {
-    getAssessmentSummaryModelFromProviderAndStatusData: GetAssessmentSummaryModelFromProviderAndStatusData,
+    getAssessmentSummaryModelFromProviderAndStatusData: GetAssessmentSummaryModelFromProviderAndStatusData;
 };
 
 export type AssessmentLinkBuilderDeps = {
@@ -26,8 +25,7 @@ export type AssessmentLinkBuilderDeps = {
     outcomeStatsFromManualTestStatus: (testStepStatus: IManualTestStatus) => OutcomeStats;
 };
 
-export type VisualizationConfigurationLinkBuilderDeps = {
-};
+export type VisualizationConfigurationLinkBuilderDeps = {};
 
 export class LeftNavLinkBuilder {
     public buildOverviewLink(
@@ -37,9 +35,7 @@ export class LeftNavLinkBuilder {
         assessmentsData: IDictionaryStringTo<IManualTestStatus>,
         index: number,
     ): BaseLeftNavLink {
-        const {
-            getAssessmentSummaryModelFromProviderAndStatusData,
-        } = deps;
+        const { getAssessmentSummaryModelFromProviderAndStatusData } = deps;
 
         const reportModel = getAssessmentSummaryModelFromProviderAndStatusData(assessmentsProvider, assessmentsData);
         const percentComplete = 100 - reportModel.byPercentage.incomplete;
@@ -68,11 +64,7 @@ export class LeftNavLinkBuilder {
         assessmentsData: IDictionaryStringTo<IManualTestStatus>,
         startingIndex: number,
     ): BaseLeftNavLink[] {
-        const {
-            getStatusForTest,
-            outcomeTypeSemanticsFromTestStatus,
-            outcomeStatsFromManualTestStatus,
-        } = deps;
+        const { getStatusForTest, outcomeTypeSemanticsFromTestStatus, outcomeStatsFromManualTestStatus } = deps;
 
         const assessments = assessmentsProvider.all();
         let index = startingIndex;

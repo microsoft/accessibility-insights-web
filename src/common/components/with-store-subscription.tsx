@@ -39,11 +39,11 @@ export function withStoreSubscription<P extends WithStoreSubscriptionProps<S>, S
         public onStoreChange = () => {
             const storeData = this.props.storesHub.getAllStoreData();
             this.setState(storeData);
-        }
+        };
 
         public hasStores = () => {
             return this.props.storesHub && this.props.storesHub.hasStores();
-        }
+        };
 
         public render() {
             return <WrappedComponent {...this.props} storeState={this.state} />;

@@ -12,16 +12,17 @@ import { ColorSensoryTestStep } from './test-steps';
 const auditoryCuesHowToTest: JSX.Element = (
     <div>
         <ol>
-            <li>Interact with the target page to identify any instances where the system provides auditory cues, such as:
+            <li>
+                Interact with the target page to identify any instances where the system provides auditory cues, such as:
                 <ol>
                     <li>A tone that indicates successful completion of a process</li>
                     <li>A tone that indicates arrival of a message</li>
                 </ol>
             </li>
-            <li>For each instance, verify that the system <Markup.Emphasis>also</Markup.Emphasis> provides a visible cue.</li>
-            <ManualTestRecordYourResults
-                isMultipleFailurePossible={true}
-            />
+            <li>
+                For each instance, verify that the system <Markup.Emphasis>also</Markup.Emphasis> provides a visible cue.
+            </li>
+            <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
     </div>
 );

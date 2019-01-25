@@ -7,9 +7,7 @@ import { ICuesPropertyBag } from '../../../common/types/property-bag/icues';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
-import {
-    AssessmentVisualizationEnabledToggle,
-} from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
+import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
 import { IPropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
@@ -19,20 +17,20 @@ import { TestStep } from '../../types/test-step';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { NativeWidgetsTestStep } from './test-steps';
 
-const description: JSX.Element = (
-    <span>
-      If a native widget adopts certain interactive states, it must provide appropriate cues.
-    </span>
-);
+const description: JSX.Element = <span>If a native widget adopts certain interactive states, it must provide appropriate cues.</span>;
 
 const howToTest: JSX.Element = (
     <div>
         <p>
             For this requirement, {productName} highlights native widgets. Native widgets include
-            <Markup.NonBreakingSpace /><Markup.Tag tagName="button" isBold={true} />,
-            <Markup.NonBreakingSpace /><Markup.Tag tagName="input" isBold={true} />,
-            <Markup.NonBreakingSpace /><Markup.Tag tagName="select" isBold={true} />, and
-            <Markup.NonBreakingSpace /><Markup.Tag tagName="textarea" isBold={true} /> elements.
+            <Markup.NonBreakingSpace />
+            <Markup.Tag tagName="button" isBold={true} />,
+            <Markup.NonBreakingSpace />
+            <Markup.Tag tagName="input" isBold={true} />,
+            <Markup.NonBreakingSpace />
+            <Markup.Tag tagName="select" isBold={true} />, and
+            <Markup.NonBreakingSpace />
+            <Markup.Tag tagName="textarea" isBold={true} /> elements.
         </p>
         <ol>
             <li>
@@ -102,13 +100,16 @@ export const Cues: TestStep = {
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),
-    getAnalyzer: provider => provider.createRuleAnalyzer(AnalyzerConfigurationFactory.forScanner({
-        rules: ['cues'],
-        key: NativeWidgetsTestStep.cues,
-        testType: VisualizationType.NativeWidgets,
-        resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
-    })),
+    getAnalyzer: provider =>
+        provider.createRuleAnalyzer(
+            AnalyzerConfigurationFactory.forScanner({
+                rules: ['cues'],
+                key: NativeWidgetsTestStep.cues,
+                testType: VisualizationType.NativeWidgets,
+                resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
+            }),
+        ),
     getDrawer: provider => provider.createHighlightBoxDrawer(),
     updateVisibility: false,
-    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props}/>,
+    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
 };

@@ -24,7 +24,6 @@ export interface SettingsPanelProps {
     isOpen: boolean;
 }
 export class SettingsPanel extends React.Component<SettingsPanelProps> {
-
     public render(): JSX.Element {
         return (
             <GenericPanel
@@ -41,8 +40,7 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
                     name={enableTelemetrySettingsPanelTitle}
                     description={enableTelemetrySettingDescription}
                     onClick={this.onEnableTelemetryToggleClick}
-                >
-                </GenericToggle>
+                />
             </GenericPanel>
         );
     }

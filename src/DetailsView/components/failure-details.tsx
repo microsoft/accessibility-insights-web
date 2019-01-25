@@ -7,7 +7,8 @@ export interface IFailureDetailsProps {
     items: any[];
 }
 export class FailureDetails extends React.Component<IFailureDetailsProps> {
-    public static readonly failureDetailCoda: string = 'When the Automated Checks toggle is on, failure instances selected in this page are highlighted in the target page.';
+    public static readonly failureDetailCoda: string =
+        'When the Automated Checks toggle is on, failure instances selected in this page are highlighted in the target page.';
 
     public render(): JSX.Element {
         return (
@@ -20,9 +21,7 @@ export class FailureDetails extends React.Component<IFailureDetailsProps> {
 
     private renderIcon(): JSX.Element {
         if (this.props.items && this.props.items.length !== 0) {
-            return (
-                <Icon iconName="statusErrorFull" className="details-icon-error"  />
-            );
+            return <Icon iconName="statusErrorFull" className="details-icon-error" />;
         }
 
         return null;
@@ -35,21 +34,17 @@ export class FailureDetails extends React.Component<IFailureDetailsProps> {
 
         if (totalItems === 0) {
             dynamicText = 'No failures were detected.';
-        }
-        else if (totalItems === 1) {
+        } else if (totalItems === 1) {
             dynamicText = '1 failure was detected.';
-        }
-        else {
+        } else {
             dynamicText = `${totalItems} failures were detected.`;
         }
 
-        return ([
+        return [
             <span role="alert" key="at-readable-text">
                 {dynamicText}
             </span>,
-            <span key="coda-text">
-                {` ${FailureDetails.failureDetailCoda}`}
-            </span>,
-        ]);
+            <span key="coda-text">{` ${FailureDetails.failureDetailCoda}`}</span>,
+        ];
     }
 }

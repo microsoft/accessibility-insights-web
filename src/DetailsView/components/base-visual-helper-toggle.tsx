@@ -17,9 +17,7 @@ export abstract class BaseVisualHelperToggle extends React.Component<IVisualHelp
 
         return (
             <div className="visual-helper">
-                <div className="visual-helper-text">
-                    Visual helper
-                </div>
+                <div className="visual-helper-text">Visual helper</div>
                 <VisualizationToggle
                     checked={isChecked}
                     disabled={isDisabled}
@@ -51,7 +49,7 @@ export abstract class BaseVisualHelperToggle extends React.Component<IVisualHelp
 
     private renderNoMatchingElementsMessage(isDisabled: boolean): JSX.Element {
         if (isDisabled) {
-            return (<span className="no-matching-elements">No matching/failing instances were found</span>);
+            return <span className="no-matching-elements">No matching/failing instances were found</span>;
         }
 
         return null;

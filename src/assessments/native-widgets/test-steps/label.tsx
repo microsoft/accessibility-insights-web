@@ -7,9 +7,7 @@ import { IDefaultWidgetPropertyBag } from '../../../common/types/property-bag/id
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
-import {
-    AssessmentVisualizationEnabledToggle,
-} from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
+import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
 import { IPropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
@@ -19,17 +17,11 @@ import { TestStep } from '../../types/test-step';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { NativeWidgetsTestStep } from './test-steps';
 
-const description: JSX.Element = (
-    <span>
-      A native widget must have a label and/or instructions that identify the expected input.
-    </span>
-);
+const description: JSX.Element = <span>A native widget must have a label and/or instructions that identify the expected input.</span>;
 
 const howToTest: JSX.Element = (
     <div>
-        <p>
-            For this requirement, {productName} highlights native widgets.
-        </p>
+        <p>For this requirement, {productName} highlights native widgets.</p>
         <p>
             <Markup.Emphasis>
                 Note: If a native widget has no programmatically-related label, it will fail an automated check.
@@ -37,8 +29,8 @@ const howToTest: JSX.Element = (
         </p>
         <ol>
             <li>
-            Examine each widget in the <Markup.Term>Instances</Markup.Term> list below to verify that its accessible name and/or
-            instructions identify the expected input, including any unusual or specific formatting requirements.
+                Examine each widget in the <Markup.Term>Instances</Markup.Term> list below to verify that its accessible name and/or
+                instructions identify the expected input, including any unusual or specific formatting requirements.
             </li>
             <AssistedTestRecordYourResults />
         </ol>
@@ -78,13 +70,16 @@ export const Label: TestStep = {
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),
-    getAnalyzer: provider => provider.createRuleAnalyzer(AnalyzerConfigurationFactory.forScanner({
-        rules: ['native-widgets-default'],
-        key: NativeWidgetsTestStep.label,
-        testType: VisualizationType.NativeWidgets,
-        resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
-    })),
+    getAnalyzer: provider =>
+        provider.createRuleAnalyzer(
+            AnalyzerConfigurationFactory.forScanner({
+                rules: ['native-widgets-default'],
+                key: NativeWidgetsTestStep.label,
+                testType: VisualizationType.NativeWidgets,
+                resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
+            }),
+        ),
     getDrawer: provider => provider.createHighlightBoxDrawer(),
     updateVisibility: false,
-    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props}/>,
+    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
 };

@@ -83,19 +83,21 @@ export class DiagnosticViewToggleFactory {
         const commandStoreData = this.commandStore.getState();
 
         const toggles: JSX.Element[] = _.map(enabledTypes, type => {
-            return <DiagnosticViewToggle
-                deps={this.deps}
-                featureFlags={this.featureFlagsStore.getState()}
-                dom={this.dom}
-                type={type}
-                key={this.getToggleKey(type)}
-                shortcutCommands={commandStoreData.commands}
-                visualizationConfigurationFactory={this.visualizationConfigurationFactory}
-                actionMessageCreator={this.actionMessageCreator}
-                clickHandler={this.clickHandler}
-                visualizationStoreData={visualizationStoreData}
-                telemetrySource={telemetrySource}
-            />;
+            return (
+                <DiagnosticViewToggle
+                    deps={this.deps}
+                    featureFlags={this.featureFlagsStore.getState()}
+                    dom={this.dom}
+                    type={type}
+                    key={this.getToggleKey(type)}
+                    shortcutCommands={commandStoreData.commands}
+                    visualizationConfigurationFactory={this.visualizationConfigurationFactory}
+                    actionMessageCreator={this.actionMessageCreator}
+                    clickHandler={this.clickHandler}
+                    visualizationStoreData={visualizationStoreData}
+                    telemetrySource={telemetrySource}
+                />
+            );
         });
 
         return toggles;

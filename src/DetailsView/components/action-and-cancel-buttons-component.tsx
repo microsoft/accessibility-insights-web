@@ -12,23 +12,21 @@ export interface IActionAndCancelButtonsComponentProps {
 }
 
 export class ActionAndCancelButtonsComponent extends React.Component<IActionAndCancelButtonsComponentProps> {
-
     public render(): JSX.Element {
-        return <div className="action-and-cancel-buttons-component" hidden={this.props.isHidden}>
-            <div className="button ms-Grid-col ms-sm2 action-cancel-button-col">
-                <DefaultButton
-                    primary={true}
-                    text={this.props.primaryButtonText}
-                    onClick={this.props.primaryButtonOnClick}
-                    disabled={this.props.primaryButtonDisabled}
-                />
+        return (
+            <div className="action-and-cancel-buttons-component" hidden={this.props.isHidden}>
+                <div className="button ms-Grid-col ms-sm2 action-cancel-button-col">
+                    <DefaultButton
+                        primary={true}
+                        text={this.props.primaryButtonText}
+                        onClick={this.props.primaryButtonOnClick}
+                        disabled={this.props.primaryButtonDisabled}
+                    />
+                </div>
+                <div className="button ms-Grid-col ms-sm2 action-cancel-button-col">
+                    <DefaultButton text={'Cancel'} onClick={this.props.cancelButtonOnClick} />
+                </div>
             </div>
-            <div className="button ms-Grid-col ms-sm2 action-cancel-button-col">
-                <DefaultButton
-                    text={'Cancel'}
-                    onClick={this.props.cancelButtonOnClick}
-                />
-            </div>
-        </div>;
+        );
     }
 }

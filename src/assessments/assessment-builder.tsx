@@ -34,10 +34,7 @@ export class AssessmentBuilder {
         const defaults = step.isManual ? [comment] : [path, snippet];
         const specified = step.reportInstanceFields || [];
 
-        step.reportInstanceFields = [
-            ...defaults,
-            ...specified,
-        ];
+        step.reportInstanceFields = [...defaults, ...specified];
     }
 
     private static applyDefaultFunctions(step: TestStep): void {
@@ -290,11 +287,9 @@ export class AssessmentBuilder {
     private static removeLastDotFromDescription(childs: any): any {
         if (Array.isArray(childs)) {
             childs[childs.length - 1] = AssessmentBuilder.removeLastDotFromDescription(childs[childs.length - 1]);
-        }
-        else if (childs instanceof Object) {
+        } else if (childs instanceof Object) {
             childs.props.children = AssessmentBuilder.removeLastDotFromDescription(childs.props.children);
-        }
-        else if (childs[childs.length - 1] === '.') {
+        } else if (childs[childs.length - 1] === '.') {
             childs = childs.slice(0, -1);
         }
 
@@ -311,7 +306,5 @@ export class AssessmentBuilder {
         };
     }
 
-    private static nullScanPolicy(scan, data): void {
-
-    }
+    private static nullScanPolicy(scan, data): void {}
 }

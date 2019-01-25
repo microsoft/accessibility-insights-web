@@ -12,16 +12,24 @@ import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
 import { HeadingsTestStep } from './test-steps';
 
-const missingHeadingsDescription: JSX.Element = (<span>Text that <Markup.Emphasis>looks like</Markup.Emphasis> a heading must be <Markup.Emphasis>coded</Markup.Emphasis> as a heading.</span>);
+const missingHeadingsDescription: JSX.Element = (
+    <span>
+        Text that <Markup.Emphasis>looks like</Markup.Emphasis> a heading must be <Markup.Emphasis>coded</Markup.Emphasis> as a heading.
+    </span>
+);
 
-const missingHeadingsHowToTest: JSX.Element = (<div>
-    <p>The visual helper for this requirement highlights coded headings in the target page.</p>
+const missingHeadingsHowToTest: JSX.Element = (
+    <div>
+        <p>The visual helper for this requirement highlights coded headings in the target page.</p>
         <ol>
-            <li>Examine the target page to verify that each element that <Markup.Emphasis>looks like a</Markup.Emphasis> heading is <Markup.Emphasis>coded</Markup.Emphasis> as a heading (highlighted).</li>
-            <ManualTestRecordYourResults
-                isMultipleFailurePossible={true}
-            />
-        </ol></div>);
+            <li>
+                Examine the target page to verify that each element that <Markup.Emphasis>looks like a</Markup.Emphasis> heading is{' '}
+                <Markup.Emphasis>coded</Markup.Emphasis> as a heading (highlighted).
+            </li>
+            <ManualTestRecordYourResults isMultipleFailurePossible={true} />
+        </ol>
+    </div>
+);
 
 export const NoMissingHeadings: TestStep = {
     key: HeadingsTestStep.missingHeadings,
@@ -31,12 +39,14 @@ export const NoMissingHeadings: TestStep = {
     isManual: true,
     ...content,
     guidanceLinks: [link.WCAG_1_3_1, link.WCAG_2_4_1],
-    getAnalyzer: provider => provider.createRuleAnalyzer(AnalyzerConfigurationFactory.forScanner({
-        rules: ['collect-headings'],
-        key: HeadingsTestStep.missingHeadings,
-        testType: VisualizationType.HeadingsAssessment,
-    })),
+    getAnalyzer: provider =>
+        provider.createRuleAnalyzer(
+            AnalyzerConfigurationFactory.forScanner({
+                rules: ['collect-headings'],
+                key: HeadingsTestStep.missingHeadings,
+                testType: VisualizationType.HeadingsAssessment,
+            }),
+        ),
     getDrawer: provider => provider.createHeadingsDrawer(),
-    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props}/>,
+    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
 };
-

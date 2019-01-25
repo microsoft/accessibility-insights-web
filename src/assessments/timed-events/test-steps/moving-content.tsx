@@ -8,7 +8,11 @@ import ManualTestRecordYourResults from '../../common/manual-test-record-your-re
 import { TestStep } from '../../types/test-step';
 import { TimedEventsTestStep } from './test-steps';
 
-const description: JSX.Element = <span>If content moves, blinks, or scrolls automatically for more than five seconds, users must be able to pause, stop, or hide it.</span>;
+const description: JSX.Element = (
+    <span>
+        If content moves, blinks, or scrolls automatically for more than five seconds, users must be able to pause, stop, or hide it.
+    </span>
+);
 
 const howToTest: JSX.Element = (
     <div>
@@ -16,35 +20,21 @@ const howToTest: JSX.Element = (
             <li>
                 Examine the target page to identify any information that:
                 <ol>
-                    <li>
-                        Moves, blinks, or scrolls, and
-                    </li>
-                    <li>
-                        Starts automatically, and
-                    </li>
-                    <li>
-                        Lasts more than 5 seconds, and
-                    </li>
-                    <li>
-                        Is presented in parallel with other content, and
-                    </li>
-                    <li>
-                        Is not part of an activity where it is essential.
-                    </li>
+                    <li>Moves, blinks, or scrolls, and</li>
+                    <li>Starts automatically, and</li>
+                    <li>Lasts more than 5 seconds, and</li>
+                    <li>Is presented in parallel with other content, and</li>
+                    <li>Is not part of an activity where it is essential.</li>
                 </ol>
             </li>
-            <li>
-                If you find such content, verify that you can pause, stop, or hide it.
-            </li>
-            <ManualTestRecordYourResults
-                isMultipleFailurePossible={true}
-            />
+            <li>If you find such content, verify that you can pause, stop, or hide it.</li>
+            <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
     </div>
 );
 
 export const MovingContent: TestStep = {
-    key:  TimedEventsTestStep.movingContent,
+    key: TimedEventsTestStep.movingContent,
     name: 'Moving content',
     description,
     howToTest,

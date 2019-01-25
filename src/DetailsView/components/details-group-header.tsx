@@ -16,49 +16,39 @@ export interface DetailsGroupHeaderProps extends IGroupDividerProps {
 
 export class DetailsGroupHeader extends React.Component<DetailsGroupHeaderProps> {
     public render(): JSX.Element {
-        return (
-            <GroupHeader
-                onRenderTitle={this.onRenderTitle}
-                {...this.props}
-            />
-        );
+        return <GroupHeader onRenderTitle={this.onRenderTitle} {...this.props} />;
     }
 
     @autobind
     private onRenderTitle(): JSX.Element {
-        return <div className="details-group-header-title">
-            {this.renderRuleLink(this.props.group)}
-            {': '}
-            {this.props.group.name}
-            {' '}
-            {this.renderCount(this.props)}
-            {' '}
-            {this.renderGuidanceLinks(this.props.group)}
-        </div>;
+        return (
+            <div className="details-group-header-title">
+                {this.renderRuleLink(this.props.group)}
+                {': '}
+                {this.props.group.name} {this.renderCount(this.props)} {this.renderGuidanceLinks(this.props.group)}
+            </div>
+        );
     }
 
     private renderRuleLink(group: DetailsGroup): JSX.Element {
-        return <NewTabLink
-            href={group.ruleUrl}
-            onClick={this.onRuleLinkClick}
-        >
-            {group.key}
-        </NewTabLink>;
+        return (
+            <NewTabLink href={group.ruleUrl} onClick={this.onRuleLinkClick}>
+                {group.key}
+            </NewTabLink>
+        );
     }
 
     private renderCount(props: DetailsGroupHeaderProps): JSX.Element {
-        return <>
-            (
-            {this.props.countIcon}
-            {this.props.group.count}
-            )
-        </>;
+        return (
+            <>
+                ({this.props.countIcon}
+                {this.props.group.count})
+            </>
+        );
     }
 
     private renderGuidanceLinks(group: DetailsGroup): JSX.Element {
-        return <GuidanceLinks
-            links={group.guidanceLinks}
-        />;
+        return <GuidanceLinks links={group.guidanceLinks} />;
     }
 
     @autobind

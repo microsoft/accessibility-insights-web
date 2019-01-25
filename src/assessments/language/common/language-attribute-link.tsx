@@ -4,11 +4,8 @@ import * as React from 'react';
 
 import { NewTabLink } from '../../../common/components/new-tab-link';
 
-
 const LanguageAttributeLink = () => (
-    <NewTabLink href="http://www.iana.org/assignments/language-subtag-registry/language-subtag-registry">
-        language attribute
-    </NewTabLink>
+    <NewTabLink href="http://www.iana.org/assignments/language-subtag-registry/language-subtag-registry">language attribute</NewTabLink>
 );
 
 export default LanguageAttributeLink;

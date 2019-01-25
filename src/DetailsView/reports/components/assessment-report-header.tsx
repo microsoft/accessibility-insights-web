@@ -13,7 +13,6 @@ export interface IAssessmentReportHeaderProps {
 }
 
 export class AssessmentReportHeader extends React.Component<IAssessmentReportHeaderProps> {
-
     public render(): JSX.Element {
         return (
             <header>

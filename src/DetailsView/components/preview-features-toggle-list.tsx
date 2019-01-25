@@ -13,11 +13,7 @@ export interface IPreviewFeaturesToggleListProps {
 
 export class PreviewFeaturesToggleList extends React.Component<IPreviewFeaturesToggleListProps> {
     public render(): JSX.Element {
-        return (
-            <div className="preview-feature-toggle-list">
-                {this.generateToggleList()}
-            </div>
-        );
+        return <div className="preview-feature-toggle-list">{this.generateToggleList()}</div>;
     }
 
     private generateToggleList(): JSX.Element[] {

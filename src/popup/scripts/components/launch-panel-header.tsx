@@ -56,23 +56,35 @@ export class LaunchPanelHeader extends React.Component<ILaunchPanelHeaderProps, 
         const { popupActionMessageCreator } = props.deps;
         this._onOpenDetailsViewForAllTests = ev => {
             popupActionMessageCreator.openDetailsView(
-                ev, VisualizationType.Issues, this.telemetryEventSource, DetailsViewPivotType.allTest);
+                ev,
+                VisualizationType.Issues,
+                this.telemetryEventSource,
+                DetailsViewPivotType.allTest,
+            );
         };
 
         this._onOpenDetailsViewForAssessment = ev => {
-            popupActionMessageCreator.openDetailsView(
-                ev, null, this.telemetryEventSource, DetailsViewPivotType.assessment);
+            popupActionMessageCreator.openDetailsView(ev, null, this.telemetryEventSource, DetailsViewPivotType.assessment);
         };
 
-        this._onOpenDetailsViewForFastPass = ev => popupActionMessageCreator.openDetailsView(
-            ev, VisualizationType.Issues, this.telemetryEventSource, DetailsViewPivotType.fastPass);
+        this._onOpenDetailsViewForFastPass = ev =>
+            popupActionMessageCreator.openDetailsView(
+                ev,
+                VisualizationType.Issues,
+                this.telemetryEventSource,
+                DetailsViewPivotType.fastPass,
+            );
 
         this._onClickLink = (ev, item) => this.props.clickhandler.onClickLink(this.props.popupWindow, ev, item);
         this._onOpenContextualMenu = ev => this.props.clickhandler.onOpenContextualMenu(this, ev);
         this._onDismissContextualMenu = ev => this.props.clickhandler.onDismissFeedbackMenu(this, ev);
         this._openAdhocToolsPanel = (ev, item) => this.props.clickhandler.openAdhocToolsPanel(this);
-        this._sendEmail = () => { this.props.supportLinkHandler.sendEmail(this.props.title); };
-        this._openShortcutModifyTab = event => { popupActionMessageCreator.openShortcutConfigureTab(event); };
+        this._sendEmail = () => {
+            this.props.supportLinkHandler.sendEmail(this.props.title);
+        };
+        this._openShortcutModifyTab = event => {
+            popupActionMessageCreator.openShortcutConfigureTab(event);
+        };
         this.state = {
             isContextMenuVisible: false,
         };
@@ -94,10 +106,7 @@ export class LaunchPanelHeader extends React.Component<ILaunchPanelHeaderProps, 
 
         return (
             <div className="ms-Grid-col ms-u-sm2 feedback-collapseMenuButton-col">
-                <GearOptionsButtonComponent
-                    dropdownClickHandler={dropdownClickHandler}
-                    featureFlags={this.props.featureFlags}
-                />
+                <GearOptionsButtonComponent dropdownClickHandler={dropdownClickHandler} featureFlags={this.props.featureFlags} />
                 <IconButton
                     iconProps={{ iconName: 'GlobalNavButton' }}
                     id="feedback-collapse-menu-button"

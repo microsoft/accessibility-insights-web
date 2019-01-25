@@ -24,7 +24,6 @@ export interface ExportDialogDeps {
 }
 
 export class ExportDialog extends React.Component<ExportDialogProps> {
-
     constructor(props: ExportDialogProps) {
         super(props);
     }
@@ -83,5 +82,3 @@ export class ExportDialog extends React.Component<ExportDialogProps> {
         this.props.onDescriptionChange(value);
     }
 }
-
-

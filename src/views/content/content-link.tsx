@@ -9,19 +9,18 @@ import { NamedSFC } from '../../common/react/named-sfc';
 import { ContentProvider, ContentReference } from './content-page';
 
 export type ContentLinkDeps = {
-    contentProvider: ContentProvider,
+    contentProvider: ContentProvider;
     contentActionMessageCreator: ContentActionMessageCreator;
 };
 
 export type ContentLinkProps = {
-    deps: ContentLinkDeps,
-    reference: ContentReference,
-    linkText?: string,
-    iconName?: string,
+    deps: ContentLinkDeps;
+    reference: ContentReference;
+    linkText?: string;
+    iconName?: string;
 };
 
 export const ContentLink = NamedSFC<ContentLinkProps>('ContentLink', ({ deps, reference, iconName, linkText }) => {
-
     const { contentProvider, contentActionMessageCreator } = deps;
     const { openContentPage } = contentActionMessageCreator;
 
@@ -32,9 +31,10 @@ export const ContentLink = NamedSFC<ContentLinkProps>('ContentLink', ({ deps, re
     const contentPath = contentProvider.pathFromReference(reference);
     const icon = iconName && <Icon iconName={iconName} />;
 
-    return <NewTabLink href={`/insights.html#/content/${contentPath}`} title="Guidance" onClick={ev => openContentPage(ev, contentPath)}>
-        {icon}{linkText}
-    </NewTabLink>;
-
+    return (
+        <NewTabLink href={`/insights.html#/content/${contentPath}`} title="Guidance" onClick={ev => openContentPage(ev, contentPath)}>
+            {icon}
+            {linkText}
+        </NewTabLink>
+    );
 });
-

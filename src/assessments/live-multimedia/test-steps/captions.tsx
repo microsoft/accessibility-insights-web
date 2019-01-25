@@ -17,13 +17,15 @@ const captionsHowToTest: JSX.Element = (
             <li>Examine the target page to identify any live (streaming) multimedia content (video with synchronized audio).</li>
             <li>Enable captions, then play the multimedia content.</li>
             <li>Verify that the multimedia content has captions.</li>
-            <li>If you find any live multimedia content that doesn't have captions,
-                select <Markup.Term>Fail</Markup.Term>, then add the failure instance.</li>
-            <li>Verify that the captions provide an accurate and complete description of the audio content,
-                including speaker identity, speech, and meaningful sounds.</li>
-            <ManualTestRecordYourResults
-                isMultipleFailurePossible={true}
-            />
+            <li>
+                If you find any live multimedia content that doesn't have captions, select <Markup.Term>Fail</Markup.Term>, then add the
+                failure instance.
+            </li>
+            <li>
+                Verify that the captions provide an accurate and complete description of the audio content, including speaker identity,
+                speech, and meaningful sounds.
+            </li>
+            <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
     </div>
 );

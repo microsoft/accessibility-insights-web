@@ -9,10 +9,7 @@ import { BaseLeftNavLinkProps } from '../base-left-nav';
 
 export const OverviewLeftNavLink = NamedSFC<BaseLeftNavLinkProps>('OverviewLeftNavLink', ({ link }) => {
     return (
-        <div
-            className={'button-flex-container'}
-            aria-hidden="true"
-        >
+        <div className={'button-flex-container'} aria-hidden="true">
             <div>
                 <Icon iconName="home" className={css('status-icon', 'dark-gray')} />
             </div>

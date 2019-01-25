@@ -8,9 +8,9 @@ import { NamedSFC } from '../../common/react/named-sfc';
 
 const url = 'https://idwebelements/GroupManagement.aspx?Group=a11yInsightsUpdates&Operation=join';
 
-export const RebrandingMessageBar = NamedSFC('RebrandingMessageBar', () =>
-
+export const RebrandingMessageBar = NamedSFC('RebrandingMessageBar', () => (
     <MessageBar className="info-message-bar">
         Keros for Web has been rebranded to Accessibility Insights for Web.{' '}
         <NewTabLink href={url}>Join Accessibility Insights Updates and Discussions</NewTabLink> to receive email announcements.
-    </MessageBar>);
+    </MessageBar>
+));

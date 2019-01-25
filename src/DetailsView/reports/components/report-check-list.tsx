@@ -18,15 +18,11 @@ export interface ReportCheckListProps {
 
 export class ReportCheckList extends React.Component<ReportCheckListProps> {
     public render(): JSX.Element {
-        if ((this.props.congratulateIfEmpty) && (this.props.results.length === 0)) {
+        if (this.props.congratulateIfEmpty && this.props.results.length === 0) {
             return this.renderCongratulations();
         }
 
-        return (
-            <ul className="report-checks">
-                {this.renderResults()}
-            </ul>
-        );
+        return <ul className="report-checks">{this.renderResults()}</ul>;
     }
 
     private renderCongratulations(): JSX.Element {
@@ -45,19 +41,12 @@ export class ReportCheckList extends React.Component<ReportCheckListProps> {
             return (
                 <li className="report-check" key={`report-check-${index}`}>
                     <div className="report-check-top">
-                        <NewTabLink
-                            href={result.helpUrl}
-                            aria-describedby={`check-help-${this.props.idPrefix}-${index}`}
-                        >
+                        <NewTabLink href={result.helpUrl} aria-describedby={`check-help-${this.props.idPrefix}-${index}`}>
                             {result.id}:
-                        </NewTabLink>
-                        {' '}
-                        <span id={`check-help-${this.props.idPrefix}-${index}`}>{result.help}</span>
-                        {' '}
+                        </NewTabLink>{' '}
+                        <span id={`check-help-${this.props.idPrefix}-${index}`}>{result.help}</span>{' '}
                         {this.renderInstanceCount(result.nodes)}
-                        <GuidanceLinks
-                            links={result.guidanceLinks}
-                        />
+                        <GuidanceLinks links={result.guidanceLinks} />
                     </div>
                     {this.renderResultInstances(result.nodes)}
                 </li>
@@ -66,19 +55,14 @@ export class ReportCheckList extends React.Component<ReportCheckListProps> {
     }
 
     private renderResultInstances(nodeResults: AxeNodeResult[]): JSX.Element {
-        if ((this.props.showInstances === true) && (nodeResults.length > 0)) {
-            return (
-                <ReportInstanceList nodeResults={nodeResults} />
-            );
+        if (this.props.showInstances === true && nodeResults.length > 0) {
+            return <ReportInstanceList nodeResults={nodeResults} />;
         }
     }
 
     private renderInstanceCount(nodeResults: AxeNodeResult[]): JSX.Element {
         if (this.props.showInstanceCount === true) {
-            return (
-                <span>({nodeResults.length}) </span>
-            );
+            return <span>({nodeResults.length}) </span>;
         }
     }
 }
-

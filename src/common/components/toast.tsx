@@ -9,7 +9,7 @@ export type ToastDeps = {
 };
 
 export type ToastProps = {
-    deps: ToastDeps,
+    deps: ToastDeps;
     onTimeout?: () => void;
     timeoutLength?: number;
 };
@@ -40,10 +40,6 @@ export class Toast extends React.Component<ToastProps> {
     }
 
     public render(): JSX.Element {
-        return this.hidden ? null : (
-            <div className={css('ms-fadeIn100', 'toast')}>
-                {this.props.children}
-            </div>
-        );
+        return this.hidden ? null : <div className={css('ms-fadeIn100', 'toast')}>{this.props.children}</div>;
     }
 }

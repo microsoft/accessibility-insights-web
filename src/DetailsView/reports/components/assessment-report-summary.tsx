@@ -12,7 +12,6 @@ export interface IAssessmentReportSummaryProps {
 
 export class AssessmentReportSummary extends React.Component<IAssessmentReportSummaryProps> {
     public render(): JSX.Element {
-
         return (
             <div className="assessment-report-summary">
                 <h2>Summary</h2>
@@ -24,8 +23,6 @@ export class AssessmentReportSummary extends React.Component<IAssessmentReportSu
     }
 
     private renderDetails(): JSX.Element {
-        return <AssessmentSummaryDetails
-            testSummaries={this.props.summary.reportSummaryDetailsData}
-        />;
+        return <AssessmentSummaryDetails testSummaries={this.props.summary.reportSummaryDetailsData} />;
     }
 }

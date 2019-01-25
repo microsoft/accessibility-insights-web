@@ -56,9 +56,7 @@ export class DetailsViewMainContent extends React.Component<IDetailsViewMainCont
                     <div className="details-content table column-layout">
                         {this.getTabInfo(this.props.tabStoreData.isClosed)}
                         <div className="view" role="main">
-                            <this.props.rightPanelConfiguration.RightPanel
-                                {...this.props}
-                            />
+                            <this.props.rightPanelConfiguration.RightPanel {...this.props} />
                         </div>
                     </div>
                 </div>
@@ -68,12 +66,7 @@ export class DetailsViewMainContent extends React.Component<IDetailsViewMainCont
 
     private renderCommandBar(): JSX.Element {
         const { deps, switcherNavConfiguration } = this.props;
-        return (
-            <switcherNavConfiguration.CommandBar
-                actionMessageCreator={deps.detailsViewActionMessageCreator}
-                {...this.props}
-            />
-        );
+        return <switcherNavConfiguration.CommandBar actionMessageCreator={deps.detailsViewActionMessageCreator} {...this.props} />;
     }
 
     private renderNavBar(): JSX.Element {
@@ -83,11 +76,7 @@ export class DetailsViewMainContent extends React.Component<IDetailsViewMainCont
             return null;
         }
 
-        return (
-            <DetailsViewLeftNav
-                {...this.props}
-            />
-        );
+        return <DetailsViewLeftNav {...this.props} />;
     }
 
     private getTabInfo(tabClosed: boolean): JSX.Element {

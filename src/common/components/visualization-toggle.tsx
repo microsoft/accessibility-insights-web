@@ -31,8 +31,6 @@ export class VisualizationToggle extends React.Component<IVisualizationTogglePro
             onFocus: this.props.onFocus,
         };
 
-        return (
-            <Toggle {...props}/>
-        );
+        return <Toggle {...props} />;
     }
 }

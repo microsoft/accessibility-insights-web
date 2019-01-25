@@ -7,9 +7,7 @@ import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
 import * as content from '../../../content/test/images/text-alternative';
-import {
-    AssessmentVisualizationEnabledToggle,
-} from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
+import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
 import { IPropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
@@ -19,11 +17,7 @@ import { TestStep } from '../../types/test-step';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { ImagesTestStep } from './test-steps';
 
-const description: JSX.Element = (
-    <span>
-        A meaningful image must have a text alternative that serves the equivalent purpose.
-    </span>
-);
+const description: JSX.Element = <span>A meaningful image must have a text alternative that serves the equivalent purpose.</span>;
 
 const howToTest: JSX.Element = (
     <div>
@@ -34,27 +28,21 @@ const howToTest: JSX.Element = (
                 equivalent purpose.
                 <ol>
                     <li>
-                        A <Markup.Emphasis>simple</Markup.Emphasis> image should have an accessible name that serves the equivalent
-                        purpose. Special cases:
+                        A <Markup.Emphasis>simple</Markup.Emphasis> image should have an accessible name that serves the equivalent purpose.
+                        Special cases:
                         <ol>
+                            <li>An image of text should have an accessible name that exactly matches the text within the image.</li>
                             <li>
-                                An image of text should have an accessible name that exactly matches the text within the image.
-                            </li>
-                            <li>
-                                A CAPTCHA image should have an accessible name that communicates the purpose of the image, but
-                                not its content. (A CAPTCHA is a test to differentiate a human from a computer.)
+                                A CAPTCHA image should have an accessible name that communicates the purpose of the image, but not its
+                                content. (A CAPTCHA is a test to differentiate a human from a computer.)
                             </li>
                         </ol>
                     </li>
                     <li>
                         A <Markup.Emphasis>complex</Markup.Emphasis> image (such as a graph) should have both
                         <ol>
-                            <li>
-                                An accessible name that communicates the purpose of the image, and
-                            </li>
-                            <li>
-                                An accessible description that communicates the content of the image.
-                            </li>
+                            <li>An accessible name that communicates the purpose of the image, and</li>
+                            <li>An accessible description that communicates the content of the image.</li>
                         </ol>
                     </li>
                 </ol>
@@ -91,17 +79,22 @@ export const TextAlternative: TestStep = {
     isManual: false,
     ...content,
     guidanceLinks: [link.WCAG_1_1_1],
-    columnsConfig: [{
-        key: 'image-info',
-        name: 'Image info',
-        onRender: PropertyBagColumnRendererFactory.get(propertyBagConfig),
-    }],
+    columnsConfig: [
+        {
+            key: 'image-info',
+            name: 'Image info',
+            onRender: PropertyBagColumnRendererFactory.get(propertyBagConfig),
+        },
+    ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),
-    getAnalyzer: provider => provider.createRuleAnalyzer(AnalyzerConfigurationFactory.forScanner({
-        rules: ['accessible-image'],
-        key,
-        testType: VisualizationType.ImagesAssessment,
-    })),
+    getAnalyzer: provider =>
+        provider.createRuleAnalyzer(
+            AnalyzerConfigurationFactory.forScanner({
+                rules: ['accessible-image'],
+                key,
+                testType: VisualizationType.ImagesAssessment,
+            }),
+        ),
     getDrawer: provider => provider.createHighlightBoxDrawer(),
-    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props}/>,
+    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
 };

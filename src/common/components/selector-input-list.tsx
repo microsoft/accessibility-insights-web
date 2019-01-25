@@ -42,7 +42,7 @@ export class SelectorInputList extends React.Component<ISelectorInputListProps, 
     }
 
     public componentDidUpdate(previousProps: ISelectorInputListProps) {
-        const shouldUpdateState = !(_.isEqual(this.props, previousProps));
+        const shouldUpdateState = !_.isEqual(this.props, previousProps);
 
         if (shouldUpdateState) {
             this.updateFieldValueValidState(null, this.textField.value);
@@ -78,10 +78,7 @@ export class SelectorInputList extends React.Component<ISelectorInputListProps, 
                     </div>
                 </div>
                 <FocusZone className="selector-focus-zone" direction={FocusZoneDirection.vertical}>
-                    <List className="selector-list"
-                        items={this.props.items}
-                        onRenderCell={this.onRenderCell}
-                    />
+                    <List className="selector-list" items={this.props.items} onRenderCell={this.onRenderCell} />
                 </FocusZone>
             </div>
         );
@@ -109,7 +106,7 @@ export class SelectorInputList extends React.Component<ISelectorInputListProps, 
     }
 
     private renderItemName(selector: string[]): string {
-        return (selector.join('; '));
+        return selector.join('; ');
     }
 
     @autobind
@@ -118,7 +115,11 @@ export class SelectorInputList extends React.Component<ISelectorInputListProps, 
             value: textFieldValue,
         });
         const formattedSelector = this.formatSelector(textFieldValue);
-        const selectorIsValid = !_.isEqual(formattedSelector, ['']) && !_.find(this.props.items, value => { return _.isEqual(formattedSelector, value); });
+        const selectorIsValid =
+            !_.isEqual(formattedSelector, ['']) &&
+            !_.find(this.props.items, value => {
+                return _.isEqual(formattedSelector, value);
+            });
 
         this.setState({ isTextFieldValueValid: selectorIsValid });
     }

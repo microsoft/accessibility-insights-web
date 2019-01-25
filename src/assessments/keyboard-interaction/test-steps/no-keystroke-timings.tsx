@@ -8,31 +8,21 @@ import ManualTestRecordYourResults from '../../common/manual-test-record-your-re
 import { TestStep } from '../../types/test-step';
 import { KeyboardInteractionTestStep } from './test-steps';
 
-const description: JSX.Element = (<span>Components must not require specific timings for individual keystrokes.</span>);
+const description: JSX.Element = <span>Components must not require specific timings for individual keystrokes.</span>;
 
 const howToTest: JSX.Element = (
     <div>
         <ol>
-            <li>
-                Use the keyboard to perform all functions that are available using a mouse.
-            </li>
+            <li>Use the keyboard to perform all functions that are available using a mouse.</li>
             <li>
                 Verify that individual keystrokes do not require specific timings, such as requiring users to:
                 <ol>
-                    <li>
-                        Repeatedly press a key within a short period of time
-                    </li>
-                    <li>
-                        Enter a series of keystrokes within a short period of time
-                    </li>
-                    <li>
-                        Press and hold a key for an extended period of time
-                    </li>
+                    <li>Repeatedly press a key within a short period of time</li>
+                    <li>Enter a series of keystrokes within a short period of time</li>
+                    <li>Press and hold a key for an extended period of time</li>
                 </ol>
             </li>
-            <ManualTestRecordYourResults
-                isMultipleFailurePossible={true}
-            />
+            <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
     </div>
 );
