@@ -30,7 +30,7 @@ export class ReportHeader extends React.Component<IReportHeaderProps> {
                     </div>
                     <div>
                         <InlineImage type={InlineImageType.PassIcon} alt="" />
-                        <a href="#passed">{`${this.props.scanResult.passes.length} passed checks `}</a>
+                        <a href="#passed">{`${this.props.scanResult.passes.length} passed checks`}</a>
                     </div>
                     <div>
                         <InlineImage type={InlineImageType.NotApplicableIcon} alt="" />
