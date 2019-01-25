@@ -52,7 +52,7 @@ module.exports = function(grunt) {
     }
 
     grunt.initConfig({
-        "sass": {
+        sass: {
             options: {
                 implementation: sass,
                 outputStyle: 'expanded',
@@ -78,10 +78,10 @@ module.exports = function(grunt) {
         },
         // We use grunt-exec rather than grunt-webpack because grunt-webpack appears to cause inconsistent CI build
         // issues where webpack+grunt sometimes exit 0 without actually completing their work.
-        'exec': {
+        exec: {
             'webpack-dev': `${path.resolve('./node_modules/.bin/webpack')} --config-name dev`,
             'webpack-prod': `${path.resolve('./node_modules/.bin/webpack')} --config-name prod`,
-            'webpack-all': `${path.resolve('./node_modules/.bin/webpack')}`
+            'webpack-all': `${path.resolve('./node_modules/.bin/webpack')}`,
         },
         copy: {
             code: {
@@ -157,35 +157,8 @@ module.exports = function(grunt) {
                 ],
             },
         },
-        'clean': {
-            intermediates: ['dist', 'ref', extensionPath]
-        },
-        tslint: {
-            report: {
-                options: {
-                    // can be a configuration object or a filepath to tslint.json
-                    configuration: './tslint.build-enforced.json',
-                    project: './tsconfig.json',
-                    // If set to true, tslint errors will be reported, but not fail the task
-                    // If set to false, tslint errors will be reported, and the task will fail
-                    force: false,
-                    fix: false,
-                },
-                files: {
-                    src: ['src/**/*.{ts,tsx}'],
-                },
-            },
-            fix: {
-                options: {
-                    configuration: './tslint.json',
-                    project: './tsconfig.json',
-                    force: false,
-                    fix: true,
-                },
-                files: {
-                    src: ['src/**/*.{ts,tsx}'],
-                },
-            },
+        clean: {
+            intermediates: ['dist', 'ref', extensionPath],
         },
         bom: {
             cwd: path.resolve('./src/**/*.{ts,tsx,js,snap,html,scss,css}'),
@@ -342,41 +315,16 @@ module.exports = function(grunt) {
         });
     });
 
-    grunt.registerTask("pre-webpack", [
-        "clean:intermediates",
-        "exec:mkdrop",
-        "sass"
-    ]);
+    grunt.registerTask('pre-webpack', ['clean:intermediates', 'exec:mkdrop', 'sass']);
 
-    grunt.registerTask("post-webpack-pre-drop", [
-        "copy:code",
-        "copy:styles",
-        "embed-styles:code",
-        "copy:images",
-    ]);
+    grunt.registerTask('post-webpack-pre-drop', ['copy:code', 'copy:styles', 'embed-styles:code', 'copy:images']);
 
     // Main entry points for npm scripts:
-    grunt.registerTask('build-dev', [
-        "pre-webpack",
-        "exec:webpack-dev",
-        "post-webpack-pre-drop",
-        "drop:dev"
-    ]);
+    grunt.registerTask('build-dev', ['pre-webpack', 'exec:webpack-dev', 'post-webpack-pre-drop', 'drop:dev']);
 
-    grunt.registerTask('build-prod', [
-        "pre-webpack",
-        "exec:webpack-prod",
-        "post-webpack-pre-drop",
-        "release-drops"
-    ]);
+    grunt.registerTask('build-prod', ['pre-webpack', 'exec:webpack-prod', 'post-webpack-pre-drop', 'release-drops']);
 
-    grunt.registerTask('build-all', [
-        "pre-webpack",
-        "exec:webpack-all",
-        "post-webpack-pre-drop",
-        "drop:dev",
-        "release-drops"
-    ]);
+    grunt.registerTask('build-all', ['pre-webpack', 'exec:webpack-all', 'post-webpack-pre-drop', 'drop:dev', 'release-drops']);
 
-    grunt.registerTask("default", ["build-dev"]);
+    grunt.registerTask('default', ['build-dev']);
 };
