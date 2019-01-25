@@ -11,6 +11,10 @@ const commonPlugins = [
         maxChunks: 1, // Must be greater than or equal to one
         minChunkSize: 1000000,
     }),
+    // Be warned: this plugin supports tslint, but enabling it here causes webpack to occasionally
+    // process.exit(0) in the middle of execution on mac build machines, resulting in difficult to
+    // debug build failures. We aren't quite sure why this is yet, but until it's root caused, keep
+    // tslint separate from webpack.
     new ForkTsCheckerWebpackPlugin(),
 ];
 
@@ -52,7 +56,7 @@ const commonConfig = {
     plugins: commonPlugins,
     node: {
         setImmediate: false,
-    }
+    },
 };
 
 const devConfig = {
@@ -69,7 +73,7 @@ const devConfig = {
         // })
     ],
     output: {
-        path: path.join(__dirname, "extension/devBundle"),
+        path: path.join(__dirname, 'extension/devBundle'),
         filename: '[name].bundle.js',
     },
     optimization: {
@@ -83,24 +87,26 @@ const prodConfig = {
     mode: 'production',
     devtool: false,
     output: {
-        path: path.join(__dirname, "extension/prodBundle"),
+        path: path.join(__dirname, 'extension/prodBundle'),
         filename: '[name].bundle.js',
         pathinfo: false,
     },
     optimization: {
         splitChunks: false,
-        minimizer: [new UglifyJsPlugin({
-            sourceMap: false,
-            uglifyOptions: {
-                compress: false,
-                mangle: false,
-                output: {
-                    ascii_only: true,
-                    comments: /^\**!|@preserve|@license|@cc_on/i,
-                    beautify: false,
+        minimizer: [
+            new UglifyJsPlugin({
+                sourceMap: false,
+                uglifyOptions: {
+                    compress: false,
+                    mangle: false,
+                    output: {
+                        ascii_only: true,
+                        comments: /^\**!|@preserve|@license|@cc_on/i,
+                        beautify: false,
+                    },
                 },
-            },
-        })],
+            }),
+        ],
     },
 };
 
