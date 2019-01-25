@@ -16,6 +16,7 @@
         "copyrightheaders:fix": "grunt copyright-add",
         "format": "./node_modules/.bin/prettier --config prettier.config.js --write **/*",
         "format-check": "./node_modules/.bin/prettier --config prettier.config.js --check **/*",
+        "precheckin": "npm-run-all --serial build:all copyrightheaders format-check tslint test test:e2e",
         "test": "jest",
         "test:e2e": "jest --config=jest.e2e.config.js --runInBand",
         "tslint": "tslint -c ./tslint.build-enforced.json -p ./tsconfig.json",
