@@ -13,10 +13,9 @@ export const OverviewHeading = NamedSFC('OverviewHeading', () => {
                 <div>
                     This summary indicates the overall accessibility of the website or web app, through a combination of automated and
                     manual tests, covering all WCAG 2.0 AA success criteria. Each manual test covers a set of related accessibility{' '}
-                    requirements, with provided step-by-step testing instructions and guidance.{' '}
-                    Where possible, {productName} "assists" the manual test process by generating{' '}
-                    a list of instances to evaluate and highlighting them on the screen.{' '}
-                    {productName} also allows you to manually record failure instances.
+                    requirements, with provided step-by-step testing instructions and guidance. Where possible, {productName} "assists" the
+                    manual test process by generating a list of instances to evaluate and highlighting them on the screen. {productName}{' '}
+                    also allows you to manually record failure instances.
                 </div>
             </div>
         </>

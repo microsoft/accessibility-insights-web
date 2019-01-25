@@ -26,7 +26,8 @@ export interface LaunchPadRowConfiguration {
 }
 
 export class LaunchPad extends React.Component<ILaunchPadProps, undefined> {
-    public static demoLink: string = 'https://msit.microsoftstream.com/video/7817f7b2-7c17-4ad8-a644-42d82ae697a2?channelId=66d47e66-d99c-488b-b9ea-98a153d2a4d4&channelName=Accessibility%20Tools';
+    public static demoLink: string =
+        'https://msit.microsoftstream.com/video/7817f7b2-7c17-4ad8-a644-42d82ae697a2?channelId=66d47e66-d99c-488b-b9ea-98a153d2a4d4&channelName=Accessibility%20Tools';
 
     constructor(props: ILaunchPadProps) {
         super(props);
@@ -54,17 +55,11 @@ export class LaunchPad extends React.Component<ILaunchPadProps, undefined> {
         return (
             <div className="ms-Grid main-section">
                 <main>
-                    <div
-                        role="heading"
-                        aria-level={1}
-                        className="launch-pad-title ms-fontWeight-semibold"
-                    >
+                    <div role="heading" aria-level={1} className="launch-pad-title ms-fontWeight-semibold">
                         Launch pad
                     </div>
                     <hr className="ms-fontColor-neutralTertiaryAlt launch-pad-hr" />
-                    <div className="launch-pad-main-section">
-                        {this.renderLaunchPadItemRows(this.props.rowConfigs)}
-                    </div>
+                    <div className="launch-pad-main-section">{this.renderLaunchPadItemRows(this.props.rowConfigs)}</div>
                 </main>
                 <div role="complementary" className="launch-pad-footer">
                     <div>
@@ -72,7 +67,10 @@ export class LaunchPad extends React.Component<ILaunchPadProps, undefined> {
                         <ExternalLink
                             deps={this.props.deps}
                             title="Navigate to axe-core npm page"
-                            href="https://www.npmjs.com/package/axe-core">axe-core</ExternalLink>
+                            href="https://www.npmjs.com/package/axe-core"
+                        >
+                            axe-core
+                        </ExternalLink>
                     </div>
                 </div>
             </div>
