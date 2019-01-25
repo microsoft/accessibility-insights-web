@@ -42,7 +42,7 @@ exports[`ReportHeaderTest renders with failures, without inapplicable 1`] = `
       <a
         href="#passed"
       >
-        1 passed checks 
+        1 passed checks
       </a>
     </div>
     <div>
@@ -97,7 +97,7 @@ exports[`ReportHeaderTest renders without failures, with inapplicable 1`] = `
       <a
         href="#passed"
       >
-        0 passed checks 
+        0 passed checks
       </a>
     </div>
     <div>
