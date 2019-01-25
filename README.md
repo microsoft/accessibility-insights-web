@@ -103,7 +103,7 @@ You can start an interactive watch session that automatically runs tests affecte
 
 
 `npm run test:e2e` runs all end-to-end tests - you'll need to run `npm run build` first if you've changed non-test code.
-`npm run test:e2e -- -u` runs all end-to-end tests and update snapshot files
+`npm run test:e2e -- -u` runs all end-to-end tests and updates snapshot files.
 
 To run a single or small number of test files, run `npm test -- {FILE_NAME_REGEX}`
 
