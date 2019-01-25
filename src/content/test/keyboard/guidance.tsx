@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { React, create, GuidanceTitle } from '../../common';
+import { create, GuidanceTitle, React } from '../../common';
 
 export const guidance = create(({ Markup, Link }) => (
-    <>
+    <React.Fragment>
         <GuidanceTitle name={'Keyboard'} />
 
         <h2>Why it matters</h2>
@@ -94,7 +94,7 @@ export const guidance = create(({ Markup, Link }) => (
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H91">Using HTML form controls and links</Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G90">
-                Providing keyboard-triggered event handlers{' '}
+                Providing keyboard-triggered event handlers
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/client-side-script/SCR20">
                 Using both keyboard and other device-specific functions
@@ -234,5 +234,5 @@ export const guidance = create(({ Markup, Link }) => (
                 Understanding Success Criterion 2.1.1: Keyboard
             </Markup.HyperLink>
         </Markup.Links>
-    </>
+    </React.Fragment>
 ));

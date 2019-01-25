@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { React, create, GuidanceTitle } from '../../common';
+import { create, GuidanceTitle, React } from '../../common';
 
 export const guidance = create(({ Markup, Link }) => (
-    <>
+    <React.Fragment>
         <GuidanceTitle name={'Multimedia'} />
         <h2>Why it matters</h2>
         <p>
@@ -134,14 +134,14 @@ export const guidance = create(({ Markup, Link }) => (
                 Providing a second, user-selectable, audio track that includes audio descriptions
             </Markup.HyperLink>
             <Markup.HyperLink href="http://www.w3.org/TR/2016/NOTE-WCAG20-TECHS-20161007/G173">
-                Providing a version of a movie with audio descriptions{' '}
+                Providing a version of a movie with audio descriptions
             </Markup.HyperLink>
             <Markup.HyperLink href="http://www.w3.org/TR/2016/NOTE-WCAG20-TECHS-20161007/G8">
-                Providing a movie with extended audio descriptions{' '}
+                Providing a movie with extended audio descriptions
             </Markup.HyperLink>
             <Markup.HyperLink href="http://www.w3.org/TR/2016/NOTE-WCAG20-TECHS-20161007/G203">
                 Using a static text alternative to describe a “talking head” video{' '}
             </Markup.HyperLink>
         </Markup.Links>
-    </>
+    </React.Fragment>
 ));

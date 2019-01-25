@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { React, create } from '../../common';
+import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup, Link }) => (
-    <>
+    <React.Fragment>
         <h1>Audio description</h1>
         <p>Pre-recorded video with audio must have an audio description.</p>
 
@@ -55,10 +55,10 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 Providing a second, user-selectable, audio track that includes audio descriptions
             </Markup.HyperLink>
             <Markup.HyperLink href="http://www.w3.org/TR/2016/NOTE-WCAG20-TECHS-20161007/G173">
-                Providing a version of a movie with audio descriptions{' '}
+                Providing a version of a movie with audio descriptions
             </Markup.HyperLink>
             <Markup.HyperLink href="http://www.w3.org/TR/2016/NOTE-WCAG20-TECHS-20161007/G8">
-                Providing a movie with extended audio descriptions{' '}
+                Providing a movie with extended audio descriptions
             </Markup.HyperLink>
             <Markup.HyperLink href="http://www.w3.org/TR/2016/NOTE-WCAG20-TECHS-20161007/G203">
                 Using a static text alternative to describe a “talking head” video{' '}
@@ -78,5 +78,5 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             </Markup.HyperLink>
             <Markup.HyperLink href="http://www.acb.org/adp/samples.html">Samples of Audio Description</Markup.HyperLink>
         </Markup.Links>
-    </>
+    </React.Fragment>
 ));

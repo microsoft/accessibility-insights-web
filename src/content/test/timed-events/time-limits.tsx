@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { React, create } from '../../common';
+import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup, Link }) => (
-    <>
+    <React.Fragment>
         <h1>Time limits</h1>
         <p>If a time limit is set by the content, the user must be able to turn off, adjust, or extend the time limit.</p>
 
@@ -101,14 +101,14 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <h3>Common failures</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F40">
-                Failure due to using meta redirect with a time limit{' '}
+                Failure due to using meta redirect with a time limit
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F41">
-                Failure due to using meta refresh with a time limit{' '}
+                Failure due to using meta refresh with a time limit
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F58">
                 Failure due to using server-side techniques to automatically redirect pages after a time limit
             </Markup.HyperLink>
         </Markup.Links>
-    </>
+    </React.Fragment>
 ));

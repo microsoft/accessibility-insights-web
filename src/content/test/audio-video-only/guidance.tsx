@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { React, create, GuidanceTitle } from '../../common';
+import { create, GuidanceTitle, React } from '../../common';
 
 export const guidance = create(({ Markup, Link }) => (
-    <>
+    <React.Fragment>
         <GuidanceTitle name={'Audio-only / video-only'} />
 
         <h2>Why alternatives matter</h2>
@@ -46,24 +46,24 @@ export const guidance = create(({ Markup, Link }) => (
         <h3>Provide an alternative for audio-only content </h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Understanding/audio-only-and-video-only-prerecorded.html">
-                Understanding Success Criterion 1.2.1: Audio-only and Video-only (Prerecorded){' '}
+                Understanding Success Criterion 1.2.1: Audio-only and Video-only (Prerecorded)
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G158">
-                Providing an alternative for time-based media for audio-only content{' '}
+                Providing an alternative for time-based media for audio-only content
             </Markup.HyperLink>
         </Markup.Links>
 
         <h3>Provide an alternative for video-only content </h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Understanding/audio-only-and-video-only-prerecorded.html">
-                Understanding Success Criterion 1.2.1: Audio-only and Video-only (Prerecorded){' '}
+                Understanding Success Criterion 1.2.1: Audio-only and Video-only (Prerecorded)
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G159">
-                Providing an alternative for time-based media for video-only content{' '}
+                Providing an alternative for time-based media for video-only content
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G166">
                 Providing audio that describes the important video content and describing it as such
             </Markup.HyperLink>
         </Markup.Links>
-    </>
+    </React.Fragment>
 ));

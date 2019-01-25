@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { React, create } from '../../common';
+import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup, Link }) => (
-    <>
+    <React.Fragment>
         <h1>Keyboard navigation</h1>
 
         <p>Users must be able to navigate to all interactive interface components using a keyboard.</p>
@@ -94,7 +94,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H91">Using HTML form controls and links</Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G90">
-                Providing keyboard-triggered event handlers{' '}
+                Providing keyboard-triggered event handlers
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/client-side-script/SCR20">
                 Using both keyboard and other device-specific functions
@@ -127,5 +127,5 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 WAI-ARIA Authoring Practices 1.1: Developing a Keyboard Interface
             </Markup.HyperLink>
         </Markup.Links>
-    </>
+    </React.Fragment>
 ));

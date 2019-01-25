@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { React, create, GuidanceTitle } from '../../common';
+import { create, GuidanceTitle, React } from '../../common';
 
 export const guidance = create(({ Markup, Link }) => (
-    <>
+    <React.Fragment>
         <GuidanceTitle name={'Page Navigation'} />
         <p>
             Providing multiple methods for locating and navigating to pages in a website ensures everyone has a method that works for them.
@@ -43,7 +43,7 @@ export const guidance = create(({ Markup, Link }) => (
         <h4>Sufficient techniques</h4>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G88">
-                Providing descriptive titles for Web pages{' '}
+                Providing descriptive titles for Web pages
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H25">
                 Providing a title using the title element
@@ -97,5 +97,5 @@ export const guidance = create(({ Markup, Link }) => (
                 Linking to all of the pages on the site from the home page
             </Markup.HyperLink>
         </Markup.Links>
-    </>
+    </React.Fragment>
 ));
