@@ -200,7 +200,6 @@ if (isNaN(tabId) === false) {
                     axeVersion,
                     new NavigatorUtils(window.navigator).getBrowserSpec(),
                     assessmentDefaultMessageGenerator,
-                    outcomeTypeSemanticsFromTestStatus,
                 );
                 const reportGenerator = new ReportGenerator(reportNameGenerator, reportHtmlGenerator, assessmentReportHtmlGenerator);
 

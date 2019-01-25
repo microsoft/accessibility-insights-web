@@ -15,7 +15,7 @@ import { AssessmentDefaultMessageGenerator } from '../../assessments/assessment-
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { OutcomeTypeSemantic } from './components/outcome-type';
 
-
+export type AssessmentReportHtmlGeneratorDeps = AssessmentReportDeps;
 
 export class AssessmentReportHtmlGenerator {
     constructor(
@@ -26,11 +26,11 @@ export class AssessmentReportHtmlGenerator {
         private axeVersion: string,
         private chromeVersion: string,
         private assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator,
-        private outcomeTypeSemanticsFromTestStatus: (testStatus: ManualTestStatus) => OutcomeTypeSemantic,
     ) {
     }
 
     public generateHtml(
+        deps: AssessmentReportHtmlGeneratorDeps,
         assessmentStoreData: IAssessmentStoreData,
         assessmentsProvider: IAssessmentsProvider,
         featureFlagStoreData: FeatureFlagStoreData,
@@ -49,10 +49,6 @@ export class AssessmentReportHtmlGenerator {
             this.dateGetter(),
             this.assessmentDefaultMessageGenerator,
         );
-
-        const deps: AssessmentReportDeps = {
-            outcomeTypeSemanticsFromTestStatus: this.outcomeTypeSemanticsFromTestStatus,
-        };
 
         const model = modelBuilder.getReportModelData();
 

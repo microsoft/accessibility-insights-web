@@ -7,14 +7,17 @@ import { AssessmentDefaultMessageGenerator } from '../../../../../assessments/as
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../../../../../common/types/store-data/iassessment-result-data';
 import { ITabStoreData } from '../../../../../common/types/store-data/itab-store-data';
-import { AssessmentReportHtmlGenerator } from '../../../../../DetailsView/reports/assessment-report-html-generator';
+import {
+    AssessmentReportHtmlGenerator,
+    AssessmentReportHtmlGeneratorDeps,
+} from '../../../../../DetailsView/reports/assessment-report-html-generator';
 import { IReportModel } from '../../../../../DetailsView/reports/assessment-report-model';
 import { AssessmentReportModelBuilder } from '../../../../../DetailsView/reports/assessment-report-model-builder';
 import {
     AssessmentReportModelBuilderFactory,
 } from '../../../../../DetailsView/reports/assessment-report-model-builder-factory';
 import * as reportStyles from '../../../../../DetailsView/reports/assessment-report.styles';
-import { AssessmentReport, AssessmentReportDeps } from '../../../../../DetailsView/reports/components/assessment-report';
+import { AssessmentReport } from '../../../../../DetailsView/reports/components/assessment-report';
 import { ReactStaticRenderer } from '../../../../../DetailsView/reports/react-static-renderer';
 import { CreateTestAssessmentProviderWithFeatureFlag } from '../../../common/test-assessment-provider';
 
@@ -30,7 +33,7 @@ describe('AssessmentReportHtmlGenerator', () => {
         const tabStoreData: ITabStoreData = { stub: 'tabStoreData' } as any;
         const description = 'generateHtml-description';
 
-        const deps: AssessmentReportDeps = {
+        const deps: AssessmentReportHtmlGeneratorDeps = {
             outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
         };
 
@@ -41,7 +44,7 @@ describe('AssessmentReportHtmlGenerator', () => {
             <React.Fragment>
                 <head>
                     <title>Assessment report</title>
-                    <style dangerouslySetInnerHTML={{__html: reportStyles.styleSheet}}></style>
+                    <style dangerouslySetInnerHTML={{ __html: reportStyles.styleSheet }}></style>
                 </head>
                 <body>
                     <AssessmentReport
@@ -85,10 +88,10 @@ describe('AssessmentReportHtmlGenerator', () => {
             'axeVersion',
             'chromeVersion',
             assessmentDefaultMessageGenerator,
-            deps.outcomeTypeSemanticsFromTestStatus,
         );
 
         const actualHtml = testSubject.generateHtml(
+            deps,
             assessmentStoreData,
             assessmentsProvider,
             featureFlagStoreData,

@@ -7,7 +7,7 @@ import { FeatureFlagStoreData } from '../../../../../common/types/store-data/fea
 import { IAssessmentStoreData } from '../../../../../common/types/store-data/iassessment-result-data';
 import { ITabStoreData } from '../../../../../common/types/store-data/itab-store-data';
 import { AssessmentReportHtmlGenerator } from '../../../../../DetailsView/reports/assessment-report-html-generator';
-import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
+import { ReportGenerator, ReportGeneratorDeps } from '../../../../../DetailsView/reports/report-generator';
 import { ReportHtmlGenerator } from '../../../../../DetailsView/reports/report-html-generator';
 import { ReportNameGenerator } from '../../../../../DetailsView/reports/report-name-generator';
 import { ScanResults } from '../../../../../scanner/iruleresults';
@@ -22,6 +22,10 @@ describe('ReportGeneratorTest', () => {
     let dataBuilderMock: IMock<ReportHtmlGenerator>;
     let nameBuilderMock: IMock<ReportNameGenerator>;
     let assessmentReportHtmlGeneratorMock: IMock<AssessmentReportHtmlGenerator>;
+
+    const deps: ReportGeneratorDeps = {
+        outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
+    };
 
     beforeEach(() => {
         nameBuilderMock = Mock.ofType(ReportNameGenerator, MockBehavior.Strict);
@@ -61,15 +65,16 @@ describe('ReportGeneratorTest', () => {
         const assessmentsProvider: IAssessmentsProvider = { stub: 'assessmentsProvider' } as any;
         const featureFlagStoreData: FeatureFlagStoreData = { stub: 'featureFlagStoreData' } as any;
         const tabStoreData: ITabStoreData = { stub: 'tabStoreData' } as any;
-        const description = 'generateAssessmentHtml-description';
+        const assessmentDescription = 'generateAssessmentHtml-description';
 
         assessmentReportHtmlGeneratorMock
             .setup(builder => builder.generateHtml(
+                deps,
                 assessmentStoreData,
                 assessmentsProvider,
                 featureFlagStoreData,
                 tabStoreData,
-                description,
+                assessmentDescription,
             ))
             .returns(() => 'generated-assessment-html')
             .verifiable(Times.once());
@@ -80,11 +85,12 @@ describe('ReportGeneratorTest', () => {
             assessmentReportHtmlGeneratorMock.object,
         );
         const actual = testObject.generateAssessmentHtml(
+            deps,
             assessmentStoreData,
             assessmentsProvider,
             featureFlagStoreData,
             tabStoreData,
-            description,
+            assessmentDescription,
         );
 
         const expected = 'generated-assessment-html';
