@@ -8,28 +8,33 @@ import { InlineImage, InlineImageType } from './inline-image';
 
 export interface IReportHeaderProps {
     scanResult: ScanResults;
-
 }
 
 export class ReportHeader extends React.Component<IReportHeaderProps> {
     public render(): JSX.Element {
         return (
             <div className="report-header" role="banner">
-                <h1><InlineImage type={InlineImageType.InsightsLogo48} alt="" />{title} automated checks result</h1>
+                <h1>
+                    <InlineImage type={InlineImageType.InsightsLogo48} alt="" />
+                    {title} automated checks result
+                </h1>
                 <h2>Summary</h2>
                 <nav>
                     <div>
                         <InlineImage type={InlineImageType.FailIcon} alt="" />
-                        <a href="#failed">{this.props.scanResult.violations.length} failed
-                        checks {this.renderFailureCountIfNonzero(this.props.scanResult.violations)}</a>
+                        <a href="#failed">
+                            {this.props.scanResult.violations.length}
+                            {' failed checks '}
+                            {this.renderFailureCountIfNonzero(this.props.scanResult.violations)}
+                        </a>
                     </div>
                     <div>
                         <InlineImage type={InlineImageType.PassIcon} alt="" />
-                        <a href="#passed">{this.props.scanResult.passes.length} passed checks</a>
+                        <a href="#passed">{`${this.props.scanResult.passes.length} passed checks`}</a>
                     </div>
                     <div>
                         <InlineImage type={InlineImageType.NotApplicableIcon} alt="" />
-                        <a href="#notapplicable">{this.props.scanResult.inapplicable.length} not applicable checks</a>
+                        <a href="#notapplicable">{`${this.props.scanResult.inapplicable.length} not applicable checks`}</a>
                     </div>
                 </nav>
             </div>

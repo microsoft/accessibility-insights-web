@@ -83,10 +83,8 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
                                 <NewTabLink href={result.helpUrl}>
                                     {result.ruleId}
                                 </NewTabLink>
-                                :&nbsp;
-                                {result.help}
-                                &nbsp;
-                                {' '}
+                                {`: ${result.help}`}
+                                &nbsp;&nbsp;
                                 <GuidanceLinks
                                     links={result.guidanceLinks}
                                 />

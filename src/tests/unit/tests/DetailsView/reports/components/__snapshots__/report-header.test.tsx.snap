@@ -42,8 +42,7 @@ exports[`ReportHeaderTest renders with failures, without inapplicable 1`] = `
       <a
         href="#passed"
       >
-        1
-         passed checks
+        1 passed checks
       </a>
     </div>
     <div>
@@ -54,8 +53,7 @@ exports[`ReportHeaderTest renders with failures, without inapplicable 1`] = `
       <a
         href="#notapplicable"
       >
-        0
-         not applicable checks
+        0 not applicable checks
       </a>
     </div>
   </nav>
@@ -99,8 +97,7 @@ exports[`ReportHeaderTest renders without failures, with inapplicable 1`] = `
       <a
         href="#passed"
       >
-        0
-         passed checks
+        0 passed checks
       </a>
     </div>
     <div>
@@ -111,8 +108,7 @@ exports[`ReportHeaderTest renders without failures, with inapplicable 1`] = `
       <a
         href="#notapplicable"
       >
-        1
-         not applicable checks
+        1 not applicable checks
       </a>
     </div>
   </nav>

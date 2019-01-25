@@ -65,7 +65,7 @@ exports[`Launch Pad content should match snapshot 1`] = `
       <div
         class="ms-fontColor-neutralSecondary ms-fontWeight-semilight ms-fontSize-xs"
       >
-        formerly Keros for Web  |  Watch 
+        formerly Keros for Web | Watch 
         <a
           aria-label="demo video"
           class="ms-Link insights-link root-000"
@@ -237,7 +237,7 @@ exports[`Launch Pad content should match snapshot 1`] = `
         role="complementary"
       >
         <div>
-          Version 1.0.4  |  Powered by 
+          Version 1.0.4 | Powered by 
           <a
             class="ms-Link insights-link root-000"
             href="https://www.npmjs.com/package/axe-core"

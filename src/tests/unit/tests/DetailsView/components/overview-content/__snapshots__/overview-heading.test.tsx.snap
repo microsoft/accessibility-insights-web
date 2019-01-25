@@ -13,7 +13,7 @@ exports[`OverviewHeading match snapshot 1`] = `
       Accessibility Insights for Web
        "assists" the manual test process by generating a list of instances to evaluate and highlighting them on the screen. 
       Accessibility Insights for Web
-       also allows you to manually record failure instances.
+      also allows you to manually record failure instances.
     </div>
   </div>
 </React.Fragment>

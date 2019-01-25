@@ -21,7 +21,6 @@ export interface IReportBodyProps {
 }
 
 export class ReportBody extends React.Component<IReportBodyProps> {
-
     public render(): JSX.Element {
         return (
             <body>
@@ -73,18 +72,20 @@ export class ReportBody extends React.Component<IReportBodyProps> {
         );
     }
 
-    /* tslint:disable:max-line-length */
-    /**
-     * disableing line-length rule here to presever html
-     */
     private renderFooter(): JSX.Element {
         return (
             <div className="report-footer" role="contentinfo">
-                This automated checks result was generated using <b id="tool-name">{toolName}</b>, a tool that helps debug and find accessibility issues earlier.
-                Get more information & download this tool at <NewTabLink href="http://aka.ms/AccessibilityInsights" aria-labelledby="tool-name" title={`Get more information and download ${toolName}`}>http://aka.ms/AccessibilityInsights</NewTabLink>.
+                This automated checks result was generated using <b id="tool-name">{toolName}</b>, a tool that helps debug and find
+                accessibility issues earlier. Get more information & download this tool at{' '}
+                <NewTabLink
+                    href="http://aka.ms/AccessibilityInsights"
+                    aria-labelledby="tool-name"
+                    title={`Get more information and download ${toolName}`}
+                >
+                    http://aka.ms/AccessibilityInsights
+                </NewTabLink>
+                .
             </div>
         );
     }
-
-    /* tslint:enable */
 }

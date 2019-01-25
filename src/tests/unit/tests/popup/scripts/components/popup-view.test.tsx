@@ -29,7 +29,7 @@ import { ShortcutCommandsTestData } from '../../../../common/sample-test-data';
 import { IsSameObject } from '../../../../common/typemoq-helper';
 import { VisualizationStoreDataBuilder } from '../../../../common/visualization-store-data-builder';
 
-describe('PopupViewController', () => {
+describe('PopupView', () => {
     const browserAdapterMock = Mock.ofType(ChromeAdapter);
     const commandStoreState: ICommandStoreData = {
         commands: ShortcutCommandsTestData,

@@ -123,7 +123,8 @@ exports[`ReportBodyTest renders 1`] = `
     >
       Accessibility Insights for Web
     </b>
-    , a tool that helps debug and find accessibility issues earlier. Get more information & download this tool at 
+    , a tool that helps debug and find accessibility issues earlier. Get more information & download this tool at
+     
     <NewTabLink
       aria-labelledby="tool-name"
       href="http://aka.ms/AccessibilityInsights"
