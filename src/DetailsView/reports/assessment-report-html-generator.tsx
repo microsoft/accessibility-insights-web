@@ -26,8 +26,7 @@ export class AssessmentReportHtmlGenerator {
         private axeVersion: string,
         private chromeVersion: string,
         private assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator,
-    ) {
-    }
+    ) {}
 
     public generateHtml(
         deps: AssessmentReportHtmlGeneratorDeps,
@@ -37,10 +36,7 @@ export class AssessmentReportHtmlGenerator {
         tabStoreData: ITabStoreData,
         description: string,
     ): string {
-        const filteredProvider = assessmentsProviderWithFeaturesEnabled(
-            assessmentsProvider,
-            featureFlagStoreData,
-        );
+        const filteredProvider = assessmentsProviderWithFeaturesEnabled(assessmentsProvider, featureFlagStoreData);
 
         const modelBuilder = this.assessmentReportModelBuilderFactory.create(
             filteredProvider,
@@ -56,7 +52,7 @@ export class AssessmentReportHtmlGenerator {
             <React.Fragment>
                 <head>
                     <title>Assessment report</title>
-                    <style dangerouslySetInnerHTML={{__html: reportStyles.styleSheet}}></style>
+                    <style dangerouslySetInnerHTML={{ __html: reportStyles.styleSheet }} />
                 </head>
                 <body>
                     <AssessmentReport

@@ -17,7 +17,9 @@ export interface IPreviewFeaturesContainerProps {
 
 export class PreviewFeaturesContainer extends React.Component<IPreviewFeaturesContainerProps> {
     public render(): JSX.Element {
-        const displayableFeatureFlags: IDisplayableFeatureFlag[] = this.props.previewFeatureFlagsHandler.getDisplayableFeatureFlags(this.props.featureFlagData);
+        const displayableFeatureFlags: IDisplayableFeatureFlag[] = this.props.previewFeatureFlagsHandler.getDisplayableFeatureFlags(
+            this.props.featureFlagData,
+        );
 
         return (
             <div>

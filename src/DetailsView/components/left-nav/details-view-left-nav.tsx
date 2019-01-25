@@ -12,8 +12,8 @@ import { DetailsRightPanelConfiguration } from '../details-view-right-panel';
 import { DetailsViewSwitcherNavConfiguration, LeftNavDeps } from '../details-view-switcher-nav';
 
 export type DetailsViewLeftNavDeps = {
-    assessmentsProvider: IAssessmentsProvider,
-    assessmentsProviderWithFeaturesEnabled: (assessmentProvider: IAssessmentsProvider, flags: FeatureFlagStoreData) => IAssessmentsProvider,
+    assessmentsProvider: IAssessmentsProvider;
+    assessmentsProviderWithFeaturesEnabled: (assessmentProvider: IAssessmentsProvider, flags: FeatureFlagStoreData) => IAssessmentsProvider;
 } & LeftNavDeps;
 
 export type DetailsViewLeftNavProps = {
@@ -26,25 +26,12 @@ export type DetailsViewLeftNavProps = {
 };
 
 export const DetailsViewLeftNav = NamedSFC<DetailsViewLeftNavProps>('DetailsViewLeftNav', props => {
-    const {
-        deps,
-        selectedTest,
-        switcherNavConfiguration,
-        rightPanelConfiguration,
-        featureFlagStoreData,
-        assessmentStoreData,
-    } = props;
+    const { deps, selectedTest, switcherNavConfiguration, rightPanelConfiguration, featureFlagStoreData, assessmentStoreData } = props;
 
-    const {
-        assessmentsProvider,
-        assessmentsProviderWithFeaturesEnabled,
-    } = deps;
+    const { assessmentsProvider, assessmentsProviderWithFeaturesEnabled } = deps;
 
     const selectedKey: string = rightPanelConfiguration.GetLeftNavSelectedKey({ type: selectedTest });
-    const filteredProvider = assessmentsProviderWithFeaturesEnabled(
-        assessmentsProvider,
-        featureFlagStoreData,
-    );
+    const filteredProvider = assessmentsProviderWithFeaturesEnabled(assessmentsProvider, featureFlagStoreData);
 
     const leftNav: JSX.Element = (
         <div className="left-nav main-nav">

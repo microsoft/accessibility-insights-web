@@ -13,7 +13,6 @@ export interface GenericToggleProps {
 }
 
 export class GenericToggle extends React.Component<GenericToggleProps> {
-
     public render(): JSX.Element {
         return (
             <div className={'generic-toggle-component'}>
@@ -28,9 +27,7 @@ export class GenericToggle extends React.Component<GenericToggleProps> {
                         ariaLabel={this.props.name}
                     />
                 </div>
-                <div className={'toggle-description'}>
-                    {this.props.description}
-                </div>
+                <div className={'toggle-description'}>{this.props.description}</div>
             </div>
         );
     }

@@ -11,11 +11,11 @@ const key = 'parsing';
 const title = 'Parsing';
 const { guidance } = content.parsing;
 
-const gettingStarted: JSX.Element = <React.Fragment>
-        <p>
-            The requirements in this test ensure that parsing errors don't disrupt assistive technology.
-        </p>
-    </React.Fragment>;
+const gettingStarted: JSX.Element = (
+    <React.Fragment>
+        <p>The requirements in this test ensure that parsing errors don't disrupt assistive technology.</p>
+    </React.Fragment>
+);
 
 export const ParsingAssessment = AssessmentBuilder.Manual({
     type: VisualizationType.ParsingAssessment,
@@ -23,8 +23,6 @@ export const ParsingAssessment = AssessmentBuilder.Manual({
     title,
     gettingStarted,
     guidance,
-    steps: [
-        Parsing,
-    ],
+    steps: [Parsing],
     isEnabled: true,
 });

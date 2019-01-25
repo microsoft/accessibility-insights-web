@@ -16,15 +16,18 @@ const outcomeText = {
 
 export type OutcomeSummaryBarProps = OutcomeStats & { units?: OutcomeUnits };
 
-export const OutcomeSummaryBar = NamedSFC<OutcomeSummaryBarProps>('OutcomeSummaryBar', props =>
+export const OutcomeSummaryBar = NamedSFC<OutcomeSummaryBarProps>('OutcomeSummaryBar', props => (
     <div className="outcome-summary-bar">
         {allOutcomeTypes.map(outcomeType => {
             const { units } = props;
             const count = props[outcomeType];
             const suffix = units === 'percentage' ? '%' : '';
             const text = outcomeText[outcomeType];
-            return <span key={outcomeType} className={outcomeType} style={{ flexGrow: count }}>
-                <OutcomeIcon outcomeType={outcomeType} /> {count + suffix} {text}
-            </span>;
+            return (
+                <span key={outcomeType} className={outcomeType} style={{ flexGrow: count }}>
+                    <OutcomeIcon outcomeType={outcomeType} /> {count + suffix} {text}
+                </span>
+            );
         })}
-</div>);
+    </div>
+));

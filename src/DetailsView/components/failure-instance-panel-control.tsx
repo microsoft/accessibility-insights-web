@@ -67,13 +67,8 @@ export class FailureInstancePanelControl extends React.Component<IFailureInstanc
             );
         } else {
             return (
-                <Link className="edit-button"
-                    onClick={this.openFailureInstancePanel}
-                >
-                    <Icon
-                        iconName="edit"
-                        ariaLabel={'edit instance'}
-                    />
+                <Link className="edit-button" onClick={this.openFailureInstancePanel}>
+                    <Icon iconName="edit" ariaLabel={'edit instance'} />
                 </Link>
             );
         }
@@ -86,8 +81,10 @@ export class FailureInstancePanelControl extends React.Component<IFailureInstanc
             isOpen: this.state.isPanelOpen,
             className: 'failure-instance-panel',
             onDismiss: this.closeFailureInstancePanel,
-            title: this.props.actionType === CapturedInstanceActionType.CREATE ?
-                FailureInstancePanelControl.addFailureInstanceLabel : 'Edit failure instance',
+            title:
+                this.props.actionType === CapturedInstanceActionType.CREATE
+                    ? FailureInstancePanelControl.addFailureInstanceLabel
+                    : 'Edit failure instance',
             hasCloseButton: false,
             closeButtonAriaLabel: null,
         };
@@ -107,9 +104,9 @@ export class FailureInstancePanelControl extends React.Component<IFailureInstanc
                     primaryButtonDisabled={this.state.failureDescription === ''}
                     primaryButtonText={this.props.actionType === CapturedInstanceActionType.CREATE ? 'Add' : 'Save'}
                     primaryButtonOnClick={
-                        this.props.actionType === CapturedInstanceActionType.CREATE ?
-                            this.onAddFailureInstance :
-                            this.onSaveEditedFailureInstance
+                        this.props.actionType === CapturedInstanceActionType.CREATE
+                            ? this.onAddFailureInstance
+                            : this.onSaveEditedFailureInstance
                     }
                     cancelButtonOnClick={this.closeFailureInstancePanel}
                 />

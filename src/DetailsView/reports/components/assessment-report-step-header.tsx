@@ -42,15 +42,11 @@ export const AssessmentReportStepHeader = NamedSFC<AssessmentReportStepHeaderPro
     return (
         <div className="step-header">
             <h4 className="step-header-name">
-                {header.displayName}:
-                <span className="screen-reader-only">{outcomeText}</span>
+                {header.displayName}:<span className="screen-reader-only">{outcomeText}</span>
             </h4>
             <span className="step-header-description">{header.description}</span>
             -
-            <GuidanceLinks
-                classNameForDiv={`test-guidance-links-group`}
-                links={header.guidanceLinks}
-            />
+            <GuidanceLinks classNameForDiv={`test-guidance-links-group`} links={header.guidanceLinks} />
             <OutcomeChip count={count} outcomeType={outcomeType} />
             {message && <span className="step-header-message">{message}</span>}
         </div>

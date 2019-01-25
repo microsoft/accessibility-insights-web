@@ -95,15 +95,17 @@ export class StartOverDropdown extends React.Component<IStartOverProps, IStartOv
         let onPrimaryButtonClick;
 
         if (this.state.dialogState === 'assessment') {
-            messageText = 'Starting over will clear all existing results from the Assessment. ' +
+            messageText =
+                'Starting over will clear all existing results from the Assessment. ' +
                 'This will clear results and progress of all tests and requirements. ' +
                 'Are you sure you want to start over?';
             onPrimaryButtonClick = this.onStartOverAllTests;
         }
 
         if (this.state.dialogState === 'test') {
-            messageText =
-                `Starting over will clear all existing results from the ${this.props.testName} test. Are you sure you want to start over?`;
+            messageText = `Starting over will clear all existing results from the ${
+                this.props.testName
+            } test. Are you sure you want to start over?`;
             onPrimaryButtonClick = this.onStartTestOver;
         }
 
@@ -114,7 +116,8 @@ export class StartOverDropdown extends React.Component<IStartOverProps, IStartOv
                 onCancelButtonClick={this.onDismissStartOverDialog}
                 onPrimaryButtonClick={onPrimaryButtonClick}
                 primaryButtonText="Start over"
-            />);
+            />
+        );
     }
 
     @autobind
@@ -134,17 +137,9 @@ export class StartOverDropdown extends React.Component<IStartOverProps, IStartOv
 
     @autobind
     private onStartTestOver(event: React.MouseEvent<any>) {
-        const {
-            actionMessageCreator,
-            test,
-            requirementKey,
-        } = this.props;
+        const { actionMessageCreator, test, requirementKey } = this.props;
 
-        actionMessageCreator.startOverAssessment(
-            event,
-            test,
-            requirementKey,
-        );
+        actionMessageCreator.startOverAssessment(event, test, requirementKey);
 
         this.setState({ dialogState: 'none' });
     }

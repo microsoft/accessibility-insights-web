@@ -50,7 +50,7 @@ export class AssessmentDefaultMessageGenerator {
         }
 
         return this.checkRelevantTestSteps(instancesMap, selectedTestStep);
-    }
+    };
 
     public getNoMatchingInstanceMessage: IMessageGenerator = (
         instancesMap: InstanceIdToInstanceDataMap,
@@ -61,7 +61,7 @@ export class AssessmentDefaultMessageGenerator {
         }
 
         return this.checkRelevantTestSteps(instancesMap, selectedTestStep);
-    }
+    };
 
     private getNoMatchingInstancesResult(): DefaultMessageInterface {
         return {

@@ -33,11 +33,11 @@ export class AssessmentSummaryDetails extends React.Component<IAssessmentSummary
                         {testSummary.displayName}
                     </div>
                     <div role="cell" key={`${colIndex}-${index}-status`} className="test-summary-status">
-                        {
-                            testSummary.pass + testSummary.incomplete + testSummary.fail > 7
-                                ? <OutcomeChipSet {...testSummary} />
-                                : <OutcomeIconSet {...testSummary} />
-                        }
+                        {testSummary.pass + testSummary.incomplete + testSummary.fail > 7 ? (
+                            <OutcomeChipSet {...testSummary} />
+                        ) : (
+                            <OutcomeIconSet {...testSummary} />
+                        )}
                     </div>
                 </div>
             );

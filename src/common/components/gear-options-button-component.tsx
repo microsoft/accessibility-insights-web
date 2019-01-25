@@ -14,25 +14,15 @@ export interface IGearOptionsButtonComponentProps {
 }
 
 export class GearOptionsButtonComponent extends React.Component<IGearOptionsButtonComponentProps> {
-
     public render(): JSX.Element {
-        return (
-            <div className="gear-options-button-component">
-                {this.renderButton()}
-            </div>
-        );
+        return <div className="gear-options-button-component">{this.renderButton()}</div>;
     }
 
     private renderButton(): JSX.Element {
-        return (
-            <DetailsViewDropDown
-                menuItems={this.getMenuItems()}
-            />
-        );
+        return <DetailsViewDropDown menuItems={this.getMenuItems()} />;
     }
 
     private getMenuItems(): IContextualMenuItem[] {
-
         const menuToReturn = [];
         menuToReturn.push(this.getSettingsMenuItem());
 

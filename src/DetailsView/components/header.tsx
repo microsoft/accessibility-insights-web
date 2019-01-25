@@ -24,7 +24,7 @@ export class Header extends React.Component<IHeaderProps> {
     public render(): JSX.Element {
         return (
             <header className="header-bar">
-                <img className="header-icon" src="../../icons/brand/white/brand-white-48px.png" alt=""></img>
+                <img className="header-icon" src="../../icons/brand/white/brand-white-48px.png" alt="" />
                 <div className="ms-font-m header-text">{title}</div>
                 {this.renderSwitcher()}
                 {this.renderButton()}
@@ -37,20 +37,13 @@ export class Header extends React.Component<IHeaderProps> {
             return null;
         }
 
-        return (
-            <Switcher
-                deps={this.props.deps}
-                pivotKey={this.props.selectedPivot}
-            />
-        );
+        return <Switcher deps={this.props.deps} pivotKey={this.props.selectedPivot} />;
     }
 
     private shouldRenderSwitcher(): boolean {
         const { featureFlagStoreData, tabClosed } = this.props;
 
-        return featureFlagStoreData != null &&
-            featureFlagStoreData[FeatureFlags.newAssessmentExperience] === true &&
-            tabClosed === false;
+        return featureFlagStoreData != null && featureFlagStoreData[FeatureFlags.newAssessmentExperience] === true && tabClosed === false;
     }
 
     private renderButton(): JSX.Element {

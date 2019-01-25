@@ -32,13 +32,8 @@ export class AssessmentInstanceEditAndRemoveControl extends React.Component<IAss
                     originalText={this.props.description}
                     assessmentsProvider={this.props.assessmentsProvider}
                 />
-                <Link className="remove-button"
-                    onClick={this.onRemoveButtonClicked}
-                >
-                    <Icon
-                        iconName="delete"
-                        ariaLabel={'delete instance'}
-                    />
+                <Link className="remove-button" onClick={this.onRemoveButtonClicked}>
+                    <Icon iconName="delete" ariaLabel={'delete instance'} />
                 </Link>
             </div>
         );

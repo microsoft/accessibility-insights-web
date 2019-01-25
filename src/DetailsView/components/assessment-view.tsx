@@ -20,13 +20,16 @@ import { TestStepView, TestStepViewDeps } from './test-step-view';
 import { TestStepNavDeps, TestStepsNav } from './test-steps-nav';
 
 export type WithAssessmentTestResult = { assessmentTestResult: AssessmentTestResult };
-export const AssessmentViewMainContentExtensionPoint =
-    reactExtensionPoint<WithAssessmentTestResult>('AssessmentViewMainContentExtensionPoint');
+export const AssessmentViewMainContentExtensionPoint = reactExtensionPoint<WithAssessmentTestResult>(
+    'AssessmentViewMainContentExtensionPoint',
+);
 
-export type AssessmentViewDeps = ContentLinkDeps & TestStepViewDeps & TestStepNavDeps & {
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator,
-    assessmentsProvider: IAssessmentsProvider,
-};
+export type AssessmentViewDeps = ContentLinkDeps &
+    TestStepViewDeps &
+    TestStepNavDeps & {
+        detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+        assessmentsProvider: IAssessmentsProvider;
+    };
 
 export interface IAssessmentViewProps {
     deps: AssessmentViewDeps;
@@ -55,7 +58,6 @@ export class AssessmentView extends React.Component<IAssessmentViewProps> {
     }
 
     public render(): JSX.Element {
-
         const { assessmentTestResult } = this.props;
         const { extensions } = assessmentTestResult.definition;
         const extPointProps = { extensions, assessmentTestResult };
@@ -87,8 +89,7 @@ export class AssessmentView extends React.Component<IAssessmentViewProps> {
         }
 
         const { assessmentTestResult } = this.props;
-        detailsViewExtensionPoint.apply(assessmentTestResult.definition.extensions)
-            .onAssessmentViewUpdate(prevProps, this.props);
+        detailsViewExtensionPoint.apply(assessmentTestResult.definition.extensions).onAssessmentViewUpdate(prevProps, this.props);
     }
 
     private enableSelectedStepVisualHelper(sendTelemetry = true): void {
@@ -100,11 +101,7 @@ export class AssessmentView extends React.Component<IAssessmentViewProps> {
 
         const isStepNotScanned = !this.props.assessmentData.testStepStatus[step].isStepScanned;
         if (this.props.isEnabled === false || isStepNotScanned) {
-            this.props.deps.detailsViewActionMessageCreator.enableVisualHelper(
-                test,
-                step,
-                isStepNotScanned,
-                sendTelemetry);
+            this.props.deps.detailsViewActionMessageCreator.enableVisualHelper(test, step, isStepNotScanned, sendTelemetry);
         }
     }
 
@@ -125,11 +122,13 @@ export class AssessmentView extends React.Component<IAssessmentViewProps> {
     }
 
     private renderTargetChangeDialog(): JSX.Element {
-        return (<TargetChangeDialog
-            prevTab={this.props.prevTarget}
-            newTab={this.props.currentTarget}
-            actionMessageCreator={this.props.deps.detailsViewActionMessageCreator}
-        />);
+        return (
+            <TargetChangeDialog
+                prevTab={this.props.prevTarget}
+                newTab={this.props.currentTarget}
+                actionMessageCreator={this.props.deps.detailsViewActionMessageCreator}
+            />
+        );
     }
 
     private disableVisualHelpersForTest(test: VisualizationType): void {
@@ -140,9 +139,7 @@ export class AssessmentView extends React.Component<IAssessmentViewProps> {
         return (
             <div className="assessment-title">
                 <h1 className="assessment-header">
-                    {title}
-                    {' '}
-                    <ContentLink deps={this.deps} reference={content} iconName="info" />
+                    {title} <ContentLink deps={this.deps} reference={content} iconName="info" />
                 </h1>
             </div>
         );
@@ -168,7 +165,6 @@ export class AssessmentView extends React.Component<IAssessmentViewProps> {
     }
 
     private renderMainContent(assessmentTestResult: AssessmentTestResult): JSX.Element {
-
         const selectedRequirement = assessmentTestResult.getRequirementResult(this.props.assessmentNavState.selectedTestStep);
         const isStepScanned = selectedRequirement.data.isStepScanned;
 
@@ -200,6 +196,7 @@ export class AssessmentView extends React.Component<IAssessmentViewProps> {
                         assessmentDefaultMessageGenerator={this.props.assessmentDefaultMessageGenerator}
                     />
                 </div>
-            </div>);
+            </div>
+        );
     }
 }

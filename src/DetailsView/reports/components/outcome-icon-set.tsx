@@ -19,15 +19,16 @@ function getText(stats: OutcomeStats) {
 export const OutcomeIconSet = NamedSFC<OutcomeStats>('OutcomeIconSet', props => {
     const text = getText(props);
 
-    return <div className="outcome-icon-set" title={text}>
-        {allOutcomeTypes.map(outcomeType =>
-            times(props[outcomeType], index => (
-                <span className={'outcome-icon outcome-icon-' + outcomeType} key={`outcome-icon-index-${index}`}>
-                    <OutcomeIcon outcomeType={outcomeType} />
-                </span>
-            )),
-        )}
-        <span className="screen-reader-only">{text}</span>
-    </div>;
+    return (
+        <div className="outcome-icon-set" title={text}>
+            {allOutcomeTypes.map(outcomeType =>
+                times(props[outcomeType], index => (
+                    <span className={'outcome-icon outcome-icon-' + outcomeType} key={`outcome-icon-index-${index}`}>
+                        <OutcomeIcon outcomeType={outcomeType} />
+                    </span>
+                )),
+            )}
+            <span className="screen-reader-only">{text}</span>
+        </div>
+    );
 });
-

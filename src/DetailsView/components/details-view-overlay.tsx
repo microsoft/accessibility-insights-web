@@ -31,7 +31,6 @@ export interface IDetailsViewOverlayProps {
 
 export class DetailsViewOverlay extends React.Component<IDetailsViewOverlayProps> {
     public render() {
-
         return (
             <React.Fragment>
                 {this.getPreviewFeaturesPanel()}
@@ -49,7 +48,7 @@ export class DetailsViewOverlay extends React.Component<IDetailsViewOverlayProps
             userConfigStoreState: this.props.userConfigurationStoreData,
         };
 
-        return (<SettingsPanel {...settingsPanelProps} />);
+        return <SettingsPanel {...settingsPanelProps} />;
     }
 
     private getPreviewFeaturesPanel(): JSX.Element {
@@ -60,18 +59,21 @@ export class DetailsViewOverlay extends React.Component<IDetailsViewOverlayProps
             previewFeatureFlagsHandler: this.props.previewFeatureFlagsHandler,
         };
 
-        return (<PreviewFeaturesPanel {...previewProps} />);
+        return <PreviewFeaturesPanel {...previewProps} />;
     }
 
     private getContentPanel(): JSX.Element {
-        const { currentPanel: { isContentOpen }, contentPath } = this.props.detailsViewStoreData;
+        const {
+            currentPanel: { isContentOpen },
+            contentPath,
+        } = this.props.detailsViewStoreData;
         const contentProps: ContentPanelProps = {
             deps: this.props.deps,
             isOpen: isContentOpen,
             content: contentPath,
         };
 
-        return (<ContentPanel {...contentProps} />);
+        return <ContentPanel {...contentProps} />;
     }
 
     private getScopingPanel(): JSX.Element {
@@ -83,6 +85,6 @@ export class DetailsViewOverlay extends React.Component<IDetailsViewOverlayProps
             scopingActionMessageCreator: this.props.scopingActionMessageCreator,
             inspectActionMessageCreator: this.props.inspectActionMessageCreator,
         };
-        return (<ScopingPanel {...scopingProps} />);
+        return <ScopingPanel {...scopingProps} />;
     }
 }

@@ -8,10 +8,7 @@ import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
 
 import { VisualizationToggle } from '../../common/components/visualization-toggle';
-import {
-    IVisualizationConfiguration,
-    VisualizationConfigurationFactory,
-} from '../../common/configs/visualization-configuration-factory';
+import { IVisualizationConfiguration, VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { FeatureFlags } from '../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
@@ -104,17 +101,12 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
     }
 
     private renderExportButton(): JSX.Element {
-        const shouldShowButton = this.props.featureFlags[FeatureFlags.exportResult] &&
-            this.props.issuesEnabled &&
-            !this.props.scanning;
+        const shouldShowButton = this.props.featureFlags[FeatureFlags.exportResult] && this.props.issuesEnabled && !this.props.scanning;
         if (shouldShowButton) {
             return (
-                <ActionButton
-                    iconProps={{ iconName: 'Export' }}
-                    onClick={this.onExportButtonClick}
-                >
+                <ActionButton iconProps={{ iconName: 'Export' }} onClick={this.onExportButtonClick}>
                     Export result
-            </ActionButton>
+                </ActionButton>
             );
         } else {
             return null;
@@ -156,24 +148,20 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
     }
 
     private renderToggle(): JSX.Element {
-        return <VisualizationToggle
-            label={this.configuration.displayableData.toggleLabel}
-            checked={this.props.issuesEnabled}
-            disabled={this.props.scanning}
-            onClick={this.props.toggleClickHandler}
-            className="automated-checks-details-view-toggle"
-            visualizationName={this.configuration.displayableData.title}
-        />;
+        return (
+            <VisualizationToggle
+                label={this.configuration.displayableData.toggleLabel}
+                checked={this.props.issuesEnabled}
+                disabled={this.props.scanning}
+                onClick={this.props.toggleClickHandler}
+                className="automated-checks-details-view-toggle"
+                visualizationName={this.configuration.displayableData.title}
+            />
+        );
     }
 
     private renderSpinner(label: string): JSX.Element {
-        return (
-            <Spinner
-                className="details-view-spinner"
-                size={SpinnerSize.large}
-                label={label}
-            />
-        );
+        return <Spinner className="details-view-spinner" size={SpinnerSize.large} label={label} />;
     }
 
     private renderDisabledMessage(): JSX.Element {
@@ -195,20 +183,20 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
                     pageUrl={this.props.pageUrl}
                     featureFlagData={this.props.featureFlags}
                 />
-                <div className="issue-detail-outer-container ms-Fabric">
-                    {this.getIssueDetailPane()}
-                </div>
+                <div className="issue-detail-outer-container ms-Fabric">{this.getIssueDetailPane()}</div>
             </div>
         );
     }
 
     private getIssueDetailPane(): JSX.Element {
-        return (<IssuesDetailsPane
-            deps={this.props.deps}
-            selectedIdToRuleResultMap={this.props.selectedIdToRuleResultMap}
-            pageTitle={this.props.pageTitle}
-            pageUrl={this.props.pageUrl}
-        />);
+        return (
+            <IssuesDetailsPane
+                deps={this.props.deps}
+                selectedIdToRuleResultMap={this.props.selectedIdToRuleResultMap}
+                pageTitle={this.props.pageTitle}
+                pageUrl={this.props.pageUrl}
+            />
+        );
     }
 
     private descriptionPlaceholder: string = 'd68d50a0-8249-464d-b2fd-709049c89ee4';

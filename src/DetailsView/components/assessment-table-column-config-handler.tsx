@@ -93,7 +93,6 @@ export class AssessmentTableColumnConfigHandler {
         });
 
         return customColumns;
-
     }
 
     private getMasterCheckboxColumn(assessmentNavState: IAssessmentNavState, allEnabled: boolean): IColumn {
@@ -108,12 +107,14 @@ export class AssessmentTableColumnConfigHandler {
     }
 
     private onRenderCapturedInstanceDetailsColumn(item: ICapturedInstanceRowData): JSX.Element {
-        return <AssessmentInstanceDetailsColumn
-            background={'#767676'}
-            labelText={'N/A'}
-            textContent={item.instance.description}
-            tooltipId={item.instance.id}
-            customClassName="not-applicable"
-        />;
+        return (
+            <AssessmentInstanceDetailsColumn
+                background={'#767676'}
+                labelText={'N/A'}
+                textContent={item.instance.description}
+                tooltipId={item.instance.id}
+                customClassName="not-applicable"
+            />
+        );
     }
 }

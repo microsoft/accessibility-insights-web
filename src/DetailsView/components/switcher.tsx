@@ -19,14 +19,10 @@ export interface SwitcherProps {
 }
 
 export const Switcher = NamedSFC<SwitcherProps>('Switcher', props => {
-
     const onRenderOption = (option: IDropdownOption): JSX.Element => {
         return (
             <div className="switcher-dropdown-option">
-                {option.data &&
-                    option.data.icon && (
-                        <Icon iconName={option.data.icon} aria-hidden="true" title={option.data.icon} />
-                    )}
+                {option.data && option.data.icon && <Icon iconName={option.data.icon} aria-hidden="true" title={option.data.icon} />}
                 <span>{option.text}</span>
             </div>
         );
@@ -37,10 +33,7 @@ export const Switcher = NamedSFC<SwitcherProps>('Switcher', props => {
 
         return (
             <div className="switcher-dropdown-option">
-                {option.data &&
-                    option.data.icon && (
-                        <Icon iconName={option.data.icon} aria-hidden="true" title={option.data.icon} />
-                    )}
+                {option.data && option.data.icon && <Icon iconName={option.data.icon} aria-hidden="true" title={option.data.icon} />}
                 <span>{option.text}</span>
             </div>
         );
@@ -62,13 +55,17 @@ export const Switcher = NamedSFC<SwitcherProps>('Switcher', props => {
             onChange={onOptionClick}
             options={[
                 {
-                    key: DetailsViewPivotType.fastPass, text: 'FastPass', data: {
+                    key: DetailsViewPivotType.fastPass,
+                    text: 'FastPass',
+                    data: {
                         icon: 'Rocket',
                         key: DetailsViewPivotType.fastPass,
                     },
                 },
                 {
-                    key: DetailsViewPivotType.assessment, text: 'Assessment', data: {
+                    key: DetailsViewPivotType.assessment,
+                    text: 'Assessment',
+                    data: {
                         icon: 'testBeaker',
                         key: DetailsViewPivotType.assessment,
                     },

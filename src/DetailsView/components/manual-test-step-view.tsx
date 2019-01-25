@@ -35,9 +35,7 @@ export class ManualTestStepView extends React.Component<IManualTestStepViewProps
                         isLabelVisible={true}
                     />
                 </div>
-                <div className="manual-test-step-table-container">
-                    {this.renderTable(status)}
-                </div>
+                <div className="manual-test-step-table-container">{this.renderTable(status)}</div>
             </React.Fragment>
         );
     }
@@ -47,7 +45,11 @@ export class ManualTestStepView extends React.Component<IManualTestStepViewProps
             return null;
         }
         const columns = this.props.assessmentInstanceTableHandler.getColumnConfigsForCapturedInstance();
-        const items = this.props.assessmentInstanceTableHandler.createCapturedInstanceTableItems(this.props.manualTestStepResultMap[this.props.step].instances, this.props.test, this.props.step);
+        const items = this.props.assessmentInstanceTableHandler.createCapturedInstanceTableItems(
+            this.props.manualTestStepResultMap[this.props.step].instances,
+            this.props.test,
+            this.props.step,
+        );
         return (
             <React.Fragment>
                 <h3 className="test-step-instances-header">Instances</h3>

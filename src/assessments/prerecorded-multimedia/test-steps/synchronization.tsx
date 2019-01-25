@@ -16,9 +16,7 @@ const synchronizationHowToTest: JSX.Element = (
             <li>Examine the target page to identify any pre-recorded multimedia content with an audio description.</li>
             <li>Enable audio descriptions, then play the multimedia content.</li>
             <li>Verify that the audio description is synchronized with the video content.</li>
-            <ManualTestRecordYourResults
-                isMultipleFailurePossible={true}
-            />
+            <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
     </div>
 );

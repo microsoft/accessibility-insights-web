@@ -83,7 +83,6 @@ export class IssuesDetailsList extends React.Component<IssuesDetailsListProps, {
     }
 
     public render(): JSX.Element {
-
         const detailListProps = this.props.issuesTableHandler.getListProps(
             this.props.violations,
             this.props.featureFlagData[FeatureFlags.showBugFiling],
@@ -127,12 +126,11 @@ export class IssuesDetailsList extends React.Component<IssuesDetailsListProps, {
         return <DetailsGroupHeader {...groupHeaderProps} />;
     }
 
-    private adjustInstanceColumns(showBugFiling: boolean):  IColumn[] {
+    private adjustInstanceColumns(showBugFiling: boolean): IColumn[] {
         if (showBugFiling) {
             return [IssuesDetailsList.bugFilingInstanceColumn].concat(IssuesDetailsList.instanceColumns);
-        }
-        else {
+        } else {
             return IssuesDetailsList.instanceColumns;
-          }
+        }
     }
 }

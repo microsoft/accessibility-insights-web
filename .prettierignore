@@ -14,5 +14,5 @@ package-lock.json
 **/*.gitignore
 **/*.gitattributes
 
-/**/*.tsx
-
+src/content/test/**/*.tsx
+src/tests/**/*.tsx

@@ -16,17 +16,15 @@ const { guidance } = content.textLegibility;
 
 const gettingStarted: JSX.Element = (
     <React.Fragment>
+        <p>In general, larger text and higher contrast makes it easier to read text content.</p>
         <p>
-            In general, larger text and higher contrast makes it easier to read text content.
+            People with low vision use high contrast mode to ease eye strain or to make the screen easier to read by removing extraneous
+            information.
         </p>
+        <p>People with low vision and people who need cognitive assistance benefit from increased text size.</p>
         <p>
-            People with low vision use high contrast mode to ease eye strain or to make the screen easier to read by removing extraneous information.
-        </p>
-        <p>
-            People with low vision and people who need cognitive assistance benefit from increased text size.
-        </p>
-        <p>
-            Many factors affect peoples' ability to discern between colors/shades, including screen brightness, ambient light, age, color blindness, and some types of low vision.
+            Many factors affect peoples' ability to discern between colors/shades, including screen brightness, ambient light, age, color
+            blindness, and some types of low vision.
         </p>
     </React.Fragment>
 );
@@ -37,10 +35,6 @@ export const TextLegibilityAssessment: IAssessment = AssessmentBuilder.Assisted(
     title,
     gettingStarted,
     guidance,
-    steps: [
-        HighContrastMode,
-        ResizeText,
-        Contrast,
-    ],
+    steps: [HighContrastMode, ResizeText, Contrast],
     storeDataKey: 'textLegibilityAssessment',
 });

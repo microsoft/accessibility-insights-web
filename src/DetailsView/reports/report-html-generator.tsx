@@ -15,17 +15,11 @@ export class ReportHtmlGenerator {
         private axeVersion: string,
     ) {}
 
-    public generateHtml(
-        scanResult: ScanResults,
-        scanDate: Date,
-        pageTitle: string,
-        pageUrl: string,
-        description: string,
-    ): string {
+    public generateHtml(scanResult: ScanResults, scanDate: Date, pageTitle: string, pageUrl: string, description: string): string {
         const headElement: JSX.Element = <ReportHead />;
         const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(headElement);
 
-        const bodyElement: JSX.Element =
+        const bodyElement: JSX.Element = (
             <ReportBody
                 scanResult={scanResult}
                 pageTitle={pageTitle}
@@ -35,7 +29,8 @@ export class ReportHtmlGenerator {
                 browserSpec={this.browserSpec}
                 extensionVersion={this.extensionVersion}
                 axeVersion={this.axeVersion}
-            />;
+            />
+        );
         const bodyMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(bodyElement);
 
         return '<html lang="en">' + headMarkup + bodyMarkup + '</html>';

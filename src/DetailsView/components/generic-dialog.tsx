@@ -15,13 +15,7 @@ export type IGenericDialogProps = {
 };
 
 export const GenericDialog = NamedSFC<IGenericDialogProps>('GenericDialog', props => {
-    const {
-        onCancelButtonClick,
-        onPrimaryButtonClick,
-        messageText,
-        title,
-        primaryButtonText,
-     } = props;
+    const { onCancelButtonClick, onPrimaryButtonClick, messageText, title, primaryButtonText } = props;
 
     return (
         <Dialog
@@ -36,20 +30,10 @@ export const GenericDialog = NamedSFC<IGenericDialogProps>('GenericDialog', prop
                 containerClassName: 'insights-dialog-main-override',
             }}
         >
-            <div
-                className={'start-over-dialog-body'}
-            >
-                {messageText}
-            </div>
+            <div className={'start-over-dialog-body'}>{messageText}</div>
             <DialogFooter>
-                <PrimaryButton
-                    onClick={onPrimaryButtonClick}
-                    text={primaryButtonText}
-                />
-                <DefaultButton
-                    onClick={onCancelButtonClick}
-                    text={'Cancel'}
-                />
+                <PrimaryButton onClick={onPrimaryButtonClick} text={primaryButtonText} />
+                <DefaultButton onClick={onCancelButtonClick} text={'Cancel'} />
             </DialogFooter>
         </Dialog>
     );

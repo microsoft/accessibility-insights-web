@@ -10,7 +10,6 @@ import { LandmarkFormatter } from '../../injected/visualization/landmark-formatt
 export function landmarksAssessmentInstanceDetailsColumnRenderer(
     item: IAssessmentInstanceRowData<ILandmarksAssessmentProperties>,
 ): JSX.Element {
-
     const propertyBag = item.instance.propertyBag;
     const background = LandmarkFormatter.landmarkStyles[propertyBag.role].borderColor;
     let textContent = propertyBag.role;
@@ -18,10 +17,5 @@ export function landmarksAssessmentInstanceDetailsColumnRenderer(
         textContent += `: ${propertyBag.label}`;
     }
 
-    return <AssessmentInstanceDetailsColumn
-        background={background}
-        textContent={textContent}
-        tooltipId={null}
-        customClassName="radio"
-    />;
+    return <AssessmentInstanceDetailsColumn background={background} textContent={textContent} tooltipId={null} customClassName="radio" />;
 }

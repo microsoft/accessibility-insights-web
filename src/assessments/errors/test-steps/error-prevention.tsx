@@ -29,20 +29,12 @@ const howToTest: JSX.Element = (
             <li>
                 If the page <Markup.Emphasis>does</Markup.Emphasis> allow such actions, verify that at least one of the following is true:
                 <ol>
-                    <li>
-                        Submissions are reversible.
-                    </li>
-                    <li>
-                        Data entered by the user is checked for input errors, and the user is given an opportunity to correct them.
-                    </li>
-                    <li>
-                        The user can review, confirm, and correct information before finalizing the submission.
-                    </li>
+                    <li>Submissions are reversible.</li>
+                    <li>Data entered by the user is checked for input errors, and the user is given an opportunity to correct them.</li>
+                    <li>The user can review, confirm, and correct information before finalizing the submission.</li>
                 </ol>
             </li>
-            <ManualTestRecordYourResults
-                isMultipleFailurePossible={false}
-            />
+            <ManualTestRecordYourResults isMultipleFailurePossible={false} />
         </ol>
     </div>
 );

@@ -8,7 +8,9 @@ import ManualTestRecordYourResults from '../../common/manual-test-record-your-re
 import { TestStep } from '../../types/test-step';
 import { ErrorsTestStep } from './test-steps';
 
-const description: JSX.Element = <span>If an input error is automatically detected, the item in error must be identified, and the error described, in text</span>;
+const description: JSX.Element = (
+    <span>If an input error is automatically detected, the item in error must be identified, and the error described, in text</span>
+);
 
 const howToTest: JSX.Element = (
     <div>
@@ -22,23 +24,15 @@ const howToTest: JSX.Element = (
                     <li>Zip code fields</li>
                 </ol>
             </li>
-            <li>
-                If you find such an input field, enter an incorrect value that triggers automatic error detection.
-            </li>
+            <li>If you find such an input field, enter an incorrect value that triggers automatic error detection.</li>
             <li>
                 Verify that:
                 <ol>
-                    <li>
-                        The field with the error is identified in text, and
-                    </li>
-                    <li>
-                        The error is described in text.
-                    </li>
+                    <li>The field with the error is identified in text, and</li>
+                    <li>The error is described in text.</li>
                 </ol>
             </li>
-            <ManualTestRecordYourResults
-                isMultipleFailurePossible={true}
-            />
+            <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
     </div>
 );

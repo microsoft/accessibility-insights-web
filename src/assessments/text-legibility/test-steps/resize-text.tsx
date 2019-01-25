@@ -9,7 +9,9 @@ import ManualTestRecordYourResults from '../../common/manual-test-record-your-re
 import * as Markup from '../../markup';
 import { Emphasis } from '../../markup';
 
-const resizeTextDescription: JSX.Element = <span>Users must be able to resize text, without using assistive technology, up to 200% with no loss of content or functionality.</span>;
+const resizeTextDescription: JSX.Element = (
+    <span>Users must be able to resize text, without using assistive technology, up to 200% with no loss of content or functionality.</span>
+);
 
 const resizeTextHowToTest: JSX.Element = (
     <div>
@@ -18,38 +20,25 @@ const resizeTextHowToTest: JSX.Element = (
         <Markup.CodeTerm>{`<meta name="viewport">`}</Markup.CodeTerm> <Emphasis> element.</Emphasis>&nbsp;
         <ol>
             <li>
-                Use <Markup.Term>Windows Settings</Markup.Term> > <Markup.Term>System</Markup.Term> > <Markup.Term>Display</Markup.Term> > <Markup.Term>Scale and layout</Markup.Term> to
+                Use <Markup.Term>Windows Settings</Markup.Term> > <Markup.Term>System</Markup.Term> > <Markup.Term>Display</Markup.Term> >{' '}
+                <Markup.Term>Scale and layout</Markup.Term> to
                 <ol>
-                    <li>
-                        Set the resolution to 1920x1080, and
-                    </li>
-                    <li>
-                        Set scaling to 100%.
-                    </li>
+                    <li>Set the resolution to 1920x1080, and</li>
+                    <li>Set scaling to 100%.</li>
                 </ol>
             </li>
             <li>Use Chrome's settings to set the target page's zoom to 200%.</li>
             <li>
                 Examine the target page to verify that:
                 <ol>
-                    <li>
-                        All text resizes fully, including text in form fields.
-                    </li>
-                    <li>
-                        Text isn't clipped, truncated, or obscured.
-                    </li>
-                    <li>
-                        All content remains available.
-                    </li>
-                    <li>
-                        All functionality remains available.
-                    </li>
+                    <li>All text resizes fully, including text in form fields.</li>
+                    <li>Text isn't clipped, truncated, or obscured.</li>
+                    <li>All content remains available.</li>
+                    <li>All functionality remains available.</li>
                 </ol>
                 Exception: Images of text and captions for videos are exempt from this requirement.
             </li>
-            <ManualTestRecordYourResults
-                isMultipleFailurePossible={true}
-            />
+            <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
     </div>
 );

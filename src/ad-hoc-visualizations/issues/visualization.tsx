@@ -19,8 +19,8 @@ export const IssuesAdHocVisualization: IVisualizationConfiguration = {
     testMode: TestMode.Adhoc,
     getTestView: props => <AdhocIssuesTestView {...props} />,
     getStoreData: data => data.adhoc.issues,
-    enableTest: (data, _) => data.enabled = true,
-    disableTest: data => data.enabled = false,
+    enableTest: (data, _) => (data.enabled = true),
+    disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
     displayableData: {
         title: 'Automated checks',
@@ -34,18 +34,19 @@ export const IssuesAdHocVisualization: IVisualizationConfiguration = {
     adhocToolsPanelDisplayOrder: 1,
     analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
     resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
-    getAnalyzer: provider => provider.createRuleAnalyzer({
-        rules: null,
-        resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
-        telemetryProcessor: (telemetryFactory: TelemetryDataFactory) => telemetryFactory.forIssuesAnalyzerScan,
-        key: AdHocTestkeys.Issues,
-        testType: VisualizationType.Issues,
-        analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
-    }),
+    getAnalyzer: provider =>
+        provider.createRuleAnalyzer({
+            rules: null,
+            resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
+            telemetryProcessor: (telemetryFactory: TelemetryDataFactory) => telemetryFactory.forIssuesAnalyzerScan,
+            key: AdHocTestkeys.Issues,
+            testType: VisualizationType.Issues,
+            analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
+        }),
     getIdentifier: () => AdHocTestkeys.Issues,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
-    getNotificationMessage: selectorMap => _.isEmpty(selectorMap) ?
-        'Congratulations!\n\nAutomated checks found no issues on this page.' : null,
+    getNotificationMessage: selectorMap =>
+        _.isEmpty(selectorMap) ? 'Congratulations!\n\nAutomated checks found no issues on this page.' : null,
     getDrawer: provider => provider.createIssuesDrawer(),
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,

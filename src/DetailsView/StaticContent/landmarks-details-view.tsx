@@ -12,8 +12,8 @@ export const landmarksContent: JSX.Element = (
 
         <div className="why-vis">
             ARIA landmark roles help users identify a web page's structure and organization. Classifying and labeling a page's sections
-            takes structural information that is conveyed visually and represents it programmatically. Screen readers and other
-            assistive technologies, like browser extensions, can use this information into enable or enhance navigation.
+            takes structural information that is conveyed visually and represents it programmatically. Screen readers and other assistive
+            technologies, like browser extensions, can use this information into enable or enhance navigation.
         </div>
 
         <div className="more-info">
@@ -27,9 +27,9 @@ export const landmarksContent: JSX.Element = (
         <h2>About the Landmarks visualization</h2>
 
         <div className="about-vis">
-            The visualizations in {toolName} enable developers to see accessibility markup that’s normally invisible.
-            The <b>Landmarks</b> visualization highlights landmarks directly on the page.
-            It does not highlight landmarks that are unavailable to assistive technology because they have the <b>hidden</b> attribute.
+            The visualizations in {toolName} enable developers to see accessibility markup that’s normally invisible. The <b>Landmarks</b>{' '}
+            visualization highlights landmarks directly on the page. It does not highlight landmarks that are unavailable to assistive
+            technology because they have the <b>hidden</b> attribute.
         </div>
 
         <h2>Do</h2>
@@ -37,15 +37,19 @@ export const landmarksContent: JSX.Element = (
         <h3>Contain all visible content within the landmark areas.</h3>
 
         <ul className="insights-list">
-            <li>Turn on the <b>Landmarks</b> visualization, then zoom out so you can see the entire page. If you see any visible
-            content (like text, images, or controls) outside the dashed borders, that’s a failure.
+            <li>
+                Turn on the <b>Landmarks</b> visualization, then zoom out so you can see the entire page. If you see any visible content
+                (like text, images, or controls) outside the dashed borders, that’s a failure.
             </li>
         </ul>
 
         <h3>Provide exactly one main landmark in every page.</h3>
 
         <ul className="insights-list">
-            <li>Exception: If the page contains nested document or application roles, each one can have its own <b>banner</b>, <b>main</b> and <b>contentinfo</b> landmarks.</li>
+            <li>
+                Exception: If the page contains nested document or application roles, each one can have its own <b>banner</b>, <b>main</b>{' '}
+                and <b>contentinfo</b> landmarks.
+            </li>
         </ul>
 
         <h3>Choose the landmark role that best describes the area’s content.</h3>
@@ -61,11 +65,15 @@ export const landmarksContent: JSX.Element = (
             </li>
             <li>
                 <span className="landmarks-legend complementary-landmark">complementary</span>
-                <span className="landmarks-legend-description">An area of the page that supports the main content, yet remains meaningful on its own</span>
+                <span className="landmarks-legend-description">
+                    An area of the page that supports the main content, yet remains meaningful on its own
+                </span>
             </li>
             <li>
                 <span className="landmarks-legend contentinfo-landmark">contentinfo</span>
-                <span className="landmarks-legend-description">An area at the end of the page containing info about the main content or website</span>
+                <span className="landmarks-legend-description">
+                    An area at the end of the page containing info about the main content or website
+                </span>
             </li>
             <li>
                 <span className="landmarks-legend form-landmark">form</span>
@@ -77,11 +85,15 @@ export const landmarksContent: JSX.Element = (
             </li>
             <li>
                 <span className="landmarks-legend navigation-landmark">navigation</span>
-                <span className="landmarks-legend-description">An area of the page containing a group of links for website or page navigation</span>
+                <span className="landmarks-legend-description">
+                    An area of the page containing a group of links for website or page navigation
+                </span>
             </li>
             <li>
                 <span className="landmarks-legend region-landmark">region</span>
-                <span className="landmarks-legend-description">An area of the page containing information that is sufficiently important that users should be able to navigate to it</span>
+                <span className="landmarks-legend-description">
+                    An area of the page containing information that is sufficiently important that users should be able to navigate to it
+                </span>
             </li>
             <li>
                 <span className="landmarks-legend search-landmark">search</span>
@@ -92,9 +104,14 @@ export const landmarksContent: JSX.Element = (
         <h3>If you use the same landmark role more than once in a page, give each instance an accessible label that makes it unique.</h3>
 
         <ul className="insights-list ">
-            <li>In the visualization, accessible labels (<b>aria-label</b> or <b>aria-labelledby</b>) are enclosed in quotes.</li>
+            <li>
+                In the visualization, accessible labels (<b>aria-label</b> or <b>aria-labelledby</b>) are enclosed in quotes.
+            </li>
             <li>There’s an automated check for non-unique landmarks.</li>
-            <li>Exception: If the page has two or more navigation landmarks that contain the same set of links, those landmarks should have the same label.</li>
+            <li>
+                Exception: If the page has two or more navigation landmarks that contain the same set of links, those landmarks should have
+                the same label.
+            </li>
         </ul>
 
         <h3>Provide a descriptive label for any region landmarks.</h3>
@@ -106,7 +123,9 @@ export const landmarksContent: JSX.Element = (
         <h3>Provide a visible label for any form landmarks.</h3>
 
         <ul className="insights-list ">
-            <li>Use <b>aria-labelledby</b> to programmatically associate the visible label with the landmark.</li>
+            <li>
+                Use <b>aria-labelledby</b> to programmatically associate the visible label with the landmark.
+            </li>
         </ul>
 
         <h2>Don't</h2>
@@ -114,7 +133,9 @@ export const landmarksContent: JSX.Element = (
         <h3>Don’t use too many landmarks.</h3>
 
         <ul className="insights-list ">
-            <li>Five to seven landmarks in a page is ideal. More than that makes it difficult for users to efficiently navigate the page.</li>
+            <li>
+                Five to seven landmarks in a page is ideal. More than that makes it difficult for users to efficiently navigate the page.
+            </li>
         </ul>
 
         <h3>Don’t repeat the landmark’s role in its label.</h3>

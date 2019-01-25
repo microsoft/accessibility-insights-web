@@ -18,10 +18,7 @@ export const HelpLinks = NamedSFC('HelpLinks', (props: HelpLinksProps) => {
         <>
             {linkInformation.map((link: HyperlinkDefinition) => (
                 <div className="help-link" key={link.href}>
-                    <ExternalLink
-                        deps={props.deps}
-                        href={link.href}
-                    >
+                    <ExternalLink deps={props.deps} href={link.href}>
                         {link.text}
                     </ExternalLink>
                 </div>

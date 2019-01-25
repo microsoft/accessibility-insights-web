@@ -8,7 +8,6 @@ export class PropertyBagColumnRendererFactory {
     public static get<TPropertyBag extends ColumnValueBag>(
         configs: IPropertyBagColumnRendererConfig<TPropertyBag>[],
     ): (item: IAssessmentInstanceRowData<TPropertyBag>) => JSX.Element {
-
         return item => {
             return propertyBagColumnRenderer(item, configs);
         };

@@ -17,8 +17,8 @@ export type AssessmentLevel = 'test' | 'requirement';
 
 export class StatusIcon extends React.Component<IStatusIconProps> {
     public render(): JSX.Element {
-        const outcomeTypeSemantics = outcomeTypeSemanticsFromTestStatus(this.props.status) ||
-            outcomeTypeSemanticsFromTestStatus(ManualTestStatus.UNKNOWN);
+        const outcomeTypeSemantics =
+            outcomeTypeSemanticsFromTestStatus(this.props.status) || outcomeTypeSemanticsFromTestStatus(ManualTestStatus.UNKNOWN);
         const pastTenseOutCome = outcomeTypeSemantics && outcomeTypeSemantics.pastTense;
         const label = `${pastTenseOutCome} ${this.props.level}`;
 
@@ -34,8 +34,6 @@ export class StatusIcon extends React.Component<IStatusIconProps> {
     }
 
     private renderIcon(iconName: string, ariaLabel: string, className?: String): JSX.Element {
-        return (
-            <Icon iconName={iconName} className={css('status-icon', className)} ariaLabel={ariaLabel} aria-live="polite" />
-        );
+        return <Icon iconName={iconName} className={css('status-icon', className)} ariaLabel={ariaLabel} aria-live="polite" />;
     }
 }

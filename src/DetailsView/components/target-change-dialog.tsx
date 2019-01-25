@@ -18,7 +18,6 @@ export interface ITargetChangeDialogProps {
 }
 
 export class TargetChangeDialog extends React.Component<ITargetChangeDialogProps> {
-
     public render() {
         if (this.props.prevTab == null || this.props.prevTab.id === this.props.newTab.id) {
             return null;
@@ -39,25 +38,20 @@ export class TargetChangeDialog extends React.Component<ITargetChangeDialogProps
             >
                 <div>
                     There is already an assessment running on&nbsp;
-                    {this.renderPreviousTabLink(this.props.prevTab)}.
-                    Would you like to continue your current assessment on the new target of&nbsp;
+                    {this.renderPreviousTabLink(this.props.prevTab)}. Would you like to continue your current assessment on the new target
+                    of&nbsp;
                     {this.renderCurrentTabLink(this.props.newTab)}?
                 </div>
                 <p>
-                    <Markup.Term>Note</Markup.Term>: If ‘Continue previous’ is selected,
-                    the previous assessment will be connected to this new page.
+                    <Markup.Term>Note</Markup.Term>: If ‘Continue previous’ is selected, the previous assessment will be connected to this
+                    new page.
                 </p>
-                <p>
-                    If ‘Start new’ is selected, all previous progress will be lost.
-                </p>
+                <p>If ‘Start new’ is selected, all previous progress will be lost.</p>
 
                 <DialogFooter>
                     <div className="target-change-dialog-button-container">
                         <div className="button ms-Grid-col  action-cancel-button-col restart-button">
-                            <DefaultButton
-                                text="Start new"
-                                onClick={this.props.actionMessageCreator.startOverAllAssessments}
-                            />
+                            <DefaultButton text="Start new" onClick={this.props.actionMessageCreator.startOverAllAssessments} />
                         </div>
 
                         <div className="button ms-Grid-col  action-cancel-button-col continue-button">
@@ -76,11 +70,7 @@ export class TargetChangeDialog extends React.Component<ITargetChangeDialogProps
     private renderPreviousTabLink(tab: ITab): JSX.Element {
         return (
             <TooltipHost content={tab.url} id={'previous-target-page-link'} calloutProps={{ gapSpace: 0 }}>
-                <NewTabLink
-                    role="link"
-                    className="target-page-link"
-                    href={tab.url}
-                >
+                <NewTabLink role="link" className="target-page-link" href={tab.url}>
                     {tab.title}
                 </NewTabLink>
             </TooltipHost>
@@ -90,11 +80,7 @@ export class TargetChangeDialog extends React.Component<ITargetChangeDialogProps
     private renderCurrentTabLink(tab: ITab): JSX.Element {
         return (
             <TooltipHost content={tab.url} id={'current-target-page-link'} calloutProps={{ gapSpace: 0 }}>
-                <Link
-                    role="link"
-                    className="target-page-link"
-                    onClick={this.props.actionMessageCreator.switchToTargetTab}
-                >
+                <Link role="link" className="target-page-link" onClick={this.props.actionMessageCreator.switchToTargetTab}>
                     {tab.title}
                 </Link>
             </TooltipHost>

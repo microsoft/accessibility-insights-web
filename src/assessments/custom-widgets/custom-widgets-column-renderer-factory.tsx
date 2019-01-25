@@ -9,7 +9,6 @@ export class CustomWidgetsColumnRendererFactory {
     public static getWithLink<TPropertyBag extends ColumnValueBag>(
         configs: IPropertyBagColumnRendererConfig<TPropertyBag>[],
     ): (item: IAssessmentInstanceRowData<TPropertyBag>) => JSX.Element {
-
         return item => {
             return customWidgetsColumnRenderer(item, configs, true);
         };
@@ -18,7 +17,6 @@ export class CustomWidgetsColumnRendererFactory {
     public static getWithoutLink<TPropertyBag extends ColumnValueBag>(
         configs: IPropertyBagColumnRendererConfig<TPropertyBag>[],
     ): (item: IAssessmentInstanceRowData<TPropertyBag>) => JSX.Element {
-
         return item => {
             return customWidgetsColumnRenderer(item, configs, false);
         };

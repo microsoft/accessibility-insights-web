@@ -7,9 +7,7 @@ import { ICustomWidgetPropertyBag } from '../../../common/types/property-bag/icu
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
-import {
-    AssessmentVisualizationEnabledToggle,
-} from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
+import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
 import * as Markup from '../../markup';
@@ -20,18 +18,16 @@ import { CustomWidgetsColumnRendererFactory } from '../custom-widgets-column-ren
 import { CustomWidgetsTestStep } from './test-steps';
 
 const instructionsDescription: JSX.Element = (
-    <span>
-        If a custom widget has visible instructions, they must be programmatically related to it.
-    </span>
+    <span>If a custom widget has visible instructions, they must be programmatically related to it.</span>
 );
 
 const instructionsHowToTest: JSX.Element = (
     <div>
-        For this requirement, { productName } highlights custom widgets.
+        For this requirement, {productName} highlights custom widgets.
         <ol>
             <li>
-                For each widget, verify that any instructions visible in the target page are also visible in
-                the <Markup.Term>Instances</Markup.Term> list.
+                For each widget, verify that any instructions visible in the target page are also visible in the{' '}
+                <Markup.Term>Instances</Markup.Term> list.
             </li>
             <AssistedTestRecordYourResults />
         </ol>
@@ -69,18 +65,22 @@ export const Instructions: TestStep = {
         },
     ],
     reportInstanceFields: [
-        ReportInstanceField.fromPropertyBagFunction<ICustomWidgetPropertyBag>('Design pattern', 'designPattern',
-            pb => getFlatDesignPatternStringFromRole(pb.role)),
+        ReportInstanceField.fromPropertyBagFunction<ICustomWidgetPropertyBag>('Design pattern', 'designPattern', pb =>
+            getFlatDesignPatternStringFromRole(pb.role),
+        ),
         ReportInstanceField.fromColumnValueBagField<ICustomWidgetPropertyBag>('Accessible name', 'text'),
         ReportInstanceField.fromColumnValueBagField<ICustomWidgetPropertyBag>('Accessible description', 'describedBy'),
     ],
-    getAnalyzer: provider => provider.createRuleAnalyzer(AnalyzerConfigurationFactory.forScanner({
-        rules: ['custom-widget'],
-        key: CustomWidgetsTestStep.instructions,
-        testType: VisualizationType.CustomWidgets,
-        resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
-    })),
+    getAnalyzer: provider =>
+        provider.createRuleAnalyzer(
+            AnalyzerConfigurationFactory.forScanner({
+                rules: ['custom-widget'],
+                key: CustomWidgetsTestStep.instructions,
+                testType: VisualizationType.CustomWidgets,
+                resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
+            }),
+        ),
     getDrawer: provider => provider.createHighlightBoxDrawer(),
     updateVisibility: false,
-    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props}/>,
+    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
 };

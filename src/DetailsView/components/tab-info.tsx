@@ -41,11 +41,7 @@ export class TabInfo extends React.Component<ITabInfoProps> {
         return (
             <div className="target-tab-info">
                 Target page:&nbsp;
-                    <Link
-                    role="link"
-                    className={'target-page-link'}
-                    onClick={this.props.actionCreator.switchToTargetTab}
-                >
+                <Link role="link" className={'target-page-link'} onClick={this.props.actionCreator.switchToTargetTab}>
                     {this.props.title}
                 </Link>
                 &nbsp;({this.props.url})
@@ -55,23 +51,20 @@ export class TabInfo extends React.Component<ITabInfoProps> {
 
     private renderMessageBarForTargetPageHidden(): JSX.Element {
         if (this.props.isTargetPageHidden) {
-            const messageContent =
+            const messageContent = (
                 <div>
                     The Target page is in a hidden state. For better performance, use the Target page link above to make the page visible.
-                </div>;
+                </div>
+            );
             return this.renderMessageBar(messageContent, MessageBarType.warning, 'waring-message-bar');
-        }
-        else {
+        } else {
             return null;
         }
     }
 
     private renderMessageBar(messageContent: JSX.Element, messageBarType: MessageBarType, className: string): JSX.Element {
         return (
-            <MessageBar
-                messageBarType={messageBarType}
-                className={className}
-            >
+            <MessageBar messageBarType={messageBarType} className={className}>
                 {messageContent}
             </MessageBar>
         );

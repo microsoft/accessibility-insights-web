@@ -32,10 +32,7 @@ export const AssessmentTestView = NamedSFC<IAssessmentTestViewProps>('Assessment
     const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
     const assessmentData = props.configuration.getAssessmentData(props.assessmentStoreData);
     const prevTarget = props.assessmentStoreData.targetTab;
-    const isEnabled = props.configuration.getTestStatus(
-        scanData,
-        props.assessmentStoreData.assessmentNavState.selectedTestStep,
-    );
+    const isEnabled = props.configuration.getTestStatus(scanData, props.assessmentStoreData.assessmentNavState.selectedTestStep);
     const currentTarget = {
         id: props.tabStoreData.id,
         url: props.tabStoreData.url,
@@ -46,16 +43,18 @@ export const AssessmentTestView = NamedSFC<IAssessmentTestViewProps>('Assessment
         props.assessmentStoreData.assessmentNavState.selectedTestType,
         assessmentData,
     );
-    return (<AssessmentView
-        deps={deps}
-        isScanning={isScanning}
-        isEnabled={isEnabled}
-        assessmentNavState={props.assessmentStoreData.assessmentNavState}
-        assessmentInstanceTableHandler={props.assessmentInstanceTableHandler}
-        assessmentData={assessmentData}
-        currentTarget={currentTarget}
-        prevTarget={prevTarget}
-        assessmentDefaultMessageGenerator={deps.assessmentDefaultMessageGenerator}
-        assessmentTestResult={assessmentTestResult}
-    />);
+    return (
+        <AssessmentView
+            deps={deps}
+            isScanning={isScanning}
+            isEnabled={isEnabled}
+            assessmentNavState={props.assessmentStoreData.assessmentNavState}
+            assessmentInstanceTableHandler={props.assessmentInstanceTableHandler}
+            assessmentData={assessmentData}
+            currentTarget={currentTarget}
+            prevTarget={prevTarget}
+            assessmentDefaultMessageGenerator={deps.assessmentDefaultMessageGenerator}
+            assessmentTestResult={assessmentTestResult}
+        />
+    );
 });

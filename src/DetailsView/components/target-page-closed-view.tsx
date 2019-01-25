@@ -4,7 +4,6 @@ import * as React from 'react';
 
 export class TargetPageClosedView extends React.Component {
     public render(): JSX.Element {
-
         return (
             <div className="target-page-closed">
                 <h1>No content available</h1>

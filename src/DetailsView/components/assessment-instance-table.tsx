@@ -78,11 +78,7 @@ export class AssessmentInstanceTable extends React.Component<IAssessmentInstance
 
     @autobind
     public renderRow(props: IDetailsRowProps, defaultRender: IRenderFunction<IDetailsRowProps>) {
-        return (
-            <div onClick={() => this.updateFocusedTarget(props.item)}>
-                {defaultRender(props)}
-            </div>
-        );
+        return <div onClick={() => this.updateFocusedTarget(props.item)}>{defaultRender(props)}</div>;
     }
 
     @autobind
@@ -94,11 +90,7 @@ export class AssessmentInstanceTable extends React.Component<IAssessmentInstance
         const disabled = !this.isAnyInstanceStatusUnknown(items, this.props.assessmentNavState.selectedTestStep);
 
         return (
-            <ActionButton
-                iconProps={{ iconName: 'skypeCheck' }}
-                onClick={this.onPassUnmarkedInstances}
-                disabled={disabled}
-            >
+            <ActionButton iconProps={{ iconName: 'skypeCheck' }} onClick={this.onPassUnmarkedInstances} disabled={disabled}>
                 Pass unmarked instances
             </ActionButton>
         );

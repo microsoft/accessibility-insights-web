@@ -12,7 +12,7 @@ export interface IStaticContentDetailsViewProps {
     onToggleClick: (event) => void;
 }
 
-export class StaticContentDetailsView extends React.Component<IStaticContentDetailsViewProps , undefined> {
+export class StaticContentDetailsView extends React.Component<IStaticContentDetailsViewProps, undefined> {
     public render(): JSX.Element {
         return (
             <div className="static-content-details-view">
@@ -24,9 +24,7 @@ export class StaticContentDetailsView extends React.Component<IStaticContentDeta
                     className="details-view-toggle"
                     visualizationName={this.props.title}
                 />
-                <div className="details-view-static-content">
-                    {this.props.content}
-                </div>
+                <div className="details-view-static-content">{this.props.content}</div>
             </div>
         );
     }

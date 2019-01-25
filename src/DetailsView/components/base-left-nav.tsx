@@ -8,9 +8,9 @@ export type onBaseLeftNavItemClick = (event: React.MouseEvent<HTMLElement>, item
 export type onBaseLeftNavItemRender = (link: BaseLeftNavLink, renderIcon: (link: BaseLeftNavLink) => JSX.Element) => JSX.Element;
 
 export type BaseLeftNavProps = {
-    selectedKey: string,
-    links: BaseLeftNavLink[],
-    renderIcon: (link: BaseLeftNavLink) => JSX.Element,
+    selectedKey: string;
+    links: BaseLeftNavLink[];
+    renderIcon: (link: BaseLeftNavLink) => JSX.Element;
 };
 
 export interface BaseLeftNavLink extends INavLink {
@@ -27,18 +27,17 @@ export interface BaseLeftNavLinkProps {
 export class BaseLeftNav extends React.Component<BaseLeftNavProps> {
     public static pivotItemsClassName = 'details-view-test-nav-area';
     public render(): JSX.Element {
-        const {
-            selectedKey,
-            links,
-        } = this.props;
+        const { selectedKey, links } = this.props;
 
         return (
             <Nav
                 className={BaseLeftNav.pivotItemsClassName}
                 selectedKey={selectedKey}
-                groups={[{
-                    links,
-                }]}
+                groups={[
+                    {
+                        links,
+                    },
+                ]}
                 onRenderLink={this.onRenderLink}
                 onLinkClick={this.onNavLinkClick}
             />

@@ -39,7 +39,9 @@ export class ReportScanDetails extends React.Component<IReportScanDetailsProps> 
                         </tr>
                         <tr>
                             <td className="label">Scan date/time</td>
-                            <td><FormattedDate date={this.props.scanDate} /></td>
+                            <td>
+                                <FormattedDate date={this.props.scanDate} />
+                            </td>
                         </tr>
                         <tr>
                             <td className="label">Environment</td>
@@ -47,7 +49,9 @@ export class ReportScanDetails extends React.Component<IReportScanDetailsProps> 
                         </tr>
                         <tr>
                             <td className="label">Tool version</td>
-                            <td>{title} {this.props.extensionVersion}; Axe {this.props.axeVersion}</td>
+                            <td>
+                                {title} {this.props.extensionVersion}; Axe {this.props.axeVersion}
+                            </td>
                         </tr>
                     </tbody>
                 </table>

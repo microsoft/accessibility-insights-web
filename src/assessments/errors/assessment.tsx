@@ -13,21 +13,19 @@ const key = 'errors';
 const title = 'Errors';
 const { guidance } = content.errors;
 
-const gettingStarted: JSX.Element = <React.Fragment>
-        As much as possible, websites and web apps should help users avoid making mistakes,
-        especially mistakes with consequences that can't be reversed,
-        such as buying non-refundable airline tickets or transferring money to a bank account.
-        When users do make a data entry error, they need to easily find it and fix it.
-    </React.Fragment>;
+const gettingStarted: JSX.Element = (
+    <React.Fragment>
+        As much as possible, websites and web apps should help users avoid making mistakes, especially mistakes with consequences that can't
+        be reversed, such as buying non-refundable airline tickets or transferring money to a bank account. When users do make a data entry
+        error, they need to easily find it and fix it.
+    </React.Fragment>
+);
 
 export const ErrorsAssessment = AssessmentBuilder.Manual({
     type: VisualizationType.ErrorsAssessment,
     key,
-    title, gettingStarted,
+    title,
+    gettingStarted,
     guidance,
-    steps: [
-        ErrorIdentification,
-        ErrorSuggestion,
-        ErrorPrevention,
-    ],
+    steps: [ErrorIdentification, ErrorSuggestion, ErrorPrevention],
 });

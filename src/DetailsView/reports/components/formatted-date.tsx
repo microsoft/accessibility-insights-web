@@ -9,27 +9,25 @@ export interface IFormattedDateProps {
 
 export class FormattedDate extends React.Component<IFormattedDateProps> {
     public render() {
-        return (
-            <>
-            {this.formatDateTime(this.props.date)}
-            </>
-        );
+        return <>{this.formatDateTime(this.props.date)}</>;
     }
 
     private formatDateTime(date: Date): string {
-        return date.getFullYear()
-            + '-'
-            + this.padStartWithZero(date.getMonth() + 1, 2)
-            + '-'
-            + this.padStartWithZero(date.getDate(), 2)
-            + ' '
-            + this.getTwelveHour(date.getHours())
-            + ':'
-            + this.padStartWithZero(date.getMinutes(), 2)
-            + ' '
-            + this.getAmPm(date.getHours())
-            + ' '
-            + this.getTimeZone(date);
+        return (
+            date.getFullYear() +
+            '-' +
+            this.padStartWithZero(date.getMonth() + 1, 2) +
+            '-' +
+            this.padStartWithZero(date.getDate(), 2) +
+            ' ' +
+            this.getTwelveHour(date.getHours()) +
+            ':' +
+            this.padStartWithZero(date.getMinutes(), 2) +
+            ' ' +
+            this.getAmPm(date.getHours()) +
+            ' ' +
+            this.getTimeZone(date)
+        );
     }
 
     private getTwelveHour(hour: number) {

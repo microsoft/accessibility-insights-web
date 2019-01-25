@@ -17,9 +17,7 @@ const noObstructionHowToTest: JSX.Element = (
             <li>Determine whether the multimedia content has captions.</li>
             <li>Enable captions, then play the multimedia content.</li>
             <li>Verify that the captions do not obscure or obstruct relevant information in the video.</li>
-            <ManualTestRecordYourResults
-                isMultipleFailurePossible={true}
-            />
+            <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
     </div>
 );
