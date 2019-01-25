@@ -235,7 +235,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-exec');
     grunt.loadNpmTasks('grunt-sass');
-    grunt.loadNpmTasks('grunt-tslint');
 
     grunt.registerTask('copyright-check', 'grunt task to check copyright header', function() {
         copyrightCheckAndAdd(copyrightCheckAndAddConfig);
