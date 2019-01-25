@@ -5,12 +5,6 @@ import * as React from 'react';
 
 import { GenericPanel, GenericPanelProps } from '../../../../../DetailsView/components/generic-panel';
 
-class TestableDetailsViewPanel extends GenericPanel {
-    public getRenderHeader() {
-        return this.renderHeader;
-    }
-}
-
 describe('DetailsViewPanelTest', () => {
     test('constructor', () => {
         const testSubject = new GenericPanel({} as GenericPanelProps);
@@ -32,7 +26,7 @@ describe('DetailsViewPanelTest', () => {
             hasCloseButton: true,
         };
 
-        const testSubject = new TestableDetailsViewPanel(testProps);
+        const testSubject = new GenericPanel(testProps);
 
         const expected = (
             <Panel isLightDismiss={true}
@@ -41,37 +35,15 @@ describe('DetailsViewPanelTest', () => {
                 customWidth={'550px'}
                 className={'generic-panel panel-custom-class'}
                 onDismiss={testProps.onDismiss}
-                onRenderHeader={testSubject.getRenderHeader()}
                 closeButtonAriaLabel={testProps.closeButtonAriaLabel}
                 hasCloseButton={true}
+                headerText={testProps.title}
+                headerClassName="header-text"
             >
                 {childContent}
             </Panel>
         );
 
         expect(testSubject.render()).toEqual(expected);
-    });
-
-    test('renderHeader', () => {
-        const panelTitle = 'panel title';
-        const testProps: GenericPanelProps = {
-            isOpen: true,
-            onDismiss: () => { },
-            title: panelTitle,
-            className: 'panel-custom-class',
-            closeButtonAriaLabel: 'close button label',
-            hasCloseButton: true,
-        };
-
-        const testSubject = new TestableDetailsViewPanel(testProps);
-        const renderHeader = testSubject.getRenderHeader();
-
-        const expected = (
-            <div>
-                <h1 className={'header-text'}>{panelTitle}</h1>
-            </div>
-        );
-
-        expect(renderHeader()).toEqual(expected);
     });
 });
