@@ -10,7 +10,7 @@ describe('axe.commons.text.accessibleText examples', () => {
     let config;
 
     beforeEach(() => {
-        _axe = (Axe);
+        _axe = Axe;
         config = ruleToLinkConfiguration;
     });
 

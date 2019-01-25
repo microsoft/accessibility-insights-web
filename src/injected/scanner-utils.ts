@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 
-import { ScanOptions, scan as scanRunner } from '../scanner/exposed-apis';
-import { RuleDecorations, ScanResults, RuleResult } from '../scanner/iruleresults';
+import { scan as scanRunner, ScanOptions } from '../scanner/exposed-apis';
+import { RuleResult, ScanResults } from '../scanner/iruleresults';
 import { HyperlinkDefinition } from '../views/content/content-page';
 
 declare var axe: any;
@@ -25,13 +25,10 @@ export interface DecoratedAxeNodeResult {
     snippet: string;
 }
 
-export interface IHtmlElementAxeResults extends IBaseHtmlElementResults {
+export interface IHtmlElementAxeResults {
     ruleResults: IDictionaryStringTo<DecoratedAxeNodeResult>;
     isVisible: boolean;
     propertyBag?: any;
-}
-
-export interface IBaseHtmlElementResults {
     target: string[];
 }
 
@@ -46,11 +43,14 @@ export class ScannerUtils {
 
     public scan(options: ScanOptions, callback: (results: ScanResults) => void): void {
         this.scanRunner(
-            options, axeResults => {
+            options,
+            axeResults => {
                 callback(axeResults);
-            }, err => {
+            },
+            err => {
                 console.log(`failed to scan with error - ${err}`);
-            });
+            },
+        );
     }
 
     public getUniqueSelector(element: HTMLElement): string {
@@ -102,34 +102,29 @@ export class ScannerUtils {
         return resultsMap;
     }
 
-    private addPassesToDictionary(dictionary: IDictionaryStringTo<IHtmlElementAxeResults>,
-        axeRules: RuleResult[]): void {
+    private addPassesToDictionary(dictionary: IDictionaryStringTo<IHtmlElementAxeResults>, axeRules: RuleResult[]): void {
         this.addResultstoDictionary(dictionary, axeRules, true);
     }
 
-    private addIncompletesToDictionary(dictionary: IDictionaryStringTo<IHtmlElementAxeResults>,
-        axeRules: RuleResult[]): void {
+    private addIncompletesToDictionary(dictionary: IDictionaryStringTo<IHtmlElementAxeResults>, axeRules: RuleResult[]): void {
         this.addResultstoDictionary(dictionary, axeRules, undefined);
     }
 
-    private addFailuresToDictionary(dictionary: IDictionaryStringTo<IHtmlElementAxeResults>,
-        axeRules: RuleResult[]): void {
+    private addFailuresToDictionary(dictionary: IDictionaryStringTo<IHtmlElementAxeResults>, axeRules: RuleResult[]): void {
         this.addResultstoDictionary(dictionary, axeRules, false);
     }
 
-    private addResultstoDictionary(dictionary: IDictionaryStringTo<IHtmlElementAxeResults>,
-        axeRules: RuleResult[], status: boolean): void {
+    private addResultstoDictionary(dictionary: IDictionaryStringTo<IHtmlElementAxeResults>, axeRules: RuleResult[], status: boolean): void {
         axeRules.forEach(ruleResult => {
             ruleResult.nodes.forEach(node => {
                 const selectorKey = node.target.join(';');
                 node.instanceId = this.generateUID ? this.generateUID() : null;
 
-                const elementResult = dictionary[selectorKey] ||
-                    {
-                        target: node.target,
-                        ruleResults: {},
-                        isVisible: true,
-                    };
+                const elementResult = dictionary[selectorKey] || {
+                    target: node.target,
+                    ruleResults: {},
+                    isVisible: true,
+                };
 
                 dictionary[selectorKey] = elementResult;
                 elementResult.ruleResults[ruleResult.id] = {

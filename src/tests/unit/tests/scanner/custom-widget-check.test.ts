@@ -14,7 +14,7 @@ const fixture = createTestFixture('test-fixture', '');
 
 const context = {
     _data: null,
-    data: function (d: any) {
+    data: function(d: any) {
         // tslint:disable-next-line:no-invalid-this
         this._data = d;
     },
@@ -29,7 +29,9 @@ describe('custom-widget check', () => {
 
 describe('custom-widget check', () => {
     const axeTextFunctionBackup: (node: Element) => string = axe.commons.text.accessibleText;
-    const textFunctionMock = Mock.ofInstance((node: Element, isLabelledByContext: boolean) => { return ''; }, MockBehavior.Strict);
+    const textFunctionMock = Mock.ofInstance((node: Element, isLabelledByContext: boolean) => {
+        return '';
+    }, MockBehavior.Strict);
 
     beforeEach(() => {
         context._data = null;
@@ -49,14 +51,13 @@ describe('custom-widget check', () => {
         axe._tree = axe.utils.getFlattenedTree(document.documentElement);
 
         expect(customWidgetConfiguration.checks[0].evaluate.call(context, node)).toBeTruthy();
-        expect(context._data)
-            .toEqual({
-                'text': '',
-                'role': null,
-                'describedBy': '',
-                'htmlCues': {},
-                'ariaCues': {},
-            });
+        expect(context._data).toEqual({
+            text: '',
+            role: null,
+            describedBy: '',
+            htmlCues: {},
+            ariaCues: {},
+        });
     });
 
     it('returns described-by data', () => {
@@ -70,8 +71,7 @@ describe('custom-widget check', () => {
         axe._tree = axe.utils.getFlattenedTree(document.documentElement);
 
         expect(customWidgetConfiguration.checks[0].evaluate.call(context, node)).toBeTruthy();
-        expect(context._data.describedBy)
-            .toEqual('my description');
+        expect(context._data.describedBy).toEqual('my description');
     });
 
     it('returns text data', () => {
@@ -83,13 +83,10 @@ describe('custom-widget check', () => {
 
         axe.commons.text.accessibleText = textFunctionMock.object;
 
-        textFunctionMock
-            .setup(m => m(node, false))
-            .returns(() => 'my text');
+        textFunctionMock.setup(m => m(node, false)).returns(() => 'my text');
 
         expect(customWidgetConfiguration.checks[0].evaluate.call(context, node)).toBeTruthy();
-        expect(context._data.text)
-            .toEqual('my text');
+        expect(context._data.text).toEqual('my text');
     });
 
     it('returns role data', () => {
@@ -101,8 +98,7 @@ describe('custom-widget check', () => {
         const node = fixture.querySelector('#myElement');
 
         expect(customWidgetConfiguration.checks[0].evaluate.call(context, node)).toBeTruthy();
-        expect(context._data.role)
-            .toEqual('sandwich');
+        expect(context._data.role).toEqual('sandwich');
     });
 });
 
@@ -110,7 +106,30 @@ describe('custom-widget check', () => {
     const selector = customWidgetConfiguration.rule.selector;
     const allRoles = Object.getOwnPropertyNames(axe.commons.aria.lookupTable.role);
     // tslint:disable-next-line:max-line-length
-    const expectedRoles = ['alert', 'alertdialog', 'button', 'checkbox', 'combobox', 'dialog', 'feed', 'grid', 'link', 'listbox', 'menu', 'menubar', 'radiogroup', 'separator', 'slider', 'spinbutton', 'table', 'tablist', 'toolbar', 'tooltip', 'tree', 'treegrid'];
+    const expectedRoles = [
+        'alert',
+        'alertdialog',
+        'button',
+        'checkbox',
+        'combobox',
+        'dialog',
+        'feed',
+        'grid',
+        'link',
+        'listbox',
+        'menu',
+        'menubar',
+        'radiogroup',
+        'separator',
+        'slider',
+        'spinbutton',
+        'table',
+        'tablist',
+        'toolbar',
+        'tooltip',
+        'tree',
+        'treegrid',
+    ];
     const unexpectedRoles = difference(allRoles, expectedRoles);
 
     it('selector exists', () => {
@@ -119,8 +138,11 @@ describe('custom-widget check', () => {
 
     expectedRoles.forEach((role: string) => {
         it('matches ' + role + ' role', () => {
-            fixture.innerHTML = `
-            <div role="` + role + `" id="myElement" />
+            fixture.innerHTML =
+                `
+            <div role="` +
+                role +
+                `" id="myElement" />
             `;
 
             const node = fixture.querySelector('#myElement');
@@ -131,8 +153,11 @@ describe('custom-widget check', () => {
 
     unexpectedRoles.forEach((role: string) => {
         it('does not match ' + role + ' role', () => {
-            fixture.innerHTML = `
-            <div role="` + role + `" id="myElement" />
+            fixture.innerHTML =
+                `
+            <div role="` +
+                role +
+                `" id="myElement" />
             `;
 
             const node = fixture.querySelector('#myElement');
@@ -158,65 +183,73 @@ describe('custom-widget check', () => {
 
     expectedARIAAttributes.forEach((attribute: string) => {
         it(`expected '` + attribute + `'in ariaCues`, () => {
-            fixture.innerHTML = `
+            fixture.innerHTML =
+                `
         <div id="myElement"
-        ` + attribute + `="value" />
+        ` +
+                attribute +
+                `="value" />
         `;
 
             const node = fixture.querySelector('#myElement');
 
             customWidgetConfiguration.checks[0].evaluate.call(context, node);
 
-            expect(context._data.ariaCues[attribute])
-                .toEqual('value');
+            expect(context._data.ariaCues[attribute]).toEqual('value');
         });
     }); // for expected ARIA attributes
 
     unexpectedARIAAttributes.forEach((attribute: string) => {
         it(`did not expect '` + attribute + `'in ariaCues`, () => {
-            fixture.innerHTML = `
+            fixture.innerHTML =
+                `
         <div id="myElement"
-        ` + attribute + `="value" />
+        ` +
+                attribute +
+                `="value" />
         `;
 
             const node = fixture.querySelector('#myElement');
 
             customWidgetConfiguration.checks[0].evaluate.call(context, node);
 
-            expect(context._data.ariaCues[attribute])
-                .toBeUndefined();
+            expect(context._data.ariaCues[attribute]).toBeUndefined();
         });
     }); // for unexpected ARIA attributes
 
     expectedHTMLAttributes.forEach((attribute: string) => {
         it(`expected '` + attribute + `'in htmlCues`, () => {
-            fixture.innerHTML = `
+            fixture.innerHTML =
+                `
         <div id="myElement"
-        ` + attribute + `="value" />
+        ` +
+                attribute +
+                `="value" />
         `;
 
             const node = fixture.querySelector('#myElement');
 
             customWidgetConfiguration.checks[0].evaluate.call(context, node);
 
-            expect(context._data.htmlCues[attribute])
-                .toEqual('value');
+            expect(context._data.htmlCues[attribute]).toEqual('value');
         });
     }); // for expected HTML attributes
 
     unexpectedHTMLAttributes.forEach((attribute: string) => {
         it(`did not expect '` + attribute + `'in htmlCues`, () => {
-            fixture.innerHTML = `
+            fixture.innerHTML =
+                `
         <div id="myElement"
-        ` + attribute + `="value" />
+        ` +
+                attribute +
+                `="value" />
         `;
 
             const node = fixture.querySelector('#myElement');
 
             customWidgetConfiguration.checks[0].evaluate.call(context, node);
 
-            expect(context._data.htmlCues[attribute])
-                .toBeUndefined();
+            expect(context._data.htmlCues[attribute]).toBeUndefined();
         });
     }); // for unexpected HTML attributes
 });

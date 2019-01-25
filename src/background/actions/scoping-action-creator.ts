@@ -17,7 +17,8 @@ export class ScopingActionCreator {
         scopingActions: ScopingActions,
         telemetryEventHandler: TelemetryEventHandler,
         registerTypeToPayloadCallback: IRegisterTypeToPayloadCallback,
-        detailsViewController: DetailsViewController) {
+        detailsViewController: DetailsViewController,
+    ) {
         this.scopingActions = scopingActions;
         this.telemetryEventHandler = telemetryEventHandler;
         this.detailsViewController = detailsViewController;
@@ -25,10 +26,8 @@ export class ScopingActionCreator {
     }
 
     public registerCallbacks(): void {
-        this.registerTypeToPayloadCallback(
-            Messages.Scoping.OpenPanel, (payload, tabId) => this.onOpenScopingPanel(payload, tabId));
-        this.registerTypeToPayloadCallback(
-            Messages.Scoping.ClosePanel, (payload, tabId) => this.onCloseScopingPanel(payload, tabId));
+        this.registerTypeToPayloadCallback(Messages.Scoping.OpenPanel, (payload, tabId) => this.onOpenScopingPanel(payload, tabId));
+        this.registerTypeToPayloadCallback(Messages.Scoping.ClosePanel, (payload, tabId) => this.onCloseScopingPanel(payload, tabId));
     }
 
     private onOpenScopingPanel(payload: BaseActionPayload, tabId: number): void {

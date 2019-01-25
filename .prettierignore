@@ -12,3 +12,7 @@ package-lock.json
 **/*.snap
 **/*.png
 **/*.gitignore
+**/*.gitattributes
+
+/**/*.tsx
+

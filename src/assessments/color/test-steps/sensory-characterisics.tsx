@@ -8,7 +8,7 @@ import ManualTestRecordYourResults from '../../common/manual-test-record-your-re
 import { TestStep } from '../../types/test-step';
 import { ColorSensoryTestStep } from './test-steps';
 
-export const sensoryCharacterisicsDescription: JSX.Element = <span>Instructions must not rely solely on color or other sensory characteristics.</span>;
+const sensoryCharacterisicsDescription: JSX.Element = <span>Instructions must not rely solely on color or other sensory characteristics.</span>;
 
 const sensoryCharacterisicsHowToTest: JSX.Element = (
     <div>

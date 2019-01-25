@@ -38,11 +38,7 @@ export class MainWindowContext {
         devToolActionMessageCreator: DevToolActionMessageCreator,
         targetPageActionMessageCreator: TargetPageActionMessageCreator,
     ): void {
-        window.mainWindowContext = new MainWindowContext(
-            devToolStore,
-            devToolActionMessageCreator,
-            targetPageActionMessageCreator,
-        );
+        window.mainWindowContext = new MainWindowContext(devToolStore, devToolActionMessageCreator, targetPageActionMessageCreator);
     }
 
     public static get(): MainWindowContext {

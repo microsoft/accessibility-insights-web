@@ -74,9 +74,7 @@ describe('FeatureFlagsControllerTest', () => {
             tabId: null,
         };
 
-        interpreterMock
-            .setup(i => i.interpret(It.isObjectWith(message)))
-            .verifiable();
+        interpreterMock.setup(i => i.interpret(It.isObjectWith(message))).verifiable();
 
         testObject = new FeatureFlagsController(featureFlagStoreMock.object, interpreterMock.object);
         testObject.disableFeature(feature);
@@ -95,9 +93,7 @@ describe('FeatureFlagsControllerTest', () => {
             tabId: null,
         };
 
-        interpreterMock
-            .setup(i => i.interpret(It.isObjectWith(message)))
-            .verifiable();
+        interpreterMock.setup(i => i.interpret(It.isObjectWith(message))).verifiable();
 
         testObject = new FeatureFlagsController(featureFlagStoreMock.object, interpreterMock.object);
         testObject.enableFeature(feature);
@@ -109,9 +105,7 @@ describe('FeatureFlagsControllerTest', () => {
             type: Messages.FeatureFlags.ResetFeatureFlag,
             tabId: null,
         };
-        interpreterMock
-            .setup(i => i.interpret(It.isObjectWith(message)))
-            .verifiable();
+        interpreterMock.setup(i => i.interpret(It.isObjectWith(message))).verifiable();
 
         testObject = new FeatureFlagsController(featureFlagStoreMock.object, interpreterMock.object);
         testObject.resetFeatureFlags();

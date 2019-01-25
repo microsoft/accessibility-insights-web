@@ -34,10 +34,12 @@ describe('CheckMessageTransformer', () => {
 
         it('result is pass with pass message', () => {
             const testSubject = new CheckMessageTransformer();
-            const checkConfigurations: ICheckConfiguration[] = [{
-                id: 'id1',
-                passMessage: () => 'fake message',
-            } as ICheckConfiguration];
+            const checkConfigurations: ICheckConfiguration[] = [
+                {
+                    id: 'id1',
+                    passMessage: () => 'fake message',
+                } as ICheckConfiguration,
+            ];
             const checksStub = [getCheckStub('id1', true)];
 
             const expectedChecks = [getCheckStub('id1', true)];
@@ -50,9 +52,11 @@ describe('CheckMessageTransformer', () => {
 
         it('result is pass but no pass message', () => {
             const testSubject = new CheckMessageTransformer();
-            const checkConfigurations: ICheckConfiguration[] = [{
-                id: 'id1',
-            } as ICheckConfiguration];
+            const checkConfigurations: ICheckConfiguration[] = [
+                {
+                    id: 'id1',
+                } as ICheckConfiguration,
+            ];
             const checksStub = [getCheckStub('id1', true)];
             const expectedChecks = [getCheckStub('id1', true)];
 
@@ -63,10 +67,12 @@ describe('CheckMessageTransformer', () => {
 
         it('result is pass with fail message', () => {
             const testSubject = new CheckMessageTransformer();
-            const checkConfigurations: ICheckConfiguration[] = [{
-                id: 'id1',
-                failMessage: () => 'fake message',
-            } as ICheckConfiguration];
+            const checkConfigurations: ICheckConfiguration[] = [
+                {
+                    id: 'id1',
+                    failMessage: () => 'fake message',
+                } as ICheckConfiguration,
+            ];
             const checksStub = [getCheckStub('id1')];
 
             const expectedChecks = [getCheckStub('id1')];
@@ -79,9 +85,11 @@ describe('CheckMessageTransformer', () => {
 
         it('result is pass but no fail message', () => {
             const testSubject = new CheckMessageTransformer();
-            const checkConfigurations: ICheckConfiguration[] = [{
-                id: 'id1',
-            } as ICheckConfiguration];
+            const checkConfigurations: ICheckConfiguration[] = [
+                {
+                    id: 'id1',
+                } as ICheckConfiguration,
+            ];
             const checksStub = [getCheckStub('id1')];
             const expectedChecks = [getCheckStub('id1')];
 

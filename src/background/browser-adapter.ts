@@ -1,17 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
-
-import { ClientChromeAdapter, ClientBrowserAdapter } from '../common/client-browser-adapter';
-
-export interface TabActiveInfo {
-    tabId: number;
-}
-
-export interface TabChangeInfo {
-    status: string;
-    url: string;
-}
+import { ClientBrowserAdapter, ClientChromeAdapter } from '../common/client-browser-adapter';
 
 export interface NotificationOptions {
     message: string;
@@ -40,7 +29,7 @@ export interface BrowserAdapter extends ClientBrowserAdapter {
     sendMessageToFrames(message: any);
     sendMessageToAllFramesAndTabs(message: any): void;
     setUserData?(items: Object, callback?: () => void);
-    getUserData?(keys: string | string[] | Object, callback: (items: { [key: string]: any; }) => void);
+    getUserData?(keys: string | string[] | Object, callback: (items: { [key: string]: any }) => void);
     removeUserData?(key: string);
     injectJs(tabId, file: string, callback: Function);
     injectCss(tabId, file: string, callback: Function);
@@ -55,7 +44,6 @@ export interface BrowserAdapter extends ClientBrowserAdapter {
 }
 
 export class ChromeAdapter extends ClientChromeAdapter implements BrowserAdapter {
-
     public getAllWindows(getInfo: chrome.windows.GetInfo, callback: (chromeWindows: chrome.windows.Window[]) => void): void {
         chrome.windows.getAll(getInfo, callback);
     }
@@ -101,33 +89,44 @@ export class ChromeAdapter extends ClientChromeAdapter implements BrowserAdapter
     }
 
     public injectJs(tabId, file: string, callback?: (result: any[]) => void) {
-        chrome.tabs.executeScript(tabId, {
-            allFrames: true,
-            file: file,
-        }, callback);
+        chrome.tabs.executeScript(
+            tabId,
+            {
+                allFrames: true,
+                file: file,
+            },
+            callback,
+        );
     }
     public injectCss(tabId, file: string, callback?: Function) {
-        chrome.tabs.insertCSS(tabId, {
-            allFrames: true,
-            file: file,
-        }, callback);
+        chrome.tabs.insertCSS(
+            tabId,
+            {
+                allFrames: true,
+                file: file,
+            },
+            callback,
+        );
     }
 
     public createTab(url: string, callback?: (tab: chrome.tabs.Tab) => void) {
-        chrome.tabs.create({
-            url: url,
-            active: true,
-            pinned: false,
-        },
+        chrome.tabs.create(
+            {
+                url: url,
+                active: true,
+                pinned: false,
+            },
             callback,
         );
     }
 
     public createTabInNewWindow(url: string, callback?: (tab: chrome.tabs.Tab) => void) {
-        chrome.windows.create({
-            url: url,
-            focused: true,
-        }, window => {
+        chrome.windows.create(
+            {
+                url: url,
+                focused: true,
+            },
+            window => {
                 callback(window.tabs[0]);
             },
         );
@@ -139,24 +138,28 @@ export class ChromeAdapter extends ClientChromeAdapter implements BrowserAdapter
         const left = Math.floor(screen.width ? (screen.width - width) / 2 : 0);
         const top = Math.floor(screen.height ? (screen.height - height) / 2 : 0);
 
-        chrome.windows.create({
-            url: url,
-            left: left,
-            top: top,
-            width: width,
-            height: height,
-            type: 'popup',
-        }, window => {
-            callback(window);
-        });
+        chrome.windows.create(
+            {
+                url: url,
+                left: left,
+                top: top,
+                width: width,
+                height: height,
+                type: 'popup',
+            },
+            window => {
+                callback(window);
+            },
+        );
     }
 
     public createInactiveTab(url: string, callback: (tab: chrome.tabs.Tab) => void) {
-        chrome.tabs.create({
-            url: url,
-            active: false,
-            pinned: false,
-        },
+        chrome.tabs.create(
+            {
+                url: url,
+                active: false,
+                pinned: false,
+            },
             callback,
         );
     }
@@ -198,7 +201,7 @@ export class ChromeAdapter extends ClientChromeAdapter implements BrowserAdapter
         chrome.storage.local.set(items, callback);
     }
 
-    public getUserData(keys: string | string[] | Object, callback: (items: { [key: string]: any; }) => void) {
+    public getUserData(keys: string | string[] | Object, callback: (items: { [key: string]: any }) => void) {
         chrome.storage.local.get(keys, callback);
     }
 

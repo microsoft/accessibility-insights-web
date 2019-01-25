@@ -27,11 +27,7 @@ export interface ScanOptions {
     exclude?: string[][];
 }
 
-export let scan = (
-    options: ScanOptions,
-    successCallback: (results: ScanResults) => void,
-    errorCallback: (results: Error) => void,
-) => {
+export let scan = (options: ScanOptions, successCallback: (results: ScanResults) => void, errorCallback: (results: Error) => void) => {
     options = options || {};
 
     const messageDecorator = new MessageDecorator(configuration, new CheckMessageTransformer());
@@ -39,17 +35,11 @@ export let scan = (
     const scanParameterGenerator = new ScanParamaterGenerator(ruleSifter);
     const documentUtils: DocumentUtils = new DocumentUtils(document);
     const helpUrlGetter = new HelpUrlGetter(configuration);
-    const resultDecorator = new ResultDecorator(
-        documentUtils,
-        messageDecorator,
-        (ruleId, axeHelpUrl) => helpUrlGetter.getlHelpUrl(ruleId, axeHelpUrl),
+    const resultDecorator = new ResultDecorator(documentUtils, messageDecorator, (ruleId, axeHelpUrl) =>
+        helpUrlGetter.getlHelpUrl(ruleId, axeHelpUrl),
     );
     const launcher = new Launcher(axe, scanParameterGenerator, document, options);
-    const axeResponseHandler = new AxeResponseHandler(
-        successCallback,
-        errorCallback,
-        resultDecorator,
-    );
+    const axeResponseHandler = new AxeResponseHandler(successCallback, errorCallback, resultDecorator);
 
     resultDecorator.setRuleToLinksConfiguration(ruleToLinkConfiguration);
     launcher.runScan(axeResponseHandler);

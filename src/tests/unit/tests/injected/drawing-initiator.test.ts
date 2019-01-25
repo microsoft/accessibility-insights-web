@@ -9,8 +9,8 @@ import { DrawingInitiator } from '../../../../injected/drawing-initiator';
 import { IAssessmentVisualizationInstance } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { IPropertyBags, IVisualizationInstanceProcessorCallback } from '../../../../injected/visualization-instance-processor';
 
-export class DrawingControllerStub extends DrawingController {
-    public processRequest(message: VisualizationWindowMessage) { }
+class DrawingControllerStub extends DrawingController {
+    public processRequest(message: VisualizationWindowMessage) {}
 }
 
 describe('DrawingInitiatorTest', () => {
@@ -62,9 +62,7 @@ describe('DrawingInitiatorTest', () => {
                     isFailure: false,
                     isVisualizationEnabled: false,
                     html: 'test',
-                    target: [
-                        'element1',
-                    ],
+                    target: ['element1'],
                     targetIndex: 0,
                     ruleResults: null,
                     identifier: 'some id',
@@ -74,18 +72,18 @@ describe('DrawingInitiatorTest', () => {
                     isFailure: false,
                     isVisualizationEnabled: false,
                     html: 'test',
-                    target: [
-                        'element2',
-                    ],
+                    target: ['element2'],
                     targetIndex: 0,
                     ruleResults: null,
                     identifier: 'some id',
-                }],
+                },
+            ],
             featureFlagStoreData: getDefaultFeatureFlagValues(),
             configId: configId,
         };
         setupProcessorMock();
-        drawingControllerMock.setup(x => x.processRequest(It.isAny()))
+        drawingControllerMock
+            .setup(x => x.processRequest(It.isAny()))
             .callback(message => {
                 expect(message).toEqual(expectedvisualizationMessage);
             })
@@ -106,7 +104,8 @@ describe('DrawingInitiatorTest', () => {
             configId: configId,
         };
 
-        drawingControllerMock.setup(x => x.processRequest(It.isAny()))
+        drawingControllerMock
+            .setup(x => x.processRequest(It.isAny()))
             .callback(message => {
                 expect(message).toEqual(expectedvisualizationMessage);
             })
@@ -117,15 +116,12 @@ describe('DrawingInitiatorTest', () => {
         verifyAll();
     });
 
-
     test('enableVisualiztion: selectorMap is null', () => {
         const type = -1 as VisualizationType;
         const step = null;
-        const featureFlagStoreData = {
-        };
+        const featureFlagStoreData = {};
 
-        drawingControllerMock.setup(x => x.processRequest(It.isAny()))
-            .verifiable(Times.never());
+        drawingControllerMock.setup(x => x.processRequest(It.isAny())).verifiable(Times.never());
 
         testObject.enableVisualization(type, featureFlagStoreData, null, step, processorMock.object);
 
@@ -144,7 +140,8 @@ describe('DrawingInitiatorTest', () => {
             configId: configId,
         };
         setupProcessorMock();
-        drawingControllerMock.setup(x => x.processRequest(It.isAny()))
+        drawingControllerMock
+            .setup(x => x.processRequest(It.isAny()))
             .callback(message => {
                 expect(message).toEqual(expectedvisualizationMessage);
             })

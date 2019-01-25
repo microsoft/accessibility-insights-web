@@ -8,7 +8,7 @@ import { IAssessment } from '../../../assessments/types/iassessment';
 import { RequirementComparer } from '../../../common/assessment/requirement-comparer';
 import { IAssesssmentVisualizationConfiguration } from '../../../common/configs/visualization-configuration-factory';
 import { FeatureFlags } from '../../../common/feature-flags';
-import { ITestStepData, ManualTestStatus } from '../../../common/types/manual-test-status';
+import { ManualTestStatus } from '../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { TestStepLink } from '../../../DetailsView/components/test-step-link';
 import { ContentPage } from '../../../views/content/content-page';
@@ -20,16 +20,6 @@ const content = {
 };
 
 export const contentProvider = ContentPage.provider(content);
-
-export function createTestStepStatuses(initialData: ITestStepData) {
-    return {
-        'assessment-1': {
-            'assessment-1-step-1': initialData,
-            'assessment-1-step-2': initialData,
-            'assessment-1-step-3': initialData,
-        },
-    };
-}
 
 const assessmentWithColumns: IAssessment = {
     key: 'assessment-1',

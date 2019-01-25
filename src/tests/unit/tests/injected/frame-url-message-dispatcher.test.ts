@@ -12,23 +12,19 @@ describe('FrameUrlMessageDispatcherTest', () => {
         expect(new FrameUrlMessageDispatcher(null, null, null)).toBeDefined();
     });
 
-
     test('setTargetFrameUrl', () => {
         const devToolActionMessageCreatorMock = Mock.ofType(DevToolActionMessageCreator, MockBehavior.Strict);
         const targetFrameUrlMessage: IFrameUrlMessage = {
             frameUrl: 'testUrl',
         };
 
-        devToolActionMessageCreatorMock
-            .setup(acm => acm.setInspectFrameUrl('testUrl'))
-            .verifiable();
+        devToolActionMessageCreatorMock.setup(acm => acm.setInspectFrameUrl('testUrl')).verifiable();
 
         const testSubject = new FrameUrlMessageDispatcher(devToolActionMessageCreatorMock.object, null, null);
         testSubject.setTargetFrameUrl(targetFrameUrlMessage);
 
         devToolActionMessageCreatorMock.verifyAll();
     });
-
 
     test('initialize', () => {
         const devToolActionMessageCreatorMock = Mock.ofType(DevToolActionMessageCreator, MockBehavior.Strict);
@@ -41,9 +37,7 @@ describe('FrameUrlMessageDispatcherTest', () => {
             frameCommunicatorMock.object,
         );
 
-        frameCommunicatorMock
-            .setup(fcm => fcm.subscribe(FrameUrlFinder.SetFrameUrlCommand, testSubject.setTargetFrameUrl))
-            .verifiable();
+        frameCommunicatorMock.setup(fcm => fcm.subscribe(FrameUrlFinder.SetFrameUrlCommand, testSubject.setTargetFrameUrl)).verifiable();
 
         testSubject.initialize();
 

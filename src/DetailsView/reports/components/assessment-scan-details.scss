@@ -9,11 +9,13 @@
     margin: 0px 0px 40px 0px;
 
     h3 {
-        font: 17px 'Segoe UI Semibold';
+        font-size: 17px;
+        font-family: Segoe UI Semibold;
     }
 
     td {
-        font: 12px 'Segoe UI';
+        font-size: 12px;
+        font-family: Segoe UI;
         padding-top: 1px;
         padding-bottom: 16px;
 
@@ -29,6 +31,4 @@
             word-break: break-all;
         }
     }
-
-    ;
 }

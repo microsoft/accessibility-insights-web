@@ -6,20 +6,23 @@ import { NamedSFC } from '../../../common/react/named-sfc';
 import { ManualTestStatus } from '../../../common/types/manual-test-status';
 import { IInstanceReportModel, IRequirementReportModel } from '../assessment-report-model';
 import { AssessmentReportInstanceList } from './assessment-report-instance-list';
-import { AssessmentReportStepHeader } from './assessment-report-step-header';
+import { AssessmentReportStepHeader, AssessmentReportStepHeaderDeps } from './assessment-report-step-header';
 
-export interface AssessmentReportStepProps {
+export type AssessmentReportStepListDeps = AssessmentReportStepHeaderDeps;
+
+export interface AssessmentReportStepListProps {
+    deps: AssessmentReportStepListDeps;
     status: ManualTestStatus;
     steps: IRequirementReportModel[];
 }
 
-export const AssessmentReportStepList = NamedSFC<AssessmentReportStepProps>('AssessmentReportStepList', props => {
+export const AssessmentReportStepList = NamedSFC<AssessmentReportStepListProps>('AssessmentReportStepList', props => {
 
-    const { status, steps } = props;
+    const { deps, status, steps } = props;
 
     return <div>{renderSteps()}</div>;
 
-    function renderSteps() {
+    function renderSteps(): JSX.Element[] {
         return steps.map(({ key, header, instances, defaultMessageComponent, showPassingInstances }) => {
 
             const showInstances = status !== ManualTestStatus.PASS || showPassingInstances;
@@ -27,6 +30,7 @@ export const AssessmentReportStepList = NamedSFC<AssessmentReportStepProps>('Ass
             return (
                 <div className="step-details" key={key}>
                     <AssessmentReportStepHeader
+                        deps={deps}
                         header={header}
                         instanceCount={instances.length}
                         status={status}
@@ -38,7 +42,7 @@ export const AssessmentReportStepList = NamedSFC<AssessmentReportStepProps>('Ass
         });
     }
 
-    function renderStepInstances(instances: IInstanceReportModel[]) {
+    function renderStepInstances(instances: IInstanceReportModel[]): JSX.Element {
         if (status === ManualTestStatus.UNKNOWN) {
             return;
         }

@@ -47,7 +47,6 @@ export class VisualizationScanResultStore extends BaseStore<IVisualizationScanRe
     }
 
     protected addActionListeners(): void {
-
         this.visualizationScanResultsActions.scanCompleted.addListener(this.onScanCompleted);
         this.visualizationScanResultsActions.getCurrentState.addListener(this.onGetCurrentState);
         this.visualizationScanResultsActions.updateIssuesSelectedTargets.addListener(this.onUpdateIssuesSelectedTargets);
@@ -169,5 +168,4 @@ export class VisualizationScanResultStore extends BaseStore<IVisualizationScanRe
 
         return selectorMap;
     }
-
 }

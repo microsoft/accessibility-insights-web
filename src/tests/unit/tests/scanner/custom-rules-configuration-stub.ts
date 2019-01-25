@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { RuleConfiguration } from '../../../../scanner/iruleresults';
 
-export const passMessageStub = 'pass message';
-export const failMessageStub = 'fail message';
+const passMessageStub = 'pass message';
+const failMessageStub = 'fail message';
 const fakeRuleConfigurationA: RuleConfiguration = {
     checks: [
         {
@@ -22,6 +22,4 @@ const fakeRuleConfigurationA: RuleConfiguration = {
     },
 };
 
-export const CustomRulesConfigurationStub: RuleConfiguration[] = [
-    fakeRuleConfigurationA,
-];
+export const CustomRulesConfigurationStub: RuleConfiguration[] = [fakeRuleConfigurationA];

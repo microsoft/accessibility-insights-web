@@ -51,11 +51,10 @@ describe('DrawerProviderTests', () => {
         'createCustomWidgetsDrawer',
     ];
 
-    test.each(drawerYieldingFunctionNames)
-        ('%s', funcName => {
-            const drawer = testObject[funcName]();
-            expect(drawer).toBeInstanceOf(Drawer);
-        });
+    test.each(drawerYieldingFunctionNames)('%s', funcName => {
+        const drawer = testObject[funcName]();
+        expect(drawer).toBeInstanceOf(Drawer);
+    });
 
     test('getColorDrawer', () => {
         const drawer = testObject.createColorDrawer();

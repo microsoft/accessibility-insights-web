@@ -27,14 +27,12 @@
     "psi-header.templates": [
         {
             "language": "*",
-            "template": [
-                "Copyright (c) Microsoft Corporation. All rights reserved.",
-                "Licensed under the MIT License."
-            ]
+            "template": ["Copyright (c) Microsoft Corporation. All rights reserved.", "Licensed under the MIT License."]
         }
     ],
     "editor.tabSize": 4,
     "html.format.endWithNewline": true,
     "files.insertFinalNewline": true,
-    "prettier.requireConfig": true
+    "prettier.requireConfig": true,
+    "editor.formatOnSave": true
 }

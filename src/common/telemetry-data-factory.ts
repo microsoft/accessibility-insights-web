@@ -31,7 +31,6 @@ import { DetailsViewPivotType } from './types/details-view-pivot-type';
 type SupportedMouseEvent = React.SyntheticEvent<MouseEvent> | React.MouseEvent<any> | MouseEvent;
 
 export class TelemetryDataFactory {
-
     public forVisualizationToggleByCommand(enabled: boolean): ToggleTelemetryData {
         return {
             triggeredBy: 'shortcut',
@@ -47,7 +46,12 @@ export class TelemetryDataFactory {
         };
     }
 
-    public forFeatureFlagToggle(event: SupportedMouseEvent, enabled: boolean, source: TelemetryEventSource, featureFlagId: string): FeatureFlagToggleTelemetryData {
+    public forFeatureFlagToggle(
+        event: SupportedMouseEvent,
+        enabled: boolean,
+        source: TelemetryEventSource,
+        featureFlagId: string,
+    ): FeatureFlagToggleTelemetryData {
         return {
             ...this.withTriggeredByAndSource(event, source),
             enabled,
@@ -55,11 +59,16 @@ export class TelemetryDataFactory {
         };
     }
 
-    public forExportedHtml(exportResultsType: ExportResultType, html: string, event: SupportedMouseEvent, source: TelemetryEventSource): ExportResultsTelemetryData {
+    public forExportedHtml(
+        exportResultsType: ExportResultType,
+        html: string,
+        event: SupportedMouseEvent,
+        source: TelemetryEventSource,
+    ): ExportResultsTelemetryData {
         return {
             ...this.withTriggeredByAndSource(event, source),
             exportResultsType,
-            exportResultsData : html.length,
+            exportResultsData: html.length,
         };
     }
 
@@ -92,7 +101,12 @@ export class TelemetryDataFactory {
         };
     }
 
-    public forRequirementStatus(type: VisualizationType, step: string, passed: boolean, numInstances: number): RequirementStatusTelemetryData {
+    public forRequirementStatus(
+        type: VisualizationType,
+        step: string,
+        passed: boolean,
+        numInstances: number,
+    ): RequirementStatusTelemetryData {
         return {
             triggeredBy: TriggeredByNotApplicable,
             source: TelemetryEventSource.DetailsView,
@@ -103,7 +117,11 @@ export class TelemetryDataFactory {
         };
     }
 
-    public forOpenDetailsView(event: SupportedMouseEvent, type: VisualizationType, source: TelemetryEventSource): DetailsViewOpenTelemetryData {
+    public forOpenDetailsView(
+        event: SupportedMouseEvent,
+        type: VisualizationType,
+        source: TelemetryEventSource,
+    ): DetailsViewOpenTelemetryData {
         return {
             ...this.withTriggeredByAndSource(event, source),
             detailsView: VisualizationType[type],
@@ -193,14 +211,20 @@ export class TelemetryDataFactory {
         };
     }
 
-    public forAssessmentRequirementScan: ForRuleAnalyzerScanCallback = (analyzerResult, scanDuration, elementsScanned, testName, requirementName) => {
+    public forAssessmentRequirementScan: ForRuleAnalyzerScanCallback = (
+        analyzerResult,
+        scanDuration,
+        elementsScanned,
+        testName,
+        requirementName,
+    ) => {
         const telemetry: AssessmentRequirementScanTelemetryData = {
             ...this.forTestScan(analyzerResult, scanDuration, elementsScanned, testName),
             requirementName,
         };
 
         return telemetry;
-    }
+    };
 
     public forTestScan: ForRuleAnalyzerScanCallback = (analyzerResult, scanDuration, elementsScanned, testName) => {
         const telemetry: RuleAnalyzerScanTelemetryData = {
@@ -212,7 +236,7 @@ export class TelemetryDataFactory {
         };
 
         return telemetry;
-    }
+    };
 
     public forIssuesAnalyzerScan: ForIssuesAnalyzerScanCallback = (analyzerResult, scanDuration, elementsScanned, testName) => {
         const passedRuleResults: IDictionaryStringTo<number> = this.generateTelemetryRuleResult(analyzerResult.originalResult.passes);
@@ -224,7 +248,7 @@ export class TelemetryDataFactory {
         };
 
         return telemetry;
-    }
+    };
 
     private getTriggeredBy(event: SupportedMouseEvent): string {
         // MouseEvent => event.detail === 0 ? "keypress" : "mouseclick"

@@ -60,6 +60,7 @@ describe('DetailsViewCommandBar', () => {
     function getProps(): IDetailsViewCommandBarProps {
         const deps: DetailsViewCommandBarDeps = {
             detailsViewActionMessageCreator: actionMessageCreatorMock.object,
+            outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
         };
 
         return {
@@ -113,9 +114,11 @@ describe('DetailsViewCommandBar', () => {
         const description = '';
         const testHtmlWithPlaceholder = `<html><body>export-button-click ${descriptionPlaceholder}</body></html>`;
         const testHtmlWithDescription = `<html><body>export-button-click ${description}</body></html>`;
+        const deps = getProps().deps;
 
         reportGeneratorMock
             .setup(rb => rb.generateAssessmentHtml(
+                deps,
                 assessmentStoreData,
                 assessmentsProviderMock.object,
                 featureFlagStoreData,

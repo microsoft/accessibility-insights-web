@@ -22,7 +22,8 @@ export class InspectHandler {
             if (state && state.inspectElement && (state.inspectElement.length === 1 || state.frameUrl)) {
                 this._devToolsChromeAdapter.executeScriptInInspectedWindow(
                     "inspect(document.querySelector('" + state.inspectElement[state.inspectElement.length - 1] + "'))",
-                    state.frameUrl);
+                    state.frameUrl,
+                );
             }
         });
 

@@ -8,13 +8,12 @@ var testServerConfig = require('./test-server-config');
 let server = null;
 
 module.exports = {
-    startServer: function () {
+    startServer: function() {
         var app = express();
         app.use(serveStatic(path.join(__dirname, '../test-resources')));
         server = app.listen(testServerConfig.port);
     },
-    stopServer: function () {
+    stopServer: function() {
         server.close();
-    }
-
+    },
 };

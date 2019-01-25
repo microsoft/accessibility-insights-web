@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-const path = require('path')
+const path = require('path');
 const webpack = require('webpack');
 //const ExtraWatchWebpackPlugin = require('extra-watch-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
@@ -9,14 +9,9 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const commonPlugins = [
     new webpack.optimize.LimitChunkCountPlugin({
         maxChunks: 1, // Must be greater than or equal to one
-        minChunkSize: 1000000
+        minChunkSize: 1000000,
     }),
-    // This runs typechecking and tslint against all files that tsconfig.json specifies,
-    // even those which are not dependencies of any entry points, eg, tests
-    new ForkTsCheckerWebpackPlugin({
-        tsconfig: './tsconfig.json',
-        tslint: './tslint.build-enforced.json'
-    })
+    new ForkTsCheckerWebpackPlugin(),
 ];
 
 const commonEntryFiles = {
@@ -28,34 +23,35 @@ const commonEntryFiles = {
     background: [
         'script-loader!' + path.resolve(__dirname, 'node_modules/jquery/dist/jquery.min.js'),
         path.resolve(__dirname, 'src/background/background-init.ts'),
-    ]
-}
+    ],
+};
 
 const commonConfig = {
     entry: commonEntryFiles,
     module: {
-        rules: [{
-            test: /\.tsx?$/,
-            use: [{
-                loader: 'ts-loader',
-                options: {
-                    // This disables typechecking during the webpack pipeline; we use ForkTsCheckerWebpackPlugin instead
-                    transpileOnly: true,
-                    experimentalWatchApi: true
-                }
-            }],
-            exclude: ['/node_modules/']
-        }]
+        rules: [
+            {
+                test: /\.tsx?$/,
+                use: [
+                    {
+                        loader: 'ts-loader',
+                        options: {
+                            transpileOnly: true,
+                            experimentalWatchApi: true,
+                        },
+                    },
+                ],
+                exclude: ['/node_modules/'],
+            },
+        ],
     },
     resolve: {
-        modules: [
-            path.resolve(__dirname, 'node_modules'),
-        ],
-        extensions: ['.tsx', '.ts', '.js']
+        modules: [path.resolve(__dirname, 'node_modules')],
+        extensions: ['.tsx', '.ts', '.js'],
     },
     plugins: commonPlugins,
     node: {
-        setImmediate: false
+        setImmediate: false,
     }
 };
 
@@ -78,7 +74,7 @@ const devConfig = {
     },
     optimization: {
         splitChunks: false,
-    }
+    },
 };
 
 const prodConfig = {
@@ -102,10 +98,10 @@ const prodConfig = {
                     ascii_only: true,
                     comments: /^\**!|@preserve|@license|@cc_on/i,
                     beautify: false,
-                }
-            }
-        })]
-    }
+                },
+            },
+        })],
+    },
 };
 
 // Use "webpack --config-name dev" or "webpack --config-name prod" to use just one or the other

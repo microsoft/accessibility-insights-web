@@ -5,7 +5,7 @@ import * as errorIdentification from './error-identification';
 import * as errorSuggestion from './error-suggestion';
 import * as errorPrevention from './error-prevention';
 
-export const errors  = {
+export const errors = {
     guidance,
     errorIdentification,
     errorSuggestion,

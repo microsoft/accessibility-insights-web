@@ -61,8 +61,7 @@ export class DrawingController {
     }
 
     public initialize() {
-        this._frameCommunicator.subscribe(DrawingController.triggerVisualizationCommand,
-            this.onTriggerVisualization);
+        this._frameCommunicator.subscribe(DrawingController.triggerVisualizationCommand, this.onTriggerVisualization);
         this.setupDrawers();
     }
 
@@ -87,17 +86,22 @@ export class DrawingController {
     public processRequest(message: VisualizationWindowMessage) {
         this._featureFlagStoreData = message.featureFlagStoreData;
         if (message.isEnabled) {
-            const elementResultsByFrames = message.elementResults ?
-                this._axeResultsHelper.splitResultsByFrame(message.elementResults) : null;
+            const elementResultsByFrames = message.elementResults
+                ? this._axeResultsHelper.splitResultsByFrame(message.elementResults)
+                : null;
             this.enableVisualization(message.visualizationType, elementResultsByFrames, message.configId);
-        }
-        else {
+        } else {
             this.disableVisualization(message.visualizationType, message.configId);
         }
     }
 
     @autobind
-    private onTriggerVisualization(result: VisualizationWindowMessage, error: IErrorMessageContent, sourceWindow: Window, responder?: FrameMessageResponseCallback) {
+    private onTriggerVisualization(
+        result: VisualizationWindowMessage,
+        error: IErrorMessageContent,
+        sourceWindow: Window,
+        responder?: FrameMessageResponseCallback,
+    ) {
         this.processRequest(result);
         this.invokeMethodIfExists(responder, null);
     }
@@ -115,13 +119,11 @@ export class DrawingController {
                         );
                     }
                     this.enableVisualizationInCurrentFrame(resultsForFrame.elementResults, configId);
-                }
-                else {
+                } else {
                     this.enableVisualizationInIFrames(visualizationType, resultsForFrame.frame, resultsForFrame.elementResults, configId);
                 }
             }
-        }
-        else {
+        } else {
             this.enableVisualizationInCurrentFrame(null, configId);
 
             const iframes = this.getAllFrames();
@@ -140,7 +142,12 @@ export class DrawingController {
         drawer.drawLayout();
     }
 
-    private enableVisualizationInIFrames(visualizationType: VisualizationType, frame: HTMLIFrameElement, frameResults: IAssessmentVisualizationInstance[], configId: string) {
+    private enableVisualizationInIFrames(
+        visualizationType: VisualizationType,
+        frame: HTMLIFrameElement,
+        frameResults: IAssessmentVisualizationInstance[],
+        configId: string,
+    ) {
         const message: VisualizationWindowMessage = {
             elementResults: frameResults,
             isEnabled: true,
@@ -158,7 +165,10 @@ export class DrawingController {
         this._instanceVisibilityChecker.clearVisibilityCheck(configId, visualizationType);
     }
 
-    private createFrameRequestMessage(frame: HTMLIFrameElement, message: VisualizationWindowMessage): IMessageRequest<VisualizationWindowMessage> {
+    private createFrameRequestMessage(
+        frame: HTMLIFrameElement,
+        message: VisualizationWindowMessage,
+    ): IMessageRequest<VisualizationWindowMessage> {
         return {
             command: DrawingController.triggerVisualizationCommand,
             frame: frame,

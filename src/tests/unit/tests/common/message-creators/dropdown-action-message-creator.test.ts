@@ -18,9 +18,10 @@ describe('DropdownActionMessageCreatorTest', () => {
     let event: any;
     let telemetryData: any;
 
-
     beforeEach(() => {
-        postMessageMock = Mock.ofInstance(message => { return null; });
+        postMessageMock = Mock.ofInstance(message => {
+            return null;
+        });
         telemetryFactoryMock = Mock.ofType(TelemetryDataFactory);
         event = eventStubFactory.createMouseClickEvent() as any;
         telemetryData = {
@@ -72,8 +73,6 @@ describe('DropdownActionMessageCreatorTest', () => {
     }
 
     function setupPostMessage(expectedMessage): void {
-        postMessageMock
-            .setup(post => post(It.isValue(expectedMessage)))
-            .verifiable(Times.once());
+        postMessageMock.setup(post => post(It.isValue(expectedMessage))).verifiable(Times.once());
     }
 });

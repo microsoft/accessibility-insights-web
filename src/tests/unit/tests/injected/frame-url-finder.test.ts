@@ -16,9 +16,7 @@ describe('frameUrlFinderTest', () => {
         const mockFrameCommunicator = Mock.ofType(FrameCommunicator, MockBehavior.Strict);
         const testSubject = new FrameUrlFinder(mockFrameCommunicator.object, null, null);
 
-        mockFrameCommunicator
-            .setup(mfc => mfc.subscribe(FrameUrlFinder.GetTargetFrameUrlCommand, testSubject.processRequest))
-            .verifiable();
+        mockFrameCommunicator.setup(mfc => mfc.subscribe(FrameUrlFinder.GetTargetFrameUrlCommand, testSubject.processRequest)).verifiable();
 
         testSubject.initialize();
 
@@ -44,18 +42,20 @@ describe('frameUrlFinderTest', () => {
             },
         };
 
-        mockFrameCommunicator
-            .setup(mfc => mfc.sendMessage(It.isValue(mockSentMessage)))
-            .verifiable();
+        mockFrameCommunicator.setup(mfc => mfc.sendMessage(It.isValue(mockSentMessage))).verifiable();
 
         mockWindowUtils
             .setup(mwu => mwu.getTopWindow())
-            .returns(() => { return topWindowStub; })
+            .returns(() => {
+                return topWindowStub;
+            })
             .verifiable();
 
         mockWindowUtils
             .setup(mwu => mwu.getWindow())
-            .returns(() => { return currentWindowStub; })
+            .returns(() => {
+                return currentWindowStub;
+            })
             .verifiable();
 
         const testSubject = new FrameUrlFinder(mockFrameCommunicator.object, mockWindowUtils.object, null);
@@ -81,13 +81,13 @@ describe('frameUrlFinderTest', () => {
             },
         };
 
-        mockFrameCommunicator
-            .setup(mfc => mfc.sendMessage(It.isValue(mockSentMessage)))
-            .verifiable();
+        mockFrameCommunicator.setup(mfc => mfc.sendMessage(It.isValue(mockSentMessage))).verifiable();
 
         mockHtmlUtils
             .setup(mhu => mhu.querySelector('abc'))
-            .returns(() => { return frameStub; })
+            .returns(() => {
+                return frameStub;
+            })
             .verifiable();
 
         const testSubject = new FrameUrlFinder(mockFrameCommunicator.object, null, mockHtmlUtils.object);

@@ -15,10 +15,7 @@ export class BaseAnalyzer implements IAnalyzer<void> {
         originalResult: null,
     };
 
-    constructor(
-        config: IAnalyzerConfiguration,
-        sendMessageDelegate: (message) => void,
-    ) {
+    constructor(config: IAnalyzerConfiguration, sendMessageDelegate: (message) => void) {
         this.config = config;
         this.sendMessage = sendMessageDelegate;
         this.type = config.testType;
@@ -34,7 +31,7 @@ export class BaseAnalyzer implements IAnalyzer<void> {
         results.then(this.onResolve);
     }
 
-    public teardown(): void { }
+    public teardown(): void {}
 
     @autobind
     protected getResults(): Q.Promise<AxeAnalyzerResult> {

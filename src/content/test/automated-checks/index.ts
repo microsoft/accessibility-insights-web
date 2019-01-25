@@ -2,6 +2,6 @@
 // Licensed under the MIT License.
 import { guidance } from './guidance';
 
-export const automatedChecks  = {
+export const automatedChecks = {
     guidance,
 };

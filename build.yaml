@@ -1,139 +1,150 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 jobs:
+    - job: 'unit_tests_and_lints'
 
-- job: 'unit_tests'
+      pool:
+          vmImage: 'macOS-10.13'
 
-  pool:
-    vmImage: 'macOS-10.13'
+      steps:
+          - task: NodeTool@0
+            inputs:
+                versionSpec: '^10.15.0'
+            displayName: use node 10.15.0
 
-  steps:
-  - task: NodeTool@0
-    inputs:
-      versionSpec: '^10.15.0'
-    displayName: use node 10.15.0
+          - task: Npm@1
+            inputs:
+                command: install
+            displayName: npm install
 
-  - task: Npm@1
-    inputs:
-      command: install
-    displayName: npm install
+          - task: Npm@1
+            inputs:
+                command: custom
+                customCommand: run tslint
+            displayName: npm run tslint
 
-  - task: Npm@1
-    inputs:
-      command: custom
-      customCommand: test
-    displayName: npm test
+          - task: Npm@1
+            inputs:
+                command: custom
+                customCommand: run format-check
+            displayName: check code formatting
 
-  - task: PublishTestResults@2
-    inputs:
-      testResultsFiles: $(System.DefaultWorkingDirectory)/test-results/unit/junit.xml
-      testRunTitle: accessibility-insights-web
-    condition: always()
-    displayName: publish test results
+          - task: Npm@1
+            inputs:
+                command: custom
+                customCommand: test
+            displayName: npm test
 
-  - task: PublishCodeCoverageResults@1
-    inputs:
-      codeCoverageTool: Cobertura
-      summaryFileLocation: $(System.DefaultWorkingDirectory)/test-results/unit/coverage/cobertura-coverage.xml
-      failIfCoverageEmpty: true
-      # We care most about the summary information; adding the detailed files doesn't give enough extra information
-      # to be worth the 1min it adds to the build.
-      # Consider re-enabling this once https://github.com/Microsoft/azure-pipelines-tasks/issues/4945 is resolved.
-      # reportDirectory: $(System.DefaultWorkingDirectory)/test-results/unit/coverage/lcov-report
-    displayName: publish code coverage
+          - task: PublishTestResults@2
+            inputs:
+                testResultsFiles: $(System.DefaultWorkingDirectory)/test-results/unit/junit.xml
+                testRunTitle: accessibility-insights-web
+            condition: always()
+            displayName: publish test results
 
-  # CI build only
-  - task: ComponentGovernanceComponentDetection@0
-    displayName: 'Component Detection'
-    condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
-    inputs:
-      verbosity: Normal
+          - task: PublishCodeCoverageResults@1
+            inputs:
+                codeCoverageTool: Cobertura
+                summaryFileLocation: $(System.DefaultWorkingDirectory)/test-results/unit/coverage/cobertura-coverage.xml
+                failIfCoverageEmpty: true
+                # We care most about the summary information; adding the detailed files doesn't give enough extra information
+                # to be worth the 1min it adds to the build.
+                # Consider re-enabling this once https://github.com/Microsoft/azure-pipelines-tasks/issues/4945 is resolved.
+                # reportDirectory: $(System.DefaultWorkingDirectory)/test-results/unit/coverage/lcov-report
+            displayName: publish code coverage
 
-  - task: Npm@1
-    displayName: check copyright headers
-    inputs:
-      command: custom
-      customCommand: run copyrightheaders
+          # CI build only
+          - task: ComponentGovernanceComponentDetection@0
+            displayName: 'Component Detection'
+            condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
+            inputs:
+                verbosity: Normal
 
-- job: 'e2e_tests_and_publish_drop'
+          - task: Npm@1
+            displayName: check copyright headers
+            inputs:
+                command: custom
+                customCommand: run copyrightheaders
 
-  pool:
-    vmImage: 'macOS-10.13'
+    - job: 'e2e_tests_and_publish_drop'
 
-  steps:
-  - task: NodeTool@0
-    inputs:
-      versionSpec: '^10.15.0'
-    displayName: use node 10.15.0
+      pool:
+          vmImage: 'macOS-10.13'
 
-  - task: Npm@1
-    inputs:
-      command: install
-    displayName: npm install
+      steps:
+          - task: NodeTool@0
+            inputs:
+                versionSpec: '^10.15.0'
+            displayName: use node 10.15.0
 
-  - task: Npm@1
-    inputs:
-      command: custom
-      customCommand: run build:all
-    displayName: npm run build:all
+          - task: Npm@1
+            inputs:
+                command: install
+            displayName: npm install
 
-  # e2e tests depend on npm run drop
-  - task: Npm@1
-    inputs:
-      command: custom
-      customCommand: run test:e2e
-    displayName: npm run test:e2e
+          - task: Npm@1
+            inputs:
+                command: custom
+                customCommand: run build:all
+            displayName: npm run build:all
 
-  - task: PublishTestResults@2
-    inputs:
-      testResultsFiles: test-results/e2e/junit-e2e.xml
-      testRunTitle: accessibility-insights-web e2e
-    condition: always()
-    displayName: publish e2e test results
+          # e2e tests depend on npm run drop
+          - task: Npm@1
+            inputs:
+                command: custom
+                customCommand: run test:e2e
+            displayName: npm run test:e2e
 
-  - task: PublishBuildArtifacts@1
-    inputs:
-      pathtoPublish: '$(System.DefaultWorkingDirectory)/test-results/e2e'
-      artifactName: 'e2e-failure-screenshots'
-    condition: always()
-    continueOnError: true
-    displayName: publish e2e-failure-screenshots
+          - task: PublishTestResults@2
+            inputs:
+                testResultsFiles: test-results/e2e/junit-e2e.xml
+                testRunTitle: accessibility-insights-web e2e
+            condition: always()
+            displayName: publish e2e test results
 
-  - task: PublishBuildArtifacts@1
-    inputs:
-      pathtoPublish: '$(System.DefaultWorkingDirectory)/drop'
-      artifactName: 'drop'
-    displayName: publish drop
+          - task: PublishBuildArtifacts@1
+            inputs:
+                pathtoPublish: '$(System.DefaultWorkingDirectory)/test-results/e2e'
+                artifactName: 'e2e-failure-screenshots'
+            condition: always()
+            continueOnError: true
+            displayName: publish e2e-failure-screenshots
 
-# Temporary addition to test for build flakiness
-- template: build.build-all-job-template.yaml
-  parameters:
-    name: build_job_1
+          - task: PublishBuildArtifacts@1
+            inputs:
+                pathtoPublish: '$(System.DefaultWorkingDirectory)/drop'
+                artifactName: 'drop'
+            displayName: publish drop
 
-- template: build.build-all-job-template.yaml
-  parameters:
-    name: build_job_2
+    # Temporary addition to test for build flakiness
+    - template: build.build-all-job-template.yaml
+      parameters:
+          name: build_job_1
 
-- template: build.build-all-job-template.yaml
-  parameters:
-    name: build_job_3
+    - template: build.build-all-job-template.yaml
+      parameters:
+          name: build_job_2
 
-- template: build.build-all-job-template.yaml
-  parameters:
-    name: build_job_4
+    - template: build.build-all-job-template.yaml
+      parameters:
+          name: build_job_3
 
-- template: build.build-all-job-template.yaml
-  parameters:
-    name: build_job_5
+    - template: build.build-all-job-template.yaml
+      parameters:
+          name: build_job_4
 
-- template: build.build-all-job-template.yaml
-  parameters:
-    name: build_job_6
+    - template: build.build-all-job-template.yaml
+      parameters:
+          name: build_job_5
 
-- template: build.build-all-job-template.yaml
-  parameters:
-    name: build_job_7
+    - template: build.build-all-job-template.yaml
+      parameters:
+          name: build_job_6
 
-- template: build.build-all-job-template.yaml
-  parameters:
-    name: build_job_8
+    - template: build.build-all-job-template.yaml
+      parameters:
+          name: build_job_7
+
+    - template: build.build-all-job-template.yaml
+      parameters:
+          name: build_job_8

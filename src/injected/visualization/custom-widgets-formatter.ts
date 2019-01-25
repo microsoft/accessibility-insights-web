@@ -27,14 +27,16 @@ export class CustomWidgetsFormatter extends HighlightBoxFormatter {
 
     private isCompositeCustomWidget(element: Element) {
         const role = element.getAttribute('role');
-        return role === 'combobox'
-            || role === 'grid'
-            || role === 'listbox'
-            || role === 'menu'
-            || role === 'menubar'
-            || role === 'radiogroup'
-            || role === 'tablist'
-            || role === 'tree'
-            || role === 'treegrid';
+        return (
+            role === 'combobox' ||
+            role === 'grid' ||
+            role === 'listbox' ||
+            role === 'menu' ||
+            role === 'menubar' ||
+            role === 'radiogroup' ||
+            role === 'tablist' ||
+            role === 'tree' ||
+            role === 'treegrid'
+        );
     }
 }

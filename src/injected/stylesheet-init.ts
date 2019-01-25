@@ -5,5 +5,5 @@ import { Stylesheet } from '@uifabric/merge-styles';
 const stylesheet = Stylesheet.getInstance();
 
 stylesheet.setConfig({
-  defaultPrefix: 'insights',
+    defaultPrefix: 'insights',
 });

@@ -40,11 +40,7 @@ describe('getDefaultRules', () => {
             ruleId: 'test id three',
         };
 
-        const rulesStub = [
-            ruleStubOne,
-            ruleStubTwo,
-            ruleStubThree,
-        ];
+        const rulesStub = [ruleStubOne, ruleStubTwo, ruleStubThree];
 
         const expected: ScannerRuleInfo[] = [
             {
@@ -77,17 +73,11 @@ describe('getDefaultRules', () => {
             .returns(() => rulesStub)
             .verifiable();
 
-        ruleSifterMock
-            .setup(rsm => rsm.getSiftedRules())
-            .returns(() => siftedRulesStub);
+        ruleSifterMock.setup(rsm => rsm.getSiftedRules()).returns(() => siftedRulesStub);
 
-        getHelpUrlMock
-            .setup(gchm => gchm(ruleStubOne.ruleId, It.isAny()))
-            .returns(() => urlStub);
+        getHelpUrlMock.setup(gchm => gchm(ruleStubOne.ruleId, It.isAny())).returns(() => urlStub);
 
-        getHelpUrlMock
-            .setup(gchm => gchm(ruleStubTwo.ruleId, It.isAny()))
-            .returns(() => urlStub);
+        getHelpUrlMock.setup(gchm => gchm(ruleStubTwo.ruleId, It.isAny())).returns(() => urlStub);
 
         const actual = getRules(axeStub, getHelpUrlMock.object, ruleSifterMock.object);
 

@@ -24,7 +24,7 @@ describe('InspectControllerTests', () => {
         inspectStoreMock = Mock.ofType(InspectStore);
         scopingListenerMock = Mock.ofType(ScopingListener, MockBehavior.Strict);
         inspectConfigurationMock = Mock.ofType(InspectConfigurationFactory, MockBehavior.Strict);
-        changeInspectModeMock = Mock.ofInstance((event: React.MouseEvent<HTMLButtonElement> | MouseEvent, inspectMode: InspectMode) => { });
+        changeInspectModeMock = Mock.ofInstance((event: React.MouseEvent<HTMLButtonElement> | MouseEvent, inspectMode: InspectMode) => {});
         onHoverStub = () => {};
 
         testObject = new InspectController(
@@ -42,9 +42,7 @@ describe('InspectControllerTests', () => {
             .callback(listener => {
                 inspectStoreChangeListener = listener;
             });
-        inspectStoreMock
-            .setup(sm => sm.getState())
-            .returns(() => inspectStoreState);
+        inspectStoreMock.setup(sm => sm.getState()).returns(() => inspectStoreState);
     });
 
     afterEach(() => {
@@ -57,8 +55,7 @@ describe('InspectControllerTests', () => {
 
     test('do not start inspect if inspect store state is null', () => {
         inspectStoreState = null;
-        changeInspectModeMock.setup(sm => sm(It.isAny(), It.isValue(defaultState)))
-            .verifiable(Times.once());
+        changeInspectModeMock.setup(sm => sm(It.isAny(), It.isValue(defaultState))).verifiable(Times.once());
 
         testObject.listenToStore();
         inspectStoreMock.verifyAll();
@@ -74,21 +71,19 @@ describe('InspectControllerTests', () => {
         };
         let sendSelector;
 
-        changeInspectModeMock.setup(sm => sm(It.isAny(), It.isValue(inspectType)))
-            .verifiable(Times.once());
+        changeInspectModeMock.setup(sm => sm(It.isAny(), It.isValue(inspectType))).verifiable(Times.once());
 
-        const inspectConfigMock = Mock.ofInstance((event, selector) => { });
-        inspectConfigMock.setup(sm => sm(It.isAny(), It.isValue(givenSelector)))
-            .verifiable(Times.once());
+        const inspectConfigMock = Mock.ofInstance((event, selector) => {});
+        inspectConfigMock.setup(sm => sm(It.isAny(), It.isValue(givenSelector))).verifiable(Times.once());
 
         scopingListenerMock
             .setup(sm => sm.start(It.isAny(), onHoverStub))
-            .callback(callback => { sendSelector = callback; })
+            .callback(callback => {
+                sendSelector = callback;
+            })
             .verifiable(Times.once());
 
-        scopingListenerMock
-            .setup(sm => sm.stop())
-            .verifiable(Times.once());
+        scopingListenerMock.setup(sm => sm.stop()).verifiable(Times.once());
 
         inspectConfigurationMock
             .setup(sm => sm.getConfigurationByKey(inspectType))
@@ -109,16 +104,12 @@ describe('InspectControllerTests', () => {
 
         const givenSelector = ['selector'];
 
-        changeInspectModeMock.setup(sm => sm(It.isAny(), It.isValue(defaultState)))
-            .verifiable(Times.once());
+        changeInspectModeMock.setup(sm => sm(It.isAny(), It.isValue(defaultState))).verifiable(Times.once());
 
-        const inspectConfigMock = Mock.ofInstance((event, selector) => { });
-        inspectConfigMock.setup(sm => sm(It.isAny(), It.isValue(givenSelector)))
-            .verifiable(Times.once());
+        const inspectConfigMock = Mock.ofInstance((event, selector) => {});
+        inspectConfigMock.setup(sm => sm(It.isAny(), It.isValue(givenSelector))).verifiable(Times.once());
 
-        scopingListenerMock
-            .setup(sm => sm.stop())
-            .verifiable(Times.never());
+        scopingListenerMock.setup(sm => sm.stop()).verifiable(Times.never());
 
         inspectConfigurationMock
             .setup(sm => sm.getConfigurationByKey(defaultState))

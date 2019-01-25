@@ -7,18 +7,16 @@ import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
 import * as content from '../../../content/test/headings/heading-level';
-import {
-    AssessmentVisualizationEnabledToggle,
-} from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
+import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
 import * as Markup from '../../markup';
-import { TestStep } from '../../types/test-step';
 import { ReportInstanceField } from '../../types/report-instance-field';
+import { TestStep } from '../../types/test-step';
 import { headingsAssessmentInstanceDetailsColumnRenderer } from './../headings-instance-details-column-renderer';
 import { HeadingsTestStep } from './test-steps';
 
-export const headingLevelDescription: JSX.Element = <span>A heading's <Markup.Emphasis>programmatic</Markup.Emphasis> level
+const headingLevelDescription: JSX.Element = <span>A heading's <Markup.Emphasis>programmatic</Markup.Emphasis> level
     must match the level that's presented <Markup.Emphasis>visually</Markup.Emphasis>.</span>;
 
 const headingLevelHowToTest: JSX.Element = (

@@ -36,14 +36,17 @@ export class StoreProxy<TState> extends Store implements IBaseStore<TState> {
     }
 
     private isValidMessage(message: StoreUpdateMessage<TState>): boolean {
-        return message.isStoreUpdateMessage &&
+        return (
+            message.isStoreUpdateMessage &&
             this.isMessageForCurrentStore(message) &&
-            (this.isMessageForCurrentTab(message) || message.storeType === StoreType.GlobalStore);
+            (this.isMessageForCurrentTab(message) || message.storeType === StoreType.GlobalStore)
+        );
     }
 
     private isMessageForCurrentTab(message: StoreUpdateMessage<TState>): boolean {
-        return this._tabId == null // tabid will be null on inital state in content script of target page
-            || message.tabId === this._tabId;
+        return (
+            this._tabId == null || message.tabId === this._tabId // tabid will be null on inital state in content script of target page
+        );
     }
 
     private isMessageForCurrentStore(message: StoreUpdateMessage<TState>): boolean {

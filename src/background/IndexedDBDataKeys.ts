@@ -4,4 +4,3 @@ export class IndexedDBDataKeys {
     public static readonly assessmentStore: string = 'assessmentStoreData';
     public static readonly userConfiguration: string = 'userConfiguration';
 }
-

@@ -9,11 +9,13 @@ import { IAssessmentStoreData } from '../../common/types/store-data/iassessment-
 import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
 import { AssessmentReportModelBuilderFactory } from './assessment-report-model-builder-factory';
 import * as reportStyles from './assessment-report.styles';
-import { AssessmentReport } from './components/assessment-report';
+import { AssessmentReport, AssessmentReportDeps } from './components/assessment-report';
 import { ReactStaticRenderer } from './react-static-renderer';
 import { AssessmentDefaultMessageGenerator } from '../../assessments/assessment-default-message-generator';
+import { ManualTestStatus } from '../../common/types/manual-test-status';
+import { OutcomeTypeSemantic } from './components/outcome-type';
 
-
+export type AssessmentReportHtmlGeneratorDeps = AssessmentReportDeps;
 
 export class AssessmentReportHtmlGenerator {
     constructor(
@@ -28,6 +30,7 @@ export class AssessmentReportHtmlGenerator {
     }
 
     public generateHtml(
+        deps: AssessmentReportHtmlGeneratorDeps,
         assessmentStoreData: IAssessmentStoreData,
         assessmentsProvider: IAssessmentsProvider,
         featureFlagStoreData: FeatureFlagStoreData,
@@ -53,10 +56,11 @@ export class AssessmentReportHtmlGenerator {
             <React.Fragment>
                 <head>
                     <title>Assessment report</title>
-                    <style>{reportStyles.styleSheet}</style>
+                    <style dangerouslySetInnerHTML={{__html: reportStyles.styleSheet}}></style>
                 </head>
                 <body>
                     <AssessmentReport
+                        deps={deps}
                         data={model}
                         description={description}
                         extensionVersion={this.extensionVersion}
@@ -67,7 +71,7 @@ export class AssessmentReportHtmlGenerator {
             </React.Fragment>
         );
 
-        const reportBody = this.renderer.renderToStaticMarkup(reportElement, 'html');
+        const reportBody = this.renderer.renderToStaticMarkup(reportElement);
 
         return `<html lang="en">${reportBody}</html>`;
     }

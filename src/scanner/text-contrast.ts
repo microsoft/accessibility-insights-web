@@ -25,7 +25,6 @@ export const textContrastConfiguration: RuleConfiguration = {
     },
 };
 
-
 function evaluateTextContrast(node: HTMLElement, options: any, virtualNode: any, context: any): boolean {
     // tslint:disable-next-line:no-invalid-this
     const checkResult = AxeUtils.getEvaluateFromCheck('color-contrast').call(this, node, options, virtualNode, context);
@@ -46,6 +45,6 @@ function evaluateTextContrast(node: HTMLElement, options: any, virtualNode: any,
 }
 
 function isLargeText(fontSize: number, bold: boolean): boolean {
-    fontSize = (fontSize * 72 / 96);
+    fontSize = (fontSize * 72) / 96;
     return fontSize >= 18 || (fontSize >= 14 && bold);
 }

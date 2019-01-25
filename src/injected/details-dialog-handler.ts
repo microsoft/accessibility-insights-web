@@ -19,7 +19,7 @@ export class DetailsDialogHandler {
         const currentRuleIndex = dialog.state.currentRuleIndex;
         const showDialog = dialog.state.showDialog;
         dialog.setState({
-            currentRuleIndex: (currentRuleIndex - 1),
+            currentRuleIndex: currentRuleIndex - 1,
         });
     }
 
@@ -28,7 +28,7 @@ export class DetailsDialogHandler {
         const currentRuleIndex = dialog.state.currentRuleIndex;
         const showDialog = dialog.state.showDialog;
         dialog.setState({
-            currentRuleIndex: (currentRuleIndex + 1),
+            currentRuleIndex: currentRuleIndex + 1,
         });
     }
 
@@ -102,7 +102,9 @@ export class DetailsDialogHandler {
             return;
         }
 
-        this._onDevToolChanged = () => { this.onDevToolChanged(dialog); };
+        this._onDevToolChanged = () => {
+            this.onDevToolChanged(dialog);
+        };
         dialog.props.devToolStore.addChangedListener(this._onDevToolChanged);
         this.onDevToolChanged(dialog);
 
@@ -110,9 +112,6 @@ export class DetailsDialogHandler {
             this.addListenerForDialogInShadowDom(dialog);
         }
     }
-
-
-
 
     private addListenerForDialogInShadowDom(dialog: DetailsDialog): void {
         const shadowRoot = this._htmlElementUtils.querySelector('#insights-shadow-host').shadowRoot;
@@ -172,8 +171,7 @@ export class DetailsDialogHandler {
     }
 
     private hasStore(dialog: DetailsDialog): boolean {
-        return (dialog.props != null)
-            && (dialog.props.devToolStore != null);
+        return dialog.props != null && dialog.props.devToolStore != null;
     }
 
     private addShadowClickEventListener(shadowRoot: ShadowRoot, selector: string, listener: (ev?) => void): void {
@@ -193,4 +191,3 @@ export class DetailsDialogHandler {
         body.classList.remove(...['insights-modal']);
     }
 }
-

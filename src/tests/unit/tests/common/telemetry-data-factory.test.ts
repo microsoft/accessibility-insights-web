@@ -175,7 +175,6 @@ describe('TelemetryDataFactoryTest', () => {
             },
         } as any;
 
-
         const pivotKey = 'test item key';
 
         const result = testObject.forDetailsViewNavPivotActivated(event, pivotKey);

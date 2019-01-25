@@ -7,6 +7,13 @@ exports[`AssessmentReportStepListTest renders fail 1`] = `
   >
     <AssessmentReportStepHeader
       defaultMessageComponent={null}
+      deps={
+        Object {
+          "outcomeTypeSemanticsFromTestStatus": Object {
+            "stub": "outcomeTypeSemanticsFromTestStatus",
+          },
+        }
+      }
       header={
         Object {
           "description": null,
@@ -42,6 +49,13 @@ exports[`AssessmentReportStepListTest renders fail 1`] = `
   >
     <AssessmentReportStepHeader
       defaultMessageComponent={null}
+      deps={
+        Object {
+          "outcomeTypeSemanticsFromTestStatus": Object {
+            "stub": "outcomeTypeSemanticsFromTestStatus",
+          },
+        }
+      }
       header={
         Object {
           "description": null,
@@ -78,6 +92,13 @@ exports[`AssessmentReportStepListTest renders incomplete 1`] = `
   >
     <AssessmentReportStepHeader
       defaultMessageComponent={null}
+      deps={
+        Object {
+          "outcomeTypeSemanticsFromTestStatus": Object {
+            "stub": "outcomeTypeSemanticsFromTestStatus",
+          },
+        }
+      }
       header={
         Object {
           "description": null,
@@ -100,6 +121,13 @@ exports[`AssessmentReportStepListTest renders pass 1`] = `
   >
     <AssessmentReportStepHeader
       defaultMessageComponent={null}
+      deps={
+        Object {
+          "outcomeTypeSemanticsFromTestStatus": Object {
+            "stub": "outcomeTypeSemanticsFromTestStatus",
+          },
+        }
+      }
       header={
         Object {
           "description": null,
@@ -127,6 +155,13 @@ exports[`AssessmentReportStepListTest renders pass without instances when showIn
   >
     <AssessmentReportStepHeader
       defaultMessageComponent={null}
+      deps={
+        Object {
+          "outcomeTypeSemanticsFromTestStatus": Object {
+            "stub": "outcomeTypeSemanticsFromTestStatus",
+          },
+        }
+      }
       header={
         Object {
           "description": null,

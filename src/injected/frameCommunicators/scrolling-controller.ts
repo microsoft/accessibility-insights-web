@@ -22,12 +22,16 @@ export class ScrollingController {
     }
 
     public initialize() {
-        this._frameCommunicator.subscribe(ScrollingController.triggerScrollingCommand,
-            this.onTriggerScrolling);
+        this._frameCommunicator.subscribe(ScrollingController.triggerScrollingCommand, this.onTriggerScrolling);
     }
 
     @autobind
-    private onTriggerScrolling(message: ScrollingWindowMessage, error: IErrorMessageContent, sourceWin: Window, responder?: FrameMessageResponseCallback) {
+    private onTriggerScrolling(
+        message: ScrollingWindowMessage,
+        error: IErrorMessageContent,
+        sourceWin: Window,
+        responder?: FrameMessageResponseCallback,
+    ) {
         this.processRequest(message);
     }
 
@@ -44,7 +48,7 @@ export class ScrollingController {
     }
 
     private scrollElementInCurrentFrame(selector: string): void {
-        const targetElement: Element =  this._htmlElementUtils.querySelector(selector);
+        const targetElement: Element = this._htmlElementUtils.querySelector(selector);
         this._htmlElementUtils.scrollInToView(targetElement);
     }
 

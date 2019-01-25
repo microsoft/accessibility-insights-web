@@ -13,7 +13,9 @@ describe('getDefaultAxeRules', () => {
         Processor.suppressedMessages = [
             'Required ARIA child role not present: listbox',
             'Required ARIA child role not present: textbox',
-        ].map(message => { return message.toLowerCase().trim(); });
+        ].map(message => {
+            return message.toLowerCase().trim();
+        });
 
         suppressedChecks = {
             requiredChildrenListbox: {
@@ -135,7 +137,6 @@ describe('getDefaultAxeRules', () => {
 
         const actual = Processor.suppressChecksByMessages(initialAxeRule);
         expect(actual).toEqual(expectedAxeRule);
-
     });
 
     it('suppressChecksByMessages: Remove a node that only has one check which is suppressed', () => {

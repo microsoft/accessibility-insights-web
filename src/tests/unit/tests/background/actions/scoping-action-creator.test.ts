@@ -24,7 +24,7 @@ describe('ScopingActionCreatorTest', () => {
         scopingActionsMock = Mock.ofType(ScopingActions, MockBehavior.Strict);
         telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler, MockBehavior.Strict);
         detailsViewControllerStrictMock = Mock.ofType<DetailsViewController>(null, MockBehavior.Strict);
-        registerTypeToPayloadCallbackMock = Mock.ofInstance((type, callback) => { });
+        registerTypeToPayloadCallbackMock = Mock.ofInstance((type, callback) => {});
 
         testObject = new ScopingActionCreator(
             scopingActionsMock.object,
@@ -34,58 +34,48 @@ describe('ScopingActionCreatorTest', () => {
         );
     });
 
-        test('on OpenPanel', () => {
-            const payload: BaseActionPayload = {};
+    test('on OpenPanel', () => {
+        const payload: BaseActionPayload = {};
 
-            telemetryEventHandlerMock
-                .setup(tp => tp.publishTelemetry(SCOPING_OPEN, payload, tabId))
-                .verifiable(Times.once());
+        telemetryEventHandlerMock.setup(tp => tp.publishTelemetry(SCOPING_OPEN, payload, tabId)).verifiable(Times.once());
 
-            detailsViewControllerStrictMock
-                .setup(dc => dc.showDetailsView(tabId))
-                .verifiable(Times.once());
+        detailsViewControllerStrictMock.setup(dc => dc.showDetailsView(tabId)).verifiable(Times.once());
 
-            const actionMock = createActionMock(null);
-            setupScopingActionsMock('openScopingPanel', actionMock);
-            setupRegisterTypeToPayloadCallbackMock(Messages.Scoping.OpenPanel, payload, tabId);
+        const actionMock = createActionMock(null);
+        setupScopingActionsMock('openScopingPanel', actionMock);
+        setupRegisterTypeToPayloadCallbackMock(Messages.Scoping.OpenPanel, payload, tabId);
 
-            testObject.registerCallbacks();
-            actionMock.verifyAll();
+        testObject.registerCallbacks();
+        actionMock.verifyAll();
 
-            telemetryEventHandlerMock.verifyAll();
-            detailsViewControllerStrictMock.verifyAll();
-        });
+        telemetryEventHandlerMock.verifyAll();
+        detailsViewControllerStrictMock.verifyAll();
+    });
 
-        test('on ClosePanel', () => {
-            const payload: BaseActionPayload = {};
+    test('on ClosePanel', () => {
+        const payload: BaseActionPayload = {};
 
-            telemetryEventHandlerMock
-                .setup(tp => tp.publishTelemetry(SCOPING_CLOSE, payload, tabId))
-                .verifiable(Times.once());
+        telemetryEventHandlerMock.setup(tp => tp.publishTelemetry(SCOPING_CLOSE, payload, tabId)).verifiable(Times.once());
 
-            const closeScopingPanelActionMock = createActionMock(null);
-            setupScopingActionsMock('closeScopingPanel', closeScopingPanelActionMock);
-            setupRegisterTypeToPayloadCallbackMock(Messages.Scoping.ClosePanel, payload, tabId);
+        const closeScopingPanelActionMock = createActionMock(null);
+        setupScopingActionsMock('closeScopingPanel', closeScopingPanelActionMock);
+        setupRegisterTypeToPayloadCallbackMock(Messages.Scoping.ClosePanel, payload, tabId);
 
-            testObject.registerCallbacks();
-            closeScopingPanelActionMock.verifyAll();
+        testObject.registerCallbacks();
+        closeScopingPanelActionMock.verifyAll();
 
-            telemetryEventHandlerMock.verifyAll();
-        });
+        telemetryEventHandlerMock.verifyAll();
+    });
 
     function createActionMock<T>(actionPayload: T): IMock<Action<T>> {
         const actionMock = Mock.ofType<Action<T>>(Action);
-        actionMock
-            .setup(action => action.invoke(actionPayload))
-            .verifiable(Times.once());
+        actionMock.setup(action => action.invoke(actionPayload)).verifiable(Times.once());
 
         return actionMock;
     }
 
     function setupScopingActionsMock(actionName: keyof ScopingActions, actionMock: IMock<Action<any>>) {
-        scopingActionsMock
-            .setup(actions => actions[actionName])
-            .returns(() => actionMock.object);
+        scopingActionsMock.setup(actions => actions[actionName]).returns(() => actionMock.object);
     }
 
     function setupRegisterTypeToPayloadCallbackMock(message: string, actionPayload: any, _tabId: number) {

@@ -4,7 +4,6 @@ import { FeatureFlags } from '../../common/feature-flags';
 import { FeatureFlagsController } from '../feature-flags-controller';
 import { TelemetryBaseData } from './app-insights-telemetry-client';
 
-
 export class TelemetryLogger {
     private featureFlagsController: FeatureFlagsController;
 

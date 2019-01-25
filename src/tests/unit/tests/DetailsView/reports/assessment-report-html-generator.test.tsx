@@ -7,10 +7,15 @@ import { AssessmentDefaultMessageGenerator } from '../../../../../assessments/as
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../../../../../common/types/store-data/iassessment-result-data';
 import { ITabStoreData } from '../../../../../common/types/store-data/itab-store-data';
-import { AssessmentReportHtmlGenerator } from '../../../../../DetailsView/reports/assessment-report-html-generator';
+import {
+    AssessmentReportHtmlGenerator,
+    AssessmentReportHtmlGeneratorDeps,
+} from '../../../../../DetailsView/reports/assessment-report-html-generator';
 import { IReportModel } from '../../../../../DetailsView/reports/assessment-report-model';
 import { AssessmentReportModelBuilder } from '../../../../../DetailsView/reports/assessment-report-model-builder';
-import { AssessmentReportModelBuilderFactory } from '../../../../../DetailsView/reports/assessment-report-model-builder-factory';
+import {
+    AssessmentReportModelBuilderFactory,
+} from '../../../../../DetailsView/reports/assessment-report-model-builder-factory';
 import * as reportStyles from '../../../../../DetailsView/reports/assessment-report.styles';
 import { AssessmentReport } from '../../../../../DetailsView/reports/components/assessment-report';
 import { ReactStaticRenderer } from '../../../../../DetailsView/reports/react-static-renderer';
@@ -28,6 +33,10 @@ describe('AssessmentReportHtmlGenerator', () => {
         const tabStoreData: ITabStoreData = { stub: 'tabStoreData' } as any;
         const description = 'generateHtml-description';
 
+        const deps: AssessmentReportHtmlGeneratorDeps = {
+            outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
+        };
+
         const modelBuilderMock = Mock.ofType(AssessmentReportModelBuilder, MockBehavior.Strict);
         const model: IReportModel = { stub: 'model' } as any;
 
@@ -35,10 +44,11 @@ describe('AssessmentReportHtmlGenerator', () => {
             <React.Fragment>
                 <head>
                     <title>Assessment report</title>
-                    <style>{reportStyles.styleSheet}</style>
+                    <style dangerouslySetInnerHTML={{ __html: reportStyles.styleSheet }}></style>
                 </head>
                 <body>
                     <AssessmentReport
+                        deps={deps}
                         data={model}
                         description={description}
                         extensionVersion="ProductVersion"
@@ -48,7 +58,7 @@ describe('AssessmentReportHtmlGenerator', () => {
                 </body>
             </React.Fragment>
         );
-        const expectedBody = '<head>styles</head><body>report-body</body>';
+        const expectedBody: string = '<head>styles</head><body>report-body</body>';
         const expectedHtml = `<html lang="en">${expectedBody}</html>`;
 
         const testDate = new Date(2018, 9, 19, 11, 25);
@@ -67,7 +77,7 @@ describe('AssessmentReportHtmlGenerator', () => {
             .returns(() => model);
 
         rendererMock
-            .setup(r => r.renderToStaticMarkup(It.isObjectWith(expectedComponent), 'html'))
+            .setup(r => r.renderToStaticMarkup(It.isObjectWith(expectedComponent)))
             .returns(() => expectedBody);
 
         const testSubject = new AssessmentReportHtmlGenerator(
@@ -81,6 +91,7 @@ describe('AssessmentReportHtmlGenerator', () => {
         );
 
         const actualHtml = testSubject.generateHtml(
+            deps,
             assessmentStoreData,
             assessmentsProvider,
             featureFlagStoreData,
@@ -88,7 +99,7 @@ describe('AssessmentReportHtmlGenerator', () => {
             description,
         );
 
-        expect(actualHtml).toBe(expectedHtml);
+        expect(actualHtml).toEqual(expectedHtml);
 
         rendererMock.verifyAll();
         factoryMock.verifyAll();

@@ -57,11 +57,7 @@ export class IssueDetailsTextGenerator {
     }
 
     public buildTags(createBugData: CreateIssueDetailsTextData, standardTags: string[]): string {
-        const tags = [
-            'Accessibility',
-            ...standardTags,
-            createBugData.ruleResult.ruleId,
-        ];
+        const tags = ['Accessibility', ...standardTags, createBugData.ruleResult.ruleId];
         return tags.join(', ');
     }
 

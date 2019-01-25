@@ -11,9 +11,7 @@ import {
     IGeneratedAssessmentInstance,
     IManualTestStepResult,
 } from '../../../../common/types/store-data/iassessment-result-data';
-import {
-    excludePassingInstancesFromAssessmentReport,
-} from '../../../../DetailsView/extensions/exclude-passing-instances-from-assessment-report';
+import { excludePassingInstancesFromAssessmentReport } from '../../../../DetailsView/extensions/exclude-passing-instances-from-assessment-report';
 import {
     IAssessmentDetailsReportModel,
     IInstanceReportModel,
@@ -182,10 +180,7 @@ export class AssessmentReportBuilderTestHelper {
     }
 
     public static getAssessmentProviderAll(getDefaultMessage): IAssessment[] {
-
-        const manualFields: ReportInstanceFields = [
-            { key: 'comment', label: 'Comment', getValue: i => i.description },
-        ];
+        const manualFields: ReportInstanceFields = [{ key: 'comment', label: 'Comment', getValue: i => i.description }];
 
         const automaticFields: ReportInstanceFields = [
             { key: 'path', label: 'Path', getValue: i => i.target && i.target.join(', ') },
@@ -208,7 +203,9 @@ export class AssessmentReportBuilderTestHelper {
                                 href: 'link1A',
                             },
                         ],
-                        renderReportDescription: () => { return null; },
+                        renderReportDescription: () => {
+                            return null;
+                        },
                         getDefaultMessage: getDefaultMessage,
                     },
                     {
@@ -217,7 +214,9 @@ export class AssessmentReportBuilderTestHelper {
                         isManual: false,
                         reportInstanceFields: automaticFields,
                         guidanceLinks: [],
-                        renderReportDescription: () => { return null; },
+                        renderReportDescription: () => {
+                            return null;
+                        },
                         getDefaultMessage: getDefaultMessage,
                     },
                     {
@@ -226,7 +225,9 @@ export class AssessmentReportBuilderTestHelper {
                         isManual: false,
                         reportInstanceFields: automaticFields,
                         guidanceLinks: [],
-                        renderReportDescription: () => { return null; },
+                        renderReportDescription: () => {
+                            return null;
+                        },
                         getDefaultMessage: getDefaultMessage,
                     },
                     {
@@ -235,13 +236,13 @@ export class AssessmentReportBuilderTestHelper {
                         isManual: true,
                         reportInstanceFields: manualFields,
                         guidanceLinks: [],
-                        renderReportDescription: () => { return null; },
+                        renderReportDescription: () => {
+                            return null;
+                        },
                         getDefaultMessage: getDefaultMessage,
                     },
                 ],
-                extensions: [
-                    excludePassingInstancesFromAssessmentReport,
-                ],
+                extensions: [excludePassingInstancesFromAssessmentReport],
             },
             {
                 key: 'assessment2',
@@ -253,7 +254,9 @@ export class AssessmentReportBuilderTestHelper {
                         isManual: false,
                         reportInstanceFields: automaticFields,
                         guidanceLinks: [],
-                        renderReportDescription: () => { return null; },
+                        renderReportDescription: () => {
+                            return null;
+                        },
                         getDefaultMessage: getDefaultMessage,
                     },
                     {
@@ -262,7 +265,9 @@ export class AssessmentReportBuilderTestHelper {
                         isManual: true,
                         reportInstanceFields: manualFields,
                         guidanceLinks: [],
-                        renderReportDescription: () => { return null; },
+                        renderReportDescription: () => {
+                            return null;
+                        },
                         getDefaultMessage: getDefaultMessage,
                     },
                 ],
@@ -271,10 +276,13 @@ export class AssessmentReportBuilderTestHelper {
     }
 
     public static getStepKeysForAssessment(assessmentKey: string, data: IAssessment[]): string[] {
-        return flatten(data.filter(assessmentContent => assessmentContent.key === assessmentKey)
-            .map(assessmentContent => {
-                return assessmentContent.steps.map(step => step.key);
-            }));
+        return flatten(
+            data
+                .filter(assessmentContent => assessmentContent.key === assessmentKey)
+                .map(assessmentContent => {
+                    return assessmentContent.steps.map(step => step.key);
+                }),
+        );
     }
 
     public static getInstanceReportModelStep1PassStep2Fail(): IInstanceReportModel[] {
@@ -552,11 +560,21 @@ export class AssessmentReportBuilderTestHelper {
 
     private static getAssessmentScanDetailsReportModel(): IScanDetailsReportModel {
         const dateWithFakeTimeZone = new Date(this.reportDate);
-        dateWithFakeTimeZone.toLocaleTimeString = () => { return 'blah FTZ'; };
-        dateWithFakeTimeZone.getFullYear = () => { return dateWithFakeTimeZone.getUTCFullYear(); };
-        dateWithFakeTimeZone.getMonth = () => { return dateWithFakeTimeZone.getUTCMonth(); };
-        dateWithFakeTimeZone.getDate = () => { return dateWithFakeTimeZone.getUTCDate(); };
-        dateWithFakeTimeZone.getHours = () => { return dateWithFakeTimeZone.getUTCHours(); };
+        dateWithFakeTimeZone.toLocaleTimeString = () => {
+            return 'blah FTZ';
+        };
+        dateWithFakeTimeZone.getFullYear = () => {
+            return dateWithFakeTimeZone.getUTCFullYear();
+        };
+        dateWithFakeTimeZone.getMonth = () => {
+            return dateWithFakeTimeZone.getUTCMonth();
+        };
+        dateWithFakeTimeZone.getDate = () => {
+            return dateWithFakeTimeZone.getUTCDate();
+        };
+        dateWithFakeTimeZone.getHours = () => {
+            return dateWithFakeTimeZone.getUTCHours();
+        };
 
         return {
             targetPage: 'title',

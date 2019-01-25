@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-export function withMessage(message: string, fn: () => void) {
+function withMessage(message: string, fn: () => void) {
     try {
         fn();
     } catch (e) {

@@ -6,15 +6,15 @@
     --ada-blue: #004880;
 
     // Text colors
-    --primary-text: rgba(0,0,0,.9);
-    --secondary-text: rgba(0,0,0,.55);
-    --disabled-text: rgba(0,0,0,.38);
-    --primary-text-invert: rgba(255,255,255,1.0);
-    --secondary-text-invert: rgba(0,0,0,.55);
-    --disabled-text-invert: rgba(0,0,0,.38);
+    --primary-text: rgba(0, 0, 0, 0.9);
+    --secondary-text: rgba(0, 0, 0, 0.55);
+    --disabled-text: rgba(0, 0, 0, 0.38);
+    --primary-text-invert: rgba(255, 255, 255, 1);
+    --secondary-text-invert: rgba(0, 0, 0, 0.55);
+    --disabled-text-invert: rgba(0, 0, 0, 0.38);
 
     // UI colors
-    --communication-primary: #0078D4;
+    --communication-primary: #0078d4;
 
     --communication-tint-40: #eff6fc;
     --communication-tint-30: #deecf9;
@@ -43,22 +43,22 @@
     --neutral-70: #3c3c3c;
     --neutral-80: #333333;
 
-    --neutral-alpha-2: rgba(0,0,0,.02);
-    --neutral-alpha-4: rgba(0,0,0,.04);
-    --neutral-alpha-6: rgba(0,0,0,.06);
-    --neutral-alpha-8: rgba(0,0,0,.08);
+    --neutral-alpha-2: rgba(0, 0, 0, 0.02);
+    --neutral-alpha-4: rgba(0, 0, 0, 0.04);
+    --neutral-alpha-6: rgba(0, 0, 0, 0.06);
+    --neutral-alpha-8: rgba(0, 0, 0, 0.08);
 
-    --neutral-alpha-10: rgba(0,0,0,.1);
-    --neutral-alpha-20: rgba(0,0,0,.2);
-    --neutral-alpha-30: rgba(0,0,0,.3);
+    --neutral-alpha-10: rgba(0, 0, 0, 0.1);
+    --neutral-alpha-20: rgba(0, 0, 0, 0.2);
+    --neutral-alpha-30: rgba(0, 0, 0, 0.3);
 
-    --neutral-alpha-60: rgba(0,0,0,.6);
-    --neutral-alpha-70: rgba(0,0,0,.7);
-    --neutral-alpha-80: rgba(0,0,0,.8);
+    --neutral-alpha-60: rgba(0, 0, 0, 0.6);
+    --neutral-alpha-70: rgba(0, 0, 0, 0.7);
+    --neutral-alpha-80: rgba(0, 0, 0, 0.8);
 
     // Outcome colors
-    --positive-outcome: #107C10;
-    --negative-outcome: #E81123;
+    --positive-outcome: #107c10;
+    --negative-outcome: #e81123;
     --neutral-outcome: var(--neutral-60);
 
     // Landmark colors
@@ -74,7 +74,7 @@
     // Additional colors
     --accent2-dark: rgb(16, 124, 16);
     --communication-alpha-5: rgba(0, 120, 212, 0.05);
-    --ada-blue-variant: #336D99;
+    --ada-blue-variant: #336d99;
 }
 
 // Accessibility Insights brand color

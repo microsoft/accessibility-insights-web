@@ -9,11 +9,7 @@ import { createNodeStub, testNativeWidgetConfiguration } from './helpers';
 describe('cues rule', () => {
     describe('verify cues configs', () => {
         it('should have correct props', () => {
-            testNativeWidgetConfiguration(
-                'cues',
-                'cues-collector',
-                evaluateCues,
-            );
+            testNativeWidgetConfiguration('cues', 'cues-collector', evaluateCues);
         });
     });
 
@@ -86,17 +82,12 @@ describe('cues rule', () => {
 
 function testCuesEvaluateWithData(expectedData, nodeData) {
     const nodeStub = createNodeStub(expectedData.element, nodeData);
-    const getAccessibleTextMock = GlobalMock.ofInstance(AxeUtils.getAccessibleText,
-        'getAccessibleText', AxeUtils, MockBehavior.Strict);
+    const getAccessibleTextMock = GlobalMock.ofInstance(AxeUtils.getAccessibleText, 'getAccessibleText', AxeUtils, MockBehavior.Strict);
 
     const dataSetterMock = Mock.ofInstance(data => {});
 
-    dataSetterMock
-        .setup(m => m(It.isValue(expectedData)))
-        .verifiable(Times.once());
-    getAccessibleTextMock
-        .setup(m => m(nodeStub, false))
-        .returns(n => expectedData.accessibleName);
+    dataSetterMock.setup(m => m(It.isValue(expectedData))).verifiable(Times.once());
+    getAccessibleTextMock.setup(m => m(nodeStub, false)).returns(n => expectedData.accessibleName);
 
     let result;
     GlobalScope.using(getAccessibleTextMock).with(() => {

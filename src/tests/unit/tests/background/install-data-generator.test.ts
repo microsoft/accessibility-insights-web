@@ -217,9 +217,7 @@ describe('InstallDataGeneratorTest', () => {
             .returns(() => guidStub)
             .verifiable(Times.never());
 
-        browserAdapterMock
-            .setup(bam => bam.setUserData(It.isAny()))
-            .verifiable(Times.never());
+        browserAdapterMock.setup(bam => bam.setUserData(It.isAny())).verifiable(Times.never());
 
         expect(testSubject.getInstallationId()).toEqual(guidStub);
         verifyMocks();
@@ -232,4 +230,3 @@ describe('InstallDataGeneratorTest', () => {
         dateStubMock.verifyAll();
     }
 });
-

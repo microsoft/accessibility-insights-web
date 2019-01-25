@@ -126,9 +126,7 @@ describe('MessageDistributorTest', () => {
     function createInterpreterMockWithoutInteraction(): IMock<Interpreter> {
         const interpreterMock = Mock.ofType(Interpreter);
 
-        interpreterMock
-            .setup(x => x.interpret(It.isAny()))
-            .verifiable(Times.never());
+        interpreterMock.setup(x => x.interpret(It.isAny())).verifiable(Times.never());
 
         return interpreterMock;
     }
@@ -136,9 +134,7 @@ describe('MessageDistributorTest', () => {
     function createInterpreterMockWithInteraction(): IMock<Interpreter> {
         const interpreterMock = Mock.ofType(Interpreter);
 
-        interpreterMock
-            .setup(x => x.interpret(It.isAny()))
-            .verifiable(Times.once());
+        interpreterMock.setup(x => x.interpret(It.isAny())).verifiable(Times.once());
 
         return interpreterMock;
     }

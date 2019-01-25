@@ -113,7 +113,7 @@ export class ReportHead extends React.Component {
         return (
             <head>
                 <title>{title} automated checks result</title>
-                <style>{this.stylesheet}</style>
+                <style dangerouslySetInnerHTML={{__html: this.stylesheet}}></style>
             </head>
         );
     }

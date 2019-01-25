@@ -28,9 +28,7 @@ describe('UrlValidatorTest', () => {
         testSubject = new UrlValidator();
         const browserAdapterMock = Mock.ofType(ChromeAdapter);
         browserAdapterMock
-            .setup(b =>
-                b.isAllowedFileSchemeAccess(It.is(isFunction)),
-            )
+            .setup(b => b.isAllowedFileSchemeAccess(It.is(isFunction)))
             .callback(callback => {
                 callback(true);
             })
@@ -54,9 +52,7 @@ describe('UrlValidatorTest', () => {
         testSubject = new UrlValidator();
         const browserAdapterMock = Mock.ofType(ChromeAdapter);
         browserAdapterMock
-            .setup(b =>
-                b.isAllowedFileSchemeAccess(It.is(isFunction)),
-            )
+            .setup(b => b.isAllowedFileSchemeAccess(It.is(isFunction)))
             .callback(callback => {
                 callback(false);
             })

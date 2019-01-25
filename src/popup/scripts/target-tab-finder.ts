@@ -18,8 +18,7 @@ export class TargetTabFinder {
         private readonly browserAdapter: BrowserAdapter,
         private readonly urlValidator: UrlValidator,
         private readonly urlParser: UrlParser,
-    ) {
-    }
+    ) {}
 
     public async getTargetTab(): Promise<TargetTabInfo> {
         const tabInfo = await this.getTabInfo();
@@ -32,14 +31,16 @@ export class TargetTabFinder {
             const tabIdInUrl = this.urlParser.getIntParam(this.win.location.href, 'tabId');
 
             if (isNaN(tabIdInUrl)) {
-                this.browserAdapter.tabsQuery({
-                    active: true,
-                    currentWindow: true,
-                }, (tabs: ITab[]): void => {
-                    resolve(tabs.pop());
-                });
-            }
-            else {
+                this.browserAdapter.tabsQuery(
+                    {
+                        active: true,
+                        currentWindow: true,
+                    },
+                    (tabs: ITab[]): void => {
+                        resolve(tabs.pop());
+                    },
+                );
+            } else {
                 this.browserAdapter.getTab(tabIdInUrl, (tab: ITab) => {
                     resolve(tab);
                 });
@@ -56,5 +57,4 @@ export class TargetTabFinder {
         };
         return targetTab;
     }
-
 }

@@ -11,16 +11,13 @@ export class StateDispatcher {
     private broadcastMessage: (message: StoreUpdateMessage<any>) => void;
     private stores: IStoreHub;
 
-    constructor(
-        broadcastMessage: (message: Object) => void,
-        stores: IStoreHub) {
+    constructor(broadcastMessage: (message: Object) => void, stores: IStoreHub) {
         this.broadcastMessage = broadcastMessage;
         this.stores = stores;
     }
 
     public initialize() {
-        this.stores.getAllStores()
-            .forEach(store => this.addDispatchListenerToStore(store));
+        this.stores.getAllStores().forEach(store => this.addDispatchListenerToStore(store));
     }
 
     private addDispatchListenerToStore(store: IBaseStore<any>) {

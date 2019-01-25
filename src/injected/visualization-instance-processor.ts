@@ -7,14 +7,16 @@ export interface IVisualizationPropertyBag<T> extends IAssessmentVisualizationIn
     propertyBag?: T;
 }
 
-export type IVisualizationInstanceProcessorCallback<Raw, Processed> = (instances: IVisualizationPropertyBag<Raw>[]) => IVisualizationPropertyBag<Processed>[];
+export type IVisualizationInstanceProcessorCallback<Raw, Processed> = (
+    instances: IVisualizationPropertyBag<Raw>[],
+) => IVisualizationPropertyBag<Processed>[];
 
 export type IPropertyBags = IPartialTabOrderPropertyBag | ITabOrderPropertyBag;
 
 export class VisualizationInstanceProcessor {
     public static nullProcessor: IVisualizationInstanceProcessorCallback<null, null> = instances => {
         return instances;
-    }
+    };
 
     public static addOrder: IVisualizationInstanceProcessorCallback<IPartialTabOrderPropertyBag, ITabOrderPropertyBag> = instances => {
         instances.sort((instanceA, instanceB) => instanceA.propertyBag.timestamp - instanceB.propertyBag.timestamp);
@@ -27,5 +29,5 @@ export class VisualizationInstanceProcessor {
                 },
             };
         });
-    }
+    };
 }

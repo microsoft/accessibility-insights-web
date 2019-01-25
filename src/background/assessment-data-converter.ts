@@ -41,8 +41,13 @@ export class AssessmentDataConverter {
                 const ruleResult = elementAxeResult.ruleResults[rule];
                 const identifier = generateInstanceIdentifier({ target: elementAxeResult.target, html: ruleResult.html });
                 const matchingInstance = instancesMap[identifier];
-                instancesMap[identifier] =
-                    this.getInitialAssessmentInstance(matchingInstance, elementAxeResult, stepName, ruleResult, getInstanceStatus);
+                instancesMap[identifier] = this.getInitialAssessmentInstance(
+                    matchingInstance,
+                    elementAxeResult,
+                    stepName,
+                    ruleResult,
+                    getInstanceStatus,
+                );
             }
         });
 
@@ -77,7 +82,6 @@ export class AssessmentDataConverter {
             instances: [],
         };
     }
-
 
     private getInitialAssessmentInstance(
         currentInstance: IGeneratedAssessmentInstance,

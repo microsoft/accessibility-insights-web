@@ -4,10 +4,7 @@ import { autobind } from '@uifabric/utilities';
 import * as _ from 'lodash/index';
 
 import { TestMode } from '../common/configs/test-mode';
-import {
-    IVisualizationConfiguration,
-    VisualizationConfigurationFactory,
-} from '../common/configs/visualization-configuration-factory';
+import { IVisualizationConfiguration, VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../common/enum-helper';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { ITabStoreData } from '../common/types/store-data/itab-store-data';
@@ -99,7 +96,10 @@ export class ClientViewController {
     }
 
     private handleFocusChanges(oldVisualizationState: IVisualizationStoreData): void {
-        if (this.currentVisualizationState == null || oldVisualizationState.focusedTarget !== this.currentVisualizationState.focusedTarget) {
+        if (
+            this.currentVisualizationState == null ||
+            oldVisualizationState.focusedTarget !== this.currentVisualizationState.focusedTarget
+        ) {
             if (this.currentVisualizationState.focusedTarget != null) {
                 this.handleFocusChange(this.currentVisualizationState.focusedTarget);
             }
@@ -107,11 +107,13 @@ export class ClientViewController {
     }
 
     private shouldWaitForAllStoreToLoad(): boolean {
-        return this.currentVisualizationState == null ||
+        return (
+            this.currentVisualizationState == null ||
             this.currentScanResultState == null ||
             this.currentFeatureFlagState == null ||
             this.currentAssessmentState == null ||
-            this.currentTabState == null;
+            this.currentTabState == null
+        );
     }
 
     private executeUpdates(): void {
@@ -136,9 +138,11 @@ export class ClientViewController {
     }
 
     private isAssessmentDataForCurrentPage(config: IVisualizationConfiguration): boolean {
-        return !this.isAssessment(config) ||
+        return (
+            !this.isAssessment(config) ||
             this.currentAssessmentState.targetTab === null ||
-            this.currentTabState.id === this.currentAssessmentState.targetTab.id;
+            this.currentTabState.id === this.currentAssessmentState.targetTab.id
+        );
     }
 
     private executeUpdate(visualizationType: VisualizationType, step: string) {
@@ -154,17 +158,32 @@ export class ClientViewController {
         this.previousVisualizationStates[id] = enabled;
 
         if (enabled) {
-            this.drawingInitiator.enableVisualization(visualizationType, this.currentFeatureFlagState, selectorMap, id, configuration.visualizationInstanceProcessor(step));
+            this.drawingInitiator.enableVisualization(
+                visualizationType,
+                this.currentFeatureFlagState,
+                selectorMap,
+                id,
+                configuration.visualizationInstanceProcessor(step),
+            );
         } else {
             this.drawingInitiator.disableVisualization(visualizationType, this.currentFeatureFlagState, id);
         }
     }
 
-    private isVisualizationStateUnchanged(type: VisualizationType, newVisualizationEnabledState: boolean, newSelectorMapState: IDictionaryStringTo<IAssessmentVisualizationInstance>, id: string): boolean {
-        if ((id in this.previousVisualizationStates) === false && newVisualizationEnabledState === false) {
+    private isVisualizationStateUnchanged(
+        type: VisualizationType,
+        newVisualizationEnabledState: boolean,
+        newSelectorMapState: IDictionaryStringTo<IAssessmentVisualizationInstance>,
+        id: string,
+    ): boolean {
+        if (id in this.previousVisualizationStates === false && newVisualizationEnabledState === false) {
             this.previousVisualizationStates[id] = false;
         }
-        return id in this.previousVisualizationStates && this.previousVisualizationStates[id] === newVisualizationEnabledState && _.isEqual(this.previousVisualizationSelectorMapStates[type], newSelectorMapState);
+        return (
+            id in this.previousVisualizationStates &&
+            this.previousVisualizationStates[id] === newVisualizationEnabledState &&
+            _.isEqual(this.previousVisualizationSelectorMapStates[type], newSelectorMapState)
+        );
     }
 
     private handleFocusChange(focusedTarget: string[]): void {

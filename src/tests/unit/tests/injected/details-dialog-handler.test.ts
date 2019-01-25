@@ -37,17 +37,23 @@ describe('DetailsDialogHandlerTest', () => {
     test('backButtonClickHandler', () => {
         const detailsDialogMock: IMock<DetailsDialog> = Mock.ofType(DetailsDialog);
 
-        detailsDialogMock.setup(it => it.state).returns(() => {
-            return {
-                showDialog: true,
-                currentRuleIndex: 1,
-            } as any;
-        });
+        detailsDialogMock
+            .setup(it => it.state)
+            .returns(() => {
+                return {
+                    showDialog: true,
+                    currentRuleIndex: 1,
+                } as any;
+            });
 
         detailsDialogMock
-            .setup(it => it.setState(It.isValue({
-                currentRuleIndex: 0,
-            })))
+            .setup(it =>
+                it.setState(
+                    It.isValue({
+                        currentRuleIndex: 0,
+                    }),
+                ),
+            )
             .verifiable();
 
         testSubject.backButtonClickHandler(detailsDialogMock.object);
@@ -58,17 +64,23 @@ describe('DetailsDialogHandlerTest', () => {
     test('nextButtonClickHandler', () => {
         const detailsDialogMock: IMock<DetailsDialog> = Mock.ofType(DetailsDialog);
 
-        detailsDialogMock.setup(it => it.state).returns(() => {
-            return {
-                showDialog: true,
-                currentRuleIndex: 0,
-            } as any;
-        });
+        detailsDialogMock
+            .setup(it => it.state)
+            .returns(() => {
+                return {
+                    showDialog: true,
+                    currentRuleIndex: 0,
+                } as any;
+            });
 
         detailsDialogMock
-            .setup(it => it.setState(It.isValue({
-                currentRuleIndex: 1,
-            })))
+            .setup(it =>
+                it.setState(
+                    It.isValue({
+                        currentRuleIndex: 1,
+                    }),
+                ),
+            )
             .verifiable();
 
         testSubject.nextButtonClickHandler(detailsDialogMock.object);
@@ -84,10 +96,7 @@ describe('DetailsDialogHandlerTest', () => {
         const target = ['frame', 'div'];
 
         devToolActionMessageCreatorMock
-            .setup(it => it.setInspectElement(
-                It.isValue(event as any),
-                It.isValue(target),
-            ))
+            .setup(it => it.setInspectElement(It.isValue(event as any), It.isValue(target)))
             .verifiable(Times.once());
 
         detailsDialogMock
@@ -100,11 +109,7 @@ describe('DetailsDialogHandlerTest', () => {
             })
             .verifiable(Times.atLeastOnce());
 
-        detailsDialogMock
-            .setup(it => it.setState(
-                It.isValue({ showDialog: false }),
-            ))
-            .verifiable(Times.once());
+        detailsDialogMock.setup(it => it.setState(It.isValue({ showDialog: false }))).verifiable(Times.once());
 
         testSubject.inspectButtonClickHandler(detailsDialogMock.object, event as any);
 
@@ -116,9 +121,13 @@ describe('DetailsDialogHandlerTest', () => {
         const detailsDialogMock: IMock<DetailsDialog> = Mock.ofType(DetailsDialog);
 
         detailsDialogMock
-            .setup(it => it.setState(It.isValue({
-                showDialog: true,
-            })))
+            .setup(it =>
+                it.setState(
+                    It.isValue({
+                        showDialog: true,
+                    }),
+                ),
+            )
             .verifiable();
 
         testSubject.showDialog(detailsDialogMock.object);
@@ -130,9 +139,13 @@ describe('DetailsDialogHandlerTest', () => {
         const detailsDialogMock: IMock<DetailsDialog> = Mock.ofType(DetailsDialog);
 
         detailsDialogMock
-            .setup(it => it.setState(It.isValue({
-                showDialog: false,
-            })))
+            .setup(it =>
+                it.setState(
+                    It.isValue({
+                        showDialog: false,
+                    }),
+                ),
+            )
             .verifiable();
 
         testSubject.hideDialog(detailsDialogMock.object);
@@ -143,24 +156,32 @@ describe('DetailsDialogHandlerTest', () => {
     test('NextButtonNotDisabled', () => {
         const detailsDialogMock: IMock<DetailsDialog> = Mock.ofType(DetailsDialog);
 
-        detailsDialogMock.setup(it => it.state).returns(() => {
-            return {
-                showDialog: true,
-                currentRuleIndex: 1,
-            } as any;
-        });
-
-        detailsDialogMock.setup(it => it.props).returns(() => {
-            return {
-                failedRules: [1, 2, 3, 4],
-            } as any;
-        });
+        detailsDialogMock
+            .setup(it => it.state)
+            .returns(() => {
+                return {
+                    showDialog: true,
+                    currentRuleIndex: 1,
+                } as any;
+            });
 
         detailsDialogMock
-            .setup(it => it.setState(It.isValue({
-                showDialog: true,
-                currentRuleIndex: 1,
-            })))
+            .setup(it => it.props)
+            .returns(() => {
+                return {
+                    failedRules: [1, 2, 3, 4],
+                } as any;
+            });
+
+        detailsDialogMock
+            .setup(it =>
+                it.setState(
+                    It.isValue({
+                        showDialog: true,
+                        currentRuleIndex: 1,
+                    }),
+                ),
+            )
             .verifiable();
         expect(testSubject.isNextButtonDisabled(detailsDialogMock.object)).toBe(false);
     });
@@ -168,24 +189,32 @@ describe('DetailsDialogHandlerTest', () => {
     test('NextButtonIsDisabled', () => {
         const detailsDialogMock: IMock<DetailsDialog> = Mock.ofType(DetailsDialog);
 
-        detailsDialogMock.setup(dialog => dialog.state).returns(() => {
-            return {
-                showDialog: true,
-                currentRuleIndex: 3,
-            } as any;
-        });
-
-        detailsDialogMock.setup(dialog => dialog.props).returns(() => {
-            return {
-                failedRules: [1, 2, 3, 4],
-            } as any;
-        });
+        detailsDialogMock
+            .setup(dialog => dialog.state)
+            .returns(() => {
+                return {
+                    showDialog: true,
+                    currentRuleIndex: 3,
+                } as any;
+            });
 
         detailsDialogMock
-            .setup(dialog => dialog.setState(It.isValue({
-                showDialog: true,
-                currentRuleIndex: 1,
-            })))
+            .setup(dialog => dialog.props)
+            .returns(() => {
+                return {
+                    failedRules: [1, 2, 3, 4],
+                } as any;
+            });
+
+        detailsDialogMock
+            .setup(dialog =>
+                dialog.setState(
+                    It.isValue({
+                        showDialog: true,
+                        currentRuleIndex: 1,
+                    }),
+                ),
+            )
             .verifiable();
         expect(testSubject.isNextButtonDisabled(detailsDialogMock.object)).toBe(true);
     });
@@ -193,24 +222,32 @@ describe('DetailsDialogHandlerTest', () => {
     test('BackButtonIsDisabled', () => {
         const detailsDialogMock: IMock<DetailsDialog> = Mock.ofType(DetailsDialog);
 
-        detailsDialogMock.setup(dialog => dialog.state).returns(() => {
-            return {
-                showDialog: true,
-                currentRuleIndex: 0,
-            } as any;
-        });
-
-        detailsDialogMock.setup(dialog => dialog.props).returns(() => {
-            return {
-                failedRules: [1, 2, 3, 4],
-            } as any;
-        });
+        detailsDialogMock
+            .setup(dialog => dialog.state)
+            .returns(() => {
+                return {
+                    showDialog: true,
+                    currentRuleIndex: 0,
+                } as any;
+            });
 
         detailsDialogMock
-            .setup(dialog => dialog.setState(It.isValue({
-                showDialog: true,
-                currentRuleIndex: 1,
-            })))
+            .setup(dialog => dialog.props)
+            .returns(() => {
+                return {
+                    failedRules: [1, 2, 3, 4],
+                } as any;
+            });
+
+        detailsDialogMock
+            .setup(dialog =>
+                dialog.setState(
+                    It.isValue({
+                        showDialog: true,
+                        currentRuleIndex: 1,
+                    }),
+                ),
+            )
             .verifiable();
         expect(testSubject.isBackButtonDisabled(detailsDialogMock.object)).toBe(true);
     });
@@ -218,50 +255,63 @@ describe('DetailsDialogHandlerTest', () => {
     test('BackButtonNotDisabled', () => {
         const detailsDialogMock: IMock<DetailsDialog> = Mock.ofType(DetailsDialog);
 
-        detailsDialogMock.setup(dialog => dialog.state).returns(() => {
-            return {
-                showDialog: true,
-                currentRuleIndex: 1,
-            } as any;
-        });
-
-        detailsDialogMock.setup(dialog => dialog.props).returns(() => {
-            return {
-                failedRules: [1, 2, 3, 4],
-            } as any;
-        });
+        detailsDialogMock
+            .setup(dialog => dialog.state)
+            .returns(() => {
+                return {
+                    showDialog: true,
+                    currentRuleIndex: 1,
+                } as any;
+            });
 
         detailsDialogMock
-            .setup(dialog => dialog.setState(It.isValue({
-                showDialog: true,
-                currentRuleIndex: 1,
-            })))
+            .setup(dialog => dialog.props)
+            .returns(() => {
+                return {
+                    failedRules: [1, 2, 3, 4],
+                } as any;
+            });
+
+        detailsDialogMock
+            .setup(dialog =>
+                dialog.setState(
+                    It.isValue({
+                        showDialog: true,
+                        currentRuleIndex: 1,
+                    }),
+                ),
+            )
             .verifiable();
         expect(testSubject.isBackButtonDisabled(detailsDialogMock.object)).toBe(false);
     });
 
     test('isInspectButtonDisabled', () => {
-        testIsInspectButtonDisabledShouldReflectCanInspect(true); testIsInspectButtonDisabledShouldReflectCanInspect(false);
+        testIsInspectButtonDisabledShouldReflectCanInspect(true);
+        testIsInspectButtonDisabledShouldReflectCanInspect(false);
     });
 
     test('onDevToolChanged', () => {
-        testOnDevToolChangeSetsCanInspectToIsOpen(true); testOnDevToolChangeSetsCanInspectToIsOpen(false);
+        testOnDevToolChangeSetsCanInspectToIsOpen(true);
+        testOnDevToolChangeSetsCanInspectToIsOpen(false);
     });
 
     test('canInspect', () => {
-        testCanInspectEqualsIsOpen(true); testCanInspectEqualsIsOpen(false);
+        testCanInspectEqualsIsOpen(true);
+        testCanInspectEqualsIsOpen(false);
     });
 
     test('getFailureInfo', () => {
         const detailsDialogMock: IMock<DetailsDialog> = Mock.ofType(DetailsDialog);
 
-        detailsDialogMock.setup(dialog => dialog.props).returns(() => {
-            return {
-                showDialog: true,
-                currentRuleIndex: 0,
-                failedRules: [1, 2, 3, 4],
-            } as any;
-        });
+        detailsDialogMock
+            .setup(dialog => dialog.props)
+            .returns(() => {
+                return {
+                    showDialog: true,
+                    currentRuleIndex: 0,
+                    failedRules: [1, 2, 3, 4],
+                } as any;
+            });
         expect(testSubject.getFailureInfo(detailsDialogMock.object)).toEqual('Failure 1 of 4 for this target');
     });
 
@@ -274,7 +324,8 @@ describe('DetailsDialogHandlerTest', () => {
         parentLayer.appendChild(intermdediateElement);
 
         htmlElementUtilsMock
-            .setup(x => x.querySelector('.insights-dialog-main-override')).returns(() => dialogContainer)
+            .setup(x => x.querySelector('.insights-dialog-main-override'))
+            .returns(() => dialogContainer)
             .verifiable();
 
         testSubject.onLayoutDidMount();
@@ -285,7 +336,8 @@ describe('DetailsDialogHandlerTest', () => {
 
     test('onLayoutDidMount_unableToFindDialog', () => {
         htmlElementUtilsMock
-            .setup(x => x.querySelector('.insights-dialog-main-override')).returns(() => null)
+            .setup(x => x.querySelector('.insights-dialog-main-override'))
+            .returns(() => null)
             .verifiable();
 
         testSubject.onLayoutDidMount();
@@ -296,7 +348,8 @@ describe('DetailsDialogHandlerTest', () => {
     test('onLayoutDidMount_unableToFindLayer', () => {
         const dialogContainer = document.createElement('div');
         htmlElementUtilsMock
-            .setup(x => x.querySelector('.insights-dialog-main-override')).returns(() => dialogContainer)
+            .setup(x => x.querySelector('.insights-dialog-main-override'))
+            .returns(() => dialogContainer)
             .verifiable();
 
         testSubject.onLayoutDidMount();
@@ -308,7 +361,9 @@ describe('DetailsDialogHandlerTest', () => {
         const detailsDialogMock = Mock.ofType(DetailsDialog, MockBehavior.Strict);
         const devToolStoreMock = Mock.ofType(DevToolStore, MockBehavior.Strict);
         const clickableMock = Mock.ofInstance({
-            addEventListener: (ev, cb) => { return null; },
+            addEventListener: (ev, cb) => {
+                return null;
+            },
         } as any);
 
         const evt = {
@@ -323,18 +378,16 @@ describe('DetailsDialogHandlerTest', () => {
             .verifiable(Times.atLeastOnce());
 
         const shadowRootMock: IMock<Element> = Mock.ofInstance({
-            querySelector: selector => { return null; },
+            querySelector: selector => {
+                return null;
+            },
         } as any);
 
         const shadowRoot: Element = {
             shadowRoot: shadowRootMock.object,
         } as any;
 
-        devToolStoreMock
-            .setup(store => store.addChangedListener(
-                It.isAny(),
-            ))
-            .verifiable(Times.once());
+        devToolStoreMock.setup(store => store.addChangedListener(It.isAny())).verifiable(Times.once());
 
         devToolStoreMock
             .setup(store => store.getState())
@@ -347,7 +400,9 @@ describe('DetailsDialogHandlerTest', () => {
 
         shadowRootMock
             .setup(x => x.querySelector('#insights-shadow-container'))
-            .returns(selector => { return container; })
+            .returns(selector => {
+                return container;
+            })
             .verifiable(Times.atLeastOnce());
 
         htmlElementUtilsMock
@@ -371,11 +426,7 @@ describe('DetailsDialogHandlerTest', () => {
             })
             .verifiable(Times.atLeastOnce());
 
-        detailsDialogMock
-            .setup(dialog => dialog.setState(
-                It.isValue({ canInspect: false }),
-            ))
-            .verifiable(Times.once());
+        detailsDialogMock.setup(dialog => dialog.setState(It.isValue({ canInspect: false }))).verifiable(Times.once());
 
         setupDetailsDialogMockForShadowComponents(detailsDialogMock);
 
@@ -391,7 +442,6 @@ describe('DetailsDialogHandlerTest', () => {
         detailsDialogMock.verifyAll();
         shadowRootMock.verifyAll();
         clickableMock.verifyAll();
-
     });
 
     test('componentDidMount does not add listener if store not present', () => {
@@ -413,11 +463,7 @@ describe('DetailsDialogHandlerTest', () => {
         const detailsDialogMock = Mock.ofType(DetailsDialog, MockBehavior.Strict);
         const devToolStoreMock = Mock.ofType(DevToolStore, MockBehavior.Strict);
 
-        devToolStoreMock
-            .setup(store => store.removeChangedListener(
-                It.isAny(),
-            ))
-            .verifiable(Times.once());
+        devToolStoreMock.setup(store => store.removeChangedListener(It.isAny())).verifiable(Times.once());
 
         detailsDialogMock
             .setup(dialog => dialog.props)
@@ -442,12 +488,16 @@ describe('DetailsDialogHandlerTest', () => {
 
     test('closeWindow will remove listener', () => {
         const shadowRootMock: IMock<Element> = Mock.ofInstance({
-            querySelector: selector => { return null; },
+            querySelector: selector => {
+                return null;
+            },
         } as any);
 
         shadowRootMock
             .setup(x => x.querySelector('#insights-shadow-container'))
-            .returns(selector => { return container; })
+            .returns(selector => {
+                return container;
+            })
             .verifiable(Times.once());
 
         htmlElementUtilsMock
@@ -466,35 +516,45 @@ describe('DetailsDialogHandlerTest', () => {
     function setupInspectButtonQuerySelector(shadowRootMock: IMock<Element>, clickableMock: IMock<any>) {
         shadowRootMock
             .setup(x => x.querySelector('.insights-dialog-button-inspect'))
-            .returns(selector => { return clickableMock.object; })
+            .returns(selector => {
+                return clickableMock.object;
+            })
             .verifiable(Times.once());
     }
 
     function setupDialogContainerQuerySelector(shadowRootMock: IMock<Element>, clickableMock: IMock<any>) {
         shadowRootMock
             .setup(x => x.querySelector('.insights-dialog-main-override-shadow'))
-            .returns(selector => { return clickableMock.object; })
+            .returns(selector => {
+                return clickableMock.object;
+            })
             .verifiable(Times.once());
     }
 
     function setupCloseButtonQuerySelector(shadowRootMock: IMock<Element>, clickableMock: IMock<any>) {
         shadowRootMock
             .setup(x => x.querySelector('.insights-dialog-close'))
-            .returns(selector => { return clickableMock.object; })
+            .returns(selector => {
+                return clickableMock.object;
+            })
             .verifiable(Times.once());
     }
 
     function setupNextButtonQuerySelector(shadowRootMock: IMock<Element>, clickableMock: IMock<any>) {
         shadowRootMock
             .setup(x => x.querySelector('.insights-dialog-button-right'))
-            .returns(selector => { return clickableMock.object; })
+            .returns(selector => {
+                return clickableMock.object;
+            })
             .verifiable(Times.once());
     }
 
     function setupBackButtonQuerySelector(shadowRootMock: IMock<Element>, clickableMock: IMock<any>) {
         shadowRootMock
             .setup(x => x.querySelector('.insights-dialog-button-left'))
-            .returns(selector => { return clickableMock.object; })
+            .returns(selector => {
+                return clickableMock.object;
+            })
             .verifiable(Times.once());
     }
 
@@ -538,17 +598,12 @@ describe('DetailsDialogHandlerTest', () => {
             })
             .verifiable(Times.once());
 
-        detailsDialogMock
-            .setup(dialog => dialog.setState(
-                It.isValue({ canInspect: isOpen }),
-            ))
-            .verifiable(Times.once());
+        detailsDialogMock.setup(dialog => dialog.setState(It.isValue({ canInspect: isOpen }))).verifiable(Times.once());
 
         testSubject.onDevToolChanged(detailsDialogMock.object);
 
         devToolStoreMock.verifyAll();
         detailsDialogMock.verifyAll();
-
     }
 
     function testCanInspectEqualsIsOpen(isOpen: boolean): void {
@@ -614,9 +669,7 @@ describe('DetailsDialogHandlerTest', () => {
             .returns(() => false)
             .verifiable(Times.once());
 
-        detailsDialogMock
-            .setup(dialog => dialog.onClickBackButton())
-            .verifiable(Times.once());
+        detailsDialogMock.setup(dialog => dialog.onClickBackButton()).verifiable(Times.once());
     }
 
     function setupVerificationForNextButton(detailsDialogMock: IMock<DetailsDialog>): void {
@@ -625,9 +678,7 @@ describe('DetailsDialogHandlerTest', () => {
             .returns(() => false)
             .verifiable(Times.once());
 
-        detailsDialogMock
-            .setup(dialog => dialog.onClickNextButton())
-            .verifiable(Times.once());
+        detailsDialogMock.setup(dialog => dialog.onClickNextButton()).verifiable(Times.once());
     }
 
     function setupVerificationForInspectButton(detailsDialogMock: IMock<DetailsDialog>): void {
@@ -636,8 +687,6 @@ describe('DetailsDialogHandlerTest', () => {
             .returns(() => false)
             .verifiable(Times.once());
 
-        detailsDialogMock
-            .setup(dialog => dialog.onClickInspectButton(It.isAny()))
-            .verifiable(Times.once());
+        detailsDialogMock.setup(dialog => dialog.onClickInspectButton(It.isAny())).verifiable(Times.once());
     }
 });

@@ -25,7 +25,6 @@ describe('GlobalStoreHubTest', () => {
     let assessmentProvider;
     let persistedDataStub: PersistedData;
 
-
     beforeEach(() => {
         idbInstance = {} as IndexedDBAPI;
         assessmentProvider = CreateTestAssessmentProvider();
@@ -34,10 +33,9 @@ describe('GlobalStoreHubTest', () => {
         } as ILocalStorageData;
 
         persistedDataStub = {
-            assessmentStoreData: {targetTab : 1, assessmentNavState: null, assessments: null},
-            userConfigurationData: {enableTelemetry: true, isFirstTime: false},
+            assessmentStoreData: { targetTab: 1, assessmentNavState: null, assessments: null },
+            userConfigurationData: { enableTelemetry: true, isFirstTime: false },
         };
-
     });
 
     it('verify getAllStores', () => {
@@ -85,7 +83,6 @@ describe('GlobalStoreHubTest', () => {
         testSubject.initialize();
 
         verifyMocks(initializeMocks);
-
     });
 
     function verifyMocks(mocks: Array<IMock<any>>) {

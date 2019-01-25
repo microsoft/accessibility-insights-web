@@ -20,7 +20,7 @@ export const frameTitleConfiguration: RuleConfiguration = {
 };
 
 function evaluateTitle(node: HTMLElement, options: any): boolean {
-    const frameTitle =  node.title ? node.title.trim() : '';
+    const frameTitle = node.title ? node.title.trim() : '';
 
     const frameResultData: IAxeCheckResultFrameExtraData = {
         frameType: node.tagName.toLowerCase(),

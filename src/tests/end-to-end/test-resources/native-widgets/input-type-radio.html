@@ -4,43 +4,34 @@ Licensed under the MIT License.
 -->
 <!DOCTYPE html>
 <html>
+    <head>
+        <title>Input radio - Native Widgets</title>
+    </head>
 
-<head>
-    <title>Input radio - Native Widgets</title>
-</head>
+    <body role="main">
+        <h1>Input radio - Native Widgets</h1>
 
-<body role="main">
-    <h1>Input radio - Native Widgets</h1>
+        <div>
+            <h2>Radio</h2>
+            <h3>no labels (x3), no group</h3>
+            <form>
+                <input id="input-radio-1" type="radio" name="color" value="red" checked /> Red<br />
+                <input type="radio" name="color" value="green" /> Green<br />
+                <input type="radio" name="color" value="blue" /> Blue
+            </form>
+        </div>
 
-    <div>
-        <h2>Radio</h2>
-        <h3>no labels (x3), no group</h3>
-        <form>
-            <input id="input-radio-1" type="radio" name="color" value="red" checked> Red<br>
-            <input type="radio" name="color" value="green"> Green<br>
-            <input type="radio" name="color" value="blue"> Blue
-        </form>
-    </div>
-
-    <div>
-        <h2>input-radio-2</h2>
-        <h3>fieldset and legend, implicit labels (x3)</h3>
-        <form>
-            <fieldset>
-                <legend>Size</legend>
-                <label>
-                    <input id="input-radio-2" type="radio" name="size" value="small" checked> Small<br>
-                </label>
-                <label>
-                    <input type="radio" name="size" value="medium"> Medium<br>
-                </label>
-                <label>
-                    <input type="radio" name="size" value="large"> Large
-                </label>
-            </fieldset>
-        </form>
-    </div>
-
-</body>
-
+        <div>
+            <h2>input-radio-2</h2>
+            <h3>fieldset and legend, implicit labels (x3)</h3>
+            <form>
+                <fieldset>
+                    <legend>Size</legend>
+                    <label> <input id="input-radio-2" type="radio" name="size" value="small" checked /> Small<br /> </label>
+                    <label> <input type="radio" name="size" value="medium" /> Medium<br /> </label>
+                    <label> <input type="radio" name="size" value="large" /> Large </label>
+                </fieldset>
+            </form>
+        </div>
+    </body>
 </html>

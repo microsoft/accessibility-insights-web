@@ -7,16 +7,13 @@ import { AxeOptions } from '../../../../scanner/launcher';
 import { IRuleWithA11YCriteria, RuleSifter } from '../../../../scanner/rule-sifter';
 import { ScanParamaterGenerator } from '../../../../scanner/scan-parameter-generator';
 
-
 describe('ScanParamaterGenerator', () => {
-
     describe('constructor', () => {
         it('should construct the generator', () => {
             const generator = new ScanParamaterGenerator(null);
             expect(generator).not.toBeNull();
         });
     });
-
 
     describe('getAxeEngineOptions', () => {
         let siftedRulesStub: IRuleWithA11YCriteria[];
@@ -36,9 +33,7 @@ describe('ScanParamaterGenerator', () => {
             ];
 
             mockSifter = Mock.ofType(RuleSifter, MockBehavior.Strict);
-            mockSifter
-                .setup(ms => ms.getSiftedRules())
-                .returns(() => siftedRulesStub);
+            mockSifter.setup(ms => ms.getSiftedRules()).returns(() => siftedRulesStub);
 
             testObject = new ScanParamaterGenerator(mockSifter.object);
         });

@@ -4,14 +4,12 @@ import { ISingleElementSelector } from './types/store-data/scoping-store-data';
 
 export const POPUP_INITIALIZED: string = 'PopupInitialized';
 export const LAUNCH_PANEL_OPEN: string = 'LaunchPanelOpen';
-export const SCAN_HEADINGS_ASSESSMENT: string = 'ScanHeadingsAssessment';
 export const AUTOMATED_CHECKS_TOGGLE: string = 'IssuesToggled';
 export const LANDMARKS_TOGGLE: string = 'LandmarksToggled';
 export const TABSTOPS_TOGGLE: string = 'TabStopsToggled';
 export const TABSTOPS_RECORDING_COMPLETE: string = 'TabStopsRecordingComplete';
 export const COLOR_TOGGLE: string = 'ColorToggled';
 export const HEADINGS_TOGGLE: string = 'HeadingsToggled';
-export const FEEDBACK_SUBMITTED: string = 'FeedbackSubmitted';
 export const SHORTCUT_MODIFIED: string = 'ShortcutModified';
 export const SHORTCUT_CONFIGURE_OPEN = 'ShortcutConfigureTabOpen';
 export const DETAILS_VIEW_OPEN: string = 'DetailsViewOpened';
@@ -19,7 +17,6 @@ export const PIVOT_CHILD_SELECTED: string = 'PivotChildSelected';
 export const TUTORIAL_OPEN: string = 'TutorialOpen';
 export const SWITCH_BACK_TO_TARGET: string = 'SwitchBackToTarget';
 export const DETAILS_VIEW_PIVOT_ACTIVATED: string = 'DetailsViewPivotActivated';
-export const FRAME_URL_SET: string = 'FrameUrlSet';
 export const INSPECT_OPEN: string = 'InspectOpen';
 export const COPY_ISSUE_DETAILS: string = 'CopyIssueDetails';
 export const SELECT_TEST_STEP: string = 'selectTestStep';
@@ -84,11 +81,6 @@ export interface BaseTelemetryData {
     triggeredBy?: string;
 }
 
-export interface FeedbackTelemetryData extends BaseTelemetryData {
-    satisfactionLevel: number;
-    feedback: string;
-}
-
 export interface ToggleTelemetryData extends BaseTelemetryData {
     enabled?: boolean;
 }
@@ -145,10 +137,6 @@ export interface InspectTelemetryData extends BaseTelemetryData {
     target?: string[];
 }
 
-export interface CreateBugTelemetryData extends BaseTelemetryData {
-    rule: string;
-}
-
 export interface ScopingTelemetryData extends BaseTelemetryData {
     inputType: string;
 }
@@ -170,20 +158,14 @@ export interface IssuesAnalyzerScanTelemetryData extends RuleAnalyzerScanTelemet
     failedRuleResults: string;
 }
 
-export type IAnalyzerTelemetryData =
-    RuleAnalyzerScanTelemetryData |
-    IssuesAnalyzerScanTelemetryData;
-
 export type TelemetryData =
-    FeedbackTelemetryData |
-    ToggleTelemetryData |
-    FeatureFlagToggleTelemetryData |
-    DetailsViewOpenTelemetryData |
-    DetailsViewPivotSelectedTelemetryData |
-    DetailsViewTargetLinkClickTelemetryData |
-    ModifiedCommandsTelemetryData |
-    InspectTelemetryData |
-    AssessmentTelemetryData |
-    TestStepActionTelemetryData |
-    RequirementStatusTelemetryData |
-    CreateBugTelemetryData;
+    | ToggleTelemetryData
+    | FeatureFlagToggleTelemetryData
+    | DetailsViewOpenTelemetryData
+    | DetailsViewPivotSelectedTelemetryData
+    | DetailsViewTargetLinkClickTelemetryData
+    | ModifiedCommandsTelemetryData
+    | InspectTelemetryData
+    | AssessmentTelemetryData
+    | TestStepActionTelemetryData
+    | RequirementStatusTelemetryData;

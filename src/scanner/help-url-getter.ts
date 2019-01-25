@@ -4,7 +4,7 @@ import { configuration } from './custom-rule-configurations';
 import { RuleConfiguration } from './iruleresults';
 
 export class HelpUrlGetter {
-    constructor(private readonly ruleConfigs: RuleConfiguration[]) { }
+    constructor(private readonly ruleConfigs: RuleConfiguration[]) {}
 
     public getlHelpUrl(ruleId: string, axeHelpUrl: string): string {
         const customHelpUrl = this.getCustomHelpUrl(ruleId);

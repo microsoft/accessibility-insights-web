@@ -3,7 +3,7 @@
 import { guidance } from './guidance';
 import * as captions from './captions';
 
-export const liveMultimedia  = {
+export const liveMultimedia = {
     guidance,
     captions,
 };

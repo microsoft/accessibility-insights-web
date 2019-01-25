@@ -82,8 +82,7 @@ describe('FeatureFlagStoreTest', () => {
         const initialState = getDefaultFeatureFlagValues();
         const finalState = getDefaultFeatureFlagValues();
 
-        createStoreTesterForFeatureFlagActions('getCurrentState')
-            .testListenerToBeCalledOnce(initialState, finalState);
+        createStoreTesterForFeatureFlagActions('getCurrentState').testListenerToBeCalledOnce(initialState, finalState);
     });
 
     test('on setFeatureFlag', () => {
@@ -119,8 +118,7 @@ describe('FeatureFlagStoreTest', () => {
 
         const finalState = getDefaultFeatureFlagValues();
 
-        createStoreTesterForFeatureFlagActions('resetFeatureFlags')
-            .testListenerToBeCalledOnce(initialState, finalState);
+        createStoreTesterForFeatureFlagActions('resetFeatureFlags').testListenerToBeCalledOnce(initialState, finalState);
     });
 
     function createStoreTesterForFeatureFlagActions(actionName: keyof FeatureFlagActions, userData: ILocalStorageData = null) {

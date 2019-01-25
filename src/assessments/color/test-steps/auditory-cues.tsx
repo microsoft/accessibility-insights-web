@@ -26,7 +26,7 @@ const auditoryCuesHowToTest: JSX.Element = (
     </div>
 );
 
-export const auditoryCuesDescription: JSX.Element = <span>Auditory cues must be accompanied by visual cues.</span>;
+const auditoryCuesDescription: JSX.Element = <span>Auditory cues must be accompanied by visual cues.</span>;
 
 export const AuditoryCues: TestStep = {
     key: ColorSensoryTestStep.auditoryCues,

@@ -59,13 +59,15 @@ describe('SVGDrawerV2Tests', () => {
         const docMock = dom.ownerDocument || dom;
 
         const element: HTMLElement = dom.querySelector('#id1') as HTMLElement;
-        const expectedTabbedElements: ITabbedItem[] = [{
-            element: element,
-            tabOrder: 1,
-            focusIndicator: null,
-            shouldRedraw: true,
-            selector: '#id1',
-        }];
+        const expectedTabbedElements: ITabbedItem[] = [
+            {
+                element: element,
+                tabOrder: 1,
+                focusIndicator: null,
+                shouldRedraw: true,
+                selector: '#id1',
+            },
+        ];
         const tabbedElements: ITabbedElementData[] = [
             {
                 tabOrder: 1,
@@ -75,8 +77,7 @@ describe('SVGDrawerV2Tests', () => {
             },
         ];
 
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(dom, styleStub)
-            .build();
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(dom, styleStub).build();
 
         const testSubject = new SVGDrawerV2(
             dom,
@@ -103,13 +104,15 @@ describe('SVGDrawerV2Tests', () => {
         const docMock = dom.ownerDocument || dom;
 
         const element: HTMLElement = dom.querySelector('#id1') as HTMLElement;
-        const expectedTabbedElements: ITabbedItem[] = [{
-            element: element,
-            tabOrder: 1,
-            focusIndicator: null,
-            shouldRedraw: true,
-            selector: '#id1',
-        }];
+        const expectedTabbedElements: ITabbedItem[] = [
+            {
+                element: element,
+                tabOrder: 1,
+                focusIndicator: null,
+                shouldRedraw: true,
+                selector: '#id1',
+            },
+        ];
         const tabbedElements: ITabbedElementData[] = [
             {
                 propertyBag: {
@@ -123,8 +126,7 @@ describe('SVGDrawerV2Tests', () => {
             },
         ];
 
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(dom, styleStub)
-            .build();
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(dom, styleStub).build();
 
         const testSubject = new SVGDrawerV2(
             dom,
@@ -197,8 +199,7 @@ describe('SVGDrawerV2Tests', () => {
             },
         ];
 
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(dom, styleStub)
-            .build();
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(dom, styleStub).build();
 
         const testSubject = new SVGDrawerV2(
             dom,
@@ -282,8 +283,7 @@ describe('SVGDrawerV2Tests', () => {
             },
         ];
 
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(dom, styleStub)
-            .build();
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(dom, styleStub).build();
 
         const testSubject = new SVGDrawerV2(
             dom,
@@ -401,8 +401,7 @@ describe('SVGDrawerV2Tests', () => {
             },
         ];
 
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(dom, styleStub)
-            .build();
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(dom, styleStub).build();
 
         const testSubject = new SVGDrawerV2(
             dom,
@@ -424,7 +423,7 @@ describe('SVGDrawerV2Tests', () => {
     });
 
     test('removeFocusIndicator', () => {
-        const removeMock = Mock.ofInstance(() => { });
+        const removeMock = Mock.ofInstance(() => {});
         const focusIndicatorMock: IFocusIndicator = {
             circle: {
                 remove: removeMock.object,
@@ -436,9 +435,7 @@ describe('SVGDrawerV2Tests', () => {
                 remove: removeMock.object,
             } as any,
         };
-        removeMock
-            .setup(r => r())
-            .verifiable(Times.exactly(3));
+        removeMock.setup(r => r()).verifiable(Times.exactly(3));
 
         const testSubject = new SVGDrawerV2(
             null,
@@ -475,9 +472,7 @@ describe('SVGDrawerV2Tests', () => {
                 target: ['#id1'],
             },
         ];
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(docMock, styleStub)
-            .setupGetDocSize(100)
-            .build();
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(docMock, styleStub).setupGetDocSize(100).build();
 
         setupFilterFactoryDefault(dom);
         setupWindowUtilsMockDefault(styleStub);
@@ -543,9 +538,7 @@ describe('SVGDrawerV2Tests', () => {
             },
         ];
 
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(docMock, styleStub)
-            .setupGetDocSize(100)
-            .build();
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(docMock, styleStub).setupGetDocSize(100).build();
         setupWindowUtilsMockDefault(styleStub);
         setupFilterFactoryDefault(dom);
         setupCenterPositionCalculatorDefault();
@@ -611,9 +604,7 @@ describe('SVGDrawerV2Tests', () => {
             },
         ];
 
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(docMock, styleStub)
-            .setupGetDocSize(100)
-            .build();
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(docMock, styleStub).setupGetDocSize(100).build();
         setupWindowUtilsMockDefault(styleStub);
         setupFilterFactoryDefault(dom);
         setupCenterPositionCalculatorDefault();
@@ -679,9 +670,7 @@ describe('SVGDrawerV2Tests', () => {
             },
         ];
 
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(docMock, styleStub)
-            .setupGetDocSize(100)
-            .build();
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(docMock, styleStub).setupGetDocSize(100).build();
         setupWindowUtilsMockDefault(styleStub);
         setupFilterFactoryDefault(dom);
         setupCenterPositionCalculatorDefault();
@@ -747,9 +736,7 @@ describe('SVGDrawerV2Tests', () => {
             },
         ];
 
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(docMock, styleStub)
-            .setupGetDocSize(100)
-            .build();
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(docMock, styleStub).setupGetDocSize(100).build();
         setupWindowUtilsMockDefault(styleStub);
         setupFilterFactoryDefault(dom);
         setupCenterPositionCalculatorDefault();
@@ -817,9 +804,7 @@ describe('SVGDrawerV2Tests', () => {
             },
         ];
 
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(docMock, styleStub)
-            .setupGetDocSize(100)
-            .build();
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(docMock, styleStub).setupGetDocSize(100).build();
         setupWindowUtilsMockDefault(styleStub);
         setupFilterFactoryDefault(dom);
         setupCenterPositionCalculatorDefault();
@@ -884,9 +869,7 @@ describe('SVGDrawerV2Tests', () => {
             },
         ];
 
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(docMock, styleStub)
-            .setupGetDocSize(100)
-            .build();
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(docMock, styleStub).setupGetDocSize(100).build();
         setupWindowUtilsMockDefault(styleStub);
         setupFilterFactoryDefault(dom);
         setupCenterPositionCalculatorDefault();
@@ -1018,7 +1001,7 @@ describe('SVGDrawerV2Tests', () => {
         filterFactoryMock
             .setup(f => f.createFilter())
             .returns(() => {
-                const doc = dom.ownerDocument || dom as Document;
+                const doc = dom.ownerDocument || (dom as Document);
                 const filter = doc.createElementNS(SVGNamespaceUrl, 'filter');
                 return filter;
             })
@@ -1026,7 +1009,7 @@ describe('SVGDrawerV2Tests', () => {
     }
 
     function setupSVGshapeFactoryDefault(dom): void {
-        const doc = dom.ownerDocument || dom as Document;
+        const doc = dom.ownerDocument || (dom as Document);
         svgShapeFactoryMock
             .setup(s => s.createCircle(It.isAny(), It.isAny()))
             .returns(() => {

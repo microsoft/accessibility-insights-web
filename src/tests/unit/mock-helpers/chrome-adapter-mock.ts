@@ -6,9 +6,7 @@ import { DevToolsChromeAdapter, IDevToolsChromeAdapter } from '../../../backgrou
 import { PortWithTabId } from '../../../background/dev-tools-listener';
 import { PortDisconnectStub, PortOnMessageStub, PortStub } from '../Stubs/chrome-adapter-stub';
 
-
 export class PortWithTabTabIdStub extends PortStub implements PortWithTabId {
-
     constructor(name: string, onMessagePort: PortOnMessageStub, onDisconnectPort: PortDisconnectStub) {
         super();
         this.name = name;
@@ -22,7 +20,10 @@ export class PortWithTabTabIdStub extends PortStub implements PortWithTabId {
 export class ChromeAdapterMock {
     private _chromeAdapterMock: IMock<IDevToolsChromeAdapter> = Mock.ofType(DevToolsChromeAdapter, MockBehavior.Strict);
 
-    public setUpAddListenerOnConnect(callback?: (onListenerConnect: (port: PortWithTabTabIdStub) => void) => void, times: number = 1): ChromeAdapterMock {
+    public setUpAddListenerOnConnect(
+        callback?: (onListenerConnect: (port: PortWithTabTabIdStub) => void) => void,
+        times: number = 1,
+    ): ChromeAdapterMock {
         this._chromeAdapterMock
             .setup(x => x.addListenerOnConnect(It.isAny()))
             .callback(cb => {
@@ -51,13 +52,10 @@ export class ChromeAdapterMock {
             .verifiable(Times.once());
 
         return this;
-
     }
 
     public setupExecuteScriptInInspectedWindow(script: string, frameUrl: string): ChromeAdapterMock {
-        this._chromeAdapterMock
-            .setup(x => x.executeScriptInInspectedWindow(It.isValue(script), frameUrl))
-            .verifiable(Times.once());
+        this._chromeAdapterMock.setup(x => x.executeScriptInInspectedWindow(It.isValue(script), frameUrl)).verifiable(Times.once());
 
         return this;
     }

@@ -7,7 +7,6 @@ import { ChromeAdapter } from '../../../../background/browser-adapter';
 import { ContentScriptInjector } from '../../../../background/injector/content-script-injector';
 import { QStub } from '../../stubs/q-stub';
 
-
 let mockBrowserAdpater: IMock<ChromeAdapter>;
 let mockQ: IMock<typeof Q>;
 let testSubject: ContentScriptInjector;
@@ -27,9 +26,7 @@ describe('ContentScriptInjectorTest', () => {
         testSubject = new ContentScriptInjector(mockBrowserAdpater.object, Q);
 
         ContentScriptInjector.cssFiles.forEach(cssFile => {
-            mockBrowserAdpater
-                .setup(x => x.injectCss(tabId, cssFile, null))
-                .verifiable(Times.once());
+            mockBrowserAdpater.setup(x => x.injectCss(tabId, cssFile, null)).verifiable(Times.once());
         });
 
         ContentScriptInjector.jsFiles.forEach(jsFile => {
@@ -59,9 +56,7 @@ describe('ContentScriptInjectorTest', () => {
         testSubject = new ContentScriptInjector(mockBrowserAdpater.object, mockQ.object);
 
         ContentScriptInjector.cssFiles.forEach(cssFile => {
-            mockBrowserAdpater
-                .setup(x => x.injectCss(tabId, cssFile, null))
-                .verifiable(Times.once());
+            mockBrowserAdpater.setup(x => x.injectCss(tabId, cssFile, null)).verifiable(Times.once());
         });
 
         mockBrowserAdpater

@@ -5,7 +5,6 @@ import { IPartialTabOrderPropertyBag, ITabOrderPropertyBag } from '../../../../i
 import { IVisualizationPropertyBag, VisualizationInstanceProcessor } from '../../../../injected/visualization-instance-processor';
 
 describe('VisualizationInstanceProcessorTest', () => {
-
     test('nullProcessor', () => {
         const instancesStub = [{} as IAssessmentVisualizationInstance];
         expect(VisualizationInstanceProcessor.nullProcessor(instancesStub)).toMatchObject(instancesStub);
@@ -47,7 +46,6 @@ describe('VisualizationInstanceProcessorTest', () => {
 
         expect(actual).toEqual(expectedInstances);
     });
-
 
     function createNullifiedAssessmenVisualizationInstance(): IAssessmentVisualizationInstance {
         return {

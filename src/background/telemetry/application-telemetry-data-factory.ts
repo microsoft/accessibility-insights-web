@@ -19,18 +19,19 @@ export class ApplicationTelemetryDataFactory {
     constructor(
         browserAdapter: ChromeAdapter,
         buildGenerator: ApplicationBuildGenerator,
-        private readonly installDataGenerator: InstallDataGenerator) {
-            const manifest = browserAdapter.getManifest();
-            this.version = manifest.version;
-            this.build = buildGenerator.getBuild();
+        private readonly installDataGenerator: InstallDataGenerator,
+    ) {
+        const manifest = browserAdapter.getManifest();
+        this.version = manifest.version;
+        this.build = buildGenerator.getBuild();
     }
 
     public getData(): ApplicationTelemetryData {
-       return {
-        applicationVersion:  this.version,
-        applicationName:  title,
-        applicationBuild : this.build,
-        installationId : this.installDataGenerator.getInstallationId(),
-       };
+        return {
+            applicationVersion: this.version,
+            applicationName: title,
+            applicationBuild: this.build,
+            installationId: this.installDataGenerator.getInstallationId(),
+        };
     }
 }

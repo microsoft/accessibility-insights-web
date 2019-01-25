@@ -55,7 +55,7 @@ describe('AxeUtils', () => {
 
         beforeEach(() => {
             fixture = createTestFixture('test-fixture', '');
-            _axe = (axe as any);
+            _axe = axe as any;
         });
 
         afterEach(() => {
@@ -106,7 +106,7 @@ describe('AxeUtils', () => {
 
         beforeEach(() => {
             fixture = createTestFixture('test-fixture', '');
-            _axe = (axe as any);
+            _axe = axe as any;
         });
 
         afterEach(() => {
@@ -233,7 +233,7 @@ describe('AxeUtils', () => {
 
         beforeEach(() => {
             fixture = createTestFixture('test-fixture', '');
-            _axe = (axe as any);
+            _axe = axe as any;
             windowMock = GlobalMock.ofInstance(window.getComputedStyle, 'getComputedStyle', window, MockBehavior.Strict);
         });
 
@@ -246,8 +246,7 @@ describe('AxeUtils', () => {
                 <img id="el1" alt="" />
             `;
             const element1 = fixture.querySelector('#el1');
-            windowMock.setup(m => m(It.isAny()))
-                .returns(node => ({ getPropertyValue: property => 'some-value' } as CSSStyleDeclaration));
+            windowMock.setup(m => m(It.isAny())).returns(node => ({ getPropertyValue: property => 'some-value' } as CSSStyleDeclaration));
             let result;
             GlobalScope.using(windowMock).with(() => {
                 result = AxeUtils.hasBackgoundImage(element1 as HTMLElement);
@@ -260,8 +259,7 @@ describe('AxeUtils', () => {
                 <img id="el1" alt="" />
             `;
             const element1 = fixture.querySelector('#el1');
-            windowMock.setup(m => m(It.isAny()))
-                .returns(node => ({ getPropertyValue: property => 'none' } as CSSStyleDeclaration));
+            windowMock.setup(m => m(It.isAny())).returns(node => ({ getPropertyValue: property => 'none' } as CSSStyleDeclaration));
             let result;
             GlobalScope.using(windowMock).with(() => {
                 result = AxeUtils.hasBackgoundImage(element1 as HTMLElement);
@@ -277,7 +275,7 @@ describe('AxeUtils', () => {
 
         beforeEach(() => {
             fixture = createTestFixture('test-fixture', '');
-            _axe = (axe as any);
+            _axe = axe as any;
             windowMock = GlobalMock.ofInstance(window.getComputedStyle, 'getComputedStyle', window, MockBehavior.Strict);
         });
 
@@ -290,8 +288,7 @@ describe('AxeUtils', () => {
                 <img id="el1"/>
             `;
             const element1 = fixture.querySelector('#el1');
-            windowMock.setup(m => m(It.isAny()))
-                .returns(node => ({ getPropertyValue: property => 'none' } as CSSStyleDeclaration));
+            windowMock.setup(m => m(It.isAny())).returns(node => ({ getPropertyValue: property => 'none' } as CSSStyleDeclaration));
             let result;
             GlobalScope.using(windowMock).with(() => {
                 result = AxeUtils.getImageType(element1 as HTMLElement);
@@ -304,8 +301,7 @@ describe('AxeUtils', () => {
                 <i id="el1" />
             `;
             const element1 = fixture.querySelector('#el1');
-            windowMock.setup(m => m(It.isAny()))
-                .returns(node => ({ getPropertyValue: property => 'none' } as CSSStyleDeclaration));
+            windowMock.setup(m => m(It.isAny())).returns(node => ({ getPropertyValue: property => 'none' } as CSSStyleDeclaration));
             let result;
             GlobalScope.using(windowMock).with(() => {
                 result = AxeUtils.getImageType(element1 as HTMLElement);
@@ -318,8 +314,7 @@ describe('AxeUtils', () => {
                 <div id="el1" role='img'/> <div>
             `;
             const element1 = fixture.querySelector('#el1');
-            windowMock.setup(m => m(It.isAny()))
-                .returns(node => ({ getPropertyValue: property => 'none' } as CSSStyleDeclaration));
+            windowMock.setup(m => m(It.isAny())).returns(node => ({ getPropertyValue: property => 'none' } as CSSStyleDeclaration));
             let result;
             GlobalScope.using(windowMock).with(() => {
                 result = AxeUtils.getImageType(element1 as HTMLElement);
@@ -332,8 +327,7 @@ describe('AxeUtils', () => {
                 <div id="el1"/> <div>
             `;
             const element1 = fixture.querySelector('#el1');
-            windowMock.setup(m => m(It.isAny()))
-                .returns(node => ({ getPropertyValue: property => 'imgUrl' } as CSSStyleDeclaration));
+            windowMock.setup(m => m(It.isAny())).returns(node => ({ getPropertyValue: property => 'imgUrl' } as CSSStyleDeclaration));
             let result;
             GlobalScope.using(windowMock).with(() => {
                 result = AxeUtils.getImageType(element1 as HTMLElement);

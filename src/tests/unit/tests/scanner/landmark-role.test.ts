@@ -3,7 +3,6 @@
 import { landmarkConfiguration } from '../../../../scanner/landmark-rule';
 
 describe('landmarkRule', () => {
-
     describe('verify landmark configs', () => {
         it('should have correct props', () => {
             expect(landmarkConfiguration.rule.id).toBe('main-landmark');
