@@ -47,7 +47,7 @@ You can install the extension from one of the following links
     ```bash
     npm test
     ```
--   Build and run the end-to-end tests
+-   Build and run the end-to-end tests (**please do not use admin mode cli**)
     ```bash
     npm run build
     npm run test:e2e
@@ -99,8 +99,11 @@ You can start an interactive watch session that automatically runs tests affecte
 ### Using the terminal
 
 `npm test` runs all unit tests.
+`npm test -- -u` runs all tests and update snapshot files
 
-`npm run test:e2e` runs all end-to-end tests - you'll need to run `npm run build` first if you've changed non-test code.
+
+`npm run test:e2e` runs all end-to-end tests - **Please do not use admin mode cli.** Also you'll need to run `npm run build` first if you've changed non-test code.
+`npm run test:e2e -- -u` runs all end-to-end tests and update snapshot files
 
 To run a single or small number of test files, run `npm test -- {FILE_NAME_REGEX}`
 
