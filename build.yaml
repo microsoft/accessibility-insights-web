@@ -33,7 +33,7 @@ jobs:
           - task: Npm@1
             inputs:
                 command: custom
-                customCommand: test-in-ci
+                customCommand: run test-in-ci
             displayName: run unit tests
 
           - task: PublishTestResults@2
