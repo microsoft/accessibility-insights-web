@@ -6,9 +6,7 @@ import { OutcomeChipSet } from '../../../../../../DetailsView/reports/components
 import { shallowRender } from '../../../../Common/shallow-render';
 
 describe('OutcomeChipSet', () => {
-
     describe('render', () => {
-
         test('render with all properties', () => {
             expect(shallowRender(<OutcomeChipSet pass={3} incomplete={2} fail={4} />)).toMatchSnapshot();
         });
@@ -20,7 +18,5 @@ describe('OutcomeChipSet', () => {
         test('render all zero', () => {
             expect(shallowRender(<OutcomeChipSet pass={0} incomplete={0} fail={0} />)).toMatchSnapshot();
         });
-
     });
-
 });

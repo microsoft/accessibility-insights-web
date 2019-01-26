@@ -14,7 +14,7 @@ describe('TestViewContainerTest', () => {
     it('should not return the target page closed view', () => {
         const expectedTestView = <div />;
         const configFactoryMock = Mock.ofType<VisualizationConfigurationFactory>(null, MockBehavior.Strict);
-        const getTestViewMock = Mock.ofInstance(_ => { }, MockBehavior.Strict);
+        const getTestViewMock = Mock.ofInstance(_ => {}, MockBehavior.Strict);
 
         const configStub = {
             getTestView: getTestViewMock.object,
@@ -33,13 +33,9 @@ describe('TestViewContainerTest', () => {
             ...props,
         };
 
-        configFactoryMock
-            .setup(cfm => cfm.getConfiguration(props.selectedTest))
-            .returns(() => configStub);
+        configFactoryMock.setup(cfm => cfm.getConfiguration(props.selectedTest)).returns(() => configStub);
 
-        getTestViewMock
-            .setup(gtvm => gtvm(It.isValue(expectedProps)))
-            .returns(() => expectedTestView);
+        getTestViewMock.setup(gtvm => gtvm(It.isValue(expectedProps))).returns(() => expectedTestView);
 
         const rendered = shallow(<TestViewContainer {...props} />);
         expect(rendered.getElement()).toMatchObject(expectedTestView);

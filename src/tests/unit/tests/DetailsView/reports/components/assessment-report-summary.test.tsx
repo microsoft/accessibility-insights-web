@@ -10,7 +10,6 @@ import { AssessmentSummaryDetails } from '../../../../../../DetailsView/reports/
 import { OutcomeSummaryBar } from '../../../../../../DetailsView/reports/components/outcome-summary-bar';
 
 describe('AssessmentReportSummary', () => {
-
     describe('render', () => {
         test('Correct composition', () => {
             const reportData: IAssessmentReportSummaryProps = {
@@ -24,9 +23,7 @@ describe('AssessmentReportSummary', () => {
                     <h2>Summary</h2>
                     <OutcomeSummaryBar {...reportData.summary.byPercentage} units="percentage" />
                     <h3>Test details</h3>
-                    {<AssessmentSummaryDetails
-                        testSummaries={reportData.summary.reportSummaryDetailsData}
-                    />}
+                    {<AssessmentSummaryDetails testSummaries={reportData.summary.reportSummaryDetailsData} />}
                 </div>
             );
 

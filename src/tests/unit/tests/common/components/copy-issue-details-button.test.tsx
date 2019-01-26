@@ -6,12 +6,8 @@ import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { IssueDetailsTextGenerator } from '../../../../../background/issue-details-text-generator';
-import {
-    CopyIssueDetailsButton,
-    CopyIssueDetailsButtonProps,
-} from '../../../../../common/components/copy-issue-details-button';
+import { CopyIssueDetailsButton, CopyIssueDetailsButtonProps } from '../../../../../common/components/copy-issue-details-button';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
-
 
 describe('CopyIssueDetailsButtonTest', () => {
     let props: CopyIssueDetailsButtonProps;
@@ -35,19 +31,16 @@ describe('CopyIssueDetailsButtonTest', () => {
     });
 
     test('render', () => {
-        const result = Enzyme.shallow(<CopyIssueDetailsButton {...props}/>);
+        const result = Enzyme.shallow(<CopyIssueDetailsButton {...props} />);
         expect(result.getElement()).toMatchSnapshot();
     });
 
     test('render after click shows toast', () => {
-        const result = Enzyme.shallow(<CopyIssueDetailsButton {...props}/>);
+        const result = Enzyme.shallow(<CopyIssueDetailsButton {...props} />);
         const button = result.find(DefaultButton);
-        onClickMock
-            .setup(m => m(It.isAny()))
-            .verifiable(Times.once());
+        onClickMock.setup(m => m(It.isAny())).verifiable(Times.once());
         button.simulate('click');
         expect(result.getElement()).toMatchSnapshot();
         onClickMock.verifyAll();
     });
 });
-

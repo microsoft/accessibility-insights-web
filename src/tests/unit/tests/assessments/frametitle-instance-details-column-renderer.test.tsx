@@ -8,8 +8,6 @@ import { AssessmentInstanceDetailsColumn } from '../../../../DetailsView/compone
 import { IAssessmentInstanceRowData } from '../../../../DetailsView/components/assessment-instance-table';
 import { FrameFormatter } from '../../../../injected/visualization/frame-formatter';
 
-
-
 describe('FrameTitleInstanceDetailsColumnRendererTest', () => {
     test('render: propertyBag is null', () => {
         const frameType = 'default';

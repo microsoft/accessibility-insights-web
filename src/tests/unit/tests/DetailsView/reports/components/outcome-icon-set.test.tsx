@@ -6,9 +6,7 @@ import { OutcomeIconSet } from '../../../../../../DetailsView/reports/components
 import { shallowRender } from '../../../../Common/shallow-render';
 
 describe('OutcomeIconSet', () => {
-
     describe('render', () => {
-
         test('render with all properties', () => {
             expect(shallowRender(<OutcomeIconSet pass={3} incomplete={2} fail={4} />)).toMatchSnapshot();
         });
@@ -20,7 +18,5 @@ describe('OutcomeIconSet', () => {
         test('render all zero', () => {
             expect(shallowRender(<OutcomeIconSet pass={0} incomplete={0} fail={0} />)).toMatchSnapshot();
         });
-
     });
-
 });

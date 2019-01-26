@@ -13,13 +13,10 @@ import { shallowRender } from '../../../../common/shallow-render';
 import { AssessmentReportBuilderTestHelper } from '../../assessment-report-builder-test-helper';
 
 describe('AssessmentSummaryDetails', () => {
-
     describe('render', () => {
         test('Correct composition', () => {
             const props: IAssessmentSummaryDetailsProps = {
-                testSummaries: AssessmentReportBuilderTestHelper
-                    .getAssessmentsSummaryReportModel()
-                    .reportSummaryDetailsData,
+                testSummaries: AssessmentReportBuilderTestHelper.getAssessmentsSummaryReportModel().reportSummaryDetailsData,
             };
 
             expect(shallowRender(<AssessmentSummaryDetails {...props} />)).toMatchSnapshot();

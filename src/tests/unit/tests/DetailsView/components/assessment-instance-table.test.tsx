@@ -262,10 +262,7 @@ describe('AssessmentInstanceTableTest', () => {
             },
         ];
 
-        assessmentInstanceTableHandlerMock
-            .setup(a => a.updateFocusedTarget(items[0].instance.target))
-            .verifiable(Times.once());
-
+        assessmentInstanceTableHandlerMock.setup(a => a.updateFocusedTarget(items[0].instance.target)).verifiable(Times.once());
 
         const testObject = new TestableAssessmentInstanceTable(props);
         testObject.onItemInvoked(items[0]);
@@ -328,7 +325,7 @@ describe('AssessmentInstanceTableTest', () => {
             },
         };
         expectedMessage = {
-            message:  <div className="no-failure-view">No failing instances</div>,
+            message: <div className="no-failure-view">No failing instances</div>,
             instanceCount: 1,
         } as DefaultMessageInterface;
 
@@ -366,7 +363,7 @@ describe('AssessmentInstanceTableTest', () => {
             getDefaultMessage: defaultMessageMock,
             assessmentDefaultMessageGenerator: defaultMessageGeneratorMock,
             renderInstanceTableHeader: (table: AssessmentInstanceTable, items: IAssessmentInstanceRowData[]) =>
-             table.renderDefaultInstanceTableHeader(items),
+                table.renderDefaultInstanceTableHeader(items),
         };
     }
 });

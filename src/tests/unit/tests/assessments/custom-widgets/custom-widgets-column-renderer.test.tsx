@@ -14,16 +14,18 @@ describe('CustomWidgetsColumnRenderer', () => {
     let item: IAssessmentInstanceRowData<TestPropertyBag>;
 
     beforeEach(() => {
-        configs = [{
-            propertyName: 'a',
-            displayName: 'display a',
-        },
-        {
-            propertyName: 'designPattern',
-            displayName: 'pattern',
-        }];
+        configs = [
+            {
+                propertyName: 'a',
+                displayName: 'display a',
+            },
+            {
+                propertyName: 'designPattern',
+                displayName: 'pattern',
+            },
+        ];
 
-        item  = {
+        item = {
             instance: {
                 html: null,
                 target: null,
@@ -55,10 +57,10 @@ describe('CustomWidgetsColumnRenderer', () => {
 
     it('should render expected links when role is set', () => {
         const expectedValues = [
-            {designPattern: 'Accordion', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#accordion'},
-            {designPattern: 'Button', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#button'},
-            {designPattern: 'Dislosure (Show/Hide)', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#disclosure'},
-            {designPattern: 'Menu Button', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#menubutton'},
+            { designPattern: 'Accordion', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#accordion' },
+            { designPattern: 'Button', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#button' },
+            { designPattern: 'Dislosure (Show/Hide)', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#disclosure' },
+            { designPattern: 'Menu Button', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#menubutton' },
         ];
         item.instance.propertyBag.role = 'button';
 
@@ -84,8 +86,8 @@ describe('CustomWidgetsColumnRenderer', () => {
 
     it('should render expected spans when role is set', () => {
         const expectedValues = [
-            {designPattern: 'Slider', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#slider'},
-            {designPattern: 'Slider (Multi-thumb)', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#sliderwothumb'},
+            { designPattern: 'Slider', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#slider' },
+            { designPattern: 'Slider (Multi-thumb)', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#sliderwothumb' },
         ];
         item.instance.propertyBag.role = 'slider';
 

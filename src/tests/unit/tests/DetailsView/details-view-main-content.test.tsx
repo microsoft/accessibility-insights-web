@@ -10,11 +10,7 @@ import {
 } from '../../../../common/configs/visualization-configuration-factory';
 import { NamedSFC, ReactSFCWithDisplayName } from '../../../../common/react/named-sfc';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
-import {
-    IAssessmentData,
-    IAssessmentNavState,
-    IAssessmentStoreData,
-} from '../../../../common/types/store-data/iassessment-result-data';
+import { IAssessmentData, IAssessmentNavState, IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
 import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';
 import { IScanData, ITestsEnabledState } from '../../../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
@@ -24,9 +20,7 @@ import { DetailsViewSwitcherNavConfiguration } from '../../../../DetailsView/com
 import { DetailsViewLeftNav } from '../../../../DetailsView/components/left-nav/details-view-left-nav';
 import { TabInfo } from '../../../../DetailsView/components/tab-info';
 import { DetailsViewMainContent, IDetailsViewMainContentProps } from '../../../../DetailsView/details-view-main-content';
-import {
-    DetailsViewToggleClickHandlerFactory,
-} from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
+import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
@@ -46,12 +40,18 @@ describe('DetailsViewMainContentTest', () => {
     describe('render', () => {
         beforeEach(() => {
             selectedTest = -1;
-            const RightPanelStub: Readonly<ReactSFCWithDisplayName<IDetailsViewMainContentProps>>
-                = NamedSFC<IDetailsViewMainContentProps>('test', _ => null);
-            const CommandBarStub: Readonly<ReactSFCWithDisplayName<IDetailsViewMainContentProps>>
-                = NamedSFC<IDetailsViewMainContentProps>('test', _ => null);
-            const LeftNavStub: Readonly<ReactSFCWithDisplayName<IDetailsViewMainContentProps>>
-                = NamedSFC<IDetailsViewMainContentProps>('test', _ => null);
+            const RightPanelStub: Readonly<ReactSFCWithDisplayName<IDetailsViewMainContentProps>> = NamedSFC<IDetailsViewMainContentProps>(
+                'test',
+                _ => null,
+            );
+            const CommandBarStub: Readonly<ReactSFCWithDisplayName<IDetailsViewMainContentProps>> = NamedSFC<IDetailsViewMainContentProps>(
+                'test',
+                _ => null,
+            );
+            const LeftNavStub: Readonly<ReactSFCWithDisplayName<IDetailsViewMainContentProps>> = NamedSFC<IDetailsViewMainContentProps>(
+                'test',
+                _ => null,
+            );
             rightPanelConfig = {
                 RightPanel: RightPanelStub,
             } as DetailsRightPanelConfiguration;
@@ -72,7 +72,7 @@ describe('DetailsViewMainContentTest', () => {
                 enabled: false,
             } as IScanData;
 
-            clickHandlerStub = () => { };
+            clickHandlerStub = () => {};
 
             const assessmentStoreData = {
                 assessmentNavState: {
@@ -129,9 +129,7 @@ describe('DetailsViewMainContentTest', () => {
                         <div className="details-content table column-layout">
                             {null}
                             <div className="view" role="main">
-                                <rightPanelConfig.RightPanel
-                                    {...props}
-                                />
+                                <rightPanelConfig.RightPanel {...props} />
                             </div>
                         </div>
                     </div>
@@ -154,9 +152,7 @@ describe('DetailsViewMainContentTest', () => {
                         <div className="details-content table column-layout">
                             {buildTabInfo(props)}
                             <div className="view" role="main">
-                                <rightPanelConfig.RightPanel
-                                    {...props}
-                                />
+                                <rightPanelConfig.RightPanel {...props} />
                             </div>
                         </div>
                     </div>
@@ -175,14 +171,9 @@ describe('DetailsViewMainContentTest', () => {
         scanData: IScanData,
         givenProps: IDetailsViewMainContentProps,
     ): void {
+        factoryMock.setup(cfm => cfm.getConfiguration(givenProps.selectedTest)).returns(() => config);
 
-        factoryMock
-            .setup(cfm => cfm.getConfiguration(givenProps.selectedTest))
-            .returns(() => config);
-
-        givenGetStoreDataMock
-            .setup(gsdm => gsdm(givenProps.visualizationStoreData.tests))
-            .returns(() => scanData);
+        givenGetStoreDataMock.setup(gsdm => gsdm(givenProps.visualizationStoreData.tests)).returns(() => scanData);
     }
 
     function setupClickHandlerFactoryMock(
@@ -190,17 +181,11 @@ describe('DetailsViewMainContentTest', () => {
         setupType: VisualizationType,
         setupNewValue: boolean,
     ): void {
-        factoryMock
-            .setup(chfm => chfm.createClickHandler(setupType, setupNewValue))
-            .returns(() => clickHandlerStub);
+        factoryMock.setup(chfm => chfm.createClickHandler(setupType, setupNewValue)).returns(() => clickHandlerStub);
     }
 
     function buildLeftNav(givenProps: IDetailsViewMainContentProps): JSX.Element {
-        return (
-            <DetailsViewLeftNav
-                {...givenProps}
-            />
-        );
+        return <DetailsViewLeftNav {...givenProps} />;
     }
 
     function buildTabInfo(givenProps: IDetailsViewMainContentProps): JSX.Element {
@@ -218,11 +203,6 @@ describe('DetailsViewMainContentTest', () => {
     }
 
     function buildCommandBar(givenProps: IDetailsViewMainContentProps): JSX.Element {
-        return (
-            <switcherNavConfig.CommandBar
-                actionMessageCreator={props.deps.detailsViewActionMessageCreator}
-                {...props}
-            />
-        );
+        return <switcherNavConfig.CommandBar actionMessageCreator={props.deps.detailsViewActionMessageCreator} {...props} />;
     }
 });

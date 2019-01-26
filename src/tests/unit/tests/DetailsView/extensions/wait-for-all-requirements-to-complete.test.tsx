@@ -8,7 +8,6 @@ import { WithAssessmentTestResult } from '../../../../../DetailsView/components/
 import { waitForAllRequirementsToComplete } from '../../../../../DetailsView/extensions/wait-for-all-requirements-to-complete';
 
 describe('WaitForAllRequirementsToComplete', () => {
-
     const zeroPercent = {
         assessmentTestResult: {
             getOutcomeStats: () => ({ pass: 0, incomplete: 1, fail: 0 }),
@@ -30,31 +29,24 @@ describe('WaitForAllRequirementsToComplete', () => {
     const Extension = waitForAllRequirementsToComplete.component;
 
     it('renders spinner when zeroPercent', () => {
-
         const rendered = shallow(<Extension {...zeroPercent}>INSIDE</Extension>);
         const spinner = rendered.find(Spinner);
         expect(spinner.prop('label')).toEqual('Scanning 0%');
         expect(rendered.debug()).toMatchSnapshot();
-
     });
 
     it('renders spinner when fiftyPercent', () => {
-
         const rendered = shallow(<Extension {...fiftyPercent}>INSIDE</Extension>);
         const spinner = rendered.find(Spinner);
         expect(spinner.prop('label')).toEqual('Scanning 50%');
         expect(rendered.debug()).toMatchSnapshot();
-
     });
 
     it('renders children when oneHundredPercent', () => {
-
         const rendered = shallow(<Extension {...oneHundredPercent}>INSIDE</Extension>);
         const spinner = rendered.find(Spinner);
         expect(spinner.isEmpty()).toEqual(true);
         expect(rendered.text()).toEqual('INSIDE');
         expect(rendered.debug()).toMatchSnapshot();
-
     });
-
 });

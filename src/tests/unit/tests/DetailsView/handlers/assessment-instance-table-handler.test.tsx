@@ -62,32 +62,32 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             selectedTestType: 5,
         };
 
-        actionMessageCreatorMock
-            .setup(a => a.changeManualTestStatus)
-            .verifiable(Times.atLeastOnce());
+        actionMessageCreatorMock.setup(a => a.changeManualTestStatus).verifiable(Times.atLeastOnce());
 
-        actionMessageCreatorMock
-            .setup(a => a.undoManualTestStatusChange)
-            .verifiable(Times.atLeastOnce());
+        actionMessageCreatorMock.setup(a => a.undoManualTestStatusChange).verifiable(Times.atLeastOnce());
 
         const rows = testSubject.createAssessmentInstanceTableItems(instancesMap, assessmentNavState);
-        const choiceGroup: JSX.Element = <TestStatusChoiceGroup
-            test={5}
-            step={'step1'}
-            selector={'selector1'}
-            status={ManualTestStatus.FAIL}
-            originalStatus={2}
-            onGroupChoiceChange={actionMessageCreatorMock.object.changeManualTestStatus}
-            onUndoClicked={actionMessageCreatorMock.object.undoManualTestStatusChange}
-        />;
-        const selectedButton: JSX.Element = <AssessmentInstanceSelectedButton
-            test={5}
-            step={'step1'}
-            selector={'selector1'}
-            isVisualizationEnabled={false}
-            isVisible={false}
-            onSelected={actionMessageCreatorMock.object.changeAssessmentVisualizationState}
-        />;
+        const choiceGroup: JSX.Element = (
+            <TestStatusChoiceGroup
+                test={5}
+                step={'step1'}
+                selector={'selector1'}
+                status={ManualTestStatus.FAIL}
+                originalStatus={2}
+                onGroupChoiceChange={actionMessageCreatorMock.object.changeManualTestStatus}
+                onUndoClicked={actionMessageCreatorMock.object.undoManualTestStatusChange}
+            />
+        );
+        const selectedButton: JSX.Element = (
+            <AssessmentInstanceSelectedButton
+                test={5}
+                step={'step1'}
+                selector={'selector1'}
+                isVisualizationEnabled={false}
+                isVisible={false}
+                onSelected={actionMessageCreatorMock.object.changeAssessmentVisualizationState}
+            />
+        );
 
         const expectedRows: IAssessmentInstanceRowData[] = [
             {
@@ -123,9 +123,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             selectedTestType: 5,
         };
 
-        actionMessageCreatorMock
-            .setup(a => a.removeFailureInstance)
-            .verifiable(Times.atLeastOnce());
+        actionMessageCreatorMock.setup(a => a.removeFailureInstance).verifiable(Times.atLeastOnce());
 
         const rows = testSubject.createCapturedInstanceTableItems(
             [instance],
@@ -170,9 +168,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
                 html: '',
             },
         };
-        configFactoryMock
-            .setup(c => c.getColumnConfigs(navState, true))
-            .verifiable(Times.once());
+        configFactoryMock.setup(c => c.getColumnConfigs(navState, true)).verifiable(Times.once());
 
         testSubject.getColumnConfigs(instanceMap as IDictionaryStringTo<IGeneratedAssessmentInstance>, navState);
 
@@ -219,9 +215,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
         const test = VisualizationType.HeadingsAssessment;
         const step = 'step';
         const description = 'description';
-        actionMessageCreatorMock
-            .setup(a => a.addFailureInstance(description, test, step))
-            .verifiable(Times.once());
+        actionMessageCreatorMock.setup(a => a.addFailureInstance(description, test, step)).verifiable(Times.once());
 
         testSubject.addFailureInstance(description, test, step);
     });
@@ -229,18 +223,14 @@ describe('AssessmentInstanceTableHandlerTest', () => {
     test('passUnmarkedInstances', () => {
         const test = VisualizationType.HeadingsAssessment;
         const step = 'missingHeadings';
-        actionMessageCreatorMock
-            .setup(a => a.passUnmarkedInstances(test, step))
-            .verifiable(Times.once());
+        actionMessageCreatorMock.setup(a => a.passUnmarkedInstances(test, step)).verifiable(Times.once());
 
         testSubject.passUnmarkedInstances(test, step);
     });
 
     test('updateFocusedInstance', () => {
         const targetStub = ['target'];
-        actionMessageCreatorMock
-            .setup(a => a.updateFocusedInstanceTarget(targetStub))
-            .verifiable(Times.once());
+        actionMessageCreatorMock.setup(a => a.updateFocusedInstanceTarget(targetStub)).verifiable(Times.once());
         testSubject.updateFocusedTarget(targetStub);
     });
 
@@ -249,7 +239,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             target: ['tareget1'],
             html: 'html',
             testStepResults: {
-                'step1': {
+                step1: {
                     status: ManualTestStatus.FAIL,
                     originalStatus: 2,
                     isVisualizationEnabled: true,
@@ -268,9 +258,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
     });
 
     test('getColumnConfigsForCapturedInstance', () => {
-        configFactoryMock
-            .setup(c => c.getColumnConfigsForCapturedInstances())
-            .verifiable(Times.once());
+        configFactoryMock.setup(c => c.getColumnConfigsForCapturedInstances()).verifiable(Times.once());
 
         testSubject.getColumnConfigsForCapturedInstance();
 

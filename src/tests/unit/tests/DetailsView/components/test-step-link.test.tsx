@@ -6,7 +6,6 @@ import { ManualTestStatus } from '../../../../../common/types/manual-test-status
 import { ITestStepLinkProps, TestStepLink } from '../../../../../DetailsView/components/test-step-link';
 
 describe('TestStepLink', () => {
-
     it('renders with index', () => {
         const link = {
             key: 'Link with index key',
@@ -44,5 +43,4 @@ describe('TestStepLink', () => {
 
         expect(testSubject.render()).toMatchSnapshot();
     });
-
 });

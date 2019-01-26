@@ -61,29 +61,33 @@ describe('MainRenderer', () => {
         const deps: MainRendererDeps = Mock.ofType<MainRendererDeps>().object;
 
         renderMock
-            .setup(r => r(
-                It.isValue(
-                    <PopupViewWithStoreSubscription
-                        deps={deps}
-                        title={expectedTitle}
-                        subtitle={expectedSubtitle}
-                        storeActionCreator={popupViewStoreActionCreatorMock.object}
-                        popupHandlers={{
-                            diagnosticViewClickHandler: diagnosticViewClickHandlerMock.object,
-                            popupViewControllerHandler: gettingStartedDialogHandlerMock.object,
-                            launchPanelHeaderClickHandler: feedbackMenuClickhandlerMock.object,
-                            supportLinkHandler: supportLinkHandlerMock.object,
-                        }}
-                        popupWindow={popupWindowMock.object}
-                        browserAdapter={browserAdapterMock.object}
-                        targetTabUrl={targetTabUrl}
-                        hasAccess={hasAccess}
-                        launchPadRowConfigurationFactory={launchPadRowConfigurationFactoryMock.object}
-                        diagnosticViewToggleFactory={diagnosticViewToggleFactoryMock.object}
-                        dropdownClickHandler={dropdownClickHandlerMock.object}
-                        storesHub={null}
-                    />),
-                container))
+            .setup(r =>
+                r(
+                    It.isValue(
+                        <PopupViewWithStoreSubscription
+                            deps={deps}
+                            title={expectedTitle}
+                            subtitle={expectedSubtitle}
+                            storeActionCreator={popupViewStoreActionCreatorMock.object}
+                            popupHandlers={{
+                                diagnosticViewClickHandler: diagnosticViewClickHandlerMock.object,
+                                popupViewControllerHandler: gettingStartedDialogHandlerMock.object,
+                                launchPanelHeaderClickHandler: feedbackMenuClickhandlerMock.object,
+                                supportLinkHandler: supportLinkHandlerMock.object,
+                            }}
+                            popupWindow={popupWindowMock.object}
+                            browserAdapter={browserAdapterMock.object}
+                            targetTabUrl={targetTabUrl}
+                            hasAccess={hasAccess}
+                            launchPadRowConfigurationFactory={launchPadRowConfigurationFactoryMock.object}
+                            diagnosticViewToggleFactory={diagnosticViewToggleFactoryMock.object}
+                            dropdownClickHandler={dropdownClickHandlerMock.object}
+                            storesHub={null}
+                        />,
+                    ),
+                    container,
+                ),
+            )
             .verifiable();
 
         const renderer = new MainRenderer(

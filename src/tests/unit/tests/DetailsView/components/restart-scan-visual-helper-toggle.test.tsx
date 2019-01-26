@@ -91,7 +91,10 @@ describe('RestartScanVisualHelperToggleTest', () => {
         actionMessageCreatorMock.verifyAll();
     });
 
-    function assertVisualizationToggle(expectedProps: IVisualizationToggleProps, visualizationToggle: Enzyme.ShallowWrapper<IVisualizationToggleProps>) {
+    function assertVisualizationToggle(
+        expectedProps: IVisualizationToggleProps,
+        visualizationToggle: Enzyme.ShallowWrapper<IVisualizationToggleProps>,
+    ) {
         expect(visualizationToggle.exists()).toBe(true);
 
         const actualProps = visualizationToggle.props();
@@ -102,9 +105,7 @@ describe('RestartScanVisualHelperToggleTest', () => {
     }
 
     function getDefaultVisualizationTogglePropsBuilder() {
-        return new VisualizationTogglePropsBuilder()
-            .with('visualizationName', 'Visual helper')
-            .with('className', 'visual-helper-toggle');
+        return new VisualizationTogglePropsBuilder().with('visualizationName', 'Visual helper').with('className', 'visual-helper-toggle');
     }
 });
 
@@ -121,14 +122,11 @@ export class VisualHelperToggleTestPropsBuilder extends BaseDataBuilder<IVisualH
             },
             actionMessageCreator: null,
             instancesMap: {
-                'assessment-1-step-1':
-                    {
-                        html: 'html',
-                        propertyBag: {},
-                        target: [
-                            'element2',
-                        ],
-                    } as IGeneratedAssessmentInstance,
+                'assessment-1-step-1': {
+                    html: 'html',
+                    propertyBag: {},
+                    target: ['element2'],
+                } as IGeneratedAssessmentInstance,
             } as IDictionaryStringTo<IGeneratedAssessmentInstance>,
             isStepEnabled: true,
             isStepScanned: false,

@@ -5,7 +5,6 @@ import * as React from 'react';
 
 import ManualTestRecordYourResults from '../../../../assessments/common/manual-test-record-your-results';
 
-
 describe('ManualTestRecordYourResultsTest', () => {
     test('render: isMultipleFailurePossible = false', () => {
         const props = { isMultipleFailurePossible: false };
@@ -29,4 +28,3 @@ describe('ManualTestRecordYourResultsTest', () => {
         expect(li.props.children[5]).toBe(' then add them as failure instances');
     });
 });
-

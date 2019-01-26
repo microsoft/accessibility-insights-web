@@ -7,9 +7,7 @@ import {
 } from '../../../../../../DetailsView/reports/components/assessment-scan-details';
 
 describe('AssessmentScanDetails', () => {
-
     describe('render', () => {
-
         test('Correct composition', () => {
             const detailsModel: IScanDetailsReportModel = {
                 targetPage: 'test-target-page',
@@ -26,7 +24,5 @@ describe('AssessmentScanDetails', () => {
 
             expect(actual).toMatchSnapshot();
         });
-
     });
-
 });

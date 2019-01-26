@@ -15,11 +15,8 @@ describe('AssessmentReportFooter', () => {
             axeVersion: 'axeVersion',
             chromeVersion: 'chromeVersion',
         };
-        const tree = renderer
-            .create(<AssessmentReportFooter {...props} />)
-            .toJSON();
+        const tree = renderer.create(<AssessmentReportFooter {...props} />).toJSON();
 
         expect(tree).toMatchSnapshot();
     });
-
 });

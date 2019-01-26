@@ -23,8 +23,7 @@ describe('TelemetryPermissionDialogTest', () => {
     });
 
     test('render null if not first time', () => {
-        const featureFlagStoreData = {
-        } as FeatureFlagStoreData;
+        const featureFlagStoreData = {} as FeatureFlagStoreData;
         const props: TelemetryPermissionDialogProps = {
             deps: {
                 userConfigMessageCreator: userConfigMessageCreatorStub,

@@ -13,7 +13,7 @@ describe('GuidanceLinksTest', () => {
             classNameForDiv: null,
         };
 
-        const rendered = shallow(<GuidanceLinks {...props}/>);
+        const rendered = shallow(<GuidanceLinks {...props} />);
         expect(rendered.debug()).toMatchSnapshot();
     });
 
@@ -23,7 +23,7 @@ describe('GuidanceLinksTest', () => {
             classNameForDiv: null,
         };
 
-        const rendered = shallow(<GuidanceLinks {...props}/>);
+        const rendered = shallow(<GuidanceLinks {...props} />);
         expect(rendered.debug()).toMatchSnapshot();
     });
 
@@ -42,7 +42,7 @@ describe('GuidanceLinksTest', () => {
             classNameForDiv: 'className',
         };
 
-        const rendered = shallow(<GuidanceLinks {...props}/>);
+        const rendered = shallow(<GuidanceLinks {...props} />);
         expect(rendered.debug()).toMatchSnapshot();
     });
 
@@ -57,7 +57,7 @@ describe('GuidanceLinksTest', () => {
             classNameForDiv: 'className',
         };
 
-        const rendered = shallow(<GuidanceLinks {...props}/>);
+        const rendered = shallow(<GuidanceLinks {...props} />);
 
         const event = {
             stopPropagation: jest.fn(),

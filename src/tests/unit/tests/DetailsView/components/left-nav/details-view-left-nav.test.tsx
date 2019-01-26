@@ -27,9 +27,11 @@ describe('DetailsViewLeftNav', () => {
         const assessmentProviderStub = {} as IAssessmentsProvider;
         const filteredProviderStub = {} as IAssessmentsProvider;
         const GetLeftNavSelectedKeyMock = Mock.ofInstance((props: GetLeftNavSelectedKeyProps) => null, MockBehavior.Strict);
-        const LeftNavStub: Readonly<ReactSFCWithDisplayName<DetailsViewLeftNavProps>>
-            = NamedSFC<DetailsViewLeftNavProps>('test', _ => null);
-        const assessmentDataStub: {[key: string]: IAssessmentData} = {'x': {testStepStatus: {}} as IAssessmentData};
+        const LeftNavStub: Readonly<ReactSFCWithDisplayName<DetailsViewLeftNavProps>> = NamedSFC<DetailsViewLeftNavProps>(
+            'test',
+            _ => null,
+        );
+        const assessmentDataStub: { [key: string]: IAssessmentData } = { x: { testStepStatus: {} } as IAssessmentData };
         const assessmentStoreDataStub = {
             assessments: assessmentDataStub,
         } as IAssessmentStoreData;
@@ -56,9 +58,7 @@ describe('DetailsViewLeftNav', () => {
             assessmentStoreData: assessmentStoreDataStub,
         } as DetailsViewLeftNavProps;
 
-        GetLeftNavSelectedKeyMock
-            .setup(glnsm => glnsm(It.isValue({ type: selectedTestStub })))
-            .returns(() => selectedKeyStub);
+        GetLeftNavSelectedKeyMock.setup(glnsm => glnsm(It.isValue({ type: selectedTestStub }))).returns(() => selectedKeyStub);
 
         assessmentsProviderWithFeaturesEnabledMock
             .setup(ap => ap(assessmentProviderStub, featureFlagDataStub))

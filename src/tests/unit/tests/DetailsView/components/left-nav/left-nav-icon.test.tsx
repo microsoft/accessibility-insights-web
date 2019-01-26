@@ -21,7 +21,6 @@ describe('LeftNavStatusIcon', () => {
     });
 });
 
-
 describe('LeftNavIndexIcon', () => {
     it('render', () => {
         const props: LeftNavIconProps = {

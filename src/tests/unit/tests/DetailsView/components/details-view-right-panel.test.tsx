@@ -15,45 +15,37 @@ import { getOverviewTitle, getTestViewTitle } from '../../../../../DetailsView/h
 describe('DetailsViewRightPanelTests', () => {
     describe('GetDetailsRightPanelConfiguration', () => {
         it('GetDetailsRightPanelConfiguration: return TestView object when all test is selected', () => {
-            const testSubject = GetDetailsRightPanelConfiguration(
-                {
-                    selectedDetailsViewPivot: DetailsViewPivotType.allTest,
-                    detailsViewRightContentPanel: 'Overview',
-                },
-            );
+            const testSubject = GetDetailsRightPanelConfiguration({
+                selectedDetailsViewPivot: DetailsViewPivotType.allTest,
+                detailsViewRightContentPanel: 'Overview',
+            });
 
             validateTestView(testSubject);
         });
 
         it('GetDetailsRightPanelConfiguration: return TestView object when fast pass is selected', () => {
-            const testSubject = GetDetailsRightPanelConfiguration(
-                {
-                    selectedDetailsViewPivot: DetailsViewPivotType.fastPass,
-                    detailsViewRightContentPanel: 'Overview',
-                },
-            );
+            const testSubject = GetDetailsRightPanelConfiguration({
+                selectedDetailsViewPivot: DetailsViewPivotType.fastPass,
+                detailsViewRightContentPanel: 'Overview',
+            });
 
             validateTestView(testSubject);
         });
 
         it('GetDetailsRightPanelConfiguration: return TestView object when assessment selected', () => {
-            const testSubject = GetDetailsRightPanelConfiguration(
-                {
-                    selectedDetailsViewPivot: DetailsViewPivotType.assessment,
-                    detailsViewRightContentPanel: 'TestView',
-                },
-            );
+            const testSubject = GetDetailsRightPanelConfiguration({
+                selectedDetailsViewPivot: DetailsViewPivotType.assessment,
+                detailsViewRightContentPanel: 'TestView',
+            });
 
             validateTestView(testSubject);
         });
 
         it('GetDetailsRightPanelConfiguration: return TestView object when assessment selected', () => {
-            const testSubject = GetDetailsRightPanelConfiguration(
-                {
-                    selectedDetailsViewPivot: DetailsViewPivotType.assessment,
-                    detailsViewRightContentPanel: 'Overview',
-                },
-            );
+            const testSubject = GetDetailsRightPanelConfiguration({
+                selectedDetailsViewPivot: DetailsViewPivotType.assessment,
+                detailsViewRightContentPanel: 'Overview',
+            });
 
             validateOverview(testSubject);
         });

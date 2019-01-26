@@ -17,7 +17,7 @@ describe('GenericDialogTest', () => {
             primaryButtonText: 'test primary text',
         };
 
-        const rendered = shallow(<GenericDialog {...props}/>);
+        const rendered = shallow(<GenericDialog {...props} />);
 
         expect(rendered.debug()).toMatchSnapshot();
     });
@@ -50,7 +50,7 @@ describe('GenericDialogTest', () => {
             primaryButtonText: 'test primary text',
         };
 
-        const rendered = shallow(<GenericDialog {...props}/>);
+        const rendered = shallow(<GenericDialog {...props} />);
         rendered.find(PrimaryButton).simulate('click');
 
         expect(onPrimaryButtonClickMock).toHaveBeenCalledTimes(1);
@@ -67,7 +67,7 @@ describe('GenericDialogTest', () => {
             primaryButtonText: 'test primary text',
         };
 
-        const rendered = shallow(<GenericDialog {...props}/>);
+        const rendered = shallow(<GenericDialog {...props} />);
         rendered.find(Dialog).prop('onDismiss')();
 
         expect(onCancelButtonClickMock).toHaveBeenCalledTimes(1);

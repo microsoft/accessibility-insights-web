@@ -18,7 +18,11 @@ describe('ExternalLink', () => {
         },
     } as ExternalLinkDeps;
 
-    const rendered = shallow(<ExternalLink deps={deps} href={href} title={title}>{text}</ExternalLink>);
+    const rendered = shallow(
+        <ExternalLink deps={deps} href={href} title={title}>
+            {text}
+        </ExternalLink>,
+    );
 
     const link = rendered.find(Link);
 

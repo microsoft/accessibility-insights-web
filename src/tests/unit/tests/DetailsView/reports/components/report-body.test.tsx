@@ -5,15 +5,13 @@ import * as React from 'react';
 import { IReportBodyProps, ReportBody } from '../../../../../../DetailsView/reports/components/report-body';
 import { shallowRender } from '../../../../Common/shallow-render';
 
-
 describe('ReportBodyTest', () => {
     it('renders', () => {
-        const results: any[] =
-            [
-                {
-                    id: 'one',
-                },
-            ];
+        const results: any[] = [
+            {
+                id: 'one',
+            },
+        ];
         const props: IReportBodyProps = {
             scanResult: {
                 violations: results,

@@ -12,13 +12,11 @@ describe('DetailsViewPanelTest', () => {
     });
 
     test.each([true, false])('render - isPanelOpen: %s', (isPanelOpen: boolean) => {
-        const childContent = (
-            <div>child content</div>
-        );
+        const childContent = <div>child content</div>;
 
         const testProps: GenericPanelProps = {
             isOpen: isPanelOpen,
-            onDismiss: () => { },
+            onDismiss: () => {},
             title: 'panel title',
             className: 'panel-custom-class',
             closeButtonAriaLabel: 'close button label',
@@ -29,7 +27,8 @@ describe('DetailsViewPanelTest', () => {
         const testSubject = new GenericPanel(testProps);
 
         const expected = (
-            <Panel isLightDismiss={true}
+            <Panel
+                isLightDismiss={true}
                 isOpen={isPanelOpen}
                 type={PanelType.custom}
                 customWidth={'550px'}

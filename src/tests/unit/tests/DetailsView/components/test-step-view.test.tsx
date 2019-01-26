@@ -53,8 +53,7 @@ describe('TestStepViewTest', () => {
     });
 
     test('render spinner', () => {
-        const props = TestStepViewPropsBuilder
-            .default(getVisualHelperToggleMock.object)
+        const props = TestStepViewPropsBuilder.default(getVisualHelperToggleMock.object)
             .withScanning(true)
             .build();
 
@@ -65,8 +64,7 @@ describe('TestStepViewTest', () => {
     });
 
     test('render, variable part for assisted test', () => {
-        const props = TestStepViewPropsBuilder
-            .default(getVisualHelperToggleMock.object)
+        const props = TestStepViewPropsBuilder.default(getVisualHelperToggleMock.object)
             .withIsManual(false)
             .build();
 
@@ -86,8 +84,7 @@ describe('TestStepViewTest', () => {
     });
 
     test('render, variable part for manual test', () => {
-        const props = TestStepViewPropsBuilder
-            .default(getVisualHelperToggleMock.object)
+        const props = TestStepViewPropsBuilder.default(getVisualHelperToggleMock.object)
             .withIsManual(true)
             .build();
 
@@ -104,14 +101,11 @@ describe('TestStepViewTest', () => {
     });
 
     test('render, with no visual helper toggle', () => {
-        const props = TestStepViewPropsBuilder
-            .default(getVisualHelperToggleMock.object)
+        const props = TestStepViewPropsBuilder.default(getVisualHelperToggleMock.object)
             .withNoGetToggleConfig()
             .build();
 
-        getVisualHelperToggleMock
-            .setup(g => g(It.isAny(), It.isAny()))
-            .verifiable(Times.never());
+        getVisualHelperToggleMock.setup(g => g(It.isAny(), It.isAny())).verifiable(Times.never());
 
         const wrapper = Enzyme.shallow(<TestStepView {...props} />);
 
@@ -122,8 +116,7 @@ describe('TestStepViewTest', () => {
     });
 
     test('render, with visual helper toggle', () => {
-        const props = TestStepViewPropsBuilder
-            .default(getVisualHelperToggleMock.object)
+        const props = TestStepViewPropsBuilder.default(getVisualHelperToggleMock.object)
             .withIsManual(true)
             .build();
         const toggleStub = <div className="toggle-stub">toggle</div>;

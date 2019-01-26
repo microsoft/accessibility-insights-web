@@ -42,14 +42,8 @@ describe('DetailsViewDropDownTest', () => {
 
         const expectedComponent = (
             <div className="details-view-dropdown">
-                <Link
-                    className={'gear-button'}
-                    onClick={testObject.getOpenDropdown()}>
-                    <Icon
-                        className="gear-options-icon"
-                        iconName="Gear"
-                        ariaLabel={'Manage Settings'}
-                    />
+                <Link className={'gear-button'} onClick={testObject.getOpenDropdown()}>
+                    <Icon className="gear-options-icon" iconName="Gear" ariaLabel={'Manage Settings'} />
                 </Link>
                 <ContextualMenu
                     doNotLayer={false}

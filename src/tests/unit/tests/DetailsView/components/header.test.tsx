@@ -23,7 +23,7 @@ describe('HeaderTest', () => {
             selectedPivot: DetailsViewPivotType.assessment,
         };
 
-        const rendered = shallow(<Header {...props}/>);
+        const rendered = shallow(<Header {...props} />);
         expect(rendered.debug()).toMatchSnapshot();
     });
 
@@ -40,7 +40,7 @@ describe('HeaderTest', () => {
             selectedPivot: DetailsViewPivotType.assessment,
         };
 
-        const rendered = shallow(<Header {...props}/>);
+        const rendered = shallow(<Header {...props} />);
         expect(rendered.debug()).toMatchSnapshot();
     });
 
@@ -55,7 +55,7 @@ describe('HeaderTest', () => {
             selectedPivot: DetailsViewPivotType.assessment,
         };
 
-        const rendered = shallow(<Header {...props}/>);
+        const rendered = shallow(<Header {...props} />);
         expect(rendered.debug()).toMatchSnapshot();
     });
 
@@ -72,7 +72,7 @@ describe('HeaderTest', () => {
             selectedPivot: DetailsViewPivotType.assessment,
         };
 
-        const rendered = shallow(<Header {...props}/>);
+        const rendered = shallow(<Header {...props} />);
         expect(rendered.debug()).toMatchSnapshot();
     });
 });

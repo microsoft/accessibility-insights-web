@@ -41,16 +41,16 @@ describe('LaunchPanelHeaderTest', () => {
     let dropdownClickHandlerMock: IMock<DropdownClickHandler>;
 
     beforeEach(() => {
-        onClickLinkMock = (ev, items) => { };
-        openStartingDialogMock = (ev, items) => { };
-        onOpenContextualMenuMock = ev => { };
-        onDismissContextualMenuMock = ev => { };
-        sendEmailMock = () => { };
-        openAdhocToolsMock = ev => { };
-        openShortcutModifyTabMock = () => { };
-        onOpenDetailsViewForAllTestsMock = ev => { };
-        onOpenDetailsViewForFastPassMock = ev => { };
-        onOpenDetailsViewForAssessment = ev => { };
+        onClickLinkMock = (ev, items) => {};
+        openStartingDialogMock = (ev, items) => {};
+        onOpenContextualMenuMock = ev => {};
+        onDismissContextualMenuMock = ev => {};
+        sendEmailMock = () => {};
+        openAdhocToolsMock = ev => {};
+        openShortcutModifyTabMock = () => {};
+        onOpenDetailsViewForAllTestsMock = ev => {};
+        onOpenDetailsViewForFastPassMock = ev => {};
+        onOpenDetailsViewForAssessment = ev => {};
         dropdownClickHandlerMock = Mock.ofType(DropdownClickHandler);
         const deps: LaunchPanelHeaderDeps = {
             popupActionMessageCreator: {} as PopupActionMessageCreator,
@@ -100,64 +100,62 @@ describe('LaunchPanelHeaderTest', () => {
                 target={undefined}
                 onDismiss={onDismissContextualMenuMock}
                 directionalHint={getRTL() ? DirectionalHint.bottomRightEdge : DirectionalHint.bottomLeftEdge}
-                items={
-                    [
-                        {
-                            key: 'fast-pass',
-                            iconProps: {
-                                iconName: 'Rocket',
-                            },
-                            onClick: onOpenDetailsViewForFastPassMock,
-                            name: 'FastPass',
+                items={[
+                    {
+                        key: 'fast-pass',
+                        iconProps: {
+                            iconName: 'Rocket',
                         },
-                        {
-                            key: 'full-assessment',
-                            iconProps: {
-                                iconName: 'testBeakerSolid',
-                            },
-                            onClick: onOpenDetailsViewForAllTestsMock,
-                            name: 'Full Assessment',
+                        onClick: onOpenDetailsViewForFastPassMock,
+                        name: 'FastPass',
+                    },
+                    {
+                        key: 'full-assessment',
+                        iconProps: {
+                            iconName: 'testBeakerSolid',
                         },
-                        {
-                            key: 'ad-hoc-tools',
-                            iconProps: {
-                                iconName: 'Medical',
-                            },
-                            name: 'Ad hoc tools',
-                            onClick: openAdhocToolsMock,
+                        onClick: onOpenDetailsViewForAllTestsMock,
+                        name: 'Full Assessment',
+                    },
+                    {
+                        key: 'ad-hoc-tools',
+                        iconProps: {
+                            iconName: 'Medical',
                         },
-                        {
-                            key: 'divider_1',
-                            itemType: ContextualMenuItemType.Divider,
+                        name: 'Ad hoc tools',
+                        onClick: openAdhocToolsMock,
+                    },
+                    {
+                        key: 'divider_1',
+                        itemType: ContextualMenuItemType.Divider,
+                    },
+                    {
+                        key: 'modify-shortcuts',
+                        name: 'Keyboard shortcuts',
+                        onClick: openShortcutModifyTabMock,
+                    },
+                    {
+                        key: 'help',
+                        iconProps: {
+                            iconName: 'Unknown',
                         },
-                        {
-                            key: 'modify-shortcuts',
-                            name: 'Keyboard shortcuts',
-                            onClick: openShortcutModifyTabMock,
+                        data: 'https://aka.ms/accessibilityinsights-stackoverflow',
+                        onClick: onClickLinkMock,
+                        name: 'Help',
+                    },
+                    {
+                        key: 'divider_2',
+                        itemType: ContextualMenuItemType.Divider,
+                    },
+                    {
+                        key: 'ask-a-question',
+                        iconProps: {
+                            iconName: 'Mail',
                         },
-                        {
-                            key: 'help',
-                            iconProps: {
-                                iconName: 'Unknown',
-                            },
-                            data: 'https://aka.ms/accessibilityinsights-stackoverflow',
-                            onClick: onClickLinkMock,
-                            name: 'Help',
-                        },
-                        {
-                            key: 'divider_2',
-                            itemType: ContextualMenuItemType.Divider,
-                        },
-                        {
-                            key: 'ask-a-question',
-                            iconProps: {
-                                iconName: 'Mail',
-                            },
-                            onClick: sendEmailMock,
-                            name: 'Ask a question',
-                        },
-                    ]
-                }
+                        onClick: sendEmailMock,
+                        name: 'Ask a question',
+                    },
+                ]}
             />
         );
 
@@ -185,64 +183,62 @@ describe('LaunchPanelHeaderTest', () => {
                 target={undefined}
                 onDismiss={onDismissContextualMenuMock}
                 directionalHint={getRTL() ? DirectionalHint.bottomRightEdge : DirectionalHint.bottomLeftEdge}
-                items={
-                    [
-                        {
-                            key: 'fast-pass',
-                            iconProps: {
-                                iconName: 'Rocket',
-                            },
-                            onClick: onOpenDetailsViewForFastPassMock,
-                            name: 'FastPass',
+                items={[
+                    {
+                        key: 'fast-pass',
+                        iconProps: {
+                            iconName: 'Rocket',
                         },
-                        {
-                            key: 'assessment',
-                            iconProps: {
-                                iconName: 'testBeakerSolid',
-                            },
-                            name: 'Assessment',
-                            onClick: onOpenDetailsViewForAssessment,
+                        onClick: onOpenDetailsViewForFastPassMock,
+                        name: 'FastPass',
+                    },
+                    {
+                        key: 'assessment',
+                        iconProps: {
+                            iconName: 'testBeakerSolid',
                         },
-                        {
-                            key: 'ad-hoc-tools',
-                            iconProps: {
-                                iconName: 'Medical',
-                            },
-                            name: 'Ad hoc tools',
-                            onClick: openAdhocToolsMock,
+                        name: 'Assessment',
+                        onClick: onOpenDetailsViewForAssessment,
+                    },
+                    {
+                        key: 'ad-hoc-tools',
+                        iconProps: {
+                            iconName: 'Medical',
                         },
-                        {
-                            key: 'divider_1',
-                            itemType: ContextualMenuItemType.Divider,
+                        name: 'Ad hoc tools',
+                        onClick: openAdhocToolsMock,
+                    },
+                    {
+                        key: 'divider_1',
+                        itemType: ContextualMenuItemType.Divider,
+                    },
+                    {
+                        key: 'modify-shortcuts',
+                        name: 'Keyboard shortcuts',
+                        onClick: openShortcutModifyTabMock,
+                    },
+                    {
+                        key: 'help',
+                        iconProps: {
+                            iconName: 'Unknown',
                         },
-                        {
-                            key: 'modify-shortcuts',
-                            name: 'Keyboard shortcuts',
-                            onClick: openShortcutModifyTabMock,
+                        data: 'https://aka.ms/accessibilityinsights-stackoverflow',
+                        onClick: onClickLinkMock,
+                        name: 'Help',
+                    },
+                    {
+                        key: 'divider_2',
+                        itemType: ContextualMenuItemType.Divider,
+                    },
+                    {
+                        key: 'ask-a-question',
+                        iconProps: {
+                            iconName: 'Mail',
                         },
-                        {
-                            key: 'help',
-                            iconProps: {
-                                iconName: 'Unknown',
-                            },
-                            data: 'https://aka.ms/accessibilityinsights-stackoverflow',
-                            onClick: onClickLinkMock,
-                            name: 'Help',
-                        },
-                        {
-                            key: 'divider_2',
-                            itemType: ContextualMenuItemType.Divider,
-                        },
-                        {
-                            key: 'ask-a-question',
-                            iconProps: {
-                                iconName: 'Mail',
-                            },
-                            onClick: sendEmailMock,
-                            name: 'Ask a question',
-                        },
-                    ]
-                }
+                        onClick: sendEmailMock,
+                        name: 'Ask a question',
+                    },
+                ]}
             />
         );
 
@@ -295,9 +291,7 @@ describe('LaunchPanelHeaderTest', () => {
         const actionMessageCreatorMock = Mock.ofType(PopupActionMessageCreator);
         const source = TelemetryEventSource.HamburgerMenu;
 
-        actionMessageCreatorMock
-            .setup(amc => amc.openDetailsView(event as any, null, source, pivotType))
-            .verifiable(Times.once());
+        actionMessageCreatorMock.setup(amc => amc.openDetailsView(event as any, null, source, pivotType)).verifiable(Times.once());
 
         props.deps.popupActionMessageCreator = actionMessageCreatorMock.object;
 
@@ -312,9 +306,7 @@ describe('LaunchPanelHeaderTest', () => {
     test('Keyboard: modify shortcuts', () => {
         const event = eventStubFactory.createKeypressEvent() as any;
         const actionMessageCreator = Mock.ofType(PopupActionMessageCreator);
-        actionMessageCreator
-            .setup(amc => amc.openShortcutConfigureTab(event))
-            .verifiable(Times.once());
+        actionMessageCreator.setup(amc => amc.openShortcutConfigureTab(event)).verifiable(Times.once());
 
         props.deps.popupActionMessageCreator = actionMessageCreator.object;
 
@@ -329,9 +321,7 @@ describe('LaunchPanelHeaderTest', () => {
     test('Help', () => {
         const event = eventStubFactory.createMouseClickEvent() as any;
         const clickHanderMock = Mock.ofType(LaunchPanelHeaderClickHandler);
-        clickHanderMock
-            .setup(cH => cH.onClickLink(props.popupWindow, event, It.isAny()))
-            .verifiable(Times.once());
+        clickHanderMock.setup(cH => cH.onClickLink(props.popupWindow, event, It.isAny())).verifiable(Times.once());
 
         props.clickhandler = clickHanderMock.object;
 
@@ -346,9 +336,7 @@ describe('LaunchPanelHeaderTest', () => {
     test('Ask a question', () => {
         const event = eventStubFactory.createMouseClickEvent() as any;
         const supportLinkHandlerMock = Mock.ofType(SupportLinkHandler);
-        supportLinkHandlerMock
-            .setup(sLH => sLH.sendEmail(props.title))
-            .verifiable(Times.once());
+        supportLinkHandlerMock.setup(sLH => sLH.sendEmail(props.title)).verifiable(Times.once());
 
         props.supportLinkHandler = supportLinkHandlerMock.object;
         const component = React.createElement(LaunchPanelHeader, props);
@@ -362,9 +350,7 @@ describe('LaunchPanelHeaderTest', () => {
     test('File a Bug', () => {
         const event = eventStubFactory.createMouseClickEvent() as any;
         const clickHanderMock = Mock.ofType(LaunchPanelHeaderClickHandler);
-        clickHanderMock
-            .setup(cH => cH.onClickLink(props.popupWindow, event, It.isAny()))
-            .verifiable(Times.once());
+        clickHanderMock.setup(cH => cH.onClickLink(props.popupWindow, event, It.isAny())).verifiable(Times.once());
 
         props.clickhandler = clickHanderMock.object;
 
@@ -382,7 +368,7 @@ describe('LaunchPanelHeaderTest', () => {
                 title={props.title}
                 subtitle={props.subtitle}
                 rowExtraClassName="header-title"
-                extraContent={(
+                extraContent={
                     <div className="ms-Grid-col ms-u-sm2 feedback-collapseMenuButton-col">
                         <GearOptionsButtonComponent
                             dropdownClickHandler={dropdownClickHandlerMock.object}
@@ -396,7 +382,7 @@ describe('LaunchPanelHeaderTest', () => {
                         />
                         {null}
                     </div>
-                )}
+                }
             />
         );
     }

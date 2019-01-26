@@ -7,10 +7,7 @@ import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';
 
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
-import {
-    ITestStatusChoiceGroupProps,
-    TestStatusChoiceGroup,
-} from '../../../../../DetailsView/components/test-status-choice-group';
+import { ITestStatusChoiceGroupProps, TestStatusChoiceGroup } from '../../../../../DetailsView/components/test-status-choice-group';
 
 describe('TestStatusChoiceGroup', () => {
     const options = [
@@ -33,8 +30,8 @@ describe('TestStatusChoiceGroup', () => {
     });
 
     test('render', () => {
-        const onGroupChoiceChangeMock = Mock.ofInstance((status, test, step, selector) => { });
-        const onUndoMock = Mock.ofInstance((test, step, selector) => { });
+        const onGroupChoiceChangeMock = Mock.ofInstance((status, test, step, selector) => {});
+        const onUndoMock = Mock.ofInstance((test, step, selector) => {});
         const props: ITestStatusChoiceGroupProps = {
             test: 1,
             step: 'step',
@@ -44,9 +41,7 @@ describe('TestStatusChoiceGroup', () => {
             onGroupChoiceChange: onGroupChoiceChangeMock.object,
             onUndoClicked: onUndoMock.object,
         };
-        onGroupChoiceChangeMock
-            .setup(o => o(props.status, props.test, props.step, props.selector))
-            .verifiable(Times.once());
+        onGroupChoiceChangeMock.setup(o => o(props.status, props.test, props.step, props.selector)).verifiable(Times.once());
 
         const wrapper = shallow(<TestStatusChoiceGroup {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
@@ -73,8 +68,8 @@ describe('TestStatusChoiceGroup', () => {
     });
 
     test('verify onChange', () => {
-        const onGroupChoiceChangeMock = Mock.ofInstance((status, test, step, selector) => { });
-        const onUndoMock = Mock.ofInstance((test, step, selector) => { });
+        const onGroupChoiceChangeMock = Mock.ofInstance((status, test, step, selector) => {});
+        const onUndoMock = Mock.ofInstance((test, step, selector) => {});
         const props: ITestStatusChoiceGroupProps = {
             test: 1,
             step: 'step',
@@ -84,9 +79,7 @@ describe('TestStatusChoiceGroup', () => {
             onGroupChoiceChange: onGroupChoiceChangeMock.object,
             onUndoClicked: onUndoMock.object,
         };
-        onGroupChoiceChangeMock
-            .setup(o => o(ManualTestStatus.PASS, props.test, props.step, props.selector))
-            .verifiable(Times.once());
+        onGroupChoiceChangeMock.setup(o => o(ManualTestStatus.PASS, props.test, props.step, props.selector)).verifiable(Times.once());
 
         const testObject = shallow(<TestableTestStatusChoiceGroup {...props} />);
         const choiceGroup = testObject.find(ChoiceGroup);
@@ -96,9 +89,9 @@ describe('TestStatusChoiceGroup', () => {
     });
 
     test('verify undo button', () => {
-        const focusMock = Mock.ofInstance(() => { });
-        const onGroupChoiceChangeMock = Mock.ofInstance((status, test, step, selector) => { });
-        const onUndoMock = Mock.ofInstance((test, step, selector) => { });
+        const focusMock = Mock.ofInstance(() => {});
+        const onGroupChoiceChangeMock = Mock.ofInstance((status, test, step, selector) => {});
+        const onUndoMock = Mock.ofInstance((test, step, selector) => {});
         const props: ITestStatusChoiceGroupProps = {
             test: 1,
             step: 'step',
@@ -109,9 +102,7 @@ describe('TestStatusChoiceGroup', () => {
             onUndoClicked: onUndoMock.object,
         };
 
-        onUndoMock
-            .setup(o => o(props.test, props.step, props.selector))
-            .verifiable(Times.once());
+        onUndoMock.setup(o => o(props.test, props.step, props.selector)).verifiable(Times.once());
 
         const component = React.createElement(TestableTestStatusChoiceGroup, props);
         const testObject = TestUtils.renderIntoDocument(component);
@@ -119,9 +110,7 @@ describe('TestStatusChoiceGroup', () => {
 
         expect(link).toBeDefined();
 
-        focusMock
-            .setup(f => f())
-            .verifiable(Times.once());
+        focusMock.setup(f => f()).verifiable(Times.once());
 
         testObject.getComponent().focus = focusMock.object;
 

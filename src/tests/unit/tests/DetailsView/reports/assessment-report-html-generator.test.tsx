@@ -13,9 +13,7 @@ import {
 } from '../../../../../DetailsView/reports/assessment-report-html-generator';
 import { IReportModel } from '../../../../../DetailsView/reports/assessment-report-model';
 import { AssessmentReportModelBuilder } from '../../../../../DetailsView/reports/assessment-report-model-builder';
-import {
-    AssessmentReportModelBuilderFactory,
-} from '../../../../../DetailsView/reports/assessment-report-model-builder-factory';
+import { AssessmentReportModelBuilderFactory } from '../../../../../DetailsView/reports/assessment-report-model-builder-factory';
 import * as reportStyles from '../../../../../DetailsView/reports/assessment-report.styles';
 import { AssessmentReport } from '../../../../../DetailsView/reports/components/assessment-report';
 import { ReactStaticRenderer } from '../../../../../DetailsView/reports/react-static-renderer';
@@ -25,7 +23,9 @@ describe('AssessmentReportHtmlGenerator', () => {
     test('generateHtml', () => {
         const rendererMock = Mock.ofType(ReactStaticRenderer, MockBehavior.Strict);
         const factoryMock = Mock.ofType(AssessmentReportModelBuilderFactory, MockBehavior.Strict);
-        const dateGetterMock = Mock.ofInstance<() => Date>(() => { return null; }, MockBehavior.Strict);
+        const dateGetterMock = Mock.ofInstance<() => Date>(() => {
+            return null;
+        }, MockBehavior.Strict);
 
         const assessmentsProvider = CreateTestAssessmentProviderWithFeatureFlag();
         const assessmentStoreData: IAssessmentStoreData = { stub: 'assessmentStoreData' } as any;
@@ -44,7 +44,7 @@ describe('AssessmentReportHtmlGenerator', () => {
             <React.Fragment>
                 <head>
                     <title>Assessment report</title>
-                    <style dangerouslySetInnerHTML={{ __html: reportStyles.styleSheet }}></style>
+                    <style dangerouslySetInnerHTML={{ __html: reportStyles.styleSheet }} />
                 </head>
                 <body>
                     <AssessmentReport
@@ -64,21 +64,15 @@ describe('AssessmentReportHtmlGenerator', () => {
         const testDate = new Date(2018, 9, 19, 11, 25);
         const assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator = new AssessmentDefaultMessageGenerator();
 
-        dateGetterMock
-            .setup(dg => dg())
-            .returns(() => testDate);
+        dateGetterMock.setup(dg => dg()).returns(() => testDate);
 
         factoryMock
             .setup(f => f.create(It.isAny(), assessmentStoreData, tabStoreData, testDate, assessmentDefaultMessageGenerator))
             .returns(() => modelBuilderMock.object);
 
-        modelBuilderMock
-            .setup(mb => mb.getReportModelData())
-            .returns(() => model);
+        modelBuilderMock.setup(mb => mb.getReportModelData()).returns(() => model);
 
-        rendererMock
-            .setup(r => r.renderToStaticMarkup(It.isObjectWith(expectedComponent)))
-            .returns(() => expectedBody);
+        rendererMock.setup(r => r.renderToStaticMarkup(It.isObjectWith(expectedComponent))).returns(() => expectedBody);
 
         const testSubject = new AssessmentReportHtmlGenerator(
             rendererMock.object,

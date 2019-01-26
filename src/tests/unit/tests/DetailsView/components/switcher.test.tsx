@@ -23,9 +23,7 @@ describe('Switcher', () => {
         };
     });
 
-
     test('render', () => {
-
         const renderer = shallow(<Switcher {...defaultProps} />);
 
         expect(renderer.debug()).toMatchSnapshot();
@@ -36,7 +34,6 @@ describe('Switcher', () => {
         renderer.find(Dropdown).simulate('click');
 
         expect(renderer.debug()).toMatchSnapshot();
-
     });
 
     test('onOptionClick', () => {
@@ -45,11 +42,14 @@ describe('Switcher', () => {
             .verifiable(Times.once());
         const renderer = shallow(<Switcher {...defaultProps} />);
 
-        renderer.find(Dropdown).props().onChange(null, {
-            data: {
-                key: DetailsViewPivotType.fastPass,
-            },
-        } as any);
+        renderer
+            .find(Dropdown)
+            .props()
+            .onChange(null, {
+                data: {
+                    key: DetailsViewPivotType.fastPass,
+                },
+            } as any);
 
         actionCreatorMock.verifyAll();
     });

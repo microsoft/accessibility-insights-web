@@ -5,7 +5,6 @@ import * as React from 'react';
 import * as Markup from '../../../../assessments/markup';
 
 describe('markup tags', () => {
-
     test('test simple Tag', () => {
         const rendered = Markup.Tag({ tagName: 'myTag' });
         const expected = <Markup.CodeTerm>&lt;{'myTag'}&gt;</Markup.CodeTerm>;
@@ -13,13 +12,13 @@ describe('markup tags', () => {
     });
 
     test('test Tag with isBold = false override', () => {
-        const rendered = Markup.Tag({ tagName: 'myTag', isBold: false});
+        const rendered = Markup.Tag({ tagName: 'myTag', isBold: false });
         const expected = <Markup.Code>&lt;{'myTag'}&gt;</Markup.Code>;
         expect(rendered).toEqual(expected);
     });
 
     test('test Tag with isBold = true override', () => {
-        const rendered = Markup.Tag({ tagName: 'myTag', isBold: true});
+        const rendered = Markup.Tag({ tagName: 'myTag', isBold: true });
         const expected = <Markup.CodeTerm>&lt;{'myTag'}&gt;</Markup.CodeTerm>;
         expect(rendered).toEqual(expected);
     });
@@ -44,7 +43,11 @@ describe('markup tags', () => {
 
     test('test CodeTerm', () => {
         const rendered = Markup.CodeTerm({ children: 'children' });
-        const expected = <Markup.Term><Markup.Code>children</Markup.Code></Markup.Term>;
+        const expected = (
+            <Markup.Term>
+                <Markup.Code>children</Markup.Code>
+            </Markup.Term>
+        );
         expect(rendered).toEqual(expected);
     });
 

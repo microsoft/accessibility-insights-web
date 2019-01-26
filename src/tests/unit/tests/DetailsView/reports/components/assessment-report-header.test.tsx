@@ -5,13 +5,8 @@ import * as React from 'react';
 import { AssessmentReportHeader } from '../../../../../../DetailsView/reports/components/assessment-report-header';
 import { shallowRender } from '../../../../Common/shallow-render';
 
-
 describe('AssessmentReportHeader', () => {
     it('renders', () => {
-        expect(shallowRender(
-            <AssessmentReportHeader
-                targetPageUrl="test url"
-                targetPageTitle="test title"
-            />)).toMatchSnapshot();
+        expect(shallowRender(<AssessmentReportHeader targetPageUrl="test url" targetPageTitle="test title" />)).toMatchSnapshot();
     });
 });

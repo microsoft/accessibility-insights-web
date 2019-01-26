@@ -49,9 +49,7 @@ describe('VisualizationBasedLeftNav', () => {
         };
 
         visualizationsStub.forEach((type, index) => {
-            configFactoryMock
-                .setup(cfm => cfm.getConfiguration(type))
-                .returns(() => configStub);
+            configFactoryMock.setup(cfm => cfm.getConfiguration(type)).returns(() => configStub);
 
             leftNavLinkBuilderMock
                 .setup(lnlbm => lnlbm.buildVisualizationConfigurationLink(configStub, onLinkClickStub, type, index + 1))

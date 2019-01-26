@@ -147,7 +147,13 @@ describe('AssessmentVisualizationEnabledToggle', () => {
         const wrapper = Enzyme.shallow(<AssessmentVisualizationEnabledToggle {...props} />);
         actionMessageCreatorMock.reset();
         actionMessageCreatorMock
-            .setup(acm => acm.changeAssessmentVisualizationStateForAll(true, props.assessmentNavState.selectedTestType, props.assessmentNavState.selectedTestStep))
+            .setup(acm =>
+                acm.changeAssessmentVisualizationStateForAll(
+                    true,
+                    props.assessmentNavState.selectedTestType,
+                    props.assessmentNavState.selectedTestStep,
+                ),
+            )
             .verifiable(Times.once());
 
         wrapper.find(VisualizationToggle).simulate('click');
@@ -166,7 +172,13 @@ describe('AssessmentVisualizationEnabledToggle', () => {
         const wrapper = Enzyme.shallow(<AssessmentVisualizationEnabledToggle {...props} />);
         actionMessageCreatorMock.reset();
         actionMessageCreatorMock
-            .setup(acm => acm.changeAssessmentVisualizationStateForAll(false, props.assessmentNavState.selectedTestType, props.assessmentNavState.selectedTestStep))
+            .setup(acm =>
+                acm.changeAssessmentVisualizationStateForAll(
+                    false,
+                    props.assessmentNavState.selectedTestType,
+                    props.assessmentNavState.selectedTestStep,
+                ),
+            )
             .verifiable(Times.once());
 
         wrapper.find(VisualizationToggle).simulate('click');
@@ -174,7 +186,10 @@ describe('AssessmentVisualizationEnabledToggle', () => {
         actionMessageCreatorMock.verifyAll();
     });
 
-    function assertVisualizationToggle(expectedProps: IVisualizationToggleProps, visualizationToggle: Enzyme.ShallowWrapper<IVisualizationToggleProps>) {
+    function assertVisualizationToggle(
+        expectedProps: IVisualizationToggleProps,
+        visualizationToggle: Enzyme.ShallowWrapper<IVisualizationToggleProps>,
+    ) {
         expect(visualizationToggle.exists()).toBeTruthy();
 
         const actualProps = visualizationToggle.props();
@@ -185,8 +200,6 @@ describe('AssessmentVisualizationEnabledToggle', () => {
     }
 
     function getDefaultVisualizationTogglePropsBuilder() {
-        return new VisualizationTogglePropsBuilder()
-            .with('visualizationName', 'Visual helper')
-            .with('className', 'visual-helper-toggle');
+        return new VisualizationTogglePropsBuilder().with('visualizationName', 'Visual helper').with('className', 'visual-helper-toggle');
     }
 });

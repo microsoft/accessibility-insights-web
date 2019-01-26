@@ -14,16 +14,18 @@ describe('CustomWidgetsColumnRendererFactory', () => {
     let item: IAssessmentInstanceRowData<TestPropertyBag>;
 
     beforeEach(() => {
-        configs = [{
-            propertyName: 'a',
-            displayName: 'display a',
-        },
-        {
-            propertyName: 'designPattern',
-            displayName: 'pattern',
-        }];
+        configs = [
+            {
+                propertyName: 'a',
+                displayName: 'display a',
+            },
+            {
+                propertyName: 'designPattern',
+                displayName: 'pattern',
+            },
+        ];
 
-        item  = {
+        item = {
             instance: {
                 html: null,
                 target: null,

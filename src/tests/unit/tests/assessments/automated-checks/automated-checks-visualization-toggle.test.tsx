@@ -5,9 +5,7 @@ import * as _ from 'lodash';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
 
-import {
-    AutomatedChecksVisualizationToggle,
-} from '../../../../../assessments/automated-checks/automated-checks-visualization-enabled-toggle';
+import { AutomatedChecksVisualizationToggle } from '../../../../../assessments/automated-checks/automated-checks-visualization-enabled-toggle';
 import { IVisualizationToggleProps, VisualizationToggle } from '../../../../../common/components/visualization-toggle';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import {

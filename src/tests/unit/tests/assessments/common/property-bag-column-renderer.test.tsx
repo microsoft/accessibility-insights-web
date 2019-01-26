@@ -174,4 +174,3 @@ function buildItemWithPropertyBag(bag: TestPropertyBag): IAssessmentInstanceRowD
         visualizationButton: null,
     };
 }
-

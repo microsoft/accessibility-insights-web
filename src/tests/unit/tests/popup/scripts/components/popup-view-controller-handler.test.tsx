@@ -8,24 +8,18 @@ import { PopupViewControllerHandler } from '../../../../../../popup/scripts/hand
 
 describe('PopupViewControllerHandlerTest', () => {
     test('openAdhocToolsPanel', () => {
-        const setlaunchPanelTypeMock = Mock.ofInstance(type => { });
-        const forceUpdateMock = Mock.ofInstance(() => { });
+        const setlaunchPanelTypeMock = Mock.ofInstance(type => {});
+        const forceUpdateMock = Mock.ofInstance(() => {});
         const testPanelType: LaunchPanelType = LaunchPanelType.AdhocToolsPanel;
 
-        forceUpdateMock
-            .setup(t => t())
-            .verifiable(Times.once());
+        forceUpdateMock.setup(t => t()).verifiable(Times.once());
 
         const testSubject: PopupViewControllerHandler = new PopupViewControllerHandler();
 
         const actionMessageCreatorMock = Mock.ofType(PopupActionMessageCreator);
-        actionMessageCreatorMock
-            .setup(a => a.setLaunchPanelType(testPanelType))
-            .verifiable(Times.once());
+        actionMessageCreatorMock.setup(a => a.setLaunchPanelType(testPanelType)).verifiable(Times.once());
 
-        setlaunchPanelTypeMock
-            .setup(cM => cM(testPanelType))
-            .verifiable(Times.once());
+        setlaunchPanelTypeMock.setup(cM => cM(testPanelType)).verifiable(Times.once());
 
         const component = {
             props: {
@@ -44,24 +38,18 @@ describe('PopupViewControllerHandlerTest', () => {
     });
 
     test('openTogglesView', () => {
-        const setlaunchPanelTypeMock = Mock.ofInstance(type => { });
-        const forceUpdateMock = Mock.ofInstance(() => { });
+        const setlaunchPanelTypeMock = Mock.ofInstance(type => {});
+        const forceUpdateMock = Mock.ofInstance(() => {});
         const testPanelType: LaunchPanelType = LaunchPanelType.LaunchPad;
 
-        forceUpdateMock
-            .setup(t => t())
-            .verifiable(Times.once());
+        forceUpdateMock.setup(t => t()).verifiable(Times.once());
 
         const testSubject: PopupViewControllerHandler = new PopupViewControllerHandler();
 
         const actionMessageCreatorMock = Mock.ofType(PopupActionMessageCreator);
-        actionMessageCreatorMock
-            .setup(a => a.setLaunchPanelType(testPanelType))
-            .verifiable(Times.once());
+        actionMessageCreatorMock.setup(a => a.setLaunchPanelType(testPanelType)).verifiable(Times.once());
 
-        setlaunchPanelTypeMock
-            .setup(cM => cM(testPanelType))
-            .verifiable(Times.once());
+        setlaunchPanelTypeMock.setup(cM => cM(testPanelType)).verifiable(Times.once());
 
         const component = {
             props: {
@@ -81,15 +69,11 @@ describe('PopupViewControllerHandlerTest', () => {
 
     test('triggerRerender', () => {
         const testPanelType: LaunchPanelType = LaunchPanelType.LaunchPad;
-        const setlaunchPanelTypeMock = Mock.ofInstance(type => { });
-        setlaunchPanelTypeMock
-            .setup(t => t(It.isValue(testPanelType)))
-            .verifiable();
+        const setlaunchPanelTypeMock = Mock.ofInstance(type => {});
+        setlaunchPanelTypeMock.setup(t => t(It.isValue(testPanelType))).verifiable();
 
-        const forceUpdateMock = Mock.ofInstance(() => { });
-        forceUpdateMock
-            .setup(t => t())
-            .verifiable();
+        const forceUpdateMock = Mock.ofInstance(() => {});
+        forceUpdateMock.setup(t => t()).verifiable();
 
         const actionMessageCreatorMock = Mock.ofType(PopupActionMessageCreator);
         const handler: PopupViewControllerHandler = new PopupViewControllerHandler();

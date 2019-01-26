@@ -39,7 +39,6 @@ describe('PopupView', () => {
     };
     const featureFlagStoreData = {};
 
-
     afterEach(() => {
         browserAdapterMock.reset();
     });
@@ -50,7 +49,9 @@ describe('PopupView', () => {
 
         browserAdapterMock
             .setup(ba => ba.getManifest())
-            .returns(() => { return manifestStub as any; })
+            .returns(() => {
+                return manifestStub as any;
+            })
             .verifiable(Times.once());
 
         const props = createDefaultPropsBuilder(storesHubMock.object)
@@ -69,7 +70,9 @@ describe('PopupView', () => {
 
         browserAdapterMock
             .setup(ba => ba.getManifest())
-            .returns(() => { return manifestStub as any; })
+            .returns(() => {
+                return manifestStub as any;
+            })
             .verifiable(Times.once());
 
         const props = createDefaultPropsBuilder(storesHubMock.object)
@@ -109,14 +112,19 @@ describe('PopupView', () => {
             storesHubMock = createDefaultStoresHubMock();
             browserAdapterMock
                 .setup(ba => ba.getManifest())
-                .returns(() => { return manifestStub as any; })
+                .returns(() => {
+                    return manifestStub as any;
+                })
                 .verifiable();
             launchPadRowConfigurationFactoryMock
-                .setup(l => l.createRowConfigs(
-                    It.isAny(),
-                    IsSameObject(actionMessageCreatorStrictMock.object),
-                    IsSameObject(handlerMock.object),
-                    false))
+                .setup(l =>
+                    l.createRowConfigs(
+                        It.isAny(),
+                        IsSameObject(actionMessageCreatorStrictMock.object),
+                        IsSameObject(handlerMock.object),
+                        false,
+                    ),
+                )
                 .returns(() => rowConfigStub as any)
                 .verifiable();
 
@@ -134,9 +142,7 @@ describe('PopupView', () => {
         });
 
         test('render toggles view: launch pad', () => {
-            actionMessageCreatorStrictMock
-                .setup(acm => acm.openLaunchPad(launchPanelStateStoreState.launchPanelType))
-                .verifiable();
+            actionMessageCreatorStrictMock.setup(acm => acm.openLaunchPad(launchPanelStateStoreState.launchPanelType)).verifiable();
             const props = createDefaultPropsBuilder(storesHubMock.object)
                 .withDefaultTitleAndSubtitle()
                 .with('deps', deps)
@@ -153,8 +159,7 @@ describe('PopupView', () => {
                 .with('storeState', storeState)
                 .build();
 
-            actionMessageCreatorStrictMock
-                .setup(amc => amc.openTutorial(It.isAny()));
+            actionMessageCreatorStrictMock.setup(amc => amc.openTutorial(It.isAny()));
 
             const rendered = shallow(<PopupView {...props} />);
 
@@ -176,9 +181,7 @@ describe('PopupView', () => {
                 launchPanelType: LaunchPanelType.AdhocToolsPanel,
             };
             storeState.launchPanelStateStoreData = adHocLaunchPanelStateStoreState;
-            actionMessageCreatorStrictMock
-                .setup(acm => acm.openLaunchPad(adHocLaunchPanelStateStoreState.launchPanelType))
-                .verifiable();
+            actionMessageCreatorStrictMock.setup(acm => acm.openLaunchPad(adHocLaunchPanelStateStoreState.launchPanelType)).verifiable();
             const props = createDefaultPropsBuilder(storesHubMock.object)
                 .withDefaultTitleAndSubtitle()
                 .with('deps', deps)
@@ -209,9 +212,7 @@ describe('PopupView', () => {
 
             storeState.launchPanelStateStoreData = launchPanelStateStoreStateStub;
 
-            actionMessageCreatorStrictMock
-                .setup(acm => acm.openLaunchPad(launchPanelStateStoreStateStub.launchPanelType))
-                .verifiable();
+            actionMessageCreatorStrictMock.setup(acm => acm.openLaunchPad(launchPanelStateStoreStateStub.launchPanelType)).verifiable();
 
             const props = createDefaultPropsBuilder(storesHubMock.object)
                 .withDefaultTitleAndSubtitle()
@@ -242,7 +243,9 @@ describe('PopupView', () => {
 
         browserAdapterMock
             .setup(ba => ba.getManifest())
-            .returns(() => { return manifestStub as any; });
+            .returns(() => {
+                return manifestStub as any;
+            });
         const storesHubMock = createDefaultStoresHubMock();
 
         const props = createDefaultPropsBuilder(storesHubMock.object)
@@ -266,7 +269,9 @@ describe('PopupView', () => {
 
         browserAdapterMock
             .setup(ba => ba.getManifest())
-            .returns(() => { return manifestStub as any; });
+            .returns(() => {
+                return manifestStub as any;
+            });
         const storesHubMock = createDefaultStoresHubMock();
 
         const props = createDefaultPropsBuilder(storesHubMock.object)
@@ -285,23 +290,15 @@ describe('PopupView', () => {
     });
 
     function createDefaultPropsBuilder(storeHub: BaseClientStoresHub<any>): PopupViewPropsBuilder {
-        return new PopupViewPropsBuilder()
-            .with('storesHub', storeHub)
-            .with('browserAdapter', browserAdapterMock.object);
+        return new PopupViewPropsBuilder().with('storesHub', storeHub).with('browserAdapter', browserAdapterMock.object);
     }
 
     function createDefaultStoresHubMock(hasStores = true, hasStoreData = true): IMock<BaseClientStoresHub<any>> {
         const storesHubMock = Mock.ofType(BaseClientStoresHub);
-        storesHubMock
-            .setup(s => s.hasStores())
-            .returns(() => hasStores);
-        storesHubMock
-            .setup(s => s.hasStoreData())
-            .returns(() => hasStoreData);
-        storesHubMock
-            .setup(s => s.addChangedListenerToAllStores(It.isAny()));
-        storesHubMock
-            .setup(s => s.removeChangedListenerFromAllStores(It.isAny()));
+        storesHubMock.setup(s => s.hasStores()).returns(() => hasStores);
+        storesHubMock.setup(s => s.hasStoreData()).returns(() => hasStoreData);
+        storesHubMock.setup(s => s.addChangedListenerToAllStores(It.isAny()));
+        storesHubMock.setup(s => s.removeChangedListenerFromAllStores(It.isAny()));
         return storesHubMock;
     }
 

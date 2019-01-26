@@ -45,9 +45,7 @@ describe('BaseLeftNav', () => {
         } as BaseLeftNavLink;
         const onLinkClickCallback = actual.getOnNavLinkClick();
 
-        onClickNavLinkMock
-            .setup(ocnlm => ocnlm(eventStub, itemStub))
-            .verifiable();
+        onClickNavLinkMock.setup(ocnlm => ocnlm(eventStub, itemStub)).verifiable();
 
         onLinkClickCallback(eventStub, itemStub);
 
@@ -66,11 +64,8 @@ describe('BaseLeftNav', () => {
         } as BaseLeftNavLink;
         const onRenderLinkCallback = actual.getOnRenderLink();
 
-        onRenderNavLinkMock
-            .setup(ocnlm => ocnlm(itemStub, props.renderIcon))
-            .returns(() => elemnentStub);
+        onRenderNavLinkMock.setup(ocnlm => ocnlm(itemStub, props.renderIcon)).returns(() => elemnentStub);
 
         expect(onRenderLinkCallback(itemStub)).toEqual(elemnentStub);
-
     });
 });

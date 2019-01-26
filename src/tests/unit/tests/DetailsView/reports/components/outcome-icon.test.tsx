@@ -9,30 +9,21 @@ import { OutcomeIcon } from '../../../../../../DetailsView/reports/components/ou
 import { allOutcomeTypes } from '../../../../../../DetailsView/reports/components/outcome-type';
 import { shallowRender } from '../../../../Common/shallow-render';
 
-
 describe('OutcomeIcon', () => {
-
     describe('render', () => {
-
         allOutcomeTypes.forEach(outcomeType => {
             test(outcomeType, () => {
                 expect(shallowRender(<OutcomeIcon outcomeType={outcomeType} />)).toMatchSnapshot();
             });
         });
-
     });
-
 });
 
 [CheckIcon, CircleIcon, CrossIcon].forEach(Icon => {
     const name = Icon.displayName;
     describe(name, () => {
-
         test('render', () => {
             expect(shallowRender(<Icon />)).toMatchSnapshot();
         });
-
     });
-
 });
-

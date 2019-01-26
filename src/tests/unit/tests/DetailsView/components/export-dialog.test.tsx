@@ -14,8 +14,8 @@ describe('ExportDialog', () => {
     let testSubject: ExportDialog;
 
     beforeEach(() => {
-        onCloseMock = Mock.ofInstance(() => { });
-        onDescriptionChangeMock = Mock.ofInstance((value: string) => { });
+        onCloseMock = Mock.ofInstance(() => {});
+        onDescriptionChangeMock = Mock.ofInstance((value: string) => {});
         actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator, MockBehavior.Strict);
 
         const deps = {
@@ -45,9 +45,7 @@ describe('ExportDialog', () => {
     });
 
     test('onDismiss calls props.onClose', () => {
-        onCloseMock
-            .setup(oc => oc())
-            .verifiable(Times.once());
+        onCloseMock.setup(oc => oc()).verifiable(Times.once());
 
         invokeHandler('onDismiss', [eventStub]);
 
@@ -57,9 +55,7 @@ describe('ExportDialog', () => {
     });
 
     test('onExportLinkClick calls props.onClose & sends telemetry', () => {
-        onCloseMock
-            .setup(oc => oc())
-            .verifiable(Times.once());
+        onCloseMock.setup(oc => oc()).verifiable(Times.once());
 
         actionMessageCreatorMock
             .setup(a => a.exportResultsClicked(props.exportResultsType, props.html, eventStub))
@@ -74,9 +70,7 @@ describe('ExportDialog', () => {
 
     test('onDescriptionChanged calls props.onDescriptionChange', () => {
         const changedDescription = 'changed-description';
-        onDescriptionChangeMock
-            .setup(odc => odc(changedDescription))
-            .verifiable(Times.once());
+        onDescriptionChangeMock.setup(odc => odc(changedDescription)).verifiable(Times.once());
 
         invokeHandler('onDescriptionChange', [null, changedDescription]);
 

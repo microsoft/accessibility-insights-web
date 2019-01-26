@@ -29,7 +29,6 @@ describe('OverviewHelpLinks', () => {
             deps,
         };
 
-
         const helpLinkSection = shallow(<HelpLinks linkInformation={props.linkDataSource} deps={props.deps} />);
 
         expect(helpLinkSection.exists()).toBe(true);

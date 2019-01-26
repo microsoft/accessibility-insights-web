@@ -11,12 +11,11 @@ import { ILaunchPadItemRowProps, LaunchPadItemRow } from '../../../../../../popu
 import { EventStubFactory } from '../../../../Common/event-stub-factory';
 
 describe('LaunchPadItemRow', () => {
-
     const descriptionClassName = 'launch-pad-item-description';
 
     const eventStubFactory = new EventStubFactory();
 
-    const onClickTitleMock = Mock.ofInstance((ev?) => { });
+    const onClickTitleMock = Mock.ofInstance((ev?) => {});
 
     const props: ILaunchPadItemRowProps = {
         title: 'test title',
@@ -26,7 +25,7 @@ describe('LaunchPadItemRow', () => {
     };
 
     function getPrivate(obj: LaunchPadItemRow) {
-        return obj as {} as { descriptionId: string };
+        return (obj as {}) as { descriptionId: string };
     }
 
     it('has unique description ids', () => {
@@ -53,11 +52,7 @@ describe('LaunchPadItemRow', () => {
                     </div>
                     <div className="ms-Grid-col ms-sm9">
                         <div className="launch-pad-item-title">
-                            <Link
-                                role="link"
-                                onClick={props.onClickTitle}
-                                aria-describedby={descriptionId}
-                            >
+                            <Link role="link" onClick={props.onClickTitle} aria-describedby={descriptionId}>
                                 {props.title}
                             </Link>
                         </div>
@@ -75,10 +70,8 @@ describe('LaunchPadItemRow', () => {
     test('on link click', () => {
         const event = eventStubFactory.createKeypressEvent() as any;
 
-        const onClickTitleMock = Mock.ofInstance((ev?) => { });
-        onClickTitleMock
-            .setup(handler => handler(event))
-            .verifiable(Times.once());
+        const onClickTitleMock = Mock.ofInstance((ev?) => {});
+        onClickTitleMock.setup(handler => handler(event)).verifiable(Times.once());
 
         const props: ILaunchPadItemRowProps = {
             title: 'test title',

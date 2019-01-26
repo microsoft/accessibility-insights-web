@@ -35,4 +35,3 @@ describe('OverviewHelpSection', () => {
         expect(h2.text()).toBe('Help');
     });
 });
-

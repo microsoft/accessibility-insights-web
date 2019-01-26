@@ -10,7 +10,6 @@ import {
 } from '../../../../../../DetailsView/components/left-nav/fast-pass-left-nav';
 import { NavLinkHandler } from '../../../../../../DetailsView/components/left-nav/nav-link-handler';
 
-
 describe('FastPassLeftNav', () => {
     it('renders visualization based left nav with appropriate params', () => {
         const navLinkHandlerStub: NavLinkHandler = {

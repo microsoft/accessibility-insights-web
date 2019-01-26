@@ -30,7 +30,7 @@ describe('HeaderTest', () => {
     });
 
     test('render with extraContent prop', () => {
-        const extraContent: JSX.Element = (<div>my content</div>);
+        const extraContent: JSX.Element = <div>my content</div>;
 
         const props: IHeaderProps = {
             title: null,

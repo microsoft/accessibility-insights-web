@@ -133,9 +133,7 @@ describe('AssessmentInstanceSelectedButton', () => {
         const onSelectedMock = Mock.ofInstance((selected, test, step, selector) => {});
         const onButtonClickedMock = Mock.ofInstance((event, checked) => {});
 
-        onSelectedMock
-            .setup(s => s(It.isAny(), It.isAny(), It.isAny(), It.isAny()))
-            .verifiable(Times.once());
+        onSelectedMock.setup(s => s(It.isAny(), It.isAny(), It.isAny(), It.isAny())).verifiable(Times.once());
 
         const props: IAssessmentInstanceSelectedButtonProps = {
             test: VisualizationType.HeadingsAssessment,
@@ -157,9 +155,7 @@ describe('AssessmentInstanceSelectedButton', () => {
         const onSelectedMock = Mock.ofInstance((selected, test, step, selector) => {});
         const onButtonClickedMock = Mock.ofInstance((event, checked) => {});
 
-        onSelectedMock
-            .setup(s => s(It.isAny(), It.isAny(), It.isAny(), It.isAny()))
-            .verifiable(Times.once());
+        onSelectedMock.setup(s => s(It.isAny(), It.isAny(), It.isAny(), It.isAny())).verifiable(Times.once());
 
         const props: IAssessmentInstanceSelectedButtonProps = {
             test: VisualizationType.HeadingsAssessment,
@@ -181,9 +177,7 @@ describe('AssessmentInstanceSelectedButton', () => {
         const onSelectedMock = Mock.ofInstance((selected, test, step, selector) => {});
         const onButtonClickedMock = Mock.ofInstance((event, checked) => {});
 
-        onSelectedMock
-            .setup(s => s(It.isAny(), It.isAny(), It.isAny(), It.isAny()))
-            .verifiable(Times.never());
+        onSelectedMock.setup(s => s(It.isAny(), It.isAny(), It.isAny(), It.isAny())).verifiable(Times.never());
 
         const props: IAssessmentInstanceSelectedButtonProps = {
             test: VisualizationType.HeadingsAssessment,

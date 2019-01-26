@@ -7,11 +7,10 @@ import { Content, ContentDeps } from '../../../../../views/content/content';
 import { ContentProvider } from '../../../../../views/content/content-page';
 
 describe('content view', () => {
-
     it('renders', () => {
         const contentFromReference = jest.fn().mockReturnValue('THE-CONTENT');
-        const contentProvider = { contentFromReference } as Partial<ContentProvider> as ContentProvider;
-        const deps = { contentProvider } as Partial<ContentDeps> as ContentDeps;
+        const contentProvider = ({ contentFromReference } as Partial<ContentProvider>) as ContentProvider;
+        const deps = ({ contentProvider } as Partial<ContentDeps>) as ContentDeps;
 
         const component = <Content deps={deps} reference="content/path" />;
         const result = shallow(component);
@@ -19,5 +18,4 @@ describe('content view', () => {
         expect(result.debug()).toMatchSnapshot();
         expect(contentFromReference).toBeCalledWith('content/path');
     });
-
 });

@@ -22,12 +22,7 @@ describe('DetailsDialogTest', () => {
     });
 
     test('render: with relative help url', () => {
-        testRender(
-            false,
-            false,
-            'help-relative',
-            'http://extension/help-relative',
-        );
+        testRender(false, false, 'help-relative', 'http://extension/help-relative');
     });
 
     function testRender(
@@ -70,7 +65,7 @@ describe('DetailsDialogTest', () => {
             windowUtils: null,
             issueDetailsTextGenerator: null,
             targetPageActionMessageCreator: {
-                copyIssueDetailsClicked: () => { },
+                copyIssueDetailsClicked: () => {},
             } as any,
             clientBrowserAdapter: {
                 getUrl: url => expectedHelpUrl,

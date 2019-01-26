@@ -6,7 +6,6 @@ import * as React from 'react';
 import { OutcomeSummaryBar } from '../../../../../../DetailsView/reports/components/outcome-summary-bar';
 
 describe('OutcomeSummaryBar', () => {
-
     const reportData = {
         pass: 42,
         incomplete: 7,

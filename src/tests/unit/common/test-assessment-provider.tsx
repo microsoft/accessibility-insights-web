@@ -30,7 +30,7 @@ const assessmentWithColumns: IAssessment = {
     steps: [
         {
             key: 'assessment-1-step-1',
-            description: (<div> assessment-1-step-1 description</div>),
+            description: <div> assessment-1-step-1 description</div>,
             name: 'assessment-1-step-1-name',
             howToTest: null,
             isManual: null,
@@ -52,7 +52,7 @@ const assessmentWithColumns: IAssessment = {
         },
         {
             key: 'assessment-1-step-2',
-            description: (<div> assessment-1-step-2 description</div>),
+            description: <div> assessment-1-step-2 description</div>,
             name: 'assessment-1-step-2-name',
             howToTest: null,
             isManual: true,
@@ -63,7 +63,7 @@ const assessmentWithColumns: IAssessment = {
         },
         {
             key: 'assessment-1-step-3',
-            description: (<div> assessment-1-step-3 description</div>),
+            description: <div> assessment-1-step-3 description</div>,
             name: 'assessment-1-step-3-name',
             howToTest: null,
             isManual: null,
@@ -169,19 +169,12 @@ const simpleAssessmentWithFeatureFlag = {
     featureFlag: { required: [FeatureFlags.showAllAssessments] },
 };
 
-export const CreateTestAssessmentProvider = () => AssessmentsProvider.Create([
-    assessmentWithColumns,
-    simpleAssessment,
-]);
+export const CreateTestAssessmentProvider = () => AssessmentsProvider.Create([assessmentWithColumns, simpleAssessment]);
 
-export const CreateTestAssessmentProviderWithFeatureFlag = () => AssessmentsProvider.Create([
-    assessmentWithColumns,
-    simpleAssessmentWithFeatureFlag,
-]);
+export const CreateTestAssessmentProviderWithFeatureFlag = () =>
+    AssessmentsProvider.Create([assessmentWithColumns, simpleAssessmentWithFeatureFlag]);
 
-export const CreateTestAssessmentProviderAutomated = () => AssessmentsProvider.Create([
-    automatedAssessment,
-]);
+export const CreateTestAssessmentProviderAutomated = () => AssessmentsProvider.Create([automatedAssessment]);
 
 export const TestStatusChoiceColumn: Readonly<IColumn> = {
     key: 'test - statusChoiceGroup',

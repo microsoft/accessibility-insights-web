@@ -49,9 +49,7 @@ describe('StaticContentDetailsViewTest', () => {
     test('click the toggle', () => {
         const event = new EventStubFactory().createMouseClickEvent() as any;
         const clickHandlerMock = Mock.ofInstance(event => {});
-        clickHandlerMock
-            .setup(chm => chm(event))
-            .verifiable(Times.once());
+        clickHandlerMock.setup(chm => chm(event)).verifiable(Times.once());
 
         const propsBuilder = new StaticContentDetailsViewPropsBuilder().setupOnToggleClickMock(event);
         const props: IStaticContentDetailsViewProps = propsBuilder.build();
@@ -70,9 +68,7 @@ class StaticContentDetailsViewPropsBuilder {
     private content: JSX.Element = <div>my test static content</div>;
 
     public setupOnToggleClickMock(event: INativeEventStub): StaticContentDetailsViewPropsBuilder {
-        this.onToggleClickMock
-            .setup(click => click(It.isValue(event)))
-            .verifiable(Times.once());
+        this.onToggleClickMock.setup(click => click(It.isValue(event))).verifiable(Times.once());
 
         return this;
     }

@@ -25,7 +25,6 @@ class TestableTestStepsNav extends TestStepsNav {
 }
 
 describe('TestStepsNav', () => {
-
     it('renders assisted tests', () => {
         runTest(CreateTestAssessmentProvider());
     });
@@ -69,9 +68,7 @@ describe('TestStepsNav', () => {
 
         generateStepStatus(assessment.steps, props);
 
-        actionMessageCreatorMock
-            .setup(a => a.selectTestStep(eventStub, item.key, props.selectedTest))
-            .verifiable(Times.once());
+        actionMessageCreatorMock.setup(a => a.selectTestStep(eventStub, item.key, props.selectedTest)).verifiable(Times.once());
 
         const component = React.createElement(TestableTestStepsNav, props);
         const testObject = TestUtils.renderIntoDocument(component);
@@ -97,10 +94,14 @@ describe('TestStepsNav', () => {
 
         outcomeTypeSemanticsFromTestStatusMock
             .setup(f => f(ManualTestStatus.PASS))
-            .returns(() => { return { pastTense: 'passed' } as OutcomeTypeSemantic; });
+            .returns(() => {
+                return { pastTense: 'passed' } as OutcomeTypeSemantic;
+            });
         outcomeTypeSemanticsFromTestStatusMock
             .setup(f => f(ManualTestStatus.UNKNOWN))
-            .returns(() => { return { pastTense: 'unknown' } as OutcomeTypeSemantic; });
+            .returns(() => {
+                return { pastTense: 'unknown' } as OutcomeTypeSemantic;
+            });
 
         return outcomeTypeSemanticsFromTestStatusMock.object;
     }
@@ -111,4 +112,3 @@ describe('TestStepsNav', () => {
         };
     }
 });
-
