@@ -14,8 +14,9 @@ jobs:
 
           - task: Npm@1
             inputs:
-                command: install
-            displayName: npm install
+                command: custom
+                customCommand: ci
+            displayName: npm ci
 
           - task: Npm@1
             inputs:
@@ -32,8 +33,8 @@ jobs:
           - task: Npm@1
             inputs:
                 command: custom
-                customCommand: test
-            displayName: npm test
+                customCommand: run test-in-ci
+            displayName: run unit tests
 
           - task: PublishTestResults@2
             inputs:
@@ -79,8 +80,9 @@ jobs:
 
           - task: Npm@1
             inputs:
-                command: install
-            displayName: npm install
+                command: custom
+                customCommand: ci
+            displayName: npm ci
 
           - task: Npm@1
             inputs:
@@ -92,8 +94,8 @@ jobs:
           - task: Npm@1
             inputs:
                 command: custom
-                customCommand: run test:e2e
-            displayName: npm run test:e2e
+                customCommand: run test-in-ci:e2e
+            displayName: run e2e tests
 
           - task: PublishTestResults@2
             inputs:
