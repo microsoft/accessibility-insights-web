@@ -21,21 +21,6 @@
             "port": 9229
         },
         {
-            "name": "Debug current E2E test file in VSCode",
-            "type": "node",
-            "request": "launch",
-            "runtimeArgs": [
-                "--inspect-brk",
-                "${workspaceRoot}/node_modules/jest/bin/jest.js",
-                "--runInBand",
-                "--config=${workspaceRoot}/jest.e2e.config.js",
-                "${relativeFile}"
-            ],
-            "console": "integratedTerminal",
-            "internalConsoleOptions": "neverOpen",
-            "port": 9229
-        },
-        {
             "name": "Attach debugger to DetailsView in running Chrome instance (must launch Chrome with --remote-debugging-port=9230)",
             "type": "chrome",
             "request": "attach",
