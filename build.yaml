@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 jobs:
-    - job: 'tslint_and_unit_tests'
+    - job: 'unit_tests_and_lints'
 
       pool:
           vmImage: 'macOS-10.13'
@@ -9,8 +9,8 @@ jobs:
       steps:
           - task: NodeTool@0
             inputs:
-                versionSpec: '8.x'
-            displayName: use node 8.x
+                versionSpec: '10.15.0'
+            displayName: use node 10.15.0
 
           - task: Npm@1
             inputs:
@@ -75,8 +75,8 @@ jobs:
       steps:
           - task: NodeTool@0
             inputs:
-                versionSpec: '8.x'
-            displayName: use node 8.x
+                versionSpec: '10.15.0'
+            displayName: use node 10.15.0
 
           - task: Npm@1
             inputs:
@@ -87,8 +87,8 @@ jobs:
           - task: Npm@1
             inputs:
                 command: custom
-                customCommand: run drop
-            displayName: npm run drop
+                customCommand: run build:all
+            displayName: npm run build:all
 
           # e2e tests depend on npm run drop
           - task: Npm@1
@@ -111,15 +111,6 @@ jobs:
             condition: always()
             continueOnError: true
             displayName: publish e2e-failure-screenshots
-
-          - task: CopyFiles@2
-            inputs:
-                sourceFolder: drop
-                contents: '**/*'
-                cleanTargetFolder: true
-                publishLocation: 'filePath'
-                targetFolder: $(Build.ArtifactStagingDirectory)/drop
-            displayName: copy drop
 
           - task: PublishBuildArtifacts@1
             inputs:
