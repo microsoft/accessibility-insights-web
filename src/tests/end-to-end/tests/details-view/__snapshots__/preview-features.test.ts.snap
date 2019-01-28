@@ -3,6 +3,7 @@
 exports[`Preview Features Panel should match content in snapshot 1`] = `
 <DocumentFragment>
   <div
+    aria-hidden="false"
     class="ms-Panel is-open ms-Panel--hasCloseButton ms-Panel--custom generic-panel preview-features-panel root-000"
     type="7"
   >
