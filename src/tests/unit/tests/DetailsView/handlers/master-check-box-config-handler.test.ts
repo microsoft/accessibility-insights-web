@@ -7,7 +7,6 @@ import { VisualizationType } from '../../../../../common/types/visualization-typ
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { MasterCheckBoxConfigProvider } from '../../../../../DetailsView/handlers/master-checkbox-config-provider';
 
-
 describe('MasterCheckBoxConfigProviderTest', () => {
     test('getMasterCheckBoxProperty: allEnabled = true', () => {
         const allEnabled = true;

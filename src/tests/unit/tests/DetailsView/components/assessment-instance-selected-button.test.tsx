@@ -10,7 +10,6 @@ import {
     IAssessmentInstanceSelectedButtonProps,
 } from '../../../../../DetailsView/components/assessment-instance-selected-button';
 
-
 describe('AssessmentInstanceSelectedButton', () => {
     test('constructor', () => {
         const testObject = new AssessmentInstanceSelectedButton({} as IAssessmentInstanceSelectedButtonProps);
@@ -40,6 +39,7 @@ describe('AssessmentInstanceSelectedButton', () => {
                 disabled={false}
                 role="checkbox"
                 aria-checked={props.isVisualizationEnabled}
+                aria-label="Visualization"
             />
         );
 
@@ -69,6 +69,7 @@ describe('AssessmentInstanceSelectedButton', () => {
                 disabled={true}
                 role="checkbox"
                 aria-checked={props.isVisualizationEnabled}
+                aria-label="Visualization"
             />
         );
 
@@ -98,6 +99,7 @@ describe('AssessmentInstanceSelectedButton', () => {
                 disabled={false}
                 role="checkbox"
                 aria-checked={props.isVisualizationEnabled}
+                aria-label="Visualization"
             />
         );
 
@@ -127,6 +129,7 @@ describe('AssessmentInstanceSelectedButton', () => {
                 disabled={true}
                 role="checkbox"
                 aria-checked={props.isVisualizationEnabled}
+                aria-label="Visualization"
             />
         );
 
