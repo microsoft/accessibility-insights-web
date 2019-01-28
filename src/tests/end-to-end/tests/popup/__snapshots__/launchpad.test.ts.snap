@@ -30,6 +30,7 @@ exports[`Launch Pad content should match snapshot 1`] = `
             >
               <button
                 class="ms-Link gear-button root-000"
+                type="button"
               >
                 <i
                   aria-label="Manage Settings"
@@ -123,6 +124,7 @@ exports[`Launch Pad content should match snapshot 1`] = `
                       aria-describedby="launch-pad-item-description-1"
                       class="ms-Link root-000"
                       role="link"
+                      type="button"
                     >
                       FastPass
                     </button>
@@ -168,6 +170,7 @@ exports[`Launch Pad content should match snapshot 1`] = `
                       aria-describedby="launch-pad-item-description-2"
                       class="ms-Link root-000"
                       role="link"
+                      type="button"
                     >
                       Assessment
                     </button>
@@ -213,6 +216,7 @@ exports[`Launch Pad content should match snapshot 1`] = `
                       aria-describedby="launch-pad-item-description-3"
                       class="ms-Link root-000"
                       role="link"
+                      type="button"
                     >
                       Ad hoc tools
                     </button>
