@@ -46,6 +46,48 @@ module.exports = {
             },
         },
     },
+    'dev-internal': {
+        config: {
+            options: {
+                ...internalOptions,
+                ...icons.dev,
+                debug: true,
+                extensionFullName: 'Accessibility Insights for Web - dev-internal',
+                telemetryBuildName: 'DevInternal',
+            },
+        },
+    },
+    'dev-internal-release': {
+        config: {
+            options: {
+                ...internalOptions,
+                ...icons.dev,
+                extensionFullName: 'Accessibility Insights for Web - dev-internal-release',
+                telemetryBuildName: 'DevInternalRelease',
+            },
+        },
+    },
+    'dev-public': {
+        config: {
+            options: {
+                ...publicOptions,
+                ...icons.dev,
+                debug: true,
+                extensionFullName: 'Accessibility Insights for Web - dev-public',
+                telemetryBuildName: 'DevPublic',
+            },
+        },
+    },
+    'dev-public-release': {
+        config: {
+            options: {
+                ...publicOptions,
+                ...icons.dev,
+                extensionFullName: 'Accessibility Insights for Web - dev-public-release',
+                telemetryBuildName: 'DevPublicRelease',
+            },
+        },
+    },
     open: {
         release: true,
         config: {
