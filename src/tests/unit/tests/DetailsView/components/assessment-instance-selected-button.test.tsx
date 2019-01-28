@@ -17,8 +17,8 @@ describe('AssessmentInstanceSelectedButton', () => {
     });
 
     test('render when element is selected and visible', () => {
-        const onSelectedStub = (selected, test, step, selector) => {};
-        const onButtonClickedStub = ev => {};
+        const onSelectedStub = (selected, test, step, selector) => { };
+        const onButtonClickedStub = ev => { };
 
         const props: IAssessmentInstanceSelectedButtonProps = {
             test: VisualizationType.HeadingsAssessment,
@@ -37,7 +37,9 @@ describe('AssessmentInstanceSelectedButton', () => {
                 iconProps={{ className: 'test-instance-selected test-instance-selected-visible', iconName: 'view' }}
                 onClick={onButtonClickedStub}
                 disabled={false}
-                ariaLabel={'Visualization enabled'}
+                role="checkbox"
+                aria-checked={props.isVisualizationEnabled}
+                aria-label="Visualization"
             />
         );
 
@@ -45,8 +47,8 @@ describe('AssessmentInstanceSelectedButton', () => {
     });
 
     test('render when element is selected but hidden', () => {
-        const onSelectedStub = (selected, test, step, selector) => {};
-        const onButtonClickedStub = ev => {};
+        const onSelectedStub = (selected, test, step, selector) => { };
+        const onButtonClickedStub = ev => { };
 
         const props: IAssessmentInstanceSelectedButtonProps = {
             test: VisualizationType.HeadingsAssessment,
@@ -65,7 +67,9 @@ describe('AssessmentInstanceSelectedButton', () => {
                 iconProps={{ className: 'test-instance-selected test-instance-selected-hidden', iconName: 'hide2' }}
                 onClick={onButtonClickedStub}
                 disabled={true}
-                ariaLabel={'Visualization enabled'}
+                role="checkbox"
+                aria-checked={props.isVisualizationEnabled}
+                aria-label="Visualization"
             />
         );
 
@@ -73,8 +77,8 @@ describe('AssessmentInstanceSelectedButton', () => {
     });
 
     test('render when element is not selected and is visible', () => {
-        const onSelectedStub = (selected, test, step, selector) => {};
-        const onButtonClickedStub = ev => {};
+        const onSelectedStub = (selected, test, step, selector) => { };
+        const onButtonClickedStub = ev => { };
 
         const props: IAssessmentInstanceSelectedButtonProps = {
             test: VisualizationType.HeadingsAssessment,
@@ -93,7 +97,9 @@ describe('AssessmentInstanceSelectedButton', () => {
                 iconProps={{ className: '', iconName: 'checkBox' }}
                 onClick={onButtonClickedStub}
                 disabled={false}
-                ariaLabel={'Visualization disabled'}
+                role="checkbox"
+                aria-checked={props.isVisualizationEnabled}
+                aria-label="Visualization"
             />
         );
 
@@ -101,8 +107,8 @@ describe('AssessmentInstanceSelectedButton', () => {
     });
 
     test('render when element is not selected and is not visible', () => {
-        const onSelectedStub = (selected, test, step, selector) => {};
-        const onButtonClickedStub = ev => {};
+        const onSelectedStub = (selected, test, step, selector) => { };
+        const onButtonClickedStub = ev => { };
 
         const props: IAssessmentInstanceSelectedButtonProps = {
             test: VisualizationType.HeadingsAssessment,
@@ -121,7 +127,9 @@ describe('AssessmentInstanceSelectedButton', () => {
                 iconProps={{ className: '', iconName: 'hide2' }}
                 onClick={onButtonClickedStub}
                 disabled={true}
-                ariaLabel={'Visualization disabled'}
+                role="checkbox"
+                aria-checked={props.isVisualizationEnabled}
+                aria-label="Visualization"
             />
         );
 
@@ -130,8 +138,7 @@ describe('AssessmentInstanceSelectedButton', () => {
 
     test('onButtonClicked: true', () => {
         const eventStub = {} as any;
-        const onSelectedMock = Mock.ofInstance((selected, test, step, selector) => {});
-        const onButtonClickedMock = Mock.ofInstance((event, checked) => {});
+        const onSelectedMock = Mock.ofInstance((selected, test, step, selector) => { });
 
         onSelectedMock.setup(s => s(It.isAny(), It.isAny(), It.isAny(), It.isAny())).verifiable(Times.once());
 
@@ -152,8 +159,7 @@ describe('AssessmentInstanceSelectedButton', () => {
 
     test('onButtonClicked: false', () => {
         const eventStub = {} as any;
-        const onSelectedMock = Mock.ofInstance((selected, test, step, selector) => {});
-        const onButtonClickedMock = Mock.ofInstance((event, checked) => {});
+        const onSelectedMock = Mock.ofInstance((selected, test, step, selector) => { });
 
         onSelectedMock.setup(s => s(It.isAny(), It.isAny(), It.isAny(), It.isAny())).verifiable(Times.once());
 
@@ -174,8 +180,7 @@ describe('AssessmentInstanceSelectedButton', () => {
 
     test('onButtonClicked: invisible', () => {
         const eventStub = {} as any;
-        const onSelectedMock = Mock.ofInstance((selected, test, step, selector) => {});
-        const onButtonClickedMock = Mock.ofInstance((event, checked) => {});
+        const onSelectedMock = Mock.ofInstance((selected, test, step, selector) => { });
 
         onSelectedMock.setup(s => s(It.isAny(), It.isAny(), It.isAny(), It.isAny())).verifiable(Times.never());
 

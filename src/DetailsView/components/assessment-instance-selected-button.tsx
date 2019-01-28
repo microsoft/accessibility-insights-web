@@ -39,7 +39,9 @@ export class AssessmentInstanceSelectedButton extends React.Component<IAssessmen
                 }}
                 disabled={!isVisible}
                 onClick={this.onButtonClicked}
-                ariaLabel={`Visualization ${isVisualizationEnabled ? 'enabled' : 'disabled'}`}
+                role="checkbox"
+                aria-checked={isVisualizationEnabled}
+                aria-label="Visualization"
             />
         );
     }
