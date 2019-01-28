@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DetailsViewActionMessageCreator } from './../actions/details-view-action-message-creator';
-import { AssessmentTableColumnConfigHandler } from './../components/assessment-table-column-config-handler';
-import { IAssessmentNavState } from '../../common/types/store-data/iassessment-result-data';
-import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 import { autobind } from '@uifabric/utilities';
 import * as classNames from 'classnames';
+import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
+
+import { IAssessmentNavState } from '../../common/types/store-data/iassessment-result-data';
+import { DetailsViewActionMessageCreator } from './../actions/details-view-action-message-creator';
 
 export class MasterCheckBoxConfigProvider {
     private static MASTER_CHECKBOX_ICON_NAME_ENABLED: string = 'view';
@@ -22,7 +22,7 @@ export class MasterCheckBoxConfigProvider {
             : MasterCheckBoxConfigProvider.MASTER_CHECKBOX_ICON_NAME_DISABLED;
         const iconClassName = classNames({ 'master-visualization-column-header-selected': iconName === 'view' });
         const name = 'Visualization toggle';
-        const label = `Toggle all visualizations ${allEnabled ? 'enabled' : 'disabled'}`;
+        const label = `Toggle all visualizations ${allEnabled ? 'checked' : 'not checked'}`;
         const onColumnClick = this.getMasterCheckBoxClickHandler(assessmentNavState, allEnabled);
 
         return {

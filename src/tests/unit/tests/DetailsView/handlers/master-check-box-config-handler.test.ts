@@ -7,6 +7,7 @@ import { VisualizationType } from '../../../../../common/types/visualization-typ
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { MasterCheckBoxConfigProvider } from '../../../../../DetailsView/handlers/master-checkbox-config-provider';
 
+
 describe('MasterCheckBoxConfigProviderTest', () => {
     test('getMasterCheckBoxProperty: allEnabled = true', () => {
         const allEnabled = true;
@@ -26,7 +27,7 @@ describe('MasterCheckBoxConfigProviderTest', () => {
         expect(config.iconName).toBe('view');
         expect(config.iconClassName).toBe('master-visualization-column-header-selected');
         expect(config.name).toBe('Visualization toggle');
-        expect(config.ariaLabel).toBe('Toggle all visualizations enabled');
+        expect(config.ariaLabel).toBe('Toggle all visualizations checked');
 
         actionMessageCreatorMock.verifyAll();
     });
@@ -46,6 +47,6 @@ describe('MasterCheckBoxConfigProviderTest', () => {
         expect(config.iconClassName).toBeDefined();
         expect(config.iconClassName.trim()).toHaveLength(0);
         expect(config.name).toBe('Visualization toggle');
-        expect(config.ariaLabel).toBe('Toggle all visualizations disabled');
+        expect(config.ariaLabel).toBe('Toggle all visualizations not checked');
     });
 });
