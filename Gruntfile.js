@@ -73,12 +73,6 @@ module.exports = function(grunt) {
                         dest: extensionPath,
                         expand: true,
                     },
-                    {
-                        cwd: './deploy/extension',
-                        src: ['*'],
-                        dest: extensionPath,
-                        expand: true,
-                    },
                 ],
             },
             images: {
