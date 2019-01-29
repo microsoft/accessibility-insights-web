@@ -17,8 +17,8 @@ describe('AssessmentInstanceSelectedButton', () => {
     });
 
     test('render when element is selected and visible', () => {
-        const onSelectedStub = (selected, test, step, selector) => { };
-        const onButtonClickedStub = ev => { };
+        const onSelectedStub = (selected, test, step, selector) => {};
+        const onButtonClickedStub = ev => {};
 
         const props: IAssessmentInstanceSelectedButtonProps = {
             test: VisualizationType.HeadingsAssessment,
@@ -47,8 +47,8 @@ describe('AssessmentInstanceSelectedButton', () => {
     });
 
     test('render when element is selected but hidden', () => {
-        const onSelectedStub = (selected, test, step, selector) => { };
-        const onButtonClickedStub = ev => { };
+        const onSelectedStub = (selected, test, step, selector) => {};
+        const onButtonClickedStub = ev => {};
 
         const props: IAssessmentInstanceSelectedButtonProps = {
             test: VisualizationType.HeadingsAssessment,
@@ -77,8 +77,8 @@ describe('AssessmentInstanceSelectedButton', () => {
     });
 
     test('render when element is not selected and is visible', () => {
-        const onSelectedStub = (selected, test, step, selector) => { };
-        const onButtonClickedStub = ev => { };
+        const onSelectedStub = (selected, test, step, selector) => {};
+        const onButtonClickedStub = ev => {};
 
         const props: IAssessmentInstanceSelectedButtonProps = {
             test: VisualizationType.HeadingsAssessment,
@@ -107,8 +107,8 @@ describe('AssessmentInstanceSelectedButton', () => {
     });
 
     test('render when element is not selected and is not visible', () => {
-        const onSelectedStub = (selected, test, step, selector) => { };
-        const onButtonClickedStub = ev => { };
+        const onSelectedStub = (selected, test, step, selector) => {};
+        const onButtonClickedStub = ev => {};
 
         const props: IAssessmentInstanceSelectedButtonProps = {
             test: VisualizationType.HeadingsAssessment,
@@ -138,7 +138,7 @@ describe('AssessmentInstanceSelectedButton', () => {
 
     test('onButtonClicked: true', () => {
         const eventStub = {} as any;
-        const onSelectedMock = Mock.ofInstance((selected, test, step, selector) => { });
+        const onSelectedMock = Mock.ofInstance((selected, test, step, selector) => {});
 
         onSelectedMock.setup(s => s(It.isAny(), It.isAny(), It.isAny(), It.isAny())).verifiable(Times.once());
 
@@ -159,7 +159,7 @@ describe('AssessmentInstanceSelectedButton', () => {
 
     test('onButtonClicked: false', () => {
         const eventStub = {} as any;
-        const onSelectedMock = Mock.ofInstance((selected, test, step, selector) => { });
+        const onSelectedMock = Mock.ofInstance((selected, test, step, selector) => {});
 
         onSelectedMock.setup(s => s(It.isAny(), It.isAny(), It.isAny(), It.isAny())).verifiable(Times.once());
 
@@ -180,7 +180,7 @@ describe('AssessmentInstanceSelectedButton', () => {
 
     test('onButtonClicked: invisible', () => {
         const eventStub = {} as any;
-        const onSelectedMock = Mock.ofInstance((selected, test, step, selector) => { });
+        const onSelectedMock = Mock.ofInstance((selected, test, step, selector) => {});
 
         onSelectedMock.setup(s => s(It.isAny(), It.isAny(), It.isAny(), It.isAny())).verifiable(Times.never());
 
