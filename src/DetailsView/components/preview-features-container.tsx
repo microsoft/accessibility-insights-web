@@ -9,18 +9,26 @@ import { DetailsViewActionMessageCreator } from '../actions/details-view-action-
 import { PreviewFeatureFlagsHandler } from '../handlers/preview-feature-flags-handler';
 import { PreviewFeaturesToggleList } from './preview-features-toggle-list';
 
-export interface IPreviewFeaturesContainerProps {
+export interface PreviewFeaturesContainerProps {
     actionMessageCreator: DetailsViewActionMessageCreator;
     featureFlagData: FeatureFlagStoreData;
     previewFeatureFlagsHandler: PreviewFeatureFlagsHandler;
 }
 
-export class PreviewFeaturesContainer extends React.Component<IPreviewFeaturesContainerProps> {
+export const NoDisplayableFeatureFlagMessage = () => (
+    <>
+        <div className="no-preview-feature-message">{DisplayableStrings.noPreviewFeatureDisplayMessage}</div>
+    </>
+);
+
+export class PreviewFeaturesContainer extends React.Component<PreviewFeaturesContainerProps> {
     public render(): JSX.Element {
         const displayableFeatureFlags: IDisplayableFeatureFlag[] = this.props.previewFeatureFlagsHandler.getDisplayableFeatureFlags(
             this.props.featureFlagData,
         );
-
+        if (displayableFeatureFlags.length === 0) {
+            return <NoDisplayableFeatureFlagMessage />;
+        }
         return (
             <div>
                 <div className="preview-features-description">{DisplayableStrings.previewFeaturesDescription}</div>

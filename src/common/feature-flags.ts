@@ -42,7 +42,7 @@ export function getAllFeatureFlagDetails(): IFeatureFlagDetail[] {
             displayableDescription:
                 'Avoids styling problems in failure dialogs by rendering them in shadow DOM. ' +
                 "(You'll need to refresh the target page to see the new dialog styling.)",
-            isPreviewFeature: true,
+            isPreviewFeature: false,
             forceDefault: false,
         },
         {
