@@ -18,7 +18,6 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
     }
 
     public setHighContrastMode(enableHighContrast: boolean): void {
-        console.log('payload', enableHighContrast);
         const payload: SetHighContrastModePayload = {
             enableHighContrast,
         };
