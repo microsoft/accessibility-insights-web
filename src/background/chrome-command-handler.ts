@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-import * as Q from 'q';
 
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DisplayableStrings } from '../common/constants/displayable-strings';

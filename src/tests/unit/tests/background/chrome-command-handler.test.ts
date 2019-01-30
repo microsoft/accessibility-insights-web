@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { IVisualizationTogglePayload } from '../../../../background/actions/action-payloads';
 import { ChromeAdapter, BrowserAdapter } from '../../../../background/browser-adapter';
 import { ChromeCommandHandler } from '../../../../background/chrome-command-handler';
 import { Interpreter } from '../../../../background/interpreter';
