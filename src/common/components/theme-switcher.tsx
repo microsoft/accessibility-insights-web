@@ -12,3 +12,15 @@ export const ThemeSwitcher = NamedSFC<ThemeProps>('ThemeSwitcher', ({ isHighCont
     const className = `theme-switcher${isHighContrastEnabled ? ' high-contrast-theme' : ''}`;
     return <div className={className}>{children}</div>;
 });
+
+
+export function withThemeSwitcher<P>(Component: React.ComponentType<P>, getTheme: (props: P) => boolean) {
+    return (props: P) => {
+        const isHighContrastEnabled = getTheme(props);
+        return (
+            <ThemeSwitcher isHighContrastEnabled={isHighContrastEnabled}>
+                <Component {...props} />
+            </ThemeSwitcher>
+        );
+    };
+};
