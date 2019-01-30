@@ -46,6 +46,7 @@ export class DetailsViewOverlay extends React.Component<IDetailsViewOverlayProps
             deps: this.props.deps,
             isOpen: this.props.detailsViewStoreData.currentPanel.isSettingsOpen,
             userConfigStoreState: this.props.userConfigurationStoreData,
+            featureFlagData: this.props.featureFlagStoreData,
         };
 
         return <SettingsPanel {...settingsPanelProps} />;
