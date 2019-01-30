@@ -175,6 +175,23 @@ describe('GlobalActionCreatorTest', () => {
 
         validator.verifyAll();
     });
+
+    test('registerCallback for on UserConfig.SetHighContrastConfig', () => {
+        const payload: UserConfigurationStoreData = {
+            enableTelemetry: true,
+            isFirstTime: false,
+            enableHighContrast: true,
+        };
+        const validator = new GlobalActionCreatorValidator()
+            .setupRegistrationCallback(Messages.UserConfig.SetHighContrastConfig)
+            .setupActionsOnUserConfig('setHighContrastMode')
+            .setupUserConfigActionWithInvokeParameter('setHighContrastMode', payload);
+
+        const actionCreator = validator.buildActionCreator();
+        actionCreator.registerCallbacks();
+
+        validator.verifyAll();
+    });
 });
 
 // tslint:disable-next-line:max-classes-per-file
