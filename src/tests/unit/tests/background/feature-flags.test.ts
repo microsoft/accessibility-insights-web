@@ -23,6 +23,7 @@ describe('FeatureFlagsTest', () => {
             [FeatureFlags.scoping]: false,
             [FeatureFlags.showBugFiling]: false,
             [FeatureFlags.showInstanceVisibility]: false,
+            [FeatureFlags.highContrastMode]: false,
         };
 
         const featureFlagValueKeys = keys(featureFlagValues);
