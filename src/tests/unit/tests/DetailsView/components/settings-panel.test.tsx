@@ -17,7 +17,7 @@ class TestableSettingsPanel extends SettingsPanel {
     }
 
     public getOnEnableHighContrastModeToggleClick(): SettingsPanelProtectedFunction {
-        return this.onEnableHighContrastModeToggleClick;
+        return this.onHighContrastModeToggleClick;
     }
 }
 

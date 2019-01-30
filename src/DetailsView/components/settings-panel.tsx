@@ -7,7 +7,10 @@ import { FeatureFlags } from '../../common/feature-flags';
 import { UserConfigMessageCreator } from '../../common/message-creators/user-config-message-creator';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
-import { enableHighContrastSettingsTitle, highContrastSettingsDescription } from '../../content/settings/high-contrast-mode';
+import {
+    enableHighContrastSettingsTitle as highContrastSettingsTitle,
+    highContrastSettingsDescription,
+} from '../../content/settings/high-contrast-mode';
 import {
     enableTelemetrySettingDescription,
     enableTelemetrySettingsPanelTitle,
@@ -61,9 +64,9 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
             <GenericToggle
                 enabled={this.props.userConfigStoreState.enableHighContrast}
                 id="enable-high-contrast-mode"
-                name={enableHighContrastSettingsTitle}
+                name={highContrastSettingsTitle}
                 description={highContrastSettingsDescription}
-                onClick={this.onEnableHighContrastModeToggleClick}
+                onClick={this.onHighContrastModeToggleClick}
             />
         );
     }
@@ -74,7 +77,7 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
     }
 
     @autobind
-    protected onEnableHighContrastModeToggleClick(id: string, state: boolean) {
+    protected onHighContrastModeToggleClick(id: string, state: boolean) {
         return this.props.deps.userConfigMessageCreator.setHighContrastMode(state);
     }
 }
