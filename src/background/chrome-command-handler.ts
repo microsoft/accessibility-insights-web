@@ -15,50 +15,38 @@ import { UrlValidator } from '../common/url-validator';
 import { IVisualizationTogglePayload } from './actions/action-payloads';
 import { BrowserAdapter } from './browser-adapter';
 import { TabToContextMap } from './tab-context';
+import { UserConfigurationStore } from './stores/global/user-configuration-store';
 
 const VisualizationMessages = Messages.Visualizations;
 
 export class ChromeCommandHandler {
-    private tabToContextMap: TabToContextMap;
-    private chromeAdapter: BrowserAdapter;
-    private urlValidator: UrlValidator;
     private targetTabUrl: string;
-    private notificationCreator: NotificationCreator;
-    private visualizationConfigurationFactory: VisualizationConfigurationFactory;
     private commandToVisualizationType: IDictionaryStringTo<VisualizationType>;
-    private telemetryDataFactory: TelemetryDataFactory;
 
     constructor(
-        tabIdToInterpreterMap: TabToContextMap,
-        chromeAdapter: BrowserAdapter,
-        urlValidator: UrlValidator,
-        notificationCreator: NotificationCreator,
-        visualizationConfigurationFactory: VisualizationConfigurationFactory,
-        telemetryDataFactory: TelemetryDataFactory,
-    ) {
-        this.tabToContextMap = tabIdToInterpreterMap;
-        this.chromeAdapter = chromeAdapter;
-        this.urlValidator = urlValidator;
-        this.notificationCreator = notificationCreator;
-        this.visualizationConfigurationFactory = visualizationConfigurationFactory;
-        this.telemetryDataFactory = telemetryDataFactory;
-    }
+        private tabToContextMap: TabToContextMap,
+        private chromeAdapter: BrowserAdapter,
+        private urlValidator: UrlValidator,
+        private notificationCreator: NotificationCreator,
+        private visualizationConfigurationFactory: VisualizationConfigurationFactory,
+        private telemetryDataFactory: TelemetryDataFactory,
+        private userConfigurationStore: UserConfigurationStore,
+    ) {}
 
-    public initialize() {
-        this.chromeAdapter.addCommandListener(this.onCommand);
+    public initialize(): void {
         this.commandToVisualizationType = this.visualizationConfigurationFactory.getChromeCommandToVisualizationTypeMap();
-    }
-
-    private checkAccessUrl(): Q.IPromise<boolean> {
-        return this.urlValidator.isSupportedUrl(this.targetTabUrl, this.chromeAdapter);
+        this.chromeAdapter.addCommandListener(this.onCommand);
     }
 
     @autobind
-    private onCommand(commandId: string) {
-        const tabQueryParams: chrome.tabs.QueryInfo = { active: true, currentWindow: true };
+    private async onCommand(commandId: string): Promise<void> {
+        try {
+            if (this.userConfigurationStore.getState().isFirstTime) {
+                // Avoid launching functionality until a user has decided whether to allow telemetry
+                return;
+            }
 
-        this.chromeAdapter.tabsQuery(tabQueryParams, (tabs: chrome.tabs.Tab[]) => {
-            const currentTab = tabs && tabs[0];
+            const currentTab = await this.queryCurrentActiveTab();
 
             if (!currentTab) {
                 return;
@@ -72,37 +60,51 @@ export class ChromeCommandHandler {
                 return;
             }
 
-            this.checkAccessUrl().then(
-                hasAccess => {
-                    if (hasAccess === false) {
-                        if (UrlValidator.isFileUrl(currentTab.url)) {
-                            this.notificationCreator.createNotification(DisplayableStrings.fileUrlDoesNotHaveAccess);
-                        } else {
-                            this.notificationCreator.createNotification(DisplayableStrings.urlNotScannable.join('\n'));
-                        }
+            const hasAccess = await this.checkAccessUrl();
+            if (hasAccess === false) {
+                if (UrlValidator.isFileUrl(currentTab.url)) {
+                    this.notificationCreator.createNotification(DisplayableStrings.fileUrlDoesNotHaveAccess);
+                } else {
+                    this.notificationCreator.createNotification(DisplayableStrings.urlNotScannable.join('\n'));
+                }
 
-                        return;
-                    }
+                return;
+            }
 
-                    const state = tabContext.stores.visualizationStore.getState();
+            const state = tabContext.stores.visualizationStore.getState();
 
-                    if (state.scanning != null) {
-                        // do not change state if currently scanning, not even the toggle
-                        return;
-                    }
+            if (state.scanning != null) {
+                // do not change state if currently scanning, not even the toggle
+                return;
+            }
 
-                    const visualizationType = this.getVisualizationTypeFromCommand(commandId);
+            const visualizationType = this.getVisualizationTypeFromCommand(commandId);
 
-                    if (visualizationType != null) {
-                        this.createEnableNotificationIfCurrentStateIsDisabled(visualizationType, state);
-                        this.invokeToggleAction(visualizationType, state, tabId);
-                    }
-                },
-                err => {
-                    console.log('Error occurred at chrome command handler:', err);
-                },
-            );
-        });
+            if (visualizationType != null) {
+                this.createEnableNotificationIfCurrentStateIsDisabled(visualizationType, state);
+                this.invokeToggleAction(visualizationType, state, tabId);
+            }
+        } catch (err) {
+            console.log('Error occurred at chrome command handler:', err);
+        }
+    }
+
+    private async checkAccessUrl(): Promise<boolean> {
+        return await this.urlValidator.isSupportedUrl(this.targetTabUrl, this.chromeAdapter);
+    }
+
+    private queryTabs(tabQueryParams: chrome.tabs.QueryInfo): Promise<chrome.tabs.Tab[]> {
+        return new Promise(resolve => this.chromeAdapter.tabsQuery(tabQueryParams, resolve));
+    }
+
+    private async queryCurrentActiveTab(): Promise<chrome.tabs.Tab> {
+        const tabQueryParams: chrome.tabs.QueryInfo = { active: true, currentWindow: true };
+        const currentActiveTabs = await this.queryTabs(tabQueryParams);
+
+        if (currentActiveTabs && currentActiveTabs[0]) {
+            return currentActiveTabs[0];
+        }
+        return null;
     }
 
     private getVisualizationTypeFromCommand(commandId: string): VisualizationType {
