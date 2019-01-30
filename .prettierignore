@@ -3,7 +3,7 @@ dist/
 extension/
 .github/
 test-results/
-
+.DS_Store
 copyright-header.txt
 LICENSE
 package-lock.json
