@@ -67,7 +67,7 @@ exports[`Preview Features Panel should match content in snapshot 1`] = `
             <div
               class="no-preview-feature-message"
             >
-              No preview features available at the moment. Follow this page for future cool features.
+              No preview features are currently available to manage. Follow this page for future cool features.
             </div>
           </div>
         </div>

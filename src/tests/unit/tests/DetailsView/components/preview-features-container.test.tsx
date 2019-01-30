@@ -76,7 +76,6 @@ describe('PreviewFeaturesContainerTest', () => {
 
         const testSubject = shallow(<PreviewFeaturesContainer {...props} />);
         expect(testSubject.getElement()).toEqual(<NoDisplayableFeatureFlagMessage />);
-        expect(testSubject.find(NoDisplayableFeatureFlagMessage).length).toBe(1);
     });
 
     test('the no feature flag component construction', () => {
