@@ -3,6 +3,4 @@
 import * as React from 'react';
 
 export const enableHighContrastSettingsTitie = 'Enable high contrast';
-export const highContrastSettingsDescription = <>
-    Make text easier to see by using more distinct colors.
-</>;
+export const highContrastSettingsDescription = <>Make text easier to see by using more distinct colors.</>;
