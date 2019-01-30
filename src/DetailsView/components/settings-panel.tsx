@@ -7,7 +7,7 @@ import { FeatureFlags } from '../../common/feature-flags';
 import { UserConfigMessageCreator } from '../../common/message-creators/user-config-message-creator';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
-import { enableHighContrastSettingsTitie, highContrastSettingsDescription } from '../../content/settings/high-contrast-mode';
+import { enableHighContrastSettingsTitle, highContrastSettingsDescription } from '../../content/settings/high-contrast-mode';
 import {
     enableTelemetrySettingDescription,
     enableTelemetrySettingsPanelTitle,
@@ -61,7 +61,7 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
             <GenericToggle
                 enabled={false}
                 id="enable-high-contrast-mode"
-                name={enableHighContrastSettingsTitie}
+                name={enableHighContrastSettingsTitle}
                 description={highContrastSettingsDescription}
                 onClick={null}
             />
