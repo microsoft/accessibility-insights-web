@@ -10,21 +10,22 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
             enableTelemetry,
         };
 
-        this.dispatchMessageWrapper(Messages.UserConfig.SetUserConfig, this._tabId, payload);
+        this.dispatchMessage({
+            type: Messages.UserConfig.SetUserConfig,
+            tabId: this._tabId,
+            payload,
+        });
     }
 
     public setHighContrastMode(enableHighContrast: boolean): void {
+        console.log('payload', enableHighContrast);
         const payload: SetHighContrastModePayload = {
             enableHighContrast,
         };
 
-        this.dispatchMessageWrapper(Messages.UserConfig.SetUserConfig, this._tabId, payload);
-    }
-
-    private dispatchMessageWrapper(type, tabId, payload): void {
         this.dispatchMessage({
-            type,
-            tabId,
+            type: Messages.UserConfig.SetHighContrastConfig,
+            tabId: this._tabId,
             payload,
         });
     }

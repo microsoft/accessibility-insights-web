@@ -163,6 +163,7 @@ describe('GlobalActionCreatorTest', () => {
         const payload: UserConfigurationStoreData = {
             enableTelemetry: true,
             isFirstTime: false,
+            enableHighContrast: false,
         };
         const validator = new GlobalActionCreatorValidator()
             .setupRegistrationCallback(Messages.UserConfig.SetUserConfig)

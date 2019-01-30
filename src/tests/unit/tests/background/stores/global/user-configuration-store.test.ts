@@ -18,8 +18,8 @@ describe('UserConfigurationStoreTest', () => {
     let indexDbStrictMock: IMock<IndexedDBAPI>;
 
     beforeEach(() => {
-        initialStoreData = { enableTelemetry: true, isFirstTime: false };
-        defaultStoreData = { enableTelemetry: false, isFirstTime: true };
+        initialStoreData = { enableTelemetry: true, isFirstTime: false, enableHighContrast: false };
+        defaultStoreData = { enableTelemetry: false, isFirstTime: true, enableHighContrast: false };
         indexDbStrictMock = Mock.ofType<IndexedDBAPI>();
     });
 
@@ -90,17 +90,19 @@ describe('UserConfigurationStoreTest', () => {
     type SetUserConfigTestCase = {
         isFirstTime: boolean;
         enableTelemetry: boolean;
+        enableHighContrastMode: boolean;
     };
     test.each([
-        { enableTelemetry: true, isFirstTime: true } as SetUserConfigTestCase,
-        { enableTelemetry: true, isFirstTime: false } as SetUserConfigTestCase,
-        { enableTelemetry: false, isFirstTime: false } as SetUserConfigTestCase,
-        { enableTelemetry: false, isFirstTime: true } as SetUserConfigTestCase,
+        { enableTelemetry: true, isFirstTime: true, enableHighContrastMode: false } as SetUserConfigTestCase,
+        { enableTelemetry: true, isFirstTime: false, enableHighContrastMode: false } as SetUserConfigTestCase,
+        { enableTelemetry: false, isFirstTime: false, enableHighContrastMode: false } as SetUserConfigTestCase,
+        { enableTelemetry: false, isFirstTime: true, enableHighContrastMode: false } as SetUserConfigTestCase,
     ])('setUserConfiguration action: %o', (testCase: SetUserConfigTestCase) => {
         const storeTester = createStoreToTestAction('setTelemetryState');
         initialStoreData = {
             enableTelemetry: testCase.enableTelemetry,
             isFirstTime: testCase.isFirstTime,
+            enableHighContrast: testCase.enableHighContrastMode,
         };
         const setTelemetryStateData: SetTelemetryStatePayload = {
             enableTelemetry: testCase.enableTelemetry,
@@ -109,6 +111,7 @@ describe('UserConfigurationStoreTest', () => {
         const expectedState: UserConfigurationStoreData = {
             enableTelemetry: testCase.enableTelemetry,
             isFirstTime: false,
+            enableHighContrast: testCase.enableHighContrastMode,
         };
 
         indexDbStrictMock.setup(i => i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState))).verifiable(Times.once());

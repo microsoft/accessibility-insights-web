@@ -59,11 +59,11 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
     private getHighContrastToggle(): JSX.Element {
         return (
             <GenericToggle
-                enabled={this.props.userConfigStoreState.enableHighContrastMode}
+                enabled={this.props.userConfigStoreState.enableHighContrast}
                 id="enable-high-contrast-mode"
                 name={enableHighContrastSettingsTitle}
                 description={highContrastSettingsDescription}
-                onClick={null}
+                onClick={this.onEnableHighContrastModeToggleClick}
             />
         );
     }
