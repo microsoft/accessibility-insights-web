@@ -3,7 +3,7 @@
 import { cloneDeep } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { SetTelemetryStatePayload } from '../../../../../../background/actions/action-payloads';
+import { SetTelemetryStatePayload, SetHighContrastModePayload } from '../../../../../../background/actions/action-payloads';
 import { UserConfigurationActions } from '../../../../../../background/actions/user-configuration-actions';
 import { IndexedDBDataKeys } from '../../../../../../background/IndexedDBDataKeys';
 import { UserConfigurationStore } from '../../../../../../background/stores/global/user-configuration-store';
@@ -102,8 +102,9 @@ describe('UserConfigurationStoreTest', () => {
         initialStoreData = {
             enableTelemetry: testCase.enableTelemetry,
             isFirstTime: testCase.isFirstTime,
-            enableHighContrast: testCase.enableHighContrastMode,
+            enableHighContrast: false,
         };
+
         const setTelemetryStateData: SetTelemetryStatePayload = {
             enableTelemetry: testCase.enableTelemetry,
         };
@@ -111,13 +112,42 @@ describe('UserConfigurationStoreTest', () => {
         const expectedState: UserConfigurationStoreData = {
             enableTelemetry: testCase.enableTelemetry,
             isFirstTime: false,
-            enableHighContrast: testCase.enableHighContrastMode,
+            enableHighContrast: false,
         };
 
         indexDbStrictMock.setup(i => i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState))).verifiable(Times.once());
 
         storeTester
             .withActionParam(setTelemetryStateData)
+            .withPostListenerMock(indexDbStrictMock)
+            .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
+    });
+
+    test.each([
+        { enableTelemetry: false, isFirstTime: false, enableHighContrastMode: true } as SetUserConfigTestCase,
+        { enableTelemetry: false, isFirstTime: false, enableHighContrastMode: false } as SetUserConfigTestCase,
+    ])('setUserConfiguration action: %o', (testCase: SetUserConfigTestCase) => {
+        const storeTester = createStoreToTestAction('setHighContrastMode');
+        initialStoreData = {
+            enableTelemetry: false,
+            isFirstTime: false,
+            enableHighContrast: testCase.enableHighContrastMode,
+        };
+
+        const setHighContrastData: SetHighContrastModePayload = {
+            enableHighContrast: testCase.enableHighContrastMode,
+        };
+
+        const expectedState: UserConfigurationStoreData = {
+            enableTelemetry: false,
+            isFirstTime: false,
+            enableHighContrast: testCase.enableHighContrastMode,
+        };
+
+        indexDbStrictMock.setup(i => i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState))).verifiable(Times.once());
+
+        storeTester
+            .withActionParam(setHighContrastData)
             .withPostListenerMock(indexDbStrictMock)
             .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
     });

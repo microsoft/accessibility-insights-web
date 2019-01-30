@@ -48,7 +48,6 @@ export class UserConfigurationStore extends BaseStore<UserConfigurationStoreData
 
     @autobind
     private onSetHighContrastMode(payload: SetHighContrastModePayload) {
-        console.log('onSetHighContrastMode', payload);
         this.state = {
             ...this.state,
             enableHighContrast: payload.enableHighContrast,
