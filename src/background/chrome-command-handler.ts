@@ -111,7 +111,7 @@ export class ChromeCommandHandler {
     }
 
     private createEnableNotificationIfCurrentStateIsDisabled(visualizationType: VisualizationType, data: IVisualizationStoreData): void {
-        if (!this.shouldNotifyOnDisable(visualizationType)) {
+        if (!this.shouldNotifyOnEnable(visualizationType)) {
             return;
         }
 
@@ -127,7 +127,7 @@ export class ChromeCommandHandler {
         }
     }
 
-    private shouldNotifyOnDisable(type: VisualizationType): boolean {
+    private shouldNotifyOnEnable(type: VisualizationType): boolean {
         return type !== VisualizationType.TabStops;
     }
 
