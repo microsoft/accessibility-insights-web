@@ -8,5 +8,5 @@ export class DisplayableStrings {
     public static fileUrlDoesNotHaveAccess: string = `Your Chrome settings don't allow ${title} to run on file URLs.`;
     public static urlNotScannable: string[] = [`${title} can't run on this URL.`, "You'll need to go to a different page."];
     public static noPreviewFeatureDisplayMessage: string =
-        'No preview features available at the moment. Follow this page for future cool features.';
+        'No preview features are currently available to manage. Follow this page for future cool features.';
 }
