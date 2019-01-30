@@ -3,4 +3,5 @@
 export interface UserConfigurationStoreData {
     isFirstTime: boolean;
     enableTelemetry: boolean;
+    enableHighContrastMode: boolean;
 }
