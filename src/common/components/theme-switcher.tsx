@@ -10,9 +10,5 @@ export interface ThemeProps {
 
 export const ThemeSwitcher = NamedSFC<ThemeProps>('ThemeSwitcher', ({ isHighContrastEnabled, children }) => {
     const className = `theme-switcher${isHighContrastEnabled ? ' high-contrast-theme' : ''}`;
-    return (
-        <div className={className} >
-            {children}
-        </div>
-    );
+    return <div className={className}>{children}</div>;
 });
