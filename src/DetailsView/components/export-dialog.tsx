@@ -29,6 +29,8 @@ export class ExportDialog extends React.Component<ExportDialogProps> {
     }
 
     public render(): JSX.Element {
+        const encodedHtml = encodeURIComponent(this.props.html);
+
         return (
             <Dialog
                 hidden={!this.props.isOpen}
@@ -53,11 +55,7 @@ export class ExportDialog extends React.Component<ExportDialogProps> {
                     ariaLabel="Provide result description"
                 />
                 <DialogFooter>
-                    <PrimaryButton
-                        onClick={this.onExportLinkClick}
-                        download="AssessmentReport.html"
-                        href={'data:text/html,' + this.props.html}
-                    >
+                    <PrimaryButton onClick={this.onExportLinkClick} download="AssessmentReport.html" href={'data:text/html,' + encodedHtml}>
                         Export
                     </PrimaryButton>
                 </DialogFooter>
