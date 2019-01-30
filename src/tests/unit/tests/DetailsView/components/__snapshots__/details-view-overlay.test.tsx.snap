@@ -61,6 +61,7 @@ exports[`DetailsViewOverlay renders with content open 1`] = `
         "userConfigMessageCreator": Object {},
       }
     }
+    featureFlagData={Object {}}
     userConfigStoreState={Object {}}
   />
 </React.Fragment>
@@ -125,6 +126,7 @@ exports[`DetailsViewOverlay renders with preview features open 1`] = `
         "userConfigMessageCreator": Object {},
       }
     }
+    featureFlagData={Object {}}
     userConfigStoreState={Object {}}
   />
 </React.Fragment>
@@ -189,6 +191,7 @@ exports[`DetailsViewOverlay renders with scoping open 1`] = `
         "userConfigMessageCreator": Object {},
       }
     }
+    featureFlagData={Object {}}
     userConfigStoreState={Object {}}
   />
 </React.Fragment>
@@ -255,13 +258,14 @@ exports[`DetailsViewOverlay renders with settings false 1`] = `
         "userConfigMessageCreator": Object {},
       }
     }
+    featureFlagData={Object {}}
     isOpen={false}
     userConfigStoreState={Object {}}
   />
 </React.Fragment>
 `;
 
-exports[`DetailsViewOverlay renders with settings open 1`] = `
+exports[`DetailsViewOverlay renders with settings panel open 1`] = `
 <React.Fragment>
   <PreviewFeaturesPanel
     actionMessageCreator={
@@ -322,6 +326,7 @@ exports[`DetailsViewOverlay renders with settings open 1`] = `
         "userConfigMessageCreator": Object {},
       }
     }
+    featureFlagData={Object {}}
     isOpen={true}
     userConfigStoreState={Object {}}
   />

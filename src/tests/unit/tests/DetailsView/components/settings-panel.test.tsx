@@ -3,15 +3,10 @@
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
+import { FeatureFlags } from '../../../../../common/feature-flags';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
-import {
-    enableTelemetrySettingDescription,
-    enableTelemetrySettingsPanelTitle,
-} from '../../../../../content/settings/improve-accessibility-insights';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
-import { GenericPanel } from '../../../../../DetailsView/components/generic-panel';
-import { GenericToggle } from '../../../../../DetailsView/components/generic-toggle';
 import { SettingsPanel, SettingsPanelProps } from '../../../../../DetailsView/components/settings-panel';
 
 class TestableSettingsPanel extends SettingsPanel {
@@ -58,30 +53,11 @@ describe('SettingsPanelTest', () => {
                 userConfigMessageCreator: userConfigMessageCreatorMock.object,
             },
             userConfigStoreState: userConfigStoreData,
+            featureFlagData: { [FeatureFlags.highContrastMode]: false },
         };
 
         const testSubject = new TestableSettingsPanel(testProps);
-
-        const expected = (
-            <GenericPanel
-                isOpen={testCase.isPanelOpen}
-                className={'settings-panel'}
-                onDismiss={detailsActionMessageCreatorMock.object.closeScopingPanel}
-                closeButtonAriaLabel={'Close settings panel'}
-                hasCloseButton={true}
-                title="Settings"
-            >
-                <GenericToggle
-                    enabled={userConfigStoreData.enableTelemetry}
-                    id="enable-telemetry"
-                    name={enableTelemetrySettingsPanelTitle}
-                    description={enableTelemetrySettingDescription}
-                    onClick={testSubject.getOnEnableTelemetryToggleClick()}
-                />
-            </GenericPanel>
-        );
-
-        expect(testSubject.render()).toEqual(expected);
+        expect(testSubject.render()).toMatchSnapshot();
     });
 
     test.each([true, false])('verify toggle click - telemetrySettingState : %s', telemetrySettingState => {
@@ -93,6 +69,7 @@ describe('SettingsPanelTest', () => {
                 userConfigMessageCreator: userConfigMessageCreatorMock.object,
             },
             userConfigStoreState: userConfigStoreData,
+            featureFlagData: { [FeatureFlags.highContrastMode]: true },
         };
 
         const testSubject = new TestableSettingsPanel(testProps);
