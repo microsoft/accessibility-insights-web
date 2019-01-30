@@ -61,8 +61,8 @@ describe('TestStatusChoiceGroup', () => {
     });
 
     test('render', () => {
-        const onGroupChoiceChangeMock = Mock.ofInstance((status, test, step, selector) => { });
-        const onUndoMock = Mock.ofInstance((test, step, selector) => { });
+        const onGroupChoiceChangeMock = Mock.ofInstance((status, test, step, selector) => {});
+        const onUndoMock = Mock.ofInstance((test, step, selector) => {});
         const props: ITestStatusChoiceGroupProps = {
             test: 1,
             step: 'step',
@@ -99,8 +99,8 @@ describe('TestStatusChoiceGroup', () => {
     });
 
     test('verify onChange', () => {
-        const onGroupChoiceChangeMock = Mock.ofInstance((status, test, step, selector) => { });
-        const onUndoMock = Mock.ofInstance((test, step, selector) => { });
+        const onGroupChoiceChangeMock = Mock.ofInstance((status, test, step, selector) => {});
+        const onUndoMock = Mock.ofInstance((test, step, selector) => {});
         const props: ITestStatusChoiceGroupProps = {
             test: 1,
             step: 'step',
@@ -120,9 +120,9 @@ describe('TestStatusChoiceGroup', () => {
     });
 
     test('verify undo button', () => {
-        const focusMock = Mock.ofInstance(() => { });
-        const onGroupChoiceChangeMock = Mock.ofInstance((status, test, step, selector) => { });
-        const onUndoMock = Mock.ofInstance((test, step, selector) => { });
+        const focusMock = Mock.ofInstance(() => {});
+        const onGroupChoiceChangeMock = Mock.ofInstance((status, test, step, selector) => {});
+        const onUndoMock = Mock.ofInstance((test, step, selector) => {});
         const props: ITestStatusChoiceGroupProps = {
             test: 1,
             step: 'step',
