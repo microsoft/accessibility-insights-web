@@ -5,5 +5,5 @@ import * as React from 'react';
 
 export const enableHighContrastSettingsTitie = 'Enable high contrast';
 export const highContrastSettingsDescription = <React.Fragment>
-    Make texts easier to see by using more distinct colors.
+    Make text easier to see by using more distinct colors.
 </React.Fragment>;
