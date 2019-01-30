@@ -33,7 +33,7 @@ import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-t
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
 import { ReportGenerator } from './reports/report-generator';
-import { withThemeSwitcher } from '../common/components/theme-switcher';
+import { withThemedBody } from '../common/components/theme-switcher';
 
 export type DetailsViewContainerDeps = {
     getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration;
@@ -199,9 +199,6 @@ export class DetailsViewContainer extends React.Component<IDetailsViewContainerP
     }
 }
 
-const ThemedDetailsView = withThemeSwitcher<IDetailsViewContainerProps>(
-    DetailsViewContainer,
-    (props: IDetailsViewContainerProps) => false,
-);
+const ThemedDetailsView = withThemedBody<IDetailsViewContainerProps>(DetailsViewContainer, (props: IDetailsViewContainerProps) => true);
 
 export const DetailsView = withStoreSubscription<IDetailsViewContainerProps, IDetailsViewContainerState>(ThemedDetailsView);
