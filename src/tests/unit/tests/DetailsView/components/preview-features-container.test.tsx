@@ -1,17 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
 
 import { DisplayableStrings } from '../../../../../common/constants/displayable-strings';
 import { IDisplayableFeatureFlag } from '../../../../../common/types/store-data/idisplayable-feature-flag';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
-import {
-    PreviewFeaturesContainer,
-    PreviewFeaturesContainerProps,
-    NoDisplayableFeatureFlagMessage,
-} from '../../../../../DetailsView/components/preview-features-container';
+import { NoDisplayableFeatureFlagMessage } from '../../../../../DetailsView/components/no-displayable-preview-features-message';
+import { PreviewFeaturesContainer, PreviewFeaturesContainerProps } from '../../../../../DetailsView/components/preview-features-container';
 import { PreviewFeaturesToggleList } from '../../../../../DetailsView/components/preview-features-toggle-list';
 import { PreviewFeatureFlagsHandler } from '../../../../../DetailsView/handlers/preview-feature-flags-handler';
 
@@ -76,23 +73,5 @@ describe('PreviewFeaturesContainerTest', () => {
 
         const testSubject = shallow(<PreviewFeaturesContainer {...props} />);
         expect(testSubject.getElement()).toEqual(<NoDisplayableFeatureFlagMessage />);
-    });
-
-    test('the no feature flag component construction', () => {
-        displayableFeatureFlagsStub = [];
-
-        previewFeatureFlagsHandlerMock
-            .setup(pffm => pffm.getDisplayableFeatureFlags(featureFlagStoreDataStub))
-            .returns(() => displayableFeatureFlagsStub)
-            .verifiable();
-
-        // test the no feature flag component itself
-
-        const testSubject = mount(<PreviewFeaturesContainer {...props} />);
-        const noFeatureFlagNode = testSubject.find('.no-preview-feature-message');
-        expect(noFeatureFlagNode.length).toBe(1);
-
-        const text = noFeatureFlagNode.text();
-        expect(text).toBe(DisplayableStrings.noPreviewFeatureDisplayMessage);
     });
 });
