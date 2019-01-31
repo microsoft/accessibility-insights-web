@@ -340,6 +340,8 @@ div.insights-dialog-main-override {
         padding-left: 0px;
         padding-right: 0px;
         flex-grow: 1;
+        min-height: 0;
+
         .details-view-nav-pivots {
             > :first-child {
                 height: $detailsViewNavPivotsHeight;
@@ -787,6 +789,8 @@ div.insights-dialog-main-override {
                 width: 100%;
                 display: flex;
                 margin-top: 24px;
+                min-height: 0;
+
                 .target-page-changed,
                 .static-content-details-view {
                     margin-left: 24px;
@@ -806,6 +810,7 @@ div.insights-dialog-main-override {
                         height: 100%;
                         display: flex;
                         flex-direction: column;
+                        min-height: 0;
                     }
                 }
                 .assessment-content {
@@ -855,6 +860,7 @@ div.insights-dialog-main-override {
                     height: 100%;
                     display: flex;
                     flex-direction: column;
+                    min-height: 0;
                 }
                 .issues-details-list {
                     display: flex;
