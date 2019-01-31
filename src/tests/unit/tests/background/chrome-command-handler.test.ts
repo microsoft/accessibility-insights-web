@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { IVisualizationTogglePayload } from '../../../../background/actions/action-payloads';
 import { ChromeAdapter, BrowserAdapter } from '../../../../background/browser-adapter';
 import { ChromeCommandHandler } from '../../../../background/chrome-command-handler';
 import { Interpreter } from '../../../../background/interpreter';
@@ -20,6 +19,7 @@ import { IVisualizationStoreData } from '../../../../common/types/store-data/ivi
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { UrlValidator } from '../../../../common/url-validator';
 import { VisualizationStoreDataBuilder } from '../../Common/visualization-store-data-builder';
+import { UserConfigurationStore } from '../../../../background/stores/global/user-configuration-store';
 
 let testSubject: ChromeCommandHandler;
 let chromeAdapterMock: IMock<BrowserAdapter>;
@@ -27,11 +27,14 @@ let urlValidatorMock: IMock<UrlValidator>;
 let tabToContextMap: TabToContextMap;
 let visualizationStoreMock: IMock<IBaseStore<IVisualizationStoreData>>;
 let interpreterMock: IMock<Interpreter>;
-let commandCallback: (commandId: string) => void;
-let tabQueryCallback: (tabs: chrome.tabs.Tab[]) => void;
+let commandCallback: (commandId: string) => Promise<void>;
 let existingTabId: number;
 let notificationCreatorMock: IMock<NotificationCreator>;
 let storeState: IVisualizationStoreData;
+let simulatedIsFirstTimeUserConfiguration: boolean;
+let simulatedIsSupportedUrlResponse: boolean;
+let simulatedActiveTabId: Number;
+let simulatedActiveTabUrl: string;
 
 const visualizationConfigurationFactory = new VisualizationConfigurationFactory();
 const testSource: TelemetryEventSource = TelemetryEventSource.ShortcutCommand;
@@ -55,9 +58,30 @@ describe('ChromeCommandHandlerTest', () => {
             .setup(ca => ca.addCommandListener(It.isAny()))
             .callback(callback => (commandCallback = callback))
             .verifiable();
+        chromeAdapterMock
+            .setup(ca => ca.tabsQuery(It.isValue({ active: true, currentWindow: true }), It.isAny()))
+            .returns((_, callback) => {
+                callback([{ id: simulatedActiveTabId, url: simulatedActiveTabUrl } as chrome.tabs.Tab]);
+            })
+            .verifiable();
 
         urlValidatorMock = Mock.ofType(UrlValidator);
+        urlValidatorMock
+            .setup(uV => uV.isSupportedUrl(It.isAny(), chromeAdapterMock.object))
+            .returns(async () => simulatedIsSupportedUrlResponse)
+            .verifiable();
+
         notificationCreatorMock = Mock.ofType(NotificationCreator);
+
+        const userConfigurationStoreMock = Mock.ofType(UserConfigurationStore, MockBehavior.Strict);
+        userConfigurationStoreMock
+            .setup(s => s.getState())
+            .returns(() => {
+                return {
+                    isFirstTime: simulatedIsFirstTimeUserConfiguration,
+                    enableTelemetry: true,
+                };
+            });
 
         testSubject = new ChromeCommandHandler(
             tabToContextMap,
@@ -66,600 +90,204 @@ describe('ChromeCommandHandlerTest', () => {
             notificationCreatorMock.object,
             new VisualizationConfigurationFactory(),
             new TelemetryDataFactory(),
+            userConfigurationStoreMock.object,
         );
 
         testSubject.initialize();
-    });
 
-    it('verify for unknown command', async done => {
-        setupUrlValidator(It.isAny(), true);
-
+        // Individual tests may override these; these are preset to simple/arbitrary values
+        // that would enable normal happy-path operation of the testSubject.
         storeState = new VisualizationStoreDataBuilder().build();
+        simulatedIsFirstTimeUserConfiguration = false;
+        simulatedActiveTabId = existingTabId;
+        simulatedActiveTabUrl = 'https://arbitrary.url';
+        simulatedIsSupportedUrlResponse = true;
+    });
 
-        setupTabQueryCall();
+    const supportedVisualizationTypes = [
+        ['Issues', VisualizationType.Issues],
+        ['Landmarks', VisualizationType.Landmarks],
+        ['Headings', VisualizationType.Headings],
+        ['Color', VisualizationType.Color],
+        ['TabStops', VisualizationType.TabStops],
+    ];
 
-        commandCallback('some command');
-        tabQueryCallback([{ id: existingTabId } as chrome.tabs.Tab]);
+    const visualizationTypesThatShouldNotifyOnEnable = [
+        ['Issues', VisualizationType.Issues],
+        ['Landmarks', VisualizationType.Landmarks],
+        ['Headings', VisualizationType.Headings],
+        ['Color', VisualizationType.Color],
+    ];
+
+    const visualizationTypesThatShouldNotNotifyOnEnable = [['TabStops', VisualizationType.TabStops]];
+
+    it.each(supportedVisualizationTypes)(`enables previously-disabled '%s' visualizer`, async (_, visualizationType) => {
+        storeState = new VisualizationStoreDataBuilder().withDisable(visualizationType).build();
+        const configuration = visualizationConfigurationFactory.getConfiguration(visualizationType);
+
+        let receivedMessage: IMessage;
+        interpreterMock
+            .setup(x => x.interpret(It.isAny()))
+            .returns(message => {
+                receivedMessage = message;
+                return true;
+            })
+            .verifiable();
+
+        await commandCallback(configuration.chromeCommand);
+
+        expect(receivedMessage).toEqual({
+            tabId: existingTabId,
+            type: Messages.Visualizations.Common.Toggle,
+            payload: {
+                enabled: true,
+                telemetry: {
+                    triggeredBy: 'shortcut',
+                    enabled: true,
+                    source: testSource,
+                },
+                test: visualizationType,
+            },
+        });
 
         interpreterMock.verifyAll();
-        urlValidatorMock.verifyAll();
-        done();
     });
 
-    it('verify for command when tab context does not exist', async done => {
-        const configuration = visualizationConfigurationFactory.getConfiguration(VisualizationType.Issues);
-        setupTabQueryCall();
-        commandCallback(configuration.chromeCommand);
-        tabQueryCallback([{ id: 12 } as chrome.tabs.Tab]);
+    it.each(supportedVisualizationTypes)(`disables previously-enabled '%s' visualizer`, async (_, visualizationType) => {
+        storeState = new VisualizationStoreDataBuilder().withEnable(visualizationType).build();
+        const configuration = visualizationConfigurationFactory.getConfiguration(visualizationType);
+
+        let receivedMessage: IMessage;
+        interpreterMock
+            .setup(x => x.interpret(It.isAny()))
+            .returns(message => {
+                receivedMessage = message;
+                return true;
+            })
+            .verifiable();
+
+        await commandCallback(configuration.chromeCommand);
+
+        expect(receivedMessage).toEqual({
+            tabId: existingTabId,
+            type: Messages.Visualizations.Common.Toggle,
+            payload: {
+                enabled: false,
+                telemetry: {
+                    triggeredBy: 'shortcut',
+                    enabled: false,
+                    source: testSource,
+                },
+                test: visualizationType,
+            },
+        });
 
         interpreterMock.verifyAll();
-        done();
     });
 
-    it('enables issues', async done => {
-        const test = VisualizationType.Issues;
-        setupUrlValidator('testurl', true);
+    it.each(visualizationTypesThatShouldNotifyOnEnable)(
+        `emits the expected 'enabled' notification when enabling '%s' visualizer`,
+        async (_, visualizationType) => {
+            storeState = new VisualizationStoreDataBuilder().withDisable(visualizationType).build();
+            const configuration = visualizationConfigurationFactory.getConfiguration(visualizationType);
 
-        storeState = new VisualizationStoreDataBuilder()
-            .withHeadingsEnable()
-            .withLandmarksEnable()
-            .withColorEnable()
-            .withTabStopsEnable()
-            .build();
+            const enableMessage = configuration.displayableData.enableMessage;
+            notificationCreatorMock.setup(nc => nc.createNotification(enableMessage)).verifiable();
 
-        interpreterMock
-            .setup(x => x.interpret(It.isAny()))
-            .returns(message => {
-                const enabled = true;
-                const telemetry: ToggleTelemetryData = {
-                    triggeredBy: 'shortcut',
-                    enabled,
-                    source: testSource,
-                };
+            await commandCallback(configuration.chromeCommand);
 
-                const payload: IVisualizationTogglePayload = {
-                    enabled,
-                    telemetry,
-                    test,
-                };
+            notificationCreatorMock.verifyAll();
+        },
+    );
 
-                const expectedMessage: IMessage = {
-                    tabId: existingTabId,
-                    type: Messages.Visualizations.Common.Toggle,
-                    payload,
-                };
+    it.each(visualizationTypesThatShouldNotNotifyOnEnable)(
+        `does not emit unexpected 'enabled' notification when enabling '%s' visualizer`,
+        async (_, visualizationType) => {
+            storeState = new VisualizationStoreDataBuilder().withDisable(visualizationType).build();
+            const configuration = visualizationConfigurationFactory.getConfiguration(visualizationType);
 
-                expect(message).toEqual(expectedMessage);
-                urlValidatorMock.verifyAll();
-                interpreterMock.verifyAll();
-                notificationCreatorMock.verifyAll();
-                done();
-                return true;
-            })
-            .verifiable();
+            notificationCreatorMock.setup(nc => nc.createNotification(It.isAny())).verifiable(Times.never());
 
-        const configuration = visualizationConfigurationFactory.getConfiguration(test);
-        const enableMessage = configuration.displayableData.enableMessage;
+            await commandCallback(configuration.chromeCommand);
 
-        notificationCreatorMock.setup(nc => nc.createNotification(enableMessage)).verifiable();
+            notificationCreatorMock.verifyAll();
+        },
+    );
 
-        setupTabQueryCall();
-        commandCallback(configuration.chromeCommand);
-        tabQueryCallback([{ id: existingTabId, url: 'testurl' } as chrome.tabs.Tab]);
+    it('does not emit toggle messages for unknown command strings', async () => {
+        interpreterMock.setup(x => x.interpret(It.isAny())).verifiable(Times.never());
+
+        await commandCallback('unknown-command');
+
+        interpreterMock.verifyAll();
     });
 
-    it('disable issues', async done => {
-        const test = VisualizationType.Issues;
-        storeState = new VisualizationStoreDataBuilder().withEnable(test).build();
+    it('does not emit toggle messages if the first-time dialog has not been dismissed yet', async () => {
+        simulatedIsFirstTimeUserConfiguration = true;
 
-        setupTabQueryCall();
+        interpreterMock.setup(x => x.interpret(It.isAny())).verifiable(Times.never());
 
-        setupUrlValidator('testurl', true);
+        await commandCallback(getArbitraryValidChromeCommand());
 
-        interpreterMock
-            .setup(x => x.interpret(It.isAny()))
-            .returns(message => {
-                const enabled = false;
-                const telemetry: ToggleTelemetryData = {
-                    triggeredBy: 'shortcut',
-                    enabled,
-                    source: testSource,
-                };
-
-                const payload: IVisualizationTogglePayload = {
-                    enabled,
-                    telemetry,
-                    test,
-                };
-
-                const expectedMessage: IMessage = {
-                    tabId: existingTabId,
-                    type: Messages.Visualizations.Common.Toggle,
-                    payload,
-                };
-
-                expect(message).toEqual(expectedMessage);
-                urlValidatorMock.verifyAll();
-                interpreterMock.verifyAll();
-                done();
-                return true;
-            })
-            .verifiable();
-
-        const configuration = visualizationConfigurationFactory.getConfiguration(VisualizationType.Issues);
-        commandCallback(configuration.chromeCommand);
-        tabQueryCallback([{ id: existingTabId, url: 'testurl' } as chrome.tabs.Tab]);
+        interpreterMock.verifyAll();
     });
 
-    it('enables landmarks', async done => {
-        const test = VisualizationType.Landmarks;
-        setupUrlValidator('testurl', true);
+    it('does not emit toggle messages when the active/current tab has no known tab context', async () => {
+        simulatedActiveTabId = 12;
+        expect(simulatedActiveTabId !== existingTabId);
 
-        storeState = new VisualizationStoreDataBuilder()
-            .withIssuesEnable()
-            .withHeadingsEnable()
-            .withColorEnable()
-            .withTabStopsEnable()
-            .build();
+        interpreterMock.setup(x => x.interpret(It.isAny())).verifiable(Times.never());
 
-        setupTabQueryCall();
+        await commandCallback(getArbitraryValidChromeCommand());
 
-        const configuration = visualizationConfigurationFactory.getConfiguration(test);
-        commandCallback(configuration.chromeCommand);
-
-        interpreterMock
-            .setup(x => x.interpret(It.isAny()))
-            .returns(message => {
-                const enabled = true;
-                const telemetry: ToggleTelemetryData = {
-                    triggeredBy: 'shortcut',
-                    enabled,
-                    source: testSource,
-                };
-
-                const payload: IVisualizationTogglePayload = {
-                    enabled,
-                    telemetry,
-                    test,
-                };
-
-                const expectedMessage: IMessage = {
-                    tabId: existingTabId,
-                    type: Messages.Visualizations.Common.Toggle,
-                    payload,
-                };
-
-                expect(message).toEqual(expectedMessage);
-                interpreterMock.verifyAll();
-                urlValidatorMock.verifyAll();
-                notificationCreatorMock.verifyAll();
-                done();
-                return true;
-            })
-            .verifiable();
-
-        const enableMessage = configuration.displayableData.enableMessage;
-
-        notificationCreatorMock.setup(nc => nc.createNotification(enableMessage)).verifiable();
-
-        tabQueryCallback([{ id: existingTabId, url: 'testurl' } as chrome.tabs.Tab]);
+        interpreterMock.verifyAll();
     });
 
-    it('disable landmarks', async done => {
-        setupUrlValidator('testurl', true);
-
-        const test = VisualizationType.Landmarks;
-        storeState = new VisualizationStoreDataBuilder().withEnable(test).build();
-
-        setupTabQueryCall();
-
-        const configuration = visualizationConfigurationFactory.getConfiguration(test);
-        commandCallback(configuration.chromeCommand);
-
-        interpreterMock
-            .setup(x => x.interpret(It.isAny()))
-            .returns(message => {
-                const enabled = false;
-                const telemetry: ToggleTelemetryData = {
-                    triggeredBy: 'shortcut',
-                    enabled,
-                    source: testSource,
-                };
-
-                const payload: IVisualizationTogglePayload = {
-                    enabled,
-                    telemetry,
-                    test,
-                };
-
-                const expectedMessage: IMessage = {
-                    tabId: existingTabId,
-                    type: Messages.Visualizations.Common.Toggle,
-                    payload,
-                };
-
-                expect(message).toEqual(expectedMessage);
-                interpreterMock.verifyAll();
-                urlValidatorMock.verifyAll();
-                done();
-                return true;
-            })
-            .verifiable();
-
-        tabQueryCallback([{ id: existingTabId, url: 'testurl' } as chrome.tabs.Tab]);
-    });
-
-    it('enables headings', async done => {
-        const test = VisualizationType.Headings;
-        setupUrlValidator('testurl', true);
-
-        storeState = new VisualizationStoreDataBuilder()
-            .withLandmarksEnable()
-            .withTabStopsEnable()
-            .withColorEnable()
-            .withIssuesEnable()
-            .build();
-
-        setupTabQueryCall();
-
-        const configuration = visualizationConfigurationFactory.getConfiguration(test);
-        commandCallback(configuration.chromeCommand);
-
-        interpreterMock
-            .setup(x => x.interpret(It.isAny()))
-            .returns(message => {
-                const enabled = true;
-                const telemetry: ToggleTelemetryData = {
-                    triggeredBy: 'shortcut',
-                    enabled,
-                    source: testSource,
-                };
-
-                const payload: IVisualizationTogglePayload = {
-                    enabled,
-                    telemetry,
-                    test,
-                };
-
-                const expectedMessage: IMessage = {
-                    tabId: existingTabId,
-                    type: Messages.Visualizations.Common.Toggle,
-                    payload,
-                };
-
-                expect(message).toEqual(expectedMessage);
-                urlValidatorMock.verifyAll();
-                interpreterMock.verifyAll();
-                notificationCreatorMock.verifyAll();
-                done();
-                return true;
-            })
-            .verifiable();
-
-        const enableMessage = configuration.displayableData.enableMessage;
-
-        notificationCreatorMock.setup(nc => nc.createNotification(enableMessage)).verifiable();
-
-        tabQueryCallback([{ id: existingTabId, url: 'testurl' } as chrome.tabs.Tab]);
-    });
-
-    it('disable headings', async done => {
-        setupUrlValidator('testurl', true);
-
-        const test = VisualizationType.Headings;
-        storeState = new VisualizationStoreDataBuilder().withEnable(test).build();
-
-        setupTabQueryCall();
-
-        const configuration = visualizationConfigurationFactory.getConfiguration(test);
-        commandCallback(configuration.chromeCommand);
-
-        interpreterMock
-            .setup(x => x.interpret(It.isAny()))
-            .returns(message => {
-                const enabled = false;
-                const telemetry: ToggleTelemetryData = {
-                    triggeredBy: 'shortcut',
-                    enabled,
-                    source: testSource,
-                };
-
-                const payload: IVisualizationTogglePayload = {
-                    enabled,
-                    telemetry,
-                    test,
-                };
-
-                const expectedMessage: IMessage = {
-                    tabId: existingTabId,
-                    type: Messages.Visualizations.Common.Toggle,
-                    payload,
-                };
-
-                expect(message).toEqual(expectedMessage);
-                urlValidatorMock.verifyAll();
-                interpreterMock.verifyAll();
-                done();
-                return true;
-            })
-            .verifiable();
-
-        tabQueryCallback([{ id: existingTabId, url: 'testurl' } as chrome.tabs.Tab]);
-    });
-
-    it('enables tab stops', async done => {
-        setupUrlValidator('testurl', true);
-
-        storeState = new VisualizationStoreDataBuilder()
-            .withHeadingsEnable()
-            .withLandmarksEnable()
-            .withColorEnable()
-            .withIssuesEnable()
-            .build();
-
-        setupTabQueryCall();
-
-        const test = VisualizationType.TabStops;
-        const configuration = visualizationConfigurationFactory.getConfiguration(test);
-        commandCallback(configuration.chromeCommand);
-
-        interpreterMock
-            .setup(x => x.interpret(It.isAny()))
-            .returns(message => {
-                const enabled = true;
-                const telemetry: ToggleTelemetryData = {
-                    triggeredBy: 'shortcut',
-                    enabled,
-                    source: testSource,
-                };
-
-                const payload: IVisualizationTogglePayload = {
-                    enabled,
-                    telemetry,
-                    test: VisualizationType.TabStops,
-                };
-
-                const expectedMessage: IMessage = {
-                    tabId: existingTabId,
-                    type: Messages.Visualizations.Common.Toggle,
-                    payload,
-                };
-
-                expect(message).toEqual(expectedMessage);
-                urlValidatorMock.verifyAll();
-                interpreterMock.verifyAll();
-                notificationCreatorMock.verifyAll();
-                done();
-                return true;
-            })
-            .verifiable();
-
-        const enableMessage = configuration.displayableData.enableMessage;
-
-        notificationCreatorMock.setup(nc => nc.createNotification(enableMessage)).verifiable(Times.never());
-
-        tabQueryCallback([{ id: existingTabId, url: 'testurl' } as chrome.tabs.Tab]);
-    });
-
-    it('disable tab stops', async done => {
-        const test = VisualizationType.TabStops;
-        storeState = new VisualizationStoreDataBuilder().withEnable(test).build();
-
-        setupTabQueryCall();
-
-        setupUrlValidator('testurl', true);
-
-        const configuration = visualizationConfigurationFactory.getConfiguration(test);
-        commandCallback(configuration.chromeCommand);
-
-        interpreterMock
-            .setup(x => x.interpret(It.isAny()))
-            .returns(message => {
-                const enabled = false;
-                const telemetry: ToggleTelemetryData = {
-                    triggeredBy: 'shortcut',
-                    enabled,
-                    source: testSource,
-                };
-
-                const payload: IVisualizationTogglePayload = {
-                    enabled,
-                    telemetry,
-                    test,
-                };
-
-                const expectedMessage: IMessage = {
-                    tabId: existingTabId,
-                    type: Messages.Visualizations.Common.Toggle,
-                    payload,
-                };
-
-                expect(message).toEqual(expectedMessage);
-                urlValidatorMock.verifyAll();
-                interpreterMock.verifyAll();
-                done();
-                return true;
-            })
-            .verifiable();
-
-        tabQueryCallback([{ id: existingTabId, url: 'testurl' } as chrome.tabs.Tab]);
-    });
-
-    it('enable color', async done => {
-        const test = VisualizationType.Color;
-        storeState = new VisualizationStoreDataBuilder()
-            .withHeadingsEnable()
-            .withIssuesEnable()
-            .withTabStopsEnable()
-            .withLandmarksEnable()
-            .build();
-
-        setupTabQueryCall();
-
-        setupUrlValidator('testurl', true);
-
-        const configuration = visualizationConfigurationFactory.getConfiguration(test);
-        commandCallback(configuration.chromeCommand);
-
-        interpreterMock
-            .setup(x => x.interpret(It.isAny()))
-            .returns(message => {
-                const enabled = true;
-                const telemetry: ToggleTelemetryData = {
-                    triggeredBy: 'shortcut',
-                    enabled,
-                    source: testSource,
-                };
-
-                const payload: IVisualizationTogglePayload = {
-                    enabled,
-                    telemetry,
-                    test,
-                };
-
-                const expectedMessage: IMessage = {
-                    tabId: existingTabId,
-                    type: Messages.Visualizations.Common.Toggle,
-                    payload,
-                };
-
-                expect(message).toEqual(expectedMessage);
-                urlValidatorMock.verifyAll();
-                interpreterMock.verifyAll();
-                notificationCreatorMock.verifyAll();
-                done();
-                return true;
-            })
-            .verifiable();
-
-        const enableMessage = configuration.displayableData.enableMessage;
-
-        notificationCreatorMock.setup(nc => nc.createNotification(enableMessage)).verifiable();
-
-        tabQueryCallback([{ id: existingTabId, url: 'testurl' } as chrome.tabs.Tab]);
-    });
-
-    it('disable color', async done => {
-        storeState = new VisualizationStoreDataBuilder().withColorEnable().build();
-
-        setupTabQueryCall();
-
-        setupUrlValidator('testurl', true);
-
-        const test = VisualizationType.Color;
-        const configuration = visualizationConfigurationFactory.getConfiguration(test);
-        commandCallback(configuration.chromeCommand);
-
-        interpreterMock
-            .setup(x => x.interpret(It.isAny()))
-            .returns(message => {
-                const enabled = false;
-                const telemetry: ToggleTelemetryData = {
-                    triggeredBy: 'shortcut',
-                    enabled,
-                    source: testSource,
-                };
-
-                const payload: IVisualizationTogglePayload = {
-                    enabled,
-                    telemetry,
-                    test,
-                };
-
-                const expectedMessage: IMessage = {
-                    tabId: existingTabId,
-                    type: Messages.Visualizations.Common.Toggle,
-                    payload,
-                };
-
-                expect(message).toEqual(expectedMessage);
-                urlValidatorMock.verifyAll();
-                interpreterMock.verifyAll();
-                done();
-                return true;
-            })
-            .verifiable();
-
-        tabQueryCallback([{ id: existingTabId, url: 'testurl' } as chrome.tabs.Tab]);
-    });
-
-    it('do nothing if scanning', async done => {
-        setupUrlValidator('testurl', true);
-
+    it('does not emit toggle messages if scanning is in progress already', async () => {
         storeState = new VisualizationStoreDataBuilder()
             .withEnable(VisualizationType.Issues)
             .withEnable(VisualizationType.Headings)
             .with('scanning', 'headings')
             .build();
-        setupTabQueryCall();
-
         const configuration = visualizationConfigurationFactory.getConfiguration(VisualizationType.Issues);
-        commandCallback(configuration.chromeCommand);
 
         interpreterMock.setup(x => x.interpret(It.isAny())).verifiable(Times.never());
 
-        tabQueryCallback([{ id: existingTabId, url: 'testurl' } as chrome.tabs.Tab]);
-        urlValidatorMock.verifyAll();
+        await commandCallback(configuration.chromeCommand);
+
         interpreterMock.verifyAll();
-        done();
     });
 
-    it('has no acccess to file url scanning', async done => {
-        const url = 'file://url';
-        setupUrlValidator(url, false);
+    it("does not emit toggle messages if the active/current tab's URL is not supported", async () => {
+        simulatedIsSupportedUrlResponse = false;
 
-        notificationCreatorMock.setup(nc => nc.createNotification(DisplayableStrings.fileUrlDoesNotHaveAccess)).verifiable();
+        interpreterMock.setup(x => x.interpret(It.isAny())).verifiable(Times.never());
 
-        const type = VisualizationType.Issues;
-        storeState = new VisualizationStoreDataBuilder().withEnable(type).build();
-        setupTabQueryCall();
+        await commandCallback(getArbitraryValidChromeCommand());
 
-        const configuration = visualizationConfigurationFactory.getConfiguration(type);
-        commandCallback(configuration.chromeCommand);
-
-        tabQueryCallback([{ id: existingTabId, url: url } as chrome.tabs.Tab]);
-        urlValidatorMock.verifyAll();
-        done();
+        interpreterMock.verifyAll();
     });
 
-    it('has no acccess to chrome url scanning', async done => {
-        const url = 'chrome://url';
+    it.each`
+        protocol       | expectedNotificationMessage
+        ${'file://'}   | ${DisplayableStrings.fileUrlDoesNotHaveAccess}
+        ${'chrome://'} | ${DisplayableStrings.urlNotScannable.join('\n')}
+    `(
+        'emits the expected notification when the active/current tab is an unsupported $protocol URL',
+        async ({ protocol, expectedNotificationMessage }) => {
+            simulatedActiveTabUrl = `${protocol}arbitrary-host`;
+            simulatedIsSupportedUrlResponse = false;
 
-        setupUrlValidator(url, false);
+            notificationCreatorMock.setup(nc => nc.createNotification(expectedNotificationMessage)).verifiable();
 
-        notificationCreatorMock.setup(nc => nc.createNotification(DisplayableStrings.fileUrlDoesNotHaveAccess)).verifiable();
+            await commandCallback(getArbitraryValidChromeCommand());
 
-        notificationCreatorMock.setup(nc => nc.createNotification(DisplayableStrings.urlNotScannable.join('\n'))).verifiable();
-
-        const type = VisualizationType.Issues;
-        storeState = new VisualizationStoreDataBuilder().withEnable(type).build();
-        setupTabQueryCall();
-
-        const configuration = visualizationConfigurationFactory.getConfiguration(type);
-        commandCallback(configuration.chromeCommand);
-
-        tabQueryCallback([{ id: existingTabId, url: url } as chrome.tabs.Tab]);
-        urlValidatorMock.verifyAll();
-        done();
-    });
+            notificationCreatorMock.verifyAll();
+        },
+    );
 });
 
-function setupTabQueryCall() {
-    chromeAdapterMock
-        .setup(x => x.tabsQuery(It.isAny(), It.isAny()))
-        .returns((params, callback) => {
-            const expected = { active: true, currentWindow: true };
-            expect(params).toEqual(expected);
-            tabQueryCallback = callback;
-        })
-        .verifiable();
-}
-
-function setupUrlValidator(url: string, isSupportedUrl: boolean) {
-    urlValidatorMock
-        .setup(uV => uV.isSupportedUrl(url, chromeAdapterMock.object))
-        .returns(async () => {
-            return isSupportedUrl;
-        })
-        .verifiable();
+function getArbitraryValidChromeCommand(): string {
+    const configuration = visualizationConfigurationFactory.getConfiguration(VisualizationType.Issues);
+    return configuration.chromeCommand;
 }
