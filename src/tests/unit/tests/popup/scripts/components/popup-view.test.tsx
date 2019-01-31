@@ -102,6 +102,7 @@ describe('PopupView', () => {
         const userConfigStoreData = {
             isFirstTime: true,
             enableTelemetry: false,
+            enableHighContrast: false,
         };
 
         beforeEach(() => {

@@ -119,3 +119,7 @@ export interface IInspectFrameUrlPayload extends BaseActionPayload {
 export interface SetTelemetryStatePayload extends BaseActionPayload {
     enableTelemetry: boolean;
 }
+
+export interface SetHighContrastModePayload extends BaseActionPayload {
+    enableHighContrast: boolean;
+}

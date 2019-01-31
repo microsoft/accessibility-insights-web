@@ -100,6 +100,7 @@ export class Messages {
     public static readonly UserConfig = {
         GetCurrentState: 'insights/userConfig/getCurrentState',
         SetUserConfig: 'insights/userConfig/set',
+        SetHighContrastConfig: 'insights/userConfig/setHighContrastConfig',
     };
 
     public static readonly Tab = {

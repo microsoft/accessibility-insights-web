@@ -10,7 +10,7 @@ import { LaunchPanelStateActions } from '../actions/launch-panel-state-action';
 import { BrowserAdapter } from '../browser-adapter';
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
-import { IPayloadWIthEventName, ISetLaunchPanelState, SetTelemetryStatePayload } from './action-payloads';
+import { IPayloadWIthEventName, ISetLaunchPanelState, SetTelemetryStatePayload, SetHighContrastModePayload } from './action-payloads';
 import { CommandActions, IGetCommandsPayload } from './command-actions';
 import { ScopingActions } from './scoping-actions';
 import { UserConfigurationActions } from './user-configuration-actions';
@@ -59,6 +59,7 @@ export class GlobalActionCreator {
 
         this._interpreter.registerTypeToPayloadCallback(Messages.UserConfig.GetCurrentState, this.onGetUserConfigState);
         this._interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetUserConfig, this.onSetUserConfiguration);
+        this._interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetHighContrastConfig, this.onSetHighContrastMode);
     }
 
     @autobind
@@ -127,5 +128,10 @@ export class GlobalActionCreator {
     @autobind
     private onSetUserConfiguration(payload: SetTelemetryStatePayload): void {
         this._userConfigActions.setTelemetryState.invoke(payload);
+    }
+
+    @autobind
+    private onSetHighContrastMode(payload: SetHighContrastModePayload): void {
+        this._userConfigActions.setHighContrastMode.invoke(payload);
     }
 }

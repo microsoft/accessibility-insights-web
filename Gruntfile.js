@@ -170,7 +170,7 @@ module.exports = function(grunt) {
             },
             // We assume webpack --watch is running separately (usually via 'npm run watch')
             'webpack-output': {
-                files: ['extension/devBundle/**/*.js'],
+                files: ['extension/devBundle/**/*.*'],
                 tasks: ['embed-styles:code', 'drop:dev'],
             },
         },

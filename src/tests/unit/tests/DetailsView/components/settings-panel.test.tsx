@@ -9,9 +9,15 @@ import { UserConfigurationStoreData } from '../../../../../common/types/store-da
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { SettingsPanel, SettingsPanelProps } from '../../../../../DetailsView/components/settings-panel';
 
+type SettingsPanelProtectedFunction = (id: string, state: boolean) => void;
+
 class TestableSettingsPanel extends SettingsPanel {
-    public getOnEnableTelemetryToggleClick() {
+    public getOnEnableTelemetryToggleClick(): SettingsPanelProtectedFunction {
         return this.onEnableTelemetryToggleClick;
+    }
+
+    public getOnEnableHighContrastModeToggleClick(): SettingsPanelProtectedFunction {
+        return this.onHighContrastModeToggleClick;
     }
 }
 
@@ -33,19 +39,25 @@ describe('SettingsPanelTest', () => {
     type RenderTestCase = {
         isPanelOpen: boolean;
         enableTelemetry: boolean;
+        enableHighContrast: boolean;
     };
 
     test.each([
         {
             isPanelOpen: true,
             enableTelemetry: false,
+            enableHighContrast: false,
         } as RenderTestCase,
         {
             isPanelOpen: true,
             enableTelemetry: false,
+            enableHighContrast: true,
         } as RenderTestCase,
     ])('render - %o', (testCase: RenderTestCase) => {
-        userConfigStoreData = { enableTelemetry: testCase.enableTelemetry } as UserConfigurationStoreData;
+        userConfigStoreData = {
+            enableTelemetry: testCase.enableTelemetry,
+            enableHighContrast: testCase.enableHighContrast,
+        } as UserConfigurationStoreData;
         const testProps: SettingsPanelProps = {
             isOpen: testCase.isPanelOpen,
             deps: {
@@ -76,5 +88,23 @@ describe('SettingsPanelTest', () => {
 
         testSubject.getOnEnableTelemetryToggleClick()(null, telemetrySettingState);
         userConfigMessageCreatorMock.verify(u => u.setTelemetryState(telemetrySettingState), Times.once());
+    });
+
+    test.each([true, false])('verify toggle click - set high contrast button : %s', highContrastConfigState => {
+        userConfigStoreData = {} as UserConfigurationStoreData;
+        const testProps: SettingsPanelProps = {
+            isOpen: true,
+            deps: {
+                detailsViewActionMessageCreator: detailsActionMessageCreatorMock.object,
+                userConfigMessageCreator: userConfigMessageCreatorMock.object,
+            },
+            userConfigStoreState: userConfigStoreData,
+            featureFlagData: { [FeatureFlags.highContrastMode]: true },
+        };
+
+        const testSubject = new TestableSettingsPanel(testProps);
+
+        testSubject.getOnEnableHighContrastModeToggleClick()(null, highContrastConfigState);
+        userConfigMessageCreatorMock.verify(u => u.setHighContrastMode(highContrastConfigState), Times.once());
     });
 });

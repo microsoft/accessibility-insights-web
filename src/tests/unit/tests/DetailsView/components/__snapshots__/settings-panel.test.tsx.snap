@@ -1,6 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SettingsPanelTest render - { isPanelOpen: true, enableTelemetry: false } 1`] = `
+exports[`SettingsPanelTest render - { isPanelOpen: true,
+  enableTelemetry: false,
+  enableHighContrast: false } 1`] = `
 <GenericPanel
   className="settings-panel"
   closeButtonAriaLabel="Close settings panel"
@@ -47,7 +49,7 @@ exports[`SettingsPanelTest render - { isPanelOpen: true, enableTelemetry: false 
         enabled={false}
         id="enable-high-contrast-mode"
         name="Enable high contrast"
-        onClick={null}
+        onClick={[Function]}
       />
     }
     featureFlag="highContrastMode"
@@ -60,7 +62,9 @@ exports[`SettingsPanelTest render - { isPanelOpen: true, enableTelemetry: false 
 </GenericPanel>
 `;
 
-exports[`SettingsPanelTest render - { isPanelOpen: true, enableTelemetry: false } 2`] = `
+exports[`SettingsPanelTest render - { isPanelOpen: true,
+  enableTelemetry: false,
+  enableHighContrast: true } 1`] = `
 <GenericPanel
   className="settings-panel"
   closeButtonAriaLabel="Close settings panel"
@@ -104,10 +108,10 @@ exports[`SettingsPanelTest render - { isPanelOpen: true, enableTelemetry: false 
             Make text easier to see by using more distinct colors.
           </React.Fragment>
         }
-        enabled={false}
+        enabled={true}
         id="enable-high-contrast-mode"
         name="Enable high contrast"
-        onClick={null}
+        onClick={[Function]}
       />
     }
     featureFlag="highContrastMode"
