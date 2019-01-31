@@ -10,4 +10,5 @@ export interface IClientStoresHub<T> {
     hasStores(): boolean;
     hasStoreData(): boolean;
     getAllStoreData(): T;
+    getStore(id: string): IBaseStore<any>;
 }

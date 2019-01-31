@@ -5,6 +5,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { IAssessmentsProvider } from '../assessments/types/iassessments-provider';
+import { Theme } from '../common/components/theme';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { config } from '../common/configuration';
 import { DocumentManipulator } from '../common/document-manipulator';
@@ -13,6 +14,7 @@ import { InspectActionMessageCreator } from '../common/message-creators/inspect-
 import { IStoreActionMessageCreator } from '../common/message-creators/istore-action-message-creator';
 import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
 import { IClientStoresHub } from '../common/stores/iclient-stores-hub';
+import { StoreNames } from '../common/stores/store-names';
 import { IssuesTableHandler } from './components/issues-table-handler';
 import { DetailsView, DetailsViewContainerDeps, IDetailsViewContainerState } from './details-view-container';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
@@ -78,30 +80,34 @@ export class DetailsViewRenderer {
         this.assessmentsProvider = assessmentsProvider;
     }
 
-    public render() {
+    public render(): void {
         const detailsViewContainer = this.dom.querySelector('#details-container');
         const iconPath = '../' + config.getOption('icon16');
         this.documentManipulator.setShortcutIcon(iconPath);
+        const userConfigurationStore = this.storesHub.getStore(StoreNames[StoreNames.UserConfigurationStore]);
         this.renderer(
-            <DetailsView
-                deps={this.deps}
-                document={this.dom as Document}
-                issuesSelection={this.issuesSelection}
-                clickHandlerFactory={this.clickHandlerFactory}
-                storeActionCreator={this.detailsViewStoreActionCreator}
-                visualizationConfigurationFactory={this.visualizationConfigurationFactory}
-                storesHub={this.storesHub}
-                issuesTableHandler={this.issuesTableHandler}
-                assessmentInstanceTableHandler={this.assessmentInstanceTableHandler}
-                reportGenerator={this.reportGenerator}
-                previewFeatureFlagsHandler={this.previewFeatureFlagsHandler}
-                scopingFlagsHandler={this.scopingFlagsHandler}
-                dropdownClickHandler={this.dropdownClickHandler}
-                scopingActionMessageCreator={this.scopingActionMessageCreator}
-                inspectActionMessageCreator={this.inspectActionMessageCreator}
-                assessmentsProvider={this.assessmentsProvider}
-                storeState={null}
-            />,
+            <>
+                <Theme userConfigurationStore={userConfigurationStore} />
+                <DetailsView
+                    deps={this.deps}
+                    document={this.dom as Document}
+                    issuesSelection={this.issuesSelection}
+                    clickHandlerFactory={this.clickHandlerFactory}
+                    storeActionCreator={this.detailsViewStoreActionCreator}
+                    visualizationConfigurationFactory={this.visualizationConfigurationFactory}
+                    storesHub={this.storesHub}
+                    issuesTableHandler={this.issuesTableHandler}
+                    assessmentInstanceTableHandler={this.assessmentInstanceTableHandler}
+                    reportGenerator={this.reportGenerator}
+                    previewFeatureFlagsHandler={this.previewFeatureFlagsHandler}
+                    scopingFlagsHandler={this.scopingFlagsHandler}
+                    dropdownClickHandler={this.dropdownClickHandler}
+                    scopingActionMessageCreator={this.scopingActionMessageCreator}
+                    inspectActionMessageCreator={this.inspectActionMessageCreator}
+                    assessmentsProvider={this.assessmentsProvider}
+                    storeState={null}
+                />
+            </>,
             detailsViewContainer,
         );
     }

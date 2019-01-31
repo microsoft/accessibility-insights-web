@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import '../../background/string-utils';
 
-import * as _ from 'lodash/index';
+import * as _ from 'lodash';
 
 import { IBaseStore } from '../../common/istore';
 import { IClientStoresHub } from './iclient-stores-hub';
@@ -12,6 +12,11 @@ export class BaseClientStoresHub<T> implements IClientStoresHub<T> {
 
     constructor(stores: IBaseStore<any>[]) {
         this.stores = stores;
+    }
+
+    public getStore(storeId: string): IBaseStore<any> {
+        const store = this.stores.find(cur => cur.getId() === storeId);
+        return store;
     }
 
     public addChangedListenerToAllStores(listener: () => void): void {
