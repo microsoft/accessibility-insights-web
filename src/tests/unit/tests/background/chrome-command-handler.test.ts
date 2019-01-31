@@ -80,6 +80,7 @@ describe('ChromeCommandHandlerTest', () => {
                 return {
                     isFirstTime: simulatedIsFirstTimeUserConfiguration,
                     enableTelemetry: true,
+                    enableHighContrast: false,
                 };
             });
 
