@@ -199,6 +199,9 @@ export class DetailsViewContainer extends React.Component<IDetailsViewContainerP
     }
 }
 
-const ThemedDetailsView = withThemedBody<IDetailsViewContainerProps>(DetailsViewContainer, (props: IDetailsViewContainerProps) => true);
+const ThemedDetailsView = withThemedBody<IDetailsViewContainerProps>(DetailsViewContainer, (props: IDetailsViewContainerProps) => {
+    const userConfig = props.storeState.userConfigurationStoreData;
+    return userConfig && userConfig.enableTelemetry!;
+});
 
 export const DetailsView = withStoreSubscription<IDetailsViewContainerProps, IDetailsViewContainerState>(ThemedDetailsView);

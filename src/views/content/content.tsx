@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { NamedSFC } from '../../common/react/named-sfc';
 import { ContentPageDeps, ContentProvider, ContentReference } from '../../views/content/content-page';
-import { Page } from '../page/page';
+import { ThemedPage } from '../page/themed-page';
 
 export type ContentDeps = { contentProvider: ContentProvider } & ContentPageDeps;
 
@@ -14,7 +14,7 @@ export const Content = NamedSFC<ContentProps>('Content', ({ deps, reference }) =
     const { contentProvider } = deps;
     const ContentPage = contentProvider.contentFromReference(reference);
     return (
-        <Page>
+        <ThemedPage>
             <div className="content-container">
                 <div className="content-left" />
                 <div className="content">
@@ -22,6 +22,6 @@ export const Content = NamedSFC<ContentProps>('Content', ({ deps, reference }) =
                 </div>
                 <div className="content-right" />
             </div>
-        </Page>
+        </ThemedPage>
     );
 });
