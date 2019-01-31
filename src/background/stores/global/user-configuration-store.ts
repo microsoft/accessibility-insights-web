@@ -48,10 +48,7 @@ export class UserConfigurationStore extends BaseStore<UserConfigurationStoreData
 
     @autobind
     private onSetHighContrastMode(payload: SetHighContrastModePayload) {
-        this.state = {
-            ...this.state,
-            enableHighContrast: payload.enableHighContrast,
-        };
+        this.state.enableHighContrast = payload.enableHighContrast;
 
         // tslint:disable-next-line:no-floating-promises - grandfathered-in pre-existing violation
         this.indexDbApi.setItem(IndexedDBDataKeys.userConfiguration, this.state);
