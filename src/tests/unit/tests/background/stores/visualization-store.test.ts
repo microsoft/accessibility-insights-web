@@ -20,7 +20,7 @@ import { VisualizationType } from '../../../../../common/types/visualization-typ
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
 import { VisualizationStoreDataBuilder } from '../../../common/visualization-store-data-builder';
 
-describe('VisualizationStoreTest', () => {
+describe('VisualizationStoreTest ', () => {
     test('constructor, no side effects', () => {
         const testObject = createStoreWithNullParams(VisualizationStore);
         expect(testObject).toBeDefined();
@@ -280,13 +280,11 @@ describe('VisualizationStoreTest', () => {
             step: HeadingsTestStep.missingHeadings,
         };
 
-        const initialState = new VisualizationStoreDataBuilder()
-            .withHeadingsEnable()
-            .withLandmarksEnable()
-            .build();
+        const initialState = new VisualizationStoreDataBuilder().withHeadingsEnable().build();
 
         const expectedState = new VisualizationStoreDataBuilder()
             .withHeadingsAssessment(true, payload.step)
+            .withHeadingsEnable()
             .with('injectingInProgress', true)
             .with('scanning', HeadingsTestStep.missingHeadings)
             .build();
@@ -331,29 +329,6 @@ describe('VisualizationStoreTest', () => {
             .withHeadingsAssessment(true, payload.step)
             .with('injectingInProgress', true)
             .with('scanning', HeadingsTestStep.missingHeadings)
-            .build();
-
-        createStoreTesterForVisualizationActions(actionName)
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
-    });
-
-    test('onEnableHeadingsAssessment when all visualization are enabled', () => {
-        const actionName = 'enableVisualization';
-        const dataBuilder = new VisualizationStoreDataBuilder();
-        const payload: IAssessmentToggleActionPayload = {
-            test: VisualizationType.HeadingsAssessment,
-            step: HeadingsTestStep.headingFunction,
-        };
-
-        const initialState = dataBuilder.withAllAdhocEnabled().build();
-
-        const expectedState = new VisualizationStoreDataBuilder()
-            .withHeadingsAssessment(true, payload.step)
-            .with('scanning', HeadingsTestStep.headingFunction)
-            .with('selectedAdhocDetailsView', VisualizationType.Issues)
-            .with('selectedDetailsViewPivot', DetailsViewPivotType.fastPass)
-            .with('injectingInProgress', true)
             .build();
 
         createStoreTesterForVisualizationActions(actionName)
