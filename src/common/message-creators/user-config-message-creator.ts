@@ -11,7 +11,7 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
         };
 
         this.dispatchMessage({
-            type: Messages.UserConfig.SetUserConfig,
+            type: Messages.UserConfig.SetTelemetryConfig,
             tabId: this._tabId,
             payload,
         });

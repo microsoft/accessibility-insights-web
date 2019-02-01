@@ -29,7 +29,7 @@ describe('UserConfigMessageCreatorTest', () => {
         };
         const expectedMessage = {
             tabId: 1,
-            type: Messages.UserConfig.SetUserConfig,
+            type: Messages.UserConfig.SetTelemetryConfig,
             payload,
         };
 

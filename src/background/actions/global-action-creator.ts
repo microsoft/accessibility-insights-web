@@ -58,7 +58,7 @@ export class GlobalActionCreator {
         this._interpreter.registerTypeToPayloadCallback(Messages.Telemetry.Send, this.onSendTelemetry);
 
         this._interpreter.registerTypeToPayloadCallback(Messages.UserConfig.GetCurrentState, this.onGetUserConfigState);
-        this._interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetUserConfig, this.onSetUserConfiguration);
+        this._interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetTelemetryConfig, this.onSetTelemetryConfiguration);
         this._interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetHighContrastConfig, this.onSetHighContrastMode);
     }
 
@@ -126,7 +126,7 @@ export class GlobalActionCreator {
     }
 
     @autobind
-    private onSetUserConfiguration(payload: SetTelemetryStatePayload): void {
+    private onSetTelemetryConfiguration(payload: SetTelemetryStatePayload): void {
         this._userConfigActions.setTelemetryState.invoke(payload);
     }
 

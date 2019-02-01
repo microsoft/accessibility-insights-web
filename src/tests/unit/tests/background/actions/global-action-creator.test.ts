@@ -159,14 +159,14 @@ describe('GlobalActionCreatorTest', () => {
         validator.verifyAll();
     });
 
-    test('registerCallback for on UserConfig.SetUserConfig', () => {
+    test('registerCallback for on UserConfig.SetTelemetryConfig', () => {
         const payload: UserConfigurationStoreData = {
             enableTelemetry: true,
             isFirstTime: false,
             enableHighContrast: false,
         };
         const validator = new GlobalActionCreatorValidator()
-            .setupRegistrationCallback(Messages.UserConfig.SetUserConfig)
+            .setupRegistrationCallback(Messages.UserConfig.SetTelemetryConfig)
             .setupActionsOnUserConfig('setTelemetryState')
             .setupUserConfigActionWithInvokeParameter('setTelemetryState', payload);
 

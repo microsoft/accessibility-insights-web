@@ -97,7 +97,7 @@ describe('UserConfigurationStoreTest', () => {
         { enableTelemetry: true, isFirstTime: false, enableHighContrastMode: false } as SetUserConfigTestCase,
         { enableTelemetry: false, isFirstTime: false, enableHighContrastMode: false } as SetUserConfigTestCase,
         { enableTelemetry: false, isFirstTime: true, enableHighContrastMode: false } as SetUserConfigTestCase,
-    ])('setUserConfiguration action: %o', (testCase: SetUserConfigTestCase) => {
+    ])('setTelemetryConfig action: %o', (testCase: SetUserConfigTestCase) => {
         const storeTester = createStoreToTestAction('setTelemetryState');
         initialStoreData = {
             enableTelemetry: testCase.enableTelemetry,
@@ -126,7 +126,7 @@ describe('UserConfigurationStoreTest', () => {
     test.each([
         { enableTelemetry: false, isFirstTime: false, enableHighContrastMode: true } as SetUserConfigTestCase,
         { enableTelemetry: false, isFirstTime: false, enableHighContrastMode: false } as SetUserConfigTestCase,
-    ])('setUserConfiguration action: %o', (testCase: SetUserConfigTestCase) => {
+    ])('setHighContrast action: %o', (testCase: SetUserConfigTestCase) => {
         const storeTester = createStoreToTestAction('setHighContrastMode');
         initialStoreData = {
             enableTelemetry: false,
