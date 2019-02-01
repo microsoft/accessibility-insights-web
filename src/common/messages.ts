@@ -99,7 +99,7 @@ export class Messages {
 
     public static readonly UserConfig = {
         GetCurrentState: 'insights/userConfig/getCurrentState',
-        SetUserConfig: 'insights/userConfig/set',
+        SetTelemetryConfig: 'insights/userConfig/setTelemetryConfig',
         SetHighContrastConfig: 'insights/userConfig/setHighContrastConfig',
     };
 
