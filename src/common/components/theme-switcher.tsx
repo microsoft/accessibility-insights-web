@@ -21,4 +21,4 @@ export const BodyClassWrapper = NamedSFC<ThemeSwitcherProps>('ThemeSwitcher', pr
     return <BodyClassName className={className} />;
 });
 
-export const StoreControlledTheme = withStoreSubscription<ThemeSwitcherProps, ThemeSwitcherState>(BodyClassWrapper);
+export const ControlledTheme = withStoreSubscription<ThemeSwitcherProps, ThemeSwitcherState>(BodyClassWrapper);

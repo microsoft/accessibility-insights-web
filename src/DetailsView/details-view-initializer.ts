@@ -54,7 +54,7 @@ import { IssuesTableHandler } from './components/issues-table-handler';
 import { getStatusForTest } from './components/left-nav/get-status-for-test';
 import { LeftNavLinkBuilder } from './components/left-nav/left-nav-link-builder';
 import { NavLinkHandler } from './components/left-nav/nav-link-handler';
-import { DetailsViewContainerDeps, IDetailsViewContainerState } from './details-view-container';
+import { DetailsViewContainerDeps, DetailsViewContainerState } from './details-view-container';
 import { DetailsViewRenderer } from './details-view-renderer';
 import { DocumentTitleUpdater } from './document-title-updater';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
@@ -119,7 +119,7 @@ if (isNaN(tabId) === false) {
                     StoreNames[StoreNames.UserConfigurationStore],
                     chromeAdapter,
                 );
-                const storesHub = new BaseClientStoresHub<IDetailsViewContainerState>([
+                const storesHub = new BaseClientStoresHub<DetailsViewContainerState>([
                     detailsViewStore,
                     featureFlagStore,
                     tabStore,
@@ -164,7 +164,7 @@ if (isNaN(tabId) === false) {
                 );
 
                 const userConfigMessageCreator = new UserConfigMessageCreator(chromeAdapter.sendMessageToFrames, tab.id);
-                const detailsViewStoreActionMessageCreator = storeActionMessageCreatorFactory.forDetailsView();
+                const storeActionCreator = storeActionMessageCreatorFactory.forDetailsView();
 
                 const visualizationActionCreator = new VisualizationActionMessageCreator(chromeAdapter.sendMessageToFrames, tab.id);
                 const issuesSelection = new IssuesSelectionFactory().createSelection(actionMessageCreator);
@@ -250,6 +250,8 @@ if (isNaN(tabId) === false) {
                     assessmentsProviderWithFeaturesEnabled,
                     outcomeTypeSemanticsFromTestStatus,
                     getInnerTextFromJsxElement,
+                    storeActionCreator,
+                    storesHub,
                 };
 
                 const renderer = new DetailsViewRenderer(
@@ -258,11 +260,9 @@ if (isNaN(tabId) === false) {
                     ReactDOM.render,
                     scopingActionMessageCreator,
                     inspectActionMessageCreator,
-                    detailsViewStoreActionMessageCreator,
                     issuesSelection,
                     clickHandlerFactory,
                     visualizationConfigurationFactory,
-                    storesHub,
                     issuesTableHandler,
                     assessmentInstanceTableHandler,
                     reportGenerator,
@@ -286,8 +286,6 @@ function createNullifiedRenderer(doc, render): DetailsViewRenderer {
         null,
         doc,
         render,
-        null,
-        null,
         null,
         null,
         null,

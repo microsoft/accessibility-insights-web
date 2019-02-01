@@ -4,7 +4,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { ChromeAdapter } from '../../background/browser-adapter';
-import { StoreControlledTheme, ThemeSwitcherState } from '../../common/components/theme-switcher';
+import { ControlledTheme, ThemeSwitcherState } from '../../common/components/theme-switcher';
 import { StoreSubscriberDeps } from '../../common/components/with-store-subscription';
 import { config } from '../../common/configuration';
 import { DocumentManipulator } from '../../common/document-manipulator';
@@ -34,7 +34,7 @@ export function renderer(
 
     render(
         <>
-            <StoreControlledTheme storesHub={storesHub} storeActionCreator={storeActionCreator} />
+            <ControlledTheme deps={deps} />
             <Router deps={deps} />
         </>,
         insightsRoot,

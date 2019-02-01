@@ -26,15 +26,15 @@ import { WindowUtils } from '../../common/window-utils';
 import { ScannerUtils } from '../../injected/scanner-utils';
 import { scan } from '../../scanner/exposed-apis';
 import { SupportLinkHandler } from '../support-link-handler';
-import { BaseClientStoresHub } from './../../common/stores/base-client-stores-hub';
-import { TelemetryEventSource } from './../../common/telemetry-events';
-import { FeatureFlagStoreData } from './../../common/types/store-data/feature-flag-store-data.d';
-import { UserConfigurationStoreData } from './../../common/types/store-data/user-configuration-store.d';
-import { contentPages } from './../../content';
+import { BaseClientStoresHub } from '../../common/stores/base-client-stores-hub';
+import { TelemetryEventSource } from '../../common/telemetry-events';
+import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
+import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
+import { contentPages } from '../../content';
 import { PopupActionMessageCreator } from './actions/popup-action-message-creator';
 import { DiagnosticViewToggleDeps } from './components/diagnostic-view-toggle';
 import { DiagnosticViewToggleFactory } from './components/diagnostic-view-toggle-factory';
-import { IPopupViewControllerState } from './components/popup-view';
+import { PopupViewControllerState } from './components/popup-view';
 import { DiagnosticViewClickHandler } from './handlers/diagnostic-view-toggle-click-handler';
 import { IPopupHandlers } from './handlers/ipopup-handlers';
 import { LaunchPanelHeaderClickHandler } from './handlers/launch-panel-header-click-handler';
@@ -84,7 +84,7 @@ export class PopupInitializer {
             this.targetTabInfo.tab.id,
         );
 
-        const popupViewStoreActionMessageCreator = storeActionMessageCreatorFactory.forPopup();
+        const storeActionCreator = storeActionMessageCreatorFactory.forPopup();
 
         const contentActionMessageCreator = new ContentActionMessageCreator(
             this.chromeAdapter.sendMessageToFrames,
@@ -144,6 +144,17 @@ export class PopupInitializer {
         };
 
         const visualizationTypes = EnumHelper.getNumericValues<VisualizationType>(VisualizationType);
+
+
+
+        const storesHub = new BaseClientStoresHub<PopupViewControllerState>([
+            visualizationStore,
+            launchPanelStateStore,
+            commandStore,
+            featureFlagStore,
+            userConfigurationStore,
+        ]);
+
         const deps: DiagnosticViewToggleDeps & MainRendererDeps = {
             contentProvider: contentPages,
             popupActionMessageCreator,
@@ -151,7 +162,10 @@ export class PopupInitializer {
             actionInitiators,
             dropdownClickHandler,
             userConfigMessageCreator,
+            storesHub,
+            storeActionCreator,
         };
+
         const diagnosticViewToggleFactory = new DiagnosticViewToggleFactory(
             deps,
             document,
@@ -164,19 +178,9 @@ export class PopupInitializer {
             diagnosticViewClickHandler,
         );
 
-        const storesHub = new BaseClientStoresHub<IPopupViewControllerState>([
-            visualizationStore,
-            launchPanelStateStore,
-            commandStore,
-            featureFlagStore,
-            userConfigurationStore,
-        ]);
-
         const renderer = new MainRenderer(
             deps,
             popupHandlers,
-            popupViewStoreActionMessageCreator,
-            storesHub,
             ReactDOM.render,
             document,
             window,

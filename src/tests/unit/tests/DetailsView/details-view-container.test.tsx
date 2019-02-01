@@ -31,8 +31,8 @@ import { GetSelectedDetailsViewProps } from '../../../../DetailsView/components/
 import {
     DetailsViewContainer,
     DetailsViewContainerDeps,
-    IDetailsViewContainerProps,
-    IDetailsViewContainerState,
+    DetailsViewContainerProps,
+    DetailsViewContainerState,
 } from '../../../../DetailsView/details-view-container';
 import { DetailsViewMainContent } from '../../../../DetailsView/details-view-main-content';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
@@ -172,7 +172,7 @@ describe('DetailsViewContainer', () => {
                             visualizationStoreData: state.visualizationStoreData,
                         }),
                     ),
-                )
+            )
                 .returns(() => viewType);
 
             testObject.render();
@@ -188,7 +188,7 @@ describe('DetailsViewContainer', () => {
         it('shows target tab for nonsupported type', () => {
             const unsupportedType = null;
 
-            const toggleClickHandlerMock = Mock.ofInstance(event => {});
+            const toggleClickHandlerMock = Mock.ofInstance(event => { });
             const clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory);
             const storeActionCreator = Mock.ofType(StoreActionMessageCreator, MockBehavior.Strict);
 
@@ -242,7 +242,7 @@ describe('DetailsViewContainer', () => {
 
     function buildDetailsViewMainContent(
         storeMocks: StoreMocks,
-        props: IDetailsViewContainerProps,
+        props: DetailsViewContainerProps,
         selectedDetailsView: VisualizationType,
         rightPanelConfiguration: DetailsRightPanelConfiguration,
         switcherNavConfiguration: DetailsViewSwitcherNavConfiguration,
@@ -293,7 +293,7 @@ describe('DetailsViewContainer', () => {
         getDetailsSwitcherNavConfiguration.setup(gtrpc => gtrpc(It.isValue(expected))).returns(() => returnConfiguration);
     }
 
-    function buildOverlay(storeMocks: StoreMocks, props: IDetailsViewContainerProps): JSX.Element {
+    function buildOverlay(storeMocks: StoreMocks, props: DetailsViewContainerProps): JSX.Element {
         return (
             <DetailsViewOverlay
                 deps={props.deps}
@@ -321,7 +321,7 @@ describe('DetailsViewContainer', () => {
         storeMocks: StoreMocks,
         viewType: VisualizationType,
         rightPanel: DetailsRightPanelConfiguration,
-    ): IDetailsViewContainerState {
+    ): DetailsViewContainerState {
         return {
             visualizationStoreData: storeMocks.visualizationStoreData,
             tabStoreData: storeMocks.tabStoreData,
@@ -397,7 +397,7 @@ describe('DetailsViewContainer', () => {
                         visualizationStoreData: state.visualizationStoreData,
                     }),
                 ),
-            )
+        )
             .returns(() => viewType);
 
         const expected: JSX.Element = (

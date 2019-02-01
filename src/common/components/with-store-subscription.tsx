@@ -5,7 +5,8 @@ import * as React from 'react';
 import { IStoreActionMessageCreator } from '../../common/message-creators/istore-action-message-creator';
 import { IClientStoresHub } from '../../common/stores/iclient-stores-hub';
 
-export type WithStoreSubscriptionProps<T> = StoreSubscriberDeps<T> & {
+export type WithStoreSubscriptionProps<T> = {
+    deps: StoreSubscriberDeps<T>;
     storeState?: T;
 };
 
@@ -19,7 +20,7 @@ export function withStoreSubscription<P extends WithStoreSubscriptionProps<S>, S
         constructor(props: P) {
             super(props);
             if (this.hasStores()) {
-                this.state = this.props.storesHub.getAllStoreData();
+                this.state = this.props.deps.storesHub.getAllStoreData();
             }
         }
 
@@ -28,27 +29,27 @@ export function withStoreSubscription<P extends WithStoreSubscriptionProps<S>, S
                 return;
             }
 
-            this.props.storesHub.addChangedListenerToAllStores(this.onStoreChange);
-            this.props.storeActionCreator.getAllStates();
+            this.props.deps.storesHub.addChangedListenerToAllStores(this.onStoreChange);
+            this.props.deps.storeActionCreator.getAllStates();
         }
 
         public componentWillUnmount(): void {
             if (!this.hasStores()) {
                 return;
             }
-            this.props.storesHub.removeChangedListenerFromAllStores(this.onStoreChange);
+            this.props.deps.storesHub.removeChangedListenerFromAllStores(this.onStoreChange);
         }
 
         public onStoreChange = () => {
-            const storeData = this.props.storesHub.getAllStoreData();
+            const storeData = this.props.deps.storesHub.getAllStoreData();
             this.setState(storeData);
         };
 
         public hasStores = () => {
-            return this.props.storesHub && this.props.storesHub.hasStores();
+            return this.props.deps.storesHub && this.props.deps.storesHub.hasStores();
         };
 
-        public render() {
+        public render(): JSX.Element {
             return <WrappedComponent {...this.props} storeState={this.state} />;
         }
     };

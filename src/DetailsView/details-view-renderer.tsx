@@ -16,7 +16,7 @@ import { ScopingActionMessageCreator } from '../common/message-creators/scoping-
 import { IClientStoresHub } from '../common/stores/iclient-stores-hub';
 import { StoreNames } from '../common/stores/store-names';
 import { IssuesTableHandler } from './components/issues-table-handler';
-import { DetailsView, DetailsViewContainerDeps, IDetailsViewContainerState } from './details-view-container';
+import { DetailsView, DetailsViewContainerDeps, DetailsViewContainerState } from './details-view-container';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
@@ -27,11 +27,9 @@ export class DetailsViewRenderer {
     private dom: NodeSelector & Node;
     private scopingActionMessageCreator: ScopingActionMessageCreator;
     private inspectActionMessageCreator: InspectActionMessageCreator;
-    private detailsViewStoreActionCreator: IStoreActionMessageCreator;
     private issuesSelection: ISelection;
     private clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
-    private storesHub: IClientStoresHub<IDetailsViewContainerState>;
     private issuesTableHandler: IssuesTableHandler;
     private assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
     private reportGenerator: ReportGenerator;
@@ -46,11 +44,9 @@ export class DetailsViewRenderer {
         renderer: typeof ReactDOM.render,
         scopingActionMessageCreator: ScopingActionMessageCreator,
         inspectActionMessageCreator: InspectActionMessageCreator,
-        detailsViewStoreActionCreator: IStoreActionMessageCreator,
         issuesSelection: ISelection,
         clickHandlerFactory: DetailsViewToggleClickHandlerFactory,
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
-        storesHub: IClientStoresHub<IDetailsViewContainerState>,
         issuesTableHandler: IssuesTableHandler,
         assessmentInstanceTableHandler: AssessmentInstanceTableHandler,
         reportGenerator: ReportGenerator,
@@ -65,12 +61,10 @@ export class DetailsViewRenderer {
 
         this.scopingActionMessageCreator = scopingActionMessageCreator;
         this.inspectActionMessageCreator = inspectActionMessageCreator;
-        this.detailsViewStoreActionCreator = detailsViewStoreActionCreator;
         this.issuesSelection = issuesSelection;
         this.clickHandlerFactory = clickHandlerFactory;
         this.visualizationConfigurationFactory = visualizationConfigurationFactory;
 
-        this.storesHub = storesHub;
         this.issuesTableHandler = issuesTableHandler;
         this.assessmentInstanceTableHandler = assessmentInstanceTableHandler;
         this.reportGenerator = reportGenerator;
@@ -84,7 +78,7 @@ export class DetailsViewRenderer {
         const detailsViewContainer = this.dom.querySelector('#details-container');
         const iconPath = '../' + config.getOption('icon16');
         this.documentManipulator.setShortcutIcon(iconPath);
-        const userConfigurationStore = this.storesHub.getStore(StoreNames[StoreNames.UserConfigurationStore]);
+        const userConfigurationStore = this.deps.storesHub.getStore(StoreNames[StoreNames.UserConfigurationStore]);
         this.renderer(
             <>
                 <Theme userConfigurationStore={userConfigurationStore} />
@@ -93,9 +87,7 @@ export class DetailsViewRenderer {
                     document={this.dom as Document}
                     issuesSelection={this.issuesSelection}
                     clickHandlerFactory={this.clickHandlerFactory}
-                    storeActionCreator={this.detailsViewStoreActionCreator}
                     visualizationConfigurationFactory={this.visualizationConfigurationFactory}
-                    storesHub={this.storesHub}
                     issuesTableHandler={this.issuesTableHandler}
                     assessmentInstanceTableHandler={this.assessmentInstanceTableHandler}
                     reportGenerator={this.reportGenerator}

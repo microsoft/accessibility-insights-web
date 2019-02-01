@@ -5,7 +5,7 @@ import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
 
 import { IAssessmentsProvider } from '../assessments/types/iassessments-provider';
-import { withStoreSubscription } from '../common/components/with-store-subscription';
+import { withStoreSubscription, StoreSubscriberDeps } from '../common/components/with-store-subscription';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
@@ -40,18 +40,17 @@ export type DetailsViewContainerDeps = {
 } & DetailsViewMainContentDeps &
     DetailsViewOverlayDeps &
     DetailsViewCommandBarDeps &
-    HeaderDeps;
+    HeaderDeps &
+    StoreSubscriberDeps<DetailsViewContainerState>;
 
-export interface IDetailsViewContainerProps {
+export interface DetailsViewContainerProps {
     deps: DetailsViewContainerDeps;
     document: Document;
     issuesSelection: ISelection;
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
-    storeActionCreator: IStoreActionMessageCreator;
     scopingActionMessageCreator: ScopingActionMessageCreator;
     inspectActionMessageCreator: InspectActionMessageCreator;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
-    storesHub: IClientStoresHub<IDetailsViewContainerState>;
     issuesTableHandler: IssuesTableHandler;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
     reportGenerator: ReportGenerator;
@@ -59,10 +58,10 @@ export interface IDetailsViewContainerProps {
     scopingFlagsHandler: PreviewFeatureFlagsHandler;
     dropdownClickHandler: DropdownClickHandler;
     assessmentsProvider: IAssessmentsProvider;
-    storeState: IDetailsViewContainerState;
+    storeState: DetailsViewContainerState;
 }
 
-export interface IDetailsViewContainerState {
+export interface DetailsViewContainerState {
     visualizationStoreData: IVisualizationStoreData;
     tabStoreData: ITabStoreData;
     visualizationScanResultStoreData: IVisualizationScanResultData;
@@ -75,7 +74,7 @@ export interface IDetailsViewContainerState {
     selectedDetailsRightPanelConfiguration: DetailsRightPanelConfiguration;
 }
 
-export class DetailsViewContainer extends React.Component<IDetailsViewContainerProps> {
+export class DetailsViewContainer extends React.Component<DetailsViewContainerProps> {
     private initialRender: boolean = true;
 
     public render(): JSX.Element {
@@ -96,7 +95,7 @@ export class DetailsViewContainer extends React.Component<IDetailsViewContainerP
             );
         }
 
-        if (!this.props.storesHub.hasStoreData()) {
+        if (!this.props.deps.storesHub.hasStoreData()) {
             return this.renderSpinner();
         }
 
@@ -111,7 +110,7 @@ export class DetailsViewContainer extends React.Component<IDetailsViewContainerP
     }
 
     private isTargetPageClosed() {
-        return !this.hasStores() || (this.props.storesHub.hasStoreData() && this.props.storeState.tabStoreData.isClosed);
+        return !this.hasStores() || (this.props.deps.storesHub.hasStoreData() && this.props.storeState.tabStoreData.isClosed);
     }
 
     private renderSpinner(): JSX.Element {
@@ -194,8 +193,8 @@ export class DetailsViewContainer extends React.Component<IDetailsViewContainerP
     }
 
     private hasStores(): boolean {
-        return this.props.storesHub != null && this.props.storesHub.hasStores();
+        return this.props.deps.storesHub != null && this.props.deps.storesHub.hasStores();
     }
 }
 
-export const DetailsView = withStoreSubscription<IDetailsViewContainerProps, IDetailsViewContainerState>(DetailsViewContainer);
+export const DetailsView = withStoreSubscription<DetailsViewContainerProps, DetailsViewContainerState>(DetailsViewContainer);

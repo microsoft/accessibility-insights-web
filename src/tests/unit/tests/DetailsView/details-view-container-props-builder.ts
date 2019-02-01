@@ -18,7 +18,7 @@ import { IVisualizationStoreData } from '../../../../common/types/store-data/ivi
 import { IScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { IssuesTableHandler } from '../../../../DetailsView/components/issues-table-handler';
-import { DetailsViewContainerDeps, IDetailsViewContainerProps } from '../../../../DetailsView/details-view-container';
+import { DetailsViewContainerDeps, DetailsViewContainerProps } from '../../../../DetailsView/details-view-container';
 import { AssessmentInstanceTableHandler } from '../../../../DetailsView/handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from '../../../../DetailsView/handlers/preview-feature-flags-handler';
@@ -46,7 +46,7 @@ export class DetailsViewContainerPropsBuilder {
     private assessmentProvider: IAssessmentsProvider;
     private configFactory: VisualizationConfigurationFactory;
     private storesHub: BaseClientStoresHub<any>;
-    constructor(private deps: DetailsViewContainerDeps) {}
+    constructor(private deps: DetailsViewContainerDeps) { }
 
     public setDetailsViewStoreActionMessageCreator(creator: IStoreActionMessageCreator) {
         this.storeActionCreator = creator;
@@ -126,7 +126,7 @@ export class DetailsViewContainerPropsBuilder {
         return this;
     }
 
-    public build(): IDetailsViewContainerProps {
+    public build(): DetailsViewContainerProps {
         const storesHub =
             this.storesHub ||
             new BaseClientStoresHub([
