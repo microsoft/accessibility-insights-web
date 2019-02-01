@@ -28,7 +28,7 @@ export class Theme extends React.Component<ThemeProps, ThemeState> {
 
     public updateState = () => {
         const storeState = this.props.userConfigurationStore.getState();
-        this.setState({ isHighContrastEnabled: storeState && storeState.enableTelemetry });
+        this.setState({ isHighContrastEnabled: storeState && storeState.enableHighContrast });
     };
 
     public render(): JSX.Element {
