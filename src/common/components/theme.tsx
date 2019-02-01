@@ -7,11 +7,11 @@ import BodyClassName = require('react-body-classname');
 import { UserConfigurationStoreData } from '../types/store-data/user-configuration-store';
 import { IBaseStore } from '../istore';
 
-interface ThemeState {
+export interface ThemeState {
     isHighContrastEnabled: boolean;
 }
 
-interface ThemeProps {
+export interface ThemeProps {
     userConfigurationStore: IBaseStore<UserConfigurationStoreData>;
 }
 
