@@ -136,10 +136,10 @@ export class VisualizationStore extends BaseStore<IVisualizationStoreData> {
         this.emitChanged();
     }
 
-    private disableVisualizationsWithoutEmitting(onlyDisableAssessments: boolean): void {
+    private disableAssessmentVisualizationsWithoutEmitting(): void {
         EnumHelper.getNumericValues(VisualizationType).forEach((test: number) => {
             const configuration = this.visualizationConfigurationFactory.getConfiguration(test);
-            const shouldDisableTest = onlyDisableAssessments === false || this.isAssessment(configuration);
+            const shouldDisableTest = this.isAssessment(configuration);
             if (shouldDisableTest) {
                 this.toggleTestOff(test);
             }
@@ -148,7 +148,7 @@ export class VisualizationStore extends BaseStore<IVisualizationStoreData> {
 
     @autobind
     private onDisableAssessmentVisualizations(): void {
-        this.disableVisualizationsWithoutEmitting(true);
+        this.disableAssessmentVisualizationsWithoutEmitting();
         this.emitChanged();
     }
 
@@ -170,7 +170,7 @@ export class VisualizationStore extends BaseStore<IVisualizationStoreData> {
         }
 
         const configuration = this.visualizationConfigurationFactory.getConfiguration(payload.test);
-        this.disableVisualizationsWithoutEmitting(!this.isAssessment(configuration));
+        this.disableAssessmentVisualizationsWithoutEmitting();
         const scanData = configuration.getStoreData(this.state.tests);
 
         const step = (payload as IAssessmentToggleActionPayload).step;

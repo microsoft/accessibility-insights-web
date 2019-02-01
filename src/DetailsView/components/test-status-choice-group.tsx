@@ -8,6 +8,7 @@ import * as React from 'react';
 
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { VisualizationType } from '../../common/types/visualization-type';
+import { isEqual } from 'lodash';
 
 export interface ITestStatusChoiceGroupProps {
     test: VisualizationType;
@@ -30,6 +31,12 @@ export class TestStatusChoiceGroup extends React.Component<ITestStatusChoiceGrou
     constructor(props) {
         super(props);
         this.state = { selectedKey: ManualTestStatus[this.props.status] };
+    }
+
+    public componentDidUpdate(prevProps: Readonly<ITestStatusChoiceGroupProps>): void {
+        if (isEqual(prevProps, this.props) === false) {
+            this.setState(() => ({ selectedKey: ManualTestStatus[this.props.status] }));
+        }
     }
 
     public render(): JSX.Element {

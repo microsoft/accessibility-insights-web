@@ -7,7 +7,6 @@
 @import '../../DetailsView/reports/components/assessment-report-summary.scss';
 @import '../../DetailsView/reports/components/assessment-summary-details.scss';
 @import '../../common/components/toast.scss';
-
 body {
     margin: 0;
 }
@@ -31,11 +30,9 @@ body {
 div.insights-dialog-main-override.target-change-dialog {
     border-radius: 6px;
     box-shadow: 0 0 10px 0 $neutral-alpha-60;
-
     .ms-Dialog-title {
         font-weight: $fontWeightSemiBold;
     }
-
     .target-change-dialog-button-container {
         .action-cancel-button-col {
             text-align: right;
@@ -44,18 +41,15 @@ div.insights-dialog-main-override.target-change-dialog {
             margin-top: 4px;
             margin-bottom: 24px;
         }
-
         button {
             padding: 0;
             height: 32px;
         }
-
         .continue-button {
             button {
                 width: 140px;
             }
         }
-
         .restart-button {
             button {
                 width: 85px;
@@ -69,7 +63,6 @@ div.insights-dialog-main-override {
     max-width: 25% !important;
     min-width: 500px !important;
     user-select: text;
-
     .start-over-dialog-body {
         font-size: 16px;
     }
@@ -95,7 +88,6 @@ div.insights-dialog-main-override {
     margin-left: auto;
     margin-right: auto;
     color: $neutral-100;
-
     .header-text {
         color: $neutral-100;
         font-size: 2em;
@@ -113,59 +105,47 @@ div.insights-dialog-main-override {
         .scoping-description {
             padding-bottom: 1vh;
         }
-
         .selector-input-list {
             .selector-input-title {
                 margin-top: 0.5vh;
                 margin-bottom: 0.5vh;
             }
-
             .selector-list {
                 border: solid 1px $neutral-30;
                 margin-top: 1vh;
                 margin-bottom: 3vh;
                 height: 15%;
                 overflow: auto;
-
                 .ms-List-cell:last-child {
                     border-bottom: solid $neutral-20 1px;
                 }
-
                 .ms-List-cell + .ms-List-cell {
                     border-top: solid $neutral-20 1px;
                 }
-
                 .delete-selector-button {
                     background: $neutral-0;
                     padding-right: 0px;
                     margin: 1px;
-
                     .delete-selector-icon {
                         color: $neutral-30;
                     }
                 }
             }
-
             .selector-input-field {
                 width: 55%;
             }
-
             .add-selector-buttons {
                 width: 40%;
-
                 .textbox-add-selector-button {
                     width: 80%;
                 }
             }
-
             .textbox-add-selector-button {
                 width: 35%;
             }
         }
-
         .selector-input-itemCell {
             padding-left: 1vh;
-
             .selector-input-itemContent {
                 display: flex;
                 justify-content: space-between;
@@ -173,7 +153,6 @@ div.insights-dialog-main-override {
             }
         }
     }
-
     .selector-input-list {
         .selector-input-add {
             display: flex;
@@ -189,13 +168,11 @@ div.insights-dialog-main-override {
         margin-right: 12px;
         padding-left: 0px;
     }
-
     .add-failure-instruction {
         font-weight: 500;
         margin-bottom: 20px;
         margin-top: 20px;
     }
-
     .header-text {
         margin-top: 30px;
         font-size: 21px;
@@ -205,26 +182,26 @@ div.insights-dialog-main-override {
 .preview-features-panel {
     .preview-feature-toggle-list {
         margin-top: 2vh;
-
         .preview-feature-toggle-container {
             .pf-name-toggle {
                 margin-bottom: 1vh;
-
                 .pf-name {
                     display: inline-block;
                     font-size: 16px;
                     font-weight: bold;
                 }
-
                 .pf-toggle {
                     float: right;
                 }
             }
         }
-
         .preview-feature-toggle-container + .preview-feature-toggle-container {
             margin-top: 4vh;
         }
+    }
+    .no-preview-feature-message {
+        font-size: 20px;
+        font-weight: bold;
     }
 }
 
@@ -236,53 +213,44 @@ div.insights-dialog-main-override {
     .details-view-body {
         margin-top: $detailsViewHeaderBarHeight;
     }
-
     .ms-Nav-compositeLink a {
         border-left: $pivotItemLeftBorderWidth $pivotItemBorderStyle $neutral-0;
         border-top: 0px;
         border-bottom: 0px;
     }
-
     .ms-Nav-compositeLink.is-selected a {
         background-color: $communication-tint-40 !important;
         border-left: $pivotItemLeftBorderWidth $pivotItemBorderStyle $communication-primary;
-
         .ms-Button-label {
             color: $neutral-100 !important;
         }
     }
-
     .ms-DetailsRow,
     .ms-GroupHeader {
         user-select: text;
         border-bottom: 0px;
     }
-
     .ms-DetailsRow {
         .content-cell:first-child {
             padding-left: 13px !important;
         }
     }
-
     .ms-DetailsHeader {
         .content-header {
             > span:first-of-type {
                 padding-left: 5px;
             }
         }
-
         .content-header ~ .content-header {
             > span:first-of-type {
                 padding-left: 0px;
             }
         }
     }
-
     .main-wrapper {
         height: 100%;
         width: 100%;
     }
-
     .details-view-command-bar {
         width: 100%;
         display: flex;
@@ -290,7 +258,6 @@ div.insights-dialog-main-override {
         min-height: fit-content;
         align-items: center;
         background-color: $neutral-4;
-
         .details-view-target-page {
             padding: 13px 8px;
             display: inherit;
@@ -298,55 +265,45 @@ div.insights-dialog-main-override {
             overflow: hidden;
             text-overflow: ellipsis;
             width: 50%;
-
             .ms-Link {
                 color: $communication-shade-10;
             }
         }
-
         .details-view-command-buttons {
             display: flex;
         }
     }
-
     .header-bar {
         background-color: $ada-blue;
         position: fixed;
         width: 100%;
         height: $detailsViewHeaderBarHeight;
         z-index: 1000;
-
         .gear-options-button-component {
             float: right;
-
             .sign-in-link {
                 color: $neutral-0;
                 margin-top: 11px;
                 margin-right: 8px;
             }
         }
-
         .details-view-dropdown {
             height: 100%;
             width: 100%;
         }
-
         .header-text {
             padding-top: 11px;
             color: $neutral-0;
             display: inline-block;
         }
-
         .header-icon {
             float: left;
             padding: 13px 8px;
             height: 16px;
         }
-
         .ms-Dropdown-container {
             display: inline-flex;
             margin-left: 24px;
-
             .ms-Dropdown {
                 &:focus {
                     border: 1px $neutral-0 solid;
@@ -359,17 +316,14 @@ div.insights-dialog-main-override {
                 border-radius: 2px;
                 width: 139px;
                 color: $neutral-0;
-
                 i {
                     margin-right: 8px;
                 }
             }
-
             .ms-Dropdown-caretDown {
                 color: $neutral-0;
             }
         }
-
         .gear-button {
             color: $neutral-0;
             float: right;
@@ -378,90 +332,74 @@ div.insights-dialog-main-override {
             width: fit-content;
             margin-top: 10px;
         }
-
         .gear-options-icon {
             font-size: 18px;
         }
     }
-
     .details-view-main-content {
         padding-left: 0px;
         padding-right: 0px;
         flex-grow: 1;
+        min-height: 0;
 
         .details-view-nav-pivots {
             > :first-child {
                 height: $detailsViewNavPivotsHeight;
             }
-
             .details-view-test-nav-area {
                 max-height: calc(100vh - #{detailsViewNavPivotsHeight} - #{$detailsViewHeaderBarHeight} - #{$detailsViewCommandBarHeight});
             }
         }
-
         .details-view-test-nav-area {
             max-height: calc(100vh - #{$detailsViewHeaderBarHeight} - #{$detailsViewCommandBarHeight} - 12px);
-
             .ms-Nav-groupContent,
             .ms-Nav-navItems {
                 margin-bottom: 0px;
             }
-
             a {
                 padding-right: 0px;
             }
         }
-
         .ms-Pivot {
             border-bottom: 1px solid $neutral-8;
             padding-left: 12px;
         }
-
         .test-step-nav {
             width: 400px;
-
             .ms-Nav-link {
                 padding-left: calc(24px - #{$pivotItemLeftBorderWidth});
                 padding-top: 10px;
                 padding-bottom: 10px;
                 height: fit-content !important;
-
                 .ms-Icon-placeHolder {
                     display: none;
                 }
             }
-
             .ms-Nav-groupContent,
             .ms-Nav-navItems {
                 margin-bottom: 0px;
             }
-
             .req-description {
                 line-height: initial;
                 text-align: left;
                 white-space: initial;
                 font-size: 14px;
                 width: 100%;
-
                 .req-index,
                 .req-name {
                     font-weight: bolder;
                     font-size: 14px;
                 }
-
                 .req-index {
                     margin-right: 8px;
                 }
-
                 .req-name {
                     margin-right: 3px;
                 }
             }
-
             .button-flex-container .status-icon {
                 margin-left: 24px;
                 font-size: 18px;
-
                 &.negative-outcome-icon {
                     color: $negative-outcome;
                 }
@@ -470,26 +408,22 @@ div.insights-dialog-main-override {
                 }
             }
         }
-
         .test-steps-nav-container {
             display: flex;
             overflow-y: auto;
             overflow-x: hidden;
             border-right: 1px solid $neutral-8;
         }
-
         .test-step-view-container {
             display: inline-block;
             width: calc(100% - 401px);
             vertical-align: top;
             overflow-y: auto;
             overflow-x: hidden;
-
             .test-step-view {
                 padding-left: 0.75vw;
                 padding-right: 0.75vw;
                 padding-bottom: 3.5vw;
-
                 .test-step-title-container {
                     display: flex;
                     align-items: flex-start;
@@ -497,138 +431,110 @@ div.insights-dialog-main-override {
                     flex-wrap: wrap;
                     vertical-align: middle;
                     padding-top: 1vw;
-
                     .test-step-view-title {
                         font-size: 17px;
                         padding-top: 0px;
                         display: inline-block;
                     }
-
                     .test-guidance-links-group {
                         align-items: flex-end;
                         display: flex;
                         flex-direction: column;
                     }
                 }
-
                 .visual-helper {
                     display: flex;
                     vertical-align: middle;
                     flex-direction: row;
                     padding-top: 1.5vh;
                     padding-bottom: 1.1vh;
-
                     &-text {
                         padding-right: 0.9vh;
                     }
-
                     .ms-Toggle {
                         margin-bottom: 0;
                     }
                 }
-
                 .test-step-instructions-header {
                     font-size: 14px;
                     font-weight: $normalTitleFontWeight;
                 }
-
                 .test-step-instructions {
                     font-family: 'Segoe UI', Tahoma, sans-serif;
-
                     p,
                     ol,
                     li {
                         margin: 5px 0px;
                     }
-
                     ol {
                         -webkit-padding-start: 16px;
                     }
-
                     ol ol {
                         list-style-type: lower-alpha;
                     }
-
                     ol ol ol {
                         list-style-type: lower-roman;
                     }
                 }
-
                 .test-step-instances-header {
                     font-size: 15px;
                     font-weight: normal;
                     padding-top: 15px;
                 }
-
                 .no-matching-elements {
                     font-weight: bold;
                 }
-
                 .no-failure-view {
                     font-size: 15px;
                     font-weight: normal;
                     padding: 15px 0px 0px 15px;
                 }
-
                 .instance-visibility-button {
                     padding-bottom: 6px;
                 }
-
                 .test-step-choice-group-container {
                     margin-left: 8px;
                     margin-bottom: 4px;
                     margin-top: 20px;
                 }
-
                 .test-instance-selected {
                     padding: 2px;
                     color: $neutral-0;
                 }
-
                 .test-instance-selected-hidden {
                     background-color: $neutral-60;
                     cursor: default;
                 }
-
                 .test-instance-selected-visible {
                     background-color: $communication-primary;
                 }
-
                 .master-visualization-column-header-selected {
                     background-color: $communication-primary;
                     color: $neutral-0;
                     display: inline;
                 }
-
                 .test-instance-selected-hidden-button {
                     background-color: transparent;
                 }
-
                 .property-bag-container {
                     display: flex;
                     flex-direction: column;
-
                     font-size: 14px;
                     line-height: 24px;
-
                     * + *.property-bag-div {
                         margin-top: 4px;
                     }
-
                     .property-bag-div {
                         .expanded-property-div {
                             margin-left: 20px;
                         }
-
                         .display-name {
                             color: $neutral-80;
                         }
-
                         white-space: normal;
                     }
                 }
             }
-
             .assessment-instance-label {
                 width: 24px;
                 font-size: 14px;
@@ -639,18 +545,15 @@ div.insights-dialog-main-override {
                 line-height: 24px;
                 color: $neutral-0;
             }
-
             .assessment-instance-label.radio {
                 width: 14px;
                 height: 14px;
                 border-radius: 50%;
                 margin-top: 6px;
             }
-
             .assessment-instance-label.not-applicable {
                 font-size: 10px;
             }
-
             .assessment-instance-textContent {
                 font-size: 14px;
                 line-height: 24px;
@@ -658,30 +561,24 @@ div.insights-dialog-main-override {
                 white-space: nowrap;
                 text-overflow: ellipsis;
             }
-
             .radio-button-group {
                 float: left;
                 line-height: 24px;
-
                 .ms-ChoiceField {
                     float: left;
                     margin-top: 0px !important;
                 }
-
                 .ms-Label {
                     font-size: 14px;
                     padding: 0 0 0 26px;
                     display: inline-block;
                 }
-
                 .ms-ChoiceField:nth-of-type(1) {
                     margin-right: 8px;
                 }
-
                 .ms-ChoiceField-input {
                     position: absolute;
                 }
-
                 .PASS {
                     .ms-ChoiceField:nth-of-type(1) {
                         .ms-ChoiceField-field::before,
@@ -690,7 +587,6 @@ div.insights-dialog-main-override {
                         }
                     }
                 }
-
                 .FAIL {
                     .ms-ChoiceField:nth-of-type(2) {
                         .ms-ChoiceField-field::before,
@@ -700,39 +596,33 @@ div.insights-dialog-main-override {
                     }
                 }
             }
-
             .undo-button {
                 margin-left: 8px;
                 font-size: 16px;
                 line-height: 24px;
                 color: $neutral-100;
             }
-
             .remove-button {
                 margin-left: 12px;
                 font-size: 16px;
                 line-height: 24px;
                 color: $negative-outcome;
             }
-
             .edit-button {
                 font-size: 16px;
                 line-height: 24px;
                 color: $neutral-100;
             }
         }
-
         .assessment-getting-started-container {
             margin: 0px 18px;
             border-top: 1px solid $neutral-8;
             padding-left: 6px;
             padding-top: 1vh;
         }
-
         span.collapsible-title {
             padding-left: 0.5vw;
         }
-
         .collapsible {
             padding: 0;
             cursor: pointer;
@@ -744,56 +634,45 @@ div.insights-dialog-main-override {
             display: flex;
             justify-content: flex-start;
             align-items: center;
-
             h2 {
                 font-weight: $normalTitleFontWeight;
             }
         }
-
         .collapsible-content {
             overflow: hidden;
             padding-left: calc(0.5vw + 13px); // 13px is Chevron width.
         }
-
         .left-nav {
             border-right: 1px solid $neutral-8;
-
             .dark-gray {
                 color: $neutral-60;
             }
-
             .button-flex-container {
                 padding-left: 5%;
                 padding-right: 8%;
                 width: 200px;
-
                 .status-icon {
                     font-size: 24px;
                 }
             }
-
             .ms-Nav-link {
                 height: fit-content;
             }
-
             .overview-label {
                 padding-left: 10%;
                 text-align: left;
                 margin-top: 6px;
                 margin-bottom: 6px;
             }
-
             .overview-name {
                 line-height: 20px;
             }
-
             .overview-percent {
                 color: #6e6e6e;
                 line-height: 16px;
                 font-size: 12px;
             }
         }
-
         .test-step-nav {
             .ms-Nav-compositeLink {
                 .button-flex-container {
@@ -801,12 +680,10 @@ div.insights-dialog-main-override {
                 }
             }
         }
-
         .left-nav,
         .test-step-nav {
             z-index: 100;
             background-color: $neutral-0;
-
             .index-circle {
                 border: 1px solid;
                 display: inline-block;
@@ -817,21 +694,17 @@ div.insights-dialog-main-override {
                 padding: 0.07em;
                 margin-top: 0.23em;
             }
-
             .test-name {
                 padding-left: 10%;
                 display: inline-block;
             }
-
             .ms-Nav-navItems {
                 margin-top: 0px !important;
             }
-
             .ms-Nav-compositeLink {
                 .ms-Button-label {
                     color: $neutral-100;
                 }
-
                 .button-flex-container {
                     display: flex;
                     flex-wrap: nowrap;
@@ -839,26 +712,21 @@ div.insights-dialog-main-override {
                     height: 100%;
                     align-items: center;
                 }
-
                 .index-circle {
                     color: $secondary-text;
                     background: $neutral-0;
                     border-color: $neutral-20;
                 }
-
                 &.is-selected {
                     a {
                         background-color: $communication-tint-40;
                     }
-
                     a::after {
                         border-left: 0px;
                     }
-
                     .ms-Button-label {
                         color: $communication-shade-20;
                     }
-
                     .index-circle {
                         color: $neutral-0;
                         background: $communication-shade-10;
@@ -866,51 +734,40 @@ div.insights-dialog-main-override {
                     }
                 }
             }
-
             .ms-Pivot-text {
                 font-size: $fontSizeS;
             }
-
             .ms-Pivot-icon {
                 font-size: 9px;
             }
-
             button {
                 text-align: left;
             }
         }
-
         .details-content {
             width: 100%;
             padding-bottom: 1px;
             overflow: auto;
-
             > div {
                 min-width: 600px;
                 height: auto;
             }
-
             .info-message-bar {
                 background-color: $communication-tint-40;
-
                 .ms-MessageBar-icon {
                     color: $communication-shade-10;
                 }
-
                 .ms-link {
                     font-weight: 700;
                     padding: 0 !important;
                 }
             }
-
             .ms-MessageBar {
                 padding-left: 24px;
             }
-
             .ms-MessageBar-icon {
                 color: $secondary-text;
             }
-
             .target-tab-info {
                 font-size: 14px;
                 color: $secondary-text;
@@ -919,88 +776,76 @@ div.insights-dialog-main-override {
                 padding-right: 24px;
                 word-break: break-all;
                 font-weight: 600;
-
                 .ms-Link {
                     color: $communication-shade-10;
                 }
-
                 .target-page-link {
                     font-family: 'Segoe UI', Tahoma, sans-serif;
                 }
             }
-
             .view {
                 flex-grow: 1;
                 height: 100%;
                 width: 100%;
                 display: flex;
                 margin-top: 24px;
+                min-height: 0;
 
                 .target-page-changed,
                 .static-content-details-view {
                     margin-left: 24px;
                     margin-right: 24px;
                 }
-
                 .issues-table {
                     height: 100%;
                     width: 100%;
                     display: flex;
                     flex-direction: column;
-
                     > h1,
                     .details-view-toggle,
                     .details-disabled-message {
                         margin-left: 24px;
                     }
-
                     > div {
                         height: 100%;
                         display: flex;
                         flex-direction: column;
+                        min-height: 0;
                     }
                 }
-
                 .assessment-content {
                     flex-grow: 1;
                     display: flex;
                     flex-direction: column;
                     width: 100%;
-
                     .assessment-title {
                         width: 100%;
                         display: flex;
                         justify-content: space-between;
                         min-height: fit-content;
                         align-items: center;
-
                         .assessment-header {
                             font-size: 21px;
                             margin-left: 24px;
                             padding-top: 8px;
-
                             i {
                                 font-size: 16px;
                             }
                         }
-
                         .start-over-button {
                             margin-right: 24px;
                             height: fit-content;
                         }
                     }
-
                     .details-view-assessment-content {
                         flex-grow: 1;
                         display: flex;
                         min-height: 25vh;
                         border-top: 1px solid $neutral-8;
                     }
-
                     .assessment-requirements-title {
                         width: 100%;
                         border-bottom: 1px solid $neutral-8;
-
                         .assessment-requirements {
                             font-size: 17px;
                             font-weight: $normalTitleFontWeight;
@@ -1010,44 +855,38 @@ div.insights-dialog-main-override {
                         }
                     }
                 }
-
                 .issues-table-details {
                     margin-left: 24px;
                     height: 100%;
                     display: flex;
                     flex-direction: column;
+                    min-height: 0;
                 }
-
                 .issues-details-list {
                     display: flex;
                     flex-direction: column;
                     height: 60%;
                     min-height: 150px;
-
                     > .ms-Viewport {
                         display: flex;
                         height: 100%;
                         width: 100%;
                     }
                 }
-
                 .target-page-closed {
                     position: absolute;
                     left: 24px;
                 }
-
                 h1 {
                     margin: 0px;
                     font-weight: $fontWeightSemiBold;
                     font-size: 21px;
                     color: $neutral-100;
                 }
-
                 h2 {
                     font-size: 17px;
                     color: $neutral-100;
                 }
-
                 h3 {
                     margin: 0px;
                     padding-top: 4px;
@@ -1055,26 +894,21 @@ div.insights-dialog-main-override {
                     color: $neutral-100;
                     font-weight: $fontWeightSemiBold;
                 }
-
                 b {
                     font-weight: 600;
                 }
-
                 .why-vis,
                 .about-vis {
                     padding-top: 4px;
                 }
-
                 .why-vis,
                 .about-vis,
                 .more-info {
                     font-size: 14px;
-
                     .ms-Link {
                         color: $communication-shade-10;
                     }
                 }
-
                 .landmark-roles-table {
                     list-style: none;
                     margin-top: 12px;
@@ -1083,34 +917,28 @@ div.insights-dialog-main-override {
                     border-spacing: 5px;
                     padding-left: 18px;
                 }
-
                 .insights-list {
                     padding-left: 18px;
                     margin-top: 0px;
                 }
-
                 .insights-list li {
                     margin-top: 4px;
                     font-size: 14px;
                 }
-
                 .tab-stops-accessibility-problems-list {
                     background: $neutral-6;
                     list-style-type: disc;
                 }
-
                 .landmark-roles-table li {
                     margin-top: 4px;
                     display: table-row;
                 }
-
                 .landmarks-legend-description {
                     padding-left: 12px;
                     font-size: 14px;
                     display: table-cell;
                     vertical-align: middle;
                 }
-
                 .landmarks-legend {
                     color: $neutral-100;
                     font-size: 14px;
@@ -1120,40 +948,31 @@ div.insights-dialog-main-override {
                     font-weight: 400;
                     padding: 4px;
                     vertical-align: middle;
-
                     &.contentinfo-landmark {
                         background-color: $landmark-contentinfo;
                     }
-
                     &.main-landmark {
                         background-color: $landmark-main;
                     }
-
                     &.complementary-landmark {
                         background-color: $landmark-complementary;
                     }
-
                     &.banner-landmark {
                         background-color: $landmark-banner;
                     }
-
                     &.region-landmark {
                         background-color: $landmark-region;
                     }
-
                     &.navigation-landmark {
                         background-color: $landmark-navigation;
                     }
-
                     &.search-landmark {
                         background-color: $landmark-search;
                     }
-
                     &.form-landmark {
                         background-color: $landmark-form;
                     }
                 }
-
                 .details-view-command-bar {
                     margin-left: 24px;
                     margin-bottom: 0px;
@@ -1161,190 +980,153 @@ div.insights-dialog-main-override {
                     height: $detailsViewCommandBarHeight;
                     background-color: $neutral-4;
                     display: -webkit-inline-box;
-
                     .automated-checks-details-view-toggle {
                         .ms-Toggle-label {
                             float: left;
                             margin: 5px 8px 5px 8px;
                             color: $neutral-100;
                         }
-
                         .ms-Toggle-innerContainer {
                             margin: 10px 0px 10px 0px;
                         }
                     }
-
                     .ms-Button--command {
                         margin-left: 20px;
-
                         i {
                             padding-top: 1px;
                         }
-
                         .ms-Button-label {
                             padding-bottom: 1px;
                         }
                     }
                 }
-
                 .details-view-toggle {
                     margin-bottom: 0;
                     margin-top: 12px;
                     height: 40px;
                     background-color: $neutral-4;
-
                     .ms-Toggle-label {
                         float: left;
                         margin: 5px 8px 5px 8px;
                         color: $neutral-100;
                     }
-
                     .ms-Toggle-innerContainer {
                         margin: 10px 0px 10px 0px;
                     }
                 }
-
                 .details-icon-error {
                     color: $negative-outcome;
                     padding-right: 0.3em;
                     padding-bottom: 0.1em;
                     vertical-align: text-bottom;
                 }
-
                 .details-disabled-message,
                 .details-message {
                     margin-top: 5px;
                     margin-bottom: 5px;
                     font-size: $fontSizeM;
                 }
-
                 .bugs-details-view .create-bug-button {
                     margin-right: 7px;
                     font-size: 16px;
                     float: left;
                     margin-top: 1px;
                 }
-
                 .details-list {
                     min-width: 100%;
                     max-width: 100%;
                     overflow-x: auto;
                     overflow-y: auto;
-
                     > [role='grid'] {
                         width: 100%;
                         min-width: fit-content;
-
                         > [role='presentation']:nth-child(2) {
                             min-width: fit-content;
                         }
                     }
-
                     .ms-Link {
                         color: $communication-shade-10;
                     }
-
                     .ms-Link:hover {
                         color: $communication-shade-30;
                     }
-
                     .details-group-header-title {
                         font-size: $fontSizeM;
                         color: $neutral-100;
                         font-weight: $fontWeightSemiBold;
                     }
-
                     .ms-GroupHeader-expand {
                         font-size: $fontSize;
                         color: $secondary-text;
                     }
-
                     .ms-GroupHeader.is-selected {
                         background-color: $communication-tint-40;
                     }
-
                     .ms-GroupHeader .ms-GroupHeader-check {
                         padding: 12px;
                     }
-
                     .ms-DetailsRow-fields {
                         font-size: $fontSizeM;
                         color: $neutral-100;
                     }
-
                     .ms-DetailsRow {
                         min-width: 100% !important;
                         max-width: 100% !important;
-
                         &.is-selected {
                             background-color: $communication-tint-40;
                         }
                     }
-
                     @mixin check-when-checked {
                         border-color: $neutral-30;
                         background: $neutral-8;
-
                         &:before {
                             background: $neutral-8;
                         }
-
                         .ms-Check-check {
                             color: $neutral-100;
                         }
                     }
-
                     @mixin check-when-unchecked {
                         .ms-Check-check {
                             color: transparent;
                             opacity: 0;
                         }
                     }
-
                     @mixin check-hover-when-checked {
                         @include check-when-checked;
                         opacity: 1;
                     }
-
                     @mixin check-hover-when-unchecked {
                         @include check-when-unchecked();
                         border-color: $neutral-30;
                         background: $neutral-8;
                         opacity: 1;
-
                         &:before {
                             background: $neutral-8;
                         }
-
                         .ms-Check-check {
                             opacity: 1;
                         }
                     }
-
                     .ms-DetailsRow-check,
                     .ms-GroupHeader-check {
                         opacity: 1;
-
                         &:focus {
                             .ms-check:not(.is-checked) {
                                 @include check-hover-when-unchecked();
                             }
                         }
-
                         .ms-check {
                             height: 14px;
                             width: 14px;
                             overflow: hidden;
                             border: 1px solid transparent;
-
                             &::before {
                                 border-radius: 0%;
                             }
-
                             .ms-Check-circle {
                                 visibility: hidden;
                             }
-
                             .ms-Check-check {
                                 border: 0px;
                                 height: 14px;
@@ -1353,35 +1135,28 @@ div.insights-dialog-main-override {
                                 margin-top: -0.05em;
                                 text-align: center;
                             }
-
                             &.is-checked {
                                 @include check-when-checked();
                             }
-
                             &:not(.is-checked) {
                                 @include check-when-unchecked();
                             }
                         }
                     }
-
                     .ms-DetailsHeader-cellSizer {
                         background: transparent;
-
                         &:hover {
                             background: transparent;
                         }
-
                         &:after {
                             width: 2px;
                         }
                     }
-
                     .ms-DetailsHeader-cell {
                         &:hover {
                             background: $neutral-8;
                         }
                     }
-
                     .ms-GroupHeader,
                     .ms-DetailsRow,
                     .ms-DetailsHeader-cell {
@@ -1389,12 +1164,10 @@ div.insights-dialog-main-override {
                             .ms-check.is-checked {
                                 @include check-hover-when-checked();
                             }
-
                             .ms-check:not(.is-checked) {
                                 @include check-hover-when-unchecked();
                             }
                         }
-
                         &:focus {
                             .ms-check:not(.is-checked) {
                                 @include check-hover-when-unchecked();
@@ -1402,18 +1175,15 @@ div.insights-dialog-main-override {
                         }
                     }
                 }
-
                 .issue-detail-outer-container {
                     min-width: 100%;
                     max-width: 100%;
                     overflow-y: auto;
                     height: 40%;
                     min-height: 150px;
-
                     > div {
                         border-top: 1px solid $neutral-8;
                     }
-
                     h2 {
                         padding-top: 12px;
                         padding-bottom: 8px;
@@ -1421,17 +1191,14 @@ div.insights-dialog-main-override {
                         font-size: 21px;
                         display: inline-block;
                     }
-
                     .copy-issue-details-button {
                         vertical-align: baseline;
                         margin-left: 16px;
                     }
-
                     .issue-detail-table {
                         width: 100%;
                         padding: 0;
                         border-collapse: collapse;
-
                         tr > td {
                             border-bottom: 1px solid $neutral-8;
                             padding-top: 10px;
@@ -1440,53 +1207,42 @@ div.insights-dialog-main-override {
                             vertical-align: initial;
                             font-size: 14px;
                         }
-
                         tr > td:first-child {
                             width: 100px;
                         }
-
                         tr:last-child > td {
                             border-bottom: none;
                         }
-
                         .snippet-content {
                             font-family: monospace;
                             word-break: break-all;
                         }
-
                         .snippet-content,
                         .path-content {
                             font-size: 12px;
                         }
-
                         .fix-content > div:nth-child(2) {
                             margin-top: 6px;
                         }
-
                         .fix-content ul {
                             margin: 0px;
                             -webkit-padding-start: 20px;
                         }
-
                         .ms-Link {
                             color: $communication-shade-10;
                         }
-
                         .ms-Link:hover {
                             color: $communication-shade-30;
                         }
                     }
-
                     .issue-detail-select-message {
                         padding-top: 10px;
                     }
                 }
-
                 .overview {
                     display: flex;
                     flex-direction: row;
                     flex-wrap: wrap;
-
                     .overview-text-summary-section {
                         display: flex;
                         flex-direction: column;
@@ -1494,7 +1250,6 @@ div.insights-dialog-main-override {
                         align-items: flex-start;
                         margin: 40px 0px 0px 40px;
                         width: 90%;
-
                         .overview-heading {
                             h1 {
                                 font-weight: 600;
@@ -1503,11 +1258,9 @@ div.insights-dialog-main-override {
                                 padding-bottom: 2%;
                             }
                         }
-
                         .assessment-report-summary {
                             margin-top: 40px;
                             width: 100%;
-
                             h3 {
                                 font-family: Segoe UI Semibold;
                                 font-size: 17px;
@@ -1516,17 +1269,14 @@ div.insights-dialog-main-override {
                             }
                         }
                     }
-
                     .overview-help-section {
                         margin: 40px 40px 0px 40px;
                         width: 308px;
                         height: 172px;
-
                         .overview-help-container {
                             background-color: $neutral-2;
                             padding: 5%;
                         }
-
                         .help-link {
                             padding: 5px 0px 5px 0px;
                             font-family: Segoe UI;

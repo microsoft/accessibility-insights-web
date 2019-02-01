@@ -92,6 +92,7 @@ getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
             notificationCreator,
             visualizationConfigurationFactory,
             telemetryDataFactory,
+            globalContext.stores.userConfigurationStore,
         );
         chromeCommandHandler.initialize();
 

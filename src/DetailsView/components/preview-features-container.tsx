@@ -7,20 +7,23 @@ import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag
 import { IDisplayableFeatureFlag } from '../../common/types/store-data/idisplayable-feature-flag';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { PreviewFeatureFlagsHandler } from '../handlers/preview-feature-flags-handler';
+import { NoDisplayableFeatureFlagMessage } from './no-displayable-preview-features-message';
 import { PreviewFeaturesToggleList } from './preview-features-toggle-list';
 
-export interface IPreviewFeaturesContainerProps {
+export interface PreviewFeaturesContainerProps {
     actionMessageCreator: DetailsViewActionMessageCreator;
     featureFlagData: FeatureFlagStoreData;
     previewFeatureFlagsHandler: PreviewFeatureFlagsHandler;
 }
 
-export class PreviewFeaturesContainer extends React.Component<IPreviewFeaturesContainerProps> {
+export class PreviewFeaturesContainer extends React.Component<PreviewFeaturesContainerProps> {
     public render(): JSX.Element {
         const displayableFeatureFlags: IDisplayableFeatureFlag[] = this.props.previewFeatureFlagsHandler.getDisplayableFeatureFlags(
             this.props.featureFlagData,
         );
-
+        if (displayableFeatureFlags.length === 0) {
+            return <NoDisplayableFeatureFlagMessage />;
+        }
         return (
             <div>
                 <div className="preview-features-description">{DisplayableStrings.previewFeaturesDescription}</div>

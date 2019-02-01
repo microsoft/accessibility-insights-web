@@ -82,7 +82,7 @@ describe('DetailsViewOverlay', () => {
         expect(component.render()).toMatchSnapshot();
     });
 
-    test('renders with settings open', () => {
+    test('renders with settings panel open', () => {
         detailsViewStoreData.currentPanel.isSettingsOpen = true;
         const component = new DetailsViewOverlay(props);
         expect(component.render()).toMatchSnapshot();

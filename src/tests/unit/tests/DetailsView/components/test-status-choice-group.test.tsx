@@ -29,6 +29,37 @@ describe('TestStatusChoiceGroup', () => {
         expect(component.state).toMatchObject({ selectedKey: 'PASS' });
     });
 
+    test('componentDidUpdate: props have not changed', () => {
+        const props: ITestStatusChoiceGroupProps = {
+            test: 1,
+            step: 'step',
+            selector: 'selector',
+            status: ManualTestStatus.PASS,
+            originalStatus: null,
+            onGroupChoiceChange: null,
+            onUndoClicked: null,
+        };
+        const component = shallow(<TestStatusChoiceGroup {...props} />).instance() as TestStatusChoiceGroup;
+        component.componentDidUpdate(props);
+        expect(component.state).toMatchObject({ selectedKey: 'PASS' });
+    });
+
+    test('componentDidUpdate: props have changed', () => {
+        const props: ITestStatusChoiceGroupProps = {
+            test: 1,
+            step: 'step',
+            selector: 'selector',
+            status: ManualTestStatus.FAIL,
+            originalStatus: null,
+            onGroupChoiceChange: null,
+            onUndoClicked: null,
+        };
+        const component = shallow(<TestStatusChoiceGroup {...props} />).instance() as TestStatusChoiceGroup;
+        component.setState({ selectedKey: 'PASS' });
+        component.componentDidUpdate({ status: ManualTestStatus.PASS } as ITestStatusChoiceGroupProps);
+        expect(component.state).toMatchObject({ selectedKey: 'FAIL' });
+    });
+
     test('render', () => {
         const onGroupChoiceChangeMock = Mock.ofInstance((status, test, step, selector) => {});
         const onUndoMock = Mock.ofInstance((test, step, selector) => {});
