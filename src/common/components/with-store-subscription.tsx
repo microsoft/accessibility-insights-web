@@ -5,11 +5,14 @@ import * as React from 'react';
 import { IStoreActionMessageCreator } from '../../common/message-creators/istore-action-message-creator';
 import { IClientStoresHub } from '../../common/stores/iclient-stores-hub';
 
-export interface WithStoreSubscriptionProps<T> {
+export type WithStoreSubscriptionProps<T> = StoreSubscriberDeps<T> & {
+    storeState?: T;
+};
+
+export type StoreSubscriberDeps<T> = {
     storesHub: IClientStoresHub<T>;
     storeActionCreator: IStoreActionMessageCreator;
-    storeState?: T;
-}
+};
 
 export function withStoreSubscription<P extends WithStoreSubscriptionProps<S>, S>(WrappedComponent: React.ComponentType<P>) {
     return class extends React.Component<P, S> {

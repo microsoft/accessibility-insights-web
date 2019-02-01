@@ -3,26 +3,26 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
+import { ChromeAdapter } from '../../background/browser-adapter';
+import { StoreControlledTheme, ThemeSwitcherState } from '../../common/components/theme-switcher';
+import { StoreSubscriberDeps } from '../../common/components/with-store-subscription';
 import { config } from '../../common/configuration';
 import { DocumentManipulator } from '../../common/document-manipulator';
-import { IBaseStore } from '../../common/istore';
-import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { rendererDependencies } from './dependencies';
 import { Router, RouterDeps } from './router';
-import { Theme } from '../../common/components/theme';
-import { StoreProxy } from '../../common/store-proxy';
-import { StoreNames } from '../../common/stores/store-names';
-import { ChromeAdapter } from '../../background/browser-adapter';
 
 export type RendererDeps = {
     dom: Node & NodeSelector;
     render: ReactDOM.Renderer;
     initializeFabricIcons: () => void;
     chromeAdapter: ChromeAdapter;
-} & RouterDeps;
+    tabId: number;
+} & RouterDeps & StoreSubscriberDeps<ThemeSwitcherState>;
 
-export function renderer(deps: RendererDeps = rendererDependencies, userConfigurationStore?: IBaseStore<UserConfigurationStoreData>) {
-    const { dom, render, initializeFabricIcons } = deps;
+
+export function renderer(
+    deps: RendererDeps = rendererDependencies): void {
+    const { dom, render, initializeFabricIcons, storesHub, storeActionCreator } = deps;
     const iconPath = '../' + config.getOption('icon16');
     const documentElementSetter = new DocumentManipulator(dom);
     documentElementSetter.setShortcutIcon(iconPath);
@@ -31,12 +31,10 @@ export function renderer(deps: RendererDeps = rendererDependencies, userConfigur
     initializeFabricIcons();
 
     const insightsRoot = dom.querySelector('#insights-root');
-    const store =
-        userConfigurationStore ||
-        new StoreProxy<UserConfigurationStoreData>(StoreNames[StoreNames.UserConfigurationStore], deps.chromeAdapter);
+
     render(
         <>
-            <Theme userConfigurationStore={store} />
+            <StoreControlledTheme storesHub={storesHub} storeActionCreator={storeActionCreator} />
             <Router deps={deps} />
         </>,
         insightsRoot,
