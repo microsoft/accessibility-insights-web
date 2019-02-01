@@ -27,9 +27,7 @@ describe('insights renderer', () => {
         document.body.innerHTML = '<div id="insights-root" />';
 
         configMutator.setOption('icon16', 'new-icon.png');
-        contentActionMessageCreatorMock
-            .setup(c => c.getUserConfig())
-            .verifiable();
+        contentActionMessageCreatorMock.setup(c => c.getUserConfig()).verifiable();
     });
 
     it('sets icon as configured', () => {
@@ -46,7 +44,10 @@ describe('insights renderer', () => {
         renderer(deps, userConfigurationStoreMock.object);
         const root = document.body.querySelector('#insights-root');
         expect(deps.render).toHaveBeenCalledWith(
-            <><Theme userConfigurationStore={userConfigurationStoreMock.object} /><Router deps={deps} /></>,
+            <>
+                <Theme userConfigurationStore={userConfigurationStoreMock.object} />
+                <Router deps={deps} />
+            </>,
             root,
         );
     });

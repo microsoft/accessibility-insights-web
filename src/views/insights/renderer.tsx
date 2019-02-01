@@ -18,7 +18,7 @@ export type RendererDeps = {
     dom: Node & NodeSelector;
     render: ReactDOM.Renderer;
     initializeFabricIcons: () => void;
-    chromeAdapter: ChromeAdapter,
+    chromeAdapter: ChromeAdapter;
 } & RouterDeps;
 
 export function renderer(deps: RendererDeps = rendererDependencies, userConfigurationStore?: IBaseStore<UserConfigurationStoreData>) {
@@ -31,12 +31,14 @@ export function renderer(deps: RendererDeps = rendererDependencies, userConfigur
     initializeFabricIcons();
 
     const insightsRoot = dom.querySelector('#insights-root');
-    const store = userConfigurationStore || new StoreProxy<UserConfigurationStoreData>(
-        StoreNames[StoreNames.UserConfigurationStore],
-        deps.chromeAdapter,
-    );
+    const store =
+        userConfigurationStore ||
+        new StoreProxy<UserConfigurationStoreData>(StoreNames[StoreNames.UserConfigurationStore], deps.chromeAdapter);
     render(
-        <><Theme userConfigurationStore={store} /><Router deps={deps} /></>,
+        <>
+            <Theme userConfigurationStore={store} />
+            <Router deps={deps} />
+        </>,
         insightsRoot,
     );
 }

@@ -29,13 +29,10 @@ export class Theme extends React.Component<ThemeProps, ThemeState> {
     public updateState = () => {
         const storeState = this.props.userConfigurationStore.getState();
         this.setState({ isHighContrastEnabled: storeState && storeState.enableTelemetry });
-    }
+    };
 
     public render(): JSX.Element {
         const className = `theme-switcher${this.state.isHighContrastEnabled ? ' high-contrast-theme' : ''}`;
-        return (
-            <BodyClassName className={className}>
-            </BodyClassName>
-        );
+        return <BodyClassName className={className} />;
     }
 }
