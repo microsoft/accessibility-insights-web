@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { IBaseStore } from '../../common/istore';
+import { IBaseStore } from '../istore';
 
 export interface IClientStoresHub<T> {
     stores: IBaseStore<any>[];

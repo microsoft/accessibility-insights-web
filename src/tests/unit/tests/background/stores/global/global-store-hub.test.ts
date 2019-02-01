@@ -17,7 +17,7 @@ import { IndexedDBAPI } from '../../../../../../common/indexedDB/indexedDB';
 import { IBaseStore } from '../../../../../../common/istore';
 import { StoreType } from '../../../../../../common/types/store-type';
 import { LaunchPanelType } from '../../../../../../popup/scripts/components/popup-view';
-import { CreateTestAssessmentProvider } from './../../../../Common/test-assessment-provider';
+import { CreateTestAssessmentProvider } from '../../../../common/test-assessment-provider';
 
 describe('GlobalStoreHubTest', () => {
     let userDataStub: ILocalStorageData;

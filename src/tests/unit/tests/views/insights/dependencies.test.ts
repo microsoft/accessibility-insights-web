@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import { initializeFabricIcons } from '../../../../../common/fabric-icons';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
 import { rendererDependencies } from '../../../../../views/insights/dependencies';
-import { ChromeAdapter } from './../../../../../background/browser-adapter';
+import { ChromeAdapter } from '../../../../../background/browser-adapter';
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.

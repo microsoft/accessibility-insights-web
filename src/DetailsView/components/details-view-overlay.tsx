@@ -8,10 +8,10 @@ import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag
 import { IDetailsViewData } from '../../common/types/store-data/idetails-view-data';
 import { IScopingStoreData } from '../../common/types/store-data/scoping-store-data';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
-import { DetailsViewActionMessageCreator } from '../../DetailsView/actions/details-view-action-message-creator';
-import { PreviewFeaturesPanel, PreviewFeaturesPanelProps } from '../../DetailsView/components/preview-features-panel';
-import { IScopingPanelProps, ScopingPanel } from '../../DetailsView/components/scoping-panel';
-import { PreviewFeatureFlagsHandler } from '../../DetailsView/handlers/preview-feature-flags-handler';
+import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
+import { PreviewFeaturesPanel, PreviewFeaturesPanelProps } from './preview-features-panel';
+import { IScopingPanelProps, ScopingPanel } from './scoping-panel';
+import { PreviewFeatureFlagsHandler } from '../handlers/preview-feature-flags-handler';
 import { ContentPanel, ContentPanelDeps, ContentPanelProps } from '../../views/content/content-panel';
 import { SettingsPanel, SettingsPanelDeps, SettingsPanelProps } from './settings-panel';
 

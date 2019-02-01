@@ -11,12 +11,10 @@ import { config } from '../common/configuration';
 import { DocumentManipulator } from '../common/document-manipulator';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
-import { IStoreActionMessageCreator } from '../common/message-creators/istore-action-message-creator';
 import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
-import { IClientStoresHub } from '../common/stores/iclient-stores-hub';
 import { StoreNames } from '../common/stores/store-names';
 import { IssuesTableHandler } from './components/issues-table-handler';
-import { DetailsView, DetailsViewContainerDeps, DetailsViewContainerState } from './details-view-container';
+import { DetailsView, DetailsViewContainerDeps } from './details-view-container';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
@@ -78,10 +76,9 @@ export class DetailsViewRenderer {
         const detailsViewContainer = this.dom.querySelector('#details-container');
         const iconPath = '../' + config.getOption('icon16');
         this.documentManipulator.setShortcutIcon(iconPath);
-        const userConfigurationStore = this.deps.storesHub.getStore(StoreNames[StoreNames.UserConfigurationStore]);
         this.renderer(
             <>
-                <Theme userConfigurationStore={userConfigurationStore} />
+                <Theme deps={this.deps} />
                 <DetailsView
                     deps={this.deps}
                     document={this.dom as Document}

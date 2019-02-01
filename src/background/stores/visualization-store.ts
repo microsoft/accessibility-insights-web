@@ -4,7 +4,7 @@ import { autobind } from '@uifabric/utilities';
 
 import { TestMode } from '../../common/configs/test-mode';
 import { IVisualizationConfiguration, VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
-import { ITab } from '../../common/itab.d';
+import { ITab } from '../../common/itab';
 import { StoreNames } from '../../common/stores/store-names';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { ITestsEnabledState, IVisualizationStoreData, IAssessmentScanData } from '../../common/types/store-data/ivisualization-store-data';
@@ -17,7 +17,7 @@ import {
 } from '../actions/action-payloads';
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationActions } from '../actions/visualization-actions';
-import { EnumHelper } from './../../common/enum-helper';
+import { EnumHelper } from '../../common/enum-helper';
 import { BaseStore } from './base-store';
 
 export class VisualizationStore extends BaseStore<IVisualizationStoreData> {

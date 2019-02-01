@@ -22,9 +22,9 @@ import { IAssessmentData, IAssessmentStoreData } from '../types/store-data/iasse
 import { IScanData, ITestsEnabledState } from '../types/store-data/ivisualization-store-data';
 import { TelemetryProcessor } from '../types/telemetry-processor';
 import { VisualizationType } from '../types/visualization-type';
-import { IToggleActionPayload } from './../../background/actions/action-payloads';
-import { AnalyzerProvider } from './../../injected/analyzers/analyzer-provider';
-import { ContentPageComponent } from './../../views/content/content-page';
+import { IToggleActionPayload } from '../../background/actions/action-payloads';
+import { AnalyzerProvider } from '../../injected/analyzers/analyzer-provider';
+import { ContentPageComponent } from '../../views/content/content-page';
 import { TestMode } from './test-mode';
 
 export interface IDisplayableVisualizationTypeData {

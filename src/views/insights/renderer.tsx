@@ -4,7 +4,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { ChromeAdapter } from '../../background/browser-adapter';
-import { ControlledTheme, ThemeSwitcherState } from '../../common/components/theme-switcher';
+import { Theme, ThemeSwitcherState } from '../../common/components/theme';
 import { StoreSubscriberDeps } from '../../common/components/with-store-subscription';
 import { config } from '../../common/configuration';
 import { DocumentManipulator } from '../../common/document-manipulator';
@@ -22,7 +22,7 @@ export type RendererDeps = {
 
 export function renderer(
     deps: RendererDeps = rendererDependencies): void {
-    const { dom, render, initializeFabricIcons, storesHub, storeActionCreator } = deps;
+    const { dom, render, initializeFabricIcons } = deps;
     const iconPath = '../' + config.getOption('icon16');
     const documentElementSetter = new DocumentManipulator(dom);
     documentElementSetter.setShortcutIcon(iconPath);
@@ -32,11 +32,5 @@ export function renderer(
 
     const insightsRoot = dom.querySelector('#insights-root');
 
-    render(
-        <>
-            <ControlledTheme deps={deps} />
-            <Router deps={deps} />
-        </>,
-        insightsRoot,
-    );
+    render(<><Theme deps={deps} /><Router deps={deps} /></>, insightsRoot);
 }

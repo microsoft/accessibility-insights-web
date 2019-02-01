@@ -5,13 +5,11 @@ import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
 
 import { IAssessmentsProvider } from '../assessments/types/iassessments-provider';
-import { withStoreSubscription, StoreSubscriberDeps } from '../common/components/with-store-subscription';
+import { StoreSubscriberDeps, withStoreSubscription } from '../common/components/with-store-subscription';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
-import { IStoreActionMessageCreator } from '../common/message-creators/istore-action-message-creator';
 import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
-import { IClientStoresHub } from '../common/stores/iclient-stores-hub';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
 import { IDetailsViewData } from '../common/types/store-data/idetails-view-data';
@@ -109,7 +107,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
         return this.renderContent();
     }
 
-    private isTargetPageClosed() {
+    private isTargetPageClosed(): boolean {
         return !this.hasStores() || (this.props.deps.storesHub.hasStoreData() && this.props.storeState.tabStoreData.isClosed);
     }
 

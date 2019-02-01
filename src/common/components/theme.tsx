@@ -1,38 +1,24 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
+
+import { NamedSFC } from '../react/named-sfc';
+import { UserConfigurationStoreData } from '../types/store-data/user-configuration-store';
+import { withStoreSubscription, WithStoreSubscriptionProps } from './with-store-subscription';
+
 // tslint:disable-next-line:no-require-imports
 import BodyClassName = require('react-body-classname');
 
-import { UserConfigurationStoreData } from '../types/store-data/user-configuration-store';
-import { IBaseStore } from '../istore';
-
-export interface ThemeState {
-    isHighContrastEnabled: boolean;
+export interface ThemeSwitcherState {
+    userConfigurationStoreData: UserConfigurationStoreData;
 }
 
-export interface ThemeProps {
-    userConfigurationStore: IBaseStore<UserConfigurationStoreData>;
-}
+export type ThemeSwitcherProps = WithStoreSubscriptionProps<ThemeSwitcherState>;
 
-export class Theme extends React.Component<ThemeProps, ThemeState> {
-    constructor(props: any) {
-        super(props);
-        const storeState = this.props.userConfigurationStore.getState();
-        this.state = { isHighContrastEnabled: storeState && storeState.enableTelemetry };
-    }
+export const ControlledBodyClassName = NamedSFC<ThemeSwitcherProps>('ThemeSwitcher', props => {
+    const state = props.storeState.userConfigurationStoreData;
+    const className = `theme-switcher${state && state.enableHighContrast ? ' high-contrast-theme' : ''}`;
+    return <BodyClassName className={className} />;
+});
 
-    public componentDidMount(): void {
-        this.props.userConfigurationStore.addChangedListener(this.updateState);
-    }
-
-    public updateState = () => {
-        const storeState = this.props.userConfigurationStore.getState();
-        this.setState({ isHighContrastEnabled: storeState && storeState.enableHighContrast });
-    };
-
-    public render(): JSX.Element {
-        const className = `theme-switcher${this.state.isHighContrastEnabled ? ' high-contrast-theme' : ''}`;
-        return <BodyClassName className={className} />;
-    }
-}
+export const Theme = withStoreSubscription<ThemeSwitcherProps, ThemeSwitcherState>(ControlledBodyClassName);
