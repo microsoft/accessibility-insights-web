@@ -40,8 +40,6 @@ export const rendererDependencies: RendererDeps = {
     initializeFabricIcons,
     contentProvider: contentPages,
     contentActionMessageCreator,
-    chromeAdapter,
-    tabId,
     storesHub,
     storeActionCreator,
 };

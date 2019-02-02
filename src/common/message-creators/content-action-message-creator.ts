@@ -90,9 +90,4 @@ export class ContentActionMessageCreator extends BaseActionMessageCreator {
             payload,
         });
     }
-
-    public getUserConfig(): void {
-        const type = Messages.UserConfig.GetCurrentState;
-        this.dispatchType(type);
-    }
 }

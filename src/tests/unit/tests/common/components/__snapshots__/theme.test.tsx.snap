@@ -1,25 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Theme constructor 1`] = `
-<SideEffect(BodyClassName)
-  className="theme-switcher high-contrast-theme"
-/>
-`;
-
-exports[`Theme render 1`] = `
+exports[`ControlledBodyClassName is high contrast mode enabled: false 1`] = `
 <SideEffect(BodyClassName)
   className="theme-switcher"
 />
 `;
 
-exports[`Theme theme change: initial theme 1`] = `
+exports[`ControlledBodyClassName is high contrast mode enabled: true 1`] = `
 <SideEffect(BodyClassName)
   className="theme-switcher"
-/>
-`;
-
-exports[`Theme theme change: new theme 1`] = `
-<SideEffect(BodyClassName)
-  className="theme-switcher high-contrast-theme"
 />
 `;

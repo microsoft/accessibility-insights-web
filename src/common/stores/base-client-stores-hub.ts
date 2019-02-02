@@ -14,11 +14,6 @@ export class BaseClientStoresHub<T> implements IClientStoresHub<T> {
         this.stores = stores;
     }
 
-    public getStore(storeId: string): IBaseStore<any> {
-        const store = this.stores.find(cur => cur.getId() === storeId);
-        return store;
-    }
-
     public addChangedListenerToAllStores(listener: () => void): void {
         if (!this.stores) {
             return;

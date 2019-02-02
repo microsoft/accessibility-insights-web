@@ -63,8 +63,8 @@ export interface PopupViewControllerState {
 
 export class PopupView extends React.Component<PopupViewProps> {
     private handler: PopupViewControllerHandler;
-    private _openTogglesView: () => void;
-    private _openAdhocToolsPanel: () => void;
+    private openTogglesView: () => void;
+    private openAdhocToolsPanel: () => void;
     private versionNumber: string;
     private isInitialRender: boolean = true;
 
@@ -72,10 +72,10 @@ export class PopupView extends React.Component<PopupViewProps> {
         super(props);
         this.handler = props.popupHandlers.popupViewControllerHandler;
         this.versionNumber = props.browserAdapter.getManifest().version;
-        this._openTogglesView = () => {
+        this.openTogglesView = () => {
             this.handler.openLaunchPad(this);
         };
-        this._openAdhocToolsPanel = () => {
+        this.openAdhocToolsPanel = () => {
             this.handler.openAdhocToolsPanel(this);
         };
     }
@@ -128,11 +128,11 @@ export class PopupView extends React.Component<PopupViewProps> {
                     clickhandler={this.props.popupHandlers.launchPanelHeaderClickHandler}
                     supportLinkHandler={this.props.popupHandlers.supportLinkHandler}
                     popupWindow={this.props.popupWindow}
-                    openAdhocToolsPanel={this._openAdhocToolsPanel}
+                    openAdhocToolsPanel={this.openAdhocToolsPanel}
                     featureFlags={this.props.storeState.featureFlagStoreData}
                 />
                 <AdHocToolsPanel
-                    backLinkHandler={this._openTogglesView}
+                    backLinkHandler={this.openTogglesView}
                     diagnosticViewToggleFactory={this.props.diagnosticViewToggleFactory}
                 />
             </div>
@@ -173,7 +173,7 @@ export class PopupView extends React.Component<PopupViewProps> {
                     clickhandler={this.props.popupHandlers.launchPanelHeaderClickHandler}
                     supportLinkHandler={this.props.popupHandlers.supportLinkHandler}
                     popupWindow={this.props.popupWindow}
-                    openAdhocToolsPanel={this._openAdhocToolsPanel}
+                    openAdhocToolsPanel={this.openAdhocToolsPanel}
                     featureFlags={this.props.storeState.featureFlagStoreData}
                 />
                 <LaunchPad deps={this.props.deps} productName={this.props.title} rowConfigs={rowConfigs} version={this.versionNumber} />

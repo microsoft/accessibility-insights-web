@@ -144,9 +144,6 @@ export class PopupInitializer {
         };
 
         const visualizationTypes = EnumHelper.getNumericValues<VisualizationType>(VisualizationType);
-
-
-
         const storesHub = new BaseClientStoresHub<PopupViewControllerState>([
             visualizationStore,
             launchPanelStateStore,

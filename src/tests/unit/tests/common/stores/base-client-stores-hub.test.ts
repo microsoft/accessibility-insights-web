@@ -42,7 +42,7 @@ describe('BaseClientStoresHubTest', () => {
     });
 
     test('removeChangedListenerFromAllStores', () => {
-        const listenerMock = Mock.ofInstance(() => {}, MockBehavior.Strict);
+        const listenerMock = Mock.ofInstance(() => { }, MockBehavior.Strict);
         setupRemoveChangedListeners(1);
         const testObject = createDefaultClientStoreHub();
 
@@ -52,7 +52,7 @@ describe('BaseClientStoresHubTest', () => {
     });
 
     test('removeChangedListenerFromAllStores (no stores)', () => {
-        const listenerMock = Mock.ofInstance(() => {}, MockBehavior.Strict);
+        const listenerMock = Mock.ofInstance(() => { }, MockBehavior.Strict);
         setupRemoveChangedListeners(0);
         const testObject = createDefaultClientStoreHub();
         testObject.stores = null;
@@ -101,26 +101,6 @@ describe('BaseClientStoresHubTest', () => {
         expect(testObject.hasStoreData()).toBe(false);
     });
 
-    test('getStore', () => {
-        const testObject = createDefaultClientStoreHub();
-        const store1Data = { data: 'store1' };
-        store1Mock.setupGetId('store1Mock');
-        store2Mock.setupGetId('store2Mock');
-        store3Mock.setupGetId('store3Mock');
-        store1Mock.setupGetState(store1Data);
-        store2Mock.setupGetState({});
-        store3Mock.setupGetState({});
-        expect(testObject.getStore('store1Mock').getState()).toMatchObject(store1Data);
-    });
-
-    test('getStore store not found', () => {
-        const testObject = createDefaultClientStoreHub();
-        store1Mock.setupGetId('store1Mock');
-        store2Mock.setupGetId('store2Mock');
-        store3Mock.setupGetId('store3Mock');
-        expect(testObject.getStore('storeXMock')).toBeUndefined();
-    });
-
     test('getAllStoreData: return null if not all store is ready', () => {
         const testObject = createDefaultClientStoreHub();
         testObject.stores = [store1Mock.getObject(), null];
@@ -147,7 +127,7 @@ describe('BaseClientStoresHubTest', () => {
     });
 
     function createListenerMock(times: Times): IMock<() => void> {
-        const listenerMock = Mock.ofInstance(() => {}, MockBehavior.Strict);
+        const listenerMock = Mock.ofInstance(() => { }, MockBehavior.Strict);
         listenerMock.setup(l => l()).verifiable(times);
 
         return listenerMock;
@@ -221,4 +201,4 @@ describe('BaseClientStoresHubTest', () => {
     }
 });
 
-interface TestStoreData {}
+interface TestStoreData { }

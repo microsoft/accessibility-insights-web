@@ -29,8 +29,9 @@ export function withStoreSubscription<P extends WithStoreSubscriptionProps<S>, S
                 return;
             }
 
-            this.props.deps.storesHub.addChangedListenerToAllStores(this.onStoreChange);
-            this.props.deps.storeActionCreator.getAllStates();
+            const { storesHub, storeActionCreator } = this.props.deps;
+            storesHub.addChangedListenerToAllStores(this.onStoreChange);
+            storeActionCreator.getAllStates();
         }
 
         public componentWillUnmount(): void {
@@ -46,7 +47,8 @@ export function withStoreSubscription<P extends WithStoreSubscriptionProps<S>, S
         };
 
         public hasStores = () => {
-            return this.props.deps.storesHub && this.props.deps.storesHub.hasStores();
+            const { storesHub } = this.props.deps;
+            return storesHub && storesHub.hasStores();
         };
 
         public render(): JSX.Element {

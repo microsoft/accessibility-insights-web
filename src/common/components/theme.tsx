@@ -9,16 +9,16 @@ import { withStoreSubscription, WithStoreSubscriptionProps } from './with-store-
 // tslint:disable-next-line:no-require-imports
 import BodyClassName = require('react-body-classname');
 
-export interface ThemeSwitcherState {
+export interface ControlledBodyClassNameState {
     userConfigurationStoreData: UserConfigurationStoreData;
 }
 
-export type ThemeSwitcherProps = WithStoreSubscriptionProps<ThemeSwitcherState>;
+export type ControlledBodyClassNameProps = WithStoreSubscriptionProps<ControlledBodyClassNameState>;
 
-export const ControlledBodyClassName = NamedSFC<ThemeSwitcherProps>('ThemeSwitcher', props => {
+export const ControlledBodyClassName = NamedSFC<ControlledBodyClassNameProps>('ThemeSwitcher', props => {
     const state = props.storeState.userConfigurationStoreData;
     const className = `theme-switcher${state && state.enableHighContrast ? ' high-contrast-theme' : ''}`;
     return <BodyClassName className={className} />;
 });
 
-export const Theme = withStoreSubscription<ThemeSwitcherProps, ThemeSwitcherState>(ControlledBodyClassName);
+export const Theme = withStoreSubscription<ControlledBodyClassNameProps, ControlledBodyClassNameState>(ControlledBodyClassName);
