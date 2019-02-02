@@ -3,7 +3,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { Theme } from '../../../../../common/components/theme';
 import { configMutator } from '../../../../../common/configuration';
 import { renderer, RendererDeps } from '../../../../../views/insights/renderer';
 import { Router } from '../../../../../views/insights/router';
@@ -35,12 +34,6 @@ describe('insights renderer', () => {
     it('renders Router', () => {
         renderer(deps);
         const root = document.body.querySelector('#insights-root');
-        expect(deps.render).toHaveBeenCalledWith(
-            <>
-                <Theme deps={deps} />
-                <Router deps={deps} />
-            </>,
-            root,
-        );
+        expect(deps.render).toHaveBeenCalledWith(<Router deps={deps} />, root);
     });
 });
