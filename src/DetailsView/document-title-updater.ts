@@ -22,7 +22,7 @@ export class DocumentTitleUpdater {
         private readonly getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration,
         private readonly visualizationConfigurationFactory: VisualizationConfigurationFactory,
         private readonly doc: Document,
-    ) { }
+    ) {}
 
     public initialize() {
         this.tabStore.addChangedListener(this.onStoreChange);

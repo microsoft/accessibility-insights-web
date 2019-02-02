@@ -46,7 +46,7 @@ export class DetailsViewContainerPropsBuilder {
     private assessmentProvider: IAssessmentsProvider;
     private configFactory: VisualizationConfigurationFactory;
     private storesHub: BaseClientStoresHub<any>;
-    constructor(private deps: DetailsViewContainerDeps) { }
+    constructor(private deps: DetailsViewContainerDeps) {}
 
     public setDetailsViewStoreActionMessageCreator(creator: IStoreActionMessageCreator) {
         this.storeActionCreator = creator;

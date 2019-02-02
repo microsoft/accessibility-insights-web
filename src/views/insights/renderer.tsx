@@ -14,8 +14,8 @@ export type RendererDeps = {
     dom: Node & NodeSelector;
     render: ReactDOM.Renderer;
     initializeFabricIcons: () => void;
-} & RouterDeps & StoreSubscriberDeps<ControlledBodyClassNameState>;
-
+} & RouterDeps &
+    StoreSubscriberDeps<ControlledBodyClassNameState>;
 
 export function renderer(deps: RendererDeps = rendererDependencies): void {
     const { dom, render, initializeFabricIcons } = deps;
@@ -26,5 +26,11 @@ export function renderer(deps: RendererDeps = rendererDependencies): void {
     initializeFabricIcons();
 
     const insightsRoot = dom.querySelector('#insights-root');
-    render(<><Theme deps={deps} /><Router deps={deps} /></>, insightsRoot);
+    render(
+        <>
+            <Theme deps={deps} />
+            <Router deps={deps} />
+        </>,
+        insightsRoot,
+    );
 }

@@ -42,7 +42,7 @@ describe('BaseClientStoresHubTest', () => {
     });
 
     test('removeChangedListenerFromAllStores', () => {
-        const listenerMock = Mock.ofInstance(() => { }, MockBehavior.Strict);
+        const listenerMock = Mock.ofInstance(() => {}, MockBehavior.Strict);
         setupRemoveChangedListeners(1);
         const testObject = createDefaultClientStoreHub();
 
@@ -52,7 +52,7 @@ describe('BaseClientStoresHubTest', () => {
     });
 
     test('removeChangedListenerFromAllStores (no stores)', () => {
-        const listenerMock = Mock.ofInstance(() => { }, MockBehavior.Strict);
+        const listenerMock = Mock.ofInstance(() => {}, MockBehavior.Strict);
         setupRemoveChangedListeners(0);
         const testObject = createDefaultClientStoreHub();
         testObject.stores = null;
@@ -127,7 +127,7 @@ describe('BaseClientStoresHubTest', () => {
     });
 
     function createListenerMock(times: Times): IMock<() => void> {
-        const listenerMock = Mock.ofInstance(() => { }, MockBehavior.Strict);
+        const listenerMock = Mock.ofInstance(() => {}, MockBehavior.Strict);
         listenerMock.setup(l => l()).verifiable(times);
 
         return listenerMock;
@@ -201,4 +201,4 @@ describe('BaseClientStoresHubTest', () => {
     }
 });
 
-interface TestStoreData { }
+interface TestStoreData {}

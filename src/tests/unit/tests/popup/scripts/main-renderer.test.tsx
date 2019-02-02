@@ -68,7 +68,7 @@ describe('MainRenderer', () => {
                     ),
                     container,
                 ),
-        )
+            )
             .verifiable();
 
         const renderer = new MainRenderer(
@@ -78,7 +78,6 @@ describe('MainRenderer', () => {
                 popupViewControllerHandler: gettingStartedDialogHandlerMock.object,
                 launchPanelHeaderClickHandler: feedbackMenuClickhandlerMock.object,
                 supportLinkHandler: supportLinkHandlerMock.object,
-
             },
             renderMock.object,
             dom,

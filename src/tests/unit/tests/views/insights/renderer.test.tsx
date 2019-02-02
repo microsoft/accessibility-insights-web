@@ -35,6 +35,12 @@ describe('insights renderer', () => {
     it('renders Router', () => {
         renderer(deps);
         const root = document.body.querySelector('#insights-root');
-        expect(deps.render).toHaveBeenCalledWith(<><Theme deps={deps} /><Router deps={deps} /></>, root);
+        expect(deps.render).toHaveBeenCalledWith(
+            <>
+                <Theme deps={deps} />
+                <Router deps={deps} />
+            </>,
+            root,
+        );
     });
 });

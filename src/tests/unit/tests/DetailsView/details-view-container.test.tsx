@@ -172,7 +172,7 @@ describe('DetailsViewContainer', () => {
                             visualizationStoreData: state.visualizationStoreData,
                         }),
                     ),
-            )
+                )
                 .returns(() => viewType);
 
             testObject.render();
@@ -188,7 +188,7 @@ describe('DetailsViewContainer', () => {
         it('shows target tab for nonsupported type', () => {
             const unsupportedType = null;
 
-            const toggleClickHandlerMock = Mock.ofInstance(event => { });
+            const toggleClickHandlerMock = Mock.ofInstance(event => {});
             const clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory);
             const storeActionCreator = Mock.ofType(StoreActionMessageCreator, MockBehavior.Strict);
 
@@ -397,7 +397,7 @@ describe('DetailsViewContainer', () => {
                         visualizationStoreData: state.visualizationStoreData,
                     }),
                 ),
-        )
+            )
             .returns(() => viewType);
 
         const expected: JSX.Element = (

@@ -27,7 +27,7 @@ export class MainRenderer {
         private readonly launchPadRowConfigurationFactory: LaunchPadRowConfigurationFactory,
         private readonly diagnosticViewToggleFactory: DiagnosticViewToggleFactory,
         private readonly dropdownClickHandler: DropdownClickHandler,
-    ) { }
+    ) {}
 
     public render(): void {
         const container = this.dom.querySelector('#popup-container');

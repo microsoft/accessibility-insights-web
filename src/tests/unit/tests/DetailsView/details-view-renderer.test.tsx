@@ -17,9 +17,7 @@ import { IssuesTableHandler } from '../../../../DetailsView/components/issues-ta
 import { DetailsView, DetailsViewContainerDeps } from '../../../../DetailsView/details-view-container';
 import { DetailsViewRenderer } from '../../../../DetailsView/details-view-renderer';
 import { AssessmentInstanceTableHandler } from '../../../../DetailsView/handlers/assessment-instance-table-handler';
-import {
-    DetailsViewToggleClickHandlerFactory,
-} from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
+import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from '../../../../DetailsView/handlers/preview-feature-flags-handler';
 import { ReportGenerator } from '../../../../DetailsView/reports/report-generator';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
@@ -82,7 +80,7 @@ describe('DetailsViewRendererTest', () => {
                     ),
                     detailsViewContainer,
                 ),
-        )
+            )
             .verifiable();
 
         const renderer = new DetailsViewRenderer(
