@@ -5,9 +5,15 @@ import * as ReactDOM from 'react-dom';
 import { initializeFabricIcons } from '../../../../../common/fabric-icons';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
 import { rendererDependencies } from '../../../../../views/insights/dependencies';
+import { RendererDeps } from './../../../../../views/insights/renderer';
 
 describe('rendererDependencies', () => {
-    const subject = rendererDependencies;
+    let subject: RendererDeps;
+    beforeAll(() => {
+        mockChromeObject();
+        subject = rendererDependencies();
+    });
+
     it('includes dom', () => {
         expect(subject.dom).toBe(document);
     });
@@ -35,4 +41,14 @@ describe('rendererDependencies', () => {
     it('includes storeActionCreator', () => {
         expect(subject.storeActionCreator).toBeDefined();
     });
+
+    function mockChromeObject(): void {
+        (global as any).chrome = {
+            runtime: {
+                onMessage: {
+                    addListener: () => { },
+                },
+            },
+        };
+    }
 });

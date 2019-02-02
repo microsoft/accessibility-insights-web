@@ -16,30 +16,32 @@ import { UserConfigurationStoreData } from '../../common/types/store-data/user-c
 import { contentPages } from '../../content';
 import { RendererDeps } from './renderer';
 
-const chromeAdapter = new ChromeAdapter();
-const url = new URL(window.location.href);
-const tabId = parseInt(url.searchParams.get('tabId'), 10);
+export const rendererDependencies: () => RendererDeps = () => {
+    const chromeAdapter = new ChromeAdapter();
+    const url = new URL(window.location.href);
+    const tabId = parseInt(url.searchParams.get('tabId'), 10);
 
-const telemetryFactory = new TelemetryDataFactory();
+    const telemetryFactory = new TelemetryDataFactory();
 
-const contentActionMessageCreator = new ContentActionMessageCreator(
-    chromeAdapter.sendMessageToFrames,
-    tabId,
-    telemetryFactory,
-    TelemetryEventSource.ContentPage,
-);
+    const contentActionMessageCreator = new ContentActionMessageCreator(
+        chromeAdapter.sendMessageToFrames,
+        tabId,
+        telemetryFactory,
+        TelemetryEventSource.ContentPage,
+    );
 
-const store = new StoreProxy<UserConfigurationStoreData>(StoreNames[StoreNames.UserConfigurationStore], chromeAdapter);
-const storesHub = new BaseClientStoresHub<any>([store]);
-const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(chromeAdapter.sendMessageToFrames, tabId);
-const storeActionCreator = storeActionMessageCreatorFactory.forDetailsView();
+    const store = new StoreProxy<UserConfigurationStoreData>(StoreNames[StoreNames.UserConfigurationStore], chromeAdapter);
+    const storesHub = new BaseClientStoresHub<any>([store]);
+    const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(chromeAdapter.sendMessageToFrames, tabId);
+    const storeActionCreator = storeActionMessageCreatorFactory.forDetailsView();
 
-export const rendererDependencies: RendererDeps = {
-    dom: document,
-    render: ReactDOM.render,
-    initializeFabricIcons,
-    contentProvider: contentPages,
-    contentActionMessageCreator,
-    storesHub,
-    storeActionCreator,
+    return {
+        dom: document,
+        render: ReactDOM.render,
+        initializeFabricIcons,
+        contentProvider: contentPages,
+        contentActionMessageCreator,
+        storesHub,
+        storeActionCreator,
+    };
 };

@@ -17,7 +17,7 @@ export type RendererDeps = {
 } & RouterDeps &
     StoreSubscriberDeps<ControlledBodyClassNameState>;
 
-export function renderer(deps: RendererDeps = rendererDependencies): void {
+export function renderer(deps: RendererDeps): void {
     const { dom, render, initializeFabricIcons } = deps;
     const iconPath = '../' + config.getOption('icon16');
     const documentElementSetter = new DocumentManipulator(dom);
