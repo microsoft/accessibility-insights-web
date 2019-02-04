@@ -33,7 +33,7 @@ export const rendererDependencies: () => RendererDeps = () => {
     const store = new StoreProxy<UserConfigurationStoreData>(StoreNames[StoreNames.UserConfigurationStore], chromeAdapter);
     const storesHub = new BaseClientStoresHub<any>([store]);
     const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(chromeAdapter.sendMessageToFrames, tabId);
-    const storeActionCreator = storeActionMessageCreatorFactory.forContent();
+    const storeActionMessageCreator = storeActionMessageCreatorFactory.forContent();
 
     return {
         dom: document,
@@ -42,6 +42,6 @@ export const rendererDependencies: () => RendererDeps = () => {
         contentProvider: contentPages,
         contentActionMessageCreator,
         storesHub,
-        storeActionCreator,
+        storeActionMessageCreator,
     };
 };

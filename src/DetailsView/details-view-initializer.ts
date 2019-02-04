@@ -164,7 +164,7 @@ if (isNaN(tabId) === false) {
                 );
 
                 const userConfigMessageCreator = new UserConfigMessageCreator(chromeAdapter.sendMessageToFrames, tab.id);
-                const storeActionCreator = storeActionMessageCreatorFactory.forDetailsView();
+                const storeActionMessageCreator = storeActionMessageCreatorFactory.forDetailsView();
 
                 const visualizationActionCreator = new VisualizationActionMessageCreator(chromeAdapter.sendMessageToFrames, tab.id);
                 const issuesSelection = new IssuesSelectionFactory().createSelection(actionMessageCreator);
@@ -250,7 +250,7 @@ if (isNaN(tabId) === false) {
                     assessmentsProviderWithFeaturesEnabled,
                     outcomeTypeSemanticsFromTestStatus,
                     getInnerTextFromJsxElement,
-                    storeActionCreator,
+                    storeActionMessageCreator,
                     storesHub,
                 };
 

@@ -84,7 +84,7 @@ export class PopupInitializer {
             this.targetTabInfo.tab.id,
         );
 
-        const storeActionCreator = storeActionMessageCreatorFactory.forPopup();
+        const storeActionMessageCreator = storeActionMessageCreatorFactory.forPopup();
 
         const contentActionMessageCreator = new ContentActionMessageCreator(
             this.chromeAdapter.sendMessageToFrames,
@@ -160,7 +160,7 @@ export class PopupInitializer {
             dropdownClickHandler,
             userConfigMessageCreator,
             storesHub,
-            storeActionCreator,
+            storeActionMessageCreator,
         };
 
         const diagnosticViewToggleFactory = new DiagnosticViewToggleFactory(

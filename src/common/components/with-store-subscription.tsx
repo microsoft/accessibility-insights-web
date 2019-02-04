@@ -12,7 +12,7 @@ export type WithStoreSubscriptionProps<T> = {
 
 export type StoreSubscriberDeps<T> = {
     storesHub: IClientStoresHub<T>;
-    storeActionCreator: IStoreActionMessageCreator;
+    storeActionMessageCreator: IStoreActionMessageCreator;
 };
 
 export function withStoreSubscription<P extends WithStoreSubscriptionProps<S>, S>(WrappedComponent: React.ComponentType<P>) {
@@ -29,9 +29,9 @@ export function withStoreSubscription<P extends WithStoreSubscriptionProps<S>, S
                 return;
             }
 
-            const { storesHub, storeActionCreator } = this.props.deps;
+            const { storesHub, storeActionMessageCreator } = this.props.deps;
             storesHub.addChangedListenerToAllStores(this.onStoreChange);
-            storeActionCreator.getAllStates();
+            storeActionMessageCreator.getAllStates();
         }
 
         public componentWillUnmount(): void {

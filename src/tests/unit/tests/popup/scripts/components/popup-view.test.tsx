@@ -125,7 +125,7 @@ describe('PopupView', () => {
                         IsSameObject(handlerMock.object),
                         false,
                     ),
-                )
+            )
                 .returns(() => rowConfigStub as any)
                 .verifiable();
 
@@ -160,7 +160,7 @@ describe('PopupView', () => {
                 .with('storeState', storeState)
                 .build();
             props.deps.storesHub = storesHubMock.object;
-            props.deps.storeActionCreator = popupViewStoreActionMessageCreatorMock.object;
+            props.deps.storeActionMessageCreator = popupViewStoreActionMessageCreatorMock.object;
 
             actionMessageCreatorStrictMock.setup(amc => amc.openTutorial(It.isAny()));
 
@@ -200,7 +200,7 @@ describe('PopupView', () => {
                 .with('storeState', storeState)
                 .build();
             props.deps.storesHub = storesHubMock.object;
-            props.deps.storeActionCreator = popupViewStoreActionMessageCreatorMock.object;
+            props.deps.storeActionMessageCreator = popupViewStoreActionMessageCreatorMock.object;
 
             const rendered = shallow(<PopupView {...props} />);
 
@@ -234,7 +234,7 @@ describe('PopupView', () => {
                 .with('storeState', storeState)
                 .build();
             props.deps.storesHub = storesHubMock.object;
-            props.deps.storeActionCreator = popupViewStoreActionMessageCreatorMock.object;
+            props.deps.storeActionMessageCreator = popupViewStoreActionMessageCreatorMock.object;
             const rendered = shallow(<PopupView {...props} />);
 
             expect(rendered.debug()).toMatchSnapshot();

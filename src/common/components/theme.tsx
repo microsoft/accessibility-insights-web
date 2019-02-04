@@ -15,7 +15,7 @@ export interface ControlledBodyClassNameState {
 
 export type ControlledBodyClassNameProps = WithStoreSubscriptionProps<ControlledBodyClassNameState>;
 
-export const ControlledBodyClassName = NamedSFC<ControlledBodyClassNameProps>('ThemeSwitcher', props => {
+export const ControlledBodyClassName = NamedSFC<ControlledBodyClassNameProps>('Theme', props => {
     const state = props.storeState.userConfigurationStoreData;
     const className = `theme-switcher${state && state.enableHighContrast ? ' high-contrast-theme' : ''}`;
     return <BodyClassName className={className} />;

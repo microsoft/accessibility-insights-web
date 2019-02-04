@@ -20,7 +20,7 @@ describe('withStoreSubscription', () => {
     test('constructor: storesHub is null', () => {
         const props: testProps = {
             deps: {
-                storeActionCreator: storeActionCreatorMock.object,
+                storeActionMessageCreator: storeActionCreatorMock.object,
                 storesHub: null,
             },
         };
@@ -39,7 +39,7 @@ describe('withStoreSubscription', () => {
 
         const props: testProps = {
             deps: {
-                storeActionCreator: storeActionCreatorMock.object,
+                storeActionMessageCreator: storeActionCreatorMock.object,
                 storesHub: storesHubStub,
             },
         };
@@ -52,7 +52,7 @@ describe('withStoreSubscription', () => {
         storeActionCreatorMock.setup(d => d.getAllStates()).verifiable(Times.never());
         const props: testProps = {
             deps: {
-                storeActionCreator: storeActionCreatorMock.object,
+                storeActionMessageCreator: storeActionCreatorMock.object,
                 storesHub: null,
             },
         };
@@ -74,7 +74,7 @@ describe('withStoreSubscription', () => {
         storeActionCreatorMock.setup(d => d.getAllStates()).verifiable(Times.never());
         const props: testProps = {
             deps: {
-                storeActionCreator: storeActionCreatorMock.object,
+                storeActionMessageCreator: storeActionCreatorMock.object,
                 storesHub: storesHubStub,
             },
         };
@@ -98,7 +98,7 @@ describe('withStoreSubscription', () => {
         storeActionCreatorMock.setup(d => d.getAllStates()).verifiable(Times.once());
         const props: testProps = {
             deps: {
-                storeActionCreator: storeActionCreatorMock.object,
+                storeActionMessageCreator: storeActionCreatorMock.object,
                 storesHub: storesHubStub,
             },
         };
@@ -118,7 +118,7 @@ describe('withStoreSubscription', () => {
         storesHubStub.removeChangedListenerFromAllStores = jest.fn();
         const props: testProps = {
             deps: {
-                storeActionCreator: storeActionCreatorMock.object,
+                storeActionMessageCreator: storeActionCreatorMock.object,
                 storesHub: null,
             },
         };
@@ -139,7 +139,7 @@ describe('withStoreSubscription', () => {
         storesHubStub.removeChangedListenerFromAllStores = jest.fn();
         const props: testProps = {
             deps: {
-                storeActionCreator: storeActionCreatorMock.object,
+                storeActionMessageCreator: storeActionCreatorMock.object,
                 storesHub: storesHubStub,
             },
         };
@@ -168,7 +168,7 @@ describe('withStoreSubscription', () => {
         storeActionCreatorMock.setup(d => d.getAllStates()).verifiable(Times.once());
         const props: testProps = {
             deps: {
-                storeActionCreator: storeActionCreatorMock.object,
+                storeActionMessageCreator: storeActionCreatorMock.object,
                 storesHub: storesHubStub,
             },
         };
@@ -200,7 +200,7 @@ describe('withStoreSubscription', () => {
         storesHubStub.hasStores = hasStoresMock;
         const props: WithStoreSubscriptionProps<any> = {
             deps: {
-                storeActionCreator: storeActionCreatorMock.object,
+                storeActionMessageCreator: storeActionCreatorMock.object,
                 storesHub: storesHubStub,
             },
         };

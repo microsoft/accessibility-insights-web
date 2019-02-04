@@ -46,7 +46,7 @@ export class DetailsViewContainerPropsBuilder {
     private assessmentProvider: IAssessmentsProvider;
     private configFactory: VisualizationConfigurationFactory;
     private storesHub: BaseClientStoresHub<any>;
-    constructor(private deps: DetailsViewContainerDeps) {}
+    constructor(private deps: DetailsViewContainerDeps) { }
 
     public setDetailsViewStoreActionMessageCreator(creator: IStoreActionMessageCreator) {
         this.storeActionCreator = creator;
@@ -141,7 +141,7 @@ export class DetailsViewContainerPropsBuilder {
 
         const storeState = this.storesHub ? this.storesHub.getAllStoreData() : null;
         this.deps.storesHub = storesHub;
-        this.deps.storeActionCreator = this.storeActionCreator;
+        this.deps.storeActionMessageCreator = this.storeActionCreator;
         return {
             deps: this.deps,
             document: this.document,

@@ -39,14 +39,14 @@ describe('rendererDependencies', () => {
     });
 
     it('includes storeActionCreator', () => {
-        expect(subject.storeActionCreator).toBeDefined();
+        expect(subject.storeActionMessageCreator).toBeDefined();
     });
 
     function mockChromeObject(): void {
         (global as any).chrome = {
             runtime: {
                 onMessage: {
-                    addListener: () => {},
+                    addListener: () => { },
                 },
             },
         };
