@@ -3,7 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { ControlledBodyClassName, ControlledBodyClassNameProps } from '../../../../../common/components/theme';
+import { ThemeInner, ControlledBodyClassNameProps } from '../../../../../common/components/theme';
 
 describe('ControlledBodyClassName', () => {
     let props: ControlledBodyClassNameProps;
@@ -19,7 +19,7 @@ describe('ControlledBodyClassName', () => {
     });
 
     test.each([true, false])('is high contrast mode enabled: %s', (enableHighContrast: boolean) => {
-        const wrapper = shallow(<ControlledBodyClassName {...props} />);
+        const wrapper = shallow(<ThemeInner {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 });

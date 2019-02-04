@@ -125,7 +125,7 @@ describe('PopupView', () => {
                         IsSameObject(handlerMock.object),
                         false,
                     ),
-            )
+                )
                 .returns(() => rowConfigStub as any)
                 .verifiable();
 

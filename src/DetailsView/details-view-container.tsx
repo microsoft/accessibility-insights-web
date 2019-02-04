@@ -5,7 +5,7 @@ import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
 
 import { IAssessmentsProvider } from '../assessments/types/iassessments-provider';
-import { StoreSubscriberDeps, withStoreSubscription } from '../common/components/with-store-subscription';
+import { WithStoreSubscriptionDeps, withStoreSubscription } from '../common/components/with-store-subscription';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
@@ -39,7 +39,7 @@ export type DetailsViewContainerDeps = {
     DetailsViewOverlayDeps &
     DetailsViewCommandBarDeps &
     HeaderDeps &
-    StoreSubscriberDeps<DetailsViewContainerState>;
+    WithStoreSubscriptionDeps<DetailsViewContainerState>;
 
 export interface DetailsViewContainerProps {
     deps: DetailsViewContainerDeps;

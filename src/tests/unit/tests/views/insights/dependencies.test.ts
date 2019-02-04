@@ -46,7 +46,7 @@ describe('rendererDependencies', () => {
         (global as any).chrome = {
             runtime: {
                 onMessage: {
-                    addListener: () => { },
+                    addListener: () => {},
                 },
             },
         };

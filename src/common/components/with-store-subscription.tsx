@@ -6,11 +6,11 @@ import { IStoreActionMessageCreator } from '../message-creators/istore-action-me
 import { IClientStoresHub } from '../stores/iclient-stores-hub';
 
 export type WithStoreSubscriptionProps<T> = {
-    deps: StoreSubscriberDeps<T>;
+    deps: WithStoreSubscriptionDeps<T>;
     storeState?: T;
 };
 
-export type StoreSubscriberDeps<T> = {
+export type WithStoreSubscriptionDeps<T> = {
     storesHub: IClientStoresHub<T>;
     storeActionMessageCreator: IStoreActionMessageCreator;
 };

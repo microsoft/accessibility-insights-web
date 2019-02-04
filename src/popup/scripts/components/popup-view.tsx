@@ -6,7 +6,7 @@ import * as React from 'react';
 
 import { BrowserAdapter } from '../../../background/browser-adapter';
 import { NewTabLink } from '../../../common/components/new-tab-link';
-import { withStoreSubscription, StoreSubscriberDeps } from '../../../common/components/with-store-subscription';
+import { withStoreSubscription, WithStoreSubscriptionDeps } from '../../../common/components/with-store-subscription';
 import { DisplayableStrings } from '../../../common/constants/displayable-strings';
 import { DropdownClickHandler } from '../../../common/dropdown-click-handler';
 import { FeatureFlags } from '../../../common/feature-flags';
@@ -46,7 +46,7 @@ export interface PopupViewProps {
 export type PopupViewControllerDeps = LaunchPadDeps &
     LaunchPanelHeaderDeps &
     TelemetryPermissionDialogDeps &
-    StoreSubscriberDeps<PopupViewControllerState>;
+    WithStoreSubscriptionDeps<PopupViewControllerState>;
 
 export enum LaunchPanelType {
     AdhocToolsPanel,

@@ -4,7 +4,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { ControlledBodyClassNameState, Theme } from '../../common/components/theme';
-import { StoreSubscriberDeps } from '../../common/components/with-store-subscription';
+import { WithStoreSubscriptionDeps } from '../../common/components/with-store-subscription';
 import { config } from '../../common/configuration';
 import { DocumentManipulator } from '../../common/document-manipulator';
 import { rendererDependencies } from './dependencies';
@@ -15,7 +15,7 @@ export type RendererDeps = {
     render: ReactDOM.Renderer;
     initializeFabricIcons: () => void;
 } & RouterDeps &
-    StoreSubscriberDeps<ControlledBodyClassNameState>;
+    WithStoreSubscriptionDeps<ControlledBodyClassNameState>;
 
 export function renderer(deps: RendererDeps): void {
     const { dom, render, initializeFabricIcons } = deps;

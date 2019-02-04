@@ -15,10 +15,10 @@ export interface ControlledBodyClassNameState {
 
 export type ControlledBodyClassNameProps = WithStoreSubscriptionProps<ControlledBodyClassNameState>;
 
-export const ControlledBodyClassName = NamedSFC<ControlledBodyClassNameProps>('Theme', props => {
+export const ThemeInner = NamedSFC<ControlledBodyClassNameProps>('ThemeInner', props => {
     const state = props.storeState.userConfigurationStoreData;
     const className = `theme-switcher${state && state.enableHighContrast ? ' high-contrast-theme' : ''}`;
     return <BodyClassName className={className} />;
 });
 
-export const Theme = withStoreSubscription<ControlledBodyClassNameProps, ControlledBodyClassNameState>(ControlledBodyClassName);
+export const Theme = withStoreSubscription<ControlledBodyClassNameProps, ControlledBodyClassNameState>(ThemeInner);
