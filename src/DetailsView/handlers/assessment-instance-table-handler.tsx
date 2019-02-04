@@ -60,13 +60,14 @@ export class AssessmentInstanceTableHandler {
     public createAssessmentInstanceTableItems(
         instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance>,
         assessmentNavState: IAssessmentNavState,
+        hasVisualHelper: boolean,
     ): IAssessmentInstanceRowData[] {
         const assessmentInstances = this.getInstanceKeys(instancesMap, assessmentNavState).map(key => {
             const instance = instancesMap[key];
             return {
                 key: key,
                 statusChoiceGroup: this.renderChoiceGroup(instance, key, assessmentNavState),
-                visualizationButton: this.renderSelectedButton(instance, key, assessmentNavState),
+                visualizationButton: hasVisualHelper ? this.renderSelectedButton(instance, key, assessmentNavState) : null,
                 instance: instance,
             } as IAssessmentInstanceRowData;
         });
@@ -76,6 +77,7 @@ export class AssessmentInstanceTableHandler {
     public getColumnConfigs(
         instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance>,
         assessmentNavState: IAssessmentNavState,
+        hasVisualHelper: boolean,
     ): IColumn[] {
         let allEnabled: boolean = true;
         const instanceKeys = this.getInstanceKeys(instancesMap, assessmentNavState);
@@ -88,7 +90,7 @@ export class AssessmentInstanceTableHandler {
             }
         }
 
-        return this.assessmentTableColumnConfigHandler.getColumnConfigs(assessmentNavState, allEnabled);
+        return this.assessmentTableColumnConfigHandler.getColumnConfigs(assessmentNavState, allEnabled, hasVisualHelper);
     }
 
     public createCapturedInstanceTableItems(

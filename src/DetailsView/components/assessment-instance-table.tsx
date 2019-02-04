@@ -3,7 +3,14 @@
 import { has } from 'lodash';
 import { autobind, IRenderFunction } from '@uifabric/utilities';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
-import { CheckboxVisibility, ConstrainMode, DetailsList, IObjectWithKey, IDetailsRowProps } from 'office-ui-fabric-react/lib/DetailsList';
+import {
+    CheckboxVisibility,
+    ConstrainMode,
+    DetailsList,
+    IObjectWithKey,
+    IDetailsRowProps,
+    IColumn,
+} from 'office-ui-fabric-react/lib/DetailsList';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
 
@@ -15,7 +22,6 @@ import {
 } from '../../common/types/store-data/iassessment-result-data';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
-import { IDetailsViewProps } from '../idetails-view-props';
 
 export interface IAssessmentInstanceTableProps {
     instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance>;
@@ -24,11 +30,12 @@ export interface IAssessmentInstanceTableProps {
     renderInstanceTableHeader: (table: AssessmentInstanceTable, items: IAssessmentInstanceRowData[]) => JSX.Element;
     getDefaultMessage: Function;
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
+    hasVisualHelper: boolean;
 }
 
 export interface IAssessmentInstanceRowData<P = {}> extends IObjectWithKey {
     statusChoiceGroup: JSX.Element;
-    visualizationButton: JSX.Element;
+    visualizationButton?: JSX.Element;
     instance: IGeneratedAssessmentInstance<P>;
 }
 
@@ -46,8 +53,14 @@ export class AssessmentInstanceTable extends React.Component<IAssessmentInstance
         const items: IAssessmentInstanceRowData[] = this.props.assessmentInstanceTableHandler.createAssessmentInstanceTableItems(
             this.props.instancesMap,
             this.props.assessmentNavState,
+            this.props.hasVisualHelper,
         );
-        const columns = this.props.assessmentInstanceTableHandler.getColumnConfigs(this.props.instancesMap, this.props.assessmentNavState);
+
+        const columns: IColumn[] = this.props.assessmentInstanceTableHandler.getColumnConfigs(
+            this.props.instancesMap,
+            this.props.assessmentNavState,
+            this.props.hasVisualHelper,
+        );
 
         const getDefaultMessage = this.props.getDefaultMessage(this.props.assessmentDefaultMessageGenerator);
         const defaultMessageComponent = getDefaultMessage(this.props.instancesMap, this.props.assessmentNavState.selectedTestStep);

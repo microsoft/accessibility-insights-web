@@ -55,12 +55,14 @@ export class AssessmentTableColumnConfigHandler {
         this.assessmentProvider = assessmentProvider;
     }
 
-    public getColumnConfigs(assessmentNavState: IAssessmentNavState, allEnabled: boolean): IColumn[] {
+    public getColumnConfigs(assessmentNavState: IAssessmentNavState, allEnabled: boolean, hasVisualHelper: boolean): IColumn[] {
         let allColumns: IColumn[] = [];
         const stepConfig = this.assessmentProvider.getStep(assessmentNavState.selectedTestType, assessmentNavState.selectedTestStep);
 
-        const masterCheckbox = this.getMasterCheckboxColumn(assessmentNavState, allEnabled);
-        allColumns.push(masterCheckbox);
+        if (hasVisualHelper) {
+            const masterCheckbox = this.getMasterCheckboxColumn(assessmentNavState, allEnabled);
+            allColumns.push(masterCheckbox);
+        }
 
         const customColumns = this.getCustomColumns(assessmentNavState);
         allColumns = allColumns.concat(customColumns);
