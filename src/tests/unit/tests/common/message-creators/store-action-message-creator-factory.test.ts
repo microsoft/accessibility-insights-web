@@ -11,7 +11,7 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
     const tabId: number = -1;
 
     beforeEach(() => {
-        postMessageMock = Mock.ofInstance(_message => {}, MockBehavior.Strict);
+        postMessageMock = Mock.ofInstance(_message => { }, MockBehavior.Strict);
     });
 
     test('forPopup', () => {
@@ -54,6 +54,14 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
         ];
 
         testWithExpectedMessages(messages, testObject => testObject.forInjected());
+    });
+
+    test('forContent', () => {
+        const messages: string[] = [
+            Messages.UserConfig.GetCurrentState,
+        ];
+
+        testWithExpectedMessages(messages, testObject => testObject.forContent());
     });
 
     function testWithExpectedMessages(
