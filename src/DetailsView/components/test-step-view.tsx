@@ -58,9 +58,6 @@ export class TestStepView extends React.Component<ITestStepViewProps> {
     }
 
     private renderTable(): JSX.Element {
-        if (this.props.isScanning) {
-            return <Spinner className="details-view-spinner" size={SpinnerSize.large} label={'Scanning'} />;
-        }
         if (this.props.testStep.isManual) {
             return (
                 <ManualTestStepView
@@ -72,6 +69,10 @@ export class TestStepView extends React.Component<ITestStepViewProps> {
                 />
             );
         } else {
+            if (this.props.isScanning) {
+                return <Spinner className="details-view-spinner" size={SpinnerSize.large} label={'Scanning'} />;
+            }
+
             return (
                 <React.Fragment>
                     <h3 className="test-step-instances-header">Instances</h3>
