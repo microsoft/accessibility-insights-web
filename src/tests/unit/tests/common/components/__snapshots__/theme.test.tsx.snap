@@ -8,6 +8,6 @@ exports[`ControlledBodyClassName is high contrast mode enabled: false 1`] = `
 
 exports[`ControlledBodyClassName is high contrast mode enabled: true 1`] = `
 <SideEffect(BodyClassName)
-  className="theme-switcher"
+  className="theme-switcher high-contrast-theme"
 />
 `;

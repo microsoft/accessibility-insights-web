@@ -19,6 +19,7 @@ describe('ControlledBodyClassName', () => {
     });
 
     test.each([true, false])('is high contrast mode enabled: %s', (enableHighContrast: boolean) => {
+        props.storeState.userConfigurationStoreData.enableHighContrast = enableHighContrast;
         const wrapper = shallow(<ThemeInner {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
