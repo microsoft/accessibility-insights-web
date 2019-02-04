@@ -92,7 +92,7 @@
         "classnames": "^2.2.6",
         "jquery": "^3.3.1",
         "lodash": "^4.17.11",
-        "office-ui-fabric-react": "6.130.0",
+        "office-ui-fabric-react": "6.133.0",
         "q": "1.0.1",
         "react": "^16.7.0",
         "react-body-classname": "^1.2.0",
