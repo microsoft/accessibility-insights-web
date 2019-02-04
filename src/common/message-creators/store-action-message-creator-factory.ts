@@ -41,9 +41,7 @@ export class StoreActionMessageCreatorFactory {
     }
 
     public forContent(): IStoreActionMessageCreator {
-        const getStateMessage: string[] = [
-            Messages.UserConfig.GetCurrentState,
-        ];
+        const getStateMessage: string[] = [Messages.UserConfig.GetCurrentState];
 
         return new StoreActionMessageCreator(getStateMessage, this.postMessage, this.tabId);
     }
