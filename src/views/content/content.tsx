@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { NamedSFC } from '../../common/react/named-sfc';
-import { ContentPageDeps, ContentProvider, ContentReference } from '../../views/content/content-page';
+import { ContentPageDeps, ContentProvider, ContentReference } from './content-page';
 import { Page } from '../page/page';
 
 export type ContentDeps = { contentProvider: ContentProvider } & ContentPageDeps;

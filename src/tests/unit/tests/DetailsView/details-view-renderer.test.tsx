@@ -5,6 +5,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
 
+import { Theme } from '../../../../common/components/theme';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { configMutator } from '../../../../common/configuration';
 import { DocumentManipulator } from '../../../../common/document-manipulator';
@@ -12,7 +13,6 @@ import { DropdownClickHandler } from '../../../../common/dropdown-click-handler'
 import { InspectActionMessageCreator } from '../../../../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../../../../common/message-creators/scoping-action-message-creator';
 import { StoreActionMessageCreator } from '../../../../common/message-creators/store-action-message-creator';
-import { IClientStoresHub } from '../../../../common/stores/iclient-stores-hub';
 import { IssuesTableHandler } from '../../../../DetailsView/components/issues-table-handler';
 import { DetailsView, DetailsViewContainerDeps } from '../../../../DetailsView/details-view-container';
 import { DetailsViewRenderer } from '../../../../DetailsView/details-view-renderer';
@@ -37,8 +37,6 @@ describe('DetailsViewRendererTest', () => {
         const selectionMock = Mock.ofType<ISelection>(Selection);
         const clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory);
         const visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
-
-        const storesHubStub = {} as IClientStoresHub<any>;
         const issuesTableHandlerMock = Mock.ofType(IssuesTableHandler);
         const previewFeatureFlagsHandlerMock = Mock.ofType(PreviewFeatureFlagsHandler);
         const scopingFlagsHandlerMock = Mock.ofType(PreviewFeatureFlagsHandler);
@@ -59,25 +57,26 @@ describe('DetailsViewRendererTest', () => {
             .setup(r =>
                 r(
                     It.isValue(
-                        <DetailsView
-                            deps={deps}
-                            scopingActionMessageCreator={scopingActionMessageCreatorStrictMock.object}
-                            inspectActionMessageCreator={inspectActionMessageCreatorStrictMock.object}
-                            storeActionCreator={detailsViewStoreActionCreatorStrictMock.object}
-                            document={dom as any}
-                            issuesSelection={selectionMock.object}
-                            clickHandlerFactory={clickHandlerFactoryMock.object}
-                            visualizationConfigurationFactory={visualizationConfigurationFactoryMock.object}
-                            storesHub={storesHubStub}
-                            issuesTableHandler={issuesTableHandlerMock.object}
-                            assessmentInstanceTableHandler={assessmentInstanceTableHandlerMock.object}
-                            previewFeatureFlagsHandler={previewFeatureFlagsHandlerMock.object}
-                            scopingFlagsHandler={scopingFlagsHandlerMock.object}
-                            reportGenerator={reportGeneratorMock.object}
-                            dropdownClickHandler={dropdownClickHandlerMock.object}
-                            assessmentsProvider={assessmentsProviderMock.object}
-                            storeState={null}
-                        />,
+                        <>
+                            <Theme deps={deps} />
+                            <DetailsView
+                                deps={deps}
+                                scopingActionMessageCreator={scopingActionMessageCreatorStrictMock.object}
+                                inspectActionMessageCreator={inspectActionMessageCreatorStrictMock.object}
+                                document={dom as any}
+                                issuesSelection={selectionMock.object}
+                                clickHandlerFactory={clickHandlerFactoryMock.object}
+                                visualizationConfigurationFactory={visualizationConfigurationFactoryMock.object}
+                                issuesTableHandler={issuesTableHandlerMock.object}
+                                assessmentInstanceTableHandler={assessmentInstanceTableHandlerMock.object}
+                                previewFeatureFlagsHandler={previewFeatureFlagsHandlerMock.object}
+                                scopingFlagsHandler={scopingFlagsHandlerMock.object}
+                                reportGenerator={reportGeneratorMock.object}
+                                dropdownClickHandler={dropdownClickHandlerMock.object}
+                                assessmentsProvider={assessmentsProviderMock.object}
+                                storeState={null}
+                            />
+                        </>,
                     ),
                     detailsViewContainer,
                 ),
@@ -90,11 +89,9 @@ describe('DetailsViewRendererTest', () => {
             renderMock.object,
             scopingActionMessageCreatorStrictMock.object,
             inspectActionMessageCreatorStrictMock.object,
-            detailsViewStoreActionCreatorStrictMock.object,
             selectionMock.object,
             clickHandlerFactoryMock.object,
             visualizationConfigurationFactoryMock.object,
-            storesHubStub,
             issuesTableHandlerMock.object,
             assessmentInstanceTableHandlerMock.object,
             reportGeneratorMock.object,

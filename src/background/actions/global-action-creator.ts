@@ -4,9 +4,9 @@ import { autobind } from '@uifabric/utilities';
 
 import { Messages } from '../../common/messages';
 import * as TelemetryEvents from '../../common/telemetry-events';
-import { FeatureFlagActions } from '../actions/feature-flag-actions';
-import { GlobalActionHub } from '../actions/global-action-hub';
-import { LaunchPanelStateActions } from '../actions/launch-panel-state-action';
+import { FeatureFlagActions } from './feature-flag-actions';
+import { GlobalActionHub } from './global-action-hub';
+import { LaunchPanelStateActions } from './launch-panel-state-action';
 import { BrowserAdapter } from '../browser-adapter';
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';

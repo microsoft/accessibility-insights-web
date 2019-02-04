@@ -5,8 +5,8 @@ import * as TelemetryEvents from '../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { LaunchPanelType } from '../../popup/scripts/components/popup-view';
-import { ManualTestStatus } from './../../common/types/manual-test-status';
-import { ITabStopEvent } from './../../injected/tab-stops-listener';
+import { ManualTestStatus } from '../../common/types/manual-test-status';
+import { ITabStopEvent } from '../../injected/tab-stops-listener';
 
 export interface BaseActionPayload {
     telemetry?: TelemetryData;

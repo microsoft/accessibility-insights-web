@@ -5,8 +5,9 @@ import { HTMLElementUtils } from '../../common/html-element-utils';
 import { ScannerUtils } from '../../injected/scanner-utils';
 import { scan } from '../../scanner/exposed-apis';
 import { renderer } from './renderer';
+import { rendererDependencies } from './dependencies';
 
-renderer();
+renderer(rendererDependencies());
 
 const a11ySelfValidator = new A11YSelfValidator(new ScannerUtils(scan), new HTMLElementUtils());
 (window as any).A11YSelfValidator = a11ySelfValidator;

@@ -2,21 +2,25 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { IStoreActionMessageCreator } from '../../common/message-creators/istore-action-message-creator';
-import { IClientStoresHub } from '../../common/stores/iclient-stores-hub';
+import { IStoreActionMessageCreator } from '../message-creators/istore-action-message-creator';
+import { IClientStoresHub } from '../stores/iclient-stores-hub';
 
-export interface WithStoreSubscriptionProps<T> {
-    storesHub: IClientStoresHub<T>;
-    storeActionCreator: IStoreActionMessageCreator;
+export type WithStoreSubscriptionProps<T> = {
+    deps: WithStoreSubscriptionDeps<T>;
     storeState?: T;
-}
+};
+
+export type WithStoreSubscriptionDeps<T> = {
+    storesHub: IClientStoresHub<T>;
+    storeActionMessageCreator: IStoreActionMessageCreator;
+};
 
 export function withStoreSubscription<P extends WithStoreSubscriptionProps<S>, S>(WrappedComponent: React.ComponentType<P>) {
     return class extends React.Component<P, S> {
         constructor(props: P) {
             super(props);
             if (this.hasStores()) {
-                this.state = this.props.storesHub.getAllStoreData();
+                this.state = this.props.deps.storesHub.getAllStoreData();
             }
         }
 
@@ -25,27 +29,29 @@ export function withStoreSubscription<P extends WithStoreSubscriptionProps<S>, S
                 return;
             }
 
-            this.props.storesHub.addChangedListenerToAllStores(this.onStoreChange);
-            this.props.storeActionCreator.getAllStates();
+            const { storesHub, storeActionMessageCreator } = this.props.deps;
+            storesHub.addChangedListenerToAllStores(this.onStoreChange);
+            storeActionMessageCreator.getAllStates();
         }
 
         public componentWillUnmount(): void {
             if (!this.hasStores()) {
                 return;
             }
-            this.props.storesHub.removeChangedListenerFromAllStores(this.onStoreChange);
+            this.props.deps.storesHub.removeChangedListenerFromAllStores(this.onStoreChange);
         }
 
         public onStoreChange = () => {
-            const storeData = this.props.storesHub.getAllStoreData();
+            const storeData = this.props.deps.storesHub.getAllStoreData();
             this.setState(storeData);
         };
 
         public hasStores = () => {
-            return this.props.storesHub && this.props.storesHub.hasStores();
+            const { storesHub } = this.props.deps;
+            return storesHub && storesHub.hasStores();
         };
 
-        public render() {
+        public render(): JSX.Element {
             return <WrappedComponent {...this.props} storeState={this.state} />;
         }
     };

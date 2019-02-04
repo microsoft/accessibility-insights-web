@@ -4,18 +4,8 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { IMock, It, Mock } from 'typemoq';
 
-import { ChromeAdapter, BrowserAdapter } from '../../../../../background/browser-adapter';
-import { CommandStore } from '../../../../../background/stores/global/command-store';
-import { FeatureFlagStore } from '../../../../../background/stores/global/feature-flag-store';
-import { LaunchPanelStore } from '../../../../../background/stores/global/launch-panel-store';
-import { VisualizationStore } from '../../../../../background/stores/visualization-store';
+import { BrowserAdapter, ChromeAdapter } from '../../../../../background/browser-adapter';
 import { DropdownClickHandler } from '../../../../../common/dropdown-click-handler';
-import { IBaseStore } from '../../../../../common/istore';
-import { StoreActionMessageCreator } from '../../../../../common/message-creators/store-action-message-creator';
-import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
-import { ICommandStoreData } from '../../../../../common/types/store-data/icommand-store-data';
-import { ILaunchPanelStoreData } from '../../../../../common/types/store-data/ilaunch-panel-store-data';
-import { IVisualizationStoreData } from '../../../../../common/types/store-data/ivisualization-store-data';
 import { subtitle, title } from '../../../../../content/strings/application';
 import { DiagnosticViewToggleFactory } from '../../../../../popup/scripts/components/diagnostic-view-toggle-factory';
 import { PopupViewWithStoreSubscription } from '../../../../../popup/scripts/components/popup-view';
@@ -35,13 +25,6 @@ describe('MainRenderer', () => {
         const container = document.createElement('div');
         container.setAttribute('id', 'popup-container');
         dom.appendChild(container);
-
-        const popupViewStoreActionCreatorMock = Mock.ofType(StoreActionMessageCreator);
-
-        const visualizationStoreMock = Mock.ofType<IBaseStore<IVisualizationStoreData>>(VisualizationStore);
-        const commandStoreMock = Mock.ofType<IBaseStore<ICommandStoreData>>(CommandStore);
-        const launchPanelStateStoreMock = Mock.ofType<IBaseStore<ILaunchPanelStoreData>>(LaunchPanelStore);
-        const featureFlagStoreMock = Mock.ofType<IBaseStore<FeatureFlagStoreData>>(FeatureFlagStore);
 
         const diagnosticViewClickHandlerMock = Mock.ofType(DiagnosticViewClickHandler);
         const gettingStartedDialogHandlerMock = Mock.ofType(PopupViewControllerHandler);
@@ -68,7 +51,6 @@ describe('MainRenderer', () => {
                             deps={deps}
                             title={expectedTitle}
                             subtitle={expectedSubtitle}
-                            storeActionCreator={popupViewStoreActionCreatorMock.object}
                             popupHandlers={{
                                 diagnosticViewClickHandler: diagnosticViewClickHandlerMock.object,
                                 popupViewControllerHandler: gettingStartedDialogHandlerMock.object,
@@ -82,7 +64,6 @@ describe('MainRenderer', () => {
                             launchPadRowConfigurationFactory={launchPadRowConfigurationFactoryMock.object}
                             diagnosticViewToggleFactory={diagnosticViewToggleFactoryMock.object}
                             dropdownClickHandler={dropdownClickHandlerMock.object}
-                            storesHub={null}
                         />,
                     ),
                     container,
@@ -98,8 +79,6 @@ describe('MainRenderer', () => {
                 launchPanelHeaderClickHandler: feedbackMenuClickhandlerMock.object,
                 supportLinkHandler: supportLinkHandlerMock.object,
             },
-            popupViewStoreActionCreatorMock.object,
-            null,
             renderMock.object,
             dom,
             popupWindowMock.object,

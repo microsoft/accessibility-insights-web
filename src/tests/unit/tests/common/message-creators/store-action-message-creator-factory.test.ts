@@ -56,6 +56,12 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
         testWithExpectedMessages(messages, testObject => testObject.forInjected());
     });
 
+    test('forContent', () => {
+        const messages: string[] = [Messages.UserConfig.GetCurrentState];
+
+        testWithExpectedMessages(messages, testObject => testObject.forContent());
+    });
+
     function testWithExpectedMessages(
         messages: string[],
         getter: (testObject: StoreActionMessageCreatorFactory) => IStoreActionMessageCreator,

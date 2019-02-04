@@ -40,6 +40,12 @@ export class StoreActionMessageCreatorFactory {
         return new StoreActionMessageCreator(getStateMessage, this.postMessage, this.tabId);
     }
 
+    public forContent(): IStoreActionMessageCreator {
+        const getStateMessage: string[] = [Messages.UserConfig.GetCurrentState];
+
+        return new StoreActionMessageCreator(getStateMessage, this.postMessage, this.tabId);
+    }
+
     public forInjected(): IStoreActionMessageCreator {
         const messages: string[] = [
             Messages.Visualizations.State.GetCurrentVisualizationToggleState,

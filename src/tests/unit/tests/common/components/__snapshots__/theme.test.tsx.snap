@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ControlledBodyClassName is high contrast mode enabled: false 1`] = `
+<SideEffect(BodyClassName)
+  className="theme-switcher"
+/>
+`;
+
+exports[`ControlledBodyClassName is high contrast mode enabled: true 1`] = `
+<SideEffect(BodyClassName)
+  className="theme-switcher high-contrast-theme"
+/>
+`;
