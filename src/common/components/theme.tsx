@@ -9,17 +9,17 @@ import { NamedSFC } from '../react/named-sfc';
 import { UserConfigurationStoreData } from '../types/store-data/user-configuration-store';
 import { withStoreSubscription, WithStoreSubscriptionProps } from './with-store-subscription';
 
-export interface ControlledBodyClassNameState {
+export interface ThemeInnerState {
     userConfigurationStoreData: UserConfigurationStoreData;
 }
 
-export type ControlledBodyClassNameProps = WithStoreSubscriptionProps<ControlledBodyClassNameState>;
+export type ThemeInnerProps = WithStoreSubscriptionProps<ThemeInnerState>;
 
-export const ThemeInner = NamedSFC<ControlledBodyClassNameProps>('ThemeInner', props => {
+export const ThemeInner = NamedSFC<ThemeInnerProps>('ThemeInner', props => {
     const state = props.storeState.userConfigurationStoreData;
     const className = css('theme-switcher', state && state.enableHighContrast && 'high-contrast-theme');
 
     return <BodyClassName className={className} />;
 });
 
-export const Theme = withStoreSubscription<ControlledBodyClassNameProps, ControlledBodyClassNameState>(ThemeInner);
+export const Theme = withStoreSubscription<ThemeInnerProps, ThemeInnerState>(ThemeInner);

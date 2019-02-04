@@ -3,10 +3,10 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { ThemeInner, ControlledBodyClassNameProps } from '../../../../../common/components/theme';
+import { ThemeInner, ThemeInnerProps } from '../../../../../common/components/theme';
 
 describe('ControlledBodyClassName', () => {
-    let props: ControlledBodyClassNameProps;
+    let props: ThemeInnerProps;
 
     beforeEach(() => {
         props = {
@@ -15,7 +15,7 @@ describe('ControlledBodyClassName', () => {
                     enableHighContrast: null,
                 },
             },
-        } as ControlledBodyClassNameProps;
+        } as ThemeInnerProps;
     });
 
     test.each([true, false])('is high contrast mode enabled: %s', (enableHighContrast: boolean) => {
