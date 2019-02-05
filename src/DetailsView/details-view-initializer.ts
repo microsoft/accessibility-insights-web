@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 
 import { AssessmentDefaultMessageGenerator } from '../assessments/assessment-default-message-generator';
@@ -11,12 +12,14 @@ import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DateProvider } from '../common/date-provider';
 import { DocumentManipulator } from '../common/document-manipulator';
+import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { initializeFabricIcons } from '../common/fabric-icons';
 import { getAllFeatureFlagDetails } from '../common/feature-flags';
 import { getInnerTextFromJsxElement } from '../common/get-inner-text-from-jsx-element';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { ITab } from '../common/itab';
 import { ContentActionMessageCreator } from '../common/message-creators/content-action-message-creator';
+import { DropdownActionMessageCreator } from '../common/message-creators/dropdown-action-message-creator';
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
 import { StoreActionMessageCreatorFactory } from '../common/message-creators/store-action-message-creator-factory';
@@ -25,8 +28,11 @@ import { VisualizationActionMessageCreator } from '../common/message-creators/vi
 import { NavigatorUtils } from '../common/navigator-utils';
 import { AutoChecker } from '../common/self-validator';
 import { StoreProxy } from '../common/store-proxy';
+import { BaseClientStoresHub } from '../common/stores/base-client-stores-hub';
 import { StoreNames } from '../common/stores/store-names';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
+import { TelemetryEventSource } from '../common/telemetry-events';
+import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
 import { IDetailsViewData } from '../common/types/store-data/idetails-view-data';
 import { IInspectStoreData } from '../common/types/store-data/inspect-store-data';
 import { ITabStoreData } from '../common/types/store-data/itab-store-data';
@@ -35,16 +41,11 @@ import { IVisualizationStoreData } from '../common/types/store-data/ivisualizati
 import { IScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 import { UrlParser } from '../common/url-parser';
+import { WindowUtils } from '../common/window-utils';
 import { contentPages } from '../content';
 import { DetailsDialogHandler } from '../injected/details-dialog-handler';
 import { ScannerUtils } from '../injected/scanner-utils';
 import { getVersion, scan } from '../scanner/exposed-apis';
-import { DropdownClickHandler } from '../common/dropdown-click-handler';
-import { DropdownActionMessageCreator } from '../common/message-creators/dropdown-action-message-creator';
-import { BaseClientStoresHub } from '../common/stores/base-client-stores-hub';
-import { TelemetryEventSource } from '../common/telemetry-events';
-import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
-import { WindowUtils } from '../common/window-utils';
 import { DetailsViewActionMessageCreator } from './actions/details-view-action-message-creator';
 import { IssuesSelectionFactory } from './actions/issues-selection-factory';
 import { AssessmentTableColumnConfigHandler } from './components/assessment-table-column-config-handler';
@@ -76,7 +77,6 @@ import { ReactStaticRenderer } from './reports/react-static-renderer';
 import { ReportGenerator } from './reports/report-generator';
 import { ReportHtmlGenerator } from './reports/report-html-generator';
 import { ReportNameGenerator } from './reports/report-name-generator';
-import { loadTheme } from 'office-ui-fabric-react';
 
 declare const window: AutoChecker & Window;
 
