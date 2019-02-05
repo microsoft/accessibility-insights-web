@@ -7,6 +7,8 @@ import ManualTestRecordYourResults from '../../common/manual-test-record-your-re
 import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
 import { visibleFfocusOrderTestStep } from './test-steps';
+import * as content from '../../../content/test/focus/closing-content';
+
 
 const description: JSX.Element = <span>Closing revealed content must return input focus to the component that revealed it.</span>;
 
@@ -40,4 +42,5 @@ export const ClosingContent: TestStep = {
     howToTest,
     isManual: true,
     guidanceLinks: [link.WCAG_2_4_3],
+    ...content,
 };
