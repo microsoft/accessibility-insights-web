@@ -10,8 +10,10 @@ import { DiagnosticViewToggleFactory } from './components/diagnostic-view-toggle
 import { PopupViewControllerDeps, PopupViewWithStoreSubscription } from './components/popup-view';
 import { IPopupHandlers } from './handlers/ipopup-handlers';
 import { LaunchPadRowConfigurationFactory } from './launch-pad-row-configuration-factory';
+import { Theme, ThemeInnerState } from '../../common/components/theme';
+import { WithStoreSubscriptionDeps } from '../../common/components/with-store-subscription';
 
-export type MainRendererDeps = PopupViewControllerDeps;
+export type MainRendererDeps = PopupViewControllerDeps & WithStoreSubscriptionDeps<ThemeInnerState>;
 export class MainRenderer {
     constructor(
         private readonly deps: MainRendererDeps,
@@ -31,19 +33,23 @@ export class MainRenderer {
         const container = this.dom.querySelector('#popup-container');
 
         this.renderer(
-            <PopupViewWithStoreSubscription
-                deps={this.deps}
-                title={title}
-                subtitle={subtitle}
-                popupHandlers={this.popupHandlers}
-                popupWindow={this.popupWindow}
-                browserAdapter={this.browserAdapter}
-                targetTabUrl={this.targetTabUrl}
-                hasAccess={this.hasAccess}
-                launchPadRowConfigurationFactory={this.launchPadRowConfigurationFactory}
-                diagnosticViewToggleFactory={this.diagnosticViewToggleFactory}
-                dropdownClickHandler={this.dropdownClickHandler}
-            />,
+            <>
+                <Theme deps={this.deps} />
+                <PopupViewWithStoreSubscription
+                    deps={this.deps}
+                    title={title}
+                    subtitle={subtitle}
+                    popupHandlers={this.popupHandlers}
+                    popupWindow={this.popupWindow}
+                    browserAdapter={this.browserAdapter}
+                    targetTabUrl={this.targetTabUrl}
+                    hasAccess={this.hasAccess}
+                    launchPadRowConfigurationFactory={this.launchPadRowConfigurationFactory}
+                    diagnosticViewToggleFactory={this.diagnosticViewToggleFactory}
+                    dropdownClickHandler={this.dropdownClickHandler}
+                />
+                ,
+            </>,
             container,
         );
     }
