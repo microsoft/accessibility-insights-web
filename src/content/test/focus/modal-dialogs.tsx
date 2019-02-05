@@ -13,8 +13,8 @@ export const infoAndExamples = create(({ Markup }) => <>
 
     <h2>How to fix</h2>
     <ul>
-        <li>  If a modal dialog contains a single focusable element (such as an 'OK' button), simply prevent any behavior from occurring when the user presses the Tab key.</li>
-        <li>  If a modal dialog contains multiple focusable elements, force focus to cycle through those elements until the dialog is dismissed by the user. </li>
+        <li>If a modal dialog contains a single focusable element (such as an 'OK' button), simply prevent any behavior from occurring when the user presses the Tab key.</li>
+        <li>If a modal dialog contains multiple focusable elements, force focus to cycle through those elements until the dialog is dismissed by the user. </li>
     </ul>
 
     <h2>Example</h2>

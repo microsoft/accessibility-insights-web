@@ -13,9 +13,9 @@ export const infoAndExamples = create(({ Markup }) => <>
 
     <h2>How to fix</h2>
     <ul>
-        <li>  Good: Ensure that the revealed content appears in the DOM immediately after the trigger component. When the user closes the revealed content, no element will have focus, but pressing Shift+Tab will move focus back to the trigger component.</li>
-        <li>  Better: When the user dismisses revealed content, move focus to the original trigger component. This is the ideal experience when the user cancels a dialog (dismisses it without taking any action). </li>
-        <li>  Best: When the user dismisses revealed content, move focus to the control that makes the most sense given the user's workflow. </li>
+        <li>Good: Ensure that the revealed content appears in the DOM immediately after the trigger component. When the user closes the revealed content, no element will have focus, but pressing Shift+Tab will move focus back to the trigger component.</li>
+        <li>Better: When the user dismisses revealed content, move focus to the original trigger component. This is the ideal experience when the user cancels a dialog (dismisses it without taking any action). </li>
+        <li>Best: When the user dismisses revealed content, move focus to the control that makes the most sense given the user's workflow. </li>
     </ul>
 
     <h2>Example</h2>

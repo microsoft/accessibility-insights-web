@@ -19,9 +19,9 @@ export const infoAndExamples = create(({ Markup }) => <>
         However, if the revealed content is a dialog, certain circumstances might warrant moving focus to a different element:
     </p>
     <ul>
-        <li>  If focusing the first interactive element in a dialog causes the beginning of the dialog to scroll out of view, add  <Markup.Code>tabindex="-1" </Markup.Code> to a static element at the top of the dialog (such as the dialog's title) and use scripting to move focus to that element.</li>
-        <li>  If a dialog allows the user to complete a process that is not easily reversible, consider setting focus on a button that simply dismisses the dialog (such as 'Cancel').</li>
-        <li>  If a dialog is intended to allow users to review their own input before committing to an action, consider setting focus on the dialog's commit button (such as 'Save' or 'Delete').</li>
+        <li>If focusing the first interactive element in a dialog causes the beginning of the dialog to scroll out of view, add  <Markup.Code>tabindex="-1" </Markup.Code> to a static element at the top of the dialog (such as the dialog's title) and use scripting to move focus to that element.</li>
+        <li>If a dialog allows the user to complete a process that is not easily reversible, consider setting focus on a button that simply dismisses the dialog (such as 'Cancel').</li>
+        <li>If a dialog is intended to allow users to review their own input before committing to an action, consider setting focus on the dialog's commit button (such as 'Save' or 'Delete').</li>
     </ul>
     <h2>Example</h2>
     <Markup.PassFail
