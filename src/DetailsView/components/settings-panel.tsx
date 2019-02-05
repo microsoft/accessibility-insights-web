@@ -20,7 +20,7 @@ import { DetailsViewActionMessageCreator } from '../actions/details-view-action-
 import { GenericPanel } from './generic-panel';
 import { GenericToggle } from './generic-toggle';
 import { FlaggedComponent } from '../../common/components/flagged-component';
-import { Dropdown } from 'office-ui-fabric-react/lib/Dropdown';
+import { Dropdown, IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
 
 export interface SettingsPanelDeps {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
@@ -88,6 +88,7 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
                     { key: 'AzureBoards', text: 'Azure Boards' },
                     { key: 'GitHub', text: 'GitHub Issues' },
                 ]}
+                onChange={this.onBugServiceDropdownChange}
             />
         );
     }
@@ -100,5 +101,10 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
     @autobind
     protected onHighContrastModeToggleClick(id: string, state: boolean): void {
         this.props.deps.userConfigMessageCreator.setHighContrastMode(state);
+    }
+
+    @autobind
+    protected onBugServiceDropdownChange(event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption, index?: number): void {
+        console.log(`onBugServiceDropdownChange option=${JSON.stringify(option)} index=${index}`);
     }
 }

@@ -64,6 +64,7 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
     enableJSXElement={
       <StyledWithResponsiveMode
         label="Select bug service"
+        onChange={[Function]}
         options={
           Array [
             Object {
@@ -156,6 +157,7 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
     enableJSXElement={
       <StyledWithResponsiveMode
         label="Select bug service"
+        onChange={[Function]}
         options={
           Array [
             Object {

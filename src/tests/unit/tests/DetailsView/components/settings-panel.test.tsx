@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
@@ -9,15 +10,20 @@ import { UserConfigurationStoreData } from '../../../../../common/types/store-da
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { SettingsPanel, SettingsPanelProps } from '../../../../../DetailsView/components/settings-panel';
 
-type SettingsPanelProtectedFunction = (id: string, state: boolean) => void;
+type SettingsPanelProtectedClickFunction = (id: string, state: boolean) => void;
+type SettingsPanelProtectedChangeFunction = (event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption, index?: number) => void;
 
 class TestableSettingsPanel extends SettingsPanel {
-    public getOnEnableTelemetryToggleClick(): SettingsPanelProtectedFunction {
+    public getOnEnableTelemetryToggleClick(): SettingsPanelProtectedClickFunction {
         return this.onEnableTelemetryToggleClick;
     }
 
-    public getOnEnableHighContrastModeToggleClick(): SettingsPanelProtectedFunction {
+    public getOnEnableHighContrastModeToggleClick(): SettingsPanelProtectedClickFunction {
         return this.onHighContrastModeToggleClick;
+    }
+
+    public getOnBugServiceDropdownChange(): SettingsPanelProtectedChangeFunction {
+        return this.onBugServiceDropdownChange;
     }
 }
 
@@ -106,5 +112,23 @@ describe('SettingsPanelTest', () => {
 
         testSubject.getOnEnableHighContrastModeToggleClick()(null, highContrastConfigState);
         userConfigMessageCreatorMock.verify(u => u.setHighContrastMode(highContrastConfigState), Times.once());
+    });
+
+    test('verify bug service dropdown change', () => {
+        userConfigStoreData = {} as UserConfigurationStoreData;
+        const testProps: SettingsPanelProps = {
+            isOpen: true,
+            deps: {
+                detailsViewActionMessageCreator: detailsActionMessageCreatorMock.object,
+                userConfigMessageCreator: userConfigMessageCreatorMock.object,
+            },
+            userConfigStoreState: userConfigStoreData,
+            featureFlagData: { [FeatureFlags.showBugFiling]: true },
+        };
+
+        const testSubject = new TestableSettingsPanel(testProps);
+
+        const option: IDropdownOption = { key: 'TestService', text: 'Test Service' };
+        testSubject.getOnBugServiceDropdownChange()(null, option, 1);
     });
 });
