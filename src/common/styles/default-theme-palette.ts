@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+
+// generated from default theme from https://developer.microsoft.com/en-us/fabric#/styles/themegenerator
 export const DefaultThemePalette = {
     themePrimary: '#0078d4',
     themeLighterAlt: '#eff6fc',
