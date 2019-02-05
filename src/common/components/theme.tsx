@@ -22,10 +22,14 @@ export type ThemeDeps = WithStoreSubscriptionDeps<ThemeInnerState> & {
 };
 
 export class ThemeInner extends React.Component<ThemeInnerProps> {
-    public componentWillUpdate(props): void {
-        const enableHighContrast = this.isHighContrastEnabled(props);
+    public componentDidUpdate(prevProps): void {
+        const enableHighContrastCurr = this.isHighContrastEnabled(this.props);
+        const enableHighContrastPrev = this.isHighContrastEnabled(prevProps);
+        if (enableHighContrastCurr === enableHighContrastPrev) {
+            return;
+        }
         this.props.deps.loadTheme({
-            palette: enableHighContrast ? HighContrastThemePalette : DefaultThemePalette,
+            palette: enableHighContrastCurr ? HighContrastThemePalette : DefaultThemePalette,
         });
     }
 
