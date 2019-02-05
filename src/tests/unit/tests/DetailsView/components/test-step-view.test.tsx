@@ -132,7 +132,7 @@ describe('TestStepViewTest', () => {
 
     function validateManualTestStepView(wrapper: Enzyme.ShallowWrapper, props: ITestStepViewProps): void {
         const view = wrapper.find(ManualTestStepView);
-        expect(view.exists()).toBeTruthy();
+        expect(view.exists()).toBe(true);
         expect(props.assessmentNavState.selectedTestStep).toEqual(view.prop('step'));
         expect(props.assessmentNavState.selectedTestType).toEqual(view.prop('test'));
         expect(props.manualTestStepResultMap).toEqual(view.prop('manualTestStepResultMap'));
