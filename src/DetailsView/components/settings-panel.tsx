@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 import * as React from 'react';
+import { Label } from 'office-ui-fabric-react/lib/Label';
 
 import { FeatureFlags } from '../../common/feature-flags';
 import { UserConfigMessageCreator } from '../../common/message-creators/user-config-message-creator';
@@ -55,6 +56,12 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
                     featureFlag={FeatureFlags[FeatureFlags.highContrastMode]}
                     featureFlagStoreData={this.props.featureFlagData}
                 />
+                <FlaggedComponent
+                    enableJSXElement={this.getBugSettingsUx()}
+                    disableJSXElement={null}
+                    featureFlag={FeatureFlags[FeatureFlags.showBugFiling]}
+                    featureFlagStoreData={this.props.featureFlagData}
+                />
             </GenericPanel>
         );
     }
@@ -69,6 +76,10 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
                 onClick={this.onHighContrastModeToggleClick}
             />
         );
+    }
+
+    private getBugSettingsUx(): JSX.Element {
+        return <Label>Bug settings go here</Label>;
     }
 
     @autobind
