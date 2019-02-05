@@ -83,12 +83,12 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
     }
 
     @autobind
-    protected onEnableTelemetryToggleClick(id: string, state: boolean) {
-        return this.props.deps.userConfigMessageCreator.setTelemetryState(state);
+    protected onEnableTelemetryToggleClick(id: string, state: boolean): void {
+        this.props.deps.userConfigMessageCreator.setTelemetryState(state);
     }
 
     @autobind
-    protected onHighContrastModeToggleClick(id: string, state: boolean) {
-        return this.props.deps.userConfigMessageCreator.setHighContrastMode(state);
+    protected onHighContrastModeToggleClick(id: string, state: boolean): void {
+        this.props.deps.userConfigMessageCreator.setHighContrastMode(state);
     }
 }
