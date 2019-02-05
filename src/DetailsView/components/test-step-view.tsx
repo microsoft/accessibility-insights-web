@@ -58,9 +58,6 @@ export class TestStepView extends React.Component<ITestStepViewProps> {
     }
 
     private renderTable(): JSX.Element {
-        if (this.props.isScanning) {
-            return <Spinner className="details-view-spinner" size={SpinnerSize.large} label={'Scanning'} />;
-        }
         if (this.props.testStep.isManual) {
             return (
                 <ManualTestStepView
@@ -71,21 +68,25 @@ export class TestStepView extends React.Component<ITestStepViewProps> {
                     assessmentsProvider={this.props.assessmentsProvider}
                 />
             );
-        } else {
-            return (
-                <React.Fragment>
-                    <h3 className="test-step-instances-header">Instances</h3>
-                    <AssessmentInstanceTable
-                        instancesMap={this.props.instancesMap}
-                        assessmentInstanceTableHandler={this.props.assessmentInstanceTableHandler}
-                        assessmentNavState={this.props.assessmentNavState}
-                        renderInstanceTableHeader={this.props.testStep.renderInstanceTableHeader}
-                        getDefaultMessage={this.props.testStep.getDefaultMessage}
-                        assessmentDefaultMessageGenerator={this.props.assessmentDefaultMessageGenerator}
-                    />
-                </React.Fragment>
-            );
         }
+
+        if (this.props.isScanning) {
+            return <Spinner className="details-view-spinner" size={SpinnerSize.large} label={'Scanning'} />;
+        }
+
+        return (
+            <React.Fragment>
+                <h3 className="test-step-instances-header">Instances</h3>
+                <AssessmentInstanceTable
+                    instancesMap={this.props.instancesMap}
+                    assessmentInstanceTableHandler={this.props.assessmentInstanceTableHandler}
+                    assessmentNavState={this.props.assessmentNavState}
+                    renderInstanceTableHeader={this.props.testStep.renderInstanceTableHeader}
+                    getDefaultMessage={this.props.testStep.getDefaultMessage}
+                    assessmentDefaultMessageGenerator={this.props.assessmentDefaultMessageGenerator}
+                />
+            </React.Fragment>
+        );
     }
 
     private renderVisualHelperToggle(): JSX.Element {
