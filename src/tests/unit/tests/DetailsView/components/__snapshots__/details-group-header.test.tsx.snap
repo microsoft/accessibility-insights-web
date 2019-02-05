@@ -23,6 +23,11 @@ exports[`DetailsGroupHeader renders 1`] = `
     }
   }
   onRenderTitle={[Function]}
+  selectAllButtonProps={
+    Object {
+      "aria-label": "key rule",
+    }
+  }
 />
 `;
 

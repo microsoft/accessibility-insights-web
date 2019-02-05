@@ -16,7 +16,10 @@ export interface DetailsGroupHeaderProps extends IGroupDividerProps {
 
 export class DetailsGroupHeader extends React.Component<DetailsGroupHeaderProps> {
     public render(): JSX.Element {
-        return <GroupHeader onRenderTitle={this.onRenderTitle} {...this.props} />;
+        const selectAllButtonProps = {
+            'aria-label': `${this.props.group.key} rule`,
+        };
+        return <GroupHeader onRenderTitle={this.onRenderTitle} selectAllButtonProps={selectAllButtonProps} {...this.props} />;
     }
 
     @autobind
