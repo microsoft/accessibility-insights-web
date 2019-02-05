@@ -20,6 +20,7 @@ import { DetailsViewActionMessageCreator } from '../actions/details-view-action-
 import { GenericPanel } from './generic-panel';
 import { GenericToggle } from './generic-toggle';
 import { FlaggedComponent } from '../../common/components/flagged-component';
+import { Dropdown } from 'office-ui-fabric-react/lib/Dropdown';
 
 export interface SettingsPanelDeps {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
@@ -79,7 +80,16 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
     }
 
     private getBugSettingsUx(): JSX.Element {
-        return <Label>Bug settings go here</Label>;
+        return (
+            <Dropdown
+                label="Select bug service"
+                options={[
+                    { key: 'None', text: 'None' },
+                    { key: 'AzureBoards', text: 'Azure Boards' },
+                    { key: 'GitHub', text: 'GitHub Issues' },
+                ]}
+            />
+        );
     }
 
     @autobind

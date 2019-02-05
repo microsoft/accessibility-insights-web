@@ -62,9 +62,25 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
   <FlaggedComponent
     disableJSXElement={null}
     enableJSXElement={
-      <StyledLabelBase>
-        Bug settings go here
-      </StyledLabelBase>
+      <StyledWithResponsiveMode
+        label="Select bug service"
+        options={
+          Array [
+            Object {
+              "key": "None",
+              "text": "None",
+            },
+            Object {
+              "key": "AzureBoards",
+              "text": "Azure Boards",
+            },
+            Object {
+              "key": "GitHub",
+              "text": "GitHub Issues",
+            },
+          ]
+        }
+      />
     }
     featureFlag="showBugFiling"
     featureFlagStoreData={
@@ -138,9 +154,25 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
   <FlaggedComponent
     disableJSXElement={null}
     enableJSXElement={
-      <StyledLabelBase>
-        Bug settings go here
-      </StyledLabelBase>
+      <StyledWithResponsiveMode
+        label="Select bug service"
+        options={
+          Array [
+            Object {
+              "key": "None",
+              "text": "None",
+            },
+            Object {
+              "key": "AzureBoards",
+              "text": "Azure Boards",
+            },
+            Object {
+              "key": "GitHub",
+              "text": "GitHub Issues",
+            },
+          ]
+        }
+      />
     }
     featureFlag="showBugFiling"
     featureFlagStoreData={
