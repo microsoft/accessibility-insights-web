@@ -15,7 +15,6 @@ import { TestStep } from '../../types/test-step';
 import { visibleFfocusOrderTestStep } from './test-steps';
 import * as content from '../../../content/test/focus/visible-focus';
 
-
 const description: JSX.Element = <span>Components must provide a visible indication when they have the input focus.</span>;
 
 const howToTest: JSX.Element = (

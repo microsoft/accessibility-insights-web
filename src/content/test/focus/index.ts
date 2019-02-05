@@ -7,7 +7,6 @@ import * as modalDialogs from './modal-dialogs';
 import * as closingContent from './closing-content';
 import * as focusOrder from './focus-order';
 
-
 export const focus = {
     guidance,
     visibleFocus,
