@@ -2,7 +2,11 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { SetTelemetryStatePayload, SetHighContrastModePayload } from '../../../../../background/actions/action-payloads';
+import {
+    SetTelemetryStatePayload,
+    SetHighContrastModePayload,
+    SetBugServicePayload,
+} from '../../../../../background/actions/action-payloads';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { Messages } from '../../../../../common/messages';
 
@@ -54,6 +58,24 @@ describe('UserConfigMessageCreatorTest', () => {
         postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
 
         testSubject.setHighContrastMode(enableHighContrast);
+
+        postMessageMock.verifyAll();
+    });
+
+    test('SetBugService', () => {
+        const bugServiceName = 'UserConfigMessageCreatorTest bug service name';
+        const payload: SetBugServicePayload = {
+            bugServiceName,
+        };
+        const expectedMessage = {
+            tabId: 1,
+            type: Messages.UserConfig.SetBugServiceConfig,
+            payload,
+        };
+
+        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
+
+        testSubject.SetBugService(bugServiceName);
 
         postMessageMock.verifyAll();
     });
