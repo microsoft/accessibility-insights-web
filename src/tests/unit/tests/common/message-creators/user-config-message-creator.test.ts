@@ -10,7 +10,7 @@ import {
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { Messages } from '../../../../../common/messages';
 
-describe('UserConfigMessageCreatorTest', () => {
+describe('UserConfigMessageCreator', () => {
     let postMessageMock: IMock<(message) => void>;
     let testSubject: UserConfigMessageCreator;
     let tabId: number;
@@ -26,7 +26,7 @@ describe('UserConfigMessageCreatorTest', () => {
         postMessageMock.verifyAll();
     });
 
-    test('SetTelemetryState', () => {
+    test('setTelemetryState', () => {
         const enableTelemetry = false;
         const payload: SetTelemetryStatePayload = {
             enableTelemetry,
@@ -44,7 +44,7 @@ describe('UserConfigMessageCreatorTest', () => {
         postMessageMock.verifyAll();
     });
 
-    test('SetHighContrastModeConfig', () => {
+    test('setHighContrastModeConfig', () => {
         const enableHighContrast = true;
         const payload: SetHighContrastModePayload = {
             enableHighContrast,
@@ -62,7 +62,7 @@ describe('UserConfigMessageCreatorTest', () => {
         postMessageMock.verifyAll();
     });
 
-    test('SetBugService', () => {
+    test('setBugService', () => {
         const bugServiceName = 'UserConfigMessageCreatorTest bug service name';
         const payload: SetBugServicePayload = {
             bugServiceName,
@@ -75,7 +75,7 @@ describe('UserConfigMessageCreatorTest', () => {
 
         postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
 
-        testSubject.SetBugService(bugServiceName);
+        testSubject.setBugService(bugServiceName);
 
         postMessageMock.verifyAll();
     });

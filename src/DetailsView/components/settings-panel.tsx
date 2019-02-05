@@ -106,5 +106,6 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
     @autobind
     protected onBugServiceDropdownChange(event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption, index?: number): void {
         console.log(`onBugServiceDropdownChange option=${JSON.stringify(option)} index=${index}`);
+        this.props.deps.userConfigMessageCreator.setBugService(option.key as string);
     }
 }

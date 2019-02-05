@@ -29,7 +29,7 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
         });
     }
 
-    public SetBugService(bugServiceName: string): void {
+    public setBugService(bugServiceName: string): void {
         const payload: SetBugServicePayload = {
             bugServiceName,
         };

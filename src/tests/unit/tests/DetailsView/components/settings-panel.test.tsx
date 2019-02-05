@@ -130,5 +130,7 @@ describe('SettingsPanelTest', () => {
 
         const option: IDropdownOption = { key: 'TestService', text: 'Test Service' };
         testSubject.getOnBugServiceDropdownChange()(null, option, 1);
+
+        userConfigMessageCreatorMock.verify(u => u.setBugService(option.key as string), Times.once());
     });
 });
