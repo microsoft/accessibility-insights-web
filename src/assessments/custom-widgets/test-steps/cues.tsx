@@ -16,6 +16,7 @@ import { ReportInstanceField } from '../../types/report-instance-field';
 import { getFlatDesignPatternStringFromRole } from '../custom-widgets-column-renderer';
 import { CustomWidgetsColumnRendererFactory } from '../custom-widgets-column-renderer-factory';
 import { CustomWidgetsTestStep } from './test-steps';
+import * as content from '../../../content/test/custom-widgets/cues';
 
 const cuesDescription: JSX.Element = (
     <span>If a custom widget adopts certain interactive states, it must communicate those states programmatically.</span>
@@ -57,6 +58,7 @@ export const Cues: TestStep = {
     howToTest: cuesHowToTest,
     isManual: false,
     guidanceLinks: [link.WCAG_1_3_1, link.WCAG_4_1_2],
+    ...content,
     columnsConfig: [
         {
             key: 'cues-info-custom-widgets',

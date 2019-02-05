@@ -16,6 +16,7 @@ import { ReportInstanceField } from '../../types/report-instance-field';
 import { getFlatDesignPatternStringFromRole } from '../custom-widgets-column-renderer';
 import { CustomWidgetsColumnRendererFactory } from '../custom-widgets-column-renderer-factory';
 import { CustomWidgetsTestStep } from './test-steps';
+import * as content from '../../../content/test/custom-widgets/keyboard-interaction';
 
 const keyboardInteractionDescription: JSX.Element = (
     <span>A custom widget must support the keyboard interaction specified by its design pattern.</span>
@@ -44,6 +45,7 @@ export const KeyboardInteraction: TestStep = {
     howToTest: keyboardInteractionHowToTest,
     isManual: false,
     guidanceLinks: [link.WCAG_2_1_1],
+    ...content,
     columnsConfig: [
         {
             key: 'keyboard-interaction-info',

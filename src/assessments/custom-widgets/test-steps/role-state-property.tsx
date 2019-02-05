@@ -17,6 +17,7 @@ import { ReportInstanceField } from '../../types/report-instance-field';
 import { getFlatDesignPatternStringFromRole } from '../custom-widgets-column-renderer';
 import { CustomWidgetsColumnRendererFactory } from '../custom-widgets-column-renderer-factory';
 import { CustomWidgetsTestStep } from './test-steps';
+import * as content from '../../../content/test/custom-widgets/role-state-property';
 
 const roleStatePropertyDescription: JSX.Element = (
     <span>A custom widget must support the ARIA roles, states, and properties specified by its design pattern.</span>
@@ -61,6 +62,7 @@ export const RoleStateProperty: TestStep = {
     howToTest: roleStatePropertyHowToTest,
     isManual: false,
     guidanceLinks: [link.WCAG_4_1_2],
+    ...content,
     columnsConfig: [
         {
             key: 'role-state-property-info',
