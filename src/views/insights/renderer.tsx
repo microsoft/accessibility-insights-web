@@ -3,19 +3,16 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { ThemeInnerState, Theme } from '../../common/components/theme';
-import { WithStoreSubscriptionDeps } from '../../common/components/with-store-subscription';
+import { Theme, ThemeDeps } from '../../common/components/theme';
 import { config } from '../../common/configuration';
 import { DocumentManipulator } from '../../common/document-manipulator';
-import { rendererDependencies } from './dependencies';
 import { Router, RouterDeps } from './router';
 
 export type RendererDeps = {
     dom: Node & NodeSelector;
     render: ReactDOM.Renderer;
     initializeFabricIcons: () => void;
-} & RouterDeps &
-    WithStoreSubscriptionDeps<ThemeInnerState>;
+} & RouterDeps & ThemeDeps;
 
 export function renderer(deps: RendererDeps): void {
     const { dom, render, initializeFabricIcons } = deps;

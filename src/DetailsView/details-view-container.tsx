@@ -31,6 +31,7 @@ import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-t
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
 import { ReportGenerator } from './reports/report-generator';
+import { ThemeDeps } from '../common/components/theme';
 
 export type DetailsViewContainerDeps = {
     getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration;
@@ -39,7 +40,8 @@ export type DetailsViewContainerDeps = {
     DetailsViewOverlayDeps &
     DetailsViewCommandBarDeps &
     HeaderDeps &
-    WithStoreSubscriptionDeps<DetailsViewContainerState>;
+    WithStoreSubscriptionDeps<DetailsViewContainerState> &
+    ThemeDeps;
 
 export interface DetailsViewContainerProps {
     deps: DetailsViewContainerDeps;

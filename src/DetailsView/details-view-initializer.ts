@@ -76,6 +76,7 @@ import { ReactStaticRenderer } from './reports/react-static-renderer';
 import { ReportGenerator } from './reports/report-generator';
 import { ReportHtmlGenerator } from './reports/report-html-generator';
 import { ReportNameGenerator } from './reports/report-name-generator';
+import { loadTheme } from 'office-ui-fabric-react';
 
 declare const window: AutoChecker & Window;
 
@@ -252,6 +253,7 @@ if (isNaN(tabId) === false) {
                     getInnerTextFromJsxElement,
                     storeActionMessageCreator,
                     storesHub,
+                    loadTheme,
                 };
 
                 const renderer = new DetailsViewRenderer(
