@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
+import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 
 import { BrowserAdapter } from '../../background/browser-adapter';
@@ -16,21 +17,21 @@ import { UserConfigMessageCreator } from '../../common/message-creators/user-con
 import { VisualizationActionMessageCreator } from '../../common/message-creators/visualization-action-message-creator';
 import { AutoChecker } from '../../common/self-validator';
 import { StoreProxy } from '../../common/store-proxy';
+import { BaseClientStoresHub } from '../../common/stores/base-client-stores-hub';
 import { StoreNames } from '../../common/stores/store-names';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
+import { TelemetryEventSource } from '../../common/telemetry-events';
+import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { ICommandStoreData } from '../../common/types/store-data/icommand-store-data';
 import { ILaunchPanelStoreData } from '../../common/types/store-data/ilaunch-panel-store-data';
 import { IVisualizationStoreData } from '../../common/types/store-data/ivisualization-store-data';
+import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { WindowUtils } from '../../common/window-utils';
+import { contentPages } from '../../content';
 import { ScannerUtils } from '../../injected/scanner-utils';
 import { scan } from '../../scanner/exposed-apis';
 import { SupportLinkHandler } from '../support-link-handler';
-import { BaseClientStoresHub } from '../../common/stores/base-client-stores-hub';
-import { TelemetryEventSource } from '../../common/telemetry-events';
-import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
-import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
-import { contentPages } from '../../content';
 import { PopupActionMessageCreator } from './actions/popup-action-message-creator';
 import { DiagnosticViewToggleDeps } from './components/diagnostic-view-toggle';
 import { DiagnosticViewToggleFactory } from './components/diagnostic-view-toggle-factory';
@@ -161,6 +162,7 @@ export class PopupInitializer {
             userConfigMessageCreator,
             storesHub,
             storeActionMessageCreator,
+            loadTheme,
         };
 
         const diagnosticViewToggleFactory = new DiagnosticViewToggleFactory(

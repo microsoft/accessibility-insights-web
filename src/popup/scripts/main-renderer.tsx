@@ -10,10 +10,10 @@ import { DiagnosticViewToggleFactory } from './components/diagnostic-view-toggle
 import { PopupViewControllerDeps, PopupViewWithStoreSubscription } from './components/popup-view';
 import { IPopupHandlers } from './handlers/ipopup-handlers';
 import { LaunchPadRowConfigurationFactory } from './launch-pad-row-configuration-factory';
-import { Theme, ThemeInnerState } from '../../common/components/theme';
+import { Theme, ThemeInnerState, ThemeDeps } from '../../common/components/theme';
 import { WithStoreSubscriptionDeps } from '../../common/components/with-store-subscription';
 
-export type MainRendererDeps = PopupViewControllerDeps & WithStoreSubscriptionDeps<ThemeInnerState>;
+export type MainRendererDeps = PopupViewControllerDeps & WithStoreSubscriptionDeps<ThemeInnerState> & ThemeDeps;
 export class MainRenderer {
     constructor(
         private readonly deps: MainRendererDeps,

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { loadTheme } from 'office-ui-fabric-react';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
@@ -39,6 +40,7 @@ export const rendererDependencies: () => RendererDeps = () => {
         dom: document,
         render: ReactDOM.render,
         initializeFabricIcons,
+        loadTheme,
         contentProvider: contentPages,
         contentActionMessageCreator,
         storesHub,
