@@ -12,7 +12,8 @@ export type RendererDeps = {
     dom: Node & NodeSelector;
     render: ReactDOM.Renderer;
     initializeFabricIcons: () => void;
-} & RouterDeps & ThemeDeps;
+} & RouterDeps &
+    ThemeDeps;
 
 export function renderer(deps: RendererDeps): void {
     const { dom, render, initializeFabricIcons } = deps;
