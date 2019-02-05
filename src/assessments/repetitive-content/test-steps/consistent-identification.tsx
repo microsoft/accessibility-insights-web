@@ -7,6 +7,7 @@ import { link } from '../../../content/link';
 import ManualTestRecordYourResults from '../../common/manual-test-record-your-results';
 import { TestStep } from '../../types/test-step';
 import { RepetitiveContentTestStep } from './test-steps';
+import * as content from '../../../content/test/repetitive-content/consistent-identification';
 
 const consistentIdentificationDescription: JSX.Element = (
     <span>Functional components that appear on multiple pages must be identified consistently.</span>
@@ -38,4 +39,5 @@ export const ConsistentIdentification: TestStep = {
     howToTest: consistentIdentificationHowToTest,
     isManual: true,
     guidanceLinks: [link.WCAG_3_2_4],
+    ...content,
 };
