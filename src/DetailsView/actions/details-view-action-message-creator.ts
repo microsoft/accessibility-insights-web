@@ -2,24 +2,24 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 
-import { IOnDetailsViewPivotSelected, ISelectTestStepPayload } from '../../background/actions/action-payloads';
+import { OnDetailsViewPivotSelected, SelectTestStepPayload } from '../../background/actions/action-payloads';
 import { Messages } from '../../common/messages';
 import { DevToolActionMessageCreator } from '../../common/message-creators/dev-tool-action-message-creator';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import {
     BaseActionPayload,
-    IAddFailureInstancePayload,
-    IAssessmentActionInstancePayload,
-    IAssessmentToggleActionPayload,
-    IChangeAssessmentStepStatusPayload,
-    IChangeInstanceSelectionPayload,
-    IChangeInstanceStatusPayload,
-    IEditFailureInstancePayload,
-    IOnDetailsViewOpenPayload,
-    IRemoveFailureInstancePayload,
-    ISwitchToTargetTabPayLoad,
-    IToggleActionPayload,
+    AddFailureInstancePayload,
+    AssessmentActionInstancePayload,
+    AssessmentToggleActionPayload,
+    ChangeAssessmentStepStatusPayload,
+    ChangeInstanceSelectionPayload,
+    ChangeInstanceStatusPayload,
+    EditFailureInstancePayload,
+    OnDetailsViewOpenPayload,
+    RemoveFailureInstancePayload,
+    SwitchToTargetTabPayload,
+    ToggleActionPayload,
 } from './../../background/actions/action-payloads';
 import { IFeatureFlagPayload } from './../../background/actions/feature-flag-actions';
 import { TelemetryDataFactory } from './../../common/telemetry-data-factory';
@@ -145,7 +145,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
     }
 
     public selectDetailsView(event: React.MouseEvent<HTMLElement>, type: VisualizationType, pivot: DetailsViewPivotType): void {
-        const payload: IOnDetailsViewOpenPayload = {
+        const payload: OnDetailsViewOpenPayload = {
             telemetry: this.telemetryFactory.forSelectDetailsView(event, type),
             detailsViewType: type,
             pivotType: pivot,
@@ -159,7 +159,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
     }
 
     public selectTestStep(event: React.MouseEvent<HTMLElement>, selectedStep: string, type: VisualizationType): void {
-        const payload: ISelectTestStepPayload = {
+        const payload: SelectTestStepPayload = {
             telemetry: this.telemetryFactory.forSelectTestStep(event, type, selectedStep),
             selectedStep: selectedStep,
             selectedTest: type,
@@ -175,7 +175,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
     public sendPivotItemClicked(pivotKey: string, ev?: React.MouseEvent<HTMLElement>): void {
         const telemetry = this.telemetryFactory.forDetailsViewNavPivotActivated(ev, pivotKey);
 
-        const payload: IOnDetailsViewPivotSelected = {
+        const payload: OnDetailsViewPivotSelected = {
             telemetry: telemetry,
             pivotKey: DetailsViewPivotType[pivotKey],
         };
@@ -190,7 +190,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
     @autobind
     public switchToTargetTab(event: React.MouseEvent<HTMLElement>): void {
         const telemetry = this.telemetryFactory.fromDetailsView(event);
-        const payload: ISwitchToTargetTabPayLoad = {
+        const payload: SwitchToTargetTabPayload = {
             telemetry,
         };
         this.dispatchMessage({
@@ -202,7 +202,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
 
     public startOverAssessment(event: React.MouseEvent<any>, test: VisualizationType, step: string): void {
         const telemetry = this.telemetryFactory.forAssessmentActionFromDetailsView(test, event);
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test,
             step,
             telemetry,
@@ -217,7 +217,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
 
     public enableVisualHelper(test: VisualizationType, step: string, shouldScan = true, sendTelemetry = true): void {
         const telemetry = sendTelemetry ? this.telemetryFactory.forAssessmentActionFromDetailsViewNoTriggeredBy(test) : null;
-        const payload: IAssessmentToggleActionPayload = {
+        const payload: AssessmentToggleActionPayload = {
             test,
             step,
             telemetry,
@@ -231,7 +231,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
     }
 
     public disableVisualHelpersForTest(test: VisualizationType): void {
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test,
         };
 
@@ -244,7 +244,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
 
     public disableVisualHelper(test: VisualizationType, step: string): void {
         const telemetry = this.telemetryFactory.forTestStepFromDetailsView(test, step);
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test,
             telemetry,
         };
@@ -259,7 +259,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
     @autobind
     public changeManualTestStatus(status: ManualTestStatus, test: VisualizationType, step: string, selector: string): void {
         const telemetry = this.telemetryFactory.forTestStepFromDetailsView(test, step);
-        const payload: IChangeInstanceStatusPayload = {
+        const payload: ChangeInstanceStatusPayload = {
             test,
             step,
             status,
@@ -277,7 +277,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
     @autobind
     public changeManualTestStepStatus(status: ManualTestStatus, test: VisualizationType, step: string): void {
         const telemetry = this.telemetryFactory.forTestStepFromDetailsView(test, step);
-        const payload: IChangeAssessmentStepStatusPayload = {
+        const payload: ChangeAssessmentStepStatusPayload = {
             test,
             step,
             status,
@@ -294,7 +294,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
     @autobind
     public undoManualTestStatusChange(test: VisualizationType, step: string, selector: string): void {
         const telemetry = this.telemetryFactory.forTestStepFromDetailsView(test, step);
-        const payload: IAssessmentActionInstancePayload = {
+        const payload: AssessmentActionInstancePayload = {
             test,
             step,
             selector,
@@ -311,7 +311,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
     @autobind
     public undoManualTestStepStatusChange(test: VisualizationType, step: string): void {
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
-        const payload: IChangeAssessmentStepStatusPayload = {
+        const payload: ChangeAssessmentStepStatusPayload = {
             test: test,
             step: step,
             telemetry: telemetry,
@@ -332,7 +332,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         selector: string,
     ): void {
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
-        const payload: IChangeInstanceSelectionPayload = {
+        const payload: ChangeInstanceSelectionPayload = {
             test,
             step,
             isVisualizationEnabled,
@@ -349,7 +349,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
 
     public addFailureInstance(description: string, test: VisualizationType, step: string): void {
         const telemetry = this.telemetryFactory.forTestStepFromDetailsView(test, step);
-        const payload: IAddFailureInstancePayload = {
+        const payload: AddFailureInstancePayload = {
             test,
             step,
             description,
@@ -366,7 +366,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
     @autobind
     public removeFailureInstance(test: VisualizationType, step: string, id: string): void {
         const telemetry = this.telemetryFactory.forTestStepFromDetailsView(test, step);
-        const payload: IRemoveFailureInstancePayload = {
+        const payload: RemoveFailureInstancePayload = {
             test,
             step,
             id,
@@ -388,7 +388,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
     @autobind
     public editFailureInstance(description: string, test: VisualizationType, step: string, id: string): void {
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
-        const payload: IEditFailureInstancePayload = {
+        const payload: EditFailureInstancePayload = {
             test,
             step,
             id,
@@ -405,7 +405,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
 
     public passUnmarkedInstances(test: VisualizationType, step: string): void {
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test,
             step,
             telemetry,
@@ -420,7 +420,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
 
     public changeAssessmentVisualizationStateForAll(isVisualizationEnabled: boolean, test: VisualizationType, step: string): void {
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
-        const payload: IChangeInstanceSelectionPayload = {
+        const payload: ChangeInstanceSelectionPayload = {
             test: test,
             step: step,
             isVisualizationEnabled: isVisualizationEnabled,

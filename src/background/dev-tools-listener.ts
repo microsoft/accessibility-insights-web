@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IOnDevToolOpenPayload } from './actions/action-payloads';
+import { OnDevToolOpenPayload } from './actions/action-payloads';
 import { ConnectionNames } from '../common/constants/connection-names';
 import { Messages } from '../common/messages';
 import { IDevToolsOpenMessage } from '../common/types/dev-tools-open-message';
@@ -47,7 +47,7 @@ export class DevToolsListener {
             tabContext.interpreter.interpret({
                 payload: {
                     status: status,
-                } as IOnDevToolOpenPayload,
+                } as OnDevToolOpenPayload,
                 tabId: tabId,
                 type: Messages.DevTools.DevtoolStatus,
             });

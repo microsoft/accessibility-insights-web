@@ -8,7 +8,7 @@ import { Messages } from '../common/messages';
 import { DetailsViewPivotType } from '../common/types/details-view-pivot-type';
 import { TabStore } from './stores/tab-store';
 import { WindowUtils } from '../common/window-utils';
-import { IOnDetailsViewPivotSelected } from './actions/action-payloads';
+import { OnDetailsViewPivotSelected } from './actions/action-payloads';
 
 export class DetailsViewPivotValidator {
     private featureFlagStore: FeatureFlagStore;
@@ -36,7 +36,7 @@ export class DetailsViewPivotValidator {
 
         if (this.wasNewAssessmentExperienceDisabled(newState)) {
             this.windowUtils.setTimeout(() => {
-                const payload: IOnDetailsViewPivotSelected = {
+                const payload: OnDetailsViewPivotSelected = {
                     pivotKey: DetailsViewPivotType.allTest,
                 };
                 this.interpreter.interpret({
@@ -49,7 +49,7 @@ export class DetailsViewPivotValidator {
 
         if (this.wasNewAssessmentExperienceEnabled(newState)) {
             this.windowUtils.setTimeout(() => {
-                const payload: IOnDetailsViewPivotSelected = {
+                const payload: OnDetailsViewPivotSelected = {
                     pivotKey: DetailsViewPivotType.fastPass,
                 };
                 this.interpreter.interpret({

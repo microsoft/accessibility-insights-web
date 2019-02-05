@@ -12,7 +12,7 @@ import { RequirementStatusTelemetryData } from '../common/telemetry-events';
 import * as TelemetryEvents from '../common/telemetry-events';
 import { IManualTestStatus, ManualTestStatus } from '../common/types/manual-test-status';
 import { IAssessmentData } from '../common/types/store-data/iassessment-result-data';
-import { IPayloadWIthEventName } from './actions/action-payloads';
+import { PayloadWIthEventName } from './actions/action-payloads';
 import { Interpreter } from './interpreter';
 import { AssessmentStore } from './stores/assessment-store';
 
@@ -46,7 +46,7 @@ export class CompletedTestStepTelemetryCreator {
         const completedStep = assessment.steps.find(step => this.isNewCompletedTestStep(assessment, step));
         const targetTab = this.store.getState().targetTab;
         if (completedStep != undefined && targetTab !== null) {
-            const payload: IPayloadWIthEventName = {
+            const payload: PayloadWIthEventName = {
                 eventName: TelemetryEvents.CHANGE_OVERALL_REQUIREMENT_STATUS,
                 telemetry: this.createTelemetryInfo(assessment, completedStep),
             };

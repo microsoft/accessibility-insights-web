@@ -3,7 +3,7 @@
 /// <reference path="../message.d.ts" />
 
 import { Messages } from '../messages';
-import { IPayloadWIthEventName } from '../../background/actions/action-payloads';
+import { PayloadWIthEventName } from '../../background/actions/action-payloads';
 import { TelemetryData } from '../telemetry-events';
 
 export abstract class BaseActionMessageCreator {
@@ -27,7 +27,7 @@ export abstract class BaseActionMessageCreator {
     }
 
     protected sendTelemetry(eventName: string, eventData: TelemetryData): void {
-        const payload: IPayloadWIthEventName = {
+        const payload: PayloadWIthEventName = {
             eventName: eventName,
             telemetry: eventData,
         };
@@ -44,7 +44,7 @@ export abstract class BaseActionMessageCreator {
     }
 
     public sendTelemetryExcludingUrl(eventName: string, eventData: TelemetryData): void {
-        const payload: IPayloadWIthEventName = {
+        const payload: PayloadWIthEventName = {
             eventName: eventName,
             telemetry: eventData,
         };

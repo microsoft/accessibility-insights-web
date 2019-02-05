@@ -7,7 +7,7 @@ import { Messages } from '../common/messages';
 import { VisualizationType } from '../common/types/visualization-type';
 import { WindowUtils } from '../common/window-utils';
 import { IAssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
-import { IUpdateInstanceVisibilityPayload, IUpdateVisibilityPayload } from '../background/actions/action-payloads';
+import { UpdateInstanceVisibilityPayload, UpdateVisibilityPayload } from '../background/actions/action-payloads';
 
 export class InstanceVisibilityChecker {
     private sendMessage: (message) => void;
@@ -61,7 +61,7 @@ export class InstanceVisibilityChecker {
         currentFrameResults: IAssessmentVisualizationInstance[],
     ): Function {
         return () => {
-            const payloadBatch: IUpdateInstanceVisibilityPayload[] = currentFrameResults.map(elementResult => {
+            const payloadBatch: UpdateInstanceVisibilityPayload[] = currentFrameResults.map(elementResult => {
                 const element = this._htmlElementUtils.querySelector(elementResult.target[elementResult.targetIndex]) as HTMLElement;
                 const elementFoundMatchesStoredInstance =
                     this.elementIsVisible(element) && this.identifiersMatch(visualizationType, drawerIdentifier, elementResult, element);

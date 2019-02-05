@@ -3,7 +3,7 @@
 import { Messages } from '../../common/messages';
 import * as TelemetryEvents from '../../common/telemetry-events';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
-import { IInspectElementPayload, IInspectFrameUrlPayload, IOnDevToolOpenPayload } from './action-payloads';
+import { InspectElementPayload, InspectFrameUrlPayload, OnDevToolOpenPayload } from './action-payloads';
 import { DevToolActions } from './dev-tools-actions';
 
 export class DevToolsActionCreator {
@@ -33,20 +33,20 @@ export class DevToolsActionCreator {
         this.registerTypeToPayloadCallback(Messages.DevTools.Get, () => this.onDevToolGetCurrentState());
     }
 
-    private onDevToolOpened(payload: IOnDevToolOpenPayload): void {
+    private onDevToolOpened(payload: OnDevToolOpenPayload): void {
         this.devtoolActions.setDevToolState.invoke(payload.status);
     }
 
-    private onDevToolInspectElement(payload: IInspectElementPayload, tabId): void {
+    private onDevToolInspectElement(payload: InspectElementPayload, tabId): void {
         this.devtoolActions.setInspectElement.invoke(payload.target);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.INSPECT_OPEN, payload, tabId);
     }
 
-    private onDevToolInspectFrameUrl(payload: IInspectFrameUrlPayload): void {
+    private onDevToolInspectFrameUrl(payload: InspectFrameUrlPayload): void {
         this.devtoolActions.setFrameUrl.invoke(payload.frameUrl);
     }
 
-    private onDevToolGetCurrentState() {
+    private onDevToolGetCurrentState(): void {
         this.devtoolActions.getCurrentState.invoke(null);
     }
 }
