@@ -15,6 +15,7 @@ import { PopupViewControllerHandler } from '../../../../../popup/scripts/handler
 import { LaunchPadRowConfigurationFactory } from '../../../../../popup/scripts/launch-pad-row-configuration-factory';
 import { MainRenderer, MainRendererDeps } from '../../../../../popup/scripts/main-renderer';
 import { SupportLinkHandler } from '../../../../../popup/support-link-handler';
+import { Theme } from '../../../../../common/components/theme';
 
 describe('MainRenderer', () => {
     const expectedTitle = title;
@@ -47,24 +48,28 @@ describe('MainRenderer', () => {
             .setup(r =>
                 r(
                     It.isValue(
-                        <PopupViewWithStoreSubscription
-                            deps={deps}
-                            title={expectedTitle}
-                            subtitle={expectedSubtitle}
-                            popupHandlers={{
-                                diagnosticViewClickHandler: diagnosticViewClickHandlerMock.object,
-                                popupViewControllerHandler: gettingStartedDialogHandlerMock.object,
-                                launchPanelHeaderClickHandler: feedbackMenuClickhandlerMock.object,
-                                supportLinkHandler: supportLinkHandlerMock.object,
-                            }}
-                            popupWindow={popupWindowMock.object}
-                            browserAdapter={browserAdapterMock.object}
-                            targetTabUrl={targetTabUrl}
-                            hasAccess={hasAccess}
-                            launchPadRowConfigurationFactory={launchPadRowConfigurationFactoryMock.object}
-                            diagnosticViewToggleFactory={diagnosticViewToggleFactoryMock.object}
-                            dropdownClickHandler={dropdownClickHandlerMock.object}
-                        />,
+                        <>
+                            <Theme deps={deps} />
+                            <PopupViewWithStoreSubscription
+                                deps={deps}
+                                title={expectedTitle}
+                                subtitle={expectedSubtitle}
+                                popupHandlers={{
+                                    diagnosticViewClickHandler: diagnosticViewClickHandlerMock.object,
+                                    popupViewControllerHandler: gettingStartedDialogHandlerMock.object,
+                                    launchPanelHeaderClickHandler: feedbackMenuClickhandlerMock.object,
+                                    supportLinkHandler: supportLinkHandlerMock.object,
+                                }}
+                                popupWindow={popupWindowMock.object}
+                                browserAdapter={browserAdapterMock.object}
+                                targetTabUrl={targetTabUrl}
+                                hasAccess={hasAccess}
+                                launchPadRowConfigurationFactory={launchPadRowConfigurationFactoryMock.object}
+                                diagnosticViewToggleFactory={diagnosticViewToggleFactoryMock.object}
+                                dropdownClickHandler={dropdownClickHandlerMock.object}
+                            />
+                            ,
+                        </>,
                     ),
                     container,
                 ),
