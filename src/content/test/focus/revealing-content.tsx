@@ -22,7 +22,7 @@ export const infoAndExamples = create(({ Markup }) => (
         <ul>
             <li>
                 If focusing the first interactive element in a dialog causes the beginning of the dialog to scroll out of view, add{' '}
-                <Markup.Code>tabindex="-1" </Markup.Code> to a static element at the top of the dialog (such as the dialog's title) and use
+                <Markup.Code>tabindex="-1"</Markup.Code> to a static element at the top of the dialog (such as the dialog's title) and use
                 scripting to move focus to that element.
             </li>
             <li>

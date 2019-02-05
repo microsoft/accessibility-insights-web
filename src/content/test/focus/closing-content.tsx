@@ -21,7 +21,7 @@ export const infoAndExamples = create(({ Markup }) => (
             </li>
             <li>
                 Better: When the user dismisses revealed content, move focus to the original trigger component. This is the ideal experience
-                when the user cancels a dialog (dismisses it without taking any action).{' '}
+                when the user cancels a dialog (dismisses it without taking any action).
             </li>
             <li>
                 Best: When the user dismisses revealed content, move focus to the control that makes the most sense given the user's

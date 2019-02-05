@@ -21,7 +21,7 @@ export const infoAndExamples = create(({ Markup }) => (
             </li>
             <li>
                 If a modal dialog contains multiple focusable elements, force focus to cycle through those elements until the dialog is
-                dismissed by the user.{' '}
+                dismissed by the user.
             </li>
         </ul>
 

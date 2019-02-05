@@ -27,7 +27,7 @@ const howToTest: JSX.Element = (
             </li>
             <li>
                 Verify that focus returns to the original trigger component. (It is acceptable to use <Markup.Term>Shift+Tab</Markup.Term>
-                once or use an arrow key to move focus to the trigger.)
+                {' ' + ''}once or use an arrow key to move focus to the trigger.)
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>

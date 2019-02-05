@@ -27,7 +27,7 @@ export const infoAndExamples = create(({ Markup }) => (
             <li>If styling hides the focus indicator, remove the styling so the browser's default focus indicator is visible.</li>
             <li>
                 If styling makes the focus indicator difficult to see, modify the styling so the focus rectangle has a contrast ratio at
-                least as high as the default browser focus indicator.{' '}
+                least as high as the default browser focus indicator.
             </li>
             <li>
                 If scripting removes focus from an element after it is received, modify the script so the element retains focus until the
