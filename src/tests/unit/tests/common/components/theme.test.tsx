@@ -33,7 +33,7 @@ describe('ThemeInner', () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    test.each([true, false])('componentWillUpdate: is high contrast mode enabled: %s', (enableHighContrast: boolean) => {
+    test.each([true, false])('componentDidUpdate: is high contrast mode enabled: %s', (enableHighContrast: boolean) => {
         const theme = {
             palette: enableHighContrast ? HighContrastThemePalette : DefaultThemePalette,
         };
