@@ -7,12 +7,12 @@ import { Mock } from 'typemoq';
 import { DropdownClickHandler } from '../../../../../common/dropdown-click-handler';
 import { FeatureFlags } from '../../../../../common/feature-flags';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
-import { Header, IHeaderProps } from '../../../../../DetailsView/components/header';
+import { Header, HeaderProps } from '../../../../../DetailsView/components/header';
 
 describe('HeaderTest', () => {
     test('render header: tabClosed is false, new assessment experience enabled', () => {
         const dropdownClickHandlerMock = Mock.ofType(DropdownClickHandler);
-        const props: IHeaderProps = {
+        const props: HeaderProps = {
             dropdownClickHandler: dropdownClickHandlerMock.object,
             featureFlagStoreData: {
                 [FeatureFlags.newAssessmentExperience]: true,
@@ -28,7 +28,7 @@ describe('HeaderTest', () => {
     });
 
     test('render header: target tabClosed is true, new assessment experience enabled', () => {
-        const props: IHeaderProps = {
+        const props: HeaderProps = {
             dropdownClickHandler: null,
             featureFlagStoreData: {
                 [FeatureFlags.newAssessmentExperience]: true,
@@ -45,7 +45,7 @@ describe('HeaderTest', () => {
     });
 
     test('render header: no feature flag store data', () => {
-        const props: IHeaderProps = {
+        const props: HeaderProps = {
             dropdownClickHandler: null,
             featureFlagStoreData: null,
             connected: null,
@@ -60,7 +60,7 @@ describe('HeaderTest', () => {
     });
 
     test('render header: new assessment experience disabled', () => {
-        const props: IHeaderProps = {
+        const props: HeaderProps = {
             dropdownClickHandler: null,
             featureFlagStoreData: {
                 [FeatureFlags.newAssessmentExperience]: false,

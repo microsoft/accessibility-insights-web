@@ -3,6 +3,7 @@
 import * as React from 'react';
 
 import { GearOptionsButtonComponent } from '../../common/components/gear-options-button-component';
+import { HeaderIcon, HeaderIconDeps } from '../../common/components/header-icon';
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 import { FeatureFlags } from '../../common/feature-flags';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
@@ -10,9 +11,9 @@ import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag
 import { title } from '../../content/strings/application';
 import { Switcher, SwitcherDeps } from '../components/switcher';
 
-export type HeaderDeps = SwitcherDeps;
+export type HeaderDeps = SwitcherDeps & HeaderIconDeps;
 
-export interface IHeaderProps {
+export interface HeaderProps {
     deps: HeaderDeps;
     dropdownClickHandler: DropdownClickHandler;
     featureFlagStoreData: FeatureFlagStoreData;
@@ -20,11 +21,11 @@ export interface IHeaderProps {
     selectedPivot: DetailsViewPivotType;
 }
 
-export class Header extends React.Component<IHeaderProps> {
+export class Header extends React.Component<HeaderProps> {
     public render(): JSX.Element {
         return (
             <header className="header-bar">
-                <img className="header-icon" src="../../icons/brand/white/brand-white-48px.png" alt="" />
+                <HeaderIcon deps={this.props.deps} />
                 <div className="ms-font-m header-text">{title}</div>
                 {this.renderSwitcher()}
                 {this.renderButton()}
