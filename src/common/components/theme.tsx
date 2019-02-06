@@ -2,11 +2,12 @@
 // Licensed under the MIT License.
 import { css } from '@uifabric/utilities';
 import * as React from 'react';
+import Helmet from 'react-helmet';
+
 import { DefaultThemePalette } from '../styles/default-theme-palette';
 import { HighContrastThemePalette } from '../styles/high-contrast-theme-palette';
 import { UserConfigurationStoreData } from '../types/store-data/user-configuration-store';
 import { withStoreSubscription, WithStoreSubscriptionDeps } from './with-store-subscription';
-import Helmet from 'react-helmet';
 
 export interface ThemeInnerState {
     userConfigurationStoreData: UserConfigurationStoreData;
