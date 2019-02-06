@@ -73,6 +73,17 @@ You can install the extension from one of the following links
 
 -   Look for the ![Dev Logo](./src/icons/brand/gray/brand-gray-16px.png) extension icon to the right of the address bar
 
+### 5. Commands to run before check in
+
+-   Run the below command to build, test, check if files have copyright header, check file format styling & tslint issues
+    ```bash
+    npm run precheckin
+    ```
+-   If the above command failed for formatting issues, run the below command to format all files
+    ```bash
+    npm run format
+    ```
+
 ## More Information
 
 [Developer Workflow](./docs/workflow.md)
