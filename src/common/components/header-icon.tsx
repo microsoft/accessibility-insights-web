@@ -1,14 +1,14 @@
-import { WithStoreSubscriptionDeps, withStoreSubscription } from './with-store-subscription';
-import { ThemeInnerState } from './theme';
-import { NamedSFC } from '../react/named-sfc';
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
 import * as React from 'react';
+
+import { NamedSFC } from '../react/named-sfc';
+import { ThemeInnerState } from './theme';
+import { withStoreSubscription, WithStoreSubscriptionDeps, WithStoreSubscriptionProps } from './with-store-subscription';
 
 export type HeaderIconDeps = WithStoreSubscriptionDeps<HeaderIconState>;
 
-export type HeaderIconProps = {
-    deps: HeaderIconDeps;
-    storeState?: HeaderIconState;
-};
+export type HeaderIconProps = WithStoreSubscriptionProps<HeaderIconState>;
 
 export type HeaderIconState = ThemeInnerState;
 
