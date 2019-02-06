@@ -3,7 +3,7 @@
 import { forEach } from 'lodash';
 import { IColumn, ColumnActionsMode } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
-import { IMock, Mock } from 'typemoq';
+import { IMock, It, Mock, Times } from 'typemoq';
 
 import { IAssessmentNavState } from '../../../../../common/types/store-data/iassessment-result-data';
 import { AssessmentInstanceDetailsColumn } from '../../../../../DetailsView/components/assessment-instance-details-column';
@@ -21,6 +21,7 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
     beforeEach(() => {
         masterCheckboxConfigProviderMock = Mock.ofType(MasterCheckBoxConfigProvider);
     });
+
     test('verify configurations for generated instances', () => {
         const provider = CreateTestAssessmentProvider();
         const assessment = provider.all()[0];
@@ -40,7 +41,7 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
         setConfigProvider(navState, baseConfig);
 
         const testObject = new AssessmentTableColumnConfigHandler(masterCheckboxConfigProviderMock.object, provider);
-        const actualColumns = testObject.getColumnConfigs(navState, true);
+        const actualColumns = testObject.getColumnConfigs(navState, true, true);
 
         assertMasterCheckBox(baseConfig, actualColumns);
 
@@ -73,10 +74,44 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
         setConfigProvider(navState, baseConfig);
 
         const testObject = new AssessmentTableColumnConfigHandler(masterCheckboxConfigProviderMock.object, provider);
-        const actualColumns = testObject.getColumnConfigs(navState, true);
+        const actualColumns = testObject.getColumnConfigs(navState, true, true);
 
         expect(actualColumns.length).toBe(1);
         assertMasterCheckBox(baseConfig, actualColumns);
+    });
+
+    test('verify configurations for generated instances without visual helper', () => {
+        const provider = CreateTestAssessmentProvider();
+        const assessment = provider.all()[0];
+        const step = assessment.steps[0];
+        const navState: IAssessmentNavState = {
+            selectedTestType: assessment.type,
+            selectedTestStep: step.key,
+        };
+
+        const baseConfig = {
+            iconName: 'iconName',
+            name: 'toggle all visualization',
+            ariaLabel: 'toggle all visualization',
+            onColumnClick: () => null,
+        };
+
+        masterCheckboxConfigProviderMock.setup(m => m.getMasterCheckBoxProperty(It.isAny(), It.isAny())).verifiable(Times.never());
+
+        const testObject = new AssessmentTableColumnConfigHandler(masterCheckboxConfigProviderMock.object, provider);
+        const actualColumns = testObject.getColumnConfigs(navState, true, false);
+
+        assertNoMasterCheckBox(actualColumns);
+
+        step.columnsConfig.forEach(columnConfig => {
+            const actualColumnConfig = actualColumns.find(col => col.key === columnConfig.key);
+            expect(actualColumnConfig).toBeDefined();
+            expect(actualColumnConfig.name).toEqual(columnConfig.name);
+            expect(actualColumnConfig.onRender).toEqual(columnConfig.onRender);
+        });
+
+        assertStatusChoiceGroup(actualColumns);
+        masterCheckboxConfigProviderMock.verifyAll();
     });
 
     test('verify CapturedInstancesTableConfigurations: headings static configs', () => {
@@ -161,6 +196,11 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
 
         const masterCheckboxConfig = config.find(col => col.key === AssessmentTableColumnConfigHandler.MASTER_CHECKBOX_KEY);
         assertColumn(expectedConfig, masterCheckboxConfig, 'master checkbox config');
+    }
+
+    function assertNoMasterCheckBox(config: IColumn[]): void {
+        const masterCheckboxConfig = config.find(col => col.key === AssessmentTableColumnConfigHandler.MASTER_CHECKBOX_KEY);
+        expect(masterCheckboxConfig).toBeUndefined();
     }
 
     function assertColumn(expectedColumn: Partial<IColumn>, actualColumn: Partial<IColumn>, messagePrefix?: string): void {

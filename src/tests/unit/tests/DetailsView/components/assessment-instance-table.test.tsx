@@ -101,12 +101,12 @@ describe('AssessmentInstanceTableTest', () => {
         ];
 
         assessmentInstanceTableHandlerMock
-            .setup(a => a.createAssessmentInstanceTableItems(props.instancesMap, props.assessmentNavState))
+            .setup(a => a.createAssessmentInstanceTableItems(props.instancesMap, props.assessmentNavState, props.hasVisualHelper))
             .returns(() => items)
             .verifiable(Times.once());
 
         assessmentInstanceTableHandlerMock
-            .setup(a => a.getColumnConfigs(props.instancesMap, props.assessmentNavState))
+            .setup(a => a.getColumnConfigs(props.instancesMap, props.assessmentNavState, props.hasVisualHelper))
             .returns(() => cols)
             .verifiable(Times.once());
 
@@ -163,12 +163,12 @@ describe('AssessmentInstanceTableTest', () => {
         ];
 
         assessmentInstanceTableHandlerMock
-            .setup(a => a.createAssessmentInstanceTableItems(props.instancesMap, props.assessmentNavState))
+            .setup(a => a.createAssessmentInstanceTableItems(props.instancesMap, props.assessmentNavState, props.hasVisualHelper))
             .returns(() => items)
             .verifiable(Times.once());
 
         assessmentInstanceTableHandlerMock
-            .setup(a => a.getColumnConfigs(props.instancesMap, props.assessmentNavState))
+            .setup(a => a.getColumnConfigs(props.instancesMap, props.assessmentNavState, props.hasVisualHelper))
             .returns(() => cols)
             .verifiable(Times.once());
 
@@ -364,6 +364,7 @@ describe('AssessmentInstanceTableTest', () => {
             assessmentDefaultMessageGenerator: defaultMessageGeneratorMock,
             renderInstanceTableHeader: (table: AssessmentInstanceTable, items: IAssessmentInstanceRowData[]) =>
                 table.renderDefaultInstanceTableHeader(items),
+            hasVisualHelper: true,
         };
     }
 });

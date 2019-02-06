@@ -67,5 +67,4 @@ export const PageTitle: TestStep = {
                 testType: VisualizationType.PageAssessment,
             }),
         ),
-    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
 };
