@@ -121,7 +121,7 @@ div.insights-dialog-main-override {
                 .ms-List-cell:last-child {
                     border-bottom: solid $neutral-20 1px;
                 }
-                .ms-List-cell+.ms-List-cell {
+                .ms-List-cell + .ms-List-cell {
                     border-top: solid $neutral-20 1px;
                 }
                 .delete-selector-button {
@@ -197,7 +197,7 @@ div.insights-dialog-main-override {
                 }
             }
         }
-        .preview-feature-toggle-container+.preview-feature-toggle-container {
+        .preview-feature-toggle-container + .preview-feature-toggle-container {
             margin-top: 4vh;
         }
     }
@@ -239,12 +239,12 @@ div.insights-dialog-main-override {
     }
     .ms-DetailsHeader {
         .content-header {
-            >span:first-of-type {
+            > span:first-of-type {
                 padding-left: 5px;
             }
         }
-        .content-header~.content-header {
-            >span:first-of-type {
+        .content-header ~ .content-header {
+            > span:first-of-type {
                 padding-left: 0px;
             }
         }
@@ -522,7 +522,7 @@ div.insights-dialog-main-override {
                     flex-direction: column;
                     font-size: 14px;
                     line-height: 24px;
-                    *+*.property-bag-div {
+                    * + *.property-bag-div {
                         margin-top: 4px;
                     }
                     .property-bag-div {
@@ -749,7 +749,7 @@ div.insights-dialog-main-override {
             width: 100%;
             padding-bottom: 1px;
             overflow: auto;
-            >div {
+            > div {
                 min-width: 600px;
                 height: auto;
             }
@@ -801,12 +801,12 @@ div.insights-dialog-main-override {
                     width: 100%;
                     display: flex;
                     flex-direction: column;
-                    >h1,
+                    > h1,
                     .details-view-toggle,
                     .details-disabled-message {
                         margin-left: 24px;
                     }
-                    >div {
+                    > div {
                         height: 100%;
                         display: flex;
                         flex-direction: column;
@@ -867,7 +867,7 @@ div.insights-dialog-main-override {
                     flex-direction: column;
                     height: 60%;
                     min-height: 150px;
-                    >.ms-Viewport {
+                    > .ms-Viewport {
                         display: flex;
                         height: 100%;
                         width: 100%;
@@ -1037,10 +1037,10 @@ div.insights-dialog-main-override {
                     max-width: 100%;
                     overflow-x: auto;
                     overflow-y: auto;
-                    >[role='grid'] {
+                    > [role='grid'] {
                         width: 100%;
                         min-width: fit-content;
-                        >[role='presentation']:nth-child(2) {
+                        > [role='presentation']:nth-child(2) {
                             min-width: fit-content;
                         }
                     }
@@ -1181,7 +1181,7 @@ div.insights-dialog-main-override {
                     overflow-y: auto;
                     height: 40%;
                     min-height: 150px;
-                    >div {
+                    > div {
                         border-top: 1px solid $neutral-8;
                     }
                     h2 {
@@ -1199,7 +1199,7 @@ div.insights-dialog-main-override {
                         width: 100%;
                         padding: 0;
                         border-collapse: collapse;
-                        tr>td {
+                        tr > td {
                             border-bottom: 1px solid $neutral-8;
                             padding-top: 10px;
                             padding-bottom: 10px;
@@ -1207,10 +1207,10 @@ div.insights-dialog-main-override {
                             vertical-align: initial;
                             font-size: 14px;
                         }
-                        tr>td:first-child {
+                        tr > td:first-child {
                             width: 100px;
                         }
-                        tr:last-child>td {
+                        tr:last-child > td {
                             border-bottom: none;
                         }
                         .snippet-content {
@@ -1221,7 +1221,7 @@ div.insights-dialog-main-override {
                         .path-content {
                             font-size: 12px;
                         }
-                        .fix-content>div:nth-child(2) {
+                        .fix-content > div:nth-child(2) {
                             margin-top: 6px;
                         }
                         .fix-content ul {
