@@ -67,7 +67,7 @@ export interface UpdateSelectedPivot extends BaseActionPayload {
     pivotKey: DetailsViewPivotType;
 }
 
-export interface PayloadWIthEventName extends BaseActionPayload {
+export interface PayloadWithEventName extends BaseActionPayload {
     eventName: string;
 }
 

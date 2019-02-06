@@ -10,7 +10,7 @@ import { LaunchPanelStateActions } from './launch-panel-state-action';
 import { BrowserAdapter } from '../browser-adapter';
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
-import { PayloadWIthEventName, SetLaunchPanelState, SetTelemetryStatePayload, SetHighContrastModePayload } from './action-payloads';
+import { PayloadWithEventName, SetLaunchPanelState, SetTelemetryStatePayload, SetHighContrastModePayload } from './action-payloads';
 import { CommandActions, IGetCommandsPayload } from './command-actions';
 import { ScopingActions } from './scoping-actions';
 import { UserConfigurationActions } from './user-configuration-actions';
@@ -115,7 +115,7 @@ export class GlobalActionCreator {
     }
 
     @autobind
-    private onSendTelemetry(payload: PayloadWIthEventName, tabId: number): void {
+    private onSendTelemetry(payload: PayloadWithEventName, tabId: number): void {
         const eventName = payload.eventName;
         this.telemetryEventHandler.publishTelemetry(eventName, payload, tabId);
     }

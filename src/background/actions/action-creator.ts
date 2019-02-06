@@ -24,7 +24,7 @@ import {
     AddTabbedElementPayload,
     OnDetailsViewOpenPayload,
     OnDetailsViewPivotSelected,
-    PayloadWIthEventName,
+    PayloadWithEventName,
     ToggleActionPayload,
     VisualizationTogglePayload,
 } from './action-payloads';
@@ -333,13 +333,13 @@ export class ActionCreator {
     }
 
     @autobind
-    private onSendTelemetry(payload: PayloadWIthEventName, tabId: number): void {
+    private onSendTelemetry(payload: PayloadWithEventName, tabId: number): void {
         const eventName = payload.eventName;
         this.telemetryEventHandler.publishTelemetry(eventName, payload, tabId);
     }
 
     @autobind
-    private onSendTelemetryExcludeUrl(payload: PayloadWIthEventName, tabId: number): void {
+    private onSendTelemetryExcludeUrl(payload: PayloadWithEventName, tabId: number): void {
         const eventName = payload.eventName;
         this.telemetryEventHandler.publishTelemetry(eventName, payload, tabId, false);
     }
