@@ -5,7 +5,7 @@ import * as ReactDOM from 'react-dom';
 
 import { BrowserAdapter } from '../../background/browser-adapter';
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
-import { subtitle, title } from '../../content/strings/application';
+import { title } from '../../content/strings/application';
 import { DiagnosticViewToggleFactory } from './components/diagnostic-view-toggle-factory';
 import { PopupViewControllerDeps, PopupViewWithStoreSubscription } from './components/popup-view';
 import { IPopupHandlers } from './handlers/ipopup-handlers';
@@ -27,7 +27,7 @@ export class MainRenderer {
         private readonly launchPadRowConfigurationFactory: LaunchPadRowConfigurationFactory,
         private readonly diagnosticViewToggleFactory: DiagnosticViewToggleFactory,
         private readonly dropdownClickHandler: DropdownClickHandler,
-    ) {}
+    ) { }
 
     public render(): void {
         const container = this.dom.querySelector('#popup-container');
@@ -38,7 +38,6 @@ export class MainRenderer {
                 <PopupViewWithStoreSubscription
                     deps={this.deps}
                     title={title}
-                    subtitle={subtitle}
                     popupHandlers={this.popupHandlers}
                     popupWindow={this.popupWindow}
                     browserAdapter={this.browserAdapter}

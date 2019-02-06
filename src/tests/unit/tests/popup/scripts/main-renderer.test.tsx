@@ -6,7 +6,7 @@ import { IMock, It, Mock } from 'typemoq';
 
 import { BrowserAdapter, ChromeAdapter } from '../../../../../background/browser-adapter';
 import { DropdownClickHandler } from '../../../../../common/dropdown-click-handler';
-import { subtitle, title } from '../../../../../content/strings/application';
+import { title } from '../../../../../content/strings/application';
 import { DiagnosticViewToggleFactory } from '../../../../../popup/scripts/components/diagnostic-view-toggle-factory';
 import { PopupViewWithStoreSubscription } from '../../../../../popup/scripts/components/popup-view';
 import { DiagnosticViewClickHandler } from '../../../../../popup/scripts/handlers/diagnostic-view-toggle-click-handler';
@@ -19,7 +19,6 @@ import { Theme } from '../../../../../common/components/theme';
 
 describe('MainRenderer', () => {
     const expectedTitle = title;
-    const expectedSubtitle = subtitle;
 
     test('render', () => {
         const dom = document.createElement('div');
@@ -53,7 +52,6 @@ describe('MainRenderer', () => {
                             <PopupViewWithStoreSubscription
                                 deps={deps}
                                 title={expectedTitle}
-                                subtitle={expectedSubtitle}
                                 popupHandlers={{
                                     diagnosticViewClickHandler: diagnosticViewClickHandlerMock.object,
                                     popupViewControllerHandler: gettingStartedDialogHandlerMock.object,
