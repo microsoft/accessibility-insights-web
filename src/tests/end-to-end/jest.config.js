@@ -17,7 +17,7 @@ module.exports = {
         'js',
     ],
     rootDir: rootDir,
-    roots: ['<rootDir>/src/tests/end-to-end'],
+    roots: [currentDir],
     reporters: ['default', ['jest-junit', { outputDirectory: '.', outputName: '<rootDir>/test-results/e2e/junit-e2e.xml' }]],
     setupFilesAfterEnv: [`${currentDir}/setup/test-setup.ts`],
     globals: {
