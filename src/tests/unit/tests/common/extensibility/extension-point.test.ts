@@ -12,18 +12,18 @@ describe('ExtensionPoint', () => {
     };
 
     const base = {
-        one: jest.fn<{ str: string }>(),
-        two: jest.fn<{ int: number }>(),
+        one: jest.fn(),
+        two: jest.fn(),
     };
 
     const componentOne = {
-        one: jest.fn<{ str: string }>(),
-        two: jest.fn<{ int: number }>(),
+        one: jest.fn(),
+        two: jest.fn(),
     };
 
     const componentTwo = {
-        one: jest.fn<{ str: string }>(),
-        two: jest.fn<{ int: number }>(),
+        one: jest.fn(),
+        two: jest.fn(),
     };
 
     const ep = createCallChainExtensionPoint(magicString, base as EXT);

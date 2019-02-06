@@ -5,10 +5,10 @@ import * as _ from 'lodash';
 import { HeadingsTestStep } from '../../../../../assessments/headings/test-steps/test-steps';
 import { LandmarkTestStep } from '../../../../../assessments/landmarks/test-steps/test-steps';
 import {
-    IAssessmentToggleActionPayload,
-    IToggleActionPayload,
-    IUpdateSelectedDetailsViewPayload,
-    IUpdateSelectedPivot,
+    AssessmentToggleActionPayload,
+    ToggleActionPayload,
+    UpdateSelectedDetailsViewPayload,
+    UpdateSelectedPivot,
 } from '../../../../../background/actions/action-payloads';
 import { TabActions } from '../../../../../background/actions/tab-actions';
 import { VisualizationActions } from '../../../../../background/actions/visualization-actions';
@@ -48,7 +48,7 @@ describe('VisualizationStoreTest ', () => {
             .with('selectedDetailsViewPivot', finalPivot)
             .build();
 
-        const payload: IUpdateSelectedDetailsViewPayload = {
+        const payload: UpdateSelectedDetailsViewPayload = {
             detailsViewType: viewType,
             pivotType: finalPivot,
         };
@@ -73,7 +73,7 @@ describe('VisualizationStoreTest ', () => {
             .with('selectedDetailsViewPivot', finalPivot)
             .build();
 
-        const payload: IUpdateSelectedDetailsViewPayload = {
+        const payload: UpdateSelectedDetailsViewPayload = {
             detailsViewType: viewType,
             pivotType: finalPivot,
         };
@@ -97,7 +97,7 @@ describe('VisualizationStoreTest ', () => {
             .with('selectedDetailsViewPivot', pivotType)
             .build();
 
-        const payload: IUpdateSelectedDetailsViewPayload = {
+        const payload: UpdateSelectedDetailsViewPayload = {
             detailsViewType: viewType,
             pivotType: pivotType,
         };
@@ -112,7 +112,7 @@ describe('VisualizationStoreTest ', () => {
         const expectedState = new VisualizationStoreDataBuilder().with('selectedAdhocDetailsView', VisualizationType.Landmarks).build();
         const initialState = new VisualizationStoreDataBuilder().with('selectedAdhocDetailsView', VisualizationType.Landmarks).build();
 
-        const payload: IUpdateSelectedDetailsViewPayload = {
+        const payload: UpdateSelectedDetailsViewPayload = {
             detailsViewType: VisualizationType.Issues,
             pivotType: null,
         };
@@ -128,7 +128,7 @@ describe('VisualizationStoreTest ', () => {
 
         const expectedState = new VisualizationStoreDataBuilder().with('selectedAdhocDetailsView', VisualizationType.Issues).build();
 
-        const payload: IUpdateSelectedDetailsViewPayload = {
+        const payload: UpdateSelectedDetailsViewPayload = {
             detailsViewType: VisualizationType.Headings,
             pivotType: null,
         };
@@ -143,7 +143,7 @@ describe('VisualizationStoreTest ', () => {
         const initialState = new VisualizationStoreDataBuilder().with('selectedAdhocDetailsView', VisualizationType.Issues).build();
         const expectedState = _.cloneDeep(initialState);
 
-        const payload: IUpdateSelectedDetailsViewPayload = {
+        const payload: UpdateSelectedDetailsViewPayload = {
             detailsViewType: null,
             pivotType: null,
         };
@@ -160,7 +160,7 @@ describe('VisualizationStoreTest ', () => {
 
         const expectedState = new VisualizationStoreDataBuilder().with('selectedDetailsViewPivot', oldPivotValue).build();
 
-        const payload: IUpdateSelectedPivot = {
+        const payload: UpdateSelectedPivot = {
             pivotKey: oldPivotValue,
         };
 
@@ -188,7 +188,7 @@ describe('VisualizationStoreTest ', () => {
             .withAllAdhocTestsTo(false)
             .build();
 
-        const payload: IUpdateSelectedPivot = {
+        const payload: UpdateSelectedPivot = {
             pivotKey: finalPivotValue,
         };
 
@@ -200,7 +200,7 @@ describe('VisualizationStoreTest ', () => {
     test('onEnableHeadings when headings is disable', () => {
         const actionName = 'enableVisualization';
         const dataBuilder = new VisualizationStoreDataBuilder();
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test: VisualizationType.Headings,
         };
 
@@ -221,7 +221,7 @@ describe('VisualizationStoreTest ', () => {
     test('onEnableHeadingsAssessment without scan', () => {
         const actionName = 'enableVisualizationWithoutScan';
         const dataBuilder = new VisualizationStoreDataBuilder();
-        const payload: IAssessmentToggleActionPayload = {
+        const payload: AssessmentToggleActionPayload = {
             test: VisualizationType.HeadingsAssessment,
             step: HeadingsTestStep.missingHeadings,
         };
@@ -240,7 +240,7 @@ describe('VisualizationStoreTest ', () => {
 
     test('onEnableHeadings when headings is already enable', () => {
         const actionName = 'enableVisualization';
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test: VisualizationType.Headings,
         };
 
@@ -255,7 +255,7 @@ describe('VisualizationStoreTest ', () => {
 
     test('onEnableHeadings when headingsAssessment is enabled', () => {
         const actionName = 'enableVisualization';
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test: VisualizationType.Headings,
         };
 
@@ -275,7 +275,7 @@ describe('VisualizationStoreTest ', () => {
 
     test('onEnableHeadingsAssessment when some other visualization is already enable', () => {
         const actionName = 'enableVisualization';
-        const payload: IAssessmentToggleActionPayload = {
+        const payload: AssessmentToggleActionPayload = {
             test: VisualizationType.HeadingsAssessment,
             step: HeadingsTestStep.missingHeadings,
         };
@@ -296,7 +296,7 @@ describe('VisualizationStoreTest ', () => {
 
     test('onEnableHeadingsAssessment from onEnableLandmarksAssessment', () => {
         const actionName = 'enableVisualization';
-        const payload: IAssessmentToggleActionPayload = {
+        const payload: AssessmentToggleActionPayload = {
             test: VisualizationType.HeadingsAssessment,
             step: HeadingsTestStep.missingHeadings,
         };
@@ -317,7 +317,7 @@ describe('VisualizationStoreTest ', () => {
 
     test('onEnableHeadingsAssessment switch test steps', () => {
         const actionName = 'enableVisualization';
-        const payload: IAssessmentToggleActionPayload = {
+        const payload: AssessmentToggleActionPayload = {
             test: VisualizationType.HeadingsAssessment,
             step: HeadingsTestStep.missingHeadings,
         };
@@ -339,7 +339,7 @@ describe('VisualizationStoreTest ', () => {
     test('OnDisableHeadings when headings is enable', () => {
         const actionName = 'disableVisualization';
         const dataBuilder = new VisualizationStoreDataBuilder();
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test: VisualizationType.Headings,
         };
         const expectedState = dataBuilder.build();
@@ -365,7 +365,7 @@ describe('VisualizationStoreTest ', () => {
     test('onEnableTabStops when TabStops is disable', () => {
         const actionName = 'enableVisualization';
         const dataBuilder = new VisualizationStoreDataBuilder();
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test: VisualizationType.TabStops,
         };
         const initialState = dataBuilder.build();
@@ -383,7 +383,7 @@ describe('VisualizationStoreTest ', () => {
 
     test('onEnableTabStops when TabStops is already enable', () => {
         const actionName = 'enableVisualization';
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test: VisualizationType.TabStops,
         };
         const initialState = new VisualizationStoreDataBuilder().withTabStopsEnable().build();
@@ -398,7 +398,7 @@ describe('VisualizationStoreTest ', () => {
     test('OnDisableTabStops when TabStops is enable', () => {
         const actionName = 'disableVisualization';
         const dataBuilder = new VisualizationStoreDataBuilder();
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test: VisualizationType.TabStops,
         };
         const expectedState = dataBuilder.build();
@@ -411,7 +411,7 @@ describe('VisualizationStoreTest ', () => {
 
     test('disableVisualization when already scanning', () => {
         const actionName = 'disableVisualization';
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test: VisualizationType.Issues,
         };
 
@@ -433,7 +433,7 @@ describe('VisualizationStoreTest ', () => {
     test('OnDisableHeadings when headings is already disable', () => {
         const actionName = 'disableVisualization';
         const dataBuilder = new VisualizationStoreDataBuilder();
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test: VisualizationType.Headings,
         };
         const initialState = dataBuilder.build();
@@ -446,7 +446,7 @@ describe('VisualizationStoreTest ', () => {
 
     test('onEnableLandmarks when landmarks is disable', () => {
         const actionName = 'enableVisualization';
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test: VisualizationType.Landmarks,
         };
         const initialState = new VisualizationStoreDataBuilder().build();
@@ -464,7 +464,7 @@ describe('VisualizationStoreTest ', () => {
 
     test('onEnableLandmarks when landmarks is already enable', () => {
         const actionName = 'enableVisualization';
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test: VisualizationType.Landmarks,
         };
         const initialState = new VisualizationStoreDataBuilder().withLandmarksEnable().build();
@@ -479,7 +479,7 @@ describe('VisualizationStoreTest ', () => {
     test('onDisableLandmarks when landmarks is enable', () => {
         const actionName = 'disableVisualization';
         const dataBuilder = new VisualizationStoreDataBuilder();
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test: VisualizationType.Landmarks,
         };
         const expectedState = dataBuilder.build();
@@ -493,7 +493,7 @@ describe('VisualizationStoreTest ', () => {
     test('onDisableLandmarks when landmarks is already disable', () => {
         const actionName = 'disableVisualization';
         const dataBuilder = new VisualizationStoreDataBuilder();
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test: VisualizationType.Landmarks,
         };
         const initialState = dataBuilder.build();
@@ -509,7 +509,7 @@ describe('VisualizationStoreTest ', () => {
 
         const initialState = new VisualizationStoreDataBuilder().build();
 
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test: VisualizationType.Issues,
         };
 
@@ -528,7 +528,7 @@ describe('VisualizationStoreTest ', () => {
 
     test('onEnableIssues when issues is already enable', () => {
         const actionName = 'enableVisualization';
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test: VisualizationType.Issues,
         };
         const initialState = new VisualizationStoreDataBuilder().withIssuesEnable().build();
@@ -543,7 +543,7 @@ describe('VisualizationStoreTest ', () => {
     test('onDisableIssues when issues is enable', () => {
         const actionName = 'disableVisualization';
         const dataBuilder = new VisualizationStoreDataBuilder();
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test: VisualizationType.Issues,
         };
         const expectedState = dataBuilder.build();
@@ -557,7 +557,7 @@ describe('VisualizationStoreTest ', () => {
     test('onDisableIssues when issues is already disable', () => {
         const actionName = 'disableVisualization';
         const dataBuilder = new VisualizationStoreDataBuilder();
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test: VisualizationType.Issues,
         };
         const initialState = dataBuilder.build();
@@ -573,7 +573,7 @@ describe('VisualizationStoreTest ', () => {
 
         const initialState = new VisualizationStoreDataBuilder().build();
 
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test: VisualizationType.Color,
         };
 
@@ -592,7 +592,7 @@ describe('VisualizationStoreTest ', () => {
     test('onDisableColor when color is enable', () => {
         const actionName = 'disableVisualization';
         const dataBuilder = new VisualizationStoreDataBuilder();
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test: VisualizationType.Color,
         };
         const expectedState = dataBuilder.build();
@@ -613,7 +613,7 @@ describe('VisualizationStoreTest ', () => {
 
     test('enableVisualization when already scanning', () => {
         const actionName = 'enableVisualization';
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test: VisualizationType.Issues,
         };
         const initialState = new VisualizationStoreDataBuilder().with('scanning', 'headings').build();

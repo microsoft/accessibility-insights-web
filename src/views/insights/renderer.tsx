@@ -3,18 +3,19 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { DocumentManipulator } from '../../common/document-manipulator';
+import { Theme, ThemeDeps } from '../../common/components/theme';
 import { config } from '../../common/configuration';
-import { rendererDependencies } from './dependencies';
+import { DocumentManipulator } from '../../common/document-manipulator';
 import { Router, RouterDeps } from './router';
 
 export type RendererDeps = {
     dom: Node & NodeSelector;
     render: ReactDOM.Renderer;
     initializeFabricIcons: () => void;
-} & RouterDeps;
+} & RouterDeps &
+    ThemeDeps;
 
-export function renderer(deps: RendererDeps = rendererDependencies) {
+export function renderer(deps: RendererDeps): void {
     const { dom, render, initializeFabricIcons } = deps;
     const iconPath = '../' + config.getOption('icon16');
     const documentElementSetter = new DocumentManipulator(dom);
@@ -23,5 +24,11 @@ export function renderer(deps: RendererDeps = rendererDependencies) {
     initializeFabricIcons();
 
     const insightsRoot = dom.querySelector('#insights-root');
-    render(<Router deps={deps} />, insightsRoot);
+    render(
+        <>
+            <Theme deps={deps} />
+            <Router deps={deps} />
+        </>,
+        insightsRoot,
+    );
 }

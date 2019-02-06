@@ -19,8 +19,10 @@ describe('withStoreSubscription', () => {
 
     test('constructor: storesHub is null', () => {
         const props: testProps = {
-            storeActionCreator: storeActionCreatorMock.object,
-            storesHub: null,
+            deps: {
+                storeActionMessageCreator: storeActionCreatorMock.object,
+                storesHub: null,
+            },
         };
         const WrappedComp = withStoreSubscription<testProps, any>(testComp);
         const rendered = new WrappedComp(props);
@@ -36,8 +38,10 @@ describe('withStoreSubscription', () => {
         storesHubStub.hasStores = hasStoresMock;
 
         const props: testProps = {
-            storeActionCreator: storeActionCreatorMock.object,
-            storesHub: storesHubStub,
+            deps: {
+                storeActionMessageCreator: storeActionCreatorMock.object,
+                storesHub: storesHubStub,
+            },
         };
         const WrappedComp = withStoreSubscription<testProps, any>(testComp);
         const rendered = new WrappedComp(props);
@@ -47,8 +51,10 @@ describe('withStoreSubscription', () => {
     test('componentDidMount: store hub is null', () => {
         storeActionCreatorMock.setup(d => d.getAllStates()).verifiable(Times.never());
         const props: testProps = {
-            storeActionCreator: storeActionCreatorMock.object,
-            storesHub: null,
+            deps: {
+                storeActionMessageCreator: storeActionCreatorMock.object,
+                storesHub: null,
+            },
         };
         const WrappedComp = withStoreSubscription<testProps, any>(testComp);
         const rendered = new WrappedComp(props);
@@ -67,8 +73,10 @@ describe('withStoreSubscription', () => {
         storesHubStub.hasStores = hasStoresMock;
         storeActionCreatorMock.setup(d => d.getAllStates()).verifiable(Times.never());
         const props: testProps = {
-            storeActionCreator: storeActionCreatorMock.object,
-            storesHub: storesHubStub,
+            deps: {
+                storeActionMessageCreator: storeActionCreatorMock.object,
+                storesHub: storesHubStub,
+            },
         };
         const WrappedComp = withStoreSubscription<testProps, any>(testComp);
         const rendered = new WrappedComp(props);
@@ -89,8 +97,10 @@ describe('withStoreSubscription', () => {
         storesHubStub.hasStores = hasStoresMock;
         storeActionCreatorMock.setup(d => d.getAllStates()).verifiable(Times.once());
         const props: testProps = {
-            storeActionCreator: storeActionCreatorMock.object,
-            storesHub: storesHubStub,
+            deps: {
+                storeActionMessageCreator: storeActionCreatorMock.object,
+                storesHub: storesHubStub,
+            },
         };
         const WrappedComp = withStoreSubscription<testProps, any>(testComp);
         const rendered = new WrappedComp(props);
@@ -107,8 +117,10 @@ describe('withStoreSubscription', () => {
         storesHubStub.getAllStoreData = () => null;
         storesHubStub.removeChangedListenerFromAllStores = jest.fn();
         const props: testProps = {
-            storeActionCreator: storeActionCreatorMock.object,
-            storesHub: null,
+            deps: {
+                storeActionMessageCreator: storeActionCreatorMock.object,
+                storesHub: null,
+            },
         };
         const WrappedComp = withStoreSubscription<testProps, any>(testComp);
         const rendered = new WrappedComp(props);
@@ -126,8 +138,10 @@ describe('withStoreSubscription', () => {
         storesHubStub.hasStores = hasStoresMock;
         storesHubStub.removeChangedListenerFromAllStores = jest.fn();
         const props: testProps = {
-            storeActionCreator: storeActionCreatorMock.object,
-            storesHub: storesHubStub,
+            deps: {
+                storeActionMessageCreator: storeActionCreatorMock.object,
+                storesHub: storesHubStub,
+            },
         };
         const WrappedComp = withStoreSubscription<testProps, any>(testComp);
         const rendered = new WrappedComp(props);
@@ -153,8 +167,10 @@ describe('withStoreSubscription', () => {
         storesHubStub.hasStores = hasStoresMock;
         storeActionCreatorMock.setup(d => d.getAllStates()).verifiable(Times.once());
         const props: testProps = {
-            storeActionCreator: storeActionCreatorMock.object,
-            storesHub: storesHubStub,
+            deps: {
+                storeActionMessageCreator: storeActionCreatorMock.object,
+                storesHub: storesHubStub,
+            },
         };
         const WrappedComp = withStoreSubscription<testProps, any>(testComp);
         const rendered = new WrappedComp(props);
@@ -183,8 +199,10 @@ describe('withStoreSubscription', () => {
         storesHubStub.addChangedListenerToAllStores = addChangedListenerToAllStoresMock;
         storesHubStub.hasStores = hasStoresMock;
         const props: WithStoreSubscriptionProps<any> = {
-            storeActionCreator: storeActionCreatorMock.object,
-            storesHub: storesHubStub,
+            deps: {
+                storeActionMessageCreator: storeActionCreatorMock.object,
+                storesHub: storesHubStub,
+            },
         };
         const WrappedComp = withStoreSubscription<WithStoreSubscriptionProps<any>, any>(testComp);
         const rendered = renderer.create(<WrappedComp {...props} />);

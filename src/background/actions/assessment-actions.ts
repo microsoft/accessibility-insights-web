@@ -3,39 +3,39 @@
 import { Action } from '../../common/flux/action';
 import { IScanBasePayload, IScanCompletedPayload, IScanUpdatePayload } from '../../injected/analyzers/ianalyzer';
 import {
-    IAddFailureInstancePayload,
-    IAssessmentActionInstancePayload,
-    IChangeAssessmentStepStatusPayload,
-    IChangeInstanceSelectionPayload,
-    IChangeInstanceStatusPayload,
-    IEditFailureInstancePayload,
-    IRemoveFailureInstancePayload,
-    ISelectTestStepPayload,
-    IToggleActionPayload,
-    IUpdateVisibilityPayload,
-    IUpdateSelectedDetailsViewPayload,
+    AddFailureInstancePayload,
+    AssessmentActionInstancePayload,
+    ChangeAssessmentStepStatusPayload,
+    ChangeInstanceSelectionPayload,
+    ChangeInstanceStatusPayload,
+    EditFailureInstancePayload,
+    RemoveFailureInstancePayload,
+    SelectTestStepPayload,
+    ToggleActionPayload,
+    UpdateVisibilityPayload,
+    UpdateSelectedDetailsViewPayload,
 } from './action-payloads';
 
 export class AssessmentActions {
-    public readonly selectTestStep = new Action<ISelectTestStepPayload>();
-    public readonly changeInstanceStatus = new Action<IChangeInstanceStatusPayload>();
-    public readonly changeStepStatus = new Action<IChangeAssessmentStepStatusPayload>();
-    public readonly addFailureInstance = new Action<IAddFailureInstancePayload>();
-    public readonly removeFailureInstance = new Action<IRemoveFailureInstancePayload>();
-    public readonly editFailureInstance = new Action<IEditFailureInstancePayload>();
-    public readonly passUnmarkedInstance = new Action<IToggleActionPayload>();
-    public readonly changeAssessmentVisualizationState = new Action<IChangeInstanceSelectionPayload>();
-    public readonly changeAssessmentVisualizationStateForAll = new Action<IChangeInstanceSelectionPayload>();
-    public readonly updateInstanceVisibility = new Action<IUpdateVisibilityPayload>();
-    public readonly undoInstanceStatusChange = new Action<IAssessmentActionInstancePayload>();
-    public readonly undoStepStatusChange = new Action<IChangeAssessmentStepStatusPayload>();
+    public readonly selectTestStep = new Action<SelectTestStepPayload>();
+    public readonly changeInstanceStatus = new Action<ChangeInstanceStatusPayload>();
+    public readonly changeStepStatus = new Action<ChangeAssessmentStepStatusPayload>();
+    public readonly addFailureInstance = new Action<AddFailureInstancePayload>();
+    public readonly removeFailureInstance = new Action<RemoveFailureInstancePayload>();
+    public readonly editFailureInstance = new Action<EditFailureInstancePayload>();
+    public readonly passUnmarkedInstance = new Action<ToggleActionPayload>();
+    public readonly changeAssessmentVisualizationState = new Action<ChangeInstanceSelectionPayload>();
+    public readonly changeAssessmentVisualizationStateForAll = new Action<ChangeInstanceSelectionPayload>();
+    public readonly updateInstanceVisibility = new Action<UpdateVisibilityPayload>();
+    public readonly undoInstanceStatusChange = new Action<AssessmentActionInstancePayload>();
+    public readonly undoStepStatusChange = new Action<ChangeAssessmentStepStatusPayload>();
     public readonly getCurrentState = new Action<void>();
     public readonly scanCompleted = new Action<IScanCompletedPayload<null>>();
-    public readonly resetData = new Action<IToggleActionPayload>();
+    public readonly resetData = new Action<ToggleActionPayload>();
     public readonly resetAllAssessmentsData = new Action<number>();
     public readonly scanUpdate = new Action<IScanUpdatePayload>();
     public readonly trackingCompleted = new Action<IScanBasePayload>();
-    public readonly updateSelectedPivotChild = new Action<IUpdateSelectedDetailsViewPayload>();
+    public readonly updateSelectedPivotChild = new Action<UpdateSelectedDetailsViewPayload>();
     public readonly updateTargetTabId = new Action<number>();
     public readonly continuePreviousAssessment = new Action<number>();
 }

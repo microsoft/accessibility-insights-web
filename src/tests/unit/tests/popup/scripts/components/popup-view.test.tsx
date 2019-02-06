@@ -14,11 +14,11 @@ import { ILaunchPanelStoreData } from '../../../../../../common/types/store-data
 import { PopupActionMessageCreator } from '../../../../../../popup/scripts/actions/popup-action-message-creator';
 import { LaunchPanelHeader } from '../../../../../../popup/scripts/components/launch-panel-header';
 import {
-    IPopupViewControllerState,
-    IPopupViewProps,
     LaunchPanelType,
     PopupView,
     PopupViewControllerDeps,
+    PopupViewControllerState,
+    PopupViewProps,
 } from '../../../../../../popup/scripts/components/popup-view';
 import { DiagnosticViewClickHandler } from '../../../../../../popup/scripts/handlers/diagnostic-view-toggle-click-handler';
 import { PopupViewControllerHandler } from '../../../../../../popup/scripts/handlers/popup-view-controller-handler';
@@ -91,7 +91,7 @@ describe('PopupView', () => {
         let handlerMock: IMock<PopupViewControllerHandler>;
         let storesHubMock: IMock<BaseClientStoresHub<any>>;
         let clickHandlerMock: IMock<DiagnosticViewClickHandler>;
-        let storeState: IPopupViewControllerState;
+        let storeState: PopupViewControllerState;
         let deps: PopupViewControllerDeps;
         const manifestStub = getManifestStub();
         const rowConfigStub = {};
@@ -136,6 +136,7 @@ describe('PopupView', () => {
                 commandStoreData: commandStoreState,
                 userConfigurationStoreData: userConfigStoreData,
             };
+
             deps = {
                 popupActionMessageCreator: actionMessageCreatorStrictMock.object,
                 dropdownClickHandler: dropdownClickHandlerMock.object,
@@ -156,9 +157,10 @@ describe('PopupView', () => {
                 })
                 .with('hasAccess', true)
                 .with('launchPadRowConfigurationFactory', launchPadRowConfigurationFactoryMock.object)
-                .with('storeActionCreator', popupViewStoreActionMessageCreatorMock.object)
                 .with('storeState', storeState)
                 .build();
+            props.deps.storesHub = storesHubMock.object;
+            props.deps.storeActionMessageCreator = popupViewStoreActionMessageCreatorMock.object;
 
             actionMessageCreatorStrictMock.setup(amc => amc.openTutorial(It.isAny()));
 
@@ -195,9 +197,10 @@ describe('PopupView', () => {
                 })
                 .with('hasAccess', true)
                 .with('launchPadRowConfigurationFactory', launchPadRowConfigurationFactoryMock.object)
-                .with('storeActionCreator', popupViewStoreActionMessageCreatorMock.object)
                 .with('storeState', storeState)
                 .build();
+            props.deps.storesHub = storesHubMock.object;
+            props.deps.storeActionMessageCreator = popupViewStoreActionMessageCreatorMock.object;
 
             const rendered = shallow(<PopupView {...props} />);
 
@@ -227,11 +230,11 @@ describe('PopupView', () => {
                 })
                 .with('hasAccess', true)
                 .with('diagnosticViewToggleFactory', null)
-                .with('storeActionCreator', popupViewStoreActionMessageCreatorMock.object)
                 .with('launchPadRowConfigurationFactory', launchPadRowConfigurationFactoryMock.object)
                 .with('storeState', storeState)
                 .build();
-
+            props.deps.storesHub = storesHubMock.object;
+            props.deps.storeActionMessageCreator = popupViewStoreActionMessageCreatorMock.object;
             const rendered = shallow(<PopupView {...props} />);
 
             expect(rendered.debug()).toMatchSnapshot();
@@ -291,7 +294,7 @@ describe('PopupView', () => {
     });
 
     function createDefaultPropsBuilder(storeHub: BaseClientStoresHub<any>): PopupViewPropsBuilder {
-        return new PopupViewPropsBuilder().with('storesHub', storeHub).with('browserAdapter', browserAdapterMock.object);
+        return new PopupViewPropsBuilder().withStoresHub(storeHub).with('browserAdapter', browserAdapterMock.object);
     }
 
     function createDefaultStoresHubMock(hasStores = true, hasStoreData = true): IMock<BaseClientStoresHub<any>> {
@@ -310,10 +313,18 @@ describe('PopupView', () => {
     }
 });
 
-class PopupViewPropsBuilder extends BaseDataBuilder<IPopupViewProps> {
+class PopupViewPropsBuilder extends BaseDataBuilder<PopupViewProps> {
     public withDefaultTitleAndSubtitle(): PopupViewPropsBuilder {
         this.data.title = 'test title';
         this.data.subtitle = 'test subtitle';
+        return this;
+    }
+    public withStoresHub(storesHub: BaseClientStoresHub<any>): PopupViewPropsBuilder {
+        this.data = {
+            deps: {
+                storesHub,
+            },
+        } as PopupViewProps;
         return this;
     }
 }

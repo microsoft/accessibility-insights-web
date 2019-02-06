@@ -6,7 +6,7 @@ import { autobind } from '@uifabric/utilities';
 import { StoreNames } from '../../common/stores/store-names';
 import { IVisualizationScanResultData } from '../../common/types/store-data/ivisualization-scan-result-data';
 import { IHtmlElementAxeResults, DecoratedAxeNodeResult } from '../../injected/scanner-utils';
-import { IAddTabbedElementPayload } from '../actions/action-payloads';
+import { AddTabbedElementPayload } from '../actions/action-payloads';
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
 import { IScanCompletedPayload } from './../../injected/analyzers/ianalyzer';
@@ -64,7 +64,7 @@ export class VisualizationScanResultStore extends BaseStore<IVisualizationScanRe
     }
 
     @autobind
-    private onAddTabbedElement(payload: IAddTabbedElementPayload): void {
+    private onAddTabbedElement(payload: AddTabbedElementPayload): void {
         if (!this.state.tabStops.tabbedElements) {
             this.state.tabStops.tabbedElements = [];
         }

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { BaseActionPayload, IOnDetailsViewOpenPayload, ISetLaunchPanelState } from '../../../background/actions/action-payloads';
+import { BaseActionPayload, OnDetailsViewOpenPayload, SetLaunchPanelState } from '../../../background/actions/action-payloads';
 import { BaseActionMessageCreator } from '../../../common/message-creators/base-action-message-creator';
 import { Messages } from '../../../common/messages';
 import { TelemetryDataFactory } from '../../../common/telemetry-data-factory';
@@ -53,7 +53,7 @@ export class PopupActionMessageCreator extends BaseActionMessageCreator {
         source: TelemetryEventSource,
         pivotType = DetailsViewPivotType.allTest,
     ): void {
-        const payload: IOnDetailsViewOpenPayload = {
+        const payload: OnDetailsViewOpenPayload = {
             telemetry: this.telemetryFactory.forOpenDetailsView(event, viewType, source),
             detailsViewType: viewType,
             pivotType: pivotType,
@@ -81,7 +81,7 @@ export class PopupActionMessageCreator extends BaseActionMessageCreator {
     }
 
     public setLaunchPanelType(type: LaunchPanelType): void {
-        const payload: ISetLaunchPanelState = {
+        const payload: SetLaunchPanelState = {
             launchPanelType: type,
         };
         this.dispatchMessage({

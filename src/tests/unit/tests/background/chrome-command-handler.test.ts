@@ -18,7 +18,7 @@ import { TelemetryEventSource, ToggleTelemetryData } from '../../../../common/te
 import { IVisualizationStoreData } from '../../../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { UrlValidator } from '../../../../common/url-validator';
-import { VisualizationStoreDataBuilder } from '../../Common/visualization-store-data-builder';
+import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 import { UserConfigurationStore } from '../../../../background/stores/global/user-configuration-store';
 
 let testSubject: ChromeCommandHandler;

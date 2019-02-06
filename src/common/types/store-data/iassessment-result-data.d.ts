@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { VisualizationType } from '../visualization-type';
-import { IManualTestStatus, ManualTestStatus } from './../manual-test-status';
+import { IManualTestStatus, ManualTestStatus } from '../manual-test-status';
 import { ITab } from './common/itab';
 
 export type TestStepInstance = IUserCapturedInstance & IGeneratedAssessmentInstance;

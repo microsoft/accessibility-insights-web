@@ -6,7 +6,7 @@ import * as React from 'react';
 
 import { BrowserAdapter } from '../../../background/browser-adapter';
 import { NewTabLink } from '../../../common/components/new-tab-link';
-import { withStoreSubscription } from '../../../common/components/with-store-subscription';
+import { withStoreSubscription, WithStoreSubscriptionDeps } from '../../../common/components/with-store-subscription';
 import { DisplayableStrings } from '../../../common/constants/displayable-strings';
 import { DropdownClickHandler } from '../../../common/dropdown-click-handler';
 import { FeatureFlags } from '../../../common/feature-flags';
@@ -28,31 +28,32 @@ import { LaunchPad, LaunchPadDeps, LaunchPadRowConfiguration } from './launch-pa
 import { LaunchPanelHeader, LaunchPanelHeaderDeps } from './launch-panel-header';
 import { TelemetryPermissionDialog, TelemetryPermissionDialogDeps } from './telemetry-permission-dialog';
 
-export interface IPopupViewProps {
+export interface PopupViewProps {
     deps: PopupViewControllerDeps;
     title: string;
     subtitle: string;
     popupHandlers: IPopupHandlers;
     popupWindow: Window;
     browserAdapter: BrowserAdapter;
-    storeActionCreator: IStoreActionMessageCreator;
     targetTabUrl: string;
     hasAccess: boolean;
     launchPadRowConfigurationFactory: LaunchPadRowConfigurationFactory;
     diagnosticViewToggleFactory: DiagnosticViewToggleFactory;
     dropdownClickHandler: DropdownClickHandler;
-    storesHub: IClientStoresHub<IPopupViewControllerState>;
-    storeState?: IPopupViewControllerState;
+    storeState?: PopupViewControllerState;
 }
 
-export type PopupViewControllerDeps = LaunchPadDeps & LaunchPanelHeaderDeps & TelemetryPermissionDialogDeps;
+export type PopupViewControllerDeps = LaunchPadDeps &
+    LaunchPanelHeaderDeps &
+    TelemetryPermissionDialogDeps &
+    WithStoreSubscriptionDeps<PopupViewControllerState>;
 
 export enum LaunchPanelType {
     AdhocToolsPanel,
     LaunchPad,
 }
 
-export interface IPopupViewControllerState {
+export interface PopupViewControllerState {
     visualizationStoreData: IVisualizationStoreData;
     commandStoreData: ICommandStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
@@ -60,21 +61,21 @@ export interface IPopupViewControllerState {
     userConfigurationStoreData: UserConfigurationStoreData;
 }
 
-export class PopupView extends React.Component<IPopupViewProps> {
+export class PopupView extends React.Component<PopupViewProps> {
     private handler: PopupViewControllerHandler;
-    private _openTogglesView: () => void;
-    private _openAdhocToolsPanel: () => void;
+    private openTogglesView: () => void;
+    private openAdhocToolsPanel: () => void;
     private versionNumber: string;
     private isInitialRender: boolean = true;
 
-    constructor(props: IPopupViewProps) {
+    constructor(props: PopupViewProps) {
         super(props);
         this.handler = props.popupHandlers.popupViewControllerHandler;
         this.versionNumber = props.browserAdapter.getManifest().version;
-        this._openTogglesView = () => {
+        this.openTogglesView = () => {
             this.handler.openLaunchPad(this);
         };
-        this._openAdhocToolsPanel = () => {
+        this.openAdhocToolsPanel = () => {
             this.handler.openAdhocToolsPanel(this);
         };
     }
@@ -86,7 +87,7 @@ export class PopupView extends React.Component<IPopupViewProps> {
             } else {
                 return this.renderUnsupportedMsgPanelForChromeUrl();
             }
-        } else if (this.props.storesHub.hasStoreData()) {
+        } else if (this.props.deps.storesHub.hasStoreData()) {
             return (
                 <React.Fragment>
                     {this.renderLaunchPanel()}
@@ -127,11 +128,11 @@ export class PopupView extends React.Component<IPopupViewProps> {
                     clickhandler={this.props.popupHandlers.launchPanelHeaderClickHandler}
                     supportLinkHandler={this.props.popupHandlers.supportLinkHandler}
                     popupWindow={this.props.popupWindow}
-                    openAdhocToolsPanel={this._openAdhocToolsPanel}
+                    openAdhocToolsPanel={this.openAdhocToolsPanel}
                     featureFlags={this.props.storeState.featureFlagStoreData}
                 />
                 <AdHocToolsPanel
-                    backLinkHandler={this._openTogglesView}
+                    backLinkHandler={this.openTogglesView}
                     diagnosticViewToggleFactory={this.props.diagnosticViewToggleFactory}
                 />
             </div>
@@ -172,7 +173,7 @@ export class PopupView extends React.Component<IPopupViewProps> {
                     clickhandler={this.props.popupHandlers.launchPanelHeaderClickHandler}
                     supportLinkHandler={this.props.popupHandlers.supportLinkHandler}
                     popupWindow={this.props.popupWindow}
-                    openAdhocToolsPanel={this._openAdhocToolsPanel}
+                    openAdhocToolsPanel={this.openAdhocToolsPanel}
                     featureFlags={this.props.storeState.featureFlagStoreData}
                 />
                 <LaunchPad deps={this.props.deps} productName={this.props.title} rowConfigs={rowConfigs} version={this.versionNumber} />
@@ -235,4 +236,4 @@ export class PopupView extends React.Component<IPopupViewProps> {
     }
 }
 
-export const PopupViewWithStoreSubscription = withStoreSubscription<IPopupViewProps, IPopupViewControllerState>(PopupView);
+export const PopupViewWithStoreSubscription = withStoreSubscription<PopupViewProps, PopupViewControllerState>(PopupView);

@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import '../../background/string-utils';
 
-import * as _ from 'lodash/index';
+import * as _ from 'lodash';
 
-import { IBaseStore } from '../../common/istore';
+import { IBaseStore } from '../istore';
 import { IClientStoresHub } from './iclient-stores-hub';
 
 export class BaseClientStoresHub<T> implements IClientStoresHub<T> {

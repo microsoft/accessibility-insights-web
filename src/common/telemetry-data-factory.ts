@@ -23,8 +23,8 @@ import {
     TestStepSelectTelemetryData,
     ToggleTelemetryData,
     TriggeredByNotApplicable,
-} from '../common/telemetry-events';
-import { VisualizationType } from '../common/types/visualization-type';
+} from './telemetry-events';
+import { VisualizationType } from './types/visualization-type';
 import { ForIssuesAnalyzerScanCallback, ForRuleAnalyzerScanCallback } from './types/analyzer-telemetry-callbacks';
 import { DetailsViewPivotType } from './types/details-view-pivot-type';
 

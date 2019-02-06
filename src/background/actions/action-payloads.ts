@@ -5,114 +5,114 @@ import * as TelemetryEvents from '../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { LaunchPanelType } from '../../popup/scripts/components/popup-view';
-import { ManualTestStatus } from './../../common/types/manual-test-status';
-import { ITabStopEvent } from './../../injected/tab-stops-listener';
+import { ManualTestStatus } from '../../common/types/manual-test-status';
+import { ITabStopEvent } from '../../injected/tab-stops-listener';
 
 export interface BaseActionPayload {
     telemetry?: TelemetryData;
 }
 
-export interface ISelectTestStepPayload extends BaseActionPayload {
+export interface SelectTestStepPayload extends BaseActionPayload {
     selectedStep: string;
     selectedTest: VisualizationType;
 }
 
-export interface IUpdateInstanceVisibilityPayload extends IToggleActionPayload {
+export interface UpdateInstanceVisibilityPayload extends ToggleActionPayload {
     selector: string;
     isVisible: boolean;
 }
 
-export interface IUpdateVisibilityPayload {
-    payloadBatch: IUpdateInstanceVisibilityPayload[];
+export interface UpdateVisibilityPayload {
+    payloadBatch: UpdateInstanceVisibilityPayload[];
 }
 
-export interface IAssessmentToggleActionPayload extends IToggleActionPayload {
+export interface AssessmentToggleActionPayload extends ToggleActionPayload {
     step: string;
 }
 
-export interface IAssessmentActionInstancePayload extends IAssessmentToggleActionPayload {
+export interface AssessmentActionInstancePayload extends AssessmentToggleActionPayload {
     selector: string;
 }
 
-export interface IChangeAssessmentStepStatusPayload extends IAssessmentToggleActionPayload {
+export interface ChangeAssessmentStepStatusPayload extends AssessmentToggleActionPayload {
     status?: ManualTestStatus;
 }
 
-export interface IAddFailureInstancePayload extends IAssessmentToggleActionPayload {
+export interface AddFailureInstancePayload extends AssessmentToggleActionPayload {
     description: string;
 }
 
-export interface IRemoveFailureInstancePayload extends IAssessmentToggleActionPayload {
+export interface RemoveFailureInstancePayload extends AssessmentToggleActionPayload {
     id: string;
 }
 
-export interface IEditFailureInstancePayload extends IAddFailureInstancePayload {
+export interface EditFailureInstancePayload extends AddFailureInstancePayload {
     id: string;
 }
 
-export interface IChangeInstanceStatusPayload extends IAssessmentActionInstancePayload {
+export interface ChangeInstanceStatusPayload extends AssessmentActionInstancePayload {
     status: ManualTestStatus;
 }
 
-export interface IChangeInstanceSelectionPayload extends IAssessmentActionInstancePayload {
+export interface ChangeInstanceSelectionPayload extends AssessmentActionInstancePayload {
     isVisualizationEnabled: boolean;
 }
 
-export interface IUpdateSelectedDetailsViewPayload extends BaseActionPayload {
+export interface UpdateSelectedDetailsViewPayload extends BaseActionPayload {
     detailsViewType: VisualizationType;
     pivotType: DetailsViewPivotType;
 }
 
-export interface IUpdateSelectedPivot extends BaseActionPayload {
+export interface UpdateSelectedPivot extends BaseActionPayload {
     pivotKey: DetailsViewPivotType;
 }
 
-export interface IPayloadWIthEventName extends BaseActionPayload {
-    eventName;
+export interface PayloadWithEventName extends BaseActionPayload {
+    eventName: string;
 }
 
-export interface IOnDetailsViewOpenPayload extends IUpdateSelectedDetailsViewPayload {
+export interface OnDetailsViewOpenPayload extends UpdateSelectedDetailsViewPayload {
     telemetry: TelemetryEvents.DetailsViewOpenTelemetryData;
 }
 
-export interface IOnDetailsViewPivotSelected extends BaseActionPayload {
+export interface OnDetailsViewPivotSelected extends BaseActionPayload {
     pivotKey: DetailsViewPivotType;
 }
 
-export interface IToggleActionPayload extends BaseActionPayload {
+export interface ToggleActionPayload extends BaseActionPayload {
     test: VisualizationType;
 }
 
-export interface IVisualizationTogglePayload extends IToggleActionPayload {
+export interface VisualizationTogglePayload extends ToggleActionPayload {
     enabled: boolean;
     telemetry: ToggleTelemetryData;
 }
 
-export interface ISwitchToTargetTabPayLoad extends BaseActionPayload {
+export interface SwitchToTargetTabPayload extends BaseActionPayload {
     telemetry: DetailsViewTargetLinkClickTelemetryData;
 }
 
-export interface IPageVisibilityChangeTabPayLoad extends BaseActionPayload {
+export interface PageVisibilityChangeTabPayload extends BaseActionPayload {
     hidden: boolean;
 }
 
-export interface IAddTabbedElementPayload extends BaseActionPayload {
+export interface AddTabbedElementPayload extends BaseActionPayload {
     tabbedElements: ITabStopEvent[];
 }
 
-export interface ISetLaunchPanelState extends BaseActionPayload {
+export interface SetLaunchPanelState extends BaseActionPayload {
     launchPanelType: LaunchPanelType;
 }
 
-export interface IOnDevToolOpenPayload extends BaseActionPayload {
+export interface OnDevToolOpenPayload extends BaseActionPayload {
     status: boolean;
 }
 
-export interface IInspectElementPayload extends BaseActionPayload {
+export interface InspectElementPayload extends BaseActionPayload {
     target: string[];
 }
 
-export interface IInspectFrameUrlPayload extends BaseActionPayload {
+export interface InspectFrameUrlPayload extends BaseActionPayload {
     frameUrl: string;
 }
 

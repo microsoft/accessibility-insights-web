@@ -7,16 +7,16 @@ import { AssessmentsProvider } from '../../../../../assessments/assessments-prov
 import { IAssessment } from '../../../../../assessments/types/iassessment';
 import { IAssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
 import {
-    IAddFailureInstancePayload,
-    IChangeAssessmentStepStatusPayload,
-    IChangeInstanceSelectionPayload,
-    IChangeInstanceStatusPayload,
-    IEditFailureInstancePayload,
-    IRemoveFailureInstancePayload,
-    ISelectTestStepPayload,
-    IToggleActionPayload,
-    IUpdateSelectedDetailsViewPayload,
-    IUpdateVisibilityPayload,
+    AddFailureInstancePayload,
+    ChangeAssessmentStepStatusPayload,
+    ChangeInstanceSelectionPayload,
+    ChangeInstanceStatusPayload,
+    EditFailureInstancePayload,
+    RemoveFailureInstancePayload,
+    SelectTestStepPayload,
+    ToggleActionPayload,
+    UpdateSelectedDetailsViewPayload,
+    UpdateVisibilityPayload,
 } from '../../../../../background/actions/action-payloads';
 import { AssessmentActions } from '../../../../../background/actions/assessment-actions';
 import { AssessmentDataConverter } from '../../../../../background/assessment-data-converter';
@@ -309,7 +309,7 @@ describe('AssessmentStoreTest', () => {
 
         assessmentsProviderMock.setup(apm => apm.forType(assessmentType)).returns(() => assessmentStub);
 
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test: assessmentType,
         };
 
@@ -358,7 +358,7 @@ describe('AssessmentStoreTest', () => {
 
         assessmentsProviderMock.setup(apm => apm.forType(assessmentType)).returns(() => assessmentStub);
 
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test: assessmentType,
         };
 
@@ -408,7 +408,7 @@ describe('AssessmentStoreTest', () => {
 
         assessmentsProviderMock.setup(apm => apm.forType(assessmentType)).returns(() => assessmentStub);
 
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test: assessmentType,
         };
 
@@ -623,7 +623,7 @@ describe('AssessmentStoreTest', () => {
             .withSelectedTestStep(step)
             .build();
 
-        const payload: ISelectTestStepPayload = {
+        const payload: SelectTestStepPayload = {
             selectedStep: step,
             selectedTest: type,
         };
@@ -693,7 +693,7 @@ describe('AssessmentStoreTest', () => {
 
         const initialState = getStateWithAssessment(assessmentData);
 
-        const payload: IChangeInstanceStatusPayload = {
+        const payload: ChangeInstanceStatusPayload = {
             test: assessmentType,
             step: stepKey,
             selector: 'selector',
@@ -751,7 +751,7 @@ describe('AssessmentStoreTest', () => {
 
         const initialState = getStateWithAssessment(assessmentData);
 
-        const payload: IChangeAssessmentStepStatusPayload = {
+        const payload: ChangeAssessmentStepStatusPayload = {
             test: assessmentType,
             step: stepKey,
             status: ManualTestStatus.PASS,
@@ -797,7 +797,7 @@ describe('AssessmentStoreTest', () => {
 
         const initialState = getStateWithAssessment(assessmentData);
 
-        const payload: IChangeAssessmentStepStatusPayload = {
+        const payload: ChangeAssessmentStepStatusPayload = {
             test: assessmentType,
             step: stepKey,
             status: ManualTestStatus.FAIL,
@@ -841,7 +841,7 @@ describe('AssessmentStoreTest', () => {
 
         const initialState = getStateWithAssessment(assessmentData);
 
-        const payload: IChangeInstanceSelectionPayload = {
+        const payload: ChangeInstanceSelectionPayload = {
             test: assessmentType,
             step: stepKey,
             isVisualizationEnabled: true,
@@ -889,7 +889,7 @@ describe('AssessmentStoreTest', () => {
             .withSelectedTestStep(stepKey)
             .build();
 
-        const payload: IUpdateVisibilityPayload = {
+        const payload: UpdateVisibilityPayload = {
             payloadBatch: [
                 {
                     test: assessmentType,
@@ -945,7 +945,7 @@ describe('AssessmentStoreTest', () => {
 
         const initialState = getStateWithAssessment(assessmentData);
 
-        const payload: IChangeInstanceSelectionPayload = {
+        const payload: ChangeInstanceSelectionPayload = {
             test: assessmentType,
             step: stepKey,
             isVisualizationEnabled: true,
@@ -987,7 +987,7 @@ describe('AssessmentStoreTest', () => {
 
         const initialState = getStateWithAssessment(assessmentData);
 
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test: assessmentType,
             step: stepKey,
             selector: 'selector',
@@ -1036,7 +1036,7 @@ describe('AssessmentStoreTest', () => {
 
         const initialState = getStateWithAssessment(assessmentData);
 
-        const payload: IChangeAssessmentStepStatusPayload = {
+        const payload: ChangeAssessmentStepStatusPayload = {
             test: assessmentType,
             step: stepKey,
         };
@@ -1082,7 +1082,7 @@ describe('AssessmentStoreTest', () => {
 
         const initialState = getStateWithAssessment(assessmentData);
 
-        const payload: IChangeInstanceStatusPayload = {
+        const payload: ChangeInstanceStatusPayload = {
             test: assessmentType,
             step: stepKey,
             selector,
@@ -1127,7 +1127,7 @@ describe('AssessmentStoreTest', () => {
 
         const initialState = getStateWithAssessment(assessmentData);
 
-        const payload: IAddFailureInstancePayload = {
+        const payload: AddFailureInstancePayload = {
             test: assessmentType,
             step: stepKey,
             description: 'description',
@@ -1181,7 +1181,7 @@ describe('AssessmentStoreTest', () => {
 
         const initialState = getStateWithAssessment(assessmentData);
 
-        const payload: IRemoveFailureInstancePayload = {
+        const payload: RemoveFailureInstancePayload = {
             test: assessmentType,
             step: stepKey,
             id: '1',
@@ -1229,7 +1229,7 @@ describe('AssessmentStoreTest', () => {
 
         const initialState = getStateWithAssessment(assessmentData);
 
-        const payload: IEditFailureInstancePayload = {
+        const payload: EditFailureInstancePayload = {
             test: assessmentType,
             step: stepKey,
             id: '1',
@@ -1314,7 +1314,7 @@ describe('AssessmentStoreTest', () => {
 
         const initialState = getStateWithAssessment(assessmentData);
 
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test: assessmentType,
             step: stepKey,
         };
@@ -1380,7 +1380,7 @@ describe('AssessmentStoreTest', () => {
 
     test('on updateSelectedPivotChild, full payload', () => {
         const testType = assessmentType;
-        const payload: IUpdateSelectedDetailsViewPayload = {
+        const payload: UpdateSelectedDetailsViewPayload = {
             detailsViewType: testType,
             pivotType: DetailsViewPivotType.assessment,
         };
@@ -1405,7 +1405,7 @@ describe('AssessmentStoreTest', () => {
     test('on updateSelectedPivotChild: details view type is null', () => {
         const selectedTest = VisualizationType.Color;
         const testType = null;
-        const payload: IUpdateSelectedDetailsViewPayload = {
+        const payload: UpdateSelectedDetailsViewPayload = {
             detailsViewType: testType,
             pivotType: DetailsViewPivotType.assessment,
         };
@@ -1429,7 +1429,7 @@ describe('AssessmentStoreTest', () => {
     });
 
     test('on updateSelectedPivotChild: when selected pivot is not assessment', () => {
-        const payload: IUpdateSelectedDetailsViewPayload = {
+        const payload: UpdateSelectedDetailsViewPayload = {
             detailsViewType: assessmentType,
             pivotType: DetailsViewPivotType.allTest,
         };

@@ -16,6 +16,7 @@ import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { NativeWidgetsTestStep } from './test-steps';
+import * as content from '../../../content/test/native-widgets/instructions';
 
 const description: JSX.Element = <span>If a native widget has visible instructions, they must be programmatically related to it.</span>;
 
@@ -67,6 +68,7 @@ export const Instructions: TestStep = {
     howToTest,
     isManual: false,
     guidanceLinks: [link.WCAG_1_3_1],
+    ...content,
     columnsConfig: [
         {
             key: 'instructions-info',

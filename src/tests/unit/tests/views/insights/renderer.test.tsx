@@ -6,11 +6,12 @@ import * as ReactDOM from 'react-dom';
 import { configMutator } from '../../../../../common/configuration';
 import { renderer, RendererDeps } from '../../../../../views/insights/renderer';
 import { Router } from '../../../../../views/insights/router';
+import { Theme } from '../../../../../common/components/theme';
 
 describe('insights renderer', () => {
     const deps = ({
         dom: document,
-        render: jest.fn<ReactDOM.Renderer>(),
+        render: jest.fn(),
         initializeFabricIcons: jest.fn(),
     } as Partial<RendererDeps>) as RendererDeps;
 
@@ -34,6 +35,12 @@ describe('insights renderer', () => {
     it('renders Router', () => {
         renderer(deps);
         const root = document.body.querySelector('#insights-root');
-        expect(deps.render).toHaveBeenCalledWith(<Router deps={deps} />, root);
+        expect(deps.render).toHaveBeenCalledWith(
+            <>
+                <Theme deps={deps} />
+                <Router deps={deps} />
+            </>,
+            root,
+        );
     });
 });

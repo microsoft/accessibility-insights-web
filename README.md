@@ -86,11 +86,10 @@ We use [jest](https://github.com/facebook/jest) as our test framework and [puppe
 To run a task from the command palette, press **Ctrl + Shift + P**, select `Tasks: Run Task`, and select the task you want to run:
 
 -   `npm: test` runs all unit tests
--   `Test current file in VSCode` runs just the unit tests in the currently-opened file
+-   `Test current file in VSCode` runs just the tests in the currently-opened test file
 -   `npm: test:e2e` runs all end-to-end tests
--   `E2E test current file in VSCode` runs just the end-to-end tests in the currently-opened file
 
-To debug inside VS Code, set a breakpoint and click the debug button or press **F5**. Note that there are 2 debug targets (one for unit tests and one for end-to-end tests); be sure to use the appropriate one for the test you are debugging.
+To debug inside VS Code, set a breakpoint and click the debug button or press **F5**.
 
 To debug using an external tool, run the `Debug current test file outside VS Code` task. In Chrome, for example, navigate to `chrome://inspect` and click `Open dedicated DevTools for Node`.
 

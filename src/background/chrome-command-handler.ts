@@ -11,7 +11,7 @@ import { ToggleTelemetryData } from '../common/telemetry-events';
 import { IScanData, IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { UrlValidator } from '../common/url-validator';
-import { IVisualizationTogglePayload } from './actions/action-payloads';
+import { VisualizationTogglePayload } from './actions/action-payloads';
 import { BrowserAdapter } from './browser-adapter';
 import { TabToContextMap } from './tab-context';
 import { UserConfigurationStore } from './stores/global/user-configuration-store';
@@ -141,7 +141,7 @@ export class ChromeCommandHandler {
 
         const telemetryInfo: ToggleTelemetryData = this.telemetryDataFactory.forVisualizationToggleByCommand(toEnabled);
 
-        const payload: IVisualizationTogglePayload = {
+        const payload: VisualizationTogglePayload = {
             enabled: toEnabled,
             telemetry: telemetryInfo,
             test: visualizationType,

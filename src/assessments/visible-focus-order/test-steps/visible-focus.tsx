@@ -13,6 +13,7 @@ import ManualTestRecordYourResults from '../../common/manual-test-record-your-re
 import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
 import { visibleFfocusOrderTestStep } from './test-steps';
+import * as content from '../../../content/test/focus/visible-focus';
 
 const description: JSX.Element = <span>Components must provide a visible indication when they have the input focus.</span>;
 
@@ -46,6 +47,7 @@ export const VisibleFocus: TestStep = {
     howToTest,
     isManual: true,
     guidanceLinks: [link.WCAG_2_4_7],
+    ...content,
     getAnalyzer: provider =>
         provider.createFocusTrackingAnalyzer({
             key: visibleFfocusOrderTestStep.visibleFocus,

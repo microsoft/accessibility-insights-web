@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { IVisualizationTogglePayload } from '../../../../background/actions/action-payloads';
+import { VisualizationTogglePayload } from '../../../../background/actions/action-payloads';
 import { VisualizationActionMessageCreator } from '../../../../common/message-creators/visualization-action-message-creator';
 import { Messages } from '../../../../common/messages';
 import { TelemetryEventSource, ToggleTelemetryData } from '../../../../common/telemetry-events';
@@ -30,7 +30,7 @@ describe('VisualizationActionMessageCreatorTest', () => {
         };
         const test = VisualizationType.Headings;
 
-        const payload: IVisualizationTogglePayload = {
+        const payload: VisualizationTogglePayload = {
             test,
             enabled,
             telemetry,

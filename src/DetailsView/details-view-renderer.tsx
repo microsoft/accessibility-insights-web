@@ -5,16 +5,15 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { IAssessmentsProvider } from '../assessments/types/iassessments-provider';
+import { Theme } from '../common/components/theme';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { config } from '../common/configuration';
 import { DocumentManipulator } from '../common/document-manipulator';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
-import { IStoreActionMessageCreator } from '../common/message-creators/istore-action-message-creator';
 import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
-import { IClientStoresHub } from '../common/stores/iclient-stores-hub';
 import { IssuesTableHandler } from './components/issues-table-handler';
-import { DetailsView, DetailsViewContainerDeps, IDetailsViewContainerState } from './details-view-container';
+import { DetailsView, DetailsViewContainerDeps } from './details-view-container';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
@@ -25,11 +24,9 @@ export class DetailsViewRenderer {
     private dom: NodeSelector & Node;
     private scopingActionMessageCreator: ScopingActionMessageCreator;
     private inspectActionMessageCreator: InspectActionMessageCreator;
-    private detailsViewStoreActionCreator: IStoreActionMessageCreator;
     private issuesSelection: ISelection;
     private clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
-    private storesHub: IClientStoresHub<IDetailsViewContainerState>;
     private issuesTableHandler: IssuesTableHandler;
     private assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
     private reportGenerator: ReportGenerator;
@@ -44,11 +41,9 @@ export class DetailsViewRenderer {
         renderer: typeof ReactDOM.render,
         scopingActionMessageCreator: ScopingActionMessageCreator,
         inspectActionMessageCreator: InspectActionMessageCreator,
-        detailsViewStoreActionCreator: IStoreActionMessageCreator,
         issuesSelection: ISelection,
         clickHandlerFactory: DetailsViewToggleClickHandlerFactory,
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
-        storesHub: IClientStoresHub<IDetailsViewContainerState>,
         issuesTableHandler: IssuesTableHandler,
         assessmentInstanceTableHandler: AssessmentInstanceTableHandler,
         reportGenerator: ReportGenerator,
@@ -63,12 +58,10 @@ export class DetailsViewRenderer {
 
         this.scopingActionMessageCreator = scopingActionMessageCreator;
         this.inspectActionMessageCreator = inspectActionMessageCreator;
-        this.detailsViewStoreActionCreator = detailsViewStoreActionCreator;
         this.issuesSelection = issuesSelection;
         this.clickHandlerFactory = clickHandlerFactory;
         this.visualizationConfigurationFactory = visualizationConfigurationFactory;
 
-        this.storesHub = storesHub;
         this.issuesTableHandler = issuesTableHandler;
         this.assessmentInstanceTableHandler = assessmentInstanceTableHandler;
         this.reportGenerator = reportGenerator;
@@ -78,30 +71,31 @@ export class DetailsViewRenderer {
         this.assessmentsProvider = assessmentsProvider;
     }
 
-    public render() {
+    public render(): void {
         const detailsViewContainer = this.dom.querySelector('#details-container');
         const iconPath = '../' + config.getOption('icon16');
         this.documentManipulator.setShortcutIcon(iconPath);
         this.renderer(
-            <DetailsView
-                deps={this.deps}
-                document={this.dom as Document}
-                issuesSelection={this.issuesSelection}
-                clickHandlerFactory={this.clickHandlerFactory}
-                storeActionCreator={this.detailsViewStoreActionCreator}
-                visualizationConfigurationFactory={this.visualizationConfigurationFactory}
-                storesHub={this.storesHub}
-                issuesTableHandler={this.issuesTableHandler}
-                assessmentInstanceTableHandler={this.assessmentInstanceTableHandler}
-                reportGenerator={this.reportGenerator}
-                previewFeatureFlagsHandler={this.previewFeatureFlagsHandler}
-                scopingFlagsHandler={this.scopingFlagsHandler}
-                dropdownClickHandler={this.dropdownClickHandler}
-                scopingActionMessageCreator={this.scopingActionMessageCreator}
-                inspectActionMessageCreator={this.inspectActionMessageCreator}
-                assessmentsProvider={this.assessmentsProvider}
-                storeState={null}
-            />,
+            <>
+                <Theme deps={this.deps} />
+                <DetailsView
+                    deps={this.deps}
+                    document={this.dom as Document}
+                    issuesSelection={this.issuesSelection}
+                    clickHandlerFactory={this.clickHandlerFactory}
+                    visualizationConfigurationFactory={this.visualizationConfigurationFactory}
+                    issuesTableHandler={this.issuesTableHandler}
+                    assessmentInstanceTableHandler={this.assessmentInstanceTableHandler}
+                    reportGenerator={this.reportGenerator}
+                    previewFeatureFlagsHandler={this.previewFeatureFlagsHandler}
+                    scopingFlagsHandler={this.scopingFlagsHandler}
+                    dropdownClickHandler={this.dropdownClickHandler}
+                    scopingActionMessageCreator={this.scopingActionMessageCreator}
+                    inspectActionMessageCreator={this.inspectActionMessageCreator}
+                    assessmentsProvider={this.assessmentsProvider}
+                    storeState={null}
+                />
+            </>,
             detailsViewContainer,
         );
     }

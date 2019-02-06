@@ -7,6 +7,7 @@ import ManualTestRecordYourResults from '../../common/manual-test-record-your-re
 import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
 import { visibleFfocusOrderTestStep } from './test-steps';
+import * as content from '../../../content/test/focus/modal-dialogs';
 
 const description: JSX.Element = <span>Users must not be able to Tab away from a modal dialog without explicitly dismissing it.</span>;
 
@@ -33,4 +34,5 @@ export const ModalDialogs: TestStep = {
     howToTest,
     isManual: true,
     guidanceLinks: [link.WCAG_2_4_3],
+    ...content,
 };
