@@ -16,6 +16,7 @@ import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { NativeWidgetsTestStep } from './test-steps';
+import * as content from '../../../content/test/native-widgets/widget-function';
 
 const description: JSX.Element = (
     <span>
@@ -76,6 +77,7 @@ export const WidgetFunction: TestStep = {
     howToTest,
     isManual: false,
     guidanceLinks: [link.WCAG_4_1_2],
+    ...content,
     columnsConfig: [
         {
             key: 'widget-function-info',

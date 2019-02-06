@@ -16,6 +16,7 @@ import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { NativeWidgetsTestStep } from './test-steps';
+import * as content from '../../../content/test/native-widgets/cues';
 
 const description: JSX.Element = <span>If a native widget adopts certain interactive states, it must provide appropriate cues.</span>;
 
@@ -92,6 +93,7 @@ export const Cues: TestStep = {
     howToTest,
     isManual: false,
     guidanceLinks: [link.WCAG_1_3_1, link.WCAG_4_1_2],
+    ...content,
     columnsConfig: [
         {
             key: 'cues-info',
