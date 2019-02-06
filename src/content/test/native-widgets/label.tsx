@@ -22,7 +22,7 @@ export const infoAndExamples = create(({ Markup }) => (
         <p>
             Make sure the widget's accessible name and/or accessible description communicates the expected input. For example, a button
             should indicate what action it will initiate. A text field should indicate what type of data is expected and whether a specific
-            format is required
+            format is required.
         </p>
 
         <h2>Example</h2>

@@ -41,7 +41,7 @@ export const infoAndExamples = create(({ Markup }) => (
             [<input type="text" name="username" id="username">]`}
             passText={
                 <p>
-                    The text field has the <Markup.Term>required</Markup.Term>attribute.
+                    The text field has the <Markup.Term>required</Markup.Term> attribute.
                 </p>
             }
             passExample={`<label for="username">*User name:</label>
