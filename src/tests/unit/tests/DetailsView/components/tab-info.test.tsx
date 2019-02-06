@@ -10,7 +10,6 @@ import { DropdownClickHandler } from '../../../../../common/dropdown-click-handl
 import { FeatureFlags, getDefaultFeatureFlagValues } from '../../../../../common/feature-flags';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
-import { RebrandingMessageBar } from '../../../../../DetailsView/components/rebranding-message-bar';
 import { ITabInfoProps, TabInfo } from '../../../../../DetailsView/components/tab-info';
 
 describe('TabInfo', () => {
@@ -77,7 +76,6 @@ describe('TabInfo', () => {
             function getExpectedComponentRendered(warningMessageBar: JSX.Element, tabInfo: JSX.Element): JSX.Element {
                 return (
                     <div>
-                        <RebrandingMessageBar />
                         {warningMessageBar}
                         {tabInfo}
                     </div>

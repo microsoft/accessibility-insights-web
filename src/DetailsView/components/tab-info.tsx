@@ -8,7 +8,6 @@ import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 import { FeatureFlags } from '../../common/feature-flags';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
-import { RebrandingMessageBar } from './rebranding-message-bar';
 
 export interface ITabInfoProps {
     isTargetPageHidden: boolean;
@@ -24,7 +23,6 @@ export class TabInfo extends React.Component<ITabInfoProps> {
     public render(): JSX.Element {
         return (
             <div>
-                <RebrandingMessageBar />
                 {this.renderMessageBarForTargetPageHidden()}
                 {this.renderTargetPageInfo()}
             </div>
