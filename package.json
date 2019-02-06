@@ -83,7 +83,6 @@
         "webpack-cli": "^3.2.1"
     },
     "dependencies": {
-        "@types/react-body-classname": "^1.1.5",
         "@types/react-helmet": "^5.0.8",
         "applicationinsights-js": "^1.0.20",
         "axe-core": "3.1.1",
@@ -93,7 +92,6 @@
         "office-ui-fabric-react": "6.133.0",
         "q": "1.0.1",
         "react": "^16.7.0",
-        "react-body-classname": "^1.2.0",
         "react-copy-to-clipboard": "^5.0.1",
         "react-dom": "^16.7.0",
         "react-helmet": "^5.2.0",

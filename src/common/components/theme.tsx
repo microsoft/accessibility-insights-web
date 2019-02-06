@@ -2,13 +2,11 @@
 // Licensed under the MIT License.
 import { css } from '@uifabric/utilities';
 import * as React from 'react';
-// tslint:disable-next-line:no-require-imports
-import BodyClassName = require('react-body-classname');
-
 import { DefaultThemePalette } from '../styles/default-theme-palette';
 import { HighContrastThemePalette } from '../styles/high-contrast-theme-palette';
 import { UserConfigurationStoreData } from '../types/store-data/user-configuration-store';
 import { withStoreSubscription, WithStoreSubscriptionDeps } from './with-store-subscription';
+import Helmet from 'react-helmet';
 
 export interface ThemeInnerState {
     userConfigurationStoreData: UserConfigurationStoreData;
@@ -35,7 +33,11 @@ export class ThemeInner extends React.Component<ThemeInnerProps> {
         const enableHighContrast = this.isHighContrastEnabled(this.props);
         const className = css('theme-switcher', enableHighContrast && 'high-contrast-theme');
 
-        return <BodyClassName className={className} />;
+        return (
+            <Helmet>
+                <body className={className} />
+            </Helmet>
+        );
     }
 
     private isHighContrastEnabled(props: ThemeInnerProps): boolean {
