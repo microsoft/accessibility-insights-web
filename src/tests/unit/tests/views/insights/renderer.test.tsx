@@ -11,7 +11,7 @@ import { Theme } from '../../../../../common/components/theme';
 describe('insights renderer', () => {
     const deps = ({
         dom: document,
-        render: jest.fn<ReactDOM.Renderer>(),
+        render: jest.fn(),
         initializeFabricIcons: jest.fn(),
     } as Partial<RendererDeps>) as RendererDeps;
 

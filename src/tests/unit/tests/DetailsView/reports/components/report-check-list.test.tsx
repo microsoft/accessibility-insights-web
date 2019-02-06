@@ -44,7 +44,7 @@ describe('ReportCheckListTest', () => {
             congratulateIfEmpty: true,
         };
 
-        expect(shallow(<ReportCheckList {...props} />)).toMatchSnapshot();
+        verifySnapshot(props);
     });
 
     test('render 0 results', () => {
@@ -56,7 +56,7 @@ describe('ReportCheckListTest', () => {
             congratulateIfEmpty: false,
         };
 
-        expect(shallow(<ReportCheckList {...props} />)).toMatchSnapshot();
+        verifySnapshot(props);
     });
 
     test('render 1 result with instances', () => {
@@ -68,7 +68,7 @@ describe('ReportCheckListTest', () => {
             congratulateIfEmpty: true,
         };
 
-        expect(shallow(<ReportCheckList {...props} />)).toMatchSnapshot();
+        verifySnapshot(props);
     });
 
     test('render 2 results', () => {
@@ -80,7 +80,7 @@ describe('ReportCheckListTest', () => {
             congratulateIfEmpty: false,
         };
 
-        expect(shallow(<ReportCheckList {...props} />)).toMatchSnapshot();
+        verifySnapshot(props);
     });
 
     test('render, showInstanceCount = false', () => {
@@ -92,7 +92,7 @@ describe('ReportCheckListTest', () => {
             congratulateIfEmpty: false,
         };
 
-        expect(shallow(<ReportCheckList {...props} />)).toMatchSnapshot();
+        verifySnapshot(props);
     });
 
     test('render, showInstances = false', () => {
@@ -104,6 +104,10 @@ describe('ReportCheckListTest', () => {
             congratulateIfEmpty: false,
         };
 
-        expect(shallow(<ReportCheckList {...props} />)).toMatchSnapshot();
+        verifySnapshot(props);
     });
+
+    function verifySnapshot(props: ReportCheckListProps): void {
+        expect(shallow(<ReportCheckList {...props} />).getElement()).toMatchSnapshot();
+    }
 });

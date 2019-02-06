@@ -35,7 +35,7 @@ describe('PropertyBagColumnRendererTest', () => {
 
         const wrapper = createWrapper(item, configs);
 
-        expect(wrapper).toMatchSnapshot();
+        expect(wrapper.getElement()).toMatchSnapshot();
     });
 
     test('render, several properties from the bag', () => {

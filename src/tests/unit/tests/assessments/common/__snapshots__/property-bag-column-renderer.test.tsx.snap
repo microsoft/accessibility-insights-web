@@ -100,181 +100,22 @@ exports[`PropertyBagColumnRendererTest render, empty object 1`] = `
 `;
 
 exports[`PropertyBagColumnRendererTest render, one property from the bag 1`] = `
-ShallowWrapper {
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <RendererWrapper
-    render={[Function]}
-  />,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateError": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "host",
-    "props": Object {
-      "children": Array [
-        <div
-          className="property-bag-div"
-        >
-          <span
-            className="display-name"
-          >
-            display name: 
-          </span>
-          <React.Fragment>
-            string value
-          </React.Fragment>
-        </div>,
-      ],
-      "className": "property-bag-container",
-    },
-    "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": "property-0",
-        "nodeType": "host",
-        "props": Object {
-          "children": Array [
-            <span
-              className="display-name"
-            >
-              display name: 
-            </span>,
-            <React.Fragment>
-              string value
-            </React.Fragment>,
-          ],
-          "className": "property-bag-div",
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "display name: ",
-              "className": "display-name",
-            },
-            "ref": null,
-            "rendered": "display name: ",
-            "type": "span",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": "string value",
-            },
-            "ref": null,
-            "rendered": "string value",
-            "type": Symbol(react.fragment),
-          },
-        ],
-        "type": "div",
-      },
-    ],
-    "type": "div",
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": Array [
-          <div
-            className="property-bag-div"
-          >
-            <span
-              className="display-name"
-            >
-              display name: 
-            </span>
-            <React.Fragment>
-              string value
-            </React.Fragment>
-          </div>,
-        ],
-        "className": "property-bag-container",
-      },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": "property-0",
-          "nodeType": "host",
-          "props": Object {
-            "children": Array [
-              <span
-                className="display-name"
-              >
-                display name: 
-              </span>,
-              <React.Fragment>
-                string value
-              </React.Fragment>,
-            ],
-            "className": "property-bag-div",
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": "display name: ",
-                "className": "display-name",
-              },
-              "ref": null,
-              "rendered": "display name: ",
-              "type": "span",
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "children": "string value",
-              },
-              "ref": null,
-              "rendered": "string value",
-              "type": Symbol(react.fragment),
-            },
-          ],
-          "type": "div",
-        },
-      ],
-      "type": "div",
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
-        "lifecycles": Object {
-          "componentDidUpdate": Object {
-            "onSetState": true,
-          },
-          "getDerivedStateFromProps": true,
-          "getSnapshotBeforeUpdate": true,
-          "setState": Object {
-            "skipsComponentDidUpdateOnNullish": true,
-          },
-        },
-      },
-    },
-  },
-}
+<div
+  className="property-bag-container"
+>
+  <div
+    className="property-bag-div"
+  >
+    <span
+      className="display-name"
+    >
+      display name: 
+    </span>
+    <React.Fragment>
+      string value
+    </React.Fragment>
+  </div>
+</div>
 `;
 
 exports[`PropertyBagColumnRendererTest render, property is null, no default value 1`] = `"<div className=\\"property-bag-container\\" />"`;
