@@ -99,7 +99,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             `}
             passText={
                 <p>
-                    A skip link is added as the first item in the page. In this case, the skip link is always visible, but it could be
+                    A skip link is added as the first item in the page. In this case, the skip link is always visible, but it could be{' '}
                     <Markup.HyperLink href="https://webaim.org/techniques/css/invisiblecontent/#skipnavlinks">
                         hidden using CSS.
                     </Markup.HyperLink>
