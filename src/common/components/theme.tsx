@@ -2,8 +2,7 @@
 // Licensed under the MIT License.
 import { css } from '@uifabric/utilities';
 import * as React from 'react';
-// tslint:disable-next-line:no-require-imports
-import BodyClassName = require('react-body-classname');
+import Helmet from 'react-helmet';
 
 import { DefaultThemePalette } from '../styles/default-theme-palette';
 import { HighContrastThemePalette } from '../styles/high-contrast-theme-palette';
@@ -35,7 +34,11 @@ export class ThemeInner extends React.Component<ThemeInnerProps> {
         const enableHighContrast = this.isHighContrastEnabled(this.props);
         const className = css('theme-switcher', enableHighContrast && 'high-contrast-theme');
 
-        return <BodyClassName className={className} />;
+        return (
+            <Helmet>
+                <body className={className} />
+            </Helmet>
+        );
     }
 
     private isHighContrastEnabled(props: ThemeInnerProps): boolean {
