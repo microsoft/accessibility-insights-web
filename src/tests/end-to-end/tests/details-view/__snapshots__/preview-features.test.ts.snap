@@ -51,7 +51,7 @@ exports[`Preview Features Panel should match content in snapshot 1`] = `
           <p
             aria-level="2"
             class="ms-Panel-headerText header-text headerText-000"
-            id="Panel12-headerText"
+            id="Panel11-headerText"
             role="heading"
           >
             Preview features
