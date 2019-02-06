@@ -52,8 +52,8 @@ export const infoAndExamples = create(({ Markup }) => (
             </li>
             <li>Determine which design pattern your widget should follow.</li>
             <li>
-                Add the correct widget role to the container specified by the design pattern.Exception: A few design patterns do not require
-                a widget role.{' '}
+                Add the correct widget role to the container specified by the design pattern. Exception: A few design patterns do not
+                require a widget role.
             </li>
         </ol>
 
