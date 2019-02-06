@@ -17,6 +17,15 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             announced.
         </p>
 
+        <h3>From a user's perspective</h3>
+        <p>
+            <Markup.Emphasis>
+                "I navigate content and interfaces using a screen reader and a keyboard. Repeated blocks of navigation and content force me
+                to "re-read" everything as I work back and forth over the interface to complete a task or, enjoy content. Allow me a way to
+                "bypass" repetitive blocks of navigation and content via keyboard commands, skip links, and WAI-ARIA regions."
+            </Markup.Emphasis>
+        </p>
+
         <h2>How to fix</h2>
         <p>Implement one or more of the following keyboard-accessible methods for bypassing repetitive content:</p>
         <ul>
@@ -24,7 +33,6 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 Provide a link for bypassing repeated content (preferred, as it helps all keyboard users):
                 <ul>
                     <li>
-                        {' '}
                         <Markup.Links>
                             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G1">
                                 Add a 'skip link' at the top of the page that navigates directly to the main content
@@ -32,11 +40,10 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                         </Markup.Links>
                     </li>
                     <li>
-                        {' '}
                         <Markup.Links>
                             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G123">
                                 Add a link at the beginning of a block of repeated content that navigates to the end of the block
-                            </Markup.HyperLink>{' '}
+                            </Markup.HyperLink>
                         </Markup.Links>
                     </li>
                     <li>
@@ -86,9 +93,9 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <Markup.PassFail
             failText={<p>This page has no keyboard-accessible method for bypassing repetitive content.</p>}
             failExample={`<body>
-                ...
-                <main>
-                <p>It was Ralph Waldo Emerson who said, "Build a better mousetrap, and the world will beat a path to your door."</p>
+            ...
+            <main>
+            <p>It was Ralph Waldo Emerson who said, "Build a better mousetrap, and the world will beat a path to your door."</p>
             `}
             passText={
                 <p>
@@ -99,10 +106,10 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 </p>
             }
             passExample={`<body>
-                    <a href="#maincontent">Skip to main content</a>
-                    ...
-                    <main id="maincontent">
-                    <p>It was Ralph Waldo Emerson who said, "Build a better mousetrap, and the world will beat a path to your door."</p>
+            [<a href="#maincontent">Skip to main content</a>]
+            ...
+            <main [id="maincontent"]>
+            <p>It was Ralph Waldo Emerson who said, "Build a better mousetrap, and the world will beat a path to your door."</p>
             `}
         />
 
@@ -140,8 +147,8 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H70">
                 Using frame elements to group blocks of repeated content
-            </Markup.HyperLink>{' '}
-            and{' '}
+            </Markup.HyperLink>
+            and
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H64">
                 Using the title attribute of the frame and iframe elements
             </Markup.HyperLink>

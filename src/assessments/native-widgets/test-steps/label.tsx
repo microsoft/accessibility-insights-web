@@ -16,6 +16,7 @@ import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { NativeWidgetsTestStep } from './test-steps';
+import * as content from '../../../content/test/native-widgets/label';
 
 const description: JSX.Element = <span>A native widget must have a label and/or instructions that identify the expected input.</span>;
 
@@ -62,6 +63,7 @@ export const Label: TestStep = {
     howToTest,
     isManual: false,
     guidanceLinks: [link.WCAG_3_3_2],
+    ...content,
     columnsConfig: [
         {
             key: 'label-info',
