@@ -4,7 +4,7 @@ import { Messages } from '../../common/messages';
 import { SWITCH_BACK_TO_TARGET } from '../../common/telemetry-events';
 import { BrowserAdapter } from '../browser-adapter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
-import { ISwitchToTargetTabPayLoad } from './action-payloads';
+import { SwitchToTargetTabPayload } from './action-payloads';
 import { TabActions } from './tab-actions';
 
 export class TabActionCreator {
@@ -36,7 +36,7 @@ export class TabActionCreator {
         );
     }
 
-    private onSwitchToTargetTab(payload: ISwitchToTargetTabPayLoad, tabId: number): void {
+    private onSwitchToTargetTab(payload: SwitchToTargetTabPayload, tabId: number): void {
         this.browserAdapter.switchToTab(tabId);
         this.telemetryEventHandler.publishTelemetry(SWITCH_BACK_TO_TARGET, payload, tabId);
     }

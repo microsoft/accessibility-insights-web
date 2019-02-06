@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { ISetLaunchPanelState } from '../../../../../background/actions/action-payloads';
+import { SetLaunchPanelState } from '../../../../../background/actions/action-payloads';
 import { AssessmentActions } from '../../../../../background/actions/assessment-actions';
 import { CommandActions } from '../../../../../background/actions/command-actions';
 import { GlobalActionCreator } from '../../../../../background/actions/global-action-creator';
@@ -64,7 +64,7 @@ describe('GlobalActionCreatorTest', () => {
 
     test('registerCallback for on set launch panel state', () => {
         const actionName = 'setLaunchPanelType';
-        const payload: ISetLaunchPanelState = {
+        const payload: SetLaunchPanelState = {
             launchPanelType: LaunchPanelType.AdhocToolsPanel,
         };
         const args = [payload];

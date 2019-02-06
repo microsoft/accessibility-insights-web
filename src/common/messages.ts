@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-export interface IStateMessages {
+export interface StateMessages {
     GetCurrentVisualizationToggleState: string;
     GetCurrentVisualizationResultState: string;
     InjectionCompleted: string;
     InjectionStarted: string;
 }
 
-export interface IDetailsViewMessages {
+export interface DetailsViewMessages {
     Open: string;
     Select: string;
     PivotSelect: string;
@@ -17,18 +17,18 @@ export interface IDetailsViewMessages {
     GetState: string;
 }
 
-export interface IIssuesMessages {
+export interface IssuesMessages {
     UpdateSelectedTargets: string;
     UpdateFocusedInstance: string;
 }
 
-export interface ITabStopsMessages {
+export interface TabStopsMessages {
     TabbedElementAdded: string;
     RecordingCompleted: string;
     TerminateScan: string;
 }
 
-export interface IVisualizationCommonMessages {
+export interface VisualizationCommonMessages {
     Toggle: string;
     ScanCompleted: string;
     ScrollRequested: string;
@@ -41,16 +41,16 @@ export interface DevToolsMessages {
     Get: string;
 }
 
-export interface IVisualizationMessages {
-    Common: IVisualizationCommonMessages;
-    Issues: IIssuesMessages;
-    TabStops: ITabStopsMessages;
-    State: IStateMessages;
-    DetailsView: IDetailsViewMessages;
+export interface VisualizationMessages {
+    Common: VisualizationCommonMessages;
+    Issues: IssuesMessages;
+    TabStops: TabStopsMessages;
+    State: StateMessages;
+    DetailsView: DetailsViewMessages;
 }
 
 export class Messages {
-    public static readonly Visualizations: IVisualizationMessages = {
+    public static readonly Visualizations: VisualizationMessages = {
         Common: {
             Toggle: 'insights/visualization/toggle',
             ScanCompleted: 'insights/visualization/scanCompleted',

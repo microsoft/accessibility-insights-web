@@ -33,7 +33,7 @@ jobs:
           - task: Npm@1
             inputs:
                 command: custom
-                customCommand: run test-in-ci
+                customCommand: run test -- --ci
             displayName: run unit tests
 
           - task: PublishTestResults@2
@@ -94,7 +94,7 @@ jobs:
           - task: Npm@1
             inputs:
                 command: custom
-                customCommand: run test-in-ci:e2e
+                customCommand: run test:e2e -- --ci
             displayName: run e2e tests
 
           - task: PublishTestResults@2

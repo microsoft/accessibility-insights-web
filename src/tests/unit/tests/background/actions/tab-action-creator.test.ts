@@ -3,7 +3,7 @@
 import * as _ from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { IPageVisibilityChangeTabPayLoad, ISwitchToTargetTabPayLoad } from '../../../../../background/actions/action-payloads';
+import { PageVisibilityChangeTabPayload, SwitchToTargetTabPayload } from '../../../../../background/actions/action-payloads';
 import { TabActionCreator } from '../../../../../background/actions/tab-action-creator';
 import { TabActions } from '../../../../../background/actions/tab-actions';
 import { ChromeAdapter, BrowserAdapter } from '../../../../../background/browser-adapter';
@@ -79,7 +79,7 @@ describe('TestActionCreatorTest', () => {
     test('on Tab.Switch', () => {
         browserAdapterMock.setup(ba => ba.switchToTab(tabId)).verifiable(Times.once());
 
-        const payload: ISwitchToTargetTabPayLoad = {
+        const payload: SwitchToTargetTabPayload = {
             telemetry: {
                 triggeredBy: 'test',
                 source: TelemetryEventSource.AdHocTools,
@@ -97,7 +97,7 @@ describe('TestActionCreatorTest', () => {
     });
 
     test('on Tab.VisibilityChange', () => {
-        const payload: IPageVisibilityChangeTabPayLoad = {
+        const payload: PageVisibilityChangeTabPayload = {
             hidden: true,
         };
 

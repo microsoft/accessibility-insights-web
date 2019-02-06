@@ -21,12 +21,12 @@ import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import { ActionHub } from './action-hub';
 import {
     BaseActionPayload,
-    IAddTabbedElementPayload,
-    IOnDetailsViewOpenPayload,
-    IOnDetailsViewPivotSelected,
-    IPayloadWIthEventName,
-    IToggleActionPayload,
-    IVisualizationTogglePayload,
+    AddTabbedElementPayload,
+    OnDetailsViewOpenPayload,
+    OnDetailsViewPivotSelected,
+    PayloadWithEventName,
+    ToggleActionPayload,
+    VisualizationTogglePayload,
 } from './action-payloads';
 import { DetailsViewActions } from './details-view-actions';
 import { InspectActions } from './inspect-actions';
@@ -134,33 +134,33 @@ export class ActionCreator {
     }
 
     @autobind
-    private onEnableVisualHelperWithoutScan(payload: IToggleActionPayload, tabId: number): void {
+    private onEnableVisualHelperWithoutScan(payload: ToggleActionPayload, tabId: number): void {
         const eventName = TelemetryEvents.ENABLE_VISUAL_HELPER;
         this.telemetryEventHandler.publishTelemetry(eventName, payload, tabId);
         this.visualizationActions.enableVisualizationWithoutScan.invoke(payload);
     }
 
     @autobind
-    private onEnableVisualHelper(payload: IToggleActionPayload, tabId: number): void {
+    private onEnableVisualHelper(payload: ToggleActionPayload, tabId: number): void {
         const eventName = TelemetryEvents.ENABLE_VISUAL_HELPER;
         this.telemetryEventHandler.publishTelemetry(eventName, payload, tabId);
         this.visualizationActions.enableVisualization.invoke(payload);
     }
 
     @autobind
-    private onDisableVisualHelpersForTest(payload: IToggleActionPayload): void {
+    private onDisableVisualHelpersForTest(payload: ToggleActionPayload): void {
         this.visualizationActions.disableVisualization.invoke(payload.test);
     }
 
     @autobind
-    private onDisableVisualHelper(payload: IToggleActionPayload, tabId: number): void {
+    private onDisableVisualHelper(payload: ToggleActionPayload, tabId: number): void {
         const eventName = TelemetryEvents.DISABLE_VISUAL_HELPER;
         this.telemetryEventHandler.publishTelemetry(eventName, payload, tabId);
         this.visualizationActions.disableVisualization.invoke(payload.test);
     }
 
     @autobind
-    private onStartOver(payload: IToggleActionPayload, tabId: number): void {
+    private onStartOver(payload: ToggleActionPayload, tabId: number): void {
         const eventName = TelemetryEvents.START_OVER_ASSESSMENT;
         this.telemetryEventHandler.publishTelemetry(eventName, payload, tabId);
         this.visualizationActions.disableVisualization.invoke(payload.test);
@@ -173,14 +173,14 @@ export class ActionCreator {
     }
 
     @autobind
-    private onStartOverAllAssessments(payload: IToggleActionPayload, tabId: number): void {
+    private onStartOverAllAssessments(payload: ToggleActionPayload, tabId: number): void {
         const eventName = TelemetryEvents.START_OVER_ALL_ASSESSMENTS;
         this.telemetryEventHandler.publishTelemetry(eventName, payload, tabId);
         this.visualizationActions.disableAssessmentVisualizations.invoke(null);
     }
 
     @autobind
-    private onCancelStartOverAllAssessments(payload: BaseActionPayload, tabId: number) {
+    private onCancelStartOverAllAssessments(payload: BaseActionPayload, tabId: number): void {
         const eventName = TelemetryEvents.CANCEL_START_OVER_ALL_ASSESSMENTS;
         this.telemetryEventHandler.publishTelemetry(eventName, payload, tabId);
     }
@@ -226,7 +226,7 @@ export class ActionCreator {
     }
 
     @autobind
-    private onTabbedElementAdded(payload: IAddTabbedElementPayload): void {
+    private onTabbedElementAdded(payload: AddTabbedElementPayload): void {
         this.visualizationScanResultActions.addTabbedElement.invoke(payload);
     }
 
@@ -247,7 +247,7 @@ export class ActionCreator {
     }
 
     @autobind
-    private onUpdateIssuesSelectedTargets(payload: string[], tabId: number) {
+    private onUpdateIssuesSelectedTargets(payload: string[], tabId: number): void {
         this.visualizationScanResultActions.updateIssuesSelectedTargets.invoke(payload);
     }
 
@@ -272,7 +272,7 @@ export class ActionCreator {
     }
 
     @autobind
-    private onDetailsViewOpen(payload: IOnDetailsViewOpenPayload, tabId: number): void {
+    private onDetailsViewOpen(payload: OnDetailsViewOpenPayload, tabId: number): void {
         if (this.shouldEnableToggleOnDetailsViewOpen(payload.detailsViewType)) {
             this.enableToggleOnDetailsViewOpen(payload.detailsViewType, tabId);
         }
@@ -289,11 +289,11 @@ export class ActionCreator {
     }
 
     private enableToggleOnDetailsViewOpen(test: VisualizationType, tabId: number): void {
-        const _payload: IVisualizationTogglePayload = this.createVisualizationTogglePayloadWithNullTelemetry(test);
-        this.onVisualizationToggle(_payload, tabId);
+        const payload: VisualizationTogglePayload = this.createVisualizationTogglePayloadWithNullTelemetry(test);
+        this.onVisualizationToggle(payload, tabId);
     }
 
-    private createVisualizationTogglePayloadWithNullTelemetry(test: VisualizationType): IVisualizationTogglePayload {
+    private createVisualizationTogglePayloadWithNullTelemetry(test: VisualizationType): VisualizationTogglePayload {
         return {
             test,
             enabled: true,
@@ -302,7 +302,7 @@ export class ActionCreator {
     }
 
     @autobind
-    private onPivotChildSelected(payload: IOnDetailsViewOpenPayload, tabId: number): void {
+    private onPivotChildSelected(payload: OnDetailsViewOpenPayload, tabId: number): void {
         this.previewFeaturesActions.closePreviewFeatures.invoke(null);
         this.visualizationActions.updateSelectedPivotChild.invoke(payload);
         this.showDetailsView(tabId);
@@ -310,7 +310,7 @@ export class ActionCreator {
     }
 
     @autobind
-    private onDetailsViewPivotSelected(payload: IOnDetailsViewPivotSelected, tabId: number): void {
+    private onDetailsViewPivotSelected(payload: OnDetailsViewPivotSelected, tabId: number): void {
         this.visualizationActions.updateSelectedPivot.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.DETAILS_VIEW_PIVOT_ACTIVATED, payload, tabId);
     }
@@ -321,7 +321,7 @@ export class ActionCreator {
     }
 
     @autobind
-    private onVisualizationToggle(payload: IVisualizationTogglePayload, tabId: number): void {
+    private onVisualizationToggle(payload: VisualizationTogglePayload, tabId: number): void {
         const telemetryEvent = this.adhocTestTypeToTelemetryEvent[payload.test];
         this.telemetryEventHandler.publishTelemetry(telemetryEvent, payload, tabId);
 
@@ -333,34 +333,34 @@ export class ActionCreator {
     }
 
     @autobind
-    private onSendTelemetry(payload: IPayloadWIthEventName, tabId: number) {
+    private onSendTelemetry(payload: PayloadWithEventName, tabId: number): void {
         const eventName = payload.eventName;
         this.telemetryEventHandler.publishTelemetry(eventName, payload, tabId);
     }
 
     @autobind
-    private onSendTelemetryExcludeUrl(payload: IPayloadWIthEventName, tabId: number) {
+    private onSendTelemetryExcludeUrl(payload: PayloadWithEventName, tabId: number): void {
         const eventName = payload.eventName;
         this.telemetryEventHandler.publishTelemetry(eventName, payload, tabId, false);
     }
 
     @autobind
-    private injectionCompleted() {
+    private injectionCompleted(): void {
         this.visualizationActions.injectionCompleted.invoke(null);
     }
 
     @autobind
-    private injectionStarted() {
+    private injectionStarted(): void {
         this.visualizationActions.injectionStarted.invoke(null);
     }
 
     @autobind
-    private getVisualizationToggleCurrentState() {
+    private getVisualizationToggleCurrentState(): void {
         this.visualizationActions.getCurrentState.invoke(null);
     }
 
     @autobind
-    private getScanResultsCurrentState() {
+    private getScanResultsCurrentState(): void {
         this.visualizationScanResultActions.getCurrentState.invoke(null);
     }
 
@@ -375,7 +375,7 @@ export class ActionCreator {
     }
 
     @autobind
-    private onGetDetailsViewCurrentState() {
+    private onGetDetailsViewCurrentState(): void {
         this.detailsViewActions.getCurrentState.invoke(null);
     }
 }

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { It, Mock, MockBehavior } from 'typemoq';
 
-import { IAssessmentToggleActionPayload } from '../../../../background/actions/action-payloads';
+import { AssessmentToggleActionPayload } from '../../../../background/actions/action-payloads';
 import { Interpreter } from '../../../../background/interpreter';
 import { ScannerUtility } from '../../../../background/scanner-utility';
 import { Messages } from '../../../../common/messages';
@@ -21,7 +21,7 @@ describe('ScannerUtility', () => {
         const windowUtilsMock = Mock.ofType(WindowUtils, MockBehavior.Strict);
         let callback;
 
-        const expectedPayload: IAssessmentToggleActionPayload = {
+        const expectedPayload: AssessmentToggleActionPayload = {
             test: testStub,
             step: step,
             telemetry: null,

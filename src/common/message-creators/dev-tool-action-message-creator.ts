@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IOnDevToolOpenPayload, IInspectElementPayload, IInspectFrameUrlPayload } from '../../background/actions/action-payloads';
+import { OnDevToolOpenPayload, InspectElementPayload, InspectFrameUrlPayload } from '../../background/actions/action-payloads';
 import { BaseActionMessageCreator } from '../message-creators/base-action-message-creator';
 import { Messages } from '../messages';
 import { TelemetryDataFactory } from '../telemetry-data-factory';
@@ -19,14 +19,14 @@ export class DevToolActionMessageCreator extends BaseActionMessageCreator {
             type: Messages.DevTools.DevtoolStatus,
             payload: {
                 status: status,
-            } as IOnDevToolOpenPayload,
+            } as OnDevToolOpenPayload,
         };
 
         this.dispatchMessage(message);
     }
 
     public setInspectElement(event: React.SyntheticEvent<MouseEvent>, target: string[]) {
-        const payload: IInspectElementPayload = {
+        const payload: InspectElementPayload = {
             target: target,
             telemetry: this.telemetryFactory.forInspectElement(event, target),
         };
@@ -40,7 +40,7 @@ export class DevToolActionMessageCreator extends BaseActionMessageCreator {
     }
 
     public setInspectFrameUrl(frameUrl: string) {
-        const payload: IInspectFrameUrlPayload = {
+        const payload: InspectFrameUrlPayload = {
             frameUrl: frameUrl,
         };
         const message: IMessage = {

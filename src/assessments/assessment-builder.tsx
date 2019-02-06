@@ -4,7 +4,7 @@ import * as _ from 'lodash/index';
 import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
-import { IAssessmentToggleActionPayload } from '../background/actions/action-payloads';
+import { AssessmentToggleActionPayload } from '../background/actions/action-payloads';
 import { InstanceIdentifierGenerator } from '../background/instance-identifier-generator';
 import { RequirementComparer } from '../common/assessment/requirement-comparer';
 import { IAssesssmentVisualizationConfiguration } from '../common/configs/visualization-configuration-factory';
@@ -85,7 +85,7 @@ export class AssessmentBuilder {
         return testStepLink.renderRequirementDescriptionWithIndex();
     }
 
-    private static enableTest(scanData: IScanData, payload: IAssessmentToggleActionPayload) {
+    private static enableTest(scanData: IScanData, payload: AssessmentToggleActionPayload) {
         const scanAssessmentData = scanData as IAssessmentScanData;
         scanAssessmentData.enabled = true;
         scanAssessmentData.stepStatus[payload.step] = true;

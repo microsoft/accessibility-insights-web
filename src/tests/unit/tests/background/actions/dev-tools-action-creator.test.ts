@@ -3,7 +3,7 @@
 import * as _ from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { IInspectElementPayload, IInspectFrameUrlPayload, IOnDevToolOpenPayload } from '../../../../../background/actions/action-payloads';
+import { InspectElementPayload, InspectFrameUrlPayload, OnDevToolOpenPayload } from '../../../../../background/actions/action-payloads';
 import { DevToolsActionCreator } from '../../../../../background/actions/dev-tools-action-creator';
 import { DevToolActions } from '../../../../../background/actions/dev-tools-actions';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
@@ -32,7 +32,7 @@ describe('DevToolsActionCreatorTest', () => {
     });
 
     test('on DevtoolStatus', () => {
-        const payload: IOnDevToolOpenPayload = {
+        const payload: OnDevToolOpenPayload = {
             status: true,
         };
 
@@ -60,7 +60,7 @@ describe('DevToolsActionCreatorTest', () => {
     });
 
     test('on InspectFrameUrl', () => {
-        const payload: IInspectFrameUrlPayload = {
+        const payload: InspectFrameUrlPayload = {
             frameUrl: 'frame-url',
         };
 
@@ -76,7 +76,7 @@ describe('DevToolsActionCreatorTest', () => {
     });
 
     test('InspectElement', () => {
-        const payload: IInspectElementPayload = {
+        const payload: InspectElementPayload = {
             target: ['target'],
         };
 

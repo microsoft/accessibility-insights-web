@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IAddTabbedElementPayload } from '../../../../../background/actions/action-payloads';
+import { AddTabbedElementPayload } from '../../../../../background/actions/action-payloads';
 import { TabActions } from '../../../../../background/actions/tab-actions';
 import { VisualizationScanResultActions } from '../../../../../background/actions/visualization-scan-result-actions';
 import { VisualizationScanResultStore } from '../../../../../background/stores/visualization-scan-result-store';
@@ -454,7 +454,7 @@ describe('VisualizationScanResultStoreTest', () => {
     test('onAddTabbedElement: first element', () => {
         const initialState = new VisualizationScanResultStoreDataBuilder().build();
 
-        const payload: IAddTabbedElementPayload = {
+        const payload: AddTabbedElementPayload = {
             tabbedElements: [
                 {
                     timestamp: 10,
@@ -498,7 +498,7 @@ describe('VisualizationScanResultStoreTest', () => {
 
         const initialState = new VisualizationScanResultStoreDataBuilder().withTabStopsTabbedElements(initialTabbedElements).build();
 
-        const payload: IAddTabbedElementPayload = {
+        const payload: AddTabbedElementPayload = {
             tabbedElements: [
                 {
                     timestamp: 20,

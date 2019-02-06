@@ -6,12 +6,12 @@ import { ActionCreator } from '../../../../../background/actions/action-creator'
 import { ActionHub } from '../../../../../background/actions/action-hub';
 import {
     BaseActionPayload,
-    IAddTabbedElementPayload,
-    IChangeInstanceStatusPayload,
-    IOnDetailsViewOpenPayload,
-    IOnDetailsViewPivotSelected,
-    IToggleActionPayload,
-    IVisualizationTogglePayload,
+    AddTabbedElementPayload,
+    ChangeInstanceStatusPayload,
+    OnDetailsViewOpenPayload,
+    OnDetailsViewPivotSelected,
+    ToggleActionPayload,
+    VisualizationTogglePayload,
 } from '../../../../../background/actions/action-payloads';
 import { DetailsViewActions } from '../../../../../background/actions/details-view-actions';
 import { DevToolActions } from '../../../../../background/actions/dev-tools-actions';
@@ -60,7 +60,7 @@ describe('ActionCreatorTest', () => {
             source: testSource,
         };
 
-        const payload: IVisualizationTogglePayload = {
+        const payload: VisualizationTogglePayload = {
             enabled,
             test,
             telemetry,
@@ -93,7 +93,7 @@ describe('ActionCreatorTest', () => {
             source: testSource,
         };
 
-        const payload: IVisualizationTogglePayload = {
+        const payload: VisualizationTogglePayload = {
             enabled,
             test,
             telemetry,
@@ -125,7 +125,7 @@ describe('ActionCreatorTest', () => {
             source: testSource,
         };
 
-        const payload: IVisualizationTogglePayload = {
+        const payload: VisualizationTogglePayload = {
             enabled,
             test,
             telemetry,
@@ -157,7 +157,7 @@ describe('ActionCreatorTest', () => {
             source: testSource,
         };
 
-        const payload: IVisualizationTogglePayload = {
+        const payload: VisualizationTogglePayload = {
             enabled,
             test,
             telemetry,
@@ -187,7 +187,7 @@ describe('ActionCreatorTest', () => {
             source: testSource,
         };
 
-        const actionCreatorPayload: IOnDetailsViewOpenPayload = {
+        const actionCreatorPayload: OnDetailsViewOpenPayload = {
             detailsViewType: viewType,
             pivotType: pivotType,
             telemetry: telemetry,
@@ -218,7 +218,7 @@ describe('ActionCreatorTest', () => {
             source: testSource,
         };
 
-        const actionCreatorPayload: IOnDetailsViewOpenPayload = {
+        const actionCreatorPayload: OnDetailsViewOpenPayload = {
             detailsViewType: viewType,
             pivotType: pivotType,
             telemetry: telemetry,
@@ -226,7 +226,7 @@ describe('ActionCreatorTest', () => {
 
         const updateViewActionName = 'updateSelectedPivotChild';
         const enableVisualizationActionName = 'enableVisualization';
-        const enableVisualizationTelemetryPayload: IVisualizationTogglePayload = {
+        const enableVisualizationTelemetryPayload: VisualizationTogglePayload = {
             enabled: true,
             test: viewType,
             telemetry: null,
@@ -259,7 +259,7 @@ describe('ActionCreatorTest', () => {
             source: testSource,
         };
 
-        const actionCreatorPayload: IOnDetailsViewOpenPayload = {
+        const actionCreatorPayload: OnDetailsViewOpenPayload = {
             detailsViewType: viewType,
             pivotType: pivotType,
             telemetry: telemetry,
@@ -267,7 +267,7 @@ describe('ActionCreatorTest', () => {
 
         const updateViewActionName = 'updateSelectedPivotChild';
         const enablingIssuesActionName = 'enableVisualization';
-        const enableVisualizationTelemetryPayload: IVisualizationTogglePayload = {
+        const enableVisualizationTelemetryPayload: VisualizationTogglePayload = {
             enabled: true,
             test: viewType,
             telemetry: null,
@@ -300,7 +300,7 @@ describe('ActionCreatorTest', () => {
             source: testSource,
         };
 
-        const actionCreatorPayload: IOnDetailsViewOpenPayload = {
+        const actionCreatorPayload: OnDetailsViewOpenPayload = {
             detailsViewType: viewType,
             pivotType,
             telemetry,
@@ -309,7 +309,7 @@ describe('ActionCreatorTest', () => {
         const updateViewActionName = 'updateSelectedPivotChild';
         const enablingColorActionName = 'enableVisualization';
 
-        const enableVisualizationTelemetryPayload: IVisualizationTogglePayload = {
+        const enableVisualizationTelemetryPayload: VisualizationTogglePayload = {
             enabled: true,
             test: viewType,
             telemetry: null,
@@ -342,7 +342,7 @@ describe('ActionCreatorTest', () => {
             source: testSource,
         };
 
-        const actionCreatorPayload: IOnDetailsViewOpenPayload = {
+        const actionCreatorPayload: OnDetailsViewOpenPayload = {
             detailsViewType: viewType,
             pivotType: pivotType,
             telemetry: telemetry,
@@ -351,7 +351,7 @@ describe('ActionCreatorTest', () => {
         const updateViewActionName = 'updateSelectedPivotChild';
         const enablingIssuesActionName = 'enableVisualization';
 
-        const enableVisualizationTelemetryPayload: IVisualizationTogglePayload = {
+        const enableVisualizationTelemetryPayload: VisualizationTogglePayload = {
             enabled: true,
             test: viewType,
             telemetry: null,
@@ -384,7 +384,7 @@ describe('ActionCreatorTest', () => {
             source: testSource,
         };
 
-        const actionCreatorPayload: IOnDetailsViewOpenPayload = {
+        const actionCreatorPayload: OnDetailsViewOpenPayload = {
             detailsViewType: viewType,
             pivotType: pivotType,
             telemetry: telemetry,
@@ -561,7 +561,7 @@ describe('ActionCreatorTest', () => {
     });
 
     test('registerCallback for tabbed element added', () => {
-        const tabbedElement: IAddTabbedElementPayload = {
+        const tabbedElement: AddTabbedElementPayload = {
             tabbedElements: [
                 {
                     target: ['selector'],
@@ -635,7 +635,7 @@ describe('ActionCreatorTest', () => {
         const updateViewActionName = 'updateSelectedPivotChild';
         const closePreviewFeaturesActionName = 'closePreviewFeatures';
         const tabId = 1;
-        const actionCreatorPayload: IOnDetailsViewOpenPayload = {
+        const actionCreatorPayload: OnDetailsViewOpenPayload = {
             detailsViewType: viewType,
             pivotType: pivotType,
             telemetry: {
@@ -797,7 +797,7 @@ describe('ActionCreatorTest', () => {
 
     test('registerCallback for onStartOverAssessment', () => {
         const tabId = 1;
-        const payload: IChangeInstanceStatusPayload = {
+        const payload: ChangeInstanceStatusPayload = {
             test: VisualizationType.HeadingsAssessment,
             status: null,
             step: null,
@@ -834,7 +834,7 @@ describe('ActionCreatorTest', () => {
 
     test('registerCallback for onStartOverAllAssessments', () => {
         const tabId = 1;
-        const payload: IChangeInstanceStatusPayload = {
+        const payload: ChangeInstanceStatusPayload = {
             test: VisualizationType.HeadingsAssessment,
             status: null,
             step: null,
@@ -871,7 +871,7 @@ describe('ActionCreatorTest', () => {
 
     test('registerCallback for onEnableVisualHelperWithoutScan', () => {
         const tabId = 1;
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test: VisualizationType.HeadingsAssessment,
         };
         const actionName = 'enableVisualizationWithoutScan';
@@ -890,7 +890,7 @@ describe('ActionCreatorTest', () => {
 
     test('registerCallback for onDisableVisualHelper', () => {
         const tabId = 1;
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test: VisualizationType.HeadingsAssessment,
         };
         const actionName = 'disableVisualization';
@@ -910,7 +910,7 @@ describe('ActionCreatorTest', () => {
 
     test('registerCallback for onDisableVisualHelpersForTest', () => {
         const tabId = 1;
-        const payload: IToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test: VisualizationType.HeadingsAssessment,
         };
         const actionName = 'disableVisualization';
@@ -963,7 +963,7 @@ describe('ActionCreatorTest', () => {
             source: testSource,
         };
 
-        const actionCreatorPayload: IOnDetailsViewPivotSelected = {
+        const actionCreatorPayload: OnDetailsViewPivotSelected = {
             pivotKey: pivot,
             telemetry: telemetryData,
         };
