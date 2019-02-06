@@ -208,10 +208,7 @@ export class PopupView extends React.Component<PopupViewProps> {
                         <div>1. Go to chrome://extensions.</div>
                         <div>
                             {'2. Find '}
-                            <span className="ms-fontWeight-semibold">
-                                {this.props.title}
-                            </span>
-                            .
+                            <span className="ms-fontWeight-semibold">{this.props.title}</span>.
                         </div>
                         <div>
                             {'3. Check '}
