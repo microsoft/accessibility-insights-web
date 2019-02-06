@@ -49,6 +49,10 @@ describe('GlobalActionCreatorTest', () => {
         builder.verifyAll();
     });
 
+    // TODO: test('registerCallback for GetFeatureFlags', () => {
+    // TODO: test('registerCallback for SetFeatureFlag', () => {
+    // TODO: test('registerCallback for ResetFeatureFlag', () => {
+
     test('registerCallback for on get launch panel state', () => {
         const actionName = 'getCurrentState';
         const validator = new GlobalActionCreatorValidator()
@@ -105,7 +109,7 @@ describe('GlobalActionCreatorTest', () => {
         const validator = new GlobalActionCreatorValidator()
             .setupRegistrationCallback(Messages.Scoping.AddSelector, args)
             .setupActionsOnScoping(actionName)
-            .setupScopingActionWithInvokeParameter(actionName, null);
+            .setupScopingActionWithInvokeParameter(actionName, payload);
 
         const actionCreator = validator.buildActionCreator();
         actionCreator.registerCallbacks();
@@ -125,7 +129,7 @@ describe('GlobalActionCreatorTest', () => {
         const validator = new GlobalActionCreatorValidator()
             .setupRegistrationCallback(Messages.Scoping.DeleteSelector, args)
             .setupActionsOnScoping(actionName)
-            .setupScopingActionWithInvokeParameter(actionName, null);
+            .setupScopingActionWithInvokeParameter(actionName, payload);
 
         const actionCreator = validator.buildActionCreator();
         actionCreator.registerCallbacks();
@@ -365,11 +369,15 @@ class GlobalActionCreatorValidator {
     private verifyAllActionMocks(): void {
         this.verifyAllActions(this.commandActionMocksMap);
         this.verifyAllActions(this.launchPanelActionsMockMap);
+        this.verifyAllActions(this.scopingActionsMockMap);
+        this.verifyAllActions(this.userConfigMockMap);
     }
 
-    private verifyAllActions(actionsMap: IDictionaryStringTo<IMock<Action<any>>>) {
+    private verifyAllActions(actionsMap: IDictionaryStringTo<IMock<Action<any>>>): void {
         for (const actionName in actionsMap) {
-            actionsMap[actionName].verifyAll();
+            if (actionsMap.hasOwnProperty(actionName)) {
+                actionsMap[actionName].verifyAll();
+            }
         }
     }
 }
