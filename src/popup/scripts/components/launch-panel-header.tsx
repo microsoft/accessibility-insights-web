@@ -26,7 +26,7 @@ export type LaunchPanelHeaderDeps = {
 export interface ILaunchPanelHeaderProps {
     deps: LaunchPanelHeaderDeps;
     title: string;
-    subtitle: React.ReactChild;
+    subtitle?: React.ReactChild;
     openAdhocToolsPanel: () => void;
     clickhandler: LaunchPanelHeaderClickHandler;
     supportLinkHandler: SupportLinkHandler;

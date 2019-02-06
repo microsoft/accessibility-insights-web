@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 export const title = 'Accessibility Insights for Web';
-export const subtitle = 'formerly Keros for Web';
 
 export const brand = 'Accessibility Insights';
 export const productName = title;

@@ -31,7 +31,6 @@ import { TelemetryPermissionDialog, TelemetryPermissionDialogDeps } from './tele
 export interface PopupViewProps {
     deps: PopupViewControllerDeps;
     title: string;
-    subtitle: string;
     popupHandlers: IPopupHandlers;
     popupWindow: Window;
     browserAdapter: BrowserAdapter;
@@ -124,7 +123,6 @@ export class PopupView extends React.Component<PopupViewProps> {
                 <LaunchPanelHeader
                     deps={this.props.deps}
                     title={this.props.title}
-                    subtitle={this.props.subtitle}
                     clickhandler={this.props.popupHandlers.launchPanelHeaderClickHandler}
                     supportLinkHandler={this.props.popupHandlers.supportLinkHandler}
                     popupWindow={this.props.popupWindow}
@@ -158,7 +156,7 @@ export class PopupView extends React.Component<PopupViewProps> {
                     title={this.props.title}
                     subtitle={
                         <React.Fragment>
-                            {`${this.props.subtitle} | Watch `}
+                            {`Watch `}
                             <NewTabLink
                                 href={LaunchPad.demoLink}
                                 aria-label="demo video"
@@ -210,10 +208,7 @@ export class PopupView extends React.Component<PopupViewProps> {
                         <div>1. Go to chrome://extensions.</div>
                         <div>
                             {'2. Find '}
-                            <span className="ms-fontWeight-semibold">
-                                {this.props.title} - {this.props.subtitle}
-                            </span>
-                            .
+                            <span className="ms-fontWeight-semibold">{this.props.title}</span>.
                         </div>
                         <div>
                             {'3. Check '}
@@ -226,7 +221,7 @@ export class PopupView extends React.Component<PopupViewProps> {
     }
 
     private renderDefaultHeader(): JSX.Element {
-        return <Header title={this.props.title} subtitle={this.props.subtitle} />;
+        return <Header title={this.props.title} />;
     }
 
     @autobind

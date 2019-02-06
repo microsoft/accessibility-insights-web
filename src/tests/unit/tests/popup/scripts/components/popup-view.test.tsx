@@ -316,7 +316,6 @@ describe('PopupView', () => {
 class PopupViewPropsBuilder extends BaseDataBuilder<PopupViewProps> {
     public withDefaultTitleAndSubtitle(): PopupViewPropsBuilder {
         this.data.title = 'test title';
-        this.data.subtitle = 'test subtitle';
         return this;
     }
     public withStoresHub(storesHub: BaseClientStoresHub<any>): PopupViewPropsBuilder {
