@@ -6,6 +6,7 @@ import { link } from '../../../content/link';
 import ManualTestRecordYourResults from '../../common/manual-test-record-your-results';
 import { TestStep } from '../../types/test-step';
 import { RepetitiveContentTestStep } from './test-steps';
+import * as content from '../../../content/test/repetitive-content/consistent-navigation';
 
 const consistentNavigationDescription: JSX.Element = (
     <span>Navigational mechanisms that appear on multiple pages must be presented in the same relative order.</span>
@@ -34,4 +35,5 @@ export const ConsistentNavigation: TestStep = {
     howToTest: consistentNavigationHowToTest,
     isManual: true,
     guidanceLinks: [link.WCAG_3_2_3],
+    ...content,
 };
