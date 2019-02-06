@@ -28,9 +28,7 @@ export class ThemeInner extends React.Component<ThemeInnerProps> {
         if (enableHighContrastCurr === enableHighContrastPrev) {
             return;
         }
-        this.props.deps.loadTheme({
-            palette: enableHighContrastCurr ? HighContrastThemePalette : DefaultThemePalette,
-        });
+        this.props.deps.loadTheme(enableHighContrastCurr ? HighContrastThemePalette : DefaultThemePalette);
     }
 
     public render(): JSX.Element {
