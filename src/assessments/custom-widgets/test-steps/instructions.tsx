@@ -16,6 +16,7 @@ import { ReportInstanceField } from '../../types/report-instance-field';
 import { getFlatDesignPatternStringFromRole } from '../custom-widgets-column-renderer';
 import { CustomWidgetsColumnRendererFactory } from '../custom-widgets-column-renderer-factory';
 import { CustomWidgetsTestStep } from './test-steps';
+import * as content from '../../../content/test/custom-widgets/instructions';
 
 const instructionsDescription: JSX.Element = (
     <span>If a custom widget has visible instructions, they must be programmatically related to it.</span>
@@ -41,6 +42,7 @@ export const Instructions: TestStep = {
     howToTest: instructionsHowToTest,
     isManual: false,
     guidanceLinks: [link.WCAG_1_3_1],
+    ...content,
     columnsConfig: [
         {
             key: 'instruction-info-custom-widgets',

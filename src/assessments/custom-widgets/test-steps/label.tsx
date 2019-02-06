@@ -16,6 +16,7 @@ import { ReportInstanceField } from '../../types/report-instance-field';
 import { getFlatDesignPatternStringFromRole } from '../custom-widgets-column-renderer';
 import { CustomWidgetsColumnRendererFactory } from '../custom-widgets-column-renderer-factory';
 import { CustomWidgetsTestStep } from './test-steps';
+import * as content from '../../../content/test/custom-widgets/label';
 
 const labelDescription: JSX.Element = <span>A custom widget must have a label and/or instructions that identify the expected input.</span>;
 
@@ -40,6 +41,7 @@ export const Label: TestStep = {
     howToTest: labelHowToTest,
     isManual: false,
     guidanceLinks: [link.WCAG_3_3_2],
+    ...content,
     columnsConfig: [
         {
             key: 'label-info-custom-widgets',
