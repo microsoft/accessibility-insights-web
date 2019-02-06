@@ -7,6 +7,7 @@ import ManualTestRecordYourResults from '../../common/manual-test-record-your-re
 import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
 import { visibleFfocusOrderTestStep } from './test-steps';
+import * as content from '../../../content/test/focus/closing-content';
 
 const description: JSX.Element = <span>Closing revealed content must return input focus to the component that revealed it.</span>;
 
@@ -25,8 +26,8 @@ const howToTest: JSX.Element = (
                 Use the <Markup.Term>Tab</Markup.Term> and arrow keys as needed to move focus all the way through the content of the dialog.
             </li>
             <li>
-                Verify that focus returns to the original trigger component. (It is acceptable to use <Markup.Term>Shift+Tab</Markup.Term>{' '}
-                once or use an arrow key to move focus to the trigger.)
+                Verify that focus returns to the original trigger component. (It is acceptable to use <Markup.Term>Shift+Tab</Markup.Term>
+                {' ' + ''}once or use an arrow key to move focus to the trigger.)
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
@@ -40,4 +41,5 @@ export const ClosingContent: TestStep = {
     howToTest,
     isManual: true,
     guidanceLinks: [link.WCAG_2_4_3],
+    ...content,
 };

@@ -12,7 +12,6 @@ import { DocumentManipulator } from '../common/document-manipulator';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
-import { StoreNames } from '../common/stores/store-names';
 import { IssuesTableHandler } from './components/issues-table-handler';
 import { DetailsView, DetailsViewContainerDeps } from './details-view-container';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';

@@ -9,6 +9,8 @@
 @import '../../common/components/toast.scss';
 body {
     margin: 0;
+    background: $neutral-0;
+    color: $neutral-100;
 }
 
 .target-change-dialog-modal {

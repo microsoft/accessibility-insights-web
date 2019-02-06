@@ -12,6 +12,7 @@ import ManualTestRecordYourResults from '../../common/manual-test-record-your-re
 import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
 import { visibleFfocusOrderTestStep } from './test-steps';
+import * as content from '../../../content/test/focus/focus-order';
 
 const description: JSX.Element = <span>Components must receive focus in an order that preserves meaning and operability.</span>;
 
@@ -56,6 +57,7 @@ export const FocusOrder: TestStep = {
     howToTest,
     isManual: true,
     guidanceLinks: [link.WCAG_2_4_3],
+    ...content,
     getAnalyzer: provider =>
         provider.createFocusTrackingAnalyzer({
             key: visibleFfocusOrderTestStep.focusOrder,
