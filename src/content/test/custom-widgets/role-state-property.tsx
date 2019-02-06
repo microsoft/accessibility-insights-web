@@ -40,7 +40,7 @@ export const infoAndExamples = create(({ Markup }) => (
             </ul>]`}
             passText={
                 <p>
-                    Code has been added to meet the listbox spec: (1) The <Markup.Code>{`<ul>`}</Markup.Code>that contains all of the
+                    Code has been added to meet the listbox spec: (1) The <Markup.Code>{`<ul>`}</Markup.Code> that contains all of the
                     listbox options has <Markup.Code>role="listbox"</Markup.Code>. (2) The <Markup.Code>{`<ul>`}</Markup.Code> has an
                     accessible name through an <Markup.Code>aria-labelledby</Markup.Code> attribute. (3) Each{' '}
                     <Markup.Code>{`<li>`}</Markup.Code> has <Markup.Code>role="option"</Markup.Code>. (4) The selected option has{' '}
