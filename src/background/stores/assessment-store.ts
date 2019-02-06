@@ -11,7 +11,7 @@ import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { IAssessmentStoreData } from '../../common/types/store-data/iassessment-result-data';
 import { IScanBasePayload, IScanCompletedPayload, IScanUpdatePayload } from '../../injected/analyzers/ianalyzer';
-import { ISelectTestStepPayload, IUpdateVisibilityPayload } from '../actions/action-payloads';
+import { SelectTestStepPayload, UpdateVisibilityPayload } from '../actions/action-payloads';
 import { AssessmentDataConverter } from '../assessment-data-converter';
 import { InitialAssessmentStoreDataGenerator } from '../intial-assessment-store-data-generator';
 import { IAssessment } from './../../assessments/types/iassessment';
@@ -23,15 +23,15 @@ import {
 } from './../../common/types/store-data/iassessment-result-data.d';
 import { VisualizationType } from './../../common/types/visualization-type';
 import {
-    IAddFailureInstancePayload,
-    IAssessmentActionInstancePayload,
-    IChangeAssessmentStepStatusPayload,
-    IChangeInstanceSelectionPayload,
-    IChangeInstanceStatusPayload,
-    IEditFailureInstancePayload,
-    IRemoveFailureInstancePayload,
-    IToggleActionPayload,
-    IUpdateSelectedDetailsViewPayload,
+    AddFailureInstancePayload,
+    AssessmentActionInstancePayload,
+    ChangeAssessmentStepStatusPayload,
+    ChangeInstanceSelectionPayload,
+    ChangeInstanceStatusPayload,
+    EditFailureInstancePayload,
+    RemoveFailureInstancePayload,
+    ToggleActionPayload,
+    UpdateSelectedDetailsViewPayload,
 } from './../actions/action-payloads';
 import { AssessmentActions } from './../actions/assessment-actions';
 import { AssessmentDataRemover } from './../assessment-data-remover';
@@ -146,7 +146,7 @@ export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
     }
 
     @autobind
-    private onUpdateSelectedTest(payload: IUpdateSelectedDetailsViewPayload): void {
+    private onUpdateSelectedTest(payload: UpdateSelectedDetailsViewPayload): void {
         if (payload.pivotType === DetailsViewPivotType.assessment && payload.detailsViewType != null) {
             this.state.assessmentNavState.selectedTestType = payload.detailsViewType;
             this.state.assessmentNavState.selectedTestStep = this.getDefaultTestStepForTest(payload.detailsViewType);
@@ -166,7 +166,7 @@ export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
     }
 
     @autobind
-    private onPassUnmarkedInstances(payload: IAssessmentActionInstancePayload): void {
+    private onPassUnmarkedInstances(payload: AssessmentActionInstancePayload): void {
         const config = this.assessmentsProvider.forType(payload.test).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
         forEach(Object.keys(assessmentData.generatedAssessmentInstancesMap), key => {
@@ -182,7 +182,7 @@ export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
     }
 
     @autobind
-    private onEditFailureInstance(payload: IEditFailureInstancePayload): void {
+    private onEditFailureInstance(payload: EditFailureInstancePayload): void {
         const config = this.assessmentsProvider.forType(payload.test).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
         const instances = assessmentData.manualTestStepResultMap[payload.step].instances;
@@ -198,7 +198,7 @@ export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
     }
 
     @autobind
-    private onRemoveFailureInstance(payload: IRemoveFailureInstancePayload): void {
+    private onRemoveFailureInstance(payload: RemoveFailureInstancePayload): void {
         const config = this.assessmentsProvider.forType(payload.test).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
         assessmentData.manualTestStepResultMap[payload.step].instances = assessmentData.manualTestStepResultMap[
@@ -212,7 +212,7 @@ export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
     }
 
     @autobind
-    private onAddFailureInstance(payload: IAddFailureInstancePayload): void {
+    private onAddFailureInstance(payload: AddFailureInstancePayload): void {
         const config = this.assessmentsProvider.forType(payload.test).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
         const newInstance: IUserCapturedInstance = this.assessmentDataConverter.generateFailureInstance(payload.description);
@@ -223,7 +223,7 @@ export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
     }
 
     @autobind
-    private onChangeAssessmentVisualizationStateForAll(payload: IChangeInstanceSelectionPayload): void {
+    private onChangeAssessmentVisualizationStateForAll(payload: ChangeInstanceSelectionPayload): void {
         const config = this.assessmentsProvider.forType(payload.test).getVisualizationConfiguration();
         const assessmentDataMap = config.getAssessmentData(this.state).generatedAssessmentInstancesMap;
         forEach(assessmentDataMap, val => {
@@ -238,7 +238,7 @@ export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
     }
 
     @autobind
-    private onChangeStepStatus(payload: IChangeAssessmentStepStatusPayload): void {
+    private onChangeStepStatus(payload: ChangeAssessmentStepStatusPayload): void {
         const config = this.assessmentsProvider.forType(payload.test).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
         assessmentData.manualTestStepResultMap[payload.step].status = payload.status;
@@ -252,7 +252,7 @@ export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
     }
 
     @autobind
-    private onUndoStepStatusChange(payload: IChangeAssessmentStepStatusPayload): void {
+    private onUndoStepStatusChange(payload: ChangeAssessmentStepStatusPayload): void {
         const config = this.assessmentsProvider.forType(payload.test).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
         assessmentData.manualTestStepResultMap[payload.step].status = ManualTestStatus.UNKNOWN;
@@ -262,7 +262,7 @@ export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
     }
 
     @autobind
-    private onChangeAssessmentVisualizationState(payload: IChangeInstanceSelectionPayload): void {
+    private onChangeAssessmentVisualizationState(payload: ChangeInstanceSelectionPayload): void {
         const config = this.assessmentsProvider.forType(payload.test).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
         const stepResult: ITestStepResult = assessmentData.generatedAssessmentInstancesMap[payload.selector].testStepResults[payload.step];
@@ -272,7 +272,7 @@ export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
     }
 
     @autobind
-    private onUpdateInstanceVisibility(payload: IUpdateVisibilityPayload): void {
+    private onUpdateInstanceVisibility(payload: UpdateVisibilityPayload): void {
         const step = this.state.assessmentNavState.selectedTestStep;
         const config = this.assessmentsProvider.forType(this.state.assessmentNavState.selectedTestType).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
@@ -290,7 +290,7 @@ export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
     }
 
     @autobind
-    private onUndoInstanceStatusChange(payload: IAssessmentActionInstancePayload): void {
+    private onUndoInstanceStatusChange(payload: AssessmentActionInstancePayload): void {
         const config = this.assessmentsProvider.forType(payload.test).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
         const stepResult: ITestStepResult = assessmentData.generatedAssessmentInstancesMap[payload.selector].testStepResults[payload.step];
@@ -301,7 +301,7 @@ export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
     }
 
     @autobind
-    private onChangeInstanceStatus(payload: IChangeInstanceStatusPayload): void {
+    private onChangeInstanceStatus(payload: ChangeInstanceStatusPayload): void {
         const config = this.assessmentsProvider.forType(payload.test).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
         const stepResult: ITestStepResult = assessmentData.generatedAssessmentInstancesMap[payload.selector].testStepResults[payload.step];
@@ -314,7 +314,7 @@ export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
     }
 
     @autobind
-    private onSelectTestStep(payload: ISelectTestStepPayload): void {
+    private onSelectTestStep(payload: SelectTestStepPayload): void {
         this.state.assessmentNavState.selectedTestType = payload.selectedTest;
         this.state.assessmentNavState.selectedTestStep = payload.selectedStep;
         this.emitChanged();
@@ -360,7 +360,7 @@ export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
     }
 
     @autobind
-    private onResetData(payload: IToggleActionPayload): void {
+    private onResetData(payload: ToggleActionPayload): void {
         const test = this.assessmentsProvider.forType(payload.test);
         const config = test.getVisualizationConfiguration();
         const defaultTestStatus: IAssessmentData = config.getAssessmentData(this.generateDefaultState());

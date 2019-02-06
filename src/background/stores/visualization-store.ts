@@ -10,10 +10,10 @@ import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type
 import { ITestsEnabledState, IVisualizationStoreData, IAssessmentScanData } from '../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import {
-    IToggleActionPayload,
-    IUpdateSelectedDetailsViewPayload,
-    IUpdateSelectedPivot,
-    IAssessmentToggleActionPayload,
+    ToggleActionPayload,
+    UpdateSelectedDetailsViewPayload,
+    UpdateSelectedPivot,
+    AssessmentToggleActionPayload,
 } from '../actions/action-payloads';
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationActions } from '../actions/visualization-actions';
@@ -153,16 +153,16 @@ export class VisualizationStore extends BaseStore<IVisualizationStoreData> {
     }
 
     @autobind
-    private onEnableVisualization(payload: IToggleActionPayload): void {
+    private onEnableVisualization(payload: ToggleActionPayload): void {
         this.enableTest(payload, false);
     }
 
     @autobind
-    private onEnableVisualizationWithoutScan(payload: IToggleActionPayload): void {
+    private onEnableVisualizationWithoutScan(payload: ToggleActionPayload): void {
         this.enableTest(payload, true);
     }
 
-    private enableTest(payload: IToggleActionPayload, skipScanning: boolean): void {
+    private enableTest(payload: ToggleActionPayload, skipScanning: boolean): void {
         const isStateChanged: boolean = false;
         if (this.state.scanning != null) {
             // do not change state if currently scanning, not even the toggle
@@ -173,7 +173,7 @@ export class VisualizationStore extends BaseStore<IVisualizationStoreData> {
         this.disableAssessmentVisualizationsWithoutEmitting();
         const scanData = configuration.getStoreData(this.state.tests);
 
-        const step = (payload as IAssessmentToggleActionPayload).step;
+        const step = (payload as AssessmentToggleActionPayload).step;
         const alreadyEnabled = configuration.getTestStatus(scanData, step);
         if (!alreadyEnabled) {
             if (!skipScanning) {
@@ -191,7 +191,7 @@ export class VisualizationStore extends BaseStore<IVisualizationStoreData> {
     }
 
     @autobind
-    private onUpdateSelectedPivot(payload: IUpdateSelectedPivot): void {
+    private onUpdateSelectedPivot(payload: UpdateSelectedPivot): void {
         const pivot = payload.pivotKey;
 
         if (this.state.selectedDetailsViewPivot !== pivot) {
@@ -208,7 +208,7 @@ export class VisualizationStore extends BaseStore<IVisualizationStoreData> {
     }
 
     @autobind
-    private onUpdateSelectedPivotChild(payload: IUpdateSelectedDetailsViewPayload): void {
+    private onUpdateSelectedPivotChild(payload: UpdateSelectedDetailsViewPayload): void {
         const pivot = payload.pivotType;
         const pivotChildUpdated = this.updateSelectedPivotChildUnderPivot(payload);
         const pivotUpdated = this.updateSelectedPivot(pivot);
@@ -253,7 +253,7 @@ export class VisualizationStore extends BaseStore<IVisualizationStoreData> {
         this.emitChanged();
     }
 
-    private updateSelectedPivotChildUnderPivot(payload: IUpdateSelectedDetailsViewPayload): boolean {
+    private updateSelectedPivotChildUnderPivot(payload: UpdateSelectedDetailsViewPayload): boolean {
         let updated = false;
         if (payload.detailsViewType == null) {
             return updated;

@@ -3,7 +3,7 @@
 import { autobind } from '@uifabric/utilities';
 
 import { Messages } from '../common/messages';
-import { IPageVisibilityChangeTabPayLoad } from './actions/action-payloads';
+import { PageVisibilityChangeTabPayload } from './actions/action-payloads';
 import { BrowserAdapter } from './browser-adapter';
 import { DetailsViewController } from './details-view-controller';
 import { TabToContextMap } from './tab-context';
@@ -145,7 +145,7 @@ export class TabController {
             return;
         }
         const interpreter = tabContext.interpreter;
-        const payload: IPageVisibilityChangeTabPayLoad = {
+        const payload: PageVisibilityChangeTabPayload = {
             hidden: isHidden,
         };
         const message: IMessage = {

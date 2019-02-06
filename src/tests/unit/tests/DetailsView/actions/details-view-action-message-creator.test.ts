@@ -3,7 +3,7 @@
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { HeadingsTestStep } from '../../../../../assessments/headings/test-steps/test-steps';
-import { IOnDetailsViewPivotSelected } from '../../../../../background/actions/action-payloads';
+import { OnDetailsViewPivotSelected } from '../../../../../background/actions/action-payloads';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import {
@@ -197,7 +197,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             source: testSource,
         };
 
-        const payload: IOnDetailsViewPivotSelected = {
+        const payload: OnDetailsViewPivotSelected = {
             telemetry: telemetryData,
             pivotKey: pivot,
         };

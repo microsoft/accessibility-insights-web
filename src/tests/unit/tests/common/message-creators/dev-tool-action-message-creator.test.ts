@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock } from 'typemoq';
 
-import { IInspectElementPayload, IInspectFrameUrlPayload, IOnDevToolOpenPayload } from '../../../../../background/actions/action-payloads';
+import { InspectElementPayload, InspectFrameUrlPayload, OnDevToolOpenPayload } from '../../../../../background/actions/action-payloads';
 import { DevToolActionMessageCreator } from '../../../../../common/message-creators/dev-tool-action-message-creator';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
@@ -27,7 +27,7 @@ describe('DevToolActionMessageCreatorTest', () => {
             tabId: tabId,
             payload: {
                 status: status,
-            } as IOnDevToolOpenPayload,
+            } as OnDevToolOpenPayload,
         };
 
         postMessageMock.setup(post => post(It.isObjectWith(expectedMessage))).verifiable();
@@ -48,7 +48,7 @@ describe('DevToolActionMessageCreatorTest', () => {
             payload: {
                 target: target,
                 telemetry: telemetry,
-            } as IInspectElementPayload,
+            } as InspectElementPayload,
         };
 
         postMessageMock.setup(post => post(It.isObjectWith(expectedMessage))).verifiable();
@@ -65,7 +65,7 @@ describe('DevToolActionMessageCreatorTest', () => {
             tabId: tabId,
             payload: {
                 frameUrl: frameUrl,
-            } as IInspectFrameUrlPayload,
+            } as InspectFrameUrlPayload,
         };
 
         postMessageMock.setup(post => post(It.isObjectWith(expectedMessage))).verifiable();

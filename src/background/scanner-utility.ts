@@ -3,7 +3,7 @@
 import { Messages } from '../common/messages';
 import { VisualizationType } from '../common/types/visualization-type';
 
-import { IAssessmentToggleActionPayload } from './actions/action-payloads';
+import { AssessmentToggleActionPayload } from './actions/action-payloads';
 import { Interpreter } from './interpreter';
 import { WindowUtils } from '../common/window-utils';
 
@@ -12,7 +12,7 @@ export class ScannerUtility {
     constructor(private interpreter: Interpreter, private windowUtils: WindowUtils) {}
 
     public executeScan = (test: VisualizationType, step: string, tabId: number): void => {
-        const payload: IAssessmentToggleActionPayload = {
+        const payload: AssessmentToggleActionPayload = {
             test: test,
             step: step,
             telemetry: null,

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { IOnDetailsViewOpenPayload } from '../../../../../../background/actions/action-payloads';
+import { OnDetailsViewOpenPayload } from '../../../../../../background/actions/action-payloads';
 import { Messages } from '../../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../../common/telemetry-data-factory';
 import * as TelemetryEvents from '../../../../../../common/telemetry-events';
@@ -95,7 +95,7 @@ describe('PopupActionMessageCreatorTest', () => {
             source: testSource,
         };
 
-        const expectedPayload: IOnDetailsViewOpenPayload = {
+        const expectedPayload: OnDetailsViewOpenPayload = {
             telemetry: telemetry,
             detailsViewType: viewType,
             pivotType: pivotType,
@@ -133,7 +133,7 @@ describe('PopupActionMessageCreatorTest', () => {
             source: testSource,
         };
 
-        const expectedPayload: IOnDetailsViewOpenPayload = {
+        const expectedPayload: OnDetailsViewOpenPayload = {
             telemetry: telemetry,
             detailsViewType: viewType,
             pivotType: DetailsViewPivotType.allTest,

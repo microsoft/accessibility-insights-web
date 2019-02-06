@@ -2,11 +2,11 @@
 // Licensed under the MIT License.
 import { Action } from '../../common/flux/action';
 import { VisualizationType } from '../../common/types/visualization-type';
-import { IUpdateSelectedDetailsViewPayload, IUpdateSelectedPivot, IToggleActionPayload } from './action-payloads';
+import { UpdateSelectedDetailsViewPayload, UpdateSelectedPivot, ToggleActionPayload } from './action-payloads';
 
 export class VisualizationActions {
-    public readonly enableVisualization = new Action<IToggleActionPayload>();
-    public readonly enableVisualizationWithoutScan = new Action<IToggleActionPayload>();
+    public readonly enableVisualization = new Action<ToggleActionPayload>();
+    public readonly enableVisualizationWithoutScan = new Action<ToggleActionPayload>();
     public readonly disableVisualization = new Action<VisualizationType>();
     public readonly disableAssessmentVisualizations = new Action<void>();
 
@@ -16,8 +16,8 @@ export class VisualizationActions {
     public readonly scrollRequested = new Action();
     public readonly getCurrentState = new Action();
 
-    public readonly updateSelectedPivotChild = new Action<IUpdateSelectedDetailsViewPayload>();
-    public readonly updateSelectedPivot = new Action<IUpdateSelectedPivot>();
+    public readonly updateSelectedPivotChild = new Action<UpdateSelectedDetailsViewPayload>();
+    public readonly updateSelectedPivot = new Action<UpdateSelectedPivot>();
 
     public readonly injectionCompleted = new Action();
     public readonly injectionStarted = new Action();

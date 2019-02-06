@@ -10,21 +10,21 @@ import { LaunchPanelStateActions } from './launch-panel-state-action';
 import { BrowserAdapter } from '../browser-adapter';
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
-import { IPayloadWIthEventName, ISetLaunchPanelState, SetTelemetryStatePayload, SetHighContrastModePayload } from './action-payloads';
+import { PayloadWithEventName, SetLaunchPanelState, SetTelemetryStatePayload, SetHighContrastModePayload } from './action-payloads';
 import { CommandActions, IGetCommandsPayload } from './command-actions';
 import { ScopingActions } from './scoping-actions';
 import { UserConfigurationActions } from './user-configuration-actions';
 
 export class GlobalActionCreator {
-    private _interpreter: Interpreter;
-    private _browserAdapter: BrowserAdapter;
-    private _telemetryEventHandler: TelemetryEventHandler;
+    private interpreter: Interpreter;
+    private browserAdapter: BrowserAdapter;
+    private telemetryEventHandler: TelemetryEventHandler;
 
-    private _commandActions: CommandActions;
-    private _featureFlagActions: FeatureFlagActions;
-    private _launchPanelStateActions: LaunchPanelStateActions;
-    private _scopingActions: ScopingActions;
-    private _userConfigActions: UserConfigurationActions;
+    private commandActions: CommandActions;
+    private featureFlagActions: FeatureFlagActions;
+    private launchPanelStateActions: LaunchPanelStateActions;
+    private scopingActions: ScopingActions;
+    private userConfigActions: UserConfigurationActions;
 
     constructor(
         globalActionHub: GlobalActionHub,
@@ -32,106 +32,106 @@ export class GlobalActionCreator {
         browserAdapter: BrowserAdapter,
         telemetryEventHandler: TelemetryEventHandler,
     ) {
-        this._interpreter = interpreter;
-        this._browserAdapter = browserAdapter;
-        this._telemetryEventHandler = telemetryEventHandler;
-        this._commandActions = globalActionHub.commandActions;
-        this._featureFlagActions = globalActionHub.featureFlagActions;
-        this._launchPanelStateActions = globalActionHub.launchPanelStateActions;
-        this._scopingActions = globalActionHub.scopingActions;
-        this._userConfigActions = globalActionHub.userConfigurationActions;
+        this.interpreter = interpreter;
+        this.browserAdapter = browserAdapter;
+        this.telemetryEventHandler = telemetryEventHandler;
+        this.commandActions = globalActionHub.commandActions;
+        this.featureFlagActions = globalActionHub.featureFlagActions;
+        this.launchPanelStateActions = globalActionHub.launchPanelStateActions;
+        this.scopingActions = globalActionHub.scopingActions;
+        this.userConfigActions = globalActionHub.userConfigurationActions;
     }
 
     public registerCallbacks(): void {
-        this._interpreter.registerTypeToPayloadCallback(Messages.Command.GetCommands, this.onGetCommands);
-        this._interpreter.registerTypeToPayloadCallback(Messages.FeatureFlags.GetFeatureFlags, this.onGetFeatureFlags);
-        this._interpreter.registerTypeToPayloadCallback(Messages.FeatureFlags.SetFeatureFlag, this.onSetFeatureFlags);
-        this._interpreter.registerTypeToPayloadCallback(Messages.FeatureFlags.ResetFeatureFlag, this.onResetFeatureFlags);
+        this.interpreter.registerTypeToPayloadCallback(Messages.Command.GetCommands, this.onGetCommands);
+        this.interpreter.registerTypeToPayloadCallback(Messages.FeatureFlags.GetFeatureFlags, this.onGetFeatureFlags);
+        this.interpreter.registerTypeToPayloadCallback(Messages.FeatureFlags.SetFeatureFlag, this.onSetFeatureFlags);
+        this.interpreter.registerTypeToPayloadCallback(Messages.FeatureFlags.ResetFeatureFlag, this.onResetFeatureFlags);
 
-        this._interpreter.registerTypeToPayloadCallback(Messages.LaunchPanel.Get, this.onGetLaunchPanelState);
-        this._interpreter.registerTypeToPayloadCallback(Messages.LaunchPanel.Set, this.onSetLaunchPanelState);
+        this.interpreter.registerTypeToPayloadCallback(Messages.LaunchPanel.Get, this.onGetLaunchPanelState);
+        this.interpreter.registerTypeToPayloadCallback(Messages.LaunchPanel.Set, this.onSetLaunchPanelState);
 
-        this._interpreter.registerTypeToPayloadCallback(Messages.Scoping.GetCurrentState, this.onGetScopingState);
-        this._interpreter.registerTypeToPayloadCallback(Messages.Scoping.AddSelector, this.onAddSelector);
-        this._interpreter.registerTypeToPayloadCallback(Messages.Scoping.DeleteSelector, this.onDeleteSelector);
+        this.interpreter.registerTypeToPayloadCallback(Messages.Scoping.GetCurrentState, this.onGetScopingState);
+        this.interpreter.registerTypeToPayloadCallback(Messages.Scoping.AddSelector, this.onAddSelector);
+        this.interpreter.registerTypeToPayloadCallback(Messages.Scoping.DeleteSelector, this.onDeleteSelector);
 
-        this._interpreter.registerTypeToPayloadCallback(Messages.Telemetry.Send, this.onSendTelemetry);
+        this.interpreter.registerTypeToPayloadCallback(Messages.Telemetry.Send, this.onSendTelemetry);
 
-        this._interpreter.registerTypeToPayloadCallback(Messages.UserConfig.GetCurrentState, this.onGetUserConfigState);
-        this._interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetTelemetryConfig, this.onSetTelemetryConfiguration);
-        this._interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetHighContrastConfig, this.onSetHighContrastMode);
+        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.GetCurrentState, this.onGetUserConfigState);
+        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetTelemetryConfig, this.onSetTelemetryConfiguration);
+        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetHighContrastConfig, this.onSetHighContrastMode);
     }
 
     @autobind
     private onGetCommands(payload, tabId: number): void {
-        this._browserAdapter.getCommands((commands: chrome.commands.Command[]) => {
+        this.browserAdapter.getCommands((commands: chrome.commands.Command[]) => {
             const getCommandsPayload: IGetCommandsPayload = {
                 commands: commands,
                 tabId: tabId,
             };
-            this._commandActions.getCommands.invoke(getCommandsPayload);
+            this.commandActions.getCommands.invoke(getCommandsPayload);
         });
     }
 
     @autobind
     private onGetFeatureFlags(payload, tabId: number): void {
-        this._featureFlagActions.getCurrentState.invoke(null);
+        this.featureFlagActions.getCurrentState.invoke(null);
     }
 
     @autobind
     private onSetFeatureFlags(payload, tabId: number): void {
-        this._telemetryEventHandler.publishTelemetry(TelemetryEvents.PREVIEW_FEATURES_TOGGLE, payload, tabId);
-        this._featureFlagActions.setFeatureFlag.invoke(payload);
+        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.PREVIEW_FEATURES_TOGGLE, payload, tabId);
+        this.featureFlagActions.setFeatureFlag.invoke(payload);
     }
 
     @autobind
     private onResetFeatureFlags(payload, tabId: number): void {
-        this._featureFlagActions.resetFeatureFlags.invoke(null);
+        this.featureFlagActions.resetFeatureFlags.invoke(null);
     }
 
     @autobind
     private onGetLaunchPanelState(): void {
-        this._launchPanelStateActions.getCurrentState.invoke(null);
+        this.launchPanelStateActions.getCurrentState.invoke(null);
     }
 
     @autobind
-    private onSetLaunchPanelState(payload: ISetLaunchPanelState): void {
-        this._launchPanelStateActions.setLaunchPanelType.invoke(payload.launchPanelType);
+    private onSetLaunchPanelState(payload: SetLaunchPanelState): void {
+        this.launchPanelStateActions.setLaunchPanelType.invoke(payload.launchPanelType);
     }
 
     @autobind
     private onGetScopingState(): void {
-        this._scopingActions.getCurrentState.invoke(null);
+        this.scopingActions.getCurrentState.invoke(null);
     }
 
     @autobind
     private onAddSelector(payload): void {
-        this._scopingActions.addSelector.invoke(payload);
+        this.scopingActions.addSelector.invoke(payload);
     }
 
     @autobind
     private onDeleteSelector(payload): void {
-        this._scopingActions.deleteSelector.invoke(payload);
+        this.scopingActions.deleteSelector.invoke(payload);
     }
 
     @autobind
-    private onSendTelemetry(payload: IPayloadWIthEventName, tabId: number) {
+    private onSendTelemetry(payload: PayloadWithEventName, tabId: number): void {
         const eventName = payload.eventName;
-        this._telemetryEventHandler.publishTelemetry(eventName, payload, tabId);
+        this.telemetryEventHandler.publishTelemetry(eventName, payload, tabId);
     }
 
     @autobind
     private onGetUserConfigState(): void {
-        this._userConfigActions.getCurrentState.invoke(null);
+        this.userConfigActions.getCurrentState.invoke(null);
     }
 
     @autobind
     private onSetTelemetryConfiguration(payload: SetTelemetryStatePayload): void {
-        this._userConfigActions.setTelemetryState.invoke(payload);
+        this.userConfigActions.setTelemetryState.invoke(payload);
     }
 
     @autobind
     private onSetHighContrastMode(payload: SetHighContrastModePayload): void {
-        this._userConfigActions.setHighContrastMode.invoke(payload);
+        this.userConfigActions.setHighContrastMode.invoke(payload);
     }
 }

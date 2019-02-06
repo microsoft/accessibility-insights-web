@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { IOnDetailsViewPivotSelected } from '../../../../background/actions/action-payloads';
+import { OnDetailsViewPivotSelected } from '../../../../background/actions/action-payloads';
 import { DetailsViewPivotValidator } from '../../../../background/details-view-pivot-validator';
 import { Interpreter } from '../../../../background/interpreter';
 import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
@@ -45,7 +45,7 @@ describe('DetailsViewPivotValidatorTest', () => {
         const tabId = 1;
         const payload = {
             pivotKey: DetailsViewPivotType.allTest,
-        } as IOnDetailsViewPivotSelected;
+        } as OnDetailsViewPivotSelected;
         const featureFlagData = {
             [FeatureFlags.newAssessmentExperience]: true,
         };
@@ -92,7 +92,7 @@ describe('DetailsViewPivotValidatorTest', () => {
         const tabId = 1;
         const payload = {
             pivotKey: DetailsViewPivotType.fastPass,
-        } as IOnDetailsViewPivotSelected;
+        } as OnDetailsViewPivotSelected;
         const featureFlagData = {
             [FeatureFlags.newAssessmentExperience]: false,
         };
@@ -139,7 +139,7 @@ describe('DetailsViewPivotValidatorTest', () => {
         const tabId = 1;
         const payload = {
             pivotKey: DetailsViewPivotType.allTest,
-        } as IOnDetailsViewPivotSelected;
+        } as OnDetailsViewPivotSelected;
         const featureFlagData = {
             [FeatureFlags.newAssessmentExperience]: false,
         };
