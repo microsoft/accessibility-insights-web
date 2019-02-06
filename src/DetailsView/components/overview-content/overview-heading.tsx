@@ -10,7 +10,7 @@ export const OverviewHeading = NamedSFC('OverviewHeading', () => {
         <>
             <div className="overview-heading">
                 <h1>Overview</h1>
-                <div>
+                <div className="overview-heading-content">
                     This summary indicates the overall accessibility of the website or web app, through a combination of automated and
                     manual tests, covering all WCAG 2.0 AA success criteria. Each manual test covers a set of related accessibility
                     requirements, with provided step-by-step testing instructions and guidance. Where possible, {productName} "assists" the

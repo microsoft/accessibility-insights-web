@@ -343,7 +343,6 @@ div.insights-dialog-main-override {
         padding-right: 0px;
         flex-grow: 1;
         min-height: 0;
-
         .details-view-nav-pivots {
             > :first-child {
                 height: $detailsViewNavPivotsHeight;
@@ -792,7 +791,6 @@ div.insights-dialog-main-override {
                 display: flex;
                 margin-top: 24px;
                 min-height: 0;
-
                 .target-page-changed,
                 .static-content-details-view {
                     margin-left: 24px;
@@ -1254,18 +1252,16 @@ div.insights-dialog-main-override {
                         width: 90%;
                         .overview-heading {
                             h1 {
-                                font-weight: 600;
-                                font-size: 21px;
-                                color: $neutral-100;
                                 padding-bottom: 2%;
+                            }
+                            .overview-heading-content {
+                                color: $neutral-outcome;
                             }
                         }
                         .assessment-report-summary {
                             margin-top: 40px;
                             width: 100%;
                             h3 {
-                                font-family: Segoe UI Semibold;
-                                font-size: 17px;
                                 margin: 0px 0px 21px 0px;
                                 padding: 0;
                             }
@@ -1276,7 +1272,7 @@ div.insights-dialog-main-override {
                         width: 308px;
                         height: 172px;
                         .overview-help-container {
-                            background-color: $neutral-2;
+                            background-color: $neutral-4;
                             padding: 5%;
                         }
                         .help-link {
