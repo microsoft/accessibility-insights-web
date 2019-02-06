@@ -20,6 +20,11 @@ import { DetailsViewActionMessageCreator } from './../actions/details-view-actio
 import { TestStatusChoiceGroup } from './../components/test-status-choice-group';
 
 export class AssessmentInstanceTableHandler {
+
+
+
+
+
     private actionMessageCreator: DetailsViewActionMessageCreator;
     private assessmentTableColumnConfigHandler: AssessmentTableColumnConfigHandler;
     private assessmentsProvider: IAssessmentsProvider;
