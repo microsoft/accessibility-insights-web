@@ -1271,9 +1271,19 @@ div.insights-dialog-main-override {
                         margin: 40px 40px 0px 40px;
                         width: 308px;
                         height: 172px;
+                        border-radius: 2px;
+                        .help-heading {
+                            font-size: 17px;
+                            padding: 0px;
+                            margin-block-start: 1em;
+                            margin-block-end: 1em;
+                            margin-inline-start: 0px;
+                            margin-inline-end: 0px;
+                        }
                         .overview-help-container {
                             background-color: $neutral-4;
                             padding: 5%;
+                            border-radius: 5px;
                         }
                         .help-link {
                             padding: 5px 0px 5px 0px;
