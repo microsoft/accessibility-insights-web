@@ -2,18 +2,26 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import { HeaderIcon, HeaderIconDeps } from '../../common/components/header-icon';
 import { config } from '../../common/configuration';
+import { NamedSFC } from '../../common/react/named-sfc';
 
-export const Page: React.SFC = ({ children }) => {
+export type PageProps = {
+    deps: PageDeps;
+};
+
+export type PageDeps = HeaderIconDeps;
+
+export const Page = NamedSFC<PageProps>('Page', ({ deps, children }) => {
     const extensionFullName = config.getOption('extensionFullName');
+
     return (
         <>
             <header>
-                <img className="header-icon" src="../../icons/brand/white/brand-white-48px.png" alt="" />
+                <HeaderIcon deps={deps} />
                 <div className="ms-font-m header-text">{extensionFullName}</div>
             </header>
             <main>{children}</main>
         </>
     );
-};
-Page.displayName = 'Page';
+});
