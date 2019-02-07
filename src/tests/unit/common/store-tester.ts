@@ -6,7 +6,6 @@ import { BaseStore } from '../../../background/stores/base-store';
 import { Action } from '../../../common/flux/action';
 import { IBaseStore } from '../../../common/istore';
 import { IDefaultConstructor } from '../../../common/types/idefault-constructor';
-import * as assert from './assertions';
 
 export class StoreTester<TStoreData, TActions> {
     private actionName: string;
@@ -40,7 +39,7 @@ export class StoreTester<TStoreData, TActions> {
         this.testListenerToBeCalled(initial, expected, Times.once());
     }
 
-    public testListenerToBeCalled(initial: TStoreData, expected: TStoreData, times: Times) {
+    public testListenerToBeCalled(initial: TStoreData, expected: TStoreData, times: Times): void {
         const actionsMock = this.createActionsMock();
 
         const testObject = this.storeFactory(actionsMock.object);
@@ -53,7 +52,7 @@ export class StoreTester<TStoreData, TActions> {
 
         this.listener(this.actionParam);
 
-        assert.areEqualObjects(expected, testObject.getState(), 'expected state');
+        expect(testObject.getState()).toEqual(expected);
 
         listenerMock.verifyAll();
 
