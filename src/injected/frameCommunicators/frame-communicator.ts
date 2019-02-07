@@ -3,7 +3,7 @@
 import * as Q from 'q';
 
 import { HTMLElementUtils } from '../../common/html-element-utils';
-import { createDefaultLogger } from '../../common/logging/console-logger';
+import { createDefaultLogger } from '../../common/logging/default-logger';
 import { Logger } from '../../common/logging/logger';
 import { WindowUtils } from '../../common/window-utils';
 import { FrameMessageResponseCallback, WindowMessageHandler } from './window-message-handler';

@@ -5,7 +5,7 @@ import { autobind } from '@uifabric/utilities';
 import { ScannerUtils } from '../injected/scanner-utils';
 import { ScanResults } from '../scanner/iruleresults';
 import { HTMLElementUtils } from './html-element-utils';
-import { createDefaultLogger } from './logging/console-logger';
+import { createDefaultLogger } from './logging/default-logger';
 import { Logger } from './logging/logger';
 
 export interface LoggedRule {

@@ -44,7 +44,7 @@ import { LaunchPadRowConfigurationFactory } from './launch-pad-row-configuration
 import { MainRenderer, MainRendererDeps } from './main-renderer';
 import { TargetTabFinder, TargetTabInfo } from './target-tab-finder';
 import { Logger } from '../../common/logging/logger';
-import { createDefaultLogger } from '../../common/logging/console-logger';
+import { createDefaultLogger } from '../../common/logging/default-logger';
 
 declare var window: AutoChecker & Window;
 

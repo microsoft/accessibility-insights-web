@@ -6,7 +6,7 @@ import { ITab } from './../common/itab.d';
 import { BrowserAdapter } from './browser-adapter';
 import { GlobalContext } from './global-context';
 import { TabToContextMap } from './tab-context';
-import { createDefaultLogger } from '../common/logging/console-logger';
+import { createDefaultLogger } from '../common/logging/default-logger';
 import { Logger } from '../common/logging/logger';
 
 export interface Sender {

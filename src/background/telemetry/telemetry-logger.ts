@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { FeatureFlags } from '../../common/feature-flags';
-import { createDefaultLogger } from '../../common/logging/console-logger';
+import { createDefaultLogger } from '../../common/logging/default-logger';
 import { Logger } from '../../common/logging/logger';
 import { FeatureFlagsController } from '../feature-flags-controller';
 import { TelemetryBaseData } from './app-insights-telemetry-client';

@@ -4,7 +4,7 @@ import { autobind } from '@uifabric/utilities';
 
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DisplayableStrings } from '../common/constants/displayable-strings';
-import { createDefaultLogger } from '../common/logging/console-logger';
+import { createDefaultLogger } from '../common/logging/default-logger';
 import { Logger } from '../common/logging/logger';
 import { Messages } from '../common/messages';
 import { NotificationCreator } from '../common/notification-creator';

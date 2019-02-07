@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { GlobalMock, GlobalScope, MockBehavior, Times } from 'typemoq';
 
-import { createDefaultLogger } from '../../../../../common/logging/console-logger';
+import { createDefaultLogger } from '../../../../../common/logging/default-logger';
 
 describe('consoleLogger', () => {
     const message = 'this message';

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { XMLHttpRequestFactory } from '../background/xml-http-request-factory';
-import { createDefaultLogger } from './logging/console-logger';
+import { createDefaultLogger } from './logging/default-logger';
 import { Logger } from './logging/logger';
 
 export class FileRequestHelper {

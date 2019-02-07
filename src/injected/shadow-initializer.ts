@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { ClientBrowserAdapter } from '../common/client-browser-adapter';
 import { FileRequestHelper } from '../common/file-request-helper';
-import { createDefaultLogger } from '../common/logging/console-logger';
+import { createDefaultLogger } from '../common/logging/default-logger';
 import { Logger } from '../common/logging/logger';
 import { HTMLElementUtils } from './../common/html-element-utils';
 
