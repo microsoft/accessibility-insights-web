@@ -153,7 +153,8 @@ describe('GlobalActionCreatorTest', () => {
     test('registerCallback for on UserConfig.GetCurrentState', () => {
         const validator = new GlobalActionCreatorValidator()
             .setupRegistrationCallback(Messages.UserConfig.GetCurrentState)
-            .setupActionsOnUserConfig('getCurrentState');
+            .setupActionsOnUserConfig('getCurrentState')
+            .setupUserConfigActionWithInvokeParameter('getCurrentState', null);
 
         const actionCreator = validator.buildActionCreator();
         actionCreator.registerCallbacks();
