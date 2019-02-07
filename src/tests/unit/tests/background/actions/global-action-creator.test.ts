@@ -151,8 +151,6 @@ describe('GlobalActionCreatorTest', () => {
     });
 
     test('registerCallback for on UserConfig.GetCurrentState', () => {
-        const payload = { eventName: 'launch-panel/open', telemetry: {} };
-        const args = [payload, 1];
         const validator = new GlobalActionCreatorValidator()
             .setupRegistrationCallback(Messages.UserConfig.GetCurrentState)
             .setupActionsOnUserConfig('getCurrentState');
@@ -201,7 +199,6 @@ describe('GlobalActionCreatorTest', () => {
 // tslint:disable-next-line:max-classes-per-file
 class GlobalActionCreatorValidator {
     public testSubject: GlobalActionCreator;
-    private assertionFunc: (expected: any, actual: any, message?: string) => void;
     private commandActionMocksMap: IDictionaryStringTo<IMock<Action<any>>> = {};
     private launchPanelActionsMockMap: IDictionaryStringTo<IMock<Action<any>>> = {};
     private scopingActionsMockMap: IDictionaryStringTo<IMock<Action<any>>> = {};
@@ -224,11 +221,6 @@ class GlobalActionCreatorValidator {
         assessmentActions: this.assessmentActionsContainerMock.object,
         userConfigurationActions: this.userConfigActionsContainerMock.object,
     };
-
-    public setupAssertionFunc(assertAreEqualObjects): GlobalActionCreatorValidator {
-        this.assertionFunc = assertAreEqualObjects;
-        return this;
-    }
 
     private actionsSetup: boolean = false;
 
