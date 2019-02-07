@@ -135,6 +135,8 @@ $outcome-fail-summary-color: $negative-outcome;
         color: $outcome-incomplete-summary-consistent-foreground;
         margin-left: 5px;
         margin-right: 5px;
+        border: 2px $outcome-incomplete-border-color solid;
+        height: 12px;
     }
     .fail {
         @extend .block;
