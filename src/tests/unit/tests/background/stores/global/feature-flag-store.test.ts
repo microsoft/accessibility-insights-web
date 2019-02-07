@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { FeatureFlagActions, IFeatureFlagPayload } from '../../../../../../background/actions/feature-flag-actions';
+import { FeatureFlagActions, FeatureFlagPayload } from '../../../../../../background/actions/feature-flag-actions';
 import { ChromeAdapter } from '../../../../../../background/browser-adapter';
 import { LocalStorageDataKeys } from '../../../../../../background/local-storage-data-keys';
 import { ILocalStorageData } from '../../../../../../background/storage-data';
@@ -95,7 +95,7 @@ describe('FeatureFlagStoreTest', () => {
         const finalState = getDefaultFeatureFlagValues();
         finalState[featureFlagName] = true;
 
-        const payload: IFeatureFlagPayload = {
+        const payload: FeatureFlagPayload = {
             feature: featureFlagName,
             enabled: true,
         };

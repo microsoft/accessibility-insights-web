@@ -5,7 +5,7 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { SetLaunchPanelState } from '../../../../../background/actions/action-payloads';
 import { AssessmentActions } from '../../../../../background/actions/assessment-actions';
 import { CommandActions } from '../../../../../background/actions/command-actions';
-import { FeatureFlagActions, IFeatureFlagPayload } from '../../../../../background/actions/feature-flag-actions';
+import { FeatureFlagActions, FeatureFlagPayload } from '../../../../../background/actions/feature-flag-actions';
 import { GlobalActionCreator } from '../../../../../background/actions/global-action-creator';
 import { GlobalActionHub } from '../../../../../background/actions/global-action-hub';
 import { LaunchPanelStateActions } from '../../../../../background/actions/launch-panel-state-action';
@@ -66,7 +66,7 @@ describe('GlobalActionCreatorTest', () => {
 
     test('registerCallback for FeatureFlags.SetFeatureFlag', () => {
         const actionName = 'setFeatureFlag';
-        const payload: IFeatureFlagPayload = {
+        const payload: FeatureFlagPayload = {
             feature: 'registerCallback test feature',
             enabled: true,
         };
