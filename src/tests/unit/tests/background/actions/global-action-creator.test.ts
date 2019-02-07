@@ -5,7 +5,7 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { SetLaunchPanelState } from '../../../../../background/actions/action-payloads';
 import { AssessmentActions } from '../../../../../background/actions/assessment-actions';
 import { CommandActions } from '../../../../../background/actions/command-actions';
-import { FeatureFlagActions } from '../../../../../background/actions/feature-flag-actions';
+import { FeatureFlagActions, IFeatureFlagPayload } from '../../../../../background/actions/feature-flag-actions';
 import { GlobalActionCreator } from '../../../../../background/actions/global-action-creator';
 import { GlobalActionHub } from '../../../../../background/actions/global-action-hub';
 import { LaunchPanelStateActions } from '../../../../../background/actions/launch-panel-state-action';
@@ -15,6 +15,7 @@ import { ChromeAdapter } from '../../../../../background/browser-adapter';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
 import { Action } from '../../../../../common/flux/action';
 import { Messages } from '../../../../../common/messages';
+import * as TelemetryEvents from '../../../../../common/telemetry-events';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { LaunchPanelType } from '../../../../../popup/scripts/components/popup-view';
 import { InterpreterStub } from '../../../stubs/interpreter-stub';
@@ -63,7 +64,25 @@ describe('GlobalActionCreatorTest', () => {
         validator.verifyAll();
     });
 
-    // TODO: test('registerCallback for SetFeatureFlag', () => {
+    test('registerCallback for FeatureFlags.SetFeatureFlag', () => {
+        const actionName = 'setFeatureFlag';
+        const payload: IFeatureFlagPayload = {
+            feature: 'registerCallback test feature',
+            enabled: true,
+        };
+        const args = [payload];
+
+        const validator = new GlobalActionCreatorValidator()
+            .setupRegistrationCallback(Messages.FeatureFlags.SetFeatureFlag, args)
+            .setupActionOnFeatureFlagActions(actionName)
+            .setupFeatureFlagActionWithInvokeParameter(actionName, payload)
+            .setupTelemetrySend(TelemetryEvents.PREVIEW_FEATURES_TOGGLE);
+
+        const actionCreator = validator.buildActionCreator();
+        actionCreator.registerCallbacks();
+
+        validator.verifyAll();
+    });
 
     test('registerCallback for FeatureFlags.ResetFeatureFlag', () => {
         const actionName = 'resetFeatureFlags';
