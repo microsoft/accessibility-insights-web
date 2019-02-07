@@ -4,14 +4,13 @@ import * as Q from 'q';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { HTMLElementUtils } from '../../../../../common/html-element-utils';
+import { Logger } from '../../../../../common/logging/logger';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { FrameCommunicator, IMessageRequest } from '../../../../../injected/frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback, WindowMessageHandler } from '../../../../../injected/frameCommunicators/window-message-handler';
 import { NodeListBuilder } from '../../../common/node-list-builder';
 import { IsSameObject } from '../../../common/typemoq-helper';
 import { QStub } from '../../../stubs/q-stub';
-import { createConsoleLogger } from '../../../../../common/logging/console-logger';
-import { Logger } from '../../../../../common/logging/logger';
 
 // These tests were written before we started enforcing no-floating-promises, and we've grandfathered in
 // their warnings because they pervasively use a Q-mocking strategy that consistently trips the check.
@@ -44,7 +43,7 @@ describe('FrameCommunicatorTests', () => {
         childFrame2Info = createFrameInfo(true);
         childFrameWithoutWindowInfo = createFrameInfo(false);
         mockQ = Mock.ofType(QStub) as any;
-        const loggerMock = Mock.ofInstance<Logger>(createConsoleLogger(), MockBehavior.Loose);
+        const loggerMock = Mock.ofType<Logger>();
 
         testSubject = new FrameCommunicator(
             mockWindowMessageHandler.object,

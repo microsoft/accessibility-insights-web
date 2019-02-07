@@ -4,7 +4,6 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { A11YSelfValidator, LoggedNode, LoggedRule } from '../../../../common/a11y-self-validator';
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
-import { createConsoleLogger } from '../../../../common/logging/console-logger';
 import { Logger } from '../../../../common/logging/logger';
 import { ScannerUtils } from '../../../../injected/scanner-utils';
 import { ScanResults } from '../../../../scanner/iruleresults';
@@ -24,7 +23,7 @@ describe('A11YAutoCheckTest', () => {
     beforeEach(() => {
         scannerUtilsMock = Mock.ofType(ScannerUtils, MockBehavior.Strict);
         htmlElementUtilsMock = Mock.ofType(HTMLElementUtils, MockBehavior.Strict);
-        loggerMock = Mock.ofInstance<Logger>(createConsoleLogger(), MockBehavior.Strict);
+        loggerMock = Mock.ofType<Logger>();
 
         testObject = new A11YSelfValidator(scannerUtilsMock.object, htmlElementUtilsMock.object, loggerMock.object);
     });

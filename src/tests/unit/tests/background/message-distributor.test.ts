@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Mock, Times, MockBehavior } from 'typemoq';
+import { IMock, It, Mock, Times } from 'typemoq';
 
 import { BrowserAdapter } from '../../../../background/browser-adapter';
 import { GlobalContext } from '../../../../background/global-context';
@@ -8,7 +8,6 @@ import { Interpreter } from '../../../../background/interpreter';
 import { MessageDistributor, Sender } from '../../../../background/message-distributor';
 import { TabContext, TabToContextMap } from '../../../../background/tab-context';
 import { Logger } from '../../../../common/logging/logger';
-import { createConsoleLogger } from '../../../../common/logging/console-logger';
 
 describe('MessageDistributorTest', () => {
     let mockBrowserAdapter: IMock<BrowserAdapter>;
@@ -27,7 +26,7 @@ describe('MessageDistributorTest', () => {
         globalContextMock = Mock.ofType(GlobalContext);
         globalContextMock.setup(x => x.interpreter).returns(() => globalInterpreter);
 
-        consoleLoggerMock = Mock.ofInstance<Logger>(createConsoleLogger(), MockBehavior.Loose);
+        consoleLoggerMock = Mock.ofType<Logger>();
         testSubject = new MessageDistributor(
             globalContextMock.object,
             tabToInterpreterMap,
