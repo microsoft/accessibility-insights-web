@@ -36,6 +36,8 @@ If applicable, add screenshots to help explain your problem.
 
 ## Are you willing to submit a PR?
 
+If asked, will you be willing to submit a PR to fix this bug? Yes/No
+
 ## Did you search for similar existing issues?
 
 Did you search for similar issues in our github issues or on [stackoverflow](www.stackoverflow.com)
