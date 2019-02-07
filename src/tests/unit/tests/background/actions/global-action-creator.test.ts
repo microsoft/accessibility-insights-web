@@ -5,6 +5,7 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { SetLaunchPanelState } from '../../../../../background/actions/action-payloads';
 import { AssessmentActions } from '../../../../../background/actions/assessment-actions';
 import { CommandActions } from '../../../../../background/actions/command-actions';
+import { FeatureFlagActions, FeatureFlagPayload } from '../../../../../background/actions/feature-flag-actions';
 import { GlobalActionCreator } from '../../../../../background/actions/global-action-creator';
 import { GlobalActionHub } from '../../../../../background/actions/global-action-hub';
 import { LaunchPanelStateActions } from '../../../../../background/actions/launch-panel-state-action';
@@ -14,6 +15,7 @@ import { ChromeAdapter } from '../../../../../background/browser-adapter';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
 import { Action } from '../../../../../common/flux/action';
 import { Messages } from '../../../../../common/messages';
+import * as TelemetryEvents from '../../../../../common/telemetry-events';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { LaunchPanelType } from '../../../../../popup/scripts/components/popup-view';
 import { InterpreterStub } from '../../../stubs/interpreter-stub';
@@ -47,6 +49,52 @@ describe('GlobalActionCreatorTest', () => {
         actionCreator.registerCallbacks();
 
         builder.verifyAll();
+    });
+
+    test('registerCallback for FeatureFlags.GetFeatureFlags', () => {
+        const actionName = 'getCurrentState';
+        const validator = new GlobalActionCreatorValidator()
+            .setupRegistrationCallback(Messages.FeatureFlags.GetFeatureFlags)
+            .setupActionOnFeatureFlagActions(actionName)
+            .setupFeatureFlagActionWithInvokeParameter(actionName, null);
+
+        const actionCreator = validator.buildActionCreator();
+        actionCreator.registerCallbacks();
+
+        validator.verifyAll();
+    });
+
+    test('registerCallback for FeatureFlags.SetFeatureFlag', () => {
+        const actionName = 'setFeatureFlag';
+        const payload: FeatureFlagPayload = {
+            feature: 'registerCallback test feature',
+            enabled: true,
+        };
+        const args = [payload];
+
+        const validator = new GlobalActionCreatorValidator()
+            .setupRegistrationCallback(Messages.FeatureFlags.SetFeatureFlag, args)
+            .setupActionOnFeatureFlagActions(actionName)
+            .setupFeatureFlagActionWithInvokeParameter(actionName, payload)
+            .setupTelemetrySend(TelemetryEvents.PREVIEW_FEATURES_TOGGLE);
+
+        const actionCreator = validator.buildActionCreator();
+        actionCreator.registerCallbacks();
+
+        validator.verifyAll();
+    });
+
+    test('registerCallback for FeatureFlags.ResetFeatureFlag', () => {
+        const actionName = 'resetFeatureFlags';
+        const validator = new GlobalActionCreatorValidator()
+            .setupRegistrationCallback(Messages.FeatureFlags.ResetFeatureFlag)
+            .setupActionOnFeatureFlagActions(actionName)
+            .setupFeatureFlagActionWithInvokeParameter(actionName, null);
+
+        const actionCreator = validator.buildActionCreator();
+        actionCreator.registerCallbacks();
+
+        validator.verifyAll();
     });
 
     test('registerCallback for on get launch panel state', () => {
@@ -105,7 +153,7 @@ describe('GlobalActionCreatorTest', () => {
         const validator = new GlobalActionCreatorValidator()
             .setupRegistrationCallback(Messages.Scoping.AddSelector, args)
             .setupActionsOnScoping(actionName)
-            .setupScopingActionWithInvokeParameter(actionName, null);
+            .setupScopingActionWithInvokeParameter(actionName, payload);
 
         const actionCreator = validator.buildActionCreator();
         actionCreator.registerCallbacks();
@@ -125,7 +173,7 @@ describe('GlobalActionCreatorTest', () => {
         const validator = new GlobalActionCreatorValidator()
             .setupRegistrationCallback(Messages.Scoping.DeleteSelector, args)
             .setupActionsOnScoping(actionName)
-            .setupScopingActionWithInvokeParameter(actionName, null);
+            .setupScopingActionWithInvokeParameter(actionName, payload);
 
         const actionCreator = validator.buildActionCreator();
         actionCreator.registerCallbacks();
@@ -147,11 +195,10 @@ describe('GlobalActionCreatorTest', () => {
     });
 
     test('registerCallback for on UserConfig.GetCurrentState', () => {
-        const payload = { eventName: 'launch-panel/open', telemetry: {} };
-        const args = [payload, 1];
         const validator = new GlobalActionCreatorValidator()
             .setupRegistrationCallback(Messages.UserConfig.GetCurrentState)
-            .setupActionsOnUserConfig('getCurrentState');
+            .setupActionsOnUserConfig('getCurrentState')
+            .setupUserConfigActionWithInvokeParameter('getCurrentState', null);
 
         const actionCreator = validator.buildActionCreator();
         actionCreator.registerCallbacks();
@@ -165,8 +212,9 @@ describe('GlobalActionCreatorTest', () => {
             isFirstTime: false,
             enableHighContrast: false,
         };
+        const args = [payload];
         const validator = new GlobalActionCreatorValidator()
-            .setupRegistrationCallback(Messages.UserConfig.SetTelemetryConfig)
+            .setupRegistrationCallback(Messages.UserConfig.SetTelemetryConfig, args)
             .setupActionsOnUserConfig('setTelemetryState')
             .setupUserConfigActionWithInvokeParameter('setTelemetryState', payload);
 
@@ -182,8 +230,9 @@ describe('GlobalActionCreatorTest', () => {
             isFirstTime: false,
             enableHighContrast: true,
         };
+        const args = [payload];
         const validator = new GlobalActionCreatorValidator()
-            .setupRegistrationCallback(Messages.UserConfig.SetHighContrastConfig)
+            .setupRegistrationCallback(Messages.UserConfig.SetHighContrastConfig, args)
             .setupActionsOnUserConfig('setHighContrastMode')
             .setupUserConfigActionWithInvokeParameter('setHighContrastMode', payload);
 
@@ -197,13 +246,14 @@ describe('GlobalActionCreatorTest', () => {
 // tslint:disable-next-line:max-classes-per-file
 class GlobalActionCreatorValidator {
     public testSubject: GlobalActionCreator;
-    private assertionFunc: (expected: any, actual: any, message?: string) => void;
     private commandActionMocksMap: IDictionaryStringTo<IMock<Action<any>>> = {};
+    private featureFlagActionsMockMap: IDictionaryStringTo<IMock<Action<any>>> = {};
     private launchPanelActionsMockMap: IDictionaryStringTo<IMock<Action<any>>> = {};
     private scopingActionsMockMap: IDictionaryStringTo<IMock<Action<any>>> = {};
     private userConfigMockMap: IDictionaryStringTo<IMock<Action<any>>> = {};
 
     private commandActionsContainerMock = Mock.ofType(CommandActions);
+    private featureFlagActionsContainerMock = Mock.ofType(FeatureFlagActions);
     private launchPanelStateActionsContainerMock = Mock.ofType(LaunchPanelStateActions);
     private scopingActionsContainerMock = Mock.ofType(ScopingActions);
     private assessmentActionsContainerMock = Mock.ofType(AssessmentActions);
@@ -214,22 +264,21 @@ class GlobalActionCreatorValidator {
 
     private globalActionHubMock: GlobalActionHub = {
         commandActions: this.commandActionsContainerMock.object,
-        featureFlagActions: null,
+        featureFlagActions: this.featureFlagActionsContainerMock.object,
         launchPanelStateActions: this.launchPanelStateActionsContainerMock.object,
         scopingActions: this.scopingActionsContainerMock.object,
         assessmentActions: this.assessmentActionsContainerMock.object,
         userConfigurationActions: this.userConfigActionsContainerMock.object,
     };
 
-    public setupAssertionFunc(assertAreEqualObjects): GlobalActionCreatorValidator {
-        this.assertionFunc = assertAreEqualObjects;
-        return this;
-    }
-
     private actionsSetup: boolean = false;
 
     public setupActionOnCommandActions(actionName: string): GlobalActionCreatorValidator {
         return this.setupAction(actionName, this.commandActionsContainerMock, this.commandActionMocksMap);
+    }
+
+    public setupActionOnFeatureFlagActions(actionName: string): GlobalActionCreatorValidator {
+        return this.setupAction(actionName, this.featureFlagActionsContainerMock, this.featureFlagActionsMockMap);
     }
 
     public setupActionOnLaunchPanelActions(actionName: string): GlobalActionCreatorValidator {
@@ -263,6 +312,13 @@ class GlobalActionCreatorValidator {
         return this.setupActionWithInvokeParameter(actionName, expectedInvokeParam, this.commandActionMocksMap);
     }
 
+    public setupFeatureFlagActionWithInvokeParameter(
+        actionName: keyof FeatureFlagActions,
+        expectedInvokeParam: any,
+    ): GlobalActionCreatorValidator {
+        return this.setupActionWithInvokeParameter(actionName, expectedInvokeParam, this.featureFlagActionsMockMap);
+    }
+
     public setupLaunchPanelActionWithInvokeParameter(
         actionName: keyof LaunchPanelStateActions,
         expectedInvokeParam: any,
@@ -293,7 +349,7 @@ class GlobalActionCreatorValidator {
         return this;
     }
 
-    private getOrCreateAction(actionName: string, actionsMockMap: IDictionaryStringTo<IMock<Action<any>>>) {
+    private getOrCreateAction(actionName: string, actionsMockMap: IDictionaryStringTo<IMock<Action<any>>>): IMock<Action<any>> {
         let action = actionsMockMap[actionName];
 
         if (action == null) {
@@ -364,12 +420,17 @@ class GlobalActionCreatorValidator {
 
     private verifyAllActionMocks(): void {
         this.verifyAllActions(this.commandActionMocksMap);
+        this.verifyAllActions(this.featureFlagActionsMockMap);
         this.verifyAllActions(this.launchPanelActionsMockMap);
+        this.verifyAllActions(this.scopingActionsMockMap);
+        this.verifyAllActions(this.userConfigMockMap);
     }
 
-    private verifyAllActions(actionsMap: IDictionaryStringTo<IMock<Action<any>>>) {
+    private verifyAllActions(actionsMap: IDictionaryStringTo<IMock<Action<any>>>): void {
         for (const actionName in actionsMap) {
-            actionsMap[actionName].verifyAll();
+            if (actionsMap.hasOwnProperty(actionName)) {
+                actionsMap[actionName].verifyAll();
+            }
         }
     }
 }

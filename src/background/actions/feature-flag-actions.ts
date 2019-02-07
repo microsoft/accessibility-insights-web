@@ -4,13 +4,13 @@ import { Action } from '../../common/flux/action';
 
 import { BaseActionPayload } from './action-payloads';
 
-export interface IFeatureFlagPayload extends BaseActionPayload {
+export interface FeatureFlagPayload extends BaseActionPayload {
     feature: string;
     enabled: boolean;
 }
 
 export class FeatureFlagActions {
     public readonly getCurrentState = new Action<void>();
-    public readonly setFeatureFlag = new Action<IFeatureFlagPayload>();
+    public readonly setFeatureFlag = new Action<FeatureFlagPayload>();
     public readonly resetFeatureFlags = new Action<void>();
 }

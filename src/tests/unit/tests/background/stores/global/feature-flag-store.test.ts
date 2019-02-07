@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { FeatureFlagActions, IFeatureFlagPayload } from '../../../../../../background/actions/feature-flag-actions';
+import { FeatureFlagActions, FeatureFlagPayload } from '../../../../../../background/actions/feature-flag-actions';
 import { ChromeAdapter } from '../../../../../../background/browser-adapter';
 import { LocalStorageDataKeys } from '../../../../../../background/local-storage-data-keys';
 import { ILocalStorageData } from '../../../../../../background/storage-data';
@@ -95,7 +95,7 @@ describe('FeatureFlagStoreTest', () => {
         const finalState = getDefaultFeatureFlagValues();
         finalState[featureFlagName] = true;
 
-        const payload: IFeatureFlagPayload = {
+        const payload: FeatureFlagPayload = {
             feature: featureFlagName,
             enabled: true,
         };
@@ -121,7 +121,10 @@ describe('FeatureFlagStoreTest', () => {
         createStoreTesterForFeatureFlagActions('resetFeatureFlags').testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    function createStoreTesterForFeatureFlagActions(actionName: keyof FeatureFlagActions, userData: ILocalStorageData = null) {
+    function createStoreTesterForFeatureFlagActions(
+        actionName: keyof FeatureFlagActions,
+        userData: ILocalStorageData = null,
+    ): StoreTester<IDictionaryStringTo<boolean>, FeatureFlagActions> {
         const factory = (actions: FeatureFlagActions) => new FeatureFlagStore(actions, browserAdapterMock.object, userData);
         return new StoreTester(FeatureFlagActions, actionName, factory);
     }
