@@ -2,6 +2,8 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 
+import { createConsoleLogger } from '../common/logging/console-logger';
+import { Logger } from '../common/logging/logger';
 import { scan as scanRunner, ScanOptions } from '../scanner/exposed-apis';
 import { RuleResult, ScanResults } from '../scanner/iruleresults';
 import { HyperlinkDefinition } from '../views/content/content-page';
@@ -33,22 +35,20 @@ export interface IHtmlElementAxeResults {
 }
 
 export class ScannerUtils {
-    private generateUID: () => string;
-    private scanRunner: typeof scanRunner;
-
-    public constructor(scanner: typeof scanRunner, generateUID?: () => string) {
-        this.generateUID = generateUID;
-        this.scanRunner = scanner;
-    }
+    public constructor(
+        private scanner: typeof scanRunner,
+        private generateUID?: () => string,
+        private logger: Logger = createConsoleLogger(),
+    ) {}
 
     public scan(options: ScanOptions, callback: (results: ScanResults) => void): void {
-        this.scanRunner(
+        this.scanner(
             options,
             axeResults => {
                 callback(axeResults);
             },
             err => {
-                console.log(`failed to scan with error - ${err}`);
+                this.logger.log(`failed to scan with error - ${err}`);
             },
         );
     }
