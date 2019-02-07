@@ -4,6 +4,8 @@ import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 import { XMLHttpRequestFactory } from '../../../../background/xml-http-request-factory';
 import { FileRequestHelper } from '../../../../common/file-request-helper';
+import { createConsoleLogger } from '../../../../common/logging/console-logger';
+import { Logger } from '../../../../common/logging/logger';
 import { XmlHttpRequestStubBuilder } from '../../Stubs/xml-http-request-stub-builder';
 
 describe('FileRequestHelper', () => {
@@ -16,7 +18,8 @@ describe('FileRequestHelper', () => {
         xmlHttpRequestFactoryMock = Mock.ofType(XMLHttpRequestFactory, MockBehavior.Strict);
         httpRequestMock = Mock.ofInstance(XmlHttpRequestStubBuilder.build(), MockBehavior.Loose);
         httpRequestMock.callBase = true;
-        testSubject = new FileRequestHelper(xmlHttpRequestFactoryMock.object);
+        const loggerMock = Mock.ofInstance<Logger>(createConsoleLogger(), MockBehavior.Loose);
+        testSubject = new FileRequestHelper(xmlHttpRequestFactoryMock.object, loggerMock.object);
     });
 
     it("propagates the underlying request's responseText when the request succeeds", async () => {
