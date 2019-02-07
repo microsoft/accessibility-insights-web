@@ -289,7 +289,7 @@ class GlobalActionCreatorValidator {
         return this;
     }
 
-    private getOrCreateAction(actionName: string, actionsMockMap: IDictionaryStringTo<IMock<Action<any>>>) {
+    private getOrCreateAction(actionName: string, actionsMockMap: IDictionaryStringTo<IMock<Action<any>>>): IMock<Action<any>> {
         let action = actionsMockMap[actionName];
 
         if (action == null) {
