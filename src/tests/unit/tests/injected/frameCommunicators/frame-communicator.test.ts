@@ -10,6 +10,8 @@ import { FrameMessageResponseCallback, WindowMessageHandler } from '../../../../
 import { NodeListBuilder } from '../../../common/node-list-builder';
 import { IsSameObject } from '../../../common/typemoq-helper';
 import { QStub } from '../../../stubs/q-stub';
+import { createConsoleLogger } from '../../../../../common/logging/console-logger';
+import { Logger } from '../../../../../common/logging/logger';
 
 // These tests were written before we started enforcing no-floating-promises, and we've grandfathered in
 // their warnings because they pervasively use a Q-mocking strategy that consistently trips the check.
@@ -42,12 +44,14 @@ describe('FrameCommunicatorTests', () => {
         childFrame2Info = createFrameInfo(true);
         childFrameWithoutWindowInfo = createFrameInfo(false);
         mockQ = Mock.ofType(QStub) as any;
+        const loggerMock = Mock.ofInstance<Logger>(createConsoleLogger(), MockBehavior.Loose);
 
         testSubject = new FrameCommunicator(
             mockWindowMessageHandler.object,
             mockHtmlElementUtils.object,
             mockWindowUtils.object,
             mockQ.object,
+            loggerMock.object,
         );
 
         mockHtmlElementUtils
