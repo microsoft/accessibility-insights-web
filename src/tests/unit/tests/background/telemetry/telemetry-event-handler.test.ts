@@ -4,7 +4,7 @@ import * as _ from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { BaseActionPayload } from '../../../../../background/actions/action-payloads';
-import { ChromeAdapter, BrowserAdapter } from '../../../../../background/browser-adapter';
+import { BrowserAdapter, ChromeAdapter } from '../../../../../background/browser-adapter';
 import { TelemetryClient } from '../../../../../background/telemetry/telemetry-client';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
 import { ITab } from '../../../../../common/itab';
@@ -160,9 +160,9 @@ describe('TelemetryEventHandlerTest', () => {
         testRemoveEmail(testObject, '', '');
         testRemoveEmail(testObject, 'a', 'a');
         testRemoveEmail(testObject, 'test without any matches #@$! @twitter', 'test without any matches #@$! @twitter');
-        testRemoveEmail(testObject, 'dummy@email.com', '(email-removed)');
-        testRemoveEmail(testObject, 'prefix dummy@email.com', 'prefix (email-removed)');
-        testRemoveEmail(testObject, 'dummy@email.com suffix', '(email-removed) suffix');
+        testRemoveEmail(testObject, 'someEmailId@email.com', '(email-removed)');
+        testRemoveEmail(testObject, 'prefix someEmailId@email.com', 'prefix (email-removed)');
+        testRemoveEmail(testObject, 'someEmailId@email.com suffix', '(email-removed) suffix');
         testRemoveEmail(
             testObject,
             // tslint:disable-next-line:max-line-length
@@ -176,7 +176,7 @@ describe('TelemetryEventHandlerTest', () => {
             // tslint:disable-next-line:max-line-length
             'https://test.com/_?container=80683-merge-prod-1350842#/test/Framework%20&%20UX%20Platform/19:(email-removed)/td.members',
         );
-        testRemoveEmail(testObject, 'Inbox (680) - dummy@email.com - Gmail', 'Inbox (680) - (email-removed) - Gmail');
+        testRemoveEmail(testObject, 'Inbox (680) - someEmailId@email.com - Gmail', 'Inbox (680) - (email-removed) - Gmail');
     });
 
     function createExpectedAppInsightsTelemetry(customFields?: IDictionaryStringTo<any>, isUrlExpected: boolean = true) {

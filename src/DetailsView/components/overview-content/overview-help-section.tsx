@@ -17,7 +17,7 @@ export interface OverviewHelpProps {
 export const OverviewHelpSection = NamedSFC('OverviewHelpSection', (props: OverviewHelpProps) => {
     return (
         <section className="overview-help-container">
-            <h2 className="help-heading">Help</h2>
+            <h3 className="help-heading">Help</h3>
             <HelpLinks linkInformation={props.linkDataSource} deps={props.deps} />
         </section>
     );

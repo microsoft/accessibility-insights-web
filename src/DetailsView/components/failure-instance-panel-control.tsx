@@ -98,6 +98,7 @@ export class FailureInstancePanelControl extends React.Component<IFailureInstanc
                     rows={8}
                     value={this.state.failureDescription}
                     onChange={this.onFailureDescriptionChange}
+                    resizable={false}
                 />
                 <ActionAndCancelButtonsComponent
                     isHidden={false}

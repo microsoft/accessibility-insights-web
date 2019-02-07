@@ -28,7 +28,7 @@ describe('OverviewHelpSection', () => {
         const overviewParentSection = wrapper.find('.overview-help-container');
         expect(overviewParentSection.exists()).toBe(true);
 
-        const h2 = wrapper.find('h2');
+        const h2 = wrapper.find('h3');
 
         expect(h2.exists()).toBe(true);
         expect(h2.hasClass('help-heading')).toBe(true);

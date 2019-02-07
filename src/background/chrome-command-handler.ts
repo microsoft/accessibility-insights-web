@@ -84,7 +84,7 @@ export class ChromeCommandHandler {
                 this.invokeToggleAction(visualizationType, state, tabId);
             }
         } catch (err) {
-            console.log('Error occurred at chrome command handler:', err);
+            console.error('Error occurred at chrome command handler:', err);
         }
     }
 

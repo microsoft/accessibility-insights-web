@@ -77,9 +77,40 @@
     --ada-blue-variant: #336d99;
 
     .high-contrast-theme {
+        --ada-blue: #ffffff;
+        --ada-blue-variant: #ffffff;
+
         // Base
         --neutral-0: #161616;
+        --neutral-2: #161616;
+        --neutral-4: #161616;
+        --neutral-6: #161616;
+        --neutral-10: #161616;
+        --neutral-60: #ffffff;
         --neutral-100: #ffffff;
+
+        --secondary-text: #ffffff;
+
+        // Outcome colors
+        --positive-outcome: #4ac94a;
+        --negative-outcome: #fc7ab1;
+        --neutral-outcome: var(--neutral-0);
+
+        // used for many links
+        --communication-shade-10: #ffff00;
+
+        --communication-tint-30: var(--communication-tint-10);
+        --communication-tint-40: #38a9ff;
+
+        // Landmark colors
+        --landmark-contentinfo: #00a88c;
+        --landmark-main: #cb2e6d;
+        --landmark-complementary: #6b9d1a;
+        --landmark-banner: #d08311;
+        --landmark-region: #2560e0;
+        --landmark-navigation: #9b38e6;
+        --landmark-search: #d363d8;
+        --landmark-form: #0298c7;
     }
 }
 

@@ -40,7 +40,7 @@ describe('FeatureFlagsControllerTest', () => {
 
         expect(testObject.isEnabled(FeatureFlags.logTelemetryToConsole)).toBeFalsy();
         expect(testObject.isEnabled('testFeatureFlag')).toBeTruthy();
-        expect(testObject.isEnabled('dummy')).toBeFalsy();
+        expect(testObject.isEnabled('someRandomFlag')).toBeFalsy();
 
         featureFlagStoreMock.verifyAll();
     });
