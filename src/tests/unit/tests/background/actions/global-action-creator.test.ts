@@ -5,6 +5,7 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { SetLaunchPanelState } from '../../../../../background/actions/action-payloads';
 import { AssessmentActions } from '../../../../../background/actions/assessment-actions';
 import { CommandActions } from '../../../../../background/actions/command-actions';
+import { FeatureFlagActions } from '../../../../../background/actions/feature-flag-actions';
 import { GlobalActionCreator } from '../../../../../background/actions/global-action-creator';
 import { GlobalActionHub } from '../../../../../background/actions/global-action-hub';
 import { LaunchPanelStateActions } from '../../../../../background/actions/launch-panel-state-action';
@@ -49,9 +50,33 @@ describe('GlobalActionCreatorTest', () => {
         builder.verifyAll();
     });
 
-    // TODO: test('registerCallback for GetFeatureFlags', () => {
+    test('registerCallback for FeatureFlags.GetFeatureFlags', () => {
+        const actionName = 'getCurrentState';
+        const validator = new GlobalActionCreatorValidator()
+            .setupRegistrationCallback(Messages.FeatureFlags.GetFeatureFlags)
+            .setupActionOnFeatureFlagActions(actionName)
+            .setupFeatureFlagActionWithInvokeParameter(actionName, null);
+
+        const actionCreator = validator.buildActionCreator();
+        actionCreator.registerCallbacks();
+
+        validator.verifyAll();
+    });
+
     // TODO: test('registerCallback for SetFeatureFlag', () => {
-    // TODO: test('registerCallback for ResetFeatureFlag', () => {
+
+    test('registerCallback for FeatureFlags.ResetFeatureFlag', () => {
+        const actionName = 'resetFeatureFlags';
+        const validator = new GlobalActionCreatorValidator()
+            .setupRegistrationCallback(Messages.FeatureFlags.ResetFeatureFlag)
+            .setupActionOnFeatureFlagActions(actionName)
+            .setupFeatureFlagActionWithInvokeParameter(actionName, null);
+
+        const actionCreator = validator.buildActionCreator();
+        actionCreator.registerCallbacks();
+
+        validator.verifyAll();
+    });
 
     test('registerCallback for on get launch panel state', () => {
         const actionName = 'getCurrentState';
@@ -203,11 +228,13 @@ describe('GlobalActionCreatorTest', () => {
 class GlobalActionCreatorValidator {
     public testSubject: GlobalActionCreator;
     private commandActionMocksMap: IDictionaryStringTo<IMock<Action<any>>> = {};
+    private featureFlagActionsMockMap: IDictionaryStringTo<IMock<Action<any>>> = {};
     private launchPanelActionsMockMap: IDictionaryStringTo<IMock<Action<any>>> = {};
     private scopingActionsMockMap: IDictionaryStringTo<IMock<Action<any>>> = {};
     private userConfigMockMap: IDictionaryStringTo<IMock<Action<any>>> = {};
 
     private commandActionsContainerMock = Mock.ofType(CommandActions);
+    private featureFlagActionsContainerMock = Mock.ofType(FeatureFlagActions);
     private launchPanelStateActionsContainerMock = Mock.ofType(LaunchPanelStateActions);
     private scopingActionsContainerMock = Mock.ofType(ScopingActions);
     private assessmentActionsContainerMock = Mock.ofType(AssessmentActions);
@@ -218,7 +245,7 @@ class GlobalActionCreatorValidator {
 
     private globalActionHubMock: GlobalActionHub = {
         commandActions: this.commandActionsContainerMock.object,
-        featureFlagActions: null,
+        featureFlagActions: this.featureFlagActionsContainerMock.object,
         launchPanelStateActions: this.launchPanelStateActionsContainerMock.object,
         scopingActions: this.scopingActionsContainerMock.object,
         assessmentActions: this.assessmentActionsContainerMock.object,
@@ -229,6 +256,10 @@ class GlobalActionCreatorValidator {
 
     public setupActionOnCommandActions(actionName: string): GlobalActionCreatorValidator {
         return this.setupAction(actionName, this.commandActionsContainerMock, this.commandActionMocksMap);
+    }
+
+    public setupActionOnFeatureFlagActions(actionName: string): GlobalActionCreatorValidator {
+        return this.setupAction(actionName, this.featureFlagActionsContainerMock, this.featureFlagActionsMockMap);
     }
 
     public setupActionOnLaunchPanelActions(actionName: string): GlobalActionCreatorValidator {
@@ -260,6 +291,13 @@ class GlobalActionCreatorValidator {
 
     public setupCommandActionWithInvokeParameter(actionName: keyof CommandActions, expectedInvokeParam: any): GlobalActionCreatorValidator {
         return this.setupActionWithInvokeParameter(actionName, expectedInvokeParam, this.commandActionMocksMap);
+    }
+
+    public setupFeatureFlagActionWithInvokeParameter(
+        actionName: keyof FeatureFlagActions,
+        expectedInvokeParam: any,
+    ): GlobalActionCreatorValidator {
+        return this.setupActionWithInvokeParameter(actionName, expectedInvokeParam, this.featureFlagActionsMockMap);
     }
 
     public setupLaunchPanelActionWithInvokeParameter(
