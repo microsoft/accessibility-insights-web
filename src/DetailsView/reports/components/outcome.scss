@@ -13,9 +13,9 @@
 
 $outcome-pass-color: $positive-outcome;
 $outcome-pass-summary-color: $positive-outcome;
-$outcome-incomplete-color: $incomplete-color;
+$outcome-incomplete-border-color: $incomplete-color;
 $outcome-incomplete-summary-background: $neutral-outcome;
-$outcome-incomplete-summary-text: $white;
+$outcome-incomplete-summary-consistent-foreground: $white;
 $outcome-fail-color: $negative-outcome;
 $outcome-fail-summary-color: $negative-outcome;
 @mixin outcome-chip-color($outcome-color) {
@@ -60,7 +60,7 @@ $outcome-fail-summary-color: $negative-outcome;
     }
     &.outcome-chip-incomplete {
         @include incomplete-icon-styles($outcome-chip-icon-size, 1px);
-        @include outcome-chip-color($outcome-incomplete-color);
+        @include outcome-chip-color($outcome-incomplete-border-color);
     }
     &.outcome-chip-fail {
         @include cross-icon-styles($outcome-chip-icon-size, 1px);
@@ -81,7 +81,7 @@ $outcome-fail-summary-color: $negative-outcome;
     .outcome-icon-incomplete {
         @include incomplete-icon-styles($outcome-icon-size, 1px);
         .check-container {
-            border-color: $outcome-incomplete-color;
+            border-color: $outcome-incomplete-border-color;
         }
     }
     .outcome-icon-fail {
@@ -129,10 +129,10 @@ $outcome-fail-summary-color: $negative-outcome;
             bottom: -1px;
             margin-right: 6px;
             margin-left: 5px;
-            border-color: $outcome-incomplete-summary-text;
+            border-color: $outcome-incomplete-summary-consistent-foreground;
         }
         background-color: $outcome-incomplete-summary-background;
-        color: $outcome-incomplete-summary-text;
+        color: $outcome-incomplete-summary-consistent-foreground;
         margin-left: 5px;
         margin-right: 5px;
     }
