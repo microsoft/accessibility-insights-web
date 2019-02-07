@@ -1,9 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { HTMLElementUtils } from './html-element-utils';
-import { ScannerUtils } from '../injected/scanner-utils';
 import { autobind } from '@uifabric/utilities';
+
+import { ScannerUtils } from '../injected/scanner-utils';
 import { ScanResults } from '../scanner/iruleresults';
+import { HTMLElementUtils } from './html-element-utils';
+import { createConsoleLogger } from './logging/console-logger';
+import { Logger } from './logging/logger';
 
 export interface LoggedRule {
     id: string;
@@ -20,13 +23,7 @@ export interface LoggedNode {
 }
 
 export class A11YSelfValidator {
-    private scannerUtils: ScannerUtils;
-    private docUtils: HTMLElementUtils;
-
-    constructor(scannerUtils: ScannerUtils, docUtils: HTMLElementUtils) {
-        this.scannerUtils = scannerUtils;
-        this.docUtils = docUtils;
-    }
+    constructor(private scannerUtils: ScannerUtils, private docUtils: HTMLElementUtils, private logger: Logger = createConsoleLogger()) {}
 
     public validate(): void {
         this.scannerUtils.scan(null, this.logAxeResults);
@@ -55,6 +52,6 @@ export class A11YSelfValidator {
             });
         }
 
-        console.log(loggedViolations);
+        this.logger.log(loggedViolations);
     }
 }
