@@ -39,7 +39,7 @@ describe('link purpose', () => {
         });
 
         it('get the right data', () => {
-            const url = 'dummy-url';
+            const url = 'some-url';
             const nodeStub = {
                 getAttribute: attr => url,
             } as HTMLElement;
