@@ -36,7 +36,7 @@ export const ruleToLinkConfiguration: IDictionaryStringTo<HyperlinkDefinition[]>
     'td-headers-attr': [link.WCAG_1_3_1],
     'th-has-data-cells': [link.WCAG_1_3_1],
     'aria-roles': [link.WCAG_1_3_1, link.WCAG_4_1_1, link.WCAG_4_1_2],
-    'aria-valid-attr-value': [link.WCAG_1_3_1, link.WCAG_4_1_1, link.WCAG_4_1_2],
+    'aria-valid-attr-value': [link.WCAG_4_1_1, link.WCAG_4_1_2],
     'link-in-text-block': [BestPractice],
     'color-contrast': [link.WCAG_1_4_3],
     'meta-viewport-large': [BestPractice],
