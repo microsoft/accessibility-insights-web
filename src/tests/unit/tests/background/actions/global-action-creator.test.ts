@@ -401,6 +401,7 @@ class GlobalActionCreatorValidator {
 
     private verifyAllActionMocks(): void {
         this.verifyAllActions(this.commandActionMocksMap);
+        this.verifyAllActions(this.featureFlagActionsMockMap);
         this.verifyAllActions(this.launchPanelActionsMockMap);
         this.verifyAllActions(this.scopingActionsMockMap);
         this.verifyAllActions(this.userConfigMockMap);
