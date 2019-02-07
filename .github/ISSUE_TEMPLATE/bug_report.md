@@ -15,8 +15,8 @@ A clear and concise description of what the bug is.
 Steps to reproduce the behavior:
 
 1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
+2. Click on '...'
+3. Scroll down to '...'
 4. See error
 
 ## Expected behavior
@@ -31,10 +31,8 @@ If applicable, add screenshots to help explain your problem.
 
 - OS: [e.g. Windows/Mac]
 - Version [e.g. 1.140.1]
-
-## Target Page (Page you are trying to scan)
-
-If possible, add information on the target page that you are trying to scan.
+- Chrome Version [e.g 71.0]
+- Target Page [e.g www.bing.com]
 
 ## Are you willing to submit a PR?
 
