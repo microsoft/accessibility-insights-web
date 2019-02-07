@@ -1,8 +1,8 @@
 ---
 name: General Question
 about: This is a template for people to ask questions that don't fit into any other issue categories
-title: "[General Question] "
-labels: ''
+title: ''
+labels: question
 assignees: ''
 ---
 
