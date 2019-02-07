@@ -227,7 +227,7 @@ div.insights-dialog-main-override {
         background-color: $communication-tint-40 !important;
         border-left: $pivotItemLeftBorderWidth $pivotItemBorderStyle $communication-primary;
         .ms-Button-label {
-            color: $neutral-100 !important;
+            color: $black !important;
         }
     }
     .ms-DetailsRow,
@@ -729,7 +729,7 @@ div.insights-dialog-main-override {
                         border-left: 0px;
                     }
                     .ms-Button-label {
-                        color: $communication-shade-20;
+                        color: $black;
                     }
                     .index-circle {
                         color: $neutral-0;
