@@ -2,9 +2,10 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { ChromeAdapter, BrowserAdapter } from '../../../../background/browser-adapter';
+import { BrowserAdapter, ChromeAdapter } from '../../../../background/browser-adapter';
 import { ChromeCommandHandler } from '../../../../background/chrome-command-handler';
 import { Interpreter } from '../../../../background/interpreter';
+import { UserConfigurationStore } from '../../../../background/stores/global/user-configuration-store';
 import { TabContextStoreHub } from '../../../../background/stores/tab-context-store-hub';
 import { VisualizationStore } from '../../../../background/stores/visualization-store';
 import { TabContext, TabToContextMap } from '../../../../background/tab-context';
@@ -14,12 +15,11 @@ import { IBaseStore } from '../../../../common/istore';
 import { Messages } from '../../../../common/messages';
 import { NotificationCreator } from '../../../../common/notification-creator';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
-import { TelemetryEventSource, ToggleTelemetryData } from '../../../../common/telemetry-events';
+import { TelemetryEventSource } from '../../../../common/telemetry-events';
 import { IVisualizationStoreData } from '../../../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { UrlValidator } from '../../../../common/url-validator';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
-import { UserConfigurationStore } from '../../../../background/stores/global/user-configuration-store';
 
 let testSubject: ChromeCommandHandler;
 let chromeAdapterMock: IMock<BrowserAdapter>;
@@ -41,7 +41,7 @@ const testSource: TelemetryEventSource = TelemetryEventSource.ShortcutCommand;
 
 describe('ChromeCommandHandlerTest', () => {
     beforeEach(() => {
-        interpreterMock = Mock.ofType(Interpreter, MockBehavior.Strict);
+        interpreterMock = Mock.ofType(Interpreter);
 
         visualizationStoreMock = Mock.ofType(VisualizationStore, MockBehavior.Strict);
         visualizationStoreMock.setup(vs => vs.getState()).returns(() => storeState);
@@ -56,7 +56,9 @@ describe('ChromeCommandHandlerTest', () => {
         chromeAdapterMock = Mock.ofType(ChromeAdapter);
         chromeAdapterMock
             .setup(ca => ca.addCommandListener(It.isAny()))
-            .callback(callback => (commandCallback = callback))
+            .callback(callback => {
+                commandCallback = callback;
+            })
             .verifiable();
         chromeAdapterMock
             .setup(ca => ca.tabsQuery(It.isValue({ active: true, currentWindow: true }), It.isAny()))
@@ -193,7 +195,7 @@ describe('ChromeCommandHandlerTest', () => {
             const configuration = visualizationConfigurationFactory.getConfiguration(visualizationType);
 
             const enableMessage = configuration.displayableData.enableMessage;
-            notificationCreatorMock.setup(nc => nc.createNotification(enableMessage)).verifiable();
+            notificationCreatorMock.setup(nc => nc.createNotification(enableMessage)).verifiable(Times.once());
 
             await commandCallback(configuration.chromeCommand);
 
