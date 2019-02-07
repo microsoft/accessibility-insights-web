@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { ClientBrowserAdapter } from '../common/client-browser-adapter';
 import { FileRequestHelper } from '../common/file-request-helper';
-import { createConsoleLogger } from '../common/logging/console-logger';
+import { createDefaultLogger } from '../common/logging/console-logger';
 import { Logger } from '../common/logging/logger';
 import { HTMLElementUtils } from './../common/html-element-utils';
 
@@ -13,7 +13,7 @@ export class ShadowInitializer {
         private chromeAdapter: ClientBrowserAdapter,
         private htmlElementUtils: HTMLElementUtils,
         private fileRequestHelper: FileRequestHelper,
-        private logger: Logger = createConsoleLogger(),
+        private logger: Logger = createDefaultLogger(),
     ) {}
 
     public async initialize(): Promise<void> {

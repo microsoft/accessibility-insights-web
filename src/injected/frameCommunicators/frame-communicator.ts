@@ -3,7 +3,7 @@
 import * as Q from 'q';
 
 import { HTMLElementUtils } from '../../common/html-element-utils';
-import { createConsoleLogger } from '../../common/logging/console-logger';
+import { createDefaultLogger } from '../../common/logging/console-logger';
 import { Logger } from '../../common/logging/logger';
 import { WindowUtils } from '../../common/window-utils';
 import { FrameMessageResponseCallback, WindowMessageHandler } from './window-message-handler';
@@ -31,7 +31,7 @@ export class FrameCommunicator {
         protected htmlElementUtils: HTMLElementUtils,
         protected windowUtils: WindowUtils,
         private q: typeof Q,
-        private logger: Logger = createConsoleLogger(),
+        private logger: Logger = createDefaultLogger(),
     ) {
         this.window = window;
         this.document = document;

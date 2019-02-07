@@ -4,7 +4,7 @@ import { autobind } from '@uifabric/utilities';
 
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DisplayableStrings } from '../common/constants/displayable-strings';
-import { createConsoleLogger } from '../common/logging/console-logger';
+import { createDefaultLogger } from '../common/logging/console-logger';
 import { Logger } from '../common/logging/logger';
 import { Messages } from '../common/messages';
 import { NotificationCreator } from '../common/notification-creator';
@@ -32,7 +32,7 @@ export class ChromeCommandHandler {
         private visualizationConfigurationFactory: VisualizationConfigurationFactory,
         private telemetryDataFactory: TelemetryDataFactory,
         private userConfigurationStore: UserConfigurationStore,
-        private logger: Logger = createConsoleLogger(),
+        private logger: Logger = createDefaultLogger(),
     ) {}
 
     public initialize(): void {

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 
-import { createConsoleLogger } from '../common/logging/console-logger';
+import { createDefaultLogger } from '../common/logging/console-logger';
 import { Logger } from '../common/logging/logger';
 import { scan as scanRunner, ScanOptions } from '../scanner/exposed-apis';
 import { RuleResult, ScanResults } from '../scanner/iruleresults';
@@ -38,7 +38,7 @@ export class ScannerUtils {
     public constructor(
         private scanner: typeof scanRunner,
         private generateUID?: () => string,
-        private logger: Logger = createConsoleLogger(),
+        private logger: Logger = createDefaultLogger(),
     ) {}
 
     public scan(options: ScanOptions, callback: (results: ScanResults) => void): void {

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { createConsoleLogger } from '../../common/logging/console-logger';
+import { createDefaultLogger } from '../../common/logging/console-logger';
 import { Logger } from '../../common/logging/logger';
 import { IHtmlElementAxeResults } from '../scanner-utils';
 import { HTMLElementUtils } from './../../common/html-element-utils';
@@ -23,7 +23,7 @@ export interface IAssessmentVisualizationInstance extends AxeResultsWithFrameLev
 }
 
 export class HtmlElementAxeResultsHelper {
-    constructor(private htmlElementUtils: HTMLElementUtils, private logger: Logger = createConsoleLogger()) {}
+    constructor(private htmlElementUtils: HTMLElementUtils, private logger: Logger = createDefaultLogger()) {}
 
     public splitResultsByFrame(elementResults: AxeResultsWithFrameLevel[]): IFrameResult[] {
         const frameSelectorToResultsMap = this.getFrameSelectorToResultMap(elementResults);

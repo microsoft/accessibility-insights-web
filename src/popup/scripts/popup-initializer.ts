@@ -44,7 +44,7 @@ import { LaunchPadRowConfigurationFactory } from './launch-pad-row-configuration
 import { MainRenderer, MainRendererDeps } from './main-renderer';
 import { TargetTabFinder, TargetTabInfo } from './target-tab-finder';
 import { Logger } from '../../common/logging/logger';
-import { createConsoleLogger } from '../../common/logging/console-logger';
+import { createDefaultLogger } from '../../common/logging/console-logger';
 
 declare var window: AutoChecker & Window;
 
@@ -54,7 +54,7 @@ export class PopupInitializer {
     constructor(
         private readonly chromeAdapter: BrowserAdapter,
         private readonly targetTabFinder: TargetTabFinder,
-        private logger: Logger = createConsoleLogger(),
+        private logger: Logger = createDefaultLogger(),
     ) {}
 
     public initialize(): Promise<void> {

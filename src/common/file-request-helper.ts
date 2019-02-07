@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { XMLHttpRequestFactory } from '../background/xml-http-request-factory';
-import { createConsoleLogger } from './logging/console-logger';
+import { createDefaultLogger } from './logging/console-logger';
 import { Logger } from './logging/logger';
 
 export class FileRequestHelper {
     private static readonly timeoutInMilliSec = 10000;
 
-    constructor(private xmlHttpRequestFactory: XMLHttpRequestFactory, private logger: Logger = createConsoleLogger()) {}
+    constructor(private xmlHttpRequestFactory: XMLHttpRequestFactory, private logger: Logger = createDefaultLogger()) {}
 
     public getFileContent(url): Promise<string> {
         return new Promise((resolve, reject) => {

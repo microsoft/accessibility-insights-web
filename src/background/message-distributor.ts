@@ -6,7 +6,7 @@ import { ITab } from './../common/itab.d';
 import { BrowserAdapter } from './browser-adapter';
 import { GlobalContext } from './global-context';
 import { TabToContextMap } from './tab-context';
-import { createConsoleLogger } from '../common/logging/console-logger';
+import { createDefaultLogger } from '../common/logging/console-logger';
 import { Logger } from '../common/logging/logger';
 
 export interface Sender {
@@ -18,7 +18,7 @@ export class MessageDistributor {
         private globalContext: GlobalContext,
         private tabToContextMap: TabToContextMap,
         private browserAdapter: BrowserAdapter,
-        private logger: Logger = createConsoleLogger(),
+        private logger: Logger = createDefaultLogger(),
     ) {}
 
     public initialize(): void {

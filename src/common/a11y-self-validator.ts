@@ -5,7 +5,7 @@ import { autobind } from '@uifabric/utilities';
 import { ScannerUtils } from '../injected/scanner-utils';
 import { ScanResults } from '../scanner/iruleresults';
 import { HTMLElementUtils } from './html-element-utils';
-import { createConsoleLogger } from './logging/console-logger';
+import { createDefaultLogger } from './logging/console-logger';
 import { Logger } from './logging/logger';
 
 export interface LoggedRule {
@@ -23,7 +23,7 @@ export interface LoggedNode {
 }
 
 export class A11YSelfValidator {
-    constructor(private scannerUtils: ScannerUtils, private docUtils: HTMLElementUtils, private logger: Logger = createConsoleLogger()) {}
+    constructor(private scannerUtils: ScannerUtils, private docUtils: HTMLElementUtils, private logger: Logger = createDefaultLogger()) {}
 
     public validate(): void {
         this.scannerUtils.scan(null, this.logAxeResults);
