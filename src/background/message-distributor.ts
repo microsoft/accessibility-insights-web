@@ -15,10 +15,10 @@ export interface Sender {
 
 export class MessageDistributor {
     constructor(
-        private globalContext: GlobalContext,
-        private tabToContextMap: TabToContextMap,
-        private browserAdapter: BrowserAdapter,
-        private logger: Logger = createDefaultLogger(),
+        private readonly globalContext: GlobalContext,
+        private readonly tabToContextMap: TabToContextMap,
+        private readonly browserAdapter: BrowserAdapter,
+        private readonly logger: Logger = createDefaultLogger(),
     ) {}
 
     public initialize(): void {
