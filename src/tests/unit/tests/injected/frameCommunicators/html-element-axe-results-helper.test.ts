@@ -1,7 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, Mock } from 'typemoq';
+import { IMock, Mock, MockBehavior } from 'typemoq';
 
+import { createConsoleLogger } from '../../../../../common/logging/console-logger';
+import { Logger } from '../../../../../common/logging/logger';
 import {
     AxeResultsWithFrameLevel,
     HtmlElementAxeResultsHelper,
@@ -15,7 +17,8 @@ describe('HtmlElementAxeResultsHelperTest', () => {
 
     beforeEach(() => {
         mockDocumentElementUtils = Mock.ofType(HTMLElementUtils);
-        testSubject = new HtmlElementAxeResultsHelper(mockDocumentElementUtils.object);
+        const loggerMock = Mock.ofInstance<Logger>(createConsoleLogger(), MockBehavior.Loose);
+        testSubject = new HtmlElementAxeResultsHelper(mockDocumentElementUtils.object, loggerMock.object);
     });
 
     test('splitResultsByFrame_ShouldIncludeResultsForMissingFrames', () => {
