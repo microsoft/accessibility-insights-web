@@ -129,7 +129,7 @@ $outcome-fail-summary-color: $negative-outcome;
             bottom: -1px;
             margin-right: 6px;
             margin-left: 5px;
-            color: $outcome-incomplete-summary-text;
+            border-color: $outcome-incomplete-summary-text;
         }
         background-color: $outcome-incomplete-summary-background;
         color: $outcome-incomplete-summary-text;
