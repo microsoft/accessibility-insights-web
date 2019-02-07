@@ -60,6 +60,7 @@
     --positive-outcome: #107c10;
     --negative-outcome: #e81123;
     --neutral-outcome: var(--neutral-60);
+    --incomplete-color: var(--neutral-60);
 
     // Landmark colors
     --landmark-contentinfo: #00cc00;
@@ -96,6 +97,7 @@
         --positive-outcome: #4ac94a;
         --negative-outcome: #fc7ab1;
         --neutral-outcome: var(--neutral-0);
+        --incomplete-color: var(--neutral-100);
 
         // used for many links
         --communication-shade-10: #ffff00;
@@ -171,6 +173,7 @@ $neutral-alpha-80: var(--neutral-alpha-80);
 $positive-outcome: var(--positive-outcome);
 $negative-outcome: var(--negative-outcome);
 $neutral-outcome: var(--neutral-outcome);
+$incomplete-color: var(--incomplete-color);
 
 // Landmark colors
 $landmark-contentinfo: var(--landmark-contentinfo);
@@ -186,3 +189,6 @@ $landmark-form: var(--landmark-form);
 $accent2-dark: var(--accent2-dark);
 $ada-blue-variant: var(--ada-blue-variant);
 $communication-alpha-5: var(--communication-alpha-5);
+
+// consistent colors
+$white: #ffffff;

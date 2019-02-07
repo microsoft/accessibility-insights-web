@@ -13,8 +13,9 @@
 
 $outcome-pass-color: $positive-outcome;
 $outcome-pass-summary-color: $positive-outcome;
-$outcome-incomplete-color: $neutral-outcome;
-$outcome-incomplete-summary-color: $neutral-outcome;
+$outcome-incomplete-color: $incomplete-color;
+$outcome-incomplete-summary-background: $neutral-outcome;
+$outcome-incomplete-summary-text: $white;
 $outcome-fail-color: $negative-outcome;
 $outcome-fail-summary-color: $negative-outcome;
 @mixin outcome-chip-color($outcome-color) {
@@ -128,9 +129,10 @@ $outcome-fail-summary-color: $negative-outcome;
             bottom: -1px;
             margin-right: 6px;
             margin-left: 5px;
+            color: $outcome-incomplete-summary-text;
         }
-        background-color: $outcome-incomplete-summary-color;
-        color: $neutral-100;
+        background-color: $outcome-incomplete-summary-background;
+        color: $outcome-incomplete-summary-text;
         margin-left: 5px;
         margin-right: 5px;
     }
