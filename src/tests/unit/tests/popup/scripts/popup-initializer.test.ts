@@ -5,6 +5,7 @@ import { It, Mock } from 'typemoq';
 import { ChromeAdapter } from '../../../../../background/browser-adapter';
 import { PopupInitializer } from '../../../../../popup/scripts/popup-initializer';
 import { TargetTabFinder, TargetTabInfo } from '../../../../../popup/scripts/target-tab-finder';
+import { Logger } from '../../../../../common/logging/logger';
 
 describe('PopupInitializerTests', () => {
     test('initializePopup', async () => {
@@ -25,7 +26,8 @@ describe('PopupInitializerTests', () => {
 
         const initializePopupMock = Mock.ofInstance(result => {});
         initializePopupMock.setup(i => i(It.isAny())).verifiable();
-        const testSubject: PopupInitializer = new PopupInitializer(browserAdapterMock.object, targetTabFinder.object);
+        const loggerMock = Mock.ofType<Logger>();
+        const testSubject: PopupInitializer = new PopupInitializer(browserAdapterMock.object, targetTabFinder.object, loggerMock.object);
         (testSubject as any).initializePopup = initializePopupMock.object;
 
         await testSubject.initialize();
