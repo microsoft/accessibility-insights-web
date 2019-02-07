@@ -6,7 +6,7 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: add
     Add a failure instance
   </CustomizedActionButton>
   <GenericPanel isOpen={false} className=\\"failure-instance-panel\\" onDismiss={[Function: bound ]} title=\\"Add a failure instance\\" hasCloseButton={false} closeButtonAriaLabel={{...}}>
-    <StyledTextFieldBase label=\\"Observed failure\\" multiline={true} rows={8} value=\\"\\" onChange={[Function: bound ]} />
+    <StyledTextFieldBase label=\\"Observed failure\\" multiline={true} rows={8} value=\\"\\" onChange={[Function: bound ]} resizable={false} />
     <ActionAndCancelButtonsComponent isHidden={false} primaryButtonDisabled={true} primaryButtonText=\\"Add\\" primaryButtonOnClick={[Function: bound ]} cancelButtonOnClick={[Function: bound ]} />
   </GenericPanel>
 </Fragment>"
@@ -18,7 +18,7 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edi
     <StyledIconBase iconName=\\"edit\\" ariaLabel=\\"edit instance\\" />
   </StyledLinkBase>
   <GenericPanel isOpen={false} className=\\"failure-instance-panel\\" onDismiss={[Function: bound ]} title=\\"Edit failure instance\\" hasCloseButton={false} closeButtonAriaLabel={{...}}>
-    <StyledTextFieldBase label=\\"Observed failure\\" multiline={true} rows={8} value=\\"\\" onChange={[Function: bound ]} />
+    <StyledTextFieldBase label=\\"Observed failure\\" multiline={true} rows={8} value=\\"\\" onChange={[Function: bound ]} resizable={false} />
     <ActionAndCancelButtonsComponent isHidden={false} primaryButtonDisabled={true} primaryButtonText=\\"Save\\" primaryButtonOnClick={[Function: bound ]} cancelButtonOnClick={[Function: bound ]} />
   </GenericPanel>
 </Fragment>"
