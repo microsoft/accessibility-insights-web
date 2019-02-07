@@ -167,8 +167,9 @@ describe('GlobalActionCreatorTest', () => {
             isFirstTime: false,
             enableHighContrast: false,
         };
+        const args = [payload];
         const validator = new GlobalActionCreatorValidator()
-            .setupRegistrationCallback(Messages.UserConfig.SetTelemetryConfig)
+            .setupRegistrationCallback(Messages.UserConfig.SetTelemetryConfig, args)
             .setupActionsOnUserConfig('setTelemetryState')
             .setupUserConfigActionWithInvokeParameter('setTelemetryState', payload);
 
@@ -184,8 +185,9 @@ describe('GlobalActionCreatorTest', () => {
             isFirstTime: false,
             enableHighContrast: true,
         };
+        const args = [payload];
         const validator = new GlobalActionCreatorValidator()
-            .setupRegistrationCallback(Messages.UserConfig.SetHighContrastConfig)
+            .setupRegistrationCallback(Messages.UserConfig.SetHighContrastConfig, args)
             .setupActionsOnUserConfig('setHighContrastMode')
             .setupUserConfigActionWithInvokeParameter('setHighContrastMode', payload);
 
