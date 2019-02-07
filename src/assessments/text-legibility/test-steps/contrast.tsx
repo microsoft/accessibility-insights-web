@@ -32,7 +32,7 @@ const contrastHowToTest: JSX.Element = (
             </li>
             <li>
                 Use <NewTabLink href="https://aka.ms/k4d">{windowsPlatformTitle}</NewTabLink> to test the contrast at that area. (If you are
-                testing on a Mac, you can use the
+                testing on a Mac, you can use the{' '}
                 <NewTabLink href="https://developer.paciellogroup.com/resources/contrastanalyser/">Colour Contrast Analyser</NewTabLink>.)
             </li>
             <li>
