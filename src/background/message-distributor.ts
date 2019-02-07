@@ -6,41 +6,38 @@ import { ITab } from './../common/itab.d';
 import { BrowserAdapter } from './browser-adapter';
 import { GlobalContext } from './global-context';
 import { TabToContextMap } from './tab-context';
-import { TabContextBroadcaster } from './tab-context-broadcaster';
+import { createConsoleLogger } from '../common/logging/console-logger';
+import { Logger } from '../common/logging/logger';
 
-export interface ISender {
+export interface Sender {
     tab?: ITab;
 }
 
 export class MessageDistributor {
-    private readonly _tabtoContextMap: TabToContextMap;
-    private readonly _globalContext: GlobalContext;
-    private readonly _broadcaster: TabContextBroadcaster;
-    private _browserAdapter: BrowserAdapter;
+    constructor(
+        private globalContext: GlobalContext,
+        private tabToContextMap: TabToContextMap,
+        private browserAdapter: BrowserAdapter,
+        private logger: Logger = createConsoleLogger(),
+    ) {}
 
-    constructor(globalContext: GlobalContext, tabIdToContextMap: TabToContextMap, browserAdapter: BrowserAdapter) {
-        this._globalContext = globalContext;
-        this._tabtoContextMap = tabIdToContextMap;
-        this._browserAdapter = browserAdapter;
-    }
-
-    public initialize() {
-        this._browserAdapter.addListenerOnMessage(this.distributeMessage);
+    public initialize(): void {
+        this.browserAdapter.addListenerOnMessage(this.distributeMessage);
     }
 
     @autobind
-    private distributeMessage(message: IMessage, sender?: ISender) {
+    private distributeMessage(message: IMessage, sender?: Sender) {
         message.tabId = this.getTabId(message, sender);
 
-        const isInterpretedUsingGlobalContext = this._globalContext.interpreter.interpret(message);
+        const isInterpretedUsingGlobalContext = this.globalContext.interpreter.interpret(message);
         const isInterpretedUsingTabContext = this.tryInterpretUsingTabContext(message);
 
         if (!isInterpretedUsingGlobalContext && !isInterpretedUsingTabContext) {
-            console.log('Unable to interpret message - ', message);
+            this.logger.log('Unable to interpret message - ', message);
         }
     }
 
-    private getTabId(message: IMessage, sender?: ISender): number {
+    private getTabId(message: IMessage, sender?: Sender): number {
         if (message != null && message.tabId != null) {
             return message.tabId;
         } else if (sender != null && sender.tab != null && sender.tab.id != null) {
@@ -52,11 +49,12 @@ export class MessageDistributor {
 
     private tryInterpretUsingTabContext(message: IMessage) {
         let hasInterpreted: boolean;
-        const tabContext = this._tabtoContextMap[message.tabId];
+        const tabContext = this.tabToContextMap[message.tabId];
 
         if (tabContext != null) {
             hasInterpreted = tabContext.interpreter.interpret(message);
         }
+
         return hasInterpreted;
     }
 }

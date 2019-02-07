@@ -1,33 +1,42 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Mock, Times } from 'typemoq';
+import { IMock, It, Mock, Times, MockBehavior } from 'typemoq';
 
-import { ChromeAdapter } from '../../../../background/browser-adapter';
+import { BrowserAdapter } from '../../../../background/browser-adapter';
 import { GlobalContext } from '../../../../background/global-context';
 import { Interpreter } from '../../../../background/interpreter';
-import { ISender, MessageDistributor } from '../../../../background/message-distributor';
+import { MessageDistributor, Sender } from '../../../../background/message-distributor';
 import { TabContext, TabToContextMap } from '../../../../background/tab-context';
+import { Logger } from '../../../../common/logging/logger';
+import { createConsoleLogger } from '../../../../common/logging/console-logger';
 
 describe('MessageDistributorTest', () => {
-    let mockBrowserAdapter: IMock<ChromeAdapter>;
+    let mockBrowserAdapter: IMock<BrowserAdapter>;
     let testSubject: MessageDistributor;
     let tabToInterpreterMap: TabToContextMap;
     let globalContextMock: IMock<GlobalContext>;
     let globalInterpreter: Interpreter;
+    let consoleLoggerMock: IMock<Logger>;
 
-    let distributeMessageCallback: (message: any, sender?: ISender) => void;
+    let distributeMessageCallback: (message: any, sender?: Sender) => void;
 
-    beforeAll(() => {
-        mockBrowserAdapter = Mock.ofType(ChromeAdapter);
+    beforeEach(() => {
+        mockBrowserAdapter = Mock.ofType<BrowserAdapter>();
         tabToInterpreterMap = {};
-        mockBrowserAdapter.reset();
 
         globalContextMock = Mock.ofType(GlobalContext);
         globalContextMock.setup(x => x.interpreter).returns(() => globalInterpreter);
-        testSubject = new MessageDistributor(globalContextMock.object, tabToInterpreterMap, mockBrowserAdapter.object);
+
+        consoleLoggerMock = Mock.ofInstance<Logger>(createConsoleLogger(), MockBehavior.Loose);
+        testSubject = new MessageDistributor(
+            globalContextMock.object,
+            tabToInterpreterMap,
+            mockBrowserAdapter.object,
+            consoleLoggerMock.object,
+        );
 
         mockBrowserAdapter
-            .setup(x => x.addListenerOnMessage(It.isAny()))
+            .setup(adapter => adapter.addListenerOnMessage(It.isAny()))
             .callback(callback => {
                 distributeMessageCallback = callback;
             })
@@ -78,7 +87,7 @@ describe('MessageDistributorTest', () => {
 
         testSubject.initialize();
         const message = { payload: {} };
-        const sender: ISender = {};
+        const sender: Sender = {};
 
         distributeMessageCallback(message, sender);
 
@@ -96,7 +105,7 @@ describe('MessageDistributorTest', () => {
         tabToInterpreterMap[tabId] = new TabContext(tabContextInterpreterMock.object as any, null);
 
         testSubject.initialize();
-        const sender: ISender = { tab: { id: 1 } };
+        const sender: Sender = { tab: { id: 1 } };
 
         distributeMessageCallback(message, sender);
 
