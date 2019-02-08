@@ -7,7 +7,7 @@ exports[`HeaderTest render 1`] = `
       title
     </div>
   </div>
-  <div className=\\"ms-fontColor-neutralSecondary ms-fontWeight-semilight ms-fontSize-xs\\">
+  <div className=\\"header-subtitle ms-fontWeight-semilight ms-fontSize-xs\\">
     sub-title
   </div>
 </header>"
@@ -21,7 +21,7 @@ exports[`HeaderTest render with extraContent prop 1`] = `
       my content
     </div>
   </div>
-  <div className=\\"ms-fontColor-neutralSecondary ms-fontWeight-semilight ms-fontSize-xs\\" />
+  <div className=\\"header-subtitle ms-fontWeight-semilight ms-fontSize-xs\\" />
 </header>"
 `;
 
@@ -30,6 +30,6 @@ exports[`HeaderTest render with rowExtraClassName prop 1`] = `
   <div className=\\"ms-Grid-row extra-class\\">
     <div role=\\"heading\\" aria-level={1} className=\\"ms-Grid-col ms-u-sm10 ms-fontColor-neutralPrimary ms-font-xl old\\" />
   </div>
-  <div className=\\"ms-fontColor-neutralSecondary ms-fontWeight-semilight ms-fontSize-xs\\" />
+  <div className=\\"header-subtitle ms-fontWeight-semilight ms-fontSize-xs\\" />
 </header>"
 `;

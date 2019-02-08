@@ -35,11 +35,13 @@ div.insights-dialog-main-override.telemetry-permission-dialog {
     .start-using-product-button {
         border-radius: 2px;
     }
+
     .telemetry-checkbox-section {
         font-size: 12px;
         color: $secondary-text;
         padding-top: 10px;
     }
+
     .telemetry-agree-checkbox {
         padding-bottom: 4px;
     }
@@ -156,6 +158,10 @@ html {
 
 #popup-container .launch-panel-header .header-title {
     height: 32px;
+}
+
+#popup-container .launch-panel-header .header-subtitle {
+    color: $neutral-60;
 }
 
 #popup-container .launch-panel-header .feedback-collapseMenuButton-col {
@@ -329,7 +335,7 @@ button[disabled]:focus:not(.ms-ContextualMenu-link) {
             margin-bottom: 12px;
             margin-top: 12px;
 
-            div + div {
+            div+div {
                 margin-top: 1vh;
             }
 
