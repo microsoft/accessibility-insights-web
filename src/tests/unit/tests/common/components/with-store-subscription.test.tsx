@@ -26,7 +26,7 @@ describe('withStoreSubscription', () => {
         };
         const WrappedComp = withStoreSubscription<testProps, any>(testComp);
         const rendered = new WrappedComp(props);
-        expect(rendered.state).toBeUndefined();
+        expect(rendered.state).toEqual({});
     });
 
     test('constructor: set the state using data returned from storesHub', () => {
