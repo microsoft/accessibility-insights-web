@@ -15,7 +15,7 @@ $outcome-pass-color: $positive-outcome;
 $outcome-pass-summary-color: $positive-outcome;
 $outcome-incomplete-border-color: $incomplete-color;
 $outcome-incomplete-summary-background: $neutral-outcome;
-$outcome-incomplete-summary-consistent-foreground: $white;
+$outcome-incomplete-summary-consistent-foreground: $always-white;
 $outcome-fail-color: $negative-outcome;
 $outcome-fail-summary-color: $negative-outcome;
 @mixin outcome-chip-color($outcome-color) {
