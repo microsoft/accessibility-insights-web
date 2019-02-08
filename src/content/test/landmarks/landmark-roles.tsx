@@ -15,8 +15,8 @@ export const infoAndExamples = create(({ Markup, Link }) => (
 
         <h2>How to fix</h2>
         <p>
-            Use the <a href="https://www.w3.org/TR/wai-aria-practices-1.1/#landmark-roles">landmark role</a> that best describes the
-            content.
+            Use the <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-practices-1.1/#landmark-roles">landmark role</Markup.HyperLink>{' '}
+            that best describes the content.
         </p>
 
         <h2>Example</h2>
