@@ -41,9 +41,16 @@ export interface BrowserAdapter extends ClientBrowserAdapter {
     addCommandListener(callback: (command: string) => void): void;
     getCommands(callback: (commands: chrome.commands.Command[]) => void): void;
     createPopupWindow(url: string, callback: (window: chrome.windows.Window) => void): void;
+    openExtensionPage(): void;
 }
 
 export class ChromeAdapter extends ClientChromeAdapter implements BrowserAdapter {
+    public openExtensionPage(): void {
+        chrome.tabs.create({
+            url: `chrome://extensions/?id=${chrome.runtime.id}`,
+        });
+    }
+
     public getAllWindows(getInfo: chrome.windows.GetInfo, callback: (chromeWindows: chrome.windows.Window[]) => void): void {
         chrome.windows.getAll(getInfo, callback);
     }

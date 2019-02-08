@@ -3,15 +3,12 @@
 import { autobind } from '@uifabric/utilities';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
-
 import { BrowserAdapter } from '../../../background/browser-adapter';
 import { NewTabLink } from '../../../common/components/new-tab-link';
 import { withStoreSubscription, WithStoreSubscriptionDeps } from '../../../common/components/with-store-subscription';
 import { DisplayableStrings } from '../../../common/constants/displayable-strings';
 import { DropdownClickHandler } from '../../../common/dropdown-click-handler';
 import { FeatureFlags } from '../../../common/feature-flags';
-import { IStoreActionMessageCreator } from '../../../common/message-creators/istore-action-message-creator';
-import { IClientStoresHub } from '../../../common/stores/iclient-stores-hub';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
 import { ICommandStoreData } from '../../../common/types/store-data/icommand-store-data';
 import { ILaunchPanelStoreData } from '../../../common/types/store-data/ilaunch-panel-store-data';
@@ -205,13 +202,13 @@ export class PopupView extends React.Component<PopupViewProps> {
                     <div className="launch-panel-general-container">{DisplayableStrings.fileUrlDoesNotHaveAccess}</div>
                     <div>
                         <div>To allow this extension to run on file URLs:</div>
-                        <div>1. Go to chrome://extensions.</div>
                         <div>
-                            {'2. Find '}
-                            <span className="ms-fontWeight-semibold">{this.props.title}</span>.
+                            {'1. Open '}
+                            <NewTabLink onClick={this.props.browserAdapter.openExtensionPage}>{this.props.title}</NewTabLink>
+                            {' extension page'}
                         </div>
                         <div>
-                            {'3. Check '}
+                            {'2. Check '}
                             <span className="ms-fontWeight-semibold">Allow Access to file URLs</span>.
                         </div>
                     </div>

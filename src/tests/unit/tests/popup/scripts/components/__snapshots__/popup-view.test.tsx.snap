@@ -91,19 +91,16 @@ exports[`PopupView renderFailureMsgPanelForFileUrl 1`] = `
         To allow this extension to run on file URLs:
       </div>
       <div>
-        1. Go to chrome://extensions.
-      </div>
-      <div>
-        2. Find 
-        <span
-          className="ms-fontWeight-semibold"
+        1. Open 
+        <NewTabLink
+          onClick={[Function]}
         >
           test title
-        </span>
-        .
+        </NewTabLink>
+         extension page
       </div>
       <div>
-        3. Check 
+        2. Check 
         <span
           className="ms-fontWeight-semibold"
         >
