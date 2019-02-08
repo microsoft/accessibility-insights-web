@@ -13,7 +13,7 @@ import { FeatureFlags } from '../feature-flags';
 
 export interface ThemeInnerState {
     userConfigurationStoreData: UserConfigurationStoreData;
-    featureFlagState: FeatureFlagStoreData;
+    featureFlagStoreData: FeatureFlagStoreData;
 }
 export type ThemeInnerProps = {
     deps: ThemeDeps;
@@ -45,10 +45,15 @@ export class ThemeInner extends React.Component<ThemeInnerProps> {
     }
 
     private isHighContrastEnabled(props: ThemeInnerProps): boolean {
-        const state = props.storeState.userConfigurationStoreData;
-        const isFeatureFlagEnabled = props.storeState.featureFlagState[FeatureFlags.highContrastMode];
-        console.log({ isFeatureFlagEnabled });
-        return state && state.enableHighContrast;
+        const { storeState } = props;
+        const { userConfigurationStoreData, featureFlagStoreData } = storeState;
+
+        const enableHighContrastFlag = storeState && userConfigurationStoreData && userConfigurationStoreData.enableHighContrast;
+        const isPreviewFeatureForContrastEnabled =
+            storeState && featureFlagStoreData && featureFlagStoreData[FeatureFlags.highContrastMode];
+
+        console.log({ enableHighContrastFlag, isPreviewFeatureForContrastEnabled });
+        return enableHighContrastFlag && isPreviewFeatureForContrastEnabled;
     }
 }
 

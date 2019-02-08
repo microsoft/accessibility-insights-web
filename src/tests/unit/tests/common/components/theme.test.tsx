@@ -6,6 +6,7 @@ import * as React from 'react';
 import { ThemeDeps, ThemeInner, ThemeInnerProps } from '../../../../../common/components/theme';
 import { DefaultThemePalette } from '../../../../../common/styles/default-theme-palette';
 import { HighContrastThemePalette } from '../../../../../common/styles/high-contrast-theme-palette';
+import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 
 describe('ThemeInner', () => {
     let props: ThemeInnerProps;
@@ -22,20 +23,37 @@ describe('ThemeInner', () => {
                 userConfigurationStoreData: {
                     enableHighContrast: null,
                 },
+                featureFlagStoreData: {
+                    highContrastMode: true,
+                } as FeatureFlagStoreData,
             },
         } as ThemeInnerProps;
     });
 
-    test.each([true, false])('is high contrast mode enabled: %s', (enableHighContrast: boolean) => {
+    // trying to form 2^2 combinations
+    const testStub = [
+        { enableHighContrast: true, highContrastMode: true },
+        { enableHighContrast: true, highContrastMode: false },
+        { enableHighContrast: false, highContrastMode: true },
+        { enableHighContrast: false, highContrastMode: false },
+    ];
+
+    test.each(testStub)('is high contrast mode enabled: %p', ({ enableHighContrast, highContrastMode }) => {
         props.storeState.userConfigurationStoreData.enableHighContrast = enableHighContrast;
+        props.storeState.featureFlagStoreData.highContrastMode = highContrastMode;
         const wrapper = shallow(<ThemeInner {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    test.each([true, false])('componentDidUpdate: is high contrast mode enabled: %s', (enableHighContrast: boolean) => {
-        const theme = enableHighContrast ? HighContrastThemePalette : DefaultThemePalette;
+    test.each(testStub)('componentDidUpdate: is high contrast mode enabled: %p', ({ enableHighContrast, highContrastMode }) => {
+        const theme = enableHighContrast && highContrastMode ? HighContrastThemePalette : DefaultThemePalette;
         const wrapper = shallow(<ThemeInner {...props} />);
-        wrapper.setProps({ storeState: { userConfigurationStoreData: { enableHighContrast } } });
+        wrapper.setProps({
+            storeState: {
+                userConfigurationStoreData: { enableHighContrast },
+                featureFlagStoreData: { highContrastMode },
+            },
+        });
         expect(loadThemeMock).toBeCalledWith(theme);
     });
 
