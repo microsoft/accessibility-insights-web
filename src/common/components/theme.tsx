@@ -8,12 +8,9 @@ import { DefaultThemePalette } from '../styles/default-theme-palette';
 import { HighContrastThemePalette } from '../styles/high-contrast-theme-palette';
 import { UserConfigurationStoreData } from '../types/store-data/user-configuration-store';
 import { withStoreSubscription, WithStoreSubscriptionDeps } from './with-store-subscription';
-import { FeatureFlagStoreData } from '../types/store-data/feature-flag-store-data';
-import { FeatureFlags } from '../feature-flags';
 
 export interface ThemeInnerState {
     userConfigurationStoreData: UserConfigurationStoreData;
-    featureFlagStoreData: FeatureFlagStoreData;
 }
 export type ThemeInnerProps = {
     deps: ThemeDeps;
@@ -46,13 +43,11 @@ export class ThemeInner extends React.Component<ThemeInnerProps> {
 
     private isHighContrastEnabled(props: ThemeInnerProps): boolean {
         const { storeState } = props;
-        const { userConfigurationStoreData, featureFlagStoreData } = storeState;
+        const { userConfigurationStoreData } = storeState;
 
         const enableHighContrastFlag = storeState && userConfigurationStoreData && userConfigurationStoreData.enableHighContrast;
-        const isPreviewFeatureForContrastEnabled =
-            storeState && featureFlagStoreData && featureFlagStoreData[FeatureFlags.highContrastMode];
 
-        return enableHighContrastFlag && isPreviewFeatureForContrastEnabled;
+        return enableHighContrastFlag;
     }
 }
 
