@@ -3,7 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { FlaggedComponent, IFlaggedComponentProps } from '../../../../../common/components/flagged-component';
+import { FlaggedComponent, FlaggedComponentProps } from '../../../../../common/components/flagged-component';
 import { FeatureFlags } from '../../../../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 
@@ -17,7 +17,7 @@ describe('FlaggedComponentTest', () => {
         const featureFlagStoreData: FeatureFlagStoreData = {};
         featureFlagStoreData[flagName] = true;
 
-        const props: IFlaggedComponentProps = {
+        const props: FlaggedComponentProps = {
             featureFlagStoreData: featureFlagStoreData,
             featureFlag: flagName,
             enableJSXElement: jsxElement,
@@ -34,7 +34,7 @@ describe('FlaggedComponentTest', () => {
         const featureFlagStoreData: FeatureFlagStoreData = {};
         featureFlagStoreData[flagName] = false;
 
-        const props: IFlaggedComponentProps = {
+        const props: FlaggedComponentProps = {
             featureFlagStoreData: featureFlagStoreData,
             featureFlag: FeatureFlags[flagName],
             enableJSXElement: null,
@@ -49,7 +49,7 @@ describe('FlaggedComponentTest', () => {
     });
 
     test('render for feature disable with no disableJSXElement', () => {
-        const props: IFlaggedComponentProps = {
+        const props: FlaggedComponentProps = {
             featureFlagStoreData: null,
             featureFlag: FeatureFlags[flagName],
             enableJSXElement: jsxElement,

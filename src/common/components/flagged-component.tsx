@@ -4,14 +4,14 @@ import * as React from 'react';
 
 import { FeatureFlagStoreData } from '../types/store-data/feature-flag-store-data';
 
-export interface IFlaggedComponentProps {
+export interface FlaggedComponentProps {
     featureFlagStoreData: FeatureFlagStoreData;
     featureFlag: string;
     enableJSXElement: JSX.Element;
     disableJSXElement?: JSX.Element;
 }
 
-export class FlaggedComponent extends React.Component<IFlaggedComponentProps> {
+export class FlaggedComponent extends React.Component<FlaggedComponentProps> {
     public render(): JSX.Element {
         const flagName = this.props.featureFlag;
 
