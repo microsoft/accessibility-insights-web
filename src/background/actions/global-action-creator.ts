@@ -4,14 +4,20 @@ import { autobind } from '@uifabric/utilities';
 
 import { Messages } from '../../common/messages';
 import * as TelemetryEvents from '../../common/telemetry-events';
-import { FeatureFlagActions } from './feature-flag-actions';
-import { GlobalActionHub } from './global-action-hub';
-import { LaunchPanelStateActions } from './launch-panel-state-action';
 import { BrowserAdapter } from '../browser-adapter';
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
-import { PayloadWithEventName, SetLaunchPanelState, SetTelemetryStatePayload, SetHighContrastModePayload } from './action-payloads';
+import {
+    PayloadWithEventName,
+    SetBugServicePayload,
+    SetHighContrastModePayload,
+    SetLaunchPanelState,
+    SetTelemetryStatePayload,
+} from './action-payloads';
 import { CommandActions, IGetCommandsPayload } from './command-actions';
+import { FeatureFlagActions } from './feature-flag-actions';
+import { GlobalActionHub } from './global-action-hub';
+import { LaunchPanelStateActions } from './launch-panel-state-action';
 import { ScopingActions } from './scoping-actions';
 import { UserConfigurationActions } from './user-configuration-actions';
 
@@ -60,6 +66,7 @@ export class GlobalActionCreator {
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.GetCurrentState, this.onGetUserConfigState);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetTelemetryConfig, this.onSetTelemetryConfiguration);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetHighContrastConfig, this.onSetHighContrastMode);
+        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetBugServiceConfig, this.onSetBugService);
     }
 
     @autobind
@@ -133,5 +140,10 @@ export class GlobalActionCreator {
     @autobind
     private onSetHighContrastMode(payload: SetHighContrastModePayload): void {
         this.userConfigActions.setHighContrastMode.invoke(payload);
+    }
+
+    @autobind
+    private onSetBugService(payload: SetBugServicePayload): void {
+        this.userConfigActions.setBugService.invoke(payload);
     }
 }
