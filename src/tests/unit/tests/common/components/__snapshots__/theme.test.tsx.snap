@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ThemeInner is high contrast mode enabled: {"enableHighContrast": false, "highContrastMode": false} 1`] = `
+exports[`ThemeInner  is high contrast mode enabled: false 1`] = `
 <HelmetWrapper
   defer={true}
   encodeSpecialCharacters={true}
@@ -11,29 +11,7 @@ exports[`ThemeInner is high contrast mode enabled: {"enableHighContrast": false,
 </HelmetWrapper>
 `;
 
-exports[`ThemeInner is high contrast mode enabled: {"enableHighContrast": false, "highContrastMode": true} 1`] = `
-<HelmetWrapper
-  defer={true}
-  encodeSpecialCharacters={true}
->
-  <body
-    className="theme-switcher"
-  />
-</HelmetWrapper>
-`;
-
-exports[`ThemeInner is high contrast mode enabled: {"enableHighContrast": true, "highContrastMode": false} 1`] = `
-<HelmetWrapper
-  defer={true}
-  encodeSpecialCharacters={true}
->
-  <body
-    className="theme-switcher"
-  />
-</HelmetWrapper>
-`;
-
-exports[`ThemeInner is high contrast mode enabled: {"enableHighContrast": true, "highContrastMode": true} 1`] = `
+exports[`ThemeInner  is high contrast mode enabled: true 1`] = `
 <HelmetWrapper
   defer={true}
   encodeSpecialCharacters={true}
