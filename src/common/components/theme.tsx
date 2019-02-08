@@ -52,7 +52,6 @@ export class ThemeInner extends React.Component<ThemeInnerProps> {
         const isPreviewFeatureForContrastEnabled =
             storeState && featureFlagStoreData && featureFlagStoreData[FeatureFlags.highContrastMode];
 
-        console.log({ enableHighContrastFlag, isPreviewFeatureForContrastEnabled });
         return enableHighContrastFlag && isPreviewFeatureForContrastEnabled;
     }
 }
