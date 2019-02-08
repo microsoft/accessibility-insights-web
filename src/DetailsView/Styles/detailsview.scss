@@ -229,7 +229,8 @@ div.insights-dialog-main-override {
         .ms-Button-label {
             color: $black !important;
         }
-        .overview-percent {
+        .overview-percent,
+        .dark-gray {
             color: $overview-percent-selected !important;
         }
     }
