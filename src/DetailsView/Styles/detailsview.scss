@@ -227,7 +227,11 @@ div.insights-dialog-main-override {
         background-color: $communication-tint-40 !important;
         border-left: $pivotItemLeftBorderWidth $pivotItemBorderStyle $communication-primary;
         .ms-Button-label {
-            color: $neutral-100 !important;
+            color: $black !important;
+        }
+        .overview-percent,
+        .dark-gray {
+            color: $overview-percent-selected !important;
         }
     }
     .ms-DetailsRow,
@@ -672,7 +676,7 @@ div.insights-dialog-main-override {
                 line-height: 20px;
             }
             .overview-percent {
-                color: #6e6e6e;
+                color: $neutral-55;
                 line-height: 16px;
                 font-size: 12px;
             }
@@ -729,11 +733,11 @@ div.insights-dialog-main-override {
                         border-left: 0px;
                     }
                     .ms-Button-label {
-                        color: $communication-shade-20;
+                        color: $black;
                     }
                     .index-circle {
                         color: $neutral-0;
-                        background: $communication-shade-10;
+                        background: $index-circle-background;
                         border-color: $neutral-0;
                     }
                 }
@@ -1258,7 +1262,7 @@ div.insights-dialog-main-override {
                                 padding-bottom: 2%;
                             }
                             .overview-heading-content {
-                                color: $neutral-outcome;
+                                color: $incomplete-color;
                             }
                         }
                         .assessment-report-summary {
