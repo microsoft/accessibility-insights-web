@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FeatureFlags, IFeatureFlagDetail } from '../../../../../common/feature-flags';
+import { FeatureFlags, FeatureFlagDetail } from '../../../../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 import { PreviewFeatureFlagsHandler } from '../../../../../DetailsView/handlers/preview-feature-flags-handler';
 
@@ -67,7 +67,7 @@ describe('PreviewFeatureFlagHandlerTest', () => {
         };
     }
 
-    function getTestFlagDetails(): IFeatureFlagDetail[] {
+    function getTestFlagDetails(): FeatureFlagDetail[] {
         return [
             {
                 id: 'trueFlag',
