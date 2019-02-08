@@ -9,7 +9,7 @@ import { TestStep } from '../../types/test-step';
 import { TimedEventsTestStep } from './test-steps';
 
 const description: JSX.Element = (
-    <span>If audio content plays automatically for longer than 3 seconds, users must be able to pause or mute it.</span>
+    <span>If audio content plays automatically for longer than three seconds, users must be able to pause or mute it.</span>
 );
 
 const howToTest: JSX.Element = (

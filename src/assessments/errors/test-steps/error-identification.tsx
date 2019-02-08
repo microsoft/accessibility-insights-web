@@ -9,7 +9,7 @@ import { TestStep } from '../../types/test-step';
 import { ErrorsTestStep } from './test-steps';
 
 const description: JSX.Element = (
-    <span>If an input error is automatically detected, the item in error must be identified, and the error described, in text</span>
+    <span>If an input error is automatically detected, the item in error must be identified, and the error described, in text.</span>
 );
 
 const howToTest: JSX.Element = (

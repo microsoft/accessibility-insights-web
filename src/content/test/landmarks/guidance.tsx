@@ -21,7 +21,7 @@ export const guidance = create(({ Markup, Link }) => (
             </Markup.HyperLink>
         </p>
         <p>
-            See <Link.BingBakery>this fun video</Link.BingBakery> to learn how landmarks, headings, and tab stops work together to provide
+            See <Link.BingoBakery>this fun video</Link.BingoBakery> to learn how landmarks, headings, and tab stops work together to provide
             efficient navigation.
         </p>
 
