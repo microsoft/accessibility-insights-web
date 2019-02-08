@@ -66,7 +66,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
 
         actionMessageCreatorMock.setup(a => a.undoManualTestStatusChange).verifiable(Times.atLeastOnce());
 
-        const rows = testSubject.createAssessmentInstanceTableItems(instancesMap, assessmentNavState);
+        const rows = testSubject.createAssessmentInstanceTableItems(instancesMap, assessmentNavState, true);
         const choiceGroup: JSX.Element = (
             <TestStatusChoiceGroup
                 test={5}
@@ -168,9 +168,9 @@ describe('AssessmentInstanceTableHandlerTest', () => {
                 html: '',
             },
         };
-        configFactoryMock.setup(c => c.getColumnConfigs(navState, true)).verifiable(Times.once());
+        configFactoryMock.setup(c => c.getColumnConfigs(navState, true, true)).verifiable(Times.once());
 
-        testSubject.getColumnConfigs(instanceMap as IDictionaryStringTo<IGeneratedAssessmentInstance>, navState);
+        testSubject.getColumnConfigs(instanceMap as IDictionaryStringTo<IGeneratedAssessmentInstance>, navState, true);
 
         configFactoryMock.verifyAll();
     });

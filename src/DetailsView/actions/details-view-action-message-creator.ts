@@ -21,7 +21,7 @@ import {
     SwitchToTargetTabPayload,
     ToggleActionPayload,
 } from './../../background/actions/action-payloads';
-import { IFeatureFlagPayload } from './../../background/actions/feature-flag-actions';
+import { FeatureFlagPayload } from './../../background/actions/feature-flag-actions';
 import { TelemetryDataFactory } from './../../common/telemetry-data-factory';
 import * as TelemetryEvents from './../../common/telemetry-events';
 import { VisualizationType } from './../../common/types/visualization-type';
@@ -103,7 +103,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             TelemetryEvents.TelemetryEventSource.DetailsView,
             featureFlagId,
         );
-        const payload: IFeatureFlagPayload = {
+        const payload: FeatureFlagPayload = {
             feature: featureFlagId,
             enabled: enabled,
             telemetry: telemetry,

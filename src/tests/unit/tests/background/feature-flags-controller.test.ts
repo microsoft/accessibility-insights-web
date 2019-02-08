@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { IFeatureFlagPayload } from '../../../../background/actions/feature-flag-actions';
+import { FeatureFlagPayload } from '../../../../background/actions/feature-flag-actions';
 import { FeatureFlagsController } from '../../../../background/feature-flags-controller';
 import { Interpreter } from '../../../../background/interpreter';
 import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
@@ -40,7 +40,7 @@ describe('FeatureFlagsControllerTest', () => {
 
         expect(testObject.isEnabled(FeatureFlags.logTelemetryToConsole)).toBeFalsy();
         expect(testObject.isEnabled('testFeatureFlag')).toBeTruthy();
-        expect(testObject.isEnabled('dummy')).toBeFalsy();
+        expect(testObject.isEnabled('someRandomFlag')).toBeFalsy();
 
         featureFlagStoreMock.verifyAll();
     });
@@ -64,7 +64,7 @@ describe('FeatureFlagsControllerTest', () => {
 
     test('disableFeature', () => {
         const feature = FeatureFlags.logTelemetryToConsole;
-        const payload: IFeatureFlagPayload = {
+        const payload: FeatureFlagPayload = {
             feature: feature,
             enabled: false,
         };
@@ -83,7 +83,7 @@ describe('FeatureFlagsControllerTest', () => {
 
     test('enableFeature', () => {
         const feature = FeatureFlags.logTelemetryToConsole;
-        const payload: IFeatureFlagPayload = {
+        const payload: FeatureFlagPayload = {
             feature: feature,
             enabled: true,
         };

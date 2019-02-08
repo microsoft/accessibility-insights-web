@@ -2,9 +2,10 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { ClientChromeAdapter, ClientBrowserAdapter } from '../../../../common/client-browser-adapter';
+import { ClientBrowserAdapter, ClientChromeAdapter } from '../../../../common/client-browser-adapter';
 import { FileRequestHelper } from '../../../../common/file-request-helper';
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
+import { Logger } from '../../../../common/logging/logger';
 import { ShadowInitializer } from '../../../../injected/shadow-initializer';
 import { NodeListBuilder } from '../../common/node-list-builder';
 import { HtmlElementStubBuilder } from '../../stubs/html-element-stub-builder';
@@ -46,7 +47,8 @@ describe('ShadowInitializerTests', () => {
             .returns(() => cssFileUrl)
             .verifiable();
 
-        testSubject = new ShadowInitializer(chromeAdapter.object, docUtils.object, fileRequestHelperMock.object);
+        const loggerMock = Mock.ofType<Logger>();
+        testSubject = new ShadowInitializer(chromeAdapter.object, docUtils.object, fileRequestHelperMock.object, loggerMock.object);
     });
 
     afterEach(() => {

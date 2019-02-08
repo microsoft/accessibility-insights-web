@@ -17,6 +17,7 @@ import { ReportInstanceField } from '../../types/report-instance-field';
 import { getFlatDesignPatternStringFromRole } from '../custom-widgets-column-renderer';
 import { CustomWidgetsColumnRendererFactory } from '../custom-widgets-column-renderer-factory';
 import { CustomWidgetsTestStep } from './test-steps';
+import * as content from '../../../content/test/custom-widgets/design-pattern';
 
 const designPatternDescription: JSX.Element = (
     <span>A custom widget must have the appropriate ARIA widget role for its design pattern.</span>
@@ -46,6 +47,7 @@ export const DesignPattern: TestStep = {
     howToTest: designPatternHowToTest,
     isManual: false,
     guidanceLinks: [link.WCAG_4_1_2],
+    ...content,
     columnsConfig: [
         {
             key: 'design-pattern-info',

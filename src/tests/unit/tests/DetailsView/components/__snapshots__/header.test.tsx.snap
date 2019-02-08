@@ -2,7 +2,7 @@
 
 exports[`HeaderTest render header: new assessment experience disabled 1`] = `
 "<header className=\\"header-bar\\">
-  <img className=\\"header-icon\\" src=\\"../../icons/brand/white/brand-white-48px.png\\" alt=\\"\\" />
+  <class_1 deps={{...}} />
   <div className=\\"ms-font-m header-text\\">
     Accessibility Insights for Web
   </div>
@@ -12,7 +12,7 @@ exports[`HeaderTest render header: new assessment experience disabled 1`] = `
 
 exports[`HeaderTest render header: no feature flag store data 1`] = `
 "<header className=\\"header-bar\\">
-  <img className=\\"header-icon\\" src=\\"../../icons/brand/white/brand-white-48px.png\\" alt=\\"\\" />
+  <class_1 deps={{...}} />
   <div className=\\"ms-font-m header-text\\">
     Accessibility Insights for Web
   </div>
@@ -21,7 +21,7 @@ exports[`HeaderTest render header: no feature flag store data 1`] = `
 
 exports[`HeaderTest render header: tabClosed is false, new assessment experience enabled 1`] = `
 "<header className=\\"header-bar\\">
-  <img className=\\"header-icon\\" src=\\"../../icons/brand/white/brand-white-48px.png\\" alt=\\"\\" />
+  <class_1 deps={{...}} />
   <div className=\\"ms-font-m header-text\\">
     Accessibility Insights for Web
   </div>
@@ -32,7 +32,7 @@ exports[`HeaderTest render header: tabClosed is false, new assessment experience
 
 exports[`HeaderTest render header: target tabClosed is true, new assessment experience enabled 1`] = `
 "<header className=\\"header-bar\\">
-  <img className=\\"header-icon\\" src=\\"../../icons/brand/white/brand-white-48px.png\\" alt=\\"\\" />
+  <class_1 deps={{...}} />
   <div className=\\"ms-font-m header-text\\">
     Accessibility Insights for Web
   </div>

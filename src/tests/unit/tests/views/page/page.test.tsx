@@ -3,13 +3,13 @@
 import * as React from 'react';
 
 import { configMutator } from '../../../../../common/configuration';
-import { Page } from '../../../../../views/page/page';
+import { Page, PageDeps } from '../../../../../views/page/page';
 import { shallowRender } from '../../../common/shallow-render';
 
 configMutator.setOption('extensionFullName', 'EXTENSION_NAME');
 
 describe('page view', () => {
     it('renders', () => {
-        expect(shallowRender(<Page>INSIDE</Page>)).toMatchSnapshot();
+        expect(shallowRender(<Page deps={{} as PageDeps}>INSIDE</Page>)).toMatchSnapshot();
     });
 });

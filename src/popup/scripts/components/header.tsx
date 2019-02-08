@@ -5,7 +5,7 @@ import { css } from '@uifabric/utilities';
 
 export interface IHeaderProps {
     title: string;
-    subtitle: React.ReactChild;
+    subtitle?: React.ReactChild;
     rowExtraClassName?: string;
     extraContent?: JSX.Element;
 }

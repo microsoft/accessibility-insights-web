@@ -4,6 +4,7 @@ import * as Q from 'q';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { HTMLElementUtils } from '../../../../../common/html-element-utils';
+import { Logger } from '../../../../../common/logging/logger';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { FrameCommunicator, IMessageRequest } from '../../../../../injected/frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback, WindowMessageHandler } from '../../../../../injected/frameCommunicators/window-message-handler';
@@ -42,12 +43,14 @@ describe('FrameCommunicatorTests', () => {
         childFrame2Info = createFrameInfo(true);
         childFrameWithoutWindowInfo = createFrameInfo(false);
         mockQ = Mock.ofType(QStub) as any;
+        const loggerMock = Mock.ofType<Logger>();
 
         testSubject = new FrameCommunicator(
             mockWindowMessageHandler.object,
             mockHtmlElementUtils.object,
             mockWindowUtils.object,
             mockQ.object,
+            loggerMock.object,
         );
 
         mockHtmlElementUtils

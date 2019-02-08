@@ -7,7 +7,7 @@ import { autobind } from '@uifabric/utilities';
 import { FeatureFlags, getDefaultFeatureFlagValues, getForceDefaultFlags } from '../../../common/feature-flags';
 import { StoreNames } from '../../../common/stores/store-names';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
-import { FeatureFlagActions, IFeatureFlagPayload } from '../../actions/feature-flag-actions';
+import { FeatureFlagActions, FeatureFlagPayload } from '../../actions/feature-flag-actions';
 import { BaseStore } from '../base-store';
 import { BrowserAdapter } from './../../browser-adapter';
 
@@ -62,7 +62,7 @@ export class FeatureFlagStore extends BaseStore<FeatureFlagStoreData> {
     }
 
     @autobind
-    private onSetFeatureFlags(payload: IFeatureFlagPayload): void {
+    private onSetFeatureFlags(payload: FeatureFlagPayload): void {
         this.state[payload.feature] = payload.enabled;
         this.browserAdapter.setUserData({ [LocalStorageDataKeys.featureFlags]: this.state });
         this.emitChanged();

@@ -12,7 +12,7 @@ describe('AxeConfigurator', () => {
         it('should call axe.configure with expected config', () => {
             const testObject = new AxeConfigurator();
             const configureMock = Mock.ofInstance((config: Axe.Spec) => null, MockBehavior.Strict);
-            const dummyRules: RuleConfiguration[] = [
+            const rulesStub: RuleConfiguration[] = [
                 {
                     checks: [
                         {
@@ -78,7 +78,7 @@ describe('AxeConfigurator', () => {
                 configure: configureMock.object,
             };
 
-            testObject.configureAxe(axeStub as typeof Axe, dummyRules);
+            testObject.configureAxe(axeStub as typeof Axe, rulesStub);
             configureMock.verifyAll();
         });
     });

@@ -43,15 +43,19 @@ import { PopupViewControllerHandler } from './handlers/popup-view-controller-han
 import { LaunchPadRowConfigurationFactory } from './launch-pad-row-configuration-factory';
 import { MainRenderer, MainRendererDeps } from './main-renderer';
 import { TargetTabFinder, TargetTabInfo } from './target-tab-finder';
+import { Logger } from '../../common/logging/logger';
+import { createDefaultLogger } from '../../common/logging/default-logger';
 
 declare var window: AutoChecker & Window;
 
 export class PopupInitializer {
     private targetTabInfo: TargetTabInfo;
 
-    constructor(private readonly chromeAdapter: BrowserAdapter, private readonly targetTabFinder: TargetTabFinder) {
-        this.chromeAdapter = chromeAdapter;
-    }
+    constructor(
+        private readonly chromeAdapter: BrowserAdapter,
+        private readonly targetTabFinder: TargetTabFinder,
+        private logger: Logger = createDefaultLogger(),
+    ) {}
 
     public initialize(): Promise<void> {
         return this.targetTabFinder
@@ -60,7 +64,7 @@ export class PopupInitializer {
                 this.targetTabInfo = tabInfo;
             })
             .then(this.initializePopup, err => {
-                console.log('Error occurred at popup initialization:', err);
+                this.logger.log('Error occurred at popup initialization:', err);
             });
     }
 

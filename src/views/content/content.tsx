@@ -3,10 +3,10 @@
 import * as React from 'react';
 
 import { NamedSFC } from '../../common/react/named-sfc';
+import { Page, PageDeps } from '../page/page';
 import { ContentPageDeps, ContentProvider, ContentReference } from './content-page';
-import { Page } from '../page/page';
 
-export type ContentDeps = { contentProvider: ContentProvider } & ContentPageDeps;
+export type ContentDeps = { contentProvider: ContentProvider } & ContentPageDeps & PageDeps;
 
 export type ContentProps = { deps: ContentDeps; reference: ContentReference };
 
@@ -14,7 +14,7 @@ export const Content = NamedSFC<ContentProps>('Content', ({ deps, reference }) =
     const { contentProvider } = deps;
     const ContentPage = contentProvider.contentFromReference(reference);
     return (
-        <Page>
+        <Page deps={deps}>
             <div className="content-container">
                 <div className="content-left" />
                 <div className="content">

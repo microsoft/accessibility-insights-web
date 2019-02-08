@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { createDefaultLogger } from '../../common/logging/default-logger';
+import { Logger } from '../../common/logging/logger';
 import { IHtmlElementAxeResults } from '../scanner-utils';
 import { HTMLElementUtils } from './../../common/html-element-utils';
 
@@ -21,11 +23,7 @@ export interface IAssessmentVisualizationInstance extends AxeResultsWithFrameLev
 }
 
 export class HtmlElementAxeResultsHelper {
-    private _htmlElementUtils: HTMLElementUtils;
-
-    constructor(htmlElementUtils: HTMLElementUtils) {
-        this._htmlElementUtils = htmlElementUtils;
-    }
+    constructor(private htmlElementUtils: HTMLElementUtils, private logger: Logger = createDefaultLogger()) {}
 
     public splitResultsByFrame(elementResults: AxeResultsWithFrameLevel[]): IFrameResult[] {
         const frameSelectorToResultsMap = this.getFrameSelectorToResultMap(elementResults);
@@ -42,14 +40,14 @@ export class HtmlElementAxeResultsHelper {
             const frameResults = selectorMap[selectorKey];
 
             if (selectorKey) {
-                const iframe = this._htmlElementUtils.querySelector(selectorKey);
+                const iframe = this.htmlElementUtils.querySelector(selectorKey);
                 if (iframe != null) {
                     results.push({
                         elementResults: frameResults,
                         frame: iframe,
                     } as IFrameResult);
                 } else {
-                    console.log('unable to find frame to highlight', selectorKey);
+                    this.logger.log('unable to find frame to highlight', selectorKey);
                 }
             } else {
                 results.push({
@@ -65,7 +63,7 @@ export class HtmlElementAxeResultsHelper {
     private addMissingFrameResults(frameResults: IFrameResult[]): void {
         const missingFrames: HTMLIFrameElement[] = [];
 
-        const allFramesIncludingCurrentFrames = Array.prototype.slice.call(this._htmlElementUtils.getAllElementsByTagName(
+        const allFramesIncludingCurrentFrames = Array.prototype.slice.call(this.htmlElementUtils.getAllElementsByTagName(
             'iframe',
         ) as NodeListOf<HTMLIFrameElement>);
         allFramesIncludingCurrentFrames.push(null); // current frame
@@ -111,7 +109,7 @@ export class HtmlElementAxeResultsHelper {
                 elementResultsByFrame[frameSelector] = elementResultsByFrame[frameSelector] || [];
                 elementResultsByFrame[frameSelector].push(elementResult);
             } else {
-                console.log('Unable to find selector for result ', elementResult);
+                this.logger.log('Unable to find selector for result ', elementResult);
             }
         }
 

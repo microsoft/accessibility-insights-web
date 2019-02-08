@@ -165,6 +165,9 @@ div.insights-dialog-main-override {
 }
 
 .failure-instance-panel {
+    .action-and-cancel-buttons-component {
+        padding-top: 12px;
+    }
     .action-cancel-button-col {
         text-align: right;
         margin-right: 12px;
@@ -343,7 +346,6 @@ div.insights-dialog-main-override {
         padding-right: 0px;
         flex-grow: 1;
         min-height: 0;
-
         .details-view-nav-pivots {
             > :first-child {
                 height: $detailsViewNavPivotsHeight;
@@ -792,7 +794,6 @@ div.insights-dialog-main-override {
                 display: flex;
                 margin-top: 24px;
                 min-height: 0;
-
                 .target-page-changed,
                 .static-content-details-view {
                     margin-left: 24px;
@@ -1254,18 +1255,16 @@ div.insights-dialog-main-override {
                         width: 90%;
                         .overview-heading {
                             h1 {
-                                font-weight: 600;
-                                font-size: 21px;
-                                color: $neutral-100;
                                 padding-bottom: 2%;
+                            }
+                            .overview-heading-content {
+                                color: $neutral-outcome;
                             }
                         }
                         .assessment-report-summary {
                             margin-top: 40px;
                             width: 100%;
                             h3 {
-                                font-family: Segoe UI Semibold;
-                                font-size: 17px;
                                 margin: 0px 0px 21px 0px;
                                 padding: 0;
                             }
@@ -1275,9 +1274,19 @@ div.insights-dialog-main-override {
                         margin: 40px 40px 0px 40px;
                         width: 308px;
                         height: 172px;
+                        border-radius: 2px;
+                        .help-heading {
+                            font-size: 17px;
+                            padding: 0px;
+                            margin-block-start: 1em;
+                            margin-block-end: 1em;
+                            margin-inline-start: 0px;
+                            margin-inline-end: 0px;
+                        }
                         .overview-help-container {
-                            background-color: $neutral-2;
+                            background-color: $neutral-4;
                             padding: 5%;
+                            border-radius: 5px;
                         }
                         .help-link {
                             padding: 5px 0px 5px 0px;

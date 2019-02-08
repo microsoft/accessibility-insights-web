@@ -1,18 +1,22 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GlobalMock, GlobalScope, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { IMock, Mock, Times } from 'typemoq';
 
 import { FeatureFlagsController } from '../../../../../background/feature-flags-controller';
 import { TelemetryBaseData } from '../../../../../background/telemetry/app-insights-telemetry-client';
 import { TelemetryLogger } from '../../../../../background/telemetry/telemetry-logger';
 import { FeatureFlags } from '../../../../../common/feature-flags';
+import { Logger } from '../../../../../common/logging/logger';
 
 describe('TelemetryLoggerTest', () => {
     let testObject: TelemetryLogger;
     let controllerMock: IMock<FeatureFlagsController>;
+    let loggerMock: IMock<Logger>;
+
     beforeEach(() => {
         controllerMock = Mock.ofType(FeatureFlagsController);
-        testObject = new TelemetryLogger();
+        loggerMock = Mock.ofType<Logger>();
+        testObject = new TelemetryLogger(loggerMock.object);
         testObject.initialize(controllerMock.object);
     });
 
@@ -25,20 +29,14 @@ describe('TelemetryLoggerTest', () => {
         };
 
         controllerMock.setup(cm => cm.isEnabled(FeatureFlags.logTelemetryToConsole)).returns(() => true);
+        loggerMock.setup(logger => logger.log('eventName: ', data.name, '; customProperties: ', data.properties)).verifiable(Times.once());
 
-        const consoleLogMock = GlobalMock.ofInstance(console.log, 'log', console, MockBehavior.Strict);
-        consoleLogMock.setup(log => log('eventName: ', data.name, '; customProperties: ', data.properties)).verifiable(Times.once());
+        testObject.log(data);
 
-        GlobalScope.using(consoleLogMock).with(() => {
-            testObject.log(data);
-        });
-
-        consoleLogMock.verifyAll();
+        loggerMock.verifyAll();
     });
 
     test('log (flag: disabled)', () => {
-        controllerMock.setup(cm => cm.isEnabled(FeatureFlags.logTelemetryToConsole)).returns(() => false);
-
         const data: TelemetryBaseData = {
             name: 'test name',
             properties: {
@@ -46,13 +44,8 @@ describe('TelemetryLoggerTest', () => {
             },
         };
 
-        const consoleLogMock = GlobalMock.ofInstance(console.log, 'log', console, MockBehavior.Strict);
-        consoleLogMock.setup(log => log(It.isAny())).verifiable(Times.never());
+        controllerMock.setup(cm => cm.isEnabled(FeatureFlags.logTelemetryToConsole)).returns(() => false);
 
-        GlobalScope.using(consoleLogMock).with(() => {
-            testObject.log(data);
-        });
-
-        consoleLogMock.verifyAll();
+        testObject.log(data);
     });
 });

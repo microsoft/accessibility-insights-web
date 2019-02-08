@@ -84,17 +84,25 @@ export class TestStepView extends React.Component<ITestStepViewProps> {
                     renderInstanceTableHeader={this.props.testStep.renderInstanceTableHeader}
                     getDefaultMessage={this.props.testStep.getDefaultMessage}
                     assessmentDefaultMessageGenerator={this.props.assessmentDefaultMessageGenerator}
+                    hasVisualHelper={this.doesSelectedStepHaveVisualHelper()}
                 />
             </React.Fragment>
         );
     }
 
-    private renderVisualHelperToggle(): JSX.Element {
-        const stepConfig = this.props.assessmentsProvider.getStep(
+    private getSelectedStep(): Readonly<TestStep> {
+        return this.props.assessmentsProvider.getStep(
             this.props.assessmentNavState.selectedTestType,
             this.props.assessmentNavState.selectedTestStep,
         );
-        if (stepConfig.getVisualHelperToggle == null) {
+    }
+
+    private doesSelectedStepHaveVisualHelper(): boolean {
+        return this.getSelectedStep().getVisualHelperToggle != null;
+    }
+
+    private renderVisualHelperToggle(): JSX.Element {
+        if (!this.doesSelectedStepHaveVisualHelper()) {
             return null;
         }
 
@@ -106,6 +114,6 @@ export class TestStepView extends React.Component<ITestStepViewProps> {
             isStepScanned: this.props.isStepScanned,
         };
 
-        return stepConfig.getVisualHelperToggle(visualHelperToggleConfig);
+        return this.getSelectedStep().getVisualHelperToggle(visualHelperToggleConfig);
     }
 }

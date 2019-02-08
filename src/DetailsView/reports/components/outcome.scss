@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 @import '../../../common/icons/icon.scss';
 @import '../../../common/styles/colors.scss';
-
 .screen-reader-only {
     position: absolute;
     left: -10000px;
@@ -18,7 +17,6 @@ $outcome-incomplete-color: $neutral-outcome;
 $outcome-incomplete-summary-color: $neutral-outcome;
 $outcome-fail-color: $negative-outcome;
 $outcome-fail-summary-color: $negative-outcome;
-
 @mixin outcome-chip-color($outcome-color) {
     .check-container,
     .count {
@@ -42,11 +40,9 @@ $outcome-fail-summary-color: $negative-outcome;
     display: inline-flex;
     align-items: center;
     margin-bottom: -3px;
-
     .icon {
         border-radius: 50%;
     }
-
     .count {
         font-family: Segoe UI;
         line-height: $outcome-chip-icon-size;
@@ -57,17 +53,14 @@ $outcome-fail-summary-color: $negative-outcome;
         margin-left: -5px;
         height: $outcome-chip-icon-size;
     }
-
     &.outcome-chip-pass {
         @include check-icon-styles($outcome-chip-icon-size, 1px);
         @include outcome-chip-color($outcome-pass-color);
     }
-
     &.outcome-chip-incomplete {
         @include incomplete-icon-styles($outcome-chip-icon-size, 1px);
         @include outcome-chip-color($outcome-incomplete-color);
     }
-
     &.outcome-chip-fail {
         @include cross-icon-styles($outcome-chip-icon-size, 1px);
         @include outcome-chip-color($outcome-fail-color);
@@ -76,25 +69,20 @@ $outcome-fail-summary-color: $negative-outcome;
 
 .outcome-icon-set {
     $outcome-icon-size: 14px;
-
     .outcome-icon {
         margin-left: 4px;
         border-radius: 50%;
     }
-
     .outcome-icon-pass {
         @include check-icon-styles($outcome-icon-size, 0px);
         @include outcome-icon-set-color($outcome-pass-color);
     }
-
     .outcome-icon-incomplete {
         @include incomplete-icon-styles($outcome-icon-size, 1px);
-
         .check-container {
             border-color: $outcome-incomplete-color;
         }
     }
-
     .outcome-icon-fail {
         @include cross-icon-styles($outcome-icon-size, 0px);
         @include outcome-icon-set-color($outcome-fail-color);
@@ -108,59 +96,53 @@ $outcome-fail-summary-color: $negative-outcome;
     height: 32px;
     $outcome-summary-icon-size: 22px;
     margin-bottom: 40px;
-
     .block {
         font-family: Segoe UI;
         line-height: 20px;
         font-size: 16px;
         color: $neutral-0;
-        padding: 6px 8px 10px 10px;
+        padding: 8px 8px 10px 10px;
         height: 16px;
         display: flex;
         align-items: center;
     }
-
     .count {
         font-weight: 700;
     }
-
     .pass {
         @extend .block;
         @include check-icon-styles($outcome-summary-icon-size, 0px);
-
         .check-container {
             bottom: -1px;
             margin-right: 4px;
             margin-left: 4px;
         }
-
         background-color: $outcome-pass-summary-color;
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
     }
-
     .incomplete {
         @extend .block;
         @include incomplete-icon-styles(14px, 3px);
-
         .check-container {
             bottom: -1px;
             margin-right: 6px;
             margin-left: 5px;
         }
-
         background-color: $outcome-incomplete-summary-color;
+        color: $neutral-100;
         margin-left: 5px;
         margin-right: 5px;
     }
-
     .fail {
         @extend .block;
         @include cross-icon-styles($outcome-summary-icon-size, 0px);
-
         .check-container {
             bottom: -1px;
             margin-right: 2px;
         }
-
         background-color: $outcome-fail-summary-color;
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
     }
 }

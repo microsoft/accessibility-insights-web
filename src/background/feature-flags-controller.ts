@@ -3,7 +3,7 @@
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { Messages } from '../common/messages';
 import { Interpreter } from './interpreter';
-import { IFeatureFlagPayload } from './actions/feature-flag-actions';
+import { FeatureFlagPayload } from './actions/feature-flag-actions';
 import { FeatureFlagStore } from './stores/global/feature-flag-store';
 
 export class FeatureFlagsController {
@@ -24,7 +24,7 @@ export class FeatureFlagsController {
     }
 
     public disableFeature(feature: string): void {
-        const payload: IFeatureFlagPayload = {
+        const payload: FeatureFlagPayload = {
             feature: feature,
             enabled: false,
         };
@@ -37,7 +37,7 @@ export class FeatureFlagsController {
     }
 
     public enableFeature(feature: string): void {
-        const payload: IFeatureFlagPayload = {
+        const payload: FeatureFlagPayload = {
             feature: feature,
             enabled: true,
         };

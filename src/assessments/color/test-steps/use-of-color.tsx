@@ -44,7 +44,7 @@ export const UseOfColor: TestStep = {
     howToTest: useOfColorHowToTest,
     isManual: true,
     ...content,
-    guidanceLinks: [link.WCAG_2_4_1],
+    guidanceLinks: [link.WCAG_1_4_1],
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
