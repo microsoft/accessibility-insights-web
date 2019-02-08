@@ -229,6 +229,9 @@ div.insights-dialog-main-override {
         .ms-Button-label {
             color: $black !important;
         }
+        .overview-percent {
+            color: $overview-percent-selected !important;
+        }
     }
     .ms-DetailsRow,
     .ms-GroupHeader {
@@ -672,7 +675,7 @@ div.insights-dialog-main-override {
                 line-height: 20px;
             }
             .overview-percent {
-                color: #6e6e6e;
+                color: $neutral-55;
                 line-height: 16px;
                 font-size: 12px;
             }
@@ -733,7 +736,7 @@ div.insights-dialog-main-override {
                     }
                     .index-circle {
                         color: $neutral-0;
-                        background: $communication-shade-10;
+                        background: $index-circle-background;
                         border-color: $neutral-0;
                     }
                 }
