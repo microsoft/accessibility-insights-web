@@ -21,6 +21,8 @@ export function withStoreSubscription<P extends WithStoreSubscriptionProps<S>, S
             super(props);
             if (this.hasStores()) {
                 this.state = this.props.deps.storesHub.getAllStoreData();
+            } else {
+                this.state = {} as S;
             }
         }
 
@@ -47,6 +49,10 @@ export function withStoreSubscription<P extends WithStoreSubscriptionProps<S>, S
         };
 
         public hasStores = () => {
+            if (this.props.deps == null) {
+                return false;
+            }
+
             const { storesHub } = this.props.deps;
             return storesHub && storesHub.hasStores();
         };

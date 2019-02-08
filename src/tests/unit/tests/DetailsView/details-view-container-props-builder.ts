@@ -140,8 +140,11 @@ export class DetailsViewContainerPropsBuilder {
             ]);
 
         const storeState = this.storesHub ? this.storesHub.getAllStoreData() : null;
-        this.deps.storesHub = storesHub;
-        this.deps.storeActionMessageCreator = this.storeActionCreator;
+        if (this.deps != null) {
+            this.deps.storesHub = storesHub;
+            this.deps.storeActionMessageCreator = this.storeActionCreator;
+        }
+
         return {
             deps: this.deps,
             document: this.document,
