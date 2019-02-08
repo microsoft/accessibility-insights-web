@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, Mock } from 'typemoq';
 
+import { Logger } from '../../../../../common/logging/logger';
 import {
     AxeResultsWithFrameLevel,
     HtmlElementAxeResultsHelper,
@@ -15,7 +16,8 @@ describe('HtmlElementAxeResultsHelperTest', () => {
 
     beforeEach(() => {
         mockDocumentElementUtils = Mock.ofType(HTMLElementUtils);
-        testSubject = new HtmlElementAxeResultsHelper(mockDocumentElementUtils.object);
+        const loggerMock = Mock.ofType<Logger>();
+        testSubject = new HtmlElementAxeResultsHelper(mockDocumentElementUtils.object, loggerMock.object);
     });
 
     test('splitResultsByFrame_ShouldIncludeResultsForMissingFrames', () => {

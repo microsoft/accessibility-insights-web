@@ -1,16 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GlobalMock, GlobalScope, IGlobalMock, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { A11YSelfValidator, LoggedNode, LoggedRule } from '../../../../common/a11y-self-validator';
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
+import { Logger } from '../../../../common/logging/logger';
 import { ScannerUtils } from '../../../../injected/scanner-utils';
 import { ScanResults } from '../../../../scanner/iruleresults';
 
 describe('A11YAutoCheckTest', () => {
     let scannerUtilsMock: IMock<ScannerUtils>;
-    let htmlElementUtils: IMock<HTMLElementUtils>;
-    let consoleLogMock: IGlobalMock<Function>;
+    let htmlElementUtilsMock: IMock<HTMLElementUtils>;
+    let loggerMock: IMock<Logger>;
     let testObject: A11YSelfValidator;
 
     const failedSelectors: string[] = ['failed-div1', 'failed-div2'];
@@ -21,9 +22,10 @@ describe('A11YAutoCheckTest', () => {
 
     beforeEach(() => {
         scannerUtilsMock = Mock.ofType(ScannerUtils, MockBehavior.Strict);
-        htmlElementUtils = Mock.ofType(HTMLElementUtils, MockBehavior.Strict);
-        testObject = new A11YSelfValidator(scannerUtilsMock.object, htmlElementUtils.object);
-        consoleLogMock = GlobalMock.ofInstance(console.log, 'log', console, MockBehavior.Strict);
+        htmlElementUtilsMock = Mock.ofType(HTMLElementUtils, MockBehavior.Strict);
+        loggerMock = Mock.ofType<Logger>();
+
+        testObject = new A11YSelfValidator(scannerUtilsMock.object, htmlElementUtilsMock.object, loggerMock.object);
     });
 
     test('scan', () => {
@@ -37,24 +39,22 @@ describe('A11YAutoCheckTest', () => {
             .verifiable(Times.once());
 
         failedSelectors.forEach(selector => {
-            htmlElementUtils
+            htmlElementUtilsMock
                 .setup(utils => utils.querySelector(selector))
                 .returns(() => failedDomElements[selector] as any)
                 .verifiable(Times.once());
         });
 
-        consoleLogMock.setup(log => log(It.isValue(getLoggedViolationScanResult()))).verifiable(Times.once());
+        loggerMock.setup(logger => logger.log(It.isValue(getLoggedViolationScanResult()))).verifiable(Times.once());
 
-        GlobalScope.using(consoleLogMock).with(() => {
-            testObject.validate();
-        });
+        testObject.validate();
 
         scannerUtilsMock.verifyAll();
-        htmlElementUtils.verifyAll();
-        consoleLogMock.verifyAll();
+        htmlElementUtilsMock.verifyAll();
+        loggerMock.verifyAll();
     });
 
-    function getAxeScanResult() {
+    function getAxeScanResult(): ScanResults {
         return {
             passes: getPassScanResult(),
             violations: getViolationScanResult(),

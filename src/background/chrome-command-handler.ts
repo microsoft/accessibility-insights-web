@@ -4,6 +4,8 @@ import { autobind } from '@uifabric/utilities';
 
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DisplayableStrings } from '../common/constants/displayable-strings';
+import { createDefaultLogger } from '../common/logging/default-logger';
+import { Logger } from '../common/logging/logger';
 import { Messages } from '../common/messages';
 import { NotificationCreator } from '../common/notification-creator';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
@@ -13,8 +15,8 @@ import { VisualizationType } from '../common/types/visualization-type';
 import { UrlValidator } from '../common/url-validator';
 import { VisualizationTogglePayload } from './actions/action-payloads';
 import { BrowserAdapter } from './browser-adapter';
-import { TabToContextMap } from './tab-context';
 import { UserConfigurationStore } from './stores/global/user-configuration-store';
+import { TabToContextMap } from './tab-context';
 
 const VisualizationMessages = Messages.Visualizations;
 
@@ -30,6 +32,7 @@ export class ChromeCommandHandler {
         private visualizationConfigurationFactory: VisualizationConfigurationFactory,
         private telemetryDataFactory: TelemetryDataFactory,
         private userConfigurationStore: UserConfigurationStore,
+        private logger: Logger = createDefaultLogger(),
     ) {}
 
     public initialize(): void {
@@ -84,7 +87,7 @@ export class ChromeCommandHandler {
                 this.invokeToggleAction(visualizationType, state, tabId);
             }
         } catch (err) {
-            console.error('Error occurred at chrome command handler:', err);
+            this.logger.error('Error occurred at chrome command handler:', err);
         }
     }
 

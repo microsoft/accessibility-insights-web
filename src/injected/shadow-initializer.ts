@@ -2,20 +2,19 @@
 // Licensed under the MIT License.
 import { ClientBrowserAdapter } from '../common/client-browser-adapter';
 import { FileRequestHelper } from '../common/file-request-helper';
+import { createDefaultLogger } from '../common/logging/default-logger';
+import { Logger } from '../common/logging/logger';
 import { HTMLElementUtils } from './../common/html-element-utils';
 
 export class ShadowInitializer {
-    private chromeAdapter: ClientBrowserAdapter;
-    private htmlElementUtils: HTMLElementUtils;
-    private fileRequestHlper: FileRequestHelper;
-
     public static readonly injectedCssPath: string = 'injected/styles/default/injected.css';
 
-    constructor(chromeAdapter: ClientBrowserAdapter, htmlElementUtils: HTMLElementUtils, fileRequestHelper: FileRequestHelper) {
-        this.chromeAdapter = chromeAdapter;
-        this.htmlElementUtils = htmlElementUtils;
-        this.fileRequestHlper = fileRequestHelper;
-    }
+    constructor(
+        private chromeAdapter: ClientBrowserAdapter,
+        private htmlElementUtils: HTMLElementUtils,
+        private fileRequestHelper: FileRequestHelper,
+        private logger: Logger = createDefaultLogger(),
+    ) {}
 
     public async initialize(): Promise<void> {
         try {
@@ -23,7 +22,7 @@ export class ShadowInitializer {
             const injectedCssContent = await this.getFileContentByPath(ShadowInitializer.injectedCssPath);
             this.addStyleElement(injectedCssContent, shadowContainer);
         } catch (err) {
-            console.log('unable to insert styles under shadow', err);
+            this.logger.log('unable to insert styles under shadow', err);
         }
     }
 
@@ -71,6 +70,6 @@ export class ShadowInitializer {
     private async getFileContentByPath(filePath: string): Promise<string> {
         const fileUrl = this.chromeAdapter.getUrl(filePath);
 
-        return await this.fileRequestHlper.getFileContent(fileUrl);
+        return await this.fileRequestHelper.getFileContent(fileUrl);
     }
 }
