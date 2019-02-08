@@ -37,7 +37,7 @@ export class UserConfigurationStore extends BaseStore<UserConfigurationStoreData
     }
 
     @autobind
-    private onSetTelemetryState(payload: SetTelemetryStatePayload) {
+    private onSetTelemetryState(payload: SetTelemetryStatePayload): void {
         this.state.isFirstTime = false;
         this.state.enableTelemetry = payload.enableTelemetry;
 
@@ -47,7 +47,7 @@ export class UserConfigurationStore extends BaseStore<UserConfigurationStoreData
     }
 
     @autobind
-    private onSetHighContrastMode(payload: SetHighContrastModePayload) {
+    private onSetHighContrastMode(payload: SetHighContrastModePayload): void {
         this.state.enableHighContrast = payload.enableHighContrast;
 
         // tslint:disable-next-line:no-floating-promises - grandfathered-in pre-existing violation

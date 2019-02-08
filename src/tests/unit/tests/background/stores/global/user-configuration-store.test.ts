@@ -152,7 +152,9 @@ describe('UserConfigurationStoreTest', () => {
             .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
     });
 
-    function createStoreToTestAction(actionName: keyof UserConfigurationActions) {
+    function createStoreToTestAction(
+        actionName: keyof UserConfigurationActions,
+    ): StoreTester<UserConfigurationStoreData, UserConfigurationActions> {
         const factory = (actions: UserConfigurationActions) =>
             new UserConfigurationStore(initialStoreData, actions, indexDbStrictMock.object);
 
