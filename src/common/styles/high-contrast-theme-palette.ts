@@ -11,7 +11,9 @@ export const HighContrastThemePalette: IPartialTheme = {
         themeLight: '#c7e0f4',
         themeTertiary: '#71afe5',
         themeSecondary: '#2b88d8',
-        themeDarkAlt: '#106ebe',
+        // themeDarkAlt changed from default #106ebe to match design
+        // used as icon color in ActionButtons but no semantic slot yet
+        themeDarkAlt: '#ffffff',
         themeDark: '#005a9e',
         themeDarker: '#004578',
         neutralLighterAlt: '#212121',

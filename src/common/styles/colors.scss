@@ -39,6 +39,7 @@
     --neutral-20: #c8c8c8;
     --neutral-30: #a6a6a6;
 
+    --neutral-55: #6e6e6e;
     --neutral-60: #666666;
     --neutral-70: #3c3c3c;
     --neutral-80: #333333;
@@ -60,21 +61,14 @@
     --positive-outcome: #107c10;
     --negative-outcome: #e81123;
     --neutral-outcome: var(--neutral-60);
-
-    // Landmark colors
-    --landmark-contentinfo: #00cc00;
-    --landmark-main: #ff66ff;
-    --landmark-complementary: #00cccc;
-    --landmark-banner: #ff9900;
-    --landmark-region: #3399ff;
-    --landmark-navigation: #ffcc00;
-    --landmark-search: #9955ff;
-    --landmark-form: #999999;
+    --incomplete-color: var(--neutral-60);
 
     // Additional colors
     --accent2-dark: rgb(16, 124, 16);
     --communication-alpha-5: rgba(0, 120, 212, 0.05);
     --ada-blue-variant: #336d99;
+    --overview-percent-selected: var(--neutral-55);
+    --index-circle-background: var(--communication-shade-10);
 
     .high-contrast-theme {
         --ada-blue: #ffffff;
@@ -86,8 +80,12 @@
         --neutral-4: #161616;
         --neutral-6: #161616;
         --neutral-10: #161616;
+        --neutral-55: #ffffff;
         --neutral-60: #ffffff;
+        --neutral-70: #ffffff;
+        --neutral-80: #ffffff;
         --neutral-100: #ffffff;
+        --neutral-alpha-8: #ffffff;
 
         --secondary-text: #ffffff;
 
@@ -96,11 +94,17 @@
         --negative-outcome: #fc7ab1;
         --neutral-outcome: var(--neutral-0);
 
+        // neutral-60 to white
+        --incomplete-color: var(--neutral-100);
+
         // used for many links
         --communication-shade-10: #ffff00;
 
         --communication-tint-30: var(--communication-tint-10);
         --communication-tint-40: #38a9ff;
+
+        --overview-percent-selected: black;
+        --index-circle-background: var(--communication-tint-40);
 
         // Landmark colors
         --landmark-contentinfo: #00a88c;
@@ -149,6 +153,7 @@ $neutral-10: var(--neutral-10);
 $neutral-20: var(--neutral-20);
 $neutral-30: var(--neutral-30);
 
+$neutral-55: var(--neutral-55);
 $neutral-60: var(--neutral-60);
 $neutral-70: var(--neutral-70);
 $neutral-80: var(--neutral-80);
@@ -170,6 +175,7 @@ $neutral-alpha-80: var(--neutral-alpha-80);
 $positive-outcome: var(--positive-outcome);
 $negative-outcome: var(--negative-outcome);
 $neutral-outcome: var(--neutral-outcome);
+$incomplete-color: var(--incomplete-color);
 
 // Landmark colors
 $landmark-contentinfo: var(--landmark-contentinfo);
@@ -185,3 +191,9 @@ $landmark-form: var(--landmark-form);
 $accent2-dark: var(--accent2-dark);
 $ada-blue-variant: var(--ada-blue-variant);
 $communication-alpha-5: var(--communication-alpha-5);
+$overview-percent-selected: var(--overview-percent-selected);
+$index-circle-background: var(--index-circle-background);
+
+// consistent colors
+$white: #ffffff;
+$black: #161616;

@@ -19,7 +19,7 @@ const Header = (props: IHeaderProps) => {
                 </div>
                 {props.extraContent}
             </div>
-            <div className="ms-fontColor-neutralSecondary ms-fontWeight-semilight ms-fontSize-xs">{props.subtitle}</div>
+            <div className="header-subtitle ms-fontWeight-semilight ms-fontSize-xs">{props.subtitle}</div>
         </header>
     );
 };
