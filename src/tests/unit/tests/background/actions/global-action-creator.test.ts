@@ -257,7 +257,7 @@ class GlobalActionCreatorValidator {
     private launchPanelStateActionsContainerMock = Mock.ofType(LaunchPanelStateActions);
     private scopingActionsContainerMock = Mock.ofType(ScopingActions);
     private assessmentActionsContainerMock = Mock.ofType(AssessmentActions);
-    private userConfigActionsContainerMock = Mock.ofType<UserConfigurationActions>();
+    private userConfigActionsContainerMock = Mock.ofType(UserConfigurationActions);
     private interpreterMock = Mock.ofType(InterpreterStub);
     private browserAdapterMock = Mock.ofType(ChromeAdapter, MockBehavior.Strict);
     private telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler, MockBehavior.Strict);
