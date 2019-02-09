@@ -80,9 +80,11 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
     }
 
     private getBugSettingsUx(): JSX.Element {
+        const selectedKey = this.props.userConfigStoreState.bugService || 'none';
         return (
             <Dropdown
                 label="Select bug service"
+                selectedKey={selectedKey}
                 options={[
                     { key: 'none', text: 'None' },
                     { key: 'azureBoards', text: 'Azure Boards' },

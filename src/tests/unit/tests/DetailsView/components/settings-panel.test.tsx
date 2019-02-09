@@ -46,6 +46,7 @@ describe('SettingsPanelTest', () => {
         isPanelOpen: boolean;
         enableTelemetry: boolean;
         enableHighContrast: boolean;
+        bugService: string;
     };
 
     test.each([
@@ -53,16 +54,19 @@ describe('SettingsPanelTest', () => {
             isPanelOpen: true,
             enableTelemetry: false,
             enableHighContrast: false,
+            bugService: undefined,
         } as RenderTestCase,
         {
             isPanelOpen: true,
             enableTelemetry: false,
             enableHighContrast: true,
+            bugService: 'gitHub',
         } as RenderTestCase,
     ])('render - %o', (testCase: RenderTestCase) => {
         userConfigStoreData = {
             enableTelemetry: testCase.enableTelemetry,
             enableHighContrast: testCase.enableHighContrast,
+            bugService: testCase.bugService,
         } as UserConfigurationStoreData;
         const testProps: SettingsPanelProps = {
             isOpen: testCase.isPanelOpen,

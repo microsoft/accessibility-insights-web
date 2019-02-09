@@ -2,7 +2,8 @@
 
 exports[`SettingsPanelTest render - { isPanelOpen: true,
   enableTelemetry: false,
-  enableHighContrast: false } 1`] = `
+  enableHighContrast: false,
+  bugService: undefined } 1`] = `
 <GenericPanel
   className="settings-panel"
   closeButtonAriaLabel="Close settings panel"
@@ -81,6 +82,7 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
             },
           ]
         }
+        selectedKey="none"
       />
     }
     featureFlag="showBugFiling"
@@ -95,7 +97,8 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
 
 exports[`SettingsPanelTest render - { isPanelOpen: true,
   enableTelemetry: false,
-  enableHighContrast: true } 1`] = `
+  enableHighContrast: true,
+  bugService: 'gitHub' } 1`] = `
 <GenericPanel
   className="settings-panel"
   closeButtonAriaLabel="Close settings panel"
@@ -174,6 +177,7 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
             },
           ]
         }
+        selectedKey="gitHub"
       />
     }
     featureFlag="showBugFiling"
