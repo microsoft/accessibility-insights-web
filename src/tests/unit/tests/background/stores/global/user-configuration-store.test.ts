@@ -3,7 +3,11 @@
 import { cloneDeep } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { SetTelemetryStatePayload, SetHighContrastModePayload } from '../../../../../../background/actions/action-payloads';
+import {
+    SetTelemetryStatePayload,
+    SetHighContrastModePayload,
+    SetBugServicePayload,
+} from '../../../../../../background/actions/action-payloads';
 import { UserConfigurationActions } from '../../../../../../background/actions/user-configuration-actions';
 import { IndexedDBDataKeys } from '../../../../../../background/IndexedDBDataKeys';
 import { UserConfigurationStore } from '../../../../../../background/stores/global/user-configuration-store';
@@ -152,6 +156,32 @@ describe('UserConfigurationStoreTest', () => {
 
         storeTester
             .withActionParam(setHighContrastData)
+            .withPostListenerMock(indexDbStrictMock)
+            .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
+    });
+
+    test.each(['none', 'userConfigurationStoreTestBugService'])('setBugService action: %s', (testBugService: string) => {
+        const storeTester = createStoreToTestAction('setBugService');
+        initialStoreData = {
+            isFirstTime: false,
+            enableTelemetry: false,
+            enableHighContrast: false,
+            bugService: 'none',
+        };
+
+        const setBugServiceData: SetBugServicePayload = {
+            bugServiceName: testBugService,
+        };
+
+        const expectedState: UserConfigurationStoreData = {
+            ...initialStoreData,
+            bugService: testBugService,
+        };
+
+        indexDbStrictMock.setup(i => i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState))).verifiable(Times.once());
+
+        storeTester
+            .withActionParam(setBugServiceData)
             .withPostListenerMock(indexDbStrictMock)
             .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
     });
