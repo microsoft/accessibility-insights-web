@@ -84,9 +84,9 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
             <Dropdown
                 label="Select bug service"
                 options={[
-                    { key: 'None', text: 'None' },
-                    { key: 'AzureBoards', text: 'Azure Boards' },
-                    { key: 'GitHub', text: 'GitHub Issues' },
+                    { key: 'none', text: 'None' },
+                    { key: 'azureBoards', text: 'Azure Boards' },
+                    { key: 'gitHub', text: 'GitHub Issues' },
                 ]}
                 onChange={this.onBugServiceDropdownChange}
             />

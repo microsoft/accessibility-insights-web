@@ -68,15 +68,15 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
         options={
           Array [
             Object {
-              "key": "None",
+              "key": "none",
               "text": "None",
             },
             Object {
-              "key": "AzureBoards",
+              "key": "azureBoards",
               "text": "Azure Boards",
             },
             Object {
-              "key": "GitHub",
+              "key": "gitHub",
               "text": "GitHub Issues",
             },
           ]
@@ -161,15 +161,15 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
         options={
           Array [
             Object {
-              "key": "None",
+              "key": "none",
               "text": "None",
             },
             Object {
-              "key": "AzureBoards",
+              "key": "azureBoards",
               "text": "Azure Boards",
             },
             Object {
-              "key": "GitHub",
+              "key": "gitHub",
               "text": "GitHub Issues",
             },
           ]
