@@ -15,7 +15,7 @@ module.exports = function(grunt) {
         exact_paths: [
             './.vscode',
             './.git',
-            './.github/ISSUE_TEMPLATE',
+            './.github',
             './dist',
             './drop',
             './extension',
