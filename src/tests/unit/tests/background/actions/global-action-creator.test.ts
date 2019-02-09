@@ -65,7 +65,8 @@ describe('GlobalActionCreatorTest', () => {
     });
 
     test('registerCallback for FeatureFlags.SetFeatureFlag', () => {
-        const actionName = 'setFeatureFlag';
+        const featureFlagActionName = 'setFeatureFlag';
+        const userConfigActionName = 'notifyFeatureFlagChange';
         const payload: FeatureFlagPayload = {
             feature: 'registerCallback test feature',
             enabled: true,
@@ -74,8 +75,10 @@ describe('GlobalActionCreatorTest', () => {
 
         const validator = new GlobalActionCreatorValidator()
             .setupRegistrationCallback(Messages.FeatureFlags.SetFeatureFlag, args)
-            .setupActionOnFeatureFlagActions(actionName)
-            .setupFeatureFlagActionWithInvokeParameter(actionName, payload)
+            .setupActionOnFeatureFlagActions(featureFlagActionName)
+            .setupActionsOnUserConfig(userConfigActionName)
+            .setupFeatureFlagActionWithInvokeParameter(featureFlagActionName, payload)
+            .setupUserConfigActionWithInvokeParameter(userConfigActionName, payload)
             .setupTelemetrySend(TelemetryEvents.PREVIEW_FEATURES_TOGGLE);
 
         const actionCreator = validator.buildActionCreator();
