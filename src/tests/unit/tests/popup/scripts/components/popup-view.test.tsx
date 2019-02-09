@@ -11,6 +11,7 @@ import { StoreActionMessageCreator } from '../../../../../../common/message-crea
 import { BaseClientStoresHub } from '../../../../../../common/stores/base-client-stores-hub';
 import { ICommandStoreData } from '../../../../../../common/types/store-data/icommand-store-data';
 import { ILaunchPanelStoreData } from '../../../../../../common/types/store-data/ilaunch-panel-store-data';
+import { UserConfigurationStoreData } from '../../../../../../common/types/store-data/user-configuration-store';
 import { PopupActionMessageCreator } from '../../../../../../popup/scripts/actions/popup-action-message-creator';
 import { LaunchPanelHeader } from '../../../../../../popup/scripts/components/launch-panel-header';
 import {
@@ -99,10 +100,11 @@ describe('PopupView', () => {
         const visualizationStoreState = new VisualizationStoreDataBuilder().build();
         const launchPadRowConfigurationFactoryMock = Mock.ofType(LaunchPadRowConfigurationFactory);
         const popupViewStoreActionMessageCreatorMock = Mock.ofType(StoreActionMessageCreator);
-        const userConfigStoreData = {
+        const userConfigStoreData: UserConfigurationStoreData = {
             isFirstTime: true,
             enableTelemetry: false,
             enableHighContrast: false,
+            bugService: 'none',
         };
 
         beforeEach(() => {

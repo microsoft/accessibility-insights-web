@@ -13,9 +13,10 @@ import { BaseStore } from '../base-store';
 
 export class UserConfigurationStore extends BaseStore<UserConfigurationStoreData> {
     public static readonly defaultState: UserConfigurationStoreData = {
-        enableTelemetry: false,
         isFirstTime: true,
+        enableTelemetry: false,
         enableHighContrast: false,
+        bugService: 'none',
     };
 
     constructor(

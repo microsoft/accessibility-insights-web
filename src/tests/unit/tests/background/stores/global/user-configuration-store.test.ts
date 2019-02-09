@@ -18,8 +18,8 @@ describe('UserConfigurationStoreTest', () => {
     let indexDbStrictMock: IMock<IndexedDBAPI>;
 
     beforeEach(() => {
-        initialStoreData = { enableTelemetry: true, isFirstTime: false, enableHighContrast: false };
-        defaultStoreData = { enableTelemetry: false, isFirstTime: true, enableHighContrast: false };
+        initialStoreData = { enableTelemetry: true, isFirstTime: false, enableHighContrast: false, bugService: 'none' };
+        defaultStoreData = { enableTelemetry: false, isFirstTime: true, enableHighContrast: false, bugService: 'none' };
         indexDbStrictMock = Mock.ofType<IndexedDBAPI>();
     });
 
@@ -103,6 +103,7 @@ describe('UserConfigurationStoreTest', () => {
             enableTelemetry: testCase.enableTelemetry,
             isFirstTime: testCase.isFirstTime,
             enableHighContrast: false,
+            bugService: 'none',
         };
 
         const setTelemetryStateData: SetTelemetryStatePayload = {
@@ -113,6 +114,7 @@ describe('UserConfigurationStoreTest', () => {
             enableTelemetry: testCase.enableTelemetry,
             isFirstTime: false,
             enableHighContrast: false,
+            bugService: 'none',
         };
 
         indexDbStrictMock.setup(i => i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState))).verifiable(Times.once());
@@ -132,6 +134,7 @@ describe('UserConfigurationStoreTest', () => {
             enableTelemetry: false,
             isFirstTime: false,
             enableHighContrast: testCase.enableHighContrastMode,
+            bugService: 'none',
         };
 
         const setHighContrastData: SetHighContrastModePayload = {
@@ -142,6 +145,7 @@ describe('UserConfigurationStoreTest', () => {
             enableTelemetry: false,
             isFirstTime: false,
             enableHighContrast: testCase.enableHighContrastMode,
+            bugService: 'none',
         };
 
         indexDbStrictMock.setup(i => i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState))).verifiable(Times.once());

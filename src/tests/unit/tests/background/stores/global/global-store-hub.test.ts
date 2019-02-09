@@ -34,7 +34,7 @@ describe('GlobalStoreHubTest', () => {
 
         persistedDataStub = {
             assessmentStoreData: { targetTab: 1, assessmentNavState: null, assessments: null },
-            userConfigurationData: { enableTelemetry: true, isFirstTime: false, enableHighContrast: false },
+            userConfigurationData: { enableTelemetry: true, isFirstTime: false, enableHighContrast: false, bugService: 'none' },
         };
     });
 

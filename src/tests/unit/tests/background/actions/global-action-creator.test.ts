@@ -211,6 +211,7 @@ describe('GlobalActionCreatorTest', () => {
             enableTelemetry: true,
             isFirstTime: false,
             enableHighContrast: false,
+            bugService: 'none',
         };
         const args = [payload];
         const validator = new GlobalActionCreatorValidator()
@@ -229,6 +230,7 @@ describe('GlobalActionCreatorTest', () => {
             enableTelemetry: true,
             isFirstTime: false,
             enableHighContrast: true,
+            bugService: 'none',
         };
         const args = [payload];
         const validator = new GlobalActionCreatorValidator()
@@ -247,6 +249,7 @@ describe('GlobalActionCreatorTest', () => {
             enableTelemetry: true,
             isFirstTime: false,
             enableHighContrast: true,
+            bugService: 'none',
         };
         const args = [payload];
         const validator = new GlobalActionCreatorValidator()

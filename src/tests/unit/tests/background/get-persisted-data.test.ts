@@ -15,7 +15,7 @@ describe('GetPersistedDataTest', () => {
 
     beforeEach(() => {
         assessmentStoreData = { assessmentNavState: null, assessments: null, targetTab: 1 };
-        userConfigurationData = { isFirstTime: true, enableTelemetry: false, enableHighContrast: false };
+        userConfigurationData = { isFirstTime: true, enableTelemetry: false, enableHighContrast: false, bugService: 'none' };
         indexedDBInstanceStrictMock = Mock.ofType<IndexedDBAPI>();
     });
 

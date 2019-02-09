@@ -83,6 +83,7 @@ describe('ChromeCommandHandlerTest', () => {
                     isFirstTime: simulatedIsFirstTimeUserConfiguration,
                     enableTelemetry: true,
                     enableHighContrast: false,
+                    bugService: 'none',
                 };
             });
 
