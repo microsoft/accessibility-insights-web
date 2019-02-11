@@ -1,9 +1,9 @@
 #### Pull request checklist
 
 - [ ] Addresses an existing issue: Fixes #0000
-- [ ] Did you run precheckin? `npm run precheckin`.
 - [ ] Did you add relevant unit-test for your changes? `npm run test`
 - [ ] Verify code coverage for the changes made. Check coverage report at: `<rootDir>/test-results/unit/coverage`
+- [ ] Did you run precheckin? `npm run precheckin`.
 - [ ] Add screenshot or gif of the changes, (if changes impact the UI)
 
 #### Description of changes
