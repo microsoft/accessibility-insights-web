@@ -35,7 +35,7 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
         };
 
         this.dispatchMessage({
-            type: Messages.UserConfig.SetBugServiceConfig,
+            type: Messages.UserConfig.SetBugService,
             tabId: this._tabId,
             payload,
         });

@@ -101,7 +101,7 @@ export class Messages {
         GetCurrentState: 'insights/userConfig/getCurrentState',
         SetTelemetryConfig: 'insights/userConfig/setTelemetryConfig',
         SetHighContrastConfig: 'insights/userConfig/setHighContrastConfig',
-        SetBugServiceConfig: 'insights/userConfig/setBugServiceConfig',
+        SetBugService: 'insights/userConfig/setBugService',
     };
 
     public static readonly Tab = {

@@ -244,7 +244,7 @@ describe('GlobalActionCreatorTest', () => {
         validator.verifyAll();
     });
 
-    test('registerCallback for on UserConfig.SetBugServiceConfig', () => {
+    test('registerCallback for on UserConfig.SetBugService', () => {
         const payload: UserConfigurationStoreData = {
             enableTelemetry: true,
             isFirstTime: false,
@@ -253,7 +253,7 @@ describe('GlobalActionCreatorTest', () => {
         };
         const args = [payload];
         const validator = new GlobalActionCreatorValidator()
-            .setupRegistrationCallback(Messages.UserConfig.SetBugServiceConfig, args)
+            .setupRegistrationCallback(Messages.UserConfig.SetBugService, args)
             .setupActionsOnUserConfig('setBugService')
             .setupUserConfigActionWithInvokeParameter('setBugService', payload);
 

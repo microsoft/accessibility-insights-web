@@ -69,7 +69,7 @@ describe('UserConfigMessageCreator', () => {
         };
         const expectedMessage = {
             tabId: 1,
-            type: Messages.UserConfig.SetBugServiceConfig,
+            type: Messages.UserConfig.SetBugService,
             payload,
         };
 
