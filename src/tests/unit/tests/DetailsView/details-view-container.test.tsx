@@ -92,7 +92,7 @@ describe('DetailsViewContainer', () => {
         });
 
         it('renders TargetPageClosedView when target page closed', () => {
-            const props = new DetailsViewContainerPropsBuilder(deps).build();
+            const props = new DetailsViewContainerPropsBuilder(null).build();
             const rendered = shallow(<DetailsViewContainer {...props} />);
             expect(rendered.debug()).toMatchSnapshot();
         });
