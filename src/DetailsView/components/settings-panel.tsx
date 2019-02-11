@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
+import { TextField } from 'office-ui-fabric-react';
 import { Dropdown, IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
 import * as React from 'react';
 
@@ -81,17 +82,46 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
     private getBugSettingsUx(): JSX.Element {
         const selectedKey = this.props.userConfigStoreState.bugService || 'none';
         return (
-            <Dropdown
-                label="Select bug service"
-                selectedKey={selectedKey}
-                options={[
-                    { key: 'none', text: 'None' },
-                    { key: 'azureBoards', text: 'Azure Boards' },
-                    { key: 'gitHub', text: 'GitHub Issues' },
-                ]}
-                onChange={this.onBugServiceDropdownChange}
-            />
+            <>
+                <Dropdown
+                    label="Select bug service"
+                    selectedKey={selectedKey}
+                    options={[
+                        { key: 'none', text: 'None' },
+                        { key: 'azureBoards', text: 'Azure Boards' },
+                        { key: 'gitHub', text: 'GitHub Issues' },
+                    ]}
+                    onChange={this.onBugServiceDropdownChange}
+                />
+                {this.getProviderBugSettingsUx(selectedKey)}
+            </>
         );
+    }
+
+    private getProviderBugSettingsUx(selectedKey: string): JSX.Element {
+        // TODO: Will refactor into provider classes later
+        switch (selectedKey) {
+            case 'azureBoards':
+                return this.getAzureBoardsBugSettingsUx();
+            case 'gitHub':
+                return this.getGitHubBugSettingsUx();
+            case 'none':
+            default:
+                return null;
+        }
+    }
+
+    private getAzureBoardsBugSettingsUx(): JSX.Element {
+        return (
+            <>
+                <TextField label="Account or organization" />
+                <TextField label="Project" />
+            </>
+        );
+    }
+
+    private getGitHubBugSettingsUx(): JSX.Element {
+        return <TextField label="GitHub repository URL" />;
     }
 
     @autobind

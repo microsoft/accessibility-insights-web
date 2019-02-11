@@ -63,27 +63,29 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
   <FlaggedComponent
     disableJSXElement={null}
     enableJSXElement={
-      <StyledWithResponsiveMode
-        label="Select bug service"
-        onChange={[Function]}
-        options={
-          Array [
-            Object {
-              "key": "none",
-              "text": "None",
-            },
-            Object {
-              "key": "azureBoards",
-              "text": "Azure Boards",
-            },
-            Object {
-              "key": "gitHub",
-              "text": "GitHub Issues",
-            },
-          ]
-        }
-        selectedKey="none"
-      />
+      <React.Fragment>
+        <StyledWithResponsiveMode
+          label="Select bug service"
+          onChange={[Function]}
+          options={
+            Array [
+              Object {
+                "key": "none",
+                "text": "None",
+              },
+              Object {
+                "key": "azureBoards",
+                "text": "Azure Boards",
+              },
+              Object {
+                "key": "gitHub",
+                "text": "GitHub Issues",
+              },
+            ]
+          }
+          selectedKey="none"
+        />
+      </React.Fragment>
     }
     featureFlag="showBugFiling"
     featureFlagStoreData={
@@ -158,27 +160,32 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
   <FlaggedComponent
     disableJSXElement={null}
     enableJSXElement={
-      <StyledWithResponsiveMode
-        label="Select bug service"
-        onChange={[Function]}
-        options={
-          Array [
-            Object {
-              "key": "none",
-              "text": "None",
-            },
-            Object {
-              "key": "azureBoards",
-              "text": "Azure Boards",
-            },
-            Object {
-              "key": "gitHub",
-              "text": "GitHub Issues",
-            },
-          ]
-        }
-        selectedKey="gitHub"
-      />
+      <React.Fragment>
+        <StyledWithResponsiveMode
+          label="Select bug service"
+          onChange={[Function]}
+          options={
+            Array [
+              Object {
+                "key": "none",
+                "text": "None",
+              },
+              Object {
+                "key": "azureBoards",
+                "text": "Azure Boards",
+              },
+              Object {
+                "key": "gitHub",
+                "text": "GitHub Issues",
+              },
+            ]
+          }
+          selectedKey="gitHub"
+        />
+        <StyledTextFieldBase
+          label="GitHub repository URL"
+        />
+      </React.Fragment>
     }
     featureFlag="showBugFiling"
     featureFlagStoreData={
