@@ -42,8 +42,12 @@ export class ThemeInner extends React.Component<ThemeInnerProps> {
     }
 
     private isHighContrastEnabled(props: ThemeInnerProps): boolean {
-        const state = props.storeState.userConfigurationStoreData;
-        return state && state.enableHighContrast;
+        const { storeState } = props;
+        const { userConfigurationStoreData } = storeState;
+
+        const enableHighContrastFlag = storeState && userConfigurationStoreData && userConfigurationStoreData.enableHighContrast;
+
+        return enableHighContrastFlag;
     }
 }
 

@@ -4,7 +4,7 @@ import { autobind } from '@uifabric/utilities';
 
 import { Messages } from '../../common/messages';
 import * as TelemetryEvents from '../../common/telemetry-events';
-import { FeatureFlagActions } from './feature-flag-actions';
+import { FeatureFlagActions, FeatureFlagPayload } from './feature-flag-actions';
 import { GlobalActionHub } from './global-action-hub';
 import { LaunchPanelStateActions } from './launch-panel-state-action';
 import { BrowserAdapter } from '../browser-adapter';
@@ -60,6 +60,7 @@ export class GlobalActionCreator {
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.GetCurrentState, this.onGetUserConfigState);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetTelemetryConfig, this.onSetTelemetryConfiguration);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetHighContrastConfig, this.onSetHighContrastMode);
+        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.NotifyFeatureFlagChange, this.onNotifyFeatureFlagChange);
     }
 
     @autobind
@@ -82,6 +83,7 @@ export class GlobalActionCreator {
     private onSetFeatureFlags(payload, tabId: number): void {
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.PREVIEW_FEATURES_TOGGLE, payload, tabId);
         this.featureFlagActions.setFeatureFlag.invoke(payload);
+        this.onNotifyFeatureFlagChange(payload);
     }
 
     @autobind
@@ -133,5 +135,10 @@ export class GlobalActionCreator {
     @autobind
     private onSetHighContrastMode(payload: SetHighContrastModePayload): void {
         this.userConfigActions.setHighContrastMode.invoke(payload);
+    }
+
+    @autobind
+    private onNotifyFeatureFlagChange(payload: FeatureFlagPayload): void {
+        this.userConfigActions.notifyFeatureFlagChange.invoke(payload);
     }
 }

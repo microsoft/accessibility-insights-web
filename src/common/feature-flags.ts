@@ -17,7 +17,7 @@ export class FeatureFlags {
     public static readonly highContrastMode = 'highContrastMode';
 }
 
-export interface IFeatureFlagDetail {
+export interface FeatureFlagDetail {
     id: string;
     defaultValue: boolean;
     displayableName: string;
@@ -26,7 +26,7 @@ export interface IFeatureFlagDetail {
     forceDefault: boolean;
 }
 
-export function getAllFeatureFlagDetails(): IFeatureFlagDetail[] {
+export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
     return [
         {
             id: FeatureFlags.exportResult,
@@ -109,14 +109,14 @@ export function getAllFeatureFlagDetails(): IFeatureFlagDetail[] {
             defaultValue: false,
             displayableName: 'High contrast mode',
             displayableDescription: 'Show setting for high contrast mode under development',
-            isPreviewFeature: false,
+            isPreviewFeature: true,
             forceDefault: false,
         },
     ];
 }
 
 export function getDefaultFeatureFlagValues(): FeatureFlagStoreData {
-    const details: IFeatureFlagDetail[] = getAllFeatureFlagDetails();
+    const details: FeatureFlagDetail[] = getAllFeatureFlagDetails();
     const values: FeatureFlagStoreData = {};
     _.forEach(details, detail => {
         values[detail.id] = detail.defaultValue;
@@ -125,7 +125,7 @@ export function getDefaultFeatureFlagValues(): FeatureFlagStoreData {
 }
 
 export function getForceDefaultFlags(): FeatureFlags[] {
-    const details: IFeatureFlagDetail[] = getAllFeatureFlagDetails();
+    const details: FeatureFlagDetail[] = getAllFeatureFlagDetails();
     const forceDefaultFlags: FeatureFlags[] = [];
     _.forEach(details, detail => {
         if (detail.forceDefault) {

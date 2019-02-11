@@ -6,34 +6,28 @@ import { IDisplayableFeatureFlag } from '../../common/types/store-data/idisplaya
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { GenericToggle } from './generic-toggle';
 
-export interface IPreviewFeaturesToggleListProps {
+export interface PreviewFeaturesToggleListProps {
     displayedFeatureFlags: IDisplayableFeatureFlag[];
     actionMessageCreator: DetailsViewActionMessageCreator;
 }
 
-export class PreviewFeaturesToggleList extends React.Component<IPreviewFeaturesToggleListProps> {
+export class PreviewFeaturesToggleList extends React.Component<PreviewFeaturesToggleListProps> {
     public render(): JSX.Element {
         return <div className="preview-feature-toggle-list">{this.generateToggleList()}</div>;
     }
 
     private generateToggleList(): JSX.Element[] {
-        const toggleList = [];
         const flags = this.props.displayedFeatureFlags;
-
-        for (let flagIndex = 0; flagIndex < flags.length; flagIndex++) {
-            const displayableFlag = flags[flagIndex];
-
-            toggleList.push(
-                <GenericToggle
-                    name={displayableFlag.displayableName}
-                    description={displayableFlag.displayableDescription}
-                    enabled={displayableFlag.enabled}
-                    onClick={this.props.actionMessageCreator.setFeatureFlag}
-                    key={this.getToggleKey(displayableFlag.id)}
-                    id={displayableFlag.id}
-                />,
-            );
-        }
+        const toggleList = flags.map((displayableFlag: IDisplayableFeatureFlag) => (
+            <GenericToggle
+                name={displayableFlag.displayableName}
+                description={displayableFlag.displayableDescription}
+                enabled={displayableFlag.enabled}
+                onClick={this.props.actionMessageCreator.setFeatureFlag}
+                key={this.getToggleKey(displayableFlag.id)}
+                id={displayableFlag.id}
+            />
+        ));
 
         return toggleList;
     }

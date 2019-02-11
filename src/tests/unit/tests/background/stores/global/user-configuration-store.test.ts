@@ -11,6 +11,8 @@ import { IndexedDBAPI } from '../../../../../../common/indexedDB/indexedDB';
 import { StoreNames } from '../../../../../../common/stores/store-names';
 import { UserConfigurationStoreData } from '../../../../../../common/types/store-data/user-configuration-store';
 import { StoreTester } from '../../../../common/store-tester';
+import { FeatureFlagPayload } from '../../../../../../background/actions/feature-flag-actions';
+import { FeatureFlags } from '../../../../../../common/feature-flags';
 
 describe('UserConfigurationStoreTest', () => {
     let initialStoreData: UserConfigurationStoreData;
@@ -85,6 +87,46 @@ describe('UserConfigurationStoreTest', () => {
         const storeTester = createStoreToTestAction('getCurrentState');
 
         storeTester.testListenerToBeCalledOnce(initialStoreData, cloneDeep(initialStoreData));
+    });
+
+    test('onNotifyFeatureFlagChange calls setHighContrast when checks pass', () => {
+        const payload: FeatureFlagPayload = {
+            feature: FeatureFlags.highContrastMode,
+            enabled: false,
+        };
+        const expectedState: UserConfigurationStoreData = {
+            enableTelemetry: true,
+            isFirstTime: false,
+            enableHighContrast: false,
+        };
+        const storeTester = createStoreToTestAction('notifyFeatureFlagChange');
+        storeTester
+            .withActionParam(payload)
+            .withPostListenerMock(indexDbStrictMock)
+            .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
+    });
+
+    test('if onNotifyFeatureFlagChange wont setHighContrast because one of the check failed', () => {
+        initialStoreData = {
+            enableTelemetry: true,
+            isFirstTime: false,
+            enableHighContrast: true,
+        };
+        const expectedState: UserConfigurationStoreData = {
+            enableTelemetry: true,
+            isFirstTime: false,
+            enableHighContrast: true,
+        };
+
+        const payload: FeatureFlagPayload = {
+            feature: FeatureFlags.highContrastMode,
+            enabled: true,
+        };
+        const storeTester = createStoreToTestAction('notifyFeatureFlagChange');
+        storeTester
+            .withActionParam(payload)
+            .withPostListenerMock(indexDbStrictMock)
+            .testListenerToNeverBeCalled(cloneDeep(initialStoreData), expectedState);
     });
 
     type SetUserConfigTestCase = {
