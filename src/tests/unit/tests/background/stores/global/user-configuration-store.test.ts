@@ -4,9 +4,9 @@ import { cloneDeep } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import {
-    SetTelemetryStatePayload,
-    SetHighContrastModePayload,
     SetBugServicePayload,
+    SetHighContrastModePayload,
+    SetTelemetryStatePayload,
 } from '../../../../../../background/actions/action-payloads';
 import { UserConfigurationActions } from '../../../../../../background/actions/user-configuration-actions';
 import { IndexedDBDataKeys } from '../../../../../../background/IndexedDBDataKeys';

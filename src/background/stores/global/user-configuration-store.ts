@@ -6,7 +6,7 @@ import { cloneDeep } from 'lodash';
 import { IndexedDBAPI } from '../../../common/indexedDB/indexedDB';
 import { StoreNames } from '../../../common/stores/store-names';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
-import { SetTelemetryStatePayload, SetHighContrastModePayload, SetBugServicePayload } from '../../actions/action-payloads';
+import { SetBugServicePayload, SetHighContrastModePayload, SetTelemetryStatePayload } from '../../actions/action-payloads';
 import { UserConfigurationActions } from '../../actions/user-configuration-actions';
 import { IndexedDBDataKeys } from '../../IndexedDBDataKeys';
 import { BaseStore } from '../base-store';

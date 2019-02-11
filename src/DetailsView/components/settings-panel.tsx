@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
+import { Dropdown, IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
 import * as React from 'react';
-import { Label } from 'office-ui-fabric-react/lib/Label';
 
+import { FlaggedComponent } from '../../common/components/flagged-component';
 import { FeatureFlags } from '../../common/feature-flags';
 import { UserConfigMessageCreator } from '../../common/message-creators/user-config-message-creator';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
@@ -19,8 +20,6 @@ import {
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { GenericPanel } from './generic-panel';
 import { GenericToggle } from './generic-toggle';
-import { FlaggedComponent } from '../../common/components/flagged-component';
-import { Dropdown, IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
 
 export interface SettingsPanelDeps {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;

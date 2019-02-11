@@ -3,9 +3,9 @@
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import {
-    SetTelemetryStatePayload,
-    SetHighContrastModePayload,
     SetBugServicePayload,
+    SetHighContrastModePayload,
+    SetTelemetryStatePayload,
 } from '../../../../../background/actions/action-payloads';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { Messages } from '../../../../../common/messages';

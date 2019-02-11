@@ -3,10 +3,10 @@
 import { DetailsViewTargetLinkClickTelemetryData, TelemetryData, ToggleTelemetryData } from '../../common/telemetry-events';
 import * as TelemetryEvents from '../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
-import { VisualizationType } from '../../common/types/visualization-type';
-import { LaunchPanelType } from '../../popup/scripts/components/popup-view';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
+import { VisualizationType } from '../../common/types/visualization-type';
 import { ITabStopEvent } from '../../injected/tab-stops-listener';
+import { LaunchPanelType } from '../../popup/scripts/components/popup-view';
 
 export interface BaseActionPayload {
     telemetry?: TelemetryData;
