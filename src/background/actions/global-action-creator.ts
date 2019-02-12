@@ -15,7 +15,7 @@ import {
     SetTelemetryStatePayload,
 } from './action-payloads';
 import { CommandActions, IGetCommandsPayload } from './command-actions';
-import { FeatureFlagActions } from './feature-flag-actions';
+import { FeatureFlagActions, FeatureFlagPayload } from './feature-flag-actions';
 import { GlobalActionHub } from './global-action-hub';
 import { LaunchPanelStateActions } from './launch-panel-state-action';
 import { ScopingActions } from './scoping-actions';
@@ -67,6 +67,7 @@ export class GlobalActionCreator {
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetTelemetryConfig, this.onSetTelemetryConfiguration);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetHighContrastConfig, this.onSetHighContrastMode);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetBugService, this.onSetBugService);
+        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.NotifyFeatureFlagChange, this.onNotifyFeatureFlagChange);
     }
 
     @autobind
@@ -89,6 +90,7 @@ export class GlobalActionCreator {
     private onSetFeatureFlags(payload, tabId: number): void {
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.PREVIEW_FEATURES_TOGGLE, payload, tabId);
         this.featureFlagActions.setFeatureFlag.invoke(payload);
+        this.onNotifyFeatureFlagChange(payload);
     }
 
     @autobind
@@ -145,5 +147,10 @@ export class GlobalActionCreator {
     @autobind
     private onSetBugService(payload: SetBugServicePayload): void {
         this.userConfigActions.setBugService.invoke(payload);
+    }
+
+    @autobind
+    private onNotifyFeatureFlagChange(payload: FeatureFlagPayload): void {
+        this.userConfigActions.notifyFeatureFlagChange.invoke(payload);
     }
 }

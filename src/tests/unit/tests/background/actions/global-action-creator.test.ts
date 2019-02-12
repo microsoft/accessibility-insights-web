@@ -65,7 +65,8 @@ describe('GlobalActionCreatorTest', () => {
     });
 
     test('registerCallback for FeatureFlags.SetFeatureFlag', () => {
-        const actionName = 'setFeatureFlag';
+        const featureFlagActionName = 'setFeatureFlag';
+        const userConfigActionName = 'notifyFeatureFlagChange';
         const payload: FeatureFlagPayload = {
             feature: 'registerCallback test feature',
             enabled: true,
@@ -74,8 +75,10 @@ describe('GlobalActionCreatorTest', () => {
 
         const validator = new GlobalActionCreatorValidator()
             .setupRegistrationCallback(Messages.FeatureFlags.SetFeatureFlag, args)
-            .setupActionOnFeatureFlagActions(actionName)
-            .setupFeatureFlagActionWithInvokeParameter(actionName, payload)
+            .setupActionOnFeatureFlagActions(featureFlagActionName)
+            .setupActionsOnUserConfig(userConfigActionName)
+            .setupFeatureFlagActionWithInvokeParameter(featureFlagActionName, payload)
+            .setupUserConfigActionWithInvokeParameter(userConfigActionName, payload)
             .setupTelemetrySend(TelemetryEvents.PREVIEW_FEATURES_TOGGLE);
 
         const actionCreator = validator.buildActionCreator();
@@ -278,7 +281,7 @@ class GlobalActionCreatorValidator {
     private launchPanelStateActionsContainerMock = Mock.ofType(LaunchPanelStateActions);
     private scopingActionsContainerMock = Mock.ofType(ScopingActions);
     private assessmentActionsContainerMock = Mock.ofType(AssessmentActions);
-    private userConfigActionsContainerMock = Mock.ofType<UserConfigurationActions>();
+    private userConfigActionsContainerMock = Mock.ofType(UserConfigurationActions);
     private interpreterMock = Mock.ofType(InterpreterStub);
     private browserAdapterMock = Mock.ofType(ChromeAdapter, MockBehavior.Strict);
     private telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler, MockBehavior.Strict);

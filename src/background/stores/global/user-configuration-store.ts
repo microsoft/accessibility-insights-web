@@ -7,9 +7,11 @@ import { IndexedDBAPI } from '../../../common/indexedDB/indexedDB';
 import { StoreNames } from '../../../common/stores/store-names';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import { SetBugServicePayload, SetHighContrastModePayload, SetTelemetryStatePayload } from '../../actions/action-payloads';
+import { FeatureFlagPayload } from '../../actions/feature-flag-actions';
 import { UserConfigurationActions } from '../../actions/user-configuration-actions';
 import { IndexedDBDataKeys } from '../../IndexedDBDataKeys';
 import { BaseStore } from '../base-store';
+import { FeatureFlags } from '../../../common/feature-flags';
 
 export class UserConfigurationStore extends BaseStore<UserConfigurationStoreData> {
     public static readonly defaultState: UserConfigurationStoreData = {
@@ -36,6 +38,7 @@ export class UserConfigurationStore extends BaseStore<UserConfigurationStoreData
         this.userConfigActions.setTelemetryState.addListener(this.onSetTelemetryState);
         this.userConfigActions.setHighContrastMode.addListener(this.onSetHighContrastMode);
         this.userConfigActions.setBugService.addListener(this.onSetBugService);
+        this.userConfigActions.notifyFeatureFlagChange.addListener(this.onNotifyFeatureFlagChange);
     }
 
     @autobind
@@ -64,5 +67,12 @@ export class UserConfigurationStore extends BaseStore<UserConfigurationStoreData
         // tslint:disable-next-line:no-floating-promises - grandfathered-in pre-existing violation
         this.indexDbApi.setItem(IndexedDBDataKeys.userConfiguration, this.state);
         this.emitChanged();
+    }
+
+    @autobind
+    private onNotifyFeatureFlagChange(payload: FeatureFlagPayload): void {
+        if (payload.feature === FeatureFlags.highContrastMode && payload.enabled === false) {
+            this.onSetHighContrastMode({ enableHighContrast: false });
+        }
     }
 }

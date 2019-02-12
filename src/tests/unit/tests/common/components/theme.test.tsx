@@ -26,16 +26,22 @@ describe('ThemeInner', () => {
         } as ThemeInnerProps;
     });
 
-    test.each([true, false])('is high contrast mode enabled: %s', (enableHighContrast: boolean) => {
+    const testStub = [true, false];
+
+    test.each(testStub)('is high contrast mode enabled: %s', (enableHighContrast: boolean) => {
         props.storeState.userConfigurationStoreData.enableHighContrast = enableHighContrast;
         const wrapper = shallow(<ThemeInner {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    test.each([true, false])('componentDidUpdate: is high contrast mode enabled: %s', (enableHighContrast: boolean) => {
+    test.each(testStub)('componentDidUpdate: is high contrast mode enabled: %s', (enableHighContrast: boolean) => {
         const theme = enableHighContrast ? HighContrastThemePalette : DefaultThemePalette;
         const wrapper = shallow(<ThemeInner {...props} />);
-        wrapper.setProps({ storeState: { userConfigurationStoreData: { enableHighContrast } } });
+        wrapper.setProps({
+            storeState: {
+                userConfigurationStoreData: { enableHighContrast },
+            },
+        });
         expect(loadThemeMock).toBeCalledWith(theme);
     });
 

@@ -2,14 +2,14 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash/index';
 
-import { FeatureFlags, IFeatureFlagDetail } from '../../common/feature-flags';
+import { FeatureFlags, FeatureFlagDetail } from '../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { IDisplayableFeatureFlag } from '../../common/types/store-data/idisplayable-feature-flag';
 
 export class PreviewFeatureFlagsHandler {
-    private featureFlagDetails: IFeatureFlagDetail[];
+    private featureFlagDetails: FeatureFlagDetail[];
 
-    constructor(featureFlagDetails: IFeatureFlagDetail[]) {
+    constructor(featureFlagDetails: FeatureFlagDetail[]) {
         this.featureFlagDetails = featureFlagDetails;
     }
 

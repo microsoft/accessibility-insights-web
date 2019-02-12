@@ -53,7 +53,7 @@ describe('Preview Features Panel', () => {
 
         const detailsViewPage = await waitForDetailsViewWithPreviewFeaturesPanel(popupPage);
 
-        await detailsViewPage.waitForSelector(detailsViewSelectors.noPreviewFeaturesMessage);
+        await detailsViewPage.waitForSelector(detailsViewSelectors.previewFeaturesPanelToggleList);
 
         return detailsViewPage;
     }

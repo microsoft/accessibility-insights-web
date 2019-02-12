@@ -64,10 +64,60 @@ exports[`Preview Features Panel should match content in snapshot 1`] = `
           <div
             class="ms-Panel-content content-000"
           >
-            <div
-              class="no-preview-feature-message"
-            >
-              No preview features are currently available to manage. Follow this page for future cool features.
+            <div>
+              <div
+                class="preview-features-description"
+              >
+                The following preview features are available for your evalution. Help us make them better!
+              </div>
+              <div
+                class="preview-feature-toggle-list"
+              >
+                <div
+                  class="generic-toggle-component"
+                >
+                  <div
+                    class="toggle-container"
+                  >
+                    <div
+                      class="toggle-name"
+                    >
+                      High contrast mode
+                    </div>
+                    <div
+                      class="ms-Toggle is-enabled toggle root-000"
+                    >
+                      <div
+                        class="ms-Toggle-innerContainer container-000"
+                      >
+                        <button
+                          aria-checked="false"
+                          aria-label="High contrast mode"
+                          class="ms-Toggle-background pill-000"
+                          data-is-focusable="true"
+                          id="Toggle000"
+                          role="switch"
+                          type="button"
+                        >
+                          <div
+                            class="ms-Toggle-thumb thumb-000"
+                          />
+                        </button>
+                        <label
+                          class="ms-Label ms-Toggle-stateText text-000"
+                        >
+                          Off
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="toggle-description"
+                  >
+                    Show setting for high contrast mode under development
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

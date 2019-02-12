@@ -7,13 +7,13 @@ import { IDisplayableFeatureFlag } from '../../../../../common/types/store-data/
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { GenericToggle } from '../../../../../DetailsView/components/generic-toggle';
 import {
-    IPreviewFeaturesToggleListProps,
+    PreviewFeaturesToggleListProps,
     PreviewFeaturesToggleList,
 } from '../../../../../DetailsView/components/preview-features-toggle-list';
 
 describe('PreviewFeaturesToggleListTest', () => {
     test('constructor', () => {
-        const testSubject = new PreviewFeaturesToggleList({} as IPreviewFeaturesToggleListProps);
+        const testSubject = new PreviewFeaturesToggleList({} as PreviewFeaturesToggleListProps);
         expect(testSubject).toBeDefined();
     });
 
@@ -34,7 +34,7 @@ describe('PreviewFeaturesToggleListTest', () => {
         ];
         const setFeatureFlagStub = () => {};
         const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
-        const props: IPreviewFeaturesToggleListProps = {
+        const props: PreviewFeaturesToggleListProps = {
             displayedFeatureFlags: displayableFeatureFlagsStub,
             actionMessageCreator: actionMessageCreatorMock.object,
         };
