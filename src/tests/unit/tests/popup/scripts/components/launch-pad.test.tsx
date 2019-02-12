@@ -7,7 +7,7 @@ import { Mock } from 'typemoq';
 import { ExternalLink } from '../../../../../../common/components/external-link';
 import { toolName } from '../../../../../../content/strings/application';
 import {
-    ILaunchPadProps,
+    LaunchPadProps,
     LaunchPad,
     LaunchPadDeps,
     LaunchPadRowConfiguration,
@@ -39,7 +39,7 @@ describe('LaunchPad', () => {
     test('render LaunchPad', () => {
         const deps = Mock.ofType<LaunchPadDeps>().object;
 
-        const props: ILaunchPadProps = {
+        const props: LaunchPadProps = {
             deps: deps,
             productName: toolName,
             rowConfigs: rowConfigs,
