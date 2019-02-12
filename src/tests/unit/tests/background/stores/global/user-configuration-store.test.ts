@@ -102,6 +102,7 @@ describe('UserConfigurationStoreTest', () => {
             enableTelemetry: true,
             isFirstTime: false,
             enableHighContrast: false,
+            bugService: 'none',
         };
         const storeTester = createStoreToTestAction('notifyFeatureFlagChange');
         storeTester
@@ -115,11 +116,13 @@ describe('UserConfigurationStoreTest', () => {
             enableTelemetry: true,
             isFirstTime: false,
             enableHighContrast: true,
+            bugService: 'none',
         };
         const expectedState: UserConfigurationStoreData = {
             enableTelemetry: true,
             isFirstTime: false,
             enableHighContrast: true,
+            bugService: 'none',
         };
 
         const payload: FeatureFlagPayload = {
