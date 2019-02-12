@@ -6,12 +6,7 @@ import { Mock } from 'typemoq';
 
 import { ExternalLink } from '../../../../../../common/components/external-link';
 import { toolName } from '../../../../../../content/strings/application';
-import {
-    ILaunchPadProps,
-    LaunchPad,
-    LaunchPadDeps,
-    LaunchPadRowConfiguration,
-} from '../../../../../../popup/scripts/components/launch-pad';
+import { LaunchPadProps, LaunchPad, LaunchPadDeps, LaunchPadRowConfiguration } from '../../../../../../popup/scripts/components/launch-pad';
 import { LaunchPadItemRow } from '../../../../../../popup/scripts/components/launch-pad-item-row';
 
 describe('LaunchPad', () => {
@@ -39,7 +34,7 @@ describe('LaunchPad', () => {
     test('render LaunchPad', () => {
         const deps = Mock.ofType<LaunchPadDeps>().object;
 
-        const props: ILaunchPadProps = {
+        const props: LaunchPadProps = {
             deps: deps,
             productName: toolName,
             rowConfigs: rowConfigs,
