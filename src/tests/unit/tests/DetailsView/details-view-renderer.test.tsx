@@ -45,8 +45,8 @@ describe('DetailsViewRendererTest', () => {
         const reportGeneratorMock = Mock.ofType(ReportGenerator);
         const assessmentsProviderMock = Mock.ofInstance(CreateTestAssessmentProvider());
 
-        const expectedIcon16 = 'icon16.png';
-        configMutator.setOption('icon16', expectedIcon16);
+        const expectedIcon16 = 'icon128.png';
+        configMutator.setOption('icon128', expectedIcon16);
         const documentManipulatorMock = Mock.ofType(DocumentManipulator);
         documentManipulatorMock.setup(des => des.setShortcutIcon('../' + expectedIcon16)).verifiable();
 
