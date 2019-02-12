@@ -19,7 +19,7 @@ describe('insights renderer', () => {
         document.head.innerHTML = '<link rel="shortcut icon" type="image/x-icon" href="../old-icon.png" />';
         document.body.innerHTML = '<div id="insights-root" />';
 
-        configMutator.setOption('icon16', 'new-icon.png');
+        configMutator.setOption('icon128', 'new-icon.png');
     });
 
     it('sets icon as configured', () => {

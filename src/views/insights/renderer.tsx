@@ -17,7 +17,7 @@ export type RendererDeps = {
 
 export function renderer(deps: RendererDeps): void {
     const { dom, render, initializeFabricIcons } = deps;
-    const iconPath = '../' + config.getOption('icon16');
+    const iconPath = '../' + config.getOption('icon128');
     const documentElementSetter = new DocumentManipulator(dom);
     documentElementSetter.setShortcutIcon(iconPath);
 

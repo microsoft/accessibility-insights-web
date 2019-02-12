@@ -73,7 +73,7 @@ export class DetailsViewRenderer {
 
     public render(): void {
         const detailsViewContainer = this.dom.querySelector('#details-container');
-        const iconPath = '../' + config.getOption('icon16');
+        const iconPath = '../' + config.getOption('icon128');
         this.documentManipulator.setShortcutIcon(iconPath);
         this.renderer(
             <>
