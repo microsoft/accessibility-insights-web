@@ -89,13 +89,28 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
                     options={[
                         { key: 'none', text: 'None' },
                         { key: 'azureBoards', text: 'Azure Boards' },
-                        { key: 'gitHub', text: 'GitHub Issues' },
+                        { key: 'gitHub', text: 'GitHub' },
                     ]}
                     onChange={this.onBugServiceDropdownChange}
                 />
                 {this.getProviderBugSettingsUx(selectedKey)}
             </>
         );
+    }
+
+    @autobind
+    protected onEnableTelemetryToggleClick(id: string, state: boolean): void {
+        this.props.deps.userConfigMessageCreator.setTelemetryState(state);
+    }
+
+    @autobind
+    protected onHighContrastModeToggleClick(id: string, state: boolean): void {
+        this.props.deps.userConfigMessageCreator.setHighContrastMode(state);
+    }
+
+    @autobind
+    protected onBugServiceDropdownChange(event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption, index?: number): void {
+        this.props.deps.userConfigMessageCreator.setBugService(option.key as string);
     }
 
     private getProviderBugSettingsUx(selectedKey: string): JSX.Element {
@@ -114,29 +129,28 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
     private getAzureBoardsBugSettingsUx(): JSX.Element {
         return (
             <>
-                <TextField label="Account or organization" />
-                <TextField label="Project" />
+                <TextField label="Project URL" onChange={this.onAzureBoardsProjectChange} />
+                <TextField label="Team" onChange={this.onAzureBoardsTeamChange} />
             </>
         );
     }
 
+    @autobind
+    protected onAzureBoardsProjectChange(event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string): void {
+        console.log(`onAzureBoardsProjectChange newValue=${newValue}`);
+    }
+
+    @autobind
+    protected onAzureBoardsTeamChange(event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string): void {
+        console.log(`onAzureBoardsTeamChange newValue=${newValue}`);
+    }
+
     private getGitHubBugSettingsUx(): JSX.Element {
-        return <TextField label="GitHub repository URL" />;
+        return <TextField label="Repository URL" onChange={this.onGitHubRepositoryChange} />;
     }
 
     @autobind
-    protected onEnableTelemetryToggleClick(id: string, state: boolean): void {
-        this.props.deps.userConfigMessageCreator.setTelemetryState(state);
-    }
-
-    @autobind
-    protected onHighContrastModeToggleClick(id: string, state: boolean): void {
-        this.props.deps.userConfigMessageCreator.setHighContrastMode(state);
-    }
-
-    @autobind
-    protected onBugServiceDropdownChange(event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption, index?: number): void {
-        console.log(`onBugServiceDropdownChange option=${JSON.stringify(option)} index=${index}`);
-        this.props.deps.userConfigMessageCreator.setBugService(option.key as string);
+    protected onGitHubRepositoryChange(event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string): void {
+        console.log(`onGitHubRepositoryChange newValue=${newValue}`);
     }
 }

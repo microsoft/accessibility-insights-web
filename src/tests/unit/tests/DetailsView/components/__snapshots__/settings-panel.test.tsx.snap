@@ -79,7 +79,7 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
               },
               Object {
                 "key": "gitHub",
-                "text": "GitHub Issues",
+                "text": "GitHub",
               },
             ]
           }
@@ -176,14 +176,15 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
               },
               Object {
                 "key": "gitHub",
-                "text": "GitHub Issues",
+                "text": "GitHub",
               },
             ]
           }
           selectedKey="gitHub"
         />
         <StyledTextFieldBase
-          label="GitHub repository URL"
+          label="Repository URL"
+          onChange={[Function]}
         />
       </React.Fragment>
     }
