@@ -18,7 +18,7 @@ import { RuleResult } from '../../scanner/iruleresults';
 import { DetailsGroupHeader, DetailsGroupHeaderProps } from './details-group-header';
 import { FailureDetails } from './failure-details';
 import { DetailsGroup, IDetailsRowData, IssuesTableHandler } from './issues-table-handler';
-import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator'
+import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 
 export interface IssuesDetailsListProps {
@@ -88,18 +88,14 @@ export class IssuesDetailsList extends React.Component<IssuesDetailsListProps, {
     }
 
     public render(): JSX.Element {
-        const detailListProps = this.props.issuesTableHandler.getListProps(
-            this.props.violations,
-            {
-
-                dropdownClickHandler: this.props.dropdownClickHandler,
-                issueTrackerPath: this.props.issueTrackerPath,
-                showBugFiling: this.props.featureFlagData[FeatureFlags.showBugFiling],
-                pageTitle: this.props.pageTitle,
-                pageUrl: this.props.pageUrl,
-                issueTextGenerator: this.props.issueTextGenerator
-            }
-        );
+        const detailListProps = this.props.issuesTableHandler.getListProps(this.props.violations, {
+            dropdownClickHandler: this.props.dropdownClickHandler,
+            issueTrackerPath: this.props.issueTrackerPath,
+            showBugFiling: this.props.featureFlagData[FeatureFlags.showBugFiling],
+            pageTitle: this.props.pageTitle,
+            pageUrl: this.props.pageUrl,
+            issueTextGenerator: this.props.issueTextGenerator,
+        });
 
         this.items = detailListProps.items;
         this.groups = detailListProps.groups;

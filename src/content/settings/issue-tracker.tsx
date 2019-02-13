@@ -1,4 +1,3 @@
-
 import { autobind } from '@uifabric/utilities';
 import * as React from 'react';
 
@@ -19,7 +18,7 @@ export class IssueTrackerInput extends React.Component<IIssueTrackerInputProps, 
     constructor(props) {
         super(props);
         this.state = {
-            issueTrackerPath: ''
+            issueTrackerPath: '',
         };
     }
     public render(): JSX.Element {
@@ -37,11 +36,11 @@ export class IssueTrackerInput extends React.Component<IIssueTrackerInputProps, 
                     isHidden={false}
                     primaryButtonDisabled={this.state.issueTrackerPath === ''}
                     primaryButtonText="Save"
-                    primaryButtonOnClick={ this.onSaveClick }
+                    primaryButtonOnClick={this.onSaveClick}
                     cancelButtonOnClick={this.onCancelClick}
                 />
             </div>
-        )
+        );
     }
 
     @autobind

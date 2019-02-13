@@ -17,9 +17,7 @@ import {
     enableTelemetrySettingDescription,
     enableTelemetrySettingsPanelTitle,
 } from '../../content/settings/improve-accessibility-insights';
-import {
-    IssueTrackerInput
-} from '../../content/settings/issue-tracker'
+import { IssueTrackerInput } from '../../content/settings/issue-tracker';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { GenericPanel } from './generic-panel';
 import { GenericToggle } from './generic-toggle';
@@ -84,10 +82,7 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
 
     private getIssueTrackerInput(): JSX.Element {
         return (
-            <IssueTrackerInput
-                onSave={this.onIssueTrackerPathSave}
-                issueTrackerPath={this.props.userConfigStoreState.issueTrackerPath}
-            />
+            <IssueTrackerInput onSave={this.onIssueTrackerPathSave} issueTrackerPath={this.props.userConfigStoreState.issueTrackerPath} />
         );
     }
 

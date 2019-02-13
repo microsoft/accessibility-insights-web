@@ -31,13 +31,13 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
 
     public setIssueTrackerPath(issueTrackerPath: string): void {
         const payload: SetIssueTrackerPathPayload = {
-            issueTrackerPath
+            issueTrackerPath,
         };
 
         this.dispatchMessage({
             type: Messages.UserConfig.SetIssueTrackerPath,
             tabId: this._tabId,
-            payload
+            payload,
         });
     }
 }

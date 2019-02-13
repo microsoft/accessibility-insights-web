@@ -4,7 +4,7 @@ import { IObjectWithKey } from 'office-ui-fabric-react/lib/DetailsList';
 import { IGroup } from 'office-ui-fabric-react/lib/GroupedList';
 import * as React from 'react';
 
-import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator'
+import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
 import { RuleResult } from '../../scanner/iruleresults';
 import { HyperlinkDefinition } from '../../views/content/content-page';
 import { BugButton } from './bug-button';
@@ -63,9 +63,19 @@ export class IssuesTableHandler {
                 detailsRow.key = node.instanceId;
                 if (bugFilingDetails.showBugFiling) {
                     if (bugFilingDetails.issueTrackerPath) {
-                        detailsRow.bugButton = <BugButton issueTrackerPath={bugFilingDetails.issueTrackerPath} ruleRes={rule} selector={detailsRow.selector} result={node} { ...bugFilingDetails } />;
+                        detailsRow.bugButton = (
+                            <BugButton
+                                issueTrackerPath={bugFilingDetails.issueTrackerPath}
+                                ruleRes={rule}
+                                selector={detailsRow.selector}
+                                result={node}
+                                {...bugFilingDetails}
+                            />
+                        );
                     } else {
-                        detailsRow.bugButton = <ConfigIssueTrackerButton onClick={bugFilingDetails.dropdownClickHandler.openSettingsPanelHandler} />;
+                        detailsRow.bugButton = (
+                            <ConfigIssueTrackerButton onClick={bugFilingDetails.dropdownClickHandler.openSettingsPanelHandler} />
+                        );
                     }
                 }
 

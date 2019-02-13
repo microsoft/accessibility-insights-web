@@ -54,7 +54,6 @@ export const AdhocIssuesTestView = NamedSFC<IAdhocIssuesTestViewProps>('AdhocIss
         <IssuesTable
             deps={props.deps}
             title={title}
-
             dropdownClickHandler={props.dropdownClickHandler}
             issuesTableHandler={props.issuesTableHandler}
             issueTrackerPath={props.issueTrackerPath}
