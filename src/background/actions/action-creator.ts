@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import '../string-utils';
-
 import { autobind } from '@uifabric/utilities';
 
 import { TestMode } from '../../common/configs/test-mode';

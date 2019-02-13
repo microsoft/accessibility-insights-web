@@ -288,9 +288,7 @@ describe('AssessmentActionCreatorTest', () => {
 
     test('onScanUpdate', () => {
         const payload = {
-            key: {
-                toTitleCase: () => 'Hello',
-            },
+            key: 'hello',
         };
 
         telemetryEventHandlerMock
@@ -308,9 +306,7 @@ describe('AssessmentActionCreatorTest', () => {
 
     test('onTrackingCompleted', () => {
         const payload = {
-            key: {
-                toTitleCase: () => 'Hello',
-            },
+            key: 'hello',
         };
 
         telemetryEventHandlerMock
