@@ -288,7 +288,7 @@ describe('AssessmentActionCreatorTest', () => {
 
     test('onScanUpdate', () => {
         const payload = {
-            key: 'hello'
+            key: 'hello',
         };
 
         telemetryEventHandlerMock
@@ -306,7 +306,7 @@ describe('AssessmentActionCreatorTest', () => {
 
     test('onTrackingCompleted', () => {
         const payload = {
-            key: 'hello'
+            key: 'hello',
         };
 
         telemetryEventHandlerMock
