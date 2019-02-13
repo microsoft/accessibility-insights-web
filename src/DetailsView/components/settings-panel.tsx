@@ -6,8 +6,6 @@ import * as React from 'react';
 import { FeatureFlags } from '../../common/feature-flags';
 import { UserConfigMessageCreator } from '../../common/message-creators/user-config-message-creator';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
-import { TextField } from 'office-ui-fabric-react/lib/TextField';
-import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import {
     enableHighContrastSettingsTitle as highContrastSettingsTitle,

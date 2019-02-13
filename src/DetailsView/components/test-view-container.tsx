@@ -18,7 +18,6 @@ import { ReportGenerator } from '../reports/report-generator';
 import { IssuesTableHandler } from './issues-table-handler';
 import { OverviewContainerDeps } from './overview-content/overview-content-container';
 import { TestViewDeps } from './test-view';
-import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 
 export type TestViewContainerDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;

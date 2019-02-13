@@ -10,7 +10,7 @@ export class IssueDetailsTextGenerator {
 
     public buildText(data: CreateIssueDetailsTextData): string {
         const result = data.ruleResult;
-        const standardTags = data.ruleResult.guidanceLinks.map(tag => tag.text.toUpperCase());
+        const standardTags = this.standardizeTags(data);
 
         const text = [
             `Title: ${this.buildTitle(data, standardTags)}`,
@@ -47,7 +47,7 @@ export class IssueDetailsTextGenerator {
 
     public buildTitle(data: CreateIssueDetailsTextData, standardTags?: string[]): string {
         if (!standardTags) {
-            standardTags = data.ruleResult.guidanceLinks.map(tag => tag.text.toUpperCase());
+            standardTags = this.standardizeTags(data);
         }
 
         let prefix = standardTags.join(',');
@@ -71,5 +71,9 @@ export class IssueDetailsTextGenerator {
             selectorLastPart = selector.substr(selector.lastIndexOf(' > ') + 3);
         }
         return selectorLastPart;
+    }
+
+    private standardizeTags(data: CreateIssueDetailsTextData): string[] {
+        return data.ruleResult.guidanceLinks.map(tag => tag.text.toUpperCase());
     }
 }
