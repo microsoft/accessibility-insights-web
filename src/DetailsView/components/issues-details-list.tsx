@@ -20,6 +20,7 @@ import { FailureDetails } from './failure-details';
 import { DetailsGroup, IDetailsRowData, IssuesTableHandler } from './issues-table-handler';
 import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
+import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 
 export interface IssuesDetailsListProps {
     violations: (RuleResult)[];
@@ -31,6 +32,7 @@ export interface IssuesDetailsListProps {
     pageTitle: string;
     pageUrl: string;
     featureFlagData: FeatureFlagStoreData;
+    selectedIdToRuleResultMap: IDictionaryStringTo<DecoratedAxeNodeResult>;
 }
 
 export class IssuesDetailsList extends React.Component<IssuesDetailsListProps, {}> {
@@ -89,6 +91,7 @@ export class IssuesDetailsList extends React.Component<IssuesDetailsListProps, {
 
     public render(): JSX.Element {
         const detailListProps = this.props.issuesTableHandler.getListProps(this.props.violations, {
+            selectedIdToRuleResultMap: this.props.selectedIdToRuleResultMap,
             dropdownClickHandler: this.props.dropdownClickHandler,
             issueTrackerPath: this.props.issueTrackerPath,
             showBugFiling: this.props.featureFlagData[FeatureFlags.showBugFiling],

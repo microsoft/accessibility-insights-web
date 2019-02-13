@@ -17,27 +17,17 @@ export interface IBugFileDetails {
     selector: string;
 }
 
-export class BugButton extends React.Component<{ result: AxeNodeResult; ruleRes: RuleResult } & IBugFileDetails, {}> {
+export class BugButton extends React.Component<{ result: AxeNodeResult; ruleResult: DecoratedAxeNodeResult } & IBugFileDetails, {}> {
     public issueUrl(title, body) {
         const baseUrl = `${issueTrackerPathPrefix}${this.props.issueTrackerPath}${issueTrackerPathSuffix}`;
         const encodedIssue = `/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
         return `${baseUrl}${encodedIssue}`;
     }
     public render(): JSX.Element {
-        let ruleResult: DecoratedAxeNodeResult = this.props.result as any;
-        console.log(ruleResult);
-        ruleResult.guidanceLinks = this.props.ruleRes.guidanceLinks;
-        if (!ruleResult.snippet) {
-            ruleResult.snippet = '';
-        }
-        ruleResult.help = this.props.ruleRes.help;
-        ruleResult.helpUrl = this.props.ruleRes.helpUrl;
-        ruleResult.ruleId = this.props.ruleRes.id;
-
         const issueDetsData = {
             pageTitle: this.props.pageTitle,
             pageUrl: this.props.pageUrl,
-            ruleResult: ruleResult,
+            ruleResult: this.props.ruleResult,
         };
 
         const title = this.props.issueTextGenerator.buildTitle(issueDetsData);

@@ -10,6 +10,7 @@ import { HyperlinkDefinition } from '../../views/content/content-page';
 import { BugButton } from './bug-button';
 import { ConfigIssueTrackerButton } from './config-issue-tracker-button';
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
+import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 
 export interface IDetailsRowData extends IObjectWithKey, AxeNodeResult {
     selector: string;
@@ -27,6 +28,7 @@ export interface DetailsGroup extends IGroup {
 }
 
 export interface IBugFileDetails {
+    selectedIdToRuleResultMap: IDictionaryStringTo<DecoratedAxeNodeResult>;
     issueTrackerPath: string;
     pageTitle: string;
     pageUrl: string;
@@ -66,7 +68,7 @@ export class IssuesTableHandler {
                         detailsRow.bugButton = (
                             <BugButton
                                 issueTrackerPath={bugFilingDetails.issueTrackerPath}
-                                ruleRes={rule}
+                                ruleResult={bugFilingDetails.selectedIdToRuleResultMap[node.instanceId]}
                                 selector={detailsRow.selector}
                                 result={node}
                                 {...bugFilingDetails}

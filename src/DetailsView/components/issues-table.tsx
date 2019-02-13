@@ -188,6 +188,7 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
                     issueTextGenerator={this.props.deps.issueDetailsTextGenerator}
                     issueTrackerPath={this.props.issueTrackerPath}
                     featureFlagData={this.props.featureFlags}
+                    selectedIdToRuleResultMap={this.props.selectedIdToRuleResultMap}
                 />
                 <div className="issue-detail-outer-container ms-Fabric">{this.getIssueDetailPane()}</div>
             </div>
