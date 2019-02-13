@@ -127,3 +127,9 @@ export interface SetHighContrastModePayload extends BaseActionPayload {
 export interface SetBugServicePayload extends BaseActionPayload {
     bugServiceName: string;
 }
+
+export interface SetBugServicePropertyPayload extends BaseActionPayload {
+    bugServiceName: string;
+    propertyName: string;
+    propertyValue: string;
+}

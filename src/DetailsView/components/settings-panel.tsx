@@ -137,12 +137,12 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
 
     @autobind
     protected onAzureBoardsProjectChange(event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string): void {
-        console.log(`onAzureBoardsProjectChange newValue=${newValue}`);
+        this.props.deps.userConfigMessageCreator.setBugServiceProperty('azureBoards', 'project', newValue);
     }
 
     @autobind
     protected onAzureBoardsTeamChange(event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string): void {
-        console.log(`onAzureBoardsTeamChange newValue=${newValue}`);
+        this.props.deps.userConfigMessageCreator.setBugServiceProperty('azureBoards', 'team', newValue);
     }
 
     private getGitHubBugSettingsUx(): JSX.Element {
@@ -151,6 +151,6 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
 
     @autobind
     protected onGitHubRepositoryChange(event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string): void {
-        console.log(`onGitHubRepositoryChange newValue=${newValue}`);
+        this.props.deps.userConfigMessageCreator.setBugServiceProperty('gitHub', 'repository', newValue);
     }
 }

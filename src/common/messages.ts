@@ -102,6 +102,7 @@ export class Messages {
         SetTelemetryConfig: 'insights/userConfig/setTelemetryConfig',
         SetHighContrastConfig: 'insights/userConfig/setHighContrastConfig',
         SetBugService: 'insights/userConfig/setBugService',
+        SetBugServiceProperty: 'insights/userConfig/setBugServiceProperty',
         NotifyFeatureFlagChange: 'insights/userConfig/notifyFeatureFlagChange',
     };
 

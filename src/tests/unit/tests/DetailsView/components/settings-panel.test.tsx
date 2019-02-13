@@ -11,7 +11,15 @@ import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/acti
 import { SettingsPanel, SettingsPanelProps } from '../../../../../DetailsView/components/settings-panel';
 
 type SettingsPanelProtectedClickFunction = (id: string, state: boolean) => void;
-type SettingsPanelProtectedChangeFunction = (event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption, index?: number) => void;
+type SettingsPanelProtectedDropdownChangeFunction = (
+    event: React.FormEvent<HTMLDivElement>,
+    option?: IDropdownOption,
+    index?: number,
+) => void;
+type SettingsPanelProtectedTextFieldChangeFunction = (
+    event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>,
+    newValue?: string,
+) => void;
 
 class TestableSettingsPanel extends SettingsPanel {
     public getOnEnableTelemetryToggleClick(): SettingsPanelProtectedClickFunction {
@@ -22,8 +30,20 @@ class TestableSettingsPanel extends SettingsPanel {
         return this.onHighContrastModeToggleClick;
     }
 
-    public getOnBugServiceDropdownChange(): SettingsPanelProtectedChangeFunction {
+    public getOnBugServiceDropdownChange(): SettingsPanelProtectedDropdownChangeFunction {
         return this.onBugServiceDropdownChange;
+    }
+
+    public getOnAzureBoardsProjectChange(): SettingsPanelProtectedTextFieldChangeFunction {
+        return this.onAzureBoardsProjectChange;
+    }
+
+    public getOnAzureBoardsTeamChange(): SettingsPanelProtectedTextFieldChangeFunction {
+        return this.onAzureBoardsTeamChange;
+    }
+
+    public getOnGitHubRepositoryChange(): SettingsPanelProtectedTextFieldChangeFunction {
+        return this.onGitHubRepositoryChange;
     }
 }
 
@@ -136,5 +156,56 @@ describe('SettingsPanelTest', () => {
         testSubject.getOnBugServiceDropdownChange()(null, option, 1);
 
         userConfigMessageCreatorMock.verify(u => u.setBugService(option.key as string), Times.once());
+    });
+
+    interface BugServicePropertyTestCase {
+        bugServiceName: string;
+        propertyName: string;
+        propertyValue: string;
+        changeFunction: (testableSettingsPanel: TestableSettingsPanel) => SettingsPanelProtectedTextFieldChangeFunction;
+    }
+
+    const bugServicePropertyTestCases: BugServicePropertyTestCase[] = [
+        {
+            bugServiceName: 'azureBoards',
+            propertyName: 'project',
+            propertyValue: 'project-url',
+            changeFunction: (testableSettingsPanel: TestableSettingsPanel) => testableSettingsPanel.getOnAzureBoardsProjectChange(),
+        },
+        {
+            bugServiceName: 'azureBoards',
+            propertyName: 'team',
+            propertyValue: 'team-name',
+            changeFunction: (testableSettingsPanel: TestableSettingsPanel) => testableSettingsPanel.getOnAzureBoardsTeamChange(),
+        },
+        {
+            bugServiceName: 'gitHub',
+            propertyName: 'repository',
+            propertyValue: 'repository-url',
+            changeFunction: (testableSettingsPanel: TestableSettingsPanel) => testableSettingsPanel.getOnGitHubRepositoryChange(),
+        },
+    ];
+
+    test.each(bugServicePropertyTestCases)('verify bug service property change %o', (testCase: BugServicePropertyTestCase) => {
+        userConfigStoreData = {} as UserConfigurationStoreData;
+        const testProps: SettingsPanelProps = {
+            isOpen: true,
+            deps: {
+                detailsViewActionMessageCreator: detailsActionMessageCreatorMock.object,
+                userConfigMessageCreator: userConfigMessageCreatorMock.object,
+            },
+            userConfigStoreState: userConfigStoreData,
+            featureFlagData: { [FeatureFlags.showBugFiling]: true },
+        };
+
+        const testSubject = new TestableSettingsPanel(testProps);
+
+        const testChange = 'test change';
+        testCase.changeFunction(testSubject)(null, testCase.propertyValue);
+
+        userConfigMessageCreatorMock.verify(
+            u => u.setBugServiceProperty(testCase.bugServiceName, testCase.propertyName, testCase.propertyValue),
+            Times.once(),
+        );
     });
 });
