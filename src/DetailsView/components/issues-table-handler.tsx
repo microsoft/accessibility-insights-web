@@ -29,7 +29,7 @@ export interface DetailsGroup extends IGroup {
 
 export type IssuesTableHandlerDeps = IBugButtonDeps & {
     dropdownClickHandler: DropdownClickHandler;
-}
+};
 export interface IBugFileDetails {
     deps: IssuesTableHandlerDeps;
     issueTrackerPath: string;

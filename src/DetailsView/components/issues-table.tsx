@@ -21,9 +21,10 @@ import { IssuesDetailsList } from './issues-details-list';
 import { IssuesDetailsPane, IssuesDetailsPaneDeps } from './Issues-details-pane';
 import { IssuesTableHandler, IssuesTableHandlerDeps } from './issues-table-handler';
 
-export type IssuesTableDeps = IssuesTableHandlerDeps & IssuesDetailsPaneDeps & {
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-};
+export type IssuesTableDeps = IssuesTableHandlerDeps &
+    IssuesDetailsPaneDeps & {
+        detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    };
 
 export interface IssuesTableProps {
     deps: IssuesTableDeps;
