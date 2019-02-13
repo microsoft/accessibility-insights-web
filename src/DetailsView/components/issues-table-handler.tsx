@@ -72,7 +72,7 @@ export class IssuesTableHandler {
                                 deps={bugFilingDetails.deps}
                                 pageTitle={bugFilingDetails.pageTitle}
                                 pageUrl={bugFilingDetails.pageUrl}
-                                ruleResult={bugFilingDetails.selectedIdToRuleResultMap[node.instanceId]}
+                                nodeResult={bugFilingDetails.selectedIdToRuleResultMap[node.instanceId]}
                                 issueTrackerPath={bugFilingDetails.issueTrackerPath}
                             />
                         );

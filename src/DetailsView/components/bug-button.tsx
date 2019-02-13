@@ -3,7 +3,6 @@
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
-import { AxeNodeResult, RuleResult } from '../../scanner/iruleresults';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 
 import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
@@ -13,11 +12,11 @@ export interface IBugButtonDeps {
     issueDetailsTextGenerator: IssueDetailsTextGenerator;
 }
 export interface IBugButtonProps {
+    deps: IBugButtonDeps;
     issueTrackerPath: string;
     pageTitle: string;
     pageUrl: string;
-    deps: IBugButtonDeps;
-    ruleResult: DecoratedAxeNodeResult;
+    nodeResult: DecoratedAxeNodeResult;
 }
 
 export class BugButton extends React.Component<IBugButtonProps> {
@@ -27,14 +26,14 @@ export class BugButton extends React.Component<IBugButtonProps> {
         return `${baseUrl}${encodedIssue}`;
     }
     public render(): JSX.Element {
-        const issueDetsData = {
+        const issueDetailsData = {
             pageTitle: this.props.pageTitle,
             pageUrl: this.props.pageUrl,
-            ruleResult: this.props.ruleResult,
+            ruleResult: this.props.nodeResult,
         };
 
-        const title = this.props.deps.issueDetailsTextGenerator.buildTitle(issueDetsData);
-        const body = this.props.deps.issueDetailsTextGenerator.buildText(issueDetsData);
+        const title = this.props.deps.issueDetailsTextGenerator.buildTitle(issueDetailsData);
+        const body = this.props.deps.issueDetailsTextGenerator.buildText(issueDetailsData);
 
         return (
             <Link className="bugs-details-view" taget="_blank" href={this.issueUrl(title, body)}>
