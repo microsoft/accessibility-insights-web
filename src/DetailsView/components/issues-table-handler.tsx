@@ -7,7 +7,7 @@ import * as React from 'react';
 import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
 import { RuleResult } from '../../scanner/iruleresults';
 import { HyperlinkDefinition } from '../../views/content/content-page';
-import { BugButton } from './bug-button';
+import { BugButton, IBugButtonDeps } from './bug-button';
 import { ConfigIssueTrackerButton } from './config-issue-tracker-button';
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
@@ -28,11 +28,8 @@ export interface DetailsGroup extends IGroup {
 }
 
 export interface IBugFileDetails {
+    deps: IBugButtonDeps,
     selectedIdToRuleResultMap: IDictionaryStringTo<DecoratedAxeNodeResult>;
-    issueTrackerPath: string;
-    pageTitle: string;
-    pageUrl: string;
-    issueTextGenerator: IssueDetailsTextGenerator;
     showBugFiling: boolean;
     dropdownClickHandler: DropdownClickHandler;
 }
@@ -64,14 +61,11 @@ export class IssuesTableHandler {
                 detailsRow.selector = node.target.join(';');
                 detailsRow.key = node.instanceId;
                 if (bugFilingDetails.showBugFiling) {
-                    if (bugFilingDetails.issueTrackerPath) {
+                    if (bugFilingDetails.deps.issueTrackerPath) {
                         detailsRow.bugButton = (
                             <BugButton
-                                issueTrackerPath={bugFilingDetails.issueTrackerPath}
+                                deps={bugFilingDetails.deps}
                                 ruleResult={bugFilingDetails.selectedIdToRuleResultMap[node.instanceId]}
-                                selector={detailsRow.selector}
-                                result={node}
-                                {...bugFilingDetails}
                             />
                         );
                     } else {

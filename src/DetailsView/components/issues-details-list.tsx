@@ -91,13 +91,15 @@ export class IssuesDetailsList extends React.Component<IssuesDetailsListProps, {
 
     public render(): JSX.Element {
         const detailListProps = this.props.issuesTableHandler.getListProps(this.props.violations, {
+            deps: {
+                issueTrackerPath: this.props.issueTrackerPath,
+                pageTitle: this.props.pageTitle,
+                pageUrl: this.props.pageUrl,
+                issueTextGenerator: this.props.issueTextGenerator,
+            },
             selectedIdToRuleResultMap: this.props.selectedIdToRuleResultMap,
             dropdownClickHandler: this.props.dropdownClickHandler,
-            issueTrackerPath: this.props.issueTrackerPath,
             showBugFiling: this.props.featureFlagData[FeatureFlags.showBugFiling],
-            pageTitle: this.props.pageTitle,
-            pageUrl: this.props.pageUrl,
-            issueTextGenerator: this.props.issueTextGenerator,
         });
 
         this.items = detailListProps.items;
