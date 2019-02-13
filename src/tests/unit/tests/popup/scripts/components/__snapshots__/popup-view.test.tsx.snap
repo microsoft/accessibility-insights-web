@@ -93,6 +93,7 @@ exports[`PopupView renderFailureMsgPanelForFileUrl 1`] = `
       <div>
         1. Open 
         <NewTabLink
+          aria-label="open test title extension page"
           onClick={[Function]}
         >
           test title
