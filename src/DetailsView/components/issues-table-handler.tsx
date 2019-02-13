@@ -56,9 +56,6 @@ export class IssuesTableHandler {
                 ruleUrl: rule.helpUrl,
             };
             groups.push(curGroup);
-            {
-                rule;
-            }
             rule.nodes.forEach((node: AxeNodeResult) => {
                 instanceCount++;
                 const detailsRow = node as IDetailsRowData;
