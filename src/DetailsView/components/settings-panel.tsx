@@ -6,6 +6,8 @@ import * as React from 'react';
 import { FeatureFlags } from '../../common/feature-flags';
 import { UserConfigMessageCreator } from '../../common/message-creators/user-config-message-creator';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
+import { TextField } from 'office-ui-fabric-react/lib/TextField';
+import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import {
     enableHighContrastSettingsTitle as highContrastSettingsTitle,
@@ -15,6 +17,9 @@ import {
     enableTelemetrySettingDescription,
     enableTelemetrySettingsPanelTitle,
 } from '../../content/settings/improve-accessibility-insights';
+import {
+    IssueTrackerInput
+} from '../../content/settings/issue-tracker'
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { GenericPanel } from './generic-panel';
 import { GenericToggle } from './generic-toggle';
@@ -55,6 +60,12 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
                     featureFlag={FeatureFlags[FeatureFlags.highContrastMode]}
                     featureFlagStoreData={this.props.featureFlagData}
                 />
+                <FlaggedComponent
+                    enableJSXElement={this.getIssueTrackerInput()}
+                    disableJSXElement={null}
+                    featureFlag={FeatureFlags[FeatureFlags.showBugFiling]}
+                    featureFlagStoreData={this.props.featureFlagData}
+                />
             </GenericPanel>
         );
     }
@@ -71,6 +82,15 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
         );
     }
 
+    private getIssueTrackerInput(): JSX.Element {
+        return (
+            <IssueTrackerInput
+                onSave={this.onIssueTrackerPathSave}
+                issueTrackerPath={this.props.userConfigStoreState.issueTrackerPath}
+            />
+        );
+    }
+
     @autobind
     protected onEnableTelemetryToggleClick(id: string, state: boolean) {
         return this.props.deps.userConfigMessageCreator.setTelemetryState(state);
@@ -79,5 +99,10 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
     @autobind
     protected onHighContrastModeToggleClick(id: string, state: boolean) {
         return this.props.deps.userConfigMessageCreator.setHighContrastMode(state);
+    }
+
+    @autobind
+    protected onIssueTrackerPathSave(state: string) {
+        return this.props.deps.userConfigMessageCreator.setIssueTrackerPath(state);
     }
 }

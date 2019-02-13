@@ -20,6 +20,7 @@ import { ExportDialog } from './export-dialog';
 import { IssuesDetailsList } from './issues-details-list';
 import { IssuesDetailsPane, IssuesDetailsPaneDeps } from './Issues-details-pane';
 import { IssuesTableHandler } from './issues-table-handler';
+import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 
 export type IssuesTableDeps = IssuesDetailsPaneDeps & {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
@@ -27,12 +28,14 @@ export type IssuesTableDeps = IssuesDetailsPaneDeps & {
 
 export interface IssuesTableProps {
     deps: IssuesTableDeps;
+    dropdownClickHandler: DropdownClickHandler;
     title: string;
     issuesTableHandler: IssuesTableHandler;
     violations: RuleResult[];
     selectedIdToRuleResultMap: IDictionaryStringTo<DecoratedAxeNodeResult>;
     issuesEnabled: boolean;
     issuesSelection: ISelection;
+    issueTrackerPath: string;
     pageTitle: string;
     pageUrl: string;
     scanning: boolean;
@@ -179,8 +182,11 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
                     violations={this.props.violations}
                     issuesTableHandler={this.props.issuesTableHandler}
                     issuesSelection={this.props.issuesSelection}
+                    dropdownClickHandler={this.props.dropdownClickHandler}
                     pageTitle={this.props.pageTitle}
                     pageUrl={this.props.pageUrl}
+                    issueTextGenerator={this.props.deps.issueDetailsTextGenerator}
+                    issueTrackerPath={this.props.issueTrackerPath}
                     featureFlagData={this.props.featureFlags}
                 />
                 <div className="issue-detail-outer-container ms-Fabric">{this.getIssueDetailPane()}</div>

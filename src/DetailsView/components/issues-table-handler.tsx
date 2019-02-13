@@ -4,9 +4,12 @@ import { IObjectWithKey } from 'office-ui-fabric-react/lib/DetailsList';
 import { IGroup } from 'office-ui-fabric-react/lib/GroupedList';
 import * as React from 'react';
 
+import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator'
 import { RuleResult } from '../../scanner/iruleresults';
 import { HyperlinkDefinition } from '../../views/content/content-page';
 import { BugButton } from './bug-button';
+import { ConfigIssueTrackerButton } from './config-issue-tracker-button';
+import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 
 export interface IDetailsRowData extends IObjectWithKey, AxeNodeResult {
     selector: string;
@@ -23,8 +26,17 @@ export interface DetailsGroup extends IGroup {
     ruleUrl?: string;
 }
 
+export interface IBugFileDetails {
+    issueTrackerPath: string;
+    pageTitle: string;
+    pageUrl: string;
+    issueTextGenerator: IssueDetailsTextGenerator;
+    showBugFiling: boolean;
+    dropdownClickHandler: DropdownClickHandler;
+}
+
 export class IssuesTableHandler {
-    public getListProps(failedRules: RuleResult[], showBugFiling: boolean): IListProps {
+    public getListProps(failedRules: RuleResult[], bugFilingDetails: IBugFileDetails): IListProps {
         let listProps: IListProps;
         const groups: DetailsGroup[] = [];
         const items: IDetailsRowData[] = [];
@@ -40,15 +52,23 @@ export class IssuesTableHandler {
                 ruleUrl: rule.helpUrl,
             };
             groups.push(curGroup);
+            {
+                rule;
+            }
             rule.nodes.forEach((node: AxeNodeResult) => {
                 instanceCount++;
                 const detailsRow = node as IDetailsRowData;
 
                 detailsRow.selector = node.target.join(';');
                 detailsRow.key = node.instanceId;
-                if (showBugFiling) {
-                    detailsRow.bugButton = <BugButton />;
+                if (bugFilingDetails.showBugFiling) {
+                    if (bugFilingDetails.issueTrackerPath) {
+                        detailsRow.bugButton = <BugButton issueTrackerPath={bugFilingDetails.issueTrackerPath} ruleRes={rule} selector={detailsRow.selector} result={node} { ...bugFilingDetails } />;
+                    } else {
+                        detailsRow.bugButton = <ConfigIssueTrackerButton onClick={bugFilingDetails.dropdownClickHandler.openSettingsPanelHandler} />;
+                    }
                 }
+
                 items.push(detailsRow);
             });
         });

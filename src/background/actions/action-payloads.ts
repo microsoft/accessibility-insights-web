@@ -123,3 +123,7 @@ export interface SetTelemetryStatePayload extends BaseActionPayload {
 export interface SetHighContrastModePayload extends BaseActionPayload {
     enableHighContrast: boolean;
 }
+
+export interface SetIssueTrackerPathPayload extends BaseActionPayload {
+    issueTrackerPath: string;
+}

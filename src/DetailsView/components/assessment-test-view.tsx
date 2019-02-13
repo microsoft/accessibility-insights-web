@@ -12,6 +12,7 @@ import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
 import { IVisualizationStoreData } from '../../common/types/store-data/ivisualization-store-data';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 import { AssessmentView, AssessmentViewDeps } from './assessment-view';
+import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 
 export type AssessmentTestViewDeps = AssessmentViewDeps & {
     assessmentsProvider: IAssessmentsProvider;
@@ -19,6 +20,7 @@ export type AssessmentTestViewDeps = AssessmentViewDeps & {
 };
 
 export interface IAssessmentTestViewProps {
+    dropdownClickHandler: DropdownClickHandler;
     deps: AssessmentTestViewDeps;
     tabStoreData: ITabStoreData;
     assessmentStoreData: IAssessmentStoreData;
