@@ -4,7 +4,7 @@ import { IMock, It, Mock } from 'typemoq';
 
 import { ConnectionNames } from '../../../../common/constants/connection-names';
 import { DevToolState } from '../../../../common/types/store-data/idev-tool-state';
-import { InspectHandler } from '../../../../Devtools/inspect-Handler';
+import { InspectHandler } from '../../../../Devtools/inspect-handler';
 import { ChromeAdapterMock } from '../../mock-helpers/chrome-adapter-mock';
 import { StoreMock } from '../../mock-helpers/store-mock';
 import { PortStub } from '../../stubs/chrome-adapter-stub';

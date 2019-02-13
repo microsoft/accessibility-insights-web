@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { IReportHeaderProps, ReportHeader } from '../../../../../../DetailsView/reports/components/report-header';
-import { shallowRender } from '../../../../Common/shallow-render';
+import { shallowRender } from '../../../../common/shallow-render';
 
 describe('ReportHeaderTest', () => {
     it('renders with failures, without inapplicable', () => {

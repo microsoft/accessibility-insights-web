@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { IReportBodyProps, ReportBody } from '../../../../../../DetailsView/reports/components/report-body';
-import { shallowRender } from '../../../../Common/shallow-render';
+import { shallowRender } from '../../../../common/shallow-render';
 
 describe('ReportBodyTest', () => {
     it('renders', () => {
