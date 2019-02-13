@@ -204,7 +204,9 @@ export class PopupView extends React.Component<PopupViewProps> {
                         <div>To allow this extension to run on file URLs:</div>
                         <div>
                             {'1. Open '}
-                            <NewTabLink onClick={this.props.browserAdapter.openExtensionPage}>{this.props.title}</NewTabLink>
+                            <NewTabLink
+                                onClick={this.props.browserAdapter.openExtensionPage}>{this.props.title}
+                            </NewTabLink>
                             {' extension page'}
                         </div>
                         <div>
