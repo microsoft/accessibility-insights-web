@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { IReportInstanceListProps, ReportInstanceList } from '../../../../../../DetailsView/reports/components/report-instance-list';
-import { shallowRender } from '../../../../Common/shallow-render';
+import { shallowRender } from '../../../../common/shallow-render';
 
 describe('ReportInstanceListTest', () => {
     test('render 0 instances', () => {

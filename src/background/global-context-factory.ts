@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IndexedDBAPI } from '../common/indexedDB/indexeddb';
+import { IndexedDBAPI } from '../common/indexedDB/indexedDB';
 import { StateDispatcher } from '../common/state-dispatcher';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { IAssessmentsProvider } from './../assessments/types/iassessments-provider';

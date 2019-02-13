@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { IReportScanDetailsProps, ReportScanDetails } from '../../../../../../DetailsView/reports/components/report-scan-details';
-import { shallowRender } from '../../../../Common/shallow-render';
+import { shallowRender } from '../../../../common/shallow-render';
 
 describe('ReportScanDetailsTest', () => {
     it('renders', () => {

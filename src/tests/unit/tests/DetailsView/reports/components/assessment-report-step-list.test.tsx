@@ -8,7 +8,7 @@ import {
     AssessmentReportStepListDeps,
     AssessmentReportStepListProps,
 } from '../../../../../../DetailsView/reports/components/assessment-report-step-list';
-import { shallowRender } from '../../../../Common/shallow-render';
+import { shallowRender } from '../../../../common/shallow-render';
 import { AssessmentReportBuilderTestHelper } from '../../assessment-report-builder-test-helper';
 
 describe('AssessmentReportStepListTest', () => {

@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { OutcomeIconSet } from '../../../../../../DetailsView/reports/components/outcome-icon-set';
-import { shallowRender } from '../../../../Common/shallow-render';
+import { shallowRender } from '../../../../common/shallow-render';
 
 describe('OutcomeIconSet', () => {
     describe('render', () => {

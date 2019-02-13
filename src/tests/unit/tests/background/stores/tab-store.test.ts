@@ -6,8 +6,8 @@ import { TabStore } from '../../../../../background/stores/tab-store';
 import { ITab } from '../../../../../common/itab';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { ITabStoreData } from '../../../../../common/types/store-data/itab-store-data';
-import { createStoreWithNullParams, StoreTester } from '../../../Common/store-tester';
-import { TabStoreDataBuilder } from '../../../Common/tab-store-data-builder';
+import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
+import { TabStoreDataBuilder } from '../../../common/tab-store-data-builder';
 
 describe('TabStoreTest', () => {
     test('constructor, no side effects', () => {

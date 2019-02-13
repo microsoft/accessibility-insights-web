@@ -11,7 +11,7 @@ import {
 } from '../../../../../../DetailsView/reports/components/assessment-report-step-header';
 import { OutcomeChip } from '../../../../../../DetailsView/reports/components/outcome-chip';
 import { OutcomeType } from '../../../../../../DetailsView/reports/components/outcome-type';
-import { shallowRender } from '../../../../Common/shallow-render';
+import { shallowRender } from '../../../../common/shallow-render';
 
 describe('AssessmentReportStepHeader', () => {
     function genHeader(requirementType: RequirementType): IRequirementHeaderReportModel {

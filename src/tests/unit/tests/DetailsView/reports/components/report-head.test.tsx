@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { ReportHead } from '../../../../../../DetailsView/reports/components/report-head';
-import { shallowRender } from '../../../../Common/shallow-render';
+import { shallowRender } from '../../../../common/shallow-render';
 
 describe('ReportHeadTest', () => {
     it('renders', () => {

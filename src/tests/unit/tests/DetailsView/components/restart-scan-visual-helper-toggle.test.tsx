@@ -16,7 +16,7 @@ import {
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { RestartScanVisualHelperToggle } from '../../../../../DetailsView/components/restart-scan-visual-helper-toggle';
-import { BaseDataBuilder } from '../../../Common/base-data-builder';
+import { BaseDataBuilder } from '../../../common/base-data-builder';
 
 describe('RestartScanVisualHelperToggleTest', () => {
     const stepKey = 'assessment-1-step-1';
