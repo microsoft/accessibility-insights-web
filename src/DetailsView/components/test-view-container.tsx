@@ -26,7 +26,6 @@ export type TestViewContainerDeps = {
     OverviewContainerDeps;
 
 export interface TestViewContainerProps {
-    dropdownClickHandler: DropdownClickHandler;
     deps: TestViewContainerDeps;
     tabStoreData: ITabStoreData;
     assessmentStoreData: IAssessmentStoreData;

@@ -27,11 +27,16 @@ export interface DetailsGroup extends IGroup {
     ruleUrl?: string;
 }
 
+export type IssuesTableHandlerDeps = IBugButtonDeps & {
+    dropdownClickHandler: DropdownClickHandler;
+}
 export interface IBugFileDetails {
-    deps: IBugButtonDeps,
+    deps: IssuesTableHandlerDeps;
+    issueTrackerPath: string;
     selectedIdToRuleResultMap: IDictionaryStringTo<DecoratedAxeNodeResult>;
     showBugFiling: boolean;
-    dropdownClickHandler: DropdownClickHandler;
+    pageTitle: string;
+    pageUrl: string;
 }
 
 export class IssuesTableHandler {
@@ -61,16 +66,19 @@ export class IssuesTableHandler {
                 detailsRow.selector = node.target.join(';');
                 detailsRow.key = node.instanceId;
                 if (bugFilingDetails.showBugFiling) {
-                    if (bugFilingDetails.deps.issueTrackerPath) {
+                    if (bugFilingDetails.issueTrackerPath) {
                         detailsRow.bugButton = (
                             <BugButton
                                 deps={bugFilingDetails.deps}
+                                pageTitle={bugFilingDetails.pageTitle}
+                                pageUrl={bugFilingDetails.pageUrl}
                                 ruleResult={bugFilingDetails.selectedIdToRuleResultMap[node.instanceId]}
+                                issueTrackerPath={bugFilingDetails.issueTrackerPath}
                             />
                         );
                     } else {
                         detailsRow.bugButton = (
-                            <ConfigIssueTrackerButton onClick={bugFilingDetails.dropdownClickHandler.openSettingsPanelHandler} />
+                            <ConfigIssueTrackerButton onClick={bugFilingDetails.deps.dropdownClickHandler.openSettingsPanelHandler} />
                         );
                     }
                 }

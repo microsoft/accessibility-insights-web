@@ -17,18 +17,15 @@ import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag
 import { RuleResult } from '../../scanner/iruleresults';
 import { DetailsGroupHeader, DetailsGroupHeaderProps } from './details-group-header';
 import { FailureDetails } from './failure-details';
-import { DetailsGroup, IDetailsRowData, IssuesTableHandler } from './issues-table-handler';
-import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
-import { DropdownClickHandler } from '../../common/dropdown-click-handler';
+import { DetailsGroup, IDetailsRowData, IssuesTableHandler, IssuesTableHandlerDeps } from './issues-table-handler';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 
 export interface IssuesDetailsListProps {
+    deps: IssuesTableHandlerDeps;
     violations: (RuleResult)[];
     issuesTableHandler: IssuesTableHandler;
-    dropdownClickHandler: DropdownClickHandler;
-    issueTextGenerator: IssueDetailsTextGenerator;
-    issueTrackerPath: string;
     issuesSelection: ISelection;
+    issueTrackerPath: string;
     pageTitle: string;
     pageUrl: string;
     featureFlagData: FeatureFlagStoreData;
@@ -91,14 +88,11 @@ export class IssuesDetailsList extends React.Component<IssuesDetailsListProps, {
 
     public render(): JSX.Element {
         const detailListProps = this.props.issuesTableHandler.getListProps(this.props.violations, {
-            deps: {
-                issueTrackerPath: this.props.issueTrackerPath,
-                pageTitle: this.props.pageTitle,
-                pageUrl: this.props.pageUrl,
-                issueTextGenerator: this.props.issueTextGenerator,
-            },
+            deps: this.props.deps,
+            pageTitle: this.props.pageTitle,
+            pageUrl: this.props.pageUrl,
+            issueTrackerPath: this.props.issueTrackerPath,
             selectedIdToRuleResultMap: this.props.selectedIdToRuleResultMap,
-            dropdownClickHandler: this.props.dropdownClickHandler,
             showBugFiling: this.props.featureFlagData[FeatureFlags.showBugFiling],
         });
 

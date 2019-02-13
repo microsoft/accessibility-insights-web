@@ -15,7 +15,6 @@ import { ReportGenerator } from '../reports/report-generator';
 import { IssuesTableHandler } from './issues-table-handler';
 import { IssuesTable, IssuesTableDeps } from './issues-table';
 import { TargetPageChangedView } from './target-page-changed-view';
-import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 
 export type AdhocIssuesTestViewDeps = IssuesTableDeps;
 
@@ -23,10 +22,9 @@ export interface IAdhocIssuesTestViewProps {
     deps: AdhocIssuesTestViewDeps;
     tabStoreData: ITabStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
+    issueTrackerPath: string;
     selectedTest: VisualizationType;
     visualizationStoreData: IVisualizationStoreData;
-    issueTrackerPath: string;
-    dropdownClickHandler: DropdownClickHandler;
     visualizationScanResultData: IVisualizationScanResultData;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
@@ -54,10 +52,9 @@ export const AdhocIssuesTestView = NamedSFC<IAdhocIssuesTestViewProps>('AdhocIss
         <IssuesTable
             deps={props.deps}
             title={title}
-            dropdownClickHandler={props.dropdownClickHandler}
             issuesTableHandler={props.issuesTableHandler}
-            issueTrackerPath={props.issueTrackerPath}
             issuesEnabled={scanData.enabled}
+            issueTrackerPath={props.issueTrackerPath}
             violations={scanResult != null ? scanResult.violations : null}
             issuesSelection={props.issuesSelection}
             selectedIdToRuleResultMap={selectedIdToRuleResultMap}

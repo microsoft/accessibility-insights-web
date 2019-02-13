@@ -19,16 +19,14 @@ import { ReportGenerator } from '../reports/report-generator';
 import { ExportDialog } from './export-dialog';
 import { IssuesDetailsList } from './issues-details-list';
 import { IssuesDetailsPane, IssuesDetailsPaneDeps } from './Issues-details-pane';
-import { IssuesTableHandler } from './issues-table-handler';
-import { DropdownClickHandler } from '../../common/dropdown-click-handler';
+import { IssuesTableHandler, IssuesTableHandlerDeps } from './issues-table-handler';
 
-export type IssuesTableDeps = IssuesDetailsPaneDeps & {
+export type IssuesTableDeps = IssuesTableHandlerDeps & IssuesDetailsPaneDeps & {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
 };
 
 export interface IssuesTableProps {
     deps: IssuesTableDeps;
-    dropdownClickHandler: DropdownClickHandler;
     title: string;
     issuesTableHandler: IssuesTableHandler;
     violations: RuleResult[];
@@ -179,14 +177,13 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
         return (
             <div className="issues-table-details">
                 <IssuesDetailsList
+                    deps={this.props.deps}
                     violations={this.props.violations}
                     issuesTableHandler={this.props.issuesTableHandler}
                     issuesSelection={this.props.issuesSelection}
-                    dropdownClickHandler={this.props.dropdownClickHandler}
+                    issueTrackerPath={this.props.issueTrackerPath}
                     pageTitle={this.props.pageTitle}
                     pageUrl={this.props.pageUrl}
-                    issueTextGenerator={this.props.deps.issueDetailsTextGenerator}
-                    issueTrackerPath={this.props.issueTrackerPath}
                     featureFlagData={this.props.featureFlags}
                     selectedIdToRuleResultMap={this.props.selectedIdToRuleResultMap}
                 />
