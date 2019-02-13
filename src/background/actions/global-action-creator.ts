@@ -10,7 +10,13 @@ import { LaunchPanelStateActions } from './launch-panel-state-action';
 import { BrowserAdapter } from '../browser-adapter';
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
-import { PayloadWithEventName, SetLaunchPanelState, SetTelemetryStatePayload, SetHighContrastModePayload, SetIssueTrackerPathPayload  } from './action-payloads';
+import {
+    PayloadWithEventName,
+    SetLaunchPanelState,
+    SetTelemetryStatePayload,
+    SetHighContrastModePayload,
+    SetIssueTrackerPathPayload,
+} from './action-payloads';
 import { CommandActions, IGetCommandsPayload } from './command-actions';
 import { ScopingActions } from './scoping-actions';
 import { UserConfigurationActions } from './user-configuration-actions';
@@ -61,7 +67,7 @@ export class GlobalActionCreator {
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetTelemetryConfig, this.onSetTelemetryConfiguration);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetHighContrastConfig, this.onSetHighContrastMode);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.NotifyFeatureFlagChange, this.onNotifyFeatureFlagChange);
-        this._interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetIssueTrackerPath, this.onSetIssueTrackerPath);
+        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetIssueTrackerPath, this.onSetIssueTrackerPath);
     }
 
     @autobind
@@ -145,6 +151,6 @@ export class GlobalActionCreator {
 
     @autobind
     private onSetIssueTrackerPath(payload: SetIssueTrackerPathPayload): void {
-        this._userConfigActions.setIssueTrackerPath.invoke(payload);
+        this.userConfigActions.setIssueTrackerPath.invoke(payload);
     }
 }
