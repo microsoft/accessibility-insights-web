@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
+import { capitalize } from 'lodash';
 
 import { Messages } from '../../common/messages';
 import * as TelemetryEvents from '../../common/telemetry-events';
@@ -175,14 +176,14 @@ export class AssessmentActionCreator {
 
     @autobind
     private onScanUpdate(payload: IScanUpdatePayload, tabId: number): void {
-        const telemetryEventName = 'ScanUpdate' + payload.key.toTitleCase();
+        const telemetryEventName = 'ScanUpdate' + capitalize(payload.key);
         this.telemetryEventHandler.publishTelemetry(telemetryEventName, payload, tabId);
         this.assessmentActions.scanUpdate.invoke(payload);
     }
 
     @autobind
     private onTrackingCompleted(payload: IScanBasePayload, tabId: number): void {
-        const telemetryEventName = 'TrackingCompleted' + payload.key.toTitleCase();
+        const telemetryEventName = 'TrackingCompleted' + capitalize(payload.key);
         this.telemetryEventHandler.publishTelemetry(telemetryEventName, payload, tabId);
         this.assessmentActions.trackingCompleted.invoke(payload);
     }
