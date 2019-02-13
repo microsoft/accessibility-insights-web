@@ -11,7 +11,7 @@ module.exports = {
     setupFiles: [`${currentDir}/jest-setup.ts`],
     moduleFileExtensions: ['ts', 'tsx', 'js'],
     rootDir: rootDir,
-    roots: ['<rootDir>/src'],
+    roots: [currentDir],
     collectCoverage: true,
     collectCoverageFrom: ['<rootDir>/src/**/*.{ts,tsx}', '!<rootDir>/src/tests/**/*', '!<rootDir>/src/**/*.d.ts'],
     coverageReporters: ['json', 'lcov', 'text', 'cobertura'],
