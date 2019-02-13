@@ -45,7 +45,11 @@ export class IssueDetailsTextGenerator {
         return input.replace(/\s+/g, ' ');
     }
 
-    public buildTitle(data: CreateIssueDetailsTextData, standardTags: string[]): string {
+    public buildTitle(data: CreateIssueDetailsTextData, standardTags?: string[]): string {
+        if (!standardTags) {
+            standardTags = data.ruleResult.guidanceLinks.map(tag => tag.text.toUpperCase());
+        }
+
         let prefix = standardTags.join(',');
         if (prefix.length > 0) {
             prefix = prefix + ': ';

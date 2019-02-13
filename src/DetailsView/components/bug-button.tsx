@@ -24,24 +24,23 @@ export class BugButton extends React.Component<{ result: AxeNodeResult; ruleRes:
         return `${baseUrl}${encodedIssue}`;
     }
     public render(): JSX.Element {
-        let rr2: DecoratedAxeNodeResult = this.props.result as any;
-        console.log(rr2);
-        rr2.guidanceLinks = this.props.ruleRes.guidanceLinks;
-        if (!rr2.snippet) {
-            rr2.snippet = '';
+        let ruleResult: DecoratedAxeNodeResult = this.props.result as any;
+        console.log(ruleResult);
+        ruleResult.guidanceLinks = this.props.ruleRes.guidanceLinks;
+        if (!ruleResult.snippet) {
+            ruleResult.snippet = '';
         }
-        rr2.help = this.props.ruleRes.help;
-        rr2.helpUrl = this.props.ruleRes.helpUrl;
-        rr2.ruleId = this.props.ruleRes.id;
+        ruleResult.help = this.props.ruleRes.help;
+        ruleResult.helpUrl = this.props.ruleRes.helpUrl;
+        ruleResult.ruleId = this.props.ruleRes.id;
 
         const issueDetsData = {
             pageTitle: this.props.pageTitle,
             pageUrl: this.props.pageUrl,
-            ruleResult: rr2,
+            ruleResult: ruleResult,
         };
 
-        const standardTags = rr2.guidanceLinks.map(tag => tag.text.toUpperCase());
-        const title = this.props.issueTextGenerator.buildTitle(issueDetsData, standardTags);
+        const title = this.props.issueTextGenerator.buildTitle(issueDetsData);
         const body = this.props.issueTextGenerator.buildText(issueDetsData);
 
         return (
