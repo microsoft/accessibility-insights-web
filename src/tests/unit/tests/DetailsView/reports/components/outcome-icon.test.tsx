@@ -7,7 +7,7 @@ import { CircleIcon } from '../../../../../../common/icons/circle-icon';
 import { CrossIcon } from '../../../../../../common/icons/cross-icon';
 import { OutcomeIcon } from '../../../../../../DetailsView/reports/components/outcome-icon';
 import { allOutcomeTypes } from '../../../../../../DetailsView/reports/components/outcome-type';
-import { shallowRender } from '../../../../Common/shallow-render';
+import { shallowRender } from '../../../../common/shallow-render';
 
 describe('OutcomeIcon', () => {
     describe('render', () => {

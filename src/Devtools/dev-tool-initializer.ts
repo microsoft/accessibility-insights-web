@@ -4,7 +4,7 @@ import { IDevToolsChromeAdapter } from '../background/dev-tools-chrome-adapter';
 import { StoreNames } from '../common/stores/store-names';
 import { StoreProxy } from '../common/store-proxy';
 import { DevToolState } from '../common/types/store-data/idev-tool-state';
-import { InspectHandler } from './inspect-Handler';
+import { InspectHandler } from './inspect-handler';
 
 export class DevToolInitializer {
     protected _chromeAdapter: IDevToolsChromeAdapter;

@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { CheckType } from '../../../../../injected/components/details-dialog';
 import { FixInstructionPanel, IFixInstructionPanelProps } from '../../../../../injected/components/fix-instruction-panel';
-import { ShallowRenderer } from '../../../Common/shallow-renderer';
+import { ShallowRenderer } from '../../../common/shallow-renderer';
 
 describe('FixInstructionPanelTests', () => {
     test('render all checks', () => {

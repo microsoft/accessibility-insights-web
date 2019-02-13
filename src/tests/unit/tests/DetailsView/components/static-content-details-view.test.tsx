@@ -10,7 +10,7 @@ import {
     IStaticContentDetailsViewProps,
     StaticContentDetailsView,
 } from '../../../../../DetailsView/components/static-content-details-view';
-import { EventStubFactory, INativeEventStub } from '../../../Common/event-stub-factory';
+import { EventStubFactory, INativeEventStub } from '../../../common/event-stub-factory';
 
 describe('StaticContentDetailsViewTest', () => {
     test('constructor', () => {

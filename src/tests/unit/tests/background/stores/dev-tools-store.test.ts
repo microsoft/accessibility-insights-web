@@ -3,7 +3,7 @@
 import { DevToolActions } from '../../../../../background/actions/dev-tools-actions';
 import { DevToolStore } from '../../../../../background/stores/dev-tools-store';
 import { StoreNames } from '../../../../../common/stores/store-names';
-import { createStoreWithNullParams, StoreTester } from '../../../Common/store-tester';
+import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
 
 describe('DevToolsStoreTest', () => {
     test('constructor, no side effect', () => {

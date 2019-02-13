@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { AssessmentReportBodyHeader } from '../../../../../../DetailsView/reports/components/assessment-report-body-header';
-import { shallowRender } from '../../../../Common/shallow-render';
+import { shallowRender } from '../../../../common/shallow-render';
 
 describe('AssessmentReportBodyHeader', () => {
     describe('render', () => {

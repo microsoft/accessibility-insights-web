@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { OutcomeChipSet } from '../../../../../../DetailsView/reports/components/outcome-chip-set';
-import { shallowRender } from '../../../../Common/shallow-render';
+import { shallowRender } from '../../../../common/shallow-render';
 
 describe('OutcomeChipSet', () => {
     describe('render', () => {
