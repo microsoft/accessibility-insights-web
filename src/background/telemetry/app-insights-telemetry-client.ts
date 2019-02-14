@@ -4,11 +4,7 @@ import { config } from '../../common/configuration';
 import { ApplicationTelemetryDataFactory } from './application-telemetry-data-factory';
 import { TelemetryClient } from './telemetry-client';
 import { TelemetryLogger } from './telemetry-logger';
-
-export interface TelemetryBaseData {
-    name: string;
-    properties: { [name: string]: string };
-}
+import { TelemetryBaseData } from './telemetry-base-data';
 
 export interface TelemetryData {
     baseData: TelemetryBaseData;
