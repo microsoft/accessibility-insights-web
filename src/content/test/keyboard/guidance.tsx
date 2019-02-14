@@ -123,7 +123,7 @@ export const guidance = create(({ Markup, Link }) => (
 
         <h4>Additional guidance</h4>
         <Markup.Links>
-            <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-practices/">Developing a Keyboard Interface</Markup.HyperLink>
+            <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-practices/#keyboard">Developing a Keyboard Interface</Markup.HyperLink>
         </Markup.Links>
 
         <h3>Avoid keyboard traps</h3>
