@@ -339,7 +339,7 @@ export class ActionCreator {
     @autobind
     private onSendTelemetryExcludeUrl(payload: PayloadWithEventName, tabId: number): void {
         const eventName = payload.eventName;
-        this.telemetryEventHandler.publishTelemetry(eventName, payload, tabId, false);
+        this.telemetryEventHandler.publishTelemetry(eventName, payload, tabId);
     }
 
     @autobind
