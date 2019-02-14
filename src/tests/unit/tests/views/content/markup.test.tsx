@@ -26,6 +26,7 @@ describe('ContentPage', () => {
         Column,
         HyperLink,
         CodeExample,
+        Highlight,
         Links,
         LandmarkLegend,
         Table,
@@ -198,6 +199,11 @@ describe('ContentPage', () => {
                 const wrapper = shallow(<CodeExample>With [quite] a [number] of [highlights].</CodeExample>);
                 expect(getHighlights(wrapper)).toEqual(['With ', '[quite]', ' a ', '[number]', ' of ', '[highlights]', '.']);
             });
+        });
+
+        it('<Highlight> renders', () => {
+            const wrapper = shallow(<Highlight>HIGHLIGHTED</Highlight>);
+            expect(wrapper.getElement()).toMatchSnapshot();
         });
 
         describe('<Links>', () => {
