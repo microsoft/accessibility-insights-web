@@ -98,10 +98,10 @@ exports[`PopupView renderFailureMsgPanelForFileUrl 1`] = `
         >
           test title
         </NewTabLink>
-         extension page
+         extension page.
       </div>
       <div>
-        2. Check 
+        2. Enable 
         <span
           className="ms-fontWeight-semibold"
         >
