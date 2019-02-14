@@ -1162,14 +1162,6 @@ class ActionCreatorValidator {
         return this;
     }
 
-    public setupTelemetrySendExcludeUrl(eventName: string, telemetryInfo: any, tabId: number): ActionCreatorValidator {
-        this.telemetryEventHandlerStrictMock
-            .setup(tsm => tsm.publishTelemetry(It.isValue(eventName), It.isValue(telemetryInfo), It.isValue(tabId)))
-            .verifiable(Times.once());
-
-        return this;
-    }
-
     private setupAction(actionName: string, actionsMap: IDictionaryStringTo<IMock<Action<any>>>, actionsContainerMock: IMock<any>) {
         let action = actionsMap[actionName];
 
