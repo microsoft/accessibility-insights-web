@@ -15,6 +15,7 @@ import { ContentPageComponent } from '../../views/content/content-page';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { detailsViewExtensionPoint } from '../extensions/details-view-extension-point';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
+import { AssessmentURLChangedWarning, AssessmentURLChangedWarningDeps } from './assessment-url-changed-warning';
 import { TargetChangeDialog } from './target-change-dialog';
 import { TestStepView, TestStepViewDeps } from './test-step-view';
 import { TestStepNavDeps, TestStepsNav } from './test-steps-nav';
@@ -26,7 +27,8 @@ export const AssessmentViewMainContentExtensionPoint = reactExtensionPoint<WithA
 
 export type AssessmentViewDeps = ContentLinkDeps &
     TestStepViewDeps &
-    TestStepNavDeps & {
+    TestStepNavDeps &
+    AssessmentURLChangedWarningDeps & {
         detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
         assessmentsProvider: IAssessmentsProvider;
     };
@@ -63,15 +65,18 @@ export class AssessmentView extends React.Component<IAssessmentViewProps> {
         const extPointProps = { extensions, assessmentTestResult };
 
         return (
-            <div className="assessment-content">
-                {this.renderTargetChangeDialog()}
-                {this.renderTitle(assessmentTestResult.definition.title, assessmentTestResult.definition.guidance)}
-                {this.renderGettingStarted(assessmentTestResult.definition.gettingStarted)}
-                <AssessmentViewMainContentExtensionPoint.component {...extPointProps}>
-                    {this.renderRequirements()}
-                    {this.renderMainContent(assessmentTestResult)}
-                </AssessmentViewMainContentExtensionPoint.component>
-            </div>
+            <>
+                <AssessmentURLChangedWarning {...this.props} />
+                <div className="assessment-content">
+                    {this.renderTargetChangeDialog()}
+                    {this.renderTitle(assessmentTestResult.definition.title, assessmentTestResult.definition.guidance)}
+                    {this.renderGettingStarted(assessmentTestResult.definition.gettingStarted)}
+                    <AssessmentViewMainContentExtensionPoint.component {...extPointProps}>
+                        {this.renderRequirements()}
+                        {this.renderMainContent(assessmentTestResult)}
+                    </AssessmentViewMainContentExtensionPoint.component>
+                </div>
+            </>
         );
     }
 

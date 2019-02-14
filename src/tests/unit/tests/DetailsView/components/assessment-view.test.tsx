@@ -17,6 +17,7 @@ import { AssessmentView, AssessmentViewDeps, IAssessmentViewProps } from '../../
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
 import { outcomeTypeFromTestStatus, outcomeTypeSemanticsFromTestStatus } from '../../../../../DetailsView/reports/components/outcome-type';
 import { contentProvider, CreateTestAssessmentProvider } from '../../../common/test-assessment-provider';
+import { UrlParser } from '../../../../../common/url-parser';
 
 describe('AssessmentViewTest', () => {
     const assessmentsProvider = CreateTestAssessmentProvider();
@@ -217,6 +218,7 @@ class AssessmentViewPropsBuilder {
             outcomeTypeFromTestStatus: Mock.ofInstance(outcomeTypeFromTestStatus).object,
             getInnerTextFromJsxElement: Mock.ofInstance(getInnerTextFromJsxElement).object,
             outcomeTypeSemanticsFromTestStatus: Mock.ofInstance(outcomeTypeSemanticsFromTestStatus).object,
+            urlParser: Mock.ofType(UrlParser).object,
         };
         const assessment = this.provider.all()[0];
         const firstStep = assessment.steps[0];
