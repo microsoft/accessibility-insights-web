@@ -4,11 +4,7 @@ import { config } from '../../common/configuration';
 import { ApplicationTelemetryDataFactory } from './application-telemetry-data-factory';
 import { TelemetryClient } from './telemetry-client';
 import { TelemetryLogger } from './telemetry-logger';
-
-export interface TelemetryBaseData {
-    name: string;
-    properties: IDictionaryStringTo<string>;
-}
+import { TelemetryBaseData } from './telemetry-base-data';
 
 export interface TelemetryData {
     baseData: TelemetryBaseData;
@@ -27,25 +23,6 @@ export class AppInsightsTelemetryClient implements TelemetryClient {
         private readonly coreTelemetryDataFactory: ApplicationTelemetryDataFactory,
         private readonly logger: TelemetryLogger,
     ) {}
-
-    private initialize() {
-        if (this.initialized) {
-            return;
-        }
-
-        this.initialized = true;
-
-        this.appInsights.downloadAndSetup({
-            instrumentationKey: config.getOption('appInsightsInstrumentationKey'),
-            disableAjaxTracking: true,
-            // start with telemetry disabled, to avoid sending past queued telemetry data
-            disableTelemetry: true,
-        });
-
-        this.appInsights.queue.push(() => {
-            this.initializeInternal();
-        });
-    }
 
     public enableTelemetry(): void {
         if (!this.enabled) {
@@ -69,7 +46,26 @@ export class AppInsightsTelemetryClient implements TelemetryClient {
         }
     }
 
-    private updateTelemetryState() {
+    private initialize(): void {
+        if (this.initialized) {
+            return;
+        }
+
+        this.initialized = true;
+
+        this.appInsights.downloadAndSetup({
+            instrumentationKey: config.getOption('appInsightsInstrumentationKey'),
+            disableAjaxTracking: true,
+            // start with telemetry disabled, to avoid sending past queued telemetry data
+            disableTelemetry: true,
+        });
+
+        this.appInsights.queue.push(() => {
+            this.initializeInternal();
+        });
+    }
+
+    private updateTelemetryState(): void {
         const disableTelemetry = () => {
             this.appInsights.config.disableTelemetry = !this.enabled;
         };
@@ -81,7 +77,7 @@ export class AppInsightsTelemetryClient implements TelemetryClient {
         }
     }
 
-    private initializeInternal() {
+    private initializeInternal(): void {
         this.appInsights.context.addTelemetryInitializer((envelope: ExtendedEnvelop) => {
             const baseData = envelope.data.baseData;
             baseData.properties = {
