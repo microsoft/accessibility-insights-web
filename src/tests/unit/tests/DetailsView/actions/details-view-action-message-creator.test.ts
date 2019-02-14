@@ -284,7 +284,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Telemetry.SendExcludeUrl,
+            type: Messages.Telemetry.Send,
             payload: {
                 eventName: DETAILS_VIEW_OPEN,
                 telemetry,

@@ -108,7 +108,6 @@ export class ActionCreator {
         );
 
         this.registerTypeToPayloadCallback(Messages.Telemetry.Send, this.onSendTelemetry);
-        this.registerTypeToPayloadCallback(Messages.Telemetry.SendExcludeUrl, this.onSendTelemetryExcludeUrl);
 
         this.registerTypeToPayloadCallback(Messages.ChromeFeature.configureCommand, this.onOpenConfigureCommandTab);
 
@@ -334,12 +333,6 @@ export class ActionCreator {
     private onSendTelemetry(payload: PayloadWithEventName, tabId: number): void {
         const eventName = payload.eventName;
         this.telemetryEventHandler.publishTelemetry(eventName, payload, tabId);
-    }
-
-    @autobind
-    private onSendTelemetryExcludeUrl(payload: PayloadWithEventName, tabId: number): void {
-        const eventName = payload.eventName;
-        this.telemetryEventHandler.publishTelemetry(eventName, payload, tabId, false);
     }
 
     @autobind

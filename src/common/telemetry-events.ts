@@ -76,7 +76,6 @@ export enum TelemetryEventSource {
 }
 
 export interface BaseTelemetryData {
-    url?: string;
     source: TelemetryEventSource;
     triggeredBy?: string;
 }

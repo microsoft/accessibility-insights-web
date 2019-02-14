@@ -94,7 +94,6 @@ export class Messages {
 
     public static readonly Telemetry = {
         Send: 'insights/telemetry/send',
-        SendExcludeUrl: 'insights/telemetry/sendExcludeUrl',
     };
 
     public static readonly UserConfig = {

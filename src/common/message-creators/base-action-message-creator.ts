@@ -42,16 +42,4 @@ export abstract class BaseActionMessageCreator {
 
         this.dispatchMessage(message);
     }
-
-    public sendTelemetryExcludingUrl(eventName: string, eventData: TelemetryData): void {
-        const payload: PayloadWithEventName = {
-            eventName: eventName,
-            telemetry: eventData,
-        };
-        this.dispatchMessage({
-            type: Messages.Telemetry.SendExcludeUrl,
-            tabId: this._tabId,
-            payload,
-        });
-    }
 }
