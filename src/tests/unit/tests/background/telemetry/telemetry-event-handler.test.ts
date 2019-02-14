@@ -52,7 +52,7 @@ describe('TelemetryEventHandlerTest', () => {
             .verifiable(Times.never());
 
         const testObject = createAndEnableTelemetryEventHandler();
-        testObject.publishTelemetry(testEventName, payload, testTabId);
+        testObject.publishTelemetry(testEventName, payload;
 
         browserAdapterMock.verifyAll();
     });
@@ -69,8 +69,7 @@ describe('TelemetryEventHandlerTest', () => {
         telemetryClientStrictMock.setup(te => te.trackEvent(It.isAny(), It.isAny())).verifiable(Times.never());
 
         const testObject = createAndEnableTelemetryEventHandler();
-        testObject.publishTelemetry(testEventName, testTelemetryPayload, testTabId);
-
+        testObject.publishTelemetry(testEventName, testTelemetryPayload);
         browserAdapterMock.verifyAll();
         telemetryClientStrictMock.verifyAll();
     });
@@ -99,9 +98,9 @@ describe('TelemetryEventHandlerTest', () => {
 
         const testObject = createAndEnableTelemetryEventHandler();
 
-        testObject.publishTelemetry(testEventName, testTelemetryPayload, testTabId);
+        testObject.publishTelemetry(testEventName, testTelemetryPayload);
 
-        verifyMocks();
+       verifyMocks();
     });
 
     test('test for publishTelemetry with random object as custom property', () => {
@@ -132,9 +131,9 @@ describe('TelemetryEventHandlerTest', () => {
 
         const testObject = createAndEnableTelemetryEventHandler();
 
-        testObject.publishTelemetry(testEventName, customTelemetryPayload, testTabId);
+        testObject.publishTelemetry(testEventName, customTelemetryPayload);
 
-        verifyMocks();
+       verifyMocks();
     });
 
     function createExpectedAppInsightsTelemetry(customFields?: IDictionaryStringTo<any>) {

@@ -52,7 +52,7 @@ describe('InspectActionCreatorTest', () => {
         };
 
         telemetryEventHandlerMock
-            .setup(publisher => publisher.publishTelemetry(TelemetryEvents.CHANGE_INSPECT_MODE, payload, tabId))
+            .setup(publisher => publisher.publishTelemetry(TelemetryEvents.CHANGE_INSPECT_MODE, payload))
             .verifiable(Times.once());
 
         browserAdapterMock.setup(ba => ba.switchToTab(tabId)).verifiable(Times.once());

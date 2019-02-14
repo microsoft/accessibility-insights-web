@@ -86,7 +86,7 @@ describe('TestActionCreatorTest', () => {
             },
         };
 
-        telemetryEventHandlerMock.setup(tp => tp.publishTelemetry(SWITCH_BACK_TO_TARGET, payload, tabId)).verifiable(Times.once());
+        telemetryEventHandlerMock.setup(tp => tp.publishTelemetry(SWITCH_BACK_TO_TARGET, payload)).verifiable(Times.once());
 
         setupRegisterTypeToPayloadCallbackMock(Messages.Tab.Switch, payload, tabId);
 

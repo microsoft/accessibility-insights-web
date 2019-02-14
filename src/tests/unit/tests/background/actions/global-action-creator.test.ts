@@ -393,9 +393,7 @@ class GlobalActionCreatorValidator {
     }
 
     public setupTelemetrySend(eventName: string): GlobalActionCreatorValidator {
-        this.telemetryEventHandlerMock
-            .setup(tsm => tsm.publishTelemetry(It.isValue(eventName), It.isAny(), It.isAny()))
-            .verifiable(Times.once());
+        this.telemetryEventHandlerMock.setup(tsm => tsm.publishTelemetry(It.isValue(eventName), It.isAny())).verifiable(Times.once());
 
         return this;
     }

@@ -81,7 +81,7 @@ describe('DevToolsActionCreatorTest', () => {
         };
 
         telemetryEventHandlerMock
-            .setup(publisher => publisher.publishTelemetry(TelemetryEvents.INSPECT_OPEN, payload, tabId))
+            .setup(publisher => publisher.publishTelemetry(TelemetryEvents.INSPECT_OPEN, payload))
             .verifiable(Times.once());
 
         const setInspectElementAction = createActionMock(payload.target);

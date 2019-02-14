@@ -52,7 +52,7 @@ describe('ContentPanelActionMessageCreator', () => {
 
         openContentPanelMock.verify(action => action.invoke(payload), Times.once());
         detailsViewControllerMock.verify(ctrlr => ctrlr.showDetailsView(tabId), Times.once());
-        telemetryEventHandlerMock.verify(pub => pub.publishTelemetry(CONTENT_PANEL_OPENED, payload, tabId), Times.once());
+        telemetryEventHandlerMock.verify(pub => pub.publishTelemetry(CONTENT_PANEL_OPENED, payload), Times.once());
     });
 
     it('registers Messages.ContentPanel.ClosedPanel', () => {
@@ -60,6 +60,6 @@ describe('ContentPanelActionMessageCreator', () => {
         callback(payload, tabId);
 
         closeContentPanelMock.verify(action => action.invoke(null), Times.once());
-        telemetryEventHandlerMock.verify(pub => pub.publishTelemetry(CONTENT_PANEL_CLOSED, payload, tabId), Times.once());
+        telemetryEventHandlerMock.verify(pub => pub.publishTelemetry(CONTENT_PANEL_CLOSED, payload), Times.once());
     });
 });
