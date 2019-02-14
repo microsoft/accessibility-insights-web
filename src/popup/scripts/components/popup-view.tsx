@@ -135,7 +135,7 @@ export class PopupView extends React.Component<PopupViewProps> {
     }
 
     private renderLaunchPad(): JSX.Element {
-        const { popupActionMessageCreator, dropdownClickHandler } = this.props.deps;
+        const { popupActionMessageCreator } = this.props.deps;
 
         const rowConfigs: LaunchPadRowConfiguration[] = this.props.launchPadRowConfigurationFactory.createRowConfigs(
             this,
