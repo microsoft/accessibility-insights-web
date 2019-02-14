@@ -24,9 +24,7 @@ export class DevToolsActionCreator {
     public registerCallbacks(): void {
         this.registerTypeToPayloadCallback(Messages.DevTools.DevtoolStatus, payload => this.onDevToolOpened(payload));
 
-        this.registerTypeToPayloadCallback(Messages.DevTools.InspectElement, (payload, tabId) =>
-            this.onDevToolInspectElement(payload, tabId),
-        );
+        this.registerTypeToPayloadCallback(Messages.DevTools.InspectElement, payload => this.onDevToolInspectElement(payload));
 
         this.registerTypeToPayloadCallback(Messages.DevTools.InspectFrameUrl, payload => this.onDevToolInspectFrameUrl(payload));
 
@@ -37,9 +35,9 @@ export class DevToolsActionCreator {
         this.devtoolActions.setDevToolState.invoke(payload.status);
     }
 
-    private onDevToolInspectElement(payload: InspectElementPayload, tabId): void {
+    private onDevToolInspectElement(payload: InspectElementPayload): void {
         this.devtoolActions.setInspectElement.invoke(payload.target);
-        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.INSPECT_OPEN, payload, tabId);
+        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.INSPECT_OPEN, payload);
     }
 
     private onDevToolInspectFrameUrl(payload: InspectFrameUrlPayload): void {

@@ -17,18 +17,18 @@ export class ContentActionCreator {
 
     public registerCallbacks(): void {
         this.registerTypeToPayloadCallback(Messages.ContentPanel.OpenPanel, (payload, tabId) => this.onOpenContentPanel(payload, tabId));
-        this.registerTypeToPayloadCallback(Messages.ContentPanel.ClosePanel, (payload, tabId) => this.onCloseContentPanel(payload, tabId));
+        this.registerTypeToPayloadCallback(Messages.ContentPanel.ClosePanel, payload => this.onCloseContentPanel(payload));
     }
 
     private onOpenContentPanel(payload: ContentPayload, tabId: number): void {
         this.contentActions.openContentPanel.invoke(payload);
         this.showDetailsView(tabId);
-        this.telemetryEventHandler.publishTelemetry(CONTENT_PANEL_OPENED, payload, tabId);
+        this.telemetryEventHandler.publishTelemetry(CONTENT_PANEL_OPENED, payload);
     }
 
-    private onCloseContentPanel(payload: BaseActionPayload, tabId: number): void {
+    private onCloseContentPanel(payload: BaseActionPayload): void {
         this.contentActions.closeContentPanel.invoke(null);
-        this.telemetryEventHandler.publishTelemetry(CONTENT_PANEL_CLOSED, payload, tabId);
+        this.telemetryEventHandler.publishTelemetry(CONTENT_PANEL_CLOSED, payload);
     }
 
     private showDetailsView(tabId: number): void {
