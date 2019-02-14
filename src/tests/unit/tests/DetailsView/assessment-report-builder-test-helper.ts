@@ -10,6 +10,7 @@ import {
     IAssessmentStoreData,
     IGeneratedAssessmentInstance,
     IManualTestStepResult,
+    PersistedTabInfo,
 } from '../../../../common/types/store-data/iassessment-result-data';
 import { excludePassingInstancesFromAssessmentReport } from '../../../../DetailsView/extensions/exclude-passing-instances-from-assessment-report';
 import {
@@ -170,7 +171,7 @@ export class AssessmentReportBuilderTestHelper {
 
     public static getAssessmentStoreData(): IAssessmentStoreData {
         return {
-            targetTab: 1,
+            persistedTabInfo: {} as PersistedTabInfo,
             assessments: {
                 ['assessment1']: this.getAssessmentData1(),
                 ['assessment2']: this.getAssessmentData2(),

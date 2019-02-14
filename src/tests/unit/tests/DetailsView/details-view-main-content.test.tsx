@@ -10,7 +10,12 @@ import {
 } from '../../../../common/configs/visualization-configuration-factory';
 import { NamedSFC, ReactSFCWithDisplayName } from '../../../../common/react/named-sfc';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
-import { IAssessmentData, IAssessmentNavState, IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
+import {
+    IAssessmentData,
+    IAssessmentNavState,
+    IAssessmentStoreData,
+    PersistedTabInfo,
+} from '../../../../common/types/store-data/iassessment-result-data';
 import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';
 import { IScanData, ITestsEnabledState } from '../../../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
@@ -91,7 +96,7 @@ describe('DetailsViewMainContentTest', () => {
                         fullAxeResultsMap: {},
                     } as IAssessmentData,
                 },
-                targetTab: -1,
+                persistedTabInfo: {} as PersistedTabInfo,
             } as IAssessmentStoreData;
 
             props = {

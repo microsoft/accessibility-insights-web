@@ -13,7 +13,7 @@ exports[`OverviewContainer component is defined and matches snapshot 1`] = `
         "url": "some url",
       }
     }
-    prevTab={-2}
+    prevTab={Object {}}
   />
   <section
     className="overview-text-summary-section"

@@ -10,16 +10,17 @@ import * as Markup from '../../assessments/markup';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { ITab } from '../../common/itab';
 import { DetailsViewActionMessageCreator } from '../../DetailsView/actions/details-view-action-message-creator';
+import { PersistedTabInfo } from '../../common/types/store-data/iassessment-result-data';
 
 export interface ITargetChangeDialogProps {
-    prevTab: ITab;
+    prevTab: PersistedTabInfo;
     newTab: ITab;
     actionMessageCreator: DetailsViewActionMessageCreator;
 }
 
 export class TargetChangeDialog extends React.Component<ITargetChangeDialogProps> {
-    public render() {
-        if (this.props.prevTab == null || this.props.prevTab.id === this.props.newTab.id) {
+    public render(): JSX.Element {
+        if (this.props.prevTab == null || (this.props.prevTab.appRefreshed === false && this.props.prevTab.id === this.props.newTab.id)) {
             return null;
         }
 

@@ -28,8 +28,8 @@ export class AssessmentsStoreDataBuilder extends BaseDataBuilder<IAssessmentStor
         return this;
     }
 
-    public withTargetTab(id: number, url: string, title: string): AssessmentsStoreDataBuilder {
-        this.data.targetTab = { id, url, title };
+    public withTargetTab(id: number, url: string, title: string, appRefreshed: boolean): AssessmentsStoreDataBuilder {
+        this.data.persistedTabInfo = { id, url, title, appRefreshed };
         return this;
     }
 }
