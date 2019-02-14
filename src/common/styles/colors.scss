@@ -55,6 +55,15 @@
     --ada-blue-variant: #336d99;
     --overview-percent-selected: var(--neutral-55);
     --index-circle-background: var(--communication-shade-10);
+    // Landmark colors
+    --landmark-contentinfo: #00a88c;
+    --landmark-main: #cb2e6d;
+    --landmark-complementary: #6b9d1a;
+    --landmark-banner: #d08311;
+    --landmark-region: #2560e0;
+    --landmark-navigation: #9b38e6;
+    --landmark-search: #d363d8;
+    --landmark-form: #0298c7;
     .high-contrast-theme {
         --ada-blue: #ffffff;
         --ada-blue-variant: #ffffff;
@@ -83,15 +92,6 @@
         --communication-tint-40: #38a9ff;
         --overview-percent-selected: black;
         --index-circle-background: var(--communication-tint-40);
-        // Landmark colors
-        --landmark-contentinfo: #00a88c;
-        --landmark-main: #cb2e6d;
-        --landmark-complementary: #6b9d1a;
-        --landmark-banner: #d08311;
-        --landmark-region: #2560e0;
-        --landmark-navigation: #9b38e6;
-        --landmark-search: #d363d8;
-        --landmark-form: #0298c7;
     }
 }
 
