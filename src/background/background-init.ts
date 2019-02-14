@@ -4,22 +4,18 @@ import { AppInsights } from 'applicationinsights-js';
 
 import { Assessments } from '../assessments/assessments';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
-import { DateProvider } from '../common/date-provider';
 import { IndexedDBAPI, IndexedDBUtil } from '../common/indexedDB/indexedDB';
 import { NotificationCreator } from '../common/notification-creator';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
-import { generateUID } from '../common/uid-generator';
 import { UrlValidator } from '../common/url-validator';
 import { WindowUtils } from '../common/window-utils';
 import { Window } from '../Scripts/Window';
-import { ApplicationBuildGenerator } from './application-build-generator';
 import { ChromeAdapter } from './browser-adapter';
 import { ChromeCommandHandler } from './chrome-command-handler';
 import { DetailsViewController } from './details-view-controller';
 import { DevToolsListener } from './dev-tools-listener';
 import { getPersistedData, PersistedData } from './get-persisted-data';
 import { GlobalContextFactory } from './global-context-factory';
-import { InstallDataGenerator } from './install-data-generator';
 import { deprecatedStorageDataKeys, storageDataKeys } from './local-storage-data-keys';
 import { MessageDistributor } from './message-distributor';
 import { ILocalStorageData } from './storage-data';
@@ -28,8 +24,7 @@ import { TabContextBroadcaster } from './tab-context-broadcaster';
 import { TabContextFactory } from './tab-context-factory';
 import { TabController } from './tab-controller';
 import { TargetTabController } from './target-tab-controller';
-import { AppInsightsTelemetryClient } from './telemetry/app-insights-telemetry-client';
-import { ApplicationTelemetryDataFactory } from './telemetry/application-telemetry-data-factory';
+import { getTelemetryClient } from './telemetry/telemetry-client-provider';
 import { TelemetryEventHandler } from './telemetry/telemetry-event-handler';
 import { TelemetryLogger } from './telemetry/telemetry-logger';
 import { TelemetryStateListener } from './telemetry/telemetry-state-listener';
@@ -48,21 +43,13 @@ backgroundInitCleaner.cleanUserData(deprecatedStorageDataKeys);
 getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
     browserAdapter.getUserData(storageDataKeys, (userData: ILocalStorageData) => {
         const assessmentsProvider = Assessments;
-        const applicationBuildGenerator = new ApplicationBuildGenerator();
         const windowUtils = new WindowUtils();
         const telemetryDataFactory = new TelemetryDataFactory();
-        const installDataGenerator = new InstallDataGenerator(userData.installationData, generateUID, DateProvider.getDate, browserAdapter);
         const telemetryLogger = new TelemetryLogger();
 
-        const coreTelemetryDataFactory = new ApplicationTelemetryDataFactory(
-            browserAdapter,
-            applicationBuildGenerator,
-            installDataGenerator,
-        );
+        const telemetryClient = getTelemetryClient(userData, browserAdapter, telemetryLogger, AppInsights);
 
-        const appInsightsTelemetry = new AppInsightsTelemetryClient(AppInsights, coreTelemetryDataFactory, telemetryLogger);
-
-        const telemetryEventHandler = new TelemetryEventHandler(browserAdapter, appInsightsTelemetry);
+        const telemetryEventHandler = new TelemetryEventHandler(browserAdapter, telemetryClient);
         const globalContext = GlobalContextFactory.createContext(
             browserAdapter,
             telemetryEventHandler,
