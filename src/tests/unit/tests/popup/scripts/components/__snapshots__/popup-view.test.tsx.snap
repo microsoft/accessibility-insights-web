@@ -96,9 +96,9 @@ exports[`PopupView renderFailureMsgPanelForFileUrl 1`] = `
           aria-label="open test title extension page"
           onClick={[Function]}
         >
-          test title
+          test title extension page
         </NewTabLink>
-         extension page.
+        .
       </div>
       <div>
         2. Enable 

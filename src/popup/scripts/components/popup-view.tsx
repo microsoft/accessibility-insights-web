@@ -208,9 +208,9 @@ export class PopupView extends React.Component<PopupViewProps> {
                                 onClick={this.props.browserAdapter.openManageExtensionPage}
                                 aria-label={`open ${this.props.title} extension page`}
                             >
-                                {this.props.title}
+                                {`${this.props.title} extension page`}
                             </NewTabLink>
-                            {' extension page.'}
+                            {'.'}
                         </div>
                         <div>
                             {'2. Enable '}
