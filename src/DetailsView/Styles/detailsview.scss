@@ -796,18 +796,18 @@ div.insights-dialog-main-override {
                 height: 100%;
                 width: 100%;
                 display: flex;
-                margin-top: 24px;
+                flex-direction: column;
                 min-height: 0;
                 .target-page-changed,
                 .static-content-details-view {
-                    margin-left: 24px;
-                    margin-right: 24px;
+                    margin: 24px 24px 0px 24px;
                 }
                 .issues-table {
                     height: 100%;
                     width: 100%;
                     display: flex;
                     flex-direction: column;
+                    margin-top: 24px;
                     > h1,
                     .details-view-toggle,
                     .details-disabled-message {
@@ -825,6 +825,7 @@ div.insights-dialog-main-override {
                     display: flex;
                     flex-direction: column;
                     width: 100%;
+                    margin-top: 24px;
                     .assessment-title {
                         width: 100%;
                         display: flex;
@@ -1250,6 +1251,7 @@ div.insights-dialog-main-override {
                     display: flex;
                     flex-direction: row;
                     flex-wrap: wrap;
+                    margin-top: 24px;
                     .overview-text-summary-section {
                         display: flex;
                         flex-direction: column;

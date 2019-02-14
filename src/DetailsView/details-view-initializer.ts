@@ -81,8 +81,8 @@ import { ReportNameGenerator } from './reports/report-name-generator';
 declare const window: AutoChecker & Window;
 
 const chromeAdapter = new ChromeAdapter();
-const url = new URL(window.location.href);
-const tabId = new UrlParser().getIntParam(window.location.href, 'tabId');
+const urlParser = new UrlParser();
+const tabId = urlParser.getIntParam(window.location.href, 'tabId');
 const dom = document;
 const documentElementSetter = new DocumentManipulator(dom);
 
@@ -254,6 +254,7 @@ if (isNaN(tabId) === false) {
                     storeActionMessageCreator,
                     storesHub,
                     loadTheme,
+                    urlParser,
                 };
 
                 const renderer = new DetailsViewRenderer(
