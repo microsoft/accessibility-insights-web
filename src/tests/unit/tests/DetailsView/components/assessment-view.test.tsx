@@ -229,6 +229,7 @@ class AssessmentViewPropsBuilder {
             id: 1,
             url: '1',
             title: '2',
+            appRefreshed: false,
         };
         const assessmentNavState = {
             selectedTestStep: firstStep.key,
