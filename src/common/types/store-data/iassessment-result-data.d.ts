@@ -2,12 +2,15 @@
 // Licensed under the MIT License.
 import { VisualizationType } from '../visualization-type';
 import { IManualTestStatus, ManualTestStatus } from '../manual-test-status';
-import { ITab } from './common/itab';
+import { ITab } from '../../itab';
 
 export type TestStepInstance = IUserCapturedInstance & IGeneratedAssessmentInstance;
 
+export type PersistedTabInfo = ITab & {
+    appRefreshed: boolean;
+};
 export interface IAssessmentStoreData {
-    targetTab: ITab;
+    persistedTabInfo: PersistedTabInfo;
     assessments: {
         [key: string]: IAssessmentData;
     };

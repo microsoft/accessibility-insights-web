@@ -14,7 +14,8 @@ import {
     IGeneratedAssessmentInstance,
     IManualTestStepResult,
     RequirementIdToResultMap,
-} from './../common/types/store-data/iassessment-result-data.d';
+    PersistedTabInfo,
+} from '../common/types/store-data/iassessment-result-data';
 
 export class InitialAssessmentStoreDataGenerator {
     private readonly NULL_FIRST_TEST: Partial<Readonly<IAssessment>> = { type: null, steps: [{ key: null }] as TestStep[] };
@@ -27,7 +28,7 @@ export class InitialAssessmentStoreDataGenerator {
     }
 
     public generateInitalState(persistedData: IAssessmentStoreData = null): IAssessmentStoreData {
-        const targetTab = persistedData && persistedData.targetTab;
+        const targetTab: PersistedTabInfo = persistedData && { ...persistedData.persistedTabInfo, appRefreshed: true };
         const persistedTests = persistedData && persistedData.assessments;
         // defaulting this.tests values to null instead of doing multiple if
         const first = head(this.tests) || this.NULL_FIRST_TEST;
@@ -35,7 +36,7 @@ export class InitialAssessmentStoreDataGenerator {
         const selectedTestStep = first.steps && first.steps[0] && first.steps[0].key;
 
         const state: Partial<IAssessmentStoreData> = {
-            targetTab,
+            persistedTabInfo: targetTab,
             assessmentNavState: { selectedTestType: selectedTestType, selectedTestStep: selectedTestStep },
             assessments: this.constructInitialDataForAssessment(persistedTests),
         };

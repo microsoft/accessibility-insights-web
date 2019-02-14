@@ -12,7 +12,7 @@ import { CreateTestAssessmentProvider } from '../../common/test-assessment-provi
 
 describe('InitialAssessmentStoreDataGeneratorTest', () => {
     const assesssmentsProvider = CreateTestAssessmentProvider();
-    const targetTab = { id: 1, url: 'url', title: 'title' };
+    const targetTab = { id: 1, url: 'url', title: 'title', appRefreshed: false };
     const generator = new InitialAssessmentStoreDataGenerator(assesssmentsProvider);
     const userInpuut = 10;
     let knownTestIds: string[];
@@ -58,7 +58,7 @@ describe('InitialAssessmentStoreDataGeneratorTest', () => {
     it('generateInitalState with persisitedData, where assessments is null', () => {
         const defaultState = generator.generateInitalState();
         const persisted: IAssessmentStoreData = {
-            targetTab,
+            persistedTabInfo: targetTab,
             assessmentNavState: {
                 selectedTestStep: 'invalid-step',
                 selectedTestType: -100,
@@ -66,7 +66,7 @@ describe('InitialAssessmentStoreDataGeneratorTest', () => {
             assessments: null,
         };
         const expected: IAssessmentStoreData = {
-            targetTab,
+            persistedTabInfo: { ...targetTab, appRefreshed: true },
             assessmentNavState: defaultState.assessmentNavState,
             assessments: defaultState.assessments,
         };
@@ -76,7 +76,7 @@ describe('InitialAssessmentStoreDataGeneratorTest', () => {
     it('generateInitalState with persisitedData, where assessments is empty', () => {
         const defaultState = generator.generateInitalState();
         const persisted: IAssessmentStoreData = {
-            targetTab,
+            persistedTabInfo: targetTab,
             assessmentNavState: {
                 selectedTestStep: 'invalid-step',
                 selectedTestType: -100,
@@ -84,14 +84,14 @@ describe('InitialAssessmentStoreDataGeneratorTest', () => {
             assessments: {},
         };
         const expected: IAssessmentStoreData = {
-            targetTab,
+            persistedTabInfo: { ...targetTab, appRefreshed: true },
             assessmentNavState: defaultState.assessmentNavState,
             assessments: defaultState.assessments,
         };
         expect(generator.generateInitalState(persisted)).toEqual(expected);
     });
 
-    it('verify targetTab and assessmentNavState', () => {
+    it('verify persistedTabInfo and assessmentNavState', () => {
         const persistedTestData1: IAssessmentData = {
             fullAxeResultsMap: null,
             generatedAssessmentInstancesMap: {
@@ -103,7 +103,7 @@ describe('InitialAssessmentStoreDataGeneratorTest', () => {
         };
 
         const persisted: IAssessmentStoreData = {
-            targetTab,
+            persistedTabInfo: { ...targetTab, appRefreshed: true },
             assessmentNavState: {
                 selectedTestStep: 'invalid-step',
                 selectedTestType: -100,
@@ -114,7 +114,7 @@ describe('InitialAssessmentStoreDataGeneratorTest', () => {
         };
         const actual = generator.generateInitalState(persisted);
 
-        expect(actual.targetTab).toEqual(persisted.targetTab);
+        expect(actual.persistedTabInfo).toEqual(persisted.persistedTabInfo);
         expect(actual.assessmentNavState).toEqual(defaultState.assessmentNavState);
     });
 
@@ -130,7 +130,7 @@ describe('InitialAssessmentStoreDataGeneratorTest', () => {
         };
 
         const persisted: IAssessmentStoreData = {
-            targetTab,
+            persistedTabInfo: targetTab,
             assessmentNavState: {
                 selectedTestStep: 'invalid-step',
                 selectedTestType: -100,
@@ -160,7 +160,7 @@ describe('InitialAssessmentStoreDataGeneratorTest', () => {
         };
 
         const persisted: IAssessmentStoreData = {
-            targetTab,
+            persistedTabInfo: targetTab,
             assessmentNavState: {
                 selectedTestStep: 'invalid-step',
                 selectedTestType: -100,
@@ -192,7 +192,7 @@ describe('InitialAssessmentStoreDataGeneratorTest', () => {
         };
 
         const persisted: IAssessmentStoreData = {
-            targetTab,
+            persistedTabInfo: targetTab,
             assessmentNavState: {
                 selectedTestStep: 'invalid-step',
                 selectedTestType: -100,
@@ -315,5 +315,5 @@ const defaultTestState: IAssessmentStoreData = {
             },
         },
     },
-    targetTab: null,
+    persistedTabInfo: null,
 };

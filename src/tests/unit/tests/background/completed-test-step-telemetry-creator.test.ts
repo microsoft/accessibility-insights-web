@@ -106,7 +106,7 @@ describe('CompletedTestStepTelemetryCreatorTest', () => {
         const before = getMockAssessmentStoreDataUnknowns();
         const after = getMockAssessmentStoreDataUnknowns();
         after.assessments['assessment-1'].testStepStatus['assessment-1-step-1'].stepFinalResult = ManualTestStatus.PASS;
-        after.targetTab = null;
+        after.persistedTabInfo = null;
 
         const expectedTelemetry = getMockTelemetryData(-1, 'assessment-1-step-1', true, 1);
         testBeforeAfterAssessmentData(expectedTelemetry, Times.never(), before, after);
@@ -360,7 +360,7 @@ function getMockAssessmentStoreDataUnknowns(): IAssessmentStoreData {
     const assessmentStoreMockData = {
         assessments,
         assessmentNavState: null,
-        targetTab: {
+        persistedTabInfo: {
             id: 1,
             url: 'url',
             title: 'title',

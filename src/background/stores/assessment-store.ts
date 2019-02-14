@@ -20,7 +20,7 @@ import {
     IGeneratedAssessmentInstance,
     ITestStepResult,
     IUserCapturedInstance,
-} from './../../common/types/store-data/iassessment-result-data.d';
+} from '../../common/types/store-data/iassessment-result-data';
 import { VisualizationType } from './../../common/types/visualization-type';
 import {
     AddFailureInstancePayload,
@@ -124,11 +124,13 @@ export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
                 return;
             }
 
-            this.state.targetTab = {
+            this.state.persistedTabInfo = {
                 id: tab.id,
                 url: tab.url,
                 title: tab.title,
+                appRefreshed: false,
             };
+
             this.emitChanged();
         });
     }
@@ -140,7 +142,7 @@ export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
 
     @autobind
     private onUpdateTargetTabId(tabId: number): void {
-        if (this.state.targetTab == null || this.state.targetTab.id !== tabId) {
+        if (this.state.persistedTabInfo == null || this.state.persistedTabInfo.id !== tabId) {
             this.updateTargetTabWithId(tabId);
         }
     }

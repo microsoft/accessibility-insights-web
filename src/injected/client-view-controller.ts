@@ -140,8 +140,8 @@ export class ClientViewController {
     private isAssessmentDataForCurrentPage(config: IVisualizationConfiguration): boolean {
         return (
             !this.isAssessment(config) ||
-            this.currentAssessmentState.targetTab === null ||
-            this.currentTabState.id === this.currentAssessmentState.targetTab.id
+            this.currentAssessmentState.persistedTabInfo === null ||
+            this.currentTabState.id === this.currentAssessmentState.persistedTabInfo.id
         );
     }
 

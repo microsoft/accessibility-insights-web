@@ -30,8 +30,8 @@ export class AssessmentScanPolicyRunner {
         const selectedAssessment = this.getSelectedAssessmentTest(visualizationState.tests);
 
         if (
-            assessmentState.targetTab == null ||
-            this.tabId !== assessmentState.targetTab.id ||
+            assessmentState.persistedTabInfo == null ||
+            this.tabId !== assessmentState.persistedTabInfo.id ||
             visualizationState.scanning != null ||
             selectedAssessment === false
         ) {

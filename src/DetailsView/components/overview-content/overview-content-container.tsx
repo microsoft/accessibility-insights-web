@@ -45,7 +45,7 @@ export interface OverviewContainerProps {
 export const OverviewContainer = NamedSFC<OverviewContainerProps>('OverviewContainer', props => {
     const { deps, assessmentStoreData, tabStoreData } = props;
     const { assessmentsProvider, getAssessmentSummaryModelFromProviderAndStoreData } = deps;
-    const prevTarget = assessmentStoreData.targetTab;
+    const prevTarget = assessmentStoreData.persistedTabInfo;
     const currentTarget = {
         id: tabStoreData.id,
         url: tabStoreData.url,

@@ -4,7 +4,7 @@ import * as _ from 'lodash';
 
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../../../../../common/enum-helper';
-import { IAssessmentData, IAssessmentStoreData } from '../../../../../common/types/store-data/iassessment-result-data';
+import { IAssessmentData, IAssessmentStoreData, PersistedTabInfo } from '../../../../../common/types/store-data/iassessment-result-data';
 import { IScanData, IVisualizationStoreData } from '../../../../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { VisualizationStoreDataBuilder } from '../../../common/visualization-store-data-builder';
@@ -45,11 +45,7 @@ describe('VisualizationConfigurationFactoryTest', () => {
     test('setAssessmentData for headingsAssessment', () => {
         const type = VisualizationType.HeadingsAssessment;
         const testData: IAssessmentStoreData = {
-            targetTab: {
-                id: 1,
-                url: 'url',
-                title: 'title',
-            },
+            persistedTabInfo: {} as PersistedTabInfo,
             assessments: {
                 headings: {
                     fullAxeResultsMap: null,
