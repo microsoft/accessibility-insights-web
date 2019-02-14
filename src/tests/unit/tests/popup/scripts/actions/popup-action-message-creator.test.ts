@@ -50,7 +50,7 @@ describe('PopupActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: 1,
-            type: Messages.Telemetry.SendExcludeUrl,
+            type: Messages.Telemetry.Send,
             payload: payload,
         };
 
@@ -73,7 +73,7 @@ describe('PopupActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: 1,
-            type: Messages.Telemetry.SendExcludeUrl,
+            type: Messages.Telemetry.Send,
             payload: payload,
         };
 

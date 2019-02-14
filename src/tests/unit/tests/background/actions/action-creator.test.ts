@@ -547,19 +547,6 @@ describe('ActionCreatorTest', () => {
         builder.verifyAll();
     });
 
-    test('registerCallback for onSendTelemetryExcludeUrl', () => {
-        const payload = { eventName: 'someEvent', telemetry: {} };
-        const args = [payload, 1];
-        const builder = new ActionCreatorValidator()
-            .setupRegistrationCallback(Messages.Telemetry.SendExcludeUrl, args)
-            .setupTelemetrySendExcludeUrl('someEvent', payload, 1);
-
-        const actionCreator = builder.buildActionCreator();
-        actionCreator.registerCallbacks();
-
-        builder.verifyAll();
-    });
-
     test('registerCallback for tabbed element added', () => {
         const tabbedElement: AddTabbedElementPayload = {
             tabbedElements: [
