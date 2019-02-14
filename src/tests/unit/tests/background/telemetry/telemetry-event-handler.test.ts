@@ -15,13 +15,9 @@ describe('TelemetryEventHandlerTest', () => {
     let testEventName;
     let testTelemetryPayload;
     let testTabId;
-    let resultTab;
 
     beforeEach(() => {
         testTabId = 1;
-        resultTab = {
-            id: testTabId,
-        };
         testEventName = 'test event';
         testTelemetryPayload = {
             telemetry: {
@@ -52,7 +48,7 @@ describe('TelemetryEventHandlerTest', () => {
             .verifiable(Times.never());
 
         const testObject = createAndEnableTelemetryEventHandler();
-        testObject.publishTelemetry(testEventName, payload;
+        testObject.publishTelemetry(testEventName, payload);
 
         browserAdapterMock.verifyAll();
     });
@@ -65,8 +61,7 @@ describe('TelemetryEventHandlerTest', () => {
             },
         };
 
-        setupBrowserAdapter(testTabId, null);
-        telemetryClientStrictMock.setup(te => te.trackEvent(It.isAny(), It.isAny())).verifiable(Times.never());
+        telemetryClientStrictMock.setup(te => te.trackEvent(It.isAny(), It.isAny())).verifiable(Times.once());
 
         const testObject = createAndEnableTelemetryEventHandler();
         testObject.publishTelemetry(testEventName, testTelemetryPayload);
@@ -93,14 +88,13 @@ describe('TelemetryEventHandlerTest', () => {
     test('test for publishTelemetry when tab is not null', () => {
         const expectedTelemetry = createExpectedAppInsightsTelemetry();
 
-        setupBrowserAdapter(testTabId, resultTab);
         setupTrackEvent(testEventName, expectedTelemetry);
 
         const testObject = createAndEnableTelemetryEventHandler();
 
         testObject.publishTelemetry(testEventName, testTelemetryPayload);
 
-       verifyMocks();
+        verifyMocks();
     });
 
     test('test for publishTelemetry with random object as custom property', () => {
@@ -126,14 +120,13 @@ describe('TelemetryEventHandlerTest', () => {
 
         const expectedTelemetry = createExpectedAppInsightsTelemetry(extraFields);
 
-        setupBrowserAdapter(testTabId, resultTab);
         setupTrackEvent(testEventName, expectedTelemetry);
 
         const testObject = createAndEnableTelemetryEventHandler();
 
         testObject.publishTelemetry(testEventName, customTelemetryPayload);
 
-       verifyMocks();
+        verifyMocks();
     });
 
     function createExpectedAppInsightsTelemetry(customFields?: IDictionaryStringTo<any>) {
@@ -154,15 +147,6 @@ describe('TelemetryEventHandlerTest', () => {
     function verifyMocks() {
         browserAdapterMock.verifyAll();
         telemetryClientStrictMock.verifyAll();
-    }
-
-    function setupBrowserAdapter(tabId: number, resultTab: ITab): void {
-        browserAdapterMock
-            .setup(cam => cam.getTab(It.isValue(tabId), It.is((param: () => void) => param instanceof Function)))
-            .callback((tabId, callback) => {
-                callback(resultTab);
-            })
-            .verifiable(Times.once());
     }
 
     function createAndEnableTelemetryEventHandler(): TelemetryEventHandler {
