@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import * as TestUtils from 'react-dom/test-utils';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { VisualizationToggle } from '../../../../../common/components/visualization-toggle';
@@ -10,37 +9,12 @@ import { StaticContentDetailsView, StaticContentDetailsViewProps } from '../../.
 import { EventStubFactory, INativeEventStub } from '../../../common/event-stub-factory';
 
 describe('StaticContentDetailsViewTest', () => {
-    test('constructor', () => {
-        const testObject = new StaticContentDetailsView({} as StaticContentDetailsViewProps);
-        expect(testObject).toBeDefined();
-        expect(testObject).toBeInstanceOf(React.Component);
-    });
-
     test('render', () => {
         const props: StaticContentDetailsViewProps = new StaticContentDetailsViewPropsBuilder().build();
 
-        const component = React.createElement(StaticContentDetailsView, props);
-        const testObject = TestUtils.renderIntoDocument(component);
+        const actual = shallow(<StaticContentDetailsView {...props} />);
 
-        const title = TestUtils.findRenderedDOMComponentWithTag(testObject, 'h1');
-
-        expect(title).toBeDefined();
-        expect(props.title).toEqual(title.innerHTML);
-
-        const visualizationToggle = TestUtils.findRenderedComponentWithType(testObject, VisualizationToggle);
-
-        expect(visualizationToggle).toBeDefined();
-
-        expect(visualizationToggle.props.className).toBe('details-view-toggle');
-        expect(visualizationToggle.props.checked).toBe(props.visualizationEnabled);
-        expect(visualizationToggle.props.label).toBe(props.toggleLabel);
-        expect(visualizationToggle.props.onClick).toBe(props.onToggleClick);
-
-        const content = TestUtils.findRenderedDOMComponentWithClass(testObject, 'details-view-static-content');
-
-        expect(content).toBeDefined();
-        const expectedContentInnerHTML = '<div>my test static content</div>';
-        expect(content.innerHTML).toBe(expectedContentInnerHTML);
+        expect(actual).toMatchSnapshot();
     });
 
     test('click the toggle', () => {
