@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TargetChangeDialog snapshot: render when previous tab info shows app is refreshed 1`] = `
+exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when previous tab info shows app is refreshed 1`] = `
 <StyledWithResponsiveMode
   dialogContentProps={
     Object {
@@ -88,7 +88,7 @@ exports[`TargetChangeDialog snapshot: render when previous tab info shows app is
 </StyledWithResponsiveMode>
 `;
 
-exports[`TargetChangeDialog snapshot: render when tab ids are same but url changes 1`] = `
+exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when tab ids are same but url changes 1`] = `
 <StyledWithResponsiveMode
   dialogContentProps={
     Object {
@@ -176,7 +176,7 @@ exports[`TargetChangeDialog snapshot: render when tab ids are same but url chang
 </StyledWithResponsiveMode>
 `;
 
-exports[`TargetChangeDialog snapshot: render when target tab id changed 1`] = `
+exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when target tab id changed 1`] = `
 <StyledWithResponsiveMode
   dialogContentProps={
     Object {
