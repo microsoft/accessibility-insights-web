@@ -9,7 +9,6 @@ import { IssueDetailsTextGenerator } from '../../../../../background/issue-detai
 
 describe('BugButtonTest', () => {
     test('render new bug button', () => {
-
         const issueDetailsTextGeneratorMock = Mock.ofType(IssueDetailsTextGenerator);
         issueDetailsTextGeneratorMock
             .setup(generator => generator.buildTitle(It.isAny()))
@@ -24,7 +23,7 @@ describe('BugButtonTest', () => {
             deps: {
                 issueDetailsTextGenerator: issueDetailsTextGeneratorMock.object,
             },
-            issueTrackerPath: "https://github.com/example/example/issues",
+            issueTrackerPath: 'https://github.com/example/example/issues',
             pageTitle: 'pageTitle',
             pageUrl: 'http://pageUrl',
             nodeResult: null,

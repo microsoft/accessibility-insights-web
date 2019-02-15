@@ -86,7 +86,7 @@ describe('IssuesTableHandlerTests', () => {
                 // through. Needed for the test to pass.
                 dropdownClickHandler: null,
             },
-            issueTrackerPath: "example/example",
+            issueTrackerPath: 'example/example',
             pageTitle: 'pageTitle',
             pageUrl: 'http://pageUrl',
         };
@@ -145,7 +145,6 @@ describe('IssuesTableHandlerTests', () => {
             groups: expectedGroups,
             items: [detailsRow1, detailsRow2, detailsRow3],
         };
-
 
         const bugFileDetails = {
             ...bugButtonProps,

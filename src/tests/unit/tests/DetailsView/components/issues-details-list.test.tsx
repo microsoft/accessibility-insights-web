@@ -121,7 +121,7 @@ describe('IssuesDetailsListTest', () => {
             deps: {
                 issueDetailsTextGenerator: null,
             },
-            issueTrackerPath: "example/example",
+            issueTrackerPath: 'example/example',
             pageTitle: 'pageTitle',
             pageUrl: 'http://pageUrl',
             nodeResult: null,
