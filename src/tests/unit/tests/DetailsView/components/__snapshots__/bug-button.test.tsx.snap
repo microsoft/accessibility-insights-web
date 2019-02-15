@@ -3,6 +3,8 @@
 exports[`BugButtonTest render new bug button 1`] = `
 <StyledLinkBase
   className="bugs-details-view"
+  href="https://github.com/example/example/issues/new?title=buildTitle&body=buildText"
+  target="_blank"
 >
   <StyledIconBase
     className="create-bug-button"

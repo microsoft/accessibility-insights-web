@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { BugButton } from '../../../../../DetailsView/components/bug-button';
 import { DetailsGroup, IListProps, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
 import { RuleResult } from '../../../../../scanner/iruleresults';
@@ -72,23 +73,41 @@ describe('IssuesTableHandlerTests', () => {
 
         const testSubject = new IssuesTableHandler();
 
+        const selectedIdToRuleResultMap: IDictionaryStringTo<DecoratedAxeNodeResult> = {
+            id1: {} as DecoratedAxeNodeResult,
+            id2: {} as DecoratedAxeNodeResult,
+            id3: {} as DecoratedAxeNodeResult,
+        };
+
+        const bugButtonProps = {
+            deps: {
+                issueDetailsTextGenerator: null,
+                // Not part of the props but an implementation detail of getListProps that seeps
+                // through. Needed for the test to pass.
+                dropdownClickHandler: null,
+            },
+            issueTrackerPath: "example/example",
+            pageTitle: 'pageTitle',
+            pageUrl: 'http://pageUrl',
+        };
+
         const detailsRow1 = {
             ...node1,
             key: node1.instanceId,
             selector: 'target1;id1',
-            bugButton: showBugFiling ? <BugButton /> : undefined,
+            bugButton: showBugFiling ? <BugButton {...bugButtonProps} nodeResult={selectedIdToRuleResultMap.id1} /> : undefined,
         };
         const detailsRow2 = {
             ...node2,
             key: node2.instanceId,
             selector: 'target2;id2',
-            bugButton: showBugFiling ? <BugButton /> : undefined,
+            bugButton: showBugFiling ? <BugButton {...bugButtonProps} nodeResult={selectedIdToRuleResultMap.id2} /> : undefined,
         };
         const detailsRow3 = {
             ...node3,
             key: node3.instanceId,
             selector: 'target3;id3',
-            bugButton: showBugFiling ? <BugButton /> : undefined,
+            bugButton: showBugFiling ? <BugButton {...bugButtonProps} nodeResult={selectedIdToRuleResultMap.id3} /> : undefined,
         };
 
         const expectedGroups: DetailsGroup[] = [
@@ -127,6 +146,12 @@ describe('IssuesTableHandlerTests', () => {
             items: [detailsRow1, detailsRow2, detailsRow3],
         };
 
-        expect(testSubject.getListProps(failedRules, showBugFiling)).toEqual(expectedListGroups);
+
+        const bugFileDetails = {
+            ...bugButtonProps,
+            showBugFiling,
+            selectedIdToRuleResultMap,
+        };
+        expect(testSubject.getListProps(failedRules, bugFileDetails)).toEqual(expectedListGroups);
     }
 });
