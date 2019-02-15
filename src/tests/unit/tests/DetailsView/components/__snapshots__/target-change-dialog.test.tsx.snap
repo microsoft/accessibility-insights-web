@@ -88,6 +88,94 @@ exports[`TargetChangeDialog snapshot: render when previous tab info shows app is
 </StyledWithResponsiveMode>
 `;
 
+exports[`TargetChangeDialog snapshot: render when tab ids are same but url changes 1`] = `
+<StyledWithResponsiveMode
+  dialogContentProps={
+    Object {
+      "title": "Assessment in progress",
+      "type": 0,
+    }
+  }
+  hidden={false}
+  modalProps={
+    Object {
+      "className": "target-change-dialog-modal",
+      "containerClassName": "insights-dialog-main-override target-change-dialog",
+      "isBlocking": true,
+    }
+  }
+>
+  <div>
+    There is already an assessment running on 
+    <StyledTooltipHostBase
+      calloutProps={
+        Object {
+          "gapSpace": 0,
+        }
+      }
+      content="https://www.abc.com"
+      id="previous-target-page-link"
+    >
+      <NewTabLink
+        className="target-page-link"
+        href="https://www.abc.com"
+        role="link"
+      >
+        test title 1
+      </NewTabLink>
+    </StyledTooltipHostBase>
+    . Would you like to continue your current assessment on the new target of 
+    <StyledTooltipHostBase
+      calloutProps={
+        Object {
+          "gapSpace": 0,
+        }
+      }
+      content="https://www.def.com"
+      id="current-target-page-link"
+    >
+      <StyledLinkBase
+        className="target-page-link"
+        role="link"
+      >
+        test title 2
+      </StyledLinkBase>
+    </StyledTooltipHostBase>
+    ?
+  </div>
+  <p>
+    <Term>
+      Note
+    </Term>
+    : If ‘Continue previous’ is selected, the previous assessment will be connected to this new page.
+  </p>
+  <p>
+    If ‘Start new’ is selected, all previous progress will be lost.
+  </p>
+  <StyledDialogFooterBase>
+    <div
+      className="target-change-dialog-button-container"
+    >
+      <div
+        className="button ms-Grid-col  action-cancel-button-col restart-button"
+      >
+        <CustomizedDefaultButton
+          text="Start new"
+        />
+      </div>
+      <div
+        className="button ms-Grid-col  action-cancel-button-col continue-button"
+      >
+        <CustomizedDefaultButton
+          autoFocus={true}
+          text="Continue previous"
+        />
+      </div>
+    </div>
+  </StyledDialogFooterBase>
+</StyledWithResponsiveMode>
+`;
+
 exports[`TargetChangeDialog snapshot: render when target tab id changed 1`] = `
 <StyledWithResponsiveMode
   dialogContentProps={
