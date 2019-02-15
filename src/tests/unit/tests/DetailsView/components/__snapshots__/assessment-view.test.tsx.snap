@@ -2,9 +2,8 @@
 
 exports[`AssessmentViewTest render 1`] = `
 "<Fragment>
-  <AssessmentURLChangedWarning deps={{...}} prevTarget={{...}} currentTarget={{...}} isScanning={false} isEnabled={false} content={{...}} actionMessageCreator={{...}} assessmentNavState={{...}} assessmentInstanceTableHandler={{...}} assessmentProvider={{...}} assessmentData={{...}} assessmentDefaultMessageGenerator={{...}} assessmentTestResult={{...}} />
   <div className=\\"assessment-content\\">
-    <TargetChangeDialog prevTab={{...}} newTab={{...}} actionMessageCreator={{...}} />
+    <TargetChangeDialog deps={{...}} prevTab={{...}} newTab={{...}} actionMessageCreator={{...}} />
     <div className=\\"assessment-title\\">
       <h1 className=\\"assessment-header\\">
         assessment 1
