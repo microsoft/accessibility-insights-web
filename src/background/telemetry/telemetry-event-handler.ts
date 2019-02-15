@@ -19,22 +19,16 @@ export class TelemetryEventHandler {
         this.telemetryClient.disableTelemetry();
     }
 
-    public publishTelemetry(eventName: string, payload: BaseActionPayload, tabId: number): void {
+    public publishTelemetry(eventName: string, payload: BaseActionPayload): void {
         if (payload.telemetry == null) {
             return;
         }
 
-        this.browserAdapter.getTab(tabId, (tab: ITab) => {
-            if (tab === null) {
-                return;
-            }
+        const telemetryInfo: any = payload.telemetry;
+        this.addBasicDataToTelemetry(telemetryInfo);
 
-            const telemetryInfo: any = payload.telemetry;
-            this.addBasicDataToTelemetry(telemetryInfo);
-
-            const flattenTelemetryInfo: IDictionaryStringTo<string> = this.flattenTelemetryInfo(telemetryInfo);
-            this.telemetryClient.trackEvent(eventName, flattenTelemetryInfo);
-        });
+        const flattenTelemetryInfo: IDictionaryStringTo<string> = this.flattenTelemetryInfo(telemetryInfo);
+        this.telemetryClient.trackEvent(eventName, flattenTelemetryInfo);
     }
 
     private addBasicDataToTelemetry(telemetryInfo: any): void {

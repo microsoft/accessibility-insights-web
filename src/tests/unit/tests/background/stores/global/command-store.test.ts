@@ -76,7 +76,7 @@ describe('CommandStoreTest', () => {
         const telemetryPayload = { telemetry };
 
         telemetryEventHandlerMock
-            .setup(tp => tp.publishTelemetry(SHORTCUT_MODIFIED, It.isValue(telemetryPayload), tabId))
+            .setup(tp => tp.publishTelemetry(SHORTCUT_MODIFIED, It.isValue(telemetryPayload)))
             .verifiable(Times.once());
 
         createStoreTesterForCommandActions('getCommands')

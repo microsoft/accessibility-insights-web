@@ -80,8 +80,8 @@ export class GlobalActionCreator {
     }
 
     @autobind
-    private onSetFeatureFlags(payload, tabId: number): void {
-        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.PREVIEW_FEATURES_TOGGLE, payload, tabId);
+    private onSetFeatureFlags(payload): void {
+        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.PREVIEW_FEATURES_TOGGLE, payload);
         this.featureFlagActions.setFeatureFlag.invoke(payload);
         this.onNotifyFeatureFlagChange(payload);
     }
@@ -117,9 +117,9 @@ export class GlobalActionCreator {
     }
 
     @autobind
-    private onSendTelemetry(payload: PayloadWithEventName, tabId: number): void {
+    private onSendTelemetry(payload: PayloadWithEventName): void {
         const eventName = payload.eventName;
-        this.telemetryEventHandler.publishTelemetry(eventName, payload, tabId);
+        this.telemetryEventHandler.publishTelemetry(eventName, payload);
     }
 
     @autobind
