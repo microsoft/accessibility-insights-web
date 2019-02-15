@@ -36,7 +36,7 @@ export class BugButton extends React.Component<IBugButtonProps> {
         const body = this.props.deps.issueDetailsTextGenerator.buildText(issueDetailsData);
 
         return (
-            <Link className="bugs-details-view" taget="_blank" href={this.issueUrl(title, body)}>
+            <Link className="bugs-details-view" target="_blank" href={this.issueUrl(title, body)}>
                 <Icon className="create-bug-button" iconName="Add" />
                 {'New bug'}
             </Link>
