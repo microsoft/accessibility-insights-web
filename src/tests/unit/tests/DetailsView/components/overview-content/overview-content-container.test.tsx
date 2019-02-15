@@ -12,6 +12,7 @@ import {
     OverviewContainerDeps,
 } from '../../../../../../DetailsView/components/overview-content/overview-content-container';
 import { HelpLinkDeps } from '../../../../../../DetailsView/components/overview-content/overview-help-section';
+import { Mock, MockBehavior } from 'typemoq';
 
 describe('OverviewContainer', () => {
     const openExternalLink = jest.fn();
@@ -28,8 +29,9 @@ describe('OverviewContainer', () => {
     const assessmentsProvider: IAssessmentsProvider = {
         all: () => [],
     } as any;
+    const filteredProvider = {} as IAssessmentsProvider;
     const detailsViewActionMessageCreatorStub = {} as DetailsViewActionMessageCreator;
-
+    const assessmentsProviderWithFeaturesEnabledMock = Mock.ofInstance((provider, featureFlagData) => null, MockBehavior.Strict);
     const getAssessmentSummaryModelFromProviderAndStoreData = jest.fn();
 
     const deps: OverviewContainerDeps = {
@@ -37,12 +39,25 @@ describe('OverviewContainer', () => {
         actionInitiators: helpLinkDeps.actionInitiators,
         getAssessmentSummaryModelFromProviderAndStoreData: getAssessmentSummaryModelFromProviderAndStoreData,
         detailsViewActionMessageCreator: detailsViewActionMessageCreatorStub,
+        assessmentsProviderWithFeaturesEnabled: assessmentsProviderWithFeaturesEnabledMock.object,
     };
+    const featureFlagDataStub = {};
     const assessmentStoreData: IAssessmentStoreData = {
         persistedTabInfo: {} as PersistedTabInfo,
     } as IAssessmentStoreData;
 
-    const component = <OverviewContainer deps={deps} assessmentStoreData={assessmentStoreData} tabStoreData={tabStoreDataStub} />;
+    assessmentsProviderWithFeaturesEnabledMock
+        .setup(mock => mock(assessmentsProvider, featureFlagDataStub))
+        .returns(() => filteredProvider);
+
+    const component = (
+        <OverviewContainer
+            deps={deps}
+            assessmentStoreData={assessmentStoreData}
+            featureFlagStoreData={featureFlagDataStub}
+            tabStoreData={tabStoreDataStub}
+        />
+    );
     const wrapper = shallow(component);
 
     test('component is defined and matches snapshot', () => {
