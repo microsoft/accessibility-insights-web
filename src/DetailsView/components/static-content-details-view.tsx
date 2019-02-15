@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { VisualizationToggle } from '../../common/components/visualization-toggle';
 
-export interface IStaticContentDetailsViewProps {
+export interface StaticContentDetailsViewProps {
     title: string;
     visualizationEnabled: boolean;
     toggleLabel: string;
@@ -12,7 +12,7 @@ export interface IStaticContentDetailsViewProps {
     onToggleClick: (event) => void;
 }
 
-export class StaticContentDetailsView extends React.Component<IStaticContentDetailsViewProps, undefined> {
+export class StaticContentDetailsView extends React.Component<StaticContentDetailsViewProps, undefined> {
     public render(): JSX.Element {
         return (
             <div className="static-content-details-view">

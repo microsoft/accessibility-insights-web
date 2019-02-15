@@ -8,7 +8,7 @@ import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
 import { IVisualizationStoreData } from '../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewToggleClickHandlerFactory } from '../handlers/details-view-toggle-click-handler-factory';
-import { IStaticContentDetailsViewProps, StaticContentDetailsView } from './static-content-details-view';
+import { StaticContentDetailsViewProps, StaticContentDetailsView } from './static-content-details-view';
 import { TargetPageChangedView } from './target-page-changed-view';
 
 export type StaticTestViewDeps = {};
@@ -33,7 +33,7 @@ export const AdhocStaticTestView = NamedSFC<IAdhocStaticTestViewProps>('AdhocSta
         return <TargetPageChangedView displayableData={displayableData} type={selectedTest} toggleClickHandler={clickHandler} />;
     }
 
-    const givenProps: IStaticContentDetailsViewProps = {
+    const givenProps: StaticContentDetailsViewProps = {
         visualizationEnabled: scanData.enabled,
         onToggleClick: clickHandler,
         title: displayableData.title,

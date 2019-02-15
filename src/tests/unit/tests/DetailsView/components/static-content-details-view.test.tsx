@@ -6,21 +6,18 @@ import * as TestUtils from 'react-dom/test-utils';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { VisualizationToggle } from '../../../../../common/components/visualization-toggle';
-import {
-    IStaticContentDetailsViewProps,
-    StaticContentDetailsView,
-} from '../../../../../DetailsView/components/static-content-details-view';
+import { StaticContentDetailsViewProps, StaticContentDetailsView } from '../../../../../DetailsView/components/static-content-details-view';
 import { EventStubFactory, INativeEventStub } from '../../../common/event-stub-factory';
 
 describe('StaticContentDetailsViewTest', () => {
     test('constructor', () => {
-        const testObject = new StaticContentDetailsView({} as IStaticContentDetailsViewProps);
+        const testObject = new StaticContentDetailsView({} as StaticContentDetailsViewProps);
         expect(testObject).toBeDefined();
         expect(testObject).toBeInstanceOf(React.Component);
     });
 
     test('render', () => {
-        const props: IStaticContentDetailsViewProps = new StaticContentDetailsViewPropsBuilder().build();
+        const props: StaticContentDetailsViewProps = new StaticContentDetailsViewPropsBuilder().build();
 
         const component = React.createElement(StaticContentDetailsView, props);
         const testObject = TestUtils.renderIntoDocument(component);
@@ -52,7 +49,7 @@ describe('StaticContentDetailsViewTest', () => {
         clickHandlerMock.setup(chm => chm(event)).verifiable(Times.once());
 
         const propsBuilder = new StaticContentDetailsViewPropsBuilder().setupOnToggleClickMock(event);
-        const props: IStaticContentDetailsViewProps = propsBuilder.build();
+        const props: StaticContentDetailsViewProps = propsBuilder.build();
         const testObject = shallow(<StaticContentDetailsView {...props} />);
         const visualizationToggle = testObject.find(VisualizationToggle);
         visualizationToggle.prop('onClick')(event);
@@ -73,8 +70,8 @@ class StaticContentDetailsViewPropsBuilder {
         return this;
     }
 
-    public build(): IStaticContentDetailsViewProps {
-        const props: IStaticContentDetailsViewProps = {
+    public build(): StaticContentDetailsViewProps {
+        const props: StaticContentDetailsViewProps = {
             title: this.title,
             visualizationEnabled: this.visualizationEnabled,
             toggleLabel: this.toggleLabel,
