@@ -4,9 +4,6 @@ import * as React from 'react';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import { ActionAndCancelButtonsComponent } from '../../DetailsView/components/action-and-cancel-buttons-component';
 
-export const issueTrackerPathPrefix = 'https://github.com/';
-export const issueTrackerPathSuffix = '/issues';
-
 export interface IIssueTrackerInputProps {
     onSave: (state: string) => void;
     issueTrackerPath?: string;
@@ -25,10 +22,8 @@ export class IssueTrackerInput extends React.Component<IIssueTrackerInputProps, 
         return (
             <div className="issue-tracker-input">
                 <TextField
-                    prefix={issueTrackerPathPrefix}
-                    suffix={issueTrackerPathSuffix}
                     placeholder={this.props.issueTrackerPath}
-                    label="Path to issue tracker (e.g. 'Microsoft/vscode')"
+                    label="Path to issue tracker (e.g. 'https://github.com/Microsoft/vscode/issues')"
                     value={this.state.issueTrackerPath}
                     onChange={this.onIssueTrackerPathChange}
                 />

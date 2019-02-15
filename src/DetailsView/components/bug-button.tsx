@@ -6,7 +6,6 @@ import * as React from 'react';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 
 import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
-import { issueTrackerPathPrefix, issueTrackerPathSuffix } from '../../content/settings/issue-tracker';
 
 export interface IBugButtonDeps {
     issueDetailsTextGenerator: IssueDetailsTextGenerator;
@@ -21,9 +20,8 @@ export interface IBugButtonProps {
 
 export class BugButton extends React.Component<IBugButtonProps> {
     public issueUrl(title, body) {
-        const baseUrl = `${issueTrackerPathPrefix}${this.props.issueTrackerPath}${issueTrackerPathSuffix}`;
         const encodedIssue = `/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
-        return `${baseUrl}${encodedIssue}`;
+        return `${this.props.issueTrackerPath}${encodedIssue}`;
     }
     public render(): JSX.Element {
         const issueDetailsData = {

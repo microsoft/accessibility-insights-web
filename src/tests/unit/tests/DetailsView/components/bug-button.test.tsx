@@ -24,7 +24,7 @@ describe('BugButtonTest', () => {
             deps: {
                 issueDetailsTextGenerator: issueDetailsTextGeneratorMock.object,
             },
-            issueTrackerPath: "example/example",
+            issueTrackerPath: "https://github.com/example/example/issues",
             pageTitle: 'pageTitle',
             pageUrl: 'http://pageUrl',
             nodeResult: null,
