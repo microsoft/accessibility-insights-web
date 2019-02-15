@@ -2,10 +2,8 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { VisualizationType } from '../../common/types/visualization-type';
 import { AssessmentBuilder } from '../assessment-builder';
-import * as Markup from '../markup';
-import { test as content } from '../../content/test';
+import { cssContent } from './test-steps/css-content';
 
 const key = 'semanticsAssessment';
 const title = 'Semantics';
@@ -21,6 +19,6 @@ export const LinksAssessment = AssessmentBuilder.Assisted({
     title: title,
     gettingStarted: SemanticsAssessmentGettingStarted,
     type: -1,
-    steps: [],
+    steps: [cssContent],
     storeDataKey: 'semanticsAssessment',
 });
