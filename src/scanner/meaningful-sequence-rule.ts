@@ -15,12 +15,12 @@ export const meaningfulSequenceConfiguration: RuleConfiguration = {
         id: meaningfulSequenceCheckId,
         selector: '*',
         any: [meaningfulSequenceCheckId],
-        matches: matchesMeaningfulSequence,
+        matches: isAbsolutePositionOrRightFloat,
         enabled: false,
     },
 };
 
-export function matchesMeaningfulSequence(node: HTMLElement): boolean {
+export function isAbsolutePositionOrRightFloat(node: HTMLElement): boolean {
     const nodeStyle = window.getComputedStyle(node);
     const position = nodeStyle.getPropertyValue('position').toLowerCase();
     const float = nodeStyle.getPropertyValue('float').toLowerCase();
