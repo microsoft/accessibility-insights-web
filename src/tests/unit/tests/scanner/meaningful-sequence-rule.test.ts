@@ -55,7 +55,7 @@ describe('meaningful sequence', () => {
     ): void {
         windowMock.setup(m => m(It.isAny())).returns(style => ({ getPropertyValue: property => style[property] } as CSSStyleDeclaration));
 
-        let result;
+        let result: boolean;
         GlobalScope.using(windowMock).with(() => {
             result = meaningfulSequenceConfiguration.rule.matches(node, null);
         });
