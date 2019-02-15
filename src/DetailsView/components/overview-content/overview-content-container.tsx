@@ -14,6 +14,7 @@ import { GetAssessmentSummaryModelFromProviderAndStoreData } from '../../reports
 import { TargetChangeDialog, TargetChangeDialogDeps } from '../target-change-dialog';
 import { OverviewHeading } from './overview-heading';
 import { HelpLinkDeps, OverviewHelpSection } from './overview-help-section';
+import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
 
 const linkDataSource: HyperlinkDefinition[] = [
     {
@@ -30,31 +31,34 @@ const linkDataSource: HyperlinkDefinition[] = [
     },
 ];
 
-export type OverviewContainerDeps = HelpLinkDeps &
-    TargetChangeDialogDeps & {
-        assessmentsProvider: IAssessmentsProvider;
-        getAssessmentSummaryModelFromProviderAndStoreData: GetAssessmentSummaryModelFromProviderAndStoreData;
-        detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-    };
+export type OverviewContainerDeps = {
+    assessmentsProvider: IAssessmentsProvider;
+    getAssessmentSummaryModelFromProviderAndStoreData: GetAssessmentSummaryModelFromProviderAndStoreData;
+    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    assessmentsProviderWithFeaturesEnabled: (assessmentProvider: IAssessmentsProvider, flags: FeatureFlagStoreData) => IAssessmentsProvider;
+} & HelpLinkDeps &
+    TargetChangeDialogDeps;
 
 export interface OverviewContainerProps {
     deps: OverviewContainerDeps;
     assessmentStoreData: IAssessmentStoreData;
     tabStoreData: ITabStoreData;
+    featureFlagStoreData: FeatureFlagStoreData;
 }
 
 export const OverviewContainer = NamedSFC<OverviewContainerProps>('OverviewContainer', props => {
-    const { deps, assessmentStoreData, tabStoreData } = props;
-    const { assessmentsProvider, getAssessmentSummaryModelFromProviderAndStoreData } = deps;
+    const { deps, assessmentStoreData, tabStoreData, featureFlagStoreData } = props;
+    const { assessmentsProvider, getAssessmentSummaryModelFromProviderAndStoreData, assessmentsProviderWithFeaturesEnabled } = deps;
     const prevTarget = assessmentStoreData.persistedTabInfo;
     const currentTarget = {
         id: tabStoreData.id,
         url: tabStoreData.url,
         title: tabStoreData.title,
     };
+    const filteredProvider = assessmentsProviderWithFeaturesEnabled(assessmentsProvider, featureFlagStoreData);
 
     const summaryData: IOverviewSummaryReportModel = getAssessmentSummaryModelFromProviderAndStoreData(
-        assessmentsProvider,
+        filteredProvider,
         assessmentStoreData,
     );
 

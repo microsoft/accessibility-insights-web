@@ -23,16 +23,20 @@ describe('OverviewContainer', () => {
         title: 'some title',
         id: -1,
     } as ITabStoreData;
+
     const helpLinkDeps = {
         actionInitiators: {
             openExternalLink,
         },
     } as HelpLinkDeps;
+
     const assessmentsProvider: IAssessmentsProvider = {
         all: () => [],
     } as any;
-    const detailsViewActionMessageCreatorStub = {} as DetailsViewActionMessageCreator;
 
+    const filteredProvider = {} as IAssessmentsProvider;
+    const detailsViewActionMessageCreatorStub = {} as DetailsViewActionMessageCreator;
+    const assessmentsProviderWithFeaturesEnabledMock = Mock.ofInstance((provider, featureFlagData) => null, MockBehavior.Strict);
     const getAssessmentSummaryModelFromProviderAndStoreData = jest.fn();
 
     const deps: OverviewContainerDeps = {
@@ -41,12 +45,26 @@ describe('OverviewContainer', () => {
         getAssessmentSummaryModelFromProviderAndStoreData: getAssessmentSummaryModelFromProviderAndStoreData,
         detailsViewActionMessageCreator: detailsViewActionMessageCreatorStub,
         urlParser: urlParserMock.object,
+        assessmentsProviderWithFeaturesEnabled: assessmentsProviderWithFeaturesEnabledMock.object,
     };
+
+    const featureFlagDataStub = {};
     const assessmentStoreData: IAssessmentStoreData = {
         persistedTabInfo: {} as PersistedTabInfo,
     } as IAssessmentStoreData;
 
-    const component = <OverviewContainer deps={deps} assessmentStoreData={assessmentStoreData} tabStoreData={tabStoreDataStub} />;
+    assessmentsProviderWithFeaturesEnabledMock
+        .setup(mock => mock(assessmentsProvider, featureFlagDataStub))
+        .returns(() => filteredProvider);
+
+    const component = (
+        <OverviewContainer
+            deps={deps}
+            assessmentStoreData={assessmentStoreData}
+            featureFlagStoreData={featureFlagDataStub}
+            tabStoreData={tabStoreDataStub}
+        />
+    );
     const wrapper = shallow(component);
 
     test('component is defined and matches snapshot', () => {
