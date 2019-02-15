@@ -4,16 +4,18 @@ import * as Enzyme from 'enzyme';
 import Dialog from 'office-ui-fabric-react/lib/Dialog';
 import { TooltipHost } from 'office-ui-fabric-react/lib/Tooltip';
 import * as React from 'react';
-import { Mock } from 'typemoq';
+import { Mock, MockBehavior } from 'typemoq';
 
+import { UrlParser } from '../../../../../common/url-parser';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
-import { ITargetChangeDialogProps, TargetChangeDialog } from '../../../../../DetailsView/components/target-change-dialog';
+import { TargetChangeDialog, TargetChangeDialogProps } from '../../../../../DetailsView/components/target-change-dialog';
 
 describe('TargetChangeDialog', () => {
+    const urlParserMock = Mock.ofType(UrlParser, MockBehavior.Strict);
     test('should render null when prev tab in not set', () => {
         const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
-
-        const targetChangeProps: ITargetChangeDialogProps = {
+        const targetChangeProps: TargetChangeDialogProps = {
+            deps: { urlParser: urlParserMock.object },
             prevTab: null,
             newTab: {
                 id: 111,
@@ -30,7 +32,8 @@ describe('TargetChangeDialog', () => {
     test('should render null when target tab id did not change', () => {
         const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
 
-        const targetChangeProps: ITargetChangeDialogProps = {
+        const targetChangeProps: TargetChangeDialogProps = {
+            deps: { urlParser: urlParserMock.object },
             prevTab: {
                 id: 111,
                 url: 'https://www.abc.com',
@@ -52,7 +55,8 @@ describe('TargetChangeDialog', () => {
     test('should show when target tab id changed', () => {
         const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
 
-        const targetChangeProps: ITargetChangeDialogProps = {
+        const targetChangeProps: TargetChangeDialogProps = {
+            deps: { urlParser: urlParserMock.object },
             prevTab: {
                 id: 111,
                 url: 'https://www.abc.com',
@@ -77,7 +81,8 @@ describe('TargetChangeDialog', () => {
     test('snapshot: render when target tab id changed', () => {
         const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
 
-        const targetChangeProps: ITargetChangeDialogProps = {
+        const targetChangeProps: TargetChangeDialogProps = {
+            deps: { urlParser: urlParserMock.object },
             prevTab: {
                 id: 111,
                 url: 'https://www.abc.com',
@@ -99,7 +104,8 @@ describe('TargetChangeDialog', () => {
     test('snapshot: render when previous tab info shows app is refreshed', () => {
         const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
 
-        const targetChangeProps: ITargetChangeDialogProps = {
+        const targetChangeProps: TargetChangeDialogProps = {
+            deps: { urlParser: urlParserMock.object },
             prevTab: {
                 id: 111,
                 url: 'https://www.abc.com',

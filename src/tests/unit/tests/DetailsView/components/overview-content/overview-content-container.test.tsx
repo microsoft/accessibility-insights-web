@@ -12,8 +12,11 @@ import {
     OverviewContainerDeps,
 } from '../../../../../../DetailsView/components/overview-content/overview-content-container';
 import { HelpLinkDeps } from '../../../../../../DetailsView/components/overview-content/overview-help-section';
+import { Mock, MockBehavior } from 'typemoq';
+import { UrlParser } from '../../../../../../common/url-parser';
 
 describe('OverviewContainer', () => {
+    const urlParserMock = Mock.ofType(UrlParser, MockBehavior.Strict);
     const openExternalLink = jest.fn();
     const tabStoreDataStub: ITabStoreData = {
         url: 'some url',
@@ -37,6 +40,7 @@ describe('OverviewContainer', () => {
         actionInitiators: helpLinkDeps.actionInitiators,
         getAssessmentSummaryModelFromProviderAndStoreData: getAssessmentSummaryModelFromProviderAndStoreData,
         detailsViewActionMessageCreator: detailsViewActionMessageCreatorStub,
+        urlParser: urlParserMock.object,
     };
     const assessmentStoreData: IAssessmentStoreData = {
         persistedTabInfo: {} as PersistedTabInfo,

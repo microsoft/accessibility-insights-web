@@ -15,8 +15,7 @@ import { ContentPageComponent } from '../../views/content/content-page';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { detailsViewExtensionPoint } from '../extensions/details-view-extension-point';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
-import { AssessmentURLChangedWarning, AssessmentURLChangedWarningDeps } from './assessment-url-changed-warning';
-import { TargetChangeDialog } from './target-change-dialog';
+import { TargetChangeDialog, TargetChangeDialogDeps } from './target-change-dialog';
 import { TestStepView, TestStepViewDeps } from './test-step-view';
 import { TestStepNavDeps, TestStepsNav } from './test-steps-nav';
 
@@ -28,7 +27,7 @@ export const AssessmentViewMainContentExtensionPoint = reactExtensionPoint<WithA
 export type AssessmentViewDeps = ContentLinkDeps &
     TestStepViewDeps &
     TestStepNavDeps &
-    AssessmentURLChangedWarningDeps & {
+    TargetChangeDialogDeps & {
         detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
         assessmentsProvider: IAssessmentsProvider;
     };
@@ -66,7 +65,6 @@ export class AssessmentView extends React.Component<IAssessmentViewProps> {
 
         return (
             <>
-                <AssessmentURLChangedWarning {...this.props} />
                 <div className="assessment-content">
                     {this.renderTargetChangeDialog()}
                     {this.renderTitle(assessmentTestResult.definition.title, assessmentTestResult.definition.guidance)}
@@ -129,6 +127,7 @@ export class AssessmentView extends React.Component<IAssessmentViewProps> {
     private renderTargetChangeDialog(): JSX.Element {
         return (
             <TargetChangeDialog
+                deps={this.props.deps}
                 prevTab={this.props.prevTarget}
                 newTab={this.props.currentTarget}
                 actionMessageCreator={this.props.deps.detailsViewActionMessageCreator}

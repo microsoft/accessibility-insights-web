@@ -9,18 +9,28 @@ import * as React from 'react';
 import * as Markup from '../../assessments/markup';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { ITab } from '../../common/itab';
-import { DetailsViewActionMessageCreator } from '../../DetailsView/actions/details-view-action-message-creator';
 import { PersistedTabInfo } from '../../common/types/store-data/iassessment-result-data';
+import { UrlParser } from '../../common/url-parser';
+import { DetailsViewActionMessageCreator } from '../../DetailsView/actions/details-view-action-message-creator';
 
-export interface ITargetChangeDialogProps {
+export type TargetChangeDialogDeps = {
+    urlParser: UrlParser;
+};
+
+export interface TargetChangeDialogProps {
+    deps: TargetChangeDialogDeps;
     prevTab: PersistedTabInfo;
     newTab: ITab;
     actionMessageCreator: DetailsViewActionMessageCreator;
 }
 
-export class TargetChangeDialog extends React.Component<ITargetChangeDialogProps> {
+export class TargetChangeDialog extends React.Component<TargetChangeDialogProps> {
     public render(): JSX.Element {
-        if (this.props.prevTab == null || (this.props.prevTab.appRefreshed === false && this.props.prevTab.id === this.props.newTab.id)) {
+        const { urlParser } = this.props.deps;
+        const { prevTab, newTab } = this.props;
+        const urlChanged = prevTab !== null && urlParser.areURLHostNamesEqual(prevTab.url, newTab.url) === false;
+
+        if (prevTab === null || (prevTab.appRefreshed === false && (prevTab.id === newTab.id && urlChanged === false))) {
             return null;
         }
 
