@@ -7,11 +7,11 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 import { IDisplayableVisualizationTypeData } from '../../../../../common/configs/visualization-configuration-factory';
 import { IScanData, ITestsEnabledState, IVisualizationStoreData } from '../../../../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { AdhocStaticTestView, IAdhocStaticTestViewProps } from '../../../../../DetailsView/components/adhoc-static-test-view';
+import { AdhocStaticTestView, AdhocStaticTestViewProps } from '../../../../../DetailsView/components/adhoc-static-test-view';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 
 describe('AdhocStaticTestView', () => {
-    let props: IAdhocStaticTestViewProps;
+    let props: AdhocStaticTestViewProps;
     let getStoreDataMock: IMock<(data: ITestsEnabledState) => IScanData>;
     let clickHandlerFactoryMock: IMock<DetailsViewToggleClickHandlerFactory>;
     let displayableDataStub: IDisplayableVisualizationTypeData;
@@ -48,7 +48,7 @@ describe('AdhocStaticTestView', () => {
             clickHandlerFactory: clickHandlerFactoryMock.object,
             visualizationStoreData: visualizationStoreDataStub,
             selectedTest,
-        } as IAdhocStaticTestViewProps;
+        } as AdhocStaticTestViewProps;
 
         getStoreDataMock
             .setup(gsdm => gsdm(visualizationStoreDataStub.tests))

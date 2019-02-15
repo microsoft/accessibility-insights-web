@@ -8,12 +8,12 @@ import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
 import { IVisualizationStoreData } from '../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewToggleClickHandlerFactory } from '../handlers/details-view-toggle-click-handler-factory';
-import { StaticContentDetailsViewProps, StaticContentDetailsView } from './static-content-details-view';
+import { StaticContentDetailsView, StaticContentDetailsViewProps } from './static-content-details-view';
 import { TargetPageChangedView } from './target-page-changed-view';
 
 export type StaticTestViewDeps = {};
 
-export interface IAdhocStaticTestViewProps {
+export interface AdhocStaticTestViewProps {
     deps: StaticTestViewDeps;
     tabStoreData: Pick<ITabStoreData, 'isChanged'>;
     selectedTest: VisualizationType;
@@ -22,7 +22,7 @@ export interface IAdhocStaticTestViewProps {
     configuration: IVisualizationConfiguration;
 }
 
-export const AdhocStaticTestView = NamedSFC<IAdhocStaticTestViewProps>('AdhocStaticTestView', ({ children, ...props }) => {
+export const AdhocStaticTestView = NamedSFC<AdhocStaticTestViewProps>('AdhocStaticTestView', ({ children, ...props }) => {
     const selectedTest = props.selectedTest;
     const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
     const clickHandler = props.clickHandlerFactory.createClickHandler(selectedTest, !scanData.enabled);

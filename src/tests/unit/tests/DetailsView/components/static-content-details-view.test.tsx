@@ -6,7 +6,7 @@ import * as TestUtils from 'react-dom/test-utils';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { VisualizationToggle } from '../../../../../common/components/visualization-toggle';
-import { StaticContentDetailsViewProps, StaticContentDetailsView } from '../../../../../DetailsView/components/static-content-details-view';
+import { StaticContentDetailsView, StaticContentDetailsViewProps } from '../../../../../DetailsView/components/static-content-details-view';
 import { EventStubFactory, INativeEventStub } from '../../../common/event-stub-factory';
 
 describe('StaticContentDetailsViewTest', () => {
