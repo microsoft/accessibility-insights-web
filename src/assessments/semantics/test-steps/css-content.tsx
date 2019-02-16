@@ -37,7 +37,7 @@ export const cssContent: TestStep = {
     description: cssContentDescription,
     howToTest: cssContentHowToTest,
     isManual: true,
-    guidanceLinks: [link.WCAG_1_4_1],
+    guidanceLinks: [link.WCAG_1_3_1],
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
