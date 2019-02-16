@@ -1,0 +1,33 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+import * as React from 'react';
+
+import { link } from '../../../content/link';
+import ManualTestRecordYourResults from '../../common/manual-test-record-your-results';
+import { TestStep } from '../../types/test-step';
+import { SemanticsTestStep } from './test-steps';
+
+const emphasisDescription: JSX.Element = (
+    <span>Semantic elements in a data table must not be coded as decorative.</span>
+);
+
+const emphasisHowToTest: JSX.Element = (
+    <div>
+        <ol>
+            <li>
+                emphasis how to test
+            </li>
+            <ManualTestRecordYourResults isMultipleFailurePossible={true} />
+        </ol>
+    </div>
+);
+
+export const Emphasis: TestStep = {
+    key: SemanticsTestStep.emphasis,
+    name: 'Data tables',
+    description: emphasisDescription,
+    howToTest: emphasisHowToTest,
+    isManual: true,
+    guidanceLinks: [link.WCAG_1_3_1],
+    updateVisibility: false,
+};
