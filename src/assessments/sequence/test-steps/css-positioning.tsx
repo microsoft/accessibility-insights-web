@@ -41,7 +41,7 @@ const howToTest: JSX.Element = (
             </li>
             <li>
                 If the page does have meaningful positioned content, use the Chrome Web Developer extension (
-                <Markup.Term>Miscellaneous > Linearize Page</Markup.Term>) to show the page in DOM order.
+                <Markup.Term>Miscellaneous > Linearize page</Markup.Term>) to show the page in DOM order.
             </li>
             <li>Verify that the positioned content retains its meaning when the page is linearized.</li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
