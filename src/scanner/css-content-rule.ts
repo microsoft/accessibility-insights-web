@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { RuleConfiguration } from './iruleresults';
 
-const cssContentCheckId: string = 'meaningful-sequence';
+const cssContentCheckId: string = 'css-content';
 const cssContentRuleId = cssContentCheckId;
 
 export const cssContentConfiguration: RuleConfiguration = {

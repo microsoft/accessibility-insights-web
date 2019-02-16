@@ -3,22 +3,25 @@
 import { GlobalMock, GlobalScope, IGlobalMock, It, MockBehavior } from 'typemoq';
 
 import { IDictionaryStringTo } from '../../../../scanner/dictionary-types';
-import { cssContentConfiguration } from '../../../../scanner/css-content-rule';
+import { cssContentConfiguration } from './../../../../scanner/css-content-rule';
 
 describe('meaningful sequence', () => {
     describe('verify meaningful sequence configs', () => {
         it('should have correct props', () => {
-            expect(cssContentConfiguration.rule.id).toBe('meaningful-sequence');
+            expect(cssContentConfiguration.rule.id).toBe('css-content');
             expect(cssContentConfiguration.rule.selector).toBe('*');
-            expect(cssContentConfiguration.rule.any[0]).toBe('meaningful-sequence');
+            expect(cssContentConfiguration.rule.any[0]).toBe('css-content');
             expect(cssContentConfiguration.rule.any.length).toBe(1);
-            expect(cssContentConfiguration.checks[0].id).toBe('meaningful-sequence');
+            expect(cssContentConfiguration.checks[0].id).toBe('css-content');
             expect(cssContentConfiguration.checks[0].evaluate(null, null, null, null)).toBe(true);
         });
     });
 
     describe('verify evaluate', () => {
         const windowMock = GlobalMock.ofInstance(window.getComputedStyle, 'getComputedStyle', window, MockBehavior.Strict);
+        beforeEach(() => {
+            windowMock.reset();
+        });
 
         it('position absolute', () => {
             const node = {
