@@ -3,17 +3,17 @@
 import { GlobalMock, GlobalScope, IGlobalMock, It, MockBehavior } from 'typemoq';
 
 import { IDictionaryStringTo } from '../../../../scanner/dictionary-types';
-import { meaningfulSequenceConfiguration } from './../../../../scanner/meaningful-sequence-rule';
+import { cssContentConfiguration } from '../../../../scanner/css-content-rule';
 
 describe('meaningful sequence', () => {
     describe('verify meaningful sequence configs', () => {
         it('should have correct props', () => {
-            expect(meaningfulSequenceConfiguration.rule.id).toBe('meaningful-sequence');
-            expect(meaningfulSequenceConfiguration.rule.selector).toBe('*');
-            expect(meaningfulSequenceConfiguration.rule.any[0]).toBe('meaningful-sequence');
-            expect(meaningfulSequenceConfiguration.rule.any.length).toBe(1);
-            expect(meaningfulSequenceConfiguration.checks[0].id).toBe('meaningful-sequence');
-            expect(meaningfulSequenceConfiguration.checks[0].evaluate(null, null, null, null)).toBe(true);
+            expect(cssContentConfiguration.rule.id).toBe('meaningful-sequence');
+            expect(cssContentConfiguration.rule.selector).toBe('*');
+            expect(cssContentConfiguration.rule.any[0]).toBe('meaningful-sequence');
+            expect(cssContentConfiguration.rule.any.length).toBe(1);
+            expect(cssContentConfiguration.checks[0].id).toBe('meaningful-sequence');
+            expect(cssContentConfiguration.checks[0].evaluate(null, null, null, null)).toBe(true);
         });
     });
 
@@ -57,7 +57,7 @@ describe('meaningful sequence', () => {
 
         let result: boolean;
         GlobalScope.using(windowMock).with(() => {
-            result = meaningfulSequenceConfiguration.rule.matches(node, null);
+            result = cssContentConfiguration.rule.matches(node, null);
         });
         expect(result).toBe(expectedResult);
     }

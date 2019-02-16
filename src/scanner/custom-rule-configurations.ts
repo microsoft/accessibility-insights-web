@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { colorConfiguration } from './color-rule';
+import { cssContentConfiguration } from './css-content-rule';
 import { cuesConfiguration } from './cues-rule';
 import { customWidgetConfiguration } from './custom-widget';
 import { frameTitleConfiguration } from './frame-title';
@@ -10,7 +11,6 @@ import { RuleConfiguration } from './iruleresults';
 import { landmarkConfiguration } from './landmark-rule';
 import { linkFunctionConfiguration } from './link-function';
 import { linkPurposeConfiguration } from './link-purpose';
-import { meaningfulSequenceConfiguration } from './meaningful-sequence-rule';
 import { nativeWidgetsDefaultConfiguration } from './native-widgets-default';
 import { pageConfiguration } from './page-title';
 import { textAlternativeConfiguration } from './text-alternative';
@@ -34,5 +34,5 @@ export const configuration: RuleConfiguration[] = [
     nativeWidgetsDefaultConfiguration,
     cuesConfiguration,
     customWidgetConfiguration,
-    meaningfulSequenceConfiguration,
+    cssContentConfiguration,
 ];

@@ -2,19 +2,20 @@
 // Licensed under the MIT License.
 import { RuleConfiguration } from './iruleresults';
 
-const meaningfulSequenceCheckId: string = 'meaningful-sequence';
+const cssContentCheckId: string = 'meaningful-sequence';
+const cssContentRuleId = cssContentCheckId;
 
-export const meaningfulSequenceConfiguration: RuleConfiguration = {
+export const cssContentConfiguration: RuleConfiguration = {
     checks: [
         {
-            id: meaningfulSequenceCheckId,
+            id: cssContentCheckId,
             evaluate: () => true,
         },
     ],
     rule: {
-        id: meaningfulSequenceCheckId,
+        id: cssContentRuleId,
         selector: '*',
-        any: [meaningfulSequenceCheckId],
+        any: [cssContentCheckId],
         matches: isAbsolutePositionOrRightFloat,
         enabled: false,
     },
