@@ -15,19 +15,19 @@ const dataTablesHowToTest: JSX.Element = (
     <div>
         <ol>
             <li>
-
+                datatables how to test
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
     </div>
 );
 
-export const dataTables: TestStep = {
+export const DataTables: TestStep = {
     key: SemanticsTestStep.dataTables,
     name: 'Data tables',
     description: dataTablesDescription,
     howToTest: dataTablesHowToTest,
     isManual: true,
-    guidanceLinks: [link.WCAG_1_3_3],
+    guidanceLinks: [link.WCAG_1_3_1],
     updateVisibility: false,
 };
