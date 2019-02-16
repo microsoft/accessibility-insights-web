@@ -3,7 +3,7 @@
 import { RuleConfiguration } from './iruleresults';
 
 const cssContentCheckId: string = 'css-content';
-const cssContentRuleId = cssContentCheckId;
+const cssContentRuleId: string = 'css-content';
 
 export const cssContentConfiguration: RuleConfiguration = {
     checks: [
