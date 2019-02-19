@@ -27,7 +27,6 @@ export const AdhocStaticTestView = NamedSFC<AdhocStaticTestViewProps>('AdhocStat
     const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
     const clickHandler = props.clickHandlerFactory.createClickHandler(selectedTest, !scanData.enabled);
     const displayableData = props.configuration.displayableData;
-    const content = props.configuration.detailsViewStaticContent;
     const staticContent = props.configuration.detailsViewContent;
 
     if (props.tabStoreData.isChanged) {
@@ -40,7 +39,6 @@ export const AdhocStaticTestView = NamedSFC<AdhocStaticTestViewProps>('AdhocStat
         onToggleClick: clickHandler,
         title: displayableData.title,
         toggleLabel: displayableData.toggleLabel,
-        content,
         staticContent,
     };
 

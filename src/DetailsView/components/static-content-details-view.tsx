@@ -13,14 +13,11 @@ export interface StaticContentDetailsViewProps {
     title: string;
     visualizationEnabled: boolean;
     toggleLabel: string;
-    content: JSX.Element;
-    staticContent?: ContentPageComponent;
+    staticContent: ContentPageComponent;
     onToggleClick: (event) => void;
 }
 
 export const StaticContentDetailsView = NamedSFC<StaticContentDetailsViewProps>('StaticContentDetailsView', props => {
-    const wrapContent = () => <div className="details-view-static-content">{props.content}</div>;
-
     const wrapContentPage = () => {
         return props.staticContent ? <props.staticContent deps={props.deps} /> : null;
     };
@@ -35,7 +32,7 @@ export const StaticContentDetailsView = NamedSFC<StaticContentDetailsViewProps>(
                 className="details-view-toggle"
                 visualizationName={props.title}
             />
-            {wrapContentPage() || wrapContent()}
+            {wrapContentPage()}
         </div>
     );
 });

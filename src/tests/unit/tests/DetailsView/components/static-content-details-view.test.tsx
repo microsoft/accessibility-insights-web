@@ -11,20 +11,12 @@ import { BaseDataBuilder } from '../../../common/base-data-builder';
 import { EventStubFactory, INativeEventStub } from '../../../common/event-stub-factory';
 
 describe('StaticContentDetailsViewTest', () => {
-    it('render jsx.element content', () => {
-        const props: StaticContentDetailsViewProps = new StaticContentDetailsViewPropsBuilder().build();
-
-        const actual = shallow(<StaticContentDetailsView {...props} />);
-
-        expect(actual).toMatchSnapshot();
-    });
-
     it('render content page component content', () => {
-        const props = new StaticContentDetailsViewPropsBuilder().with('staticContent', Mock.ofType<ContentPageComponent>().object).build();
+        const props = new StaticContentDetailsViewPropsBuilder().build();
 
         const actual = shallow(<StaticContentDetailsView {...props} />);
 
-        expect(actual).toMatchSnapshot();
+        expect(actual.debug()).toMatchSnapshot();
     });
 
     it('click the toggle', () => {
@@ -52,7 +44,7 @@ class StaticContentDetailsViewPropsBuilder extends BaseDataBuilder<StaticContent
             visualizationEnabled: true,
             toggleLabel: 'my test toggle label',
             onToggleClick: this.onToggleClickMock.object,
-            content: <div>my test static content</div>,
+            staticContent: Mock.ofType<ContentPageComponent>().object,
         } as StaticContentDetailsViewProps;
     }
 

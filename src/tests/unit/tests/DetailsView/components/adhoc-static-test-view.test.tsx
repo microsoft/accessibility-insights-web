@@ -20,7 +20,6 @@ describe('AdhocStaticTestView', () => {
     let getStoreDataMock: IMock<(data: ITestsEnabledState) => IScanData>;
     let clickHandlerFactoryMock: IMock<DetailsViewToggleClickHandlerFactory>;
     let displayableDataStub: IDisplayableVisualizationTypeData;
-    let contentStub: JSX.Element;
     let scanDataStub: IScanData;
     let clickHandlerStub: (event: any) => void;
     let visualizationStoreDataStub: IVisualizationStoreData;
@@ -29,12 +28,10 @@ describe('AdhocStaticTestView', () => {
     beforeEach(() => {
         getStoreDataMock = Mock.ofInstance(() => null, MockBehavior.Strict);
         clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory, MockBehavior.Strict);
-        contentStub = {} as JSX.Element;
         displayableDataStub = {
             title: 'test title',
             toggleLabel: 'test toggle label',
         } as IDisplayableVisualizationTypeData;
-        contentStub = {} as JSX.Element;
         scanDataStub = {
             enabled: true,
         };
@@ -48,7 +45,6 @@ describe('AdhocStaticTestView', () => {
             configuration: {
                 getStoreData: getStoreDataMock.object,
                 displayableData: displayableDataStub,
-                detailsViewStaticContent: contentStub,
                 detailsViewContent: Mock.ofType<ContentPageComponent>().object,
             },
             clickHandlerFactory: clickHandlerFactoryMock.object,
