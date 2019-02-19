@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-import { AdhocStaticTestView } from '../../DetailsView/components/adhoc-static-test-view';
 
 import { AdHocTestkeys } from '../../common/configs/adhoc-test-keys';
 import { TestMode } from '../../common/configs/test-mode';
@@ -10,7 +9,7 @@ import { Messages } from '../../common/messages';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { generateUID } from '../../common/uid-generator';
 import { adhoc as content } from '../../content/adhoc';
-import { tabStopsContent } from '../../DetailsView/StaticContent/tab-stops-details-view';
+import { AdhocStaticTestView } from '../../DetailsView/components/adhoc-static-test-view';
 import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
 
 const { guidance, staticContent } = content.tabstops;
@@ -28,7 +27,6 @@ export const TabStopsAdHocVisualization: IVisualizationConfiguration = {
         toggleLabel: 'Show tab stops',
         linkToDetailsViewText: 'How to test tab stops',
     },
-    detailsViewStaticContent: tabStopsContent,
     detailsViewContent: staticContent,
     chromeCommand: '04_toggle-tabStops',
     launchPanelDisplayOrder: 4,

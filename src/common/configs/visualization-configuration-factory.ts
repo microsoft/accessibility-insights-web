@@ -66,7 +66,6 @@ export interface IVisualizationConfiguration extends IAssesssmentVisualizationCo
     getAssessmentData?: (data: IAssessmentStoreData) => IAssessmentData;
     setAssessmentData?: (data: IAssessmentStoreData, selectorMap: IDictionaryStringTo<any>, instanceMap?: IDictionaryStringTo<any>) => void;
     displayableData: IDisplayableVisualizationTypeData;
-    detailsViewStaticContent: JSX.Element;
     detailsViewContent?: ContentPageComponent;
     chromeCommand: string;
     launchPanelDisplayOrder: number;
@@ -100,7 +99,6 @@ export class VisualizationConfigurationFactory {
             const defaults = {
                 testMode: TestMode.Assessments,
                 chromeCommand: null,
-                detailsViewStaticContent: null,
                 launchPanelDisplayOrder: null,
                 adhocToolsPanelDisplayOrder: null,
                 displayableData: {

@@ -12,7 +12,6 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { generateUID } from '../../common/uid-generator';
 import { adhoc as content } from '../../content/adhoc';
 import { AdhocStaticTestView } from '../../DetailsView/components/adhoc-static-test-view';
-import { landmarksContent } from '../../DetailsView/StaticContent/landmarks-details-view';
 import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
 import { ScannerUtils } from './../../injected/scanner-utils';
 
@@ -31,7 +30,6 @@ export const LandmarksAdHocVisualization: IVisualizationConfiguration = {
         toggleLabel: 'Show landmarks',
         linkToDetailsViewText: 'How to test landmarks',
     },
-    detailsViewStaticContent: landmarksContent,
     detailsViewContent: staticContent,
     chromeCommand: '02_toggle-landmarks',
     launchPanelDisplayOrder: 2,
