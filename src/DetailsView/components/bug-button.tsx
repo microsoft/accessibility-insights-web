@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
-import { Link } from 'office-ui-fabric-react/lib/Link';
+import { NewTabLink } from '../../common/components/new-tab-link';
 import * as React from 'react';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 
@@ -34,10 +34,10 @@ export class BugButton extends React.Component<IBugButtonProps> {
         const body = this.props.deps.issueDetailsTextGenerator.buildText(issueDetailsData);
 
         return (
-            <Link className="bugs-details-view" target="_blank" href={this.issueUrl(title, body)}>
+            <NewTabLink className="bugs-details-view" href={this.issueUrl(title, body)}>
                 <Icon className="create-bug-button" iconName="Add" />
                 {'New bug'}
-            </Link>
+            </NewTabLink>
         );
     }
 }
