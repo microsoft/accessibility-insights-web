@@ -6,6 +6,7 @@ import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import * as React from 'react';
 
 import { NewTabLink } from '../../common/components/new-tab-link';
+import { FileIssueDetailsButton } from '../../common/components/file-issue-details-button';
 import { FeatureFlags } from '../../common/feature-flags';
 import { IBaseStore } from '../../common/istore';
 import { DevToolActionMessageCreator } from '../../common/message-creators/dev-tool-action-message-creator';
@@ -147,8 +148,15 @@ export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetails
         );
     }
 
-    private renderCreateBugButton(): JSX.Element {
-        return <DefaultButton className="insights-dialog-button-create-bug" iconProps={{ iconName: 'add' }} text="New bug" />;
+    private renderCreateBugButton(issueData: CreateIssueDetailsTextData): JSX.Element {
+        // TODO: Remove placeholder path
+        return (
+            <FileIssueDetailsButton
+                deps={this.props.deps}
+                issueDetailsData={issueData}
+                issueTrackerPath="https://github.com/AdnoC/dotfiles/issues"
+            />
+        );
     }
 
     private renderIssueButtons(): JSX.Element {
@@ -171,7 +179,7 @@ export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetails
                 <FlaggedComponent
                     featureFlagStoreData={this.props.featureFlagStoreData}
                     featureFlag={FeatureFlags.showBugFiling}
-                    enableJSXElement={this.renderCreateBugButton()}
+                    enableJSXElement={this.renderCreateBugButton(issueData)}
                 />
             </>
         );
