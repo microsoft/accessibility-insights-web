@@ -64,7 +64,7 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
             <>
             {!this.props.issueTrackerPath ? (
                 <DefaultButton
-                    iconProps={{ iconName: 'Add' }}
+                    iconProps={{ iconName: 'ladybugSolid' }}
                     className={'create-bug-button'}
                     onClick={() => this.setState({ showingFileIssueModal: true })}
                 >
@@ -73,7 +73,7 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
             ) : null}
             {!!this.props.issueTrackerPath ? (
                 <DefaultButton
-                    iconProps={{ iconName: 'Add' }}
+                    iconProps={{ iconName: 'ladybugSolid' }}
                     className={'create-bug-button'}
                     target="_blank"
                     href={this.getIssueDetailsUrl(this.props.issueDetailsData.ruleResult)}
