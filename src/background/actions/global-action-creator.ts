@@ -10,6 +10,7 @@ import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import {
     PayloadWithEventName,
     SetBugServicePayload,
+    SetBugServicePropertyPayload,
     SetHighContrastModePayload,
     SetLaunchPanelState,
     SetTelemetryStatePayload,
@@ -67,6 +68,7 @@ export class GlobalActionCreator {
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetTelemetryConfig, this.onSetTelemetryConfiguration);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetHighContrastConfig, this.onSetHighContrastMode);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetBugService, this.onSetBugService);
+        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetBugServiceProperty, this.onSetBugServiceProperty);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.NotifyFeatureFlagChange, this.onNotifyFeatureFlagChange);
     }
 
@@ -147,6 +149,11 @@ export class GlobalActionCreator {
     @autobind
     private onSetBugService(payload: SetBugServicePayload): void {
         this.userConfigActions.setBugService.invoke(payload);
+    }
+
+    @autobind
+    private onSetBugServiceProperty(payload: SetBugServicePropertyPayload): void {
+        this.userConfigActions.setBugServiceProperty.invoke(payload);
     }
 
     @autobind

@@ -4,6 +4,7 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import {
     SetBugServicePayload,
+    SetBugServicePropertyPayload,
     SetHighContrastModePayload,
     SetLaunchPanelState,
     SetTelemetryStatePayload,
@@ -254,6 +255,24 @@ describe('GlobalActionCreatorTest', () => {
             .setupRegistrationCallback(Messages.UserConfig.SetBugService, args)
             .setupActionsOnUserConfig('setBugService')
             .setupUserConfigActionWithInvokeParameter('setBugService', payload);
+
+        const actionCreator = validator.buildActionCreator();
+        actionCreator.registerCallbacks();
+
+        validator.verifyAll();
+    });
+
+    test('registerCallback for on UserConfig.SetBugServiceProperty', () => {
+        const payload: SetBugServicePropertyPayload = {
+            bugServiceName: 'bug-service-name',
+            propertyName: 'property-name',
+            propertyValue: 'property-value',
+        };
+        const args = [payload];
+        const validator = new GlobalActionCreatorValidator()
+            .setupRegistrationCallback(Messages.UserConfig.SetBugServiceProperty, args)
+            .setupActionsOnUserConfig('setBugServiceProperty')
+            .setupUserConfigActionWithInvokeParameter('setBugServiceProperty', payload);
 
         const actionCreator = validator.buildActionCreator();
         actionCreator.registerCallbacks();
