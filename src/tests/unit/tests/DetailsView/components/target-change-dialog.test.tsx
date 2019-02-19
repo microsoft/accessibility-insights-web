@@ -4,8 +4,10 @@ import * as Enzyme from 'enzyme';
 import Dialog from 'office-ui-fabric-react/lib/Dialog';
 import { TooltipHost } from 'office-ui-fabric-react/lib/Tooltip';
 import * as React from 'react';
-import { It, Mock, MockBehavior, Times } from 'typemoq';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
+import { ITab } from '../../../../../common/itab';
+import { PersistedTabInfo } from '../../../../../common/types/store-data/iassessment-result-data';
 import { UrlParser } from '../../../../../common/url-parser';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { TargetChangeDialog, TargetChangeDialogProps } from '../../../../../DetailsView/components/target-change-dialog';
@@ -41,9 +43,9 @@ describe('TargetChangeDialog test set for prev tab null', () => {
 });
 
 describe('TargetChangeDialog test sets for same prev tab and newTab values', () => {
-    const urlParserMock = Mock.ofType(UrlParser, MockBehavior.Strict);
-    let prevTab;
-    let newTab;
+    let urlParserMock: IMock<UrlParser>;
+    let prevTab: PersistedTabInfo;
+    let newTab: ITab;
 
     beforeEach(() => {
         prevTab = {
@@ -57,8 +59,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
             url: 'https://www.def.com',
             title: 'test title 2',
         };
-
-        urlParserMock.reset();
+        urlParserMock = Mock.ofType(UrlParser, MockBehavior.Strict);
     });
 
     afterEach(() => {
@@ -68,7 +69,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
     test('should show dialog when target tab id changed', () => {
         const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
         urlParserMock
-            .setup(x => x.areURLHostNamesEqual(prevTab.url, newTab.url))
+            .setup(urlParserObject => urlParserObject.areURLHostNamesEqual(prevTab.url, newTab.url))
             .returns(() => true)
             .verifiable(Times.once());
 
@@ -93,7 +94,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
             appRefreshed: false,
         };
         urlParserMock
-            .setup(x => x.areURLHostNamesEqual(It.isValue(prevTab.url), It.isValue(newTab.url)))
+            .setup(urlParserObject => urlParserObject.areURLHostNamesEqual(It.isValue(prevTab.url), It.isValue(newTab.url)))
             .returns(() => true)
             .verifiable();
 
@@ -115,7 +116,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
             appRefreshed: true,
         };
         urlParserMock
-            .setup(x => x.areURLHostNamesEqual(prevTab.url, newTab.url))
+            .setup(urlParserObject => urlParserObject.areURLHostNamesEqual(prevTab.url, newTab.url))
             .returns(() => true)
             .verifiable();
 
@@ -141,7 +142,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
             id: 123,
         };
         urlParserMock
-            .setup(x => x.areURLHostNamesEqual(prevTab.url, newTab.url))
+            .setup(urlParserObject => urlParserObject.areURLHostNamesEqual(prevTab.url, newTab.url))
             .returns(() => true)
             .verifiable();
 
@@ -168,7 +169,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
             id: 123,
         };
         urlParserMock
-            .setup(x => x.areURLHostNamesEqual(prevTab.url, newTab.url))
+            .setup(urlParserObject => urlParserObject.areURLHostNamesEqual(prevTab.url, newTab.url))
             .returns(() => false)
             .verifiable();
 
