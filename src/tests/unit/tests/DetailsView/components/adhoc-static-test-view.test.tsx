@@ -45,7 +45,6 @@ describe('AdhocStaticTestView', () => {
             configuration: {
                 getStoreData: getStoreDataMock.object,
                 displayableData: displayableDataStub,
-                detailsViewContent: Mock.ofType<ContentPageComponent>().object,
             },
             clickHandlerFactory: clickHandlerFactoryMock.object,
             visualizationStoreData: visualizationStoreDataStub,
@@ -68,15 +67,26 @@ describe('AdhocStaticTestView', () => {
         props.tabStoreData = {
             isChanged: true,
         };
+        props.content = Mock.ofType<ContentPageComponent>().object;
 
         const actual = shallow(<AdhocStaticTestView {...props} />);
         expect(actual.debug()).toMatchSnapshot();
         verifyAll();
     });
 
-    it('should return static content details view', () => {
+    it('render details view with content', () => {
         props.tabStoreData = {
             isChanged: false,
+        };
+
+        const actual = shallow(<AdhocStaticTestView {...props} />);
+        expect(actual.debug()).toMatchSnapshot();
+        verifyAll();
+    });
+
+    it('handles null content', () => {
+        props.tabStoreData = {
+            isChanged: true,
         };
 
         const actual = shallow(<AdhocStaticTestView {...props} />);

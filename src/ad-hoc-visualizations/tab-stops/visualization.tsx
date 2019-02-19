@@ -14,7 +14,7 @@ import { VisualizationInstanceProcessor } from '../../injected/visualization-ins
 
 const { guidance, staticContent } = content.tabstops;
 export const TabStopsAdHocVisualization: IVisualizationConfiguration = {
-    getTestView: props => <AdhocStaticTestView {...props} />,
+    getTestView: props => <AdhocStaticTestView content={staticContent} {...props} />,
     key: AdHocTestkeys.TabStops,
     testMode: TestMode.Adhoc,
     getStoreData: data => data.adhoc.tabStops,
@@ -27,7 +27,6 @@ export const TabStopsAdHocVisualization: IVisualizationConfiguration = {
         toggleLabel: 'Show tab stops',
         linkToDetailsViewText: 'How to test tab stops',
     },
-    detailsViewContent: staticContent,
     chromeCommand: '04_toggle-tabStops',
     launchPanelDisplayOrder: 4,
     adhocToolsPanelDisplayOrder: 5,

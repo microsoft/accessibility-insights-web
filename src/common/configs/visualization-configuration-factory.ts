@@ -8,23 +8,23 @@ import { IssuesAdHocVisualization } from '../../ad-hoc-visualizations/issues/vis
 import { LandmarksAdHocVisualization } from '../../ad-hoc-visualizations/landmarks/visualization';
 import { TabStopsAdHocVisualization } from '../../ad-hoc-visualizations/tab-stops/visualization';
 import { Assessments } from '../../assessments/assessments';
+import { ToggleActionPayload } from '../../background/actions/action-payloads';
 import { IUniquelyIdentifiableInstances } from '../../background/instance-identifier-generator';
 import { TestViewProps } from '../../DetailsView/components/test-view';
+import { AnalyzerProvider } from '../../injected/analyzers/analyzer-provider';
 import { IAnalyzer } from '../../injected/analyzers/ianalyzer';
 import { IHtmlElementAxeResults, ScannerUtils } from '../../injected/scanner-utils';
 import { IPropertyBags, IVisualizationInstanceProcessorCallback } from '../../injected/visualization-instance-processor';
 import { DrawerProvider } from '../../injected/visualization/drawer-provider';
 import { IDrawer } from '../../injected/visualization/idrawer';
 import { ScanResults } from '../../scanner/iruleresults';
+import { ContentPageComponent } from '../../views/content/content-page';
 import { EnumHelper } from '../enum-helper';
 import { IAnalyzerTelemetryCallback } from '../types/analyzer-telemetry-callbacks';
 import { IAssessmentData, IAssessmentStoreData } from '../types/store-data/iassessment-result-data';
 import { IScanData, ITestsEnabledState } from '../types/store-data/ivisualization-store-data';
 import { TelemetryProcessor } from '../types/telemetry-processor';
 import { VisualizationType } from '../types/visualization-type';
-import { ToggleActionPayload } from '../../background/actions/action-payloads';
-import { AnalyzerProvider } from '../../injected/analyzers/analyzer-provider';
-import { ContentPageComponent } from '../../views/content/content-page';
 import { TestMode } from './test-mode';
 
 export interface IDisplayableVisualizationTypeData {
@@ -66,7 +66,6 @@ export interface IVisualizationConfiguration extends IAssesssmentVisualizationCo
     getAssessmentData?: (data: IAssessmentStoreData) => IAssessmentData;
     setAssessmentData?: (data: IAssessmentStoreData, selectorMap: IDictionaryStringTo<any>, instanceMap?: IDictionaryStringTo<any>) => void;
     displayableData: IDisplayableVisualizationTypeData;
-    detailsViewContent?: ContentPageComponent;
     chromeCommand: string;
     launchPanelDisplayOrder: number;
     adhocToolsPanelDisplayOrder: number;

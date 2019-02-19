@@ -7,6 +7,7 @@ import { NamedSFC } from '../../common/react/named-sfc';
 import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
 import { IVisualizationStoreData } from '../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
+import { ContentPageComponent } from '../../views/content/content-page';
 import { DetailsViewToggleClickHandlerFactory } from '../handlers/details-view-toggle-click-handler-factory';
 import { StaticContentDetailsView, StaticContentDetailsViewDeps, StaticContentDetailsViewProps } from './static-content-details-view';
 import { TargetPageChangedView } from './target-page-changed-view';
@@ -20,6 +21,7 @@ export interface AdhocStaticTestViewProps {
     visualizationStoreData: IVisualizationStoreData;
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
     configuration: IVisualizationConfiguration;
+    content?: ContentPageComponent;
 }
 
 export const AdhocStaticTestView = NamedSFC<AdhocStaticTestViewProps>('AdhocStaticTestView', ({ children, ...props }) => {
@@ -27,7 +29,6 @@ export const AdhocStaticTestView = NamedSFC<AdhocStaticTestViewProps>('AdhocStat
     const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
     const clickHandler = props.clickHandlerFactory.createClickHandler(selectedTest, !scanData.enabled);
     const displayableData = props.configuration.displayableData;
-    const staticContent = props.configuration.detailsViewContent;
 
     if (props.tabStoreData.isChanged) {
         return <TargetPageChangedView displayableData={displayableData} type={selectedTest} toggleClickHandler={clickHandler} />;
@@ -39,7 +40,7 @@ export const AdhocStaticTestView = NamedSFC<AdhocStaticTestViewProps>('AdhocStat
         onToggleClick: clickHandler,
         title: displayableData.title,
         toggleLabel: displayableData.toggleLabel,
-        staticContent,
+        content: props.content,
     };
 
     return <StaticContentDetailsView {...givenProps} />;

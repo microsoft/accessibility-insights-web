@@ -20,7 +20,7 @@ describe('StaticContentDetailsViewTest', () => {
     });
 
     it('handle null content page component', () => {
-        const props = new StaticContentDetailsViewPropsBuilder().with('staticContent', null).build();
+        const props = new StaticContentDetailsViewPropsBuilder().with('content', null).build();
 
         const actual = shallow(<StaticContentDetailsView {...props} />);
 
@@ -52,7 +52,7 @@ class StaticContentDetailsViewPropsBuilder extends BaseDataBuilder<StaticContent
             visualizationEnabled: true,
             toggleLabel: 'my test toggle label',
             onToggleClick: this.onToggleClickMock.object,
-            staticContent: Mock.ofType<ContentPageComponent>().object,
+            content: Mock.ofType<ContentPageComponent>().object,
         } as StaticContentDetailsViewProps;
     }
 

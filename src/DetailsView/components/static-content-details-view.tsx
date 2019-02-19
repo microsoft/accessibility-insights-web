@@ -13,13 +13,13 @@ export interface StaticContentDetailsViewProps {
     title: string;
     visualizationEnabled: boolean;
     toggleLabel: string;
-    staticContent: ContentPageComponent;
+    content: ContentPageComponent;
     onToggleClick: (event) => void;
 }
 
 export const StaticContentDetailsView = NamedSFC<StaticContentDetailsViewProps>('StaticContentDetailsView', props => {
     const wrapContentPage = () => {
-        return props.staticContent ? <props.staticContent deps={props.deps} /> : null;
+        return props.content ? <props.content deps={props.deps} /> : null;
     };
 
     return (
