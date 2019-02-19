@@ -2,7 +2,11 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { SetTelemetryStatePayload, SetHighContrastModePayload, SetIssueTrackerPathPayload } from '../../../../../background/actions/action-payloads';
+import {
+    SetTelemetryStatePayload,
+    SetHighContrastModePayload,
+    SetIssueTrackerPathPayload,
+} from '../../../../../background/actions/action-payloads';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { Messages } from '../../../../../common/messages';
 

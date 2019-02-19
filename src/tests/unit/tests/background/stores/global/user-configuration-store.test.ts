@@ -3,7 +3,11 @@
 import { cloneDeep } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { SetTelemetryStatePayload, SetHighContrastModePayload, SetIssueTrackerPathPayload } from '../../../../../../background/actions/action-payloads';
+import {
+    SetTelemetryStatePayload,
+    SetHighContrastModePayload,
+    SetIssueTrackerPathPayload,
+} from '../../../../../../background/actions/action-payloads';
 import { UserConfigurationActions } from '../../../../../../background/actions/user-configuration-actions';
 import { IndexedDBDataKeys } from '../../../../../../background/IndexedDBDataKeys';
 import { UserConfigurationStore } from '../../../../../../background/stores/global/user-configuration-store';

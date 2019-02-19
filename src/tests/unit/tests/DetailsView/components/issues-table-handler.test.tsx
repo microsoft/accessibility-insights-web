@@ -4,7 +4,12 @@ import * as React from 'react';
 
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { BugButton } from '../../../../../DetailsView/components/bug-button';
-import { DetailsGroup, IListProps, IssuesTableHandler, IssuesTableHandlerDeps } from '../../../../../DetailsView/components/issues-table-handler';
+import {
+    DetailsGroup,
+    IListProps,
+    IssuesTableHandler,
+    IssuesTableHandlerDeps,
+} from '../../../../../DetailsView/components/issues-table-handler';
 import { RuleResult } from '../../../../../scanner/iruleresults';
 
 describe('IssuesTableHandlerTests', () => {
