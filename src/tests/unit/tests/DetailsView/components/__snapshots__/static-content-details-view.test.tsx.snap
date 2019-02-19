@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`StaticContentDetailsViewTest render 1`] = `ShallowWrapper {}`;
+exports[`StaticContentDetailsViewTest render content page component content 1`] = `ShallowWrapper {}`;
+
+exports[`StaticContentDetailsViewTest render jsx.element content 1`] = `ShallowWrapper {}`;

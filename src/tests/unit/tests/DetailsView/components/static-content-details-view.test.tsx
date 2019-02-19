@@ -6,10 +6,12 @@ import { IMock, It, Mock, Times } from 'typemoq';
 
 import { VisualizationToggle } from '../../../../../common/components/visualization-toggle';
 import { StaticContentDetailsView, StaticContentDetailsViewProps } from '../../../../../DetailsView/components/static-content-details-view';
+import { ContentPageComponent } from '../../../../../views/content/content-page';
+import { BaseDataBuilder } from '../../../common/base-data-builder';
 import { EventStubFactory, INativeEventStub } from '../../../common/event-stub-factory';
 
 describe('StaticContentDetailsViewTest', () => {
-    test('render', () => {
+    it('render jsx.element content', () => {
         const props: StaticContentDetailsViewProps = new StaticContentDetailsViewPropsBuilder().build();
 
         const actual = shallow(<StaticContentDetailsView {...props} />);
@@ -17,7 +19,15 @@ describe('StaticContentDetailsViewTest', () => {
         expect(actual).toMatchSnapshot();
     });
 
-    test('click the toggle', () => {
+    it('render content page component content', () => {
+        const props = new StaticContentDetailsViewPropsBuilder().with('staticContent', Mock.ofType<ContentPageComponent>().object).build();
+
+        const actual = shallow(<StaticContentDetailsView {...props} />);
+
+        expect(actual).toMatchSnapshot();
+    });
+
+    it('click the toggle', () => {
         const event = new EventStubFactory().createMouseClickEvent() as any;
         const clickHandlerMock = Mock.ofInstance(event => {});
         clickHandlerMock.setup(chm => chm(event)).verifiable(Times.once());
@@ -31,29 +41,25 @@ describe('StaticContentDetailsViewTest', () => {
     });
 });
 
-class StaticContentDetailsViewPropsBuilder {
-    private title: string = 'my test title';
-    private visualizationEnabled: boolean = true;
-    private toggleLabel: string = 'my test toggle label';
+class StaticContentDetailsViewPropsBuilder extends BaseDataBuilder<StaticContentDetailsViewProps> {
     private onToggleClickMock: IMock<(event) => void> = Mock.ofInstance(event => {});
-    private content: JSX.Element = <div>my test static content</div>;
+
+    constructor() {
+        super();
+
+        this.data = {
+            title: 'my test title',
+            visualizationEnabled: true,
+            toggleLabel: 'my test toggle label',
+            onToggleClick: this.onToggleClickMock.object,
+            content: <div>my test static content</div>,
+        } as StaticContentDetailsViewProps;
+    }
 
     public setupOnToggleClickMock(event: INativeEventStub): StaticContentDetailsViewPropsBuilder {
         this.onToggleClickMock.setup(click => click(It.isValue(event))).verifiable(Times.once());
 
         return this;
-    }
-
-    public build(): StaticContentDetailsViewProps {
-        const props: StaticContentDetailsViewProps = {
-            title: this.title,
-            visualizationEnabled: this.visualizationEnabled,
-            toggleLabel: this.toggleLabel,
-            content: this.content,
-            onToggleClick: this.onToggleClickMock.object,
-        };
-
-        return props;
     }
 
     public verifyAll(): void {

@@ -67,6 +67,7 @@ export interface IVisualizationConfiguration extends IAssesssmentVisualizationCo
     setAssessmentData?: (data: IAssessmentStoreData, selectorMap: IDictionaryStringTo<any>, instanceMap?: IDictionaryStringTo<any>) => void;
     displayableData: IDisplayableVisualizationTypeData;
     detailsViewStaticContent: JSX.Element;
+    detailsViewContent?: ContentPageComponent;
     chromeCommand: string;
     launchPanelDisplayOrder: number;
     adhocToolsPanelDisplayOrder: number;

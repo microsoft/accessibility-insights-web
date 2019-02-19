@@ -4,16 +4,27 @@ import * as React from 'react';
 
 import { VisualizationToggle } from '../../common/components/visualization-toggle';
 import { NamedSFC } from '../../common/react/named-sfc';
+import { ContentPageComponent, ContentPageDeps } from '../../views/content/content-page';
+
+export type StaticContentDetailsViewDeps = ContentPageDeps;
 
 export interface StaticContentDetailsViewProps {
+    deps?: StaticContentDetailsViewDeps;
     title: string;
     visualizationEnabled: boolean;
     toggleLabel: string;
     content: JSX.Element;
+    staticContent?: ContentPageComponent;
     onToggleClick: (event) => void;
 }
 
 export const StaticContentDetailsView = NamedSFC<StaticContentDetailsViewProps>('StaticContentDetailsView', props => {
+    const wrapContent = () => <div className="details-view-static-content">{props.content}</div>;
+
+    const wrapContentPage = () => {
+        return props.staticContent ? <props.staticContent deps={props.deps} /> : null;
+    };
+
     return (
         <div className="static-content-details-view">
             <h1>{props.title}</h1>
@@ -24,7 +35,7 @@ export const StaticContentDetailsView = NamedSFC<StaticContentDetailsViewProps>(
                 className="details-view-toggle"
                 visualizationName={props.title}
             />
-            <div className="details-view-static-content">{props.content}</div>
+            {wrapContentPage() || wrapContent()}
         </div>
     );
 });

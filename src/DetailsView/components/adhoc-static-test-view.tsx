@@ -8,13 +8,13 @@ import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
 import { IVisualizationStoreData } from '../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewToggleClickHandlerFactory } from '../handlers/details-view-toggle-click-handler-factory';
-import { StaticContentDetailsView, StaticContentDetailsViewProps } from './static-content-details-view';
+import { StaticContentDetailsView, StaticContentDetailsViewDeps, StaticContentDetailsViewProps } from './static-content-details-view';
 import { TargetPageChangedView } from './target-page-changed-view';
 
-export type StaticTestViewDeps = {};
+export type AdhocStaticTestViewDeps = StaticContentDetailsViewDeps;
 
 export interface AdhocStaticTestViewProps {
-    deps: StaticTestViewDeps;
+    deps: AdhocStaticTestViewDeps;
     tabStoreData: Pick<ITabStoreData, 'isChanged'>;
     selectedTest: VisualizationType;
     visualizationStoreData: IVisualizationStoreData;
@@ -28,17 +28,20 @@ export const AdhocStaticTestView = NamedSFC<AdhocStaticTestViewProps>('AdhocStat
     const clickHandler = props.clickHandlerFactory.createClickHandler(selectedTest, !scanData.enabled);
     const displayableData = props.configuration.displayableData;
     const content = props.configuration.detailsViewStaticContent;
+    const staticContent = props.configuration.detailsViewContent;
 
     if (props.tabStoreData.isChanged) {
         return <TargetPageChangedView displayableData={displayableData} type={selectedTest} toggleClickHandler={clickHandler} />;
     }
 
     const givenProps: StaticContentDetailsViewProps = {
+        deps: props.deps,
         visualizationEnabled: scanData.enabled,
         onToggleClick: clickHandler,
         title: displayableData.title,
         toggleLabel: displayableData.toggleLabel,
         content,
+        staticContent,
     };
 
     return <StaticContentDetailsView {...givenProps} />;
