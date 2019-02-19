@@ -112,7 +112,7 @@ describe('SettingsPanelTest', () => {
         userConfigMessageCreatorMock.verify(u => u.setHighContrastMode(highContrastConfigState), Times.once());
     });
 
-    test.each(["hello", "world"])('verify save - set issue tracker path button : %s', issueTrackerPathState => {
+    test.each(['hello', 'world'])('verify save - set issue tracker path button : %s', issueTrackerPathState => {
         userConfigStoreData = {} as UserConfigurationStoreData;
         const testProps: SettingsPanelProps = {
             isOpen: true,
