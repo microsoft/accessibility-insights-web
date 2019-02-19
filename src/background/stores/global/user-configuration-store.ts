@@ -3,15 +3,20 @@
 import { autobind } from '@uifabric/utilities';
 import { cloneDeep } from 'lodash';
 
+import { FeatureFlags } from '../../../common/feature-flags';
 import { IndexedDBAPI } from '../../../common/indexedDB/indexedDB';
 import { StoreNames } from '../../../common/stores/store-names';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
-import { SetBugServicePayload, SetHighContrastModePayload, SetTelemetryStatePayload } from '../../actions/action-payloads';
+import {
+    SetBugServicePayload,
+    SetBugServicePropertyPayload,
+    SetHighContrastModePayload,
+    SetTelemetryStatePayload,
+} from '../../actions/action-payloads';
 import { FeatureFlagPayload } from '../../actions/feature-flag-actions';
 import { UserConfigurationActions } from '../../actions/user-configuration-actions';
 import { IndexedDBDataKeys } from '../../IndexedDBDataKeys';
 import { BaseStore } from '../base-store';
-import { FeatureFlags } from '../../../common/feature-flags';
 
 export class UserConfigurationStore extends BaseStore<UserConfigurationStoreData> {
     public static readonly defaultState: UserConfigurationStoreData = {
@@ -39,6 +44,7 @@ export class UserConfigurationStore extends BaseStore<UserConfigurationStoreData
         this.userConfigActions.setTelemetryState.addListener(this.onSetTelemetryState);
         this.userConfigActions.setHighContrastMode.addListener(this.onSetHighContrastMode);
         this.userConfigActions.setBugService.addListener(this.onSetBugService);
+        this.userConfigActions.setBugServiceProperty.addListener(this.onSetBugServiceProperty);
         this.userConfigActions.notifyFeatureFlagChange.addListener(this.onNotifyFeatureFlagChange);
     }
 
@@ -64,6 +70,22 @@ export class UserConfigurationStore extends BaseStore<UserConfigurationStoreData
     @autobind
     private onSetBugService(payload: SetBugServicePayload): void {
         this.state.bugService = payload.bugServiceName;
+
+        // tslint:disable-next-line:no-floating-promises - grandfathered-in pre-existing violation
+        this.indexDbApi.setItem(IndexedDBDataKeys.userConfiguration, this.state);
+        this.emitChanged();
+    }
+
+    @autobind
+    private onSetBugServiceProperty(payload: SetBugServicePropertyPayload): void {
+        if (!this.state.bugServicePropertiesMap) {
+            this.state.bugServicePropertiesMap = {};
+        }
+        if (!this.state.bugServicePropertiesMap[payload.bugServiceName]) {
+            this.state.bugServicePropertiesMap[payload.bugServiceName] = {};
+        }
+
+        this.state.bugServicePropertiesMap[payload.bugServiceName][payload.propertyName] = payload.propertyValue;
 
         // tslint:disable-next-line:no-floating-promises - grandfathered-in pre-existing violation
         this.indexDbApi.setItem(IndexedDBDataKeys.userConfiguration, this.state);

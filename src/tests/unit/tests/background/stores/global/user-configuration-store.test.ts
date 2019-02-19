@@ -7,13 +7,14 @@ import {
     SetBugServicePayload,
     SetHighContrastModePayload,
     SetTelemetryStatePayload,
+    SetBugServicePropertyPayload,
 } from '../../../../../../background/actions/action-payloads';
 import { UserConfigurationActions } from '../../../../../../background/actions/user-configuration-actions';
 import { IndexedDBDataKeys } from '../../../../../../background/IndexedDBDataKeys';
 import { UserConfigurationStore } from '../../../../../../background/stores/global/user-configuration-store';
 import { IndexedDBAPI } from '../../../../../../common/indexedDB/indexedDB';
 import { StoreNames } from '../../../../../../common/stores/store-names';
-import { UserConfigurationStoreData } from '../../../../../../common/types/store-data/user-configuration-store';
+import { UserConfigurationStoreData, BugServicePropertiesMap } from '../../../../../../common/types/store-data/user-configuration-store';
 import { StoreTester } from '../../../../common/store-tester';
 import { FeatureFlagPayload } from '../../../../../../background/actions/feature-flag-actions';
 import { FeatureFlags } from '../../../../../../common/feature-flags';
@@ -251,7 +252,39 @@ describe('UserConfigurationStoreTest', () => {
             .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
     });
 
-    // TODO: setBugServiceProperty test should check missing, empty, preset property maps
+    test.each([undefined, null, {}, { 'test-service': {} }, { 'test-service': { 'test-name': 'test-value' } }])(
+        'setBugServiceProperty with initial map state %o',
+        (initialMapState: BugServicePropertiesMap) => {
+            const storeTester = createStoreToTestAction('setBugServiceProperty');
+            initialStoreData = {
+                isFirstTime: false,
+                enableTelemetry: false,
+                enableHighContrast: false,
+                bugService: 'none',
+                bugServicePropertiesMap: initialMapState,
+            };
+
+            const setBugServicePropertyData: SetBugServicePropertyPayload = {
+                bugServiceName: 'test-service',
+                propertyName: 'test-name',
+                propertyValue: 'test-value',
+            };
+
+            const expectedState: UserConfigurationStoreData = {
+                ...initialStoreData,
+                bugServicePropertiesMap: { 'test-service': { 'test-name': 'test-value' } },
+            };
+
+            indexDbStrictMock
+                .setup(indexDb => indexDb.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)))
+                .verifiable(Times.once());
+
+            storeTester
+                .withActionParam(setBugServicePropertyData)
+                .withPostListenerMock(indexDbStrictMock)
+                .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
+        },
+    );
 
     function createStoreToTestAction(
         actionName: keyof UserConfigurationActions,
