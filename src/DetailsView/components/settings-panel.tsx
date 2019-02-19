@@ -129,8 +129,12 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
     private getAzureBoardsBugSettingsUx(): JSX.Element {
         return (
             <>
-                <TextField label="Project URL" onChange={this.onAzureBoardsProjectChange} />
-                <TextField label="Team" onChange={this.onAzureBoardsTeamChange} />
+                <TextField
+                    label="Project URL"
+                    onChange={this.onAzureBoardsProjectChange}
+                    value={this.getBugServiceProperty('azureBoards', 'project')}
+                />
+                <TextField label="Team" onChange={this.onAzureBoardsTeamChange} value={this.getBugServiceProperty('azureBoards', 'team')} />
             </>
         );
     }
@@ -146,11 +150,25 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
     }
 
     private getGitHubBugSettingsUx(): JSX.Element {
-        return <TextField label="Repository URL" onChange={this.onGitHubRepositoryChange} />;
+        return (
+            <TextField
+                label="Repository URL"
+                onChange={this.onGitHubRepositoryChange}
+                value={this.getBugServiceProperty('gitHub', 'repository')}
+            />
+        );
     }
 
     @autobind
     protected onGitHubRepositoryChange(event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string): void {
         this.props.deps.userConfigMessageCreator.setBugServiceProperty('gitHub', 'repository', newValue);
+    }
+
+    private getBugServiceProperty(bugService: string, propertyName: string): string {
+        const bugServicePropertiesMap = this.props.userConfigStoreState.bugServicePropertiesMap;
+        if (!bugServicePropertiesMap || !bugServicePropertiesMap[bugService]) {
+            return undefined;
+        }
+        return this.props.userConfigStoreState.bugServicePropertiesMap[bugService][propertyName];
     }
 }

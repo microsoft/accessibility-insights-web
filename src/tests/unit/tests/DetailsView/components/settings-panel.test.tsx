@@ -6,7 +6,7 @@ import { IMock, Mock, Times } from 'typemoq';
 
 import { FeatureFlags } from '../../../../../common/feature-flags';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
-import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
+import { BugServicePropertiesMap, UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { SettingsPanel, SettingsPanelProps } from '../../../../../DetailsView/components/settings-panel';
 
@@ -67,6 +67,7 @@ describe('SettingsPanelTest', () => {
         enableTelemetry: boolean;
         enableHighContrast: boolean;
         bugService: string;
+        bugServicePropertiesMap: BugServicePropertiesMap;
     };
 
     test.each([
@@ -75,18 +76,49 @@ describe('SettingsPanelTest', () => {
             enableTelemetry: false,
             enableHighContrast: false,
             bugService: undefined,
+            bugServicePropertiesMap: null,
         } as RenderTestCase,
         {
             isPanelOpen: true,
             enableTelemetry: false,
             enableHighContrast: true,
             bugService: 'gitHub',
+            bugServicePropertiesMap: null,
+        } as RenderTestCase,
+        {
+            isPanelOpen: true,
+            enableTelemetry: false,
+            enableHighContrast: false,
+            bugService: 'azureBoards',
+            bugServicePropertiesMap: {},
+        } as RenderTestCase,
+        {
+            isPanelOpen: true,
+            enableTelemetry: false,
+            enableHighContrast: false,
+            bugService: 'gitHub',
+            bugServicePropertiesMap: { gitHub: {} },
+        } as RenderTestCase,
+        {
+            isPanelOpen: true,
+            enableTelemetry: false,
+            enableHighContrast: false,
+            bugService: 'azureBoards',
+            bugServicePropertiesMap: { azureBoards: { project: 'test-project', team: 'test-team' } },
+        } as RenderTestCase,
+        {
+            isPanelOpen: true,
+            enableTelemetry: false,
+            enableHighContrast: false,
+            bugService: 'gitHub',
+            bugServicePropertiesMap: { gitHub: { repository: 'test-repository' } },
         } as RenderTestCase,
     ])('render - %o', (testCase: RenderTestCase) => {
         userConfigStoreData = {
             enableTelemetry: testCase.enableTelemetry,
             enableHighContrast: testCase.enableHighContrast,
             bugService: testCase.bugService,
+            bugServicePropertiesMap: testCase.bugServicePropertiesMap,
         } as UserConfigurationStoreData;
         const testProps: SettingsPanelProps = {
             isOpen: testCase.isPanelOpen,
@@ -200,7 +232,6 @@ describe('SettingsPanelTest', () => {
 
         const testSubject = new TestableSettingsPanel(testProps);
 
-        const testChange = 'test change';
         testCase.changeFunction(testSubject)(null, testCase.propertyValue);
 
         userConfigMessageCreatorMock.verify(

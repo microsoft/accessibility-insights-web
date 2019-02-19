@@ -3,7 +3,431 @@
 exports[`SettingsPanelTest render - { isPanelOpen: true,
   enableTelemetry: false,
   enableHighContrast: false,
-  bugService: undefined } 1`] = `
+  bugService: 'azureBoards',
+  bugServicePropertiesMap: { azureBoards: { project: 'test-project', team: 'test-team' } } } 1`] = `
+<GenericPanel
+  className="settings-panel"
+  closeButtonAriaLabel="Close settings panel"
+  hasCloseButton={true}
+  isOpen={true}
+  title="Settings"
+>
+  <GenericToggle
+    description={
+      <React.Fragment>
+        <React.Fragment>
+          <p>
+            By opting into telemetry, you help the community develop inclusive software.
+          </p>
+          <p>
+            We collect anonymized data to identify the top accessibility issues found by the users. This will help focus the accessibility tools and standards community to improve guidelines, rules engines, and features.
+          </p>
+        </React.Fragment>
+        <React.Fragment>
+          Read our 
+          <NewTabLink
+            href="http://go.microsoft.com/fwlink/?LinkId=521839"
+          >
+             privacy statement
+          </NewTabLink>
+           to learn more.
+        </React.Fragment>
+      </React.Fragment>
+    }
+    enabled={false}
+    id="enable-telemetry"
+    name="Help improve Accessibility Insights for Web"
+    onClick={[Function]}
+  />
+  <FlaggedComponent
+    disableJSXElement={null}
+    enableJSXElement={
+      <GenericToggle
+        description={
+          <React.Fragment>
+            Make text easier to see by using more distinct colors.
+          </React.Fragment>
+        }
+        enabled={false}
+        id="enable-high-contrast-mode"
+        name="Enable high contrast"
+        onClick={[Function]}
+      />
+    }
+    featureFlag="highContrastMode"
+    featureFlagStoreData={
+      Object {
+        "highContrastMode": false,
+      }
+    }
+  />
+  <FlaggedComponent
+    disableJSXElement={null}
+    enableJSXElement={
+      <React.Fragment>
+        <StyledWithResponsiveMode
+          label="Select bug service"
+          onChange={[Function]}
+          options={
+            Array [
+              Object {
+                "key": "none",
+                "text": "None",
+              },
+              Object {
+                "key": "azureBoards",
+                "text": "Azure Boards",
+              },
+              Object {
+                "key": "gitHub",
+                "text": "GitHub",
+              },
+            ]
+          }
+          selectedKey="azureBoards"
+        />
+        <React.Fragment>
+          <StyledTextFieldBase
+            label="Project URL"
+            onChange={[Function]}
+            value="test-project"
+          />
+          <StyledTextFieldBase
+            label="Team"
+            onChange={[Function]}
+            value="test-team"
+          />
+        </React.Fragment>
+      </React.Fragment>
+    }
+    featureFlag="showBugFiling"
+    featureFlagStoreData={
+      Object {
+        "highContrastMode": false,
+      }
+    }
+  />
+</GenericPanel>
+`;
+
+exports[`SettingsPanelTest render - { isPanelOpen: true,
+  enableTelemetry: false,
+  enableHighContrast: false,
+  bugService: 'azureBoards',
+  bugServicePropertiesMap: {} } 1`] = `
+<GenericPanel
+  className="settings-panel"
+  closeButtonAriaLabel="Close settings panel"
+  hasCloseButton={true}
+  isOpen={true}
+  title="Settings"
+>
+  <GenericToggle
+    description={
+      <React.Fragment>
+        <React.Fragment>
+          <p>
+            By opting into telemetry, you help the community develop inclusive software.
+          </p>
+          <p>
+            We collect anonymized data to identify the top accessibility issues found by the users. This will help focus the accessibility tools and standards community to improve guidelines, rules engines, and features.
+          </p>
+        </React.Fragment>
+        <React.Fragment>
+          Read our 
+          <NewTabLink
+            href="http://go.microsoft.com/fwlink/?LinkId=521839"
+          >
+             privacy statement
+          </NewTabLink>
+           to learn more.
+        </React.Fragment>
+      </React.Fragment>
+    }
+    enabled={false}
+    id="enable-telemetry"
+    name="Help improve Accessibility Insights for Web"
+    onClick={[Function]}
+  />
+  <FlaggedComponent
+    disableJSXElement={null}
+    enableJSXElement={
+      <GenericToggle
+        description={
+          <React.Fragment>
+            Make text easier to see by using more distinct colors.
+          </React.Fragment>
+        }
+        enabled={false}
+        id="enable-high-contrast-mode"
+        name="Enable high contrast"
+        onClick={[Function]}
+      />
+    }
+    featureFlag="highContrastMode"
+    featureFlagStoreData={
+      Object {
+        "highContrastMode": false,
+      }
+    }
+  />
+  <FlaggedComponent
+    disableJSXElement={null}
+    enableJSXElement={
+      <React.Fragment>
+        <StyledWithResponsiveMode
+          label="Select bug service"
+          onChange={[Function]}
+          options={
+            Array [
+              Object {
+                "key": "none",
+                "text": "None",
+              },
+              Object {
+                "key": "azureBoards",
+                "text": "Azure Boards",
+              },
+              Object {
+                "key": "gitHub",
+                "text": "GitHub",
+              },
+            ]
+          }
+          selectedKey="azureBoards"
+        />
+        <React.Fragment>
+          <StyledTextFieldBase
+            label="Project URL"
+            onChange={[Function]}
+          />
+          <StyledTextFieldBase
+            label="Team"
+            onChange={[Function]}
+          />
+        </React.Fragment>
+      </React.Fragment>
+    }
+    featureFlag="showBugFiling"
+    featureFlagStoreData={
+      Object {
+        "highContrastMode": false,
+      }
+    }
+  />
+</GenericPanel>
+`;
+
+exports[`SettingsPanelTest render - { isPanelOpen: true,
+  enableTelemetry: false,
+  enableHighContrast: false,
+  bugService: 'gitHub',
+  bugServicePropertiesMap: { gitHub: { repository: 'test-repository' } } } 1`] = `
+<GenericPanel
+  className="settings-panel"
+  closeButtonAriaLabel="Close settings panel"
+  hasCloseButton={true}
+  isOpen={true}
+  title="Settings"
+>
+  <GenericToggle
+    description={
+      <React.Fragment>
+        <React.Fragment>
+          <p>
+            By opting into telemetry, you help the community develop inclusive software.
+          </p>
+          <p>
+            We collect anonymized data to identify the top accessibility issues found by the users. This will help focus the accessibility tools and standards community to improve guidelines, rules engines, and features.
+          </p>
+        </React.Fragment>
+        <React.Fragment>
+          Read our 
+          <NewTabLink
+            href="http://go.microsoft.com/fwlink/?LinkId=521839"
+          >
+             privacy statement
+          </NewTabLink>
+           to learn more.
+        </React.Fragment>
+      </React.Fragment>
+    }
+    enabled={false}
+    id="enable-telemetry"
+    name="Help improve Accessibility Insights for Web"
+    onClick={[Function]}
+  />
+  <FlaggedComponent
+    disableJSXElement={null}
+    enableJSXElement={
+      <GenericToggle
+        description={
+          <React.Fragment>
+            Make text easier to see by using more distinct colors.
+          </React.Fragment>
+        }
+        enabled={false}
+        id="enable-high-contrast-mode"
+        name="Enable high contrast"
+        onClick={[Function]}
+      />
+    }
+    featureFlag="highContrastMode"
+    featureFlagStoreData={
+      Object {
+        "highContrastMode": false,
+      }
+    }
+  />
+  <FlaggedComponent
+    disableJSXElement={null}
+    enableJSXElement={
+      <React.Fragment>
+        <StyledWithResponsiveMode
+          label="Select bug service"
+          onChange={[Function]}
+          options={
+            Array [
+              Object {
+                "key": "none",
+                "text": "None",
+              },
+              Object {
+                "key": "azureBoards",
+                "text": "Azure Boards",
+              },
+              Object {
+                "key": "gitHub",
+                "text": "GitHub",
+              },
+            ]
+          }
+          selectedKey="gitHub"
+        />
+        <StyledTextFieldBase
+          label="Repository URL"
+          onChange={[Function]}
+          value="test-repository"
+        />
+      </React.Fragment>
+    }
+    featureFlag="showBugFiling"
+    featureFlagStoreData={
+      Object {
+        "highContrastMode": false,
+      }
+    }
+  />
+</GenericPanel>
+`;
+
+exports[`SettingsPanelTest render - { isPanelOpen: true,
+  enableTelemetry: false,
+  enableHighContrast: false,
+  bugService: 'gitHub',
+  bugServicePropertiesMap: { gitHub: {} } } 1`] = `
+<GenericPanel
+  className="settings-panel"
+  closeButtonAriaLabel="Close settings panel"
+  hasCloseButton={true}
+  isOpen={true}
+  title="Settings"
+>
+  <GenericToggle
+    description={
+      <React.Fragment>
+        <React.Fragment>
+          <p>
+            By opting into telemetry, you help the community develop inclusive software.
+          </p>
+          <p>
+            We collect anonymized data to identify the top accessibility issues found by the users. This will help focus the accessibility tools and standards community to improve guidelines, rules engines, and features.
+          </p>
+        </React.Fragment>
+        <React.Fragment>
+          Read our 
+          <NewTabLink
+            href="http://go.microsoft.com/fwlink/?LinkId=521839"
+          >
+             privacy statement
+          </NewTabLink>
+           to learn more.
+        </React.Fragment>
+      </React.Fragment>
+    }
+    enabled={false}
+    id="enable-telemetry"
+    name="Help improve Accessibility Insights for Web"
+    onClick={[Function]}
+  />
+  <FlaggedComponent
+    disableJSXElement={null}
+    enableJSXElement={
+      <GenericToggle
+        description={
+          <React.Fragment>
+            Make text easier to see by using more distinct colors.
+          </React.Fragment>
+        }
+        enabled={false}
+        id="enable-high-contrast-mode"
+        name="Enable high contrast"
+        onClick={[Function]}
+      />
+    }
+    featureFlag="highContrastMode"
+    featureFlagStoreData={
+      Object {
+        "highContrastMode": false,
+      }
+    }
+  />
+  <FlaggedComponent
+    disableJSXElement={null}
+    enableJSXElement={
+      <React.Fragment>
+        <StyledWithResponsiveMode
+          label="Select bug service"
+          onChange={[Function]}
+          options={
+            Array [
+              Object {
+                "key": "none",
+                "text": "None",
+              },
+              Object {
+                "key": "azureBoards",
+                "text": "Azure Boards",
+              },
+              Object {
+                "key": "gitHub",
+                "text": "GitHub",
+              },
+            ]
+          }
+          selectedKey="gitHub"
+        />
+        <StyledTextFieldBase
+          label="Repository URL"
+          onChange={[Function]}
+        />
+      </React.Fragment>
+    }
+    featureFlag="showBugFiling"
+    featureFlagStoreData={
+      Object {
+        "highContrastMode": false,
+      }
+    }
+  />
+</GenericPanel>
+`;
+
+exports[`SettingsPanelTest render - { isPanelOpen: true,
+  enableTelemetry: false,
+  enableHighContrast: false,
+  bugService: undefined,
+  bugServicePropertiesMap: null } 1`] = `
 <GenericPanel
   className="settings-panel"
   closeButtonAriaLabel="Close settings panel"
@@ -100,7 +524,8 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
 exports[`SettingsPanelTest render - { isPanelOpen: true,
   enableTelemetry: false,
   enableHighContrast: true,
-  bugService: 'gitHub' } 1`] = `
+  bugService: 'gitHub',
+  bugServicePropertiesMap: null } 1`] = `
 <GenericPanel
   className="settings-panel"
   closeButtonAriaLabel="Close settings panel"
