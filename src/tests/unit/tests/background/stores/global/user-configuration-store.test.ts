@@ -3,7 +3,7 @@
 import { cloneDeep } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { SetTelemetryStatePayload, SetHighContrastModePayload } from '../../../../../../background/actions/action-payloads';
+import { SetTelemetryStatePayload, SetHighContrastModePayload, SetIssueTrackerPathPayload } from '../../../../../../background/actions/action-payloads';
 import { UserConfigurationActions } from '../../../../../../background/actions/user-configuration-actions';
 import { IndexedDBDataKeys } from '../../../../../../background/IndexedDBDataKeys';
 import { UserConfigurationStore } from '../../../../../../background/stores/global/user-configuration-store';
@@ -133,6 +133,7 @@ describe('UserConfigurationStoreTest', () => {
         isFirstTime: boolean;
         enableTelemetry: boolean;
         enableHighContrastMode: boolean;
+        issueTrackerPath?: string;
     };
     test.each([
         { enableTelemetry: true, isFirstTime: true, enableHighContrastMode: false } as SetUserConfigTestCase,
@@ -190,6 +191,37 @@ describe('UserConfigurationStoreTest', () => {
 
         storeTester
             .withActionParam(setHighContrastData)
+            .withPostListenerMock(indexDbStrictMock)
+            .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
+    });
+
+    test.each([
+        { enableTelemetry: false, isFirstTime: false, enableHighContrastMode: false } as SetUserConfigTestCase,
+        { enableTelemetry: false, isFirstTime: false, enableHighContrastMode: false, issueTrackerPath: 'example' } as SetUserConfigTestCase,
+    ])('setIssueTrackerPath action: %o', (testCase: SetUserConfigTestCase) => {
+        const storeTester = createStoreToTestAction('setIssueTrackerPath');
+        initialStoreData = {
+            enableTelemetry: false,
+            isFirstTime: false,
+            enableHighContrast: false,
+            issueTrackerPath: testCase.issueTrackerPath,
+        };
+
+        const setIssueTrackerPathData: SetIssueTrackerPathPayload = {
+            issueTrackerPath: testCase.issueTrackerPath,
+        };
+
+        const expectedState: UserConfigurationStoreData = {
+            enableTelemetry: false,
+            isFirstTime: false,
+            enableHighContrast: false,
+            issueTrackerPath: testCase.issueTrackerPath,
+        };
+
+        indexDbStrictMock.setup(i => i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState))).verifiable(Times.once());
+
+        storeTester
+            .withActionParam(setIssueTrackerPathData)
             .withPostListenerMock(indexDbStrictMock)
             .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
     });
