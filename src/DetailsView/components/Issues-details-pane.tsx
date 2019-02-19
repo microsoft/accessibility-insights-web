@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
 import { CopyIssueDetailsButton } from '../../common/components/copy-issue-details-button';
-import { FileIssueDetailsButton } from '../../common/components/file-issue-button';
+import { FileIssueDetailsButton } from '../../common/components/file-issue-details-button';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { ToastDeps } from '../../common/components/toast';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
