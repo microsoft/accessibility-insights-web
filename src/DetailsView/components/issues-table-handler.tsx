@@ -62,23 +62,7 @@ export class IssuesTableHandler {
 
                 detailsRow.selector = node.target.join(';');
                 detailsRow.key = node.instanceId;
-                if (bugFilingDetails.showBugFiling) {
-                    if (bugFilingDetails.issueTrackerPath) {
-                        detailsRow.bugButton = (
-                            <BugButton
-                                deps={bugFilingDetails.deps}
-                                pageTitle={bugFilingDetails.pageTitle}
-                                pageUrl={bugFilingDetails.pageUrl}
-                                nodeResult={bugFilingDetails.selectedIdToRuleResultMap[node.instanceId]}
-                                issueTrackerPath={bugFilingDetails.issueTrackerPath}
-                            />
-                        );
-                    } else {
-                        detailsRow.bugButton = (
-                            <ConfigIssueTrackerButton onClick={bugFilingDetails.deps.dropdownClickHandler.openSettingsPanelHandler} />
-                        );
-                    }
-                }
+                detailsRow.bugButton = this.getBugButton(node, bugFilingDetails);
 
                 items.push(detailsRow);
             });
@@ -90,5 +74,23 @@ export class IssuesTableHandler {
         };
 
         return listProps;
+    }
+
+    private getBugButton(node: AxeNodeResult, bugFilingDetails: IBugFileDetails): undefined | JSX.Element {
+        if (!bugFilingDetails.showBugFiling) return;
+
+        if (bugFilingDetails.issueTrackerPath) return (
+            <BugButton
+                deps={bugFilingDetails.deps}
+                pageTitle={bugFilingDetails.pageTitle}
+                pageUrl={bugFilingDetails.pageUrl}
+                nodeResult={bugFilingDetails.selectedIdToRuleResultMap[node.instanceId]}
+                issueTrackerPath={bugFilingDetails.issueTrackerPath}
+            />
+        );
+
+        return (
+            <ConfigIssueTrackerButton onClick={bugFilingDetails.deps.dropdownClickHandler.openSettingsPanelHandler} />
+        );
     }
 }
