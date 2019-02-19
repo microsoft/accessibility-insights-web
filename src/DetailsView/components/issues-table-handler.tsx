@@ -77,9 +77,11 @@ export class IssuesTableHandler {
     }
 
     private getBugButton(node: AxeNodeResult, bugFilingDetails: IBugFileDetails): undefined | JSX.Element {
-        if (!bugFilingDetails.showBugFiling) return;
+        if (!bugFilingDetails.showBugFiling) {
+            return;
+        }
 
-        if (bugFilingDetails.issueTrackerPath)
+        if (bugFilingDetails.issueTrackerPath) {
             return (
                 <BugButton
                     deps={bugFilingDetails.deps}
@@ -89,6 +91,7 @@ export class IssuesTableHandler {
                     issueTrackerPath={bugFilingDetails.issueTrackerPath}
                 />
             );
+        }
 
         return <ConfigIssueTrackerButton onClick={bugFilingDetails.deps.dropdownClickHandler.openSettingsPanelHandler} />;
     }
