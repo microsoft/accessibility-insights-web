@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { SetTelemetryStatePayload, SetHighContrastModePayload } from '../../../../../background/actions/action-payloads';
+import { SetTelemetryStatePayload, SetHighContrastModePayload, SetIssueTrackerPathPayload } from '../../../../../background/actions/action-payloads';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { Messages } from '../../../../../common/messages';
 
@@ -54,6 +54,24 @@ describe('UserConfigMessageCreatorTest', () => {
         postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
 
         testSubject.setHighContrastMode(enableHighContrast);
+
+        postMessageMock.verifyAll();
+    });
+
+    test('SetIssueTrackerPath', () => {
+        const issueTrackerPath = 'example';
+        const payload: SetIssueTrackerPathPayload = {
+            issueTrackerPath,
+        };
+        const expectedMessage = {
+            tabId: 1,
+            type: Messages.UserConfig.SetIssueTrackerPath,
+            payload,
+        };
+
+        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
+
+        testSubject.setIssueTrackerPath(issueTrackerPath);
 
         postMessageMock.verifyAll();
     });
