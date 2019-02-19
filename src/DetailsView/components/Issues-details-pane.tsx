@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
 import { CopyIssueDetailsButton } from '../../common/components/copy-issue-details-button';
-import { FileIssueDetailsButton } from '../../common/components/file-issue-details-button';
+import { FileIssueDetailsButton, FileIssueDetailsButtonDeps } from '../../common/components/file-issue-details-button';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { ToastDeps } from '../../common/components/toast';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
@@ -16,7 +16,7 @@ import { GuidanceLinks } from './guidance-links';
 import { FeatureFlags } from '../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 
-export type IssuesDetailsPaneDeps = ToastDeps & {
+export type IssuesDetailsPaneDeps = ToastDeps & FileIssueDetailsButtonDeps & {
     issueDetailsTextGenerator: IssueDetailsTextGenerator;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
 };

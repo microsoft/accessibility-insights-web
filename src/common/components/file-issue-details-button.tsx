@@ -4,7 +4,6 @@ import * as React from 'react';
 import { autobind } from '@uifabric/utilities';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
-import { WindowUtils } from '../window-utils';
 import { Modal } from 'office-ui-fabric-react/lib/Modal';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
@@ -12,9 +11,10 @@ import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-d
 import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
 import * as FileToClipboard from 'react-copy-to-clipboard';
 import { ActionAndCancelButtonsComponent } from '../../DetailsView/components/action-and-cancel-buttons-component';
+import { BugClickHandler } from '../bug-click-handler';
 
 export type FileIssueDetailsButtonDeps = {
-    windowUtils: WindowUtils;
+    bugClickHandler: BugClickHandler;
     issueDetailsTextGenerator: IssueDetailsTextGenerator;
 };
 
@@ -55,8 +55,8 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
         this.setState({ showingFileIssueModal: false });
     }
     @autobind
-    private openSettings(id: string): void {
-        // TODO
+    private openSettings(event: React.MouseEvent<HTMLDivElement | HTMLAnchorElement | HTMLButtonElement>): void {
+        this.props.deps.bugClickHandler.openSettingsPanelHandler(event);
     }
 
     public render(): JSX.Element {

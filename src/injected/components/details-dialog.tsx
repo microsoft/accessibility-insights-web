@@ -6,7 +6,7 @@ import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import * as React from 'react';
 
 import { NewTabLink } from '../../common/components/new-tab-link';
-import { FileIssueDetailsButton } from '../../common/components/file-issue-details-button';
+import { FileIssueDetailsButton, FileIssueDetailsButtonDeps } from '../../common/components/file-issue-details-button';
 import { FeatureFlags } from '../../common/feature-flags';
 import { IBaseStore } from '../../common/istore';
 import { DevToolActionMessageCreator } from '../../common/message-creators/dev-tool-action-message-creator';
@@ -26,7 +26,7 @@ export enum CheckType {
     None,
 }
 
-export type DetailsDialogDeps = CopyIssueDetailsButtonDeps & {
+export type DetailsDialogDeps = CopyIssueDetailsButtonDeps & FileIssueDetailsButtonDeps & {
     targetPageActionMessageCreator: TargetPageActionMessageCreator;
     clientBrowserAdapter: ClientBrowserAdapter;
 };

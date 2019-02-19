@@ -92,6 +92,7 @@ describe('IssuesDetailsPaneTest', () => {
                 copyIssueDetailsClicked: _ => {},
             } as DetailsViewActionMessageCreator,
             windowUtils: null,
+            bugClickHandler: null,
         };
 
         const props: IssuesDetailsPaneProps = {
