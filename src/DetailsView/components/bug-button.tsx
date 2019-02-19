@@ -19,7 +19,7 @@ export interface IBugButtonProps {
 }
 
 export class BugButton extends React.Component<IBugButtonProps> {
-    public issueUrl(title, body) {
+    private issueUrl(title, body) {
         const encodedIssue = `/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
         return `${this.props.issueTrackerPath}${encodedIssue}`;
     }

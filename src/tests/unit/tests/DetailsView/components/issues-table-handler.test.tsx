@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { BugButton } from '../../../../../DetailsView/components/bug-button';
-import { DetailsGroup, IListProps, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
+import { DetailsGroup, IListProps, IssuesTableHandler, IssuesTableHandlerDeps } from '../../../../../DetailsView/components/issues-table-handler';
 import { RuleResult } from '../../../../../scanner/iruleresults';
 
 describe('IssuesTableHandlerTests', () => {
@@ -79,13 +79,12 @@ describe('IssuesTableHandlerTests', () => {
             id3: {} as DecoratedAxeNodeResult,
         };
 
+        const deps: IssuesTableHandlerDeps = {
+            issueDetailsTextGenerator: null,
+            dropdownClickHandler: null,
+        };
         const bugButtonProps = {
-            deps: {
-                issueDetailsTextGenerator: null,
-                // Not part of the props but an implementation detail of getListProps that seeps
-                // through. Needed for the test to pass.
-                dropdownClickHandler: null,
-            },
+            deps,
             issueTrackerPath: 'example/example',
             pageTitle: 'pageTitle',
             pageUrl: 'http://pageUrl',
