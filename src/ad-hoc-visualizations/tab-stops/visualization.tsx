@@ -13,7 +13,7 @@ import { adhoc as content } from '../../content/adhoc';
 import { tabStopsContent } from '../../DetailsView/StaticContent/tab-stops-details-view';
 import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
 
-const { guidance } = content.tabstops;
+const { guidance, staticContent } = content.tabstops;
 export const TabStopsAdHocVisualization: IVisualizationConfiguration = {
     getTestView: props => <AdhocStaticTestView {...props} />,
     key: AdHocTestkeys.TabStops,
@@ -29,6 +29,7 @@ export const TabStopsAdHocVisualization: IVisualizationConfiguration = {
         linkToDetailsViewText: 'How to test tab stops',
     },
     detailsViewStaticContent: tabStopsContent,
+    detailsViewContent: staticContent,
     chromeCommand: '04_toggle-tabStops',
     launchPanelDisplayOrder: 4,
     adhocToolsPanelDisplayOrder: 5,

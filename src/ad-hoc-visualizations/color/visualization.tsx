@@ -15,7 +15,7 @@ import { colorContent } from '../../DetailsView/StaticContent/color-details-view
 import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
 import { ScannerUtils } from './../../injected/scanner-utils';
 
-const { guidance } = content.color;
+const { guidance, staticContent } = content.color;
 export const ColorAdHocVisualization: IVisualizationConfiguration = {
     getTestView: props => <AdhocStaticTestView {...props} />,
     key: AdHocTestkeys.Color,
@@ -31,6 +31,7 @@ export const ColorAdHocVisualization: IVisualizationConfiguration = {
         linkToDetailsViewText: 'How to test color',
     },
     detailsViewStaticContent: colorContent,
+    detailsViewContent: staticContent,
     chromeCommand: '05_toggle-color',
     launchPanelDisplayOrder: 5,
     adhocToolsPanelDisplayOrder: 2,

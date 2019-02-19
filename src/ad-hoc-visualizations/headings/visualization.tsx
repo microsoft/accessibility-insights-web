@@ -16,7 +16,7 @@ import { headingsContent } from '../../DetailsView/StaticContent/headings-detail
 import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
 import { ScannerUtils } from './../../injected/scanner-utils';
 
-const { guidance } = content.headings;
+const { guidance, staticContent } = content.headings;
 
 export const HeadingsAdHocVisualization: IVisualizationConfiguration = {
     getTestView: props => <AdhocStaticTestView {...props} />,
@@ -33,6 +33,7 @@ export const HeadingsAdHocVisualization: IVisualizationConfiguration = {
         linkToDetailsViewText: 'How to test headings',
     },
     detailsViewStaticContent: headingsContent,
+    detailsViewContent: staticContent,
     chromeCommand: '03_toggle-headings',
     launchPanelDisplayOrder: 3,
     adhocToolsPanelDisplayOrder: 3,
