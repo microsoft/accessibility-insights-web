@@ -28,23 +28,3 @@ exports[`StaticContentDetailsViewTest render content page component 1`] = `
                   } deps={[undefined]} />
 </div>"
 `;
-
-exports[`StaticContentDetailsViewTest render content page component content 1`] = `
-"<div className=\\"static-content-details-view\\">
-  <h1>
-    my test title
-  </h1>
-  <VisualizationToggle checked={true} onClick={[Function: proxy]} label=\\"my test toggle label\\" className=\\"details-view-toggle\\" visualizationName=\\"my test title\\" />
-  <function () {
-                      var args = [];
-                      for (var _i = 0; _i < arguments.length; _i++) {
-                          args[_i] = arguments[_i];
-                      }
-                      _this._interceptor.removeInvocation(invocation_1);
-                      var method = new MethodInfo(target, p);
-                      var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
-                      _this._interceptor.intercept(methodInvocation);
-                      return methodInvocation.returnValue;
-                  } deps={[undefined]} />
-</div>"
-`;

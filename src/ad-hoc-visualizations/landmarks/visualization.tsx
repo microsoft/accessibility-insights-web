@@ -15,7 +15,7 @@ import { AdhocStaticTestView } from '../../DetailsView/components/adhoc-static-t
 import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
 import { ScannerUtils } from './../../injected/scanner-utils';
 
-const { guidance, staticContent } = content.landmarks;
+const { guidance } = content.landmarks;
 export const LandmarksAdHocVisualization: IVisualizationConfiguration = {
     getTestView: props => <AdhocStaticTestView {...props} />,
     key: AdHocTestkeys.Landmarks,
@@ -30,7 +30,6 @@ export const LandmarksAdHocVisualization: IVisualizationConfiguration = {
         toggleLabel: 'Show landmarks',
         linkToDetailsViewText: 'How to test landmarks',
     },
-    detailsViewContent: staticContent,
     chromeCommand: '02_toggle-landmarks',
     launchPanelDisplayOrder: 2,
     adhocToolsPanelDisplayOrder: 4,

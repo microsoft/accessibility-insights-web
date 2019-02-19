@@ -22,7 +22,7 @@ export const staticContent = create(({ Link }) => (
             Activating and/or interacting with each element via keyboard will be covered in a separate test.
             <br />
             To learn more about tab stops, see&nbsp;
-            <Link.Keyboard>WebAIM: Keyboard Accessibility</Link.Keyboard>.
+            <Link.Keyboard />
         </div>
 
         <h2>About the Tab stops visualization</h2>

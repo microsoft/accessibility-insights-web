@@ -14,7 +14,8 @@ import { AdhocStaticTestView } from '../../DetailsView/components/adhoc-static-t
 import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
 import { ScannerUtils } from './../../injected/scanner-utils';
 
-const { guidance, staticContent } = content.color;
+const { guidance } = content.color;
+
 export const ColorAdHocVisualization: IVisualizationConfiguration = {
     getTestView: props => <AdhocStaticTestView {...props} />,
     key: AdHocTestkeys.Color,
@@ -29,7 +30,6 @@ export const ColorAdHocVisualization: IVisualizationConfiguration = {
         toggleLabel: 'Show grayscale',
         linkToDetailsViewText: 'How to test color',
     },
-    detailsViewContent: staticContent,
     chromeCommand: '05_toggle-color',
     launchPanelDisplayOrder: 5,
     adhocToolsPanelDisplayOrder: 2,
