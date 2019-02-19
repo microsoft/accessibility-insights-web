@@ -32,7 +32,6 @@ export interface IDisplayableVisualizationTypeData {
     enableMessage: string;
     toggleLabel: string;
     linkToDetailsViewText: string;
-    assessmentContentTitle?: string;
 }
 
 export interface IAssesssmentVisualizationConfiguration {
