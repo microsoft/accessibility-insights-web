@@ -5,4 +5,13 @@ export interface UserConfigurationStoreData {
     enableTelemetry: boolean;
     enableHighContrast: boolean;
     bugService: string;
+    bugServicePropertiesMap: BugServicePropertiesMap;
+}
+
+interface BugServicePropertiesMap {
+    [service: string]: BugServiceProperties;
+}
+
+interface BugServiceProperties {
+    [name: string]: string;
 }

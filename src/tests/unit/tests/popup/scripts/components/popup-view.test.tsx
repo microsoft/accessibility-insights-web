@@ -101,6 +101,7 @@ describe('PopupView', () => {
             enableTelemetry: false,
             enableHighContrast: false,
             bugService: 'none',
+            bugServicePropertiesMap: {},
         };
 
         beforeEach(() => {

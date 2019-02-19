@@ -19,6 +19,7 @@ export class UserConfigurationStore extends BaseStore<UserConfigurationStoreData
         enableTelemetry: false,
         enableHighContrast: false,
         bugService: 'none',
+        bugServicePropertiesMap: {},
     };
 
     constructor(

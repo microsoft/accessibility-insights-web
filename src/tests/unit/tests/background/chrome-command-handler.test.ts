@@ -84,6 +84,7 @@ describe('ChromeCommandHandlerTest', () => {
                     enableTelemetry: true,
                     enableHighContrast: false,
                     bugService: 'none',
+                    bugServicePropertiesMap: {},
                 };
             });
 

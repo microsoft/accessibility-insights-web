@@ -39,7 +39,13 @@ describe('GlobalStoreHubTest', () => {
                 assessmentNavState: null,
                 assessments: null,
             },
-            userConfigurationData: { enableTelemetry: true, isFirstTime: false, enableHighContrast: false, bugService: 'none' },
+            userConfigurationData: {
+                enableTelemetry: true,
+                isFirstTime: false,
+                enableHighContrast: false,
+                bugService: 'none',
+                bugServicePropertiesMap: {},
+            },
         };
     });
 

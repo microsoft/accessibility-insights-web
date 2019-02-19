@@ -24,8 +24,20 @@ describe('UserConfigurationStoreTest', () => {
     let indexDbStrictMock: IMock<IndexedDBAPI>;
 
     beforeEach(() => {
-        initialStoreData = { enableTelemetry: true, isFirstTime: false, enableHighContrast: false, bugService: 'none' };
-        defaultStoreData = { enableTelemetry: false, isFirstTime: true, enableHighContrast: false, bugService: 'none' };
+        initialStoreData = {
+            enableTelemetry: true,
+            isFirstTime: false,
+            enableHighContrast: false,
+            bugService: 'none',
+            bugServicePropertiesMap: {},
+        };
+        defaultStoreData = {
+            enableTelemetry: false,
+            isFirstTime: true,
+            enableHighContrast: false,
+            bugService: 'none',
+            bugServicePropertiesMap: {},
+        };
         indexDbStrictMock = Mock.ofType<IndexedDBAPI>();
     });
 
@@ -103,6 +115,7 @@ describe('UserConfigurationStoreTest', () => {
             isFirstTime: false,
             enableHighContrast: false,
             bugService: 'none',
+            bugServicePropertiesMap: {},
         };
         const storeTester = createStoreToTestAction('notifyFeatureFlagChange');
         storeTester
@@ -117,12 +130,14 @@ describe('UserConfigurationStoreTest', () => {
             isFirstTime: false,
             enableHighContrast: true,
             bugService: 'none',
+            bugServicePropertiesMap: {},
         };
         const expectedState: UserConfigurationStoreData = {
             enableTelemetry: true,
             isFirstTime: false,
             enableHighContrast: true,
             bugService: 'none',
+            bugServicePropertiesMap: {},
         };
 
         const payload: FeatureFlagPayload = {
@@ -153,6 +168,7 @@ describe('UserConfigurationStoreTest', () => {
             isFirstTime: testCase.isFirstTime,
             enableHighContrast: false,
             bugService: 'none',
+            bugServicePropertiesMap: {},
         };
 
         const setTelemetryStateData: SetTelemetryStatePayload = {
@@ -164,6 +180,7 @@ describe('UserConfigurationStoreTest', () => {
             isFirstTime: false,
             enableHighContrast: false,
             bugService: 'none',
+            bugServicePropertiesMap: {},
         };
 
         indexDbStrictMock.setup(i => i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState))).verifiable(Times.once());
@@ -184,6 +201,7 @@ describe('UserConfigurationStoreTest', () => {
             isFirstTime: false,
             enableHighContrast: testCase.enableHighContrastMode,
             bugService: 'none',
+            bugServicePropertiesMap: {},
         };
 
         const setHighContrastData: SetHighContrastModePayload = {
@@ -195,6 +213,7 @@ describe('UserConfigurationStoreTest', () => {
             isFirstTime: false,
             enableHighContrast: testCase.enableHighContrastMode,
             bugService: 'none',
+            bugServicePropertiesMap: {},
         };
 
         indexDbStrictMock.setup(i => i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState))).verifiable(Times.once());
@@ -212,6 +231,7 @@ describe('UserConfigurationStoreTest', () => {
             enableTelemetry: false,
             enableHighContrast: false,
             bugService: 'none',
+            bugServicePropertiesMap: {},
         };
 
         const setBugServiceData: SetBugServicePayload = {
@@ -230,6 +250,8 @@ describe('UserConfigurationStoreTest', () => {
             .withPostListenerMock(indexDbStrictMock)
             .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
     });
+
+    // TODO: setBugServiceProperty test should check missing, empty, preset property maps
 
     function createStoreToTestAction(
         actionName: keyof UserConfigurationActions,
