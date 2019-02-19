@@ -64,17 +64,15 @@ export class AssessmentView extends React.Component<IAssessmentViewProps> {
         const extPointProps = { extensions, assessmentTestResult };
 
         return (
-            <>
-                <div className="assessment-content">
-                    {this.renderTargetChangeDialog()}
-                    {this.renderTitle(assessmentTestResult.definition.title, assessmentTestResult.definition.guidance)}
-                    {this.renderGettingStarted(assessmentTestResult.definition.gettingStarted)}
-                    <AssessmentViewMainContentExtensionPoint.component {...extPointProps}>
-                        {this.renderRequirements()}
-                        {this.renderMainContent(assessmentTestResult)}
-                    </AssessmentViewMainContentExtensionPoint.component>
-                </div>
-            </>
+            <div className="assessment-content">
+                {this.renderTargetChangeDialog()}
+                {this.renderTitle(assessmentTestResult.definition.title, assessmentTestResult.definition.guidance)}
+                {this.renderGettingStarted(assessmentTestResult.definition.gettingStarted)}
+                <AssessmentViewMainContentExtensionPoint.component {...extPointProps}>
+                    {this.renderRequirements()}
+                    {this.renderMainContent(assessmentTestResult)}
+                </AssessmentViewMainContentExtensionPoint.component>
+            </div>
         );
     }
 
