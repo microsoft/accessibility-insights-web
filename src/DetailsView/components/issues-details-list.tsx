@@ -12,41 +12,20 @@ import {
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import * as React from 'react';
 
-import { FeatureFlags } from '../../common/feature-flags';
-import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { RuleResult } from '../../scanner/iruleresults';
 import { DetailsGroupHeader, DetailsGroupHeaderProps } from './details-group-header';
 import { FailureDetails } from './failure-details';
-import { DetailsGroup, IDetailsRowData, IssuesTableHandler, IssuesTableHandlerDeps } from './issues-table-handler';
-import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
+import { DetailsGroup, IDetailsRowData, IssuesTableHandler } from './issues-table-handler';
 
 export interface IssuesDetailsListProps {
-    deps: IssuesTableHandlerDeps;
     violations: (RuleResult)[];
     issuesTableHandler: IssuesTableHandler;
     issuesSelection: ISelection;
-    issueTrackerPath: string;
-    pageTitle: string;
-    pageUrl: string;
-    featureFlagData: FeatureFlagStoreData;
-    selectedIdToRuleResultMap: IDictionaryStringTo<DecoratedAxeNodeResult>;
 }
 
 export class IssuesDetailsList extends React.Component<IssuesDetailsListProps, {}> {
     private items: IDetailsRowData[];
     private groups: DetailsGroup[];
-
-    private static bugFilingInstanceColumn: IColumn = {
-        key: 'bugs',
-        name: 'Bugs',
-        ariaLabel: 'Bugs',
-        fieldName: 'bugButton',
-        minWidth: 100,
-        maxWidth: 150,
-        isResizable: true,
-        className: 'content-cell',
-        headerClassName: 'content-header',
-    };
 
     private static instanceColumns: IColumn[] = [
         {
@@ -87,18 +66,11 @@ export class IssuesDetailsList extends React.Component<IssuesDetailsListProps, {
     }
 
     public render(): JSX.Element {
-        const detailListProps = this.props.issuesTableHandler.getListProps(this.props.violations, {
-            deps: this.props.deps,
-            pageTitle: this.props.pageTitle,
-            pageUrl: this.props.pageUrl,
-            issueTrackerPath: this.props.issueTrackerPath,
-            selectedIdToRuleResultMap: this.props.selectedIdToRuleResultMap,
-            showBugFiling: this.props.featureFlagData[FeatureFlags.showBugFiling],
-        });
+        const detailListProps = this.props.issuesTableHandler.getListProps(this.props.violations);
 
         this.items = detailListProps.items;
         this.groups = detailListProps.groups;
-        const instanceColumns = this.adjustInstanceColumns(this.props.featureFlagData[FeatureFlags.showBugFiling]);
+        const instanceColumns = IssuesDetailsList.instanceColumns;
         return (
             <div className="issues-details-list">
                 <FailureDetails items={this.items} />
@@ -132,13 +104,5 @@ export class IssuesDetailsList extends React.Component<IssuesDetailsListProps, {
         };
 
         return <DetailsGroupHeader {...groupHeaderProps} />;
-    }
-
-    private adjustInstanceColumns(showBugFiling: boolean): IColumn[] {
-        if (showBugFiling) {
-            return [IssuesDetailsList.bugFilingInstanceColumn].concat(IssuesDetailsList.instanceColumns);
-        } else {
-            return IssuesDetailsList.instanceColumns;
-        }
     }
 }
