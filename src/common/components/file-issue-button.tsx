@@ -60,6 +60,7 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
     }
 
     public render(): JSX.Element {
+        // TODO: Fix props for modal
         return (
             <>
             {!this.props.issueTrackerPath ? (
