@@ -7,7 +7,7 @@ import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import { ActionAndCancelButtonsComponent } from '../../DetailsView/components/action-and-cancel-buttons-component';
 
 export interface IIssueTrackerInputProps {
-    onSave: (state: string) => void;
+    onSave: (id: string, state: string) => void;
     issueTrackerPath?: string;
 }
 export interface IIssueTrackerState {
@@ -47,7 +47,7 @@ export class IssueTrackerInput extends React.Component<IIssueTrackerInputProps, 
 
     @autobind
     protected onSaveClick(id: string): void {
-        this.props.onSave(this.state.issueTrackerPath);
+        this.props.onSave(id, this.state.issueTrackerPath);
         this.setState({ issueTrackerPath: '' });
     }
 

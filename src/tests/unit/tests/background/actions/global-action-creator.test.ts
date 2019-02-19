@@ -244,6 +244,25 @@ describe('GlobalActionCreatorTest', () => {
 
         validator.verifyAll();
     });
+
+    test('registerCallback for on UserConfig.SetIssueTrackerPath', () => {
+        const payload: UserConfigurationStoreData = {
+            enableTelemetry: true,
+            isFirstTime: false,
+            enableHighContrast: true,
+            issueTrackerPath: 'example/example',
+        };
+        const args = [payload];
+        const validator = new GlobalActionCreatorValidator()
+            .setupRegistrationCallback(Messages.UserConfig.SetIssueTrackerPath, args)
+            .setupActionsOnUserConfig('setIssueTrackerPath')
+            .setupUserConfigActionWithInvokeParameter('setIssueTrackerPath', payload);
+
+        const actionCreator = validator.buildActionCreator();
+        actionCreator.registerCallbacks();
+
+        validator.verifyAll();
+    });
 });
 
 // tslint:disable-next-line:max-classes-per-file

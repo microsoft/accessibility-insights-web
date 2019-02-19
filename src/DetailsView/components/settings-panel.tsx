@@ -95,7 +95,7 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
     }
 
     @autobind
-    protected onIssueTrackerPathSave(state: string) {
+    protected onIssueTrackerPathSave(id: string, state: string) {
         return this.props.deps.userConfigMessageCreator.setIssueTrackerPath(state);
     }
 }

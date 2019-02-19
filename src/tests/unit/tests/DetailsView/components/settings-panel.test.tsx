@@ -19,6 +19,10 @@ class TestableSettingsPanel extends SettingsPanel {
     public getOnEnableHighContrastModeToggleClick(): SettingsPanelProtectedFunction {
         return this.onHighContrastModeToggleClick;
     }
+
+    public getOnIssueTrackerPathSave(): (id: string, state: string) => void {
+        return this.onIssueTrackerPathSave;
+    }
 }
 
 describe('SettingsPanelTest', () => {
@@ -106,5 +110,23 @@ describe('SettingsPanelTest', () => {
 
         testSubject.getOnEnableHighContrastModeToggleClick()(null, highContrastConfigState);
         userConfigMessageCreatorMock.verify(u => u.setHighContrastMode(highContrastConfigState), Times.once());
+    });
+
+    test.each(["hello", "world"])('verify save - set issue tracker path button : %s', issueTrackerPathState => {
+        userConfigStoreData = {} as UserConfigurationStoreData;
+        const testProps: SettingsPanelProps = {
+            isOpen: true,
+            deps: {
+                detailsViewActionMessageCreator: detailsActionMessageCreatorMock.object,
+                userConfigMessageCreator: userConfigMessageCreatorMock.object,
+            },
+            userConfigStoreState: userConfigStoreData,
+            featureFlagData: { [FeatureFlags.showBugFiling]: true },
+        };
+
+        const testSubject = new TestableSettingsPanel(testProps);
+
+        testSubject.getOnIssueTrackerPathSave()(null, issueTrackerPathState);
+        userConfigMessageCreatorMock.verify(u => u.setIssueTrackerPath(issueTrackerPathState), Times.once());
     });
 });
