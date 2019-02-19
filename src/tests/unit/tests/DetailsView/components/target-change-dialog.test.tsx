@@ -4,7 +4,7 @@ import * as Enzyme from 'enzyme';
 import Dialog from 'office-ui-fabric-react/lib/Dialog';
 import { TooltipHost } from 'office-ui-fabric-react/lib/Tooltip';
 import * as React from 'react';
-import { Mock, MockBehavior, Times, It } from 'typemoq';
+import { It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { UrlParser } from '../../../../../common/url-parser';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
