@@ -60,7 +60,6 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
     }
   />
   <FlaggedComponent
-    disableJSXElement={null}
     enableJSXElement={
       <IssueTrackerInput
         onSave={[Function]}
@@ -136,7 +135,6 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
     }
   />
   <FlaggedComponent
-    disableJSXElement={null}
     enableJSXElement={
       <IssueTrackerInput
         onSave={[Function]}
