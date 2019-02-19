@@ -35,6 +35,7 @@ export type Markup = {
     PassFail: React.SFC<PassFailProps>;
     Columns: React.SFC;
     Column: React.SFC;
+    Inline: React.SFC;
     HyperLink: React.SFC<{ href: string }>;
     Title: React.SFC<{ children: string }>;
     CodeExample: React.SFC<CodeExampleProps>;
@@ -82,6 +83,10 @@ export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
                 <div className="content-hyperlinks">{React.Children.map(props.children, el => el)}</div>
             </>
         );
+    }
+
+    function Inline(props: { children: React.ReactNode }): JSX.Element {
+        return <div className="content-inline">{props.children}</div>;
     }
 
     function Do(props: { children: React.ReactNode }): JSX.Element {
@@ -246,6 +251,7 @@ export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
         PassFail,
         Columns,
         Column,
+        Inline,
         HyperLink,
         Title,
         CodeExample,

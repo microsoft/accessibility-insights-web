@@ -80,13 +80,15 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G180">
                 Providing the user with a means to set the time limit to 10 times the default time limit
             </Markup.HyperLink>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/client-side-script/SCR16">
-                Providing a script that warns the user a time limit is about to expire
-            </Markup.HyperLink>{' '}
-            and{' '}
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/client-side-script/SCR1">
-                Allowing the user to extend the default time limit
-            </Markup.HyperLink>
+            <Markup.Inline>
+                <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/client-side-script/SCR16">
+                    Providing a script that warns the user a time limit is about to expire
+                </Markup.HyperLink>{' '}
+                and{' '}
+                <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/client-side-script/SCR1">
+                    Allowing the user to extend the default time limit
+                </Markup.HyperLink>
+            </Markup.Inline>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G4">
                 Allowing the content to be paused and restarted from where it was paused
             </Markup.HyperLink>
