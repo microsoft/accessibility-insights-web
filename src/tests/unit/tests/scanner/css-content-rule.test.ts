@@ -57,7 +57,8 @@ describe('meaningful sequence', () => {
         expectedResult: boolean,
     ): void {
         windowMock
-            .setup(m => m(It.isAny())).returns(style => ({ getPropertyValue: property => style[property] } as CSSStyleDeclaration))
+            .setup(m => m(It.isAny()))
+            .returns(style => ({ getPropertyValue: property => style[property] } as CSSStyleDeclaration))
             .verifiable(Times.once());
 
         let result: boolean;
