@@ -62,6 +62,25 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
     public render(): JSX.Element {
         return (
             <>
+            {!this.props.issueTrackerPath ? (
+                <DefaultButton
+                    iconProps={{ iconName: 'Add' }}
+                    className={'create-bug-button'}
+                    onClick={() => this.setState({ showingFileIssueModal: true })}
+                >
+                    File issue
+                </DefaultButton>
+            ) : null}
+            {!!this.props.issueTrackerPath ? (
+                <DefaultButton
+                    iconProps={{ iconName: 'Add' }}
+                    className={'create-bug-button'}
+                    target="_blank"
+                    href={this.getIssueDetailsUrl(this.props.issueDetailsData.ruleResult)}
+                >
+                    File issue
+                </DefaultButton>
+            ) : null}
             <Modal
                 titleAriaId="fileIssueDetailsModal"
                 subtitleAriaId="subtitleId"
@@ -86,38 +105,7 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
                     cancelButtonOnClick={this.closeModal}
                 />
             </Modal>
-            <DefaultButton
-                iconProps={{ iconName: 'Copy' }}
-                className={'copy-issue-details-button'}
-                onClick={() => this.setState({ showingFileIssueModal: true })}
-            >
-            Open the modal!!!
-            </DefaultButton>
-            <Link className="bugs-details-view" target="_blank" href={this.getIssueDetailsUrl(this.props.issueDetailsData.ruleResult)}>
-                <Icon className="create-bug-button" iconName="Add" />
-                {'New bug'}
-            </Link>
             </>
         );
-        /*
-        return (
-            <>
-                {this.state.showingFileIssueToast ? (
-                    <Toast onTimeout={() => this.setState({ showingFileIssueToast: false })} deps={this.props.deps}>
-                        Failure details copied.
-                    </Toast>
-                ) : null}
-                <FileToClipboard text={this.getIssueDetailsText(this.props.issueDetailsData.ruleResult)}>
-                    <DefaultButton
-                        iconProps={{ iconName: 'File' }}
-                        className={'copy-issue-details-button'}
-                        onClick={this.copyButtonClicked}
-                    >
-                        File failure details
-                    </DefaultButton>
-                </FileToClipboard>
-            </>
-        );
-         */
     }
 }
