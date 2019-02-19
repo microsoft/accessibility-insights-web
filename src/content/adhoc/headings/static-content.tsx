@@ -23,7 +23,7 @@ export const staticContent = create(({ Link }) => (
         <div className="about-vis">
             The visualizations in {toolName} enable developers to see accessibility markup that’s normally invisible. The <b>Headings</b>{' '}
             visualization highlights programmatically-identified headings directly on the page. It does not highlight headings that are
-            unavailable to assistive technology because they are empty or have <b>hidden</b>, <b>aria-hidden</b>, or <b>display:none</b>{' '}
+            unavailable to assistive technology because they are empty or have <b>hidden</b>,<b>aria-hidden</b>, or <b>display:none</b>{' '}
             attributes.
         </div>
 
