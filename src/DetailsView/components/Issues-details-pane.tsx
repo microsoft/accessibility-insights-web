@@ -4,6 +4,7 @@ import * as React from 'react';
 
 import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
 import { CopyIssueDetailsButton } from '../../common/components/copy-issue-details-button';
+import { FileIssueDetailsButton } from '../../common/components/file-issue-button';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { ToastDeps } from '../../common/components/toast';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
@@ -23,6 +24,7 @@ export interface IssuesDetailsPaneProps {
     selectedIdToRuleResultMap: IDictionaryStringTo<DecoratedAxeNodeResult>;
     pageTitle: string;
     pageUrl: string;
+    issueTrackerPath: string;
 }
 
 interface IssueDetailsState {
@@ -66,6 +68,11 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
         return (
             <div>
                 <h2>Failure details</h2>
+                <FileIssueDetailsButton
+                    deps={this.props.deps}
+                    issueDetailsData={issueData}
+                    issueTrackerPath={this.props.issueTrackerPath}
+                />
                 <CopyIssueDetailsButton
                     deps={this.props.deps}
                     issueDetailsData={issueData}
