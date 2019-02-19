@@ -2,7 +2,12 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { SetLaunchPanelState } from '../../../../../background/actions/action-payloads';
+import {
+    SetBugServicePayload,
+    SetHighContrastModePayload,
+    SetLaunchPanelState,
+    SetTelemetryStatePayload,
+} from '../../../../../background/actions/action-payloads';
 import { AssessmentActions } from '../../../../../background/actions/assessment-actions';
 import { CommandActions } from '../../../../../background/actions/command-actions';
 import { FeatureFlagActions, FeatureFlagPayload } from '../../../../../background/actions/feature-flag-actions';
@@ -16,7 +21,6 @@ import { TelemetryEventHandler } from '../../../../../background/telemetry/telem
 import { Action } from '../../../../../common/flux/action';
 import { Messages } from '../../../../../common/messages';
 import * as TelemetryEvents from '../../../../../common/telemetry-events';
-import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { LaunchPanelType } from '../../../../../popup/scripts/components/popup-view';
 import { InterpreterStub } from '../../../stubs/interpreter-stub';
 
@@ -210,11 +214,8 @@ describe('GlobalActionCreatorTest', () => {
     });
 
     test('registerCallback for on UserConfig.SetTelemetryConfig', () => {
-        const payload: UserConfigurationStoreData = {
+        const payload: SetTelemetryStatePayload = {
             enableTelemetry: true,
-            isFirstTime: false,
-            enableHighContrast: false,
-            bugService: 'none',
         };
         const args = [payload];
         const validator = new GlobalActionCreatorValidator()
@@ -229,11 +230,8 @@ describe('GlobalActionCreatorTest', () => {
     });
 
     test('registerCallback for on UserConfig.SetHighContrastConfig', () => {
-        const payload: UserConfigurationStoreData = {
-            enableTelemetry: true,
-            isFirstTime: false,
+        const payload: SetHighContrastModePayload = {
             enableHighContrast: true,
-            bugService: 'none',
         };
         const args = [payload];
         const validator = new GlobalActionCreatorValidator()
@@ -248,11 +246,8 @@ describe('GlobalActionCreatorTest', () => {
     });
 
     test('registerCallback for on UserConfig.SetBugService', () => {
-        const payload: UserConfigurationStoreData = {
-            enableTelemetry: true,
-            isFirstTime: false,
-            enableHighContrast: true,
-            bugService: 'none',
+        const payload: SetBugServicePayload = {
+            bugServiceName: 'none',
         };
         const args = [payload];
         const validator = new GlobalActionCreatorValidator()
