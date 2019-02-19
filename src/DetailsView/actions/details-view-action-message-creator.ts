@@ -382,7 +382,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
 
     public detailsViewOpened(selectedPivot: DetailsViewPivotType): void {
         const telemetryData = this.telemetryFactory.forDetailsViewOpened(selectedPivot);
-        this.sendTelemetryExcludingUrl(TelemetryEvents.DETAILS_VIEW_OPEN, telemetryData);
+        this.sendTelemetry(TelemetryEvents.DETAILS_VIEW_OPEN, telemetryData);
     }
 
     @autobind

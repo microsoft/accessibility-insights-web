@@ -15,15 +15,9 @@ describe('TelemetryEventHandlerTest', () => {
     let testEventName;
     let testTelemetryPayload;
     let testTabId;
-    let resultTab;
 
     beforeEach(() => {
         testTabId = 1;
-        resultTab = {
-            id: testTabId,
-            title: 'test title with email@domain',
-            url: 'https://test.url/email@domain/',
-        };
         testEventName = 'test event';
         testTelemetryPayload = {
             telemetry: {
@@ -54,7 +48,7 @@ describe('TelemetryEventHandlerTest', () => {
             .verifiable(Times.never());
 
         const testObject = createAndEnableTelemetryEventHandler();
-        testObject.publishTelemetry(testEventName, payload, testTabId);
+        testObject.publishTelemetry(testEventName, payload);
 
         browserAdapterMock.verifyAll();
     });
@@ -67,12 +61,10 @@ describe('TelemetryEventHandlerTest', () => {
             },
         };
 
-        setupBrowserAdapter(testTabId, null);
-        telemetryClientStrictMock.setup(te => te.trackEvent(It.isAny(), It.isAny())).verifiable(Times.never());
+        telemetryClientStrictMock.setup(te => te.trackEvent(It.isAny(), It.isAny())).verifiable(Times.once());
 
         const testObject = createAndEnableTelemetryEventHandler();
-        testObject.publishTelemetry(testEventName, testTelemetryPayload, testTabId);
-
+        testObject.publishTelemetry(testEventName, testTelemetryPayload);
         browserAdapterMock.verifyAll();
         telemetryClientStrictMock.verifyAll();
     });
@@ -96,25 +88,11 @@ describe('TelemetryEventHandlerTest', () => {
     test('test for publishTelemetry when tab is not null', () => {
         const expectedTelemetry = createExpectedAppInsightsTelemetry();
 
-        setupBrowserAdapter(testTabId, resultTab);
         setupTrackEvent(testEventName, expectedTelemetry);
 
         const testObject = createAndEnableTelemetryEventHandler();
 
-        testObject.publishTelemetry(testEventName, testTelemetryPayload, testTabId);
-
-        verifyMocks();
-    });
-
-    test('test for publishTelemetry when tab is not null, and logUrl is false', () => {
-        const expectedTelemetry = createExpectedAppInsightsTelemetry(null, false);
-
-        setupBrowserAdapter(testTabId, resultTab);
-        setupTrackEvent(testEventName, expectedTelemetry);
-
-        const testObject = createAndEnableTelemetryEventHandler();
-
-        testObject.publishTelemetry(testEventName, testTelemetryPayload, testTabId, false);
+        testObject.publishTelemetry(testEventName, testTelemetryPayload);
 
         verifyMocks();
     });
@@ -142,53 +120,20 @@ describe('TelemetryEventHandlerTest', () => {
 
         const expectedTelemetry = createExpectedAppInsightsTelemetry(extraFields);
 
-        setupBrowserAdapter(testTabId, resultTab);
         setupTrackEvent(testEventName, expectedTelemetry);
 
         const testObject = createAndEnableTelemetryEventHandler();
 
-        testObject.publishTelemetry(testEventName, customTelemetryPayload, testTabId);
+        testObject.publishTelemetry(testEventName, customTelemetryPayload);
 
         verifyMocks();
     });
 
-    test('removeEmail', () => {
-        const testObject = createAndEnableTelemetryEventHandler();
-
-        testRemoveEmail(testObject, null, 'null');
-        testRemoveEmail(testObject, undefined, 'undefined');
-        testRemoveEmail(testObject, '', '');
-        testRemoveEmail(testObject, 'a', 'a');
-        testRemoveEmail(testObject, 'test without any matches #@$! @twitter', 'test without any matches #@$! @twitter');
-        testRemoveEmail(testObject, 'someEmailId@email.com', '(email-removed)');
-        testRemoveEmail(testObject, 'prefix someEmailId@email.com', 'prefix (email-removed)');
-        testRemoveEmail(testObject, 'someEmailId@email.com suffix', '(email-removed) suffix');
-        testRemoveEmail(
-            testObject,
-            // tslint:disable-next-line:max-line-length
-            'https://test.com/_#/faq-tbot/19:c677b5ef-702c-47e0-8c87-d0fdba80af2e_90a27c51-5c74-453b-944a-134ba86da790@unq.gbl.spaces?ctx=chat',
-            'https://test.com/_#/faq-tbot/19:(email-removed)?ctx=chat',
-        );
-        testRemoveEmail(
-            testObject,
-            // tslint:disable-next-line:max-line-length
-            'https://test.com/_?container=80683-merge-prod-1350842#/test/Framework%20&%20UX%20Platform/19:test_f7ede4dae12742fbb2314bc94dc5c7d2@thread.test/td.members',
-            // tslint:disable-next-line:max-line-length
-            'https://test.com/_?container=80683-merge-prod-1350842#/test/Framework%20&%20UX%20Platform/19:(email-removed)/td.members',
-        );
-        testRemoveEmail(testObject, 'Inbox (680) - someEmailId@email.com - Gmail', 'Inbox (680) - (email-removed) - Gmail');
-    });
-
-    function createExpectedAppInsightsTelemetry(customFields?: IDictionaryStringTo<any>, isUrlExpected: boolean = true) {
+    function createExpectedAppInsightsTelemetry(customFields?: IDictionaryStringTo<any>) {
         const telemetry: any = {
             source: undefined,
             triggeredBy: 'triggered by test',
         };
-
-        if (isUrlExpected) {
-            telemetry.url = 'https://test.url/(email-removed)/';
-            telemetry.title = 'test title with (email-removed)';
-        }
 
         if (customFields) {
             _.each(customFields, (value, key) => {
@@ -204,15 +149,6 @@ describe('TelemetryEventHandlerTest', () => {
         telemetryClientStrictMock.verifyAll();
     }
 
-    function setupBrowserAdapter(tabId: number, resultTab: ITab): void {
-        browserAdapterMock
-            .setup(cam => cam.getTab(It.isValue(tabId), It.is((param: () => void) => param instanceof Function)))
-            .callback((tabId, callback) => {
-                callback(resultTab);
-            })
-            .verifiable(Times.once());
-    }
-
     function createAndEnableTelemetryEventHandler(): TelemetryEventHandler {
         const telemetryEventHandler = new TelemetryEventHandler(browserAdapterMock.object, telemetryClientStrictMock.object);
         telemetryClientStrictMock.setup(ai => ai.enableTelemetry()).verifiable(Times.once());
@@ -223,10 +159,5 @@ describe('TelemetryEventHandlerTest', () => {
 
     function setupTrackEvent(eventName: string, expectedTelemetry: IDictionaryStringTo<string>) {
         telemetryClientStrictMock.setup(te => te.trackEvent(It.isValue(eventName), It.isValue(expectedTelemetry))).verifiable(Times.once());
-    }
-
-    function testRemoveEmail(testObject: TelemetryEventHandler, s: string, expected: string) {
-        const actual: string = (testObject as any).removeEmail(s);
-        expect(actual).toEqual(expected);
     }
 });

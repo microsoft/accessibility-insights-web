@@ -44,7 +44,7 @@ export class CompletedTestStepTelemetryCreator {
 
     private sendTelemetryIfNewCompletedTestStep(assessment: IAssessment): boolean {
         const completedStep = assessment.steps.find(step => this.isNewCompletedTestStep(assessment, step));
-        const targetTab = this.store.getState().targetTab;
+        const targetTab = this.store.getState().persistedTabInfo;
         if (completedStep != undefined && targetTab !== null) {
             const payload: PayloadWithEventName = {
                 eventName: TelemetryEvents.CHANGE_OVERALL_REQUIREMENT_STATUS,

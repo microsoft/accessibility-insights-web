@@ -67,7 +67,9 @@ describe('AssessmentScanPolicyRunner', () => {
             setupStoreMockForCallback(visualizationStore);
             setupGetSelectedAssessmentTest(false);
             setupStoreGetState<IVisualizationStoreData>(visualizationStore, { tests: testData } as IVisualizationStoreData);
-            setupStoreGetState<IAssessmentStoreData>(assessmentStoreMock, { targetTab: { id: currentTabId } } as IAssessmentStoreData);
+            setupStoreGetState<IAssessmentStoreData>(assessmentStoreMock, {
+                persistedTabInfo: { id: currentTabId },
+            } as IAssessmentStoreData);
 
             testSubject.beginListeningToStores();
             storeChangeCallback();
@@ -80,7 +82,7 @@ describe('AssessmentScanPolicyRunner', () => {
             setupStoreMockForCallback(assessmentStoreMock);
             setupStoreMockForCallback(visualizationStore);
             setupStoreGetState<IVisualizationStoreData>(visualizationStore, { tests: testData } as IVisualizationStoreData);
-            setupStoreGetState<IAssessmentStoreData>(assessmentStoreMock, { targetTab: { id: 1 } } as IAssessmentStoreData);
+            setupStoreGetState<IAssessmentStoreData>(assessmentStoreMock, { persistedTabInfo: { id: 1 } } as IAssessmentStoreData);
             setupGetSelectedAssessmentTest(true);
 
             testSubject.beginListeningToStores();
@@ -94,7 +96,7 @@ describe('AssessmentScanPolicyRunner', () => {
             setupStoreMockForCallback(assessmentStoreMock);
             setupStoreMockForCallback(visualizationStore);
             setupStoreGetState<IVisualizationStoreData>(visualizationStore, { tests: testData } as IVisualizationStoreData);
-            setupStoreGetState<IAssessmentStoreData>(assessmentStoreMock, { targetTab: null } as IAssessmentStoreData);
+            setupStoreGetState<IAssessmentStoreData>(assessmentStoreMock, { persistedTabInfo: null } as IAssessmentStoreData);
             setupGetSelectedAssessmentTest(true);
 
             testSubject.beginListeningToStores();
@@ -110,7 +112,9 @@ describe('AssessmentScanPolicyRunner', () => {
             setupStoreMockForCallback(visualizationStore);
             setupGetSelectedAssessmentTest(true);
             setupStoreGetState<IVisualizationStoreData>(visualizationStore, visualizationStateStub as IVisualizationStoreData);
-            setupStoreGetState<IAssessmentStoreData>(assessmentStoreMock, { targetTab: { id: currentTabId } } as IAssessmentStoreData);
+            setupStoreGetState<IAssessmentStoreData>(assessmentStoreMock, {
+                persistedTabInfo: { id: currentTabId },
+            } as IAssessmentStoreData);
 
             testSubject.beginListeningToStores();
             storeChangeCallback();
@@ -129,7 +133,7 @@ describe('AssessmentScanPolicyRunner', () => {
                     selectedTestStep: null,
                     selectedTestType: testType,
                 },
-                targetTab: { id: currentTabId },
+                persistedTabInfo: { id: currentTabId },
             };
             const assessmentConfig = {
                 executeAssessmentScanPolicy: executeAssessmentScanMock.object,

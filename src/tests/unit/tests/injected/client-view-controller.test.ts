@@ -566,10 +566,10 @@ class MocksAndTestSubjectBuilder {
         this._fromVisualizationScanStoreState = this._dataBuilderForFromVisualizationScanStoreState.build();
         this._toVisualizationScanStoreState = this._dataBuilderForToVisualizationScanStoreState.build();
         this._fromAssessmentStoreState = new AssessmentsStoreDataBuilder(assessmentsProviderMock.object, assessmentDataConverterMock.object)
-            .withTargetTab(this._fromTargetTabId, null, null)
+            .withTargetTab(this._fromTargetTabId, null, null, false)
             .build();
         this._toAssessmentStoreState = new AssessmentsStoreDataBuilder(assessmentsProviderMock.object, assessmentDataConverterMock.object)
-            .withTargetTab(this._toTargetTabId, null, null)
+            .withTargetTab(this._toTargetTabId, null, null, false)
             .build();
         this._fromTabStoreState = { id: 1 } as ITabStoreData;
         this._toTabStoreState = { id: 1 } as ITabStoreData;

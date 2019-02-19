@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { IAssessmentsProvider } from '../../../../../../assessments/types/iassessments-provider';
-import { IAssessmentStoreData } from '../../../../../../common/types/store-data/iassessment-result-data';
+import { IAssessmentStoreData, PersistedTabInfo } from '../../../../../../common/types/store-data/iassessment-result-data';
 import { ITabStoreData } from '../../../../../../common/types/store-data/itab-store-data';
 import { DetailsViewActionMessageCreator } from '../../../../../../DetailsView/actions/details-view-action-message-creator';
 import {
@@ -39,7 +39,7 @@ describe('OverviewContainer', () => {
         detailsViewActionMessageCreator: detailsViewActionMessageCreatorStub,
     };
     const assessmentStoreData: IAssessmentStoreData = {
-        targetTab: -2,
+        persistedTabInfo: {} as PersistedTabInfo,
     } as IAssessmentStoreData;
 
     const component = <OverviewContainer deps={deps} assessmentStoreData={assessmentStoreData} tabStoreData={tabStoreDataStub} />;

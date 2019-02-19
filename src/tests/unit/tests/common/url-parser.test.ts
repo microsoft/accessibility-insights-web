@@ -56,4 +56,17 @@ describe('UrlParserTest', () => {
             expect(testSubject.getIntParam(testCase.url, testCase.key)).toBeNaN();
         });
     });
+
+    describe('areURLHostNamesEqual', () => {
+        it('should return false as the host names are not the same', () => {
+            const urlA = 'http://test.com';
+            const urlB = 'http://notsame.com';
+            expect(testSubject.areURLHostNamesEqual(urlA, urlB)).toEqual(false);
+        });
+        it('should return true as the host names are the same', () => {
+            const urlA = 'http://same.com';
+            const urlB = 'http://same.com/randompath&someparam=true';
+            expect(testSubject.areURLHostNamesEqual(urlA, urlB)).toEqual(true);
+        });
+    });
 });

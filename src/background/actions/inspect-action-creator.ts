@@ -33,7 +33,7 @@ export class InspectActionCreator {
 
     private onChangeInspectMode(payload: IInspectPayload, tabId: number): void {
         const eventName = TelemetryEvents.CHANGE_INSPECT_MODE;
-        this.telemetryEventHandler.publishTelemetry(eventName, payload, tabId);
+        this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.browserAdapter.switchToTab(tabId);
         this.inspectActions.changeInspectMode.invoke(payload);
     }

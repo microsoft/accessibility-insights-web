@@ -41,7 +41,7 @@ describe('AssessmentActionCreatorTest', () => {
         const payload: BaseActionPayload = {};
 
         telemetryEventHandlerMock
-            .setup(tp => tp.publishTelemetry(TelemetryEvents.PASS_UNMARKED_INSTANCES, payload, tabId))
+            .setup(tp => tp.publishTelemetry(TelemetryEvents.PASS_UNMARKED_INSTANCES, payload))
             .verifiable(Times.once());
 
         const updateTabIdActionMock = createActionMock(tabId);
@@ -60,7 +60,7 @@ describe('AssessmentActionCreatorTest', () => {
         const payload = {};
 
         telemetryEventHandlerMock
-            .setup(tp => tp.publishTelemetry(TelemetryEvents.CONTINUE_PREVIOUS_ASSESSMENT, payload, tabId))
+            .setup(tp => tp.publishTelemetry(TelemetryEvents.CONTINUE_PREVIOUS_ASSESSMENT, payload))
             .verifiable(Times.once());
 
         const actionMock = createActionMock(tabId);
@@ -75,9 +75,7 @@ describe('AssessmentActionCreatorTest', () => {
     test('onEditFailureInstance', () => {
         const payload: BaseActionPayload = {};
 
-        telemetryEventHandlerMock
-            .setup(tp => tp.publishTelemetry(TelemetryEvents.EDIT_FAILURE_INSTANCE, payload, tabId))
-            .verifiable(Times.once());
+        telemetryEventHandlerMock.setup(tp => tp.publishTelemetry(TelemetryEvents.EDIT_FAILURE_INSTANCE, payload)).verifiable(Times.once());
 
         const actionMock = createActionMock(payload);
         setupAssessmentActionsMock('editFailureInstance', actionMock);
@@ -92,7 +90,7 @@ describe('AssessmentActionCreatorTest', () => {
         const payload: BaseActionPayload = {};
 
         telemetryEventHandlerMock
-            .setup(tp => tp.publishTelemetry(TelemetryEvents.REMOVE_FAILURE_INSTANCE, payload, tabId))
+            .setup(tp => tp.publishTelemetry(TelemetryEvents.REMOVE_FAILURE_INSTANCE, payload))
             .verifiable(Times.once());
 
         const actionMock = createActionMock(payload);
@@ -107,9 +105,7 @@ describe('AssessmentActionCreatorTest', () => {
     test('onRemoveFailureInstance', () => {
         const payload: BaseActionPayload = {};
 
-        telemetryEventHandlerMock
-            .setup(tp => tp.publishTelemetry(TelemetryEvents.ADD_FAILURE_INSTANCE, payload, tabId))
-            .verifiable(Times.once());
+        telemetryEventHandlerMock.setup(tp => tp.publishTelemetry(TelemetryEvents.ADD_FAILURE_INSTANCE, payload)).verifiable(Times.once());
 
         const actionMock = createActionMock(payload);
         setupAssessmentActionsMock('addFailureInstance', actionMock);
@@ -124,7 +120,7 @@ describe('AssessmentActionCreatorTest', () => {
         const payload: BaseActionPayload = {};
 
         telemetryEventHandlerMock
-            .setup(tp => tp.publishTelemetry(TelemetryEvents.CHANGE_INSTANCE_STATUS, payload, tabId))
+            .setup(tp => tp.publishTelemetry(TelemetryEvents.CHANGE_INSTANCE_STATUS, payload))
             .verifiable(Times.once());
 
         const updateTabIdActionMock = createActionMock(tabId);
@@ -143,7 +139,7 @@ describe('AssessmentActionCreatorTest', () => {
         const payload: BaseActionPayload = {};
 
         telemetryEventHandlerMock
-            .setup(tp => tp.publishTelemetry(TelemetryEvents.UNDO_ASSESSMENT_STEP_STATUS_CHANGE, payload, tabId))
+            .setup(tp => tp.publishTelemetry(TelemetryEvents.UNDO_ASSESSMENT_STEP_STATUS_CHANGE, payload))
             .verifiable(Times.once());
 
         const actionMock = createActionMock(payload);
@@ -159,7 +155,7 @@ describe('AssessmentActionCreatorTest', () => {
         const payload: BaseActionPayload = {};
 
         telemetryEventHandlerMock
-            .setup(tp => tp.publishTelemetry(TelemetryEvents.UNDO_ASSESSMENT_STATUS_CHANGE, payload, tabId))
+            .setup(tp => tp.publishTelemetry(TelemetryEvents.UNDO_ASSESSMENT_STATUS_CHANGE, payload))
             .verifiable(Times.once());
 
         const actionMock = createActionMock(payload);
@@ -175,7 +171,7 @@ describe('AssessmentActionCreatorTest', () => {
         const payload: BaseActionPayload = {};
 
         telemetryEventHandlerMock
-            .setup(tp => tp.publishTelemetry(TelemetryEvents.CHANGE_INSTANCE_STATUS, payload, tabId))
+            .setup(tp => tp.publishTelemetry(TelemetryEvents.CHANGE_INSTANCE_STATUS, payload))
             .verifiable(Times.once());
 
         const updateTabIdActionMock = createActionMock(tabId);
@@ -194,7 +190,7 @@ describe('AssessmentActionCreatorTest', () => {
         const payload: BaseActionPayload = {};
 
         telemetryEventHandlerMock
-            .setup(tp => tp.publishTelemetry(TelemetryEvents.CHANGE_ASSESSMENT_VISUALIZATION_STATUS, payload, tabId))
+            .setup(tp => tp.publishTelemetry(TelemetryEvents.CHANGE_ASSESSMENT_VISUALIZATION_STATUS, payload))
             .verifiable(Times.once());
 
         const actionMock = createActionMock(payload);
@@ -210,7 +206,7 @@ describe('AssessmentActionCreatorTest', () => {
         const payload: BaseActionPayload = {};
 
         telemetryEventHandlerMock
-            .setup(tp => tp.publishTelemetry(TelemetryEvents.CHANGE_ASSESSMENT_VISUALIZATION_STATUS_FOR_ALL, payload, tabId))
+            .setup(tp => tp.publishTelemetry(TelemetryEvents.CHANGE_ASSESSMENT_VISUALIZATION_STATUS_FOR_ALL, payload))
             .verifiable(Times.once());
 
         const actionMock = createActionMock(payload);
@@ -273,9 +269,7 @@ describe('AssessmentActionCreatorTest', () => {
     test('onSelectTestStep', () => {
         const payload: BaseActionPayload = {};
 
-        telemetryEventHandlerMock
-            .setup(tp => tp.publishTelemetry(TelemetryEvents.SELECT_TEST_STEP, payload, tabId))
-            .verifiable(Times.once());
+        telemetryEventHandlerMock.setup(tp => tp.publishTelemetry(TelemetryEvents.SELECT_TEST_STEP, payload)).verifiable(Times.once());
 
         const actionMock = createActionMock(payload);
         setupAssessmentActionsMock('selectTestStep', actionMock);
@@ -288,13 +282,11 @@ describe('AssessmentActionCreatorTest', () => {
 
     test('onScanUpdate', () => {
         const payload = {
-            key: {
-                toTitleCase: () => 'Hello',
-            },
+            key: 'hello',
         };
 
         telemetryEventHandlerMock
-            .setup(tp => tp.publishTelemetry('ScanUpdateHello', payload as BaseActionPayload, tabId))
+            .setup(tp => tp.publishTelemetry('ScanUpdateHello', payload as BaseActionPayload))
             .verifiable(Times.once());
 
         const actionMock = createActionMock(payload);
@@ -308,13 +300,11 @@ describe('AssessmentActionCreatorTest', () => {
 
     test('onTrackingCompleted', () => {
         const payload = {
-            key: {
-                toTitleCase: () => 'Hello',
-            },
+            key: 'hello',
         };
 
         telemetryEventHandlerMock
-            .setup(tp => tp.publishTelemetry('TrackingCompletedHello', payload as BaseActionPayload, tabId))
+            .setup(tp => tp.publishTelemetry('TrackingCompletedHello', payload as BaseActionPayload))
             .verifiable(Times.once());
 
         const actionMock = createActionMock(payload);

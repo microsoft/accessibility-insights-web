@@ -37,7 +37,7 @@ describe('ScopingActionCreatorTest', () => {
     test('on OpenPanel', () => {
         const payload: BaseActionPayload = {};
 
-        telemetryEventHandlerMock.setup(tp => tp.publishTelemetry(SCOPING_OPEN, payload, tabId)).verifiable(Times.once());
+        telemetryEventHandlerMock.setup(tp => tp.publishTelemetry(SCOPING_OPEN, payload)).verifiable(Times.once());
 
         detailsViewControllerStrictMock.setup(dc => dc.showDetailsView(tabId)).verifiable(Times.once());
 
@@ -55,7 +55,7 @@ describe('ScopingActionCreatorTest', () => {
     test('on ClosePanel', () => {
         const payload: BaseActionPayload = {};
 
-        telemetryEventHandlerMock.setup(tp => tp.publishTelemetry(SCOPING_CLOSE, payload, tabId)).verifiable(Times.once());
+        telemetryEventHandlerMock.setup(tp => tp.publishTelemetry(SCOPING_CLOSE, payload)).verifiable(Times.once());
 
         const closeScopingPanelActionMock = createActionMock(null);
         setupScopingActionsMock('closeScopingPanel', closeScopingPanelActionMock);

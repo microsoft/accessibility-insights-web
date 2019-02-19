@@ -19,30 +19,19 @@ export class TelemetryEventHandler {
         this.telemetryClient.disableTelemetry();
     }
 
-    public publishTelemetry(eventName: string, payload: BaseActionPayload, tabId: number, logUrl: boolean = true): void {
+    public publishTelemetry(eventName: string, payload: BaseActionPayload): void {
         if (payload.telemetry == null) {
             return;
         }
 
-        this.browserAdapter.getTab(tabId, (tab: ITab) => {
-            if (tab == null) {
-                return;
-            }
+        const telemetryInfo: any = payload.telemetry;
+        this.addBasicDataToTelemetry(telemetryInfo);
 
-            const telemetryInfo: any = payload.telemetry;
-            this.addBasicDataToTelemetry(telemetryInfo, tab, logUrl);
-
-            const flattenTelemetryInfo: IDictionaryStringTo<string> = this.flattenTelemetryInfo(telemetryInfo);
-            this.telemetryClient.trackEvent(eventName, flattenTelemetryInfo);
-        });
+        const flattenTelemetryInfo: IDictionaryStringTo<string> = this.flattenTelemetryInfo(telemetryInfo);
+        this.telemetryClient.trackEvent(eventName, flattenTelemetryInfo);
     }
 
-    private addBasicDataToTelemetry(telemetryInfo: any, tab: ITab, logUrl: boolean): void {
-        if (logUrl) {
-            telemetryInfo.url = this.removeEmail(tab.url);
-            telemetryInfo.title = this.removeEmail(tab.title);
-        }
-
+    private addBasicDataToTelemetry(telemetryInfo: any): void {
         telemetryInfo.source = TelemetryEventSource[telemetryInfo.source];
     }
 
@@ -55,9 +44,5 @@ export class TelemetryEventHandler {
         });
 
         return flattenTelemetryInfo;
-    }
-
-    private removeEmail(s: string): string {
-        return ('' + s).replace(/[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]+/g, '(email-removed)');
     }
 }

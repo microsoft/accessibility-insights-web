@@ -38,6 +38,6 @@ export class TabActionCreator {
 
     private onSwitchToTargetTab(payload: SwitchToTargetTabPayload, tabId: number): void {
         this.browserAdapter.switchToTab(tabId);
-        this.telemetryEventHandler.publishTelemetry(SWITCH_BACK_TO_TARGET, payload, tabId);
+        this.telemetryEventHandler.publishTelemetry(SWITCH_BACK_TO_TARGET, payload);
     }
 }

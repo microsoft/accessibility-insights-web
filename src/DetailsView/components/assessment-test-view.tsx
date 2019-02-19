@@ -31,7 +31,7 @@ export const AssessmentTestView = NamedSFC<IAssessmentTestViewProps>('Assessment
     const isScanning: boolean = props.visualizationStoreData.scanning !== null;
     const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
     const assessmentData = props.configuration.getAssessmentData(props.assessmentStoreData);
-    const prevTarget = props.assessmentStoreData.targetTab;
+    const prevTarget = props.assessmentStoreData.persistedTabInfo;
     const isEnabled = props.configuration.getTestStatus(scanData, props.assessmentStoreData.assessmentNavState.selectedTestStep);
     const currentTarget = {
         id: props.tabStoreData.id,

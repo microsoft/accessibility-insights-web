@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import '../../background/string-utils';
-
 import * as _ from 'lodash';
 
 import { IBaseStore } from '../istore';

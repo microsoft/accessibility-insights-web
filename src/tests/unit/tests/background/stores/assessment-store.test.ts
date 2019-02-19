@@ -35,6 +35,7 @@ import {
     IGeneratedAssessmentInstance,
     IManualTestStepResult,
     ITestStepResult,
+    PersistedTabInfo,
 } from '../../../../../common/types/store-data/iassessment-result-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { IScanBasePayload, IScanCompletedPayload, IScanUpdatePayload } from '../../../../../injected/analyzers/ianalyzer';
@@ -121,7 +122,7 @@ describe('AssessmentStoreTest', () => {
         const actualState = testObject.getDefaultState();
 
         const expectedState: Partial<IAssessmentStoreData> = {
-            targetTab: null,
+            persistedTabInfo: null,
             assessments: {},
             assessmentNavState: {
                 selectedTestType: null,
@@ -134,14 +135,14 @@ describe('AssessmentStoreTest', () => {
     });
 
     test('getDefaultState with persistedData', () => {
-        const targetTab = { id: 1, url: 'url', title: 'title' };
+        const targetTab: PersistedTabInfo = { id: 1, url: 'url', title: 'title', appRefreshed: true };
         const expectedTestType = -1 as VisualizationType;
         const expectedTestStep: string = 'assessment-1-step-1';
         const assessmentProvider = CreateTestAssessmentProvider();
         const assessments = assessmentProvider.all();
 
         const persisted: IAssessmentStoreData = {
-            targetTab,
+            persistedTabInfo: targetTab,
             assessments: {
                 ['assessment-1']: {
                     fullAxeResultsMap: null,
@@ -185,7 +186,7 @@ describe('AssessmentStoreTest', () => {
         };
 
         const expectedState: IAssessmentStoreData = {
-            targetTab,
+            persistedTabInfo: targetTab,
             assessments: {},
             assessmentNavState: {
                 selectedTestType: expectedTestType,
@@ -237,7 +238,7 @@ describe('AssessmentStoreTest', () => {
         };
 
         const expectedState: IAssessmentStoreData = {
-            targetTab: null,
+            persistedTabInfo: null,
             assessments: {},
             assessmentNavState: {
                 selectedTestType: expectedTestType,
@@ -435,10 +436,10 @@ describe('AssessmentStoreTest', () => {
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
         const initialState = new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object)
             .withSelectedTestType(VisualizationType.Color)
-            .withTargetTab(oldTabId, null, null)
+            .withTargetTab(oldTabId, null, null, true)
             .build();
         const finalState = new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object)
-            .withTargetTab(tabId, url, title)
+            .withTargetTab(tabId, url, title, false)
             .build();
 
         createStoreTesterForAssessmentActions('resetAllAssessmentsData')
@@ -462,10 +463,10 @@ describe('AssessmentStoreTest', () => {
             .verifiable();
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
         const initialState = new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object)
-            .withTargetTab(oldTabId, null, null)
+            .withTargetTab(oldTabId, null, null, true)
             .build();
         const finalState = new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object)
-            .withTargetTab(tabId, url, title)
+            .withTargetTab(tabId, url, title, false)
             .build();
 
         createStoreTesterForAssessmentActions('resetAllAssessmentsData')
@@ -650,7 +651,7 @@ describe('AssessmentStoreTest', () => {
             .verifiable();
         const initialState = new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object).build();
         const finalState = new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object)
-            .withTargetTab(tabId, url, title)
+            .withTargetTab(tabId, url, title, false)
             .build();
 
         createStoreTesterForAssessmentActions('updateTargetTabId')

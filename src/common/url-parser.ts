@@ -6,4 +6,10 @@ export class UrlParser {
         const url = new URL(urlString);
         return parseInt(url.searchParams.get(key), 10);
     }
+
+    public areURLHostNamesEqual(urlA: string, urlB: string): boolean {
+        const urlAObj = new URL(urlA);
+        const urlBObj = new URL(urlB);
+        return urlAObj.hostname === urlBObj.hostname;
+    }
 }

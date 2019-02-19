@@ -42,7 +42,7 @@ export class CommandStore extends BaseStore<ICommandStoreData> {
 
             const telemetryPayload = { telemetry };
 
-            this.telemetryEventHandler.publishTelemetry(SHORTCUT_MODIFIED, telemetryPayload, payload.tabId);
+            this.telemetryEventHandler.publishTelemetry(SHORTCUT_MODIFIED, telemetryPayload);
         }
 
         this.state.commands = payload.commands;

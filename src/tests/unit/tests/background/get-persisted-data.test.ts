@@ -5,7 +5,7 @@ import { IMock, Mock } from 'typemoq';
 import { getPersistedData, PersistedData } from '../../../../background/get-persisted-data';
 import { IndexedDBDataKeys } from '../../../../background/IndexedDBDataKeys';
 import { IndexedDBAPI } from '../../../../common/indexedDB/indexedDB';
-import { IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
+import { IAssessmentStoreData, PersistedTabInfo } from '../../../../common/types/store-data/iassessment-result-data';
 import { UserConfigurationStoreData } from '../../../../common/types/store-data/user-configuration-store';
 
 describe('GetPersistedDataTest', () => {
@@ -14,8 +14,8 @@ describe('GetPersistedDataTest', () => {
     let userConfigurationData: UserConfigurationStoreData;
 
     beforeEach(() => {
-        assessmentStoreData = { assessmentNavState: null, assessments: null, targetTab: 1 };
-        userConfigurationData = { isFirstTime: true, enableTelemetry: false, enableHighContrast: false, bugService: 'none' };
+        assessmentStoreData = { assessmentNavState: null, assessments: null, persistedTabInfo: {} as PersistedTabInfo };
+        userConfigurationData = { isFirstTime: true, enableTelemetry: false, enableHighContrast: false, bugService: 'none'  };
         indexedDBInstanceStrictMock = Mock.ofType<IndexedDBAPI>();
     });
 

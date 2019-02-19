@@ -18,6 +18,7 @@ import { IBaseStore } from '../../../../../../common/istore';
 import { StoreType } from '../../../../../../common/types/store-type';
 import { LaunchPanelType } from '../../../../../../popup/scripts/components/popup-view';
 import { CreateTestAssessmentProvider } from '../../../../common/test-assessment-provider';
+import { PersistedTabInfo } from '../../../../../../common/types/store-data/iassessment-result-data';
 
 describe('GlobalStoreHubTest', () => {
     let userDataStub: ILocalStorageData;
@@ -33,7 +34,11 @@ describe('GlobalStoreHubTest', () => {
         } as ILocalStorageData;
 
         persistedDataStub = {
-            assessmentStoreData: { targetTab: 1, assessmentNavState: null, assessments: null },
+            assessmentStoreData: {
+                persistedTabInfo: {} as PersistedTabInfo,
+                assessmentNavState: null,
+                assessments: null,
+            },
             userConfigurationData: { enableTelemetry: true, isFirstTime: false, enableHighContrast: false, bugService: 'none' },
         };
     });

@@ -35,6 +35,7 @@ describe('TargetChangeDialog', () => {
                 id: 111,
                 url: 'https://www.abc.com',
                 title: 'test title 1',
+                appRefreshed: false,
             },
             newTab: {
                 id: 111,
@@ -56,6 +57,7 @@ describe('TargetChangeDialog', () => {
                 id: 111,
                 url: 'https://www.abc.com',
                 title: 'test title 1',
+                appRefreshed: false,
             },
             newTab: {
                 id: 123,
@@ -80,6 +82,29 @@ describe('TargetChangeDialog', () => {
                 id: 111,
                 url: 'https://www.abc.com',
                 title: 'test title 1',
+                appRefreshed: false,
+            },
+            newTab: {
+                id: 123,
+                url: 'https://www.def.com',
+                title: 'test title 2',
+            },
+            actionMessageCreator: actionMessageCreatorMock.object,
+        };
+
+        const component = new TargetChangeDialog(targetChangeProps);
+        expect(component.render()).toMatchSnapshot();
+    });
+
+    test('snapshot: render when previous tab info shows app is refreshed', () => {
+        const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+
+        const targetChangeProps: ITargetChangeDialogProps = {
+            prevTab: {
+                id: 111,
+                url: 'https://www.abc.com',
+                title: 'test title 1',
+                appRefreshed: true,
             },
             newTab: {
                 id: 123,

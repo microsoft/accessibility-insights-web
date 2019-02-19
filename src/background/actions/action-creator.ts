@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import '../string-utils';
-
 import { autobind } from '@uifabric/utilities';
 
 import { TestMode } from '../../common/configs/test-mode';
@@ -110,7 +108,6 @@ export class ActionCreator {
         );
 
         this.registerTypeToPayloadCallback(Messages.Telemetry.Send, this.onSendTelemetry);
-        this.registerTypeToPayloadCallback(Messages.Telemetry.SendExcludeUrl, this.onSendTelemetryExcludeUrl);
 
         this.registerTypeToPayloadCallback(Messages.ChromeFeature.configureCommand, this.onOpenConfigureCommandTab);
 
@@ -134,16 +131,16 @@ export class ActionCreator {
     }
 
     @autobind
-    private onEnableVisualHelperWithoutScan(payload: ToggleActionPayload, tabId: number): void {
+    private onEnableVisualHelperWithoutScan(payload: ToggleActionPayload): void {
         const eventName = TelemetryEvents.ENABLE_VISUAL_HELPER;
-        this.telemetryEventHandler.publishTelemetry(eventName, payload, tabId);
+        this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.visualizationActions.enableVisualizationWithoutScan.invoke(payload);
     }
 
     @autobind
-    private onEnableVisualHelper(payload: ToggleActionPayload, tabId: number): void {
+    private onEnableVisualHelper(payload: ToggleActionPayload): void {
         const eventName = TelemetryEvents.ENABLE_VISUAL_HELPER;
-        this.telemetryEventHandler.publishTelemetry(eventName, payload, tabId);
+        this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.visualizationActions.enableVisualization.invoke(payload);
     }
 
@@ -153,36 +150,36 @@ export class ActionCreator {
     }
 
     @autobind
-    private onDisableVisualHelper(payload: ToggleActionPayload, tabId: number): void {
+    private onDisableVisualHelper(payload: ToggleActionPayload): void {
         const eventName = TelemetryEvents.DISABLE_VISUAL_HELPER;
-        this.telemetryEventHandler.publishTelemetry(eventName, payload, tabId);
+        this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.visualizationActions.disableVisualization.invoke(payload.test);
     }
 
     @autobind
-    private onStartOver(payload: ToggleActionPayload, tabId: number): void {
+    private onStartOver(payload: ToggleActionPayload): void {
         const eventName = TelemetryEvents.START_OVER_ASSESSMENT;
-        this.telemetryEventHandler.publishTelemetry(eventName, payload, tabId);
+        this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.visualizationActions.disableVisualization.invoke(payload.test);
     }
 
     @autobind
-    private onCancelStartOver(payload: BaseActionPayload, tabId: number): void {
+    private onCancelStartOver(payload: BaseActionPayload): void {
         const eventName = TelemetryEvents.CANCEL_START_OVER_ASSESSMENT;
-        this.telemetryEventHandler.publishTelemetry(eventName, payload, tabId);
+        this.telemetryEventHandler.publishTelemetry(eventName, payload);
     }
 
     @autobind
-    private onStartOverAllAssessments(payload: ToggleActionPayload, tabId: number): void {
+    private onStartOverAllAssessments(payload: ToggleActionPayload): void {
         const eventName = TelemetryEvents.START_OVER_ALL_ASSESSMENTS;
-        this.telemetryEventHandler.publishTelemetry(eventName, payload, tabId);
+        this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.visualizationActions.disableAssessmentVisualizations.invoke(null);
     }
 
     @autobind
-    private onCancelStartOverAllAssessments(payload: BaseActionPayload, tabId: number): void {
+    private onCancelStartOverAllAssessments(payload: BaseActionPayload): void {
         const eventName = TelemetryEvents.CANCEL_START_OVER_ALL_ASSESSMENTS;
-        this.telemetryEventHandler.publishTelemetry(eventName, payload, tabId);
+        this.telemetryEventHandler.publishTelemetry(eventName, payload);
     }
 
     @autobind
@@ -193,7 +190,7 @@ export class ActionCreator {
     @autobind
     private onAssessmentScanCompleted(payload: IScanCompletedPayload<any>, tabId: number): void {
         const eventName = TelemetryEvents.ASSESSMENT_SCAN_COMPLETED;
-        this.telemetryEventHandler.publishTelemetry(eventName, payload, tabId);
+        this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.visualizationActions.scanCompleted.invoke(null);
         this.notificationCreator.createNotificationByVisualizationKey(payload.selectorMap, payload.key, payload.testType);
         this.targetTabController.showTargetTab(tabId, payload.testType, payload.key);
@@ -203,26 +200,26 @@ export class ActionCreator {
     private onOpenPreviewFeaturesPanel(payload: BaseActionPayload, tabId: number): void {
         this.previewFeaturesActions.openPreviewFeatures.invoke(null);
         this.showDetailsView(tabId);
-        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.PREVIEW_FEATURES_OPEN, payload, tabId);
+        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.PREVIEW_FEATURES_OPEN, payload);
     }
 
     @autobind
-    private onClosePreviewFeaturesPanel(payload: BaseActionPayload, tabId: number): void {
+    private onClosePreviewFeaturesPanel(payload: BaseActionPayload): void {
         this.previewFeaturesActions.closePreviewFeatures.invoke(null);
-        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.PREVIEW_FEATURES_CLOSE, payload, tabId);
+        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.PREVIEW_FEATURES_CLOSE, payload);
     }
 
     @autobind
     private onOpenSettingsPanel(payload: BaseActionPayload, tabId: number): void {
         this.detailsViewActions.openSettingsPanel.invoke(null);
         this.showDetailsView(tabId);
-        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.SETTINGS_PANEL_OPEN, payload, tabId);
+        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.SETTINGS_PANEL_OPEN, payload);
     }
 
     @autobind
-    private onCloseSettingsPanel(payload: BaseActionPayload, tabId: number): void {
+    private onCloseSettingsPanel(payload: BaseActionPayload): void {
         this.detailsViewActions.closeSettingsPanel.invoke(null);
-        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.SETTINGS_PANEL_CLOSE, payload, tabId);
+        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.SETTINGS_PANEL_CLOSE, payload);
     }
 
     @autobind
@@ -231,35 +228,35 @@ export class ActionCreator {
     }
 
     @autobind
-    private onRecordingCompleted(payload: BaseActionPayload, tabId: number): void {
-        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.TABSTOPS_RECORDING_COMPLETE, payload, tabId);
+    private onRecordingCompleted(payload: BaseActionPayload): void {
+        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.TABSTOPS_RECORDING_COMPLETE, payload);
     }
 
     @autobind
-    private onRecordingTerminated(payload: BaseActionPayload, tabId: number): void {
+    private onRecordingTerminated(payload: BaseActionPayload): void {
         this.visualizationScanResultActions.disableTabStop.invoke(payload);
     }
 
     @autobind
-    private onOpenConfigureCommandTab(payload: BaseActionPayload, tabId: number): void {
+    private onOpenConfigureCommandTab(payload: BaseActionPayload): void {
         this.chromeFeatureController.openCommandConfigureTab();
-        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.SHORTCUT_CONFIGURE_OPEN, payload, tabId);
+        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.SHORTCUT_CONFIGURE_OPEN, payload);
     }
 
     @autobind
-    private onUpdateIssuesSelectedTargets(payload: string[], tabId: number): void {
+    private onUpdateIssuesSelectedTargets(payload: string[]): void {
         this.visualizationScanResultActions.updateIssuesSelectedTargets.invoke(payload);
     }
 
     @autobind
-    private onUpdateFocusedInstance(payload: string[], tabId: number): void {
+    private onUpdateFocusedInstance(payload: string[]): void {
         this.visualizationActions.updateFocusedInstance.invoke(payload);
     }
 
     @autobind
     private onScanCompleted(payload: IScanCompletedPayload<any>, tabId: number): void {
         const telemetryEventName = TelemetryEvents.ADHOC_SCAN_COMPLETED;
-        this.telemetryEventHandler.publishTelemetry(telemetryEventName, payload, tabId);
+        this.telemetryEventHandler.publishTelemetry(telemetryEventName, payload);
         this.visualizationScanResultActions.scanCompleted.invoke(payload);
         this.visualizationActions.scanCompleted.invoke(null);
         this.notificationCreator.createNotificationByVisualizationKey(payload.selectorMap, payload.key, payload.testType);
@@ -267,7 +264,7 @@ export class ActionCreator {
     }
 
     @autobind
-    private onScrollRequested(payload: BaseActionPayload, tabId: number): void {
+    private onScrollRequested(payload: BaseActionPayload): void {
         this.visualizationActions.scrollRequested.invoke(null);
     }
 
@@ -290,7 +287,7 @@ export class ActionCreator {
 
     private enableToggleOnDetailsViewOpen(test: VisualizationType, tabId: number): void {
         const payload: VisualizationTogglePayload = this.createVisualizationTogglePayloadWithNullTelemetry(test);
-        this.onVisualizationToggle(payload, tabId);
+        this.onVisualizationToggle(payload);
     }
 
     private createVisualizationTogglePayloadWithNullTelemetry(test: VisualizationType): VisualizationTogglePayload {
@@ -306,13 +303,13 @@ export class ActionCreator {
         this.previewFeaturesActions.closePreviewFeatures.invoke(null);
         this.visualizationActions.updateSelectedPivotChild.invoke(payload);
         this.showDetailsView(tabId);
-        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.PIVOT_CHILD_SELECTED, payload, tabId);
+        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.PIVOT_CHILD_SELECTED, payload);
     }
 
     @autobind
-    private onDetailsViewPivotSelected(payload: OnDetailsViewPivotSelected, tabId: number): void {
+    private onDetailsViewPivotSelected(payload: OnDetailsViewPivotSelected): void {
         this.visualizationActions.updateSelectedPivot.invoke(payload);
-        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.DETAILS_VIEW_PIVOT_ACTIVATED, payload, tabId);
+        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.DETAILS_VIEW_PIVOT_ACTIVATED, payload);
     }
 
     @autobind
@@ -321,9 +318,9 @@ export class ActionCreator {
     }
 
     @autobind
-    private onVisualizationToggle(payload: VisualizationTogglePayload, tabId: number): void {
+    private onVisualizationToggle(payload: VisualizationTogglePayload): void {
         const telemetryEvent = this.adhocTestTypeToTelemetryEvent[payload.test];
-        this.telemetryEventHandler.publishTelemetry(telemetryEvent, payload, tabId);
+        this.telemetryEventHandler.publishTelemetry(telemetryEvent, payload);
 
         if (payload.enabled) {
             this.visualizationActions.enableVisualization.invoke(payload);
@@ -333,15 +330,9 @@ export class ActionCreator {
     }
 
     @autobind
-    private onSendTelemetry(payload: PayloadWithEventName, tabId: number): void {
+    private onSendTelemetry(payload: PayloadWithEventName): void {
         const eventName = payload.eventName;
-        this.telemetryEventHandler.publishTelemetry(eventName, payload, tabId);
-    }
-
-    @autobind
-    private onSendTelemetryExcludeUrl(payload: PayloadWithEventName, tabId: number): void {
-        const eventName = payload.eventName;
-        this.telemetryEventHandler.publishTelemetry(eventName, payload, tabId, false);
+        this.telemetryEventHandler.publishTelemetry(eventName, payload);
     }
 
     @autobind

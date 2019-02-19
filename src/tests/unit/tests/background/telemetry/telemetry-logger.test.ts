@@ -3,7 +3,7 @@
 import { IMock, Mock, Times } from 'typemoq';
 
 import { FeatureFlagsController } from '../../../../../background/feature-flags-controller';
-import { TelemetryBaseData } from '../../../../../background/telemetry/app-insights-telemetry-client';
+import { TelemetryBaseData } from '../../../../../background/telemetry/telemetry-base-data';
 import { TelemetryLogger } from '../../../../../background/telemetry/telemetry-logger';
 import { FeatureFlags } from '../../../../../common/feature-flags';
 import { Logger } from '../../../../../common/logging/logger';

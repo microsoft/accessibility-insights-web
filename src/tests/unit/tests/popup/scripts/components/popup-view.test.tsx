@@ -50,9 +50,7 @@ describe('PopupView', () => {
 
         browserAdapterMock
             .setup(ba => ba.getManifest())
-            .returns(() => {
-                return manifestStub as any;
-            })
+            .returns(() => manifestStub)
             .verifiable(Times.once());
 
         const props = createDefaultPropsBuilder(storesHubMock.object)
@@ -71,9 +69,7 @@ describe('PopupView', () => {
 
         browserAdapterMock
             .setup(ba => ba.getManifest())
-            .returns(() => {
-                return manifestStub as any;
-            })
+            .returns(() => manifestStub)
             .verifiable(Times.once());
 
         const props = createDefaultPropsBuilder(storesHubMock.object)
@@ -115,9 +111,7 @@ describe('PopupView', () => {
             storesHubMock = createDefaultStoresHubMock();
             browserAdapterMock
                 .setup(ba => ba.getManifest())
-                .returns(() => {
-                    return manifestStub as any;
-                })
+                .returns(() => manifestStub)
                 .verifiable();
             launchPadRowConfigurationFactoryMock
                 .setup(l =>
@@ -247,11 +241,8 @@ describe('PopupView', () => {
     test('renderFailureMsgPanelForChromeUrl', () => {
         const manifestStub = getManifestStub();
 
-        browserAdapterMock
-            .setup(ba => ba.getManifest())
-            .returns(() => {
-                return manifestStub as any;
-            });
+        browserAdapterMock.setup(ba => ba.getManifest()).returns(() => manifestStub);
+
         const storesHubMock = createDefaultStoresHubMock();
 
         const props = createDefaultPropsBuilder(storesHubMock.object)
@@ -270,14 +261,9 @@ describe('PopupView', () => {
     });
 
     test('renderFailureMsgPanelForFileUrl', () => {
-        const visualizationStoreState = new VisualizationStoreDataBuilder().build();
         const manifestStub = getManifestStub();
 
-        browserAdapterMock
-            .setup(ba => ba.getManifest())
-            .returns(() => {
-                return manifestStub as any;
-            });
+        browserAdapterMock.setup(ba => ba.getManifest()).returns(() => manifestStub);
         const storesHubMock = createDefaultStoresHubMock();
 
         const props = createDefaultPropsBuilder(storesHubMock.object)
@@ -308,10 +294,10 @@ describe('PopupView', () => {
         return storesHubMock;
     }
 
-    function getManifestStub() {
+    function getManifestStub(): chrome.runtime.Manifest {
         return {
             version: '2',
-        };
+        } as chrome.runtime.Manifest;
     }
 });
 

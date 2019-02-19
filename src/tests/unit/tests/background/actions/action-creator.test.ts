@@ -547,19 +547,6 @@ describe('ActionCreatorTest', () => {
         builder.verifyAll();
     });
 
-    test('registerCallback for onSendTelemetryExcludeUrl', () => {
-        const payload = { eventName: 'someEvent', telemetry: {} };
-        const args = [payload, 1];
-        const builder = new ActionCreatorValidator()
-            .setupRegistrationCallback(Messages.Telemetry.SendExcludeUrl, args)
-            .setupTelemetrySendExcludeUrl('someEvent', payload, 1);
-
-        const actionCreator = builder.buildActionCreator();
-        actionCreator.registerCallbacks();
-
-        builder.verifyAll();
-    });
-
     test('registerCallback for tabbed element added', () => {
         const tabbedElement: AddTabbedElementPayload = {
             tabbedElements: [
@@ -1169,15 +1156,7 @@ class ActionCreatorValidator {
 
     public setupTelemetrySend(eventName: string, telemetryInfo: any, tabId: number): ActionCreatorValidator {
         this.telemetryEventHandlerStrictMock
-            .setup(tsm => tsm.publishTelemetry(It.isValue(eventName), It.isValue(telemetryInfo), It.isValue(tabId)))
-            .verifiable(Times.once());
-
-        return this;
-    }
-
-    public setupTelemetrySendExcludeUrl(eventName: string, telemetryInfo: any, tabId: number): ActionCreatorValidator {
-        this.telemetryEventHandlerStrictMock
-            .setup(tsm => tsm.publishTelemetry(It.isValue(eventName), It.isValue(telemetryInfo), It.isValue(tabId), false))
+            .setup(tsm => tsm.publishTelemetry(It.isValue(eventName), It.isValue(telemetryInfo)))
             .verifiable(Times.once());
 
         return this;

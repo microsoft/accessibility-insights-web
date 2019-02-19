@@ -27,18 +27,18 @@ export class ScopingActionCreator {
 
     public registerCallbacks(): void {
         this.registerTypeToPayloadCallback(Messages.Scoping.OpenPanel, (payload, tabId) => this.onOpenScopingPanel(payload, tabId));
-        this.registerTypeToPayloadCallback(Messages.Scoping.ClosePanel, (payload, tabId) => this.onCloseScopingPanel(payload, tabId));
+        this.registerTypeToPayloadCallback(Messages.Scoping.ClosePanel, payload => this.onCloseScopingPanel(payload));
     }
 
     private onOpenScopingPanel(payload: BaseActionPayload, tabId: number): void {
         this.scopingActions.openScopingPanel.invoke(null);
         this.showDetailsView(tabId);
-        this.telemetryEventHandler.publishTelemetry(SCOPING_OPEN, payload, tabId);
+        this.telemetryEventHandler.publishTelemetry(SCOPING_OPEN, payload);
     }
 
-    private onCloseScopingPanel(payload: BaseActionPayload, tabId: number): void {
+    private onCloseScopingPanel(payload: BaseActionPayload): void {
         this.scopingActions.closeScopingPanel.invoke(null);
-        this.telemetryEventHandler.publishTelemetry(SCOPING_CLOSE, payload, tabId);
+        this.telemetryEventHandler.publishTelemetry(SCOPING_CLOSE, payload);
     }
 
     private showDetailsView(tabId: number): void {
