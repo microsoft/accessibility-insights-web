@@ -24,7 +24,7 @@ describe('TargetChangeDialog test set for prev tab null', () => {
         };
 
         urlParserMock
-            .setup(x => x.areURLHostNamesEqual(prevTab, newTab.url))
+            .setup(urlParserObject => urlParserObject.areURLHostNamesEqual(prevTab, newTab.url))
             .returns(() => true)
             .verifiable(Times.never());
 
@@ -141,6 +141,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
             ...newTab,
             id: 123,
         };
+
         urlParserMock
             .setup(urlParserObject => urlParserObject.areURLHostNamesEqual(prevTab.url, newTab.url))
             .returns(() => true)
