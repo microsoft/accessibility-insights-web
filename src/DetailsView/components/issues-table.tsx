@@ -201,6 +201,7 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
                 pageTitle={this.props.pageTitle}
                 pageUrl={this.props.pageUrl}
                 issueTrackerPath={this.props.issueTrackerPath}
+                featureFlagData={this.props.featureFlags}
             />
         );
     }

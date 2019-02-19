@@ -100,6 +100,7 @@ describe('IssuesDetailsPaneTest', () => {
             pageTitle: samplePageTitle,
             pageUrl: samplePageUrl,
             issueTrackerPath: sampleIssueTrackerPath,
+            featureFlagData: {},
         };
 
         return props;

@@ -13,6 +13,8 @@ import { FixInstructionPanel } from '../../injected/components/fix-instruction-p
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { GuidanceLinks } from './guidance-links';
+import { FeatureFlags } from '../../common/feature-flags';
+import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 
 export type IssuesDetailsPaneDeps = ToastDeps & {
     issueDetailsTextGenerator: IssueDetailsTextGenerator;
@@ -25,6 +27,7 @@ export interface IssuesDetailsPaneProps {
     pageTitle: string;
     pageUrl: string;
     issueTrackerPath: string;
+    featureFlagData: FeatureFlagStoreData;
 }
 
 interface IssueDetailsState {
@@ -65,14 +68,17 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
             pageUrl: this.props.pageUrl,
             ruleResult: result,
         };
+        const showBugFiling = this.props.featureFlagData[FeatureFlags.showBugFiling];
         return (
             <div>
                 <h2>Failure details</h2>
-                <FileIssueDetailsButton
-                    deps={this.props.deps}
-                    issueDetailsData={issueData}
-                    issueTrackerPath={this.props.issueTrackerPath}
-                />
+                {showBugFiling ? (
+                    <FileIssueDetailsButton
+                        deps={this.props.deps}
+                        issueDetailsData={issueData}
+                        issueTrackerPath={this.props.issueTrackerPath}
+                    />
+                ) : null}
                 <CopyIssueDetailsButton
                     deps={this.props.deps}
                     issueDetailsData={issueData}
