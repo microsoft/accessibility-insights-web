@@ -11,8 +11,16 @@ import { BaseDataBuilder } from '../../../common/base-data-builder';
 import { EventStubFactory, INativeEventStub } from '../../../common/event-stub-factory';
 
 describe('StaticContentDetailsViewTest', () => {
-    it('render content page component content', () => {
+    it('render content page component', () => {
         const props = new StaticContentDetailsViewPropsBuilder().build();
+
+        const actual = shallow(<StaticContentDetailsView {...props} />);
+
+        expect(actual.debug()).toMatchSnapshot();
+    });
+
+    it('handle null content page component', () => {
+        const props = new StaticContentDetailsViewPropsBuilder().with('staticContent', null).build();
 
         const actual = shallow(<StaticContentDetailsView {...props} />);
 
