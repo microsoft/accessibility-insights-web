@@ -22,7 +22,7 @@ const howToTest: JSX.Element = (
         <ol>
             <li>
                 Use the Chrome Web Developer extension (<Markup.Term>Outline > Outline Tables</Markup.Term>) to identify any{' '}
-                <Markup.Code>{'<table>'}</Markup.Code> elements in the target page.
+                <Markup.Tag tagName="table" /> elements in the target page.
             </li>
             <li>
                 If you find a table, determine whether it is a <Markup.Emphasis>layout</Markup.Emphasis> table:

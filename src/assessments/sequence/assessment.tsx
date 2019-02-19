@@ -25,7 +25,7 @@ const gettingStarted: JSX.Element = (
 
 export const SequenceAssessment: IAssessment = AssessmentBuilder.Assisted({
     key,
-    title: title,
+    title,
     gettingStarted,
     type: VisualizationType.SequenceAssessment,
     steps: [CssPositioning, LayoutTables, Columns],
