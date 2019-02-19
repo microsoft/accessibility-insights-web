@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GlobalMock, GlobalScope, IGlobalMock, It, MockBehavior } from 'typemoq';
+import { GlobalMock, GlobalScope, IGlobalMock, It, MockBehavior, Times } from 'typemoq';
 
 import { IDictionaryStringTo } from '../../../../scanner/dictionary-types';
 import { cssContentConfiguration } from './../../../../scanner/css-content-rule';
@@ -56,12 +56,15 @@ describe('meaningful sequence', () => {
         windowMock: IGlobalMock<typeof window.getComputedStyle>,
         expectedResult: boolean,
     ): void {
-        windowMock.setup(m => m(It.isAny())).returns(style => ({ getPropertyValue: property => style[property] } as CSSStyleDeclaration));
+        windowMock
+            .setup(m => m(It.isAny())).returns(style => ({ getPropertyValue: property => style[property] } as CSSStyleDeclaration))
+            .verifiable(Times.once());
 
         let result: boolean;
         GlobalScope.using(windowMock).with(() => {
             result = cssContentConfiguration.rule.matches(node, null);
         });
         expect(result).toBe(expectedResult);
+        windowMock.verifyAll();
     }
 });

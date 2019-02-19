@@ -16,15 +16,22 @@ export const cssContentConfiguration: RuleConfiguration = {
         id: cssContentRuleId,
         selector: '*',
         any: [cssContentCheckId],
-        matches: isAbsolutePositionOrRightFloat,
+        matches: matches,
         enabled: false,
     },
 };
 
-export function isAbsolutePositionOrRightFloat(node: HTMLElement): boolean {
+function matches(node: HTMLElement): boolean {
     const nodeStyle = window.getComputedStyle(node);
-    const position = nodeStyle.getPropertyValue('position').toLowerCase();
-    const float = nodeStyle.getPropertyValue('float').toLowerCase();
+    return isAbsolutePosition(nodeStyle) || isRightFloat(nodeStyle);
+}
 
-    return position === 'absolute' || float === 'right';
+function isAbsolutePosition(nodeStyle: CSSStyleDeclaration): boolean {
+    const position = nodeStyle.getPropertyValue('position').toLowerCase();
+    return position === 'absolute';
+}
+
+function isRightFloat(nodeStyle: CSSStyleDeclaration): boolean {
+    const float = nodeStyle.getPropertyValue('float').toLowerCase();
+    return float === 'right';
 }
