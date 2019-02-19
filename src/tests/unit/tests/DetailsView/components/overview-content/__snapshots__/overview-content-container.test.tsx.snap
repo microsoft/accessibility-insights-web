@@ -17,11 +17,7 @@ exports[`OverviewContainer component is defined and matches snapshot 1`] = `
         "assessmentsProviderWithFeaturesEnabled": [Function],
         "detailsViewActionMessageCreator": Object {},
         "getAssessmentSummaryModelFromProviderAndStoreData": [MockFunction],
-        "urlParser": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "areURLHostNamesEqual": [Function],
-          "getIntParam": [Function],
-        },
+        "urlParser": Object {},
       }
     }
     newTab={
@@ -54,11 +50,7 @@ exports[`OverviewContainer component is defined and matches snapshot 1`] = `
           "assessmentsProviderWithFeaturesEnabled": [Function],
           "detailsViewActionMessageCreator": Object {},
           "getAssessmentSummaryModelFromProviderAndStoreData": [MockFunction],
-          "urlParser": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "areURLHostNamesEqual": [Function],
-            "getIntParam": [Function],
-          },
+          "urlParser": Object {},
         }
       }
       linkDataSource={

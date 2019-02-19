@@ -17,7 +17,9 @@ import { HelpLinkDeps } from '../../../../../../DetailsView/components/overview-
 
 describe('OverviewContainer', () => {
     const urlParserMock = {} as UrlParser;
+
     const openExternalLink = jest.fn();
+
     const tabStoreDataStub: ITabStoreData = {
         url: 'some url',
         title: 'some title',
@@ -49,6 +51,7 @@ describe('OverviewContainer', () => {
     };
 
     const featureFlagDataStub = {};
+
     const assessmentStoreData: IAssessmentStoreData = {
         persistedTabInfo: {} as PersistedTabInfo,
     } as IAssessmentStoreData;
