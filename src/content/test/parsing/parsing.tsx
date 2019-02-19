@@ -66,17 +66,19 @@ export const infoAndExamples = create(({ Markup }) => (
                 Fully conforming to specifications
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H88">Using HTML according to spec</Markup.HyperLink>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H74">
-                Ensuring that opening and closing tags are used according to specification
-            </Markup.HyperLink>{' '}
-            and{' '}
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H93">
-                Ensuring that id attributes are unique on a Web page
-            </Markup.HyperLink>{' '}
-            and{' '}
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H94">
-                Ensuring that elements do not contain duplicate attributes
-            </Markup.HyperLink>
+            <Markup.Inline>
+                <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H74">
+                    Ensuring that opening and closing tags are used according to specification
+                </Markup.HyperLink>{' '}
+                and{' '}
+                <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H93">
+                    Ensuring that id attributes are unique on a Web page
+                </Markup.HyperLink>{' '}
+                and{' '}
+                <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H94">
+                    Ensuring that elements do not contain duplicate attributes
+                </Markup.HyperLink>
+            </Markup.Inline>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H75">
                 Ensuring that Web pages are well-formed
             </Markup.HyperLink>

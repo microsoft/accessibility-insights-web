@@ -24,6 +24,7 @@ describe('ContentPage', () => {
         PassFail,
         Columns,
         Column,
+        Inline,
         HyperLink,
         CodeExample,
         Links,
@@ -93,6 +94,11 @@ describe('ContentPage', () => {
 
         it('<Column> renders', () => {
             const wrapper = shallow(<Column>INSIDE COLUMN</Column>);
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
+
+        it('<Inline> renders', () => {
+            const wrapper = shallow(<Inline>INLINED</Inline>);
             expect(wrapper.getElement()).toMatchSnapshot();
         });
 

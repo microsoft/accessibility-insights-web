@@ -80,6 +80,14 @@ exports[`ContentPage .Markup <HyperLink> renders 1`] = `
 </NewTabLink>
 `;
 
+exports[`ContentPage .Markup <Inline> renders 1`] = `
+<div
+  className="content-inline"
+>
+  INLINED
+</div>
+`;
+
 exports[`ContentPage .Markup <LandmarkLegend> renders 1`] = `
 <span
   className="landmarks-legend test-landmark"
