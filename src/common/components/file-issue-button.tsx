@@ -89,9 +89,9 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
                 isBlocking={false}
                 containerClassName="ms-file-issue-details-modal-container"
             >
-                    <p>
+                    <h2>
                         File Issue
-                    </p>
+                    </h2>
                     <p>
                         Issue filing location must be configured before filing bugs.
                         Enter in the location information into settings in order to
