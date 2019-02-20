@@ -4,6 +4,7 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import {
     SetBugServicePayload,
+    SetBugServicePropertyPayload,
     SetHighContrastModePayload,
     SetTelemetryStatePayload,
 } from '../../../../../background/actions/action-payloads';
@@ -76,6 +77,25 @@ describe('UserConfigMessageCreator', () => {
         postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
 
         testSubject.setBugService(bugServiceName);
+
+        postMessageMock.verifyAll();
+    });
+
+    test('setBugServiceProperty', () => {
+        const payload: SetBugServicePropertyPayload = {
+            bugServiceName: 'bug-service-name',
+            propertyName: 'property-name',
+            propertyValue: 'property-value',
+        };
+        const expectedMessage = {
+            tabId: 1,
+            type: Messages.UserConfig.SetBugServiceProperty,
+            payload,
+        };
+
+        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
+
+        testSubject.setBugServiceProperty(payload.bugServiceName, payload.propertyName, payload.propertyValue);
 
         postMessageMock.verifyAll();
     });
