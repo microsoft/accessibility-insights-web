@@ -11,7 +11,7 @@ describe('assessments-style-cop', () => {
         assertIsProperlyStyled('This has a hyphenated-word');
         assertIsProperlyStyled('ASDF');
         assertIsProperlyStyled('ASDFs');
-        assertIsProperlyStyled('CSS sentence with fist word to be acronym');
+        assertIsProperlyStyled('CSS sentence with first word to be acronym');
         expect(isSentenceCase('This is Title Case')).toBe(false);
         expect(isUpperCaseAcronym('NOTREALLYCORRECTd')).toBe(false);
     });
