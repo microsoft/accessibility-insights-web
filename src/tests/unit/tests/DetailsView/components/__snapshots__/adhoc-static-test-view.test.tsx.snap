@@ -1,5 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AdhocStaticTestView should return static content details view 1`] = `"<StaticContentDetailsView visualizationEnabled={true} onToggleClick={[Function: clickHandlerStub]} title=\\"test title\\" toggleLabel=\\"test toggle label\\" content={{...}} />"`;
+exports[`AdhocStaticTestView handles null content 1`] = `"<TargetPageChangedView displayableData={{...}} type={-1} toggleClickHandler={[Function: clickHandlerStub]} />"`;
+
+exports[`AdhocStaticTestView renders details view with content 1`] = `
+"<StaticContentDetailsView deps={[Function: function () {
+                    var args = [];
+                    for (var _i = 0; _i < arguments.length; _i++) {
+                        args[_i] = arguments[_i];
+                    }
+                    _this._interceptor.removeInvocation(invocation_1);
+                    var method = new MethodInfo(target, p);
+                    var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
+                    _this._interceptor.intercept(methodInvocation);
+                    return methodInvocation.returnValue;
+                }]} visualizationEnabled={true} onToggleClick={[Function: clickHandlerStub]} title=\\"test title\\" toggleLabel=\\"test toggle label\\" content={[Function: function () {
+                    var args = [];
+                    for (var _i = 0; _i < arguments.length; _i++) {
+                        args[_i] = arguments[_i];
+                    }
+                    _this._interceptor.removeInvocation(invocation_1);
+                    var method = new MethodInfo(target, p);
+                    var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
+                    _this._interceptor.intercept(methodInvocation);
+                    return methodInvocation.returnValue;
+                }]} />"
+`;
 
 exports[`AdhocStaticTestView should return target page changed view as tab is changed 1`] = `"<TargetPageChangedView displayableData={{...}} type={-1} toggleClickHandler={[Function: clickHandlerStub]} />"`;

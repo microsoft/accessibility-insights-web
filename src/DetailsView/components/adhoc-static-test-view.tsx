@@ -7,38 +7,40 @@ import { NamedSFC } from '../../common/react/named-sfc';
 import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
 import { IVisualizationStoreData } from '../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
+import { ContentReference } from '../../views/content/content-page';
 import { DetailsViewToggleClickHandlerFactory } from '../handlers/details-view-toggle-click-handler-factory';
-import { IStaticContentDetailsViewProps, StaticContentDetailsView } from './static-content-details-view';
+import { StaticContentDetailsView, StaticContentDetailsViewDeps, StaticContentDetailsViewProps } from './static-content-details-view';
 import { TargetPageChangedView } from './target-page-changed-view';
 
-export type StaticTestViewDeps = {};
+export type AdhocStaticTestViewDeps = StaticContentDetailsViewDeps;
 
-export interface IAdhocStaticTestViewProps {
-    deps: StaticTestViewDeps;
+export interface AdhocStaticTestViewProps {
+    deps: AdhocStaticTestViewDeps;
     tabStoreData: Pick<ITabStoreData, 'isChanged'>;
     selectedTest: VisualizationType;
     visualizationStoreData: IVisualizationStoreData;
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
     configuration: IVisualizationConfiguration;
+    content?: ContentReference;
 }
 
-export const AdhocStaticTestView = NamedSFC<IAdhocStaticTestViewProps>('AdhocStaticTestView', ({ children, ...props }) => {
+export const AdhocStaticTestView = NamedSFC<AdhocStaticTestViewProps>('AdhocStaticTestView', ({ children, ...props }) => {
     const selectedTest = props.selectedTest;
     const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
     const clickHandler = props.clickHandlerFactory.createClickHandler(selectedTest, !scanData.enabled);
     const displayableData = props.configuration.displayableData;
-    const content = props.configuration.detailsViewStaticContent;
 
     if (props.tabStoreData.isChanged) {
         return <TargetPageChangedView displayableData={displayableData} type={selectedTest} toggleClickHandler={clickHandler} />;
     }
 
-    const givenProps: IStaticContentDetailsViewProps = {
+    const givenProps: StaticContentDetailsViewProps = {
+        deps: props.deps,
         visualizationEnabled: scanData.enabled,
         onToggleClick: clickHandler,
         title: displayableData.title,
         toggleLabel: displayableData.toggleLabel,
-        content,
+        content: props.content,
     };
 
     return <StaticContentDetailsView {...givenProps} />;

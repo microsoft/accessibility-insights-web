@@ -71,6 +71,14 @@ exports[`ContentPage .Markup <Fail> renders 1`] = `
 </Column>
 `;
 
+exports[`ContentPage .Markup <Highlight> renders 1`] = `
+<span
+  className="highlight"
+>
+  HIGHLIGHTED
+</span>
+`;
+
 exports[`ContentPage .Markup <HyperLink> renders 1`] = `
 <NewTabLink
   href="http://my.link"
@@ -78,6 +86,14 @@ exports[`ContentPage .Markup <HyperLink> renders 1`] = `
 >
   LINK TEXT
 </NewTabLink>
+`;
+
+exports[`ContentPage .Markup <Inline> renders 1`] = `
+<div
+  className="content-inline"
+>
+  INLINED
+</div>
 `;
 
 exports[`ContentPage .Markup <LandmarkLegend> renders 1`] = `

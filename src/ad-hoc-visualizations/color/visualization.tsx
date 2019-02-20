@@ -11,11 +11,11 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { generateUID } from '../../common/uid-generator';
 import { adhoc as content } from '../../content/adhoc';
 import { AdhocStaticTestView } from '../../DetailsView/components/adhoc-static-test-view';
-import { colorContent } from '../../DetailsView/StaticContent/color-details-view';
 import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
 import { ScannerUtils } from './../../injected/scanner-utils';
 
 const { guidance } = content.color;
+
 export const ColorAdHocVisualization: IVisualizationConfiguration = {
     getTestView: props => <AdhocStaticTestView {...props} />,
     key: AdHocTestkeys.Color,
@@ -30,7 +30,6 @@ export const ColorAdHocVisualization: IVisualizationConfiguration = {
         toggleLabel: 'Show grayscale',
         linkToDetailsViewText: 'How to test color',
     },
-    detailsViewStaticContent: colorContent,
     chromeCommand: '05_toggle-color',
     launchPanelDisplayOrder: 5,
     adhocToolsPanelDisplayOrder: 2,

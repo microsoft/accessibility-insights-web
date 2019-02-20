@@ -12,7 +12,6 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { generateUID } from '../../common/uid-generator';
 import { adhoc as content } from '../../content/adhoc';
 import { AdhocStaticTestView } from '../../DetailsView/components/adhoc-static-test-view';
-import { headingsContent } from '../../DetailsView/StaticContent/headings-details-view';
 import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
 import { ScannerUtils } from './../../injected/scanner-utils';
 
@@ -32,7 +31,6 @@ export const HeadingsAdHocVisualization: IVisualizationConfiguration = {
         toggleLabel: 'Show headings',
         linkToDetailsViewText: 'How to test headings',
     },
-    detailsViewStaticContent: headingsContent,
     chromeCommand: '03_toggle-headings',
     launchPanelDisplayOrder: 3,
     adhocToolsPanelDisplayOrder: 3,

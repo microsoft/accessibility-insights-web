@@ -28,7 +28,6 @@ export const IssuesAdHocVisualization: IVisualizationConfiguration = {
         toggleLabel: 'Show failures',
         linkToDetailsViewText: 'List view and filtering',
     },
-    detailsViewStaticContent: null,
     chromeCommand: '01_toggle-issues',
     launchPanelDisplayOrder: 1,
     adhocToolsPanelDisplayOrder: 1,
