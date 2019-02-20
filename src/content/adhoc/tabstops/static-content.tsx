@@ -1,11 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
+import { React, create } from '../../common';
+import { toolName } from '../../strings/application';
 
-import { NewTabLink } from '../../common/components/new-tab-link';
-import { toolName } from '../../content/strings/application';
-
-export const tabStopsContent: JSX.Element = (
+export const staticContent = create(({ Link }) => (
     <div>
         <h2>Why tab stops matter</h2>
 
@@ -24,10 +22,7 @@ export const tabStopsContent: JSX.Element = (
             Activating and/or interacting with each element via keyboard will be covered in a separate test.
             <br />
             To learn more about tab stops, see&nbsp;
-            <NewTabLink href="https://aka.ms/webaim/keyboard-accessibility">
-                <span>WebAIM</span>: Keyboard Accessibility
-            </NewTabLink>
-            .
+            <Link.Keyboard />
         </div>
 
         <h2>About the Tab stops visualization</h2>
@@ -146,4 +141,4 @@ export const tabStopsContent: JSX.Element = (
             <li>All focus changes that occur should be a predictable result of user action.</li>
         </ul>
     </div>
-);
+));

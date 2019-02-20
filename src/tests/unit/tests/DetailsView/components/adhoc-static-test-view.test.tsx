@@ -7,15 +7,19 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 import { IDisplayableVisualizationTypeData } from '../../../../../common/configs/visualization-configuration-factory';
 import { IScanData, ITestsEnabledState, IVisualizationStoreData } from '../../../../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { AdhocStaticTestView, IAdhocStaticTestViewProps } from '../../../../../DetailsView/components/adhoc-static-test-view';
+import {
+    AdhocStaticTestView,
+    AdhocStaticTestViewDeps,
+    AdhocStaticTestViewProps,
+} from '../../../../../DetailsView/components/adhoc-static-test-view';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
+import { ContentReference } from '../../../../../views/content/content-page';
 
 describe('AdhocStaticTestView', () => {
-    let props: IAdhocStaticTestViewProps;
+    let props: AdhocStaticTestViewProps;
     let getStoreDataMock: IMock<(data: ITestsEnabledState) => IScanData>;
     let clickHandlerFactoryMock: IMock<DetailsViewToggleClickHandlerFactory>;
     let displayableDataStub: IDisplayableVisualizationTypeData;
-    let contentStub: JSX.Element;
     let scanDataStub: IScanData;
     let clickHandlerStub: (event: any) => void;
     let visualizationStoreDataStub: IVisualizationStoreData;
@@ -24,12 +28,10 @@ describe('AdhocStaticTestView', () => {
     beforeEach(() => {
         getStoreDataMock = Mock.ofInstance(() => null, MockBehavior.Strict);
         clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory, MockBehavior.Strict);
-        contentStub = {} as JSX.Element;
         displayableDataStub = {
             title: 'test title',
             toggleLabel: 'test toggle label',
         } as IDisplayableVisualizationTypeData;
-        contentStub = {} as JSX.Element;
         scanDataStub = {
             enabled: true,
         };
@@ -43,12 +45,12 @@ describe('AdhocStaticTestView', () => {
             configuration: {
                 getStoreData: getStoreDataMock.object,
                 displayableData: displayableDataStub,
-                detailsViewStaticContent: contentStub,
             },
             clickHandlerFactory: clickHandlerFactoryMock.object,
             visualizationStoreData: visualizationStoreDataStub,
             selectedTest,
-        } as IAdhocStaticTestViewProps;
+            deps: Mock.ofType<AdhocStaticTestViewDeps>().object,
+        } as AdhocStaticTestViewProps;
 
         getStoreDataMock
             .setup(gsdm => gsdm(visualizationStoreDataStub.tests))
@@ -65,15 +67,27 @@ describe('AdhocStaticTestView', () => {
         props.tabStoreData = {
             isChanged: true,
         };
+        props.content = Mock.ofType<ContentReference>().object;
 
         const actual = shallow(<AdhocStaticTestView {...props} />);
         expect(actual.debug()).toMatchSnapshot();
         verifyAll();
     });
 
-    it('should return static content details view', () => {
+    it('renders details view with content', () => {
         props.tabStoreData = {
             isChanged: false,
+        };
+        props.content = Mock.ofType<ContentReference>().object;
+
+        const actual = shallow(<AdhocStaticTestView {...props} />);
+        expect(actual.debug()).toMatchSnapshot();
+        verifyAll();
+    });
+
+    it('handles null content', () => {
+        props.tabStoreData = {
+            isChanged: true,
         };
 
         const actual = shallow(<AdhocStaticTestView {...props} />);

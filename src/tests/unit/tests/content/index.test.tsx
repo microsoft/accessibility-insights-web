@@ -16,7 +16,12 @@ describe('content', () => {
             const ThisPage = contentPages.getPage(path);
             expect(ThisPage.displayName).toEqual('ContentPageComponent');
             const result = shallow(<ThisPage deps={deps} />);
-            const headerExists = result.find('h1').exists() || result.find('Title').exists() || result.find('GuidanceTitle').exists();
+            const headerExists =
+                result.find('h1').exists() ||
+                result.find('h2').exists() ||
+                result.find('Title').exists() ||
+                result.find('GuidanceTitle').exists();
+
             expect(headerExists).toBe(true);
         }),
     );
