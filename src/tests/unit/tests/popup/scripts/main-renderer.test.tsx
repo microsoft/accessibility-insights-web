@@ -66,7 +66,6 @@ describe('MainRenderer', () => {
                                 diagnosticViewToggleFactory={diagnosticViewToggleFactoryMock.object}
                                 dropdownClickHandler={dropdownClickHandlerMock.object}
                             />
-                            ,
                         </>,
                     ),
                     container,
