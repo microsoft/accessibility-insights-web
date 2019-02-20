@@ -93,6 +93,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
             ...prevTab,
             appRefreshed: false,
         };
+
         urlParserMock
             .setup(urlParserObject => urlParserObject.areURLHostNamesEqual(It.isValue(prevTab.url), It.isValue(newTab.url)))
             .returns(() => true)
