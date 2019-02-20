@@ -10,6 +10,7 @@ import { FileIssueDetailsButton, FileIssueDetailsButtonDeps } from '../../common
 import { FileIssueDetailsHandler } from '../../common/file-issue-details-handler';
 import { HTMLElementUtils } from '../../common/html-element-utils';
 import { FeatureFlags } from '../../common/feature-flags';
+import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { IBaseStore } from '../../common/istore';
 import { DevToolActionMessageCreator } from '../../common/message-creators/dev-tool-action-message-creator';
 import { DevToolState } from '../../common/types/store-data/idev-tool-state';
@@ -35,6 +36,7 @@ export type DetailsDialogDeps = CopyIssueDetailsButtonDeps & FileIssueDetailsBut
 
 export interface IDetailsDialogProps {
     deps: DetailsDialogDeps;
+    userConfigStore: IBaseStore<UserConfigurationStoreData>;
     elementSelector: string;
     failedRules: IDictionaryStringTo<DecoratedAxeNodeResult>;
     target: string[];
@@ -49,6 +51,7 @@ export interface IDetailsDialogState {
     showDialog: boolean;
     currentRuleIndex: number;
     canInspect: boolean;
+    issueTrackerPath: string;
 }
 
 export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetailsDialogState> {
@@ -105,6 +108,7 @@ export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetails
             showDialog: true,
             currentRuleIndex: 0,
             canInspect: true,
+            issueTrackerPath: '',
         };
     }
 
@@ -151,15 +155,13 @@ export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetails
     }
 
     private renderCreateBugButton(issueData: CreateIssueDetailsTextData): JSX.Element {
-        // TODO: Remove placeholder path
-        // issueTrackerPath="https://github.com/AdnoC/dotfiles/issues"
         return (
             <FileIssueDetailsButton
                 deps={this.props.deps}
                 fileIssueDetailsHandler={new FileIssueDetailsHandler(new HTMLElementUtils())}
                 onOpenSettings={this.props.deps.targetPageActionMessageCreator.openSettingsPanel}
                 issueDetailsData={issueData}
-                issueTrackerPath=""
+                issueTrackerPath={this.state.issueTrackerPath}
             />
         );
     }

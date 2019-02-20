@@ -9,6 +9,7 @@ import { DetailsDialog } from './components/details-dialog';
 export class DetailsDialogHandler {
     private _htmlElementUtils: HTMLElementUtils;
     private _onDevToolChanged: () => void;
+    private _onUserConfigChanged: () => void;
 
     constructor(htmlElementUtils: HTMLElementUtils) {
         this._htmlElementUtils = htmlElementUtils;
@@ -74,6 +75,18 @@ export class DetailsDialogHandler {
         return devToolState && devToolState.isOpen;
     }
 
+    // TODO: test
+    @autobind
+    public onUserConfigChanged(dialog: DetailsDialog): void {
+        dialog.setState({ issueTrackerPath: this.issueTrackerPath(dialog) });
+    }
+
+    @autobind
+    public issueTrackerPath(dialog: DetailsDialog): string {
+        const userConfigState = dialog.props.userConfigStore.getState();
+        return userConfigState ? userConfigState.issueTrackerPath : '';
+    }
+
     @autobind
     public getFailureInfo(dialog: DetailsDialog): string {
         return `Failure ${dialog.state.currentRuleIndex + 1} of ${Object.keys(dialog.props.failedRules).length} for this target`;
@@ -107,6 +120,12 @@ export class DetailsDialogHandler {
         };
         dialog.props.devToolStore.addChangedListener(this._onDevToolChanged);
         this.onDevToolChanged(dialog);
+
+        this._onUserConfigChanged = () => {
+            this.onUserConfigChanged(dialog);
+        }
+        dialog.props.userConfigStore.addChangedListener(this._onUserConfigChanged);
+        this.onUserConfigChanged(dialog);
 
         if (dialog.props.featureFlagStoreData[FeatureFlags.shadowDialog]) {
             this.addListenerForDialogInShadowDom(dialog);
@@ -168,6 +187,7 @@ export class DetailsDialogHandler {
     @autobind
     public componentWillUnmount(dialog: DetailsDialog): void {
         dialog.props.devToolStore.removeChangedListener(this._onDevToolChanged);
+        dialog.props.userConfigStore.removeChangedListener(this._onUserConfigChanged);
     }
 
     private hasStore(dialog: DetailsDialog): boolean {
