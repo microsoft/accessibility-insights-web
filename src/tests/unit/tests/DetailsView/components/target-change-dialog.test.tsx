@@ -111,10 +111,12 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
 
     test('snapshot: render when previous tab info shows app is refreshed', () => {
         const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+
         prevTab = {
             ...prevTab,
             appRefreshed: true,
         };
+
         urlParserMock
             .setup(urlParserObject => urlParserObject.areURLHostNamesEqual(prevTab.url, newTab.url))
             .returns(() => true)
