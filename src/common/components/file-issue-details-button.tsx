@@ -9,7 +9,7 @@ import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
 import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
-import * as FileToClipboard from 'react-copy-to-clipboard';
+import { FileIssueDetailsHandler } from '../file-issue-details-handler';
 import { ActionAndCancelButtonsComponent } from '../../DetailsView/components/action-and-cancel-buttons-component';
 
 // TODO: Tests for this file
@@ -22,6 +22,7 @@ export type FileIssueDetailsButtonProps = {
     onOpenSettings: (event: React.MouseEvent<HTMLElement>) => void;
     issueDetailsData: CreateIssueDetailsTextData;
     issueTrackerPath: string;
+    fileIssueDetailsHandler: FileIssueDetailsHandler;
 };
 
 export type FileIssueDetailsButtonState = {
@@ -88,6 +89,10 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
                 onDismiss={this.closeModal}
                 isBlocking={false}
                 containerClassName="ms-file-issue-details-modal-container"
+                layerProps={{
+                    className: 'ms-file-issue-details-modal-override',
+                    onLayerDidMount: this.props.fileIssueDetailsHandler.onLayoutDidMount,
+                }}
             >
                     <h2>
                         File Issue

@@ -5,6 +5,8 @@ import * as React from 'react';
 import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
 import { CopyIssueDetailsButton } from '../../common/components/copy-issue-details-button';
 import { FileIssueDetailsButton, FileIssueDetailsButtonDeps } from '../../common/components/file-issue-details-button';
+import { FileIssueDetailsHandler } from '../../common/file-issue-details-handler';
+import { HTMLElementUtils } from '../../common/html-element-utils';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { ToastDeps } from '../../common/components/toast';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
@@ -77,6 +79,7 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
                 {showBugFiling ? (
                     <FileIssueDetailsButton
                         deps={this.props.deps}
+                        fileIssueDetailsHandler={new FileIssueDetailsHandler(new HTMLElementUtils())}
                         onOpenSettings={this.props.deps.bugClickHandler.openSettingsPanelHandler}
                         issueDetailsData={issueData}
                         issueTrackerPath={this.props.issueTrackerPath}
