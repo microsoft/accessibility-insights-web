@@ -15,8 +15,10 @@ import { DetailsViewActionMessageCreator } from '../actions/details-view-action-
 import { GuidanceLinks } from './guidance-links';
 import { FeatureFlags } from '../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
+import { BugClickHandler } from '../../common/bug-click-handler';
 
 export type IssuesDetailsPaneDeps = ToastDeps & FileIssueDetailsButtonDeps & {
+    bugClickHandler: BugClickHandler;
     issueDetailsTextGenerator: IssueDetailsTextGenerator;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
 };
@@ -75,6 +77,7 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
                 {showBugFiling ? (
                     <FileIssueDetailsButton
                         deps={this.props.deps}
+                        onOpenSettings={this.props.deps.bugClickHandler.openSettingsPanelHandler}
                         issueDetailsData={issueData}
                         issueTrackerPath={this.props.issueTrackerPath}
                     />

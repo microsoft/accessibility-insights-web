@@ -11,18 +11,17 @@ import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-d
 import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
 import * as FileToClipboard from 'react-copy-to-clipboard';
 import { ActionAndCancelButtonsComponent } from '../../DetailsView/components/action-and-cancel-buttons-component';
-import { BugClickHandler } from '../bug-click-handler';
 
+// TODO: Tests for this file
 export type FileIssueDetailsButtonDeps = {
-    bugClickHandler: BugClickHandler;
     issueDetailsTextGenerator: IssueDetailsTextGenerator;
 };
 
 export type FileIssueDetailsButtonProps = {
     deps: FileIssueDetailsButtonDeps;
+    onOpenSettings: (event: React.MouseEvent<HTMLElement>) => void;
     issueDetailsData: CreateIssueDetailsTextData;
     issueTrackerPath: string;
-    // onClick: (clickEvent: React.MouseEvent<any>) => void;
 };
 
 export type FileIssueDetailsButtonState = {
@@ -56,7 +55,7 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
     }
     @autobind
     private openSettings(event: React.MouseEvent<HTMLDivElement | HTMLAnchorElement | HTMLButtonElement>): void {
-        this.props.deps.bugClickHandler.openSettingsPanelHandler(event);
+        this.props.onOpenSettings(event);
     }
 
     public render(): JSX.Element {

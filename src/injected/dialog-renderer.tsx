@@ -80,8 +80,6 @@ export class DialogRenderer {
                 windowUtils: this.windowUtils,
                 targetPageActionMessageCreator: mainWindowContext.getTargetPageActionMessageCreator(),
                 clientBrowserAdapter: this.clientBrowserAdapter,
-                // TODO: Actually create this
-                bugClickHandler: null,
             };
 
             this.renderer(

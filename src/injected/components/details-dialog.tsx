@@ -150,11 +150,13 @@ export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetails
 
     private renderCreateBugButton(issueData: CreateIssueDetailsTextData): JSX.Element {
         // TODO: Remove placeholder path
+        // issueTrackerPath="https://github.com/AdnoC/dotfiles/issues"
         return (
             <FileIssueDetailsButton
+                onOpenSettings={this.props.deps.targetPageActionMessageCreator.openSettingsPanel}
                 deps={this.props.deps}
                 issueDetailsData={issueData}
-                issueTrackerPath="https://github.com/AdnoC/dotfiles/issues"
+                issueTrackerPath=""
             />
         );
     }
