@@ -7,7 +7,7 @@ import { NamedSFC } from '../../common/react/named-sfc';
 import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
 import { IVisualizationStoreData } from '../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
-import { ContentPageComponent } from '../../views/content/content-page';
+import { ContentReference } from '../../views/content/content-page';
 import { DetailsViewToggleClickHandlerFactory } from '../handlers/details-view-toggle-click-handler-factory';
 import { StaticContentDetailsView, StaticContentDetailsViewDeps, StaticContentDetailsViewProps } from './static-content-details-view';
 import { TargetPageChangedView } from './target-page-changed-view';
@@ -21,7 +21,7 @@ export interface AdhocStaticTestViewProps {
     visualizationStoreData: IVisualizationStoreData;
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
     configuration: IVisualizationConfiguration;
-    content?: ContentPageComponent;
+    content?: ContentReference;
 }
 
 export const AdhocStaticTestView = NamedSFC<AdhocStaticTestViewProps>('AdhocStaticTestView', ({ children, ...props }) => {

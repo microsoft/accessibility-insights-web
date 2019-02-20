@@ -1,21 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`StaticContentDetailsViewTest handle null content page component 1`] = `
+exports[`StaticContentDetailsViewTest renders content page component 1`] = `
 "<div className=\\"static-content-details-view\\">
   <h1>
     my test title
   </h1>
   <VisualizationToggle checked={true} onClick={[Function: proxy]} label=\\"my test toggle label\\" className=\\"details-view-toggle\\" visualizationName=\\"my test title\\" />
-  <ContentInclude deps={[undefined]} content={{...}} />
-</div>"
-`;
-
-exports[`StaticContentDetailsViewTest render content page component 1`] = `
-"<div className=\\"static-content-details-view\\">
-  <h1>
-    my test title
-  </h1>
-  <VisualizationToggle checked={true} onClick={[Function: proxy]} label=\\"my test toggle label\\" className=\\"details-view-toggle\\" visualizationName=\\"my test title\\" />
-  <ContentInclude deps={[undefined]} content={[function]} />
+  <ContentInclude deps={[undefined]} content={[Function: function () {
+                      var args = [];
+                      for (var _i = 0; _i < arguments.length; _i++) {
+                          args[_i] = arguments[_i];
+                      }
+                      _this._interceptor.removeInvocation(invocation_1);
+                      var method = new MethodInfo(target, p);
+                      var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
+                      _this._interceptor.intercept(methodInvocation);
+                      return methodInvocation.returnValue;
+                  }]} />
 </div>"
 `;

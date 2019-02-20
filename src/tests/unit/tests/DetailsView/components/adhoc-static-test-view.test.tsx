@@ -13,7 +13,7 @@ import {
     AdhocStaticTestViewProps,
 } from '../../../../../DetailsView/components/adhoc-static-test-view';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
-import { ContentPageComponent } from '../../../../../views/content/content-page';
+import { ContentReference } from '../../../../../views/content/content-page';
 
 describe('AdhocStaticTestView', () => {
     let props: AdhocStaticTestViewProps;
@@ -67,17 +67,18 @@ describe('AdhocStaticTestView', () => {
         props.tabStoreData = {
             isChanged: true,
         };
-        props.content = Mock.ofType<ContentPageComponent>().object;
+        props.content = Mock.ofType<ContentReference>().object;
 
         const actual = shallow(<AdhocStaticTestView {...props} />);
         expect(actual.debug()).toMatchSnapshot();
         verifyAll();
     });
 
-    it('render details view with content', () => {
+    it('renders details view with content', () => {
         props.tabStoreData = {
             isChanged: false,
         };
+        props.content = Mock.ofType<ContentReference>().object;
 
         const actual = shallow(<AdhocStaticTestView {...props} />);
         expect(actual.debug()).toMatchSnapshot();
