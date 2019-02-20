@@ -22,6 +22,7 @@ import { TextLegibilityAssessment } from './text-legibility/assessment';
 import { TimedEventsAssessment } from './timed-events/assessment';
 import { IAssessmentsProvider } from './types/iassessments-provider';
 import { VisibleFocusOrderAssessment } from './visible-focus-order/assessment';
+import { SequenceAssessment } from './sequence/assessment';
 
 export const Assessments: IAssessmentsProvider = AssessmentsProvider.Create([
     AutomatedChecks,
@@ -44,4 +45,5 @@ export const Assessments: IAssessmentsProvider = AssessmentsProvider.Create([
     AudioVideoOnlyAssessment,
     PrerecordedMultimediaAssessment,
     LiveMultimediaAssessment,
+    SequenceAssessment,
 ]);
