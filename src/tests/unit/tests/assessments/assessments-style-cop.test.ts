@@ -30,10 +30,10 @@ describe('assessments-style-cop', () => {
     });
 
     function isProperlyStyled(s: string): boolean {
-        return isUpperCaseAcronym(s) || isSentenceCase(s) || doesSenteceStartsWithAcronym(s);
+        return isUpperCaseAcronym(s) || isSentenceCase(s) || doesSentenceStartWithAcronym(s);
     }
 
-    function doesSenteceStartsWithAcronym(s: string): boolean {
+    function doesSentenceStartWithAcronym(s: string): boolean {
         return /^[A-Za-z0-9\-,/]*(\s[a-z0-9\-,/]+)*$/.test(s);
     }
 
