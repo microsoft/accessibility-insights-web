@@ -27,7 +27,7 @@ export interface TargetChangeDialogProps {
 export class TargetChangeDialog extends React.Component<TargetChangeDialogProps> {
     public render(): JSX.Element {
         const { prevTab, newTab } = this.props;
-        if (this.shouldShowTargetChangeDialog(prevTab, newTab)) {
+        if (!this.showTargetChangeDialog(prevTab, newTab)) {
             return null;
         }
         return (
@@ -94,11 +94,14 @@ export class TargetChangeDialog extends React.Component<TargetChangeDialogProps>
         );
     }
 
-    private shouldShowTargetChangeDialog(prevTab, newTab): boolean {
-        const { urlParser } = this.props.deps;
+    private showTargetChangeDialog(prevTab, newTab): boolean {
+        if (prevTab === null) {
+            return false;
+        }
 
+        const { urlParser } = this.props.deps;
         const urlChanged = prevTab && urlParser.areURLHostNamesEqual(prevTab.url, newTab.url) === false;
 
-        return prevTab === null || (prevTab.appRefreshed === false && (prevTab.id === newTab.id && urlChanged === false));
+        return prevTab !== null || (prevTab.appRefreshed === true && (prevTab.id !== newTab.id && urlChanged === true));
     }
 }

@@ -133,6 +133,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
 
     test('snapshot: render when tab ids are same but url changes', () => {
         const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+
         prevTab = {
             ...prevTab,
             appRefreshed: true,
