@@ -57,6 +57,7 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
     @autobind
     private openSettings(event: React.MouseEvent<HTMLDivElement | HTMLAnchorElement | HTMLButtonElement>): void {
         this.props.onOpenSettings(event);
+        this.closeModal();
     }
 
     public render(): JSX.Element {
