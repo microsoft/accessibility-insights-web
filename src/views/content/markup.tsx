@@ -38,6 +38,7 @@ export type Markup = {
     Inline: React.SFC;
     HyperLink: React.SFC<{ href: string }>;
     Title: React.SFC<{ children: string }>;
+    Highlight: React.SFC;
     CodeExample: React.SFC<CodeExampleProps>;
     Links: React.SFC;
     Table: React.SFC;
@@ -137,6 +138,10 @@ export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
 
     function LandmarkLegend(props: { role: string; children: React.ReactNode }): JSX.Element {
         return <span className={`landmarks-legend ${props.role}-landmark`}>{props.children}</span>;
+    }
+
+    function Highlight(props: { children: React.ReactNode }): JSX.Element {
+        return <span className="highlight">{props.children}</span>;
     }
 
     function Table(props: { children: React.ReactNode }): JSX.Element {
@@ -255,6 +260,7 @@ export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
         HyperLink,
         Title,
         CodeExample,
+        Highlight,
         Links,
         LandmarkLegend,
         Table,

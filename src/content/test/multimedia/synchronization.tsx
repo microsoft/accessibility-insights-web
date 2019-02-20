@@ -23,13 +23,15 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             failText={
                 <p>
                     The audio description track is poorly synchronized with the video’s sound effects (shown in brackets). "He turns and
-                    looks out the window. [(BANG, THUD) She pulls a gun from her purse]. He falls to the floor."
+                    looks out the window. <Markup.Highlight>(BANG, THUD) She pulls a gun from her purse</Markup.Highlight>. He falls to the
+                    floor."
                 </p>
             }
             passText={
                 <p>
                     The audio description track is synchronized in a way that makes the overall narrative more understandable. "He turns and
-                    looks out the window. [She pulls a gun from her purse. (BANG, THUD)] He falls to the floor."
+                    looks out the window. <Markup.Highlight>She pulls a gun from her purse. (BANG, THUD)</Markup.Highlight> He falls to the
+                    floor."
                 </p>
             }
         />

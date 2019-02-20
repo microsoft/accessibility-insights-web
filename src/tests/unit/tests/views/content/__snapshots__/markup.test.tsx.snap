@@ -71,6 +71,14 @@ exports[`ContentPage .Markup <Fail> renders 1`] = `
 </Column>
 `;
 
+exports[`ContentPage .Markup <Highlight> renders 1`] = `
+<span
+  className="highlight"
+>
+  HIGHLIGHTED
+</span>
+`;
+
 exports[`ContentPage .Markup <HyperLink> renders 1`] = `
 <NewTabLink
   href="http://my.link"
