@@ -9,7 +9,12 @@ describe('MainWindowContextTest', () => {
     const targetPageActionMessageCreator: any = { name: 'targetPageActionMessageCreator' };
 
     test('save and retrieve from instance', () => {
-        const testSubject = new MainWindowContext(devToolStore, userConfigStore, devToolActionMessageCreator, targetPageActionMessageCreator);
+        const testSubject = new MainWindowContext(
+            devToolStore,
+            userConfigStore,
+            devToolActionMessageCreator,
+            targetPageActionMessageCreator,
+        );
 
         expect(testSubject.getDevToolStore()).toEqual(devToolStore);
         expect(testSubject.getUserConfigStore()).toEqual(userConfigStore);

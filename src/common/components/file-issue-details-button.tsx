@@ -35,7 +35,6 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
         this.state = { showingFileIssueModal: false };
     }
 
-
     private getIssueDetailsUrl(result: DecoratedAxeNodeResult): string {
         const data: CreateIssueDetailsTextData = {
             pageTitle: this.props.issueDetailsData.pageTitle,
@@ -64,53 +63,50 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
         // TODO: Fix props for modal
         return (
             <>
-            {!this.props.issueTrackerPath ? (
-                <DefaultButton
-                    iconProps={{ iconName: 'ladybugSolid' }}
-                    className={'create-bug-button'}
-                    onClick={() => this.setState({ showingFileIssueModal: true })}
+                {!this.props.issueTrackerPath ? (
+                    <DefaultButton
+                        iconProps={{ iconName: 'ladybugSolid' }}
+                        className={'create-bug-button'}
+                        onClick={() => this.setState({ showingFileIssueModal: true })}
+                    >
+                        File issue
+                    </DefaultButton>
+                ) : null}
+                {!!this.props.issueTrackerPath ? (
+                    <DefaultButton
+                        iconProps={{ iconName: 'ladybugSolid' }}
+                        className={'create-bug-button'}
+                        target="_blank"
+                        href={this.getIssueDetailsUrl(this.props.issueDetailsData.ruleResult)}
+                    >
+                        File issue
+                    </DefaultButton>
+                ) : null}
+                <Modal
+                    titleAriaId="fileIssueDetailsModal"
+                    subtitleAriaId="subtitleId"
+                    isOpen={this.state.showingFileIssueModal}
+                    onDismiss={this.closeModal}
+                    isBlocking={false}
+                    containerClassName="ms-file-issue-details-modal-container"
+                    layerProps={{
+                        className: 'ms-file-issue-details-modal-override',
+                        onLayerDidMount: this.props.fileIssueDetailsHandler.onLayoutDidMount,
+                    }}
                 >
-                    File issue
-                </DefaultButton>
-            ) : null}
-            {!!this.props.issueTrackerPath ? (
-                <DefaultButton
-                    iconProps={{ iconName: 'ladybugSolid' }}
-                    className={'create-bug-button'}
-                    target="_blank"
-                    href={this.getIssueDetailsUrl(this.props.issueDetailsData.ruleResult)}
-                >
-                    File issue
-                </DefaultButton>
-            ) : null}
-            <Modal
-                titleAriaId="fileIssueDetailsModal"
-                subtitleAriaId="subtitleId"
-                isOpen={this.state.showingFileIssueModal}
-                onDismiss={this.closeModal}
-                isBlocking={false}
-                containerClassName="ms-file-issue-details-modal-container"
-                layerProps={{
-                    className: 'ms-file-issue-details-modal-override',
-                    onLayerDidMount: this.props.fileIssueDetailsHandler.onLayoutDidMount,
-                }}
-            >
-                    <h2>
-                        File Issue
-                    </h2>
+                    <h2>File Issue</h2>
                     <p>
-                        Issue filing location must be configured before filing bugs.
-                        Enter in the location information into settings in order to
-                        file issues.
+                        Issue filing location must be configured before filing bugs. Enter in the location information into settings in
+                        order to file issues.
                     </p>
-                <ActionAndCancelButtonsComponent
-                    isHidden={false}
-                    primaryButtonText="Go to settings"
-                    primaryButtonDisabled={false}
-                    primaryButtonOnClick={this.openSettings}
-                    cancelButtonOnClick={this.closeModal}
-                />
-            </Modal>
+                    <ActionAndCancelButtonsComponent
+                        isHidden={false}
+                        primaryButtonText="Go to settings"
+                        primaryButtonDisabled={false}
+                        primaryButtonOnClick={this.openSettings}
+                        cancelButtonOnClick={this.closeModal}
+                    />
+                </Modal>
             </>
         );
     }

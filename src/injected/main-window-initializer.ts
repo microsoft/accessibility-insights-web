@@ -102,7 +102,12 @@ export class MainWindowInitializer extends WindowInitializer {
             telemetryDataFactory,
         );
 
-        MainWindowContext.initialize(this.devToolStoreProxy, this.userConfigStoreProxy, devToolActionMessageCreator, targetPageActionMessageCreator);
+        MainWindowContext.initialize(
+            this.devToolStoreProxy,
+            this.userConfigStoreProxy,
+            devToolActionMessageCreator,
+            targetPageActionMessageCreator,
+        );
 
         const drawingInitiator = new DrawingInitiator(this.drawingController);
         const selectorMapHelper = new SelectorMapHelper(this.visualizationScanResultStoreProxy, this.assessmentStoreProxy, Assessments);

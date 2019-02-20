@@ -123,7 +123,7 @@ export class DetailsDialogHandler {
 
         this._onUserConfigChanged = () => {
             this.onUserConfigChanged(dialog);
-        }
+        };
         dialog.props.userConfigStore.addChangedListener(this._onUserConfigChanged);
         this.onUserConfigChanged(dialog);
 

@@ -7,7 +7,7 @@ import { DevToolStore } from '../../../../background/stores/dev-tools-store';
 import { FeatureFlags, getDefaultFeatureFlagValues } from '../../../../common/feature-flags';
 import { DevToolActionMessageCreator } from '../../../../common/message-creators/dev-tool-action-message-creator';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
-import { UserConfigurationStore} from '../../../../background/stores/global/user-configuration-store';
+import { UserConfigurationStore } from '../../../../background/stores/global/user-configuration-store';
 import { WindowUtils } from '../../../../common/window-utils';
 import { DetailsDialogWindowMessage, DialogRenderer } from '../../../../injected/dialog-renderer';
 import { FrameCommunicator, IMessageRequest } from '../../../../injected/frameCommunicators/frame-communicator';

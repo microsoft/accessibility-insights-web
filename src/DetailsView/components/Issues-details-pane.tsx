@@ -19,11 +19,12 @@ import { FeatureFlags } from '../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { BugClickHandler } from '../../common/bug-click-handler';
 
-export type IssuesDetailsPaneDeps = ToastDeps & FileIssueDetailsButtonDeps & {
-    bugClickHandler: BugClickHandler;
-    issueDetailsTextGenerator: IssueDetailsTextGenerator;
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-};
+export type IssuesDetailsPaneDeps = ToastDeps &
+    FileIssueDetailsButtonDeps & {
+        bugClickHandler: BugClickHandler;
+        issueDetailsTextGenerator: IssueDetailsTextGenerator;
+        detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    };
 
 export interface IssuesDetailsPaneProps {
     deps: IssuesDetailsPaneDeps;

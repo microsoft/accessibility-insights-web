@@ -29,10 +29,11 @@ export enum CheckType {
     None,
 }
 
-export type DetailsDialogDeps = CopyIssueDetailsButtonDeps & FileIssueDetailsButtonDeps & {
-    targetPageActionMessageCreator: TargetPageActionMessageCreator;
-    clientBrowserAdapter: ClientBrowserAdapter;
-};
+export type DetailsDialogDeps = CopyIssueDetailsButtonDeps &
+    FileIssueDetailsButtonDeps & {
+        targetPageActionMessageCreator: TargetPageActionMessageCreator;
+        clientBrowserAdapter: ClientBrowserAdapter;
+    };
 
 export interface IDetailsDialogProps {
     deps: DetailsDialogDeps;

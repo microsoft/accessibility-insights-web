@@ -156,11 +156,7 @@ if (isNaN(tabId) === false) {
                     tab.id,
                     telemetryFactory,
                 );
-                const bugActionMessageCreator = new BugActionMessageCreator(
-                    chromeAdapter.sendMessageToFrames,
-                    tab.id,
-                    telemetryFactory,
-                );
+                const bugActionMessageCreator = new BugActionMessageCreator(chromeAdapter.sendMessageToFrames, tab.id, telemetryFactory);
 
                 const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(chromeAdapter.sendMessageToFrames, tab.id);
 
