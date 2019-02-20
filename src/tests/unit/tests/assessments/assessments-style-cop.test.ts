@@ -11,6 +11,7 @@ describe('assessments-style-cop', () => {
         assertIsProperlyStyled('This has a hyphenated-word');
         assertIsProperlyStyled('ASDF');
         assertIsProperlyStyled('ASDFs');
+        assertIsProperlyStyled('CSS sentence with first word to be acronym');
         expect(isSentenceCase('This is Title Case')).toBe(false);
         expect(isUpperCaseAcronym('NOTREALLYCORRECTd')).toBe(false);
     });
@@ -28,19 +29,23 @@ describe('assessments-style-cop', () => {
         });
     });
 
-    function isProperlyStyled(s: string) {
-        return isUpperCaseAcronym(s) || isSentenceCase(s);
+    function isProperlyStyled(s: string): boolean {
+        return isUpperCaseAcronym(s) || isSentenceCase(s) || doesSentenceStartWithAcronym(s);
     }
 
-    function isUpperCaseAcronym(s: string) {
+    function doesSentenceStartWithAcronym(s: string): boolean {
+        return /^[A-Za-z0-9\-,/]*(\s[a-z0-9\-,/]+)*$/.test(s);
+    }
+
+    function isUpperCaseAcronym(s: string): boolean {
         return /^[A-Z0-9\-]+s?$/.test(s);
     }
 
-    function isSentenceCase(s: string) {
+    function isSentenceCase(s: string): boolean {
         return /^[A-Z][a-z0-9\-,/]*(\s[a-z0-9\-,/]+)*$/.test(s);
     }
 
-    function assertIsProperlyStyled(s: string, where?: string) {
+    function assertIsProperlyStyled(s: string, where?: string): void {
         expect(isProperlyStyled(s)).toBe(true);
     }
 
