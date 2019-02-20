@@ -22,6 +22,7 @@ export interface AdhocStaticTestViewProps {
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
     configuration: IVisualizationConfiguration;
     content?: ContentReference;
+    guidance?: ContentReference;
 }
 
 export const AdhocStaticTestView = NamedSFC<AdhocStaticTestViewProps>('AdhocStaticTestView', ({ children, ...props }) => {
@@ -41,6 +42,7 @@ export const AdhocStaticTestView = NamedSFC<AdhocStaticTestViewProps>('AdhocStat
         title: displayableData.title,
         toggleLabel: displayableData.toggleLabel,
         content: props.content,
+        guidance: props.guidance,
     };
 
     return <StaticContentDetailsView {...givenProps} />;

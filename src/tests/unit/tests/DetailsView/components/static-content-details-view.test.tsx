@@ -6,7 +6,7 @@ import { IMock, It, Mock, Times } from 'typemoq';
 
 import { VisualizationToggle } from '../../../../../common/components/visualization-toggle';
 import { StaticContentDetailsView, StaticContentDetailsViewProps } from '../../../../../DetailsView/components/static-content-details-view';
-import { ContentPageComponent } from '../../../../../views/content/content-page';
+import { ContentReference } from '../../../../../views/content/content-page';
 import { BaseDataBuilder } from '../../../common/base-data-builder';
 import { EventStubFactory, INativeEventStub } from '../../../common/event-stub-factory';
 
@@ -44,7 +44,8 @@ class StaticContentDetailsViewPropsBuilder extends BaseDataBuilder<StaticContent
             visualizationEnabled: true,
             toggleLabel: 'my test toggle label',
             onToggleClick: this.onToggleClickMock.object,
-            content: Mock.ofType<ContentPageComponent>().object,
+            content: Mock.ofType<ContentReference>().object,
+            guidance: Mock.ofType<ContentReference>().object,
         } as StaticContentDetailsViewProps;
     }
 
