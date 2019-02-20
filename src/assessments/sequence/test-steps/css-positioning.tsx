@@ -56,7 +56,7 @@ const howToTest: JSX.Element = (
 const key = SequenceTestStep.cssPositioning;
 
 export const CssPositioning: TestStep = {
-    key: SequenceTestStep.cssPositioning,
+    key,
     name: 'CSS positioning',
     description: description,
     howToTest: howToTest,
