@@ -1,12 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Markup from '../../markup';
 import * as React from 'react';
-import ManualTestRecordYourResults from '../../common/manual-test-record-your-results';
+
 import { NewTabLink } from '../../../common/components/new-tab-link';
-import { SequenceTestStep } from './test-steps';
+import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
+import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
+import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
+import ManualTestRecordYourResults from '../../common/manual-test-record-your-results';
+import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
+import { SequenceTestStep } from './test-steps';
 
 const description: JSX.Element = (
     <span>Meaningful content positioned on the page using CSS must retain its meaning when CSS is disabled.</span>
@@ -49,11 +53,23 @@ const howToTest: JSX.Element = (
     </div>
 );
 
+const key = SequenceTestStep.cssPositioning;
+
 export const CssPositioning: TestStep = {
     key: SequenceTestStep.cssPositioning,
-    name: 'Css positioning',
+    name: 'CSS positioning',
     description: description,
     howToTest: howToTest,
     isManual: true,
     guidanceLinks: [link.WCAG_1_3_2],
+    getAnalyzer: provider =>
+        provider.createRuleAnalyzer(
+            AnalyzerConfigurationFactory.forScanner({
+                rules: ['css-content'],
+                key,
+                testType: VisualizationType.SequenceAssessment,
+            }),
+        ),
+    getDrawer: provider => provider.createHighlightBoxDrawer(),
+    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
 };
