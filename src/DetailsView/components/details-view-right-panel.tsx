@@ -8,9 +8,10 @@ import { getOverviewTitle, getTestViewTitle, GetTestViewTitleProps } from '../ha
 import { DetailsViewRightContentPanelType } from './left-nav/details-view-right-content-panel-type';
 import { GetLeftNavSelectedKeyProps, getOverviewKey, getTestViewKey } from './left-nav/get-left-nav-selected-key';
 import { OverviewContainer, OverviewContainerDeps, OverviewContainerProps } from './overview-content/overview-content-container';
-import { TestViewContainer, TestViewContainerDeps, TestViewContainerProps } from './test-view-container';
+import { TargetChangeDialogDeps } from './target-change-dialog';
+import { TestViewContainer, TestViewContainerDeps } from './test-view-container';
 
-export type DetailsViewContentDeps = OverviewContainerDeps & TestViewContainerDeps;
+export type DetailsViewContentDeps = OverviewContainerDeps & TestViewContainerDeps & TargetChangeDialogDeps;
 
 export type DetailsRightPanelConfiguration = Readonly<{
     RightPanel: ReactSFCWithDisplayName<OverviewContainerProps>;

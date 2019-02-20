@@ -1,33 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AssessmentViewTest render 1`] = `
-"<Fragment>
-  <AssessmentURLChangedWarning deps={{...}} prevTarget={{...}} currentTarget={{...}} isScanning={false} isEnabled={false} content={{...}} actionMessageCreator={{...}} assessmentNavState={{...}} assessmentInstanceTableHandler={{...}} assessmentProvider={{...}} assessmentData={{...}} assessmentDefaultMessageGenerator={{...}} assessmentTestResult={{...}} />
-  <div className=\\"assessment-content\\">
-    <TargetChangeDialog prevTab={{...}} newTab={{...}} actionMessageCreator={{...}} />
-    <div className=\\"assessment-title\\">
-      <h1 className=\\"assessment-header\\">
-        assessment 1
-         
-        <ContentLink deps={{...}} reference={[Function]} iconName=\\"info\\" />
-      </h1>
-    </div>
-    <CollapsibleComponent header={{...}} content={{...}} contentClassName=\\"assessment-getting-started\\" containerClassName=\\"assessment-getting-started-container\\" />
-    <AssessmentViewMainContentExtensionPoint extensions={[undefined]} assessmentTestResult={{...}}>
-      <div className=\\"assessment-requirements-title\\">
-        <h2 className=\\"assessment-requirements\\">
-          Requirements
-        </h2>
-      </div>
-      <div className=\\"details-view-assessment-content\\">
-        <div className=\\"test-steps-nav-container\\">
-          <TestStepsNav deps={{...}} ariaLabel=\\"Requirements\\" selectedTest={-1} selectedTestStep=\\"assessment-1-step-1\\" stepStatus={{...}} />
-        </div>
-        <div className=\\"test-step-view-container\\">
-          <TestStepView deps={{...}} isScanning={false} testStep={{...}} renderStaticContent={[undefined]} instancesMap={{...}} assessmentNavState={{...}} assessmentInstanceTableHandler={{...}} manualTestStepResultMap={{...}} actionMessageCreator={{...}} assessmentsProvider={{...}} isStepEnabled={false} isStepScanned={false} assessmentDefaultMessageGenerator={{...}} />
-        </div>
-      </div>
-    </AssessmentViewMainContentExtensionPoint>
+"<div className=\\"assessment-content\\">
+  <TargetChangeDialog deps={{...}} prevTab={{...}} newTab={{...}} actionMessageCreator={{...}} />
+  <div className=\\"assessment-title\\">
+    <h1 className=\\"assessment-header\\">
+      assessment 1
+       
+      <ContentLink deps={{...}} reference={[Function]} iconName=\\"info\\" />
+    </h1>
   </div>
-</Fragment>"
+  <CollapsibleComponent header={{...}} content={{...}} contentClassName=\\"assessment-getting-started\\" containerClassName=\\"assessment-getting-started-container\\" />
+  <AssessmentViewMainContentExtensionPoint extensions={[undefined]} assessmentTestResult={{...}}>
+    <div className=\\"assessment-requirements-title\\">
+      <h2 className=\\"assessment-requirements\\">
+        Requirements
+      </h2>
+    </div>
+    <div className=\\"details-view-assessment-content\\">
+      <div className=\\"test-steps-nav-container\\">
+        <TestStepsNav deps={{...}} ariaLabel=\\"Requirements\\" selectedTest={-1} selectedTestStep=\\"assessment-1-step-1\\" stepStatus={{...}} />
+      </div>
+      <div className=\\"test-step-view-container\\">
+        <TestStepView deps={{...}} isScanning={false} testStep={{...}} renderStaticContent={[undefined]} instancesMap={{...}} assessmentNavState={{...}} assessmentInstanceTableHandler={{...}} manualTestStepResultMap={{...}} actionMessageCreator={{...}} assessmentsProvider={{...}} isStepEnabled={false} isStepScanned={false} assessmentDefaultMessageGenerator={{...}} />
+      </div>
+    </div>
+  </AssessmentViewMainContentExtensionPoint>
+</div>"
 `;

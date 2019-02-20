@@ -6,6 +6,20 @@ exports[`OverviewContainer component is defined and matches snapshot 1`] = `
 >
   <TargetChangeDialog
     actionMessageCreator={Object {}}
+    deps={
+      Object {
+        "actionInitiators": Object {
+          "openExternalLink": [MockFunction],
+        },
+        "assessmentsProvider": Object {
+          "all": [Function],
+        },
+        "assessmentsProviderWithFeaturesEnabled": [Function],
+        "detailsViewActionMessageCreator": Object {},
+        "getAssessmentSummaryModelFromProviderAndStoreData": [MockFunction],
+        "urlParser": Object {},
+      }
+    }
     newTab={
       Object {
         "id": -1,
@@ -36,6 +50,7 @@ exports[`OverviewContainer component is defined and matches snapshot 1`] = `
           "assessmentsProviderWithFeaturesEnabled": [Function],
           "detailsViewActionMessageCreator": Object {},
           "getAssessmentSummaryModelFromProviderAndStoreData": [MockFunction],
+          "urlParser": Object {},
         }
       }
       linkDataSource={
