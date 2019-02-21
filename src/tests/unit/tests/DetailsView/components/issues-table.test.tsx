@@ -182,6 +182,7 @@ describe('IssuesTableTest', () => {
             .setReportGenerator(reportGenerator)
             .setDeps({
                 detailsViewActionMessageCreator: actionMessageCreator,
+                dropdownClickHandler: null,
                 issueDetailsTextGenerator: null,
                 windowUtils: null,
             })
@@ -411,6 +412,7 @@ class TestPropsBuilder {
             issuesTableHandler: this.issuesTableHandler,
             issuesEnabled: this.issuesEnabled,
             issuesSelection: this.issuesSelection,
+            issueTrackerPath: 'example/example',
             pageTitle: 'pageTitle',
             pageUrl: 'http://pageUrl',
             scanning: this.scanning,

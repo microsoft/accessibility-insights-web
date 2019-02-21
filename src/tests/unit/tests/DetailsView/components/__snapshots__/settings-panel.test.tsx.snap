@@ -59,6 +59,19 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
       }
     }
   />
+  <FlaggedComponent
+    enableJSXElement={
+      <IssueTrackerInput
+        onSave={[Function]}
+      />
+    }
+    featureFlag="showBugFiling"
+    featureFlagStoreData={
+      Object {
+        "highContrastMode": false,
+      }
+    }
+  />
 </GenericPanel>
 `;
 
@@ -115,6 +128,19 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
       />
     }
     featureFlag="highContrastMode"
+    featureFlagStoreData={
+      Object {
+        "highContrastMode": false,
+      }
+    }
+  />
+  <FlaggedComponent
+    enableJSXElement={
+      <IssueTrackerInput
+        onSave={[Function]}
+      />
+    }
+    featureFlag="showBugFiling"
     featureFlagStoreData={
       Object {
         "highContrastMode": false,
