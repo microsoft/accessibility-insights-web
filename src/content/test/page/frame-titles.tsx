@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { React, create } from '../../common';
 
-export const infoAndExamples = create(({ Markup, Link }) => (
+export const infoAndExamples = create(({ Markup }) => (
     <>
         <h1>Frame title</h1>
         <p>A frame or iframe must have an accessible name that describes its content.</p>

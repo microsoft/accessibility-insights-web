@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { React, create } from '../../common';
 
-export const infoAndExamples = create(({ Markup, Link }) => (
+export const infoAndExamples = create(({ Markup }) => (
     <>
         <h1>Heading level</h1>
         <p>A heading's programmatic level must match the level that's presented visually.</p>

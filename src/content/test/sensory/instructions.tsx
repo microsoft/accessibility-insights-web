@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { React, create } from '../../common';
 
-export const infoAndExamples = create(({ Markup, Link }) => (
+export const infoAndExamples = create(({ Markup }) => (
     <>
         <h1>Instructions</h1>
         <p>

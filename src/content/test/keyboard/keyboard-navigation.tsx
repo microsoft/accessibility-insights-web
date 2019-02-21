@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { create, React } from '../../common';
 
-export const infoAndExamples = create(({ Markup, Link }) => (
+export const infoAndExamples = create(({ Markup }) => (
     <React.Fragment>
         <h1>Keyboard navigation</h1>
 

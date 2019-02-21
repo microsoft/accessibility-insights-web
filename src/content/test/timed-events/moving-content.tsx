@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { React, create } from '../../common';
 
-export const infoAndExamples = create(({ Markup, Link }) => (
+export const infoAndExamples = create(({ Markup }) => (
     <>
         <h1>Moving content</h1>
         <p>If content moves, blinks, or scrolls automatically for more than five seconds, users must be able to pause, stop, or hide it.</p>

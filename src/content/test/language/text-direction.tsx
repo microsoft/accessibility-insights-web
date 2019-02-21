@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { React, create } from '../../common';
 
-export const infoAndExamples = create(({ Markup, Link }) => (
+export const infoAndExamples = create(({ Markup }) => (
     <>
         <h1>Text direction</h1>
         <p>If a page or a passage uses a script that is read right-to-left, it must have the correct text direction.</p>

@@ -18,8 +18,7 @@ export const guidance = create(({ Markup, Link }) => (
         </p>
 
         <p>
-            For more information about how to make headings accessible, see{' '}
-            <Link.IdentifyHeadings>Techniques for WCAG 2.0: Using h1-h6 to identify headings</Link.IdentifyHeadings>.
+            For more information about how to make headings accessible, see <Link.IdentifyHeadings />.
         </p>
 
         <h2>About the Headings visualization</h2>

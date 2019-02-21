@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { React, create } from '../../common';
 
-export const infoAndExamples = create(({ Markup, Link }) => (
+export const infoAndExamples = create(({ Markup }) => (
     <>
         <h1>Auto-updating content</h1>
         <p>If content updates automatically, users must be able to pause, stop, hide, or control the frequency of updates.</p>

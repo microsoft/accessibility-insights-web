@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { React, create } from '../../common';
 
-export const infoAndExamples = create(({ Markup, Link }) => (
+export const infoAndExamples = create(({ Markup }) => (
     <>
         <h1>Language of parts</h1>
         <p>If the language of a passage differs from the default language of the page, the passage must have its own language attribute.</p>

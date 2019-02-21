@@ -22,7 +22,7 @@ export const guidance = create(({ Markup, Link }) => (
             </ul>
             Activating and/or interacting with each element via keyboard will be covered in a separate test.
             <br />
-            To learn more about tab stops, see <Link.Keyboard>WebAIM: Keyboard Accessibility</Link.Keyboard>.
+            To learn more about tab stops, see <Link.Keyboard />.
         </p>
 
         <h2>About the Tab stops visualization</h2>

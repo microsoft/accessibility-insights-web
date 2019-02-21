@@ -3,7 +3,7 @@
 import { React, create, GuidanceTitle } from '../../common';
 import { NewTabLink } from '../../../common/components/new-tab-link';
 
-export const keyboardBookmarkletInstructions = create(({ Markup, Link }) => (
+export const keyboardBookmarkletInstructions = create(({ Markup }) => (
     <>
         <Markup.Title>Using a keyboard to add the Nu HTML Checker bookmarklets to Chrome</Markup.Title>
         <ol>
