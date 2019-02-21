@@ -65,8 +65,8 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
   <FlaggedComponent
     enableJSXElement={
       <React.Fragment>
-        <StyledWithResponsiveMode
-          label="Select bug service"
+        <StyledChoiceGroupBase
+          label="Issue filing"
           onChange={[Function]}
           options={
             Array [
@@ -88,12 +88,12 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
         />
         <React.Fragment>
           <StyledTextFieldBase
-            label="Project URL"
+            label="Enter desired Azure Boards project URL:"
             onChange={[Function]}
             value="test-project"
           />
           <StyledTextFieldBase
-            label="Team"
+            label="Enter Azure Boards team name:"
             onChange={[Function]}
             value="test-team"
           />
@@ -174,8 +174,8 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
   <FlaggedComponent
     enableJSXElement={
       <React.Fragment>
-        <StyledWithResponsiveMode
-          label="Select bug service"
+        <StyledChoiceGroupBase
+          label="Issue filing"
           onChange={[Function]}
           options={
             Array [
@@ -197,11 +197,11 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
         />
         <React.Fragment>
           <StyledTextFieldBase
-            label="Project URL"
+            label="Enter desired Azure Boards project URL:"
             onChange={[Function]}
           />
           <StyledTextFieldBase
-            label="Team"
+            label="Enter Azure Boards team name:"
             onChange={[Function]}
           />
         </React.Fragment>
@@ -281,8 +281,8 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
   <FlaggedComponent
     enableJSXElement={
       <React.Fragment>
-        <StyledWithResponsiveMode
-          label="Select bug service"
+        <StyledChoiceGroupBase
+          label="Issue filing"
           onChange={[Function]}
           options={
             Array [
@@ -303,7 +303,7 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
           selectedKey="gitHub"
         />
         <StyledTextFieldBase
-          label="Repository URL"
+          label="Enter desired GitHub repo link:"
           onChange={[Function]}
           value="test-repository"
         />
@@ -383,8 +383,8 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
   <FlaggedComponent
     enableJSXElement={
       <React.Fragment>
-        <StyledWithResponsiveMode
-          label="Select bug service"
+        <StyledChoiceGroupBase
+          label="Issue filing"
           onChange={[Function]}
           options={
             Array [
@@ -405,7 +405,7 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
           selectedKey="gitHub"
         />
         <StyledTextFieldBase
-          label="Repository URL"
+          label="Enter desired GitHub repo link:"
           onChange={[Function]}
         />
       </React.Fragment>
@@ -484,8 +484,8 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
   <FlaggedComponent
     enableJSXElement={
       <React.Fragment>
-        <StyledWithResponsiveMode
-          label="Select bug service"
+        <StyledChoiceGroupBase
+          label="Issue filing"
           onChange={[Function]}
           options={
             Array [
@@ -581,8 +581,8 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
   <FlaggedComponent
     enableJSXElement={
       <React.Fragment>
-        <StyledWithResponsiveMode
-          label="Select bug service"
+        <StyledChoiceGroupBase
+          label="Issue filing"
           onChange={[Function]}
           options={
             Array [
@@ -603,7 +603,7 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
           selectedKey="gitHub"
         />
         <StyledTextFieldBase
-          label="Repository URL"
+          label="Enter desired GitHub repo link:"
           onChange={[Function]}
         />
       </React.Fragment>

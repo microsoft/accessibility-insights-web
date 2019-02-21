@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-import { TextField } from 'office-ui-fabric-react';
-import { Dropdown, IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
+import { ChoiceGroup, IChoiceGroupOption, TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { FlaggedComponent } from '../../common/components/flagged-component';
@@ -83,15 +82,15 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
         const selectedKey = this.props.userConfigStoreState.bugService || 'none';
         return (
             <>
-                <Dropdown
-                    label="Select bug service"
+                <ChoiceGroup
+                    label="Issue filing"
                     selectedKey={selectedKey}
                     options={[
                         { key: 'none', text: 'None' },
                         { key: 'azureBoards', text: 'Azure Boards' },
                         { key: 'gitHub', text: 'GitHub' },
                     ]}
-                    onChange={this.onBugServiceDropdownChange}
+                    onChange={this.onBugServiceChoiceGroupChange}
                 />
                 {this.getProviderBugSettingsUx(selectedKey)}
             </>
@@ -115,8 +114,10 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
     }
 
     @autobind
-    protected onBugServiceDropdownChange(event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption, index?: number): void {
-        this.props.deps.userConfigMessageCreator.setBugService(option.key as string);
+    protected onBugServiceChoiceGroupChange(ev?: React.FormEvent<HTMLElement | HTMLInputElement>, option?: IChoiceGroupOption): void {
+        if (option) {
+            this.props.deps.userConfigMessageCreator.setBugService(option.key as string);
+        }
     }
 
     private getProviderBugSettingsUx(selectedKey: string): JSX.Element {
@@ -136,11 +137,15 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
         return (
             <>
                 <TextField
-                    label="Project URL"
+                    label="Enter desired Azure Boards project URL:"
                     onChange={this.onAzureBoardsProjectChange}
                     value={this.getBugServiceProperty('azureBoards', 'project')}
                 />
-                <TextField label="Team" onChange={this.onAzureBoardsTeamChange} value={this.getBugServiceProperty('azureBoards', 'team')} />
+                <TextField
+                    label="Enter Azure Boards team name:"
+                    onChange={this.onAzureBoardsTeamChange}
+                    value={this.getBugServiceProperty('azureBoards', 'team')}
+                />
             </>
         );
     }
@@ -158,7 +163,7 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
     private getGitHubBugSettingsUx(): JSX.Element {
         return (
             <TextField
-                label="Repository URL"
+                label="Enter desired GitHub repo link:"
                 onChange={this.onGitHubRepositoryChange}
                 value={this.getBugServiceProperty('gitHub', 'repository')}
             />

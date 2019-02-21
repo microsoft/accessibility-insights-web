@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
+import { IChoiceGroupOption } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
@@ -11,10 +11,9 @@ import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/acti
 import { SettingsPanel, SettingsPanelProps } from '../../../../../DetailsView/components/settings-panel';
 
 type SettingsPanelProtectedClickFunction = (id: string, state: boolean) => void;
-type SettingsPanelProtectedDropdownChangeFunction = (
-    event: React.FormEvent<HTMLDivElement>,
-    option?: IDropdownOption,
-    index?: number,
+type SettingsPanelProtectedChoiceGroupChangeFunction = (
+    ev?: React.FormEvent<HTMLElement | HTMLInputElement>,
+    option?: IChoiceGroupOption,
 ) => void;
 type SettingsPanelProtectedTextFieldChangeFunction = (
     event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -30,8 +29,8 @@ class TestableSettingsPanel extends SettingsPanel {
         return this.onHighContrastModeToggleClick;
     }
 
-    public getOnBugServiceDropdownChange(): SettingsPanelProtectedDropdownChangeFunction {
-        return this.onBugServiceDropdownChange;
+    public getOnBugServiceChoiceGroupChange(): SettingsPanelProtectedChoiceGroupChangeFunction {
+        return this.onBugServiceChoiceGroupChange;
     }
 
     public getOnAzureBoardsProjectChange(): SettingsPanelProtectedTextFieldChangeFunction {
@@ -192,7 +191,7 @@ describe('SettingsPanelTest', () => {
         userConfigMessageCreatorMock.verify(u => u.setIssueTrackerPath(issueTrackerPathState), Times.once());
     });
 
-    test('verify bug service dropdown change', () => {
+    test('verify bug service choice group change', () => {
         userConfigStoreData = {} as UserConfigurationStoreData;
         const testProps: SettingsPanelProps = {
             isOpen: true,
@@ -206,8 +205,8 @@ describe('SettingsPanelTest', () => {
 
         const testSubject = new TestableSettingsPanel(testProps);
 
-        const option: IDropdownOption = { key: 'TestService', text: 'Test Service' };
-        testSubject.getOnBugServiceDropdownChange()(null, option, 1);
+        const option: IChoiceGroupOption = { key: 'TestService', text: 'Test Service' };
+        testSubject.getOnBugServiceChoiceGroupChange()(null, option);
 
         userConfigMessageCreatorMock.verify(u => u.setBugService(option.key as string), Times.once());
     });
