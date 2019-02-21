@@ -1,69 +1,46 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { React, create, GuidanceTitle } from '../../common';
-import { toolName } from '../../strings/application';
 
 export const guidance = create(({ Markup, Link }) => (
-    <React.Fragment>
+    <>
         <GuidanceTitle name={'Tab stops'} />
-        <h2>Why tab stops matter</h2>
-
-        <p>
-            Many people - not just those with disabilities - rely on their keyboard to interact with web applications. Users of assistive
-            technology are especially likely to use a keyboard (or its functional equivalent), and poorly-designed tab stops create
-            high-impact accessibility problems.
-        </p>
-
-        <p>
-            Good tab stop design allows keyboard users to
-            <ul>
-                <li>Tab through an application's interactive elements in a predictable order</li>
-                <li>Identify which element currently has the input focus</li>
-            </ul>
-            Activating and/or interacting with each element via keyboard will be covered in a separate test.
-            <br />
-            To learn more about tab stops, see <Link.Keyboard>WebAIM: Keyboard Accessibility</Link.Keyboard>.
-        </p>
-
-        <h2>About the Tab stops visualization</h2>
-
-        <p>
-            The visualizations in {toolName} enable developers to see accessibility markup that's normally invisible. The{' '}
-            <Markup.Term>Tab stops</Markup.Term> visualization shows:
-            <ul>
-                <li>The element that currently has the input focus, indicated by an empty circle.</li>
-                <li>
-                    The focus order, indicated by circles with numbers and connecting lines between them. (The connecting lines are broken
-                    when you navigate across an iframe boundary.)
-                </li>
-            </ul>
-        </p>
-
-        <h3>How to use the visualization</h3>
-
+        <h2>How to test</h2>
         <ol>
-            <li>Make sure input focus is on the element where you want to start testing.</li>
-            <li>
-                Turn on the <Markup.Term>Tab stops</Markup.Term> toggle. An empty circle will highlight the current tab stop.
-            </li>
-            <li>
-                Press the keyboard's <Markup.Term>Tab</Markup.Term> key to move the input focus through all the interactive elements within
-                your test scope.
-            </li>
+            <li>Refresh the target page to put it in its default state.</li>
+            <li>Turn on the Show tab stops toggle. An empty circle will highlight the current tab stop.</li>
+            <li>Press the Tab key to move input focus through all the interactive elements in the page.</li>
             <li>
                 As you tab to each element, look for these <Markup.Term>accessibility problems</Markup.Term>:
-                <Markup.ProblemList>
-                    <li>
-                        An interactive element can't be reached using the <Markup.Term>Tab</Markup.Term> key.
-                    </li>
-                    <li>A "keyboard trap" prevents tabbing away from an element.</li>
-                    <li>An interactive element does not give a visible indication when it has input focus.</li>
+                <ul>
+                    <li>An interactive element can't be reached using the Tab key.</li>
+                    <li>An interactive element "traps" input focus and prevents tabbing away.</li>
+                    <li>An interactive element doesn't give a visible indication when it has input focus.</li>
                     <li>The tab order is inconsistent with the logical order that's communicated visually.</li>
                     <li>Input focus moves unexpectedly without the user initiating it.</li>
-                </Markup.ProblemList>
+                </ul>
             </li>
-            <li>Stop tabbing when you have tabbed to every element within your test scope.</li>
         </ol>
+
+        <h2>Why it matters</h2>
+        <p>Users must be able to interact with a website or web app using only a keyboard.</p>
+
+        <ul>
+            <li>Using a mouse is impossible for people who can't see the pointer.</li>
+            <li>Some people don't have the physical capability to control a pointing device.</li>
+            <li>Many people without disabilities prefer to use a keyboard.</li>
+        </ul>
+
+        <p>Good tab stop design allows keyboard users to:</p>
+
+        <ul>
+            <li>Access all of an application's interactive elements in a predictable order</li>
+            <li>Identify which element currently has the input focus</li>
+        </ul>
+
+        <p>
+            Poorly-designed tab stops create high-impact accessibility problems. To learn more about tab stops, see <Link.Keyboard />
+        </p>
 
         <Markup.Columns>
             <Markup.Do>
@@ -144,5 +121,5 @@ export const guidance = create(({ Markup, Link }) => (
                 </ul>
             </Markup.Dont>
         </Markup.Columns>
-    </React.Fragment>
+    </>
 ));

@@ -798,7 +798,9 @@ div.insights-dialog-main-override {
                 display: flex;
                 flex-direction: column;
                 min-height: 0;
-                .target-page-changed,
+                .target-page-changed {
+                    margin: 24px 24px 0px 24px;
+                }
                 .static-content-details-view {
                     margin: 24px 24px 0px 24px;
                     ol {
