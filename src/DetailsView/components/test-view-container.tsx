@@ -38,6 +38,7 @@ export interface TestViewContainerProps {
     issuesSelection: ISelection;
     reportGenerator: ReportGenerator;
     issuesTableHandler: IssuesTableHandler;
+    issueTrackerPath: string;
 }
 
 export const TestViewContainer = NamedSFC<TestViewContainerProps>('TestViewContainer', props => {

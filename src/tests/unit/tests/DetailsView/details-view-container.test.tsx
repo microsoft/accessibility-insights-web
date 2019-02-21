@@ -265,6 +265,7 @@ describe('DetailsViewContainer', () => {
                 issuesSelection={props.issuesSelection}
                 reportGenerator={props.reportGenerator}
                 issuesTableHandler={props.issuesTableHandler}
+                issueTrackerPath={storeMocks.userConfigurationStoreData.issueTrackerPath}
                 rightPanelConfiguration={rightPanelConfiguration}
                 switcherNavConfiguration={switcherNavConfiguration}
             />
