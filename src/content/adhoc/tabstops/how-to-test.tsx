@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { React, create } from '../../common';
 
-export const staticContent = create(({ Markup }) => (
+export const howToTest = create(({ Markup }) => (
     <>
         <h2>How to test</h2>
         <ol>
