@@ -7,22 +7,18 @@ import ManualTestRecordYourResults from '../../common/manual-test-record-your-re
 import { TestStep } from '../../types/test-step';
 import { SemanticsTestStep } from './test-steps';
 
-const listsDescription: JSX.Element = (
-    <span>Semantic elements in a data table must not be coded as decorative.</span>
-);
+const listsDescription: JSX.Element = <span>Semantic elements in a data table must not be coded as decorative.</span>;
 
 const listsHowToTest: JSX.Element = (
     <div>
         <ol>
-            <li>
-                lists how to test
-            </li>
+            <li>lists how to test</li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
     </div>
 );
 
-export const Lists: TestStep = {
+export const SemanticsLists: TestStep = {
     key: SemanticsTestStep.lists,
     name: 'Data tables',
     description: listsDescription,

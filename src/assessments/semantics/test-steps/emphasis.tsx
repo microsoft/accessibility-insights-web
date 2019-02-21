@@ -7,16 +7,12 @@ import ManualTestRecordYourResults from '../../common/manual-test-record-your-re
 import { TestStep } from '../../types/test-step';
 import { SemanticsTestStep } from './test-steps';
 
-const emphasisDescription: JSX.Element = (
-    <span>Semantic elements in a data table must not be coded as decorative.</span>
-);
+const emphasisDescription: JSX.Element = <span>Semantic elements in a data table must not be coded as decorative.</span>;
 
 const emphasisHowToTest: JSX.Element = (
     <div>
         <ol>
-            <li>
-                emphasis how to test
-            </li>
+            <li>emphasis how to test</li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
     </div>

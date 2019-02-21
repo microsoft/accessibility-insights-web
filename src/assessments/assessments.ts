@@ -18,11 +18,12 @@ import { PageAssessment } from './page/assessment';
 import { ParsingAssessment } from './parsing/assessment';
 import { PrerecordedMultimediaAssessment } from './prerecorded-multimedia/assessment';
 import { RepetitiveContentAssessment } from './repetitive-content/assessment';
+import { SemanticsAssessment } from './semantics/assessment';
+import { SequenceAssessment } from './sequence/assessment';
 import { TextLegibilityAssessment } from './text-legibility/assessment';
 import { TimedEventsAssessment } from './timed-events/assessment';
 import { IAssessmentsProvider } from './types/iassessments-provider';
 import { VisibleFocusOrderAssessment } from './visible-focus-order/assessment';
-import { SequenceAssessment } from './sequence/assessment';
 
 export const Assessments: IAssessmentsProvider = AssessmentsProvider.Create([
     AutomatedChecks,
@@ -46,4 +47,5 @@ export const Assessments: IAssessmentsProvider = AssessmentsProvider.Create([
     PrerecordedMultimediaAssessment,
     LiveMultimediaAssessment,
     SequenceAssessment,
+    SemanticsAssessment,
 ]);

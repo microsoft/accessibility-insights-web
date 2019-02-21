@@ -3,9 +3,7 @@
 import * as React from 'react';
 
 import { link } from '../../../content/link';
-import {
-    AssessmentVisualizationEnabledToggle,
-} from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
+import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import ManualTestRecordYourResults from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
@@ -16,9 +14,7 @@ const cssContentHowToTest: JSX.Element = (
     <div>
         <p>The visual helper for this requirement displays the target page in grayscale. </p>
         <ol>
-            <li>
-                css content how to test
-            </li>
+            <li>css content how to test</li>
 
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
@@ -31,7 +27,7 @@ const cssContentDescription: JSX.Element = (
     </span>
 );
 
-export const cssContent: TestStep = {
+export const CssContent: TestStep = {
     key: SemanticsTestStep.cssContent,
     name: 'CSS Content',
     description: cssContentDescription,
