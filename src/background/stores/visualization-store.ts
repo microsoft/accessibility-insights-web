@@ -213,6 +213,7 @@ export class VisualizationStore extends BaseStore<IVisualizationStoreData> {
         const pivotChildUpdated = this.updateSelectedPivotChildUnderPivot(payload);
         const pivotUpdated = this.updateSelectedPivot(pivot);
         if (pivotChildUpdated || pivotUpdated) {
+            this.disableAllTests();
             this.emitChanged();
         }
     }
