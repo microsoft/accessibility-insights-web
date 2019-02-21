@@ -8,7 +8,11 @@ import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
 import { SemanticsTestStep } from './test-steps';
 
-const quotesDescription: JSX.Element = <span>Lists must be contained within semantically correct containers.</span>;
+const quotesDescription: JSX.Element = (
+    <span>
+        The <Markup.Tag tagName="blockquote" /> element must not be used to style non-quote text.
+    </span>
+);
 
 const quotesHowToTest: JSX.Element = (
     <div>

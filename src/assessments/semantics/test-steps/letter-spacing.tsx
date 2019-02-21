@@ -8,7 +8,7 @@ import { TestStep } from '../../types/test-step';
 import { SemanticsTestStep } from './test-steps';
 
 const letterSpacingDescription: JSX.Element = (
-    <span>Words and phrases that are visually emphasized must be contained within semantically correct containers.</span>
+    <span>Spacing characters must not be used to increase the space between letters in a word.</span>
 );
 
 const letterSpacingHowToTest: JSX.Element = (
