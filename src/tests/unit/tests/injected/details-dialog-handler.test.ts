@@ -296,6 +296,11 @@ describe('DetailsDialogHandlerTest', () => {
         testOnDevToolChangeSetsCanInspectToIsOpen(false);
     });
 
+    test('onUserConfigChanged', () => {
+        testOnUserConfigChangedSetsIssueTrackerPathToITP('example');
+        testOnUserConfigChangedSetsIssueTrackerPathToITP('other example');
+    })
+
     test('canInspect', () => {
         testCanInspectEqualsIsOpen(true);
         testCanInspectEqualsIsOpen(false);
@@ -622,6 +627,36 @@ describe('DetailsDialogHandlerTest', () => {
         testSubject.onDevToolChanged(detailsDialogMock.object);
 
         devToolStoreMock.verifyAll();
+        detailsDialogMock.verifyAll();
+    }
+
+    function testOnUserConfigChangedSetsIssueTrackerPathToITP(itp: string): void {
+        const detailsDialogMock = Mock.ofType(DetailsDialog, MockBehavior.Strict);
+        const userConfigStoreMock = Mock.ofType(UserConfigurationStore, MockBehavior.Strict);
+
+        userConfigStoreMock
+            .setup(store => store.getState())
+            .returns(() => {
+                return {
+                    issueTrackerPath: itp,
+                } as any;
+            })
+            .verifiable(Times.once());
+
+        detailsDialogMock
+            .setup(dialog => dialog.props)
+            .returns(() => {
+                return {
+                    userConfigStore: userConfigStoreMock.object,
+                } as any;
+            })
+            .verifiable(Times.once());
+
+        detailsDialogMock.setup(dialog => dialog.setState(It.isValue({ issueTrackerPath: itp }))).verifiable(Times.once());
+
+        testSubject.onUserConfigChanged(detailsDialogMock.object);
+
+        userConfigStoreMock.verifyAll();
         detailsDialogMock.verifyAll();
     }
 

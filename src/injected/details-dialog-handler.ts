@@ -75,7 +75,6 @@ export class DetailsDialogHandler {
         return devToolState && devToolState.isOpen;
     }
 
-    // TODO: test
     @autobind
     public onUserConfigChanged(dialog: DetailsDialog): void {
         dialog.setState({ issueTrackerPath: this.issueTrackerPath(dialog) });
