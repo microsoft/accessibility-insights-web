@@ -170,6 +170,11 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
             selectedDetailsViewPivot: storeState.visualizationStoreData.selectedDetailsViewPivot,
         });
         const selectedTest = selectedDetailsViewSwitcherNavConfiguration.getSelectedDetailsView(storeState);
+        const issueTrackerPath =
+            (storeState.userConfigurationStoreData.bugServicePropertiesMap &&
+                storeState.userConfigurationStoreData.bugServicePropertiesMap.gitHub &&
+                storeState.userConfigurationStoreData.bugServicePropertiesMap.gitHub.repository) ||
+            undefined;
         return (
             <DetailsViewMainContent
                 deps={deps}
@@ -190,7 +195,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
                 issuesTableHandler={this.props.issuesTableHandler}
                 rightPanelConfiguration={selectedDetailsRightPanelConfiguration}
                 switcherNavConfiguration={selectedDetailsViewSwitcherNavConfiguration}
-                issueTrackerPath={storeState.userConfigurationStoreData.issueTrackerPath}
+                issueTrackerPath={issueTrackerPath}
             />
         );
     }
