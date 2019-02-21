@@ -107,19 +107,6 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
       }
     }
   />
-  <FlaggedComponent
-    enableJSXElement={
-      <IssueTrackerInput
-        onSave={[Function]}
-      />
-    }
-    featureFlag="showBugFiling"
-    featureFlagStoreData={
-      Object {
-        "highContrastMode": false,
-      }
-    }
-  />
 </GenericPanel>
 `;
 
@@ -219,19 +206,6 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
           />
         </React.Fragment>
       </React.Fragment>
-    }
-    featureFlag="showBugFiling"
-    featureFlagStoreData={
-      Object {
-        "highContrastMode": false,
-      }
-    }
-  />
-  <FlaggedComponent
-    enableJSXElement={
-      <IssueTrackerInput
-        onSave={[Function]}
-      />
     }
     featureFlag="showBugFiling"
     featureFlagStoreData={
@@ -342,19 +316,6 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
       }
     }
   />
-  <FlaggedComponent
-    enableJSXElement={
-      <IssueTrackerInput
-        onSave={[Function]}
-      />
-    }
-    featureFlag="showBugFiling"
-    featureFlagStoreData={
-      Object {
-        "highContrastMode": false,
-      }
-    }
-  />
 </GenericPanel>
 `;
 
@@ -448,19 +409,6 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
           onChange={[Function]}
         />
       </React.Fragment>
-    }
-    featureFlag="showBugFiling"
-    featureFlagStoreData={
-      Object {
-        "highContrastMode": false,
-      }
-    }
-  />
-  <FlaggedComponent
-    enableJSXElement={
-      <IssueTrackerInput
-        onSave={[Function]}
-      />
     }
     featureFlag="showBugFiling"
     featureFlagStoreData={
@@ -566,19 +514,6 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
       }
     }
   />
-  <FlaggedComponent
-    enableJSXElement={
-      <IssueTrackerInput
-        onSave={[Function]}
-      />
-    }
-    featureFlag="showBugFiling"
-    featureFlagStoreData={
-      Object {
-        "highContrastMode": false,
-      }
-    }
-  />
 </GenericPanel>
 `;
 
@@ -672,19 +607,6 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
           onChange={[Function]}
         />
       </React.Fragment>
-    }
-    featureFlag="showBugFiling"
-    featureFlagStoreData={
-      Object {
-        "highContrastMode": false,
-      }
-    }
-  />
-  <FlaggedComponent
-    enableJSXElement={
-      <IssueTrackerInput
-        onSave={[Function]}
-      />
     }
     featureFlag="showBugFiling"
     featureFlagStoreData={

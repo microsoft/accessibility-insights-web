@@ -63,11 +63,6 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
                     featureFlag={FeatureFlags[FeatureFlags.showBugFiling]}
                     featureFlagStoreData={this.props.featureFlagData}
                 />
-                <FlaggedComponent
-                    enableJSXElement={this.getIssueTrackerInput()}
-                    featureFlag={FeatureFlags[FeatureFlags.showBugFiling]}
-                    featureFlagStoreData={this.props.featureFlagData}
-                />
             </GenericPanel>
         );
     }
