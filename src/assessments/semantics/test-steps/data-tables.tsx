@@ -33,7 +33,7 @@ const dataTablesHowToTest: JSX.Element = (
                     </li>
                     <li>
                         A <Markup.Emphasis>layout</Markup.Emphasis> table is used to visually position content without implying any
-                        relationships
+                        relationships.
                     </li>
                 </ol>
             </li>

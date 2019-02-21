@@ -14,7 +14,7 @@ const cssContentHowToTest: JSX.Element = (
     <div>
         <p>
             The visual helper for this requirement highlights content inserted in the page using CSS <Markup.Term>:before</Markup.Term> or{' '}
-            <Markup.Term>:after</Markup.Term>
+            <Markup.Term>:after</Markup.Term>.
         </p>
         <ol>
             <li>
@@ -41,15 +41,5 @@ export const CssContent: TestStep = {
     howToTest: cssContentHowToTest,
     isManual: true,
     guidanceLinks: [link.WCAG_1_3_1],
-    getAnalyzer: provider =>
-        provider.createRuleAnalyzer(
-            AnalyzerConfigurationFactory.forScanner({
-                rules: [],
-                key: SemanticsTestStep.cssContent,
-                testType: -1,
-            }),
-        ),
     updateVisibility: false,
-    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
-    getDrawer: provider => provider.createHighlightBoxDrawer(),
 };

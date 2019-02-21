@@ -2,17 +2,27 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import * as Markup from '../../markup';
 import { link } from '../../../content/link';
 import ManualTestRecordYourResults from '../../common/manual-test-record-your-results';
 import { TestStep } from '../../types/test-step';
 import { SemanticsTestStep } from './test-steps';
 
-const emphasisDescription: JSX.Element = <span>Semantic elements in a data table must not be coded as decorative.</span>;
+const emphasisDescription: JSX.Element = (
+    <span>Words and phrases that are visually emphasized must be contained within semantically correct containers.</span>
+);
 
 const emphasisHowToTest: JSX.Element = (
     <div>
+        <p>
+            This procedure uses the Chrome Developer Tools (<Markup.Term>F12</Markup.Term>) to inspect the page's HTML.
+        </p>
         <ol>
-            <li>emphasis how to test</li>
+            <li>Examine the target page to identify any visually emphasized words or phrases.</li>
+            <li>
+                Inspect the HTML for each emphasized word or phrase to verify that it's contained in an <Markup.Tag tagName="em" /> or{' '}
+                <Markup.Tag tagName="strong" /> element.
+            </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
     </div>
@@ -20,7 +30,7 @@ const emphasisHowToTest: JSX.Element = (
 
 export const Emphasis: TestStep = {
     key: SemanticsTestStep.emphasis,
-    name: 'Data tables',
+    name: 'Emphasis',
     description: emphasisDescription,
     howToTest: emphasisHowToTest,
     isManual: true,
