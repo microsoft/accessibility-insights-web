@@ -7,7 +7,6 @@
 @import './components/assessment-summary-details.scss';
 @import './components/assessment-scan-details.scss';
 @import './components/assessment-report-body-header.scss';
-
 * {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     -webkit-print-color-adjust: exact;
@@ -54,7 +53,6 @@ header {
 
 .step-details {
     margin: 0px 0px 24px 48px;
-
     &:last-child {
         margin-bottom: 0px;
     }
@@ -93,14 +91,13 @@ header {
     padding-left: 12px;
     padding-top: 12px;
     width: 100%;
-
     &:not(:last-child) {
         padding-bottom: 14px;
         border-bottom: $neutral-8 solid 1px;
     }
 }
 
-.instance-pair-details > td {
+.instance-pair-details>td {
     padding-bottom: 8px;
     line-height: 16px;
 }
