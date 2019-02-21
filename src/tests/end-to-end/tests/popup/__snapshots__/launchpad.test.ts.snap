@@ -84,7 +84,7 @@ exports[`Launch Pad content should match snapshot 1`] = `
     >
       <main>
         <div
-          aria-level="1"
+          aria-level="2"
           class="launch-pad-title ms-fontWeight-semibold"
           role="heading"
         >

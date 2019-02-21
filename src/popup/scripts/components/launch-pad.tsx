@@ -55,7 +55,7 @@ export class LaunchPad extends React.Component<LaunchPadProps, undefined> {
         return (
             <div className="ms-Grid main-section">
                 <main>
-                    <div role="heading" aria-level={1} className="launch-pad-title ms-fontWeight-semibold">
+                    <div role="heading" aria-level={2} className="launch-pad-title ms-fontWeight-semibold">
                         Launch pad
                     </div>
                     <hr className="ms-fontColor-neutralTertiaryAlt launch-pad-hr" />
