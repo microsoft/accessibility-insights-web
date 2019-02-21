@@ -11,6 +11,7 @@ import {
     SetBugServicePayload,
     SetBugServicePropertyPayload,
     SetHighContrastModePayload,
+    SetIssueTrackerPathPayload,
     SetTelemetryStatePayload,
 } from '../../actions/action-payloads';
 import { FeatureFlagPayload } from '../../actions/feature-flag-actions';
@@ -46,6 +47,7 @@ export class UserConfigurationStore extends BaseStore<UserConfigurationStoreData
         this.userConfigActions.setBugService.addListener(this.onSetBugService);
         this.userConfigActions.setBugServiceProperty.addListener(this.onSetBugServiceProperty);
         this.userConfigActions.notifyFeatureFlagChange.addListener(this.onNotifyFeatureFlagChange);
+        this.userConfigActions.setIssueTrackerPath.addListener(this.onSetIssueTrackerPath);
     }
 
     @autobind
@@ -97,5 +99,14 @@ export class UserConfigurationStore extends BaseStore<UserConfigurationStoreData
         if (payload.feature === FeatureFlags.highContrastMode && payload.enabled === false) {
             this.onSetHighContrastMode({ enableHighContrast: false });
         }
+    }
+
+    @autobind
+    private onSetIssueTrackerPath(payload: SetIssueTrackerPathPayload) {
+        this.state.issueTrackerPath = payload.issueTrackerPath;
+
+        // tslint:disable-next-line:no-floating-promises - grandfathered-in pre-existing violation
+        this.indexDbApi.setItem(IndexedDBDataKeys.userConfiguration, this.state);
+        this.emitChanged();
     }
 }

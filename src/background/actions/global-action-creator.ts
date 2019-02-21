@@ -12,6 +12,7 @@ import {
     SetBugServicePayload,
     SetBugServicePropertyPayload,
     SetHighContrastModePayload,
+    SetIssueTrackerPathPayload,
     SetLaunchPanelState,
     SetTelemetryStatePayload,
 } from './action-payloads';
@@ -70,6 +71,7 @@ export class GlobalActionCreator {
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetBugService, this.onSetBugService);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetBugServiceProperty, this.onSetBugServiceProperty);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.NotifyFeatureFlagChange, this.onNotifyFeatureFlagChange);
+        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetIssueTrackerPath, this.onSetIssueTrackerPath);
     }
 
     @autobind
@@ -159,5 +161,10 @@ export class GlobalActionCreator {
     @autobind
     private onNotifyFeatureFlagChange(payload: FeatureFlagPayload): void {
         this.userConfigActions.notifyFeatureFlagChange.invoke(payload);
+    }
+
+    @autobind
+    private onSetIssueTrackerPath(payload: SetIssueTrackerPathPayload): void {
+        this.userConfigActions.setIssueTrackerPath.invoke(payload);
     }
 }

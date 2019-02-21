@@ -63,7 +63,6 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
     }
   />
   <FlaggedComponent
-    disableJSXElement={null}
     enableJSXElement={
       <React.Fragment>
         <StyledWithResponsiveMode
@@ -100,6 +99,19 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
           />
         </React.Fragment>
       </React.Fragment>
+    }
+    featureFlag="showBugFiling"
+    featureFlagStoreData={
+      Object {
+        "highContrastMode": false,
+      }
+    }
+  />
+  <FlaggedComponent
+    enableJSXElement={
+      <IssueTrackerInput
+        onSave={[Function]}
+      />
     }
     featureFlag="showBugFiling"
     featureFlagStoreData={
@@ -173,7 +185,6 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
     }
   />
   <FlaggedComponent
-    disableJSXElement={null}
     enableJSXElement={
       <React.Fragment>
         <StyledWithResponsiveMode
@@ -208,6 +219,19 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
           />
         </React.Fragment>
       </React.Fragment>
+    }
+    featureFlag="showBugFiling"
+    featureFlagStoreData={
+      Object {
+        "highContrastMode": false,
+      }
+    }
+  />
+  <FlaggedComponent
+    enableJSXElement={
+      <IssueTrackerInput
+        onSave={[Function]}
+      />
     }
     featureFlag="showBugFiling"
     featureFlagStoreData={
@@ -281,7 +305,6 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
     }
   />
   <FlaggedComponent
-    disableJSXElement={null}
     enableJSXElement={
       <React.Fragment>
         <StyledWithResponsiveMode
@@ -311,6 +334,19 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
           value="test-repository"
         />
       </React.Fragment>
+    }
+    featureFlag="showBugFiling"
+    featureFlagStoreData={
+      Object {
+        "highContrastMode": false,
+      }
+    }
+  />
+  <FlaggedComponent
+    enableJSXElement={
+      <IssueTrackerInput
+        onSave={[Function]}
+      />
     }
     featureFlag="showBugFiling"
     featureFlagStoreData={
@@ -384,7 +420,6 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
     }
   />
   <FlaggedComponent
-    disableJSXElement={null}
     enableJSXElement={
       <React.Fragment>
         <StyledWithResponsiveMode
@@ -413,6 +448,19 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
           onChange={[Function]}
         />
       </React.Fragment>
+    }
+    featureFlag="showBugFiling"
+    featureFlagStoreData={
+      Object {
+        "highContrastMode": false,
+      }
+    }
+  />
+  <FlaggedComponent
+    enableJSXElement={
+      <IssueTrackerInput
+        onSave={[Function]}
+      />
     }
     featureFlag="showBugFiling"
     featureFlagStoreData={
@@ -486,7 +534,6 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
     }
   />
   <FlaggedComponent
-    disableJSXElement={null}
     enableJSXElement={
       <React.Fragment>
         <StyledWithResponsiveMode
@@ -511,6 +558,19 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
           selectedKey="none"
         />
       </React.Fragment>
+    }
+    featureFlag="showBugFiling"
+    featureFlagStoreData={
+      Object {
+        "highContrastMode": false,
+      }
+    }
+  />
+  <FlaggedComponent
+    enableJSXElement={
+      <IssueTrackerInput
+        onSave={[Function]}
+      />
     }
     featureFlag="showBugFiling"
     featureFlagStoreData={
@@ -584,7 +644,6 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
     }
   />
   <FlaggedComponent
-    disableJSXElement={null}
     enableJSXElement={
       <React.Fragment>
         <StyledWithResponsiveMode
@@ -613,6 +672,19 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
           onChange={[Function]}
         />
       </React.Fragment>
+    }
+    featureFlag="showBugFiling"
+    featureFlagStoreData={
+      Object {
+        "highContrastMode": false,
+      }
+    }
+  />
+  <FlaggedComponent
+    enableJSXElement={
+      <IssueTrackerInput
+        onSave={[Function]}
+      />
     }
     featureFlag="showBugFiling"
     featureFlagStoreData={

@@ -10,7 +10,7 @@ import {
     SelectionMode,
 } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
-import { Mock } from 'typemoq';
+import { Mock, It } from 'typemoq';
 
 import { FeatureFlags } from '../../../../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
@@ -117,9 +117,18 @@ describe('IssuesDetailsListTest', () => {
     }
 
     function getSampleItems(showBugFiling = false): IDetailsRowData[] {
+        const bugButtonProps = {
+            deps: {
+                issueDetailsTextGenerator: null,
+            },
+            issueTrackerPath: 'example/example',
+            pageTitle: 'pageTitle',
+            pageUrl: 'http://pageUrl',
+            nodeResult: null,
+        };
         const rowData = {
             selector: 'testSelector',
-            bugButton: showBugFiling ? <BugButton /> : null,
+            bugButton: showBugFiling ? <BugButton {...bugButtonProps} /> : null,
         };
         return [rowData as IDetailsRowData, rowData as IDetailsRowData];
     }
@@ -201,7 +210,7 @@ describe('IssuesDetailsListTest', () => {
         };
 
         issuesTableHandlerMock
-            .setup(handler => handler.getListProps(issuesData.scanResult.violations, featureFlagData[FeatureFlags.showBugFiling]))
+            .setup(handler => handler.getListProps(issuesData.scanResult.violations, It.isAny()))
             .returns(failedRules => listGroups)
             .verifiable();
 
@@ -272,11 +281,17 @@ class TestPropsBuilder {
 
     public build(): IssuesDetailsListProps {
         return {
+            deps: {
+                dropdownClickHandler: null,
+                issueDetailsTextGenerator: null,
+            },
             violations: this.violations,
             issuesTableHandler: this.issuesTableHandler,
             issuesSelection: this.issuesSelection,
             pageTitle: 'pageTitle',
             pageUrl: 'http://pageUrl/',
+            issueTrackerPath: 'example/example',
+            selectedIdToRuleResultMap: null,
             featureFlagData: this.featureFlagData,
         };
     }

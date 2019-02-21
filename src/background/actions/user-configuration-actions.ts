@@ -5,6 +5,7 @@ import {
     SetBugServicePayload,
     SetBugServicePropertyPayload,
     SetHighContrastModePayload,
+    SetIssueTrackerPathPayload,
     SetTelemetryStatePayload,
 } from './action-payloads';
 import { FeatureFlagPayload } from './feature-flag-actions';
@@ -16,4 +17,5 @@ export class UserConfigurationActions {
     public readonly setBugService = new Action<SetBugServicePayload>();
     public readonly setBugServiceProperty = new Action<SetBugServicePropertyPayload>();
     public readonly notifyFeatureFlagChange = new Action<FeatureFlagPayload>();
+    public readonly setIssueTrackerPath = new Action<SetIssueTrackerPathPayload>();
 }

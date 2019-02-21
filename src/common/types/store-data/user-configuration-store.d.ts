@@ -4,6 +4,7 @@ export interface UserConfigurationStoreData {
     isFirstTime: boolean;
     enableTelemetry: boolean;
     enableHighContrast: boolean;
+    issueTrackerPath?: string;
     bugService: string;
     bugServicePropertiesMap: BugServicePropertiesMap;
 }
@@ -14,4 +15,5 @@ interface BugServicePropertiesMap {
 
 interface BugServiceProperties {
     [name: string]: string;
+    issueTrackerPath?: string;
 }

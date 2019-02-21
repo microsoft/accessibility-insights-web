@@ -19,11 +19,12 @@ import { ReportGenerator } from '../reports/report-generator';
 import { ExportDialog } from './export-dialog';
 import { IssuesDetailsList } from './issues-details-list';
 import { IssuesDetailsPane, IssuesDetailsPaneDeps } from './Issues-details-pane';
-import { IssuesTableHandler } from './issues-table-handler';
+import { IssuesTableHandler, IssuesTableHandlerDeps } from './issues-table-handler';
 
-export type IssuesTableDeps = IssuesDetailsPaneDeps & {
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-};
+export type IssuesTableDeps = IssuesTableHandlerDeps &
+    IssuesDetailsPaneDeps & {
+        detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    };
 
 export interface IssuesTableProps {
     deps: IssuesTableDeps;
@@ -33,6 +34,7 @@ export interface IssuesTableProps {
     selectedIdToRuleResultMap: IDictionaryStringTo<DecoratedAxeNodeResult>;
     issuesEnabled: boolean;
     issuesSelection: ISelection;
+    issueTrackerPath: string;
     pageTitle: string;
     pageUrl: string;
     scanning: boolean;
@@ -176,12 +178,15 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
         return (
             <div className="issues-table-details">
                 <IssuesDetailsList
+                    deps={this.props.deps}
                     violations={this.props.violations}
                     issuesTableHandler={this.props.issuesTableHandler}
                     issuesSelection={this.props.issuesSelection}
+                    issueTrackerPath={this.props.issueTrackerPath}
                     pageTitle={this.props.pageTitle}
                     pageUrl={this.props.pageUrl}
                     featureFlagData={this.props.featureFlags}
+                    selectedIdToRuleResultMap={this.props.selectedIdToRuleResultMap}
                 />
                 <div className="issue-detail-outer-container ms-Fabric">{this.getIssueDetailPane()}</div>
             </div>

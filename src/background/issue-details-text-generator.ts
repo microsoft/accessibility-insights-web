@@ -10,7 +10,7 @@ export class IssueDetailsTextGenerator {
 
     public buildText(data: CreateIssueDetailsTextData): string {
         const result = data.ruleResult;
-        const standardTags = data.ruleResult.guidanceLinks.map(tag => tag.text.toUpperCase());
+        const standardTags = this.standardizeTags(data);
 
         const text = [
             `Title: ${this.buildTitle(data, standardTags)}`,
@@ -45,7 +45,11 @@ export class IssueDetailsTextGenerator {
         return input.replace(/\s+/g, ' ');
     }
 
-    public buildTitle(data: CreateIssueDetailsTextData, standardTags: string[]): string {
+    public buildTitle(data: CreateIssueDetailsTextData, standardTags?: string[]): string {
+        if (!standardTags) {
+            standardTags = this.standardizeTags(data);
+        }
+
         let prefix = standardTags.join(',');
         if (prefix.length > 0) {
             prefix = prefix + ': ';
@@ -67,5 +71,9 @@ export class IssueDetailsTextGenerator {
             selectorLastPart = selector.substr(selector.lastIndexOf(' > ') + 3);
         }
         return selectorLastPart;
+    }
+
+    private standardizeTags(data: CreateIssueDetailsTextData): string[] {
+        return data.ruleResult.guidanceLinks.map(tag => tag.text.toUpperCase());
     }
 }

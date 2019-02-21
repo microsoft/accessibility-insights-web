@@ -17,15 +17,19 @@ import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag
 import { RuleResult } from '../../scanner/iruleresults';
 import { DetailsGroupHeader, DetailsGroupHeaderProps } from './details-group-header';
 import { FailureDetails } from './failure-details';
-import { DetailsGroup, IDetailsRowData, IssuesTableHandler } from './issues-table-handler';
+import { DetailsGroup, IDetailsRowData, IssuesTableHandler, IssuesTableHandlerDeps } from './issues-table-handler';
+import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 
 export interface IssuesDetailsListProps {
+    deps: IssuesTableHandlerDeps;
     violations: (RuleResult)[];
     issuesTableHandler: IssuesTableHandler;
     issuesSelection: ISelection;
+    issueTrackerPath: string;
     pageTitle: string;
     pageUrl: string;
     featureFlagData: FeatureFlagStoreData;
+    selectedIdToRuleResultMap: IDictionaryStringTo<DecoratedAxeNodeResult>;
 }
 
 export class IssuesDetailsList extends React.Component<IssuesDetailsListProps, {}> {
@@ -83,10 +87,14 @@ export class IssuesDetailsList extends React.Component<IssuesDetailsListProps, {
     }
 
     public render(): JSX.Element {
-        const detailListProps = this.props.issuesTableHandler.getListProps(
-            this.props.violations,
-            this.props.featureFlagData[FeatureFlags.showBugFiling],
-        );
+        const detailListProps = this.props.issuesTableHandler.getListProps(this.props.violations, {
+            deps: this.props.deps,
+            pageTitle: this.props.pageTitle,
+            pageUrl: this.props.pageUrl,
+            issueTrackerPath: this.props.issueTrackerPath,
+            selectedIdToRuleResultMap: this.props.selectedIdToRuleResultMap,
+            showBugFiling: this.props.featureFlagData[FeatureFlags.showBugFiling],
+        });
 
         this.items = detailListProps.items;
         this.groups = detailListProps.groups;

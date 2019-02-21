@@ -18,6 +18,7 @@ import {
     enableTelemetrySettingDescription,
     enableTelemetrySettingsPanelTitle,
 } from '../../content/settings/improve-accessibility-insights';
+import { IssueTrackerInput } from '../../content/settings/issue-tracker';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { GenericPanel } from './generic-panel';
 import { GenericToggle } from './generic-toggle';
@@ -59,7 +60,11 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
                 />
                 <FlaggedComponent
                     enableJSXElement={this.getBugSettingsUx()}
-                    disableJSXElement={null}
+                    featureFlag={FeatureFlags[FeatureFlags.showBugFiling]}
+                    featureFlagStoreData={this.props.featureFlagData}
+                />
+                <FlaggedComponent
+                    enableJSXElement={this.getIssueTrackerInput()}
                     featureFlag={FeatureFlags[FeatureFlags.showBugFiling]}
                     featureFlagStoreData={this.props.featureFlagData}
                 />
@@ -95,6 +100,12 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
                 />
                 {this.getProviderBugSettingsUx(selectedKey)}
             </>
+        );
+    }
+
+    private getIssueTrackerInput(): JSX.Element {
+        return (
+            <IssueTrackerInput onSave={this.onIssueTrackerPathSave} issueTrackerPath={this.props.userConfigStoreState.issueTrackerPath} />
         );
     }
 
@@ -170,5 +181,10 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
             return undefined;
         }
         return this.props.userConfigStoreState.bugServicePropertiesMap[bugService][propertyName];
+    }
+
+    @autobind
+    protected onIssueTrackerPathSave(id: string, state: string) {
+        return this.props.deps.userConfigMessageCreator.setIssueTrackerPath(state);
     }
 }

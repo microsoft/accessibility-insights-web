@@ -103,6 +103,7 @@ export class Messages {
         SetBugService: 'insights/userConfig/setBugService',
         SetBugServiceProperty: 'insights/userConfig/setBugServiceProperty',
         NotifyFeatureFlagChange: 'insights/userConfig/notifyFeatureFlagChange',
+        SetIssueTrackerPath: 'insights/userConfig/issueTrackerPath',
     };
 
     public static readonly Tab = {

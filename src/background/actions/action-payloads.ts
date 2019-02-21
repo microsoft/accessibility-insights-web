@@ -133,3 +133,7 @@ export interface SetBugServicePropertyPayload extends BaseActionPayload {
     propertyName: string;
     propertyValue: string;
 }
+
+export interface SetIssueTrackerPathPayload extends BaseActionPayload {
+    issueTrackerPath: string;
+}

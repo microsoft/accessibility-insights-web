@@ -5,6 +5,7 @@ import {
     SetBugServicePropertyPayload,
     SetHighContrastModePayload,
     SetTelemetryStatePayload,
+    SetIssueTrackerPathPayload,
 } from '../../background/actions/action-payloads';
 import { Messages } from '../messages';
 import { BaseActionMessageCreator } from './base-action-message-creator';
@@ -55,6 +56,18 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
 
         this.dispatchMessage({
             type: Messages.UserConfig.SetBugServiceProperty,
+            tabId: this._tabId,
+            payload,
+        });
+    }
+
+    public setIssueTrackerPath(issueTrackerPath: string): void {
+        const payload: SetIssueTrackerPathPayload = {
+            issueTrackerPath,
+        };
+
+        this.dispatchMessage({
+            type: Messages.UserConfig.SetIssueTrackerPath,
             tabId: this._tabId,
             payload,
         });

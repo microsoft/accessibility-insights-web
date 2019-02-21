@@ -6,6 +6,7 @@ import {
     SetBugServicePayload,
     SetBugServicePropertyPayload,
     SetHighContrastModePayload,
+    SetIssueTrackerPathPayload,
     SetTelemetryStatePayload,
 } from '../../../../../background/actions/action-payloads';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
@@ -59,6 +60,24 @@ describe('UserConfigMessageCreator', () => {
         postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
 
         testSubject.setHighContrastMode(enableHighContrast);
+
+        postMessageMock.verifyAll();
+    });
+
+    test('SetIssueTrackerPath', () => {
+        const issueTrackerPath = 'example';
+        const payload: SetIssueTrackerPathPayload = {
+            issueTrackerPath,
+        };
+        const expectedMessage = {
+            tabId: 1,
+            type: Messages.UserConfig.SetIssueTrackerPath,
+            payload,
+        };
+
+        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
+
+        testSubject.setIssueTrackerPath(issueTrackerPath);
 
         postMessageMock.verifyAll();
     });

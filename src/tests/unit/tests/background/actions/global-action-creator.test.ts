@@ -22,6 +22,7 @@ import { TelemetryEventHandler } from '../../../../../background/telemetry/telem
 import { Action } from '../../../../../common/flux/action';
 import { Messages } from '../../../../../common/messages';
 import * as TelemetryEvents from '../../../../../common/telemetry-events';
+import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { LaunchPanelType } from '../../../../../popup/scripts/components/popup-view';
 import { InterpreterStub } from '../../../stubs/interpreter-stub';
 
@@ -273,6 +274,27 @@ describe('GlobalActionCreatorTest', () => {
             .setupRegistrationCallback(Messages.UserConfig.SetBugServiceProperty, args)
             .setupActionsOnUserConfig('setBugServiceProperty')
             .setupUserConfigActionWithInvokeParameter('setBugServiceProperty', payload);
+
+        const actionCreator = validator.buildActionCreator();
+        actionCreator.registerCallbacks();
+
+        validator.verifyAll();
+    });
+
+    test('registerCallback for on UserConfig.SetIssueTrackerPath', () => {
+        const payload: UserConfigurationStoreData = {
+            enableTelemetry: true,
+            isFirstTime: false,
+            enableHighContrast: true,
+            issueTrackerPath: 'example/example',
+            bugService: 'none',
+            bugServicePropertiesMap: {},
+        };
+        const args = [payload];
+        const validator = new GlobalActionCreatorValidator()
+            .setupRegistrationCallback(Messages.UserConfig.SetIssueTrackerPath, args)
+            .setupActionsOnUserConfig('setIssueTrackerPath')
+            .setupUserConfigActionWithInvokeParameter('setIssueTrackerPath', payload);
 
         const actionCreator = validator.buildActionCreator();
         actionCreator.registerCallbacks();

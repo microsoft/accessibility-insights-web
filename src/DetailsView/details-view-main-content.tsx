@@ -44,6 +44,7 @@ export interface IDetailsViewMainContentProps {
     issuesTableHandler: IssuesTableHandler;
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
+    issueTrackerPath: string;
 }
 
 export class DetailsViewMainContent extends React.Component<IDetailsViewMainContentProps> {

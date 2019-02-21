@@ -22,6 +22,7 @@ export interface IAdhocIssuesTestViewProps {
     deps: AdhocIssuesTestViewDeps;
     tabStoreData: ITabStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
+    issueTrackerPath: string;
     selectedTest: VisualizationType;
     visualizationStoreData: IVisualizationStoreData;
     visualizationScanResultData: IVisualizationScanResultData;
@@ -53,6 +54,7 @@ export const AdhocIssuesTestView = NamedSFC<IAdhocIssuesTestViewProps>('AdhocIss
             title={title}
             issuesTableHandler={props.issuesTableHandler}
             issuesEnabled={scanData.enabled}
+            issueTrackerPath={props.issueTrackerPath}
             violations={scanResult != null ? scanResult.violations : null}
             issuesSelection={props.issuesSelection}
             selectedIdToRuleResultMap={selectedIdToRuleResultMap}
