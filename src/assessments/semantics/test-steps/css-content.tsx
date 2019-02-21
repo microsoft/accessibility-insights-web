@@ -12,9 +12,16 @@ import { SemanticsTestStep } from './test-steps';
 
 const cssContentHowToTest: JSX.Element = (
     <div>
-        <p>The visual helper for this requirement displays the target page in grayscale. </p>
+        <p>
+            The visual helper for this requirement highlights content inserted in the page using CSS <Markup.Term>:before</Markup.Term> or{' '}
+            <Markup.Term>:after</Markup.Term>
+        </p>
         <ol>
-            <li>css content how to test</li>
+            <li>
+                In the target page, examine each highlighted item to verify that it is decorative. An element is{' '}
+                <Markup.Emphasis>decorative</Markup.Emphasis> if it could be removed from the page with{' '}
+                <Markup.Emphasis>no</Markup.Emphasis> impact on meaning or function.
+            </li>
 
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
