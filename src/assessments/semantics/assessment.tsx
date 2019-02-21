@@ -8,8 +8,10 @@ import { AssessmentBuilder } from '../assessment-builder';
 import * as Markup from '../markup';
 import { CssContent } from './test-steps/css-content';
 import { DataTables } from './test-steps/data-tables';
-import { Emphasis } from './test-steps/emphasis';
+import { SemanticsEmphasis } from './test-steps/emphasis';
 import { SemanticsLists } from './test-steps/lists';
+import { SemanticsQuotes } from './test-steps/quotes';
+import { SemanticsLetterSpacing } from './test-steps/letter-spacing';
 
 const key = 'semanticsAssessment';
 const title = 'Semantics';
@@ -29,12 +31,13 @@ const gettingStarted: JSX.Element = (
         </p>
     </React.Fragment>
 );
+
 export const SemanticsAssessment = AssessmentBuilder.Assisted({
     key,
     title,
     gettingStarted,
     type: VisualizationType.SemanticsAssessment,
-    steps: [CssContent, DataTables, SemanticsLists, Emphasis],
+    steps: [CssContent, DataTables, SemanticsLists, SemanticsEmphasis, SemanticsQuotes, SemanticsLetterSpacing],
     storeDataKey: 'semanticsAssessment',
     featureFlag: {
         required: [FeatureFlags.showAllAssessments],

@@ -12,9 +12,7 @@ const listsDescription: JSX.Element = <span>Lists must be contained within seman
 
 const listsHowToTest: JSX.Element = (
     <div>
-        <p>
-            This procedure uses the Chrome Developer Tools (<Markup.Term>F12</Markup.Term>) to inspect the page's HTML.
-        </p>
+        <p>This procedure uses the Chrome Developer Tools (F12) to inspect the page's HTML.</p>
         <p>
             <Markup.Emphasis>
                 Note: This requirement applies to list containers. An automated check will fail if list items are incorrectly coded.
