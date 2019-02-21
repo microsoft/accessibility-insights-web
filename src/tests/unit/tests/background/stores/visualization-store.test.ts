@@ -13,6 +13,7 @@ import {
 import { TabActions } from '../../../../../background/actions/tab-actions';
 import { VisualizationActions } from '../../../../../background/actions/visualization-actions';
 import { VisualizationStore } from '../../../../../background/stores/visualization-store';
+import { AdHocTestkeys } from '../../../../../common/configs/adhoc-test-keys';
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
@@ -31,7 +32,7 @@ describe('VisualizationStoreTest ', () => {
         expect(StoreNames[StoreNames.VisualizationStore]).toEqual(testObject.getId());
     });
 
-    test('onUpdateSelectedDetailsView when pivot is different', () => {
+    test('onUpdateSelectedPivotChild when pivot is different', () => {
         const actionName = 'updateSelectedPivotChild';
         const viewType = VisualizationType.TabStops;
         const initialPivot = DetailsViewPivotType.allTest;
@@ -58,7 +59,7 @@ describe('VisualizationStoreTest ', () => {
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onUpdateSelectedDetailsView when old pivot doesnt have current visualization', () => {
+    test('onUpdateSelectedPivotChild when old pivot doesnt have current visualization', () => {
         const actionName = 'updateSelectedPivotChild';
         const viewType = VisualizationType.Landmarks;
         const finalPivot = DetailsViewPivotType.allTest;
@@ -83,7 +84,7 @@ describe('VisualizationStoreTest ', () => {
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onUpdateSelectedDetailsView when view & pivot are the same', () => {
+    test('onUpdateSelectedPivotChild when view & pivot are the same', () => {
         const actionName = 'updateSelectedPivotChild';
         const viewType = VisualizationType.Landmarks;
         const pivotType = DetailsViewPivotType.allTest;
@@ -107,7 +108,7 @@ describe('VisualizationStoreTest ', () => {
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onUpdateSelectedDetailsView when view changes to null', () => {
+    test('onUpdateSelectedPivotChild when view changes to null', () => {
         const actionName = 'updateSelectedPivotChild';
         const expectedState = new VisualizationStoreDataBuilder().with('selectedAdhocDetailsView', VisualizationType.Landmarks).build();
         const initialState = new VisualizationStoreDataBuilder().with('selectedAdhocDetailsView', VisualizationType.Landmarks).build();
@@ -122,7 +123,37 @@ describe('VisualizationStoreTest ', () => {
             .testListenerToNeverBeCalled(initialState, expectedState);
     });
 
-    test('onUpdateSelectedDetailsView when view is different', () => {
+    test('onUpdateSelectedPivotChild same pivot different view', () => {
+        const actionName = 'updateSelectedPivotChild';
+        const selectedPivot = DetailsViewPivotType.fastPass;
+
+        const oldView = VisualizationType.Issues;
+        const newView = VisualizationType.Landmarks;
+
+        const initialState = new VisualizationStoreDataBuilder()
+            .with('selectedDetailsViewPivot', selectedPivot)
+            .with('selectedFastPassDetailsView', oldView)
+            .build();
+
+        initialState.tests.adhoc[AdHocTestkeys.Issues] = { enabled: true };
+        initialState.tests.adhoc[AdHocTestkeys.Color] = { enabled: true };
+
+        const expectedState = new VisualizationStoreDataBuilder()
+            .with('selectedDetailsViewPivot', selectedPivot)
+            .with('selectedFastPassDetailsView', newView)
+            .build();
+
+        const payload: UpdateSelectedDetailsViewPayload = {
+            detailsViewType: newView,
+            pivotType: selectedPivot,
+        };
+
+        createStoreTesterForVisualizationActions(actionName)
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
+    test('onUpdateSelectedPivotChild when view is different', () => {
         const actionName = 'updateSelectedPivotChild';
         const initialState = new VisualizationStoreDataBuilder().build();
 
