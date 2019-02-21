@@ -4,7 +4,8 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
   enableTelemetry: false,
   enableHighContrast: false,
   bugService: 'azureBoards',
-  bugServicePropertiesMap: { azureBoards: { project: 'test-project', team: 'test-team' } } } 1`] = `
+  bugServicePropertiesMap:
+   { azureBoards: { project: 'test-project', team: 'test-team' } } } 1`] = `
 <GenericPanel
   className="settings-panel"
   closeButtonAriaLabel="Close settings panel"
