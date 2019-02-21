@@ -3,7 +3,6 @@
 import { autobind } from '@uifabric/utilities';
 import { HTMLElementUtils } from './html-element-utils';
 
-// TODO: Test this file
 export class FileIssueDetailsHandler {
     private _htmlElementUtils: HTMLElementUtils;
 
