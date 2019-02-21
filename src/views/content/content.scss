@@ -60,6 +60,13 @@
         font-weight: 400;
     }
 
+    ol {
+        -webkit-padding-start: 16px;
+        li ul li {
+            list-style-type: disc;
+        }
+    }
+
     .content-hyperlinks {
         .content-inline {
             line-height: 20px;
