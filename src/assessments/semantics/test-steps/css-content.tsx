@@ -36,7 +36,7 @@ const cssContentDescription: JSX.Element = (
 
 export const CssContent: TestStep = {
     key: SemanticsTestStep.cssContent,
-    name: 'CSS Content',
+    name: 'CSS content',
     description: cssContentDescription,
     howToTest: cssContentHowToTest,
     isManual: true,
