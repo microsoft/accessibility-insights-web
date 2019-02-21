@@ -66,4 +66,4 @@ describe('FileIssueDetailsHandlerTest', () => {
         parentLayer.className = 'ms-Layer--fixed';
         return parentLayer;
     }
-})
+});

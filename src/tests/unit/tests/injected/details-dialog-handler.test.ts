@@ -299,7 +299,7 @@ describe('DetailsDialogHandlerTest', () => {
     test('onUserConfigChanged', () => {
         testOnUserConfigChangedSetsIssueTrackerPathToITP('example');
         testOnUserConfigChangedSetsIssueTrackerPathToITP('other example');
-    })
+    });
 
     test('canInspect', () => {
         testCanInspectEqualsIsOpen(true);
