@@ -3,6 +3,7 @@
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { DevToolStore } from '../../../../background/stores/dev-tools-store';
+import { UserConfigurationStore } from '../../../../background/stores/global/user-configuration-store';
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
 import { DevToolActionMessageCreator } from '../../../../common/message-creators/dev-tool-action-message-creator';
 import { DetailsDialog } from '../../../../injected/components/details-dialog';
@@ -360,6 +361,7 @@ describe('DetailsDialogHandlerTest', () => {
     test('componentDidMount adds listener if clickable objects are available', () => {
         const detailsDialogMock = Mock.ofType(DetailsDialog, MockBehavior.Strict);
         const devToolStoreMock = Mock.ofType(DevToolStore, MockBehavior.Strict);
+        const userConfigStoreMock = Mock.ofType(UserConfigurationStore, MockBehavior.Strict);
         const clickableMock = Mock.ofInstance({
             addEventListener: (ev, cb) => {
                 return null;
@@ -388,12 +390,22 @@ describe('DetailsDialogHandlerTest', () => {
         } as any;
 
         devToolStoreMock.setup(store => store.addChangedListener(It.isAny())).verifiable(Times.once());
+        userConfigStoreMock.setup(store => store.addChangedListener(It.isAny())).verifiable(Times.once());
 
         devToolStoreMock
             .setup(store => store.getState())
             .returns(() => {
                 return {
                     isOpen: false,
+                } as any;
+            })
+            .verifiable(Times.once());
+
+        userConfigStoreMock
+            .setup(store => store.getState())
+            .returns(() => {
+                return {
+                    issueTrackerPath: 'issTrackPath',
                 } as any;
             })
             .verifiable(Times.once());
@@ -420,6 +432,7 @@ describe('DetailsDialogHandlerTest', () => {
             .returns(() => {
                 return {
                     devToolStore: devToolStoreMock.object,
+                    userConfigStore: userConfigStoreMock.object,
                     enableBugFiling: true,
                     featureFlagStoreData: featureFlagStoreData,
                 } as any;
@@ -427,6 +440,7 @@ describe('DetailsDialogHandlerTest', () => {
             .verifiable(Times.atLeastOnce());
 
         detailsDialogMock.setup(dialog => dialog.setState(It.isValue({ canInspect: false }))).verifiable(Times.once());
+        detailsDialogMock.setup(dialog => dialog.setState(It.isValue({ issueTrackerPath: 'issTrackPath' }))).verifiable(Times.once());
 
         setupDetailsDialogMockForShadowComponents(detailsDialogMock);
 
@@ -439,6 +453,7 @@ describe('DetailsDialogHandlerTest', () => {
         testSubject.componentDidMount(detailsDialogMock.object);
 
         devToolStoreMock.verifyAll();
+        userConfigStoreMock.verifyAll();
         detailsDialogMock.verifyAll();
         shadowRootMock.verifyAll();
         clickableMock.verifyAll();
@@ -462,14 +477,17 @@ describe('DetailsDialogHandlerTest', () => {
     test('componentWillUnmount removes listener', () => {
         const detailsDialogMock = Mock.ofType(DetailsDialog, MockBehavior.Strict);
         const devToolStoreMock = Mock.ofType(DevToolStore, MockBehavior.Strict);
+        const userConfigStoreMock = Mock.ofType(UserConfigurationStore, MockBehavior.Strict);
 
         devToolStoreMock.setup(store => store.removeChangedListener(It.isAny())).verifiable(Times.once());
+        userConfigStoreMock.setup(store => store.removeChangedListener(It.isAny())).verifiable(Times.once());
 
         detailsDialogMock
             .setup(dialog => dialog.props)
             .returns(() => {
                 return {
                     devToolStore: devToolStoreMock.object,
+                    userConfigStore: userConfigStoreMock.object,
                 } as any;
             })
             .verifiable(Times.atLeastOnce());
@@ -477,6 +495,7 @@ describe('DetailsDialogHandlerTest', () => {
         testSubject.componentWillUnmount(detailsDialogMock.object);
 
         devToolStoreMock.verifyAll();
+        userConfigStoreMock.verifyAll();
         detailsDialogMock.verifyAll();
     });
 
