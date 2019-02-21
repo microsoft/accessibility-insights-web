@@ -81,6 +81,13 @@ describe('Issue details text builder', () => {
 
             expect(actual).toEqual(expected);
         });
+
+        test('single argument', () => {
+            const expected = 'WCAG-1.4.1,WCAG-2.8.2: RR-help (RR-selector<x>)';
+            const actual = testSubject.buildTitle(sampleIssueDetailsData);
+
+            expect(actual).toEqual(expected);
+        });
     });
 
     describe('buildTags', () => {

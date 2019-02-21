@@ -229,6 +229,7 @@ if (isNaN(tabId) === false) {
                 documentTitleUpdater.initialize();
 
                 const deps: DetailsViewContainerDeps = {
+                    dropdownClickHandler,
                     contentProvider: contentPages,
                     contentActionMessageCreator,
                     detailsViewActionMessageCreator: actionMessageCreator,

@@ -190,6 +190,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
                 issuesTableHandler={this.props.issuesTableHandler}
                 rightPanelConfiguration={selectedDetailsRightPanelConfiguration}
                 switcherNavConfiguration={selectedDetailsViewSwitcherNavConfiguration}
+                issueTrackerPath={storeState.userConfigurationStoreData.issueTrackerPath}
             />
         );
     }

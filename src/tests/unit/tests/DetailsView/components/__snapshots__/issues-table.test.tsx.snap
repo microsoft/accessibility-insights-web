@@ -61,7 +61,7 @@ exports[`IssuesTableTest render table with 0 issues 1`] = `
       <VisualizationToggle label=\\"Show failures\\" checked={true} disabled={false} onClick={[Function: proxy]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
     </div>
     <div className=\\"issues-table-details\\">
-      <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" featureFlagData={{...}} />
+      <IssuesDetailsList deps={[undefined]} violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} issueTrackerPath=\\"example/example\\" pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" featureFlagData={{...}} selectedIdToRuleResultMap={{...}} />
       <div className=\\"issue-detail-outer-container ms-Fabric\\">
         <IssuesDetailsPane deps={[undefined]} selectedIdToRuleResultMap={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" />
       </div>
@@ -84,7 +84,7 @@ exports[`IssuesTableTest render table with 0 issues, export FF on 1`] = `
     </div>
     <ExportDialog deps={[undefined]} isOpen={false} description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChange={[Function: bound ]} exportResultsType=\\"AutomatedChecks\\" />
     <div className=\\"issues-table-details\\">
-      <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" featureFlagData={{...}} />
+      <IssuesDetailsList deps={[undefined]} violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} issueTrackerPath=\\"example/example\\" pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" featureFlagData={{...}} selectedIdToRuleResultMap={{...}} />
       <div className=\\"issue-detail-outer-container ms-Fabric\\">
         <IssuesDetailsPane deps={[undefined]} selectedIdToRuleResultMap={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" />
       </div>
@@ -103,7 +103,7 @@ exports[`IssuesTableTest render table with 1 issue 1`] = `
       <VisualizationToggle label=\\"Show failures\\" checked={true} disabled={false} onClick={[Function: proxy]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
     </div>
     <div className=\\"issues-table-details\\">
-      <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" featureFlagData={{...}} />
+      <IssuesDetailsList deps={[undefined]} violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} issueTrackerPath=\\"example/example\\" pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" featureFlagData={{...}} selectedIdToRuleResultMap={{...}} />
       <div className=\\"issue-detail-outer-container ms-Fabric\\">
         <IssuesDetailsPane deps={[undefined]} selectedIdToRuleResultMap={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" />
       </div>
@@ -126,7 +126,7 @@ exports[`IssuesTableTest render table with 1 issue, export FF on 1`] = `
     </div>
     <ExportDialog deps={[undefined]} isOpen={false} description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChange={[Function: bound ]} exportResultsType=\\"AutomatedChecks\\" />
     <div className=\\"issues-table-details\\">
-      <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" featureFlagData={{...}} />
+      <IssuesDetailsList deps={[undefined]} violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} issueTrackerPath=\\"example/example\\" pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" featureFlagData={{...}} selectedIdToRuleResultMap={{...}} />
       <div className=\\"issue-detail-outer-container ms-Fabric\\">
         <IssuesDetailsPane deps={[undefined]} selectedIdToRuleResultMap={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" />
       </div>
@@ -145,7 +145,7 @@ exports[`IssuesTableTest render table with 2 issues 1`] = `
       <VisualizationToggle label=\\"Show failures\\" checked={true} disabled={false} onClick={[Function: proxy]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
     </div>
     <div className=\\"issues-table-details\\">
-      <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" featureFlagData={{...}} />
+      <IssuesDetailsList deps={[undefined]} violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} issueTrackerPath=\\"example/example\\" pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" featureFlagData={{...}} selectedIdToRuleResultMap={{...}} />
       <div className=\\"issue-detail-outer-container ms-Fabric\\">
         <IssuesDetailsPane deps={[undefined]} selectedIdToRuleResultMap={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" />
       </div>
@@ -168,7 +168,7 @@ exports[`IssuesTableTest render table with 2 issues, export FF on 1`] = `
     </div>
     <ExportDialog deps={[undefined]} isOpen={false} description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChange={[Function: bound ]} exportResultsType=\\"AutomatedChecks\\" />
     <div className=\\"issues-table-details\\">
-      <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" featureFlagData={{...}} />
+      <IssuesDetailsList deps={[undefined]} violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} issueTrackerPath=\\"example/example\\" pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" featureFlagData={{...}} selectedIdToRuleResultMap={{...}} />
       <div className=\\"issue-detail-outer-container ms-Fabric\\">
         <IssuesDetailsPane deps={[undefined]} selectedIdToRuleResultMap={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" />
       </div>
