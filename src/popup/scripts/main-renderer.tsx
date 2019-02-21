@@ -47,7 +47,6 @@ export class MainRenderer {
                     diagnosticViewToggleFactory={this.diagnosticViewToggleFactory}
                     dropdownClickHandler={this.dropdownClickHandler}
                 />
-                ,
             </>,
             container,
         );
