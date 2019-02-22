@@ -63,13 +63,6 @@ export class WindowMessageMarshaller {
 
         const messageId: string = responseId ? responseId : this.generateUIDFunc();
 
-        // For the sake of partner teams that depend on recognizing our window messages to avoid
-        // treating them as malicious, it is important that the shape of this message envelope remains
-        // a superset of the following exact structure:
-        //
-        // {
-        //     messageStableSignature: STABLE_MESSAGE_SIGNATURE
-        // }
         return {
             messageId: messageId,
             command: command,
