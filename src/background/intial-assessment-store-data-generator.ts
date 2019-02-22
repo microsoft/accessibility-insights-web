@@ -28,7 +28,8 @@ export class InitialAssessmentStoreDataGenerator {
     }
 
     public generateInitalState(persistedData: IAssessmentStoreData = null): IAssessmentStoreData {
-        const targetTab: PersistedTabInfo = persistedData && { ...persistedData.persistedTabInfo, appRefreshed: true };
+        const targetTab: PersistedTabInfo = persistedData &&
+            persistedData.persistedTabInfo && { ...persistedData.persistedTabInfo, appRefreshed: true };
         const persistedTests = persistedData && persistedData.assessments;
         // defaulting this.tests values to null instead of doing multiple if
         const first = head(this.tests) || this.NULL_FIRST_TEST;
