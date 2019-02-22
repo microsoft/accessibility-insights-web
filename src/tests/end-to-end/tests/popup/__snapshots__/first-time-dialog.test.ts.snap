@@ -79,7 +79,7 @@ exports[`First time Dialog content should match snapshot 1`] = `
                     <span
                       class="ms-Checkbox-text text-000"
                     >
-                      I agree to help
+                      I agree to enable telemetry
                     </span>
                   </label>
                 </div>
