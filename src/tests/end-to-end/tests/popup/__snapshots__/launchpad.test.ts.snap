@@ -75,6 +75,7 @@ exports[`Launch Pad content should match snapshot 1`] = `
         >
           Watch 3-minute video introduction
         </a>
+         
       </div>
     </header>
     <div
