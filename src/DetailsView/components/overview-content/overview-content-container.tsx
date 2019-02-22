@@ -11,7 +11,7 @@ import { DetailsViewActionMessageCreator } from '../../actions/details-view-acti
 import { IOverviewSummaryReportModel } from '../../reports/assessment-report-model';
 import { AssessmentReportSummary } from '../../reports/components/assessment-report-summary';
 import { GetAssessmentSummaryModelFromProviderAndStoreData } from '../../reports/get-assessment-summary-model';
-import { TargetChangeDialog, TargetChangeDialogDeps } from '../target-change-dialog';
+import { TargetChangeDialog } from '../target-change-dialog';
 import { OverviewHeading } from './overview-heading';
 import { HelpLinkDeps, OverviewHelpSection } from './overview-help-section';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
@@ -36,8 +36,7 @@ export type OverviewContainerDeps = {
     getAssessmentSummaryModelFromProviderAndStoreData: GetAssessmentSummaryModelFromProviderAndStoreData;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     assessmentsProviderWithFeaturesEnabled: (assessmentProvider: IAssessmentsProvider, flags: FeatureFlagStoreData) => IAssessmentsProvider;
-} & HelpLinkDeps &
-    TargetChangeDialogDeps;
+} & HelpLinkDeps;
 
 export interface OverviewContainerProps {
     deps: OverviewContainerDeps;
@@ -65,7 +64,6 @@ export const OverviewContainer = NamedSFC<OverviewContainerProps>('OverviewConta
     return (
         <div className="overview">
             <TargetChangeDialog
-                deps={deps}
                 prevTab={prevTarget}
                 newTab={currentTarget}
                 actionMessageCreator={props.deps.detailsViewActionMessageCreator}
