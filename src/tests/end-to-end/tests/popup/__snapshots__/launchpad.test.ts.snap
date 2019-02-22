@@ -66,7 +66,6 @@ exports[`Launch Pad content should match snapshot 1`] = `
       <div
         class="header-subtitle ms-fontWeight-semilight ms-fontSize-xs"
       >
-        Watch 
         <a
           aria-label="demo video"
           class="ms-Link insights-link root-000"
@@ -74,9 +73,9 @@ exports[`Launch Pad content should match snapshot 1`] = `
           target="_blank"
           title="watch the 3 minute video introduction"
         >
-          3-minute video
+          Watch 3-minute video introduction
         </a>
-         introduction
+         
       </div>
     </header>
     <div
@@ -84,7 +83,7 @@ exports[`Launch Pad content should match snapshot 1`] = `
     >
       <main>
         <div
-          aria-level="1"
+          aria-level="2"
           class="launch-pad-title ms-fontWeight-semibold"
           role="heading"
         >
@@ -104,6 +103,7 @@ exports[`Launch Pad content should match snapshot 1`] = `
                 class="ms-Grid-row"
               >
                 <div
+                  aria-hidden="true"
                   class="ms-Grid-col ms-sm3 popup-start-dialog-icon-circle"
                 >
                   <i
@@ -150,6 +150,7 @@ exports[`Launch Pad content should match snapshot 1`] = `
                 class="ms-Grid-row"
               >
                 <div
+                  aria-hidden="true"
                   class="ms-Grid-col ms-sm3 popup-start-dialog-icon-circle"
                 >
                   <i
@@ -196,6 +197,7 @@ exports[`Launch Pad content should match snapshot 1`] = `
                 class="ms-Grid-row"
               >
                 <div
+                  aria-hidden="true"
                   class="ms-Grid-col ms-sm3 popup-start-dialog-icon-circle"
                 >
                   <i

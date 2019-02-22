@@ -801,6 +801,15 @@ div.insights-dialog-main-override {
                 .target-page-changed,
                 .static-content-details-view {
                     margin: 24px 24px 0px 24px;
+                    ol {
+                        -webkit-padding-start: 16px;
+                        li ul li {
+                            list-style-type: disc;
+                        }
+                    }
+                    i {
+                        font-size: 16px;
+                    }
                 }
                 .issues-table {
                     height: 100%;

@@ -152,18 +152,16 @@ export class PopupView extends React.Component<PopupViewProps> {
                     deps={this.props.deps}
                     title={this.props.title}
                     subtitle={
-                        <React.Fragment>
-                            {`Watch `}
+                        <>
                             <NewTabLink
                                 href={LaunchPad.demoLink}
                                 aria-label="demo video"
                                 title="watch the 3 minute video introduction"
                                 onClick={onClickTutorialLink}
                             >
-                                3-minute video
+                                Watch 3-minute video introduction
                             </NewTabLink>{' '}
-                            introduction
-                        </React.Fragment>
+                        </>
                     }
                     clickhandler={this.props.popupHandlers.launchPanelHeaderClickHandler}
                     supportLinkHandler={this.props.popupHandlers.supportLinkHandler}

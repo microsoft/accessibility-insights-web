@@ -88,6 +88,8 @@ exports[`ContentPage .Markup <HyperLink> renders 1`] = `
 </NewTabLink>
 `;
 
+exports[`ContentPage .Markup <Include> renders 1`] = `"<ContentPageComponent deps={{...}} options={{...}} />"`;
+
 exports[`ContentPage .Markup <Inline> renders 1`] = `
 <div
   className="content-inline"
