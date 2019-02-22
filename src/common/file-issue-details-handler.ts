@@ -4,8 +4,7 @@ import { autobind } from '@uifabric/utilities';
 import { HTMLElementUtils } from './html-element-utils';
 
 export class FileIssueDetailsHandler {
-
-    constructor(private htmlElementUtils: HTMLElementUtils) { }
+    constructor(private htmlElementUtils: HTMLElementUtils) {}
 
     public onLayoutDidMount() {
         const dialogContainer = this.htmlElementUtils.querySelector('.ms-file-issue-details-modal-override') as HTMLElement;

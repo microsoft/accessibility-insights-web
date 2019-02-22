@@ -10,7 +10,7 @@ export class DetailsDialogHandler {
     private _onDevToolChanged: () => void;
     private _onUserConfigChanged: () => void;
 
-    constructor(private htmlElementUtils: HTMLElementUtils) { }
+    constructor(private htmlElementUtils: HTMLElementUtils) {}
 
     @autobind
     public backButtonClickHandler(dialog: DetailsDialog): void {
