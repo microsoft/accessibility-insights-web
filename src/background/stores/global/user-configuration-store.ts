@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-import { cloneDeep } from 'lodash';
+import { cloneDeep, isPlainObject } from 'lodash';
 
 import { FeatureFlags } from '../../../common/feature-flags';
 import { IndexedDBAPI } from '../../../common/indexedDB/indexedDB';
@@ -71,10 +71,10 @@ export class UserConfigurationStore extends BaseStore<UserConfigurationStoreData
 
     @autobind
     private onSetBugServiceProperty(payload: SetBugServicePropertyPayload): void {
-        if (!this.state.bugServicePropertiesMap) {
+        if (!isPlainObject(this.state.bugServicePropertiesMap)) {
             this.state.bugServicePropertiesMap = {};
         }
-        if (!this.state.bugServicePropertiesMap[payload.bugServiceName]) {
+        if (!isPlainObject(this.state.bugServicePropertiesMap[payload.bugServiceName])) {
             this.state.bugServicePropertiesMap[payload.bugServiceName] = {};
         }
 
