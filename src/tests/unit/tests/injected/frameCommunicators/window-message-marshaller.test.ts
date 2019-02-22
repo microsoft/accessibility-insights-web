@@ -201,8 +201,10 @@ describe('WindowMessageMarshallerTests', () => {
         const actualMessage = testSubject.createMessage(command, payload, responseId);
 
         expect(typeof actualMessage).toBe('object');
+
         // Using strings instead of strongly typed names to avoid accidentally tool-refactoring the names/values
-        // such that this test still passes but our partners depending on this format break.
+        // such that this test still passes but our partners break; those partners depend on this *exact* format
+        // to distinguish our messages from unknown/assumed-malicious messages.
         expect(actualMessage['messageStableSignature']).toBe('e467510c-ca1f-47df-ace1-a39f7f0678c9');
     });
 });
