@@ -52,34 +52,48 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
     private closeModal(): void {
         this.setState({ showingFileIssueModal: false });
     }
+
+    @autobind
+    private openModal(): void {
+        this.setState({ showingFileIssueModal: true });
+    }
+
     @autobind
     private openSettings(event: React.MouseEvent<HTMLDivElement | HTMLAnchorElement | HTMLButtonElement>): void {
         this.props.onOpenSettings(event);
         this.closeModal();
     }
 
+    private renderOpenSettingsButton(): JSX.Element {
+        return (
+            <DefaultButton
+                iconProps={{ iconName: 'ladybugSolid' }}
+                className={'create-bug-button'}
+                onClick={this.openModal}
+            >
+                File issue
+            </DefaultButton>
+        );
+    }
+
+    private renderFileIssueButton(): JSX.Element {
+        return (
+            <DefaultButton
+                iconProps={{ iconName: 'ladybugSolid' }}
+                className={'create-bug-button'}
+                target="_blank"
+                href={this.getIssueDetailsUrl(this.props.issueDetailsData.ruleResult)}
+            >
+                File issue
+            </DefaultButton>
+        );
+    }
+
     public render(): JSX.Element {
         return (
             <>
-                {!this.props.issueTrackerPath ? (
-                    <DefaultButton
-                        iconProps={{ iconName: 'ladybugSolid' }}
-                        className={'create-bug-button'}
-                        onClick={() => this.setState({ showingFileIssueModal: true })}
-                    >
-                        File issue
-                    </DefaultButton>
-                ) : null}
-                {!!this.props.issueTrackerPath ? (
-                    <DefaultButton
-                        iconProps={{ iconName: 'ladybugSolid' }}
-                        className={'create-bug-button'}
-                        target="_blank"
-                        href={this.getIssueDetailsUrl(this.props.issueDetailsData.ruleResult)}
-                    >
-                        File issue
-                    </DefaultButton>
-                ) : null}
+                {!this.props.issueTrackerPath ? this.renderOpenSettingsButton() : null}
+                {!!this.props.issueTrackerPath ? this.renderFileIssueButton() : null}
                 <Modal
                     titleAriaId="fileIssueDetailsModal"
                     isOpen={this.state.showingFileIssueModal}
