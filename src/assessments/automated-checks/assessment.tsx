@@ -17,8 +17,8 @@ import { test as content } from '../../content/test';
 const { guidance } = content.automatedChecks;
 const gettingStarted: JSX.Element = (
     <p>
-        {title} automated accessibility checks can detect within a few seconds about 10-25% of accessibility issues, depending on the
-        complexity of the site or the app​​​lication.
+        {title} automated accessibility checks can detect some of the most common accessibility issues, depending on the complexity of the
+        site or the app​​​lication.
     </p>
 );
 
