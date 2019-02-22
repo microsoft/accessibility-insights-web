@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { colorConfiguration } from './color-rule';
-import { cssContentConfiguration } from './css-content-rule';
+import { cssPositioningConfiguration } from './css-positioning-rule';
 import { cuesConfiguration } from './cues-rule';
 import { customWidgetConfiguration } from './custom-widget';
 import { frameTitleConfiguration } from './frame-title';
@@ -34,5 +34,5 @@ export const configuration: RuleConfiguration[] = [
     nativeWidgetsDefaultConfiguration,
     cuesConfiguration,
     customWidgetConfiguration,
-    cssContentConfiguration,
+    cssPositioningConfiguration,
 ];

@@ -2,18 +2,18 @@
 // Licensed under the MIT License.
 import { GlobalMock, GlobalScope, IGlobalMock, It, MockBehavior, Times } from 'typemoq';
 
+import { cssPositioningConfiguration } from '../../../../scanner/css-positioning-rule';
 import { IDictionaryStringTo } from '../../../../scanner/dictionary-types';
-import { cssContentConfiguration } from './../../../../scanner/css-content-rule';
 
 describe('meaningful sequence', () => {
     describe('verify meaningful sequence configs', () => {
         it('should have correct props', () => {
-            expect(cssContentConfiguration.rule.id).toBe('css-content');
-            expect(cssContentConfiguration.rule.selector).toBe('*');
-            expect(cssContentConfiguration.rule.any[0]).toBe('css-content');
-            expect(cssContentConfiguration.rule.any.length).toBe(1);
-            expect(cssContentConfiguration.checks[0].id).toBe('css-content');
-            expect(cssContentConfiguration.checks[0].evaluate(null, null, null, null)).toBe(true);
+            expect(cssPositioningConfiguration.rule.id).toBe('css-positioning');
+            expect(cssPositioningConfiguration.rule.selector).toBe('*');
+            expect(cssPositioningConfiguration.rule.any[0]).toBe('css-positioning');
+            expect(cssPositioningConfiguration.rule.any.length).toBe(1);
+            expect(cssPositioningConfiguration.checks[0].id).toBe('css-positioning');
+            expect(cssPositioningConfiguration.checks[0].evaluate(null, null, null, null)).toBe(true);
         });
     });
 
@@ -63,7 +63,7 @@ describe('meaningful sequence', () => {
 
         let result: boolean;
         GlobalScope.using(windowMock).with(() => {
-            result = cssContentConfiguration.rule.matches(node, null);
+            result = cssPositioningConfiguration.rule.matches(node, null);
         });
         expect(result).toBe(expectedResult);
         windowMock.verifyAll();

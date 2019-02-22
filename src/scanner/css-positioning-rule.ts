@@ -2,20 +2,20 @@
 // Licensed under the MIT License.
 import { RuleConfiguration } from './iruleresults';
 
-const cssContentCheckId: string = 'css-content';
-const cssContentRuleId: string = 'css-content';
+const cssPositioningCheckId: string = 'css-positioning';
+const cssPositioningRuleId: string = 'css-positioning';
 
-export const cssContentConfiguration: RuleConfiguration = {
+export const cssPositioningConfiguration: RuleConfiguration = {
     checks: [
         {
-            id: cssContentCheckId,
+            id: cssPositioningCheckId,
             evaluate: () => true,
         },
     ],
     rule: {
-        id: cssContentRuleId,
+        id: cssPositioningRuleId,
         selector: '*',
-        any: [cssContentCheckId],
+        any: [cssPositioningCheckId],
         matches: matches,
         enabled: false,
     },
