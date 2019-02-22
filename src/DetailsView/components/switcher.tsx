@@ -22,8 +22,8 @@ export const Switcher = NamedSFC<SwitcherProps>('Switcher', props => {
     const onRenderOption = (option: IDropdownOption): JSX.Element => {
         return (
             <div className="switcher-dropdown-option">
-                {option.data && option.data.icon && <Icon iconName={option.data.icon} aria-hidden="true" title={option.data.icon} />}
-                <span>{option.text}</span>
+                {option.data && option.data.icon && <Icon iconName={option.data.icon} aria-hidden="true" />}
+                <span aria-hidden="true">{option.text}</span>
             </div>
         );
     };
@@ -33,8 +33,8 @@ export const Switcher = NamedSFC<SwitcherProps>('Switcher', props => {
 
         return (
             <div className="switcher-dropdown-option">
-                {option.data && option.data.icon && <Icon iconName={option.data.icon} aria-hidden="true" title={option.data.icon} />}
-                <span>{option.text}</span>
+                {option.data && option.data.icon && <Icon iconName={option.data.icon} aria-hidden="true" />}
+                <span aria-hidden="true">{option.text}</span>
             </div>
         );
     };
