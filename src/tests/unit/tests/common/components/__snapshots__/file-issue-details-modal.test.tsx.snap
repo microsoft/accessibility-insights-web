@@ -5,7 +5,7 @@ exports[`FileIssueDetailsModalTest render while closed 1`] = `
   fileIssueDetailsHandler={
     proxy {
       "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-      "_htmlElementUtils": undefined,
+      "htmlElementUtils": undefined,
       "onLayoutDidMount": [Function],
     }
   }
@@ -20,7 +20,7 @@ exports[`FileIssueDetailsModalTest render while open 1`] = `
   fileIssueDetailsHandler={
     proxy {
       "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-      "_htmlElementUtils": undefined,
+      "htmlElementUtils": undefined,
       "onLayoutDidMount": [Function],
     }
   }

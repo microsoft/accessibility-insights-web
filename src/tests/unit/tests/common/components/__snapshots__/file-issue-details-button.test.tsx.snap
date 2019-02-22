@@ -17,7 +17,7 @@ exports[`FileIssueDetailsButtonTest render with an issue tracker path 1`] = `
   <FileIssueDetailsModal
     fileIssueDetailsHandler={
       FileIssueDetailsHandler {
-        "_htmlElementUtils": HTMLElementUtils {
+        "htmlElementUtils": HTMLElementUtils {
           "clientWindow": [Window],
           "dom": Document {
             "location": Location {
@@ -62,7 +62,7 @@ exports[`FileIssueDetailsButtonTest render without issue tracker set 1`] = `
   <FileIssueDetailsModal
     fileIssueDetailsHandler={
       FileIssueDetailsHandler {
-        "_htmlElementUtils": HTMLElementUtils {
+        "htmlElementUtils": HTMLElementUtils {
           "clientWindow": [Window],
           "dom": Document {
             "location": Location {
