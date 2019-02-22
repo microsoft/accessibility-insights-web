@@ -27,4 +27,5 @@ export enum VisualizationType {
     CustomWidgets,
     AutomatedChecks,
     SequenceAssessment,
+    SemanticsAssessment,
 }
