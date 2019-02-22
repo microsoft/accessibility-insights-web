@@ -54,28 +54,19 @@ export class UserConfigurationStore extends BaseStore<UserConfigurationStoreData
     private onSetTelemetryState(payload: SetTelemetryStatePayload): void {
         this.state.isFirstTime = false;
         this.state.enableTelemetry = payload.enableTelemetry;
-
-        // tslint:disable-next-line:no-floating-promises - grandfathered-in pre-existing violation
-        this.indexDbApi.setItem(IndexedDBDataKeys.userConfiguration, this.state);
-        this.emitChanged();
+        this.saveAndEmitChanged();
     }
 
     @autobind
     private onSetHighContrastMode(payload: SetHighContrastModePayload): void {
         this.state.enableHighContrast = payload.enableHighContrast;
-
-        // tslint:disable-next-line:no-floating-promises - grandfathered-in pre-existing violation
-        this.indexDbApi.setItem(IndexedDBDataKeys.userConfiguration, this.state);
-        this.emitChanged();
+        this.saveAndEmitChanged();
     }
 
     @autobind
     private onSetBugService(payload: SetBugServicePayload): void {
         this.state.bugService = payload.bugServiceName;
-
-        // tslint:disable-next-line:no-floating-promises - grandfathered-in pre-existing violation
-        this.indexDbApi.setItem(IndexedDBDataKeys.userConfiguration, this.state);
-        this.emitChanged();
+        this.saveAndEmitChanged();
     }
 
     @autobind
@@ -89,9 +80,7 @@ export class UserConfigurationStore extends BaseStore<UserConfigurationStoreData
 
         this.state.bugServicePropertiesMap[payload.bugServiceName][payload.propertyName] = payload.propertyValue;
 
-        // tslint:disable-next-line:no-floating-promises - grandfathered-in pre-existing violation
-        this.indexDbApi.setItem(IndexedDBDataKeys.userConfiguration, this.state);
-        this.emitChanged();
+        this.saveAndEmitChanged();
     }
 
     @autobind
@@ -102,9 +91,12 @@ export class UserConfigurationStore extends BaseStore<UserConfigurationStoreData
     }
 
     @autobind
-    private onSetIssueTrackerPath(payload: SetIssueTrackerPathPayload) {
+    private onSetIssueTrackerPath(payload: SetIssueTrackerPathPayload): void {
         this.state.issueTrackerPath = payload.issueTrackerPath;
+        this.saveAndEmitChanged();
+    }
 
+    private saveAndEmitChanged(): void {
         // tslint:disable-next-line:no-floating-promises - grandfathered-in pre-existing violation
         this.indexDbApi.setItem(IndexedDBDataKeys.userConfiguration, this.state);
         this.emitChanged();
