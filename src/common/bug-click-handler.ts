@@ -6,13 +6,7 @@ import { BugActionMessageCreator } from './message-creators/bug-action-message-c
 import { TelemetryEventSource } from './telemetry-events';
 
 export class BugClickHandler {
-    private bugActionMessageCreator: BugActionMessageCreator;
-    private source: TelemetryEventSource;
-
-    constructor(bugActionMessageCreator: BugActionMessageCreator, source: TelemetryEventSource) {
-        this.source = source;
-        this.bugActionMessageCreator = bugActionMessageCreator;
-    }
+    constructor(private bugActionMessageCreator: BugActionMessageCreator, private source: TelemetryEventSource) { }
 
     @autobind
     public openSettingsPanelHandler(event: React.MouseEvent<HTMLElement>): void {
