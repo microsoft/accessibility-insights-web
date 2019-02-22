@@ -7,8 +7,6 @@ import * as React from 'react';
 
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { FileIssueDetailsButton, FileIssueDetailsButtonDeps } from '../../common/components/file-issue-details-button';
-import { FileIssueDetailsHandler } from '../../common/file-issue-details-handler';
-import { HTMLElementUtils } from '../../common/html-element-utils';
 import { FeatureFlags } from '../../common/feature-flags';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { IBaseStore } from '../../common/istore';
@@ -159,7 +157,6 @@ export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetails
         return (
             <FileIssueDetailsButton
                 deps={this.props.deps}
-                fileIssueDetailsHandler={new FileIssueDetailsHandler(new HTMLElementUtils())}
                 onOpenSettings={this.props.deps.targetPageActionMessageCreator.openSettingsPanel}
                 issueDetailsData={issueData}
                 issueTrackerPath={this.state.issueTrackerPath}

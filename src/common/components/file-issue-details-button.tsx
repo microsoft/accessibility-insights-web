@@ -4,13 +4,13 @@ import * as React from 'react';
 import { autobind } from '@uifabric/utilities';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
-import { Modal } from 'office-ui-fabric-react/lib/Modal';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
+import { HTMLElementUtils } from '../html-element-utils';
 import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
+import { FileIssueDetailsModal } from './file-issue-details-modal';
 import { FileIssueDetailsHandler } from '../file-issue-details-handler';
-import { ActionAndCancelButtonsComponent } from '../../DetailsView/components/action-and-cancel-buttons-component';
 
 export type FileIssueDetailsButtonDeps = {
     issueDetailsTextGenerator: IssueDetailsTextGenerator;
@@ -21,7 +21,6 @@ export type FileIssueDetailsButtonProps = {
     onOpenSettings: (event: React.MouseEvent<HTMLElement>) => void;
     issueDetailsData: CreateIssueDetailsTextData;
     issueTrackerPath: string;
-    fileIssueDetailsHandler: FileIssueDetailsHandler;
 };
 
 export type FileIssueDetailsButtonState = {
@@ -94,30 +93,12 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
             <>
                 {!this.props.issueTrackerPath ? this.renderOpenSettingsButton() : null}
                 {!!this.props.issueTrackerPath ? this.renderFileIssueButton() : null}
-                <Modal
-                    titleAriaId="fileIssueDetailsModal"
-                    isOpen={this.state.showingFileIssueModal}
-                    onDismiss={this.closeModal}
-                    isBlocking={false}
-                    containerClassName="ms-file-issue-details-modal-container"
-                    layerProps={{
-                        className: 'ms-file-issue-details-modal-override',
-                        onLayerDidMount: this.props.fileIssueDetailsHandler.onLayoutDidMount,
-                    }}
-                >
-                    <h2>File Issue</h2>
-                    <p>
-                        Issue filing location must be configured before filing bugs. Enter in the location information into settings in
-                        order to file issues.
-                    </p>
-                    <ActionAndCancelButtonsComponent
-                        isHidden={false}
-                        primaryButtonText="Go to settings"
-                        primaryButtonDisabled={false}
-                        primaryButtonOnClick={this.openSettings}
-                        cancelButtonOnClick={this.closeModal}
-                    />
-                </Modal>
+            <FileIssueDetailsModal
+                onOpenSettings={this.openSettings}
+                onDismiss={this.closeModal}
+                isOpen={this.state.showingFileIssueModal}
+                fileIssueDetailsHandler={new FileIssueDetailsHandler(new HTMLElementUtils())}
+            />
             </>
         );
     }
