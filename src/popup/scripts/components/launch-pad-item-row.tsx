@@ -20,7 +20,7 @@ export class LaunchPadItemRow extends React.Component<ILaunchPadItemRowProps, un
         return (
             <div className="ms-Grid">
                 <div className="ms-Grid-row">
-                    <div className="ms-Grid-col ms-sm3 popup-start-dialog-icon-circle">
+                    <div className="ms-Grid-col ms-sm3 popup-start-dialog-icon-circle" aria-hidden="true">
                         <Icon iconName={this.props.iconName} className="popup-start-dialog-icon" />
                     </div>
                     <div className="ms-Grid-col ms-sm9">
