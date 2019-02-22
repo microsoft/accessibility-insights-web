@@ -74,25 +74,34 @@ describe('AdhocStaticTestView', () => {
         verifyAll();
     });
 
-    it('renders details view with content', () => {
-        props.tabStoreData = {
-            isChanged: false,
-        };
-        props.content = Mock.ofType<ContentReference>().object;
+    describe('render', () => {
+        const guidanceMock = Mock.ofType<ContentReference>();
+        const contentMock = Mock.ofType<ContentReference>();
 
-        const actual = shallow(<AdhocStaticTestView {...props} />);
-        expect(actual.debug()).toMatchSnapshot();
-        verifyAll();
-    });
+        const scenarios = [
+            ['content & guidance', contentMock.object, guidanceMock.object],
+            ['content & no guidance', contentMock.object, null],
+            ['no content & guidance', null, guidanceMock.object],
+            ['no content & no guidance', null, null],
+        ];
 
-    it('handles null content', () => {
-        props.tabStoreData = {
-            isChanged: true,
-        };
+        it.each(scenarios)('handles %s', (_, content, guidance) => {
+            props.tabStoreData = {
+                isChanged: false,
+            };
 
-        const actual = shallow(<AdhocStaticTestView {...props} />);
-        expect(actual.debug()).toMatchSnapshot();
-        verifyAll();
+            if (content) {
+                props.content = content;
+            }
+
+            if (guidance) {
+                props.guidance = guidance;
+            }
+
+            const wrapper = shallow(<AdhocStaticTestView {...props} />);
+            expect(wrapper.debug()).toMatchSnapshot();
+            verifyAll();
+        });
     });
 
     function verifyAll(): void {

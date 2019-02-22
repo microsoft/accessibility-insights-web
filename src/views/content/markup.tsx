@@ -8,7 +8,7 @@ import { CheckIcon } from '../../common/icons/check-icon';
 import { CrossIcon } from '../../common/icons/cross-icon';
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
 import { NewTabLink } from '../../common/components/new-tab-link';
-import { ContentPageOptions } from './content-page';
+import { ContentPageOptions, ContentPageComponent } from './content-page';
 import { productName } from '../../content/strings/application';
 
 type PassFailProps = {
@@ -44,12 +44,18 @@ export type Markup = {
     Table: React.SFC;
     LandmarkLegend: React.SFC<{ role: string }>;
     ProblemList: React.SFC;
+    Include: React.SFC<{ content: ContentPageComponent }>;
 };
 
 export type MarkupDeps = { contentActionMessageCreator: ContentActionMessageCreator };
 
 export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
     const { openContentHyperLink } = deps.contentActionMessageCreator;
+
+    function Include(props: { content: ContentPageComponent }): JSX.Element {
+        const Content = props.content;
+        return <Content deps={deps} options={options} />;
+    }
 
     function Title(props: { children: string }): JSX.Element {
         const helmet = (
@@ -266,5 +272,6 @@ export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
         Table,
         ProblemList,
         options,
+        Include,
     } as Markup;
 };

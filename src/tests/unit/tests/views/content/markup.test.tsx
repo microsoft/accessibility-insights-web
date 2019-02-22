@@ -6,6 +6,7 @@ import { It, Mock, Times } from 'typemoq';
 
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
 import { createMarkup } from '../../../../../views/content/markup';
+import { create } from '../../../../../../src/content/common';
 
 describe('ContentPage', () => {
     const mock = Mock.ofType<ContentActionMessageCreator>();
@@ -32,6 +33,7 @@ describe('ContentPage', () => {
         LandmarkLegend,
         Table,
         ProblemList,
+        Include,
     } = createMarkup(deps, null);
 
     describe('.Markup', () => {
@@ -101,6 +103,17 @@ describe('ContentPage', () => {
         it('<Inline> renders', () => {
             const wrapper = shallow(<Inline>INLINED</Inline>);
             expect(wrapper.getElement()).toMatchSnapshot();
+        });
+
+        it('<Include> renders', () => {
+            const wrapper = shallow(
+                <Include
+                    content={create(() => (
+                        <div>INCLUDE</div>
+                    ))}
+                />,
+            );
+            expect(wrapper.debug()).toMatchSnapshot();
         });
 
         describe('<PassFail>', () => {

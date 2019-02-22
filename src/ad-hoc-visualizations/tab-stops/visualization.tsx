@@ -12,9 +12,9 @@ import { adhoc as content } from '../../content/adhoc';
 import { AdhocStaticTestView } from '../../DetailsView/components/adhoc-static-test-view';
 import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
 
-const { guidance, staticContent } = content.tabstops;
+const { guidance, extraGuidance, howToTest } = content.tabstops;
 export const TabStopsAdHocVisualization: IVisualizationConfiguration = {
-    getTestView: props => <AdhocStaticTestView content={staticContent} {...props} />,
+    getTestView: props => <AdhocStaticTestView content={howToTest} guidance={extraGuidance} {...props} />,
     key: AdHocTestkeys.TabStops,
     testMode: TestMode.Adhoc,
     getStoreData: data => data.adhoc.tabStops,
