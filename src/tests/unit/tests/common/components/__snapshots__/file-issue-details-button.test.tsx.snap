@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FileIssueDetailsButtonTest render with an issue tracker path 1`] = `
+<React.Fragment>
+  <CustomizedDefaultButton
+    className="create-bug-button"
+    href="https://github.com/example/example/issues/new?title=buildTitle&body=buildText"
+    iconProps={
+      Object {
+        "iconName": "ladybugSolid",
+      }
+    }
+    target="_blank"
+  >
+    File issue
+  </CustomizedDefaultButton>
+  <FileIssueDetailsModal
+    fileIssueDetailsHandler={
+      FileIssueDetailsHandler {
+        "_htmlElementUtils": HTMLElementUtils {
+          "clientWindow": [Window],
+          "dom": Document {
+            "location": Location {
+              "assign": [Function],
+              "hash": "",
+              "host": "localhost",
+              "hostname": "localhost",
+              "href": "http://localhost/",
+              "origin": "http://localhost",
+              "pathname": "/",
+              "port": "",
+              "protocol": "http:",
+              "reload": [Function],
+              "replace": [Function],
+              "search": "",
+              "toString": [Function],
+            },
+          },
+        },
+      }
+    }
+    isOpen={false}
+    onDismiss={[Function]}
+    onOpenSettings={[Function]}
+  />
+</React.Fragment>
+`;
+
+exports[`FileIssueDetailsButtonTest render without issue tracker set 1`] = `
+<React.Fragment>
+  <CustomizedDefaultButton
+    className="create-bug-button"
+    iconProps={
+      Object {
+        "iconName": "ladybugSolid",
+      }
+    }
+    onClick={[Function]}
+  >
+    File issue
+  </CustomizedDefaultButton>
+  <FileIssueDetailsModal
+    fileIssueDetailsHandler={
+      FileIssueDetailsHandler {
+        "_htmlElementUtils": HTMLElementUtils {
+          "clientWindow": [Window],
+          "dom": Document {
+            "location": Location {
+              "assign": [Function],
+              "hash": "",
+              "host": "localhost",
+              "hostname": "localhost",
+              "href": "http://localhost/",
+              "origin": "http://localhost",
+              "pathname": "/",
+              "port": "",
+              "protocol": "http:",
+              "reload": [Function],
+              "replace": [Function],
+              "search": "",
+              "toString": [Function],
+            },
+          },
+        },
+      }
+    }
+    isOpen={false}
+    onDismiss={[Function]}
+    onOpenSettings={[Function]}
+  />
+</React.Fragment>
+`;

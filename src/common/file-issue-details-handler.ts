@@ -10,7 +10,6 @@ export class FileIssueDetailsHandler {
         this._htmlElementUtils = htmlElementUtils;
     }
 
-    @autobind
     public onLayoutDidMount() {
         const dialogContainer = this._htmlElementUtils.querySelector('.ms-file-issue-details-modal-override') as HTMLElement;
 

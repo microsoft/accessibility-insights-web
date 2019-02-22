@@ -121,30 +121,6 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = false 
                     "windowUtils": null,
                   }
                 }
-                fileIssueDetailsHandler={
-                  FileIssueDetailsHandler {
-                    "_htmlElementUtils": HTMLElementUtils {
-                      "clientWindow": [Window],
-                      "dom": Document {
-                        "location": Location {
-                          "assign": [Function],
-                          "hash": "",
-                          "host": "localhost",
-                          "hostname": "localhost",
-                          "href": "http://localhost/",
-                          "origin": "http://localhost",
-                          "pathname": "/",
-                          "port": "",
-                          "protocol": "http:",
-                          "reload": [Function],
-                          "replace": [Function],
-                          "search": "",
-                          "toString": [Function],
-                        },
-                      },
-                    },
-                  }
-                }
                 issueDetailsData={
                   Object {
                     "pageTitle": "",
@@ -375,30 +351,6 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 1
                       "windowUtils": null,
                     }
                   }
-                  fileIssueDetailsHandler={
-                    FileIssueDetailsHandler {
-                      "_htmlElementUtils": HTMLElementUtils {
-                        "clientWindow": [Window],
-                        "dom": Document {
-                          "location": Location {
-                            "assign": [Function],
-                            "hash": "",
-                            "host": "localhost",
-                            "hostname": "localhost",
-                            "href": "http://localhost/",
-                            "origin": "http://localhost",
-                            "pathname": "/",
-                            "port": "",
-                            "protocol": "http:",
-                            "reload": [Function],
-                            "replace": [Function],
-                            "search": "",
-                            "toString": [Function],
-                          },
-                        },
-                      },
-                    }
-                  }
                   issueDetailsData={
                     Object {
                       "pageTitle": "",
@@ -610,30 +562,6 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 2
                       "copyIssueDetailsClicked": [Function],
                     },
                     "windowUtils": null,
-                  }
-                }
-                fileIssueDetailsHandler={
-                  FileIssueDetailsHandler {
-                    "_htmlElementUtils": HTMLElementUtils {
-                      "clientWindow": [Window],
-                      "dom": Document {
-                        "location": Location {
-                          "assign": [Function],
-                          "hash": "",
-                          "host": "localhost",
-                          "hostname": "localhost",
-                          "href": "http://localhost/",
-                          "origin": "http://localhost",
-                          "pathname": "/",
-                          "port": "",
-                          "protocol": "http:",
-                          "reload": [Function],
-                          "replace": [Function],
-                          "search": "",
-                          "toString": [Function],
-                        },
-                      },
-                    },
                   }
                 }
                 issueDetailsData={
@@ -861,30 +789,6 @@ exports[`DetailsDialogTest render: isDevToolsOpen = true, shadowDialog = true 1`
                       "windowUtils": null,
                     }
                   }
-                  fileIssueDetailsHandler={
-                    FileIssueDetailsHandler {
-                      "_htmlElementUtils": HTMLElementUtils {
-                        "clientWindow": [Window],
-                        "dom": Document {
-                          "location": Location {
-                            "assign": [Function],
-                            "hash": "",
-                            "host": "localhost",
-                            "hostname": "localhost",
-                            "href": "http://localhost/",
-                            "origin": "http://localhost",
-                            "pathname": "/",
-                            "port": "",
-                            "protocol": "http:",
-                            "reload": [Function],
-                            "replace": [Function],
-                            "search": "",
-                            "toString": [Function],
-                          },
-                        },
-                      },
-                    }
-                  }
                   issueDetailsData={
                     Object {
                       "pageTitle": "",
@@ -1091,30 +995,6 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
                       "copyIssueDetailsClicked": [Function],
                     },
                     "windowUtils": null,
-                  }
-                }
-                fileIssueDetailsHandler={
-                  FileIssueDetailsHandler {
-                    "_htmlElementUtils": HTMLElementUtils {
-                      "clientWindow": [Window],
-                      "dom": Document {
-                        "location": Location {
-                          "assign": [Function],
-                          "hash": "",
-                          "host": "localhost",
-                          "hostname": "localhost",
-                          "href": "http://localhost/",
-                          "origin": "http://localhost",
-                          "pathname": "/",
-                          "port": "",
-                          "protocol": "http:",
-                          "reload": [Function],
-                          "replace": [Function],
-                          "search": "",
-                          "toString": [Function],
-                        },
-                      },
-                    },
                   }
                 }
                 issueDetailsData={
