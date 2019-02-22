@@ -17,6 +17,7 @@ import { DetailsViewActionMessageCreator } from '../actions/details-view-action-
 import { GuidanceLinks } from './guidance-links';
 import { FeatureFlags } from '../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
+import { FlaggedComponent } from '../../common/components/flagged-component';
 import { BugClickHandler } from '../../common/bug-click-handler';
 
 export type IssuesDetailsPaneDeps = ToastDeps &
@@ -67,6 +68,18 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
         );
     }
 
+    private getFileIssueDetailsButton(issueData: CreateIssueDetailsTextData): JSX.Element {
+        return (
+                    <FileIssueDetailsButton
+                        deps={this.props.deps}
+                        fileIssueDetailsHandler={new FileIssueDetailsHandler(new HTMLElementUtils())}
+                        onOpenSettings={this.props.deps.bugClickHandler.openSettingsPanelHandler}
+                        issueDetailsData={issueData}
+                        issueTrackerPath={this.props.issueTrackerPath}
+                    />
+        );
+    }
+
     private renderSingleIssue(result: DecoratedAxeNodeResult): JSX.Element {
         const issueData: CreateIssueDetailsTextData = {
             pageTitle: this.props.pageTitle,
@@ -77,15 +90,11 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
         return (
             <div>
                 <h2>Failure details</h2>
-                {showBugFiling ? (
-                    <FileIssueDetailsButton
-                        deps={this.props.deps}
-                        fileIssueDetailsHandler={new FileIssueDetailsHandler(new HTMLElementUtils())}
-                        onOpenSettings={this.props.deps.bugClickHandler.openSettingsPanelHandler}
-                        issueDetailsData={issueData}
-                        issueTrackerPath={this.props.issueTrackerPath}
-                    />
-                ) : null}
+                <FlaggedComponent
+                    enableJSXElement={this.getFileIssueDetailsButton(issueData)}
+                    featureFlag={FeatureFlags[FeatureFlags.showBugFiling]}
+                    featureFlagStoreData={this.props.featureFlagData}
+                />
                 <CopyIssueDetailsButton
                     deps={this.props.deps}
                     issueDetailsData={issueData}
