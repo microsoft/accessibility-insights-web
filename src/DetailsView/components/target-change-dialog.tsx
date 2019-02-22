@@ -9,27 +9,21 @@ import * as React from 'react';
 import * as Markup from '../../assessments/markup';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { ITab } from '../../common/itab';
-import { PersistedTabInfo } from '../../common/types/store-data/iassessment-result-data';
-import { UrlParser } from '../../common/url-parser';
 import { DetailsViewActionMessageCreator } from '../../DetailsView/actions/details-view-action-message-creator';
+import { PersistedTabInfo } from '../../common/types/store-data/iassessment-result-data';
 
-export type TargetChangeDialogDeps = {
-    urlParser: UrlParser;
-};
-
-export interface TargetChangeDialogProps {
-    deps: TargetChangeDialogDeps;
+export interface ITargetChangeDialogProps {
     prevTab: PersistedTabInfo;
     newTab: ITab;
     actionMessageCreator: DetailsViewActionMessageCreator;
 }
 
-export class TargetChangeDialog extends React.Component<TargetChangeDialogProps> {
+export class TargetChangeDialog extends React.Component<ITargetChangeDialogProps> {
     public render(): JSX.Element {
-        const { prevTab, newTab } = this.props;
-        if (!this.showTargetChangeDialog(prevTab, newTab)) {
+        if (this.props.prevTab == null || (this.props.prevTab.appRefreshed === false && this.props.prevTab.id === this.props.newTab.id)) {
             return null;
         }
+
         return (
             <Dialog
                 hidden={false}
@@ -92,20 +86,5 @@ export class TargetChangeDialog extends React.Component<TargetChangeDialogProps>
                 </Link>
             </TooltipHost>
         );
-    }
-
-    private showTargetChangeDialog(prevTab: PersistedTabInfo, newTab: ITab): boolean {
-        if (prevTab === null) {
-            return false;
-        }
-
-        const { urlParser } = this.props.deps;
-        const urlChanged = prevTab && urlParser.areURLHostNamesEqual(prevTab.url, newTab.url) === false;
-
-        return prevTab.appRefreshed === true || this.didTargetTabChanged(prevTab, newTab) || urlChanged === true;
-    }
-
-    private didTargetTabChanged(prevTab: PersistedTabInfo, newTab: ITab): boolean {
-        return prevTab.id !== newTab.id;
     }
 }

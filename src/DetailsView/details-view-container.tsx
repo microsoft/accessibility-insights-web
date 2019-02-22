@@ -26,7 +26,6 @@ import { DetailsRightPanelConfiguration, GetDetailsRightPanelConfiguration } fro
 import { GetDetailsSwitcherNavConfiguration } from './components/details-view-switcher-nav';
 import { Header, HeaderDeps } from './components/header';
 import { IssuesTableHandler } from './components/issues-table-handler';
-import { TargetChangeDialogDeps } from './components/target-change-dialog';
 import { TargetPageClosedView } from './components/target-page-closed-view';
 import { DetailsViewMainContent, DetailsViewMainContentDeps } from './details-view-main-content';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
@@ -42,8 +41,7 @@ export type DetailsViewContainerDeps = {
     DetailsViewCommandBarDeps &
     HeaderDeps &
     WithStoreSubscriptionDeps<DetailsViewContainerState> &
-    ThemeDeps &
-    TargetChangeDialogDeps;
+    ThemeDeps;
 
 export interface DetailsViewContainerProps {
     deps: DetailsViewContainerDeps;
