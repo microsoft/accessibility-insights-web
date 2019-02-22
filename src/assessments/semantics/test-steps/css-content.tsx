@@ -9,6 +9,7 @@ import ManualTestRecordYourResults from '../../common/manual-test-record-your-re
 import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
 import { SemanticsTestStep } from './test-steps';
+import { VisualizationType } from '../../../common/types/visualization-type';
 
 const cssContentHowToTest: JSX.Element = (
     <div>
@@ -34,12 +35,23 @@ const cssContentDescription: JSX.Element = (
     </span>
 );
 
+const key = SemanticsTestStep.cssContent;
 export const CssContent: TestStep = {
-    key: SemanticsTestStep.cssContent,
+    key,
     name: 'CSS content',
     description: cssContentDescription,
     howToTest: cssContentHowToTest,
     isManual: true,
     guidanceLinks: [link.WCAG_1_3_1],
     updateVisibility: false,
+    getAnalyzer: provider =>
+        provider.createRuleAnalyzer(
+            AnalyzerConfigurationFactory.forScanner({
+                rules: ['css-content'],
+                key,
+                testType: VisualizationType.SequenceAssessment,
+            }),
+        ),
+    getDrawer: provider => provider.createHighlightBoxDrawer(),
+    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
 };
