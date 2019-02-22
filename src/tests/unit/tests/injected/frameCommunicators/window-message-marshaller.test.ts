@@ -193,4 +193,16 @@ describe('WindowMessageMarshallerTests', () => {
 
         expect(message).toEqual(expectedMessage);
     });
+
+    test('the shape of our window messages must match the shape/signature our partner teams test for', () => {
+        const command = 'command1';
+        const responseId = 'responseId';
+        const payload = {};
+        const actualMessage = testSubject.createMessage(command, payload, responseId);
+
+        expect(typeof actualMessage).toBe('object');
+        // Using strings instead of strongly typed names to avoid accidentally tool-refactoring the names/values
+        // such that this test still passes but our partners depending on this format break.
+        expect(actualMessage['messageStableSignature']).toBe('e467510c-ca1f-47df-ace1-a39f7f0678c9');
+    });
 });
