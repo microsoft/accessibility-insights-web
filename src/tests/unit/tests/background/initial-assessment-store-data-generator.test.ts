@@ -12,6 +12,7 @@ import { CreateTestAssessmentProvider } from '../../common/test-assessment-provi
 
 describe('InitialAssessmentStoreDataGeneratorTest', () => {
     const assesssmentsProvider = CreateTestAssessmentProvider();
+
     const targetTab = { id: 1, url: 'url', title: 'title', appRefreshed: false };
     const generator = new InitialAssessmentStoreDataGenerator(assesssmentsProvider);
     const userInpuut = 10;
@@ -89,6 +90,17 @@ describe('InitialAssessmentStoreDataGeneratorTest', () => {
             assessments: defaultState.assessments,
         };
         expect(generator.generateInitalState(persisted)).toEqual(expected);
+    });
+
+    it('generateInitalState with persisitedData, where persisitedTabInfo is not present', () => {
+        const persisted: IAssessmentStoreData = {
+            assessmentNavState: {
+                selectedTestStep: 'invalid-step',
+                selectedTestType: -100,
+            },
+            assessments: {},
+        } as IAssessmentStoreData;
+        expect(generator.generateInitalState(persisted).persistedTabInfo).toBeUndefined();
     });
 
     it('verify persistedTabInfo and assessmentNavState', () => {
