@@ -65,11 +65,7 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
 
     private renderOpenSettingsButton(): JSX.Element {
         return (
-            <DefaultButton
-                iconProps={{ iconName: 'ladybugSolid' }}
-                className={'create-bug-button'}
-                onClick={this.openModal}
-            >
+            <DefaultButton iconProps={{ iconName: 'ladybugSolid' }} className={'create-bug-button'} onClick={this.openModal}>
                 File issue
             </DefaultButton>
         );
@@ -93,12 +89,12 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
             <>
                 {!this.props.issueTrackerPath ? this.renderOpenSettingsButton() : null}
                 {!!this.props.issueTrackerPath ? this.renderFileIssueButton() : null}
-            <FileIssueDetailsModal
-                onOpenSettings={this.openSettings}
-                onDismiss={this.closeModal}
-                isOpen={this.state.showingFileIssueModal}
-                fileIssueDetailsHandler={new FileIssueDetailsHandler(new HTMLElementUtils())}
-            />
+                <FileIssueDetailsModal
+                    onOpenSettings={this.openSettings}
+                    onDismiss={this.closeModal}
+                    isOpen={this.state.showingFileIssueModal}
+                    fileIssueDetailsHandler={new FileIssueDetailsHandler(new HTMLElementUtils())}
+                />
             </>
         );
     }

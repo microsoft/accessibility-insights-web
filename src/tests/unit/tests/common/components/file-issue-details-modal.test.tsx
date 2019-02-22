@@ -13,9 +13,7 @@ describe('FileIssueDetailsModalTest', () => {
     let fileIssueDetailsHandlerMock: IMock<FileIssueDetailsHandler>;
     beforeEach(() => {
         fileIssueDetailsHandlerMock = Mock.ofType(FileIssueDetailsHandler);
-        fileIssueDetailsHandlerMock
-            .setup(handler => handler.onLayoutDidMount())
-            .verifiable();
+        fileIssueDetailsHandlerMock.setup(handler => handler.onLayoutDidMount()).verifiable();
     });
 
     test('render while open', () => {
@@ -34,9 +32,7 @@ describe('FileIssueDetailsModalTest', () => {
 
     test('render while closed', () => {
         const fileIssueDetailsHandlerMockLocal = Mock.ofType(FileIssueDetailsHandler);
-        fileIssueDetailsHandlerMockLocal
-            .setup(handler => handler.onLayoutDidMount())
-            .verifiable(Times.never());
+        fileIssueDetailsHandlerMockLocal.setup(handler => handler.onLayoutDidMount()).verifiable(Times.never());
 
         const props: FileIssueDetailsModalProps = {
             isOpen: false,

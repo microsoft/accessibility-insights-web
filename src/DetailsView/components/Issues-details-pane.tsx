@@ -68,12 +68,12 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
 
     private getFileIssueDetailsButton(issueData: CreateIssueDetailsTextData): JSX.Element {
         return (
-                    <FileIssueDetailsButton
-                        deps={this.props.deps}
-                        onOpenSettings={this.props.deps.bugClickHandler.openSettingsPanelHandler}
-                        issueDetailsData={issueData}
-                        issueTrackerPath={this.props.issueTrackerPath}
-                    />
+            <FileIssueDetailsButton
+                deps={this.props.deps}
+                onOpenSettings={this.props.deps.bugClickHandler.openSettingsPanelHandler}
+                issueDetailsData={issueData}
+                issueTrackerPath={this.props.issueTrackerPath}
+            />
         );
     }
 

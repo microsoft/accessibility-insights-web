@@ -22,7 +22,6 @@ describe('FileIssueDetailsButtonTest', () => {
             .returns(() => 'buildText')
             .verifiable();
 
-
         const props: FileIssueDetailsButtonProps = {
             deps: {
                 issueDetailsTextGenerator: issueDetailsTextGeneratorMock.object,
@@ -52,7 +51,6 @@ describe('FileIssueDetailsButtonTest', () => {
             .setup(generator => generator.buildText(It.isAny()))
             .returns(() => 'buildText')
             .verifiable(Times.never());
-
 
         const props: FileIssueDetailsButtonProps = {
             deps: {
