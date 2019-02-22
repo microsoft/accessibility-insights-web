@@ -7,7 +7,7 @@ import { brand, title } from '../strings/application';
 
 export const telemetryPopupTitle = `We need your help`;
 
-export const telemetryPopupCheckboxTitle = `I agree to help`;
+export const telemetryPopupCheckboxTitle = `I agree to enable telemetry`;
 
 export const telemetryNotice = (
     <>
