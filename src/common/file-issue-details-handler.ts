@@ -7,7 +7,7 @@ export class FileIssueDetailsHandler {
     constructor(private htmlElementUtils: HTMLElementUtils) {}
 
     public onLayoutDidMount() {
-        const dialogContainer = this.htmlElementUtils.querySelector('.ms-file-issue-details-modal-override') as HTMLElement;
+        const dialogContainer = this.htmlElementUtils.querySelector('.insights-file-issue-details-dialog-override') as HTMLElement;
         if (dialogContainer == null) {
             return;
         }

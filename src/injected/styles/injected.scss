@@ -14,7 +14,8 @@
     font-family: $fontFamily;
 }
 
-div.insights-dialog-main-container {
+div.insights-dialog-main-container,
+div.insights-file-issue-details-dialog-container {
     width: 25%;
     max-width: 25%;
     min-width: 520px;

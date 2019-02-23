@@ -4,12 +4,12 @@ import { mount, shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { Modal } from 'office-ui-fabric-react/lib/Modal';
-import { FileIssueDetailsModal, FileIssueDetailsModalProps } from '../../../../../common/components/file-issue-details-modal';
+import { Dialog } from 'office-ui-fabric-react/lib/Dialog';
+import { FileIssueDetailsDialog, FileIssueDetailsDialogProps } from '../../../../../common/components/file-issue-details-dialog';
 import { FileIssueDetailsHandler } from '../../../../../common/file-issue-details-handler';
-import { ActionAndCancelButtonsComponent } from '../../../../../DetailsView/components/action-and-cancel-buttons-component';
+import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 
-describe('FileIssueDetailsModalTest', () => {
+describe('FileIssueDetailsDialogTest', () => {
     let fileIssueDetailsHandlerMock: IMock<FileIssueDetailsHandler>;
     beforeEach(() => {
         fileIssueDetailsHandlerMock = Mock.ofType(FileIssueDetailsHandler);
@@ -17,7 +17,7 @@ describe('FileIssueDetailsModalTest', () => {
     });
 
     test('render while open', () => {
-        const props: FileIssueDetailsModalProps = {
+        const props: FileIssueDetailsDialogProps = {
             isOpen: true,
             onDismiss: null,
             onOpenSettings: null,
@@ -25,7 +25,7 @@ describe('FileIssueDetailsModalTest', () => {
         };
 
         // Full render in order to properly trigger `onLayerDidMount`
-        const wrapper = mount(<FileIssueDetailsModal {...props} />);
+        const wrapper = mount(<FileIssueDetailsDialog {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
         fileIssueDetailsHandlerMock.verifyAll();
     });
@@ -34,7 +34,7 @@ describe('FileIssueDetailsModalTest', () => {
         const fileIssueDetailsHandlerMockLocal = Mock.ofType(FileIssueDetailsHandler);
         fileIssueDetailsHandlerMockLocal.setup(handler => handler.onLayoutDidMount()).verifiable(Times.never());
 
-        const props: FileIssueDetailsModalProps = {
+        const props: FileIssueDetailsDialogProps = {
             isOpen: false,
             onDismiss: null,
             onOpenSettings: null,
@@ -42,7 +42,7 @@ describe('FileIssueDetailsModalTest', () => {
         };
 
         // Full render in order to properly trigger `onLayerDidMount`
-        const wrapper = mount(<FileIssueDetailsModal {...props} />);
+        const wrapper = mount(<FileIssueDetailsDialog {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
         fileIssueDetailsHandlerMockLocal.verifyAll();
     });
@@ -50,52 +50,52 @@ describe('FileIssueDetailsModalTest', () => {
     test('onOpenSettings', () => {
         const openSettingsMock = jest.fn();
 
-        const props: FileIssueDetailsModalProps = {
+        const props: FileIssueDetailsDialogProps = {
             isOpen: true,
             onDismiss: null,
             onOpenSettings: openSettingsMock,
             fileIssueDetailsHandler: fileIssueDetailsHandlerMock.object,
         };
-        const wrapper = shallow(<FileIssueDetailsModal {...props} />);
+        const wrapper = shallow(<FileIssueDetailsDialog {...props} />);
 
         wrapper
-            .find(ActionAndCancelButtonsComponent)
+            .find(PrimaryButton)
             .props()
-            .primaryButtonOnClick(null);
+            .onClick(null);
         expect(openSettingsMock).toBeCalled();
     });
 
     test('onDismiss via button', () => {
         const onDismissMock = jest.fn();
 
-        const props: FileIssueDetailsModalProps = {
+        const props: FileIssueDetailsDialogProps = {
             isOpen: true,
             onDismiss: onDismissMock,
             onOpenSettings: null,
             fileIssueDetailsHandler: fileIssueDetailsHandlerMock.object,
         };
-        const wrapper = shallow(<FileIssueDetailsModal {...props} />);
+        const wrapper = shallow(<FileIssueDetailsDialog {...props} />);
 
         wrapper
-            .find(ActionAndCancelButtonsComponent)
+            .find(DefaultButton)
             .props()
-            .cancelButtonOnClick(null);
+            .onClick(null);
         expect(onDismissMock).toBeCalled();
     });
 
-    test('onDismiss via click off modal', () => {
+    test('onDismiss via click off dialog', () => {
         const onDismissMock = jest.fn();
 
-        const props: FileIssueDetailsModalProps = {
+        const props: FileIssueDetailsDialogProps = {
             isOpen: true,
             onDismiss: onDismissMock,
             onOpenSettings: null,
             fileIssueDetailsHandler: fileIssueDetailsHandlerMock.object,
         };
-        const wrapper = shallow(<FileIssueDetailsModal {...props} />);
+        const wrapper = shallow(<FileIssueDetailsDialog {...props} />);
 
         wrapper
-            .find(Modal)
+            .find(Dialog)
             .props()
             .onDismiss(null);
         expect(onDismissMock).toBeCalled();

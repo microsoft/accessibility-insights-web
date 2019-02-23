@@ -16,7 +16,7 @@ describe('FileIssueDetailsHandlerTest', () => {
         testSubject = new FileIssueDetailsHandler(htmlElementUtilsMock.object);
         container = document.createElement('div');
         fileIssueDetailsButton = document.createElement('div');
-        fileIssueDetailsButton.classList.add('.ms-file-issue-details-modal-override');
+        fileIssueDetailsButton.classList.add('.insights-file-issue-details-dialog-override');
     });
 
     test('onLayoutDidMount_ableToFindDialog', () => {
@@ -28,7 +28,7 @@ describe('FileIssueDetailsHandlerTest', () => {
         parentLayer.appendChild(intermdediateElement);
 
         htmlElementUtilsMock
-            .setup(x => x.querySelector('.ms-file-issue-details-modal-override'))
+            .setup(x => x.querySelector('.insights-file-issue-details-dialog-override'))
             .returns(() => fileIssueDetailsButtonContainer)
             .verifiable();
 
@@ -40,7 +40,7 @@ describe('FileIssueDetailsHandlerTest', () => {
 
     test('onLayoutDidMount_unableToFindDialog', () => {
         htmlElementUtilsMock
-            .setup(x => x.querySelector('.ms-file-issue-details-modal-override'))
+            .setup(x => x.querySelector('.insights-file-issue-details-dialog-override'))
             .returns(() => null)
             .verifiable();
 
@@ -52,7 +52,7 @@ describe('FileIssueDetailsHandlerTest', () => {
     test('onLayoutDidMount_unableToFindLayer', () => {
         const fileIssueDetailsButtonContainer = document.createElement('div');
         htmlElementUtilsMock
-            .setup(x => x.querySelector('.ms-file-issue-details-modal-override'))
+            .setup(x => x.querySelector('.insights-file-issue-details-dialog-override'))
             .returns(() => fileIssueDetailsButtonContainer)
             .verifiable();
 

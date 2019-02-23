@@ -9,7 +9,7 @@ import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
 import { HTMLElementUtils } from '../html-element-utils';
 import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
-import { FileIssueDetailsModal } from './file-issue-details-modal';
+import { FileIssueDetailsDialog } from './file-issue-details-dialog';
 import { FileIssueDetailsHandler } from '../file-issue-details-handler';
 
 export type FileIssueDetailsButtonDeps = {
@@ -24,13 +24,13 @@ export type FileIssueDetailsButtonProps = {
 };
 
 export type FileIssueDetailsButtonState = {
-    showingFileIssueModal: boolean;
+    showingFileIssueDialog: boolean;
 };
 
 export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButtonProps, FileIssueDetailsButtonState> {
     constructor(props: FileIssueDetailsButtonProps) {
         super(props);
-        this.state = { showingFileIssueModal: false };
+        this.state = { showingFileIssueDialog: false };
     }
 
     private getIssueDetailsUrl(result: DecoratedAxeNodeResult): string {
@@ -48,24 +48,24 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
     }
 
     @autobind
-    private closeModal(): void {
-        this.setState({ showingFileIssueModal: false });
+    private closeDialog(): void {
+        this.setState({ showingFileIssueDialog: false });
     }
 
     @autobind
-    private openModal(): void {
-        this.setState({ showingFileIssueModal: true });
+    private openDialog(): void {
+        this.setState({ showingFileIssueDialog: true });
     }
 
     @autobind
     private openSettings(event: React.MouseEvent<HTMLDivElement | HTMLAnchorElement | HTMLButtonElement>): void {
         this.props.onOpenSettings(event);
-        this.closeModal();
+        this.closeDialog();
     }
 
     private renderOpenSettingsButton(): JSX.Element {
         return (
-            <DefaultButton iconProps={{ iconName: 'ladybugSolid' }} className={'create-bug-button'} onClick={this.openModal}>
+            <DefaultButton iconProps={{ iconName: 'ladybugSolid' }} className={'create-bug-button'} onClick={this.openDialog}>
                 File issue
             </DefaultButton>
         );
@@ -89,10 +89,10 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
             <>
                 {!this.props.issueTrackerPath ? this.renderOpenSettingsButton() : null}
                 {!!this.props.issueTrackerPath ? this.renderFileIssueButton() : null}
-                <FileIssueDetailsModal
+                <FileIssueDetailsDialog
                     onOpenSettings={this.openSettings}
-                    onDismiss={this.closeModal}
-                    isOpen={this.state.showingFileIssueModal}
+                    onDismiss={this.closeDialog}
+                    isOpen={this.state.showingFileIssueDialog}
                     fileIssueDetailsHandler={new FileIssueDetailsHandler(new HTMLElementUtils())}
                 />
             </>

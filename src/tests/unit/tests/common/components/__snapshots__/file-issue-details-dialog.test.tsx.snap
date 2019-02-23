@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FileIssueDetailsModalTest render while closed 1`] = `
-<FileIssueDetailsModal
+exports[`FileIssueDetailsDialogTest render while closed 1`] = `
+<FileIssueDetailsDialog
   fileIssueDetailsHandler={
     proxy {
       "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -15,8 +15,8 @@ exports[`FileIssueDetailsModalTest render while closed 1`] = `
 />
 `;
 
-exports[`FileIssueDetailsModalTest render while open 1`] = `
-<FileIssueDetailsModal
+exports[`FileIssueDetailsDialogTest render while open 1`] = `
+<FileIssueDetailsDialog
   fileIssueDetailsHandler={
     proxy {
       "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",

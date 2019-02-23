@@ -14,7 +14,7 @@ exports[`FileIssueDetailsButtonTest render with an issue tracker path 1`] = `
   >
     File issue
   </CustomizedDefaultButton>
-  <FileIssueDetailsModal
+  <FileIssueDetailsDialog
     fileIssueDetailsHandler={
       FileIssueDetailsHandler {
         "htmlElementUtils": HTMLElementUtils {
@@ -59,7 +59,7 @@ exports[`FileIssueDetailsButtonTest render without issue tracker set 1`] = `
   >
     File issue
   </CustomizedDefaultButton>
-  <FileIssueDetailsModal
+  <FileIssueDetailsDialog
     fileIssueDetailsHandler={
       FileIssueDetailsHandler {
         "htmlElementUtils": HTMLElementUtils {
