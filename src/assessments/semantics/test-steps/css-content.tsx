@@ -49,9 +49,9 @@ export const CssContent: TestStep = {
             AnalyzerConfigurationFactory.forScanner({
                 rules: ['css-content'],
                 key,
-                testType: VisualizationType.SequenceAssessment,
+                testType: VisualizationType.SemanticsAssessment,
             }),
         ),
-    getDrawer: provider => provider.createHighlightBoxDrawer(),
+    getDrawer: provider => provider.createPseudoSelectorDrawer(),
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
 };

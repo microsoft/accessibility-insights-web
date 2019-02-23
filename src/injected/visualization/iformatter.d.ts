@@ -62,6 +62,10 @@ interface IColorDrawerConfiguration {
     grayScaleClassName: string;
 }
 
+interface IPseudoSelectorDrawerConfiguration {
+    psuedoSelectorClassName: string;
+}
+
 interface IFormatter {
     getDrawerConfiguration(element: Node, data: AxeResultsWithFrameLevel): any;
     getDialogRenderer();

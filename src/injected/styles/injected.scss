@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 @import '../../common/styles/common.scss';
 @import '../../common/components/toast.scss';
-
 .insights-dialog-main-override-shadow {
     position: fixed;
     top: 0;
@@ -346,4 +345,11 @@ div.insights-dialog-main-container {
 
 .insights-grey-scale-container {
     filter: grayscale(100%) !important;
+}
+
+.pseudo-selector-style-container {
+    *::before,
+    *::after {
+        border: 1px solid red
+    }
 }

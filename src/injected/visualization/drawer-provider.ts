@@ -26,6 +26,8 @@ import { SVGSolidShadowFilterFactory } from './svg-solid-shadow-filter-factory';
 import { TabStopsFormatter } from './tab-stops-formatter';
 import { CustomWidgetsFormatter } from './custom-widgets-formatter';
 import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
+import { PseudoSelectorFormatter } from './psuedo-selector-formatter';
+import { PseudoSelectorDrawer } from './psuedo-selector-drawer';
 
 export type IPartialSVGDrawerConfiguration = DeepPartial<ISVGDrawerConfiguration>;
 
@@ -60,6 +62,10 @@ export class DrawerProvider {
 
     public createColorDrawer(): IDrawer {
         return new ColorDrawer(this.drawerUtils, new ColorFormatter());
+    }
+
+    public createPseudoSelectorDrawer(): IDrawer {
+        return new PseudoSelectorDrawer(this.drawerUtils, new PseudoSelectorFormatter());
     }
 
     public createSVGDrawer(config: IPartialSVGDrawerConfiguration = null): IDrawer {

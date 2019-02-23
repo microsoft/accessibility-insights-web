@@ -17,6 +17,7 @@ import { textAlternativeConfiguration } from './text-alternative';
 import { textContrastConfiguration } from './text-contrast';
 import { uniqueLandmarkConfiguration } from './unique-landmark';
 import { widgetFunctionConfiguration } from './widget-function';
+import { cssContentConfiguration } from './css-content-rule';
 
 export const configuration: RuleConfiguration[] = [
     headingConfiguration,
@@ -35,4 +36,5 @@ export const configuration: RuleConfiguration[] = [
     cuesConfiguration,
     customWidgetConfiguration,
     cssPositioningConfiguration,
+    cssContentConfiguration,
 ];
