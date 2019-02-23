@@ -34,5 +34,6 @@
     "html.format.endWithNewline": true,
     "files.insertFinalNewline": true,
     "prettier.requireConfig": true,
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "typescript.tsdk": "node_modules\\typescript\\lib"
 }

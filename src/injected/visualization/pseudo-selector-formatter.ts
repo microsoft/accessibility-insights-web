@@ -7,7 +7,7 @@ import { IFormatter, IPseudoSelectorDrawerConfiguration } from './iformatter';
 export class PseudoSelectorFormatter implements IFormatter {
     public getDrawerConfiguration(): IPseudoSelectorDrawerConfiguration {
         const config: IPseudoSelectorDrawerConfiguration = {
-            psuedoSelectorClassName: 'pseudo-selector-style-container',
+            pseudoSelectorClassName: 'pseudo-selector-style-container',
         };
         return config;
     }

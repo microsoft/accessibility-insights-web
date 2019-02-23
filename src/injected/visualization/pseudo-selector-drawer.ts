@@ -5,7 +5,7 @@
 import { IHtmlElementAxeResults } from '../scanner-utils';
 import { DrawerUtils } from './drawer-utils';
 import { IDrawer, IDrawerInitData } from './idrawer';
-import { PseudoSelectorFormatter } from './psuedo-selector-formatter';
+import { PseudoSelectorFormatter } from './pseudo-selector-formatter';
 
 export class PseudoSelectorDrawer implements IDrawer {
     protected isEnabled = false;
@@ -18,11 +18,13 @@ export class PseudoSelectorDrawer implements IDrawer {
         this.eraseLayout();
         const elementResults = drawerInfo.data;
         const myDocument = this.drawerUtils.getDocumentElement();
-        this.clientBody = elementResults[0] ? (myDocument.querySelector(elementResults[0].target[0]) as HTMLElement) : null;
+        this.clientBody = elementResults[0]
+            ? (myDocument.querySelector(elementResults[0].target[elementResults[0].target.length - 1]) as HTMLElement)
+            : null;
     }
 
     public drawLayout(): void {
-        const pseudoSelectorClassName = this.formatter.getDrawerConfiguration().psuedoSelectorClassName;
+        const pseudoSelectorClassName = this.formatter.getDrawerConfiguration().pseudoSelectorClassName;
         if (this.clientBody) {
             this.clientBody.classList.add(pseudoSelectorClassName);
         }
@@ -34,7 +36,7 @@ export class PseudoSelectorDrawer implements IDrawer {
         if (this.clientBody == null) {
             return;
         }
-        const pseudoSelectorClassName = this.formatter.getDrawerConfiguration().psuedoSelectorClassName;
+        const pseudoSelectorClassName = this.formatter.getDrawerConfiguration().pseudoSelectorClassName;
         this.clientBody.classList.remove(pseudoSelectorClassName);
     }
 

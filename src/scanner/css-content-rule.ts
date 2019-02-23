@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { RuleConfiguration } from './iruleresults';
 import * as axe from 'axe-core';
+
+import { RuleConfiguration } from './iruleresults';
 
 const cssContentCheckId: string = 'css-content';
 const cssContentRuleId: string = 'css-content';
@@ -23,27 +24,28 @@ export const cssContentConfiguration: RuleConfiguration = {
 };
 
 function pageHasElementsWithPseudoSelectors(node: HTMLElement): boolean {
-    const psuedoElements = getPsuedo();
+    const pseudoElements = getAllPseudoElements(node);
 
-    return psuedoElements.length > 0;
+    return pseudoElements.length > 0;
 }
 
-function getPsuedo(): HTMLElement[] {
-    const elements = document.querySelectorAll('*');
+function getAllPseudoElements(node: HTMLElement): HTMLElement[] {
+    const elements = node.querySelectorAll('*');
 
     const hasContent = styles => {
         return styles && styles.content !== 'none';
     };
 
-    const psuedoElements = [];
-    elements.forEach(element => {
+    const pseudoElements = [];
+    for (let index = 0; index < elements.length; index++) {
+        const element = elements.item(index);
         const beforeStyles = window.getComputedStyle(element, ':before');
         const afterStyles = window.getComputedStyle(element, ':after');
 
         if (axe.commons.dom.isVisible(element) && (hasContent(beforeStyles) || hasContent(afterStyles))) {
-            psuedoElements.push(element);
+            pseudoElements.push(element);
         }
-    });
+    }
 
-    return psuedoElements;
+    return pseudoElements;
 }

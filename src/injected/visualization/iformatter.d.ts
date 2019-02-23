@@ -63,7 +63,7 @@ interface IColorDrawerConfiguration {
 }
 
 interface IPseudoSelectorDrawerConfiguration {
-    psuedoSelectorClassName: string;
+    pseudoSelectorClassName: string;
 }
 
 interface IFormatter {

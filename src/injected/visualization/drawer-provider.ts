@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { HighlightBoxFormatter } from './highlight-box-formatter';
+import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 import { TabbableElementsHelper } from '../../common/tabbable-elements-helper';
 import { DeepPartial } from '../../common/types/deep-partial';
 import { WindowUtils } from '../../common/window-utils';
@@ -11,23 +11,23 @@ import { HTMLElementUtils } from './../../common/html-element-utils';
 import { CenterPositionCalculator } from './center-position-calculator';
 import { ColorDrawer } from './color-drawer';
 import { ColorFormatter } from './color-formatter';
+import { CustomWidgetsFormatter } from './custom-widgets-formatter';
 import { Drawer } from './drawer';
 import { DrawerUtils } from './drawer-utils';
 import { FrameFormatter } from './frame-formatter';
 import { HeadingFormatter } from './heading-formatter';
+import { HighlightBoxFormatter } from './highlight-box-formatter';
 import { IDrawer } from './idrawer';
 import { IFormatter, ISVGDrawerConfiguration } from './iformatter';
 import { IssuesFormatter } from './issues-formatter';
 import { LandmarkFormatter } from './landmark-formatter';
 import { NullDrawer } from './null-drawer';
+import { PseudoSelectorDrawer } from './pseudo-selector-drawer';
+import { PseudoSelectorFormatter } from './pseudo-selector-formatter';
 import { SVGDrawerV2 } from './svg-drawer-v2';
 import { SVGShapeFactory } from './svg-shape-factory';
 import { SVGSolidShadowFilterFactory } from './svg-solid-shadow-filter-factory';
 import { TabStopsFormatter } from './tab-stops-formatter';
-import { CustomWidgetsFormatter } from './custom-widgets-formatter';
-import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
-import { PseudoSelectorFormatter } from './psuedo-selector-formatter';
-import { PseudoSelectorDrawer } from './psuedo-selector-drawer';
 
 export type IPartialSVGDrawerConfiguration = DeepPartial<ISVGDrawerConfiguration>;
 
