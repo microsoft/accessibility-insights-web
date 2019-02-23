@@ -71,7 +71,7 @@ div.insights-dialog-main-override {
 }
 
 .insights-code {
-    font-family: monospace;
+    font-family: $codeFontFamily;
 }
 
 .path-list {
@@ -468,7 +468,7 @@ div.insights-dialog-main-override {
                     font-weight: $normalTitleFontWeight;
                 }
                 .test-step-instructions {
-                    font-family: 'Segoe UI', Tahoma, sans-serif;
+                    font-family: $fontFamily;
                     p,
                     ol,
                     li {
@@ -788,7 +788,7 @@ div.insights-dialog-main-override {
                     color: $communication-shade-10;
                 }
                 .target-page-link {
-                    font-family: 'Segoe UI', Tahoma, sans-serif;
+                    font-family: $fontFamily;
                 }
             }
             .view {
@@ -1231,7 +1231,7 @@ div.insights-dialog-main-override {
                             border-bottom: none;
                         }
                         .snippet-content {
-                            font-family: monospace;
+                            font-family: $codeFontFamily;
                             word-break: break-all;
                         }
                         .snippet-content,
@@ -1305,7 +1305,7 @@ div.insights-dialog-main-override {
                         }
                         .help-link {
                             padding: 5px 0px 5px 0px;
-                            font-family: Segoe UI;
+                            font-family: $fontFamily;
                             line-height: 20px;
                             font-size: 15px;
                         }
