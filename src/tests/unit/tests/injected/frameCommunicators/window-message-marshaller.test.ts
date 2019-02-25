@@ -6,7 +6,7 @@ import { ClientBrowserAdapter } from '../../../../../common/client-browser-adapt
 import {
     IWindowMessage,
     WindowMessageMarshaller,
-    STABLE_MESSAGE_SIGNATURE,
+    MESSAGE_STABLE_SIGNATURE,
 } from '../../../../../injected/frameCommunicators/window-message-marshaller';
 
 describe('WindowMessageMarshallerTests', () => {
@@ -45,12 +45,12 @@ describe('WindowMessageMarshallerTests', () => {
         JSON.stringify({ messageId: '12' } as IWindowMessage),
         JSON.stringify({ messageSourceId: messageSourceId } as IWindowMessage),
         JSON.stringify({ messageVersion: messageVersion } as IWindowMessage),
-        JSON.stringify({ messageStableSignature: STABLE_MESSAGE_SIGNATURE } as IWindowMessage),
+        JSON.stringify({ messageStableSignature: MESSAGE_STABLE_SIGNATURE } as IWindowMessage),
         // Only one required field missing
         JSON.stringify({
             // messageId: { unknownMessageIdType: true } as any,
             message: validMessageProperty,
-            messageStableSignature: STABLE_MESSAGE_SIGNATURE,
+            messageStableSignature: MESSAGE_STABLE_SIGNATURE,
             messageSourceId: messageSourceId,
             messageVersion: messageVersion,
         } as IWindowMessage),
@@ -64,14 +64,14 @@ describe('WindowMessageMarshallerTests', () => {
         JSON.stringify({
             messageId: validMessageId,
             message: validMessageProperty,
-            messageStableSignature: STABLE_MESSAGE_SIGNATURE,
+            messageStableSignature: MESSAGE_STABLE_SIGNATURE,
             // messageSourceId: 'unknown source id',
             messageVersion: messageVersion,
         } as IWindowMessage),
         JSON.stringify({
             messageId: validMessageId,
             message: validMessageProperty,
-            messageStableSignature: STABLE_MESSAGE_SIGNATURE,
+            messageStableSignature: MESSAGE_STABLE_SIGNATURE,
             messageSourceId: messageSourceId,
             // messageVersion: 'unknown version',
         } as IWindowMessage),
@@ -79,7 +79,7 @@ describe('WindowMessageMarshallerTests', () => {
         JSON.stringify({
             messageId: { unknownMessageIdType: true } as any,
             message: validMessageProperty,
-            messageStableSignature: STABLE_MESSAGE_SIGNATURE,
+            messageStableSignature: MESSAGE_STABLE_SIGNATURE,
             messageSourceId: messageSourceId,
             messageVersion: messageVersion,
         } as IWindowMessage),
@@ -93,14 +93,14 @@ describe('WindowMessageMarshallerTests', () => {
         JSON.stringify({
             messageId: validMessageId,
             message: validMessageProperty,
-            messageStableSignature: STABLE_MESSAGE_SIGNATURE,
+            messageStableSignature: MESSAGE_STABLE_SIGNATURE,
             messageSourceId: 'unknown source id',
             messageVersion: messageVersion,
         } as IWindowMessage),
         JSON.stringify({
             messageId: validMessageId,
             message: validMessageProperty,
-            messageStableSignature: STABLE_MESSAGE_SIGNATURE,
+            messageStableSignature: MESSAGE_STABLE_SIGNATURE,
             messageSourceId: messageSourceId,
             messageVersion: 'unknown version',
         } as IWindowMessage),
@@ -116,14 +116,14 @@ describe('WindowMessageMarshallerTests', () => {
                 stack: 'stack',
                 name: 'name',
             },
-            messageStableSignature: STABLE_MESSAGE_SIGNATURE,
+            messageStableSignature: MESSAGE_STABLE_SIGNATURE,
             messageSourceId: messageSourceId,
             messageVersion: messageVersion,
             messageId: 'id1',
             command: 'someCommand',
         } as IWindowMessage, // with message
         {
-            messageStableSignature: STABLE_MESSAGE_SIGNATURE,
+            messageStableSignature: MESSAGE_STABLE_SIGNATURE,
             messageSourceId: messageSourceId,
             messageVersion: messageVersion,
             messageId: 'id1',
@@ -142,7 +142,7 @@ describe('WindowMessageMarshallerTests', () => {
             command: command,
             message: payload,
             error: undefined,
-            messageStableSignature: STABLE_MESSAGE_SIGNATURE,
+            messageStableSignature: MESSAGE_STABLE_SIGNATURE,
             messageSourceId: manifest.name,
             messageVersion: manifest.version,
         };
@@ -161,7 +161,7 @@ describe('WindowMessageMarshallerTests', () => {
             command: command,
             message: payload,
             error: undefined,
-            messageStableSignature: STABLE_MESSAGE_SIGNATURE,
+            messageStableSignature: MESSAGE_STABLE_SIGNATURE,
             messageSourceId: manifest.name,
             messageVersion: manifest.version,
         };
@@ -184,7 +184,7 @@ describe('WindowMessageMarshallerTests', () => {
                 stack: payload.stack,
                 name: payload.name,
             },
-            messageStableSignature: STABLE_MESSAGE_SIGNATURE,
+            messageStableSignature: MESSAGE_STABLE_SIGNATURE,
             messageSourceId: manifest.name,
             messageVersion: manifest.version,
         };
