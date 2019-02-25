@@ -2,7 +2,13 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { SetLaunchPanelState } from '../../../../../background/actions/action-payloads';
+import {
+    SetBugServicePayload,
+    SetBugServicePropertyPayload,
+    SetHighContrastModePayload,
+    SetLaunchPanelState,
+    SetTelemetryStatePayload,
+} from '../../../../../background/actions/action-payloads';
 import { AssessmentActions } from '../../../../../background/actions/assessment-actions';
 import { CommandActions } from '../../../../../background/actions/command-actions';
 import { FeatureFlagActions, FeatureFlagPayload } from '../../../../../background/actions/feature-flag-actions';
@@ -210,10 +216,8 @@ describe('GlobalActionCreatorTest', () => {
     });
 
     test('registerCallback for on UserConfig.SetTelemetryConfig', () => {
-        const payload: UserConfigurationStoreData = {
+        const payload: SetTelemetryStatePayload = {
             enableTelemetry: true,
-            isFirstTime: false,
-            enableHighContrast: false,
         };
         const args = [payload];
         const validator = new GlobalActionCreatorValidator()
@@ -228,9 +232,7 @@ describe('GlobalActionCreatorTest', () => {
     });
 
     test('registerCallback for on UserConfig.SetHighContrastConfig', () => {
-        const payload: UserConfigurationStoreData = {
-            enableTelemetry: true,
-            isFirstTime: false,
+        const payload: SetHighContrastModePayload = {
             enableHighContrast: true,
         };
         const args = [payload];
@@ -245,12 +247,48 @@ describe('GlobalActionCreatorTest', () => {
         validator.verifyAll();
     });
 
+    test('registerCallback for on UserConfig.SetBugService', () => {
+        const payload: SetBugServicePayload = {
+            bugServiceName: 'none',
+        };
+        const args = [payload];
+        const validator = new GlobalActionCreatorValidator()
+            .setupRegistrationCallback(Messages.UserConfig.SetBugService, args)
+            .setupActionsOnUserConfig('setBugService')
+            .setupUserConfigActionWithInvokeParameter('setBugService', payload);
+
+        const actionCreator = validator.buildActionCreator();
+        actionCreator.registerCallbacks();
+
+        validator.verifyAll();
+    });
+
+    test('registerCallback for on UserConfig.SetBugServiceProperty', () => {
+        const payload: SetBugServicePropertyPayload = {
+            bugServiceName: 'bug-service-name',
+            propertyName: 'property-name',
+            propertyValue: 'property-value',
+        };
+        const args = [payload];
+        const validator = new GlobalActionCreatorValidator()
+            .setupRegistrationCallback(Messages.UserConfig.SetBugServiceProperty, args)
+            .setupActionsOnUserConfig('setBugServiceProperty')
+            .setupUserConfigActionWithInvokeParameter('setBugServiceProperty', payload);
+
+        const actionCreator = validator.buildActionCreator();
+        actionCreator.registerCallbacks();
+
+        validator.verifyAll();
+    });
+
     test('registerCallback for on UserConfig.SetIssueTrackerPath', () => {
         const payload: UserConfigurationStoreData = {
             enableTelemetry: true,
             isFirstTime: false,
             enableHighContrast: true,
             issueTrackerPath: 'example/example',
+            bugService: 'none',
+            bugServicePropertiesMap: {},
         };
         const args = [payload];
         const validator = new GlobalActionCreatorValidator()

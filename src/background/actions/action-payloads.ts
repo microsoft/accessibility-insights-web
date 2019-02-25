@@ -3,10 +3,10 @@
 import { DetailsViewTargetLinkClickTelemetryData, TelemetryData, ToggleTelemetryData } from '../../common/telemetry-events';
 import * as TelemetryEvents from '../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
-import { VisualizationType } from '../../common/types/visualization-type';
-import { LaunchPanelType } from '../../popup/scripts/components/popup-view';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
+import { VisualizationType } from '../../common/types/visualization-type';
 import { ITabStopEvent } from '../../injected/tab-stops-listener';
+import { LaunchPanelType } from '../../popup/scripts/components/popup-view';
 
 export interface BaseActionPayload {
     telemetry?: TelemetryData;
@@ -122,6 +122,16 @@ export interface SetTelemetryStatePayload extends BaseActionPayload {
 
 export interface SetHighContrastModePayload extends BaseActionPayload {
     enableHighContrast: boolean;
+}
+
+export interface SetBugServicePayload extends BaseActionPayload {
+    bugServiceName: string;
+}
+
+export interface SetBugServicePropertyPayload extends BaseActionPayload {
+    bugServiceName: string;
+    propertyName: string;
+    propertyValue: string;
 }
 
 export interface SetIssueTrackerPathPayload extends BaseActionPayload {

@@ -247,6 +247,7 @@ describe('DetailsViewContainer', () => {
         rightPanelConfiguration: DetailsRightPanelConfiguration,
         switcherNavConfiguration: DetailsViewSwitcherNavConfiguration,
     ): JSX.Element {
+        const issueTrackerPath = storeMocks.userConfigurationStoreData.bugServicePropertiesMap.gitHub.repository;
         return (
             <DetailsViewMainContent
                 deps={deps}
@@ -265,7 +266,7 @@ describe('DetailsViewContainer', () => {
                 issuesSelection={props.issuesSelection}
                 reportGenerator={props.reportGenerator}
                 issuesTableHandler={props.issuesTableHandler}
-                issueTrackerPath={storeMocks.userConfigurationStoreData.issueTrackerPath}
+                issueTrackerPath={issueTrackerPath}
                 rightPanelConfiguration={rightPanelConfiguration}
                 switcherNavConfiguration={switcherNavConfiguration}
             />
@@ -337,7 +338,7 @@ describe('DetailsViewContainer', () => {
         };
     }
 
-    function testRenderStaticContent(viewType: VisualizationType, isPreviewFeaturesOpen: boolean) {
+    function testRenderStaticContent(viewType: VisualizationType, isPreviewFeaturesOpen: boolean): void {
         const selectionMock = Mock.ofType<ISelection>(Selection);
         const clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory);
         const previewFeatureFlagsHandlerMock = Mock.ofType(PreviewFeatureFlagsHandler);
@@ -369,10 +370,18 @@ describe('DetailsViewContainer', () => {
             .withDetailsViewRightContentPanel(rightContentPanelType)
             .build();
 
+        const userConfigurationStoreData: UserConfigurationStoreData = {
+            isFirstTime: false,
+            enableTelemetry: true,
+            enableHighContrast: false,
+            bugService: 'gitHub',
+            bugServicePropertiesMap: { gitHub: { repository: 'gitHub-repository' } },
+        };
+
         const storeMocks = new StoreMocks()
             .setVisualizationStoreData(visualizationStoreData)
             .setDetailsViewStoreData(detailsViewState)
-            .setUserConfigurationStoreData({ enableTelemetry: true } as UserConfigurationStoreData);
+            .setUserConfigurationStoreData(userConfigurationStoreData);
 
         const storesHubMock = createStoresHubMock(storeMocks);
 
