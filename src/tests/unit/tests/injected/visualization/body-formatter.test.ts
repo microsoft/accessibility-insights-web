@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BodyFormatter } from '../../../../../injected/visualization/body-formatter';
-import { IColorDrawerConfiguration, IBodyDrawerConfiguration } from '../../../../../injected/visualization/iformatter';
+import { IBodyDrawerConfiguration } from '../../../../../injected/visualization/iformatter';
 
 describe('BodyFormatterTests', () => {
     let testSubject: BodyFormatter;

@@ -17,41 +17,41 @@ describe('verify meaningful sequence configs', () => {
 });
 
 describe('verify evaluate', () => {
-    const windowMock = GlobalMock.ofInstance(window.getComputedStyle, 'getComputedStyle', window, MockBehavior.Strict);
+    const getComputedStyleMock = GlobalMock.ofInstance(window.getComputedStyle, 'getComputedStyle', window, MockBehavior.Strict);
     beforeEach(() => {
-        windowMock.reset();
+        getComputedStyleMock.reset();
     });
 
     it('position absolute', () => {
-        const node = {
+        const nodeStyleStub = {
             position: 'absolute',
             float: 'none',
         };
 
-        testMeaningfulSequence(node, windowMock, true);
+        testMeaningfulSequence(nodeStyleStub, getComputedStyleMock, true);
     });
 
     it('float right', () => {
-        const node = {
+        const nodeStyleStub = {
             position: 'none',
             float: 'right',
         };
 
-        testMeaningfulSequence(node, windowMock, true);
+        testMeaningfulSequence(nodeStyleStub, getComputedStyleMock, true);
     });
 
     it('does not match', () => {
-        const node = {
+        const nodeStyleStub = {
             position: 'none',
             float: 'none',
         };
 
-        testMeaningfulSequence(node, windowMock, false);
+        testMeaningfulSequence(nodeStyleStub, getComputedStyleMock, false);
     });
 });
 
 function testMeaningfulSequence(
-    node: IDictionaryStringTo<string>,
+    nodeStyleStub: IDictionaryStringTo<string>,
     windowMock: IGlobalMock<typeof window.getComputedStyle>,
     expectedResult: boolean,
 ): void {
@@ -62,7 +62,7 @@ function testMeaningfulSequence(
 
     let result: boolean;
     GlobalScope.using(windowMock).with(() => {
-        result = cssPositioningConfiguration.rule.matches(node, null);
+        result = cssPositioningConfiguration.rule.matches(nodeStyleStub, null);
     });
     expect(result).toBe(expectedResult);
     windowMock.verifyAll();

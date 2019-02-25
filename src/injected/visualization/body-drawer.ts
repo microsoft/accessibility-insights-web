@@ -28,9 +28,9 @@ export class BodyDrawer implements IDrawer {
     }
 
     public drawLayout(): void {
-        const greyScaleClassName = this.formatter.getDrawerConfiguration().injectedClassName;
+        const injectedClassName = this.formatter.getDrawerConfiguration().injectedClassName;
         if (this.clientBody) {
-            this.clientBody.classList.add(greyScaleClassName);
+            this.clientBody.classList.add(injectedClassName);
         }
         this.isEnabled = true;
     }
@@ -40,8 +40,8 @@ export class BodyDrawer implements IDrawer {
         if (this.clientBody == null) {
             return;
         }
-        const greyScaleClassName = this.formatter.getDrawerConfiguration().injectedClassName;
-        this.clientBody.classList.remove(greyScaleClassName);
+        const injectedClassName = this.formatter.getDrawerConfiguration().injectedClassName;
+        this.clientBody.classList.remove(injectedClassName);
     }
 
     public get isOverlayEnabled(): boolean {

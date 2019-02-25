@@ -62,14 +62,6 @@ interface IBodyDrawerConfiguration {
     injectedClassName: string;
 }
 
-interface IColorDrawerConfiguration {
-    grayScaleClassName: string;
-}
-
-interface IPseudoSelectorDrawerConfiguration {
-    pseudoSelectorClassName: string;
-}
-
 interface IFormatter {
     getDrawerConfiguration(element: Node, data: AxeResultsWithFrameLevel): any;
     getDialogRenderer();
