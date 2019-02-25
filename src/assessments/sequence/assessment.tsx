@@ -5,10 +5,9 @@ import * as React from 'react';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { AssessmentBuilder } from '../assessment-builder';
 import { IAssessment } from '../types/iassessment';
-import { CssPositioning } from './test-steps/css-positioning';
-import { FeatureFlags } from '../../common/feature-flags';
-import { LayoutTables } from './test-steps/layout-tables';
 import { Columns } from './test-steps/columns';
+import { CssPositioning } from './test-steps/css-positioning';
+import { LayoutTables } from './test-steps/layout-tables';
 
 const key = 'sequence';
 const title = 'Sequence';
