@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 @import '../../../common/styles/colors.scss';
+@import '../../../common/styles/fonts.scss';
 
 .report-header-bar {
     background-color: $ada-blue;
@@ -21,7 +22,7 @@
     line-height: 24px;
     color: $neutral-0;
     display: inline-block;
-    font-family: Segoe UI;
+    font-family: $fontFamily;
 }
 
 .report-header-command-bar {
@@ -42,7 +43,7 @@
     text-overflow: ellipsis;
     width: 50%;
     color: $neutral-60;
-    font-family: Segoe UI;
+    font-family: $fontFamily;
     font-size: 14px;
     line-height: 20px;
 }

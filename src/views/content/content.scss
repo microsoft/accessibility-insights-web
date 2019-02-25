@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 @import '../../common/icons/icon.scss';
 @import '../../common/styles/colors.scss';
+@import '../../common/styles/fonts.scss';
 
 .content-container {
     display: flex;
@@ -17,12 +18,12 @@
     flex-grow: 10;
     max-width: 1120px;
 
-    font-family: 'Segoe UI';
+    font-family: $fontFamily;
     font-size: 14px;
     margin: 10px;
 
     table {
-        font-family: 'Segoe UI';
+        font-family: $fontFamily;
         font-size: 14px;
     }
 
@@ -83,7 +84,7 @@
     }
     .code-example {
         .code-example-code {
-            font-family: monospace;
+            font-family: $codeFontFamily;
             margin-block-start: 1em;
             margin-block-end: 1em;
         }
@@ -117,7 +118,7 @@
     $dont-color: $negative-outcome;
 
     .insights-code {
-        font-family: monospace;
+        font-family: $codeFontFamily;
     }
 
     .pass-fail-grid {

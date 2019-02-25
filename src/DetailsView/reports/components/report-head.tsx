@@ -7,7 +7,19 @@ export class ReportHead extends React.Component {
     private stylesheet: string = `
         body, h1, p, div {
             color: black;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI Web (West European)',
+                'Segoe UI',
+                '-apple-system',
+                BlinkMacSystemFont,
+                Roboto,
+                'Helvetica Neue',
+                Helvetica,
+                Ubuntu,
+                Arial,
+                sans-serif,
+                'Apple Color Emoji',
+                'Segoe UI Emoji',
+                'Segoe UI Symbol';
             margin: 0px;
         }
         a {
@@ -98,7 +110,7 @@ export class ReportHead extends React.Component {
             padding: 0px 0px 6px 0px;
         }
         .report-instance-table .snippet-row .content {
-            font-family: monospace;
+            font-family: Menlo, Consolas, Courier New, monospace;
             word-break: break-all;
         }
         .report-footer {

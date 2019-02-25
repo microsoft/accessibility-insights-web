@@ -4,7 +4,7 @@
     $comma: '';
     $family: '';
     @each $font in $fonts {
-        $font: if(str-index($font, ' ') == null and str-index($font, '-') != 1, $font, '"#{$font}"');
+        $font: if(str-index($font, ' ') == null and str-index($font, '-') != 1, $font, "'#{$font}'");
         $family: $family + $comma + $font;
         $comma: ',';
     }
@@ -13,6 +13,7 @@
 
 // Fonts
 $fonts: (
+    'Segoe UI Web (West European)',
     'Segoe UI',
     '-apple-system',
     'BlinkMacSystemFont',
@@ -26,6 +27,7 @@ $fonts: (
     'Segoe UI Emoji',
     'Segoe UI Symbol'
 );
+$semiBoldFonts: join(('Segoe UI Semibold'), $fonts);
 
 $common-font-family: make-font-family($fonts) !default;
 
@@ -51,3 +53,4 @@ $fontSizeXXL: 40px !default;
 $fontSizeXXXL: 56px !default;
 $fontSizeXXXXL: 72px !default;
 $codeFontFamily: Menlo, Consolas, Courier New, monospace !default;
+$semiBoldFontFamily: make-font-family($semiBoldFonts) !default;

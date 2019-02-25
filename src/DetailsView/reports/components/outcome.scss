@@ -2,6 +2,8 @@
 // Licensed under the MIT License.
 @import '../../../common/icons/icon.scss';
 @import '../../../common/styles/colors.scss';
+@import '../../../common/styles/fonts.scss';
+
 .screen-reader-only {
     position: absolute;
     left: -10000px;
@@ -45,7 +47,7 @@ $outcome-fail-summary-color: $negative-outcome;
         border-radius: 50%;
     }
     .count {
-        font-family: Segoe UI;
+        font-family: $fontFamily;
         line-height: $outcome-chip-icon-size;
         font-size: 11px;
         border-radius: 0 8px 8px 0;
@@ -98,7 +100,7 @@ $outcome-fail-summary-color: $negative-outcome;
     $outcome-summary-icon-size: 22px;
     margin-bottom: 40px;
     .block {
-        font-family: Segoe UI;
+        font-family: $fontFamily;
         line-height: 20px;
         font-size: 16px;
         color: $neutral-0;
