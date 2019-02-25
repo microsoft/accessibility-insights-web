@@ -16,7 +16,7 @@ export const guidance = create(({ Markup, Link }) => (
 
         <p>
             For more information about how to use ARIA landmarks, see&nbsp;
-            <Link.LandmarkRegions>WAI-ARIA Authoring Practices 1.1: Landmark Regions</Link.LandmarkRegions>.
+            <Link.LandmarkRegions />.
         </p>
 
         <h2>About the Landmarks visualization</h2>
