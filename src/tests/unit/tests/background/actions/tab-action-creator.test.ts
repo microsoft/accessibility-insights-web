@@ -11,7 +11,7 @@ import { TelemetryEventHandler } from '../../../../../background/telemetry/telem
 import { Action } from '../../../../../common/flux/action';
 import { ITab } from '../../../../../common/itab';
 import { Messages } from '../../../../../common/messages';
-import { SWITCH_BACK_TO_TARGET, TelemetryEventSource } from '../../../../../common/telemetry-events';
+import { SWITCH_BACK_TO_TARGET, TelemetryEventSource, TriggeredBy } from '../../../../../common/telemetry-events';
 
 describe('TestActionCreatorTest', () => {
     let tabActionsMock: IMock<TabActions>;
@@ -81,7 +81,7 @@ describe('TestActionCreatorTest', () => {
 
         const payload: SwitchToTargetTabPayload = {
             telemetry: {
-                triggeredBy: 'test',
+                triggeredBy: 'test' as TriggeredBy,
                 source: TelemetryEventSource.AdHocTools,
             },
         };

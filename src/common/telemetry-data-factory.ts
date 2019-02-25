@@ -22,6 +22,7 @@ import {
     TestStepSelectTelemetryData,
     ToggleTelemetryData,
     TriggeredByNotApplicable,
+    TriggeredBy,
 } from './telemetry-events';
 import { ForIssuesAnalyzerScanCallback, ForRuleAnalyzerScanCallback } from './types/analyzer-telemetry-callbacks';
 import { DetailsViewPivotType } from './types/details-view-pivot-type';
@@ -249,7 +250,7 @@ export class TelemetryDataFactory {
         return telemetry;
     };
 
-    private getTriggeredBy(event: SupportedMouseEvent): string {
+    private getTriggeredBy(event: SupportedMouseEvent): TriggeredBy {
         // MouseEvent => event.detail === 0 ? "keypress" : "mouseclick"
         // React.SyntheticEvent<MouseEvent> event.nativeEvent can be cast to MouseEvent
         // React.MouseEvent<any> event.nativeEvent can be cast to MouseEvent

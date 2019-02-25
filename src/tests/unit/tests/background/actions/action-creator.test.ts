@@ -5,8 +5,8 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { ActionCreator } from '../../../../../background/actions/action-creator';
 import { ActionHub } from '../../../../../background/actions/action-hub';
 import {
-    BaseActionPayload,
     AddTabbedElementPayload,
+    BaseActionPayload,
     ChangeInstanceStatusPayload,
     OnDetailsViewOpenPayload,
     OnDetailsViewPivotSelected,
@@ -29,11 +29,12 @@ import { Action } from '../../../../../common/flux/action';
 import { Messages } from '../../../../../common/messages';
 import { NotificationCreator } from '../../../../../common/notification-creator';
 import {
-    SourceAndTriggeredBy,
     DetailsViewOpenTelemetryData,
     DetailsViewPivotSelectedTelemetryData,
+    SourceAndTriggeredBy,
     TelemetryEventSource,
     ToggleTelemetryData,
+    TriggeredBy,
 } from '../../../../../common/telemetry-events';
 import * as TelemetryEvents from '../../../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
@@ -56,7 +57,7 @@ describe('ActionCreatorTest', () => {
 
         const telemetry: ToggleTelemetryData = {
             enabled,
-            triggeredBy: 'test',
+            triggeredBy: 'test' as TriggeredBy,
             source: testSource,
         };
 
@@ -89,7 +90,7 @@ describe('ActionCreatorTest', () => {
 
         const telemetry: ToggleTelemetryData = {
             enabled,
-            triggeredBy: 'test',
+            triggeredBy: 'test' as TriggeredBy,
             source: testSource,
         };
 
@@ -121,7 +122,7 @@ describe('ActionCreatorTest', () => {
 
         const telemetry: ToggleTelemetryData = {
             enabled,
-            triggeredBy: 'test',
+            triggeredBy: 'test' as TriggeredBy,
             source: testSource,
         };
 
@@ -153,7 +154,7 @@ describe('ActionCreatorTest', () => {
 
         const telemetry: ToggleTelemetryData = {
             enabled,
-            triggeredBy: 'test',
+            triggeredBy: 'test' as TriggeredBy,
             source: testSource,
         };
 
@@ -683,7 +684,7 @@ describe('ActionCreatorTest', () => {
         const tabId = 1;
         const actionName = 'closePreviewFeatures';
         const telemetryData: SourceAndTriggeredBy = {
-            triggeredBy: 'stub triggered by',
+            triggeredBy: 'stub triggered by' as TriggeredBy,
             source: testSource,
         };
 
@@ -733,7 +734,7 @@ describe('ActionCreatorTest', () => {
     test('registerCallback for onCloseSettingPanel', () => {
         const tabId = 1;
         const telemetryData: SourceAndTriggeredBy = {
-            triggeredBy: 'stub triggered by',
+            triggeredBy: 'stub triggered by' as TriggeredBy,
             source: testSource,
         };
         const actionName = 'closeSettingsPanel';
@@ -757,7 +758,7 @@ describe('ActionCreatorTest', () => {
     test('registerCallback for onAssessmentScanCompleted', () => {
         const tabId = -1;
         const telemetryData: SourceAndTriggeredBy = {
-            triggeredBy: 'stub triggered by',
+            triggeredBy: 'stub triggered by' as TriggeredBy,
             source: testSource,
         };
 
@@ -917,7 +918,7 @@ describe('ActionCreatorTest', () => {
         const tabId = 1;
         const actionName = 'openPreviewFeatures';
         const telemetryData: SourceAndTriggeredBy = {
-            triggeredBy: 'stub triggered by',
+            triggeredBy: 'stub triggered by' as TriggeredBy,
             source: testSource,
         };
 
@@ -1162,7 +1163,11 @@ class ActionCreatorValidator {
         return this;
     }
 
-    private setupAction(actionName: string, actionsMap: IDictionaryStringTo<IMock<Action<any>>>, actionsContainerMock: IMock<any>) {
+    private setupAction(
+        actionName: string,
+        actionsMap: IDictionaryStringTo<IMock<Action<any>>>,
+        actionsContainerMock: IMock<any>,
+    ): ActionCreatorValidator {
         let action = actionsMap[actionName];
 
         if (action == null) {
@@ -1259,7 +1264,7 @@ class ActionCreatorValidator {
         this.targetTabControllerStrictMock.verifyAll();
     }
 
-    public setupChromeFeatureController() {
+    public setupChromeFeatureController(): ActionCreatorValidator {
         this.chromeFeatureControllerStrictMock.setup(cfc => cfc.openCommandConfigureTab()).verifiable();
 
         return this;
@@ -1275,7 +1280,7 @@ class ActionCreatorValidator {
         this.verifyAllActions(this.scopingActionMocks);
     }
 
-    private verifyAllActions(actionsMap: IDictionaryStringTo<IMock<Action<any>>>) {
+    private verifyAllActions(actionsMap: IDictionaryStringTo<IMock<Action<any>>>): void {
         for (const actionName in actionsMap) {
             actionsMap[actionName].verifyAll();
         }

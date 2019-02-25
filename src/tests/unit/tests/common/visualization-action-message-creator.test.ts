@@ -5,7 +5,7 @@ import { IMock, It, Mock, Times } from 'typemoq';
 import { VisualizationTogglePayload } from '../../../../background/actions/action-payloads';
 import { VisualizationActionMessageCreator } from '../../../../common/message-creators/visualization-action-message-creator';
 import { Messages } from '../../../../common/messages';
-import { TelemetryEventSource, ToggleTelemetryData } from '../../../../common/telemetry-events';
+import { TelemetryEventSource, ToggleTelemetryData, TriggeredBy } from '../../../../common/telemetry-events';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 
 describe('VisualizationActionMessageCreatorTest', () => {
@@ -25,7 +25,7 @@ describe('VisualizationActionMessageCreatorTest', () => {
         const enabled = true;
         const telemetry: ToggleTelemetryData = {
             enabled,
-            triggeredBy: 'test',
+            triggeredBy: 'test' as TriggeredBy,
             source: testSource,
         };
         const test = VisualizationType.Headings;

@@ -37,12 +37,14 @@ export class PopupActionMessageCreator extends BaseActionMessageCreator {
     public popupInitialized(): void {
         this.sendTelemetry(TelemetryEvents.POPUP_INITIALIZED, {
             source: TelemetryEventSource.LaunchPad,
+            triggeredBy: 'N/A',
         });
     }
 
     public openLaunchPad(panelType: LaunchPanelType): void {
         this.sendTelemetry(TelemetryEvents.LAUNCH_PANEL_OPEN, {
             source: TelemetryEventSource.LaunchPad,
+            triggeredBy: 'N/A',
             launchPanelType: panelType,
         });
     }

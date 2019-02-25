@@ -8,6 +8,7 @@ import { BrowserAdapter, ChromeAdapter } from '../../../../../background/browser
 import { TelemetryClient } from '../../../../../background/telemetry/telemetry-client';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
 import { ITab } from '../../../../../common/itab';
+import { SourceAndTriggeredBy, TriggeredBy, TelemetryEventSource } from '../../../../../common/telemetry-events';
 
 describe('TelemetryEventHandlerTest', () => {
     let browserAdapterMock: IMock<BrowserAdapter>;
@@ -54,13 +55,6 @@ describe('TelemetryEventHandlerTest', () => {
     });
 
     test('test for when tab is null', () => {
-        const payload: BaseActionPayload = {
-            telemetry: {
-                source: -1,
-                triggeredBy: 'triggered by test',
-            },
-        };
-
         telemetryClientStrictMock.setup(te => te.trackEvent(It.isAny(), It.isAny())).verifiable(Times.once());
 
         const testObject = createAndEnableTelemetryEventHandler();
@@ -108,8 +102,8 @@ describe('TelemetryEventHandlerTest', () => {
 
         const customTelemetryPayload = {
             telemetry: {
-                source: -1,
-                triggeredBy: 'triggered by test',
+                source: -1 as TelemetryEventSource,
+                triggeredBy: 'triggered by test' as TriggeredBy,
                 ___featureA: {
                     __featureB__: {
                         _featureC_: 'hello world',

@@ -5,7 +5,7 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { ScopingActionMessageCreator } from '../../../../../common/message-creators/scoping-action-message-creator';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
-import { TelemetryEventSource } from '../../../../../common/telemetry-events';
+import { TelemetryEventSource, SourceAndTriggeredBy, ScopingTelemetryData } from '../../../../../common/telemetry-events';
 import { EventStubFactory } from './../../../common/event-stub-factory';
 
 describe('ScopingActionMessageCreatorTest', () => {
@@ -27,7 +27,7 @@ describe('ScopingActionMessageCreatorTest', () => {
     test('addSelector', () => {
         const event = eventStubFactory.createMouseClickEvent() as any;
         const inputType = 'test';
-        const telemetry = {
+        const telemetry: ScopingTelemetryData = {
             triggeredBy: 'mouseclick',
             source: testSource,
             inputType: inputType,
@@ -59,7 +59,7 @@ describe('ScopingActionMessageCreatorTest', () => {
     test('deleteSelector', () => {
         const event = eventStubFactory.createMouseClickEvent() as any;
         const inputType = 'test';
-        const telemetry = {
+        const telemetry: ScopingTelemetryData = {
             triggeredBy: 'mouseclick',
             source: testSource,
             inputType: inputType,

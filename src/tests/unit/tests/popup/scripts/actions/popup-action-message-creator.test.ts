@@ -45,6 +45,7 @@ describe('PopupActionMessageCreatorTest', () => {
             eventName: TelemetryEvents.POPUP_INITIALIZED,
             telemetry: {
                 source: TelemetryEventSource.LaunchPad,
+                triggeredBy: 'N/A',
             },
         };
 
@@ -67,6 +68,7 @@ describe('PopupActionMessageCreatorTest', () => {
             eventName: TelemetryEvents.LAUNCH_PANEL_OPEN,
             telemetry: {
                 source: TelemetryEventSource.LaunchPad,
+                triggeredBy: 'N/A',
                 launchPanelType: panelType,
             },
         };
@@ -125,7 +127,6 @@ describe('PopupActionMessageCreatorTest', () => {
     test('openDetailsView (no pivotType param)', () => {
         const viewType = VisualizationType.Headings;
         const event = eventStubFactory.createKeypressEvent() as any;
-        const source = 'test_source';
 
         const telemetry: DetailsViewOpenTelemetryData = {
             detailsView: VisualizationType[viewType],
@@ -162,7 +163,7 @@ describe('PopupActionMessageCreatorTest', () => {
 
     test('openShortcutConfigureTab', () => {
         const event = eventStubFactory.createKeypressEvent() as any;
-        const telemetry = {
+        const telemetry: TelemetryEvents.SourceAndTriggeredBy = {
             triggeredBy: 'keypress',
             source: TelemetryEventSource.HamburgerMenu,
         };
@@ -189,7 +190,7 @@ describe('PopupActionMessageCreatorTest', () => {
 
     test('openTutorial', () => {
         const event = eventStubFactory.createKeypressEvent() as any;
-        const telemetry = {
+        const telemetry: TelemetryEvents.SourceAndTriggeredBy = {
             triggeredBy: 'keypress',
             source: TelemetryEventSource.LaunchPad,
         };

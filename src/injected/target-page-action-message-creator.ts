@@ -23,6 +23,7 @@ export class TargetPageActionMessageCreator extends BaseActionMessageCreator {
     public openIssuesDialog(): void {
         this.sendTelemetry(TelemetryEvents.ISSUES_DIALOG_OPENED, {
             source: TelemetryEventSource.TargetPage,
+            triggeredBy: 'N/A',
         });
     }
 

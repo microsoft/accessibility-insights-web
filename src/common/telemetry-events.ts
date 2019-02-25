@@ -54,7 +54,7 @@ export const CONTENT_PANEL_CLOSED: string = 'contentPanelClosed';
 export const CONTENT_PAGE_OPENED: string = 'contentPageOpened';
 export const CONTENT_HYPERLINK_OPENED: string = 'contentHyperLinkOpened';
 
-export const TriggeredByNotApplicable: string = 'N/A';
+export const TriggeredByNotApplicable: TriggeredBy = 'N/A';
 export type TriggeredBy = 'mouseclick' | 'keypress' | 'shortcut' | 'N/A';
 
 export type ExportResultType = 'Assessment' | 'AutomatedChecks';
@@ -78,7 +78,7 @@ export enum TelemetryEventSource {
 
 export type SourceAndTriggeredBy = {
     source: TelemetryEventSource;
-    triggeredBy: string;
+    triggeredBy: TriggeredBy;
 };
 
 export type ToggleTelemetryData = {

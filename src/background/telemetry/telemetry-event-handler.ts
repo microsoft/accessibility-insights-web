@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 
-import { ITab } from '../../common/itab';
 import { TelemetryEventSource } from '../../common/telemetry-events';
 import { BaseActionPayload } from '../actions/action-payloads';
 import { BrowserAdapter } from '../browser-adapter';
