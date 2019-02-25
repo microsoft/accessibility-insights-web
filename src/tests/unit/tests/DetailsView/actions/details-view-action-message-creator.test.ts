@@ -1,20 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
-
 import { HeadingsTestStep } from '../../../../../assessments/headings/test-steps/test-steps';
 import { OnDetailsViewPivotSelected } from '../../../../../background/actions/action-payloads';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import {
     COPY_ISSUE_DETAILS,
-    DETAILS_VIEW_OPEN,
     DetailsViewOpenTelemetryData,
     DetailsViewPivotSelectedTelemetryData,
-    DetailsViewTargetLinkClickTelemetryData,
-    EXPORT_RESULTS,
+    DETAILS_VIEW_OPEN,
     ExportResultsTelemetryData,
+    EXPORT_RESULTS,
     FeatureFlagToggleTelemetryData,
+    SourceAndTriggeredBy,
     TelemetryEventSource,
     TestStepActionTelemetryData,
     TestStepSelectTelemetryData,
@@ -82,8 +81,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
     });
 
     test('switchToTargetTab', () => {
-        const tabId = 1;
-        const telemetryStub: DetailsViewTargetLinkClickTelemetryData = {
+        const telemetryStub: SourceAndTriggeredBy = {
             triggeredBy: 'mouseclick',
             source: testSource,
         };

@@ -3,15 +3,14 @@
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
 import {
     AssessmentTelemetryData,
-    BaseTelemetryData,
     DetailsViewOpenedTelemetryData,
     DetailsViewOpenTelemetryData,
     DetailsViewPivotSelectedTelemetryData,
-    DetailsViewTargetLinkClickTelemetryData,
     ExportResultsTelemetryData,
     FeatureFlagToggleTelemetryData,
     InspectTelemetryData,
     RuleAnalyzerScanTelemetryData,
+    SourceAndTriggeredBy,
     TelemetryEventSource,
     TestStepActionTelemetryData,
     TestStepSelectTelemetryData,
@@ -212,7 +211,7 @@ describe('TelemetryDataFactoryTest', () => {
         const result = testObject.fromDetailsViewNoTriggeredBy();
         const source = TelemetryEventSource.DetailsView;
 
-        const expected: DetailsViewTargetLinkClickTelemetryData = {
+        const expected: SourceAndTriggeredBy = {
             triggeredBy: TriggeredByNotApplicable,
             source,
         };
@@ -235,9 +234,9 @@ describe('TelemetryDataFactoryTest', () => {
 
     test('forOpenShortcutConfigureTab', () => {
         const event = keypressEvent;
-        const result: BaseTelemetryData = testObject.fromHamburgetMenu(event);
+        const result: SourceAndTriggeredBy = testObject.fromHamburgetMenu(event);
 
-        const expected: BaseTelemetryData = {
+        const expected: SourceAndTriggeredBy = {
             triggeredBy: 'keypress',
             source: TelemetryEventSource.HamburgerMenu,
         };
@@ -247,9 +246,9 @@ describe('TelemetryDataFactoryTest', () => {
 
     test('forOpenTutorial', () => {
         const event = keypressEvent;
-        const result: BaseTelemetryData = testObject.fromLaunchPad(event);
+        const result: SourceAndTriggeredBy = testObject.fromLaunchPad(event);
 
-        const expected: BaseTelemetryData = {
+        const expected: SourceAndTriggeredBy = {
             triggeredBy: 'keypress',
             source: TelemetryEventSource.LaunchPad,
         };
@@ -273,7 +272,7 @@ describe('TelemetryDataFactoryTest', () => {
 
     test('withTriggeredByAndSource', () => {
         const event = mouseClickEvent;
-        const expected: BaseTelemetryData = {
+        const expected: SourceAndTriggeredBy = {
             triggeredBy: 'mouseclick',
             source: testSource,
         };
@@ -367,7 +366,7 @@ describe('TelemetryDataFactoryTest', () => {
 
     test('fromDetailsView', () => {
         const event = eventStubFactory.createNativeKeypressEvent() as any;
-        const expected: BaseTelemetryData = {
+        const expected: SourceAndTriggeredBy = {
             triggeredBy: 'keypress',
             source: TelemetryEventSource.DetailsView,
         };

@@ -55,6 +55,7 @@ export const CONTENT_PAGE_OPENED: string = 'contentPageOpened';
 export const CONTENT_HYPERLINK_OPENED: string = 'contentHyperLinkOpened';
 
 export const TriggeredByNotApplicable: string = 'N/A';
+export type TriggeredBy = 'mouseclick' | 'keypress' | 'shortcut' | 'N/A';
 
 export type ExportResultType = 'Assessment' | 'AutomatedChecks';
 
@@ -75,96 +76,100 @@ export enum TelemetryEventSource {
     ContentPage,
 }
 
-export interface BaseTelemetryData {
+export type SourceAndTriggeredBy = {
     source: TelemetryEventSource;
-    triggeredBy?: string;
-}
+    triggeredBy: string;
+};
 
-export interface ToggleTelemetryData extends BaseTelemetryData {
-    enabled?: boolean;
-}
+export type ToggleTelemetryData = {
+    enabled: boolean;
+} & SourceAndTriggeredBy;
 
-export interface FeatureFlagToggleTelemetryData extends ToggleTelemetryData {
+export type FeatureFlagToggleTelemetryData = {
+    enabled: boolean;
     featureFlagId: string;
-}
+} & SourceAndTriggeredBy;
 
-export interface ExportResultsTelemetryData extends BaseTelemetryData {
+export type ExportResultsTelemetryData = {
     exportResultsType: string;
     exportResultsData: number;
-}
+} & SourceAndTriggeredBy;
 
-export interface DetailsViewOpenTelemetryData extends BaseTelemetryData {
+export type DetailsViewOpenTelemetryData = {
     detailsView: string;
-}
+} & SourceAndTriggeredBy;
 
-export interface DetailsViewOpenedTelemetryData extends BaseTelemetryData {
+export type DetailsViewOpenedTelemetryData = {
     selectedDetailsViewPivot: string;
-}
+} & SourceAndTriggeredBy;
 
-export interface TestStepSelectTelemetryData extends BaseTelemetryData {
+export type TestStepSelectTelemetryData = {
     selectedTest: string;
     selectedStep: string;
-}
+} & SourceAndTriggeredBy;
 
-export interface RequirementStatusTelemetryData extends TestStepSelectTelemetryData {
+export type RequirementStatusTelemetryData = {
     passed: boolean;
     numInstances: number;
-}
+} & TestStepSelectTelemetryData;
 
-export interface DetailsViewPivotSelectedTelemetryData extends BaseTelemetryData {
+export type DetailsViewPivotSelectedTelemetryData = {
     pivotKey: string;
-}
+} & SourceAndTriggeredBy;
 
-export interface DetailsViewTargetLinkClickTelemetryData extends BaseTelemetryData {
-    triggeredBy: string;
-}
-
-export interface AssessmentTelemetryData extends BaseTelemetryData {
+export type AssessmentTelemetryData = {
     selectedTest: string;
-}
+} & SourceAndTriggeredBy;
 
-export interface TestStepActionTelemetryData extends AssessmentTelemetryData {
+export type TestStepActionTelemetryData = {
     selectedStep: string;
-}
+} & SourceAndTriggeredBy;
 
-export interface ModifiedCommandsTelemetryData {
+export type ModifiedCommandsTelemetryData = {
     modifiedCommands: string;
-}
+};
 
-export interface InspectTelemetryData extends BaseTelemetryData {
+export type InspectTelemetryData = {
     frameUrl?: string;
     target?: string[];
-}
+} & SourceAndTriggeredBy;
 
-export interface ScopingTelemetryData extends BaseTelemetryData {
+export type ScopingTelemetryData = {
     inputType: string;
-}
+} & SourceAndTriggeredBy;
 
-export interface AssessmentRequirementScanTelemetryData extends RuleAnalyzerScanTelemetryData {
+export type AssessmentRequirementScanTelemetryData = {
     requirementName: string;
-}
+} & RuleAnalyzerScanTelemetryData;
 
-export interface RuleAnalyzerScanTelemetryData {
+export type RuleAnalyzerScanTelemetryData = {
     scanDuration: number;
     NumberOfElementsScanned: number;
     include: ISingleElementSelector[];
     exclude: ISingleElementSelector[];
     testName: string;
-}
+};
 
-export interface IssuesAnalyzerScanTelemetryData extends RuleAnalyzerScanTelemetryData {
+export type IssuesAnalyzerScanTelemetryData = {
     passedRuleResults: string;
     failedRuleResults: string;
-}
+} & RuleAnalyzerScanTelemetryData;
 
 export type TelemetryData =
+    | SourceAndTriggeredBy
     | ToggleTelemetryData
     | FeatureFlagToggleTelemetryData
+    | ExportResultsTelemetryData
     | DetailsViewOpenTelemetryData
+    | DetailsViewOpenedTelemetryData
     | DetailsViewPivotSelectedTelemetryData
-    | DetailsViewTargetLinkClickTelemetryData
+    | TestStepSelectTelemetryData
     | ModifiedCommandsTelemetryData
     | InspectTelemetryData
     | AssessmentTelemetryData
+    | ScopingTelemetryData
     | TestStepActionTelemetryData
+    | RuleAnalyzerScanTelemetryData
+    | IssuesAnalyzerScanTelemetryData
+    | AssessmentRequirementScanTelemetryData
     | RequirementStatusTelemetryData;

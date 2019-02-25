@@ -29,7 +29,7 @@ import { Action } from '../../../../../common/flux/action';
 import { Messages } from '../../../../../common/messages';
 import { NotificationCreator } from '../../../../../common/notification-creator';
 import {
-    BaseTelemetryData,
+    SourceAndTriggeredBy,
     DetailsViewOpenTelemetryData,
     DetailsViewPivotSelectedTelemetryData,
     TelemetryEventSource,
@@ -682,7 +682,7 @@ describe('ActionCreatorTest', () => {
     test('registerCallback for onClosePreviewFeaturesPanel', () => {
         const tabId = 1;
         const actionName = 'closePreviewFeatures';
-        const telemetryData: BaseTelemetryData = {
+        const telemetryData: SourceAndTriggeredBy = {
             triggeredBy: 'stub triggered by',
             source: testSource,
         };
@@ -706,7 +706,7 @@ describe('ActionCreatorTest', () => {
 
     test('registerCallback for onOpenSettingsPanel', () => {
         const tabId: number = 1;
-        const telemetryData: BaseTelemetryData = {
+        const telemetryData: SourceAndTriggeredBy = {
             triggeredBy: 'mouseclick',
             source: testSource,
         };
@@ -732,7 +732,7 @@ describe('ActionCreatorTest', () => {
 
     test('registerCallback for onCloseSettingPanel', () => {
         const tabId = 1;
-        const telemetryData: BaseTelemetryData = {
+        const telemetryData: SourceAndTriggeredBy = {
             triggeredBy: 'stub triggered by',
             source: testSource,
         };
@@ -756,7 +756,7 @@ describe('ActionCreatorTest', () => {
 
     test('registerCallback for onAssessmentScanCompleted', () => {
         const tabId = -1;
-        const telemetryData: BaseTelemetryData = {
+        const telemetryData: SourceAndTriggeredBy = {
             triggeredBy: 'stub triggered by',
             source: testSource,
         };
@@ -916,7 +916,7 @@ describe('ActionCreatorTest', () => {
     test('registerCallback for onOpenPreviewFeaturesPanel', () => {
         const tabId = 1;
         const actionName = 'openPreviewFeatures';
-        const telemetryData: BaseTelemetryData = {
+        const telemetryData: SourceAndTriggeredBy = {
             triggeredBy: 'stub triggered by',
             source: testSource,
         };

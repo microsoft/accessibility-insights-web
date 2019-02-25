@@ -5,7 +5,7 @@ import { Mock } from 'typemoq';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
-import { BaseTelemetryData, CONTENT_HYPERLINK_OPENED, CONTENT_PAGE_OPENED } from '../../../../../common/telemetry-events';
+import { SourceAndTriggeredBy, CONTENT_HYPERLINK_OPENED, CONTENT_PAGE_OPENED } from '../../../../../common/telemetry-events';
 
 describe('ContentPanelActionMessageCreator', () => {
     const event = Mock.ofType<MouseEvent>().object;
@@ -45,7 +45,7 @@ describe('ContentPanelActionMessageCreator', () => {
     });
 
     it('creates closeContentPanel', () => {
-        const telemetry = Mock.ofType<BaseTelemetryData>().object;
+        const telemetry = Mock.ofType<SourceAndTriggeredBy>().object;
         telemetryDataFactoryMock.setup(tdf => tdf.fromDetailsViewNoTriggeredBy()).returns(() => telemetry);
 
         creator.closeContentPanel();

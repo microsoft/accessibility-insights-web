@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DetailsViewTargetLinkClickTelemetryData, TelemetryData, ToggleTelemetryData } from '../../common/telemetry-events';
+import { SourceAndTriggeredBy, TelemetryData, ToggleTelemetryData } from '../../common/telemetry-events';
 import * as TelemetryEvents from '../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../common/types/visualization-type';
@@ -89,7 +89,7 @@ export interface VisualizationTogglePayload extends ToggleActionPayload {
 }
 
 export interface SwitchToTargetTabPayload extends BaseActionPayload {
-    telemetry: DetailsViewTargetLinkClickTelemetryData;
+    telemetry: SourceAndTriggeredBy;
 }
 
 export interface PageVisibilityChangeTabPayload extends BaseActionPayload {
