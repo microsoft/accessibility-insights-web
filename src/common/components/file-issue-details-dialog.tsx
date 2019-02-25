@@ -33,8 +33,8 @@ export class FileIssueDetailsDialog extends React.Component<FileIssueDetailsDial
         return (
             <>
                 <p>
-                    Issue filing location must be configured before filing bugs. Enter in the location information into settings in order to
-                    file issues.
+                    Issue filing location must be configured before filing issues. Enter in the location information into settings in order
+                    to file issues.
                 </p>
                 <DialogFooter>
                     <PrimaryButton onClick={this.openSettings} text="Go to settings" />
