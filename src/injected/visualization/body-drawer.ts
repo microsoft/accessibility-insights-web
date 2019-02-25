@@ -22,9 +22,7 @@ export class BodyDrawer implements IDrawer {
         this.eraseLayout();
         const elementResults = drawerInfo.data;
         const myDocument = this.drawerUtils.getDocumentElement();
-        this.clientBody = elementResults[0]
-            ? (myDocument.querySelector(elementResults[0].target[elementResults[0].target.length - 1]) as HTMLElement)
-            : null;
+        this.clientBody = this.findRelevantElementsOnDocument(myDocument, elementResults);
     }
 
     public drawLayout(): void {
@@ -46,5 +44,13 @@ export class BodyDrawer implements IDrawer {
 
     public get isOverlayEnabled(): boolean {
         return this.isEnabled;
+    }
+
+    private findRelevantElementsOnDocument(document: Document, elementResults: IHtmlElementAxeResults[]): HTMLElement {
+        if (!elementResults[0]) {
+            return null;
+        }
+
+        return document.querySelector(elementResults[0].target[elementResults[0].target.length - 1]) as HTMLElement;
     }
 }
