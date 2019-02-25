@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BodyFormatter } from '../../../../../injected/visualization/body-formatter';
-import { IBodyDrawerConfiguration } from '../../../../../injected/visualization/iformatter';
+import { BodyDrawerConfiguration } from '../../../../../injected/visualization/iformatter';
 
 describe('BodyFormatterTests', () => {
     let testSubject: BodyFormatter;
-    const defaultConfig: IBodyDrawerConfiguration = {
+    const defaultConfig: BodyDrawerConfiguration = {
         injectedClassName: 'test-injected-className',
     };
 

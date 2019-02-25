@@ -8,7 +8,7 @@ import { BodyDrawer } from '../../../../../injected/visualization/body-drawer';
 import { BodyFormatter } from '../../../../../injected/visualization/body-formatter';
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
 import { IDrawerInitData } from '../../../../../injected/visualization/idrawer';
-import { IBodyDrawerConfiguration } from '../../../../../injected/visualization/iformatter';
+import { BodyDrawerConfiguration } from '../../../../../injected/visualization/iformatter';
 import { TestDocumentCreator } from '../../../common/test-document-creator';
 
 describe('BodyDrawerTests', () => {
@@ -152,7 +152,7 @@ describe('BodyDrawerTests', () => {
             .returns(() => {
                 return {
                     injectedClassName: 'test-injected-classname',
-                } as IBodyDrawerConfiguration;
+                } as BodyDrawerConfiguration;
             })
             .verifiable(Times.atLeastOnce());
     }
