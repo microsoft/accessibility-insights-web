@@ -36,6 +36,7 @@ const useOfColorHowToTest: JSX.Element = (
 );
 
 const useOfColorDescription: JSX.Element = <span>Color must not be used as the only visual means for conveying meaning.</span>;
+const colorFormatterClassName = 'insights-grey-scale-container';
 
 export const UseOfColor: TestStep = {
     key: ColorSensoryTestStep.useOfColor,
@@ -55,5 +56,5 @@ export const UseOfColor: TestStep = {
         ),
     updateVisibility: false,
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
-    getDrawer: provider => provider.createColorDrawer(),
+    getDrawer: provider => provider.createBodyDrawer(colorFormatterClassName),
 };

@@ -36,6 +36,8 @@ const cssContentDescription: JSX.Element = (
 );
 
 const key = SemanticsTestStep.cssContent;
+const pseudoFormatterClassName = 'pseudo-selector-style-container';
+
 export const CssContent: TestStep = {
     key,
     name: 'CSS content',
@@ -52,6 +54,6 @@ export const CssContent: TestStep = {
                 testType: VisualizationType.SemanticsAssessment,
             }),
         ),
-    getDrawer: provider => provider.createPseudoSelectorDrawer(),
+    getDrawer: provider => provider.createBodyDrawer(pseudoFormatterClassName),
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
 };

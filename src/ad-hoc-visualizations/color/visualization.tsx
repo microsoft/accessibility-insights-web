@@ -16,6 +16,8 @@ import { ScannerUtils } from './../../injected/scanner-utils';
 
 const { guidance } = content.color;
 
+const colorFormatterClassName = 'insights-grey-scale-container';
+
 export const ColorAdHocVisualization: IVisualizationConfiguration = {
     getTestView: props => <AdhocStaticTestView {...props} />,
     key: AdHocTestkeys.Color,
@@ -47,7 +49,7 @@ export const ColorAdHocVisualization: IVisualizationConfiguration = {
     getIdentifier: () => AdHocTestkeys.Color,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
     getNotificationMessage: selectorMap => null,
-    getDrawer: provider => provider.createColorDrawer(),
+    getDrawer: provider => provider.createBodyDrawer(colorFormatterClassName),
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,
     getUpdateVisibility: () => false,

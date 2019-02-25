@@ -6,7 +6,7 @@ import { WindowUtils } from '../../../../../common/window-utils';
 import { ClientUtils } from '../../../../../injected/client-utils';
 import { FrameCommunicator } from '../../../../../injected/frameCommunicators/frame-communicator';
 import { ShadowUtils } from '../../../../../injected/shadow-utils';
-import { ColorDrawer } from '../../../../../injected/visualization/color-drawer';
+import { BodyDrawer } from '../../../../../injected/visualization/body-drawer';
 import { Drawer } from '../../../../../injected/visualization/drawer';
 import { DrawerProvider } from '../../../../../injected/visualization/drawer-provider';
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
@@ -57,8 +57,9 @@ describe('DrawerProviderTests', () => {
     });
 
     test('getColorDrawer', () => {
-        const drawer = testObject.createColorDrawer();
-        expect(drawer).toBeInstanceOf(ColorDrawer);
+        const injectedClassName = 'test';
+        const drawer = testObject.createBodyDrawer(injectedClassName);
+        expect(drawer).toBeInstanceOf(BodyDrawer);
     });
 
     test('getSVGDrawer: svg drawer v2 with null/no config', () => {

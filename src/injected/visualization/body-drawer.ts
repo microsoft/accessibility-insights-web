@@ -3,18 +3,17 @@
 /// <reference path="./iformatter.d.ts" />
 /// <reference path="./idrawer.d.ts" />
 import { IHtmlElementAxeResults } from '../scanner-utils';
-import { ColorFormatter } from './color-formatter';
+import { BodyFormatter } from './body-formatter';
 import { DrawerUtils } from './drawer-utils';
 import { IDrawer, IDrawerInitData } from './idrawer';
 
-export class ColorDrawer implements IDrawer {
+export class BodyDrawer implements IDrawer {
     protected isEnabled = false;
     protected drawerUtils: DrawerUtils;
     private clientBody: HTMLElement;
-    private originalFilter: string;
-    private formatter: ColorFormatter;
+    private formatter: BodyFormatter;
 
-    constructor(drawerUtils: DrawerUtils, formatter: ColorFormatter) {
+    constructor(drawerUtils: DrawerUtils, formatter: BodyFormatter) {
         this.drawerUtils = drawerUtils;
         this.formatter = formatter;
     }
@@ -23,11 +22,13 @@ export class ColorDrawer implements IDrawer {
         this.eraseLayout();
         const elementResults = drawerInfo.data;
         const myDocument = this.drawerUtils.getDocumentElement();
-        this.clientBody = elementResults[0] ? (myDocument.querySelector(elementResults[0].target[0]) as HTMLElement) : null;
+        this.clientBody = elementResults[0]
+            ? (myDocument.querySelector(elementResults[0].target[elementResults[0].target.length - 1]) as HTMLElement)
+            : null;
     }
 
     public drawLayout(): void {
-        const greyScaleClassName = this.formatter.getDrawerConfiguration().grayScaleClassName;
+        const greyScaleClassName = this.formatter.getDrawerConfiguration().injectedClassName;
         if (this.clientBody) {
             this.clientBody.classList.add(greyScaleClassName);
         }
@@ -39,7 +40,7 @@ export class ColorDrawer implements IDrawer {
         if (this.clientBody == null) {
             return;
         }
-        const greyScaleClassName = this.formatter.getDrawerConfiguration().grayScaleClassName;
+        const greyScaleClassName = this.formatter.getDrawerConfiguration().injectedClassName;
         this.clientBody.classList.remove(greyScaleClassName);
     }
 

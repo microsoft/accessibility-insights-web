@@ -7,10 +7,10 @@ import { WindowUtils } from '../../common/window-utils';
 import { ClientUtils } from '../client-utils';
 import { FrameCommunicator } from '../frameCommunicators/frame-communicator';
 import { ShadowUtils } from '../shadow-utils';
-import { HTMLElementUtils } from './../../common/html-element-utils';
+import { HTMLElementUtils } from '../../common/html-element-utils';
 import { CenterPositionCalculator } from './center-position-calculator';
-import { ColorDrawer } from './color-drawer';
-import { ColorFormatter } from './color-formatter';
+import { BodyDrawer } from './body-drawer';
+import { BodyFormatter } from './body-formatter';
 import { CustomWidgetsFormatter } from './custom-widgets-formatter';
 import { Drawer } from './drawer';
 import { DrawerUtils } from './drawer-utils';
@@ -60,9 +60,12 @@ export class DrawerProvider {
         return new NullDrawer();
     }
 
-    public createColorDrawer(): IDrawer {
-        return new ColorDrawer(this.drawerUtils, new ColorFormatter());
+    public createBodyDrawer(className: string): IDrawer {
+        return new BodyDrawer(this.drawerUtils, new BodyFormatter(className));
     }
+    // public createColorDrawer(): IDrawer {
+    //     return new BodyDrawer(this.drawerUtils, new BodyFormatter());
+    // }
 
     public createPseudoSelectorDrawer(): IDrawer {
         return new PseudoSelectorDrawer(this.drawerUtils, new PseudoSelectorFormatter());
