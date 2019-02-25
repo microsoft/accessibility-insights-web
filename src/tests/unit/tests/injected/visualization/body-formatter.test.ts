@@ -6,11 +6,11 @@ import { IBodyDrawerConfiguration } from '../../../../../injected/visualization/
 describe('BodyFormatterTests', () => {
     let testSubject: BodyFormatter;
     const defaultConfig: IBodyDrawerConfiguration = {
-        injectedClassName: 'insights-grey-scale-container',
+        injectedClassName: 'test-injected-className',
     };
 
     beforeEach(() => {
-        testSubject = new BodyFormatter('insights-grey-scale-container');
+        testSubject = new BodyFormatter('test-injected-className');
     });
 
     test('Verify the configuration is correct', () => {

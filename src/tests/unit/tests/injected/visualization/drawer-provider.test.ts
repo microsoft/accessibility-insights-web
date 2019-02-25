@@ -56,7 +56,7 @@ describe('DrawerProviderTests', () => {
         expect(drawer).toBeInstanceOf(Drawer);
     });
 
-    test('getColorDrawer', () => {
+    test('getBodyDrawer', () => {
         const injectedClassName = 'test';
         const drawer = testObject.createBodyDrawer(injectedClassName);
         expect(drawer).toBeInstanceOf(BodyDrawer);

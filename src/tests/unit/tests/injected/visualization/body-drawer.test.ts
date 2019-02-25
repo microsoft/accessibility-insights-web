@@ -151,7 +151,7 @@ describe('BodyDrawerTests', () => {
             .setup(f => f.getDrawerConfiguration())
             .returns(() => {
                 return {
-                    injectedClassName: 'insights-grey-scale-container',
+                    injectedClassName: 'test-injected-classname',
                 } as IBodyDrawerConfiguration;
             })
             .verifiable(Times.atLeastOnce());
