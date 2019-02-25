@@ -3,7 +3,11 @@
 import { IMock, Mock } from 'typemoq';
 
 import { ClientBrowserAdapter } from '../../../../../common/client-browser-adapter';
-import { IWindowMessage, WindowMessageMarshaller } from '../../../../../injected/frameCommunicators/window-message-marshaller';
+import {
+    IWindowMessage,
+    WindowMessageMarshaller,
+    MESSAGE_STABLE_SIGNATURE,
+} from '../../../../../injected/frameCommunicators/window-message-marshaller';
 
 describe('WindowMessageMarshallerTests', () => {
     let testSubject: WindowMessageMarshaller;
@@ -12,6 +16,8 @@ describe('WindowMessageMarshallerTests', () => {
     const messageSourceId = 'app id';
     const messageVersion = 'app version';
     let manifest: chrome.runtime.Manifest;
+    const validMessageId = '12';
+    const validMessageProperty = { hasMessage: true };
 
     beforeEach(() => {
         manifest = {
@@ -35,24 +41,68 @@ describe('WindowMessageMarshallerTests', () => {
     test.each([
         null,
         JSON.stringify({}),
-        JSON.stringify({ messageId: '12' } as IWindowMessage), // source & version missing
-        JSON.stringify({ messageSourceId: messageSourceId } as IWindowMessage), // message id & version missing
-        JSON.stringify({ messageVersion: messageVersion } as IWindowMessage), // source &  message id missing
+        // Only one required field present
+        JSON.stringify({ messageId: '12' } as IWindowMessage),
+        JSON.stringify({ messageSourceId: messageSourceId } as IWindowMessage),
+        JSON.stringify({ messageVersion: messageVersion } as IWindowMessage),
+        JSON.stringify({ messageStableSignature: MESSAGE_STABLE_SIGNATURE } as IWindowMessage),
+        // Only one required field missing
+        JSON.stringify({
+            // messageId: { unknownMessageIdType: true } as any,
+            message: validMessageProperty,
+            messageStableSignature: MESSAGE_STABLE_SIGNATURE,
+            messageSourceId: messageSourceId,
+            messageVersion: messageVersion,
+        } as IWindowMessage),
+        JSON.stringify({
+            messageId: validMessageId,
+            message: validMessageProperty,
+            // messageStableSignature: 'unknown stable signature',
+            messageSourceId: messageSourceId,
+            messageVersion: messageVersion,
+        } as IWindowMessage),
+        JSON.stringify({
+            messageId: validMessageId,
+            message: validMessageProperty,
+            messageStableSignature: MESSAGE_STABLE_SIGNATURE,
+            // messageSourceId: 'unknown source id',
+            messageVersion: messageVersion,
+        } as IWindowMessage),
+        JSON.stringify({
+            messageId: validMessageId,
+            message: validMessageProperty,
+            messageStableSignature: MESSAGE_STABLE_SIGNATURE,
+            messageSourceId: messageSourceId,
+            // messageVersion: 'unknown version',
+        } as IWindowMessage),
+        // Only one required field malformed
         JSON.stringify({
             messageId: { unknownMessageIdType: true } as any,
+            message: validMessageProperty,
+            messageStableSignature: MESSAGE_STABLE_SIGNATURE,
             messageSourceId: messageSourceId,
             messageVersion: messageVersion,
         } as IWindowMessage),
         JSON.stringify({
+            messageId: validMessageId,
+            message: validMessageProperty,
+            messageStableSignature: 'unknown stable signature',
+            messageSourceId: messageSourceId,
+            messageVersion: messageVersion,
+        } as IWindowMessage),
+        JSON.stringify({
+            messageId: validMessageId,
+            message: validMessageProperty,
+            messageStableSignature: MESSAGE_STABLE_SIGNATURE,
             messageSourceId: 'unknown source id',
             messageVersion: messageVersion,
-            messageId: '12',
         } as IWindowMessage),
         JSON.stringify({
-            messageVersion: 'unknown version',
-            message: { hasMessage: true },
+            messageId: validMessageId,
+            message: validMessageProperty,
+            messageStableSignature: MESSAGE_STABLE_SIGNATURE,
             messageSourceId: messageSourceId,
-            messageId: '12',
+            messageVersion: 'unknown version',
         } as IWindowMessage),
     ])('handleParsingUnknownData: %#', message => {
         expect(testSubject.parseMessage(message)).toBeNull();
@@ -66,12 +116,14 @@ describe('WindowMessageMarshallerTests', () => {
                 stack: 'stack',
                 name: 'name',
             },
+            messageStableSignature: MESSAGE_STABLE_SIGNATURE,
             messageSourceId: messageSourceId,
             messageVersion: messageVersion,
             messageId: 'id1',
             command: 'someCommand',
         } as IWindowMessage, // with message
         {
+            messageStableSignature: MESSAGE_STABLE_SIGNATURE,
             messageSourceId: messageSourceId,
             messageVersion: messageVersion,
             messageId: 'id1',
@@ -90,6 +142,7 @@ describe('WindowMessageMarshallerTests', () => {
             command: command,
             message: payload,
             error: undefined,
+            messageStableSignature: MESSAGE_STABLE_SIGNATURE,
             messageSourceId: manifest.name,
             messageVersion: manifest.version,
         };
@@ -108,6 +161,7 @@ describe('WindowMessageMarshallerTests', () => {
             command: command,
             message: payload,
             error: undefined,
+            messageStableSignature: MESSAGE_STABLE_SIGNATURE,
             messageSourceId: manifest.name,
             messageVersion: manifest.version,
         };
@@ -130,6 +184,7 @@ describe('WindowMessageMarshallerTests', () => {
                 stack: payload.stack,
                 name: payload.name,
             },
+            messageStableSignature: MESSAGE_STABLE_SIGNATURE,
             messageSourceId: manifest.name,
             messageVersion: manifest.version,
         };
@@ -137,5 +192,19 @@ describe('WindowMessageMarshallerTests', () => {
         const message = testSubject.createMessage(command, payload);
 
         expect(message).toEqual(expectedMessage);
+    });
+
+    test('the shape of our window messages must match the shape/signature our partner teams test for', () => {
+        const command = 'command1';
+        const responseId = 'responseId';
+        const payload = {};
+        const actualMessage = testSubject.createMessage(command, payload, responseId);
+
+        expect(typeof actualMessage).toBe('object');
+
+        // Using strings instead of strongly typed names to avoid accidentally tool-refactoring the names/values
+        // such that this test still passes but our partners break; those partners depend on this *exact* format
+        // to distinguish our messages from unknown/assumed-malicious messages.
+        expect(actualMessage['messageStableSignature']).toBe('e467510c-ca1f-47df-ace1-a39f7f0678c9');
     });
 });

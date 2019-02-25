@@ -2,11 +2,18 @@
 // Licensed under the MIT License.
 import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 
+// This *MUST NOT* vary between different versions or brandings of the extension!
+//
+// This identifier is used by some partner teams to distinguish (and allow) our messages in
+// scenarios that would normally block unrecognized messages.
+export const MESSAGE_STABLE_SIGNATURE = 'e467510c-ca1f-47df-ace1-a39f7f0678c9';
+
 export interface IWindowMessage {
     messageId: string;
     command: string;
     message?: any;
     error?: IErrorMessageContent;
+    messageStableSignature: string;
     messageSourceId: string;
     messageVersion: string;
 }
@@ -61,6 +68,7 @@ export class WindowMessageMarshaller {
             command: command,
             message: payload,
             error: error,
+            messageStableSignature: MESSAGE_STABLE_SIGNATURE,
             messageSourceId: this.messageSourceId,
             messageVersion: this.messageVersion,
         };
@@ -69,6 +77,7 @@ export class WindowMessageMarshaller {
     protected isMessageOurs(postedMessage: IWindowMessage): boolean {
         return (
             postedMessage &&
+            postedMessage.messageStableSignature === MESSAGE_STABLE_SIGNATURE &&
             postedMessage.messageSourceId === this.messageSourceId &&
             postedMessage.messageVersion === this.messageVersion &&
             typeof postedMessage.messageId === 'string'
