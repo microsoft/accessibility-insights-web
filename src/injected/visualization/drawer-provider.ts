@@ -1,16 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
+import { HTMLElementUtils } from '../../common/html-element-utils';
 import { TabbableElementsHelper } from '../../common/tabbable-elements-helper';
 import { DeepPartial } from '../../common/types/deep-partial';
 import { WindowUtils } from '../../common/window-utils';
 import { ClientUtils } from '../client-utils';
 import { FrameCommunicator } from '../frameCommunicators/frame-communicator';
 import { ShadowUtils } from '../shadow-utils';
-import { HTMLElementUtils } from '../../common/html-element-utils';
-import { CenterPositionCalculator } from './center-position-calculator';
 import { BodyDrawer } from './body-drawer';
 import { BodyFormatter } from './body-formatter';
+import { CenterPositionCalculator } from './center-position-calculator';
 import { CustomWidgetsFormatter } from './custom-widgets-formatter';
 import { Drawer } from './drawer';
 import { DrawerUtils } from './drawer-utils';
@@ -22,8 +22,6 @@ import { IFormatter, ISVGDrawerConfiguration } from './iformatter';
 import { IssuesFormatter } from './issues-formatter';
 import { LandmarkFormatter } from './landmark-formatter';
 import { NullDrawer } from './null-drawer';
-import { PseudoSelectorDrawer } from './pseudo-selector-drawer';
-import { PseudoSelectorFormatter } from './pseudo-selector-formatter';
 import { SVGDrawerV2 } from './svg-drawer-v2';
 import { SVGShapeFactory } from './svg-shape-factory';
 import { SVGSolidShadowFilterFactory } from './svg-solid-shadow-filter-factory';
@@ -62,13 +60,6 @@ export class DrawerProvider {
 
     public createBodyDrawer(className: string): IDrawer {
         return new BodyDrawer(this.drawerUtils, new BodyFormatter(className));
-    }
-    // public createColorDrawer(): IDrawer {
-    //     return new BodyDrawer(this.drawerUtils, new BodyFormatter());
-    // }
-
-    public createPseudoSelectorDrawer(): IDrawer {
-        return new PseudoSelectorDrawer(this.drawerUtils, new PseudoSelectorFormatter());
     }
 
     public createSVGDrawer(config: IPartialSVGDrawerConfiguration = null): IDrawer {
