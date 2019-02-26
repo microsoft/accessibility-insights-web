@@ -37,11 +37,11 @@ export const infoAndExamples = create(({ Markup }) => (
             failExample={`<p>To learn more,          
             see [the links to the right].</p>
             ...
-                      
+
             <h3>Related articles</h3>
             <ul>
             <li>
-            <a href="https://www.w3.org">          
+            <a href="https://www.w3.org">       
             Web Content Accessibility Guidelines</a>
             </li>
             ...
@@ -51,7 +51,7 @@ export const infoAndExamples = create(({ Markup }) => (
                     Instructions mentions both the links' location and their associated heading (sensory characteristic + accessible name).
                 </p>
             }
-            passExample={`<p>To learn more,     
+            passExample={`<p>To learn more,
             [see the links to the right, under the 'Related articles' heading].</p>
             ...
             <h3>Related articles</h3>
