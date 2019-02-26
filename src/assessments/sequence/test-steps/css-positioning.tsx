@@ -65,7 +65,7 @@ export const CssPositioning: TestStep = {
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
-                rules: ['css-content'],
+                rules: ['css-positioning'],
                 key,
                 testType: VisualizationType.SequenceAssessment,
             }),

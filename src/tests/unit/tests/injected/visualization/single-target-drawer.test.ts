@@ -4,20 +4,20 @@ import { IMock, Mock, Times } from 'typemoq';
 
 import { getDefaultFeatureFlagValues } from '../../../../../common/feature-flags';
 import { IHtmlElementAxeResults } from '../../../../../injected/scanner-utils';
-import { ColorDrawer } from '../../../../../injected/visualization/color-drawer';
-import { ColorFormatter } from '../../../../../injected/visualization/color-formatter';
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
 import { IDrawerInitData } from '../../../../../injected/visualization/idrawer';
-import { IColorDrawerConfiguration } from '../../../../../injected/visualization/iformatter';
+import { SingleTargetDrawerConfiguration } from '../../../../../injected/visualization/iformatter';
+import { SingleTargetDrawer } from '../../../../../injected/visualization/single-target-drawer';
+import { SingleTargetFormatter } from '../../../../../injected/visualization/single-target-formatter';
 import { TestDocumentCreator } from '../../../common/test-document-creator';
 
-describe('ColorDrawerTests', () => {
+describe('SingleTargetDrawer Tests', () => {
     let drawerUtilsMock: IMock<DrawerUtils>;
-    let formatterMock: IMock<ColorFormatter>;
+    let formatterMock: IMock<SingleTargetFormatter>;
 
     beforeEach(() => {
         drawerUtilsMock = Mock.ofType(DrawerUtils);
-        formatterMock = Mock.ofType(ColorFormatter);
+        formatterMock = Mock.ofType(SingleTargetFormatter);
     });
 
     test('initializer', () => {
@@ -27,7 +27,7 @@ describe('ColorDrawerTests', () => {
 
         setupDrawerUtilsMockDefault(dom);
 
-        const testSubject = new ColorDrawer(drawerUtilsMock.object, formatterMock.object);
+        const testSubject = new SingleTargetDrawer(drawerUtilsMock.object, formatterMock.object);
 
         const drawerInfo: IDrawerInitData<IHtmlElementAxeResults> = {
             data: [
@@ -51,7 +51,7 @@ describe('ColorDrawerTests', () => {
         setupDrawerUtilsMockDefault(dom);
         setupFormatterMock();
 
-        const testSubject = new ColorDrawer(drawerUtilsMock.object, formatterMock.object);
+        const testSubject = new SingleTargetDrawer(drawerUtilsMock.object, formatterMock.object);
 
         const drawerInfo: IDrawerInitData<IHtmlElementAxeResults> = {
             data: [
@@ -82,7 +82,7 @@ describe('ColorDrawerTests', () => {
         setupDrawerUtilsMockDefault(dom);
         setupFormatterMock();
 
-        const testSubject = new ColorDrawer(drawerUtilsMock.object, formatterMock.object);
+        const testSubject = new SingleTargetDrawer(drawerUtilsMock.object, formatterMock.object);
 
         const drawerInfo: IDrawerInitData<IHtmlElementAxeResults> = {
             data: [
@@ -113,7 +113,7 @@ describe('ColorDrawerTests', () => {
         setupDrawerUtilsMockDefault(dom);
         setupFormatterMock();
 
-        const testSubject = new ColorDrawer(drawerUtilsMock.object, formatterMock.object);
+        const testSubject = new SingleTargetDrawer(drawerUtilsMock.object, formatterMock.object);
 
         const drawerInfo: IDrawerInitData<IHtmlElementAxeResults> = {
             data: [
@@ -151,8 +151,8 @@ describe('ColorDrawerTests', () => {
             .setup(f => f.getDrawerConfiguration())
             .returns(() => {
                 return {
-                    grayScaleClassName: 'insights-grey-scale-container',
-                } as IColorDrawerConfiguration;
+                    injectedClassName: 'test-injected-classname',
+                } as SingleTargetDrawerConfiguration;
             })
             .verifiable(Times.atLeastOnce());
     }

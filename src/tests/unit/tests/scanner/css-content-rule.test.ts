@@ -1,71 +1,88 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GlobalMock, GlobalScope, IGlobalMock, It, MockBehavior, Times } from 'typemoq';
+import * as axe from 'axe-core';
+import { GlobalMock, GlobalScope, It, MockBehavior, Times } from 'typemoq';
 
-import { IDictionaryStringTo } from '../../../../scanner/dictionary-types';
-import { cssContentConfiguration } from './../../../../scanner/css-content-rule';
+import { cssContentConfiguration } from '../../../../scanner/css-content-rule';
 
-describe('meaningful sequence', () => {
-    describe('verify meaningful sequence configs', () => {
-        it('should have correct props', () => {
-            expect(cssContentConfiguration.rule.id).toBe('css-content');
-            expect(cssContentConfiguration.rule.selector).toBe('*');
-            expect(cssContentConfiguration.rule.any[0]).toBe('css-content');
-            expect(cssContentConfiguration.rule.any.length).toBe(1);
-            expect(cssContentConfiguration.checks[0].id).toBe('css-content');
-            expect(cssContentConfiguration.checks[0].evaluate(null, null, null, null)).toBe(true);
-        });
+describe('verify meaningful semantic configs', () => {
+    it('should have correct props', () => {
+        expect(cssContentConfiguration.rule.id).toBe('css-content');
+        expect(cssContentConfiguration.rule.selector).toBe('body');
+        expect(cssContentConfiguration.rule.any[0]).toBe('css-content');
+        expect(cssContentConfiguration.rule.any.length).toBe(1);
+        expect(cssContentConfiguration.checks[0].id).toBe('css-content');
+        expect(cssContentConfiguration.checks[0].evaluate(null, null, null, null)).toBe(true);
+    });
+});
+
+describe('verify matches', () => {
+    let divElementFixture: HTMLDivElement;
+    let headingElementFixture: HTMLHeadingElement;
+
+    const getComputedStyleMock = GlobalMock.ofInstance(window.getComputedStyle, 'getComputedStyle', window, MockBehavior.Strict);
+    const axeVisibilityMock = GlobalMock.ofInstance(axe.commons.dom.isVisible, 'isVisible', axe.commons.dom, MockBehavior.Strict);
+
+    beforeEach(() => {
+        divElementFixture = document.createElement('div');
+        headingElementFixture = document.createElement('h1');
+        divElementFixture.appendChild(headingElementFixture);
+
+        getComputedStyleMock.reset();
+        axeVisibilityMock.reset();
     });
 
-    describe('verify evaluate', () => {
-        const windowMock = GlobalMock.ofInstance(window.getComputedStyle, 'getComputedStyle', window, MockBehavior.Strict);
-        beforeEach(() => {
-            windowMock.reset();
-        });
-
-        it('position absolute', () => {
-            const node = {
-                position: 'absolute',
-                float: 'none',
-            };
-
-            testMeaningfulSequence(node, windowMock, true);
-        });
-
-        it('float right', () => {
-            const node = {
-                position: 'none',
-                float: 'right',
-            };
-
-            testMeaningfulSequence(node, windowMock, true);
-        });
-
-        it('does not match', () => {
-            const node = {
-                position: 'none',
-                float: 'none',
-            };
-
-            testMeaningfulSequence(node, windowMock, false);
-        });
+    afterEach(() => {
+        axeVisibilityMock.verifyAll();
+        getComputedStyleMock.verifyAll();
     });
 
-    function testMeaningfulSequence(
-        node: IDictionaryStringTo<string>,
-        windowMock: IGlobalMock<typeof window.getComputedStyle>,
-        expectedResult: boolean,
-    ): void {
-        windowMock
-            .setup(m => m(It.isAny()))
-            .returns(style => ({ getPropertyValue: property => style[property] } as CSSStyleDeclaration))
-            .verifiable(Times.once());
+    const selectors = [':before', ':after'];
 
+    function checkIfSelectorIsValid(x): boolean {
+        return selectors.indexOf(x) !== -1;
+    }
+
+    const isElementVisible = [true, false];
+
+    test.each(isElementVisible)('element has pseudo selector but isVisible is toggled: %s', isVisibleParam => {
+        axeVisibilityMock
+            .setup(isVisible => isVisible(headingElementFixture))
+            .returns(() => isVisibleParam)
+            .verifiable();
+
+        getComputedStyleMock
+            .setup(getComputedStyle => getComputedStyle(headingElementFixture, It.is(checkIfSelectorIsValid)))
+            .returns(style => ({ content: 'test' } as CSSStyleDeclaration))
+            .verifiable(Times.atLeastOnce());
+
+        testSemantics(divElementFixture, isVisibleParam);
+    });
+
+    const contentSwitchParameters = [
+        { pseudoSelectorContent: 'none', testExpectation: false },
+        { pseudoSelectorContent: 'non-none', testExpectation: true },
+    ];
+    test.each(contentSwitchParameters)('element isVisible but pseudo selector content is toggled: %o', testCaseParameters => {
+        axeVisibilityMock
+            .setup(isVisible => isVisible(headingElementFixture))
+            .returns(() => true)
+            .verifiable();
+
+        getComputedStyleMock
+            .setup(getComputedStyle => getComputedStyle(headingElementFixture, It.is(checkIfSelectorIsValid)))
+            .returns(style => ({ content: testCaseParameters.pseudoSelectorContent } as CSSStyleDeclaration))
+            .verifiable(Times.atLeastOnce());
+
+        testSemantics(divElementFixture, testCaseParameters.testExpectation);
+    });
+
+    function testSemantics(elements: HTMLElement, expectedResult: boolean): void {
         let result: boolean;
-        GlobalScope.using(windowMock).with(() => {
-            result = cssContentConfiguration.rule.matches(node, null);
+
+        GlobalScope.using(getComputedStyleMock, axeVisibilityMock).with(() => {
+            result = cssContentConfiguration.rule.matches(elements, null);
         });
         expect(result).toBe(expectedResult);
-        windowMock.verifyAll();
     }
 });

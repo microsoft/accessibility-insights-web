@@ -2,16 +2,15 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { FeatureFlags } from '../../common/feature-flags';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { AssessmentBuilder } from '../assessment-builder';
 import * as Markup from '../markup';
 import { CssContent } from './test-steps/css-content';
 import { DataTables } from './test-steps/data-tables';
 import { SemanticsEmphasis } from './test-steps/emphasis';
+import { SemanticsLetterSpacing } from './test-steps/letter-spacing';
 import { SemanticsLists } from './test-steps/lists';
 import { SemanticsQuotes } from './test-steps/quotes';
-import { SemanticsLetterSpacing } from './test-steps/letter-spacing';
 
 const key = 'semanticsAssessment';
 const title = 'Semantics';
@@ -39,7 +38,4 @@ export const SemanticsAssessment = AssessmentBuilder.Assisted({
     type: VisualizationType.SemanticsAssessment,
     steps: [CssContent, DataTables, SemanticsLists, SemanticsEmphasis, SemanticsQuotes, SemanticsLetterSpacing],
     storeDataKey: 'semanticsAssessment',
-    featureFlag: {
-        required: [FeatureFlags.showAllAssessments],
-    },
 });
