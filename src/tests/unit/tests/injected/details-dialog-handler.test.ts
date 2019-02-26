@@ -410,7 +410,11 @@ describe('DetailsDialogHandlerTest', () => {
             .setup(store => store.getState())
             .returns(() => {
                 return {
-                    issueTrackerPath: 'issTrackPath',
+                    bugServicePropertiesMap: {
+                        gitHub: {
+                            repository: 'issTrackPath',
+                        },
+                    },
                 } as any;
             })
             .verifiable(Times.once());
@@ -638,7 +642,11 @@ describe('DetailsDialogHandlerTest', () => {
             .setup(store => store.getState())
             .returns(() => {
                 return {
-                    issueTrackerPath: itp,
+                    bugServicePropertiesMap: {
+                        gitHub: {
+                            repository: itp,
+                        },
+                    },
                 } as any;
             })
             .verifiable(Times.once());
