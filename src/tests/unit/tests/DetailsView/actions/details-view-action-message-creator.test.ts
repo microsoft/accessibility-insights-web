@@ -796,7 +796,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         };
 
         telemetryFactoryMock
-            .setup(tf => tf.withTriggeredByAndSource(event, TelemetryEventSource.DetailsView))
+            .setup(tf => tf.withSourceAndTriggeredBy(event, TelemetryEventSource.DetailsView))
             .returns(() => telemetry)
             .verifiable(Times.once());
         setupPostMessage(expectedMessage);

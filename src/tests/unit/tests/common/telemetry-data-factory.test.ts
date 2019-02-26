@@ -277,7 +277,7 @@ describe('TelemetryDataFactoryTest', () => {
             source: testSource,
         };
 
-        const actual = testObject.withTriggeredByAndSource(event, testSource);
+        const actual = testObject.withSourceAndTriggeredBy(event, testSource);
 
         expect(actual).toEqual(expected);
     });

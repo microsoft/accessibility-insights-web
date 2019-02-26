@@ -129,7 +129,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
 
     @autobind
     public copyIssueDetailsClicked(event: React.MouseEvent<any>): void {
-        const telemetryData = this.telemetryFactory.withTriggeredByAndSource(event, TelemetryEvents.TelemetryEventSource.DetailsView);
+        const telemetryData = this.telemetryFactory.withSourceAndTriggeredBy(event, TelemetryEvents.TelemetryEventSource.DetailsView);
         this.sendTelemetry(TelemetryEvents.COPY_ISSUE_DETAILS, telemetryData);
     }
 

@@ -16,7 +16,7 @@ export class DropdownActionMessageCreator extends BaseActionMessageCreator {
 
     public openPreviewFeaturesPanel(event: React.MouseEvent<HTMLElement>, source: TelemetryEventSource): void {
         const type = Messages.PreviewFeatures.OpenPanel;
-        const telemetry = this.telemetryFactory.withTriggeredByAndSource(event, source);
+        const telemetry = this.telemetryFactory.withSourceAndTriggeredBy(event, source);
         const payload: BaseActionPayload = {
             telemetry,
         };
@@ -29,7 +29,7 @@ export class DropdownActionMessageCreator extends BaseActionMessageCreator {
 
     public openScopingPanel(event: React.MouseEvent<HTMLElement>, source: TelemetryEventSource): void {
         const type = Messages.Scoping.OpenPanel;
-        const telemetry = this.telemetryFactory.withTriggeredByAndSource(event, source);
+        const telemetry = this.telemetryFactory.withSourceAndTriggeredBy(event, source);
         const payload: BaseActionPayload = {
             telemetry,
         };
@@ -42,7 +42,7 @@ export class DropdownActionMessageCreator extends BaseActionMessageCreator {
 
     public openSettingsPanel(event: React.MouseEvent<HTMLElement>, source: TelemetryEventSource): void {
         const type = Messages.SettingsPanel.OpenPanel;
-        const telemetry = this.telemetryFactory.withTriggeredByAndSource(event, source);
+        const telemetry = this.telemetryFactory.withSourceAndTriggeredBy(event, source);
         const payload: BaseActionPayload = {
             telemetry,
         };

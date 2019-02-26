@@ -41,7 +41,7 @@ export class TelemetryDataFactory {
 
     public forToggle(event: SupportedMouseEvent, enabled: boolean, source: TelemetryEventSource): ToggleTelemetryData {
         return {
-            ...this.withTriggeredByAndSource(event, source),
+            ...this.withSourceAndTriggeredBy(event, source),
             enabled,
         };
     }
@@ -53,7 +53,7 @@ export class TelemetryDataFactory {
         featureFlagId: string,
     ): FeatureFlagToggleTelemetryData {
         return {
-            ...this.withTriggeredByAndSource(event, source),
+            ...this.withSourceAndTriggeredBy(event, source),
             enabled,
             featureFlagId,
         };
@@ -66,7 +66,7 @@ export class TelemetryDataFactory {
         source: TelemetryEventSource,
     ): ExportResultsTelemetryData {
         return {
-            ...this.withTriggeredByAndSource(event, source),
+            ...this.withSourceAndTriggeredBy(event, source),
             exportResultsType,
             exportResultsData: html.length,
         };
@@ -74,28 +74,28 @@ export class TelemetryDataFactory {
 
     public forAddSelector(event: SupportedMouseEvent, inputType: string, source: TelemetryEventSource): ScopingTelemetryData {
         return {
-            ...this.withTriggeredByAndSource(event, source),
+            ...this.withSourceAndTriggeredBy(event, source),
             inputType,
         };
     }
 
     public forDeleteSelector(event: SupportedMouseEvent, inputType: string, source: TelemetryEventSource): ScopingTelemetryData {
         return {
-            ...this.withTriggeredByAndSource(event, source),
+            ...this.withSourceAndTriggeredBy(event, source),
             inputType,
         };
     }
 
     public forSelectDetailsView(event: SupportedMouseEvent, type: VisualizationType): DetailsViewOpenTelemetryData {
         return {
-            ...this.withTriggeredByAndSource(event, TelemetryEventSource.DetailsView),
+            ...this.withSourceAndTriggeredBy(event, TelemetryEventSource.DetailsView),
             detailsView: VisualizationType[type],
         };
     }
 
     public forSelectTestStep(event: SupportedMouseEvent, type: VisualizationType, step: string): TestStepSelectTelemetryData {
         return {
-            ...this.withTriggeredByAndSource(event, TelemetryEventSource.DetailsView),
+            ...this.withSourceAndTriggeredBy(event, TelemetryEventSource.DetailsView),
             selectedTest: VisualizationType[type],
             selectedStep: step,
         };
@@ -123,7 +123,7 @@ export class TelemetryDataFactory {
         source: TelemetryEventSource,
     ): DetailsViewOpenTelemetryData {
         return {
-            ...this.withTriggeredByAndSource(event, source),
+            ...this.withSourceAndTriggeredBy(event, source),
             detailsView: VisualizationType[type],
         };
     }
@@ -137,14 +137,14 @@ export class TelemetryDataFactory {
 
     public forInspectElement(event: SupportedMouseEvent, target: string[]): InspectTelemetryData {
         return {
-            ...this.withTriggeredByAndSource(event, TelemetryEventSource.IssueDetailsDialog),
+            ...this.withSourceAndTriggeredBy(event, TelemetryEventSource.IssueDetailsDialog),
             target: target,
         };
     }
 
     public forDetailsViewNavPivotActivated(event: SupportedMouseEvent, pivotKey: string): DetailsViewPivotSelectedTelemetryData {
         return {
-            ...this.withTriggeredByAndSource(event, TelemetryEventSource.DetailsView),
+            ...this.withSourceAndTriggeredBy(event, TelemetryEventSource.DetailsView),
             pivotKey,
         };
     }
@@ -159,7 +159,7 @@ export class TelemetryDataFactory {
 
     public forAssessmentActionFromDetailsView(type: VisualizationType, event: SupportedMouseEvent): AssessmentTelemetryData {
         return {
-            ...this.withTriggeredByAndSource(event, TelemetryEventSource.DetailsView),
+            ...this.withSourceAndTriggeredBy(event, TelemetryEventSource.DetailsView),
             selectedTest: VisualizationType[type],
         };
     }
@@ -189,22 +189,22 @@ export class TelemetryDataFactory {
     }
 
     public fromDetailsView(event: SupportedMouseEvent): SourceAndTriggeredBy {
-        return this.withTriggeredByAndSource(event, TelemetryEventSource.DetailsView);
+        return this.withSourceAndTriggeredBy(event, TelemetryEventSource.DetailsView);
     }
 
     public fromNewBugButton(event: SupportedMouseEvent): SourceAndTriggeredBy {
-        return this.withTriggeredByAndSource(event, TelemetryEventSource.NewBugButton);
+        return this.withSourceAndTriggeredBy(event, TelemetryEventSource.NewBugButton);
     }
 
     public fromHamburgetMenu(event: SupportedMouseEvent): SourceAndTriggeredBy {
-        return this.withTriggeredByAndSource(event, TelemetryEventSource.HamburgerMenu);
+        return this.withSourceAndTriggeredBy(event, TelemetryEventSource.HamburgerMenu);
     }
 
     public fromLaunchPad(event: SupportedMouseEvent): SourceAndTriggeredBy {
-        return this.withTriggeredByAndSource(event, TelemetryEventSource.LaunchPad);
+        return this.withSourceAndTriggeredBy(event, TelemetryEventSource.LaunchPad);
     }
 
-    public withTriggeredByAndSource(event: SupportedMouseEvent, source: TelemetryEventSource): SourceAndTriggeredBy {
+    public withSourceAndTriggeredBy(event: SupportedMouseEvent, source: TelemetryEventSource): SourceAndTriggeredBy {
         return {
             triggeredBy: this.getTriggeredBy(event),
             source: source,

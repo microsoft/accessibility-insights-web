@@ -38,7 +38,7 @@ export class TargetPageActionMessageCreator extends BaseActionMessageCreator {
 
     @autobind
     public copyIssueDetailsClicked(event: React.MouseEvent<any>): void {
-        const telemetryData = this.telemetryFactory.withTriggeredByAndSource(event, TelemetryEvents.TelemetryEventSource.TargetPage);
+        const telemetryData = this.telemetryFactory.withSourceAndTriggeredBy(event, TelemetryEvents.TelemetryEventSource.TargetPage);
         this.sendTelemetry(TelemetryEvents.COPY_ISSUE_DETAILS, telemetryData);
     }
 }
