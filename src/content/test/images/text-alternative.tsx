@@ -17,7 +17,7 @@ export const infoAndExamples = create(({ Markup }) => (
         <h3>From a user's perspective</h3>
         <p>
             <Markup.Emphasis>
-                "I do not rely on my sense of sight to understand images, video or audio content. Provide me with text-alternatives for all
+                "I do not rely on my sense of sight to understand images, video, or audio content. Provide me with text-alternatives for all
                 non-text content so my screen reader or braille display can describe the content and help me understand how the content
                 shapes meaning, context, and purpose."
             </Markup.Emphasis>
