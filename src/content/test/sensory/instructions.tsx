@@ -34,14 +34,14 @@ export const infoAndExamples = create(({ Markup }) => (
         <h2>Example</h2>
         <Markup.PassFail
             failText={<p>Instructions identify a set of links only by their location (sensory characteristic only).</p>}
-            failExample={`<p>To learn more,          
+            failExample={`<p>To learn more,
             see [the links to the right].</p>
             ...
 
             <h3>Related articles</h3>
             <ul>
             <li>
-            <a href="https://www.w3.org">       
+            <a href="https://www.w3.org">
             Web Content Accessibility Guidelines</a>
             </li>
             ...
