@@ -11,9 +11,8 @@ function iconSet(key) {
 
 const icons = {
     dev: iconSet('gray'),
-    open: iconSet('green'),
-    staging: iconSet('violet'),
-    daily: iconSet('red'),
+    insider: iconSet('violet'),
+    canary: iconSet('red'),
     production: iconSet('blue'),
 };
 
@@ -46,38 +45,26 @@ module.exports = {
             },
         },
     },
-    open: {
-        release: true,
-        config: {
-            options: {
-                ...publicOptions,
-                ...icons.open,
-                debug: true,
-                extensionFullName: 'Accessibility Insights for Web - Open',
-                telemetryBuildName: 'Open',
-            },
-        },
-    },
-    daily: {
+    canary: {
         release: true,
         config: {
             options: {
                 ...internalOptions,
-                ...icons.daily,
+                ...icons.canary,
                 debug: true,
-                extensionFullName: 'Accessibility Insights for Web - Daily',
-                telemetryBuildName: 'Daily',
+                extensionFullName: 'Accessibility Insights for Web - Canary',
+                telemetryBuildName: 'Canary',
             },
         },
     },
-    staging: {
+    insider: {
         release: true,
         config: {
             options: {
                 ...internalOptions,
-                ...icons.staging,
-                extensionFullName: 'Accessibility Insights for Web - Staging',
-                telemetryBuildName: 'Staging',
+                ...icons.insider,
+                extensionFullName: 'Accessibility Insights for Web - Insider',
+                telemetryBuildName: 'Insider',
             },
         },
     },
