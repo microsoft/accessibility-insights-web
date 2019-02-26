@@ -16,7 +16,7 @@ export const infoAndExamples = create(({ Markup }) => (
         <h2>How to fix</h2>
         <p>Adjust the timing of the description so it does not conflict with meaningful audio content.</p>
 
-        <h2>Examples</h2>
+        <h2>Example</h2>
         <Markup.PassFail
             failText={<p>The audio description "talks over" the beginning of a presenter’s speech.</p>}
             passText={<p>The audio description is edited so it ends before presenter begins speaking.</p>}

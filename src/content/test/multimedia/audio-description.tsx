@@ -39,6 +39,8 @@ export const infoAndExamples = create(({ Markup }) => (
             </li>
         </ul>
 
+        <h2>Example</h2>
+
         <Markup.PassFail
             failText={<p>A multimedia presentation has no soundtrack with audio description.</p>}
             passText={<p>The presentation offers an additional soundtrack with audio description.</p>}

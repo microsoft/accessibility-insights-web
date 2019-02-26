@@ -42,6 +42,9 @@ export const infoAndExamples = create(({ Markup }) => (
                 </ul>
             </li>
         </ul>
+
+        <h2>Example</h2>
+
         <Markup.PassFail
             failText={
                 <p>
