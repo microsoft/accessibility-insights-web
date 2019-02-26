@@ -39,18 +39,18 @@ describe('verify matches', () => {
 
     const selectors = [':before', ':after'];
 
-    function checkIfSelectorIsValid(x) {
+    function checkIfSelectorIsValid(x): boolean {
         return selectors.indexOf(x) !== -1;
     }
 
     it('element is visible and has pseudo selector', () => {
         axeVisibilityMock
-            .setup(v => v(headingElementFixture))
+            .setup(isVisible => isVisible(headingElementFixture))
             .returns(() => true)
             .verifiable();
 
         getComputedStyleMock
-            .setup(m => m(headingElementFixture, It.is(checkIfSelectorIsValid)))
+            .setup(getComputedStyle => getComputedStyle(headingElementFixture, It.is(checkIfSelectorIsValid)))
             .returns(style => ({ content: 'test' } as CSSStyleDeclaration))
             .verifiable(Times.atLeastOnce());
 
@@ -59,12 +59,12 @@ describe('verify matches', () => {
 
     it('element is not visible and has pseudo selector', () => {
         axeVisibilityMock
-            .setup(v => v(headingElementFixture))
+            .setup(isVisible => isVisible(headingElementFixture))
             .returns(() => false)
             .verifiable();
 
         getComputedStyleMock
-            .setup(m => m(headingElementFixture, It.is(checkIfSelectorIsValid)))
+            .setup(getComputedStyle => getComputedStyle(headingElementFixture, It.is(checkIfSelectorIsValid)))
             .returns(style => ({ content: 'test' } as CSSStyleDeclaration))
             .verifiable(Times.atLeastOnce());
 
@@ -73,12 +73,12 @@ describe('verify matches', () => {
 
     it("element is visible but doesn't have pseudo selectors", () => {
         axeVisibilityMock
-            .setup(v => v(headingElementFixture))
+            .setup(isVisible => isVisible(headingElementFixture))
             .returns(() => true)
             .verifiable();
 
         getComputedStyleMock
-            .setup(m => m(headingElementFixture, It.is(checkIfSelectorIsValid)))
+            .setup(getComputedStyle => getComputedStyle(headingElementFixture, It.is(checkIfSelectorIsValid)))
             .returns(style => ({ content: 'none' } as CSSStyleDeclaration))
             .verifiable(Times.atLeastOnce());
 
@@ -87,12 +87,12 @@ describe('verify matches', () => {
 
     it('element is visible & test for :after selector', () => {
         axeVisibilityMock
-            .setup(v => v(headingElementFixture))
+            .setup(isVisible => isVisible(headingElementFixture))
             .returns(() => true)
             .verifiable();
 
         getComputedStyleMock
-            .setup(m => m(headingElementFixture, It.is(checkIfSelectorIsValid)))
+            .setup(getComputedStyle => getComputedStyle(headingElementFixture, It.is(checkIfSelectorIsValid)))
             .returns(style => ({ content: 'test' } as CSSStyleDeclaration))
             .verifiable(Times.atLeastOnce());
 
@@ -101,12 +101,12 @@ describe('verify matches', () => {
 
     it('element is not visible & test for :after selector', () => {
         axeVisibilityMock
-            .setup(v => v(headingElementFixture))
+            .setup(isVisible => isVisible(headingElementFixture))
             .returns(() => false)
             .verifiable();
 
         getComputedStyleMock
-            .setup(m => m(headingElementFixture, It.is(checkIfSelectorIsValid)))
+            .setup(getComputedStyle => getComputedStyle(headingElementFixture, It.is(checkIfSelectorIsValid)))
             .returns(style => ({ content: 'test' } as CSSStyleDeclaration))
             .verifiable(Times.atLeastOnce());
 
