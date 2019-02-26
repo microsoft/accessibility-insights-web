@@ -53,6 +53,6 @@ export const CssContent: TestStep = {
                 testType: VisualizationType.SemanticsAssessment,
             }),
         ),
-    getDrawer: provider => provider.createBodyDrawer('insights-pseudo-selector-style-container'),
+    getDrawer: provider => provider.createSingleTargetDrawer('insights-pseudo-selector-style-container'),
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
 };

@@ -8,8 +8,6 @@ import { WindowUtils } from '../../common/window-utils';
 import { ClientUtils } from '../client-utils';
 import { FrameCommunicator } from '../frameCommunicators/frame-communicator';
 import { ShadowUtils } from '../shadow-utils';
-import { BodyDrawer } from './body-drawer';
-import { BodyFormatter } from './body-formatter';
 import { CenterPositionCalculator } from './center-position-calculator';
 import { CustomWidgetsFormatter } from './custom-widgets-formatter';
 import { Drawer } from './drawer';
@@ -22,6 +20,8 @@ import { IFormatter, ISVGDrawerConfiguration } from './iformatter';
 import { IssuesFormatter } from './issues-formatter';
 import { LandmarkFormatter } from './landmark-formatter';
 import { NullDrawer } from './null-drawer';
+import { SingleTargetDrawer } from './single-target-drawer';
+import { SingleTargetFormatter } from './single-target-formatter';
 import { SVGDrawerV2 } from './svg-drawer-v2';
 import { SVGShapeFactory } from './svg-shape-factory';
 import { SVGSolidShadowFilterFactory } from './svg-solid-shadow-filter-factory';
@@ -58,8 +58,8 @@ export class DrawerProvider {
         return new NullDrawer();
     }
 
-    public createBodyDrawer(className: string): IDrawer {
-        return new BodyDrawer(this.drawerUtils, new BodyFormatter(className));
+    public createSingleTargetDrawer(className: string): IDrawer {
+        return new SingleTargetDrawer(this.drawerUtils, new SingleTargetFormatter(className));
     }
 
     public createSVGDrawer(config: IPartialSVGDrawerConfiguration = null): IDrawer {

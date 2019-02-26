@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 /// <reference path="./iformatter.d.ts" />
 /// <reference path="./heading-formatter.ts" />
-import { BodyDrawerConfiguration, IFormatter } from './iformatter';
+import { SingleTargetDrawerConfiguration, IFormatter } from './iformatter';
 
-export class BodyFormatter implements IFormatter {
+export class SingleTargetFormatter implements IFormatter {
     constructor(private injectedClassName: string) {}
 
-    public getDrawerConfiguration(): BodyDrawerConfiguration {
-        const config: BodyDrawerConfiguration = {
+    public getDrawerConfiguration(): SingleTargetDrawerConfiguration {
+        const config: SingleTargetDrawerConfiguration = {
             injectedClassName: this.injectedClassName,
         };
         return config;

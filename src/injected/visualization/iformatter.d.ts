@@ -58,7 +58,7 @@ interface ISVGDrawerConfiguration {
     focusedLine: ILineConfiguration;
 }
 
-interface BodyDrawerConfiguration {
+interface SingleTargetDrawerConfiguration {
     injectedClassName: string;
 }
 

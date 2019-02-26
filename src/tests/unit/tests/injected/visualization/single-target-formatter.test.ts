@@ -1,16 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BodyFormatter } from '../../../../../injected/visualization/body-formatter';
-import { BodyDrawerConfiguration } from '../../../../../injected/visualization/iformatter';
+import { SingleTargetDrawerConfiguration } from '../../../../../injected/visualization/iformatter';
+import { SingleTargetFormatter } from '../../../../../injected/visualization/single-target-formatter';
 
 describe('BodyFormatterTests', () => {
-    let testSubject: BodyFormatter;
-    const defaultConfig: BodyDrawerConfiguration = {
+    let testSubject: SingleTargetFormatter;
+    const defaultConfig: SingleTargetDrawerConfiguration = {
         injectedClassName: 'test-injected-className',
     };
 
     beforeEach(() => {
-        testSubject = new BodyFormatter('test-injected-className');
+        testSubject = new SingleTargetFormatter('test-injected-className');
     });
 
     test('Verify the configuration is correct', () => {

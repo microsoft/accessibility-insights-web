@@ -12,7 +12,7 @@ import { generateUID } from '../../common/uid-generator';
 import { adhoc as content } from '../../content/adhoc';
 import { AdhocStaticTestView } from '../../DetailsView/components/adhoc-static-test-view';
 import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
-import { ScannerUtils } from './../../injected/scanner-utils';
+import { ScannerUtils } from '../../injected/scanner-utils';
 
 const { guidance } = content.color;
 
@@ -47,7 +47,7 @@ export const ColorAdHocVisualization: IVisualizationConfiguration = {
     getIdentifier: () => AdHocTestkeys.Color,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
     getNotificationMessage: selectorMap => null,
-    getDrawer: provider => provider.createBodyDrawer('insights-grey-scale-container'),
+    getDrawer: provider => provider.createSingleTargetDrawer('insights-grey-scale-container'),
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,
     getUpdateVisibility: () => false,

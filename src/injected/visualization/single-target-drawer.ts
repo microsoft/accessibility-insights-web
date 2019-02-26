@@ -3,17 +3,17 @@
 /// <reference path="./iformatter.d.ts" />
 /// <reference path="./idrawer.d.ts" />
 import { IHtmlElementAxeResults } from '../scanner-utils';
-import { BodyFormatter } from './body-formatter';
+import { SingleTargetFormatter } from './single-target-formatter';
 import { DrawerUtils } from './drawer-utils';
 import { IDrawer, IDrawerInitData } from './idrawer';
 
-export class BodyDrawer implements IDrawer {
+export class SingleTargetDrawer implements IDrawer {
     protected isEnabled = false;
     protected drawerUtils: DrawerUtils;
     private clientBody: HTMLElement;
-    private formatter: BodyFormatter;
+    private formatter: SingleTargetFormatter;
 
-    constructor(drawerUtils: DrawerUtils, formatter: BodyFormatter) {
+    constructor(drawerUtils: DrawerUtils, formatter: SingleTargetFormatter) {
         this.drawerUtils = drawerUtils;
         this.formatter = formatter;
     }

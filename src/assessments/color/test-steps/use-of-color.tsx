@@ -55,5 +55,5 @@ export const UseOfColor: TestStep = {
         ),
     updateVisibility: false,
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
-    getDrawer: provider => provider.createBodyDrawer('insights-grey-scale-container'),
+    getDrawer: provider => provider.createSingleTargetDrawer('insights-grey-scale-container'),
 };
