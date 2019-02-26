@@ -19,12 +19,11 @@ import { ReportGenerator } from '../reports/report-generator';
 import { ExportDialog } from './export-dialog';
 import { IssuesDetailsList } from './issues-details-list';
 import { IssuesDetailsPane, IssuesDetailsPaneDeps } from './Issues-details-pane';
-import { IssuesTableHandler, IssuesTableHandlerDeps } from './issues-table-handler';
+import { IssuesTableHandler } from './issues-table-handler';
 
-export type IssuesTableDeps = IssuesTableHandlerDeps &
-    IssuesDetailsPaneDeps & {
-        detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-    };
+export type IssuesTableDeps = IssuesDetailsPaneDeps & {
+    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+};
 
 export interface IssuesTableProps {
     deps: IssuesTableDeps;
@@ -178,15 +177,9 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
         return (
             <div className="issues-table-details">
                 <IssuesDetailsList
-                    deps={this.props.deps}
                     violations={this.props.violations}
                     issuesTableHandler={this.props.issuesTableHandler}
                     issuesSelection={this.props.issuesSelection}
-                    issueTrackerPath={this.props.issueTrackerPath}
-                    pageTitle={this.props.pageTitle}
-                    pageUrl={this.props.pageUrl}
-                    featureFlagData={this.props.featureFlags}
-                    selectedIdToRuleResultMap={this.props.selectedIdToRuleResultMap}
                 />
                 <div className="issue-detail-outer-container ms-Fabric">{this.getIssueDetailPane()}</div>
             </div>
@@ -200,6 +193,8 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
                 selectedIdToRuleResultMap={this.props.selectedIdToRuleResultMap}
                 pageTitle={this.props.pageTitle}
                 pageUrl={this.props.pageUrl}
+                issueTrackerPath={this.props.issueTrackerPath}
+                featureFlagData={this.props.featureFlags}
             />
         );
     }

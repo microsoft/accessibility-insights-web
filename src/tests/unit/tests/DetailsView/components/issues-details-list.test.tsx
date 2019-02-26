@@ -24,18 +24,6 @@ import { RuleResult } from '../../../../../scanner/iruleresults';
 import { VisualizationScanResultStoreDataBuilder } from '../../../common/visualization-scan-result-store-data-builder';
 
 describe('IssuesDetailsListTest', () => {
-    const bugFilingColumn = {
-        key: 'bugs',
-        name: 'Bugs',
-        ariaLabel: 'Bugs',
-        fieldName: 'bugButton',
-        minWidth: 100,
-        maxWidth: 150,
-        isResizable: true,
-        className: 'content-cell',
-        headerClassName: 'content-header',
-    };
-
     const instanceColumns = [
         {
             key: 'target',
@@ -72,20 +60,8 @@ describe('IssuesDetailsListTest', () => {
 
     const iconClassName = 'details-icon-error';
 
-    test('render with bug filing enabled', () => {
-        const featureFlagData = {
-            [FeatureFlags.showBugFiling]: true,
-        };
-
-        testRendering(getSampleItems(true), [bugFilingColumn, ...instanceColumns], featureFlagData);
-    });
-
-    test('render with bug filing disabled', () => {
-        const featureFlagData: IDictionaryStringTo<boolean> = {
-            [FeatureFlags.showBugFiling]: false,
-        };
-
-        testRendering(null, instanceColumns, featureFlagData);
+    test('render columns', () => {
+        testRendering(null, instanceColumns);
     });
 
     test('onRenderGroupHeader', () => {
@@ -191,7 +167,7 @@ describe('IssuesDetailsListTest', () => {
         ];
     }
 
-    function testRendering(sampleItems: IDetailsRowData[], columns: IColumn[], featureFlagData: IDictionaryStringTo<boolean>) {
+    function testRendering(sampleItems: IDetailsRowData[], columns: IColumn[]) {
         const sampleViolations: AxeRule[] = getSampleViolations();
         const sampleIdToRuleResultMap: IDictionaryStringTo<DecoratedAxeNodeResult> = getSampleIdToRuleResultMap();
         const items: IDetailsRowData[] = sampleItems ? sampleItems : getSampleItems();
@@ -210,7 +186,7 @@ describe('IssuesDetailsListTest', () => {
         };
 
         issuesTableHandlerMock
-            .setup(handler => handler.getListProps(issuesData.scanResult.violations, It.isAny()))
+            .setup(handler => handler.getListProps(issuesData.scanResult.violations))
             .returns(failedRules => listGroups)
             .verifiable();
 
@@ -219,7 +195,6 @@ describe('IssuesDetailsListTest', () => {
             .setViolations(issuesData.scanResult.violations)
             .setIssuesTableHandler(issuesTableHandlerMock.object)
             .setIssuesSelection(selectionMock.object)
-            .setFeatureFlagStoreData(featureFlagData)
             .build();
         const testObject = new IssuesDetailsList(props);
         const expected: JSX.Element = (
@@ -257,7 +232,6 @@ class TestPropsBuilder {
     private violations: RuleResult[];
     private issuesTableHandler: IssuesTableHandler;
     private issuesSelection: ISelection;
-    private featureFlagData: FeatureFlagStoreData;
 
     public setIssuesTableHandler(issuesTableHandler: IssuesTableHandler): TestPropsBuilder {
         this.issuesTableHandler = issuesTableHandler;
@@ -274,11 +248,6 @@ class TestPropsBuilder {
         return this;
     }
 
-    public setFeatureFlagStoreData(featureFlagData: FeatureFlagStoreData): TestPropsBuilder {
-        this.featureFlagData = featureFlagData;
-        return this;
-    }
-
     public build(): IssuesDetailsListProps {
         return {
             deps: {
@@ -292,7 +261,6 @@ class TestPropsBuilder {
             pageUrl: 'http://pageUrl/',
             issueTrackerPath: 'example/example',
             selectedIdToRuleResultMap: null,
-            featureFlagData: this.featureFlagData,
         };
     }
 }

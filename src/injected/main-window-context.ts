@@ -5,24 +5,32 @@ import { TargetPageActionMessageCreator } from './target-page-action-message-cre
 import { IBaseStore } from '../common/istore';
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
 import { DevToolState } from '../common/types/store-data/idev-tool-state';
+import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 
 export class MainWindowContext {
     private devToolStore: IBaseStore<DevToolState>;
+    private userConfigStore: IBaseStore<UserConfigurationStoreData>;
     private devToolActionMessageCreator: DevToolActionMessageCreator;
     private targetPageActionMessageCreator: TargetPageActionMessageCreator;
 
     public constructor(
         devToolStore: IBaseStore<DevToolState>,
+        userConfigStore: IBaseStore<UserConfigurationStoreData>,
         devToolActionMessageCreator: DevToolActionMessageCreator,
         targetPageActionMessageCreator: TargetPageActionMessageCreator,
     ) {
         this.devToolStore = devToolStore;
+        this.userConfigStore = userConfigStore;
         this.devToolActionMessageCreator = devToolActionMessageCreator;
         this.targetPageActionMessageCreator = targetPageActionMessageCreator;
     }
 
     public getDevToolStore(): IBaseStore<DevToolState> {
         return this.devToolStore;
+    }
+
+    public getUserConfigStore(): IBaseStore<UserConfigurationStoreData> {
+        return this.userConfigStore;
     }
 
     public getDevToolActionMessageCreator(): DevToolActionMessageCreator {
@@ -35,10 +43,16 @@ export class MainWindowContext {
 
     public static initialize(
         devToolStore: IBaseStore<DevToolState>,
+        userConfigStore: IBaseStore<UserConfigurationStoreData>,
         devToolActionMessageCreator: DevToolActionMessageCreator,
         targetPageActionMessageCreator: TargetPageActionMessageCreator,
     ): void {
-        window.mainWindowContext = new MainWindowContext(devToolStore, devToolActionMessageCreator, targetPageActionMessageCreator);
+        window.mainWindowContext = new MainWindowContext(
+            devToolStore,
+            userConfigStore,
+            devToolActionMessageCreator,
+            targetPageActionMessageCreator,
+        );
     }
 
     public static get(): MainWindowContext {

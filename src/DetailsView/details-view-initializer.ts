@@ -13,6 +13,7 @@ import { VisualizationConfigurationFactory } from '../common/configs/visualizati
 import { DateProvider } from '../common/date-provider';
 import { DocumentManipulator } from '../common/document-manipulator';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
+import { BugClickHandler } from '../common/bug-click-handler';
 import { initializeFabricIcons } from '../common/fabric-icons';
 import { getAllFeatureFlagDetails } from '../common/feature-flags';
 import { getInnerTextFromJsxElement } from '../common/get-inner-text-from-jsx-element';
@@ -20,6 +21,7 @@ import { HTMLElementUtils } from '../common/html-element-utils';
 import { ITab } from '../common/itab';
 import { ContentActionMessageCreator } from '../common/message-creators/content-action-message-creator';
 import { DropdownActionMessageCreator } from '../common/message-creators/dropdown-action-message-creator';
+import { BugActionMessageCreator } from '../common/message-creators/bug-action-message-creator';
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
 import { StoreActionMessageCreatorFactory } from '../common/message-creators/store-action-message-creator-factory';
@@ -154,6 +156,7 @@ if (isNaN(tabId) === false) {
                     tab.id,
                     telemetryFactory,
                 );
+                const bugActionMessageCreator = new BugActionMessageCreator(chromeAdapter.sendMessageToFrames, tab.id, telemetryFactory);
 
                 const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(chromeAdapter.sendMessageToFrames, tab.id);
 
@@ -182,6 +185,7 @@ if (isNaN(tabId) === false) {
                 const previewFeatureFlagsHandler = new PreviewFeatureFlagsHandler(getAllFeatureFlagDetails());
                 const scopingFlagsHandler = new PreviewFeatureFlagsHandler(getAllFeatureFlagDetails());
                 const dropdownClickHandler = new DropdownClickHandler(dropdownActionMessageCreator, TelemetryEventSource.DetailsView);
+                const bugClickHandler = new BugClickHandler(bugActionMessageCreator, TelemetryEventSource.DetailsView);
 
                 const extensionVersion = chromeAdapter.getManifest().version;
                 const axeVersion = getVersion();
@@ -230,6 +234,7 @@ if (isNaN(tabId) === false) {
 
                 const deps: DetailsViewContainerDeps = {
                     dropdownClickHandler,
+                    bugClickHandler,
                     contentProvider: contentPages,
                     contentActionMessageCreator,
                     detailsViewActionMessageCreator: actionMessageCreator,

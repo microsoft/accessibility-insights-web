@@ -29,7 +29,8 @@ body {
     display: none !important;
 }
 
-div.insights-dialog-main-override.target-change-dialog {
+div.insights-dialog-main-override.target-change-dialog,
+div.insights-dialog-main-override.insights-file-issue-details-dialog-container {
     border-radius: 6px;
     box-shadow: 0 0 10px 0 $neutral-alpha-60;
     .ms-Dialog-title {
@@ -1213,7 +1214,8 @@ div.insights-dialog-main-override {
                         font-size: 21px;
                         display: inline-block;
                     }
-                    .copy-issue-details-button {
+                    .copy-issue-details-button,
+                    .create-bug-button {
                         vertical-align: baseline;
                         margin-left: 16px;
                     }

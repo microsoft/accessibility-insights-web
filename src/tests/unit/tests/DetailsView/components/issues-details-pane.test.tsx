@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
+import { BugClickHandler } from '../../../../../common/bug-click-handler';
 import {
     IssuesDetailsPane,
     IssuesDetailsPaneDeps,
@@ -15,6 +16,7 @@ import { HyperlinkDefinition } from '../../../../../views/content/content-page';
 describe('IssuesDetailsPaneTest', () => {
     const samplePageTitle = 'pageTitle';
     const samplePageUrl = 'pageUrl';
+    const sampleIssueTrackerPath = 'https://example.com/example';
 
     test('render with empty selection', () => {
         testRenderNotSingle(0);
@@ -91,6 +93,9 @@ describe('IssuesDetailsPaneTest', () => {
                 copyIssueDetailsClicked: _ => {},
             } as DetailsViewActionMessageCreator,
             windowUtils: null,
+            bugClickHandler: {
+                openSettingsPanelHandler: null,
+            } as BugClickHandler,
         };
 
         const props: IssuesDetailsPaneProps = {
@@ -98,6 +103,8 @@ describe('IssuesDetailsPaneTest', () => {
             selectedIdToRuleResultMap: ruleMap,
             pageTitle: samplePageTitle,
             pageUrl: samplePageUrl,
+            issueTrackerPath: sampleIssueTrackerPath,
+            featureFlagData: {},
         };
 
         return props;

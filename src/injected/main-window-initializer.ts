@@ -14,6 +14,7 @@ import { StoreNames } from '../common/stores/store-names';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { TelemetryEventSource } from '../common/telemetry-events';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
+import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
 import { DevToolState } from '../common/types/store-data/idev-tool-state';
 import { IInspectStoreData } from '../common/types/store-data/inspect-store-data';
@@ -51,6 +52,7 @@ export class MainWindowInitializer extends WindowInitializer {
     private visualizationStoreProxy: StoreProxy<IVisualizationStoreData>;
     private assessmentStoreProxy: StoreProxy<IAssessmentStoreData>;
     private featureFlagStoreProxy: StoreProxy<FeatureFlagStoreData>;
+    private userConfigStoreProxy: StoreProxy<UserConfigurationStoreData>;
     private inspectStoreProxy: StoreProxy<IInspectStoreData>;
     private visualizationScanResultStoreProxy: StoreProxy<IVisualizationScanResultData>;
     private scopingStoreProxy: StoreProxy<IScopingStoreData>;
@@ -68,6 +70,10 @@ export class MainWindowInitializer extends WindowInitializer {
         this.scopingStoreProxy = new StoreProxy<IScopingStoreData>(StoreNames[StoreNames.ScopingPanelStateStore], this.clientChromeAdapter);
         this.featureFlagStoreProxy = new StoreProxy<FeatureFlagStoreData>(
             StoreNames[StoreNames.FeatureFlagStore],
+            this.clientChromeAdapter,
+        );
+        this.userConfigStoreProxy = new StoreProxy<UserConfigurationStoreData>(
+            StoreNames[StoreNames.UserConfigurationStore],
             this.clientChromeAdapter,
         );
         this.visualizationScanResultStoreProxy = new StoreProxy<IVisualizationScanResultData>(
@@ -95,7 +101,13 @@ export class MainWindowInitializer extends WindowInitializer {
             null,
             telemetryDataFactory,
         );
-        MainWindowContext.initialize(this.devToolStoreProxy, devToolActionMessageCreator, targetPageActionMessageCreator);
+
+        MainWindowContext.initialize(
+            this.devToolStoreProxy,
+            this.userConfigStoreProxy,
+            devToolActionMessageCreator,
+            targetPageActionMessageCreator,
+        );
 
         const drawingInitiator = new DrawingInitiator(this.drawingController);
         const selectorMapHelper = new SelectorMapHelper(this.visualizationScanResultStoreProxy, this.assessmentStoreProxy, Assessments);
