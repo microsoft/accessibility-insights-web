@@ -18,6 +18,7 @@ export const infoAndExamples = create(({ Markup }) => (
             Identifying and describing input errors in text allows people who use assistive technologies to learn what went wrong. It also
             helps people with certain cognitive disabilities who have difficulty understanding the meaning of icons and other visual cues.
         </p>
+
         <h3>From a user's perspective</h3>
         <p>
             <Markup.Emphasis>"Everyone makes mistakes. When I make a mistake, tell me what I need to do to fix it."</Markup.Emphasis>

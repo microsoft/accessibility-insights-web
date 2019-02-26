@@ -16,10 +16,10 @@ export const infoAndExamples = create(({ Markup }) => (
         <h3>From a user's perspective</h3>
         <p>
             <Markup.Emphasis>
-                "Many people don’t know they are sensitive to flashing lights or, prone to seizures until it happens. Do not allow anything
-                to flash or flicker more than three times a second as it may distract me, cause anxiety, confusion or a seizure. If
-                flickering is essential to any content or functionality, such as a video game, warn me beforehand and allow me to decide if
-                I want to take the risk."
+                "Many people don't know they are sensitive to flashing lights or, prone to seizures until it happens. Do not allow anything
+                to flash or flicker more than three times a second as it may cause me anxiety, confusion or a seizure. If flickering is
+                essential to any content or functionality, such as a video game, warn me beforehand and allow me to decide if I want to take
+                the risk."
             </Markup.Emphasis>
         </p>
 

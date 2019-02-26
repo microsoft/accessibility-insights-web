@@ -21,7 +21,7 @@ export const infoAndExamples = create(({ Markup }) => (
         <p>
             <Markup.Emphasis>
                 "I get disoriented when a solution changes context automatically, like when I enter my name and the page changes
-                automatically. Be sure your solution doesn’t automatically change context based on user input. Let me guide the action."
+                automatically. Be sure your solution doesn't automatically change context based on user input. Let me guide the action."
             </Markup.Emphasis>
         </p>
 

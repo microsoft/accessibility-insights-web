@@ -13,6 +13,7 @@ export const infoAndExamples = create(({ Markup }) => (
             People with low vision, visual tracking problems, or reading disabilities might need to adjust the way text is displayed to make
             it readable. Browsers and browser extensions allow users to adjust actual text, but not the text in images of text.
         </p>
+
         <h3>From a user's perspective</h3>
         <p>
             <Markup.Emphasis>

@@ -21,7 +21,7 @@ export const infoAndExamples = create(({ Markup }) => (
         <p>
             <Markup.Emphasis>
                 "Provide instructions that are considerate of the all the ways I might use my senses, and not just the senses that you rely
-                on. For example, saying 'Click the blue button to the right' is useless to me as I have low vision"
+                on. For example, saying 'Click the blue button to the right' is useless to me as I have low vision."
             </Markup.Emphasis>
         </p>
 

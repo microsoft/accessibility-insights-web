@@ -13,12 +13,13 @@ export const infoAndExamples = create(({ Markup }) => (
             limited vision or with cognitive disabilities that make it difficult to understand visual content. Because text alternatives can
             be rendered as text, braille, or speech, they make image content available to everyone.
         </p>
+
         <h3>From a user's perspective</h3>
         <p>
             <Markup.Emphasis>
                 "I do not rely on my sense of sight to understand images, video or audio content. Provide me with text-alternatives for all
                 non-text content so my screen reader or braille display can describe the content and help me understand how the content
-                shapes meaning, context and purpose."
+                shapes meaning, context, and purpose."
             </Markup.Emphasis>
         </p>
 
