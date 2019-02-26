@@ -11,7 +11,8 @@ import { NewTabLink } from '../../common/components/new-tab-link';
 import { ITab } from '../../common/itab';
 import { PersistedTabInfo } from '../../common/types/store-data/iassessment-result-data';
 import { UrlParser } from '../../common/url-parser';
-import { DetailsViewActionMessageCreator } from '../../DetailsView/actions/details-view-action-message-creator';
+import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
+import { isEmpty } from 'lodash';
 
 export type TargetChangeDialogDeps = {
     urlParser: UrlParser;
@@ -95,7 +96,7 @@ export class TargetChangeDialog extends React.Component<TargetChangeDialogProps>
     }
 
     private showTargetChangeDialog(prevTab: PersistedTabInfo, newTab: ITab): boolean {
-        if (prevTab === null) {
+        if (isEmpty(prevTab)) {
             return false;
         }
 
