@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { isEmpty } from 'lodash';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import { Link } from 'office-ui-fabric-react/lib/Link';
@@ -12,7 +13,6 @@ import { ITab } from '../../common/itab';
 import { PersistedTabInfo } from '../../common/types/store-data/iassessment-result-data';
 import { UrlParser } from '../../common/url-parser';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
-import { isEmpty } from 'lodash';
 
 export type TargetChangeDialogDeps = {
     urlParser: UrlParser;
