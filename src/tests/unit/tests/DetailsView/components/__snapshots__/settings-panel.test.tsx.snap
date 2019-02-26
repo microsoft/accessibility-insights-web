@@ -305,6 +305,7 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
         <StyledTextFieldBase
           label="Enter desired GitHub repo link:"
           onChange={[Function]}
+          placeholder="https://github.com/owner/repo/issues"
           value="test-repository"
         />
       </React.Fragment>
@@ -407,6 +408,7 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
         <StyledTextFieldBase
           label="Enter desired GitHub repo link:"
           onChange={[Function]}
+          placeholder="https://github.com/owner/repo/issues"
         />
       </React.Fragment>
     }
@@ -605,6 +607,7 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
         <StyledTextFieldBase
           label="Enter desired GitHub repo link:"
           onChange={[Function]}
+          placeholder="https://github.com/owner/repo/issues"
         />
       </React.Fragment>
     }

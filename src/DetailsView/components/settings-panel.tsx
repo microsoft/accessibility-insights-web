@@ -166,6 +166,7 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
                 label="Enter desired GitHub repo link:"
                 onChange={this.onGitHubRepositoryChange}
                 value={this.getBugServiceProperty('gitHub', 'repository')}
+                placeholder="https://github.com/owner/repo/issues"
             />
         );
     }
