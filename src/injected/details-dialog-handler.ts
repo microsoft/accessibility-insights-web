@@ -79,8 +79,11 @@ export class DetailsDialogHandler {
 
     @autobind
     public issueTrackerPath(dialog: DetailsDialog): string {
-        const userConfigState = dialog.props.userConfigStore.getState();
-        return userConfigState ? userConfigState.issueTrackerPath : '';
+        const userConfigState = dialog.props.userConfigStore.getState();;
+        return (userConfigState &&
+            userConfigState.bugServicePropertiesMap &&
+            userConfigState.bugServicePropertiesMap.gitHub &&
+            userConfigState.bugServicePropertiesMap.gitHub.repository);
     }
 
     @autobind
