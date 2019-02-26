@@ -3,7 +3,7 @@
 import { SingleTargetDrawerConfiguration } from '../../../../../injected/visualization/iformatter';
 import { SingleTargetFormatter } from '../../../../../injected/visualization/single-target-formatter';
 
-describe('BodyFormatterTests', () => {
+describe('SingleFormatterTests', () => {
     let testSubject: SingleTargetFormatter;
     const defaultConfig: SingleTargetDrawerConfiguration = {
         injectedClassName: 'test-injected-className',

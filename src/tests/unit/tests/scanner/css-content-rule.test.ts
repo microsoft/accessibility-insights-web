@@ -43,7 +43,27 @@ describe('verify matches', () => {
         return selectors.indexOf(x) !== -1;
     }
 
-    it('element is visible and has pseudo selector', () => {
+    const isElementVisible = [true, false];
+
+    test.each(isElementVisible)('element has pseudo selector but isVisible is toggled: %s', isVisibleParam => {
+        axeVisibilityMock
+            .setup(isVisible => isVisible(headingElementFixture))
+            .returns(() => isVisibleParam)
+            .verifiable();
+
+        getComputedStyleMock
+            .setup(getComputedStyle => getComputedStyle(headingElementFixture, It.is(checkIfSelectorIsValid)))
+            .returns(style => ({ content: 'test' } as CSSStyleDeclaration))
+            .verifiable(Times.atLeastOnce());
+
+        testSemantics(divElementFixture, isVisibleParam);
+    });
+
+    const contentSwitchParameters = [
+        { pseudoSelectorContent: 'none', testExpectation: false },
+        { pseudoSelectorContent: 'non-none', testExpectation: true },
+    ];
+    test.each(contentSwitchParameters)('element isVisible but pseudo selector content is toggled: %o', testCaseParameters => {
         axeVisibilityMock
             .setup(isVisible => isVisible(headingElementFixture))
             .returns(() => true)
@@ -51,66 +71,10 @@ describe('verify matches', () => {
 
         getComputedStyleMock
             .setup(getComputedStyle => getComputedStyle(headingElementFixture, It.is(checkIfSelectorIsValid)))
-            .returns(style => ({ content: 'test' } as CSSStyleDeclaration))
+            .returns(style => ({ content: testCaseParameters.pseudoSelectorContent } as CSSStyleDeclaration))
             .verifiable(Times.atLeastOnce());
 
-        testSemantics(divElementFixture, true);
-    });
-
-    it('element is not visible and has pseudo selector', () => {
-        axeVisibilityMock
-            .setup(isVisible => isVisible(headingElementFixture))
-            .returns(() => false)
-            .verifiable();
-
-        getComputedStyleMock
-            .setup(getComputedStyle => getComputedStyle(headingElementFixture, It.is(checkIfSelectorIsValid)))
-            .returns(style => ({ content: 'test' } as CSSStyleDeclaration))
-            .verifiable(Times.atLeastOnce());
-
-        testSemantics(divElementFixture, false);
-    });
-
-    it("element is visible but doesn't have pseudo selectors", () => {
-        axeVisibilityMock
-            .setup(isVisible => isVisible(headingElementFixture))
-            .returns(() => true)
-            .verifiable();
-
-        getComputedStyleMock
-            .setup(getComputedStyle => getComputedStyle(headingElementFixture, It.is(checkIfSelectorIsValid)))
-            .returns(style => ({ content: 'none' } as CSSStyleDeclaration))
-            .verifiable(Times.atLeastOnce());
-
-        testSemantics(divElementFixture, false);
-    });
-
-    it('element is visible & test for :after selector', () => {
-        axeVisibilityMock
-            .setup(isVisible => isVisible(headingElementFixture))
-            .returns(() => true)
-            .verifiable();
-
-        getComputedStyleMock
-            .setup(getComputedStyle => getComputedStyle(headingElementFixture, It.is(checkIfSelectorIsValid)))
-            .returns(style => ({ content: 'test' } as CSSStyleDeclaration))
-            .verifiable(Times.atLeastOnce());
-
-        testSemantics(divElementFixture, true);
-    });
-
-    it('element is not visible & test for :after selector', () => {
-        axeVisibilityMock
-            .setup(isVisible => isVisible(headingElementFixture))
-            .returns(() => false)
-            .verifiable();
-
-        getComputedStyleMock
-            .setup(getComputedStyle => getComputedStyle(headingElementFixture, It.is(checkIfSelectorIsValid)))
-            .returns(style => ({ content: 'test' } as CSSStyleDeclaration))
-            .verifiable(Times.atLeastOnce());
-
-        testSemantics(divElementFixture, false);
+        testSemantics(divElementFixture, testCaseParameters.testExpectation);
     });
 
     function testSemantics(elements: HTMLElement, expectedResult: boolean): void {
