@@ -13,7 +13,7 @@ export const infoAndExamples = create(({ Markup }) => (
             accessible name. If a frame or iframe has no accessible name, screen reader users won't know whether it's worth exploring.
         </p>
 
-        <h2>How to fix </h2>
+        <h2>How to fix</h2>
         <p>Provide an accessible name:</p>
         <ul>
             <li>
