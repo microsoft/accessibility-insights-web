@@ -15,9 +15,9 @@ import { TargetChangeDialog, TargetChangeDialogProps } from '../../../../../Deta
 describe('TargetChangeDialog test set for prev tab null', () => {
     const urlParserMock = Mock.ofType(UrlParser, MockBehavior.Strict);
 
-    test('should render null when prev tab is null', () => {
+    test.each([null, undefined, {} as PersistedTabInfo])('should render null when prevTab does not exists', prevTab => {
         const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
-        const prevTab = null;
+
         const newTab = {
             id: 111,
             url: 'https://www.def.com',
@@ -26,60 +26,6 @@ describe('TargetChangeDialog test set for prev tab null', () => {
 
         urlParserMock
             .setup(urlParserObject => urlParserObject.areURLHostNamesEqual(prevTab, newTab.url))
-            .returns(() => true)
-            .verifiable(Times.never());
-
-        const targetChangeProps: TargetChangeDialogProps = {
-            deps: { urlParser: urlParserMock.object },
-            prevTab: prevTab,
-            newTab: newTab,
-            actionMessageCreator: actionMessageCreatorMock.object,
-        };
-
-        const wrapper = Enzyme.shallow(<TargetChangeDialog {...targetChangeProps} />);
-        expect(wrapper.find(Dialog).exists()).toBeFalsy();
-
-        urlParserMock.verifyAll();
-    });
-
-    test('should render null when prev tab is undefined', () => {
-        const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
-        const prevTab = undefined;
-        const newTab = {
-            id: 111,
-            url: 'https://www.def.com',
-            title: 'test title',
-        };
-
-        urlParserMock
-            .setup(urlParserObject => urlParserObject.areURLHostNamesEqual(prevTab, newTab.url))
-            .returns(() => true)
-            .verifiable(Times.never());
-
-        const targetChangeProps: TargetChangeDialogProps = {
-            deps: { urlParser: urlParserMock.object },
-            prevTab: prevTab,
-            newTab: newTab,
-            actionMessageCreator: actionMessageCreatorMock.object,
-        };
-
-        const wrapper = Enzyme.shallow(<TargetChangeDialog {...targetChangeProps} />);
-        expect(wrapper.find(Dialog).exists()).toBeFalsy();
-
-        urlParserMock.verifyAll();
-    });
-
-    test('should render null when prev tab is {}', () => {
-        const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
-        const prevTab = {} as PersistedTabInfo;
-        const newTab = {
-            id: 111,
-            url: 'https://www.def.com',
-            title: 'test title',
-        };
-
-        urlParserMock
-            .setup(urlParserObject => urlParserObject.areURLHostNamesEqual('', newTab.url))
             .returns(() => true)
             .verifiable(Times.never());
 
