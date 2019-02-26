@@ -17,9 +17,9 @@ export const infoAndExamples = create(({ Markup }) => (
         <h3>From a user's perspective</h3>
         <p>
             <Markup.Emphasis>
-                "I enjoy content and operate interface screen reader and keyboard. Objects that refresh, or start automatically interrupt
-                me. If it is essential to the solution that something updates or plays content automatically, provide me a way to pause,
-                stop or disable that content so I can focus on my work."
+                "I enjoy content and operate interfaces via a screen reader and keyboard. Objects that refresh, or start automatically
+                interrupt me. If it is essential to the solution that something updates or plays content automatically, provide me a way to
+                pause, stop or disable that content so I can focus on my work."
             </Markup.Emphasis>
         </p>
 

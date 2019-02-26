@@ -17,6 +17,14 @@ export const infoAndExamples = create(({ Markup }) => (
             vision.
         </p>
 
+        <h3>From a user's perspective</h3>
+        <p>
+            <Markup.Emphasis>
+                "Provide instructions that are considerate of the all the ways I might use my senses, and not just the senses that you rely
+                on. For example, saying 'Click the blue button to the right' is useless to me as I have low vision"
+            </Markup.Emphasis>
+        </p>
+
         <h2>How to fix</h2>
         <p>
             Rewrite instructions so they mention the accessible name of the interface component (in addition to its sensory
@@ -26,12 +34,15 @@ export const infoAndExamples = create(({ Markup }) => (
         <h2>Example</h2>
         <Markup.PassFail
             failText={<p>Instructions identify a set of links only by their location (sensory characteristic only).</p>}
-            failExample={`<p>To learn more, see [the links to the right].</p>
+            failExample={`<p>To learn more,          
+            see [the links to the right].</p>
             ...
+                      
             <h3>Related articles</h3>
             <ul>
             <li>
-            <a href="https://www.w3.org/TR/WCAG21/">Web Content Accessibility Guidelines (WCAG) 2.1</a>
+            <a href="https://www.w3.org">          
+            Web Content Accessibility Guidelines</a>
             </li>
             ...
             `}
@@ -40,12 +51,14 @@ export const infoAndExamples = create(({ Markup }) => (
                     Instructions mentions both the links' location and their associated heading (sensory characteristic + accessible name).
                 </p>
             }
-            passExample={`<p>To learn more, [see the links to the right, under the 'Related articles' heading].</p>
+            passExample={`<p>To learn more,     
+            [see the links to the right, under the 'Related articles' heading].</p>
             ...
             <h3>Related articles</h3>
             <ul>
             <li>
-            <a href="https://www.w3.org/TR/WCAG21/">Web Content Accessibility Guidelines (WCAG) 2.1</a>
+            <a href="https://www.w3.org">
+            Web Content Accessibility Guidelines</a>
             </li>
             ...`}
         />

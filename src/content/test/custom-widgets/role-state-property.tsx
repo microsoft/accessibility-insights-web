@@ -40,11 +40,12 @@ export const infoAndExamples = create(({ Markup }) => (
             </ul>]`}
             passText={
                 <p>
-                    Code has been added to meet the listbox spec: (1) The <Markup.Code>{`<ul>`}</Markup.Code> that contains all of the
-                    listbox options has <Markup.Code>role="listbox"</Markup.Code>. (2) The <Markup.Code>{`<ul>`}</Markup.Code> has an
-                    accessible name through an <Markup.Code>aria-labelledby</Markup.Code> attribute. (3) Each{' '}
-                    <Markup.Code>{`<li>`}</Markup.Code> has <Markup.Code>role="option"</Markup.Code>. (4) The selected option has{' '}
-                    <Markup.Code>aria-selected="true"</Markup.Code>.
+                    Code has been added to meet the{' '}
+                    <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-practices-1.1/#Listbox">listbox</Markup.HyperLink> spec: (1) The{' '}
+                    <Markup.Code>{`<ul>`}</Markup.Code> that contains all of the listbox options has{' '}
+                    <Markup.Code>role="listbox"</Markup.Code>. (2) The <Markup.Code>{`<ul>`}</Markup.Code> has an accessible name through an{' '}
+                    <Markup.Code>aria-labelledby</Markup.Code> attribute. (3) Each <Markup.Code>{`<li>`}</Markup.Code> has{' '}
+                    <Markup.Code>role="option"</Markup.Code>. (4) The selected option has <Markup.Code>aria-selected="true"</Markup.Code>.
                 </p>
             }
             passExample={`<span id="entree">Entree options:</span>

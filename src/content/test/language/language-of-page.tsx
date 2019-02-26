@@ -23,6 +23,13 @@ export const infoAndExamples = create(({ Markup }) => (
             .
         </p>
 
+        <h3>From a user's perspective</h3>
+        <p>
+            <Markup.Emphasis>
+                "If you do not define the language for a web page, the software I use to enjoy content may get stuck or not work at all."
+            </Markup.Emphasis>
+        </p>
+
         <h2>Example</h2>
         <Markup.PassFail
             failText={

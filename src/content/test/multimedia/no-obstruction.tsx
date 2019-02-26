@@ -9,7 +9,7 @@ export const infoAndExamples = create(({ Markup }) => (
 
         <h2>Why it matters</h2>
         <p>
-            The goal of captioning is to provide equal access all content in a multimedia presentation. If captions obstruct meaningful
+            The goal of captioning is to provide equal access to all content in a multimedia presentation. If captions obstruct meaningful
             visual content, then people who are deaf or hard of hearing can’t access that content.
         </p>
 

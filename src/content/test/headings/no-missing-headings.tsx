@@ -15,8 +15,9 @@ export const infoAndExamples = create(({ Markup }) => (
 
         <h2>How to fix</h2>
         <p>
-            Re-implement using a heading tag. (You could add role="heading" to a different element, but the first rule of ARIA is to use
-            native HTML elements where possible, instead of repurposing an element by adding ARIA.)
+            Re-implement using a heading tag. (You could add role="heading" to a different element, but the first{' '}
+            <Markup.HyperLink href="https://www.w3.org/TR/using-aria/">rule of ARIA</Markup.HyperLink> is to use native HTML elements where
+            possible, instead of repurposing an element by adding ARIA.)
         </p>
 
         <h2>Example</h2>

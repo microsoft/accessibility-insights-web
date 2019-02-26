@@ -16,8 +16,10 @@ export const infoAndExamples = create(({ Markup }) => (
 
         <h3>From a user's perspective</h3>
         <p>
-            "I often work once everyone has gone to sleep, so I mute the audio and use captions to enjoy and work with content. Provide
-            captions for any pre-recorded media so I can understand and enjoy content."
+            <Markup.Emphasis>
+                "I often work once everyone has gone to sleep, so I mute the audio and use captions to enjoy and work with content. Provide
+                captions for any pre-recorded media so I can understand and enjoy content."
+            </Markup.Emphasis>
         </p>
 
         <h2>How to fix</h2>

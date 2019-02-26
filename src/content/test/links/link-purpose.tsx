@@ -14,6 +14,14 @@ export const infoAndExamples = create(({ Markup }) => (
             non-sighted users by reporting the link's programmatically related context.
         </p>
 
+        <h3>From a user's perspective</h3>
+        <p>
+            <Markup.Emphasis>
+                "I utilize a screen reader and keyboard to enjoy content and operate software. For every link, provide unique text so I know
+                what will happen if I click the link. For example, 'Shop Devices', 'Shop Software', 'Shop Games'."
+            </Markup.Emphasis>
+        </p>
+
         <h2>How to fix</h2>
         <p>Describe the purpose of the link using any of the following:</p>
         <ul>
@@ -36,15 +44,6 @@ export const infoAndExamples = create(({ Markup }) => (
             </li>
             <li>Programmatically related context is easier to understand when it precedes the link.</li>
         </ul>
-
-        <h3>From a user's perspective</h3>
-        <p>
-            <Markup.Emphasis>
-                “I utilize a screen reader and keyboard to enjoy content and operate software. For every link, provide unique text so I know
-                what will happen if I click the link. For example, “Shop Devices”, “Shop Software”, “Shop Games”. If you cannot do this,
-                then use ARIA-label to identify each link so assistive technology can help me know what will happen when I click the link.”
-            </Markup.Emphasis>
-        </p>
 
         <h2>Example</h2>
 

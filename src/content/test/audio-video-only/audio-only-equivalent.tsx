@@ -6,9 +6,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
     <>
         <h1>Audio-only equivalent</h1>
 
-        <p>
-            Pre-recorded audio-only content must be accompanied by an equivalent text alternative. (<Link.WCAG_1_2_1 />)
-        </p>
+        <p>Pre-recorded audio-only content must be accompanied by an equivalent text alternative.</p>
 
         <h2>Why it matters</h2>
 

@@ -32,14 +32,14 @@ export const infoAndExamples = create(({ Markup }) => (
             failText={<p>This iframe has an accessible name that doesn't describe its content.</p>}
             failExample={`<body>
                 ...
-                <iframe src="https://holds.htm" title="Hold">
+                <iframe src="https://holds.htm" [title="Hold"]>
                 </iframe>
                 ...
                 </body>`}
             passText={<p>The iframe now has an accessible name that describe its content.</p>}
             passExample={`<body>
                 ...
-                <iframe src="https://holds.htm" title="Books on Hold: Clive County Library">
+                <iframe src="https://holds.htm" [title="Books on Hold: Clive County Library"]>
                 </iframe>
                 ...
                 </body>`}

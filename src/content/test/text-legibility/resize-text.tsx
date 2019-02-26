@@ -19,6 +19,14 @@ export const infoAndExamples = create(({ Markup }) => (
             that 1.8 billion people worldwide have presbyopia. (All people are affected by presbyopia to some degree as they age.)
         </p>
 
+        <h3>From a user's perspective</h3>
+        <p>
+            <Markup.Emphasis>
+                "I wear bifocals and scratched my glasses, so I am having a hard time reading small type. Provide me a way to increase the
+                text size by 200% without breaking the layout and functionality of the content or interface."
+            </Markup.Emphasis>
+        </p>
+
         <h2>How to fix</h2>
         <ol>
             <li>Make sure the text is scalable, and </li>

@@ -72,7 +72,7 @@ export const infoAndExamples = create(({ Markup }) => (
                 </p>
             }
             failExample={`<a href="hamsters.html">
-                <img src="hamster.jpg" alt="Hamsters">
+                <img src="hamster.jpg" [alt="Hamsters"]>
                 <strong> Hamsters</strong>
                 </a>`}
             passText={
@@ -81,7 +81,7 @@ export const infoAndExamples = create(({ Markup }) => (
                 </p>
             }
             passExample={`<a href="hamsters.html">
-                <img src="hamster.jpg" alt="">
+                <img src="hamster.jpg" [alt=""]>
                 <strong> Hamsters</strong>
                 </a>`}
         />

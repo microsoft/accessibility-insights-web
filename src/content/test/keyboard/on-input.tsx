@@ -17,6 +17,14 @@ export const infoAndExamples = create(({ Markup }) => (
             notified in advance, they will not expect changing a component's settings to trigger a change in context.
         </p>
 
+        <h3>From a user's perspective</h3>
+        <p>
+            <Markup.Emphasis>
+                "I get disoriented when a solution changes context automatically, like when I enter my name and the page changes
+                automatically. Be sure your solution doesn’t automatically change context based on user input. Let me guide the action."
+            </Markup.Emphasis>
+        </p>
+
         <h2>How to fix</h2>
         <p>
             Use a different trigger to initiate a change of context. For example, instead of initiating the change of context when a radio

@@ -15,8 +15,10 @@ export const infoAndExamples = create(({ Markup }) => (
         </p>
         <h3>From a user's perspective</h3>
         <p>
-            "Provide an audio description track for pre-recorded videos or so I can understand the story as the content creator imagined it.
-            Provide information on scene changes, actors etc. This allows me to understand, enjoy and share the story with others."
+            <Markup.Emphasis>
+                "Provide an audio description track for pre-recorded videos or so I can understand the story as the content creator imagined
+                it. Provide information on scene changes, actors, etc. This allows me to understand, enjoy and share the story with others."
+            </Markup.Emphasis>
         </p>
 
         <h3>How to fix</h3>

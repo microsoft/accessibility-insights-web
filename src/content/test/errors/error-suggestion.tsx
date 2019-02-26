@@ -13,14 +13,16 @@ export const infoAndExamples = create(({ Markup }) => (
             disabilities. It also helps people with motion impairment by reducing the number of times they need to enter an input value.
         </p>
 
-        <h2>How to fix</h2>
-        <p>Provide suggestions for correcting input errors, including allowed values and expected format.</p>
-
         <h3>From a user's perspective</h3>
         <p>
-            "Help me recover from mistakes by providing me the location of input mistakes and examples of valid input so I can get back to
-            work and complete the task."
+            <Markup.Emphasis>
+                "Help me recover from mistakes by providing me the location of input mistakes and examples of valid input so I can get back
+                to work and complete the task."
+            </Markup.Emphasis>
         </p>
+
+        <h2>How to fix</h2>
+        <p>Provide suggestions for correcting input errors, including allowed values and expected format.</p>
 
         <h2>Example</h2>
         <Markup.PassFail
@@ -30,9 +32,9 @@ export const infoAndExamples = create(({ Markup }) => (
                     error but doesn't provide suggestions for correcting it.
                 </p>
             }
-            failExample={'<p id="errortext" aria-live="assertive">Travel date is invalid.</p>'}
+            failExample={'<p id="errortext" aria-live="assertive">[Travel date is invalid.]</p>'}
             passText={<p>The web page provides a suggestion for correcting the input error.</p>}
-            passExample={'<p id="errortext" aria-live="assertive">Travel date is invalid. Enter a date in the future.</p>'}
+            passExample={'<p id="errortext" aria-live="assertive">[Travel date is invalid. Enter a date in the future.]</p>'}
         />
 
         <h2>More examples</h2>
