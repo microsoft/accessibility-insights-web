@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GlobalMock, GlobalScope, IGlobalMock, It, MockBehavior, Times, Mock } from 'typemoq';
+import * as axe from 'axe-core';
+import { GlobalMock, GlobalScope, It, MockBehavior, Times } from 'typemoq';
 
 import { cssContentConfiguration } from '../../../../scanner/css-content-rule';
-import * as axe from 'axe-core';
 
 describe('verify meaningful semantic configs', () => {
     it('should have correct props', () => {
@@ -17,49 +17,108 @@ describe('verify meaningful semantic configs', () => {
 });
 
 describe('verify matches', () => {
-    const windowMock = GlobalMock.ofInstance(window.getComputedStyle, 'getComputedStyle', window, MockBehavior.Strict);
+    let divElementFixture: HTMLDivElement;
+    let headingElementFixture: HTMLHeadingElement;
+
+    const getComputedStyleMock = GlobalMock.ofInstance(window.getComputedStyle, 'getComputedStyle', window, MockBehavior.Strict);
     const axeVisibilityMock = GlobalMock.ofInstance(axe.commons.dom.isVisible, 'isVisible', axe.commons.dom, MockBehavior.Strict);
 
     beforeEach(() => {
-        windowMock.reset();
+        divElementFixture = document.createElement('div');
+        headingElementFixture = document.createElement('h1');
+        divElementFixture.appendChild(headingElementFixture);
+
+        getComputedStyleMock.reset();
+        axeVisibilityMock.reset();
     });
 
-    // it('does not have any pseudoSelector', () => {
-    //     const node = {
-    //         content: 'none',
-    //     };
-
-    //     testSemantics(node, windowMock, false);
-    // });
-
-    it('has before pseudoSelector and matches correctly identifies it', () => {
-        const testFixture: HTMLDivElement = document.createElement('div');
-
-        const b: HTMLHeadingElement = document.createElement('h1');
-        testFixture.appendChild(b);
-        testSemantics(testFixture, b, ':before', windowMock, axeVisibilityMock, true);
+    afterEach(() => {
+        axeVisibilityMock.verifyAll();
+        getComputedStyleMock.verifyAll();
     });
+
+    const selectors = [':before', ':after'];
+
+    function checkIfSelectorIsValid(x) {
+        return selectors.indexOf(x) !== -1;
+    }
+
+    it('element is visible and has pseudo selector', () => {
+        axeVisibilityMock
+            .setup(v => v(headingElementFixture))
+            .returns(() => true)
+            .verifiable();
+
+        getComputedStyleMock
+            .setup(m => m(headingElementFixture, It.is(checkIfSelectorIsValid)))
+            .returns(style => ({ content: 'test' } as CSSStyleDeclaration))
+            .verifiable(Times.atLeastOnce());
+
+        testSemantics(divElementFixture, true);
+    });
+
+    it('element is not visible and has pseudo selector', () => {
+        axeVisibilityMock
+            .setup(v => v(headingElementFixture))
+            .returns(() => false)
+            .verifiable();
+
+        getComputedStyleMock
+            .setup(m => m(headingElementFixture, It.is(checkIfSelectorIsValid)))
+            .returns(style => ({ content: 'test' } as CSSStyleDeclaration))
+            .verifiable(Times.atLeastOnce());
+
+        testSemantics(divElementFixture, false);
+    });
+
+    it("element is visible but doesn't have pseudo selectors", () => {
+        axeVisibilityMock
+            .setup(v => v(headingElementFixture))
+            .returns(() => true)
+            .verifiable();
+
+        getComputedStyleMock
+            .setup(m => m(headingElementFixture, It.is(checkIfSelectorIsValid)))
+            .returns(style => ({ content: 'none' } as CSSStyleDeclaration))
+            .verifiable(Times.atLeastOnce());
+
+        testSemantics(divElementFixture, false);
+    });
+
+    it('element is visible & test for :after selector', () => {
+        axeVisibilityMock
+            .setup(v => v(headingElementFixture))
+            .returns(() => true)
+            .verifiable();
+
+        getComputedStyleMock
+            .setup(m => m(headingElementFixture, It.is(checkIfSelectorIsValid)))
+            .returns(style => ({ content: 'test' } as CSSStyleDeclaration))
+            .verifiable(Times.atLeastOnce());
+
+        testSemantics(divElementFixture, true);
+    });
+
+    it('element is not visible & test for :after selector', () => {
+        axeVisibilityMock
+            .setup(v => v(headingElementFixture))
+            .returns(() => false)
+            .verifiable();
+
+        getComputedStyleMock
+            .setup(m => m(headingElementFixture, It.is(checkIfSelectorIsValid)))
+            .returns(style => ({ content: 'test' } as CSSStyleDeclaration))
+            .verifiable(Times.atLeastOnce());
+
+        testSemantics(divElementFixture, false);
+    });
+
+    function testSemantics(elements: HTMLElement, expectedResult: boolean): void {
+        let result: boolean;
+
+        GlobalScope.using(getComputedStyleMock, axeVisibilityMock).with(() => {
+            result = cssContentConfiguration.rule.matches(elements, null);
+        });
+        expect(result).toBe(expectedResult);
+    }
 });
-
-function testSemantics(
-    node: HTMLElement,
-    node2: HTMLElement,
-    pseudoSelector: string,
-    windowMock: IGlobalMock<typeof window.getComputedStyle>,
-    axeVisibilityMock: IGlobalMock<typeof axe.commons.dom.isVisible>,
-    expectedResult: boolean,
-): void {
-    let result: boolean;
-    axeVisibilityMock.setup(v => v(node2)).returns(() => true);
-
-    windowMock
-        .setup(m => m(node2, It.isAny()))
-        .returns(style => ({ content: 'test' } as CSSStyleDeclaration))
-        .verifiable(Times.atLeastOnce());
-
-    GlobalScope.using(windowMock, axeVisibilityMock).with(() => {
-        result = cssContentConfiguration.rule.matches(node, null);
-    });
-    expect(result).toBe(expectedResult);
-    windowMock.verifyAll();
-}
