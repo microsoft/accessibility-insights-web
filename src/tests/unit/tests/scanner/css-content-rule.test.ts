@@ -22,22 +22,26 @@ describe('verify matches', () => {
     });
 
     it('does not have any pseudoSelector', () => {
-        const h2 = document.createElement('h2');
-        document.body.appendChild(h2);
+        const node = {
+            content: 'none',
+        };
 
-        testSemantics(document, windowMock, false);
+        testSemantics(node, windowMock, false);
     });
 
     it('has before pseudoSelector and matches correctly identifies it', () => {
-        addPseudoStyle();
-        const h3 = document.createElement('h3');
-        document.body.appendChild(h3);
-
-        testSemantics(document, windowMock, true);
+        const node = {
+            content: 'test',
+        };
+        testSemantics(node, windowMock, true);
     });
 });
 
-function testSemantics(document: Document, windowMock: IGlobalMock<typeof window.getComputedStyle>, expectedResult: boolean): void {
+function testSemantics(
+    node: IDictionaryStringTo<string>,
+    windowMock: IGlobalMock<typeof window.getComputedStyle>,
+    expectedResult: boolean,
+): void {
     let result: boolean;
     windowMock
         .setup(m => m(It.isAny(), It.isAny()))
@@ -45,18 +49,8 @@ function testSemantics(document: Document, windowMock: IGlobalMock<typeof window
         .verifiable(Times.atLeastOnce());
 
     GlobalScope.using(windowMock).with(() => {
-        result = cssContentConfiguration.rule.matches(document, null);
+        result = cssContentConfiguration.rule.matches(node, null);
     });
     expect(result).toBe(expectedResult);
     windowMock.verifyAll();
-}
-
-function addPseudoStyle() {
-    const styleSheet = document.createElement('style');
-
-    styleSheet.innerHTML += `h3::before{
-        content: 'rocks!'
-      }`;
-
-    document.body.appendChild(styleSheet);
 }
