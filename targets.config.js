@@ -11,6 +11,7 @@ function iconSet(key) {
 
 const icons = {
     dev: iconSet('gray'),
+    playground: iconSet('green'),
     insider: iconSet('violet'),
     canary: iconSet('red'),
     production: iconSet('blue'),
@@ -42,6 +43,18 @@ module.exports = {
                 debug: true,
                 extensionFullName: 'Accessibility Insights for Web - Dev',
                 telemetryBuildName: 'Dev',
+            },
+        },
+    },
+    playground: {
+        release: true,
+        config: {
+            options: {
+                ...publicOptions,
+                ...icons.playground,
+                debug: true,
+                extensionFullName: 'Accessibility Insights for Web - Playground',
+                telemetryBuildName: 'Playground',
             },
         },
     },
