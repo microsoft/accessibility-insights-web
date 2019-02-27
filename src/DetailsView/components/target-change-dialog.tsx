@@ -100,10 +100,14 @@ export class TargetChangeDialog extends React.Component<TargetChangeDialogProps>
             return false;
         }
 
-        const { urlParser } = this.props.deps;
-        const urlChanged = prevTab && urlParser.areURLHostNamesEqual(prevTab.url, newTab.url) === false;
+        if (prevTab.appRefreshed) {
+            return true;
+        }
 
-        return prevTab.appRefreshed === true || this.didTargetTabChanged(prevTab, newTab) || urlChanged === true;
+        const { urlParser } = this.props.deps;
+        const urlChanged = prevTab.url && urlParser.areURLHostNamesEqual(prevTab.url, newTab.url) === false;
+
+        return this.didTargetTabChanged(prevTab, newTab) || urlChanged === true;
     }
 
     private didTargetTabChanged(prevTab: PersistedTabInfo, newTab: ITab): boolean {
