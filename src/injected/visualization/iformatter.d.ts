@@ -58,8 +58,8 @@ interface ISVGDrawerConfiguration {
     focusedLine: ILineConfiguration;
 }
 
-interface IColorDrawerConfiguration {
-    grayScaleClassName: string;
+interface SingleTargetDrawerConfiguration {
+    injectedClassName: string;
 }
 
 interface IFormatter {

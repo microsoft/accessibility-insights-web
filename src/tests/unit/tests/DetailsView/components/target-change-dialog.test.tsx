@@ -14,9 +14,10 @@ import { TargetChangeDialog, TargetChangeDialogProps } from '../../../../../Deta
 
 describe('TargetChangeDialog test set for prev tab null', () => {
     const urlParserMock = Mock.ofType(UrlParser, MockBehavior.Strict);
-    test('should render null when prev tab is not set', () => {
+
+    test.each([null, undefined, {} as PersistedTabInfo])('should render null when prevTab does not exists', prevTab => {
         const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
-        const prevTab = null;
+
         const newTab = {
             id: 111,
             url: 'https://www.def.com',

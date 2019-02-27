@@ -124,6 +124,16 @@ export interface SetHighContrastModePayload extends BaseActionPayload {
     enableHighContrast: boolean;
 }
 
+export interface SetBugServicePayload extends BaseActionPayload {
+    bugServiceName: string;
+}
+
+export interface SetBugServicePropertyPayload extends BaseActionPayload {
+    bugServiceName: string;
+    propertyName: string;
+    propertyValue: string;
+}
+
 export interface SetIssueTrackerPathPayload extends BaseActionPayload {
     issueTrackerPath: string;
 }

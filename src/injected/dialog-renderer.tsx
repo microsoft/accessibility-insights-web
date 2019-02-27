@@ -90,6 +90,7 @@ export class DialogRenderer {
                     target={target}
                     dialogHandler={new DetailsDialogHandler(new HTMLElementUtils())}
                     devToolStore={mainWindowContext.getDevToolStore()}
+                    userConfigStore={mainWindowContext.getUserConfigStore()}
                     devToolsShortcut={getPlatform(this.windowUtils).devToolsShortcut}
                     devToolActionMessageCreator={mainWindowContext.getDevToolActionMessageCreator()}
                     featureFlagStoreData={featureFlagStoreData}

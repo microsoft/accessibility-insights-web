@@ -4,6 +4,7 @@ import * as React from 'react';
 
 import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
 import { CopyIssueDetailsButton } from '../../common/components/copy-issue-details-button';
+import { FileIssueDetailsButton, FileIssueDetailsButtonDeps } from '../../common/components/file-issue-details-button';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { ToastDeps } from '../../common/components/toast';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
@@ -12,17 +13,25 @@ import { FixInstructionPanel } from '../../injected/components/fix-instruction-p
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { GuidanceLinks } from './guidance-links';
+import { FeatureFlags } from '../../common/feature-flags';
+import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
+import { FlaggedComponent } from '../../common/components/flagged-component';
+import { BugClickHandler } from '../../common/bug-click-handler';
 
-export type IssuesDetailsPaneDeps = ToastDeps & {
-    issueDetailsTextGenerator: IssueDetailsTextGenerator;
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-};
+export type IssuesDetailsPaneDeps = ToastDeps &
+    FileIssueDetailsButtonDeps & {
+        bugClickHandler: BugClickHandler;
+        issueDetailsTextGenerator: IssueDetailsTextGenerator;
+        detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    };
 
 export interface IssuesDetailsPaneProps {
     deps: IssuesDetailsPaneDeps;
     selectedIdToRuleResultMap: IDictionaryStringTo<DecoratedAxeNodeResult>;
     pageTitle: string;
     pageUrl: string;
+    issueTrackerPath: string;
+    featureFlagData: FeatureFlagStoreData;
 }
 
 interface IssueDetailsState {
@@ -57,15 +66,32 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
         );
     }
 
+    private getFileIssueDetailsButton(issueData: CreateIssueDetailsTextData): JSX.Element {
+        return (
+            <FileIssueDetailsButton
+                deps={this.props.deps}
+                onOpenSettings={this.props.deps.bugClickHandler.openSettingsPanelHandler}
+                issueDetailsData={issueData}
+                issueTrackerPath={this.props.issueTrackerPath}
+            />
+        );
+    }
+
     private renderSingleIssue(result: DecoratedAxeNodeResult): JSX.Element {
         const issueData: CreateIssueDetailsTextData = {
             pageTitle: this.props.pageTitle,
             pageUrl: this.props.pageUrl,
             ruleResult: result,
         };
+        const showBugFiling = this.props.featureFlagData[FeatureFlags.showBugFiling];
         return (
             <div>
                 <h2>Failure details</h2>
+                <FlaggedComponent
+                    enableJSXElement={this.getFileIssueDetailsButton(issueData)}
+                    featureFlag={FeatureFlags[FeatureFlags.showBugFiling]}
+                    featureFlagStoreData={this.props.featureFlagData}
+                />
                 <CopyIssueDetailsButton
                     deps={this.props.deps}
                     issueDetailsData={issueData}

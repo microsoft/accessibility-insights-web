@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FileIssueDetailsDialogTest render while closed 1`] = `
+<FileIssueDetailsDialog
+  fileIssueDetailsHandler={
+    proxy {
+      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+      "htmlElementUtils": undefined,
+      "onLayoutDidMount": [Function],
+    }
+  }
+  isOpen={false}
+  onDismiss={null}
+  onOpenSettings={null}
+/>
+`;
+
+exports[`FileIssueDetailsDialogTest render while open 1`] = `
+<FileIssueDetailsDialog
+  fileIssueDetailsHandler={
+    proxy {
+      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+      "htmlElementUtils": undefined,
+      "onLayoutDidMount": [Function],
+    }
+  }
+  isOpen={true}
+  onDismiss={null}
+  onOpenSettings={null}
+/>
+`;

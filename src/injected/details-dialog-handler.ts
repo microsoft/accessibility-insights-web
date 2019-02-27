@@ -7,12 +7,10 @@ import { HTMLElementUtils } from './../common/html-element-utils';
 import { DetailsDialog } from './components/details-dialog';
 
 export class DetailsDialogHandler {
-    private _htmlElementUtils: HTMLElementUtils;
     private _onDevToolChanged: () => void;
+    private _onUserConfigChanged: () => void;
 
-    constructor(htmlElementUtils: HTMLElementUtils) {
-        this._htmlElementUtils = htmlElementUtils;
-    }
+    constructor(private htmlElementUtils: HTMLElementUtils) {}
 
     @autobind
     public backButtonClickHandler(dialog: DetailsDialog): void {
@@ -75,24 +73,42 @@ export class DetailsDialogHandler {
     }
 
     @autobind
+    public onUserConfigChanged(dialog: DetailsDialog): void {
+        dialog.setState({ issueTrackerPath: this.issueTrackerPath(dialog) });
+    }
+
+    @autobind
+    public issueTrackerPath(dialog: DetailsDialog): string {
+        const userConfigState = dialog.props.userConfigStore.getState();
+        return (
+            userConfigState &&
+            userConfigState.bugServicePropertiesMap &&
+            userConfigState.bugServicePropertiesMap.gitHub &&
+            userConfigState.bugServicePropertiesMap.gitHub.repository
+        );
+    }
+
+    @autobind
     public getFailureInfo(dialog: DetailsDialog): string {
         return `Failure ${dialog.state.currentRuleIndex + 1} of ${Object.keys(dialog.props.failedRules).length} for this target`;
     }
 
     @autobind
     public onLayoutDidMount() {
-        const dialogContainer = this._htmlElementUtils.querySelector('.insights-dialog-main-override') as HTMLElement;
+        const dialogContainer = this.htmlElementUtils.querySelector('.insights-dialog-main-override') as HTMLElement;
 
-        if (dialogContainer != null) {
-            let parentLayer = dialogContainer;
+        if (dialogContainer == null) {
+            return;
+        }
 
-            while (parentLayer != null) {
-                if (parentLayer.classList.contains('ms-Layer--fixed')) {
-                    // office fabric uses z-index value as 10000 which is not configurable. So, we have to do this workaround
-                    parentLayer.style.zIndex = '2147483647';
-                }
-                parentLayer = parentLayer.parentElement;
+        let parentLayer = dialogContainer;
+
+        while (parentLayer != null) {
+            if (parentLayer.classList.contains('ms-Layer--fixed')) {
+                // office fabric uses z-index value as 10000 which is not configurable. So, we have to do this workaround
+                parentLayer.style.zIndex = '2147483647';
             }
+            parentLayer = parentLayer.parentElement;
         }
     }
 
@@ -108,13 +124,19 @@ export class DetailsDialogHandler {
         dialog.props.devToolStore.addChangedListener(this._onDevToolChanged);
         this.onDevToolChanged(dialog);
 
+        this._onUserConfigChanged = () => {
+            this.onUserConfigChanged(dialog);
+        };
+        dialog.props.userConfigStore.addChangedListener(this._onUserConfigChanged);
+        this.onUserConfigChanged(dialog);
+
         if (dialog.props.featureFlagStoreData[FeatureFlags.shadowDialog]) {
             this.addListenerForDialogInShadowDom(dialog);
         }
     }
 
     private addListenerForDialogInShadowDom(dialog: DetailsDialog): void {
-        const shadowRoot = this._htmlElementUtils.querySelector('#insights-shadow-host').shadowRoot;
+        const shadowRoot = this.htmlElementUtils.querySelector('#insights-shadow-host').shadowRoot;
 
         this.addEventListenerToCloseContainer(shadowRoot);
         this.addEventListenerToBackAndNextButton(shadowRoot, dialog);
@@ -168,6 +190,7 @@ export class DetailsDialogHandler {
     @autobind
     public componentWillUnmount(dialog: DetailsDialog): void {
         dialog.props.devToolStore.removeChangedListener(this._onDevToolChanged);
+        dialog.props.userConfigStore.removeChangedListener(this._onUserConfigChanged);
     }
 
     private hasStore(dialog: DetailsDialog): boolean {
@@ -187,7 +210,7 @@ export class DetailsDialogHandler {
         if (dialogContainer) {
             dialogContainer.parentNode.removeChild(dialogContainer);
         }
-        const body = this._htmlElementUtils.querySelector('body');
+        const body = this.htmlElementUtils.querySelector('body');
         body.classList.remove(...['insights-modal']);
     }
 }

@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as axe from 'axe-core';
+
 import { RuleConfiguration } from './iruleresults';
 
 const cssContentCheckId: string = 'css-content';
@@ -14,24 +16,36 @@ export const cssContentConfiguration: RuleConfiguration = {
     ],
     rule: {
         id: cssContentRuleId,
-        selector: '*',
+        selector: 'body',
+        matches: pageHasElementsWithPseudoSelectors,
         any: [cssContentCheckId],
-        matches: matches,
         enabled: false,
     },
 };
 
-function matches(node: HTMLElement): boolean {
-    const nodeStyle = window.getComputedStyle(node);
-    return isAbsolutePosition(nodeStyle) || isRightFloat(nodeStyle);
+function pageHasElementsWithPseudoSelectors(node: HTMLElement): boolean {
+    const pseudoElements = getAllPseudoElements(node);
+
+    return pseudoElements.length > 0;
 }
 
-function isAbsolutePosition(nodeStyle: CSSStyleDeclaration): boolean {
-    const position = nodeStyle.getPropertyValue('position').toLowerCase();
-    return position === 'absolute';
-}
+function getAllPseudoElements(node: HTMLElement): HTMLElement[] {
+    const elements = node.querySelectorAll('*');
 
-function isRightFloat(nodeStyle: CSSStyleDeclaration): boolean {
-    const float = nodeStyle.getPropertyValue('float').toLowerCase();
-    return float === 'right';
+    const hasContent = styles => {
+        return styles && styles.content !== 'none';
+    };
+
+    const pseudoElements = [];
+    for (let index = 0; index < elements.length; index++) {
+        const element = elements.item(index);
+        const beforeStyles = window.getComputedStyle(element, ':before');
+        const afterStyles = window.getComputedStyle(element, ':after');
+
+        if (axe.commons.dom.isVisible(element) && (hasContent(beforeStyles) || hasContent(afterStyles))) {
+            pseudoElements.push(element);
+        }
+    }
+
+    return pseudoElements;
 }

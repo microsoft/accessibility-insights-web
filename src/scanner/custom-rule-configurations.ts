@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { colorConfiguration } from './color-rule';
-import { cssContentConfiguration } from './css-content-rule';
+import { cssPositioningConfiguration } from './css-positioning-rule';
 import { cuesConfiguration } from './cues-rule';
 import { customWidgetConfiguration } from './custom-widget';
 import { frameTitleConfiguration } from './frame-title';
@@ -17,6 +17,7 @@ import { textAlternativeConfiguration } from './text-alternative';
 import { textContrastConfiguration } from './text-contrast';
 import { uniqueLandmarkConfiguration } from './unique-landmark';
 import { widgetFunctionConfiguration } from './widget-function';
+import { cssContentConfiguration } from './css-content-rule';
 
 export const configuration: RuleConfiguration[] = [
     headingConfiguration,
@@ -34,5 +35,6 @@ export const configuration: RuleConfiguration[] = [
     nativeWidgetsDefaultConfiguration,
     cuesConfiguration,
     customWidgetConfiguration,
+    cssPositioningConfiguration,
     cssContentConfiguration,
 ];

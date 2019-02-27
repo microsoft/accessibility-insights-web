@@ -70,6 +70,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = false 
           <CopyIssueDetailsButton
             deps={
               Object {
+                "bugClickHandler": null,
                 "clientBrowserAdapter": Object {
                   "getUrl": [Function],
                 },
@@ -106,14 +107,43 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = false 
           />
           <FlaggedComponent
             enableJSXElement={
-              <CustomizedDefaultButton
-                className="insights-dialog-button-create-bug"
-                iconProps={
+              <FileIssueDetailsButton
+                deps={
                   Object {
-                    "iconName": "add",
+                    "bugClickHandler": null,
+                    "clientBrowserAdapter": Object {
+                      "getUrl": [Function],
+                    },
+                    "issueDetailsTextGenerator": null,
+                    "targetPageActionMessageCreator": Object {
+                      "copyIssueDetailsClicked": [Function],
+                    },
+                    "windowUtils": null,
                   }
                 }
-                text="New bug"
+                issueDetailsData={
+                  Object {
+                    "pageTitle": "",
+                    "pageUrl": "http://localhost/",
+                    "ruleResult": Object {
+                      "all": Array [],
+                      "any": Array [],
+                      "failureSummary": "failureSummary",
+                      "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                      "guidanceLinks": Array [],
+                      "help": "help",
+                      "helpUrl": "http://extension/help1",
+                      "html": "html",
+                      "id": "id1",
+                      "none": Array [],
+                      "ruleId": "ruleId",
+                      "selector": "selector",
+                      "snippet": "html",
+                      "status": false,
+                    },
+                  }
+                }
+                issueTrackerPath=""
               />
             }
             featureFlag="showBugFiling"
@@ -270,6 +300,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 1
             <CopyIssueDetailsButton
               deps={
                 Object {
+                  "bugClickHandler": null,
                   "clientBrowserAdapter": Object {
                     "getUrl": [Function],
                   },
@@ -306,14 +337,43 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 1
             />
             <FlaggedComponent
               enableJSXElement={
-                <CustomizedDefaultButton
-                  className="insights-dialog-button-create-bug"
-                  iconProps={
+                <FileIssueDetailsButton
+                  deps={
                     Object {
-                      "iconName": "add",
+                      "bugClickHandler": null,
+                      "clientBrowserAdapter": Object {
+                        "getUrl": [Function],
+                      },
+                      "issueDetailsTextGenerator": null,
+                      "targetPageActionMessageCreator": Object {
+                        "copyIssueDetailsClicked": [Function],
+                      },
+                      "windowUtils": null,
                     }
                   }
-                  text="New bug"
+                  issueDetailsData={
+                    Object {
+                      "pageTitle": "",
+                      "pageUrl": "http://localhost/",
+                      "ruleResult": Object {
+                        "all": Array [],
+                        "any": Array [],
+                        "failureSummary": "failureSummary",
+                        "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                        "guidanceLinks": Array [],
+                        "help": "help",
+                        "helpUrl": "http://extension/help1",
+                        "html": "html",
+                        "id": "id1",
+                        "none": Array [],
+                        "ruleId": "ruleId",
+                        "selector": "selector",
+                        "snippet": "html",
+                        "status": false,
+                      },
+                    }
+                  }
+                  issueTrackerPath=""
                 />
               }
               featureFlag="showBugFiling"
@@ -453,6 +513,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 2
           <CopyIssueDetailsButton
             deps={
               Object {
+                "bugClickHandler": null,
                 "clientBrowserAdapter": Object {
                   "getUrl": [Function],
                 },
@@ -489,14 +550,43 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 2
           />
           <FlaggedComponent
             enableJSXElement={
-              <CustomizedDefaultButton
-                className="insights-dialog-button-create-bug"
-                iconProps={
+              <FileIssueDetailsButton
+                deps={
                   Object {
-                    "iconName": "add",
+                    "bugClickHandler": null,
+                    "clientBrowserAdapter": Object {
+                      "getUrl": [Function],
+                    },
+                    "issueDetailsTextGenerator": null,
+                    "targetPageActionMessageCreator": Object {
+                      "copyIssueDetailsClicked": [Function],
+                    },
+                    "windowUtils": null,
                   }
                 }
-                text="New bug"
+                issueDetailsData={
+                  Object {
+                    "pageTitle": "",
+                    "pageUrl": "http://localhost/",
+                    "ruleResult": Object {
+                      "all": Array [],
+                      "any": Array [],
+                      "failureSummary": "failureSummary",
+                      "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                      "guidanceLinks": Array [],
+                      "help": "help",
+                      "helpUrl": "http://extension/help1",
+                      "html": "html",
+                      "id": "id1",
+                      "none": Array [],
+                      "ruleId": "ruleId",
+                      "selector": "selector",
+                      "snippet": "html",
+                      "status": false,
+                    },
+                  }
+                }
+                issueTrackerPath=""
               />
             }
             featureFlag="showBugFiling"
@@ -648,6 +738,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = true, shadowDialog = true 1`
             <CopyIssueDetailsButton
               deps={
                 Object {
+                  "bugClickHandler": null,
                   "clientBrowserAdapter": Object {
                     "getUrl": [Function],
                   },
@@ -684,14 +775,43 @@ exports[`DetailsDialogTest render: isDevToolsOpen = true, shadowDialog = true 1`
             />
             <FlaggedComponent
               enableJSXElement={
-                <CustomizedDefaultButton
-                  className="insights-dialog-button-create-bug"
-                  iconProps={
+                <FileIssueDetailsButton
+                  deps={
                     Object {
-                      "iconName": "add",
+                      "bugClickHandler": null,
+                      "clientBrowserAdapter": Object {
+                        "getUrl": [Function],
+                      },
+                      "issueDetailsTextGenerator": null,
+                      "targetPageActionMessageCreator": Object {
+                        "copyIssueDetailsClicked": [Function],
+                      },
+                      "windowUtils": null,
                     }
                   }
-                  text="New bug"
+                  issueDetailsData={
+                    Object {
+                      "pageTitle": "",
+                      "pageUrl": "http://localhost/",
+                      "ruleResult": Object {
+                        "all": Array [],
+                        "any": Array [],
+                        "failureSummary": "failureSummary",
+                        "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                        "guidanceLinks": Array [],
+                        "help": "help",
+                        "helpUrl": "http://extension/help1",
+                        "html": "html",
+                        "id": "id1",
+                        "none": Array [],
+                        "ruleId": "ruleId",
+                        "selector": "selector",
+                        "snippet": "html",
+                        "status": false,
+                      },
+                    }
+                  }
+                  issueTrackerPath=""
                 />
               }
               featureFlag="showBugFiling"
@@ -826,6 +946,7 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
           <CopyIssueDetailsButton
             deps={
               Object {
+                "bugClickHandler": null,
                 "clientBrowserAdapter": Object {
                   "getUrl": [Function],
                 },
@@ -862,14 +983,43 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
           />
           <FlaggedComponent
             enableJSXElement={
-              <CustomizedDefaultButton
-                className="insights-dialog-button-create-bug"
-                iconProps={
+              <FileIssueDetailsButton
+                deps={
                   Object {
-                    "iconName": "add",
+                    "bugClickHandler": null,
+                    "clientBrowserAdapter": Object {
+                      "getUrl": [Function],
+                    },
+                    "issueDetailsTextGenerator": null,
+                    "targetPageActionMessageCreator": Object {
+                      "copyIssueDetailsClicked": [Function],
+                    },
+                    "windowUtils": null,
                   }
                 }
-                text="New bug"
+                issueDetailsData={
+                  Object {
+                    "pageTitle": "",
+                    "pageUrl": "http://localhost/",
+                    "ruleResult": Object {
+                      "all": Array [],
+                      "any": Array [],
+                      "failureSummary": "failureSummary",
+                      "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                      "guidanceLinks": Array [],
+                      "help": "help",
+                      "helpUrl": "help-relative",
+                      "html": "html",
+                      "id": "id1",
+                      "none": Array [],
+                      "ruleId": "ruleId",
+                      "selector": "selector",
+                      "snippet": "html",
+                      "status": false,
+                    },
+                  }
+                }
+                issueTrackerPath=""
               />
             }
             featureFlag="showBugFiling"

@@ -73,10 +73,15 @@ export const guidance = create(({ Markup, Link }) => (
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H69">
                 Providing headings at the beginning of each section of content
             </Markup.HyperLink>
-        </Markup.Links>
-
-        <h4>Using frame elements to group blocks of repeated content and Using the title attribute of the frame and iframe elements</h4>
-        <Markup.Links>
+            <Markup.Inline>
+                <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H70">
+                    Using frame elements to group blocks of repeated content
+                </Markup.HyperLink>{' '}
+                and{' '}
+                <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H64">
+                    Using the title attribute of the frame and iframe elements
+                </Markup.HyperLink>
+            </Markup.Inline>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/client-side-script/SCR28">
                 Containing repeated content in a collapsible menu
             </Markup.HyperLink>

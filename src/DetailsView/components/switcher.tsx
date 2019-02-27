@@ -21,8 +21,8 @@ export interface SwitcherProps {
 export const Switcher = NamedSFC<SwitcherProps>('Switcher', props => {
     const onRenderOption = (option: IDropdownOption): JSX.Element => {
         return (
-            <div className="switcher-dropdown-option">
-                {option.data && option.data.icon && <Icon iconName={option.data.icon} aria-hidden="true" title={option.data.icon} />}
+            <div className="switcher-dropdown-option" aria-hidden="true">
+                {option.data && option.data.icon && <Icon iconName={option.data.icon} />}
                 <span>{option.text}</span>
             </div>
         );
@@ -32,8 +32,8 @@ export const Switcher = NamedSFC<SwitcherProps>('Switcher', props => {
         const option = options[0];
 
         return (
-            <div className="switcher-dropdown-option">
-                {option.data && option.data.icon && <Icon iconName={option.data.icon} aria-hidden="true" title={option.data.icon} />}
+            <div className="switcher-dropdown-option" aria-hidden="true">
+                {option.data && option.data.icon && <Icon iconName={option.data.icon} />}
                 <span>{option.text}</span>
             </div>
         );
@@ -48,6 +48,7 @@ export const Switcher = NamedSFC<SwitcherProps>('Switcher', props => {
 
     return (
         <Dropdown
+            ariaLabel="select workflow"
             responsiveMode={ResponsiveMode.large}
             selectedKey={pivotKey}
             onRenderOption={onRenderOption}

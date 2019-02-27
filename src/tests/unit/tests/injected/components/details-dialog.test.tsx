@@ -62,6 +62,7 @@ describe('DetailsDialogTest', () => {
         };
 
         const deps: DetailsDialogDeps = {
+            bugClickHandler: null,
             windowUtils: null,
             issueDetailsTextGenerator: null,
             targetPageActionMessageCreator: {
@@ -82,6 +83,7 @@ describe('DetailsDialogTest', () => {
                 [FeatureFlags.shadowDialog]: shadowDialog,
             },
             devToolStore: {} as any,
+            userConfigStore: {} as any,
             devToolActionMessageCreator: {} as any,
             devToolsShortcut: 'shortcut',
         };

@@ -8,7 +8,6 @@ import { IssueDetailsTextGenerator } from '../../background/issue-details-text-g
 import { RuleResult } from '../../scanner/iruleresults';
 import { HyperlinkDefinition } from '../../views/content/content-page';
 import { BugButton, IBugButtonDeps } from './bug-button';
-import { ConfigIssueTrackerButton } from './config-issue-tracker-button';
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 
@@ -27,20 +26,8 @@ export interface DetailsGroup extends IGroup {
     ruleUrl?: string;
 }
 
-export type IssuesTableHandlerDeps = IBugButtonDeps & {
-    dropdownClickHandler: DropdownClickHandler;
-};
-export interface IBugFileDetails {
-    deps: IssuesTableHandlerDeps;
-    issueTrackerPath: string;
-    selectedIdToRuleResultMap: IDictionaryStringTo<DecoratedAxeNodeResult>;
-    showBugFiling: boolean;
-    pageTitle: string;
-    pageUrl: string;
-}
-
 export class IssuesTableHandler {
-    public getListProps(failedRules: RuleResult[], bugFilingDetails: IBugFileDetails): IListProps {
+    public getListProps(failedRules: RuleResult[]): IListProps {
         let listProps: IListProps;
         const groups: DetailsGroup[] = [];
         const items: IDetailsRowData[] = [];
@@ -62,8 +49,6 @@ export class IssuesTableHandler {
 
                 detailsRow.selector = node.target.join(';');
                 detailsRow.key = node.instanceId;
-                detailsRow.bugButton = this.getBugButton(node, bugFilingDetails);
-
                 items.push(detailsRow);
             });
         });
@@ -74,25 +59,5 @@ export class IssuesTableHandler {
         };
 
         return listProps;
-    }
-
-    private getBugButton(node: AxeNodeResult, bugFilingDetails: IBugFileDetails): undefined | JSX.Element {
-        if (!bugFilingDetails.showBugFiling) {
-            return;
-        }
-
-        if (bugFilingDetails.issueTrackerPath) {
-            return (
-                <BugButton
-                    deps={bugFilingDetails.deps}
-                    pageTitle={bugFilingDetails.pageTitle}
-                    pageUrl={bugFilingDetails.pageUrl}
-                    nodeResult={bugFilingDetails.selectedIdToRuleResultMap[node.instanceId]}
-                    issueTrackerPath={bugFilingDetails.issueTrackerPath}
-                />
-            );
-        }
-
-        return <ConfigIssueTrackerButton onClick={bugFilingDetails.deps.dropdownClickHandler.openSettingsPanelHandler} />;
     }
 }

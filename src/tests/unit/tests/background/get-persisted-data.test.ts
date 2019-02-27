@@ -15,7 +15,13 @@ describe('GetPersistedDataTest', () => {
 
     beforeEach(() => {
         assessmentStoreData = { assessmentNavState: null, assessments: null, persistedTabInfo: {} as PersistedTabInfo };
-        userConfigurationData = { isFirstTime: true, enableTelemetry: false, enableHighContrast: false };
+        userConfigurationData = {
+            isFirstTime: true,
+            enableTelemetry: false,
+            enableHighContrast: false,
+            bugService: 'none',
+            bugServicePropertiesMap: {},
+        };
         indexedDBInstanceStrictMock = Mock.ofType<IndexedDBAPI>();
     });
 

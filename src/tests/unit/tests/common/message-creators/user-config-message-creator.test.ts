@@ -3,14 +3,16 @@
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import {
-    SetTelemetryStatePayload,
+    SetBugServicePayload,
+    SetBugServicePropertyPayload,
     SetHighContrastModePayload,
     SetIssueTrackerPathPayload,
+    SetTelemetryStatePayload,
 } from '../../../../../background/actions/action-payloads';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { Messages } from '../../../../../common/messages';
 
-describe('UserConfigMessageCreatorTest', () => {
+describe('UserConfigMessageCreator', () => {
     let postMessageMock: IMock<(message) => void>;
     let testSubject: UserConfigMessageCreator;
     let tabId: number;
@@ -26,7 +28,7 @@ describe('UserConfigMessageCreatorTest', () => {
         postMessageMock.verifyAll();
     });
 
-    test('SetTelemetryState', () => {
+    test('setTelemetryState', () => {
         const enableTelemetry = false;
         const payload: SetTelemetryStatePayload = {
             enableTelemetry,
@@ -44,7 +46,7 @@ describe('UserConfigMessageCreatorTest', () => {
         postMessageMock.verifyAll();
     });
 
-    test('SetHighContrastModeConfig', () => {
+    test('setHighContrastModeConfig', () => {
         const enableHighContrast = true;
         const payload: SetHighContrastModePayload = {
             enableHighContrast,
@@ -76,6 +78,43 @@ describe('UserConfigMessageCreatorTest', () => {
         postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
 
         testSubject.setIssueTrackerPath(issueTrackerPath);
+
+        postMessageMock.verifyAll();
+    });
+
+    test('setBugService', () => {
+        const bugServiceName = 'UserConfigMessageCreatorTest bug service name';
+        const payload: SetBugServicePayload = {
+            bugServiceName,
+        };
+        const expectedMessage = {
+            tabId: 1,
+            type: Messages.UserConfig.SetBugService,
+            payload,
+        };
+
+        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
+
+        testSubject.setBugService(bugServiceName);
+
+        postMessageMock.verifyAll();
+    });
+
+    test('setBugServiceProperty', () => {
+        const payload: SetBugServicePropertyPayload = {
+            bugServiceName: 'bug-service-name',
+            propertyName: 'property-name',
+            propertyValue: 'property-value',
+        };
+        const expectedMessage = {
+            tabId: 1,
+            type: Messages.UserConfig.SetBugServiceProperty,
+            payload,
+        };
+
+        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
+
+        testSubject.setBugServiceProperty(payload.bugServiceName, payload.propertyName, payload.propertyValue);
 
         postMessageMock.verifyAll();
     });

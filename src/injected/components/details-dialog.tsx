@@ -6,7 +6,9 @@ import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import * as React from 'react';
 
 import { NewTabLink } from '../../common/components/new-tab-link';
+import { FileIssueDetailsButton, FileIssueDetailsButtonDeps } from '../../common/components/file-issue-details-button';
 import { FeatureFlags } from '../../common/feature-flags';
+import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { IBaseStore } from '../../common/istore';
 import { DevToolActionMessageCreator } from '../../common/message-creators/dev-tool-action-message-creator';
 import { DevToolState } from '../../common/types/store-data/idev-tool-state';
@@ -25,13 +27,15 @@ export enum CheckType {
     None,
 }
 
-export type DetailsDialogDeps = CopyIssueDetailsButtonDeps & {
-    targetPageActionMessageCreator: TargetPageActionMessageCreator;
-    clientBrowserAdapter: ClientBrowserAdapter;
-};
+export type DetailsDialogDeps = CopyIssueDetailsButtonDeps &
+    FileIssueDetailsButtonDeps & {
+        targetPageActionMessageCreator: TargetPageActionMessageCreator;
+        clientBrowserAdapter: ClientBrowserAdapter;
+    };
 
 export interface IDetailsDialogProps {
     deps: DetailsDialogDeps;
+    userConfigStore: IBaseStore<UserConfigurationStoreData>;
     elementSelector: string;
     failedRules: IDictionaryStringTo<DecoratedAxeNodeResult>;
     target: string[];
@@ -46,6 +50,7 @@ export interface IDetailsDialogState {
     showDialog: boolean;
     currentRuleIndex: number;
     canInspect: boolean;
+    issueTrackerPath: string;
 }
 
 export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetailsDialogState> {
@@ -102,6 +107,7 @@ export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetails
             showDialog: true,
             currentRuleIndex: 0,
             canInspect: true,
+            issueTrackerPath: '',
         };
     }
 
@@ -147,8 +153,15 @@ export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetails
         );
     }
 
-    private renderCreateBugButton(): JSX.Element {
-        return <DefaultButton className="insights-dialog-button-create-bug" iconProps={{ iconName: 'add' }} text="New bug" />;
+    private renderCreateBugButton(issueData: CreateIssueDetailsTextData): JSX.Element {
+        return (
+            <FileIssueDetailsButton
+                deps={this.props.deps}
+                onOpenSettings={this.props.deps.targetPageActionMessageCreator.openSettingsPanel}
+                issueDetailsData={issueData}
+                issueTrackerPath={this.state.issueTrackerPath}
+            />
+        );
     }
 
     private renderIssueButtons(): JSX.Element {
@@ -171,7 +184,7 @@ export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetails
                 <FlaggedComponent
                     featureFlagStoreData={this.props.featureFlagStoreData}
                     featureFlag={FeatureFlags.showBugFiling}
-                    enableJSXElement={this.renderCreateBugButton()}
+                    enableJSXElement={this.renderCreateBugButton(issueData)}
                 />
             </>
         );
