@@ -270,7 +270,7 @@ describe('TelemetryDataFactoryTest', () => {
         expect(result).toEqual(expected);
     });
 
-    test('withTriggeredByAndSource', () => {
+    test('withSourceAndTriggeredBy', () => {
         const event = mouseClickEvent;
         const expected: SourceAndTriggeredBy = {
             triggeredBy: 'mouseclick',
