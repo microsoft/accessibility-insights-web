@@ -37,6 +37,7 @@ const backgroundInitCleaner = new UserStoredDataCleaner(browserAdapter);
 
 const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil();
 
+// adding a comment to trigger a new pr build
 backgroundInitCleaner.cleanUserData(deprecatedStorageDataKeys);
 
 // tslint:disable-next-line:no-floating-promises - top-level entry points are intentionally floating promises
