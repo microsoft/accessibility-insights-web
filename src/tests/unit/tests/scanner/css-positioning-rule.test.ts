@@ -77,41 +77,6 @@ describe('verify evaluate', () => {
     it.each(testFixture)('check for different combinations of nodeStyleStub and visibility %o', testStub => {
         testMeaningfulSequence(testStub.nodeStyleStub, testStub.isVisible, testStub.expectedResult);
     });
-    // it('position absolute', () => {
-    //     const nodeStyleStub = {
-    //         position: 'absolute',
-    //         float: 'none',
-    //     };
-
-    //     testMeaningfulSequence(nodeStyleStub, getComputedStyleMock, true, true);
-    // });
-
-    // it('float right', () => {
-    //     const nodeStyleStub = {
-    //         position: 'none',
-    //         float: 'right',
-    //     };
-
-    //     testMeaningfulSequence(nodeStyleStub, getComputedStyleMock, true, true);
-    // });
-
-    // it('does not match', () => {
-    //     const nodeStyleStub = {
-    //         position: 'none',
-    //         float: 'none',
-    //     };
-
-    //     testMeaningfulSequence(nodeStyleStub, getComputedStyleMock, true, false);
-    // });
-
-    // it('does not match', () => {
-    //     const nodeStyleStub = {
-    //         position: 'none',
-    //         float: 'none',
-    //     };
-
-    //     testMeaningfulSequence(nodeStyleStub, getComputedStyleMock, false, false);
-    // });
 
     function testMeaningfulSequence(nodeStyleStub: IDictionaryStringTo<string>, isVisibleParam: boolean, expectedResult: boolean): void {
         axeVisibilityMock
