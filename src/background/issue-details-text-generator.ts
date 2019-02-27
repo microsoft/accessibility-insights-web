@@ -41,6 +41,38 @@ export class IssueDetailsTextGenerator {
         return text;
     }
 
+    public buildGithubText(data: CreateIssueDetailsTextData): string {
+        const result = data.ruleResult;
+        const standardTags = this.standardizeTags(data);
+
+        const text = [
+            `**Issue**: ${result.help} (\`${result.ruleId}\`: ${result.helpUrl})`,
+            ``,
+            `**Target application title**: ${data.pageTitle}`,
+            `**Target application url**: ${data.pageUrl}`,
+            ``,
+            `**Element path**: ${data.ruleResult.selector}`,
+            ``,
+            `**Snippet**:`,
+            ``,
+            `    ${this.collapseConsecutiveSpaces(result.snippet)}`,
+            ``,
+            `**How to fix**:`,
+            `${result.failureSummary}`,
+            ``,
+            `**Environment**:`,
+            `${this.browserSpec}`,
+            ``,
+            `====`,
+            ``,
+            'This accessibility issue was found using Accessibility Insights for Web, ' +
+                'a tool that helps find and fix accessibility issues. Get more information & download ' +
+                'this tool at http://aka.ms/AccessibilityInsights.',
+        ].join('\n');
+
+        return text;
+    }
+
     private collapseConsecutiveSpaces(input: string): string {
         return input.replace(/\s+/g, ' ');
     }

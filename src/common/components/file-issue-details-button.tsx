@@ -41,7 +41,7 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
         };
 
         const title = this.props.deps.issueDetailsTextGenerator.buildTitle(data);
-        const body = this.props.deps.issueDetailsTextGenerator.buildText(data);
+        const body = this.props.deps.issueDetailsTextGenerator.buildGithubText(data);
 
         const encodedIssue = `/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
         return `${this.props.issueTrackerPath}${encodedIssue}`;

@@ -18,7 +18,7 @@ describe('FileIssueDetailsButtonTest', () => {
             .returns(() => 'buildTitle')
             .verifiable();
         issueDetailsTextGeneratorMock
-            .setup(generator => generator.buildText(It.isAny()))
+            .setup(generator => generator.buildGithubText(It.isAny()))
             .returns(() => 'buildText')
             .verifiable();
 
@@ -48,7 +48,7 @@ describe('FileIssueDetailsButtonTest', () => {
             .returns(() => 'buildTitle')
             .verifiable(Times.never());
         issueDetailsTextGeneratorMock
-            .setup(generator => generator.buildText(It.isAny()))
+            .setup(generator => generator.buildGithubText(It.isAny()))
             .returns(() => 'buildText')
             .verifiable(Times.never());
 
