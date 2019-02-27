@@ -5,7 +5,7 @@ import { React, create } from '../../common';
 export const howToTest = create(({ Markup }) => (
     <>
         <p>
-            <em>Note: this test requires you to use a keyboard and to visually identify interactive elements.</em>
+            <Markup.Emphasis>Note: this test requires you to use a keyboard and to visually identify interactive elements.</Markup.Emphasis>
         </p>
         <h2>How to test</h2>
         <ol>
