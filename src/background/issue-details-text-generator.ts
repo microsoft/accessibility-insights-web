@@ -58,7 +58,8 @@ export class IssueDetailsTextGenerator {
             `    ${this.collapseConsecutiveSpaces(result.snippet)}`,
             ``,
             `**How to fix**:`,
-            `${result.failureSummary}`,
+            ``,
+            `${this.markdownEscapeBlock(result.failureSummary)}`,
             ``,
             `**Environment**:`,
             `${this.browserSpec}`,
@@ -75,6 +76,13 @@ export class IssueDetailsTextGenerator {
 
     private collapseConsecutiveSpaces(input: string): string {
         return input.replace(/\s+/g, ' ');
+    }
+
+    private markdownEscapeBlock(input: string): string {
+        return input
+            .split('\n')
+            .map(line => `    ${line}`)
+            .join('\n');
     }
 
     public buildTitle(data: CreateIssueDetailsTextData, standardTags?: string[]): string {
