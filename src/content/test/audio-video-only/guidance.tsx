@@ -45,15 +45,13 @@ export const guidance = create(({ Markup, Link }) => (
 
         <h3>Provide an alternative for audio-only content </h3>
         <Markup.Links>
-            <Link.AudioVideoOnlySuccessCriterion />
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G158">
-                Providing an alternative for time-based media for audio-only content
-            </Markup.HyperLink>
+            <Link.WCAG21UnderstandingAudioOnlyViewOnlyPrerecorded />
+            <Link.WCAG21TechniquesG158 />
         </Markup.Links>
 
         <h3>Provide an alternative for video-only content </h3>
         <Markup.Links>
-            <Link.AudioVideoOnlySuccessCriterion />
+            <Link.WCAG21UnderstandingAudioOnlyViewOnlyPrerecorded />
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G159">
                 Providing an alternative for time-based media for video-only content
             </Markup.HyperLink>

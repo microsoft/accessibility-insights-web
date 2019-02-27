@@ -48,7 +48,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
 
         <h3>WCAG success criteria</h3>
         <Markup.Links>
-            <Link.AudioVideoOnlySuccessCriterion />
+            <Link.WCAG21UnderstandingAudioOnlyViewOnlyPrerecorded />
         </Markup.Links>
 
         <h3>Sufficient techniques</h3>

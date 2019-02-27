@@ -38,14 +38,12 @@ export const infoAndExamples = create(({ Markup, Link }) => (
 
         <h3>WCAG success criteria</h3>
         <Markup.Links>
-            <Link.AudioVideoOnlySuccessCriterion />
+            <Link.WCAG21UnderstandingAudioOnlyViewOnlyPrerecorded />
         </Markup.Links>
 
         <h3>Sufficient techniques</h3>
         <Markup.Links>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G158">
-                Providing an alternative for time-based media for audio-only content
-            </Markup.HyperLink>
+            <Link.WCAG21TechniquesG158 />
         </Markup.Links>
     </>
 ));
