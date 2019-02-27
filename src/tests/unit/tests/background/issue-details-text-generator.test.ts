@@ -59,10 +59,9 @@ describe('Issue details text builder', () => {
     test('buildGithubText', () => {
         const actual = testSubject.buildGithubText(sampleIssueDetailsData);
         const expected = [
-            `**Issue**: \`RR-help\` (\`RR-rule-id\`: RR-help-url)`,
+            `**Issue**: \`RR-help\` ([\`RR-rule-id\`](RR-help-url))`,
             ``,
-            `**Target application title**: pageTitle<x>`,
-            `**Target application url**: pageUrl`,
+            `**Target application**: [pageTitle<x>](pageUrl)`,
             ``,
             `**Element path**: RR-selector<x>`,
             ``,
