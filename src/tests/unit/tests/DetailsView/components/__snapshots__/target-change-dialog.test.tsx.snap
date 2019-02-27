@@ -1,5 +1,89 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render the only information available in prevTab is appRefreshed 1`] = `
+<StyledWithResponsiveMode
+  dialogContentProps={
+    Object {
+      "title": "Assessment in progress",
+      "type": 0,
+    }
+  }
+  hidden={false}
+  modalProps={
+    Object {
+      "className": "target-change-dialog-modal",
+      "containerClassName": "insights-dialog-main-override target-change-dialog",
+      "isBlocking": true,
+    }
+  }
+>
+  <div>
+    There is already an assessment running on 
+    <StyledTooltipHostBase
+      calloutProps={
+        Object {
+          "gapSpace": 0,
+        }
+      }
+      id="previous-target-page-link"
+    >
+      <NewTabLink
+        className="target-page-link"
+        role="link"
+      />
+    </StyledTooltipHostBase>
+    . Would you like to continue your current assessment on the new target of 
+    <StyledTooltipHostBase
+      calloutProps={
+        Object {
+          "gapSpace": 0,
+        }
+      }
+      content="https://www.abc.com"
+      id="current-target-page-link"
+    >
+      <StyledLinkBase
+        className="target-page-link"
+        role="link"
+      >
+        test title 2
+      </StyledLinkBase>
+    </StyledTooltipHostBase>
+    ?
+  </div>
+  <p>
+    <Term>
+      Note
+    </Term>
+    : If ‘Continue previous’ is selected, the previous assessment will be connected to this new page.
+  </p>
+  <p>
+    If ‘Start new’ is selected, all previous progress will be lost.
+  </p>
+  <StyledDialogFooterBase>
+    <div
+      className="target-change-dialog-button-container"
+    >
+      <div
+        className="button ms-Grid-col  action-cancel-button-col restart-button"
+      >
+        <CustomizedDefaultButton
+          text="Start new"
+        />
+      </div>
+      <div
+        className="button ms-Grid-col  action-cancel-button-col continue-button"
+      >
+        <CustomizedDefaultButton
+          autoFocus={true}
+          text="Continue previous"
+        />
+      </div>
+    </div>
+  </StyledDialogFooterBase>
+</StyledWithResponsiveMode>
+`;
+
 exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when previous tab info shows app is refreshed 1`] = `
 <StyledWithResponsiveMode
   dialogContentProps={
