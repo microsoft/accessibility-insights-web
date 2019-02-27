@@ -53,7 +53,6 @@ export class FileIssueDetailsDialog extends React.Component<FileIssueDetailsDial
                     type: DialogType.normal,
                 }}
                 modalProps={{
-                    titleAriaId: 'fileIssueDetailsDialog',
                     isBlocking: false,
                     containerClassName: 'insights-file-issue-details-dialog-container',
                     layerProps: {

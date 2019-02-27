@@ -13,12 +13,15 @@
     font-family: $fontFamily;
 }
 
-div.insights-dialog-main-container,
-div.insights-file-issue-details-dialog-container {
+div.insights-dialog-main-container {
     width: 25%;
     max-width: 25%;
-    min-width: 520px;
     user-select: text;
+    min-width: 520px;
+}
+
+div.insights-file-issue-details-dialog-container {
+    max-width: 370px;
 }
 
 #insights-inspect-selector-layout {
@@ -27,6 +30,10 @@ div.insights-file-issue-details-dialog-container {
 
 .insights-modal {
     overflow: hidden !important;
+}
+
+.insights-dialog-main-override .insights-dialog-main-container .ms-Dialog-title {
+    padding-left: 19px;
 }
 
 .insights-dialog-main-override-shadow {
@@ -38,7 +45,7 @@ div.insights-file-issue-details-dialog-container {
     }
 }
 
-.insights-dialog-main-override .ms-Dialog-inner {
+.insights-dialog-main-override .insights-dialog-main-container .ms-Dialog-inner {
     padding: 0 19px 20px !important;
 }
 
@@ -62,7 +69,7 @@ div.insights-file-issue-details-dialog-container {
     font-family: FabricMDL2Icons;
 }
 
-.insights-dialog-main-override .insights-dialog-button-create-bug,
+.insights-dialog-main-override .create-bug-button,
 .insights-dialog-main-override .copy-issue-details-button {
     margin-left: 8px !important;
 }
