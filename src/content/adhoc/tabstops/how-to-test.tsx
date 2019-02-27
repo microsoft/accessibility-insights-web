@@ -10,7 +10,7 @@ export const howToTest = create(({ Markup }) => (
         <h2>How to test</h2>
         <ol>
             <li>Refresh the target page to put it in its default state.</li>
-            <li>Turn on the Show tab stops toggle. An empty circle will highlight the current tab stop.</li>
+            <li>Turn on the Show tab stops toggle. An empty circle will highlight the element with focus.</li>
             <li>
                 Use your keyboard to move input focus through all the interactive elements in the page:
                 <ul>
