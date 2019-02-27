@@ -20,7 +20,7 @@ const howToTest: JSX.Element = (
     <div>
         <p>
             The visual helper for this requirement highlights content positioned on the screen using CSS{' '}
-            <Markup.Term>position:absolute</Markup.Term> or <Markup.Term>float:right</Markup.Term>
+            <Markup.Term>position:absolute</Markup.Term> or <Markup.Term>float:right</Markup.Term>.
         </p>
         <p>
             This procedure also uses the Chrome{' '}
@@ -31,7 +31,7 @@ const howToTest: JSX.Element = (
         </p>
         <ol>
             <li>
-                Examine the target page to determine whether it has any positioned (highlighted) content that's meaningful
+                Examine the target page to determine whether it has any positioned (highlighted) content that's meaningful:
                 <ol>
                     <li>
                         Content is <Markup.Emphasis>meaningful</Markup.Emphasis> if it conveys information that isn't available through

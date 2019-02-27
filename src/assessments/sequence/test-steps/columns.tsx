@@ -18,7 +18,7 @@ const howToTest: JSX.Element = (
                 Search the page's HTML to determine whether the page includes any <Markup.Code>{'<pre>'}</Markup.Code> elements.
             </li>
             <li>
-                Examine each <Markup.Tag tagName="prev" /> element to verify that white space characters are not used to arrange the text
+                Examine each <Markup.Tag tagName="pre" /> element to verify that white space characters are not used to arrange the text
                 into a column. White space characters include spaces, tabs, line breaks, and carriage returns.
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />

@@ -26,7 +26,7 @@ const dataTablesHowToTest: JSX.Element = (
                 page.
             </li>
             <li>
-                Examine the target page to identify any <Markup.Emphasis>data</Markup.Emphasis> tables.
+                Examine the target page to identify any <Markup.Emphasis>data</Markup.Emphasis> tables:
                 <ol>
                     <li>
                         A <Markup.Emphasis>data</Markup.Emphasis> table organizes content into rows and columns to show relationships.
