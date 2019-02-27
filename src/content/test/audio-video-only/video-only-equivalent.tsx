@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { React, create } from '../../common';
-import { Link } from 'react-router-dom';
-import { LinksAssessment } from '../../../assessments/links/assessments';
 
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
