@@ -29,7 +29,7 @@ const howToTest: JSX.Element = (
                 <ol>
                     <li>
                         A <Markup.Emphasis>layout</Markup.Emphasis> table is used to visually position content without implying any
-                        relationships
+                        relationships.
                     </li>
                     <li>
                         A <Markup.Emphasis>data</Markup.Emphasis> table organizes content into rows and columns to show relationships.

@@ -18,7 +18,9 @@ const quotesHowToTest: JSX.Element = (
     <div>
         <p>This procedure uses the Chrome Developer Tools (F12) to inspect the page's HTML.</p>
         <ol>
-            <li>Search the page's HTML to determine whether the page includes any elements.</li>
+            <li>
+                Search the page's HTML to determine whether the page includes any <Markup.Tag tagName="blockquote" /> elements.
+            </li>
             <li>
                 Examine each <Markup.Tag tagName="blockquote" /> element to verify it contains a quote.
             </li>
