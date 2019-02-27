@@ -59,4 +59,8 @@ export const link = {
         'Providing an alternative for time-based media for audio-only content',
         'https://www.w3.org/WAI/WCAG21/Techniques/general/G158',
     ),
+    WCAG21TechniquesG159: linkTo(
+        'Providing an alternative for time-based media for video-only content',
+        'https://www.w3.org/WAI/WCAG21/Techniques/general/G159',
+    ),
 };
