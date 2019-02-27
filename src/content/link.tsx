@@ -67,4 +67,8 @@ export const link = {
         'Providing audio that describes the important video content and describing it as such',
         'https://www.w3.org/WAI/WCAG21/Techniques/general/G166',
     ),
+    WCAG21TechniquesG83: linkTo(
+        'Providing text descriptions to identify required fields that were not completed',
+        'https://www.w3.org/WAI/WCAG21/Techniques/general/G83',
+    ),
 };

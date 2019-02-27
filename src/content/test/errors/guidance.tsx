@@ -90,9 +90,7 @@ export const guidance = create(({ Markup, Link }) => (
 
         <h5>Use one of these techniques if a form contains required fields:</h5>
         <Markup.Links>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G83">
-                Providing text descriptions to identify required fields that were not completed
-            </Markup.HyperLink>
+            <Link.WCAG21TechniquesG83 />
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA21">
                 Using Aria-Invalid to Indicate An Error Field
             </Markup.HyperLink>
@@ -149,9 +147,7 @@ export const guidance = create(({ Markup, Link }) => (
 
         <h5>Use one of these techniques if a required field is empty:</h5>
         <Markup.Links>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G83">
-                Providing text descriptions to identify required fields that were not completed
-            </Markup.HyperLink>
+            <Link.WCAG21TechniquesG83 />
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA2">
                 Identifying a required field with the aria-required property
             </Markup.HyperLink>

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { React, create } from '../../common';
 
-export const infoAndExamples = create(({ Markup }) => (
+export const infoAndExamples = create(({ Markup, Link }) => (
     <>
         <h1>Cues</h1>
         <p>If a native widget adopts certain interactive states, it must provide appropriate cues.</p>
@@ -61,9 +61,7 @@ export const infoAndExamples = create(({ Markup }) => (
         </Markup.Links>
         <h4>Sufficient techniques</h4>
         <Markup.Links>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G83">
-                Providing text descriptions to identify required fields that were not completed
-            </Markup.HyperLink>
+            <Link.WCAG21TechniquesG83 />
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H90">
                 Indicating required form controls using label or legend
             </Markup.HyperLink>
