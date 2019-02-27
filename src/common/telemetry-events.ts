@@ -76,37 +76,37 @@ export enum TelemetryEventSource {
     ContentPage,
 }
 
-export type SourceAndTriggeredBy = {
+export type BaseTelemetryData = {
     source: TelemetryEventSource;
     triggeredBy: TriggeredBy;
 };
 
 export type ToggleTelemetryData = {
     enabled: boolean;
-} & SourceAndTriggeredBy;
+} & BaseTelemetryData;
 
 export type FeatureFlagToggleTelemetryData = {
     enabled: boolean;
     featureFlagId: string;
-} & SourceAndTriggeredBy;
+} & BaseTelemetryData;
 
 export type ExportResultsTelemetryData = {
     exportResultsType: string;
     exportResultsData: number;
-} & SourceAndTriggeredBy;
+} & BaseTelemetryData;
 
 export type DetailsViewOpenTelemetryData = {
     detailsView: string;
-} & SourceAndTriggeredBy;
+} & BaseTelemetryData;
 
 export type DetailsViewOpenedTelemetryData = {
     selectedDetailsViewPivot: string;
-} & SourceAndTriggeredBy;
+} & BaseTelemetryData;
 
 export type TestStepSelectTelemetryData = {
     selectedTest: string;
     selectedStep: string;
-} & SourceAndTriggeredBy;
+} & BaseTelemetryData;
 
 export type RequirementStatusTelemetryData = {
     passed: boolean;
@@ -115,15 +115,15 @@ export type RequirementStatusTelemetryData = {
 
 export type DetailsViewPivotSelectedTelemetryData = {
     pivotKey: string;
-} & SourceAndTriggeredBy;
+} & BaseTelemetryData;
 
 export type AssessmentTelemetryData = {
     selectedTest: string;
-} & SourceAndTriggeredBy;
+} & BaseTelemetryData;
 
 export type TestStepActionTelemetryData = {
     selectedStep: string;
-} & SourceAndTriggeredBy;
+} & BaseTelemetryData;
 
 export type ModifiedCommandsTelemetryData = {
     modifiedCommands: string;
@@ -132,11 +132,11 @@ export type ModifiedCommandsTelemetryData = {
 export type InspectTelemetryData = {
     frameUrl?: string;
     target?: string[];
-} & SourceAndTriggeredBy;
+} & BaseTelemetryData;
 
 export type ScopingTelemetryData = {
     inputType: string;
-} & SourceAndTriggeredBy;
+} & BaseTelemetryData;
 
 export type AssessmentRequirementScanTelemetryData = {
     requirementName: string;
@@ -156,7 +156,7 @@ export type IssuesAnalyzerScanTelemetryData = {
 } & RuleAnalyzerScanTelemetryData;
 
 export type TelemetryData =
-    | SourceAndTriggeredBy
+    | BaseTelemetryData
     | ToggleTelemetryData
     | FeatureFlagToggleTelemetryData
     | ExportResultsTelemetryData

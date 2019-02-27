@@ -31,10 +31,10 @@ import { NotificationCreator } from '../../../../../common/notification-creator'
 import {
     DetailsViewOpenTelemetryData,
     DetailsViewPivotSelectedTelemetryData,
-    SourceAndTriggeredBy,
     TelemetryEventSource,
     ToggleTelemetryData,
     TriggeredBy,
+    BaseTelemetryData,
 } from '../../../../../common/telemetry-events';
 import * as TelemetryEvents from '../../../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
@@ -683,7 +683,7 @@ describe('ActionCreatorTest', () => {
     test('registerCallback for onClosePreviewFeaturesPanel', () => {
         const tabId = 1;
         const actionName = 'closePreviewFeatures';
-        const telemetryData: SourceAndTriggeredBy = {
+        const telemetryData: BaseTelemetryData = {
             triggeredBy: 'stub triggered by' as TriggeredBy,
             source: testSource,
         };
@@ -707,7 +707,7 @@ describe('ActionCreatorTest', () => {
 
     test('registerCallback for onOpenSettingsPanel', () => {
         const tabId: number = 1;
-        const telemetryData: SourceAndTriggeredBy = {
+        const telemetryData: BaseTelemetryData = {
             triggeredBy: 'mouseclick',
             source: testSource,
         };
@@ -733,7 +733,7 @@ describe('ActionCreatorTest', () => {
 
     test('registerCallback for onCloseSettingPanel', () => {
         const tabId = 1;
-        const telemetryData: SourceAndTriggeredBy = {
+        const telemetryData: BaseTelemetryData = {
             triggeredBy: 'stub triggered by' as TriggeredBy,
             source: testSource,
         };
@@ -757,7 +757,7 @@ describe('ActionCreatorTest', () => {
 
     test('registerCallback for onAssessmentScanCompleted', () => {
         const tabId = -1;
-        const telemetryData: SourceAndTriggeredBy = {
+        const telemetryData: BaseTelemetryData = {
             triggeredBy: 'stub triggered by' as TriggeredBy,
             source: testSource,
         };
@@ -917,7 +917,7 @@ describe('ActionCreatorTest', () => {
     test('registerCallback for onOpenPreviewFeaturesPanel', () => {
         const tabId = 1;
         const actionName = 'openPreviewFeatures';
-        const telemetryData: SourceAndTriggeredBy = {
+        const telemetryData: BaseTelemetryData = {
             triggeredBy: 'stub triggered by' as TriggeredBy,
             source: testSource,
         };

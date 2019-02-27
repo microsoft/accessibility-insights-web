@@ -16,13 +16,13 @@ import {
     RequirementStatusTelemetryData,
     RuleAnalyzerScanTelemetryData,
     ScopingTelemetryData,
-    SourceAndTriggeredBy,
     TelemetryEventSource,
     TestStepActionTelemetryData,
     TestStepSelectTelemetryData,
     ToggleTelemetryData,
     TriggeredByNotApplicable,
     TriggeredBy,
+    BaseTelemetryData,
 } from './telemetry-events';
 import { ForIssuesAnalyzerScanCallback, ForRuleAnalyzerScanCallback } from './types/analyzer-telemetry-callbacks';
 import { DetailsViewPivotType } from './types/details-view-pivot-type';
@@ -181,30 +181,30 @@ export class TelemetryDataFactory {
         };
     }
 
-    public fromDetailsViewNoTriggeredBy(): SourceAndTriggeredBy {
+    public fromDetailsViewNoTriggeredBy(): BaseTelemetryData {
         return {
             triggeredBy: TriggeredByNotApplicable,
             source: TelemetryEventSource.DetailsView,
         };
     }
 
-    public fromDetailsView(event: SupportedMouseEvent): SourceAndTriggeredBy {
+    public fromDetailsView(event: SupportedMouseEvent): BaseTelemetryData {
         return this.withSourceAndTriggeredBy(event, TelemetryEventSource.DetailsView);
     }
 
-    public fromNewBugButton(event: SupportedMouseEvent): SourceAndTriggeredBy {
+    public fromNewBugButton(event: SupportedMouseEvent): BaseTelemetryData {
         return this.withSourceAndTriggeredBy(event, TelemetryEventSource.NewBugButton);
     }
 
-    public fromHamburgetMenu(event: SupportedMouseEvent): SourceAndTriggeredBy {
+    public fromHamburgetMenu(event: SupportedMouseEvent): BaseTelemetryData {
         return this.withSourceAndTriggeredBy(event, TelemetryEventSource.HamburgerMenu);
     }
 
-    public fromLaunchPad(event: SupportedMouseEvent): SourceAndTriggeredBy {
+    public fromLaunchPad(event: SupportedMouseEvent): BaseTelemetryData {
         return this.withSourceAndTriggeredBy(event, TelemetryEventSource.LaunchPad);
     }
 
-    public withSourceAndTriggeredBy(event: SupportedMouseEvent, source: TelemetryEventSource): SourceAndTriggeredBy {
+    public withSourceAndTriggeredBy(event: SupportedMouseEvent, source: TelemetryEventSource): BaseTelemetryData {
         return {
             triggeredBy: this.getTriggeredBy(event),
             source: source,

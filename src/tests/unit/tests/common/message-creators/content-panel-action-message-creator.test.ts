@@ -6,11 +6,11 @@ import { ContentActionMessageCreator } from '../../../../../common/message-creat
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import {
-    SourceAndTriggeredBy,
     CONTENT_HYPERLINK_OPENED,
     CONTENT_PAGE_OPENED,
     TelemetryEventSource,
     TriggeredBy,
+    BaseTelemetryData,
 } from '../../../../../common/telemetry-events';
 
 describe('ContentPanelActionMessageCreator', () => {
@@ -51,7 +51,7 @@ describe('ContentPanelActionMessageCreator', () => {
     });
 
     it('creates closeContentPanel', () => {
-        const telemetry = Mock.ofType<SourceAndTriggeredBy>().object;
+        const telemetry = Mock.ofType<BaseTelemetryData>().object;
         telemetryDataFactoryMock.setup(tdf => tdf.fromDetailsViewNoTriggeredBy()).returns(() => telemetry);
 
         creator.closeContentPanel();

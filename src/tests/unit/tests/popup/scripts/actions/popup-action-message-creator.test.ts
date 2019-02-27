@@ -5,8 +5,14 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { OnDetailsViewOpenPayload } from '../../../../../../background/actions/action-payloads';
 import { Messages } from '../../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../../common/telemetry-data-factory';
-import * as TelemetryEvents from '../../../../../../common/telemetry-events';
-import { DetailsViewOpenTelemetryData, TelemetryEventSource } from '../../../../../../common/telemetry-events';
+import {
+    DetailsViewOpenTelemetryData,
+    TelemetryEventSource,
+    BaseTelemetryData,
+    POPUP_INITIALIZED,
+    LAUNCH_PANEL_OPEN,
+    TUTORIAL_OPEN,
+} from '../../../../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
 import { WindowUtils } from '../../../../../../common/window-utils';
@@ -42,7 +48,7 @@ describe('PopupActionMessageCreatorTest', () => {
 
     test('popupInitialized', () => {
         const payload = {
-            eventName: TelemetryEvents.POPUP_INITIALIZED,
+            eventName: POPUP_INITIALIZED,
             telemetry: {
                 source: TelemetryEventSource.LaunchPad,
                 triggeredBy: 'N/A',
@@ -65,7 +71,7 @@ describe('PopupActionMessageCreatorTest', () => {
     test('openLaunchPad', () => {
         const panelType = LaunchPanelType.AdhocToolsPanel;
         const payload = {
-            eventName: TelemetryEvents.LAUNCH_PANEL_OPEN,
+            eventName: LAUNCH_PANEL_OPEN,
             telemetry: {
                 source: TelemetryEventSource.LaunchPad,
                 triggeredBy: 'N/A',
@@ -163,7 +169,7 @@ describe('PopupActionMessageCreatorTest', () => {
 
     test('openShortcutConfigureTab', () => {
         const event = eventStubFactory.createKeypressEvent() as any;
-        const telemetry: TelemetryEvents.SourceAndTriggeredBy = {
+        const telemetry: BaseTelemetryData = {
             triggeredBy: 'keypress',
             source: TelemetryEventSource.HamburgerMenu,
         };
@@ -190,7 +196,7 @@ describe('PopupActionMessageCreatorTest', () => {
 
     test('openTutorial', () => {
         const event = eventStubFactory.createKeypressEvent() as any;
-        const telemetry: TelemetryEvents.SourceAndTriggeredBy = {
+        const telemetry: BaseTelemetryData = {
             triggeredBy: 'keypress',
             source: TelemetryEventSource.LaunchPad,
         };
@@ -199,7 +205,7 @@ describe('PopupActionMessageCreatorTest', () => {
             tabId: 1,
             type: Messages.Telemetry.Send,
             payload: {
-                eventName: TelemetryEvents.TUTORIAL_OPEN,
+                eventName: TUTORIAL_OPEN,
                 telemetry,
             },
         };

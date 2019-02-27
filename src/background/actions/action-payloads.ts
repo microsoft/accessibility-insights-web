@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { SourceAndTriggeredBy, TelemetryData, ToggleTelemetryData } from '../../common/telemetry-events';
+import { BaseTelemetryData, TelemetryData, ToggleTelemetryData } from '../../common/telemetry-events';
 import * as TelemetryEvents from '../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
-import { VisualizationType } from '../../common/types/visualization-type';
-import { LaunchPanelType } from '../../popup/scripts/components/popup-view';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
+import { VisualizationType } from '../../common/types/visualization-type';
 import { ITabStopEvent } from '../../injected/tab-stops-listener';
+import { LaunchPanelType } from '../../popup/scripts/components/popup-view';
 
 export interface BaseActionPayload {
     telemetry?: TelemetryData;
@@ -89,7 +89,7 @@ export interface VisualizationTogglePayload extends ToggleActionPayload {
 }
 
 export interface SwitchToTargetTabPayload extends BaseActionPayload {
-    telemetry: SourceAndTriggeredBy;
+    telemetry: BaseTelemetryData;
 }
 
 export interface PageVisibilityChangeTabPayload extends BaseActionPayload {
