@@ -42,7 +42,7 @@ export const infoAndExamples = create(({ Markup }) => (
             <ul>
             <li>
             <a href="https://www.w3.org">
-            Web Content Accessibility Guidelines</a>
+            World Wide Web Consortium (W3C)</a>
             </li>
             ...
             `}
@@ -58,7 +58,7 @@ export const infoAndExamples = create(({ Markup }) => (
             <ul>
             <li>
             <a href="https://www.w3.org">
-            Web Content Accessibility Guidelines</a>
+            World Wide Web Consortium (W3C)</a>
             </li>
             ...`}
         />
