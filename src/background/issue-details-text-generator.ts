@@ -46,7 +46,7 @@ export class IssueDetailsTextGenerator {
         const standardTags = this.standardizeTags(data);
 
         const text = [
-            `**Issue**: ${result.help} (\`${result.ruleId}\`: ${result.helpUrl})`,
+            `**Issue**: \`${result.help}\` (\`${result.ruleId}\`: ${result.helpUrl})`,
             ``,
             `**Target application title**: ${data.pageTitle}`,
             `**Target application url**: ${data.pageUrl}`,
