@@ -54,9 +54,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <h3>Sufficient techniques</h3>
         <Markup.Links>
             <Link.WCAG21TechniquesG159 />
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G166">
-                Providing audio that describes the important video content and describing it as such
-            </Markup.HyperLink>
+            <Link.WCAG21TechniquesG166 />
         </Markup.Links>
     </>
 ));
