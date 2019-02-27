@@ -1,19 +1,31 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { mount, shallow } from 'enzyme';
-import * as React from 'react';
-import { IMock, It, Mock, Times } from 'typemoq';
-
+import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 import { Dialog } from 'office-ui-fabric-react/lib/Dialog';
+import * as React from 'react';
+import { IMock, Mock, Times } from 'typemoq';
+
 import { FileIssueDetailsDialog, FileIssueDetailsDialogProps } from '../../../../../common/components/file-issue-details-dialog';
 import { FileIssueDetailsHandler } from '../../../../../common/file-issue-details-handler';
-import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 
-describe('FileIssueDetailsDialogTest', () => {
+describe('FileIssueDetailsDialog', () => {
     let fileIssueDetailsHandlerMock: IMock<FileIssueDetailsHandler>;
     beforeEach(() => {
         fileIssueDetailsHandlerMock = Mock.ofType(FileIssueDetailsHandler);
         fileIssueDetailsHandlerMock.setup(handler => handler.onLayoutDidMount()).verifiable();
+    });
+
+    it('renders as expected', () => {
+        const props: FileIssueDetailsDialogProps = {
+            isOpen: true,
+            onDismiss: null,
+            onOpenSettings: null,
+            fileIssueDetailsHandler: fileIssueDetailsHandlerMock.object,
+        };
+
+        const wrapper = shallow(<FileIssueDetailsDialog {...props} />);
+        expect(wrapper.getElement()).toMatchSnapshot();
     });
 
     test('render while open', () => {
