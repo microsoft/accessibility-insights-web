@@ -55,12 +55,16 @@ export const infoAndExamples = create(({ Markup }) => (
         <h3>WCAG success criteria</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Understanding/consistent-identification">
-                Understanding Success Criterion 3.2.3: Consistent Identification
+                Understanding Success Criterion 3.2.4: Consistent Identification
             </Markup.HyperLink>
         </Markup.Links>
 
         <h3>Sufficent techniques</h3>
-        <h4>Using labels, names, and text alternatives consistently for content that has the same functionality</h4>
+        <Markup.Links>
+            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G197">
+                Using labels, names, and text alternatives consistently for content that has the same functionality
+            </Markup.HyperLink>
+        </Markup.Links>
 
         <h3>Common failures</h3>
         <Markup.Links>
