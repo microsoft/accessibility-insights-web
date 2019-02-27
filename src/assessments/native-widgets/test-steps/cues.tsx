@@ -37,7 +37,6 @@ const howToTest: JSX.Element = (
             <li>
                 In the target page, interact with each native widget to determine whether it adopts any of these states:
                 <ol>
-                    <li>Autocomplete</li>
                     <li>Disabled</li>
                     <li>Read-only</li>
                     <li>Required</li>
