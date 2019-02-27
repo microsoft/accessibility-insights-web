@@ -39,7 +39,7 @@ export class TargetPageActionMessageCreator extends BaseActionMessageCreator {
 
     @autobind
     public copyIssueDetailsClicked(event: React.MouseEvent<any>): void {
-        const telemetryData = this.telemetryFactory.withSourceAndTriggeredBy(event, TelemetryEvents.TelemetryEventSource.TargetPage);
+        const telemetryData = this.telemetryFactory.withTriggeredByAndSource(event, TelemetryEvents.TelemetryEventSource.TargetPage);
         this.sendTelemetry(TelemetryEvents.COPY_ISSUE_DETAILS, telemetryData);
     }
 
@@ -47,7 +47,7 @@ export class TargetPageActionMessageCreator extends BaseActionMessageCreator {
     public openSettingsPanel(event: React.MouseEvent<HTMLElement>): void {
         const type = Messages.SettingsPanel.OpenPanel;
         const source = TelemetryEventSource.TargetPage;
-        const telemetry = this.telemetryFactory.withSourceAndTriggeredBy(event, source);
+        const telemetry = this.telemetryFactory.withTriggeredByAndSource(event, source);
         const payload: BaseActionPayload = {
             telemetry,
         };

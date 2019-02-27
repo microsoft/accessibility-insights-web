@@ -35,7 +35,7 @@ describe('ContentPanelActionMessageCreator', () => {
 
     it('creates openContentPanel', () => {
         const telemetry = { triggeredBy, source };
-        telemetryDataFactoryMock.setup(tdf => tdf.withSourceAndTriggeredBy(event, source)).returns(() => telemetry);
+        telemetryDataFactoryMock.setup(tdf => tdf.withTriggeredByAndSource(event, source)).returns(() => telemetry);
 
         creator.openContentPanel(event, contentPath);
 
@@ -68,7 +68,7 @@ describe('ContentPanelActionMessageCreator', () => {
 
     it('creates openContentPage', () => {
         const telemetry = { triggeredBy, source, contentPath };
-        telemetryDataFactoryMock.setup(tdf => tdf.withSourceAndTriggeredBy(event, source)).returns(() => telemetry);
+        telemetryDataFactoryMock.setup(tdf => tdf.withTriggeredByAndSource(event, source)).returns(() => telemetry);
 
         creator.openContentPage(event, contentPath);
 
@@ -85,7 +85,7 @@ describe('ContentPanelActionMessageCreator', () => {
 
     it('creates openContentHyperLink', () => {
         const telemetry = { triggeredBy, source, href };
-        telemetryDataFactoryMock.setup(tdf => tdf.withSourceAndTriggeredBy(event, source)).returns(() => telemetry);
+        telemetryDataFactoryMock.setup(tdf => tdf.withTriggeredByAndSource(event, source)).returns(() => telemetry);
 
         creator.openContentHyperLink(event, href);
 

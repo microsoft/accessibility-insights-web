@@ -16,7 +16,7 @@ export class BugActionMessageCreator extends BaseActionMessageCreator {
 
     public openSettingsPanel(event: React.MouseEvent<HTMLElement>, source: TelemetryEventSource): void {
         const type = Messages.SettingsPanel.OpenPanel;
-        const telemetry = this.telemetryFactory.withSourceAndTriggeredBy(event, source);
+        const telemetry = this.telemetryFactory.withTriggeredByAndSource(event, source);
         const payload: BaseActionPayload = {
             telemetry,
         };

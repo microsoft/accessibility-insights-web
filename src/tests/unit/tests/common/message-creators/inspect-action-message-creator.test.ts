@@ -44,7 +44,7 @@ describe('InspectActionMessageCreatorTest', () => {
         };
 
         telemetryFactoryMock
-            .setup(tf => tf.withSourceAndTriggeredBy(event, testSource))
+            .setup(tf => tf.withTriggeredByAndSource(event, testSource))
             .returns(() => telemetry)
             .verifiable(Times.once());
 

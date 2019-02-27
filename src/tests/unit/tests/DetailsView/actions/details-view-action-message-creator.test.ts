@@ -189,7 +189,6 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
     test('sendPivotItemClicked', () => {
         const pivot = DetailsViewPivotType.allTest;
-        const tabId = 1;
         const telemetryData: DetailsViewPivotSelectedTelemetryData = {
             triggeredBy: 'keypress',
             pivotKey: DetailsViewPivotType[pivot],
@@ -795,7 +794,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         };
 
         telemetryFactoryMock
-            .setup(tf => tf.withSourceAndTriggeredBy(event, TelemetryEventSource.DetailsView))
+            .setup(tf => tf.withTriggeredByAndSource(event, TelemetryEventSource.DetailsView))
             .returns(() => telemetry)
             .verifiable(Times.once());
         setupPostMessage(expectedMessage);

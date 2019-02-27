@@ -29,7 +29,7 @@ export class ContentActionMessageCreator extends BaseActionMessageCreator {
     @autobind
     public openContentPage(event: React.MouseEvent<any> | MouseEvent, contentPath: string): void {
         const type = Messages.Telemetry.Send;
-        const telemetry = this.telemetryFactory.withSourceAndTriggeredBy(event, this.source);
+        const telemetry = this.telemetryFactory.withTriggeredByAndSource(event, this.source);
         const payload = {
             eventName: CONTENT_PAGE_OPENED,
             telemetry: { ...telemetry, contentPath },
@@ -49,7 +49,7 @@ export class ContentActionMessageCreator extends BaseActionMessageCreator {
     @autobind
     public openContentHyperLink(event: React.MouseEvent<any> | MouseEvent, href: string): void {
         const type = Messages.Telemetry.Send;
-        const telemetry = this.telemetryFactory.withSourceAndTriggeredBy(event, this.source);
+        const telemetry = this.telemetryFactory.withTriggeredByAndSource(event, this.source);
         const payload = {
             eventName: CONTENT_HYPERLINK_OPENED,
             telemetry: { ...telemetry, href },
@@ -64,7 +64,7 @@ export class ContentActionMessageCreator extends BaseActionMessageCreator {
     @autobind
     public openContentPanel(event: React.MouseEvent<HTMLElement> | MouseEvent, contentPath: string): void {
         const type = Messages.ContentPanel.OpenPanel;
-        const telemetry = this.telemetryFactory.withSourceAndTriggeredBy(event, this.source);
+        const telemetry = this.telemetryFactory.withTriggeredByAndSource(event, this.source);
         const payload: ContentPayload = {
             telemetry,
             contentPath,

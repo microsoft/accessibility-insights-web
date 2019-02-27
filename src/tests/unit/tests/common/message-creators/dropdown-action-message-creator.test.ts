@@ -67,7 +67,7 @@ describe('DropdownActionMessageCreatorTest', () => {
 
     function setupTelemetryFactoryCall() {
         telemetryFactoryMock
-            .setup(tf => tf.withSourceAndTriggeredBy(event, testSource))
+            .setup(tf => tf.withTriggeredByAndSource(event, testSource))
             .returns(() => telemetryData)
             .verifiable(Times.once());
     }
