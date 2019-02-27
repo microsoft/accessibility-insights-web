@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as axe from 'axe-core';
 import { GlobalMock, GlobalScope, IGlobalMock, It, MockBehavior, Times } from 'typemoq';
 
 import { cssPositioningConfiguration } from '../../../../scanner/css-positioning-rule';
@@ -18,52 +19,114 @@ describe('verify meaningful sequence configs', () => {
 
 describe('verify evaluate', () => {
     const getComputedStyleMock = GlobalMock.ofInstance(window.getComputedStyle, 'getComputedStyle', window, MockBehavior.Strict);
+    const axeVisibilityMock = GlobalMock.ofInstance(axe.commons.dom.isVisible, 'isVisible', axe.commons.dom, MockBehavior.Strict);
+
     beforeEach(() => {
         getComputedStyleMock.reset();
+        axeVisibilityMock.reset();
     });
 
-    it('position absolute', () => {
-        const nodeStyleStub = {
-            position: 'absolute',
-            float: 'none',
-        };
-
-        testMeaningfulSequence(nodeStyleStub, getComputedStyleMock, true);
+    afterEach(() => {
+        getComputedStyleMock.verifyAll();
+        axeVisibilityMock.verifyAll();
     });
 
-    it('float right', () => {
-        const nodeStyleStub = {
-            position: 'none',
-            float: 'right',
-        };
+    const testFixture = [
+        {
+            nodeStyleStub: {
+                position: 'absolute',
+                float: 'none',
+            },
+            isVisible: true,
+            expectedResult: true,
+        },
+        {
+            nodeStyleStub: {
+                position: 'none',
+                float: 'right',
+            },
+            isVisible: true,
+            expectedResult: true,
+        },
+        {
+            nodeStyleStub: {
+                position: 'none',
+                float: 'none',
+            },
+            isVisible: true,
+            expectedResult: false,
+        },
+        {
+            nodeStyleStub: {
+                position: 'none',
+                float: 'right',
+            },
+            isVisible: false,
+            expectedResult: false,
+        },
+        {
+            nodeStyleStub: {
+                position: 'absolute',
+                float: 'none',
+            },
+            isVisible: false,
+            expectedResult: false,
+        },
+    ];
 
-        testMeaningfulSequence(nodeStyleStub, getComputedStyleMock, true);
+    it.each(testFixture)('check for different combinations of nodeStyleStub and visibility %o', testStub => {
+        testMeaningfulSequence(testStub.nodeStyleStub, testStub.isVisible, testStub.expectedResult);
     });
+    // it('position absolute', () => {
+    //     const nodeStyleStub = {
+    //         position: 'absolute',
+    //         float: 'none',
+    //     };
 
-    it('does not match', () => {
-        const nodeStyleStub = {
-            position: 'none',
-            float: 'none',
-        };
+    //     testMeaningfulSequence(nodeStyleStub, getComputedStyleMock, true, true);
+    // });
 
-        testMeaningfulSequence(nodeStyleStub, getComputedStyleMock, false);
-    });
+    // it('float right', () => {
+    //     const nodeStyleStub = {
+    //         position: 'none',
+    //         float: 'right',
+    //     };
+
+    //     testMeaningfulSequence(nodeStyleStub, getComputedStyleMock, true, true);
+    // });
+
+    // it('does not match', () => {
+    //     const nodeStyleStub = {
+    //         position: 'none',
+    //         float: 'none',
+    //     };
+
+    //     testMeaningfulSequence(nodeStyleStub, getComputedStyleMock, true, false);
+    // });
+
+    // it('does not match', () => {
+    //     const nodeStyleStub = {
+    //         position: 'none',
+    //         float: 'none',
+    //     };
+
+    //     testMeaningfulSequence(nodeStyleStub, getComputedStyleMock, false, false);
+    // });
+
+    function testMeaningfulSequence(nodeStyleStub: IDictionaryStringTo<string>, isVisibleParam: boolean, expectedResult: boolean): void {
+        axeVisibilityMock
+            .setup(isVisible => isVisible(nodeStyleStub))
+            .returns(() => isVisibleParam)
+            .verifiable();
+        getComputedStyleMock
+            .setup(m => m(It.isAny()))
+            .returns(style => ({ getPropertyValue: property => style[property] } as CSSStyleDeclaration))
+            .verifiable(Times.once());
+
+        let result: boolean;
+        GlobalScope.using(getComputedStyleMock, axeVisibilityMock).with(() => {
+            result = cssPositioningConfiguration.rule.matches(nodeStyleStub, null);
+        });
+        expect(result).toBe(expectedResult);
+    }
 });
-
-function testMeaningfulSequence(
-    nodeStyleStub: IDictionaryStringTo<string>,
-    windowMock: IGlobalMock<typeof window.getComputedStyle>,
-    expectedResult: boolean,
-): void {
-    windowMock
-        .setup(m => m(It.isAny()))
-        .returns(style => ({ getPropertyValue: property => style[property] } as CSSStyleDeclaration))
-        .verifiable(Times.once());
-
-    let result: boolean;
-    GlobalScope.using(windowMock).with(() => {
-        result = cssPositioningConfiguration.rule.matches(nodeStyleStub, null);
-    });
-    expect(result).toBe(expectedResult);
-    windowMock.verifyAll();
-}
