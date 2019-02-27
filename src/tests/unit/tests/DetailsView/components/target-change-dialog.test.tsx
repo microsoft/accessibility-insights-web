@@ -37,8 +37,8 @@ describe('TargetChangeDialog test set for prev tab null', () => {
         };
 
         const wrapper = Enzyme.shallow(<TargetChangeDialog {...targetChangeProps} />);
-        expect(wrapper.find(Dialog).exists()).toBeFalsy();
 
+        expect(wrapper.find(Dialog).exists()).toBeFalsy();
         urlParserMock.verifyAll();
     });
 });
@@ -122,7 +122,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
         urlParserMock
             .setup(urlParserObject => urlParserObject.areURLHostNamesEqual(prevTab.url, newTab.url))
             .returns(() => true)
-            .verifiable();
+            .verifiable(Times.never());
 
         const targetChangeProps: TargetChangeDialogProps = {
             deps: { urlParser: urlParserMock.object },
@@ -140,7 +140,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
 
         prevTab = {
             ...prevTab,
-            appRefreshed: true,
+            appRefreshed: false,
         };
         newTab = {
             ...newTab,
@@ -177,7 +177,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
         urlParserMock
             .setup(urlParserObject => urlParserObject.areURLHostNamesEqual(prevTab.url, newTab.url))
             .returns(() => false)
-            .verifiable();
+            .verifiable(Times.never());
 
         const targetChangeProps: TargetChangeDialogProps = {
             deps: { urlParser: urlParserMock.object },
