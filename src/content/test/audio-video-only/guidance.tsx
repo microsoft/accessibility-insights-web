@@ -45,25 +45,15 @@ export const guidance = create(({ Markup, Link }) => (
 
         <h3>Provide an alternative for audio-only content </h3>
         <Markup.Links>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Understanding/audio-only-and-video-only-prerecorded.html">
-                Understanding Success Criterion 1.2.1: Audio-only and Video-only (Prerecorded)
-            </Markup.HyperLink>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G158">
-                Providing an alternative for time-based media for audio-only content
-            </Markup.HyperLink>
+            <Link.WCAG21UnderstandingAudioOnlyViewOnlyPrerecorded />
+            <Link.WCAG21TechniquesG158 />
         </Markup.Links>
 
         <h3>Provide an alternative for video-only content </h3>
         <Markup.Links>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Understanding/audio-only-and-video-only-prerecorded.html">
-                Understanding Success Criterion 1.2.1: Audio-only and Video-only (Prerecorded)
-            </Markup.HyperLink>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G159">
-                Providing an alternative for time-based media for video-only content
-            </Markup.HyperLink>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G166">
-                Providing audio that describes the important video content and describing it as such
-            </Markup.HyperLink>
+            <Link.WCAG21UnderstandingAudioOnlyViewOnlyPrerecorded />
+            <Link.WCAG21TechniquesG159 />
+            <Link.WCAG21TechniquesG166 />
         </Markup.Links>
     </React.Fragment>
 ));

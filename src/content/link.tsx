@@ -51,4 +51,24 @@ export const link = {
         'Section 508 - 502.2.2',
         'https://www.access-board.gov/guidelines-and-standards/communications-and-it/about-the-ict-refresh/final-rule/text-of-the-standards-and-guidelines#502-interoperability-assistive-technology',
     ),
+    WCAG21UnderstandingAudioOnlyViewOnlyPrerecorded: linkTo(
+        'Understanding Success Criterion 1.2.1: Audio-only and Video-only (Prerecorded)',
+        'https://www.w3.org/WAI/WCAG21/Understanding/audio-only-and-video-only-prerecorded.html',
+    ),
+    WCAG21TechniquesG158: linkTo(
+        'Providing an alternative for time-based media for audio-only content',
+        'https://www.w3.org/WAI/WCAG21/Techniques/general/G158',
+    ),
+    WCAG21TechniquesG159: linkTo(
+        'Providing an alternative for time-based media for video-only content',
+        'https://www.w3.org/WAI/WCAG21/Techniques/general/G159',
+    ),
+    WCAG21TechniquesG166: linkTo(
+        'Providing audio that describes the important video content and describing it as such',
+        'https://www.w3.org/WAI/WCAG21/Techniques/general/G166',
+    ),
+    WCAG21TechniquesG83: linkTo(
+        'Providing text descriptions to identify required fields that were not completed',
+        'https://www.w3.org/WAI/WCAG21/Techniques/general/G83',
+    ),
 };

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { React, create } from '../../common';
 
-export const infoAndExamples = create(({ Markup }) => (
+export const infoAndExamples = create(({ Markup, Link }) => (
     <>
         <h1>Video-only equivalent</h1>
 
@@ -46,19 +46,13 @@ export const infoAndExamples = create(({ Markup }) => (
 
         <h3>WCAG success criteria</h3>
         <Markup.Links>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Understanding/audio-only-and-video-only-prerecorded.html">
-                Understanding Success Criterion 1.2.1: Audio-only and Video-only (Prerecorded)
-            </Markup.HyperLink>
+            <Link.WCAG21UnderstandingAudioOnlyViewOnlyPrerecorded />
         </Markup.Links>
 
         <h3>Sufficient techniques</h3>
         <Markup.Links>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G159">
-                Providing an alternative for time-based media for video-only content
-            </Markup.HyperLink>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G166">
-                Providing audio that describes the important video content and describing it as such
-            </Markup.HyperLink>
+            <Link.WCAG21TechniquesG159 />
+            <Link.WCAG21TechniquesG166 />
         </Markup.Links>
     </>
 ));

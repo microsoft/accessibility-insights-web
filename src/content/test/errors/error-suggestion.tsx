@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { React, create } from '../../common';
 
-export const infoAndExamples = create(({ Markup }) => (
+export const infoAndExamples = create(({ Markup, Link }) => (
     <>
         <h1>Error suggestion</h1>
         <p>If an input error is automatically detected, guidance for correcting the error must be provided.</p>
@@ -47,9 +47,7 @@ export const infoAndExamples = create(({ Markup }) => (
         <h3>Sufficient techniques</h3>
         <p>Use one of these techniques if a required field is empty:</p>
         <Markup.Links>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G83">
-                Providing text descriptions to identify required fields that were not completed
-            </Markup.HyperLink>
+            <Link.WCAG21TechniquesG83 />
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA2">
                 Identifying a required field with the aria-required property
             </Markup.HyperLink>

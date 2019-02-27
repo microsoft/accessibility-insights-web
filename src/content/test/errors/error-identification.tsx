@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { React, create } from '../../common';
 
-export const infoAndExamples = create(({ Markup }) => (
+export const infoAndExamples = create(({ Markup, Link }) => (
     <>
         <h1>Error identification</h1>
         <p>If an input error is automatically detected, the item in error must be identified, and the error described, in text.</p>
@@ -56,9 +56,7 @@ export const infoAndExamples = create(({ Markup }) => (
 
         <h4>Use one of these techniques if a form contains required fields:</h4>
         <Markup.Links>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G83">
-                Providing text descriptions to identify required fields that were not completed
-            </Markup.HyperLink>
+            <Link.WCAG21TechniquesG83 />
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA21">
                 Using Aria-Invalid to Indicate An Error Field
             </Markup.HyperLink>
