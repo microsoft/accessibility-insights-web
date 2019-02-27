@@ -38,9 +38,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
 
         <h3>WCAG success criteria</h3>
         <Markup.Links>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Understanding/audio-only-and-video-only-prerecorded.html">
-                Understanding Success Criterion 1.2.1: Audio-only and Video-only (Prerecorded)
-            </Markup.HyperLink>
+            <Link.AudioVideoOnlySuccessCriterion />
         </Markup.Links>
 
         <h3>Sufficient techniques</h3>
