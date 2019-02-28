@@ -19,6 +19,7 @@ import { ReportGenerator } from '../../../../../DetailsView/reports/report-gener
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { RuleResult } from '../../../../../scanner/iruleresults';
 import { ShallowRenderer } from '../../../common/shallow-renderer';
+import * as Markup from '../../../../../assessments/markup';
 
 describe('IssuesTableTest', () => {
     const onExportButtonClickStub = () => {};
@@ -60,7 +61,7 @@ describe('IssuesTableTest', () => {
                     {getCommandBarFromProps(props)}
                     {getDialogFromProps(props, state)}
                     <div className="details-disabled-message" role="alert">
-                        Turn on <b>Automated checks</b> to see a list of failures.
+                        Turn on <Markup.Term>Automated checks</Markup.Term> to see a list of failures.
                     </div>
                 </div>
             </div>

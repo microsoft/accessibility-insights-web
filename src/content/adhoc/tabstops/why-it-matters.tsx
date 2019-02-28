@@ -92,7 +92,7 @@ export const whyItMatters = create(({ Markup, Link }) => (
 
                 <ul>
                     <li>
-                        Be sure styling doesn't make any element <i>appear</i> to have the input focus.
+                        Be sure styling doesn't make any element <Markup.Emphasis>appear</Markup.Emphasis> to have the input focus.
                     </li>
                 </ul>
 

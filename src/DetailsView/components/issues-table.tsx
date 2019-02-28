@@ -20,6 +20,7 @@ import { ExportDialog } from './export-dialog';
 import { IssuesDetailsList } from './issues-details-list';
 import { IssuesDetailsPane, IssuesDetailsPaneDeps } from './Issues-details-pane';
 import { IssuesTableHandler } from './issues-table-handler';
+import * as Markup from '../../assessments/markup';
 
 export type IssuesTableDeps = IssuesDetailsPaneDeps & {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
@@ -168,7 +169,7 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
     private renderDisabledMessage(): JSX.Element {
         return (
             <div className="details-disabled-message" role="alert">
-                Turn on <b>{this.configuration.displayableData.title}</b> to see a list of failures.
+                Turn on <Markup.Term>{this.configuration.displayableData.title}</Markup.Term> to see a list of failures.
             </div>
         );
     }

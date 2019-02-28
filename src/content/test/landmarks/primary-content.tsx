@@ -16,7 +16,7 @@ export const infoAndExamples = create(({ Markup }) => (
 
         <h2>How to fix</h2>
         <p>
-            Re-implement so all primary content is contained within the page's <b>main</b> landmark.
+            Re-implement so all primary content is contained within the page's <Markup.Term>main</Markup.Term> landmark.
         </p>
 
         <h2>Example</h2>
@@ -24,7 +24,7 @@ export const infoAndExamples = create(({ Markup }) => (
         <Markup.PassFail
             failText={
                 <p>
-                    Some of the page's primary content is not contained within the <b>main</b> landmark.
+                    Some of the page's primary content is not contained within the <Markup.Term>main</Markup.Term> landmark.
                 </p>
             }
             failExample={`<header>…</header>
@@ -34,7 +34,7 @@ export const infoAndExamples = create(({ Markup }) => (
             <footer>…</footer>`}
             passText={
                 <p>
-                    All of the page's primary content is within the <b>main</b> landmark.
+                    All of the page's primary content is within the <Markup.Term>main</Markup.Term> landmark.
                 </p>
             }
             passExample={`<header>…</header>
