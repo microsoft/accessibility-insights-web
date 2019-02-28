@@ -13,9 +13,9 @@ Accessibility Insights for Web is a Google Chrome extension for assessing the ac
 
 You can install the extension from one of the following links
 
--   ![Daily Logo](./src/icons/brand/red/brand-red-16px.png) [Daily](https://chrome.google.com/webstore/detail/hbcplehnakffdldhldncjlnbpfgogbem) (released continuously)
--   ![Staging Logo](./src/icons/brand/violet/brand-violet-16px.png) [Staging](https://chrome.google.com/webstore/detail/nnmjfbmebeckhpejobgjjjnchlljiagp) (on feature completion)
--   ![Production Logo](./src/icons/brand/blue/brand-blue-16px.png) [Production](https://chrome.google.com/webstore/detail/pbjjkligggfmakdaogkfomddhfmpjeni) (after validation in staging)
+-   ![Canary Logo](./src/icons/brand/red/brand-red-16px.png) [Canary](https://chrome.google.com/webstore/detail/hbcplehnakffdldhldncjlnbpfgogbem) (released continuously)
+-   ![Insider Logo](./src/icons/brand/violet/brand-violet-16px.png) [Insider](https://chrome.google.com/webstore/detail/nnmjfbmebeckhpejobgjjjnchlljiagp) (on feature completion)
+-   ![Production Logo](./src/icons/brand/blue/brand-blue-16px.png) [Production](https://chrome.google.com/webstore/detail/pbjjkligggfmakdaogkfomddhfmpjeni) (after validation in Insider)
 
 ## Building the code
 
