@@ -8,6 +8,7 @@ import { IHtmlElementAxeResults } from '../scanner-utils';
 import { FailureInstanceFormatter } from './failure-instance-formatter';
 import { IHeadingStyleConfiguration } from './heading-formatter';
 import { IDrawerConfiguration } from './iformatter';
+import { DialogRenderer } from '../dialog-renderer';
 
 interface ElemData {
     role: string;
@@ -15,7 +16,7 @@ interface ElemData {
 }
 
 export class LandmarkFormatter extends FailureInstanceFormatter {
-    public static landmarkStyles: { [role: string]: IHeadingStyleConfiguration } = {
+    private static readonly landmarkStyles: { [role: string]: IHeadingStyleConfiguration } = {
         banner: {
             borderColor: '#ff9900',
             fontColor: '#000000',
@@ -44,29 +45,22 @@ export class LandmarkFormatter extends FailureInstanceFormatter {
             borderColor: '#3399ff',
             fontColor: '#000000',
         },
-        header: {
-            borderColor: '#ff9900',
-            fontColor: '#000000',
-        },
-        aside: {
-            borderColor: '#00cccc',
-            fontColor: '#000000',
-        },
         search: {
             borderColor: '#9955ff',
             fontColor: '#000000',
         },
-        footer: {
-            borderColor: '#00cc00',
-            fontColor: '#000000',
-        },
-        blank: {
-            borderColor: '#C00000',
-            fontColor: '#FFFFFF',
-        },
     };
 
-    public getDialogRenderer() {
+    private static readonly invalidLandmarkStyle: IHeadingStyleConfiguration = {
+        borderColor: '#C00000',
+        fontColor: '#FFFFFF',
+    };
+
+    public static getStyleForLandmarkRole(role: string): IHeadingStyleConfiguration {
+        return LandmarkFormatter.landmarkStyles[role] || LandmarkFormatter.invalidLandmarkStyle;
+    }
+
+    public getDialogRenderer(): DialogRenderer {
         return null;
     }
 
@@ -74,7 +68,7 @@ export class LandmarkFormatter extends FailureInstanceFormatter {
         // parse down the IHtmlElementAxeResult to see if it is contained in the map
         const elemData = this.decorateLabelText(data.propertyBag || this.getLandmarkInfo(data));
 
-        const style = LandmarkFormatter.landmarkStyles[elemData.role] || LandmarkFormatter.landmarkStyles.blank;
+        const style = LandmarkFormatter.getStyleForLandmarkRole(elemData.role);
 
         const drawerConfig: IDrawerConfiguration = {
             textBoxConfig: {
@@ -93,18 +87,16 @@ export class LandmarkFormatter extends FailureInstanceFormatter {
     }
 
     private getLandmarkInfo(data: IHtmlElementAxeResults): ElemData {
-        let elemData;
         for (const idx in data.ruleResults) {
             if (data.ruleResults[idx].ruleId === 'unique-landmark') {
                 return this.getData(data.ruleResults[idx].any);
             }
         }
-        return elemData;
+        return undefined;
     }
 
     private getData(nodes: FormattedCheckResult[]): ElemData {
-        for (const idx in nodes) {
-            const check = nodes[idx];
+        for (const check of nodes) {
             if (check.id === 'unique-landmark') {
                 return {
                     role: check.data.role,

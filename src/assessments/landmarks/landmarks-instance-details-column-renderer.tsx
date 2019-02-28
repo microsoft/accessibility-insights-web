@@ -11,7 +11,7 @@ export function landmarksAssessmentInstanceDetailsColumnRenderer(
     item: IAssessmentInstanceRowData<ILandmarksAssessmentProperties>,
 ): JSX.Element {
     const propertyBag = item.instance.propertyBag;
-    const background = LandmarkFormatter.landmarkStyles[propertyBag.role].borderColor;
+    const background = LandmarkFormatter.getStyleForLandmarkRole(propertyBag.role).borderColor;
     let textContent = propertyBag.role;
     if (propertyBag.label != null) {
         textContent += `: ${propertyBag.label}`;
