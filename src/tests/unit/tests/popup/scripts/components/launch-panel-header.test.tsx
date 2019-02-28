@@ -78,6 +78,7 @@ describe('LaunchPanelHeaderTest', () => {
 
         const expected = getExpectedHeader();
         expect(testSubject.render()).toEqual(expected);
+        console.log();
     });
 
     test('render feedback new menu', () => {
@@ -222,21 +223,9 @@ describe('LaunchPanelHeaderTest', () => {
                         iconProps: {
                             iconName: 'Unknown',
                         },
-                        data: 'https://aka.ms/accessibilityinsights-stackoverflow',
+                        data: 'https://go.microsoft.com/fwlink/?linkid=2077937',
                         onClick: onClickLinkMock,
                         name: 'Help',
-                    },
-                    {
-                        key: 'divider_2',
-                        itemType: ContextualMenuItemType.Divider,
-                    },
-                    {
-                        key: 'ask-a-question',
-                        iconProps: {
-                            iconName: 'Mail',
-                        },
-                        onClick: sendEmailMock,
-                        name: 'Ask a question',
                     },
                 ]}
             />

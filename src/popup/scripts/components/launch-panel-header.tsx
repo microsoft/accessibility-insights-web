@@ -166,21 +166,9 @@ export class LaunchPanelHeader extends React.Component<ILaunchPanelHeaderProps, 
                 iconProps: {
                     iconName: 'Unknown',
                 },
-                data: 'https://aka.ms/accessibilityinsights-stackoverflow',
+                data: 'https://go.microsoft.com/fwlink/?linkid=2077937',
                 onClick: this._onClickLink,
                 name: 'Help',
-            },
-            {
-                key: 'divider_2',
-                itemType: ContextualMenuItemType.Divider,
-            },
-            {
-                key: 'ask-a-question',
-                iconProps: {
-                    iconName: 'Mail',
-                },
-                onClick: this._sendEmail,
-                name: 'Ask a question',
             },
         ];
     }
