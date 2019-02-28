@@ -16,7 +16,7 @@ export const infoAndExamples = create(({ Markup }) => (
 
         <h2>How to fix</h2>
         <p>
-            Re-implement so no repeating blocks of content are contained within the <b>main</b> landmark.
+            Re-implement so no repeating blocks of content are contained within the <Markup.Term>main</Markup.Term> landmark.
         </p>
 
         <h2>Example</h2>
@@ -24,7 +24,7 @@ export const infoAndExamples = create(({ Markup }) => (
         <Markup.PassFail
             failText={
                 <p>
-                    Site navigation links, which appear on every page, are contained within the <b>main</b> landmark.
+                    Site navigation links, which appear on every page, are contained within the <Markup.Term>main</Markup.Term> landmark.
                 </p>
             }
             failExample={`<header>…</header>
@@ -37,7 +37,7 @@ export const infoAndExamples = create(({ Markup }) => (
             <footer>…</footer>`}
             passText={
                 <p>
-                    The site navigation links precede the <b>main</b> landmark.
+                    The site navigation links precede the <Markup.Term>main</Markup.Term> landmark.
                 </p>
             }
             passExample={`<header>…</header>

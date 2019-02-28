@@ -25,13 +25,13 @@ describe('markup tags', () => {
 
     test('test Emphasis', () => {
         const rendered = Markup.Emphasis({ children: 'children' });
-        const expected = <i>children</i>;
+        const expected = <em>children</em>;
         expect(rendered).toEqual(expected);
     });
 
     test('test Term', () => {
         const rendered = Markup.Term({ children: 'children' });
-        const expected = <b>children</b>;
+        const expected = <strong>children</strong>;
         expect(rendered).toEqual(expected);
     });
 

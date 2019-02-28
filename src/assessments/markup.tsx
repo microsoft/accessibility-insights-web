@@ -8,11 +8,11 @@ export function Tag(props: { tagName: string; isBold?: boolean }): JSX.Element {
 }
 
 export function Emphasis(props: { children: React.ReactNode }): JSX.Element {
-    return <i>{props.children}</i>;
+    return <em>{props.children}</em>;
 }
 
 export function Term(props: { children: React.ReactNode }): JSX.Element {
-    return <b>{props.children}</b>;
+    return <strong>{props.children}</strong>;
 }
 
 export function Code(props: { children: React.ReactNode }): JSX.Element {

@@ -10,6 +10,7 @@ import { ScopingActionMessageCreator } from '../../common/message-creators/scopi
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { IScopingStoreData } from '../../common/types/store-data/scoping-store-data';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
+import * as Markup from '../../assessments/markup';
 
 export interface IScopingContainerProps {
     actionMessageCreator: DetailsViewActionMessageCreator;
@@ -26,9 +27,10 @@ export class ScopingContainer extends React.Component<IScopingContainerProps> {
             <p>To add a Selector, type the Selector’s name in the appropriate text box and click the “+ Add Selector” button.</p>
             <p>Note: iframe Selectors need to be entered in the following format: iframeSelector; selectorWithinIframe</p>
             <p>
-                Any selectors entered need to follow CSS selector syntax. For example, a selector needs to be prefaced with a <b>#</b> if it
-                represents an id (e.g. <i>#idName</i>) and with a <b>.</b> if it represents a class (e.g. <i>.className</i> or{' '}
-                <i>.class1.class2</i> for elements with two classes)
+                Any selectors entered need to follow CSS selector syntax. For example, a selector needs to be prefaced with a{' '}
+                <Markup.Term>#</Markup.Term> if it represents an id (e.g. <Markup.Term>#idName</Markup.Term>) and with a{' '}
+                <Markup.Term>.</Markup.Term> if it represents a class (e.g. <Markup.Term>.className</Markup.Term> or{' '}
+                <Markup.Term>.class1.class2</Markup.Term> for elements with two classes)
             </p>
         </div>
     );
@@ -36,8 +38,8 @@ export class ScopingContainer extends React.Component<IScopingContainerProps> {
     public static readonly includeInstructions = (
         <div>
             <p>
-                The selectors entered in this textbox will be the only elements that will be scanned; if <i>Include</i> is left empty, by
-                default the entire document will be scanned.
+                The selectors entered in this textbox will be the only elements that will be scanned; if <Markup.Term>Include</Markup.Term>{' '}
+                is left empty, by default the entire document will be scanned.
             </p>
         </div>
     );
@@ -45,10 +47,11 @@ export class ScopingContainer extends React.Component<IScopingContainerProps> {
     public static readonly excludeInstructions = (
         <div>
             <p>
-                The selectors entered in this textbox will be excluded from the scan. If <i>Exclude</i> is empty, the scan will show the
-                elements in <i>Include</i>. If <i>Exclude</i> is not empty, the scan will show elements in <i>Include</i> that are not
-                listed in <i>Exclude</i>; if <i>Include</i> is empty, the scan will show elements in the entire document that are not listed
-                in <i>Exclude</i>.
+                The selectors entered in this textbox will be excluded from the scan. If <Markup.Term>Exclude</Markup.Term> is empty, the
+                scan will show the elements in <Markup.Term>Include</Markup.Term>. If <Markup.Term>Exclude</Markup.Term> is not empty, the
+                scan will show elements in <Markup.Term>Include</Markup.Term> that are not listed in <Markup.Term>Exclude</Markup.Term>; if{' '}
+                <Markup.Term>Include</Markup.Term> is empty, the scan will show elements in the entire document that are not listed in{' '}
+                <Markup.Term>Exclude</Markup.Term>.
             </p>
         </div>
     );

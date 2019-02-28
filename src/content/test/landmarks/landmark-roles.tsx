@@ -24,7 +24,7 @@ export const infoAndExamples = create(({ Markup }) => (
         <Markup.PassFail
             failText={
                 <p>
-                    This div functions as a banner, but it has the <b>navigation</b> role.
+                    This div functions as a banner, but it has the <Markup.Term>navigation</Markup.Term> role.
                 </p>
             }
             failExample={`<div role="navigation">
@@ -32,7 +32,7 @@ export const infoAndExamples = create(({ Markup }) => (
             </div>`}
             passText={
                 <p>
-                    The div now has the <b>banner</b> role.
+                    The div now has the <Markup.Term>banner</Markup.Term> role.
                 </p>
             }
             passExample={`<div role="banner"> [A logo image and site name] </div>`}
