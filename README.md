@@ -100,7 +100,9 @@ To run a task from the command palette, press **Ctrl + Shift + P**, select `Task
 -   `Test current file in VSCode` runs just the tests in the currently-opened test file
 -   `npm: test:e2e` runs all end-to-end tests
 
-To debug inside VS Code, set a breakpoint and click the debug button or press **F5**.
+To debug a test inside VS Code, set a breakpoint and click the debug button or press **F5**.
+
+To attach VS Code as a debugger to a separate instance of Chrome, make sure you've launched Chrome with the `--remote-debugging-port=9230` command line argument, and then use either of the `Attach debugger...` debug profiles from the VS Code Debug pane.
 
 To debug using an external tool, run the `Debug current test file outside VS Code` task. In Chrome, for example, navigate to `chrome://inspect` and click `Open dedicated DevTools for Node`.
 
