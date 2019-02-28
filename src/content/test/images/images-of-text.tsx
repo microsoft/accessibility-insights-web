@@ -14,6 +14,13 @@ export const infoAndExamples = create(({ Markup }) => (
             it readable. Browsers and browser extensions allow users to adjust actual text, but not the text in images of text.
         </p>
 
+        <h3>From a user's perspective</h3>
+        <p>
+            <Markup.Emphasis>
+                "Images of text content are invisible to me. Do not use images of text for anything other than logos and decorative items."
+            </Markup.Emphasis>
+        </p>
+
         <h2>How to fix</h2>
         <p>Use one of the following methods to make text adjustable:</p>
         <ul>
@@ -24,16 +31,13 @@ export const infoAndExamples = create(({ Markup }) => (
             <li>Better: Use actual text.</li>
         </ul>
 
-        <h3>From a user's perspective</h3>
-        <p>"Images of text content are invisible to me. Do not use images of text for anything other than logos and decorative items."</p>
-
         <h2>Example</h2>
         <Markup.PassFail
             failText={<p>An image of text is used in an image button where no specific appearance is required.</p>}
             failExample={
                 <Markup.CodeExample title="HTML">{`<form action="/action_page.php">
                 <p id="username">User name: <input type="text" name="uname"></p>
-                <input type="image" src="submit.gif" alt="Submit">
+                <input [type="image" src="submit.gif"] alt="Submit">
                 </form>`}</Markup.CodeExample>
             }
             passText={<p>A submit button uses actual text and CSS styling to achieve the desired appearance.</p>}
@@ -53,7 +57,7 @@ export const infoAndExamples = create(({ Markup }) => (
                 </style>`}</Markup.CodeExample>,
                 <Markup.CodeExample title="HTML">{`<form action="/action_page.php">
                 <p id="username">User name: <input type="text" name="uname"></p>
-                <input type="submit" class="button">
+                <input [type="submit" class="button"]>
                 </form>`}</Markup.CodeExample>,
             ]}
         />

@@ -60,7 +60,7 @@ export const infoAndExamples = create(({ Markup }) => (
             <ul id="ss_elem_list" role="listbox" aria-
             labelledby="ss_elem">
             <li id="ss_elem_Np" role="option"
-            class="focused">Neptunium</li>
+            class="focused"> Neptunium</li>
             <li id="ss_elem_Pu"
             role="option">Plutonium</li></ul>`}
             passText={
@@ -72,9 +72,9 @@ export const infoAndExamples = create(({ Markup }) => (
             passExample={`<div class="listbox-area">
             <div class="left-area">
             <span id="ss_elem">Transuranium elements:</span>
-            <ul id="ss_elem_list"role="listbox"
+            <ul id="ss_elem_list" role="listbox"
             aria-labelledby="ss_elem" [tabindex="0"]>
-            <li id="ss_elem_Np" role="option" class="focused">Neptunium</li>
+            <li id="ss_elem_Np" role="option" class="focused"> Neptunium</li>
             <li id="ss_elem_Pu" role="option">Plutonium</li></ul>`}
         />
 

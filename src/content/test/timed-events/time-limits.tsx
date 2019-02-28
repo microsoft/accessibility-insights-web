@@ -26,9 +26,8 @@ export const infoAndExamples = create(({ Markup }) => (
         <p>
             <Markup.Emphasis>
                 "I recently suffered a concussion in a car accident, so it takes me a bit longer to understand and make sense of things.
-                Provide me a way to increase time limits to 10 times the default allotted time, or, allow me to turn off time-restraints
-                altogether. If the time to complete the task is more than 20 hours, no time-based controls are needed. This rule doesn’t
-                apply to live events such as gameplay or live auctions."
+                Provide me a way to increase time limits to 10 times the default allotted time or allow me to turn off time-restraints
+                altogether."
             </Markup.Emphasis>
         </p>
 

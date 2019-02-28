@@ -19,6 +19,7 @@ export const infoAndExamples = create(({ Markup }) => (
             as spoken dialog or sound effects), it’s usually best to narrate events just before they happen.
         </p>
 
+        <h2>Example</h2>
         <Markup.PassFail
             failText={
                 <p>

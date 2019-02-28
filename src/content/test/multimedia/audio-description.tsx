@@ -13,13 +13,17 @@ export const infoAndExamples = create(({ Markup }) => (
             to listen to pre-recorded multimedia presentations. Note: If the audio track already provides all the information in the video
             track, no audio description is necessary.
         </p>
+
         <h3>From a user's perspective</h3>
         <p>
-            "Provide an audio description track for pre-recorded videos or so I can understand the story as the content creator imagined it.
-            Provide information on scene changes, actors etc. This allows me to understand, enjoy and share the story with others."
+            <Markup.Emphasis>
+                "Provide an audio description track for pre-recorded videos so I can understand the story as the content creator imagined
+                it. Provide information on scene changes, actors, etc. This allows me to understand, enjoy, and share the story with
+                others."
+            </Markup.Emphasis>
         </p>
 
-        <h3>How to fix</h3>
+        <h2>How to fix</h2>
         <ul>
             <li>
                 If the audio description is missing, add it using one of these methods:
@@ -34,6 +38,8 @@ export const infoAndExamples = create(({ Markup }) => (
                 Include information about actions, characters, scene changes, on-screen text, and other meaningful visual content.
             </li>
         </ul>
+
+        <h2>Example</h2>
 
         <Markup.PassFail
             failText={<p>A multimedia presentation has no soundtrack with audio description.</p>}

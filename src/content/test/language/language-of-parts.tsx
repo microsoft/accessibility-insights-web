@@ -14,6 +14,14 @@ export const infoAndExamples = create(({ Markup }) => (
             captions correctly. All users find it easier to understand the page's content.
         </p>
 
+        <h3>From a user's perspective</h3>
+        <p>
+            <Markup.Emphasis>
+                "If you do not declare the language of a phrase that comes from a language other than the declared language of the document,
+                my screen reader may mispronounce the word or phrase, confusing me."
+            </Markup.Emphasis>
+        </p>
+
         <h2>How to fix</h2>
         <p>
             Add the correct{' '}

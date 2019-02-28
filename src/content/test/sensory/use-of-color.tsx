@@ -17,6 +17,14 @@ export const infoAndExamples = create(({ Markup }) => (
             requirements, related to programmatic access, are intended to help people who are blind or have low vision.
         </p>
 
+        <h3>From a user's perspective</h3>
+        <p>
+            <Markup.Emphasis>
+                "No one sees color the same way. Ensure I can understand content, initiate action or, distinguish one visual element from
+                another without relying on color alone."
+            </Markup.Emphasis>
+        </p>
+
         <h2>How to fix</h2>
         <p>Add text or other visual characteristics to supplement the use of color.</p>
 

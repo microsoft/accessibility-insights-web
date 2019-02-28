@@ -13,15 +13,16 @@ export const infoAndExamples = create(({ Markup }) => (
             track.
         </p>
 
-        <h2>How to fix</h2>
-        <p>Provide real-time captions for live (streaming) multimedia presentations.</p>
-
         <h3>From a user's perspective</h3>
         <p>
             <Markup.Emphasis>
-                "Provide captions for events with live audio or video so I can take part in the event with everyone else."
+                "I have a hearing impairment, so I rely on captions to enjoy content. Provide captions for events with live audio or video
+                so I can understand and discuss the event with everyone else."
             </Markup.Emphasis>
         </p>
+
+        <h2>How to fix</h2>
+        <p>Provide real-time captions for live (streaming) multimedia presentations.</p>
 
         <h2>Example</h2>
 

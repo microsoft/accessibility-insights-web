@@ -19,14 +19,16 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             helps people with certain cognitive disabilities who have difficulty understanding the meaning of icons and other visual cues.
         </p>
 
+        <h3>From a user's perspective</h3>
+        <p>
+            <Markup.Emphasis>"Everyone makes mistakes. When I make a mistake, tell me what I need to do to fix it."</Markup.Emphasis>
+        </p>
+
         <h2>How to fix</h2>
         <p>
             Use text to identify and describe input errors. (It's ok if you <Markup.Emphasis>also</Markup.Emphasis> provide visual cues,
             such as color changes or error icons.)
         </p>
-
-        <h3>From a user's perspective</h3>
-        <p>"Everyone makes mistakes. When I make a mistake, tell me what I need to do to fix it."</p>
 
         <h2>Example</h2>
         <Markup.PassFail

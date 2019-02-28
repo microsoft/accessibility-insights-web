@@ -28,12 +28,17 @@ export const infoAndExamples = create(({ Markup }) => (
         <Markup.PassFail
             failText={
                 <p>
-                    A custom button opens a dialog. It does not support the keyboard interaction specified by the button design pattern: (1)
-                    It is not focusable. (2) When the button is clicked, focus does not move into the dialog.
+                    A custom button opens a dialog. It does not support the keyboard interaction specified by the{' '}
+                    <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-practices-1.1/#button">button design pattern</Markup.HyperLink>:
+                    (1) It is not focusable. (2) When the button is clicked, focus does not move into the dialog.
                 </p>
             }
             passText={
-                <p>In accordance with the button design pattern, the button is focusable, and clicking it moves focus into the dialog.</p>
+                <p>
+                    In accordance with the{' '}
+                    <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-practices-1.1/#button">button design pattern</Markup.HyperLink>,
+                    the button is focusable, and clicking it moves focus into the dialog.
+                </p>
             }
         />
 
