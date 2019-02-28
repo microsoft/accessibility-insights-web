@@ -36,7 +36,7 @@ export const linkFunctionConfiguration: RuleConfiguration = {
 
 function matches(node: HTMLElement, virtualNode: HTMLElement): boolean {
     const href = node.getAttribute('href');
-    return !href || AxeUtils.hasCustomWidgetMarkup(node);
+    return !href || href === '#' || AxeUtils.hasCustomWidgetMarkup(node);
 }
 
 function evaluateLinkFunction(node: HTMLElement, options: any, virtualNode: any, context: any): boolean {

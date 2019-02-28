@@ -24,18 +24,21 @@ describe('link function', () => {
         });
     });
 
-    describe('verify matches', () => {
-        it('matches because no href', () => {
+    describe('matches', () => {
+        it('matches elements with no href attribute', () => {
             testMatches(null, false, true);
         });
-        it('matches because empty string as href', () => {
+        it('matches elements with an empty href attribute', () => {
             testMatches('', false, true);
         });
-        it('matches because has custom widget markup returns true', () => {
-            testMatches('href', true, true);
+        it('matches elements with an empty anchor tag as their href value', () => {
+            testMatches('#', false, true);
         });
-        it('does not match', () => {
-            testMatches('href', false, false);
+        it('matches elements that axe-core considers to have custom widget markup', () => {
+            testMatches('valid-href-value', true, true);
+        });
+        it("does not match elements with meaningful href values that axe-core doesn't flag", () => {
+            testMatches('valid-href-value', false, false);
         });
     });
 
