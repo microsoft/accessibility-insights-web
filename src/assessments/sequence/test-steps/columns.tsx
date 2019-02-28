@@ -15,7 +15,7 @@ const howToTest: JSX.Element = (
         <p>This procedure uses the Chrome Developer Tools (F12) to inspect the page's HTML.</p>
         <ol>
             <li>
-                Search the page's HTML to determine whether the page includes any <Markup.Code>{'<pre>'}</Markup.Code> elements.
+                Search the page's HTML to determine whether the page includes any <Markup.Tag tagName="pre" /> elements.
             </li>
             <li>
                 Examine each <Markup.Tag tagName="pre" /> element to verify that white space characters are not used to arrange the text
