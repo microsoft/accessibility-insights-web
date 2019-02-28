@@ -16,18 +16,10 @@ interface ElemData {
 }
 
 export class LandmarkFormatter extends FailureInstanceFormatter {
-    public static landmarkStyles: { [role: string]: IHeadingStyleConfiguration } = {
-        aside: {
-            borderColor: '#00cccc',
-            fontColor: '#000000',
-        },
+    private static readonly landmarkStyles: { [role: string]: IHeadingStyleConfiguration } = {
         banner: {
             borderColor: '#ff9900',
             fontColor: '#000000',
-        },
-        blank: {
-            borderColor: '#C00000',
-            fontColor: '#FFFFFF',
         },
         complementary: {
             borderColor: '#00cccc',
@@ -37,16 +29,8 @@ export class LandmarkFormatter extends FailureInstanceFormatter {
             borderColor: '#00cc00',
             fontColor: '#000000',
         },
-        footer: {
-            borderColor: '#00cc00',
-            fontColor: '#000000',
-        },
         form: {
             borderColor: '#999999',
-            fontColor: '#000000',
-        },
-        header: {
-            borderColor: '#ff9900',
             fontColor: '#000000',
         },
         main: {
@@ -67,6 +51,15 @@ export class LandmarkFormatter extends FailureInstanceFormatter {
         },
     };
 
+    private static readonly invalidLandmarkStyle: IHeadingStyleConfiguration = {
+        borderColor: '#C00000',
+        fontColor: '#FFFFFF',
+    };
+
+    public static getStyleForLandmarkRole(role: string): IHeadingStyleConfiguration {
+        return LandmarkFormatter.landmarkStyles[role] || LandmarkFormatter.invalidLandmarkStyle;
+    }
+
     public getDialogRenderer(): DialogRenderer {
         return null;
     }
@@ -75,7 +68,7 @@ export class LandmarkFormatter extends FailureInstanceFormatter {
         // parse down the IHtmlElementAxeResult to see if it is contained in the map
         const elemData = this.decorateLabelText(data.propertyBag || this.getLandmarkInfo(data));
 
-        const style = LandmarkFormatter.landmarkStyles[elemData.role] || LandmarkFormatter.landmarkStyles.blank;
+        const style = LandmarkFormatter.getStyleForLandmarkRole(elemData.role);
 
         const drawerConfig: IDrawerConfiguration = {
             textBoxConfig: {
