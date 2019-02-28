@@ -8,6 +8,7 @@ import { IHtmlElementAxeResults } from '../scanner-utils';
 import { FailureInstanceFormatter } from './failure-instance-formatter';
 import { IHeadingStyleConfiguration } from './heading-formatter';
 import { IDrawerConfiguration } from './iformatter';
+import { DialogRenderer } from '../dialog-renderer';
 
 interface ElemData {
     role: string;
@@ -66,7 +67,7 @@ export class LandmarkFormatter extends FailureInstanceFormatter {
         },
     };
 
-    public getDialogRenderer() {
+    public getDialogRenderer(): DialogRenderer {
         return null;
     }
 
@@ -93,18 +94,16 @@ export class LandmarkFormatter extends FailureInstanceFormatter {
     }
 
     private getLandmarkInfo(data: IHtmlElementAxeResults): ElemData {
-        let elemData;
         for (const idx in data.ruleResults) {
             if (data.ruleResults[idx].ruleId === 'unique-landmark') {
                 return this.getData(data.ruleResults[idx].any);
             }
         }
-        return elemData;
+        return undefined;
     }
 
     private getData(nodes: FormattedCheckResult[]): ElemData {
-        for (const idx in nodes) {
-            const check = nodes[idx];
+        for (const check of nodes) {
             if (check.id === 'unique-landmark') {
                 return {
                     role: check.data.role,
