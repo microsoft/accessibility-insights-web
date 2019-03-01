@@ -154,19 +154,5 @@ describe('LaunchPanelHeaderTest', () => {
 
             clickHanderMock.verifyAll();
         });
-
-        test('File a Bug', () => {
-            const clickHanderMock = Mock.ofType(LaunchPanelHeaderClickHandler);
-            clickHanderMock.setup(cH => cH.onClickLink(props.popupWindow, event, It.isAny())).verifiable(Times.once());
-
-            props.clickhandler = clickHanderMock.object;
-
-            const component = React.createElement(LaunchPanelHeader, props);
-            const testSubject = TestUtils.renderIntoDocument(component);
-
-            (testSubject as any)._onClickLink(event);
-
-            clickHanderMock.verifyAll();
-        });
     });
 });
