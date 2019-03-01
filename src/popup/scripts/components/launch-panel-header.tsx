@@ -48,7 +48,6 @@ export class LaunchPanelHeader extends React.Component<ILaunchPanelHeaderProps, 
     private _openAdhocToolsPanel: (ev?: React.MouseEvent<HTMLElement>, item?: IContextualMenuItem) => void;
     private _onOpenContextualMenu: (event: React.MouseEvent<any>) => void;
     private _onDismissContextualMenu: (event?: any) => void;
-    private _sendEmail: () => void;
     private _openShortcutModifyTab: (event: React.MouseEvent<HTMLElement>) => void;
 
     constructor(props: ILaunchPanelHeaderProps) {
@@ -79,9 +78,6 @@ export class LaunchPanelHeader extends React.Component<ILaunchPanelHeaderProps, 
         this._onOpenContextualMenu = ev => this.props.clickhandler.onOpenContextualMenu(this, ev);
         this._onDismissContextualMenu = ev => this.props.clickhandler.onDismissFeedbackMenu(this, ev);
         this._openAdhocToolsPanel = (ev, item) => this.props.clickhandler.openAdhocToolsPanel(this);
-        this._sendEmail = () => {
-            this.props.supportLinkHandler.sendEmail(this.props.title);
-        };
         this._openShortcutModifyTab = event => {
             popupActionMessageCreator.openShortcutConfigureTab(event);
         };
@@ -92,12 +88,9 @@ export class LaunchPanelHeader extends React.Component<ILaunchPanelHeaderProps, 
 
     public render(): JSX.Element {
         return (
-            <Header
-                title={this.props.title}
-                subtitle={this.props.subtitle}
-                rowExtraClassName="header-title"
-                extraContent={this.renderGearOptionsButton()}
-            />
+            <Header title={this.props.title} subtitle={this.props.subtitle} rowExtraClassName="header-title">
+                {this.renderGearOptionsButton()}
+            </Header>
         );
     }
 
