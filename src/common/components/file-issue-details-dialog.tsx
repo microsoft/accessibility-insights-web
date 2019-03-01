@@ -27,6 +27,38 @@ export class FileIssueDetailsDialog extends React.Component<FileIssueDetailsDial
     @autobind
     private openSettings(event: React.MouseEvent<HTMLDivElement>): void {
         this.props.onOpenSettings(event);
+        this.focusHack();
+    }
+
+    private focusHack(): void {
+        let timedOut = false;
+        setTimeout(() => timedOut = true, 1000);
+        const tryHack = () => {
+            const settingsPanel = document.querySelector("body > div.ms-Layer.ms-Layer--fixed > div > div > div > div.ms-Panel-main");
+            if (!settingsPanel && !timedOut) {
+                requestAnimationFrame(tryHack);
+                return;
+            }
+            if (!settingsPanel && timedOut) {
+                return;
+            }
+
+            settingsPanel.addEventListener('focusout', (event: Event) => {
+                const focusEvent = event as FocusEvent;
+                // Is null when panel is closed
+                if (focusEvent.relatedTarget) {
+                    return;
+                }
+
+                const fileIssueButton: HTMLAnchorElement = document.querySelector(".create-bug-button");
+                if (!fileIssueButton) {
+                    return;
+                }
+                fileIssueButton.focus();
+            }); 
+
+        };
+        tryHack();
     }
 
     private renderDialogContent(): JSX.Element {
