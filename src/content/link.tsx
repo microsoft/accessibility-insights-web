@@ -71,4 +71,8 @@ export const link = {
         'Providing text descriptions to identify required fields that were not completed',
         'https://www.w3.org/WAI/WCAG21/Techniques/general/G83',
     ),
+    WCAG21TechniquesG138: linkTo(
+        'Using semantic markup whenever color cues are used',
+        'https://www.w3.org/WAI/WCAG21/Techniques/general/G138',
+    ),
 };
