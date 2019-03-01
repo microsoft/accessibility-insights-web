@@ -89,15 +89,15 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
         return (
             <div>
                 <h2>Failure details</h2>
-                <FlaggedComponent
-                    enableJSXElement={this.getFileIssueDetailsButton(issueData)}
-                    featureFlag={FeatureFlags[FeatureFlags.showBugFiling]}
-                    featureFlagStoreData={this.props.featureFlagData}
-                />
                 <CopyIssueDetailsButton
                     deps={this.props.deps}
                     issueDetailsData={issueData}
                     onClick={this.props.deps.detailsViewActionMessageCreator.copyIssueDetailsClicked}
+                />
+                <FlaggedComponent
+                    enableJSXElement={this.getFileIssueDetailsButton(issueData)}
+                    featureFlag={FeatureFlags[FeatureFlags.showBugFiling]}
+                    featureFlagStoreData={this.props.featureFlagData}
                 />
                 <table className="issue-detail-table">
                     <tbody>
