@@ -11,11 +11,16 @@ export const OverviewHeading = NamedSFC('OverviewHeading', () => {
             <div className="overview-heading">
                 <h1>Overview</h1>
                 <div className="overview-heading-content">
-                    This summary indicates the overall accessibility of the website or web app, through a combination of automated and
-                    manual tests, covering all WCAG 2.0 AA success criteria. Each manual test covers a set of related accessibility
-                    requirements, with provided step-by-step testing instructions and guidance. Where possible, {productName} "assists" the
-                    manual test process by generating a list of instances to evaluate and highlighting them on the screen. {productName}
-                    also allows you to manually record failure instances.
+                    This page contains a summary that indicates the progress of your assessment. An assessment is a manual experience in
+                    which you navigate through a set of tests that cover all WCAG 2.0 AA success criteria. Each test has one or more
+                    requirements that can be:
+                    <ul>
+                        <li>Automated</li>
+                        <li>Assisted</li>
+                        <li>Manual</li>
+                    </ul>
+                    Where possible, {productName} "assists" the test process by generating a list of instances to evaluate and highlighting
+                    them on the screen. {productName} also allows you to manually record failure instances.
                 </div>
             </div>
         </>
