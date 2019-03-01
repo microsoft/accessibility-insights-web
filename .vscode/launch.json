@@ -31,6 +31,26 @@
             "sourceMapPathOverrides": {
                 "webpack:///./*": "${workspaceFolder}/*"
             }
+        },
+        {
+            "name": "Attach debugger to target page in running Chrome instance (must launch Chrome with --remote-debugging-port=9230)",
+            "type": "chrome",
+            "request": "attach",
+            "port": 9230,
+            "preLaunchTask": "",
+            "urlFilter": "*${input:partialUrlPrompt}*",
+            "webRoot": "${workspaceFolder}/drop/dev/extension",
+            "sourceMapPathOverrides": {
+                "webpack:///./*": "${workspaceFolder}/*"
+            }
+        }
+    ],
+    "inputs": [
+        {
+            "id": "partialUrlPrompt",
+            "description": "Enter the target page's url (or part of the url)",
+            "default": "/src/tests/end-to-end/test-resources/",
+            "type": "promptString"
         }
     ]
 }
