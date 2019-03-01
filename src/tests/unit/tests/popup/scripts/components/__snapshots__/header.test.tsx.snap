@@ -13,7 +13,7 @@ exports[`HeaderTest render 1`] = `
 </header>"
 `;
 
-exports[`HeaderTest render with extraContent prop 1`] = `
+exports[`HeaderTest render with children prop 1`] = `
 "<header className=\\"ms-Grid launch-panel-header\\">
   <div className=\\"ms-Grid-row\\">
     <div role=\\"heading\\" aria-level={1} className=\\"ms-Grid-col ms-u-sm10 ms-fontColor-neutralPrimary ms-font-xl old\\" />

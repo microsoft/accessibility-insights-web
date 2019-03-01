@@ -29,15 +29,15 @@ describe('HeaderTest', () => {
         expect(wrapper.debug()).toMatchSnapshot();
     });
 
-    test('render with extraContent prop', () => {
-        const extraContent: JSX.Element = <div>my content</div>;
+    test('render with children prop', () => {
+        const children: JSX.Element = <div>my content</div>;
 
         const props: HeaderProps = {
             title: null,
             subtitle: null,
         };
 
-        const wrapper = shallow(<Header {...props}>{extraContent}</Header>);
+        const wrapper = shallow(<Header {...props}>{children}</Header>);
 
         expect(wrapper.debug()).toMatchSnapshot();
     });
