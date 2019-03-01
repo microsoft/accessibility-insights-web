@@ -79,4 +79,5 @@ export const link = {
         'Ensuring keyboard control for all functionality',
         'https://www.w3.org/WAI/WCAG21/Techniques/general/G202',
     ),
+    WCAG21TechniquesG90: linkTo('Providing keyboard-triggered event handlers', 'https://www.w3.org/WAI/WCAG21/Techniques/general/G90'),
 };

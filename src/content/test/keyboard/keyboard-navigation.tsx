@@ -91,9 +91,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <Markup.Links>
             <Link.WCAG21TechniquesG202 />
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H91">Using HTML form controls and links</Markup.HyperLink>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G90">
-                Providing keyboard-triggered event handlers
-            </Markup.HyperLink>
+            <Link.WCAG21TechniquesG90 />
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/client-side-script/SCR20">
                 Using both keyboard and other device-specific functions
             </Markup.HyperLink>

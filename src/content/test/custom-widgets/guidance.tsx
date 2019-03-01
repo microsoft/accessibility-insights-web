@@ -181,9 +181,7 @@ export const guidance = create(({ Markup, Link }) => (
         <h4>Sufficient techniques</h4>
         <Markup.Links>
             <Link.WCAG21TechniquesG202 />
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G90">
-                Providing keyboard-triggered event handlers
-            </Markup.HyperLink>
+            <Link.WCAG21TechniquesG90 />
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/client-side-script/SCR20">
                 Using both keyboard and other device-specific functions
             </Markup.HyperLink>
