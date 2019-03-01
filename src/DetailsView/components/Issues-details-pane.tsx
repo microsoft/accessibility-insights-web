@@ -61,7 +61,9 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
         return (
             <div>
                 <h2>Failure details</h2>
-                <div className="issue-detail-select-message">Select a single failure to see its details here.</div>
+                <div className="issue-detail-select-message">
+                    Select a single failure instance from a group in the table above to see more details here.
+                </div>
             </div>
         );
     }
