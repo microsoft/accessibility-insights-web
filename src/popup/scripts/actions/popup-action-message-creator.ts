@@ -50,7 +50,7 @@ export class PopupActionMessageCreator extends BaseActionMessageCreator {
     }
 
     public openDetailsView(
-        event: React.SyntheticEvent<MouseEvent>,
+        event: React.SyntheticEvent<MouseEvent> | React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>,
         viewType: VisualizationType,
         source: TelemetryEventSource,
         pivotType = DetailsViewPivotType.allTest,
@@ -70,7 +70,7 @@ export class PopupActionMessageCreator extends BaseActionMessageCreator {
         this.windowUtils.closeWindow();
     }
 
-    public openShortcutConfigureTab(event: React.MouseEvent<HTMLElement>): void {
+    public openShortcutConfigureTab(event: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>): void {
         const telemetry = this.telemetryFactory.fromHamburgetMenu(event);
         const payload: BaseActionPayload = {
             telemetry,

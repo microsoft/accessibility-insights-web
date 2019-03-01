@@ -30,7 +30,12 @@ import { ForIssuesAnalyzerScanCallback, ForRuleAnalyzerScanCallback } from './ty
 import { DetailsViewPivotType } from './types/details-view-pivot-type';
 import { VisualizationType } from './types/visualization-type';
 
-type SupportedMouseEvent = React.SyntheticEvent<MouseEvent> | React.MouseEvent<any> | MouseEvent;
+type SupportedMouseEvent =
+    | React.SyntheticEvent<MouseEvent>
+    | React.MouseEvent<any>
+    | MouseEvent
+    | React.MouseEvent<HTMLElement>
+    | React.KeyboardEvent<HTMLElement>;
 
 export class TelemetryDataFactory {
     public forVisualizationToggleByCommand(enabled: boolean): ToggleTelemetryData {
