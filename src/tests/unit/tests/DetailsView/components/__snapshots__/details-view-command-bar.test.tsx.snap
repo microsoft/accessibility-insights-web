@@ -3,8 +3,8 @@
 exports[`DetailsViewCommandBar renders with export button and dialog 1`] = `
 "<div className=\\"details-view-command-bar\\">
   <div className=\\"details-view-target-page\\">
-    Target page: 
-    <StyledLinkBase role=\\"link\\" aria-label=\\"Target Page command-bar-test-tab-title\\" className=\\"target-page-link\\" onClick={[Function: switchToTargetTabStub]}>
+    <StyledLinkBase role=\\"link\\" className=\\"target-page-link\\" onClick={[Function: switchToTargetTabStub]}>
+      Target page: 
       command-bar-test-tab-title
     </StyledLinkBase>
   </div>
@@ -21,8 +21,8 @@ exports[`DetailsViewCommandBar renders with export button and dialog 1`] = `
 exports[`DetailsViewCommandBar renders without export button and dialog 1`] = `
 "<div className=\\"details-view-command-bar\\">
   <div className=\\"details-view-target-page\\">
-    Target page: 
-    <StyledLinkBase role=\\"link\\" aria-label=\\"Target Page command-bar-test-tab-title\\" className=\\"target-page-link\\" onClick={[Function: switchToTargetTabStub]}>
+    <StyledLinkBase role=\\"link\\" className=\\"target-page-link\\" onClick={[Function: switchToTargetTabStub]}>
+      Target page: 
       command-bar-test-tab-title
     </StyledLinkBase>
   </div>
