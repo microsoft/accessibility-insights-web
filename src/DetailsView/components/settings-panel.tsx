@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-import { ChoiceGroup, IChoiceGroupOption, TextField } from 'office-ui-fabric-react';
+import { TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { FlaggedComponent } from '../../common/components/flagged-component';
@@ -17,7 +17,6 @@ import {
     enableTelemetrySettingDescription,
     enableTelemetrySettingsPanelTitle,
 } from '../../content/settings/improve-accessibility-insights';
-import { IssueTrackerInput } from '../../content/settings/issue-tracker';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { GenericPanel } from './generic-panel';
 import { GenericToggle } from './generic-toggle';
@@ -79,27 +78,11 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
     }
 
     private getBugSettingsUx(): JSX.Element {
-        const selectedKey = this.props.userConfigStoreState.bugService || 'none';
         return (
             <>
-                <ChoiceGroup
-                    label="Issue filing"
-                    selectedKey={selectedKey}
-                    options={[
-                        { key: 'none', text: 'None' },
-                        { key: 'azureBoards', text: 'Azure Boards' },
-                        { key: 'gitHub', text: 'GitHub' },
-                    ]}
-                    onChange={this.onBugServiceChoiceGroupChange}
-                />
-                {this.getProviderBugSettingsUx(selectedKey)}
+                <h3>Issue filing</h3>
+                {this.getGitHubBugSettingsUx()}
             </>
-        );
-    }
-
-    private getIssueTrackerInput(): JSX.Element {
-        return (
-            <IssueTrackerInput onSave={this.onIssueTrackerPathSave} issueTrackerPath={this.props.userConfigStoreState.issueTrackerPath} />
         );
     }
 
@@ -111,53 +94,6 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
     @autobind
     protected onHighContrastModeToggleClick(id: string, state: boolean): void {
         this.props.deps.userConfigMessageCreator.setHighContrastMode(state);
-    }
-
-    @autobind
-    protected onBugServiceChoiceGroupChange(ev?: React.FormEvent<HTMLElement | HTMLInputElement>, option?: IChoiceGroupOption): void {
-        if (option) {
-            this.props.deps.userConfigMessageCreator.setBugService(option.key as string);
-        }
-    }
-
-    private getProviderBugSettingsUx(selectedKey: string): JSX.Element {
-        // TODO: Will refactor into provider classes later
-        switch (selectedKey) {
-            case 'azureBoards':
-                return this.getAzureBoardsBugSettingsUx();
-            case 'gitHub':
-                return this.getGitHubBugSettingsUx();
-            case 'none':
-            default:
-                return null;
-        }
-    }
-
-    private getAzureBoardsBugSettingsUx(): JSX.Element {
-        return (
-            <>
-                <TextField
-                    label="Enter desired Azure Boards project URL:"
-                    onChange={this.onAzureBoardsProjectChange}
-                    value={this.getBugServiceProperty('azureBoards', 'project')}
-                />
-                <TextField
-                    label="Enter Azure Boards team name:"
-                    onChange={this.onAzureBoardsTeamChange}
-                    value={this.getBugServiceProperty('azureBoards', 'team')}
-                />
-            </>
-        );
-    }
-
-    @autobind
-    protected onAzureBoardsProjectChange(event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string): void {
-        this.props.deps.userConfigMessageCreator.setBugServiceProperty('azureBoards', 'project', newValue);
-    }
-
-    @autobind
-    protected onAzureBoardsTeamChange(event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string): void {
-        this.props.deps.userConfigMessageCreator.setBugServiceProperty('azureBoards', 'team', newValue);
     }
 
     private getGitHubBugSettingsUx(): JSX.Element {
@@ -182,10 +118,5 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
             return undefined;
         }
         return this.props.userConfigStoreState.bugServicePropertiesMap[bugService][propertyName];
-    }
-
-    @autobind
-    protected onIssueTrackerPathSave(id: string, state: string) {
-        return this.props.deps.userConfigMessageCreator.setIssueTrackerPath(state);
     }
 }
