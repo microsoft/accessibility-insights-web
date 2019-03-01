@@ -64,9 +64,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA17">
                 Using grouping roles to identify related form controls
             </Markup.HyperLink>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G89">
-                Providing expected data format and example
-            </Markup.HyperLink>
+            <Link.WCAG21TechniquesG89 />
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G184">
                 Providing text instructions at the beginning of a form or set of fields that describes the necessary input
             </Markup.HyperLink>
