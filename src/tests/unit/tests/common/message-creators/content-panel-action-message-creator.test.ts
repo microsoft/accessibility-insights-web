@@ -5,13 +5,19 @@ import { Mock } from 'typemoq';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
-import { BaseTelemetryData, CONTENT_HYPERLINK_OPENED, CONTENT_PAGE_OPENED } from '../../../../../common/telemetry-events';
+import {
+    CONTENT_HYPERLINK_OPENED,
+    CONTENT_PAGE_OPENED,
+    TelemetryEventSource,
+    TriggeredBy,
+    BaseTelemetryData,
+} from '../../../../../common/telemetry-events';
 
 describe('ContentPanelActionMessageCreator', () => {
     const event = Mock.ofType<MouseEvent>().object;
     const tabId = 2112;
-    const source = -1;
-    const triggeredBy = 'triggeredBy';
+    const source = -1 as TelemetryEventSource;
+    const triggeredBy = 'triggeredBy' as TriggeredBy;
     const contentPath = 'content/path';
     const href = 'http://external.link';
 
