@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { create, React } from '../../common';
 
-export const infoAndExamples = create(({ Markup }) => (
+export const infoAndExamples = create(({ Markup, Link }) => (
     <React.Fragment>
         <h1>Keyboard navigation</h1>
 
@@ -89,9 +89,7 @@ export const infoAndExamples = create(({ Markup }) => (
 
         <h3>Sufficient techniques</h3>
         <Markup.Links>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G202">
-                Ensuring keyboard control for all functionality
-            </Markup.HyperLink>
+            <Link.WCAG21TechniquesG202 />
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H91">Using HTML form controls and links</Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G90">
                 Providing keyboard-triggered event handlers

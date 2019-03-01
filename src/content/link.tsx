@@ -75,4 +75,8 @@ export const link = {
         'Using semantic markup whenever color cues are used',
         'https://www.w3.org/WAI/WCAG21/Techniques/general/G138',
     ),
+    WCAG21TechniquesG202: linkTo(
+        'Ensuring keyboard control for all functionality',
+        'https://www.w3.org/WAI/WCAG21/Techniques/general/G202',
+    ),
 };

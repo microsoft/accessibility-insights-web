@@ -89,9 +89,7 @@ export const guidance = create(({ Markup, Link }) => (
 
         <h4>Sufficient techniques</h4>
         <Markup.Links>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G202">
-                Ensuring keyboard control for all functionality
-            </Markup.HyperLink>
+            <Link.WCAG21TechniquesG202 />
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H91">Using HTML form controls and links</Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G90">
                 Providing keyboard-triggered event handlers
