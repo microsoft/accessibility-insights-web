@@ -137,7 +137,7 @@ export const guidance = create(({ Markup, Link }) => (
         </Markup.Links>
         <h4>Sufficient techniques</h4>
         <Markup.Links>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G131">Providing descriptive labels</Markup.HyperLink>
+            <Link.WCAG21TechniquesG131 />
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA1">
                 Using the aria-describedby property to provide a descriptive label for user interface controls
             </Markup.HyperLink>

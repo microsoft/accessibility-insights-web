@@ -80,4 +80,5 @@ export const link = {
         'https://www.w3.org/WAI/WCAG21/Techniques/general/G202',
     ),
     WCAG21TechniquesG90: linkTo('Providing keyboard-triggered event handlers', 'https://www.w3.org/WAI/WCAG21/Techniques/general/G90'),
+    WCAG21TechniquesG131: linkTo('Providing descriptive labels', 'https://www.w3.org/WAI/WCAG21/Techniques/general/G131'),
 };

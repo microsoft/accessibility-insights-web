@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { React, create } from '../../common';
 
-export const infoAndExamples = create(({ Markup }) => (
+export const infoAndExamples = create(({ Markup, Link }) => (
     <>
         <h1>Label</h1>
         <p>A custom widget must have a label and/or instructions that identify the expected input.</p>
@@ -60,7 +60,7 @@ export const infoAndExamples = create(({ Markup }) => (
         </Markup.Links>
         <h4>Sufficient techniques</h4>
         <Markup.Links>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G131">Providing descriptive labels</Markup.HyperLink>
+            <Link.WCAG21TechniquesG131 />
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA1">
                 Using the aria-describedby property to provide a descriptive label for user interface controls
             </Markup.HyperLink>
