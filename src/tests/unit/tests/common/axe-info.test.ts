@@ -9,6 +9,10 @@ describe('axeInfo', () => {
     const axe = { version: 'axe.core.version' };
     const axeInfo = new AxeInfo(axe as any);
 
+    it('has a default', () => {
+        expect(AxeInfo.Default).not.toBe(null);
+    });
+
     it('returns correct version', () => {
         expect(axeInfo.version).toBe(VERSION);
     });
