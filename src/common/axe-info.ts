@@ -3,7 +3,12 @@
 import * as Axe from 'axe-core';
 
 export class AxeInfo {
+    public static get Default(): AxeInfo {
+        return new AxeInfo(Axe);
+    }
+
     constructor(private axe: typeof Axe) {}
+
     public get version(): string {
         return this.axe.version;
     }
