@@ -12,20 +12,43 @@ import { HeaderContextualMenu, HeaderContextualMenuProps } from '../../../../../
 import { LaunchPanelHeader } from '../../../../../../popup/scripts/components/launch-panel-header';
 import { LaunchPanelHeaderClickHandler } from '../../../../../../popup/scripts/handlers/launch-panel-header-click-handler';
 import { EventStubFactory } from '../../../../common/event-stub-factory';
+import { FeatureFlags } from '../../../../../../common/feature-flags';
 
 describe('HeaderContextualMenu', () => {
-    it('renders', () => {
-        const props: HeaderContextualMenuProps = {
-            deps: {
-                popupActionMessageCreator: null,
-                launchPanelHeaderClickHandler: null,
-            },
-            header: null,
-            popupWindow: null,
-        };
-        const wrapped = shallow(<HeaderContextualMenu {...props} />);
+    describe('render', () => {
+        it('with newAssessmentExperience on', () => {
+            const props: HeaderContextualMenuProps = {
+                deps: {
+                    popupActionMessageCreator: null,
+                    launchPanelHeaderClickHandler: null,
+                },
+                header: null,
+                popupWindow: null,
+                featureFlags: {
+                    [FeatureFlags.newAssessmentExperience]: true,
+                },
+            };
+            const wrapped = shallow(<HeaderContextualMenu {...props} />);
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+            expect(wrapped.getElement()).toMatchSnapshot();
+        });
+
+        it('with newAssessmentExperience off', () => {
+            const props: HeaderContextualMenuProps = {
+                deps: {
+                    popupActionMessageCreator: null,
+                    launchPanelHeaderClickHandler: null,
+                },
+                header: null,
+                popupWindow: null,
+                featureFlags: {
+                    [FeatureFlags.newAssessmentExperience]: false,
+                },
+            };
+            const wrapped = shallow(<HeaderContextualMenu {...props} />);
+
+            expect(wrapped.getElement()).toMatchSnapshot();
+        });
     });
 
     describe('menu items activation', () => {
@@ -46,6 +69,9 @@ describe('HeaderContextualMenu', () => {
                 deps: {
                     popupActionMessageCreator: popupActionMessageCreatorMock.object,
                     launchPanelHeaderClickHandler: launchPanelHeaderClickHandlerMock.object,
+                },
+                featureFlags: {
+                    [FeatureFlags.newAssessmentExperience]: true,
                 },
                 header: headerMock.object,
                 popupWindow: popupWindowMock.object,
@@ -74,6 +100,20 @@ describe('HeaderContextualMenu', () => {
         });
 
         it('handles full-assessment', () => {
+            const props: HeaderContextualMenuProps = {
+                deps: {
+                    popupActionMessageCreator: popupActionMessageCreatorMock.object,
+                    launchPanelHeaderClickHandler: launchPanelHeaderClickHandlerMock.object,
+                },
+                featureFlags: {
+                    [FeatureFlags.newAssessmentExperience]: false,
+                },
+                header: headerMock.object,
+                popupWindow: popupWindowMock.object,
+            };
+
+            testObject = mount(<HeaderContextualMenu {...props} />);
+
             popupActionMessageCreatorMock
                 .setup(creator =>
                     creator.openDetailsView(

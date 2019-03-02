@@ -11,6 +11,7 @@ import { VisualizationType } from '../../../common/types/visualization-type';
 import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
 import { LaunchPanelHeaderClickHandler } from '../handlers/launch-panel-header-click-handler';
 import { LaunchPanelHeader } from './launch-panel-header';
+import { FeatureFlags } from '../../../common/feature-flags';
 
 export type HeaderContextualMenuDeps = {
     popupActionMessageCreator: PopupActionMessageCreator;
@@ -21,15 +22,16 @@ export type HeaderContextualMenuProps = {
     deps: HeaderContextualMenuDeps;
     header: LaunchPanelHeader;
     popupWindow: Window;
+    featureFlags: IDictionaryStringTo<boolean>;
 } & Pick<IContextualMenuItem, 'target'>;
 
 const telemetryEventSource = TelemetryEventSource.HamburgerMenu;
 
 export const HeaderContextualMenu = NamedSFC<HeaderContextualMenuProps>('HeaderContextualMenu', props => {
-    const { deps, header, popupWindow } = props;
+    const { deps, header, popupWindow, featureFlags } = props;
     const { popupActionMessageCreator, launchPanelHeaderClickHandler } = deps;
 
-    const items: IContextualMenuItem[] = [
+    const getItems = (): IContextualMenuItem[] => [
         {
             key: 'fast-pass',
             iconProps: {
@@ -88,6 +90,14 @@ export const HeaderContextualMenu = NamedSFC<HeaderContextualMenuProps>('HeaderC
             name: 'Help',
         },
     ];
+
+    const items = getItems().filter(item => {
+        if (featureFlags[FeatureFlags.newAssessmentExperience]) {
+            return item.key !== 'full-assessment';
+        }
+
+        return item.key !== 'assessment';
+    });
 
     return (
         <ContextualMenu
