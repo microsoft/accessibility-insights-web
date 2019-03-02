@@ -1238,10 +1238,13 @@ div.insights-file-issue-details-dialog-container {
                         font-size: 21px;
                         display: inline-block;
                     }
-                    .copy-issue-details-button,
+                    .copy-issue-details-button {
+                        vertical-align: baseline;
+                        margin-left: 24px;
+                    }
                     .create-bug-button {
                         vertical-align: baseline;
-                        margin-left: 16px;
+                        margin-left: 8px;
                     }
                     .issue-detail-table {
                         width: 100%;
