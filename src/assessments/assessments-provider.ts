@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { VisualizationType } from '../common/types/visualization-type';
 import { IAssessment } from './types/iassessment';
 import { IAssessmentsProvider } from './types/iassessments-provider';
-import { VisualizationType } from '../common/types/visualization-type';
 import { TestStep } from './types/test-step';
 
 export class AssessmentsProvider implements IAssessmentsProvider {

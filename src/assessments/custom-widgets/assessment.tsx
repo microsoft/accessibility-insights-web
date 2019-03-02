@@ -3,7 +3,9 @@
 import * as React from 'react';
 
 import { NewTabLink } from '../../common/components/new-tab-link';
+import { FeatureFlags } from '../../common/feature-flags';
 import { VisualizationType } from '../../common/types/visualization-type';
+import { test as content } from '../../content/test';
 import { AssessmentBuilder } from '../assessment-builder';
 import * as Markup from '../markup';
 import { IAssessment } from '../types/iassessment';
@@ -13,8 +15,6 @@ import { Instructions } from './test-steps/instructions';
 import { KeyboardInteraction } from './test-steps/keyboard-interaction';
 import { Label } from './test-steps/label';
 import { RoleStateProperty } from './test-steps/role-state-property';
-import { FeatureFlags } from '../../common/feature-flags';
-import { test as content } from '../../content/test';
 
 const key = 'customWidgets';
 const title = 'Custom widgets';

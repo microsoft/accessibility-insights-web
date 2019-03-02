@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { IDetailsViewCommandBarProps, DetailsViewCommandBar } from './details-view-command-bar';
 import { NamedSFC } from '../../common/react/named-sfc';
+import { DetailsViewCommandBar, IDetailsViewCommandBarProps } from './details-view-command-bar';
 
 export type CommandBarProps = Pick<IDetailsViewCommandBarProps, Exclude<keyof IDetailsViewCommandBarProps, 'renderExportAndStartOver'>>;
 

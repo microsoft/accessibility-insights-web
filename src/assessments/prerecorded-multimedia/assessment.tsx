@@ -2,15 +2,15 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import * as Markup from '../markup';
 import { VisualizationType } from '../../common/types/visualization-type';
-import { AssessmentBuilder } from '../assessment-builder';
-import { Captions } from './test-steps/captions';
-import { NoObstruction } from './test-steps/no-obstruction';
-import { AudioDescription } from './test-steps/audio-description';
-import { Synchronization } from './test-steps/synchronization';
-import { NoConflict } from './test-steps/no-conflict';
 import { test as content } from '../../content/test';
+import { AssessmentBuilder } from '../assessment-builder';
+import * as Markup from '../markup';
+import { AudioDescription } from './test-steps/audio-description';
+import { Captions } from './test-steps/captions';
+import { NoConflict } from './test-steps/no-conflict';
+import { NoObstruction } from './test-steps/no-obstruction';
+import { Synchronization } from './test-steps/synchronization';
 
 const key = 'prerecordedMultimedia';
 const title = 'Multimedia';

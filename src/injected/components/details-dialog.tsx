@@ -5,21 +5,21 @@ import { Dialog, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import * as React from 'react';
 
-import { NewTabLink } from '../../common/components/new-tab-link';
+import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
+import { CopyIssueDetailsButton, CopyIssueDetailsButtonDeps } from '../../common/components/copy-issue-details-button';
 import { FileIssueDetailsButton, FileIssueDetailsButtonDeps } from '../../common/components/file-issue-details-button';
+import { FlaggedComponent } from '../../common/components/flagged-component';
+import { NewTabLink } from '../../common/components/new-tab-link';
 import { FeatureFlags } from '../../common/feature-flags';
-import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { IBaseStore } from '../../common/istore';
 import { DevToolActionMessageCreator } from '../../common/message-creators/dev-tool-action-message-creator';
+import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { DevToolState } from '../../common/types/store-data/idev-tool-state';
+import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { DecoratedAxeNodeResult } from '../scanner-utils';
+import { TargetPageActionMessageCreator } from '../target-page-action-message-creator';
 import { DetailsDialogHandler } from './../details-dialog-handler';
 import { FixInstructionPanel } from './fix-instruction-panel';
-import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
-import { CopyIssueDetailsButton, CopyIssueDetailsButtonDeps } from '../../common/components/copy-issue-details-button';
-import { TargetPageActionMessageCreator } from '../target-page-action-message-creator';
-import { FlaggedComponent } from '../../common/components/flagged-component';
-import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 
 export enum CheckType {
     All,

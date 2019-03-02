@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash/index';
 
-import { IAssessment } from './types/iassessment';
-import { IAssessmentsProvider } from './types/iassessments-provider';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { AssessmentsProvider } from './assessments-provider';
+import { IAssessment } from './types/iassessment';
+import { IAssessmentsProvider } from './types/iassessments-provider';
 
 function assessmentIsFeatureEnabled(flags: FeatureFlagStoreData): (assessment: IAssessment) => boolean {
     return assessment =>

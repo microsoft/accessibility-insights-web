@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as Enzyme from 'enzyme';
 import * as React from 'react';
-import { IMock, It, Mock, Times, MockBehavior } from 'typemoq';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { AssessmentsProvider } from '../../../../../assessments/assessments-provider';
 import { TestStep } from '../../../../../assessments/types/test-step';
@@ -11,7 +11,7 @@ import { ManualTestStatus } from '../../../../../common/types/manual-test-status
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { AssessmentInstanceTable } from '../../../../../DetailsView/components/assessment-instance-table';
 import { AssessmentVisualizationEnabledToggle } from '../../../../../DetailsView/components/assessment-visualization-enabled-toggle';
-import { ManualTestStepView, IManualTestStepViewProps } from '../../../../../DetailsView/components/manual-test-step-view';
+import { IManualTestStepViewProps, ManualTestStepView } from '../../../../../DetailsView/components/manual-test-step-view';
 import { ITestStepViewProps, TestStepView } from '../../../../../DetailsView/components/test-step-view';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
 import { BaseDataBuilder } from '../../../common/base-data-builder';

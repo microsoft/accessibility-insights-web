@@ -5,17 +5,17 @@ import { head, isEmpty, pick } from 'lodash/index';
 import { IAssessment } from '../assessments/types/iassessment';
 import { TestStep } from '../assessments/types/test-step';
 import { IManualTestStatus, ManualTestStatus } from '../common/types/manual-test-status';
-import { IAssessmentsProvider } from './../assessments/types/iassessments-provider';
-import { ITestStepData } from './../common/types/manual-test-status';
 import {
-    InstanceIdToInstanceDataMap,
     IAssessmentData,
     IAssessmentStoreData,
     IGeneratedAssessmentInstance,
     IManualTestStepResult,
-    RequirementIdToResultMap,
+    InstanceIdToInstanceDataMap,
     PersistedTabInfo,
+    RequirementIdToResultMap,
 } from '../common/types/store-data/iassessment-result-data';
+import { IAssessmentsProvider } from './../assessments/types/iassessments-provider';
+import { ITestStepData } from './../common/types/manual-test-status';
 
 export class InitialAssessmentStoreDataGenerator {
     private readonly NULL_FIRST_TEST: Partial<Readonly<IAssessment>> = { type: null, steps: [{ key: null }] as TestStep[] };

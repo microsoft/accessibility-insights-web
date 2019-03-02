@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { AssessmentDefaultMessageGenerator } from '../../assessments/assessment-default-message-generator';
 import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
-import { TestStep, IVisualHelperToggleConfig } from '../../assessments/types/test-step';
+import { IVisualHelperToggleConfig, TestStep } from '../../assessments/types/test-step';
 import { CollapsibleComponent } from '../../common/components/collapsible-component';
 import {
     IAssessmentNavState,

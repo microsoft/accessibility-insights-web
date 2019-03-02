@@ -9,6 +9,7 @@ import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 import { It, Mock, Times } from 'typemoq';
 
+import * as Markup from '../../../../../assessments/markup';
 import { VisualizationToggle } from '../../../../../common/components/visualization-toggle';
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { FeatureFlags } from '../../../../../common/feature-flags';
@@ -19,7 +20,6 @@ import { ReportGenerator } from '../../../../../DetailsView/reports/report-gener
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { RuleResult } from '../../../../../scanner/iruleresults';
 import { ShallowRenderer } from '../../../common/shallow-renderer';
-import * as Markup from '../../../../../assessments/markup';
 
 describe('IssuesTableTest', () => {
     const onExportButtonClickStub = () => {};

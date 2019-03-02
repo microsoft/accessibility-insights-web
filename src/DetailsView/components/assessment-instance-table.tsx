@@ -1,27 +1,27 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { has } from 'lodash';
 import { autobind, IRenderFunction } from '@uifabric/utilities';
+import { has } from 'lodash';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import {
     CheckboxVisibility,
     ConstrainMode,
     DetailsList,
-    IObjectWithKey,
-    IDetailsRowProps,
     IColumn,
+    IDetailsRowProps,
+    IObjectWithKey,
 } from 'office-ui-fabric-react/lib/DetailsList';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
 
 import { AssessmentDefaultMessageGenerator } from '../../assessments/assessment-default-message-generator';
+import { ManualTestStatus } from '../../common/types/manual-test-status';
 import {
     IAssessmentNavState,
     IGeneratedAssessmentInstance,
     IUserCapturedInstance,
 } from '../../common/types/store-data/iassessment-result-data';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
-import { ManualTestStatus } from '../../common/types/manual-test-status';
 
 export interface IAssessmentInstanceTableProps {
     instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance>;

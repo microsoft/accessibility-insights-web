@@ -3,8 +3,8 @@
 import { IMock, It, Mock } from 'typemoq';
 
 import { Messages } from '../../../../common/messages';
-import * as TelemetryEvents from '../../../../common/telemetry-events';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
+import * as TelemetryEvents from '../../../../common/telemetry-events';
 import { TelemetryEventSource } from '../../../../common/telemetry-events';
 import { TargetPageActionMessageCreator } from '../../../../injected/target-page-action-message-creator';
 import { EventStubFactory } from './../../common/event-stub-factory';

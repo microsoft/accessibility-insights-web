@@ -3,20 +3,20 @@
 import * as React from 'react';
 
 import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
+import { BugClickHandler } from '../../common/bug-click-handler';
 import { CopyIssueDetailsButton } from '../../common/components/copy-issue-details-button';
 import { FileIssueDetailsButton, FileIssueDetailsButtonDeps } from '../../common/components/file-issue-details-button';
+import { FlaggedComponent } from '../../common/components/flagged-component';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { ToastDeps } from '../../common/components/toast';
+import { FeatureFlags } from '../../common/feature-flags';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
+import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { CheckType } from '../../injected/components/details-dialog';
 import { FixInstructionPanel } from '../../injected/components/fix-instruction-panel';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { GuidanceLinks } from './guidance-links';
-import { FeatureFlags } from '../../common/feature-flags';
-import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
-import { FlaggedComponent } from '../../common/components/flagged-component';
-import { BugClickHandler } from '../../common/bug-click-handler';
 
 export type IssuesDetailsPaneDeps = ToastDeps &
     FileIssueDetailsButtonDeps & {

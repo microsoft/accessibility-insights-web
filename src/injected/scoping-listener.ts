@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ShadowUtils } from './shadow-utils';
-import { ElementFinderByPosition } from './element-finder-by-position';
-import { WindowUtils } from '../common/window-utils';
 import { autobind } from '@uifabric/utilities';
 import { ISingleElementSelector } from '../common/types/store-data/scoping-store-data';
+import { WindowUtils } from '../common/window-utils';
+import { ElementFinderByPosition } from './element-finder-by-position';
+import { ShadowUtils } from './shadow-utils';
 
 export type IInspectCallback = (event: MouseEvent, selector: ISingleElementSelector) => void;
 export class ScopingListener {

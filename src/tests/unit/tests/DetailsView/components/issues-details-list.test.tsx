@@ -10,7 +10,7 @@ import {
     SelectionMode,
 } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
-import { Mock, It } from 'typemoq';
+import { It, Mock } from 'typemoq';
 
 import { FeatureFlags } from '../../../../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';

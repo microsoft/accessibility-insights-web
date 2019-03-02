@@ -4,8 +4,8 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { FileIssueDetailsButton, FileIssueDetailsButtonProps } from '../../../../../common/components/file-issue-details-button';
 import { IssueDetailsTextGenerator } from '../../../../../background/issue-details-text-generator';
+import { FileIssueDetailsButton, FileIssueDetailsButtonProps } from '../../../../../common/components/file-issue-details-button';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 
 describe('FileIssueDetailsButtonTest', () => {

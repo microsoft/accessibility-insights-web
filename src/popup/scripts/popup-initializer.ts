@@ -10,6 +10,8 @@ import { VisualizationConfigurationFactory } from '../../common/configs/visualiz
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 import { EnumHelper } from '../../common/enum-helper';
 import { HTMLElementUtils } from '../../common/html-element-utils';
+import { createDefaultLogger } from '../../common/logging/default-logger';
+import { Logger } from '../../common/logging/logger';
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
 import { DropdownActionMessageCreator } from '../../common/message-creators/dropdown-action-message-creator';
 import { StoreActionMessageCreatorFactory } from '../../common/message-creators/store-action-message-creator-factory';
@@ -43,8 +45,6 @@ import { PopupViewControllerHandler } from './handlers/popup-view-controller-han
 import { LaunchPadRowConfigurationFactory } from './launch-pad-row-configuration-factory';
 import { MainRenderer, MainRendererDeps } from './main-renderer';
 import { TargetTabFinder, TargetTabInfo } from './target-tab-finder';
-import { Logger } from '../../common/logging/logger';
-import { createDefaultLogger } from '../../common/logging/default-logger';
 
 declare var window: AutoChecker & Window;
 

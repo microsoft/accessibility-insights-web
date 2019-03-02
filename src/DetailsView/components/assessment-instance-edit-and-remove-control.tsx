@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { autobind } from '@uifabric/utilities';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { Link } from 'office-ui-fabric-react/lib/Link';
-import { autobind } from '@uifabric/utilities';
 import * as React from 'react';
 
 import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';

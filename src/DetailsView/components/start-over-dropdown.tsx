@@ -4,8 +4,8 @@ import { autobind, IPoint } from '@uifabric/utilities';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { ContextualMenu } from 'office-ui-fabric-react/lib/ContextualMenu';
 import * as React from 'react';
-import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { VisualizationType } from '../../common/types/visualization-type';
+import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { GenericDialog } from './generic-dialog';
 
 type DialogState = 'none' | 'assessment' | 'test';

@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ClientRectOffset } from './../client-utils';
+import { ClientUtils } from '../client-utils';
 import { TabbableElementsHelper } from './../../common/tabbable-elements-helper';
 import { WindowUtils } from './../../common/window-utils';
+import { ClientRectOffset } from './../client-utils';
 import { DrawerUtils } from './drawer-utils';
 import { IPoint } from './ipoint';
-import { ClientUtils } from '../client-utils';
 
 export class CenterPositionCalculator {
     private drawerUtils: DrawerUtils;

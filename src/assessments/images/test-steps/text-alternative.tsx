@@ -13,8 +13,8 @@ import AssistedTestRecordYourResults from '../../common/assisted-test-record-you
 import { IPropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
 import * as Markup from '../../markup';
-import { TestStep } from '../../types/test-step';
 import { ReportInstanceField } from '../../types/report-instance-field';
+import { TestStep } from '../../types/test-step';
 import { ImagesTestStep } from './test-steps';
 
 const description: JSX.Element = <span>A meaningful image must have a text alternative that serves the equivalent purpose.</span>;

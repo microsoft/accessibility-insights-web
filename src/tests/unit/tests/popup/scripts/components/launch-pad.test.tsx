@@ -6,7 +6,7 @@ import { Mock } from 'typemoq';
 
 import { ExternalLink } from '../../../../../../common/components/external-link';
 import { toolName } from '../../../../../../content/strings/application';
-import { LaunchPadProps, LaunchPad, LaunchPadDeps, LaunchPadRowConfiguration } from '../../../../../../popup/scripts/components/launch-pad';
+import { LaunchPad, LaunchPadDeps, LaunchPadProps, LaunchPadRowConfiguration } from '../../../../../../popup/scripts/components/launch-pad';
 import { LaunchPadItemRow } from '../../../../../../popup/scripts/components/launch-pad-item-row';
 
 describe('LaunchPad', () => {

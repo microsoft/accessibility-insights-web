@@ -6,8 +6,8 @@ import { link } from '../../../content/link';
 import * as content from '../../../content/test/audio-video-only/audio-only-equivalent';
 import ManualTestRecordYourResults from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
-import { AudioVideoOnlyTestStep } from './test-steps';
 import { TestStep } from '../../types/test-step';
+import { AudioVideoOnlyTestStep } from './test-steps';
 
 const description: JSX.Element = <span>Pre-recorded audio-only content must be accompanied by an equivalent text alternative.</span>;
 

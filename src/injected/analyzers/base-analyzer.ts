@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Q from 'q';
 import { autobind } from '@uifabric/utilities';
+import * as Q from 'q';
 
-import { AxeAnalyzerResult, IAnalyzer, IAnalyzerConfiguration, IScanCompletedPayload } from './ianalyzer';
 import { VisualizationType } from '../../common/types/visualization-type';
+import { AxeAnalyzerResult, IAnalyzer, IAnalyzerConfiguration, IScanCompletedPayload } from './ianalyzer';
 
 export class BaseAnalyzer implements IAnalyzer<void> {
     protected sendMessage: (message) => void;

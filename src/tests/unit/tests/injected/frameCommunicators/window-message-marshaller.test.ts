@@ -5,8 +5,8 @@ import { IMock, Mock } from 'typemoq';
 import { ClientBrowserAdapter } from '../../../../../common/client-browser-adapter';
 import {
     IWindowMessage,
-    WindowMessageMarshaller,
     MESSAGE_STABLE_SIGNATURE,
+    WindowMessageMarshaller,
 } from '../../../../../injected/frameCommunicators/window-message-marshaller';
 
 describe('WindowMessageMarshallerTests', () => {

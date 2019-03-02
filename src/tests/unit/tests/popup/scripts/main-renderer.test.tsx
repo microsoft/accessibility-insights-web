@@ -5,6 +5,7 @@ import * as ReactDOM from 'react-dom';
 import { IMock, It, Mock } from 'typemoq';
 
 import { BrowserAdapter, ChromeAdapter } from '../../../../../background/browser-adapter';
+import { Theme } from '../../../../../common/components/theme';
 import { DropdownClickHandler } from '../../../../../common/dropdown-click-handler';
 import { title } from '../../../../../content/strings/application';
 import { DiagnosticViewToggleFactory } from '../../../../../popup/scripts/components/diagnostic-view-toggle-factory';
@@ -15,7 +16,6 @@ import { PopupViewControllerHandler } from '../../../../../popup/scripts/handler
 import { LaunchPadRowConfigurationFactory } from '../../../../../popup/scripts/launch-pad-row-configuration-factory';
 import { MainRenderer, MainRendererDeps } from '../../../../../popup/scripts/main-renderer';
 import { SupportLinkHandler } from '../../../../../popup/support-link-handler';
-import { Theme } from '../../../../../common/components/theme';
 
 describe('MainRenderer', () => {
     const expectedTitle = title;

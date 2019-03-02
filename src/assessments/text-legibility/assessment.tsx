@@ -3,12 +3,12 @@
 import * as React from 'react';
 
 import { VisualizationType } from '../../common/types/visualization-type';
+import { test as content } from '../../content/test';
 import { AssessmentBuilder } from '../assessment-builder';
 import { IAssessment } from '../types/iassessment';
+import { Contrast } from './test-steps/contrast';
 import { HighContrastMode } from './test-steps/high-contrast-mode';
 import { ResizeText } from './test-steps/resize-text';
-import { Contrast } from './test-steps/contrast';
-import { test as content } from '../../content/test';
 
 const key = 'textLegibility';
 const title = 'Text legibility';

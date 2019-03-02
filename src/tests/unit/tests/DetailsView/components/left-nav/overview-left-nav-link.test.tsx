@@ -3,8 +3,8 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import { BaseLeftNavLink, BaseLeftNavLinkProps } from '../../../../../../DetailsView/components/base-left-nav';
 import { OverviewLeftNavLink } from '../../../../../../DetailsView/components/left-nav/overview-left-nav-link';
-import { BaseLeftNavLinkProps, BaseLeftNavLink } from '../../../../../../DetailsView/components/base-left-nav';
 
 describe('OverviewLeftNavLink', () => {
     it('renders', () => {

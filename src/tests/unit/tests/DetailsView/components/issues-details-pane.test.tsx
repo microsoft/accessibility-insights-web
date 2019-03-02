@@ -3,8 +3,8 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { BugClickHandler } from '../../../../../common/bug-click-handler';
+import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import {
     IssuesDetailsPane,
     IssuesDetailsPaneDeps,

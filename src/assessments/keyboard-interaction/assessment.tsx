@@ -5,6 +5,7 @@ import * as React from 'react';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { Messages } from '../../common/messages';
 import { VisualizationType } from '../../common/types/visualization-type';
+import { test as content } from '../../content/test';
 import { AssessmentBuilder } from '../assessment-builder';
 import { IAssessment } from '../types/iassessment';
 import { KeyboardNavigation } from './test-steps/keyboard-navigation';
@@ -12,7 +13,6 @@ import { NoKeyboardTraps } from './test-steps/no-keyboard-traps';
 import { NoKeystrokeTiming } from './test-steps/no-keystroke-timings';
 import { OnFocus } from './test-steps/on-focus';
 import { OnInput } from './test-steps/on-input';
-import { test as content } from '../../content/test';
 
 const key = 'keyboardInteraction';
 const keyboardInteractionTitle = 'Keyboard';

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { React, create } from '../../common';
+import { create, React } from '../../common';
 
 /** Examples need special headers (HTML/CSS) */
 export const infoAndExamples = create(({ Markup }) => (

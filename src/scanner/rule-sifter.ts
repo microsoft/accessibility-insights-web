@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { isEmpty } from 'lodash';
 import { HyperlinkDefinition } from '../views/content/content-page';
 import { IDictionaryStringTo } from './dictionary-types';
-import { isEmpty } from 'lodash';
 
 export interface IRuleInfo {
     id: string;

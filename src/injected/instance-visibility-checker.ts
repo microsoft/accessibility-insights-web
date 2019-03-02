@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { VisualizationConfigurationFactory } from './../common/configs/visualization-configuration-factory';
 import { IAssessmentsProvider } from '../assessments/types/iassessments-provider';
+import { UpdateInstanceVisibilityPayload, UpdateVisibilityPayload } from '../background/actions/action-payloads';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { Messages } from '../common/messages';
 import { VisualizationType } from '../common/types/visualization-type';
 import { WindowUtils } from '../common/window-utils';
+import { VisualizationConfigurationFactory } from './../common/configs/visualization-configuration-factory';
 import { IAssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
-import { UpdateInstanceVisibilityPayload, UpdateVisibilityPayload } from '../background/actions/action-payloads';
 
 export class InstanceVisibilityChecker {
     private sendMessage: (message) => void;

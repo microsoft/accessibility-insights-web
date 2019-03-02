@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
 import { autobind } from '@uifabric/utilities';
 import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
+import * as React from 'react';
 import { FileIssueDetailsHandler } from '../file-issue-details-handler';
 
 export interface FileIssueDetailsDialogProps {

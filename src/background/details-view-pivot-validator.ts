@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FeatureFlagStore } from './stores/global/feature-flag-store';
-import { Interpreter } from './interpreter';
 import { autobind } from '@uifabric/utilities';
 import { FeatureFlags } from '../common/feature-flags';
 import { Messages } from '../common/messages';
 import { DetailsViewPivotType } from '../common/types/details-view-pivot-type';
-import { TabStore } from './stores/tab-store';
 import { WindowUtils } from '../common/window-utils';
 import { OnDetailsViewPivotSelected } from './actions/action-payloads';
+import { Interpreter } from './interpreter';
+import { FeatureFlagStore } from './stores/global/feature-flag-store';
+import { TabStore } from './stores/tab-store';
 
 export class DetailsViewPivotValidator {
     private featureFlagStore: FeatureFlagStore;

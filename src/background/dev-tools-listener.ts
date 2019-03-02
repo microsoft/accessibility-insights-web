@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { OnDevToolOpenPayload } from './actions/action-payloads';
 import { ConnectionNames } from '../common/constants/connection-names';
 import { Messages } from '../common/messages';
 import { IDevToolsOpenMessage } from '../common/types/dev-tools-open-message';
+import { OnDevToolOpenPayload } from './actions/action-payloads';
 import { BrowserAdapter } from './browser-adapter';
 import { TabToContextMap } from './tab-context';
 

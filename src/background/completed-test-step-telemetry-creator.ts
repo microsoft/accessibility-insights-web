@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash/index';
 import { autobind } from '@uifabric/utilities';
+import * as _ from 'lodash/index';
 
 import { IAssessment } from '../assessments/types/iassessment';
 import { IAssessmentsProvider } from '../assessments/types/iassessments-provider';

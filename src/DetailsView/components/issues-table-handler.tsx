@@ -5,11 +5,11 @@ import { IGroup } from 'office-ui-fabric-react/lib/GroupedList';
 import * as React from 'react';
 
 import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
+import { DropdownClickHandler } from '../../common/dropdown-click-handler';
+import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { RuleResult } from '../../scanner/iruleresults';
 import { HyperlinkDefinition } from '../../views/content/content-page';
 import { BugButton, IBugButtonDeps } from './bug-button';
-import { DropdownClickHandler } from '../../common/dropdown-click-handler';
-import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 
 export interface IDetailsRowData extends IObjectWithKey, AxeNodeResult {
     selector: string;

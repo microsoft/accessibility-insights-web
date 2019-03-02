@@ -11,8 +11,8 @@ import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuratio
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
 import * as Markup from '../../markup';
 import { Tag, Term } from '../../markup';
-import { TestStep } from '../../types/test-step';
 import { ReportInstanceField } from '../../types/report-instance-field';
+import { TestStep } from '../../types/test-step';
 import { frameTitleInstanceDetailsColumnRenderer } from '../frametitle-instance-details-column-renderer';
 import { PageTestStep } from './test-steps';
 

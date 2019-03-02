@@ -24,8 +24,8 @@ import {
 import { DrawerProvider } from '../injected/visualization/drawer-provider';
 import { DecoratedAxeNodeResult, ScannerUtils } from './../injected/scanner-utils';
 import { IAssessment, IAssistedAssessment, IManualAssessment } from './types/iassessment';
-import { TestStep } from './types/test-step';
 import { ReportInstanceField } from './types/report-instance-field';
+import { TestStep } from './types/test-step';
 
 export class AssessmentBuilder {
     private static applyDefaultReportFieldMap(step: TestStep) {
