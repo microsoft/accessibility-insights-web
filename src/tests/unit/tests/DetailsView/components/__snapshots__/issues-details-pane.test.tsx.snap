@@ -6,8 +6,8 @@ exports[`IssuesDetailsPaneTest render with single selection, test copy to clipbo
     <h2>
       Failure details
     </h2>
-    <FlaggedComponent enableJSXElement={{...}} featureFlag=\\"showBugFiling\\" featureFlagStoreData={{...}} />
     <CopyIssueDetailsButton deps={{...}} issueDetailsData={{...}} onClick={[Function: copyIssueDetailsClicked]} />
+    <FlaggedComponent enableJSXElement={{...}} featureFlag=\\"showBugFiling\\" featureFlagStoreData={{...}} />
     <table className=\\"issue-detail-table\\">
       <tbody>
         <tr>

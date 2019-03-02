@@ -40,7 +40,7 @@ export const link = {
     WCAG_3_3_4: linkTo('WCAG 3.3.4', 'https://www.w3.org/WAI/WCAG21/Understanding/error-prevention-legal-financial-data.html'),
     WCAG_4_1_1: linkTo('WCAG 4.1.1', 'https://www.w3.org/WAI/WCAG21/Understanding/parsing.html'),
     WCAG_4_1_2: linkTo('WCAG 4.1.2', 'https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html'),
-    BingoBakery: linkTo('Bingo Bakery Video', 'https://msit.microsoftstream.com/video/a872fda0-4b9e-453b-9adf-e02a38b1900b'),
+    BingoBakery: linkTo('Bingo Bakery Video', 'https://go.microsoft.com/fwlink/?linkid=2080372'),
     IdentifyHeadings: linkTo('Techniques for WCAG 2.0: Using h1-h6 to identify headings', 'https://www.w3.org/TR/WCAG20-TECHS/H42.html'),
     LandmarkRegions: linkTo(
         'WAI-ARIA Authoring Practices 1.1: Landmark Regions',

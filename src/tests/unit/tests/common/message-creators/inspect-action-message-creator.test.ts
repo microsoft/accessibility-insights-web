@@ -6,7 +6,7 @@ import { InspectMode } from '../../../../../background/inspect-modes';
 import { InspectActionMessageCreator } from '../../../../../common/message-creators/inspect-action-message-creator';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
-import { TelemetryEventSource } from '../../../../../common/telemetry-events';
+import { TelemetryEventSource, BaseTelemetryData } from '../../../../../common/telemetry-events';
 import { EventStubFactory } from './../../../common/event-stub-factory';
 
 describe('InspectActionMessageCreatorTest', () => {
@@ -27,7 +27,7 @@ describe('InspectActionMessageCreatorTest', () => {
 
     test('changeMode', () => {
         const event = eventStubFactory.createMouseClickEvent() as any;
-        const telemetry = {
+        const telemetry: BaseTelemetryData = {
             triggeredBy: 'mouseclick',
             source: testSource,
         };

@@ -1,24 +1,24 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
-
 import { HeadingsTestStep } from '../../../../../assessments/headings/test-steps/test-steps';
 import { OnDetailsViewPivotSelected } from '../../../../../background/actions/action-payloads';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import {
     COPY_ISSUE_DETAILS,
-    DETAILS_VIEW_OPEN,
     DetailsViewOpenTelemetryData,
     DetailsViewPivotSelectedTelemetryData,
-    DetailsViewTargetLinkClickTelemetryData,
-    EXPORT_RESULTS,
+    DETAILS_VIEW_OPEN,
     ExportResultsTelemetryData,
+    EXPORT_RESULTS,
     FeatureFlagToggleTelemetryData,
     TelemetryEventSource,
     TestStepActionTelemetryData,
     TestStepSelectTelemetryData,
     TriggeredByNotApplicable,
+    AssessmentTelemetryData,
+    BaseTelemetryData,
 } from '../../../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
@@ -82,8 +82,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
     });
 
     test('switchToTargetTab', () => {
-        const tabId = 1;
-        const telemetryStub: DetailsViewTargetLinkClickTelemetryData = {
+        const telemetryStub: BaseTelemetryData = {
             triggeredBy: 'mouseclick',
             source: testSource,
         };
@@ -190,7 +189,6 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
     test('sendPivotItemClicked', () => {
         const pivot = DetailsViewPivotType.allTest;
-        const tabId = 1;
         const telemetryData: DetailsViewPivotSelectedTelemetryData = {
             triggeredBy: 'keypress',
             pivotKey: DetailsViewPivotType[pivot],
@@ -300,7 +298,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
     test('startOverAssessment', () => {
         const stepStub = 'fake-step';
         const event = eventStubFactory.createMouseClickEvent() as any;
-        const telemetry = {
+        const telemetry: AssessmentTelemetryData = {
             triggeredBy: 'mouseclick',
             source: TelemetryEventSource.DetailsView,
             selectedTest: VisualizationType[VisualizationType.HeadingsAssessment],
@@ -327,7 +325,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
     test('continuePreviousAssessment', () => {
         const event = eventStubFactory.createMouseClickEvent() as any;
-        const telemetry = {
+        const telemetry: BaseTelemetryData = {
             triggeredBy: 'mouseclick',
             source: TelemetryEventSource.DetailsView,
         };
@@ -351,7 +349,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
     test('startoverAllAssessments', () => {
         const event = eventStubFactory.createMouseClickEvent() as any;
-        const telemetry = {
+        const telemetry: BaseTelemetryData = {
             triggeredBy: 'mouseclick',
             source: TelemetryEventSource.DetailsView,
         };
@@ -750,7 +748,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const telemetry: ExportResultsTelemetryData = {
             source: TelemetryEventSource.DetailsView,
-            triggeredBy: 'mouse',
+            triggeredBy: 'mouseclick',
             exportResultsData: 12,
             exportResultsType: 'export result type',
         };
@@ -781,9 +779,9 @@ describe('DetailsViewActionMessageCreatorTest', () => {
     test('copyIssueDetailsClicked', () => {
         const event = eventStubFactory.createMouseClickEvent() as any;
 
-        const telemetry = {
+        const telemetry: BaseTelemetryData = {
             source: TelemetryEventSource.DetailsView,
-            triggeredBy: 'mouse',
+            triggeredBy: 'mouseclick',
         };
 
         const expectedMessage = {
@@ -813,7 +811,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         const event = eventStubFactory.createMouseClickEvent() as any;
         const test = -1;
         const step = 'selected step';
-        const telemetry = {
+        const telemetry: TestStepSelectTelemetryData = {
             triggeredBy: 'mouseclick',
             source: TelemetryEventSource.DetailsView,
             selectedTest: 'selected test',
@@ -836,7 +834,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
     test('cancelStartOverAllAssessments', () => {
         const event = eventStubFactory.createMouseClickEvent() as any;
-        const telemetry = {
+        const telemetry: BaseTelemetryData = {
             triggeredBy: 'mouseclick',
             source: TelemetryEventSource.DetailsView,
         };

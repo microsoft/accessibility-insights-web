@@ -5,11 +5,9 @@ import * as React from 'react';
 import {
     AssessmentRequirementScanTelemetryData,
     AssessmentTelemetryData,
-    BaseTelemetryData,
     DetailsViewOpenedTelemetryData,
     DetailsViewOpenTelemetryData,
     DetailsViewPivotSelectedTelemetryData,
-    DetailsViewTargetLinkClickTelemetryData,
     ExportResultsTelemetryData,
     ExportResultType,
     FeatureFlagToggleTelemetryData,
@@ -23,10 +21,12 @@ import {
     TestStepSelectTelemetryData,
     ToggleTelemetryData,
     TriggeredByNotApplicable,
+    TriggeredBy,
+    BaseTelemetryData,
 } from './telemetry-events';
-import { VisualizationType } from './types/visualization-type';
 import { ForIssuesAnalyzerScanCallback, ForRuleAnalyzerScanCallback } from './types/analyzer-telemetry-callbacks';
 import { DetailsViewPivotType } from './types/details-view-pivot-type';
+import { VisualizationType } from './types/visualization-type';
 
 type SupportedMouseEvent = React.SyntheticEvent<MouseEvent> | React.MouseEvent<any> | MouseEvent;
 
@@ -173,7 +173,7 @@ export class TelemetryDataFactory {
         };
     }
 
-    public forCancelStartOver(event: SupportedMouseEvent, test: VisualizationType, step: string) {
+    public forCancelStartOver(event: SupportedMouseEvent, test: VisualizationType, step: string): TestStepSelectTelemetryData {
         return {
             ...this.fromDetailsView(event),
             selectedTest: VisualizationType[test],
@@ -188,7 +188,7 @@ export class TelemetryDataFactory {
         };
     }
 
-    public fromDetailsView(event: SupportedMouseEvent): DetailsViewTargetLinkClickTelemetryData {
+    public fromDetailsView(event: SupportedMouseEvent): BaseTelemetryData {
         return this.withTriggeredByAndSource(event, TelemetryEventSource.DetailsView);
     }
 
@@ -204,7 +204,7 @@ export class TelemetryDataFactory {
         return this.withTriggeredByAndSource(event, TelemetryEventSource.LaunchPad);
     }
 
-    public withTriggeredByAndSource(event: SupportedMouseEvent, source: TelemetryEventSource) {
+    public withTriggeredByAndSource(event: SupportedMouseEvent, source: TelemetryEventSource): BaseTelemetryData {
         return {
             triggeredBy: this.getTriggeredBy(event),
             source: source,
@@ -250,7 +250,7 @@ export class TelemetryDataFactory {
         return telemetry;
     };
 
-    private getTriggeredBy(event: SupportedMouseEvent): string {
+    private getTriggeredBy(event: SupportedMouseEvent): TriggeredBy {
         // MouseEvent => event.detail === 0 ? "keypress" : "mouseclick"
         // React.SyntheticEvent<MouseEvent> event.nativeEvent can be cast to MouseEvent
         // React.MouseEvent<any> event.nativeEvent can be cast to MouseEvent
@@ -262,14 +262,14 @@ export class TelemetryDataFactory {
         return mouseEvent.detail === 0 ? 'keypress' : 'mouseclick';
     }
 
-    private generateTelemetryRuleResult(axeRule: AxeRule[]) {
-        const RuleResults: IDictionaryStringTo<number> = {};
+    private generateTelemetryRuleResult(axeRule: AxeRule[]): IDictionaryStringTo<number> {
+        const ruleResults: IDictionaryStringTo<number> = {};
         axeRule.forEach(element => {
             const key: string = element.id;
             if (key != null) {
-                RuleResults[key] = element.nodes.length;
+                ruleResults[key] = element.nodes.length;
             }
         });
-        return RuleResults;
+        return ruleResults;
     }
 }

@@ -94,7 +94,6 @@ export class SVGShapeFactory {
     }
 
     private getAdjustedPoint(source: IPoint, destination: IPoint, circleRadius: number): IPoint {
-        const slope = (destination.y - source.y) / (destination.x - source.x);
         const angle = Math.atan2(destination.y - source.y, destination.x - source.x);
 
         const adjustedPoint: IPoint = {

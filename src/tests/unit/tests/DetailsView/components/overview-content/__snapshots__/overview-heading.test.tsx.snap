@@ -11,11 +11,23 @@ exports[`OverviewHeading match snapshot 1`] = `
     <div
       className="overview-heading-content"
     >
-      This summary indicates the overall accessibility of the website or web app, through a combination of automated and manual tests, covering all WCAG 2.0 AA success criteria. Each manual test covers a set of related accessibility requirements, with provided step-by-step testing instructions and guidance. Where possible, 
+      This page contains a summary that indicates the progress of your assessment. An assessment is a manual experience in which you navigate through a set of tests that cover all WCAG 2.0 AA success criteria. Each test has one or more requirements that can be:
+      <ul>
+        <li>
+          Automated
+        </li>
+        <li>
+          Assisted
+        </li>
+        <li>
+          Manual
+        </li>
+      </ul>
+      Where possible, 
       Accessibility Insights for Web
-       "assists" the manual test process by generating a list of instances to evaluate and highlighting them on the screen. 
+       "assists" the test process by generating a list of instances to evaluate and highlighting them on the screen. 
       Accessibility Insights for Web
-      also allows you to manually record failure instances.
+       also allows you to manually record failure instances.
     </div>
   </div>
 </React.Fragment>

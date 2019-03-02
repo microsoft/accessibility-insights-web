@@ -12,14 +12,12 @@ import { EventStubFactory } from './../../common/event-stub-factory';
 describe('TargetPageActionMessageCreatorTest', () => {
     let testSubject: TargetPageActionMessageCreator;
     let postMessageMock: IMock<(msg: any) => void>;
-    let eventStubFactory: EventStubFactory;
     let tabId: number;
 
     beforeEach(() => {
         tabId = -1;
         postMessageMock = Mock.ofInstance(message => {});
         testSubject = new TargetPageActionMessageCreator(postMessageMock.object, tabId, new TelemetryDataFactory());
-        eventStubFactory = new EventStubFactory();
     });
 
     test('scrollRequested', () => {
@@ -39,6 +37,7 @@ describe('TargetPageActionMessageCreatorTest', () => {
             eventName: TelemetryEvents.ISSUES_DIALOG_OPENED,
             telemetry: {
                 source: TelemetryEventSource.TargetPage,
+                triggeredBy: 'N/A',
             },
         };
 

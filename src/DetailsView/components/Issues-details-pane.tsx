@@ -61,7 +61,9 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
         return (
             <div>
                 <h2>Failure details</h2>
-                <div className="issue-detail-select-message">Select a single failure to see its details here.</div>
+                <div className="issue-detail-select-message">
+                    Select a single failure instance from a group in the table above to see more details here.
+                </div>
             </div>
         );
     }
@@ -87,15 +89,15 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
         return (
             <div>
                 <h2>Failure details</h2>
-                <FlaggedComponent
-                    enableJSXElement={this.getFileIssueDetailsButton(issueData)}
-                    featureFlag={FeatureFlags[FeatureFlags.showBugFiling]}
-                    featureFlagStoreData={this.props.featureFlagData}
-                />
                 <CopyIssueDetailsButton
                     deps={this.props.deps}
                     issueDetailsData={issueData}
                     onClick={this.props.deps.detailsViewActionMessageCreator.copyIssueDetailsClicked}
+                />
+                <FlaggedComponent
+                    enableJSXElement={this.getFileIssueDetailsButton(issueData)}
+                    featureFlag={FeatureFlags[FeatureFlags.showBugFiling]}
+                    featureFlagStoreData={this.props.featureFlagData}
                 />
                 <table className="issue-detail-table">
                     <tbody>

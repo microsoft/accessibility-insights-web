@@ -36,13 +36,18 @@ exports[`DetailsGroupHeader renders 2`] = `
   className="details-group-header-title"
 >
   <NewTabLink
+    aria-describedby="key-rule-description"
     href="test rule url"
     onClick={[Function]}
   >
     key
   </NewTabLink>
   : 
-  name
+  <span
+    id="key-rule-description"
+  >
+    name
+  </span>
    
   <React.Fragment>
     (

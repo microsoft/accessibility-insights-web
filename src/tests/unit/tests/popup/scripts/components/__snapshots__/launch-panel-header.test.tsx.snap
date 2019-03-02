@@ -1,0 +1,192 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LaunchPanelHeaderTest render 1`] = `
+<Header
+  rowExtraClassName="header-title"
+  subtitle="test subtitle"
+  title="test title"
+>
+  <div
+    className="ms-Grid-col ms-u-sm2 feedback-collapseMenuButton-col"
+  >
+    <GearOptionsButtonComponent
+      dropdownClickHandler={Object {}}
+      featureFlags={Object {}}
+    />
+    <CustomizedIconButton
+      ariaLabel="Help and Feedback menu"
+      iconProps={
+        Object {
+          "iconName": "GlobalNavButton",
+        }
+      }
+      id="feedback-collapse-menu-button"
+      onClick={[Function]}
+    />
+  </div>
+</Header>
+`;
+
+exports[`LaunchPanelHeaderTest render contextual menu renders with new assessment experience 1`] = `
+<Header
+  rowExtraClassName="header-title"
+  subtitle="test subtitle"
+  title="test title"
+>
+  <div
+    className="ms-Grid-col ms-u-sm2 feedback-collapseMenuButton-col"
+  >
+    <GearOptionsButtonComponent
+      dropdownClickHandler={Object {}}
+      featureFlags={
+        Object {
+          "newAssessmentExperience": true,
+        }
+      }
+    />
+    <CustomizedIconButton
+      ariaLabel="Help and Feedback menu"
+      iconProps={
+        Object {
+          "iconName": "GlobalNavButton",
+        }
+      }
+      id="feedback-collapse-menu-button"
+      onClick={[Function]}
+    />
+    <StyledWithResponsiveMode
+      className="popup-menu"
+      directionalHint={4}
+      items={
+        Array [
+          Object {
+            "iconProps": Object {
+              "iconName": "Rocket",
+            },
+            "key": "fast-pass",
+            "name": "FastPass",
+            "onClick": [Function],
+          },
+          Object {
+            "iconProps": Object {
+              "iconName": "testBeakerSolid",
+            },
+            "key": "assessment",
+            "name": "Assessment",
+            "onClick": [Function],
+          },
+          Object {
+            "iconProps": Object {
+              "iconName": "Medical",
+            },
+            "key": "ad-hoc-tools",
+            "name": "Ad hoc tools",
+            "onClick": [Function],
+          },
+          Object {
+            "itemType": 1,
+            "key": "divider_1",
+          },
+          Object {
+            "key": "modify-shortcuts",
+            "name": "Keyboard shortcuts",
+            "onClick": [Function],
+          },
+          Object {
+            "data": "https://go.microsoft.com/fwlink/?linkid=2077937",
+            "iconProps": Object {
+              "iconName": "Unknown",
+            },
+            "key": "help",
+            "name": "Help",
+            "onClick": [Function],
+          },
+        ]
+      }
+      onDismiss={[Function]}
+      shouldFocusOnMount={true}
+      target="test-target"
+    />
+  </div>
+</Header>
+`;
+
+exports[`LaunchPanelHeaderTest render contextual menu renders without new assessment experience 1`] = `
+<Header
+  rowExtraClassName="header-title"
+  subtitle="test subtitle"
+  title="test title"
+>
+  <div
+    className="ms-Grid-col ms-u-sm2 feedback-collapseMenuButton-col"
+  >
+    <GearOptionsButtonComponent
+      dropdownClickHandler={Object {}}
+      featureFlags={Object {}}
+    />
+    <CustomizedIconButton
+      ariaLabel="Help and Feedback menu"
+      iconProps={
+        Object {
+          "iconName": "GlobalNavButton",
+        }
+      }
+      id="feedback-collapse-menu-button"
+      onClick={[Function]}
+    />
+    <StyledWithResponsiveMode
+      className="popup-menu"
+      directionalHint={4}
+      items={
+        Array [
+          Object {
+            "iconProps": Object {
+              "iconName": "Rocket",
+            },
+            "key": "fast-pass",
+            "name": "FastPass",
+            "onClick": [Function],
+          },
+          Object {
+            "iconProps": Object {
+              "iconName": "testBeakerSolid",
+            },
+            "key": "full-assessment",
+            "name": "Full Assessment",
+            "onClick": [Function],
+          },
+          Object {
+            "iconProps": Object {
+              "iconName": "Medical",
+            },
+            "key": "ad-hoc-tools",
+            "name": "Ad hoc tools",
+            "onClick": [Function],
+          },
+          Object {
+            "itemType": 1,
+            "key": "divider_1",
+          },
+          Object {
+            "key": "modify-shortcuts",
+            "name": "Keyboard shortcuts",
+            "onClick": [Function],
+          },
+          Object {
+            "data": "https://go.microsoft.com/fwlink/?linkid=2077937",
+            "iconProps": Object {
+              "iconName": "Unknown",
+            },
+            "key": "help",
+            "name": "Help",
+            "onClick": [Function],
+          },
+        ]
+      }
+      onDismiss={[Function]}
+      shouldFocusOnMount={true}
+      target="test-target"
+    />
+  </div>
+</Header>
+`;
