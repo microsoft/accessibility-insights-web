@@ -73,7 +73,7 @@ export class LaunchPad extends React.Component<LaunchPadProps, undefined> {
                             href="https://www.npmjs.com/package/axe-core"
                         >
                             axe-core
-                        </ExternalLink>
+                        </ExternalLink>{' '}
                         {axeInfo.version}
                     </div>
                 </div>

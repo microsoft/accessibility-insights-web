@@ -79,7 +79,7 @@ describe('LaunchPad', () => {
                         {`Version ${props.version} | Powered by `}
                         <ExternalLink deps={deps} title="Navigate to axe-core npm page" href="https://www.npmjs.com/package/axe-core">
                             axe-core
-                        </ExternalLink>
+                        </ExternalLink>{' '}
                         {AXE_CORE_VERSION}
                     </div>
                 </div>
