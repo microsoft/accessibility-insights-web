@@ -68,6 +68,7 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
           Issue filing
         </h3>
         <StyledTextFieldBase
+          className="issue-setting"
           label="Enter desired GitHub repo link:"
           onChange={[Function]}
           placeholder="https://github.com/owner/repo/issues"
@@ -153,6 +154,7 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
           Issue filing
         </h3>
         <StyledTextFieldBase
+          className="issue-setting"
           label="Enter desired GitHub repo link:"
           onChange={[Function]}
           placeholder="https://github.com/owner/repo/issues"
@@ -237,6 +239,7 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
           Issue filing
         </h3>
         <StyledTextFieldBase
+          className="issue-setting"
           label="Enter desired GitHub repo link:"
           onChange={[Function]}
           placeholder="https://github.com/owner/repo/issues"
@@ -321,6 +324,7 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
           Issue filing
         </h3>
         <StyledTextFieldBase
+          className="issue-setting"
           label="Enter desired GitHub repo link:"
           onChange={[Function]}
           placeholder="https://github.com/owner/repo/issues"
@@ -405,6 +409,7 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
           Issue filing
         </h3>
         <StyledTextFieldBase
+          className="issue-setting"
           label="Enter desired GitHub repo link:"
           onChange={[Function]}
           placeholder="https://github.com/owner/repo/issues"

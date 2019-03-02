@@ -99,6 +99,7 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
     private getGitHubBugSettingsUx(): JSX.Element {
         return (
             <TextField
+                className="issue-setting"
                 label="Enter desired GitHub repo link:"
                 onChange={this.onGitHubRepositoryChange}
                 value={this.getBugServiceProperty('gitHub', 'repository')}
