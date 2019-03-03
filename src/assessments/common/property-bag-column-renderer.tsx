@@ -7,7 +7,7 @@ import { ColumnValue, ColumnValueBag } from '../../common/types/property-bag/col
 import { IAssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
 
 // tslint:disable-next-line:interface-name
-export interface IPropertyBagColumnRendererConfig<TPropertyBag extends ColumnValueBag> {
+export interface PropertyBagColumnRendererConfig<TPropertyBag extends ColumnValueBag> {
     propertyName: keyof TPropertyBag & string;
     displayName: string;
     defaultValue?: ColumnValue;
@@ -16,9 +16,9 @@ export interface IPropertyBagColumnRendererConfig<TPropertyBag extends ColumnVal
 
 export function propertyBagColumnRenderer<TPropertyBag extends ColumnValueBag>(
     item: IAssessmentInstanceRowData<TPropertyBag>,
-    configs: IPropertyBagColumnRendererConfig<TPropertyBag>[],
+    configs: PropertyBagColumnRendererConfig<TPropertyBag>[],
 ): JSX.Element {
-    const mapper = (config: IPropertyBagColumnRendererConfig<TPropertyBag>, index: number) => {
+    const mapper = (config: PropertyBagColumnRendererConfig<TPropertyBag>, index: number) => {
         const value = item.instance.propertyBag[config.propertyName];
         if (value == null && config.defaultValue == null) {
             return null;
@@ -27,7 +27,7 @@ export function propertyBagColumnRenderer<TPropertyBag extends ColumnValueBag>(
         return render(config, value, index);
     };
 
-    const render = (config: IPropertyBagColumnRendererConfig<TPropertyBag>, value: any, index: number) => {
+    const render = (config: PropertyBagColumnRendererConfig<TPropertyBag>, value: any, index: number) => {
         return (
             <div key={`property-${index}`} className="property-bag-div">
                 <span className="display-name">{`${config.displayName}: `}</span>
@@ -36,7 +36,7 @@ export function propertyBagColumnRenderer<TPropertyBag extends ColumnValueBag>(
         );
     };
 
-    const renderValue = (config: IPropertyBagColumnRendererConfig<TPropertyBag>, value: any) => {
+    const renderValue = (config: PropertyBagColumnRendererConfig<TPropertyBag>, value: any) => {
         if (config.expand) {
             return renderProperties(config, value);
         }
@@ -44,7 +44,7 @@ export function propertyBagColumnRenderer<TPropertyBag extends ColumnValueBag>(
         return <React.Fragment>{value || config.defaultValue}</React.Fragment>;
     };
 
-    const renderProperties = (config: IPropertyBagColumnRendererConfig<TPropertyBag>, propertyMap: IDictionaryStringTo<string>) => {
+    const renderProperties = (config: PropertyBagColumnRendererConfig<TPropertyBag>, propertyMap: IDictionaryStringTo<string>) => {
         if (isEmpty(propertyMap)) {
             return <React.Fragment>{config.defaultValue}</React.Fragment>;
         }

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IRuleWithA11YCriteria, RuleSifter } from '../../../../scanner/rule-sifter';
+import { RuleWithA11YCriteria, RuleSifter } from '../../../../scanner/rule-sifter';
 
 describe('RuleSifter', () => {
     describe('constructor', () => {
@@ -38,7 +38,7 @@ describe('RuleSifter', () => {
                 'rule-b': [nonFilteredRule],
             };
 
-            const expectedRules: IRuleWithA11YCriteria[] = [
+            const expectedRules: RuleWithA11YCriteria[] = [
                 {
                     id: 'rule-b',
                     a11yCriteria: [nonFilteredRule],
@@ -70,7 +70,7 @@ describe('RuleSifter', () => {
                 'rule-b': [nonFilteredRule],
             };
 
-            const expectedRules: IRuleWithA11YCriteria[] = [
+            const expectedRules: RuleWithA11YCriteria[] = [
                 {
                     id: 'rule-b',
                     a11yCriteria: [nonFilteredRule],
@@ -103,7 +103,7 @@ describe('RuleSifter', () => {
                 'rule-b': [nonFilteredRule],
             };
 
-            const expectedRules: IRuleWithA11YCriteria[] = [
+            const expectedRules: RuleWithA11YCriteria[] = [
                 {
                     id: 'rule-b',
                     a11yCriteria: [nonFilteredRule],
@@ -136,7 +136,7 @@ describe('RuleSifter', () => {
                 'rule-b': [nonFilteredRule],
             };
 
-            const expectedRules: IRuleWithA11YCriteria[] = [
+            const expectedRules: RuleWithA11YCriteria[] = [
                 {
                     id: 'rule-b',
                     a11yCriteria: [nonFilteredRule],

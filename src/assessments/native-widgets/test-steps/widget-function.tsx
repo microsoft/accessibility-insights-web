@@ -11,7 +11,7 @@ import { productName } from '../../../content/strings/application';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
-import { IPropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
+import { PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
 import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
 import { ReportInstanceField } from '../../types/report-instance-field';
@@ -41,7 +41,7 @@ const howToTest: JSX.Element = (
     </div>
 );
 
-const propertyBagConfig: IPropertyBagColumnRendererConfig<IWidgetFunctionPropertyBag>[] = [
+const propertyBagConfig: PropertyBagColumnRendererConfig<IWidgetFunctionPropertyBag>[] = [
     {
         propertyName: 'element',
         displayName: 'Element',
