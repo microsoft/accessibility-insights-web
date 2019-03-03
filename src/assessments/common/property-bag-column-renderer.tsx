@@ -6,7 +6,6 @@ import * as React from 'react';
 import { ColumnValue, ColumnValueBag } from '../../common/types/property-bag/column-value-bag';
 import { IAssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
 
-// tslint:disable-next-line:interface-name
 export interface PropertyBagColumnRendererConfig<TPropertyBag extends ColumnValueBag> {
     propertyName: keyof TPropertyBag & string;
     displayName: string;

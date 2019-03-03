@@ -16,7 +16,6 @@ export interface AssessmentReportAssessmentListProps {
     assessments: IAssessmentDetailsReportModel[];
 }
 
-// tslint:disable-next-line:interface-name
 export interface IconWithCountProps {
     status: ManualTestStatus;
     count: number;
