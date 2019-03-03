@@ -26,7 +26,6 @@ export type IssuesTableDeps = IssuesDetailsPaneDeps & {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
 };
 
-// tslint:disable-next-line:interface-name
 export interface IssuesTableProps {
     deps: IssuesTableDeps;
     title: string;
@@ -46,7 +45,6 @@ export interface IssuesTableProps {
     reportGenerator: ReportGenerator;
 }
 
-// tslint:disable-next-line:interface-name
 export interface IssuesTableState {
     isExportDialogOpen: boolean;
     exportDescription: string;
