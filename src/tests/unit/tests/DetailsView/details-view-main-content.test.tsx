@@ -12,12 +12,12 @@ import { NamedSFC, ReactSFCWithDisplayName } from '../../../../common/react/name
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
 import {
     IAssessmentData,
-    IAssessmentNavState,
+    AssessmentNavState,
     IAssessmentStoreData,
     PersistedTabInfo,
 } from '../../../../common/types/store-data/iassessment-result-data';
 import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';
-import { IScanData, ITestsEnabledState } from '../../../../common/types/store-data/ivisualization-store-data';
+import { IScanData, TestsEnabledState } from '../../../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../DetailsView/actions/details-view-action-message-creator';
 import { DetailsRightPanelConfiguration } from '../../../../DetailsView/components/details-view-right-panel';
@@ -35,7 +35,7 @@ describe('DetailsViewMainContentTest', () => {
     let configFactoryMock: IMock<VisualizationConfigurationFactory>;
     let clickHandlerFactoryMock: IMock<DetailsViewToggleClickHandlerFactory>;
     let clickHandlerStub: (event: any) => void;
-    let getStoreDataMock: IMock<(data: ITestsEnabledState) => IScanData>;
+    let getStoreDataMock: IMock<(data: TestsEnabledState) => IScanData>;
     let configStub: IVisualizationConfiguration;
     let scanDataStub: IScanData;
     let props: DetailsViewMainContentProps;
@@ -82,7 +82,7 @@ describe('DetailsViewMainContentTest', () => {
             const assessmentStoreData = {
                 assessmentNavState: {
                     selectedTestStep: 'sample test step',
-                } as IAssessmentNavState,
+                } as AssessmentNavState,
                 assessments: {
                     assessment: {
                         testStepStatus: {
@@ -171,7 +171,7 @@ describe('DetailsViewMainContentTest', () => {
 
     function setupConfigFactoryMock(
         factoryMock: IMock<VisualizationConfigurationFactory>,
-        givenGetStoreDataMock: IMock<(data: ITestsEnabledState) => IScanData>,
+        givenGetStoreDataMock: IMock<(data: TestsEnabledState) => IScanData>,
         config: IVisualizationConfiguration,
         scanData: IScanData,
         givenProps: DetailsViewMainContentProps,

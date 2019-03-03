@@ -14,7 +14,7 @@ import {
 import { EnumHelper } from '../../../../common/enum-helper';
 import { IBaseStore } from '../../../../common/istore';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
-import { IScanData, ITestsEnabledState, IVisualizationStoreData } from '../../../../common/types/store-data/ivisualization-store-data';
+import { IScanData, TestsEnabledState, IVisualizationStoreData } from '../../../../common/types/store-data/ivisualization-store-data';
 import { IScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { AnalyzerController } from '../../../../injected/analyzer-controller';
@@ -31,7 +31,7 @@ describe('AnalyzerControllerTests', () => {
     let scopingStoreMock: IMock<IBaseStore<IScopingStoreData>>;
     let featureFlagStoreStoreMock: IMock<FeatureFlagStore>;
     let testType: VisualizationType;
-    let getStoreDataMock: IMock<(data: ITestsEnabledState) => IScanData>;
+    let getStoreDataMock: IMock<(data: TestsEnabledState) => IScanData>;
     let getAnalyzerMock: IMock<(provider: AnalyzerProvider) => IAnalyzer<any>>;
     let getIdentifierMock: IMock<() => string>;
     let identifier: string;
@@ -237,7 +237,7 @@ describe('AnalyzerControllerTests', () => {
             });
     }
 
-    function setupGetStoreDataMock(tests: ITestsEnabledState, scanData: IScanData): void {
+    function setupGetStoreDataMock(tests: TestsEnabledState, scanData: IScanData): void {
         getStoreDataMock.setup(gcdm => gcdm(tests)).returns(() => scanData);
     }
 });

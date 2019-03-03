@@ -36,12 +36,11 @@ export interface DiagnosticViewToggleProps {
 
 export type DiagnosticViewToggleDeps = ContentLinkDeps;
 
-// tslint:disable-next-line:interface-name
-export interface IDiagnosticViewToggleState {
+export interface DiagnosticViewToggleState {
     isFocused: boolean;
 }
 
-export class DiagnosticViewToggle extends React.Component<DiagnosticViewToggleProps, IDiagnosticViewToggleState> {
+export class DiagnosticViewToggle extends React.Component<DiagnosticViewToggleProps, DiagnosticViewToggleState> {
     private configuration: IVisualizationConfiguration;
     private _toggle: React.RefObject<IToggle> = React.createRef<IToggle>();
     private dom: NodeSelector & Node;

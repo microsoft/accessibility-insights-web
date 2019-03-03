@@ -34,13 +34,12 @@ export interface LaunchPanelHeaderProps {
     featureFlags: FeatureFlagStoreData;
 }
 
-// tslint:disable-next-line:interface-name
-export interface ILaunchPanelHeaderState {
+export interface LaunchPanelHeaderState {
     isContextMenuVisible: boolean;
     target?: MouseEvent;
 }
 
-export class LaunchPanelHeader extends React.Component<LaunchPanelHeaderProps, ILaunchPanelHeaderState> {
+export class LaunchPanelHeader extends React.Component<LaunchPanelHeaderProps, LaunchPanelHeaderState> {
     private readonly telemetryEventSource: TelemetryEventSource = TelemetryEventSource.HamburgerMenu;
     private _onOpenDetailsViewForAllTests: (ev: React.SyntheticEvent<MouseEvent>) => void;
     private _onOpenDetailsViewForAssessment: (ev: React.SyntheticEvent<MouseEvent>) => void;

@@ -23,8 +23,7 @@ export interface FailureInstancePanelControlProps {
     assessmentsProvider: IAssessmentsProvider;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IFailureInstancePanelControlState {
+export interface FailureInstancePanelControlState {
     isPanelOpen: boolean;
     failureDescription: string;
 }
@@ -34,7 +33,7 @@ export enum CapturedInstanceActionType {
     CREATE,
 }
 
-export class FailureInstancePanelControl extends React.Component<FailureInstancePanelControlProps, IFailureInstancePanelControlState> {
+export class FailureInstancePanelControl extends React.Component<FailureInstancePanelControlProps, FailureInstancePanelControlState> {
     private static readonly addFailureInstanceLabel: string = 'Add a failure instance';
 
     constructor(props) {

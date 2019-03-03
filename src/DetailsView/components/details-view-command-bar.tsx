@@ -29,15 +29,14 @@ export interface DetailsViewCommandBarProps {
     renderExportAndStartOver: boolean;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IDetailsViewCommandBarState {
+export interface DetailsViewCommandBarState {
     isExportDialogOpen: boolean;
     exportDialogDescription: string;
     exportHtmlWithPlaceholder: string;
     exportHtmlWithDescription: string;
 }
 
-export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBarProps, IDetailsViewCommandBarState> {
+export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBarProps, DetailsViewCommandBarState> {
     constructor(props) {
         super(props);
         this.state = {

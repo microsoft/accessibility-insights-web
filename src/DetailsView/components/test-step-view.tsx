@@ -8,7 +8,7 @@ import { IAssessmentsProvider } from '../../assessments/types/iassessments-provi
 import { TestStep, IVisualHelperToggleConfig } from '../../assessments/types/test-step';
 import { CollapsibleComponent } from '../../common/components/collapsible-component';
 import {
-    IAssessmentNavState,
+    AssessmentNavState,
     IGeneratedAssessmentInstance,
     IManualTestStepResult,
 } from '../../common/types/store-data/iassessment-result-data';
@@ -28,7 +28,7 @@ export interface TestStepViewProps {
     testStep: TestStep;
     renderStaticContent: () => JSX.Element;
     instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance>;
-    assessmentNavState: IAssessmentNavState;
+    assessmentNavState: AssessmentNavState;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
     manualTestStepResultMap: IDictionaryStringTo<IManualTestStepResult>;
     actionMessageCreator: DetailsViewActionMessageCreator;

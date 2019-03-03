@@ -8,7 +8,7 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 import { IDisplayableVisualizationTypeData } from '../../../../../common/configs/visualization-configuration-factory';
 import { ITabStoreData } from '../../../../../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../../../../../common/types/store-data/ivisualization-scan-result-data';
-import { IScanData, ITestsEnabledState, IVisualizationStoreData } from '../../../../../common/types/store-data/ivisualization-store-data';
+import { IScanData, TestsEnabledState, IVisualizationStoreData } from '../../../../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { AdhocIssuesTestView, AdhocIssuesTestViewProps } from '../../../../../DetailsView/components/adhoc-issues-test-view';
@@ -19,7 +19,7 @@ import { VisualizationScanResultStoreDataBuilder } from '../../../common/visuali
 
 describe('AdhocIssuesTestView', () => {
     let props: AdhocIssuesTestViewProps;
-    let getStoreDataMock: IMock<(data: ITestsEnabledState) => IScanData>;
+    let getStoreDataMock: IMock<(data: TestsEnabledState) => IScanData>;
     let clickHandlerFactoryMock: IMock<DetailsViewToggleClickHandlerFactory>;
     let displayableDataStub: IDisplayableVisualizationTypeData;
     let contentStub: JSX.Element;

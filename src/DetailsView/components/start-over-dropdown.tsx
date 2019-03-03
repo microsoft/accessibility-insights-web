@@ -10,8 +10,7 @@ import { GenericDialog } from './generic-dialog';
 
 type DialogState = 'none' | 'assessment' | 'test';
 
-// tslint:disable-next-line:interface-name
-export interface IStartOverState {
+export interface StartOverState {
     isContextMenuVisible: boolean;
     target?: HTMLElement | string | MouseEvent | IPoint | null;
     dialogState: DialogState;
@@ -24,7 +23,7 @@ export interface StartOverProps {
     requirementKey: string;
 }
 
-export class StartOverDropdown extends React.Component<StartOverProps, IStartOverState> {
+export class StartOverDropdown extends React.Component<StartOverProps, StartOverState> {
     constructor(props: StartOverProps) {
         super(props);
 

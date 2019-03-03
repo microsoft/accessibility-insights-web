@@ -12,12 +12,11 @@ export interface CollapsibleComponentProps {
     containerClassName?: string;
 }
 
-// tslint:disable-next-line:interface-name
-interface ICollapsibleComponentState {
+interface CollapsibleComponentState {
     showContent: boolean;
 }
 
-export class CollapsibleComponent extends React.Component<CollapsibleComponentProps, ICollapsibleComponentState> {
+export class CollapsibleComponent extends React.Component<CollapsibleComponentProps, CollapsibleComponentState> {
     private readonly iconNameDown = 'ChevronDown';
     private readonly iconNameUp = 'ChevronRight';
 

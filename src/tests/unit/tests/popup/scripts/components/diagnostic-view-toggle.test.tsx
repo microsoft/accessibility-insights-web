@@ -24,7 +24,7 @@ import { PopupActionMessageCreator } from '../../../../../../popup/scripts/actio
 import {
     DiagnosticViewToggle,
     DiagnosticViewToggleProps,
-    IDiagnosticViewToggleState,
+    DiagnosticViewToggleState,
 } from '../../../../../../popup/scripts/components/diagnostic-view-toggle';
 import { DiagnosticViewClickHandler } from '../../../../../../popup/scripts/handlers/diagnostic-view-toggle-click-handler';
 import { ContentLink, ContentLinkDeps } from '../../../../../../views/content/content-link';
@@ -285,7 +285,7 @@ describe('DiagnosticViewToggleTest', () => {
         propsBuilder.addUserListenerVerifyAll();
     });
 
-    function assertSpinner(wrapper: ShallowWrapper<DiagnosticViewToggleProps, IDiagnosticViewToggleState>): void {
+    function assertSpinner(wrapper: ShallowWrapper<DiagnosticViewToggleProps, DiagnosticViewToggleState>): void {
         const spinner = wrapper.find(Spinner);
 
         expect(spinner).toBeDefined();
@@ -293,7 +293,7 @@ describe('DiagnosticViewToggleTest', () => {
     }
 
     function assertDetailsViewLink(
-        wrapper: ShallowWrapper<DiagnosticViewToggleProps, IDiagnosticViewToggleState>,
+        wrapper: ShallowWrapper<DiagnosticViewToggleProps, DiagnosticViewToggleState>,
         type: VisualizationType,
     ): void {
         const detailsViewLink = wrapper.find(Link);
@@ -307,7 +307,7 @@ describe('DiagnosticViewToggleTest', () => {
     }
 
     function assertContentLink(
-        wrapper: ShallowWrapper<DiagnosticViewToggleProps, IDiagnosticViewToggleState>,
+        wrapper: ShallowWrapper<DiagnosticViewToggleProps, DiagnosticViewToggleState>,
         type: VisualizationType,
     ): void {
         const detailsViewLink = wrapper.find(ContentLink);
@@ -319,7 +319,7 @@ describe('DiagnosticViewToggleTest', () => {
     }
 
     function assertShortcut(
-        wrapper: ShallowWrapper<DiagnosticViewToggleProps, IDiagnosticViewToggleState>,
+        wrapper: ShallowWrapper<DiagnosticViewToggleProps, DiagnosticViewToggleState>,
         type: VisualizationType,
         props: DiagnosticViewToggleProps,
     ): void {
@@ -334,7 +334,7 @@ describe('DiagnosticViewToggleTest', () => {
     }
 
     function assertVisualizationToggle(
-        wrapper: ShallowWrapper<DiagnosticViewToggleProps, IDiagnosticViewToggleState>,
+        wrapper: ShallowWrapper<DiagnosticViewToggleProps, DiagnosticViewToggleState>,
         type: VisualizationType,
         data: IVisualizationStoreData,
         isDisabled: boolean = true,

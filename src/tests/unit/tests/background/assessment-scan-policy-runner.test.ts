@@ -9,7 +9,7 @@ import { AssessmentStore } from '../../../../background/stores/assessment-store'
 import { VisualizationStore } from '../../../../background/stores/visualization-store';
 import { IBaseStore } from '../../../../common/istore';
 import { IAssessmentData, IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
-import { ITestsEnabledState, IVisualizationStoreData } from '../../../../common/types/store-data/ivisualization-store-data';
+import { TestsEnabledState, IVisualizationStoreData } from '../../../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 
 describe('AssessmentScanPolicyRunner', () => {
@@ -27,7 +27,7 @@ describe('AssessmentScanPolicyRunner', () => {
         let scheduleScanMock: IMock<IScheduleScan>;
         let getSelectedAssessmentTestMock: IMock<IIsAnAssessmentSelected>;
         let testSubject: AssessmentScanPolicyRunner;
-        let testData: ITestsEnabledState;
+        let testData: TestsEnabledState;
         let assessmentDataStub: IAssessmentData;
 
         const stepStub = 'test step';
@@ -39,7 +39,7 @@ describe('AssessmentScanPolicyRunner', () => {
             assessmentStoreMock = Mock.ofType(AssessmentStore, MockBehavior.Strict);
             visualizationStore = Mock.ofType(VisualizationStore, MockBehavior.Strict);
             assessmentProviderMock = Mock.ofType(AssessmentsProvider, MockBehavior.Strict);
-            getSelectedAssessmentTestMock = Mock.ofInstance((testData: ITestsEnabledState) => null, MockBehavior.Strict);
+            getSelectedAssessmentTestMock = Mock.ofInstance((testData: TestsEnabledState) => null, MockBehavior.Strict);
             scheduleScanMock = Mock.ofInstance((test: VisualizationType, step: string, tabId: number) => null, MockBehavior.Strict);
             testSubject = new AssessmentScanPolicyRunner(
                 assessmentStoreMock.object,
@@ -59,7 +59,7 @@ describe('AssessmentScanPolicyRunner', () => {
                 fullAxeResultsMap: null,
             };
 
-            testData = {} as ITestsEnabledState;
+            testData = {} as TestsEnabledState;
         });
 
         it('should not do anything, as test is not an assessment', () => {

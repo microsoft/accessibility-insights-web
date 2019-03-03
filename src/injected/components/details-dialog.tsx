@@ -46,15 +46,14 @@ export interface DetailsDialogProps {
     devToolsShortcut: string;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IDetailsDialogState {
+export interface DetailsDialogState {
     showDialog: boolean;
     currentRuleIndex: number;
     canInspect: boolean;
     issueTrackerPath: string;
 }
 
-export class DetailsDialog extends React.Component<DetailsDialogProps, IDetailsDialogState> {
+export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDialogState> {
     private onHideDialog: () => void;
     public onClickInspectButton: (ev) => void;
     private onLayoutDidMount: () => void;

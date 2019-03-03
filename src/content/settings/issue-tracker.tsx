@@ -10,11 +10,10 @@ export interface IssueTrackerInputProps {
     onSave: (id: string, state: string) => void;
     issueTrackerPath?: string;
 }
-// tslint:disable-next-line:interface-name
-export interface IIssueTrackerState {
+export interface IssueTrackerState {
     issueTrackerPath: string;
 }
-export class IssueTrackerInput extends React.Component<IssueTrackerInputProps, IIssueTrackerState> {
+export class IssueTrackerInput extends React.Component<IssueTrackerInputProps, IssueTrackerState> {
     constructor(props) {
         super(props);
         this.state = {

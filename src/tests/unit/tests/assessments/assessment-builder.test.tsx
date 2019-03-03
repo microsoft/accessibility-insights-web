@@ -13,7 +13,7 @@ import { RequirementComparer } from '../../../../common/assessment/requirement-c
 import { Messages } from '../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
-import { IAssessmentScanData, ITestsEnabledState } from '../../../../common/types/store-data/ivisualization-store-data';
+import { IAssessmentScanData, TestsEnabledState } from '../../../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { AssessmentInstanceTable } from '../../../../DetailsView/components/assessment-instance-table';
 import { AssessmentTestView } from '../../../../DetailsView/components/assessment-test-view';
@@ -255,7 +255,7 @@ describe('AssessmentBuilderTest', () => {
         const key = testStep1.key;
         const scanData = { enabled: true, stepStatus: {} } as IAssessmentScanData;
         scanData.stepStatus[key] = true;
-        const vizStoreData = { assessments: { headingsAssessment: scanData }, adhoc: {} } as ITestsEnabledState;
+        const vizStoreData = { assessments: { headingsAssessment: scanData }, adhoc: {} } as TestsEnabledState;
 
         config.getAnalyzer(providerMock.object, testStep1.key);
         config.getDrawer(drawerProviderMock.object, testStep1.key);

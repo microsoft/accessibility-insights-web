@@ -15,7 +15,7 @@ export interface IAssessmentStoreData {
     assessments: {
         [key: string]: IAssessmentData;
     };
-    assessmentNavState: IAssessmentNavState;
+    assessmentNavState: AssessmentNavState;
 }
 
 export type InstanceIdToInstanceDataMap = IDictionaryStringTo<IGeneratedAssessmentInstance>;
@@ -63,8 +63,7 @@ export interface ITestStepResult {
     originalStatus?: ManualTestStatus;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IAssessmentNavState {
+export interface AssessmentNavState {
     selectedTestStep: string;
     selectedTestType: VisualizationType;
 }

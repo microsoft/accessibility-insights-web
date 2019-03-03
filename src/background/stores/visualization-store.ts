@@ -7,7 +7,7 @@ import { IVisualizationConfiguration, VisualizationConfigurationFactory } from '
 import { ITab } from '../../common/itab';
 import { StoreNames } from '../../common/stores/store-names';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
-import { ITestsEnabledState, IVisualizationStoreData, IAssessmentScanData } from '../../common/types/store-data/ivisualization-store-data';
+import { TestsEnabledState, IVisualizationStoreData, IAssessmentScanData } from '../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import {
     ToggleActionPayload,
@@ -58,7 +58,7 @@ export class VisualizationStore extends BaseStore<IVisualizationStoreData> {
     }
 
     public getDefaultState(): IVisualizationStoreData {
-        const tests: ITestsEnabledState = {
+        const tests: TestsEnabledState = {
             adhoc: {},
             assessments: {},
         };

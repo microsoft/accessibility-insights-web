@@ -16,7 +16,7 @@ import * as React from 'react';
 
 import { AssessmentDefaultMessageGenerator } from '../../assessments/assessment-default-message-generator';
 import {
-    IAssessmentNavState,
+    AssessmentNavState,
     IGeneratedAssessmentInstance,
     IUserCapturedInstance,
 } from '../../common/types/store-data/iassessment-result-data';
@@ -25,7 +25,7 @@ import { ManualTestStatus } from '../../common/types/manual-test-status';
 
 export interface AssessmentInstanceTableProps {
     instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance>;
-    assessmentNavState: IAssessmentNavState;
+    assessmentNavState: AssessmentNavState;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
     renderInstanceTableHeader: (table: AssessmentInstanceTable, items: IAssessmentInstanceRowData[]) => JSX.Element;
     getDefaultMessage: Function;

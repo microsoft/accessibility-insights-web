@@ -4,7 +4,7 @@ import { autobind } from '@uifabric/utilities';
 import * as classNames from 'classnames';
 import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 
-import { IAssessmentNavState } from '../../common/types/store-data/iassessment-result-data';
+import { AssessmentNavState } from '../../common/types/store-data/iassessment-result-data';
 import { DetailsViewActionMessageCreator } from './../actions/details-view-action-message-creator';
 
 export class MasterCheckBoxConfigProvider {
@@ -16,7 +16,7 @@ export class MasterCheckBoxConfigProvider {
         this.actionMessageCreator = actionMessageCreator;
     }
 
-    public getMasterCheckBoxProperty(assessmentNavState: IAssessmentNavState, allEnabled: boolean): Partial<IColumn> {
+    public getMasterCheckBoxProperty(assessmentNavState: AssessmentNavState, allEnabled: boolean): Partial<IColumn> {
         const iconName = allEnabled
             ? MasterCheckBoxConfigProvider.MASTER_CHECKBOX_ICON_NAME_ENABLED
             : MasterCheckBoxConfigProvider.MASTER_CHECKBOX_ICON_NAME_DISABLED;
@@ -36,7 +36,7 @@ export class MasterCheckBoxConfigProvider {
 
     @autobind
     private getMasterCheckBoxClickHandler(
-        assessmentNavState: IAssessmentNavState,
+        assessmentNavState: AssessmentNavState,
         allEnabled: boolean,
     ): (ev: React.MouseEvent<HTMLElement>, column: IColumn) => void {
         return (ev: React.MouseEvent<HTMLElement>, column: IColumn) => {

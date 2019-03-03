@@ -8,7 +8,7 @@ import { AssessmentTestResult } from '../../common/assessment/assessment-test-re
 import { CollapsibleComponent } from '../../common/components/collapsible-component';
 import { reactExtensionPoint } from '../../common/extensibility/react-extension-point';
 import { ITab } from '../../common/itab';
-import { IAssessmentData, IAssessmentNavState, PersistedTabInfo } from '../../common/types/store-data/iassessment-result-data';
+import { IAssessmentData, AssessmentNavState, PersistedTabInfo } from '../../common/types/store-data/iassessment-result-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { ContentLink, ContentLinkDeps } from '../../views/content/content-link';
 import { ContentPageComponent } from '../../views/content/content-page';
@@ -36,7 +36,7 @@ export interface AssessmentViewProps {
     deps: AssessmentViewDeps;
     isScanning: boolean;
     isEnabled: boolean;
-    assessmentNavState: IAssessmentNavState;
+    assessmentNavState: AssessmentNavState;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
     assessmentData: IAssessmentData;
     currentTarget: ITab;

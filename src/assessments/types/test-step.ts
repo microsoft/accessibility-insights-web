@@ -5,7 +5,7 @@ import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 import { IUniquelyIdentifiableInstances } from '../../background/instance-identifier-generator';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
-import { IAssessmentNavState, IGeneratedAssessmentInstance } from '../../common/types/store-data/iassessment-result-data';
+import { AssessmentNavState, IGeneratedAssessmentInstance } from '../../common/types/store-data/iassessment-result-data';
 import { DetailsViewActionMessageCreator } from '../../DetailsView/actions/details-view-action-message-creator';
 import { AssessmentInstanceTable, IAssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
 import { TestStepLink } from '../../DetailsView/components/test-step-link';
@@ -52,7 +52,7 @@ export interface TestStep {
 
 // tslint:disable-next-line:interface-name
 export interface IVisualHelperToggleConfig {
-    assessmentNavState: IAssessmentNavState;
+    assessmentNavState: AssessmentNavState;
     instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance>;
     actionMessageCreator: DetailsViewActionMessageCreator;
     isStepEnabled: boolean;

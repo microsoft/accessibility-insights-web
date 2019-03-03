@@ -15,7 +15,7 @@ export interface IAssessmentScanData extends IScanData {
 
 // tslint:disable-next-line:interface-name
 export interface IVisualizationStoreData {
-    tests: ITestsEnabledState;
+    tests: TestsEnabledState;
     scanning: string;
     selectedFastPassDetailsView: VisualizationType;
     selectedAdhocDetailsView: VisualizationType;
@@ -25,8 +25,7 @@ export interface IVisualizationStoreData {
     focusedTarget: string[];
 }
 
-// tslint:disable-next-line:interface-name
-export interface ITestsEnabledState {
+export interface TestsEnabledState {
     assessments: {
         [key: string]: IAssessmentScanData;
     };

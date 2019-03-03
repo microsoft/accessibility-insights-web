@@ -22,7 +22,7 @@ import { ContentPageComponent } from '../../views/content/content-page';
 import { EnumHelper } from '../enum-helper';
 import { IAnalyzerTelemetryCallback } from '../types/analyzer-telemetry-callbacks';
 import { IAssessmentData, IAssessmentStoreData } from '../types/store-data/iassessment-result-data';
-import { IScanData, ITestsEnabledState } from '../types/store-data/ivisualization-store-data';
+import { IScanData, TestsEnabledState } from '../types/store-data/ivisualization-store-data';
 import { TelemetryProcessor } from '../types/telemetry-processor';
 import { VisualizationType } from '../types/visualization-type';
 import { TestMode } from './test-mode';
@@ -39,7 +39,7 @@ export interface IDisplayableVisualizationTypeData {
 export interface IAssesssmentVisualizationConfiguration {
     key: string;
     getTestView: (props: TestViewProps) => JSX.Element;
-    getStoreData: (data: ITestsEnabledState) => IScanData;
+    getStoreData: (data: TestsEnabledState) => IScanData;
     enableTest: (data: IScanData, payload: ToggleActionPayload) => void;
     disableTest: (data: IScanData, step?: string) => void;
     getTestStatus: (data: IScanData, step?: string) => boolean;
@@ -65,7 +65,7 @@ export interface IVisualizationConfiguration extends IAssesssmentVisualizationCo
     testMode: TestMode;
     featureFlagToEnable?: string;
     getTestView: (props: TestViewProps) => JSX.Element;
-    getStoreData: (data: ITestsEnabledState) => IScanData;
+    getStoreData: (data: TestsEnabledState) => IScanData;
     getAssessmentData?: (data: IAssessmentStoreData) => IAssessmentData;
     setAssessmentData?: (data: IAssessmentStoreData, selectorMap: IDictionaryStringTo<any>, instanceMap?: IDictionaryStringTo<any>) => void;
     displayableData: IDisplayableVisualizationTypeData;

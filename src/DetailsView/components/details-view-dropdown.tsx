@@ -11,13 +11,12 @@ export interface DetailsViewDropDownProps {
     menuItems: IContextualMenuItem[];
 }
 
-// tslint:disable-next-line:interface-name
-export interface IDetailsViewDropDownState {
+export interface DetailsViewDropDownState {
     isContextMenuVisible: boolean;
     target?: HTMLElement | string | MouseEvent | IPoint | null;
 }
 
-export class DetailsViewDropDown extends React.Component<DetailsViewDropDownProps, IDetailsViewDropDownState> {
+export class DetailsViewDropDown extends React.Component<DetailsViewDropDownProps, DetailsViewDropDownState> {
     constructor(props) {
         super(props);
         this.state = {
