@@ -28,9 +28,12 @@ export class ReportCheckList extends React.Component<ReportCheckListProps> {
     private renderCongratulations(): JSX.Element {
         return (
             <div className="report-congrats" key="report-congrats">
-                <p>Congratulations! You have no failed checks.</p>
                 <div className="report-congrats-image">
-                    <InlineImage type={InlineImageType.AdaTheCat} alt="" />
+                    <InlineImage type={InlineImageType.AdaSign} alt="" />
+                </div>
+                <div className="report-congrats-message">
+                    <div>Congratulations!</div>
+                    <div>You have no failed checks.</div>
                 </div>
             </div>
         );

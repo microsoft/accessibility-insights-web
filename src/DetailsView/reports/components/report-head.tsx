@@ -75,13 +75,25 @@ export class ReportHead extends React.Component {
         }
         .report-congrats {
             margin: 16px 32px;
+            width: 350px;
         }
-        .report-congrats p {
-            font-size: 12px;
+        .report-congrats-message {
+            border: 20px solid #252525;
+            border-radius: 20px;
+            font-size: 36px;
+            top: -19px;
+            z-index: -1;
+            position: relative;
+            text-align: center;
+        }
+        .report-congrats-message div:first-child {
+            font-weight: 700;
         }
         .report-congrats-image {
             margin-top: 8px;
             text-align: center;
+            left: 33px;
+            position: relative;
         }
         .report-checks {
             margin: 16px 32px 16px 8px;
