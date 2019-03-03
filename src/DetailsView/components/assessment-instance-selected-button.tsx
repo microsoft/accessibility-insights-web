@@ -6,6 +6,7 @@ import * as React from 'react';
 import * as classNames from 'classnames';
 import { VisualizationType } from '../../common/types/visualization-type';
 
+// tslint:disable-next-line:interface-name
 export interface IAssessmentInstanceSelectedButtonProps {
     test: VisualizationType;
     step: string;

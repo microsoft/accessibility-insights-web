@@ -12,6 +12,7 @@ import { DefaultButton, IconButton } from 'office-ui-fabric-react/lib/Button';
 import { ScopingInputTypes } from '../../background/scoping-input-types';
 import { InspectMode } from '../../background/inspect-modes';
 
+// tslint:disable-next-line:interface-name
 export interface ISelectorInputListProps {
     title: string;
     subtitle: string;

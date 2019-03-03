@@ -4,6 +4,7 @@ import { TooltipHost } from 'office-ui-fabric-react/lib/Tooltip';
 import { css } from '@uifabric/utilities';
 import * as React from 'react';
 
+// tslint:disable-next-line:interface-name
 export interface IAssessmentInstanceDetailsColumnProps {
     labelText?: string;
     textContent: string;

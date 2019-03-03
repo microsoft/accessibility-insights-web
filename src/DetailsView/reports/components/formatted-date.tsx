@@ -3,6 +3,7 @@
 import * as React from 'react';
 import * as _ from 'lodash/index';
 
+// tslint:disable-next-line:interface-name
 export interface IFormattedDateProps {
     date: Date;
 }

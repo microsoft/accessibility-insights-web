@@ -6,6 +6,7 @@ import { title } from '../../../content/strings/application';
 import { RuleResult, ScanResults } from '../../../scanner/iruleresults';
 import { InlineImage, InlineImageType } from './inline-image';
 
+// tslint:disable-next-line:interface-name
 export interface IReportHeaderProps {
     scanResult: ScanResults;
 }

@@ -12,6 +12,7 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { ActionAndCancelButtonsComponent } from './action-and-cancel-buttons-component';
 import { GenericPanel, GenericPanelProps } from './generic-panel';
 
+// tslint:disable-next-line:interface-name
 export interface IFailureInstancePanelControlProps {
     step: string;
     test: VisualizationType;
@@ -23,6 +24,7 @@ export interface IFailureInstancePanelControlProps {
     assessmentsProvider: IAssessmentsProvider;
 }
 
+// tslint:disable-next-line:interface-name
 export interface IFailureInstancePanelControlState {
     isPanelOpen: boolean;
     failureDescription: string;

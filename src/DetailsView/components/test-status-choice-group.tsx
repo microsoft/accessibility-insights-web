@@ -10,6 +10,7 @@ import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { isEqual } from 'lodash';
 
+// tslint:disable-next-line:interface-name
 export interface ITestStatusChoiceGroupProps {
     test: VisualizationType;
     step: string;

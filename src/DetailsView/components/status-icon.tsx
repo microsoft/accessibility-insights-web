@@ -7,6 +7,7 @@ import * as React from 'react';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { outcomeTypeSemanticsFromTestStatus } from '../reports/components/outcome-type';
 
+// tslint:disable-next-line:interface-name
 export interface IStatusIconProps {
     status: ManualTestStatus;
     className?: string;

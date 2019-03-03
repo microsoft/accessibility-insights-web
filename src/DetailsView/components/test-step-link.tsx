@@ -6,6 +6,7 @@ import * as React from 'react';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { StatusIcon } from './status-icon';
 
+// tslint:disable-next-line:interface-name
 export interface ITestStepLinkProps {
     link: INavLink;
     status: ManualTestStatus;

@@ -11,6 +11,7 @@ import { DetailsViewActionMessageCreator } from '../actions/details-view-action-
 import { GenericPanel } from './generic-panel';
 import { ScopingContainer } from './scoping-container';
 
+// tslint:disable-next-line:interface-name
 export interface IScopingPanelProps {
     isOpen: boolean;
     actionMessageCreator: DetailsViewActionMessageCreator;

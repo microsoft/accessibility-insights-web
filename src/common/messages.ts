@@ -17,6 +17,7 @@ export interface DetailsViewMessages {
     GetState: string;
 }
 
+// tslint:disable-next-line:interface-name
 export interface IssuesMessages {
     UpdateSelectedTargets: string;
     UpdateFocusedInstance: string;

@@ -9,6 +9,7 @@ import { ReportCheckList } from './report-check-list';
 import { ReportHeader } from './report-header';
 import { ReportScanDetails } from './report-scan-details';
 
+// tslint:disable-next-line:interface-name
 export interface IReportBodyProps {
     scanResult: ScanResults;
     scanDate: Date;

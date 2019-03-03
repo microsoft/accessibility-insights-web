@@ -12,6 +12,7 @@ export enum InlineImageType {
     NotApplicableIcon,
 }
 
+// tslint:disable-next-line:interface-name
 export interface IInlineImageProps {
     type: InlineImageType;
     alt: string;

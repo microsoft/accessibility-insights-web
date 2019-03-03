@@ -23,6 +23,7 @@ export type LaunchPanelHeaderDeps = {
     dropdownClickHandler: DropdownClickHandler;
 };
 
+// tslint:disable-next-line:interface-name
 export interface ILaunchPanelHeaderProps {
     deps: LaunchPanelHeaderDeps;
     title: string;
@@ -34,6 +35,7 @@ export interface ILaunchPanelHeaderProps {
     featureFlags: FeatureFlagStoreData;
 }
 
+// tslint:disable-next-line:interface-name
 export interface ILaunchPanelHeaderState {
     isContextMenuVisible: boolean;
     target?: MouseEvent;

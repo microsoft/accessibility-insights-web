@@ -1,9 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+// tslint:disable-next-line:interface-name
 export interface IEventStub {
     nativeEvent: INativeEventStub;
 }
 
+// tslint:disable-next-line:interface-name
 export interface INativeEventStub {
     detail: number;
 }

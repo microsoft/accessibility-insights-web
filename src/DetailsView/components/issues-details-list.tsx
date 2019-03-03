@@ -17,6 +17,7 @@ import { DetailsGroupHeader, DetailsGroupHeaderProps } from './details-group-hea
 import { FailureDetails } from './failure-details';
 import { DetailsGroup, IDetailsRowData, IssuesTableHandler } from './issues-table-handler';
 
+// tslint:disable-next-line:interface-name
 export interface IssuesDetailsListProps {
     violations: (RuleResult)[];
     issuesTableHandler: IssuesTableHandler;

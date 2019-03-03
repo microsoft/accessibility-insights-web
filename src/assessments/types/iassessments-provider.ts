@@ -4,6 +4,7 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { IAssessment } from './iassessment';
 import { TestStep } from './test-step';
 
+// tslint:disable-next-line:interface-name
 export interface IAssessmentsProvider {
     all(): ReadonlyArray<Readonly<IAssessment>>;
     isValidType(type: VisualizationType): boolean;

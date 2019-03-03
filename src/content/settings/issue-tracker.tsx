@@ -6,10 +6,12 @@ import * as React from 'react';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import { ActionAndCancelButtonsComponent } from '../../DetailsView/components/action-and-cancel-buttons-component';
 
+// tslint:disable-next-line:interface-name
 export interface IIssueTrackerInputProps {
     onSave: (id: string, state: string) => void;
     issueTrackerPath?: string;
 }
+// tslint:disable-next-line:interface-name
 export interface IIssueTrackerState {
     issueTrackerPath: string;
 }

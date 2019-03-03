@@ -8,6 +8,7 @@ import { DetailsViewDropDown } from '../../DetailsView/components/details-view-d
 import { DropdownClickHandler } from '../dropdown-click-handler';
 import { FeatureFlags } from '../feature-flags';
 
+// tslint:disable-next-line:interface-name
 export interface IGearOptionsButtonComponentProps {
     dropdownClickHandler: DropdownClickHandler;
     featureFlags: FeatureFlagStoreData;

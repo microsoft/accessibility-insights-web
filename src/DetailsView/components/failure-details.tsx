@@ -3,6 +3,7 @@
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import * as React from 'react';
 
+// tslint:disable-next-line:interface-name
 export interface IFailureDetailsProps {
     items: any[];
 }

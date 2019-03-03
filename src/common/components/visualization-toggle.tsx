@@ -3,6 +3,7 @@
 import { IToggle, IToggleProps, Toggle } from 'office-ui-fabric-react/lib/Toggle';
 import * as React from 'react';
 
+// tslint:disable-next-line:interface-name
 export interface IVisualizationToggleProps {
     checked: boolean;
     onClick: (event) => void;

@@ -11,11 +11,13 @@ import { BugButton, IBugButtonDeps } from './bug-button';
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 
+// tslint:disable-next-line:interface-name
 export interface IDetailsRowData extends IObjectWithKey, AxeNodeResult {
     selector: string;
     bugButton: JSX.Element;
 }
 
+// tslint:disable-next-line:interface-name
 export interface IListProps {
     items: IDetailsRowData[];
     groups: DetailsGroup[];

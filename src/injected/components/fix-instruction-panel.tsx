@@ -5,6 +5,7 @@ import { autobind } from '@uifabric/utilities';
 import { CheckType } from './details-dialog';
 import { Label } from 'office-ui-fabric-react/lib/Label';
 
+// tslint:disable-next-line:interface-name
 export interface IFixInstructionPanelProps {
     checkType: CheckType;
     checks: FormattedCheckResult[];

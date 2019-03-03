@@ -3,6 +3,7 @@
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 
+// tslint:disable-next-line:interface-name
 export interface IActionAndCancelButtonsComponentProps {
     isHidden: boolean;
     primaryButtonDisabled: boolean;

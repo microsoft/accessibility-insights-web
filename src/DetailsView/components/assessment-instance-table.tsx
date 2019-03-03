@@ -23,6 +23,7 @@ import {
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 
+// tslint:disable-next-line:interface-name
 export interface IAssessmentInstanceTableProps {
     instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance>;
     assessmentNavState: IAssessmentNavState;
@@ -33,12 +34,14 @@ export interface IAssessmentInstanceTableProps {
     hasVisualHelper: boolean;
 }
 
+// tslint:disable-next-line:interface-name
 export interface IAssessmentInstanceRowData<P = {}> extends IObjectWithKey {
     statusChoiceGroup: JSX.Element;
     visualizationButton?: JSX.Element;
     instance: IGeneratedAssessmentInstance<P>;
 }
 
+// tslint:disable-next-line:interface-name
 export interface ICapturedInstanceRowData extends IObjectWithKey {
     instance: IUserCapturedInstance;
     instanceActionButtons: JSX.Element;

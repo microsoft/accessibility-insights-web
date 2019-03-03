@@ -18,6 +18,7 @@ import { TargetPageChangedView } from './target-page-changed-view';
 
 export type AdhocIssuesTestViewDeps = IssuesTableDeps;
 
+// tslint:disable-next-line:interface-name
 export interface IAdhocIssuesTestViewProps {
     deps: AdhocIssuesTestViewDeps;
     tabStoreData: ITabStoreData;

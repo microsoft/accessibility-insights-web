@@ -20,6 +20,7 @@ import { ManualTestStepView } from './manual-test-step-view';
 
 export type TestStepViewDeps = ContentPanelButtonDeps;
 
+// tslint:disable-next-line:interface-name
 export interface ITestStepViewProps {
     deps: TestStepViewDeps;
     isStepEnabled: boolean;

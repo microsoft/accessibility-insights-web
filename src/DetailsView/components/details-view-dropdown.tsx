@@ -7,10 +7,12 @@ import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
 
+// tslint:disable-next-line:interface-name
 export interface IDetailsViewDropDownProps {
     menuItems: IContextualMenuItem[];
 }
 
+// tslint:disable-next-line:interface-name
 export interface IDetailsViewDropDownState {
     isContextMenuVisible: boolean;
     target?: HTMLElement | string | MouseEvent | IPoint | null;

@@ -9,6 +9,7 @@ import { IAssessmentsProvider } from '../../assessments/types/iassessments-provi
 import { VisualizationType } from '../../common/types/visualization-type';
 import { CapturedInstanceActionType, FailureInstancePanelControl } from './failure-instance-panel-control';
 
+// tslint:disable-next-line:interface-name
 export interface IAssessmentInstanceEditAndRemoveControlProps {
     test: VisualizationType;
     step: string;

@@ -32,6 +32,7 @@ export type AssessmentViewDeps = ContentLinkDeps &
         assessmentsProvider: IAssessmentsProvider;
     };
 
+// tslint:disable-next-line:interface-name
 export interface IAssessmentViewProps {
     deps: AssessmentViewDeps;
     isScanning: boolean;

@@ -12,6 +12,7 @@ import { IScopingStoreData } from '../../common/types/store-data/scoping-store-d
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import * as Markup from '../../assessments/markup';
 
+// tslint:disable-next-line:interface-name
 export interface IScopingContainerProps {
     actionMessageCreator: DetailsViewActionMessageCreator;
     featureFlagData: FeatureFlagStoreData;

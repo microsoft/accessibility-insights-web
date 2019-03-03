@@ -4,6 +4,7 @@ import * as React from 'react';
 
 import { title } from '../../../content/strings/application';
 
+// tslint:disable-next-line:interface-name
 export interface IAssessmentReportFooterProps {
     extensionVersion: string;
     axeVersion: string;

@@ -21,6 +21,7 @@ import { ContentLink, ContentLinkDeps } from '../../../views/content/content-lin
 import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
 import { DiagnosticViewClickHandler } from '../handlers/diagnostic-view-toggle-click-handler';
 
+// tslint:disable-next-line:interface-name
 export interface IDiagnosticViewToggleProps {
     deps: DiagnosticViewToggleDeps;
     featureFlags: IDictionaryStringTo<boolean>;
@@ -36,6 +37,7 @@ export interface IDiagnosticViewToggleProps {
 
 export type DiagnosticViewToggleDeps = ContentLinkDeps;
 
+// tslint:disable-next-line:interface-name
 export interface IDiagnosticViewToggleState {
     isFocused: boolean;
 }

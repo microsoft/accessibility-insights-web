@@ -4,6 +4,7 @@ import * as React from 'react';
 
 import * as Markup from '../markup';
 
+// tslint:disable-next-line:interface-name
 export interface IManualTestRecordYourResultsProps {
     isMultipleFailurePossible: boolean;
 }

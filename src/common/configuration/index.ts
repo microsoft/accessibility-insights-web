@@ -7,11 +7,13 @@ import { InsightsConfiguration, InsightsConfigurationOptions } from './configura
 
 const globalVariableName = 'insights';
 
+// tslint:disable-next-line:interface-name
 interface IConfigAccessor {
     readonly config: InsightsConfiguration;
     getOption<K extends keyof InsightsConfigurationOptions>(name: K);
 }
 
+// tslint:disable-next-line:interface-name
 interface IConfigMutator extends IConfigAccessor {
     reset(): IConfigMutator;
     setOption<K extends keyof InsightsConfigurationOptions>(name: K, value: InsightsConfigurationOptions[K]): IConfigMutator;

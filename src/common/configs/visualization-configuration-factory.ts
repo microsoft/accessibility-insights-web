@@ -27,6 +27,7 @@ import { TelemetryProcessor } from '../types/telemetry-processor';
 import { VisualizationType } from '../types/visualization-type';
 import { TestMode } from './test-mode';
 
+// tslint:disable-next-line:interface-name
 export interface IDisplayableVisualizationTypeData {
     title: string;
     enableMessage: string;
@@ -34,6 +35,7 @@ export interface IDisplayableVisualizationTypeData {
     linkToDetailsViewText: string;
 }
 
+// tslint:disable-next-line:interface-name
 export interface IAssesssmentVisualizationConfiguration {
     key: string;
     getTestView: (props: TestViewProps) => JSX.Element;
@@ -57,6 +59,7 @@ export interface IAssesssmentVisualizationConfiguration {
     getUpdateVisibility: (testStep?: string) => boolean;
 }
 
+// tslint:disable-next-line:interface-name
 export interface IVisualizationConfiguration extends IAssesssmentVisualizationConfiguration {
     key: string;
     testMode: TestMode;

@@ -9,6 +9,7 @@ import { UrlIcon } from '../../../common/icons/url-icon';
 import { IScanDetailsReportModel } from '../assessment-report-model';
 import { FormattedDate } from './formatted-date';
 
+// tslint:disable-next-line:interface-name
 export interface IAssessmentScanDetailsProps {
     details: IScanDetailsReportModel;
     description: string;

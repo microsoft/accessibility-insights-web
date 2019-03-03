@@ -19,6 +19,7 @@ export interface TestStepNavDeps {
     getInnerTextFromJsxElement(element: JSX.Element): string;
 }
 
+// tslint:disable-next-line:interface-name
 export interface ITestStepNavProps {
     deps: TestStepNavDeps;
     selectedTest: VisualizationType;

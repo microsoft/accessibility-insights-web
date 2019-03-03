@@ -25,6 +25,7 @@ import { ReportGenerator } from './reports/report-generator';
 
 export type DetailsViewMainContentDeps = DetailsViewContentDeps & DetailsViewLeftNavDeps & DetailsViewCommandBarDeps;
 
+// tslint:disable-next-line:interface-name
 export interface IDetailsViewMainContentProps {
     deps: DetailsViewMainContentDeps;
     tabStoreData: ITabStoreData;

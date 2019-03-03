@@ -6,6 +6,7 @@ import * as React from 'react';
 import { IDisplayableVisualizationTypeData } from '../../common/configs/visualization-configuration-factory';
 import { VisualizationType } from '../../common/types/visualization-type';
 
+// tslint:disable-next-line:interface-name
 export interface ITargetPageChangedViewProps {
     type: VisualizationType;
     displayableData: IDisplayableVisualizationTypeData;

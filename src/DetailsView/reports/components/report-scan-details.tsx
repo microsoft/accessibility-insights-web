@@ -6,6 +6,7 @@ import { NewTabLink } from '../../../common/components/new-tab-link';
 import { title } from '../../../content/strings/application';
 import { FormattedDate } from './formatted-date';
 
+// tslint:disable-next-line:interface-name
 export interface IReportScanDetailsProps {
     pageTitle: string;
     pageUrl: string;

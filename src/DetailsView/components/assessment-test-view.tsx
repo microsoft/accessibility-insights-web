@@ -18,6 +18,7 @@ export type AssessmentTestViewDeps = AssessmentViewDeps & {
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
 };
 
+// tslint:disable-next-line:interface-name
 export interface IAssessmentTestViewProps {
     deps: AssessmentTestViewDeps;
     tabStoreData: ITabStoreData;

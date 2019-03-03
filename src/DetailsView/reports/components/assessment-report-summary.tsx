@@ -6,6 +6,7 @@ import { IOverviewSummaryReportModel } from '../assessment-report-model';
 import { AssessmentSummaryDetails } from './assessment-summary-details';
 import { OutcomeSummaryBar } from './outcome-summary-bar';
 
+// tslint:disable-next-line:interface-name
 export interface IAssessmentReportSummaryProps {
     summary: IOverviewSummaryReportModel;
 }

@@ -50,6 +50,7 @@ export interface TestStep {
     renderRequirementDescription?: (testStepLink: TestStepLink) => JSX.Element;
 }
 
+// tslint:disable-next-line:interface-name
 export interface IVisualHelperToggleConfig {
     assessmentNavState: IAssessmentNavState;
     instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance>;

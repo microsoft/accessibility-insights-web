@@ -3,6 +3,7 @@
 import { FeatureFlagStoreData } from './../types/store-data/feature-flag-store-data.d';
 import { IInstallationData } from './installation-data';
 
+// tslint:disable-next-line:interface-name
 export interface ILocalStorageData {
     url?: string;
     featureFlags?: FeatureFlagStoreData;

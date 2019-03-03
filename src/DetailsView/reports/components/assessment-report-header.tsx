@@ -7,6 +7,7 @@ import { NewTabLink } from '../../../common/components/new-tab-link';
 import { BrandWhite } from '../../../icons/brand/white/brand-white';
 import { productName } from '../../../content/strings/application';
 
+// tslint:disable-next-line:interface-name
 export interface IAssessmentReportHeaderProps {
     targetPageUrl: string;
     targetPageTitle: string;

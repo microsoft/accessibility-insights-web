@@ -11,6 +11,7 @@ import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-
 import { CapturedInstanceActionType, FailureInstancePanelControl } from './failure-instance-panel-control';
 import { TestStatusChoiceGroup } from './test-status-choice-group';
 
+// tslint:disable-next-line:interface-name
 export interface IManualTestStepViewProps {
     step: string;
     test: VisualizationType;

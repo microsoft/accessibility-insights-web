@@ -10,12 +10,14 @@ import { GenericDialog } from './generic-dialog';
 
 type DialogState = 'none' | 'assessment' | 'test';
 
+// tslint:disable-next-line:interface-name
 export interface IStartOverState {
     isContextMenuVisible: boolean;
     target?: HTMLElement | string | MouseEvent | IPoint | null;
     dialogState: DialogState;
 }
 
+// tslint:disable-next-line:interface-name
 export interface IStartOverProps {
     testName: string;
     actionMessageCreator: DetailsViewActionMessageCreator;

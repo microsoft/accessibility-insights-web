@@ -18,6 +18,7 @@ import { StartOverDropdown } from './start-over-dropdown';
 
 export type DetailsViewCommandBarDeps = ExportDialogDeps & ReportGeneratorDeps;
 
+// tslint:disable-next-line:interface-name
 export interface IDetailsViewCommandBarProps {
     deps: DetailsViewCommandBarDeps;
     featureFlagStoreData: FeatureFlagStoreData;
@@ -29,6 +30,7 @@ export interface IDetailsViewCommandBarProps {
     renderExportAndStartOver: boolean;
 }
 
+// tslint:disable-next-line:interface-name
 export interface IDetailsViewCommandBarState {
     isExportDialogOpen: boolean;
     exportDialogDescription: string;

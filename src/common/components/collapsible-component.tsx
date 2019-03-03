@@ -5,6 +5,7 @@ import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import * as React from 'react';
 
+// tslint:disable-next-line:interface-name
 export interface ICollapsibleComponentProps {
     header: JSX.Element;
     content: JSX.Element;
@@ -12,6 +13,7 @@ export interface ICollapsibleComponentProps {
     containerClassName?: string;
 }
 
+// tslint:disable-next-line:interface-name
 interface ICollapsibleComponentState {
     showContent: boolean;
 }

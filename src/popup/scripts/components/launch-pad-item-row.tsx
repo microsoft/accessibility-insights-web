@@ -5,6 +5,7 @@ import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
 
+// tslint:disable-next-line:interface-name
 export interface ILaunchPadItemRowProps {
     title: string;
     iconName: string;

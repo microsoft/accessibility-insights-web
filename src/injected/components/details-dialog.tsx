@@ -33,6 +33,7 @@ export type DetailsDialogDeps = CopyIssueDetailsButtonDeps &
         clientBrowserAdapter: ClientBrowserAdapter;
     };
 
+// tslint:disable-next-line:interface-name
 export interface IDetailsDialogProps {
     deps: DetailsDialogDeps;
     userConfigStore: IBaseStore<UserConfigurationStoreData>;
@@ -46,6 +47,7 @@ export interface IDetailsDialogProps {
     devToolsShortcut: string;
 }
 
+// tslint:disable-next-line:interface-name
 export interface IDetailsDialogState {
     showDialog: boolean;
     currentRuleIndex: number;

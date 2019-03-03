@@ -4,6 +4,7 @@ import * as React from 'react';
 
 import { IAssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
 
+// tslint:disable-next-line:interface-name
 export interface IInstanceTableColumn {
     key: string;
     name: string;

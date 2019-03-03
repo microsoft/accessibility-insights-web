@@ -17,6 +17,7 @@ import { SettingsPanel, SettingsPanelDeps, SettingsPanelProps } from './settings
 
 export type DetailsViewOverlayDeps = ContentPanelDeps & SettingsPanelDeps;
 
+// tslint:disable-next-line:interface-name
 export interface IDetailsViewOverlayProps {
     deps: DetailsViewOverlayDeps;
     actionMessageCreator: DetailsViewActionMessageCreator;

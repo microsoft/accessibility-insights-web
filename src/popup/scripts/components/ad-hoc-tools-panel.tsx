@@ -6,6 +6,7 @@ import * as React from 'react';
 
 import { DiagnosticViewToggleFactory } from './diagnostic-view-toggle-factory';
 
+// tslint:disable-next-line:interface-name
 export interface IAdHocToolsPanelProps {
     backLinkHandler: () => void;
     diagnosticViewToggleFactory: DiagnosticViewToggleFactory;

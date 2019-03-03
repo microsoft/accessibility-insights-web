@@ -9,6 +9,7 @@ import { FeatureFlags } from '../../common/feature-flags';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 
+// tslint:disable-next-line:interface-name
 export interface ITabInfoProps {
     isTargetPageHidden: boolean;
     url: string;

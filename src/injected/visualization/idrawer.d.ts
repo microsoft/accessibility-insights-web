@@ -3,6 +3,7 @@
 import { IHtmlElementAxeResults } from '../scanner-utils';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 
+// tslint:disable-next-line:interface-name
 interface IDrawer {
     initialize(config: IDrawerInitData<any>);
     isOverlayEnabled: boolean;
@@ -10,6 +11,7 @@ interface IDrawer {
     eraseLayout();
 }
 
+// tslint:disable-next-line:interface-name
 interface IDrawerInitData<T> {
     data: T[];
     featureFlagStoreData: FeatureFlagStoreData;

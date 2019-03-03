@@ -25,6 +25,7 @@ describe('ActionTest', () => {
     });
 });
 
+// tslint:disable-next-line:interface-name
 interface ITestPayload {
     key: string;
 }

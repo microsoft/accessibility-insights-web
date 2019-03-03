@@ -6,6 +6,7 @@ import { IAssessmentSummaryReportModel } from '../assessment-report-model';
 import { OutcomeChipSet } from './outcome-chip-set';
 import { OutcomeIconSet } from './outcome-icon-set';
 
+// tslint:disable-next-line:interface-name
 export interface IAssessmentSummaryDetailsProps {
     testSummaries: IAssessmentSummaryReportModel[];
 }

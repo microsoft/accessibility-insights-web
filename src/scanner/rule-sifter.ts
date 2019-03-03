@@ -4,11 +4,13 @@ import { HyperlinkDefinition } from '../views/content/content-page';
 import { IDictionaryStringTo } from './dictionary-types';
 import { isEmpty } from 'lodash';
 
+// tslint:disable-next-line:interface-name
 export interface IRuleInfo {
     id: string;
     enabled: boolean;
 }
 
+// tslint:disable-next-line:interface-name
 export interface IRuleWithA11YCriteria {
     id: string;
     a11yCriteria: HyperlinkDefinition[];
