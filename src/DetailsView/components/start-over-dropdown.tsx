@@ -17,16 +17,15 @@ export interface IStartOverState {
     dialogState: DialogState;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IStartOverProps {
+export interface StartOverProps {
     testName: string;
     actionMessageCreator: DetailsViewActionMessageCreator;
     test: VisualizationType;
     requirementKey: string;
 }
 
-export class StartOverDropdown extends React.Component<IStartOverProps, IStartOverState> {
-    constructor(props: IStartOverProps) {
+export class StartOverDropdown extends React.Component<StartOverProps, IStartOverState> {
+    constructor(props: StartOverProps) {
         super(props);
 
         this.state = {

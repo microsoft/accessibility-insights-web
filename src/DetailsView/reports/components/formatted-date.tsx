@@ -3,12 +3,11 @@
 import * as React from 'react';
 import * as _ from 'lodash/index';
 
-// tslint:disable-next-line:interface-name
-export interface IFormattedDateProps {
+export interface FormattedDateProps {
     date: Date;
 }
 
-export class FormattedDate extends React.Component<IFormattedDateProps> {
+export class FormattedDate extends React.Component<FormattedDateProps> {
     public render() {
         return <>{this.formatDateTime(this.props.date)}</>;
     }

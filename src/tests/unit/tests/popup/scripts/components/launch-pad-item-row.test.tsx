@@ -7,7 +7,7 @@ import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';
 
-import { ILaunchPadItemRowProps, LaunchPadItemRow } from '../../../../../../popup/scripts/components/launch-pad-item-row';
+import { LaunchPadItemRowProps, LaunchPadItemRow } from '../../../../../../popup/scripts/components/launch-pad-item-row';
 import { EventStubFactory } from '../../../../common/event-stub-factory';
 
 describe('LaunchPadItemRow', () => {
@@ -17,7 +17,7 @@ describe('LaunchPadItemRow', () => {
 
     const onClickTitleMock = Mock.ofInstance((ev?) => {});
 
-    const props: ILaunchPadItemRowProps = {
+    const props: LaunchPadItemRowProps = {
         title: 'test title',
         iconName: 'test icon name',
         description: 'test description',
@@ -73,7 +73,7 @@ describe('LaunchPadItemRow', () => {
         const onClickTitleMock = Mock.ofInstance((ev?) => {});
         onClickTitleMock.setup(handler => handler(event)).verifiable(Times.once());
 
-        const props: ILaunchPadItemRowProps = {
+        const props: LaunchPadItemRowProps = {
             title: 'test title',
             iconName: 'test icon name',
             description: 'test description',

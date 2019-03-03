@@ -23,8 +23,7 @@ import {
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 
-// tslint:disable-next-line:interface-name
-export interface IAssessmentInstanceTableProps {
+export interface AssessmentInstanceTableProps {
     instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance>;
     assessmentNavState: IAssessmentNavState;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
@@ -47,7 +46,7 @@ export interface ICapturedInstanceRowData extends IObjectWithKey {
     instanceActionButtons: JSX.Element;
 }
 
-export class AssessmentInstanceTable extends React.Component<IAssessmentInstanceTableProps> {
+export class AssessmentInstanceTable extends React.Component<AssessmentInstanceTableProps> {
     public render(): JSX.Element {
         if (this.props.instancesMap == null) {
             return <Spinner className="details-view-spinner" size={SpinnerSize.large} label={'Scanning'} />;

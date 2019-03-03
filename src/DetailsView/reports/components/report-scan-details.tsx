@@ -6,8 +6,7 @@ import { NewTabLink } from '../../../common/components/new-tab-link';
 import { title } from '../../../content/strings/application';
 import { FormattedDate } from './formatted-date';
 
-// tslint:disable-next-line:interface-name
-export interface IReportScanDetailsProps {
+export interface ReportScanDetailsProps {
     pageTitle: string;
     pageUrl: string;
     description: string;
@@ -17,7 +16,7 @@ export interface IReportScanDetailsProps {
     axeVersion: string;
 }
 
-export class ReportScanDetails extends React.Component<IReportScanDetailsProps> {
+export class ReportScanDetails extends React.Component<ReportScanDetailsProps> {
     public render() {
         return (
             <div className="report-scan-details">

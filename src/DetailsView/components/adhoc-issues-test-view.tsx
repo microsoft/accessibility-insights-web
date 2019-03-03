@@ -18,8 +18,7 @@ import { TargetPageChangedView } from './target-page-changed-view';
 
 export type AdhocIssuesTestViewDeps = IssuesTableDeps;
 
-// tslint:disable-next-line:interface-name
-export interface IAdhocIssuesTestViewProps {
+export interface AdhocIssuesTestViewProps {
     deps: AdhocIssuesTestViewDeps;
     tabStoreData: ITabStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
@@ -35,7 +34,7 @@ export interface IAdhocIssuesTestViewProps {
     configuration: IVisualizationConfiguration;
 }
 
-export const AdhocIssuesTestView = NamedSFC<IAdhocIssuesTestViewProps>('AdhocIssuesTestView', ({ children, ...props }) => {
+export const AdhocIssuesTestView = NamedSFC<AdhocIssuesTestViewProps>('AdhocIssuesTestView', ({ children, ...props }) => {
     const type = props.selectedTest;
     const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
     const clickHandler = props.clickHandlerFactory.createClickHandler(type, !scanData.enabled);

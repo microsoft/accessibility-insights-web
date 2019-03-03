@@ -3,11 +3,11 @@
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import * as React from 'react';
 
-import { FailureDetails, IFailureDetailsProps } from '../../../../../DetailsView/components/failure-details';
+import { FailureDetails, FailureDetailsProps } from '../../../../../DetailsView/components/failure-details';
 
 describe('FailureDetailsTests', () => {
     test('null items array', () => {
-        const props: IFailureDetailsProps = {
+        const props: FailureDetailsProps = {
             items: null,
         };
 
@@ -26,7 +26,7 @@ describe('FailureDetailsTests', () => {
     });
 
     test('empty items array', () => {
-        const props: IFailureDetailsProps = {
+        const props: FailureDetailsProps = {
             items: [],
         };
 
@@ -45,7 +45,7 @@ describe('FailureDetailsTests', () => {
     });
 
     test('one item array', () => {
-        const props: IFailureDetailsProps = {
+        const props: FailureDetailsProps = {
             items: ['one-item'],
         };
 
@@ -64,7 +64,7 @@ describe('FailureDetailsTests', () => {
     });
 
     test('more than one item array', () => {
-        const props: IFailureDetailsProps = {
+        const props: FailureDetailsProps = {
             items: ['one', 'two', 'three'],
         };
 

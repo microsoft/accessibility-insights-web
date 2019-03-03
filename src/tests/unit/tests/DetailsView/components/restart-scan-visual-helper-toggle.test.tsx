@@ -6,7 +6,7 @@ import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
 import { IVisualHelperToggleConfig } from '../../../../../assessments/types/test-step';
-import { IVisualizationToggleProps, VisualizationToggle } from '../../../../../common/components/visualization-toggle';
+import { VisualizationToggleProps, VisualizationToggle } from '../../../../../common/components/visualization-toggle';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import {
     IAssessmentResultType,
@@ -92,8 +92,8 @@ describe('RestartScanVisualHelperToggleTest', () => {
     });
 
     function assertVisualizationToggle(
-        expectedProps: IVisualizationToggleProps,
-        visualizationToggle: Enzyme.ShallowWrapper<IVisualizationToggleProps>,
+        expectedProps: VisualizationToggleProps,
+        visualizationToggle: Enzyme.ShallowWrapper<VisualizationToggleProps>,
     ) {
         expect(visualizationToggle.exists()).toBe(true);
 
@@ -202,13 +202,13 @@ export class VisualHelperToggleTestPropsBuilder extends BaseDataBuilder<IVisualH
     }
 }
 
-export class VisualizationTogglePropsBuilder extends BaseDataBuilder<IVisualizationToggleProps> {
+export class VisualizationTogglePropsBuilder extends BaseDataBuilder<VisualizationToggleProps> {
     constructor() {
         super();
         this.data = {
             checked: false,
             disabled: false,
             visualizationName: null,
-        } as IVisualizationToggleProps;
+        } as VisualizationToggleProps;
     }
 }

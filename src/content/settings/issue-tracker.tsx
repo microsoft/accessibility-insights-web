@@ -6,8 +6,7 @@ import * as React from 'react';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import { ActionAndCancelButtonsComponent } from '../../DetailsView/components/action-and-cancel-buttons-component';
 
-// tslint:disable-next-line:interface-name
-export interface IIssueTrackerInputProps {
+export interface IssueTrackerInputProps {
     onSave: (id: string, state: string) => void;
     issueTrackerPath?: string;
 }
@@ -15,7 +14,7 @@ export interface IIssueTrackerInputProps {
 export interface IIssueTrackerState {
     issueTrackerPath: string;
 }
-export class IssueTrackerInput extends React.Component<IIssueTrackerInputProps, IIssueTrackerState> {
+export class IssueTrackerInput extends React.Component<IssueTrackerInputProps, IIssueTrackerState> {
     constructor(props) {
         super(props);
         this.state = {

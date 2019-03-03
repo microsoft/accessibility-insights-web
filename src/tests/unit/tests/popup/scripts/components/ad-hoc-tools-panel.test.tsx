@@ -7,7 +7,7 @@ import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';
 
-import { AdHocToolsPanel, IAdHocToolsPanelProps } from '../../../../../../popup/scripts/components/ad-hoc-tools-panel';
+import { AdHocToolsPanel, AdHocToolsPanelProps } from '../../../../../../popup/scripts/components/ad-hoc-tools-panel';
 import { DiagnosticViewToggleFactory } from '../../../../../../popup/scripts/components/diagnostic-view-toggle-factory';
 
 describe('AdHocToolsPanelTest', () => {
@@ -26,7 +26,7 @@ describe('AdHocToolsPanelTest', () => {
     });
 
     test('render toggles', () => {
-        const props: IAdHocToolsPanelProps = {
+        const props: AdHocToolsPanelProps = {
             backLinkHandler: null,
             diagnosticViewToggleFactory: diagnosticViewToggleFactoryMock.object,
         };
@@ -67,7 +67,7 @@ describe('AdHocToolsPanelTest', () => {
     });
 
     test('adhoc panel matches snapshot', () => {
-        const props: IAdHocToolsPanelProps = {
+        const props: AdHocToolsPanelProps = {
             backLinkHandler: null,
             diagnosticViewToggleFactory: diagnosticViewToggleFactoryMock.object,
         };
@@ -82,7 +82,7 @@ describe('AdHocToolsPanelTest', () => {
         const backLinkHandlerMock = Mock.ofInstance(() => {});
         backLinkHandlerMock.setup(b => b()).verifiable(Times.once());
 
-        const props: IAdHocToolsPanelProps = {
+        const props: AdHocToolsPanelProps = {
             backLinkHandler: backLinkHandlerMock.object,
             diagnosticViewToggleFactory: diagnosticViewToggleFactoryMock.object,
         };

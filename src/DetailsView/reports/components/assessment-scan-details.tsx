@@ -9,13 +9,12 @@ import { UrlIcon } from '../../../common/icons/url-icon';
 import { IScanDetailsReportModel } from '../assessment-report-model';
 import { FormattedDate } from './formatted-date';
 
-// tslint:disable-next-line:interface-name
-export interface IAssessmentScanDetailsProps {
+export interface AssessmentScanDetailsProps {
     details: IScanDetailsReportModel;
     description: string;
 }
 
-export class AssessmentScanDetails extends React.Component<IAssessmentScanDetailsProps> {
+export class AssessmentScanDetails extends React.Component<AssessmentScanDetailsProps> {
     public render(): JSX.Element {
         return (
             <div className="assessment-scan-details">

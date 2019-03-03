@@ -6,16 +6,16 @@ import * as React from 'react';
 
 import {
     AssessmentInstanceDetailsColumn,
-    IAssessmentInstanceDetailsColumnProps,
+    AssessmentInstanceDetailsColumnProps,
 } from '../../../../../DetailsView/components/assessment-instance-details-column';
 
 describe('AssessmentInstanceDetailsColumn', () => {
     test('constructor', () => {
-        expect(new AssessmentInstanceDetailsColumn({} as IAssessmentInstanceDetailsColumnProps)).toBeDefined();
+        expect(new AssessmentInstanceDetailsColumn({} as AssessmentInstanceDetailsColumnProps)).toBeDefined();
     });
 
     test('render: heading instance', () => {
-        const props: IAssessmentInstanceDetailsColumnProps = {
+        const props: AssessmentInstanceDetailsColumnProps = {
             background: 'background',
             labelText: 'labelText',
             textContent: 'textContent',
@@ -32,7 +32,7 @@ describe('AssessmentInstanceDetailsColumn', () => {
     });
 
     test('render: N/A instance', () => {
-        const props: IAssessmentInstanceDetailsColumnProps = {
+        const props: AssessmentInstanceDetailsColumnProps = {
             background: 'background',
             labelText: 'N/A',
             textContent: 'textContent',
@@ -50,7 +50,7 @@ describe('AssessmentInstanceDetailsColumn', () => {
     });
 
     test('render: no label text', () => {
-        const props: IAssessmentInstanceDetailsColumnProps = {
+        const props: AssessmentInstanceDetailsColumnProps = {
             background: 'background',
             textContent: 'textContent',
             tooltipId: undefined,
@@ -62,7 +62,7 @@ describe('AssessmentInstanceDetailsColumn', () => {
     });
 
     test('render: with custom class name', () => {
-        const props: IAssessmentInstanceDetailsColumnProps = {
+        const props: AssessmentInstanceDetailsColumnProps = {
             background: 'background',
             labelText: 'N/A',
             textContent: 'textContent',
@@ -78,7 +78,7 @@ describe('AssessmentInstanceDetailsColumn', () => {
         expect(label.hasClass(props.customClassName)).toEqual(true);
     });
 
-    function verifyBaseRender(wrapper: Enzyme.ShallowWrapper, props: IAssessmentInstanceDetailsColumnProps): void {
+    function verifyBaseRender(wrapper: Enzyme.ShallowWrapper, props: AssessmentInstanceDetailsColumnProps): void {
         const hasLabel = wrapper.find('.assessment-instance-label').exists();
         !!props.labelText ? expect(hasLabel).toEqual(true) : expect(hasLabel).toEqual(false);
         expect(wrapper.find(TooltipHost).exists()).toBe(true);

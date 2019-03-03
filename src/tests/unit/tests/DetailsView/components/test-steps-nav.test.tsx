@@ -9,7 +9,7 @@ import { TestStep } from '../../../../../assessments/types/test-step';
 import { getInnerTextFromJsxElement } from '../../../../../common/get-inner-text-from-jsx-element';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
-import { ITestStepNavProps, TestStepsNav } from '../../../../../DetailsView/components/test-steps-nav';
+import { TestStepNavProps, TestStepsNav } from '../../../../../DetailsView/components/test-steps-nav';
 import { OutcomeTypeSemantic, outcomeTypeSemanticsFromTestStatus } from '../../../../../DetailsView/reports/components/outcome-type';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 import { CreateTestAssessmentProvider, CreateTestAssessmentProviderAutomated } from '../../../common/test-assessment-provider';
@@ -52,7 +52,7 @@ describe('TestStepsNav', () => {
             renderRequirementDescription: firstStep.renderRequirementDescription,
         };
 
-        const props: ITestStepNavProps = {
+        const props: TestStepNavProps = {
             deps: {
                 detailsViewActionMessageCreator: actionMessageCreatorMock.object,
                 assessmentsProvider: assessmentProvider,
@@ -80,7 +80,7 @@ describe('TestStepsNav', () => {
         actionMessageCreatorMock.verifyAll();
     }
 
-    function generateStepStatus(testSteps: TestStep[], props: ITestStepNavProps): void {
+    function generateStepStatus(testSteps: TestStep[], props: TestStepNavProps): void {
         testSteps.forEach((step, index) => {
             props.stepStatus[step.key] = {
                 stepFinalResult: index % 2 === 0 ? ManualTestStatus.UNKNOWN : ManualTestStatus.PASS,

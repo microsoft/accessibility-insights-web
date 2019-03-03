@@ -2,12 +2,11 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-// tslint:disable-next-line:interface-name
-export interface IReportInstanceListProps {
+export interface ReportInstanceListProps {
     nodeResults: AxeNodeResult[];
 }
 
-export class ReportInstanceList extends React.Component<IReportInstanceListProps> {
+export class ReportInstanceList extends React.Component<ReportInstanceListProps> {
     public render(): JSX.Element {
         return (
             <div className="report-instances">

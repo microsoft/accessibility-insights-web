@@ -12,8 +12,7 @@ import { IScopingStoreData } from '../../common/types/store-data/scoping-store-d
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import * as Markup from '../../assessments/markup';
 
-// tslint:disable-next-line:interface-name
-export interface IScopingContainerProps {
+export interface ScopingContainerProps {
     actionMessageCreator: DetailsViewActionMessageCreator;
     featureFlagData: FeatureFlagStoreData;
     scopingSelectorsData: IScopingStoreData;
@@ -21,7 +20,7 @@ export interface IScopingContainerProps {
     inspectActionMessageCreator: InspectActionMessageCreator;
 }
 
-export class ScopingContainer extends React.Component<IScopingContainerProps> {
+export class ScopingContainer extends React.Component<ScopingContainerProps> {
     public static readonly renderInstructions = (
         <div>
             <p>Run tests on specific portions of your code by indicating specific selectors.</p>

@@ -9,8 +9,7 @@ import { ReportCheckList } from './report-check-list';
 import { ReportHeader } from './report-header';
 import { ReportScanDetails } from './report-scan-details';
 
-// tslint:disable-next-line:interface-name
-export interface IReportBodyProps {
+export interface ReportBodyProps {
     scanResult: ScanResults;
     scanDate: Date;
     pageTitle: string;
@@ -21,7 +20,7 @@ export interface IReportBodyProps {
     axeVersion: string;
 }
 
-export class ReportBody extends React.Component<IReportBodyProps> {
+export class ReportBody extends React.Component<ReportBodyProps> {
     public render(): JSX.Element {
         return (
             <body>

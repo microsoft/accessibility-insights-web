@@ -11,12 +11,12 @@ import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/acti
 import {
     AssessmentTestView,
     AssessmentTestViewDeps,
-    IAssessmentTestViewProps,
+    AssessmentTestViewProps,
 } from '../../../../../DetailsView/components/assessment-test-view';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
 
 describe('AssessmentTestView', () => {
-    let props: IAssessmentTestViewProps;
+    let props: AssessmentTestViewProps;
     let getStoreDataMock: IMock<(data: ITestsEnabledState) => IScanData>;
     let getAssessmentDataMock: IMock<(data: IAssessmentStoreData) => IAssessmentData>;
     let getTestStatusMock: IMock<(data: IScanData, step: string) => boolean>;
@@ -70,7 +70,7 @@ describe('AssessmentTestView', () => {
             },
             assessmentStoreData: assessmentStoreDataStub,
             assessmentInstanceTableHandler: assessmentInstanceHandlerStub,
-        } as IAssessmentTestViewProps;
+        } as AssessmentTestViewProps;
 
         getStoreDataMock
             .setup(gsdm => gsdm(visualizationStoreDataStub.tests))

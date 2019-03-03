@@ -33,8 +33,7 @@ export type DetailsDialogDeps = CopyIssueDetailsButtonDeps &
         clientBrowserAdapter: ClientBrowserAdapter;
     };
 
-// tslint:disable-next-line:interface-name
-export interface IDetailsDialogProps {
+export interface DetailsDialogProps {
     deps: DetailsDialogDeps;
     userConfigStore: IBaseStore<UserConfigurationStoreData>;
     elementSelector: string;
@@ -55,7 +54,7 @@ export interface IDetailsDialogState {
     issueTrackerPath: string;
 }
 
-export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetailsDialogState> {
+export class DetailsDialog extends React.Component<DetailsDialogProps, IDetailsDialogState> {
     private onHideDialog: () => void;
     public onClickInspectButton: (ev) => void;
     private onLayoutDidMount: () => void;
@@ -65,7 +64,7 @@ export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetails
     public isNextButtonDisabled: () => boolean;
     public isInspectButtonDisabled: () => boolean;
 
-    constructor(props: IDetailsDialogProps) {
+    constructor(props: DetailsDialogProps) {
         super(props);
 
         this.onHideDialog = () => {

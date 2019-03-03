@@ -21,8 +21,7 @@ import { ContentLink, ContentLinkDeps } from '../../../views/content/content-lin
 import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
 import { DiagnosticViewClickHandler } from '../handlers/diagnostic-view-toggle-click-handler';
 
-// tslint:disable-next-line:interface-name
-export interface IDiagnosticViewToggleProps {
+export interface DiagnosticViewToggleProps {
     deps: DiagnosticViewToggleDeps;
     featureFlags: IDictionaryStringTo<boolean>;
     type: VisualizationType;
@@ -42,14 +41,14 @@ export interface IDiagnosticViewToggleState {
     isFocused: boolean;
 }
 
-export class DiagnosticViewToggle extends React.Component<IDiagnosticViewToggleProps, IDiagnosticViewToggleState> {
+export class DiagnosticViewToggle extends React.Component<DiagnosticViewToggleProps, IDiagnosticViewToggleState> {
     private configuration: IVisualizationConfiguration;
     private _toggle: React.RefObject<IToggle> = React.createRef<IToggle>();
     private dom: NodeSelector & Node;
     private _isMounted: boolean;
     private _userEventListenerAdded: boolean;
 
-    constructor(props: IDiagnosticViewToggleProps) {
+    constructor(props: DiagnosticViewToggleProps) {
         super(props);
         this.configuration = this.props.visualizationConfigurationFactory.getConfiguration(this.props.type);
         this.dom = this.props.dom;

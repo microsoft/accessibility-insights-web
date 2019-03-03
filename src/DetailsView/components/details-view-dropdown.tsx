@@ -7,8 +7,7 @@ import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
 
-// tslint:disable-next-line:interface-name
-export interface IDetailsViewDropDownProps {
+export interface DetailsViewDropDownProps {
     menuItems: IContextualMenuItem[];
 }
 
@@ -18,7 +17,7 @@ export interface IDetailsViewDropDownState {
     target?: HTMLElement | string | MouseEvent | IPoint | null;
 }
 
-export class DetailsViewDropDown extends React.Component<IDetailsViewDropDownProps, IDetailsViewDropDownState> {
+export class DetailsViewDropDown extends React.Component<DetailsViewDropDownProps, IDetailsViewDropDownState> {
     constructor(props) {
         super(props);
         this.state = {

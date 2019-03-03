@@ -6,12 +6,11 @@ import { IAssessmentSummaryReportModel } from '../assessment-report-model';
 import { OutcomeChipSet } from './outcome-chip-set';
 import { OutcomeIconSet } from './outcome-icon-set';
 
-// tslint:disable-next-line:interface-name
-export interface IAssessmentSummaryDetailsProps {
+export interface AssessmentSummaryDetailsProps {
     testSummaries: IAssessmentSummaryReportModel[];
 }
 
-export class AssessmentSummaryDetails extends React.Component<IAssessmentSummaryDetailsProps> {
+export class AssessmentSummaryDetails extends React.Component<AssessmentSummaryDetailsProps> {
     public render(): JSX.Element {
         return (
             <div role="table" className="assessment-summary-details">

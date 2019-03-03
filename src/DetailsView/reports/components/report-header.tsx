@@ -6,12 +6,11 @@ import { title } from '../../../content/strings/application';
 import { RuleResult, ScanResults } from '../../../scanner/iruleresults';
 import { InlineImage, InlineImageType } from './inline-image';
 
-// tslint:disable-next-line:interface-name
-export interface IReportHeaderProps {
+export interface ReportHeaderProps {
     scanResult: ScanResults;
 }
 
-export class ReportHeader extends React.Component<IReportHeaderProps> {
+export class ReportHeader extends React.Component<ReportHeaderProps> {
     public render(): JSX.Element {
         return (
             <div className="report-header" role="banner">

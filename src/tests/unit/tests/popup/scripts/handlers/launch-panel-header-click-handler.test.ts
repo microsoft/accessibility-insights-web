@@ -3,7 +3,7 @@
 import { It, Mock, Times } from 'typemoq';
 
 import {
-    ILaunchPanelHeaderProps,
+    LaunchPanelHeaderProps,
     LaunchPanelHeader,
     LaunchPanelHeaderDeps,
 } from '../../../../../../popup/scripts/components/launch-panel-header';
@@ -68,7 +68,7 @@ describe('FeedbackMenuClickHandlerTest', () => {
             dropdownClickHandler: null,
         };
 
-        const props: ILaunchPanelHeaderProps = {
+        const props: LaunchPanelHeaderProps = {
             deps: deps,
             title: 'title',
             subtitle: 'subtitle',
@@ -102,7 +102,7 @@ describe('FeedbackMenuClickHandlerTest', () => {
             dropdownClickHandler: null,
         };
 
-        const props: ILaunchPanelHeaderProps = {
+        const props: LaunchPanelHeaderProps = {
             deps: deps,
             title: 'title',
             subtitle: 'subtitle',
@@ -130,7 +130,7 @@ describe('FeedbackMenuClickHandlerTest', () => {
             dropdownClickHandler: null,
         };
 
-        const props: ILaunchPanelHeaderProps = {
+        const props: LaunchPanelHeaderProps = {
             deps: deps,
             title: 'title',
             subtitle: 'subtitle',

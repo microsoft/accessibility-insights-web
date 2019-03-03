@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 
-import { IInlineImageProps, InlineImage, InlineImageType } from '../../../../../../DetailsView/reports/components/inline-image';
+import { InlineImageProps, InlineImage, InlineImageType } from '../../../../../../DetailsView/reports/components/inline-image';
 
 describe('InlineImageTest', () => {
     test('Valid types return <img> elements', () => {
@@ -18,7 +18,7 @@ describe('InlineImageTest', () => {
     });
 
     function testInvalidImage(type: InlineImageType): void {
-        const props: IInlineImageProps = { type, alt: '' };
+        const props: InlineImageProps = { type, alt: '' };
         const testObject = new InlineImage(props);
 
         const element = testObject.render();
@@ -27,7 +27,7 @@ describe('InlineImageTest', () => {
     }
 
     function testInlineImage(type: InlineImageType, alt: string): void {
-        const props: IInlineImageProps = { type, alt };
+        const props: InlineImageProps = { type, alt };
         const testObject = new InlineImage(props);
 
         const element = testObject.render();

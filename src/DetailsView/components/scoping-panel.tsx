@@ -11,8 +11,7 @@ import { DetailsViewActionMessageCreator } from '../actions/details-view-action-
 import { GenericPanel } from './generic-panel';
 import { ScopingContainer } from './scoping-container';
 
-// tslint:disable-next-line:interface-name
-export interface IScopingPanelProps {
+export interface ScopingPanelProps {
     isOpen: boolean;
     actionMessageCreator: DetailsViewActionMessageCreator;
     scopingActionMessageCreator: ScopingActionMessageCreator;
@@ -21,7 +20,7 @@ export interface IScopingPanelProps {
     scopingSelectorsData: IScopingStoreData;
 }
 
-export class ScopingPanel extends React.Component<IScopingPanelProps> {
+export class ScopingPanel extends React.Component<ScopingPanelProps> {
     public render(): JSX.Element {
         return (
             <GenericPanel

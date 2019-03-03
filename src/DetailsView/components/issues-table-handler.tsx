@@ -17,8 +17,7 @@ export interface IDetailsRowData extends IObjectWithKey, AxeNodeResult {
     bugButton: JSX.Element;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IListProps {
+export interface ListProps {
     items: IDetailsRowData[];
     groups: DetailsGroup[];
 }
@@ -29,8 +28,8 @@ export interface DetailsGroup extends IGroup {
 }
 
 export class IssuesTableHandler {
-    public getListProps(failedRules: RuleResult[]): IListProps {
-        let listProps: IListProps;
+    public getListProps(failedRules: RuleResult[]): ListProps {
+        let listProps: ListProps;
         const groups: DetailsGroup[] = [];
         const items: IDetailsRowData[] = [];
         let instanceCount: number = 0;

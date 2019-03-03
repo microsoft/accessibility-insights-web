@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { IReportHeaderProps, ReportHeader } from '../../../../../../DetailsView/reports/components/report-header';
+import { ReportHeaderProps, ReportHeader } from '../../../../../../DetailsView/reports/components/report-header';
 import { shallowRender } from '../../../../common/shallow-render';
 
 describe('ReportHeaderTest', () => {
     it('renders with failures, without inapplicable', () => {
-        const props: IReportHeaderProps = {
+        const props: ReportHeaderProps = {
             scanResult: {
                 violations: [
                     {
@@ -30,7 +30,7 @@ describe('ReportHeaderTest', () => {
     });
 
     it('renders without failures, with inapplicable', () => {
-        const props: IReportHeaderProps = {
+        const props: ReportHeaderProps = {
             scanResult: {
                 violations: [],
                 passes: [],

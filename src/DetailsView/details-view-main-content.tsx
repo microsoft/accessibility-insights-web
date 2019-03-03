@@ -25,8 +25,7 @@ import { ReportGenerator } from './reports/report-generator';
 
 export type DetailsViewMainContentDeps = DetailsViewContentDeps & DetailsViewLeftNavDeps & DetailsViewCommandBarDeps;
 
-// tslint:disable-next-line:interface-name
-export interface IDetailsViewMainContentProps {
+export interface DetailsViewMainContentProps {
     deps: DetailsViewMainContentDeps;
     tabStoreData: ITabStoreData;
     assessmentStoreData: IAssessmentStoreData;
@@ -48,7 +47,7 @@ export interface IDetailsViewMainContentProps {
     issueTrackerPath: string;
 }
 
-export class DetailsViewMainContent extends React.Component<IDetailsViewMainContentProps> {
+export class DetailsViewMainContent extends React.Component<DetailsViewMainContentProps> {
     public render() {
         return (
             <>

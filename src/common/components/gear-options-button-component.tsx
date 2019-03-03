@@ -8,13 +8,12 @@ import { DetailsViewDropDown } from '../../DetailsView/components/details-view-d
 import { DropdownClickHandler } from '../dropdown-click-handler';
 import { FeatureFlags } from '../feature-flags';
 
-// tslint:disable-next-line:interface-name
-export interface IGearOptionsButtonComponentProps {
+export interface GearOptionsButtonComponentProps {
     dropdownClickHandler: DropdownClickHandler;
     featureFlags: FeatureFlagStoreData;
 }
 
-export class GearOptionsButtonComponent extends React.Component<IGearOptionsButtonComponentProps> {
+export class GearOptionsButtonComponent extends React.Component<GearOptionsButtonComponentProps> {
     public render(): JSX.Element {
         return <div className="gear-options-button-component">{this.renderButton()}</div>;
     }

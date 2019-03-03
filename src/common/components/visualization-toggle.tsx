@@ -3,8 +3,7 @@
 import { IToggle, IToggleProps, Toggle } from 'office-ui-fabric-react/lib/Toggle';
 import * as React from 'react';
 
-// tslint:disable-next-line:interface-name
-export interface IVisualizationToggleProps {
+export interface VisualizationToggleProps {
     checked: boolean;
     onClick: (event) => void;
     disabled?: boolean;
@@ -16,7 +15,7 @@ export interface IVisualizationToggleProps {
     onFocus?: (ev) => void;
 }
 
-export class VisualizationToggle extends React.Component<IVisualizationToggleProps> {
+export class VisualizationToggle extends React.Component<VisualizationToggleProps> {
     public render(): JSX.Element {
         const props: IToggleProps = {
             checked: this.props.checked,

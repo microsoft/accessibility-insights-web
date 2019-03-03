@@ -16,7 +16,7 @@ import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/acti
 import {
     DetailsViewCommandBar,
     DetailsViewCommandBarDeps,
-    IDetailsViewCommandBarProps,
+    DetailsViewCommandBarProps,
 } from '../../../../../DetailsView/components/details-view-command-bar';
 import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
 
@@ -57,7 +57,7 @@ describe('DetailsViewCommandBar', () => {
         descriptionPlaceholder = '7efdac3c-8c94-4e00-a765-6fc8c59a232b';
     });
 
-    function getProps(): IDetailsViewCommandBarProps {
+    function getProps(): DetailsViewCommandBarProps {
         const deps: DetailsViewCommandBarDeps = {
             detailsViewActionMessageCreator: actionMessageCreatorMock.object,
             outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,

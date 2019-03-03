@@ -24,7 +24,7 @@ import { DetailsRightPanelConfiguration } from '../../../../DetailsView/componen
 import { DetailsViewSwitcherNavConfiguration } from '../../../../DetailsView/components/details-view-switcher-nav';
 import { DetailsViewLeftNav } from '../../../../DetailsView/components/left-nav/details-view-left-nav';
 import { TabInfo } from '../../../../DetailsView/components/tab-info';
-import { DetailsViewMainContent, IDetailsViewMainContentProps } from '../../../../DetailsView/details-view-main-content';
+import { DetailsViewMainContent, DetailsViewMainContentProps } from '../../../../DetailsView/details-view-main-content';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
@@ -38,22 +38,22 @@ describe('DetailsViewMainContentTest', () => {
     let getStoreDataMock: IMock<(data: ITestsEnabledState) => IScanData>;
     let configStub: IVisualizationConfiguration;
     let scanDataStub: IScanData;
-    let props: IDetailsViewMainContentProps;
+    let props: DetailsViewMainContentProps;
     let rightPanelConfig: DetailsRightPanelConfiguration;
     let switcherNavConfig: DetailsViewSwitcherNavConfiguration;
 
     describe('render', () => {
         beforeEach(() => {
             selectedTest = -1;
-            const RightPanelStub: Readonly<ReactSFCWithDisplayName<IDetailsViewMainContentProps>> = NamedSFC<IDetailsViewMainContentProps>(
+            const RightPanelStub: Readonly<ReactSFCWithDisplayName<DetailsViewMainContentProps>> = NamedSFC<DetailsViewMainContentProps>(
                 'test',
                 _ => null,
             );
-            const CommandBarStub: Readonly<ReactSFCWithDisplayName<IDetailsViewMainContentProps>> = NamedSFC<IDetailsViewMainContentProps>(
+            const CommandBarStub: Readonly<ReactSFCWithDisplayName<DetailsViewMainContentProps>> = NamedSFC<DetailsViewMainContentProps>(
                 'test',
                 _ => null,
             );
-            const LeftNavStub: Readonly<ReactSFCWithDisplayName<IDetailsViewMainContentProps>> = NamedSFC<IDetailsViewMainContentProps>(
+            const LeftNavStub: Readonly<ReactSFCWithDisplayName<DetailsViewMainContentProps>> = NamedSFC<DetailsViewMainContentProps>(
                 'test',
                 _ => null,
             );
@@ -116,7 +116,7 @@ describe('DetailsViewMainContentTest', () => {
                 },
                 rightPanelConfiguration: rightPanelConfig,
                 switcherNavConfiguration: switcherNavConfig,
-            } as IDetailsViewMainContentProps;
+            } as DetailsViewMainContentProps;
         });
 
         test('tab is closed', () => {
@@ -174,7 +174,7 @@ describe('DetailsViewMainContentTest', () => {
         givenGetStoreDataMock: IMock<(data: ITestsEnabledState) => IScanData>,
         config: IVisualizationConfiguration,
         scanData: IScanData,
-        givenProps: IDetailsViewMainContentProps,
+        givenProps: DetailsViewMainContentProps,
     ): void {
         factoryMock.setup(cfm => cfm.getConfiguration(givenProps.selectedTest)).returns(() => config);
 
@@ -189,11 +189,11 @@ describe('DetailsViewMainContentTest', () => {
         factoryMock.setup(chfm => chfm.createClickHandler(setupType, setupNewValue)).returns(() => clickHandlerStub);
     }
 
-    function buildLeftNav(givenProps: IDetailsViewMainContentProps): JSX.Element {
+    function buildLeftNav(givenProps: DetailsViewMainContentProps): JSX.Element {
         return <DetailsViewLeftNav {...givenProps} />;
     }
 
-    function buildTabInfo(givenProps: IDetailsViewMainContentProps): JSX.Element {
+    function buildTabInfo(givenProps: DetailsViewMainContentProps): JSX.Element {
         return (
             <TabInfo
                 isTargetPageHidden={givenProps.tabStoreData.isPageHidden}
@@ -207,7 +207,7 @@ describe('DetailsViewMainContentTest', () => {
         );
     }
 
-    function buildCommandBar(givenProps: IDetailsViewMainContentProps): JSX.Element {
+    function buildCommandBar(givenProps: DetailsViewMainContentProps): JSX.Element {
         return <switcherNavConfig.CommandBar actionMessageCreator={props.deps.detailsViewActionMessageCreator} {...props} />;
     }
 });

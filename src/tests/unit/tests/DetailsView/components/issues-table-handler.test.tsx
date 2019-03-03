@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
-import { DetailsGroup, IListProps, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
+import { DetailsGroup, ListProps, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
 import { RuleResult } from '../../../../../scanner/iruleresults';
 
 describe('IssuesTableHandlerTests', () => {
@@ -122,7 +122,7 @@ describe('IssuesTableHandlerTests', () => {
             },
         ];
 
-        const expectedListGroups: IListProps = {
+        const expectedListGroups: ListProps = {
             groups: expectedGroups,
             items: [detailsRow1, detailsRow2, detailsRow3],
         };

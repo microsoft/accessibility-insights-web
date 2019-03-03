@@ -23,8 +23,7 @@ export type LaunchPanelHeaderDeps = {
     dropdownClickHandler: DropdownClickHandler;
 };
 
-// tslint:disable-next-line:interface-name
-export interface ILaunchPanelHeaderProps {
+export interface LaunchPanelHeaderProps {
     deps: LaunchPanelHeaderDeps;
     title: string;
     subtitle?: React.ReactChild;
@@ -41,7 +40,7 @@ export interface ILaunchPanelHeaderState {
     target?: MouseEvent;
 }
 
-export class LaunchPanelHeader extends React.Component<ILaunchPanelHeaderProps, ILaunchPanelHeaderState> {
+export class LaunchPanelHeader extends React.Component<LaunchPanelHeaderProps, ILaunchPanelHeaderState> {
     private readonly telemetryEventSource: TelemetryEventSource = TelemetryEventSource.HamburgerMenu;
     private _onOpenDetailsViewForAllTests: (ev: React.SyntheticEvent<MouseEvent>) => void;
     private _onOpenDetailsViewForAssessment: (ev: React.SyntheticEvent<MouseEvent>) => void;
@@ -52,7 +51,7 @@ export class LaunchPanelHeader extends React.Component<ILaunchPanelHeaderProps, 
     private _onDismissContextualMenu: (event?: any) => void;
     private _openShortcutModifyTab: (event: React.MouseEvent<HTMLElement>) => void;
 
-    constructor(props: ILaunchPanelHeaderProps) {
+    constructor(props: LaunchPanelHeaderProps) {
         super(props);
         const { popupActionMessageCreator } = props.deps;
         this._onOpenDetailsViewForAllTests = ev => {

@@ -19,8 +19,7 @@ export interface TestStepNavDeps {
     getInnerTextFromJsxElement(element: JSX.Element): string;
 }
 
-// tslint:disable-next-line:interface-name
-export interface ITestStepNavProps {
+export interface TestStepNavProps {
     deps: TestStepNavDeps;
     selectedTest: VisualizationType;
     selectedTestStep: string;
@@ -28,7 +27,7 @@ export interface ITestStepNavProps {
     ariaLabel: string;
 }
 
-export class TestStepsNav extends React.Component<ITestStepNavProps> {
+export class TestStepsNav extends React.Component<TestStepNavProps> {
     constructor(props) {
         super(props);
     }

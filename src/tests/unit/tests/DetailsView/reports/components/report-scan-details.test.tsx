@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { IReportScanDetailsProps, ReportScanDetails } from '../../../../../../DetailsView/reports/components/report-scan-details';
+import { ReportScanDetailsProps, ReportScanDetails } from '../../../../../../DetailsView/reports/components/report-scan-details';
 import { shallowRender } from '../../../../common/shallow-render';
 
 describe('ReportScanDetailsTest', () => {
     it('renders', () => {
-        const props: IReportScanDetailsProps = {
+        const props: ReportScanDetailsProps = {
             scanDate: new Date(Date.UTC(2018, 2, 9, 9, 48)),
             pageTitle: 'page-title',
             pageUrl: 'https://page-url/',

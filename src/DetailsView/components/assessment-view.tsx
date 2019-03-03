@@ -32,8 +32,7 @@ export type AssessmentViewDeps = ContentLinkDeps &
         assessmentsProvider: IAssessmentsProvider;
     };
 
-// tslint:disable-next-line:interface-name
-export interface IAssessmentViewProps {
+export interface AssessmentViewProps {
     deps: AssessmentViewDeps;
     isScanning: boolean;
     isEnabled: boolean;
@@ -46,12 +45,12 @@ export interface IAssessmentViewProps {
     assessmentTestResult: AssessmentTestResult;
 }
 
-export class AssessmentView extends React.Component<IAssessmentViewProps> {
+export class AssessmentView extends React.Component<AssessmentViewProps> {
     public static readonly requirementsTitle: string = 'Requirements';
 
     private deps: AssessmentViewDeps;
 
-    constructor(props: IAssessmentViewProps) {
+    constructor(props: AssessmentViewProps) {
         super(props);
         this.deps = props.deps;
         this.state = {
@@ -81,7 +80,7 @@ export class AssessmentView extends React.Component<IAssessmentViewProps> {
         this.enableSelectedStepVisualHelper();
     }
 
-    public componentDidUpdate(prevProps: IAssessmentViewProps): void {
+    public componentDidUpdate(prevProps: AssessmentViewProps): void {
         if (this.isStepSwitched(prevProps)) {
             this.disableVisualHelpersForTest(prevProps.assessmentNavState.selectedTestType);
             this.enableSelectedStepVisualHelper();
@@ -111,7 +110,7 @@ export class AssessmentView extends React.Component<IAssessmentViewProps> {
         return this.props.prevTarget != null && this.props.prevTarget.id !== this.props.currentTarget.id;
     }
 
-    private isStepSwitched(prevProps: IAssessmentViewProps): boolean {
+    private isStepSwitched(prevProps: AssessmentViewProps): boolean {
         return prevProps.assessmentNavState.selectedTestStep !== this.props.assessmentNavState.selectedTestStep;
     }
 

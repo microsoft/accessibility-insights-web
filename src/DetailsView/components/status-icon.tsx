@@ -7,8 +7,7 @@ import * as React from 'react';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { outcomeTypeSemanticsFromTestStatus } from '../reports/components/outcome-type';
 
-// tslint:disable-next-line:interface-name
-export interface IStatusIconProps {
+export interface StatusIconProps {
     status: ManualTestStatus;
     className?: string;
     level: AssessmentLevel;
@@ -16,7 +15,7 @@ export interface IStatusIconProps {
 
 export type AssessmentLevel = 'test' | 'requirement';
 
-export class StatusIcon extends React.Component<IStatusIconProps> {
+export class StatusIcon extends React.Component<StatusIconProps> {
     public render(): JSX.Element {
         const outcomeTypeSemantics =
             outcomeTypeSemanticsFromTestStatus(this.props.status) || outcomeTypeSemanticsFromTestStatus(ManualTestStatus.UNKNOWN);

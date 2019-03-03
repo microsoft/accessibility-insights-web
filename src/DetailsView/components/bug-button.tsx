@@ -11,8 +11,7 @@ import { IssueDetailsTextGenerator } from '../../background/issue-details-text-g
 export interface IBugButtonDeps {
     issueDetailsTextGenerator: IssueDetailsTextGenerator;
 }
-// tslint:disable-next-line:interface-name
-export interface IBugButtonProps {
+export interface BugButtonProps {
     deps: IBugButtonDeps;
     issueTrackerPath: string;
     pageTitle: string;
@@ -20,7 +19,7 @@ export interface IBugButtonProps {
     nodeResult: DecoratedAxeNodeResult;
 }
 
-export class BugButton extends React.Component<IBugButtonProps> {
+export class BugButton extends React.Component<BugButtonProps> {
     private issueUrl(title: string, body: string): string {
         const encodedIssue = `/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
         return `${this.props.issueTrackerPath}${encodedIssue}`;

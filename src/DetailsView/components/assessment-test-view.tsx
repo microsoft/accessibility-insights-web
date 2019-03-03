@@ -18,8 +18,7 @@ export type AssessmentTestViewDeps = AssessmentViewDeps & {
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
 };
 
-// tslint:disable-next-line:interface-name
-export interface IAssessmentTestViewProps {
+export interface AssessmentTestViewProps {
     deps: AssessmentTestViewDeps;
     tabStoreData: ITabStoreData;
     assessmentStoreData: IAssessmentStoreData;
@@ -28,7 +27,7 @@ export interface IAssessmentTestViewProps {
     configuration: IVisualizationConfiguration;
 }
 
-export const AssessmentTestView = NamedSFC<IAssessmentTestViewProps>('AssessmentTestView', ({ deps, ...props }) => {
+export const AssessmentTestView = NamedSFC<AssessmentTestViewProps>('AssessmentTestView', ({ deps, ...props }) => {
     const isScanning: boolean = props.visualizationStoreData.scanning !== null;
     const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
     const assessmentData = props.configuration.getAssessmentData(props.assessmentStoreData);

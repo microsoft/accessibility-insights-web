@@ -20,8 +20,7 @@ import { ManualTestStepView } from './manual-test-step-view';
 
 export type TestStepViewDeps = ContentPanelButtonDeps;
 
-// tslint:disable-next-line:interface-name
-export interface ITestStepViewProps {
+export interface TestStepViewProps {
     deps: TestStepViewDeps;
     isStepEnabled: boolean;
     isStepScanned: boolean;
@@ -37,7 +36,7 @@ export interface ITestStepViewProps {
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
 }
 
-export class TestStepView extends React.Component<ITestStepViewProps> {
+export class TestStepView extends React.Component<TestStepViewProps> {
     public render(): JSX.Element {
         return (
             <div className="test-step-view">

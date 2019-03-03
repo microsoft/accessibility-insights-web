@@ -11,8 +11,7 @@ import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-
 import { CapturedInstanceActionType, FailureInstancePanelControl } from './failure-instance-panel-control';
 import { TestStatusChoiceGroup } from './test-status-choice-group';
 
-// tslint:disable-next-line:interface-name
-export interface IManualTestStepViewProps {
+export interface ManualTestStepViewProps {
     step: string;
     test: VisualizationType;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
@@ -20,7 +19,7 @@ export interface IManualTestStepViewProps {
     assessmentsProvider: IAssessmentsProvider;
 }
 
-export class ManualTestStepView extends React.Component<IManualTestStepViewProps> {
+export class ManualTestStepView extends React.Component<ManualTestStepViewProps> {
     public render(): JSX.Element {
         const status = this.props.manualTestStepResultMap[this.props.step].status;
         return (

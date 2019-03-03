@@ -12,8 +12,7 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { ActionAndCancelButtonsComponent } from './action-and-cancel-buttons-component';
 import { GenericPanel, GenericPanelProps } from './generic-panel';
 
-// tslint:disable-next-line:interface-name
-export interface IFailureInstancePanelControlProps {
+export interface FailureInstancePanelControlProps {
     step: string;
     test: VisualizationType;
     addFailureInstance?: (description, test, step) => void;
@@ -35,7 +34,7 @@ export enum CapturedInstanceActionType {
     CREATE,
 }
 
-export class FailureInstancePanelControl extends React.Component<IFailureInstancePanelControlProps, IFailureInstancePanelControlState> {
+export class FailureInstancePanelControl extends React.Component<FailureInstancePanelControlProps, IFailureInstancePanelControlState> {
     private static readonly addFailureInstanceLabel: string = 'Add a failure instance';
 
     constructor(props) {

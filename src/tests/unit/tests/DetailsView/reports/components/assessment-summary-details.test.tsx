@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import {
     AssessmentSummaryDetails,
-    IAssessmentSummaryDetailsProps,
+    AssessmentSummaryDetailsProps,
 } from '../../../../../../DetailsView/reports/components/assessment-summary-details';
 import { OutcomeChipSet } from '../../../../../../DetailsView/reports/components/outcome-chip-set';
 import { OutcomeIconSet } from '../../../../../../DetailsView/reports/components/outcome-icon-set';
@@ -15,7 +15,7 @@ import { AssessmentReportBuilderTestHelper } from '../../assessment-report-build
 describe('AssessmentSummaryDetails', () => {
     describe('render', () => {
         test('Correct composition', () => {
-            const props: IAssessmentSummaryDetailsProps = {
+            const props: AssessmentSummaryDetailsProps = {
                 testSummaries: AssessmentReportBuilderTestHelper.getAssessmentsSummaryReportModel().reportSummaryDetailsData,
             };
 
@@ -23,7 +23,7 @@ describe('AssessmentSummaryDetails', () => {
         });
 
         test('Renders an OutcomeIconSet for 7 items', () => {
-            const props: IAssessmentSummaryDetailsProps = {
+            const props: AssessmentSummaryDetailsProps = {
                 testSummaries: [
                     {
                         displayName: 'test',
@@ -40,7 +40,7 @@ describe('AssessmentSummaryDetails', () => {
         });
 
         test('Renders an OutcomeChipSet for 8 items', () => {
-            const props: IAssessmentSummaryDetailsProps = {
+            const props: AssessmentSummaryDetailsProps = {
                 testSummaries: [
                     {
                         displayName: 'test',

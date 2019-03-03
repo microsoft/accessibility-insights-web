@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { IReportInstanceListProps, ReportInstanceList } from '../../../../../../DetailsView/reports/components/report-instance-list';
+import { ReportInstanceListProps, ReportInstanceList } from '../../../../../../DetailsView/reports/components/report-instance-list';
 import { shallowRender } from '../../../../common/shallow-render';
 
 describe('ReportInstanceListTest', () => {
     test('render 0 instances', () => {
-        const props: IReportInstanceListProps = {
+        const props: ReportInstanceListProps = {
             nodeResults: [],
         };
 
@@ -15,7 +15,7 @@ describe('ReportInstanceListTest', () => {
     });
 
     test('render 2 instances', () => {
-        const props: IReportInstanceListProps = {
+        const props: ReportInstanceListProps = {
             nodeResults: [
                 {
                     target: 'target-1',
