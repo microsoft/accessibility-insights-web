@@ -128,11 +128,7 @@ export class AssessmentInstanceTableHandler {
     }
 
     @autobind
-    private renderSelectedButton(
-        instance: IGeneratedAssessmentInstance,
-        key: string,
-        assessmentNavState: AssessmentNavState,
-    ): JSX.Element {
+    private renderSelectedButton(instance: IGeneratedAssessmentInstance, key: string, assessmentNavState: AssessmentNavState): JSX.Element {
         const step = assessmentNavState.selectedTestStep;
         const test = assessmentNavState.selectedTestType;
 
