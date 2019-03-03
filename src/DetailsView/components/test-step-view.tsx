@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { AssessmentDefaultMessageGenerator } from '../../assessments/assessment-default-message-generator';
 import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
-import { TestStep, IVisualHelperToggleConfig } from '../../assessments/types/test-step';
+import { TestStep, VisualHelperToggleConfig } from '../../assessments/types/test-step';
 import { CollapsibleComponent } from '../../common/components/collapsible-component';
 import {
     AssessmentNavState,
@@ -106,7 +106,7 @@ export class TestStepView extends React.Component<TestStepViewProps> {
             return null;
         }
 
-        const visualHelperToggleConfig: IVisualHelperToggleConfig = {
+        const visualHelperToggleConfig: VisualHelperToggleConfig = {
             assessmentNavState: this.props.assessmentNavState,
             instancesMap: this.props.instancesMap,
             actionMessageCreator: this.props.actionMessageCreator,

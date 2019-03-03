@@ -17,7 +17,7 @@ import { IDrawer } from '../../injected/visualization/idrawer';
 import { ContentPageComponent, HyperlinkDefinition } from '../../views/content/content-page';
 import { IGetMessageGenerator } from '../assessment-default-message-generator';
 import { AnalyzerProvider } from './../../injected/analyzers/analyzer-provider';
-import { IInstanceTableColumn } from './iinstance-table-column';
+import { InstanceTableColumn } from './iinstance-table-column';
 import { ReportInstanceFields } from './report-instance-field';
 
 export interface TestStep {
@@ -31,9 +31,9 @@ export interface TestStep {
     infoAndExamples?: ContentPageComponent;
     isManual: boolean;
     guidanceLinks: HyperlinkDefinition[];
-    columnsConfig?: IInstanceTableColumn[];
+    columnsConfig?: InstanceTableColumn[];
     getAnalyzer?: (provider: AnalyzerProvider) => IAnalyzer<any>;
-    getVisualHelperToggle?: (props: IVisualHelperToggleConfig) => JSX.Element;
+    getVisualHelperToggle?: (props: VisualHelperToggleConfig) => JSX.Element;
     visualizationInstanceProcessor?: IVisualizationInstanceProcessorCallback<IPropertyBags, IPropertyBags>;
     getDrawer?: (provider: DrawerProvider, featureFlagStoreData?: FeatureFlagStoreData) => IDrawer;
     updateVisibility?: boolean;
@@ -50,8 +50,7 @@ export interface TestStep {
     renderRequirementDescription?: (testStepLink: TestStepLink) => JSX.Element;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IVisualHelperToggleConfig {
+export interface VisualHelperToggleConfig {
     assessmentNavState: AssessmentNavState;
     instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance>;
     actionMessageCreator: DetailsViewActionMessageCreator;

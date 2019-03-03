@@ -5,7 +5,7 @@ import * as _ from 'lodash';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
-import { IVisualHelperToggleConfig } from '../../../../../assessments/types/test-step';
+import { VisualHelperToggleConfig } from '../../../../../assessments/types/test-step';
 import { VisualizationToggleProps, VisualizationToggle } from '../../../../../common/components/visualization-toggle';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import {
@@ -109,7 +109,7 @@ describe('RestartScanVisualHelperToggleTest', () => {
     }
 });
 
-export class VisualHelperToggleTestPropsBuilder extends BaseDataBuilder<IVisualHelperToggleConfig> {
+export class VisualHelperToggleTestPropsBuilder extends BaseDataBuilder<VisualHelperToggleConfig> {
     private stepKey = 'assessment-1-step-1';
     private otherKey = 'assessment-1-step-2';
     constructor() {
