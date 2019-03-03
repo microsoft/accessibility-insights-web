@@ -11,14 +11,13 @@ import { BugButton, BugButtonDeps } from './bug-button';
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 
-// tslint:disable-next-line:interface-name
-export interface IDetailsRowData extends IObjectWithKey, AxeNodeResult {
+export interface DetailsRowData extends IObjectWithKey, AxeNodeResult {
     selector: string;
     bugButton: JSX.Element;
 }
 
 export interface ListProps {
-    items: IDetailsRowData[];
+    items: DetailsRowData[];
     groups: DetailsGroup[];
 }
 
@@ -31,7 +30,7 @@ export class IssuesTableHandler {
     public getListProps(failedRules: RuleResult[]): ListProps {
         let listProps: ListProps;
         const groups: DetailsGroup[] = [];
-        const items: IDetailsRowData[] = [];
+        const items: DetailsRowData[] = [];
         let instanceCount: number = 0;
         failedRules.forEach((rule: RuleResult) => {
             const curGroup: DetailsGroup = {
@@ -46,7 +45,7 @@ export class IssuesTableHandler {
             groups.push(curGroup);
             rule.nodes.forEach((node: AxeNodeResult) => {
                 instanceCount++;
-                const detailsRow = node as IDetailsRowData;
+                const detailsRow = node as DetailsRowData;
 
                 detailsRow.selector = node.target.join(';');
                 detailsRow.key = node.instanceId;
