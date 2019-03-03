@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { head, isEmpty, pick } from 'lodash/index';
 
-import { IAssessment } from '../assessments/types/iassessment';
+import { Assessment } from '../assessments/types/iassessment';
 import { TestStep } from '../assessments/types/test-step';
 import { IManualTestStatus, ManualTestStatus } from '../common/types/manual-test-status';
 import { IAssessmentsProvider } from './../assessments/types/iassessments-provider';
@@ -18,8 +18,8 @@ import {
 } from '../common/types/store-data/iassessment-result-data';
 
 export class InitialAssessmentStoreDataGenerator {
-    private readonly NULL_FIRST_TEST: Partial<Readonly<IAssessment>> = { type: null, steps: [{ key: null }] as TestStep[] };
-    private tests: ReadonlyArray<Readonly<IAssessment>>;
+    private readonly NULL_FIRST_TEST: Partial<Readonly<Assessment>> = { type: null, steps: [{ key: null }] as TestStep[] };
+    private tests: ReadonlyArray<Readonly<Assessment>>;
     private assessmentsProvider: IAssessmentsProvider;
 
     constructor(assessmentsProvider: IAssessmentsProvider) {
@@ -56,7 +56,7 @@ export class InitialAssessmentStoreDataGenerator {
         return assessmentData;
     }
 
-    private constructInitialDataForTest(test: Readonly<IAssessment>, persistedTest: IAssessmentData): IAssessmentData {
+    private constructInitialDataForTest(test: Readonly<Assessment>, persistedTest: IAssessmentData): IAssessmentData {
         const requirements = test.steps.map(val => val.key);
         const testData: IAssessmentData = this.getDefaultTestResult();
         const persistedRequirementsStatus = persistedTest && persistedTest.testStepStatus;

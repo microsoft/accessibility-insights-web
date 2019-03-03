@@ -5,7 +5,7 @@ import * as React from 'react';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { AssessmentBuilder } from '../../../../assessments/assessment-builder';
-import { IAssistedAssessment, IManualAssessment } from '../../../../assessments/types/iassessment';
+import { AssistedAssessment, ManualAssessment } from '../../../../assessments/types/iassessment';
 import { ReportInstanceField } from '../../../../assessments/types/report-instance-field';
 import { TestStep } from '../../../../assessments/types/test-step';
 import { InstanceIdentifierGenerator } from '../../../../background/instance-identifier-generator';
@@ -54,7 +54,7 @@ describe('AssessmentBuilderTest', () => {
         testStep2.generateInstanceIdentifier = null;
         testStep2.updateVisibility = null;
 
-        const baseAssessment: IManualAssessment = {
+        const baseAssessment: ManualAssessment = {
             key: 'manualAssessmentKey',
             type: -1 as VisualizationType,
             title: 'manual assessment title',
@@ -62,7 +62,7 @@ describe('AssessmentBuilderTest', () => {
             steps: [testStep, testStep2],
         };
 
-        const nonDefaultAssessment: IManualAssessment = {
+        const nonDefaultAssessment: ManualAssessment = {
             ...baseAssessment,
             executeAssessmentScanPolicy: () => null,
             steps: [],
@@ -208,7 +208,7 @@ describe('AssessmentBuilderTest', () => {
         const renderRequirementDescription6 = () => <span>6</span>;
         testStep6.renderRequirementDescription = renderRequirementDescription6;
 
-        const assistedAssessment: IAssistedAssessment = {
+        const assistedAssessment: AssistedAssessment = {
             key: 'manual assessment key',
             type: -1 as VisualizationType,
             title: 'manual assessment title',

@@ -6,7 +6,7 @@ import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { AssessmentsProvider } from '../../../../../assessments/assessments-provider';
-import { IAssessment } from '../../../../../assessments/types/iassessment';
+import { Assessment } from '../../../../../assessments/types/iassessment';
 import { IAssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
 import { FeatureFlags } from '../../../../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
@@ -51,7 +51,7 @@ describe('DetailsViewCommandBar', () => {
             .returns(() => {
                 return {
                     title: 'test title',
-                } as IAssessment;
+                } as Assessment;
             });
         reportGeneratorMock = Mock.ofType(ReportGenerator, MockBehavior.Strict);
         descriptionPlaceholder = '7efdac3c-8c94-4e00-a765-6fc8c59a232b';

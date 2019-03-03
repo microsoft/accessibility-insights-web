@@ -4,7 +4,7 @@ import { isMatch } from 'lodash';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { AssessmentsProvider } from '../../../../../../assessments/assessments-provider';
-import { IAssessment } from '../../../../../../assessments/types/iassessment';
+import { Assessment } from '../../../../../../assessments/types/iassessment';
 import { IAssessmentsProvider } from '../../../../../../assessments/types/iassessments-provider';
 import { IVisualizationConfiguration } from '../../../../../../common/configs/visualization-configuration-factory';
 import { IManualTestStatus, ManualTestStatus } from '../../../../../../common/types/manual-test-status';
@@ -132,7 +132,7 @@ describe('LeftNavBuilder', () => {
                 key: 'some key',
                 title: 'some title',
                 type: 1,
-            } as IAssessment;
+            } as Assessment;
             const assessmentsStub = [assessmentStub, assessmentStub];
             const stepStatusStub: IManualTestStatus = {};
             const outcomeStatsStub = {} as OutcomeStats;

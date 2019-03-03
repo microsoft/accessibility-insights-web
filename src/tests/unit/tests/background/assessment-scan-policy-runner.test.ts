@@ -3,7 +3,7 @@
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
 
 import { AssessmentsProvider } from '../../../../assessments/assessments-provider';
-import { IAssessment } from '../../../../assessments/types/iassessment';
+import { Assessment } from '../../../../assessments/types/iassessment';
 import { AssessmentScanPolicyRunner, IIsAnAssessmentSelected, IScheduleScan } from '../../../../background/assessment-scan-policy-runner';
 import { AssessmentStore } from '../../../../background/stores/assessment-store';
 import { VisualizationStore } from '../../../../background/stores/visualization-store';
@@ -143,7 +143,7 @@ describe('AssessmentScanPolicyRunner', () => {
                     };
                 },
                 type: testType,
-            } as IAssessment;
+            } as Assessment;
             const getAssessmentDataMock = Mock.ofInstance((data: IAssessmentStoreData) => null);
             setupStoreMockForCallback(assessmentStoreMock);
             setupStoreMockForCallback(visualizationStore);
@@ -204,7 +204,7 @@ describe('AssessmentScanPolicyRunner', () => {
                 .verifiable();
         }
 
-        function setupAssessmentsProvider(mock: IMock<AssessmentsProvider>, config: IAssessment): void {
+        function setupAssessmentsProvider(mock: IMock<AssessmentsProvider>, config: Assessment): void {
             mock.setup(m => m.forType(testType))
                 .returns(() => config)
                 .verifiable();

@@ -5,7 +5,7 @@ import * as React from 'react';
 import { Messages } from '../../common/messages';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { AssessmentBuilder } from '../assessment-builder';
-import { IAssessment } from '../types/iassessment';
+import { Assessment } from '../types/iassessment';
 import { ClosingContent } from './test-steps/closing-content';
 import { FocusOrder } from './test-steps/focus-order';
 import { ModalDialogs } from './test-steps/modal-dialogs';
@@ -29,7 +29,7 @@ const keyboardInteractionGettingStarted: JSX.Element = (
     </React.Fragment>
 );
 
-export const VisibleFocusOrderAssessment: IAssessment = AssessmentBuilder.Assisted({
+export const VisibleFocusOrderAssessment: Assessment = AssessmentBuilder.Assisted({
     key,
     title: keyboardInteractionTitle,
     gettingStarted: keyboardInteractionGettingStarted,

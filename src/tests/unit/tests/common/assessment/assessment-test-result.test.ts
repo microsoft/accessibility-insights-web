@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { Mock } from 'typemoq';
 
-import { IAssessment } from '../../../../../assessments/types/iassessment';
+import { Assessment } from '../../../../../assessments/types/iassessment';
 import { IAssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
 import { AssessmentTestProviderDeps, AssessmentTestResult } from '../../../../../common/assessment/assessment-test-result';
 import { RequirementResult } from '../../../../../common/assessment/requirement';
@@ -12,7 +12,7 @@ import { IAssessmentData } from '../../../../../common/types/store-data/iassessm
 describe('AssessmentTestResult', () => {
     const type = -2112;
     const key = 'TheKey';
-    const definition = { key, type } as IAssessment;
+    const definition = { key, type } as Assessment;
     const assessmentProvider = {
         forType: t => t === type && definition,
     } as IAssessmentsProvider;

@@ -8,8 +8,7 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { ContentPageComponent } from '../../views/content/content-page';
 import { TestStep } from './test-step';
 
-// tslint:disable-next-line:interface-name
-interface IBaseAssessment {
+interface BaseAssessment {
     key: string;
     type: VisualizationType;
     title: string;
@@ -22,17 +21,14 @@ interface IBaseAssessment {
     extensions?: AnyExtension[];
 }
 
-// tslint:disable-next-line:interface-name
-export interface IManualAssessment extends IBaseAssessment {}
+export interface ManualAssessment extends BaseAssessment {}
 
-// tslint:disable-next-line:interface-name
-export interface IAssistedAssessment extends IBaseAssessment {
+export interface AssistedAssessment extends BaseAssessment {
     storeDataKey: string;
     visualizationConfiguration?: Partial<IAssesssmentVisualizationConfiguration>;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IAssessment extends IBaseAssessment {
+export interface Assessment extends BaseAssessment {
     getVisualizationConfiguration: () => IAssesssmentVisualizationConfiguration;
     requirementOrder: RequirementOrdering;
 }

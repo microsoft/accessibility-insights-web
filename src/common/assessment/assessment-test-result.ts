@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IAssessment } from '../../assessments/types/iassessment';
+import { Assessment } from '../../assessments/types/iassessment';
 import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { OutcomeStats, outcomeStatsFromManualTestStatus } from '../../DetailsView/reports/components/outcome-type';
 import { IManualTestStatus } from '../types/manual-test-status';
@@ -8,7 +8,7 @@ import { IAssessmentData } from '../types/store-data/iassessment-result-data';
 import { VisualizationType } from '../types/visualization-type';
 import { getRequirementsResults, RequirementResult } from './requirement';
 
-export type AssessmentTestDefinition = IAssessment;
+export type AssessmentTestDefinition = Assessment;
 
 export type AssessmentTestProviderDeps = {
     outcomeStatsFromManualTestStatus: (testStepStatus: IManualTestStatus) => OutcomeStats;

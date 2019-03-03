@@ -3,7 +3,7 @@
 import * as _ from 'lodash/index';
 import { autobind } from '@uifabric/utilities';
 
-import { IAssessment } from '../assessments/types/iassessment';
+import { Assessment } from '../assessments/types/iassessment';
 import { IAssessmentsProvider } from '../assessments/types/iassessments-provider';
 import { TestStep } from '../assessments/types/test-step';
 import { Messages } from '../common/messages';
@@ -42,7 +42,7 @@ export class CompletedTestStepTelemetryCreator {
         this.updateOldTestStatusState();
     }
 
-    private sendTelemetryIfNewCompletedTestStep(assessment: IAssessment): boolean {
+    private sendTelemetryIfNewCompletedTestStep(assessment: Assessment): boolean {
         const completedStep = assessment.steps.find(step => this.isNewCompletedTestStep(assessment, step));
         const targetTab = this.store.getState().persistedTabInfo;
         if (completedStep != undefined && targetTab !== null) {
@@ -60,7 +60,7 @@ export class CompletedTestStepTelemetryCreator {
         return completedStep != undefined;
     }
 
-    private isNewCompletedTestStep(assessment: IAssessment, step: TestStep): boolean {
+    private isNewCompletedTestStep(assessment: Assessment, step: TestStep): boolean {
         const newStatus = this.store.getState().assessments[assessment.key].testStepStatus;
         const oldStatus = this.oldTestStates[assessment.key];
         return (
@@ -69,7 +69,7 @@ export class CompletedTestStepTelemetryCreator {
         );
     }
 
-    private createTelemetryInfo(assessment: IAssessment, step: TestStep): RequirementStatusTelemetryData {
+    private createTelemetryInfo(assessment: Assessment, step: TestStep): RequirementStatusTelemetryData {
         const assessmentData = assessment.getVisualizationConfiguration().getAssessmentData(this.store.getState());
         const numInstances = this.getNumInstances(step, assessmentData);
         const newStatus = this.store.getState().assessments[assessment.key].testStepStatus;

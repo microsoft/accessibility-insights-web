@@ -9,7 +9,7 @@ import { excludePassingInstancesFromAssessmentReport } from '../../DetailsView/e
 import { selectFirstRequirementAfterAutomatedChecks } from '../../DetailsView/extensions/select-first-requirement-after-automated-checks';
 import { waitForAllRequirementsToComplete } from '../../DetailsView/extensions/wait-for-all-requirements-to-complete';
 import { AssessmentBuilder } from '../assessment-builder';
-import { IAssistedAssessment } from '../types/iassessment';
+import { AssistedAssessment } from '../types/iassessment';
 import { buildTestStepsFromRules } from './build-test-steps-from-rules';
 import { getDefaultRules } from '../../scanner/exposed-apis';
 import { test as content } from '../../content/test';
@@ -22,7 +22,7 @@ const gettingStarted: JSX.Element = (
     </p>
 );
 
-const config: IAssistedAssessment = {
+const config: AssistedAssessment = {
     key: 'automated-checks',
     title: 'Automated checks',
     storeDataKey: 'automatedChecks',

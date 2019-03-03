@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IAssessment } from '../../../../../assessments/types/iassessment';
+import { Assessment } from '../../../../../assessments/types/iassessment';
 import { IAssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
 import { ITestStepData, ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { IAssessmentStoreData } from '../../../../../common/types/store-data/iassessment-result-data';
@@ -13,7 +13,7 @@ import {
     getAssessmentSummaryModelFromResults,
 } from '../../../../../DetailsView/reports/get-assessment-summary-model';
 
-type IAssessmentSubsetForSummary = Pick<IAssessment, 'title' | 'key'>;
+type IAssessmentSubsetForSummary = Pick<Assessment, 'title' | 'key'>;
 
 describe('getAssessmentSummaryModel', () => {
     const sampleTestStepData: { [key: string]: ITestStepData } = {
