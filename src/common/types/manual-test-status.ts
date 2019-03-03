@@ -6,13 +6,11 @@ export enum ManualTestStatus {
     FAIL,
 }
 
-// tslint:disable-next-line:interface-name
-export interface IManualTestStatus {
-    [key: string]: ITestStepData;
+export interface ManualTestStatusData {
+    [key: string]: TestStepData;
 }
 
-// tslint:disable-next-line:interface-name
-export interface ITestStepData {
+export interface TestStepData {
     stepFinalResult: ManualTestStatus;
     isStepScanned: boolean;
 }

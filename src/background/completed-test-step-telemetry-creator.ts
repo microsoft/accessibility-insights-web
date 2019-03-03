@@ -10,7 +10,7 @@ import { Messages } from '../common/messages';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { RequirementStatusTelemetryData } from '../common/telemetry-events';
 import * as TelemetryEvents from '../common/telemetry-events';
-import { IManualTestStatus, ManualTestStatus } from '../common/types/manual-test-status';
+import { ManualTestStatusData, ManualTestStatus } from '../common/types/manual-test-status';
 import { IAssessmentData } from '../common/types/store-data/iassessment-result-data';
 import { PayloadWithEventName } from './actions/action-payloads';
 import { Interpreter } from './interpreter';
@@ -21,7 +21,7 @@ export class CompletedTestStepTelemetryCreator {
     private provider: IAssessmentsProvider;
     private telemetryFactory: TelemetryDataFactory;
     private interpreter: Interpreter;
-    private oldTestStates: IDictionaryStringTo<IManualTestStatus>;
+    private oldTestStates: IDictionaryStringTo<ManualTestStatusData>;
 
     constructor(store: AssessmentStore, provider: IAssessmentsProvider, factory: TelemetryDataFactory, interpreter: Interpreter) {
         this.store = store;

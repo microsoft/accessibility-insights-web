@@ -4,11 +4,11 @@ import { keys, sortBy } from 'lodash';
 
 import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { TestStep } from '../../assessments/types/test-step';
-import { IManualTestStatus, ITestStepData } from '../types/manual-test-status';
+import { ManualTestStatusData, TestStepData } from '../types/manual-test-status';
 import { VisualizationType } from '../types/visualization-type';
 
 export type RequirementDefinition = TestStep;
-export type RequirementData = ITestStepData;
+export type RequirementData = TestStepData;
 
 export type RequirementResult = {
     definition: RequirementDefinition;
@@ -20,7 +20,7 @@ export type RequirementOrderPart = (result: RequirementResult) => string | numbe
 export function getRequirementsResults(
     provider: IAssessmentsProvider,
     type: VisualizationType,
-    stepStatus: IManualTestStatus,
+    stepStatus: ManualTestStatusData,
 ): RequirementResult[] {
     const test = provider.forType(type);
 

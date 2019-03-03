@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { VisualizationType } from '../visualization-type';
-import { IManualTestStatus, ManualTestStatus } from '../manual-test-status';
+import { ManualTestStatusData, ManualTestStatus } from '../manual-test-status';
 import { ITab } from '../../itab';
 
 export type TestStepInstance = IUserCapturedInstance & IGeneratedAssessmentInstance;
@@ -26,7 +26,7 @@ export interface IAssessmentData {
     fullAxeResultsMap;
     generatedAssessmentInstancesMap?: InstanceIdToInstanceDataMap;
     manualTestStepResultMap?: RequirementIdToResultMap;
-    testStepStatus: IManualTestStatus;
+    testStepStatus: ManualTestStatusData;
 }
 
 // tslint:disable-next-line:interface-name

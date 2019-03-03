@@ -4,9 +4,9 @@ import { head, isEmpty, pick } from 'lodash/index';
 
 import { Assessment } from '../assessments/types/iassessment';
 import { TestStep } from '../assessments/types/test-step';
-import { IManualTestStatus, ManualTestStatus } from '../common/types/manual-test-status';
+import { ManualTestStatusData, ManualTestStatus } from '../common/types/manual-test-status';
 import { IAssessmentsProvider } from './../assessments/types/iassessments-provider';
-import { ITestStepData } from './../common/types/manual-test-status';
+import { TestStepData } from './../common/types/manual-test-status';
 import {
     InstanceIdToInstanceDataMap,
     IAssessmentData,
@@ -91,8 +91,8 @@ export class InitialAssessmentStoreDataGenerator {
         return map;
     }
 
-    private constructRequirementStatus(requirements: string[], persistedMap: IManualTestStatus): IManualTestStatus {
-        return this.constructMapFromRequirementTo<ITestStepData>(requirements, persistedMap, this.getDefaultRequirementStatus);
+    private constructRequirementStatus(requirements: string[], persistedMap: ManualTestStatusData): ManualTestStatusData {
+        return this.constructMapFromRequirementTo<TestStepData>(requirements, persistedMap, this.getDefaultRequirementStatus);
     }
 
     private constructManualRequirementResultMap(requirements: string[], persistedMap: RequirementIdToResultMap): RequirementIdToResultMap {
@@ -120,7 +120,7 @@ export class InitialAssessmentStoreDataGenerator {
         return { fullAxeResultsMap: null, generatedAssessmentInstancesMap: null, manualTestStepResultMap: {}, testStepStatus: {} };
     }
 
-    private getDefaultRequirementStatus(): ITestStepData {
+    private getDefaultRequirementStatus(): TestStepData {
         return { stepFinalResult: ManualTestStatus.UNKNOWN, isStepScanned: false };
     }
 

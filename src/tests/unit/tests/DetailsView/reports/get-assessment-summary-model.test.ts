@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { Assessment } from '../../../../../assessments/types/iassessment';
 import { IAssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
-import { ITestStepData, ManualTestStatus } from '../../../../../common/types/manual-test-status';
+import { TestStepData, ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { IAssessmentStoreData } from '../../../../../common/types/store-data/iassessment-result-data';
 import { IOverviewSummaryReportModel } from '../../../../../DetailsView/reports/assessment-report-model';
 import {
@@ -16,7 +16,7 @@ import {
 type IAssessmentSubsetForSummary = Pick<Assessment, 'title' | 'key'>;
 
 describe('getAssessmentSummaryModel', () => {
-    const sampleTestStepData: { [key: string]: ITestStepData } = {
+    const sampleTestStepData: { [key: string]: TestStepData } = {
         pass: {
             stepFinalResult: ManualTestStatus.PASS,
             isStepScanned: true,

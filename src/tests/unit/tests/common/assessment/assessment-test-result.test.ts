@@ -6,7 +6,7 @@ import { Assessment } from '../../../../../assessments/types/iassessment';
 import { IAssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
 import { AssessmentTestProviderDeps, AssessmentTestResult } from '../../../../../common/assessment/assessment-test-result';
 import { RequirementResult } from '../../../../../common/assessment/requirement';
-import { IManualTestStatus, ManualTestStatus } from '../../../../../common/types/manual-test-status';
+import { ManualTestStatusData, ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { IAssessmentData } from '../../../../../common/types/store-data/iassessment-result-data';
 
 describe('AssessmentTestResult', () => {
@@ -21,7 +21,7 @@ describe('AssessmentTestResult', () => {
         alpha: { stepFinalResult: ManualTestStatus.PASS, isStepScanned: true },
         beta: { stepFinalResult: ManualTestStatus.FAIL, isStepScanned: true },
         gamma: { stepFinalResult: ManualTestStatus.PASS, isStepScanned: false },
-    } as IManualTestStatus;
+    } as ManualTestStatusData;
     const assessmentData = { testStepStatus } as IAssessmentData;
 
     const requirementsResults = [
