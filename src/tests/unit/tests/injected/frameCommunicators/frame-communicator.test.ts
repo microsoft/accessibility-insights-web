@@ -16,8 +16,7 @@ import { QStub } from '../../../stubs/q-stub';
 // their warnings because they pervasively use a Q-mocking strategy that consistently trips the check.
 // tslint:disable:no-floating-promises
 
-// tslint:disable-next-line:interface-name
-interface IFrameInfo {
+interface FrameInfo {
     frameElement: HTMLIFrameElement;
     window: Window;
 }
@@ -25,9 +24,9 @@ interface IFrameInfo {
 describe('FrameCommunicatorTests', () => {
     let testSubject: FrameCommunicator;
 
-    let childFrame1Info: IFrameInfo;
-    let childFrame2Info: IFrameInfo;
-    let childFrameWithoutWindowInfo: IFrameInfo;
+    let childFrame1Info: FrameInfo;
+    let childFrame2Info: FrameInfo;
+    let childFrameWithoutWindowInfo: FrameInfo;
 
     let mockHtmlElementUtils: IMock<HTMLElementUtils>;
     let mockWindowUtils: IMock<WindowUtils>;
@@ -588,8 +587,8 @@ describe('FrameCommunicatorTests', () => {
         pingDeferered.resolve({});
     });
 
-    function createFrameInfo(hasWindow: boolean): IFrameInfo {
-        const frameInfo: IFrameInfo = {
+    function createFrameInfo(hasWindow: boolean): FrameInfo {
+        const frameInfo: FrameInfo = {
             frameElement: document.createElement('iframe'),
             window: hasWindow ? ({} as Window) : null,
         };

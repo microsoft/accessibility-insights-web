@@ -5,13 +5,13 @@ import { IMock, Mock, Times } from 'typemoq';
 import { Action } from '../../../../../common/flux/action';
 
 describe('ActionTest', () => {
-    let listenerMock: IMock<(payload: ITestPayload) => void>;
-    const testPayload: ITestPayload = { key: 'value' };
-    let testObject: Action<ITestPayload>;
+    let listenerMock: IMock<(payload: TestPayload) => void>;
+    const testPayload: TestPayload = { key: 'value' };
+    let testObject: Action<TestPayload>;
 
     beforeEach(() => {
         listenerMock = Mock.ofInstance(payload => {});
-        testObject = new Action<ITestPayload>();
+        testObject = new Action<TestPayload>();
     });
 
     test('addListener, invoke', () => {
@@ -25,7 +25,6 @@ describe('ActionTest', () => {
     });
 });
 
-// tslint:disable-next-line:interface-name
-interface ITestPayload {
+interface TestPayload {
     key: string;
 }
