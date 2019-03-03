@@ -7,7 +7,7 @@ import * as React from 'react';
 import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
 import { RuleResult } from '../../scanner/iruleresults';
 import { HyperlinkDefinition } from '../../views/content/content-page';
-import { BugButton, IBugButtonDeps } from './bug-button';
+import { BugButton, BugButtonDeps } from './bug-button';
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 

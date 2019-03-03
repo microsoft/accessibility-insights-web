@@ -7,12 +7,11 @@ import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 
 import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
 
-// tslint:disable-next-line:interface-name
-export interface IBugButtonDeps {
+export interface BugButtonDeps {
     issueDetailsTextGenerator: IssueDetailsTextGenerator;
 }
 export interface BugButtonProps {
-    deps: IBugButtonDeps;
+    deps: BugButtonDeps;
     issueTrackerPath: string;
     pageTitle: string;
     pageUrl: string;
