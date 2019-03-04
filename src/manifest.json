@@ -26,17 +26,7 @@
         "WebPlatform/*",
         "DetailsView/*"
     ],
-    "permissions": [
-        "storage",
-        "webNavigation",
-        "<all_urls>",
-        "tabs",
-        "identity",
-        "notifications",
-        "https://*/*",
-        "http://*/*",
-        "file://*/*"
-    ],
+    "permissions": ["storage", "webNavigation", "<all_urls>", "tabs", "notifications"],
     "commands": {
         "_execute_browser_action": {
             "suggested_key": {
