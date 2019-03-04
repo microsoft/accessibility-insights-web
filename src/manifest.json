@@ -16,16 +16,7 @@
         "page": "background/background.html"
     },
     "devtools_page": "devtools/devtools.html",
-    "web_accessible_resources": [
-        "ad-hoc-visualizations/*",
-        "insights.html",
-        "assessments/*",
-        "injected/*",
-        "background/*",
-        "common/*",
-        "WebPlatform/*",
-        "DetailsView/*"
-    ],
+    "web_accessible_resources": ["insights.html", "assessments/*", "injected/*", "background/*", "common/*", "DetailsView/*"],
     "permissions": ["storage", "webNavigation", "<all_urls>", "tabs", "notifications"],
     "commands": {
         "_execute_browser_action": {
