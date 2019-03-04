@@ -28,7 +28,6 @@ export type FileIssueDetailsButtonState = {
 };
 
 export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButtonProps, FileIssueDetailsButtonState> {
-
     private _button: React.RefObject<IButton> = React.createRef<IButton>();
     constructor(props: FileIssueDetailsButtonProps) {
         super(props);
@@ -71,7 +70,12 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
 
     private renderOpenSettingsButton(): JSX.Element {
         return (
-            <DefaultButton componentRef={this._button} iconProps={{ iconName: 'ladybugSolid' }} className={'create-bug-button'} onClick={this.openDialog}>
+            <DefaultButton
+                componentRef={this._button}
+                iconProps={{ iconName: 'ladybugSolid' }}
+                className={'create-bug-button'}
+                onClick={this.openDialog}
+            >
                 File issue
             </DefaultButton>
         );

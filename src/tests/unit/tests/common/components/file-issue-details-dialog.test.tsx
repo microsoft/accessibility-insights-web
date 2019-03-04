@@ -136,21 +136,20 @@ describe('FileIssueDetailsDialog', () => {
             buttonRef: {
                 current: {
                     focus: focusMock,
-                }
+                },
             } as any,
-            getSettingsPanel: () => ({
-                addEventListener: addEventListenerStub,
-            } as any),
+            getSettingsPanel: () =>
+                ({
+                    addEventListener: addEventListenerStub,
+                } as any),
             onDismiss: null,
             onOpenSettings: () => {},
             fileIssueDetailsHandler: fileIssueDetailsHandlerMock.object,
         };
         const wrapper = shallow(<FileIssueDetailsDialog {...props} />);
 
-        wrapper
-            .find(PrimaryButton)
-            .simulate('click');
+        wrapper.find(PrimaryButton).simulate('click');
 
         expect(focusMock).toBeCalled();
-    })
+    });
 });
