@@ -67,7 +67,7 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
     }
 
     private getSettingsPanel(): HTMLElement | null {
-        return document.querySelector('body > div.ms-Layer.ms-Layer--fixed > div > div > div > div.ms-Panel-main');
+        return document.querySelector('.ms-Panel-main');
     }
 
     private renderOpenSettingsButton(): JSX.Element {
