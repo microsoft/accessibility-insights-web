@@ -45,6 +45,7 @@ import { MainRenderer, MainRendererDeps } from './main-renderer';
 import { TargetTabFinder, TargetTabInfo } from './target-tab-finder';
 import { Logger } from '../../common/logging/logger';
 import { createDefaultLogger } from '../../common/logging/default-logger';
+import { AxeInfo } from '../../common/axe-info';
 
 declare var window: AutoChecker & Window;
 
@@ -157,6 +158,8 @@ export class PopupInitializer {
             userConfigurationStore,
         ]);
 
+        const axeInfo = AxeInfo.Default;
+
         const deps: DiagnosticViewToggleDeps & MainRendererDeps = {
             contentProvider: contentPages,
             popupActionMessageCreator,
@@ -167,6 +170,7 @@ export class PopupInitializer {
             storesHub,
             storeActionMessageCreator,
             loadTheme,
+            axeInfo,
         };
 
         const diagnosticViewToggleFactory = new DiagnosticViewToggleFactory(
