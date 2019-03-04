@@ -160,6 +160,7 @@ export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetails
                 onOpenSettings={this.props.deps.targetPageActionMessageCreator.openSettingsPanel}
                 issueDetailsData={issueData}
                 issueTrackerPath={this.state.issueTrackerPath}
+                restoreFocus={false}
             />
         );
     }

@@ -12,9 +12,9 @@ exports[`FileIssueDetailsDialog render while closed 1`] = `
   }
   getSettingsPanel={null}
   isOpen={false}
-  isTargetPage={false}
   onDismiss={null}
   onOpenSettings={null}
+  restoreFocus={false}
 />
 `;
 
@@ -30,9 +30,9 @@ exports[`FileIssueDetailsDialog render while open 1`] = `
   }
   getSettingsPanel={null}
   isOpen={true}
-  isTargetPage={false}
   onDismiss={null}
   onOpenSettings={null}
+  restoreFocus={false}
 />
 `;
 

@@ -51,9 +51,9 @@ exports[`FileIssueDetailsButtonTest render with an issue tracker path 1`] = `
     }
     getSettingsPanel={[Function]}
     isOpen={false}
-    isTargetPage={true}
     onDismiss={[Function]}
     onOpenSettings={[Function]}
+    restoreFocus={false}
   />
 </React.Fragment>
 `;
@@ -108,9 +108,9 @@ exports[`FileIssueDetailsButtonTest render without issue tracker set 1`] = `
     }
     getSettingsPanel={[Function]}
     isOpen={false}
-    isTargetPage={true}
     onDismiss={[Function]}
     onOpenSettings={[Function]}
+    restoreFocus={false}
   />
 </React.Fragment>
 `;

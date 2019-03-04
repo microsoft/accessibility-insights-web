@@ -33,6 +33,7 @@ describe('FileIssueDetailsButtonTest', () => {
                 pageUrl: 'http://pageUrl',
                 ruleResult: null,
             },
+            restoreFocus: false,
         };
         const wrapper = shallow(<FileIssueDetailsButton {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
@@ -63,6 +64,7 @@ describe('FileIssueDetailsButtonTest', () => {
                 pageUrl: 'http://pageUrl',
                 ruleResult: null,
             },
+            restoreFocus: false,
         };
         const wrapper = shallow(<FileIssueDetailsButton {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();

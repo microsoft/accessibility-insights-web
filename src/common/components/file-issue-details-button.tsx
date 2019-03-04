@@ -15,7 +15,6 @@ import { BugClickHandler } from '../bug-click-handler';
 
 export type FileIssueDetailsButtonDeps = {
     issueDetailsTextGenerator: IssueDetailsTextGenerator;
-    bugClickHandler?: BugClickHandler;
 };
 
 export type FileIssueDetailsButtonProps = {
@@ -23,6 +22,7 @@ export type FileIssueDetailsButtonProps = {
     onOpenSettings: (event: React.MouseEvent<HTMLElement>) => void;
     issueDetailsData: CreateIssueDetailsTextData;
     issueTrackerPath: string;
+    restoreFocus: boolean;
 };
 
 export type FileIssueDetailsButtonState = {
@@ -107,7 +107,7 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
                     onDismiss={this.closeDialog}
                     buttonRef={this._button}
                     isOpen={this.state.showingFileIssueDialog}
-                    isTargetPage={!this.props.deps.bugClickHandler}
+                    restoreFocus={this.props.restoreFocus}
                     getSettingsPanel={this.getSettingsPanel}
                     fileIssueDetailsHandler={new FileIssueDetailsHandler(new HTMLElementUtils())}
                 />

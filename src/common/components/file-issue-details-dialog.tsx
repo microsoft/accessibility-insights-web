@@ -10,7 +10,7 @@ export interface FileIssueDetailsDialogProps {
     isOpen: boolean;
     onDismiss: () => void;
     buttonRef: React.RefObject<IButton>;
-    isTargetPage: boolean;
+    restoreFocus: boolean;
     getSettingsPanel: () => HTMLElement | null;
     onOpenSettings: (event: React.MouseEvent<HTMLElement>) => void;
     fileIssueDetailsHandler: FileIssueDetailsHandler;
@@ -34,7 +34,7 @@ export class FileIssueDetailsDialog extends React.Component<FileIssueDetailsDial
     }
 
     private focusHack(): void {
-        if (this.props.isTargetPage) {
+        if (!this.props.restoreFocus) {
             return;
         }
 

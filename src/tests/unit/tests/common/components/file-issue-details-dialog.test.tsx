@@ -20,7 +20,7 @@ describe('FileIssueDetailsDialog', () => {
         const props: FileIssueDetailsDialogProps = {
             isOpen: true,
             buttonRef: null,
-            isTargetPage: false,
+            restoreFocus: false,
             getSettingsPanel: null,
             onDismiss: null,
             onOpenSettings: null,
@@ -35,7 +35,7 @@ describe('FileIssueDetailsDialog', () => {
         const props: FileIssueDetailsDialogProps = {
             isOpen: true,
             buttonRef: null,
-            isTargetPage: false,
+            restoreFocus: false,
             getSettingsPanel: null,
             onDismiss: null,
             onOpenSettings: null,
@@ -55,7 +55,7 @@ describe('FileIssueDetailsDialog', () => {
         const props: FileIssueDetailsDialogProps = {
             isOpen: false,
             buttonRef: null,
-            isTargetPage: false,
+            restoreFocus: false,
             getSettingsPanel: null,
             onDismiss: null,
             onOpenSettings: null,
@@ -74,7 +74,7 @@ describe('FileIssueDetailsDialog', () => {
         const props: FileIssueDetailsDialogProps = {
             isOpen: true,
             buttonRef: null,
-            isTargetPage: false,
+            restoreFocus: false,
             getSettingsPanel: () => null,
             onDismiss: null,
             onOpenSettings: openSettingsMock,
@@ -95,7 +95,7 @@ describe('FileIssueDetailsDialog', () => {
         const props: FileIssueDetailsDialogProps = {
             isOpen: true,
             buttonRef: null,
-            isTargetPage: false,
+            restoreFocus: false,
             getSettingsPanel: null,
             onDismiss: onDismissMock,
             onOpenSettings: null,
@@ -116,7 +116,7 @@ describe('FileIssueDetailsDialog', () => {
         const props: FileIssueDetailsDialogProps = {
             isOpen: true,
             buttonRef: null,
-            isTargetPage: false,
+            restoreFocus: false,
             getSettingsPanel: null,
             onDismiss: onDismissMock,
             onOpenSettings: null,
@@ -144,7 +144,7 @@ describe('FileIssueDetailsDialog', () => {
                     focus: focusMock,
                 },
             } as any,
-            isTargetPage: false,
+            restoreFocus: true,
             getSettingsPanel: () =>
                 ({
                     addEventListener: addEventListenerStub,
@@ -166,7 +166,7 @@ describe('FileIssueDetailsDialog', () => {
         const props: FileIssueDetailsDialogProps = {
             isOpen: true,
             buttonRef: {} as any,
-            isTargetPage: true,
+            restoreFocus: false,
             getSettingsPanel: () =>
                 ({
                     addEventListener: addEventListenerMock,
