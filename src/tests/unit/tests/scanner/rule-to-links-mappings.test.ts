@@ -3,8 +3,6 @@
 import * as Axe from 'axe-core';
 
 import { ruleToLinkConfiguration } from '../../../../scanner/rule-to-links-mappings';
-import axe = require('axe-core');
-import { RuleConfiguration } from '../../../../scanner/iruleresults';
 
 describe('rule-to-links-mappings', () => {
     // tslint:disable-next-line:variable-name
