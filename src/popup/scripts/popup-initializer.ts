@@ -46,6 +46,7 @@ import { TargetTabFinder, TargetTabInfo } from './target-tab-finder';
 import { Logger } from '../../common/logging/logger';
 import { createDefaultLogger } from '../../common/logging/default-logger';
 
+// adding this comment to have a change to trigger the build pipeline
 declare var window: AutoChecker & Window;
 
 export class PopupInitializer {
