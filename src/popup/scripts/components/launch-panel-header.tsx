@@ -18,6 +18,8 @@ import { PopupActionMessageCreator } from '../actions/popup-action-message-creat
 import { LaunchPanelHeaderClickHandler } from '../handlers/launch-panel-header-click-handler';
 import Header from './header';
 
+// comment in
+
 export type LaunchPanelHeaderDeps = {
     popupActionMessageCreator: PopupActionMessageCreator;
     dropdownClickHandler: DropdownClickHandler;
