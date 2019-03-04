@@ -10,6 +10,7 @@ export interface FileIssueDetailsDialogProps {
     isOpen: boolean;
     onDismiss: () => void;
     buttonRef: React.RefObject<IButton>;
+    getSettingsPanel: () => HTMLElement | null;
     onOpenSettings: (event: React.MouseEvent<HTMLElement>) => void;
     fileIssueDetailsHandler: FileIssueDetailsHandler;
 }
@@ -35,7 +36,7 @@ export class FileIssueDetailsDialog extends React.Component<FileIssueDetailsDial
         let timedOut = false;
         setTimeout(() => (timedOut = true), 1000);
         const tryHack = () => {
-            const settingsPanel = document.querySelector('body > div.ms-Layer.ms-Layer--fixed > div > div > div > div.ms-Panel-main');
+            const settingsPanel = this.props.getSettingsPanel();
             if (!settingsPanel && !timedOut) {
                 requestAnimationFrame(tryHack);
                 return;

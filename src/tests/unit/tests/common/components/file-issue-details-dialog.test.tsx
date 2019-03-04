@@ -20,6 +20,7 @@ describe('FileIssueDetailsDialog', () => {
         const props: FileIssueDetailsDialogProps = {
             isOpen: true,
             buttonRef: null,
+            getSettingsPanel: null,
             onDismiss: null,
             onOpenSettings: null,
             fileIssueDetailsHandler: fileIssueDetailsHandlerMock.object,
@@ -33,6 +34,7 @@ describe('FileIssueDetailsDialog', () => {
         const props: FileIssueDetailsDialogProps = {
             isOpen: true,
             buttonRef: null,
+            getSettingsPanel: null,
             onDismiss: null,
             onOpenSettings: null,
             fileIssueDetailsHandler: fileIssueDetailsHandlerMock.object,
@@ -51,6 +53,7 @@ describe('FileIssueDetailsDialog', () => {
         const props: FileIssueDetailsDialogProps = {
             isOpen: false,
             buttonRef: null,
+            getSettingsPanel: null,
             onDismiss: null,
             onOpenSettings: null,
             fileIssueDetailsHandler: fileIssueDetailsHandlerMockLocal.object,
@@ -68,6 +71,7 @@ describe('FileIssueDetailsDialog', () => {
         const props: FileIssueDetailsDialogProps = {
             isOpen: true,
             buttonRef: null,
+            getSettingsPanel: null,
             onDismiss: null,
             onOpenSettings: openSettingsMock,
             fileIssueDetailsHandler: fileIssueDetailsHandlerMock.object,
@@ -87,6 +91,7 @@ describe('FileIssueDetailsDialog', () => {
         const props: FileIssueDetailsDialogProps = {
             isOpen: true,
             buttonRef: null,
+            getSettingsPanel: null,
             onDismiss: onDismissMock,
             onOpenSettings: null,
             fileIssueDetailsHandler: fileIssueDetailsHandlerMock.object,
@@ -106,6 +111,7 @@ describe('FileIssueDetailsDialog', () => {
         const props: FileIssueDetailsDialogProps = {
             isOpen: true,
             buttonRef: null,
+            getSettingsPanel: null,
             onDismiss: onDismissMock,
             onOpenSettings: null,
             fileIssueDetailsHandler: fileIssueDetailsHandlerMock.object,

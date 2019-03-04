@@ -65,6 +65,10 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
         this.closeDialog();
     }
 
+    private getSettingsPanel(): HTMLElement | null {
+        return document.querySelector('body > div.ms-Layer.ms-Layer--fixed > div > div > div > div.ms-Panel-main');
+    }
+
     private renderOpenSettingsButton(): JSX.Element {
         return (
             <DefaultButton componentRef={this._button} iconProps={{ iconName: 'ladybugSolid' }} className={'create-bug-button'} onClick={this.openDialog}>
@@ -97,6 +101,7 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
                     onDismiss={this.closeDialog}
                     buttonRef={this._button}
                     isOpen={this.state.showingFileIssueDialog}
+                    getSettingsPanel={this.getSettingsPanel}
                     fileIssueDetailsHandler={new FileIssueDetailsHandler(new HTMLElementUtils())}
                 />
             </>
