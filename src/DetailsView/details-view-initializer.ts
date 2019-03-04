@@ -79,6 +79,7 @@ import { ReactStaticRenderer } from './reports/react-static-renderer';
 import { ReportGenerator } from './reports/report-generator';
 import { ReportHtmlGenerator } from './reports/report-html-generator';
 import { ReportNameGenerator } from './reports/report-name-generator';
+import { AxeInfo } from '../common/axe-info';
 
 declare const window: AutoChecker & Window;
 
@@ -232,6 +233,13 @@ if (isNaN(tabId) === false) {
                 );
                 documentTitleUpdater.initialize();
 
+                const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
+                const issueDetailsTextGenerator = new IssueDetailsTextGenerator(
+                    chromeAdapter.extensionVersion,
+                    browserSpec,
+                    AxeInfo.Default.version,
+                );
+
                 const deps: DetailsViewContainerDeps = {
                     dropdownClickHandler,
                     bugClickHandler,
@@ -241,7 +249,7 @@ if (isNaN(tabId) === false) {
                     assessmentsProvider: Assessments,
                     actionInitiators,
                     assessmentDefaultMessageGenerator: assessmentDefaultMessageGenerator,
-                    issueDetailsTextGenerator: new IssueDetailsTextGenerator(new NavigatorUtils(window.navigator).getBrowserSpec()),
+                    issueDetailsTextGenerator,
                     windowUtils: new WindowUtils(),
                     getAssessmentSummaryModelFromProviderAndStoreData: getAssessmentSummaryModelFromProviderAndStoreData,
                     getAssessmentSummaryModelFromProviderAndStatusData: getAssessmentSummaryModelFromProviderAndStatusData,

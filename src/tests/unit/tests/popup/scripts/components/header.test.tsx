@@ -3,11 +3,11 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import Header, { IHeaderProps } from '../../../../../../popup/scripts/components/header';
+import Header, { HeaderProps } from '../../../../../../popup/scripts/components/header';
 
 describe('HeaderTest', () => {
     test('render', () => {
-        const props: IHeaderProps = {
+        const props: HeaderProps = {
             title: 'title',
             subtitle: 'sub-title',
         };
@@ -18,7 +18,7 @@ describe('HeaderTest', () => {
     });
 
     test('render with rowExtraClassName prop', () => {
-        const props: IHeaderProps = {
+        const props: HeaderProps = {
             title: null,
             subtitle: null,
             rowExtraClassName: 'extra-class',
@@ -29,16 +29,15 @@ describe('HeaderTest', () => {
         expect(wrapper.debug()).toMatchSnapshot();
     });
 
-    test('render with extraContent prop', () => {
-        const extraContent: JSX.Element = <div>my content</div>;
+    test('render with children prop', () => {
+        const children: JSX.Element = <div>my content</div>;
 
-        const props: IHeaderProps = {
+        const props: HeaderProps = {
             title: null,
             subtitle: null,
-            extraContent: extraContent,
         };
 
-        const wrapper = shallow(<Header {...props} />);
+        const wrapper = shallow(<Header {...props}>{children}</Header>);
 
         expect(wrapper.debug()).toMatchSnapshot();
     });

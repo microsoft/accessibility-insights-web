@@ -70,9 +70,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H90">
                 Indicating required form controls using label or legend
             </Markup.HyperLink>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G138">
-                Using semantic markup whenever color cues are used
-            </Markup.HyperLink>
+            <Link.WCAG21TechniquesG138 />
         </Markup.Links>
     </>
 ));

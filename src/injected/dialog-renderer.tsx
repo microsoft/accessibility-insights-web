@@ -20,6 +20,7 @@ import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from './scanner-utils'
 import { ShadowUtils } from './shadow-utils';
 import { getPlatform } from '../common/platform';
 import { ClientBrowserAdapter } from '../common/client-browser-adapter';
+import { AxeInfo } from '../common/axe-info';
 
 export interface DetailsDialogWindowMessage {
     data: IHtmlElementAxeResults;
@@ -75,8 +76,15 @@ export class DialogRenderer {
                 ? this.initializeDialogContainerInShadowDom()
                 : this.appendDialogContainer();
 
+            const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
+            const issueDetailsTextGenerator = new IssueDetailsTextGenerator(
+                this.clientBrowserAdapter.extensionVersion,
+                browserSpec,
+                AxeInfo.Default.version,
+            );
+
             const deps = {
-                issueDetailsTextGenerator: new IssueDetailsTextGenerator(new NavigatorUtils(window.navigator).getBrowserSpec()),
+                issueDetailsTextGenerator,
                 windowUtils: this.windowUtils,
                 targetPageActionMessageCreator: mainWindowContext.getTargetPageActionMessageCreator(),
                 clientBrowserAdapter: this.clientBrowserAdapter,

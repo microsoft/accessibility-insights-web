@@ -8,6 +8,9 @@ import { ExternalLink } from '../../../../../../common/components/external-link'
 import { toolName } from '../../../../../../content/strings/application';
 import { LaunchPadProps, LaunchPad, LaunchPadDeps, LaunchPadRowConfiguration } from '../../../../../../popup/scripts/components/launch-pad';
 import { LaunchPadItemRow } from '../../../../../../popup/scripts/components/launch-pad-item-row';
+import { AxeInfo } from '../../../../../../common/axe-info';
+
+const AXE_CORE_VERSION = 'axe.core.version';
 
 describe('LaunchPad', () => {
     const rowConfigs: LaunchPadRowConfiguration[] = [
@@ -32,10 +35,14 @@ describe('LaunchPad', () => {
     ];
 
     test('render LaunchPad', () => {
-        const deps = Mock.ofType<LaunchPadDeps>().object;
+        const deps = ({
+            axeInfo: {
+                version: AXE_CORE_VERSION,
+            },
+        } as any) as LaunchPadDeps;
 
         const props: LaunchPadProps = {
-            deps: deps,
+            deps,
             productName: toolName,
             rowConfigs: rowConfigs,
             version: 'ver.si.on',
@@ -72,7 +79,8 @@ describe('LaunchPad', () => {
                         {`Version ${props.version} | Powered by `}
                         <ExternalLink deps={deps} title="Navigate to axe-core npm page" href="https://www.npmjs.com/package/axe-core">
                             axe-core
-                        </ExternalLink>
+                        </ExternalLink>{' '}
+                        {AXE_CORE_VERSION}
                     </div>
                 </div>
             </div>

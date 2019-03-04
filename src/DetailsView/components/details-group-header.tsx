@@ -28,14 +28,18 @@ export class DetailsGroupHeader extends React.Component<DetailsGroupHeaderProps>
             <div className="details-group-header-title">
                 {this.renderRuleLink(this.props.group)}
                 {': '}
-                {this.props.group.name} {this.renderCount(this.props)} {this.renderGuidanceLinks(this.props.group)}
+                {this.renderRuleDescription(this.props.group)} {this.renderCount(this.props)} {this.renderGuidanceLinks(this.props.group)}
             </div>
         );
     }
 
+    private renderRuleDescription(group: DetailsGroup): JSX.Element {
+        return <span id={`${group.key}-rule-description`}>{group.name}</span>;
+    }
+
     private renderRuleLink(group: DetailsGroup): JSX.Element {
         return (
-            <NewTabLink href={group.ruleUrl} onClick={this.onRuleLinkClick}>
+            <NewTabLink href={group.ruleUrl} onClick={this.onRuleLinkClick} aria-describedby={`${group.key}-rule-description`}>
                 {group.key}
             </NewTabLink>
         );

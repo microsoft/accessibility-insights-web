@@ -40,7 +40,7 @@ export const link = {
     WCAG_3_3_4: linkTo('WCAG 3.3.4', 'https://www.w3.org/WAI/WCAG21/Understanding/error-prevention-legal-financial-data.html'),
     WCAG_4_1_1: linkTo('WCAG 4.1.1', 'https://www.w3.org/WAI/WCAG21/Understanding/parsing.html'),
     WCAG_4_1_2: linkTo('WCAG 4.1.2', 'https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html'),
-    BingoBakery: linkTo('Bingo Bakery Video', 'https://msit.microsoftstream.com/video/a872fda0-4b9e-453b-9adf-e02a38b1900b'),
+    BingoBakery: linkTo('Bingo Bakery Video', 'https://go.microsoft.com/fwlink/?linkid=2080372'),
     IdentifyHeadings: linkTo('Techniques for WCAG 2.0: Using h1-h6 to identify headings', 'https://www.w3.org/TR/WCAG20-TECHS/H42.html'),
     LandmarkRegions: linkTo(
         'WAI-ARIA Authoring Practices 1.1: Landmark Regions',
@@ -55,6 +55,17 @@ export const link = {
         'Understanding Success Criterion 1.2.1: Audio-only and Video-only (Prerecorded)',
         'https://www.w3.org/WAI/WCAG21/Understanding/audio-only-and-video-only-prerecorded.html',
     ),
+    WCAG21TechniquesG83: linkTo(
+        'Providing text descriptions to identify required fields that were not completed',
+        'https://www.w3.org/WAI/WCAG21/Techniques/general/G83',
+    ),
+    WCAG21TechniquesG89: linkTo('Providing expected data format and example', 'https://www.w3.org/WAI/WCAG21/Techniques/general/G89'),
+    WCAG21TechniquesG90: linkTo('Providing keyboard-triggered event handlers', 'https://www.w3.org/WAI/WCAG21/Techniques/general/G90'),
+    WCAG21TechniquesG131: linkTo('Providing descriptive labels', 'https://www.w3.org/WAI/WCAG21/Techniques/general/G131'),
+    WCAG21TechniquesG138: linkTo(
+        'Using semantic markup whenever color cues are used',
+        'https://www.w3.org/WAI/WCAG21/Techniques/general/G138',
+    ),
     WCAG21TechniquesG158: linkTo(
         'Providing an alternative for time-based media for audio-only content',
         'https://www.w3.org/WAI/WCAG21/Techniques/general/G158',
@@ -67,8 +78,8 @@ export const link = {
         'Providing audio that describes the important video content and describing it as such',
         'https://www.w3.org/WAI/WCAG21/Techniques/general/G166',
     ),
-    WCAG21TechniquesG83: linkTo(
-        'Providing text descriptions to identify required fields that were not completed',
-        'https://www.w3.org/WAI/WCAG21/Techniques/general/G83',
+    WCAG21TechniquesG202: linkTo(
+        'Ensuring keyboard control for all functionality',
+        'https://www.w3.org/WAI/WCAG21/Techniques/general/G202',
     ),
 };

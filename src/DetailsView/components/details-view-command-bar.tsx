@@ -62,11 +62,17 @@ export class DetailsViewCommandBar extends React.Component<IDetailsViewCommandBa
     }
 
     private renderTargetPageInfo(): JSX.Element {
+        const targetPageTitle: string = this.props.tabStoreData.title;
         return (
             <div className="details-view-target-page">
                 Target page:&nbsp;
-                <Link role="link" className="target-page-link" onClick={this.props.actionMessageCreator.switchToTargetTab}>
-                    {this.props.tabStoreData.title}
+                <Link
+                    role="link"
+                    title="Switch to target page"
+                    className="target-page-link"
+                    onClick={this.props.actionMessageCreator.switchToTargetTab}
+                >
+                    {targetPageTitle}
                 </Link>
             </div>
         );

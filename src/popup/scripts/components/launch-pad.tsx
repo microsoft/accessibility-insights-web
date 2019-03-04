@@ -5,9 +5,11 @@ import * as React from 'react';
 import { ExternalLink, ExternalLinkDeps } from '../../../common/components/external-link';
 import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
 import { LaunchPadItemRow } from './launch-pad-item-row';
+import { AxeInfo } from '../../../common/axe-info';
 
 export type LaunchPadDeps = {
     popupActionMessageCreator: PopupActionMessageCreator;
+    axeInfo: AxeInfo;
 } & ExternalLinkDeps;
 
 export interface LaunchPadProps {
@@ -52,6 +54,7 @@ export class LaunchPad extends React.Component<LaunchPadProps, undefined> {
     }
 
     public render(): JSX.Element {
+        const { axeInfo } = this.props.deps;
         return (
             <div className="ms-Grid main-section">
                 <main>
@@ -70,7 +73,8 @@ export class LaunchPad extends React.Component<LaunchPadProps, undefined> {
                             href="https://www.npmjs.com/package/axe-core"
                         >
                             axe-core
-                        </ExternalLink>
+                        </ExternalLink>{' '}
+                        {axeInfo.version}
                     </div>
                 </div>
             </div>

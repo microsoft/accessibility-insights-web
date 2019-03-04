@@ -3,11 +3,9 @@
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
 import {
     AssessmentTelemetryData,
-    BaseTelemetryData,
     DetailsViewOpenedTelemetryData,
     DetailsViewOpenTelemetryData,
     DetailsViewPivotSelectedTelemetryData,
-    DetailsViewTargetLinkClickTelemetryData,
     ExportResultsTelemetryData,
     FeatureFlagToggleTelemetryData,
     InspectTelemetryData,
@@ -17,6 +15,7 @@ import {
     TestStepSelectTelemetryData,
     ToggleTelemetryData,
     TriggeredByNotApplicable,
+    BaseTelemetryData,
 } from '../../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../../common/types/visualization-type';
@@ -212,7 +211,7 @@ describe('TelemetryDataFactoryTest', () => {
         const result = testObject.fromDetailsViewNoTriggeredBy();
         const source = TelemetryEventSource.DetailsView;
 
-        const expected: DetailsViewTargetLinkClickTelemetryData = {
+        const expected: BaseTelemetryData = {
             triggeredBy: TriggeredByNotApplicable,
             source,
         };
@@ -271,7 +270,7 @@ describe('TelemetryDataFactoryTest', () => {
         expect(result).toEqual(expected);
     });
 
-    test('withTriggeredByAndSource', () => {
+    test('withSourceAndTriggeredBy', () => {
         const event = mouseClickEvent;
         const expected: BaseTelemetryData = {
             triggeredBy: 'mouseclick',
