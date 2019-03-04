@@ -30,7 +30,7 @@ export type FileIssueDetailsButtonState = {
 };
 
 export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButtonProps, FileIssueDetailsButtonState> {
-    private _button: React.RefObject<IButton> = React.createRef<IButton>();
+    private button: React.RefObject<IButton> = React.createRef<IButton>();
     constructor(props: FileIssueDetailsButtonProps) {
         super(props);
         this.state = { showingFileIssueDialog: false };
