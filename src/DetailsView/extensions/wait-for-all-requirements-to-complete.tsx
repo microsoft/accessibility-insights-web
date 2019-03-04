@@ -16,5 +16,10 @@ export const waitForAllRequirementsToComplete = AssessmentViewMainContentExtensi
         return <Spinner className="details-view-spinner" size={SpinnerSize.large} label={`Scanning ${percentage}%`} />;
     }
 
-    return <>{children}</>;
+    return (
+        <div>
+            <div role="alert" aria-label={`${outcomeStats.fail} failures were detected`} />
+            {children}
+        </div>
+    );
 });
