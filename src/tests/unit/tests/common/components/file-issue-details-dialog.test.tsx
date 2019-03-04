@@ -71,7 +71,7 @@ describe('FileIssueDetailsDialog', () => {
         const props: FileIssueDetailsDialogProps = {
             isOpen: true,
             buttonRef: null,
-            getSettingsPanel: null,
+            getSettingsPanel: () => null,
             onDismiss: null,
             onOpenSettings: openSettingsMock,
             fileIssueDetailsHandler: fileIssueDetailsHandlerMock.object,
@@ -124,4 +124,33 @@ describe('FileIssueDetailsDialog', () => {
             .onDismiss(null);
         expect(onDismissMock).toBeCalled();
     });
+
+    test('restores focus to the correct button on settings close', () => {
+        const focusMock = jest.fn();
+        const addEventListenerStub = (eventName, callback) => {
+            callback({});
+        };
+
+        const props: FileIssueDetailsDialogProps = {
+            isOpen: true,
+            buttonRef: {
+                current: {
+                    focus: focusMock,
+                }
+            } as any,
+            getSettingsPanel: () => ({
+                addEventListener: addEventListenerStub,
+            } as any),
+            onDismiss: null,
+            onOpenSettings: () => {},
+            fileIssueDetailsHandler: fileIssueDetailsHandlerMock.object,
+        };
+        const wrapper = shallow(<FileIssueDetailsDialog {...props} />);
+
+        wrapper
+            .find(PrimaryButton)
+            .simulate('click');
+
+        expect(focusMock).toBeCalled();
+    })
 });
