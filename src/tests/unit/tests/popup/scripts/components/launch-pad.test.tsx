@@ -2,13 +2,11 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { Mock } from 'typemoq';
 
 import { ExternalLink } from '../../../../../../common/components/external-link';
 import { toolName } from '../../../../../../content/strings/application';
 import { LaunchPad, LaunchPadDeps, LaunchPadProps, LaunchPadRowConfiguration } from '../../../../../../popup/scripts/components/launch-pad';
 import { LaunchPadItemRow } from '../../../../../../popup/scripts/components/launch-pad-item-row';
-import { AxeInfo } from '../../../../../../common/axe-info';
 
 const AXE_CORE_VERSION = 'axe.core.version';
 
