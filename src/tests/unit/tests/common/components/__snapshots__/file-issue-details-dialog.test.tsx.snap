@@ -12,6 +12,7 @@ exports[`FileIssueDetailsDialog render while closed 1`] = `
   }
   getSettingsPanel={null}
   isOpen={false}
+  isTargetPage={false}
   onDismiss={null}
   onOpenSettings={null}
 />
@@ -29,6 +30,7 @@ exports[`FileIssueDetailsDialog render while open 1`] = `
   }
   getSettingsPanel={null}
   isOpen={true}
+  isTargetPage={false}
   onDismiss={null}
   onOpenSettings={null}
 />

@@ -11,9 +11,11 @@ import { HTMLElementUtils } from '../html-element-utils';
 import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
 import { FileIssueDetailsDialog } from './file-issue-details-dialog';
 import { FileIssueDetailsHandler } from '../file-issue-details-handler';
+import { BugClickHandler } from '../bug-click-handler';
 
 export type FileIssueDetailsButtonDeps = {
     issueDetailsTextGenerator: IssueDetailsTextGenerator;
+    bugClickHandler?: BugClickHandler;
 };
 
 export type FileIssueDetailsButtonProps = {
@@ -105,6 +107,7 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
                     onDismiss={this.closeDialog}
                     buttonRef={this._button}
                     isOpen={this.state.showingFileIssueDialog}
+                    isTargetPage={!this.props.deps.bugClickHandler}
                     getSettingsPanel={this.getSettingsPanel}
                     fileIssueDetailsHandler={new FileIssueDetailsHandler(new HTMLElementUtils())}
                 />

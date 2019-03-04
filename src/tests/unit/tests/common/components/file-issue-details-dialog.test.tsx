@@ -20,6 +20,7 @@ describe('FileIssueDetailsDialog', () => {
         const props: FileIssueDetailsDialogProps = {
             isOpen: true,
             buttonRef: null,
+            isTargetPage: false,
             getSettingsPanel: null,
             onDismiss: null,
             onOpenSettings: null,
@@ -34,6 +35,7 @@ describe('FileIssueDetailsDialog', () => {
         const props: FileIssueDetailsDialogProps = {
             isOpen: true,
             buttonRef: null,
+            isTargetPage: false,
             getSettingsPanel: null,
             onDismiss: null,
             onOpenSettings: null,
@@ -53,6 +55,7 @@ describe('FileIssueDetailsDialog', () => {
         const props: FileIssueDetailsDialogProps = {
             isOpen: false,
             buttonRef: null,
+            isTargetPage: false,
             getSettingsPanel: null,
             onDismiss: null,
             onOpenSettings: null,
@@ -71,6 +74,7 @@ describe('FileIssueDetailsDialog', () => {
         const props: FileIssueDetailsDialogProps = {
             isOpen: true,
             buttonRef: null,
+            isTargetPage: false,
             getSettingsPanel: () => null,
             onDismiss: null,
             onOpenSettings: openSettingsMock,
@@ -91,6 +95,7 @@ describe('FileIssueDetailsDialog', () => {
         const props: FileIssueDetailsDialogProps = {
             isOpen: true,
             buttonRef: null,
+            isTargetPage: false,
             getSettingsPanel: null,
             onDismiss: onDismissMock,
             onOpenSettings: null,
@@ -111,6 +116,7 @@ describe('FileIssueDetailsDialog', () => {
         const props: FileIssueDetailsDialogProps = {
             isOpen: true,
             buttonRef: null,
+            isTargetPage: false,
             getSettingsPanel: null,
             onDismiss: onDismissMock,
             onOpenSettings: null,
@@ -138,6 +144,7 @@ describe('FileIssueDetailsDialog', () => {
                     focus: focusMock,
                 },
             } as any,
+            isTargetPage: false,
             getSettingsPanel: () =>
                 ({
                     addEventListener: addEventListenerStub,
@@ -151,5 +158,27 @@ describe('FileIssueDetailsDialog', () => {
         wrapper.find(PrimaryButton).simulate('click');
 
         expect(focusMock).toBeCalled();
+    });
+
+    test('does not mess with focus on the target page', () => {
+        const addEventListenerMock = jest.fn();
+
+        const props: FileIssueDetailsDialogProps = {
+            isOpen: true,
+            buttonRef: {} as any,
+            isTargetPage: true,
+            getSettingsPanel: () =>
+                ({
+                    addEventListener: addEventListenerMock,
+                } as any),
+            onDismiss: null,
+            onOpenSettings: () => {},
+            fileIssueDetailsHandler: fileIssueDetailsHandlerMock.object,
+        };
+        const wrapper = shallow(<FileIssueDetailsDialog {...props} />);
+
+        wrapper.find(PrimaryButton).simulate('click');
+
+        expect(addEventListenerMock).not.toBeCalled();
     });
 });

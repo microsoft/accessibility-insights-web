@@ -10,6 +10,7 @@ export interface FileIssueDetailsDialogProps {
     isOpen: boolean;
     onDismiss: () => void;
     buttonRef: React.RefObject<IButton>;
+    isTargetPage: boolean;
     getSettingsPanel: () => HTMLElement | null;
     onOpenSettings: (event: React.MouseEvent<HTMLElement>) => void;
     fileIssueDetailsHandler: FileIssueDetailsHandler;
@@ -33,6 +34,10 @@ export class FileIssueDetailsDialog extends React.Component<FileIssueDetailsDial
     }
 
     private focusHack(): void {
+        if (this.props.isTargetPage) {
+            return;
+        }
+
         let timedOut = false;
         setTimeout(() => (timedOut = true), 1000);
         const tryHack = () => {
