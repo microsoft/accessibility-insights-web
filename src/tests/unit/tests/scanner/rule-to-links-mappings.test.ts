@@ -4,7 +4,7 @@ import * as Axe from 'axe-core';
 
 import { ruleToLinkConfiguration } from '../../../../scanner/rule-to-links-mappings';
 
-describe('axe.commons.text.accessibleText examples', () => {
+describe('rule-to-links-mappings', () => {
     // tslint:disable-next-line:variable-name
     let _axe;
     let config;
