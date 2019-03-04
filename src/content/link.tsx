@@ -55,6 +55,17 @@ export const link = {
         'Understanding Success Criterion 1.2.1: Audio-only and Video-only (Prerecorded)',
         'https://www.w3.org/WAI/WCAG21/Understanding/audio-only-and-video-only-prerecorded.html',
     ),
+    WCAG21TechniquesG83: linkTo(
+        'Providing text descriptions to identify required fields that were not completed',
+        'https://www.w3.org/WAI/WCAG21/Techniques/general/G83',
+    ),
+    WCAG21TechniquesG89: linkTo('Providing expected data format and example', 'https://www.w3.org/WAI/WCAG21/Techniques/general/G89'),
+    WCAG21TechniquesG90: linkTo('Providing keyboard-triggered event handlers', 'https://www.w3.org/WAI/WCAG21/Techniques/general/G90'),
+    WCAG21TechniquesG131: linkTo('Providing descriptive labels', 'https://www.w3.org/WAI/WCAG21/Techniques/general/G131'),
+    WCAG21TechniquesG138: linkTo(
+        'Using semantic markup whenever color cues are used',
+        'https://www.w3.org/WAI/WCAG21/Techniques/general/G138',
+    ),
     WCAG21TechniquesG158: linkTo(
         'Providing an alternative for time-based media for audio-only content',
         'https://www.w3.org/WAI/WCAG21/Techniques/general/G158',
@@ -67,8 +78,8 @@ export const link = {
         'Providing audio that describes the important video content and describing it as such',
         'https://www.w3.org/WAI/WCAG21/Techniques/general/G166',
     ),
-    WCAG21TechniquesG83: linkTo(
-        'Providing text descriptions to identify required fields that were not completed',
-        'https://www.w3.org/WAI/WCAG21/Techniques/general/G83',
+    WCAG21TechniquesG202: linkTo(
+        'Ensuring keyboard control for all functionality',
+        'https://www.w3.org/WAI/WCAG21/Techniques/general/G202',
     ),
 };

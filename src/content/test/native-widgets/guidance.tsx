@@ -137,7 +137,7 @@ export const guidance = create(({ Markup, Link }) => (
         </Markup.Links>
         <h4>Sufficient techniques</h4>
         <Markup.Links>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G131">Providing descriptive labels</Markup.HyperLink>
+            <Link.WCAG21TechniquesG131 />
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA1">
                 Using the aria-describedby property to provide a descriptive label for user interface controls
             </Markup.HyperLink>
@@ -147,9 +147,7 @@ export const guidance = create(({ Markup, Link }) => (
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA17">
                 Using grouping roles to identify related form controls
             </Markup.HyperLink>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G89">
-                Providing expected data format and example
-            </Markup.HyperLink>
+            <Link.WCAG21TechniquesG89 />
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G184">
                 Providing text instructions at the beginning of a form or set of fields that describes the necessary input
             </Markup.HyperLink>
@@ -182,9 +180,7 @@ export const guidance = create(({ Markup, Link }) => (
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H90">
                 Indicating required form controls using label or legend
             </Markup.HyperLink>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G138">
-                Using semantic markup whenever color cues are used
-            </Markup.HyperLink>
+            <Link.WCAG21TechniquesG138 />
         </Markup.Links>
     </>
 ));

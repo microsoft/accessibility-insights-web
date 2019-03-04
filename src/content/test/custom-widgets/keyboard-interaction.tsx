@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { create, React } from '../../common';
 
-export const infoAndExamples = create(({ Markup }) => (
+export const infoAndExamples = create(({ Markup, Link }) => (
     <>
         <h1>Keyboard interaction</h1>
         <p>A custom widget must support the keyboard interaction specified by its design pattern.</p>
@@ -52,12 +52,8 @@ export const infoAndExamples = create(({ Markup }) => (
         </Markup.Links>
         <h4>Sufficient techniques</h4>
         <Markup.Links>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G202">
-                Ensuring keyboard control for all functionality
-            </Markup.HyperLink>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G90">
-                Providing keyboard-triggered event handlers
-            </Markup.HyperLink>
+            <Link.WCAG21TechniquesG202 />
+            <Link.WCAG21TechniquesG90 />
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/client-side-script/SCR20">
                 Using both keyboard and other device-specific functions
             </Markup.HyperLink>

@@ -6,6 +6,7 @@ import * as ReactDOM from 'react-dom';
 
 import { BrowserAdapter } from '../../background/browser-adapter';
 import { A11YSelfValidator } from '../../common/a11y-self-validator';
+import { AxeInfo } from '../../common/axe-info';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 import { EnumHelper } from '../../common/enum-helper';
@@ -157,6 +158,8 @@ export class PopupInitializer {
             userConfigurationStore,
         ]);
 
+        const axeInfo = AxeInfo.Default;
+
         const deps: DiagnosticViewToggleDeps & MainRendererDeps = {
             contentProvider: contentPages,
             popupActionMessageCreator,
@@ -167,6 +170,7 @@ export class PopupInitializer {
             storesHub,
             storeActionMessageCreator,
             loadTheme,
+            axeInfo,
         };
 
         const diagnosticViewToggleFactory = new DiagnosticViewToggleFactory(
