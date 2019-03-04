@@ -19,6 +19,7 @@ describe('FileIssueDetailsDialog', () => {
     it('renders as expected', () => {
         const props: FileIssueDetailsDialogProps = {
             isOpen: true,
+            buttonRef: null,
             onDismiss: null,
             onOpenSettings: null,
             fileIssueDetailsHandler: fileIssueDetailsHandlerMock.object,
@@ -31,6 +32,7 @@ describe('FileIssueDetailsDialog', () => {
     test('render while open', () => {
         const props: FileIssueDetailsDialogProps = {
             isOpen: true,
+            buttonRef: null,
             onDismiss: null,
             onOpenSettings: null,
             fileIssueDetailsHandler: fileIssueDetailsHandlerMock.object,
@@ -48,6 +50,7 @@ describe('FileIssueDetailsDialog', () => {
 
         const props: FileIssueDetailsDialogProps = {
             isOpen: false,
+            buttonRef: null,
             onDismiss: null,
             onOpenSettings: null,
             fileIssueDetailsHandler: fileIssueDetailsHandlerMockLocal.object,
@@ -64,6 +67,7 @@ describe('FileIssueDetailsDialog', () => {
 
         const props: FileIssueDetailsDialogProps = {
             isOpen: true,
+            buttonRef: null,
             onDismiss: null,
             onOpenSettings: openSettingsMock,
             fileIssueDetailsHandler: fileIssueDetailsHandlerMock.object,
@@ -82,6 +86,7 @@ describe('FileIssueDetailsDialog', () => {
 
         const props: FileIssueDetailsDialogProps = {
             isOpen: true,
+            buttonRef: null,
             onDismiss: onDismissMock,
             onOpenSettings: null,
             fileIssueDetailsHandler: fileIssueDetailsHandlerMock.object,
@@ -100,6 +105,7 @@ describe('FileIssueDetailsDialog', () => {
 
         const props: FileIssueDetailsDialogProps = {
             isOpen: true,
+            buttonRef: null,
             onDismiss: onDismissMock,
             onOpenSettings: null,
             fileIssueDetailsHandler: fileIssueDetailsHandlerMock.object,

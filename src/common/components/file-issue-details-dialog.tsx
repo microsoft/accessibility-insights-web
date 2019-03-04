@@ -2,13 +2,14 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 import { autobind } from '@uifabric/utilities';
-import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react/lib/Button';
+import { IButton, DefaultButton, PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import { FileIssueDetailsHandler } from '../file-issue-details-handler';
 
 export interface FileIssueDetailsDialogProps {
     isOpen: boolean;
     onDismiss: () => void;
+    buttonRef: React.RefObject<IButton>;
     onOpenSettings: (event: React.MouseEvent<HTMLElement>) => void;
     fileIssueDetailsHandler: FileIssueDetailsHandler;
 }
@@ -50,11 +51,7 @@ export class FileIssueDetailsDialog extends React.Component<FileIssueDetailsDial
                     return;
                 }
 
-                const fileIssueButton: HTMLAnchorElement = document.querySelector('.create-bug-button');
-                if (!fileIssueButton) {
-                    return;
-                }
-                fileIssueButton.focus();
+                this.props.buttonRef.current.focus();
             });
         };
         tryHack();

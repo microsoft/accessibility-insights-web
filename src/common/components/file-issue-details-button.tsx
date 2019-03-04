@@ -4,7 +4,7 @@ import * as React from 'react';
 import { autobind } from '@uifabric/utilities';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
-import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
+import { IButton, DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
 import { HTMLElementUtils } from '../html-element-utils';
@@ -28,6 +28,8 @@ export type FileIssueDetailsButtonState = {
 };
 
 export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButtonProps, FileIssueDetailsButtonState> {
+
+    private _button: React.RefObject<IButton> = React.createRef<IButton>();
     constructor(props: FileIssueDetailsButtonProps) {
         super(props);
         this.state = { showingFileIssueDialog: false };
@@ -65,7 +67,7 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
 
     private renderOpenSettingsButton(): JSX.Element {
         return (
-            <DefaultButton iconProps={{ iconName: 'ladybugSolid' }} className={'create-bug-button'} onClick={this.openDialog}>
+            <DefaultButton componentRef={this._button} iconProps={{ iconName: 'ladybugSolid' }} className={'create-bug-button'} onClick={this.openDialog}>
                 File issue
             </DefaultButton>
         );
@@ -74,6 +76,7 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
     private renderFileIssueButton(): JSX.Element {
         return (
             <DefaultButton
+                componentRef={this._button}
                 iconProps={{ iconName: 'ladybugSolid' }}
                 className={'create-bug-button'}
                 target="_blank"
@@ -92,6 +95,7 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
                 <FileIssueDetailsDialog
                     onOpenSettings={this.openSettings}
                     onDismiss={this.closeDialog}
+                    buttonRef={this._button}
                     isOpen={this.state.showingFileIssueDialog}
                     fileIssueDetailsHandler={new FileIssueDetailsHandler(new HTMLElementUtils())}
                 />
