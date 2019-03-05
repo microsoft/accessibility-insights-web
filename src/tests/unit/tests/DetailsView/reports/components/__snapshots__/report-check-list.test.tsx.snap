@@ -14,9 +14,27 @@ exports[`ReportCheckListTest render 0 results with congratulations 1`] = `
     className="report-congrats-image"
   >
     <InlineImage
-      alt="Congratulations! No failed checks were found."
+      alt=""
       type={5}
     />
+  </div>
+  <div
+    className="report-congrats-screen"
+  >
+    <div
+      className="report-congrats-message"
+    >
+      <div
+        className="report-congrats-head"
+      >
+        Congratulations!
+      </div>
+      <div
+        className="report-congrats-info"
+      >
+        No failed checks were found.
+      </div>
+    </div>
   </div>
 </div>
 `;
