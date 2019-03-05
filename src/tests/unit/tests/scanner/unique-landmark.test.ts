@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { uniqueLandmarkConfiguration } from '../../../../scanner/unique-landmark';
 import * as Axe from 'axe-core';
+
+import { uniqueLandmarkConfiguration } from '../../../../scanner/unique-landmark';
 
 describe('unique-landmark', () => {
     let fixture: HTMLElement;
