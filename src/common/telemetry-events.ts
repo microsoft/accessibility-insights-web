@@ -103,6 +103,11 @@ export type DetailsViewOpenedTelemetryData = {
     selectedDetailsViewPivot: string;
 } & BaseTelemetryData;
 
+export type SettingsOpenTelemetryData = {
+    sourceItem: SettingsOpenSourceItem;
+} & BaseTelemetryData;
+export type SettingsOpenSourceItem = 'fileIssueSettingsPrompt' | 'menu';
+
 export type TestStepSelectTelemetryData = {
     selectedTest: string;
     selectedStep: string;

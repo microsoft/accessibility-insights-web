@@ -32,6 +32,7 @@ import {
     BaseTelemetryData,
     DetailsViewOpenTelemetryData,
     DetailsViewPivotSelectedTelemetryData,
+    SettingsOpenTelemetryData,
     TelemetryEventSource,
     ToggleTelemetryData,
     TriggeredBy,
@@ -707,9 +708,10 @@ describe('ActionCreatorTest', () => {
 
     test('registerCallback for onOpenSettingsPanel', () => {
         const tabId: number = 1;
-        const telemetryData: BaseTelemetryData = {
+        const telemetryData: SettingsOpenTelemetryData = {
             triggeredBy: 'mouseclick',
             source: testSource,
+            sourceItem: 'menu',
         };
 
         const payload = {

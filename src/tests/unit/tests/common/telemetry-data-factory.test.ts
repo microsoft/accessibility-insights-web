@@ -11,6 +11,8 @@ import {
     FeatureFlagToggleTelemetryData,
     InspectTelemetryData,
     RuleAnalyzerScanTelemetryData,
+    SettingsOpenSourceItem,
+    SettingsOpenTelemetryData,
     TelemetryEventSource,
     TestStepActionTelemetryData,
     TestStepSelectTelemetryData,
@@ -134,6 +136,21 @@ describe('TelemetryDataFactoryTest', () => {
             selectedDetailsViewPivot: DetailsViewPivotType[detailsViewPivotStub],
         };
 
+        expect(result).toEqual(expected);
+    });
+
+    test('forSettingsPanelOpen', () => {
+        const event = mouseClickEvent;
+        const source = TelemetryEventSource.DetailsView;
+        const sourceItem: SettingsOpenSourceItem = 'menu';
+
+        const result = testObject.forSettingsPanelOpen(event, source, sourceItem);
+
+        const expected: SettingsOpenTelemetryData = {
+            triggeredBy: 'mouseclick',
+            source,
+            sourceItem,
+        };
         expect(result).toEqual(expected);
     });
 

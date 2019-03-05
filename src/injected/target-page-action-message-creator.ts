@@ -47,7 +47,7 @@ export class TargetPageActionMessageCreator extends BaseActionMessageCreator {
     public openSettingsPanel(event: React.MouseEvent<HTMLElement>): void {
         const type = Messages.SettingsPanel.OpenPanel;
         const source = TelemetryEventSource.TargetPage;
-        const telemetry = this.telemetryFactory.withTriggeredByAndSource(event, source);
+        const telemetry = this.telemetryFactory.forSettingsPanelOpen(event, source, 'fileIssueSettingsPrompt');
         const payload: BaseActionPayload = {
             telemetry,
         };

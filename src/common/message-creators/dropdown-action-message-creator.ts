@@ -42,7 +42,7 @@ export class DropdownActionMessageCreator extends BaseActionMessageCreator {
 
     public openSettingsPanel(event: React.MouseEvent<HTMLElement>, source: TelemetryEventSource): void {
         const type = Messages.SettingsPanel.OpenPanel;
-        const telemetry = this.telemetryFactory.withTriggeredByAndSource(event, source);
+        const telemetry = this.telemetryFactory.forSettingsPanelOpen(event, source, 'menu');
         const payload: BaseActionPayload = {
             telemetry,
         };
