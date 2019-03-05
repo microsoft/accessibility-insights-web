@@ -29,11 +29,13 @@ export class ReportCheckList extends React.Component<ReportCheckListProps> {
         return (
             <div className="report-congrats" key="report-congrats">
                 <div className="report-congrats-image">
-                    <InlineImage type={InlineImageType.AdaSign} alt="" />
+                    <InlineImage type={InlineImageType.AdaLaptop} alt="" />
                 </div>
-                <div className="report-congrats-message">
-                    <div>Congratulations!</div>
-                    <div>You have no failed checks.</div>
+                <div className="report-congrats-screen">
+                    <div className="report-congrats-message">
+                        <div className="report-congrats-head">Congratulations!</div>
+                        <div className="report-congrats-info">No failed checks were found.</div>
+                    </div>
                 </div>
             </div>
         );
