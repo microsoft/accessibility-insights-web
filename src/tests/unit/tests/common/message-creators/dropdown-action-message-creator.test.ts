@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { source } from 'axe-core';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { DropdownActionMessageCreator } from '../../../../../common/message-creators/dropdown-action-message-creator';
