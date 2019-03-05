@@ -118,6 +118,7 @@ describe('AssessmentInstanceTableTest', () => {
                     Pass unmarked instances
                 </ActionButton>
                 <DetailsList
+                    ariaLabelForGrid="Use arrow keys to navigate inside the instances grid"
                     items={items}
                     columns={cols}
                     checkboxVisibility={CheckboxVisibility.hidden}
@@ -178,6 +179,7 @@ describe('AssessmentInstanceTableTest', () => {
             <div>
                 {null}
                 <DetailsList
+                    ariaLabelForGrid="Use arrow keys to navigate inside the instances grid"
                     items={items}
                     columns={cols}
                     checkboxVisibility={CheckboxVisibility.hidden}
