@@ -28,7 +28,7 @@ import { IndexedDBAPI } from '../../../../../common/indexedDB/indexedDB';
 import { ITab } from '../../../../../common/itab';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
-import { ManualTestStatusData, TestStepData, ManualTestStatus } from '../../../../../common/types/manual-test-status';
+import { ManualTestStatus, ManualTestStatusData, TestStepData } from '../../../../../common/types/manual-test-status';
 import {
     IAssessmentData,
     IAssessmentStoreData,

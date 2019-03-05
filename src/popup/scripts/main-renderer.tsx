@@ -4,14 +4,14 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { BrowserAdapter } from '../../background/browser-adapter';
+import { Theme, ThemeDeps, ThemeInnerState } from '../../common/components/theme';
+import { WithStoreSubscriptionDeps } from '../../common/components/with-store-subscription';
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 import { title } from '../../content/strings/application';
 import { DiagnosticViewToggleFactory } from './components/diagnostic-view-toggle-factory';
 import { PopupViewControllerDeps, PopupViewWithStoreSubscription } from './components/popup-view';
 import { IPopupHandlers } from './handlers/ipopup-handlers';
 import { LaunchPadRowConfigurationFactory } from './launch-pad-row-configuration-factory';
-import { Theme, ThemeInnerState, ThemeDeps } from '../../common/components/theme';
-import { WithStoreSubscriptionDeps } from '../../common/components/with-store-subscription';
 
 export type MainRendererDeps = PopupViewControllerDeps & WithStoreSubscriptionDeps<ThemeInnerState> & ThemeDeps;
 export class MainRenderer {

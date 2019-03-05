@@ -7,7 +7,7 @@ import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';
 
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
-import { TestStatusChoiceGroupProps, TestStatusChoiceGroup } from '../../../../../DetailsView/components/test-status-choice-group';
+import { TestStatusChoiceGroup, TestStatusChoiceGroupProps } from '../../../../../DetailsView/components/test-status-choice-group';
 
 describe('TestStatusChoiceGroup', () => {
     const options = [

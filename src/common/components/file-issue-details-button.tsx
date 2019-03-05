@@ -1,17 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
 import { autobind } from '@uifabric/utilities';
-import { Link } from 'office-ui-fabric-react/lib/Link';
-import { Icon } from 'office-ui-fabric-react/lib/Icon';
-import { IButton, DefaultButton } from 'office-ui-fabric-react/lib/Button';
-import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
-import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
-import { HTMLElementUtils } from '../html-element-utils';
+import { DefaultButton, IButton } from 'office-ui-fabric-react/lib/Button';
+import * as React from 'react';
+
 import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
-import { FileIssueDetailsDialog } from './file-issue-details-dialog';
+import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { FileIssueDetailsHandler } from '../file-issue-details-handler';
-import { BugClickHandler } from '../bug-click-handler';
+import { HTMLElementUtils } from '../html-element-utils';
+import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
+import { FileIssueDetailsDialog } from './file-issue-details-dialog';
 
 export type FileIssueDetailsButtonDeps = {
     issueDetailsTextGenerator: IssueDetailsTextGenerator;

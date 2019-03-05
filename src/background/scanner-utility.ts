@@ -3,9 +3,9 @@
 import { Messages } from '../common/messages';
 import { VisualizationType } from '../common/types/visualization-type';
 
+import { WindowUtils } from '../common/window-utils';
 import { AssessmentToggleActionPayload } from './actions/action-payloads';
 import { Interpreter } from './interpreter';
-import { WindowUtils } from '../common/window-utils';
 
 export class ScannerUtility {
     public static scanTimeoutMilliSeconds = 0;

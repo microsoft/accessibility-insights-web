@@ -3,13 +3,13 @@
 import * as React from 'react';
 
 import { VisualizationType } from '../../common/types/visualization-type';
+import { test as content } from '../../content/test';
 import { AssessmentBuilder } from '../assessment-builder';
 import { Assessment } from '../types/iassessment';
 import { AudioControl } from './test-steps/audio-control';
 import { AutoUpdatingContent } from './test-steps/auto-updating-content';
 import { MovingContent } from './test-steps/moving-content';
 import { TimeLimits } from './test-steps/time-limits';
-import { test as content } from '../../content/test';
 
 const key = 'timedEvents';
 const timedEventsAssessmentTitle = 'Timed events';

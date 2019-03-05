@@ -4,7 +4,7 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { ScanOptions } from '../../../../scanner/exposed-apis';
 import { AxeOptions } from '../../../../scanner/launcher';
-import { RuleWithA11YCriteria, RuleSifter } from '../../../../scanner/rule-sifter';
+import { RuleSifter, RuleWithA11YCriteria } from '../../../../scanner/rule-sifter';
 import { ScanParamaterGenerator } from '../../../../scanner/scan-parameter-generator';
 
 describe('ScanParamaterGenerator', () => {

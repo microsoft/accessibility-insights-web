@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BaseActionPayload } from './action-payloads';
 import { Action } from '../../common/flux/action';
 import { InspectMode } from '../inspect-modes';
+import { BaseActionPayload } from './action-payloads';
 
 // tslint:disable-next-line:interface-name
 export interface IInspectPayload extends BaseActionPayload {

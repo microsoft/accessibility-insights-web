@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 
-import { InlineImageProps, InlineImage, InlineImageType } from '../../../../../../DetailsView/reports/components/inline-image';
+import { InlineImage, InlineImageProps, InlineImageType } from '../../../../../../DetailsView/reports/components/inline-image';
 
 describe('InlineImageTest', () => {
     test('Valid types return <img> elements', () => {

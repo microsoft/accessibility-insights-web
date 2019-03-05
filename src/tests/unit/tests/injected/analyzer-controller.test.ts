@@ -14,7 +14,7 @@ import {
 import { EnumHelper } from '../../../../common/enum-helper';
 import { IBaseStore } from '../../../../common/istore';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
-import { IScanData, TestsEnabledState, IVisualizationStoreData } from '../../../../common/types/store-data/ivisualization-store-data';
+import { IScanData, IVisualizationStoreData, TestsEnabledState } from '../../../../common/types/store-data/ivisualization-store-data';
 import { IScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { AnalyzerController } from '../../../../injected/analyzer-controller';

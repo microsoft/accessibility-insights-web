@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IGeneratedAssessmentInstance } from './../common/types/store-data/iassessment-result-data.d';
 import * as _ from 'lodash/index';
+import { IGeneratedAssessmentInstance } from './../common/types/store-data/iassessment-result-data.d';
 
 export class AssessmentDataRemover {
     public deleteDataFromGeneratedMapWithStepKey(instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance>, step: string): void {

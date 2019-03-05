@@ -5,7 +5,7 @@ import * as Enzyme from 'enzyme';
 import * as _ from 'lodash';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
-import { Toggle, IToggle, ToggleBase } from 'office-ui-fabric-react/lib/Toggle';
+import { IToggle, Toggle, ToggleBase } from 'office-ui-fabric-react/lib/Toggle';
 import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { It, Mock, Times } from 'typemoq';

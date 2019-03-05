@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as AxeUtils from './axe-utils';
+import { generateARIACuesDictionary, generateHTMLCuesDictionary } from './cues';
 import { RuleConfiguration } from './iruleresults';
-import { getNativeWidgetElementType, createNativeWidgetConfiguration } from './native-widgets-default';
-import { generateHTMLCuesDictionary, generateARIACuesDictionary } from './cues';
+import { createNativeWidgetConfiguration, getNativeWidgetElementType } from './native-widgets-default';
 
 export const cuesConfiguration: RuleConfiguration = createNativeWidgetConfiguration('cues', 'cues-collector', evaluateCues);
 

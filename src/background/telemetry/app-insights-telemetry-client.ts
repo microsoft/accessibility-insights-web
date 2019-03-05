@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import { config } from '../../common/configuration';
 import { ApplicationTelemetryDataFactory } from './application-telemetry-data-factory';
+import { TelemetryBaseData } from './telemetry-base-data';
 import { TelemetryClient } from './telemetry-client';
 import { TelemetryLogger } from './telemetry-logger';
-import { TelemetryBaseData } from './telemetry-base-data';
 
 export interface TelemetryData {
     baseData: TelemetryBaseData;

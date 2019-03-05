@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
 import { autobind } from '@uifabric/utilities';
-import { CheckType } from './details-dialog';
 import { Label } from 'office-ui-fabric-react/lib/Label';
+import * as React from 'react';
+import { CheckType } from './details-dialog';
 
 export interface FixInstructionPanelProps {
     checkType: CheckType;

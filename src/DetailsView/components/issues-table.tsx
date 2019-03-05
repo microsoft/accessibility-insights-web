@@ -7,6 +7,7 @@ import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
 
+import * as Markup from '../../assessments/markup';
 import { VisualizationToggle } from '../../common/components/visualization-toggle';
 import { IVisualizationConfiguration, VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { FeatureFlags } from '../../common/feature-flags';
@@ -20,7 +21,6 @@ import { ExportDialog } from './export-dialog';
 import { IssuesDetailsList } from './issues-details-list';
 import { IssuesDetailsPane, IssuesDetailsPaneDeps } from './Issues-details-pane';
 import { IssuesTableHandler } from './issues-table-handler';
-import * as Markup from '../../assessments/markup';
 
 export type IssuesTableDeps = IssuesDetailsPaneDeps & {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;

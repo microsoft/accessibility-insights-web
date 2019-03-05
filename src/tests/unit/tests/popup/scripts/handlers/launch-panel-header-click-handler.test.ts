@@ -3,9 +3,9 @@
 import { It, Mock, Times } from 'typemoq';
 
 import {
-    LaunchPanelHeaderProps,
     LaunchPanelHeader,
     LaunchPanelHeaderDeps,
+    LaunchPanelHeaderProps,
 } from '../../../../../../popup/scripts/components/launch-panel-header';
 import { LaunchPanelHeaderClickHandler } from '../../../../../../popup/scripts/handlers/launch-panel-header-click-handler';
 

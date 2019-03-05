@@ -11,8 +11,8 @@ import {
 import { NamedSFC, ReactSFCWithDisplayName } from '../../../../common/react/named-sfc';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
 import {
-    IAssessmentData,
     AssessmentNavState,
+    IAssessmentData,
     IAssessmentStoreData,
     PersistedTabInfo,
 } from '../../../../common/types/store-data/iassessment-result-data';

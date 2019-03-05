@@ -3,10 +3,10 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
+import { Theme } from '../../../../../common/components/theme';
 import { configMutator } from '../../../../../common/configuration';
 import { renderer, RendererDeps } from '../../../../../views/insights/renderer';
 import { Router } from '../../../../../views/insights/router';
-import { Theme } from '../../../../../common/components/theme';
 
 describe('insights renderer', () => {
     const deps = ({

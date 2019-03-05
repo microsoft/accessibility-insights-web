@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import { isEmpty } from 'lodash';
 
+import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { IGeneratedAssessmentInstance, ITestStepResult } from '../../common/types/store-data/iassessment-result-data';
 import { AssessmentVisualizationEnabledToggle } from '../../DetailsView/components/assessment-visualization-enabled-toggle';
-import { ManualTestStatus } from '../../common/types/manual-test-status';
 
 function failingInstances(result: ITestStepResult) {
     return result.status === ManualTestStatus.FAIL;

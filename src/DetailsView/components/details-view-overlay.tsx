@@ -8,11 +8,11 @@ import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag
 import { IDetailsViewData } from '../../common/types/store-data/idetails-view-data';
 import { IScopingStoreData } from '../../common/types/store-data/scoping-store-data';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
-import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
-import { PreviewFeaturesPanel, PreviewFeaturesPanelProps } from './preview-features-panel';
-import { ScopingPanelProps, ScopingPanel } from './scoping-panel';
-import { PreviewFeatureFlagsHandler } from '../handlers/preview-feature-flags-handler';
 import { ContentPanel, ContentPanelDeps, ContentPanelProps } from '../../views/content/content-panel';
+import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
+import { PreviewFeatureFlagsHandler } from '../handlers/preview-feature-flags-handler';
+import { PreviewFeaturesPanel, PreviewFeaturesPanelProps } from './preview-features-panel';
+import { ScopingPanel, ScopingPanelProps } from './scoping-panel';
 import { SettingsPanel, SettingsPanelDeps, SettingsPanelProps } from './settings-panel';
 
 export type DetailsViewOverlayDeps = ContentPanelDeps & SettingsPanelDeps;

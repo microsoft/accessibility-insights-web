@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { autobind } from '@uifabric/utilities';
 import { Messages } from '../messages';
 import { TelemetryDataFactory } from '../telemetry-data-factory';
 import { IScopingPayload } from './../../background/actions/scoping-actions';
 import { TelemetryEventSource } from './../telemetry-events';
 import { BaseActionMessageCreator } from './base-action-message-creator';
-import { autobind } from '@uifabric/utilities';
 
 export class ScopingActionMessageCreator extends BaseActionMessageCreator {
     private telemetryFactory: TelemetryDataFactory;

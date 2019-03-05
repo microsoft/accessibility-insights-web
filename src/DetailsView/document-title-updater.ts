@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 
-import { title } from '../content/strings/application';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { IBaseStore } from '../common/istore';
 import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
 import { IDetailsViewData } from '../common/types/store-data/idetails-view-data';
 import { ITabStoreData } from '../common/types/store-data/itab-store-data';
 import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
+import { title } from '../content/strings/application';
 import { GetDetailsRightPanelConfiguration } from './components/details-view-right-panel';
 import { GetDetailsSwitcherNavConfiguration } from './components/details-view-switcher-nav';
 

@@ -3,11 +3,11 @@
 import * as React from 'react';
 
 import { VisualizationType } from '../../common/types/visualization-type';
+import { test as content } from '../../content/test';
 import { AssessmentBuilder } from '../assessment-builder';
 import { ErrorIdentification } from './test-steps/error-identification';
-import { ErrorSuggestion } from './test-steps/error-suggestion';
 import { ErrorPrevention } from './test-steps/error-prevention';
-import { test as content } from '../../content/test';
+import { ErrorSuggestion } from './test-steps/error-suggestion';
 
 const key = 'errors';
 const title = 'Errors';

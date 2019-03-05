@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import * as Markup from '../../markup';
+import { NewTabLink } from '../../../common/components/new-tab-link';
 import { link } from '../../../content/link';
 import ManualTestRecordYourResults from '../../common/manual-test-record-your-results';
+import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
 import { SemanticsTestStep } from './test-steps';
-import { NewTabLink } from '../../../common/components/new-tab-link';
 
 const dataTablesDescription: JSX.Element = <span>Semantic elements in a data table must not be coded as decorative.</span>;
 

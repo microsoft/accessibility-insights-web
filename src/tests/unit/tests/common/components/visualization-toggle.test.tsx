@@ -5,7 +5,7 @@ import { IToggle, IToggleProps, Toggle } from 'office-ui-fabric-react/lib/Toggle
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
-import { VisualizationToggleProps, VisualizationToggle } from '../../../../../common/components/visualization-toggle';
+import { VisualizationToggle, VisualizationToggleProps } from '../../../../../common/components/visualization-toggle';
 
 describe('VisualizationToggleTest', () => {
     test('constructor', () => {

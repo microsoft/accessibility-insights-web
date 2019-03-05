@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserAdapter } from '../background/browser-adapter';
-import { WindowUtils } from '../common/window-utils';
 import { config } from '../common/configuration';
+import { WindowUtils } from '../common/window-utils';
 
 export class SupportLinkHandler {
     private _chromeAdapter: BrowserAdapter;

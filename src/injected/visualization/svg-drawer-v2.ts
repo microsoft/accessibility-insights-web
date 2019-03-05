@@ -8,15 +8,15 @@ import { WindowUtils } from './../../common/window-utils';
 import { BaseDrawer } from './base-drawer';
 import { CenterPositionCalculator } from './center-position-calculator';
 import { DrawerUtils } from './drawer-utils';
+import { IDrawerInitData } from './idrawer';
 import { IFocusIndicator } from './ifocus-indicator';
 import { ISVGDrawerConfiguration } from './iformatter';
+import { IPoint } from './ipoint';
 import { ITabbedItem } from './itabbed-item';
 import { SVGNamespaceUrl } from './svg-constants';
 import { SVGShapeFactory } from './svg-shape-factory';
 import { SVGSolidShadowFilterFactory } from './svg-solid-shadow-filter-factory';
 import { TabStopsFormatter } from './tab-stops-formatter';
-import { IPoint } from './ipoint';
-import { IDrawerInitData } from './idrawer';
 
 export class SVGDrawerV2 extends BaseDrawer {
     protected tabbedElements: ITabbedItem[];

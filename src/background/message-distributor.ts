@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 
+import { createDefaultLogger } from '../common/logging/default-logger';
+import { Logger } from '../common/logging/logger';
 import { ITab } from './../common/itab.d';
 import { BrowserAdapter } from './browser-adapter';
 import { GlobalContext } from './global-context';
 import { TabToContextMap } from './tab-context';
-import { createDefaultLogger } from '../common/logging/default-logger';
-import { Logger } from '../common/logging/logger';
 
 export interface Sender {
     tab?: ITab;

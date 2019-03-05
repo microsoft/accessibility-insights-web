@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { ColumnValueBag } from '../../common/types/property-bag/column-value-bag';
 import { IAssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
-import { PropertyBagColumnRendererConfig, propertyBagColumnRenderer } from './property-bag-column-renderer';
+import { propertyBagColumnRenderer, PropertyBagColumnRendererConfig } from './property-bag-column-renderer';
 
 export class PropertyBagColumnRendererFactory {
     public static get<TPropertyBag extends ColumnValueBag>(

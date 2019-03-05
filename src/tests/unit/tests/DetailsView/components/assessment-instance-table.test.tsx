@@ -16,8 +16,8 @@ import { ManualTestStatus } from '../../../../../common/types/manual-test-status
 import { IAssessmentResultType, IGeneratedAssessmentInstance } from '../../../../../common/types/store-data/iassessment-result-data';
 import {
     AssessmentInstanceTable,
-    IAssessmentInstanceRowData,
     AssessmentInstanceTableProps,
+    IAssessmentInstanceRowData,
 } from '../../../../../DetailsView/components/assessment-instance-table';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
 

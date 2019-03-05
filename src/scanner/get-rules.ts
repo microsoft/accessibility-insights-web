@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import * as Axe from 'axe-core';
 
-import { ScannerRuleInfo } from './scanner-rule-info';
-import { RuleSifter } from './rule-sifter';
 import { findIndex } from 'lodash';
+import { RuleSifter } from './rule-sifter';
+import { ScannerRuleInfo } from './scanner-rule-info';
 
 interface ExpectedGetRuleObject {
     help: string | Function;

@@ -37,6 +37,7 @@
         "no-var-requires": true,
         "one-line": [true, "check-open-brace", "check-whitespace"],
         "one-variable-per-declaration": [true, "ignore-for-loop"],
+        "ordered-imports": true,
         "quotemark": [true, "single", "avoid-escape", "jsx-double"],
         "radix": true,
         "semicolon": [true, "always", "ignore-bound-class-methods"],

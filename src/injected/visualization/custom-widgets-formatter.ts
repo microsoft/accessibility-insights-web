@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IAssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
-import { IDrawerConfiguration } from './iformatter';
 import { DrawerUtils } from './drawer-utils';
 import { HighlightBoxFormatter } from './highlight-box-formatter';
+import { IDrawerConfiguration } from './iformatter';
 
 export class CustomWidgetsFormatter extends HighlightBoxFormatter {
     constructor() {

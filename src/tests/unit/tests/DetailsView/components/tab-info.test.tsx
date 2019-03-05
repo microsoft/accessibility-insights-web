@@ -10,7 +10,7 @@ import { DropdownClickHandler } from '../../../../../common/dropdown-click-handl
 import { FeatureFlags, getDefaultFeatureFlagValues } from '../../../../../common/feature-flags';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
-import { TabInfoProps, TabInfo } from '../../../../../DetailsView/components/tab-info';
+import { TabInfo, TabInfoProps } from '../../../../../DetailsView/components/tab-info';
 
 describe('TabInfo', () => {
     const scenarios = [

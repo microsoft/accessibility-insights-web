@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
 
-import { ChromeAdapter, BrowserAdapter } from '../../../../background/browser-adapter';
+import { BrowserAdapter, ChromeAdapter } from '../../../../background/browser-adapter';
 import { PersistedData } from '../../../../background/get-persisted-data';
 import { GlobalContext } from '../../../../background/global-context';
 import { GlobalContextFactory } from '../../../../background/global-context-factory';

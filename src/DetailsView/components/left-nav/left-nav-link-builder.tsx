@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { IAssessmentsProvider } from '../../../assessments/types/iassessments-provider';
 import { IVisualizationConfiguration } from '../../../common/configs/visualization-configuration-factory';
-import { ManualTestStatusData, ManualTestStatus } from '../../../common/types/manual-test-status';
+import { ManualTestStatus, ManualTestStatusData } from '../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { OutcomeStats, OutcomeTypeSemantic } from '../../reports/components/outcome-type';
 import { GetAssessmentSummaryModelFromProviderAndStatusData } from '../../reports/get-assessment-summary-model';

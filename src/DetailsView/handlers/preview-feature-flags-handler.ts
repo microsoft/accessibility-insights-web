@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash/index';
 
-import { FeatureFlags, FeatureFlagDetail } from '../../common/feature-flags';
+import { FeatureFlagDetail, FeatureFlags } from '../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { IDisplayableFeatureFlag } from '../../common/types/store-data/idisplayable-feature-flag';
 

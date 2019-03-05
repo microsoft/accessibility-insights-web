@@ -5,9 +5,12 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { IssueDetailsTextGenerator } from '../background/issue-details-text-generator';
+import { AxeInfo } from '../common/axe-info';
+import { ClientBrowserAdapter } from '../common/client-browser-adapter';
 import { FeatureFlags } from '../common/feature-flags';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { NavigatorUtils } from '../common/navigator-utils';
+import { getPlatform } from '../common/platform';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { WindowUtils } from '../common/window-utils';
 import { DetailsDialog } from './components/details-dialog';
@@ -18,9 +21,6 @@ import { IErrorMessageContent } from './frameCommunicators/window-message-marsha
 import { MainWindowContext } from './main-window-context';
 import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from './scanner-utils';
 import { ShadowUtils } from './shadow-utils';
-import { getPlatform } from '../common/platform';
-import { ClientBrowserAdapter } from '../common/client-browser-adapter';
-import { AxeInfo } from '../common/axe-info';
 
 export interface DetailsDialogWindowMessage {
     data: IHtmlElementAxeResults;

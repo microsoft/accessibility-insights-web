@@ -4,8 +4,8 @@
 import * as React from 'react';
 
 import { NewTabLink } from '../../../common/components/new-tab-link';
-import { BrandWhite } from '../../../icons/brand/white/brand-white';
 import { productName } from '../../../content/strings/application';
+import { BrandWhite } from '../../../icons/brand/white/brand-white';
 
 export interface AssessmentReportHeaderProps {
     targetPageUrl: string;

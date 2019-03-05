@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
-import { TestStepLinkProps, TestStepLink } from '../../../../../DetailsView/components/test-step-link';
+import { TestStepLink, TestStepLinkProps } from '../../../../../DetailsView/components/test-step-link';
 
 describe('TestStepLink', () => {
     it('renders with index', () => {

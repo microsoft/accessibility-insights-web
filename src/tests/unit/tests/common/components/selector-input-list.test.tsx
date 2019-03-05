@@ -7,7 +7,7 @@ import { ITextField, TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { SelectorInputListProps, SelectorInputList } from '../../../../../common/components/selector-input-list';
+import { SelectorInputList, SelectorInputListProps } from '../../../../../common/components/selector-input-list';
 
 describe('SelectorInputListTest', () => {
     test('render with list items', () => {

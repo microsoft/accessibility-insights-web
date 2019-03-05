@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ChoiceGroup, IChoiceGroupOption, IChoiceGroup } from 'office-ui-fabric-react/lib/ChoiceGroup';
+import { autobind } from '@uifabric/utilities';
+import { ChoiceGroup, IChoiceGroup, IChoiceGroupOption } from 'office-ui-fabric-react/lib/ChoiceGroup';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { Link } from 'office-ui-fabric-react/lib/Link';
-import { autobind } from '@uifabric/utilities';
 import * as React from 'react';
 
+import { isEqual } from 'lodash';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { VisualizationType } from '../../common/types/visualization-type';
-import { isEqual } from 'lodash';
 
 export interface TestStatusChoiceGroupProps {
     test: VisualizationType;

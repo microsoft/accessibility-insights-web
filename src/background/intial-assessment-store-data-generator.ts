@@ -1,21 +1,21 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { head, isEmpty, pick } from 'lodash/index';
+import { head, isEmpty, pick } from 'lodash';
 
 import { Assessment } from '../assessments/types/iassessment';
 import { TestStep } from '../assessments/types/test-step';
-import { ManualTestStatusData, ManualTestStatus } from '../common/types/manual-test-status';
-import { IAssessmentsProvider } from './../assessments/types/iassessments-provider';
-import { TestStepData } from './../common/types/manual-test-status';
+import { ManualTestStatus, ManualTestStatusData } from '../common/types/manual-test-status';
 import {
-    InstanceIdToInstanceDataMap,
     IAssessmentData,
     IAssessmentStoreData,
     IGeneratedAssessmentInstance,
     IManualTestStepResult,
-    RequirementIdToResultMap,
+    InstanceIdToInstanceDataMap,
     PersistedTabInfo,
+    RequirementIdToResultMap,
 } from '../common/types/store-data/iassessment-result-data';
+import { IAssessmentsProvider } from './../assessments/types/iassessments-provider';
+import { TestStepData } from './../common/types/manual-test-status';
 
 export class InitialAssessmentStoreDataGenerator {
     private readonly NULL_FIRST_TEST: Partial<Readonly<Assessment>> = { type: null, steps: [{ key: null }] as TestStep[] };
