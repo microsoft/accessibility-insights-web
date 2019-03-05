@@ -98,6 +98,7 @@ describe('IssuesDetailsPaneTest', () => {
             bugClickHandler: {
                 openSettingsPanelHandler: null,
             } as BugClickHandler,
+            bugActionMessageCreator: null,
         };
 
         const props: IssuesDetailsPaneProps = {

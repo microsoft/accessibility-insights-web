@@ -87,6 +87,7 @@ export class DialogRenderer {
                 issueDetailsTextGenerator,
                 windowUtils: this.windowUtils,
                 targetPageActionMessageCreator: mainWindowContext.getTargetPageActionMessageCreator(),
+                bugActionMessageCreator: mainWindowContext.getBugActionMessageCreator(),
                 clientBrowserAdapter: this.clientBrowserAdapter,
             };
 
