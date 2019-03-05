@@ -8,18 +8,18 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 import { IDisplayableVisualizationTypeData } from '../../../../../common/configs/visualization-configuration-factory';
 import { ITabStoreData } from '../../../../../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../../../../../common/types/store-data/ivisualization-scan-result-data';
-import { IScanData, ITestsEnabledState, IVisualizationStoreData } from '../../../../../common/types/store-data/ivisualization-store-data';
+import { IScanData, TestsEnabledState, IVisualizationStoreData } from '../../../../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
-import { AdhocIssuesTestView, IAdhocIssuesTestViewProps } from '../../../../../DetailsView/components/adhoc-issues-test-view';
+import { AdhocIssuesTestView, AdhocIssuesTestViewProps } from '../../../../../DetailsView/components/adhoc-issues-test-view';
 import { IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
 import { VisualizationScanResultStoreDataBuilder } from '../../../common/visualization-scan-result-store-data-builder';
 
 describe('AdhocIssuesTestView', () => {
-    let props: IAdhocIssuesTestViewProps;
-    let getStoreDataMock: IMock<(data: ITestsEnabledState) => IScanData>;
+    let props: AdhocIssuesTestViewProps;
+    let getStoreDataMock: IMock<(data: TestsEnabledState) => IScanData>;
     let clickHandlerFactoryMock: IMock<DetailsViewToggleClickHandlerFactory>;
     let displayableDataStub: IDisplayableVisualizationTypeData;
     let contentStub: JSX.Element;

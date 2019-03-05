@@ -7,12 +7,12 @@ import { ITextField, TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { ISelectorInputListProps, SelectorInputList } from '../../../../../common/components/selector-input-list';
+import { SelectorInputListProps, SelectorInputList } from '../../../../../common/components/selector-input-list';
 
 describe('SelectorInputListTest', () => {
     test('render with list items', () => {
         const givenInput = 'include';
-        const props: ISelectorInputListProps = {
+        const props: SelectorInputListProps = {
             title: 'test-title',
             subtitle: 'some instructions',
             inputType: givenInput,
@@ -29,7 +29,7 @@ describe('SelectorInputListTest', () => {
 
     test('render without list items', () => {
         const givenInput = 'include';
-        const props: ISelectorInputListProps = {
+        const props: SelectorInputListProps = {
             title: 'test-title',
             subtitle: 'some instructions',
             inputType: givenInput,
@@ -45,7 +45,7 @@ describe('SelectorInputListTest', () => {
 
     test('render with instructions paragraph', () => {
         const givenInput = 'include';
-        const props: ISelectorInputListProps = {
+        const props: SelectorInputListProps = {
             title: 'test-title',
             subtitle: 'some instructions',
             inputType: givenInput,
@@ -67,7 +67,7 @@ describe('SelectorInputListTest', () => {
         const givenSelector = 'iframe;selector';
         const parsedSelector = ['iframe', 'selector'];
         addSelectorMock.setup(add => add(It.isAny(), It.isValue(givenInput), It.isValue(parsedSelector))).verifiable(Times.once());
-        const props: ISelectorInputListProps = {
+        const props: SelectorInputListProps = {
             title: 'test-title',
             subtitle: 'some instructions',
             items: [],
@@ -87,7 +87,7 @@ describe('SelectorInputListTest', () => {
         const parsedSelector = ['iframe', 'selector', 'selectorAgain', 'lastSelector'];
         const givenInput = 'include';
         addSelectorMock.setup(add => add(It.isAny(), It.isValue(givenInput), It.isValue(parsedSelector))).verifiable(Times.once());
-        const props: ISelectorInputListProps = {
+        const props: SelectorInputListProps = {
             title: 'test-title',
             subtitle: 'some instructions',
             items: [],
@@ -106,7 +106,7 @@ describe('SelectorInputListTest', () => {
         const givenMode = 'scopingAddInclude';
         const givenInput = 'include';
         changeInspectionMock.setup(add => add(It.isAny(), It.isValue(givenMode))).verifiable(Times.once());
-        const props: ISelectorInputListProps = {
+        const props: SelectorInputListProps = {
             title: 'test-title',
             subtitle: 'some instructions',
             items: [],
@@ -128,7 +128,7 @@ describe('SelectorInputListTest', () => {
         const parsedSelector = ['iframe', 'selector'];
 
         deleteSelectorMock.setup(add => add(It.isAny(), It.isValue(givenInput), It.isValue(parsedSelector))).verifiable(Times.once());
-        const props: ISelectorInputListProps = {
+        const props: SelectorInputListProps = {
             title: 'test-title',
             subtitle: 'some instructions',
             items: [parsedSelector],
@@ -147,7 +147,7 @@ describe('SelectorInputListTest', () => {
         const givenSelector = 'iframe; selector';
         const parsedSelector = ['iframe', 'selector'];
 
-        const props: ISelectorInputListProps = {
+        const props: SelectorInputListProps = {
             title: 'test-title',
             subtitle: 'some instructions',
             items: [parsedSelector],
@@ -165,7 +165,7 @@ describe('SelectorInputListTest', () => {
         const givenInput = 'include';
         const givenSelector = '';
 
-        const props: ISelectorInputListProps = {
+        const props: SelectorInputListProps = {
             title: 'test-title',
             subtitle: 'some instructions',
             items: [],
@@ -184,7 +184,7 @@ describe('SelectorInputListTest', () => {
         const givenSelector = 'second-selector';
         const parsedSelector = ['iframe', 'selector'];
 
-        const props: ISelectorInputListProps = {
+        const props: SelectorInputListProps = {
             title: 'test-title',
             subtitle: 'some instructions',
             items: [parsedSelector],
@@ -202,7 +202,7 @@ describe('SelectorInputListTest', () => {
         const updatedSelector = ['iframe; selector'];
         const givenInput = 'include';
         const givenSelector = 'selector';
-        const previousProps: ISelectorInputListProps = {
+        const previousProps: SelectorInputListProps = {
             title: 'test-title',
             subtitle: 'some instructions',
             items: [],
@@ -213,7 +213,7 @@ describe('SelectorInputListTest', () => {
             onChangeInspectMode: null,
         };
 
-        const props: ISelectorInputListProps = {
+        const props: SelectorInputListProps = {
             title: 'test-title',
             subtitle: 'some instructions',
             items: [updatedSelector],
@@ -233,7 +233,7 @@ describe('SelectorInputListTest', () => {
 
     test("componentDidUpdate doesn't update state when the props haven't changed ", () => {
         const givenInput = 'include';
-        const previousProps: ISelectorInputListProps = {
+        const previousProps: SelectorInputListProps = {
             title: 'test-title',
             subtitle: 'some instructions',
             items: [],
@@ -244,7 +244,7 @@ describe('SelectorInputListTest', () => {
             onChangeInspectMode: null,
         };
 
-        const props: ISelectorInputListProps = {
+        const props: SelectorInputListProps = {
             title: 'test-title',
             subtitle: 'some instructions',
             items: [],
@@ -267,7 +267,7 @@ describe('SelectorInputListTest', () => {
         const givenSelector = 'selector';
         const parsedSelector = ['selector'];
         addSelectorMock.setup(add => add(It.isAny(), It.isValue(givenInput), It.isValue(parsedSelector))).verifiable(Times.once());
-        const props: ISelectorInputListProps = {
+        const props: SelectorInputListProps = {
             title: 'test-title',
             subtitle: 'some instructions',
             items: [],
@@ -296,7 +296,7 @@ describe('SelectorInputListTest', () => {
         expect(button.getElement().props.disabled).toBe(!expectedStateValue);
     }
 
-    function genericRenderTests(result: Enzyme.ShallowWrapper<any, any>, props: ISelectorInputListProps): void {
+    function genericRenderTests(result: Enzyme.ShallowWrapper<any, any>, props: SelectorInputListProps): void {
         const textbox = result.find('.selector-input-field');
         const selectors = result.find(List);
         const title = result.find('.selector-input-title');

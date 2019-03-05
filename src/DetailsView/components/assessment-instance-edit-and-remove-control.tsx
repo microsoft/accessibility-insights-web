@@ -9,7 +9,7 @@ import { IAssessmentsProvider } from '../../assessments/types/iassessments-provi
 import { VisualizationType } from '../../common/types/visualization-type';
 import { CapturedInstanceActionType, FailureInstancePanelControl } from './failure-instance-panel-control';
 
-export interface IAssessmentInstanceEditAndRemoveControlProps {
+export interface AssessmentInstanceEditAndRemoveControlProps {
     test: VisualizationType;
     step: string;
     id: string;
@@ -19,7 +19,7 @@ export interface IAssessmentInstanceEditAndRemoveControlProps {
     assessmentsProvider: IAssessmentsProvider;
 }
 
-export class AssessmentInstanceEditAndRemoveControl extends React.Component<IAssessmentInstanceEditAndRemoveControlProps> {
+export class AssessmentInstanceEditAndRemoveControl extends React.Component<AssessmentInstanceEditAndRemoveControlProps> {
     public render(): JSX.Element {
         return (
             <div>

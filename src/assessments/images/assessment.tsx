@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { VisualizationType } from '../../common/types/visualization-type';
 import { AssessmentBuilder } from '../assessment-builder';
-import { IAssessment } from '../types/iassessment';
+import { Assessment } from '../types/iassessment';
 import { Captchas } from './test-steps/captchas';
 import { ImageFunction } from './test-steps/image-function';
 import { TextAlternative } from './test-steps/text-alternative';
@@ -23,7 +23,7 @@ const gettingStarted: JSX.Element = (
     </React.Fragment>
 );
 
-export const ImagesAssessment: IAssessment = AssessmentBuilder.Assisted({
+export const ImagesAssessment: Assessment = AssessmentBuilder.Assisted({
     key,
     type: VisualizationType.ImagesAssessment,
     title,

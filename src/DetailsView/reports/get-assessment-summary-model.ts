@@ -2,16 +2,16 @@
 // Licensed under the MIT License.
 import { chain, zipObject } from 'lodash/index';
 
-import { IAssessment } from '../../assessments/types/iassessment';
+import { Assessment } from '../../assessments/types/iassessment';
 import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
-import { IManualTestStatus } from '../../common/types/manual-test-status';
+import { ManualTestStatusData } from '../../common/types/manual-test-status';
 import { IAssessmentData, IAssessmentStoreData } from '../../common/types/store-data/iassessment-result-data';
 import * as Model from './assessment-report-model';
 import { OutcomeMath } from './components/outcome-math';
 import { allOutcomeTypes, OutcomeStats, OutcomeType, outcomeTypeFromTestStatus } from './components/outcome-type';
 
-export type AssessmentSummaryResult = Pick<IAssessment, 'title'> & { storeData: Pick<IAssessmentData, 'testStepStatus'> };
-export type AssessmentStatusData = { [key: string]: IManualTestStatus };
+export type AssessmentSummaryResult = Pick<Assessment, 'title'> & { storeData: Pick<IAssessmentData, 'testStepStatus'> };
+export type AssessmentStatusData = { [key: string]: ManualTestStatusData };
 
 export type GetAssessmentSummaryModelFromProviderAndStoreData = (
     assessmentsProvider: IAssessmentsProvider,

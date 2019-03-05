@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IAssessmentsProvider } from '../assessments/types/iassessments-provider';
-import { ITestsEnabledState } from '../common/types/store-data/ivisualization-store-data';
+import { TestsEnabledState } from '../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { AssessmentStore } from './stores/assessment-store';
 import { VisualizationStore } from './stores/visualization-store';
 
 export type IScheduleScan = (test: VisualizationType, step: string, tabId: number) => void;
-export type IIsAnAssessmentSelected = (testData: ITestsEnabledState) => boolean;
+export type IIsAnAssessmentSelected = (testData: TestsEnabledState) => boolean;
 
 export class AssessmentScanPolicyRunner {
     constructor(

@@ -6,10 +6,12 @@ import { HTMLElementUtils } from '../common/html-element-utils';
 import { WindowUtils } from '../common/window-utils';
 import { FrameCommunicator, IMessageRequest } from './frameCommunicators/frame-communicator';
 
+// tslint:disable-next-line:interface-name
 export interface ITargetMessage {
     target: string[];
 }
 
+// tslint:disable-next-line:interface-name
 export interface IFrameUrlMessage {
     frameUrl: string;
 }

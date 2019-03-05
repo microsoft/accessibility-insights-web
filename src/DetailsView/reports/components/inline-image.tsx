@@ -12,12 +12,12 @@ export enum InlineImageType {
     NotApplicableIcon,
 }
 
-export interface IInlineImageProps {
+export interface InlineImageProps {
     type: InlineImageType;
     alt: string;
 }
 
-export class InlineImage extends React.Component<IInlineImageProps> {
+export class InlineImage extends React.Component<InlineImageProps> {
     public render(): JSX.Element {
         const imageData = this.inlineImageTypeToData[this.props.type];
         if (imageData === undefined) {

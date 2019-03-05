@@ -14,7 +14,7 @@ import { VisualizationConfigurationFactory } from '../../../../../common/configs
 import { FeatureFlags } from '../../../../../common/feature-flags';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { IssuesTable, IssuesTableDeps, IssuesTableProps, IssuesTableState } from '../../../../../DetailsView/components/issues-table';
-import { IDetailsRowData, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
+import { DetailsRowData, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
 import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { RuleResult } from '../../../../../scanner/iruleresults';
@@ -207,10 +207,10 @@ describe('IssuesTableTest', () => {
     function testRenderTableWithIssues(count: number, exportResult: boolean): void {
         const sampleViolations: RuleResult[] = getSampleViolations(count);
         const sampleIdToRuleResultMap: IDictionaryStringTo<DecoratedAxeNodeResult> = {};
-        const items: IDetailsRowData[] = [];
+        const items: DetailsRowData[] = [];
         for (let i: number = 1; i <= count; i++) {
             sampleIdToRuleResultMap['id' + i] = {} as DecoratedAxeNodeResult;
-            items.push({} as IDetailsRowData);
+            items.push({} as DetailsRowData);
         }
 
         const issuesEnabled = true;

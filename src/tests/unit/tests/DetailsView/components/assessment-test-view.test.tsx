@@ -6,18 +6,18 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { IVisualizationConfiguration } from '../../../../../common/configs/visualization-configuration-factory';
 import { IAssessmentData, IAssessmentStoreData } from '../../../../../common/types/store-data/iassessment-result-data';
-import { IScanData, ITestsEnabledState, IVisualizationStoreData } from '../../../../../common/types/store-data/ivisualization-store-data';
+import { IScanData, TestsEnabledState, IVisualizationStoreData } from '../../../../../common/types/store-data/ivisualization-store-data';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import {
     AssessmentTestView,
     AssessmentTestViewDeps,
-    IAssessmentTestViewProps,
+    AssessmentTestViewProps,
 } from '../../../../../DetailsView/components/assessment-test-view';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
 
 describe('AssessmentTestView', () => {
-    let props: IAssessmentTestViewProps;
-    let getStoreDataMock: IMock<(data: ITestsEnabledState) => IScanData>;
+    let props: AssessmentTestViewProps;
+    let getStoreDataMock: IMock<(data: TestsEnabledState) => IScanData>;
     let getAssessmentDataMock: IMock<(data: IAssessmentStoreData) => IAssessmentData>;
     let getTestStatusMock: IMock<(data: IScanData, step: string) => boolean>;
     let scanDataStub: IScanData;
@@ -70,7 +70,7 @@ describe('AssessmentTestView', () => {
             },
             assessmentStoreData: assessmentStoreDataStub,
             assessmentInstanceTableHandler: assessmentInstanceHandlerStub,
-        } as IAssessmentTestViewProps;
+        } as AssessmentTestViewProps;
 
         getStoreDataMock
             .setup(gsdm => gsdm(visualizationStoreDataStub.tests))

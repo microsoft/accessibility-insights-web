@@ -4,13 +4,13 @@ import * as React from 'react';
 
 import { title } from '../../../content/strings/application';
 
-export interface IAssessmentReportFooterProps {
+export interface AssessmentReportFooterProps {
     extensionVersion: string;
     axeVersion: string;
     chromeVersion: string;
 }
 
-export class AssessmentReportFooter extends React.Component<IAssessmentReportFooterProps> {
+export class AssessmentReportFooter extends React.Component<AssessmentReportFooterProps> {
     public render(): JSX.Element {
         return (
             <footer className="report-footer">

@@ -8,7 +8,7 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { ContentPageComponent } from '../../views/content/content-page';
 import { TestStep } from './test-step';
 
-interface IBaseAssessment {
+interface BaseAssessment {
     key: string;
     type: VisualizationType;
     title: string;
@@ -21,14 +21,14 @@ interface IBaseAssessment {
     extensions?: AnyExtension[];
 }
 
-export interface IManualAssessment extends IBaseAssessment {}
+export interface ManualAssessment extends BaseAssessment {}
 
-export interface IAssistedAssessment extends IBaseAssessment {
+export interface AssistedAssessment extends BaseAssessment {
     storeDataKey: string;
     visualizationConfiguration?: Partial<IAssesssmentVisualizationConfiguration>;
 }
 
-export interface IAssessment extends IBaseAssessment {
+export interface Assessment extends BaseAssessment {
     getVisualizationConfiguration: () => IAssesssmentVisualizationConfiguration;
     requirementOrder: RequirementOrdering;
 }

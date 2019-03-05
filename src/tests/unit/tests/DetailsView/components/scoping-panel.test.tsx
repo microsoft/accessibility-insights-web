@@ -10,11 +10,11 @@ import { ScopingActionMessageCreator } from '../../../../../common/message-creat
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { GenericPanel } from '../../../../../DetailsView/components/generic-panel';
 import { ScopingContainer } from '../../../../../DetailsView/components/scoping-container';
-import { IScopingPanelProps, ScopingPanel } from '../../../../../DetailsView/components/scoping-panel';
+import { ScopingPanelProps, ScopingPanel } from '../../../../../DetailsView/components/scoping-panel';
 
 describe('ScopingPanelTest', () => {
     test('constructor', () => {
-        const testSubject = new ScopingPanel({} as IScopingPanelProps);
+        const testSubject = new ScopingPanel({} as ScopingPanelProps);
         expect(testSubject).toBeDefined();
     });
 
@@ -23,7 +23,7 @@ describe('ScopingPanelTest', () => {
         const scopingActionMessageCreatorMock = Mock.ofType(ScopingActionMessageCreator);
         const inspectActionMessageCreatorMock = Mock.ofType(InspectActionMessageCreator);
 
-        const testProps: IScopingPanelProps = {
+        const testProps: ScopingPanelProps = {
             isOpen: true,
             actionMessageCreator: actionMessageCreatorMock.object,
             scopingActionMessageCreator: scopingActionMessageCreatorMock.object,

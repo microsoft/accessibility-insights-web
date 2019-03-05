@@ -13,7 +13,7 @@ import { AnalyzerProvider } from '../../injected/analyzers/analyzer-provider';
 import { RuleAnalyzerConfiguration } from '../../injected/analyzers/ianalyzer';
 import { DecoratedAxeNodeResult, ScannerUtils } from '../../injected/scanner-utils';
 import { ScannerRuleInfo } from '../../scanner/scanner-rule-info';
-import { IInstanceTableColumn } from '../types/iinstance-table-column';
+import { InstanceTableColumn } from '../types/iinstance-table-column';
 import { TestStep } from '../types/test-step';
 import { AutomatedChecksVisualizationToggle } from './automated-checks-visualization-enabled-toggle';
 
@@ -66,7 +66,7 @@ export function buildTestStepsFromRules(rules: ScannerRuleInfo[]): TestStep[] {
     return rules.map(rule => buildAutomatedCheckStep(rule));
 }
 
-const automatedChecksColumns: IInstanceTableColumn[] = [
+const automatedChecksColumns: InstanceTableColumn[] = [
     {
         key: 'path',
         name: 'Path',

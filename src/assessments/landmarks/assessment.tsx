@@ -6,7 +6,7 @@ import { NewTabLink } from '../../common/components/new-tab-link';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { test as content } from '../../content/test';
 import { AssessmentBuilder } from '../assessment-builder';
-import { IAssessment } from '../types/iassessment';
+import { Assessment } from '../types/iassessment';
 import { LandmarkRoles } from './test-steps/landmark-roles';
 import { NoRepeatingContent } from './test-steps/no-repeating-content';
 import { PrimaryContent } from './test-steps/primary-content';
@@ -40,7 +40,7 @@ const gettingStarted: JSX.Element = (
     </React.Fragment>
 );
 
-export const LandmarksAssessment: IAssessment = AssessmentBuilder.Assisted({
+export const LandmarksAssessment: Assessment = AssessmentBuilder.Assisted({
     key,
     title,
     gettingStarted,

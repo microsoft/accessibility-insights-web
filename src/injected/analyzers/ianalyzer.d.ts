@@ -15,25 +15,30 @@ export interface AxeAnalyzerResult {
     exclude?: ISingleElementSelector[];
 }
 
+// tslint:disable-next-line:interface-name
 interface IAnalyzer<TResult> {
     analyze(): void;
     teardown(): void;
 }
 
+// tslint:disable-next-line:interface-name
 interface IScanCompletedPayload<TSelectorValue> extends IScanBasePayload {
     selectorMap: IDictionaryStringTo<TSelectorValue>;
     scanResult: ScanResults;
 }
 
+// tslint:disable-next-line:interface-name
 interface IScanUpdatePayload extends IScanBasePayload {
     results: ITabStopEvent[];
 }
 
+// tslint:disable-next-line:interface-name
 interface IScanBasePayload extends BaseActionPayload {
     testType: VisualizationType;
     key: string;
 }
 
+// tslint:disable-next-line:interface-name
 interface IAnalyzerConfiguration {
     key: string;
     testType: VisualizationType;
@@ -46,6 +51,7 @@ interface RuleAnalyzerConfiguration extends IAnalyzerConfiguration {
     telemetryProcessor: TelemetryProcessor<IAnalyzerTelemetryCallback>;
 }
 
+// tslint:disable-next-line:interface-name
 interface IFocusAnalyzerConfiguration extends IAnalyzerConfiguration {
     analyzerTerminatedMessageType: string;
     analyzerProgressMessageType: string;

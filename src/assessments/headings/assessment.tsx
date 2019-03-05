@@ -6,7 +6,7 @@ import { NewTabLink } from '../../common/components/new-tab-link';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { test as content } from '../../content/test';
 import { AssessmentBuilder } from '../assessment-builder';
-import { IAssessment } from '../types/iassessment';
+import { Assessment } from '../types/iassessment';
 import { HeadingFunction } from './test-steps/heading-function';
 import { HeadingLevel } from './test-steps/heading-level';
 import { NoMissingHeadings } from './test-steps/no-missing-headings';
@@ -42,7 +42,7 @@ const gettingStarted: JSX.Element = (
     </React.Fragment>
 );
 
-export const HeadingsAssessment: IAssessment = AssessmentBuilder.Assisted({
+export const HeadingsAssessment: Assessment = AssessmentBuilder.Assisted({
     key,
     type: VisualizationType.HeadingsAssessment,
     gettingStarted,

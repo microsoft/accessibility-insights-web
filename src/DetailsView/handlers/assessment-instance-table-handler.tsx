@@ -6,7 +6,7 @@ import * as React from 'react';
 
 import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import {
-    IAssessmentNavState,
+    AssessmentNavState,
     IGeneratedAssessmentInstance,
     IUserCapturedInstance,
 } from '../../common/types/store-data/iassessment-result-data';
@@ -59,7 +59,7 @@ export class AssessmentInstanceTableHandler {
 
     public createAssessmentInstanceTableItems(
         instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance>,
-        assessmentNavState: IAssessmentNavState,
+        assessmentNavState: AssessmentNavState,
         hasVisualHelper: boolean,
     ): IAssessmentInstanceRowData[] {
         const assessmentInstances = this.getInstanceKeys(instancesMap, assessmentNavState).map(key => {
@@ -76,7 +76,7 @@ export class AssessmentInstanceTableHandler {
 
     public getColumnConfigs(
         instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance>,
-        assessmentNavState: IAssessmentNavState,
+        assessmentNavState: AssessmentNavState,
         hasVisualHelper: boolean,
     ): IColumn[] {
         let allEnabled: boolean = true;
@@ -111,7 +111,7 @@ export class AssessmentInstanceTableHandler {
     }
 
     @autobind
-    private renderChoiceGroup(instance: IGeneratedAssessmentInstance, key: string, assessmentNavState: IAssessmentNavState): JSX.Element {
+    private renderChoiceGroup(instance: IGeneratedAssessmentInstance, key: string, assessmentNavState: AssessmentNavState): JSX.Element {
         const step = assessmentNavState.selectedTestStep;
         const test = assessmentNavState.selectedTestType;
         return (
@@ -128,11 +128,7 @@ export class AssessmentInstanceTableHandler {
     }
 
     @autobind
-    private renderSelectedButton(
-        instance: IGeneratedAssessmentInstance,
-        key: string,
-        assessmentNavState: IAssessmentNavState,
-    ): JSX.Element {
+    private renderSelectedButton(instance: IGeneratedAssessmentInstance, key: string, assessmentNavState: AssessmentNavState): JSX.Element {
         const step = assessmentNavState.selectedTestStep;
         const test = assessmentNavState.selectedTestType;
 
@@ -165,7 +161,7 @@ export class AssessmentInstanceTableHandler {
 
     private getInstanceKeys(
         instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance>,
-        assessmentNavState: IAssessmentNavState,
+        assessmentNavState: AssessmentNavState,
     ): string[] {
         return Object.keys(instancesMap).filter(key => {
             return instancesMap[key].testStepResults[assessmentNavState.selectedTestStep] != null;

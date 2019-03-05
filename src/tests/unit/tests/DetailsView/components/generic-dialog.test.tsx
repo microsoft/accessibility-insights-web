@@ -5,11 +5,11 @@ import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react/lib/Button'
 import Dialog from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
 
-import { GenericDialog, IGenericDialogProps } from '../../../../../DetailsView/components/generic-dialog';
+import { GenericDialog, GenericDialogProps } from '../../../../../DetailsView/components/generic-dialog';
 
 describe('GenericDialogTest', () => {
     it('should render', () => {
-        const props: IGenericDialogProps = {
+        const props: GenericDialogProps = {
             title: 'test title',
             onCancelButtonClick: () => {},
             onPrimaryButtonClick: () => {},
@@ -25,7 +25,7 @@ describe('GenericDialogTest', () => {
     it('should handle onDismiss properly', () => {
         const onDismissMock = jest.fn();
 
-        const props: IGenericDialogProps = {
+        const props: GenericDialogProps = {
             title: 'test title',
             onPrimaryButtonClick: null,
             onCancelButtonClick: onDismissMock,
@@ -42,7 +42,7 @@ describe('GenericDialogTest', () => {
     it('should handle onStartOver properly', () => {
         const onPrimaryButtonClickMock = jest.fn();
 
-        const props: IGenericDialogProps = {
+        const props: GenericDialogProps = {
             title: 'test title',
             onCancelButtonClick: null,
             onPrimaryButtonClick: onPrimaryButtonClickMock,
@@ -59,7 +59,7 @@ describe('GenericDialogTest', () => {
     it('should properly handle dialog dismiss', () => {
         const onCancelButtonClickMock = jest.fn();
 
-        const props: IGenericDialogProps = {
+        const props: GenericDialogProps = {
             title: 'test title',
             onPrimaryButtonClick: null,
             onCancelButtonClick: onCancelButtonClickMock,

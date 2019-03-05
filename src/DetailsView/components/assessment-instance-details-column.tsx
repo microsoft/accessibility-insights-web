@@ -4,7 +4,7 @@ import { TooltipHost } from 'office-ui-fabric-react/lib/Tooltip';
 import { css } from '@uifabric/utilities';
 import * as React from 'react';
 
-export interface IAssessmentInstanceDetailsColumnProps {
+export interface AssessmentInstanceDetailsColumnProps {
     labelText?: string;
     textContent: string;
     background: string;
@@ -12,7 +12,7 @@ export interface IAssessmentInstanceDetailsColumnProps {
     customClassName?: string;
 }
 
-export class AssessmentInstanceDetailsColumn extends React.Component<IAssessmentInstanceDetailsColumnProps> {
+export class AssessmentInstanceDetailsColumn extends React.Component<AssessmentInstanceDetailsColumnProps> {
     public render(): JSX.Element {
         const showLabel = !!this.props.labelText;
         const textContent = this.props.textContent;

@@ -23,7 +23,7 @@ import {
 } from '../injected/visualization-instance-processor';
 import { DrawerProvider } from '../injected/visualization/drawer-provider';
 import { DecoratedAxeNodeResult, ScannerUtils } from './../injected/scanner-utils';
-import { IAssessment, IAssistedAssessment, IManualAssessment } from './types/iassessment';
+import { Assessment, AssistedAssessment, ManualAssessment } from './types/iassessment';
 import { TestStep } from './types/test-step';
 import { ReportInstanceField } from './types/report-instance-field';
 
@@ -102,7 +102,7 @@ export class AssessmentBuilder {
         return step in scanAssessmentData.stepStatus && scanAssessmentData.stepStatus[step];
     }
 
-    public static Manual(assessment: IManualAssessment): IAssessment {
+    public static Manual(assessment: ManualAssessment): Assessment {
         const { key, steps } = assessment;
 
         assessment.requirementOrder = assessment.requirementOrder || RequirementComparer.byOrdinal;
@@ -158,10 +158,10 @@ export class AssessmentBuilder {
             getVisualizationConfiguration: () => visualizationConfiguration,
             requirementOrder: RequirementComparer.byOrdinal,
             ...assessment,
-        } as IAssessment;
+        } as Assessment;
     }
 
-    public static Assisted(assessment: IAssistedAssessment): IAssessment {
+    public static Assisted(assessment: AssistedAssessment): Assessment {
         const { key, steps } = assessment;
 
         assessment.requirementOrder = assessment.requirementOrder || RequirementComparer.byOrdinal;
@@ -235,7 +235,7 @@ export class AssessmentBuilder {
         return {
             getVisualizationConfiguration: () => visualizationConfiguration,
             ...assessment,
-        } as IAssessment;
+        } as Assessment;
     }
 
     private static getStepConfig(steps: TestStep[], testStep: string) {

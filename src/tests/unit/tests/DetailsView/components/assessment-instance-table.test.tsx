@@ -17,7 +17,7 @@ import { IAssessmentResultType, IGeneratedAssessmentInstance } from '../../../..
 import {
     AssessmentInstanceTable,
     IAssessmentInstanceRowData,
-    IAssessmentInstanceTableProps,
+    AssessmentInstanceTableProps,
 } from '../../../../../DetailsView/components/assessment-instance-table';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
 
@@ -56,7 +56,7 @@ describe('AssessmentInstanceTableTest', () => {
     it('render spinner', () => {
         const assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
 
-        const props: IAssessmentInstanceTableProps = getProps(
+        const props: AssessmentInstanceTableProps = getProps(
             null,
             assessmentInstanceTableHandlerMock.object,
             assessmentDefaultMessageGeneratorMock.object,
@@ -78,7 +78,7 @@ describe('AssessmentInstanceTableTest', () => {
         const assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
         expectedMessage = null;
 
-        const props: IAssessmentInstanceTableProps = getProps(
+        const props: AssessmentInstanceTableProps = getProps(
             {},
             assessmentInstanceTableHandlerMock.object,
             assessmentDefaultMessageGeneratorMock.object,
@@ -139,7 +139,7 @@ describe('AssessmentInstanceTableTest', () => {
         const assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler, MockBehavior.Strict);
         expectedMessage = null;
 
-        const props: IAssessmentInstanceTableProps = getProps(
+        const props: AssessmentInstanceTableProps = getProps(
             {},
             assessmentInstanceTableHandlerMock.object,
             assessmentDefaultMessageGeneratorMock.object,
@@ -245,7 +245,7 @@ describe('AssessmentInstanceTableTest', () => {
     it('onItemInvoked, updateFocusedTarget', () => {
         const assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
 
-        const props: IAssessmentInstanceTableProps = getProps(
+        const props: AssessmentInstanceTableProps = getProps(
             {},
             assessmentInstanceTableHandlerMock.object,
             assessmentDefaultMessageGeneratorMock.object,
@@ -273,7 +273,7 @@ describe('AssessmentInstanceTableTest', () => {
     it('passUnmarkedInstances', () => {
         const assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
 
-        const props: IAssessmentInstanceTableProps = getProps(
+        const props: AssessmentInstanceTableProps = getProps(
             {},
             assessmentInstanceTableHandlerMock.object,
             assessmentDefaultMessageGeneratorMock.object,
@@ -334,7 +334,7 @@ describe('AssessmentInstanceTableTest', () => {
             .returns(() => expectedMessage)
             .verifiable();
 
-        const props: IAssessmentInstanceTableProps = getProps(
+        const props: AssessmentInstanceTableProps = getProps(
             instancesMap,
             assessmentInstanceTableHandlerMock.object,
             assessmentDefaultMessageGeneratorMock.object,
@@ -351,7 +351,7 @@ describe('AssessmentInstanceTableTest', () => {
         assessmentInstanceTableHandler: AssessmentInstanceTableHandler,
         defaultMessageGeneratorMock: AssessmentDefaultMessageGenerator,
         defaultMessageMock: IGetMessageGenerator,
-    ): IAssessmentInstanceTableProps {
+    ): AssessmentInstanceTableProps {
         return {
             instancesMap: instancesMap,
             columnConfiguration: [],

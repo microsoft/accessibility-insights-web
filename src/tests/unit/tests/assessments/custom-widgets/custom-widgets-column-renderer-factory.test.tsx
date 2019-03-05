@@ -3,14 +3,14 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { IPropertyBagColumnRendererConfig } from '../../../../../assessments/common/property-bag-column-renderer';
+import { PropertyBagColumnRendererConfig } from '../../../../../assessments/common/property-bag-column-renderer';
 import { CustomWidgetsColumnRendererFactory } from '../../../../../assessments/custom-widgets/custom-widgets-column-renderer-factory';
 import { ColumnValueBag } from '../../../../../common/types/property-bag/column-value-bag';
 import { IAssessmentInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
 import { RendererWrapper } from '../common/renderer-wrapper';
 
 describe('CustomWidgetsColumnRendererFactory', () => {
-    let configs: IPropertyBagColumnRendererConfig<TestPropertyBag>[];
+    let configs: PropertyBagColumnRendererConfig<TestPropertyBag>[];
     let item: IAssessmentInstanceRowData<TestPropertyBag>;
 
     beforeEach(() => {

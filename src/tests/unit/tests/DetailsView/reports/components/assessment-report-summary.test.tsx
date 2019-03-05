@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import {
     AssessmentReportSummary,
-    IAssessmentReportSummaryProps,
+    AssessmentReportSummaryProps,
 } from '../../../../../../DetailsView/reports/components/assessment-report-summary';
 import { AssessmentSummaryDetails } from '../../../../../../DetailsView/reports/components/assessment-summary-details';
 import { OutcomeSummaryBar } from '../../../../../../DetailsView/reports/components/outcome-summary-bar';
@@ -12,11 +12,11 @@ import { OutcomeSummaryBar } from '../../../../../../DetailsView/reports/compone
 describe('AssessmentReportSummary', () => {
     describe('render', () => {
         test('Correct composition', () => {
-            const reportData: IAssessmentReportSummaryProps = {
+            const reportData: AssessmentReportSummaryProps = {
                 summary: {
                     reportSummaryDetailsData: [],
                 },
-            } as IAssessmentReportSummaryProps;
+            } as AssessmentReportSummaryProps;
 
             const expectedResult = (
                 <div className="assessment-report-summary">
@@ -31,7 +31,7 @@ describe('AssessmentReportSummary', () => {
         });
     });
 
-    function testRender(props: IAssessmentReportSummaryProps, expected: JSX.Element): void {
+    function testRender(props: AssessmentReportSummaryProps, expected: JSX.Element): void {
         const testObject = new AssessmentReportSummary(props);
         const actual = testObject.render();
 

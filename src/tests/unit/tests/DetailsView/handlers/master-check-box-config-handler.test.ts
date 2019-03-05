@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { Mock, Times } from 'typemoq';
 
-import { IAssessmentNavState } from '../../../../../common/types/store-data/iassessment-result-data';
+import { AssessmentNavState } from '../../../../../common/types/store-data/iassessment-result-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { MasterCheckBoxConfigProvider } from '../../../../../DetailsView/handlers/master-checkbox-config-provider';
@@ -10,7 +10,7 @@ import { MasterCheckBoxConfigProvider } from '../../../../../DetailsView/handler
 describe('MasterCheckBoxConfigProviderTest', () => {
     test('getMasterCheckBoxProperty: allEnabled = true', () => {
         const allEnabled = true;
-        const navState: IAssessmentNavState = {
+        const navState: AssessmentNavState = {
             selectedTestType: VisualizationType.HeadingsAssessment,
             selectedTestStep: '',
         };
@@ -33,7 +33,7 @@ describe('MasterCheckBoxConfigProviderTest', () => {
 
     test('getMasterCheckBoxProperty: allEnabled = false', () => {
         const allEnabled = false;
-        const navState: IAssessmentNavState = {
+        const navState: AssessmentNavState = {
             selectedTestType: VisualizationType.HeadingsAssessment,
             selectedTestStep: '',
         };

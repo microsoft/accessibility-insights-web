@@ -5,11 +5,11 @@ import { IAssessmentInstanceRowData } from '../../DetailsView/components/assessm
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { PropertyBagColumnRendererFactory } from '../common/property-bag-column-renderer-factory';
 import { ColumnValueBag } from '../../common/types/property-bag/column-value-bag';
-import { IPropertyBagColumnRendererConfig } from '../common/property-bag-column-renderer';
+import { PropertyBagColumnRendererConfig } from '../common/property-bag-column-renderer';
 
 export function customWidgetsColumnRenderer<TPropertyBag extends ColumnValueBag>(
     item: IAssessmentInstanceRowData<any>,
-    configs: IPropertyBagColumnRendererConfig<TPropertyBag>[],
+    configs: PropertyBagColumnRendererConfig<TPropertyBag>[],
     includeLink: boolean,
 ): JSX.Element {
     const mapDesignPatterns = (pattern: DesignPattern) => {

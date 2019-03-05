@@ -7,18 +7,18 @@ import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 
 import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
 
-export interface IBugButtonDeps {
+export interface BugButtonDeps {
     issueDetailsTextGenerator: IssueDetailsTextGenerator;
 }
-export interface IBugButtonProps {
-    deps: IBugButtonDeps;
+export interface BugButtonProps {
+    deps: BugButtonDeps;
     issueTrackerPath: string;
     pageTitle: string;
     pageUrl: string;
     nodeResult: DecoratedAxeNodeResult;
 }
 
-export class BugButton extends React.Component<IBugButtonProps> {
+export class BugButton extends React.Component<BugButtonProps> {
     private issueUrl(title: string, body: string): string {
         const encodedIssue = `/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
         return `${this.props.issueTrackerPath}${encodedIssue}`;

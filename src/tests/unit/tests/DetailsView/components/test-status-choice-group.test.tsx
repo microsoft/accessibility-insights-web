@@ -7,7 +7,7 @@ import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';
 
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
-import { ITestStatusChoiceGroupProps, TestStatusChoiceGroup } from '../../../../../DetailsView/components/test-status-choice-group';
+import { TestStatusChoiceGroupProps, TestStatusChoiceGroup } from '../../../../../DetailsView/components/test-status-choice-group';
 
 describe('TestStatusChoiceGroup', () => {
     const options = [
@@ -16,7 +16,7 @@ describe('TestStatusChoiceGroup', () => {
     ];
 
     test('constructor', () => {
-        const props: ITestStatusChoiceGroupProps = {
+        const props: TestStatusChoiceGroupProps = {
             test: 1,
             step: 'step',
             selector: 'selector',
@@ -30,7 +30,7 @@ describe('TestStatusChoiceGroup', () => {
     });
 
     test('componentDidUpdate: props have not changed', () => {
-        const props: ITestStatusChoiceGroupProps = {
+        const props: TestStatusChoiceGroupProps = {
             test: 1,
             step: 'step',
             selector: 'selector',
@@ -45,7 +45,7 @@ describe('TestStatusChoiceGroup', () => {
     });
 
     test('componentDidUpdate: props have changed', () => {
-        const props: ITestStatusChoiceGroupProps = {
+        const props: TestStatusChoiceGroupProps = {
             test: 1,
             step: 'step',
             selector: 'selector',
@@ -56,14 +56,14 @@ describe('TestStatusChoiceGroup', () => {
         };
         const component = shallow(<TestStatusChoiceGroup {...props} />).instance() as TestStatusChoiceGroup;
         component.setState({ selectedKey: 'PASS' });
-        component.componentDidUpdate({ status: ManualTestStatus.PASS } as ITestStatusChoiceGroupProps);
+        component.componentDidUpdate({ status: ManualTestStatus.PASS } as TestStatusChoiceGroupProps);
         expect(component.state).toMatchObject({ selectedKey: 'FAIL' });
     });
 
     test('render', () => {
         const onGroupChoiceChangeMock = Mock.ofInstance((status, test, step, selector) => {});
         const onUndoMock = Mock.ofInstance((test, step, selector) => {});
-        const props: ITestStatusChoiceGroupProps = {
+        const props: TestStatusChoiceGroupProps = {
             test: 1,
             step: 'step',
             selector: 'selector',
@@ -79,9 +79,9 @@ describe('TestStatusChoiceGroup', () => {
     });
 
     test('render: selectedKey is set to UNKNOWN as status is UNKNOWN', () => {
-        const props: ITestStatusChoiceGroupProps = {
+        const props: TestStatusChoiceGroupProps = {
             status: ManualTestStatus.UNKNOWN,
-        } as ITestStatusChoiceGroupProps;
+        } as TestStatusChoiceGroupProps;
 
         const actual = shallow(<TestStatusChoiceGroup {...props} />);
 
@@ -89,9 +89,9 @@ describe('TestStatusChoiceGroup', () => {
     });
 
     test('render: selectedKey is not set to undefined as status is PASS', () => {
-        const props: ITestStatusChoiceGroupProps = {
+        const props: TestStatusChoiceGroupProps = {
             status: ManualTestStatus.PASS,
-        } as ITestStatusChoiceGroupProps;
+        } as TestStatusChoiceGroupProps;
 
         const actual = shallow(<TestStatusChoiceGroup {...props} />);
 
@@ -101,7 +101,7 @@ describe('TestStatusChoiceGroup', () => {
     test('verify onChange', () => {
         const onGroupChoiceChangeMock = Mock.ofInstance((status, test, step, selector) => {});
         const onUndoMock = Mock.ofInstance((test, step, selector) => {});
-        const props: ITestStatusChoiceGroupProps = {
+        const props: TestStatusChoiceGroupProps = {
             test: 1,
             step: 'step',
             selector: 'selector',
@@ -123,7 +123,7 @@ describe('TestStatusChoiceGroup', () => {
         const focusMock = Mock.ofInstance(() => {});
         const onGroupChoiceChangeMock = Mock.ofInstance((status, test, step, selector) => {});
         const onUndoMock = Mock.ofInstance((test, step, selector) => {});
-        const props: ITestStatusChoiceGroupProps = {
+        const props: TestStatusChoiceGroupProps = {
             test: 1,
             step: 'step',
             selector: 'selector',

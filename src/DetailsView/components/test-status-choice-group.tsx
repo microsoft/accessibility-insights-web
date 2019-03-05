@@ -10,7 +10,7 @@ import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { isEqual } from 'lodash';
 
-export interface ITestStatusChoiceGroupProps {
+export interface TestStatusChoiceGroupProps {
     test: VisualizationType;
     step: string;
     selector?: string;
@@ -25,7 +25,7 @@ interface ChoiceGroupState {
     selectedKey: string;
 }
 
-export class TestStatusChoiceGroup extends React.Component<ITestStatusChoiceGroupProps, ChoiceGroupState> {
+export class TestStatusChoiceGroup extends React.Component<TestStatusChoiceGroupProps, ChoiceGroupState> {
     protected _choiceGroup: IChoiceGroup;
 
     constructor(props) {
@@ -33,7 +33,7 @@ export class TestStatusChoiceGroup extends React.Component<ITestStatusChoiceGrou
         this.state = { selectedKey: ManualTestStatus[this.props.status] };
     }
 
-    public componentDidUpdate(prevProps: Readonly<ITestStatusChoiceGroupProps>): void {
+    public componentDidUpdate(prevProps: Readonly<TestStatusChoiceGroupProps>): void {
         if (isEqual(prevProps, this.props) === false) {
             this.setState(() => ({ selectedKey: ManualTestStatus[this.props.status] }));
         }

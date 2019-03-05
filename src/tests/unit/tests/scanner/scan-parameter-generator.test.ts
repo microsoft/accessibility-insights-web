@@ -4,7 +4,7 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { ScanOptions } from '../../../../scanner/exposed-apis';
 import { AxeOptions } from '../../../../scanner/launcher';
-import { IRuleWithA11YCriteria, RuleSifter } from '../../../../scanner/rule-sifter';
+import { RuleWithA11YCriteria, RuleSifter } from '../../../../scanner/rule-sifter';
 import { ScanParamaterGenerator } from '../../../../scanner/scan-parameter-generator';
 
 describe('ScanParamaterGenerator', () => {
@@ -16,7 +16,7 @@ describe('ScanParamaterGenerator', () => {
     });
 
     describe('getAxeEngineOptions', () => {
-        let siftedRulesStub: IRuleWithA11YCriteria[];
+        let siftedRulesStub: RuleWithA11YCriteria[];
         let mockSifter: IMock<RuleSifter>;
         let testObject: ScanParamaterGenerator;
 

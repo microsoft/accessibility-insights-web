@@ -5,12 +5,12 @@ import { autobind } from '@uifabric/utilities';
 import { CheckType } from './details-dialog';
 import { Label } from 'office-ui-fabric-react/lib/Label';
 
-export interface IFixInstructionPanelProps {
+export interface FixInstructionPanelProps {
     checkType: CheckType;
     checks: FormattedCheckResult[];
 }
 
-export class FixInstructionPanel extends React.Component<IFixInstructionPanelProps, any> {
+export class FixInstructionPanel extends React.Component<FixInstructionPanelProps, any> {
     public render(): JSX.Element {
         if (this.props.checks.length === 0) {
             return null;

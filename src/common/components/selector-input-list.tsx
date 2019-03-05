@@ -12,7 +12,7 @@ import { DefaultButton, IconButton } from 'office-ui-fabric-react/lib/Button';
 import { ScopingInputTypes } from '../../background/scoping-input-types';
 import { InspectMode } from '../../background/inspect-modes';
 
-export interface ISelectorInputListProps {
+export interface SelectorInputListProps {
     title: string;
     subtitle: string;
     items: ISingleElementSelector[];
@@ -29,7 +29,7 @@ export interface SelectorInputListState {
     value: string;
 }
 
-export class SelectorInputList extends React.Component<ISelectorInputListProps, SelectorInputListState> {
+export class SelectorInputList extends React.Component<SelectorInputListProps, SelectorInputListState> {
     private textField: ITextField;
     private emptyStringInitialValue = '';
 
@@ -41,7 +41,7 @@ export class SelectorInputList extends React.Component<ISelectorInputListProps, 
         };
     }
 
-    public componentDidUpdate(previousProps: ISelectorInputListProps) {
+    public componentDidUpdate(previousProps: SelectorInputListProps) {
         const shouldUpdateState = !_.isEqual(this.props, previousProps);
 
         if (shouldUpdateState) {

@@ -5,12 +5,12 @@ import * as renderer from 'react-test-renderer';
 
 import {
     AssessmentReportFooter,
-    IAssessmentReportFooterProps,
+    AssessmentReportFooterProps,
 } from '../../../../../../DetailsView/reports/components/assessment-report-footer';
 
 describe('AssessmentReportFooter', () => {
     it('renders', () => {
-        const props: IAssessmentReportFooterProps = {
+        const props: AssessmentReportFooterProps = {
             extensionVersion: 'test-extension-version',
             axeVersion: 'axeVersion',
             chromeVersion: 'chromeVersion',

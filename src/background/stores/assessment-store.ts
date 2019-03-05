@@ -14,7 +14,7 @@ import { IScanBasePayload, IScanCompletedPayload, IScanUpdatePayload } from '../
 import { SelectTestStepPayload, UpdateVisibilityPayload } from '../actions/action-payloads';
 import { AssessmentDataConverter } from '../assessment-data-converter';
 import { InitialAssessmentStoreDataGenerator } from '../intial-assessment-store-data-generator';
-import { IAssessment } from './../../assessments/types/iassessment';
+import { Assessment } from './../../assessments/types/iassessment';
 import {
     IAssessmentData,
     IGeneratedAssessmentInstance,

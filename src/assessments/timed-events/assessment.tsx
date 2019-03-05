@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { VisualizationType } from '../../common/types/visualization-type';
 import { AssessmentBuilder } from '../assessment-builder';
-import { IAssessment } from '../types/iassessment';
+import { Assessment } from '../types/iassessment';
 import { AudioControl } from './test-steps/audio-control';
 import { AutoUpdatingContent } from './test-steps/auto-updating-content';
 import { MovingContent } from './test-steps/moving-content';
@@ -26,7 +26,7 @@ const timedEventAssessmentGettingStarted: JSX.Element = (
     </React.Fragment>
 );
 
-export const TimedEventsAssessment: IAssessment = AssessmentBuilder.Manual({
+export const TimedEventsAssessment: Assessment = AssessmentBuilder.Manual({
     key,
     title: timedEventsAssessmentTitle,
     gettingStarted: timedEventAssessmentGettingStarted,

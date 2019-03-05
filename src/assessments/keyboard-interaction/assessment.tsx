@@ -6,7 +6,7 @@ import { NewTabLink } from '../../common/components/new-tab-link';
 import { Messages } from '../../common/messages';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { AssessmentBuilder } from '../assessment-builder';
-import { IAssessment } from '../types/iassessment';
+import { Assessment } from '../types/iassessment';
 import { KeyboardNavigation } from './test-steps/keyboard-navigation';
 import { NoKeyboardTraps } from './test-steps/no-keyboard-traps';
 import { NoKeystrokeTiming } from './test-steps/no-keystroke-timings';
@@ -35,7 +35,7 @@ const keyboardInteractionGettingStarted: JSX.Element = (
     </React.Fragment>
 );
 
-export const KeyboardInteraction: IAssessment = AssessmentBuilder.Assisted({
+export const KeyboardInteraction: Assessment = AssessmentBuilder.Assisted({
     key,
     title: keyboardInteractionTitle,
     gettingStarted: keyboardInteractionGettingStarted,

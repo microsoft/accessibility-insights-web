@@ -8,7 +8,7 @@ import { AssessmentTestResult } from '../../common/assessment/assessment-test-re
 import { CollapsibleComponent } from '../../common/components/collapsible-component';
 import { reactExtensionPoint } from '../../common/extensibility/react-extension-point';
 import { ITab } from '../../common/itab';
-import { IAssessmentData, IAssessmentNavState, PersistedTabInfo } from '../../common/types/store-data/iassessment-result-data';
+import { IAssessmentData, AssessmentNavState, PersistedTabInfo } from '../../common/types/store-data/iassessment-result-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { ContentLink, ContentLinkDeps } from '../../views/content/content-link';
 import { ContentPageComponent } from '../../views/content/content-page';
@@ -32,11 +32,11 @@ export type AssessmentViewDeps = ContentLinkDeps &
         assessmentsProvider: IAssessmentsProvider;
     };
 
-export interface IAssessmentViewProps {
+export interface AssessmentViewProps {
     deps: AssessmentViewDeps;
     isScanning: boolean;
     isEnabled: boolean;
-    assessmentNavState: IAssessmentNavState;
+    assessmentNavState: AssessmentNavState;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
     assessmentData: IAssessmentData;
     currentTarget: ITab;
@@ -45,12 +45,12 @@ export interface IAssessmentViewProps {
     assessmentTestResult: AssessmentTestResult;
 }
 
-export class AssessmentView extends React.Component<IAssessmentViewProps> {
+export class AssessmentView extends React.Component<AssessmentViewProps> {
     public static readonly requirementsTitle: string = 'Requirements';
 
     private deps: AssessmentViewDeps;
 
-    constructor(props: IAssessmentViewProps) {
+    constructor(props: AssessmentViewProps) {
         super(props);
         this.deps = props.deps;
         this.state = {
@@ -80,7 +80,7 @@ export class AssessmentView extends React.Component<IAssessmentViewProps> {
         this.enableSelectedStepVisualHelper();
     }
 
-    public componentDidUpdate(prevProps: IAssessmentViewProps): void {
+    public componentDidUpdate(prevProps: AssessmentViewProps): void {
         if (this.isStepSwitched(prevProps)) {
             this.disableVisualHelpersForTest(prevProps.assessmentNavState.selectedTestType);
             this.enableSelectedStepVisualHelper();
@@ -110,7 +110,7 @@ export class AssessmentView extends React.Component<IAssessmentViewProps> {
         return this.props.prevTarget != null && this.props.prevTarget.id !== this.props.currentTarget.id;
     }
 
-    private isStepSwitched(prevProps: IAssessmentViewProps): boolean {
+    private isStepSwitched(prevProps: AssessmentViewProps): boolean {
         return prevProps.assessmentNavState.selectedTestStep !== this.props.assessmentNavState.selectedTestStep;
     }
 

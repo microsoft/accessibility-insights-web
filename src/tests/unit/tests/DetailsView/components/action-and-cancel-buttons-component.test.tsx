@@ -5,18 +5,18 @@ import * as React from 'react';
 
 import {
     ActionAndCancelButtonsComponent,
-    IActionAndCancelButtonsComponentProps,
+    ActionAndCancelButtonsComponentProps,
 } from '../../../../../DetailsView/components/action-and-cancel-buttons-component';
 
 describe('ActionAndCancelButtonsComponent', () => {
     test('constructor', () => {
-        expect(new ActionAndCancelButtonsComponent({} as IActionAndCancelButtonsComponentProps)).toBeDefined();
+        expect(new ActionAndCancelButtonsComponent({} as ActionAndCancelButtonsComponentProps)).toBeDefined();
     });
 
     test('render', () => {
         const primaryButtonOnClickStub = () => {};
         const cancelButtonOnClickStub = () => {};
-        const props: IActionAndCancelButtonsComponentProps = {
+        const props: ActionAndCancelButtonsComponentProps = {
             isHidden: false,
             primaryButtonDisabled: false,
             primaryButtonText: 'Test',

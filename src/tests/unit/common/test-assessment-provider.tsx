@@ -4,7 +4,7 @@ import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
 import { AssessmentsProvider } from '../../../assessments/assessments-provider';
-import { IAssessment } from '../../../assessments/types/iassessment';
+import { Assessment } from '../../../assessments/types/iassessment';
 import { RequirementComparer } from '../../../common/assessment/requirement-comparer';
 import { IAssesssmentVisualizationConfiguration } from '../../../common/configs/visualization-configuration-factory';
 import { FeatureFlags } from '../../../common/feature-flags';
@@ -21,7 +21,7 @@ const content = {
 
 export const contentProvider = ContentPage.provider(content);
 
-const assessmentWithColumns: IAssessment = {
+const assessmentWithColumns: Assessment = {
     key: 'assessment-1',
     type: -1 as VisualizationType,
     title: 'assessment 1',
