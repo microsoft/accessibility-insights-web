@@ -51,7 +51,7 @@ describe('HeaderContextualMenu', () => {
         });
     });
 
-    describe('menu items activation', () => {
+    describe('user interaction', () => {
         let testObject: ReactWrapper;
         const eventStubFactory = new EventStubFactory();
         const event = eventStubFactory.createMouseClickEvent() as any;

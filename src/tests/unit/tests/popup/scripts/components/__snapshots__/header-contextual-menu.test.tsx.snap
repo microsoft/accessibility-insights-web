@@ -50,6 +50,7 @@ exports[`HeaderContextualMenu render with newAssessmentExperience off 1`] = `
       },
     ]
   }
+  onDismiss={[Function]}
   shouldFocusOnMount={true}
 />
 `;
@@ -104,6 +105,7 @@ exports[`HeaderContextualMenu render with newAssessmentExperience on 1`] = `
       },
     ]
   }
+  onDismiss={[Function]}
   shouldFocusOnMount={true}
 />
 `;

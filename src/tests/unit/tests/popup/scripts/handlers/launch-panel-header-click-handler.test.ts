@@ -66,6 +66,7 @@ describe('FeedbackMenuClickHandlerTest', () => {
         const deps: LaunchPanelHeaderDeps = {
             popupActionMessageCreator: null,
             dropdownClickHandler: null,
+            launchPanelHeaderClickHandler: null,
         };
 
         const props: LaunchPanelHeaderProps = {
@@ -100,6 +101,7 @@ describe('FeedbackMenuClickHandlerTest', () => {
         const deps: LaunchPanelHeaderDeps = {
             popupActionMessageCreator: null,
             dropdownClickHandler: null,
+            launchPanelHeaderClickHandler: null,
         };
 
         const props: LaunchPanelHeaderProps = {
@@ -128,6 +130,7 @@ describe('FeedbackMenuClickHandlerTest', () => {
         const deps: LaunchPanelHeaderDeps = {
             popupActionMessageCreator: null,
             dropdownClickHandler: null,
+            launchPanelHeaderClickHandler: null,
         };
 
         const props: LaunchPanelHeaderProps = {

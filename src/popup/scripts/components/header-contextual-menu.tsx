@@ -104,6 +104,7 @@ export const HeaderContextualMenu = NamedSFC<HeaderContextualMenuProps>('HeaderC
             className="popup-menu"
             shouldFocusOnMount={true}
             target={props.target}
+            onDismiss={event => launchPanelHeaderClickHandler.onDismissFeedbackMenu(header, event)}
             directionalHint={getRTL() ? DirectionalHint.bottomRightEdge : DirectionalHint.bottomLeftEdge}
             items={items}
         />

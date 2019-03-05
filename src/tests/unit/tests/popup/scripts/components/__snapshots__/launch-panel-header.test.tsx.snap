@@ -54,57 +54,132 @@ exports[`LaunchPanelHeaderTest render contextual menu renders with new assessmen
       id="feedback-collapse-menu-button"
       onClick={[Function]}
     />
-    <StyledWithResponsiveMode
-      className="popup-menu"
-      directionalHint={4}
-      items={
-        Array [
-          Object {
-            "iconProps": Object {
-              "iconName": "Rocket",
-            },
-            "key": "fast-pass",
-            "name": "FastPass",
-            "onClick": [Function],
-          },
-          Object {
-            "iconProps": Object {
-              "iconName": "testBeakerSolid",
-            },
-            "key": "assessment",
-            "name": "Assessment",
-            "onClick": [Function],
-          },
-          Object {
-            "iconProps": Object {
-              "iconName": "Medical",
-            },
-            "key": "ad-hoc-tools",
-            "name": "Ad hoc tools",
-            "onClick": [Function],
-          },
-          Object {
-            "itemType": 1,
-            "key": "divider_1",
-          },
-          Object {
-            "key": "modify-shortcuts",
-            "name": "Keyboard shortcuts",
-            "onClick": [Function],
-          },
-          Object {
-            "data": "https://go.microsoft.com/fwlink/?linkid=2077937",
-            "iconProps": Object {
-              "iconName": "Unknown",
-            },
-            "key": "help",
-            "name": "Help",
-            "onClick": [Function],
-          },
-        ]
+    <HeaderContextualMenu
+      deps={
+        Object {
+          "dropdownClickHandler": Object {},
+          "launchPanelHeaderClickHandler": Object {},
+          "popupActionMessageCreator": Object {},
+        }
       }
-      onDismiss={[Function]}
-      shouldFocusOnMount={true}
+      featureFlags={
+        Object {
+          "newAssessmentExperience": true,
+        }
+      }
+      header={
+        LaunchPanelHeader {
+          "context": Object {},
+          "props": Object {
+            "clickhandler": Object {},
+            "deps": Object {
+              "dropdownClickHandler": Object {},
+              "launchPanelHeaderClickHandler": Object {},
+              "popupActionMessageCreator": Object {},
+            },
+            "dropdownClickHandler": Object {},
+            "featureFlags": Object {
+              "newAssessmentExperience": true,
+            },
+            "openAdhocToolsPanel": [Function],
+            "openFeedbackDialog": Object {},
+            "openGettingStartedDialog": Object {},
+            "popupWindow": Object {},
+            "subtitle": "test subtitle",
+            "supportLinkHandler": Object {},
+            "title": "test title",
+          },
+          "refs": Object {},
+          "setState": [Function],
+          "state": Object {
+            "isContextMenuVisible": true,
+            "target": "test-target",
+          },
+          "updater": Updater {
+            "_callbacks": Array [],
+            "_renderer": ReactShallowRenderer {
+              "_context": Object {},
+              "_element": <LaunchPanelHeader
+                clickhandler={Object {}}
+                deps={
+                  Object {
+                    "dropdownClickHandler": Object {},
+                    "launchPanelHeaderClickHandler": Object {},
+                    "popupActionMessageCreator": Object {},
+                  }
+                }
+                dropdownClickHandler={Object {}}
+                featureFlags={
+                  Object {
+                    "newAssessmentExperience": true,
+                  }
+                }
+                openAdhocToolsPanel={[Function]}
+                openFeedbackDialog={Object {}}
+                openGettingStartedDialog={Object {}}
+                popupWindow={Object {}}
+                subtitle="test subtitle"
+                supportLinkHandler={Object {}}
+                title="test title"
+              />,
+              "_forcedUpdate": false,
+              "_instance": [Circular],
+              "_newState": Object {
+                "isContextMenuVisible": true,
+                "target": "test-target",
+              },
+              "_rendered": <Header
+                rowExtraClassName="header-title"
+                subtitle="test subtitle"
+                title="test title"
+              >
+                <div
+                  className="ms-Grid-col ms-u-sm2 feedback-collapseMenuButton-col"
+                >
+                  <GearOptionsButtonComponent
+                    dropdownClickHandler={Object {}}
+                    featureFlags={
+                      Object {
+                        "newAssessmentExperience": true,
+                      }
+                    }
+                  />
+                  <CustomizedIconButton
+                    ariaLabel="Help and Feedback menu"
+                    iconProps={
+                      Object {
+                        "iconName": "GlobalNavButton",
+                      }
+                    }
+                    id="feedback-collapse-menu-button"
+                    onClick={[Function]}
+                  />
+                  <HeaderContextualMenu
+                    deps={
+                      Object {
+                        "dropdownClickHandler": Object {},
+                        "launchPanelHeaderClickHandler": Object {},
+                        "popupActionMessageCreator": Object {},
+                      }
+                    }
+                    featureFlags={
+                      Object {
+                        "newAssessmentExperience": true,
+                      }
+                    }
+                    header={[Circular]}
+                    popupWindow={Object {}}
+                    target="test-target"
+                  />
+                </div>
+              </Header>,
+              "_rendering": false,
+              "_updater": [Circular],
+            },
+          },
+        }
+      }
+      popupWindow={Object {}}
       target="test-target"
     />
   </div>
@@ -134,57 +209,114 @@ exports[`LaunchPanelHeaderTest render contextual menu renders without new assess
       id="feedback-collapse-menu-button"
       onClick={[Function]}
     />
-    <StyledWithResponsiveMode
-      className="popup-menu"
-      directionalHint={4}
-      items={
-        Array [
-          Object {
-            "iconProps": Object {
-              "iconName": "Rocket",
-            },
-            "key": "fast-pass",
-            "name": "FastPass",
-            "onClick": [Function],
-          },
-          Object {
-            "iconProps": Object {
-              "iconName": "testBeakerSolid",
-            },
-            "key": "full-assessment",
-            "name": "Full Assessment",
-            "onClick": [Function],
-          },
-          Object {
-            "iconProps": Object {
-              "iconName": "Medical",
-            },
-            "key": "ad-hoc-tools",
-            "name": "Ad hoc tools",
-            "onClick": [Function],
-          },
-          Object {
-            "itemType": 1,
-            "key": "divider_1",
-          },
-          Object {
-            "key": "modify-shortcuts",
-            "name": "Keyboard shortcuts",
-            "onClick": [Function],
-          },
-          Object {
-            "data": "https://go.microsoft.com/fwlink/?linkid=2077937",
-            "iconProps": Object {
-              "iconName": "Unknown",
-            },
-            "key": "help",
-            "name": "Help",
-            "onClick": [Function],
-          },
-        ]
+    <HeaderContextualMenu
+      deps={
+        Object {
+          "dropdownClickHandler": Object {},
+          "launchPanelHeaderClickHandler": Object {},
+          "popupActionMessageCreator": Object {},
+        }
       }
-      onDismiss={[Function]}
-      shouldFocusOnMount={true}
+      featureFlags={Object {}}
+      header={
+        LaunchPanelHeader {
+          "context": Object {},
+          "props": Object {
+            "clickhandler": Object {},
+            "deps": Object {
+              "dropdownClickHandler": Object {},
+              "launchPanelHeaderClickHandler": Object {},
+              "popupActionMessageCreator": Object {},
+            },
+            "dropdownClickHandler": Object {},
+            "featureFlags": Object {},
+            "openAdhocToolsPanel": [Function],
+            "openFeedbackDialog": Object {},
+            "openGettingStartedDialog": Object {},
+            "popupWindow": Object {},
+            "subtitle": "test subtitle",
+            "supportLinkHandler": Object {},
+            "title": "test title",
+          },
+          "refs": Object {},
+          "setState": [Function],
+          "state": Object {
+            "isContextMenuVisible": true,
+            "target": "test-target",
+          },
+          "updater": Updater {
+            "_callbacks": Array [],
+            "_renderer": ReactShallowRenderer {
+              "_context": Object {},
+              "_element": <LaunchPanelHeader
+                clickhandler={Object {}}
+                deps={
+                  Object {
+                    "dropdownClickHandler": Object {},
+                    "launchPanelHeaderClickHandler": Object {},
+                    "popupActionMessageCreator": Object {},
+                  }
+                }
+                dropdownClickHandler={Object {}}
+                featureFlags={Object {}}
+                openAdhocToolsPanel={[Function]}
+                openFeedbackDialog={Object {}}
+                openGettingStartedDialog={Object {}}
+                popupWindow={Object {}}
+                subtitle="test subtitle"
+                supportLinkHandler={Object {}}
+                title="test title"
+              />,
+              "_forcedUpdate": false,
+              "_instance": [Circular],
+              "_newState": Object {
+                "isContextMenuVisible": true,
+                "target": "test-target",
+              },
+              "_rendered": <Header
+                rowExtraClassName="header-title"
+                subtitle="test subtitle"
+                title="test title"
+              >
+                <div
+                  className="ms-Grid-col ms-u-sm2 feedback-collapseMenuButton-col"
+                >
+                  <GearOptionsButtonComponent
+                    dropdownClickHandler={Object {}}
+                    featureFlags={Object {}}
+                  />
+                  <CustomizedIconButton
+                    ariaLabel="Help and Feedback menu"
+                    iconProps={
+                      Object {
+                        "iconName": "GlobalNavButton",
+                      }
+                    }
+                    id="feedback-collapse-menu-button"
+                    onClick={[Function]}
+                  />
+                  <HeaderContextualMenu
+                    deps={
+                      Object {
+                        "dropdownClickHandler": Object {},
+                        "launchPanelHeaderClickHandler": Object {},
+                        "popupActionMessageCreator": Object {},
+                      }
+                    }
+                    featureFlags={Object {}}
+                    header={[Circular]}
+                    popupWindow={Object {}}
+                    target="test-target"
+                  />
+                </div>
+              </Header>,
+              "_rendering": false,
+              "_updater": [Circular],
+            },
+          },
+        }
+      }
+      popupWindow={Object {}}
       target="test-target"
     />
   </div>
