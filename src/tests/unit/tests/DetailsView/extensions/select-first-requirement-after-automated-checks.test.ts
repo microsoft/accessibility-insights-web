@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
-import { IAssessmentViewProps } from '../../../../../DetailsView/components/assessment-view';
+import { AssessmentViewProps } from '../../../../../DetailsView/components/assessment-view';
 import { selectFirstRequirementAfterAutomatedChecks } from '../../../../../DetailsView/extensions/select-first-requirement-after-automated-checks';
 
 describe('selectFirstRequirementAfterAutomatedChecks', () => {
@@ -24,7 +24,7 @@ describe('selectFirstRequirementAfterAutomatedChecks', () => {
             getRequirementResults,
             type,
         },
-    } as Partial<IAssessmentViewProps>) as IAssessmentViewProps;
+    } as Partial<AssessmentViewProps>) as AssessmentViewProps;
 
     const notScanningProps = ({
         deps: {
@@ -35,7 +35,7 @@ describe('selectFirstRequirementAfterAutomatedChecks', () => {
             getRequirementResults,
             type,
         },
-    } as Partial<IAssessmentViewProps>) as IAssessmentViewProps;
+    } as Partial<AssessmentViewProps>) as AssessmentViewProps;
 
     beforeEach(() => {
         actionMessageCreator.selectTestStep.mockClear();

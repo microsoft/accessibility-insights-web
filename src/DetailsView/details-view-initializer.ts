@@ -9,6 +9,7 @@ import { assessmentsProviderWithFeaturesEnabled } from '../assessments/assessmen
 import { ChromeAdapter } from '../background/browser-adapter';
 import { IssueDetailsTextGenerator } from '../background/issue-details-text-generator';
 import { A11YSelfValidator } from '../common/a11y-self-validator';
+import { AxeInfo } from '../common/axe-info';
 import { BugClickHandler } from '../common/bug-click-handler';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DateProvider } from '../common/date-provider';
@@ -232,6 +233,13 @@ if (isNaN(tabId) === false) {
                 );
                 documentTitleUpdater.initialize();
 
+                const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
+                const issueDetailsTextGenerator = new IssueDetailsTextGenerator(
+                    chromeAdapter.extensionVersion,
+                    browserSpec,
+                    AxeInfo.Default.version,
+                );
+
                 const deps: DetailsViewContainerDeps = {
                     dropdownClickHandler,
                     bugClickHandler,
@@ -241,7 +249,7 @@ if (isNaN(tabId) === false) {
                     assessmentsProvider: Assessments,
                     actionInitiators,
                     assessmentDefaultMessageGenerator: assessmentDefaultMessageGenerator,
-                    issueDetailsTextGenerator: new IssueDetailsTextGenerator(new NavigatorUtils(window.navigator).getBrowserSpec()),
+                    issueDetailsTextGenerator,
                     windowUtils: new WindowUtils(),
                     getAssessmentSummaryModelFromProviderAndStoreData: getAssessmentSummaryModelFromProviderAndStoreData,
                     getAssessmentSummaryModelFromProviderAndStatusData: getAssessmentSummaryModelFromProviderAndStatusData,

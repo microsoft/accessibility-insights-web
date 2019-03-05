@@ -3,11 +3,11 @@
 import * as _ from 'lodash';
 import * as React from 'react';
 
-import { IVisualHelperToggleConfig } from '../../assessments/types/test-step';
+import { VisualHelperToggleConfig } from '../../assessments/types/test-step';
 import { VisualizationToggle } from '../../common/components/visualization-toggle';
 import { IGeneratedAssessmentInstance } from '../../common/types/store-data/iassessment-result-data';
 
-export abstract class BaseVisualHelperToggle extends React.Component<IVisualHelperToggleConfig> {
+export abstract class BaseVisualHelperToggle extends React.Component<VisualHelperToggleConfig> {
     public render(): JSX.Element {
         const filteredInstances = this.filterInstancesByTestStep(this.props.assessmentNavState, this.props.instancesMap);
         const isDisabled: boolean = this.isDisabled(filteredInstances);

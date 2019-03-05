@@ -11,9 +11,9 @@ import { FeatureFlagStoreData } from '../../../../../../common/types/store-data/
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
 import { PopupActionMessageCreator } from '../../../../../../popup/scripts/actions/popup-action-message-creator';
 import {
-    ILaunchPanelHeaderProps,
     LaunchPanelHeader,
     LaunchPanelHeaderDeps,
+    LaunchPanelHeaderProps,
 } from '../../../../../../popup/scripts/components/launch-panel-header';
 import { LaunchPanelHeaderClickHandler } from '../../../../../../popup/scripts/handlers/launch-panel-header-click-handler';
 import { SupportLinkHandler } from '../../../../../../popup/support-link-handler';
@@ -21,7 +21,7 @@ import { EventStubFactory } from '../../../../common/event-stub-factory';
 
 describe('LaunchPanelHeaderTest', () => {
     const eventStubFactory = new EventStubFactory();
-    let props: ILaunchPanelHeaderProps;
+    let props: LaunchPanelHeaderProps;
 
     beforeEach(() => {
         const deps: LaunchPanelHeaderDeps = {

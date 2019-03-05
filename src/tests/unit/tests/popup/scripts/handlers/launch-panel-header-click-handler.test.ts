@@ -3,9 +3,9 @@
 import { It, Mock, Times } from 'typemoq';
 
 import {
-    ILaunchPanelHeaderProps,
     LaunchPanelHeader,
     LaunchPanelHeaderDeps,
+    LaunchPanelHeaderProps,
 } from '../../../../../../popup/scripts/components/launch-panel-header';
 import { LaunchPanelHeaderClickHandler } from '../../../../../../popup/scripts/handlers/launch-panel-header-click-handler';
 
@@ -68,7 +68,7 @@ describe('FeedbackMenuClickHandlerTest', () => {
             dropdownClickHandler: null,
         };
 
-        const props: ILaunchPanelHeaderProps = {
+        const props: LaunchPanelHeaderProps = {
             deps: deps,
             title: 'title',
             subtitle: 'subtitle',
@@ -102,7 +102,7 @@ describe('FeedbackMenuClickHandlerTest', () => {
             dropdownClickHandler: null,
         };
 
-        const props: ILaunchPanelHeaderProps = {
+        const props: LaunchPanelHeaderProps = {
             deps: deps,
             title: 'title',
             subtitle: 'subtitle',
@@ -130,7 +130,7 @@ describe('FeedbackMenuClickHandlerTest', () => {
             dropdownClickHandler: null,
         };
 
-        const props: ILaunchPanelHeaderProps = {
+        const props: LaunchPanelHeaderProps = {
             deps: deps,
             title: 'title',
             subtitle: 'subtitle',

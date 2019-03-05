@@ -4,6 +4,7 @@ import { AxeResultsWithFrameLevel, IAssessmentVisualizationInstance } from '../f
 import { FailureInstanceFormatter } from './failure-instance-formatter';
 import { IDrawerConfiguration, IFormatter } from './iformatter';
 
+// tslint:disable-next-line:interface-name
 export interface IFrameStyleConfiguration {
     borderColor: string;
     fontColor: string;

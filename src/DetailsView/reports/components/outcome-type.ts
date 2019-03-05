@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { countBy, values } from 'lodash';
 
-import { IManualTestStatus, ManualTestStatus } from '../../../common/types/manual-test-status';
+import { ManualTestStatus, ManualTestStatusData } from '../../../common/types/manual-test-status';
 
 export type OutcomeType = 'pass' | 'incomplete' | 'fail';
 
@@ -34,7 +34,7 @@ export const outcomeTypeSemantics: { [OT in OutcomeType]: OutcomeTypeSemantic } 
 
 export type OutcomeStats = { [OT in OutcomeType]: number };
 
-export function outcomeStatsFromManualTestStatus(testStepStatus: IManualTestStatus): OutcomeStats {
+export function outcomeStatsFromManualTestStatus(testStepStatus: ManualTestStatusData): OutcomeStats {
     const outcomeTypeSet = values(testStepStatus).map(s => outcomeTypeFromTestStatus(s.stepFinalResult));
     const stats = countBy(outcomeTypeSet) as OutcomeStats;
     stats.pass = stats.pass || 0;

@@ -3,6 +3,7 @@
 import { Action } from '../../common/flux/action';
 import { BaseActionPayload } from './action-payloads';
 
+// tslint:disable-next-line:interface-name
 export interface IScopingPayload extends BaseActionPayload {
     inputType: string;
     selector: string[];

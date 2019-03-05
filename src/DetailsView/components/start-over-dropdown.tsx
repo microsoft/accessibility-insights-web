@@ -10,21 +10,21 @@ import { GenericDialog } from './generic-dialog';
 
 type DialogState = 'none' | 'assessment' | 'test';
 
-export interface IStartOverState {
+export interface StartOverState {
     isContextMenuVisible: boolean;
     target?: HTMLElement | string | MouseEvent | IPoint | null;
     dialogState: DialogState;
 }
 
-export interface IStartOverProps {
+export interface StartOverProps {
     testName: string;
     actionMessageCreator: DetailsViewActionMessageCreator;
     test: VisualizationType;
     requirementKey: string;
 }
 
-export class StartOverDropdown extends React.Component<IStartOverProps, IStartOverState> {
-    constructor(props: IStartOverProps) {
+export class StartOverDropdown extends React.Component<StartOverProps, StartOverState> {
+    constructor(props: StartOverProps) {
         super(props);
 
         this.state = {

@@ -9,7 +9,7 @@ import { FeatureFlags } from '../../common/feature-flags';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 
-export interface ITabInfoProps {
+export interface TabInfoProps {
     isTargetPageHidden: boolean;
     url: string;
     title: string;
@@ -19,7 +19,7 @@ export interface ITabInfoProps {
     dropdownClickHandler: DropdownClickHandler;
 }
 
-export class TabInfo extends React.Component<ITabInfoProps> {
+export class TabInfo extends React.Component<TabInfoProps> {
     public render(): JSX.Element {
         return (
             <div>

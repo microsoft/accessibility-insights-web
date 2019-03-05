@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { ColumnValue, ColumnValueBag, isScalarColumnValue } from '../../common/types/property-bag/column-value-bag';
 import { TestStepInstance } from '../../common/types/store-data/iassessment-result-data';
-import { IPropertyBagColumnRendererConfig } from '../common/property-bag-column-renderer';
+import { PropertyBagColumnRendererConfig } from '../common/property-bag-column-renderer';
 
 export type ReportInstanceField = {
     key: string;
@@ -58,10 +58,10 @@ function isValid(value: ColumnValue): ColumnValue {
     return true;
 }
 
-function fromColumns<T extends ColumnValueBag>(cfg: IPropertyBagColumnRendererConfig<T>[]) {
+function fromColumns<T extends ColumnValueBag>(cfg: PropertyBagColumnRendererConfig<T>[]) {
     return cfg.map(fromColumnConfig);
 
-    function fromColumnConfig({ propertyName, defaultValue, displayName }: IPropertyBagColumnRendererConfig<T>): ReportInstanceField {
+    function fromColumnConfig({ propertyName, defaultValue, displayName }: PropertyBagColumnRendererConfig<T>): ReportInstanceField {
         const getValue = (inst: HasPropertyBag<T>) => {
             const value = inst.propertyBag && inst.propertyBag[propertyName];
             return isValid(value) ? value : defaultValue;

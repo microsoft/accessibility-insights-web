@@ -7,17 +7,17 @@ import { InsightsConfiguration, InsightsConfigurationOptions } from './configura
 
 const globalVariableName = 'insights';
 
-interface IConfigAccessor {
+interface ConfigAccessor {
     readonly config: InsightsConfiguration;
     getOption<K extends keyof InsightsConfigurationOptions>(name: K);
 }
 
-interface IConfigMutator extends IConfigAccessor {
-    reset(): IConfigMutator;
-    setOption<K extends keyof InsightsConfigurationOptions>(name: K, value: InsightsConfigurationOptions[K]): IConfigMutator;
+interface ConfigMutator extends ConfigAccessor {
+    reset(): ConfigMutator;
+    setOption<K extends keyof InsightsConfigurationOptions>(name: K, value: InsightsConfigurationOptions[K]): ConfigMutator;
 }
 
-class Configuration implements IConfigAccessor, IConfigMutator {
+class Configuration implements ConfigAccessor, ConfigMutator {
     public set config(value: InsightsConfiguration) {
         window[globalVariableName] = value;
     }
@@ -25,7 +25,7 @@ class Configuration implements IConfigAccessor, IConfigMutator {
         return (window[globalVariableName] = defaultsDeep(window[globalVariableName], defaults));
     }
 
-    public reset(): IConfigMutator {
+    public reset(): ConfigMutator {
         this.config = null;
         return this;
     }
@@ -42,5 +42,5 @@ class Configuration implements IConfigAccessor, IConfigMutator {
 
 const accessor = new Configuration();
 
-export const config = accessor as IConfigAccessor;
-export const configMutator = accessor as IConfigMutator;
+export const config = accessor as ConfigAccessor;
+export const configMutator = accessor as ConfigMutator;

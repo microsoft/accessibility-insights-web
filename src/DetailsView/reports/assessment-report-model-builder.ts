@@ -3,7 +3,7 @@
 import * as _ from 'lodash/index';
 
 import { AssessmentDefaultMessageGenerator, DefaultMessageInterface } from '../../assessments/assessment-default-message-generator';
-import { IAssessment } from '../../assessments/types/iassessment';
+import { Assessment } from '../../assessments/types/iassessment';
 import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { IAssessmentData, IAssessmentStoreData, TestStepInstance } from '../../common/types/store-data/iassessment-result-data';
@@ -18,7 +18,7 @@ import {
 } from './assessment-report-model';
 import { getAssessmentSummaryModelFromResults } from './get-assessment-summary-model';
 
-type AssessmentResult = IAssessment & { storeData: IAssessmentData };
+type AssessmentResult = Assessment & { storeData: IAssessmentData };
 
 export class AssessmentReportModelBuilder {
     constructor(

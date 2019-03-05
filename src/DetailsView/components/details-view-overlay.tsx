@@ -12,12 +12,12 @@ import { ContentPanel, ContentPanelDeps, ContentPanelProps } from '../../views/c
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { PreviewFeatureFlagsHandler } from '../handlers/preview-feature-flags-handler';
 import { PreviewFeaturesPanel, PreviewFeaturesPanelProps } from './preview-features-panel';
-import { IScopingPanelProps, ScopingPanel } from './scoping-panel';
+import { ScopingPanel, ScopingPanelProps } from './scoping-panel';
 import { SettingsPanel, SettingsPanelDeps, SettingsPanelProps } from './settings-panel';
 
 export type DetailsViewOverlayDeps = ContentPanelDeps & SettingsPanelDeps;
 
-export interface IDetailsViewOverlayProps {
+export interface DetailsViewOverlayProps {
     deps: DetailsViewOverlayDeps;
     actionMessageCreator: DetailsViewActionMessageCreator;
     detailsViewStoreData: IDetailsViewData;
@@ -29,7 +29,7 @@ export interface IDetailsViewOverlayProps {
     userConfigurationStoreData: UserConfigurationStoreData;
 }
 
-export class DetailsViewOverlay extends React.Component<IDetailsViewOverlayProps> {
+export class DetailsViewOverlay extends React.Component<DetailsViewOverlayProps> {
     public render() {
         return (
             <React.Fragment>
@@ -78,7 +78,7 @@ export class DetailsViewOverlay extends React.Component<IDetailsViewOverlayProps
     }
 
     private getScopingPanel(): JSX.Element {
-        const scopingProps: IScopingPanelProps = {
+        const scopingProps: ScopingPanelProps = {
             actionMessageCreator: this.props.actionMessageCreator,
             featureFlagData: this.props.featureFlagStoreData,
             isOpen: this.props.detailsViewStoreData.currentPanel.isScopingOpen,

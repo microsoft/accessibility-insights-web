@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { Action } from '../../common/flux/action';
 
+// tslint:disable-next-line:interface-name
 export interface IGetCommandsPayload {
     commands: chrome.commands.Command[];
     tabId: number;

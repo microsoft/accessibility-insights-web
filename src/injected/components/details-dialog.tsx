@@ -33,7 +33,7 @@ export type DetailsDialogDeps = CopyIssueDetailsButtonDeps &
         clientBrowserAdapter: ClientBrowserAdapter;
     };
 
-export interface IDetailsDialogProps {
+export interface DetailsDialogProps {
     deps: DetailsDialogDeps;
     userConfigStore: IBaseStore<UserConfigurationStoreData>;
     elementSelector: string;
@@ -46,14 +46,14 @@ export interface IDetailsDialogProps {
     devToolsShortcut: string;
 }
 
-export interface IDetailsDialogState {
+export interface DetailsDialogState {
     showDialog: boolean;
     currentRuleIndex: number;
     canInspect: boolean;
     issueTrackerPath: string;
 }
 
-export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetailsDialogState> {
+export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDialogState> {
     private onHideDialog: () => void;
     public onClickInspectButton: (ev) => void;
     private onLayoutDidMount: () => void;
@@ -63,7 +63,7 @@ export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetails
     public isNextButtonDisabled: () => boolean;
     public isInspectButtonDisabled: () => boolean;
 
-    constructor(props: IDetailsDialogProps) {
+    constructor(props: DetailsDialogProps) {
         super(props);
 
         this.onHideDialog = () => {
@@ -160,6 +160,7 @@ export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetails
                 onOpenSettings={this.props.deps.targetPageActionMessageCreator.openSettingsPanel}
                 issueDetailsData={issueData}
                 issueTrackerPath={this.state.issueTrackerPath}
+                restoreFocus={false}
             />
         );
     }

@@ -73,6 +73,14 @@ div.insights-dialog-main-override {
 
 div.insights-file-issue-details-dialog-container {
     max-width: 370px;
+
+    .ms-Dialog-content p {
+        margin-block-start: 4px;
+    }
+
+    .ms-Dialog-actions {
+        margin-top: 24px;
+    }
 }
 
 .insights-code {
@@ -106,9 +114,21 @@ div.insights-file-issue-details-dialog-container {
         color: $secondary-text;
     }
 
-    .ms-ChoiceFieldGroup .ms-Label {
-        font-size: 16px;
-        font-weight: bold;
+    h3 {
+        font-size: 17px;
+        margin-block-end: 8px;
+    }
+
+    .issue-setting {
+        .ms-Label {
+            color: $neutral-100;
+            padding-top: 8px;
+            padding-bottom: 8px;
+        }
+
+        .ms-TextField-field {
+            color: $neutral-100;
+        }
     }
 }
 
@@ -1219,10 +1239,13 @@ div.insights-file-issue-details-dialog-container {
                         font-size: 21px;
                         display: inline-block;
                     }
-                    .copy-issue-details-button,
+                    .copy-issue-details-button {
+                        vertical-align: baseline;
+                        margin-left: 24px;
+                    }
                     .create-bug-button {
                         vertical-align: baseline;
-                        margin-left: 16px;
+                        margin-left: 8px;
                     }
                     .issue-detail-table {
                         width: 100%;

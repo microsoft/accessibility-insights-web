@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { head, isEmpty, pick } from 'lodash/index';
+import { head, isEmpty, pick } from 'lodash';
 
-import { IAssessment } from '../assessments/types/iassessment';
+import { Assessment } from '../assessments/types/iassessment';
 import { TestStep } from '../assessments/types/test-step';
-import { IManualTestStatus, ManualTestStatus } from '../common/types/manual-test-status';
+import { ManualTestStatus, ManualTestStatusData } from '../common/types/manual-test-status';
 import {
     IAssessmentData,
     IAssessmentStoreData,
@@ -15,11 +15,11 @@ import {
     RequirementIdToResultMap,
 } from '../common/types/store-data/iassessment-result-data';
 import { IAssessmentsProvider } from './../assessments/types/iassessments-provider';
-import { ITestStepData } from './../common/types/manual-test-status';
+import { TestStepData } from './../common/types/manual-test-status';
 
 export class InitialAssessmentStoreDataGenerator {
-    private readonly NULL_FIRST_TEST: Partial<Readonly<IAssessment>> = { type: null, steps: [{ key: null }] as TestStep[] };
-    private tests: ReadonlyArray<Readonly<IAssessment>>;
+    private readonly NULL_FIRST_TEST: Partial<Readonly<Assessment>> = { type: null, steps: [{ key: null }] as TestStep[] };
+    private tests: ReadonlyArray<Readonly<Assessment>>;
     private assessmentsProvider: IAssessmentsProvider;
 
     constructor(assessmentsProvider: IAssessmentsProvider) {
@@ -56,7 +56,7 @@ export class InitialAssessmentStoreDataGenerator {
         return assessmentData;
     }
 
-    private constructInitialDataForTest(test: Readonly<IAssessment>, persistedTest: IAssessmentData): IAssessmentData {
+    private constructInitialDataForTest(test: Readonly<Assessment>, persistedTest: IAssessmentData): IAssessmentData {
         const requirements = test.steps.map(val => val.key);
         const testData: IAssessmentData = this.getDefaultTestResult();
         const persistedRequirementsStatus = persistedTest && persistedTest.testStepStatus;
@@ -91,8 +91,8 @@ export class InitialAssessmentStoreDataGenerator {
         return map;
     }
 
-    private constructRequirementStatus(requirements: string[], persistedMap: IManualTestStatus): IManualTestStatus {
-        return this.constructMapFromRequirementTo<ITestStepData>(requirements, persistedMap, this.getDefaultRequirementStatus);
+    private constructRequirementStatus(requirements: string[], persistedMap: ManualTestStatusData): ManualTestStatusData {
+        return this.constructMapFromRequirementTo<TestStepData>(requirements, persistedMap, this.getDefaultRequirementStatus);
     }
 
     private constructManualRequirementResultMap(requirements: string[], persistedMap: RequirementIdToResultMap): RequirementIdToResultMap {
@@ -120,7 +120,7 @@ export class InitialAssessmentStoreDataGenerator {
         return { fullAxeResultsMap: null, generatedAssessmentInstancesMap: null, manualTestStepResultMap: {}, testStepStatus: {} };
     }
 
-    private getDefaultRequirementStatus(): ITestStepData {
+    private getDefaultRequirementStatus(): TestStepData {
         return { stepFinalResult: ManualTestStatus.UNKNOWN, isStepScanned: false };
     }
 

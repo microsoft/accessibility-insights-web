@@ -3,6 +3,7 @@
 import { CheckboxVisibility, ConstrainMode, DetailsList } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 import { Mock } from 'typemoq';
+
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { IManualTestStepResult } from '../../../../../common/types/store-data/iassessment-result-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
@@ -10,7 +11,7 @@ import {
     CapturedInstanceActionType,
     FailureInstancePanelControl,
 } from '../../../../../DetailsView/components/failure-instance-panel-control';
-import { IManualTestStepViewProps, ManualTestStepView } from '../../../../../DetailsView/components/manual-test-step-view';
+import { ManualTestStepView, ManualTestStepViewProps } from '../../../../../DetailsView/components/manual-test-step-view';
 import { TestStatusChoiceGroup } from '../../../../../DetailsView/components/test-status-choice-group';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
 import { CreateTestAssessmentProvider } from '../../../common/test-assessment-provider';
@@ -18,7 +19,7 @@ import { CreateTestAssessmentProvider } from '../../../common/test-assessment-pr
 describe('ManualTestStepView', () => {
     test('constructor: default', () => {
         const assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
-        const props: IManualTestStepViewProps = {
+        const props: ManualTestStepViewProps = {
             step: 'step',
             test: VisualizationType.HeadingsAssessment,
             assessmentInstanceTableHandler: assessmentInstanceTableHandlerMock.object,
@@ -57,7 +58,7 @@ describe('ManualTestStepView', () => {
         const assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
         const cols = [];
 
-        const props: IManualTestStepViewProps = {
+        const props: ManualTestStepViewProps = {
             step: 'step',
             test: VisualizationType.HeadingsAssessment,
             status: ManualTestStatus.FAIL,

@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IAssessment } from '../../../../../assessments/types/iassessment';
+import { Assessment } from '../../../../../assessments/types/iassessment';
 import { IAssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
-import { ITestStepData, ManualTestStatus } from '../../../../../common/types/manual-test-status';
+import { ManualTestStatus, TestStepData } from '../../../../../common/types/manual-test-status';
 import { IAssessmentStoreData } from '../../../../../common/types/store-data/iassessment-result-data';
 import { IOverviewSummaryReportModel } from '../../../../../DetailsView/reports/assessment-report-model';
 import {
@@ -13,10 +13,10 @@ import {
     getAssessmentSummaryModelFromResults,
 } from '../../../../../DetailsView/reports/get-assessment-summary-model';
 
-type IAssessmentSubsetForSummary = Pick<IAssessment, 'title' | 'key'>;
+type IAssessmentSubsetForSummary = Pick<Assessment, 'title' | 'key'>;
 
 describe('getAssessmentSummaryModel', () => {
-    const sampleTestStepData: { [key: string]: ITestStepData } = {
+    const sampleTestStepData: { [key: string]: TestStepData } = {
         pass: {
             stepFinalResult: ManualTestStatus.PASS,
             isStepScanned: true,

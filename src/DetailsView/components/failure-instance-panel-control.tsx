@@ -12,7 +12,7 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { ActionAndCancelButtonsComponent } from './action-and-cancel-buttons-component';
 import { GenericPanel, GenericPanelProps } from './generic-panel';
 
-export interface IFailureInstancePanelControlProps {
+export interface FailureInstancePanelControlProps {
     step: string;
     test: VisualizationType;
     addFailureInstance?: (description, test, step) => void;
@@ -23,7 +23,7 @@ export interface IFailureInstancePanelControlProps {
     assessmentsProvider: IAssessmentsProvider;
 }
 
-export interface IFailureInstancePanelControlState {
+export interface FailureInstancePanelControlState {
     isPanelOpen: boolean;
     failureDescription: string;
 }
@@ -33,7 +33,7 @@ export enum CapturedInstanceActionType {
     CREATE,
 }
 
-export class FailureInstancePanelControl extends React.Component<IFailureInstancePanelControlProps, IFailureInstancePanelControlState> {
+export class FailureInstancePanelControl extends React.Component<FailureInstancePanelControlProps, FailureInstancePanelControlState> {
     private static readonly addFailureInstanceLabel: string = 'Add a failure instance';
 
     constructor(props) {

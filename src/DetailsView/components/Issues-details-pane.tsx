@@ -75,6 +75,7 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
                 onOpenSettings={this.props.deps.bugClickHandler.openSettingsPanelHandler}
                 issueDetailsData={issueData}
                 issueTrackerPath={this.props.issueTrackerPath}
+                restoreFocus={true}
             />
         );
     }

@@ -8,7 +8,7 @@ import { EnumHelper } from '../../common/enum-helper';
 import { ITab } from '../../common/itab';
 import { StoreNames } from '../../common/stores/store-names';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
-import { IAssessmentScanData, ITestsEnabledState, IVisualizationStoreData } from '../../common/types/store-data/ivisualization-store-data';
+import { IAssessmentScanData, IVisualizationStoreData, TestsEnabledState } from '../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import {
     AssessmentToggleActionPayload,
@@ -58,7 +58,7 @@ export class VisualizationStore extends BaseStore<IVisualizationStoreData> {
     }
 
     public getDefaultState(): IVisualizationStoreData {
-        const tests: ITestsEnabledState = {
+        const tests: TestsEnabledState = {
             adhoc: {},
             assessments: {},
         };

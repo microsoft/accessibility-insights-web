@@ -5,7 +5,7 @@ import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
 
 import { IAssessmentsProvider } from '../../../../../../assessments/types/iassessments-provider';
-import { IManualTestStatus, ManualTestStatus } from '../../../../../../common/types/manual-test-status';
+import { ManualTestStatus, ManualTestStatusData } from '../../../../../../common/types/manual-test-status';
 import {
     AssessmentLeftNav,
     AssessmentLeftNavDeps,
@@ -22,7 +22,7 @@ describe('AssessmentLeftNav', () => {
     let leftNavLinkBuilderMock: IMock<LeftNavLinkBuilder>;
     let navLinkHandlerMock: NavLinkHandler;
     let assessmentsProviderStub: IAssessmentsProvider;
-    let assessmentsDataStub: IDictionaryStringTo<IManualTestStatus>;
+    let assessmentsDataStub: IDictionaryStringTo<ManualTestStatusData>;
 
     beforeEach(() => {
         assessmentsDataStub = {};

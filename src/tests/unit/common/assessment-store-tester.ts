@@ -5,13 +5,13 @@ import { IMock, It, Times } from 'typemoq';
 import { IndexedDBDataKeys } from '../../../background/IndexedDBDataKeys';
 import { BaseStore } from '../../../background/stores/base-store';
 import { IndexedDBAPI } from '../../../common/indexedDB/indexedDB';
-import { IDefaultConstructor } from '../../../common/types/idefault-constructor';
+import { DefaultConstructor } from '../../../common/types/idefault-constructor';
 import { StoreTester } from './store-tester';
 
 export class AssessmentStoreTester<TStoreData, TActions> extends StoreTester<TStoreData, TActions> {
     private indexDbMock: IMock<IndexedDBAPI>;
     constructor(
-        actions: IDefaultConstructor<TActions>,
+        actions: DefaultConstructor<TActions>,
         actionName: keyof TActions,
         storeFactory: (actions) => BaseStore<TStoreData>,
         indexDbMock: any,

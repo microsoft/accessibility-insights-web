@@ -7,11 +7,13 @@ import { AxeResultsWithFrameLevel, IAssessmentVisualizationInstance } from '../f
 import { FailureInstanceFormatter } from './failure-instance-formatter';
 import { IDrawerConfiguration, IFormatter } from './iformatter';
 
+// tslint:disable-next-line:interface-name
 export interface IHeadingStyleConfiguration {
     borderColor: string;
     fontColor: string;
 }
 
+// tslint:disable-next-line:interface-name
 export interface IStyleComputer {
     getComputedStyle(elt: Element, pseudoElt?: string): CSSStyleDeclaration;
 }

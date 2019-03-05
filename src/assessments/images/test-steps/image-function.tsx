@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { IPropertyBagColumnRendererConfig } from '../../../assessments/common/property-bag-column-renderer';
+import { PropertyBagColumnRendererConfig } from '../../../assessments/common/property-bag-column-renderer';
 import { IImageFunctionPropertyBag } from '../../../common/types/property-bag/iimage-function';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
@@ -48,7 +48,7 @@ const howToTest: JSX.Element = (
 
 const key = ImagesTestStep.imageFunction;
 
-const propertyBagConfig: IPropertyBagColumnRendererConfig<IImageFunctionPropertyBag>[] = [
+const propertyBagConfig: PropertyBagColumnRendererConfig<IImageFunctionPropertyBag>[] = [
     {
         propertyName: 'imageType',
         displayName: 'Image type',

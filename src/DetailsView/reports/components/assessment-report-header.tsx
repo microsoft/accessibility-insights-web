@@ -7,12 +7,12 @@ import { NewTabLink } from '../../../common/components/new-tab-link';
 import { productName } from '../../../content/strings/application';
 import { BrandWhite } from '../../../icons/brand/white/brand-white';
 
-export interface IAssessmentReportHeaderProps {
+export interface AssessmentReportHeaderProps {
     targetPageUrl: string;
     targetPageTitle: string;
 }
 
-export class AssessmentReportHeader extends React.Component<IAssessmentReportHeaderProps> {
+export class AssessmentReportHeader extends React.Component<AssessmentReportHeaderProps> {
     public render(): JSX.Element {
         return (
             <header>

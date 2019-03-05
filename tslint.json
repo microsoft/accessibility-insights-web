@@ -5,7 +5,6 @@
     "rules": {
         "forin": true,
         "indent": [true, "spaces"],
-        "interface-name": [true, "never-prefix"],
         "max-classes-per-file": [true, 2],
         "max-line-length": [true, 140],
         "no-default-export": true,

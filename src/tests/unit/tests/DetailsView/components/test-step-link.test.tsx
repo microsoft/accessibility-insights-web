@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
-import { ITestStepLinkProps, TestStepLink } from '../../../../../DetailsView/components/test-step-link';
+import { TestStepLink, TestStepLinkProps } from '../../../../../DetailsView/components/test-step-link';
 
 describe('TestStepLink', () => {
     it('renders with index', () => {
@@ -15,7 +15,7 @@ describe('TestStepLink', () => {
             index: 5,
             forceAnchor: true,
         };
-        const props: ITestStepLinkProps = {
+        const props: TestStepLinkProps = {
             link: link,
             status: ManualTestStatus.PASS,
             renderRequirementDescription: testStepLink => testStepLink.renderRequirementDescriptionWithIndex(),
@@ -34,7 +34,7 @@ describe('TestStepLink', () => {
             index: 17,
             forceAnchor: true,
         };
-        const props: ITestStepLinkProps = {
+        const props: TestStepLinkProps = {
             link: link,
             status: ManualTestStatus.PASS,
             renderRequirementDescription: testStepLink => testStepLink.renderRequirementDescriptionWithoutIndex(),

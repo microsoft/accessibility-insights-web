@@ -5,7 +5,7 @@ import * as React from 'react';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { test as content } from '../../content/test';
 import { AssessmentBuilder } from '../assessment-builder';
-import { IAssessment } from '../types/iassessment';
+import { Assessment } from '../types/iassessment';
 import { Contrast } from './test-steps/contrast';
 import { HighContrastMode } from './test-steps/high-contrast-mode';
 import { ResizeText } from './test-steps/resize-text';
@@ -29,7 +29,7 @@ const gettingStarted: JSX.Element = (
     </React.Fragment>
 );
 
-export const TextLegibilityAssessment: IAssessment = AssessmentBuilder.Assisted({
+export const TextLegibilityAssessment: Assessment = AssessmentBuilder.Assisted({
     key,
     type: VisualizationType.TextLegibility,
     title,

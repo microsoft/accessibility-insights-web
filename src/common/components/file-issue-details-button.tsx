@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
-import { Icon } from 'office-ui-fabric-react/lib/Icon';
-import { Link } from 'office-ui-fabric-react/lib/Link';
+import { DefaultButton, IButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
+
 import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { FileIssueDetailsHandler } from '../file-issue-details-handler';
@@ -21,6 +20,7 @@ export type FileIssueDetailsButtonProps = {
     onOpenSettings: (event: React.MouseEvent<HTMLElement>) => void;
     issueDetailsData: CreateIssueDetailsTextData;
     issueTrackerPath: string;
+    restoreFocus: boolean;
 };
 
 export type FileIssueDetailsButtonState = {
@@ -28,6 +28,7 @@ export type FileIssueDetailsButtonState = {
 };
 
 export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButtonProps, FileIssueDetailsButtonState> {
+    private button: React.RefObject<IButton> = React.createRef<IButton>();
     constructor(props: FileIssueDetailsButtonProps) {
         super(props);
         this.state = { showingFileIssueDialog: false };
@@ -63,9 +64,18 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
         this.closeDialog();
     }
 
+    private getSettingsPanel(): HTMLElement | null {
+        return document.querySelector('.ms-Panel-main');
+    }
+
     private renderOpenSettingsButton(): JSX.Element {
         return (
-            <DefaultButton iconProps={{ iconName: 'ladybugSolid' }} className={'create-bug-button'} onClick={this.openDialog}>
+            <DefaultButton
+                componentRef={this.button}
+                iconProps={{ iconName: 'ladybugSolid' }}
+                className={'create-bug-button'}
+                onClick={this.openDialog}
+            >
                 File issue
             </DefaultButton>
         );
@@ -74,6 +84,7 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
     private renderFileIssueButton(): JSX.Element {
         return (
             <DefaultButton
+                componentRef={this.button}
                 iconProps={{ iconName: 'ladybugSolid' }}
                 className={'create-bug-button'}
                 target="_blank"
@@ -92,7 +103,10 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
                 <FileIssueDetailsDialog
                     onOpenSettings={this.openSettings}
                     onDismiss={this.closeDialog}
+                    buttonRef={this.button}
                     isOpen={this.state.showingFileIssueDialog}
+                    restoreFocus={this.props.restoreFocus}
+                    getSettingsPanel={this.getSettingsPanel}
                     fileIssueDetailsHandler={new FileIssueDetailsHandler(new HTMLElementUtils())}
                 />
             </>

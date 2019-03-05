@@ -3,9 +3,9 @@
 import * as React from 'react';
 
 import { NamedSFC } from '../../common/react/named-sfc';
-import { DetailsViewCommandBar, IDetailsViewCommandBarProps } from './details-view-command-bar';
+import { DetailsViewCommandBar, DetailsViewCommandBarProps } from './details-view-command-bar';
 
-export type CommandBarProps = Pick<IDetailsViewCommandBarProps, Exclude<keyof IDetailsViewCommandBarProps, 'renderExportAndStartOver'>>;
+export type CommandBarProps = Pick<DetailsViewCommandBarProps, Exclude<keyof DetailsViewCommandBarProps, 'renderExportAndStartOver'>>;
 
 export const CommandBarWithExportAndStartOver = NamedSFC<CommandBarProps>('CommandBarWithExportAndStartOver', props => {
     return <DetailsViewCommandBar renderExportAndStartOver={true} {...props} />;

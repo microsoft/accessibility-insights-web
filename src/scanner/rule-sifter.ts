@@ -4,22 +4,22 @@ import { isEmpty } from 'lodash';
 import { HyperlinkDefinition } from '../views/content/content-page';
 import { IDictionaryStringTo } from './dictionary-types';
 
-export interface IRuleInfo {
+export interface RuleInfo {
     id: string;
     enabled: boolean;
 }
 
-export interface IRuleWithA11YCriteria {
+export interface RuleWithA11YCriteria {
     id: string;
     a11yCriteria: HyperlinkDefinition[];
 }
 
 export class RuleSifter {
     private readonly bestPracticeText = 'Best Practice';
-    constructor(private ruleSet: IRuleInfo[], private ruleToLinksMap: IDictionaryStringTo<HyperlinkDefinition[]>) {}
+    constructor(private ruleSet: RuleInfo[], private ruleToLinksMap: IDictionaryStringTo<HyperlinkDefinition[]>) {}
 
-    public getSiftedRules(): IRuleWithA11YCriteria[] {
-        return this.ruleSet.reduce((filteredArray: IRuleWithA11YCriteria[], rule: IRuleInfo) => {
+    public getSiftedRules(): RuleWithA11YCriteria[] {
+        return this.ruleSet.reduce((filteredArray: RuleWithA11YCriteria[], rule: RuleInfo) => {
             const ruleToLinks = this.ruleToLinksMap[rule.id];
 
             if (!isEmpty(ruleToLinks) && rule.enabled && ruleToLinks.find(elem => elem.text === this.bestPracticeText) == null) {

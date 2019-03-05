@@ -5,6 +5,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { IssueDetailsTextGenerator } from '../background/issue-details-text-generator';
+import { AxeInfo } from '../common/axe-info';
 import { ClientBrowserAdapter } from '../common/client-browser-adapter';
 import { FeatureFlags } from '../common/feature-flags';
 import { HTMLElementUtils } from '../common/html-element-utils';
@@ -75,8 +76,15 @@ export class DialogRenderer {
                 ? this.initializeDialogContainerInShadowDom()
                 : this.appendDialogContainer();
 
+            const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
+            const issueDetailsTextGenerator = new IssueDetailsTextGenerator(
+                this.clientBrowserAdapter.extensionVersion,
+                browserSpec,
+                AxeInfo.Default.version,
+            );
+
             const deps = {
-                issueDetailsTextGenerator: new IssueDetailsTextGenerator(new NavigatorUtils(window.navigator).getBrowserSpec()),
+                issueDetailsTextGenerator,
                 windowUtils: this.windowUtils,
                 targetPageActionMessageCreator: mainWindowContext.getTargetPageActionMessageCreator(),
                 clientBrowserAdapter: this.clientBrowserAdapter,

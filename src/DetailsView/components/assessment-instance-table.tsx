@@ -17,15 +17,15 @@ import * as React from 'react';
 import { AssessmentDefaultMessageGenerator } from '../../assessments/assessment-default-message-generator';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import {
-    IAssessmentNavState,
+    AssessmentNavState,
     IGeneratedAssessmentInstance,
     IUserCapturedInstance,
 } from '../../common/types/store-data/iassessment-result-data';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 
-export interface IAssessmentInstanceTableProps {
+export interface AssessmentInstanceTableProps {
     instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance>;
-    assessmentNavState: IAssessmentNavState;
+    assessmentNavState: AssessmentNavState;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
     renderInstanceTableHeader: (table: AssessmentInstanceTable, items: IAssessmentInstanceRowData[]) => JSX.Element;
     getDefaultMessage: Function;
@@ -33,18 +33,20 @@ export interface IAssessmentInstanceTableProps {
     hasVisualHelper: boolean;
 }
 
+// tslint:disable-next-line:interface-name
 export interface IAssessmentInstanceRowData<P = {}> extends IObjectWithKey {
     statusChoiceGroup: JSX.Element;
     visualizationButton?: JSX.Element;
     instance: IGeneratedAssessmentInstance<P>;
 }
 
+// tslint:disable-next-line:interface-name
 export interface ICapturedInstanceRowData extends IObjectWithKey {
     instance: IUserCapturedInstance;
     instanceActionButtons: JSX.Element;
 }
 
-export class AssessmentInstanceTable extends React.Component<IAssessmentInstanceTableProps> {
+export class AssessmentInstanceTable extends React.Component<AssessmentInstanceTableProps> {
     public render(): JSX.Element {
         if (this.props.instancesMap == null) {
             return <Spinner className="details-view-spinner" size={SpinnerSize.large} label={'Scanning'} />;

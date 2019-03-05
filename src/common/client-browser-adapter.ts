@@ -9,6 +9,7 @@ export interface ClientBrowserAdapter {
     connect(connectionInfo?: chrome.runtime.ConnectInfo): chrome.runtime.Port;
     sendMessageToFrames(message: any);
     getManifest(): chrome.runtime.Manifest;
+    extensionVersion: string;
 
     getUrl(urlPart: string): string;
 }
@@ -36,6 +37,10 @@ export class ClientChromeAdapter implements ClientBrowserAdapter {
 
     public getManifest(): chrome.runtime.Manifest {
         return chrome.runtime.getManifest();
+    }
+
+    public get extensionVersion(): string {
+        return this.getManifest().version;
     }
 
     public sendMessageToFrames(message: any) {

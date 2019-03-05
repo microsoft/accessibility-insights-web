@@ -8,7 +8,7 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { test as content } from '../../content/test';
 import { AssessmentBuilder } from '../assessment-builder';
 import * as Markup from '../markup';
-import { IAssessment } from '../types/iassessment';
+import { Assessment } from '../types/iassessment';
 import { Cues } from './test-steps/cues';
 import { DesignPattern } from './test-steps/design-pattern';
 import { Instructions } from './test-steps/instructions';
@@ -37,7 +37,7 @@ const gettingStarted: JSX.Element = (
     </React.Fragment>
 );
 
-export const CustomWidgets: IAssessment = AssessmentBuilder.Assisted({
+export const CustomWidgets: Assessment = AssessmentBuilder.Assisted({
     key,
     type: VisualizationType.CustomWidgets,
     title,

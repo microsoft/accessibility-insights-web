@@ -5,8 +5,8 @@ import * as _ from 'lodash';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
-import { IVisualHelperToggleConfig } from '../../../../../assessments/types/test-step';
-import { IVisualizationToggleProps, VisualizationToggle } from '../../../../../common/components/visualization-toggle';
+import { VisualHelperToggleConfig } from '../../../../../assessments/types/test-step';
+import { VisualizationToggle, VisualizationToggleProps } from '../../../../../common/components/visualization-toggle';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import {
     IAssessmentResultType,
@@ -92,8 +92,8 @@ describe('RestartScanVisualHelperToggleTest', () => {
     });
 
     function assertVisualizationToggle(
-        expectedProps: IVisualizationToggleProps,
-        visualizationToggle: Enzyme.ShallowWrapper<IVisualizationToggleProps>,
+        expectedProps: VisualizationToggleProps,
+        visualizationToggle: Enzyme.ShallowWrapper<VisualizationToggleProps>,
     ) {
         expect(visualizationToggle.exists()).toBe(true);
 
@@ -109,7 +109,7 @@ describe('RestartScanVisualHelperToggleTest', () => {
     }
 });
 
-export class VisualHelperToggleTestPropsBuilder extends BaseDataBuilder<IVisualHelperToggleConfig> {
+export class VisualHelperToggleTestPropsBuilder extends BaseDataBuilder<VisualHelperToggleConfig> {
     private stepKey = 'assessment-1-step-1';
     private otherKey = 'assessment-1-step-2';
     constructor() {
@@ -202,13 +202,13 @@ export class VisualHelperToggleTestPropsBuilder extends BaseDataBuilder<IVisualH
     }
 }
 
-export class VisualizationTogglePropsBuilder extends BaseDataBuilder<IVisualizationToggleProps> {
+export class VisualizationTogglePropsBuilder extends BaseDataBuilder<VisualizationToggleProps> {
     constructor() {
         super();
         this.data = {
             checked: false,
             disabled: false,
             visualizationName: null,
-        } as IVisualizationToggleProps;
+        } as VisualizationToggleProps;
     }
 }

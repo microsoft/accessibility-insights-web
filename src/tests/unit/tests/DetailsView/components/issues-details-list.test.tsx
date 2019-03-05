@@ -18,7 +18,7 @@ import { VisualizationType } from '../../../../../common/types/visualization-typ
 import { BugButton } from '../../../../../DetailsView/components/bug-button';
 import { FailureDetails } from '../../../../../DetailsView/components/failure-details';
 import { IssuesDetailsList, IssuesDetailsListProps } from '../../../../../DetailsView/components/issues-details-list';
-import { DetailsGroup, IDetailsRowData, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
+import { DetailsGroup, DetailsRowData, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { RuleResult } from '../../../../../scanner/iruleresults';
 import { VisualizationScanResultStoreDataBuilder } from '../../../common/visualization-scan-result-store-data-builder';
@@ -92,7 +92,7 @@ describe('IssuesDetailsListTest', () => {
         };
     }
 
-    function getSampleItems(showBugFiling = false): IDetailsRowData[] {
+    function getSampleItems(showBugFiling = false): DetailsRowData[] {
         const bugButtonProps = {
             deps: {
                 issueDetailsTextGenerator: null,
@@ -106,7 +106,7 @@ describe('IssuesDetailsListTest', () => {
             selector: 'testSelector',
             bugButton: showBugFiling ? <BugButton {...bugButtonProps} /> : null,
         };
-        return [rowData as IDetailsRowData, rowData as IDetailsRowData];
+        return [rowData as DetailsRowData, rowData as DetailsRowData];
     }
 
     function getSampleGroups(): DetailsGroup[] {
@@ -167,10 +167,10 @@ describe('IssuesDetailsListTest', () => {
         ];
     }
 
-    function testRendering(sampleItems: IDetailsRowData[], columns: IColumn[]) {
+    function testRendering(sampleItems: DetailsRowData[], columns: IColumn[]) {
         const sampleViolations: AxeRule[] = getSampleViolations();
         const sampleIdToRuleResultMap: IDictionaryStringTo<DecoratedAxeNodeResult> = getSampleIdToRuleResultMap();
-        const items: IDetailsRowData[] = sampleItems ? sampleItems : getSampleItems();
+        const items: DetailsRowData[] = sampleItems ? sampleItems : getSampleItems();
         const groups: DetailsGroup[] = getSampleGroups();
         const issuesData = new VisualizationScanResultStoreDataBuilder()
             .withScanResult(VisualizationType.Issues, {

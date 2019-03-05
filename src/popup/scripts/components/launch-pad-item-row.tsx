@@ -5,7 +5,7 @@ import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
 
-export interface ILaunchPadItemRowProps {
+export interface LaunchPadItemRowProps {
     title: string;
     iconName: string;
     description: string;
@@ -14,7 +14,7 @@ export interface ILaunchPadItemRowProps {
 
 const descriptionClassName = 'launch-pad-item-description';
 
-export class LaunchPadItemRow extends React.Component<ILaunchPadItemRowProps, undefined> {
+export class LaunchPadItemRow extends React.Component<LaunchPadItemRowProps, undefined> {
     private descriptionId = uniqueId(`${descriptionClassName}-`);
     public render(): JSX.Element {
         return (

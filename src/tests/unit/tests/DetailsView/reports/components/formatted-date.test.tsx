@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FormattedDate, IFormattedDateProps } from '../../../../../../DetailsView/reports/components/formatted-date';
+import { FormattedDate, FormattedDateProps } from '../../../../../../DetailsView/reports/components/formatted-date';
 
 describe('FormattedDate', () => {
     describe('render', () => {
@@ -17,7 +17,7 @@ describe('FormattedDate', () => {
             dateWithFakeTimeZone.toLocaleTimeString = () => {
                 return 'blah FTZ';
             };
-            const props: IFormattedDateProps = {
+            const props: FormattedDateProps = {
                 date: dateWithFakeTimeZone,
             };
             const testSubject = new FormattedDate(props);

@@ -10,7 +10,7 @@ import {
     IMessageGenerator,
 } from '../../../../assessments/assessment-default-message-generator';
 import { AssessmentsProvider } from '../../../../assessments/assessments-provider';
-import { IAssessment } from '../../../../assessments/types/iassessment';
+import { Assessment } from '../../../../assessments/types/iassessment';
 import { IAssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
 import { IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
 import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';
@@ -78,7 +78,7 @@ function setupGeneratorMockWithAssessmentData(
     messageGenerator: IMock<IMessageGenerator>,
     getDefaultMessageMock: IMock<IGetMessageGenerator>,
     assessmentStoreData: IAssessmentStoreData,
-    assessments: IAssessment[],
+    assessments: Assessment[],
     stubMessage: DefaultMessageInterface,
     assessmentDefaultMessageGeneratorMock: IMock<AssessmentDefaultMessageGenerator>,
 ): void {

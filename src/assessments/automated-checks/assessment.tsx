@@ -11,7 +11,7 @@ import { selectFirstRequirementAfterAutomatedChecks } from '../../DetailsView/ex
 import { waitForAllRequirementsToComplete } from '../../DetailsView/extensions/wait-for-all-requirements-to-complete';
 import { getDefaultRules } from '../../scanner/exposed-apis';
 import { AssessmentBuilder } from '../assessment-builder';
-import { IAssistedAssessment } from '../types/iassessment';
+import { AssistedAssessment } from '../types/iassessment';
 import { buildTestStepsFromRules } from './build-test-steps-from-rules';
 
 const { guidance } = content.automatedChecks;
@@ -22,7 +22,7 @@ const gettingStarted: JSX.Element = (
     </p>
 );
 
-const config: IAssistedAssessment = {
+const config: AssistedAssessment = {
     key: 'automated-checks',
     title: 'Automated checks',
     storeDataKey: 'automatedChecks',
