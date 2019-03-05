@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
@@ -9,7 +10,6 @@ import ManualTestRecordYourResults from '../../common/manual-test-record-your-re
 import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
 import { SemanticsTestStep } from './test-steps';
-import { VisualizationType } from '../../../common/types/visualization-type';
 
 const cssContentHowToTest: JSX.Element = (
     <div>

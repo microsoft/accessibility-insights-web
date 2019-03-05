@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { ReportInstanceListProps, ReportInstanceList } from '../../../../../../DetailsView/reports/components/report-instance-list';
+import { ReportInstanceList, ReportInstanceListProps } from '../../../../../../DetailsView/reports/components/report-instance-list';
 import { shallowRender } from '../../../../common/shallow-render';
 
 describe('ReportInstanceListTest', () => {

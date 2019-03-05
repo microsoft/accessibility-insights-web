@@ -5,10 +5,10 @@ import { Mock } from 'typemoq';
 import { BrowserAdapter } from '../../../../../background/browser-adapter';
 import { ILocalStorageData } from '../../../../../background/storage-data';
 import { AppInsightsTelemetryClient } from '../../../../../background/telemetry/app-insights-telemetry-client';
+import { NullTelemetryClient } from '../../../../../background/telemetry/null-telemetry-client';
 import { getTelemetryClient } from '../../../../../background/telemetry/telemetry-client-provider';
 import { TelemetryLogger } from '../../../../../background/telemetry/telemetry-logger';
 import { configMutator } from '../../../../../common/configuration';
-import { NullTelemetryClient } from '../../../../../background/telemetry/null-telemetry-client';
 
 describe('TelemetryClientProvider', () => {
     beforeEach(configMutator.reset);

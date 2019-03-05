@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as Axe from 'axe-core';
 
-import { IAxeConfiguration, ICheckConfiguration, RuleConfiguration, IRuleConfiguration } from './iruleresults';
+import { IAxeConfiguration, ICheckConfiguration, IRuleConfiguration, RuleConfiguration } from './iruleresults';
 import { localeConfiguration } from './locale-configuration';
 
 export class AxeConfigurator {

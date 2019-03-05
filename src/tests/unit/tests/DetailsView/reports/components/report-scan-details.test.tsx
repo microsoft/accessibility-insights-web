@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { ReportScanDetailsProps, ReportScanDetails } from '../../../../../../DetailsView/reports/components/report-scan-details';
+import { ReportScanDetails, ReportScanDetailsProps } from '../../../../../../DetailsView/reports/components/report-scan-details';
 import { shallowRender } from '../../../../common/shallow-render';
 
 describe('ReportScanDetailsTest', () => {

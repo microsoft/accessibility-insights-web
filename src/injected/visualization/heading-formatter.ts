@@ -4,8 +4,8 @@
 /// <reference path="./../client-utils.ts" />
 import { ClientUtils } from '../client-utils';
 import { AxeResultsWithFrameLevel, IAssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
-import { IDrawerConfiguration, IFormatter } from './iformatter';
 import { FailureInstanceFormatter } from './failure-instance-formatter';
+import { IDrawerConfiguration, IFormatter } from './iformatter';
 
 // tslint:disable-next-line:interface-name
 export interface IHeadingStyleConfiguration {

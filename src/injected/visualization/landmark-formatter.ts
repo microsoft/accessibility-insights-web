@@ -3,12 +3,12 @@
 /// <reference path="./iformatter.d.ts" />
 /// <reference path="./heading-formatter.ts" />
 /// <reference path="../scanner-utils.ts" />
+import { DialogRenderer } from '../dialog-renderer';
 import { IAssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
 import { IHtmlElementAxeResults } from '../scanner-utils';
 import { FailureInstanceFormatter } from './failure-instance-formatter';
 import { IHeadingStyleConfiguration } from './heading-formatter';
 import { IDrawerConfiguration } from './iformatter';
-import { DialogRenderer } from '../dialog-renderer';
 
 interface ElemData {
     role: string;

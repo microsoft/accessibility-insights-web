@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { ReportBodyProps, ReportBody } from '../../../../../../DetailsView/reports/components/report-body';
+import { ReportBody, ReportBodyProps } from '../../../../../../DetailsView/reports/components/report-body';
 import { shallowRender } from '../../../../common/shallow-render';
 
 describe('ReportBodyTest', () => {

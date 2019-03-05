@@ -10,7 +10,7 @@ import { ScopingActionMessageCreator } from '../../../../../common/message-creat
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { GenericPanel } from '../../../../../DetailsView/components/generic-panel';
 import { ScopingContainer } from '../../../../../DetailsView/components/scoping-container';
-import { ScopingPanelProps, ScopingPanel } from '../../../../../DetailsView/components/scoping-panel';
+import { ScopingPanel, ScopingPanelProps } from '../../../../../DetailsView/components/scoping-panel';
 
 describe('ScopingPanelTest', () => {
     test('constructor', () => {

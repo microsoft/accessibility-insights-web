@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { create, GuidanceTitle } from '../../common';
 import * as React from 'react';
+import { create, GuidanceTitle } from '../../common';
 import { toolName } from '../../strings/application';
 
 export const guidance = create(({ Markup, Link }) => (

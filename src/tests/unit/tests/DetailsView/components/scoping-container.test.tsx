@@ -10,7 +10,7 @@ import { InspectActionMessageCreator } from '../../../../../common/message-creat
 import { ScopingActionMessageCreator } from '../../../../../common/message-creators/scoping-action-message-creator';
 import { IScopingStoreData } from '../../../../../common/types/store-data/scoping-store-data';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
-import { ScopingContainerProps, ScopingContainer } from '../../../../../DetailsView/components/scoping-container';
+import { ScopingContainer, ScopingContainerProps } from '../../../../../DetailsView/components/scoping-container';
 
 describe('ScopingContainerTest', () => {
     const scopingSelectorsStub: IScopingStoreData = {

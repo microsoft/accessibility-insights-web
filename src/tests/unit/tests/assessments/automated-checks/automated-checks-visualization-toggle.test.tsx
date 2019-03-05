@@ -6,7 +6,7 @@ import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
 
 import { AutomatedChecksVisualizationToggle } from '../../../../../assessments/automated-checks/automated-checks-visualization-enabled-toggle';
-import { VisualizationToggleProps, VisualizationToggle } from '../../../../../common/components/visualization-toggle';
+import { VisualizationToggle, VisualizationToggleProps } from '../../../../../common/components/visualization-toggle';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import {
     VisualHelperToggleTestPropsBuilder,

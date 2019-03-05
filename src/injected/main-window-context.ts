@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 /// <reference path='./Window.d.ts' />
-import { TargetPageActionMessageCreator } from './target-page-action-message-creator';
 import { IBaseStore } from '../common/istore';
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
 import { DevToolState } from '../common/types/store-data/idev-tool-state';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
+import { TargetPageActionMessageCreator } from './target-page-action-message-creator';
 
 export class MainWindowContext {
     private devToolStore: IBaseStore<DevToolState>;

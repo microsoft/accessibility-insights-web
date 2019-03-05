@@ -3,11 +3,11 @@
 import * as React from 'react';
 
 import { link } from '../../../content/link';
+import * as content from '../../../content/test/focus/revealing-content';
 import ManualTestRecordYourResults from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
 import { visibleFfocusOrderTestStep } from './test-steps';
-import * as content from '../../../content/test/focus/revealing-content';
 
 const description: JSX.Element = (
     <span>Activating a component that reveals hidden content must move input focus into the revealed content.</span>

@@ -4,8 +4,8 @@ import { A11YSelfValidator } from '../../common/a11y-self-validator';
 import { HTMLElementUtils } from '../../common/html-element-utils';
 import { ScannerUtils } from '../../injected/scanner-utils';
 import { scan } from '../../scanner/exposed-apis';
-import { renderer } from './renderer';
 import { rendererDependencies } from './dependencies';
+import { renderer } from './renderer';
 
 renderer(rendererDependencies());
 

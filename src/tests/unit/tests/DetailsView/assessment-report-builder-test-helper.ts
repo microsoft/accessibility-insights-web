@@ -4,7 +4,7 @@ import { flatten } from 'lodash';
 
 import { Assessment } from '../../../../assessments/types/iassessment';
 import { ReportInstanceFields } from '../../../../assessments/types/report-instance-field';
-import { ManualTestStatusData, ManualTestStatus } from '../../../../common/types/manual-test-status';
+import { ManualTestStatus, ManualTestStatusData } from '../../../../common/types/manual-test-status';
 import {
     IAssessmentData,
     IAssessmentStoreData,

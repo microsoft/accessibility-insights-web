@@ -9,7 +9,7 @@ import { AssessmentStore } from '../../../../background/stores/assessment-store'
 import { VisualizationStore } from '../../../../background/stores/visualization-store';
 import { IBaseStore } from '../../../../common/istore';
 import { IAssessmentData, IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
-import { TestsEnabledState, IVisualizationStoreData } from '../../../../common/types/store-data/ivisualization-store-data';
+import { IVisualizationStoreData, TestsEnabledState } from '../../../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 
 describe('AssessmentScanPolicyRunner', () => {

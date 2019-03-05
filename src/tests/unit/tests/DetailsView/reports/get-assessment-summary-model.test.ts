@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { Assessment } from '../../../../../assessments/types/iassessment';
 import { IAssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
-import { TestStepData, ManualTestStatus } from '../../../../../common/types/manual-test-status';
+import { ManualTestStatus, TestStepData } from '../../../../../common/types/manual-test-status';
 import { IAssessmentStoreData } from '../../../../../common/types/store-data/iassessment-result-data';
 import { IOverviewSummaryReportModel } from '../../../../../DetailsView/reports/assessment-report-model';
 import {

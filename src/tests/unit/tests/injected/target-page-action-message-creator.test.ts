@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock } from 'typemoq';
 
+import { BaseActionPayload } from '../../../../background/actions/action-payloads';
 import { Messages } from '../../../../common/messages';
-import * as TelemetryEvents from '../../../../common/telemetry-events';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
-import { TelemetryEventSource, SettingsOpenTelemetryData } from '../../../../common/telemetry-events';
+import { SettingsOpenTelemetryData, TelemetryEventSource } from '../../../../common/telemetry-events';
+import * as TelemetryEvents from '../../../../common/telemetry-events';
 import { TargetPageActionMessageCreator } from '../../../../injected/target-page-action-message-creator';
 import { EventStubFactory } from '../../common/event-stub-factory';
-import { BaseActionPayload } from '../../../../background/actions/action-payloads';
 
 describe('TargetPageActionMessageCreator', () => {
     const eventStubFactory = new EventStubFactory();

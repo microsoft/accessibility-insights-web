@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { countBy, values } from 'lodash';
 
-import { ManualTestStatusData, ManualTestStatus } from '../../../common/types/manual-test-status';
+import { ManualTestStatus, ManualTestStatusData } from '../../../common/types/manual-test-status';
 
 export type OutcomeType = 'pass' | 'incomplete' | 'fail';
 

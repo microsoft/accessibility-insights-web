@@ -12,12 +12,12 @@ import { ContentActionMessageCreator } from '../../../../../common/message-creat
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { IAssessmentData } from '../../../../../common/types/store-data/iassessment-result-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
+import { UrlParser } from '../../../../../common/url-parser';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { AssessmentView, AssessmentViewDeps, AssessmentViewProps } from '../../../../../DetailsView/components/assessment-view';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
 import { outcomeTypeFromTestStatus, outcomeTypeSemanticsFromTestStatus } from '../../../../../DetailsView/reports/components/outcome-type';
 import { contentProvider, CreateTestAssessmentProvider } from '../../../common/test-assessment-provider';
-import { UrlParser } from '../../../../../common/url-parser';
 
 describe('AssessmentViewTest', () => {
     const assessmentsProvider = CreateTestAssessmentProvider();

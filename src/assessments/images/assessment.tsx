@@ -3,13 +3,13 @@
 import * as React from 'react';
 
 import { VisualizationType } from '../../common/types/visualization-type';
+import { test as content } from '../../content/test';
 import { AssessmentBuilder } from '../assessment-builder';
 import { Assessment } from '../types/iassessment';
 import { Captchas } from './test-steps/captchas';
 import { ImageFunction } from './test-steps/image-function';
-import { TextAlternative } from './test-steps/text-alternative';
 import { ImagesOfText } from './test-steps/images-of-text';
-import { test as content } from '../../content/test';
+import { TextAlternative } from './test-steps/text-alternative';
 
 const key = 'images';
 const title = 'Images';

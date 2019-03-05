@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { ColumnValueBag } from '../../common/types/property-bag/column-value-bag';
 import { IAssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
-import { customWidgetsColumnRenderer } from './custom-widgets-column-renderer';
 import { PropertyBagColumnRendererConfig } from '../common/property-bag-column-renderer';
+import { customWidgetsColumnRenderer } from './custom-widgets-column-renderer';
 
 export class CustomWidgetsColumnRendererFactory {
     public static getWithLink<TPropertyBag extends ColumnValueBag>(

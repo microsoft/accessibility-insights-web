@@ -7,7 +7,7 @@ import { IAssessmentsProvider } from '../../../../../assessments/types/iassessme
 import { AssessmentTestDefinition } from '../../../../../common/assessment/assessment-test-result';
 import { getRequirementsResults, RequirementDefinition } from '../../../../../common/assessment/requirement';
 import { RequirementComparer } from '../../../../../common/assessment/requirement-comparer';
-import { ManualTestStatusData, ManualTestStatus } from '../../../../../common/types/manual-test-status';
+import { ManualTestStatus, ManualTestStatusData } from '../../../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 
 describe('Requirement', () => {

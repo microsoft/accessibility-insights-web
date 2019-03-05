@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash/index';
 import { autobind } from '@uifabric/utilities';
+import * as _ from 'lodash/index';
 
 import { Assessment } from '../assessments/types/iassessment';
 import { IAssessmentsProvider } from '../assessments/types/iassessments-provider';
@@ -10,7 +10,7 @@ import { Messages } from '../common/messages';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { RequirementStatusTelemetryData } from '../common/telemetry-events';
 import * as TelemetryEvents from '../common/telemetry-events';
-import { ManualTestStatusData, ManualTestStatus } from '../common/types/manual-test-status';
+import { ManualTestStatus, ManualTestStatusData } from '../common/types/manual-test-status';
 import { IAssessmentData } from '../common/types/store-data/iassessment-result-data';
 import { PayloadWithEventName } from './actions/action-payloads';
 import { Interpreter } from './interpreter';

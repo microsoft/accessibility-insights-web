@@ -12,8 +12,8 @@ import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuratio
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
 import { PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
-import { TestStep } from '../../types/test-step';
 import { ReportInstanceField } from '../../types/report-instance-field';
+import { TestStep } from '../../types/test-step';
 import { ImagesTestStep } from './test-steps';
 
 const description: JSX.Element = <span>Images of text are allowed only where a specific appearance is required (e.g., logotypes).</span>;

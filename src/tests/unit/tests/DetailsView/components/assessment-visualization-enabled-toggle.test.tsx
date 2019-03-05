@@ -5,7 +5,7 @@ import * as _ from 'lodash';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
-import { VisualizationToggleProps, VisualizationToggle } from '../../../../../common/components/visualization-toggle';
+import { VisualizationToggle, VisualizationToggleProps } from '../../../../../common/components/visualization-toggle';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { AssessmentVisualizationEnabledToggle } from '../../../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { VisualHelperToggleTestPropsBuilder, VisualizationTogglePropsBuilder } from './restart-scan-visual-helper-toggle.test';

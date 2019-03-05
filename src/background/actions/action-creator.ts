@@ -18,8 +18,8 @@ import { TargetTabController } from '../target-tab-controller';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import { ActionHub } from './action-hub';
 import {
-    BaseActionPayload,
     AddTabbedElementPayload,
+    BaseActionPayload,
     OnDetailsViewOpenPayload,
     OnDetailsViewPivotSelected,
     PayloadWithEventName,

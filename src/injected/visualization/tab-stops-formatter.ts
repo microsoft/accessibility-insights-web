@@ -3,8 +3,8 @@
 /// <reference path="./iformatter.d.ts" />
 /// <reference path="./../client-utils.ts" />
 import { IHtmlElementAxeResults } from '../scanner-utils';
-import { IFormatter, ISVGDrawerConfiguration } from './iformatter';
 import { IPartialSVGDrawerConfiguration } from './drawer-provider';
+import { IFormatter, ISVGDrawerConfiguration } from './iformatter';
 
 export class TabStopsFormatter implements IFormatter {
     private static readonly ELLIPSE_RX_CALCULATOR_OFFSET: number = 1.3;

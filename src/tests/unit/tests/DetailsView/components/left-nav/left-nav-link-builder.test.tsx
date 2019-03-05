@@ -7,7 +7,7 @@ import { AssessmentsProvider } from '../../../../../../assessments/assessments-p
 import { Assessment } from '../../../../../../assessments/types/iassessment';
 import { IAssessmentsProvider } from '../../../../../../assessments/types/iassessments-provider';
 import { IVisualizationConfiguration } from '../../../../../../common/configs/visualization-configuration-factory';
-import { ManualTestStatusData, ManualTestStatus } from '../../../../../../common/types/manual-test-status';
+import { ManualTestStatus, ManualTestStatusData } from '../../../../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
 import { BaseLeftNavLink, onBaseLeftNavItemClick } from '../../../../../../DetailsView/components/base-left-nav';
 import { LeftNavLinkBuilder, LeftNavLinkBuilderDeps } from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';

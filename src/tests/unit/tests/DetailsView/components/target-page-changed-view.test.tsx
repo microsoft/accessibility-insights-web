@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { IDisplayableVisualizationTypeData } from '../../../../../common/configs/visualization-configuration-factory';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { TargetPageChangedViewProps, TargetPageChangedView } from '../../../../../DetailsView/components/target-page-changed-view';
+import { TargetPageChangedView, TargetPageChangedViewProps } from '../../../../../DetailsView/components/target-page-changed-view';
 
 describe('TargetPageChangedView', () => {
     const clickHandlerStub: () => void = () => {};

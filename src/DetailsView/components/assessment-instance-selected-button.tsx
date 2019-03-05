@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
+import * as classNames from 'classnames';
 import { IconButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
-import * as classNames from 'classnames';
 import { VisualizationType } from '../../common/types/visualization-type';
 
 export interface AssessmentInstanceSelectedButtonProps {

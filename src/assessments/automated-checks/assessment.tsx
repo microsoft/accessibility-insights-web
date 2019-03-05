@@ -5,14 +5,14 @@ import * as React from 'react';
 import { RequirementComparer } from '../../common/assessment/requirement-comparer';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { title } from '../../content/strings/application';
+import { test as content } from '../../content/test';
 import { excludePassingInstancesFromAssessmentReport } from '../../DetailsView/extensions/exclude-passing-instances-from-assessment-report';
 import { selectFirstRequirementAfterAutomatedChecks } from '../../DetailsView/extensions/select-first-requirement-after-automated-checks';
 import { waitForAllRequirementsToComplete } from '../../DetailsView/extensions/wait-for-all-requirements-to-complete';
+import { getDefaultRules } from '../../scanner/exposed-apis';
 import { AssessmentBuilder } from '../assessment-builder';
 import { AssistedAssessment } from '../types/iassessment';
 import { buildTestStepsFromRules } from './build-test-steps-from-rules';
-import { getDefaultRules } from '../../scanner/exposed-apis';
-import { test as content } from '../../content/test';
 
 const { guidance } = content.automatedChecks;
 const gettingStarted: JSX.Element = (

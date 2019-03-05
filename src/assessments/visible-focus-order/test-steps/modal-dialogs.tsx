@@ -3,11 +3,11 @@
 import * as React from 'react';
 
 import { link } from '../../../content/link';
+import * as content from '../../../content/test/focus/modal-dialogs';
 import ManualTestRecordYourResults from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
 import { visibleFfocusOrderTestStep } from './test-steps';
-import * as content from '../../../content/test/focus/modal-dialogs';
 
 const description: JSX.Element = <span>Users must not be able to Tab away from a modal dialog without explicitly dismissing it.</span>;
 

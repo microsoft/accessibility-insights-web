@@ -6,7 +6,7 @@ import * as React from 'react';
 
 import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { getRequirementsResults } from '../../common/assessment/requirement';
-import { ManualTestStatusData, ManualTestStatus } from '../../common/types/manual-test-status';
+import { ManualTestStatus, ManualTestStatusData } from '../../common/types/manual-test-status';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { OutcomeTypeSemantic } from '../reports/components/outcome-type';

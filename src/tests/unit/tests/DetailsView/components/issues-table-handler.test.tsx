@@ -2,8 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
-import { DetailsGroup, ListProps, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
+import { DetailsGroup, IssuesTableHandler, ListProps } from '../../../../../DetailsView/components/issues-table-handler';
 import { RuleResult } from '../../../../../scanner/iruleresults';
 
 describe('IssuesTableHandlerTests', () => {

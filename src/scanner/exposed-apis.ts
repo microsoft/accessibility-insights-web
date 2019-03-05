@@ -2,22 +2,22 @@
 // Licensed under the MIT License.
 import * as axe from 'axe-core';
 
+import { AxeConfigurator } from './axe-configurator';
 import { AxeResponseHandler } from './axe-response-handler';
 import { AxeRuleOverrides } from './axe-rule-overrides';
 import { CheckMessageTransformer } from './check-message-transformer';
-import { HelpUrlGetter } from './help-url-getter';
-import { AxeConfigurator } from './axe-configurator';
-import { ScannerRuleInfo } from './scanner-rule-info';
 import { configuration } from './custom-rule-configurations';
 import { DocumentUtils } from './document-utils';
 import { getRules } from './get-rules';
+import { HelpUrlGetter } from './help-url-getter';
 import { ScanResults } from './iruleresults';
 import { Launcher } from './launcher';
-import { ruleToLinkConfiguration } from './rule-to-links-mappings';
 import { MessageDecorator } from './message-decorator';
 import { ResultDecorator } from './result-decorator';
 import { RuleSifter } from './rule-sifter';
+import { ruleToLinkConfiguration } from './rule-to-links-mappings';
 import { ScanParamaterGenerator } from './scan-parameter-generator';
+import { ScannerRuleInfo } from './scanner-rule-info';
 
 export interface ScanOptions {
     testsToRun?: string[];

@@ -12,9 +12,9 @@ import {
 } from '../../common/types/store-data/iassessment-result-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { AssessmentInstanceEditAndRemoveControl } from '../components/assessment-instance-edit-and-remove-control';
+import { AssessmentInstanceSelectedButton } from '../components/assessment-instance-selected-button';
 import { IAssessmentInstanceRowData, ICapturedInstanceRowData } from '../components/assessment-instance-table';
 import { AssessmentTableColumnConfigHandler } from '../components/assessment-table-column-config-handler';
-import { AssessmentInstanceSelectedButton } from '../components/assessment-instance-selected-button';
 import { ManualTestStatus } from './../../common/types/manual-test-status';
 import { DetailsViewActionMessageCreator } from './../actions/details-view-action-message-creator';
 import { TestStatusChoiceGroup } from './../components/test-status-choice-group';

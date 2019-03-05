@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { WindowUtils } from '../common/window-utils';
-import { InspectMode } from '../background/inspect-modes';
 import { autobind } from '@uifabric/utilities';
+import { InspectMode } from '../background/inspect-modes';
+import { WindowUtils } from '../common/window-utils';
 
 import { Messages } from '../common/messages';
 import { ContentScriptInjector } from './injector/content-script-injector';
 import { Interpreter } from './interpreter';
+import { InspectStore } from './stores/inspect-store';
 import { TabStore } from './stores/tab-store';
 import { VisualizationStore } from './stores/visualization-store';
-import { InspectStore } from './stores/inspect-store';
 
 export class InjectorController {
     private _injector: ContentScriptInjector;

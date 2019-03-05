@@ -3,6 +3,7 @@
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
 import {
     AssessmentTelemetryData,
+    BaseTelemetryData,
     DetailsViewOpenedTelemetryData,
     DetailsViewOpenTelemetryData,
     DetailsViewPivotSelectedTelemetryData,
@@ -10,14 +11,13 @@ import {
     FeatureFlagToggleTelemetryData,
     InspectTelemetryData,
     RuleAnalyzerScanTelemetryData,
+    SettingsOpenSourceItem,
+    SettingsOpenTelemetryData,
     TelemetryEventSource,
     TestStepActionTelemetryData,
     TestStepSelectTelemetryData,
     ToggleTelemetryData,
     TriggeredByNotApplicable,
-    BaseTelemetryData,
-    SettingsOpenSourceItem,
-    SettingsOpenTelemetryData,
 } from '../../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../../common/types/visualization-type';

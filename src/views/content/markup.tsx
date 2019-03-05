@@ -4,12 +4,12 @@ import * as React from 'react';
 import Helmet from 'react-helmet';
 
 import { Code, Emphasis, Tag, Term } from '../../assessments/markup';
+import { NewTabLink } from '../../common/components/new-tab-link';
 import { CheckIcon } from '../../common/icons/check-icon';
 import { CrossIcon } from '../../common/icons/cross-icon';
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
-import { NewTabLink } from '../../common/components/new-tab-link';
-import { ContentPageOptions, ContentPageComponent } from './content-page';
 import { productName } from '../../content/strings/application';
+import { ContentPageComponent, ContentPageOptions } from './content-page';
 
 type PassFailProps = {
     passText: JSX.Element;

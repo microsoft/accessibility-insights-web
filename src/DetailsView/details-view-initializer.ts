@@ -9,19 +9,20 @@ import { assessmentsProviderWithFeaturesEnabled } from '../assessments/assessmen
 import { ChromeAdapter } from '../background/browser-adapter';
 import { IssueDetailsTextGenerator } from '../background/issue-details-text-generator';
 import { A11YSelfValidator } from '../common/a11y-self-validator';
+import { AxeInfo } from '../common/axe-info';
+import { BugClickHandler } from '../common/bug-click-handler';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DateProvider } from '../common/date-provider';
 import { DocumentManipulator } from '../common/document-manipulator';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
-import { BugClickHandler } from '../common/bug-click-handler';
 import { initializeFabricIcons } from '../common/fabric-icons';
 import { getAllFeatureFlagDetails } from '../common/feature-flags';
 import { getInnerTextFromJsxElement } from '../common/get-inner-text-from-jsx-element';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { ITab } from '../common/itab';
+import { BugActionMessageCreator } from '../common/message-creators/bug-action-message-creator';
 import { ContentActionMessageCreator } from '../common/message-creators/content-action-message-creator';
 import { DropdownActionMessageCreator } from '../common/message-creators/dropdown-action-message-creator';
-import { BugActionMessageCreator } from '../common/message-creators/bug-action-message-creator';
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
 import { StoreActionMessageCreatorFactory } from '../common/message-creators/store-action-message-creator-factory';
@@ -79,7 +80,6 @@ import { ReactStaticRenderer } from './reports/react-static-renderer';
 import { ReportGenerator } from './reports/report-generator';
 import { ReportHtmlGenerator } from './reports/report-html-generator';
 import { ReportNameGenerator } from './reports/report-name-generator';
-import { AxeInfo } from '../common/axe-info';
 
 declare const window: AutoChecker & Window;
 

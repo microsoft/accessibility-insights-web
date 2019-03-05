@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash/index';
+import * as _ from 'lodash';
 import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
@@ -24,8 +24,8 @@ import {
 import { DrawerProvider } from '../injected/visualization/drawer-provider';
 import { DecoratedAxeNodeResult, ScannerUtils } from './../injected/scanner-utils';
 import { Assessment, AssistedAssessment, ManualAssessment } from './types/iassessment';
-import { TestStep } from './types/test-step';
 import { ReportInstanceField } from './types/report-instance-field';
+import { TestStep } from './types/test-step';
 
 export class AssessmentBuilder {
     private static applyDefaultReportFieldMap(step: TestStep) {
