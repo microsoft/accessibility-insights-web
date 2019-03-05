@@ -7,6 +7,7 @@ import { DevToolStore } from '../../../../background/stores/dev-tools-store';
 import { UserConfigurationStore } from '../../../../background/stores/global/user-configuration-store';
 import { ClientBrowserAdapter } from '../../../../common/client-browser-adapter';
 import { FeatureFlags, getDefaultFeatureFlagValues } from '../../../../common/feature-flags';
+import { BugActionMessageCreator } from '../../../../common/message-creators/bug-action-message-creator';
 import { DevToolActionMessageCreator } from '../../../../common/message-creators/dev-tool-action-message-creator';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 import { WindowUtils } from '../../../../common/window-utils';
@@ -65,12 +66,14 @@ describe('DialogRendererTests', () => {
         const userConfigStoreStrictMock = Mock.ofType<UserConfigurationStore>(null, MockBehavior.Strict);
         const devToolActionMessageCreatorMock = Mock.ofType(DevToolActionMessageCreator);
         const targetActionPageMessageCreatorMock = Mock.ofType(TargetPageActionMessageCreator);
+        const bugActionMessageCreatorMock = Mock.ofType(BugActionMessageCreator);
 
         mainWindowContext = new MainWindowContext(
             devToolStoreStrictMock.object,
             userConfigStoreStrictMock.object,
             devToolActionMessageCreatorMock.object,
             targetActionPageMessageCreatorMock.object,
+            bugActionMessageCreatorMock.object,
         );
     });
 

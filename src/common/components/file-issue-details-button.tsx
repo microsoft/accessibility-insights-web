@@ -8,10 +8,12 @@ import { IssueDetailsTextGenerator } from '../../background/issue-details-text-g
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { FileIssueDetailsHandler } from '../file-issue-details-handler';
 import { HTMLElementUtils } from '../html-element-utils';
+import { BugActionMessageCreator } from '../message-creators/bug-action-message-creator';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
 import { FileIssueDetailsDialog } from './file-issue-details-dialog';
 
 export type FileIssueDetailsButtonDeps = {
+    bugActionMessageCreator: BugActionMessageCreator;
     issueDetailsTextGenerator: IssueDetailsTextGenerator;
 };
 

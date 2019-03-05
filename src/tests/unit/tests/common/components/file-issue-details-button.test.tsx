@@ -25,6 +25,7 @@ describe('FileIssueDetailsButtonTest', () => {
         const props: FileIssueDetailsButtonProps = {
             deps: {
                 issueDetailsTextGenerator: issueDetailsTextGeneratorMock.object,
+                bugActionMessageCreator: null,
             },
             onOpenSettings: (ev: React.MouseEvent<HTMLElement>) => {},
             issueTrackerPath: issueTrackerPath,
@@ -56,6 +57,7 @@ describe('FileIssueDetailsButtonTest', () => {
         const props: FileIssueDetailsButtonProps = {
             deps: {
                 issueDetailsTextGenerator: issueDetailsTextGeneratorMock.object,
+                bugActionMessageCreator: null,
             },
             onOpenSettings: (ev: React.MouseEvent<HTMLElement>) => {},
             issueTrackerPath: issueTrackerPath,

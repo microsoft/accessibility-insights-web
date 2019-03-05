@@ -187,6 +187,7 @@ describe('IssuesTableTest', () => {
                 dropdownClickHandler: null,
                 issueDetailsTextGenerator: null,
                 windowUtils: null,
+                bugActionMessageCreator: null,
             })
             .build();
         const setStateMock = Mock.ofInstance(state => {});
