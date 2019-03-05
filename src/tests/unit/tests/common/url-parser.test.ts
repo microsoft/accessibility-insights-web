@@ -61,7 +61,7 @@ describe('UrlParserTest', () => {
         it('should return false as the host names are not the same', () => {
             const urlA = 'http://test.com';
             const urlB = 'http://notsame.com';
-            expect(testSubject.areURLHostNamesEqual(urlA, urlB)).toEqual('garbage');
+            expect(testSubject.areURLHostNamesEqual(urlA, urlB)).toEqual(false);
         });
         it('should return true as the host names are the same', () => {
             const urlA = 'http://same.com';
