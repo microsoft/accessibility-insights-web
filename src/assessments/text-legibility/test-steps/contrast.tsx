@@ -21,6 +21,8 @@ import { ReportInstanceField } from '../../types/report-instance-field';
 
 const contrastDescription: JSX.Element = <span>Text elements must have sufficient contrast.</span>;
 
+const WindowsPlatformLink = () => <NewTabLink href="https://go.microsoft.com/fwlink/?linkid=2075365">{windowsPlatformTitle}</NewTabLink>;
+
 const contrastHowToTest: JSX.Element = (
     <div>
         For this requirement, {productName} highlights instances of text where the contrast ratio can't be determined, typically because the
@@ -31,8 +33,7 @@ const contrastHowToTest: JSX.Element = (
                 contrast ratio (e.g., white text on a light gray background).
             </li>
             <li>
-                Use <NewTabLink href="https://aka.ms/k4d">{windowsPlatformTitle}</NewTabLink> to test the contrast at that area. (If you are
-                testing on a Mac, you can use the{' '}
+                Use <WindowsPlatformLink /> to test the contrast at that area. (If you are testing on a Mac, you can use the{' '}
                 <NewTabLink href="https://developer.paciellogroup.com/resources/contrastanalyser/">Colour Contrast Analyser</NewTabLink>.)
             </li>
             <li>
