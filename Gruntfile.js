@@ -70,7 +70,7 @@ module.exports = function(grunt) {
                     },
                     {
                         cwd: './src',
-                        src: ['./**/*.html', `!./tests/**/*`],
+                        src: ['./**/*.html', '!./tests/**/*'],
                         dest: extensionPath,
                         expand: true,
                     },
