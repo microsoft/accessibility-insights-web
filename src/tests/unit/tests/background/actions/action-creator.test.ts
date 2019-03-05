@@ -29,12 +29,13 @@ import { Action } from '../../../../../common/flux/action';
 import { Messages } from '../../../../../common/messages';
 import { NotificationCreator } from '../../../../../common/notification-creator';
 import {
+    BaseTelemetryData,
     DetailsViewOpenTelemetryData,
     DetailsViewPivotSelectedTelemetryData,
+    SettingsOpenTelemetryData,
     TelemetryEventSource,
     ToggleTelemetryData,
     TriggeredBy,
-    BaseTelemetryData,
 } from '../../../../../common/telemetry-events';
 import * as TelemetryEvents from '../../../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
@@ -707,9 +708,10 @@ describe('ActionCreatorTest', () => {
 
     test('registerCallback for onOpenSettingsPanel', () => {
         const tabId: number = 1;
-        const telemetryData: BaseTelemetryData = {
+        const telemetryData: SettingsOpenTelemetryData = {
             triggeredBy: 'mouseclick',
             source: testSource,
+            sourceItem: 'menu',
         };
 
         const payload = {

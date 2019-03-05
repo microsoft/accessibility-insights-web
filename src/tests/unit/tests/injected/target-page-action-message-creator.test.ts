@@ -5,11 +5,13 @@ import { IMock, It, Mock } from 'typemoq';
 import { Messages } from '../../../../common/messages';
 import * as TelemetryEvents from '../../../../common/telemetry-events';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
-import { TelemetryEventSource } from '../../../../common/telemetry-events';
+import { TelemetryEventSource, SettingsOpenTelemetryData } from '../../../../common/telemetry-events';
 import { TargetPageActionMessageCreator } from '../../../../injected/target-page-action-message-creator';
-import { EventStubFactory } from './../../common/event-stub-factory';
+import { EventStubFactory } from '../../common/event-stub-factory';
+import { BaseActionPayload } from '../../../../background/actions/action-payloads';
 
-describe('TargetPageActionMessageCreatorTest', () => {
+describe('TargetPageActionMessageCreator', () => {
+    const eventStubFactory = new EventStubFactory();
     let testSubject: TargetPageActionMessageCreator;
     let postMessageMock: IMock<(msg: any) => void>;
     let tabId: number;
@@ -66,6 +68,30 @@ describe('TargetPageActionMessageCreatorTest', () => {
         postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable();
 
         testSubject.setHoveredOverSelector(selector);
+
+        postMessageMock.verifyAll();
+    });
+
+    test('openSettingsPanel', () => {
+        const event = eventStubFactory.createMouseClickEvent() as any;
+
+        const telemetry: SettingsOpenTelemetryData = {
+            triggeredBy: 'mouseclick',
+            source: TelemetryEventSource.TargetPage,
+            sourceItem: 'fileIssueSettingsPrompt',
+        };
+        const payload: BaseActionPayload = {
+            telemetry,
+        };
+        const expectedMessage: IMessage = {
+            type: Messages.SettingsPanel.OpenPanel,
+            tabId,
+            payload,
+        };
+
+        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable();
+
+        testSubject.openSettingsPanel(event);
 
         postMessageMock.verifyAll();
     });

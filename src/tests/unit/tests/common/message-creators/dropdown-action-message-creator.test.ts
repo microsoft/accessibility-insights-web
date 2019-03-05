@@ -1,11 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { source } from 'axe-core';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { DropdownActionMessageCreator } from '../../../../../common/message-creators/dropdown-action-message-creator';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
-import { TelemetryEventSource } from '../../../../../common/telemetry-events';
+import { SettingsOpenSourceItem, TelemetryEventSource } from '../../../../../common/telemetry-events';
 import { EventStubFactory } from './../../../common/event-stub-factory';
 
 describe('DropdownActionMessageCreatorTest', () => {
@@ -34,7 +35,7 @@ describe('DropdownActionMessageCreatorTest', () => {
     test('openPreviewFeatures', () => {
         const expectedMessage = getExpectedMessage(Messages.PreviewFeatures.OpenPanel);
 
-        setupTelemetryFactoryCall();
+        setupTelemetryFactoryWithTriggeredByAndSourceCall();
         setupPostMessage(expectedMessage);
 
         testObject.openPreviewFeaturesPanel(event, testSource);
@@ -45,8 +46,10 @@ describe('DropdownActionMessageCreatorTest', () => {
 
     test('openSettings', () => {
         const expectedMessage = getExpectedMessage(Messages.SettingsPanel.OpenPanel);
+        const sourceItem: SettingsOpenSourceItem = 'menu';
+        expectedMessage.payload.telemetry.sourceItem = sourceItem;
 
-        setupTelemetryFactoryCall();
+        setupTelemetryFactoryForSettingsPanelOpenCall(sourceItem);
         setupPostMessage(expectedMessage);
 
         testObject.openSettingsPanel(event, testSource);
@@ -55,7 +58,7 @@ describe('DropdownActionMessageCreatorTest', () => {
         telemetryFactoryMock.verifyAll();
     });
 
-    function getExpectedMessage(messageType: string) {
+    function getExpectedMessage(messageType: string): IMessage {
         return {
             tabId: tabId,
             type: messageType,
@@ -65,14 +68,21 @@ describe('DropdownActionMessageCreatorTest', () => {
         };
     }
 
-    function setupTelemetryFactoryCall() {
+    function setupTelemetryFactoryWithTriggeredByAndSourceCall(): void {
         telemetryFactoryMock
             .setup(tf => tf.withTriggeredByAndSource(event, testSource))
             .returns(() => telemetryData)
             .verifiable(Times.once());
     }
 
-    function setupPostMessage(expectedMessage): void {
+    function setupTelemetryFactoryForSettingsPanelOpenCall(sourceItem: SettingsOpenSourceItem): void {
+        telemetryFactoryMock
+            .setup(tf => tf.forSettingsPanelOpen(event, testSource, sourceItem))
+            .returns(() => telemetryData)
+            .verifiable(Times.once());
+    }
+
+    function setupPostMessage(expectedMessage: IMessage): void {
         postMessageMock.setup(post => post(It.isValue(expectedMessage))).verifiable(Times.once());
     }
 });
