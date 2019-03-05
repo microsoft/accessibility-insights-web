@@ -5,7 +5,7 @@
 module.exports = wallaby => {
     return {
         // Wallaby requires that this match all files that are transitively required to load/run our tests, including
-        // config files/jest setup/test infra/product code. The exceptions are node_modules (which is special cased)
+        // config files/jest setup/test infra/product code. The exceptions are node_modules (which is special cased
         // implicitly by Wallaby) and files included in the tests property (which should be excluded here to avoid processing
         // them twice). Entries are read top-to-bottom, so later ones have precedence.
         files: [
