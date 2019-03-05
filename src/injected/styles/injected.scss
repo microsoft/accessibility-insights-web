@@ -22,6 +22,14 @@ div.insights-dialog-main-container {
 
 div.insights-file-issue-details-dialog-container {
     max-width: 370px;
+
+    .ms-Dialog-content p {
+        margin-block-start: 4px;
+    }
+
+    .ms-Dialog-actions {
+        margin-top: 24px;
+    }
 }
 
 #insights-inspect-selector-layout {
