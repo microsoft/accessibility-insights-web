@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { IAssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
 
-export interface IInstanceTableColumn {
+export interface InstanceTableColumn {
     key: string;
     name: string;
     onRender: (item: IAssessmentInstanceRowData) => JSX.Element;

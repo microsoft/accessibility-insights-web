@@ -3,6 +3,7 @@
 
 import { IBaseStore } from '../istore';
 
+// tslint:disable-next-line:interface-name
 export interface IClientStoresHub<T> {
     stores: IBaseStore<any>[];
     addChangedListenerToAllStores(listener: () => void): void;

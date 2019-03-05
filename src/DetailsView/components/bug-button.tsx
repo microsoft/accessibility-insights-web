@@ -1,24 +1,24 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
-import { NewTabLink } from '../../common/components/new-tab-link';
 import * as React from 'react';
+import { NewTabLink } from '../../common/components/new-tab-link';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 
 import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
 
-export interface IBugButtonDeps {
+export interface BugButtonDeps {
     issueDetailsTextGenerator: IssueDetailsTextGenerator;
 }
-export interface IBugButtonProps {
-    deps: IBugButtonDeps;
+export interface BugButtonProps {
+    deps: BugButtonDeps;
     issueTrackerPath: string;
     pageTitle: string;
     pageUrl: string;
     nodeResult: DecoratedAxeNodeResult;
 }
 
-export class BugButton extends React.Component<IBugButtonProps> {
+export class BugButton extends React.Component<BugButtonProps> {
     private issueUrl(title: string, body: string): string {
         const encodedIssue = `/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
         return `${this.props.issueTrackerPath}${encodedIssue}`;

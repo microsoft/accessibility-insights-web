@@ -5,6 +5,7 @@ import * as React from 'react';
 import {
     AssessmentRequirementScanTelemetryData,
     AssessmentTelemetryData,
+    BaseTelemetryData,
     DetailsViewOpenedTelemetryData,
     DetailsViewOpenTelemetryData,
     DetailsViewPivotSelectedTelemetryData,
@@ -20,9 +21,8 @@ import {
     TestStepActionTelemetryData,
     TestStepSelectTelemetryData,
     ToggleTelemetryData,
-    TriggeredByNotApplicable,
     TriggeredBy,
-    BaseTelemetryData,
+    TriggeredByNotApplicable,
 } from './telemetry-events';
 import { ForIssuesAnalyzerScanCallback, ForRuleAnalyzerScanCallback } from './types/analyzer-telemetry-callbacks';
 import { DetailsViewPivotType } from './types/details-view-pivot-type';

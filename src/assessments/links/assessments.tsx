@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import { FeatureFlags } from '../../common/feature-flags';
 import { VisualizationType } from '../../common/types/visualization-type';
+import { test as content } from '../../content/test';
 import { AssessmentBuilder } from '../assessment-builder';
 import * as Markup from '../markup';
 import { LinkFunction } from './test-steps/link-function';
 import { LinkPurpose } from './test-steps/link-purpose';
-import { FeatureFlags } from '../../common/feature-flags';
-import { test as content } from '../../content/test';
 
 const key = 'linksAssessment';
 const title = 'Links';

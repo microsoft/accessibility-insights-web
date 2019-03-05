@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 /// <reference path="../message.d.ts" />
 
-import { Messages } from '../messages';
 import { PayloadWithEventName } from '../../background/actions/action-payloads';
+import { Messages } from '../messages';
 import { TelemetryData } from '../telemetry-events';
 
 export abstract class BaseActionMessageCreator {

@@ -8,6 +8,7 @@ import { ITabStopEvent, TabStopsListener } from './../tab-stops-listener';
 import { BaseAnalyzer } from './base-analyzer';
 import { AxeAnalyzerResult, IAnalyzer, IFocusAnalyzerConfiguration, IScanBasePayload, IScanUpdatePayload } from './ianalyzer';
 
+// tslint:disable-next-line:interface-name
 export interface IProgressResult<T> {
     result: T;
 }

@@ -8,7 +8,7 @@ import { BrowserAdapter, ChromeAdapter } from '../../../../../background/browser
 import { TelemetryClient } from '../../../../../background/telemetry/telemetry-client';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
 import { ITab } from '../../../../../common/itab';
-import { TriggeredBy, TelemetryEventSource } from '../../../../../common/telemetry-events';
+import { TelemetryEventSource, TriggeredBy } from '../../../../../common/telemetry-events';
 
 describe('TelemetryEventHandlerTest', () => {
     let browserAdapterMock: IMock<BrowserAdapter>;

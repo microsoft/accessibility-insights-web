@@ -5,7 +5,7 @@ import { IMock, Mock, Times } from 'typemoq';
 
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import {
-    IAssessmentNavState,
+    AssessmentNavState,
     IGeneratedAssessmentInstance,
     IUserCapturedInstance,
 } from '../../../../../common/types/store-data/iassessment-result-data';
@@ -57,7 +57,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
                 },
             },
         };
-        const assessmentNavState: IAssessmentNavState = {
+        const assessmentNavState: AssessmentNavState = {
             selectedTestStep: 'step1',
             selectedTestType: 5,
         };
@@ -118,7 +118,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             id: '1',
             description: 'des',
         };
-        const assessmentNavState: IAssessmentNavState = {
+        const assessmentNavState: AssessmentNavState = {
             selectedTestStep: 'step1',
             selectedTestType: 5,
         };
@@ -153,7 +153,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
     });
 
     test('getColumnConfigs', () => {
-        const navState: IAssessmentNavState = {
+        const navState: AssessmentNavState = {
             selectedTestType: VisualizationType.HeadingsAssessment,
             selectedTestStep: 'step',
         };
@@ -247,7 +247,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             },
         } as IGeneratedAssessmentInstance;
 
-        const assessmentNavState: IAssessmentNavState = {
+        const assessmentNavState: AssessmentNavState = {
             selectedTestStep: 'step1',
             selectedTestType: 5,
         };

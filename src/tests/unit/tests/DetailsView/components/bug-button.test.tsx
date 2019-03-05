@@ -4,8 +4,8 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { It, Mock, Times } from 'typemoq';
 
-import { BugButton } from '../../../../../DetailsView/components/bug-button';
 import { IssueDetailsTextGenerator } from '../../../../../background/issue-details-text-generator';
+import { BugButton } from '../../../../../DetailsView/components/bug-button';
 
 describe('BugButtonTest', () => {
     test('render new bug button', () => {

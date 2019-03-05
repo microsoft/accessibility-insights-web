@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 /// <reference path="./iformatter.d.ts" />
 /// <reference path="./heading-formatter.ts" />
-import { SingleTargetDrawerConfiguration, IFormatter } from './iformatter';
+import { IFormatter, SingleTargetDrawerConfiguration } from './iformatter';
 
 export class SingleTargetFormatter implements IFormatter {
     constructor(private injectedClassName: string) {}

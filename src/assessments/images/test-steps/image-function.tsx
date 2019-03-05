@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { IPropertyBagColumnRendererConfig } from '../../../assessments/common/property-bag-column-renderer';
+import { PropertyBagColumnRendererConfig } from '../../../assessments/common/property-bag-column-renderer';
 import { IImageFunctionPropertyBag } from '../../../common/types/property-bag/iimage-function';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
@@ -13,8 +13,8 @@ import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuratio
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
 import * as Markup from '../../markup';
-import { TestStep } from '../../types/test-step';
 import { ReportInstanceField } from '../../types/report-instance-field';
+import { TestStep } from '../../types/test-step';
 import { ImagesTestStep } from './test-steps';
 
 const description: JSX.Element = <span>Every image must be coded as either meaningful or decorative.</span>;
@@ -48,7 +48,7 @@ const howToTest: JSX.Element = (
 
 const key = ImagesTestStep.imageFunction;
 
-const propertyBagConfig: IPropertyBagColumnRendererConfig<IImageFunctionPropertyBag>[] = [
+const propertyBagConfig: PropertyBagColumnRendererConfig<IImageFunctionPropertyBag>[] = [
     {
         propertyName: 'imageType',
         displayName: 'Image type',

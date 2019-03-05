@@ -12,12 +12,12 @@ import { ContentActionMessageCreator } from '../../../../../common/message-creat
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { IAssessmentData } from '../../../../../common/types/store-data/iassessment-result-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
+import { UrlParser } from '../../../../../common/url-parser';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
-import { AssessmentView, AssessmentViewDeps, IAssessmentViewProps } from '../../../../../DetailsView/components/assessment-view';
+import { AssessmentView, AssessmentViewDeps, AssessmentViewProps } from '../../../../../DetailsView/components/assessment-view';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
 import { outcomeTypeFromTestStatus, outcomeTypeSemanticsFromTestStatus } from '../../../../../DetailsView/reports/components/outcome-type';
 import { contentProvider, CreateTestAssessmentProvider } from '../../../common/test-assessment-provider';
-import { UrlParser } from '../../../../../common/url-parser';
 
 describe('AssessmentViewTest', () => {
     const assessmentsProvider = CreateTestAssessmentProvider();
@@ -26,7 +26,7 @@ describe('AssessmentViewTest', () => {
     const assessmentDefaultMessageGenerator = new AssessmentDefaultMessageGenerator();
 
     test('constructor', () => {
-        const testObject = new AssessmentView({} as IAssessmentViewProps);
+        const testObject = new AssessmentView({} as AssessmentViewProps);
         expect(testObject).toBeInstanceOf(React.Component);
     });
 
@@ -178,7 +178,7 @@ describe('AssessmentViewTest', () => {
         builder.verifyAll();
     });
 
-    function setStepNotToScanByDefault(props: IAssessmentViewProps): void {
+    function setStepNotToScanByDefault(props: AssessmentViewProps): void {
         props.assessmentNavState.selectedTestStep = assessmentsProvider.all()[0].steps[1].key;
     }
 });
@@ -209,7 +209,7 @@ class AssessmentViewPropsBuilder {
         return this;
     }
 
-    public buildProps(generatedAssessmentInstancesMap = {}, isTargetChanged = false, isStepScanned = false): IAssessmentViewProps {
+    public buildProps(generatedAssessmentInstancesMap = {}, isTargetChanged = false, isStepScanned = false): AssessmentViewProps {
         const deps: AssessmentViewDeps = {
             contentProvider,
             contentActionMessageCreator: Mock.ofType(ContentActionMessageCreator).object,
@@ -248,7 +248,7 @@ class AssessmentViewPropsBuilder {
             manualTestStepResultMap: {},
         } as IAssessmentData;
 
-        const props: IAssessmentViewProps = {
+        const props: AssessmentViewProps = {
             deps,
             prevTarget,
             currentTarget: isTargetChanged ? anotherTarget : prevTarget,

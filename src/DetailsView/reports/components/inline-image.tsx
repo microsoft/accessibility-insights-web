@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-import { blue48 } from '../../../icons/brand/blue/brand-blue-48px-base64';
 import { adaMulticolorBubbles } from '../../../icons/ada/ada-multicolor-bubbles-base64';
 import { adaLaptop } from '../../../icons/ada/ada-laptop-base64';
+import { blue48 } from '../../../icons/brand/blue/brand-blue-48px-base64';
 
 export enum InlineImageType {
     InsightsLogo48,
@@ -14,12 +14,12 @@ export enum InlineImageType {
     AdaLaptop,
 }
 
-export interface IInlineImageProps {
+export interface InlineImageProps {
     type: InlineImageType;
     alt: string;
 }
 
-export class InlineImage extends React.Component<IInlineImageProps> {
+export class InlineImage extends React.Component<InlineImageProps> {
     public render(): JSX.Element {
         const imageData = this.inlineImageTypeToData[this.props.type];
         if (imageData === undefined) {

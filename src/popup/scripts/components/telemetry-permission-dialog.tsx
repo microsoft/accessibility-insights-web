@@ -8,10 +8,10 @@ import * as React from 'react';
 
 import { UserConfigMessageCreator } from '../../../common/message-creators/user-config-message-creator';
 import {
+    privacyStatementPopupText,
     telemetryPopupCheckboxTitle,
     telemetryPopupNotice,
     telemetryPopupTitle,
-    privacyStatementPopupText,
 } from '../../../content/settings/improve-accessibility-insights';
 
 export interface TelemetryPermissionDialogState {

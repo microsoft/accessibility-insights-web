@@ -12,7 +12,7 @@ import { ActionAndCancelButtonsComponent } from '../../../../../DetailsView/comp
 import {
     CapturedInstanceActionType,
     FailureInstancePanelControl,
-    IFailureInstancePanelControlProps,
+    FailureInstancePanelControlProps,
 } from '../../../../../DetailsView/components/failure-instance-panel-control';
 import { GenericPanel } from '../../../../../DetailsView/components/generic-panel';
 
@@ -140,7 +140,7 @@ describe('FailureInstancePanelControlTest', () => {
         addInstanceMock.verifyAll();
     });
 
-    function createPropsWithType(type: CapturedInstanceActionType): IFailureInstancePanelControlProps {
+    function createPropsWithType(type: CapturedInstanceActionType): FailureInstancePanelControlProps {
         return {
             step: 'missingHeadings',
             test: VisualizationType.HeadingsAssessment,

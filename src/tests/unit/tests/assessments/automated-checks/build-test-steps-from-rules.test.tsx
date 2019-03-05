@@ -5,7 +5,7 @@ import * as React from 'react';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { buildTestStepsFromRules } from '../../../../../assessments/automated-checks/build-test-steps-from-rules';
-import { IInstanceTableColumn } from '../../../../../assessments/types/iinstance-table-column';
+import { InstanceTableColumn } from '../../../../../assessments/types/iinstance-table-column';
 import { TestStep } from '../../../../../assessments/types/test-step';
 import { InstanceIdentifierGenerator } from '../../../../../background/instance-identifier-generator';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
@@ -137,7 +137,7 @@ describe('buildTestStepsFromRules', () => {
         validateInstanceColumnsRender(actual.columnsConfig, ['A', 'B'], 'XY', 'two');
     }
 
-    function validateInstanceColumnsRender(actualColumns: IInstanceTableColumn[], target: string[], html: string, message: string): void {
+    function validateInstanceColumnsRender(actualColumns: InstanceTableColumn[], target: string[], html: string, message: string): void {
         const item: IAssessmentInstanceRowData = {
             statusChoiceGroup: null,
             visualizationButton: null,

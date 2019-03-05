@@ -8,7 +8,7 @@ describe('Issue details text builder', () => {
     let sampleIssueDetailsData: CreateIssueDetailsTextData;
 
     beforeEach(() => {
-        testSubject = new IssueDetailsTextGenerator('browser spec');
+        testSubject = new IssueDetailsTextGenerator('MY.EXT.VER', 'browser spec', 'AXE.CORE.VER');
 
         sampleIssueDetailsData = {
             pageTitle: 'pageTitle<x>',
@@ -49,7 +49,7 @@ describe('Issue details text builder', () => {
             ``,
             `====`,
             ``,
-            'This accessibility issue was found using Accessibility Insights for Web, ' +
+            'This accessibility issue was found using Accessibility Insights for Web MY.EXT.VER (axe-core AXE.CORE.VER), ' +
                 'a tool that helps find and fix accessibility issues. Get more information & download ' +
                 'this tool at http://aka.ms/AccessibilityInsights.',
         ].join('\n');
@@ -78,7 +78,7 @@ describe('Issue details text builder', () => {
             ``,
             `====`,
             ``,
-            'This accessibility issue was found using Accessibility Insights for Web, ' +
+            'This accessibility issue was found using Accessibility Insights for Web MY.EXT.VER (axe-core AXE.CORE.VER), ' +
                 'a tool that helps find and fix accessibility issues. Get more information & download ' +
                 'this tool at http://aka.ms/AccessibilityInsights.',
         ].join('\n');

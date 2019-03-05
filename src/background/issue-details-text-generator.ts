@@ -1,12 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AxeInfo } from '../common/axe-info';
 import { CreateIssueDetailsTextData } from '../common/types/create-issue-details-text-data';
 
 export class IssueDetailsTextGenerator {
-    private browserSpec: string;
-    constructor(browserSpec: string) {
-        this.browserSpec = browserSpec;
-    }
+    constructor(private extensionVersion: string, private browserSpec: string, private axeCoreVersion: string) {}
 
     public buildText(data: CreateIssueDetailsTextData): string {
         const result = data.ruleResult;
@@ -33,9 +31,7 @@ export class IssueDetailsTextGenerator {
             ``,
             `====`,
             ``,
-            'This accessibility issue was found using Accessibility Insights for Web, ' +
-                'a tool that helps find and fix accessibility issues. Get more information & download ' +
-                'this tool at http://aka.ms/AccessibilityInsights.',
+            this.footer,
         ].join('\n');
 
         return text;
@@ -43,7 +39,6 @@ export class IssueDetailsTextGenerator {
 
     public buildGithubText(data: CreateIssueDetailsTextData): string {
         const result = data.ruleResult;
-        const standardTags = this.standardizeTags(data);
 
         const text = [
             `**Issue**: \`${result.help}\` ([\`${result.ruleId}\`](${result.helpUrl}))`,
@@ -65,12 +60,19 @@ export class IssueDetailsTextGenerator {
             ``,
             `====`,
             ``,
-            'This accessibility issue was found using Accessibility Insights for Web, ' +
-                'a tool that helps find and fix accessibility issues. Get more information & download ' +
-                'this tool at http://aka.ms/AccessibilityInsights.',
+            this.footer,
         ].join('\n');
 
         return text;
+    }
+
+    private get footer() {
+        return (
+            'This accessibility issue was found using Accessibility Insights for Web ' +
+            `${this.extensionVersion} (axe-core ${this.axeCoreVersion}), ` +
+            'a tool that helps find and fix accessibility issues. Get more information & download ' +
+            'this tool at http://aka.ms/AccessibilityInsights.'
+        );
     }
 
     private collapseConsecutiveSpaces(input: string): string {

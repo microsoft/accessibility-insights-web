@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { React, create, GuidanceTitle } from '../../common';
 import { NewTabLink } from '../../../common/components/new-tab-link';
+import { create, GuidanceTitle, React } from '../../common';
 
 export const keyboardBookmarkletInstructions = create(({ Markup }) => (
     <>

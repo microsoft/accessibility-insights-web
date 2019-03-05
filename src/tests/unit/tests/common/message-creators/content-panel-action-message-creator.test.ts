@@ -6,11 +6,11 @@ import { ContentActionMessageCreator } from '../../../../../common/message-creat
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import {
+    BaseTelemetryData,
     CONTENT_HYPERLINK_OPENED,
     CONTENT_PAGE_OPENED,
     TelemetryEventSource,
     TriggeredBy,
-    BaseTelemetryData,
 } from '../../../../../common/telemetry-events';
 
 describe('ContentPanelActionMessageCreator', () => {

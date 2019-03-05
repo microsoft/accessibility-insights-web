@@ -7,8 +7,8 @@ import { IDisplayableFeatureFlag } from '../../../../../common/types/store-data/
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { GenericToggle } from '../../../../../DetailsView/components/generic-toggle';
 import {
-    PreviewFeaturesToggleListProps,
     PreviewFeaturesToggleList,
+    PreviewFeaturesToggleListProps,
 } from '../../../../../DetailsView/components/preview-features-toggle-list';
 
 describe('PreviewFeaturesToggleListTest', () => {

@@ -13,6 +13,7 @@ export interface AxeOptions {
 
 export type AxeScanContext = string | NodeSelector & Node | IIncludeExcludeOptions | NodeList;
 
+// tslint:disable-next-line:interface-name
 export interface IIncludeExcludeOptions {
     include: string[][];
     exclude: string[][];

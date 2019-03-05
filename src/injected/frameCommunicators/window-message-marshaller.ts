@@ -8,6 +8,7 @@ import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 // scenarios that would normally block unrecognized messages.
 export const MESSAGE_STABLE_SIGNATURE = 'e467510c-ca1f-47df-ace1-a39f7f0678c9';
 
+// tslint:disable-next-line:interface-name
 export interface IWindowMessage {
     messageId: string;
     command: string;
@@ -18,6 +19,7 @@ export interface IWindowMessage {
     messageVersion: string;
 }
 
+// tslint:disable-next-line:interface-name
 export interface IErrorMessageContent {
     name: string;
     message: string;

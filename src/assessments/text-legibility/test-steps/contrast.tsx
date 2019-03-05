@@ -14,12 +14,14 @@ import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/compo
 import { ScannerUtils } from '../../../injected/scanner-utils';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
-import { IPropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
+import { PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
 import * as Markup from '../../markup';
-import { TestStep } from '../../types/test-step';
 import { ReportInstanceField } from '../../types/report-instance-field';
+import { TestStep } from '../../types/test-step';
 
 const contrastDescription: JSX.Element = <span>Text elements must have sufficient contrast.</span>;
+
+const WindowsPlatformLink = () => <NewTabLink href="https://go.microsoft.com/fwlink/?linkid=2075365">{windowsPlatformTitle}</NewTabLink>;
 
 const contrastHowToTest: JSX.Element = (
     <div>
@@ -31,8 +33,7 @@ const contrastHowToTest: JSX.Element = (
                 contrast ratio (e.g., white text on a light gray background).
             </li>
             <li>
-                Use <NewTabLink href="https://aka.ms/k4d">{windowsPlatformTitle}</NewTabLink> to test the contrast at that area. (If you are
-                testing on a Mac, you can use the{' '}
+                Use <WindowsPlatformLink /> to test the contrast at that area. (If you are testing on a Mac, you can use the{' '}
                 <NewTabLink href="https://developer.paciellogroup.com/resources/contrastanalyser/">Colour Contrast Analyser</NewTabLink>.)
             </li>
             <li>
@@ -53,7 +54,7 @@ const contrastHowToTest: JSX.Element = (
 
 const key = TextLegibilityTestStep.contrast;
 
-const propertyBagConfig: IPropertyBagColumnRendererConfig<IContrastPropertyBag>[] = [
+const propertyBagConfig: PropertyBagColumnRendererConfig<IContrastPropertyBag>[] = [
     {
         propertyName: 'textString',
         displayName: 'Text string',

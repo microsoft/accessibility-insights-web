@@ -5,7 +5,7 @@ import * as React from 'react';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { AssessmentBuilder } from '../../../../assessments/assessment-builder';
-import { IAssistedAssessment, IManualAssessment } from '../../../../assessments/types/iassessment';
+import { AssistedAssessment, ManualAssessment } from '../../../../assessments/types/iassessment';
 import { ReportInstanceField } from '../../../../assessments/types/report-instance-field';
 import { TestStep } from '../../../../assessments/types/test-step';
 import { InstanceIdentifierGenerator } from '../../../../background/instance-identifier-generator';
@@ -13,7 +13,7 @@ import { RequirementComparer } from '../../../../common/assessment/requirement-c
 import { Messages } from '../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
-import { IAssessmentScanData, ITestsEnabledState } from '../../../../common/types/store-data/ivisualization-store-data';
+import { IAssessmentScanData, TestsEnabledState } from '../../../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { AssessmentInstanceTable } from '../../../../DetailsView/components/assessment-instance-table';
 import { AssessmentTestView } from '../../../../DetailsView/components/assessment-test-view';
@@ -54,7 +54,7 @@ describe('AssessmentBuilderTest', () => {
         testStep2.generateInstanceIdentifier = null;
         testStep2.updateVisibility = null;
 
-        const baseAssessment: IManualAssessment = {
+        const baseAssessment: ManualAssessment = {
             key: 'manualAssessmentKey',
             type: -1 as VisualizationType,
             title: 'manual assessment title',
@@ -62,7 +62,7 @@ describe('AssessmentBuilderTest', () => {
             steps: [testStep, testStep2],
         };
 
-        const nonDefaultAssessment: IManualAssessment = {
+        const nonDefaultAssessment: ManualAssessment = {
             ...baseAssessment,
             executeAssessmentScanPolicy: () => null,
             steps: [],
@@ -208,7 +208,7 @@ describe('AssessmentBuilderTest', () => {
         const renderRequirementDescription6 = () => <span>6</span>;
         testStep6.renderRequirementDescription = renderRequirementDescription6;
 
-        const assistedAssessment: IAssistedAssessment = {
+        const assistedAssessment: AssistedAssessment = {
             key: 'manual assessment key',
             type: -1 as VisualizationType,
             title: 'manual assessment title',
@@ -255,7 +255,7 @@ describe('AssessmentBuilderTest', () => {
         const key = testStep1.key;
         const scanData = { enabled: true, stepStatus: {} } as IAssessmentScanData;
         scanData.stepStatus[key] = true;
-        const vizStoreData = { assessments: { headingsAssessment: scanData }, adhoc: {} } as ITestsEnabledState;
+        const vizStoreData = { assessments: { headingsAssessment: scanData }, adhoc: {} } as TestsEnabledState;
 
         config.getAnalyzer(providerMock.object, testStep1.key);
         config.getDrawer(drawerProviderMock.object, testStep1.key);

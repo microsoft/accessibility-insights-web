@@ -5,8 +5,8 @@ import * as React from 'react';
 import { VisualizationToggle } from '../../common/components/visualization-toggle';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { ContentInclude, ContentIncludeDeps } from '../../views/content/content-include';
-import { ContentReference } from '../../views/content/content-page';
 import { ContentLink } from '../../views/content/content-link';
+import { ContentReference } from '../../views/content/content-page';
 
 export type StaticContentDetailsViewDeps = ContentIncludeDeps;
 

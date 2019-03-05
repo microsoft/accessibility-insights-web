@@ -5,7 +5,7 @@ import * as Axe from 'axe-core';
 import { HyperlinkDefinition } from '../views/content/content-page';
 import { IDictionaryStringTo } from './dictionary-types';
 import { DocumentUtils } from './document-utils';
-import { AxeRule, ScanResults, RuleResult } from './iruleresults';
+import { AxeRule, RuleResult, ScanResults } from './iruleresults';
 import { MessageDecorator } from './message-decorator';
 import { Processor } from './processor';
 

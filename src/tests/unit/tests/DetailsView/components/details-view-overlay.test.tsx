@@ -13,7 +13,7 @@ import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/acti
 import {
     DetailsViewOverlay,
     DetailsViewOverlayDeps,
-    IDetailsViewOverlayProps,
+    DetailsViewOverlayProps,
 } from '../../../../../DetailsView/components/details-view-overlay';
 import { PreviewFeatureFlagsHandler } from '../../../../../DetailsView/handlers/preview-feature-flags-handler';
 import { ContentProvider } from '../../../../../views/content/content-page';
@@ -51,7 +51,7 @@ describe('DetailsViewOverlay', () => {
         userConfigMessageCreator: userConfigMessageCreatorStub,
     };
 
-    const props: IDetailsViewOverlayProps = {
+    const props: DetailsViewOverlayProps = {
         deps,
         detailsViewStoreData,
         scopingStoreData,

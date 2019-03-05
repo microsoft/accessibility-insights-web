@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 import { IMock, Mock } from 'typemoq';
 
+import { ClientBrowserAdapter } from '../../../../../common/client-browser-adapter';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { FrameCommunicator } from '../../../../../injected/frameCommunicators/frame-communicator';
 import { IHtmlElementAxeResults } from '../../../../../injected/scanner-utils';
 import { ShadowUtils } from '../../../../../injected/shadow-utils';
 import { IHeadingStyleConfiguration } from '../../../../../injected/visualization/heading-formatter';
 import { IssuesFormatter } from '../../../../../injected/visualization/issues-formatter';
-import { ClientBrowserAdapter } from '../../../../../common/client-browser-adapter';
 
 describe('IssuesFormatterTests', () => {
     let testSubject: IssuesFormatter;

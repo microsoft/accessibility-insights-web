@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { times } from 'lodash';
 
-import { IManualTestStatus, ManualTestStatus } from '../../../../../../common/types/manual-test-status';
+import { ManualTestStatus, ManualTestStatusData } from '../../../../../../common/types/manual-test-status';
 import {
     outcomeStatsFromManualTestStatus,
     outcomeTypeFromTestStatus,
@@ -29,9 +29,9 @@ describe('OutcomeType', () => {
             expect(stats).toEqual({ pass: 0, fail: 0, incomplete: 0 });
         });
 
-        function generateManualTestStatus(pass: number, fail: number, incomplete: number): IManualTestStatus {
+        function generateManualTestStatus(pass: number, fail: number, incomplete: number): ManualTestStatusData {
             let i = 0;
-            const result: IManualTestStatus = {};
+            const result: ManualTestStatusData = {};
             function setStep(status) {
                 return () => (result['step' + ++i] = { stepFinalResult: status, isStepScanned: true });
             }

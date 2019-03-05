@@ -8,16 +8,16 @@ import { ICustomWidgetPropertyBag } from '../../../common/types/property-bag/icu
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
+import * as content from '../../../content/test/custom-widgets/role-state-property';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
 import * as Markup from '../../markup';
-import { TestStep } from '../../types/test-step';
 import { ReportInstanceField } from '../../types/report-instance-field';
+import { TestStep } from '../../types/test-step';
 import { getFlatDesignPatternStringFromRole } from '../custom-widgets-column-renderer';
 import { CustomWidgetsColumnRendererFactory } from '../custom-widgets-column-renderer-factory';
 import { CustomWidgetsTestStep } from './test-steps';
-import * as content from '../../../content/test/custom-widgets/role-state-property';
 
 const roleStatePropertyDescription: JSX.Element = (
     <span>A custom widget must support the ARIA roles, states, and properties specified by its design pattern.</span>

@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { IDisplayableVisualizationTypeData } from '../../../../../common/configs/visualization-configuration-factory';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { ITargetPageChangedViewProps, TargetPageChangedView } from '../../../../../DetailsView/components/target-page-changed-view';
+import { TargetPageChangedView, TargetPageChangedViewProps } from '../../../../../DetailsView/components/target-page-changed-view';
 
 describe('TargetPageChangedView', () => {
     const clickHandlerStub: () => void = () => {};
@@ -17,7 +17,7 @@ describe('TargetPageChangedView', () => {
             toggleLabel: 'test toggle label',
         } as IDisplayableVisualizationTypeData;
 
-        const props: ITargetPageChangedViewProps = {
+        const props: TargetPageChangedViewProps = {
             type: type,
             toggleClickHandler: clickHandlerStub,
             displayableData,
@@ -47,7 +47,7 @@ describe('TargetPageChangedView', () => {
         const type = VisualizationType.Landmarks;
         const displayableData = null;
 
-        const props: ITargetPageChangedViewProps = {
+        const props: TargetPageChangedViewProps = {
             type: type,
             toggleClickHandler: clickHandlerStub,
             displayableData,

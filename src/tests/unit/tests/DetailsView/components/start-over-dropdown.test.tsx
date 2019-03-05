@@ -9,10 +9,10 @@ import { IMock, Mock, Times } from 'typemoq';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { GenericDialog } from '../../../../../DetailsView/components/generic-dialog';
-import { IStartOverProps, StartOverDropdown } from '../../../../../DetailsView/components/start-over-dropdown';
+import { StartOverDropdown, StartOverProps } from '../../../../../DetailsView/components/start-over-dropdown';
 
 describe('StartOverDropdownTest', () => {
-    let defaultProps: IStartOverProps;
+    let defaultProps: StartOverProps;
     let actionCreatorMock: IMock<DetailsViewActionMessageCreator>;
 
     const event = {

@@ -6,7 +6,7 @@ import * as React from 'react';
 
 import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { getRequirementsResults } from '../../common/assessment/requirement';
-import { IManualTestStatus, ManualTestStatus } from '../../common/types/manual-test-status';
+import { ManualTestStatus, ManualTestStatusData } from '../../common/types/manual-test-status';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { OutcomeTypeSemantic } from '../reports/components/outcome-type';
@@ -19,15 +19,15 @@ export interface TestStepNavDeps {
     getInnerTextFromJsxElement(element: JSX.Element): string;
 }
 
-export interface ITestStepNavProps {
+export interface TestStepNavProps {
     deps: TestStepNavDeps;
     selectedTest: VisualizationType;
     selectedTestStep: string;
-    stepStatus: IManualTestStatus;
+    stepStatus: ManualTestStatusData;
     ariaLabel: string;
 }
 
-export class TestStepsNav extends React.Component<ITestStepNavProps> {
+export class TestStepsNav extends React.Component<TestStepNavProps> {
     constructor(props) {
         super(props);
     }

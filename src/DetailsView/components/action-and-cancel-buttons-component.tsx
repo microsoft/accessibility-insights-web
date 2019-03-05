@@ -3,7 +3,7 @@
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 
-export interface IActionAndCancelButtonsComponentProps {
+export interface ActionAndCancelButtonsComponentProps {
     isHidden: boolean;
     primaryButtonDisabled: boolean;
     primaryButtonText: string;
@@ -11,7 +11,7 @@ export interface IActionAndCancelButtonsComponentProps {
     cancelButtonOnClick: (ev) => void;
 }
 
-export class ActionAndCancelButtonsComponent extends React.Component<IActionAndCancelButtonsComponentProps> {
+export class ActionAndCancelButtonsComponent extends React.Component<ActionAndCancelButtonsComponentProps> {
     public render(): JSX.Element {
         return (
             <div className="action-and-cancel-buttons-component" hidden={this.props.isHidden}>

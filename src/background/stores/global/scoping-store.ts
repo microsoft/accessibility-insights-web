@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash/index';
 import { autobind } from '@uifabric/utilities';
+import * as _ from 'lodash/index';
 
 import { StoreNames } from '../../../common/stores/store-names';
 import { IScopingStoreData } from '../../../common/types/store-data/scoping-store-data';

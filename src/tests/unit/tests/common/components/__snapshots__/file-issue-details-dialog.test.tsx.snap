@@ -2,6 +2,7 @@
 
 exports[`FileIssueDetailsDialog render while closed 1`] = `
 <FileIssueDetailsDialog
+  buttonRef={null}
   fileIssueDetailsHandler={
     proxy {
       "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -9,14 +10,17 @@ exports[`FileIssueDetailsDialog render while closed 1`] = `
       "onLayoutDidMount": [Function],
     }
   }
+  getSettingsPanel={null}
   isOpen={false}
   onDismiss={null}
   onOpenSettings={null}
+  restoreFocus={false}
 />
 `;
 
 exports[`FileIssueDetailsDialog render while open 1`] = `
 <FileIssueDetailsDialog
+  buttonRef={null}
   fileIssueDetailsHandler={
     proxy {
       "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -24,9 +28,11 @@ exports[`FileIssueDetailsDialog render while open 1`] = `
       "onLayoutDidMount": [Function],
     }
   }
+  getSettingsPanel={null}
   isOpen={true}
   onDismiss={null}
   onOpenSettings={null}
+  restoreFocus={false}
 />
 `;
 

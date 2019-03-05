@@ -1,18 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
 import * as _ from 'lodash/index';
+import * as React from 'react';
 
-import { TextField, ITextField } from 'office-ui-fabric-react/lib/TextField';
-import { List } from 'office-ui-fabric-react/lib/List';
 import { autobind } from '@uifabric/utilities';
-import { FocusZone, FocusZoneDirection } from 'office-ui-fabric-react/lib/FocusZone';
-import { ISingleElementSelector } from '../types/store-data/scoping-store-data';
 import { DefaultButton, IconButton } from 'office-ui-fabric-react/lib/Button';
-import { ScopingInputTypes } from '../../background/scoping-input-types';
+import { FocusZone, FocusZoneDirection } from 'office-ui-fabric-react/lib/FocusZone';
+import { List } from 'office-ui-fabric-react/lib/List';
+import { ITextField, TextField } from 'office-ui-fabric-react/lib/TextField';
 import { InspectMode } from '../../background/inspect-modes';
+import { ScopingInputTypes } from '../../background/scoping-input-types';
+import { ISingleElementSelector } from '../types/store-data/scoping-store-data';
 
-export interface ISelectorInputListProps {
+export interface SelectorInputListProps {
     title: string;
     subtitle: string;
     items: ISingleElementSelector[];
@@ -29,7 +29,7 @@ export interface SelectorInputListState {
     value: string;
 }
 
-export class SelectorInputList extends React.Component<ISelectorInputListProps, SelectorInputListState> {
+export class SelectorInputList extends React.Component<SelectorInputListProps, SelectorInputListState> {
     private textField: ITextField;
     private emptyStringInitialValue = '';
 
@@ -41,7 +41,7 @@ export class SelectorInputList extends React.Component<ISelectorInputListProps, 
         };
     }
 
-    public componentDidUpdate(previousProps: ISelectorInputListProps) {
+    public componentDidUpdate(previousProps: SelectorInputListProps) {
         const shouldUpdateState = !_.isEqual(this.props, previousProps);
 
         if (shouldUpdateState) {

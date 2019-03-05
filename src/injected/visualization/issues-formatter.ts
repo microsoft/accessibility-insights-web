@@ -5,14 +5,14 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
+import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 import { WindowUtils } from '../../common/window-utils';
-import { FrameCommunicator } from '../frameCommunicators/frame-communicator';
 import { DialogRenderer } from '../dialog-renderer';
+import { FrameCommunicator } from '../frameCommunicators/frame-communicator';
 import { IHtmlElementAxeResults } from '../scanner-utils';
 import { ShadowUtils } from '../shadow-utils';
 import { IHeadingStyleConfiguration } from './heading-formatter';
 import { IDrawerConfiguration, IFormatter } from './iformatter';
-import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 
 export class IssuesFormatter implements IFormatter {
     private dialogRenderer: DialogRenderer;

@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IAssessmentViewProps } from '../../../../../DetailsView/components/assessment-view';
+import { AssessmentViewProps } from '../../../../../DetailsView/components/assessment-view';
 import { detailsViewExtensionPoint } from '../../../../../DetailsView/extensions/details-view-extension-point';
 
 describe('detailsViewExtensionPoint', () => {
-    const prev = { isScanning: false } as IAssessmentViewProps;
-    const cur = { isScanning: true } as IAssessmentViewProps;
+    const prev = { isScanning: false } as AssessmentViewProps;
+    const cur = { isScanning: true } as AssessmentViewProps;
 
     it('supports onAssessmentViewUpdate', () => {
         const onAssessmentViewUpdate = jest.fn();

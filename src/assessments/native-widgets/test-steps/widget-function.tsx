@@ -8,15 +8,15 @@ import { IWidgetFunctionPropertyBag } from '../../../common/types/property-bag/i
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
+import * as content from '../../../content/test/native-widgets/widget-function';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
-import { IPropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
+import { PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
 import * as Markup from '../../markup';
-import { TestStep } from '../../types/test-step';
 import { ReportInstanceField } from '../../types/report-instance-field';
+import { TestStep } from '../../types/test-step';
 import { NativeWidgetsTestStep } from './test-steps';
-import * as content from '../../../content/test/native-widgets/widget-function';
 
 const description: JSX.Element = (
     <span>
@@ -41,7 +41,7 @@ const howToTest: JSX.Element = (
     </div>
 );
 
-const propertyBagConfig: IPropertyBagColumnRendererConfig<IWidgetFunctionPropertyBag>[] = [
+const propertyBagConfig: PropertyBagColumnRendererConfig<IWidgetFunctionPropertyBag>[] = [
     {
         propertyName: 'element',
         displayName: 'Element',

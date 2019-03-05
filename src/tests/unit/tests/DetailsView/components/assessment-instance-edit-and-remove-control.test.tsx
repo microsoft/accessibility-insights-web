@@ -8,7 +8,7 @@ import { Mock, Times } from 'typemoq';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import {
     AssessmentInstanceEditAndRemoveControl,
-    IAssessmentInstanceEditAndRemoveControlProps,
+    AssessmentInstanceEditAndRemoveControlProps,
 } from '../../../../../DetailsView/components/assessment-instance-edit-and-remove-control';
 import {
     CapturedInstanceActionType,
@@ -18,13 +18,13 @@ import { CreateTestAssessmentProvider } from '../../../common/test-assessment-pr
 
 describe('AssessmentInstanceRemoveButton', () => {
     test('constructor', () => {
-        const testObject = new AssessmentInstanceEditAndRemoveControl({} as IAssessmentInstanceEditAndRemoveControlProps);
+        const testObject = new AssessmentInstanceEditAndRemoveControl({} as AssessmentInstanceEditAndRemoveControlProps);
         expect(testObject).toBeInstanceOf(React.Component);
     });
 
     test('render', () => {
         const onRemoveMock = Mock.ofInstance((test, step, id) => {});
-        const props: IAssessmentInstanceEditAndRemoveControlProps = {
+        const props: AssessmentInstanceEditAndRemoveControlProps = {
             test: VisualizationType.HeadingsAssessment,
             step: 'headingLevel',
             id: 'id',

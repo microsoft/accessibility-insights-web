@@ -3,7 +3,7 @@
 import * as _ from 'lodash';
 
 import { AssessmentsProvider } from '../../../../assessments/assessments-provider';
-import { IAssessment } from '../../../../assessments/types/iassessment';
+import { Assessment } from '../../../../assessments/types/iassessment';
 import { TestStep } from '../../../../assessments/types/test-step';
 
 describe('AssessmentsProviderTest', () => {
@@ -98,7 +98,7 @@ describe('AssessmentsProviderTest', () => {
         const provider = getProvider();
 
         const initialCall = provider.all();
-        const shouldBeClone = provider.all() as Array<Readonly<IAssessment>>;
+        const shouldBeClone = provider.all() as Array<Readonly<Assessment>>;
         shouldBeClone.pop();
         expect(initialCall.length).toBe(2);
         expect(shouldBeClone.length).toBe(1);
@@ -139,15 +139,15 @@ describe('AssessmentsProviderTest', () => {
 
     function getProvider() {
         const assessments = [
-            { type: firstType, key: firstKey, steps: [{ key: stepOneKey }, { key: stepTwoKey }] } as IAssessment,
-            { type: secondType, key: secondKey } as IAssessment,
+            { type: firstType, key: firstKey, steps: [{ key: stepOneKey }, { key: stepTwoKey }] } as Assessment,
+            { type: secondType, key: secondKey } as Assessment,
         ];
         const provider = AssessmentsProvider.Create(assessments);
         return provider;
     }
 
-    function makeAssessment(type: number, stepKeys: string[]): IAssessment {
-        return { type, steps: stepKeys.map(makeStep) } as IAssessment;
+    function makeAssessment(type: number, stepKeys: string[]): Assessment {
+        return { type, steps: stepKeys.map(makeStep) } as Assessment;
     }
 
     function makeStep(key: string) {
