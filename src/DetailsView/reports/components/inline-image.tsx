@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-import { adaMulticolorBubbles } from '../../../icons/ada/ada-multicolor-bubbles-base64';
 import { adaLaptop } from '../../../icons/ada/ada-laptop-base64';
+import { adaMulticolorBubbles } from '../../../icons/ada/ada-multicolor-bubbles-base64';
 import { blue48 } from '../../../icons/brand/blue/brand-blue-48px-base64';
 
 export enum InlineImageType {
