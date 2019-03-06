@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { mount, ReactWrapper, shallow } from 'enzyme';
+import { ContextualMenu } from 'office-ui-fabric-react/lib/ContextualMenu';
 import * as React from 'react';
 import { It, Mock, Times } from 'typemoq';
 
@@ -53,6 +54,8 @@ describe('HeaderContextualMenu', () => {
 
     describe('user interaction', () => {
         let testObject: ReactWrapper;
+        let props: HeaderContextualMenuProps;
+
         const eventStubFactory = new EventStubFactory();
         const event = eventStubFactory.createMouseClickEvent() as any;
 
@@ -64,8 +67,9 @@ describe('HeaderContextualMenu', () => {
 
         beforeEach(() => {
             popupActionMessageCreatorMock.reset();
+            launchPanelHeaderClickHandlerMock.reset();
 
-            const props: HeaderContextualMenuProps = {
+            props = {
                 deps: {
                     popupActionMessageCreator: popupActionMessageCreatorMock.object,
                     launchPanelHeaderClickHandler: launchPanelHeaderClickHandlerMock.object,
@@ -100,7 +104,7 @@ describe('HeaderContextualMenu', () => {
         });
 
         it('handles full-assessment', () => {
-            const props: HeaderContextualMenuProps = {
+            props = {
                 deps: {
                     popupActionMessageCreator: popupActionMessageCreatorMock.object,
                     launchPanelHeaderClickHandler: launchPanelHeaderClickHandlerMock.object,
@@ -194,6 +198,19 @@ describe('HeaderContextualMenu', () => {
             const item = testObject.find('button[name="Help"]');
 
             item.simulate('click', event);
+
+            launchPanelHeaderClickHandlerMock.verifyAll();
+        });
+
+        it('handle dismiss of the contextual menu', () => {
+            launchPanelHeaderClickHandlerMock
+                .setup(handler => handler.onDismissFeedbackMenu(props.header, It.isObjectWith(event)))
+                .verifiable(Times.once());
+
+            const contextualMenu = testObject.find(ContextualMenu);
+            expect(contextualMenu.length).toBe(1);
+
+            contextualMenu.prop('onDismiss')(event);
 
             launchPanelHeaderClickHandlerMock.verifyAll();
         });
