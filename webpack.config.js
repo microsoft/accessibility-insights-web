@@ -23,10 +23,7 @@ const commonEntryFiles = {
     insights: [path.resolve(__dirname, 'src/views/insights/initializer.ts')],
     detailsView: [path.resolve(__dirname, 'src/DetailsView/details-view-initializer.ts')],
     devtools: [path.resolve(__dirname, 'src/devtools/dev-tool-init.ts')],
-    background: [
-        'script-loader!' + path.resolve(__dirname, 'node_modules/jquery/dist/jquery.min.js'),
-        path.resolve(__dirname, 'src/background/background-init.ts'),
-    ],
+    background: [path.resolve(__dirname, 'src/background/background-init.ts')],
 };
 
 const commonConfig = {
