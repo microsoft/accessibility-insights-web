@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as Enzyme from 'enzyme';
 import * as React from 'react';
-import { IMock, It, Mock, Times, MockBehavior } from 'typemoq';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { AssessmentsProvider } from '../../../../../assessments/assessments-provider';
 import { TestStep } from '../../../../../assessments/types/test-step';
@@ -11,8 +11,8 @@ import { ManualTestStatus } from '../../../../../common/types/manual-test-status
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { AssessmentInstanceTable } from '../../../../../DetailsView/components/assessment-instance-table';
 import { AssessmentVisualizationEnabledToggle } from '../../../../../DetailsView/components/assessment-visualization-enabled-toggle';
-import { ManualTestStepView, IManualTestStepViewProps } from '../../../../../DetailsView/components/manual-test-step-view';
-import { ITestStepViewProps, TestStepView } from '../../../../../DetailsView/components/test-step-view';
+import { ManualTestStepView } from '../../../../../DetailsView/components/manual-test-step-view';
+import { TestStepView, TestStepViewProps } from '../../../../../DetailsView/components/test-step-view';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
 import { BaseDataBuilder } from '../../../common/base-data-builder';
 
@@ -130,7 +130,7 @@ describe('TestStepViewTest', () => {
         getVisualHelperToggleMock.verifyAll();
     });
 
-    function validateManualTestStepView(wrapper: Enzyme.ShallowWrapper, props: ITestStepViewProps): void {
+    function validateManualTestStepView(wrapper: Enzyme.ShallowWrapper, props: TestStepViewProps): void {
         const view = wrapper.find(ManualTestStepView);
         expect(view.exists()).toBe(true);
         expect(props.assessmentNavState.selectedTestStep).toEqual(view.prop('step'));
@@ -141,7 +141,7 @@ describe('TestStepViewTest', () => {
     }
 });
 
-class TestStepViewPropsBuilder extends BaseDataBuilder<ITestStepViewProps> {
+class TestStepViewPropsBuilder extends BaseDataBuilder<TestStepViewProps> {
     public static default(getVisualHelperToggle: (provider, props) => {}): TestStepViewPropsBuilder {
         const assessmentsProviderMock = Mock.ofType(AssessmentsProvider, MockBehavior.Strict);
         assessmentsProviderMock

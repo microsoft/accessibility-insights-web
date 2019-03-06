@@ -6,7 +6,7 @@ import * as React from 'react';
 
 import { NamedSFC } from '../../common/react/named-sfc';
 
-export type IGenericDialogProps = {
+export type GenericDialogProps = {
     onPrimaryButtonClick: (event: React.MouseEvent<any>) => void;
     onCancelButtonClick: (event: React.MouseEvent<any>) => void;
     messageText: string;
@@ -14,7 +14,7 @@ export type IGenericDialogProps = {
     primaryButtonText: string;
 };
 
-export const GenericDialog = NamedSFC<IGenericDialogProps>('GenericDialog', props => {
+export const GenericDialog = NamedSFC<GenericDialogProps>('GenericDialog', props => {
     const { onCancelButtonClick, onPrimaryButtonClick, messageText, title, primaryButtonText } = props;
 
     return (

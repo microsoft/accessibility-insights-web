@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ChromeAdapter, BrowserAdapter } from './browser-adapter';
+import { BrowserAdapter, ChromeAdapter } from './browser-adapter';
+
+// tslint:disable-next-line:interface-name
 export interface IDevToolsChromeAdapter extends BrowserAdapter {
     getInspectedWindowTabId(): number;
     executeScriptInInspectedWindow(script: string, frameUrl: string): void;

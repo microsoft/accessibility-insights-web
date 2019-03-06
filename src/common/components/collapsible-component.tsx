@@ -5,22 +5,22 @@ import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import * as React from 'react';
 
-export interface ICollapsibleComponentProps {
+export interface CollapsibleComponentProps {
     header: JSX.Element;
     content: JSX.Element;
     contentClassName?: string;
     containerClassName?: string;
 }
 
-interface ICollapsibleComponentState {
+interface CollapsibleComponentState {
     showContent: boolean;
 }
 
-export class CollapsibleComponent extends React.Component<ICollapsibleComponentProps, ICollapsibleComponentState> {
+export class CollapsibleComponent extends React.Component<CollapsibleComponentProps, CollapsibleComponentState> {
     private readonly iconNameDown = 'ChevronDown';
     private readonly iconNameUp = 'ChevronRight';
 
-    constructor(props: ICollapsibleComponentProps) {
+    constructor(props: CollapsibleComponentProps) {
         super(props);
         this.state = { showContent: true };
     }

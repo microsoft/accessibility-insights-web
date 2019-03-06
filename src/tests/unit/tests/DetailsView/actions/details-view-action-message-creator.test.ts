@@ -6,19 +6,19 @@ import { OnDetailsViewPivotSelected } from '../../../../../background/actions/ac
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import {
+    AssessmentTelemetryData,
+    BaseTelemetryData,
     COPY_ISSUE_DETAILS,
+    DETAILS_VIEW_OPEN,
     DetailsViewOpenTelemetryData,
     DetailsViewPivotSelectedTelemetryData,
-    DETAILS_VIEW_OPEN,
-    ExportResultsTelemetryData,
     EXPORT_RESULTS,
+    ExportResultsTelemetryData,
     FeatureFlagToggleTelemetryData,
     TelemetryEventSource,
     TestStepActionTelemetryData,
     TestStepSelectTelemetryData,
     TriggeredByNotApplicable,
-    AssessmentTelemetryData,
-    BaseTelemetryData,
 } from '../../../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../../../common/types/visualization-type';

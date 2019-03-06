@@ -29,24 +29,8 @@ class TestableSettingsPanel extends SettingsPanel {
         return this.onHighContrastModeToggleClick;
     }
 
-    public getOnBugServiceChoiceGroupChange(): SettingsPanelProtectedChoiceGroupChangeFunction {
-        return this.onBugServiceChoiceGroupChange;
-    }
-
-    public getOnAzureBoardsProjectChange(): SettingsPanelProtectedTextFieldChangeFunction {
-        return this.onAzureBoardsProjectChange;
-    }
-
-    public getOnAzureBoardsTeamChange(): SettingsPanelProtectedTextFieldChangeFunction {
-        return this.onAzureBoardsTeamChange;
-    }
-
     public getOnGitHubRepositoryChange(): SettingsPanelProtectedTextFieldChangeFunction {
         return this.onGitHubRepositoryChange;
-    }
-
-    public getOnIssueTrackerPathSave(): (id: string, state: string) => void {
-        return this.onIssueTrackerPathSave;
     }
 }
 
@@ -92,7 +76,7 @@ describe('SettingsPanelTest', () => {
             isPanelOpen: true,
             enableTelemetry: false,
             enableHighContrast: false,
-            bugService: 'azureBoards',
+            bugService: 'gitHub',
             bugServicePropertiesMap: {},
         } as RenderTestCase,
         {
@@ -101,13 +85,6 @@ describe('SettingsPanelTest', () => {
             enableHighContrast: false,
             bugService: 'gitHub',
             bugServicePropertiesMap: { gitHub: {} },
-        } as RenderTestCase,
-        {
-            isPanelOpen: true,
-            enableTelemetry: false,
-            enableHighContrast: false,
-            bugService: 'azureBoards',
-            bugServicePropertiesMap: { azureBoards: { project: 'test-project', team: 'test-team' } },
         } as RenderTestCase,
         {
             isPanelOpen: true,
@@ -173,44 +150,6 @@ describe('SettingsPanelTest', () => {
         userConfigMessageCreatorMock.verify(u => u.setHighContrastMode(highContrastConfigState), Times.once());
     });
 
-    test.each(['hello', 'world'])('verify save - set issue tracker path button : %s', issueTrackerPathState => {
-        userConfigStoreData = {} as UserConfigurationStoreData;
-        const testProps: SettingsPanelProps = {
-            isOpen: true,
-            deps: {
-                detailsViewActionMessageCreator: detailsActionMessageCreatorMock.object,
-                userConfigMessageCreator: userConfigMessageCreatorMock.object,
-            },
-            userConfigStoreState: userConfigStoreData,
-            featureFlagData: { [FeatureFlags.showBugFiling]: true },
-        };
-
-        const testSubject = new TestableSettingsPanel(testProps);
-
-        testSubject.getOnIssueTrackerPathSave()(null, issueTrackerPathState);
-        userConfigMessageCreatorMock.verify(u => u.setIssueTrackerPath(issueTrackerPathState), Times.once());
-    });
-
-    test('verify bug service choice group change', () => {
-        userConfigStoreData = {} as UserConfigurationStoreData;
-        const testProps: SettingsPanelProps = {
-            isOpen: true,
-            deps: {
-                detailsViewActionMessageCreator: detailsActionMessageCreatorMock.object,
-                userConfigMessageCreator: userConfigMessageCreatorMock.object,
-            },
-            userConfigStoreState: userConfigStoreData,
-            featureFlagData: { [FeatureFlags.showBugFiling]: true },
-        };
-
-        const testSubject = new TestableSettingsPanel(testProps);
-
-        const option: IChoiceGroupOption = { key: 'TestService', text: 'Test Service' };
-        testSubject.getOnBugServiceChoiceGroupChange()(null, option);
-
-        userConfigMessageCreatorMock.verify(u => u.setBugService(option.key as string), Times.once());
-    });
-
     interface BugServicePropertyTestCase {
         bugServiceName: string;
         propertyName: string;
@@ -219,18 +158,6 @@ describe('SettingsPanelTest', () => {
     }
 
     const bugServicePropertyTestCases: BugServicePropertyTestCase[] = [
-        {
-            bugServiceName: 'azureBoards',
-            propertyName: 'project',
-            propertyValue: 'project-url',
-            changeFunction: (testableSettingsPanel: TestableSettingsPanel) => testableSettingsPanel.getOnAzureBoardsProjectChange(),
-        },
-        {
-            bugServiceName: 'azureBoards',
-            propertyName: 'team',
-            propertyValue: 'team-name',
-            changeFunction: (testableSettingsPanel: TestableSettingsPanel) => testableSettingsPanel.getOnAzureBoardsTeamChange(),
-        },
         {
             bugServiceName: 'gitHub',
             propertyName: 'repository',

@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { HTMLElementUtils } from '../../../../common/html-element-utils';
 import { FileIssueDetailsHandler } from '../../../../common/file-issue-details-handler';
+import { HTMLElementUtils } from '../../../../common/html-element-utils';
 
 describe('FileIssueDetailsHandlerTest', () => {
     let testSubject: FileIssueDetailsHandler;

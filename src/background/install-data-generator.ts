@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IInstallationData } from './installation-data';
 import { BrowserAdapter } from './browser-adapter';
+import { IInstallationData } from './installation-data';
 import { LocalStorageDataKeys } from './local-storage-data-keys';
 
 export class InstallDataGenerator {

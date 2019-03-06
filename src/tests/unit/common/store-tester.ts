@@ -5,17 +5,17 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { BaseStore } from '../../../background/stores/base-store';
 import { Action } from '../../../common/flux/action';
 import { IBaseStore } from '../../../common/istore';
-import { IDefaultConstructor } from '../../../common/types/idefault-constructor';
+import { DefaultConstructor } from '../../../common/types/idefault-constructor';
 
 export class StoreTester<TStoreData, TActions> {
     private actionName: string;
     private actionParam: any;
     private listener: Function;
-    private actions: IDefaultConstructor<TActions>;
+    private actions: DefaultConstructor<TActions>;
     private storeFactory: (actions) => BaseStore<TStoreData>;
     private postListenerMock: IMock<any>;
 
-    constructor(actions: IDefaultConstructor<TActions>, actionName: keyof TActions, storeFactory: (actions) => BaseStore<TStoreData>) {
+    constructor(actions: DefaultConstructor<TActions>, actionName: keyof TActions, storeFactory: (actions) => BaseStore<TStoreData>) {
         this.actionName = actionName as string;
         this.storeFactory = storeFactory;
         this.actions = actions;

@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { INavLink } from 'office-ui-fabric-react/lib/Nav';
 import * as React from 'react';
 import { NamedSFC } from '../../../common/react/named-sfc';
-import { INavLink } from 'office-ui-fabric-react/lib/Nav';
 import { StatusIcon } from '../status-icon';
 
 export type LeftNavIconProps = {

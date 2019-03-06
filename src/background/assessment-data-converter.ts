@@ -12,7 +12,7 @@ import {
     ITestStepResult,
     IUserCapturedInstance,
 } from './../common/types/store-data/iassessment-result-data.d';
-import { IHtmlElementAxeResults, DecoratedAxeNodeResult } from './../injected/scanner-utils';
+import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from './../injected/scanner-utils';
 import { IUniquelyIdentifiableInstances } from './instance-identifier-generator';
 
 export class AssessmentDataConverter {

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { React, create, GuidanceTitle } from '../../common';
+import { create, GuidanceTitle, React } from '../../common';
 import { howToTest } from './how-to-test';
 import { whyItMatters } from './why-it-matters';
 

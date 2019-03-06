@@ -3,9 +3,9 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { ContentPage } from '../../../../../views/content/content-page';
-import { ContentInclude } from '../../../../../views/content/content-include';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
+import { ContentInclude } from '../../../../../views/content/content-include';
+import { ContentPage } from '../../../../../views/content/content-page';
 
 describe('ContentInclude', () => {
     const content = {

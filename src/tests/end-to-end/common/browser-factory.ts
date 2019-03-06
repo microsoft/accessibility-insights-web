@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Puppeteer from 'puppeteer';
 import * as fs from 'fs';
+import * as Puppeteer from 'puppeteer';
 import { Browser } from './browser';
 import { popupPageElementIdentifiers } from './element-identifiers/popup-page-element-identifiers';
 import { DEFAULT_BROWSER_LAUNCH_TIMEOUT_MS } from './timeouts';

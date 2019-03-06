@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { CheckType } from '../../../../../injected/components/details-dialog';
-import { FixInstructionPanel, IFixInstructionPanelProps } from '../../../../../injected/components/fix-instruction-panel';
+import { FixInstructionPanel, FixInstructionPanelProps } from '../../../../../injected/components/fix-instruction-panel';
 import { ShallowRenderer } from '../../../common/shallow-renderer';
 
 describe('FixInstructionPanelTests', () => {
@@ -21,7 +21,7 @@ describe('FixInstructionPanelTests', () => {
             },
         ];
 
-        const props: IFixInstructionPanelProps = {
+        const props: FixInstructionPanelProps = {
             checkType: CheckType.All,
             checks: allchecks,
         };
@@ -49,7 +49,7 @@ describe('FixInstructionPanelTests', () => {
             },
         ];
 
-        const props: IFixInstructionPanelProps = {
+        const props: FixInstructionPanelProps = {
             checkType: CheckType.All,
             checks: allchecks,
         };
@@ -74,7 +74,7 @@ describe('FixInstructionPanelTests', () => {
             },
         ];
 
-        const props: IFixInstructionPanelProps = {
+        const props: FixInstructionPanelProps = {
             checkType: CheckType.None,
             checks: noneChecks,
         };
@@ -96,7 +96,7 @@ describe('FixInstructionPanelTests', () => {
     test('render nothing', () => {
         const checks: FormattedCheckResult[] = [];
 
-        const props: IFixInstructionPanelProps = {
+        const props: FixInstructionPanelProps = {
             checkType: CheckType.None,
             checks: checks,
         };

@@ -5,14 +5,14 @@
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { WindowUtils } from '../../common/window-utils';
 import { ClientUtils } from '../client-utils';
-import { AxeResultsWithFrameLevel } from '../frameCommunicators/html-element-axe-results-helper';
 import { DialogRenderer } from '../dialog-renderer';
+import { AxeResultsWithFrameLevel } from '../frameCommunicators/html-element-axe-results-helper';
 import { IHtmlElementAxeResults } from '../scanner-utils';
 import { ShadowUtils } from '../shadow-utils';
 import { BaseDrawer } from './base-drawer';
 import { DrawerUtils } from './drawer-utils';
-import { IBoxConfig, IDrawerConfiguration, IFormatter } from './iformatter';
 import { IDrawerInitData } from './idrawer';
+import { IBoxConfig, IDrawerConfiguration, IFormatter } from './iformatter';
 
 export class Drawer extends BaseDrawer {
     protected elementResults: AxeResultsWithFrameLevel[];

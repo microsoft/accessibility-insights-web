@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BaseActionMessageCreator } from '../common/message-creators/base-action-message-creator';
+import { autobind } from '@uifabric/utilities';
 import { BaseActionPayload } from '../background/actions/action-payloads';
+import { BaseActionMessageCreator } from '../common/message-creators/base-action-message-creator';
+import { Messages } from '../common/messages';
 import * as TelemetryEvents from '../common/telemetry-events';
 import { TelemetryDataFactory } from './../common/telemetry-data-factory';
 import { TelemetryEventSource } from './../common/telemetry-events';
-import { Messages } from '../common/messages';
-import { autobind } from '@uifabric/utilities';
 
 export class TargetPageActionMessageCreator extends BaseActionMessageCreator {
     protected telemetryFactory: TelemetryDataFactory;
@@ -47,7 +47,7 @@ export class TargetPageActionMessageCreator extends BaseActionMessageCreator {
     public openSettingsPanel(event: React.MouseEvent<HTMLElement>): void {
         const type = Messages.SettingsPanel.OpenPanel;
         const source = TelemetryEventSource.TargetPage;
-        const telemetry = this.telemetryFactory.withTriggeredByAndSource(event, source);
+        const telemetry = this.telemetryFactory.forSettingsPanelOpen(event, source, 'fileIssueSettingsPrompt');
         const payload: BaseActionPayload = {
             telemetry,
         };

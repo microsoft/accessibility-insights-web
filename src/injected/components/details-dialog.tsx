@@ -5,21 +5,21 @@ import { Dialog, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import * as React from 'react';
 
-import { NewTabLink } from '../../common/components/new-tab-link';
+import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
+import { CopyIssueDetailsButton, CopyIssueDetailsButtonDeps } from '../../common/components/copy-issue-details-button';
 import { FileIssueDetailsButton, FileIssueDetailsButtonDeps } from '../../common/components/file-issue-details-button';
+import { FlaggedComponent } from '../../common/components/flagged-component';
+import { NewTabLink } from '../../common/components/new-tab-link';
 import { FeatureFlags } from '../../common/feature-flags';
-import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { IBaseStore } from '../../common/istore';
 import { DevToolActionMessageCreator } from '../../common/message-creators/dev-tool-action-message-creator';
+import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { DevToolState } from '../../common/types/store-data/idev-tool-state';
+import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { DecoratedAxeNodeResult } from '../scanner-utils';
+import { TargetPageActionMessageCreator } from '../target-page-action-message-creator';
 import { DetailsDialogHandler } from './../details-dialog-handler';
 import { FixInstructionPanel } from './fix-instruction-panel';
-import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
-import { CopyIssueDetailsButton, CopyIssueDetailsButtonDeps } from '../../common/components/copy-issue-details-button';
-import { TargetPageActionMessageCreator } from '../target-page-action-message-creator';
-import { FlaggedComponent } from '../../common/components/flagged-component';
-import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 
 export enum CheckType {
     All,
@@ -33,7 +33,7 @@ export type DetailsDialogDeps = CopyIssueDetailsButtonDeps &
         clientBrowserAdapter: ClientBrowserAdapter;
     };
 
-export interface IDetailsDialogProps {
+export interface DetailsDialogProps {
     deps: DetailsDialogDeps;
     userConfigStore: IBaseStore<UserConfigurationStoreData>;
     elementSelector: string;
@@ -46,14 +46,14 @@ export interface IDetailsDialogProps {
     devToolsShortcut: string;
 }
 
-export interface IDetailsDialogState {
+export interface DetailsDialogState {
     showDialog: boolean;
     currentRuleIndex: number;
     canInspect: boolean;
     issueTrackerPath: string;
 }
 
-export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetailsDialogState> {
+export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDialogState> {
     private onHideDialog: () => void;
     public onClickInspectButton: (ev) => void;
     private onLayoutDidMount: () => void;
@@ -63,7 +63,7 @@ export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetails
     public isNextButtonDisabled: () => boolean;
     public isInspectButtonDisabled: () => boolean;
 
-    constructor(props: IDetailsDialogProps) {
+    constructor(props: DetailsDialogProps) {
         super(props);
 
         this.onHideDialog = () => {
@@ -157,9 +157,9 @@ export class DetailsDialog extends React.Component<IDetailsDialogProps, IDetails
         return (
             <FileIssueDetailsButton
                 deps={this.props.deps}
-                onOpenSettings={this.props.deps.targetPageActionMessageCreator.openSettingsPanel}
                 issueDetailsData={issueData}
                 issueTrackerPath={this.state.issueTrackerPath}
+                restoreFocus={false}
             />
         );
     }

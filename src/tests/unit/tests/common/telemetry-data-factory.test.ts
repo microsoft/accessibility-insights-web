@@ -3,6 +3,7 @@
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
 import {
     AssessmentTelemetryData,
+    BaseTelemetryData,
     DetailsViewOpenedTelemetryData,
     DetailsViewOpenTelemetryData,
     DetailsViewPivotSelectedTelemetryData,
@@ -10,12 +11,13 @@ import {
     FeatureFlagToggleTelemetryData,
     InspectTelemetryData,
     RuleAnalyzerScanTelemetryData,
+    SettingsOpenSourceItem,
+    SettingsOpenTelemetryData,
     TelemetryEventSource,
     TestStepActionTelemetryData,
     TestStepSelectTelemetryData,
     ToggleTelemetryData,
     TriggeredByNotApplicable,
-    BaseTelemetryData,
 } from '../../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../../common/types/visualization-type';
@@ -134,6 +136,21 @@ describe('TelemetryDataFactoryTest', () => {
             selectedDetailsViewPivot: DetailsViewPivotType[detailsViewPivotStub],
         };
 
+        expect(result).toEqual(expected);
+    });
+
+    test('forSettingsPanelOpen', () => {
+        const event = mouseClickEvent;
+        const source = TelemetryEventSource.DetailsView;
+        const sourceItem: SettingsOpenSourceItem = 'menu';
+
+        const result = testObject.forSettingsPanelOpen(event, source, sourceItem);
+
+        const expected: SettingsOpenTelemetryData = {
+            triggeredBy: 'mouseclick',
+            source,
+            sourceItem,
+        };
         expect(result).toEqual(expected);
     });
 

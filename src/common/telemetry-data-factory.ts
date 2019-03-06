@@ -5,24 +5,28 @@ import * as React from 'react';
 import {
     AssessmentRequirementScanTelemetryData,
     AssessmentTelemetryData,
+    BaseTelemetryData,
     DetailsViewOpenedTelemetryData,
     DetailsViewOpenTelemetryData,
     DetailsViewPivotSelectedTelemetryData,
     ExportResultsTelemetryData,
     ExportResultType,
     FeatureFlagToggleTelemetryData,
+    FileIssueClickService,
+    FileIssueClickTelemetryData,
     InspectTelemetryData,
     IssuesAnalyzerScanTelemetryData,
     RequirementStatusTelemetryData,
     RuleAnalyzerScanTelemetryData,
     ScopingTelemetryData,
+    SettingsOpenSourceItem,
+    SettingsOpenTelemetryData,
     TelemetryEventSource,
     TestStepActionTelemetryData,
     TestStepSelectTelemetryData,
     ToggleTelemetryData,
-    TriggeredByNotApplicable,
     TriggeredBy,
-    BaseTelemetryData,
+    TriggeredByNotApplicable,
 } from './telemetry-events';
 import { ForIssuesAnalyzerScanCallback, ForRuleAnalyzerScanCallback } from './types/analyzer-telemetry-callbacks';
 import { DetailsViewPivotType } from './types/details-view-pivot-type';
@@ -135,6 +139,28 @@ export class TelemetryDataFactory {
         };
     }
 
+    public forSettingsPanelOpen(
+        event: SupportedMouseEvent,
+        source: TelemetryEventSource,
+        sourceItem: SettingsOpenSourceItem,
+    ): SettingsOpenTelemetryData {
+        return {
+            ...this.withTriggeredByAndSource(event, source),
+            sourceItem,
+        };
+    }
+
+    public forFileIssueClick(
+        event: SupportedMouseEvent,
+        source: TelemetryEventSource,
+        service: FileIssueClickService,
+    ): FileIssueClickTelemetryData {
+        return {
+            ...this.withTriggeredByAndSource(event, source),
+            service,
+        };
+    }
+
     public forInspectElement(event: SupportedMouseEvent, target: string[]): InspectTelemetryData {
         return {
             ...this.withTriggeredByAndSource(event, TelemetryEventSource.IssueDetailsDialog),
@@ -190,10 +216,6 @@ export class TelemetryDataFactory {
 
     public fromDetailsView(event: SupportedMouseEvent): BaseTelemetryData {
         return this.withTriggeredByAndSource(event, TelemetryEventSource.DetailsView);
-    }
-
-    public fromNewBugButton(event: SupportedMouseEvent): BaseTelemetryData {
-        return this.withTriggeredByAndSource(event, TelemetryEventSource.NewBugButton);
     }
 
     public fromHamburgetMenu(event: SupportedMouseEvent): BaseTelemetryData {

@@ -11,6 +11,7 @@ import { FrameMessageResponseCallback } from './frameCommunicators/window-messag
 import { IErrorMessageContent } from './frameCommunicators/window-message-marshaller';
 import { ScannerUtils } from './scanner-utils';
 
+// tslint:disable-next-line:interface-name
 export interface ITabStopEvent {
     timestamp: number;
     target: string[];

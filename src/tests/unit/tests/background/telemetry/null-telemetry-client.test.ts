@@ -1,8 +1,8 @@
-import { IMock, Mock, It, Times } from 'typemoq';
+import { IMock, It, Mock, Times } from 'typemoq';
 
 import { NullTelemetryClient } from '../../../../../background/telemetry/null-telemetry-client';
-import { TelemetryLogger } from '../../../../../background/telemetry/telemetry-logger';
 import { TelemetryBaseData } from '../../../../../background/telemetry/telemetry-base-data';
+import { TelemetryLogger } from '../../../../../background/telemetry/telemetry-logger';
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.

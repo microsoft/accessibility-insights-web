@@ -27,6 +27,7 @@ export interface DecoratedAxeNodeResult {
     snippet: string;
 }
 
+// tslint:disable-next-line:interface-name
 export interface IHtmlElementAxeResults {
     ruleResults: IDictionaryStringTo<DecoratedAxeNodeResult>;
     isVisible: boolean;

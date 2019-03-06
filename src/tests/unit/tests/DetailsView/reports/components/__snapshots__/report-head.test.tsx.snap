@@ -79,14 +79,32 @@ exports[`ReportHeadTest renders 1`] = `
             font-size: 12px;
         }
         .report-congrats {
-            margin: 16px 32px;
+            position: relative;
         }
-        .report-congrats p {
-            font-size: 12px;
+        .report-congrats-screen {
+            top: 181px;
+            position: absolute;
+            width: 488px;
+            left: 105px;
+            height: 295px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .report-congrats-image {
-            margin-top: 8px;
+        .report-congrats-message {
+            width: 364px;
             text-align: center;
+        }
+        .report-congrats-head {
+            font-size: 48px;
+            font-weight: 600;
+            color: rgba(0, 0, 0, 0.9);
+            padding: 10px 0 10px 0;
+        }
+        .report-congrats-info {
+            font-size: 40px;
+            color: rgba(0, 0, 0, 0.55);
+            padding: 10px 0 10px 0;
         }
         .report-checks {
             margin: 16px 32px 16px 8px;

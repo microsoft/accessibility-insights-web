@@ -6,11 +6,11 @@ import { IOverviewSummaryReportModel } from '../assessment-report-model';
 import { AssessmentSummaryDetails } from './assessment-summary-details';
 import { OutcomeSummaryBar } from './outcome-summary-bar';
 
-export interface IAssessmentReportSummaryProps {
+export interface AssessmentReportSummaryProps {
     summary: IOverviewSummaryReportModel;
 }
 
-export class AssessmentReportSummary extends React.Component<IAssessmentReportSummaryProps> {
+export class AssessmentReportSummary extends React.Component<AssessmentReportSummaryProps> {
     public render(): JSX.Element {
         return (
             <div className="assessment-report-summary">

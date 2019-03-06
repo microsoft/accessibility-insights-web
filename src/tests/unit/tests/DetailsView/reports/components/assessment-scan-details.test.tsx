@@ -3,7 +3,7 @@
 import { IScanDetailsReportModel } from '../../../../../../DetailsView/reports/assessment-report-model';
 import {
     AssessmentScanDetails,
-    IAssessmentScanDetailsProps,
+    AssessmentScanDetailsProps,
 } from '../../../../../../DetailsView/reports/components/assessment-scan-details';
 
 describe('AssessmentScanDetails', () => {
@@ -14,7 +14,7 @@ describe('AssessmentScanDetails', () => {
                 url: 'https://test-url/path/',
                 reportDate: new Date(Date.UTC(2018, 9, 22, 12, 29)),
             };
-            const props: IAssessmentScanDetailsProps = {
+            const props: AssessmentScanDetailsProps = {
                 details: detailsModel,
                 description: 'test-description',
             };

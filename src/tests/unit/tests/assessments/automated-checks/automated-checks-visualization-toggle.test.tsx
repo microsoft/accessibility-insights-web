@@ -6,7 +6,7 @@ import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
 
 import { AutomatedChecksVisualizationToggle } from '../../../../../assessments/automated-checks/automated-checks-visualization-enabled-toggle';
-import { IVisualizationToggleProps, VisualizationToggle } from '../../../../../common/components/visualization-toggle';
+import { VisualizationToggle, VisualizationToggleProps } from '../../../../../common/components/visualization-toggle';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import {
     VisualHelperToggleTestPropsBuilder,
@@ -112,8 +112,8 @@ describe('AutomatedChecksVisualizationToggle', () => {
     });
 
     function assertVisualizationToggle(
-        expectedProps: IVisualizationToggleProps,
-        visualizationToggle: Enzyme.ShallowWrapper<IVisualizationToggleProps>,
+        expectedProps: VisualizationToggleProps,
+        visualizationToggle: Enzyme.ShallowWrapper<VisualizationToggleProps>,
     ) {
         expect(visualizationToggle.exists()).toBeTruthy();
 

@@ -23,6 +23,8 @@ module.exports = function(grunt) {
             './copyright-header.txt',
             './src/assessments/color/test-steps/flashing-text-example.html',
             './test-results',
+            './docs/NOTICE.html',
+            './docs/LICENSE.txt',
         ],
         file_type_method: 'INCLUDE',
         file_types: ['.ts', '.tsx', '.d.ts', '.js', '.html', '.css', '.scss', '.yaml', '.md', '.txt', '.xml'],
@@ -70,7 +72,7 @@ module.exports = function(grunt) {
                     },
                     {
                         cwd: './src',
-                        src: ['./**/*.html'],
+                        src: ['./**/*.html', '!./tests/**/*'],
                         dest: extensionPath,
                         expand: true,
                     },
@@ -80,7 +82,7 @@ module.exports = function(grunt) {
                 files: [
                     {
                         cwd: './src',
-                        src: './**/*.png',
+                        src: ['./**/*.png', '!./tests/**/*'],
                         dest: extensionPath,
                         expand: true,
                     },

@@ -10,7 +10,7 @@ import { DropdownClickHandler } from '../../../../../common/dropdown-click-handl
 import { FeatureFlags, getDefaultFeatureFlagValues } from '../../../../../common/feature-flags';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
-import { ITabInfoProps, TabInfo } from '../../../../../DetailsView/components/tab-info';
+import { TabInfo, TabInfoProps } from '../../../../../DetailsView/components/tab-info';
 
 describe('TabInfo', () => {
     const scenarios = [
@@ -24,7 +24,7 @@ describe('TabInfo', () => {
         describe(scenario.name, () => {
             let actionCreatorMock: IMock<DetailsViewActionMessageCreator>;
             let dropdownClickHandlerMock: IMock<DropdownClickHandler>;
-            let testProps: ITabInfoProps;
+            let testProps: TabInfoProps;
 
             beforeEach(() => {
                 actionCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
@@ -38,7 +38,7 @@ describe('TabInfo', () => {
                     selectedPivot: DetailsViewPivotType.allTest,
                     featureFlags: getDefaultFeatureFlagValues(),
                     dropdownClickHandler: dropdownClickHandlerMock.object,
-                } as ITabInfoProps;
+                } as TabInfoProps;
 
                 testProps.featureFlags[FeatureFlags.newAssessmentExperience] = false;
             });

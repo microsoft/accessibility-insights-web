@@ -4,6 +4,7 @@ import * as React from 'react';
 
 import { IAssessmentsProvider } from '../../../assessments/types/iassessments-provider';
 import { NamedSFC } from '../../../common/react/named-sfc';
+import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../../../common/types/store-data/iassessment-result-data';
 import { ITabStoreData } from '../../../common/types/store-data/itab-store-data';
 import { HyperlinkDefinition } from '../../../views/content/content-page';
@@ -14,7 +15,6 @@ import { GetAssessmentSummaryModelFromProviderAndStoreData } from '../../reports
 import { TargetChangeDialog, TargetChangeDialogDeps } from '../target-change-dialog';
 import { OverviewHeading } from './overview-heading';
 import { HelpLinkDeps, OverviewHelpSection } from './overview-help-section';
-import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
 
 const linkDataSource: HyperlinkDefinition[] = [
     {

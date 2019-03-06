@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { React } from '../../common';
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { Markup } from '../../../views/content/markup';
+import { React } from '../../common';
 
 type LandmarkRoleProps = {
     markup: Markup;

@@ -6,11 +6,11 @@ export enum ManualTestStatus {
     FAIL,
 }
 
-export interface IManualTestStatus {
-    [key: string]: ITestStepData;
+export interface ManualTestStatusData {
+    [key: string]: TestStepData;
 }
 
-export interface ITestStepData {
+export interface TestStepData {
     stepFinalResult: ManualTestStatus;
     isStepScanned: boolean;
 }

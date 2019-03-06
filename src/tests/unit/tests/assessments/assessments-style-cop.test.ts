@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Assessments } from '../../../../assessments/assessments';
-import { IAssessment } from '../../../../assessments/types/iassessment';
+import { Assessment } from '../../../../assessments/types/iassessment';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 
 describe('assessments-style-cop', () => {
@@ -82,7 +82,7 @@ describe('assessments-style-cop', () => {
         expect(findFirstDuplicateTestStepKey(Assessments.all())).toBeNull();
     });
 
-    function findFirstDuplicateTestStepKey(all: ReadonlyArray<Readonly<IAssessment>>): string {
+    function findFirstDuplicateTestStepKey(all: ReadonlyArray<Readonly<Assessment>>): string {
         const testStepKeys = {};
         let duplicateKey = null;
 

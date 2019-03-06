@@ -12,8 +12,8 @@ import {
     RemoveFailureInstancePayload,
     SelectTestStepPayload,
     ToggleActionPayload,
-    UpdateVisibilityPayload,
     UpdateSelectedDetailsViewPayload,
+    UpdateVisibilityPayload,
 } from './action-payloads';
 
 export class AssessmentActions {

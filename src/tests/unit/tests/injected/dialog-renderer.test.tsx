@@ -4,10 +4,12 @@ import * as ReactDOM from 'react-dom';
 import { GlobalMock, GlobalScope, IGlobalMock, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { DevToolStore } from '../../../../background/stores/dev-tools-store';
+import { UserConfigurationStore } from '../../../../background/stores/global/user-configuration-store';
+import { ClientBrowserAdapter } from '../../../../common/client-browser-adapter';
 import { FeatureFlags, getDefaultFeatureFlagValues } from '../../../../common/feature-flags';
+import { BugActionMessageCreator } from '../../../../common/message-creators/bug-action-message-creator';
 import { DevToolActionMessageCreator } from '../../../../common/message-creators/dev-tool-action-message-creator';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
-import { UserConfigurationStore } from '../../../../background/stores/global/user-configuration-store';
 import { WindowUtils } from '../../../../common/window-utils';
 import { DetailsDialogWindowMessage, DialogRenderer } from '../../../../injected/dialog-renderer';
 import { FrameCommunicator, IMessageRequest } from '../../../../injected/frameCommunicators/frame-communicator';
@@ -17,7 +19,6 @@ import { MainWindowContext } from '../../../../injected/main-window-context';
 import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from '../../../../injected/scanner-utils';
 import { ShadowUtils } from '../../../../injected/shadow-utils';
 import { TargetPageActionMessageCreator } from '../../../../injected/target-page-action-message-creator';
-import { ClientBrowserAdapter } from '../../../../common/client-browser-adapter';
 
 describe('DialogRendererTests', () => {
     const windowUtilsMock: IMock<WindowUtils> = Mock.ofType(WindowUtils);
@@ -65,12 +66,14 @@ describe('DialogRendererTests', () => {
         const userConfigStoreStrictMock = Mock.ofType<UserConfigurationStore>(null, MockBehavior.Strict);
         const devToolActionMessageCreatorMock = Mock.ofType(DevToolActionMessageCreator);
         const targetActionPageMessageCreatorMock = Mock.ofType(TargetPageActionMessageCreator);
+        const bugActionMessageCreatorMock = Mock.ofType(BugActionMessageCreator);
 
         mainWindowContext = new MainWindowContext(
             devToolStoreStrictMock.object,
             userConfigStoreStrictMock.object,
             devToolActionMessageCreatorMock.object,
             targetActionPageMessageCreatorMock.object,
+            bugActionMessageCreatorMock.object,
         );
     });
 

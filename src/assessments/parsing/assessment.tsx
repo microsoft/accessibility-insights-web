@@ -3,9 +3,9 @@
 import * as React from 'react';
 
 import { VisualizationType } from '../../common/types/visualization-type';
+import { test as content } from '../../content/test';
 import { AssessmentBuilder } from '../assessment-builder';
 import { Parsing } from './test-steps/parsing';
-import { test as content } from '../../content/test';
 
 const key = 'parsing';
 const title = 'Parsing';

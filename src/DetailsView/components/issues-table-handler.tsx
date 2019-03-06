@@ -4,20 +4,16 @@ import { IObjectWithKey } from 'office-ui-fabric-react/lib/DetailsList';
 import { IGroup } from 'office-ui-fabric-react/lib/GroupedList';
 import * as React from 'react';
 
-import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
 import { RuleResult } from '../../scanner/iruleresults';
 import { HyperlinkDefinition } from '../../views/content/content-page';
-import { BugButton, IBugButtonDeps } from './bug-button';
-import { DropdownClickHandler } from '../../common/dropdown-click-handler';
-import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 
-export interface IDetailsRowData extends IObjectWithKey, AxeNodeResult {
+export interface DetailsRowData extends IObjectWithKey, AxeNodeResult {
     selector: string;
     bugButton: JSX.Element;
 }
 
-export interface IListProps {
-    items: IDetailsRowData[];
+export interface ListProps {
+    items: DetailsRowData[];
     groups: DetailsGroup[];
 }
 
@@ -27,10 +23,10 @@ export interface DetailsGroup extends IGroup {
 }
 
 export class IssuesTableHandler {
-    public getListProps(failedRules: RuleResult[]): IListProps {
-        let listProps: IListProps;
+    public getListProps(failedRules: RuleResult[]): ListProps {
+        let listProps: ListProps;
         const groups: DetailsGroup[] = [];
-        const items: IDetailsRowData[] = [];
+        const items: DetailsRowData[] = [];
         let instanceCount: number = 0;
         failedRules.forEach((rule: RuleResult) => {
             const curGroup: DetailsGroup = {
@@ -45,7 +41,7 @@ export class IssuesTableHandler {
             groups.push(curGroup);
             rule.nodes.forEach((node: AxeNodeResult) => {
                 instanceCount++;
-                const detailsRow = node as IDetailsRowData;
+                const detailsRow = node as DetailsRowData;
 
                 detailsRow.selector = node.target.join(';');
                 detailsRow.key = node.instanceId;

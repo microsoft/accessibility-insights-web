@@ -4,8 +4,8 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { FileIssueDetailsButton, FileIssueDetailsButtonProps } from '../../../../../common/components/file-issue-details-button';
 import { IssueDetailsTextGenerator } from '../../../../../background/issue-details-text-generator';
+import { FileIssueDetailsButton, FileIssueDetailsButtonProps } from '../../../../../common/components/file-issue-details-button';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 
 describe('FileIssueDetailsButtonTest', () => {
@@ -25,14 +25,15 @@ describe('FileIssueDetailsButtonTest', () => {
         const props: FileIssueDetailsButtonProps = {
             deps: {
                 issueDetailsTextGenerator: issueDetailsTextGeneratorMock.object,
+                bugActionMessageCreator: null,
             },
-            onOpenSettings: (ev: React.MouseEvent<HTMLElement>) => {},
             issueTrackerPath: issueTrackerPath,
             issueDetailsData: {
                 pageTitle: 'pageTitle',
                 pageUrl: 'http://pageUrl',
                 ruleResult: null,
             },
+            restoreFocus: false,
         };
         const wrapper = shallow(<FileIssueDetailsButton {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
@@ -55,6 +56,7 @@ describe('FileIssueDetailsButtonTest', () => {
         const props: FileIssueDetailsButtonProps = {
             deps: {
                 issueDetailsTextGenerator: issueDetailsTextGeneratorMock.object,
+                bugActionMessageCreator: null,
             },
             onOpenSettings: (ev: React.MouseEvent<HTMLElement>) => {},
             issueTrackerPath: issueTrackerPath,
@@ -63,6 +65,7 @@ describe('FileIssueDetailsButtonTest', () => {
                 pageUrl: 'http://pageUrl',
                 ruleResult: null,
             },
+            restoreFocus: false,
         };
         const wrapper = shallow(<FileIssueDetailsButton {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();

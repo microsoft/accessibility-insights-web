@@ -12,13 +12,13 @@ import { IVisualizationStoreData } from '../../common/types/store-data/ivisualiz
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewToggleClickHandlerFactory } from '../handlers/details-view-toggle-click-handler-factory';
 import { ReportGenerator } from '../reports/report-generator';
-import { IssuesTableHandler } from './issues-table-handler';
 import { IssuesTable, IssuesTableDeps } from './issues-table';
+import { IssuesTableHandler } from './issues-table-handler';
 import { TargetPageChangedView } from './target-page-changed-view';
 
 export type AdhocIssuesTestViewDeps = IssuesTableDeps;
 
-export interface IAdhocIssuesTestViewProps {
+export interface AdhocIssuesTestViewProps {
     deps: AdhocIssuesTestViewDeps;
     tabStoreData: ITabStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
@@ -34,7 +34,7 @@ export interface IAdhocIssuesTestViewProps {
     configuration: IVisualizationConfiguration;
 }
 
-export const AdhocIssuesTestView = NamedSFC<IAdhocIssuesTestViewProps>('AdhocIssuesTestView', ({ children, ...props }) => {
+export const AdhocIssuesTestView = NamedSFC<AdhocIssuesTestViewProps>('AdhocIssuesTestView', ({ children, ...props }) => {
     const type = props.selectedTest;
     const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
     const clickHandler = props.clickHandlerFactory.createClickHandler(type, !scanData.enabled);

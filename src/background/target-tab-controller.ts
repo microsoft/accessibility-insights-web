@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 
-import { BrowserAdapter } from './browser-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { VisualizationType } from '../common/types/visualization-type';
+import { BrowserAdapter } from './browser-adapter';
 
 export class TargetTabController {
     private browserAdapter: BrowserAdapter;

@@ -70,7 +70,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = false 
           <CopyIssueDetailsButton
             deps={
               Object {
-                "bugClickHandler": null,
+                "bugActionMessageCreator": null,
                 "clientBrowserAdapter": Object {
                   "getUrl": [Function],
                 },
@@ -110,7 +110,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = false 
               <FileIssueDetailsButton
                 deps={
                   Object {
-                    "bugClickHandler": null,
+                    "bugActionMessageCreator": null,
                     "clientBrowserAdapter": Object {
                       "getUrl": [Function],
                     },
@@ -144,6 +144,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = false 
                   }
                 }
                 issueTrackerPath=""
+                restoreFocus={false}
               />
             }
             featureFlag="showBugFiling"
@@ -300,7 +301,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 1
             <CopyIssueDetailsButton
               deps={
                 Object {
-                  "bugClickHandler": null,
+                  "bugActionMessageCreator": null,
                   "clientBrowserAdapter": Object {
                     "getUrl": [Function],
                   },
@@ -340,7 +341,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 1
                 <FileIssueDetailsButton
                   deps={
                     Object {
-                      "bugClickHandler": null,
+                      "bugActionMessageCreator": null,
                       "clientBrowserAdapter": Object {
                         "getUrl": [Function],
                       },
@@ -374,6 +375,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 1
                     }
                   }
                   issueTrackerPath=""
+                  restoreFocus={false}
                 />
               }
               featureFlag="showBugFiling"
@@ -513,7 +515,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 2
           <CopyIssueDetailsButton
             deps={
               Object {
-                "bugClickHandler": null,
+                "bugActionMessageCreator": null,
                 "clientBrowserAdapter": Object {
                   "getUrl": [Function],
                 },
@@ -553,7 +555,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 2
               <FileIssueDetailsButton
                 deps={
                   Object {
-                    "bugClickHandler": null,
+                    "bugActionMessageCreator": null,
                     "clientBrowserAdapter": Object {
                       "getUrl": [Function],
                     },
@@ -587,6 +589,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 2
                   }
                 }
                 issueTrackerPath=""
+                restoreFocus={false}
               />
             }
             featureFlag="showBugFiling"
@@ -738,7 +741,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = true, shadowDialog = true 1`
             <CopyIssueDetailsButton
               deps={
                 Object {
-                  "bugClickHandler": null,
+                  "bugActionMessageCreator": null,
                   "clientBrowserAdapter": Object {
                     "getUrl": [Function],
                   },
@@ -778,7 +781,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = true, shadowDialog = true 1`
                 <FileIssueDetailsButton
                   deps={
                     Object {
-                      "bugClickHandler": null,
+                      "bugActionMessageCreator": null,
                       "clientBrowserAdapter": Object {
                         "getUrl": [Function],
                       },
@@ -812,6 +815,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = true, shadowDialog = true 1`
                     }
                   }
                   issueTrackerPath=""
+                  restoreFocus={false}
                 />
               }
               featureFlag="showBugFiling"
@@ -946,7 +950,7 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
           <CopyIssueDetailsButton
             deps={
               Object {
-                "bugClickHandler": null,
+                "bugActionMessageCreator": null,
                 "clientBrowserAdapter": Object {
                   "getUrl": [Function],
                 },
@@ -986,7 +990,7 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
               <FileIssueDetailsButton
                 deps={
                   Object {
-                    "bugClickHandler": null,
+                    "bugActionMessageCreator": null,
                     "clientBrowserAdapter": Object {
                       "getUrl": [Function],
                     },
@@ -1020,6 +1024,7 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
                   }
                 }
                 issueTrackerPath=""
+                restoreFocus={false}
               />
             }
             featureFlag="showBugFiling"

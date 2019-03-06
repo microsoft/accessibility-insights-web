@@ -72,7 +72,7 @@ function getObservedRoleForElement(element: any) {
                 }
                 parent = parent.parentNode;
             }
-        } else if (tagName === 'section') {
+        } else if (tagName === 'section' || tagName === 'form') {
             const label = axe.commons.aria.label(element);
             if (!label) {
                 role = null;

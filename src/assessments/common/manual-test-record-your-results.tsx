@@ -4,11 +4,11 @@ import * as React from 'react';
 
 import * as Markup from '../markup';
 
-export interface IManualTestRecordYourResultsProps {
+export interface ManualTestRecordYourResultsProps {
     isMultipleFailurePossible: boolean;
 }
 
-const ManualTestRecordYourResults = (props: IManualTestRecordYourResultsProps) => (
+const ManualTestRecordYourResults = (props: ManualTestRecordYourResultsProps) => (
     <li>
         Record your results:
         <ol>

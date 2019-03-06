@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IColumn, ColumnActionsMode } from 'office-ui-fabric-react/lib/DetailsList';
+import { ColumnActionsMode, IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
 import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
-import { IAssessmentNavState } from '../../common/types/store-data/iassessment-result-data';
+import { AssessmentNavState } from '../../common/types/store-data/iassessment-result-data';
 import { MasterCheckBoxConfigProvider } from '../handlers/master-checkbox-config-provider';
 import { AssessmentInstanceDetailsColumn } from './assessment-instance-details-column';
-import { ICapturedInstanceRowData, IAssessmentInstanceRowData } from './assessment-instance-table';
+import { IAssessmentInstanceRowData, ICapturedInstanceRowData } from './assessment-instance-table';
 
 export class AssessmentTableColumnConfigHandler {
     public static readonly MASTER_CHECKBOX_KEY: string = 'visualizationButton';
@@ -55,7 +55,7 @@ export class AssessmentTableColumnConfigHandler {
         this.assessmentProvider = assessmentProvider;
     }
 
-    public getColumnConfigs(assessmentNavState: IAssessmentNavState, allEnabled: boolean, hasVisualHelper: boolean): IColumn[] {
+    public getColumnConfigs(assessmentNavState: AssessmentNavState, allEnabled: boolean, hasVisualHelper: boolean): IColumn[] {
         let allColumns: IColumn[] = [];
         const stepConfig = this.assessmentProvider.getStep(assessmentNavState.selectedTestType, assessmentNavState.selectedTestStep);
 
@@ -77,7 +77,7 @@ export class AssessmentTableColumnConfigHandler {
         return this.defaultCapturedInstanceTableColumnConfigs;
     }
 
-    private getCustomColumns(assessmentNavState: IAssessmentNavState): IColumn[] {
+    private getCustomColumns(assessmentNavState: AssessmentNavState): IColumn[] {
         const stepConfig = this.assessmentProvider.getStep(assessmentNavState.selectedTestType, assessmentNavState.selectedTestStep);
 
         const customColumns = stepConfig.columnsConfig.map(columnConfig => {
@@ -97,7 +97,7 @@ export class AssessmentTableColumnConfigHandler {
         return customColumns;
     }
 
-    private getMasterCheckboxColumn(assessmentNavState: IAssessmentNavState, allEnabled: boolean): IColumn {
+    private getMasterCheckboxColumn(assessmentNavState: AssessmentNavState, allEnabled: boolean): IColumn {
         const masterCheckBoxConfig = this.masterCheckBoxConfigProvider.getMasterCheckBoxProperty(assessmentNavState, allEnabled);
 
         const buttonConfig: IColumn = {

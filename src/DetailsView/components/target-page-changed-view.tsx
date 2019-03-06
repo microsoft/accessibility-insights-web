@@ -6,13 +6,13 @@ import * as React from 'react';
 import { IDisplayableVisualizationTypeData } from '../../common/configs/visualization-configuration-factory';
 import { VisualizationType } from '../../common/types/visualization-type';
 
-export interface ITargetPageChangedViewProps {
+export interface TargetPageChangedViewProps {
     type: VisualizationType;
     displayableData: IDisplayableVisualizationTypeData;
     toggleClickHandler: (event) => void;
 }
 
-export class TargetPageChangedView extends React.Component<ITargetPageChangedViewProps, {}> {
+export class TargetPageChangedView extends React.Component<TargetPageChangedViewProps, {}> {
     public render(): JSX.Element {
         const data = this.props.displayableData;
         const title = data ? data.title : '';

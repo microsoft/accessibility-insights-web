@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IPropertyBagColumnRendererConfig } from '../../../../assessments/common/property-bag-column-renderer';
+import { PropertyBagColumnRendererConfig } from '../../../../assessments/common/property-bag-column-renderer';
 import { ReportInstanceField } from '../../../../assessments/types/report-instance-field';
 import { BagOf } from '../../../../common/types/property-bag/column-value-bag';
 
@@ -119,7 +119,7 @@ describe('ReportInstanceField', () => {
 
     describe('fromColumns', () => {
         describe('string columns', () => {
-            const configs: IPropertyBagColumnRendererConfig<Bag>[] = [
+            const configs: PropertyBagColumnRendererConfig<Bag>[] = [
                 {
                     propertyName: 'one',
                     displayName: 'Field one',
@@ -156,7 +156,7 @@ describe('ReportInstanceField', () => {
             type BagWithAttributes = { attr: BagOf<string> };
             const empty = {};
 
-            const config: IPropertyBagColumnRendererConfig<BagWithAttributes> = {
+            const config: PropertyBagColumnRendererConfig<BagWithAttributes> = {
                 propertyName: 'attr',
                 displayName: 'Attributes',
             };

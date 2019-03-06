@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AxeResultsWithFrameLevel, IAssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
-import { IDrawerConfiguration, IFormatter } from './iformatter';
 import { FailureInstanceFormatter } from './failure-instance-formatter';
+import { IDrawerConfiguration, IFormatter } from './iformatter';
 
+// tslint:disable-next-line:interface-name
 export interface IFrameStyleConfiguration {
     borderColor: string;
     fontColor: string;

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { InitialAssessmentStoreDataGenerator } from '../../../../background/intial-assessment-store-data-generator';
-import { ITestStepData } from '../../../../common/types/manual-test-status';
+import { TestStepData } from '../../../../common/types/manual-test-status';
 import {
     IAssessmentData,
     IAssessmentStoreData,
@@ -229,7 +229,7 @@ function creaetDefaultRequirementResult() {
     return createRequirementResult(false, 1);
 }
 
-function createRequirementResult(isScanned: boolean, stepResult: number): ITestStepData {
+function createRequirementResult(isScanned: boolean, stepResult: number): TestStepData {
     return {
         isStepScanned: isScanned,
         stepFinalResult: stepResult,

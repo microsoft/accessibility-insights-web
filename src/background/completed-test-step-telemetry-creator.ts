@@ -1,16 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash/index';
 import { autobind } from '@uifabric/utilities';
+import * as _ from 'lodash/index';
 
-import { IAssessment } from '../assessments/types/iassessment';
+import { Assessment } from '../assessments/types/iassessment';
 import { IAssessmentsProvider } from '../assessments/types/iassessments-provider';
 import { TestStep } from '../assessments/types/test-step';
 import { Messages } from '../common/messages';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { RequirementStatusTelemetryData } from '../common/telemetry-events';
 import * as TelemetryEvents from '../common/telemetry-events';
-import { IManualTestStatus, ManualTestStatus } from '../common/types/manual-test-status';
+import { ManualTestStatus, ManualTestStatusData } from '../common/types/manual-test-status';
 import { IAssessmentData } from '../common/types/store-data/iassessment-result-data';
 import { PayloadWithEventName } from './actions/action-payloads';
 import { Interpreter } from './interpreter';
@@ -21,7 +21,7 @@ export class CompletedTestStepTelemetryCreator {
     private provider: IAssessmentsProvider;
     private telemetryFactory: TelemetryDataFactory;
     private interpreter: Interpreter;
-    private oldTestStates: IDictionaryStringTo<IManualTestStatus>;
+    private oldTestStates: IDictionaryStringTo<ManualTestStatusData>;
 
     constructor(store: AssessmentStore, provider: IAssessmentsProvider, factory: TelemetryDataFactory, interpreter: Interpreter) {
         this.store = store;
@@ -42,7 +42,7 @@ export class CompletedTestStepTelemetryCreator {
         this.updateOldTestStatusState();
     }
 
-    private sendTelemetryIfNewCompletedTestStep(assessment: IAssessment): boolean {
+    private sendTelemetryIfNewCompletedTestStep(assessment: Assessment): boolean {
         const completedStep = assessment.steps.find(step => this.isNewCompletedTestStep(assessment, step));
         const targetTab = this.store.getState().persistedTabInfo;
         if (completedStep != undefined && targetTab !== null) {
@@ -60,7 +60,7 @@ export class CompletedTestStepTelemetryCreator {
         return completedStep != undefined;
     }
 
-    private isNewCompletedTestStep(assessment: IAssessment, step: TestStep): boolean {
+    private isNewCompletedTestStep(assessment: Assessment, step: TestStep): boolean {
         const newStatus = this.store.getState().assessments[assessment.key].testStepStatus;
         const oldStatus = this.oldTestStates[assessment.key];
         return (
@@ -69,7 +69,7 @@ export class CompletedTestStepTelemetryCreator {
         );
     }
 
-    private createTelemetryInfo(assessment: IAssessment, step: TestStep): RequirementStatusTelemetryData {
+    private createTelemetryInfo(assessment: Assessment, step: TestStep): RequirementStatusTelemetryData {
         const assessmentData = assessment.getVisualizationConfiguration().getAssessmentData(this.store.getState());
         const numInstances = this.getNumInstances(step, assessmentData);
         const newStatus = this.store.getState().assessments[assessment.key].testStepStatus;

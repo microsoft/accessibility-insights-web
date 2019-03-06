@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { TestMode } from '../common/configs/test-mode';
 import { EnumHelper } from '../common/enum-helper';
 import { VisualizationType } from '../common/types/visualization-type';
-import { VisualizationConfigurationFactory, IVisualizationConfiguration } from './../common/configs/visualization-configuration-factory';
-import { IAssessmentScanData, IVisualizationStoreData, IScanData } from './../common/types/store-data/ivisualization-store-data.d';
-import { TestMode } from '../common/configs/test-mode';
+import { IVisualizationConfiguration, VisualizationConfigurationFactory } from './../common/configs/visualization-configuration-factory';
+import { IAssessmentScanData, IScanData, IVisualizationStoreData } from './../common/types/store-data/ivisualization-store-data.d';
 
 export class AnalyzerStateUpdateHandler {
     protected prevState: IVisualizationStoreData;

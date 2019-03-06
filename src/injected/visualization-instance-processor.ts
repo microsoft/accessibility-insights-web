@@ -3,14 +3,17 @@
 import { IAssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
 import { IPartialTabOrderPropertyBag, ITabOrderPropertyBag } from './tab-order-property-bag';
 
+// tslint:disable-next-line:interface-name
 export interface IVisualizationPropertyBag<T> extends IAssessmentVisualizationInstance {
     propertyBag?: T;
 }
 
+// tslint:disable-next-line:interface-name
 export type IVisualizationInstanceProcessorCallback<Raw, Processed> = (
     instances: IVisualizationPropertyBag<Raw>[],
 ) => IVisualizationPropertyBag<Processed>[];
 
+// tslint:disable-next-line:interface-name
 export type IPropertyBags = IPartialTabOrderPropertyBag | ITabOrderPropertyBag;
 
 export class VisualizationInstanceProcessor {

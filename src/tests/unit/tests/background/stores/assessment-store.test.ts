@@ -4,7 +4,7 @@ import * as _ from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { AssessmentsProvider } from '../../../../../assessments/assessments-provider';
-import { IAssessment } from '../../../../../assessments/types/iassessment';
+import { Assessment } from '../../../../../assessments/types/iassessment';
 import { IAssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
 import {
     AddFailureInstancePayload,
@@ -28,7 +28,7 @@ import { IndexedDBAPI } from '../../../../../common/indexedDB/indexedDB';
 import { ITab } from '../../../../../common/itab';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
-import { IManualTestStatus, ITestStepData, ManualTestStatus } from '../../../../../common/types/manual-test-status';
+import { ManualTestStatus, ManualTestStatusData, TestStepData } from '../../../../../common/types/manual-test-status';
 import {
     IAssessmentData,
     IAssessmentStoreData,
@@ -53,7 +53,7 @@ let assessmentDataRemoverMock: IMock<AssessmentDataRemover>;
 let assessmentsProvider: IAssessmentsProvider;
 let assessmentsProviderMock: IMock<IAssessmentsProvider>;
 let indexDBInstanceMock: IMock<IndexedDBAPI>;
-let assessmentMock: IMock<IAssessment>;
+let assessmentMock: IMock<Assessment>;
 let getInstanceIdentiferGeneratorMock: IMock<(step: string) => Function>;
 let configStub: IAssesssmentVisualizationConfiguration;
 let instanceIdentifierGeneratorStub: (instances) => string;
@@ -80,7 +80,7 @@ describe('AssessmentStoreTest', () => {
             getVisualizationConfiguration: () => {
                 return null;
             },
-        } as IAssessment);
+        } as Assessment);
         assessmentDataConverterMock
             .setup(adcm => adcm.getNewManualTestStepResult(It.isAny()))
             .returns(step => getDefaultManualTestStepResult(step));
@@ -304,7 +304,7 @@ describe('AssessmentStoreTest', () => {
                     key: stepKey,
                 },
             ],
-        } as IAssessment;
+        } as Assessment;
 
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
 
@@ -353,7 +353,7 @@ describe('AssessmentStoreTest', () => {
                     key: stepKey,
                 },
             ],
-        } as IAssessment;
+        } as Assessment;
 
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
 
@@ -403,7 +403,7 @@ describe('AssessmentStoreTest', () => {
                     key: stepKey,
                 },
             ],
-        } as IAssessment;
+        } as Assessment;
 
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
 
@@ -1458,7 +1458,7 @@ describe('AssessmentStoreTest', () => {
         expect(ManualTestStatus.UNKNOWN < ManualTestStatus.FAIL).toBeTruthy();
     });
 
-    function getSampleTestStepsData(): IManualTestStatus {
+    function getSampleTestStepsData(): ManualTestStatusData {
         const defaultData = {
             ['assessment-1-step-1']: getDefaultTestStepData(),
             ['assessment-1-step-2']: getDefaultTestStepData(),
@@ -1468,7 +1468,7 @@ describe('AssessmentStoreTest', () => {
         return defaultData;
     }
 
-    function getDefaultTestStepData(): ITestStepData {
+    function getDefaultTestStepData(): TestStepData {
         return {
             stepFinalResult: ManualTestStatus.UNKNOWN,
             isStepScanned: false,
@@ -1483,7 +1483,7 @@ describe('AssessmentStoreTest', () => {
         };
     }
 
-    function generateTestStepData(stepFinalResult: ManualTestStatus, isStepScanned: boolean): ITestStepData {
+    function generateTestStepData(stepFinalResult: ManualTestStatus, isStepScanned: boolean): TestStepData {
         return {
             stepFinalResult,
             isStepScanned,

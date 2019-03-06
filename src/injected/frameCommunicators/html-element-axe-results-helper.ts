@@ -5,6 +5,7 @@ import { Logger } from '../../common/logging/logger';
 import { IHtmlElementAxeResults } from '../scanner-utils';
 import { HTMLElementUtils } from './../../common/html-element-utils';
 
+// tslint:disable-next-line:interface-name
 export interface IFrameResult {
     frame: HTMLIFrameElement;
     elementResults: IAssessmentVisualizationInstance[];
@@ -14,6 +15,7 @@ export interface AxeResultsWithFrameLevel extends IHtmlElementAxeResults {
     targetIndex?: number;
 }
 
+// tslint:disable-next-line:interface-name
 export interface IAssessmentVisualizationInstance extends AxeResultsWithFrameLevel {
     isFailure: boolean;
     isVisualizationEnabled: boolean;

@@ -5,6 +5,7 @@ import { autobind } from '@uifabric/utilities';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
 import { HTMLElementUtils } from '../common/html-element-utils';
+import { BugActionMessageCreator } from '../common/message-creators/bug-action-message-creator';
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
@@ -14,7 +15,6 @@ import { StoreNames } from '../common/stores/store-names';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { TelemetryEventSource } from '../common/telemetry-events';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
-import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
 import { DevToolState } from '../common/types/store-data/idev-tool-state';
 import { IInspectStoreData } from '../common/types/store-data/inspect-store-data';
@@ -22,6 +22,7 @@ import { ITabStoreData } from '../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
 import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
 import { IScopingStoreData } from '../common/types/store-data/scoping-store-data';
+import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 import { generateUID } from '../common/uid-generator';
 import { scan } from '../scanner/exposed-apis';
 import { Assessments } from './../assessments/assessments';
@@ -101,12 +102,19 @@ export class MainWindowInitializer extends WindowInitializer {
             null,
             telemetryDataFactory,
         );
+        const bugActionMessageCreator = new BugActionMessageCreator(
+            this.clientChromeAdapter.sendMessageToFrames,
+            null,
+            telemetryDataFactory,
+            TelemetryEventSource.TargetPage,
+        );
 
         MainWindowContext.initialize(
             this.devToolStoreProxy,
             this.userConfigStoreProxy,
             devToolActionMessageCreator,
             targetPageActionMessageCreator,
+            bugActionMessageCreator,
         );
 
         const drawingInitiator = new DrawingInitiator(this.drawingController);

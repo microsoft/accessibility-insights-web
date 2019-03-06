@@ -9,6 +9,8 @@ Licensed under the MIT License.
 
 Accessibility Insights for Web is a Google Chrome extension for assessing the accessibility of web sites and web applications.
 
+[![Build Status](https://dev.azure.com/ms/accessibility-insights-web/_apis/build/status/AccessibilityInsights-Web-CI?branchName=master)](https://dev.azure.com/ms/accessibility-insights-web/_build/latest?definitionId=63&branchName=master)
+
 ## Running the extension
 
 You can install the extension from one of the following links

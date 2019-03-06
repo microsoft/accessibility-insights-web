@@ -2,15 +2,15 @@
 // Licensed under the MIT License.
 import { assessmentsProviderWithFeaturesEnabled } from '../../../../assessments/assessments-feature-flag-filter';
 import { AssessmentsProvider } from '../../../../assessments/assessments-provider';
-import { IAssessment } from '../../../../assessments/types/iassessment';
+import { Assessment } from '../../../../assessments/types/iassessment';
 
 describe('filter by feature flag', () => {
-    const assessments: IAssessment[] = [
-        { key: 'x', featureFlag: { required: ['x'] } } as IAssessment,
-        { key: 'y', featureFlag: { required: ['y'] } } as IAssessment,
-        { key: 'x & y', featureFlag: { required: ['x', 'y'] } } as IAssessment,
-        { key: 'empty', featureFlag: { required: [] } } as IAssessment,
-        { key: 'missing' } as IAssessment,
+    const assessments: Assessment[] = [
+        { key: 'x', featureFlag: { required: ['x'] } } as Assessment,
+        { key: 'y', featureFlag: { required: ['y'] } } as Assessment,
+        { key: 'x & y', featureFlag: { required: ['x', 'y'] } } as Assessment,
+        { key: 'empty', featureFlag: { required: [] } } as Assessment,
+        { key: 'missing' } as Assessment,
     ];
 
     const baseProvider = AssessmentsProvider.Create(assessments);

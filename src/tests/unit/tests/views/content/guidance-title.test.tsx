@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
 import { shallow } from 'enzyme';
+import * as React from 'react';
 import { productName } from '../../../../../content/strings/application';
 import { GuidanceTitle } from '../../../../../views/content/guidance-title';
 

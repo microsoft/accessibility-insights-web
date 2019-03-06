@@ -18,7 +18,7 @@ import { StartOverDropdown } from './start-over-dropdown';
 
 export type DetailsViewCommandBarDeps = ExportDialogDeps & ReportGeneratorDeps;
 
-export interface IDetailsViewCommandBarProps {
+export interface DetailsViewCommandBarProps {
     deps: DetailsViewCommandBarDeps;
     featureFlagStoreData: FeatureFlagStoreData;
     tabStoreData: ITabStoreData;
@@ -29,14 +29,14 @@ export interface IDetailsViewCommandBarProps {
     renderExportAndStartOver: boolean;
 }
 
-export interface IDetailsViewCommandBarState {
+export interface DetailsViewCommandBarState {
     isExportDialogOpen: boolean;
     exportDialogDescription: string;
     exportHtmlWithPlaceholder: string;
     exportHtmlWithDescription: string;
 }
 
-export class DetailsViewCommandBar extends React.Component<IDetailsViewCommandBarProps, IDetailsViewCommandBarState> {
+export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBarProps, DetailsViewCommandBarState> {
     constructor(props) {
         super(props);
         this.state = {

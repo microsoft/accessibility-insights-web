@@ -4,17 +4,28 @@ exports[`FileIssueDetailsButtonTest render with an issue tracker path 1`] = `
 <React.Fragment>
   <CustomizedDefaultButton
     className="create-bug-button"
+    componentRef={
+      Object {
+        "current": null,
+      }
+    }
     href="https://github.com/example/example/issues/new?title=buildTitle&body=buildText"
     iconProps={
       Object {
         "iconName": "ladybugSolid",
       }
     }
+    onClick={[Function]}
     target="_blank"
   >
     File issue
   </CustomizedDefaultButton>
   <FileIssueDetailsDialog
+    buttonRef={
+      Object {
+        "current": null,
+      }
+    }
     fileIssueDetailsHandler={
       FileIssueDetailsHandler {
         "htmlElementUtils": HTMLElementUtils {
@@ -39,9 +50,11 @@ exports[`FileIssueDetailsButtonTest render with an issue tracker path 1`] = `
         },
       }
     }
+    getSettingsPanel={[Function]}
     isOpen={false}
     onDismiss={[Function]}
     onOpenSettings={[Function]}
+    restoreFocus={false}
   />
 </React.Fragment>
 `;
@@ -50,6 +63,11 @@ exports[`FileIssueDetailsButtonTest render without issue tracker set 1`] = `
 <React.Fragment>
   <CustomizedDefaultButton
     className="create-bug-button"
+    componentRef={
+      Object {
+        "current": null,
+      }
+    }
     iconProps={
       Object {
         "iconName": "ladybugSolid",
@@ -60,6 +78,11 @@ exports[`FileIssueDetailsButtonTest render without issue tracker set 1`] = `
     File issue
   </CustomizedDefaultButton>
   <FileIssueDetailsDialog
+    buttonRef={
+      Object {
+        "current": null,
+      }
+    }
     fileIssueDetailsHandler={
       FileIssueDetailsHandler {
         "htmlElementUtils": HTMLElementUtils {
@@ -84,9 +107,11 @@ exports[`FileIssueDetailsButtonTest render without issue tracker set 1`] = `
         },
       }
     }
+    getSettingsPanel={[Function]}
     isOpen={false}
     onDismiss={[Function]}
     onOpenSettings={[Function]}
+    restoreFocus={false}
   />
 </React.Fragment>
 `;

@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import { VisualizationActionMessageCreator } from '../../common/message-creators/visualization-action-message-creator';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
 import { TelemetryEventSource } from '../../common/telemetry-events';
 import { VisualizationType } from '../../common/types/visualization-type';
-import { VisualizationActionMessageCreator } from '../../common/message-creators/visualization-action-message-creator';
 
 export class DetailsViewToggleClickHandlerFactory {
     private actionCreator: VisualizationActionMessageCreator;
