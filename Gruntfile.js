@@ -23,6 +23,7 @@ module.exports = function(grunt) {
             './copyright-header.txt',
             './src/assessments/color/test-steps/flashing-text-example.html',
             './test-results',
+            './docs/NOTICE.html',
         ],
         file_type_method: 'INCLUDE',
         file_types: ['.ts', '.tsx', '.d.ts', '.js', '.html', '.css', '.scss', '.yaml', '.md', '.txt', '.xml'],
