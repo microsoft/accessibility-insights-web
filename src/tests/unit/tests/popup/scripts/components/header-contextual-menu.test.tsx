@@ -4,6 +4,7 @@ import { mount, ReactWrapper, shallow } from 'enzyme';
 import * as React from 'react';
 import { It, Mock, Times } from 'typemoq';
 
+import { FeatureFlags } from '../../../../../../common/feature-flags';
 import { TelemetryEventSource } from '../../../../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
@@ -12,7 +13,6 @@ import { HeaderContextualMenu, HeaderContextualMenuProps } from '../../../../../
 import { LaunchPanelHeader } from '../../../../../../popup/scripts/components/launch-panel-header';
 import { LaunchPanelHeaderClickHandler } from '../../../../../../popup/scripts/handlers/launch-panel-header-click-handler';
 import { EventStubFactory } from '../../../../common/event-stub-factory';
-import { FeatureFlags } from '../../../../../../common/feature-flags';
 
 describe('HeaderContextualMenu', () => {
     describe('render', () => {

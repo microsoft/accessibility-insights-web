@@ -3,7 +3,8 @@
 import { mount, shallow } from 'enzyme';
 import { IconButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
-import { Mock, Times, It } from 'typemoq';
+import { It, Mock, Times } from 'typemoq';
+
 import { DropdownClickHandler } from '../../../../../../common/dropdown-click-handler';
 import { FeatureFlagStoreData } from '../../../../../../common/types/store-data/feature-flag-store-data';
 import { PopupActionMessageCreator } from '../../../../../../popup/scripts/actions/popup-action-message-creator';
@@ -31,7 +32,6 @@ describe('LaunchPanelHeaderTest', () => {
             subtitle: 'test subtitle',
             openGettingStartedDialog: {} as any,
             openFeedbackDialog: {} as any,
-            clickhandler: {} as LaunchPanelHeaderClickHandler,
             supportLinkHandler: {} as SupportLinkHandler,
             popupWindow: {} as Window,
             featureFlags: {} as FeatureFlagStoreData,

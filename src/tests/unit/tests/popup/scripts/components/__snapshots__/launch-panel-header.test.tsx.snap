@@ -71,7 +71,6 @@ exports[`LaunchPanelHeaderTest render contextual menu renders with new assessmen
         LaunchPanelHeader {
           "context": Object {},
           "props": Object {
-            "clickhandler": Object {},
             "deps": Object {
               "dropdownClickHandler": Object {},
               "launchPanelHeaderClickHandler": Object {},
@@ -100,7 +99,6 @@ exports[`LaunchPanelHeaderTest render contextual menu renders with new assessmen
             "_renderer": ReactShallowRenderer {
               "_context": Object {},
               "_element": <LaunchPanelHeader
-                clickhandler={Object {}}
                 deps={
                   Object {
                     "dropdownClickHandler": Object {},
@@ -222,7 +220,6 @@ exports[`LaunchPanelHeaderTest render contextual menu renders without new assess
         LaunchPanelHeader {
           "context": Object {},
           "props": Object {
-            "clickhandler": Object {},
             "deps": Object {
               "dropdownClickHandler": Object {},
               "launchPanelHeaderClickHandler": Object {},
@@ -249,7 +246,6 @@ exports[`LaunchPanelHeaderTest render contextual menu renders without new assess
             "_renderer": ReactShallowRenderer {
               "_context": Object {},
               "_element": <LaunchPanelHeader
-                clickhandler={Object {}}
                 deps={
                   Object {
                     "dropdownClickHandler": Object {},

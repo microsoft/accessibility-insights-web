@@ -24,6 +24,6 @@ export class LaunchPanelHeaderClickHandler {
 
     public openAdhocToolsPanel(header: LaunchPanelHeader): void {
         header.props.openAdhocToolsPanel();
-        header.props.clickhandler.onDismissFeedbackMenu(header);
+        header.props.deps.launchPanelHeaderClickHandler.onDismissFeedbackMenu(header);
     }
 }

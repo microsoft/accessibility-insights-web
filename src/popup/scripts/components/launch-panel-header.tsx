@@ -23,7 +23,6 @@ export interface LaunchPanelHeaderProps {
     title: string;
     subtitle?: React.ReactChild;
     openAdhocToolsPanel: () => void;
-    clickhandler: LaunchPanelHeaderClickHandler;
     supportLinkHandler: SupportLinkHandler;
     popupWindow: Window;
     featureFlags: FeatureFlagStoreData;

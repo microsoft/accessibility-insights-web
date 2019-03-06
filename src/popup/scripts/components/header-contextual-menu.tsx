@@ -4,6 +4,7 @@ import { getRTL } from '@uifabric/utilities';
 import { ContextualMenu, ContextualMenuItemType, DirectionalHint, IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import * as React from 'react';
 
+import { FeatureFlags } from '../../../common/feature-flags';
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { TelemetryEventSource } from '../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../common/types/details-view-pivot-type';
@@ -11,7 +12,6 @@ import { VisualizationType } from '../../../common/types/visualization-type';
 import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
 import { LaunchPanelHeaderClickHandler } from '../handlers/launch-panel-header-click-handler';
 import { LaunchPanelHeader } from './launch-panel-header';
-import { FeatureFlags } from '../../../common/feature-flags';
 
 export type HeaderContextualMenuDeps = {
     popupActionMessageCreator: PopupActionMessageCreator;
