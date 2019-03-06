@@ -8,16 +8,17 @@ import { IssueDetailsTextGenerator } from '../../background/issue-details-text-g
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { FileIssueDetailsHandler } from '../file-issue-details-handler';
 import { HTMLElementUtils } from '../html-element-utils';
+import { BugActionMessageCreator } from '../message-creators/bug-action-message-creator';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
 import { FileIssueDetailsDialog } from './file-issue-details-dialog';
 
 export type FileIssueDetailsButtonDeps = {
+    bugActionMessageCreator: BugActionMessageCreator;
     issueDetailsTextGenerator: IssueDetailsTextGenerator;
 };
 
 export type FileIssueDetailsButtonProps = {
     deps: FileIssueDetailsButtonDeps;
-    onOpenSettings: (event: React.MouseEvent<HTMLElement>) => void;
     issueDetailsData: CreateIssueDetailsTextData;
     issueTrackerPath: string;
     restoreFocus: boolean;
@@ -53,15 +54,25 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
         this.setState({ showingFileIssueDialog: false });
     }
 
-    @autobind
     private openDialog(): void {
         this.setState({ showingFileIssueDialog: true });
     }
 
     @autobind
     private openSettings(event: React.MouseEvent<HTMLDivElement | HTMLAnchorElement | HTMLButtonElement>): void {
-        this.props.onOpenSettings(event);
+        this.props.deps.bugActionMessageCreator.openSettingsPanel(event);
         this.closeDialog();
+    }
+
+    @autobind
+    private onClickOpenSettingsButton(event: React.MouseEvent<HTMLDivElement | HTMLAnchorElement | HTMLButtonElement>): void {
+        this.props.deps.bugActionMessageCreator.trackFileIssueClick(event, 'none');
+        this.openDialog();
+    }
+
+    @autobind
+    private onClickFileIssueButton(event: React.MouseEvent<HTMLDivElement | HTMLAnchorElement | HTMLButtonElement>): void {
+        this.props.deps.bugActionMessageCreator.trackFileIssueClick(event, 'gitHub');
     }
 
     private getSettingsPanel(): HTMLElement | null {
@@ -74,7 +85,7 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
                 componentRef={this.button}
                 iconProps={{ iconName: 'ladybugSolid' }}
                 className={'create-bug-button'}
-                onClick={this.openDialog}
+                onClick={this.onClickOpenSettingsButton}
             >
                 File issue
             </DefaultButton>
@@ -88,6 +99,7 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
                 iconProps={{ iconName: 'ladybugSolid' }}
                 className={'create-bug-button'}
                 target="_blank"
+                onClick={this.onClickFileIssueButton}
                 href={this.getIssueDetailsUrl(this.props.issueDetailsData.ruleResult)}
             >
                 File issue

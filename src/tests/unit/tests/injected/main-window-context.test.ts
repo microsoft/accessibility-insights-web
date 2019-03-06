@@ -7,6 +7,7 @@ describe('MainWindowContextTest', () => {
     const userConfigStore: any = { name: 'userConfigStore' };
     const devToolActionMessageCreator: any = { name: 'devToolActionMessageCreator' };
     const targetPageActionMessageCreator: any = { name: 'targetPageActionMessageCreator' };
+    const bugActionMessageCreator: any = { name: 'targetPageActionMessageCreator' };
 
     test('save and retrieve from instance', () => {
         const testSubject = new MainWindowContext(
@@ -14,6 +15,7 @@ describe('MainWindowContextTest', () => {
             userConfigStore,
             devToolActionMessageCreator,
             targetPageActionMessageCreator,
+            bugActionMessageCreator,
         );
 
         expect(testSubject.getDevToolStore()).toEqual(devToolStore);
@@ -23,7 +25,13 @@ describe('MainWindowContextTest', () => {
     });
 
     test('save and retrieve from window', () => {
-        MainWindowContext.initialize(devToolStore, userConfigStore, devToolActionMessageCreator, targetPageActionMessageCreator);
+        MainWindowContext.initialize(
+            devToolStore,
+            userConfigStore,
+            devToolActionMessageCreator,
+            targetPageActionMessageCreator,
+            bugActionMessageCreator,
+        );
 
         expect(MainWindowContext.get().getDevToolStore()).toEqual(devToolStore);
         expect(MainWindowContext.get().getUserConfigStore()).toEqual(userConfigStore);
@@ -32,7 +40,13 @@ describe('MainWindowContextTest', () => {
     });
 
     test('getIfNotGiven', () => {
-        MainWindowContext.initialize(devToolStore, userConfigStore, devToolActionMessageCreator, targetPageActionMessageCreator);
+        MainWindowContext.initialize(
+            devToolStore,
+            userConfigStore,
+            devToolActionMessageCreator,
+            targetPageActionMessageCreator,
+            bugActionMessageCreator,
+        );
 
         const devToolStoreLocal: any = { name: 'devToolStoreLocal' };
         const userConfigStoreLocal: any = { name: 'userConfigStoreLocal' };
@@ -43,6 +57,7 @@ describe('MainWindowContextTest', () => {
             userConfigStoreLocal,
             devToolActionMessageCreatorLocal,
             targetPageActionMessageCreator,
+            bugActionMessageCreator,
         );
 
         const mainWindowContextGiven = MainWindowContext.getIfNotGiven(mainWindowContextLocal);

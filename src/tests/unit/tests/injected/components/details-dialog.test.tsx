@@ -62,12 +62,12 @@ describe('DetailsDialogTest', () => {
         };
 
         const deps: DetailsDialogDeps = {
-            bugClickHandler: null,
             windowUtils: null,
             issueDetailsTextGenerator: null,
             targetPageActionMessageCreator: {
                 copyIssueDetailsClicked: () => {},
             } as any,
+            bugActionMessageCreator: null,
             clientBrowserAdapter: {
                 getUrl: url => expectedHelpUrl,
             } as any,

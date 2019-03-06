@@ -3,7 +3,6 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { BugClickHandler } from '../../../../../common/bug-click-handler';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import {
     IssuesDetailsPane,
@@ -95,9 +94,7 @@ describe('IssuesDetailsPaneTest', () => {
                 copyIssueDetailsClicked: _ => {},
             } as DetailsViewActionMessageCreator,
             windowUtils: null,
-            bugClickHandler: {
-                openSettingsPanelHandler: null,
-            } as BugClickHandler,
+            bugActionMessageCreator: null,
         };
 
         const props: IssuesDetailsPaneProps = {

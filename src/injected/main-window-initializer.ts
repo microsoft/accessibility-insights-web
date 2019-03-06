@@ -5,6 +5,7 @@ import { autobind } from '@uifabric/utilities';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
 import { HTMLElementUtils } from '../common/html-element-utils';
+import { BugActionMessageCreator } from '../common/message-creators/bug-action-message-creator';
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
@@ -101,12 +102,19 @@ export class MainWindowInitializer extends WindowInitializer {
             null,
             telemetryDataFactory,
         );
+        const bugActionMessageCreator = new BugActionMessageCreator(
+            this.clientChromeAdapter.sendMessageToFrames,
+            null,
+            telemetryDataFactory,
+            TelemetryEventSource.TargetPage,
+        );
 
         MainWindowContext.initialize(
             this.devToolStoreProxy,
             this.userConfigStoreProxy,
             devToolActionMessageCreator,
             targetPageActionMessageCreator,
+            bugActionMessageCreator,
         );
 
         const drawingInitiator = new DrawingInitiator(this.drawingController);
