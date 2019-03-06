@@ -19,6 +19,7 @@ export const SWITCH_BACK_TO_TARGET: string = 'SwitchBackToTarget';
 export const DETAILS_VIEW_PIVOT_ACTIVATED: string = 'DetailsViewPivotActivated';
 export const INSPECT_OPEN: string = 'InspectOpen';
 export const COPY_ISSUE_DETAILS: string = 'CopyIssueDetails';
+export const FILE_ISSUE_CLICK: string = 'FileIssueClick';
 export const SELECT_TEST_STEP: string = 'selectTestStep';
 export const START_OVER_ASSESSMENT: string = 'startOverAssessment';
 export const CANCEL_START_OVER_ASSESSMENT: string = 'cancelStartOverAssessment';
@@ -107,6 +108,11 @@ export type SettingsOpenTelemetryData = {
     sourceItem: SettingsOpenSourceItem;
 } & BaseTelemetryData;
 export type SettingsOpenSourceItem = 'fileIssueSettingsPrompt' | 'menu';
+
+export type FileIssueClickTelemetryData = {
+    service: FileIssueClickService;
+} & BaseTelemetryData;
+export type FileIssueClickService = 'none' | 'gitHub';
 
 export type TestStepSelectTelemetryData = {
     selectedTest: string;

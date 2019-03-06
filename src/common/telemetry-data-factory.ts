@@ -12,6 +12,8 @@ import {
     ExportResultsTelemetryData,
     ExportResultType,
     FeatureFlagToggleTelemetryData,
+    FileIssueClickService,
+    FileIssueClickTelemetryData,
     InspectTelemetryData,
     IssuesAnalyzerScanTelemetryData,
     RequirementStatusTelemetryData,
@@ -145,6 +147,17 @@ export class TelemetryDataFactory {
         return {
             ...this.withTriggeredByAndSource(event, source),
             sourceItem,
+        };
+    }
+
+    public forFileIssueClick(
+        event: SupportedMouseEvent,
+        source: TelemetryEventSource,
+        service: FileIssueClickService,
+    ): FileIssueClickTelemetryData {
+        return {
+            ...this.withTriggeredByAndSource(event, source),
+            service,
         };
     }
 

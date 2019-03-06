@@ -10,6 +10,6 @@ export class BugClickHandler {
 
     @autobind
     public openSettingsPanelHandler(event: React.MouseEvent<HTMLElement>): void {
-        this.bugActionMessageCreator.openSettingsPanel(event, this.source);
+        this.bugActionMessageCreator.openSettingsPanel(event);
     }
 }

@@ -106,6 +106,7 @@ export class MainWindowInitializer extends WindowInitializer {
             this.clientChromeAdapter.sendMessageToFrames,
             null,
             telemetryDataFactory,
+            TelemetryEventSource.TargetPage,
         );
 
         MainWindowContext.initialize(
