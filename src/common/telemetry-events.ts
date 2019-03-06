@@ -173,6 +173,8 @@ export type TelemetryData =
     | ExportResultsTelemetryData
     | DetailsViewOpenTelemetryData
     | DetailsViewOpenedTelemetryData
+    | SettingsOpenTelemetryData
+    | FileIssueClickTelemetryData
     | DetailsViewPivotSelectedTelemetryData
     | TestStepSelectTelemetryData
     | ModifiedCommandsTelemetryData
