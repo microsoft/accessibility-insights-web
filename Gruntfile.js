@@ -24,6 +24,7 @@ module.exports = function(grunt) {
             './src/assessments/color/test-steps/flashing-text-example.html',
             './test-results',
             './docs/NOTICE.html',
+            './docs/LICENSE.txt',
         ],
         file_type_method: 'INCLUDE',
         file_types: ['.ts', '.tsx', '.d.ts', '.js', '.html', '.css', '.scss', '.yaml', '.md', '.txt', '.xml'],
