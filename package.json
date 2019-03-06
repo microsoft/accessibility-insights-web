@@ -86,7 +86,7 @@
     "dependencies": {
         "@types/react-helmet": "^5.0.8",
         "applicationinsights-js": "^1.0.20",
-        "axe-core": "3.2.0",
+        "axe-core": "3.2.1",
         "classnames": "^2.2.6",
         "lodash": "^4.17.11",
         "office-ui-fabric-react": "6.142.0",
