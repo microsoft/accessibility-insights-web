@@ -55,7 +55,6 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
         this.setState({ showingFileIssueDialog: false });
     }
 
-    @autobind
     private openDialog(): void {
         this.setState({ showingFileIssueDialog: true });
     }
@@ -64,6 +63,17 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
     private openSettings(event: React.MouseEvent<HTMLDivElement | HTMLAnchorElement | HTMLButtonElement>): void {
         this.props.onOpenSettings(event);
         this.closeDialog();
+    }
+
+    @autobind
+    private onClickOpenSettingsButton(event: React.MouseEvent<HTMLDivElement | HTMLAnchorElement | HTMLButtonElement>): void {
+        this.props.deps.bugActionMessageCreator.trackFileIssueClick(event, 'none');
+        this.openDialog();
+    }
+
+    @autobind
+    private onClickFileIssueButton(event: React.MouseEvent<HTMLDivElement | HTMLAnchorElement | HTMLButtonElement>): void {
+        this.props.deps.bugActionMessageCreator.trackFileIssueClick(event, 'gitHub');
     }
 
     private getSettingsPanel(): HTMLElement | null {
@@ -76,7 +86,7 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
                 componentRef={this.button}
                 iconProps={{ iconName: 'ladybugSolid' }}
                 className={'create-bug-button'}
-                onClick={this.openDialog}
+                onClick={this.onClickOpenSettingsButton}
             >
                 File issue
             </DefaultButton>
@@ -90,6 +100,7 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
                 iconProps={{ iconName: 'ladybugSolid' }}
                 className={'create-bug-button'}
                 target="_blank"
+                onClick={this.onClickFileIssueButton}
                 href={this.getIssueDetailsUrl(this.props.issueDetailsData.ruleResult)}
             >
                 File issue

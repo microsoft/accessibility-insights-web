@@ -15,6 +15,7 @@ exports[`FileIssueDetailsButtonTest render with an issue tracker path 1`] = `
         "iconName": "ladybugSolid",
       }
     }
+    onClick={[Function]}
     target="_blank"
   >
     File issue
