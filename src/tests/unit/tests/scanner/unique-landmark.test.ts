@@ -1,9 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as Axe from 'axe-core';
+
 import { uniqueLandmarkConfiguration } from '../../../../scanner/unique-landmark';
 
 describe('unique-landmark', () => {
     let fixture: HTMLElement;
+    const axe = Axe as any;
 
     beforeEach(() => {
         fixture = document.createElement('div');
@@ -36,5 +39,25 @@ describe('unique-landmark', () => {
         node.setAttribute('role', 'banner');
         node.style.display = 'none';
         expect(uniqueLandmarkConfiguration.rule.matches(node, null)).toBe(false);
+    });
+
+    describe('form and section elements must have accessible names to be matched', () => {
+        const elements = ['section', 'form'];
+
+        elements.forEach(elementType => {
+            it(`should match because it is a ${elementType} with a label`, () => {
+                fixture.innerHTML = `<${elementType} aria-label="sample label">some ${elementType}</${elementType}>`;
+                const node = fixture.querySelector(`${elementType}`);
+                axe._tree = axe.utils.getFlattenedTree(document.documentElement);
+                expect(uniqueLandmarkConfiguration.rule.matches(node, null)).toEqual(true);
+            });
+
+            it(`should not match because it is a ${elementType} without a label`, () => {
+                fixture.innerHTML = `<${elementType}>some ${elementType}</${elementType}>`;
+                const node = fixture.querySelector(`${elementType}`);
+                axe._tree = axe.utils.getFlattenedTree(document.documentElement);
+                expect(uniqueLandmarkConfiguration.rule.matches(node, null)).toEqual(false);
+            });
+        });
     });
 });
