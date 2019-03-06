@@ -319,6 +319,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
                     layerProps: {
                         onLayerDidMount: this.onLayoutDidMount,
                         className: 'insights-dialog-main-override',
+                        hostId: 'insights-dialog-layer-host',
                     },
                 }}
                 onDismiss={this.onHideDialog}

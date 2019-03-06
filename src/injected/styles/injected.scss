@@ -2,6 +2,19 @@
 // Licensed under the MIT License.
 @import '../../common/styles/common.scss';
 @import '../../common/components/toast.scss';
+
+@import '../../../node_modules/office-ui-fabric-react/dist/sass/Icon.Definitions';
+
+.insights-dialog-container {
+    @import '../../../node_modules/office-ui-fabric-react/dist/sass/Fabric.scss';
+
+    position: absolute !important;
+    top: 0px !important;
+    left: 0px !important;
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
 .insights-dialog-main-override-shadow {
     position: fixed;
     top: 0;

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { getRTL } from '@uifabric/utilities';
 import * as ReactDOM from 'react-dom';
 import { GlobalMock, GlobalScope, IGlobalMock, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
@@ -14,6 +15,7 @@ import { DetailsDialogWindowMessage, DialogRenderer } from '../../../../injected
 import { FrameCommunicator, IMessageRequest } from '../../../../injected/frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from '../../../../injected/frameCommunicators/window-message-handler';
 import { IErrorMessageContent } from '../../../../injected/frameCommunicators/window-message-marshaller';
+import { LayeredDetailsDialogComponent } from '../../../../injected/layered-details-dialog-component';
 import { MainWindowContext } from '../../../../injected/main-window-context';
 import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from '../../../../injected/scanner-utils';
 import { ShadowUtils } from '../../../../injected/shadow-utils';
@@ -28,6 +30,7 @@ describe('DialogRendererTests', () => {
     let shadowContainerMock: IMock<HTMLElement>;
     let domMock: IMock<Document>;
     let shadowRootMock: IMock<Element>;
+    let getRTLMock: IMock<typeof getRTL>;
     let shadowRoot: Element;
     let renderMock: IMock<typeof ReactDOM.render>;
     let subscribeCallback: (
@@ -60,6 +63,7 @@ describe('DialogRendererTests', () => {
             shadowRoot: shadowRootMock.object,
         } as any;
         renderMock = Mock.ofInstance(() => null);
+        getRTLMock = Mock.ofInstance(() => null);
 
         const devToolStoreStrictMock = Mock.ofType<DevToolStore>(null, MockBehavior.Strict);
         const userConfigStoreStrictMock = Mock.ofType<UserConfigurationStore>(null, MockBehavior.Strict);
@@ -390,7 +394,14 @@ describe('DialogRendererTests', () => {
 
     function setupRenderMockForVerifiable() {
         renderMock
-            .setup(render => render(It.is((detailsDialog: any) => detailsDialog != null), It.is((container: any) => container != null)))
+            .setup(render =>
+                render(
+                    It.is(detailsDialog => {
+                        return (detailsDialog.type as any) === LayeredDetailsDialogComponent;
+                    }),
+                    It.is((container: any) => container != null),
+                ),
+            )
             .verifiable(Times.once());
     }
 
@@ -548,6 +559,7 @@ describe('DialogRendererTests', () => {
             windowUtilsMock.object,
             shadowUtilMock.object,
             clientBrowserAdapter.object,
+            getRTLMock.object,
         );
     }
 });
