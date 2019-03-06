@@ -7,11 +7,11 @@ import { BugActionMessageCreator } from '../../../../../common/message-creators/
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import {
+    FILE_ISSUE_CLICK,
+    FileIssueClickService,
     FileIssueClickTelemetryData,
     SettingsOpenTelemetryData,
     TelemetryEventSource,
-    FILE_ISSUE_CLICK,
-    FileIssueClickService,
 } from '../../../../../common/telemetry-events';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
