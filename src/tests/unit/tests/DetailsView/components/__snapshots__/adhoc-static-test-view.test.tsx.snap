@@ -1,99 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AdhocStaticTestView render handles content & guidance 1`] = `
-"<StaticContentDetailsView deps={[Function: function () {
-                    var args = [];
-                    for (var _i = 0; _i < arguments.length; _i++) {
-                        args[_i] = arguments[_i];
-                    }
-                    _this._interceptor.removeInvocation(invocation_1);
-                    var method = new MethodInfo(target, p);
-                    var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
-                    _this._interceptor.intercept(methodInvocation);
-                    return methodInvocation.returnValue;
-                }]} visualizationEnabled={true} onToggleClick={[Function: clickHandlerStub]} title=\\"test title\\" toggleLabel=\\"test toggle label\\" content={[Function: function () {
-                    var args = [];
-                    for (var _i = 0; _i < arguments.length; _i++) {
-                        args[_i] = arguments[_i];
-                    }
-                    _this._interceptor.removeInvocation(invocation_1);
-                    var method = new MethodInfo(target, p);
-                    var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
-                    _this._interceptor.intercept(methodInvocation);
-                    return methodInvocation.returnValue;
-                }]} guidance={[Function: function () {
-                    var args = [];
-                    for (var _i = 0; _i < arguments.length; _i++) {
-                        args[_i] = arguments[_i];
-                    }
-                    _this._interceptor.removeInvocation(invocation_1);
-                    var method = new MethodInfo(target, p);
-                    var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
-                    _this._interceptor.intercept(methodInvocation);
-                    return methodInvocation.returnValue;
-                }]} />"
-`;
+exports[`AdhocStaticTestView render handles content & guidance 1`] = `"<StaticContentDetailsView deps={[function]} visualizationEnabled={true} onToggleClick={[Function: clickHandlerStub]} title=\\"test title\\" toggleLabel=\\"test toggle label\\" content={[function]} guidance={[function]} />"`;
 
-exports[`AdhocStaticTestView render handles content & no guidance 1`] = `
-"<StaticContentDetailsView deps={[Function: function () {
-                    var args = [];
-                    for (var _i = 0; _i < arguments.length; _i++) {
-                        args[_i] = arguments[_i];
-                    }
-                    _this._interceptor.removeInvocation(invocation_1);
-                    var method = new MethodInfo(target, p);
-                    var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
-                    _this._interceptor.intercept(methodInvocation);
-                    return methodInvocation.returnValue;
-                }]} visualizationEnabled={true} onToggleClick={[Function: clickHandlerStub]} title=\\"test title\\" toggleLabel=\\"test toggle label\\" content={[Function: function () {
-                    var args = [];
-                    for (var _i = 0; _i < arguments.length; _i++) {
-                        args[_i] = arguments[_i];
-                    }
-                    _this._interceptor.removeInvocation(invocation_1);
-                    var method = new MethodInfo(target, p);
-                    var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
-                    _this._interceptor.intercept(methodInvocation);
-                    return methodInvocation.returnValue;
-                }]} guidance={[undefined]} />"
-`;
+exports[`AdhocStaticTestView render handles content & no guidance 1`] = `"<StaticContentDetailsView deps={[function]} visualizationEnabled={true} onToggleClick={[Function: clickHandlerStub]} title=\\"test title\\" toggleLabel=\\"test toggle label\\" content={[function]} guidance={[undefined]} />"`;
 
-exports[`AdhocStaticTestView render handles no content & guidance 1`] = `
-"<StaticContentDetailsView deps={[Function: function () {
-                    var args = [];
-                    for (var _i = 0; _i < arguments.length; _i++) {
-                        args[_i] = arguments[_i];
-                    }
-                    _this._interceptor.removeInvocation(invocation_1);
-                    var method = new MethodInfo(target, p);
-                    var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
-                    _this._interceptor.intercept(methodInvocation);
-                    return methodInvocation.returnValue;
-                }]} visualizationEnabled={true} onToggleClick={[Function: clickHandlerStub]} title=\\"test title\\" toggleLabel=\\"test toggle label\\" content={[undefined]} guidance={[Function: function () {
-                    var args = [];
-                    for (var _i = 0; _i < arguments.length; _i++) {
-                        args[_i] = arguments[_i];
-                    }
-                    _this._interceptor.removeInvocation(invocation_1);
-                    var method = new MethodInfo(target, p);
-                    var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
-                    _this._interceptor.intercept(methodInvocation);
-                    return methodInvocation.returnValue;
-                }]} />"
-`;
+exports[`AdhocStaticTestView render handles no content & guidance 1`] = `"<StaticContentDetailsView deps={[function]} visualizationEnabled={true} onToggleClick={[Function: clickHandlerStub]} title=\\"test title\\" toggleLabel=\\"test toggle label\\" content={[undefined]} guidance={[function]} />"`;
 
-exports[`AdhocStaticTestView render handles no content & no guidance 1`] = `
-"<StaticContentDetailsView deps={[Function: function () {
-                    var args = [];
-                    for (var _i = 0; _i < arguments.length; _i++) {
-                        args[_i] = arguments[_i];
-                    }
-                    _this._interceptor.removeInvocation(invocation_1);
-                    var method = new MethodInfo(target, p);
-                    var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
-                    _this._interceptor.intercept(methodInvocation);
-                    return methodInvocation.returnValue;
-                }]} visualizationEnabled={true} onToggleClick={[Function: clickHandlerStub]} title=\\"test title\\" toggleLabel=\\"test toggle label\\" content={[undefined]} guidance={[undefined]} />"
-`;
+exports[`AdhocStaticTestView render handles no content & no guidance 1`] = `"<StaticContentDetailsView deps={[function]} visualizationEnabled={true} onToggleClick={[Function: clickHandlerStub]} title=\\"test title\\" toggleLabel=\\"test toggle label\\" content={[undefined]} guidance={[undefined]} />"`;
 
 exports[`AdhocStaticTestView should return target page changed view as tab is changed 1`] = `"<TargetPageChangedView displayableData={{...}} type={-1} toggleClickHandler={[Function: clickHandlerStub]} />"`;
