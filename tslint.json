@@ -14,6 +14,9 @@
         "prefer-const": [true, { "destructuring": "all" }],
         "switch-default": true,
         "typedef": [true, "call-signature", "property-declaration"],
-        "variable-name": [true, "check-format", "allow-pascal-case", "allow-trailing-underscore", "ban-keywords"]
+        "variable-name": [true, "check-format", "allow-pascal-case", "allow-trailing-underscore", "ban-keywords"],
+
+        // Security Rules.
+        "no-reserved-keywords": true
     }
 }
