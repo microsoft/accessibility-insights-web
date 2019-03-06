@@ -8,7 +8,7 @@ copyright-header.txt
 LICENSE
 package-lock.json
 .prettierignore
-
+docs/NOTICE.html
 **/*.snap
 **/*.png
 **/*.gitignore
