@@ -3,7 +3,6 @@
 import * as React from 'react';
 
 import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
-import { BugClickHandler } from '../../common/bug-click-handler';
 import { CopyIssueDetailsButton } from '../../common/components/copy-issue-details-button';
 import { FileIssueDetailsButton, FileIssueDetailsButtonDeps } from '../../common/components/file-issue-details-button';
 import { FlaggedComponent } from '../../common/components/flagged-component';
@@ -20,7 +19,6 @@ import { GuidanceLinks } from './guidance-links';
 
 export type IssuesDetailsPaneDeps = ToastDeps &
     FileIssueDetailsButtonDeps & {
-        bugClickHandler: BugClickHandler;
         issueDetailsTextGenerator: IssueDetailsTextGenerator;
         detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     };
@@ -72,7 +70,6 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
         return (
             <FileIssueDetailsButton
                 deps={this.props.deps}
-                onOpenSettings={this.props.deps.bugClickHandler.openSettingsPanelHandler}
                 issueDetailsData={issueData}
                 issueTrackerPath={this.props.issueTrackerPath}
                 restoreFocus={true}

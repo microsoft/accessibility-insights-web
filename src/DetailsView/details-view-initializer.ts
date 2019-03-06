@@ -10,7 +10,6 @@ import { ChromeAdapter } from '../background/browser-adapter';
 import { IssueDetailsTextGenerator } from '../background/issue-details-text-generator';
 import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { AxeInfo } from '../common/axe-info';
-import { BugClickHandler } from '../common/bug-click-handler';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DateProvider } from '../common/date-provider';
 import { DocumentManipulator } from '../common/document-manipulator';
@@ -191,7 +190,6 @@ if (isNaN(tabId) === false) {
                 const previewFeatureFlagsHandler = new PreviewFeatureFlagsHandler(getAllFeatureFlagDetails());
                 const scopingFlagsHandler = new PreviewFeatureFlagsHandler(getAllFeatureFlagDetails());
                 const dropdownClickHandler = new DropdownClickHandler(dropdownActionMessageCreator, TelemetryEventSource.DetailsView);
-                const bugClickHandler = new BugClickHandler(bugActionMessageCreator, TelemetryEventSource.DetailsView);
 
                 const extensionVersion = chromeAdapter.getManifest().version;
                 const axeVersion = getVersion();
@@ -248,7 +246,6 @@ if (isNaN(tabId) === false) {
                 const deps: DetailsViewContainerDeps = {
                     dropdownClickHandler,
                     bugActionMessageCreator,
-                    bugClickHandler,
                     contentProvider: contentPages,
                     contentActionMessageCreator,
                     detailsViewActionMessageCreator: actionMessageCreator,

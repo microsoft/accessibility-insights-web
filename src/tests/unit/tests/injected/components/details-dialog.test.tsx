@@ -62,7 +62,6 @@ describe('DetailsDialogTest', () => {
         };
 
         const deps: DetailsDialogDeps = {
-            bugClickHandler: null,
             windowUtils: null,
             issueDetailsTextGenerator: null,
             targetPageActionMessageCreator: {

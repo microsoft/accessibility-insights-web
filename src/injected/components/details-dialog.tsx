@@ -157,7 +157,6 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         return (
             <FileIssueDetailsButton
                 deps={this.props.deps}
-                onOpenSettings={this.props.deps.targetPageActionMessageCreator.openSettingsPanel}
                 issueDetailsData={issueData}
                 issueTrackerPath={this.state.issueTrackerPath}
                 restoreFocus={false}

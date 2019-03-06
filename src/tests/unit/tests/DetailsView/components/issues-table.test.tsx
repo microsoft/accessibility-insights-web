@@ -183,7 +183,6 @@ describe('IssuesTableTest', () => {
             .setReportGenerator(reportGenerator)
             .setDeps({
                 detailsViewActionMessageCreator: actionMessageCreator,
-                bugClickHandler: null,
                 dropdownClickHandler: null,
                 issueDetailsTextGenerator: null,
                 windowUtils: null,

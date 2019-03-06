@@ -27,7 +27,6 @@ describe('FileIssueDetailsButtonTest', () => {
                 issueDetailsTextGenerator: issueDetailsTextGeneratorMock.object,
                 bugActionMessageCreator: null,
             },
-            onOpenSettings: (ev: React.MouseEvent<HTMLElement>) => {},
             issueTrackerPath: issueTrackerPath,
             issueDetailsData: {
                 pageTitle: 'pageTitle',

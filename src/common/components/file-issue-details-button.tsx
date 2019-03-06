@@ -19,7 +19,6 @@ export type FileIssueDetailsButtonDeps = {
 
 export type FileIssueDetailsButtonProps = {
     deps: FileIssueDetailsButtonDeps;
-    onOpenSettings: (event: React.MouseEvent<HTMLElement>) => void;
     issueDetailsData: CreateIssueDetailsTextData;
     issueTrackerPath: string;
     restoreFocus: boolean;
@@ -61,7 +60,7 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
 
     @autobind
     private openSettings(event: React.MouseEvent<HTMLDivElement | HTMLAnchorElement | HTMLButtonElement>): void {
-        this.props.onOpenSettings(event);
+        this.props.deps.bugActionMessageCreator.openSettingsPanel(event);
         this.closeDialog();
     }
 
