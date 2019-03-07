@@ -9,7 +9,7 @@ import { IGeneratedAssessmentInstance } from '../../../../common/types/store-dat
 describe('AssessmentDefaultMessageGenerator', () => {
     const testSubject = new AssessmentDefaultMessageGenerator();
 
-    test('the getNoFailingInstanceMesage returns null when there are instances and also when there are no failing', () => {
+    test('the getNoFailingInstanceMessage returns null when there are instances and also when there are no failing', () => {
         expect(testSubject.getNoFailingInstanceMessage).toBeDefined();
 
         const instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance> = {
@@ -102,7 +102,7 @@ describe('AssessmentDefaultMessageGenerator', () => {
         expect(testSubject.getNoMatchingInstanceMessage(instancesMap, 'step1')).toEqual(expected);
     });
 
-    test('the getNoFailingInstanceMesage returns no failing instances message when there are instances but no failing ones', () => {
+    test('the getNoFailingInstanceMessage returns no failing instances message when there are instances but no failing ones', () => {
         const instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance> = {
             selector1: {
                 target: ['tareget1'],
