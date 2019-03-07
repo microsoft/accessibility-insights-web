@@ -30,7 +30,7 @@ import { ForIssuesAnalyzerScanCallback, ForRuleAnalyzerScanCallback } from './ty
 import { DetailsViewPivotType } from './types/details-view-pivot-type';
 import { VisualizationType } from './types/visualization-type';
 
-type SupportedMouseEvent =
+export type SupportedMouseEvent =
     | React.SyntheticEvent<MouseEvent>
     | React.MouseEvent<any>
     | MouseEvent
