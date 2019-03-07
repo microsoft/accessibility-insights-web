@@ -32,7 +32,7 @@ function getRelevantTestStepResults(instancesMap: InstanceIdToInstanceDataMap, s
 }
 
 export class AssessmentDefaultMessageGenerator {
-    public getNoFailingInstanceMesage: IMessageGenerator = (
+    public getNoFailingInstanceMessage: IMessageGenerator = (
         instancesMap: InstanceIdToInstanceDataMap,
         selectedTestStep: string,
     ): DefaultMessageInterface => {
