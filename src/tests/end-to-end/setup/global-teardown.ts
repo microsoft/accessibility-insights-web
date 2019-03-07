@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-module.exports = {
-    port: 9050,
-};
+import * as testResourceServer from './test-resource-server';
+
+testResourceServer.stopServer();
