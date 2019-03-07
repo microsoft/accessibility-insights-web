@@ -16,12 +16,16 @@
 .insights-dialog-container {
     @import '../../../node_modules/office-ui-fabric-react/dist/sass/Fabric.scss';
 
+    @include max-z-index();
+}
+
+// We need the below styling only when not using shadow dom
+body > .insights-dialog-container {
     position: absolute !important;
     top: 0px !important;
     left: 0px !important;
     padding: 0px !important;
     margin: 0px !important;
-    @include max-z-index();
 }
 
 .insights-dialog-main-override-shadow {
