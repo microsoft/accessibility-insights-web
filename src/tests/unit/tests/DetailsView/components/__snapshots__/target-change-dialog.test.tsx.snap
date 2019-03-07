@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render the only information available in prevTab is appRefreshed 1`] = `
-<StyledWithResponsiveMode
+<BlockingDialog
   dialogContentProps={
     Object {
       "title": "Assessment in progress",
@@ -13,7 +13,6 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
     Object {
       "className": "target-change-dialog-modal",
       "containerClassName": "insights-dialog-main-override target-change-dialog",
-      "isBlocking": true,
       "subtitleAriaId": "target-change-dialog-description",
     }
   }
@@ -86,11 +85,11 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       </div>
     </div>
   </StyledDialogFooterBase>
-</StyledWithResponsiveMode>
+</BlockingDialog>
 `;
 
 exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when previous tab info shows app is refreshed 1`] = `
-<StyledWithResponsiveMode
+<BlockingDialog
   dialogContentProps={
     Object {
       "title": "Assessment in progress",
@@ -102,7 +101,6 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
     Object {
       "className": "target-change-dialog-modal",
       "containerClassName": "insights-dialog-main-override target-change-dialog",
-      "isBlocking": true,
       "subtitleAriaId": "target-change-dialog-description",
     }
   }
@@ -179,11 +177,11 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       </div>
     </div>
   </StyledDialogFooterBase>
-</StyledWithResponsiveMode>
+</BlockingDialog>
 `;
 
 exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when tab ids are same and also url doesn't change 1`] = `
-<StyledWithResponsiveMode
+<BlockingDialog
   dialogContentProps={
     Object {
       "title": "Assessment in progress",
@@ -195,7 +193,6 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
     Object {
       "className": "target-change-dialog-modal",
       "containerClassName": "insights-dialog-main-override target-change-dialog",
-      "isBlocking": true,
       "subtitleAriaId": "target-change-dialog-description",
     }
   }
@@ -272,11 +269,11 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       </div>
     </div>
   </StyledDialogFooterBase>
-</StyledWithResponsiveMode>
+</BlockingDialog>
 `;
 
 exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when tab ids are same but url changes 1`] = `
-<StyledWithResponsiveMode
+<BlockingDialog
   dialogContentProps={
     Object {
       "title": "Assessment in progress",
@@ -288,7 +285,6 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
     Object {
       "className": "target-change-dialog-modal",
       "containerClassName": "insights-dialog-main-override target-change-dialog",
-      "isBlocking": true,
       "subtitleAriaId": "target-change-dialog-description",
     }
   }
@@ -365,11 +361,11 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       </div>
     </div>
   </StyledDialogFooterBase>
-</StyledWithResponsiveMode>
+</BlockingDialog>
 `;
 
 exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when target tab id changed 1`] = `
-<StyledWithResponsiveMode
+<BlockingDialog
   dialogContentProps={
     Object {
       "title": "Assessment in progress",
@@ -381,7 +377,6 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
     Object {
       "className": "target-change-dialog-modal",
       "containerClassName": "insights-dialog-main-override target-change-dialog",
-      "isBlocking": true,
       "subtitleAriaId": "target-change-dialog-description",
     }
   }
@@ -458,5 +453,5 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       </div>
     </div>
   </StyledDialogFooterBase>
-</StyledWithResponsiveMode>
+</BlockingDialog>
 `;
