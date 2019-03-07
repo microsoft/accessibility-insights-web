@@ -183,7 +183,7 @@ describe('PopupActionMessageCreatorTest', () => {
         };
 
         telemetryFactoryMock
-            .setup(tf => tf.fromHamburgetMenu(event))
+            .setup(tf => tf.fromHamburgerMenu(event))
             .returns(() => telemetry)
             .verifiable();
 

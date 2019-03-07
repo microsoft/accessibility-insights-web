@@ -71,7 +71,7 @@ export class PopupActionMessageCreator extends BaseActionMessageCreator {
     }
 
     public openShortcutConfigureTab(event: React.MouseEvent<HTMLElement>): void {
-        const telemetry = this.telemetryFactory.fromHamburgetMenu(event);
+        const telemetry = this.telemetryFactory.fromHamburgerMenu(event);
         const payload: BaseActionPayload = {
             telemetry,
         };
