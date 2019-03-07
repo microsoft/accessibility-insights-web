@@ -15,7 +15,7 @@ describe('InitialAssessmentStoreDataGeneratorTest', () => {
 
     const targetTab = { id: 1, url: 'url', title: 'title', appRefreshed: false };
     const generator = new InitialAssessmentStoreDataGenerator(assesssmentsProvider);
-    const userInpuut = 10;
+    const userInput = 10;
     let knownTestIds: string[];
     const knownRequirementIds: string[] = [];
     const unknownRequirementIds: string[] = ['unknown-requirement-1', 'unknown-requirement-2'];
@@ -47,8 +47,8 @@ describe('InitialAssessmentStoreDataGeneratorTest', () => {
         instanceDataWithKnownRequirementResult = createInstance('id1', [knownRequirement1, unknownRequirement1]);
         instanceDataWithOnlyKnownRequirementResult = createInstance('id1', [knownRequirement1]);
         instanceDataWithoutKnownRequirementResult = createInstance('id2', [unknownRequirement1]);
-        knownManualRequirementResult = createManualRequirementResult(knownRequirement1, userInpuut);
-        unknownManualRequirementResult = createManualRequirementResult(unknownRequirement1, userInpuut);
+        knownManualRequirementResult = createManualRequirementResult(knownRequirement1, userInput);
+        unknownManualRequirementResult = createManualRequirementResult(unknownRequirement1, userInput);
     });
 
     it('get the default state', () => {
