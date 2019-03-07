@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
+import { Callout, TooltipHost } from 'office-ui-fabric-react';
 import { DefaultButton, IButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 
@@ -26,13 +27,14 @@ export type FileIssueDetailsButtonProps = {
 
 export type FileIssueDetailsButtonState = {
     showingFileIssueDialog: boolean;
+    isCalloutVisible: boolean;
 };
 
 export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButtonProps, FileIssueDetailsButtonState> {
     private button: React.RefObject<IButton> = React.createRef<IButton>();
     constructor(props: FileIssueDetailsButtonProps) {
         super(props);
-        this.state = { showingFileIssueDialog: false };
+        this.state = { showingFileIssueDialog: false, isCalloutVisible: false };
     }
 
     private getIssueDetailsUrl(result: DecoratedAxeNodeResult): string {
@@ -81,15 +83,87 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
 
     private renderFileIssueButtonNeedsSettings(): JSX.Element {
         return (
-            <DefaultButton
-                componentRef={this.button}
-                iconProps={{ iconName: 'ladybugSolid' }}
-                className={'create-bug-button'}
-                disabled={true}
-            >
-                File issue
-            </DefaultButton>
+            <>
+                <DefaultButton
+                    componentRef={this.button}
+                    iconProps={{ iconName: 'ladybugSolid' }}
+                    className={'create-bug-button'}
+                    disabled={true}
+                >
+                    File issue
+                </DefaultButton>
+                <DefaultButton
+                    componentRef={this.button}
+                    iconProps={{ iconName: 'ladybugSolid' }}
+                    className={'create-bug-button'}
+                    disabled={true}
+                    ariaLabel="Test zero content of aria label"
+                >
+                    Test zero
+                </DefaultButton>
+                <div tabIndex={0} title="Configure issue filing - test one" style={{ display: 'inline-block' }}>
+                    <DefaultButton
+                        componentRef={this.button}
+                        iconProps={{ iconName: 'ladybugSolid' }}
+                        className={'create-bug-button'}
+                        disabled={true}
+                        ariaLabel="Test one content of aria-label"
+                    >
+                        Test one
+                    </DefaultButton>
+                </div>
+                <div style={{ display: 'inline-block' }} ref={this.calloutWrapperElement}>
+                    <DefaultButton
+                        componentRef={this.button}
+                        iconProps={{ iconName: 'ladybugSolid' }}
+                        className={'create-bug-button'}
+                        onClick={this.testShowCallout}
+                    >
+                        Test callout
+                    </DefaultButton>
+                </div>
+                <Callout
+                    // ariaLabelledBy="calloutLabel"
+                    // ariaDescribedBy="calloutDescription"
+                    role="alert"
+                    gapSpace={0}
+                    target={this.calloutWrapperElement.current}
+                    onDismiss={this.testDismissCallout}
+                    setInitialFocus={true}
+                    hidden={!this.state.isCalloutVisible}
+                >
+                    <div id="calloutLabel">Callout Label</div>
+                    <div id="calloutDescription">Hey, you need to configure settings for this button to work.</div>
+                </Callout>
+                <TooltipHost
+                    content="Set up issue filing in Settings to enable this button - test tooltip"
+                    id="create-bug-button-tooltip"
+                    calloutProps={{ gapSpace: 0 }}
+                >
+                    <DefaultButton
+                        componentRef={this.button}
+                        iconProps={{ iconName: 'ladybugSolid' }}
+                        className={'create-bug-button'}
+                        disabled={true}
+                        aria-labelledby="create-bug-button-tooltip"
+                    >
+                        Test tooltip
+                    </DefaultButton>
+                </TooltipHost>
+            </>
         );
+    }
+
+    private calloutWrapperElement = React.createRef<HTMLDivElement>();
+
+    @autobind
+    private testShowCallout(): void {
+        this.setState({ isCalloutVisible: !this.state.isCalloutVisible });
+    }
+
+    @autobind
+    private testDismissCallout(): void {
+        this.setState({ isCalloutVisible: false });
     }
 
     private renderFileIssueButton(): JSX.Element {
