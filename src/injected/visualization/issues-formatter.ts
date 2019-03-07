@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 /// <reference path="./iformatter.d.ts" />
 /// <reference path="./heading-formatter.ts" />
+import { getRTL } from '@uifabric/utilities';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
@@ -22,6 +23,7 @@ export class IssuesFormatter implements IFormatter {
         windowUtils: WindowUtils,
         shadowUtils: ShadowUtils,
         clientBrowserAdapter: ClientBrowserAdapter,
+        getRTLFunc: typeof getRTL,
     ) {
         this.dialogRenderer = new DialogRenderer(
             document,
@@ -30,6 +32,7 @@ export class IssuesFormatter implements IFormatter {
             windowUtils,
             shadowUtils,
             clientBrowserAdapter,
+            getRTLFunc,
         );
     }
 

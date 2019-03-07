@@ -31,6 +31,8 @@ describe('DrawerProviderTests', () => {
         clientUtils = Mock.ofType(ClientUtils);
         domStub = {} as Document;
         frameCommunicator = Mock.ofType(FrameCommunicator);
+        const getRTLMock = Mock.ofInstance(() => null);
+
         testObject = new DrawerProvider(
             windowUtils.object,
             shadowUtils.object,
@@ -39,6 +41,7 @@ describe('DrawerProviderTests', () => {
             domStub,
             frameCommunicator.object,
             clientBrowserAdapter.object,
+            getRTLMock.object,
         );
     });
 
