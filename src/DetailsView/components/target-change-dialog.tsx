@@ -13,6 +13,7 @@ import { ITab } from '../../common/itab';
 import { PersistedTabInfo } from '../../common/types/store-data/iassessment-result-data';
 import { UrlParser } from '../../common/url-parser';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
+import { BlockingDialog } from '../../common/components/blocking-dialog';
 
 export type TargetChangeDialogDeps = {
     urlParser: UrlParser;
@@ -42,19 +43,22 @@ export class TargetChangeDialog extends React.Component<TargetChangeDialogProps>
                     className: 'target-change-dialog-modal',
                     isBlocking: true,
                     containerClassName: 'insights-dialog-main-override target-change-dialog',
+                    subtitleAriaId: 'target-change-dialog-description',
                 }}
             >
-                <div>
-                    There is already an assessment running on&nbsp;
-                    {this.renderPreviousTabLink(this.props.prevTab)}. Would you like to continue your current assessment on the new target
-                    of&nbsp;
-                    {this.renderCurrentTabLink(this.props.newTab)}?
+                <div id="target-change-dialog-description">
+                    <div>
+                        There is already an assessment running on&nbsp;
+                        {this.renderPreviousTabLink(this.props.prevTab)}. Would you like to continue your current assessment on the new
+                        target of&nbsp;
+                        {this.renderCurrentTabLink(this.props.newTab)}?
+                    </div>
+                    <p>
+                        <Markup.Term>Note</Markup.Term>: If 'Continue previous' is selected, the previous assessment will be connected to
+                        this new page.
+                    </p>
+                    <p>If 'Start new' is selected, all previous progress will be lost.</p>
                 </div>
-                <p>
-                    <Markup.Term>Note</Markup.Term>: If ‘Continue previous’ is selected, the previous assessment will be connected to this
-                    new page.
-                </p>
-                <p>If ‘Start new’ is selected, all previous progress will be lost.</p>
 
                 <DialogFooter>
                     <div className="target-change-dialog-button-container">
