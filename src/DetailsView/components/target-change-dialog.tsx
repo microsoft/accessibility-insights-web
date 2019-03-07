@@ -42,19 +42,22 @@ export class TargetChangeDialog extends React.Component<TargetChangeDialogProps>
                 modalProps={{
                     className: 'target-change-dialog-modal',
                     containerClassName: 'insights-dialog-main-override target-change-dialog',
+                    subtitleAriaId: 'target-change-dialog-description',
                 }}
             >
-                <div>
-                    There is already an assessment running on&nbsp;
-                    {this.renderPreviousTabLink(this.props.prevTab)}. Would you like to continue your current assessment on the new target
-                    of&nbsp;
-                    {this.renderCurrentTabLink(this.props.newTab)}?
+                <div id="target-change-dialog-description">
+                    <div>
+                        There is already an assessment running on&nbsp;
+                        {this.renderPreviousTabLink(this.props.prevTab)}. Would you like to continue your current assessment on the new
+                        target of&nbsp;
+                        {this.renderCurrentTabLink(this.props.newTab)}?
+                    </div>
+                    <p>
+                        <Markup.Term>Note</Markup.Term>: If 'Continue previous' is selected, the previous assessment will be connected to
+                        this new page.
+                    </p>
+                    <p>If 'Start new' is selected, all previous progress will be lost.</p>
                 </div>
-                <p>
-                    <Markup.Term>Note</Markup.Term>: If ‘Continue previous’ is selected, the previous assessment will be connected to this
-                    new page.
-                </p>
-                <p>If ‘Start new’ is selected, all previous progress will be lost.</p>
 
                 <DialogFooter>
                     <div className="target-change-dialog-button-container">

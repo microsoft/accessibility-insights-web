@@ -33,10 +33,7 @@ const gettingStarted: JSX.Element = (
         </p>
         <p>
             See
-            <NewTabLink href="https://msit.microsoftstream.com/video/a872fda0-4b9e-453b-9adf-e02a38b1900b?channelId=66d47e66-d99c-488b-b9ea-98a153d2a4d4">
-                {' '}
-                this fun video{' '}
-            </NewTabLink>
+            <NewTabLink href="https://go.microsoft.com/fwlink/?linkid=2080372"> this fun video </NewTabLink>
             to learn how landmarks, headings, and tab stops work together to provide efficient navigation.{' '}
         </p>
     </React.Fragment>

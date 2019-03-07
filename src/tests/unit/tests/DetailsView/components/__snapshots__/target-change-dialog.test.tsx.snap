@@ -14,52 +14,57 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       "className": "target-change-dialog-modal",
       "containerClassName": "insights-dialog-main-override target-change-dialog",
       "isBlocking": true,
+      "subtitleAriaId": "target-change-dialog-description",
     }
   }
 >
-  <div>
-    There is already an assessment running on 
-    <StyledTooltipHostBase
-      calloutProps={
-        Object {
-          "gapSpace": 0,
+  <div
+    id="target-change-dialog-description"
+  >
+    <div>
+      There is already an assessment running on 
+      <StyledTooltipHostBase
+        calloutProps={
+          Object {
+            "gapSpace": 0,
+          }
         }
-      }
-      id="previous-target-page-link"
-    >
-      <NewTabLink
-        className="target-page-link"
-        role="link"
-      />
-    </StyledTooltipHostBase>
-    . Would you like to continue your current assessment on the new target of 
-    <StyledTooltipHostBase
-      calloutProps={
-        Object {
-          "gapSpace": 0,
-        }
-      }
-      content="https://www.abc.com"
-      id="current-target-page-link"
-    >
-      <StyledLinkBase
-        className="target-page-link"
-        role="link"
+        id="previous-target-page-link"
       >
-        test title 2
-      </StyledLinkBase>
-    </StyledTooltipHostBase>
-    ?
+        <NewTabLink
+          className="target-page-link"
+          role="link"
+        />
+      </StyledTooltipHostBase>
+      . Would you like to continue your current assessment on the new target of 
+      <StyledTooltipHostBase
+        calloutProps={
+          Object {
+            "gapSpace": 0,
+          }
+        }
+        content="https://www.abc.com"
+        id="current-target-page-link"
+      >
+        <StyledLinkBase
+          className="target-page-link"
+          role="link"
+        >
+          test title 2
+        </StyledLinkBase>
+      </StyledTooltipHostBase>
+      ?
+    </div>
+    <p>
+      <Term>
+        Note
+      </Term>
+      : If 'Continue previous' is selected, the previous assessment will be connected to this new page.
+    </p>
+    <p>
+      If 'Start new' is selected, all previous progress will be lost.
+    </p>
   </div>
-  <p>
-    <Term>
-      Note
-    </Term>
-    : If ‘Continue previous’ is selected, the previous assessment will be connected to this new page.
-  </p>
-  <p>
-    If ‘Start new’ is selected, all previous progress will be lost.
-  </p>
   <StyledDialogFooterBase>
     <div
       className="target-change-dialog-button-container"
@@ -98,56 +103,61 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       "className": "target-change-dialog-modal",
       "containerClassName": "insights-dialog-main-override target-change-dialog",
       "isBlocking": true,
+      "subtitleAriaId": "target-change-dialog-description",
     }
   }
 >
-  <div>
-    There is already an assessment running on 
-    <StyledTooltipHostBase
-      calloutProps={
-        Object {
-          "gapSpace": 0,
+  <div
+    id="target-change-dialog-description"
+  >
+    <div>
+      There is already an assessment running on 
+      <StyledTooltipHostBase
+        calloutProps={
+          Object {
+            "gapSpace": 0,
+          }
         }
-      }
-      content="https://www.abc.com"
-      id="previous-target-page-link"
-    >
-      <NewTabLink
-        className="target-page-link"
-        href="https://www.abc.com"
-        role="link"
+        content="https://www.abc.com"
+        id="previous-target-page-link"
       >
-        test title 1
-      </NewTabLink>
-    </StyledTooltipHostBase>
-    . Would you like to continue your current assessment on the new target of 
-    <StyledTooltipHostBase
-      calloutProps={
-        Object {
-          "gapSpace": 0,
+        <NewTabLink
+          className="target-page-link"
+          href="https://www.abc.com"
+          role="link"
+        >
+          test title 1
+        </NewTabLink>
+      </StyledTooltipHostBase>
+      . Would you like to continue your current assessment on the new target of 
+      <StyledTooltipHostBase
+        calloutProps={
+          Object {
+            "gapSpace": 0,
+          }
         }
-      }
-      content="https://www.def.com"
-      id="current-target-page-link"
-    >
-      <StyledLinkBase
-        className="target-page-link"
-        role="link"
+        content="https://www.def.com"
+        id="current-target-page-link"
       >
-        test title 2
-      </StyledLinkBase>
-    </StyledTooltipHostBase>
-    ?
+        <StyledLinkBase
+          className="target-page-link"
+          role="link"
+        >
+          test title 2
+        </StyledLinkBase>
+      </StyledTooltipHostBase>
+      ?
+    </div>
+    <p>
+      <Term>
+        Note
+      </Term>
+      : If 'Continue previous' is selected, the previous assessment will be connected to this new page.
+    </p>
+    <p>
+      If 'Start new' is selected, all previous progress will be lost.
+    </p>
   </div>
-  <p>
-    <Term>
-      Note
-    </Term>
-    : If ‘Continue previous’ is selected, the previous assessment will be connected to this new page.
-  </p>
-  <p>
-    If ‘Start new’ is selected, all previous progress will be lost.
-  </p>
   <StyledDialogFooterBase>
     <div
       className="target-change-dialog-button-container"
@@ -186,56 +196,61 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       "className": "target-change-dialog-modal",
       "containerClassName": "insights-dialog-main-override target-change-dialog",
       "isBlocking": true,
+      "subtitleAriaId": "target-change-dialog-description",
     }
   }
 >
-  <div>
-    There is already an assessment running on 
-    <StyledTooltipHostBase
-      calloutProps={
-        Object {
-          "gapSpace": 0,
+  <div
+    id="target-change-dialog-description"
+  >
+    <div>
+      There is already an assessment running on 
+      <StyledTooltipHostBase
+        calloutProps={
+          Object {
+            "gapSpace": 0,
+          }
         }
-      }
-      content="https://www.abc.com"
-      id="previous-target-page-link"
-    >
-      <NewTabLink
-        className="target-page-link"
-        href="https://www.abc.com"
-        role="link"
+        content="https://www.abc.com"
+        id="previous-target-page-link"
       >
-        test title 1
-      </NewTabLink>
-    </StyledTooltipHostBase>
-    . Would you like to continue your current assessment on the new target of 
-    <StyledTooltipHostBase
-      calloutProps={
-        Object {
-          "gapSpace": 0,
+        <NewTabLink
+          className="target-page-link"
+          href="https://www.abc.com"
+          role="link"
+        >
+          test title 1
+        </NewTabLink>
+      </StyledTooltipHostBase>
+      . Would you like to continue your current assessment on the new target of 
+      <StyledTooltipHostBase
+        calloutProps={
+          Object {
+            "gapSpace": 0,
+          }
         }
-      }
-      content="https://www.abc.com"
-      id="current-target-page-link"
-    >
-      <StyledLinkBase
-        className="target-page-link"
-        role="link"
+        content="https://www.abc.com"
+        id="current-target-page-link"
       >
-        test title 2
-      </StyledLinkBase>
-    </StyledTooltipHostBase>
-    ?
+        <StyledLinkBase
+          className="target-page-link"
+          role="link"
+        >
+          test title 2
+        </StyledLinkBase>
+      </StyledTooltipHostBase>
+      ?
+    </div>
+    <p>
+      <Term>
+        Note
+      </Term>
+      : If 'Continue previous' is selected, the previous assessment will be connected to this new page.
+    </p>
+    <p>
+      If 'Start new' is selected, all previous progress will be lost.
+    </p>
   </div>
-  <p>
-    <Term>
-      Note
-    </Term>
-    : If ‘Continue previous’ is selected, the previous assessment will be connected to this new page.
-  </p>
-  <p>
-    If ‘Start new’ is selected, all previous progress will be lost.
-  </p>
   <StyledDialogFooterBase>
     <div
       className="target-change-dialog-button-container"
@@ -274,56 +289,61 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       "className": "target-change-dialog-modal",
       "containerClassName": "insights-dialog-main-override target-change-dialog",
       "isBlocking": true,
+      "subtitleAriaId": "target-change-dialog-description",
     }
   }
 >
-  <div>
-    There is already an assessment running on 
-    <StyledTooltipHostBase
-      calloutProps={
-        Object {
-          "gapSpace": 0,
+  <div
+    id="target-change-dialog-description"
+  >
+    <div>
+      There is already an assessment running on 
+      <StyledTooltipHostBase
+        calloutProps={
+          Object {
+            "gapSpace": 0,
+          }
         }
-      }
-      content="https://www.abc.com"
-      id="previous-target-page-link"
-    >
-      <NewTabLink
-        className="target-page-link"
-        href="https://www.abc.com"
-        role="link"
+        content="https://www.abc.com"
+        id="previous-target-page-link"
       >
-        test title 1
-      </NewTabLink>
-    </StyledTooltipHostBase>
-    . Would you like to continue your current assessment on the new target of 
-    <StyledTooltipHostBase
-      calloutProps={
-        Object {
-          "gapSpace": 0,
+        <NewTabLink
+          className="target-page-link"
+          href="https://www.abc.com"
+          role="link"
+        >
+          test title 1
+        </NewTabLink>
+      </StyledTooltipHostBase>
+      . Would you like to continue your current assessment on the new target of 
+      <StyledTooltipHostBase
+        calloutProps={
+          Object {
+            "gapSpace": 0,
+          }
         }
-      }
-      content="https://www.def.com"
-      id="current-target-page-link"
-    >
-      <StyledLinkBase
-        className="target-page-link"
-        role="link"
+        content="https://www.def.com"
+        id="current-target-page-link"
       >
-        test title 2
-      </StyledLinkBase>
-    </StyledTooltipHostBase>
-    ?
+        <StyledLinkBase
+          className="target-page-link"
+          role="link"
+        >
+          test title 2
+        </StyledLinkBase>
+      </StyledTooltipHostBase>
+      ?
+    </div>
+    <p>
+      <Term>
+        Note
+      </Term>
+      : If 'Continue previous' is selected, the previous assessment will be connected to this new page.
+    </p>
+    <p>
+      If 'Start new' is selected, all previous progress will be lost.
+    </p>
   </div>
-  <p>
-    <Term>
-      Note
-    </Term>
-    : If ‘Continue previous’ is selected, the previous assessment will be connected to this new page.
-  </p>
-  <p>
-    If ‘Start new’ is selected, all previous progress will be lost.
-  </p>
   <StyledDialogFooterBase>
     <div
       className="target-change-dialog-button-container"
@@ -362,56 +382,61 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       "className": "target-change-dialog-modal",
       "containerClassName": "insights-dialog-main-override target-change-dialog",
       "isBlocking": true,
+      "subtitleAriaId": "target-change-dialog-description",
     }
   }
 >
-  <div>
-    There is already an assessment running on 
-    <StyledTooltipHostBase
-      calloutProps={
-        Object {
-          "gapSpace": 0,
+  <div
+    id="target-change-dialog-description"
+  >
+    <div>
+      There is already an assessment running on 
+      <StyledTooltipHostBase
+        calloutProps={
+          Object {
+            "gapSpace": 0,
+          }
         }
-      }
-      content="https://www.abc.com"
-      id="previous-target-page-link"
-    >
-      <NewTabLink
-        className="target-page-link"
-        href="https://www.abc.com"
-        role="link"
+        content="https://www.abc.com"
+        id="previous-target-page-link"
       >
-        test title 1
-      </NewTabLink>
-    </StyledTooltipHostBase>
-    . Would you like to continue your current assessment on the new target of 
-    <StyledTooltipHostBase
-      calloutProps={
-        Object {
-          "gapSpace": 0,
+        <NewTabLink
+          className="target-page-link"
+          href="https://www.abc.com"
+          role="link"
+        >
+          test title 1
+        </NewTabLink>
+      </StyledTooltipHostBase>
+      . Would you like to continue your current assessment on the new target of 
+      <StyledTooltipHostBase
+        calloutProps={
+          Object {
+            "gapSpace": 0,
+          }
         }
-      }
-      content="https://www.def.com"
-      id="current-target-page-link"
-    >
-      <StyledLinkBase
-        className="target-page-link"
-        role="link"
+        content="https://www.def.com"
+        id="current-target-page-link"
       >
-        test title 2
-      </StyledLinkBase>
-    </StyledTooltipHostBase>
-    ?
+        <StyledLinkBase
+          className="target-page-link"
+          role="link"
+        >
+          test title 2
+        </StyledLinkBase>
+      </StyledTooltipHostBase>
+      ?
+    </div>
+    <p>
+      <Term>
+        Note
+      </Term>
+      : If 'Continue previous' is selected, the previous assessment will be connected to this new page.
+    </p>
+    <p>
+      If 'Start new' is selected, all previous progress will be lost.
+    </p>
   </div>
-  <p>
-    <Term>
-      Note
-    </Term>
-    : If ‘Continue previous’ is selected, the previous assessment will be connected to this new page.
-  </p>
-  <p>
-    If ‘Start new’ is selected, all previous progress will be lost.
-  </p>
   <StyledDialogFooterBase>
     <div
       className="target-change-dialog-button-container"
