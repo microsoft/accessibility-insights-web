@@ -323,37 +323,39 @@
         font-weight: 400;
         padding: 4px;
         vertical-align: middle;
+        border-style: dashed;
+        border-width: 3px;
 
         &.contentinfo-landmark {
-            background-color: $landmark-contentinfo;
+            border-color: $landmark-contentinfo;
         }
 
         &.main-landmark {
-            background-color: $landmark-main;
+            border-color: $landmark-main;
         }
 
         &.complementary-landmark {
-            background-color: $landmark-complementary;
+            border-color: $landmark-complementary;
         }
 
         &.banner-landmark {
-            background-color: $landmark-banner;
+            border-color: $landmark-banner;
         }
 
         &.region-landmark {
-            background-color: $landmark-region;
+            border-color: $landmark-region;
         }
 
         &.navigation-landmark {
-            background-color: $landmark-navigation;
+            border-color: $landmark-navigation;
         }
 
         &.search-landmark {
-            background-color: $landmark-search;
+            border-color: $landmark-search;
         }
 
         &.form-landmark {
-            background-color: $landmark-form;
+            border-color: $landmark-form;
         }
     }
 }
