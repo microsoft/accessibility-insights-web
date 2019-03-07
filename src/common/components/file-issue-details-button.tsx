@@ -79,13 +79,13 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
         return document.querySelector('.ms-Panel-main');
     }
 
-    private renderOpenSettingsButton(): JSX.Element {
+    private renderFileIssueButtonNeedsSettings(): JSX.Element {
         return (
             <DefaultButton
                 componentRef={this.button}
                 iconProps={{ iconName: 'ladybugSolid' }}
                 className={'create-bug-button'}
-                onClick={this.onClickOpenSettingsButton}
+                disabled={true}
             >
                 File issue
             </DefaultButton>
@@ -110,7 +110,7 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
     public render(): JSX.Element {
         return (
             <>
-                {!this.props.issueTrackerPath ? this.renderOpenSettingsButton() : null}
+                {!this.props.issueTrackerPath ? this.renderFileIssueButtonNeedsSettings() : null}
                 {!!this.props.issueTrackerPath ? this.renderFileIssueButton() : null}
                 <FileIssueDetailsDialog
                     onOpenSettings={this.openSettings}

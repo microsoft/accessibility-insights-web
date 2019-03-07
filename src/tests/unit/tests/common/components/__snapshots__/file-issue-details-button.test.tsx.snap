@@ -68,12 +68,12 @@ exports[`FileIssueDetailsButtonTest render without issue tracker set 1`] = `
         "current": null,
       }
     }
+    disabled={true}
     iconProps={
       Object {
         "iconName": "ladybugSolid",
       }
     }
-    onClick={[Function]}
   >
     File issue
   </CustomizedDefaultButton>
