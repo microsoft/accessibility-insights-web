@@ -6,12 +6,12 @@ import { TooltipHost } from 'office-ui-fabric-react/lib/Tooltip';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
+import { BlockingDialog } from '../../../../../common/components/blocking-dialog';
 import { ITab } from '../../../../../common/itab';
 import { PersistedTabInfo } from '../../../../../common/types/store-data/iassessment-result-data';
 import { UrlParser } from '../../../../../common/url-parser';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { TargetChangeDialog, TargetChangeDialogProps } from '../../../../../DetailsView/components/target-change-dialog';
-import { BlockingDialog } from '../../../../../common/components/blocking-dialog';
 
 describe('TargetChangeDialog test set for prev tab null', () => {
     const urlParserMock = Mock.ofType(UrlParser, MockBehavior.Strict);
