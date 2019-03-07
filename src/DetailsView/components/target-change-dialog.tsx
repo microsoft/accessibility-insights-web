@@ -13,7 +13,6 @@ import { ITab } from '../../common/itab';
 import { PersistedTabInfo } from '../../common/types/store-data/iassessment-result-data';
 import { UrlParser } from '../../common/url-parser';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
-import { BlockingDialog } from '../../common/components/blocking-dialog';
 
 export type TargetChangeDialogDeps = {
     urlParser: UrlParser;
