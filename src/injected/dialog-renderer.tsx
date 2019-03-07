@@ -45,16 +45,6 @@ export class DialogRenderer {
     }
 
     public render(data: IHtmlElementAxeResults, featureFlagStoreData: FeatureFlagStoreData): void {
-        if (!featureFlagStoreData[FeatureFlags.shadowDialog]) {
-            if (this.dom.querySelector('.insights-dialog-container span') != null) {
-                return;
-            }
-        } else {
-            if (this.dom.querySelector('#insights-shadow-host').shadowRoot.querySelector('.insights-shadow-dialog-container') != null) {
-                return;
-            }
-        }
-
         if (this.isInMainWindow()) {
             const mainWindowContext = MainWindowContext.get();
             mainWindowContext.getTargetPageActionMessageCreator().openIssuesDialog();
@@ -118,6 +108,7 @@ export class DialogRenderer {
 
     private initializeDialogContainerInShadowDom(): HTMLDivElement {
         const shadowContainer = this.shadowUtils.getShadowContainer();
+
         const dialogContainer = this.dom.createElement('div');
         dialogContainer.className = 'insights-shadow-dialog-container';
         shadowContainer.appendChild(dialogContainer);
@@ -125,10 +116,21 @@ export class DialogRenderer {
     }
 
     private appendDialogContainer(): HTMLDivElement {
+        this.removeAllPreviousDialogContainers(this.dom, '.insights-dialog-container');
+
         const dialogContainer = this.dom.createElement('div');
         dialogContainer.setAttribute('class', 'insights-dialog-container');
         this.dom.body.appendChild(dialogContainer);
         return dialogContainer;
+    }
+
+    private removeAllPreviousDialogContainers(dom: ParentNode & Node, selector: string): void {
+        const dialogContainers = dom.querySelectorAll(selector);
+
+        for (let i = 0; i < dialogContainers.length; i++) {
+            const item = dialogContainers[i];
+            item.parentNode.removeChild(item);
+        }
     }
 
     private getFailedRules(data: IHtmlElementAxeResults): IDictionaryStringTo<DecoratedAxeNodeResult> {
