@@ -64,7 +64,7 @@ describe('StartOverDropdownTest', () => {
         expect(rendered.debug()).toMatchSnapshot();
     });
 
-    it('should dissmiss the start test over dialog', () => {
+    it('should dismiss the start test over dialog', () => {
         actionCreatorMock
             .setup(creator => creator.cancelStartOver(event, defaultProps.test, defaultProps.requirementKey))
             .verifiable(Times.once());
@@ -82,7 +82,7 @@ describe('StartOverDropdownTest', () => {
         actionCreatorMock.verifyAll();
     });
 
-    it('should dissmiss the start assessment over dialog', () => {
+    it('should dismiss the start assessment over dialog', () => {
         actionCreatorMock.setup(creator => creator.cancelStartOverAllAssessments(event)).verifiable(Times.once());
 
         const rendered = shallow(<StartOverDropdown {...defaultProps} />);
@@ -132,7 +132,7 @@ describe('StartOverDropdownTest', () => {
         actionCreatorMock.verifyAll();
     });
 
-    it('should dissmiss the contextMenu', () => {
+    it('should dismiss the contextMenu', () => {
         const rendered = shallow(<StartOverDropdown {...defaultProps} />);
         rendered.find(ActionButton).simulate('click', event);
         rendered.find(ContextualMenu).prop('onDismiss')();
