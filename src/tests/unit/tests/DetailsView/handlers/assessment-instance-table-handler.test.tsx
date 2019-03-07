@@ -34,7 +34,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
     test('createAssessmentInstanceTableItems', () => {
         const instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance> = {
             selector1: {
-                target: ['tareget1'],
+                target: ['target1'],
                 html: 'html',
                 testStepResults: {
                     step1: {
@@ -46,7 +46,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
                 },
             },
             selector2: {
-                target: ['tareget2'],
+                target: ['target2'],
                 html: 'html',
                 testStepResults: {
                     step2: {
@@ -92,7 +92,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
         const expectedRows: IAssessmentInstanceRowData[] = [
             {
                 instance: {
-                    target: ['tareget1'],
+                    target: ['target1'],
                     html: 'html',
                     testStepResults: {
                         step1: {
@@ -236,7 +236,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
 
     test('renderSelectedButton should trigger addOneInstance', () => {
         const instance = {
-            target: ['tareget1'],
+            target: ['target1'],
             html: 'html',
             testStepResults: {
                 step1: {
