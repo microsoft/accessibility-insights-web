@@ -24,6 +24,7 @@ export const GenericDialog = NamedSFC<GenericDialogProps>('GenericDialog', props
             dialogContentProps={{
                 type: DialogType.normal,
                 title: title,
+                showCloseButton: false,
             }}
             modalProps={{
                 isBlocking: false,
