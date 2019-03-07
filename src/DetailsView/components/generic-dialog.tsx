@@ -24,16 +24,17 @@ export const GenericDialog = NamedSFC<GenericDialogProps>('GenericDialog', props
             dialogContentProps={{
                 type: DialogType.normal,
                 title: title,
+                showCloseButton: false,
             }}
             modalProps={{
-                isBlocking: true,
+                isBlocking: false,
                 containerClassName: 'insights-dialog-main-override',
             }}
         >
             <div className={'start-over-dialog-body'}>{messageText}</div>
             <DialogFooter>
                 <PrimaryButton onClick={onPrimaryButtonClick} text={primaryButtonText} />
-                <DefaultButton onClick={onCancelButtonClick} text={'Cancel'} />
+                <DefaultButton onClick={onCancelButtonClick} text={'Cancel'} autoFocus={true} />
             </DialogFooter>
         </Dialog>
     );
