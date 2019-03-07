@@ -2,4 +2,7 @@
 // Licensed under the MIT License.
 import * as testResourceServer from './test-resource-server';
 
-testResourceServer.stopServer();
+// tslint:disable-next-line:no-default-export
+export default function(): void {
+    testResourceServer.stopServer();
+}
