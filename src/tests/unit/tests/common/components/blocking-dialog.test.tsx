@@ -11,10 +11,10 @@ describe('BlockingDialog', () => {
         const wrapper = shallow(<BlockingDialog />);
         const dialogProps = wrapper.find(Dialog).props();
 
-        expect(dialogProps.dialogContentProps.showCloseButton).toBeFalsy();
+        expect(dialogProps.dialogContentProps.showCloseButton).toBe(false);
         expect(dialogProps.modalProps.onDismiss).toBeUndefined();
         expect(dialogProps.onDismiss).toBeUndefined();
-        expect(dialogProps.modalProps.isBlocking).toBeFalsy();
+        expect(dialogProps.modalProps.isBlocking).toBe(false);
     });
 
     it('passes through other props to the underlying dialog as-is', () => {

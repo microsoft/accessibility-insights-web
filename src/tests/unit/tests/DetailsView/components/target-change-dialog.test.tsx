@@ -39,7 +39,7 @@ describe('TargetChangeDialog test set for prev tab null', () => {
 
         const wrapper = Enzyme.shallow(<TargetChangeDialog {...targetChangeProps} />);
 
-        expect(wrapper.find(Dialog).exists()).toBeFalsy();
+        expect(wrapper.find(Dialog).exists()).toBe(false);
         urlParserMock.verifyAll();
     });
 });
@@ -83,10 +83,10 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
         };
 
         const wrapper = Enzyme.shallow(<TargetChangeDialog {...targetChangeProps} />);
-        expect(wrapper.find(BlockingDialog).exists()).toBeTruthy();
-        expect(wrapper.find(TooltipHost).exists()).toBeTruthy();
+        expect(wrapper.find(BlockingDialog).exists()).toBe(true);
+        expect(wrapper.find(TooltipHost).exists()).toBe(true);
         expect(wrapper.find(TooltipHost).length).toEqual(2);
-        expect(wrapper.find(BlockingDialog).props().hidden).toBeFalsy();
+        expect(wrapper.find(BlockingDialog).props().hidden).toBe(false);
     });
 
     test('snapshot: render when target tab id changed', () => {
