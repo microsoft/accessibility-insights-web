@@ -5,6 +5,14 @@
 
 @import '../../../node_modules/office-ui-fabric-react/dist/sass/Icon.Definitions';
 
+@mixin max-z-index-1 {
+    z-index: 2147483646 !important;
+}
+
+@mixin max-z-index {
+    z-index: 2147483647 !important;
+}
+
 .insights-dialog-container {
     @import '../../../node_modules/office-ui-fabric-react/dist/sass/Fabric.scss';
 
@@ -13,6 +21,7 @@
     left: 0px !important;
     padding: 0px !important;
     margin: 0px !important;
+    @include max-z-index();
 }
 
 .insights-dialog-main-override-shadow {
@@ -22,7 +31,7 @@
     right: 0;
     bottom: 0;
     background-color: $neutral-alpha-60;
-    z-index: 2147483647;
+    @include max-z-index();
     font-family: $fontFamily;
 }
 
@@ -336,7 +345,7 @@ div.insights-file-issue-details-dialog-container {
 .insights-highlight-container,
 .insights-highlight-container svg {
     position: absolute !important;
-    z-index: 2147483646 !important;
+    @include max-z-index-1();
     top: 0 !important;
     left: 0 !important;
     overflow: visible !important;
@@ -362,7 +371,7 @@ div.insights-file-issue-details-dialog-container {
 }
 
 :host {
-    z-index: 2147483646 !important;
+    @include max-z-index-1();
     top: 0 !important;
     left: 0 !important;
     width: 0 !important;
