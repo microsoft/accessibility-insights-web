@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react/lib/Button';
-import { Dialog, DialogFooter, DialogType, IDialogProps } from 'office-ui-fabric-react/lib/Dialog';
+import { Dialog, IDialogProps } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
 
 import { NamedSFC } from '../../common/react/named-sfc';
@@ -24,9 +23,10 @@ export const BlockingDialog = NamedSFC<BlockingDialogProps>('BlockingDialog', pr
             }}
             modalProps={{
                 ...props.modalProps,
-                // Be warned that changing this value can change which child element is focused by default
-                // (we saw this in the telemetry-permission-dialog); be sure to test this behavior specifically
-                // if you ever change this back to true.
+                // Be warned that changing this value can change which child element is focused by default;
+                // we saw this in a reverted experiment that tried using this component in the implementation
+                // of telemetry-permission-dialog. Be sure to test the default focus behavior specifically
+                // once we change this back to true.
                 isBlocking: false,
                 onDismiss: undefined,
             }}
