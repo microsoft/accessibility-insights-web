@@ -84,28 +84,33 @@ describe('VisualizationStoreTest ', () => {
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onUpdateSelectedPivotChild when view & pivot are the same', () => {
-        const actionName = 'updateSelectedPivotChild';
-        const viewType = VisualizationType.Landmarks;
-        const pivotType = DetailsViewPivotType.allTest;
+    [DetailsViewPivotType.allTest, DetailsViewPivotType.fastPass].forEach(pivotType => {
+        test('onUpdateSelectedPivotChild when view & pivot are the same', () => {
+            const actionName = 'updateSelectedPivotChild';
+            const viewType = VisualizationType.Issues;
 
-        const expectedState = new VisualizationStoreDataBuilder()
-            .with('selectedAdhocDetailsView', viewType)
-            .with('selectedDetailsViewPivot', pivotType)
-            .build();
-        const initialState = new VisualizationStoreDataBuilder()
-            .with('selectedAdhocDetailsView', viewType)
-            .with('selectedDetailsViewPivot', pivotType)
-            .build();
+            const expectedState = new VisualizationStoreDataBuilder()
+                .with('selectedAdhocDetailsView', viewType)
+                .with('selectedDetailsViewPivot', pivotType)
+                .build();
 
-        const payload: UpdateSelectedDetailsViewPayload = {
-            detailsViewType: viewType,
-            pivotType: pivotType,
-        };
+            const initialState = new VisualizationStoreDataBuilder()
+                .with('selectedAdhocDetailsView', viewType)
+                .with('selectedDetailsViewPivot', pivotType)
+                .build();
 
-        createStoreTesterForVisualizationActions(actionName)
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+            initialState.tests.adhoc[AdHocTestkeys.Issues] = { enabled: true };
+            expectedState.tests.adhoc[AdHocTestkeys.Issues] = { enabled: true };
+
+            const payload: UpdateSelectedDetailsViewPayload = {
+                detailsViewType: viewType,
+                pivotType: pivotType,
+            };
+
+            createStoreTesterForVisualizationActions(actionName)
+                .withActionParam(payload)
+                .testListenerToNeverBeCalled(initialState, expectedState);
+        });
     });
 
     test('onUpdateSelectedPivotChild when view changes to null', () => {
