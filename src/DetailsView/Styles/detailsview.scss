@@ -313,7 +313,7 @@ div.insights-file-issue-details-dialog-container {
         }
     }
     .header-bar {
-        background-color: $ada-blue;
+        background-color: $ada-brand-color;
         position: fixed;
         width: 100%;
         height: $detailsViewHeaderBarHeight;
@@ -331,8 +331,9 @@ div.insights-file-issue-details-dialog-container {
             width: 100%;
         }
         .header-text {
-            padding-top: 11px;
-            color: $neutral-0;
+            padding-top: 8px;
+            color: $header-bar-title-color;
+            font-size: 18px;
             display: inline-block;
         }
         .header-icon {
@@ -349,7 +350,7 @@ div.insights-file-issue-details-dialog-container {
                 }
             }
             .ms-Dropdown-title {
-                background-color: $ada-blue-variant;
+                background-color: $ada-brand-variant;
                 height: 32px;
                 border: none;
                 border-radius: 2px;
