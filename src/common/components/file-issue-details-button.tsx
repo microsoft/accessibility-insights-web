@@ -125,15 +125,16 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
                 <Callout
                     // ariaLabelledBy="calloutLabel"
                     // ariaDescribedBy="calloutDescription"
+                    // style={{ zIndex: 2147483649 }}
                     role="alert"
+                    aria-live="polite"
                     gapSpace={0}
                     target={this.calloutWrapperElement.current}
                     onDismiss={this.testDismissCallout}
                     setInitialFocus={true}
                     hidden={!this.state.isCalloutVisible}
                 >
-                    <div id="calloutLabel">Callout Label</div>
-                    <div id="calloutDescription">Hey, you need to configure settings for this button to work.</div>
+                    Hey, you need to configure settings for this button to work.
                 </Callout>
                 <TooltipHost
                     content="Set up issue filing in Settings to enable this button - test tooltip"
