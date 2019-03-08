@@ -117,3 +117,69 @@ exports[`FileIssueDetailsButtonTest render without issue tracker set 1`] = `
   />
 </React.Fragment>
 `;
+
+exports[`FileIssueDetailsButtonTest render without issue tracker set 2`] = `
+<React.Fragment>
+  <React.Fragment>
+    <CustomizedDefaultButton
+      className="create-bug-button"
+      componentRef={
+        Object {
+          "current": null,
+        }
+      }
+      iconProps={
+        Object {
+          "iconName": "ladybugSolid",
+        }
+      }
+      onClick={[Function]}
+    >
+      File issue
+    </CustomizedDefaultButton>
+    <div
+      aria-live="polite"
+      className="create-bug-button-help"
+      role="alert"
+    >
+      Go to Settings to configure issue filing.
+    </div>
+  </React.Fragment>
+  <FileIssueDetailsDialog
+    buttonRef={
+      Object {
+        "current": null,
+      }
+    }
+    fileIssueDetailsHandler={
+      FileIssueDetailsHandler {
+        "htmlElementUtils": HTMLElementUtils {
+          "clientWindow": [Window],
+          "dom": Document {
+            "location": Location {
+              "assign": [Function],
+              "hash": "",
+              "host": "localhost",
+              "hostname": "localhost",
+              "href": "http://localhost/",
+              "origin": "http://localhost",
+              "pathname": "/",
+              "port": "",
+              "protocol": "http:",
+              "reload": [Function],
+              "replace": [Function],
+              "search": "",
+              "toString": [Function],
+            },
+          },
+        },
+      }
+    }
+    getSettingsPanel={[Function]}
+    isOpen={false}
+    onDismiss={[Function]}
+    onOpenSettings={[Function]}
+    restoreFocus={false}
+  />
+</React.Fragment>
+`;
