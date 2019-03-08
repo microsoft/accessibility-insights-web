@@ -17,7 +17,7 @@ describe('AdHocToolsPanelTest', () => {
         diagnosticViewToggleFactoryMock
             .setup(factory => factory.createTogglesForAdhocToolsPanel())
             .returns(() => [
-                <div key="first">fisrt</div>,
+                <div key="first">first</div>,
                 <div key="second">second</div>,
                 <div key="third">third</div>,
                 <div key="fourth">fourth</div>,
@@ -41,7 +41,7 @@ describe('AdHocToolsPanelTest', () => {
                 <main>
                     <div className="ms-Grid-row">
                         <div key="visualization-toggle-group-0" className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 ad-hoc-tools-panel-group-0">
-                            <div key="first">fisrt</div>
+                            <div key="first">first</div>
                             <div key="diagnostic-view-toggle-divider-0-1" className="ms-fontColor-neutralLight launch-panel-hr" />
                             <div key="second">second</div>
                             <div key="diagnostic-view-toggle-divider-0-3" className="ms-fontColor-neutralLight launch-panel-hr" />

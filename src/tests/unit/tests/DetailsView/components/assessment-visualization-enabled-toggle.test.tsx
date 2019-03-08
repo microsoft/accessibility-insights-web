@@ -161,7 +161,7 @@ describe('AssessmentVisualizationEnabledToggle', () => {
         actionMessageCreatorMock.verifyAll();
     });
 
-    it('disables all visualizations when some are showns', () => {
+    it('disables all visualizations when some are shown', () => {
         const props = new VisualHelperToggleTestPropsBuilder()
             .withToggleStepEnabled(true)
             .withToggleStepScanned(false)

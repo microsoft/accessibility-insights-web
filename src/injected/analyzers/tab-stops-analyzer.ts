@@ -19,7 +19,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer implements IAnalyzer<any> {
     private _windowUtils: WindowUtils;
 
     private _pendingTabbedElements: ITabStopEvent[] = [];
-    private _onTabbedTimoutId: number;
+    private _onTabbedTimeoutId: number;
     protected config: IFocusAnalyzerConfiguration;
 
     constructor(
@@ -45,18 +45,18 @@ export class TabStopsAnalyzer extends BaseAnalyzer implements IAnalyzer<any> {
     protected getResults(): Q.Promise<AxeAnalyzerResult> {
         this.deferred = Q.defer<AxeAnalyzerResult>();
         this.tabStopsListener.setTabEventListenerOnMainWindow((tabEvent: ITabStopEvent) => {
-            if (this._onTabbedTimoutId != null) {
-                this._windowUtils.clearTimeout(this._onTabbedTimoutId);
-                this._onTabbedTimoutId = null;
+            if (this._onTabbedTimeoutId != null) {
+                this._windowUtils.clearTimeout(this._onTabbedTimeoutId);
+                this._onTabbedTimeoutId = null;
             }
 
             this._pendingTabbedElements.push(tabEvent);
 
-            this._onTabbedTimoutId = this._windowUtils.setTimeout(() => {
+            this._onTabbedTimeoutId = this._windowUtils.setTimeout(() => {
                 this.deferred.notify({
                     result: this._pendingTabbedElements,
                 });
-                this._onTabbedTimoutId = null;
+                this._onTabbedTimeoutId = null;
                 this._pendingTabbedElements = [];
             }, 50);
         });

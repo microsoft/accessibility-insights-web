@@ -32,7 +32,7 @@ export class AssessmentReportBuilderTestHelper {
 
     public static readonly reportDate = new Date(Date.UTC(2000, 0, 1, 0, 0));
 
-    private static getAssisstedInstances(): IDictionaryStringTo<IGeneratedAssessmentInstance> {
+    private static getAssistedInstances(): IDictionaryStringTo<IGeneratedAssessmentInstance> {
         return {
             ['instance1']: {
                 id: 'id1',
@@ -154,7 +154,7 @@ export class AssessmentReportBuilderTestHelper {
     private static getAssessmentData1(): IAssessmentData {
         return {
             fullAxeResultsMap: null,
-            generatedAssessmentInstancesMap: this.getAssisstedInstances(),
+            generatedAssessmentInstancesMap: this.getAssistedInstances(),
             manualTestStepResultMap: this.getManualInstance1(),
             testStepStatus: this.getManualTestStatus1(),
         } as IAssessmentData;

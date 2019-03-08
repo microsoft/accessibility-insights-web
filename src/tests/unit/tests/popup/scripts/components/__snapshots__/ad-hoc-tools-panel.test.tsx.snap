@@ -12,7 +12,7 @@ exports[`AdHocToolsPanelTest adhoc panel matches snapshot 1`] = `
         className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 ad-hoc-tools-panel-group-0"
       >
         <div>
-          fisrt
+          first
         </div>
         <div
           className="ms-fontColor-neutralLight launch-panel-hr"

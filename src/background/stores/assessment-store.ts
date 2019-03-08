@@ -69,7 +69,7 @@ export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
 
     public generateDefaultState(persistedData: IAssessmentStoreData = null): IAssessmentStoreData {
         this.initialAssessmentStoreDataGenerator = new InitialAssessmentStoreDataGenerator(this.assessmentsProvider);
-        return this.initialAssessmentStoreDataGenerator.generateInitalState(persistedData);
+        return this.initialAssessmentStoreDataGenerator.generateInitialState(persistedData);
     }
 
     public getDefaultState(): IAssessmentStoreData {

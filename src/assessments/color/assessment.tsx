@@ -9,7 +9,7 @@ import * as Markup from '../markup';
 import { Assessment } from '../types/iassessment';
 import { AuditoryCues } from './test-steps/auditory-cues';
 import { Flashing } from './test-steps/flashing';
-import { SensoryCharacterisics } from './test-steps/sensory-characterisics';
+import { SensoryCharacteristics } from './test-steps/sensory-characteristics';
 import { UseOfColor } from './test-steps/use-of-color';
 
 const key = 'color';
@@ -33,6 +33,6 @@ export const ColorSensoryAssessment: Assessment = AssessmentBuilder.Assisted({
     gettingStarted: colorSensoryGettingStartedText,
     type: VisualizationType.ColorSensoryAssessment,
     guidance,
-    steps: [UseOfColor, SensoryCharacterisics, AuditoryCues, Flashing],
+    steps: [UseOfColor, SensoryCharacteristics, AuditoryCues, Flashing],
     storeDataKey: 'colorSensoryAssessment',
 });
