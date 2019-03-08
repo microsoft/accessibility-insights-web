@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { getRTL } from '@uifabric/utilities';
 import * as ReactDOM from 'react-dom';
 import { GlobalMock, GlobalScope, IGlobalMock, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
@@ -15,6 +16,7 @@ import { DetailsDialogWindowMessage, DialogRenderer } from '../../../../injected
 import { FrameCommunicator, IMessageRequest } from '../../../../injected/frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from '../../../../injected/frameCommunicators/window-message-handler';
 import { IErrorMessageContent } from '../../../../injected/frameCommunicators/window-message-marshaller';
+import { LayeredDetailsDialogComponent } from '../../../../injected/layered-details-dialog-component';
 import { MainWindowContext } from '../../../../injected/main-window-context';
 import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from '../../../../injected/scanner-utils';
 import { ShadowUtils } from '../../../../injected/shadow-utils';
@@ -29,6 +31,7 @@ describe('DialogRendererTests', () => {
     let shadowContainerMock: IMock<HTMLElement>;
     let domMock: IMock<Document>;
     let shadowRootMock: IMock<Element>;
+    let getRTLMock: IMock<typeof getRTL>;
     let shadowRoot: Element;
     let renderMock: IMock<typeof ReactDOM.render>;
     let subscribeCallback: (
@@ -37,6 +40,7 @@ describe('DialogRendererTests', () => {
         responder?: FrameMessageResponseCallback,
     ) => void;
     let getMainWindoContextMock: IGlobalMock<() => MainWindowContext>;
+    let parentNodeStub: Element;
 
     beforeEach(() => {
         getMainWindoContextMock = GlobalMock.ofInstance(MainWindowContext.get, 'get', MainWindowContext);
@@ -47,6 +51,7 @@ describe('DialogRendererTests', () => {
                 appendChild: selector => null,
             },
             querySelector: selector => null,
+            querySelectorAll: selector => null,
             appendChild: node => {},
         } as any);
 
@@ -61,6 +66,8 @@ describe('DialogRendererTests', () => {
             shadowRoot: shadowRootMock.object,
         } as any;
         renderMock = Mock.ofInstance(() => null);
+        getRTLMock = Mock.ofInstance(() => null);
+        parentNodeStub = document.createElement('div');
 
         const devToolStoreStrictMock = Mock.ofType<DevToolStore>(null, MockBehavior.Strict);
         const userConfigStoreStrictMock = Mock.ofType<UserConfigurationStore>(null, MockBehavior.Strict);
@@ -110,10 +117,11 @@ describe('DialogRendererTests', () => {
             isVisible: true,
         };
 
-        setUpGetMainWindowContexNeverCalled();
-        attachShadowToDom(true);
+        setupDomMockForMainWindow(true, true);
+        setUpGetMainWindowContextCalledOnce();
+        attachShadowToDom();
         setupWindowUtilsMockAndFrameCommunicatorInMainWindow();
-        setupRenderMockForNeverVisited();
+        setupRenderMockForVerifiable();
 
         const testObject = createDialogRenderer();
 
@@ -121,7 +129,7 @@ describe('DialogRendererTests', () => {
             expect(testObject.render(testData, getDefaultFeatureFlagValuesWithShadowOn())).toBeUndefined();
         });
 
-        attachShadowToDomVerify(true);
+        attachShadowToDomVerify();
         setupWindowUtilsMockAndFrameCommunicatorVerify();
         setupRenderMockVerify();
         getMainWindoContextMock.verifyAll();
@@ -153,10 +161,10 @@ describe('DialogRendererTests', () => {
             isVisible: true,
         };
 
-        setupDomMock(false, false, false, true);
+        setupDomMockForMainWindow(false, true);
         setupWindowUtilsMockAndFrameCommunicatorInMainWindow();
-        setupRenderMockForNeverVisited();
-        setUpGetMainWindowContexNeverCalled();
+        setupRenderMockForVerifiable();
+        setUpGetMainWindowContextCalledOnce();
         const testObject = createDialogRenderer();
 
         GlobalScope.using(getMainWindoContextMock).with(() => {
@@ -167,6 +175,7 @@ describe('DialogRendererTests', () => {
         setupWindowUtilsMockAndFrameCommunicatorVerify();
         setupRenderMockVerify();
         getMainWindoContextMock.verifyAll();
+        expect(parentNodeStub.childNodes.length).toBe(0);
     });
 
     test('test render in main window: shadow FF on', () => {
@@ -195,8 +204,8 @@ describe('DialogRendererTests', () => {
             isVisible: true,
         };
 
-        attachShadowToDom(false, true);
-        setupDomMock(true, true, false, false);
+        attachShadowToDom(true);
+        setupDomMockForMainWindow(true, false);
         setupWindowUtilsMockAndFrameCommunicatorInMainWindow();
         setupRenderMockForVerifiable();
         setUpGetMainWindowContextCalledOnce();
@@ -206,7 +215,7 @@ describe('DialogRendererTests', () => {
             testObject.render(testData, getDefaultFeatureFlagValuesWithShadowOn());
         });
 
-        attachShadowToDomVerify(false, true);
+        attachShadowToDomVerify(true);
         setupDomMockVerify();
         setupWindowUtilsMockAndFrameCommunicatorVerify();
         setupRenderMockVerify();
@@ -239,7 +248,7 @@ describe('DialogRendererTests', () => {
             isVisible: true,
         };
 
-        setupDomMock(false, true, true);
+        setupDomMockForMainWindow(false, true);
         setupWindowUtilsMockAndFrameCommunicatorInMainWindow();
         setupRenderMockForVerifiable();
         setUpGetMainWindowContextCalledOnce();
@@ -268,7 +277,7 @@ describe('DialogRendererTests', () => {
             message: { data: testData, featureFlagStoreData: getDefaultFeatureFlagValuesWithShadowOn() },
         };
 
-        attachShadowToDom(false, false, false);
+        attachShadowToDom(false);
         setupWindowUtilsMockAndFrameCommunicatorInIframe(windowMessageRequest);
         setupRenderMockForNeverVisited();
 
@@ -278,7 +287,7 @@ describe('DialogRendererTests', () => {
             testObject.render(testData, getDefaultFeatureFlagValuesWithShadowOn());
         });
 
-        attachShadowToDomVerify(false, false, false);
+        attachShadowToDomVerify(false, false);
         setupWindowUtilsMockAndFrameCommunicatorVerify();
         setupRenderMockVerify();
         getMainWindoContextMock.verifyAll();
@@ -296,7 +305,6 @@ describe('DialogRendererTests', () => {
             message: { data: testData, featureFlagStoreData: getDefaultFeatureFlagValues() },
         };
 
-        setupDomMock(false);
         setupWindowUtilsMockAndFrameCommunicatorInIframe(windowMessageRequest);
         setupRenderMockForNeverVisited();
 
@@ -320,9 +328,9 @@ describe('DialogRendererTests', () => {
         };
         const message: DetailsDialogWindowMessage = { data: testData, featureFlagStoreData: getDefaultFeatureFlagValuesWithShadowOn() };
 
-        setupDomMock(true, true, false, false);
+        setupDomMockForMainWindow(true, false);
         setupWindowUtilsMockAndFrameCommunicatorInMainWindow();
-        attachShadowToDom(false, true);
+        attachShadowToDom(true);
         setupRenderMockForVerifiable();
         setUpGetMainWindowContextCalledOnce();
 
@@ -334,7 +342,7 @@ describe('DialogRendererTests', () => {
 
         setupDomMockVerify();
         setupWindowUtilsMockAndFrameCommunicatorVerify();
-        attachShadowToDomVerify(false, true);
+        attachShadowToDomVerify(true);
         setupRenderMockVerify();
         getMainWindoContextMock.verifyAll();
     });
@@ -347,7 +355,7 @@ describe('DialogRendererTests', () => {
         };
         const message: DetailsDialogWindowMessage = { data: testData, featureFlagStoreData: getDefaultFeatureFlagValues() };
 
-        setupDomMock(false, true);
+        setupDomMockForMainWindow(false, true);
         setupWindowUtilsMockAndFrameCommunicatorInMainWindow();
         setupRenderMockForVerifiable();
         setUpGetMainWindowContextCalledOnce();
@@ -393,7 +401,14 @@ describe('DialogRendererTests', () => {
 
     function setupRenderMockForVerifiable() {
         renderMock
-            .setup(render => render(It.is((detailsDialog: any) => detailsDialog != null), It.is((container: any) => container != null)))
+            .setup(render =>
+                render(
+                    It.is(detailsDialog => {
+                        return (detailsDialog.type as any) === LayeredDetailsDialogComponent;
+                    }),
+                    It.is((container: any) => container != null),
+                ),
+            )
             .verifiable(Times.once());
     }
 
@@ -476,32 +491,17 @@ describe('DialogRendererTests', () => {
         };
     }
 
-    function attachShadowToDom(hasShadowDomAlready: boolean, needAppendChild: boolean = false, inMainWindow: boolean = true): void {
-        if (!hasShadowDomAlready && inMainWindow) {
+    function attachShadowToDom(inMainWindow: boolean = true): void {
+        if (inMainWindow) {
             shadowUtilMock
                 .setup(shadowUtil => shadowUtil.getShadowContainer())
                 .returns(() => shadowContainerMock.object)
                 .verifiable(Times.once());
         }
-
-        domMock
-            .setup(dom => dom.querySelector('#insights-shadow-host'))
-            .returns(selector => shadowRoot)
-            .verifiable(Times.once());
-
-        const shadowDom = hasShadowDomAlready ? document.createElement('div') : null;
-        shadowRootMock
-            .setup(shadowRoot => shadowRoot.querySelector('.insights-shadow-dialog-container'))
-            .returns(selector => shadowDom)
-            .verifiable(Times.once());
-
-        if (needAppendChild) {
-            shadowContainerMock.setup(it => it.appendChild(It.isAny())).verifiable(Times.once());
-        }
     }
 
-    function attachShadowToDomVerify(hasShadowDomAlready: boolean, needAppendChild: boolean = false, inMainWindow: boolean = true): void {
-        if (!hasShadowDomAlready && inMainWindow) {
+    function attachShadowToDomVerify(needAppendChild: boolean = false, inMainWindow: boolean = true): void {
+        if (inMainWindow) {
             shadowUtilMock.verifyAll();
         }
 
@@ -513,30 +513,29 @@ describe('DialogRendererTests', () => {
         }
     }
 
-    function setupDomMock(
-        underShadowDom: boolean = true,
-        needCreateElement: boolean = false,
-        needAppendChild: boolean = false,
-        dialogAlreadyExists: boolean = false,
-    ): void {
+    function setupDomMockForMainWindow(underShadowDom: boolean = true, dialogAlreadyExists: boolean = false): void {
         if (!underShadowDom) {
-            const spanDiv = dialogAlreadyExists ? document.createElement('div') : null;
-            domMock
-                .setup(dom => dom.querySelector('.insights-dialog-container span'))
-                .returns(selector => spanDiv)
-                .verifiable(Times.once());
-        }
+            const previousContainers = [];
+            if (dialogAlreadyExists) {
+                const prevContainer = document.createElement('div');
+                previousContainers.push(prevContainer);
+                parentNodeStub.appendChild(prevContainer);
+            }
 
-        if (needCreateElement) {
             domMock
-                .setup(dom => dom.createElement('div'))
-                .returns(selector => document.createElement(selector))
+                .setup(dom => dom.querySelectorAll('.insights-dialog-container'))
+                .returns(() => previousContainers as any)
                 .verifiable(Times.once());
-        }
 
-        if (needAppendChild) {
             domMock.setup(dom => dom.body.appendChild(It.isAny())).verifiable(Times.once());
+        } else {
+            shadowContainerMock.setup(it => it.appendChild(It.isAny())).verifiable(Times.once());
         }
+
+        domMock
+            .setup(dom => dom.createElement('div'))
+            .returns(selector => document.createElement(selector))
+            .verifiable(Times.once());
     }
 
     function setupDomMockVerify(): void {
@@ -551,6 +550,7 @@ describe('DialogRendererTests', () => {
             windowUtilsMock.object,
             shadowUtilMock.object,
             clientBrowserAdapter.object,
+            getRTLMock.object,
         );
     }
 });

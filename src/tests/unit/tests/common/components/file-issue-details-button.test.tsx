@@ -1,15 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
+import { DefaultButton } from 'office-ui-fabric-react';
 import * as React from 'react';
-import { IMock, It, Mock, Times } from 'typemoq';
+import { It, Mock, Times } from 'typemoq';
 
 import { IssueDetailsTextGenerator } from '../../../../../background/issue-details-text-generator';
 import { FileIssueDetailsButton, FileIssueDetailsButtonProps } from '../../../../../common/components/file-issue-details-button';
-import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
+import { BugActionMessageCreator } from '../../../../../common/message-creators/bug-action-message-creator';
 
 describe('FileIssueDetailsButtonTest', () => {
-    test('render with an issue tracker path', () => {
+    test('render and click with an issue tracker path', () => {
         const issueTrackerPath = 'https://github.com/example/example/issues';
 
         const issueDetailsTextGeneratorMock = Mock.ofType(IssueDetailsTextGenerator);
@@ -22,10 +23,15 @@ describe('FileIssueDetailsButtonTest', () => {
             .returns(() => 'buildText')
             .verifiable();
 
+        const bugActionMessageCreatorMock = Mock.ofType(BugActionMessageCreator);
+        bugActionMessageCreatorMock
+            .setup(messageCreator => messageCreator.trackFileIssueClick(It.isAny(), 'gitHub'))
+            .verifiable(Times.once());
+
         const props: FileIssueDetailsButtonProps = {
             deps: {
                 issueDetailsTextGenerator: issueDetailsTextGeneratorMock.object,
-                bugActionMessageCreator: null,
+                bugActionMessageCreator: bugActionMessageCreatorMock.object,
             },
             issueTrackerPath: issueTrackerPath,
             issueDetailsData: {
@@ -38,9 +44,13 @@ describe('FileIssueDetailsButtonTest', () => {
         const wrapper = shallow(<FileIssueDetailsButton {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
         issueDetailsTextGeneratorMock.verifyAll();
+
+        wrapper.find(DefaultButton).simulate('click');
+        bugActionMessageCreatorMock.verifyAll();
+        expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    test('render without issue tracker set', () => {
+    test('render and click without issue tracker set', () => {
         const issueTrackerPath = '';
 
         const issueDetailsTextGeneratorMock = Mock.ofType(IssueDetailsTextGenerator);
@@ -53,10 +63,15 @@ describe('FileIssueDetailsButtonTest', () => {
             .returns(() => 'buildText')
             .verifiable(Times.never());
 
+        const bugActionMessageCreatorMock = Mock.ofType(BugActionMessageCreator);
+        bugActionMessageCreatorMock
+            .setup(messageCreator => messageCreator.trackFileIssueClick(It.isAny(), 'none'))
+            .verifiable(Times.once());
+
         const props: FileIssueDetailsButtonProps = {
             deps: {
                 issueDetailsTextGenerator: issueDetailsTextGeneratorMock.object,
-                bugActionMessageCreator: null,
+                bugActionMessageCreator: bugActionMessageCreatorMock.object,
             },
             onOpenSettings: (ev: React.MouseEvent<HTMLElement>) => {},
             issueTrackerPath: issueTrackerPath,
@@ -70,5 +85,9 @@ describe('FileIssueDetailsButtonTest', () => {
         const wrapper = shallow(<FileIssueDetailsButton {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
         issueDetailsTextGeneratorMock.verifyAll();
+
+        wrapper.find(DefaultButton).simulate('click');
+        bugActionMessageCreatorMock.verifyAll();
+        expect(wrapper.getElement()).toMatchSnapshot();
     });
 });

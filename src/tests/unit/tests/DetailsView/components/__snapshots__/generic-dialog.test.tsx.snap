@@ -7,7 +7,7 @@ exports[`GenericDialogTest should render 1`] = `
   </div>
   <StyledDialogFooterBase>
     <CustomizedPrimaryButton onClick={[Function: onPrimaryButtonClick]} text=\\"test primary text\\" />
-    <CustomizedDefaultButton onClick={[Function: onCancelButtonClick]} text=\\"Cancel\\" />
+    <CustomizedDefaultButton onClick={[Function: onCancelButtonClick]} text=\\"Cancel\\" autoFocus={true} />
   </StyledDialogFooterBase>
 </StyledWithResponsiveMode>"
 `;

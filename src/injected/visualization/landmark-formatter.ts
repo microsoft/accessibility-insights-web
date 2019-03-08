@@ -18,35 +18,35 @@ interface ElemData {
 export class LandmarkFormatter extends FailureInstanceFormatter {
     private static readonly landmarkStyles: { [role: string]: IHeadingStyleConfiguration } = {
         banner: {
-            borderColor: '#ff9900',
+            borderColor: '#d08311',
             fontColor: '#000000',
         },
         complementary: {
-            borderColor: '#00cccc',
+            borderColor: '#6b9d1a',
             fontColor: '#000000',
         },
         contentinfo: {
-            borderColor: '#00cc00',
+            borderColor: '#00a88c',
             fontColor: '#000000',
         },
         form: {
-            borderColor: '#999999',
+            borderColor: '#0298c7',
             fontColor: '#000000',
         },
         main: {
-            borderColor: '#ff66ff',
+            borderColor: '#cb2e6d',
             fontColor: '#000000',
         },
         navigation: {
-            borderColor: '#ffcc00',
+            borderColor: '#9b38e6',
             fontColor: '#000000',
         },
         region: {
-            borderColor: '#3399ff',
+            borderColor: '#2560e0',
             fontColor: '#000000',
         },
         search: {
-            borderColor: '#9955ff',
+            borderColor: '#d363d8',
             fontColor: '#000000',
         },
     };

@@ -2,6 +2,32 @@
 // Licensed under the MIT License.
 @import '../../common/styles/common.scss';
 @import '../../common/components/toast.scss';
+
+@import '../../../node_modules/office-ui-fabric-react/dist/sass/Icon.Definitions';
+
+@mixin max-z-index-1 {
+    z-index: 2147483646 !important;
+}
+
+@mixin max-z-index {
+    z-index: 2147483647 !important;
+}
+
+.insights-dialog-container {
+    @import '../../../node_modules/office-ui-fabric-react/dist/sass/Fabric.scss';
+
+    @include max-z-index();
+}
+
+// We need the below styling only when not using shadow dom
+body > .insights-dialog-container {
+    position: absolute !important;
+    top: 0px !important;
+    left: 0px !important;
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
 .insights-dialog-main-override-shadow {
     position: fixed;
     top: 0;
@@ -9,7 +35,7 @@
     right: 0;
     bottom: 0;
     background-color: $neutral-alpha-60;
-    z-index: 2147483647;
+    @include max-z-index();
     font-family: $fontFamily;
 }
 
@@ -297,6 +323,14 @@ div.insights-file-issue-details-dialog-container {
     font-size: 12px !important;
 }
 
+.insights-dialog-main-override .create-bug-button-help {
+    margin-top: 4px !important;
+    margin-bottom: 8px !important;
+    font-size: 12px !important;
+    color: $negative-outcome;
+    font-weight: $fontWeightSemiBold;
+}
+
 .insights-dialog-main-override .insights-dialog-fix-instruction-container {
     margin-bottom: 20px !important;
     font-size: 14px;
@@ -323,7 +357,7 @@ div.insights-file-issue-details-dialog-container {
 .insights-highlight-container,
 .insights-highlight-container svg {
     position: absolute !important;
-    z-index: 2147483646 !important;
+    @include max-z-index-1();
     top: 0 !important;
     left: 0 !important;
     overflow: visible !important;
@@ -349,7 +383,7 @@ div.insights-file-issue-details-dialog-container {
 }
 
 :host {
-    z-index: 2147483646 !important;
+    @include max-z-index-1();
     top: 0 !important;
     left: 0 !important;
     width: 0 !important;

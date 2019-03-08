@@ -135,14 +135,14 @@ export class PopupInitializer {
 
         const popupViewControllerHandler = new PopupViewControllerHandler();
         const dropdownClickHandler = new DropdownClickHandler(dropdownActionMessageCreator, TelemetryEventSource.LaunchPad);
-        const feedbackMenuClickHandler = new LaunchPanelHeaderClickHandler();
+        const launchPanelHeaderClickHandler = new LaunchPanelHeaderClickHandler();
         const supportLinkHandler = new SupportLinkHandler(this.chromeAdapter, windowUtils);
 
         const popupHandlers: IPopupHandlers = {
-            diagnosticViewClickHandler: diagnosticViewClickHandler,
-            popupViewControllerHandler: popupViewControllerHandler,
-            launchPanelHeaderClickHandler: feedbackMenuClickHandler,
-            supportLinkHandler: supportLinkHandler,
+            diagnosticViewClickHandler,
+            popupViewControllerHandler,
+            launchPanelHeaderClickHandler,
+            supportLinkHandler,
         };
 
         const actionInitiators = {
@@ -171,6 +171,7 @@ export class PopupInitializer {
             storeActionMessageCreator,
             loadTheme,
             axeInfo,
+            launchPanelHeaderClickHandler,
         };
 
         const diagnosticViewToggleFactory = new DiagnosticViewToggleFactory(

@@ -582,7 +582,7 @@ div.insights-file-issue-details-dialog-container {
                 float: left;
                 margin-right: 8px;
                 line-height: 24px;
-                color: $neutral-0;
+                color: $always-white;
             }
             .assessment-instance-label.radio {
                 width: 14px;
@@ -599,6 +599,7 @@ div.insights-file-issue-details-dialog-container {
                 overflow: hidden;
                 white-space: nowrap;
                 text-overflow: ellipsis;
+                color: $secondary-text;
             }
             .radio-button-group {
                 float: left;
@@ -1247,6 +1248,14 @@ div.insights-file-issue-details-dialog-container {
                         vertical-align: baseline;
                         margin-left: 8px;
                     }
+                    .create-bug-button-help {
+                        display: inline-block;
+                        margin-left: 8px;
+                        vertical-align: 2px;
+                        color: $negative-outcome;
+                        font-weight: $fontWeightSemiBold;
+                    }
+
                     .issue-detail-table {
                         width: 100%;
                         padding: 0;

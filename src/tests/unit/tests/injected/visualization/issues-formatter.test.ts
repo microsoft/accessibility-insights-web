@@ -21,7 +21,14 @@ describe('IssuesFormatterTests', () => {
         const windowUtils: IMock<WindowUtils> = Mock.ofType(WindowUtils);
         const shadowUtils: IMock<ShadowUtils> = Mock.ofType(ShadowUtils);
         const clientBrowserAdapter = Mock.ofType<ClientBrowserAdapter>();
-        testSubject = new IssuesFormatter(frameCommunicator.object, windowUtils.object, shadowUtils.object, clientBrowserAdapter.object);
+        const getRTLMock = Mock.ofInstance(() => null);
+        testSubject = new IssuesFormatter(
+            frameCommunicator.object,
+            windowUtils.object,
+            shadowUtils.object,
+            clientBrowserAdapter.object,
+            getRTLMock.object,
+        );
     });
 
     test('tooltip for the failed rules from the axe result', () => {
