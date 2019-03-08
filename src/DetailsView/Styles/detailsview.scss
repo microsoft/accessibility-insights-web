@@ -1253,7 +1253,7 @@ div.insights-file-issue-details-dialog-container {
                         margin-left: 8px;
                         vertical-align: 2px;
                         color: $negative-outcome;
-                        font-weight: bold;
+                        font-weight: $fontWeightSemiBold;
                     }
 
                     .issue-detail-table {

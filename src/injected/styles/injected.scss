@@ -328,7 +328,7 @@ div.insights-file-issue-details-dialog-container {
     margin-bottom: 8px !important;
     font-size: 12px !important;
     color: $negative-outcome;
-    font-weight: bold;
+    font-weight: $fontWeightSemiBold;
 }
 
 .insights-dialog-main-override .insights-dialog-fix-instruction-container {
