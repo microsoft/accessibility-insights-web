@@ -124,6 +124,8 @@ Options after the `--` are passed to Jest. For example, `npm test -- --watch` wi
 
 To debug using an external tool, run `node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand {RELATIVE_FILE_PATH}`. In Chrome, for example, navigate to `chrome://inspect` and click `Open dedicated DevTools for Node`.
 
+<!--Ada was here!-->
+
 # Contributing
 
 This project welcomes contributions and suggestions. Most contributions require you to agree to a
