@@ -99,7 +99,7 @@ exports[`CollapsibleComponentTest render with container-class-name 1`] = `
 </div>
 `;
 
-exports[`CollapsibleComponentTest toggle from expaneded to collapsed: collapsed 1`] = `
+exports[`CollapsibleComponentTest toggle from expanded to collapsed: collapsed 1`] = `
 <div
   className="collapsible-component"
 >
@@ -125,7 +125,7 @@ exports[`CollapsibleComponentTest toggle from expaneded to collapsed: collapsed 
 </div>
 `;
 
-exports[`CollapsibleComponentTest toggle from expaneded to collapsed: expaneded 1`] = `
+exports[`CollapsibleComponentTest toggle from expanded to collapsed: expanded 1`] = `
 <div
   className="collapsible-component"
 >
