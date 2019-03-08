@@ -299,7 +299,10 @@ div.insights-file-issue-details-dialog-container {
 
 .insights-dialog-main-override .create-bug-button-help {
     margin-top: 4px !important;
+    margin-bottom: 8px !important;
     font-size: 12px !important;
+    color: $negative-outcome;
+    font-weight: bold;
 }
 
 .insights-dialog-main-override .insights-dialog-fix-instruction-container {
