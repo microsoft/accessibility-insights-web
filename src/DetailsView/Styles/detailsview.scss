@@ -313,10 +313,7 @@ div.insights-file-issue-details-dialog-container {
         }
     }
     .header-bar {
-        background-color: $ada-brand-color;
         position: fixed;
-        width: 100%;
-        height: $detailsViewHeaderBarHeight;
         z-index: 1000;
         .gear-options-button-component {
             float: right;
@@ -330,17 +327,7 @@ div.insights-file-issue-details-dialog-container {
             height: 100%;
             width: 100%;
         }
-        .header-text {
-            padding-top: 8px;
-            color: $header-bar-title-color;
-            font-size: 18px;
-            display: inline-block;
-        }
-        .header-icon {
-            float: left;
-            padding: 8px 8px;
-            height: 22px;
-        }
+
         .ms-Dropdown-container {
             display: inline-flex;
             margin-left: 24px;

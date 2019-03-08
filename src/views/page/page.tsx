@@ -17,7 +17,7 @@ export const Page = NamedSFC<PageProps>('Page', ({ deps, children }) => {
 
     return (
         <>
-            <header>
+            <header className="header-bar">
                 <HeaderIcon deps={deps} />
                 <div className="ms-font-m header-text">{extensionFullName}</div>
             </header>

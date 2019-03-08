@@ -2,27 +2,10 @@
 // Licensed under the MIT License.
 @import '../../../common/styles/colors.scss';
 @import '../../../common/styles/fonts.scss';
-
-.report-header-bar {
-    background-color: $ada-brand-color;
-    width: 100%;
-    height: 48px;
-}
+@import '../../../common/styles/common.scss';
 
 .report-header-bar svg {
-    margin-left: 19px;
-    margin-top: 10px;
-}
-
-.report-header-bar .header-text {
-    position: relative;
-    top: -5px;
-    margin-left: 9px;
-    font-size: 17px;
-    line-height: 24px;
-    color: $neutral-0;
-    display: inline-block;
-    font-family: $fontFamily;
+    margin-left: 8px;
 }
 
 .report-header-command-bar {
