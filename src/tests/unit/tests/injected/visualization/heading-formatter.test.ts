@@ -5,7 +5,7 @@ import { It, Mock } from 'typemoq';
 import { ClientUtils } from '../../../../../injected/client-utils';
 import { IAssessmentVisualizationInstance } from '../../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { HeadingFormatter, IHeadingStyleConfiguration, IStyleComputer } from '../../../../../injected/visualization/heading-formatter';
-import { IDrawerConfiguration } from '../../../../../injected/visualization/iformatter';
+import { DrawerConfiguration } from '../../../../../injected/visualization/iformatter';
 
 describe('HeadingFormatterTests', () => {
     let testSubject: HeadingFormatter;
@@ -195,10 +195,10 @@ describe('HeadingFormatterTests', () => {
     });
 
     function createDisplayNoneStyleComputer(): IStyleComputer {
-        const getComputedStyleMock = Mock.ofInstance(element => {});
+        const getComputedStyleMock = Mock.ofInstance(_ => {});
 
         getComputedStyleMock
-            .setup(get => get(It.isAny()))
+            .setup(getter => getter(It.isAny()))
             .returns(() => {
                 return { display: 'none' };
             });
@@ -210,14 +210,14 @@ describe('HeadingFormatterTests', () => {
         return computedStyle as IStyleComputer;
     }
 
-    function verifyHeadingStyle(config: IDrawerConfiguration, headingStyle: IHeadingStyleConfiguration, text: string): void {
+    function verifyHeadingStyle(config: DrawerConfiguration, headingStyle: IHeadingStyleConfiguration, text: string): void {
         expect(config.showVisualization).toBe(true);
         expect(config.borderColor).toBe(headingStyle.borderColor);
         expect(config.textBoxConfig.fontColor).toBe(headingStyle.fontColor);
         expect(config.textBoxConfig.text).toBe(text);
     }
 
-    function verifyFailureBoxStyle(config: IDrawerConfiguration): void {
+    function verifyFailureBoxStyle(config: DrawerConfiguration): void {
         const failureBoxConfig = config.failureBoxConfig;
         const expected = {
             background: '#CC0000',

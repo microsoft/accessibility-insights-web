@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IAssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
 import { FailureInstanceFormatter } from './failure-instance-formatter';
-import { IDrawerConfiguration } from './iformatter';
+import { DrawerConfiguration } from './iformatter';
 import { IssuesFormatter } from './issues-formatter';
 
 export class HighlightBoxFormatter extends FailureInstanceFormatter {
@@ -14,8 +14,8 @@ export class HighlightBoxFormatter extends FailureInstanceFormatter {
         return null;
     }
 
-    public getDrawerConfiguration(element: HTMLElement, data: IAssessmentVisualizationInstance): IDrawerConfiguration {
-        const drawerConfig: IDrawerConfiguration = {
+    public getDrawerConfiguration(element: HTMLElement, data: IAssessmentVisualizationInstance): DrawerConfiguration {
+        const drawerConfig: DrawerConfiguration = {
             failureBoxConfig: this.getFailureBoxConfig(data),
             borderColor: IssuesFormatter.style.borderColor,
             outlineStyle: 'solid',

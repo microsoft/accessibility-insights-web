@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-/// <reference path="./iformatter.d.ts" />
 /// <reference path="./heading-formatter.ts" />
 /// <reference path="../scanner-utils.ts" />
 import { DialogRenderer } from '../dialog-renderer';
@@ -8,7 +7,7 @@ import { IAssessmentVisualizationInstance } from '../frameCommunicators/html-ele
 import { IHtmlElementAxeResults } from '../scanner-utils';
 import { FailureInstanceFormatter } from './failure-instance-formatter';
 import { IHeadingStyleConfiguration } from './heading-formatter';
-import { IDrawerConfiguration } from './iformatter';
+import { DrawerConfiguration } from './iformatter';
 
 interface ElemData {
     role: string;
@@ -64,13 +63,13 @@ export class LandmarkFormatter extends FailureInstanceFormatter {
         return null;
     }
 
-    public getDrawerConfiguration(element: Node, data: IAssessmentVisualizationInstance): IDrawerConfiguration {
+    public getDrawerConfiguration(element: Node, data: IAssessmentVisualizationInstance): DrawerConfiguration {
         // parse down the IHtmlElementAxeResult to see if it is contained in the map
         const elemData = this.decorateLabelText(data.propertyBag || this.getLandmarkInfo(data));
 
         const style = LandmarkFormatter.getStyleForLandmarkRole(elemData.role);
 
-        const drawerConfig: IDrawerConfiguration = {
+        const drawerConfig: DrawerConfiguration = {
             textBoxConfig: {
                 fontColor: style.fontColor,
                 background: style.borderColor,
