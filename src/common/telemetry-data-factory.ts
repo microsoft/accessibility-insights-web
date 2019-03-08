@@ -223,7 +223,7 @@ export class TelemetryDataFactory {
         return this.withTriggeredByAndSource(event, TelemetryEventSource.DetailsView);
     }
 
-    public fromHamburgetMenu(event: SupportedMouseEvent): BaseTelemetryData {
+    public fromHamburgerMenu(event: SupportedMouseEvent): BaseTelemetryData {
         return this.withTriggeredByAndSource(event, TelemetryEventSource.HamburgerMenu);
     }
 

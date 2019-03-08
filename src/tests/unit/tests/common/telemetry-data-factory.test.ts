@@ -251,7 +251,7 @@ describe('TelemetryDataFactoryTest', () => {
 
     test('forOpenShortcutConfigureTab', () => {
         const event = keypressEvent;
-        const result: BaseTelemetryData = testObject.fromHamburgetMenu(event);
+        const result: BaseTelemetryData = testObject.fromHamburgerMenu(event);
 
         const expected: BaseTelemetryData = {
             triggeredBy: 'keypress',

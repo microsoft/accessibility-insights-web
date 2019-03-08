@@ -70,7 +70,7 @@ export class PopupActionMessageCreator extends BaseActionMessageCreator {
     }
 
     public openShortcutConfigureTab(event: SupportedMouseEvent): void {
-        const telemetry = this.telemetryFactory.fromHamburgetMenu(event);
+        const telemetry = this.telemetryFactory.fromHamburgerMenu(event);
         const payload: BaseActionPayload = {
             telemetry,
         };

@@ -2,7 +2,9 @@
 
 exports[`page view renders 1`] = `
 <React.Fragment>
-  <header>
+  <header
+    className="header-bar"
+  >
     <class_1
       deps={Object {}}
     />

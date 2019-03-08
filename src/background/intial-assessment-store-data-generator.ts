@@ -27,7 +27,7 @@ export class InitialAssessmentStoreDataGenerator {
         this.tests = this.assessmentsProvider.all();
     }
 
-    public generateInitalState(persistedData: IAssessmentStoreData = null): IAssessmentStoreData {
+    public generateInitialState(persistedData: IAssessmentStoreData = null): IAssessmentStoreData {
         const targetTab: PersistedTabInfo = persistedData &&
             persistedData.persistedTabInfo && { ...persistedData.persistedTabInfo, appRefreshed: true };
         const persistedTests = persistedData && persistedData.assessments;

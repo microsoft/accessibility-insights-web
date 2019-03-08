@@ -8,23 +8,6 @@ body {
     color: $neutral-100;
 }
 
-header {
-    background-color: $ada-blue;
-    height: $detailsViewHeaderBarHeight;
-
-    .header-text {
-        padding-top: 11px;
-        color: $neutral-0;
-        display: inline-block;
-    }
-
-    .header-icon {
-        float: left;
-        padding: 13px 8px;
-        height: 16px;
-    }
-}
-
 main {
     overflow: auto;
     position: absolute;

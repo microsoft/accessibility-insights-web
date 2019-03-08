@@ -2,7 +2,10 @@
 // Licensed under the MIT License.
 :root {
     // Accessibility Insights brand color
-    --ada-blue: #004880;
+    --brand-blue: #004880;
+    --ada-brand-color: var(--brand-blue);
+    --ada-brand-variant: #336d99;
+
     // Text colors
     --primary-text: rgba(0, 0, 0, 0.9);
     --secondary-text: rgba(0, 0, 0, 0.55);
@@ -52,7 +55,6 @@
     // Additional colors
     --accent2-dark: rgb(16, 124, 16);
     --communication-alpha-5: rgba(0, 120, 212, 0.05);
-    --ada-blue-variant: #336d99;
     --overview-percent-selected: var(--neutral-55);
     --index-circle-background: var(--communication-shade-10);
     // Landmark colors
@@ -64,9 +66,10 @@
     --landmark-navigation: #9b38e6;
     --landmark-search: #d363d8;
     --landmark-form: #0298c7;
+    --header-bar-title-color: var(--neutral-0);
     .high-contrast-theme {
-        --ada-blue: #ffffff;
-        --ada-blue-variant: #ffffff;
+        --ada-brand-color: #ffffff;
+        --ada-brand-variant: #ffffff;
         // Base
         --neutral-0: #161616;
         --neutral-2: #161616;
@@ -92,11 +95,12 @@
         --communication-tint-40: #38a9ff;
         --overview-percent-selected: black;
         --index-circle-background: var(--communication-tint-40);
+        --header-bar-title-color: var(--brand-blue);
     }
 }
 
 // Accessibility Insights brand color
-$ada-blue: var(--ada-blue);
+$ada-brand-color: var(--ada-brand-color);
 // Text colors
 $primary-text: var(--primary-text);
 $secondary-text: var(--secondary-text);
@@ -104,6 +108,8 @@ $disabled-text: var(--disabled-text);
 $primary-text-invert: var(--primary-text-invert);
 $secondary-text-invert: var(--secondary-text-invert);
 $disabled-text-invert: var(--disabled-text-invert);
+$header-bar-title-color: var(--header-bar-title-color);
+
 // UI colors
 $communication-primary: var(--communication-primary);
 $communication-tint-40: var(--communication-tint-40);
@@ -154,7 +160,7 @@ $landmark-search: var(--landmark-search);
 $landmark-form: var(--landmark-form);
 // Additional colors
 $accent2-dark: var(--accent2-dark);
-$ada-blue-variant: var(--ada-blue-variant);
+$ada-brand-variant: var(--ada-brand-variant);
 $communication-alpha-5: var(--communication-alpha-5);
 $overview-percent-selected: var(--overview-percent-selected);
 $index-circle-background: var(--index-circle-background);

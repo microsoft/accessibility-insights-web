@@ -5,9 +5,7 @@ exports[`AssessmentReportHeader renders 1`] = `
   <div
     className="report-header-bar"
   >
-    <BrandWhite
-      size={24}
-    />
+    <BrandWhite />
     <div
       className="ms-font-m header-text ms-fontWeight-semibold"
     >

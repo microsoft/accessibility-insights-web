@@ -46,13 +46,13 @@ describe('CollapsibleComponentTest', () => {
         expect(result.hasClass('collapsible-component')).toBe(true);
     });
 
-    test('toggle from expaneded to collapsed', () => {
+    test('toggle from expanded to collapsed', () => {
         const props: CollapsibleComponentProps = {
             header: <div>Some header</div>,
             content: <div>Some content</div>,
         };
         const result = shallow(<CollapsibleComponent {...props} />);
-        expect(result.getElement()).toMatchSnapshot('expaneded');
+        expect(result.getElement()).toMatchSnapshot('expanded');
         const button = result.find('CustomizedActionButton');
         button.simulate('click');
         expect(result.getElement()).toMatchSnapshot('collapsed');
