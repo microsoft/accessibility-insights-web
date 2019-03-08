@@ -5,12 +5,12 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 import { ScanOptions } from '../../../../scanner/exposed-apis';
 import { AxeOptions } from '../../../../scanner/launcher';
 import { RuleSifter, RuleWithA11YCriteria } from '../../../../scanner/rule-sifter';
-import { ScanParamaterGenerator } from '../../../../scanner/scan-parameter-generator';
+import { ScanParameterGenerator } from '../../../../scanner/scan-parameter-generator';
 
-describe('ScanParamaterGenerator', () => {
+describe('ScanParameterGenerator', () => {
     describe('constructor', () => {
         it('should construct the generator', () => {
-            const generator = new ScanParamaterGenerator(null);
+            const generator = new ScanParameterGenerator(null);
             expect(generator).not.toBeNull();
         });
     });
@@ -18,7 +18,7 @@ describe('ScanParamaterGenerator', () => {
     describe('getAxeEngineOptions', () => {
         let siftedRulesStub: RuleWithA11YCriteria[];
         let mockSifter: IMock<RuleSifter>;
-        let testObject: ScanParamaterGenerator;
+        let testObject: ScanParameterGenerator;
 
         beforeEach(() => {
             siftedRulesStub = [
@@ -35,7 +35,7 @@ describe('ScanParamaterGenerator', () => {
             mockSifter = Mock.ofType(RuleSifter, MockBehavior.Strict);
             mockSifter.setup(ms => ms.getSiftedRules()).returns(() => siftedRulesStub);
 
-            testObject = new ScanParamaterGenerator(mockSifter.object);
+            testObject = new ScanParameterGenerator(mockSifter.object);
         });
 
         it('should handle options being null', () => {
@@ -88,7 +88,7 @@ describe('ScanParamaterGenerator', () => {
     describe('getContext', () => {
         it('should return the dom when options are null', () => {
             const mockSifter = Mock.ofType(RuleSifter, MockBehavior.Strict);
-            const generator = new ScanParamaterGenerator(mockSifter.object);
+            const generator = new ScanParameterGenerator(mockSifter.object);
             const options: ScanOptions = {
                 testsToRun: ['throwaway-property'],
             };
@@ -97,13 +97,13 @@ describe('ScanParamaterGenerator', () => {
         });
         it('should return the dom when options are not context related', () => {
             const mockSifter = Mock.ofType(RuleSifter, MockBehavior.Strict);
-            const generator = new ScanParamaterGenerator(mockSifter.object);
+            const generator = new ScanParameterGenerator(mockSifter.object);
             const domStub = Mock.ofInstance(document).object;
             expect(generator.getContext(domStub, null)).toEqual(domStub);
         });
         it('should return selector when set in options', () => {
             const mockSifter = Mock.ofType(RuleSifter, MockBehavior.Strict);
-            const generator = new ScanParamaterGenerator(mockSifter.object);
+            const generator = new ScanParameterGenerator(mockSifter.object);
             const options: ScanOptions = {
                 selector: 'test-selector',
                 testsToRun: ['throwaway-property'],
@@ -113,7 +113,7 @@ describe('ScanParamaterGenerator', () => {
         });
         it('should return dom when set in options', () => {
             const mockSifter = Mock.ofType(RuleSifter, MockBehavior.Strict);
-            const generator = new ScanParamaterGenerator(mockSifter.object);
+            const generator = new ScanParameterGenerator(mockSifter.object);
             const documentStub = Mock.ofInstance(document);
             const options: ScanOptions = {
                 dom: documentStub.object,
@@ -124,7 +124,7 @@ describe('ScanParamaterGenerator', () => {
         });
         it('should return the include/exclude set in options', () => {
             const mockSifter = Mock.ofType(RuleSifter, MockBehavior.Strict);
-            const generator = new ScanParamaterGenerator(mockSifter.object);
+            const generator = new ScanParameterGenerator(mockSifter.object);
             const options: ScanOptions = {
                 include: [['include']],
                 exclude: [['exclude']],
@@ -138,7 +138,7 @@ describe('ScanParamaterGenerator', () => {
         });
         it('should check in order for contexts: dom > selector > include/exclude', () => {
             const mockSifter = Mock.ofType(RuleSifter, MockBehavior.Strict);
-            const generator = new ScanParamaterGenerator(mockSifter.object);
+            const generator = new ScanParameterGenerator(mockSifter.object);
             const documentNodeListStub = Mock.ofInstance(document.childNodes);
 
             const domFirstOptions: ScanOptions = {
