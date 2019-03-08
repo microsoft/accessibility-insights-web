@@ -76,6 +76,12 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
         this.props.deps.bugActionMessageCreator.trackFileIssueClick(event, 'gitHub');
     }
 
+    @autobind
+    private onClickFileIssueButtonNeedsSettings(event: React.MouseEvent<HTMLDivElement | HTMLAnchorElement | HTMLButtonElement>): void {
+        this.props.deps.bugActionMessageCreator.trackFileIssueClick(event, 'none');
+        this.setState({ showingHelpText: !this.state.showingHelpText });
+    }
+
     private getSettingsPanel(): HTMLElement | null {
         return document.querySelector('.ms-Panel-main');
     }
@@ -87,18 +93,13 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
                     componentRef={this.button}
                     iconProps={{ iconName: 'ladybugSolid' }}
                     className={'create-bug-button'}
-                    onClick={this.toggleHelpText}
+                    onClick={this.onClickFileIssueButtonNeedsSettings}
                 >
                     File issue
                 </DefaultButton>
                 {this.renderHelpText()}
             </>
         );
-    }
-
-    @autobind
-    private toggleHelpText(): void {
-        this.setState({ showingHelpText: !this.state.showingHelpText });
     }
 
     private renderHelpText(): JSX.Element {
