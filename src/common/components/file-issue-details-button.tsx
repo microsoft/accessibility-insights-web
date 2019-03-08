@@ -26,13 +26,14 @@ export type FileIssueDetailsButtonProps = {
 
 export type FileIssueDetailsButtonState = {
     showingFileIssueDialog: boolean;
+    showingHelpText: boolean;
 };
 
 export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButtonProps, FileIssueDetailsButtonState> {
     private button: React.RefObject<IButton> = React.createRef<IButton>();
     constructor(props: FileIssueDetailsButtonProps) {
         super(props);
-        this.state = { showingFileIssueDialog: false };
+        this.state = { showingFileIssueDialog: false, showingHelpText: false };
     }
 
     private getIssueDetailsUrl(result: DecoratedAxeNodeResult): string {
@@ -75,21 +76,40 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
         this.props.deps.bugActionMessageCreator.trackFileIssueClick(event, 'gitHub');
     }
 
+    @autobind
+    private onClickFileIssueButtonNeedsSettings(event: React.MouseEvent<HTMLDivElement | HTMLAnchorElement | HTMLButtonElement>): void {
+        this.props.deps.bugActionMessageCreator.trackFileIssueClick(event, 'none');
+        this.setState({ showingHelpText: !this.state.showingHelpText });
+    }
+
     private getSettingsPanel(): HTMLElement | null {
         return document.querySelector('.ms-Panel-main');
     }
 
-    private renderOpenSettingsButton(): JSX.Element {
+    private renderFileIssueButtonNeedsSettings(): JSX.Element {
         return (
-            <DefaultButton
-                componentRef={this.button}
-                iconProps={{ iconName: 'ladybugSolid' }}
-                className={'create-bug-button'}
-                onClick={this.onClickOpenSettingsButton}
-            >
-                File issue
-            </DefaultButton>
+            <>
+                <DefaultButton
+                    componentRef={this.button}
+                    iconProps={{ iconName: 'ladybugSolid' }}
+                    className={'create-bug-button'}
+                    onClick={this.onClickFileIssueButtonNeedsSettings}
+                >
+                    File issue
+                </DefaultButton>
+                {this.renderHelpText()}
+            </>
         );
+    }
+
+    private renderHelpText(): JSX.Element {
+        if (this.state.showingHelpText) {
+            return (
+                <div role="alert" aria-live="polite" className="create-bug-button-help">
+                    Go to Settings to configure issue filing.
+                </div>
+            );
+        }
     }
 
     private renderFileIssueButton(): JSX.Element {
@@ -110,7 +130,7 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
     public render(): JSX.Element {
         return (
             <>
-                {!this.props.issueTrackerPath ? this.renderOpenSettingsButton() : null}
+                {!this.props.issueTrackerPath ? this.renderFileIssueButtonNeedsSettings() : null}
                 {!!this.props.issueTrackerPath ? this.renderFileIssueButton() : null}
                 <FileIssueDetailsDialog
                     onOpenSettings={this.openSettings}
