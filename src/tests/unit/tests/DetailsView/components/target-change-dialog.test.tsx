@@ -6,6 +6,7 @@ import { TooltipHost } from 'office-ui-fabric-react/lib/Tooltip';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
+import { BlockingDialog } from '../../../../../common/components/blocking-dialog';
 import { ITab } from '../../../../../common/itab';
 import { PersistedTabInfo } from '../../../../../common/types/store-data/iassessment-result-data';
 import { UrlParser } from '../../../../../common/url-parser';
@@ -38,7 +39,7 @@ describe('TargetChangeDialog test set for prev tab null', () => {
 
         const wrapper = Enzyme.shallow(<TargetChangeDialog {...targetChangeProps} />);
 
-        expect(wrapper.find(Dialog).exists()).toBeFalsy();
+        expect(wrapper.find(Dialog).exists()).toBe(false);
         urlParserMock.verifyAll();
     });
 });
@@ -82,10 +83,10 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
         };
 
         const wrapper = Enzyme.shallow(<TargetChangeDialog {...targetChangeProps} />);
-        expect(wrapper.find(Dialog).exists()).toBeTruthy();
-        expect(wrapper.find(TooltipHost).exists()).toBeTruthy();
+        expect(wrapper.find(BlockingDialog).exists()).toBe(true);
+        expect(wrapper.find(TooltipHost).exists()).toBe(true);
         expect(wrapper.find(TooltipHost).length).toEqual(2);
-        expect(wrapper.find(Dialog).props().hidden).toBeFalsy();
+        expect(wrapper.find(BlockingDialog).props().hidden).toBe(false);
     });
 
     test('snapshot: render when target tab id changed', () => {

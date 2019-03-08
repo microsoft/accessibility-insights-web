@@ -260,10 +260,13 @@ export class VisualizationStore extends BaseStore<IVisualizationStoreData> {
             return updated;
         }
 
-        if (payload.pivotType === DetailsViewPivotType.allTest) {
+        if (this.state.selectedAdhocDetailsView !== payload.detailsViewType && payload.pivotType === DetailsViewPivotType.allTest) {
             this.state.selectedAdhocDetailsView = payload.detailsViewType;
             updated = true;
-        } else if (payload.pivotType === DetailsViewPivotType.fastPass) {
+        } else if (
+            this.state.selectedFastPassDetailsView !== payload.detailsViewType &&
+            payload.pivotType === DetailsViewPivotType.fastPass
+        ) {
             this.state.selectedFastPassDetailsView = payload.detailsViewType;
             updated = true;
         }

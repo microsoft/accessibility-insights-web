@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
+import { autobind, getRTL } from '@uifabric/utilities';
 import * as Q from 'q';
 
 import { XMLHttpRequestFactory } from '../background/xml-http-request-factory';
@@ -83,6 +83,7 @@ export class WindowInitializer {
             document,
             this.frameCommunicator,
             this.clientChromeAdapter,
+            getRTL,
         );
         this.drawingController = new DrawingController(
             this.frameCommunicator,

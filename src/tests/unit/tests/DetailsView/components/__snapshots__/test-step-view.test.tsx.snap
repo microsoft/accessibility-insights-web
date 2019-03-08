@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TestStepViewTest render snapshot matches with manual false and scanning is finished 1`] = `
+"<div className=\\"test-step-view\\">
+  <div className=\\"test-step-title-container\\">
+    <h3 className=\\"test-step-view-title\\">
+      Test Step Test Name
+    </h3>
+    <ContentPanelButton deps={[undefined]} reference={[undefined]} iconName=\\"info\\">
+      Info &amp; examples
+    </ContentPanelButton>
+  </div>
+  <CollapsibleComponent header={{...}} content={{...}} contentClassName=\\"test-step-instructions\\" />
+  <div role=\\"alert\\" aria-live=\\"polite\\" aria-label=\\"Scan Complete\\" />
+  <h3 className=\\"test-step-instances-header\\">
+    Instances
+  </h3>
+  <AssessmentInstanceTable instancesMap={{...}} assessmentInstanceTableHandler={{...}} assessmentNavState={{...}} renderInstanceTableHeader={[undefined]} getDefaultMessage={[undefined]} assessmentDefaultMessageGenerator={[undefined]} hasVisualHelper={true} />
+</div>"
+`;
+
+exports[`TestStepViewTest render, variable part for assisted test 1`] = `
+"<div className=\\"test-step-view\\">
+  <div className=\\"test-step-title-container\\">
+    <h3 className=\\"test-step-view-title\\">
+      Test Step Test Name
+    </h3>
+    <ContentPanelButton deps={[undefined]} reference={[undefined]} iconName=\\"info\\">
+      Info &amp; examples
+    </ContentPanelButton>
+  </div>
+  <CollapsibleComponent header={{...}} content={{...}} contentClassName=\\"test-step-instructions\\" />
+  <h3 className=\\"test-step-instances-header\\">
+    Instances
+  </h3>
+  <AssessmentInstanceTable instancesMap={{...}} assessmentInstanceTableHandler={{...}} assessmentNavState={{...}} renderInstanceTableHeader={[undefined]} getDefaultMessage={[undefined]} assessmentDefaultMessageGenerator={[undefined]} hasVisualHelper={true} />
+</div>"
+`;

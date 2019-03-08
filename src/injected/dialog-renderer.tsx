@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
+import { autobind, getRTL } from '@uifabric/utilities';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
@@ -13,11 +13,11 @@ import { NavigatorUtils } from '../common/navigator-utils';
 import { getPlatform } from '../common/platform';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { WindowUtils } from '../common/window-utils';
-import { DetailsDialog } from './components/details-dialog';
 import { DetailsDialogHandler } from './details-dialog-handler';
 import { FrameCommunicator, IMessageRequest } from './frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from './frameCommunicators/window-message-handler';
 import { IErrorMessageContent } from './frameCommunicators/window-message-marshaller';
+import { LayeredDetailsDialogComponent, LayeredDetailsDialogDeps } from './layered-details-dialog-component';
 import { MainWindowContext } from './main-window-context';
 import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from './scanner-utils';
 import { ShadowUtils } from './shadow-utils';
@@ -29,42 +29,22 @@ export interface DetailsDialogWindowMessage {
 
 export class DialogRenderer {
     private static readonly renderDetailsDialogCommand = 'insights.detailsDialog';
-    private dom: Document;
-    private renderer: typeof ReactDOM.render;
-    private frameCommunicator: FrameCommunicator;
-    private windowUtils: WindowUtils;
-    private shadowUtils: ShadowUtils;
 
     constructor(
-        dom: Document,
-        renderer: typeof ReactDOM.render,
-        frameCommunicator: FrameCommunicator,
-        windowUtils: WindowUtils,
-        shadowUtils: ShadowUtils,
+        private readonly dom: Document,
+        private readonly renderer: typeof ReactDOM.render,
+        private readonly frameCommunicator: FrameCommunicator,
+        private readonly windowUtils: WindowUtils,
+        private readonly shadowUtils: ShadowUtils,
         private readonly clientBrowserAdapter: ClientBrowserAdapter,
+        private readonly getRTLFunc: typeof getRTL,
     ) {
-        this.dom = dom;
-        this.renderer = renderer;
-        this.frameCommunicator = frameCommunicator;
-        this.windowUtils = windowUtils;
-        this.shadowUtils = shadowUtils;
-
         if (this.isInMainWindow()) {
             this.frameCommunicator.subscribe(DialogRenderer.renderDetailsDialogCommand, this.processRequest);
         }
     }
 
     public render(data: IHtmlElementAxeResults, featureFlagStoreData: FeatureFlagStoreData): void {
-        if (!featureFlagStoreData[FeatureFlags.shadowDialog]) {
-            if (this.dom.querySelector('.insights-dialog-container span') != null) {
-                return;
-            }
-        } else {
-            if (this.dom.querySelector('#insights-shadow-host').shadowRoot.querySelector('.insights-shadow-dialog-container') != null) {
-                return;
-            }
-        }
-
         if (this.isInMainWindow()) {
             const mainWindowContext = MainWindowContext.get();
             mainWindowContext.getTargetPageActionMessageCreator().openIssuesDialog();
@@ -83,16 +63,17 @@ export class DialogRenderer {
                 AxeInfo.Default.version,
             );
 
-            const deps = {
+            const deps: LayeredDetailsDialogDeps = {
                 issueDetailsTextGenerator,
                 windowUtils: this.windowUtils,
                 targetPageActionMessageCreator: mainWindowContext.getTargetPageActionMessageCreator(),
                 bugActionMessageCreator: mainWindowContext.getBugActionMessageCreator(),
                 clientBrowserAdapter: this.clientBrowserAdapter,
+                getRTL: this.getRTLFunc,
             };
 
             this.renderer(
-                <DetailsDialog
+                <LayeredDetailsDialogComponent
                     deps={deps}
                     failedRules={failedRules}
                     elementSelector={elementSelector}
@@ -128,6 +109,7 @@ export class DialogRenderer {
 
     private initializeDialogContainerInShadowDom(): HTMLDivElement {
         const shadowContainer = this.shadowUtils.getShadowContainer();
+
         const dialogContainer = this.dom.createElement('div');
         dialogContainer.className = 'insights-shadow-dialog-container';
         shadowContainer.appendChild(dialogContainer);
@@ -135,10 +117,21 @@ export class DialogRenderer {
     }
 
     private appendDialogContainer(): HTMLDivElement {
+        this.removeAllPreviousDialogContainers(this.dom, '.insights-dialog-container');
+
         const dialogContainer = this.dom.createElement('div');
         dialogContainer.setAttribute('class', 'insights-dialog-container');
         this.dom.body.appendChild(dialogContainer);
         return dialogContainer;
+    }
+
+    private removeAllPreviousDialogContainers(dom: ParentNode & Node, selector: string): void {
+        const dialogContainers = dom.querySelectorAll(selector);
+
+        for (let i = 0; i < dialogContainers.length; i++) {
+            const item = dialogContainers[i];
+            item.parentNode.removeChild(item);
+        }
     }
 
     private getFailedRules(data: IHtmlElementAxeResults): IDictionaryStringTo<DecoratedAxeNodeResult> {

@@ -91,6 +91,8 @@ describe('TestStepViewTest', () => {
         expect(instanceTable.prop('instancesMap')).toEqual(props.instancesMap);
         expect(instanceTable.prop('assessmentInstanceTableHandler')).toEqual(props.assessmentInstanceTableHandler);
         expect(props.assessmentNavState).toEqual(instanceTable.prop('assessmentNavState'));
+
+        expect(wrapper.debug()).toMatchSnapshot();
     });
 
     test('render, variable part for manual test', () => {
@@ -128,6 +130,16 @@ describe('TestStepViewTest', () => {
         const visualHelper = wrapper.find('.toggle-stub');
 
         getVisualHelperToggleMock.verifyAll();
+    });
+
+    test('render snapshot matches with manual false and scanning is finished', () => {
+        const props = TestStepViewPropsBuilder.default(getVisualHelperToggleMock.object)
+            .withIsManual(false)
+            .withStepScanComplete(true)
+            .build();
+
+        const wrapper = Enzyme.shallow(<TestStepView {...props} />);
+        expect(wrapper.debug()).toMatchSnapshot();
     });
 
     function validateManualTestStepView(wrapper: Enzyme.ShallowWrapper, props: TestStepViewProps): void {
@@ -231,6 +243,11 @@ class TestStepViewPropsBuilder extends BaseDataBuilder<TestStepViewProps> {
 
     public withoutInstanceMap(): TestStepViewPropsBuilder {
         this.data.instancesMap = {};
+        return this;
+    }
+
+    public withStepScanComplete(isStepScanned: boolean): TestStepViewPropsBuilder {
+        this.data.isStepScanned = isStepScanned;
         return this;
     }
 }

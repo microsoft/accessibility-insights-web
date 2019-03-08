@@ -2,12 +2,13 @@
 // Licensed under the MIT License.
 import { isEmpty } from 'lodash';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
-import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
+import { DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import { TooltipHost } from 'office-ui-fabric-react/lib/Tooltip';
 import * as React from 'react';
 
 import * as Markup from '../../assessments/markup';
+import { BlockingDialog } from '../../common/components/blocking-dialog';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { ITab } from '../../common/itab';
 import { PersistedTabInfo } from '../../common/types/store-data/iassessment-result-data';
@@ -32,7 +33,7 @@ export class TargetChangeDialog extends React.Component<TargetChangeDialogProps>
             return null;
         }
         return (
-            <Dialog
+            <BlockingDialog
                 hidden={false}
                 dialogContentProps={{
                     type: DialogType.normal,
@@ -40,7 +41,6 @@ export class TargetChangeDialog extends React.Component<TargetChangeDialogProps>
                 }}
                 modalProps={{
                     className: 'target-change-dialog-modal',
-                    isBlocking: true,
                     containerClassName: 'insights-dialog-main-override target-change-dialog',
                     subtitleAriaId: 'target-change-dialog-description',
                 }}
@@ -74,7 +74,7 @@ export class TargetChangeDialog extends React.Component<TargetChangeDialogProps>
                         </div>
                     </div>
                 </DialogFooter>
-            </Dialog>
+            </BlockingDialog>
         );
     }
 
