@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FileIssueDetailsButtonTest render with an issue tracker path 1`] = `
+exports[`FileIssueDetailsButtonTest render and click with an issue tracker path 1`] = `
 <React.Fragment>
   <CustomizedDefaultButton
     className="create-bug-button"
@@ -59,7 +59,66 @@ exports[`FileIssueDetailsButtonTest render with an issue tracker path 1`] = `
 </React.Fragment>
 `;
 
-exports[`FileIssueDetailsButtonTest render without issue tracker set 1`] = `
+exports[`FileIssueDetailsButtonTest render and click with an issue tracker path 2`] = `
+<React.Fragment>
+  <CustomizedDefaultButton
+    className="create-bug-button"
+    componentRef={
+      Object {
+        "current": null,
+      }
+    }
+    href="https://github.com/example/example/issues/new?title=buildTitle&body=buildText"
+    iconProps={
+      Object {
+        "iconName": "ladybugSolid",
+      }
+    }
+    onClick={[Function]}
+    target="_blank"
+  >
+    File issue
+  </CustomizedDefaultButton>
+  <FileIssueDetailsDialog
+    buttonRef={
+      Object {
+        "current": null,
+      }
+    }
+    fileIssueDetailsHandler={
+      FileIssueDetailsHandler {
+        "htmlElementUtils": HTMLElementUtils {
+          "clientWindow": [Window],
+          "dom": Document {
+            "location": Location {
+              "assign": [Function],
+              "hash": "",
+              "host": "localhost",
+              "hostname": "localhost",
+              "href": "http://localhost/",
+              "origin": "http://localhost",
+              "pathname": "/",
+              "port": "",
+              "protocol": "http:",
+              "reload": [Function],
+              "replace": [Function],
+              "search": "",
+              "toString": [Function],
+            },
+          },
+        },
+      }
+    }
+    getSettingsPanel={[Function]}
+    isOpen={false}
+    onDismiss={[Function]}
+    onOpenSettings={[Function]}
+    restoreFocus={false}
+  />
+</React.Fragment>
+`;
+
+exports[`FileIssueDetailsButtonTest render and click without issue tracker set 1`] = `
 <React.Fragment>
   <React.Fragment>
     <CustomizedDefaultButton
@@ -118,7 +177,7 @@ exports[`FileIssueDetailsButtonTest render without issue tracker set 1`] = `
 </React.Fragment>
 `;
 
-exports[`FileIssueDetailsButtonTest render without issue tracker set 2`] = `
+exports[`FileIssueDetailsButtonTest render and click without issue tracker set 2`] = `
 <React.Fragment>
   <React.Fragment>
     <CustomizedDefaultButton

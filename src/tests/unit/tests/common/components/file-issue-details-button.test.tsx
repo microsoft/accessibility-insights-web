@@ -10,7 +10,7 @@ import { FileIssueDetailsButton, FileIssueDetailsButtonProps } from '../../../..
 import { BugActionMessageCreator } from '../../../../../common/message-creators/bug-action-message-creator';
 
 describe('FileIssueDetailsButtonTest', () => {
-    test('render with an issue tracker path', () => {
+    test('render and click with an issue tracker path', () => {
         const issueTrackerPath = 'https://github.com/example/example/issues';
 
         const issueDetailsTextGeneratorMock = Mock.ofType(IssueDetailsTextGenerator);
@@ -23,10 +23,15 @@ describe('FileIssueDetailsButtonTest', () => {
             .returns(() => 'buildText')
             .verifiable();
 
+        const bugActionMessageCreatorMock = Mock.ofType(BugActionMessageCreator);
+        bugActionMessageCreatorMock
+            .setup(messageCreator => messageCreator.trackFileIssueClick(It.isAny(), 'gitHub'))
+            .verifiable(Times.once());
+
         const props: FileIssueDetailsButtonProps = {
             deps: {
                 issueDetailsTextGenerator: issueDetailsTextGeneratorMock.object,
-                bugActionMessageCreator: null,
+                bugActionMessageCreator: bugActionMessageCreatorMock.object,
             },
             issueTrackerPath: issueTrackerPath,
             issueDetailsData: {
@@ -39,9 +44,13 @@ describe('FileIssueDetailsButtonTest', () => {
         const wrapper = shallow(<FileIssueDetailsButton {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
         issueDetailsTextGeneratorMock.verifyAll();
+
+        wrapper.find(DefaultButton).simulate('click');
+        bugActionMessageCreatorMock.verifyAll();
+        expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    test('render without issue tracker set', () => {
+    test('render and click without issue tracker set', () => {
         const issueTrackerPath = '';
 
         const issueDetailsTextGeneratorMock = Mock.ofType(IssueDetailsTextGenerator);
@@ -56,7 +65,7 @@ describe('FileIssueDetailsButtonTest', () => {
 
         const bugActionMessageCreatorMock = Mock.ofType(BugActionMessageCreator);
         bugActionMessageCreatorMock
-            .setup(messageCreator => messageCreator.trackFileIssueClick(It.isAny(), It.isAny()))
+            .setup(messageCreator => messageCreator.trackFileIssueClick(It.isAny(), 'none'))
             .verifiable(Times.once());
 
         const props: FileIssueDetailsButtonProps = {
@@ -78,6 +87,7 @@ describe('FileIssueDetailsButtonTest', () => {
         issueDetailsTextGeneratorMock.verifyAll();
 
         wrapper.find(DefaultButton).simulate('click');
+        bugActionMessageCreatorMock.verifyAll();
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 });
