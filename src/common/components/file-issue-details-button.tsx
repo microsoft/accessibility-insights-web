@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-import { Callout, TooltipHost } from 'office-ui-fabric-react';
 import { DefaultButton, IButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 

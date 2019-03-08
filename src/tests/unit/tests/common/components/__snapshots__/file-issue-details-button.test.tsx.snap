@@ -61,22 +61,24 @@ exports[`FileIssueDetailsButtonTest render with an issue tracker path 1`] = `
 
 exports[`FileIssueDetailsButtonTest render without issue tracker set 1`] = `
 <React.Fragment>
-  <CustomizedDefaultButton
-    className="create-bug-button"
-    componentRef={
-      Object {
-        "current": null,
+  <React.Fragment>
+    <CustomizedDefaultButton
+      className="create-bug-button"
+      componentRef={
+        Object {
+          "current": null,
+        }
       }
-    }
-    disabled={true}
-    iconProps={
-      Object {
-        "iconName": "ladybugSolid",
+      iconProps={
+        Object {
+          "iconName": "ladybugSolid",
+        }
       }
-    }
-  >
-    File issue
-  </CustomizedDefaultButton>
+      onClick={[Function]}
+    >
+      File issue
+    </CustomizedDefaultButton>
+  </React.Fragment>
   <FileIssueDetailsDialog
     buttonRef={
       Object {
