@@ -23,7 +23,7 @@ describe('Launcher', () => {
                 run: (document, options, callback) => {},
             } as typeof Axe);
             const domMock = Mock.ofInstance(document);
-            const axeResponeHandlerMock = Mock.ofType(AxeResponseHandler);
+            const axeResponseHandlerMock = Mock.ofType(AxeResponseHandler);
             const scanParameterGeneratorMock = Mock.ofType(ScanParameterGenerator);
             const defaultOptions = { restoreScroll: true, runOnly: undefined };
             const optionsStub = {};
@@ -33,7 +33,7 @@ describe('Launcher', () => {
 
             scanParameterGeneratorMock.setup(spgm => spgm.getContext(domMock.object, optionsStub)).returns(() => domMock.object);
 
-            axeResponeHandlerMock.setup(arhm => arhm.handleResponse(errorMock.object, emptyResultsStub)).verifiable(Times.once());
+            axeResponseHandlerMock.setup(arhm => arhm.handleResponse(errorMock.object, emptyResultsStub)).verifiable(Times.once());
 
             axeMock
                 .setup(axe => axe.run(domMock.object as any, defaultOptions, It.is(isFunction)))
@@ -41,9 +41,9 @@ describe('Launcher', () => {
                 .verifiable(Times.once());
 
             const testObject = new Launcher(axeMock.object, scanParameterGeneratorMock.object, domMock.object, optionsStub);
-            testObject.runScan(axeResponeHandlerMock.object);
+            testObject.runScan(axeResponseHandlerMock.object);
 
-            axeResponeHandlerMock.verifyAll();
+            axeResponseHandlerMock.verifyAll();
             axeMock.verifyAll();
         });
     });
