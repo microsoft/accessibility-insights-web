@@ -3,13 +3,13 @@ Copyright (c) Microsoft Corporation. All rights reserved.
 Licensed under the MIT License.
 -->
 
-# ![Product Logo](./src/icons/brand/blue/brand-blue-48px.png) Accessibility Insights for Web
+## ![Product Logo](./src/icons/brand/blue/brand-blue-48px.png) Accessibility Insights for Web
 
 [![Build Status](https://dev.azure.com/ms/accessibility-insights-web/_apis/build/status/AccessibilityInsights-Web-CI?branchName=master)](https://dev.azure.com/ms/accessibility-insights-web/_build/latest?definitionId=63&branchName=master)
 
 Accessibility Insights for Web is a Google Chrome extension for assessing the accessibility of web sites and web applications.
 
-## Running the extension
+### Running the extension
 
 You can install the extension from one of the following links
 
@@ -17,9 +17,9 @@ You can install the extension from one of the following links
 -   ![Insider Logo](./src/icons/brand/violet/brand-violet-16px.png) [Insider](https://chrome.google.com/webstore/detail/nnmjfbmebeckhpejobgjjjnchlljiagp) (on feature completion)
 -   ![Production Logo](./src/icons/brand/blue/brand-blue-16px.png) [Production](https://chrome.google.com/webstore/detail/pbjjkligggfmakdaogkfomddhfmpjeni) (after validation in Insider)
 
-## Building the code
+### Building the code
 
-### 1. Clone the repository
+#### 1. Clone the repository
 
 -   Clone the repository using one of the following commands
     ```bash
@@ -34,14 +34,14 @@ You can install the extension from one of the following links
     cd accessibility-insights-web
     ```
 
-### 2. Install packages
+#### 2. Install packages
 
 -   Install the packages
     ```bash
     npm install
     ```
 
-### 3. Build and run unit tests
+#### 3. Build and run unit tests
 
 -   Run the unit tests
     ```bash
@@ -54,7 +54,7 @@ You can install the extension from one of the following links
     ```
     There are more details in the Testing section below.
 
-### 4. Load the extension locally
+#### 4. Load the extension locally
 
 -   Build the (unpacked) extension
     ```bash
@@ -73,7 +73,7 @@ You can install the extension from one of the following links
 
 -   Look for the ![Dev Logo](./src/icons/brand/gray/brand-gray-16px.png) extension icon to the right of the address bar
 
-### 5. Commands to run before check in
+#### 5. Commands to run before check in
 
 -   Run the below command to build, test, check if files have copyright header, check file format styling & tslint issues
     ```bash
@@ -84,15 +84,15 @@ You can install the extension from one of the following links
     npm run format
     ```
 
-## More Information
+### More Information
 
 [Developer Workflow](./docs/workflow.md)
 
-## Testing
+### Testing
 
 We use [jest](https://github.com/facebook/jest) as our test framework and [puppeteer](https://github.com/GoogleChrome/puppeteer) for browser automation in our end-to-end UI tests.
 
-### Using VS Code
+#### Using VS Code
 
 To run a task from the command palette, press **Ctrl + Shift + P**, select `Tasks: Run Task`, and select the task you want to run:
 
@@ -108,7 +108,7 @@ To debug using an external tool, run the `Debug current test file outside VS Cod
 
 You can start an interactive watch session that automatically runs tests affected by uncommitted changes. To do this, run `Begin Jest watch session` from the command palette.
 
-### Using the terminal
+#### Using the terminal
 
 `npm test` runs all unit tests.
 `npm test -- -u` runs all unit tests and updates snapshot files.
@@ -122,9 +122,16 @@ Options after the `--` are passed to Jest. For example, `npm test -- --watch` wi
 
 To debug using an external tool, run `node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand {RELATIVE_FILE_PATH}`. In Chrome, for example, navigate to `chrome://inspect` and click `Open dedicated DevTools for Node`.
 
-<!--Ada was here!-->
+## Data/Telemetry
+By opting into telemetry, you [help the community](https://go.microsoft.com/fwlink/?linkid=2077765) develop inclusive software. We collect anonymized data to identify the top accessibility issues found by the users. This will help focus the accessibility tools and standards community to improve guidelines, rules engines, and features.
 
-# Contributing
+This project collects usage data and sends it to Microsoft to help improve our products and services. Read our [privacy statement](https://privacy.microsoft.com/en-us/privacystatement) to learn more.
+
+## Reporting security vulnerabilities
+
+If you believe you have found a security vulnerability in this project, please follow [these steps](https://technet.microsoft.com/en-us/security/ff852094.aspx) to report it. For more information on how vulnerabilities are disclosed, see [Coordinated Vulnerability Disclosure](https://technet.microsoft.com/en-us/security/dn467923).
+
+## Contributing
 
 This project welcomes contributions and suggestions. Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
