@@ -105,8 +105,8 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
     private renderHelpText(): JSX.Element {
         if (this.state.showingHelpText) {
             return (
-                <div role="alert" aria-live="polite">
-                    Hey, you need to configure settings for this button to work.
+                <div role="alert" aria-live="polite" className="create-bug-button-help">
+                    Go to Settings to configure issue filing.
                 </div>
             );
         }
