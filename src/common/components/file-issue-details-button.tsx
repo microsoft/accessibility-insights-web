@@ -165,7 +165,6 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
                 gapSpace={0}
                 target={this.calloutWrapperElement.current}
                 onDismiss={this.testDismissCallout}
-                setInitialFocus={true}
                 hidden={!this.state.isCalloutVisible}
             >
                 Hey, you need to configure settings for this button to work.
