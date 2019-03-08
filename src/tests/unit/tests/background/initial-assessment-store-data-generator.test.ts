@@ -74,7 +74,7 @@ describe('InitialAssessmentStoreDataGeneratorTest', () => {
         expect(generator.generateInitialState(persisted)).toEqual(expected);
     });
 
-    it('generateInitalState with persisitedData, where assessments is empty', () => {
+    it('generateInitialState with persisitedData, where assessments is empty', () => {
         const defaultState = generator.generateInitialState();
         const persisted: IAssessmentStoreData = {
             persistedTabInfo: targetTab,
@@ -92,7 +92,7 @@ describe('InitialAssessmentStoreDataGeneratorTest', () => {
         expect(generator.generateInitialState(persisted)).toEqual(expected);
     });
 
-    it('generateInitalState with persisitedData, where persisitedTabInfo is not present', () => {
+    it('generateInitialState with persisitedData, where persisitedTabInfo is not present', () => {
         const persisted: IAssessmentStoreData = {
             assessmentNavState: {
                 selectedTestStep: 'invalid-step',
