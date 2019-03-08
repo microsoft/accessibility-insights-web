@@ -122,20 +122,7 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
                         Test callout
                     </DefaultButton>
                 </div>
-                <Callout
-                    // ariaLabelledBy="calloutLabel"
-                    // ariaDescribedBy="calloutDescription"
-                    // style={{ zIndex: 2147483649 }}
-                    role="alert"
-                    aria-live="polite"
-                    gapSpace={0}
-                    target={this.calloutWrapperElement.current}
-                    onDismiss={this.testDismissCallout}
-                    setInitialFocus={true}
-                    hidden={!this.state.isCalloutVisible}
-                >
-                    Hey, you need to configure settings for this button to work.
-                </Callout>
+                {this.testRenderCallout()}
                 <TooltipHost
                     content="Set up issue filing in Settings to enable this button - test tooltip"
                     id="create-bug-button-tooltip"
@@ -165,6 +152,25 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
     @autobind
     private testDismissCallout(): void {
         this.setState({ isCalloutVisible: false });
+    }
+
+    private testRenderCallout(): JSX.Element {
+        return (
+            <Callout
+                // ariaLabelledBy="calloutLabel"
+                // ariaDescribedBy="calloutDescription"
+                // style={{ zIndex: 2147483649 }}
+                role="alert"
+                aria-live="polite"
+                gapSpace={0}
+                target={this.calloutWrapperElement.current}
+                onDismiss={this.testDismissCallout}
+                setInitialFocus={true}
+                hidden={!this.state.isCalloutVisible}
+            >
+                Hey, you need to configure settings for this button to work.
+            </Callout>
+        );
     }
 
     private renderFileIssueButton(): JSX.Element {
