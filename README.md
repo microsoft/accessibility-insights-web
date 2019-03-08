@@ -3,6 +3,9 @@ Copyright (c) Microsoft Corporation. All rights reserved.
 Licensed under the MIT License.
 -->
 
+Ada was here!
+![Ada](./src/icons/ada/ada-multicolor-bubbles.png)
+
 # Accessibility Insights for Web
 
 ![Product Logo](./src/icons/brand/blue/brand-blue-128px.png)
