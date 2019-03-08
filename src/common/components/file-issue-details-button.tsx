@@ -160,14 +160,16 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
                 // ariaLabelledBy="calloutLabel"
                 // ariaDescribedBy="calloutDescription"
                 // style={{ zIndex: 2147483649 }}
-                role="alert"
-                aria-live="polite"
+                // role="alert"
+                // aria-live="polite"
                 gapSpace={0}
                 target={this.calloutWrapperElement.current}
                 onDismiss={this.testDismissCallout}
                 hidden={!this.state.isCalloutVisible}
             >
-                Hey, you need to configure settings for this button to work.
+                <div role="alert" aria-live="polite">
+                    Hey, you need to configure settings for this button to work.
+                </div>
             </Callout>
         );
     }
