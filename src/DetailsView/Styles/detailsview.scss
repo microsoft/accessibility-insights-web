@@ -1083,12 +1083,6 @@ div.insights-file-issue-details-dialog-container {
                             min-width: fit-content;
                         }
                     }
-                    .ms-Link {
-                        color: $communication-shade-10;
-                    }
-                    .ms-Link:hover {
-                        color: $communication-shade-30;
-                    }
                     .details-group-header-title {
                         font-size: $fontSizeM;
                         color: $neutral-100;
@@ -1099,7 +1093,7 @@ div.insights-file-issue-details-dialog-container {
                         color: $secondary-text;
                     }
                     .ms-GroupHeader.is-selected {
-                        background-color: $communication-tint-40;
+                        background-color: $row-selected-background;
                     }
                     .ms-GroupHeader .ms-GroupHeader-check {
                         padding: 12px;
@@ -1112,17 +1106,17 @@ div.insights-file-issue-details-dialog-container {
                         min-width: 100% !important;
                         max-width: 100% !important;
                         &.is-selected {
-                            background-color: $communication-tint-40;
+                            background-color: $row-selected-background;
                         }
                     }
                     @mixin check-when-checked {
-                        border-color: $neutral-30;
-                        background: $neutral-8;
+                        border-color: $check-box-border;
+                        background: $check-box-background;
                         &:before {
-                            background: $neutral-8;
+                            background: $check-box-background;
                         }
                         .ms-Check-check {
-                            color: $neutral-100;
+                            color: $check-box-tick;
                         }
                     }
                     @mixin check-when-unchecked {
@@ -1137,11 +1131,11 @@ div.insights-file-issue-details-dialog-container {
                     }
                     @mixin check-hover-when-unchecked {
                         @include check-when-unchecked();
-                        border-color: $neutral-30;
-                        background: $neutral-8;
+                        border-color: $check-box-border;
+                        background: $check-box-background;
                         opacity: 1;
                         &:before {
-                            background: $neutral-8;
+                            background: $check-box-background;
                         }
                         .ms-Check-check {
                             opacity: 1;
@@ -1189,11 +1183,6 @@ div.insights-file-issue-details-dialog-container {
                         }
                         &:after {
                             width: 2px;
-                        }
-                    }
-                    .ms-DetailsHeader-cell {
-                        &:hover {
-                            background: $neutral-8;
                         }
                     }
                     .ms-GroupHeader,
@@ -1278,12 +1267,6 @@ div.insights-file-issue-details-dialog-container {
                         .fix-content ul {
                             margin: 0px;
                             -webkit-padding-start: 20px;
-                        }
-                        .ms-Link {
-                            color: $communication-shade-10;
-                        }
-                        .ms-Link:hover {
-                            color: $communication-shade-30;
                         }
                     }
                     .issue-detail-select-message {
