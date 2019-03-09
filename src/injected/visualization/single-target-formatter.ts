@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-/// <reference path="./heading-formatter.ts" />
 import { IFormatter, SingleTargetDrawerConfiguration } from './iformatter';
 
 export class SingleTargetFormatter implements IFormatter {

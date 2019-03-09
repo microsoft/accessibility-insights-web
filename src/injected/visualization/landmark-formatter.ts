@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-/// <reference path="./heading-formatter.ts" />
-/// <reference path="../scanner-utils.ts" />
 import { DialogRenderer } from '../dialog-renderer';
 import { IAssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
 import { IHtmlElementAxeResults } from '../scanner-utils';

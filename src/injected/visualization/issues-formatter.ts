@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-/// <reference path="./heading-formatter.ts" />
 import { getRTL } from '@uifabric/utilities';
 import * as ReactDOM from 'react-dom';
 

@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-/// <reference path="./../client-utils.ts" />
 import { IHtmlElementAxeResults } from '../scanner-utils';
 import { IPartialSVGDrawerConfiguration } from './drawer-provider';
 import { IFormatter, ISVGDrawerConfiguration } from './iformatter';
