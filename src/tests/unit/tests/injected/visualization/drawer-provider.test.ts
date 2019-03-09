@@ -13,9 +13,11 @@ import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils'
 import { NullDrawer } from '../../../../../injected/visualization/null-drawer';
 import { SingleTargetDrawer } from '../../../../../injected/visualization/single-target-drawer';
 import { SVGDrawerV2 } from '../../../../../injected/visualization/svg-drawer-v2';
+import { HTMLElementUtils } from '../../../../../common/html-element-utils';
 
 describe('DrawerProviderTests', () => {
     let testObject: DrawerProvider;
+    let htmlElementUtils: IMock<HTMLElementUtils>;
     let windowUtils: IMock<WindowUtils>;
     let shadowUtils: IMock<ShadowUtils>;
     let drawerUtils: IMock<DrawerUtils>;
@@ -25,6 +27,7 @@ describe('DrawerProviderTests', () => {
     const clientBrowserAdapter = Mock.ofType<ClientBrowserAdapter>();
 
     beforeEach(() => {
+        htmlElementUtils = Mock.ofType(HTMLElementUtils);
         windowUtils = Mock.ofType(WindowUtils);
         shadowUtils = Mock.ofType(ShadowUtils);
         drawerUtils = Mock.ofType(DrawerUtils);
@@ -34,6 +37,7 @@ describe('DrawerProviderTests', () => {
         const getRTLMock = Mock.ofInstance(() => null);
 
         testObject = new DrawerProvider(
+            htmlElementUtils.object,
             windowUtils.object,
             shadowUtils.object,
             drawerUtils.object,

@@ -33,6 +33,7 @@ export type IPartialSVGDrawerConfiguration = DeepPartial<ISVGDrawerConfiguration
 
 export class DrawerProvider {
     constructor(
+        private readonly htmlElementUtils: HTMLElementUtils,
         private readonly windowUtils: WindowUtils,
         private readonly shadowUtils: ShadowUtils,
         private readonly drawerUtils: DrawerUtils,
@@ -41,7 +42,7 @@ export class DrawerProvider {
         private readonly frameCommunicator: FrameCommunicator,
         private readonly clientBrowserAdapter: ClientBrowserAdapter,
         private readonly getRTLFunc: typeof getRTL,
-    ) {}
+    ) { }
 
     public createNullDrawer(): IDrawer {
         return new NullDrawer();
@@ -52,7 +53,7 @@ export class DrawerProvider {
     }
 
     public createSVGDrawer(config: IPartialSVGDrawerConfiguration = null): IDrawer {
-        const tabbableElementsHelper = new TabbableElementsHelper(new HTMLElementUtils(this.dom));
+        const tabbableElementsHelper = new TabbableElementsHelper(this.htmlElementUtils);
         const centerPositionCalculator = new CenterPositionCalculator(
             this.drawerUtils,
             this.windowUtils,
@@ -91,6 +92,7 @@ export class DrawerProvider {
     public createIssuesDrawer(): IDrawer {
         const formatter = new IssuesFormatter(
             this.frameCommunicator,
+            this.htmlElementUtils,
             this.windowUtils,
             this.shadowUtils,
             this.clientBrowserAdapter,

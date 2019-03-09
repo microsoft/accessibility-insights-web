@@ -14,12 +14,14 @@ import { IHtmlElementAxeResults } from '../scanner-utils';
 import { ShadowUtils } from '../shadow-utils';
 import { IHeadingStyleConfiguration } from './heading-formatter';
 import { IDrawerConfiguration, IFormatter } from './iformatter';
+import { HTMLElementUtils } from '../../common/html-element-utils';
 
 export class IssuesFormatter implements IFormatter {
     private dialogRenderer: DialogRenderer;
 
     constructor(
         frameCommunicator: FrameCommunicator,
+        htmlElementUtils: HTMLElementUtils,
         windowUtils: WindowUtils,
         shadowUtils: ShadowUtils,
         clientBrowserAdapter: ClientBrowserAdapter,
@@ -29,6 +31,7 @@ export class IssuesFormatter implements IFormatter {
             document,
             ReactDOM.render,
             frameCommunicator,
+            htmlElementUtils,
             windowUtils,
             shadowUtils,
             clientBrowserAdapter,

@@ -14,7 +14,7 @@ export class ShadowInitializer {
         private htmlElementUtils: HTMLElementUtils,
         private fileRequestHelper: FileRequestHelper,
         private logger: Logger = createDefaultLogger(),
-    ) {}
+    ) { }
 
     public async initialize(): Promise<void> {
         try {
@@ -33,19 +33,17 @@ export class ShadowInitializer {
     }
 
     private createShadowHost() {
+        const rootContainer = this.htmlElementUtils.querySelector('#accessibility-insights-root-container');
+
         const shadowHostElement = this.createDivWithId('insights-shadow-host');
 
-        this.htmlElementUtils.querySelector('body').appendChild(shadowHostElement);
+        rootContainer.appendChild(shadowHostElement);
 
         return shadowHostElement;
     }
 
     private removeExistingShadowHost() {
-        const hosts = this.htmlElementUtils.querySelectorAll('#insights-shadow-host');
-
-        for (let i = 0; i < hosts.length; i++) {
-            hosts[i].remove();
-        }
+        this.htmlElementUtils.deleteAllElements('#insights-shadow-host');
     }
 
     private createShadowContainer() {

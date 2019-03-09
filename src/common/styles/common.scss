@@ -4,14 +4,11 @@
 @import 'colors.scss';
 @import 'fonts.scss';
 
-body {
-    font-family: $fontFamily;
-}
-
 $focus-ring-color: $neutral-100;
 
 @mixin set-focus-ring-styles($property: 'border') {
     #{$property}: 1px solid $focus-ring-color;
+
     @include ms-high-contrast-override {
         #{$property}: 1px dashed windowtext !important;
     }
@@ -45,8 +42,10 @@ button::after {
 
 .generic-toggle-component {
     margin-bottom: 4vh;
+
     .toggle-container {
         margin-bottom: 1vh;
+
         .toggle-name {
             display: inline-block;
             font-size: 17px;
@@ -61,6 +60,7 @@ button::after {
 
 .insights-link {
     color: $communication-shade-10 !important;
+
     &:hover {
         color: $communication-shade-30 !important;
     }
