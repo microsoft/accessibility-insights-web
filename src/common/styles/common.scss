@@ -67,7 +67,7 @@ button::after {
     // marking important to override office fabric style
     color: $link !important;
     &:hover {
-        color: $link-hover;
+        color: $link-hover !important;
     }
 }
 
