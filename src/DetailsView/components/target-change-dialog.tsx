@@ -7,6 +7,7 @@ import { Link } from 'office-ui-fabric-react/lib/Link';
 import { TooltipHost } from 'office-ui-fabric-react/lib/Tooltip';
 import * as React from 'react';
 
+import { css } from '@uifabric/utilities';
 import * as Markup from '../../assessments/markup';
 import { BlockingDialog } from '../../common/components/blocking-dialog';
 import { NewTabLink } from '../../common/components/new-tab-link';
@@ -14,7 +15,6 @@ import { ITab } from '../../common/itab';
 import { PersistedTabInfo } from '../../common/types/store-data/iassessment-result-data';
 import { UrlParser } from '../../common/url-parser';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
-import { css } from '@uifabric/utilities';
 
 export type TargetChangeDialogDeps = {
     urlParser: UrlParser;

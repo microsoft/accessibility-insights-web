@@ -4,11 +4,11 @@ import { Link } from 'office-ui-fabric-react/lib/Link';
 import { MessageBar, MessageBarType } from 'office-ui-fabric-react/lib/MessageBar';
 import * as React from 'react';
 
+import { css } from '@uifabric/utilities';
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 import { FeatureFlags } from '../../common/feature-flags';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
-import { css } from '@uifabric/utilities';
 
 export interface TabInfoProps {
     isTargetPageHidden: boolean;
