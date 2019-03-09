@@ -9,6 +9,7 @@ import { Logger } from '../../../../common/logging/logger';
 import { ShadowInitializer } from '../../../../injected/shadow-initializer';
 import { NodeListBuilder } from '../../common/node-list-builder';
 import { HtmlElementStubBuilder } from '../../stubs/html-element-stub-builder';
+import { rootContainerId } from '../../../../injected/constants';
 
 describe('ShadowInitializerTests', () => {
     const cssFileUrl: string = 'cssFileUrl';
@@ -27,7 +28,7 @@ describe('ShadowInitializerTests', () => {
         shadowRoot = document.createElement('div') as any;
 
         htmlElementUtilsMock
-            .setup(x => x.querySelector('#accessibility-insights-root-container'))
+            .setup(x => x.querySelector(`#${rootContainerId}`))
             .returns(() => rootContainer)
             .verifiable();
 

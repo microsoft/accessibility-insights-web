@@ -5,10 +5,10 @@ import { HTMLElementUtils } from './../../common/html-element-utils';
 export class RootContainerCreator {
     constructor(private readonly HTMLElementUtils: HTMLElementUtils) {}
 
-    public create(): void {
-        this.HTMLElementUtils.deleteAllElements('#accessibility-insights-root-container');
+    public create(id: string): void {
+        this.HTMLElementUtils.deleteAllElements(`#${id}`);
         const root = document.createElement('div');
-        root.id = 'accessibility-insights-root-container';
+        root.id = id;
         this.HTMLElementUtils.querySelector('body').appendChild(root);
     }
 }

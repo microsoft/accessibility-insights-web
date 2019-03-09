@@ -17,14 +17,17 @@ describe(RootContainerCreator, () => {
     });
 
     it('should create root container', () => {
-        htmlElementUtilsMock.setup(h => h.deleteAllElements('#accessibility-insights-root-container')).verifiable();
+        const id = 'test-id';
+        const selector = `#${id}`;
 
-        new RootContainerCreator(htmlElementUtilsMock.object).create();
+        htmlElementUtilsMock.setup(h => h.deleteAllElements(selector)).verifiable();
+
+        new RootContainerCreator(htmlElementUtilsMock.object).create(id);
 
         htmlElementUtilsMock.verifyAll();
         expect(bodyStub.childNodes.length).toBe(1);
 
-        const childElement = bodyStub.querySelector('#accessibility-insights-root-container');
+        const childElement = bodyStub.querySelector(selector);
         expect(childElement).toBeDefined();
         expect(childElement.tagName).toBe('DIV');
     });

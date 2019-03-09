@@ -29,6 +29,7 @@ import { TabStopsListener } from './tab-stops-listener';
 import { DrawerProvider } from './visualization/drawer-provider';
 import { DrawerUtils } from './visualization/drawer-utils';
 import { RootContainerCreator } from './visualization/root-container-creator';
+import { rootContainerId } from './constants';
 
 export class WindowInitializer {
     public shadowInitializer: any;
@@ -55,7 +56,7 @@ export class WindowInitializer {
         this.clientUtils = new ClientUtils(window);
         this.scannerUtils = new ScannerUtils(scan);
 
-        new RootContainerCreator(htmlElementUtils).create();
+        new RootContainerCreator(htmlElementUtils).create(rootContainerId);
 
         this.shadowInitializer = new ShadowInitializer(
             this.clientChromeAdapter,

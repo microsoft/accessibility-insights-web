@@ -22,6 +22,7 @@ import { MainWindowContext } from '../../../../injected/main-window-context';
 import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from '../../../../injected/scanner-utils';
 import { ShadowUtils } from '../../../../injected/shadow-utils';
 import { TargetPageActionMessageCreator } from '../../../../injected/target-page-action-message-creator';
+import { rootContainerId } from '../../../../injected/constants';
 
 describe('DialogRendererTests', () => {
     let htmlElementUtilsMock: IMock<HTMLElementUtils>;
@@ -517,7 +518,7 @@ describe('DialogRendererTests', () => {
             htmlElementUtilsMock.setup(h => h.deleteAllElements('.insights-dialog-container')).verifiable(Times.once());
 
             domMock
-                .setup(dom => dom.querySelector('#accessibility-insights-root-container'))
+                .setup(dom => dom.querySelector(`#${rootContainerId}`))
                 .returns(() => rootContainerMock.object)
                 .verifiable(Times.once());
 

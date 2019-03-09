@@ -122,7 +122,7 @@ export class DialogRenderer {
 
         const dialogContainer = this.dom.createElement('div');
         dialogContainer.setAttribute('class', 'insights-dialog-container');
-        this.dom.querySelector('#accessibility-insights-root-container').appendChild(dialogContainer);
+        this.dom.querySelector(`#${rootContainerId}`).appendChild(dialogContainer);
         return dialogContainer;
     }
 
