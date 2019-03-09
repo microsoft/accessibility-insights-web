@@ -52,7 +52,7 @@ describe('LaunchPadItemRow', () => {
                     </div>
                     <div className="ms-Grid-col ms-sm9">
                         <div className="launch-pad-item-title">
-                            <Link role="link" onClick={props.onClickTitle} aria-describedby={descriptionId}>
+                            <Link role="link" className="insights-link" onClick={props.onClickTitle} aria-describedby={descriptionId}>
                                 {props.title}
                             </Link>
                         </div>

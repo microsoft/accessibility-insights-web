@@ -14,6 +14,7 @@ import { ITab } from '../../common/itab';
 import { PersistedTabInfo } from '../../common/types/store-data/iassessment-result-data';
 import { UrlParser } from '../../common/url-parser';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
+import { css } from '@uifabric/utilities';
 
 export type TargetChangeDialogDeps = {
     urlParser: UrlParser;
@@ -91,7 +92,11 @@ export class TargetChangeDialog extends React.Component<TargetChangeDialogProps>
     private renderCurrentTabLink(tab: ITab): JSX.Element {
         return (
             <TooltipHost content={tab.url} id={'current-target-page-link'} calloutProps={{ gapSpace: 0 }}>
-                <Link role="link" className="target-page-link" onClick={this.props.actionMessageCreator.switchToTargetTab}>
+                <Link
+                    role="link"
+                    className={css('insights-link', 'target-page-link')}
+                    onClick={this.props.actionMessageCreator.switchToTargetTab}
+                >
                     {tab.title}
                 </Link>
             </TooltipHost>

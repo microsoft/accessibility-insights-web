@@ -6,18 +6,25 @@ import * as React from 'react';
 
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
 
-describe('NewTabLinkTest', () => {
-    test('render content', () => {
+describe(NewTabLink, () => {
+    test('render content with custom className', () => {
+        const props: ILinkProps = {
+            href: 'test',
+            className: 'custom-class',
+        };
+
+        const wrapper = shallow(<NewTabLink {...props} />);
+
+        expect(wrapper.getElement()).toMatchSnapshot();
+    });
+
+    test('render content without custom className', () => {
         const props: ILinkProps = {
             href: 'test',
         };
 
         const wrapper = shallow(<NewTabLink {...props} />);
 
-        const linkProps = { ...props, target: '_blank' };
-        const link = wrapper.find(linkProps);
-
-        expect(link.exists()).toBe(true);
-        expect(link.type()).toBe(Link);
+        expect(wrapper.getElement()).toMatchSnapshot();
     });
 });

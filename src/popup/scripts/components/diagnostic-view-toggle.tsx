@@ -167,6 +167,7 @@ export class DiagnosticViewToggle extends React.Component<DiagnosticViewTogglePr
 
         return (
             <Link
+                className="insights-link"
                 href="#"
                 onClick={ev =>
                     this.props.actionMessageCreator.openDetailsView(ev as any, this.props.type, this.props.telemetrySource, pivot)
