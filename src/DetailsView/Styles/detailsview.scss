@@ -22,6 +22,8 @@ body {
 }
 
 .switcher-dropdown-option {
+    display: flex;
+    flex-direction: row;
     i {
         margin-right: 8px;
     }
@@ -335,19 +337,25 @@ div.insights-file-issue-details-dialog-container {
             margin-left: 24px;
             .ms-Dropdown {
                 &:focus {
-                    border: 1px $neutral-0 solid;
+                    .ms-Dropdown-title {
+                        border: 2px $switcher-focus-border solid;
+                    }
                 }
             }
             .ms-Dropdown-title {
                 background-color: $ada-brand-variant;
                 height: 32px;
-                border: none;
+                border: 2px $switcher-border solid;
+                box-sizing: border-box;
                 border-radius: 2px;
                 width: 139px;
                 color: $neutral-0;
                 i {
                     margin-right: 8px;
                 }
+            }
+            .ms-Dropdown-caretDownWrapper {
+                top: 4px;
             }
             .ms-Dropdown-caretDown {
                 color: $neutral-0;
@@ -1316,7 +1324,9 @@ div.insights-file-issue-details-dialog-container {
                             margin-inline-end: 0px;
                         }
                         .overview-help-container {
-                            background-color: $neutral-4;
+                            background-color: $help-links-section-background;
+                            border: 1px solid $help-links-section-border;
+                            box-sizing: border-box;
                             padding: 5%;
                             border-radius: 5px;
                         }
