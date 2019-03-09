@@ -3,6 +3,10 @@
 @import '../../../node_modules/office-ui-fabric-react/dist/sass/Icon.Definitions';
 @import '../../common/styles/colors.scss';
 
+#accessibility-insights-root-container {
+    visibility: hidden !important;
+}
+
 #accessibility-insights-root-container,
 #insights-shadow-container {
     @import '../../common/styles/common.scss';
