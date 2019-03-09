@@ -38,7 +38,7 @@ describe('ShadowInitializerTests', () => {
                         return element.id === 'insights-shadow-host';
                     }),
                 ),
-        )
+            )
             .returns(() => shadowRoot)
             .verifiable();
 
@@ -48,7 +48,12 @@ describe('ShadowInitializerTests', () => {
             .verifiable();
 
         const loggerMock = Mock.ofType<Logger>();
-        testSubject = new ShadowInitializer(chromeAdapter.object, htmlElementUtilsMock.object, fileRequestHelperMock.object, loggerMock.object);
+        testSubject = new ShadowInitializer(
+            chromeAdapter.object,
+            htmlElementUtilsMock.object,
+            fileRequestHelperMock.object,
+            loggerMock.object,
+        );
     });
 
     afterEach(() => {
@@ -56,9 +61,7 @@ describe('ShadowInitializerTests', () => {
     });
 
     test('remove existing & create new shadow container on initialize', async () => {
-        htmlElementUtilsMock
-            .setup(x => x.deleteAllElements('#insights-shadow-host'))
-            .verifiable();
+        htmlElementUtilsMock.setup(x => x.deleteAllElements('#insights-shadow-host')).verifiable();
 
         fileRequestHelperMock
             .setup(x => x.getFileContent(cssFileUrl))

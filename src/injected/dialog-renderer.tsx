@@ -126,7 +126,6 @@ export class DialogRenderer {
         return dialogContainer;
     }
 
-
     private getFailedRules(data: IHtmlElementAxeResults): IDictionaryStringTo<DecoratedAxeNodeResult> {
         return data.ruleResults;
     }

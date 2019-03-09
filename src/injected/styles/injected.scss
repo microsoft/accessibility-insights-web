@@ -418,17 +418,15 @@
     }
 
     .insights-pseudo-selector-style-container {
-
         *::before,
         *::after {
             border: 1px solid red;
         }
     }
-
 }
 
 // We need the below styling only when not using shadow dom
-#accessibility-insights-root-container>.insights-dialog-container {
+#accessibility-insights-root-container > .insights-dialog-container {
     position: absolute !important;
     top: 0px !important;
     left: 0px !important;

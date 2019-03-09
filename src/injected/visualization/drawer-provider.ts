@@ -42,7 +42,7 @@ export class DrawerProvider {
         private readonly frameCommunicator: FrameCommunicator,
         private readonly clientBrowserAdapter: ClientBrowserAdapter,
         private readonly getRTLFunc: typeof getRTL,
-    ) { }
+    ) {}
 
     public createNullDrawer(): IDrawer {
         return new NullDrawer();

@@ -59,12 +59,12 @@ describe('DialogRendererTests', () => {
             },
             querySelector: selector => null,
             querySelectorAll: selector => null,
-            appendChild: node => { },
+            appendChild: node => {},
         } as any);
 
         shadowContainerMock = Mock.ofInstance({
-            querySelector: selector => { },
-            appendChild: node => { },
+            querySelector: selector => {},
+            appendChild: node => {},
         } as any);
         shadowRootMock = Mock.ofInstance({
             querySelector: selector => null,
@@ -407,7 +407,7 @@ describe('DialogRendererTests', () => {
                     }),
                     It.is((container: any) => container != null),
                 ),
-        )
+            )
             .verifiable(Times.once());
     }
 
@@ -453,7 +453,7 @@ describe('DialogRendererTests', () => {
                         },
                     ),
                 ),
-        )
+            )
             .callback((command, cb) => {
                 subscribeCallback = cb;
             })
@@ -514,12 +514,10 @@ describe('DialogRendererTests', () => {
 
     function setupDomMockForMainWindow(underShadowDom: boolean = true): void {
         if (!underShadowDom) {
+            htmlElementUtilsMock.setup(h => h.deleteAllElements('.insights-dialog-container')).verifiable(Times.once());
 
-            htmlElementUtilsMock
-                .setup(h => h.deleteAllElements('.insights-dialog-container'))
-                .verifiable(Times.once());
-
-            domMock.setup(dom => dom.querySelector('#accessibility-insights-root-container'))
+            domMock
+                .setup(dom => dom.querySelector('#accessibility-insights-root-container'))
                 .returns(() => rootContainerMock.object)
                 .verifiable(Times.once());
 

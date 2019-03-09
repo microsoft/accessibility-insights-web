@@ -1,9 +1,9 @@
 import { Mock } from 'typemoq';
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { RootContainerCreator } from "../../../../../injected/visualization/root-container-creator";
-import { HTMLElementUtils } from "../../../../../common/html-element-utils";
-import { IMock } from "typemoq";
+import { RootContainerCreator } from '../../../../../injected/visualization/root-container-creator';
+import { HTMLElementUtils } from '../../../../../common/html-element-utils';
+import { IMock } from 'typemoq';
 
 describe(RootContainerCreator, () => {
     let htmlElementUtilsMock: IMock<HTMLElementUtils>;
@@ -16,9 +16,8 @@ describe(RootContainerCreator, () => {
         htmlElementUtilsMock.setup(h => h.querySelector('body')).returns(() => bodyStub);
     });
 
-    it("should create root container", () => {
-        htmlElementUtilsMock.setup(h => h.deleteAllElements('#accessibility-insights-root-container'))
-            .verifiable();
+    it('should create root container', () => {
+        htmlElementUtilsMock.setup(h => h.deleteAllElements('#accessibility-insights-root-container')).verifiable();
 
         new RootContainerCreator(htmlElementUtilsMock.object).create();
 
@@ -29,7 +28,4 @@ describe(RootContainerCreator, () => {
         expect(childElement).toBeDefined();
         expect(childElement.tagName).toBe('DIV');
     });
-
-
-
 });

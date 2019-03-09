@@ -14,7 +14,7 @@ export class ShadowInitializer {
         private htmlElementUtils: HTMLElementUtils,
         private fileRequestHelper: FileRequestHelper,
         private logger: Logger = createDefaultLogger(),
-    ) { }
+    ) {}
 
     public async initialize(): Promise<void> {
         try {

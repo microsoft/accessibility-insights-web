@@ -3,7 +3,7 @@
 import { HTMLElementUtils } from './../../common/html-element-utils';
 
 export class RootContainerCreator {
-    constructor(private readonly HTMLElementUtils: HTMLElementUtils) { }
+    constructor(private readonly HTMLElementUtils: HTMLElementUtils) {}
 
     public create(): void {
         this.HTMLElementUtils.deleteAllElements('#accessibility-insights-root-container');
