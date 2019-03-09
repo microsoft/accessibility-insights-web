@@ -1,9 +1,9 @@
 import { Mock } from 'typemoq';
+import { IMock } from 'typemoq';
+import { HTMLElementUtils } from '../../../../../common/html-element-utils';
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { RootContainerCreator } from '../../../../../injected/visualization/root-container-creator';
-import { HTMLElementUtils } from '../../../../../common/html-element-utils';
-import { IMock } from 'typemoq';
 
 describe(RootContainerCreator, () => {
     let htmlElementUtilsMock: IMock<HTMLElementUtils>;

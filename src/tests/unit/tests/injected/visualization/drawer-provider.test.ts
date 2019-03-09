@@ -3,6 +3,7 @@
 import { IMock, Mock } from 'typemoq';
 
 import { ClientBrowserAdapter } from '../../../../../common/client-browser-adapter';
+import { HTMLElementUtils } from '../../../../../common/html-element-utils';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { ClientUtils } from '../../../../../injected/client-utils';
 import { FrameCommunicator } from '../../../../../injected/frameCommunicators/frame-communicator';
@@ -13,7 +14,6 @@ import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils'
 import { NullDrawer } from '../../../../../injected/visualization/null-drawer';
 import { SingleTargetDrawer } from '../../../../../injected/visualization/single-target-drawer';
 import { SVGDrawerV2 } from '../../../../../injected/visualization/svg-drawer-v2';
-import { HTMLElementUtils } from '../../../../../common/html-element-utils';
 
 describe('DrawerProviderTests', () => {
     let testObject: DrawerProvider;

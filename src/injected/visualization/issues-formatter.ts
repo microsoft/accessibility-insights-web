@@ -5,13 +5,13 @@ import { getRTL } from '@uifabric/utilities';
 import * as ReactDOM from 'react-dom';
 
 import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
+import { HTMLElementUtils } from '../../common/html-element-utils';
 import { WindowUtils } from '../../common/window-utils';
 import { DialogRenderer } from '../dialog-renderer';
 import { FrameCommunicator } from '../frameCommunicators/frame-communicator';
 import { IHtmlElementAxeResults } from '../scanner-utils';
 import { ShadowUtils } from '../shadow-utils';
 import { IHeadingStyleConfiguration } from './heading-formatter';
-import { HTMLElementUtils } from '../../common/html-element-utils';
 import { DrawerConfiguration, IFormatter } from './iformatter';
 
 export class IssuesFormatter implements IFormatter {
