@@ -3,21 +3,21 @@
 import { IAssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
 import { DrawerUtils } from './drawer-utils';
 import { HighlightBoxFormatter } from './highlight-box-formatter';
-import { IDrawerConfiguration } from './iformatter';
+import { DrawerConfiguration } from './iformatter';
 
 export class CustomWidgetsFormatter extends HighlightBoxFormatter {
     constructor() {
         super();
     }
 
-    public getDrawerConfiguration(element: HTMLElement, data: IAssessmentVisualizationInstance): IDrawerConfiguration {
-        const drawerConfig: IDrawerConfiguration = {
+    public getDrawerConfiguration(element: HTMLElement, data: IAssessmentVisualizationInstance): DrawerConfiguration {
+        const drawerConfig: DrawerConfiguration = {
             ...super.getDrawerConfiguration(element, data),
-            getBoundingRect: element => {
-                if (this.isCompositeCustomWidget(element)) {
-                    return DrawerUtils.getBoundingClientRectIncludingChildren(element);
+            getBoundingRect: elem => {
+                if (this.isCompositeCustomWidget(elem)) {
+                    return DrawerUtils.getBoundingClientRectIncludingChildren(elem);
                 } else {
-                    return element.getBoundingClientRect();
+                    return elem.getBoundingClientRect();
                 }
             },
         };
@@ -25,7 +25,7 @@ export class CustomWidgetsFormatter extends HighlightBoxFormatter {
         return drawerConfig;
     }
 
-    private isCompositeCustomWidget(element: Element) {
+    private isCompositeCustomWidget(element: Element): boolean {
         const role = element.getAttribute('role');
         return (
             role === 'combobox' ||

@@ -1,9 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IHtmlElementAxeResults } from '../scanner-utils';
+import { AxeResultsWithFrameLevel } from '../frameCommunicators/html-element-axe-results-helper';
 
-// tslint:disable-next-line:interface-name
-interface IDrawerConfiguration {
+export interface DrawerConfiguration {
     outlineStyle?: string;
     borderColor: string;
     showVisualization: boolean;
@@ -16,17 +15,17 @@ interface IDrawerConfiguration {
 }
 
 // tslint:disable-next-line:interface-name
-interface ITextBoxConfig extends IBoxConfig {
+export interface ITextBoxConfig extends IBoxConfig {
     boxHeight?: string;
 }
 
 // tslint:disable-next-line:interface-name
-interface IFailureBoxConfig extends IBoxConfig {
+export interface IFailureBoxConfig extends IBoxConfig {
     hasDialogView?: boolean;
 }
 
 // tslint:disable-next-line:interface-name
-interface IBoxConfig {
+export interface IBoxConfig {
     fontColor: string;
     background: string;
     text: string;
@@ -34,7 +33,7 @@ interface IBoxConfig {
 }
 
 // tslint:disable-next-line:interface-name
-interface IStrokeConfiguration {
+export interface IStrokeConfiguration {
     stroke: string;
     strokeWidth: string;
     strokeDasharray?: string;
@@ -42,24 +41,24 @@ interface IStrokeConfiguration {
 }
 
 // tslint:disable-next-line:interface-name
-interface ICircleConfiguration extends IStrokeConfiguration {
+export interface ICircleConfiguration extends IStrokeConfiguration {
     ellipseRx: string;
     ellipseRy: string;
     fill: string;
 }
 
 // tslint:disable-next-line:interface-name
-interface ITextConfiguration {
+export interface ITextConfiguration {
     textAnchor: string;
     fontColor: string;
     showTabIndexedLabel?: boolean;
 }
 
 // tslint:disable-next-line:interface-name
-type ILineConfiguration = IStrokeConfiguration;
+export type ILineConfiguration = IStrokeConfiguration;
 
 // tslint:disable-next-line:interface-name
-interface ISVGDrawerConfiguration {
+export interface ISVGDrawerConfiguration {
     circle: ICircleConfiguration;
     focusedCircle: ICircleConfiguration;
     tabIndexLabel: ITextConfiguration;
@@ -67,12 +66,12 @@ interface ISVGDrawerConfiguration {
     focusedLine: ILineConfiguration;
 }
 
-interface SingleTargetDrawerConfiguration {
+export interface SingleTargetDrawerConfiguration {
     injectedClassName: string;
 }
 
 // tslint:disable-next-line:interface-name
-interface IFormatter {
+export interface IFormatter {
     getDrawerConfiguration(element: Node, data: AxeResultsWithFrameLevel): any;
     getDialogRenderer();
 }

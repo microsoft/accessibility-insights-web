@@ -1,9 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-/// <reference path="./iformatter.d.ts" />
 /// <reference path="./heading-formatter.ts" />
 import { getRTL } from '@uifabric/utilities';
-import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
@@ -13,7 +11,7 @@ import { FrameCommunicator } from '../frameCommunicators/frame-communicator';
 import { IHtmlElementAxeResults } from '../scanner-utils';
 import { ShadowUtils } from '../shadow-utils';
 import { IHeadingStyleConfiguration } from './heading-formatter';
-import { IDrawerConfiguration, IFormatter } from './iformatter';
+import { DrawerConfiguration, IFormatter } from './iformatter';
 
 export class IssuesFormatter implements IFormatter {
     private dialogRenderer: DialogRenderer;
@@ -41,8 +39,8 @@ export class IssuesFormatter implements IFormatter {
         fontColor: '#FFFFFF',
     };
 
-    public getDrawerConfiguration(element: HTMLElement, data: IHtmlElementAxeResults): IDrawerConfiguration {
-        const config: IDrawerConfiguration = {
+    public getDrawerConfiguration(element: HTMLElement, data: IHtmlElementAxeResults): DrawerConfiguration {
+        const config: DrawerConfiguration = {
             failureBoxConfig: {
                 background: IssuesFormatter.style.borderColor,
                 fontColor: '#FFFFFF',
