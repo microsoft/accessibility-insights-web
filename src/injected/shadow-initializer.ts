@@ -5,6 +5,7 @@ import { FileRequestHelper } from '../common/file-request-helper';
 import { createDefaultLogger } from '../common/logging/default-logger';
 import { Logger } from '../common/logging/logger';
 import { HTMLElementUtils } from './../common/html-element-utils';
+import { rootContainerId } from './constants';
 
 export class ShadowInitializer {
     public static readonly injectedCssPath: string = 'injected/styles/default/injected.css';
@@ -33,19 +34,17 @@ export class ShadowInitializer {
     }
 
     private createShadowHost() {
+        const rootContainer = this.htmlElementUtils.querySelector(`#${rootContainerId}`);
+
         const shadowHostElement = this.createDivWithId('insights-shadow-host');
 
-        this.htmlElementUtils.querySelector('body').appendChild(shadowHostElement);
+        rootContainer.appendChild(shadowHostElement);
 
         return shadowHostElement;
     }
 
     private removeExistingShadowHost() {
-        const hosts = this.htmlElementUtils.querySelectorAll('#insights-shadow-host');
-
-        for (let i = 0; i < hosts.length; i++) {
-            hosts[i].remove();
-        }
+        this.htmlElementUtils.deleteAllElements('#insights-shadow-host');
     }
 
     private createShadowContainer() {

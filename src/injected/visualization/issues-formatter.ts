@@ -5,6 +5,7 @@ import { getRTL } from '@uifabric/utilities';
 import * as ReactDOM from 'react-dom';
 
 import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
+import { HTMLElementUtils } from '../../common/html-element-utils';
 import { WindowUtils } from '../../common/window-utils';
 import { DialogRenderer } from '../dialog-renderer';
 import { FrameCommunicator } from '../frameCommunicators/frame-communicator';
@@ -18,6 +19,7 @@ export class IssuesFormatter implements IFormatter {
 
     constructor(
         frameCommunicator: FrameCommunicator,
+        htmlElementUtils: HTMLElementUtils,
         windowUtils: WindowUtils,
         shadowUtils: ShadowUtils,
         clientBrowserAdapter: ClientBrowserAdapter,
@@ -27,6 +29,7 @@ export class IssuesFormatter implements IFormatter {
             document,
             ReactDOM.render,
             frameCommunicator,
+            htmlElementUtils,
             windowUtils,
             shadowUtils,
             clientBrowserAdapter,

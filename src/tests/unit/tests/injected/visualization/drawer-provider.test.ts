@@ -3,6 +3,7 @@
 import { IMock, Mock } from 'typemoq';
 
 import { ClientBrowserAdapter } from '../../../../../common/client-browser-adapter';
+import { HTMLElementUtils } from '../../../../../common/html-element-utils';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { ClientUtils } from '../../../../../injected/client-utils';
 import { FrameCommunicator } from '../../../../../injected/frameCommunicators/frame-communicator';
@@ -16,6 +17,7 @@ import { SVGDrawerV2 } from '../../../../../injected/visualization/svg-drawer-v2
 
 describe('DrawerProviderTests', () => {
     let testObject: DrawerProvider;
+    let htmlElementUtils: IMock<HTMLElementUtils>;
     let windowUtils: IMock<WindowUtils>;
     let shadowUtils: IMock<ShadowUtils>;
     let drawerUtils: IMock<DrawerUtils>;
@@ -25,6 +27,7 @@ describe('DrawerProviderTests', () => {
     const clientBrowserAdapter = Mock.ofType<ClientBrowserAdapter>();
 
     beforeEach(() => {
+        htmlElementUtils = Mock.ofType(HTMLElementUtils);
         windowUtils = Mock.ofType(WindowUtils);
         shadowUtils = Mock.ofType(ShadowUtils);
         drawerUtils = Mock.ofType(DrawerUtils);
@@ -34,6 +37,7 @@ describe('DrawerProviderTests', () => {
         const getRTLMock = Mock.ofInstance(() => null);
 
         testObject = new DrawerProvider(
+            htmlElementUtils.object,
             windowUtils.object,
             shadowUtils.object,
             drawerUtils.object,

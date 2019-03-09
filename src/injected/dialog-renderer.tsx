@@ -13,6 +13,7 @@ import { NavigatorUtils } from '../common/navigator-utils';
 import { getPlatform } from '../common/platform';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { WindowUtils } from '../common/window-utils';
+import { rootContainerId } from './constants';
 import { DetailsDialogHandler } from './details-dialog-handler';
 import { FrameCommunicator, IMessageRequest } from './frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from './frameCommunicators/window-message-handler';
@@ -34,6 +35,7 @@ export class DialogRenderer {
         private readonly dom: Document,
         private readonly renderer: typeof ReactDOM.render,
         private readonly frameCommunicator: FrameCommunicator,
+        private readonly htmlElementUtils: HTMLElementUtils,
         private readonly windowUtils: WindowUtils,
         private readonly shadowUtils: ShadowUtils,
         private readonly clientBrowserAdapter: ClientBrowserAdapter,
@@ -78,7 +80,7 @@ export class DialogRenderer {
                     failedRules={failedRules}
                     elementSelector={elementSelector}
                     target={target}
-                    dialogHandler={new DetailsDialogHandler(new HTMLElementUtils())}
+                    dialogHandler={new DetailsDialogHandler(this.htmlElementUtils)}
                     devToolStore={mainWindowContext.getDevToolStore()}
                     userConfigStore={mainWindowContext.getUserConfigStore()}
                     devToolsShortcut={getPlatform(this.windowUtils).devToolsShortcut}
@@ -117,21 +119,12 @@ export class DialogRenderer {
     }
 
     private appendDialogContainer(): HTMLDivElement {
-        this.removeAllPreviousDialogContainers(this.dom, '.insights-dialog-container');
+        this.htmlElementUtils.deleteAllElements('.insights-dialog-container');
 
         const dialogContainer = this.dom.createElement('div');
         dialogContainer.setAttribute('class', 'insights-dialog-container');
-        this.dom.body.appendChild(dialogContainer);
+        this.dom.querySelector(`#${rootContainerId}`).appendChild(dialogContainer);
         return dialogContainer;
-    }
-
-    private removeAllPreviousDialogContainers(dom: ParentNode & Node, selector: string): void {
-        const dialogContainers = dom.querySelectorAll(selector);
-
-        for (let i = 0; i < dialogContainers.length; i++) {
-            const item = dialogContainers[i];
-            item.parentNode.removeChild(item);
-        }
     }
 
     private getFailedRules(data: IHtmlElementAxeResults): IDictionaryStringTo<DecoratedAxeNodeResult> {

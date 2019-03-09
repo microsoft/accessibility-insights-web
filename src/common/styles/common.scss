@@ -4,10 +4,6 @@
 @import 'colors.scss';
 @import 'fonts.scss';
 
-body {
-    font-family: $fontFamily;
-}
-
 $focus-ring-color: $neutral-100;
 
 @mixin set-focus-ring-styles($property: 'border') {
