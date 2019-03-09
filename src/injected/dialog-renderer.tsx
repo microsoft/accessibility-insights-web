@@ -21,6 +21,7 @@ import { LayeredDetailsDialogComponent, LayeredDetailsDialogDeps } from './layer
 import { MainWindowContext } from './main-window-context';
 import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from './scanner-utils';
 import { ShadowUtils } from './shadow-utils';
+import { rootContainerId } from './constants';
 
 export interface DetailsDialogWindowMessage {
     data: IHtmlElementAxeResults;

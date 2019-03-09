@@ -6,10 +6,10 @@ import { ClientBrowserAdapter, ClientChromeAdapter } from '../../../../common/cl
 import { FileRequestHelper } from '../../../../common/file-request-helper';
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
 import { Logger } from '../../../../common/logging/logger';
+import { rootContainerId } from '../../../../injected/constants';
 import { ShadowInitializer } from '../../../../injected/shadow-initializer';
 import { NodeListBuilder } from '../../common/node-list-builder';
 import { HtmlElementStubBuilder } from '../../stubs/html-element-stub-builder';
-import { rootContainerId } from '../../../../injected/constants';
 
 describe('ShadowInitializerTests', () => {
     const cssFileUrl: string = 'cssFileUrl';

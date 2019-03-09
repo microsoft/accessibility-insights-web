@@ -13,6 +13,7 @@ import { BugActionMessageCreator } from '../../../../common/message-creators/bug
 import { DevToolActionMessageCreator } from '../../../../common/message-creators/dev-tool-action-message-creator';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 import { WindowUtils } from '../../../../common/window-utils';
+import { rootContainerId } from '../../../../injected/constants';
 import { DetailsDialogWindowMessage, DialogRenderer } from '../../../../injected/dialog-renderer';
 import { FrameCommunicator, IMessageRequest } from '../../../../injected/frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from '../../../../injected/frameCommunicators/window-message-handler';
@@ -22,7 +23,6 @@ import { MainWindowContext } from '../../../../injected/main-window-context';
 import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from '../../../../injected/scanner-utils';
 import { ShadowUtils } from '../../../../injected/shadow-utils';
 import { TargetPageActionMessageCreator } from '../../../../injected/target-page-action-message-creator';
-import { rootContainerId } from '../../../../injected/constants';
 
 describe('DialogRendererTests', () => {
     let htmlElementUtilsMock: IMock<HTMLElementUtils>;

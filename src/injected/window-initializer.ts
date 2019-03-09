@@ -13,6 +13,7 @@ import { WindowUtils } from '../common/window-utils';
 import { scan } from '../scanner/exposed-apis';
 import { Assessments } from './../assessments/assessments';
 import { ClientUtils } from './client-utils';
+import { rootContainerId } from './constants';
 import { DrawingController } from './drawing-controller';
 import { ElementFinderByPosition } from './element-finder-by-position';
 import { FrameUrlFinder } from './frame-url-finder';
@@ -29,7 +30,6 @@ import { TabStopsListener } from './tab-stops-listener';
 import { DrawerProvider } from './visualization/drawer-provider';
 import { DrawerUtils } from './visualization/drawer-utils';
 import { RootContainerCreator } from './visualization/root-container-creator';
-import { rootContainerId } from './constants';
 
 export class WindowInitializer {
     public shadowInitializer: any;
