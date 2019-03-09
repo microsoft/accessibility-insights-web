@@ -13,6 +13,7 @@ import { NavigatorUtils } from '../common/navigator-utils';
 import { getPlatform } from '../common/platform';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { WindowUtils } from '../common/window-utils';
+import { rootContainerId } from './constants';
 import { DetailsDialogHandler } from './details-dialog-handler';
 import { FrameCommunicator, IMessageRequest } from './frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from './frameCommunicators/window-message-handler';
@@ -21,7 +22,6 @@ import { LayeredDetailsDialogComponent, LayeredDetailsDialogDeps } from './layer
 import { MainWindowContext } from './main-window-context';
 import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from './scanner-utils';
 import { ShadowUtils } from './shadow-utils';
-import { rootContainerId } from './constants';
 
 export interface DetailsDialogWindowMessage {
     data: IHtmlElementAxeResults;
