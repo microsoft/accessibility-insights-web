@@ -357,10 +357,7 @@ div.insights-file-issue-details-dialog-container {
     }
 
     .header-bar {
-        background-color: $ada-blue;
         position: fixed;
-        width: 100%;
-        height: $detailsViewHeaderBarHeight;
         z-index: 1000;
 
         .gear-options-button-component {
@@ -378,18 +375,6 @@ div.insights-file-issue-details-dialog-container {
             width: 100%;
         }
 
-        .header-text {
-            padding-top: 11px;
-            color: $neutral-0;
-            display: inline-block;
-        }
-
-        .header-icon {
-            float: left;
-            padding: 13px 8px;
-            height: 16px;
-        }
-
         .ms-Dropdown-container {
             display: inline-flex;
             margin-left: 24px;
@@ -401,7 +386,7 @@ div.insights-file-issue-details-dialog-container {
             }
 
             .ms-Dropdown-title {
-                background-color: $ada-blue-variant;
+                background-color: $ada-brand-variant;
                 height: 32px;
                 border: none;
                 border-radius: 2px;
