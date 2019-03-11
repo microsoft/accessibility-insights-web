@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { DrawerUtils } from './drawer-utils';
 import { ICircleConfiguration, ILineConfiguration, IStrokeConfiguration, ITextConfiguration } from './iformatter';
-import { IPoint } from './ipoint';
+import { Point } from './point';
 import { SVGNamespaceUrl } from './svg-constants';
 
 export class SVGShapeFactory {
@@ -15,8 +15,8 @@ export class SVGShapeFactory {
     }
 
     public createLine(
-        source: IPoint,
-        destination: IPoint,
+        source: Point,
+        destination: Point,
         configuration: ILineConfiguration,
         filterName: string,
         circleRadius: number,
@@ -52,7 +52,7 @@ export class SVGShapeFactory {
         }
     }
 
-    public createCircle(center: IPoint, configuration: ICircleConfiguration): Element {
+    public createCircle(center: Point, configuration: ICircleConfiguration): Element {
         const myDocument = this.drawerUtils.getDocumentElement();
 
         const circle = myDocument.createElementNS(SVGNamespaceUrl, 'ellipse');
@@ -66,7 +66,7 @@ export class SVGShapeFactory {
         return circle;
     }
 
-    public createTabIndexLabel(center: IPoint, textConfig: ITextConfiguration, tabOrder: number): Element {
+    public createTabIndexLabel(center: Point, textConfig: ITextConfiguration, tabOrder: number): Element {
         const myDocument = this.drawerUtils.getDocumentElement();
         const text = myDocument.createElementNS(SVGNamespaceUrl, 'text');
 
@@ -93,10 +93,10 @@ export class SVGShapeFactory {
         this.applyStrokeConfiguration(element, configuration);
     }
 
-    private getAdjustedPoint(source: IPoint, destination: IPoint, circleRadius: number): IPoint {
+    private getAdjustedPoint(source: Point, destination: Point, circleRadius: number): Point {
         const angle = Math.atan2(destination.y - source.y, destination.x - source.x);
 
-        const adjustedPoint: IPoint = {
+        const adjustedPoint: Point = {
             x: source.x + circleRadius * Math.cos(angle),
             y: source.y + circleRadius * Math.sin(angle),
         };

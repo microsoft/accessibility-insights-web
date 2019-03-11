@@ -10,7 +10,7 @@ import { DrawerUtils } from './drawer-utils';
 import { IDrawerInitData } from './idrawer';
 import { IFocusIndicator } from './ifocus-indicator';
 import { ISVGDrawerConfiguration } from './iformatter';
-import { IPoint } from './ipoint';
+import { Point } from './point';
 import { SVGNamespaceUrl } from './svg-constants';
 import { SVGShapeFactory } from './svg-shape-factory';
 import { SVGSolidShadowFilterFactory } from './svg-solid-shadow-filter-factory';
@@ -156,7 +156,7 @@ export class SVGDrawerV2 extends BaseDrawer {
     }
 
     private createFocusIndicator(item: TabbedItem, curElementIndex: number, isLastItem: boolean): IFocusIndicator {
-        const centerPosition: IPoint = this.centerPositionCalculator.getElementCenterPosition(item.element);
+        const centerPosition: Point = this.centerPositionCalculator.getElementCenterPosition(item.element);
 
         if (centerPosition == null) {
             return;
@@ -198,7 +198,7 @@ export class SVGDrawerV2 extends BaseDrawer {
         curElementIndex: number,
         isLastItem: boolean,
         drawerConfig: ISVGDrawerConfiguration,
-        centerPosition: IPoint,
+        centerPosition: Point,
         showSolidFocusLine: boolean,
     ): Element {
         const circleConfiguration = isLastItem ? drawerConfig.focusedCircle : drawerConfig.circle;
