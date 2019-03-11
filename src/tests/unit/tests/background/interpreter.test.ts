@@ -6,11 +6,11 @@ import { Interpreter } from '../../../../background/interpreter';
 
 class TestableInterpreter extends Interpreter {
     public getMessageToActionMapping() {
-        return this._messageToActionMapping;
+        return this.messageToActionMapping;
     }
 
     public setMessageToActionMapping(messageToActionMapping) {
-        this._messageToActionMapping = messageToActionMapping;
+        this.messageToActionMapping = messageToActionMapping;
     }
 }
 
