@@ -62,8 +62,7 @@ export interface SingleTargetDrawerConfiguration {
     injectedClassName: string;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IFormatter {
+export interface Formatter {
     getDrawerConfiguration(element: Node, data: AxeResultsWithFrameLevel): any;
     getDialogRenderer();
 }

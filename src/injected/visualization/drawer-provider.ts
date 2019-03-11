@@ -18,7 +18,7 @@ import { FrameFormatter } from './frame-formatter';
 import { HeadingFormatter } from './heading-formatter';
 import { HighlightBoxFormatter } from './highlight-box-formatter';
 import { IDrawer } from './idrawer';
-import { IFormatter, SVGDrawerConfiguration } from './formatter';
+import { Formatter, SVGDrawerConfiguration } from './formatter';
 import { IssuesFormatter } from './issues-formatter';
 import { LandmarkFormatter } from './landmark-formatter';
 import { NullDrawer } from './null-drawer';
@@ -111,7 +111,7 @@ export class DrawerProvider {
         return this.createDrawer('insights-custom-widgets', formatter);
     }
 
-    private createDrawer(containerClass: string, formatter: IFormatter): IDrawer {
+    private createDrawer(containerClass: string, formatter: Formatter): IDrawer {
         return new Drawer(this.dom, containerClass, this.windowUtils, this.shadowUtils, this.drawerUtils, this.clientUtils, formatter);
     }
 }

@@ -5,11 +5,11 @@ import { DialogRenderer } from '../dialog-renderer';
 import { ShadowUtils } from '../shadow-utils';
 import { DrawerUtils } from './drawer-utils';
 import { IDrawer, IDrawerInitData } from './idrawer';
-import { IFormatter } from './formatter';
+import { Formatter } from './formatter';
 
 export abstract class BaseDrawer implements IDrawer {
     protected dom: NodeSelector & Node;
-    protected formatter: IFormatter;
+    protected formatter: Formatter;
     protected isEnabled = false;
     protected containerClass: string;
     protected currentTimeoutId: number;
@@ -28,7 +28,7 @@ export abstract class BaseDrawer implements IDrawer {
         windowUtils: WindowUtils,
         shadowUtils: ShadowUtils,
         drawerUtils: DrawerUtils,
-        formatter: IFormatter = null,
+        formatter: Formatter = null,
     ) {
         this.dom = dom;
         this.containerClass = containerClass;

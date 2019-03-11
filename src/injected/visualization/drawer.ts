@@ -9,7 +9,7 @@ import { IHtmlElementAxeResults } from '../scanner-utils';
 import { ShadowUtils } from '../shadow-utils';
 import { BaseDrawer } from './base-drawer';
 import { DrawerUtils } from './drawer-utils';
-import { BoxConfig, DrawerConfiguration, IFormatter } from './formatter';
+import { BoxConfig, DrawerConfiguration, Formatter } from './formatter';
 import { IDrawerInitData } from './idrawer';
 
 export class Drawer extends BaseDrawer {
@@ -37,7 +37,7 @@ export class Drawer extends BaseDrawer {
         shadowUtils: ShadowUtils,
         drawerUtils: DrawerUtils,
         clientUtils: ClientUtils,
-        formatter: IFormatter = null,
+        formatter: Formatter = null,
     ) {
         super(dom, containerClass, windowUtils, shadowUtils, drawerUtils, formatter);
         this.clientUtils = clientUtils;
