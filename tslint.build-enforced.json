@@ -7,6 +7,7 @@
         "comment-format": [true, "check-space", { "ignore-words": ["TODO", "HACK", "NOTE"] }],
         "curly": true,
         "eofline": true,
+        "forin": true,
         "interface-name": [true, "never-prefix"],
         "jsdoc-format": true,
         "label-position": true,
