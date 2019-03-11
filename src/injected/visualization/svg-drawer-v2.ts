@@ -12,14 +12,14 @@ import { IDrawerInitData } from './idrawer';
 import { IFocusIndicator } from './ifocus-indicator';
 import { ISVGDrawerConfiguration } from './iformatter';
 import { IPoint } from './ipoint';
-import { ITabbedItem } from './itabbed-item';
+import { TabbedItem } from './itabbed-item';
 import { SVGNamespaceUrl } from './svg-constants';
 import { SVGShapeFactory } from './svg-shape-factory';
 import { SVGSolidShadowFilterFactory } from './svg-solid-shadow-filter-factory';
 import { TabStopsFormatter } from './tab-stops-formatter';
 
 export class SVGDrawerV2 extends BaseDrawer {
-    protected tabbedElements: ITabbedItem[];
+    protected tabbedElements: TabbedItem[];
     private SVGContainer: HTMLElement;
     private filterFactory: SVGSolidShadowFilterFactory;
     private svgShapeFactory: SVGShapeFactory;
@@ -59,7 +59,7 @@ export class SVGDrawerV2 extends BaseDrawer {
 
         for (let pos = 0; pos < newTabbedElements.length; pos++) {
             const newStateElement: ITabbedElementData = newTabbedElements[pos];
-            const oldStateElement: ITabbedItem = this.tabbedElements[pos];
+            const oldStateElement: TabbedItem = this.tabbedElements[pos];
 
             if (diffFound || this.shouldRedraw(oldStateElement, newStateElement, pos)) {
                 diffFound = true;
@@ -70,7 +70,7 @@ export class SVGDrawerV2 extends BaseDrawer {
         }
     }
 
-    private shouldRedraw(oldStateElement: ITabbedItem, newStateElement: ITabbedElementData, pos: number): boolean {
+    private shouldRedraw(oldStateElement: TabbedItem, newStateElement: ITabbedElementData, pos: number): boolean {
         const elementsInSvgCount: number = this.tabbedElements.length;
         const isLastElementInSvg: boolean = pos === elementsInSvgCount - 1;
 
@@ -82,12 +82,7 @@ export class SVGDrawerV2 extends BaseDrawer {
         );
     }
 
-    private getNewTabbedElement(
-        oldStateElement: ITabbedItem,
-        newStateElement: ITabbedElementData,
-        pos: number,
-        dom: Document,
-    ): ITabbedItem {
+    private getNewTabbedElement(oldStateElement: TabbedItem, newStateElement: ITabbedElementData, pos: number, dom: Document): TabbedItem {
         const selector: string = newStateElement.target[newStateElement.target.length - 1];
 
         return {
@@ -107,7 +102,7 @@ export class SVGDrawerV2 extends BaseDrawer {
     protected removeContainerElement(): void {
         super.removeContainerElement();
 
-        this.tabbedElements.forEach((element: ITabbedItem) => (element.shouldRedraw = true));
+        this.tabbedElements.forEach((element: TabbedItem) => (element.shouldRedraw = true));
     }
 
     protected addHighlightsToContainer(): void {
@@ -161,7 +156,7 @@ export class SVGDrawerV2 extends BaseDrawer {
         this.SVGContainer.setAttribute('width', `${width}px`);
     }
 
-    private createFocusIndicator(item: ITabbedItem, curElementIndex: number, isLastItem: boolean): IFocusIndicator {
+    private createFocusIndicator(item: TabbedItem, curElementIndex: number, isLastItem: boolean): IFocusIndicator {
         const centerPosition: IPoint = this.centerPositionCalculator.getElementCenterPosition(item.element);
 
         if (centerPosition == null) {
@@ -260,7 +255,7 @@ export class SVGDrawerV2 extends BaseDrawer {
     private getHighlightElements(): HTMLElement[] {
         const totalElements = _.size(this.tabbedElements);
 
-        _.each(this.tabbedElements, (current: ITabbedItem, index: number) => {
+        _.each(this.tabbedElements, (current: TabbedItem, index: number) => {
             const isLastItem = index === totalElements - 1;
             if (current.shouldRedraw) {
                 this.removeFocusIndicator(current.focusIndicator);
@@ -269,7 +264,7 @@ export class SVGDrawerV2 extends BaseDrawer {
         });
 
         const result = _.chain(this.tabbedElements)
-            .filter((element: ITabbedItem) => element.shouldRedraw)
+            .filter((element: TabbedItem) => element.shouldRedraw)
             .map(tabbed =>
                 _.chain(tabbed.focusIndicator)
                     .values()

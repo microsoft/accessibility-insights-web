@@ -2,8 +2,7 @@
 // Licensed under the MIT License.
 import { IFocusIndicator } from './ifocus-indicator';
 
-// tslint:disable-next-line:interface-name
-export interface ITabbedItem {
+export interface TabbedItem {
     selector?: string;
     element: Element;
     focusIndicator?: IFocusIndicator;

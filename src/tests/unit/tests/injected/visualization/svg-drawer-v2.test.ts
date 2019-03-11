@@ -10,7 +10,7 @@ import { CenterPositionCalculator } from '../../../../../injected/visualization/
 import { IDrawerInitData } from '../../../../../injected/visualization/idrawer';
 import { IFocusIndicator } from '../../../../../injected/visualization/ifocus-indicator';
 import { ISVGDrawerConfiguration } from '../../../../../injected/visualization/iformatter';
-import { ITabbedItem } from '../../../../../injected/visualization/itabbed-item';
+import { TabbedItem } from '../../../../../injected/visualization/itabbed-item';
 import { SVGNamespaceUrl } from '../../../../../injected/visualization/svg-constants';
 import { SVGDrawerV2 } from '../../../../../injected/visualization/svg-drawer-v2';
 import { SVGShapeFactory } from '../../../../../injected/visualization/svg-shape-factory';
@@ -59,7 +59,7 @@ describe('SVGDrawerV2Tests', () => {
         const docMock = dom.ownerDocument || dom;
 
         const element: HTMLElement = dom.querySelector('#id1') as HTMLElement;
-        const expectedTabbedElements: ITabbedItem[] = [
+        const expectedTabbedElements: TabbedItem[] = [
             {
                 element: element,
                 tabOrder: 1,
@@ -104,7 +104,7 @@ describe('SVGDrawerV2Tests', () => {
         const docMock = dom.ownerDocument || dom;
 
         const element: HTMLElement = dom.querySelector('#id1') as HTMLElement;
-        const expectedTabbedElements: ITabbedItem[] = [
+        const expectedTabbedElements: TabbedItem[] = [
             {
                 element: element,
                 tabOrder: 1,
@@ -157,7 +157,7 @@ describe('SVGDrawerV2Tests', () => {
         const element1: HTMLElement = dom.querySelector('#id1') as HTMLElement;
         const element2: HTMLElement = dom.querySelector('#id2') as HTMLElement;
 
-        const existingTabbedElements: ITabbedItem[] = [
+        const existingTabbedElements: TabbedItem[] = [
             {
                 element: element1,
                 tabOrder: 1,
@@ -167,7 +167,7 @@ describe('SVGDrawerV2Tests', () => {
             },
         ];
 
-        const expectedTabbedElements: ITabbedItem[] = [
+        const expectedTabbedElements: TabbedItem[] = [
             {
                 element: element1,
                 tabOrder: 1,
@@ -233,7 +233,7 @@ describe('SVGDrawerV2Tests', () => {
         const element2: HTMLElement = dom.querySelector('#id2') as HTMLElement;
         const element3: HTMLElement = dom.querySelector('#id3') as HTMLElement;
 
-        const existingTabbedElements: ITabbedItem[] = [
+        const existingTabbedElements: TabbedItem[] = [
             {
                 element: element1,
                 tabOrder: 1,
@@ -243,7 +243,7 @@ describe('SVGDrawerV2Tests', () => {
             },
         ];
 
-        const expectedTabbedElements: ITabbedItem[] = [
+        const expectedTabbedElements: TabbedItem[] = [
             {
                 element: element1,
                 tabOrder: 1,
@@ -319,7 +319,7 @@ describe('SVGDrawerV2Tests', () => {
         const element3: HTMLElement = dom.querySelector('#id3') as HTMLElement;
         const element4: HTMLElement = dom.querySelector('#id4') as HTMLElement;
 
-        const existingTabbedElements: ITabbedItem[] = [
+        const existingTabbedElements: TabbedItem[] = [
             {
                 element: element1,
                 tabOrder: 1,
@@ -343,7 +343,7 @@ describe('SVGDrawerV2Tests', () => {
             },
         ];
 
-        const expectedTabbedElements: ITabbedItem[] = [
+        const expectedTabbedElements: TabbedItem[] = [
             {
                 element: element1,
                 tabOrder: 1,
