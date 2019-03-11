@@ -4,13 +4,12 @@ interface HTMLInstance {
     html: string;
 }
 
-// tslint:disable-next-line:interface-name
-interface ISelectorInstance {
+interface SelectorInstance {
     target: string[];
 }
 
 // tslint:disable-next-line:interface-name
-export type IUniquelyIdentifiableInstances = HTMLInstance & ISelectorInstance;
+export type IUniquelyIdentifiableInstances = HTMLInstance & SelectorInstance;
 
 // tslint:disable-next-line:interface-name
 export interface IInstanceWithHtmlAndSelector {
@@ -19,7 +18,7 @@ export interface IInstanceWithHtmlAndSelector {
 }
 
 export class InstanceIdentifierGenerator {
-    public static generateSelectorIdentifier(instance: ISelectorInstance): string {
+    public static generateSelectorIdentifier(instance: SelectorInstance): string {
         return instance.target.join(';');
     }
 
