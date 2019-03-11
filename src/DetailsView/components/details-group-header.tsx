@@ -39,7 +39,12 @@ export class DetailsGroupHeader extends React.Component<DetailsGroupHeaderProps>
 
     private renderRuleLink(group: DetailsGroup): JSX.Element {
         return (
-            <NewTabLink href={group.ruleUrl} onClick={this.onRuleLinkClick} aria-label={`rule ${group.key}`} aria-describedby={`${group.key}-rule-description`}>
+            <NewTabLink
+                href={group.ruleUrl}
+                onClick={this.onRuleLinkClick}
+                aria-label={`rule ${group.key}`}
+                aria-describedby={`${group.key}-rule-description`}
+            >
                 {group.key}
             </NewTabLink>
         );
