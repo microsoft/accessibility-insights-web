@@ -4,7 +4,7 @@ import { IMock, It, Mock, Times } from 'typemoq';
 
 import { Assessments } from '../../../../assessments/assessments';
 import { IAssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
-import { IUniquelyIdentifiableInstances } from '../../../../background/instance-identifier-generator';
+import { UniquelyIdentifiableInstances } from '../../../../background/instance-identifier-generator';
 import {
     IVisualizationConfiguration,
     VisualizationConfigurationFactory,
@@ -26,7 +26,7 @@ describe('InstanceVisibilityCheckerTest', () => {
     let configStub: IVisualizationConfiguration;
     let getInstanceIdentiferGeneratorMock: IMock<(step: string) => Function>;
     let getUpdateVisibilityMock: IMock<(step: string) => boolean>;
-    let generateInstanceIdentifierMock: IMock<(instance: IUniquelyIdentifiableInstances) => string>;
+    let generateInstanceIdentifierMock: IMock<(instance: UniquelyIdentifiableInstances) => string>;
     let testType: VisualizationType;
 
     beforeEach(() => {
@@ -99,11 +99,11 @@ describe('InstanceVisibilityCheckerTest', () => {
             {
                 target: frameResults[0].target,
                 html: elements[0].outerHTML,
-            } as IUniquelyIdentifiableInstances,
+            } as UniquelyIdentifiableInstances,
             {
                 target: frameResults[1].target,
                 html: elements[1].outerHTML,
-            } as IUniquelyIdentifiableInstances,
+            } as UniquelyIdentifiableInstances,
         ];
 
         windowUtilsMock
@@ -299,7 +299,7 @@ describe('InstanceVisibilityCheckerTest', () => {
     function setupConfigurationFactoryMocks(
         getConfigType: VisualizationType,
         drawerIdentifier: string,
-        instances: IUniquelyIdentifiableInstances[],
+        instances: UniquelyIdentifiableInstances[],
         returnedIdentifiers: string[],
     ): void {
         getUpdateVisibilityMock.setup(guvm => guvm(drawerIdentifier)).returns(() => true);

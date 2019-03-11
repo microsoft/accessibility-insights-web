@@ -8,8 +8,7 @@ interface SelectorInstance {
     target: string[];
 }
 
-// tslint:disable-next-line:interface-name
-export type IUniquelyIdentifiableInstances = HTMLInstance & SelectorInstance;
+export type UniquelyIdentifiableInstances = HTMLInstance & SelectorInstance;
 
 // tslint:disable-next-line:interface-name
 export interface IInstanceWithHtmlAndSelector {

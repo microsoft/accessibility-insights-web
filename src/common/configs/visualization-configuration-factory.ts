@@ -9,7 +9,7 @@ import { LandmarksAdHocVisualization } from '../../ad-hoc-visualizations/landmar
 import { TabStopsAdHocVisualization } from '../../ad-hoc-visualizations/tab-stops/visualization';
 import { Assessments } from '../../assessments/assessments';
 import { ToggleActionPayload } from '../../background/actions/action-payloads';
-import { IUniquelyIdentifiableInstances } from '../../background/instance-identifier-generator';
+import { UniquelyIdentifiableInstances } from '../../background/instance-identifier-generator';
 import { TestViewProps } from '../../DetailsView/components/test-view';
 import { AnalyzerProvider } from '../../injected/analyzers/analyzer-provider';
 import { IAnalyzer } from '../../injected/analyzers/ianalyzer';
@@ -55,7 +55,7 @@ export interface IAssesssmentVisualizationConfiguration {
     getNotificationMessage: (selectorMap: DictionaryStringTo<any>, testStep?: string) => string;
     getDrawer: (provider: DrawerProvider, testStep?: string) => IDrawer;
     getSwitchToTargetTabOnScan: (testStep?: string) => boolean;
-    getInstanceIdentiferGenerator: (testStep?: string) => (instance: IUniquelyIdentifiableInstances) => string;
+    getInstanceIdentiferGenerator: (testStep?: string) => (instance: UniquelyIdentifiableInstances) => string;
     getUpdateVisibility: (testStep?: string) => boolean;
 }
 
