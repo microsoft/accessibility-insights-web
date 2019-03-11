@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FormattedDate render end of last millenium 1`] = `
+exports[`FormattedDate render end of last millennium 1`] = `
 <React.Fragment>
   1999-12-31 11:59 PM FTZ
 </React.Fragment>
 `;
 
-exports[`FormattedDate render start of this millenium 1`] = `
+exports[`FormattedDate render start of this millennium 1`] = `
 <React.Fragment>
   2000-01-01 12:00 AM FTZ
 </React.Fragment>

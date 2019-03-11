@@ -276,24 +276,24 @@ export class AssessmentBuilder {
         steps.forEach(step => {
             step.renderReportDescription = () => {
                 const descriptionCopy = _.cloneDeep(step.description);
-                const childs = AssessmentBuilder.removeLastDotFromDescription(descriptionCopy.props.children);
-                descriptionCopy.props.children = childs;
+                const children = AssessmentBuilder.removeLastDotFromDescription(descriptionCopy.props.children);
+                descriptionCopy.props.children = children;
 
                 return descriptionCopy;
             };
         });
     }
 
-    private static removeLastDotFromDescription(childs: any): any {
-        if (Array.isArray(childs)) {
-            childs[childs.length - 1] = AssessmentBuilder.removeLastDotFromDescription(childs[childs.length - 1]);
-        } else if (childs instanceof Object) {
-            childs.props.children = AssessmentBuilder.removeLastDotFromDescription(childs.props.children);
-        } else if (childs[childs.length - 1] === '.') {
-            childs = childs.slice(0, -1);
+    private static removeLastDotFromDescription(children: any): any {
+        if (Array.isArray(children)) {
+            children[children.length - 1] = AssessmentBuilder.removeLastDotFromDescription(children[children.length - 1]);
+        } else if (children instanceof Object) {
+            children.props.children = AssessmentBuilder.removeLastDotFromDescription(children.props.children);
+        } else if (children[children.length - 1] === '.') {
+            children = children.slice(0, -1);
         }
 
-        return childs;
+        return children;
     }
 
     private static getUpdateVisibility(steps: TestStep[]) {

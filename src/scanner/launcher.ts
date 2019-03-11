@@ -4,7 +4,7 @@ import * as Axe from 'axe-core';
 
 import { AxeResponseHandler } from './axe-response-handler';
 import { ScanOptions } from './exposed-apis';
-import { ScanParamaterGenerator } from './scan-parameter-generator';
+import { ScanParameterGenerator } from './scan-parameter-generator';
 
 export interface AxeOptions {
     runOnly?: Axe.RunOnly;
@@ -22,7 +22,7 @@ export interface IIncludeExcludeOptions {
 export class Launcher {
     constructor(
         private axe: typeof Axe,
-        private scanParameterGenerator: ScanParamaterGenerator,
+        private scanParameterGenerator: ScanParameterGenerator,
         private dom: NodeSelector & Node,
         private options: ScanOptions,
     ) {}

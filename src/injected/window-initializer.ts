@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
+import { autobind, getRTL } from '@uifabric/utilities';
 import * as Q from 'q';
 
 import { XMLHttpRequestFactory } from '../background/xml-http-request-factory';
@@ -13,6 +13,7 @@ import { WindowUtils } from '../common/window-utils';
 import { scan } from '../scanner/exposed-apis';
 import { Assessments } from './../assessments/assessments';
 import { ClientUtils } from './client-utils';
+import { rootContainerId } from './constants';
 import { DrawingController } from './drawing-controller';
 import { ElementFinderByPosition } from './element-finder-by-position';
 import { FrameUrlFinder } from './frame-url-finder';
@@ -28,6 +29,7 @@ import { ShadowUtils } from './shadow-utils';
 import { TabStopsListener } from './tab-stops-listener';
 import { DrawerProvider } from './visualization/drawer-provider';
 import { DrawerUtils } from './visualization/drawer-utils';
+import { RootContainerCreator } from './visualization/root-container-creator';
 
 export class WindowInitializer {
     public shadowInitializer: any;
@@ -54,6 +56,8 @@ export class WindowInitializer {
         this.clientUtils = new ClientUtils(window);
         this.scannerUtils = new ScannerUtils(scan);
 
+        new RootContainerCreator(htmlElementUtils).create(rootContainerId);
+
         this.shadowInitializer = new ShadowInitializer(
             this.clientChromeAdapter,
             htmlElementUtils,
@@ -76,6 +80,7 @@ export class WindowInitializer {
             this.visualizationConfigurationFactory,
         );
         const drawerProvider = new DrawerProvider(
+            htmlElementUtils,
             this.windowUtils,
             new ShadowUtils(new HTMLElementUtils()),
             new DrawerUtils(document),
@@ -83,6 +88,7 @@ export class WindowInitializer {
             document,
             this.frameCommunicator,
             this.clientChromeAdapter,
+            getRTL,
         );
         this.drawingController = new DrawingController(
             this.frameCommunicator,

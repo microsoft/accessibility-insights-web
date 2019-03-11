@@ -15,7 +15,7 @@ describe('InitialAssessmentStoreDataGeneratorTest', () => {
 
     const targetTab = { id: 1, url: 'url', title: 'title', appRefreshed: false };
     const generator = new InitialAssessmentStoreDataGenerator(assesssmentsProvider);
-    const userInpuut = 10;
+    const userInput = 10;
     let knownTestIds: string[];
     const knownRequirementIds: string[] = [];
     const unknownRequirementIds: string[] = ['unknown-requirement-1', 'unknown-requirement-2'];
@@ -38,7 +38,7 @@ describe('InitialAssessmentStoreDataGeneratorTest', () => {
                 knownRequirementIds.push(requirement.key);
             });
         });
-        defaultState = generator.generateInitalState();
+        defaultState = generator.generateInitialState();
         defaultStatus = 1;
         knownRequirement1 = knownRequirementIds[0];
         unknownRequirement1 = unknownRequirementIds[0];
@@ -47,17 +47,17 @@ describe('InitialAssessmentStoreDataGeneratorTest', () => {
         instanceDataWithKnownRequirementResult = createInstance('id1', [knownRequirement1, unknownRequirement1]);
         instanceDataWithOnlyKnownRequirementResult = createInstance('id1', [knownRequirement1]);
         instanceDataWithoutKnownRequirementResult = createInstance('id2', [unknownRequirement1]);
-        knownManualRequirementResult = createManualRequirementResult(knownRequirement1, userInpuut);
-        unknownManualRequirementResult = createManualRequirementResult(unknownRequirement1, userInpuut);
+        knownManualRequirementResult = createManualRequirementResult(knownRequirement1, userInput);
+        unknownManualRequirementResult = createManualRequirementResult(unknownRequirement1, userInput);
     });
 
     it('get the default state', () => {
-        const defaultState = generator.generateInitalState();
+        const defaultState = generator.generateInitialState();
         expect(defaultState).toEqual(defaultTestState);
     });
 
-    it('generateInitalState with persisitedData, where assessments is null', () => {
-        const defaultState = generator.generateInitalState();
+    it('generateInitialState with persistedData, where assessments is null', () => {
+        const defaultState = generator.generateInitialState();
         const persisted: IAssessmentStoreData = {
             persistedTabInfo: targetTab,
             assessmentNavState: {
@@ -71,11 +71,11 @@ describe('InitialAssessmentStoreDataGeneratorTest', () => {
             assessmentNavState: defaultState.assessmentNavState,
             assessments: defaultState.assessments,
         };
-        expect(generator.generateInitalState(persisted)).toEqual(expected);
+        expect(generator.generateInitialState(persisted)).toEqual(expected);
     });
 
-    it('generateInitalState with persisitedData, where assessments is empty', () => {
-        const defaultState = generator.generateInitalState();
+    it('generateInitialState with persisitedData, where assessments is empty', () => {
+        const defaultState = generator.generateInitialState();
         const persisted: IAssessmentStoreData = {
             persistedTabInfo: targetTab,
             assessmentNavState: {
@@ -89,10 +89,10 @@ describe('InitialAssessmentStoreDataGeneratorTest', () => {
             assessmentNavState: defaultState.assessmentNavState,
             assessments: defaultState.assessments,
         };
-        expect(generator.generateInitalState(persisted)).toEqual(expected);
+        expect(generator.generateInitialState(persisted)).toEqual(expected);
     });
 
-    it('generateInitalState with persisitedData, where persisitedTabInfo is not present', () => {
+    it('generateInitialState with persisitedData, where persisitedTabInfo is not present', () => {
         const persisted: IAssessmentStoreData = {
             assessmentNavState: {
                 selectedTestStep: 'invalid-step',
@@ -100,7 +100,7 @@ describe('InitialAssessmentStoreDataGeneratorTest', () => {
             },
             assessments: {},
         } as IAssessmentStoreData;
-        expect(generator.generateInitalState(persisted).persistedTabInfo).toBeUndefined();
+        expect(generator.generateInitialState(persisted).persistedTabInfo).toBeUndefined();
     });
 
     it('verify persistedTabInfo and assessmentNavState', () => {
@@ -124,7 +124,7 @@ describe('InitialAssessmentStoreDataGeneratorTest', () => {
                 [knownTestIds[0]]: persistedTestData1,
             },
         };
-        const actual = generator.generateInitalState(persisted);
+        const actual = generator.generateInitialState(persisted);
 
         expect(actual.persistedTabInfo).toEqual(persisted.persistedTabInfo);
         expect(actual.assessmentNavState).toEqual(defaultState.assessmentNavState);
@@ -155,7 +155,7 @@ describe('InitialAssessmentStoreDataGeneratorTest', () => {
             id1: instanceDataWithOnlyKnownRequirementResult,
         };
 
-        const actual = generator.generateInitalState(persisted);
+        const actual = generator.generateInitialState(persisted);
 
         expect(actual.assessments[knownTestIds[0]].generatedAssessmentInstancesMap).toEqual(expectedGeneratedMap);
     });
@@ -187,7 +187,7 @@ describe('InitialAssessmentStoreDataGeneratorTest', () => {
             [knownRequirement3]: createManualRequirementResult(knownRequirement3, defaultStatus),
         };
 
-        const actual = generator.generateInitalState(persisted);
+        const actual = generator.generateInitialState(persisted);
 
         expect(actual.assessments[knownTestIds[0]].manualTestStepResultMap).toEqual(expectedMap);
     });
@@ -219,7 +219,7 @@ describe('InitialAssessmentStoreDataGeneratorTest', () => {
             [knownRequirement3]: creaetDefaultRequirementResult(),
         };
 
-        const actual = generator.generateInitalState(persisted);
+        const actual = generator.generateInitialState(persisted);
 
         expect(actual.assessments[knownTestIds[0]].testStepStatus).toEqual(expectedMap);
     });

@@ -7,8 +7,6 @@ import { DrawerUtils } from './drawer-utils';
 import { IDrawer, IDrawerInitData } from './idrawer';
 import { IFormatter } from './iformatter';
 
-/// <reference path="./iformatter.d.ts" />
-/// <reference path="./idrawer.d.ts" />
 export abstract class BaseDrawer implements IDrawer {
     protected dom: NodeSelector & Node;
     protected formatter: IFormatter;

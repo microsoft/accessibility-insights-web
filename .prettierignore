@@ -9,6 +9,7 @@ LICENSE
 package-lock.json
 .prettierignore
 docs/NOTICE.html
+docs/LICENSE.txt
 **/*.snap
 **/*.png
 **/*.gitignore

@@ -3,6 +3,7 @@
 import { IMock, Mock } from 'typemoq';
 
 import { ClientBrowserAdapter } from '../../../../../common/client-browser-adapter';
+import { HTMLElementUtils } from '../../../../../common/html-element-utils';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { FrameCommunicator } from '../../../../../injected/frameCommunicators/frame-communicator';
 import { IHtmlElementAxeResults } from '../../../../../injected/scanner-utils';
@@ -14,14 +15,23 @@ describe('IssuesFormatterTests', () => {
     let testSubject: IssuesFormatter;
     const htmlElement = document.createElement('div');
     let issuesStyle: IHeadingStyleConfiguration;
-
+    let htmlElementUtilsMock: IMock<HTMLElementUtils>;
     beforeEach(() => {
         issuesStyle = IssuesFormatter.style;
         const frameCommunicator: IMock<FrameCommunicator> = Mock.ofType(FrameCommunicator);
+        htmlElementUtilsMock = Mock.ofType(HTMLElementUtils);
         const windowUtils: IMock<WindowUtils> = Mock.ofType(WindowUtils);
         const shadowUtils: IMock<ShadowUtils> = Mock.ofType(ShadowUtils);
         const clientBrowserAdapter = Mock.ofType<ClientBrowserAdapter>();
-        testSubject = new IssuesFormatter(frameCommunicator.object, windowUtils.object, shadowUtils.object, clientBrowserAdapter.object);
+        const getRTLMock = Mock.ofInstance(() => null);
+        testSubject = new IssuesFormatter(
+            frameCommunicator.object,
+            htmlElementUtilsMock.object,
+            windowUtils.object,
+            shadowUtils.object,
+            clientBrowserAdapter.object,
+            getRTLMock.object,
+        );
     });
 
     test('tooltip for the failed rules from the axe result', () => {

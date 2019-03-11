@@ -1,371 +1,439 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../common/styles/common.scss';
-@import '../../common/components/toast.scss';
-.insights-dialog-main-override-shadow {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: $neutral-alpha-60;
-    z-index: 2147483647;
-    font-family: $fontFamily;
+@import '../../../node_modules/office-ui-fabric-react/dist/sass/Icon.Definitions';
+@import '../../common/styles/colors.scss';
+
+#accessibility-insights-root-container {
+    visibility: hidden !important;
 }
 
-div.insights-dialog-main-container {
-    width: 25%;
-    max-width: 25%;
-    user-select: text;
-    min-width: 520px;
-}
+#accessibility-insights-root-container,
+#insights-shadow-container {
+    @import '../../common/styles/common.scss';
+    @import '../../common/components/toast.scss';
 
-div.insights-file-issue-details-dialog-container {
-    max-width: 370px;
-
-    .ms-Dialog-content p {
-        margin-block-start: 4px;
+    @mixin max-z-index-1 {
+        z-index: 2147483646 !important;
     }
 
-    .ms-Dialog-actions {
-        margin-top: 24px;
+    @mixin max-z-index {
+        z-index: 2147483647 !important;
     }
-}
 
-#insights-inspect-selector-layout {
-    z-index: 999999999 !important;
-}
+    @include max-z-index();
 
-.insights-modal {
-    overflow: hidden !important;
-}
+    position: absolute !important;
+    top: 0px !important;
+    left: 0px !important;
+    padding: 0px !important;
+    margin: 0px !important;
+    width: 100% !important;
+    height: 100% !important;
 
-.insights-dialog-main-override .insights-dialog-main-container .ms-Dialog-title {
-    padding-left: 19px;
-}
+    .insights-dialog-container {
+        @import '../../../node_modules/office-ui-fabric-react/dist/sass/Fabric.scss';
 
-.insights-dialog-main-override-shadow {
-    .ms-Dialog-title {
+        @include max-z-index();
+    }
+
+    .insights-dialog-main-override-shadow {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: $neutral-alpha-60;
+        @include max-z-index();
         font-family: $fontFamily;
     }
-    .ms-button-flex-container {
-        display: flex;
+
+    div.insights-dialog-main-container {
+        width: 25%;
+        max-width: 25%;
+        user-select: text;
+        min-width: 520px;
     }
-}
 
-.insights-dialog-main-override .insights-dialog-main-container .ms-Dialog-inner {
-    padding: 0 19px 20px !important;
-}
+    div.insights-file-issue-details-dialog-container {
+        max-width: 370px;
 
-.insights-dialog-main-override .insights-dialog-button-inspect i {
-    color: $communication-shade-10 !important;
-}
-
-.insights-dialog-main-override .insights-dialog-button-inspect.is-disabled i {
-    color: $neutral-30 !important;
-}
-
-.insights-dialog-main-override-shadow .insights-dialog-button-inspect i {
-    color: $communication-shade-10 !important;
-    font-style: normal;
-    font-family: FabricMDL2Icons;
-}
-
-.insights-dialog-main-override-shadow .insights-dialog-button-inspect.is-disabled i {
-    color: $neutral-30 !important;
-    font-style: normal;
-    font-family: FabricMDL2Icons;
-}
-
-.insights-dialog-main-override .create-bug-button,
-.insights-dialog-main-override .copy-issue-details-button {
-    margin-left: 8px !important;
-}
-
-.insights-dialog-main-override .insights-dialog-button-create-bug i {
-    color: $communication-shade-10 !important;
-}
-
-.insights-dialog-main-override-shadow .insights-dialog-button-create-bug {
-    margin-left: 8px !important;
-}
-
-.insights-dialog-main-override-shadow .insights-dialog-button-create-bug i {
-    color: $communication-shade-10 !important;
-    font-style: normal;
-    font-family: FabricMDL2Icons;
-}
-
-.insights-dialog-main-override .insights-dialog-button-left {
-    float: left !important;
-}
-
-.insights-dialog-main-override .insights-dialog-button-right {
-    float: right !important;
-    text-align: right !important;
-}
-
-.insights-dialog-main-override .insights-dialog-footer {
-    text-align: center !important;
-    margin-top: 5px !important;
-}
-
-.insights-dialog-main-override-shadow .insights-dialog-footer {
-    text-align: center !important;
-    float: left !important;
-    margin-top: 5px !important;
-    width: 50%;
-    font-size: 14px;
-}
-
-.insights-dialog-main-override ul,
-.insights-dialog-main-override-shadow ul {
-    margin-top: 3px !important;
-}
-
-.insights-dialog-main-override .insights-dialog-rule-link,
-.insights-dialog-main-override-shadow .insights-dialog-rule-link {
-    margin-top: 5px !important;
-    margin-bottom: 6px !important;
-    padding: 0 !important;
-    .ms-Link {
-        color: $communication-shade-10;
-    }
-}
-
-.insights-dialog-main-override .insights-dialog-rule-container,
-.insights-dialog-main-override-shadow .insights-dialog-rule-container {
-    margin-bottom: 12px !important;
-}
-
-.insights-dialog-main-override-shadow .insights-dialog-container {
-    margin-bottom: 12px !important;
-    position: relative;
-    background-color: $neutral-2;
-    margin: auto;
-    padding: 16px 20px;
-    border: 1px solid $neutral-60;
-    width: 35em;
-    min-width: 27%;
-    text-align: left;
-    box-shadow: 0 4px 8px 0 $neutral-alpha-20, 0 6px 20px 0 $neutral-alpha-20;
-    animation-name: animatetop;
-    animation-duration: 0.4s;
-    align-items: center;
-    top: 30%;
-    .insights-dialog-header {
-        margin-top: 15px;
-        .ms-Dialog-title {
-            display: inline;
-            font-size: 21px;
-            font-weight: 100;
+        .ms-Dialog-content p {
+            margin-block-start: 4px;
         }
-        .ms-Dialog-topButton {
-            button {
-                background-color: transparent;
-                border: none;
-                font-size: 16px;
-                cursor: pointer;
-                &:hover {
-                    color: $communication-shade-30;
+
+        .ms-Dialog-actions {
+            margin-top: 24px;
+        }
+    }
+
+    #insights-inspect-selector-layout {
+        z-index: 999999999 !important;
+    }
+
+    .insights-modal {
+        overflow: hidden !important;
+    }
+
+    .insights-dialog-main-override .insights-dialog-main-container .ms-Dialog-title {
+        padding-left: 19px;
+    }
+
+    .insights-dialog-main-override-shadow {
+        .ms-Dialog-title {
+            font-family: $fontFamily;
+        }
+
+        .ms-button-flex-container {
+            display: flex;
+        }
+    }
+
+    .insights-dialog-main-override .insights-dialog-main-container .ms-Dialog-inner {
+        padding: 0 19px 20px !important;
+    }
+
+    .insights-dialog-main-override .insights-dialog-button-inspect i {
+        color: $communication-shade-10 !important;
+    }
+
+    .insights-dialog-main-override .insights-dialog-button-inspect.is-disabled i {
+        color: $neutral-30 !important;
+    }
+
+    .insights-dialog-main-override-shadow .insights-dialog-button-inspect i {
+        color: $communication-shade-10 !important;
+        font-style: normal;
+        font-family: FabricMDL2Icons;
+    }
+
+    .insights-dialog-main-override-shadow .insights-dialog-button-inspect.is-disabled i {
+        color: $neutral-30 !important;
+        font-style: normal;
+        font-family: FabricMDL2Icons;
+    }
+
+    .insights-dialog-main-override .create-bug-button,
+    .insights-dialog-main-override .copy-issue-details-button {
+        margin-left: 8px !important;
+    }
+
+    .insights-dialog-main-override .insights-dialog-button-create-bug i {
+        color: $communication-shade-10 !important;
+    }
+
+    .insights-dialog-main-override-shadow .insights-dialog-button-create-bug {
+        margin-left: 8px !important;
+    }
+
+    .insights-dialog-main-override-shadow .insights-dialog-button-create-bug i {
+        color: $communication-shade-10 !important;
+        font-style: normal;
+        font-family: FabricMDL2Icons;
+    }
+
+    .insights-dialog-main-override .insights-dialog-button-left {
+        float: left !important;
+    }
+
+    .insights-dialog-main-override .insights-dialog-button-right {
+        float: right !important;
+        text-align: right !important;
+    }
+
+    .insights-dialog-main-override .insights-dialog-footer {
+        text-align: center !important;
+        margin-top: 5px !important;
+    }
+
+    .insights-dialog-main-override-shadow .insights-dialog-footer {
+        text-align: center !important;
+        float: left !important;
+        margin-top: 5px !important;
+        width: 50%;
+        font-size: 14px;
+    }
+
+    .insights-dialog-main-override ul,
+    .insights-dialog-main-override-shadow ul {
+        margin-top: 3px !important;
+    }
+
+    .insights-dialog-main-override .insights-dialog-rule-link,
+    .insights-dialog-main-override-shadow .insights-dialog-rule-link {
+        margin-top: 5px !important;
+        margin-bottom: 6px !important;
+        padding: 0 !important;
+
+        .ms-Link {
+            color: $communication-shade-10;
+        }
+    }
+
+    .insights-dialog-main-override .insights-dialog-rule-container,
+    .insights-dialog-main-override-shadow .insights-dialog-rule-container {
+        margin-bottom: 12px !important;
+    }
+
+    .insights-dialog-main-override-shadow .insights-dialog-container {
+        margin-bottom: 12px !important;
+        position: relative;
+        background-color: $neutral-2;
+        margin: auto;
+        padding: 16px 20px;
+        border: 1px solid $neutral-60;
+        width: 35em;
+        min-width: 27%;
+        text-align: left;
+        box-shadow: 0 4px 8px 0 $neutral-alpha-20, 0 6px 20px 0 $neutral-alpha-20;
+        animation-name: animatetop;
+        animation-duration: 0.4s;
+        align-items: center;
+        top: 30%;
+
+        .insights-dialog-header {
+            margin-top: 15px;
+
+            .ms-Dialog-title {
+                display: inline;
+                font-size: 21px;
+                font-weight: 100;
+            }
+
+            .ms-Dialog-topButton {
+                button {
+                    background-color: transparent;
+                    border: none;
+                    font-size: 16px;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: $communication-shade-30;
+                    }
+                }
+
+                display: inline;
+                float: right;
+
+                i {
+                    font-style: normal;
+                    font-family: FabricMDL2Icons;
                 }
             }
-            display: inline;
-            float: right;
-            i {
-                font-style: normal;
-                font-family: FabricMDL2Icons;
+        }
+    }
+
+    .insights-dialog-main-override-shadow .ms-Grid .ms-Grid-row {
+        button {
+            position: relative;
+            font-family: $fontFamily;
+            -webkit-font-smoothing: antialiased;
+            font-size: 14px;
+            font-weight: 400;
+            box-sizing: border-box;
+            display: inline-block;
+            text-align: center;
+            cursor: pointer;
+            vertical-align: top;
+            padding: 0px 16px;
+            min-width: 80px;
+            height: 32px;
+            background-color: $communication-primary;
+            color: $neutral-0;
+            user-select: none;
+            outline: transparent;
+            border-width: 1px;
+            border-style: solid;
+            border-color: transparent;
+            border-image: initial;
+            text-decoration: none;
+            border-radius: 0px;
+
+            &:focus {
+                outline: -webkit-focus-ring-color auto 5px;
             }
         }
-    }
-}
 
-.insights-dialog-main-override-shadow .ms-Grid .ms-Grid-row {
-    button {
-        position: relative;
-        font-family: $fontFamily;
-        -webkit-font-smoothing: antialiased;
-        font-size: 14px;
-        font-weight: 400;
-        box-sizing: border-box;
-        display: inline-block;
-        text-align: center;
-        cursor: pointer;
-        vertical-align: top;
-        padding: 0px 16px;
-        min-width: 80px;
-        height: 32px;
-        background-color: $communication-primary;
-        color: $neutral-0;
-        user-select: none;
-        outline: transparent;
-        border-width: 1px;
-        border-style: solid;
-        border-color: transparent;
-        border-image: initial;
-        text-decoration: none;
-        border-radius: 0px;
-        &:focus {
-            outline: -webkit-focus-ring-color auto 5px;
+        button:disabled {
+            background-color: $neutral-4;
+            color: $neutral-30;
+            pointer-events: none;
+        }
+
+        .ms-Grid-col.insights-dialog-button-left {
+            padding-left: 0px;
+            float: left;
+        }
+
+        .ms-Grid-col.insights-dialog-button-right {
+            padding-right: 0px;
+            float: right;
+            text-align: right;
         }
     }
-    button:disabled {
-        background-color: $neutral-4;
-        color: $neutral-30;
-        pointer-events: none;
+
+    .insights-dialog-main-override .insights-dialog-rule-container i {
+        color: $negative-outcome !important;
+        float: left !important;
+        margin-right: 1% !important;
+        margin-top: 3px !important;
     }
-    .ms-Grid-col.insights-dialog-button-left {
-        padding-left: 0px;
-        float: left;
+
+    .insights-dialog-main-override-shadow .insights-dialog-rule-container i {
+        color: $negative-outcome !important;
+        float: left !important;
+        margin-right: 1% !important;
+        margin-top: 2px !important;
+        font-style: normal;
+        font-family: FabricMDL2Icons;
     }
-    .ms-Grid-col.insights-dialog-button-right {
-        padding-right: 0px;
-        float: right;
-        text-align: right;
-    }
-}
 
-.insights-dialog-main-override .insights-dialog-rule-container i {
-    color: $negative-outcome !important;
-    float: left !important;
-    margin-right: 1% !important;
-    margin-top: 3px !important;
-}
-
-.insights-dialog-main-override-shadow .insights-dialog-rule-container i {
-    color: $negative-outcome !important;
-    float: left !important;
-    margin-right: 1% !important;
-    margin-top: 2px !important;
-    font-style: normal;
-    font-family: FabricMDL2Icons;
-}
-
-.insights-dialog-main-override .insights-dialog-target-container {
-    margin-bottom: 16px !important;
-    font-size: 14px;
-}
-
-.insights-dialog-main-override .insights-dialog-target-button-container {
-    margin-top: 4px !important;
-}
-
-.insights-dialog-main-override-shadow .insights-dialog-target-button-container {
-    margin-top: 4px;
-    button {
-        position: relative;
-        font-family: $fontFamily;
-        -webkit-font-smoothing: antialiased;
+    .insights-dialog-main-override .insights-dialog-target-container {
+        margin-bottom: 16px !important;
         font-size: 14px;
-        font-weight: 400;
-        box-sizing: border-box;
-        display: inline-block;
-        text-align: center;
-        cursor: pointer;
-        vertical-align: top;
-        padding: 0px 16px;
-        min-width: 80px;
-        height: 32px;
-        background-color: $neutral-4;
-        color: $neutral-80;
-        user-select: none;
-        outline: transparent;
-        border-width: 1px;
-        border-style: solid;
-        border-color: transparent;
-        border-image: initial;
-        text-decoration: none;
-        border-radius: 0px;
-        &:focus {
-            outline: -webkit-focus-ring-color auto 5px;
+    }
+
+    .insights-dialog-main-override .insights-dialog-target-button-container {
+        margin-top: 4px !important;
+    }
+
+    .insights-dialog-main-override-shadow .insights-dialog-target-button-container {
+        margin-top: 4px;
+
+        button {
+            position: relative;
+            font-family: $fontFamily;
+            -webkit-font-smoothing: antialiased;
+            font-size: 14px;
+            font-weight: 400;
+            box-sizing: border-box;
+            display: inline-block;
+            text-align: center;
+            cursor: pointer;
+            vertical-align: top;
+            padding: 0px 16px;
+            min-width: 80px;
+            height: 32px;
+            background-color: $neutral-4;
+            color: $neutral-80;
+            user-select: none;
+            outline: transparent;
+            border-width: 1px;
+            border-style: solid;
+            border-color: transparent;
+            border-image: initial;
+            text-decoration: none;
+            border-radius: 0px;
+
+            &:focus {
+                outline: -webkit-focus-ring-color auto 5px;
+            }
+        }
+
+        button:disabled {
+            background-color: $neutral-4;
+            color: $neutral-30;
+            pointer-events: none;
+        }
+
+        .ms-Button-label {
+            margin-left: 4px;
+            line-height: 100%;
+            font-weight: 600;
         }
     }
-    button:disabled {
-        background-color: $neutral-4;
-        color: $neutral-30;
-        pointer-events: none;
+
+    .insights-dialog-main-override .insights-dialog-inspect-disabled {
+        margin-top: 4px !important;
+        font-size: 12px !important;
     }
-    .ms-Button-label {
-        margin-left: 4px;
-        line-height: 100%;
-        font-weight: 600;
+
+    .insights-dialog-main-override .create-bug-button-help {
+        margin-top: 4px !important;
+        margin-bottom: 8px !important;
+        font-size: 12px !important;
+        color: $negative-outcome;
+        font-weight: $fontWeightSemiBold;
+    }
+
+    .insights-dialog-main-override .insights-dialog-fix-instruction-container {
+        margin-bottom: 20px !important;
+        font-size: 14px;
+    }
+
+    .insights-dialog-main-override .insights-fix-instruction-list {
+        padding-left: 5% !important;
+        margin: 0 !important;
+    }
+
+    .insights-dialog-main-override .insights-fix-instruction-title {
+        font-weight: 600 !important;
+    }
+
+    .insights-dialog-main-override-shadow .insights-fix-instruction-title {
+        font-weight: 600 !important;
+        margin-top: 15px;
+    }
+
+    .insights-dialog-main-override .insights-dialog-instance-selector {
+        padding-left: 2% !important;
+    }
+
+    .insights-highlight-container,
+    .insights-highlight-container svg {
+        position: absolute !important;
+        @include max-z-index-1();
+        top: 0 !important;
+        left: 0 !important;
+        overflow: visible !important;
+        pointer-events: none !important;
+        visibility: visible !important;
+    }
+
+    .insights-highlight-container .insights-highlight-box {
+        visibility: visible !important;
+        position: absolute !important;
+        overflow: hidden !important;
+        pointer-events: none !important;
+    }
+
+    .insights-highlight-container .insights-highlight-box .insights-highlight-text {
+        cursor: default !important;
+        pointer-events: all !important;
+        font-size: 1em !important;
+        padding: 0.3em !important;
+        float: right !important;
+        position: relative !important;
+        text-align: center !important;
+    }
+
+    :host {
+        @include max-z-index-1();
+        top: 0 !important;
+        left: 0 !important;
+        width: 0 !important;
+        height: 0 !important;
+        visibility: hidden !important;
+        padding: 0 0 0 0 !important;
+        margin: 0 0 0 0 !important;
+    }
+
+    .insights-grey-scale-container {
+        filter: grayscale(100%) !important;
+    }
+
+    .insights-pseudo-selector-style-container {
+        *::before,
+        *::after {
+            border: 1px solid red;
+        }
     }
 }
 
-.insights-dialog-main-override .insights-dialog-inspect-disabled {
-    margin-top: 4px !important;
-    font-size: 12px !important;
-}
-
-.insights-dialog-main-override .insights-dialog-fix-instruction-container {
-    margin-bottom: 20px !important;
-    font-size: 14px;
-}
-
-.insights-dialog-main-override .insights-fix-instruction-list {
-    padding-left: 5% !important;
-    margin: 0 !important;
-}
-
-.insights-dialog-main-override .insights-fix-instruction-title {
-    font-weight: 600 !important;
-}
-
-.insights-dialog-main-override-shadow .insights-fix-instruction-title {
-    font-weight: 600 !important;
-    margin-top: 15px;
-}
-
-.insights-dialog-main-override .insights-dialog-instance-selector {
-    padding-left: 2% !important;
-}
-
-.insights-highlight-container,
-.insights-highlight-container svg {
+// We need the below styling only when not using shadow dom
+#accessibility-insights-root-container > .insights-dialog-container {
     position: absolute !important;
-    z-index: 2147483646 !important;
-    top: 0 !important;
-    left: 0 !important;
-    overflow: visible !important;
-    pointer-events: none !important;
-    visibility: visible !important;
-}
-
-.insights-highlight-container .insights-highlight-box {
-    visibility: visible !important;
-    position: absolute !important;
-    overflow: hidden !important;
-    pointer-events: none !important;
-}
-
-.insights-highlight-container .insights-highlight-box .insights-highlight-text {
-    cursor: default !important;
-    pointer-events: all !important;
-    font-size: 1em !important;
-    padding: 0.3em !important;
-    float: right !important;
-    position: relative !important;
-    text-align: center !important;
-}
-
-:host {
-    z-index: 2147483646 !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 0 !important;
-    height: 0 !important;
-    visibility: hidden !important;
-    padding: 0 0 0 0 !important;
-    margin: 0 0 0 0 !important;
-}
-
-.insights-grey-scale-container {
-    filter: grayscale(100%) !important;
-}
-
-.insights-pseudo-selector-style-container {
-    *::before,
-    *::after {
-        border: 1px solid red;
-    }
+    top: 0px !important;
+    left: 0px !important;
+    padding: 0px !important;
+    margin: 0px !important;
 }

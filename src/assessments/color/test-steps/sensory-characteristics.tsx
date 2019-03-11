@@ -8,11 +8,11 @@ import ManualTestRecordYourResults from '../../common/manual-test-record-your-re
 import { TestStep } from '../../types/test-step';
 import { ColorSensoryTestStep } from './test-steps';
 
-const sensoryCharacterisicsDescription: JSX.Element = (
+const sensoryCharacteristicsDescription: JSX.Element = (
     <span>Instructions must not rely solely on color or other sensory characteristics.</span>
 );
 
-const sensoryCharacterisicsHowToTest: JSX.Element = (
+const sensoryCharacteristicsHowToTest: JSX.Element = (
     <div>
         <ol>
             <li>
@@ -35,11 +35,11 @@ const sensoryCharacterisicsHowToTest: JSX.Element = (
     </div>
 );
 
-export const SensoryCharacterisics: TestStep = {
+export const SensoryCharacteristics: TestStep = {
     key: ColorSensoryTestStep.sensoryCharacteristics,
     name: 'Instructions',
-    description: sensoryCharacterisicsDescription,
-    howToTest: sensoryCharacterisicsHowToTest,
+    description: sensoryCharacteristicsDescription,
+    howToTest: sensoryCharacteristicsHowToTest,
     isManual: true,
     ...content,
     guidanceLinks: [link.WCAG_1_3_3],

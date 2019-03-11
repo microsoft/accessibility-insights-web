@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-/// <reference path="./iformatter.d.ts" />
-/// <reference path="./idrawer.d.ts" />
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { WindowUtils } from '../../common/window-utils';
 import { ClientUtils } from '../client-utils';
@@ -12,7 +10,7 @@ import { ShadowUtils } from '../shadow-utils';
 import { BaseDrawer } from './base-drawer';
 import { DrawerUtils } from './drawer-utils';
 import { IDrawerInitData } from './idrawer';
-import { IBoxConfig, IDrawerConfiguration, IFormatter } from './iformatter';
+import { DrawerConfiguration, IBoxConfig, IFormatter } from './iformatter';
 
 export class Drawer extends BaseDrawer {
     protected elementResults: AxeResultsWithFrameLevel[];
@@ -20,7 +18,7 @@ export class Drawer extends BaseDrawer {
     private featureFlagStoreData: FeatureFlagStoreData;
     private clientUtils: ClientUtils;
 
-    public static defaultConfiguration: IDrawerConfiguration = {
+    public static defaultConfiguration: DrawerConfiguration = {
         borderColor: 'rgb(255, 255, 255)',
         textBoxConfig: {
             fontColor: 'rgb(255, 255, 255)',
@@ -125,7 +123,7 @@ export class Drawer extends BaseDrawer {
 
     private createtBox(
         wrapper: HTMLDivElement,
-        drawerConfig: IDrawerConfiguration,
+        drawerConfig: DrawerConfiguration,
         boxConfig: IBoxConfig,
         currentDom: Document,
     ): HTMLDivElement {
@@ -141,8 +139,8 @@ export class Drawer extends BaseDrawer {
         return box;
     }
 
-    private getHighlightElements() {
-        const highlightElements = [];
+    private getHighlightElements(): HTMLElement[] {
+        const highlightElements: HTMLElement[] = [];
 
         for (let i = 0; i < this.elementResults.length; i++) {
             const elementResult = this.elementResults[i];

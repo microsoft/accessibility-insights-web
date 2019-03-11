@@ -16,7 +16,7 @@ import { MessageDecorator } from './message-decorator';
 import { ResultDecorator } from './result-decorator';
 import { RuleSifter } from './rule-sifter';
 import { ruleToLinkConfiguration } from './rule-to-links-mappings';
-import { ScanParamaterGenerator } from './scan-parameter-generator';
+import { ScanParameterGenerator } from './scan-parameter-generator';
 import { ScannerRuleInfo } from './scanner-rule-info';
 
 export interface ScanOptions {
@@ -32,7 +32,7 @@ export let scan = (options: ScanOptions, successCallback: (results: ScanResults)
 
     const messageDecorator = new MessageDecorator(configuration, new CheckMessageTransformer());
     const ruleSifter = new RuleSifter((axe as any)._audit.rules, ruleToLinkConfiguration);
-    const scanParameterGenerator = new ScanParamaterGenerator(ruleSifter);
+    const scanParameterGenerator = new ScanParameterGenerator(ruleSifter);
     const documentUtils: DocumentUtils = new DocumentUtils(document);
     const helpUrlGetter = new HelpUrlGetter(configuration);
     const resultDecorator = new ResultDecorator(documentUtils, messageDecorator, (ruleId, axeHelpUrl) =>

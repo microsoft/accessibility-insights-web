@@ -11,7 +11,7 @@ import { ShadowUtils } from '../../../../../injected/shadow-utils';
 import { Drawer } from '../../../../../injected/visualization/drawer';
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
 import { IDrawerInitData } from '../../../../../injected/visualization/idrawer';
-import { IDrawerConfiguration, IFormatter } from '../../../../../injected/visualization/iformatter';
+import { DrawerConfiguration, IFormatter } from '../../../../../injected/visualization/iformatter';
 import { TestDocumentCreator } from '../../../common/test-document-creator';
 
 describe('Drawer', () => {
@@ -1106,7 +1106,7 @@ describe('Drawer', () => {
                 <div id='id4'></div>
             `);
 
-        const element1Config: IDrawerConfiguration = {
+        const element1Config: DrawerConfiguration = {
             borderColor: 'rgb(12, 13, 14)',
             textBoxConfig: {
                 fontColor: 'rgb(100, 200, 0)',
@@ -1118,7 +1118,7 @@ describe('Drawer', () => {
             showVisualization: true,
         };
 
-        const element2Config: IDrawerConfiguration = {
+        const element2Config: DrawerConfiguration = {
             textBoxConfig: {
                 fontColor: 'rgb(0, 100, 0)',
                 text: 'element 2 text',
@@ -1130,14 +1130,14 @@ describe('Drawer', () => {
             showVisualization: true,
         };
 
-        const element3Config: IDrawerConfiguration = {
+        const element3Config: DrawerConfiguration = {
             borderColor: 'rgb(12, 13, 14)',
             toolTip: 'element 3 tooltip',
             outlineStyle: 'solid',
             showVisualization: false,
         };
 
-        const element4Config: IDrawerConfiguration = {
+        const element4Config: DrawerConfiguration = {
             failureBoxConfig: {
                 fontColor: 'rgb(100, 200, 0)',
                 text: 'element 4 text',
@@ -1150,7 +1150,7 @@ describe('Drawer', () => {
         };
 
         class FormatterStub implements IFormatter {
-            public getDrawerConfiguration(el: Node, data): IDrawerConfiguration {
+            public getDrawerConfiguration(el: Node, data): DrawerConfiguration {
                 throw new Error('Not implemented');
             }
 
@@ -1169,7 +1169,7 @@ describe('Drawer', () => {
 
         const elementResults = createElementResults(['#id1', '#id2', '#id3', '#id4']);
 
-        function addMockForElement(selector: string, config: IDrawerConfiguration) {
+        function addMockForElement(selector: string, config: DrawerConfiguration) {
             const elementResult = elementResults.filter(el => el.target[0] === selector)[0];
             formatterMock
                 .setup(it => it.getDrawerConfiguration(dom.querySelector(selector), elementResult))
@@ -1253,8 +1253,8 @@ describe('Drawer', () => {
 
     function verifyOverlayStyle(
         overlay: { container: HTMLDivElement; label: HTMLDivElement; failureLabel: HTMLDivElement },
-        drawerConfig: IDrawerConfiguration = Drawer.defaultConfiguration,
-    ) {
+        drawerConfig: DrawerConfiguration = Drawer.defaultConfiguration,
+    ): void {
         expect(overlay.container.style.outlineStyle).toEqual(drawerConfig.outlineStyle);
         expect(overlay.container.style.outlineColor).toEqual(drawerConfig.borderColor);
         expect(overlay.container.style.top).toEqual('5px');

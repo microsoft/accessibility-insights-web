@@ -32,7 +32,12 @@ import { ForIssuesAnalyzerScanCallback, ForRuleAnalyzerScanCallback } from './ty
 import { DetailsViewPivotType } from './types/details-view-pivot-type';
 import { VisualizationType } from './types/visualization-type';
 
-type SupportedMouseEvent = React.SyntheticEvent<MouseEvent> | React.MouseEvent<any> | MouseEvent;
+export type SupportedMouseEvent =
+    | React.SyntheticEvent<MouseEvent>
+    | React.MouseEvent<any>
+    | MouseEvent
+    | React.MouseEvent<HTMLElement>
+    | React.KeyboardEvent<HTMLElement>;
 
 export class TelemetryDataFactory {
     public forVisualizationToggleByCommand(enabled: boolean): ToggleTelemetryData {
@@ -218,7 +223,7 @@ export class TelemetryDataFactory {
         return this.withTriggeredByAndSource(event, TelemetryEventSource.DetailsView);
     }
 
-    public fromHamburgetMenu(event: SupportedMouseEvent): BaseTelemetryData {
+    public fromHamburgerMenu(event: SupportedMouseEvent): BaseTelemetryData {
         return this.withTriggeredByAndSource(event, TelemetryEventSource.HamburgerMenu);
     }
 

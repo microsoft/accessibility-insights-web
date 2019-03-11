@@ -196,4 +196,31 @@ describe('HTMLElementUtilsTest', () => {
 
         expect(actual).toEqual(expected);
     });
+
+    test('deleteAllElements', () => {
+        const containerElement = createElementWithId('container');
+
+        containerElement.appendChild(createElementWithClassName('to-be-deleted'));
+        containerElement.appendChild(createElementWithClassName('to-be-deleted'));
+        containerElement.appendChild(createElementWithClassName('do-not-delete'));
+
+        const utils = new HTMLElementUtils(containerElement as any, null);
+
+        utils.deleteAllElements('.to-be-deleted');
+
+        expect(containerElement.querySelectorAll('.to-be-deleted').length).toBe(0);
+        expect(containerElement.querySelectorAll('.do-not-delete').length).toBe(1);
+    });
+
+    function createElementWithId(id: string) {
+        const element = document.createElement('p');
+        element.id = id;
+        return element;
+    }
+
+    function createElementWithClassName(className: string) {
+        const element = document.createElement('p');
+        element.className = className;
+        return element;
+    }
 });

@@ -1,11 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-/// <reference path="./iformatter.d.ts" />
-/// <reference path="./../client-utils.ts" />
 import { ClientUtils } from '../client-utils';
-import { AxeResultsWithFrameLevel, IAssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
+import { IAssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
 import { FailureInstanceFormatter } from './failure-instance-formatter';
-import { IDrawerConfiguration, IFormatter } from './iformatter';
+import { DrawerConfiguration } from './iformatter';
 
 // tslint:disable-next-line:interface-name
 export interface IHeadingStyleConfiguration {
@@ -63,12 +61,12 @@ export class HeadingFormatter extends FailureInstanceFormatter {
         return null;
     }
 
-    public getDrawerConfiguration(element: HTMLElement, data: IAssessmentVisualizationInstance): IDrawerConfiguration {
+    public getDrawerConfiguration(element: HTMLElement, data: IAssessmentVisualizationInstance): DrawerConfiguration {
         const level = this.isHTag(element) ? this.getHTagLevel(element) : this.getAriaLevel(element);
         const text = (this.isHTag(element) ? 'H' : 'h') + level;
         const style = HeadingFormatter.headingStyles[level] || HeadingFormatter.headingStyles.blank;
 
-        const drawerConfig: IDrawerConfiguration = {
+        const drawerConfig: DrawerConfiguration = {
             textBoxConfig: {
                 fontColor: style.fontColor,
                 text,

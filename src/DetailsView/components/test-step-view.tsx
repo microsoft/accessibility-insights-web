@@ -76,6 +76,7 @@ export class TestStepView extends React.Component<TestStepViewProps> {
 
         return (
             <React.Fragment>
+                {this.renderScanCompleteAlert()}
                 <h3 className="test-step-instances-header">Instances</h3>
                 <AssessmentInstanceTable
                     instancesMap={this.props.instancesMap}
@@ -90,6 +91,11 @@ export class TestStepView extends React.Component<TestStepViewProps> {
         );
     }
 
+    private renderScanCompleteAlert() {
+        if (!this.props.testStep.isManual && this.props.isStepScanned) {
+            return <div role="alert" aria-live="polite" aria-label="Scan Complete" />;
+        }
+    }
     private getSelectedStep(): Readonly<TestStep> {
         return this.props.assessmentsProvider.getStep(
             this.props.assessmentNavState.selectedTestType,
