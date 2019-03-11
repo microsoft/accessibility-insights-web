@@ -4,7 +4,7 @@ import { IPoint } from '@uifabric/utilities';
 import { Mock } from 'typemoq';
 
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
-import { ICircleConfiguration, ILineConfiguration, ITextConfiguration } from '../../../../../injected/visualization/formatter';
+import { CircleConfiguration, ILineConfiguration, ITextConfiguration } from '../../../../../injected/visualization/formatter';
 import { SVGShapeFactory } from '../../../../../injected/visualization/svg-shape-factory';
 
 describe('SVGShapeFactoryTest', () => {
@@ -285,7 +285,7 @@ describe('SVGShapeFactoryTest', () => {
             y: 100,
         };
 
-        const configuration: ICircleConfiguration = {
+        const configuration: CircleConfiguration = {
             stroke: '#fafafa',
             strokeWidth: '1',
             ellipseRx: '10',
@@ -322,7 +322,7 @@ describe('SVGShapeFactoryTest', () => {
         expect(label.innerHTML).toEqual(tabOrder.toString());
     }
 
-    function verifyCircleParams(circle: Element, configuration: ICircleConfiguration, center: IPoint): void {
+    function verifyCircleParams(circle: Element, configuration: CircleConfiguration, center: IPoint): void {
         expect(circle.tagName).toEqual('ellipse');
         expect(circle.getAttributeNS(null, 'fill')).toEqual(configuration.fill);
         expect(circle.getAttributeNS(null, 'stroke')).toEqual(configuration.stroke);

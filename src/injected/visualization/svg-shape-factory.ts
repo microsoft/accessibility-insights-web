@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DrawerUtils } from './drawer-utils';
-import { ICircleConfiguration, ILineConfiguration, StrokeConfiguration, ITextConfiguration } from './formatter';
+import { CircleConfiguration, ILineConfiguration, StrokeConfiguration, ITextConfiguration } from './formatter';
 import { IPoint } from './ipoint';
 import { SVGNamespaceUrl } from './svg-constants';
 
@@ -52,7 +52,7 @@ export class SVGShapeFactory {
         }
     }
 
-    public createCircle(center: IPoint, configuration: ICircleConfiguration): Element {
+    public createCircle(center: IPoint, configuration: CircleConfiguration): Element {
         const myDocument = this.drawerUtils.getDocumentElement();
 
         const circle = myDocument.createElementNS(SVGNamespaceUrl, 'ellipse');
@@ -83,7 +83,7 @@ export class SVGShapeFactory {
         return text;
     }
 
-    private applyCircleConfiguration(element: Element, configuration: ICircleConfiguration): void {
+    private applyCircleConfiguration(element: Element, configuration: CircleConfiguration): void {
         element.setAttributeNS(null, 'rx', configuration.ellipseRx);
         element.setAttributeNS(null, 'ry', configuration.ellipseRy);
 

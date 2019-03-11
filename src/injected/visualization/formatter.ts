@@ -36,8 +36,7 @@ export interface StrokeConfiguration {
     showSolidFocusLine?: boolean;
 }
 
-// tslint:disable-next-line:interface-name
-export interface ICircleConfiguration extends StrokeConfiguration {
+export interface CircleConfiguration extends StrokeConfiguration {
     ellipseRx: string;
     ellipseRy: string;
     fill: string;
@@ -55,8 +54,8 @@ export type ILineConfiguration = StrokeConfiguration;
 
 // tslint:disable-next-line:interface-name
 export interface ISVGDrawerConfiguration {
-    circle: ICircleConfiguration;
-    focusedCircle: ICircleConfiguration;
+    circle: CircleConfiguration;
+    focusedCircle: CircleConfiguration;
     tabIndexLabel: ITextConfiguration;
     line: ILineConfiguration;
     focusedLine: ILineConfiguration;
