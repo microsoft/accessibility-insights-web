@@ -8,7 +8,7 @@ interface IDictionaryStringTo<T> {
 interface IDictionaryNumberTo<T> {
     [key: number]: T;
 }
-// tslint:disable-next-line:interface-name
-interface IFunctionPPR<TParam1, TParam2, TResult> {
+
+interface FunctionPPR<TParam1, TParam2, TResult> {
     (param1: TParam1, param2: TParam2): TResult;
 }
