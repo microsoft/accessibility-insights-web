@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DrawerUtils } from './drawer-utils';
-import { ICircleConfiguration, ILineConfiguration, IStrokeConfiguration, ITextConfiguration } from './formatter';
+import { ICircleConfiguration, ILineConfiguration, StrokeConfiguration, ITextConfiguration } from './formatter';
 import { IPoint } from './ipoint';
 import { SVGNamespaceUrl } from './svg-constants';
 
@@ -41,7 +41,7 @@ export class SVGShapeFactory {
         return line;
     }
 
-    public applyStrokeConfiguration(element: Element, configuration: IStrokeConfiguration): void {
+    public applyStrokeConfiguration(element: Element, configuration: StrokeConfiguration): void {
         element.setAttributeNS(null, 'stroke', configuration.stroke);
         element.setAttributeNS(null, 'stroke-width', configuration.strokeWidth);
 

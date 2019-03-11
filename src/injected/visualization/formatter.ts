@@ -29,8 +29,7 @@ export interface BoxConfig {
     boxWidth?: string;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IStrokeConfiguration {
+export interface StrokeConfiguration {
     stroke: string;
     strokeWidth: string;
     strokeDasharray?: string;
@@ -38,7 +37,7 @@ export interface IStrokeConfiguration {
 }
 
 // tslint:disable-next-line:interface-name
-export interface ICircleConfiguration extends IStrokeConfiguration {
+export interface ICircleConfiguration extends StrokeConfiguration {
     ellipseRx: string;
     ellipseRy: string;
     fill: string;
@@ -52,7 +51,7 @@ export interface ITextConfiguration {
 }
 
 // tslint:disable-next-line:interface-name
-export type ILineConfiguration = IStrokeConfiguration;
+export type ILineConfiguration = StrokeConfiguration;
 
 // tslint:disable-next-line:interface-name
 export interface ISVGDrawerConfiguration {
