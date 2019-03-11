@@ -484,7 +484,6 @@ describe('DrawingControllerTest', () => {
 
         drawerMock.verifyAll();
         visualizationConfigFactory.verifyAll();
-
         getDrawerMock.verifyAll();
         getIdentifierMock.verifyAll();
         assessmentProvider.verifyAll();
