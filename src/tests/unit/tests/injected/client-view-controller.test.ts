@@ -366,7 +366,7 @@ class TestableClientViewController extends ClientViewController {
         this.previousVisualizationStates = stub;
     }
 
-    public setPreviousVisualizationSelectorMapStatesStub(stub: IDictionaryNumberTo<IDictionaryStringTo<IAssessmentVisualizationInstance>>) {
+    public setPreviousVisualizationSelectorMapStatesStub(stub: DictionaryNumberTo<IDictionaryStringTo<IAssessmentVisualizationInstance>>) {
         this.previousVisualizationSelectorMapStates = stub;
     }
 }
@@ -400,7 +400,7 @@ class MocksAndTestSubjectBuilder {
     private _dataBuilderForToVisualizationScanStoreState: VisualizationScanResultStoreDataBuilder = new VisualizationScanResultStoreDataBuilder();
     private IsScrollingInitiatorSetup: boolean = false;
     private _initializedVisualizationState: IDictionaryStringTo<boolean> = {};
-    private _initializedVisualizationSelectorMapState: IDictionaryNumberTo<IDictionaryStringTo<IAssessmentVisualizationInstance>> = {};
+    private _initializedVisualizationSelectorMapState: DictionaryNumberTo<IDictionaryStringTo<IAssessmentVisualizationInstance>> = {};
     private _selectorMap: IDictionaryStringTo<IAssessmentVisualizationInstance>;
     private _visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
     private _actualVisualizationConfigurationFactory: VisualizationConfigurationFactory;

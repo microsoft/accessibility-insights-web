@@ -79,7 +79,7 @@ export interface IVisualizationConfiguration extends IAssesssmentVisualizationCo
 }
 
 export class VisualizationConfigurationFactory {
-    private configurationByType: IDictionaryNumberTo<IVisualizationConfiguration>;
+    private configurationByType: DictionaryNumberTo<IVisualizationConfiguration>;
 
     constructor() {
         this.configurationByType = {

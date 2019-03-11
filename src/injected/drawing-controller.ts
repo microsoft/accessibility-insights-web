@@ -32,7 +32,7 @@ export interface VisualizationWindowMessage {
 export class DrawingController {
     public static readonly triggerVisualizationCommand = 'insights.draw';
 
-    private _drawers: IDictionaryNumberTo<IDrawer> = {};
+    private _drawers: DictionaryNumberTo<IDrawer> = {};
     private _frameCommunicator: FrameCommunicator;
     private _instanceVisibilityChecker: InstanceVisibilityChecker;
     private _axeResultsHelper: HtmlElementAxeResultsHelper;

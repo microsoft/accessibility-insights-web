@@ -4,8 +4,8 @@
 interface IDictionaryStringTo<T> {
     [key: string]: T;
 }
-// tslint:disable-next-line:interface-name
-interface IDictionaryNumberTo<T> {
+
+interface DictionaryNumberTo<T> {
     [key: number]: T;
 }
 

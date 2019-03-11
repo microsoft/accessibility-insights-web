@@ -36,7 +36,7 @@ export class ClientViewController {
     private selectorMapHelper: SelectorMapHelper;
     private targetPageActionMessageCreator: TargetPageActionMessageCreator;
     protected previousVisualizationStates: IDictionaryStringTo<boolean> = {};
-    protected previousVisualizationSelectorMapStates: IDictionaryNumberTo<IDictionaryStringTo<IAssessmentVisualizationInstance>> = {};
+    protected previousVisualizationSelectorMapStates: DictionaryNumberTo<IDictionaryStringTo<IAssessmentVisualizationInstance>> = {};
 
     constructor(
         visualizationStore: IBaseStore<IVisualizationStoreData>,

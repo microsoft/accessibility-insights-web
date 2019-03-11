@@ -44,7 +44,7 @@ export class ActionCreator {
     private notificationCreator: NotificationCreator;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
     private targetTabController: TargetTabController;
-    private adhocTestTypeToTelemetryEvent: IDictionaryNumberTo<string> = {
+    private adhocTestTypeToTelemetryEvent: DictionaryNumberTo<string> = {
         [VisualizationType.Color]: TelemetryEvents.COLOR_TOGGLE,
         [VisualizationType.Headings]: TelemetryEvents.HEADINGS_TOGGLE,
         [VisualizationType.Issues]: TelemetryEvents.AUTOMATED_CHECKS_TOGGLE,
