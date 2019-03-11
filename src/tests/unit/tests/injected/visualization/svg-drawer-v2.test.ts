@@ -6,8 +6,8 @@ import { ITabbedElementData } from '../../../../../common/types/store-data/ivisu
 import { WindowUtils } from '../../../../../common/window-utils';
 import { ShadowUtils } from '../../../../../injected/shadow-utils';
 import { CenterPositionCalculator } from '../../../../../injected/visualization/center-position-calculator';
-import { IDrawerInitData } from '../../../../../injected/visualization/idrawer';
 import { FocusIndicator } from '../../../../../injected/visualization/focus-indicator';
+import { IDrawerInitData } from '../../../../../injected/visualization/idrawer';
 import { ISVGDrawerConfiguration } from '../../../../../injected/visualization/iformatter';
 import { SVGNamespaceUrl } from '../../../../../injected/visualization/svg-constants';
 import { SVGDrawerV2 } from '../../../../../injected/visualization/svg-drawer-v2';
