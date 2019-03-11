@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { IStoreHub } from '../../../../background/stores/istore-hub';
+import { StoreHub } from '../../../../background/stores/istore-hub';
 import { GenericStoreMessageTypes } from '../../../../common/constants/generic-store-messages-types';
 import { IBaseStore } from '../../../../common/istore';
 import { StateDispatcher } from '../../../../common/state-dispatcher';
@@ -95,7 +95,7 @@ describe('StateDispatcherTest', () => {
     });
 });
 
-class StoreHubStub implements IStoreHub {
+class StoreHubStub implements StoreHub {
     public getAllStores(): IBaseStore<any>[] {
         throw new Error('Method not implemented.');
     }
