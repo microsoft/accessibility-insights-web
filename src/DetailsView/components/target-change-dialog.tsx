@@ -7,6 +7,7 @@ import { Link } from 'office-ui-fabric-react/lib/Link';
 import { TooltipHost } from 'office-ui-fabric-react/lib/Tooltip';
 import * as React from 'react';
 
+import { css } from '@uifabric/utilities';
 import * as Markup from '../../assessments/markup';
 import { BlockingDialog } from '../../common/components/blocking-dialog';
 import { NewTabLink } from '../../common/components/new-tab-link';
@@ -91,7 +92,11 @@ export class TargetChangeDialog extends React.Component<TargetChangeDialogProps>
     private renderCurrentTabLink(tab: ITab): JSX.Element {
         return (
             <TooltipHost content={tab.url} id={'current-target-page-link'} calloutProps={{ gapSpace: 0 }}>
-                <Link role="link" className="target-page-link" onClick={this.props.actionMessageCreator.switchToTargetTab}>
+                <Link
+                    role="link"
+                    className={css('insights-link', 'target-page-link')}
+                    onClick={this.props.actionMessageCreator.switchToTargetTab}
+                >
                     {tab.title}
                 </Link>
             </TooltipHost>

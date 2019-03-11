@@ -25,7 +25,12 @@ export class LaunchPadItemRow extends React.Component<LaunchPadItemRowProps, und
                     </div>
                     <div className="ms-Grid-col ms-sm9">
                         <div className="launch-pad-item-title">
-                            <Link role="link" onClick={this.props.onClickTitle} aria-describedby={this.descriptionId}>
+                            <Link
+                                role="link"
+                                className="insights-link"
+                                onClick={this.props.onClickTitle}
+                                aria-describedby={this.descriptionId}
+                            >
                                 {this.props.title}
                             </Link>
                         </div>

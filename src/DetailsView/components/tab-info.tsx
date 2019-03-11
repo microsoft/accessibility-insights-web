@@ -4,6 +4,7 @@ import { Link } from 'office-ui-fabric-react/lib/Link';
 import { MessageBar, MessageBarType } from 'office-ui-fabric-react/lib/MessageBar';
 import * as React from 'react';
 
+import { css } from '@uifabric/utilities';
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 import { FeatureFlags } from '../../common/feature-flags';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
@@ -39,7 +40,7 @@ export class TabInfo extends React.Component<TabInfoProps> {
         return (
             <div className="target-tab-info">
                 Target page:&nbsp;
-                <Link role="link" className={'target-page-link'} onClick={this.props.actionCreator.switchToTargetTab}>
+                <Link role="link" className={css('target-page-link', 'insights-link')} onClick={this.props.actionCreator.switchToTargetTab}>
                     {this.props.title}
                 </Link>
                 &nbsp;({this.props.url})

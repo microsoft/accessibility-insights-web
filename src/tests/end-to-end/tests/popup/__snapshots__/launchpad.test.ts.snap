@@ -122,7 +122,7 @@ exports[`Launch Pad content should match snapshot 1`] = `
                   >
                     <button
                       aria-describedby="launch-pad-item-description-1"
-                      class="ms-Link root-000"
+                      class="ms-Link insights-link root-000"
                       role="link"
                       type="button"
                     >
@@ -169,7 +169,7 @@ exports[`Launch Pad content should match snapshot 1`] = `
                   >
                     <button
                       aria-describedby="launch-pad-item-description-2"
-                      class="ms-Link root-000"
+                      class="ms-Link insights-link root-000"
                       role="link"
                       type="button"
                     >
@@ -216,7 +216,7 @@ exports[`Launch Pad content should match snapshot 1`] = `
                   >
                     <button
                       aria-describedby="launch-pad-item-description-3"
-                      class="ms-Link root-000"
+                      class="ms-Link insights-link root-000"
                       role="link"
                       type="button"
                     >

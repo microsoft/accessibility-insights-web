@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
+import { autobind, css } from '@uifabric/utilities';
 import { escape } from 'lodash';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { Link } from 'office-ui-fabric-react/lib/Link';
@@ -69,7 +69,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
                 <Link
                     role="link"
                     title="Switch to target page"
-                    className="target-page-link"
+                    className={css('insights-link', 'target-page-link')}
                     onClick={this.props.actionMessageCreator.switchToTargetTab}
                 >
                     {targetPageTitle}

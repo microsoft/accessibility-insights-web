@@ -47,13 +47,15 @@ exports[`AdHocToolsPanelTest adhoc panel matches snapshot 1`] = `
     role="navigation"
   >
     <StyledLinkBase
+      className="insights-link"
       id="back-to-launchpad-link"
       onClick={null}
     >
       <StyledIconBase
+        className="back-to-launch-pad-icon"
         iconName="back"
       />
-        Back to launch pad
+      Back to launch pad
     </StyledLinkBase>
   </div>
 </div>

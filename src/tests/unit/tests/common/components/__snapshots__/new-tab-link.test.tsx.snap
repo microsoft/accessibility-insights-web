@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewTabLink render content with custom className 1`] = `
+<StyledLinkBase
+  className="insights-link custom-class"
+  href="test"
+  target="_blank"
+/>
+`;
+
+exports[`NewTabLink render content without custom className 1`] = `
+<StyledLinkBase
+  className="insights-link"
+  href="test"
+  target="_blank"
+/>
+`;

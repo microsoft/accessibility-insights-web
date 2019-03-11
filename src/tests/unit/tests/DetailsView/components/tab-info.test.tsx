@@ -6,6 +6,7 @@ import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { IMock, Mock } from 'typemoq';
 
+import { css } from '@uifabric/utilities';
 import { DropdownClickHandler } from '../../../../../common/dropdown-click-handler';
 import { FeatureFlags, getDefaultFeatureFlagValues } from '../../../../../common/feature-flags';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
@@ -65,7 +66,11 @@ describe('TabInfo', () => {
                 return (
                     <div className="target-tab-info">
                         Target page:&nbsp;
-                        <Link role="link" className={'target-page-link'} onClick={testProps.actionCreator.switchToTargetTab}>
+                        <Link
+                            role="link"
+                            className={css('target-page-link', 'insights-link')}
+                            onClick={testProps.actionCreator.switchToTargetTab}
+                        >
                             {testProps.title}
                         </Link>
                         &nbsp;({testProps.url})
