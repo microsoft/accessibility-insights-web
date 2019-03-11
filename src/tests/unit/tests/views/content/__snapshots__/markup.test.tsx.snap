@@ -16,6 +16,12 @@ exports[`ContentPage .Markup <Columns> renders 1`] = `
 </div>
 `;
 
+exports[`ContentPage .Markup <Disclaimer> renders 1`] = `
+"<Emphasis>
+  NOTE: All links are for reference purposes only. No endorsement is implied.
+</Emphasis>"
+`;
+
 exports[`ContentPage .Markup <Do> renders 1`] = `
 <Column>
   <div
