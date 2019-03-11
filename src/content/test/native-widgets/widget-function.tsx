@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { create, React } from '../../common';
 
-export const infoAndExamples = create(({ Markup }) => (
+export const infoAndExamples = create(({ Markup, Link }) => (
     <>
         <h1>Widget function</h1>
         <p>If a native widget functions as a custom widget, it must have the appropriate ARIA widget role.</p>
@@ -90,9 +90,7 @@ export const infoAndExamples = create(({ Markup }) => (
 
         <h3>Additional guidance</h3>
         <Markup.Links>
-            <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-practices-1.1/">
-                WAI-ARIA Authoring Practices 1.1: Design Patterns and Widgets
-            </Markup.HyperLink>
+            <Link.WAIARIAAuthoringPractices />
         </Markup.Links>
     </>
 ));

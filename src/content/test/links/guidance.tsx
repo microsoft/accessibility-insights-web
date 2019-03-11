@@ -95,9 +95,7 @@ export const guidance = create(({ Markup, Link }) => (
 
         <h4>Additional guidance</h4>
         <Markup.Links>
-            <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-practices-1.1/">
-                WAI-ARIA Authoring Practices 1.1: Design Patterns and Widgets
-            </Markup.HyperLink>
+            <Link.WAIARIAAuthoringPractices />
         </Markup.Links>
 
         <h3>Describe the purpose of a link</h3>
