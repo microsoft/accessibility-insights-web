@@ -8,7 +8,7 @@ export interface DrawerConfiguration {
     showVisualization: boolean;
     textAlign?: string;
     cursor?: string;
-    failureBoxConfig?: IFailureBoxConfig;
+    failureBoxConfig?: FailureBoxConfig;
     toolTip?: string;
     textBoxConfig?: TextBoxConfig;
     getBoundingRect?: (e: Element) => ClientRect | DOMRect;
@@ -18,8 +18,7 @@ export interface TextBoxConfig extends IBoxConfig {
     boxHeight?: string;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IFailureBoxConfig extends IBoxConfig {
+export interface FailureBoxConfig extends IBoxConfig {
     hasDialogView?: boolean;
 }
 
