@@ -258,14 +258,14 @@ div.insights-file-issue-details-dialog-container {
         border-bottom: 0px;
     }
     .ms-Nav-compositeLink.is-selected a {
-        background-color: $communication-tint-40 !important;
+        background-color: $communication-tint-40;
         border-left: $pivotItemLeftBorderWidth $pivotItemBorderStyle $communication-primary;
         .ms-Button-label {
-            color: $always-black !important;
+            color: $highlighted-text;
         }
         .overview-percent,
         .dark-gray {
-            color: $overview-percent-selected !important;
+            color: $overview-percent-selected;
         }
     }
     .ms-DetailsRow,

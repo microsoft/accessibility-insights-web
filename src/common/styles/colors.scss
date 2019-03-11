@@ -7,6 +7,7 @@
     --white: #ffffff;
     --brand-blue: #004880;
     --grey: #333333;
+    --high-contrast-icon-color: var(--black);
 
     // Accessibility Insights brand color
     --ada-brand-color: var(--brand-blue);
@@ -217,3 +218,4 @@ $highlighted-text: var(--highlighted-text);
 // consistent colors
 $always-white: #ffffff;
 $always-black: #161616;
+$high-contrast-icon-color: var(--high-contrast-icon-color);

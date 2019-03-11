@@ -61,6 +61,11 @@ button::after {
             text-decoration: underline;
         }
     }
+    .is-selected {
+        .status-icon {
+            color: $high-contrast-icon-color !important;
+        }
+    }
 }
 
 .insights-link {
