@@ -76,6 +76,16 @@ button::after {
     }
 }
 
+.ms-Spinner {
+    .ms-Spinner-circle {
+        border-top-color: $spinner-text;
+    }
+
+    .ms-Spinner-label {
+        color: $spinner-text;
+    }
+}
+
 $normalTitleFontWeight: 300 !default;
 
 $pivotItemLeftBorderWidth: 3px !default;

@@ -78,6 +78,7 @@
     --help-links-section-background: var(--neutral-4);
     --help-links-section-border: var(--neutral-4);
     --highlighted-text: var(--black);
+    --spinner-text: var(--communication-primary);
 
     // Landmark colors
     --landmark-contentinfo: #00a88c;
@@ -134,6 +135,7 @@
         --help-links-section-background: transparent;
         --help-links-section-border: var(--white);
         --highlighted-text: var(--black);
+        --spinner-text: var(--communication-tint-40);
     }
 }
 
@@ -214,6 +216,7 @@ $switcher-focus-border: var(--switcher-focus-border);
 $help-links-section-background: var(--help-links-section-background);
 $help-links-section-border: var(--help-links-section-border);
 $highlighted-text: var(--highlighted-text);
+$spinner-text: var(--spinner-text);
 
 // consistent colors
 $always-white: #ffffff;
