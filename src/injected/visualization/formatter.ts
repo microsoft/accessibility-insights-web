@@ -48,16 +48,15 @@ export interface TextConfiguration {
     showTabIndexedLabel?: boolean;
 }
 
-// tslint:disable-next-line:interface-name
-export type ILineConfiguration = StrokeConfiguration;
+export type LineConfiguration = StrokeConfiguration;
 
 // tslint:disable-next-line:interface-name
 export interface ISVGDrawerConfiguration {
     circle: CircleConfiguration;
     focusedCircle: CircleConfiguration;
     tabIndexLabel: TextConfiguration;
-    line: ILineConfiguration;
-    focusedLine: ILineConfiguration;
+    line: LineConfiguration;
+    focusedLine: LineConfiguration;
 }
 
 export interface SingleTargetDrawerConfiguration {

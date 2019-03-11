@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DrawerUtils } from './drawer-utils';
-import { CircleConfiguration, ILineConfiguration, StrokeConfiguration, TextConfiguration } from './formatter';
+import { CircleConfiguration, LineConfiguration, StrokeConfiguration, TextConfiguration } from './formatter';
 import { IPoint } from './ipoint';
 import { SVGNamespaceUrl } from './svg-constants';
 
@@ -17,7 +17,7 @@ export class SVGShapeFactory {
     public createLine(
         source: IPoint,
         destination: IPoint,
-        configuration: ILineConfiguration,
+        configuration: LineConfiguration,
         filterName: string,
         circleRadius: number,
     ): Element {

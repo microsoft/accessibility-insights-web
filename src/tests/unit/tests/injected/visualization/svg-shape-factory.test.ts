@@ -4,13 +4,13 @@ import { IPoint } from '@uifabric/utilities';
 import { Mock } from 'typemoq';
 
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
-import { CircleConfiguration, ILineConfiguration, TextConfiguration } from '../../../../../injected/visualization/formatter';
+import { CircleConfiguration, LineConfiguration, TextConfiguration } from '../../../../../injected/visualization/formatter';
 import { SVGShapeFactory } from '../../../../../injected/visualization/svg-shape-factory';
 
 describe('SVGShapeFactoryTest', () => {
     const drawerUtilsMock = Mock.ofType(DrawerUtils);
     let testObject: SVGShapeFactory;
-    const defaultTestLineConfiguration: ILineConfiguration = {
+    const defaultTestLineConfiguration: LineConfiguration = {
         stroke: '#ffffff',
         strokeWidth: '1',
         strokeDasharray: '3 3',
@@ -269,7 +269,7 @@ describe('SVGShapeFactoryTest', () => {
             y: 100,
         };
 
-        const configuration: ILineConfiguration = {
+        const configuration: LineConfiguration = {
             stroke: '#fafafa',
             strokeWidth: '1',
         };
@@ -334,7 +334,7 @@ describe('SVGShapeFactoryTest', () => {
         expect(circle.getAttributeNS(null, 'cy')).toEqual(center.y.toString());
     }
 
-    function verifyLineParams(line: Element, configuration: ILineConfiguration, filterName: string): void {
+    function verifyLineParams(line: Element, configuration: LineConfiguration, filterName: string): void {
         expect(line.tagName).toEqual('line');
         expect(line.getAttributeNS(null, 'class')).toEqual('insights-svg-line');
         expect(line.getAttributeNS(null, 'stroke')).toEqual(configuration.stroke);
