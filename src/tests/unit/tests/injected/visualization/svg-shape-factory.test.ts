@@ -4,7 +4,7 @@ import { IPoint } from '@uifabric/utilities';
 import { Mock } from 'typemoq';
 
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
-import { CircleConfiguration, ILineConfiguration, ITextConfiguration } from '../../../../../injected/visualization/formatter';
+import { CircleConfiguration, ILineConfiguration, TextConfiguration } from '../../../../../injected/visualization/formatter';
 import { SVGShapeFactory } from '../../../../../injected/visualization/svg-shape-factory';
 
 describe('SVGShapeFactoryTest', () => {
@@ -303,7 +303,7 @@ describe('SVGShapeFactoryTest', () => {
             y: 100,
         };
 
-        const textConfig: ITextConfiguration = {
+        const textConfig: TextConfiguration = {
             textAnchor: 'textAnchor',
             fontColor: 'fontColor',
         };
@@ -312,7 +312,7 @@ describe('SVGShapeFactoryTest', () => {
         verifyTabIndexLabelParams(label, textConfig, center, 10);
     });
 
-    function verifyTabIndexLabelParams(label: Element, configuration: ITextConfiguration, center: IPoint, tabOrder: number): void {
+    function verifyTabIndexLabelParams(label: Element, configuration: TextConfiguration, center: IPoint, tabOrder: number): void {
         expect(label.tagName).toEqual('text');
         expect(label.getAttributeNS(null, 'class')).toEqual('insights-svg-focus-indicator-text');
         expect(label.getAttributeNS(null, 'x')).toEqual(center.x.toString());

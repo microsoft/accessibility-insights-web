@@ -42,8 +42,7 @@ export interface CircleConfiguration extends StrokeConfiguration {
     fill: string;
 }
 
-// tslint:disable-next-line:interface-name
-export interface ITextConfiguration {
+export interface TextConfiguration {
     textAnchor: string;
     fontColor: string;
     showTabIndexedLabel?: boolean;
@@ -56,7 +55,7 @@ export type ILineConfiguration = StrokeConfiguration;
 export interface ISVGDrawerConfiguration {
     circle: CircleConfiguration;
     focusedCircle: CircleConfiguration;
-    tabIndexLabel: ITextConfiguration;
+    tabIndexLabel: TextConfiguration;
     line: ILineConfiguration;
     focusedLine: ILineConfiguration;
 }
