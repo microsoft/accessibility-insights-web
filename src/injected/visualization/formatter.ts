@@ -10,12 +10,11 @@ export interface DrawerConfiguration {
     cursor?: string;
     failureBoxConfig?: IFailureBoxConfig;
     toolTip?: string;
-    textBoxConfig?: ITextBoxConfig;
+    textBoxConfig?: TextBoxConfig;
     getBoundingRect?: (e: Element) => ClientRect | DOMRect;
 }
 
-// tslint:disable-next-line:interface-name
-export interface ITextBoxConfig extends IBoxConfig {
+export interface TextBoxConfig extends IBoxConfig {
     boxHeight?: string;
 }
 
