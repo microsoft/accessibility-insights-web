@@ -6,6 +6,7 @@
     --light-black: #161616;
     --white: #ffffff;
     --brand-blue: #004880;
+    --grey: #333333;
 
     // Accessibility Insights brand color
     --ada-brand-color: var(--brand-blue);
@@ -42,7 +43,7 @@
     --neutral-55: #6e6e6e;
     --neutral-60: #666666;
     --neutral-70: #3c3c3c;
-    --neutral-80: #333333;
+    --neutral-80: --var(--grey);
     --neutral-alpha-2: rgba(0, 0, 0, 0.02);
     --neutral-alpha-4: rgba(0, 0, 0, 0.04);
     --neutral-alpha-6: rgba(0, 0, 0, 0.06);
@@ -67,6 +68,7 @@
     --check-box-tick: var(--neutral-100);
     --check-box-background: var(--neutral-8);
     --row-selected-background: var(--communication-tint-40);
+    --group-selected-background: var(--communication-tint-40);
     --row-hover-background: var(--neutral-4);
     --link: var(--communication-shade-10);
     --link-hover: var(--communication-shade-30);
@@ -74,6 +76,7 @@
     --switcher-focus-border: var(--neutral-0);
     --help-links-section-background: var(--neutral-4);
     --help-links-section-border: var(--neutral-4);
+    --highlighted-text: var(--black);
 
     // Landmark colors
     --landmark-contentinfo: #00a88c;
@@ -120,14 +123,16 @@
         --check-box-border: var(--light-black);
         --check-box-tick: var(--light-black);
         --check-box-background: var(--communication-tint-40);
-        --row-selected-background: transparent;
+        --row-selected-background: var(--communication-tint-40);
+        --group-selected-background: var(--grey);
         --row-hover-background: var(--communication-tint-40);
         --link: var(--communication-shade-10);
         --link-hover: var(--communication-shade-10);
         --switcher-border: var(--brand-blue);
-        --switcher-focus-border: var(--brand-blue);
+        --switcher-focus-border: var(--black);
         --help-links-section-background: transparent;
         --help-links-section-border: var(--white);
+        --highlighted-text: var(--black);
     }
 }
 
@@ -199,6 +204,7 @@ $check-box-border: var(--check-box-border);
 $check-box-tick: var(--check-box-tick);
 $check-box-background: var(--check-box-background);
 $row-selected-background: var(--row-selected-background);
+$group-selected-background: var(--group-selected-background);
 $row-hover-background: var(--row-hover-background);
 $link: var(--link);
 $link-hover: var(--link-hover);
@@ -206,6 +212,7 @@ $switcher-border: var(--switcher-border);
 $switcher-focus-border: var(--switcher-focus-border);
 $help-links-section-background: var(--help-links-section-background);
 $help-links-section-border: var(--help-links-section-border);
+$highlighted-text: var(--highlighted-text);
 
 // consistent colors
 $always-white: #ffffff;
