@@ -270,11 +270,10 @@ export class ActionCreator {
 
     @autobind
     private onDetailsViewOpen(payload: OnDetailsViewOpenPayload, tabId: number): void {
+        this.onPivotChildSelected(payload, tabId);
         if (this.shouldEnableToggleOnDetailsViewOpen(payload.detailsViewType)) {
             this.enableToggleOnDetailsViewOpen(payload.detailsViewType, tabId);
         }
-
-        this.onPivotChildSelected(payload, tabId);
     }
 
     private shouldEnableToggleOnDetailsViewOpen(visualizationType: VisualizationType): boolean {
