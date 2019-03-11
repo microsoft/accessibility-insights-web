@@ -1,11 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { It, Mock } from 'typemoq';
-
 import { ClientUtils } from '../../../../../injected/client-utils';
 import { IAssessmentVisualizationInstance } from '../../../../../injected/frameCommunicators/html-element-axe-results-helper';
-import { HeadingFormatter, IHeadingStyleConfiguration, IStyleComputer } from '../../../../../injected/visualization/heading-formatter';
 import { DrawerConfiguration } from '../../../../../injected/visualization/formatter';
+import { HeadingFormatter, IHeadingStyleConfiguration, IStyleComputer } from '../../../../../injected/visualization/heading-formatter';
 
 describe('HeadingFormatterTests', () => {
     let testSubject: HeadingFormatter;

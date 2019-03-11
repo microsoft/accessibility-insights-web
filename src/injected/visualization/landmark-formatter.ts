@@ -4,8 +4,8 @@ import { DialogRenderer } from '../dialog-renderer';
 import { IAssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
 import { IHtmlElementAxeResults } from '../scanner-utils';
 import { FailureInstanceFormatter } from './failure-instance-formatter';
-import { IHeadingStyleConfiguration } from './heading-formatter';
 import { DrawerConfiguration } from './formatter';
+import { IHeadingStyleConfiguration } from './heading-formatter';
 
 interface ElemData {
     role: string;

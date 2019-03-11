@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { getRTL } from '@uifabric/utilities';
-
 import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 import { HTMLElementUtils } from '../../common/html-element-utils';
 import { TabbableElementsHelper } from '../../common/tabbable-elements-helper';
@@ -14,11 +13,11 @@ import { CenterPositionCalculator } from './center-position-calculator';
 import { CustomWidgetsFormatter } from './custom-widgets-formatter';
 import { Drawer } from './drawer';
 import { DrawerUtils } from './drawer-utils';
+import { Formatter, SVGDrawerConfiguration } from './formatter';
 import { FrameFormatter } from './frame-formatter';
 import { HeadingFormatter } from './heading-formatter';
 import { HighlightBoxFormatter } from './highlight-box-formatter';
 import { IDrawer } from './idrawer';
-import { Formatter, SVGDrawerConfiguration } from './formatter';
 import { IssuesFormatter } from './issues-formatter';
 import { LandmarkFormatter } from './landmark-formatter';
 import { NullDrawer } from './null-drawer';

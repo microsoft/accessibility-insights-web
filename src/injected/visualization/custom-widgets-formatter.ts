@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { IAssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
 import { DrawerUtils } from './drawer-utils';
-import { HighlightBoxFormatter } from './highlight-box-formatter';
 import { DrawerConfiguration } from './formatter';
+import { HighlightBoxFormatter } from './highlight-box-formatter';
 
 export class CustomWidgetsFormatter extends HighlightBoxFormatter {
     constructor() {
