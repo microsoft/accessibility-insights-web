@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
-
 import { getDefaultFeatureFlagValues } from '../../../../../common/feature-flags';
 import { ITabbedElementData } from '../../../../../common/types/store-data/ivisualization-scan-result-data';
 import { WindowUtils } from '../../../../../common/window-utils';
@@ -10,12 +9,12 @@ import { CenterPositionCalculator } from '../../../../../injected/visualization/
 import { IDrawerInitData } from '../../../../../injected/visualization/idrawer';
 import { IFocusIndicator } from '../../../../../injected/visualization/ifocus-indicator';
 import { ISVGDrawerConfiguration } from '../../../../../injected/visualization/iformatter';
-import { TabbedItem } from '../../../../../injected/visualization/itabbed-item';
 import { SVGNamespaceUrl } from '../../../../../injected/visualization/svg-constants';
 import { SVGDrawerV2 } from '../../../../../injected/visualization/svg-drawer-v2';
 import { SVGShapeFactory } from '../../../../../injected/visualization/svg-shape-factory';
 import { SVGSolidShadowFilterFactory } from '../../../../../injected/visualization/svg-solid-shadow-filter-factory';
 import { TabStopsFormatter } from '../../../../../injected/visualization/tab-stops-formatter';
+import { TabbedItem } from '../../../../../injected/visualization/tabbed-item';
 import { TestDocumentCreator } from '../../../common/test-document-creator';
 import { DrawerUtilsMockBuilder } from './drawer-utils-mock-builder';
 

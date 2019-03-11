@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as _ from 'lodash/index';
-
 import { ITabbedElementData } from '../../common/types/store-data/ivisualization-scan-result-data';
 import { ShadowUtils } from '../shadow-utils';
 import { WindowUtils } from './../../common/window-utils';
@@ -12,11 +11,11 @@ import { IDrawerInitData } from './idrawer';
 import { IFocusIndicator } from './ifocus-indicator';
 import { ISVGDrawerConfiguration } from './iformatter';
 import { IPoint } from './ipoint';
-import { TabbedItem } from './itabbed-item';
 import { SVGNamespaceUrl } from './svg-constants';
 import { SVGShapeFactory } from './svg-shape-factory';
 import { SVGSolidShadowFilterFactory } from './svg-solid-shadow-filter-factory';
 import { TabStopsFormatter } from './tab-stops-formatter';
+import { TabbedItem } from './tabbed-item';
 
 export class SVGDrawerV2 extends BaseDrawer {
     protected tabbedElements: TabbedItem[];
