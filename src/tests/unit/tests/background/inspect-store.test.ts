@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IInspectPayload, InspectActions } from '../../../../background/actions/inspect-actions';
+import { InspectPayload, InspectActions } from '../../../../background/actions/inspect-actions';
 import { TabActions } from '../../../../background/actions/tab-actions';
 import { InspectMode } from '../../../../background/inspect-modes';
 import { InspectStore } from '../../../../background/stores/inspect-store';
@@ -32,7 +32,7 @@ describe('InspectStoreTest', () => {
 
     test('on changeMode', () => {
         const initialState = getDefaultState();
-        const payload: IInspectPayload = {
+        const payload: InspectPayload = {
             inspectMode: InspectMode.scopingAddInclude,
         };
 

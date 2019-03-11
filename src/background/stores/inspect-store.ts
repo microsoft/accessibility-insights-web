@@ -4,7 +4,7 @@ import { autobind } from '@uifabric/utilities';
 
 import { StoreNames } from '../../common/stores/store-names';
 import { IInspectStoreData } from '../../common/types/store-data/inspect-store-data';
-import { IInspectPayload, InspectActions } from '../actions/inspect-actions';
+import { InspectPayload, InspectActions } from '../actions/inspect-actions';
 import { TabActions } from '../actions/tab-actions';
 import { InspectMode } from '../inspect-modes';
 import { BaseStore } from './base-store';
@@ -37,7 +37,7 @@ export class InspectStore extends BaseStore<IInspectStoreData> {
     }
 
     @autobind
-    private onChangeInspectMode(payload: IInspectPayload): void {
+    private onChangeInspectMode(payload: InspectPayload): void {
         this.state.inspectMode = payload.inspectMode;
         this.state.hoveredOverSelector = null;
         this.emitChanged();

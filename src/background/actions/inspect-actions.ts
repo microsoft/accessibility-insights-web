@@ -4,13 +4,12 @@ import { Action } from '../../common/flux/action';
 import { InspectMode } from '../inspect-modes';
 import { BaseActionPayload } from './action-payloads';
 
-// tslint:disable-next-line:interface-name
-export interface IInspectPayload extends BaseActionPayload {
+export interface InspectPayload extends BaseActionPayload {
     inspectMode: InspectMode;
 }
 
 export class InspectActions {
-    public readonly changeInspectMode = new Action<IInspectPayload>();
+    public readonly changeInspectMode = new Action<InspectPayload>();
     public readonly getCurrentState = new Action<void>();
     public readonly setHoveredOverSelector = new Action<string[]>();
 }
