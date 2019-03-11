@@ -13,9 +13,9 @@ interface TestPropertyBag extends ColumnValueBag {
     b: number;
     c: Date;
     d: boolean;
-    e: IDictionaryStringTo<string>;
-    f: IDictionaryStringTo<string>;
-    nullValues: IDictionaryStringTo<string>;
+    e: DictionaryStringTo<string>;
+    f: DictionaryStringTo<string>;
+    nullValues: DictionaryStringTo<string>;
 }
 
 describe('PropertyBagColumnRendererTest', () => {

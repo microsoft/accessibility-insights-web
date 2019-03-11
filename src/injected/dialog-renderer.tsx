@@ -52,7 +52,7 @@ export class DialogRenderer {
             mainWindowContext.getTargetPageActionMessageCreator().openIssuesDialog();
 
             const elementSelector: string = this.getElementSelector(data);
-            const failedRules: IDictionaryStringTo<DecoratedAxeNodeResult> = this.getFailedRules(data);
+            const failedRules: DictionaryStringTo<DecoratedAxeNodeResult> = this.getFailedRules(data);
             const target: string[] = this.getTarget(data);
             const dialogContainer: HTMLDivElement = featureFlagStoreData[FeatureFlags.shadowDialog]
                 ? this.initializeDialogContainerInShadowDom()
@@ -127,7 +127,7 @@ export class DialogRenderer {
         return dialogContainer;
     }
 
-    private getFailedRules(data: IHtmlElementAxeResults): IDictionaryStringTo<DecoratedAxeNodeResult> {
+    private getFailedRules(data: IHtmlElementAxeResults): DictionaryStringTo<DecoratedAxeNodeResult> {
         return data.ruleResults;
     }
 

@@ -21,7 +21,7 @@ export class CompletedTestStepTelemetryCreator {
     private provider: IAssessmentsProvider;
     private telemetryFactory: TelemetryDataFactory;
     private interpreter: Interpreter;
-    private oldTestStates: IDictionaryStringTo<ManualTestStatusData>;
+    private oldTestStates: DictionaryStringTo<ManualTestStatusData>;
 
     constructor(store: AssessmentStore, provider: IAssessmentsProvider, factory: TelemetryDataFactory, interpreter: Interpreter) {
         this.store = store;

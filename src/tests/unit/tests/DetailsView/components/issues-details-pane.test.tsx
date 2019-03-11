@@ -67,7 +67,7 @@ describe('IssuesDetailsPaneTest', () => {
             });
         }
 
-        const ruleMap = {} as IDictionaryStringTo<DecoratedAxeNodeResult>;
+        const ruleMap = {} as DictionaryStringTo<DecoratedAxeNodeResult>;
         for (let i = 1; i <= ruleCount; i++) {
             const id = `id${i}`;
             ruleMap[id] = {

@@ -29,7 +29,7 @@ export class DetailsViewContainerPropsBuilder {
     private assessmentStore: IBaseStore<IAssessmentStoreData>;
     private visualizationScanResultStore: IBaseStore<IVisualizationScanResultData>;
     private tabStore: IBaseStore<ITabStoreData>;
-    private featureFlagStore: IBaseStore<IDictionaryStringTo<boolean>>;
+    private featureFlagStore: IBaseStore<DictionaryStringTo<boolean>>;
     private scopingStateStore: IBaseStore<IScopingStoreData>;
     private detailsViewStore: IBaseStore<IDetailsViewData>;
     private scopingActionMessageCreator: ScopingActionMessageCreator;

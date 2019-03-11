@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-// tslint:disable-next-line:interface-name
-interface IDictionaryStringTo<T> {
+interface DictionaryStringTo<T> {
     [key: string]: T;
 }
 

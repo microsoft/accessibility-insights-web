@@ -23,7 +23,7 @@ import { DiagnosticViewClickHandler } from '../handlers/diagnostic-view-toggle-c
 
 export interface DiagnosticViewToggleProps {
     deps: DiagnosticViewToggleDeps;
-    featureFlags: IDictionaryStringTo<boolean>;
+    featureFlags: DictionaryStringTo<boolean>;
     type: VisualizationType;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     visualizationStoreData: IVisualizationStoreData;

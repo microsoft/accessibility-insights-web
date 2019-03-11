@@ -17,7 +17,7 @@ export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<IVi
         return this;
     }
 
-    public withIssuesSelectedTargets(map: IDictionaryStringTo<IHtmlElementAxeResults>): VisualizationScanResultStoreDataBuilder {
+    public withIssuesSelectedTargets(map: DictionaryStringTo<IHtmlElementAxeResults>): VisualizationScanResultStoreDataBuilder {
         this.data.issues.selectedAxeResultsMap = map;
         return this;
     }

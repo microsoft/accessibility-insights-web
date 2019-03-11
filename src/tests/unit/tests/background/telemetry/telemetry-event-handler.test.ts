@@ -92,7 +92,7 @@ describe('TelemetryEventHandlerTest', () => {
     });
 
     test('test for publishTelemetry with random object as custom property', () => {
-        const extraFields: IDictionaryStringTo<any> = {
+        const extraFields: DictionaryStringTo<any> = {
             ___featureA: {
                 __featureB__: {
                     _featureC_: 'hello world',
@@ -123,7 +123,7 @@ describe('TelemetryEventHandlerTest', () => {
         verifyMocks();
     });
 
-    function createExpectedAppInsightsTelemetry(customFields?: IDictionaryStringTo<any>) {
+    function createExpectedAppInsightsTelemetry(customFields?: DictionaryStringTo<any>) {
         const telemetry: any = {
             source: undefined,
             triggeredBy: 'triggered by test',
@@ -151,7 +151,7 @@ describe('TelemetryEventHandlerTest', () => {
         return telemetryEventHandler;
     }
 
-    function setupTrackEvent(eventName: string, expectedTelemetry: IDictionaryStringTo<string>) {
+    function setupTrackEvent(eventName: string, expectedTelemetry: DictionaryStringTo<string>) {
         telemetryClientStrictMock.setup(te => te.trackEvent(It.isValue(eventName), It.isValue(expectedTelemetry))).verifiable(Times.once());
     }
 });

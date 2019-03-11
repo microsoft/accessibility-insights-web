@@ -22,7 +22,7 @@ const VisualizationMessages = Messages.Visualizations;
 
 export class ChromeCommandHandler {
     private targetTabUrl: string;
-    private commandToVisualizationType: IDictionaryStringTo<VisualizationType>;
+    private commandToVisualizationType: DictionaryStringTo<VisualizationType>;
 
     constructor(
         private tabToContextMap: TabToContextMap,

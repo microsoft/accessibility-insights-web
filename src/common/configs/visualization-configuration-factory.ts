@@ -44,15 +44,15 @@ export interface IAssesssmentVisualizationConfiguration {
     disableTest: (data: IScanData, step?: string) => void;
     getTestStatus: (data: IScanData, step?: string) => boolean;
     getAssessmentData?: (data: IAssessmentStoreData) => IAssessmentData;
-    setAssessmentData?: (data: IAssessmentStoreData, selectorMap: IDictionaryStringTo<any>, instanceMap?: IDictionaryStringTo<any>) => void;
+    setAssessmentData?: (data: IAssessmentStoreData, selectorMap: DictionaryStringTo<any>, instanceMap?: DictionaryStringTo<any>) => void;
     analyzerMessageType: string;
     analyzerProgressMessageType?: string;
-    resultProcessor?: (scanner: ScannerUtils) => (results: ScanResults) => IDictionaryStringTo<IHtmlElementAxeResults>;
+    resultProcessor?: (scanner: ScannerUtils) => (results: ScanResults) => DictionaryStringTo<IHtmlElementAxeResults>;
     telemetryProcessor?: TelemetryProcessor<IAnalyzerTelemetryCallback>;
     getAnalyzer: (analyzerProvider: AnalyzerProvider, testStep?: string) => IAnalyzer<any>;
     getIdentifier: (testStep?: string) => string;
     visualizationInstanceProcessor: (testStep?: string) => IVisualizationInstanceProcessorCallback<IPropertyBags, IPropertyBags>;
-    getNotificationMessage: (selectorMap: IDictionaryStringTo<any>, testStep?: string) => string;
+    getNotificationMessage: (selectorMap: DictionaryStringTo<any>, testStep?: string) => string;
     getDrawer: (provider: DrawerProvider, testStep?: string) => IDrawer;
     getSwitchToTargetTabOnScan: (testStep?: string) => boolean;
     getInstanceIdentiferGenerator: (testStep?: string) => (instance: IUniquelyIdentifiableInstances) => string;
@@ -67,7 +67,7 @@ export interface IVisualizationConfiguration extends IAssesssmentVisualizationCo
     getTestView: (props: TestViewProps) => JSX.Element;
     getStoreData: (data: TestsEnabledState) => IScanData;
     getAssessmentData?: (data: IAssessmentStoreData) => IAssessmentData;
-    setAssessmentData?: (data: IAssessmentStoreData, selectorMap: IDictionaryStringTo<any>, instanceMap?: IDictionaryStringTo<any>) => void;
+    setAssessmentData?: (data: IAssessmentStoreData, selectorMap: DictionaryStringTo<any>, instanceMap?: DictionaryStringTo<any>) => void;
     displayableData: IDisplayableVisualizationTypeData;
     chromeCommand: string;
     launchPanelDisplayOrder: number;
@@ -124,8 +124,8 @@ export class VisualizationConfigurationFactory {
         return configuration;
     }
 
-    public getChromeCommandToVisualizationTypeMap(): IDictionaryStringTo<VisualizationType> {
-        const map: IDictionaryStringTo<VisualizationType> = {};
+    public getChromeCommandToVisualizationTypeMap(): DictionaryStringTo<VisualizationType> {
+        const map: DictionaryStringTo<VisualizationType> = {};
 
         const types = EnumHelper.getNumericValues<VisualizationType>(VisualizationType);
 

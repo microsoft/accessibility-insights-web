@@ -22,7 +22,7 @@ export type HeaderContextualMenuProps = {
     deps: HeaderContextualMenuDeps;
     header: LaunchPanelHeader;
     popupWindow: Window;
-    featureFlags: IDictionaryStringTo<boolean>;
+    featureFlags: DictionaryStringTo<boolean>;
 } & Pick<IContextualMenuItem, 'target'>;
 
 const telemetryEventSource = TelemetryEventSource.HamburgerMenu;

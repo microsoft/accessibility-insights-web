@@ -21,13 +21,13 @@ import { ScanResults } from '../../../../../scanner/iruleresults';
 
 describe('RuleAnalyzer', () => {
     let scannerUtilsMock: IMock<ScannerUtils>;
-    let resultProcessorMock: IMock<(results: ScanResults) => IDictionaryStringTo<IHtmlElementAxeResults>>;
+    let resultProcessorMock: IMock<(results: ScanResults) => DictionaryStringTo<IHtmlElementAxeResults>>;
     let dateGetterMock: IMock<() => Date>;
     let dateMock: IMock<Date>;
     let scopingStoreMock: IMock<ScopingStore>;
     let scopingState: IScopingStoreData;
     let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
-    const mockAllInstances: IDictionaryStringTo<any> = {
+    const mockAllInstances: DictionaryStringTo<any> = {
         test: 'test-result-value',
     };
     let sendMessageMock: IMock<(message) => void>;

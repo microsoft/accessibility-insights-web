@@ -35,7 +35,7 @@ describe('gear-options-button-component.test', () => {
     });
 
     type TestCase = {
-        featureFlags: IDictionaryStringTo<boolean>;
+        featureFlags: DictionaryStringTo<boolean>;
         expectedMenuItems: IContextualMenuItem[];
     };
     test.each([
@@ -67,7 +67,7 @@ describe('gear-options-button-component.test', () => {
         verifyRendering(testCase.featureFlags, testCase.expectedMenuItems);
     });
 
-    function verifyRendering(featureFlags: IDictionaryStringTo<boolean>, menuItems: IContextualMenuItem[]) {
+    function verifyRendering(featureFlags: DictionaryStringTo<boolean>, menuItems: IContextualMenuItem[]) {
         const props: GearOptionsButtonComponentProps = {
             dropdownClickHandler: dropdownClickHandlerMock.object,
             featureFlags: featureFlags,

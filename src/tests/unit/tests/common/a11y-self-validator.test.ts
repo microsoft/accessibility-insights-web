@@ -15,7 +15,7 @@ describe('A11YAutoCheckTest', () => {
     let testObject: A11YSelfValidator;
 
     const failedSelectors: string[] = ['failed-div1', 'failed-div2'];
-    const failedDomElements: IDictionaryStringTo<string> = {
+    const failedDomElements: DictionaryStringTo<string> = {
         [failedSelectors[0]]: failedSelectors[0] + 'element',
         [failedSelectors[1]]: failedSelectors[1] + 'element',
     };

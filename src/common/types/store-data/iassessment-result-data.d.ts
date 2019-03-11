@@ -18,8 +18,8 @@ export interface IAssessmentStoreData {
     assessmentNavState: AssessmentNavState;
 }
 
-export type InstanceIdToInstanceDataMap = IDictionaryStringTo<IGeneratedAssessmentInstance>;
-export type RequirementIdToResultMap = IDictionaryStringTo<IManualTestStepResult>;
+export type InstanceIdToInstanceDataMap = DictionaryStringTo<IGeneratedAssessmentInstance>;
+export type RequirementIdToResultMap = DictionaryStringTo<IManualTestStepResult>;
 
 // tslint:disable-next-line:interface-name
 export interface IAssessmentData {
@@ -87,6 +87,6 @@ export interface ILandmarksAssessmentProperties {
 }
 
 // tslint:disable-next-line:interface-name
-export type IAssessmentInstancesMap<T = {}, K = {}> = IDictionaryStringTo<IGeneratedAssessmentInstance<T, K>>;
+export type IAssessmentInstancesMap<T = {}, K = {}> = DictionaryStringTo<IGeneratedAssessmentInstance<T, K>>;
 // tslint:disable-next-line:interface-name
 export type IAssessmentResultType<K> = { [testStepName in keyof K]: ITestStepResult };

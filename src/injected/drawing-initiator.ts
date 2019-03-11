@@ -16,7 +16,7 @@ export class DrawingInitiator {
     public enableVisualization(
         visualizationType: VisualizationType,
         featureFlagStoreData: FeatureFlagStoreData,
-        selectorMap: IDictionaryStringTo<IAssessmentVisualizationInstance>,
+        selectorMap: DictionaryStringTo<IAssessmentVisualizationInstance>,
         configId: string,
         processor: IVisualizationInstanceProcessorCallback<IPropertyBags, IPropertyBags>,
     ): void {
@@ -58,7 +58,7 @@ export class DrawingInitiator {
         this.drawingController.processRequest(visualizationMessage);
     }
 
-    private getElementResults(selectorMap: IDictionaryStringTo<IAssessmentVisualizationInstance>) {
+    private getElementResults(selectorMap: DictionaryStringTo<IAssessmentVisualizationInstance>) {
         return Object.keys(selectorMap).map(key => selectorMap[key]);
     }
 }

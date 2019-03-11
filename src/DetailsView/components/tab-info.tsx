@@ -15,7 +15,7 @@ export interface TabInfoProps {
     title: string;
     actionCreator: DetailsViewActionMessageCreator;
     selectedPivot: DetailsViewPivotType;
-    featureFlags: IDictionaryStringTo<boolean>;
+    featureFlags: DictionaryStringTo<boolean>;
     dropdownClickHandler: DropdownClickHandler;
 }
 

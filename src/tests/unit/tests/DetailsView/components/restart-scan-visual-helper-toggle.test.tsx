@@ -127,7 +127,7 @@ export class VisualHelperToggleTestPropsBuilder extends BaseDataBuilder<VisualHe
                     propertyBag: {},
                     target: ['element2'],
                 } as IGeneratedAssessmentInstance,
-            } as IDictionaryStringTo<IGeneratedAssessmentInstance>,
+            } as DictionaryStringTo<IGeneratedAssessmentInstance>,
             isStepEnabled: true,
             isStepScanned: false,
         };

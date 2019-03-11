@@ -269,10 +269,10 @@ describe('TabControllerTest', () => {
         const openTabIds = [1, 5];
         const tabIdToTabContextStub = {};
         const mockInterpreters = [];
-        const getTabCallbackMap: IDictionaryStringTo<(tab: chrome.tabs.Tab) => void> = {};
+        const getTabCallbackMap: DictionaryStringTo<(tab: chrome.tabs.Tab) => void> = {};
 
         let tabsQueryCallback: (tabs: chrome.tabs.Tab[]) => void = null;
-        const tabs: IDictionaryStringTo<chrome.tabs.Tab> = {
+        const tabs: DictionaryStringTo<chrome.tabs.Tab> = {
             1: { id: openTabIds[0] } as chrome.tabs.Tab,
             5: { id: openTabIds[1] } as chrome.tabs.Tab,
         };

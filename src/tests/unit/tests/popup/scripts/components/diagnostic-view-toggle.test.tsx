@@ -362,7 +362,7 @@ class DiagnosticViewTogglePropsBuilder {
     private shortcutCommands: chrome.commands.Command[] = ShortcutCommandsTestData;
     private querySelectorMock = Mock.ofInstance(selector => {});
     private addEventListenerMock = Mock.ofInstance((e, ev) => {});
-    private featureFlags: IDictionaryStringTo<boolean> = {};
+    private featureFlags: DictionaryStringTo<boolean> = {};
     private deps: ContentLinkDeps = {} as ContentLinkDeps;
     private configurationStub: IVisualizationConfiguration;
 
@@ -395,7 +395,7 @@ class DiagnosticViewTogglePropsBuilder {
         return this;
     }
 
-    public setupFeatureFlags(featureFlags: IDictionaryStringTo<boolean>): DiagnosticViewTogglePropsBuilder {
+    public setupFeatureFlags(featureFlags: DictionaryStringTo<boolean>): DiagnosticViewTogglePropsBuilder {
         this.featureFlags = featureFlags;
         return this;
     }

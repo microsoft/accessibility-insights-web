@@ -20,7 +20,7 @@ export type AssessmentLeftNavProps = {
     deps: AssessmentLeftNavDeps;
     selectedKey: string;
     assessmentsProvider: IAssessmentsProvider;
-    assessmentsData: IDictionaryStringTo<ManualTestStatusData>;
+    assessmentsData: DictionaryStringTo<ManualTestStatusData>;
 };
 
 export type AssessmentLeftNavLink = {

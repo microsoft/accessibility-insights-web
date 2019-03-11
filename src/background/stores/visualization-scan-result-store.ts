@@ -109,7 +109,7 @@ export class VisualizationScanResultStore extends BaseStore<IVisualizationScanRe
 
     @autobind
     private onUpdateIssuesSelectedTargets(selected: string[]): void {
-        const newSelectedRows: IDictionaryStringTo<DecoratedAxeNodeResult> = {};
+        const newSelectedRows: DictionaryStringTo<DecoratedAxeNodeResult> = {};
 
         selected.forEach(uid => {
             const value = this.state.issues.fullIdToRuleResultMap[uid];
@@ -136,8 +136,8 @@ export class VisualizationScanResultStore extends BaseStore<IVisualizationScanRe
         this.emitChanged();
     }
 
-    private getRowToRuleResultMap(selectorMap: IDictionaryStringTo<IHtmlElementAxeResults>): IDictionaryStringTo<DecoratedAxeNodeResult> {
-        const selectedRows: IDictionaryStringTo<DecoratedAxeNodeResult> = {};
+    private getRowToRuleResultMap(selectorMap: DictionaryStringTo<IHtmlElementAxeResults>): DictionaryStringTo<DecoratedAxeNodeResult> {
+        const selectedRows: DictionaryStringTo<DecoratedAxeNodeResult> = {};
 
         for (const selector in selectorMap) {
             const ruleResults = selectorMap[selector].ruleResults;
@@ -151,8 +151,8 @@ export class VisualizationScanResultStore extends BaseStore<IVisualizationScanRe
         return selectedRows;
     }
 
-    private getSelectorMap(selectedRows: IDictionaryStringTo<DecoratedAxeNodeResult>): IDictionaryStringTo<IHtmlElementAxeResults> {
-        const selectorMap: IDictionaryStringTo<IHtmlElementAxeResults> = {};
+    private getSelectorMap(selectedRows: DictionaryStringTo<DecoratedAxeNodeResult>): DictionaryStringTo<IHtmlElementAxeResults> {
+        const selectorMap: DictionaryStringTo<IHtmlElementAxeResults> = {};
         for (const uid in selectedRows) {
             const ruleResult = selectedRows[uid];
             const ruleResults = selectorMap[ruleResult.selector] ? selectorMap[ruleResult.selector].ruleResults : {};

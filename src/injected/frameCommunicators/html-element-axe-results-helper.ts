@@ -35,7 +35,7 @@ export class HtmlElementAxeResultsHelper {
         return results;
     }
 
-    private getFrameResultsFromSelectorMap(selectorMap: IDictionaryStringTo<AxeResultsWithFrameLevel[]>): IFrameResult[] {
+    private getFrameResultsFromSelectorMap(selectorMap: DictionaryStringTo<AxeResultsWithFrameLevel[]>): IFrameResult[] {
         const results: IFrameResult[] = [];
 
         for (const selectorKey in selectorMap) {
@@ -93,7 +93,7 @@ export class HtmlElementAxeResultsHelper {
     }
 
     private getFrameSelectorToResultMap(elementResults: AxeResultsWithFrameLevel[]) {
-        const elementResultsByFrame: IDictionaryStringTo<AxeResultsWithFrameLevel[]> = {};
+        const elementResultsByFrame: DictionaryStringTo<AxeResultsWithFrameLevel[]> = {};
 
         for (let i = 0; i < elementResults.length; i++) {
             const elementResult = elementResults[i];

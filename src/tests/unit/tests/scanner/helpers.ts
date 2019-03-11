@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { createNativeWidgetConfiguration, evaluateNativeWidget, nativeWidgetSelector } from '../../../../scanner/native-widgets-default';
 
-export function createNodeStub(tag: string, attributes: IDictionaryStringTo<string>): HTMLElement {
+export function createNodeStub(tag: string, attributes: DictionaryStringTo<string>): HTMLElement {
     return {
         tagName: tag.toUpperCase(),
         hasAttribute: attr => attr in attributes,

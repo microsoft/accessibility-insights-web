@@ -387,7 +387,7 @@ export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
         }
     }
 
-    private getGroupResult(instanceMap: IDictionaryStringTo<IGeneratedAssessmentInstance>, testStepName: string): ManualTestStatus {
+    private getGroupResult(instanceMap: DictionaryStringTo<IGeneratedAssessmentInstance>, testStepName: string): ManualTestStatus {
         let groupResult = ManualTestStatus.PASS;
         for (let keyIndex = 0; keyIndex < Object.keys(instanceMap).length; keyIndex++) {
             const key = Object.keys(instanceMap)[keyIndex];

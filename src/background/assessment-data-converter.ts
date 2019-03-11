@@ -24,7 +24,7 @@ export class AssessmentDataConverter {
 
     public generateAssessmentInstancesMap(
         previouslyGeneratedInstances: IAssessmentInstancesMap,
-        selectorMap: IDictionaryStringTo<IHtmlElementAxeResults>,
+        selectorMap: DictionaryStringTo<IHtmlElementAxeResults>,
         stepName: string,
         generateInstanceIdentifier: (instance: IUniquelyIdentifiableInstances) => string,
         getInstanceStatus: (result: DecoratedAxeNodeResult) => ManualTestStatus,

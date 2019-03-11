@@ -58,7 +58,7 @@ export class AssessmentInstanceTableHandler {
     }
 
     public createAssessmentInstanceTableItems(
-        instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance>,
+        instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance>,
         assessmentNavState: AssessmentNavState,
         hasVisualHelper: boolean,
     ): IAssessmentInstanceRowData[] {
@@ -75,7 +75,7 @@ export class AssessmentInstanceTableHandler {
     }
 
     public getColumnConfigs(
-        instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance>,
+        instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance>,
         assessmentNavState: AssessmentNavState,
         hasVisualHelper: boolean,
     ): IColumn[] {
@@ -160,7 +160,7 @@ export class AssessmentInstanceTableHandler {
     }
 
     private getInstanceKeys(
-        instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance>,
+        instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance>,
         assessmentNavState: AssessmentNavState,
     ): string[] {
         return Object.keys(instancesMap).filter(key => {

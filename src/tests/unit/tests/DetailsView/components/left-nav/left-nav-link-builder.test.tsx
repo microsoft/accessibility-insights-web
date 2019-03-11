@@ -19,7 +19,7 @@ describe('LeftNavBuilder', () => {
     let deps: LeftNavLinkBuilderDeps;
     let onLinkClickMock: IMock<onBaseLeftNavItemClick>;
     let assessmentProviderMock: IMock<IAssessmentsProvider>;
-    let assessmentsDataStub: IDictionaryStringTo<ManualTestStatusData>;
+    let assessmentsDataStub: DictionaryStringTo<ManualTestStatusData>;
     let testSubject: LeftNavLinkBuilder;
     let getAssessmentSummaryModelFromProviderAndStatusDataMock: IMock<GetAssessmentSummaryModelFromProviderAndStatusData>;
     let renderIconStub: (link: BaseLeftNavLink) => JSX.Element;

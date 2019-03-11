@@ -43,7 +43,7 @@ export function propertyBagColumnRenderer<TPropertyBag extends ColumnValueBag>(
         return <React.Fragment>{value || config.defaultValue}</React.Fragment>;
     };
 
-    const renderProperties = (config: PropertyBagColumnRendererConfig<TPropertyBag>, propertyMap: IDictionaryStringTo<string>) => {
+    const renderProperties = (config: PropertyBagColumnRendererConfig<TPropertyBag>, propertyMap: DictionaryStringTo<string>) => {
         if (isEmpty(propertyMap)) {
             return <React.Fragment>{config.defaultValue}</React.Fragment>;
         }

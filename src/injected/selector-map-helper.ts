@@ -25,7 +25,7 @@ export class SelectorMapHelper {
         this.assessmentsProvider = assessmentsProvider;
     }
 
-    public getSelectorMap(visualizationType: VisualizationType): IDictionaryStringTo<IAssessmentVisualizationInstance> {
+    public getSelectorMap(visualizationType: VisualizationType): DictionaryStringTo<IAssessmentVisualizationInstance> {
         let selectorMap = {};
 
         if (this.isAdHocVisualization(visualizationType)) {
@@ -57,7 +57,7 @@ export class SelectorMapHelper {
         );
     }
 
-    private getAdHocVisualizationSelectorMap(type: VisualizationType): IDictionaryStringTo<IAssessmentVisualizationInstance> {
+    private getAdHocVisualizationSelectorMap(type: VisualizationType): DictionaryStringTo<IAssessmentVisualizationInstance> {
         let selectorMap = {};
         const visulizaitonScanResultState = this.scanResultStore.getState();
 
@@ -83,14 +83,14 @@ export class SelectorMapHelper {
     }
 
     private getFilteredSelectorMap<T, K>(
-        generatedAssessmentInstancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance<T, K>>,
+        generatedAssessmentInstancesMap: DictionaryStringTo<IGeneratedAssessmentInstance<T, K>>,
         testStep: string,
-    ): IDictionaryStringTo<IAssessmentVisualizationInstance> {
+    ): DictionaryStringTo<IAssessmentVisualizationInstance> {
         if (generatedAssessmentInstancesMap == null) {
             return null;
         }
 
-        const selectorMap: IDictionaryStringTo<IAssessmentVisualizationInstance> = {};
+        const selectorMap: DictionaryStringTo<IAssessmentVisualizationInstance> = {};
         Object.keys(generatedAssessmentInstancesMap).forEach(identifier => {
             const instance = generatedAssessmentInstancesMap[identifier];
             const stepResult = instance.testStepResults[testStep as keyof K];

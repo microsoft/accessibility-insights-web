@@ -12,7 +12,7 @@ describe('AssessmentDefaultMessageGenerator', () => {
     test('the getNoFailingInstanceMessage returns null when there are instances and also when there are no failing', () => {
         expect(testSubject.getNoFailingInstanceMessage).toBeDefined();
 
-        const instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance> = {
+        const instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {
             selector1: {
                 target: ['target1'],
                 html: 'html',
@@ -49,7 +49,7 @@ describe('AssessmentDefaultMessageGenerator', () => {
     test('the getNoMatchingInstanceMessage returns null when there are instances and also when they are not failing', () => {
         expect(testSubject.getNoFailingInstanceMessage).toBeDefined();
 
-        const instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance> = {
+        const instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {
             selector1: {
                 target: ['target1'],
                 html: 'html',
@@ -79,7 +79,7 @@ describe('AssessmentDefaultMessageGenerator', () => {
     });
 
     test('test no failing instance for empty instancesmap', () => {
-        const instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance> = {};
+        const instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {};
 
         expect(testSubject.getNoFailingInstanceMessage(instancesMap, 'step1')).not.toBeNull();
 
@@ -92,7 +92,7 @@ describe('AssessmentDefaultMessageGenerator', () => {
     });
 
     test('no matching instance for empty instance map', () => {
-        const instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance> = {};
+        const instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {};
         const expected = {
             message: <div className="no-failure-view">No matching instances</div>,
             instanceCount: 0,
@@ -103,7 +103,7 @@ describe('AssessmentDefaultMessageGenerator', () => {
     });
 
     test('the getNoFailingInstanceMessage returns no failing instances message when there are instances but no failing ones', () => {
-        const instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance> = {
+        const instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {
             selector1: {
                 target: ['tareget1'],
                 html: 'html',
@@ -142,7 +142,7 @@ describe('AssessmentDefaultMessageGenerator', () => {
     });
 
     test('if the getNoMatchingInstanceMessage returns no failing instances message when there are instances but no failing ones', () => {
-        const instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance> = {
+        const instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {
             selector1: {
                 target: ['tareget1'],
                 html: 'html',

@@ -51,7 +51,7 @@ function makeFlatDesignPatternString(patterns: DesignPattern[]): string {
     return patterns.map(pat => pat.designPattern).join(', ');
 }
 
-const roleToDesignPatternsMapping: IDictionaryStringTo<DesignPattern[]> = {
+const roleToDesignPatternsMapping: DictionaryStringTo<DesignPattern[]> = {
     alert: [{ designPattern: 'Alert', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#alert' }],
     alertdialog: [{ designPattern: 'Alert or Message Dialog', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#alertdialog' }],
     button: [

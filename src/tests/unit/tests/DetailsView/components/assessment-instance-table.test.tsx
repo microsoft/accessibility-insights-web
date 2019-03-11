@@ -301,7 +301,7 @@ describe('AssessmentInstanceTableTest', () => {
 
     it('if the function returns no failing instances message when there are instances but no failing ones', () => {
         const assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
-        const instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance> = {
+        const instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {
             selector1: {
                 target: ['target1'],
                 html: 'html',
@@ -349,7 +349,7 @@ describe('AssessmentInstanceTableTest', () => {
     });
 
     function getProps(
-        instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance>,
+        instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance>,
         assessmentInstanceTableHandler: AssessmentInstanceTableHandler,
         defaultMessageGeneratorMock: AssessmentDefaultMessageGenerator,
         defaultMessageMock: IGetMessageGenerator,
