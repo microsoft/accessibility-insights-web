@@ -10,8 +10,7 @@ interface SelectorInstance {
 
 export type UniquelyIdentifiableInstances = HTMLInstance & SelectorInstance;
 
-// tslint:disable-next-line:interface-name
-export interface IInstanceWithHtmlAndSelector {
+export interface InstanceWithHtmlAndSelector {
     html: string;
     target: string[];
 }
@@ -21,7 +20,7 @@ export class InstanceIdentifierGenerator {
         return instance.target.join(';');
     }
 
-    public static defaultHtmlSelectorIdentifier(instance: IInstanceWithHtmlAndSelector): string {
+    public static defaultHtmlSelectorIdentifier(instance: InstanceWithHtmlAndSelector): string {
         return instance.html + ',' + instance.target.join(';');
     }
 }
