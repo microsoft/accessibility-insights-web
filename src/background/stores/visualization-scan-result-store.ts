@@ -3,6 +3,7 @@
 import { autobind } from '@uifabric/utilities';
 import * as _ from 'lodash/index';
 
+import { forIn } from 'lodash/index';
 import { StoreNames } from '../../common/stores/store-names';
 import { IVisualizationScanResultData } from '../../common/types/store-data/ivisualization-scan-result-data';
 import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from '../../injected/scanner-utils';
@@ -139,22 +140,21 @@ export class VisualizationScanResultStore extends BaseStore<IVisualizationScanRe
     private getRowToRuleResultMap(selectorMap: DictionaryStringTo<IHtmlElementAxeResults>): DictionaryStringTo<DecoratedAxeNodeResult> {
         const selectedRows: DictionaryStringTo<DecoratedAxeNodeResult> = {};
 
-        for (const selector in selectorMap) {
-            const ruleResults = selectorMap[selector].ruleResults;
+        forIn(selectorMap, (selector: IHtmlElementAxeResults) => {
+            const ruleResults = selector.ruleResults;
 
-            for (const rule in ruleResults) {
-                const result = ruleResults[rule];
-                selectedRows[result.id] = ruleResults[rule];
-            }
-        }
+            forIn(ruleResults, (rule: DecoratedAxeNodeResult) => {
+                selectedRows[rule.id] = rule;
+            });
+        });
 
         return selectedRows;
     }
 
     private getSelectorMap(selectedRows: DictionaryStringTo<DecoratedAxeNodeResult>): DictionaryStringTo<IHtmlElementAxeResults> {
         const selectorMap: DictionaryStringTo<IHtmlElementAxeResults> = {};
-        for (const uid in selectedRows) {
-            const ruleResult = selectedRows[uid];
+        forIn(selectedRows, (selectedRow: DecoratedAxeNodeResult) => {
+            const ruleResult = selectedRow;
             const ruleResults = selectorMap[ruleResult.selector] ? selectorMap[ruleResult.selector].ruleResults : {};
             const isVisible = selectorMap[ruleResult.selector] ? selectorMap[ruleResult.selector].isVisible : null;
 
@@ -164,7 +164,7 @@ export class VisualizationScanResultStore extends BaseStore<IVisualizationScanRe
                 target: ruleResult.selector.split(';'),
                 isVisible: isVisible,
             };
-        }
+        });
 
         return selectorMap;
     }
