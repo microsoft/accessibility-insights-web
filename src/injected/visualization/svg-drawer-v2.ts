@@ -8,7 +8,7 @@ import { BaseDrawer } from './base-drawer';
 import { CenterPositionCalculator } from './center-position-calculator';
 import { DrawerUtils } from './drawer-utils';
 import { IDrawerInitData } from './idrawer';
-import { IFocusIndicator } from './ifocus-indicator';
+import { FocusIndicator } from './focus-indicator';
 import { ISVGDrawerConfiguration } from './iformatter';
 import { Point } from './point';
 import { SVGNamespaceUrl } from './svg-constants';
@@ -155,7 +155,7 @@ export class SVGDrawerV2 extends BaseDrawer {
         this.SVGContainer.setAttribute('width', `${width}px`);
     }
 
-    private createFocusIndicator(item: TabbedItem, curElementIndex: number, isLastItem: boolean): IFocusIndicator {
+    private createFocusIndicator(item: TabbedItem, curElementIndex: number, isLastItem: boolean): FocusIndicator {
         const centerPosition: Point = this.centerPositionCalculator.getElementCenterPosition(item.element);
 
         if (centerPosition == null) {
@@ -185,7 +185,7 @@ export class SVGDrawerV2 extends BaseDrawer {
             showSolidFocusLine,
         );
 
-        const focusIndicator: IFocusIndicator = {
+        const focusIndicator: FocusIndicator = {
             circle: newCircle,
             tabIndexLabel: newLabel,
             line: newLine,
@@ -236,7 +236,7 @@ export class SVGDrawerV2 extends BaseDrawer {
         );
     }
 
-    private removeFocusIndicator(focusIndicator: IFocusIndicator): void {
+    private removeFocusIndicator(focusIndicator: FocusIndicator): void {
         if (!focusIndicator) {
             return;
         }

@@ -7,7 +7,7 @@ import { WindowUtils } from '../../../../../common/window-utils';
 import { ShadowUtils } from '../../../../../injected/shadow-utils';
 import { CenterPositionCalculator } from '../../../../../injected/visualization/center-position-calculator';
 import { IDrawerInitData } from '../../../../../injected/visualization/idrawer';
-import { IFocusIndicator } from '../../../../../injected/visualization/ifocus-indicator';
+import { FocusIndicator } from '../../../../../injected/visualization/focus-indicator';
 import { ISVGDrawerConfiguration } from '../../../../../injected/visualization/iformatter';
 import { SVGNamespaceUrl } from '../../../../../injected/visualization/svg-constants';
 import { SVGDrawerV2 } from '../../../../../injected/visualization/svg-drawer-v2';
@@ -423,7 +423,7 @@ describe('SVGDrawerV2Tests', () => {
 
     test('removeFocusIndicator', () => {
         const removeMock = Mock.ofInstance(() => {});
-        const focusIndicatorMock: IFocusIndicator = {
+        const focusIndicatorMock: FocusIndicator = {
             circle: {
                 remove: removeMock.object,
             } as any,
