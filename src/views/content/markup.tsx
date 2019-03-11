@@ -8,7 +8,7 @@ import { NewTabLink } from '../../common/components/new-tab-link';
 import { CheckIcon } from '../../common/icons/check-icon';
 import { CrossIcon } from '../../common/icons/cross-icon';
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
-import { externalLinkDisclaimer, productName } from '../../content/strings/application';
+import { productName } from '../../content/strings/application';
 import { ContentPageComponent, ContentPageOptions } from './content-page';
 
 type PassFailProps = {
@@ -45,7 +45,6 @@ export type Markup = {
     LandmarkLegend: React.SFC<{ role: string }>;
     ProblemList: React.SFC;
     Include: React.SFC<{ content: ContentPageComponent }>;
-    Disclaimer: React.SFC;
 };
 
 export type MarkupDeps = { contentActionMessageCreator: ContentActionMessageCreator };
@@ -95,10 +94,6 @@ export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
 
     function Inline(props: { children: React.ReactNode }): JSX.Element {
         return <div className="content-inline">{props.children}</div>;
-    }
-
-    function Disclaimer(props: { children: React.ReactNode }): JSX.Element {
-        return <Emphasis>{externalLinkDisclaimer}</Emphasis>;
     }
 
     function Do(props: { children: React.ReactNode }): JSX.Element {
@@ -278,6 +273,5 @@ export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
         ProblemList,
         options,
         Include,
-        Disclaimer,
     } as Markup;
 };

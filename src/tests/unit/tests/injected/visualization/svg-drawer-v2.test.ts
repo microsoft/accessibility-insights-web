@@ -6,15 +6,15 @@ import { ITabbedElementData } from '../../../../../common/types/store-data/ivisu
 import { WindowUtils } from '../../../../../common/window-utils';
 import { ShadowUtils } from '../../../../../injected/shadow-utils';
 import { CenterPositionCalculator } from '../../../../../injected/visualization/center-position-calculator';
+import { FocusIndicator } from '../../../../../injected/visualization/focus-indicator';
 import { SVGDrawerConfiguration } from '../../../../../injected/visualization/formatter';
 import { IDrawerInitData } from '../../../../../injected/visualization/idrawer';
-import { IFocusIndicator } from '../../../../../injected/visualization/ifocus-indicator';
-import { ITabbedItem } from '../../../../../injected/visualization/itabbed-item';
 import { SVGNamespaceUrl } from '../../../../../injected/visualization/svg-constants';
 import { SVGDrawerV2 } from '../../../../../injected/visualization/svg-drawer-v2';
 import { SVGShapeFactory } from '../../../../../injected/visualization/svg-shape-factory';
 import { SVGSolidShadowFilterFactory } from '../../../../../injected/visualization/svg-solid-shadow-filter-factory';
 import { TabStopsFormatter } from '../../../../../injected/visualization/tab-stops-formatter';
+import { TabbedItem } from '../../../../../injected/visualization/tabbed-item';
 import { TestDocumentCreator } from '../../../common/test-document-creator';
 import { DrawerUtilsMockBuilder } from './drawer-utils-mock-builder';
 
@@ -58,7 +58,7 @@ describe('SVGDrawerV2Tests', () => {
         const docMock = dom.ownerDocument || dom;
 
         const element: HTMLElement = dom.querySelector('#id1') as HTMLElement;
-        const expectedTabbedElements: ITabbedItem[] = [
+        const expectedTabbedElements: TabbedItem[] = [
             {
                 element: element,
                 tabOrder: 1,
@@ -103,7 +103,7 @@ describe('SVGDrawerV2Tests', () => {
         const docMock = dom.ownerDocument || dom;
 
         const element: HTMLElement = dom.querySelector('#id1') as HTMLElement;
-        const expectedTabbedElements: ITabbedItem[] = [
+        const expectedTabbedElements: TabbedItem[] = [
             {
                 element: element,
                 tabOrder: 1,
@@ -156,7 +156,7 @@ describe('SVGDrawerV2Tests', () => {
         const element1: HTMLElement = dom.querySelector('#id1') as HTMLElement;
         const element2: HTMLElement = dom.querySelector('#id2') as HTMLElement;
 
-        const existingTabbedElements: ITabbedItem[] = [
+        const existingTabbedElements: TabbedItem[] = [
             {
                 element: element1,
                 tabOrder: 1,
@@ -166,7 +166,7 @@ describe('SVGDrawerV2Tests', () => {
             },
         ];
 
-        const expectedTabbedElements: ITabbedItem[] = [
+        const expectedTabbedElements: TabbedItem[] = [
             {
                 element: element1,
                 tabOrder: 1,
@@ -232,7 +232,7 @@ describe('SVGDrawerV2Tests', () => {
         const element2: HTMLElement = dom.querySelector('#id2') as HTMLElement;
         const element3: HTMLElement = dom.querySelector('#id3') as HTMLElement;
 
-        const existingTabbedElements: ITabbedItem[] = [
+        const existingTabbedElements: TabbedItem[] = [
             {
                 element: element1,
                 tabOrder: 1,
@@ -242,7 +242,7 @@ describe('SVGDrawerV2Tests', () => {
             },
         ];
 
-        const expectedTabbedElements: ITabbedItem[] = [
+        const expectedTabbedElements: TabbedItem[] = [
             {
                 element: element1,
                 tabOrder: 1,
@@ -318,7 +318,7 @@ describe('SVGDrawerV2Tests', () => {
         const element3: HTMLElement = dom.querySelector('#id3') as HTMLElement;
         const element4: HTMLElement = dom.querySelector('#id4') as HTMLElement;
 
-        const existingTabbedElements: ITabbedItem[] = [
+        const existingTabbedElements: TabbedItem[] = [
             {
                 element: element1,
                 tabOrder: 1,
@@ -342,7 +342,7 @@ describe('SVGDrawerV2Tests', () => {
             },
         ];
 
-        const expectedTabbedElements: ITabbedItem[] = [
+        const expectedTabbedElements: TabbedItem[] = [
             {
                 element: element1,
                 tabOrder: 1,
@@ -423,7 +423,7 @@ describe('SVGDrawerV2Tests', () => {
 
     test('removeFocusIndicator', () => {
         const removeMock = Mock.ofInstance(() => {});
-        const focusIndicatorMock: IFocusIndicator = {
+        const focusIndicatorMock: FocusIndicator = {
             circle: {
                 remove: removeMock.object,
             } as any,

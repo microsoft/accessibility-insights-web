@@ -43,12 +43,7 @@ export function ContentCreator<M extends HyperlinkDefinitionMap>(
         return NamedSFC<ContentPageProps>('ContentPageComponent', props => {
             const { deps, options } = props;
             const markup = createMarkup(deps, options);
-            return (
-                <>
-                    <markup.Disclaimer />
-                    {fn({ Markup: markup, Link: mapLinks(markup) })}
-                </>
-            );
+            return fn({ Markup: markup, Link: mapLinks(markup) });
         }) as ContentPageComponent;
     }
 

@@ -34,7 +34,6 @@ describe('ContentPage', () => {
         Table,
         ProblemList,
         Include,
-        Disclaimer,
     } = createMarkup(deps, null);
 
     describe('.Markup', () => {
@@ -114,11 +113,6 @@ describe('ContentPage', () => {
                     ))}
                 />,
             );
-            expect(wrapper.debug()).toMatchSnapshot();
-        });
-
-        it('<Disclaimer> renders', () => {
-            const wrapper = shallow(<Disclaimer />);
             expect(wrapper.debug()).toMatchSnapshot();
         });
 

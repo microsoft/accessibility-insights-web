@@ -37,6 +37,7 @@ exports[`DetailsGroupHeader renders 2`] = `
 >
   <NewTabLink
     aria-describedby="key-rule-description"
+    aria-label="rule key"
     href="test rule url"
     onClick={[Function]}
   >

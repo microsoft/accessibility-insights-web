@@ -61,6 +61,11 @@ button::after {
             text-decoration: underline;
         }
     }
+    .is-selected {
+        .status-icon {
+            color: $high-contrast-icon-color !important;
+        }
+    }
 }
 
 .insights-link {
@@ -68,6 +73,16 @@ button::after {
     color: $link !important;
     &:hover {
         color: $link-hover !important;
+    }
+}
+
+.ms-Spinner {
+    .ms-Spinner-circle {
+        border-top-color: $spinner-text;
+    }
+
+    .ms-Spinner-label {
+        color: $spinner-text;
     }
 }
 

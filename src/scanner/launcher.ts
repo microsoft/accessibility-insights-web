@@ -11,10 +11,9 @@ export interface AxeOptions {
     restoreScroll?: Boolean; // missing from axe options.
 }
 
-export type AxeScanContext = string | NodeSelector & Node | IIncludeExcludeOptions | NodeList;
+export type AxeScanContext = string | NodeSelector & Node | IncludeExcludeOptions | NodeList;
 
-// tslint:disable-next-line:interface-name
-export interface IIncludeExcludeOptions {
+export interface IncludeExcludeOptions {
     include: string[][];
     exclude: string[][];
 }
