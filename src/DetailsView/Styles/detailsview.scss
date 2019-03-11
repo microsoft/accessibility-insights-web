@@ -258,14 +258,14 @@ div.insights-file-issue-details-dialog-container {
         border-bottom: 0px;
     }
     .ms-Nav-compositeLink.is-selected a {
-        background-color: $communication-tint-40 !important;
+        background-color: $communication-tint-40;
         border-left: $pivotItemLeftBorderWidth $pivotItemBorderStyle $communication-primary;
         .ms-Button-label {
-            color: $always-black !important;
+            color: $highlighted-text;
         }
         .overview-percent,
         .dark-gray {
-            color: $overview-percent-selected !important;
+            color: $overview-percent-selected;
         }
     }
     .ms-DetailsRow,
@@ -339,6 +339,7 @@ div.insights-file-issue-details-dialog-container {
                 &:focus {
                     .ms-Dropdown-title {
                         border: 2px $switcher-focus-border solid;
+                        border-style: dotted;
                     }
                 }
             }
@@ -1101,7 +1102,7 @@ div.insights-file-issue-details-dialog-container {
                         color: $secondary-text;
                     }
                     .ms-GroupHeader.is-selected {
-                        background-color: $row-selected-background;
+                        background-color: $group-selected-background;
                     }
                     .ms-GroupHeader .ms-GroupHeader-check {
                         padding: 12px;
@@ -1115,6 +1116,10 @@ div.insights-file-issue-details-dialog-container {
                         max-width: 100% !important;
                         &.is-selected {
                             background-color: $row-selected-background;
+                            .ms-DetailsRow-fields,
+                            .content-cell {
+                                color: $highlighted-text;
+                            }
                         }
                     }
                     @mixin check-when-checked {
