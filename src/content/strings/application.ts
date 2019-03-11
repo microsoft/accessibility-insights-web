@@ -8,5 +8,3 @@ export const productName = title;
 export const toolName = title;
 
 export const windowsPlatformTitle = 'Accessibility Insights for Windows';
-
-export const externalLinkDisclaimer = 'NOTE: All links are for reference purposes only. No endorsement is implied.';
