@@ -31,7 +31,7 @@ export interface IssuesTableProps {
     title: string;
     issuesTableHandler: IssuesTableHandler;
     violations: RuleResult[];
-    selectedIdToRuleResultMap: IDictionaryStringTo<DecoratedAxeNodeResult>;
+    selectedIdToRuleResultMap: DictionaryStringTo<DecoratedAxeNodeResult>;
     issuesEnabled: boolean;
     issuesSelection: ISelection;
     issueTrackerPath: string;

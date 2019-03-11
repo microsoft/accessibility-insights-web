@@ -32,7 +32,7 @@ export class AssessmentReportBuilderTestHelper {
 
     public static readonly reportDate = new Date(Date.UTC(2000, 0, 1, 0, 0));
 
-    private static getAssistedInstances(): IDictionaryStringTo<IGeneratedAssessmentInstance> {
+    private static getAssistedInstances(): DictionaryStringTo<IGeneratedAssessmentInstance> {
         return {
             ['instance1']: {
                 id: 'id1',
@@ -72,10 +72,10 @@ export class AssessmentReportBuilderTestHelper {
                 },
                 target: ['target2'],
             },
-        } as IDictionaryStringTo<IGeneratedAssessmentInstance>;
+        } as DictionaryStringTo<IGeneratedAssessmentInstance>;
     }
 
-    private static getManualInstance1(): IDictionaryStringTo<IManualTestStepResult> {
+    private static getManualInstance1(): DictionaryStringTo<IManualTestStepResult> {
         return {
             ['step1a']: {
                 status: ManualTestStatus.FAIL,
@@ -104,17 +104,17 @@ export class AssessmentReportBuilderTestHelper {
                     },
                 ],
             },
-        } as IDictionaryStringTo<IManualTestStepResult>;
+        } as DictionaryStringTo<IManualTestStepResult>;
     }
 
-    private static getManualInstance2(): IDictionaryStringTo<IManualTestStepResult> {
+    private static getManualInstance2(): DictionaryStringTo<IManualTestStepResult> {
         return {
             ['step1b']: {
                 status: ManualTestStatus.FAIL,
                 id: 'id1',
                 instances: [],
             },
-        } as IDictionaryStringTo<IManualTestStepResult>;
+        } as DictionaryStringTo<IManualTestStepResult>;
     }
 
     private static getManualTestStatus1(): ManualTestStatusData {

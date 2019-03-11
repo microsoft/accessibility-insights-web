@@ -22,7 +22,7 @@ describe('AssessmentLeftNav', () => {
     let leftNavLinkBuilderMock: IMock<LeftNavLinkBuilder>;
     let navLinkHandlerMock: NavLinkHandler;
     let assessmentsProviderStub: IAssessmentsProvider;
-    let assessmentsDataStub: IDictionaryStringTo<ManualTestStatusData>;
+    let assessmentsDataStub: DictionaryStringTo<ManualTestStatusData>;
 
     beforeEach(() => {
         assessmentsDataStub = {};

@@ -25,7 +25,7 @@ export type IssuesDetailsPaneDeps = ToastDeps &
 
 export interface IssuesDetailsPaneProps {
     deps: IssuesDetailsPaneDeps;
-    selectedIdToRuleResultMap: IDictionaryStringTo<DecoratedAxeNodeResult>;
+    selectedIdToRuleResultMap: DictionaryStringTo<DecoratedAxeNodeResult>;
     pageTitle: string;
     pageUrl: string;
     issueTrackerPath: string;

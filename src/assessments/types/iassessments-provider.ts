@@ -12,5 +12,5 @@ export interface IAssessmentsProvider {
     isValidKey(key: string): boolean;
     forKey(key: string): Readonly<Assessment>;
     getStep(type: VisualizationType, key: string): Readonly<TestStep>;
-    getStepMap(type: VisualizationType): Readonly<IDictionaryStringTo<Readonly<TestStep>>>;
+    getStepMap(type: VisualizationType): Readonly<DictionaryStringTo<Readonly<TestStep>>>;
 }

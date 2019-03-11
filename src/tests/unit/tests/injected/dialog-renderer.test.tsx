@@ -110,7 +110,7 @@ describe('DialogRendererTests', () => {
             fingerprint: 'fp1',
             snippet: 'html',
         };
-        const expectedFailedRules: IDictionaryStringTo<DecoratedAxeNodeResult> = {};
+        const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
         expectedFailedRules[ruleId] = nodeResult;
         const testData: IHtmlElementAxeResults = {
             ruleResults: expectedFailedRules,
@@ -154,7 +154,7 @@ describe('DialogRendererTests', () => {
             fingerprint: 'fp1',
             snippet: 'html',
         };
-        const expectedFailedRules: IDictionaryStringTo<DecoratedAxeNodeResult> = {};
+        const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
         expectedFailedRules[ruleId] = nodeResult;
         const testData: IHtmlElementAxeResults = {
             ruleResults: expectedFailedRules,
@@ -196,7 +196,7 @@ describe('DialogRendererTests', () => {
             fingerprint: 'fp',
             snippet: 'html',
         };
-        const expectedFailedRules: IDictionaryStringTo<DecoratedAxeNodeResult> = {};
+        const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
         expectedFailedRules[ruleId] = nodeResult;
         const testData: IHtmlElementAxeResults = {
             ruleResults: expectedFailedRules,
@@ -240,7 +240,7 @@ describe('DialogRendererTests', () => {
             fingerprint: 'fp1',
             snippet: 'html',
         };
-        const expectedFailedRules: IDictionaryStringTo<DecoratedAxeNodeResult> = {};
+        const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
         expectedFailedRules[ruleId] = nodeResult;
         const testData: IHtmlElementAxeResults = {
             ruleResults: expectedFailedRules,

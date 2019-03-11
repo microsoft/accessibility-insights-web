@@ -18,7 +18,7 @@ export class WindowMessageHandler {
     private _windowMessageParser: WindowMessageMarshaller;
     private _callbacksForMessagesSentFromCurrentFrame: { [messageId: string]: FrameMessageResponseCallback } = {};
 
-    private _messageSubscribers: IDictionaryStringTo<FrameMessageResponseCallback>;
+    private _messageSubscribers: DictionaryStringTo<FrameMessageResponseCallback>;
 
     constructor(windowUtils: WindowUtils, windowMessageParser: WindowMessageMarshaller) {
         this._windowUtils = windowUtils;

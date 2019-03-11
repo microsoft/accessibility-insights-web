@@ -94,11 +94,11 @@ describe('ScannerUtilsTest', () => {
         const selectorMap = testSubject.getFailingInstances(axeResults);
 
         expect(Object.keys(selectorMap)).toEqual(expectedElementSelectors);
-        const expectedElement1RuleResults: IDictionaryStringTo<boolean> = {
+        const expectedElement1RuleResults: DictionaryStringTo<boolean> = {
             rule3: false,
         };
 
-        const expectedElement2RuleResults: IDictionaryStringTo<boolean> = {
+        const expectedElement2RuleResults: DictionaryStringTo<boolean> = {
             rule1: false,
             rule3: false,
         };
@@ -126,12 +126,12 @@ describe('ScannerUtilsTest', () => {
         const selectorMap = testSubject.getPassingInstances(axeResults);
 
         expect(Object.keys(selectorMap)).toEqual(expectedElementSelectors);
-        const expectedElement1RuleResults: IDictionaryStringTo<boolean> = {
+        const expectedElement1RuleResults: DictionaryStringTo<boolean> = {
             rule1: true,
             rule2: true,
         };
 
-        const expectedElement2RuleResults: IDictionaryStringTo<boolean> = {
+        const expectedElement2RuleResults: DictionaryStringTo<boolean> = {
             rule2: true,
         };
 
@@ -158,12 +158,12 @@ describe('ScannerUtilsTest', () => {
         const selectorMap = testSubject.getPassingInstances(axeResults);
 
         expect(Object.keys(selectorMap)).toEqual(expectedElementSelectors);
-        const expectedElement1RuleResults: IDictionaryStringTo<boolean> = {
+        const expectedElement1RuleResults: DictionaryStringTo<boolean> = {
             rule1: true,
             rule2: true,
         };
 
-        const expectedElement2RuleResults: IDictionaryStringTo<boolean> = {
+        const expectedElement2RuleResults: DictionaryStringTo<boolean> = {
             rule2: true,
         };
 
@@ -190,11 +190,11 @@ describe('ScannerUtilsTest', () => {
         const selectorMap = testSubject.getIncompleteInstances(axeResults);
 
         expect(Object.keys(selectorMap)).toEqual(expectedElementSelectors);
-        const expectedElement1RuleResults: IDictionaryStringTo<boolean> = {
+        const expectedElement1RuleResults: DictionaryStringTo<boolean> = {
             rule3: undefined,
         };
 
-        const expectedElement2RuleResults: IDictionaryStringTo<boolean> = {
+        const expectedElement2RuleResults: DictionaryStringTo<boolean> = {
             rule1: undefined,
             rule3: undefined,
         };
@@ -316,18 +316,18 @@ describe('ScannerUtilsTest', () => {
         const selectorMap = testSubject.getAllCompletedInstances(axeResults);
 
         expect(Object.keys(selectorMap)).toEqual(expectedElementSelectors);
-        const expectedElement1RuleResults: IDictionaryStringTo<boolean> = {
+        const expectedElement1RuleResults: DictionaryStringTo<boolean> = {
             rule2: true,
             rule3: false,
         };
 
-        const expectedElement2RuleResults: IDictionaryStringTo<boolean> = {
+        const expectedElement2RuleResults: DictionaryStringTo<boolean> = {
             rule1: true,
             rule2: true,
             rule3: true,
         };
 
-        const expectedElement3RuleResults: IDictionaryStringTo<boolean> = {
+        const expectedElement3RuleResults: DictionaryStringTo<boolean> = {
             rule1: false,
             rule2: true,
             rule3: false,
@@ -383,7 +383,7 @@ describe('ScannerUtilsTest', () => {
     function verifyElementSelector(
         elementResult: IHtmlElementAxeResults,
         selector: string,
-        ruleResultMap: IDictionaryStringTo<boolean>,
+        ruleResultMap: DictionaryStringTo<boolean>,
         includeSnippet?: boolean,
     ): void {
         expect([selector]).toEqual(elementResult.target);
@@ -391,7 +391,7 @@ describe('ScannerUtilsTest', () => {
         const ruleIds = Object.keys(ruleResultMap);
         expect(ruleIds.sort()).toEqual(Object.keys(elementResult.ruleResults).sort());
 
-        const ruleResults: IDictionaryStringTo<DecoratedAxeNodeResult> = {};
+        const ruleResults: DictionaryStringTo<DecoratedAxeNodeResult> = {};
 
         ruleIds.forEach(ruleId => {
             ruleResults[ruleId] = getAxeNodeResult(selector, ruleId, ruleResultMap[ruleId], includeSnippet);

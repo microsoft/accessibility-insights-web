@@ -10,7 +10,7 @@ export interface IScanData {
 
 // tslint:disable-next-line:interface-name
 export interface IAssessmentScanData extends IScanData {
-    stepStatus: IDictionaryStringTo<boolean>;
+    stepStatus: DictionaryStringTo<boolean>;
 }
 
 // tslint:disable-next-line:interface-name

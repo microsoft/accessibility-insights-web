@@ -4,7 +4,7 @@ import * as _ from 'lodash/index';
 import { IGeneratedAssessmentInstance } from './../common/types/store-data/iassessment-result-data.d';
 
 export class AssessmentDataRemover {
-    public deleteDataFromGeneratedMapWithStepKey(instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance>, step: string): void {
+    public deleteDataFromGeneratedMapWithStepKey(instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance>, step: string): void {
         Object.keys(instancesMap).forEach(key => {
             const generatedAssessmentInstance = instancesMap[key];
             delete generatedAssessmentInstance.testStepResults[step];

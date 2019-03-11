@@ -105,10 +105,10 @@ export class InitialAssessmentStoreDataGenerator {
 
     private constructMapFromRequirementTo<T>(
         requirements: string[],
-        persistedMap: IDictionaryStringTo<T>,
+        persistedMap: DictionaryStringTo<T>,
         getDefaultData: (req: string) => T,
     ) {
-        const map: IDictionaryStringTo<T> = {};
+        const map: DictionaryStringTo<T> = {};
         requirements.forEach(requirement => {
             map[requirement] = (persistedMap && persistedMap[requirement]) || getDefaultData(requirement);
         });

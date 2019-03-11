@@ -20,7 +20,7 @@ import { TabStopsListener } from './tab-stops-listener';
 export class AnalyzerController {
     private analyzerProvider: AnalyzerProvider;
     private tabStopsListener: TabStopsListener;
-    private analyzers: IDictionaryNumberTo<IAnalyzer<any>>;
+    private analyzers: DictionaryNumberTo<IAnalyzer<any>>;
     private sendMessage: (message) => void;
     private visualizationstore: IBaseStore<IVisualizationStoreData>;
     private scopingStore: IBaseStore<IScopingStoreData>;

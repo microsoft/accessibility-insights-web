@@ -17,7 +17,7 @@ describe('DetailsDialogHandlerTest', () => {
     let detailsDialog: Element;
     let containerParent: Element;
     let body: Element;
-    let featureFlagStoreData: IDictionaryStringTo<boolean>;
+    let featureFlagStoreData: DictionaryStringTo<boolean>;
 
     beforeEach(() => {
         htmlElementUtilsMock = Mock.ofType(HTMLElementUtils);

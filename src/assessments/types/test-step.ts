@@ -37,7 +37,7 @@ export interface TestStep {
     visualizationInstanceProcessor?: IVisualizationInstanceProcessorCallback<IPropertyBags, IPropertyBags>;
     getDrawer?: (provider: DrawerProvider, featureFlagStoreData?: FeatureFlagStoreData) => IDrawer;
     updateVisibility?: boolean;
-    getNotificationMessage?: (selectorMap: IDictionaryStringTo<any>) => string;
+    getNotificationMessage?: (selectorMap: DictionaryStringTo<any>) => string;
     doNotScanByDefault?: boolean;
     switchToTargetTabOnScan?: boolean;
     generateInstanceIdentifier?: (instance: IUniquelyIdentifiableInstances) => string;
@@ -52,7 +52,7 @@ export interface TestStep {
 
 export interface VisualHelperToggleConfig {
     assessmentNavState: AssessmentNavState;
-    instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance>;
+    instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance>;
     actionMessageCreator: DetailsViewActionMessageCreator;
     isStepEnabled: boolean;
     isStepScanned: boolean;

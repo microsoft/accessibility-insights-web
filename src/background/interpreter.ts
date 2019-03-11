@@ -3,7 +3,7 @@
 import { autobind } from '@uifabric/utilities';
 
 export class Interpreter {
-    protected messageToActionMapping: IDictionaryStringTo<IPayloadCallback> = {};
+    protected messageToActionMapping: DictionaryStringTo<IPayloadCallback> = {};
 
     @autobind
     public registerTypeToPayloadCallback(messageType: string, callback: IPayloadCallback): void {

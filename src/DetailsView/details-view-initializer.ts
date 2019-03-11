@@ -112,7 +112,7 @@ if (isNaN(tabId) === false) {
                 );
                 const detailsViewStore = new StoreProxy<IDetailsViewData>(StoreNames[StoreNames.DetailsViewStore], chromeAdapter);
                 const assessmentStore = new StoreProxy<IAssessmentStoreData>(StoreNames[StoreNames.AssessmentStore], chromeAdapter);
-                const featureFlagStore = new StoreProxy<IDictionaryStringTo<boolean>>(
+                const featureFlagStore = new StoreProxy<DictionaryStringTo<boolean>>(
                     StoreNames[StoreNames.FeatureFlagStore],
                     chromeAdapter,
                 );

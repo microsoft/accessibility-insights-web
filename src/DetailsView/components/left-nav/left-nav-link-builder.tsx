@@ -32,7 +32,7 @@ export class LeftNavLinkBuilder {
         deps: OverviewLinkBuilderDeps,
         onLinkClick: onBaseLeftNavItemClick,
         assessmentsProvider: IAssessmentsProvider,
-        assessmentsData: IDictionaryStringTo<ManualTestStatusData>,
+        assessmentsData: DictionaryStringTo<ManualTestStatusData>,
         index: number,
     ): BaseLeftNavLink {
         const { getAssessmentSummaryModelFromProviderAndStatusData } = deps;
@@ -61,7 +61,7 @@ export class LeftNavLinkBuilder {
         deps: AssessmentLinkBuilderDeps,
         onLinkClick: onBaseLeftNavItemClick,
         assessmentsProvider: IAssessmentsProvider,
-        assessmentsData: IDictionaryStringTo<ManualTestStatusData>,
+        assessmentsData: DictionaryStringTo<ManualTestStatusData>,
         startingIndex: number,
     ): BaseLeftNavLink[] {
         const { getStatusForTest, outcomeTypeSemanticsFromTestStatus, outcomeStatsFromManualTestStatus } = deps;

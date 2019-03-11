@@ -27,10 +27,10 @@ export interface TestStepViewProps {
     isScanning: boolean;
     testStep: TestStep;
     renderStaticContent: () => JSX.Element;
-    instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance>;
+    instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance>;
     assessmentNavState: AssessmentNavState;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
-    manualTestStepResultMap: IDictionaryStringTo<IManualTestStepResult>;
+    manualTestStepResultMap: DictionaryStringTo<IManualTestStepResult>;
     actionMessageCreator: DetailsViewActionMessageCreator;
     assessmentsProvider: IAssessmentsProvider;
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;

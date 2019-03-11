@@ -23,8 +23,8 @@ describe('SelectorMapHelperTest', () => {
     let scanResultStoreMock: IMock<IBaseStore<IVisualizationScanResultData>>;
     let assessmentStoreMock: IMock<IBaseStore<IAssessmentStoreData>>;
     let assessmentsProvider: IAssessmentsProvider;
-    let testSelectorMap: IDictionaryStringTo<IGeneratedAssessmentInstance<any, any>>;
-    let expected: IDictionaryStringTo<IAssessmentVisualizationInstance>;
+    let testSelectorMap: DictionaryStringTo<IGeneratedAssessmentInstance<any, any>>;
+    let expected: DictionaryStringTo<IAssessmentVisualizationInstance>;
     let testSubject: SelectorMapHelper;
 
     beforeEach(() => {

@@ -266,8 +266,8 @@ export class TelemetryDataFactory {
     };
 
     public forIssuesAnalyzerScan: ForIssuesAnalyzerScanCallback = (analyzerResult, scanDuration, elementsScanned, testName) => {
-        const passedRuleResults: IDictionaryStringTo<number> = this.generateTelemetryRuleResult(analyzerResult.originalResult.passes);
-        const failedRuleResults: IDictionaryStringTo<number> = this.generateTelemetryRuleResult(analyzerResult.originalResult.violations);
+        const passedRuleResults: DictionaryStringTo<number> = this.generateTelemetryRuleResult(analyzerResult.originalResult.passes);
+        const failedRuleResults: DictionaryStringTo<number> = this.generateTelemetryRuleResult(analyzerResult.originalResult.violations);
         const telemetry: IssuesAnalyzerScanTelemetryData = {
             ...this.forTestScan(analyzerResult, scanDuration, elementsScanned, testName),
             passedRuleResults: JSON.stringify(passedRuleResults),
@@ -289,8 +289,8 @@ export class TelemetryDataFactory {
         return mouseEvent.detail === 0 ? 'keypress' : 'mouseclick';
     }
 
-    private generateTelemetryRuleResult(axeRule: AxeRule[]): IDictionaryStringTo<number> {
-        const ruleResults: IDictionaryStringTo<number> = {};
+    private generateTelemetryRuleResult(axeRule: AxeRule[]): DictionaryStringTo<number> {
+        const ruleResults: DictionaryStringTo<number> = {};
         axeRule.forEach(element => {
             const key: string = element.id;
             if (key != null) {

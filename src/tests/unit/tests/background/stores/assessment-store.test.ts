@@ -579,7 +579,7 @@ describe('AssessmentStoreTest', () => {
 
     test('onTrackingCompleted', () => {
         const instanceKey = 'instance-1';
-        const initialInstanceMap: IDictionaryStringTo<IGeneratedAssessmentInstance> = {
+        const initialInstanceMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {
             [instanceKey]: {
                 testStepResults: {
                     [stepKey]: {
@@ -675,7 +675,7 @@ describe('AssessmentStoreTest', () => {
     });
 
     test('on changeInstanceStatus, test step status updated', () => {
-        const generatedAssessmentInstancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance> = {
+        const generatedAssessmentInstancesMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {
             selector: {
                 testStepResults: {
                     [stepKey]: {
@@ -828,7 +828,7 @@ describe('AssessmentStoreTest', () => {
     });
 
     test('on changeAssessmentVisualizationState', () => {
-        const generatedAssessmentInstancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance> = {
+        const generatedAssessmentInstancesMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {
             selector: {
                 testStepResults: {
                     [stepKey]: {
@@ -866,7 +866,7 @@ describe('AssessmentStoreTest', () => {
     });
 
     test('on updateInstanceVisibility', () => {
-        const generatedAssessmentInstancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance> = {
+        const generatedAssessmentInstancesMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {
             selector: {
                 testStepResults: {
                     [stepKey]: {
@@ -920,7 +920,7 @@ describe('AssessmentStoreTest', () => {
     });
 
     test('on changeAssessmentVisualizationStateForAll', () => {
-        const generatedAssessmentInstancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance> = {
+        const generatedAssessmentInstancesMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {
             selector1: {
                 testStepResults: {
                     [stepKey]: {
@@ -970,7 +970,7 @@ describe('AssessmentStoreTest', () => {
     });
 
     test('on undoInstanceStatusChange', () => {
-        const generatedAssessmentInstancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance> = {
+        const generatedAssessmentInstancesMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {
             selector: {
                 testStepResults: {
                     [stepKey]: {
@@ -1264,7 +1264,7 @@ describe('AssessmentStoreTest', () => {
     });
 
     test('on passUnmarkedInstance', () => {
-        const generatedAssessmentInstancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance> = {
+        const generatedAssessmentInstancesMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {
             selector1: {
                 testStepResults: {
                     [stepKey]: {

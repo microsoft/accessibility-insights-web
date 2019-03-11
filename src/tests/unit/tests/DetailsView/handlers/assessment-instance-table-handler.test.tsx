@@ -32,7 +32,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
     });
 
     test('createAssessmentInstanceTableItems', () => {
-        const instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance> = {
+        const instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {
             selector1: {
                 target: ['target1'],
                 html: 'html',
@@ -170,7 +170,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
         };
         configFactoryMock.setup(c => c.getColumnConfigs(navState, true, true)).verifiable(Times.once());
 
-        testSubject.getColumnConfigs(instanceMap as IDictionaryStringTo<IGeneratedAssessmentInstance>, navState, true);
+        testSubject.getColumnConfigs(instanceMap as DictionaryStringTo<IGeneratedAssessmentInstance>, navState, true);
 
         configFactoryMock.verifyAll();
     });

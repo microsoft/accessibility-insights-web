@@ -32,11 +32,11 @@ export class ClientViewController {
     private currentAssessmentState: IAssessmentStoreData;
     private currentTabState: ITabStoreData;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
-    private featureFlagStore: IBaseStore<IDictionaryStringTo<boolean>>;
+    private featureFlagStore: IBaseStore<DictionaryStringTo<boolean>>;
     private selectorMapHelper: SelectorMapHelper;
     private targetPageActionMessageCreator: TargetPageActionMessageCreator;
-    protected previousVisualizationStates: IDictionaryStringTo<boolean> = {};
-    protected previousVisualizationSelectorMapStates: IDictionaryNumberTo<IDictionaryStringTo<IAssessmentVisualizationInstance>> = {};
+    protected previousVisualizationStates: DictionaryStringTo<boolean> = {};
+    protected previousVisualizationSelectorMapStates: DictionaryNumberTo<DictionaryStringTo<IAssessmentVisualizationInstance>> = {};
 
     constructor(
         visualizationStore: IBaseStore<IVisualizationStoreData>,
@@ -44,7 +44,7 @@ export class ClientViewController {
         drawingInitiator,
         scrollingController,
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
-        featureFlagStore: IBaseStore<IDictionaryStringTo<boolean>>,
+        featureFlagStore: IBaseStore<DictionaryStringTo<boolean>>,
         assessmentStore: IBaseStore<IAssessmentStoreData>,
         tabStore: IBaseStore<ITabStoreData>,
         selectorMapHelper: SelectorMapHelper,
@@ -173,7 +173,7 @@ export class ClientViewController {
     private isVisualizationStateUnchanged(
         type: VisualizationType,
         newVisualizationEnabledState: boolean,
-        newSelectorMapState: IDictionaryStringTo<IAssessmentVisualizationInstance>,
+        newSelectorMapState: DictionaryStringTo<IAssessmentVisualizationInstance>,
         id: string,
     ): boolean {
         if (id in this.previousVisualizationStates === false && newVisualizationEnabledState === false) {

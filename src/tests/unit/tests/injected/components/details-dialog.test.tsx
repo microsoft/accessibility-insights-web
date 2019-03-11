@@ -50,7 +50,7 @@ describe('DetailsDialogTest', () => {
             helpUrl,
             snippet: 'html',
         };
-        const expectedFailedRules: IDictionaryStringTo<DecoratedAxeNodeResult> = {};
+        const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
         expectedFailedRules[ruleId] = expectedNodeResult;
 
         const dialogDetailsHandlerMockObject = {

@@ -24,7 +24,7 @@ import {
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 
 export interface AssessmentInstanceTableProps {
-    instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance>;
+    instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance>;
     assessmentNavState: AssessmentNavState;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
     renderInstanceTableHeader: (table: AssessmentInstanceTable, items: IAssessmentInstanceRowData[]) => JSX.Element;

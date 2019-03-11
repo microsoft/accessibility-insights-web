@@ -125,7 +125,7 @@ export class AssessmentBuilder {
             return stepConfig.key;
         };
 
-        const getNotificationMessage = (selectorMap: IDictionaryStringTo<any>, testStep?: string) => {
+        const getNotificationMessage = (selectorMap: DictionaryStringTo<any>, testStep?: string) => {
             const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
             if (stepConfig.getNotificationMessage == null) {
                 return null;
@@ -194,7 +194,7 @@ export class AssessmentBuilder {
             return stepConfig.getDrawer(provider, featureFlagStoreData);
         };
 
-        const getNotificationMessage = (selectorMap: IDictionaryStringTo<any>, testStep?: string) => {
+        const getNotificationMessage = (selectorMap: DictionaryStringTo<any>, testStep?: string) => {
             const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
             if (stepConfig.getNotificationMessage == null) {
                 return null;

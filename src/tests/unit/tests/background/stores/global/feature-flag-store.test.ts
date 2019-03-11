@@ -124,7 +124,7 @@ describe('FeatureFlagStoreTest', () => {
     function createStoreTesterForFeatureFlagActions(
         actionName: keyof FeatureFlagActions,
         userData: ILocalStorageData = null,
-    ): StoreTester<IDictionaryStringTo<boolean>, FeatureFlagActions> {
+    ): StoreTester<DictionaryStringTo<boolean>, FeatureFlagActions> {
         const factory = (actions: FeatureFlagActions) => new FeatureFlagStore(actions, browserAdapterMock.object, userData);
         return new StoreTester(FeatureFlagActions, actionName, factory);
     }

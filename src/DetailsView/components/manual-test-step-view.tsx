@@ -15,7 +15,7 @@ export interface ManualTestStepViewProps {
     step: string;
     test: VisualizationType;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
-    manualTestStepResultMap: IDictionaryStringTo<IManualTestStepResult>;
+    manualTestStepResultMap: DictionaryStringTo<IManualTestStepResult>;
     assessmentsProvider: IAssessmentsProvider;
 }
 

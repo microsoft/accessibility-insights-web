@@ -85,7 +85,7 @@ describe('IssuesDetailsListTest', () => {
         expect(result.props.countIcon.props.iconName).toEqual('statusErrorFull');
     });
 
-    function getSampleIdToRuleResultMap(): IDictionaryStringTo<DecoratedAxeNodeResult> {
+    function getSampleIdToRuleResultMap(): DictionaryStringTo<DecoratedAxeNodeResult> {
         return {
             id1: {} as DecoratedAxeNodeResult,
             id2: {} as DecoratedAxeNodeResult,
@@ -169,7 +169,7 @@ describe('IssuesDetailsListTest', () => {
 
     function testRendering(sampleItems: DetailsRowData[], columns: IColumn[]) {
         const sampleViolations: AxeRule[] = getSampleViolations();
-        const sampleIdToRuleResultMap: IDictionaryStringTo<DecoratedAxeNodeResult> = getSampleIdToRuleResultMap();
+        const sampleIdToRuleResultMap: DictionaryStringTo<DecoratedAxeNodeResult> = getSampleIdToRuleResultMap();
         const items: DetailsRowData[] = sampleItems ? sampleItems : getSampleItems();
         const groups: DetailsGroup[] = getSampleGroups();
         const issuesData = new VisualizationScanResultStoreDataBuilder()

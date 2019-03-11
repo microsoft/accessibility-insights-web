@@ -37,12 +37,12 @@ export interface DetailsDialogProps {
     deps: DetailsDialogDeps;
     userConfigStore: IBaseStore<UserConfigurationStoreData>;
     elementSelector: string;
-    failedRules: IDictionaryStringTo<DecoratedAxeNodeResult>;
+    failedRules: DictionaryStringTo<DecoratedAxeNodeResult>;
     target: string[];
     dialogHandler: DetailsDialogHandler;
     devToolStore: IBaseStore<DevToolState>;
     devToolActionMessageCreator: DevToolActionMessageCreator;
-    featureFlagStoreData: IDictionaryStringTo<boolean>;
+    featureFlagStoreData: DictionaryStringTo<boolean>;
     devToolsShortcut: string;
 }
 

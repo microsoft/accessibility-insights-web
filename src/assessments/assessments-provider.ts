@@ -46,7 +46,7 @@ export class AssessmentsProvider implements IAssessmentsProvider {
         return { ...steps[index], order: index + 1 };
     }
 
-    public getStepMap(type: VisualizationType): IDictionaryStringTo<TestStep> {
+    public getStepMap(type: VisualizationType): DictionaryStringTo<TestStep> {
         const assessment = this.forType(type);
         if (!assessment) {
             return null;
