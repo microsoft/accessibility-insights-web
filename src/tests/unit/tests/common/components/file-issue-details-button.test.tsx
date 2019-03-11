@@ -90,4 +90,22 @@ describe('FileIssueDetailsButtonTest', () => {
         bugActionMessageCreatorMock.verifyAll();
         expect(wrapper.getElement()).toMatchSnapshot();
     });
+
+    test('getDerivedStateFromProps clears state when issueTrackerPath set', () => {
+        const props = { issueTrackerPath: ' ' };
+
+        const actual = (FileIssueDetailsButton as any).getDerivedStateFromProps(props);
+
+        const expected = { showingFileIssueDialog: false, showingHelpText: false };
+        expect(actual).toEqual(expected);
+    });
+
+    test('getDerivedStateFromProps preserves state when issueTrackerPath not set', () => {
+        const props = { issueTrackerPath: '' };
+
+        const actual = (FileIssueDetailsButton as any).getDerivedStateFromProps(props);
+
+        const expected = undefined;
+        expect(actual).toEqual(expected);
+    });
 });

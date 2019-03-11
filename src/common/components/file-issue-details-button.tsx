@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
+import { isString } from 'lodash';
 import { DefaultButton, IButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 
@@ -34,6 +35,12 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
     constructor(props: FileIssueDetailsButtonProps) {
         super(props);
         this.state = { showingFileIssueDialog: false, showingHelpText: false };
+    }
+
+    private static getDerivedStateFromProps(props: FileIssueDetailsButtonProps): FileIssueDetailsButtonState {
+        if (isString(props.issueTrackerPath) && props.issueTrackerPath.length > 0) {
+            return { showingFileIssueDialog: false, showingHelpText: false };
+        }
     }
 
     private getIssueDetailsUrl(result: DecoratedAxeNodeResult): string {
