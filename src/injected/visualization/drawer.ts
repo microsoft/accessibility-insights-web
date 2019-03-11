@@ -10,7 +10,7 @@ import { ShadowUtils } from '../shadow-utils';
 import { BaseDrawer } from './base-drawer';
 import { DrawerUtils } from './drawer-utils';
 import { IDrawerInitData } from './idrawer';
-import { DrawerConfiguration, IBoxConfig, IFormatter } from './iformatter';
+import { DrawerConfiguration, IBoxConfig, IFormatter } from './formatter';
 
 export class Drawer extends BaseDrawer {
     protected elementResults: AxeResultsWithFrameLevel[];

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IPartialSVGDrawerConfiguration } from '../../../../../injected/visualization/drawer-provider';
-import { ISVGDrawerConfiguration } from '../../../../../injected/visualization/iformatter';
+import { ISVGDrawerConfiguration } from '../../../../../injected/visualization/formatter';
 import { TabStopsFormatter } from '../../../../../injected/visualization/tab-stops-formatter';
 
 describe('TabStopsFormatterTests', () => {

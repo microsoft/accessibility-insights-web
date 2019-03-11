@@ -6,7 +6,7 @@ import { getDefaultFeatureFlagValues } from '../../../../../common/feature-flags
 import { IHtmlElementAxeResults } from '../../../../../injected/scanner-utils';
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
 import { IDrawerInitData } from '../../../../../injected/visualization/idrawer';
-import { SingleTargetDrawerConfiguration } from '../../../../../injected/visualization/iformatter';
+import { SingleTargetDrawerConfiguration } from '../../../../../injected/visualization/formatter';
 import { SingleTargetDrawer } from '../../../../../injected/visualization/single-target-drawer';
 import { SingleTargetFormatter } from '../../../../../injected/visualization/single-target-formatter';
 import { TestDocumentCreator } from '../../../common/test-document-creator';

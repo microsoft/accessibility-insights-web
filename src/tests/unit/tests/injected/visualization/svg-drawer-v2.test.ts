@@ -1,15 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
-
 import { getDefaultFeatureFlagValues } from '../../../../../common/feature-flags';
 import { ITabbedElementData } from '../../../../../common/types/store-data/ivisualization-scan-result-data';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { ShadowUtils } from '../../../../../injected/shadow-utils';
 import { CenterPositionCalculator } from '../../../../../injected/visualization/center-position-calculator';
+import { ISVGDrawerConfiguration } from '../../../../../injected/visualization/formatter';
 import { IDrawerInitData } from '../../../../../injected/visualization/idrawer';
 import { IFocusIndicator } from '../../../../../injected/visualization/ifocus-indicator';
-import { ISVGDrawerConfiguration } from '../../../../../injected/visualization/iformatter';
 import { ITabbedItem } from '../../../../../injected/visualization/itabbed-item';
 import { SVGNamespaceUrl } from '../../../../../injected/visualization/svg-constants';
 import { SVGDrawerV2 } from '../../../../../injected/visualization/svg-drawer-v2';

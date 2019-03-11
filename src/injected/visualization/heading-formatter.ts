@@ -3,7 +3,7 @@
 import { ClientUtils } from '../client-utils';
 import { IAssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
 import { FailureInstanceFormatter } from './failure-instance-formatter';
-import { DrawerConfiguration } from './iformatter';
+import { DrawerConfiguration } from './formatter';
 
 // tslint:disable-next-line:interface-name
 export interface IHeadingStyleConfiguration {

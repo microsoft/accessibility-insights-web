@@ -3,7 +3,7 @@
 import { IAssessmentVisualizationInstance } from '../../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { FailureInstanceFormatter } from '../../../../../injected/visualization/failure-instance-formatter';
 import { IHeadingStyleConfiguration } from '../../../../../injected/visualization/heading-formatter';
-import { DrawerConfiguration } from '../../../../../injected/visualization/iformatter';
+import { DrawerConfiguration } from '../../../../../injected/visualization/formatter';
 import { LandmarkFormatter } from '../../../../../injected/visualization/landmark-formatter';
 
 describe('LandmarkFormatterTests', () => {

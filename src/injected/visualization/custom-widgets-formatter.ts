@@ -3,7 +3,7 @@
 import { IAssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
 import { DrawerUtils } from './drawer-utils';
 import { HighlightBoxFormatter } from './highlight-box-formatter';
-import { DrawerConfiguration } from './iformatter';
+import { DrawerConfiguration } from './formatter';
 
 export class CustomWidgetsFormatter extends HighlightBoxFormatter {
     constructor() {

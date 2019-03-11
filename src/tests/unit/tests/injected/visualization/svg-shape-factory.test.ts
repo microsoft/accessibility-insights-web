@@ -4,7 +4,7 @@ import { IPoint } from '@uifabric/utilities';
 import { Mock } from 'typemoq';
 
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
-import { ICircleConfiguration, ILineConfiguration, ITextConfiguration } from '../../../../../injected/visualization/iformatter';
+import { ICircleConfiguration, ILineConfiguration, ITextConfiguration } from '../../../../../injected/visualization/formatter';
 import { SVGShapeFactory } from '../../../../../injected/visualization/svg-shape-factory';
 
 describe('SVGShapeFactoryTest', () => {

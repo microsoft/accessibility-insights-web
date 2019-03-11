@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AxeResultsWithFrameLevel, IAssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
-import { IFormatter } from './iformatter';
+import { IFormatter } from './formatter';
 
 export abstract class FailureInstanceFormatter implements IFormatter {
     public static failureBoxConfig = {

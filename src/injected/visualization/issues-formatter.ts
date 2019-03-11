@@ -11,7 +11,7 @@ import { FrameCommunicator } from '../frameCommunicators/frame-communicator';
 import { IHtmlElementAxeResults } from '../scanner-utils';
 import { ShadowUtils } from '../shadow-utils';
 import { IHeadingStyleConfiguration } from './heading-formatter';
-import { DrawerConfiguration, IFormatter } from './iformatter';
+import { DrawerConfiguration, IFormatter } from './formatter';
 
 export class IssuesFormatter implements IFormatter {
     private dialogRenderer: DialogRenderer;

@@ -5,7 +5,7 @@ import { IAssessmentVisualizationInstance } from '../frameCommunicators/html-ele
 import { IHtmlElementAxeResults } from '../scanner-utils';
 import { FailureInstanceFormatter } from './failure-instance-formatter';
 import { IHeadingStyleConfiguration } from './heading-formatter';
-import { DrawerConfiguration } from './iformatter';
+import { DrawerConfiguration } from './formatter';
 
 interface ElemData {
     role: string;

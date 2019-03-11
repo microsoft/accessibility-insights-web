@@ -5,7 +5,7 @@ import { It, Mock } from 'typemoq';
 import { ClientUtils } from '../../../../../injected/client-utils';
 import { IAssessmentVisualizationInstance } from '../../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { HeadingFormatter, IHeadingStyleConfiguration, IStyleComputer } from '../../../../../injected/visualization/heading-formatter';
-import { DrawerConfiguration } from '../../../../../injected/visualization/iformatter';
+import { DrawerConfiguration } from '../../../../../injected/visualization/formatter';
 
 describe('HeadingFormatterTests', () => {
     let testSubject: HeadingFormatter;

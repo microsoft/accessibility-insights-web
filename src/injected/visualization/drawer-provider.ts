@@ -18,7 +18,7 @@ import { FrameFormatter } from './frame-formatter';
 import { HeadingFormatter } from './heading-formatter';
 import { HighlightBoxFormatter } from './highlight-box-formatter';
 import { IDrawer } from './idrawer';
-import { IFormatter, ISVGDrawerConfiguration } from './iformatter';
+import { IFormatter, ISVGDrawerConfiguration } from './formatter';
 import { IssuesFormatter } from './issues-formatter';
 import { LandmarkFormatter } from './landmark-formatter';
 import { NullDrawer } from './null-drawer';

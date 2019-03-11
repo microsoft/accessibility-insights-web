@@ -11,7 +11,7 @@ import { ShadowUtils } from '../../../../../injected/shadow-utils';
 import { Drawer } from '../../../../../injected/visualization/drawer';
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
 import { IDrawerInitData } from '../../../../../injected/visualization/idrawer';
-import { DrawerConfiguration, IFormatter } from '../../../../../injected/visualization/iformatter';
+import { DrawerConfiguration, IFormatter } from '../../../../../injected/visualization/formatter';
 import { TestDocumentCreator } from '../../../common/test-document-creator';
 
 describe('Drawer', () => {

@@ -5,7 +5,7 @@ import { DialogRenderer } from '../dialog-renderer';
 import { ShadowUtils } from '../shadow-utils';
 import { DrawerUtils } from './drawer-utils';
 import { IDrawer, IDrawerInitData } from './idrawer';
-import { IFormatter } from './iformatter';
+import { IFormatter } from './formatter';
 
 export abstract class BaseDrawer implements IDrawer {
     protected dom: NodeSelector & Node;

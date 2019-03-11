@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IHtmlElementAxeResults } from '../scanner-utils';
 import { IPartialSVGDrawerConfiguration } from './drawer-provider';
-import { IFormatter, ISVGDrawerConfiguration } from './iformatter';
+import { IFormatter, ISVGDrawerConfiguration } from './formatter';
 
 export class TabStopsFormatter implements IFormatter {
     private static readonly ELLIPSE_RX_CALCULATOR_OFFSET: number = 1.3;
