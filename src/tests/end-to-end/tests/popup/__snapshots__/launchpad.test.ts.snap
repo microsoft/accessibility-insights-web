@@ -69,7 +69,7 @@ exports[`Launch Pad content should match snapshot 1`] = `
         <a
           aria-label="demo video"
           class="ms-Link insights-link root-000"
-          href="https://go.microsoft.com/fwlink/?linkid=2082374%20Tools"
+          href="https://go.microsoft.com/fwlink/?linkid=2082374"
           target="_blank"
           title="watch the 3 minute video introduction"
         >

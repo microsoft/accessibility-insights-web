@@ -28,7 +28,7 @@ export interface LaunchPadRowConfiguration {
 }
 
 export class LaunchPad extends React.Component<LaunchPadProps, undefined> {
-    public static demoLink: string = 'https://go.microsoft.com/fwlink/?linkid=2082374%20Tools';
+    public static demoLink: string = 'https://go.microsoft.com/fwlink/?linkid=2082374';
 
     constructor(props: LaunchPadProps) {
         super(props);
