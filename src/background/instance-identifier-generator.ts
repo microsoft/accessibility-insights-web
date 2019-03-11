@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-// tslint:disable-next-line:interface-name
-interface IHTMLInstance {
+interface HTMLInstance {
     html: string;
 }
 
@@ -11,7 +10,7 @@ interface ISelectorInstance {
 }
 
 // tslint:disable-next-line:interface-name
-export type IUniquelyIdentifiableInstances = IHTMLInstance & ISelectorInstance;
+export type IUniquelyIdentifiableInstances = HTMLInstance & ISelectorInstance;
 
 // tslint:disable-next-line:interface-name
 export interface IInstanceWithHtmlAndSelector {
