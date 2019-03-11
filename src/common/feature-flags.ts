@@ -106,11 +106,11 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
         },
         {
             id: FeatureFlags.highContrastMode,
-            defaultValue: false,
+            defaultValue: true,
             displayableName: 'High contrast mode',
             displayableDescription: 'Show setting for high contrast mode under development',
-            isPreviewFeature: true,
-            forceDefault: false,
+            isPreviewFeature: false,
+            forceDefault: true,
         },
     ];
 }
