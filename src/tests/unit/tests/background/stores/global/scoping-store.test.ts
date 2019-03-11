@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IScopingPayload, ScopingActions } from '../../../../../../background/actions/scoping-actions';
+import { ScopingPayload, ScopingActions } from '../../../../../../background/actions/scoping-actions';
 import { ScopingInputTypes } from '../../../../../../background/scoping-input-types';
 import { ScopingStore } from '../../../../../../background/stores/global/scoping-store';
 import { StoreNames } from '../../../../../../common/stores/store-names';
@@ -36,7 +36,7 @@ describe('ScopingStoreTest', () => {
 
     test('on addSelector', () => {
         const initialState = getDefaultState();
-        const payload: IScopingPayload = {
+        const payload: ScopingPayload = {
             inputType: 'include',
             selector: ['iframe', 'selector'],
         };
@@ -49,7 +49,7 @@ describe('ScopingStoreTest', () => {
     });
 
     test('on addSelector prevent duplicate selector', () => {
-        const payload: IScopingPayload = {
+        const payload: ScopingPayload = {
             inputType: 'include',
             selector: ['iframe', 'selector'],
         };
@@ -65,7 +65,7 @@ describe('ScopingStoreTest', () => {
 
     test('on deleteSelector with an actual selector', () => {
         const initialState = getDefaultState();
-        const payload: IScopingPayload = {
+        const payload: ScopingPayload = {
             inputType: ScopingInputTypes.include,
             selector: ['iframe', 'selector'],
         };
@@ -80,7 +80,7 @@ describe('ScopingStoreTest', () => {
     test('on deleteSelector prevent deletion of non-existent selector', () => {
         const initialState = getDefaultState();
         const actualSelector = ['iframe', 'selector'];
-        const payload: IScopingPayload = {
+        const payload: ScopingPayload = {
             inputType: ScopingInputTypes.include,
             selector: ['selector'],
         };
