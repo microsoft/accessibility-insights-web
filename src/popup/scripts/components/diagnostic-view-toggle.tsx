@@ -74,7 +74,7 @@ export class DiagnosticViewToggle extends React.Component<DiagnosticViewTogglePr
                 <div className="ms-Grid-row">
                     <div className="ms-Grid-col ms-sm8">{this.renderLink(displayableData.linkToDetailsViewText)}</div>
                     <div className="ms-Grid-col ms-sm4 shortcut-label" style={{ float: 'right' }}>
-                        <div className="ms-fontColor-neutralSecondary ms-fontWeight-semilight ms-font-xs">{shortcut}</div>
+                        <div className="ms-font-xs">{shortcut}</div>
                     </div>
                 </div>
             </div>
