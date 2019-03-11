@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-import { forIn } from 'lodash';
+import { forOwn } from 'lodash';
 
 import { IAssessmentsProvider } from '../assessments/types/iassessments-provider';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -224,7 +224,7 @@ export class DrawingController {
     }
 
     public dispose(): void {
-        forIn(this._drawers, currentDrawer => {
+        forOwn(this._drawers, currentDrawer => {
             currentDrawer.eraseLayout();
         });
     }

@@ -3,7 +3,7 @@
 import { autobind } from '@uifabric/utilities';
 import * as _ from 'lodash/index';
 
-import { forIn } from 'lodash/index';
+import { forOwn } from 'lodash/index';
 import { StoreNames } from '../../common/stores/store-names';
 import { IVisualizationScanResultData } from '../../common/types/store-data/ivisualization-scan-result-data';
 import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from '../../injected/scanner-utils';
@@ -140,10 +140,10 @@ export class VisualizationScanResultStore extends BaseStore<IVisualizationScanRe
     private getRowToRuleResultMap(selectorMap: DictionaryStringTo<IHtmlElementAxeResults>): DictionaryStringTo<DecoratedAxeNodeResult> {
         const selectedRows: DictionaryStringTo<DecoratedAxeNodeResult> = {};
 
-        forIn(selectorMap, (selector: IHtmlElementAxeResults) => {
+        forOwn(selectorMap, (selector: IHtmlElementAxeResults) => {
             const ruleResults = selector.ruleResults;
 
-            forIn(ruleResults, (rule: DecoratedAxeNodeResult) => {
+            forOwn(ruleResults, (rule: DecoratedAxeNodeResult) => {
                 selectedRows[rule.id] = rule;
             });
         });
@@ -153,7 +153,7 @@ export class VisualizationScanResultStore extends BaseStore<IVisualizationScanRe
 
     private getSelectorMap(selectedRows: DictionaryStringTo<DecoratedAxeNodeResult>): DictionaryStringTo<IHtmlElementAxeResults> {
         const selectorMap: DictionaryStringTo<IHtmlElementAxeResults> = {};
-        forIn(selectedRows, (selectedRow: DecoratedAxeNodeResult) => {
+        forOwn(selectedRows, (selectedRow: DecoratedAxeNodeResult) => {
             const ruleResult = selectedRow;
             const ruleResults = selectorMap[ruleResult.selector] ? selectorMap[ruleResult.selector].ruleResults : {};
             const isVisible = selectorMap[ruleResult.selector] ? selectorMap[ruleResult.selector].isVisible : null;

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { forIn } from 'lodash';
+import { forOwn } from 'lodash';
 
 import { createDefaultLogger } from '../../common/logging/default-logger';
 import { Logger } from '../../common/logging/logger';
@@ -39,7 +39,7 @@ export class HtmlElementAxeResultsHelper {
 
     private getFrameResultsFromSelectorMap(selectorMap: DictionaryStringTo<AxeResultsWithFrameLevel[]>): IFrameResult[] {
         const results: IFrameResult[] = [];
-        forIn(selectorMap, (frameResults, selectorKey) => {
+        forOwn(selectorMap, (frameResults, selectorKey) => {
             if (selectorKey) {
                 const iframe = this.htmlElementUtils.querySelector(selectorKey);
                 if (iframe != null) {

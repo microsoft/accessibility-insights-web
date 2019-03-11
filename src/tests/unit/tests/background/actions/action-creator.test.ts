@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { forIn } from 'lodash';
+import { forOwn } from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { ActionCreator } from '../../../../../background/actions/action-creator';
@@ -1284,7 +1284,7 @@ class ActionCreatorValidator {
     }
 
     private verifyAllActions(actionsMap: DictionaryStringTo<IMock<Action<any>>>): void {
-        forIn(actionsMap, action => {
+        forOwn(actionsMap, action => {
             action.verifyAll();
         });
     }
