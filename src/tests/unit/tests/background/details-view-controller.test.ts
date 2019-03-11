@@ -180,11 +180,11 @@ describe('DetailsViewControllerTest', () => {
         mockBrowserAdpater.reset();
 
         // update details tab
-        const ext_id = 'ext_id';
+        const extensionId = 'ext_id';
         mockBrowserAdpater
             .setup(it => it.getRunTimeId())
             .returns(() => {
-                return ext_id;
+                return extensionId;
             });
         onUpdateTabCallback(detailsViewTabId, { url: 'chromeExt://ext_id/DetailsView/detailsView.html?tabId=90' }, null);
 
@@ -219,11 +219,11 @@ describe('DetailsViewControllerTest', () => {
         mockBrowserAdpater.reset();
 
         // update details tab
-        const ext_id = 'ext_id';
+        const extensionId = 'ext_id';
         mockBrowserAdpater
             .setup(it => it.getRunTimeId())
             .returns(() => {
-                return ext_id;
+                return extensionId;
             });
         onUpdateTabCallback(detailsViewTabId, { url: 'chromeExt://ext_Id/detailsView/detailsView.html?tabId=' + targetTabId }, null);
 
@@ -258,11 +258,11 @@ describe('DetailsViewControllerTest', () => {
         mockBrowserAdpater.reset();
 
         // update details tab
-        const ext_id = 'ext_id';
+        const extensionId = 'ext_id';
         mockBrowserAdpater
             .setup(it => it.getRunTimeId())
             .returns(() => {
-                return ext_id;
+                return extensionId;
             });
         onUpdateTabCallback(detailsViewTabId, { title: 'issues' }, null);
 
@@ -297,11 +297,11 @@ describe('DetailsViewControllerTest', () => {
         mockBrowserAdpater.reset();
 
         // remove details tab
-        const ext_id = 'ext_id';
+        const extensionId = 'ext_id';
         mockBrowserAdpater
             .setup(it => it.getRunTimeId())
             .returns(() => {
-                return ext_id;
+                return extensionId;
             });
         onUpdateTabCallback(123, { title: 'issues' }, null);
 

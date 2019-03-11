@@ -64,7 +64,14 @@
         "use-strict": [false, "check-module", "check-function"],
         "whitespace": [true, "check-branch", "check-decl", "check-operator", "check-separator", "check-type", "check-type-operator"],
 
-        // Security Rules.
+        "variable-name": [
+            true,
+            "ban-keywords",
+            "check-format",
+            "allow-leading-underscore",
+            "allow-trailing-underscore",
+            "allow-pascal-case"
+        ],
         "no-banned-terms": true,
         "no-delete-expression": true,
         "no-disable-auto-sanitization": true,
