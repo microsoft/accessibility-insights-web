@@ -8,7 +8,7 @@ import { WindowUtils } from './../../common/window-utils';
 import { BaseDrawer } from './base-drawer';
 import { CenterPositionCalculator } from './center-position-calculator';
 import { DrawerUtils } from './drawer-utils';
-import { ISVGDrawerConfiguration } from './formatter';
+import { SVGDrawerConfiguration } from './formatter';
 import { IDrawerInitData } from './idrawer';
 import { IFocusIndicator } from './ifocus-indicator';
 import { IPoint } from './ipoint';
@@ -168,7 +168,7 @@ export class SVGDrawerV2 extends BaseDrawer {
             return;
         }
 
-        const drawerConfig: ISVGDrawerConfiguration = this.formatter.getDrawerConfiguration(item.element, null);
+        const drawerConfig: SVGDrawerConfiguration = this.formatter.getDrawerConfiguration(item.element, null);
 
         const {
             tabIndexLabel: { showTabIndexedLabel },
@@ -203,7 +203,7 @@ export class SVGDrawerV2 extends BaseDrawer {
     private createLinesInTabOrderVisualization(
         curElementIndex: number,
         isLastItem: boolean,
-        drawerConfig: ISVGDrawerConfiguration,
+        drawerConfig: SVGDrawerConfiguration,
         centerPosition: IPoint,
         showSolidFocusLine: boolean,
     ): Element {

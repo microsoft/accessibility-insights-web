@@ -18,7 +18,7 @@ import { FrameFormatter } from './frame-formatter';
 import { HeadingFormatter } from './heading-formatter';
 import { HighlightBoxFormatter } from './highlight-box-formatter';
 import { IDrawer } from './idrawer';
-import { IFormatter, ISVGDrawerConfiguration } from './formatter';
+import { IFormatter, SVGDrawerConfiguration } from './formatter';
 import { IssuesFormatter } from './issues-formatter';
 import { LandmarkFormatter } from './landmark-formatter';
 import { NullDrawer } from './null-drawer';
@@ -29,7 +29,7 @@ import { SVGShapeFactory } from './svg-shape-factory';
 import { SVGSolidShadowFilterFactory } from './svg-solid-shadow-filter-factory';
 import { TabStopsFormatter } from './tab-stops-formatter';
 
-export type IPartialSVGDrawerConfiguration = DeepPartial<ISVGDrawerConfiguration>;
+export type IPartialSVGDrawerConfiguration = DeepPartial<SVGDrawerConfiguration>;
 
 export class DrawerProvider {
     constructor(

@@ -50,8 +50,7 @@ export interface TextConfiguration {
 
 export type LineConfiguration = StrokeConfiguration;
 
-// tslint:disable-next-line:interface-name
-export interface ISVGDrawerConfiguration {
+export interface SVGDrawerConfiguration {
     circle: CircleConfiguration;
     focusedCircle: CircleConfiguration;
     tabIndexLabel: TextConfiguration;
