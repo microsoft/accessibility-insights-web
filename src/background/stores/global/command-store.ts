@@ -5,7 +5,7 @@ import { autobind } from '@uifabric/utilities';
 import { StoreNames } from '../../../common/stores/store-names';
 import { ModifiedCommandsTelemetryData, SHORTCUT_MODIFIED } from '../../../common/telemetry-events';
 import { ICommandStoreData } from '../../../common/types/store-data/icommand-store-data';
-import { CommandActions, IGetCommandsPayload } from '../../actions/command-actions';
+import { CommandActions, GetCommandsPayload } from '../../actions/command-actions';
 import { TelemetryEventHandler } from '../../telemetry/telemetry-event-handler';
 import { BaseStore } from '../base-store';
 
@@ -33,7 +33,7 @@ export class CommandStore extends BaseStore<ICommandStoreData> {
     }
 
     @autobind
-    private onGetCommands(payload: IGetCommandsPayload): void {
+    private onGetCommands(payload: GetCommandsPayload): void {
         const modifiedCommands: chrome.commands.Command[] = this.getModifiedCommands(payload.commands);
         if (modifiedCommands.length > 0) {
             const telemetry: ModifiedCommandsTelemetryData = {
