@@ -14,16 +14,15 @@ export interface DrawerConfiguration {
     getBoundingRect?: (e: Element) => ClientRect | DOMRect;
 }
 
-export interface TextBoxConfig extends IBoxConfig {
+export interface TextBoxConfig extends BoxConfig {
     boxHeight?: string;
 }
 
-export interface FailureBoxConfig extends IBoxConfig {
+export interface FailureBoxConfig extends BoxConfig {
     hasDialogView?: boolean;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IBoxConfig {
+export interface BoxConfig {
     fontColor: string;
     background: string;
     text: string;

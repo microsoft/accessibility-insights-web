@@ -9,8 +9,8 @@ import { IHtmlElementAxeResults } from '../scanner-utils';
 import { ShadowUtils } from '../shadow-utils';
 import { BaseDrawer } from './base-drawer';
 import { DrawerUtils } from './drawer-utils';
+import { BoxConfig, DrawerConfiguration, IFormatter } from './formatter';
 import { IDrawerInitData } from './idrawer';
-import { DrawerConfiguration, IBoxConfig, IFormatter } from './formatter';
 
 export class Drawer extends BaseDrawer {
     protected elementResults: AxeResultsWithFrameLevel[];
@@ -124,7 +124,7 @@ export class Drawer extends BaseDrawer {
     private createtBox(
         wrapper: HTMLDivElement,
         drawerConfig: DrawerConfiguration,
-        boxConfig: IBoxConfig,
+        boxConfig: BoxConfig,
         currentDom: Document,
     ): HTMLDivElement {
         const box = currentDom.createElement('div');
