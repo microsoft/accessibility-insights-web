@@ -2,8 +2,7 @@
 // Licensed under the MIT License.
 import { BagOf, ColumnValueBag } from './column-value-bag';
 
-// tslint:disable-next-line:interface-name
-export interface ILinkFunctionPropertyBag extends ColumnValueBag {
+export interface LinkFunctionPropertyBag extends ColumnValueBag {
     accessibleName: string;
     url: string;
     role: string;
