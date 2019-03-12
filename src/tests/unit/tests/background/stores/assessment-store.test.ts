@@ -23,7 +23,7 @@ import { AssessmentDataConverter } from '../../../../../background/assessment-da
 import { AssessmentDataRemover } from '../../../../../background/assessment-data-remover';
 import { ChromeAdapter } from '../../../../../background/browser-adapter';
 import { AssessmentStore } from '../../../../../background/stores/assessment-store';
-import { IAssesssmentVisualizationConfiguration } from '../../../../../common/configs/visualization-configuration-factory';
+import { AssesssmentVisualizationConfiguration } from '../../../../../common/configs/visualization-configuration-factory';
 import { IndexedDBAPI } from '../../../../../common/indexedDB/indexedDB';
 import { ITab } from '../../../../../common/itab';
 import { StoreNames } from '../../../../../common/stores/store-names';
@@ -55,7 +55,7 @@ let assessmentsProviderMock: IMock<IAssessmentsProvider>;
 let indexDBInstanceMock: IMock<IndexedDBAPI>;
 let assessmentMock: IMock<Assessment>;
 let getInstanceIdentiferGeneratorMock: IMock<(step: string) => Function>;
-let configStub: IAssesssmentVisualizationConfiguration;
+let configStub: AssesssmentVisualizationConfiguration;
 let instanceIdentifierGeneratorStub: (instances) => string;
 
 const assessmentKey: string = 'assessment-1';
@@ -72,7 +72,7 @@ describe('AssessmentStoreTest', () => {
         configStub = {
             getAssessmentData: data => data.assessments[assessmentKey],
             getInstanceIdentiferGenerator: getInstanceIdentiferGeneratorMock.object,
-        } as IAssesssmentVisualizationConfiguration;
+        } as AssesssmentVisualizationConfiguration;
 
         assessmentsProvider = CreateTestAssessmentProvider();
         assessmentsProviderMock = Mock.ofType(AssessmentsProvider, MockBehavior.Strict);
@@ -288,7 +288,7 @@ describe('AssessmentStoreTest', () => {
             getAssessmentData: state => {
                 return state.assessments[assessmentKey];
             },
-        } as IAssesssmentVisualizationConfiguration;
+        } as AssesssmentVisualizationConfiguration;
 
         getVisualizationConfigurationMock
             .setup(gvcm => gvcm())
@@ -337,7 +337,7 @@ describe('AssessmentStoreTest', () => {
             getAssessmentData: state => {
                 return state.assessments[assessmentKey];
             },
-        } as IAssesssmentVisualizationConfiguration;
+        } as AssesssmentVisualizationConfiguration;
 
         getVisualizationConfigurationMock
             .setup(gvcm => gvcm())
@@ -387,7 +387,7 @@ describe('AssessmentStoreTest', () => {
             getAssessmentData: state => {
                 return state.assessments[assessmentKey];
             },
-        } as IAssesssmentVisualizationConfiguration;
+        } as AssesssmentVisualizationConfiguration;
 
         getVisualizationConfigurationMock
             .setup(gvcm => gvcm())

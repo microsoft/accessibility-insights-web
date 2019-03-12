@@ -34,8 +34,7 @@ export interface DisplayableVisualizationTypeData {
     linkToDetailsViewText: string;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IAssesssmentVisualizationConfiguration {
+export interface AssesssmentVisualizationConfiguration {
     key: string;
     getTestView: (props: TestViewProps) => JSX.Element;
     getStoreData: (data: TestsEnabledState) => IScanData;
@@ -59,7 +58,7 @@ export interface IAssesssmentVisualizationConfiguration {
 }
 
 // tslint:disable-next-line:interface-name
-export interface IVisualizationConfiguration extends IAssesssmentVisualizationConfiguration {
+export interface IVisualizationConfiguration extends AssesssmentVisualizationConfiguration {
     key: string;
     testMode: TestMode;
     featureFlagToEnable?: string;
