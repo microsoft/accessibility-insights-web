@@ -4,7 +4,7 @@ import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-st
 import { VisualizationType } from '../common/types/visualization-type';
 import { DrawingController, VisualizationWindowMessage } from './drawing-controller';
 import { AxeResultsWithFrameLevel, IAssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
-import { IPropertyBags, VisualizationInstanceProcessorCallback } from './visualization-instance-processor';
+import { PropertyBags, VisualizationInstanceProcessorCallback } from './visualization-instance-processor';
 
 export class DrawingInitiator {
     private drawingController: DrawingController;
@@ -18,7 +18,7 @@ export class DrawingInitiator {
         featureFlagStoreData: FeatureFlagStoreData,
         selectorMap: DictionaryStringTo<IAssessmentVisualizationInstance>,
         configId: string,
-        processor: VisualizationInstanceProcessorCallback<IPropertyBags, IPropertyBags>,
+        processor: VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags>,
     ): void {
         if (selectorMap == null) {
             return;

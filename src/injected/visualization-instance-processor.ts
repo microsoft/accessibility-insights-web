@@ -11,8 +11,7 @@ export type VisualizationInstanceProcessorCallback<Raw, Processed> = (
     instances: VisualizationPropertyBag<Raw>[],
 ) => VisualizationPropertyBag<Processed>[];
 
-// tslint:disable-next-line:interface-name
-export type IPropertyBags = IPartialTabOrderPropertyBag | ITabOrderPropertyBag;
+export type PropertyBags = IPartialTabOrderPropertyBag | ITabOrderPropertyBag;
 
 export class VisualizationInstanceProcessor {
     public static nullProcessor: VisualizationInstanceProcessorCallback<null, null> = instances => {

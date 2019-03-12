@@ -25,7 +25,7 @@ import { IAssessmentVisualizationInstance } from '../../../../injected/frameComm
 import { ScrollingController, ScrollingWindowMessage } from '../../../../injected/frameCommunicators/scrolling-controller';
 import { SelectorMapHelper } from '../../../../injected/selector-map-helper';
 import { TargetPageActionMessageCreator } from '../../../../injected/target-page-action-message-creator';
-import { IPropertyBags, VisualizationInstanceProcessorCallback } from '../../../../injected/visualization-instance-processor';
+import { PropertyBags, VisualizationInstanceProcessorCallback } from '../../../../injected/visualization-instance-processor';
 import { AssessmentsStoreDataBuilder } from '../../common/assessment-store-data-builder';
 import { StoreStub } from '../../common/store-stub';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
@@ -404,9 +404,9 @@ class MocksAndTestSubjectBuilder {
     private _selectorMap: DictionaryStringTo<IAssessmentVisualizationInstance>;
     private _visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
     private _actualVisualizationConfigurationFactory: VisualizationConfigurationFactory;
-    private _visualizationInstanceProcessorStub: VisualizationInstanceProcessorCallback<IPropertyBags, IPropertyBags>;
+    private _visualizationInstanceProcessorStub: VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags>;
     private _getVisualizationInstanceProcessorMock: IMock<
-        (testStep?: string) => VisualizationInstanceProcessorCallback<IPropertyBags, IPropertyBags>
+        (testStep?: string) => VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags>
     >;
     private _targetPageActionMessageCreatorMock: IMock<TargetPageActionMessageCreator>;
 

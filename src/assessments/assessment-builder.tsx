@@ -17,7 +17,7 @@ import { AssessmentTestView } from '../DetailsView/components/assessment-test-vi
 import { TestStepLink } from '../DetailsView/components/test-step-link';
 import { AnalyzerProvider } from '../injected/analyzers/analyzer-provider';
 import {
-    IPropertyBags,
+    PropertyBags,
     VisualizationInstanceProcessorCallback,
     VisualizationInstanceProcessor,
 } from '../injected/visualization-instance-processor';
@@ -243,7 +243,7 @@ export class AssessmentBuilder {
     }
 
     private static getVisualizationInstanceProcessor(steps: TestStep[]) {
-        return (testStep: string): VisualizationInstanceProcessorCallback<IPropertyBags, IPropertyBags> => {
+        return (testStep: string): VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags> => {
             const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
             if (stepConfig == null || stepConfig.visualizationInstanceProcessor == null) {
                 return VisualizationInstanceProcessor.nullProcessor;
