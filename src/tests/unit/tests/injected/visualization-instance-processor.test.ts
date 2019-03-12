@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IAssessmentVisualizationInstance } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
-import { PartialTabOrderPropertyBag, ITabOrderPropertyBag } from '../../../../injected/tab-order-property-bag';
+import { PartialTabOrderPropertyBag, TabOrderPropertyBag } from '../../../../injected/tab-order-property-bag';
 import { VisualizationPropertyBag, VisualizationInstanceProcessor } from '../../../../injected/visualization-instance-processor';
 
 describe('VisualizationInstanceProcessorTest', () => {
@@ -25,7 +25,7 @@ describe('VisualizationInstanceProcessorTest', () => {
                 },
             },
         ];
-        const expectedInstances: VisualizationPropertyBag<ITabOrderPropertyBag>[] = [
+        const expectedInstances: VisualizationPropertyBag<TabOrderPropertyBag>[] = [
             {
                 ...createNullifiedAssessmenVisualizationInstance(),
                 propertyBag: {

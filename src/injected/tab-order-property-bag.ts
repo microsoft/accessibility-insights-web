@@ -4,7 +4,6 @@ export interface PartialTabOrderPropertyBag {
     timestamp: number;
 }
 
-// tslint:disable-next-line:interface-name
-export interface ITabOrderPropertyBag extends PartialTabOrderPropertyBag {
+export interface TabOrderPropertyBag extends PartialTabOrderPropertyBag {
     tabOrder: number;
 }
