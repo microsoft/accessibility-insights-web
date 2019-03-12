@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
 import { IActionN } from 'typemoq/_all';
-
 import { getDefaultFeatureFlagValues } from '../../../../../common/feature-flags';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { ClientUtils } from '../../../../../injected/client-utils';
@@ -10,8 +9,8 @@ import { IHtmlElementAxeResults } from '../../../../../injected/scanner-utils';
 import { ShadowUtils } from '../../../../../injected/shadow-utils';
 import { Drawer } from '../../../../../injected/visualization/drawer';
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
+import { DrawerConfiguration, Formatter } from '../../../../../injected/visualization/formatter';
 import { IDrawerInitData } from '../../../../../injected/visualization/idrawer';
-import { DrawerConfiguration, IFormatter } from '../../../../../injected/visualization/iformatter';
 import { TestDocumentCreator } from '../../../common/test-document-creator';
 
 describe('Drawer', () => {
@@ -1149,7 +1148,7 @@ describe('Drawer', () => {
             showVisualization: true,
         };
 
-        class FormatterStub implements IFormatter {
+        class FormatterStub implements Formatter {
             public getDrawerConfiguration(el: Node, data): DrawerConfiguration {
                 throw new Error('Not implemented');
             }
@@ -1305,7 +1304,7 @@ describe('Drawer', () => {
         private windowUtils: WindowUtils;
         private drawerUtils: DrawerUtils;
         private clientUtils: ClientUtils = new ClientUtils(window);
-        private formatter: IFormatter;
+        private formatter: Formatter;
 
         constructor(private readonly shadowUtils: ShadowUtils) {
             this.shadowUtils = shadowUtils;
@@ -1337,7 +1336,7 @@ describe('Drawer', () => {
             return this;
         }
 
-        public setFormatter(formatter: IFormatter): DrawerBuilder {
+        public setFormatter(formatter: Formatter): DrawerBuilder {
             this.formatter = formatter;
             return this;
         }

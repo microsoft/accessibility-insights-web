@@ -7,8 +7,8 @@ import { WindowUtils } from '../../../../../common/window-utils';
 import { ShadowUtils } from '../../../../../injected/shadow-utils';
 import { CenterPositionCalculator } from '../../../../../injected/visualization/center-position-calculator';
 import { FocusIndicator } from '../../../../../injected/visualization/focus-indicator';
+import { SVGDrawerConfiguration } from '../../../../../injected/visualization/formatter';
 import { IDrawerInitData } from '../../../../../injected/visualization/idrawer';
-import { ISVGDrawerConfiguration } from '../../../../../injected/visualization/iformatter';
 import { SVGNamespaceUrl } from '../../../../../injected/visualization/svg-constants';
 import { SVGDrawerV2 } from '../../../../../injected/visualization/svg-drawer-v2';
 import { SVGShapeFactory } from '../../../../../injected/visualization/svg-shape-factory';
@@ -462,7 +462,7 @@ describe('SVGDrawerV2Tests', () => {
                 `);
         const docMock = dom.ownerDocument || dom;
         const element: HTMLElement = dom.querySelector('#id1') as HTMLElement;
-        const drawerConfig: ISVGDrawerConfiguration = createTestDrawingConfig();
+        const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
         const tabbedElements: ITabbedElementData[] = [
             {
                 tabOrder: 1,
@@ -526,7 +526,7 @@ describe('SVGDrawerV2Tests', () => {
 
         document.body.appendChild(dom);
 
-        const drawerConfig: ISVGDrawerConfiguration = createTestDrawingConfig();
+        const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
         const element: HTMLElement = dom.querySelector('#id1') as HTMLElement;
         const tabbedElements: ITabbedElementData[] = [
             {
@@ -587,7 +587,7 @@ describe('SVGDrawerV2Tests', () => {
 
         document.body.appendChild(dom);
 
-        const drawerConfig: ISVGDrawerConfiguration = createTestDrawingConfig(false, false);
+        const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig(false, false);
         const tabbedElements: ITabbedElementData[] = [
             {
                 tabOrder: 1,
@@ -653,7 +653,7 @@ describe('SVGDrawerV2Tests', () => {
         const docMock = dom.ownerDocument || dom;
         document.body.appendChild(dom);
         // pass true or false in createTestDrawingConfig falseto set showDetailedTabOrder parameter in config
-        const drawerConfig: ISVGDrawerConfiguration = createTestDrawingConfig();
+        const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
         const tabbedElements: ITabbedElementData[] = [
             {
                 tabOrder: 1,
@@ -719,7 +719,7 @@ describe('SVGDrawerV2Tests', () => {
         const docMock = dom.ownerDocument || dom;
         document.body.appendChild(dom);
         // pass true or false in createTestDrawingConfig falseto set showDetailedTabOrder parameter in config
-        const drawerConfig: ISVGDrawerConfiguration = createTestDrawingConfig();
+        const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
         const tabbedElements: ITabbedElementData[] = [
             {
                 tabOrder: 1,
@@ -787,7 +787,7 @@ describe('SVGDrawerV2Tests', () => {
                 `);
         const docMock = dom.ownerDocument || dom;
         document.body.appendChild(dom);
-        const drawerConfig: ISVGDrawerConfiguration = createTestDrawingConfig();
+        const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
         const tabbedElements: ITabbedElementData[] = [
             {
                 tabOrder: 1,
@@ -852,7 +852,7 @@ describe('SVGDrawerV2Tests', () => {
                 `);
         const docMock = dom.ownerDocument || dom;
         document.body.appendChild(dom);
-        const drawerConfig: ISVGDrawerConfiguration = createTestDrawingConfig();
+        const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
         const tabbedElements: ITabbedElementData[] = [
             {
                 tabOrder: 1,
@@ -912,8 +912,8 @@ describe('SVGDrawerV2Tests', () => {
         document.body.removeChild(dom);
     });
 
-    function createTestDrawingConfig(showSolidFocusLine = true, showTabIndexedLabel = true): ISVGDrawerConfiguration {
-        const drawerConfig: ISVGDrawerConfiguration = {
+    function createTestDrawingConfig(showSolidFocusLine = true, showTabIndexedLabel = true): SVGDrawerConfiguration {
+        const drawerConfig: SVGDrawerConfiguration = {
             circle: {
                 stroke: '#777777',
                 strokeWidth: '2',

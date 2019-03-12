@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IAssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
 import { FailureInstanceFormatter } from './failure-instance-formatter';
-import { DrawerConfiguration } from './iformatter';
+import { DrawerConfiguration } from './formatter';
 
 // tslint:disable-next-line:interface-name
 export interface IFrameStyleConfiguration {
