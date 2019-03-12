@@ -5,8 +5,7 @@ import { IAssessmentVisualizationInstance } from '../frameCommunicators/html-ele
 import { FailureInstanceFormatter } from './failure-instance-formatter';
 import { DrawerConfiguration } from './formatter';
 
-// tslint:disable-next-line:interface-name
-export interface IHeadingStyleConfiguration {
+export interface HeadingStyleConfiguration {
     borderColor: string;
     fontColor: string;
 }
@@ -26,7 +25,7 @@ export class HeadingFormatter extends FailureInstanceFormatter {
         this.clientUtils = clientUtils;
     }
 
-    public static headingStyles: { [level: string]: IHeadingStyleConfiguration } = {
+    public static headingStyles: { [level: string]: HeadingStyleConfiguration } = {
         '1': {
             borderColor: '#0066CC',
             fontColor: '#FFFFFF',
