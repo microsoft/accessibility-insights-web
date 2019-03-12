@@ -3,7 +3,7 @@
 import { Interpreter } from '../../../background/interpreter';
 
 export class InterpreterStub extends Interpreter {
-    public registerTypeToPayloadCallback(messageType: string, callback: IPayloadCallback): void {}
+    public registerTypeToPayloadCallback(messageType: string, callback: PayloadCallback): void {}
 
     public interpret(message: Message): boolean {
         return false;

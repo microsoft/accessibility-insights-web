@@ -3,10 +3,10 @@
 import { autobind } from '@uifabric/utilities';
 
 export class Interpreter {
-    protected messageToActionMapping: DictionaryStringTo<IPayloadCallback> = {};
+    protected messageToActionMapping: DictionaryStringTo<PayloadCallback> = {};
 
     @autobind
-    public registerTypeToPayloadCallback(messageType: string, callback: IPayloadCallback): void {
+    public registerTypeToPayloadCallback(messageType: string, callback: PayloadCallback): void {
         this.messageToActionMapping[messageType] = callback;
     }
 
