@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { PropertyBagColumnRendererFactory } from '../../../assessments/common/property-bag-column-renderer-factory';
-import { ILinkPurposePropertyBag } from '../../../common/types/property-bag/ilink-purpose';
+import { LinkPurposePropertyBag } from '../../../common/types/property-bag/ilink-purpose';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { title } from '../../../content/strings/application';
@@ -53,7 +53,7 @@ const LinkPurposeHowToTest: JSX.Element = (
     </div>
 );
 
-const propertyBagConfig: PropertyBagColumnRendererConfig<ILinkPurposePropertyBag>[] = [
+const propertyBagConfig: PropertyBagColumnRendererConfig<LinkPurposePropertyBag>[] = [
     {
         propertyName: 'accessibleName',
         displayName: 'Accessible name',
