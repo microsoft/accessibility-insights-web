@@ -3,7 +3,7 @@
 import { autobind } from '@uifabric/utilities';
 
 import { TestMode } from '../../common/configs/test-mode';
-import { IVisualizationConfiguration, VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../../common/enum-helper';
 import { ITab } from '../../common/itab';
 import { StoreNames } from '../../common/stores/store-names';
@@ -186,7 +186,7 @@ export class VisualizationStore extends BaseStore<IVisualizationStoreData> {
         this.emitChanged();
     }
 
-    private isAssessment(config: IVisualizationConfiguration): boolean {
+    private isAssessment(config: VisualizationConfiguration): boolean {
         return config.testMode === TestMode.Assessments;
     }
 

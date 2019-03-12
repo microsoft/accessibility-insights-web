@@ -3,7 +3,7 @@
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
-import { IVisualizationConfiguration, VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
@@ -31,7 +31,7 @@ export interface AdhocIssuesTestViewProps {
     issuesSelection: ISelection;
     reportGenerator: ReportGenerator;
     issuesTableHandler: IssuesTableHandler;
-    configuration: IVisualizationConfiguration;
+    configuration: VisualizationConfiguration;
 }
 
 export const AdhocIssuesTestView = NamedSFC<AdhocIssuesTestViewProps>('AdhocIssuesTestView', ({ children, ...props }) => {

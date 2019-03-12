@@ -5,7 +5,7 @@ import * as React from 'react';
 import { It, Mock, MockBehavior } from 'typemoq';
 
 import {
-    IVisualizationConfiguration,
+    VisualizationConfiguration,
     VisualizationConfigurationFactory,
 } from '../../../../../common/configs/visualization-configuration-factory';
 import { TestViewContainer, TestViewContainerProps } from '../../../../../DetailsView/components/test-view-container';
@@ -18,7 +18,7 @@ describe('TestViewContainerTest', () => {
 
         const configStub = {
             getTestView: getTestViewMock.object,
-        } as IVisualizationConfiguration;
+        } as VisualizationConfiguration;
 
         const props = {
             tabStoreData: {

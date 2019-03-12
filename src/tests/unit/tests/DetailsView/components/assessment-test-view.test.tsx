@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
-import { IVisualizationConfiguration } from '../../../../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration-factory';
 import { IAssessmentData, IAssessmentStoreData } from '../../../../../common/types/store-data/iassessment-result-data';
 import { IScanData, IVisualizationStoreData, TestsEnabledState } from '../../../../../common/types/store-data/ivisualization-store-data';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
@@ -24,7 +24,7 @@ describe('AssessmentTestView', () => {
     let visualizationStoreDataStub: IVisualizationStoreData;
     let actionMessageCreatorStub: DetailsViewActionMessageCreator;
     let assessmentInstanceHandlerStub: AssessmentInstanceTableHandler;
-    let configuration: IVisualizationConfiguration;
+    let configuration: VisualizationConfiguration;
     let assessmentStoreDataStub: IAssessmentStoreData;
     let assessmentDataStub: IAssessmentData;
     const selectedTestStep = 'step';
@@ -46,7 +46,7 @@ describe('AssessmentTestView', () => {
             getStoreData: getStoreDataMock.object,
             getAssessmentData: getAssessmentDataMock.object,
             getTestStatus: getTestStatusMock.object,
-        } as IVisualizationConfiguration;
+        } as VisualizationConfiguration;
         assessmentStoreDataStub = {
             assessmentNavState: {
                 selectedTestType: selectedTest,

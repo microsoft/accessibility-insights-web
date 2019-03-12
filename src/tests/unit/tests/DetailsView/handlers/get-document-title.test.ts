@@ -4,7 +4,7 @@ import { Mock, MockBehavior } from 'typemoq';
 
 import {
     DisplayableVisualizationTypeData,
-    IVisualizationConfiguration,
+    VisualizationConfiguration,
     VisualizationConfigurationFactory,
 } from '../../../../../common/configs/visualization-configuration-factory';
 import { getOverviewTitle, getTestViewTitle, GetTestViewTitleProps } from '../../../../../DetailsView/handlers/get-document-title';
@@ -16,7 +16,7 @@ describe('getTestViewTitle', () => {
             title: 'fake title',
         } as DisplayableVisualizationTypeData;
         const type = -1;
-        const configStub = { displayableData: displayableDataStub } as IVisualizationConfiguration;
+        const configStub = { displayableData: displayableDataStub } as VisualizationConfiguration;
 
         configFactory.setup(cf => cf.getConfiguration(type)).returns(() => configStub);
 

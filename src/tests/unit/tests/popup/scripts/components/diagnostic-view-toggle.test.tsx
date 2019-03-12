@@ -12,7 +12,7 @@ import { It, Mock, Times } from 'typemoq';
 
 import { VisualizationToggle } from '../../../../../../common/components/visualization-toggle';
 import {
-    IVisualizationConfiguration,
+    VisualizationConfiguration,
     VisualizationConfigurationFactory,
 } from '../../../../../../common/configs/visualization-configuration-factory';
 import { FeatureFlags } from '../../../../../../common/feature-flags';
@@ -364,7 +364,7 @@ class DiagnosticViewTogglePropsBuilder {
     private addEventListenerMock = Mock.ofInstance((e, ev) => {});
     private featureFlags: DictionaryStringTo<boolean> = {};
     private deps: ContentLinkDeps = {} as ContentLinkDeps;
-    private configurationStub: IVisualizationConfiguration;
+    private configurationStub: VisualizationConfiguration;
 
     constructor(type: VisualizationType, telemetrySource: TelemetryEventSource) {
         this.type = type;

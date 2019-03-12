@@ -7,10 +7,7 @@ import { IToggle } from 'office-ui-fabric-react/lib/Toggle';
 import * as React from 'react';
 
 import { VisualizationToggle } from '../../../common/components/visualization-toggle';
-import {
-    IVisualizationConfiguration,
-    VisualizationConfigurationFactory,
-} from '../../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../../../common/configs/visualization-configuration-factory';
 import { KeyCodeConstants } from '../../../common/constants/keycode-constants';
 import { FeatureFlags } from '../../../common/feature-flags';
 import { TelemetryEventSource } from '../../../common/telemetry-events';
@@ -41,7 +38,7 @@ export interface DiagnosticViewToggleState {
 }
 
 export class DiagnosticViewToggle extends React.Component<DiagnosticViewToggleProps, DiagnosticViewToggleState> {
-    private configuration: IVisualizationConfiguration;
+    private configuration: VisualizationConfiguration;
     private _toggle: React.RefObject<IToggle> = React.createRef<IToggle>();
     private dom: NodeSelector & Node;
     private _isMounted: boolean;

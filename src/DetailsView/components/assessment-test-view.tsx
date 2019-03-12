@@ -5,7 +5,7 @@ import * as React from 'react';
 import { AssessmentDefaultMessageGenerator } from '../../assessments/assessment-default-message-generator';
 import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { AssessmentTestResult } from '../../common/assessment/assessment-test-result';
-import { IVisualizationConfiguration } from '../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../common/configs/visualization-configuration-factory';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { IAssessmentStoreData } from '../../common/types/store-data/iassessment-result-data';
 import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
@@ -24,7 +24,7 @@ export interface AssessmentTestViewProps {
     assessmentStoreData: IAssessmentStoreData;
     visualizationStoreData: IVisualizationStoreData;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
-    configuration: IVisualizationConfiguration;
+    configuration: VisualizationConfiguration;
 }
 
 export const AssessmentTestView = NamedSFC<AssessmentTestViewProps>('AssessmentTestView', ({ deps, ...props }) => {

@@ -6,7 +6,7 @@ import { Assessments } from '../../../../assessments/assessments';
 import { IAssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
 import { UniquelyIdentifiableInstances } from '../../../../background/instance-identifier-generator';
 import {
-    IVisualizationConfiguration,
+    VisualizationConfiguration,
     VisualizationConfigurationFactory,
 } from '../../../../common/configs/visualization-configuration-factory';
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
@@ -23,7 +23,7 @@ describe('InstanceVisibilityCheckerTest', () => {
     let testSubject: InstanceVisibilityChecker;
     const assessmentsProvider: IAssessmentsProvider = Assessments;
     let configFactoryMock: IMock<VisualizationConfigurationFactory>;
-    let configStub: IVisualizationConfiguration;
+    let configStub: VisualizationConfiguration;
     let getInstanceIdentiferGeneratorMock: IMock<(step: string) => Function>;
     let getUpdateVisibilityMock: IMock<(step: string) => boolean>;
     let generateInstanceIdentifierMock: IMock<(instance: UniquelyIdentifiableInstances) => string>;
@@ -41,7 +41,7 @@ describe('InstanceVisibilityCheckerTest', () => {
         configStub = {
             getInstanceIdentiferGenerator: getInstanceIdentiferGeneratorMock.object,
             getUpdateVisibility: getUpdateVisibilityMock.object,
-        } as IVisualizationConfiguration;
+        } as VisualizationConfiguration;
 
         testSubject = new InstanceVisibilityChecker(
             sendMessageMock.object,

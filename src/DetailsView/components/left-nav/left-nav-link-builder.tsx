@@ -4,7 +4,7 @@ import { map } from 'lodash';
 import * as React from 'react';
 
 import { IAssessmentsProvider } from '../../../assessments/types/iassessments-provider';
-import { IVisualizationConfiguration } from '../../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../../common/configs/visualization-configuration-factory';
 import { ManualTestStatus, ManualTestStatusData } from '../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { OutcomeStats, OutcomeTypeSemantic } from '../../reports/components/outcome-type';
@@ -99,7 +99,7 @@ export class LeftNavLinkBuilder {
     }
 
     public buildVisualizationConfigurationLink(
-        configuration: IVisualizationConfiguration,
+        configuration: VisualizationConfiguration,
         onLinkClick: onBaseLeftNavItemClick,
         type: VisualizationType,
         index: number,

@@ -4,7 +4,7 @@ import { autobind } from '@uifabric/utilities';
 import * as _ from 'lodash/index';
 
 import { TestMode } from '../common/configs/test-mode';
-import { IVisualizationConfiguration, VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../common/enum-helper';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { ITabStoreData } from '../common/types/store-data/itab-store-data';
@@ -133,11 +133,11 @@ export class ClientViewController {
         });
     }
 
-    private isAssessment(config: IVisualizationConfiguration) {
+    private isAssessment(config: VisualizationConfiguration) {
         return config.testMode === TestMode.Assessments;
     }
 
-    private isAssessmentDataForCurrentPage(config: IVisualizationConfiguration): boolean {
+    private isAssessmentDataForCurrentPage(config: VisualizationConfiguration): boolean {
         return (
             !this.isAssessment(config) ||
             this.currentAssessmentState.persistedTabInfo === null ||

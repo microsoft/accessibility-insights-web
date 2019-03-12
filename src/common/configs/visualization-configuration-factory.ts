@@ -57,8 +57,7 @@ export interface AssesssmentVisualizationConfiguration {
     getUpdateVisibility: (testStep?: string) => boolean;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IVisualizationConfiguration extends AssesssmentVisualizationConfiguration {
+export interface VisualizationConfiguration extends AssesssmentVisualizationConfiguration {
     key: string;
     testMode: TestMode;
     featureFlagToEnable?: string;
@@ -77,7 +76,7 @@ export interface IVisualizationConfiguration extends AssesssmentVisualizationCon
 }
 
 export class VisualizationConfigurationFactory {
-    private configurationByType: DictionaryNumberTo<IVisualizationConfiguration>;
+    private configurationByType: DictionaryNumberTo<VisualizationConfiguration>;
 
     constructor() {
         this.configurationByType = {
@@ -93,7 +92,7 @@ export class VisualizationConfigurationFactory {
         return _.find(_.values(this.configurationByType), config => config.key === key);
     }
 
-    public getConfiguration(type: VisualizationType): IVisualizationConfiguration {
+    public getConfiguration(type: VisualizationType): VisualizationConfiguration {
         if (Assessments.isValidType(type)) {
             const assessment = Assessments.forType(type);
             const defaults = {

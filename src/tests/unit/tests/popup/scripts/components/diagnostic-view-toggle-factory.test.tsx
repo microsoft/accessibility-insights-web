@@ -8,7 +8,7 @@ import { FeatureFlagStore } from '../../../../../../background/stores/global/fea
 import { VisualizationStore } from '../../../../../../background/stores/visualization-store';
 import { TestMode } from '../../../../../../common/configs/test-mode';
 import {
-    IVisualizationConfiguration,
+    VisualizationConfiguration,
     VisualizationConfigurationFactory,
 } from '../../../../../../common/configs/visualization-configuration-factory';
 import { TelemetryEventSource } from '../../../../../../common/telemetry-events';
@@ -32,24 +32,24 @@ describe('DiagnosticViewToggleFactoryTest', () => {
     ];
 
     const featureFlagStub: string = 'test_heading_feature_flag';
-    const firstVisualizationConfiguration: IVisualizationConfiguration = {
+    const firstVisualizationConfiguration: VisualizationConfiguration = {
         testMode: TestMode.Adhoc,
         featureFlagToEnable: featureFlagStub,
         launchPanelDisplayOrder: 2,
         adhocToolsPanelDisplayOrder: 1,
-    } as IVisualizationConfiguration;
-    const secondVisualizationConfiguration: IVisualizationConfiguration = {
+    } as VisualizationConfiguration;
+    const secondVisualizationConfiguration: VisualizationConfiguration = {
         testMode: TestMode.Adhoc,
         featureFlagToEnable: null,
         launchPanelDisplayOrder: 1,
         adhocToolsPanelDisplayOrder: 2,
-    } as IVisualizationConfiguration;
-    const alwaysDisabledConfiguration: IVisualizationConfiguration = {
+    } as VisualizationConfiguration;
+    const alwaysDisabledConfiguration: VisualizationConfiguration = {
         testMode: null,
         featureFlagToEnable: null,
         launchPanelDisplayOrder: 1,
         adhocToolsPanelDisplayOrder: 2,
-    } as IVisualizationConfiguration;
+    } as VisualizationConfiguration;
 
     const visualizationStoreData = new VisualizationStoreDataBuilder().build();
     const domMock = {} as any;

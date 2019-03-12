@@ -6,7 +6,7 @@ import { IMock, It, Mock, Times } from 'typemoq';
 import { ScopingInputTypes } from '../../../../../background/scoping-input-types';
 import { ScopingStore } from '../../../../../background/stores/global/scoping-store';
 import {
-    IVisualizationConfiguration,
+    VisualizationConfiguration,
     VisualizationConfigurationFactory,
 } from '../../../../../common/configs/visualization-configuration-factory';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
@@ -68,7 +68,7 @@ describe('RuleAnalyzer', () => {
             .returns(() => {
                 return {
                     displayableData: { title: testName },
-                } as IVisualizationConfiguration;
+                } as VisualizationConfiguration;
             })
             .verifiable();
     });
