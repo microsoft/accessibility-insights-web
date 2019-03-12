@@ -7,8 +7,7 @@ export interface VisualizationPropertyBag<T> extends IAssessmentVisualizationIns
     propertyBag?: T;
 }
 
-// tslint:disable-next-line:interface-name
-export type IVisualizationInstanceProcessorCallback<Raw, Processed> = (
+export type VisualizationInstanceProcessorCallback<Raw, Processed> = (
     instances: VisualizationPropertyBag<Raw>[],
 ) => VisualizationPropertyBag<Processed>[];
 
@@ -16,11 +15,11 @@ export type IVisualizationInstanceProcessorCallback<Raw, Processed> = (
 export type IPropertyBags = IPartialTabOrderPropertyBag | ITabOrderPropertyBag;
 
 export class VisualizationInstanceProcessor {
-    public static nullProcessor: IVisualizationInstanceProcessorCallback<null, null> = instances => {
+    public static nullProcessor: VisualizationInstanceProcessorCallback<null, null> = instances => {
         return instances;
     };
 
-    public static addOrder: IVisualizationInstanceProcessorCallback<IPartialTabOrderPropertyBag, ITabOrderPropertyBag> = instances => {
+    public static addOrder: VisualizationInstanceProcessorCallback<IPartialTabOrderPropertyBag, ITabOrderPropertyBag> = instances => {
         instances.sort((instanceA, instanceB) => instanceA.propertyBag.timestamp - instanceB.propertyBag.timestamp);
         return instances.map((instance, index) => {
             return {

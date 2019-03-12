@@ -11,7 +11,7 @@ import { AssessmentInstanceTable, IAssessmentInstanceRowData } from '../../Detai
 import { TestStepLink } from '../../DetailsView/components/test-step-link';
 import { IAnalyzer } from '../../injected/analyzers/ianalyzer';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
-import { IPropertyBags, IVisualizationInstanceProcessorCallback } from '../../injected/visualization-instance-processor';
+import { IPropertyBags, VisualizationInstanceProcessorCallback } from '../../injected/visualization-instance-processor';
 import { DrawerProvider } from '../../injected/visualization/drawer-provider';
 import { IDrawer } from '../../injected/visualization/idrawer';
 import { ContentPageComponent, HyperlinkDefinition } from '../../views/content/content-page';
@@ -34,7 +34,7 @@ export interface TestStep {
     columnsConfig?: InstanceTableColumn[];
     getAnalyzer?: (provider: AnalyzerProvider) => IAnalyzer<any>;
     getVisualHelperToggle?: (props: VisualHelperToggleConfig) => JSX.Element;
-    visualizationInstanceProcessor?: IVisualizationInstanceProcessorCallback<IPropertyBags, IPropertyBags>;
+    visualizationInstanceProcessor?: VisualizationInstanceProcessorCallback<IPropertyBags, IPropertyBags>;
     getDrawer?: (provider: DrawerProvider, featureFlagStoreData?: FeatureFlagStoreData) => IDrawer;
     updateVisibility?: boolean;
     getNotificationMessage?: (selectorMap: DictionaryStringTo<any>) => string;
