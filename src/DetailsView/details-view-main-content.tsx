@@ -48,7 +48,7 @@ export interface DetailsViewMainContentProps {
 }
 
 export class DetailsViewMainContent extends React.Component<DetailsViewMainContentProps> {
-    public render() {
+    public render(): JSX.Element {
         return (
             <>
                 {this.renderCommandBar()}

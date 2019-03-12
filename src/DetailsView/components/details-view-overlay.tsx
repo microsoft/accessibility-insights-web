@@ -30,7 +30,7 @@ export interface DetailsViewOverlayProps {
 }
 
 export class DetailsViewOverlay extends React.Component<DetailsViewOverlayProps> {
-    public render() {
+    public render(): JSX.Element {
         return (
             <React.Fragment>
                 {this.getPreviewFeaturesPanel()}

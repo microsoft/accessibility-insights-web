@@ -49,7 +49,7 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
         );
     }
 
-    private renderContextMenu() {
+    private renderContextMenu(): JSX.Element {
         if (!this.state.isContextMenuVisible) {
             return null;
         }
@@ -77,16 +77,16 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
     }
 
     @autobind
-    private onStartOverTestMenu() {
+    private onStartOverTestMenu(): void {
         this.setState({ dialogState: 'test' });
     }
 
     @autobind
-    private onStartOverAllTestsMenu() {
+    private onStartOverAllTestsMenu(): void {
         this.setState({ dialogState: 'assessment' });
     }
 
-    private renderStartOverDialog() {
+    private renderStartOverDialog(): JSX.Element {
         if (this.state.dialogState === 'none') {
             return null;
         }
@@ -121,7 +121,7 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
     }
 
     @autobind
-    private onDismissStartOverDialog(event: React.MouseEvent<any>) {
+    private onDismissStartOverDialog(event: React.MouseEvent<any>): void {
         const { actionMessageCreator, requirementKey, test } = this.props;
 
         if (this.state.dialogState === 'assessment') {
@@ -136,7 +136,7 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
     }
 
     @autobind
-    private onStartTestOver(event: React.MouseEvent<any>) {
+    private onStartTestOver(event: React.MouseEvent<any>): void {
         const { actionMessageCreator, test, requirementKey } = this.props;
 
         actionMessageCreator.startOverAssessment(event, test, requirementKey);
@@ -145,7 +145,7 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
     }
 
     @autobind
-    private onStartOverAllTests(event: React.MouseEvent<any>) {
+    private onStartOverAllTests(event: React.MouseEvent<any>): void {
         const { actionMessageCreator } = this.props;
 
         actionMessageCreator.startOverAllAssessments(event);
@@ -158,7 +158,7 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
         this.setState({ target: event.currentTarget, isContextMenuVisible: true });
     }
 
-    private dismissDropdown() {
+    private dismissDropdown(): void {
         this.setState({ target: null, isContextMenuVisible: false });
     }
 }

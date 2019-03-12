@@ -88,17 +88,17 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
     }
 
     @autobind
-    public onItemInvoked(item: IAssessmentInstanceRowData) {
+    public onItemInvoked(item: IAssessmentInstanceRowData): void {
         this.updateFocusedTarget(item);
     }
 
     @autobind
-    public renderRow(props: IDetailsRowProps, defaultRender: IRenderFunction<IDetailsRowProps>) {
+    public renderRow(props: IDetailsRowProps, defaultRender: IRenderFunction<IDetailsRowProps>): JSX.Element {
         return <div onClick={() => this.updateFocusedTarget(props.item)}>{defaultRender(props)}</div>;
     }
 
     @autobind
-    public updateFocusedTarget(item: IAssessmentInstanceRowData) {
+    public updateFocusedTarget(item: IAssessmentInstanceRowData): void {
         this.props.assessmentInstanceTableHandler.updateFocusedTarget(item.instance.target);
     }
 
