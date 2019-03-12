@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { create, React } from '../../common';
 
-export const infoAndExamples = create(({ Markup }) => (
+export const infoAndExamples = create(({ Markup, Link }) => (
     <>
         <h1>Heading level</h1>
         <p>A heading's programmatic level must match the level that's presented visually.</p>
@@ -50,7 +50,7 @@ export const infoAndExamples = create(({ Markup }) => (
 
         <h3>Sufficient techniques</h3>
         <Markup.Links>
-            <Markup.HyperLink href="https://www.w3.org/TR/WCAG20-TECHS/H42.html">Using h1-h6 to identify headings</Markup.HyperLink>
+            <Link.IdentifyHeadings>Using h1 - h6 to identify headings</Link.IdentifyHeadings>
         </Markup.Links>
     </>
 ));
