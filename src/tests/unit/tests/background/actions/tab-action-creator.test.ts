@@ -17,7 +17,7 @@ describe('TestActionCreatorTest', () => {
     let tabActionsMock: IMock<TabActions>;
     let browserAdapterMock: IMock<BrowserAdapter>;
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
-    let registerTypeToPayloadCallbackMock: IMock<IRegisterTypeToPayloadCallback>;
+    let registerTypeToPayloadCallbackMock: IMock<RegisterTypeToPayloadCallback>;
     let testObject: TabActionCreator;
     const tabId: number = -1;
     const iTabPayload: Tab = {

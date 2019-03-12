@@ -16,7 +16,7 @@ describe('InspectActionCreatorTest', () => {
     const tabId: number = -1;
     let inspectActionsMock: IMock<InspectActions>;
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
-    let registerTypeToPayloadCallbackMock: IMock<IRegisterTypeToPayloadCallback>;
+    let registerTypeToPayloadCallbackMock: IMock<RegisterTypeToPayloadCallback>;
     let browserAdapterMock: IMock<BrowserAdapter>;
 
     let testObject: InspectActionCreator;

@@ -9,14 +9,14 @@ import { ScopingActions } from './scoping-actions';
 
 export class ScopingActionCreator {
     private scopingActions: ScopingActions;
-    private registerTypeToPayloadCallback: IRegisterTypeToPayloadCallback;
+    private registerTypeToPayloadCallback: RegisterTypeToPayloadCallback;
     private telemetryEventHandler: TelemetryEventHandler;
     private detailsViewController: DetailsViewController;
 
     constructor(
         scopingActions: ScopingActions,
         telemetryEventHandler: TelemetryEventHandler,
-        registerTypeToPayloadCallback: IRegisterTypeToPayloadCallback,
+        registerTypeToPayloadCallback: RegisterTypeToPayloadCallback,
         detailsViewController: DetailsViewController,
     ) {
         this.scopingActions = scopingActions;

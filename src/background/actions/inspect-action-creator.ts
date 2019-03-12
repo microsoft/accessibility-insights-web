@@ -10,13 +10,13 @@ export class InspectActionCreator {
     private inspectActions: InspectActions;
     private browserAdapter: BrowserAdapter;
     private telemetryEventHandler: TelemetryEventHandler;
-    private registerTypeToPayloadCallback: IRegisterTypeToPayloadCallback;
+    private registerTypeToPayloadCallback: RegisterTypeToPayloadCallback;
 
     constructor(
         inspectActions: InspectActions,
         telemetryEventHandler: TelemetryEventHandler,
         browserAdapter: BrowserAdapter,
-        registerTypeToPayloadCallback: IRegisterTypeToPayloadCallback,
+        registerTypeToPayloadCallback: RegisterTypeToPayloadCallback,
     ) {
         this.inspectActions = inspectActions;
         this.telemetryEventHandler = telemetryEventHandler;

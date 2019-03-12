@@ -9,12 +9,12 @@ import { TabActions } from './tab-actions';
 
 export class TabActionCreator {
     private tabActions: TabActions;
-    private registerTypeToPayloadCallback: IRegisterTypeToPayloadCallback;
+    private registerTypeToPayloadCallback: RegisterTypeToPayloadCallback;
     private browserAdapter: BrowserAdapter;
     private telemetryEventHandler: TelemetryEventHandler;
 
     constructor(
-        registerTypeToPayloadCallback: IRegisterTypeToPayloadCallback,
+        registerTypeToPayloadCallback: RegisterTypeToPayloadCallback,
         browserAdapter: BrowserAdapter,
         telemetryEventHandler: TelemetryEventHandler,
         tabActions: TabActions,

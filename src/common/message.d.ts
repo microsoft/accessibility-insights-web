@@ -10,7 +10,6 @@ interface PayloadCallback {
     (payload: any, tabId): void;
 }
 
-// tslint:disable-next-line:interface-name
-interface IRegisterTypeToPayloadCallback {
+interface RegisterTypeToPayloadCallback {
     (messageType: string, callback: PayloadCallback): void;
 }
