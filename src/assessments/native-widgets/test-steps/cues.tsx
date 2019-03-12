@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { AnalyzerConfigurationFactory } from '../../../assessments/common/analyzer-configuration-factory';
-import { ICuesPropertyBag } from '../../../common/types/property-bag/icues';
+import { CuesPropertyBag } from '../../../common/types/property-bag/icues';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
@@ -60,7 +60,7 @@ const howToTest: JSX.Element = (
     </div>
 );
 
-const propertyBagConfig: PropertyBagColumnRendererConfig<ICuesPropertyBag>[] = [
+const propertyBagConfig: PropertyBagColumnRendererConfig<CuesPropertyBag>[] = [
     {
         propertyName: 'element',
         displayName: 'Element',
@@ -97,7 +97,7 @@ export const Cues: TestStep = {
         {
             key: 'cues-info',
             name: 'Cues',
-            onRender: PropertyBagColumnRendererFactory.get<ICuesPropertyBag>(propertyBagConfig),
+            onRender: PropertyBagColumnRendererFactory.get<CuesPropertyBag>(propertyBagConfig),
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),
