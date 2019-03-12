@@ -15,7 +15,7 @@ export class InspectHandler {
         this._devToolsChromeAdapter = devToolsChromeAdapter;
     }
 
-    public initialize() {
+    public initialize(): void {
         this._devToolsStore.addChangedListener(() => {
             const state = this._devToolsStore.getState();
 

@@ -29,7 +29,7 @@ export class ReportNameGenerator {
         return title;
     }
 
-    private isValidCharForTitle(character: string) {
+    private isValidCharForTitle(character: string): boolean {
         return ('0' <= character && character <= '9') || ('A' <= character && character <= 'Z') || ('a' <= character && character <= 'z');
     }
 }
