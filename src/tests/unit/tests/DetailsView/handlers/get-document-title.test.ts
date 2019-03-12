@@ -3,7 +3,7 @@
 import { Mock, MockBehavior } from 'typemoq';
 
 import {
-    IDisplayableVisualizationTypeData,
+    DisplayableVisualizationTypeData,
     IVisualizationConfiguration,
     VisualizationConfigurationFactory,
 } from '../../../../../common/configs/visualization-configuration-factory';
@@ -14,7 +14,7 @@ describe('getTestViewTitle', () => {
         const configFactory = Mock.ofType(VisualizationConfigurationFactory, MockBehavior.Strict);
         const displayableDataStub = {
             title: 'fake title',
-        } as IDisplayableVisualizationTypeData;
+        } as DisplayableVisualizationTypeData;
         const type = -1;
         const configStub = { displayableData: displayableDataStub } as IVisualizationConfiguration;
 

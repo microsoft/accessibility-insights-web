@@ -27,8 +27,7 @@ import { TelemetryProcessor } from '../types/telemetry-processor';
 import { VisualizationType } from '../types/visualization-type';
 import { TestMode } from './test-mode';
 
-// tslint:disable-next-line:interface-name
-export interface IDisplayableVisualizationTypeData {
+export interface DisplayableVisualizationTypeData {
     title: string;
     enableMessage: string;
     toggleLabel: string;
@@ -68,7 +67,7 @@ export interface IVisualizationConfiguration extends IAssesssmentVisualizationCo
     getStoreData: (data: TestsEnabledState) => IScanData;
     getAssessmentData?: (data: IAssessmentStoreData) => IAssessmentData;
     setAssessmentData?: (data: IAssessmentStoreData, selectorMap: DictionaryStringTo<any>, instanceMap?: DictionaryStringTo<any>) => void;
-    displayableData: IDisplayableVisualizationTypeData;
+    displayableData: DisplayableVisualizationTypeData;
     chromeCommand: string;
     launchPanelDisplayOrder: number;
     adhocToolsPanelDisplayOrder: number;

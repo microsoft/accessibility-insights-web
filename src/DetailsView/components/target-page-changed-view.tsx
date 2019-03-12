@@ -3,12 +3,12 @@
 import { Toggle } from 'office-ui-fabric-react/lib/Toggle';
 import * as React from 'react';
 
-import { IDisplayableVisualizationTypeData } from '../../common/configs/visualization-configuration-factory';
+import { DisplayableVisualizationTypeData } from '../../common/configs/visualization-configuration-factory';
 import { VisualizationType } from '../../common/types/visualization-type';
 
 export interface TargetPageChangedViewProps {
     type: VisualizationType;
-    displayableData: IDisplayableVisualizationTypeData;
+    displayableData: DisplayableVisualizationTypeData;
     toggleClickHandler: (event) => void;
 }
 
