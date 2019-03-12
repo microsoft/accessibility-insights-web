@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { AnalyzerConfigurationFactory } from '../../../assessments/common/analyzer-configuration-factory';
 import { PropertyBagColumnRendererFactory } from '../../../assessments/common/property-bag-column-renderer-factory';
-import { IWidgetFunctionPropertyBag } from '../../../common/types/property-bag/iwidget-function';
+import { WidgetFunctionPropertyBag } from '../../../common/types/property-bag/iwidget-function';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
@@ -41,7 +41,7 @@ const howToTest: JSX.Element = (
     </div>
 );
 
-const propertyBagConfig: PropertyBagColumnRendererConfig<IWidgetFunctionPropertyBag>[] = [
+const propertyBagConfig: PropertyBagColumnRendererConfig<WidgetFunctionPropertyBag>[] = [
     {
         propertyName: 'element',
         displayName: 'Element',
@@ -82,7 +82,7 @@ export const WidgetFunction: TestStep = {
         {
             key: 'widget-function-info',
             name: 'Widget function',
-            onRender: PropertyBagColumnRendererFactory.get<IWidgetFunctionPropertyBag>(propertyBagConfig),
+            onRender: PropertyBagColumnRendererFactory.get<WidgetFunctionPropertyBag>(propertyBagConfig),
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),
