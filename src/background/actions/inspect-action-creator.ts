@@ -4,7 +4,7 @@ import { Messages } from '../../common/messages';
 import * as TelemetryEvents from '../../common/telemetry-events';
 import { BrowserAdapter } from '../browser-adapter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
-import { InspectPayload, InspectActions } from './inspect-actions';
+import { InspectActions, InspectPayload } from './inspect-actions';
 
 export class InspectActionCreator {
     private inspectActions: InspectActions;

@@ -15,7 +15,7 @@ import { FeatureFlagActions, FeatureFlagPayload } from '../../../../../backgroun
 import { GlobalActionCreator } from '../../../../../background/actions/global-action-creator';
 import { GlobalActionHub } from '../../../../../background/actions/global-action-hub';
 import { LaunchPanelStateActions } from '../../../../../background/actions/launch-panel-state-action';
-import { ScopingPayload, ScopingActions } from '../../../../../background/actions/scoping-actions';
+import { ScopingActions, ScopingPayload } from '../../../../../background/actions/scoping-actions';
 import { UserConfigurationActions } from '../../../../../background/actions/user-configuration-actions';
 import { ChromeAdapter } from '../../../../../background/browser-adapter';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';

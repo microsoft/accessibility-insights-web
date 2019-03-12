@@ -4,7 +4,7 @@ import * as _ from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { InspectActionCreator } from '../../../../../background/actions/inspect-action-creator';
-import { InspectPayload, InspectActions } from '../../../../../background/actions/inspect-actions';
+import { InspectActions, InspectPayload } from '../../../../../background/actions/inspect-actions';
 import { BrowserAdapter, ChromeAdapter } from '../../../../../background/browser-adapter';
 import { InspectMode } from '../../../../../background/inspect-modes';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';

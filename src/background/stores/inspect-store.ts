@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-
 import { StoreNames } from '../../common/stores/store-names';
 import { IInspectStoreData } from '../../common/types/store-data/inspect-store-data';
-import { InspectPayload, InspectActions } from '../actions/inspect-actions';
+import { InspectActions, InspectPayload } from '../actions/inspect-actions';
 import { TabActions } from '../actions/tab-actions';
 import { InspectMode } from '../inspect-modes';
 import { BaseStore } from './base-store';
