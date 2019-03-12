@@ -3,7 +3,7 @@
 import { IMock, It, Mock } from 'typemoq';
 
 import { BrowserAdapter } from '../../../../../background/browser-adapter';
-import { ITab } from '../../../../../common/itab';
+import { Tab } from '../../../../../common/itab';
 import { UrlParser } from '../../../../../common/url-parser';
 import { UrlValidator } from '../../../../../common/url-validator';
 import { TargetTabFinder } from '../../../../../popup/scripts/target-tab-finder';
@@ -15,7 +15,7 @@ describe('TargetTabFinderTest', () => {
     let urlParserMock: IMock<UrlParser>;
     let urlValidatorMock: IMock<UrlValidator>;
     const tabId: number = 15;
-    let tabStub: ITab;
+    let tabStub: Tab;
 
     beforeEach(() => {
         windowStub = {

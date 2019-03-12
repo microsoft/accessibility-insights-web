@@ -2,11 +2,11 @@
 // Licensed under the MIT License.
 import { VisualizationType } from '../visualization-type';
 import { ManualTestStatusData, ManualTestStatus } from '../manual-test-status';
-import { ITab } from '../../itab';
+import { Tab } from '../../itab';
 
 export type TestStepInstance = IUserCapturedInstance & IGeneratedAssessmentInstance;
 
-export type PersistedTabInfo = ITab & {
+export type PersistedTabInfo = Tab & {
     appRefreshed: boolean;
 };
 // tslint:disable-next-line:interface-name

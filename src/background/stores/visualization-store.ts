@@ -5,7 +5,7 @@ import { autobind } from '@uifabric/utilities';
 import { TestMode } from '../../common/configs/test-mode';
 import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../../common/enum-helper';
-import { ITab } from '../../common/itab';
+import { Tab } from '../../common/itab';
 import { StoreNames } from '../../common/stores/store-names';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { IAssessmentScanData, IVisualizationStoreData, TestsEnabledState } from '../../common/types/store-data/ivisualization-store-data';
@@ -126,7 +126,7 @@ export class VisualizationStore extends BaseStore<IVisualizationStoreData> {
     }
 
     @autobind
-    private onTabChange(payload: ITab) {
+    private onTabChange(payload: Tab) {
         this.state = {
             ...this.getDefaultState(),
             selectedFastPassDetailsView: this.state.selectedFastPassDetailsView,

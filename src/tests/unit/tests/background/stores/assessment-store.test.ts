@@ -25,7 +25,7 @@ import { ChromeAdapter } from '../../../../../background/browser-adapter';
 import { AssessmentStore } from '../../../../../background/stores/assessment-store';
 import { AssesssmentVisualizationConfiguration } from '../../../../../common/configs/visualization-configuration-factory';
 import { IndexedDBAPI } from '../../../../../common/indexedDB/indexedDB';
-import { ITab } from '../../../../../common/itab';
+import { Tab } from '../../../../../common/itab';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
 import { ManualTestStatus, ManualTestStatusData, TestStepData } from '../../../../../common/types/manual-test-status';
@@ -424,7 +424,7 @@ describe('AssessmentStoreTest', () => {
         const tabId = 1000;
         const url = 'url';
         const title = 'title';
-        const tab: ITab = {
+        const tab: Tab = {
             id: tabId,
             url,
             title,
@@ -452,7 +452,7 @@ describe('AssessmentStoreTest', () => {
         const tabId = 1000;
         const url = 'url';
         const title = 'title';
-        const tab: ITab = {
+        const tab: Tab = {
             id: tabId,
             url,
             title,
@@ -640,7 +640,7 @@ describe('AssessmentStoreTest', () => {
         const tabId = 1000;
         const url = 'url';
         const title = 'title';
-        const tab: ITab = {
+        const tab: Tab = {
             id: tabId,
             url,
             title,
@@ -661,7 +661,7 @@ describe('AssessmentStoreTest', () => {
 
     test('onUpdateTargetTabId: tab is null', () => {
         const tabId = 1000;
-        const tab: ITab = null;
+        const tab: Tab = null;
         browserMock
             .setup(b => b.getTab(tabId, It.isAny()))
             .returns((id, cb) => cb(tab))

@@ -4,13 +4,13 @@ import { autobind } from '@uifabric/utilities';
 
 import { createDefaultLogger } from '../common/logging/default-logger';
 import { Logger } from '../common/logging/logger';
-import { ITab } from './../common/itab.d';
+import { Tab } from './../common/itab.d';
 import { BrowserAdapter } from './browser-adapter';
 import { GlobalContext } from './global-context';
 import { TabToContextMap } from './tab-context';
 
 export interface Sender {
-    tab?: ITab;
+    tab?: Tab;
 }
 
 export class MessageDistributor {

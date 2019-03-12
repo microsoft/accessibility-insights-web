@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 
-import { ITab } from '../../common/itab.d';
+import { Tab } from '../../common/itab.d';
 import { StoreNames } from '../../common/stores/store-names';
 import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
 import { TabActions } from '../actions/tab-actions';
@@ -56,7 +56,7 @@ export class TabStore extends BaseStore<ITabStoreData> {
     }
 
     @autobind
-    private onTabUpdate(payload: ITab): void {
+    private onTabUpdate(payload: Tab): void {
         this.state.id = payload.id;
         this.state.title = payload.title;
         this.state.url = payload.url;
@@ -70,7 +70,7 @@ export class TabStore extends BaseStore<ITabStoreData> {
     }
 
     @autobind
-    private onTabChange(payload: ITab): void {
+    private onTabChange(payload: Tab): void {
         this.state.title = payload.title;
         this.state.url = payload.url;
         this.state.isChanged = true;
