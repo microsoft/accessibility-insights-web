@@ -57,7 +57,7 @@ describe('DropdownActionMessageCreatorTest', () => {
         telemetryFactoryMock.verifyAll();
     });
 
-    function getExpectedMessage(messageType: string): IMessage {
+    function getExpectedMessage(messageType: string): Message {
         return {
             tabId: tabId,
             type: messageType,
@@ -81,7 +81,7 @@ describe('DropdownActionMessageCreatorTest', () => {
             .verifiable(Times.once());
     }
 
-    function setupPostMessage(expectedMessage: IMessage): void {
+    function setupPostMessage(expectedMessage: Message): void {
         postMessageMock.setup(post => post(It.isValue(expectedMessage))).verifiable(Times.once());
     }
 });

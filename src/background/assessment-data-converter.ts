@@ -13,7 +13,7 @@ import {
     IUserCapturedInstance,
 } from './../common/types/store-data/iassessment-result-data.d';
 import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from './../injected/scanner-utils';
-import { IUniquelyIdentifiableInstances } from './instance-identifier-generator';
+import { UniquelyIdentifiableInstances } from './instance-identifier-generator';
 
 export class AssessmentDataConverter {
     private generateUID: () => string;
@@ -26,7 +26,7 @@ export class AssessmentDataConverter {
         previouslyGeneratedInstances: IAssessmentInstancesMap,
         selectorMap: DictionaryStringTo<IHtmlElementAxeResults>,
         stepName: string,
-        generateInstanceIdentifier: (instance: IUniquelyIdentifiableInstances) => string,
+        generateInstanceIdentifier: (instance: UniquelyIdentifiableInstances) => string,
         getInstanceStatus: (result: DecoratedAxeNodeResult) => ManualTestStatus,
     ): IAssessmentInstancesMap {
         let instancesMap: IAssessmentInstancesMap = {};
@@ -58,7 +58,7 @@ export class AssessmentDataConverter {
         previouslyGeneratedInstances: IAssessmentInstancesMap,
         events: ITabStopEvent[],
         stepName: string,
-        generateInstanceIdentifier: (instance: IUniquelyIdentifiableInstances) => string,
+        generateInstanceIdentifier: (instance: UniquelyIdentifiableInstances) => string,
     ): IAssessmentInstancesMap {
         let instancesMap: IAssessmentInstancesMap = {};
 

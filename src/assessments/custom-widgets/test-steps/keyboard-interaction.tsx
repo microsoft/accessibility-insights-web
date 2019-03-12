@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { AnalyzerConfigurationFactory } from '../../../assessments/common/analyzer-configuration-factory';
-import { ICustomWidgetPropertyBag } from '../../../common/types/property-bag/icustom-widgets';
+import { CustomWidgetPropertyBag } from '../../../common/types/property-bag/icustom-widgets';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
@@ -50,7 +50,7 @@ export const KeyboardInteraction: TestStep = {
         {
             key: 'keyboard-interaction-info',
             name: 'Keyboard Interaction',
-            onRender: CustomWidgetsColumnRendererFactory.getWithLink<ICustomWidgetPropertyBag>([
+            onRender: CustomWidgetsColumnRendererFactory.getWithLink<CustomWidgetPropertyBag>([
                 {
                     propertyName: 'designPattern',
                     displayName: 'Design pattern',
@@ -65,10 +65,10 @@ export const KeyboardInteraction: TestStep = {
         },
     ],
     reportInstanceFields: [
-        ReportInstanceField.fromPropertyBagFunction<ICustomWidgetPropertyBag>('Design pattern', 'designPattern', pb =>
+        ReportInstanceField.fromPropertyBagFunction<CustomWidgetPropertyBag>('Design pattern', 'designPattern', pb =>
             getFlatDesignPatternStringFromRole(pb.role),
         ),
-        ReportInstanceField.fromColumnValueBagField<ICustomWidgetPropertyBag>('Accessible name', 'text'),
+        ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>('Accessible name', 'text'),
     ],
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(

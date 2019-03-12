@@ -3,7 +3,7 @@
 import { TabActions } from '../../../../../background/actions/tab-actions';
 import { VisualizationActions } from '../../../../../background/actions/visualization-actions';
 import { TabStore } from '../../../../../background/stores/tab-store';
-import { ITab } from '../../../../../common/itab';
+import { Tab } from '../../../../../common/itab';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { ITabStoreData } from '../../../../../common/types/store-data/itab-store-data';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
@@ -23,7 +23,7 @@ describe('TabStoreTest', () => {
     test('onTabUpdate', () => {
         const initialState = new TabStoreDataBuilder().build();
 
-        const payload: ITab = {
+        const payload: Tab = {
             id: -1,
             title: 'test-title',
             url: 'test-url',
@@ -61,7 +61,7 @@ describe('TabStoreTest', () => {
             .with('title', 'title 1')
             .build();
 
-        const payload: ITab = {
+        const payload: Tab = {
             title: 'title 2',
             url: 'url 2',
         };

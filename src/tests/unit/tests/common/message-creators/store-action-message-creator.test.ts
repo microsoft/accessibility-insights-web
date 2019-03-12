@@ -6,12 +6,12 @@ import { StoreActionMessageCreator } from '../../../../../common/message-creator
 
 describe('StateActionMessageCreator', () => {
     const tabId: number = -1;
-    let postMessageMock: IMock<(message: IMessage) => void>;
+    let postMessageMock: IMock<(message: Message) => void>;
 
     test('getAllStates', () => {
         const messages = ['a', 'b', 'c', 'd'];
 
-        postMessageMock = Mock.ofInstance((_message: IMessage) => {}, MockBehavior.Strict);
+        postMessageMock = Mock.ofInstance((_message: Message) => {}, MockBehavior.Strict);
 
         messages.forEach(message => setupPostMessageMock(message));
 

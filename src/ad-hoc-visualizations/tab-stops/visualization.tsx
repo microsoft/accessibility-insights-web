@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { AdHocTestkeys } from '../../common/configs/adhoc-test-keys';
 import { TestMode } from '../../common/configs/test-mode';
-import { IVisualizationConfiguration } from '../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../common/configs/visualization-configuration-factory';
 import { Messages } from '../../common/messages';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { generateUID } from '../../common/uid-generator';
@@ -13,7 +13,7 @@ import { AdhocStaticTestView } from '../../DetailsView/components/adhoc-static-t
 import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
 
 const { guidance, extraGuidance, howToTest } = content.tabstops;
-export const TabStopsAdHocVisualization: IVisualizationConfiguration = {
+export const TabStopsAdHocVisualization: VisualizationConfiguration = {
     getTestView: props => <AdhocStaticTestView content={howToTest} guidance={extraGuidance} {...props} />,
     key: AdHocTestkeys.TabStops,
     testMode: TestMode.Adhoc,

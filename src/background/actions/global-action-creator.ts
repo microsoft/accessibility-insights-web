@@ -16,7 +16,7 @@ import {
     SetLaunchPanelState,
     SetTelemetryStatePayload,
 } from './action-payloads';
-import { CommandActions, IGetCommandsPayload } from './command-actions';
+import { CommandActions, GetCommandsPayload } from './command-actions';
 import { FeatureFlagActions, FeatureFlagPayload } from './feature-flag-actions';
 import { GlobalActionHub } from './global-action-hub';
 import { LaunchPanelStateActions } from './launch-panel-state-action';
@@ -77,7 +77,7 @@ export class GlobalActionCreator {
     @autobind
     private onGetCommands(payload, tabId: number): void {
         this.browserAdapter.getCommands((commands: chrome.commands.Command[]) => {
-            const getCommandsPayload: IGetCommandsPayload = {
+            const getCommandsPayload: GetCommandsPayload = {
                 commands: commands,
                 tabId: tabId,
             };

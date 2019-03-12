@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { AnalyzerConfigurationFactory } from '../../../assessments/common/analyzer-configuration-factory';
 import { NewTabLink } from '../../../common/components/new-tab-link';
-import { ICustomWidgetPropertyBag } from '../../../common/types/property-bag/icustom-widgets';
+import { CustomWidgetPropertyBag } from '../../../common/types/property-bag/icustom-widgets';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
@@ -52,7 +52,7 @@ export const DesignPattern: TestStep = {
         {
             key: 'design-pattern-info',
             name: 'Design pattern',
-            onRender: CustomWidgetsColumnRendererFactory.getWithLink<ICustomWidgetPropertyBag>([
+            onRender: CustomWidgetsColumnRendererFactory.getWithLink<CustomWidgetPropertyBag>([
                 {
                     propertyName: 'role',
                     displayName: 'Widget role',
@@ -72,11 +72,11 @@ export const DesignPattern: TestStep = {
         },
     ],
     reportInstanceFields: [
-        ReportInstanceField.fromColumnValueBagField<ICustomWidgetPropertyBag>('Widget role', 'role'),
-        ReportInstanceField.fromPropertyBagFunction<ICustomWidgetPropertyBag>('Design pattern', 'designPattern', pb =>
+        ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>('Widget role', 'role'),
+        ReportInstanceField.fromPropertyBagFunction<CustomWidgetPropertyBag>('Design pattern', 'designPattern', pb =>
             getFlatDesignPatternStringFromRole(pb.role),
         ),
-        ReportInstanceField.fromColumnValueBagField<ICustomWidgetPropertyBag>('Accesssible name', 'text'),
+        ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>('Accesssible name', 'text'),
     ],
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(

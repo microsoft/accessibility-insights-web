@@ -1,17 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserAdapter } from './browser-adapter';
-import { IInstallationData } from './installation-data';
+import { InstallationData } from './installation-data';
 import { LocalStorageDataKeys } from './local-storage-data-keys';
 
 export class InstallDataGenerator {
     private generateGuid: () => string;
     private dateGetter: () => Date;
-    private installationData: IInstallationData;
+    private installationData: InstallationData;
     private browserAdapter: BrowserAdapter;
 
     constructor(
-        initialInstallationData: IInstallationData,
+        initialInstallationData: InstallationData,
         generateGuid: () => string,
         dateGetter: () => Date,
         browserAdapter: BrowserAdapter,

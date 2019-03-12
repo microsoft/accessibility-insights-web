@@ -9,12 +9,12 @@ import { DevToolActions } from './dev-tools-actions';
 export class DevToolsActionCreator {
     private devtoolActions: DevToolActions;
     private telemetryEventHandler: TelemetryEventHandler;
-    private registerTypeToPayloadCallback: IRegisterTypeToPayloadCallback;
+    private registerTypeToPayloadCallback: RegisterTypeToPayloadCallback;
 
     constructor(
         devToolsAction: DevToolActions,
         telemetryEventHandler: TelemetryEventHandler,
-        registerTypeToPayloadCallback: IRegisterTypeToPayloadCallback,
+        registerTypeToPayloadCallback: RegisterTypeToPayloadCallback,
     ) {
         this.devtoolActions = devToolsAction;
         this.telemetryEventHandler = telemetryEventHandler;

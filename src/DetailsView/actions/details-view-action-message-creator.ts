@@ -34,13 +34,13 @@ const messages = Messages.Visualizations;
 export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator {
     private windowUtils: WindowUtils;
 
-    constructor(postMessage: (message: IMessage) => void, tabId: number, telemetryFactory: TelemetryDataFactory, windowUtils: WindowUtils) {
+    constructor(postMessage: (message: Message) => void, tabId: number, telemetryFactory: TelemetryDataFactory, windowUtils: WindowUtils) {
         super(postMessage, tabId, telemetryFactory);
         this.windowUtils = windowUtils;
     }
     public updateIssuesSelectedTargets(selectedTargets: string[]): void {
         const payload: string[] = selectedTargets;
-        const message: IMessage = {
+        const message: Message = {
             type: messages.Issues.UpdateSelectedTargets,
             tabId: this._tabId,
             payload,
@@ -135,7 +135,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
 
     public updateFocusedInstanceTarget(instanceTarget: string[]): void {
         const payload: string[] = instanceTarget;
-        const message: IMessage = {
+        const message: Message = {
             type: messages.Issues.UpdateFocusedInstance,
             tabId: this._tabId,
             payload,

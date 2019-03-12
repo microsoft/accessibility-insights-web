@@ -15,7 +15,7 @@ describe('DevToolsActionCreatorTest', () => {
     const tabId: number = -1;
     let devtoolActionsMock: IMock<DevToolActions>;
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
-    let registerTypeToPayloadCallback: IMock<IRegisterTypeToPayloadCallback>;
+    let registerTypeToPayloadCallback: IMock<RegisterTypeToPayloadCallback>;
 
     let testObject: DevToolsActionCreator;
 

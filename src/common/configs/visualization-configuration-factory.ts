@@ -9,7 +9,7 @@ import { LandmarksAdHocVisualization } from '../../ad-hoc-visualizations/landmar
 import { TabStopsAdHocVisualization } from '../../ad-hoc-visualizations/tab-stops/visualization';
 import { Assessments } from '../../assessments/assessments';
 import { ToggleActionPayload } from '../../background/actions/action-payloads';
-import { IUniquelyIdentifiableInstances } from '../../background/instance-identifier-generator';
+import { UniquelyIdentifiableInstances } from '../../background/instance-identifier-generator';
 import { TestViewProps } from '../../DetailsView/components/test-view';
 import { AnalyzerProvider } from '../../injected/analyzers/analyzer-provider';
 import { IAnalyzer } from '../../injected/analyzers/ianalyzer';
@@ -27,16 +27,14 @@ import { TelemetryProcessor } from '../types/telemetry-processor';
 import { VisualizationType } from '../types/visualization-type';
 import { TestMode } from './test-mode';
 
-// tslint:disable-next-line:interface-name
-export interface IDisplayableVisualizationTypeData {
+export interface DisplayableVisualizationTypeData {
     title: string;
     enableMessage: string;
     toggleLabel: string;
     linkToDetailsViewText: string;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IAssesssmentVisualizationConfiguration {
+export interface AssesssmentVisualizationConfiguration {
     key: string;
     getTestView: (props: TestViewProps) => JSX.Element;
     getStoreData: (data: TestsEnabledState) => IScanData;
@@ -55,12 +53,11 @@ export interface IAssesssmentVisualizationConfiguration {
     getNotificationMessage: (selectorMap: DictionaryStringTo<any>, testStep?: string) => string;
     getDrawer: (provider: DrawerProvider, testStep?: string) => IDrawer;
     getSwitchToTargetTabOnScan: (testStep?: string) => boolean;
-    getInstanceIdentiferGenerator: (testStep?: string) => (instance: IUniquelyIdentifiableInstances) => string;
+    getInstanceIdentiferGenerator: (testStep?: string) => (instance: UniquelyIdentifiableInstances) => string;
     getUpdateVisibility: (testStep?: string) => boolean;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IVisualizationConfiguration extends IAssesssmentVisualizationConfiguration {
+export interface VisualizationConfiguration extends AssesssmentVisualizationConfiguration {
     key: string;
     testMode: TestMode;
     featureFlagToEnable?: string;
@@ -68,7 +65,7 @@ export interface IVisualizationConfiguration extends IAssesssmentVisualizationCo
     getStoreData: (data: TestsEnabledState) => IScanData;
     getAssessmentData?: (data: IAssessmentStoreData) => IAssessmentData;
     setAssessmentData?: (data: IAssessmentStoreData, selectorMap: DictionaryStringTo<any>, instanceMap?: DictionaryStringTo<any>) => void;
-    displayableData: IDisplayableVisualizationTypeData;
+    displayableData: DisplayableVisualizationTypeData;
     chromeCommand: string;
     launchPanelDisplayOrder: number;
     adhocToolsPanelDisplayOrder: number;
@@ -79,7 +76,7 @@ export interface IVisualizationConfiguration extends IAssesssmentVisualizationCo
 }
 
 export class VisualizationConfigurationFactory {
-    private configurationByType: DictionaryNumberTo<IVisualizationConfiguration>;
+    private configurationByType: DictionaryNumberTo<VisualizationConfiguration>;
 
     constructor() {
         this.configurationByType = {
@@ -95,7 +92,7 @@ export class VisualizationConfigurationFactory {
         return _.find(_.values(this.configurationByType), config => config.key === key);
     }
 
-    public getConfiguration(type: VisualizationType): IVisualizationConfiguration {
+    public getConfiguration(type: VisualizationType): VisualizationConfiguration {
         if (Assessments.isValidType(type)) {
             const assessment = Assessments.forType(type);
             const defaults = {

@@ -7,7 +7,7 @@ import * as React from 'react';
 import { AssessmentToggleActionPayload } from '../background/actions/action-payloads';
 import { InstanceIdentifierGenerator } from '../background/instance-identifier-generator';
 import { RequirementComparer } from '../common/assessment/requirement-comparer';
-import { IAssesssmentVisualizationConfiguration } from '../common/configs/visualization-configuration-factory';
+import { AssesssmentVisualizationConfiguration } from '../common/configs/visualization-configuration-factory';
 import { Messages } from '../common/messages';
 import { ManualTestStatus } from '../common/types/manual-test-status';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
@@ -133,7 +133,7 @@ export class AssessmentBuilder {
             return stepConfig.getNotificationMessage(selectorMap);
         };
 
-        const visualizationConfiguration: IAssesssmentVisualizationConfiguration = {
+        const visualizationConfiguration: AssesssmentVisualizationConfiguration = {
             getTestView: props => <AssessmentTestView {...props} />,
             getStoreData: data => data.assessments[`${key}Assessment`],
             enableTest: AssessmentBuilder.enableTest,
@@ -204,7 +204,7 @@ export class AssessmentBuilder {
 
         assessment.executeAssessmentScanPolicy = assessment.executeAssessmentScanPolicy || AssessmentBuilder.nullScanPolicy;
 
-        const visualizationConfiguration: IAssesssmentVisualizationConfiguration = {
+        const visualizationConfiguration: AssesssmentVisualizationConfiguration = {
             getTestView: props => <AssessmentTestView {...props} />,
             getAssessmentData: data => data.assessments[key],
             setAssessmentData: (data, selectorMap, instanceMap) => {
@@ -228,7 +228,7 @@ export class AssessmentBuilder {
             getSwitchToTargetTabOnScan: AssessmentBuilder.getSwitchToTargetTabOnScan(steps),
             getInstanceIdentiferGenerator: AssessmentBuilder.getInstanceIdentifier(steps),
             getUpdateVisibility: AssessmentBuilder.getUpdateVisibility(steps),
-        } as IAssesssmentVisualizationConfiguration;
+        } as AssesssmentVisualizationConfiguration;
 
         AssessmentBuilder.BuildStepsReportDescription(steps);
 

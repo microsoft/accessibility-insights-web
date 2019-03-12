@@ -3,14 +3,14 @@
 import { autobind } from '@uifabric/utilities';
 
 export class Interpreter {
-    protected messageToActionMapping: DictionaryStringTo<IPayloadCallback> = {};
+    protected messageToActionMapping: DictionaryStringTo<PayloadCallback> = {};
 
     @autobind
-    public registerTypeToPayloadCallback(messageType: string, callback: IPayloadCallback): void {
+    public registerTypeToPayloadCallback(messageType: string, callback: PayloadCallback): void {
         this.messageToActionMapping[messageType] = callback;
     }
 
-    public interpret(message: IMessage): boolean {
+    public interpret(message: Message): boolean {
         if (this.messageToActionMapping[message.type]) {
             this.messageToActionMapping[message.type](message.payload, message.tabId);
             return true;

@@ -19,7 +19,7 @@ import { TabContextFactory } from '../../../../background/tab-context-factory';
 import { TargetTabController } from '../../../../background/target-tab-controller';
 import { TelemetryEventHandler } from '../../../../background/telemetry/telemetry-event-handler';
 import {
-    IVisualizationConfiguration,
+    VisualizationConfiguration,
     VisualizationConfigurationFactory,
 } from '../../../../common/configs/visualization-configuration-factory';
 import { Messages } from '../../../../common/messages';
@@ -28,7 +28,7 @@ import { StoreUpdateMessage } from '../../../../common/types/store-update-messag
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { WindowUtils } from '../../../../common/window-utils';
 
-function getConfigs(type: VisualizationType): IVisualizationConfiguration {
+function getConfigs(type: VisualizationType): VisualizationConfiguration {
     return new VisualizationConfigurationFactory().getConfiguration(type);
 }
 

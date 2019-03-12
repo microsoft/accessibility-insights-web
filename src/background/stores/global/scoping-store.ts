@@ -6,7 +6,7 @@ import * as _ from 'lodash/index';
 import { StoreNames } from '../../../common/stores/store-names';
 import { IScopingStoreData } from '../../../common/types/store-data/scoping-store-data';
 import { BaseStore } from '../base-store';
-import { IScopingPayload, ScopingActions } from './../../actions/scoping-actions';
+import { ScopingActions, ScopingPayload } from './../../actions/scoping-actions';
 import { ScopingInputTypes } from './../../scoping-input-types';
 
 export class ScopingStore extends BaseStore<IScopingStoreData> {
@@ -37,7 +37,7 @@ export class ScopingStore extends BaseStore<IScopingStoreData> {
     }
 
     @autobind
-    private onAddSelector(payload: IScopingPayload): void {
+    private onAddSelector(payload: ScopingPayload): void {
         let shouldUpdate: boolean = true;
         _.forEach(Object.keys(this.state.selectors[payload.inputType]), key => {
             if (_.isEqual(this.state.selectors[payload.inputType][key], payload.selector)) {
@@ -52,7 +52,7 @@ export class ScopingStore extends BaseStore<IScopingStoreData> {
     }
 
     @autobind
-    private onDeleteSelector(payload: IScopingPayload): void {
+    private onDeleteSelector(payload: ScopingPayload): void {
         _.forEach(Object.keys(this.state.selectors[payload.inputType]), key => {
             if (_.isEqual(this.state.selectors[payload.inputType][key], payload.selector)) {
                 this.state.selectors[payload.inputType].splice(key, 1);

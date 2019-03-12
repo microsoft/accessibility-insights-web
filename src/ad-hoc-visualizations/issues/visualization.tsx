@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { AdHocTestkeys } from '../../common/configs/adhoc-test-keys';
 import { TestMode } from '../../common/configs/test-mode';
-import { IVisualizationConfiguration } from '../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../common/configs/visualization-configuration-factory';
 import { Messages } from '../../common/messages';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
 import { VisualizationType } from '../../common/types/visualization-type';
@@ -14,7 +14,7 @@ import { AdhocIssuesTestView } from '../../DetailsView/components/adhoc-issues-t
 import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
 import { ScannerUtils } from './../../injected/scanner-utils';
 
-export const IssuesAdHocVisualization: IVisualizationConfiguration = {
+export const IssuesAdHocVisualization: VisualizationConfiguration = {
     key: AdHocTestkeys.Issues,
     testMode: TestMode.Adhoc,
     getTestView: props => <AdhocIssuesTestView {...props} />,

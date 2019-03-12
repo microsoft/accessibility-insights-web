@@ -18,12 +18,7 @@ export class PopupActionMessageCreator extends BaseActionMessageCreator {
     private telemetryFactory: TelemetryDataFactory;
     private windowUtils: WindowUtils;
 
-    constructor(
-        postMessage: (message: IMessage) => void,
-        tabId: number,
-        telemetryFactory: TelemetryDataFactory,
-        windowUtils?: WindowUtils,
-    ) {
+    constructor(postMessage: (message: Message) => void, tabId: number, telemetryFactory: TelemetryDataFactory, windowUtils?: WindowUtils) {
         super(postMessage, tabId);
         this.telemetryFactory = telemetryFactory;
         this.windowUtils = windowUtils || new WindowUtils();

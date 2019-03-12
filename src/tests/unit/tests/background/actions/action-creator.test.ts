@@ -1029,7 +1029,7 @@ class ActionCreatorValidator {
     private devToolActionsContainerMock = Mock.ofType(DevToolActions);
 
     private contentScriptInjectorStrictMock = Mock.ofType<ContentScriptInjector>(null, MockBehavior.Strict);
-    private registerCallbackMock = Mock.ofInstance((messageType: string, callback: IPayloadCallback) => {});
+    private registerCallbackMock = Mock.ofInstance((messageType: string, callback: PayloadCallback) => {});
     private getManifestMock = Mock.ofInstance(() => {
         return null;
     });

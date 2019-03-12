@@ -14,7 +14,7 @@ export class VisualizationActionMessageCreator extends BaseActionMessageCreator 
             telemetry,
         };
 
-        const message: IMessage = {
+        const message: Message = {
             tabId: this._tabId,
             type: Messages.Visualizations.Common.Toggle,
             payload,

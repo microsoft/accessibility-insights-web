@@ -6,7 +6,7 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 import { AssessmentsProvider } from '../../../../../../assessments/assessments-provider';
 import { Assessment } from '../../../../../../assessments/types/iassessment';
 import { IAssessmentsProvider } from '../../../../../../assessments/types/iassessments-provider';
-import { IVisualizationConfiguration } from '../../../../../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../../../../../common/configs/visualization-configuration-factory';
 import { ManualTestStatus, ManualTestStatusData } from '../../../../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
 import { BaseLeftNavLink, onBaseLeftNavItemClick } from '../../../../../../DetailsView/components/base-left-nav';
@@ -99,7 +99,7 @@ describe('LeftNavBuilder', () => {
                 displayableData: {
                     title: titleStub,
                 },
-            } as IVisualizationConfiguration;
+            } as VisualizationConfiguration;
 
             const actual = testSubject.buildVisualizationConfigurationLink(
                 configStub,

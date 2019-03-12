@@ -37,7 +37,7 @@ export class ActionCreator {
     private visualizationScanResultActions: VisualizationScanResultActions;
     private detailsViewActions: DetailsViewActions;
     private previewFeaturesActions: PreviewFeaturesActions;
-    private registerTypeToPayloadCallback: IRegisterTypeToPayloadCallback;
+    private registerTypeToPayloadCallback: RegisterTypeToPayloadCallback;
     private detailsViewController: DetailsViewController;
     private chromeFeatureController: ChromeFeatureController;
     private telemetryEventHandler: TelemetryEventHandler;
@@ -55,7 +55,7 @@ export class ActionCreator {
 
     constructor(
         actionHub: ActionHub,
-        registerTypeToPayloadCallback: IRegisterTypeToPayloadCallback,
+        registerTypeToPayloadCallback: RegisterTypeToPayloadCallback,
         detailsViewController: DetailsViewController,
         chromeFeatureController: ChromeFeatureController,
         telemetryEventHandler: TelemetryEventHandler,

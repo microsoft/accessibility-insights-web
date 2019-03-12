@@ -18,7 +18,7 @@ import { initializeFabricIcons } from '../common/fabric-icons';
 import { getAllFeatureFlagDetails } from '../common/feature-flags';
 import { getInnerTextFromJsxElement } from '../common/get-inner-text-from-jsx-element';
 import { HTMLElementUtils } from '../common/html-element-utils';
-import { ITab } from '../common/itab';
+import { Tab } from '../common/itab';
 import { BugActionMessageCreator } from '../common/message-creators/bug-action-message-creator';
 import { ContentActionMessageCreator } from '../common/message-creators/content-action-message-creator';
 import { DropdownActionMessageCreator } from '../common/message-creators/dropdown-action-message-creator';
@@ -93,7 +93,7 @@ initializeFabricIcons();
 if (isNaN(tabId) === false) {
     chromeAdapter.getTab(
         tabId,
-        (tab: ITab): void => {
+        (tab: Tab): void => {
             if (chromeAdapter.getRuntimeLastError()) {
                 const renderer = createNullifiedRenderer(document, ReactDOM.render);
                 renderer.render();

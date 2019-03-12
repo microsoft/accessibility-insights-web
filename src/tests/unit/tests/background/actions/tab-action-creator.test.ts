@@ -9,7 +9,7 @@ import { TabActions } from '../../../../../background/actions/tab-actions';
 import { BrowserAdapter, ChromeAdapter } from '../../../../../background/browser-adapter';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
 import { Action } from '../../../../../common/flux/action';
-import { ITab } from '../../../../../common/itab';
+import { Tab } from '../../../../../common/itab';
 import { Messages } from '../../../../../common/messages';
 import { SWITCH_BACK_TO_TARGET, TelemetryEventSource, TriggeredBy } from '../../../../../common/telemetry-events';
 
@@ -17,10 +17,10 @@ describe('TestActionCreatorTest', () => {
     let tabActionsMock: IMock<TabActions>;
     let browserAdapterMock: IMock<BrowserAdapter>;
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
-    let registerTypeToPayloadCallbackMock: IMock<IRegisterTypeToPayloadCallback>;
+    let registerTypeToPayloadCallbackMock: IMock<RegisterTypeToPayloadCallback>;
     let testObject: TabActionCreator;
     const tabId: number = -1;
-    const iTabPayload: ITab = {
+    const iTabPayload: Tab = {
         id: -1,
         url: 'url',
         title: 'title',

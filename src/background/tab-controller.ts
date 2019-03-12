@@ -148,7 +148,7 @@ export class TabController {
         const payload: PageVisibilityChangeTabPayload = {
             hidden: isHidden,
         };
-        const message: IMessage = {
+        const message: Message = {
             type: Messages.Tab.VisibilityChange,
             payload: payload,
             tabId: tabId,

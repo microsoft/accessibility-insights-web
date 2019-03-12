@@ -3,7 +3,7 @@
 import { Toggle } from 'office-ui-fabric-react/lib/Toggle';
 import * as React from 'react';
 
-import { IDisplayableVisualizationTypeData } from '../../../../../common/configs/visualization-configuration-factory';
+import { DisplayableVisualizationTypeData } from '../../../../../common/configs/visualization-configuration-factory';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { TargetPageChangedView, TargetPageChangedViewProps } from '../../../../../DetailsView/components/target-page-changed-view';
 
@@ -15,7 +15,7 @@ describe('TargetPageChangedView', () => {
         const displayableData = {
             title: 'test title',
             toggleLabel: 'test toggle label',
-        } as IDisplayableVisualizationTypeData;
+        } as DisplayableVisualizationTypeData;
 
         const props: TargetPageChangedViewProps = {
             type: type,

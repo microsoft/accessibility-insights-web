@@ -11,7 +11,7 @@ import { css } from '@uifabric/utilities';
 import * as Markup from '../../assessments/markup';
 import { BlockingDialog } from '../../common/components/blocking-dialog';
 import { NewTabLink } from '../../common/components/new-tab-link';
-import { ITab } from '../../common/itab';
+import { Tab } from '../../common/itab';
 import { PersistedTabInfo } from '../../common/types/store-data/iassessment-result-data';
 import { UrlParser } from '../../common/url-parser';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
@@ -23,7 +23,7 @@ export type TargetChangeDialogDeps = {
 export interface TargetChangeDialogProps {
     deps: TargetChangeDialogDeps;
     prevTab: PersistedTabInfo;
-    newTab: ITab;
+    newTab: Tab;
     actionMessageCreator: DetailsViewActionMessageCreator;
 }
 
@@ -79,7 +79,7 @@ export class TargetChangeDialog extends React.Component<TargetChangeDialogProps>
         );
     }
 
-    private renderPreviousTabLink(tab: ITab): JSX.Element {
+    private renderPreviousTabLink(tab: Tab): JSX.Element {
         return (
             <TooltipHost content={tab.url} id={'previous-target-page-link'} calloutProps={{ gapSpace: 0 }}>
                 <NewTabLink role="link" className="target-page-link" href={tab.url}>
@@ -89,7 +89,7 @@ export class TargetChangeDialog extends React.Component<TargetChangeDialogProps>
         );
     }
 
-    private renderCurrentTabLink(tab: ITab): JSX.Element {
+    private renderCurrentTabLink(tab: Tab): JSX.Element {
         return (
             <TooltipHost content={tab.url} id={'current-target-page-link'} calloutProps={{ gapSpace: 0 }}>
                 <Link
@@ -103,7 +103,7 @@ export class TargetChangeDialog extends React.Component<TargetChangeDialogProps>
         );
     }
 
-    private showTargetChangeDialog(prevTab: PersistedTabInfo, newTab: ITab): boolean {
+    private showTargetChangeDialog(prevTab: PersistedTabInfo, newTab: Tab): boolean {
         if (isEmpty(prevTab)) {
             return false;
         }
@@ -118,7 +118,7 @@ export class TargetChangeDialog extends React.Component<TargetChangeDialogProps>
         return this.didTargetTabChanged(prevTab, newTab) || urlChanged === true;
     }
 
-    private didTargetTabChanged(prevTab: PersistedTabInfo, newTab: ITab): boolean {
+    private didTargetTabChanged(prevTab: PersistedTabInfo, newTab: Tab): boolean {
         return prevTab.id !== newTab.id;
     }
 }

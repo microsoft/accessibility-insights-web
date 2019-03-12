@@ -7,7 +7,7 @@ import { Interpreter } from '../../../../background/interpreter';
 import { TabContext, TabToContextMap } from '../../../../background/tab-context';
 import { ConnectionNames } from '../../../../common/constants/connection-names';
 import { Messages } from '../../../../common/messages';
-import { IDevToolsOpenMessage } from '../../../../common/types/dev-tools-open-message';
+import { DevToolsOpenMessage } from '../../../../common/types/dev-tools-open-message';
 import { ChromeAdapterMock, PortWithTabTabIdStub } from '../../mock-helpers/chrome-adapter-mock';
 import { PortOnDisconnectMock } from '../../mock-helpers/port-on-disconnect-mock';
 import { PortOnMessageMock } from '../../mock-helpers/port-on-message-mock';
@@ -91,7 +91,7 @@ describe('DevToolsListenerTests', () => {
             onDisconnectPortMock.getObject(),
         );
         let connectListenerCB: (port: PortWithTabTabIdStub) => void;
-        let messageListenerCB: (message: IDevToolsOpenMessage, port: chrome.runtime.Port) => void;
+        let messageListenerCB: (message: DevToolsOpenMessage, port: chrome.runtime.Port) => void;
 
         onMessagePortMock.setupAddListenerMock(cb => {
             messageListenerCB = cb;
@@ -138,7 +138,7 @@ describe('DevToolsListenerTests', () => {
             onDisconnectPortMockValidator.getObject(),
         );
         let connectListenerCB: (port: PortWithTabTabIdStub) => void;
-        let disconnectMessageCB: (message: IDevToolsOpenMessage, port: chrome.runtime.Port) => void;
+        let disconnectMessageCB: (message: DevToolsOpenMessage, port: chrome.runtime.Port) => void;
 
         portStub.targetPageTabId = 2;
 

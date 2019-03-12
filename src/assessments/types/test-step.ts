@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 
-import { IUniquelyIdentifiableInstances } from '../../background/instance-identifier-generator';
+import { UniquelyIdentifiableInstances } from '../../background/instance-identifier-generator';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { AssessmentNavState, IGeneratedAssessmentInstance } from '../../common/types/store-data/iassessment-result-data';
@@ -40,7 +40,7 @@ export interface TestStep {
     getNotificationMessage?: (selectorMap: DictionaryStringTo<any>) => string;
     doNotScanByDefault?: boolean;
     switchToTargetTabOnScan?: boolean;
-    generateInstanceIdentifier?: (instance: IUniquelyIdentifiableInstances) => string;
+    generateInstanceIdentifier?: (instance: UniquelyIdentifiableInstances) => string;
     reportInstanceFields?: ReportInstanceFields;
     renderReportDescription?: () => JSX.Element;
     getInstanceStatus?: (result: DecoratedAxeNodeResult) => ManualTestStatus;

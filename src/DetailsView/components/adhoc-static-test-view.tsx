@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { IVisualizationConfiguration } from '../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../common/configs/visualization-configuration-factory';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
 import { IVisualizationStoreData } from '../../common/types/store-data/ivisualization-store-data';
@@ -20,7 +20,7 @@ export interface AdhocStaticTestViewProps {
     selectedTest: VisualizationType;
     visualizationStoreData: IVisualizationStoreData;
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
-    configuration: IVisualizationConfiguration;
+    configuration: VisualizationConfiguration;
     content?: ContentReference;
     guidance?: ContentReference;
 }

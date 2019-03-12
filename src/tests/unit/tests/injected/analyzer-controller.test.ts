@@ -8,7 +8,7 @@ import { FeatureFlagStore } from '../../../../background/stores/global/feature-f
 import { ScopingStore } from '../../../../background/stores/global/scoping-store';
 import { VisualizationStore } from '../../../../background/stores/visualization-store';
 import {
-    IVisualizationConfiguration,
+    VisualizationConfiguration,
     VisualizationConfigurationFactory,
 } from '../../../../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../../../../common/enum-helper';
@@ -35,7 +35,7 @@ describe('AnalyzerControllerTests', () => {
     let getAnalyzerMock: IMock<(provider: AnalyzerProvider) => IAnalyzer<any>>;
     let getIdentifierMock: IMock<() => string>;
     let identifier: string;
-    let configStub: IVisualizationConfiguration;
+    let configStub: VisualizationConfiguration;
 
     let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
 
@@ -229,7 +229,7 @@ describe('AnalyzerControllerTests', () => {
             .verifiable(Times.never());
     }
 
-    function setupVisualizationConfigurationFactory(type: VisualizationType, returnedConfig: IVisualizationConfiguration): void {
+    function setupVisualizationConfigurationFactory(type: VisualizationType, returnedConfig: VisualizationConfiguration): void {
         visualizationConfigurationFactoryMock
             .setup(v => v.getConfiguration(type))
             .returns((visType: VisualizationType) => {

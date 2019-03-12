@@ -11,7 +11,7 @@ export class ContentActionCreator {
     constructor(
         private readonly contentActions: ContentActions,
         private readonly telemetryEventHandler: TelemetryEventHandler,
-        private readonly registerTypeToPayloadCallback: IRegisterTypeToPayloadCallback,
+        private readonly registerTypeToPayloadCallback: RegisterTypeToPayloadCallback,
         private readonly detailsViewController: DetailsViewController,
     ) {}
 

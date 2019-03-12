@@ -9,7 +9,7 @@ import { BrowserAdapter } from '../../browser-adapter';
 import { PersistedData } from '../../get-persisted-data';
 import { ILocalStorageData } from '../../storage-data';
 import { TelemetryEventHandler } from '../../telemetry/telemetry-event-handler';
-import { IStoreHub } from '../istore-hub';
+import { StoreHub } from '../istore-hub';
 import { IAssessmentsProvider } from './../../../assessments/types/iassessments-provider';
 import { AssessmentDataConverter } from './../../assessment-data-converter';
 import { AssessmentDataRemover } from './../../assessment-data-remover';
@@ -20,7 +20,7 @@ import { LaunchPanelStore } from './launch-panel-store';
 import { ScopingStore } from './scoping-store';
 import { UserConfigurationStore } from './user-configuration-store';
 
-export class GlobalStoreHub implements IStoreHub {
+export class GlobalStoreHub implements StoreHub {
     public commandStore: CommandStore;
     public featureFlagStore: FeatureFlagStore;
     public launchPanelStore: LaunchPanelStore;

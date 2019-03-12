@@ -6,7 +6,7 @@ import * as React from 'react';
 import { AssessmentsProvider } from '../../../assessments/assessments-provider';
 import { Assessment } from '../../../assessments/types/iassessment';
 import { RequirementComparer } from '../../../common/assessment/requirement-comparer';
-import { IAssesssmentVisualizationConfiguration } from '../../../common/configs/visualization-configuration-factory';
+import { AssesssmentVisualizationConfiguration } from '../../../common/configs/visualization-configuration-factory';
 import { FeatureFlags } from '../../../common/feature-flags';
 import { ManualTestStatus } from '../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../common/types/visualization-type';
@@ -75,7 +75,7 @@ const assessmentWithColumns: Assessment = {
     getVisualizationConfiguration: () => {
         return {
             getAssessmentData: data => data.assessments['assessment-1'],
-        } as IAssesssmentVisualizationConfiguration;
+        } as AssesssmentVisualizationConfiguration;
     },
     requirementOrder: RequirementComparer.byOrdinal,
 };
@@ -110,7 +110,7 @@ const simpleAssessment = {
     getVisualizationConfiguration: () => {
         return {
             getAssessmentData: data => data.assessments['assessment-2'],
-        } as IAssesssmentVisualizationConfiguration;
+        } as AssesssmentVisualizationConfiguration;
     },
     requirementOrder: RequirementComparer.byOrdinal,
 };
@@ -151,7 +151,7 @@ const automatedAssessment = {
     getVisualizationConfiguration: () => {
         return {
             getAssessmentData: data => data.assessments['assessment-3'],
-        } as IAssesssmentVisualizationConfiguration;
+        } as AssesssmentVisualizationConfiguration;
     },
     requirementOrder: RequirementComparer.byOutcomeAndName,
 };

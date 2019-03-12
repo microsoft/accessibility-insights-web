@@ -5,7 +5,7 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
 import {
-    IVisualizationConfiguration,
+    VisualizationConfiguration,
     VisualizationConfigurationFactory,
 } from '../../../../common/configs/visualization-configuration-factory';
 import { NamedSFC, ReactSFCWithDisplayName } from '../../../../common/react/named-sfc';
@@ -36,7 +36,7 @@ describe('DetailsViewMainContentTest', () => {
     let clickHandlerFactoryMock: IMock<DetailsViewToggleClickHandlerFactory>;
     let clickHandlerStub: (event: any) => void;
     let getStoreDataMock: IMock<(data: TestsEnabledState) => IScanData>;
-    let configStub: IVisualizationConfiguration;
+    let configStub: VisualizationConfiguration;
     let scanDataStub: IScanData;
     let props: DetailsViewMainContentProps;
     let rightPanelConfig: DetailsRightPanelConfiguration;
@@ -71,7 +71,7 @@ describe('DetailsViewMainContentTest', () => {
             configStub = {
                 getStoreData: getStoreDataMock.object,
                 displayableData: {},
-            } as IVisualizationConfiguration;
+            } as VisualizationConfiguration;
 
             scanDataStub = {
                 enabled: false,
@@ -172,7 +172,7 @@ describe('DetailsViewMainContentTest', () => {
     function setupConfigFactoryMock(
         factoryMock: IMock<VisualizationConfigurationFactory>,
         givenGetStoreDataMock: IMock<(data: TestsEnabledState) => IScanData>,
-        config: IVisualizationConfiguration,
+        config: VisualizationConfiguration,
         scanData: IScanData,
         givenProps: DetailsViewMainContentProps,
     ): void {

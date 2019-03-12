@@ -26,13 +26,13 @@ const AssessmentMessages = Messages.Assessment;
 
 export class AssessmentActionCreator {
     private assessmentActions: AssessmentActions;
-    private registerTypeToPayloadCallback: IRegisterTypeToPayloadCallback;
+    private registerTypeToPayloadCallback: RegisterTypeToPayloadCallback;
     private telemetryEventHandler: TelemetryEventHandler;
 
     constructor(
         assessmentActions: AssessmentActions,
         telemetryEventHandler: TelemetryEventHandler,
-        registerTypeToPayloadCallback: IRegisterTypeToPayloadCallback,
+        registerTypeToPayloadCallback: RegisterTypeToPayloadCallback,
     ) {
         this.assessmentActions = assessmentActions;
         this.telemetryEventHandler = telemetryEventHandler;

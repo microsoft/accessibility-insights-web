@@ -73,7 +73,7 @@ export class InstanceVisibilityChecker {
                 };
             });
 
-            const message: IMessage = {
+            const message: Message = {
                 type: Messages.Assessment.UpdateInstanceVisibility,
                 payload: { payloadBatch },
             };

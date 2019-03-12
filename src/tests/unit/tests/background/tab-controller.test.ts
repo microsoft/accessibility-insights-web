@@ -106,7 +106,7 @@ describe('TabControllerTest', () => {
         const getTabCallbackInput = {
             data: 'abc',
         };
-        const interpretInput: IMessage = {
+        const interpretInput: Message = {
             type: Messages.Tab.Update,
             payload: getTabCallbackInput,
             tabId: tabId,
@@ -183,7 +183,7 @@ describe('TabControllerTest', () => {
         const tabId = 1;
         let tabUpdatedCallback: (details: chrome.webNavigation.WebNavigationFramedCallbackDetails) => void = null;
         let tabRemovedCallback: Function = null;
-        const interpretInput: IMessage = {
+        const interpretInput: Message = {
             type: Messages.Tab.Remove,
             payload: null,
             tabId: tabId,
@@ -229,7 +229,7 @@ describe('TabControllerTest', () => {
     test('onDetailsViewTabRemoved', () => {
         let tabUpdatedCallback: (details: chrome.webNavigation.WebNavigationFramedCallbackDetails) => void = null;
         const tabId = 2;
-        const interpretInput: IMessage = {
+        const interpretInput: Message = {
             type: Messages.Visualizations.DetailsView.Close,
             payload: null,
             tabId: tabId,
@@ -278,7 +278,7 @@ describe('TabControllerTest', () => {
         };
 
         openTabIds.forEach((tabId, index) => {
-            const interpretInput: IMessage = {
+            const interpretInput: Message = {
                 type: Messages.Tab.Update,
                 payload: tabs[tabId],
                 tabId: tabId,
@@ -342,7 +342,7 @@ describe('TabControllerTest', () => {
             id: tabId,
         };
 
-        const interpretInput: IMessage = {
+        const interpretInput: Message = {
             type: Messages.Tab.Change,
             payload: getTabCallbackInput,
             tabId: tabId,
@@ -399,14 +399,14 @@ describe('TabControllerTest', () => {
             populate: false,
             windowTypes: ['normal', 'popup'],
         };
-        const interpretInput1: IMessage = {
+        const interpretInput1: Message = {
             type: Messages.Tab.VisibilityChange,
             payload: {
                 hidden: false,
             },
             tabId: 1,
         };
-        const interpretInput2: IMessage = {
+        const interpretInput2: Message = {
             type: Messages.Tab.VisibilityChange,
             payload: {
                 hidden: true,
@@ -490,14 +490,14 @@ describe('TabControllerTest', () => {
             populate: false,
             windowTypes: ['normal', 'popup'],
         };
-        const interpretInput1: IMessage = {
+        const interpretInput1: Message = {
             type: Messages.Tab.VisibilityChange,
             payload: {
                 hidden: false,
             },
             tabId: 1,
         };
-        const interpretInput2: IMessage = {
+        const interpretInput2: Message = {
             type: Messages.Tab.VisibilityChange,
             payload: {
                 hidden: true,
@@ -582,14 +582,14 @@ describe('TabControllerTest', () => {
         const windowStub = {
             id: 1,
         };
-        const interpretInput1: IMessage = {
+        const interpretInput1: Message = {
             type: Messages.Tab.VisibilityChange,
             payload: {
                 hidden: false,
             },
             tabId: 1,
         };
-        const interpretInput2: IMessage = {
+        const interpretInput2: Message = {
             type: Messages.Tab.VisibilityChange,
             payload: {
                 hidden: true,

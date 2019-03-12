@@ -13,7 +13,7 @@ import { Messages } from '../../../../../common/messages';
 import { SCOPING_CLOSE, SCOPING_OPEN } from '../../../../../common/telemetry-events';
 
 describe('ScopingActionCreatorTest', () => {
-    let registerTypeToPayloadCallbackMock: IMock<IRegisterTypeToPayloadCallback>;
+    let registerTypeToPayloadCallbackMock: IMock<RegisterTypeToPayloadCallback>;
     let scopingActionsMock: IMock<ScopingActions>;
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
     let detailsViewControllerStrictMock: IMock<DetailsViewController>;

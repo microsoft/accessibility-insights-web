@@ -3,7 +3,7 @@
 import { IMock, It, Mock } from 'typemoq';
 
 import { AssessmentDataConverter } from '../../../../background/assessment-data-converter';
-import { IUniquelyIdentifiableInstances } from '../../../../background/instance-identifier-generator';
+import { UniquelyIdentifiableInstances } from '../../../../background/instance-identifier-generator';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
 import { IAssessmentInstancesMap, ITestStepResult } from '../../../../common/types/store-data/iassessment-result-data';
 import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from '../../../../injected/scanner-utils';
@@ -24,7 +24,7 @@ describe('AssessmentDataConverterTest', () => {
     let identifierStub: string;
     let selectorStub: string;
     let htmlStub: string;
-    let generateInstanceIdentifierMock: IMock<(instance: IUniquelyIdentifiableInstances) => string>;
+    let generateInstanceIdentifierMock: IMock<(instance: UniquelyIdentifiableInstances) => string>;
 
     beforeEach(() => {
         testSubject = new AssessmentDataConverter(() => uid);
@@ -456,7 +456,7 @@ describe('AssessmentDataConverterTest', () => {
         expect(testSubject.generateFailureInstance(description)).toEqual(expectedResult);
     });
 
-    function setupGenerateInstanceIdentifierMock(instance: IUniquelyIdentifiableInstances, identifier: string): void {
+    function setupGenerateInstanceIdentifierMock(instance: UniquelyIdentifiableInstances, identifier: string): void {
         generateInstanceIdentifierMock.setup(giim => giim(It.isValue(instance))).returns(() => identifier);
     }
 });

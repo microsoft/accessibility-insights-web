@@ -96,7 +96,7 @@ describe('MessageDistributorTest', () => {
 
     test('should distribute message, when sender has tab id', () => {
         const tabId = 1;
-        const message = { payload: {} } as IMessage;
+        const message = { payload: {} } as Message;
 
         const globalInterpreterMock = createInterpreterMockWithInteraction();
         globalInterpreter = globalInterpreterMock.object;
