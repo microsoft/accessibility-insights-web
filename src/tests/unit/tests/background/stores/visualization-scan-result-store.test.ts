@@ -15,11 +15,13 @@ import { VisualizationScanResultStoreDataBuilder } from '../../../common/visuali
 describe('VisualizationScanResultStoreTest', () => {
     test('constructor, no side effects', () => {
         const testObject = createStoreWithNullParams(VisualizationScanResultStore);
+
         expect(testObject).toBeDefined();
     });
 
     test('getId', () => {
         const testObject = createStoreWithNullParams(VisualizationScanResultStore);
+
         expect(testObject.getId()).toBe(StoreNames[StoreNames.VisualizationScanResultStore]);
     });
 

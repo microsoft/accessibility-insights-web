@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { forOwn } from 'lodash';
+
 import { createDefaultLogger } from '../../common/logging/default-logger';
 import { Logger } from '../../common/logging/logger';
 import { IHtmlElementAxeResults } from '../scanner-utils';
@@ -37,10 +39,7 @@ export class HtmlElementAxeResultsHelper {
 
     private getFrameResultsFromSelectorMap(selectorMap: DictionaryStringTo<AxeResultsWithFrameLevel[]>): IFrameResult[] {
         const results: IFrameResult[] = [];
-
-        for (const selectorKey in selectorMap) {
-            const frameResults = selectorMap[selectorKey];
-
+        forOwn(selectorMap, (frameResults, selectorKey) => {
             if (selectorKey) {
                 const iframe = this.htmlElementUtils.querySelector(selectorKey);
                 if (iframe != null) {
@@ -57,7 +56,7 @@ export class HtmlElementAxeResultsHelper {
                     frame: null,
                 } as IFrameResult);
             }
-        }
+        });
 
         return results;
     }
