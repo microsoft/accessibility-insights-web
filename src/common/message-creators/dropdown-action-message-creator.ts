@@ -9,7 +9,7 @@ import { BaseActionMessageCreator } from './base-action-message-creator';
 export class DropdownActionMessageCreator extends BaseActionMessageCreator {
     private telemetryFactory: TelemetryDataFactory;
 
-    constructor(postMessage: (message: IMessage) => void, tabId: number, telemetryFactory: TelemetryDataFactory) {
+    constructor(postMessage: (message: Message) => void, tabId: number, telemetryFactory: TelemetryDataFactory) {
         super(postMessage, tabId);
         this.telemetryFactory = telemetryFactory;
     }

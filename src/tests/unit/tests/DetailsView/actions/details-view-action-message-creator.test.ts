@@ -87,7 +87,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             source: testSource,
         };
         const eventStub = {};
-        const expectedMessage: IMessage = {
+        const expectedMessage: Message = {
             type: Messages.Tab.Switch,
             tabId: tabId,
             payload: {

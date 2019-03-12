@@ -37,7 +37,7 @@ export class DetailsViewActionMessageCreatorStub extends DetailsViewActionMessag
         throw new Error('Method not implemented.');
     }
     protected _tabId: number;
-    protected dispatchMessage(message: IMessage): void {
+    protected dispatchMessage(message: Message): void {
         throw new Error('Method not implemented.');
     }
     protected dispatchType(type: string): void {

@@ -125,7 +125,7 @@ describe('InstanceVisibilityCheckerTest', () => {
 
         setupConfigurationFactoryMocks(testType, testStepDrawerId, expectedUniquelyIdentifiableInstances, elementFoundGeneratedIds);
 
-        const expectedPayload: IMessage = {
+        const expectedPayload: Message = {
             type: Messages.Assessment.UpdateInstanceVisibility,
             payload: {
                 payloadBatch: [
@@ -189,7 +189,7 @@ describe('InstanceVisibilityCheckerTest', () => {
 
         setupConfigurationFactoryMocks(testType, testStepDrawerId, [expectedUniquelyIdentifiableInstance], [elementFoundGeneratedId]);
 
-        const expectedPayload: IMessage = {
+        const expectedPayload: Message = {
             type: Messages.Assessment.UpdateInstanceVisibility,
             payload: {
                 payloadBatch: [
@@ -238,7 +238,7 @@ describe('InstanceVisibilityCheckerTest', () => {
             .returns(() => null)
             .verifiable(Times.once());
 
-        const expectedPayload: IMessage = {
+        const expectedPayload: Message = {
             type: Messages.Assessment.UpdateInstanceVisibility,
             payload: {
                 payloadBatch: [

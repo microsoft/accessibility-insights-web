@@ -8,7 +8,7 @@ import { BaseActionMessageCreator } from './base-action-message-creator';
 
 export class BugActionMessageCreator extends BaseActionMessageCreator {
     constructor(
-        postMessage: (message: IMessage) => void,
+        postMessage: (message: Message) => void,
         tabId: number,
         private telemetryFactory: TelemetryDataFactory,
         private source: TelemetryEventSource,

@@ -5,10 +5,10 @@ import { IStoreActionMessageCreator } from './istore-action-message-creator';
 import { StoreActionMessageCreator } from './store-action-message-creator';
 
 export class StoreActionMessageCreatorFactory {
-    private postMessage: (message: IMessage) => void;
+    private postMessage: (message: Message) => void;
     private tabId: number;
 
-    constructor(postMessage: (message: IMessage) => void, tabId: number) {
+    constructor(postMessage: (message: Message) => void, tabId: number) {
         this.postMessage = postMessage;
         this.tabId = tabId;
     }

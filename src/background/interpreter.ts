@@ -10,7 +10,7 @@ export class Interpreter {
         this.messageToActionMapping[messageType] = callback;
     }
 
-    public interpret(message: IMessage): boolean {
+    public interpret(message: Message): boolean {
         if (this.messageToActionMapping[message.type]) {
             this.messageToActionMapping[message.type](message.payload, message.tabId);
             return true;

@@ -7,7 +7,7 @@ import { StoreActionMessageCreatorFactory } from '../../../../../common/message-
 import { Messages } from '../../../../../common/messages';
 
 describe('StoreActionMessageCreatorFactoryTest', () => {
-    let postMessageMock: IMock<(_message: IMessage) => void>;
+    let postMessageMock: IMock<(_message: Message) => void>;
     const tabId: number = -1;
 
     beforeEach(() => {

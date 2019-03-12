@@ -13,7 +13,7 @@ export class InspectActionMessageCreator extends BaseActionMessageCreator {
     private source: TelemetryEventSource;
 
     constructor(
-        postMessage: (message: IMessage) => void,
+        postMessage: (message: Message) => void,
         tabId: number,
         telemetryFactory: TelemetryDataFactory,
         source: TelemetryEventSource,

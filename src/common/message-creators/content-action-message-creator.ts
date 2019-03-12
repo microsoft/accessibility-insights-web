@@ -16,7 +16,7 @@ export class ContentActionMessageCreator extends BaseActionMessageCreator {
     };
 
     constructor(
-        postMessage: (message: IMessage) => void,
+        postMessage: (message: Message) => void,
         tabId: number,
         private readonly telemetryFactory: TelemetryDataFactory,
         private readonly source: TelemetryEventSource,
