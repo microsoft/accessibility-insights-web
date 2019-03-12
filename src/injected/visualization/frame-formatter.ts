@@ -4,15 +4,14 @@ import { IAssessmentVisualizationInstance } from '../frameCommunicators/html-ele
 import { FailureInstanceFormatter } from './failure-instance-formatter';
 import { DrawerConfiguration } from './formatter';
 
-// tslint:disable-next-line:interface-name
-export interface IFrameStyleConfiguration {
+export interface FrameStyleConfiguration {
     borderColor: string;
     fontColor: string;
     contentText: string;
 }
 
 export class FrameFormatter extends FailureInstanceFormatter {
-    public static frameStyles: { [frameType: string]: IFrameStyleConfiguration } = {
+    public static frameStyles: { [frameType: string]: FrameStyleConfiguration } = {
         frame: {
             borderColor: '#0066CC',
             fontColor: '#FFFFFF',
