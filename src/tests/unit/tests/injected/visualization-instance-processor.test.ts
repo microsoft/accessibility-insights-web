@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IAssessmentVisualizationInstance } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { PartialTabOrderPropertyBag, TabOrderPropertyBag } from '../../../../injected/tab-order-property-bag';
-import { VisualizationPropertyBag, VisualizationInstanceProcessor } from '../../../../injected/visualization-instance-processor';
+import { VisualizationInstanceProcessor, VisualizationPropertyBag } from '../../../../injected/visualization-instance-processor';
 
 describe('VisualizationInstanceProcessorTest', () => {
     test('nullProcessor', () => {

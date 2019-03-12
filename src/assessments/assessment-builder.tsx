@@ -3,7 +3,6 @@
 import * as _ from 'lodash';
 import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
-
 import { AssessmentToggleActionPayload } from '../background/actions/action-payloads';
 import { InstanceIdentifierGenerator } from '../background/instance-identifier-generator';
 import { RequirementComparer } from '../common/assessment/requirement-comparer';
@@ -18,8 +17,8 @@ import { TestStepLink } from '../DetailsView/components/test-step-link';
 import { AnalyzerProvider } from '../injected/analyzers/analyzer-provider';
 import {
     PropertyBags,
-    VisualizationInstanceProcessorCallback,
     VisualizationInstanceProcessor,
+    VisualizationInstanceProcessorCallback,
 } from '../injected/visualization-instance-processor';
 import { DrawerProvider } from '../injected/visualization/drawer-provider';
 import { DecoratedAxeNodeResult, ScannerUtils } from './../injected/scanner-utils';
