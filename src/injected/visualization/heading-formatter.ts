@@ -10,16 +10,15 @@ export interface HeadingStyleConfiguration {
     fontColor: string;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IStyleComputer {
+export interface StyleComputer {
     getComputedStyle(elt: Element, pseudoElt?: string): CSSStyleDeclaration;
 }
 
 export class HeadingFormatter extends FailureInstanceFormatter {
-    private styleComputer: IStyleComputer;
+    private styleComputer: StyleComputer;
     private clientUtils: ClientUtils;
 
-    constructor(styleComputer: IStyleComputer, clientUtils: ClientUtils) {
+    constructor(styleComputer: StyleComputer, clientUtils: ClientUtils) {
         super();
         this.styleComputer = styleComputer;
         this.clientUtils = clientUtils;
