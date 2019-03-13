@@ -303,7 +303,6 @@ describe('GlobalActionCreatorTest', () => {
     });
 });
 
-// tslint:disable-next-line:max-classes-per-file
 class GlobalActionCreatorValidator {
     public testSubject: GlobalActionCreator;
     private commandActionMocksMap: DictionaryStringTo<IMock<Action<any>>> = {};
