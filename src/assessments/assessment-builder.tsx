@@ -84,13 +84,13 @@ export class AssessmentBuilder {
         return testStepLink.renderRequirementDescriptionWithIndex();
     }
 
-    private static enableTest(scanData: IScanData, payload: AssessmentToggleActionPayload) {
+    private static enableTest(scanData: IScanData, payload: AssessmentToggleActionPayload): void {
         const scanAssessmentData = scanData as IAssessmentScanData;
         scanAssessmentData.enabled = true;
         scanAssessmentData.stepStatus[payload.step] = true;
     }
 
-    private static disableTest(scanData: IScanData, step: string) {
+    private static disableTest(scanData: IScanData, step: string): void {
         const scanAssessmentData = scanData as IAssessmentScanData;
         scanAssessmentData.stepStatus[step] = false;
         scanAssessmentData.enabled = Object.keys(scanAssessmentData.stepStatus).some(key => scanAssessmentData.stepStatus[key] === true);
@@ -237,11 +237,13 @@ export class AssessmentBuilder {
         } as Assessment;
     }
 
-    private static getStepConfig(steps: TestStep[], testStep: string) {
+    private static getStepConfig(steps: TestStep[], testStep: string): TestStep {
         return steps.find(step => step.key === testStep);
     }
 
-    private static getVisualizationInstanceProcessor(steps: TestStep[]) {
+    private static getVisualizationInstanceProcessor(
+        steps: TestStep[],
+    ): (testStep: string) => VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags> {
         return (testStep: string): VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags> => {
             const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
             if (stepConfig == null || stepConfig.visualizationInstanceProcessor == null) {
@@ -251,7 +253,7 @@ export class AssessmentBuilder {
         };
     }
 
-    private static getSwitchToTargetTabOnScan(steps: TestStep[]) {
+    private static getSwitchToTargetTabOnScan(steps: TestStep[]): (testStep: string) => boolean {
         return (testStep: string): boolean => {
             const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
             if (stepConfig == null || stepConfig.switchToTargetTabOnScan == null) {
@@ -261,6 +263,7 @@ export class AssessmentBuilder {
         };
     }
 
+    // tslint:disable-next-line: typedef
     private static getInstanceIdentifier(steps: TestStep[]) {
         return (testStep: string) => {
             const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
@@ -271,7 +274,7 @@ export class AssessmentBuilder {
         };
     }
 
-    private static BuildStepsReportDescription(steps: TestStep[]) {
+    private static BuildStepsReportDescription(steps: TestStep[]): void {
         steps.forEach(step => {
             step.renderReportDescription = () => {
                 const descriptionCopy = _.cloneDeep(step.description);
@@ -295,7 +298,7 @@ export class AssessmentBuilder {
         return children;
     }
 
-    private static getUpdateVisibility(steps: TestStep[]) {
+    private static getUpdateVisibility(steps: TestStep[]): (testStep: string) => boolean {
         return (testStep: string): boolean => {
             const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
             if (stepConfig == null || stepConfig.updateVisibility == null) {
