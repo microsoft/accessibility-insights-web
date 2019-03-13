@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { Toggle } from 'office-ui-fabric-react/lib/Toggle';
 import * as React from 'react';
+
+import { NamedSFC } from '../../common/react/named-sfc';
 
 export interface GenericToggleProps {
     enabled: boolean;
@@ -12,28 +13,26 @@ export interface GenericToggleProps {
     onClick: (id: string, enabled: boolean, event: React.MouseEvent<HTMLElement>) => void;
 }
 
-export class GenericToggle extends React.Component<GenericToggleProps> {
-    public render(): JSX.Element {
-        return (
-            <div className={'generic-toggle-component'}>
-                <div className={'toggle-container'}>
-                    <div className={'toggle-name'}>{this.props.name}</div>
-                    <Toggle
-                        className={'toggle'}
-                        checked={this.props.enabled}
-                        onClick={this.onClick}
-                        onText={'On'}
-                        offText={'Off'}
-                        ariaLabel={this.props.name}
-                    />
-                </div>
-                <div className={'toggle-description'}>{this.props.description}</div>
-            </div>
-        );
-    }
+export const GenericToggle = NamedSFC<GenericToggleProps>('GenericToggle', props => {
+    const onClick = (event: React.MouseEvent<HTMLElement>): void => {
+        props.onClick(props.id, !props.enabled, event);
+    };
 
-    @autobind
-    protected onClick(event: React.MouseEvent<HTMLElement>): void {
-        this.props.onClick(this.props.id, !this.props.enabled, event);
-    }
-}
+    return (
+        <div className={'generic-toggle-component'}>
+            <div className={'toggle-container'}>
+                <div className={'toggle-name'}>{props.name}</div>
+                <Toggle
+                    id={props.id}
+                    className={'toggle'}
+                    checked={props.enabled}
+                    onClick={onClick}
+                    onText={'On'}
+                    offText={'Off'}
+                    ariaLabel={props.name}
+                />
+            </div>
+            <div className={'toggle-description'}>{props.description}</div>
+        </div>
+    );
+});

@@ -1,5 +1,97 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`GenericToggleTest render with jsx content 1`] = `
+<div
+  className="generic-toggle-component"
+>
+  <div
+    className="toggle-container"
+  >
+    <div
+      className="toggle-name"
+    >
+      test name
+    </div>
+    <StyledToggleBase
+      ariaLabel="test name"
+      checked={true}
+      className="toggle"
+      id="test-id-1"
+      offText="Off"
+      onClick={[Function]}
+      onText="On"
+    />
+  </div>
+  <div
+    className="toggle-description"
+  >
+    <h1>
+      hello
+    </h1>
+  </div>
+</div>
+`;
+
+exports[`GenericToggleTest render with string content - toggleState : false 1`] = `
+<div
+  className="generic-toggle-component"
+>
+  <div
+    className="toggle-container"
+  >
+    <div
+      className="toggle-name"
+    >
+      test name
+    </div>
+    <StyledToggleBase
+      ariaLabel="test name"
+      checked={false}
+      className="toggle"
+      id="test-id-1"
+      offText="Off"
+      onClick={[Function]}
+      onText="On"
+    />
+  </div>
+  <div
+    className="toggle-description"
+  >
+    test description
+  </div>
+</div>
+`;
+
+exports[`GenericToggleTest render with string content - toggleState : true 1`] = `
+<div
+  className="generic-toggle-component"
+>
+  <div
+    className="toggle-container"
+  >
+    <div
+      className="toggle-name"
+    >
+      test name
+    </div>
+    <StyledToggleBase
+      ariaLabel="test name"
+      checked={true}
+      className="toggle"
+      id="test-id-1"
+      offText="Off"
+      onClick={[Function]}
+      onText="On"
+    />
+  </div>
+  <div
+    className="toggle-description"
+  >
+    test description
+  </div>
+</div>
+`;
+
 exports[`GenericToggleTest verify if the classname passed from prop is added properly 1`] = `
 <div
   className="generic-toggle-component"
@@ -16,6 +108,7 @@ exports[`GenericToggleTest verify if the classname passed from prop is added pro
       ariaLabel="test name"
       checked={true}
       className="toggle"
+      id="test-id-1"
       offText="Off"
       onClick={[Function]}
       onText="On"
