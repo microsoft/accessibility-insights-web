@@ -32,11 +32,11 @@ export function customWidgetsColumnRenderer<TPropertyBag extends ColumnValueBag>
     return propertyBagRenderer(item);
 }
 
-function renderDesignPatternWithLink(pattern: DesignPattern) {
+function renderDesignPatternWithLink(pattern: DesignPattern): JSX.Element {
     return <NewTabLink href={pattern.URL}>{pattern.designPattern}</NewTabLink>;
 }
 
-function renderDesignPatternWithoutLink(pattern: DesignPattern) {
+function renderDesignPatternWithoutLink(pattern: DesignPattern): JSX.Element {
     return <span className="display-name">{pattern.designPattern}</span>;
 }
 

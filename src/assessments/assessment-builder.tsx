@@ -3,6 +3,7 @@
 import * as _ from 'lodash';
 import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
+
 import { AssessmentToggleActionPayload } from '../background/actions/action-payloads';
 import { InstanceIdentifierGenerator } from '../background/instance-identifier-generator';
 import { RequirementComparer } from '../common/assessment/requirement-comparer';
@@ -263,8 +264,7 @@ export class AssessmentBuilder {
         };
     }
 
-    // tslint:disable-next-line: typedef
-    private static getInstanceIdentifier(steps: TestStep[]) {
+    private static getInstanceIdentifier(steps: TestStep[]): Function {
         return (testStep: string) => {
             const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
             if (stepConfig == null || stepConfig.generateInstanceIdentifier == null) {

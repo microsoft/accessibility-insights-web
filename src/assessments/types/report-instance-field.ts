@@ -14,6 +14,7 @@ export type ReportInstanceFieldMap = { [KEY in string]?: ReportInstanceField };
 export type ReportInstanceFields = ReportInstanceField[];
 
 type HasPropertyBag<PB> = { propertyBag: PB };
+type PropertyBagKey<PB> = string | PB[keyof PB & string];
 
 function fromPropertyBagField<PB>(label: string, key: keyof PB & string): ReportInstanceField {
     function getValue(i: HasPropertyBag<PB>): string {
@@ -27,7 +28,7 @@ function fromColumnValueBagField<PB extends ColumnValueBag>(
     key: keyof PB & string,
     defaultValue = '-',
 ): ReportInstanceField {
-    function getValue(i: HasPropertyBag<PB>) {
+    function getValue(i: HasPropertyBag<PB>): PropertyBagKey<PB> {
         const value = i.propertyBag && i.propertyBag[key];
         return isValid(value) ? value : defaultValue;
     }
@@ -36,7 +37,7 @@ function fromColumnValueBagField<PB extends ColumnValueBag>(
 }
 
 function fromPropertyBagFunction<PB>(label: string, key: string, accessor: (bag: PB) => string): ReportInstanceField {
-    function getValue(i: HasPropertyBag<PB>) {
+    function getValue(i: HasPropertyBag<PB>): string {
         return i.propertyBag && accessor(i.propertyBag);
     }
     return { key, label, getValue };
@@ -58,7 +59,7 @@ function isValid(value: ColumnValue): ColumnValue {
     return true;
 }
 
-function fromColumns<T extends ColumnValueBag>(cfg: PropertyBagColumnRendererConfig<T>[]) {
+function fromColumns<T extends ColumnValueBag>(cfg: PropertyBagColumnRendererConfig<T>[]): ReportInstanceField[] {
     return cfg.map(fromColumnConfig);
 
     function fromColumnConfig({ propertyName, defaultValue, displayName }: PropertyBagColumnRendererConfig<T>): ReportInstanceField {
