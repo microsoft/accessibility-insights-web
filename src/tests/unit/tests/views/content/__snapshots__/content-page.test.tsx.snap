@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContentPage ContentCreator links renders 1`] = `
+<NewTabLink
+  href="href"
+  onClick={[Function]}
+>
+  text
+</NewTabLink>
+`;
+
+exports[`ContentPage ContentCreator links renders, children is text 1`] = `
+<NewTabLink
+  href="href"
+  onClick={[Function]}
+>
+  OVERRIDE
+</NewTabLink>
+`;

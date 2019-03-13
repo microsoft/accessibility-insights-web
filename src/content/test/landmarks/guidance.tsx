@@ -16,9 +16,7 @@ export const guidance = create(({ Markup, Link }) => (
         </p>
         <p>
             For more information about how to use ARIA landmarks, see{' '}
-            <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-practices-1.1/">
-                WAI-ARIA Authoring Practices 1.1: Landmark Regions
-            </Markup.HyperLink>
+            <Link.WAIARIAAuthoringPractices>WAI-ARIA Authoring Practices 1.1: Landmark Regions</Link.WAIARIAAuthoringPractices>
         </p>
         <p>
             See <Link.BingoBakery>this fun video</Link.BingoBakery> to learn how landmarks, headings, and tab stops work together to provide
@@ -165,9 +163,7 @@ export const guidance = create(({ Markup, Link }) => (
             <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-practices-1.1/examples/landmarks/index.html">
                 ARIA Landmarks Example
             </Markup.HyperLink>
-            <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-practices-1.1/">
-                WAI-ARIA Authoring Practices 1.1: Landmark Regions
-            </Markup.HyperLink>
+            <Link.WAIARIAAuthoringPractices>WAI-ARIA Authoring Practices 1.1: Landmark Regions</Link.WAIARIAAuthoringPractices>
         </Markup.Links>
     </>
 ));

@@ -172,9 +172,7 @@ export const guidance = create(({ Markup, Link }) => (
         </Markup.Links>
         <h4>Sufficient techniques</h4>
         <Markup.Links>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G83">
-                Providing text descriptions to identify required fields that were not completed
-            </Markup.HyperLink>
+            <Link.WCAG21TechniquesG83 />
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H90">
                 Indicating required form controls using label or legend
             </Markup.HyperLink>
