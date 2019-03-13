@@ -27,7 +27,7 @@ describe('A11Y for content pages', () => {
 
     const contentPaths = contentPages.allPaths();
 
-    it.each(contentPaths)('%s has not a11y issues', async path => {
+    it.each(contentPaths)('%s', async path => {
         const content = await browser.newContentPage(path);
 
         const results = await scanForAccessibilityIssues(content, '*');
