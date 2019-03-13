@@ -89,7 +89,7 @@ function testEvaluate(
     getPropertyValuesMock: IGlobalMock<any>,
     getAccessibleTextMock: IGlobalMock<any>,
     snippetUnmodified: boolean,
-) {
+): void {
     const dataSetterMock = Mock.ofInstance(data => {});
 
     const expectedData = {
@@ -116,7 +116,7 @@ function testEvaluate(
     dataSetterMock.verifyAll();
 }
 
-function testMatches(href: string, expectedHasCustomWidgetMarkup: boolean, expectedResult: boolean) {
+function testMatches(href: string, expectedHasCustomWidgetMarkup: boolean, expectedResult: boolean): void {
     const nodeStub = getNodeStub(href, null, null);
     const hasCustomWidgetMarkupMock = GlobalMock.ofInstance(
         AxeUtils.hasCustomWidgetMarkup,
@@ -132,7 +132,7 @@ function testMatches(href: string, expectedHasCustomWidgetMarkup: boolean, expec
     expect(result).toBe(expectedResult);
 }
 
-function getNodeStub(href: string, role: string, tabindex: string) {
+function getNodeStub(href: string, role: string, tabindex: string): HTMLElement {
     return {
         outerHTML: outerHTML,
         parentElement: {

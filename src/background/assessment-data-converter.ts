@@ -174,7 +174,7 @@ export class AssessmentDataConverter {
         return this.getPropertyBagFrom(ruleResult, 'any');
     }
 
-    private getPropertyBagFrom(ruleResult: DecoratedAxeNodeResult, checkName: ChecksType) {
+    private getPropertyBagFrom(ruleResult: DecoratedAxeNodeResult, checkName: ChecksType): any {
         if (ruleResult[checkName] && !_.isEmpty(ruleResult[checkName]) && ruleResult[checkName][0].data) {
             return ruleResult[checkName][0].data;
         }

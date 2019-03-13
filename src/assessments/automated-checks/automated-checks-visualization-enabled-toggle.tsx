@@ -6,7 +6,7 @@ import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { IGeneratedAssessmentInstance, ITestStepResult } from '../../common/types/store-data/iassessment-result-data';
 import { AssessmentVisualizationEnabledToggle } from '../../DetailsView/components/assessment-visualization-enabled-toggle';
 
-function failingInstances(result: ITestStepResult) {
+function failingInstances(result: ITestStepResult): boolean {
     return result.status === ManualTestStatus.FAIL;
 }
 
