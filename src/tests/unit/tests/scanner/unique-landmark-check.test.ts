@@ -11,7 +11,7 @@ describe('axe.Check: unique-landmark', () => {
     let fixture;
     const checkContext = {
         _data: null,
-        data: function(d) {
+        data: function(d: any): void {
             // tslint:disable-next-line:no-invalid-this
             this._data = d;
         },
@@ -120,15 +120,15 @@ describe('axe.Check: unique-landmark', () => {
         });
     });
 
-    function expectCheckTrue(node) {
+    function expectCheckTrue(node): void {
         expectCheckValue(node, true);
     }
 
-    function expectCheckFalse(node) {
+    function expectCheckFalse(node): void {
         expectCheckValue(node, false);
     }
 
-    function expectCheckValue(node, value: boolean) {
+    function expectCheckValue(node, value: boolean): void {
         expect(uniqueLandmarkConfiguration.checks[0].evaluate.call(checkContext, node)).toBe(value);
     }
 
