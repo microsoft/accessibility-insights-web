@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { ClientBrowserAdapter, ClientChromeAdapter } from '../common/client-browser-adapter';
 
-// tslint:disable: typedef
 export interface NotificationOptions {
     message: string;
     title: string;

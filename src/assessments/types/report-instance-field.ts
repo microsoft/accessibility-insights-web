@@ -14,7 +14,7 @@ export type ReportInstanceFieldMap = { [KEY in string]?: ReportInstanceField };
 export type ReportInstanceFields = ReportInstanceField[];
 
 type HasPropertyBag<PB> = { propertyBag: PB };
-type PropertyBagKey<PB> = string | PB[keyof PB & string];
+type PropertyBagKey<PB> = PB[keyof PB];
 
 function fromPropertyBagField<PB>(label: string, key: keyof PB & string): ReportInstanceField {
     function getValue(i: HasPropertyBag<PB>): string {
@@ -28,7 +28,7 @@ function fromColumnValueBagField<PB extends ColumnValueBag>(
     key: keyof PB & string,
     defaultValue = '-',
 ): ReportInstanceField {
-    function getValue(i: HasPropertyBag<PB>): PropertyBagKey<PB> {
+    function getValue(i: HasPropertyBag<PB>): string | PropertyBagKey<PB> {
         const value = i.propertyBag && i.propertyBag[key];
         return isValid(value) ? value : defaultValue;
     }
