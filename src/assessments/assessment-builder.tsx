@@ -5,7 +5,7 @@ import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
 import { AssessmentToggleActionPayload } from '../background/actions/action-payloads';
-import { InstanceIdentifierGenerator, InstanceWithHtmlAndSelector } from '../background/instance-identifier-generator';
+import { InstanceIdentifierGenerator } from '../background/instance-identifier-generator';
 import { RequirementComparer } from '../common/assessment/requirement-comparer';
 import { AssesssmentVisualizationConfiguration } from '../common/configs/visualization-configuration-factory';
 import { Messages } from '../common/messages';
@@ -85,13 +85,13 @@ export class AssessmentBuilder {
         return testStepLink.renderRequirementDescriptionWithIndex();
     }
 
-    private static enableTest(scanData: IScanData, payload: AssessmentToggleActionPayload): void {
+    private static enableTest(scanData: IScanData, payload: AssessmentToggleActionPayload) {
         const scanAssessmentData = scanData as IAssessmentScanData;
         scanAssessmentData.enabled = true;
         scanAssessmentData.stepStatus[payload.step] = true;
     }
 
-    private static disableTest(scanData: IScanData, step: string): void {
+    private static disableTest(scanData: IScanData, step: string) {
         const scanAssessmentData = scanData as IAssessmentScanData;
         scanAssessmentData.stepStatus[step] = false;
         scanAssessmentData.enabled = Object.keys(scanAssessmentData.stepStatus).some(key => scanAssessmentData.stepStatus[key] === true);
@@ -238,13 +238,11 @@ export class AssessmentBuilder {
         } as Assessment;
     }
 
-    private static getStepConfig(steps: TestStep[], testStep: string): TestStep {
+    private static getStepConfig(steps: TestStep[], testStep: string) {
         return steps.find(step => step.key === testStep);
     }
 
-    private static getVisualizationInstanceProcessor(
-        steps: TestStep[],
-    ): (testStep: string) => VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags> {
+    private static getVisualizationInstanceProcessor(steps: TestStep[]) {
         return (testStep: string): VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags> => {
             const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
             if (stepConfig == null || stepConfig.visualizationInstanceProcessor == null) {
@@ -254,7 +252,7 @@ export class AssessmentBuilder {
         };
     }
 
-    private static getSwitchToTargetTabOnScan(steps: TestStep[]): (testStep: string) => boolean {
+    private static getSwitchToTargetTabOnScan(steps: TestStep[]) {
         return (testStep: string): boolean => {
             const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
             if (stepConfig == null || stepConfig.switchToTargetTabOnScan == null) {
@@ -264,7 +262,6 @@ export class AssessmentBuilder {
         };
     }
 
-    // tslint:disable-next-line: typedef
     private static getInstanceIdentifier(steps: TestStep[]) {
         return (testStep: string) => {
             const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
@@ -275,7 +272,7 @@ export class AssessmentBuilder {
         };
     }
 
-    private static BuildStepsReportDescription(steps: TestStep[]): void {
+    private static BuildStepsReportDescription(steps: TestStep[]) {
         steps.forEach(step => {
             step.renderReportDescription = () => {
                 const descriptionCopy = _.cloneDeep(step.description);
@@ -284,10 +281,10 @@ export class AssessmentBuilder {
 
                 return descriptionCopy;
             };
-        }); , , ,
+        });
     }
 
-    private static removeLastDotFromDescription(children: any); : public any; {
+    private static removeLastDotFromDescription(children: any): any {
         if (Array.isArray(children)) {
             children[children.length - 1] = AssessmentBuilder.removeLastDotFromDescription(children[children.length - 1]);
         } else if (children instanceof Object) {
@@ -299,7 +296,7 @@ export class AssessmentBuilder {
         return children;
     }
 
-    private static getUpdateVisibility(steps: TestStep[]); : (testStep: string) => boolean; {
+    private static getUpdateVisibility(steps: TestStep[]) {
         return (testStep: string): boolean => {
             const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
             if (stepConfig == null || stepConfig.updateVisibility == null) {
@@ -309,5 +306,5 @@ export class AssessmentBuilder {
         };
     }
 
-    private static nullScanPolicy(scan, data); : void {};
+    private static nullScanPolicy(scan, data): void {}
 }
