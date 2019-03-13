@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { ITextAlternativePropertyBag } from '../../../common/types/property-bag/itext-alternative';
+import { TextAlternativePropertyBag } from '../../../common/types/property-bag/itext-alternative';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
@@ -54,7 +54,7 @@ const howToTest: JSX.Element = (
 
 const key = ImagesTestStep.textAlternative;
 
-const propertyBagConfig: PropertyBagColumnRendererConfig<ITextAlternativePropertyBag>[] = [
+const propertyBagConfig: PropertyBagColumnRendererConfig<TextAlternativePropertyBag>[] = [
     {
         propertyName: 'imageType',
         displayName: 'Image type',
