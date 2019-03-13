@@ -95,7 +95,7 @@ describe('verify widget function data', () => {
 
     const context = {
         _data: null,
-        data: function(d: any) {
+        data: function(d): void {
             // tslint:disable-next-line:no-invalid-this
             this._data = d;
         },

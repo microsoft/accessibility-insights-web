@@ -5,7 +5,7 @@ import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
 import { AssessmentToggleActionPayload } from '../background/actions/action-payloads';
-import { InstanceIdentifierGenerator } from '../background/instance-identifier-generator';
+import { InstanceIdentifierGenerator, InstanceWithHtmlAndSelector } from '../background/instance-identifier-generator';
 import { RequirementComparer } from '../common/assessment/requirement-comparer';
 import { AssesssmentVisualizationConfiguration } from '../common/configs/visualization-configuration-factory';
 import { Messages } from '../common/messages';
@@ -264,7 +264,8 @@ export class AssessmentBuilder {
         };
     }
 
-    private static getInstanceIdentifier(steps: TestStep[]): Function {
+    // tslint:disable-next-line: typedef
+    private static getInstanceIdentifier(steps: TestStep[]) {
         return (testStep: string) => {
             const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
             if (stepConfig == null || stepConfig.generateInstanceIdentifier == null) {
@@ -283,10 +284,10 @@ export class AssessmentBuilder {
 
                 return descriptionCopy;
             };
-        });
+        }); , , ,
     }
 
-    private static removeLastDotFromDescription(children: any): any {
+    private static removeLastDotFromDescription(children: any); : public any; {
         if (Array.isArray(children)) {
             children[children.length - 1] = AssessmentBuilder.removeLastDotFromDescription(children[children.length - 1]);
         } else if (children instanceof Object) {
@@ -298,7 +299,7 @@ export class AssessmentBuilder {
         return children;
     }
 
-    private static getUpdateVisibility(steps: TestStep[]): (testStep: string) => boolean {
+    private static getUpdateVisibility(steps: TestStep[]); : (testStep: string) => boolean; {
         return (testStep: string): boolean => {
             const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
             if (stepConfig == null || stepConfig.updateVisibility == null) {
@@ -308,5 +309,5 @@ export class AssessmentBuilder {
         };
     }
 
-    private static nullScanPolicy(scan, data): void {}
+    private static nullScanPolicy(scan, data); : void {};
 }
