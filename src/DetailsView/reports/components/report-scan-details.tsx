@@ -17,7 +17,7 @@ export interface ReportScanDetailsProps {
 }
 
 export class ReportScanDetails extends React.Component<ReportScanDetailsProps> {
-    public render() {
+    public render(): JSX.Element {
         return (
             <div className="report-scan-details">
                 <table>

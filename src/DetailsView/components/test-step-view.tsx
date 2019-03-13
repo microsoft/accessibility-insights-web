@@ -91,7 +91,7 @@ export class TestStepView extends React.Component<TestStepViewProps> {
         );
     }
 
-    private renderScanCompleteAlert() {
+    private renderScanCompleteAlert(): JSX.Element {
         if (!this.props.testStep.isManual && this.props.isStepScanned) {
             return <div role="alert" aria-live="polite" aria-label="Scan Complete" />;
         }

@@ -24,7 +24,7 @@ export class DocumentTitleUpdater {
         private readonly doc: Document,
     ) {}
 
-    public initialize() {
+    public initialize(): void {
         this.tabStore.addChangedListener(this.onStoreChange);
         this.detailsViewStore.addChangedListener(this.onStoreChange);
         this.visualizationStore.addChangedListener(this.onStoreChange);
