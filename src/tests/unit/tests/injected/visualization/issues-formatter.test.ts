@@ -8,13 +8,13 @@ import { WindowUtils } from '../../../../../common/window-utils';
 import { FrameCommunicator } from '../../../../../injected/frameCommunicators/frame-communicator';
 import { IHtmlElementAxeResults } from '../../../../../injected/scanner-utils';
 import { ShadowUtils } from '../../../../../injected/shadow-utils';
-import { IHeadingStyleConfiguration } from '../../../../../injected/visualization/heading-formatter';
+import { HeadingStyleConfiguration } from '../../../../../injected/visualization/heading-formatter';
 import { IssuesFormatter } from '../../../../../injected/visualization/issues-formatter';
 
 describe('IssuesFormatterTests', () => {
     let testSubject: IssuesFormatter;
     const htmlElement = document.createElement('div');
-    let issuesStyle: IHeadingStyleConfiguration;
+    let issuesStyle: HeadingStyleConfiguration;
     let htmlElementUtilsMock: IMock<HTMLElementUtils>;
     beforeEach(() => {
         issuesStyle = IssuesFormatter.style;

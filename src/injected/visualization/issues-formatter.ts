@@ -10,7 +10,7 @@ import { FrameCommunicator } from '../frameCommunicators/frame-communicator';
 import { IHtmlElementAxeResults } from '../scanner-utils';
 import { ShadowUtils } from '../shadow-utils';
 import { DrawerConfiguration, Formatter } from './formatter';
-import { IHeadingStyleConfiguration } from './heading-formatter';
+import { HeadingStyleConfiguration } from './heading-formatter';
 
 export class IssuesFormatter implements Formatter {
     private dialogRenderer: DialogRenderer;
@@ -35,7 +35,7 @@ export class IssuesFormatter implements Formatter {
         );
     }
 
-    public static style: IHeadingStyleConfiguration = {
+    public static style: HeadingStyleConfiguration = {
         borderColor: '#CC0000',
         fontColor: '#FFFFFF',
     };

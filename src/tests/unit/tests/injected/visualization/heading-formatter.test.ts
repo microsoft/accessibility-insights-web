@@ -4,14 +4,14 @@ import { It, Mock } from 'typemoq';
 import { ClientUtils } from '../../../../../injected/client-utils';
 import { IAssessmentVisualizationInstance } from '../../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { DrawerConfiguration } from '../../../../../injected/visualization/formatter';
-import { HeadingFormatter, IHeadingStyleConfiguration, IStyleComputer } from '../../../../../injected/visualization/heading-formatter';
+import { HeadingFormatter, HeadingStyleConfiguration, StyleComputer } from '../../../../../injected/visualization/heading-formatter';
 
 describe('HeadingFormatterTests', () => {
     let testSubject: HeadingFormatter;
     let sandbox: HTMLDivElement;
     let failedInstanceResult: IAssessmentVisualizationInstance;
     let failedInstanceNotSelected: IAssessmentVisualizationInstance;
-    let styleComputer: IStyleComputer;
+    let styleComputer: StyleComputer;
     const innerText = 'HEADING';
 
     beforeEach(() => {
@@ -193,7 +193,7 @@ describe('HeadingFormatterTests', () => {
         expect(config.showVisualization).toBe(false);
     });
 
-    function createDisplayNoneStyleComputer(): IStyleComputer {
+    function createDisplayNoneStyleComputer(): StyleComputer {
         const getComputedStyleMock = Mock.ofInstance(_ => {});
 
         getComputedStyleMock
@@ -206,10 +206,10 @@ describe('HeadingFormatterTests', () => {
             getComputedStyle: getComputedStyleMock.object,
         };
 
-        return computedStyle as IStyleComputer;
+        return computedStyle as StyleComputer;
     }
 
-    function verifyHeadingStyle(config: DrawerConfiguration, headingStyle: IHeadingStyleConfiguration, text: string): void {
+    function verifyHeadingStyle(config: DrawerConfiguration, headingStyle: HeadingStyleConfiguration, text: string): void {
         expect(config.showVisualization).toBe(true);
         expect(config.borderColor).toBe(headingStyle.borderColor);
         expect(config.textBoxConfig.fontColor).toBe(headingStyle.fontColor);

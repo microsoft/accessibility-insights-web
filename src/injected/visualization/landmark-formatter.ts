@@ -5,7 +5,7 @@ import { IAssessmentVisualizationInstance } from '../frameCommunicators/html-ele
 import { IHtmlElementAxeResults } from '../scanner-utils';
 import { FailureInstanceFormatter } from './failure-instance-formatter';
 import { DrawerConfiguration } from './formatter';
-import { IHeadingStyleConfiguration } from './heading-formatter';
+import { HeadingStyleConfiguration } from './heading-formatter';
 
 interface ElemData {
     role: string;
@@ -13,7 +13,7 @@ interface ElemData {
 }
 
 export class LandmarkFormatter extends FailureInstanceFormatter {
-    private static readonly landmarkStyles: { [role: string]: IHeadingStyleConfiguration } = {
+    private static readonly landmarkStyles: { [role: string]: HeadingStyleConfiguration } = {
         banner: {
             borderColor: '#d08311',
             fontColor: '#000000',
@@ -48,12 +48,12 @@ export class LandmarkFormatter extends FailureInstanceFormatter {
         },
     };
 
-    private static readonly invalidLandmarkStyle: IHeadingStyleConfiguration = {
+    private static readonly invalidLandmarkStyle: HeadingStyleConfiguration = {
         borderColor: '#C00000',
         fontColor: '#FFFFFF',
     };
 
-    public static getStyleForLandmarkRole(role: string): IHeadingStyleConfiguration {
+    public static getStyleForLandmarkRole(role: string): HeadingStyleConfiguration {
         return LandmarkFormatter.landmarkStyles[role] || LandmarkFormatter.invalidLandmarkStyle;
     }
 
