@@ -4,7 +4,7 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { DevToolsChromeAdapter, IDevToolsChromeAdapter } from '../../../background/dev-tools-chrome-adapter';
 import { PortWithTabId } from '../../../background/dev-tools-listener';
-import { PortDisconnectStub, PortOnMessageStub } from '../Stubs/chrome-adapter-stub';
+import { PortDisconnectStub, PortOnMessageStub } from '../stubs/chrome-adapter-stub';
 import { PortStub } from '../stubs/port-stub';
 
 export class PortWithTabTabIdStub extends PortStub implements PortWithTabId {
