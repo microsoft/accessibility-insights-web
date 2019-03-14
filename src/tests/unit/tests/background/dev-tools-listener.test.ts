@@ -11,7 +11,7 @@ import { DevToolsOpenMessage } from '../../../../common/types/dev-tools-open-mes
 import { ChromeAdapterMock, PortWithTabTabIdStub } from '../../mock-helpers/chrome-adapter-mock';
 import { PortOnDisconnectMock } from '../../mock-helpers/port-on-disconnect-mock';
 import { PortOnMessageMock } from '../../mock-helpers/port-on-message-mock';
-import { PortStub } from '../../Stubs/chrome-adapter-stub';
+import { PortStub } from '../../stubs/port-stub';
 
 describe('DevToolsListenerTests', () => {
     let _testSubject: DevToolsListener;

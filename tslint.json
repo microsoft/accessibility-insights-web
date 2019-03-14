@@ -3,14 +3,10 @@
     // We eventually want there to only be one tslint.json file, and to have all checks be build-enforced
     "extends": "./tslint.build-enforced.json",
     "rules": {
-        "indent": [true, "spaces"],
-        "max-classes-per-file": [true, 2],
         "max-line-length": [true, 140],
         "no-default-export": true,
         "no-invalid-this": [true, "check-function-in-method"],
         "no-shadowed-variable": true, // Disallows shadowing variable declarations
-        "no-var-keyword": true,
-        "prefer-const": [true, { "destructuring": "all" }],
         "switch-default": true,
         "typedef": [true, "call-signature", "property-declaration"]
     }

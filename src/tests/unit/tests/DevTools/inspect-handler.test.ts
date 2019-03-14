@@ -7,7 +7,7 @@ import { DevToolState } from '../../../../common/types/store-data/idev-tool-stat
 import { InspectHandler } from '../../../../Devtools/inspect-handler';
 import { ChromeAdapterMock } from '../../mock-helpers/chrome-adapter-mock';
 import { StoreMock } from '../../mock-helpers/store-mock';
-import { PortStub } from '../../stubs/chrome-adapter-stub';
+import { PortStub } from '../../stubs/port-stub';
 
 describe('InspectHandlerTests', () => {
     let testObjec: InspectHandler;
