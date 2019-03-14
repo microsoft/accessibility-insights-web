@@ -75,7 +75,7 @@ export const RoleStateProperty: TestStep = {
                 },
                 {
                     propertyName: 'text',
-                    displayName: 'Accesssible name',
+                    displayName: 'Accessible name',
                     defaultValue: '-',
                 },
             ]),
