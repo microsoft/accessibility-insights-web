@@ -6,6 +6,10 @@ Licensed under the MIT License.
 ## ![Product Logo](./src/icons/brand/blue/brand-blue-48px.png) Accessibility Insights for Web
 
 [![Build Status](https://dev.azure.com/ms/accessibility-insights-web/_apis/build/status/AccessibilityInsights-Web-CI?branchName=master)](https://dev.azure.com/ms/accessibility-insights-web/_build/latest?definitionId=63&branchName=master)
+![Azure DevOps coverage](https://img.shields.io/azure-devops/coverage/ms/accessibility-insights-web/63.svg)
+![Chrome Web Store](https://img.shields.io/chrome-web-store/v/pbjjkligggfmakdaogkfomddhfmpjeni.svg?label=Version)
+![Chrome Web Store](https://img.shields.io/chrome-web-store/users/pbjjkligggfmakdaogkfomddhfmpjeni.svg)
+![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/pbjjkligggfmakdaogkfomddhfmpjeni.svg)
 
 Accessibility Insights for Web is a Google Chrome extension for assessing the accessibility of web sites and web applications.
 
