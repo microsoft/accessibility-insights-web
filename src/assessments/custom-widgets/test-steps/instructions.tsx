@@ -55,12 +55,12 @@ export const Instructions: TestStep = {
                 },
                 {
                     propertyName: 'text',
-                    displayName: 'Accesssible name',
+                    displayName: 'Accessible name',
                     defaultValue: '-',
                 },
                 {
                     propertyName: 'describedBy',
-                    displayName: 'Accesssible description',
+                    displayName: 'Accessible description',
                     defaultValue: '-',
                 },
             ]),

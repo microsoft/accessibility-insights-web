@@ -32,7 +32,7 @@ const listsHowToTest: JSX.Element = (
                     </li>
                     <li>
                         An <Markup.Emphasis>ordered</Markup.Emphasis> list (numbered) must be contained within an{' '}
-                        <Markup.Tag tagName="li" /> element.
+                        <Markup.Tag tagName="ol" /> element.
                     </li>
                     <li>
                         A <Markup.Emphasis>description</Markup.Emphasis> list (a set of terms and definitions) must be contained within a{' '}

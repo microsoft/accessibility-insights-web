@@ -65,7 +65,7 @@ export const DesignPattern: TestStep = {
                 },
                 {
                     propertyName: 'text',
-                    displayName: 'Accesssible name',
+                    displayName: 'Accessible name',
                     defaultValue: '-',
                 },
             ]),
@@ -76,7 +76,7 @@ export const DesignPattern: TestStep = {
         ReportInstanceField.fromPropertyBagFunction<CustomWidgetPropertyBag>('Design pattern', 'designPattern', pb =>
             getFlatDesignPatternStringFromRole(pb.role),
         ),
-        ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>('Accesssible name', 'text'),
+        ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>('Accessible name', 'text'),
     ],
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(
