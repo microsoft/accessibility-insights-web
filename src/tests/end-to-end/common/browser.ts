@@ -54,7 +54,7 @@ export class Browser {
     }
 
     public async getDetailsViewPageUrl(targetTabId: number): Promise<string> {
-        return this.getExtensionUrl(`detailsView/detailsView.html?tabId=${targetTabId}`);
+        return this.getExtensionUrl(`DetailsView/detailsView.html?tabId=${targetTabId}`);
     }
 
     public async getContentPageUrl(contentPath: string): Promise<string> {
