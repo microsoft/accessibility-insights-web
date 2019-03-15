@@ -9,7 +9,6 @@ import { CustomRulesConfigurationStub } from './custom-rules-configuration-stub'
 
 describe('MessageDecorator', () => {
     let axeResultStub: AxeRule;
-    let passedAxeResultStub: AxeRule;
     let checkMessageTransformerMock: IMock<CheckMessageTransformer>;
     let configuration: RuleConfiguration[];
 
