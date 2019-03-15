@@ -3,7 +3,7 @@
 import { IMock, Mock, MockBehavior } from 'typemoq';
 import { ChromeEventMock } from './chrome-event-mock';
 
-import { PortOnMessageStub } from '../Stubs/chrome-adapter-stub';
+import { PortOnMessageStub } from '../stubs/chrome-adapter-stub';
 
 export class PortOnMessageMock extends ChromeEventMock {
     private _portOnMessageMock: IMock<PortOnMessageStub>;

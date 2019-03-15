@@ -70,7 +70,6 @@ describe('verify widget function data', () => {
     const allAriaAttributes = Object.getOwnPropertyNames(axe.commons.aria.lookupTable.attributes);
     const overlappingHTMLAttributes = map(allAriaAttributes, s => s.replace('aria-', ''));
     const allAttributes = allAriaAttributes.concat(overlappingHTMLAttributes);
-    // tslint:disable-next-line:max-line-length
     const expectedAttributes = [
         'aria-autocomplete',
         'aria-checked',
@@ -95,7 +94,7 @@ describe('verify widget function data', () => {
 
     const context = {
         _data: null,
-        data: function(d: any) {
+        data: function(d): void {
             // tslint:disable-next-line:no-invalid-this
             this._data = d;
         },

@@ -32,7 +32,7 @@ export function ContentCreator<M extends HyperlinkDefinitionMap>(
 
         if (linkMap) {
             toPairs(linkMap).forEach(([key, { href, text }]) => {
-                map[key] = () => <markup.HyperLink href={href}>{text}</markup.HyperLink>;
+                map[key] = ({ children }) => <markup.HyperLink href={href}>{children || text}</markup.HyperLink>;
             });
         }
 

@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IAssessmentVisualizationInstance } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
-import { IPartialTabOrderPropertyBag, ITabOrderPropertyBag } from '../../../../injected/tab-order-property-bag';
-import { IVisualizationPropertyBag, VisualizationInstanceProcessor } from '../../../../injected/visualization-instance-processor';
+import { PartialTabOrderPropertyBag, TabOrderPropertyBag } from '../../../../injected/tab-order-property-bag';
+import { VisualizationInstanceProcessor, VisualizationPropertyBag } from '../../../../injected/visualization-instance-processor';
 
 describe('VisualizationInstanceProcessorTest', () => {
     test('nullProcessor', () => {
@@ -11,7 +11,7 @@ describe('VisualizationInstanceProcessorTest', () => {
     });
 
     test('addOrder', () => {
-        const initialInstances: IVisualizationPropertyBag<IPartialTabOrderPropertyBag>[] = [
+        const initialInstances: VisualizationPropertyBag<PartialTabOrderPropertyBag>[] = [
             {
                 ...createNullifiedAssessmenVisualizationInstance(),
                 propertyBag: {
@@ -25,7 +25,7 @@ describe('VisualizationInstanceProcessorTest', () => {
                 },
             },
         ];
-        const expectedInstances: IVisualizationPropertyBag<ITabOrderPropertyBag>[] = [
+        const expectedInstances: VisualizationPropertyBag<TabOrderPropertyBag>[] = [
             {
                 ...createNullifiedAssessmenVisualizationInstance(),
                 propertyBag: {

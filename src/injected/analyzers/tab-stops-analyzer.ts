@@ -8,8 +8,7 @@ import { ITabStopEvent, TabStopsListener } from './../tab-stops-listener';
 import { BaseAnalyzer } from './base-analyzer';
 import { AxeAnalyzerResult, IAnalyzer, IFocusAnalyzerConfiguration, IScanBasePayload, IScanUpdatePayload } from './ianalyzer';
 
-// tslint:disable-next-line:interface-name
-export interface IProgressResult<T> {
+export interface ProgressResult<T> {
     result: T;
 }
 
@@ -71,7 +70,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer implements IAnalyzer<any> {
     }
 
     @autobind
-    protected onProgress(progressResult: IProgressResult<ITabStopEvent[]>): void {
+    protected onProgress(progressResult: ProgressResult<ITabStopEvent[]>): void {
         const payload: IScanUpdatePayload = {
             key: this.config.key,
             testType: this.config.testType,

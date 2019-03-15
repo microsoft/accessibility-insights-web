@@ -159,7 +159,8 @@ export const guidance = create(({ Markup, Link }) => (
         </Markup.HyperLink>
 
         <h4>Sufficient techniques</h4>
-        <Markup.HyperLink href="https://www.w3.org/TR/WCAG20-TECHS/H42.html">Using h1 - h6 to identify headings</Markup.HyperLink>
+        <Link.IdentifyHeadings>Using h1 - h6 to identify headings</Link.IdentifyHeadings>
+        <br />
         <Markup.HyperLink href="https://www.w3.org/TR/WCAG20-TECHS/G141.html">Organizing a page using headings</Markup.HyperLink>
 
         <h4>Common failures</h4>

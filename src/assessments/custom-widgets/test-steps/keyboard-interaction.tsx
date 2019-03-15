@@ -58,7 +58,7 @@ export const KeyboardInteraction: TestStep = {
                 },
                 {
                     propertyName: 'text',
-                    displayName: 'Accesssible name',
+                    displayName: 'Accessible name',
                     defaultValue: '-',
                 },
             ]),

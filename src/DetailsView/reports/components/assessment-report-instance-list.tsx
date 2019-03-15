@@ -18,7 +18,7 @@ export const AssessmentReportInstanceList = NamedSFC<AssessmentReportInstanceLis
 
     return <div>{renderInstances()}</div>;
 
-    function renderInstances() {
+    function renderInstances(): JSX.Element[] {
         return props.instances.map((instance, index) => {
             return (
                 <table className="instance-details" key={`instance-row-${index}`}>

@@ -7,7 +7,7 @@ import { VisualizationType } from '../../../../common/types/visualization-type';
 import { DrawingController, VisualizationWindowMessage } from '../../../../injected/drawing-controller';
 import { DrawingInitiator } from '../../../../injected/drawing-initiator';
 import { IAssessmentVisualizationInstance } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
-import { IPropertyBags, IVisualizationInstanceProcessorCallback } from '../../../../injected/visualization-instance-processor';
+import { PropertyBags, VisualizationInstanceProcessorCallback } from '../../../../injected/visualization-instance-processor';
 
 class DrawingControllerStub extends DrawingController {
     public processRequest(message: VisualizationWindowMessage) {}
@@ -15,7 +15,7 @@ class DrawingControllerStub extends DrawingController {
 
 describe('DrawingInitiatorTest', () => {
     let drawingControllerMock: IMock<DrawingController>;
-    let processorMock: IMock<IVisualizationInstanceProcessorCallback<IPropertyBags, IPropertyBags>>;
+    let processorMock: IMock<VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags>>;
     let testObject: DrawingInitiator;
 
     beforeEach(() => {

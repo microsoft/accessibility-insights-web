@@ -5,18 +5,15 @@ import * as Axe from 'axe-core';
 import { ruleToLinkConfiguration } from '../../../../scanner/rule-to-links-mappings';
 
 describe('axe.commons.text.accessibleText examples', () => {
-    // tslint:disable-next-line:variable-name
-    let _axe;
-    let config;
+    let axe;
 
     beforeEach(() => {
-        _axe = Axe;
-        config = ruleToLinkConfiguration;
+        axe = Axe;
     });
 
     it('should have mappings for all axe rules', () => {
-        _axe.getRules().forEach(rule => {
-            expect(config[rule.ruleId]).not.toEqual(undefined);
+        axe.getRules().forEach(rule => {
+            expect(ruleToLinkConfiguration[rule.ruleId]).not.toEqual(undefined);
         });
     });
 });

@@ -2,8 +2,7 @@
 // Licensed under the MIT License.
 import { ColumnValueBag } from './column-value-bag';
 
-// tslint:disable-next-line:interface-name
-export interface IImageFunctionPropertyBag extends ColumnValueBag {
+export interface ImageFunctionPropertyBag extends ColumnValueBag {
     imageType: string;
     accessibleName: string;
     codedAs: string;

@@ -34,7 +34,10 @@ export abstract class BaseVisualHelperToggle extends React.Component<VisualHelpe
 
     protected abstract isChecked(instances: IGeneratedAssessmentInstance<{}, {}>[]): boolean;
 
-    protected filterInstancesByTestStep(assessmentNavState, instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance>) {
+    protected filterInstancesByTestStep(
+        assessmentNavState,
+        instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance>,
+    ): IGeneratedAssessmentInstance<{}, {}>[] {
         const selectedTestStep = assessmentNavState.selectedTestStep;
 
         return _.filter(instancesMap, instance => {

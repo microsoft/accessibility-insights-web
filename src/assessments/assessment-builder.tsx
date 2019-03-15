@@ -17,9 +17,9 @@ import { AssessmentTestView } from '../DetailsView/components/assessment-test-vi
 import { TestStepLink } from '../DetailsView/components/test-step-link';
 import { AnalyzerProvider } from '../injected/analyzers/analyzer-provider';
 import {
-    IPropertyBags,
-    IVisualizationInstanceProcessorCallback,
+    PropertyBags,
     VisualizationInstanceProcessor,
+    VisualizationInstanceProcessorCallback,
 } from '../injected/visualization-instance-processor';
 import { DrawerProvider } from '../injected/visualization/drawer-provider';
 import { DecoratedAxeNodeResult, ScannerUtils } from './../injected/scanner-utils';
@@ -243,7 +243,7 @@ export class AssessmentBuilder {
     }
 
     private static getVisualizationInstanceProcessor(steps: TestStep[]) {
-        return (testStep: string): IVisualizationInstanceProcessorCallback<IPropertyBags, IPropertyBags> => {
+        return (testStep: string): VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags> => {
             const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
             if (stepConfig == null || stepConfig.visualizationInstanceProcessor == null) {
                 return VisualizationInstanceProcessor.nullProcessor;

@@ -3,7 +3,7 @@
 import { IRequirementReportModel } from '../reports/assessment-report-model';
 import { assessmentReportExtensionPoint } from './assessment-report-extension-point';
 
-function alterRequirementReportModel(model: IRequirementReportModel) {
+function alterRequirementReportModel(model: IRequirementReportModel): void {
     model.showPassingInstances = false;
 }
 

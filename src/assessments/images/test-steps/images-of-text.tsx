@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { IImagesOfTextPropertyBag } from '../../../common/types/property-bag/iimage-of-text';
+import { ImagesOfTextPropertyBag } from '../../../common/types/property-bag/iimage-of-text';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
@@ -31,7 +31,7 @@ const howToTest: JSX.Element = (
 
 const key = ImagesTestStep.imageOfText;
 
-const propertyBagConfig: PropertyBagColumnRendererConfig<IImagesOfTextPropertyBag>[] = [
+const propertyBagConfig: PropertyBagColumnRendererConfig<ImagesOfTextPropertyBag>[] = [
     {
         propertyName: 'imageType',
         displayName: 'Image type',

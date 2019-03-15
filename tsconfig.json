@@ -31,7 +31,8 @@
         "paths": {
             "*": ["*"],
             "typemoq": ["typemoq/typemoq"]
-        }
+        },
+        "forceConsistentCasingInFileNames": true
     },
     "include": ["src/**/*.ts", "src/**/*.tsx", "references.ts"],
     "exclude": ["src/common/references.ts", "src/webpack.config.js"]

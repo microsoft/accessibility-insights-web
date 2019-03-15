@@ -7,7 +7,6 @@ import { Processor } from '../../../../scanner/processor';
 describe('getDefaultAxeRules', () => {
     let suppressedChecks: IDictionaryStringTo<FormattedCheckResult>;
     let nonSuppressedCheck: FormattedCheckResult;
-    let suppressedCheckData: FormattedCheckResult;
 
     beforeEach(() => {
         Processor.suppressedMessages = [

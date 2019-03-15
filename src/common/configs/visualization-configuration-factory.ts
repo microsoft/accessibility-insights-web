@@ -14,7 +14,7 @@ import { TestViewProps } from '../../DetailsView/components/test-view';
 import { AnalyzerProvider } from '../../injected/analyzers/analyzer-provider';
 import { IAnalyzer } from '../../injected/analyzers/ianalyzer';
 import { IHtmlElementAxeResults, ScannerUtils } from '../../injected/scanner-utils';
-import { IPropertyBags, IVisualizationInstanceProcessorCallback } from '../../injected/visualization-instance-processor';
+import { PropertyBags, VisualizationInstanceProcessorCallback } from '../../injected/visualization-instance-processor';
 import { DrawerProvider } from '../../injected/visualization/drawer-provider';
 import { IDrawer } from '../../injected/visualization/idrawer';
 import { ScanResults } from '../../scanner/iruleresults';
@@ -49,7 +49,7 @@ export interface AssesssmentVisualizationConfiguration {
     telemetryProcessor?: TelemetryProcessor<IAnalyzerTelemetryCallback>;
     getAnalyzer: (analyzerProvider: AnalyzerProvider, testStep?: string) => IAnalyzer<any>;
     getIdentifier: (testStep?: string) => string;
-    visualizationInstanceProcessor: (testStep?: string) => IVisualizationInstanceProcessorCallback<IPropertyBags, IPropertyBags>;
+    visualizationInstanceProcessor: (testStep?: string) => VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags>;
     getNotificationMessage: (selectorMap: DictionaryStringTo<any>, testStep?: string) => string;
     getDrawer: (provider: DrawerProvider, testStep?: string) => IDrawer;
     getSwitchToTargetTabOnScan: (testStep?: string) => boolean;

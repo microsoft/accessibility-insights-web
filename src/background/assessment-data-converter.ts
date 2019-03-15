@@ -3,7 +3,7 @@
 import * as _ from 'lodash/index';
 
 import { ManualTestStatus } from '../common/types/manual-test-status';
-import { IPartialTabOrderPropertyBag } from '../injected/tab-order-property-bag';
+import { PartialTabOrderPropertyBag } from '../injected/tab-order-property-bag';
 import { ITabStopEvent } from '../injected/tab-stops-listener';
 import {
     IAssessmentInstancesMap,
@@ -126,11 +126,11 @@ export class AssessmentDataConverter {
         let testStepResults = {};
         const target: string[] = event.target;
         const html: string = event.html;
-        let propertyBag: IPartialTabOrderPropertyBag = { timestamp: event.timestamp };
+        let propertyBag: PartialTabOrderPropertyBag = { timestamp: event.timestamp };
 
         if (matchingInstance != null) {
             testStepResults = matchingInstance.testStepResults;
-            propertyBag = matchingInstance.propertyBag as IPartialTabOrderPropertyBag;
+            propertyBag = matchingInstance.propertyBag as PartialTabOrderPropertyBag;
         }
 
         testStepResults[testStep] = this.getGenericTestStepResultForEvent();
@@ -174,7 +174,7 @@ export class AssessmentDataConverter {
         return this.getPropertyBagFrom(ruleResult, 'any');
     }
 
-    private getPropertyBagFrom(ruleResult: DecoratedAxeNodeResult, checkName: ChecksType) {
+    private getPropertyBagFrom(ruleResult: DecoratedAxeNodeResult, checkName: ChecksType): any {
         if (ruleResult[checkName] && !_.isEmpty(ruleResult[checkName]) && ruleResult[checkName][0].data) {
             return ruleResult[checkName][0].data;
         }
