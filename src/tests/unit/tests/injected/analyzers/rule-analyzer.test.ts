@@ -90,7 +90,7 @@ describe('RuleAnalyzer', () => {
         return telemetryStub;
     }
 
-    function testGetResults(done: () => void) {
+    function testGetResults(done: () => void): void {
         const key = 'sample key';
         const telemetryProcessorStub = factory => (_, elapsedTime, __) => {
             return createTelemetryStub(elapsedTime, testName, key);
@@ -158,7 +158,7 @@ describe('RuleAnalyzer', () => {
         scanCallback(scanResults);
     }
 
-    function setupScannerUtilsMock(rules: string[]) {
+    function setupScannerUtilsMock(rules: string[]): void {
         const getState = scopingStoreMock.object.getState();
         const include = getState.selectors[ScopingInputTypes.include];
         const exclude = getState.selectors[ScopingInputTypes.exclude];

@@ -948,17 +948,17 @@ describe('SVGDrawerV2Tests', () => {
         return drawerConfig;
     }
 
-    function findFocusIndicatorLines() {
+    function findFocusIndicatorLines(): NodeListOf<Element> {
         const lines = shadowContainer.querySelectorAll('.insights-svg-line');
         return lines;
     }
 
-    function findFocusIndicatorCircles() {
+    function findFocusIndicatorCircles(): NodeListOf<Element> {
         const circles = shadowContainer.querySelectorAll('.insights-svg-focus-indicator');
         return circles;
     }
 
-    function findFocusIndicatorLabels() {
+    function findFocusIndicatorLabels(): NodeListOf<Element> {
         const labels = shadowContainer.querySelectorAll('.insights-svg-focus-indicator-text');
         return labels;
     }
@@ -996,7 +996,7 @@ describe('SVGDrawerV2Tests', () => {
             });
     }
 
-    function setupFilterFactoryDefault(dom) {
+    function setupFilterFactoryDefault(dom): void {
         filterFactoryMock
             .setup(f => f.createFilter())
             .returns(() => {

@@ -11,7 +11,7 @@ import { PropertyBags, VisualizationInstanceProcessorCallback } from '../../../.
 import { DictionaryStringTo } from '../../../../types/common-types';
 
 class DrawingControllerStub extends DrawingController {
-    public processRequest(message: VisualizationWindowMessage) {}
+    public processRequest(message: VisualizationWindowMessage): void {}
 }
 
 describe('DrawingInitiatorTest', () => {
@@ -25,7 +25,7 @@ describe('DrawingInitiatorTest', () => {
         testObject = new DrawingInitiator(drawingControllerMock.object);
     });
 
-    function verifyAll() {
+    function verifyAll(): void {
         processorMock.verifyAll();
         drawingControllerMock.verifyAll();
     }
