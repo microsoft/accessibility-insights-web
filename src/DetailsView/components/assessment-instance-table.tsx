@@ -27,14 +27,13 @@ export interface AssessmentInstanceTableProps {
     instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance>;
     assessmentNavState: AssessmentNavState;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
-    renderInstanceTableHeader: (table: AssessmentInstanceTable, items: IAssessmentInstanceRowData[]) => JSX.Element;
+    renderInstanceTableHeader: (table: AssessmentInstanceTable, items: AssessmentInstanceRowData[]) => JSX.Element;
     getDefaultMessage: Function;
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
     hasVisualHelper: boolean;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IAssessmentInstanceRowData<P = {}> extends IObjectWithKey {
+export interface AssessmentInstanceRowData<P = {}> extends IObjectWithKey {
     statusChoiceGroup: JSX.Element;
     visualizationButton?: JSX.Element;
     instance: IGeneratedAssessmentInstance<P>;
@@ -52,7 +51,7 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
             return <Spinner className="details-view-spinner" size={SpinnerSize.large} label={'Scanning'} />;
         }
 
-        const items: IAssessmentInstanceRowData[] = this.props.assessmentInstanceTableHandler.createAssessmentInstanceTableItems(
+        const items: AssessmentInstanceRowData[] = this.props.assessmentInstanceTableHandler.createAssessmentInstanceTableItems(
             this.props.instancesMap,
             this.props.assessmentNavState,
             this.props.hasVisualHelper,
@@ -88,7 +87,7 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
     }
 
     @autobind
-    public onItemInvoked(item: IAssessmentInstanceRowData): void {
+    public onItemInvoked(item: AssessmentInstanceRowData): void {
         this.updateFocusedTarget(item);
     }
 
@@ -98,11 +97,11 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
     }
 
     @autobind
-    public updateFocusedTarget(item: IAssessmentInstanceRowData): void {
+    public updateFocusedTarget(item: AssessmentInstanceRowData): void {
         this.props.assessmentInstanceTableHandler.updateFocusedTarget(item.instance.target);
     }
 
-    public renderDefaultInstanceTableHeader(items: IAssessmentInstanceRowData[]): JSX.Element {
+    public renderDefaultInstanceTableHeader(items: AssessmentInstanceRowData[]): JSX.Element {
         const disabled = !this.isAnyInstanceStatusUnknown(items, this.props.assessmentNavState.selectedTestStep);
 
         return (
@@ -112,7 +111,7 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
         );
     }
 
-    private isAnyInstanceStatusUnknown(items: IAssessmentInstanceRowData[], step: string): boolean {
+    private isAnyInstanceStatusUnknown(items: AssessmentInstanceRowData[], step: string): boolean {
         return items.some(
             item => has(item.instance.testStepResults, step) && item.instance.testStepResults[step].status === ManualTestStatus.UNKNOWN,
         );

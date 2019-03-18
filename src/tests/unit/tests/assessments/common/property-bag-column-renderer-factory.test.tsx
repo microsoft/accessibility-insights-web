@@ -6,7 +6,7 @@ import * as React from 'react';
 import { PropertyBagColumnRendererConfig } from '../../../../../assessments/common/property-bag-column-renderer';
 import { PropertyBagColumnRendererFactory } from '../../../../../assessments/common/property-bag-column-renderer-factory';
 import { ColumnValueBag } from '../../../../../common/types/property-bag/column-value-bag';
-import { IAssessmentInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
+import { AssessmentInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
 import { RendererWrapper } from './renderer-wrapper';
 
 interface TestPropertyBag extends ColumnValueBag {
@@ -22,7 +22,7 @@ describe('PropertyBagColumnRendererFactoryTest', () => {
             },
         ];
 
-        const item: IAssessmentInstanceRowData<TestPropertyBag> = {
+        const item: AssessmentInstanceRowData<TestPropertyBag> = {
             instance: {
                 html: null,
                 target: null,

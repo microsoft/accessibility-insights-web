@@ -13,7 +13,7 @@ import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { AssessmentInstanceTable, IAssessmentInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
+import { AssessmentInstanceTable, AssessmentInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
 import { TestStepLink } from '../../../../../DetailsView/components/test-step-link';
 import { AnalyzerProvider } from '../../../../../injected/analyzers/analyzer-provider';
 import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/ianalyzer';
@@ -138,7 +138,7 @@ describe('buildTestStepsFromRules', () => {
     }
 
     function validateInstanceColumnsRender(actualColumns: InstanceTableColumn[], target: string[], html: string, message: string): void {
-        const item: IAssessmentInstanceRowData = {
+        const item: AssessmentInstanceRowData = {
             statusChoiceGroup: null,
             visualizationButton: null,
             instance: {

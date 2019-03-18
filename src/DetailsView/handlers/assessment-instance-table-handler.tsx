@@ -13,7 +13,7 @@ import {
 import { VisualizationType } from '../../common/types/visualization-type';
 import { AssessmentInstanceEditAndRemoveControl } from '../components/assessment-instance-edit-and-remove-control';
 import { AssessmentInstanceSelectedButton } from '../components/assessment-instance-selected-button';
-import { IAssessmentInstanceRowData, ICapturedInstanceRowData } from '../components/assessment-instance-table';
+import { AssessmentInstanceRowData, ICapturedInstanceRowData } from '../components/assessment-instance-table';
 import { AssessmentTableColumnConfigHandler } from '../components/assessment-table-column-config-handler';
 import { ManualTestStatus } from './../../common/types/manual-test-status';
 import { DetailsViewActionMessageCreator } from './../actions/details-view-action-message-creator';
@@ -61,7 +61,7 @@ export class AssessmentInstanceTableHandler {
         instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance>,
         assessmentNavState: AssessmentNavState,
         hasVisualHelper: boolean,
-    ): IAssessmentInstanceRowData[] {
+    ): AssessmentInstanceRowData[] {
         const assessmentInstances = this.getInstanceKeys(instancesMap, assessmentNavState).map(key => {
             const instance = instancesMap[key];
             return {
@@ -69,7 +69,7 @@ export class AssessmentInstanceTableHandler {
                 statusChoiceGroup: this.renderChoiceGroup(instance, key, assessmentNavState),
                 visualizationButton: hasVisualHelper ? this.renderSelectedButton(instance, key, assessmentNavState) : null,
                 instance: instance,
-            } as IAssessmentInstanceRowData;
+            } as AssessmentInstanceRowData;
         });
         return assessmentInstances;
     }

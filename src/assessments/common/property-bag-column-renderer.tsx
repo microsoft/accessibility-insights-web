@@ -4,7 +4,7 @@ import { isEmpty } from 'lodash/index';
 import * as React from 'react';
 
 import { ColumnValue, ColumnValueBag } from '../../common/types/property-bag/column-value-bag';
-import { IAssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
+import { AssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
 
 export interface PropertyBagColumnRendererConfig<TPropertyBag extends ColumnValueBag> {
     propertyName: keyof TPropertyBag & string;
@@ -14,7 +14,7 @@ export interface PropertyBagColumnRendererConfig<TPropertyBag extends ColumnValu
 }
 
 export function propertyBagColumnRenderer<TPropertyBag extends ColumnValueBag>(
-    item: IAssessmentInstanceRowData<TPropertyBag>,
+    item: AssessmentInstanceRowData<TPropertyBag>,
     configs: PropertyBagColumnRendererConfig<TPropertyBag>[],
 ): JSX.Element {
     const mapper = (config: PropertyBagColumnRendererConfig<TPropertyBag>, index: number) => {

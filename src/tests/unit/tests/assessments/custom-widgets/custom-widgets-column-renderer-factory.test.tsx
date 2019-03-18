@@ -6,12 +6,12 @@ import * as React from 'react';
 import { PropertyBagColumnRendererConfig } from '../../../../../assessments/common/property-bag-column-renderer';
 import { CustomWidgetsColumnRendererFactory } from '../../../../../assessments/custom-widgets/custom-widgets-column-renderer-factory';
 import { ColumnValueBag } from '../../../../../common/types/property-bag/column-value-bag';
-import { IAssessmentInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
+import { AssessmentInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
 import { RendererWrapper } from '../common/renderer-wrapper';
 
 describe('CustomWidgetsColumnRendererFactory', () => {
     let configs: PropertyBagColumnRendererConfig<TestPropertyBag>[];
-    let item: IAssessmentInstanceRowData<TestPropertyBag>;
+    let item: AssessmentInstanceRowData<TestPropertyBag>;
 
     beforeEach(() => {
         configs = [

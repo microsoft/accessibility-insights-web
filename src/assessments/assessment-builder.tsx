@@ -12,7 +12,7 @@ import { Messages } from '../common/messages';
 import { ManualTestStatus } from '../common/types/manual-test-status';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { IAssessmentScanData, IScanData } from '../common/types/store-data/ivisualization-store-data';
-import { AssessmentInstanceTable, IAssessmentInstanceRowData } from '../DetailsView/components/assessment-instance-table';
+import { AssessmentInstanceTable, AssessmentInstanceRowData } from '../DetailsView/components/assessment-instance-table';
 import { AssessmentTestView } from '../DetailsView/components/assessment-test-view';
 import { TestStepLink } from '../DetailsView/components/test-step-link';
 import { AnalyzerProvider } from '../injected/analyzers/analyzer-provider';
@@ -77,7 +77,7 @@ export class AssessmentBuilder {
         ];
     }
 
-    private static renderInstanceTableHeader(table: AssessmentInstanceTable, items: IAssessmentInstanceRowData[]): JSX.Element {
+    private static renderInstanceTableHeader(table: AssessmentInstanceTable, items: AssessmentInstanceRowData[]): JSX.Element {
         return table.renderDefaultInstanceTableHeader(items);
     }
 
