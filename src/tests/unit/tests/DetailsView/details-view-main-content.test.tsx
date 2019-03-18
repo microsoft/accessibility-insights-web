@@ -201,7 +201,6 @@ describe('DetailsViewMainContentTest', () => {
                 title={givenProps.tabStoreData.title}
                 actionCreator={givenProps.deps.detailsViewActionMessageCreator}
                 selectedPivot={givenProps.visualizationStoreData.selectedDetailsViewPivot}
-                featureFlags={givenProps.featureFlagStoreData}
                 dropdownClickHandler={givenProps.dropdownClickHandler}
             />
         );
