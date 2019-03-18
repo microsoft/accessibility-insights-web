@@ -16,6 +16,7 @@ import { IVisualizationScanResultData } from '../../../../common/types/store-dat
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { IAssessmentVisualizationInstance } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { SelectorMapHelper } from '../../../../injected/selector-map-helper';
+import { DictionaryStringTo } from '../../../../types/common-types';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 

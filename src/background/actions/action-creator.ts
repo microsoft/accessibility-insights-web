@@ -10,6 +10,7 @@ import * as TelemetryEvents from '../../common/telemetry-events';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewRightContentPanelType } from '../../DetailsView/components/left-nav/details-view-right-content-panel-type';
 import { IScanCompletedPayload } from '../../injected/analyzers/ianalyzer';
+import { DictionaryNumberTo } from '../../types/common-types';
 import { VisualizationActions } from '../actions/visualization-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
 import { ChromeFeatureController } from '../chrome-feature-controller';

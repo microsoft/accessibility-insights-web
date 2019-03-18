@@ -7,6 +7,7 @@ import { IAssessmentsProvider } from '../../assessments/types/iassessments-provi
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { IManualTestStepResult } from '../../common/types/store-data/iassessment-result-data';
 import { VisualizationType } from '../../common/types/visualization-type';
+import { DictionaryStringTo } from '../../types/common-types';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 import { CapturedInstanceActionType, FailureInstancePanelControl } from './failure-instance-panel-control';
 import { TestStatusChoiceGroup } from './test-status-choice-group';

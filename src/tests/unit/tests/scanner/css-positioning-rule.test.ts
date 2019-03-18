@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as axe from 'axe-core';
-import { GlobalMock, GlobalScope, IGlobalMock, It, MockBehavior, Times } from 'typemoq';
+import { GlobalMock, GlobalScope, It, MockBehavior, Times } from 'typemoq';
 
 import { cssPositioningConfiguration } from '../../../../scanner/css-positioning-rule';
-import { IDictionaryStringTo } from '../../../../scanner/dictionary-types';
+import { DictionaryStringTo } from '../../../../types/common-types';
 
 describe('verify meaningful sequence configs', () => {
     it('should have correct props', () => {
@@ -78,7 +78,7 @@ describe('verify evaluate', () => {
         testMeaningfulSequence(testStub.nodeStyleStub, testStub.isVisible, testStub.expectedResult);
     });
 
-    function testMeaningfulSequence(nodeStyleStub: IDictionaryStringTo<string>, isVisibleParam: boolean, expectedResult: boolean): void {
+    function testMeaningfulSequence(nodeStyleStub: DictionaryStringTo<string>, isVisibleParam: boolean, expectedResult: boolean): void {
         axeVisibilityMock
             .setup(isVisible => isVisible(nodeStyleStub))
             .returns(() => isVisibleParam)

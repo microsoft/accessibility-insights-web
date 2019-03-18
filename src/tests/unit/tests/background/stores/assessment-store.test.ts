@@ -41,6 +41,7 @@ import { VisualizationType } from '../../../../../common/types/visualization-typ
 import { IScanBasePayload, IScanCompletedPayload, IScanUpdatePayload } from '../../../../../injected/analyzers/ianalyzer';
 import { ITabStopEvent } from '../../../../../injected/tab-stops-listener';
 import { ScanResults } from '../../../../../scanner/iruleresults';
+import { DictionaryStringTo } from '../../../../../types/common-types';
 import { AssessmentDataBuilder } from '../../../common/assessment-data-builder';
 import { AssessmentsStoreDataBuilder } from '../../../common/assessment-store-data-builder';
 import { AssessmentStoreTester } from '../../../common/assessment-store-tester';

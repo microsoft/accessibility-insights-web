@@ -42,6 +42,7 @@ import * as TelemetryEvents from '../../../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { IScanCompletedPayload } from '../../../../../injected/analyzers/ianalyzer';
+import { DictionaryStringTo } from '../../../../../types/common-types';
 import { AssessmentActions } from './../../../../../background/actions/assessment-actions';
 import { PreviewFeaturesActions } from './../../../../../background/actions/preview-features-actions';
 

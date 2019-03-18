@@ -14,6 +14,7 @@ import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag
 import { CheckType } from '../../injected/components/details-dialog';
 import { FixInstructionPanel } from '../../injected/components/fix-instruction-panel';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
+import { DictionaryStringTo } from '../../types/common-types';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { GuidanceLinks } from './guidance-links';
 

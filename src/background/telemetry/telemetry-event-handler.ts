@@ -3,6 +3,7 @@
 import * as _ from 'lodash';
 
 import { TelemetryEventSource } from '../../common/telemetry-events';
+import { DictionaryStringTo } from '../../types/common-types';
 import { BaseActionPayload } from '../actions/action-payloads';
 import { BrowserAdapter } from '../browser-adapter';
 import { TelemetryClient } from './telemetry-client';

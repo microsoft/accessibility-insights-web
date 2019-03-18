@@ -8,6 +8,7 @@ import { DrawingController, VisualizationWindowMessage } from '../../../../injec
 import { DrawingInitiator } from '../../../../injected/drawing-initiator';
 import { IAssessmentVisualizationInstance } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { PropertyBags, VisualizationInstanceProcessorCallback } from '../../../../injected/visualization-instance-processor';
+import { DictionaryStringTo } from '../../../../types/common-types';
 
 class DrawingControllerStub extends DrawingController {
     public processRequest(message: VisualizationWindowMessage) {}

@@ -9,6 +9,7 @@ import { EnumHelper } from '../common/enum-helper';
 import { FeatureFlags } from '../common/feature-flags';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
+import { DictionaryNumberTo } from '../types/common-types';
 import { HTMLElementUtils } from './../common/html-element-utils';
 import { FrameCommunicator, IMessageRequest } from './frameCommunicators/frame-communicator';
 import {

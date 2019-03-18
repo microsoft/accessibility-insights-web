@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-import * as _ from 'lodash/index';
+import * as _ from 'lodash';
 
 import { TestMode } from '../common/configs/test-mode';
 import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -11,6 +11,7 @@ import { ITabStoreData } from '../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
 import { IAssessmentScanData, IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
+import { DictionaryNumberTo, DictionaryStringTo } from '../types/common-types';
 import { IBaseStore } from './../common/istore';
 import { IAssessmentStoreData } from './../common/types/store-data/iassessment-result-data.d';
 import { DrawingInitiator } from './drawing-initiator';

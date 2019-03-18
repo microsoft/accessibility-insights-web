@@ -4,6 +4,7 @@ import { VisualizationScanResultStore } from '../../../background/stores/visuali
 import { ITabbedElementData, IVisualizationScanResultData } from '../../../common/types/store-data/ivisualization-scan-result-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { IHtmlElementAxeResults } from '../../../injected/scanner-utils';
+import { DictionaryStringTo } from '../../../types/common-types';
 import { BaseDataBuilder } from './base-data-builder';
 
 export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<IVisualizationScanResultData> {

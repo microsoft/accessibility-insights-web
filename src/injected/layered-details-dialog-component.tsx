@@ -9,6 +9,7 @@ import { IBaseStore } from '../common/istore';
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
 import { DevToolState } from '../common/types/store-data/idev-tool-state';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
+import { DictionaryStringTo } from '../types/common-types';
 import { DetailsDialog, DetailsDialogDeps } from './components/details-dialog';
 import { DetailsDialogHandler } from './details-dialog-handler';
 import { DecoratedAxeNodeResult } from './scanner-utils';

@@ -3,6 +3,7 @@
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { EventHandlerList } from '../../../../../common/flux/event-handler-list';
+import { FunctionPPR } from '../../../../../types/common-types';
 
 describe('HandlerTest', () => {
     let testObject: EventHandlerList<any, any>;

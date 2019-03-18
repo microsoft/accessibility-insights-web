@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
+import { map } from 'lodash';
 import * as React from 'react';
 
 import { TestMode } from '../../../common/configs/test-mode';
@@ -82,7 +82,7 @@ export class DiagnosticViewToggleFactory {
         const visualizationStoreData = this.visualizationStore.getState();
         const commandStoreData = this.commandStore.getState();
 
-        const toggles: JSX.Element[] = _.map(enabledTypes, type => {
+        const toggles: JSX.Element[] = map(enabledTypes, type => {
             return (
                 <DiagnosticViewToggle
                     deps={this.deps}
@@ -106,7 +106,7 @@ export class DiagnosticViewToggleFactory {
     private getEnabledTypes(): VisualizationType[] {
         const featureFlags = this.featureFlagsStore.getState();
 
-        const enabledTypes: VisualizationType[] = _.filter(this.visualizationTypes, type => {
+        const enabledTypes: VisualizationType[] = this.visualizationTypes.filter(type => {
             const config = this.visualizationConfigurationFactory.getConfiguration(type);
             if (config.testMode !== TestMode.Adhoc) {
                 return false;

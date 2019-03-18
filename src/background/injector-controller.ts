@@ -38,13 +38,13 @@ export class InjectorController {
         this._windowUtils = windowUtils || new WindowUtils();
     }
 
-    public initialize() {
+    public initialize(): void {
         this._visualizationStore.addChangedListener(this.inject);
         this._inspectStore.addChangedListener(this.inject);
     }
 
     @autobind
-    private inject() {
+    private inject(): void {
         const tabId: number = this._tabStore.getState().id;
         const visualizationStoreState = this._visualizationStore.getState();
         const inspectStoreState = this._inspectStore.getState();

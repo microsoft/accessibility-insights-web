@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as axe from 'axe-core';
 
-import { IDictionaryStringTo } from './dictionary-types';
+import { DictionaryStringTo } from '../types/common-types';
 
 export type ImageCodedAs = 'Decorative' | 'Meaningful';
 
@@ -26,8 +26,8 @@ export function getAccessibleDescription(node: HTMLElement): string {
         .join(' ');
 }
 
-export function getPropertyValuesMatching(node: HTMLElement, regex: RegExp): IDictionaryStringTo<string> {
-    const dictionary: IDictionaryStringTo<string> = {};
+export function getPropertyValuesMatching(node: HTMLElement, regex: RegExp): DictionaryStringTo<string> {
+    const dictionary: DictionaryStringTo<string> = {};
     if (node.hasAttributes()) {
         const attrs = node.attributes;
         for (let i = 0; i < attrs.length; i++) {
@@ -40,8 +40,8 @@ export function getPropertyValuesMatching(node: HTMLElement, regex: RegExp): IDi
     return dictionary;
 }
 
-export function getAttributes(node: HTMLElement, attributes: string[]): IDictionaryStringTo<string> {
-    const retDict: IDictionaryStringTo<string> = {};
+export function getAttributes(node: HTMLElement, attributes: string[]): DictionaryStringTo<string> {
+    const retDict: DictionaryStringTo<string> = {};
     attributes
         .filter(atributeName => node.hasAttribute(atributeName))
         .forEach(attributeName => {

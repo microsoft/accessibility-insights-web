@@ -79,11 +79,11 @@ describe('TargetTabFinderTest', () => {
         });
     });
 
-    function setupGetTabIdParamFromUrl(tabIdValue: number) {
+    function setupGetTabIdParamFromUrl(tabIdValue: number): void {
         urlParserMock.setup(p => p.getIntParam(windowStub.location.href, 'tabId')).returns(() => tabIdValue);
     }
 
-    function setupGetTabCall() {
+    function setupGetTabCall(): void {
         browserAdapterMock
             .setup(b => b.getTab(tabId, It.isAny()))
             .callback((id, cb) => {
@@ -91,7 +91,7 @@ describe('TargetTabFinderTest', () => {
             });
     }
 
-    function setupTabQueryCall() {
+    function setupTabQueryCall(): void {
         browserAdapterMock
             .setup(b =>
                 b.tabsQuery(
@@ -107,7 +107,7 @@ describe('TargetTabFinderTest', () => {
             });
     }
 
-    function setupIsSupportedCall(isSupported: boolean) {
+    function setupIsSupportedCall(isSupported: boolean): void {
         urlValidatorMock.setup(v => v.isSupportedUrl(tabStub.url, browserAdapterMock.object)).returns(() => Promise.resolve(isSupported));
     }
 });

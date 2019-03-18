@@ -2,15 +2,15 @@
 // Licensed under the MIT License.
 import * as Axe from 'axe-core';
 
+import { DictionaryStringTo } from '../types/common-types';
 import { HyperlinkDefinition } from '../views/content/content-page';
-import { IDictionaryStringTo } from './dictionary-types';
 import { DocumentUtils } from './document-utils';
 import { AxeRule, RuleResult, ScanResults } from './iruleresults';
 import { MessageDecorator } from './message-decorator';
 import { Processor } from './processor';
 
 export class ResultDecorator {
-    private _ruleToLinkConfiguration: IDictionaryStringTo<HyperlinkDefinition[]>;
+    private _ruleToLinkConfiguration: DictionaryStringTo<HyperlinkDefinition[]>;
     private _documentUtils: DocumentUtils;
     private _messageDecorator: MessageDecorator;
 
@@ -62,7 +62,7 @@ export class ResultDecorator {
         return this._ruleToLinkConfiguration[ruleId];
     }
 
-    public setRuleToLinksConfiguration(configuration: IDictionaryStringTo<HyperlinkDefinition[]>): void {
+    public setRuleToLinksConfiguration(configuration: DictionaryStringTo<HyperlinkDefinition[]>): void {
         this._ruleToLinkConfiguration = configuration;
     }
 }

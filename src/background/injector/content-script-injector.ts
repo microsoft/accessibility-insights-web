@@ -32,7 +32,7 @@ export class ContentScriptInjector {
         return this._q.timeout(deferred.promise, ContentScriptInjector.timeoutInMilliSec);
     }
 
-    private injectJsFiles(tabId: number, files: string[], callback: Function) {
+    private injectJsFiles(tabId: number, files: string[], callback: Function): void {
         if (files.length > 0) {
             this._chromeAdapter.injectJs(tabId, files[0], () => {
                 this.injectJsFiles(tabId, files.slice(1, files.length), callback);

@@ -8,6 +8,7 @@ import { HTMLElementUtils } from '../../../../common/html-element-utils';
 import { DevToolActionMessageCreator } from '../../../../common/message-creators/dev-tool-action-message-creator';
 import { DetailsDialog } from '../../../../injected/components/details-dialog';
 import { DetailsDialogHandler } from '../../../../injected/details-dialog-handler';
+import { DictionaryStringTo } from '../../../../types/common-types';
 import { EventStubFactory } from '../../common/event-stub-factory';
 
 describe('DetailsDialogHandlerTest', () => {

@@ -20,6 +20,7 @@ import {
     AssessmentInstanceTableProps,
 } from '../../../../../DetailsView/components/assessment-instance-table';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
+import { DictionaryStringTo } from '../../../../../types/common-types';
 
 describe('AssessmentInstanceTableTest', () => {
     let getDefaultMessageStub: IGetMessageGenerator;

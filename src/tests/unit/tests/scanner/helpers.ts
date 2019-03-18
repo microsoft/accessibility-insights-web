@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { createNativeWidgetConfiguration, evaluateNativeWidget, nativeWidgetSelector } from '../../../../scanner/native-widgets-default';
+import { DictionaryStringTo } from '../../../../types/common-types';
 
 export function createNodeStub(tag: string, attributes: DictionaryStringTo<string>): HTMLElement {
     return {
@@ -21,7 +22,7 @@ export function testNativeWidgetConfiguration(
     checkId: string,
     expectedEvaluate?: (node: any, options: any, virtualNode: any, context: any) => boolean,
     expectedMatches?: (node: any, virtualNode: any) => boolean,
-) {
+): void {
     const result = createNativeWidgetConfiguration(ruleId, checkId, expectedEvaluate, expectedMatches);
     expect(result.rule.id).toEqual(ruleId);
     expect(result.rule.any).toHaveLength(1);
