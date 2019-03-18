@@ -48,9 +48,13 @@ primary **accessibility-insights-web** repository.
 
 ```
 > git remote -v
+
     origin  https://github.com/adacat/accessibility-insights-web (fetch)
+
     origin  https://github.com/adacat/accessibility-insights-web (push)
+
     upstream        https://github.com/Microsoft/accessibility-insights-web (fetch)
+
     upstream        https://github.com/Microsoft/accessibility-insights-web (push)
 ```
 
