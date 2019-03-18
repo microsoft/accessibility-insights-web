@@ -1,3 +1,5 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
 import { VisualHelperToggleConfig } from '../../../assessments/types/test-step';
 import { ManualTestStatus } from '../../../common/types/manual-test-status';
 import {
@@ -9,6 +11,7 @@ import { VisualizationType } from '../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../DetailsView/actions/details-view-action-message-creator';
 import { DictionaryStringTo } from '../../../types/common-types';
 import { BaseDataBuilder } from './base-data-builder';
+
 export class VisualHelperToggleConfigBuilder extends BaseDataBuilder<VisualHelperToggleConfig> {
     private stepKey = 'assessment-1-step-1';
     private otherKey = 'assessment-1-step-2';
