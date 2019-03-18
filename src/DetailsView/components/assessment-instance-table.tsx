@@ -39,8 +39,7 @@ export interface AssessmentInstanceRowData<P = {}> extends IObjectWithKey {
     instance: IGeneratedAssessmentInstance<P>;
 }
 
-// tslint:disable-next-line:interface-name
-export interface ICapturedInstanceRowData extends IObjectWithKey {
+export interface CapturedInstanceRowData extends IObjectWithKey {
     instance: IUserCapturedInstance;
     instanceActionButtons: JSX.Element;
 }

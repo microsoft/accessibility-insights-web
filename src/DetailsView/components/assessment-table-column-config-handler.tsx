@@ -7,7 +7,7 @@ import { IAssessmentsProvider } from '../../assessments/types/iassessments-provi
 import { AssessmentNavState } from '../../common/types/store-data/iassessment-result-data';
 import { MasterCheckBoxConfigProvider } from '../handlers/master-checkbox-config-provider';
 import { AssessmentInstanceDetailsColumn } from './assessment-instance-details-column';
-import { AssessmentInstanceRowData, ICapturedInstanceRowData } from './assessment-instance-table';
+import { AssessmentInstanceRowData, CapturedInstanceRowData } from './assessment-instance-table';
 
 export class AssessmentTableColumnConfigHandler {
     public static readonly MASTER_CHECKBOX_KEY: string = 'visualizationButton';
@@ -108,7 +108,7 @@ export class AssessmentTableColumnConfigHandler {
         return buttonConfig;
     }
 
-    private onRenderCapturedInstanceDetailsColumn(item: ICapturedInstanceRowData): JSX.Element {
+    private onRenderCapturedInstanceDetailsColumn(item: CapturedInstanceRowData): JSX.Element {
         return (
             <AssessmentInstanceDetailsColumn
                 background={'#767676'}

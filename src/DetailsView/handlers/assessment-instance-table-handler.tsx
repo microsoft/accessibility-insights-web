@@ -13,7 +13,7 @@ import {
 import { VisualizationType } from '../../common/types/visualization-type';
 import { AssessmentInstanceEditAndRemoveControl } from '../components/assessment-instance-edit-and-remove-control';
 import { AssessmentInstanceSelectedButton } from '../components/assessment-instance-selected-button';
-import { AssessmentInstanceRowData, ICapturedInstanceRowData } from '../components/assessment-instance-table';
+import { AssessmentInstanceRowData, CapturedInstanceRowData } from '../components/assessment-instance-table';
 import { AssessmentTableColumnConfigHandler } from '../components/assessment-table-column-config-handler';
 import { ManualTestStatus } from './../../common/types/manual-test-status';
 import { DetailsViewActionMessageCreator } from './../actions/details-view-action-message-creator';
@@ -97,7 +97,7 @@ export class AssessmentInstanceTableHandler {
         instances: IUserCapturedInstance[],
         test: VisualizationType,
         step: string,
-    ): ICapturedInstanceRowData[] {
+    ): CapturedInstanceRowData[] {
         return instances.map((instance: IUserCapturedInstance) => {
             return {
                 instance: instance,
