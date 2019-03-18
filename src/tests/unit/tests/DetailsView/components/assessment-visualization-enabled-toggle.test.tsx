@@ -8,13 +8,14 @@ import { IMock, Mock, Times } from 'typemoq';
 import { VisualizationToggle, VisualizationToggleProps } from '../../../../../common/components/visualization-toggle';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { AssessmentVisualizationEnabledToggle } from '../../../../../DetailsView/components/assessment-visualization-enabled-toggle';
-import { VisualHelperToggleTestPropsBuilder, VisualizationTogglePropsBuilder } from './restart-scan-visual-helper-toggle.test';
+import { VisualHelperToggleConfigBuilder } from '../../../common/visual-helper-toggle-config-builder';
+import { VisualizationTogglePropsBuilder } from '../../../common/visualization-toggle-props-builder';
 
 describe('AssessmentVisualizationEnabledToggle', () => {
     const actionMessageCreatorMock: IMock<DetailsViewActionMessageCreator> = Mock.ofType(DetailsViewActionMessageCreator);
 
     it('render with disabled message', () => {
-        const props = new VisualHelperToggleTestPropsBuilder()
+        const props = new VisualHelperToggleConfigBuilder()
             .withToggleStepEnabled(true)
             .withToggleStepScanned(false)
             .withActionMessageCreator(actionMessageCreatorMock.object)
@@ -47,7 +48,7 @@ describe('AssessmentVisualizationEnabledToggle', () => {
     });
 
     it('render: toggle not disabled', () => {
-        const props = new VisualHelperToggleTestPropsBuilder()
+        const props = new VisualHelperToggleConfigBuilder()
             .withToggleStepEnabled(true)
             .withToggleStepScanned(false)
             .withActionMessageCreator(actionMessageCreatorMock.object)
@@ -77,7 +78,7 @@ describe('AssessmentVisualizationEnabledToggle', () => {
     });
 
     it('render: have non empty instance map with a visible instance', () => {
-        const props = new VisualHelperToggleTestPropsBuilder()
+        const props = new VisualHelperToggleConfigBuilder()
             .withToggleStepEnabled(false)
             .withToggleStepScanned(false)
             .withActionMessageCreator(actionMessageCreatorMock.object)
@@ -108,7 +109,7 @@ describe('AssessmentVisualizationEnabledToggle', () => {
     });
 
     it('render: have non empty instance map without a visible instance', () => {
-        const props = new VisualHelperToggleTestPropsBuilder()
+        const props = new VisualHelperToggleConfigBuilder()
             .withToggleStepEnabled(false)
             .withToggleStepScanned(false)
             .withActionMessageCreator(actionMessageCreatorMock.object)
@@ -138,7 +139,7 @@ describe('AssessmentVisualizationEnabledToggle', () => {
     });
 
     it('enables all visualizations when none are shown', () => {
-        const props = new VisualHelperToggleTestPropsBuilder()
+        const props = new VisualHelperToggleConfigBuilder()
             .withToggleStepEnabled(true)
             .withToggleStepScanned(false)
             .withActionMessageCreator(actionMessageCreatorMock.object)
@@ -162,7 +163,7 @@ describe('AssessmentVisualizationEnabledToggle', () => {
     });
 
     it('disables all visualizations when some are shown', () => {
-        const props = new VisualHelperToggleTestPropsBuilder()
+        const props = new VisualHelperToggleConfigBuilder()
             .withToggleStepEnabled(true)
             .withToggleStepScanned(false)
             .withActionMessageCreator(actionMessageCreatorMock.object)
