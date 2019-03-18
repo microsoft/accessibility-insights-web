@@ -66,7 +66,7 @@ export class IssueDetailsTextGenerator {
         return text;
     }
 
-    private get footer() {
+    private get footer(): string {
         return (
             'This accessibility issue was found using Accessibility Insights for Web ' +
             `${this.extensionVersion} (axe-core ${this.axeCoreVersion}), ` +

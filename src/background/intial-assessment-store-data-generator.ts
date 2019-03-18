@@ -14,6 +14,7 @@ import {
     PersistedTabInfo,
     RequirementIdToResultMap,
 } from '../common/types/store-data/iassessment-result-data';
+import { IDictionaryStringTo } from '../scanner/dictionary-types';
 import { IAssessmentsProvider } from './../assessments/types/iassessments-provider';
 import { TestStepData } from './../common/types/manual-test-status';
 
@@ -45,8 +46,10 @@ export class InitialAssessmentStoreDataGenerator {
         return state as IAssessmentStoreData;
     }
 
-    private constructInitialDataForAssessment(persistedTests: { [key: string]: IAssessmentData } = null) {
-        const assessmentData: { [key: string]: IAssessmentData } = {};
+    private constructInitialDataForAssessment(
+        persistedTests: { [key: string]: IAssessmentData } = null,
+    ): IDictionaryStringTo<IAssessmentData> {
+        const assessmentData: IDictionaryStringTo<IAssessmentData> = {};
 
         this.tests.forEach(test => {
             const persistedTestData = persistedTests && persistedTests[test.key];
@@ -107,7 +110,7 @@ export class InitialAssessmentStoreDataGenerator {
         requirements: string[],
         persistedMap: DictionaryStringTo<T>,
         getDefaultData: (req: string) => T,
-    ) {
+    ): DictionaryStringTo<T> {
         const map: DictionaryStringTo<T> = {};
         requirements.forEach(requirement => {
             map[requirement] = (persistedMap && persistedMap[requirement]) || getDefaultData(requirement);

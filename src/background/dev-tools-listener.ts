@@ -20,7 +20,7 @@ export class DevToolsListener {
         this._chromeAdapter = chromeAdapter;
     }
 
-    public initialize() {
+    public initialize(): void {
         this._chromeAdapter.addListenerOnConnect((devToolsConnection: PortWithTabId) => {
             if (devToolsConnection.name === ConnectionNames.devTools) {
                 const devToolsListener = (message: DevToolsOpenMessage, port: chrome.runtime.Port) => {
@@ -39,7 +39,7 @@ export class DevToolsListener {
         });
     }
 
-    private sendDevToolStatus(devToolsConnection: PortWithTabId, status: boolean) {
+    private sendDevToolStatus(devToolsConnection: PortWithTabId, status: boolean): void {
         const tabId = devToolsConnection.targetPageTabId;
         const tabContext = this._tabIdToContextMap[tabId];
 

@@ -26,7 +26,7 @@ export class MessageDistributor {
     }
 
     @autobind
-    private distributeMessage(message: Message, sender?: Sender) {
+    private distributeMessage(message: Message, sender?: Sender): void {
         message.tabId = this.getTabId(message, sender);
 
         const isInterpretedUsingGlobalContext = this.globalContext.interpreter.interpret(message);
@@ -47,7 +47,7 @@ export class MessageDistributor {
         return null;
     }
 
-    private tryInterpretUsingTabContext(message: Message) {
+    private tryInterpretUsingTabContext(message: Message): boolean {
         let hasInterpreted: boolean;
         const tabContext = this.tabToContextMap[message.tabId];
 
