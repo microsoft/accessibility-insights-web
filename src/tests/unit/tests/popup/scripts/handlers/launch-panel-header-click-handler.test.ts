@@ -122,7 +122,7 @@ describe('FeedbackMenuClickHandlerTest', () => {
         setStateMock.verifyAll();
     });
 
-    test.only('openAdhocToolsPanel', () => {
+    test('openAdhocToolsPanel', () => {
         const openAdhocToolsPanelMock = Mock.ofInstance(() => {});
         openAdhocToolsPanelMock.setup(o => o()).verifiable();
 
