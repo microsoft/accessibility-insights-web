@@ -5,7 +5,7 @@ import * as React from 'react';
 import { pageTitleInstanceDetailsColumnRenderer } from '../../../../assessments/page/pagetitle-instance-details-column-renderer';
 import { IHeadingsAssessmentProperties } from '../../../../common/types/store-data/iassessment-result-data';
 import { AssessmentInstanceDetailsColumn } from '../../../../DetailsView/components/assessment-instance-details-column';
-import { IAssessmentInstanceRowData } from '../../../../DetailsView/components/assessment-instance-table';
+import { AssessmentInstanceRowData } from '../../../../DetailsView/components/assessment-instance-table';
 
 describe('PageTitleInstanceDetailsColumnRendererTest', () => {
     test('render: propertyBag is null', () => {
@@ -13,7 +13,7 @@ describe('PageTitleInstanceDetailsColumnRendererTest', () => {
             instance: {
                 propertyBag: null,
             },
-        } as IAssessmentInstanceRowData<IHeadingsAssessmentProperties>;
+        } as AssessmentInstanceRowData<IHeadingsAssessmentProperties>;
         const expected = <AssessmentInstanceDetailsColumn background={null} textContent={null} tooltipId={null} />;
         expect(expected).toEqual(pageTitleInstanceDetailsColumnRenderer(item));
     });
@@ -26,7 +26,7 @@ describe('PageTitleInstanceDetailsColumnRendererTest', () => {
                     pageTitle: pageTitle,
                 },
             },
-        } as IAssessmentInstanceRowData<any>;
+        } as AssessmentInstanceRowData<any>;
         const expected = <AssessmentInstanceDetailsColumn background={null} textContent={pageTitle} tooltipId={null} />;
         expect(expected).toEqual(pageTitleInstanceDetailsColumnRenderer(item));
     });

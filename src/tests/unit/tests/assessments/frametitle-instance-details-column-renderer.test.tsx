@@ -5,7 +5,7 @@ import * as React from 'react';
 import { frameTitleInstanceDetailsColumnRenderer } from '../../../../assessments/page/frametitle-instance-details-column-renderer';
 import { IFrameAssessmentProperties } from '../../../../common/types/store-data/iassessment-result-data';
 import { AssessmentInstanceDetailsColumn } from '../../../../DetailsView/components/assessment-instance-details-column';
-import { IAssessmentInstanceRowData } from '../../../../DetailsView/components/assessment-instance-table';
+import { AssessmentInstanceRowData } from '../../../../DetailsView/components/assessment-instance-table';
 import { FrameFormatter } from '../../../../injected/visualization/frame-formatter';
 
 describe('FrameTitleInstanceDetailsColumnRendererTest', () => {
@@ -15,7 +15,7 @@ describe('FrameTitleInstanceDetailsColumnRendererTest', () => {
             instance: {
                 propertyBag: null,
             },
-        } as IAssessmentInstanceRowData<IFrameAssessmentProperties>;
+        } as AssessmentInstanceRowData<IFrameAssessmentProperties>;
         const expected = (
             <AssessmentInstanceDetailsColumn
                 background={FrameFormatter.frameStyles[frameType].borderColor}
@@ -37,7 +37,7 @@ describe('FrameTitleInstanceDetailsColumnRendererTest', () => {
                     frameTitle: frameTitle,
                 },
             },
-        } as IAssessmentInstanceRowData<IFrameAssessmentProperties>;
+        } as AssessmentInstanceRowData<IFrameAssessmentProperties>;
         const expected = (
             <AssessmentInstanceDetailsColumn
                 background={FrameFormatter.frameStyles[frameType].borderColor}
@@ -59,7 +59,7 @@ describe('FrameTitleInstanceDetailsColumnRendererTest', () => {
                     frameTitle: frameTitle,
                 },
             },
-        } as IAssessmentInstanceRowData<IFrameAssessmentProperties>;
+        } as AssessmentInstanceRowData<IFrameAssessmentProperties>;
         const expected = (
             <AssessmentInstanceDetailsColumn
                 background={FrameFormatter.frameStyles[frameType].borderColor}

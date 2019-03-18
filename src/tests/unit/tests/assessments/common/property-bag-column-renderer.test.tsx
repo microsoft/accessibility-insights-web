@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { propertyBagColumnRenderer, PropertyBagColumnRendererConfig } from '../../../../../assessments/common/property-bag-column-renderer';
 import { ColumnValueBag } from '../../../../../common/types/property-bag/column-value-bag';
-import { IAssessmentInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
+import { AssessmentInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
 import { RendererWrapper } from './renderer-wrapper';
 
 interface TestPropertyBag extends ColumnValueBag {
@@ -157,7 +157,7 @@ function getPropertyBag(): TestPropertyBag {
     };
 }
 
-function buildItemWithPropertyBag(bag: TestPropertyBag): IAssessmentInstanceRowData<TestPropertyBag> {
+function buildItemWithPropertyBag(bag: TestPropertyBag): AssessmentInstanceRowData<TestPropertyBag> {
     return {
         instance: {
             propertyBag: bag,

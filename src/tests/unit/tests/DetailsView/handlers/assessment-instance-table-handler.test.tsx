@@ -13,7 +13,7 @@ import { VisualizationType } from '../../../../../common/types/visualization-typ
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { AssessmentInstanceEditAndRemoveControl } from '../../../../../DetailsView/components/assessment-instance-edit-and-remove-control';
 import { AssessmentInstanceSelectedButton } from '../../../../../DetailsView/components/assessment-instance-selected-button';
-import { IAssessmentInstanceRowData, ICapturedInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
+import { AssessmentInstanceRowData, CapturedInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
 import { AssessmentTableColumnConfigHandler } from '../../../../../DetailsView/components/assessment-table-column-config-handler';
 import { TestStatusChoiceGroup } from '../../../../../DetailsView/components/test-status-choice-group';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
@@ -89,7 +89,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             />
         );
 
-        const expectedRows: IAssessmentInstanceRowData[] = [
+        const expectedRows: AssessmentInstanceRowData[] = [
             {
                 instance: {
                     target: ['target1'],
@@ -142,7 +142,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
                 assessmentsProvider={assessmentsProvider}
             />
         );
-        const expectedRows: ICapturedInstanceRowData[] = [
+        const expectedRows: CapturedInstanceRowData[] = [
             {
                 instance: instance,
                 instanceActionButtons: instanceActionButtons,
