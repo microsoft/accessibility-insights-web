@@ -1,11 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow, ShallowWrapper } from 'enzyme';
 import * as Enzyme from 'enzyme';
+import { shallow, ShallowWrapper } from 'enzyme';
 import * as _ from 'lodash';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
-import { IToggle, Toggle, ToggleBase } from 'office-ui-fabric-react/lib/Toggle';
 import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { It, Mock, Times } from 'typemoq';
@@ -27,6 +26,7 @@ import {
     DiagnosticViewToggleState,
 } from '../../../../../../popup/scripts/components/diagnostic-view-toggle';
 import { DiagnosticViewClickHandler } from '../../../../../../popup/scripts/handlers/diagnostic-view-toggle-click-handler';
+import { DictionaryStringTo } from '../../../../../../types/common-types';
 import { ContentLink, ContentLinkDeps } from '../../../../../../views/content/content-link';
 import { EventStubFactory } from '../../../../common/event-stub-factory';
 import { ShortcutCommandsTestData } from '../../../../common/sample-test-data';

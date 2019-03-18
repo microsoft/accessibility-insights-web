@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { AssessmentDataRemover } from '../../../../background/assessment-data-remover';
 import { IGeneratedAssessmentInstance, ITestStepResult } from '../../../../common/types/store-data/iassessment-result-data';
+import { DictionaryStringTo } from '../../../../types/common-types';
 
 describe('AssessmentDataRemoverTest', () => {
     const instanceKey = 'instance-key-1';

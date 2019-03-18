@@ -11,6 +11,7 @@ import {
     IUserCapturedInstance,
 } from '../../common/types/store-data/iassessment-result-data';
 import { VisualizationType } from '../../common/types/visualization-type';
+import { DictionaryStringTo } from '../../types/common-types';
 import { AssessmentInstanceEditAndRemoveControl } from '../components/assessment-instance-edit-and-remove-control';
 import { AssessmentInstanceSelectedButton } from '../components/assessment-instance-selected-button';
 import { IAssessmentInstanceRowData, ICapturedInstanceRowData } from '../components/assessment-instance-table';

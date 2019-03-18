@@ -5,6 +5,7 @@ import * as React from 'react';
 
 import { ColumnValue, ColumnValueBag } from '../../common/types/property-bag/column-value-bag';
 import { IAssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
+import { DictionaryStringTo } from '../../types/common-types';
 
 export interface PropertyBagColumnRendererConfig<TPropertyBag extends ColumnValueBag> {
     propertyName: keyof TPropertyBag & string;

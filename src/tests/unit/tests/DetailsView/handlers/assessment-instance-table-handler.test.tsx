@@ -17,6 +17,7 @@ import { IAssessmentInstanceRowData, ICapturedInstanceRowData } from '../../../.
 import { AssessmentTableColumnConfigHandler } from '../../../../../DetailsView/components/assessment-table-column-config-handler';
 import { TestStatusChoiceGroup } from '../../../../../DetailsView/components/test-status-choice-group';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
+import { DictionaryStringTo } from '../../../../../types/common-types';
 import { CreateTestAssessmentProvider } from '../../../common/test-assessment-provider';
 
 describe('AssessmentInstanceTableHandlerTest', () => {

@@ -14,6 +14,7 @@ import { LeftNavLinkBuilder, LeftNavLinkBuilderDeps } from '../../../../../../De
 import { IOverviewSummaryReportModel } from '../../../../../../DetailsView/reports/assessment-report-model';
 import { OutcomeStats, OutcomeTypeSemantic } from '../../../../../../DetailsView/reports/components/outcome-type';
 import { GetAssessmentSummaryModelFromProviderAndStatusData } from '../../../../../../DetailsView/reports/get-assessment-summary-model';
+import { DictionaryStringTo } from '../../../../../../types/common-types';
 
 describe('LeftNavBuilder', () => {
     let deps: LeftNavLinkBuilderDeps;

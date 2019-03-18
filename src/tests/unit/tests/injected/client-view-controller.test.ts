@@ -26,6 +26,7 @@ import { ScrollingController, ScrollingWindowMessage } from '../../../../injecte
 import { SelectorMapHelper } from '../../../../injected/selector-map-helper';
 import { TargetPageActionMessageCreator } from '../../../../injected/target-page-action-message-creator';
 import { PropertyBags, VisualizationInstanceProcessorCallback } from '../../../../injected/visualization-instance-processor';
+import { DictionaryNumberTo, DictionaryStringTo } from '../../../../types/common-types';
 import { AssessmentsStoreDataBuilder } from '../../common/assessment-store-data-builder';
 import { StoreStub } from '../../common/store-stub';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';

@@ -16,6 +16,7 @@ import { DevToolActionMessageCreator } from '../../common/message-creators/dev-t
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { DevToolState } from '../../common/types/store-data/idev-tool-state';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
+import { DictionaryStringTo } from '../../types/common-types';
 import { DecoratedAxeNodeResult } from '../scanner-utils';
 import { TargetPageActionMessageCreator } from '../target-page-action-message-creator';
 import { DetailsDialogHandler } from './../details-dialog-handler';

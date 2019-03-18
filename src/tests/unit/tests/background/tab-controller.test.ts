@@ -12,6 +12,7 @@ import { TabContextFactory } from '../../../../background/tab-context-factory';
 import { TabController } from '../../../../background/tab-controller';
 import { TelemetryEventHandler } from '../../../../background/telemetry/telemetry-event-handler';
 import { Messages } from '../../../../common/messages';
+import { DictionaryStringTo } from '../../../../types/common-types';
 
 describe('TabControllerTest', () => {
     let testSubject: TabController;

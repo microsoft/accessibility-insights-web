@@ -7,8 +7,8 @@ import { BaseActionPayload } from '../../../../../background/actions/action-payl
 import { BrowserAdapter, ChromeAdapter } from '../../../../../background/browser-adapter';
 import { TelemetryClient } from '../../../../../background/telemetry/telemetry-client';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
-import { Tab } from '../../../../../common/itab';
 import { TelemetryEventSource, TriggeredBy } from '../../../../../common/telemetry-events';
+import { DictionaryStringTo } from '../../../../../types/common-types';
 
 describe('TelemetryEventHandlerTest', () => {
     let browserAdapterMock: IMock<BrowserAdapter>;
