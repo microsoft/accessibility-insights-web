@@ -114,7 +114,7 @@ describe('LaunchPadRowConfigurationFactoryTests', () => {
         handlerMock.verifyAll();
     });
 
-    function compareStaticProperties(expected: LaunchPadRowConfiguration[], actual: LaunchPadRowConfiguration[]) {
+    function compareStaticProperties(expected: LaunchPadRowConfiguration[], actual: LaunchPadRowConfiguration[]): void {
         expect(actual.length).toEqual(expected.length);
 
         expected.forEach((config: LaunchPadRowConfiguration, index: number) => {

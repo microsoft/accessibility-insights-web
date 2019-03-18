@@ -227,7 +227,7 @@ describe('HeadingFormatterTests', () => {
         expect(failureBoxConfig).toEqual(expected);
     }
 
-    function getHeadingStyle(key: string) {
+    function getHeadingStyle(key: string): HeadingStyleConfiguration {
         const headingStyle = HeadingFormatter.headingStyles[key];
 
         expect(headingStyle).toBeDefined();

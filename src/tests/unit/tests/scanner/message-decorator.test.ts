@@ -50,7 +50,7 @@ describe('MessageDecorator', () => {
         });
     });
 
-    function testBasicDecorateMessage(expectedResult: AxeRule, testSubject: MessageDecorator) {
+    function testBasicDecorateMessage(expectedResult: AxeRule, testSubject: MessageDecorator): void {
         checkMessageTransformerMock
             .setup(cmcm => cmcm.addMessagesToChecks(axeResultStub.nodes[0].any, configuration[0].checks))
             .verifiable(Times.once());

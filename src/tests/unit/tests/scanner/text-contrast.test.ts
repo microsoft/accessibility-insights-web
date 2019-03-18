@@ -12,7 +12,7 @@ function testTextContrast(
     axeUtilsMock: IGlobalMock<typeof AxeUtils.getEvaluateFromCheck>,
     windowMock: IGlobalMock<typeof window.getComputedStyle>,
     dataSetterMock: IMock<(data) => void>,
-) {
+): void {
     windowMock.setup(m => m(It.isAny())).returns(node => ({ getPropertyValue: property => node[property] } as CSSStyleDeclaration));
 
     dataSetterMock.setup(d => d(expectedData));
