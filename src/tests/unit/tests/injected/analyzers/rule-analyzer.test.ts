@@ -18,6 +18,7 @@ import { RuleAnalyzer } from '../../../../../injected/analyzers/rule-analyzer';
 import { IHtmlElementAxeResults, ScannerUtils } from '../../../../../injected/scanner-utils';
 import { ScanOptions } from '../../../../../scanner/exposed-apis';
 import { ScanResults } from '../../../../../scanner/iruleresults';
+import { DictionaryStringTo } from '../../../../../types/common-types';
 
 describe('RuleAnalyzer', () => {
     let scannerUtilsMock: IMock<ScannerUtils>;

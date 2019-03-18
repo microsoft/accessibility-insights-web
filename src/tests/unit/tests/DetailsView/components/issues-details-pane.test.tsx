@@ -10,6 +10,7 @@ import {
     IssuesDetailsPaneProps,
 } from '../../../../../DetailsView/components/Issues-details-pane';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
+import { DictionaryStringTo } from '../../../../../types/common-types';
 import { HyperlinkDefinition } from '../../../../../views/content/content-page';
 
 describe('IssuesDetailsPaneTest', () => {

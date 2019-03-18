@@ -8,6 +8,7 @@ import { ManualTestStatus } from '../../../../common/types/manual-test-status';
 import { IAssessmentInstancesMap, ITestStepResult } from '../../../../common/types/store-data/iassessment-result-data';
 import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from '../../../../injected/scanner-utils';
 import { ITabStopEvent } from '../../../../injected/tab-stops-listener';
+import { DictionaryStringTo } from '../../../../types/common-types';
 
 describe('AssessmentDataConverterTest', () => {
     let testSubject: AssessmentDataConverter;

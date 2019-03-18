@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash/index';
+import * as _ from 'lodash';
 
 import { IAssessmentsProvider } from '../assessments/types/iassessments-provider';
 import { IBaseStore } from '../common/istore';
@@ -8,6 +8,7 @@ import { ManualTestStatus } from '../common/types/manual-test-status';
 import { IAssessmentStoreData, IGeneratedAssessmentInstance } from '../common/types/store-data/iassessment-result-data';
 import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
 import { VisualizationType } from '../common/types/visualization-type';
+import { DictionaryStringTo } from '../types/common-types';
 import { IAssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
 
 export class SelectorMapHelper {

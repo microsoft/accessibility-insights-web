@@ -3,11 +3,11 @@
 import { GlobalMock, GlobalScope, IGlobalMock, IMock, It, Mock, MockBehavior } from 'typemoq';
 
 import * as AxeUtils from '../../../../scanner/axe-utils';
-import { IDictionaryStringTo } from '../../../../scanner/dictionary-types';
 import { textContrastConfiguration } from '../../../../scanner/text-contrast';
+import { DictionaryStringTo } from '../../../../types/common-types';
 
 function testTextContrast(
-    node: IDictionaryStringTo<string>,
+    node: DictionaryStringTo<string>,
     expectedData: any,
     axeUtilsMock: IGlobalMock<typeof AxeUtils.getEvaluateFromCheck>,
     windowMock: IGlobalMock<typeof window.getComputedStyle>,

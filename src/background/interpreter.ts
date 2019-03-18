@@ -2,6 +2,8 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 
+import { DictionaryStringTo } from '../types/common-types';
+
 export class Interpreter {
     protected messageToActionMapping: DictionaryStringTo<PayloadCallback> = {};
 

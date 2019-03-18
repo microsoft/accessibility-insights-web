@@ -7,6 +7,7 @@ import { forOwn } from 'lodash/index';
 import { StoreNames } from '../../common/stores/store-names';
 import { IVisualizationScanResultData } from '../../common/types/store-data/ivisualization-scan-result-data';
 import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from '../../injected/scanner-utils';
+import { DictionaryStringTo } from '../../types/common-types';
 import { AddTabbedElementPayload } from '../actions/action-payloads';
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';

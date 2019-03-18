@@ -14,6 +14,7 @@ import { TelemetryEventSource } from '../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../common/types/details-view-pivot-type';
 import { IVisualizationStoreData } from '../../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
+import { DictionaryStringTo } from '../../../types/common-types';
 import { ContentLink, ContentLinkDeps } from '../../../views/content/content-link';
 import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
 import { DiagnosticViewClickHandler } from '../handlers/diagnostic-view-toggle-click-handler';

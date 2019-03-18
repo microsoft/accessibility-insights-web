@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FunctionPPR } from '../../types/common-types';
+
 export class EventHandlerList<TSender, TEventArgs> {
     private _handlers: FunctionPPR<TSender, TEventArgs, any>[] = [];
 

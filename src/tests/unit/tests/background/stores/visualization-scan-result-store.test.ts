@@ -9,6 +9,7 @@ import { ITabbedElementData } from '../../../../../common/types/store-data/ivisu
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { IHtmlElementAxeResults } from '../../../../../injected/scanner-utils';
 import { ScanResults } from '../../../../../scanner/iruleresults';
+import { DictionaryStringTo } from '../../../../../types/common-types';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
 import { VisualizationScanResultStoreDataBuilder } from '../../../common/visualization-scan-result-store-data-builder';
 

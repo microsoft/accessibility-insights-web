@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import { DictionaryStringTo } from '../types/common-types';
 import {
     AssessmentRequirementScanTelemetryData,
     AssessmentTelemetryData,
