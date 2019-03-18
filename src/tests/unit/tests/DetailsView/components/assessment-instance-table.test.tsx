@@ -15,9 +15,9 @@ import {
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { IAssessmentResultType, IGeneratedAssessmentInstance } from '../../../../../common/types/store-data/iassessment-result-data';
 import {
+    AssessmentInstanceRowData,
     AssessmentInstanceTable,
     AssessmentInstanceTableProps,
-    IAssessmentInstanceRowData,
 } from '../../../../../DetailsView/components/assessment-instance-table';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
 
@@ -62,7 +62,7 @@ describe('AssessmentInstanceTableTest', () => {
             assessmentDefaultMessageGeneratorMock.object,
             getDefaultMessageMock.object,
         );
-        const items: IAssessmentInstanceRowData[] = [
+        const items: AssessmentInstanceRowData[] = [
             {
                 statusChoiceGroup: null,
                 visualizationButton: null,
@@ -84,7 +84,7 @@ describe('AssessmentInstanceTableTest', () => {
             assessmentDefaultMessageGeneratorMock.object,
             getDefaultMessageMock.object,
         );
-        const items: IAssessmentInstanceRowData[] = [
+        const items: AssessmentInstanceRowData[] = [
             {
                 statusChoiceGroup: null,
                 visualizationButton: null,
@@ -147,7 +147,7 @@ describe('AssessmentInstanceTableTest', () => {
             getDefaultMessageMock.object,
         );
         props.renderInstanceTableHeader = () => null;
-        const items: IAssessmentInstanceRowData[] = [
+        const items: AssessmentInstanceRowData[] = [
             {
                 statusChoiceGroup: null,
                 visualizationButton: null,
@@ -202,7 +202,7 @@ describe('AssessmentInstanceTableTest', () => {
         testStepResults[selectedTestStep] = { status: ManualTestStatus.UNKNOWN };
         const props = getProps({}, null, null, null);
         const testObject = new AssessmentInstanceTable(props);
-        const items: IAssessmentInstanceRowData[] = [
+        const items: AssessmentInstanceRowData[] = [
             {
                 statusChoiceGroup: null,
                 visualizationButton: null,
@@ -221,7 +221,7 @@ describe('AssessmentInstanceTableTest', () => {
         testStepResults[selectedTestStep] = { status: ManualTestStatus.PASS };
         const props = getProps({}, null, null, null);
         const testObject = new AssessmentInstanceTable(props);
-        const items: IAssessmentInstanceRowData[] = [
+        const items: AssessmentInstanceRowData[] = [
             {
                 statusChoiceGroup: null,
                 visualizationButton: null,
@@ -237,7 +237,7 @@ describe('AssessmentInstanceTableTest', () => {
     it('renders default instance table header disabled without instance', () => {
         const props = getProps({}, null, null, null);
         const testObject = new AssessmentInstanceTable(props);
-        const items: IAssessmentInstanceRowData[] = [];
+        const items: AssessmentInstanceRowData[] = [];
 
         const actual = testObject.renderDefaultInstanceTableHeader(items);
 
@@ -254,7 +254,7 @@ describe('AssessmentInstanceTableTest', () => {
             getDefaultMessageMock.object,
         );
 
-        const items: IAssessmentInstanceRowData[] = [
+        const items: AssessmentInstanceRowData[] = [
             {
                 statusChoiceGroup: null,
                 visualizationButton: null,
@@ -286,7 +286,7 @@ describe('AssessmentInstanceTableTest', () => {
             .setup(a => a.passUnmarkedInstances(props.assessmentNavState.selectedTestType, props.assessmentNavState.selectedTestStep))
             .verifiable(Times.once());
 
-        const items: IAssessmentInstanceRowData[] = [
+        const items: AssessmentInstanceRowData[] = [
             {
                 statusChoiceGroup: null,
                 visualizationButton: null,
@@ -364,7 +364,7 @@ describe('AssessmentInstanceTableTest', () => {
             assessmentInstanceTableHandler: assessmentInstanceTableHandler,
             getDefaultMessage: defaultMessageMock,
             assessmentDefaultMessageGenerator: defaultMessageGeneratorMock,
-            renderInstanceTableHeader: (table: AssessmentInstanceTable, items: IAssessmentInstanceRowData[]) =>
+            renderInstanceTableHeader: (table: AssessmentInstanceTable, items: AssessmentInstanceRowData[]) =>
                 table.renderDefaultInstanceTableHeader(items),
             hasVisualHelper: true,
         };

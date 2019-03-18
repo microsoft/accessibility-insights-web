@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 import { AssessmentInstanceDetailsColumn } from '../../DetailsView/components/assessment-instance-details-column';
-import { IAssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
+import { AssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
 
-export function pageTitleInstanceDetailsColumnRenderer(item: IAssessmentInstanceRowData<any>): JSX.Element {
+export function pageTitleInstanceDetailsColumnRenderer(item: AssessmentInstanceRowData<any>): JSX.Element {
     const propertyBag = item.instance.propertyBag;
     const textContent = propertyBag ? propertyBag.pageTitle : null;
 
