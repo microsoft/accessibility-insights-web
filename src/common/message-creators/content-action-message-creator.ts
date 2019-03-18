@@ -4,11 +4,11 @@ import { autobind } from '@uifabric/utilities';
 
 import { BaseActionPayload } from '../../background/actions/action-payloads';
 import { ContentPayload } from '../../background/actions/content-actions';
+import { ActionInitiators } from '../action/action-initiator';
 import { Messages } from '../messages';
 import { TelemetryDataFactory } from '../telemetry-data-factory';
 import { CONTENT_HYPERLINK_OPENED, CONTENT_PAGE_OPENED, TelemetryEventSource } from '../telemetry-events';
 import { BaseActionMessageCreator } from './base-action-message-creator';
-import { ActionInitiators } from '../action/action-initiator';
 
 export class ContentActionMessageCreator extends BaseActionMessageCreator {
     public initiators: Pick<ActionInitiators, 'openExternalLink'> = {
@@ -16,7 +16,7 @@ export class ContentActionMessageCreator extends BaseActionMessageCreator {
     };
 
     constructor(
-        postMessage: (message: IMessage) => void,
+        postMessage: (message: Message) => void,
         tabId: number,
         private readonly telemetryFactory: TelemetryDataFactory,
         private readonly source: TelemetryEventSource,

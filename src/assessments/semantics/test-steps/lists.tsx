@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import * as Markup from '../../markup';
 import { link } from '../../../content/link';
 import ManualTestRecordYourResults from '../../common/manual-test-record-your-results';
+import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
 import { SemanticsTestStep } from './test-steps';
 
@@ -32,7 +32,7 @@ const listsHowToTest: JSX.Element = (
                     </li>
                     <li>
                         An <Markup.Emphasis>ordered</Markup.Emphasis> list (numbered) must be contained within an{' '}
-                        <Markup.Tag tagName="li" /> element.
+                        <Markup.Tag tagName="ol" /> element.
                     </li>
                     <li>
                         A <Markup.Emphasis>description</Markup.Emphasis> list (a set of terms and definitions) must be contained within a{' '}

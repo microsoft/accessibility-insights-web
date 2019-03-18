@@ -4,8 +4,8 @@ import { map } from 'lodash';
 import * as React from 'react';
 
 import { IAssessmentsProvider } from '../../../assessments/types/iassessments-provider';
-import { IVisualizationConfiguration } from '../../../common/configs/visualization-configuration-factory';
-import { IManualTestStatus, ManualTestStatus } from '../../../common/types/manual-test-status';
+import { VisualizationConfiguration } from '../../../common/configs/visualization-configuration-factory';
+import { ManualTestStatus, ManualTestStatusData } from '../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { OutcomeStats, OutcomeTypeSemantic } from '../../reports/components/outcome-type';
 import { GetAssessmentSummaryModelFromProviderAndStatusData } from '../../reports/get-assessment-summary-model';
@@ -22,7 +22,7 @@ export type OverviewLinkBuilderDeps = {
 export type AssessmentLinkBuilderDeps = {
     getStatusForTest: (stats: OutcomeStats) => ManualTestStatus;
     outcomeTypeSemanticsFromTestStatus: (testStatus: ManualTestStatus) => OutcomeTypeSemantic;
-    outcomeStatsFromManualTestStatus: (testStepStatus: IManualTestStatus) => OutcomeStats;
+    outcomeStatsFromManualTestStatus: (testStepStatus: ManualTestStatusData) => OutcomeStats;
 };
 
 export type VisualizationConfigurationLinkBuilderDeps = {};
@@ -32,7 +32,7 @@ export class LeftNavLinkBuilder {
         deps: OverviewLinkBuilderDeps,
         onLinkClick: onBaseLeftNavItemClick,
         assessmentsProvider: IAssessmentsProvider,
-        assessmentsData: IDictionaryStringTo<IManualTestStatus>,
+        assessmentsData: DictionaryStringTo<ManualTestStatusData>,
         index: number,
     ): BaseLeftNavLink {
         const { getAssessmentSummaryModelFromProviderAndStatusData } = deps;
@@ -61,7 +61,7 @@ export class LeftNavLinkBuilder {
         deps: AssessmentLinkBuilderDeps,
         onLinkClick: onBaseLeftNavItemClick,
         assessmentsProvider: IAssessmentsProvider,
-        assessmentsData: IDictionaryStringTo<IManualTestStatus>,
+        assessmentsData: DictionaryStringTo<ManualTestStatusData>,
         startingIndex: number,
     ): BaseLeftNavLink[] {
         const { getStatusForTest, outcomeTypeSemanticsFromTestStatus, outcomeStatsFromManualTestStatus } = deps;
@@ -99,7 +99,7 @@ export class LeftNavLinkBuilder {
     }
 
     public buildVisualizationConfigurationLink(
-        configuration: IVisualizationConfiguration,
+        configuration: VisualizationConfiguration,
         onLinkClick: onBaseLeftNavItemClick,
         type: VisualizationType,
         index: number,

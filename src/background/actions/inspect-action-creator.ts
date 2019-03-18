@@ -4,19 +4,19 @@ import { Messages } from '../../common/messages';
 import * as TelemetryEvents from '../../common/telemetry-events';
 import { BrowserAdapter } from '../browser-adapter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
-import { IInspectPayload, InspectActions } from './inspect-actions';
+import { InspectActions, InspectPayload } from './inspect-actions';
 
 export class InspectActionCreator {
     private inspectActions: InspectActions;
     private browserAdapter: BrowserAdapter;
     private telemetryEventHandler: TelemetryEventHandler;
-    private registerTypeToPayloadCallback: IRegisterTypeToPayloadCallback;
+    private registerTypeToPayloadCallback: RegisterTypeToPayloadCallback;
 
     constructor(
         inspectActions: InspectActions,
         telemetryEventHandler: TelemetryEventHandler,
         browserAdapter: BrowserAdapter,
-        registerTypeToPayloadCallback: IRegisterTypeToPayloadCallback,
+        registerTypeToPayloadCallback: RegisterTypeToPayloadCallback,
     ) {
         this.inspectActions = inspectActions;
         this.telemetryEventHandler = telemetryEventHandler;
@@ -25,13 +25,13 @@ export class InspectActionCreator {
     }
 
     public registerCallbacks(): void {
-        this.registerTypeToPayloadCallback(Messages.Inspect.ChangeInspectMode, (payload: IInspectPayload, tabId: number) =>
+        this.registerTypeToPayloadCallback(Messages.Inspect.ChangeInspectMode, (payload: InspectPayload, tabId: number) =>
             this.onChangeInspectMode(payload, tabId),
         );
         this.registerTypeToPayloadCallback(Messages.Inspect.GetCurrentState, () => this.onGetInspectCurrentState());
     }
 
-    private onChangeInspectMode(payload: IInspectPayload, tabId: number): void {
+    private onChangeInspectMode(payload: InspectPayload, tabId: number): void {
         const eventName = TelemetryEvents.CHANGE_INSPECT_MODE;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.browserAdapter.switchToTab(tabId);

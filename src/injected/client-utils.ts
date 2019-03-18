@@ -5,15 +5,18 @@ export interface ClientRectOffset {
     top: number;
 }
 
+// tslint:disable-next-line:interface-name
 export interface IScrollAccessor {
     scrollX: number;
     scrollY: number;
 }
 
+// tslint:disable-next-line:interface-name
 export interface IBoundRectAccessor {
     getBoundingClientRect: () => ClientRectOffset;
 }
 
+// tslint:disable-next-line:interface-name
 export interface IElementMatcher {
     matches?: (selector: string) => boolean;
     webkitMatchesSelector?: (selector: string) => boolean;

@@ -3,7 +3,7 @@
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
-import { IVisualizationConfiguration, VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
@@ -12,13 +12,13 @@ import { IVisualizationStoreData } from '../../common/types/store-data/ivisualiz
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewToggleClickHandlerFactory } from '../handlers/details-view-toggle-click-handler-factory';
 import { ReportGenerator } from '../reports/report-generator';
-import { IssuesTableHandler } from './issues-table-handler';
 import { IssuesTable, IssuesTableDeps } from './issues-table';
+import { IssuesTableHandler } from './issues-table-handler';
 import { TargetPageChangedView } from './target-page-changed-view';
 
 export type AdhocIssuesTestViewDeps = IssuesTableDeps;
 
-export interface IAdhocIssuesTestViewProps {
+export interface AdhocIssuesTestViewProps {
     deps: AdhocIssuesTestViewDeps;
     tabStoreData: ITabStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
@@ -31,10 +31,10 @@ export interface IAdhocIssuesTestViewProps {
     issuesSelection: ISelection;
     reportGenerator: ReportGenerator;
     issuesTableHandler: IssuesTableHandler;
-    configuration: IVisualizationConfiguration;
+    configuration: VisualizationConfiguration;
 }
 
-export const AdhocIssuesTestView = NamedSFC<IAdhocIssuesTestViewProps>('AdhocIssuesTestView', ({ children, ...props }) => {
+export const AdhocIssuesTestView = NamedSFC<AdhocIssuesTestViewProps>('AdhocIssuesTestView', ({ children, ...props }) => {
     const type = props.selectedTest;
     const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
     const clickHandler = props.clickHandlerFactory.createClickHandler(type, !scanData.enabled);

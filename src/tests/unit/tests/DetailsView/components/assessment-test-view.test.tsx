@@ -4,27 +4,27 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
-import { IVisualizationConfiguration } from '../../../../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration-factory';
 import { IAssessmentData, IAssessmentStoreData } from '../../../../../common/types/store-data/iassessment-result-data';
-import { IScanData, ITestsEnabledState, IVisualizationStoreData } from '../../../../../common/types/store-data/ivisualization-store-data';
+import { IScanData, IVisualizationStoreData, TestsEnabledState } from '../../../../../common/types/store-data/ivisualization-store-data';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import {
     AssessmentTestView,
     AssessmentTestViewDeps,
-    IAssessmentTestViewProps,
+    AssessmentTestViewProps,
 } from '../../../../../DetailsView/components/assessment-test-view';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
 
 describe('AssessmentTestView', () => {
-    let props: IAssessmentTestViewProps;
-    let getStoreDataMock: IMock<(data: ITestsEnabledState) => IScanData>;
+    let props: AssessmentTestViewProps;
+    let getStoreDataMock: IMock<(data: TestsEnabledState) => IScanData>;
     let getAssessmentDataMock: IMock<(data: IAssessmentStoreData) => IAssessmentData>;
     let getTestStatusMock: IMock<(data: IScanData, step: string) => boolean>;
     let scanDataStub: IScanData;
     let visualizationStoreDataStub: IVisualizationStoreData;
     let actionMessageCreatorStub: DetailsViewActionMessageCreator;
     let assessmentInstanceHandlerStub: AssessmentInstanceTableHandler;
-    let configuration: IVisualizationConfiguration;
+    let configuration: VisualizationConfiguration;
     let assessmentStoreDataStub: IAssessmentStoreData;
     let assessmentDataStub: IAssessmentData;
     const selectedTestStep = 'step';
@@ -46,7 +46,7 @@ describe('AssessmentTestView', () => {
             getStoreData: getStoreDataMock.object,
             getAssessmentData: getAssessmentDataMock.object,
             getTestStatus: getTestStatusMock.object,
-        } as IVisualizationConfiguration;
+        } as VisualizationConfiguration;
         assessmentStoreDataStub = {
             assessmentNavState: {
                 selectedTestType: selectedTest,
@@ -70,7 +70,7 @@ describe('AssessmentTestView', () => {
             },
             assessmentStoreData: assessmentStoreDataStub,
             assessmentInstanceTableHandler: assessmentInstanceHandlerStub,
-        } as IAssessmentTestViewProps;
+        } as AssessmentTestViewProps;
 
         getStoreDataMock
             .setup(gsdm => gsdm(visualizationStoreDataStub.tests))

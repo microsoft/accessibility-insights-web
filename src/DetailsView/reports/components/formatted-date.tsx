@@ -1,14 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
 import * as _ from 'lodash/index';
+import * as React from 'react';
 
-export interface IFormattedDateProps {
+export interface FormattedDateProps {
     date: Date;
 }
 
-export class FormattedDate extends React.Component<IFormattedDateProps> {
-    public render() {
+type timeRange = 'AM' | 'PM';
+
+export class FormattedDate extends React.Component<FormattedDateProps> {
+    public render(): JSX.Element {
         return <>{this.formatDateTime(this.props.date)}</>;
     }
 
@@ -30,7 +32,7 @@ export class FormattedDate extends React.Component<IFormattedDateProps> {
         );
     }
 
-    private getTwelveHour(hour: number) {
+    private getTwelveHour(hour: number): number {
         hour = hour % 12;
         if (hour === 0) {
             return 12;
@@ -38,7 +40,7 @@ export class FormattedDate extends React.Component<IFormattedDateProps> {
         return hour;
     }
 
-    private getAmPm(hour: number) {
+    private getAmPm(hour: number): timeRange {
         if (hour < 12) {
             return 'AM';
         } else {
@@ -46,7 +48,7 @@ export class FormattedDate extends React.Component<IFormattedDateProps> {
         }
     }
 
-    private getTimeZone(date: Date) {
+    private getTimeZone(date: Date): string {
         const timeString = date.toLocaleTimeString('en-us', { timeZoneName: 'short' }).replace(/\u200E/g, '');
         return timeString.substr(timeString.lastIndexOf(' ') + 1);
     }

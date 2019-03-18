@@ -9,6 +9,7 @@ import { WindowUtils } from '../../common/window-utils';
 import { FrameMessageResponseCallback, WindowMessageHandler } from './window-message-handler';
 import { IErrorMessageContent } from './window-message-marshaller';
 
+// tslint:disable-next-line:interface-name
 export interface IMessageRequest<T> {
     frame?: HTMLIFrameElement;
     win?: Window;

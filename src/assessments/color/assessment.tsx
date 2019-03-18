@@ -6,10 +6,10 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { test as content } from '../../content/test';
 import { AssessmentBuilder } from '../assessment-builder';
 import * as Markup from '../markup';
-import { IAssessment } from '../types/iassessment';
+import { Assessment } from '../types/iassessment';
 import { AuditoryCues } from './test-steps/auditory-cues';
 import { Flashing } from './test-steps/flashing';
-import { SensoryCharacterisics } from './test-steps/sensory-characterisics';
+import { SensoryCharacteristics } from './test-steps/sensory-characteristics';
 import { UseOfColor } from './test-steps/use-of-color';
 
 const key = 'color';
@@ -27,12 +27,12 @@ const colorSensoryGettingStartedText: JSX.Element = (
     </React.Fragment>
 );
 
-export const ColorSensoryAssessment: IAssessment = AssessmentBuilder.Assisted({
+export const ColorSensoryAssessment: Assessment = AssessmentBuilder.Assisted({
     key,
     title: colorSensoryAssessmentTitle,
     gettingStarted: colorSensoryGettingStartedText,
     type: VisualizationType.ColorSensoryAssessment,
     guidance,
-    steps: [UseOfColor, SensoryCharacterisics, AuditoryCues, Flashing],
+    steps: [UseOfColor, SensoryCharacteristics, AuditoryCues, Flashing],
     storeDataKey: 'colorSensoryAssessment',
 });

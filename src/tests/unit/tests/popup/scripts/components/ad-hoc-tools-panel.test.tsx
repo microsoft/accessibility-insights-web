@@ -7,7 +7,7 @@ import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';
 
-import { AdHocToolsPanel, IAdHocToolsPanelProps } from '../../../../../../popup/scripts/components/ad-hoc-tools-panel';
+import { AdHocToolsPanel, AdHocToolsPanelProps } from '../../../../../../popup/scripts/components/ad-hoc-tools-panel';
 import { DiagnosticViewToggleFactory } from '../../../../../../popup/scripts/components/diagnostic-view-toggle-factory';
 
 describe('AdHocToolsPanelTest', () => {
@@ -17,7 +17,7 @@ describe('AdHocToolsPanelTest', () => {
         diagnosticViewToggleFactoryMock
             .setup(factory => factory.createTogglesForAdhocToolsPanel())
             .returns(() => [
-                <div key="first">fisrt</div>,
+                <div key="first">first</div>,
                 <div key="second">second</div>,
                 <div key="third">third</div>,
                 <div key="fourth">fourth</div>,
@@ -26,7 +26,7 @@ describe('AdHocToolsPanelTest', () => {
     });
 
     test('render toggles', () => {
-        const props: IAdHocToolsPanelProps = {
+        const props: AdHocToolsPanelProps = {
             backLinkHandler: null,
             diagnosticViewToggleFactory: diagnosticViewToggleFactoryMock.object,
         };
@@ -41,7 +41,7 @@ describe('AdHocToolsPanelTest', () => {
                 <main>
                     <div className="ms-Grid-row">
                         <div key="visualization-toggle-group-0" className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 ad-hoc-tools-panel-group-0">
-                            <div key="first">fisrt</div>
+                            <div key="first">first</div>
                             <div key="diagnostic-view-toggle-divider-0-1" className="ms-fontColor-neutralLight launch-panel-hr" />
                             <div key="second">second</div>
                             <div key="diagnostic-view-toggle-divider-0-3" className="ms-fontColor-neutralLight launch-panel-hr" />
@@ -55,9 +55,9 @@ describe('AdHocToolsPanelTest', () => {
                     </div>
                 </main>
                 <div role="navigation" className="ad-hoc-tools-panel-footer">
-                    <Link onClick={props.backLinkHandler} id="back-to-launchpad-link">
-                        <Icon iconName="back" />
-                        &nbsp; Back to launch pad
+                    <Link className="insights-link" onClick={props.backLinkHandler} id="back-to-launchpad-link">
+                        <Icon className="back-to-launch-pad-icon" iconName="back" />
+                        Back to launch pad
                     </Link>
                 </div>
             </div>
@@ -67,7 +67,7 @@ describe('AdHocToolsPanelTest', () => {
     });
 
     test('adhoc panel matches snapshot', () => {
-        const props: IAdHocToolsPanelProps = {
+        const props: AdHocToolsPanelProps = {
             backLinkHandler: null,
             diagnosticViewToggleFactory: diagnosticViewToggleFactoryMock.object,
         };
@@ -82,7 +82,7 @@ describe('AdHocToolsPanelTest', () => {
         const backLinkHandlerMock = Mock.ofInstance(() => {});
         backLinkHandlerMock.setup(b => b()).verifiable(Times.once());
 
-        const props: IAdHocToolsPanelProps = {
+        const props: AdHocToolsPanelProps = {
             backLinkHandler: backLinkHandlerMock.object,
             diagnosticViewToggleFactory: diagnosticViewToggleFactoryMock.object,
         };

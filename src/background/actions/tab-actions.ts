@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 import { Action } from '../../common/flux/action';
 
-import { ITab } from '../../common/itab.d';
+import { Tab } from '../../common/itab.d';
 
 export class TabActions {
-    public readonly tabUpdate = new Action<ITab>();
+    public readonly tabUpdate = new Action<Tab>();
     public readonly getCurrentState = new Action();
     public readonly injectedScripts = new Action();
     public readonly tabRemove = new Action();
-    public readonly tabChange = new Action<ITab>();
+    public readonly tabChange = new Action<Tab>();
     public readonly tabVisibilityChange = new Action<boolean>();
 }

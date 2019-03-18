@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { React, create } from '../../common';
+import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
@@ -78,9 +78,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
 
         <h3>Additional guidance</h3>
         <Markup.Links>
-            <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-practices-1.1/">
-                WAI-ARIA Authoring Practices 1.1: Design Patterns and Widgets
-            </Markup.HyperLink>
+            <Link.WAIARIAAuthoringPractices />
         </Markup.Links>
     </>
 ));

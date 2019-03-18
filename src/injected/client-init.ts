@@ -4,8 +4,6 @@ import { initializeFabricIcons } from '../common/fabric-icons';
 import { MainWindowInitializer } from './main-window-initializer';
 import { WindowInitializer } from './window-initializer';
 
-/// <reference path='./Window.d.ts' />
-
 if (!window.windowInitializer) {
     initializeFabricIcons();
 

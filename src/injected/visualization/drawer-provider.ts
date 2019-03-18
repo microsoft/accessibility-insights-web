@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { getRTL } from '@uifabric/utilities';
 import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 import { HTMLElementUtils } from '../../common/html-element-utils';
 import { TabbableElementsHelper } from '../../common/tabbable-elements-helper';
@@ -12,11 +13,11 @@ import { CenterPositionCalculator } from './center-position-calculator';
 import { CustomWidgetsFormatter } from './custom-widgets-formatter';
 import { Drawer } from './drawer';
 import { DrawerUtils } from './drawer-utils';
+import { Formatter, SVGDrawerConfiguration } from './formatter';
 import { FrameFormatter } from './frame-formatter';
 import { HeadingFormatter } from './heading-formatter';
 import { HighlightBoxFormatter } from './highlight-box-formatter';
 import { IDrawer } from './idrawer';
-import { IFormatter, ISVGDrawerConfiguration } from './iformatter';
 import { IssuesFormatter } from './issues-formatter';
 import { LandmarkFormatter } from './landmark-formatter';
 import { NullDrawer } from './null-drawer';
@@ -27,32 +28,20 @@ import { SVGShapeFactory } from './svg-shape-factory';
 import { SVGSolidShadowFilterFactory } from './svg-solid-shadow-filter-factory';
 import { TabStopsFormatter } from './tab-stops-formatter';
 
-export type IPartialSVGDrawerConfiguration = DeepPartial<ISVGDrawerConfiguration>;
+export type IPartialSVGDrawerConfiguration = DeepPartial<SVGDrawerConfiguration>;
 
 export class DrawerProvider {
-    private windowUtils: WindowUtils;
-    private shadowUtils: ShadowUtils;
-    private drawerUtils: DrawerUtils;
-    private clientUtils: ClientUtils;
-    private dom: Document;
-    private frameCommunicator: FrameCommunicator;
-
     constructor(
-        windowUtils: WindowUtils,
-        shadowUtils: ShadowUtils,
-        drawerUtils: DrawerUtils,
-        clientUtils: ClientUtils,
-        dom: Document,
-        frameCommunicator: FrameCommunicator,
+        private readonly htmlElementUtils: HTMLElementUtils,
+        private readonly windowUtils: WindowUtils,
+        private readonly shadowUtils: ShadowUtils,
+        private readonly drawerUtils: DrawerUtils,
+        private readonly clientUtils: ClientUtils,
+        private readonly dom: Document,
+        private readonly frameCommunicator: FrameCommunicator,
         private readonly clientBrowserAdapter: ClientBrowserAdapter,
-    ) {
-        this.windowUtils = windowUtils;
-        this.shadowUtils = shadowUtils;
-        this.drawerUtils = drawerUtils;
-        this.clientUtils = clientUtils;
-        this.dom = dom;
-        this.frameCommunicator = frameCommunicator;
-    }
+        private readonly getRTLFunc: typeof getRTL,
+    ) {}
 
     public createNullDrawer(): IDrawer {
         return new NullDrawer();
@@ -63,7 +52,7 @@ export class DrawerProvider {
     }
 
     public createSVGDrawer(config: IPartialSVGDrawerConfiguration = null): IDrawer {
-        const tabbableElementsHelper = new TabbableElementsHelper(new HTMLElementUtils(this.dom));
+        const tabbableElementsHelper = new TabbableElementsHelper(this.htmlElementUtils);
         const centerPositionCalculator = new CenterPositionCalculator(
             this.drawerUtils,
             this.windowUtils,
@@ -100,7 +89,14 @@ export class DrawerProvider {
     }
 
     public createIssuesDrawer(): IDrawer {
-        const formatter = new IssuesFormatter(this.frameCommunicator, this.windowUtils, this.shadowUtils, this.clientBrowserAdapter);
+        const formatter = new IssuesFormatter(
+            this.frameCommunicator,
+            this.htmlElementUtils,
+            this.windowUtils,
+            this.shadowUtils,
+            this.clientBrowserAdapter,
+            this.getRTLFunc,
+        );
         return this.createDrawer('insights-issues', formatter);
     }
 
@@ -114,7 +110,7 @@ export class DrawerProvider {
         return this.createDrawer('insights-custom-widgets', formatter);
     }
 
-    private createDrawer(containerClass: string, formatter: IFormatter): IDrawer {
+    private createDrawer(containerClass: string, formatter: Formatter): IDrawer {
         return new Drawer(this.dom, containerClass, this.windowUtils, this.shadowUtils, this.drawerUtils, this.clientUtils, formatter);
     }
 }

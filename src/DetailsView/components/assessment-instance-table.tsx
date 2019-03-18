@@ -1,56 +1,56 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { has } from 'lodash';
 import { autobind, IRenderFunction } from '@uifabric/utilities';
+import { has } from 'lodash';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import {
     CheckboxVisibility,
     ConstrainMode,
     DetailsList,
-    IObjectWithKey,
-    IDetailsRowProps,
     IColumn,
+    IDetailsRowProps,
+    IObjectWithKey,
 } from 'office-ui-fabric-react/lib/DetailsList';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
 
 import { AssessmentDefaultMessageGenerator } from '../../assessments/assessment-default-message-generator';
+import { ManualTestStatus } from '../../common/types/manual-test-status';
 import {
-    IAssessmentNavState,
+    AssessmentNavState,
     IGeneratedAssessmentInstance,
     IUserCapturedInstance,
 } from '../../common/types/store-data/iassessment-result-data';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
-import { ManualTestStatus } from '../../common/types/manual-test-status';
 
-export interface IAssessmentInstanceTableProps {
-    instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance>;
-    assessmentNavState: IAssessmentNavState;
+export interface AssessmentInstanceTableProps {
+    instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance>;
+    assessmentNavState: AssessmentNavState;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
-    renderInstanceTableHeader: (table: AssessmentInstanceTable, items: IAssessmentInstanceRowData[]) => JSX.Element;
+    renderInstanceTableHeader: (table: AssessmentInstanceTable, items: AssessmentInstanceRowData[]) => JSX.Element;
     getDefaultMessage: Function;
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
     hasVisualHelper: boolean;
 }
 
-export interface IAssessmentInstanceRowData<P = {}> extends IObjectWithKey {
+export interface AssessmentInstanceRowData<P = {}> extends IObjectWithKey {
     statusChoiceGroup: JSX.Element;
     visualizationButton?: JSX.Element;
     instance: IGeneratedAssessmentInstance<P>;
 }
 
-export interface ICapturedInstanceRowData extends IObjectWithKey {
+export interface CapturedInstanceRowData extends IObjectWithKey {
     instance: IUserCapturedInstance;
     instanceActionButtons: JSX.Element;
 }
 
-export class AssessmentInstanceTable extends React.Component<IAssessmentInstanceTableProps> {
+export class AssessmentInstanceTable extends React.Component<AssessmentInstanceTableProps> {
     public render(): JSX.Element {
         if (this.props.instancesMap == null) {
             return <Spinner className="details-view-spinner" size={SpinnerSize.large} label={'Scanning'} />;
         }
 
-        const items: IAssessmentInstanceRowData[] = this.props.assessmentInstanceTableHandler.createAssessmentInstanceTableItems(
+        const items: AssessmentInstanceRowData[] = this.props.assessmentInstanceTableHandler.createAssessmentInstanceTableItems(
             this.props.instancesMap,
             this.props.assessmentNavState,
             this.props.hasVisualHelper,
@@ -73,6 +73,7 @@ export class AssessmentInstanceTable extends React.Component<IAssessmentInstance
             <div>
                 {this.props.renderInstanceTableHeader(this, items)}
                 <DetailsList
+                    ariaLabelForGrid="Use arrow keys to navigate inside the instances grid"
                     items={items}
                     columns={columns}
                     checkboxVisibility={CheckboxVisibility.hidden}
@@ -85,21 +86,21 @@ export class AssessmentInstanceTable extends React.Component<IAssessmentInstance
     }
 
     @autobind
-    public onItemInvoked(item: IAssessmentInstanceRowData) {
+    public onItemInvoked(item: AssessmentInstanceRowData): void {
         this.updateFocusedTarget(item);
     }
 
     @autobind
-    public renderRow(props: IDetailsRowProps, defaultRender: IRenderFunction<IDetailsRowProps>) {
+    public renderRow(props: IDetailsRowProps, defaultRender: IRenderFunction<IDetailsRowProps>): JSX.Element {
         return <div onClick={() => this.updateFocusedTarget(props.item)}>{defaultRender(props)}</div>;
     }
 
     @autobind
-    public updateFocusedTarget(item: IAssessmentInstanceRowData) {
+    public updateFocusedTarget(item: AssessmentInstanceRowData): void {
         this.props.assessmentInstanceTableHandler.updateFocusedTarget(item.instance.target);
     }
 
-    public renderDefaultInstanceTableHeader(items: IAssessmentInstanceRowData[]): JSX.Element {
+    public renderDefaultInstanceTableHeader(items: AssessmentInstanceRowData[]): JSX.Element {
         const disabled = !this.isAnyInstanceStatusUnknown(items, this.props.assessmentNavState.selectedTestStep);
 
         return (
@@ -109,7 +110,7 @@ export class AssessmentInstanceTable extends React.Component<IAssessmentInstance
         );
     }
 
-    private isAnyInstanceStatusUnknown(items: IAssessmentInstanceRowData[], step: string): boolean {
+    private isAnyInstanceStatusUnknown(items: AssessmentInstanceRowData[], step: string): boolean {
         return items.some(
             item => has(item.instance.testStepResults, step) && item.instance.testStepResults[step].status === ManualTestStatus.UNKNOWN,
         );

@@ -4,19 +4,19 @@ import * as React from 'react';
 
 import { AdHocTestkeys } from '../../common/configs/adhoc-test-keys';
 import { TestMode } from '../../common/configs/test-mode';
-import { IVisualizationConfiguration } from '../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../common/configs/visualization-configuration-factory';
 import { Messages } from '../../common/messages';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { generateUID } from '../../common/uid-generator';
 import { adhoc as content } from '../../content/adhoc';
 import { AdhocStaticTestView } from '../../DetailsView/components/adhoc-static-test-view';
-import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
 import { ScannerUtils } from '../../injected/scanner-utils';
+import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
 
 const { guidance } = content.color;
 
-export const ColorAdHocVisualization: IVisualizationConfiguration = {
+export const ColorAdHocVisualization: VisualizationConfiguration = {
     getTestView: props => <AdhocStaticTestView {...props} />,
     key: AdHocTestkeys.Color,
     testMode: TestMode.Adhoc,

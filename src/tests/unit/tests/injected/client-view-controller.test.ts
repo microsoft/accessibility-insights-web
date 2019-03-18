@@ -25,7 +25,7 @@ import { IAssessmentVisualizationInstance } from '../../../../injected/frameComm
 import { ScrollingController, ScrollingWindowMessage } from '../../../../injected/frameCommunicators/scrolling-controller';
 import { SelectorMapHelper } from '../../../../injected/selector-map-helper';
 import { TargetPageActionMessageCreator } from '../../../../injected/target-page-action-message-creator';
-import { IPropertyBags, IVisualizationInstanceProcessorCallback } from '../../../../injected/visualization-instance-processor';
+import { PropertyBags, VisualizationInstanceProcessorCallback } from '../../../../injected/visualization-instance-processor';
 import { AssessmentsStoreDataBuilder } from '../../common/assessment-store-data-builder';
 import { StoreStub } from '../../common/store-stub';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
@@ -362,11 +362,11 @@ describe('ClientViewControllerTest', () => {
 });
 
 class TestableClientViewController extends ClientViewController {
-    public setPreviousVisualizationStatesStub(stub: IDictionaryStringTo<boolean>) {
+    public setPreviousVisualizationStatesStub(stub: DictionaryStringTo<boolean>) {
         this.previousVisualizationStates = stub;
     }
 
-    public setPreviousVisualizationSelectorMapStatesStub(stub: IDictionaryNumberTo<IDictionaryStringTo<IAssessmentVisualizationInstance>>) {
+    public setPreviousVisualizationSelectorMapStatesStub(stub: DictionaryNumberTo<DictionaryStringTo<IAssessmentVisualizationInstance>>) {
         this.previousVisualizationSelectorMapStates = stub;
     }
 }
@@ -391,7 +391,7 @@ class MocksAndTestSubjectBuilder {
     private _tabStoreMock: IMock<IBaseStore<ITabStoreData>>;
     private _selectorMapHelperMock: IMock<SelectorMapHelper>;
     private _visualizationScanResultStoreMock: IMock<IBaseStore<IVisualizationScanResultData>>;
-    private _featureFlagStoreMock: IMock<IBaseStore<IDictionaryStringTo<boolean>>>;
+    private _featureFlagStoreMock: IMock<IBaseStore<DictionaryStringTo<boolean>>>;
     private _drawingInitiatorMock: IMock<DrawingInitiator>;
     private _scrollingControllerMock: IMock<ScrollingController>;
     private _dataBuilderForFromVisualizationStoreState: VisualizationStoreDataBuilder = new VisualizationStoreDataBuilder();
@@ -399,14 +399,14 @@ class MocksAndTestSubjectBuilder {
     private _dataBuilderForFromVisualizationScanStoreState: VisualizationScanResultStoreDataBuilder = new VisualizationScanResultStoreDataBuilder();
     private _dataBuilderForToVisualizationScanStoreState: VisualizationScanResultStoreDataBuilder = new VisualizationScanResultStoreDataBuilder();
     private IsScrollingInitiatorSetup: boolean = false;
-    private _initializedVisualizationState: IDictionaryStringTo<boolean> = {};
-    private _initializedVisualizationSelectorMapState: IDictionaryNumberTo<IDictionaryStringTo<IAssessmentVisualizationInstance>> = {};
-    private _selectorMap: IDictionaryStringTo<IAssessmentVisualizationInstance>;
+    private _initializedVisualizationState: DictionaryStringTo<boolean> = {};
+    private _initializedVisualizationSelectorMapState: DictionaryNumberTo<DictionaryStringTo<IAssessmentVisualizationInstance>> = {};
+    private _selectorMap: DictionaryStringTo<IAssessmentVisualizationInstance>;
     private _visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
     private _actualVisualizationConfigurationFactory: VisualizationConfigurationFactory;
-    private _visualizationInstanceProcessorStub: IVisualizationInstanceProcessorCallback<IPropertyBags, IPropertyBags>;
+    private _visualizationInstanceProcessorStub: VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags>;
     private _getVisualizationInstanceProcessorMock: IMock<
-        (testStep?: string) => IVisualizationInstanceProcessorCallback<IPropertyBags, IPropertyBags>
+        (testStep?: string) => VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags>
     >;
     private _targetPageActionMessageCreatorMock: IMock<TargetPageActionMessageCreator>;
 

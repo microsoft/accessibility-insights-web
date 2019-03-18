@@ -1,11 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-/// <reference path="./iformatter.d.ts" />
-/// <reference path="./idrawer.d.ts" />
 import { IHtmlElementAxeResults } from '../scanner-utils';
-import { SingleTargetFormatter } from './single-target-formatter';
 import { DrawerUtils } from './drawer-utils';
 import { IDrawer, IDrawerInitData } from './idrawer';
+import { SingleTargetFormatter } from './single-target-formatter';
 
 export class SingleTargetDrawer implements IDrawer {
     protected isEnabled = false;

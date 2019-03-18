@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { SingleTargetDrawerConfiguration } from '../../../../../injected/visualization/iformatter';
+import { SingleTargetDrawerConfiguration } from '../../../../../injected/visualization/formatter';
 import { SingleTargetFormatter } from '../../../../../injected/visualization/single-target-formatter';
 
 describe('SingleFormatterTests', () => {

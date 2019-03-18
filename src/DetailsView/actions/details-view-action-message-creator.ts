@@ -3,15 +3,16 @@
 import { autobind } from '@uifabric/utilities';
 
 import { OnDetailsViewPivotSelected, SelectTestStepPayload } from '../../background/actions/action-payloads';
-import { Messages } from '../../common/messages';
 import { DevToolActionMessageCreator } from '../../common/message-creators/dev-tool-action-message-creator';
+import { Messages } from '../../common/messages';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
+import { DetailsViewRightContentPanelType } from '../components/left-nav/details-view-right-content-panel-type';
 import {
-    BaseActionPayload,
     AddFailureInstancePayload,
     AssessmentActionInstancePayload,
     AssessmentToggleActionPayload,
+    BaseActionPayload,
     ChangeAssessmentStepStatusPayload,
     ChangeInstanceSelectionPayload,
     ChangeInstanceStatusPayload,
@@ -24,9 +25,8 @@ import {
 import { FeatureFlagPayload } from './../../background/actions/feature-flag-actions';
 import { TelemetryDataFactory } from './../../common/telemetry-data-factory';
 import * as TelemetryEvents from './../../common/telemetry-events';
-import { VisualizationType } from './../../common/types/visualization-type';
 import { ExportResultType } from './../../common/telemetry-events';
-import { DetailsViewRightContentPanelType } from '../components/left-nav/details-view-right-content-panel-type';
+import { VisualizationType } from './../../common/types/visualization-type';
 import { WindowUtils } from './../../common/window-utils';
 
 const messages = Messages.Visualizations;
@@ -34,13 +34,13 @@ const messages = Messages.Visualizations;
 export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator {
     private windowUtils: WindowUtils;
 
-    constructor(postMessage: (message: IMessage) => void, tabId: number, telemetryFactory: TelemetryDataFactory, windowUtils: WindowUtils) {
+    constructor(postMessage: (message: Message) => void, tabId: number, telemetryFactory: TelemetryDataFactory, windowUtils: WindowUtils) {
         super(postMessage, tabId, telemetryFactory);
         this.windowUtils = windowUtils;
     }
     public updateIssuesSelectedTargets(selectedTargets: string[]): void {
         const payload: string[] = selectedTargets;
-        const message: IMessage = {
+        const message: Message = {
             type: messages.Issues.UpdateSelectedTargets,
             tabId: this._tabId,
             payload,
@@ -135,7 +135,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
 
     public updateFocusedInstanceTarget(instanceTarget: string[]): void {
         const payload: string[] = instanceTarget;
-        const message: IMessage = {
+        const message: Message = {
             type: messages.Issues.UpdateFocusedInstance,
             tabId: this._tabId,
             payload,

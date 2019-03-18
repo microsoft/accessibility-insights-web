@@ -18,8 +18,8 @@ import { TargetTabController } from '../target-tab-controller';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import { ActionHub } from './action-hub';
 import {
-    BaseActionPayload,
     AddTabbedElementPayload,
+    BaseActionPayload,
     OnDetailsViewOpenPayload,
     OnDetailsViewPivotSelected,
     PayloadWithEventName,
@@ -37,14 +37,14 @@ export class ActionCreator {
     private visualizationScanResultActions: VisualizationScanResultActions;
     private detailsViewActions: DetailsViewActions;
     private previewFeaturesActions: PreviewFeaturesActions;
-    private registerTypeToPayloadCallback: IRegisterTypeToPayloadCallback;
+    private registerTypeToPayloadCallback: RegisterTypeToPayloadCallback;
     private detailsViewController: DetailsViewController;
     private chromeFeatureController: ChromeFeatureController;
     private telemetryEventHandler: TelemetryEventHandler;
     private notificationCreator: NotificationCreator;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
     private targetTabController: TargetTabController;
-    private adhocTestTypeToTelemetryEvent: IDictionaryNumberTo<string> = {
+    private adhocTestTypeToTelemetryEvent: DictionaryNumberTo<string> = {
         [VisualizationType.Color]: TelemetryEvents.COLOR_TOGGLE,
         [VisualizationType.Headings]: TelemetryEvents.HEADINGS_TOGGLE,
         [VisualizationType.Issues]: TelemetryEvents.AUTOMATED_CHECKS_TOGGLE,
@@ -55,7 +55,7 @@ export class ActionCreator {
 
     constructor(
         actionHub: ActionHub,
-        registerTypeToPayloadCallback: IRegisterTypeToPayloadCallback,
+        registerTypeToPayloadCallback: RegisterTypeToPayloadCallback,
         detailsViewController: DetailsViewController,
         chromeFeatureController: ChromeFeatureController,
         telemetryEventHandler: TelemetryEventHandler,

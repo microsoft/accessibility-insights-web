@@ -4,10 +4,10 @@ import * as React from 'react';
 
 import { NewTabLink } from '../../../common/components/new-tab-link';
 import { link } from '../../../content/link';
+import * as content from '../../../content/test/repetitive-content/consistent-identification';
 import ManualTestRecordYourResults from '../../common/manual-test-record-your-results';
 import { TestStep } from '../../types/test-step';
 import { RepetitiveContentTestStep } from './test-steps';
-import * as content from '../../../content/test/repetitive-content/consistent-identification';
 
 const consistentIdentificationDescription: JSX.Element = (
     <span>Functional components that appear on multiple pages must be identified consistently.</span>

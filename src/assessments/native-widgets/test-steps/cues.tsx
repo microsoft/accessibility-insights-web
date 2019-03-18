@@ -3,20 +3,20 @@
 import * as React from 'react';
 
 import { AnalyzerConfigurationFactory } from '../../../assessments/common/analyzer-configuration-factory';
-import { ICuesPropertyBag } from '../../../common/types/property-bag/icues';
+import { CuesPropertyBag } from '../../../common/types/property-bag/icues';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
+import * as content from '../../../content/test/native-widgets/cues';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
-import { IPropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
+import { PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
 import * as Markup from '../../markup';
-import { TestStep } from '../../types/test-step';
 import { ReportInstanceField } from '../../types/report-instance-field';
+import { TestStep } from '../../types/test-step';
 import { NativeWidgetsTestStep } from './test-steps';
-import * as content from '../../../content/test/native-widgets/cues';
 
 const description: JSX.Element = <span>If a native widget adopts certain interactive states, it must provide appropriate cues.</span>;
 
@@ -60,7 +60,7 @@ const howToTest: JSX.Element = (
     </div>
 );
 
-const propertyBagConfig: IPropertyBagColumnRendererConfig<ICuesPropertyBag>[] = [
+const propertyBagConfig: PropertyBagColumnRendererConfig<CuesPropertyBag>[] = [
     {
         propertyName: 'element',
         displayName: 'Element',
@@ -97,7 +97,7 @@ export const Cues: TestStep = {
         {
             key: 'cues-info',
             name: 'Cues',
-            onRender: PropertyBagColumnRendererFactory.get<ICuesPropertyBag>(propertyBagConfig),
+            onRender: PropertyBagColumnRendererFactory.get<CuesPropertyBag>(propertyBagConfig),
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),

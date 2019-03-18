@@ -3,10 +3,10 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { IPropertyBagColumnRendererConfig } from '../../../../../assessments/common/property-bag-column-renderer';
+import { PropertyBagColumnRendererConfig } from '../../../../../assessments/common/property-bag-column-renderer';
 import { PropertyBagColumnRendererFactory } from '../../../../../assessments/common/property-bag-column-renderer-factory';
 import { ColumnValueBag } from '../../../../../common/types/property-bag/column-value-bag';
-import { IAssessmentInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
+import { AssessmentInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
 import { RendererWrapper } from './renderer-wrapper';
 
 interface TestPropertyBag extends ColumnValueBag {
@@ -15,14 +15,14 @@ interface TestPropertyBag extends ColumnValueBag {
 
 describe('PropertyBagColumnRendererFactoryTest', () => {
     test('get', () => {
-        const configs: IPropertyBagColumnRendererConfig<TestPropertyBag>[] = [
+        const configs: PropertyBagColumnRendererConfig<TestPropertyBag>[] = [
             {
                 propertyName: 'a',
                 displayName: 'display a',
             },
         ];
 
-        const item: IAssessmentInstanceRowData<TestPropertyBag> = {
+        const item: AssessmentInstanceRowData<TestPropertyBag> = {
             instance: {
                 html: null,
                 target: null,

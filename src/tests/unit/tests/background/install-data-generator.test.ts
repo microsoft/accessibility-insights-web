@@ -4,7 +4,7 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { ChromeAdapter } from '../../../../background/browser-adapter';
 import { InstallDataGenerator } from '../../../../background/install-data-generator';
-import { IInstallationData } from '../../../../background/installation-data';
+import { InstallationData } from '../../../../background/installation-data';
 import { LocalStorageDataKeys } from '../../../../background/local-storage-data-keys';
 import { generateUID } from '../../../../common/uid-generator';
 
@@ -37,7 +37,7 @@ describe('InstallDataGeneratorTest', () => {
         const guidStub = 'somestub';
         const monthStub = 5;
         const yearStub = 22;
-        const installationDataStub: IInstallationData = {
+        const installationDataStub: InstallationData = {
             id: guidStub,
             month: monthStub,
             year: yearStub,
@@ -83,12 +83,12 @@ describe('InstallDataGeneratorTest', () => {
         const monthStub = 5;
         const yearStub = 2000;
 
-        const installationDataStub: IInstallationData = {
+        const installationDataStub: InstallationData = {
             id: guidStub,
             month: monthStub,
             year: yearStub,
         };
-        const initialInstallationData: IInstallationData = {
+        const initialInstallationData: InstallationData = {
             id: guidStub,
             month: monthStub,
             year: 1999,
@@ -134,12 +134,12 @@ describe('InstallDataGeneratorTest', () => {
         const monthStub = 5;
         const yearStub = 2000;
 
-        const installationDataStub: IInstallationData = {
+        const installationDataStub: InstallationData = {
             id: guidStub,
             month: monthStub,
             year: yearStub,
         };
-        const initialInstallationData: IInstallationData = {
+        const initialInstallationData: InstallationData = {
             id: guidStub,
             month: 4,
             year: yearStub,

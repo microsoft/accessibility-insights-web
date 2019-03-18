@@ -1,26 +1,26 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-interface IHTMLInstance {
+interface HTMLInstance {
     html: string;
 }
 
-interface ISelectorInstance {
+interface SelectorInstance {
     target: string[];
 }
 
-export type IUniquelyIdentifiableInstances = IHTMLInstance & ISelectorInstance;
+export type UniquelyIdentifiableInstances = HTMLInstance & SelectorInstance;
 
-export interface IInstanceWithHtmlAndSelector {
+export interface InstanceWithHtmlAndSelector {
     html: string;
     target: string[];
 }
 
 export class InstanceIdentifierGenerator {
-    public static generateSelectorIdentifier(instance: ISelectorInstance): string {
+    public static generateSelectorIdentifier(instance: SelectorInstance): string {
         return instance.target.join(';');
     }
 
-    public static defaultHtmlSelectorIdentifier(instance: IInstanceWithHtmlAndSelector): string {
+    public static defaultHtmlSelectorIdentifier(instance: InstanceWithHtmlAndSelector): string {
         return instance.html + ',' + instance.target.join(';');
     }
 }

@@ -3,7 +3,7 @@
 import { IDevToolsChromeAdapter } from '../background/dev-tools-chrome-adapter';
 import { ConnectionNames } from '../common/constants/connection-names';
 import { IBaseStore } from '../common/istore';
-import { IDevToolsOpenMessage } from '../common/types/dev-tools-open-message';
+import { DevToolsOpenMessage } from '../common/types/dev-tools-open-message';
 import { DevToolState } from '../common/types/store-data/idev-tool-state';
 
 export class InspectHandler {
@@ -15,7 +15,7 @@ export class InspectHandler {
         this._devToolsChromeAdapter = devToolsChromeAdapter;
     }
 
-    public initialize() {
+    public initialize(): void {
         this._devToolsStore.addChangedListener(() => {
             const state = this._devToolsStore.getState();
 
@@ -31,6 +31,6 @@ export class InspectHandler {
             name: ConnectionNames.devTools,
         });
 
-        backgroundPageConnection.postMessage({ tabId: this._devToolsChromeAdapter.getInspectedWindowTabId() } as IDevToolsOpenMessage);
+        backgroundPageConnection.postMessage({ tabId: this._devToolsChromeAdapter.getInspectedWindowTabId() } as DevToolsOpenMessage);
     }
 }

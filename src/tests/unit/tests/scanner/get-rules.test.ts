@@ -4,7 +4,7 @@ import * as Axe from 'axe-core';
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
 
 import { getRules } from '../../../../scanner/get-rules';
-import { IRuleWithA11YCriteria, RuleSifter } from '../../../../scanner/rule-sifter';
+import { RuleSifter, RuleWithA11YCriteria } from '../../../../scanner/rule-sifter';
 import { ScannerRuleInfo } from '../../../../scanner/scanner-rule-info';
 import { HyperlinkDefinition } from '../../../../views/content/content-page';
 
@@ -57,7 +57,7 @@ describe('getDefaultRules', () => {
             },
         ];
 
-        const siftedRulesStub: IRuleWithA11YCriteria[] = [
+        const siftedRulesStub: RuleWithA11YCriteria[] = [
             {
                 id: ruleStubOne.ruleId,
                 a11yCriteria: [a11yCriteriaStub],

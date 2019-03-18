@@ -1,18 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { It, Mock } from 'typemoq';
-
 import { ClientUtils } from '../../../../../injected/client-utils';
 import { IAssessmentVisualizationInstance } from '../../../../../injected/frameCommunicators/html-element-axe-results-helper';
-import { HeadingFormatter, IHeadingStyleConfiguration, IStyleComputer } from '../../../../../injected/visualization/heading-formatter';
-import { IDrawerConfiguration } from '../../../../../injected/visualization/iformatter';
+import { DrawerConfiguration } from '../../../../../injected/visualization/formatter';
+import { HeadingFormatter, HeadingStyleConfiguration, StyleComputer } from '../../../../../injected/visualization/heading-formatter';
 
 describe('HeadingFormatterTests', () => {
     let testSubject: HeadingFormatter;
     let sandbox: HTMLDivElement;
     let failedInstanceResult: IAssessmentVisualizationInstance;
     let failedInstanceNotSelected: IAssessmentVisualizationInstance;
-    let styleComputer: IStyleComputer;
+    let styleComputer: StyleComputer;
     const innerText = 'HEADING';
 
     beforeEach(() => {
@@ -194,11 +193,11 @@ describe('HeadingFormatterTests', () => {
         expect(config.showVisualization).toBe(false);
     });
 
-    function createDisplayNoneStyleComputer(): IStyleComputer {
-        const getComputedStyleMock = Mock.ofInstance(element => {});
+    function createDisplayNoneStyleComputer(): StyleComputer {
+        const getComputedStyleMock = Mock.ofInstance(_ => {});
 
         getComputedStyleMock
-            .setup(get => get(It.isAny()))
+            .setup(getter => getter(It.isAny()))
             .returns(() => {
                 return { display: 'none' };
             });
@@ -207,17 +206,17 @@ describe('HeadingFormatterTests', () => {
             getComputedStyle: getComputedStyleMock.object,
         };
 
-        return computedStyle as IStyleComputer;
+        return computedStyle as StyleComputer;
     }
 
-    function verifyHeadingStyle(config: IDrawerConfiguration, headingStyle: IHeadingStyleConfiguration, text: string): void {
+    function verifyHeadingStyle(config: DrawerConfiguration, headingStyle: HeadingStyleConfiguration, text: string): void {
         expect(config.showVisualization).toBe(true);
         expect(config.borderColor).toBe(headingStyle.borderColor);
         expect(config.textBoxConfig.fontColor).toBe(headingStyle.fontColor);
         expect(config.textBoxConfig.text).toBe(text);
     }
 
-    function verifyFailureBoxStyle(config: IDrawerConfiguration): void {
+    function verifyFailureBoxStyle(config: DrawerConfiguration): void {
         const failureBoxConfig = config.failureBoxConfig;
         const expected = {
             background: '#CC0000',

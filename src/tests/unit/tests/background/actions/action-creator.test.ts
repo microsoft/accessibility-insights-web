@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { forOwn } from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { ActionCreator } from '../../../../../background/actions/action-creator';
@@ -29,12 +30,13 @@ import { Action } from '../../../../../common/flux/action';
 import { Messages } from '../../../../../common/messages';
 import { NotificationCreator } from '../../../../../common/notification-creator';
 import {
+    BaseTelemetryData,
     DetailsViewOpenTelemetryData,
     DetailsViewPivotSelectedTelemetryData,
+    SettingsOpenTelemetryData,
     TelemetryEventSource,
     ToggleTelemetryData,
     TriggeredBy,
-    BaseTelemetryData,
 } from '../../../../../common/telemetry-events';
 import * as TelemetryEvents from '../../../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
@@ -707,9 +709,10 @@ describe('ActionCreatorTest', () => {
 
     test('registerCallback for onOpenSettingsPanel', () => {
         const tabId: number = 1;
-        const telemetryData: BaseTelemetryData = {
+        const telemetryData: SettingsOpenTelemetryData = {
             triggeredBy: 'mouseclick',
             source: testSource,
+            sourceItem: 'menu',
         };
 
         const payload = {
@@ -1006,27 +1009,27 @@ describe('ActionCreatorTest', () => {
 
 class ActionCreatorValidator {
     private visualizationActionsContainerMock = Mock.ofType(VisualizationActions);
-    private visualizationActionMocks: IDictionaryStringTo<IMock<Action<any>>> = {};
-    private devToolsActionMocks: IDictionaryStringTo<IMock<Action<any>>> = {};
+    private visualizationActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
+    private devToolsActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
 
     private visualizationScanResultActionsContainerMock = Mock.ofType(VisualizationScanResultActions);
-    private visualizationScanResultActionMocks: IDictionaryStringTo<IMock<Action<any>>> = {};
+    private visualizationScanResultActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
 
     private detailsViewActionsContainerMock = Mock.ofType(DetailsViewActions);
     private previewFeaturesActionsContainerMock = Mock.ofType(PreviewFeaturesActions);
     private scopingActionsContainerMock = Mock.ofType(ScopingActions);
     private assessmentActionsContainerMock = Mock.ofType(AssessmentActions);
     private inspectActionsContainerMock = Mock.ofType(InspectActions);
-    private previewFeaturesActionMocks: IDictionaryStringTo<IMock<Action<any>>> = {};
-    private scopingActionMocks: IDictionaryStringTo<IMock<Action<any>>> = {};
-    private detailsViewActionsMocks: IDictionaryStringTo<IMock<Action<any>>> = {};
+    private previewFeaturesActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
+    private scopingActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
+    private detailsViewActionsMocks: DictionaryStringTo<IMock<Action<any>>> = {};
 
-    private inspectActionsMock: IDictionaryStringTo<IMock<Action<any>>> = {};
+    private inspectActionsMock: DictionaryStringTo<IMock<Action<any>>> = {};
 
     private devToolActionsContainerMock = Mock.ofType(DevToolActions);
 
     private contentScriptInjectorStrictMock = Mock.ofType<ContentScriptInjector>(null, MockBehavior.Strict);
-    private registerCallbackMock = Mock.ofInstance((messageType: string, callback: IPayloadCallback) => {});
+    private registerCallbackMock = Mock.ofInstance((messageType: string, callback: PayloadCallback) => {});
     private getManifestMock = Mock.ofInstance(() => {
         return null;
     });
@@ -1064,7 +1067,7 @@ class ActionCreatorValidator {
     private setupActionWithInvokeParameter(
         actionName: string,
         expectedInvokeParam: any,
-        actionsMap: IDictionaryStringTo<IMock<Action<any>>>,
+        actionsMap: DictionaryStringTo<IMock<Action<any>>>,
     ): ActionCreatorValidator {
         let action = actionsMap[actionName];
 
@@ -1126,7 +1129,7 @@ class ActionCreatorValidator {
     }
 
     public setupCreateNotificationByVisualizationKey(
-        selectorMap: IDictionaryStringTo<any>,
+        selectorMap: DictionaryStringTo<any>,
         key: string,
         type: VisualizationType,
     ): ActionCreatorValidator {
@@ -1165,7 +1168,7 @@ class ActionCreatorValidator {
 
     private setupAction(
         actionName: string,
-        actionsMap: IDictionaryStringTo<IMock<Action<any>>>,
+        actionsMap: DictionaryStringTo<IMock<Action<any>>>,
         actionsContainerMock: IMock<any>,
     ): ActionCreatorValidator {
         let action = actionsMap[actionName];
@@ -1280,9 +1283,9 @@ class ActionCreatorValidator {
         this.verifyAllActions(this.scopingActionMocks);
     }
 
-    private verifyAllActions(actionsMap: IDictionaryStringTo<IMock<Action<any>>>): void {
-        for (const actionName in actionsMap) {
-            actionsMap[actionName].verifyAll();
-        }
+    private verifyAllActions(actionsMap: DictionaryStringTo<IMock<Action<any>>>): void {
+        forOwn(actionsMap, action => {
+            action.verifyAll();
+        });
     }
 }

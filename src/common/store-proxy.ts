@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
 import { autobind } from '@uifabric/utilities';
+import * as _ from 'lodash';
 
-import { Store } from './flux/store';
 import { ClientChromeAdapter } from './client-browser-adapter';
 import { GenericStoreMessageTypes } from './constants/generic-store-messages-types';
+import { Store } from './flux/store';
 import { IBaseStore } from './istore';
 import { StoreType } from './types/store-type';
 import { StoreUpdateMessage } from './types/store-update-message';

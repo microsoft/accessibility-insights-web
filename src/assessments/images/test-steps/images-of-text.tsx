@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { IImagesOfTextPropertyBag } from '../../../common/types/property-bag/iimage-of-text';
+import { ImagesOfTextPropertyBag } from '../../../common/types/property-bag/iimage-of-text';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
@@ -10,10 +10,10 @@ import * as content from '../../../content/test/images/images-of-text';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
-import { IPropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
+import { PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
-import { TestStep } from '../../types/test-step';
 import { ReportInstanceField } from '../../types/report-instance-field';
+import { TestStep } from '../../types/test-step';
 import { ImagesTestStep } from './test-steps';
 
 const description: JSX.Element = <span>Images of text are allowed only where a specific appearance is required (e.g., logotypes).</span>;
@@ -31,7 +31,7 @@ const howToTest: JSX.Element = (
 
 const key = ImagesTestStep.imageOfText;
 
-const propertyBagConfig: IPropertyBagColumnRendererConfig<IImagesOfTextPropertyBag>[] = [
+const propertyBagConfig: PropertyBagColumnRendererConfig<ImagesOfTextPropertyBag>[] = [
     {
         propertyName: 'imageType',
         displayName: 'Image type',

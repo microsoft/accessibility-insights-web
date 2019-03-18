@@ -1,32 +1,30 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow, ShallowWrapper } from 'enzyme';
+import { mount, shallow } from 'enzyme';
+import { IconButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
-import * as TestUtils from 'react-dom/test-utils';
 import { It, Mock, Times } from 'typemoq';
+
 import { DropdownClickHandler } from '../../../../../../common/dropdown-click-handler';
-import { TelemetryEventSource } from '../../../../../../common/telemetry-events';
-import { DetailsViewPivotType } from '../../../../../../common/types/details-view-pivot-type';
 import { FeatureFlagStoreData } from '../../../../../../common/types/store-data/feature-flag-store-data';
-import { VisualizationType } from '../../../../../../common/types/visualization-type';
 import { PopupActionMessageCreator } from '../../../../../../popup/scripts/actions/popup-action-message-creator';
 import {
-    ILaunchPanelHeaderProps,
     LaunchPanelHeader,
     LaunchPanelHeaderDeps,
+    LaunchPanelHeaderProps,
 } from '../../../../../../popup/scripts/components/launch-panel-header';
 import { LaunchPanelHeaderClickHandler } from '../../../../../../popup/scripts/handlers/launch-panel-header-click-handler';
 import { SupportLinkHandler } from '../../../../../../popup/support-link-handler';
 import { EventStubFactory } from '../../../../common/event-stub-factory';
 
 describe('LaunchPanelHeaderTest', () => {
-    const eventStubFactory = new EventStubFactory();
-    let props: ILaunchPanelHeaderProps;
+    let props: LaunchPanelHeaderProps;
 
     beforeEach(() => {
         const deps: LaunchPanelHeaderDeps = {
             popupActionMessageCreator: {} as PopupActionMessageCreator,
             dropdownClickHandler: {} as DropdownClickHandler,
+            launchPanelHeaderClickHandler: {} as LaunchPanelHeaderClickHandler,
         };
         props = {
             deps: deps,
@@ -34,7 +32,6 @@ describe('LaunchPanelHeaderTest', () => {
             subtitle: 'test subtitle',
             openGettingStartedDialog: {} as any,
             openFeedbackDialog: {} as any,
-            clickhandler: {} as LaunchPanelHeaderClickHandler,
             supportLinkHandler: {} as SupportLinkHandler,
             popupWindow: {} as Window,
             featureFlags: {} as FeatureFlagStoreData,
@@ -69,90 +66,27 @@ describe('LaunchPanelHeaderTest', () => {
         });
     });
 
-    describe('click handling', () => {
-        const event = eventStubFactory.createMouseClickEvent() as any;
+    describe('user interaction', () => {
+        const eventStubFactory = new EventStubFactory();
+        const eventStub = eventStubFactory.createMouseClickEvent() as any;
 
-        test('openFastPass', () => {
-            const pivotType = DetailsViewPivotType.fastPass;
-            const actionMessageCreatorMock = Mock.ofType(PopupActionMessageCreator);
-            const source = TelemetryEventSource.HamburgerMenu;
+        it('handle global nav button activation', () => {
+            const launchPanelHeaderClickHandlerMock = Mock.ofType<LaunchPanelHeaderClickHandler>();
+            props.deps.launchPanelHeaderClickHandler = launchPanelHeaderClickHandlerMock.object;
 
-            actionMessageCreatorMock
-                .setup(amc => amc.openDetailsView(event as any, VisualizationType.Issues, source, pivotType))
+            const wrapped = mount(<LaunchPanelHeader {...props} />);
+
+            launchPanelHeaderClickHandlerMock
+                .setup(handler => handler.onOpenContextualMenu(It.isAny(), It.isObjectWith(eventStub)))
                 .verifiable(Times.once());
 
-            props.deps.popupActionMessageCreator = actionMessageCreatorMock.object;
+            const iconButton = wrapped.find(IconButton);
 
-            const component = React.createElement(LaunchPanelHeader, props);
-            const testSubject = TestUtils.renderIntoDocument(component);
+            expect(iconButton.length).toBe(1);
 
-            (testSubject as any)._onOpenDetailsViewForFastPass(event);
+            iconButton.simulate('click', eventStub);
 
-            actionMessageCreatorMock.verifyAll();
-        });
-
-        test('openAllTests', () => {
-            const pivotType = DetailsViewPivotType.allTest;
-            const actionMessageCreatorMock = Mock.ofType(PopupActionMessageCreator);
-            const source = TelemetryEventSource.HamburgerMenu;
-
-            actionMessageCreatorMock
-                .setup(amc => amc.openDetailsView(event as any, VisualizationType.Issues, source, pivotType))
-                .verifiable(Times.once());
-
-            props.deps.popupActionMessageCreator = actionMessageCreatorMock.object;
-
-            const component = React.createElement(LaunchPanelHeader, props);
-            const testSubject = TestUtils.renderIntoDocument(component);
-
-            (testSubject as any)._onOpenDetailsViewForAllTests(event);
-
-            actionMessageCreatorMock.verifyAll();
-        });
-
-        test('open assessment', () => {
-            const pivotType = DetailsViewPivotType.assessment;
-            const actionMessageCreatorMock = Mock.ofType(PopupActionMessageCreator);
-            const source = TelemetryEventSource.HamburgerMenu;
-
-            actionMessageCreatorMock.setup(amc => amc.openDetailsView(event as any, null, source, pivotType)).verifiable(Times.once());
-
-            props.deps.popupActionMessageCreator = actionMessageCreatorMock.object;
-
-            const component = React.createElement(LaunchPanelHeader, props);
-            const testSubject = TestUtils.renderIntoDocument(component);
-
-            (testSubject as any)._onOpenDetailsViewForAssessment(event);
-
-            actionMessageCreatorMock.verifyAll();
-        });
-
-        test('Keyboard: modify shortcuts', () => {
-            const actionMessageCreator = Mock.ofType(PopupActionMessageCreator);
-            actionMessageCreator.setup(amc => amc.openShortcutConfigureTab(event)).verifiable(Times.once());
-
-            props.deps.popupActionMessageCreator = actionMessageCreator.object;
-
-            const component = React.createElement(LaunchPanelHeader, props);
-            const testSubject = TestUtils.renderIntoDocument(component);
-
-            (testSubject as any)._openShortcutModifyTab(event);
-
-            actionMessageCreator.verifyAll();
-        });
-
-        test('Help', () => {
-            const clickHanderMock = Mock.ofType(LaunchPanelHeaderClickHandler);
-            clickHanderMock.setup(cH => cH.onClickLink(props.popupWindow, event, It.isAny())).verifiable(Times.once());
-
-            props.clickhandler = clickHanderMock.object;
-
-            const component = React.createElement(LaunchPanelHeader, props);
-            const testSubject = TestUtils.renderIntoDocument(component);
-
-            (testSubject as any)._onClickLink(event);
-
-            clickHanderMock.verifyAll();
+            launchPanelHeaderClickHandlerMock.verifyAll();
         });
     });
 });

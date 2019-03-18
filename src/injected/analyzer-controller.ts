@@ -1,26 +1,26 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentsProvider } from './../assessments/assessments-provider';
-import { AnalyzerProvider } from './analyzers/analyzer-provider';
-import { AnalyzerStateUpdateHandler } from './analyzer-state-update-handler';
 import { autobind } from '@uifabric/utilities';
+import { AssessmentsProvider } from './../assessments/assessments-provider';
+import { AnalyzerStateUpdateHandler } from './analyzer-state-update-handler';
+import { AnalyzerProvider } from './analyzers/analyzer-provider';
 
+import { IAssessmentsProvider } from '../assessments/types/iassessments-provider';
+import { EnumHelper } from '../common/enum-helper';
 import { FeatureFlags } from '../common/feature-flags';
 import { IBaseStore } from '../common/istore';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
+import { IScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { VisualizationConfigurationFactory } from './../common/configs/visualization-configuration-factory';
 import { IAnalyzer } from './analyzers/ianalyzer';
 import { TabStopsListener } from './tab-stops-listener';
-import { IScopingStoreData } from '../common/types/store-data/scoping-store-data';
-import { EnumHelper } from '../common/enum-helper';
-import { IAssessmentsProvider } from '../assessments/types/iassessments-provider';
 
 export class AnalyzerController {
     private analyzerProvider: AnalyzerProvider;
     private tabStopsListener: TabStopsListener;
-    private analyzers: IDictionaryNumberTo<IAnalyzer<any>>;
+    private analyzers: DictionaryNumberTo<IAnalyzer<any>>;
     private sendMessage: (message) => void;
     private visualizationstore: IBaseStore<IVisualizationStoreData>;
     private scopingStore: IBaseStore<IScopingStoreData>;

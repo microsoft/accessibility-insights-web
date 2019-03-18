@@ -4,6 +4,7 @@ import * as React from 'react';
 
 import { IAssessmentsProvider } from '../../../assessments/types/iassessments-provider';
 import { NamedSFC } from '../../../common/react/named-sfc';
+import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../../../common/types/store-data/iassessment-result-data';
 import { ITabStoreData } from '../../../common/types/store-data/itab-store-data';
 import { HyperlinkDefinition } from '../../../views/content/content-page';
@@ -14,19 +15,18 @@ import { GetAssessmentSummaryModelFromProviderAndStoreData } from '../../reports
 import { TargetChangeDialog, TargetChangeDialogDeps } from '../target-change-dialog';
 import { OverviewHeading } from './overview-heading';
 import { HelpLinkDeps, OverviewHelpSection } from './overview-help-section';
-import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
 
 const linkDataSource: HyperlinkDefinition[] = [
     {
-        href: 'https://msit.microsoftstream.com/video/7fa02042-3b76-408d-b70b-334ffc269aab?channelId=66d47e66-d99c-488b-b9ea-98a153d2a4d4',
+        href: 'https://go.microsoft.com/fwlink/?linkid=2082219',
         text: 'Getting started',
     },
     {
-        href: 'https://msit.microsoftstream.com/video/8f1183cb-434e-4d0c-8a31-7b277eb7a004',
+        href: 'https://go.microsoft.com/fwlink/?linkid=2082220',
         text: 'How to complete a test',
     },
     {
-        href: 'https://stackoverflow.microsoft.com/questions/ask?tags=accessibility-insights',
+        href: 'https://go.microsoft.com/fwlink/?linkid=2077941',
         text: 'Ask a question',
     },
 ];

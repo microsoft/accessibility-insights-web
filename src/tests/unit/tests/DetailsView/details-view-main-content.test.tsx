@@ -5,26 +5,26 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
 import {
-    IVisualizationConfiguration,
+    VisualizationConfiguration,
     VisualizationConfigurationFactory,
 } from '../../../../common/configs/visualization-configuration-factory';
 import { NamedSFC, ReactSFCWithDisplayName } from '../../../../common/react/named-sfc';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
 import {
+    AssessmentNavState,
     IAssessmentData,
-    IAssessmentNavState,
     IAssessmentStoreData,
     PersistedTabInfo,
 } from '../../../../common/types/store-data/iassessment-result-data';
 import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';
-import { IScanData, ITestsEnabledState } from '../../../../common/types/store-data/ivisualization-store-data';
+import { IScanData, TestsEnabledState } from '../../../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../DetailsView/actions/details-view-action-message-creator';
 import { DetailsRightPanelConfiguration } from '../../../../DetailsView/components/details-view-right-panel';
 import { DetailsViewSwitcherNavConfiguration } from '../../../../DetailsView/components/details-view-switcher-nav';
 import { DetailsViewLeftNav } from '../../../../DetailsView/components/left-nav/details-view-left-nav';
 import { TabInfo } from '../../../../DetailsView/components/tab-info';
-import { DetailsViewMainContent, IDetailsViewMainContentProps } from '../../../../DetailsView/details-view-main-content';
+import { DetailsViewMainContent, DetailsViewMainContentProps } from '../../../../DetailsView/details-view-main-content';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
@@ -35,25 +35,25 @@ describe('DetailsViewMainContentTest', () => {
     let configFactoryMock: IMock<VisualizationConfigurationFactory>;
     let clickHandlerFactoryMock: IMock<DetailsViewToggleClickHandlerFactory>;
     let clickHandlerStub: (event: any) => void;
-    let getStoreDataMock: IMock<(data: ITestsEnabledState) => IScanData>;
-    let configStub: IVisualizationConfiguration;
+    let getStoreDataMock: IMock<(data: TestsEnabledState) => IScanData>;
+    let configStub: VisualizationConfiguration;
     let scanDataStub: IScanData;
-    let props: IDetailsViewMainContentProps;
+    let props: DetailsViewMainContentProps;
     let rightPanelConfig: DetailsRightPanelConfiguration;
     let switcherNavConfig: DetailsViewSwitcherNavConfiguration;
 
     describe('render', () => {
         beforeEach(() => {
             selectedTest = -1;
-            const RightPanelStub: Readonly<ReactSFCWithDisplayName<IDetailsViewMainContentProps>> = NamedSFC<IDetailsViewMainContentProps>(
+            const RightPanelStub: Readonly<ReactSFCWithDisplayName<DetailsViewMainContentProps>> = NamedSFC<DetailsViewMainContentProps>(
                 'test',
                 _ => null,
             );
-            const CommandBarStub: Readonly<ReactSFCWithDisplayName<IDetailsViewMainContentProps>> = NamedSFC<IDetailsViewMainContentProps>(
+            const CommandBarStub: Readonly<ReactSFCWithDisplayName<DetailsViewMainContentProps>> = NamedSFC<DetailsViewMainContentProps>(
                 'test',
                 _ => null,
             );
-            const LeftNavStub: Readonly<ReactSFCWithDisplayName<IDetailsViewMainContentProps>> = NamedSFC<IDetailsViewMainContentProps>(
+            const LeftNavStub: Readonly<ReactSFCWithDisplayName<DetailsViewMainContentProps>> = NamedSFC<DetailsViewMainContentProps>(
                 'test',
                 _ => null,
             );
@@ -71,7 +71,7 @@ describe('DetailsViewMainContentTest', () => {
             configStub = {
                 getStoreData: getStoreDataMock.object,
                 displayableData: {},
-            } as IVisualizationConfiguration;
+            } as VisualizationConfiguration;
 
             scanDataStub = {
                 enabled: false,
@@ -82,7 +82,7 @@ describe('DetailsViewMainContentTest', () => {
             const assessmentStoreData = {
                 assessmentNavState: {
                     selectedTestStep: 'sample test step',
-                } as IAssessmentNavState,
+                } as AssessmentNavState,
                 assessments: {
                     assessment: {
                         testStepStatus: {
@@ -116,7 +116,7 @@ describe('DetailsViewMainContentTest', () => {
                 },
                 rightPanelConfiguration: rightPanelConfig,
                 switcherNavConfiguration: switcherNavConfig,
-            } as IDetailsViewMainContentProps;
+            } as DetailsViewMainContentProps;
         });
 
         test('tab is closed', () => {
@@ -171,10 +171,10 @@ describe('DetailsViewMainContentTest', () => {
 
     function setupConfigFactoryMock(
         factoryMock: IMock<VisualizationConfigurationFactory>,
-        givenGetStoreDataMock: IMock<(data: ITestsEnabledState) => IScanData>,
-        config: IVisualizationConfiguration,
+        givenGetStoreDataMock: IMock<(data: TestsEnabledState) => IScanData>,
+        config: VisualizationConfiguration,
         scanData: IScanData,
-        givenProps: IDetailsViewMainContentProps,
+        givenProps: DetailsViewMainContentProps,
     ): void {
         factoryMock.setup(cfm => cfm.getConfiguration(givenProps.selectedTest)).returns(() => config);
 
@@ -189,11 +189,11 @@ describe('DetailsViewMainContentTest', () => {
         factoryMock.setup(chfm => chfm.createClickHandler(setupType, setupNewValue)).returns(() => clickHandlerStub);
     }
 
-    function buildLeftNav(givenProps: IDetailsViewMainContentProps): JSX.Element {
+    function buildLeftNav(givenProps: DetailsViewMainContentProps): JSX.Element {
         return <DetailsViewLeftNav {...givenProps} />;
     }
 
-    function buildTabInfo(givenProps: IDetailsViewMainContentProps): JSX.Element {
+    function buildTabInfo(givenProps: DetailsViewMainContentProps): JSX.Element {
         return (
             <TabInfo
                 isTargetPageHidden={givenProps.tabStoreData.isPageHidden}
@@ -207,7 +207,7 @@ describe('DetailsViewMainContentTest', () => {
         );
     }
 
-    function buildCommandBar(givenProps: IDetailsViewMainContentProps): JSX.Element {
+    function buildCommandBar(givenProps: DetailsViewMainContentProps): JSX.Element {
         return <switcherNavConfig.CommandBar actionMessageCreator={props.deps.detailsViewActionMessageCreator} {...props} />;
     }
 });

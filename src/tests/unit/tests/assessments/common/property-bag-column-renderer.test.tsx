@@ -3,12 +3,9 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import {
-    IPropertyBagColumnRendererConfig,
-    propertyBagColumnRenderer,
-} from '../../../../../assessments/common/property-bag-column-renderer';
+import { propertyBagColumnRenderer, PropertyBagColumnRendererConfig } from '../../../../../assessments/common/property-bag-column-renderer';
 import { ColumnValueBag } from '../../../../../common/types/property-bag/column-value-bag';
-import { IAssessmentInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
+import { AssessmentInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
 import { RendererWrapper } from './renderer-wrapper';
 
 interface TestPropertyBag extends ColumnValueBag {
@@ -16,9 +13,9 @@ interface TestPropertyBag extends ColumnValueBag {
     b: number;
     c: Date;
     d: boolean;
-    e: IDictionaryStringTo<string>;
-    f: IDictionaryStringTo<string>;
-    nullValues: IDictionaryStringTo<string>;
+    e: DictionaryStringTo<string>;
+    f: DictionaryStringTo<string>;
+    nullValues: DictionaryStringTo<string>;
 }
 
 describe('PropertyBagColumnRendererTest', () => {
@@ -26,7 +23,7 @@ describe('PropertyBagColumnRendererTest', () => {
         const propertyBag = getPropertyBag();
         const item = buildItemWithPropertyBag(propertyBag);
 
-        const config: IPropertyBagColumnRendererConfig<TestPropertyBag> = {
+        const config: PropertyBagColumnRendererConfig<TestPropertyBag> = {
             propertyName: 'a',
             displayName: 'display name',
         };
@@ -42,7 +39,7 @@ describe('PropertyBagColumnRendererTest', () => {
         const propertyBag = getPropertyBag();
         const item = buildItemWithPropertyBag(propertyBag);
 
-        const configs: IPropertyBagColumnRendererConfig<TestPropertyBag>[] = [
+        const configs: PropertyBagColumnRendererConfig<TestPropertyBag>[] = [
             { propertyName: 'a', displayName: 'display a' },
             { propertyName: 'b', displayName: 'display b' },
         ];
@@ -56,9 +53,7 @@ describe('PropertyBagColumnRendererTest', () => {
         const propertyBag = getPropertyBag();
         const item = buildItemWithPropertyBag(propertyBag);
 
-        const configs: IPropertyBagColumnRendererConfig<TestPropertyBag>[] = [
-            { propertyName: 'e', displayName: 'display e', expand: true },
-        ];
+        const configs: PropertyBagColumnRendererConfig<TestPropertyBag>[] = [{ propertyName: 'e', displayName: 'display e', expand: true }];
 
         const wrapper = createWrapper(item, configs);
 
@@ -69,7 +64,7 @@ describe('PropertyBagColumnRendererTest', () => {
         const propertyBag = getPropertyBag();
         const item = buildItemWithPropertyBag(propertyBag);
 
-        const configs: IPropertyBagColumnRendererConfig<TestPropertyBag>[] = [
+        const configs: PropertyBagColumnRendererConfig<TestPropertyBag>[] = [
             { propertyName: 'nullValues', displayName: 'display null values', expand: true },
         ];
 
@@ -82,7 +77,7 @@ describe('PropertyBagColumnRendererTest', () => {
         const propertyBag = getPropertyBag();
         const item = buildItemWithPropertyBag(propertyBag);
 
-        const configs: IPropertyBagColumnRendererConfig<TestPropertyBag>[] = [
+        const configs: PropertyBagColumnRendererConfig<TestPropertyBag>[] = [
             { propertyName: 'f', displayName: 'display f', defaultValue: 'default', expand: true },
         ];
 
@@ -96,7 +91,7 @@ describe('PropertyBagColumnRendererTest', () => {
         propertyBag.a = null;
         const item = buildItemWithPropertyBag(propertyBag);
 
-        const configs: IPropertyBagColumnRendererConfig<TestPropertyBag>[] = [
+        const configs: PropertyBagColumnRendererConfig<TestPropertyBag>[] = [
             { propertyName: 'a', displayName: 'display a', defaultValue: 'is a default value' },
             { propertyName: 'b', displayName: 'display b' },
         ];
@@ -113,7 +108,7 @@ describe('PropertyBagColumnRendererTest', () => {
 
         const item = buildItemWithPropertyBag(propertyBag);
 
-        const configs: IPropertyBagColumnRendererConfig<TestPropertyBag>[] = [
+        const configs: PropertyBagColumnRendererConfig<TestPropertyBag>[] = [
             { propertyName: 'a', displayName: 'display a' },
             { propertyName: 'b', displayName: 'display b' },
         ];
@@ -127,7 +122,7 @@ describe('PropertyBagColumnRendererTest', () => {
         const propertyBag = getPropertyBag();
         const item = buildItemWithPropertyBag(propertyBag);
 
-        const configs: IPropertyBagColumnRendererConfig<TestPropertyBag>[] = [
+        const configs: PropertyBagColumnRendererConfig<TestPropertyBag>[] = [
             { propertyName: 'e', displayName: 'display e', expand: true },
             { propertyName: 'b', displayName: 'display b' },
         ];
@@ -162,7 +157,7 @@ function getPropertyBag(): TestPropertyBag {
     };
 }
 
-function buildItemWithPropertyBag(bag: TestPropertyBag): IAssessmentInstanceRowData<TestPropertyBag> {
+function buildItemWithPropertyBag(bag: TestPropertyBag): AssessmentInstanceRowData<TestPropertyBag> {
     return {
         instance: {
             propertyBag: bag,

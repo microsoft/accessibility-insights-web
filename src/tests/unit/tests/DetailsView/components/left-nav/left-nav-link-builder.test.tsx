@@ -4,10 +4,10 @@ import { isMatch } from 'lodash';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { AssessmentsProvider } from '../../../../../../assessments/assessments-provider';
-import { IAssessment } from '../../../../../../assessments/types/iassessment';
+import { Assessment } from '../../../../../../assessments/types/iassessment';
 import { IAssessmentsProvider } from '../../../../../../assessments/types/iassessments-provider';
-import { IVisualizationConfiguration } from '../../../../../../common/configs/visualization-configuration-factory';
-import { IManualTestStatus, ManualTestStatus } from '../../../../../../common/types/manual-test-status';
+import { VisualizationConfiguration } from '../../../../../../common/configs/visualization-configuration-factory';
+import { ManualTestStatus, ManualTestStatusData } from '../../../../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
 import { BaseLeftNavLink, onBaseLeftNavItemClick } from '../../../../../../DetailsView/components/base-left-nav';
 import { LeftNavLinkBuilder, LeftNavLinkBuilderDeps } from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';
@@ -19,13 +19,13 @@ describe('LeftNavBuilder', () => {
     let deps: LeftNavLinkBuilderDeps;
     let onLinkClickMock: IMock<onBaseLeftNavItemClick>;
     let assessmentProviderMock: IMock<IAssessmentsProvider>;
-    let assessmentsDataStub: IDictionaryStringTo<IManualTestStatus>;
+    let assessmentsDataStub: DictionaryStringTo<ManualTestStatusData>;
     let testSubject: LeftNavLinkBuilder;
     let getAssessmentSummaryModelFromProviderAndStatusDataMock: IMock<GetAssessmentSummaryModelFromProviderAndStatusData>;
     let renderIconStub: (link: BaseLeftNavLink) => JSX.Element;
     let getStatusForTestMock: IMock<(stats: OutcomeStats) => ManualTestStatus>;
     let outcomeTypeFromTestStatusMock: IMock<(testStatus: ManualTestStatus) => OutcomeTypeSemantic>;
-    let outcomeStatsFromManualTestStatusMock: IMock<(testStepStatus: IManualTestStatus) => OutcomeStats>;
+    let outcomeStatsFromManualTestStatusMock: IMock<(testStepStatus: ManualTestStatusData) => OutcomeStats>;
 
     beforeEach(() => {
         onLinkClickMock = Mock.ofInstance((e, item) => null, MockBehavior.Strict);
@@ -99,7 +99,7 @@ describe('LeftNavBuilder', () => {
                 displayableData: {
                     title: titleStub,
                 },
-            } as IVisualizationConfiguration;
+            } as VisualizationConfiguration;
 
             const actual = testSubject.buildVisualizationConfigurationLink(
                 configStub,
@@ -132,9 +132,9 @@ describe('LeftNavBuilder', () => {
                 key: 'some key',
                 title: 'some title',
                 type: 1,
-            } as IAssessment;
+            } as Assessment;
             const assessmentsStub = [assessmentStub, assessmentStub];
-            const stepStatusStub: IManualTestStatus = {};
+            const stepStatusStub: ManualTestStatusData = {};
             const outcomeStatsStub = {} as OutcomeStats;
             const testStatusStub = -2 as ManualTestStatus;
             const narratorStatusStub = { pastTense: 'passed' } as OutcomeTypeSemantic;

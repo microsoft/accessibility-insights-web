@@ -5,30 +5,39 @@ import * as React from 'react';
 import {
     AssessmentRequirementScanTelemetryData,
     AssessmentTelemetryData,
+    BaseTelemetryData,
     DetailsViewOpenedTelemetryData,
     DetailsViewOpenTelemetryData,
     DetailsViewPivotSelectedTelemetryData,
     ExportResultsTelemetryData,
     ExportResultType,
     FeatureFlagToggleTelemetryData,
+    FileIssueClickService,
+    FileIssueClickTelemetryData,
     InspectTelemetryData,
     IssuesAnalyzerScanTelemetryData,
     RequirementStatusTelemetryData,
     RuleAnalyzerScanTelemetryData,
     ScopingTelemetryData,
+    SettingsOpenSourceItem,
+    SettingsOpenTelemetryData,
     TelemetryEventSource,
     TestStepActionTelemetryData,
     TestStepSelectTelemetryData,
     ToggleTelemetryData,
-    TriggeredByNotApplicable,
     TriggeredBy,
-    BaseTelemetryData,
+    TriggeredByNotApplicable,
 } from './telemetry-events';
 import { ForIssuesAnalyzerScanCallback, ForRuleAnalyzerScanCallback } from './types/analyzer-telemetry-callbacks';
 import { DetailsViewPivotType } from './types/details-view-pivot-type';
 import { VisualizationType } from './types/visualization-type';
 
-type SupportedMouseEvent = React.SyntheticEvent<MouseEvent> | React.MouseEvent<any> | MouseEvent;
+export type SupportedMouseEvent =
+    | React.SyntheticEvent<MouseEvent>
+    | React.MouseEvent<any>
+    | MouseEvent
+    | React.MouseEvent<HTMLElement>
+    | React.KeyboardEvent<HTMLElement>;
 
 export class TelemetryDataFactory {
     public forVisualizationToggleByCommand(enabled: boolean): ToggleTelemetryData {
@@ -135,6 +144,28 @@ export class TelemetryDataFactory {
         };
     }
 
+    public forSettingsPanelOpen(
+        event: SupportedMouseEvent,
+        source: TelemetryEventSource,
+        sourceItem: SettingsOpenSourceItem,
+    ): SettingsOpenTelemetryData {
+        return {
+            ...this.withTriggeredByAndSource(event, source),
+            sourceItem,
+        };
+    }
+
+    public forFileIssueClick(
+        event: SupportedMouseEvent,
+        source: TelemetryEventSource,
+        service: FileIssueClickService,
+    ): FileIssueClickTelemetryData {
+        return {
+            ...this.withTriggeredByAndSource(event, source),
+            service,
+        };
+    }
+
     public forInspectElement(event: SupportedMouseEvent, target: string[]): InspectTelemetryData {
         return {
             ...this.withTriggeredByAndSource(event, TelemetryEventSource.IssueDetailsDialog),
@@ -192,11 +223,7 @@ export class TelemetryDataFactory {
         return this.withTriggeredByAndSource(event, TelemetryEventSource.DetailsView);
     }
 
-    public fromNewBugButton(event: SupportedMouseEvent): BaseTelemetryData {
-        return this.withTriggeredByAndSource(event, TelemetryEventSource.NewBugButton);
-    }
-
-    public fromHamburgetMenu(event: SupportedMouseEvent): BaseTelemetryData {
+    public fromHamburgerMenu(event: SupportedMouseEvent): BaseTelemetryData {
         return this.withTriggeredByAndSource(event, TelemetryEventSource.HamburgerMenu);
     }
 
@@ -239,8 +266,8 @@ export class TelemetryDataFactory {
     };
 
     public forIssuesAnalyzerScan: ForIssuesAnalyzerScanCallback = (analyzerResult, scanDuration, elementsScanned, testName) => {
-        const passedRuleResults: IDictionaryStringTo<number> = this.generateTelemetryRuleResult(analyzerResult.originalResult.passes);
-        const failedRuleResults: IDictionaryStringTo<number> = this.generateTelemetryRuleResult(analyzerResult.originalResult.violations);
+        const passedRuleResults: DictionaryStringTo<number> = this.generateTelemetryRuleResult(analyzerResult.originalResult.passes);
+        const failedRuleResults: DictionaryStringTo<number> = this.generateTelemetryRuleResult(analyzerResult.originalResult.violations);
         const telemetry: IssuesAnalyzerScanTelemetryData = {
             ...this.forTestScan(analyzerResult, scanDuration, elementsScanned, testName),
             passedRuleResults: JSON.stringify(passedRuleResults),
@@ -262,8 +289,8 @@ export class TelemetryDataFactory {
         return mouseEvent.detail === 0 ? 'keypress' : 'mouseclick';
     }
 
-    private generateTelemetryRuleResult(axeRule: AxeRule[]): IDictionaryStringTo<number> {
-        const ruleResults: IDictionaryStringTo<number> = {};
+    private generateTelemetryRuleResult(axeRule: AxeRule[]): DictionaryStringTo<number> {
+        const ruleResults: DictionaryStringTo<number> = {};
         axeRule.forEach(element => {
             const key: string = element.id;
             if (key != null) {

@@ -4,7 +4,7 @@ import { isEmpty, size } from 'lodash';
 import * as React from 'react';
 
 import { ManualTestStatus } from '../common/types/manual-test-status';
-import { ITestStepResult, IAssessmentInstancesMap, InstanceIdToInstanceDataMap } from '../common/types/store-data/iassessment-result-data';
+import { IAssessmentInstancesMap, InstanceIdToInstanceDataMap, ITestStepResult } from '../common/types/store-data/iassessment-result-data';
 
 export type IMessageGenerator = (instancesMap: IAssessmentInstancesMap, selectedTestStep: string) => DefaultMessageInterface;
 export type IGetMessageGenerator = (generator: AssessmentDefaultMessageGenerator) => IMessageGenerator;
@@ -13,11 +13,11 @@ export interface DefaultMessageInterface {
     instanceCount: number;
 }
 
-function failingInstances(result: ITestStepResult) {
+function failingInstances(result: ITestStepResult): boolean {
     return result.status !== ManualTestStatus.PASS;
 }
 
-function passingInstances(result: ITestStepResult) {
+function passingInstances(result: ITestStepResult): boolean {
     return result.status === ManualTestStatus.PASS;
 }
 
@@ -32,7 +32,7 @@ function getRelevantTestStepResults(instancesMap: InstanceIdToInstanceDataMap, s
 }
 
 export class AssessmentDefaultMessageGenerator {
-    public getNoFailingInstanceMesage: IMessageGenerator = (
+    public getNoFailingInstanceMessage: IMessageGenerator = (
         instancesMap: InstanceIdToInstanceDataMap,
         selectedTestStep: string,
     ): DefaultMessageInterface => {
@@ -77,7 +77,7 @@ export class AssessmentDefaultMessageGenerator {
         };
     }
 
-    private checkRelevantTestSteps(instancesMap: InstanceIdToInstanceDataMap, selectedTestStep: string) {
+    private checkRelevantTestSteps(instancesMap: InstanceIdToInstanceDataMap, selectedTestStep: string): DefaultMessageInterface {
         const relevantTestStepResults = getRelevantTestStepResults(instancesMap, selectedTestStep);
         if (isEmpty(relevantTestStepResults)) {
             return this.getNoMatchingInstancesResult();

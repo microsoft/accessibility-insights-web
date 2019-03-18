@@ -1,17 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { IBaseStore } from '../../common/istore';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
 import { IScopingStoreData } from '../../common/types/store-data/scoping-store-data';
 import { WindowUtils } from '../../common/window-utils';
 import { ScannerUtils } from '../scanner-utils';
 import { TabStopsListener } from '../tab-stops-listener';
-import { RuleAnalyzer } from './rule-analyzer';
-import { IAnalyzer, IAnalyzerConfiguration, RuleAnalyzerConfiguration, IFocusAnalyzerConfiguration } from './ianalyzer';
 import { BaseAnalyzer } from './base-analyzer';
-import { TabStopsAnalyzer } from './tab-stops-analyzer';
-import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { BatchedRuleAnalyzer, IResultRuleFilter } from './batched-rule-analyzer';
+import { IAnalyzer, IAnalyzerConfiguration, IFocusAnalyzerConfiguration, RuleAnalyzerConfiguration } from './ianalyzer';
+import { RuleAnalyzer } from './rule-analyzer';
+import { TabStopsAnalyzer } from './tab-stops-analyzer';
 
 export class AnalyzerProvider {
     private tabStopsListener: TabStopsListener;

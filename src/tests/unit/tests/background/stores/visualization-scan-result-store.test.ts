@@ -15,11 +15,13 @@ import { VisualizationScanResultStoreDataBuilder } from '../../../common/visuali
 describe('VisualizationScanResultStoreTest', () => {
     test('constructor, no side effects', () => {
         const testObject = createStoreWithNullParams(VisualizationScanResultStore);
+
         expect(testObject).toBeDefined();
     });
 
     test('getId', () => {
         const testObject = createStoreWithNullParams(VisualizationScanResultStore);
+
         expect(testObject.getId()).toBe(StoreNames[StoreNames.VisualizationScanResultStore]);
     });
 
@@ -81,7 +83,7 @@ describe('VisualizationScanResultStoreTest', () => {
             },
         };
 
-        const selectorMap: IDictionaryStringTo<IHtmlElementAxeResults> = {
+        const selectorMap: DictionaryStringTo<IHtmlElementAxeResults> = {
             target1: {
                 target: ['target1'],
                 isVisible: true,
@@ -232,7 +234,7 @@ describe('VisualizationScanResultStoreTest', () => {
             },
         };
 
-        const selectorMap: IDictionaryStringTo<IHtmlElementAxeResults> = {
+        const selectorMap: DictionaryStringTo<IHtmlElementAxeResults> = {
             target1: {
                 target: ['target1'],
                 isVisible: true,
@@ -306,7 +308,7 @@ describe('VisualizationScanResultStoreTest', () => {
     test('onUpdateIssuesSelectedTargets', () => {
         const actionName = 'updateIssuesSelectedTargets';
 
-        const selectorMap: IDictionaryStringTo<IHtmlElementAxeResults> = {
+        const selectorMap: DictionaryStringTo<IHtmlElementAxeResults> = {
             '#heading-1': {
                 ruleResults: {
                     rule1: {
@@ -395,7 +397,7 @@ describe('VisualizationScanResultStoreTest', () => {
             .withIssuesSelectedTargets(selectorMap)
             .build();
 
-        const expectedSelectedMap: IDictionaryStringTo<IHtmlElementAxeResults> = {
+        const expectedSelectedMap: DictionaryStringTo<IHtmlElementAxeResults> = {
             '#heading-1': {
                 ruleResults: {
                     rule1: {

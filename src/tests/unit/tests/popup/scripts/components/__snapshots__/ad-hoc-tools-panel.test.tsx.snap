@@ -12,7 +12,7 @@ exports[`AdHocToolsPanelTest adhoc panel matches snapshot 1`] = `
         className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 ad-hoc-tools-panel-group-0"
       >
         <div>
-          fisrt
+          first
         </div>
         <div
           className="ms-fontColor-neutralLight launch-panel-hr"
@@ -47,13 +47,15 @@ exports[`AdHocToolsPanelTest adhoc panel matches snapshot 1`] = `
     role="navigation"
   >
     <StyledLinkBase
+      className="insights-link"
       id="back-to-launchpad-link"
       onClick={null}
     >
       <StyledIconBase
+        className="back-to-launch-pad-icon"
         iconName="back"
       />
-        Back to launch pad
+      Back to launch pad
     </StyledLinkBase>
   </div>
 </div>

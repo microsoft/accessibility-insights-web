@@ -1,68 +1,68 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IHtmlElementAxeResults } from '../scanner-utils';
+import { AxeResultsWithFrameLevel } from '../frameCommunicators/html-element-axe-results-helper';
 
-interface IDrawerConfiguration {
+export interface DrawerConfiguration {
     outlineStyle?: string;
     borderColor: string;
     showVisualization: boolean;
     textAlign?: string;
     cursor?: string;
-    failureBoxConfig?: IFailureBoxConfig;
+    failureBoxConfig?: FailureBoxConfig;
     toolTip?: string;
-    textBoxConfig?: ITextBoxConfig;
+    textBoxConfig?: TextBoxConfig;
     getBoundingRect?: (e: Element) => ClientRect | DOMRect;
 }
 
-interface ITextBoxConfig extends IBoxConfig {
+export interface TextBoxConfig extends BoxConfig {
     boxHeight?: string;
 }
 
-interface IFailureBoxConfig extends IBoxConfig {
+export interface FailureBoxConfig extends BoxConfig {
     hasDialogView?: boolean;
 }
 
-interface IBoxConfig {
+export interface BoxConfig {
     fontColor: string;
     background: string;
     text: string;
     boxWidth?: string;
 }
 
-interface IStrokeConfiguration {
+export interface StrokeConfiguration {
     stroke: string;
     strokeWidth: string;
     strokeDasharray?: string;
     showSolidFocusLine?: boolean;
 }
 
-interface ICircleConfiguration extends IStrokeConfiguration {
+export interface CircleConfiguration extends StrokeConfiguration {
     ellipseRx: string;
     ellipseRy: string;
     fill: string;
 }
 
-interface ITextConfiguration {
+export interface TextConfiguration {
     textAnchor: string;
     fontColor: string;
     showTabIndexedLabel?: boolean;
 }
 
-type ILineConfiguration = IStrokeConfiguration;
+export type LineConfiguration = StrokeConfiguration;
 
-interface ISVGDrawerConfiguration {
-    circle: ICircleConfiguration;
-    focusedCircle: ICircleConfiguration;
-    tabIndexLabel: ITextConfiguration;
-    line: ILineConfiguration;
-    focusedLine: ILineConfiguration;
+export interface SVGDrawerConfiguration {
+    circle: CircleConfiguration;
+    focusedCircle: CircleConfiguration;
+    tabIndexLabel: TextConfiguration;
+    line: LineConfiguration;
+    focusedLine: LineConfiguration;
 }
 
-interface SingleTargetDrawerConfiguration {
+export interface SingleTargetDrawerConfiguration {
     injectedClassName: string;
 }
 
-interface IFormatter {
+export interface Formatter {
     getDrawerConfiguration(element: Node, data: AxeResultsWithFrameLevel): any;
     getDialogRenderer();
 }

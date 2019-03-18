@@ -7,10 +7,7 @@ import { IToggle } from 'office-ui-fabric-react/lib/Toggle';
 import * as React from 'react';
 
 import { VisualizationToggle } from '../../../common/components/visualization-toggle';
-import {
-    IVisualizationConfiguration,
-    VisualizationConfigurationFactory,
-} from '../../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../../../common/configs/visualization-configuration-factory';
 import { KeyCodeConstants } from '../../../common/constants/keycode-constants';
 import { FeatureFlags } from '../../../common/feature-flags';
 import { TelemetryEventSource } from '../../../common/telemetry-events';
@@ -21,9 +18,9 @@ import { ContentLink, ContentLinkDeps } from '../../../views/content/content-lin
 import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
 import { DiagnosticViewClickHandler } from '../handlers/diagnostic-view-toggle-click-handler';
 
-export interface IDiagnosticViewToggleProps {
+export interface DiagnosticViewToggleProps {
     deps: DiagnosticViewToggleDeps;
-    featureFlags: IDictionaryStringTo<boolean>;
+    featureFlags: DictionaryStringTo<boolean>;
     type: VisualizationType;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     visualizationStoreData: IVisualizationStoreData;
@@ -36,18 +33,18 @@ export interface IDiagnosticViewToggleProps {
 
 export type DiagnosticViewToggleDeps = ContentLinkDeps;
 
-export interface IDiagnosticViewToggleState {
+export interface DiagnosticViewToggleState {
     isFocused: boolean;
 }
 
-export class DiagnosticViewToggle extends React.Component<IDiagnosticViewToggleProps, IDiagnosticViewToggleState> {
-    private configuration: IVisualizationConfiguration;
+export class DiagnosticViewToggle extends React.Component<DiagnosticViewToggleProps, DiagnosticViewToggleState> {
+    private configuration: VisualizationConfiguration;
     private _toggle: React.RefObject<IToggle> = React.createRef<IToggle>();
     private dom: NodeSelector & Node;
     private _isMounted: boolean;
     private _userEventListenerAdded: boolean;
 
-    constructor(props: IDiagnosticViewToggleProps) {
+    constructor(props: DiagnosticViewToggleProps) {
         super(props);
         this.configuration = this.props.visualizationConfigurationFactory.getConfiguration(this.props.type);
         this.dom = this.props.dom;
@@ -74,7 +71,7 @@ export class DiagnosticViewToggle extends React.Component<IDiagnosticViewToggleP
                 <div className="ms-Grid-row">
                     <div className="ms-Grid-col ms-sm8">{this.renderLink(displayableData.linkToDetailsViewText)}</div>
                     <div className="ms-Grid-col ms-sm4 shortcut-label" style={{ float: 'right' }}>
-                        <div className="ms-fontColor-neutralSecondary ms-fontWeight-semilight ms-font-xs">{shortcut}</div>
+                        <div className="ms-font-xs">{shortcut}</div>
                     </div>
                 </div>
             </div>
@@ -167,6 +164,7 @@ export class DiagnosticViewToggle extends React.Component<IDiagnosticViewToggleP
 
         return (
             <Link
+                className="insights-link"
                 href="#"
                 onClick={ev =>
                     this.props.actionMessageCreator.openDetailsView(ev as any, this.props.type, this.props.telemetrySource, pivot)

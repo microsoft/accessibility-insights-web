@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ClientRectOffset } from './../client-utils';
+import { ClientUtils } from '../client-utils';
 import { TabbableElementsHelper } from './../../common/tabbable-elements-helper';
 import { WindowUtils } from './../../common/window-utils';
+import { ClientRectOffset } from './../client-utils';
 import { DrawerUtils } from './drawer-utils';
-import { IPoint } from './ipoint';
-import { ClientUtils } from '../client-utils';
+import { Point } from './point';
 
 export class CenterPositionCalculator {
     private drawerUtils: DrawerUtils;
@@ -25,7 +25,7 @@ export class CenterPositionCalculator {
         this.clientUtils = clientUtils;
     }
 
-    public getElementCenterPosition(targetElement: Element): IPoint {
+    public getElementCenterPosition(targetElement: Element): Point {
         if (targetElement.tagName.toLowerCase() === 'area') {
             return this.getAreaElementCenterPosition(targetElement as HTMLAreaElement);
         }
@@ -55,7 +55,7 @@ export class CenterPositionCalculator {
         return { x, y };
     }
 
-    private getAreaElementCenterPosition(element: HTMLAreaElement): IPoint {
+    private getAreaElementCenterPosition(element: HTMLAreaElement): Point {
         const mapImageElement = this.tabbableElementsHelper.getMappedImage(this.tabbableElementsHelper.getAncestorMap(element));
 
         const myDocument = this.drawerUtils.getDocumentElement();
@@ -80,7 +80,7 @@ export class CenterPositionCalculator {
         offset: ClientRectOffset,
         bodyStyle: CSSStyleDeclaration,
         docStyle: CSSStyleDeclaration,
-    ): IPoint {
+    ): Point {
         const elementBoundingClientRect = image.getBoundingClientRect();
         const top = this.drawerUtils.getContainerTopOffset(offset);
         const left = this.drawerUtils.getContainerLeftOffset(offset);

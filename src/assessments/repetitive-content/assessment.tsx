@@ -3,11 +3,11 @@
 import * as React from 'react';
 
 import { VisualizationType } from '../../common/types/visualization-type';
+import { test as content } from '../../content/test';
 import { AssessmentBuilder } from '../assessment-builder';
 import { BypassBlocks } from './test-steps/bypass-blocks';
-import { ConsistentNavigation } from './test-steps/consistent-navigation';
 import { ConsistentIdentification } from './test-steps/consistent-identification';
-import { test as content } from '../../content/test';
+import { ConsistentNavigation } from './test-steps/consistent-navigation';
 
 const key = 'repetitiveContent';
 const title = 'Repetitive content';

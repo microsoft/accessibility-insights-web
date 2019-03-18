@@ -5,7 +5,7 @@ import { IMock, Mock, Times } from 'typemoq';
 import { ChromeAdapter } from '../../../../background/browser-adapter';
 import { TargetTabController } from '../../../../background/target-tab-controller';
 import {
-    IVisualizationConfiguration,
+    VisualizationConfiguration,
     VisualizationConfigurationFactory,
 } from '../../../../common/configs/visualization-configuration-factory';
 import { VisualizationType } from '../../../../common/types/visualization-type';
@@ -14,7 +14,7 @@ describe('TargetTabControllerTest', () => {
     let browserAdapterMock: IMock<ChromeAdapter>;
     let configurationFactoryMock: IMock<VisualizationConfigurationFactory>;
     let testSubject: TargetTabController;
-    let configStub: IVisualizationConfiguration;
+    let configStub: VisualizationConfiguration;
     let getSwitchToTargetTabCallbackMock: IMock<(step: string) => boolean>;
     let test: VisualizationType;
     let tabId: number;
@@ -26,7 +26,7 @@ describe('TargetTabControllerTest', () => {
         configurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
         configStub = {
             getSwitchToTargetTabOnScan: getSwitchToTargetTabCallbackMock.object,
-        } as IVisualizationConfiguration;
+        } as VisualizationConfiguration;
         tabId = -1;
         test = -2;
         step = 'some step';

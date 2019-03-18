@@ -9,7 +9,7 @@ import { BaseActionMessageCreator } from './base-action-message-creator';
 export class DropdownActionMessageCreator extends BaseActionMessageCreator {
     private telemetryFactory: TelemetryDataFactory;
 
-    constructor(postMessage: (message: IMessage) => void, tabId: number, telemetryFactory: TelemetryDataFactory) {
+    constructor(postMessage: (message: Message) => void, tabId: number, telemetryFactory: TelemetryDataFactory) {
         super(postMessage, tabId);
         this.telemetryFactory = telemetryFactory;
     }
@@ -42,7 +42,7 @@ export class DropdownActionMessageCreator extends BaseActionMessageCreator {
 
     public openSettingsPanel(event: React.MouseEvent<HTMLElement>, source: TelemetryEventSource): void {
         const type = Messages.SettingsPanel.OpenPanel;
-        const telemetry = this.telemetryFactory.withTriggeredByAndSource(event, source);
+        const telemetry = this.telemetryFactory.forSettingsPanelOpen(event, source, 'menu');
         const payload: BaseActionPayload = {
             telemetry,
         };

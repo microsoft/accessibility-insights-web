@@ -15,10 +15,10 @@ import { ScopingStore } from '../../../../../../background/stores/global/scoping
 import { UserConfigurationStore } from '../../../../../../background/stores/global/user-configuration-store';
 import { IndexedDBAPI } from '../../../../../../common/indexedDB/indexedDB';
 import { IBaseStore } from '../../../../../../common/istore';
+import { PersistedTabInfo } from '../../../../../../common/types/store-data/iassessment-result-data';
 import { StoreType } from '../../../../../../common/types/store-type';
 import { LaunchPanelType } from '../../../../../../popup/scripts/components/popup-view';
 import { CreateTestAssessmentProvider } from '../../../../common/test-assessment-provider';
-import { PersistedTabInfo } from '../../../../../../common/types/store-data/iassessment-result-data';
 
 describe('GlobalStoreHubTest', () => {
     let userDataStub: ILocalStorageData;

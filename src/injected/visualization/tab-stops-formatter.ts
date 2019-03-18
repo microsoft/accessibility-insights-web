@@ -1,12 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-/// <reference path="./iformatter.d.ts" />
-/// <reference path="./../client-utils.ts" />
 import { IHtmlElementAxeResults } from '../scanner-utils';
-import { IFormatter, ISVGDrawerConfiguration } from './iformatter';
 import { IPartialSVGDrawerConfiguration } from './drawer-provider';
+import { Formatter, SVGDrawerConfiguration } from './formatter';
 
-export class TabStopsFormatter implements IFormatter {
+export class TabStopsFormatter implements Formatter {
     private static readonly ELLIPSE_RX_CALCULATOR_OFFSET: number = 1.3;
     private static readonly ELLIPSE_RX_CALCULATOR_SLOPE: number = 4.2;
     private givenConfiguration: IPartialSVGDrawerConfiguration;
@@ -15,7 +13,7 @@ export class TabStopsFormatter implements IFormatter {
         this.givenConfiguration = givenConfiguration;
     }
 
-    public getDrawerConfiguration(element: HTMLElement, data: IHtmlElementAxeResults): ISVGDrawerConfiguration {
+    public getDrawerConfiguration(element: HTMLElement, data: IHtmlElementAxeResults): SVGDrawerConfiguration {
         let ellipseRx: number = 16;
         const tabindex = element.getAttribute('tabindex');
         if (tabindex && parseInt(tabindex, 10) > 0) {
@@ -25,7 +23,7 @@ export class TabStopsFormatter implements IFormatter {
             }
         }
 
-        const config: ISVGDrawerConfiguration = {
+        const config: SVGDrawerConfiguration = {
             circle: {
                 stroke: '#777777',
                 strokeWidth: '2',
@@ -61,7 +59,7 @@ export class TabStopsFormatter implements IFormatter {
             return config;
         }
 
-        Object.keys(this.givenConfiguration).forEach((svgPartConfigKey: keyof ISVGDrawerConfiguration) => {
+        Object.keys(this.givenConfiguration).forEach((svgPartConfigKey: keyof SVGDrawerConfiguration) => {
             const configAdditions = this.givenConfiguration[svgPartConfigKey];
             config[svgPartConfigKey] = {
                 ...config[svgPartConfigKey],

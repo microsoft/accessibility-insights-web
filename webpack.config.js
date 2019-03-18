@@ -4,6 +4,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
 const commonPlugins = [
     new webpack.optimize.LimitChunkCountPlugin({
@@ -15,6 +16,7 @@ const commonPlugins = [
     // debug build failures. We aren't quite sure why this is yet, but until it's root caused, keep
     // tslint separate from webpack.
     new ForkTsCheckerWebpackPlugin(),
+    new CaseSensitivePathsPlugin(),
 ];
 
 const commonEntryFiles = {
@@ -22,11 +24,8 @@ const commonEntryFiles = {
     popup: path.resolve(__dirname, 'src/popup/scripts/popup-init.ts'),
     insights: [path.resolve(__dirname, 'src/views/insights/initializer.ts')],
     detailsView: [path.resolve(__dirname, 'src/DetailsView/details-view-initializer.ts')],
-    devtools: [path.resolve(__dirname, 'src/devtools/dev-tool-init.ts')],
-    background: [
-        'script-loader!' + path.resolve(__dirname, 'node_modules/jquery/dist/jquery.min.js'),
-        path.resolve(__dirname, 'src/background/background-init.ts'),
-    ],
+    devtools: [path.resolve(__dirname, 'src/Devtools/dev-tool-init.ts')],
+    background: [path.resolve(__dirname, 'src/background/background-init.ts')],
 };
 
 const commonConfig = {

@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Markup from '../../markup';
 import * as React from 'react';
-import ManualTestRecordYourResults from '../../common/manual-test-record-your-results';
 import { NewTabLink } from '../../../common/components/new-tab-link';
-import { SequenceTestStep } from './test-steps';
 import { link } from '../../../content/link';
+import ManualTestRecordYourResults from '../../common/manual-test-record-your-results';
+import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
+import { SequenceTestStep } from './test-steps';
 
 const description: JSX.Element = <span>White space characters must not be used to create the appearance of columns.</span>;
 

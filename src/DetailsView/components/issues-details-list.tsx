@@ -15,7 +15,7 @@ import * as React from 'react';
 import { RuleResult } from '../../scanner/iruleresults';
 import { DetailsGroupHeader, DetailsGroupHeaderProps } from './details-group-header';
 import { FailureDetails } from './failure-details';
-import { DetailsGroup, IDetailsRowData, IssuesTableHandler } from './issues-table-handler';
+import { DetailsGroup, DetailsRowData, IssuesTableHandler } from './issues-table-handler';
 
 export interface IssuesDetailsListProps {
     violations: (RuleResult)[];
@@ -24,7 +24,7 @@ export interface IssuesDetailsListProps {
 }
 
 export class IssuesDetailsList extends React.Component<IssuesDetailsListProps, {}> {
-    private items: IDetailsRowData[];
+    private items: DetailsRowData[];
     private groups: DetailsGroup[];
 
     private static instanceColumns: IColumn[] = [

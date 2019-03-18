@@ -13,7 +13,7 @@ import { Messages } from '../../../../../common/messages';
 import * as TelemetryEvents from '../../../../../common/telemetry-events';
 
 describe('AssessmentActionCreatorTest', () => {
-    let registerTypeToPayloadCallbackMock: IMock<IRegisterTypeToPayloadCallback>;
+    let registerTypeToPayloadCallbackMock: IMock<RegisterTypeToPayloadCallback>;
     let assessmentActionsMock: IMock<AssessmentActions>;
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
     const tabId = -1;

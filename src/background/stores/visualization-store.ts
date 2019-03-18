@@ -3,21 +3,21 @@
 import { autobind } from '@uifabric/utilities';
 
 import { TestMode } from '../../common/configs/test-mode';
-import { IVisualizationConfiguration, VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
-import { ITab } from '../../common/itab';
+import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
+import { EnumHelper } from '../../common/enum-helper';
+import { Tab } from '../../common/itab';
 import { StoreNames } from '../../common/stores/store-names';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
-import { ITestsEnabledState, IVisualizationStoreData, IAssessmentScanData } from '../../common/types/store-data/ivisualization-store-data';
+import { IAssessmentScanData, IVisualizationStoreData, TestsEnabledState } from '../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import {
+    AssessmentToggleActionPayload,
     ToggleActionPayload,
     UpdateSelectedDetailsViewPayload,
     UpdateSelectedPivot,
-    AssessmentToggleActionPayload,
 } from '../actions/action-payloads';
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationActions } from '../actions/visualization-actions';
-import { EnumHelper } from '../../common/enum-helper';
 import { BaseStore } from './base-store';
 
 export class VisualizationStore extends BaseStore<IVisualizationStoreData> {
@@ -58,7 +58,7 @@ export class VisualizationStore extends BaseStore<IVisualizationStoreData> {
     }
 
     public getDefaultState(): IVisualizationStoreData {
-        const tests: ITestsEnabledState = {
+        const tests: TestsEnabledState = {
             adhoc: {},
             assessments: {},
         };
@@ -126,7 +126,7 @@ export class VisualizationStore extends BaseStore<IVisualizationStoreData> {
     }
 
     @autobind
-    private onTabChange(payload: ITab) {
+    private onTabChange(payload: Tab) {
         this.state = {
             ...this.getDefaultState(),
             selectedFastPassDetailsView: this.state.selectedFastPassDetailsView,
@@ -186,7 +186,7 @@ export class VisualizationStore extends BaseStore<IVisualizationStoreData> {
         this.emitChanged();
     }
 
-    private isAssessment(config: IVisualizationConfiguration): boolean {
+    private isAssessment(config: VisualizationConfiguration): boolean {
         return config.testMode === TestMode.Assessments;
     }
 
@@ -260,10 +260,13 @@ export class VisualizationStore extends BaseStore<IVisualizationStoreData> {
             return updated;
         }
 
-        if (payload.pivotType === DetailsViewPivotType.allTest) {
+        if (this.state.selectedAdhocDetailsView !== payload.detailsViewType && payload.pivotType === DetailsViewPivotType.allTest) {
             this.state.selectedAdhocDetailsView = payload.detailsViewType;
             updated = true;
-        } else if (payload.pivotType === DetailsViewPivotType.fastPass) {
+        } else if (
+            this.state.selectedFastPassDetailsView !== payload.detailsViewType &&
+            payload.pivotType === DetailsViewPivotType.fastPass
+        ) {
             this.state.selectedFastPassDetailsView = payload.detailsViewType;
             updated = true;
         }

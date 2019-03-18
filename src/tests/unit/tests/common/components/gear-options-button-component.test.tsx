@@ -7,7 +7,7 @@ import { IMock, Mock } from 'typemoq';
 
 import {
     GearOptionsButtonComponent,
-    IGearOptionsButtonComponentProps,
+    GearOptionsButtonComponentProps,
 } from '../../../../../common/components/gear-options-button-component';
 import { DropdownClickHandler } from '../../../../../common/dropdown-click-handler';
 import { FeatureFlags } from '../../../../../common/feature-flags';
@@ -35,7 +35,7 @@ describe('gear-options-button-component.test', () => {
     });
 
     type TestCase = {
-        featureFlags: IDictionaryStringTo<boolean>;
+        featureFlags: DictionaryStringTo<boolean>;
         expectedMenuItems: IContextualMenuItem[];
     };
     test.each([
@@ -67,8 +67,8 @@ describe('gear-options-button-component.test', () => {
         verifyRendering(testCase.featureFlags, testCase.expectedMenuItems);
     });
 
-    function verifyRendering(featureFlags: IDictionaryStringTo<boolean>, menuItems: IContextualMenuItem[]) {
-        const props: IGearOptionsButtonComponentProps = {
+    function verifyRendering(featureFlags: DictionaryStringTo<boolean>, menuItems: IContextualMenuItem[]) {
+        const props: GearOptionsButtonComponentProps = {
             dropdownClickHandler: dropdownClickHandlerMock.object,
             featureFlags: featureFlags,
         };

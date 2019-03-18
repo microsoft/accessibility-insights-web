@@ -3,7 +3,7 @@
 import { IBaseStore } from '../../common/istore';
 import { StoreType } from '../../common/types/store-type';
 
-export interface IStoreHub {
+export interface StoreHub {
     getAllStores(): IBaseStore<any>[];
     getStoreType(): StoreType;
 }

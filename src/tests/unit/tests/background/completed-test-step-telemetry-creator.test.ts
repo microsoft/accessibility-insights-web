@@ -36,7 +36,7 @@ function testBeforeAfterAssessmentData(
         interpreterMock.object,
     );
 
-    const expectedMessage: IMessage = {
+    const expectedMessage: Message = {
         type: Messages.Telemetry.Send,
         tabId: 1,
         payload: {
@@ -193,7 +193,7 @@ describe('CompletedTestStepTelemetryCreatorTest', () => {
             })
             .verifiable(Times.atLeastOnce());
 
-        const expectedMessage: IMessage = {
+        const expectedMessage: Message = {
             type: Messages.Telemetry.Send,
         };
         interpreterMock.setup(im => im.interpret(It.isValue(expectedMessage))).verifiable(Times.never());
@@ -214,7 +214,7 @@ describe('CompletedTestStepTelemetryCreatorTest', () => {
         const interpreterMock = Mock.ofType(Interpreter, MockBehavior.Strict);
         const data = getMockAssessmentStoreDataUnknowns();
         const expectedTelemetry = getMockTelemetryData(-1, 'assessment-1-step-1', true, 1);
-        const expectedMessage: IMessage = {
+        const expectedMessage: Message = {
             type: Messages.Telemetry.Send,
             tabId: 1,
             payload: {

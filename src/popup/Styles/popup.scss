@@ -7,6 +7,7 @@ body {
     overflow-y: auto;
     height: 0px;
     background: $neutral-0;
+    font-family: $fontFamily;
 }
 
 .telemetry-permission-dialog-modal {
@@ -175,6 +176,7 @@ html {
 }
 
 #popup-container .main-section .shortcut-label {
+    color: $secondary-text;
     text-align: right;
     padding-top: 3px;
     padding-bottom: 0px;
@@ -190,6 +192,10 @@ html {
 
 #popup-container .main-section .ad-hoc-tools-panel-footer {
     margin-top: 24px;
+
+    .back-to-launch-pad-icon {
+        margin-right: 6px;
+    }
 }
 
 #popup-container #getting-started-main-section {

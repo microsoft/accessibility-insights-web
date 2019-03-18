@@ -8,7 +8,7 @@ import { VisualizationToggle } from '../../../../../common/components/visualizat
 import { StaticContentDetailsView, StaticContentDetailsViewProps } from '../../../../../DetailsView/components/static-content-details-view';
 import { ContentReference } from '../../../../../views/content/content-page';
 import { BaseDataBuilder } from '../../../common/base-data-builder';
-import { EventStubFactory, INativeEventStub } from '../../../common/event-stub-factory';
+import { EventStubFactory, NativeEventStub } from '../../../common/event-stub-factory';
 
 describe('StaticContentDetailsViewTest', () => {
     it('renders content page component', () => {
@@ -49,7 +49,7 @@ class StaticContentDetailsViewPropsBuilder extends BaseDataBuilder<StaticContent
         } as StaticContentDetailsViewProps;
     }
 
-    public setupOnToggleClickMock(event: INativeEventStub): StaticContentDetailsViewPropsBuilder {
+    public setupOnToggleClickMock(event: NativeEventStub): StaticContentDetailsViewPropsBuilder {
         this.onToggleClickMock.setup(click => click(It.isValue(event))).verifiable(Times.once());
 
         return this;

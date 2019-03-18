@@ -1,13 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-
 import { BaseActionPayload, OnDetailsViewOpenPayload, SetLaunchPanelState } from '../../../background/actions/action-payloads';
 import { BaseActionMessageCreator } from '../../../common/message-creators/base-action-message-creator';
 import { Messages } from '../../../common/messages';
-import { TelemetryDataFactory } from '../../../common/telemetry-data-factory';
-import { TelemetryEventSource } from '../../../common/telemetry-events';
+import { SupportedMouseEvent, TelemetryDataFactory } from '../../../common/telemetry-data-factory';
 import * as TelemetryEvents from '../../../common/telemetry-events';
+import { TelemetryEventSource } from '../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { WindowUtils } from '../../../common/window-utils';
@@ -19,12 +18,7 @@ export class PopupActionMessageCreator extends BaseActionMessageCreator {
     private telemetryFactory: TelemetryDataFactory;
     private windowUtils: WindowUtils;
 
-    constructor(
-        postMessage: (message: IMessage) => void,
-        tabId: number,
-        telemetryFactory: TelemetryDataFactory,
-        windowUtils?: WindowUtils,
-    ) {
+    constructor(postMessage: (message: Message) => void, tabId: number, telemetryFactory: TelemetryDataFactory, windowUtils?: WindowUtils) {
         super(postMessage, tabId);
         this.telemetryFactory = telemetryFactory;
         this.windowUtils = windowUtils || new WindowUtils();
@@ -50,7 +44,7 @@ export class PopupActionMessageCreator extends BaseActionMessageCreator {
     }
 
     public openDetailsView(
-        event: React.SyntheticEvent<MouseEvent>,
+        event: SupportedMouseEvent,
         viewType: VisualizationType,
         source: TelemetryEventSource,
         pivotType = DetailsViewPivotType.allTest,
@@ -70,8 +64,8 @@ export class PopupActionMessageCreator extends BaseActionMessageCreator {
         this.windowUtils.closeWindow();
     }
 
-    public openShortcutConfigureTab(event: React.MouseEvent<HTMLElement>): void {
-        const telemetry = this.telemetryFactory.fromHamburgetMenu(event);
+    public openShortcutConfigureTab(event: SupportedMouseEvent): void {
+        const telemetry = this.telemetryFactory.fromHamburgerMenu(event);
         const payload: BaseActionPayload = {
             telemetry,
         };

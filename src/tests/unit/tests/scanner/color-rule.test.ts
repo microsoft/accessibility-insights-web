@@ -15,13 +15,10 @@ describe('ColorRule', () => {
 
     describe('verify color configs', () => {
         it('should only return for root frame', () => {
-            const originalWindow = window;
             const windowStub = {};
-            // tslint:disable-next-line:no-string-literal
             windowStub['top'] = windowStub;
             expect(isInTopWindow(windowStub)).toBeTruthy();
 
-            // tslint:disable-next-line:no-string-literal
             windowStub['top'] = null;
             expect(isInTopWindow(windowStub)).toBeFalsy();
         });

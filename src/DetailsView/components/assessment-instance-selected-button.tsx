@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
+import * as classNames from 'classnames';
 import { IconButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
-import * as classNames from 'classnames';
 import { VisualizationType } from '../../common/types/visualization-type';
 
-export interface IAssessmentInstanceSelectedButtonProps {
+export interface AssessmentInstanceSelectedButtonProps {
     test: VisualizationType;
     step: string;
     selector: string;
@@ -15,7 +15,7 @@ export interface IAssessmentInstanceSelectedButtonProps {
     onSelected: (selected, test, step, selector) => void;
 }
 
-export class AssessmentInstanceSelectedButton extends React.Component<IAssessmentInstanceSelectedButtonProps> {
+export class AssessmentInstanceSelectedButton extends React.Component<AssessmentInstanceSelectedButtonProps> {
     public render(): JSX.Element {
         const { isVisualizationEnabled, isVisible } = this.props;
 

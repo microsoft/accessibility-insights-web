@@ -6,6 +6,7 @@ import { ClientBrowserAdapter, ClientChromeAdapter } from '../../../../common/cl
 import { FileRequestHelper } from '../../../../common/file-request-helper';
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
 import { Logger } from '../../../../common/logging/logger';
+import { rootContainerId } from '../../../../injected/constants';
 import { ShadowInitializer } from '../../../../injected/shadow-initializer';
 import { NodeListBuilder } from '../../common/node-list-builder';
 import { HtmlElementStubBuilder } from '../../stubs/html-element-stub-builder';
@@ -14,24 +15,24 @@ describe('ShadowInitializerTests', () => {
     const cssFileUrl: string = 'cssFileUrl';
     let testSubject: ShadowInitializer;
     let chromeAdapter: IMock<ClientBrowserAdapter>;
-    let docUtils: IMock<HTMLElementUtils>;
+    let htmlElementUtilsMock: IMock<HTMLElementUtils>;
     let fileRequestHelperMock: IMock<FileRequestHelper>;
     let shadowRoot: ShadowRoot;
-    let bodyElement: HTMLElement;
+    let rootContainer: HTMLElement;
 
     beforeEach(() => {
         chromeAdapter = Mock.ofType(ClientChromeAdapter);
-        docUtils = Mock.ofType(HTMLElementUtils);
+        htmlElementUtilsMock = Mock.ofType(HTMLElementUtils);
         fileRequestHelperMock = Mock.ofType(FileRequestHelper);
-        bodyElement = document.createElement('div');
+        rootContainer = document.createElement('div');
         shadowRoot = document.createElement('div') as any;
 
-        docUtils
-            .setup(x => x.querySelector('body'))
-            .returns(() => bodyElement)
+        htmlElementUtilsMock
+            .setup(x => x.querySelector(`#${rootContainerId}`))
+            .returns(() => rootContainer)
             .verifiable();
 
-        docUtils
+        htmlElementUtilsMock
             .setup(x =>
                 x.attachShadow(
                     It.is(element => {
@@ -48,22 +49,20 @@ describe('ShadowInitializerTests', () => {
             .verifiable();
 
         const loggerMock = Mock.ofType<Logger>();
-        testSubject = new ShadowInitializer(chromeAdapter.object, docUtils.object, fileRequestHelperMock.object, loggerMock.object);
+        testSubject = new ShadowInitializer(
+            chromeAdapter.object,
+            htmlElementUtilsMock.object,
+            fileRequestHelperMock.object,
+            loggerMock.object,
+        );
     });
 
     afterEach(() => {
-        docUtils.verifyAll();
+        htmlElementUtilsMock.verifyAll();
     });
 
     test('remove existing & create new shadow container on initialize', async () => {
-        const oldContainerMock = Mock.ofInstance(HtmlElementStubBuilder.build());
-
-        docUtils
-            .setup(x => x.querySelectorAll('#insights-shadow-host'))
-            .returns(() => NodeListBuilder.createNodeList([oldContainerMock.object]))
-            .verifiable();
-
-        oldContainerMock.setup(x => x.remove()).verifiable();
+        htmlElementUtilsMock.setup(x => x.deleteAllElements('#insights-shadow-host')).verifiable();
 
         fileRequestHelperMock
             .setup(x => x.getFileContent(cssFileUrl))
@@ -72,23 +71,17 @@ describe('ShadowInitializerTests', () => {
 
         await testSubject.initialize();
 
-        expect(bodyElement.querySelectorAll('#insights-shadow-host').length).toEqual(1);
+        expect(rootContainer.querySelectorAll('#insights-shadow-host').length).toEqual(1);
         expect(shadowRoot.querySelectorAll('div#insights-shadow-container').length).toEqual(1);
         expect(shadowRoot.querySelectorAll('div#insights-shadow-container *').length).toEqual(1);
 
-        docUtils.verifyAll();
-        oldContainerMock.verifyAll();
+        htmlElementUtilsMock.verifyAll();
         fileRequestHelperMock.verifyAll();
         chromeAdapter.verifyAll();
     });
 
     test('add style data to shadow container', async () => {
         const styleContent = 'style content';
-
-        docUtils
-            .setup(x => x.querySelectorAll('#insights-shadow-host'))
-            .returns(() => NodeListBuilder.createNodeList([]))
-            .verifiable();
 
         fileRequestHelperMock
             .setup(x => x.getFileContent(cssFileUrl))
@@ -103,7 +96,6 @@ describe('ShadowInitializerTests', () => {
         const styleElement = shadowRoot.querySelector('div#insights-shadow-container style');
         expect(styleElement.innerHTML).toEqual(styleContent);
 
-        docUtils.verifyAll();
         fileRequestHelperMock.verifyAll();
         chromeAdapter.verifyAll();
     });

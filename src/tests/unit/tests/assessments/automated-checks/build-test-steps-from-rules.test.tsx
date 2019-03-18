@@ -5,7 +5,7 @@ import * as React from 'react';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { buildTestStepsFromRules } from '../../../../../assessments/automated-checks/build-test-steps-from-rules';
-import { IInstanceTableColumn } from '../../../../../assessments/types/iinstance-table-column';
+import { InstanceTableColumn } from '../../../../../assessments/types/iinstance-table-column';
 import { TestStep } from '../../../../../assessments/types/test-step';
 import { InstanceIdentifierGenerator } from '../../../../../background/instance-identifier-generator';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
@@ -13,7 +13,7 @@ import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { AssessmentInstanceTable, IAssessmentInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
+import { AssessmentInstanceRowData, AssessmentInstanceTable } from '../../../../../DetailsView/components/assessment-instance-table';
 import { TestStepLink } from '../../../../../DetailsView/components/test-step-link';
 import { AnalyzerProvider } from '../../../../../injected/analyzers/analyzer-provider';
 import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/ianalyzer';
@@ -137,8 +137,8 @@ describe('buildTestStepsFromRules', () => {
         validateInstanceColumnsRender(actual.columnsConfig, ['A', 'B'], 'XY', 'two');
     }
 
-    function validateInstanceColumnsRender(actualColumns: IInstanceTableColumn[], target: string[], html: string, message: string): void {
-        const item: IAssessmentInstanceRowData = {
+    function validateInstanceColumnsRender(actualColumns: InstanceTableColumn[], target: string[], html: string, message: string): void {
+        const item: AssessmentInstanceRowData = {
             statusChoiceGroup: null,
             visualizationButton: null,
             instance: {

@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { VisualizationType } from '../../common/types/visualization-type';
 import { AssessmentBuilder } from '../assessment-builder';
-import { IAssessment } from '../types/iassessment';
+import { Assessment } from '../types/iassessment';
 import { Columns } from './test-steps/columns';
 import { CssPositioning } from './test-steps/css-positioning';
 import { LayoutTables } from './test-steps/layout-tables';
@@ -22,7 +22,7 @@ const gettingStarted: JSX.Element = (
     </React.Fragment>
 );
 
-export const SequenceAssessment: IAssessment = AssessmentBuilder.Assisted({
+export const SequenceAssessment: Assessment = AssessmentBuilder.Assisted({
     key,
     title,
     gettingStarted,

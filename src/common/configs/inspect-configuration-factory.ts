@@ -15,7 +15,7 @@ export class InspectConfigurationFactory {
         this.scopingActionMessageCreator = scopingActionMessageCreator;
     }
 
-    private configurationByType: IDictionaryNumberTo<IInspectCallback> = {
+    private configurationByType: DictionaryNumberTo<IInspectCallback> = {
         [InspectMode.scopingAddInclude]: this.addIncludeSelector,
         [InspectMode.scopingAddExclude]: this.addExcludeSelector,
     };

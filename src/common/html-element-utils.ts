@@ -57,4 +57,12 @@ export class HTMLElementUtils {
     public getOffsetWidth(element: HTMLElement): number {
         return element.offsetWidth;
     }
+
+    public deleteAllElements(selector: string): void {
+        const elements = this.dom.querySelectorAll(selector);
+
+        for (let i = 0; i < elements.length; i++) {
+            elements[i].remove();
+        }
+    }
 }

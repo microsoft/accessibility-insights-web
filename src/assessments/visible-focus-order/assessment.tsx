@@ -4,14 +4,14 @@ import * as React from 'react';
 
 import { Messages } from '../../common/messages';
 import { VisualizationType } from '../../common/types/visualization-type';
+import { test as content } from '../../content/test';
 import { AssessmentBuilder } from '../assessment-builder';
-import { IAssessment } from '../types/iassessment';
+import { Assessment } from '../types/iassessment';
 import { ClosingContent } from './test-steps/closing-content';
 import { FocusOrder } from './test-steps/focus-order';
 import { ModalDialogs } from './test-steps/modal-dialogs';
 import { RevealingContent } from './test-steps/revealing-content';
 import { VisibleFocus } from './test-steps/visible-focus';
-import { test as content } from '../../content/test';
 
 const key = 'visibleFocusOrder';
 const keyboardInteractionTitle = 'Focus';
@@ -29,7 +29,7 @@ const keyboardInteractionGettingStarted: JSX.Element = (
     </React.Fragment>
 );
 
-export const VisibleFocusOrderAssessment: IAssessment = AssessmentBuilder.Assisted({
+export const VisibleFocusOrderAssessment: Assessment = AssessmentBuilder.Assisted({
     key,
     title: keyboardInteractionTitle,
     gettingStarted: keyboardInteractionGettingStarted,

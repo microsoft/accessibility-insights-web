@@ -4,7 +4,7 @@ import { ScanOptions } from './exposed-apis';
 import { AxeOptions, AxeScanContext } from './launcher';
 import { RuleSifter } from './rule-sifter';
 
-export class ScanParamaterGenerator {
+export class ScanParameterGenerator {
     constructor(private ruleSifter: RuleSifter) {}
 
     public getAxeEngineOptions(options: ScanOptions): AxeOptions {

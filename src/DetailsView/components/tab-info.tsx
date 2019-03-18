@@ -4,22 +4,23 @@ import { Link } from 'office-ui-fabric-react/lib/Link';
 import { MessageBar, MessageBarType } from 'office-ui-fabric-react/lib/MessageBar';
 import * as React from 'react';
 
+import { css } from '@uifabric/utilities';
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 import { FeatureFlags } from '../../common/feature-flags';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 
-export interface ITabInfoProps {
+export interface TabInfoProps {
     isTargetPageHidden: boolean;
     url: string;
     title: string;
     actionCreator: DetailsViewActionMessageCreator;
     selectedPivot: DetailsViewPivotType;
-    featureFlags: IDictionaryStringTo<boolean>;
+    featureFlags: DictionaryStringTo<boolean>;
     dropdownClickHandler: DropdownClickHandler;
 }
 
-export class TabInfo extends React.Component<ITabInfoProps> {
+export class TabInfo extends React.Component<TabInfoProps> {
     public render(): JSX.Element {
         return (
             <div>
@@ -39,7 +40,7 @@ export class TabInfo extends React.Component<ITabInfoProps> {
         return (
             <div className="target-tab-info">
                 Target page:&nbsp;
-                <Link role="link" className={'target-page-link'} onClick={this.props.actionCreator.switchToTargetTab}>
+                <Link role="link" className={css('target-page-link', 'insights-link')} onClick={this.props.actionCreator.switchToTargetTab}>
                     {this.props.title}
                 </Link>
                 &nbsp;({this.props.url})

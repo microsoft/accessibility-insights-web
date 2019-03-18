@@ -5,7 +5,7 @@ import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import {
-    IVisualizationConfiguration,
+    VisualizationConfiguration,
     VisualizationConfigurationFactory,
 } from '../../../../../../common/configs/visualization-configuration-factory';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
@@ -25,7 +25,7 @@ describe('VisualizationBasedLeftNav', () => {
     let onLinkClickStub: onBaseLeftNavItemClick;
     let visualizationsStub: VisualizationType[];
     let configFactoryMock: IMock<VisualizationConfigurationFactory>;
-    let configStub: IVisualizationConfiguration;
+    let configStub: VisualizationConfiguration;
 
     beforeEach(() => {
         visualizationsStub = [-1, -2];
@@ -33,7 +33,7 @@ describe('VisualizationBasedLeftNav', () => {
         configFactoryMock = Mock.ofType(VisualizationConfigurationFactory, MockBehavior.Strict);
         onLinkClickStub = (event, item) => null;
         linkStub = {} as BaseLeftNavLink;
-        configStub = {} as IVisualizationConfiguration;
+        configStub = {} as VisualizationConfiguration;
 
         deps = {
             leftNavLinkBuilder: leftNavLinkBuilderMock.object,

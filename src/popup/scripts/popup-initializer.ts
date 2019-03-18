@@ -6,10 +6,13 @@ import * as ReactDOM from 'react-dom';
 
 import { BrowserAdapter } from '../../background/browser-adapter';
 import { A11YSelfValidator } from '../../common/a11y-self-validator';
+import { AxeInfo } from '../../common/axe-info';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 import { EnumHelper } from '../../common/enum-helper';
 import { HTMLElementUtils } from '../../common/html-element-utils';
+import { createDefaultLogger } from '../../common/logging/default-logger';
+import { Logger } from '../../common/logging/logger';
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
 import { DropdownActionMessageCreator } from '../../common/message-creators/dropdown-action-message-creator';
 import { StoreActionMessageCreatorFactory } from '../../common/message-creators/store-action-message-creator-factory';
@@ -43,9 +46,6 @@ import { PopupViewControllerHandler } from './handlers/popup-view-controller-han
 import { LaunchPadRowConfigurationFactory } from './launch-pad-row-configuration-factory';
 import { MainRenderer, MainRendererDeps } from './main-renderer';
 import { TargetTabFinder, TargetTabInfo } from './target-tab-finder';
-import { Logger } from '../../common/logging/logger';
-import { createDefaultLogger } from '../../common/logging/default-logger';
-import { AxeInfo } from '../../common/axe-info';
 
 declare var window: AutoChecker & Window;
 
@@ -135,14 +135,14 @@ export class PopupInitializer {
 
         const popupViewControllerHandler = new PopupViewControllerHandler();
         const dropdownClickHandler = new DropdownClickHandler(dropdownActionMessageCreator, TelemetryEventSource.LaunchPad);
-        const feedbackMenuClickHandler = new LaunchPanelHeaderClickHandler();
+        const launchPanelHeaderClickHandler = new LaunchPanelHeaderClickHandler();
         const supportLinkHandler = new SupportLinkHandler(this.chromeAdapter, windowUtils);
 
         const popupHandlers: IPopupHandlers = {
-            diagnosticViewClickHandler: diagnosticViewClickHandler,
-            popupViewControllerHandler: popupViewControllerHandler,
-            launchPanelHeaderClickHandler: feedbackMenuClickHandler,
-            supportLinkHandler: supportLinkHandler,
+            diagnosticViewClickHandler,
+            popupViewControllerHandler,
+            launchPanelHeaderClickHandler,
+            supportLinkHandler,
         };
 
         const actionInitiators = {
@@ -171,6 +171,7 @@ export class PopupInitializer {
             storeActionMessageCreator,
             loadTheme,
             axeInfo,
+            launchPanelHeaderClickHandler,
         };
 
         const diagnosticViewToggleFactory = new DiagnosticViewToggleFactory(

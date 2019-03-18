@@ -3,14 +3,14 @@
 import * as React from 'react';
 
 import { VisualizationType } from '../../common/types/visualization-type';
+import { test as content } from '../../content/test';
 import { AssessmentBuilder } from '../assessment-builder';
 import * as Markup from '../markup';
-import { IAssessment } from '../types/iassessment';
+import { Assessment } from '../types/iassessment';
 import { Cues } from './test-steps/cues';
 import { Instructions } from './test-steps/instructions';
 import { Label } from './test-steps/label';
 import { WidgetFunction } from './test-steps/widget-function';
-import { test as content } from '../../content/test';
 
 const key = 'nativeWidgets';
 const title = 'Native widgets';
@@ -35,7 +35,7 @@ const gettingStarted: JSX.Element = (
     </React.Fragment>
 );
 
-export const NativeWidgetsAssessment: IAssessment = AssessmentBuilder.Assisted({
+export const NativeWidgetsAssessment: Assessment = AssessmentBuilder.Assisted({
     key,
     type: VisualizationType.NativeWidgets,
     title,

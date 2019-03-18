@@ -6,14 +6,14 @@ import * as React from 'react';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import { ActionAndCancelButtonsComponent } from '../../DetailsView/components/action-and-cancel-buttons-component';
 
-export interface IIssueTrackerInputProps {
+export interface IssueTrackerInputProps {
     onSave: (id: string, state: string) => void;
     issueTrackerPath?: string;
 }
-export interface IIssueTrackerState {
+export interface IssueTrackerState {
     issueTrackerPath: string;
 }
-export class IssueTrackerInput extends React.Component<IIssueTrackerInputProps, IIssueTrackerState> {
+export class IssueTrackerInput extends React.Component<IssueTrackerInputProps, IssueTrackerState> {
     constructor(props) {
         super(props);
         this.state = {

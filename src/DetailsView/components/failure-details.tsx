@@ -3,10 +3,10 @@
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import * as React from 'react';
 
-export interface IFailureDetailsProps {
+export interface FailureDetailsProps {
     items: any[];
 }
-export class FailureDetails extends React.Component<IFailureDetailsProps> {
+export class FailureDetails extends React.Component<FailureDetailsProps> {
     public static readonly failureDetailCoda: string =
         'When the Automated Checks toggle is on, failure instances selected in this page are highlighted in the target page.';
 

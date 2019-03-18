@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { OnDevToolOpenPayload } from './actions/action-payloads';
 import { ConnectionNames } from '../common/constants/connection-names';
 import { Messages } from '../common/messages';
-import { IDevToolsOpenMessage } from '../common/types/dev-tools-open-message';
+import { DevToolsOpenMessage } from '../common/types/dev-tools-open-message';
+import { OnDevToolOpenPayload } from './actions/action-payloads';
 import { BrowserAdapter } from './browser-adapter';
 import { TabToContextMap } from './tab-context';
 
@@ -23,7 +23,7 @@ export class DevToolsListener {
     public initialize() {
         this._chromeAdapter.addListenerOnConnect((devToolsConnection: PortWithTabId) => {
             if (devToolsConnection.name === ConnectionNames.devTools) {
-                const devToolsListener = (message: IDevToolsOpenMessage, port: chrome.runtime.Port) => {
+                const devToolsListener = (message: DevToolsOpenMessage, port: chrome.runtime.Port) => {
                     devToolsConnection.targetPageTabId = message.tabId;
                     this.sendDevToolStatus(devToolsConnection, true);
                 };

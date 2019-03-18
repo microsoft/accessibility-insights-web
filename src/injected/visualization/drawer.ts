@@ -1,17 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-/// <reference path="./iformatter.d.ts" />
-/// <reference path="./idrawer.d.ts" />
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { WindowUtils } from '../../common/window-utils';
 import { ClientUtils } from '../client-utils';
-import { AxeResultsWithFrameLevel } from '../frameCommunicators/html-element-axe-results-helper';
 import { DialogRenderer } from '../dialog-renderer';
+import { AxeResultsWithFrameLevel } from '../frameCommunicators/html-element-axe-results-helper';
 import { IHtmlElementAxeResults } from '../scanner-utils';
 import { ShadowUtils } from '../shadow-utils';
 import { BaseDrawer } from './base-drawer';
 import { DrawerUtils } from './drawer-utils';
-import { IBoxConfig, IDrawerConfiguration, IFormatter } from './iformatter';
+import { BoxConfig, DrawerConfiguration, Formatter } from './formatter';
 import { IDrawerInitData } from './idrawer';
 
 export class Drawer extends BaseDrawer {
@@ -20,7 +18,7 @@ export class Drawer extends BaseDrawer {
     private featureFlagStoreData: FeatureFlagStoreData;
     private clientUtils: ClientUtils;
 
-    public static defaultConfiguration: IDrawerConfiguration = {
+    public static defaultConfiguration: DrawerConfiguration = {
         borderColor: 'rgb(255, 255, 255)',
         textBoxConfig: {
             fontColor: 'rgb(255, 255, 255)',
@@ -39,7 +37,7 @@ export class Drawer extends BaseDrawer {
         shadowUtils: ShadowUtils,
         drawerUtils: DrawerUtils,
         clientUtils: ClientUtils,
-        formatter: IFormatter = null,
+        formatter: Formatter = null,
     ) {
         super(dom, containerClass, windowUtils, shadowUtils, drawerUtils, formatter);
         this.clientUtils = clientUtils;
@@ -125,8 +123,8 @@ export class Drawer extends BaseDrawer {
 
     private createtBox(
         wrapper: HTMLDivElement,
-        drawerConfig: IDrawerConfiguration,
-        boxConfig: IBoxConfig,
+        drawerConfig: DrawerConfiguration,
+        boxConfig: BoxConfig,
         currentDom: Document,
     ): HTMLDivElement {
         const box = currentDom.createElement('div');
@@ -141,8 +139,8 @@ export class Drawer extends BaseDrawer {
         return box;
     }
 
-    private getHighlightElements() {
-        const highlightElements = [];
+    private getHighlightElements(): HTMLElement[] {
+        const highlightElements: HTMLElement[] = [];
 
         for (let i = 0; i < this.elementResults.length; i++) {
             const elementResult = this.elementResults[i];

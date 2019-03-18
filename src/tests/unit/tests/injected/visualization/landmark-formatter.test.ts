@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { IAssessmentVisualizationInstance } from '../../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { FailureInstanceFormatter } from '../../../../../injected/visualization/failure-instance-formatter';
-import { IHeadingStyleConfiguration } from '../../../../../injected/visualization/heading-formatter';
-import { IDrawerConfiguration } from '../../../../../injected/visualization/iformatter';
+import { DrawerConfiguration } from '../../../../../injected/visualization/formatter';
+import { HeadingStyleConfiguration } from '../../../../../injected/visualization/heading-formatter';
 import { LandmarkFormatter } from '../../../../../injected/visualization/landmark-formatter';
 
 describe('LandmarkFormatterTests', () => {
@@ -32,7 +32,7 @@ describe('LandmarkFormatterTests', () => {
         testStyling(config, role, true);
     });
 
-    function getLandmarkStyle(key: string): IHeadingStyleConfiguration {
+    function getLandmarkStyle(key: string): HeadingStyleConfiguration {
         const landmarkStyle = LandmarkFormatter.getStyleForLandmarkRole(key);
 
         expect(landmarkStyle).toBeDefined();
@@ -104,7 +104,7 @@ describe('LandmarkFormatterTests', () => {
         return axeData;
     }
 
-    function testStyling(config: IDrawerConfiguration, givenRole: string, isFailure = false): void {
+    function testStyling(config: DrawerConfiguration, givenRole: string, isFailure = false): void {
         const landmarkStyle = getLandmarkStyle(givenRole);
         expect(config.showVisualization).toBe(true);
         expect(config.outlineStyle).toEqual('dashed');

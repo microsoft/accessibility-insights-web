@@ -3,16 +3,19 @@
 import { DetailsViewPivotType } from '../details-view-pivot-type';
 import { VisualizationType } from '../visualization-type';
 
+// tslint:disable-next-line:interface-name
 export interface IScanData {
     enabled: boolean;
 }
 
+// tslint:disable-next-line:interface-name
 export interface IAssessmentScanData extends IScanData {
-    stepStatus: IDictionaryStringTo<boolean>;
+    stepStatus: DictionaryStringTo<boolean>;
 }
 
+// tslint:disable-next-line:interface-name
 export interface IVisualizationStoreData {
-    tests: ITestsEnabledState;
+    tests: TestsEnabledState;
     scanning: string;
     selectedFastPassDetailsView: VisualizationType;
     selectedAdhocDetailsView: VisualizationType;
@@ -22,7 +25,7 @@ export interface IVisualizationStoreData {
     focusedTarget: string[];
 }
 
-export interface ITestsEnabledState {
+export interface TestsEnabledState {
     assessments: {
         [key: string]: IAssessmentScanData;
     };

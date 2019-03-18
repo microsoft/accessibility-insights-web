@@ -5,29 +5,27 @@ import * as React from 'react';
 import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
 import { CopyIssueDetailsButton } from '../../common/components/copy-issue-details-button';
 import { FileIssueDetailsButton, FileIssueDetailsButtonDeps } from '../../common/components/file-issue-details-button';
+import { FlaggedComponent } from '../../common/components/flagged-component';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { ToastDeps } from '../../common/components/toast';
+import { FeatureFlags } from '../../common/feature-flags';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
+import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { CheckType } from '../../injected/components/details-dialog';
 import { FixInstructionPanel } from '../../injected/components/fix-instruction-panel';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { GuidanceLinks } from './guidance-links';
-import { FeatureFlags } from '../../common/feature-flags';
-import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
-import { FlaggedComponent } from '../../common/components/flagged-component';
-import { BugClickHandler } from '../../common/bug-click-handler';
 
 export type IssuesDetailsPaneDeps = ToastDeps &
     FileIssueDetailsButtonDeps & {
-        bugClickHandler: BugClickHandler;
         issueDetailsTextGenerator: IssueDetailsTextGenerator;
         detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     };
 
 export interface IssuesDetailsPaneProps {
     deps: IssuesDetailsPaneDeps;
-    selectedIdToRuleResultMap: IDictionaryStringTo<DecoratedAxeNodeResult>;
+    selectedIdToRuleResultMap: DictionaryStringTo<DecoratedAxeNodeResult>;
     pageTitle: string;
     pageUrl: string;
     issueTrackerPath: string;
@@ -72,9 +70,9 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
         return (
             <FileIssueDetailsButton
                 deps={this.props.deps}
-                onOpenSettings={this.props.deps.bugClickHandler.openSettingsPanelHandler}
                 issueDetailsData={issueData}
                 issueTrackerPath={this.props.issueTrackerPath}
+                restoreFocus={true}
             />
         );
     }

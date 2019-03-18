@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { React, create, GuidanceTitle } from '../../common';
+import { create, GuidanceTitle, React } from '../../common';
 
 export const guidance = create(({ Markup, Link }) => (
     <>
@@ -87,9 +87,7 @@ export const guidance = create(({ Markup, Link }) => (
         </Markup.Links>
         <h4>Additional guidance</h4>
         <Markup.Links>
-            <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-practices-1.1/">
-                WAI-ARIA Authoring Practices 1.1: Design Patterns and Widgets
-            </Markup.HyperLink>
+            <Link.WAIARIAAuthoringPractices />
         </Markup.Links>
 
         <h3>Make sure instructions are programmatically related</h3>
@@ -174,9 +172,7 @@ export const guidance = create(({ Markup, Link }) => (
         </Markup.Links>
         <h4>Sufficient techniques</h4>
         <Markup.Links>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G83">
-                Providing text descriptions to identify required fields that were not completed
-            </Markup.HyperLink>
+            <Link.WCAG21TechniquesG83 />
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H90">
                 Indicating required form controls using label or legend
             </Markup.HyperLink>

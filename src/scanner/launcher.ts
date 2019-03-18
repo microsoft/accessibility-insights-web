@@ -4,16 +4,16 @@ import * as Axe from 'axe-core';
 
 import { AxeResponseHandler } from './axe-response-handler';
 import { ScanOptions } from './exposed-apis';
-import { ScanParamaterGenerator } from './scan-parameter-generator';
+import { ScanParameterGenerator } from './scan-parameter-generator';
 
 export interface AxeOptions {
     runOnly?: Axe.RunOnly;
     restoreScroll?: Boolean; // missing from axe options.
 }
 
-export type AxeScanContext = string | NodeSelector & Node | IIncludeExcludeOptions | NodeList;
+export type AxeScanContext = string | NodeSelector & Node | IncludeExcludeOptions | NodeList;
 
-export interface IIncludeExcludeOptions {
+export interface IncludeExcludeOptions {
     include: string[][];
     exclude: string[][];
 }
@@ -21,7 +21,7 @@ export interface IIncludeExcludeOptions {
 export class Launcher {
     constructor(
         private axe: typeof Axe,
-        private scanParameterGenerator: ScanParamaterGenerator,
+        private scanParameterGenerator: ScanParameterGenerator,
         private dom: NodeSelector & Node,
         private options: ScanOptions,
     ) {}

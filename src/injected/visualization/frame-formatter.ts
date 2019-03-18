@@ -1,17 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AxeResultsWithFrameLevel, IAssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
-import { IDrawerConfiguration, IFormatter } from './iformatter';
+import { IAssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
 import { FailureInstanceFormatter } from './failure-instance-formatter';
+import { DrawerConfiguration } from './formatter';
 
-export interface IFrameStyleConfiguration {
+export interface FrameStyleConfiguration {
     borderColor: string;
     fontColor: string;
     contentText: string;
 }
 
 export class FrameFormatter extends FailureInstanceFormatter {
-    public static frameStyles: { [frameType: string]: IFrameStyleConfiguration } = {
+    public static frameStyles: { [frameType: string]: FrameStyleConfiguration } = {
         frame: {
             borderColor: '#0066CC',
             fontColor: '#FFFFFF',
@@ -33,11 +33,11 @@ export class FrameFormatter extends FailureInstanceFormatter {
         return null;
     }
 
-    public getDrawerConfiguration(element: HTMLElement, data: IAssessmentVisualizationInstance): IDrawerConfiguration {
+    public getDrawerConfiguration(element: HTMLElement, data: IAssessmentVisualizationInstance): DrawerConfiguration {
         const frameType = element.tagName.toLowerCase();
         const style = FrameFormatter.frameStyles[frameType] || FrameFormatter.frameStyles.default;
 
-        const drawerConfig: IDrawerConfiguration = {
+        const drawerConfig: DrawerConfiguration = {
             textBoxConfig: {
                 fontColor: style.fontColor,
                 text: style.contentText,

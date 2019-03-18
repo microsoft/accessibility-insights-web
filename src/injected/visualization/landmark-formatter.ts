@@ -1,14 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-/// <reference path="./iformatter.d.ts" />
-/// <reference path="./heading-formatter.ts" />
-/// <reference path="../scanner-utils.ts" />
+import { DialogRenderer } from '../dialog-renderer';
 import { IAssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
 import { IHtmlElementAxeResults } from '../scanner-utils';
 import { FailureInstanceFormatter } from './failure-instance-formatter';
-import { IHeadingStyleConfiguration } from './heading-formatter';
-import { IDrawerConfiguration } from './iformatter';
-import { DialogRenderer } from '../dialog-renderer';
+import { DrawerConfiguration } from './formatter';
+import { HeadingStyleConfiguration } from './heading-formatter';
 
 interface ElemData {
     role: string;
@@ -16,47 +13,47 @@ interface ElemData {
 }
 
 export class LandmarkFormatter extends FailureInstanceFormatter {
-    private static readonly landmarkStyles: { [role: string]: IHeadingStyleConfiguration } = {
+    private static readonly landmarkStyles: { [role: string]: HeadingStyleConfiguration } = {
         banner: {
-            borderColor: '#ff9900',
+            borderColor: '#d08311',
             fontColor: '#000000',
         },
         complementary: {
-            borderColor: '#00cccc',
+            borderColor: '#6b9d1a',
             fontColor: '#000000',
         },
         contentinfo: {
-            borderColor: '#00cc00',
+            borderColor: '#00a88c',
             fontColor: '#000000',
         },
         form: {
-            borderColor: '#999999',
+            borderColor: '#0298c7',
             fontColor: '#000000',
         },
         main: {
-            borderColor: '#ff66ff',
+            borderColor: '#cb2e6d',
             fontColor: '#000000',
         },
         navigation: {
-            borderColor: '#ffcc00',
+            borderColor: '#9b38e6',
             fontColor: '#000000',
         },
         region: {
-            borderColor: '#3399ff',
+            borderColor: '#2560e0',
             fontColor: '#000000',
         },
         search: {
-            borderColor: '#9955ff',
+            borderColor: '#d363d8',
             fontColor: '#000000',
         },
     };
 
-    private static readonly invalidLandmarkStyle: IHeadingStyleConfiguration = {
+    private static readonly invalidLandmarkStyle: HeadingStyleConfiguration = {
         borderColor: '#C00000',
         fontColor: '#FFFFFF',
     };
 
-    public static getStyleForLandmarkRole(role: string): IHeadingStyleConfiguration {
+    public static getStyleForLandmarkRole(role: string): HeadingStyleConfiguration {
         return LandmarkFormatter.landmarkStyles[role] || LandmarkFormatter.invalidLandmarkStyle;
     }
 
@@ -64,13 +61,13 @@ export class LandmarkFormatter extends FailureInstanceFormatter {
         return null;
     }
 
-    public getDrawerConfiguration(element: Node, data: IAssessmentVisualizationInstance): IDrawerConfiguration {
+    public getDrawerConfiguration(element: Node, data: IAssessmentVisualizationInstance): DrawerConfiguration {
         // parse down the IHtmlElementAxeResult to see if it is contained in the map
         const elemData = this.decorateLabelText(data.propertyBag || this.getLandmarkInfo(data));
 
         const style = LandmarkFormatter.getStyleForLandmarkRole(elemData.role);
 
-        const drawerConfig: IDrawerConfiguration = {
+        const drawerConfig: DrawerConfiguration = {
             textBoxConfig: {
                 fontColor: style.fontColor,
                 background: style.borderColor,

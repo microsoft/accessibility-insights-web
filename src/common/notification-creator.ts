@@ -26,7 +26,7 @@ export class NotificationCreator {
         }
     }
 
-    public createNotificationByVisualizationKey(selectorMap: IDictionaryStringTo<any>, key: string, type: VisualizationType): void {
+    public createNotificationByVisualizationKey(selectorMap: DictionaryStringTo<any>, key: string, type: VisualizationType): void {
         if (_.isEmpty(selectorMap)) {
             const configuration = this.visualizationConfigurationFactory.getConfiguration(type);
             const notificationMessage = configuration.getNotificationMessage(selectorMap, key);

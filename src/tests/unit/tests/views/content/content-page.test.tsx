@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { mount } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
-
-import { ContentPage, ContentPageDeps } from '../../../../../views/content/content-page';
+import { NewTabLink } from '../../../../../common/components/new-tab-link';
+import { ContentCreator, ContentPage, ContentPageDeps, linkTo } from '../../../../../views/content/content-page';
 import { shallowRender } from '../../../common/shallow-render';
 
 describe('ContentPage', () => {
@@ -77,5 +78,33 @@ describe('ContentPage', () => {
                 expect(result.props.children).toEqual(['Cannot find ', page]);
             }),
         );
+    });
+
+    describe('ContentCreator links', () => {
+        const linksMap = {
+            testLink: linkTo('text', 'href'),
+        };
+
+        const create = ContentCreator(linksMap);
+
+        it('renders', () => {
+            const MyPage = create(({ Link }) => <Link.testLink />);
+
+            const wrapped = mount(<MyPage deps={deps} />);
+
+            const link = wrapped.find(NewTabLink);
+
+            expect(link.getElement()).toMatchSnapshot();
+        });
+
+        it('renders, children is text', () => {
+            const MyPage = create(({ Link }) => <Link.testLink>OVERRIDE</Link.testLink>);
+
+            const wrapped = mount(<MyPage deps={deps} />);
+
+            const link = wrapped.find(NewTabLink);
+
+            expect(link.getElement()).toMatchSnapshot();
+        });
     });
 });

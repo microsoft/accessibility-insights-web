@@ -6,7 +6,7 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { ScopingInputTypes } from '../../../../../background/scoping-input-types';
 import { ScopingStore } from '../../../../../background/stores/global/scoping-store';
 import {
-    IVisualizationConfiguration,
+    VisualizationConfiguration,
     VisualizationConfigurationFactory,
 } from '../../../../../common/configs/visualization-configuration-factory';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
@@ -26,7 +26,7 @@ describe('BatchedRuleAnalyzer', () => {
     let scopingStoreMock: IMock<ScopingStore>;
     let scopingState: IScopingStoreData;
     let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
-    const mockAllInstances: IDictionaryStringTo<any> = {
+    const mockAllInstances: DictionaryStringTo<any> = {
         test: 'test-result-value',
     };
     let sendMessageMock: IMock<(message) => void>;
@@ -67,7 +67,7 @@ describe('BatchedRuleAnalyzer', () => {
             .returns(() => {
                 return {
                     displayableData: { title: testName },
-                } as IVisualizationConfiguration;
+                } as VisualizationConfiguration;
             })
             .verifiable();
     });
@@ -88,7 +88,7 @@ describe('BatchedRuleAnalyzer', () => {
         const resultOne: RuleResult = {
             id: ruleOne,
         } as RuleResult;
-        const resultProcessorMockOne: IMock<(results: ScanResults) => IDictionaryStringTo<IHtmlElementAxeResults>> = Mock.ofInstance(
+        const resultProcessorMockOne: IMock<(results: ScanResults) => DictionaryStringTo<IHtmlElementAxeResults>> = Mock.ofInstance(
             results => null,
             MockBehavior.Strict,
         );
@@ -101,7 +101,7 @@ describe('BatchedRuleAnalyzer', () => {
             resultProcessor: scanner => resultProcessorMockOne.object,
         };
         const ruleTwo = 'the second rule';
-        const resultProcessorMockTwo: IMock<(results: ScanResults) => IDictionaryStringTo<IHtmlElementAxeResults>> = Mock.ofInstance(
+        const resultProcessorMockTwo: IMock<(results: ScanResults) => DictionaryStringTo<IHtmlElementAxeResults>> = Mock.ofInstance(
             results => null,
             MockBehavior.Strict,
         );
@@ -163,7 +163,7 @@ describe('BatchedRuleAnalyzer', () => {
     }
 
     function setupProcessingMocks(
-        resultProcessorMock: IMock<(results: ScanResults) => IDictionaryStringTo<IHtmlElementAxeResults>>,
+        resultProcessorMock: IMock<(results: ScanResults) => DictionaryStringTo<IHtmlElementAxeResults>>,
         config: RuleAnalyzerConfiguration,
         completeResults: ScanResults,
         filteredResults: ScanResults,

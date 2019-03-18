@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import { flatten } from 'lodash';
 
-import { IAssessment } from '../../../../assessments/types/iassessment';
+import { Assessment } from '../../../../assessments/types/iassessment';
 import { ReportInstanceFields } from '../../../../assessments/types/report-instance-field';
-import { IManualTestStatus, ManualTestStatus } from '../../../../common/types/manual-test-status';
+import { ManualTestStatus, ManualTestStatusData } from '../../../../common/types/manual-test-status';
 import {
     IAssessmentData,
     IAssessmentStoreData,
@@ -32,7 +32,7 @@ export class AssessmentReportBuilderTestHelper {
 
     public static readonly reportDate = new Date(Date.UTC(2000, 0, 1, 0, 0));
 
-    private static getAssisstedInstances(): IDictionaryStringTo<IGeneratedAssessmentInstance> {
+    private static getAssistedInstances(): DictionaryStringTo<IGeneratedAssessmentInstance> {
         return {
             ['instance1']: {
                 id: 'id1',
@@ -72,10 +72,10 @@ export class AssessmentReportBuilderTestHelper {
                 },
                 target: ['target2'],
             },
-        } as IDictionaryStringTo<IGeneratedAssessmentInstance>;
+        } as DictionaryStringTo<IGeneratedAssessmentInstance>;
     }
 
-    private static getManualInstance1(): IDictionaryStringTo<IManualTestStepResult> {
+    private static getManualInstance1(): DictionaryStringTo<IManualTestStepResult> {
         return {
             ['step1a']: {
                 status: ManualTestStatus.FAIL,
@@ -104,20 +104,20 @@ export class AssessmentReportBuilderTestHelper {
                     },
                 ],
             },
-        } as IDictionaryStringTo<IManualTestStepResult>;
+        } as DictionaryStringTo<IManualTestStepResult>;
     }
 
-    private static getManualInstance2(): IDictionaryStringTo<IManualTestStepResult> {
+    private static getManualInstance2(): DictionaryStringTo<IManualTestStepResult> {
         return {
             ['step1b']: {
                 status: ManualTestStatus.FAIL,
                 id: 'id1',
                 instances: [],
             },
-        } as IDictionaryStringTo<IManualTestStepResult>;
+        } as DictionaryStringTo<IManualTestStepResult>;
     }
 
-    private static getManualTestStatus1(): IManualTestStatus {
+    private static getManualTestStatus1(): ManualTestStatusData {
         return {
             ['step1a']: {
                 stepFinalResult: ManualTestStatus.PASS,
@@ -138,7 +138,7 @@ export class AssessmentReportBuilderTestHelper {
         };
     }
 
-    private static getManualTestStatus2(): IManualTestStatus {
+    private static getManualTestStatus2(): ManualTestStatusData {
         return {
             ['step1b']: {
                 stepFinalResult: ManualTestStatus.UNKNOWN,
@@ -154,7 +154,7 @@ export class AssessmentReportBuilderTestHelper {
     private static getAssessmentData1(): IAssessmentData {
         return {
             fullAxeResultsMap: null,
-            generatedAssessmentInstancesMap: this.getAssisstedInstances(),
+            generatedAssessmentInstancesMap: this.getAssistedInstances(),
             manualTestStepResultMap: this.getManualInstance1(),
             testStepStatus: this.getManualTestStatus1(),
         } as IAssessmentData;
@@ -180,7 +180,7 @@ export class AssessmentReportBuilderTestHelper {
         } as IAssessmentStoreData;
     }
 
-    public static getAssessmentProviderAll(getDefaultMessage): IAssessment[] {
+    public static getAssessmentProviderAll(getDefaultMessage): Assessment[] {
         const manualFields: ReportInstanceFields = [{ key: 'comment', label: 'Comment', getValue: i => i.description }];
 
         const automaticFields: ReportInstanceFields = [
@@ -273,10 +273,10 @@ export class AssessmentReportBuilderTestHelper {
                     },
                 ],
             },
-        ] as IAssessment[];
+        ] as Assessment[];
     }
 
-    public static getStepKeysForAssessment(assessmentKey: string, data: IAssessment[]): string[] {
+    public static getStepKeysForAssessment(assessmentKey: string, data: Assessment[]): string[] {
         return flatten(
             data
                 .filter(assessmentContent => assessmentContent.key === assessmentKey)

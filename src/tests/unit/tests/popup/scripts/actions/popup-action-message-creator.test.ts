@@ -6,11 +6,11 @@ import { OnDetailsViewOpenPayload } from '../../../../../../background/actions/a
 import { Messages } from '../../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../../common/telemetry-data-factory';
 import {
-    DetailsViewOpenTelemetryData,
-    TelemetryEventSource,
     BaseTelemetryData,
-    POPUP_INITIALIZED,
+    DetailsViewOpenTelemetryData,
     LAUNCH_PANEL_OPEN,
+    POPUP_INITIALIZED,
+    TelemetryEventSource,
     TUTORIAL_OPEN,
 } from '../../../../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../../../../common/types/details-view-pivot-type';
@@ -183,7 +183,7 @@ describe('PopupActionMessageCreatorTest', () => {
         };
 
         telemetryFactoryMock
-            .setup(tf => tf.fromHamburgetMenu(event))
+            .setup(tf => tf.fromHamburgerMenu(event))
             .returns(() => telemetry)
             .verifiable();
 

@@ -6,11 +6,12 @@ import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { IMock, Mock } from 'typemoq';
 
+import { css } from '@uifabric/utilities';
 import { DropdownClickHandler } from '../../../../../common/dropdown-click-handler';
 import { FeatureFlags, getDefaultFeatureFlagValues } from '../../../../../common/feature-flags';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
-import { ITabInfoProps, TabInfo } from '../../../../../DetailsView/components/tab-info';
+import { TabInfo, TabInfoProps } from '../../../../../DetailsView/components/tab-info';
 
 describe('TabInfo', () => {
     const scenarios = [
@@ -24,7 +25,7 @@ describe('TabInfo', () => {
         describe(scenario.name, () => {
             let actionCreatorMock: IMock<DetailsViewActionMessageCreator>;
             let dropdownClickHandlerMock: IMock<DropdownClickHandler>;
-            let testProps: ITabInfoProps;
+            let testProps: TabInfoProps;
 
             beforeEach(() => {
                 actionCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
@@ -38,7 +39,7 @@ describe('TabInfo', () => {
                     selectedPivot: DetailsViewPivotType.allTest,
                     featureFlags: getDefaultFeatureFlagValues(),
                     dropdownClickHandler: dropdownClickHandlerMock.object,
-                } as ITabInfoProps;
+                } as TabInfoProps;
 
                 testProps.featureFlags[FeatureFlags.newAssessmentExperience] = false;
             });
@@ -65,7 +66,11 @@ describe('TabInfo', () => {
                 return (
                     <div className="target-tab-info">
                         Target page:&nbsp;
-                        <Link role="link" className={'target-page-link'} onClick={testProps.actionCreator.switchToTargetTab}>
+                        <Link
+                            role="link"
+                            className={css('target-page-link', 'insights-link')}
+                            onClick={testProps.actionCreator.switchToTargetTab}
+                        >
                             {testProps.title}
                         </Link>
                         &nbsp;({testProps.url})

@@ -1,15 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-import { IAssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
+
 import { NewTabLink } from '../../common/components/new-tab-link';
-import { PropertyBagColumnRendererFactory } from '../common/property-bag-column-renderer-factory';
 import { ColumnValueBag } from '../../common/types/property-bag/column-value-bag';
-import { IPropertyBagColumnRendererConfig } from '../common/property-bag-column-renderer';
+import { AssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
+import { PropertyBagColumnRendererConfig } from '../common/property-bag-column-renderer';
+import { PropertyBagColumnRendererFactory } from '../common/property-bag-column-renderer-factory';
 
 export function customWidgetsColumnRenderer<TPropertyBag extends ColumnValueBag>(
-    item: IAssessmentInstanceRowData<any>,
-    configs: IPropertyBagColumnRendererConfig<TPropertyBag>[],
+    item: AssessmentInstanceRowData<any>,
+    configs: PropertyBagColumnRendererConfig<TPropertyBag>[],
     includeLink: boolean,
 ): JSX.Element {
     const mapDesignPatterns = (pattern: DesignPattern) => {
@@ -31,11 +32,11 @@ export function customWidgetsColumnRenderer<TPropertyBag extends ColumnValueBag>
     return propertyBagRenderer(item);
 }
 
-function renderDesignPatternWithLink(pattern: DesignPattern) {
+function renderDesignPatternWithLink(pattern: DesignPattern): JSX.Element {
     return <NewTabLink href={pattern.URL}>{pattern.designPattern}</NewTabLink>;
 }
 
-function renderDesignPatternWithoutLink(pattern: DesignPattern) {
+function renderDesignPatternWithoutLink(pattern: DesignPattern): JSX.Element {
     return <span className="display-name">{pattern.designPattern}</span>;
 }
 
@@ -50,7 +51,7 @@ function makeFlatDesignPatternString(patterns: DesignPattern[]): string {
     return patterns.map(pat => pat.designPattern).join(', ');
 }
 
-const roleToDesignPatternsMapping: IDictionaryStringTo<DesignPattern[]> = {
+const roleToDesignPatternsMapping: DictionaryStringTo<DesignPattern[]> = {
     alert: [{ designPattern: 'Alert', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#alert' }],
     alertdialog: [{ designPattern: 'Alert or Message Dialog', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#alertdialog' }],
     button: [

@@ -8,7 +8,7 @@ import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 
-import { DetailsViewDropDown, IDetailsViewDropDownProps } from '../../../../../DetailsView/components/details-view-dropdown';
+import { DetailsViewDropDown, DetailsViewDropDownProps } from '../../../../../DetailsView/components/details-view-dropdown';
 
 class TestableDetailsViewDropDown extends DetailsViewDropDown {
     public getOpenDropdown(): (target: React.MouseEvent<HTMLElement>) => void {
@@ -32,7 +32,7 @@ describe('DetailsViewDropDownTest', () => {
                 name: 'My test item',
             },
         ];
-        const props: IDetailsViewDropDownProps = {
+        const props: DetailsViewDropDownProps = {
             menuItems: menuItemsStub,
         };
         const component = React.createElement(TestableDetailsViewDropDown, props);
@@ -63,7 +63,7 @@ describe('DetailsViewDropDownTest', () => {
     });
 
     test('verify open/close menu', () => {
-        const props: IDetailsViewDropDownProps = {
+        const props: DetailsViewDropDownProps = {
             menuItems: [],
         };
         const target = { currentTarget: {} };

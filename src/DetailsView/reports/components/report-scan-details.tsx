@@ -6,7 +6,7 @@ import { NewTabLink } from '../../../common/components/new-tab-link';
 import { title } from '../../../content/strings/application';
 import { FormattedDate } from './formatted-date';
 
-export interface IReportScanDetailsProps {
+export interface ReportScanDetailsProps {
     pageTitle: string;
     pageUrl: string;
     description: string;
@@ -16,8 +16,8 @@ export interface IReportScanDetailsProps {
     axeVersion: string;
 }
 
-export class ReportScanDetails extends React.Component<IReportScanDetailsProps> {
-    public render() {
+export class ReportScanDetails extends React.Component<ReportScanDetailsProps> {
+    public render(): JSX.Element {
         return (
             <div className="report-scan-details">
                 <table>

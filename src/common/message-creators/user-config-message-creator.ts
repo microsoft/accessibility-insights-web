@@ -4,8 +4,8 @@ import {
     SetBugServicePayload,
     SetBugServicePropertyPayload,
     SetHighContrastModePayload,
-    SetTelemetryStatePayload,
     SetIssueTrackerPathPayload,
+    SetTelemetryStatePayload,
 } from '../../background/actions/action-payloads';
 import { Messages } from '../messages';
 import { BaseActionMessageCreator } from './base-action-message-creator';

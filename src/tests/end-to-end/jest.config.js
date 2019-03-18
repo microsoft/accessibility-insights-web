@@ -8,11 +8,11 @@ const currentDir = '<rootDir>/src/tests/end-to-end';
 module.exports = {
     ...common,
     displayName: 'e2e tests',
-    // using js instead of ts files since globalSetup & globalTeardown files are not transformed. refer https://github.com/facebook/jest/issues/5164
-    globalSetup: `${currentDir}/setup/global-setup.js`,
-    globalTeardown: `${currentDir}/setup/global-teardown.js`,
+    globalSetup: `${currentDir}/setup/global-setup.ts`,
+    globalTeardown: `${currentDir}/setup/global-teardown.ts`,
     moduleFileExtensions: [
         'ts',
+        'tsx',
         'json', // adding json, since puppeteer.launch throws error - refer https://github.com/GoogleChrome/puppeteer/issues/2754
         'js',
     ],

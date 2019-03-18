@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { forEach } from 'lodash';
-import { IColumn, ColumnActionsMode } from 'office-ui-fabric-react/lib/DetailsList';
+import { ColumnActionsMode, IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { IAssessmentNavState } from '../../../../../common/types/store-data/iassessment-result-data';
+import { AssessmentNavState } from '../../../../../common/types/store-data/iassessment-result-data';
 import { AssessmentInstanceDetailsColumn } from '../../../../../DetailsView/components/assessment-instance-details-column';
-import { ICapturedInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
+import { CapturedInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
 import { AssessmentTableColumnConfigHandler } from '../../../../../DetailsView/components/assessment-table-column-config-handler';
 import { MasterCheckBoxConfigProvider } from '../../../../../DetailsView/handlers/master-checkbox-config-provider';
 import {
@@ -26,7 +26,7 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
         const provider = CreateTestAssessmentProvider();
         const assessment = provider.all()[0];
         const step = assessment.steps[0];
-        const navState: IAssessmentNavState = {
+        const navState: AssessmentNavState = {
             selectedTestType: assessment.type,
             selectedTestStep: step.key,
         };
@@ -59,7 +59,7 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
         const provider = CreateTestAssessmentProviderAutomated();
         const assessment = provider.all()[0];
         const step = assessment.steps[0];
-        const navState: IAssessmentNavState = {
+        const navState: AssessmentNavState = {
             selectedTestType: assessment.type,
             selectedTestStep: step.key,
         };
@@ -84,7 +84,7 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
         const provider = CreateTestAssessmentProvider();
         const assessment = provider.all()[0];
         const step = assessment.steps[0];
-        const navState: IAssessmentNavState = {
+        const navState: AssessmentNavState = {
             selectedTestType: assessment.type,
             selectedTestStep: step.key,
         };
@@ -122,7 +122,7 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
     test('onRenderCapturedHeadingsInstanceDetailsColumn', () => {
         const col = new AssessmentTableColumnConfigHandler(null, null).getColumnConfigsForCapturedInstances()[0];
         const onRender = col.onRender;
-        const item: ICapturedInstanceRowData = {
+        const item: CapturedInstanceRowData = {
             instance: {
                 id: 'id',
                 description: 'comment',
@@ -142,7 +142,7 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
         expect(onRender(item)).toEqual(expected);
     });
 
-    function setConfigProvider(navState: IAssessmentNavState, config: Partial<IColumn>): void {
+    function setConfigProvider(navState: AssessmentNavState, config: Partial<IColumn>): void {
         masterCheckboxConfigProviderMock
             .setup(m => m.getMasterCheckBoxProperty(navState, true))
             .returns(() => config)

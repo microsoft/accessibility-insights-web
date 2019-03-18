@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { IAssessmentsProvider } from '../../../assessments/types/iassessments-provider';
 import { NamedSFC } from '../../../common/react/named-sfc';
-import { IManualTestStatus, ManualTestStatus } from '../../../common/types/manual-test-status';
+import { ManualTestStatus, ManualTestStatusData } from '../../../common/types/manual-test-status';
 import { BaseLeftNav, BaseLeftNavLink } from '../base-left-nav';
 import { LeftNavIndexIcon, LeftNavStatusIcon } from './left-nav-icon';
 import { AssessmentLinkBuilderDeps, LeftNavLinkBuilder, OverviewLinkBuilderDeps } from './left-nav-link-builder';
@@ -20,7 +20,7 @@ export type AssessmentLeftNavProps = {
     deps: AssessmentLeftNavDeps;
     selectedKey: string;
     assessmentsProvider: IAssessmentsProvider;
-    assessmentsData: IDictionaryStringTo<IManualTestStatus>;
+    assessmentsData: DictionaryStringTo<ManualTestStatusData>;
 };
 
 export type AssessmentLeftNavLink = {

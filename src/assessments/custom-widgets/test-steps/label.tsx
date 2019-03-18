@@ -3,20 +3,20 @@
 import * as React from 'react';
 
 import { AnalyzerConfigurationFactory } from '../../../assessments/common/analyzer-configuration-factory';
-import { ICustomWidgetPropertyBag } from '../../../common/types/property-bag/icustom-widgets';
+import { CustomWidgetPropertyBag } from '../../../common/types/property-bag/icustom-widgets';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
+import * as content from '../../../content/test/custom-widgets/label';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
 import * as Markup from '../../markup';
-import { TestStep } from '../../types/test-step';
 import { ReportInstanceField } from '../../types/report-instance-field';
+import { TestStep } from '../../types/test-step';
 import { getFlatDesignPatternStringFromRole } from '../custom-widgets-column-renderer';
 import { CustomWidgetsColumnRendererFactory } from '../custom-widgets-column-renderer-factory';
 import { CustomWidgetsTestStep } from './test-steps';
-import * as content from '../../../content/test/custom-widgets/label';
 
 const labelDescription: JSX.Element = <span>A custom widget must have a label and/or instructions that identify the expected input.</span>;
 
@@ -46,7 +46,7 @@ export const Label: TestStep = {
         {
             key: 'label-info-custom-widgets',
             name: 'Label',
-            onRender: CustomWidgetsColumnRendererFactory.getWithoutLink<ICustomWidgetPropertyBag>([
+            onRender: CustomWidgetsColumnRendererFactory.getWithoutLink<CustomWidgetPropertyBag>([
                 {
                     propertyName: 'designPattern',
                     displayName: 'Design pattern',
@@ -54,23 +54,23 @@ export const Label: TestStep = {
                 },
                 {
                     propertyName: 'text',
-                    displayName: 'Accesssible name',
+                    displayName: 'Accessible name',
                     defaultValue: '-',
                 },
                 {
                     propertyName: 'describedBy',
-                    displayName: 'Accesssible description',
+                    displayName: 'Accessible description',
                     defaultValue: '-',
                 },
             ]),
         },
     ],
     reportInstanceFields: [
-        ReportInstanceField.fromPropertyBagFunction<ICustomWidgetPropertyBag>('Design pattern', 'designPattern', pb =>
+        ReportInstanceField.fromPropertyBagFunction<CustomWidgetPropertyBag>('Design pattern', 'designPattern', pb =>
             getFlatDesignPatternStringFromRole(pb.role),
         ),
-        ReportInstanceField.fromColumnValueBagField<ICustomWidgetPropertyBag>('Accessible name', 'text'),
-        ReportInstanceField.fromColumnValueBagField<ICustomWidgetPropertyBag>('Accessible description', 'describedBy'),
+        ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>('Accessible name', 'text'),
+        ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>('Accessible description', 'describedBy'),
     ],
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(

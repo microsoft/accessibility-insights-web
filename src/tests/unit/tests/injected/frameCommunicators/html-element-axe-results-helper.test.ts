@@ -20,6 +20,10 @@ describe('HtmlElementAxeResultsHelperTest', () => {
         testSubject = new HtmlElementAxeResultsHelper(mockDocumentElementUtils.object, loggerMock.object);
     });
 
+    afterEach(() => {
+        mockDocumentElementUtils.verifyAll();
+    });
+
     test('splitResultsByFrame_ShouldIncludeResultsForMissingFrames', () => {
         const framesInWindow = NodeListBuilder.createNodeList([document.createElement('iframe'), document.createElement('iframe')]);
 
@@ -27,13 +31,10 @@ describe('HtmlElementAxeResultsHelperTest', () => {
         const resultsByFrame = testSubject.splitResultsByFrame([]);
 
         expect(resultsByFrame.length).toEqual(3);
-
         expect(resultsByFrame.filter(result => result.frame == null).length).toEqual(1);
         expect(resultsByFrame.filter(result => result.frame === framesInWindow[0]).length).toEqual(1);
         expect(resultsByFrame.filter(result => result.frame === framesInWindow[1]).length).toEqual(1);
-
         expect(resultsByFrame.filter(result => result.elementResults.length === 0).length).toEqual(3);
-        mockDocumentElementUtils.verifyAll();
     });
 
     test('splitResultsByFrame_ShouldNotUpdateSelectorForCurrentFrame', () => {
@@ -61,8 +62,6 @@ describe('HtmlElementAxeResultsHelperTest', () => {
         expect(resultsByFrame.length).toEqual(1);
         expect(resultsByFrame[0].frame).toBeNull();
         expect(resultsByFrame[0].elementResults).toMatchObject([currentFrameResultInstance1, currentFrameResultInstance2]);
-
-        mockDocumentElementUtils.verifyAll();
     });
 
     test('splitResultsByFrame_WithUndefinedTargetIndex_ShouldIncrementTargetIndexByOne', () => {
@@ -94,9 +93,9 @@ describe('HtmlElementAxeResultsHelperTest', () => {
         const resultsByFrame = testSubject.splitResultsByFrame([frameResult]);
 
         expect(resultsByFrame.length).toEqual(2);
+
         const resultsForTargetFrame = resultsByFrame.filter(result => result.frame === frame1)[0];
         expect(resultsForTargetFrame.elementResults).toMatchObject([expectedFrameResult]);
-        mockDocumentElementUtils.verifyAll();
     });
 
     test('splitResultsByFrame_ShoulNotCrashIfSelectorIsEmpty', () => {
@@ -120,8 +119,6 @@ describe('HtmlElementAxeResultsHelperTest', () => {
         expect(resultsByFrame.length).toEqual(2);
         expect(resultsForTargetFrame.elementResults).toMatchObject([]);
         expect(resultsForMainWindow.elementResults).toMatchObject([]);
-
-        mockDocumentElementUtils.verifyAll();
     });
 
     test('splitResultsByFrame_ShouldNotAddResultsIfFrameDoesntExistAnymore', () => {
@@ -154,8 +151,6 @@ describe('HtmlElementAxeResultsHelperTest', () => {
         expect(resultsByFrame.length).toEqual(1);
         expect(resultsByFrame[0].frame).toBeNull();
         expect(resultsByFrame[0].elementResults).toMatchObject([]);
-
-        mockDocumentElementUtils.verifyAll();
     });
 
     test('splitResultsByFrame: Invalid targetIndex', () => {

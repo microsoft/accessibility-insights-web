@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { IReportBodyProps, ReportBody } from '../../../../../../DetailsView/reports/components/report-body';
+import { ReportBody, ReportBodyProps } from '../../../../../../DetailsView/reports/components/report-body';
 import { shallowRender } from '../../../../common/shallow-render';
 
 describe('ReportBodyTest', () => {
@@ -12,7 +12,7 @@ describe('ReportBodyTest', () => {
                 id: 'one',
             },
         ];
-        const props: IReportBodyProps = {
+        const props: ReportBodyProps = {
             scanResult: {
                 violations: results,
                 passes: results,

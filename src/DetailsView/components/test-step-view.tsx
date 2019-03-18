@@ -5,10 +5,10 @@ import * as React from 'react';
 
 import { AssessmentDefaultMessageGenerator } from '../../assessments/assessment-default-message-generator';
 import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
-import { TestStep, IVisualHelperToggleConfig } from '../../assessments/types/test-step';
+import { TestStep, VisualHelperToggleConfig } from '../../assessments/types/test-step';
 import { CollapsibleComponent } from '../../common/components/collapsible-component';
 import {
-    IAssessmentNavState,
+    AssessmentNavState,
     IGeneratedAssessmentInstance,
     IManualTestStepResult,
 } from '../../common/types/store-data/iassessment-result-data';
@@ -20,23 +20,23 @@ import { ManualTestStepView } from './manual-test-step-view';
 
 export type TestStepViewDeps = ContentPanelButtonDeps;
 
-export interface ITestStepViewProps {
+export interface TestStepViewProps {
     deps: TestStepViewDeps;
     isStepEnabled: boolean;
     isStepScanned: boolean;
     isScanning: boolean;
     testStep: TestStep;
     renderStaticContent: () => JSX.Element;
-    instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance>;
-    assessmentNavState: IAssessmentNavState;
+    instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance>;
+    assessmentNavState: AssessmentNavState;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
-    manualTestStepResultMap: IDictionaryStringTo<IManualTestStepResult>;
+    manualTestStepResultMap: DictionaryStringTo<IManualTestStepResult>;
     actionMessageCreator: DetailsViewActionMessageCreator;
     assessmentsProvider: IAssessmentsProvider;
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
 }
 
-export class TestStepView extends React.Component<ITestStepViewProps> {
+export class TestStepView extends React.Component<TestStepViewProps> {
     public render(): JSX.Element {
         return (
             <div className="test-step-view">
@@ -76,6 +76,7 @@ export class TestStepView extends React.Component<ITestStepViewProps> {
 
         return (
             <React.Fragment>
+                {this.renderScanCompleteAlert()}
                 <h3 className="test-step-instances-header">Instances</h3>
                 <AssessmentInstanceTable
                     instancesMap={this.props.instancesMap}
@@ -90,6 +91,11 @@ export class TestStepView extends React.Component<ITestStepViewProps> {
         );
     }
 
+    private renderScanCompleteAlert(): JSX.Element {
+        if (!this.props.testStep.isManual && this.props.isStepScanned) {
+            return <div role="alert" aria-live="polite" aria-label="Scan Complete" />;
+        }
+    }
     private getSelectedStep(): Readonly<TestStep> {
         return this.props.assessmentsProvider.getStep(
             this.props.assessmentNavState.selectedTestType,
@@ -106,7 +112,7 @@ export class TestStepView extends React.Component<ITestStepViewProps> {
             return null;
         }
 
-        const visualHelperToggleConfig: IVisualHelperToggleConfig = {
+        const visualHelperToggleConfig: VisualHelperToggleConfig = {
             assessmentNavState: this.props.assessmentNavState,
             instancesMap: this.props.instancesMap,
             actionMessageCreator: this.props.actionMessageCreator,

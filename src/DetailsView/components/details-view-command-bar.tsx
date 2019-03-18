@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
+import { autobind, css } from '@uifabric/utilities';
 import { escape } from 'lodash';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { Link } from 'office-ui-fabric-react/lib/Link';
@@ -18,7 +18,7 @@ import { StartOverDropdown } from './start-over-dropdown';
 
 export type DetailsViewCommandBarDeps = ExportDialogDeps & ReportGeneratorDeps;
 
-export interface IDetailsViewCommandBarProps {
+export interface DetailsViewCommandBarProps {
     deps: DetailsViewCommandBarDeps;
     featureFlagStoreData: FeatureFlagStoreData;
     tabStoreData: ITabStoreData;
@@ -29,14 +29,14 @@ export interface IDetailsViewCommandBarProps {
     renderExportAndStartOver: boolean;
 }
 
-export interface IDetailsViewCommandBarState {
+export interface DetailsViewCommandBarState {
     isExportDialogOpen: boolean;
     exportDialogDescription: string;
     exportHtmlWithPlaceholder: string;
     exportHtmlWithDescription: string;
 }
 
-export class DetailsViewCommandBar extends React.Component<IDetailsViewCommandBarProps, IDetailsViewCommandBarState> {
+export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBarProps, DetailsViewCommandBarState> {
     constructor(props) {
         super(props);
         this.state = {
@@ -69,7 +69,7 @@ export class DetailsViewCommandBar extends React.Component<IDetailsViewCommandBa
                 <Link
                     role="link"
                     title="Switch to target page"
-                    className="target-page-link"
+                    className={css('insights-link', 'target-page-link')}
                     onClick={this.props.actionMessageCreator.switchToTargetTab}
                 >
                     {targetPageTitle}

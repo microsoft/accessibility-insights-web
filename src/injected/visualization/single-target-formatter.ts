@@ -1,10 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-/// <reference path="./iformatter.d.ts" />
-/// <reference path="./heading-formatter.ts" />
-import { SingleTargetDrawerConfiguration, IFormatter } from './iformatter';
+import { Formatter, SingleTargetDrawerConfiguration } from './formatter';
 
-export class SingleTargetFormatter implements IFormatter {
+export class SingleTargetFormatter implements Formatter {
     constructor(private injectedClassName: string) {}
 
     public getDrawerConfiguration(): SingleTargetDrawerConfiguration {

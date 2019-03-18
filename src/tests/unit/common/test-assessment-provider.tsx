@@ -4,9 +4,9 @@ import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
 import { AssessmentsProvider } from '../../../assessments/assessments-provider';
-import { IAssessment } from '../../../assessments/types/iassessment';
+import { Assessment } from '../../../assessments/types/iassessment';
 import { RequirementComparer } from '../../../common/assessment/requirement-comparer';
-import { IAssesssmentVisualizationConfiguration } from '../../../common/configs/visualization-configuration-factory';
+import { AssesssmentVisualizationConfiguration } from '../../../common/configs/visualization-configuration-factory';
 import { FeatureFlags } from '../../../common/feature-flags';
 import { ManualTestStatus } from '../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../common/types/visualization-type';
@@ -21,7 +21,7 @@ const content = {
 
 export const contentProvider = ContentPage.provider(content);
 
-const assessmentWithColumns: IAssessment = {
+const assessmentWithColumns: Assessment = {
     key: 'assessment-1',
     type: -1 as VisualizationType,
     title: 'assessment 1',
@@ -75,7 +75,7 @@ const assessmentWithColumns: IAssessment = {
     getVisualizationConfiguration: () => {
         return {
             getAssessmentData: data => data.assessments['assessment-1'],
-        } as IAssesssmentVisualizationConfiguration;
+        } as AssesssmentVisualizationConfiguration;
     },
     requirementOrder: RequirementComparer.byOrdinal,
 };
@@ -110,7 +110,7 @@ const simpleAssessment = {
     getVisualizationConfiguration: () => {
         return {
             getAssessmentData: data => data.assessments['assessment-2'],
-        } as IAssesssmentVisualizationConfiguration;
+        } as AssesssmentVisualizationConfiguration;
     },
     requirementOrder: RequirementComparer.byOrdinal,
 };
@@ -151,7 +151,7 @@ const automatedAssessment = {
     getVisualizationConfiguration: () => {
         return {
             getAssessmentData: data => data.assessments['assessment-3'],
-        } as IAssesssmentVisualizationConfiguration;
+        } as AssesssmentVisualizationConfiguration;
     },
     requirementOrder: RequirementComparer.byOutcomeAndName,
 };

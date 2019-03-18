@@ -7,12 +7,12 @@ import { It, Mock, Times } from 'typemoq';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import {
     AssessmentInstanceSelectedButton,
-    IAssessmentInstanceSelectedButtonProps,
+    AssessmentInstanceSelectedButtonProps,
 } from '../../../../../DetailsView/components/assessment-instance-selected-button';
 
 describe('AssessmentInstanceSelectedButton', () => {
     test('constructor', () => {
-        const testObject = new AssessmentInstanceSelectedButton({} as IAssessmentInstanceSelectedButtonProps);
+        const testObject = new AssessmentInstanceSelectedButton({} as AssessmentInstanceSelectedButtonProps);
         expect(testObject).toBeInstanceOf(React.Component);
     });
 
@@ -20,7 +20,7 @@ describe('AssessmentInstanceSelectedButton', () => {
         const onSelectedStub = (selected, test, step, selector) => {};
         const onButtonClickedStub = ev => {};
 
-        const props: IAssessmentInstanceSelectedButtonProps = {
+        const props: AssessmentInstanceSelectedButtonProps = {
             test: VisualizationType.HeadingsAssessment,
             step: 'headingLevel',
             selector: 'selector',
@@ -50,7 +50,7 @@ describe('AssessmentInstanceSelectedButton', () => {
         const onSelectedStub = (selected, test, step, selector) => {};
         const onButtonClickedStub = ev => {};
 
-        const props: IAssessmentInstanceSelectedButtonProps = {
+        const props: AssessmentInstanceSelectedButtonProps = {
             test: VisualizationType.HeadingsAssessment,
             step: 'headingLevel',
             selector: 'selector',
@@ -80,7 +80,7 @@ describe('AssessmentInstanceSelectedButton', () => {
         const onSelectedStub = (selected, test, step, selector) => {};
         const onButtonClickedStub = ev => {};
 
-        const props: IAssessmentInstanceSelectedButtonProps = {
+        const props: AssessmentInstanceSelectedButtonProps = {
             test: VisualizationType.HeadingsAssessment,
             step: 'headingLevel',
             selector: 'selector',
@@ -110,7 +110,7 @@ describe('AssessmentInstanceSelectedButton', () => {
         const onSelectedStub = (selected, test, step, selector) => {};
         const onButtonClickedStub = ev => {};
 
-        const props: IAssessmentInstanceSelectedButtonProps = {
+        const props: AssessmentInstanceSelectedButtonProps = {
             test: VisualizationType.HeadingsAssessment,
             step: 'headingLevel',
             selector: 'selector',
@@ -142,7 +142,7 @@ describe('AssessmentInstanceSelectedButton', () => {
 
         onSelectedMock.setup(s => s(It.isAny(), It.isAny(), It.isAny(), It.isAny())).verifiable(Times.once());
 
-        const props: IAssessmentInstanceSelectedButtonProps = {
+        const props: AssessmentInstanceSelectedButtonProps = {
             test: VisualizationType.HeadingsAssessment,
             step: 'headingLevel',
             selector: 'selector',
@@ -163,7 +163,7 @@ describe('AssessmentInstanceSelectedButton', () => {
 
         onSelectedMock.setup(s => s(It.isAny(), It.isAny(), It.isAny(), It.isAny())).verifiable(Times.once());
 
-        const props: IAssessmentInstanceSelectedButtonProps = {
+        const props: AssessmentInstanceSelectedButtonProps = {
             test: VisualizationType.HeadingsAssessment,
             step: 'headingLevel',
             selector: 'selector',
@@ -184,7 +184,7 @@ describe('AssessmentInstanceSelectedButton', () => {
 
         onSelectedMock.setup(s => s(It.isAny(), It.isAny(), It.isAny(), It.isAny())).verifiable(Times.never());
 
-        const props: IAssessmentInstanceSelectedButtonProps = {
+        const props: AssessmentInstanceSelectedButtonProps = {
             test: VisualizationType.HeadingsAssessment,
             step: 'headingLevel',
             selector: 'selector',

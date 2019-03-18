@@ -3,9 +3,10 @@
 import { It, Mock, Times } from 'typemoq';
 
 import {
-    ILaunchPanelHeaderProps,
     LaunchPanelHeader,
     LaunchPanelHeaderDeps,
+    LaunchPanelHeaderProps,
+    LaunchPanelHeaderState,
 } from '../../../../../../popup/scripts/components/launch-panel-header';
 import { LaunchPanelHeaderClickHandler } from '../../../../../../popup/scripts/handlers/launch-panel-header-click-handler';
 
@@ -66,13 +67,13 @@ describe('FeedbackMenuClickHandlerTest', () => {
         const deps: LaunchPanelHeaderDeps = {
             popupActionMessageCreator: null,
             dropdownClickHandler: null,
+            launchPanelHeaderClickHandler: null,
         };
 
-        const props: ILaunchPanelHeaderProps = {
+        const props: LaunchPanelHeaderProps = {
             deps: deps,
             title: 'title',
             subtitle: 'subtitle',
-            clickhandler: null,
             supportLinkHandler: null,
             popupWindow: null,
             featureFlags: null,
@@ -100,13 +101,13 @@ describe('FeedbackMenuClickHandlerTest', () => {
         const deps: LaunchPanelHeaderDeps = {
             popupActionMessageCreator: null,
             dropdownClickHandler: null,
+            launchPanelHeaderClickHandler: null,
         };
 
-        const props: ILaunchPanelHeaderProps = {
+        const props: LaunchPanelHeaderProps = {
             deps: deps,
             title: 'title',
             subtitle: 'subtitle',
-            clickhandler: null,
             supportLinkHandler: null,
             popupWindow: null,
             featureFlags: null,
@@ -128,16 +129,14 @@ describe('FeedbackMenuClickHandlerTest', () => {
         const deps: LaunchPanelHeaderDeps = {
             popupActionMessageCreator: null,
             dropdownClickHandler: null,
+            launchPanelHeaderClickHandler: testObject,
         };
 
-        const props: ILaunchPanelHeaderProps = {
+        const props: LaunchPanelHeaderProps = {
             deps: deps,
             title: 'title',
             subtitle: 'subtitle',
             openAdhocToolsPanel: openAdhocToolsPanelMock.object,
-            clickhandler: {
-                onDismissFeedbackMenu: () => {},
-            } as any,
             supportLinkHandler: null,
             popupWindow: null,
             featureFlags: null,
@@ -146,8 +145,15 @@ describe('FeedbackMenuClickHandlerTest', () => {
 
         const header = new LaunchPanelHeader(props);
 
+        const setStateMock = Mock.ofInstance((state: LaunchPanelHeaderState) => {});
+
+        setStateMock.setup(set => set({ isContextMenuVisible: false })).verifiable(Times.once());
+
+        header.setState = setStateMock.object;
+
         testObject.openAdhocToolsPanel(header);
 
         openAdhocToolsPanelMock.verifyAll();
+        setStateMock.verifyAll();
     });
 });

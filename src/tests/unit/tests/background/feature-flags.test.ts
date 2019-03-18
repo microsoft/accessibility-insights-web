@@ -21,9 +21,9 @@ describe('FeatureFlagsTest', () => {
             [FeatureFlags.logTelemetryToConsole]: false,
             [FeatureFlags.showAllFeatureFlags]: false,
             [FeatureFlags.scoping]: false,
-            [FeatureFlags.showBugFiling]: false,
+            [FeatureFlags.showBugFiling]: true,
             [FeatureFlags.showInstanceVisibility]: false,
-            [FeatureFlags.highContrastMode]: false,
+            [FeatureFlags.highContrastMode]: true,
         };
 
         const featureFlagValueKeys = keys(featureFlagValues);

@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { TestMode } from '../common/configs/test-mode';
 import { EnumHelper } from '../common/enum-helper';
 import { VisualizationType } from '../common/types/visualization-type';
-import { VisualizationConfigurationFactory, IVisualizationConfiguration } from './../common/configs/visualization-configuration-factory';
-import { IAssessmentScanData, IVisualizationStoreData, IScanData } from './../common/types/store-data/ivisualization-store-data.d';
-import { TestMode } from '../common/configs/test-mode';
+import { VisualizationConfiguration, VisualizationConfigurationFactory } from './../common/configs/visualization-configuration-factory';
+import { IAssessmentScanData, IScanData, IVisualizationStoreData } from './../common/types/store-data/ivisualization-store-data.d';
 
 export class AnalyzerStateUpdateHandler {
     protected prevState: IVisualizationStoreData;
@@ -58,7 +58,7 @@ export class AnalyzerStateUpdateHandler {
     }
 
     private isTestTerminated(
-        config: IVisualizationConfiguration,
+        config: VisualizationConfiguration,
         prevState: IVisualizationStoreData,
         currState: IVisualizationStoreData,
         step: string,
@@ -70,7 +70,7 @@ export class AnalyzerStateUpdateHandler {
         return prevState != null && prevEnabled === true && currEnabled === false;
     }
 
-    private getTestKeysFromConfiguration(config: IVisualizationConfiguration, currState: IVisualizationStoreData) {
+    private getTestKeysFromConfiguration(config: VisualizationConfiguration, currState: IVisualizationStoreData) {
         const keys = [];
         if (this.isAssessment(config)) {
             const prevScanState = config.getStoreData(currState.tests) as IAssessmentScanData;
@@ -83,7 +83,7 @@ export class AnalyzerStateUpdateHandler {
         return keys;
     }
 
-    private isAssessment(config: IVisualizationConfiguration) {
+    private isAssessment(config: VisualizationConfiguration) {
         return config.testMode === TestMode.Assessments;
     }
 }

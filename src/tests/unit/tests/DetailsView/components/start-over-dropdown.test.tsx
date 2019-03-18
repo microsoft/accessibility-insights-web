@@ -9,10 +9,10 @@ import { IMock, Mock, Times } from 'typemoq';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { GenericDialog } from '../../../../../DetailsView/components/generic-dialog';
-import { IStartOverProps, StartOverDropdown } from '../../../../../DetailsView/components/start-over-dropdown';
+import { StartOverDropdown, StartOverProps } from '../../../../../DetailsView/components/start-over-dropdown';
 
 describe('StartOverDropdownTest', () => {
-    let defaultProps: IStartOverProps;
+    let defaultProps: StartOverProps;
     let actionCreatorMock: IMock<DetailsViewActionMessageCreator>;
 
     const event = {
@@ -64,7 +64,7 @@ describe('StartOverDropdownTest', () => {
         expect(rendered.debug()).toMatchSnapshot();
     });
 
-    it('should dissmiss the start test over dialog', () => {
+    it('should dismiss the start test over dialog', () => {
         actionCreatorMock
             .setup(creator => creator.cancelStartOver(event, defaultProps.test, defaultProps.requirementKey))
             .verifiable(Times.once());
@@ -82,7 +82,7 @@ describe('StartOverDropdownTest', () => {
         actionCreatorMock.verifyAll();
     });
 
-    it('should dissmiss the start assessment over dialog', () => {
+    it('should dismiss the start assessment over dialog', () => {
         actionCreatorMock.setup(creator => creator.cancelStartOverAllAssessments(event)).verifiable(Times.once());
 
         const rendered = shallow(<StartOverDropdown {...defaultProps} />);
@@ -132,7 +132,7 @@ describe('StartOverDropdownTest', () => {
         actionCreatorMock.verifyAll();
     });
 
-    it('should dissmiss the contextMenu', () => {
+    it('should dismiss the contextMenu', () => {
         const rendered = shallow(<StartOverDropdown {...defaultProps} />);
         rendered.find(ActionButton).simulate('click', event);
         rendered.find(ContextualMenu).prop('onDismiss')();

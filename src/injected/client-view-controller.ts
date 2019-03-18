@@ -4,7 +4,7 @@ import { autobind } from '@uifabric/utilities';
 import * as _ from 'lodash/index';
 
 import { TestMode } from '../common/configs/test-mode';
-import { IVisualizationConfiguration, VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../common/enum-helper';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { ITabStoreData } from '../common/types/store-data/itab-store-data';
@@ -32,11 +32,11 @@ export class ClientViewController {
     private currentAssessmentState: IAssessmentStoreData;
     private currentTabState: ITabStoreData;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
-    private featureFlagStore: IBaseStore<IDictionaryStringTo<boolean>>;
+    private featureFlagStore: IBaseStore<DictionaryStringTo<boolean>>;
     private selectorMapHelper: SelectorMapHelper;
     private targetPageActionMessageCreator: TargetPageActionMessageCreator;
-    protected previousVisualizationStates: IDictionaryStringTo<boolean> = {};
-    protected previousVisualizationSelectorMapStates: IDictionaryNumberTo<IDictionaryStringTo<IAssessmentVisualizationInstance>> = {};
+    protected previousVisualizationStates: DictionaryStringTo<boolean> = {};
+    protected previousVisualizationSelectorMapStates: DictionaryNumberTo<DictionaryStringTo<IAssessmentVisualizationInstance>> = {};
 
     constructor(
         visualizationStore: IBaseStore<IVisualizationStoreData>,
@@ -44,7 +44,7 @@ export class ClientViewController {
         drawingInitiator,
         scrollingController,
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
-        featureFlagStore: IBaseStore<IDictionaryStringTo<boolean>>,
+        featureFlagStore: IBaseStore<DictionaryStringTo<boolean>>,
         assessmentStore: IBaseStore<IAssessmentStoreData>,
         tabStore: IBaseStore<ITabStoreData>,
         selectorMapHelper: SelectorMapHelper,
@@ -133,11 +133,11 @@ export class ClientViewController {
         });
     }
 
-    private isAssessment(config: IVisualizationConfiguration) {
+    private isAssessment(config: VisualizationConfiguration) {
         return config.testMode === TestMode.Assessments;
     }
 
-    private isAssessmentDataForCurrentPage(config: IVisualizationConfiguration): boolean {
+    private isAssessmentDataForCurrentPage(config: VisualizationConfiguration): boolean {
         return (
             !this.isAssessment(config) ||
             this.currentAssessmentState.persistedTabInfo === null ||
@@ -173,7 +173,7 @@ export class ClientViewController {
     private isVisualizationStateUnchanged(
         type: VisualizationType,
         newVisualizationEnabledState: boolean,
-        newSelectorMapState: IDictionaryStringTo<IAssessmentVisualizationInstance>,
+        newSelectorMapState: DictionaryStringTo<IAssessmentVisualizationInstance>,
         id: string,
     ): boolean {
         if (id in this.previousVisualizationStates === false && newVisualizationEnabledState === false) {

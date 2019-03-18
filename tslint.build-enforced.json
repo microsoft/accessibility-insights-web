@@ -1,4 +1,5 @@
 {
+    "rulesDirectory": ["tslint-microsoft-contrib"],
     "rules": {
         "arrow-parens": [true, "ban-single-arg-parens"],
         "await-promise": true,
@@ -6,8 +7,12 @@
         "comment-format": [true, "check-space", { "ignore-words": ["TODO", "HACK", "NOTE"] }],
         "curly": true,
         "eofline": true,
+        "forin": true,
+        "indent": [true, "spaces"],
+        "interface-name": [true, "never-prefix"],
         "jsdoc-format": true,
         "label-position": true,
+        "max-classes-per-file": [true, 2],
         "member-access": true,
         "new-parens": true,
         "no-angle-bracket-type-assertion": true,
@@ -22,7 +27,6 @@
         "no-debugger": true,
         "no-duplicate-variable": true,
         "no-empty": [true, "allow-empty-functions"],
-        "no-eval": true,
         "no-floating-promises": true,
         "no-inferrable-types": false,
         "no-internal-module": true,
@@ -33,9 +37,12 @@
         "no-this-assignment": true,
         "no-trailing-whitespace": true,
         "no-unused-expression": true,
+        "no-var-keyword": true,
         "no-var-requires": true,
+        "prefer-const": [true, { "destructuring": "all" }],
         "one-line": [true, "check-open-brace", "check-whitespace"],
         "one-variable-per-declaration": [true, "ignore-for-loop"],
+        "ordered-imports": true,
         "quotemark": [true, "single", "avoid-escape", "jsx-double"],
         "radix": true,
         "semicolon": [true, "always", "ignore-bound-class-methods"],
@@ -60,6 +67,27 @@
         ],
         "use-isnan": true,
         "use-strict": [false, "check-module", "check-function"],
-        "whitespace": [true, "check-branch", "check-decl", "check-operator", "check-separator", "check-type", "check-type-operator"]
+        "whitespace": [true, "check-branch", "check-decl", "check-operator", "check-separator", "check-type", "check-type-operator"],
+
+        "variable-name": [
+            true,
+            "ban-keywords",
+            "check-format",
+            "allow-leading-underscore",
+            "allow-trailing-underscore",
+            "allow-pascal-case"
+        ],
+        "no-banned-terms": true,
+        "no-delete-expression": true,
+        "no-disable-auto-sanitization": true,
+        "no-document-domain": true,
+        "no-duplicate-parameter-names": true,
+        "no-eval": true,
+        "no-exec-script": true,
+        "function-constructor": true,
+        "no-octal-literal": true,
+        "no-string-based-set-immediate": true,
+        "no-string-based-set-interval": true,
+        "no-string-based-set-timeout": true
     }
 }

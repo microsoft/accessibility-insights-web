@@ -9,17 +9,17 @@ import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 import { It, Mock, Times } from 'typemoq';
 
+import * as Markup from '../../../../../assessments/markup';
 import { VisualizationToggle } from '../../../../../common/components/visualization-toggle';
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { FeatureFlags } from '../../../../../common/feature-flags';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { IssuesTable, IssuesTableDeps, IssuesTableProps, IssuesTableState } from '../../../../../DetailsView/components/issues-table';
-import { IDetailsRowData, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
+import { DetailsRowData, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
 import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { RuleResult } from '../../../../../scanner/iruleresults';
 import { ShallowRenderer } from '../../../common/shallow-renderer';
-import * as Markup from '../../../../../assessments/markup';
 
 describe('IssuesTableTest', () => {
     const onExportButtonClickStub = () => {};
@@ -183,10 +183,10 @@ describe('IssuesTableTest', () => {
             .setReportGenerator(reportGenerator)
             .setDeps({
                 detailsViewActionMessageCreator: actionMessageCreator,
-                bugClickHandler: null,
                 dropdownClickHandler: null,
                 issueDetailsTextGenerator: null,
                 windowUtils: null,
+                bugActionMessageCreator: null,
             })
             .build();
         const setStateMock = Mock.ofInstance(state => {});
@@ -206,11 +206,11 @@ describe('IssuesTableTest', () => {
 
     function testRenderTableWithIssues(count: number, exportResult: boolean): void {
         const sampleViolations: RuleResult[] = getSampleViolations(count);
-        const sampleIdToRuleResultMap: IDictionaryStringTo<DecoratedAxeNodeResult> = {};
-        const items: IDetailsRowData[] = [];
+        const sampleIdToRuleResultMap: DictionaryStringTo<DecoratedAxeNodeResult> = {};
+        const items: DetailsRowData[] = [];
         for (let i: number = 1; i <= count; i++) {
             sampleIdToRuleResultMap['id' + i] = {} as DecoratedAxeNodeResult;
-            items.push({} as IDetailsRowData);
+            items.push({} as DetailsRowData);
         }
 
         const issuesEnabled = true;

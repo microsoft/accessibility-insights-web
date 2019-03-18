@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IFormatter } from './iformatter';
 import { AxeResultsWithFrameLevel, IAssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
+import { Formatter } from './formatter';
 
-export abstract class FailureInstanceFormatter implements IFormatter {
+export abstract class FailureInstanceFormatter implements Formatter {
     public static failureBoxConfig = {
         background: '#CC0000',
         fontColor: '#FFFFFF',

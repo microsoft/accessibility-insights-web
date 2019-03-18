@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { Messages } from '../common/messages';
-import { Interpreter } from './interpreter';
+import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { FeatureFlagPayload } from './actions/feature-flag-actions';
+import { Interpreter } from './interpreter';
 import { FeatureFlagStore } from './stores/global/feature-flag-store';
 
 export class FeatureFlagsController {
@@ -28,7 +28,7 @@ export class FeatureFlagsController {
             feature: feature,
             enabled: false,
         };
-        const message: IMessage = {
+        const message: Message = {
             type: Messages.FeatureFlags.SetFeatureFlag,
             payload: payload,
             tabId: null,
@@ -41,7 +41,7 @@ export class FeatureFlagsController {
             feature: feature,
             enabled: true,
         };
-        const message: IMessage = {
+        const message: Message = {
             type: Messages.FeatureFlags.SetFeatureFlag,
             payload: payload,
             tabId: null,
@@ -50,7 +50,7 @@ export class FeatureFlagsController {
     }
 
     public resetFeatureFlags(): void {
-        const message: IMessage = {
+        const message: Message = {
             type: Messages.FeatureFlags.ResetFeatureFlag,
             tabId: null,
         };

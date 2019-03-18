@@ -39,14 +39,14 @@ export const uniqueLandmarkRuleContent: axe.RuleLocale = {
     [id]: descriptionHelp,
 };
 
-function isLandmark(element: any) {
+function isLandmark(element: any): boolean {
     const landmarkRoles = axe.commons.aria.getRolesByType('landmark');
     const role = getObservedRoleForElement(element);
 
     return (role && landmarkRoles.indexOf(role) >= 0) || role === 'region';
 }
 
-function getRoleSelectors(roleId: any) {
+function getRoleSelectors(roleId: any): any[] {
     const role = axe.commons.aria.lookupTable.role[roleId];
     let selectors: Array<any> = [];
     if (role && role.implicit) {
@@ -56,7 +56,7 @@ function getRoleSelectors(roleId: any) {
     return selectors;
 }
 
-function getObservedRoleForElement(element: any) {
+function getObservedRoleForElement(element: any): any {
     let role = element.getAttribute('role');
     role = role ? role.trim() : role;
     if (!role) {
@@ -72,7 +72,7 @@ function getObservedRoleForElement(element: any) {
                 }
                 parent = parent.parentNode;
             }
-        } else if (tagName === 'section') {
+        } else if (tagName === 'section' || tagName === 'form') {
             const label = axe.commons.aria.label(element);
             if (!label) {
                 role = null;
@@ -85,7 +85,7 @@ function getObservedRoleForElement(element: any) {
     return role;
 }
 
-function evaluate(node: any, options: any) {
+function evaluate(node: any, options: any): boolean {
     if (isLandmark(node) === false) {
         return false;
     }

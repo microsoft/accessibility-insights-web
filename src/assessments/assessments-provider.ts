@@ -1,23 +1,23 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IAssessment } from './types/iassessment';
-import { IAssessmentsProvider } from './types/iassessments-provider';
 import { VisualizationType } from '../common/types/visualization-type';
+import { Assessment } from './types/iassessment';
+import { IAssessmentsProvider } from './types/iassessments-provider';
 import { TestStep } from './types/test-step';
 
 export class AssessmentsProvider implements IAssessmentsProvider {
-    private assessments: IAssessment[];
-    public static Create(assessments: IAssessment[]): IAssessmentsProvider {
+    private assessments: Assessment[];
+    public static Create(assessments: Assessment[]): IAssessmentsProvider {
         const provider = new AssessmentsProvider();
         provider.assessments = assessments.slice();
         return provider;
     }
 
-    public all(): IAssessment[] {
+    public all(): Assessment[] {
         return this.assessments.slice();
     }
 
-    public forType(type: VisualizationType): IAssessment {
+    public forType(type: VisualizationType): Assessment {
         return this.all().find(a => a.type === type);
     }
 
@@ -25,7 +25,7 @@ export class AssessmentsProvider implements IAssessmentsProvider {
         return this.forType(type) != null;
     }
 
-    public forKey(key: string): IAssessment {
+    public forKey(key: string): Assessment {
         return this.all().find(a => a.key === key);
     }
 
@@ -46,7 +46,7 @@ export class AssessmentsProvider implements IAssessmentsProvider {
         return { ...steps[index], order: index + 1 };
     }
 
-    public getStepMap(type: VisualizationType): IDictionaryStringTo<TestStep> {
+    public getStepMap(type: VisualizationType): DictionaryStringTo<TestStep> {
         const assessment = this.forType(type);
         if (!assessment) {
             return null;

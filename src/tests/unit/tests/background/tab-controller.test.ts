@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { ChromeAdapter, BrowserAdapter } from '../../../../background/browser-adapter';
+import { BrowserAdapter, ChromeAdapter } from '../../../../background/browser-adapter';
 import { DetailsViewController } from '../../../../background/details-view-controller';
 import { Interpreter } from '../../../../background/interpreter';
 import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
@@ -106,7 +106,7 @@ describe('TabControllerTest', () => {
         const getTabCallbackInput = {
             data: 'abc',
         };
-        const interpretInput: IMessage = {
+        const interpretInput: Message = {
             type: Messages.Tab.Update,
             payload: getTabCallbackInput,
             tabId: tabId,
@@ -183,7 +183,7 @@ describe('TabControllerTest', () => {
         const tabId = 1;
         let tabUpdatedCallback: (details: chrome.webNavigation.WebNavigationFramedCallbackDetails) => void = null;
         let tabRemovedCallback: Function = null;
-        const interpretInput: IMessage = {
+        const interpretInput: Message = {
             type: Messages.Tab.Remove,
             payload: null,
             tabId: tabId,
@@ -229,7 +229,7 @@ describe('TabControllerTest', () => {
     test('onDetailsViewTabRemoved', () => {
         let tabUpdatedCallback: (details: chrome.webNavigation.WebNavigationFramedCallbackDetails) => void = null;
         const tabId = 2;
-        const interpretInput: IMessage = {
+        const interpretInput: Message = {
             type: Messages.Visualizations.DetailsView.Close,
             payload: null,
             tabId: tabId,
@@ -269,16 +269,16 @@ describe('TabControllerTest', () => {
         const openTabIds = [1, 5];
         const tabIdToTabContextStub = {};
         const mockInterpreters = [];
-        const getTabCallbackMap: IDictionaryStringTo<(tab: chrome.tabs.Tab) => void> = {};
+        const getTabCallbackMap: DictionaryStringTo<(tab: chrome.tabs.Tab) => void> = {};
 
         let tabsQueryCallback: (tabs: chrome.tabs.Tab[]) => void = null;
-        const tabs: IDictionaryStringTo<chrome.tabs.Tab> = {
+        const tabs: DictionaryStringTo<chrome.tabs.Tab> = {
             1: { id: openTabIds[0] } as chrome.tabs.Tab,
             5: { id: openTabIds[1] } as chrome.tabs.Tab,
         };
 
         openTabIds.forEach((tabId, index) => {
-            const interpretInput: IMessage = {
+            const interpretInput: Message = {
                 type: Messages.Tab.Update,
                 payload: tabs[tabId],
                 tabId: tabId,
@@ -342,7 +342,7 @@ describe('TabControllerTest', () => {
             id: tabId,
         };
 
-        const interpretInput: IMessage = {
+        const interpretInput: Message = {
             type: Messages.Tab.Change,
             payload: getTabCallbackInput,
             tabId: tabId,
@@ -399,14 +399,14 @@ describe('TabControllerTest', () => {
             populate: false,
             windowTypes: ['normal', 'popup'],
         };
-        const interpretInput1: IMessage = {
+        const interpretInput1: Message = {
             type: Messages.Tab.VisibilityChange,
             payload: {
                 hidden: false,
             },
             tabId: 1,
         };
-        const interpretInput2: IMessage = {
+        const interpretInput2: Message = {
             type: Messages.Tab.VisibilityChange,
             payload: {
                 hidden: true,
@@ -490,14 +490,14 @@ describe('TabControllerTest', () => {
             populate: false,
             windowTypes: ['normal', 'popup'],
         };
-        const interpretInput1: IMessage = {
+        const interpretInput1: Message = {
             type: Messages.Tab.VisibilityChange,
             payload: {
                 hidden: false,
             },
             tabId: 1,
         };
-        const interpretInput2: IMessage = {
+        const interpretInput2: Message = {
             type: Messages.Tab.VisibilityChange,
             payload: {
                 hidden: true,
@@ -582,14 +582,14 @@ describe('TabControllerTest', () => {
         const windowStub = {
             id: 1,
         };
-        const interpretInput1: IMessage = {
+        const interpretInput1: Message = {
             type: Messages.Tab.VisibilityChange,
             payload: {
                 hidden: false,
             },
             tabId: 1,
         };
-        const interpretInput2: IMessage = {
+        const interpretInput2: Message = {
             type: Messages.Tab.VisibilityChange,
             payload: {
                 hidden: true,

@@ -6,7 +6,7 @@ import * as React from 'react';
 
 import { NamedSFC } from '../../common/react/named-sfc';
 
-export type IGenericDialogProps = {
+export type GenericDialogProps = {
     onPrimaryButtonClick: (event: React.MouseEvent<any>) => void;
     onCancelButtonClick: (event: React.MouseEvent<any>) => void;
     messageText: string;
@@ -14,7 +14,7 @@ export type IGenericDialogProps = {
     primaryButtonText: string;
 };
 
-export const GenericDialog = NamedSFC<IGenericDialogProps>('GenericDialog', props => {
+export const GenericDialog = NamedSFC<GenericDialogProps>('GenericDialog', props => {
     const { onCancelButtonClick, onPrimaryButtonClick, messageText, title, primaryButtonText } = props;
 
     return (
@@ -24,16 +24,17 @@ export const GenericDialog = NamedSFC<IGenericDialogProps>('GenericDialog', prop
             dialogContentProps={{
                 type: DialogType.normal,
                 title: title,
+                showCloseButton: false,
             }}
             modalProps={{
-                isBlocking: true,
+                isBlocking: false,
                 containerClassName: 'insights-dialog-main-override',
             }}
         >
             <div className={'start-over-dialog-body'}>{messageText}</div>
             <DialogFooter>
                 <PrimaryButton onClick={onPrimaryButtonClick} text={primaryButtonText} />
-                <DefaultButton onClick={onCancelButtonClick} text={'Cancel'} />
+                <DefaultButton onClick={onCancelButtonClick} text={'Cancel'} autoFocus={true} />
             </DialogFooter>
         </Dialog>
     );

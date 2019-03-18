@@ -4,27 +4,27 @@ import { autobind, IPoint } from '@uifabric/utilities';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { ContextualMenu } from 'office-ui-fabric-react/lib/ContextualMenu';
 import * as React from 'react';
-import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { VisualizationType } from '../../common/types/visualization-type';
+import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { GenericDialog } from './generic-dialog';
 
 type DialogState = 'none' | 'assessment' | 'test';
 
-export interface IStartOverState {
+export interface StartOverState {
     isContextMenuVisible: boolean;
     target?: HTMLElement | string | MouseEvent | IPoint | null;
     dialogState: DialogState;
 }
 
-export interface IStartOverProps {
+export interface StartOverProps {
     testName: string;
     actionMessageCreator: DetailsViewActionMessageCreator;
     test: VisualizationType;
     requirementKey: string;
 }
 
-export class StartOverDropdown extends React.Component<IStartOverProps, IStartOverState> {
-    constructor(props: IStartOverProps) {
+export class StartOverDropdown extends React.Component<StartOverProps, StartOverState> {
+    constructor(props: StartOverProps) {
         super(props);
 
         this.state = {
@@ -49,7 +49,7 @@ export class StartOverDropdown extends React.Component<IStartOverProps, IStartOv
         );
     }
 
-    private renderContextMenu() {
+    private renderContextMenu(): JSX.Element {
         if (!this.state.isContextMenuVisible) {
             return null;
         }
@@ -77,16 +77,16 @@ export class StartOverDropdown extends React.Component<IStartOverProps, IStartOv
     }
 
     @autobind
-    private onStartOverTestMenu() {
+    private onStartOverTestMenu(): void {
         this.setState({ dialogState: 'test' });
     }
 
     @autobind
-    private onStartOverAllTestsMenu() {
+    private onStartOverAllTestsMenu(): void {
         this.setState({ dialogState: 'assessment' });
     }
 
-    private renderStartOverDialog() {
+    private renderStartOverDialog(): JSX.Element {
         if (this.state.dialogState === 'none') {
             return null;
         }
@@ -121,7 +121,7 @@ export class StartOverDropdown extends React.Component<IStartOverProps, IStartOv
     }
 
     @autobind
-    private onDismissStartOverDialog(event: React.MouseEvent<any>) {
+    private onDismissStartOverDialog(event: React.MouseEvent<any>): void {
         const { actionMessageCreator, requirementKey, test } = this.props;
 
         if (this.state.dialogState === 'assessment') {
@@ -136,7 +136,7 @@ export class StartOverDropdown extends React.Component<IStartOverProps, IStartOv
     }
 
     @autobind
-    private onStartTestOver(event: React.MouseEvent<any>) {
+    private onStartTestOver(event: React.MouseEvent<any>): void {
         const { actionMessageCreator, test, requirementKey } = this.props;
 
         actionMessageCreator.startOverAssessment(event, test, requirementKey);
@@ -145,7 +145,7 @@ export class StartOverDropdown extends React.Component<IStartOverProps, IStartOv
     }
 
     @autobind
-    private onStartOverAllTests(event: React.MouseEvent<any>) {
+    private onStartOverAllTests(event: React.MouseEvent<any>): void {
         const { actionMessageCreator } = this.props;
 
         actionMessageCreator.startOverAllAssessments(event);
@@ -158,7 +158,7 @@ export class StartOverDropdown extends React.Component<IStartOverProps, IStartOv
         this.setState({ target: event.currentTarget, isContextMenuVisible: true });
     }
 
-    private dismissDropdown() {
+    private dismissDropdown(): void {
         this.setState({ target: null, isContextMenuVisible: false });
     }
 }

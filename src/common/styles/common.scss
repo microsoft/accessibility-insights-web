@@ -4,10 +4,6 @@
 @import 'colors.scss';
 @import 'fonts.scss';
 
-body {
-    font-family: $fontFamily;
-}
-
 $focus-ring-color: $neutral-100;
 
 @mixin set-focus-ring-styles($property: 'border') {
@@ -49,7 +45,7 @@ button::after {
         margin-bottom: 1vh;
         .toggle-name {
             display: inline-block;
-            font-size: 16px;
+            font-size: 17px;
             font-weight: bold;
         }
 
@@ -59,10 +55,34 @@ button::after {
     }
 }
 
+.high-contrast-theme {
+    .insights-link {
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    .is-selected {
+        .status-icon {
+            color: $high-contrast-icon-color !important;
+        }
+    }
+}
+
 .insights-link {
-    color: $communication-shade-10 !important;
+    // marking important to override office fabric style
+    color: $link !important;
     &:hover {
-        color: $communication-shade-30 !important;
+        color: $link-hover !important;
+    }
+}
+
+.ms-Spinner {
+    .ms-Spinner-circle {
+        border-top-color: $spinner-text;
+    }
+
+    .ms-Spinner-label {
+        color: $spinner-text;
     }
 }
 
@@ -75,3 +95,22 @@ $detailsViewNavPivotsHeight: 41px !default;
 $detailsViewCommandBarHeight: 40px !default;
 
 $detailsViewManNavWidth: 185px !default;
+
+.header-bar,
+.report-header-bar {
+    background-color: $ada-brand-color;
+    height: $detailsViewHeaderBarHeight;
+    width: 100%;
+
+    .header-text {
+        padding-top: 8px;
+        color: $header-bar-title-color;
+        font-size: 18px;
+        display: inline-block;
+    }
+    .header-icon {
+        float: left;
+        padding: 8px 8px;
+        height: 22px;
+    }
+}

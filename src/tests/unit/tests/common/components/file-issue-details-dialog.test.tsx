@@ -19,6 +19,9 @@ describe('FileIssueDetailsDialog', () => {
     it('renders as expected', () => {
         const props: FileIssueDetailsDialogProps = {
             isOpen: true,
+            buttonRef: null,
+            restoreFocus: false,
+            getSettingsPanel: null,
             onDismiss: null,
             onOpenSettings: null,
             fileIssueDetailsHandler: fileIssueDetailsHandlerMock.object,
@@ -31,6 +34,9 @@ describe('FileIssueDetailsDialog', () => {
     test('render while open', () => {
         const props: FileIssueDetailsDialogProps = {
             isOpen: true,
+            buttonRef: null,
+            restoreFocus: false,
+            getSettingsPanel: null,
             onDismiss: null,
             onOpenSettings: null,
             fileIssueDetailsHandler: fileIssueDetailsHandlerMock.object,
@@ -48,6 +54,9 @@ describe('FileIssueDetailsDialog', () => {
 
         const props: FileIssueDetailsDialogProps = {
             isOpen: false,
+            buttonRef: null,
+            restoreFocus: false,
+            getSettingsPanel: null,
             onDismiss: null,
             onOpenSettings: null,
             fileIssueDetailsHandler: fileIssueDetailsHandlerMockLocal.object,
@@ -64,6 +73,9 @@ describe('FileIssueDetailsDialog', () => {
 
         const props: FileIssueDetailsDialogProps = {
             isOpen: true,
+            buttonRef: null,
+            restoreFocus: false,
+            getSettingsPanel: () => null,
             onDismiss: null,
             onOpenSettings: openSettingsMock,
             fileIssueDetailsHandler: fileIssueDetailsHandlerMock.object,
@@ -82,6 +94,9 @@ describe('FileIssueDetailsDialog', () => {
 
         const props: FileIssueDetailsDialogProps = {
             isOpen: true,
+            buttonRef: null,
+            restoreFocus: false,
+            getSettingsPanel: null,
             onDismiss: onDismissMock,
             onOpenSettings: null,
             fileIssueDetailsHandler: fileIssueDetailsHandlerMock.object,
@@ -100,6 +115,9 @@ describe('FileIssueDetailsDialog', () => {
 
         const props: FileIssueDetailsDialogProps = {
             isOpen: true,
+            buttonRef: null,
+            restoreFocus: false,
+            getSettingsPanel: null,
             onDismiss: onDismissMock,
             onOpenSettings: null,
             fileIssueDetailsHandler: fileIssueDetailsHandlerMock.object,
@@ -111,5 +129,56 @@ describe('FileIssueDetailsDialog', () => {
             .props()
             .onDismiss(null);
         expect(onDismissMock).toBeCalled();
+    });
+
+    test('restores focus to the correct button on settings close', () => {
+        const focusMock = jest.fn();
+        const addEventListenerStub = (eventName, callback) => {
+            callback({});
+        };
+
+        const props: FileIssueDetailsDialogProps = {
+            isOpen: true,
+            buttonRef: {
+                current: {
+                    focus: focusMock,
+                },
+            } as any,
+            restoreFocus: true,
+            getSettingsPanel: () =>
+                ({
+                    addEventListener: addEventListenerStub,
+                } as any),
+            onDismiss: null,
+            onOpenSettings: () => {},
+            fileIssueDetailsHandler: fileIssueDetailsHandlerMock.object,
+        };
+        const wrapper = shallow(<FileIssueDetailsDialog {...props} />);
+
+        wrapper.find(PrimaryButton).simulate('click');
+
+        expect(focusMock).toBeCalled();
+    });
+
+    test('does not mess with focus on the target page', () => {
+        const addEventListenerMock = jest.fn();
+
+        const props: FileIssueDetailsDialogProps = {
+            isOpen: true,
+            buttonRef: {} as any,
+            restoreFocus: false,
+            getSettingsPanel: () =>
+                ({
+                    addEventListener: addEventListenerMock,
+                } as any),
+            onDismiss: null,
+            onOpenSettings: () => {},
+            fileIssueDetailsHandler: fileIssueDetailsHandlerMock.object,
+        };
+        const wrapper = shallow(<FileIssueDetailsDialog {...props} />);
+
+        wrapper.find(PrimaryButton).simulate('click');
+
+        expect(addEventListenerMock).not.toBeCalled();
     });
 });

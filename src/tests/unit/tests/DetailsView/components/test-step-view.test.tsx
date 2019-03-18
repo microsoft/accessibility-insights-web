@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as Enzyme from 'enzyme';
 import * as React from 'react';
-import { IMock, It, Mock, Times, MockBehavior } from 'typemoq';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { AssessmentsProvider } from '../../../../../assessments/assessments-provider';
 import { TestStep } from '../../../../../assessments/types/test-step';
@@ -11,8 +11,8 @@ import { ManualTestStatus } from '../../../../../common/types/manual-test-status
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { AssessmentInstanceTable } from '../../../../../DetailsView/components/assessment-instance-table';
 import { AssessmentVisualizationEnabledToggle } from '../../../../../DetailsView/components/assessment-visualization-enabled-toggle';
-import { ManualTestStepView, IManualTestStepViewProps } from '../../../../../DetailsView/components/manual-test-step-view';
-import { ITestStepViewProps, TestStepView } from '../../../../../DetailsView/components/test-step-view';
+import { ManualTestStepView } from '../../../../../DetailsView/components/manual-test-step-view';
+import { TestStepView, TestStepViewProps } from '../../../../../DetailsView/components/test-step-view';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
 import { BaseDataBuilder } from '../../../common/base-data-builder';
 
@@ -91,6 +91,8 @@ describe('TestStepViewTest', () => {
         expect(instanceTable.prop('instancesMap')).toEqual(props.instancesMap);
         expect(instanceTable.prop('assessmentInstanceTableHandler')).toEqual(props.assessmentInstanceTableHandler);
         expect(props.assessmentNavState).toEqual(instanceTable.prop('assessmentNavState'));
+
+        expect(wrapper.debug()).toMatchSnapshot();
     });
 
     test('render, variable part for manual test', () => {
@@ -130,7 +132,17 @@ describe('TestStepViewTest', () => {
         getVisualHelperToggleMock.verifyAll();
     });
 
-    function validateManualTestStepView(wrapper: Enzyme.ShallowWrapper, props: ITestStepViewProps): void {
+    test('render snapshot matches with manual false and scanning is finished', () => {
+        const props = TestStepViewPropsBuilder.default(getVisualHelperToggleMock.object)
+            .withIsManual(false)
+            .withStepScanComplete(true)
+            .build();
+
+        const wrapper = Enzyme.shallow(<TestStepView {...props} />);
+        expect(wrapper.debug()).toMatchSnapshot();
+    });
+
+    function validateManualTestStepView(wrapper: Enzyme.ShallowWrapper, props: TestStepViewProps): void {
         const view = wrapper.find(ManualTestStepView);
         expect(view.exists()).toBe(true);
         expect(props.assessmentNavState.selectedTestStep).toEqual(view.prop('step'));
@@ -141,7 +153,7 @@ describe('TestStepViewTest', () => {
     }
 });
 
-class TestStepViewPropsBuilder extends BaseDataBuilder<ITestStepViewProps> {
+class TestStepViewPropsBuilder extends BaseDataBuilder<TestStepViewProps> {
     public static default(getVisualHelperToggle: (provider, props) => {}): TestStepViewPropsBuilder {
         const assessmentsProviderMock = Mock.ofType(AssessmentsProvider, MockBehavior.Strict);
         assessmentsProviderMock
@@ -231,6 +243,11 @@ class TestStepViewPropsBuilder extends BaseDataBuilder<ITestStepViewProps> {
 
     public withoutInstanceMap(): TestStepViewPropsBuilder {
         this.data.instancesMap = {};
+        return this;
+    }
+
+    public withStepScanComplete(isStepScanned: boolean): TestStepViewPropsBuilder {
+        this.data.isStepScanned = isStepScanned;
         return this;
     }
 }

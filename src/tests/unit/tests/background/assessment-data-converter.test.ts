@@ -3,7 +3,7 @@
 import { IMock, It, Mock } from 'typemoq';
 
 import { AssessmentDataConverter } from '../../../../background/assessment-data-converter';
-import { IUniquelyIdentifiableInstances } from '../../../../background/instance-identifier-generator';
+import { UniquelyIdentifiableInstances } from '../../../../background/instance-identifier-generator';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
 import { IAssessmentInstancesMap, ITestStepResult } from '../../../../common/types/store-data/iassessment-result-data';
 import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from '../../../../injected/scanner-utils';
@@ -24,7 +24,7 @@ describe('AssessmentDataConverterTest', () => {
     let identifierStub: string;
     let selectorStub: string;
     let htmlStub: string;
-    let generateInstanceIdentifierMock: IMock<(instance: IUniquelyIdentifiableInstances) => string>;
+    let generateInstanceIdentifierMock: IMock<(instance: UniquelyIdentifiableInstances) => string>;
 
     beforeEach(() => {
         testSubject = new AssessmentDataConverter(() => uid);
@@ -40,7 +40,7 @@ describe('AssessmentDataConverterTest', () => {
             someProperty: 1,
         };
 
-        const selectorMap: IDictionaryStringTo<IHtmlElementAxeResults> = {
+        const selectorMap: DictionaryStringTo<IHtmlElementAxeResults> = {
             [selectorStub]: {
                 ruleResults: {
                     rule1: {
@@ -74,7 +74,7 @@ describe('AssessmentDataConverterTest', () => {
 
     test(`generateAssessmentInstancesMap: previouslyGeneratedInstances is null,
             new rule result is not false and any data is there.`, () => {
-        const selectorMap: IDictionaryStringTo<IHtmlElementAxeResults> = {
+        const selectorMap: DictionaryStringTo<IHtmlElementAxeResults> = {
             [selectorStub]: {
                 ruleResults: {
                     rule1: {
@@ -125,7 +125,7 @@ describe('AssessmentDataConverterTest', () => {
 
     test(`generateAssessmentInstancesMap: previouslyGeneratedInstances is null,
             new rule result is null (shouldn't happen but covered).`, () => {
-        const selectorMap: IDictionaryStringTo<IHtmlElementAxeResults> = {
+        const selectorMap: DictionaryStringTo<IHtmlElementAxeResults> = {
             [selectorStub]: {
                 ruleResults: {},
                 target: [selectorStub],
@@ -140,7 +140,7 @@ describe('AssessmentDataConverterTest', () => {
 
     test(`generateAssessmentInstancesMap: previouslyGeneratedInstances is not null,
             new rule result is null (shouldn't happen but covered).`, () => {
-        const selectorMap: IDictionaryStringTo<IHtmlElementAxeResults> = {
+        const selectorMap: DictionaryStringTo<IHtmlElementAxeResults> = {
             [selectorStub]: {
                 ruleResults: {},
                 target: [selectorStub],
@@ -161,7 +161,7 @@ describe('AssessmentDataConverterTest', () => {
 
     test(`generateAssessmentInstancesMap: previouslyGeneratedInstances is
             empty/does not match any new instances and any data is not there`, () => {
-        const selectorMap: IDictionaryStringTo<IHtmlElementAxeResults> = {
+        const selectorMap: DictionaryStringTo<IHtmlElementAxeResults> = {
             [selectorStub]: {
                 ruleResults: {
                     rule1: {
@@ -204,7 +204,7 @@ describe('AssessmentDataConverterTest', () => {
     });
 
     test('generateAssessmentInstancesMap: automated check status should be FAIL', () => {
-        const selectorMap: IDictionaryStringTo<IHtmlElementAxeResults> = {
+        const selectorMap: DictionaryStringTo<IHtmlElementAxeResults> = {
             [selectorStub]: {
                 ruleResults: {
                     rule1: {
@@ -248,7 +248,7 @@ describe('AssessmentDataConverterTest', () => {
 
     test('generateAssessmentInstancesMap: previouslyGeneratedInstances contains matching instance', () => {
         const anotherTestStep = 'another test step';
-        const selectorMap: IDictionaryStringTo<IHtmlElementAxeResults> = {
+        const selectorMap: DictionaryStringTo<IHtmlElementAxeResults> = {
             [selectorStub]: {
                 ruleResults: {
                     rule1: {
@@ -456,7 +456,7 @@ describe('AssessmentDataConverterTest', () => {
         expect(testSubject.generateFailureInstance(description)).toEqual(expectedResult);
     });
 
-    function setupGenerateInstanceIdentifierMock(instance: IUniquelyIdentifiableInstances, identifier: string): void {
+    function setupGenerateInstanceIdentifierMock(instance: UniquelyIdentifiableInstances, identifier: string): void {
         generateInstanceIdentifierMock.setup(giim => giim(It.isValue(instance))).returns(() => identifier);
     }
 });

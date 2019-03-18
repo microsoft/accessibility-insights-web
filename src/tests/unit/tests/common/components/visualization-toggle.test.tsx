@@ -5,16 +5,16 @@ import { IToggle, IToggleProps, Toggle } from 'office-ui-fabric-react/lib/Toggle
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
-import { IVisualizationToggleProps, VisualizationToggle } from '../../../../../common/components/visualization-toggle';
+import { VisualizationToggle, VisualizationToggleProps } from '../../../../../common/components/visualization-toggle';
 
 describe('VisualizationToggleTest', () => {
     test('constructor', () => {
-        const testObject = new VisualizationToggle({} as IVisualizationToggleProps);
+        const testObject = new VisualizationToggle({} as VisualizationToggleProps);
         expect(testObject).toBeInstanceOf(React.Component);
     });
 
     test('render no optional props', () => {
-        const props: IVisualizationToggleProps = new IVisualizationTogglePropsBuilder().build();
+        const props: VisualizationToggleProps = new VisualizationTogglePropsBuilder().build();
 
         const wrapper = Enzyme.shallow(<VisualizationToggle {...props} />);
 
@@ -27,7 +27,7 @@ describe('VisualizationToggleTest', () => {
     });
 
     test('render all props', () => {
-        const props: IVisualizationToggleProps = new IVisualizationTogglePropsBuilder()
+        const props: VisualizationToggleProps = new VisualizationTogglePropsBuilder()
             .setLabel('my test label')
             .setClassName('my test class')
             .setDisabled(true)
@@ -48,7 +48,7 @@ describe('VisualizationToggleTest', () => {
         const clickEventStub = {};
         onClickMock.setup(onClick => onClick(clickEventStub)).verifiable(Times.once());
 
-        const props: IVisualizationToggleProps = new IVisualizationTogglePropsBuilder()
+        const props: VisualizationToggleProps = new VisualizationTogglePropsBuilder()
             .setLabel('my test label')
             .setClassName('my test class')
             .setDisabled(true)
@@ -62,7 +62,7 @@ describe('VisualizationToggleTest', () => {
         onClickMock.verifyAll();
     });
 
-    function visualizationTogglePropsToToggleProps(props: IVisualizationToggleProps): IToggleProps {
+    function visualizationTogglePropsToToggleProps(props: VisualizationToggleProps): IToggleProps {
         const result: IToggleProps = {
             checked: props.checked,
             onClick: props.onClick,
@@ -81,7 +81,7 @@ describe('VisualizationToggleTest', () => {
     }
 });
 
-class IVisualizationTogglePropsBuilder {
+class VisualizationTogglePropsBuilder {
     private checked: boolean = false;
     private onClickMock: IMock<(event) => void> = Mock.ofInstance(event => {});
     private disabled: boolean;
@@ -92,28 +92,28 @@ class IVisualizationTogglePropsBuilder {
     private onBlurMock: IMock<(event) => void> = Mock.ofInstance(event => {});
     private onFocusMock: IMock<(event) => void> = Mock.ofInstance(event => {});
 
-    public setClassName(className: string): IVisualizationTogglePropsBuilder {
+    public setClassName(className: string): VisualizationTogglePropsBuilder {
         this.className = className;
         return this;
     }
 
-    public setLabel(label: string): IVisualizationTogglePropsBuilder {
+    public setLabel(label: string): VisualizationTogglePropsBuilder {
         this.label = label;
         return this;
     }
 
-    public setDisabled(isDisabled: boolean): IVisualizationTogglePropsBuilder {
+    public setDisabled(isDisabled: boolean): VisualizationTogglePropsBuilder {
         this.disabled = isDisabled;
         return this;
     }
 
-    public setOnClickMock(onClickMock: IMock<(event) => void>): IVisualizationTogglePropsBuilder {
+    public setOnClickMock(onClickMock: IMock<(event) => void>): VisualizationTogglePropsBuilder {
         this.onClickMock = onClickMock;
         return this;
     }
 
-    public build(): IVisualizationToggleProps {
-        const props: IVisualizationToggleProps = {
+    public build(): VisualizationToggleProps {
+        const props: VisualizationToggleProps = {
             onText: 'On',
             offText: 'Off',
             checked: this.checked,

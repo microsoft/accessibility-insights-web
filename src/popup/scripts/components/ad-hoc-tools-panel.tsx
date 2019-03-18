@@ -6,12 +6,12 @@ import * as React from 'react';
 
 import { DiagnosticViewToggleFactory } from './diagnostic-view-toggle-factory';
 
-export interface IAdHocToolsPanelProps {
+export interface AdHocToolsPanelProps {
     backLinkHandler: () => void;
     diagnosticViewToggleFactory: DiagnosticViewToggleFactory;
 }
 
-export class AdHocToolsPanel extends React.Component<IAdHocToolsPanelProps, {}> {
+export class AdHocToolsPanel extends React.Component<AdHocToolsPanelProps, {}> {
     private sliceSize: number = 3;
 
     public render(): JSX.Element {
@@ -24,9 +24,9 @@ export class AdHocToolsPanel extends React.Component<IAdHocToolsPanelProps, {}> 
                     <div className="ms-Grid-row">{groups}</div>
                 </main>
                 <div role="navigation" className="ad-hoc-tools-panel-footer">
-                    <Link onClick={this.props.backLinkHandler} id="back-to-launchpad-link">
-                        <Icon iconName="back" />
-                        &nbsp; Back to launch pad
+                    <Link className="insights-link" onClick={this.props.backLinkHandler} id="back-to-launchpad-link">
+                        <Icon className="back-to-launch-pad-icon" iconName="back" />
+                        Back to launch pad
                     </Link>
                 </div>
             </div>

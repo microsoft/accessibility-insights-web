@@ -1,15 +1,26 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 :root {
+    // consistent colors
+    --black: #000000;
+    --light-black: #161616;
+    --white: #ffffff;
+    --brand-blue: #004880;
+    --grey: #333333;
+    --high-contrast-icon-color: var(--black);
+
     // Accessibility Insights brand color
-    --ada-blue: #004880;
+    --ada-brand-color: var(--brand-blue);
+    --ada-brand-variant: #336d99;
+
     // Text colors
     --primary-text: rgba(0, 0, 0, 0.9);
-    --secondary-text: rgba(0, 0, 0, 0.55);
+    --secondary-text: rgba(0, 0, 0, 0.6);
     --disabled-text: rgba(0, 0, 0, 0.38);
     --primary-text-invert: rgba(255, 255, 255, 1);
     --secondary-text-invert: rgba(0, 0, 0, 0.55);
     --disabled-text-invert: rgba(0, 0, 0, 0.38);
+
     // UI colors
     --communication-primary: #0078d4;
     --communication-tint-40: #eff6fc;
@@ -20,8 +31,8 @@
     --communication-shade-20: #005a9e;
     --communication-shade-30: #004578;
     // Base
-    --neutral-0: #ffffff;
-    --neutral-100: #000000;
+    --neutral-0: var(--white);
+    --neutral-100: var(--black);
     // Neutral surfaces
     --neutral-2: #f8f8f8;
     --neutral-4: #f4f4f4;
@@ -33,7 +44,7 @@
     --neutral-55: #6e6e6e;
     --neutral-60: #666666;
     --neutral-70: #3c3c3c;
-    --neutral-80: #333333;
+    --neutral-80: --var(--grey);
     --neutral-alpha-2: rgba(0, 0, 0, 0.02);
     --neutral-alpha-4: rgba(0, 0, 0, 0.04);
     --neutral-alpha-6: rgba(0, 0, 0, 0.06);
@@ -52,9 +63,23 @@
     // Additional colors
     --accent2-dark: rgb(16, 124, 16);
     --communication-alpha-5: rgba(0, 120, 212, 0.05);
-    --ada-blue-variant: #336d99;
     --overview-percent-selected: var(--neutral-55);
     --index-circle-background: var(--communication-shade-10);
+    --check-box-border: var(--neutral-30);
+    --check-box-tick: var(--neutral-100);
+    --check-box-background: var(--neutral-8);
+    --row-selected-background: var(--communication-tint-40);
+    --group-selected-background: var(--communication-tint-40);
+    --row-hover-background: var(--neutral-4);
+    --link: var(--communication-shade-10);
+    --link-hover: var(--communication-shade-30);
+    --switcher-border: var(--ada-brand-variant);
+    --switcher-focus-border: var(--neutral-0);
+    --help-links-section-background: var(--neutral-4);
+    --help-links-section-border: var(--neutral-4);
+    --highlighted-text: var(--black);
+    --spinner-text: var(--communication-primary);
+
     // Landmark colors
     --landmark-contentinfo: #00a88c;
     --landmark-main: #cb2e6d;
@@ -64,39 +89,58 @@
     --landmark-navigation: #9b38e6;
     --landmark-search: #d363d8;
     --landmark-form: #0298c7;
+    --header-bar-title-color: var(--neutral-0);
+
     .high-contrast-theme {
-        --ada-blue: #ffffff;
-        --ada-blue-variant: #ffffff;
+        --ada-brand-color: var(--white);
+        --ada-brand-variant: var(--white);
         // Base
-        --neutral-0: #161616;
-        --neutral-2: #161616;
-        --neutral-4: #161616;
-        --neutral-6: #161616;
-        --neutral-10: #161616;
-        --neutral-55: #ffffff;
-        --neutral-60: #ffffff;
-        --neutral-70: #ffffff;
-        --neutral-80: #ffffff;
-        --neutral-100: #ffffff;
-        --neutral-alpha-8: #ffffff;
-        --secondary-text: #ffffff;
+        --neutral-0: var(--light-black);
+        --neutral-2: var(--light-black);
+        --neutral-4: var(--light-black);
+        --neutral-6: var(--light-black);
+        --neutral-10: var(--light-black);
+        --neutral-55: var(--white);
+        --neutral-60: var(--white);
+        --neutral-70: var(--white);
+        --neutral-80: var(--white);
+        --neutral-100: var(--white);
+        --neutral-alpha-8: var(--white);
+        --secondary-text: var(--white);
+
         // Outcome colors
         --positive-outcome: #4ac94a;
         --negative-outcome: #fc7ab1;
         --neutral-outcome: var(--neutral-0);
+
         // neutral-60 to white
         --incomplete-color: var(--neutral-100);
         // used for many links
         --communication-shade-10: #ffff00;
         --communication-tint-30: var(--communication-tint-10);
         --communication-tint-40: #38a9ff;
-        --overview-percent-selected: black;
+        --overview-percent-selected: var(--black);
         --index-circle-background: var(--communication-tint-40);
+        --header-bar-title-color: var(--brand-blue);
+        --check-box-border: var(--light-black);
+        --check-box-tick: var(--light-black);
+        --check-box-background: var(--communication-tint-40);
+        --row-selected-background: var(--communication-tint-40);
+        --group-selected-background: var(--grey);
+        --row-hover-background: var(--communication-tint-40);
+        --link: var(--communication-shade-10);
+        --link-hover: var(--communication-shade-10);
+        --switcher-border: var(--brand-blue);
+        --switcher-focus-border: var(--black);
+        --help-links-section-background: transparent;
+        --help-links-section-border: var(--white);
+        --highlighted-text: var(--black);
+        --spinner-text: var(--communication-tint-40);
     }
 }
 
 // Accessibility Insights brand color
-$ada-blue: var(--ada-blue);
+$ada-brand-color: var(--ada-brand-color);
 // Text colors
 $primary-text: var(--primary-text);
 $secondary-text: var(--secondary-text);
@@ -104,6 +148,7 @@ $disabled-text: var(--disabled-text);
 $primary-text-invert: var(--primary-text-invert);
 $secondary-text-invert: var(--secondary-text-invert);
 $disabled-text-invert: var(--disabled-text-invert);
+$header-bar-title-color: var(--header-bar-title-color);
 // UI colors
 $communication-primary: var(--communication-primary);
 $communication-tint-40: var(--communication-tint-40);
@@ -154,10 +199,26 @@ $landmark-search: var(--landmark-search);
 $landmark-form: var(--landmark-form);
 // Additional colors
 $accent2-dark: var(--accent2-dark);
-$ada-blue-variant: var(--ada-blue-variant);
+$ada-brand-variant: var(--ada-brand-variant);
 $communication-alpha-5: var(--communication-alpha-5);
 $overview-percent-selected: var(--overview-percent-selected);
 $index-circle-background: var(--index-circle-background);
+$check-box-border: var(--check-box-border);
+$check-box-tick: var(--check-box-tick);
+$check-box-background: var(--check-box-background);
+$row-selected-background: var(--row-selected-background);
+$group-selected-background: var(--group-selected-background);
+$row-hover-background: var(--row-hover-background);
+$link: var(--link);
+$link-hover: var(--link-hover);
+$switcher-border: var(--switcher-border);
+$switcher-focus-border: var(--switcher-focus-border);
+$help-links-section-background: var(--help-links-section-background);
+$help-links-section-border: var(--help-links-section-border);
+$highlighted-text: var(--highlighted-text);
+$spinner-text: var(--spinner-text);
+
 // consistent colors
 $always-white: #ffffff;
 $always-black: #161616;
+$high-contrast-icon-color: var(--high-contrast-icon-color);

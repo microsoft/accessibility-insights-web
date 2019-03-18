@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-import { forEach, isEmpty } from 'lodash/index';
+import { forEach, isEmpty } from 'lodash';
 
 import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { IndexedDBDataKeys } from '../../background/IndexedDBDataKeys';
@@ -9,18 +9,17 @@ import { IndexedDBAPI } from '../../common/indexedDB/indexedDB';
 import { StoreNames } from '../../common/stores/store-names';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
-import { IAssessmentStoreData } from '../../common/types/store-data/iassessment-result-data';
-import { IScanBasePayload, IScanCompletedPayload, IScanUpdatePayload } from '../../injected/analyzers/ianalyzer';
-import { SelectTestStepPayload, UpdateVisibilityPayload } from '../actions/action-payloads';
-import { AssessmentDataConverter } from '../assessment-data-converter';
-import { InitialAssessmentStoreDataGenerator } from '../intial-assessment-store-data-generator';
-import { IAssessment } from './../../assessments/types/iassessment';
 import {
     IAssessmentData,
+    IAssessmentStoreData,
     IGeneratedAssessmentInstance,
     ITestStepResult,
     IUserCapturedInstance,
 } from '../../common/types/store-data/iassessment-result-data';
+import { IScanBasePayload, IScanCompletedPayload, IScanUpdatePayload } from '../../injected/analyzers/ianalyzer';
+import { SelectTestStepPayload, UpdateVisibilityPayload } from '../actions/action-payloads';
+import { AssessmentDataConverter } from '../assessment-data-converter';
+import { InitialAssessmentStoreDataGenerator } from '../intial-assessment-store-data-generator';
 import { VisualizationType } from './../../common/types/visualization-type';
 import {
     AddFailureInstancePayload,
@@ -70,7 +69,7 @@ export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
 
     public generateDefaultState(persistedData: IAssessmentStoreData = null): IAssessmentStoreData {
         this.initialAssessmentStoreDataGenerator = new InitialAssessmentStoreDataGenerator(this.assessmentsProvider);
-        return this.initialAssessmentStoreDataGenerator.generateInitalState(persistedData);
+        return this.initialAssessmentStoreDataGenerator.generateInitialState(persistedData);
     }
 
     public getDefaultState(): IAssessmentStoreData {
@@ -388,7 +387,7 @@ export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
         }
     }
 
-    private getGroupResult(instanceMap: IDictionaryStringTo<IGeneratedAssessmentInstance>, testStepName: string): ManualTestStatus {
+    private getGroupResult(instanceMap: DictionaryStringTo<IGeneratedAssessmentInstance>, testStepName: string): ManualTestStatus {
         let groupResult = ManualTestStatus.PASS;
         for (let keyIndex = 0; keyIndex < Object.keys(instanceMap).length; keyIndex++) {
             const key = Object.keys(instanceMap)[keyIndex];

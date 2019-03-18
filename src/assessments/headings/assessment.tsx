@@ -6,7 +6,7 @@ import { NewTabLink } from '../../common/components/new-tab-link';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { test as content } from '../../content/test';
 import { AssessmentBuilder } from '../assessment-builder';
-import { IAssessment } from '../types/iassessment';
+import { Assessment } from '../types/iassessment';
 import { HeadingFunction } from './test-steps/heading-function';
 import { HeadingLevel } from './test-steps/heading-level';
 import { NoMissingHeadings } from './test-steps/no-missing-headings';
@@ -33,16 +33,13 @@ const gettingStarted: JSX.Element = (
         </p>
         <p>
             See
-            <NewTabLink href="https://msit.microsoftstream.com/video/a872fda0-4b9e-453b-9adf-e02a38b1900b?channelId=66d47e66-d99c-488b-b9ea-98a153d2a4d4">
-                {' '}
-                this fun video{' '}
-            </NewTabLink>
+            <NewTabLink href="https://go.microsoft.com/fwlink/?linkid=2080372"> this fun video </NewTabLink>
             to learn how landmarks, headings, and tab stops work together to provide efficient navigation.{' '}
         </p>
     </React.Fragment>
 );
 
-export const HeadingsAssessment: IAssessment = AssessmentBuilder.Assisted({
+export const HeadingsAssessment: Assessment = AssessmentBuilder.Assisted({
     key,
     type: VisualizationType.HeadingsAssessment,
     gettingStarted,

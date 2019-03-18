@@ -10,7 +10,7 @@ import { InspectActionMessageCreator } from '../../../../../common/message-creat
 import { ScopingActionMessageCreator } from '../../../../../common/message-creators/scoping-action-message-creator';
 import { IScopingStoreData } from '../../../../../common/types/store-data/scoping-store-data';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
-import { IScopingContainerProps, ScopingContainer } from '../../../../../DetailsView/components/scoping-container';
+import { ScopingContainer, ScopingContainerProps } from '../../../../../DetailsView/components/scoping-container';
 
 describe('ScopingContainerTest', () => {
     const scopingSelectorsStub: IScopingStoreData = {
@@ -21,7 +21,7 @@ describe('ScopingContainerTest', () => {
     };
 
     test('constructor', () => {
-        const testSubject = new ScopingContainer({} as IScopingContainerProps);
+        const testSubject = new ScopingContainer({} as ScopingContainerProps);
         expect(testSubject).toBeDefined();
     });
 
@@ -30,7 +30,7 @@ describe('ScopingContainerTest', () => {
         const scopingActionMessageCreatorMock = Mock.ofType(ScopingActionMessageCreator);
         const inspectActionMessageCreatorMock = Mock.ofType(InspectActionMessageCreator);
         const featureFlagStoreDataStub = {};
-        const props: IScopingContainerProps = {
+        const props: ScopingContainerProps = {
             featureFlagData: featureFlagStoreDataStub,
             actionMessageCreator: actionMessageCreatorMock.object,
             scopingSelectorsData: scopingSelectorsStub,

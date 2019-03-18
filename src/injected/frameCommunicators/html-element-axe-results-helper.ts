@@ -1,10 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { forOwn } from 'lodash';
+
 import { createDefaultLogger } from '../../common/logging/default-logger';
 import { Logger } from '../../common/logging/logger';
 import { IHtmlElementAxeResults } from '../scanner-utils';
 import { HTMLElementUtils } from './../../common/html-element-utils';
 
+// tslint:disable-next-line:interface-name
 export interface IFrameResult {
     frame: HTMLIFrameElement;
     elementResults: IAssessmentVisualizationInstance[];
@@ -14,6 +17,7 @@ export interface AxeResultsWithFrameLevel extends IHtmlElementAxeResults {
     targetIndex?: number;
 }
 
+// tslint:disable-next-line:interface-name
 export interface IAssessmentVisualizationInstance extends AxeResultsWithFrameLevel {
     isFailure: boolean;
     isVisualizationEnabled: boolean;
@@ -33,12 +37,9 @@ export class HtmlElementAxeResultsHelper {
         return results;
     }
 
-    private getFrameResultsFromSelectorMap(selectorMap: IDictionaryStringTo<AxeResultsWithFrameLevel[]>): IFrameResult[] {
+    private getFrameResultsFromSelectorMap(selectorMap: DictionaryStringTo<AxeResultsWithFrameLevel[]>): IFrameResult[] {
         const results: IFrameResult[] = [];
-
-        for (const selectorKey in selectorMap) {
-            const frameResults = selectorMap[selectorKey];
-
+        forOwn(selectorMap, (frameResults, selectorKey) => {
             if (selectorKey) {
                 const iframe = this.htmlElementUtils.querySelector(selectorKey);
                 if (iframe != null) {
@@ -55,7 +56,7 @@ export class HtmlElementAxeResultsHelper {
                     frame: null,
                 } as IFrameResult);
             }
-        }
+        });
 
         return results;
     }
@@ -91,7 +92,7 @@ export class HtmlElementAxeResultsHelper {
     }
 
     private getFrameSelectorToResultMap(elementResults: AxeResultsWithFrameLevel[]) {
-        const elementResultsByFrame: IDictionaryStringTo<AxeResultsWithFrameLevel[]> = {};
+        const elementResultsByFrame: DictionaryStringTo<AxeResultsWithFrameLevel[]> = {};
 
         for (let i = 0; i < elementResults.length; i++) {
             const elementResult = elementResults[i];

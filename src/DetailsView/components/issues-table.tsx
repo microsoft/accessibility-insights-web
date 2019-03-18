@@ -7,8 +7,9 @@ import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
 
+import * as Markup from '../../assessments/markup';
 import { VisualizationToggle } from '../../common/components/visualization-toggle';
-import { IVisualizationConfiguration, VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { FeatureFlags } from '../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
@@ -20,7 +21,6 @@ import { ExportDialog } from './export-dialog';
 import { IssuesDetailsList } from './issues-details-list';
 import { IssuesDetailsPane, IssuesDetailsPaneDeps } from './Issues-details-pane';
 import { IssuesTableHandler } from './issues-table-handler';
-import * as Markup from '../../assessments/markup';
 
 export type IssuesTableDeps = IssuesDetailsPaneDeps & {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
@@ -31,7 +31,7 @@ export interface IssuesTableProps {
     title: string;
     issuesTableHandler: IssuesTableHandler;
     violations: RuleResult[];
-    selectedIdToRuleResultMap: IDictionaryStringTo<DecoratedAxeNodeResult>;
+    selectedIdToRuleResultMap: DictionaryStringTo<DecoratedAxeNodeResult>;
     issuesEnabled: boolean;
     issuesSelection: ISelection;
     issueTrackerPath: string;
@@ -54,7 +54,7 @@ export interface IssuesTableState {
 }
 
 export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableState> {
-    private configuration: IVisualizationConfiguration;
+    private configuration: VisualizationConfiguration;
     public static readonly exportTextareaLabel: string = 'Provide result description';
     public static readonly exportInstructions: string = 'Optional: please describe the result (it will be saved in the report).';
 

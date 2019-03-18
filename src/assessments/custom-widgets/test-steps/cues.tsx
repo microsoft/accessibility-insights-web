@@ -3,20 +3,20 @@
 import * as React from 'react';
 
 import { AnalyzerConfigurationFactory } from '../../../assessments/common/analyzer-configuration-factory';
-import { ICustomWidgetPropertyBag } from '../../../common/types/property-bag/icustom-widgets';
+import { CustomWidgetPropertyBag } from '../../../common/types/property-bag/icustom-widgets';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
+import * as content from '../../../content/test/custom-widgets/cues';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
 import * as Markup from '../../markup';
-import { TestStep } from '../../types/test-step';
 import { ReportInstanceField } from '../../types/report-instance-field';
+import { TestStep } from '../../types/test-step';
 import { getFlatDesignPatternStringFromRole } from '../custom-widgets-column-renderer';
 import { CustomWidgetsColumnRendererFactory } from '../custom-widgets-column-renderer-factory';
 import { CustomWidgetsTestStep } from './test-steps';
-import * as content from '../../../content/test/custom-widgets/cues';
 
 const cuesDescription: JSX.Element = (
     <span>If a custom widget adopts certain interactive states, it must communicate those states programmatically.</span>
@@ -63,7 +63,7 @@ export const Cues: TestStep = {
         {
             key: 'cues-info-custom-widgets',
             name: 'Cues',
-            onRender: CustomWidgetsColumnRendererFactory.getWithoutLink<ICustomWidgetPropertyBag>([
+            onRender: CustomWidgetsColumnRendererFactory.getWithoutLink<CustomWidgetPropertyBag>([
                 {
                     propertyName: 'role',
                     displayName: 'Widget role',
@@ -90,12 +90,12 @@ export const Cues: TestStep = {
         },
     ],
     reportInstanceFields: [
-        ReportInstanceField.fromColumnValueBagField<ICustomWidgetPropertyBag>('Widget role', 'role'),
-        ReportInstanceField.fromPropertyBagFunction<ICustomWidgetPropertyBag>('Design pattern', 'designPattern', pb =>
+        ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>('Widget role', 'role'),
+        ReportInstanceField.fromPropertyBagFunction<CustomWidgetPropertyBag>('Design pattern', 'designPattern', pb =>
             getFlatDesignPatternStringFromRole(pb.role),
         ),
-        ReportInstanceField.fromColumnValueBagField<ICustomWidgetPropertyBag>('HTML cues', 'htmlCues'),
-        ReportInstanceField.fromColumnValueBagField<ICustomWidgetPropertyBag>('ARIA cues', 'ariaCues'),
+        ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>('HTML cues', 'htmlCues'),
+        ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>('ARIA cues', 'ariaCues'),
     ],
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(

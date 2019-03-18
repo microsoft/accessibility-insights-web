@@ -3,7 +3,7 @@
 import { Interpreter } from './interpreter';
 import { TabContextStoreHub } from './stores/tab-context-store-hub';
 
-export type TabToContextMap = IDictionaryNumberTo<TabContext>;
+export type TabToContextMap = DictionaryNumberTo<TabContext>;
 
 export class TabContext {
     public readonly interpreter: Interpreter;

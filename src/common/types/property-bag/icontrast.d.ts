@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { ColumnValueBag } from './column-value-bag';
 
-export interface IContrastPropertyBag extends ColumnValueBag {
+export interface ContrastPropertyBag extends ColumnValueBag {
     textString: string;
     size: string;
 }

@@ -5,11 +5,11 @@ import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
 
 import { IAssessmentsProvider } from '../../../../../../assessments/types/iassessments-provider';
-import { IManualTestStatus, ManualTestStatus } from '../../../../../../common/types/manual-test-status';
+import { ManualTestStatus, ManualTestStatusData } from '../../../../../../common/types/manual-test-status';
 import {
-    AssessmentLeftNavLink,
     AssessmentLeftNav,
     AssessmentLeftNavDeps,
+    AssessmentLeftNavLink,
     AssessmentLeftNavProps,
 } from '../../../../../../DetailsView/components/left-nav/assessment-left-nav';
 import { LeftNavLinkBuilder } from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';
@@ -22,7 +22,7 @@ describe('AssessmentLeftNav', () => {
     let leftNavLinkBuilderMock: IMock<LeftNavLinkBuilder>;
     let navLinkHandlerMock: NavLinkHandler;
     let assessmentsProviderStub: IAssessmentsProvider;
-    let assessmentsDataStub: IDictionaryStringTo<IManualTestStatus>;
+    let assessmentsDataStub: DictionaryStringTo<ManualTestStatusData>;
 
     beforeEach(() => {
         assessmentsDataStub = {};

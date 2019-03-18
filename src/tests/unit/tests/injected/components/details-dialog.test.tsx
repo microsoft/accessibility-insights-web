@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { FeatureFlags } from '../../../../../common/feature-flags';
-import { DetailsDialog, DetailsDialogDeps, IDetailsDialogProps } from '../../../../../injected/components/details-dialog';
+import { DetailsDialog, DetailsDialogDeps, DetailsDialogProps } from '../../../../../injected/components/details-dialog';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 
 describe('DetailsDialogTest', () => {
@@ -50,7 +50,7 @@ describe('DetailsDialogTest', () => {
             helpUrl,
             snippet: 'html',
         };
-        const expectedFailedRules: IDictionaryStringTo<DecoratedAxeNodeResult> = {};
+        const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
         expectedFailedRules[ruleId] = expectedNodeResult;
 
         const dialogDetailsHandlerMockObject = {
@@ -62,18 +62,18 @@ describe('DetailsDialogTest', () => {
         };
 
         const deps: DetailsDialogDeps = {
-            bugClickHandler: null,
             windowUtils: null,
             issueDetailsTextGenerator: null,
             targetPageActionMessageCreator: {
                 copyIssueDetailsClicked: () => {},
             } as any,
+            bugActionMessageCreator: null,
             clientBrowserAdapter: {
                 getUrl: url => expectedHelpUrl,
             } as any,
         };
 
-        const props: IDetailsDialogProps = {
+        const props: DetailsDialogProps = {
             deps,
             elementSelector: ruleId,
             failedRules: expectedFailedRules,

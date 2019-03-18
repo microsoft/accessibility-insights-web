@@ -88,11 +88,11 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
         },
         {
             id: FeatureFlags.showBugFiling,
-            defaultValue: false,
-            displayableName: 'Show bug filing stubs',
-            displayableDescription: 'Show bug filing button stubs',
+            defaultValue: true,
+            displayableName: 'Issue filing',
+            displayableDescription: 'Enable File Issue buttons that allow you to create GitHub issues pre-populated with failure details.',
             isPreviewFeature: false,
-            forceDefault: false,
+            forceDefault: true,
         },
         {
             id: FeatureFlags.showInstanceVisibility,
@@ -106,11 +106,11 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
         },
         {
             id: FeatureFlags.highContrastMode,
-            defaultValue: false,
+            defaultValue: true,
             displayableName: 'High contrast mode',
             displayableDescription: 'Show setting for high contrast mode under development',
-            isPreviewFeature: true,
-            forceDefault: false,
+            isPreviewFeature: false,
+            forceDefault: true,
         },
     ];
 }

@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 export class EventHandlerList<TSender, TEventArgs> {
-    private _handlers: IFunctionPPR<TSender, TEventArgs, any>[] = [];
+    private _handlers: FunctionPPR<TSender, TEventArgs, any>[] = [];
 
-    public subscribe(handler: IFunctionPPR<TSender, TEventArgs, any>) {
+    public subscribe(handler: FunctionPPR<TSender, TEventArgs, any>) {
         if (handler) {
             this._handlers.push(handler);
         }
     }
 
-    public unsubscribe(handler: IFunctionPPR<TSender, TEventArgs, any>) {
+    public unsubscribe(handler: FunctionPPR<TSender, TEventArgs, any>) {
         if (this._handlers) {
             this._handlers = this._handlers.filter(h => h !== handler);
         }

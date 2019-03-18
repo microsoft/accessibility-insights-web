@@ -9,12 +9,12 @@ import { LandmarksAdHocVisualization } from '../../ad-hoc-visualizations/landmar
 import { TabStopsAdHocVisualization } from '../../ad-hoc-visualizations/tab-stops/visualization';
 import { Assessments } from '../../assessments/assessments';
 import { ToggleActionPayload } from '../../background/actions/action-payloads';
-import { IUniquelyIdentifiableInstances } from '../../background/instance-identifier-generator';
+import { UniquelyIdentifiableInstances } from '../../background/instance-identifier-generator';
 import { TestViewProps } from '../../DetailsView/components/test-view';
 import { AnalyzerProvider } from '../../injected/analyzers/analyzer-provider';
 import { IAnalyzer } from '../../injected/analyzers/ianalyzer';
 import { IHtmlElementAxeResults, ScannerUtils } from '../../injected/scanner-utils';
-import { IPropertyBags, IVisualizationInstanceProcessorCallback } from '../../injected/visualization-instance-processor';
+import { PropertyBags, VisualizationInstanceProcessorCallback } from '../../injected/visualization-instance-processor';
 import { DrawerProvider } from '../../injected/visualization/drawer-provider';
 import { IDrawer } from '../../injected/visualization/idrawer';
 import { ScanResults } from '../../scanner/iruleresults';
@@ -22,50 +22,50 @@ import { ContentPageComponent } from '../../views/content/content-page';
 import { EnumHelper } from '../enum-helper';
 import { IAnalyzerTelemetryCallback } from '../types/analyzer-telemetry-callbacks';
 import { IAssessmentData, IAssessmentStoreData } from '../types/store-data/iassessment-result-data';
-import { IScanData, ITestsEnabledState } from '../types/store-data/ivisualization-store-data';
+import { IScanData, TestsEnabledState } from '../types/store-data/ivisualization-store-data';
 import { TelemetryProcessor } from '../types/telemetry-processor';
 import { VisualizationType } from '../types/visualization-type';
 import { TestMode } from './test-mode';
 
-export interface IDisplayableVisualizationTypeData {
+export interface DisplayableVisualizationTypeData {
     title: string;
     enableMessage: string;
     toggleLabel: string;
     linkToDetailsViewText: string;
 }
 
-export interface IAssesssmentVisualizationConfiguration {
+export interface AssesssmentVisualizationConfiguration {
     key: string;
     getTestView: (props: TestViewProps) => JSX.Element;
-    getStoreData: (data: ITestsEnabledState) => IScanData;
+    getStoreData: (data: TestsEnabledState) => IScanData;
     enableTest: (data: IScanData, payload: ToggleActionPayload) => void;
     disableTest: (data: IScanData, step?: string) => void;
     getTestStatus: (data: IScanData, step?: string) => boolean;
     getAssessmentData?: (data: IAssessmentStoreData) => IAssessmentData;
-    setAssessmentData?: (data: IAssessmentStoreData, selectorMap: IDictionaryStringTo<any>, instanceMap?: IDictionaryStringTo<any>) => void;
+    setAssessmentData?: (data: IAssessmentStoreData, selectorMap: DictionaryStringTo<any>, instanceMap?: DictionaryStringTo<any>) => void;
     analyzerMessageType: string;
     analyzerProgressMessageType?: string;
-    resultProcessor?: (scanner: ScannerUtils) => (results: ScanResults) => IDictionaryStringTo<IHtmlElementAxeResults>;
+    resultProcessor?: (scanner: ScannerUtils) => (results: ScanResults) => DictionaryStringTo<IHtmlElementAxeResults>;
     telemetryProcessor?: TelemetryProcessor<IAnalyzerTelemetryCallback>;
     getAnalyzer: (analyzerProvider: AnalyzerProvider, testStep?: string) => IAnalyzer<any>;
     getIdentifier: (testStep?: string) => string;
-    visualizationInstanceProcessor: (testStep?: string) => IVisualizationInstanceProcessorCallback<IPropertyBags, IPropertyBags>;
-    getNotificationMessage: (selectorMap: IDictionaryStringTo<any>, testStep?: string) => string;
+    visualizationInstanceProcessor: (testStep?: string) => VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags>;
+    getNotificationMessage: (selectorMap: DictionaryStringTo<any>, testStep?: string) => string;
     getDrawer: (provider: DrawerProvider, testStep?: string) => IDrawer;
     getSwitchToTargetTabOnScan: (testStep?: string) => boolean;
-    getInstanceIdentiferGenerator: (testStep?: string) => (instance: IUniquelyIdentifiableInstances) => string;
+    getInstanceIdentiferGenerator: (testStep?: string) => (instance: UniquelyIdentifiableInstances) => string;
     getUpdateVisibility: (testStep?: string) => boolean;
 }
 
-export interface IVisualizationConfiguration extends IAssesssmentVisualizationConfiguration {
+export interface VisualizationConfiguration extends AssesssmentVisualizationConfiguration {
     key: string;
     testMode: TestMode;
     featureFlagToEnable?: string;
     getTestView: (props: TestViewProps) => JSX.Element;
-    getStoreData: (data: ITestsEnabledState) => IScanData;
+    getStoreData: (data: TestsEnabledState) => IScanData;
     getAssessmentData?: (data: IAssessmentStoreData) => IAssessmentData;
-    setAssessmentData?: (data: IAssessmentStoreData, selectorMap: IDictionaryStringTo<any>, instanceMap?: IDictionaryStringTo<any>) => void;
-    displayableData: IDisplayableVisualizationTypeData;
+    setAssessmentData?: (data: IAssessmentStoreData, selectorMap: DictionaryStringTo<any>, instanceMap?: DictionaryStringTo<any>) => void;
+    displayableData: DisplayableVisualizationTypeData;
     chromeCommand: string;
     launchPanelDisplayOrder: number;
     adhocToolsPanelDisplayOrder: number;
@@ -76,7 +76,7 @@ export interface IVisualizationConfiguration extends IAssesssmentVisualizationCo
 }
 
 export class VisualizationConfigurationFactory {
-    private configurationByType: IDictionaryNumberTo<IVisualizationConfiguration>;
+    private configurationByType: DictionaryNumberTo<VisualizationConfiguration>;
 
     constructor() {
         this.configurationByType = {
@@ -92,7 +92,7 @@ export class VisualizationConfigurationFactory {
         return _.find(_.values(this.configurationByType), config => config.key === key);
     }
 
-    public getConfiguration(type: VisualizationType): IVisualizationConfiguration {
+    public getConfiguration(type: VisualizationType): VisualizationConfiguration {
         if (Assessments.isValidType(type)) {
             const assessment = Assessments.forType(type);
             const defaults = {
@@ -121,8 +121,8 @@ export class VisualizationConfigurationFactory {
         return configuration;
     }
 
-    public getChromeCommandToVisualizationTypeMap(): IDictionaryStringTo<VisualizationType> {
-        const map: IDictionaryStringTo<VisualizationType> = {};
+    public getChromeCommandToVisualizationTypeMap(): DictionaryStringTo<VisualizationType> {
+        const map: DictionaryStringTo<VisualizationType> = {};
 
         const types = EnumHelper.getNumericValues<VisualizationType>(VisualizationType);
 

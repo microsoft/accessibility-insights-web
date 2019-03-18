@@ -6,13 +6,13 @@ import { Messages } from '../../../common/messages';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { generateUID } from '../../../common/uid-generator';
 import { link } from '../../../content/link';
+import * as content from '../../../content/test/focus/focus-order';
 import { RestartScanVisualHelperToggle } from '../../../DetailsView/components/restart-scan-visual-helper-toggle';
 import { VisualizationInstanceProcessor } from '../../../injected/visualization-instance-processor';
 import ManualTestRecordYourResults from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
 import { visibleFfocusOrderTestStep } from './test-steps';
-import * as content from '../../../content/test/focus/focus-order';
 
 const description: JSX.Element = <span>Components must receive focus in an order that preserves meaning and operability.</span>;
 

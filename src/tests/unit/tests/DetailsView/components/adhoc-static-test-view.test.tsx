@@ -4,8 +4,8 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
-import { IDisplayableVisualizationTypeData } from '../../../../../common/configs/visualization-configuration-factory';
-import { IScanData, ITestsEnabledState, IVisualizationStoreData } from '../../../../../common/types/store-data/ivisualization-store-data';
+import { DisplayableVisualizationTypeData } from '../../../../../common/configs/visualization-configuration-factory';
+import { IScanData, IVisualizationStoreData, TestsEnabledState } from '../../../../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import {
     AdhocStaticTestView,
@@ -17,9 +17,9 @@ import { ContentReference } from '../../../../../views/content/content-page';
 
 describe('AdhocStaticTestView', () => {
     let props: AdhocStaticTestViewProps;
-    let getStoreDataMock: IMock<(data: ITestsEnabledState) => IScanData>;
+    let getStoreDataMock: IMock<(data: TestsEnabledState) => IScanData>;
     let clickHandlerFactoryMock: IMock<DetailsViewToggleClickHandlerFactory>;
-    let displayableDataStub: IDisplayableVisualizationTypeData;
+    let displayableDataStub: DisplayableVisualizationTypeData;
     let scanDataStub: IScanData;
     let clickHandlerStub: (event: any) => void;
     let visualizationStoreDataStub: IVisualizationStoreData;
@@ -31,7 +31,7 @@ describe('AdhocStaticTestView', () => {
         displayableDataStub = {
             title: 'test title',
             toggleLabel: 'test toggle label',
-        } as IDisplayableVisualizationTypeData;
+        } as DisplayableVisualizationTypeData;
         scanDataStub = {
             enabled: true,
         };

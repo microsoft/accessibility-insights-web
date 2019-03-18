@@ -8,12 +8,12 @@ import { Messages } from '../../common/messages';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { AssessmentInstanceDetailsColumn } from '../../DetailsView/components/assessment-instance-details-column';
-import { IAssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
+import { AssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
 import { AnalyzerProvider } from '../../injected/analyzers/analyzer-provider';
 import { RuleAnalyzerConfiguration } from '../../injected/analyzers/ianalyzer';
 import { DecoratedAxeNodeResult, ScannerUtils } from '../../injected/scanner-utils';
 import { ScannerRuleInfo } from '../../scanner/scanner-rule-info';
-import { IInstanceTableColumn } from '../types/iinstance-table-column';
+import { InstanceTableColumn } from '../types/iinstance-table-column';
 import { TestStep } from '../types/test-step';
 import { AutomatedChecksVisualizationToggle } from './automated-checks-visualization-enabled-toggle';
 
@@ -55,7 +55,7 @@ function buildAutomatedCheckStep(rule: ScannerRuleInfo): TestStep {
         getInstanceStatusColumns: () => [],
         renderInstanceTableHeader: () => null,
         renderRequirementDescription: testStepLink => testStepLink.renderRequirementDescriptionWithoutIndex(),
-        getDefaultMessage: defaultMessageGenerator => defaultMessageGenerator.getNoFailingInstanceMesage,
+        getDefaultMessage: defaultMessageGenerator => defaultMessageGenerator.getNoFailingInstanceMessage,
         getVisualHelperToggle: props => <AutomatedChecksVisualizationToggle {...props} />,
     };
 
@@ -66,7 +66,7 @@ export function buildTestStepsFromRules(rules: ScannerRuleInfo[]): TestStep[] {
     return rules.map(rule => buildAutomatedCheckStep(rule));
 }
 
-const automatedChecksColumns: IInstanceTableColumn[] = [
+const automatedChecksColumns: InstanceTableColumn[] = [
     {
         key: 'path',
         name: 'Path',
@@ -79,7 +79,7 @@ const automatedChecksColumns: IInstanceTableColumn[] = [
     },
 ];
 
-function onRenderPathColumn(item: IAssessmentInstanceRowData): JSX.Element {
+function onRenderPathColumn(item: AssessmentInstanceRowData): JSX.Element {
     let textContent = '';
     if (item.instance.target) {
         textContent = item.instance.target.join(';');
@@ -96,7 +96,7 @@ function onRenderPathColumn(item: IAssessmentInstanceRowData): JSX.Element {
     );
 }
 
-function onRenderSnippetColumn(item: IAssessmentInstanceRowData): JSX.Element {
+function onRenderSnippetColumn(item: AssessmentInstanceRowData): JSX.Element {
     return (
         <AssessmentInstanceDetailsColumn
             background={null}

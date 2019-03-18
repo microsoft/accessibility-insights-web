@@ -2,22 +2,22 @@
 // Licensed under the MIT License.
 import * as axe from 'axe-core';
 
+import { AxeConfigurator } from './axe-configurator';
 import { AxeResponseHandler } from './axe-response-handler';
 import { AxeRuleOverrides } from './axe-rule-overrides';
 import { CheckMessageTransformer } from './check-message-transformer';
-import { HelpUrlGetter } from './help-url-getter';
-import { AxeConfigurator } from './axe-configurator';
-import { ScannerRuleInfo } from './scanner-rule-info';
 import { configuration } from './custom-rule-configurations';
 import { DocumentUtils } from './document-utils';
 import { getRules } from './get-rules';
+import { HelpUrlGetter } from './help-url-getter';
 import { ScanResults } from './iruleresults';
 import { Launcher } from './launcher';
-import { ruleToLinkConfiguration } from './rule-to-links-mappings';
 import { MessageDecorator } from './message-decorator';
 import { ResultDecorator } from './result-decorator';
 import { RuleSifter } from './rule-sifter';
-import { ScanParamaterGenerator } from './scan-parameter-generator';
+import { ruleToLinkConfiguration } from './rule-to-links-mappings';
+import { ScanParameterGenerator } from './scan-parameter-generator';
+import { ScannerRuleInfo } from './scanner-rule-info';
 
 export interface ScanOptions {
     testsToRun?: string[];
@@ -32,7 +32,7 @@ export let scan = (options: ScanOptions, successCallback: (results: ScanResults)
 
     const messageDecorator = new MessageDecorator(configuration, new CheckMessageTransformer());
     const ruleSifter = new RuleSifter((axe as any)._audit.rules, ruleToLinkConfiguration);
-    const scanParameterGenerator = new ScanParamaterGenerator(ruleSifter);
+    const scanParameterGenerator = new ScanParameterGenerator(ruleSifter);
     const documentUtils: DocumentUtils = new DocumentUtils(document);
     const helpUrlGetter = new HelpUrlGetter(configuration);
     const resultDecorator = new ResultDecorator(documentUtils, messageDecorator, (ruleId, axeHelpUrl) =>

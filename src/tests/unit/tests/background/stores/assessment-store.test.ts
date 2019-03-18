@@ -4,7 +4,7 @@ import * as _ from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { AssessmentsProvider } from '../../../../../assessments/assessments-provider';
-import { IAssessment } from '../../../../../assessments/types/iassessment';
+import { Assessment } from '../../../../../assessments/types/iassessment';
 import { IAssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
 import {
     AddFailureInstancePayload,
@@ -23,12 +23,12 @@ import { AssessmentDataConverter } from '../../../../../background/assessment-da
 import { AssessmentDataRemover } from '../../../../../background/assessment-data-remover';
 import { ChromeAdapter } from '../../../../../background/browser-adapter';
 import { AssessmentStore } from '../../../../../background/stores/assessment-store';
-import { IAssesssmentVisualizationConfiguration } from '../../../../../common/configs/visualization-configuration-factory';
+import { AssesssmentVisualizationConfiguration } from '../../../../../common/configs/visualization-configuration-factory';
 import { IndexedDBAPI } from '../../../../../common/indexedDB/indexedDB';
-import { ITab } from '../../../../../common/itab';
+import { Tab } from '../../../../../common/itab';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
-import { IManualTestStatus, ITestStepData, ManualTestStatus } from '../../../../../common/types/manual-test-status';
+import { ManualTestStatus, ManualTestStatusData, TestStepData } from '../../../../../common/types/manual-test-status';
 import {
     IAssessmentData,
     IAssessmentStoreData,
@@ -53,9 +53,9 @@ let assessmentDataRemoverMock: IMock<AssessmentDataRemover>;
 let assessmentsProvider: IAssessmentsProvider;
 let assessmentsProviderMock: IMock<IAssessmentsProvider>;
 let indexDBInstanceMock: IMock<IndexedDBAPI>;
-let assessmentMock: IMock<IAssessment>;
+let assessmentMock: IMock<Assessment>;
 let getInstanceIdentiferGeneratorMock: IMock<(step: string) => Function>;
-let configStub: IAssesssmentVisualizationConfiguration;
+let configStub: AssesssmentVisualizationConfiguration;
 let instanceIdentifierGeneratorStub: (instances) => string;
 
 const assessmentKey: string = 'assessment-1';
@@ -72,7 +72,7 @@ describe('AssessmentStoreTest', () => {
         configStub = {
             getAssessmentData: data => data.assessments[assessmentKey],
             getInstanceIdentiferGenerator: getInstanceIdentiferGeneratorMock.object,
-        } as IAssesssmentVisualizationConfiguration;
+        } as AssesssmentVisualizationConfiguration;
 
         assessmentsProvider = CreateTestAssessmentProvider();
         assessmentsProviderMock = Mock.ofType(AssessmentsProvider, MockBehavior.Strict);
@@ -80,7 +80,7 @@ describe('AssessmentStoreTest', () => {
             getVisualizationConfiguration: () => {
                 return null;
             },
-        } as IAssessment);
+        } as Assessment);
         assessmentDataConverterMock
             .setup(adcm => adcm.getNewManualTestStepResult(It.isAny()))
             .returns(step => getDefaultManualTestStepResult(step));
@@ -288,7 +288,7 @@ describe('AssessmentStoreTest', () => {
             getAssessmentData: state => {
                 return state.assessments[assessmentKey];
             },
-        } as IAssesssmentVisualizationConfiguration;
+        } as AssesssmentVisualizationConfiguration;
 
         getVisualizationConfigurationMock
             .setup(gvcm => gvcm())
@@ -304,7 +304,7 @@ describe('AssessmentStoreTest', () => {
                     key: stepKey,
                 },
             ],
-        } as IAssessment;
+        } as Assessment;
 
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
 
@@ -337,7 +337,7 @@ describe('AssessmentStoreTest', () => {
             getAssessmentData: state => {
                 return state.assessments[assessmentKey];
             },
-        } as IAssesssmentVisualizationConfiguration;
+        } as AssesssmentVisualizationConfiguration;
 
         getVisualizationConfigurationMock
             .setup(gvcm => gvcm())
@@ -353,7 +353,7 @@ describe('AssessmentStoreTest', () => {
                     key: stepKey,
                 },
             ],
-        } as IAssessment;
+        } as Assessment;
 
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
 
@@ -387,7 +387,7 @@ describe('AssessmentStoreTest', () => {
             getAssessmentData: state => {
                 return state.assessments[assessmentKey];
             },
-        } as IAssesssmentVisualizationConfiguration;
+        } as AssesssmentVisualizationConfiguration;
 
         getVisualizationConfigurationMock
             .setup(gvcm => gvcm())
@@ -403,7 +403,7 @@ describe('AssessmentStoreTest', () => {
                     key: stepKey,
                 },
             ],
-        } as IAssessment;
+        } as Assessment;
 
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
 
@@ -424,7 +424,7 @@ describe('AssessmentStoreTest', () => {
         const tabId = 1000;
         const url = 'url';
         const title = 'title';
-        const tab: ITab = {
+        const tab: Tab = {
             id: tabId,
             url,
             title,
@@ -452,7 +452,7 @@ describe('AssessmentStoreTest', () => {
         const tabId = 1000;
         const url = 'url';
         const title = 'title';
-        const tab: ITab = {
+        const tab: Tab = {
             id: tabId,
             url,
             title,
@@ -579,7 +579,7 @@ describe('AssessmentStoreTest', () => {
 
     test('onTrackingCompleted', () => {
         const instanceKey = 'instance-1';
-        const initialInstanceMap: IDictionaryStringTo<IGeneratedAssessmentInstance> = {
+        const initialInstanceMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {
             [instanceKey]: {
                 testStepResults: {
                     [stepKey]: {
@@ -640,7 +640,7 @@ describe('AssessmentStoreTest', () => {
         const tabId = 1000;
         const url = 'url';
         const title = 'title';
-        const tab: ITab = {
+        const tab: Tab = {
             id: tabId,
             url,
             title,
@@ -661,7 +661,7 @@ describe('AssessmentStoreTest', () => {
 
     test('onUpdateTargetTabId: tab is null', () => {
         const tabId = 1000;
-        const tab: ITab = null;
+        const tab: Tab = null;
         browserMock
             .setup(b => b.getTab(tabId, It.isAny()))
             .returns((id, cb) => cb(tab))
@@ -675,7 +675,7 @@ describe('AssessmentStoreTest', () => {
     });
 
     test('on changeInstanceStatus, test step status updated', () => {
-        const generatedAssessmentInstancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance> = {
+        const generatedAssessmentInstancesMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {
             selector: {
                 testStepResults: {
                     [stepKey]: {
@@ -828,7 +828,7 @@ describe('AssessmentStoreTest', () => {
     });
 
     test('on changeAssessmentVisualizationState', () => {
-        const generatedAssessmentInstancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance> = {
+        const generatedAssessmentInstancesMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {
             selector: {
                 testStepResults: {
                     [stepKey]: {
@@ -866,7 +866,7 @@ describe('AssessmentStoreTest', () => {
     });
 
     test('on updateInstanceVisibility', () => {
-        const generatedAssessmentInstancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance> = {
+        const generatedAssessmentInstancesMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {
             selector: {
                 testStepResults: {
                     [stepKey]: {
@@ -920,7 +920,7 @@ describe('AssessmentStoreTest', () => {
     });
 
     test('on changeAssessmentVisualizationStateForAll', () => {
-        const generatedAssessmentInstancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance> = {
+        const generatedAssessmentInstancesMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {
             selector1: {
                 testStepResults: {
                     [stepKey]: {
@@ -970,7 +970,7 @@ describe('AssessmentStoreTest', () => {
     });
 
     test('on undoInstanceStatusChange', () => {
-        const generatedAssessmentInstancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance> = {
+        const generatedAssessmentInstancesMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {
             selector: {
                 testStepResults: {
                     [stepKey]: {
@@ -1264,7 +1264,7 @@ describe('AssessmentStoreTest', () => {
     });
 
     test('on passUnmarkedInstance', () => {
-        const generatedAssessmentInstancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance> = {
+        const generatedAssessmentInstancesMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {
             selector1: {
                 testStepResults: {
                     [stepKey]: {
@@ -1458,7 +1458,7 @@ describe('AssessmentStoreTest', () => {
         expect(ManualTestStatus.UNKNOWN < ManualTestStatus.FAIL).toBeTruthy();
     });
 
-    function getSampleTestStepsData(): IManualTestStatus {
+    function getSampleTestStepsData(): ManualTestStatusData {
         const defaultData = {
             ['assessment-1-step-1']: getDefaultTestStepData(),
             ['assessment-1-step-2']: getDefaultTestStepData(),
@@ -1468,7 +1468,7 @@ describe('AssessmentStoreTest', () => {
         return defaultData;
     }
 
-    function getDefaultTestStepData(): ITestStepData {
+    function getDefaultTestStepData(): TestStepData {
         return {
             stepFinalResult: ManualTestStatus.UNKNOWN,
             isStepScanned: false,
@@ -1483,7 +1483,7 @@ describe('AssessmentStoreTest', () => {
         };
     }
 
-    function generateTestStepData(stepFinalResult: ManualTestStatus, isStepScanned: boolean): ITestStepData {
+    function generateTestStepData(stepFinalResult: ManualTestStatus, isStepScanned: boolean): TestStepData {
         return {
             stepFinalResult,
             isStepScanned,

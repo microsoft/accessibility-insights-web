@@ -3,15 +3,15 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { IPropertyBagColumnRendererConfig } from '../../../../../assessments/common/property-bag-column-renderer';
+import { PropertyBagColumnRendererConfig } from '../../../../../assessments/common/property-bag-column-renderer';
 import { customWidgetsColumnRenderer } from '../../../../../assessments/custom-widgets/custom-widgets-column-renderer';
 import { ColumnValueBag } from '../../../../../common/types/property-bag/column-value-bag';
-import { IAssessmentInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
+import { AssessmentInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
 import { RendererWrapper } from '../common/renderer-wrapper';
 
 describe('CustomWidgetsColumnRenderer', () => {
-    let configs: IPropertyBagColumnRendererConfig<TestPropertyBag>[];
-    let item: IAssessmentInstanceRowData<TestPropertyBag>;
+    let configs: PropertyBagColumnRendererConfig<TestPropertyBag>[];
+    let item: AssessmentInstanceRowData<TestPropertyBag>;
 
     beforeEach(() => {
         configs = [

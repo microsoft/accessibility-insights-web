@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { ColumnValueBag } from './column-value-bag';
 
-export interface ILinkPurposePropertyBag extends ColumnValueBag {
+export interface LinkPurposePropertyBag extends ColumnValueBag {
     accessibleName: string;
     accessibleDescription: string;
     url: string;

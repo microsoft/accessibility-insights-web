@@ -15,7 +15,7 @@ import { FeatureFlagActions, FeatureFlagPayload } from '../../../../../backgroun
 import { GlobalActionCreator } from '../../../../../background/actions/global-action-creator';
 import { GlobalActionHub } from '../../../../../background/actions/global-action-hub';
 import { LaunchPanelStateActions } from '../../../../../background/actions/launch-panel-state-action';
-import { IScopingPayload, ScopingActions } from '../../../../../background/actions/scoping-actions';
+import { ScopingActions, ScopingPayload } from '../../../../../background/actions/scoping-actions';
 import { UserConfigurationActions } from '../../../../../background/actions/user-configuration-actions';
 import { ChromeAdapter } from '../../../../../background/browser-adapter';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
@@ -152,7 +152,7 @@ describe('GlobalActionCreatorTest', () => {
 
     test('registerCallback for onAddSelector', () => {
         const actionName = 'addSelector';
-        const payload: IScopingPayload = {
+        const payload: ScopingPayload = {
             inputType: 'generic',
             selector: ['iframe', 'selector'],
         };
@@ -172,7 +172,7 @@ describe('GlobalActionCreatorTest', () => {
 
     test('registerCallback for onDeleteSelector', () => {
         const actionName = 'deleteSelector';
-        const payload: IScopingPayload = {
+        const payload: ScopingPayload = {
             inputType: 'generic',
             selector: ['iframe', 'selector'],
         };
@@ -303,14 +303,13 @@ describe('GlobalActionCreatorTest', () => {
     });
 });
 
-// tslint:disable-next-line:max-classes-per-file
 class GlobalActionCreatorValidator {
     public testSubject: GlobalActionCreator;
-    private commandActionMocksMap: IDictionaryStringTo<IMock<Action<any>>> = {};
-    private featureFlagActionsMockMap: IDictionaryStringTo<IMock<Action<any>>> = {};
-    private launchPanelActionsMockMap: IDictionaryStringTo<IMock<Action<any>>> = {};
-    private scopingActionsMockMap: IDictionaryStringTo<IMock<Action<any>>> = {};
-    private userConfigMockMap: IDictionaryStringTo<IMock<Action<any>>> = {};
+    private commandActionMocksMap: DictionaryStringTo<IMock<Action<any>>> = {};
+    private featureFlagActionsMockMap: DictionaryStringTo<IMock<Action<any>>> = {};
+    private launchPanelActionsMockMap: DictionaryStringTo<IMock<Action<any>>> = {};
+    private scopingActionsMockMap: DictionaryStringTo<IMock<Action<any>>> = {};
+    private userConfigMockMap: DictionaryStringTo<IMock<Action<any>>> = {};
 
     private commandActionsContainerMock = Mock.ofType(CommandActions);
     private featureFlagActionsContainerMock = Mock.ofType(FeatureFlagActions);
@@ -400,7 +399,7 @@ class GlobalActionCreatorValidator {
     private setupActionWithInvokeParameter(
         actionName: string,
         expectedInvokeParam: any,
-        actionsMockMap: IDictionaryStringTo<IMock<Action<any>>>,
+        actionsMockMap: DictionaryStringTo<IMock<Action<any>>>,
     ): GlobalActionCreatorValidator {
         const action = this.getOrCreateAction(actionName, actionsMockMap);
 
@@ -409,7 +408,7 @@ class GlobalActionCreatorValidator {
         return this;
     }
 
-    private getOrCreateAction(actionName: string, actionsMockMap: IDictionaryStringTo<IMock<Action<any>>>): IMock<Action<any>> {
+    private getOrCreateAction(actionName: string, actionsMockMap: DictionaryStringTo<IMock<Action<any>>>): IMock<Action<any>> {
         let action = actionsMockMap[actionName];
 
         if (action == null) {
@@ -422,7 +421,7 @@ class GlobalActionCreatorValidator {
     private setupAction(
         actionName: string,
         actionsContainerMock: IMock<any>,
-        actionsMapMock: IDictionaryStringTo<IMock<Action<any>>>,
+        actionsMapMock: DictionaryStringTo<IMock<Action<any>>>,
     ): GlobalActionCreatorValidator {
         const action = this.getOrCreateAction(actionName, actionsMapMock);
 
@@ -484,7 +483,7 @@ class GlobalActionCreatorValidator {
         this.verifyAllActions(this.userConfigMockMap);
     }
 
-    private verifyAllActions(actionsMap: IDictionaryStringTo<IMock<Action<any>>>): void {
+    private verifyAllActions(actionsMap: DictionaryStringTo<IMock<Action<any>>>): void {
         for (const actionName in actionsMap) {
             if (actionsMap.hasOwnProperty(actionName)) {
                 actionsMap[actionName].verifyAll();

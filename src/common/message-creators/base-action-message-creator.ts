@@ -1,27 +1,25 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-/// <reference path="../message.d.ts" />
-
-import { Messages } from '../messages';
 import { PayloadWithEventName } from '../../background/actions/action-payloads';
+import { Messages } from '../messages';
 import { TelemetryData } from '../telemetry-events';
 
 export abstract class BaseActionMessageCreator {
-    private _postMessageDelegate: (message: IMessage) => void;
+    private postMessageDelegate: (message: Message) => void;
     protected _tabId: number;
 
-    constructor(postMessage: (message: IMessage) => void, tabId: number) {
-        this._postMessageDelegate = postMessage;
+    constructor(postMessage: (message: Message) => void, tabId: number) {
+        this.postMessageDelegate = postMessage;
         this._tabId = tabId;
     }
 
-    protected dispatchMessage(message: IMessage): void {
-        this._postMessageDelegate(message);
+    protected dispatchMessage(message: Message): void {
+        this.postMessageDelegate(message);
     }
 
-    protected dispatchType(type: string): void {
+    protected dispatchType(messageType: string): void {
         this.dispatchMessage({
-            type: type,
+            type: messageType,
             tabId: this._tabId,
         });
     }
@@ -31,7 +29,7 @@ export abstract class BaseActionMessageCreator {
             eventName: eventName,
             telemetry: eventData,
         };
-        const message: IMessage = {
+        const message: Message = {
             type: Messages.Telemetry.Send,
             payload,
         };

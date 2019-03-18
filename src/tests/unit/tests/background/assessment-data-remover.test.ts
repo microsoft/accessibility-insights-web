@@ -20,7 +20,7 @@ describe('AssessmentDataRemoverTest', () => {
         expect(instanceMap[instanceKey]).toBeUndefined();
     });
 
-    function getInstanceMapWithOnlyOneTestStepResult(): IDictionaryStringTo<IGeneratedAssessmentInstance> {
+    function getInstanceMapWithOnlyOneTestStepResult(): DictionaryStringTo<IGeneratedAssessmentInstance> {
         return {
             [instanceKey]: {
                 testStepResults: {
@@ -35,7 +35,7 @@ describe('AssessmentDataRemoverTest', () => {
         };
     }
 
-    function getInstanceMapWitMultipleTestStepResults(): IDictionaryStringTo<IGeneratedAssessmentInstance> {
+    function getInstanceMapWitMultipleTestStepResults(): DictionaryStringTo<IGeneratedAssessmentInstance> {
         return {
             [instanceKey]: {
                 testStepResults: {
