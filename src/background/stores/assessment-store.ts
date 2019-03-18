@@ -17,6 +17,7 @@ import {
     IUserCapturedInstance,
 } from '../../common/types/store-data/iassessment-result-data';
 import { IScanBasePayload, IScanCompletedPayload, IScanUpdatePayload } from '../../injected/analyzers/ianalyzer';
+import { DictionaryStringTo } from '../../types/common-types';
 import { SelectTestStepPayload, UpdateVisibilityPayload } from '../actions/action-payloads';
 import { AssessmentDataConverter } from '../assessment-data-converter';
 import { InitialAssessmentStoreDataGenerator } from '../intial-assessment-store-data-generator';

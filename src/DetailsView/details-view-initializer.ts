@@ -48,6 +48,7 @@ import { contentPages } from '../content';
 import { DetailsDialogHandler } from '../injected/details-dialog-handler';
 import { ScannerUtils } from '../injected/scanner-utils';
 import { getVersion, scan } from '../scanner/exposed-apis';
+import { DictionaryStringTo } from '../types/common-types';
 import { DetailsViewActionMessageCreator } from './actions/details-view-action-message-creator';
 import { IssuesSelectionFactory } from './actions/issues-selection-factory';
 import { AssessmentTableColumnConfigHandler } from './components/assessment-table-column-config-handler';

@@ -5,6 +5,7 @@ import * as _ from 'lodash/index';
 import { ManualTestStatus } from '../common/types/manual-test-status';
 import { PartialTabOrderPropertyBag } from '../injected/tab-order-property-bag';
 import { ITabStopEvent } from '../injected/tab-stops-listener';
+import { DictionaryStringTo } from '../types/common-types';
 import {
     IAssessmentInstancesMap,
     IGeneratedAssessmentInstance,

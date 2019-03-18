@@ -15,6 +15,7 @@ import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { RuleResult, ScanResults } from '../../scanner/iruleresults';
+import { DictionaryStringTo } from '../../types/common-types';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { ReportGenerator } from '../reports/report-generator';
 import { ExportDialog } from './export-dialog';

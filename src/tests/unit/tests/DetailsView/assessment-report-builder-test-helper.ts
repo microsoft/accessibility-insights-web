@@ -22,6 +22,7 @@ import {
     IRequirementReportModel,
     IScanDetailsReportModel,
 } from '../../../../DetailsView/reports/assessment-report-model';
+import { DictionaryStringTo } from '../../../../types/common-types';
 
 export class AssessmentReportBuilderTestHelper {
     public static defaultMessageComponent = null;

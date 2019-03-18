@@ -18,6 +18,7 @@ import { PropertyBags, VisualizationInstanceProcessorCallback } from '../../inje
 import { DrawerProvider } from '../../injected/visualization/drawer-provider';
 import { IDrawer } from '../../injected/visualization/idrawer';
 import { ScanResults } from '../../scanner/iruleresults';
+import { DictionaryNumberTo, DictionaryStringTo } from '../../types/common-types';
 import { ContentPageComponent } from '../../views/content/content-page';
 import { EnumHelper } from '../enum-helper';
 import { IAnalyzerTelemetryCallback } from '../types/analyzer-telemetry-callbacks';

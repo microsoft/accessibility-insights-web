@@ -14,7 +14,7 @@ const fixture = createTestFixture('test-fixture', '');
 
 const context = {
     _data: null,
-    data: function(d: any) {
+    data: function(d: any): any {
         // tslint:disable-next-line:no-invalid-this
         this._data = d;
     },

@@ -10,10 +10,8 @@ import {
     SelectionMode,
 } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
-import { It, Mock } from 'typemoq';
+import { Mock } from 'typemoq';
 
-import { FeatureFlags } from '../../../../../common/feature-flags';
-import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { BugButton } from '../../../../../DetailsView/components/bug-button';
 import { FailureDetails } from '../../../../../DetailsView/components/failure-details';
@@ -21,6 +19,7 @@ import { IssuesDetailsList, IssuesDetailsListProps } from '../../../../../Detail
 import { DetailsGroup, DetailsRowData, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { RuleResult } from '../../../../../scanner/iruleresults';
+import { DictionaryStringTo } from '../../../../../types/common-types';
 import { VisualizationScanResultStoreDataBuilder } from '../../../common/visualization-scan-result-store-data-builder';
 
 describe('IssuesDetailsListTest', () => {

@@ -7,6 +7,7 @@ import { HTMLElementUtils } from '../../../../common/html-element-utils';
 import { Logger } from '../../../../common/logging/logger';
 import { ScannerUtils } from '../../../../injected/scanner-utils';
 import { ScanResults } from '../../../../scanner/iruleresults';
+import { DictionaryStringTo } from '../../../../types/common-types';
 
 describe('A11YAutoCheckTest', () => {
     let scannerUtilsMock: IMock<ScannerUtils>;

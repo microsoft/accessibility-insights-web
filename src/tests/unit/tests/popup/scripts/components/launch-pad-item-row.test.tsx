@@ -24,12 +24,12 @@ describe('LaunchPadItemRow', () => {
         onClickTitle: onClickTitleMock.object,
     };
 
-    function getPrivate(obj: LaunchPadItemRow) {
+    function getPrivate(obj: LaunchPadItemRow): { descriptionId: string } {
         return (obj as {}) as { descriptionId: string };
     }
 
     it('has unique description ids', () => {
-        function getId() {
+        function getId(): string {
             return getPrivate(new LaunchPadItemRow(props)).descriptionId;
         }
         const id1 = getId();

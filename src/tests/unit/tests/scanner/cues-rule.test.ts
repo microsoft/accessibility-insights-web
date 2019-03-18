@@ -80,7 +80,7 @@ describe('cues rule', () => {
     });
 });
 
-function testCuesEvaluateWithData(expectedData, nodeData) {
+function testCuesEvaluateWithData(expectedData, nodeData): void {
     const nodeStub = createNodeStub(expectedData.element, nodeData);
     const getAccessibleTextMock = GlobalMock.ofInstance(AxeUtils.getAccessibleText, 'getAccessibleText', AxeUtils, MockBehavior.Strict);
 

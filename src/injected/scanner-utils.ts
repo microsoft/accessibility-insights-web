@@ -6,6 +6,7 @@ import { createDefaultLogger } from '../common/logging/default-logger';
 import { Logger } from '../common/logging/logger';
 import { scan as scanRunner, ScanOptions } from '../scanner/exposed-apis';
 import { RuleResult, ScanResults } from '../scanner/iruleresults';
+import { DictionaryStringTo } from '../types/common-types';
 import { HyperlinkDefinition } from '../views/content/content-page';
 
 declare var axe: any;
