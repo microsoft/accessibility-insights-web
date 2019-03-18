@@ -7,7 +7,7 @@ import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { AssessmentNavState, IGeneratedAssessmentInstance } from '../../common/types/store-data/iassessment-result-data';
 import { DetailsViewActionMessageCreator } from '../../DetailsView/actions/details-view-action-message-creator';
-import { AssessmentInstanceTable, AssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
+import { AssessmentInstanceRowData, AssessmentInstanceTable } from '../../DetailsView/components/assessment-instance-table';
 import { TestStepLink } from '../../DetailsView/components/test-step-link';
 import { IAnalyzer } from '../../injected/analyzers/ianalyzer';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';

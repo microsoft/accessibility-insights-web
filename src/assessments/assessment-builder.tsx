@@ -12,7 +12,7 @@ import { Messages } from '../common/messages';
 import { ManualTestStatus } from '../common/types/manual-test-status';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { IAssessmentScanData, IScanData } from '../common/types/store-data/ivisualization-store-data';
-import { AssessmentInstanceTable, AssessmentInstanceRowData } from '../DetailsView/components/assessment-instance-table';
+import { AssessmentInstanceRowData, AssessmentInstanceTable } from '../DetailsView/components/assessment-instance-table';
 import { AssessmentTestView } from '../DetailsView/components/assessment-test-view';
 import { TestStepLink } from '../DetailsView/components/test-step-link';
 import { AnalyzerProvider } from '../injected/analyzers/analyzer-provider';

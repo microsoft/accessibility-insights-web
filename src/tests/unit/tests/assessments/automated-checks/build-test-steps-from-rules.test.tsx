@@ -13,7 +13,7 @@ import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { AssessmentInstanceTable, AssessmentInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
+import { AssessmentInstanceRowData, AssessmentInstanceTable } from '../../../../../DetailsView/components/assessment-instance-table';
 import { TestStepLink } from '../../../../../DetailsView/components/test-step-link';
 import { AnalyzerProvider } from '../../../../../injected/analyzers/analyzer-provider';
 import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/ianalyzer';
