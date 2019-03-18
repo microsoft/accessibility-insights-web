@@ -21,7 +21,6 @@ If you wish to contribute changes back to the [accessibility-insights-web](https
 
 ```
 > git clone https://github.com/adacat/accessibility-insights-web
-
 ```
 
 ## Setting up the upstream repository
@@ -37,14 +36,12 @@ primary **accessibility-insights-web** repository.
     origin  https://github.com/adacat/accessibility-insights-web (fetch)
 
     origin  https://github.com/adacat/accessibility-insights-web (push)
-
 ```
 
 -   Map the primary **accessibility-insights-web** as the upstream remote
 
 ```
 > git remote add upstream https://github.com/Microsoft/accessibility-insights-web
-
 ```
 
 -   Now running `git remote -v` should show the upstream repository also
@@ -55,7 +52,6 @@ primary **accessibility-insights-web** repository.
     origin  https://github.com/adacat/accessibility-insights-web (push)
     upstream        https://github.com/Microsoft/accessibility-insights-web (fetch)
     upstream        https://github.com/Microsoft/accessibility-insights-web (push)
-
 ```
 
 -   At this point you are ready to start branching and contributing back changes.
@@ -73,7 +69,6 @@ From time to time, your fork will get out of sync with the upstream remote. Use 
     > git checkout master
     > git pull upstream master
     > git push
-
 ```
 
 ## Merging upstream master into your current branch
@@ -84,5 +79,4 @@ Use these commands instead if you would like to update your current branch in yo
     > git fetch upstream
     > git pull upstream master
     > git push
-
 ```
