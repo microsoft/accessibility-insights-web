@@ -1,16 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`HeaderTest render header: new assessment experience disabled 1`] = `
-"<header className=\\"header-bar\\">
-  <class_1 deps={{...}} />
-  <div className=\\"ms-font-m header-text\\">
-    Accessibility Insights for Web
-  </div>
-  <GearOptionsButtonComponent dropdownClickHandler={{...}} featureFlags={{...}} />
-</header>"
-`;
-
-exports[`HeaderTest render header: no feature flag store data 1`] = `
+exports[`HeaderTest render: no feature flag store data 1`] = `
 "<header className=\\"header-bar\\">
   <class_1 deps={{...}} />
   <div className=\\"ms-font-m header-text\\">
@@ -19,22 +9,53 @@ exports[`HeaderTest render header: no feature flag store data 1`] = `
 </header>"
 `;
 
-exports[`HeaderTest render header: tabClosed is false, new assessment experience enabled 1`] = `
-"<header className=\\"header-bar\\">
-  <class_1 deps={{...}} />
-  <div className=\\"ms-font-m header-text\\">
+exports[`HeaderTest render: tabClosed is false 1`] = `
+<header
+  className="header-bar"
+>
+  <class_1
+    deps={null}
+  />
+  <div
+    className="ms-font-m header-text"
+  >
     Accessibility Insights for Web
   </div>
-  <Switcher deps={{...}} pivotKey={2} />
-  <GearOptionsButtonComponent dropdownClickHandler={{...}} featureFlags={{...}} />
-</header>"
+  <Switcher
+    deps={null}
+    pivotKey={2}
+  />
+  <GearOptionsButtonComponent
+    dropdownClickHandler={
+      proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "dropdownActionMessageCreator": undefined,
+        "openPreviewFeaturesPanelHandler": undefined,
+        "openScopingPanelHandler": undefined,
+        "openSettingsPanelHandler": undefined,
+        "source": undefined,
+      }
+    }
+    featureFlags={
+      Object {
+        "test-flag": true,
+      }
+    }
+  />
+</header>
 `;
 
-exports[`HeaderTest render header: target tabClosed is true, new assessment experience enabled 1`] = `
-"<header className=\\"header-bar\\">
-  <class_1 deps={{...}} />
-  <div className=\\"ms-font-m header-text\\">
+exports[`HeaderTest render: tabClosed is true 1`] = `
+<header
+  className="header-bar"
+>
+  <class_1
+    deps={null}
+  />
+  <div
+    className="ms-font-m header-text"
+  >
     Accessibility Insights for Web
   </div>
-</header>"
+</header>
 `;
