@@ -10,6 +10,7 @@ import { FeatureFlagStore } from '../../../../../../background/stores/global/fea
 import { getDefaultFeatureFlagValues } from '../../../../../../common/feature-flags';
 import { StoreNames } from '../../../../../../common/stores/store-names';
 import { FeatureFlagStoreData } from '../../../../../../common/types/store-data/feature-flag-store-data';
+import { DictionaryStringTo } from '../../../../../../types/common-types';
 import { createStoreWithNullParams, StoreTester } from '../../../../common/store-tester';
 
 describe('FeatureFlagStoreTest', () => {

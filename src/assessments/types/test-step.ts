@@ -17,6 +17,7 @@ import { IDrawer } from '../../injected/visualization/idrawer';
 import { ContentPageComponent, HyperlinkDefinition } from '../../views/content/content-page';
 import { IGetMessageGenerator } from '../assessment-default-message-generator';
 import { AnalyzerProvider } from './../../injected/analyzers/analyzer-provider';
+import { DictionaryStringTo } from './../../types/common-types';
 import { InstanceTableColumn } from './iinstance-table-column';
 import { ReportInstanceFields } from './report-instance-field';
 

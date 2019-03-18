@@ -3,6 +3,7 @@
 import { autobind } from '@uifabric/utilities';
 
 import { WindowUtils } from '../../common/window-utils';
+import { DictionaryStringTo } from '../../types/common-types';
 import { IErrorMessageContent, IWindowMessage, WindowMessageMarshaller } from './window-message-marshaller';
 
 export type FrameMessageResponseCallback = (

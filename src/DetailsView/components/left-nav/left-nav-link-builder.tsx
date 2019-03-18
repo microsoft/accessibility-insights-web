@@ -7,6 +7,7 @@ import { IAssessmentsProvider } from '../../../assessments/types/iassessments-pr
 import { VisualizationConfiguration } from '../../../common/configs/visualization-configuration-factory';
 import { ManualTestStatus, ManualTestStatusData } from '../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../common/types/visualization-type';
+import { DictionaryStringTo } from '../../../types/common-types';
 import { OutcomeStats, OutcomeTypeSemantic } from '../../reports/components/outcome-type';
 import { GetAssessmentSummaryModelFromProviderAndStatusData } from '../../reports/get-assessment-summary-model';
 import { BaseLeftNavLink, onBaseLeftNavItemClick, onBaseLeftNavItemRender } from '../base-left-nav';

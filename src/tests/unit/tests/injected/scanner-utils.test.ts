@@ -9,6 +9,7 @@ import { IScopingStoreData } from '../../../../common/types/store-data/scoping-s
 import { DecoratedAxeNodeResult, IHtmlElementAxeResults, ScannerUtils } from '../../../../injected/scanner-utils';
 import { scan, ScanOptions } from '../../../../scanner/exposed-apis';
 import { RuleResult, ScanResults } from '../../../../scanner/iruleresults';
+import { DictionaryStringTo } from '../../../../types/common-types';
 
 describe('ScannerUtilsTest', () => {
     let scannerMock: IMock<typeof scan>;

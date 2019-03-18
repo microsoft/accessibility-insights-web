@@ -23,6 +23,7 @@ import { MainWindowContext } from '../../../../injected/main-window-context';
 import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from '../../../../injected/scanner-utils';
 import { ShadowUtils } from '../../../../injected/shadow-utils';
 import { TargetPageActionMessageCreator } from '../../../../injected/target-page-action-message-creator';
+import { DictionaryStringTo } from '../../../../types/common-types';
 
 describe('DialogRendererTests', () => {
     let htmlElementUtilsMock: IMock<HTMLElementUtils>;

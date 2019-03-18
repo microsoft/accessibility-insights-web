@@ -14,7 +14,7 @@ describe('CustomWidgetsFormatterTests', () => {
         testGetBoundingRect('button', false);
     });
 
-    function testGetBoundingRect(role: string, shouldIncludeChildren: boolean) {
+    function testGetBoundingRect(role: string, shouldIncludeChildren: boolean): void {
         const expectedChildrenTimes = shouldIncludeChildren ? Times.once() : Times.never();
         const expectedDefaultTimes = shouldIncludeChildren ? Times.never() : Times.once();
 

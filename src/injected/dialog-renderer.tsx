@@ -13,6 +13,7 @@ import { NavigatorUtils } from '../common/navigator-utils';
 import { getPlatform } from '../common/platform';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { WindowUtils } from '../common/window-utils';
+import { DictionaryStringTo } from '../types/common-types';
 import { rootContainerId } from './constants';
 import { DetailsDialogHandler } from './details-dialog-handler';
 import { FrameCommunicator, IMessageRequest } from './frameCommunicators/frame-communicator';

@@ -12,6 +12,7 @@ import {
 import { DropdownClickHandler } from '../../../../../common/dropdown-click-handler';
 import { FeatureFlags } from '../../../../../common/feature-flags';
 import { DetailsViewDropDown } from '../../../../../DetailsView/components/details-view-dropdown';
+import { DictionaryStringTo } from '../../../../../types/common-types';
 
 describe('gear-options-button-component.test', () => {
     let dropdownClickHandlerMock: IMock<DropdownClickHandler>;
