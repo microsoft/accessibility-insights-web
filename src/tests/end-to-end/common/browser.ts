@@ -37,6 +37,10 @@ export class Browser {
         return await this.newPage(url);
     }
 
+    public async newContentPage(contentPath: string): Promise<Page> {
+        return await this.newPage(await this.getContentPageUrl(contentPath));
+    }
+
     public async newExtensionPopupPage(targetTabId: number): Promise<Page> {
         return await this.newPage(await this.getPopupPageUrl(targetTabId));
     }
@@ -51,6 +55,10 @@ export class Browser {
 
     public async getDetailsViewPageUrl(targetTabId: number): Promise<string> {
         return this.getExtensionUrl(`DetailsView/detailsView.html?tabId=${targetTabId}`);
+    }
+
+    public async getContentPageUrl(contentPath: string): Promise<string> {
+        return this.getExtensionUrl(`insights.html#/content/${contentPath}`);
     }
 
     public async closeAllPages(): Promise<void> {

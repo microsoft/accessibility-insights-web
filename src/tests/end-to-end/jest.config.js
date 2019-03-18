@@ -12,6 +12,7 @@ module.exports = {
     globalTeardown: `${currentDir}/setup/global-teardown.ts`,
     moduleFileExtensions: [
         'ts',
+        'tsx',
         'json', // adding json, since puppeteer.launch throws error - refer https://github.com/GoogleChrome/puppeteer/issues/2754
         'js',
     ],

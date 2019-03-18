@@ -5,3 +5,9 @@ export const CommonSelectors = {
     settingsDropdownMenu: '#settings-dropdown-menu',
     previewFeaturesDropdownButton: '.preview-features-drop-down-button',
 };
+
+export const DetailsViewCommonSelectors = {
+    gearButton: '.gear-options-icon',
+    settingsButton: 'button[name="Settings"]',
+    highContrastToggle: 'button#enable-high-contrast-mode',
+};
