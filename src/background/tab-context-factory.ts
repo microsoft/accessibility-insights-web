@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Q from 'q';
-
 import { IAssessmentsProvider } from '../assessments/types/iassessments-provider';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { NotificationCreator } from '../common/notification-creator';
@@ -18,14 +17,12 @@ import { AssessmentScanPolicyRunner } from './assessment-scan-policy-runner';
 import { BrowserAdapter } from './browser-adapter';
 import { ChromeFeatureController } from './chrome-feature-controller';
 import { DetailsViewController } from './details-view-controller';
-import { DetailsViewPivotValidator } from './details-view-pivot-validator';
 import { InjectorController } from './injector-controller';
 import { ContentScriptInjector } from './injector/content-script-injector';
 import { Interpreter } from './interpreter';
 import { isAnAssessmentSelected } from './is-an-assessment-selected';
 import { ScannerUtility } from './scanner-utility';
 import { AssessmentStore } from './stores/assessment-store';
-import { FeatureFlagStore } from './stores/global/feature-flag-store';
 import { TabContextStoreHub } from './stores/tab-context-store-hub';
 import { TabContext } from './tab-context';
 import { TargetTabController } from './target-tab-controller';
@@ -35,7 +32,6 @@ export class TabContextFactory {
     constructor(
         private visualizationConfigurationFactory: VisualizationConfigurationFactory,
         private telemetryEventHandler: TelemetryEventHandler,
-        private featureFlagStore: FeatureFlagStore,
         private windowUtils: WindowUtils,
         private targetTabController: TargetTabController,
         private assessmentStore: AssessmentStore,
@@ -128,9 +124,6 @@ export class TabContextFactory {
         injectorController.initialize();
         const dispatcher = new StateDispatcher(broadcastMessage, storeHub);
         dispatcher.initialize();
-
-        const validator = new DetailsViewPivotValidator(this.featureFlagStore, interpreter, storeHub.tabStore, this.windowUtils);
-        validator.initialize();
 
         return new TabContext(interpreter, storeHub);
     }
