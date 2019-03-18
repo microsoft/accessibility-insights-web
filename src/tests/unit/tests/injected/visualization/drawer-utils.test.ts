@@ -48,6 +48,7 @@ describe('getBoundingClientRectIncludingChildren', () => {
         expect(result.right).toBe(15);
     });
 
+    // tslint:disable-next-line: typedef
     function getElementStub(top: number, left: number, bottom: number, right: number, children?: any[]) {
         return {
             children: children || [],

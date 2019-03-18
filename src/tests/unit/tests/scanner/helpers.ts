@@ -21,7 +21,7 @@ export function testNativeWidgetConfiguration(
     checkId: string,
     expectedEvaluate?: (node: any, options: any, virtualNode: any, context: any) => boolean,
     expectedMatches?: (node: any, virtualNode: any) => boolean,
-) {
+): void {
     const result = createNativeWidgetConfiguration(ruleId, checkId, expectedEvaluate, expectedMatches);
     expect(result.rule.id).toEqual(ruleId);
     expect(result.rule.any).toHaveLength(1);

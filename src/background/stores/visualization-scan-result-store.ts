@@ -59,7 +59,7 @@ export class VisualizationScanResultStore extends BaseStore<IVisualizationScanRe
     }
 
     @autobind
-    private onTabStopsDisabled() {
+    private onTabStopsDisabled(): void {
         this.state.tabStops.tabbedElements = null;
         this.emitChanged();
     }
