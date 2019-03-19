@@ -1,11 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Enzyme from 'enzyme';
 import { mount, shallow } from 'enzyme';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
-import { It, Mock, Times } from 'typemoq';
+import { IMock, It, Mock, Times } from 'typemoq';
 import { VisualizationToggle } from '../../../../../../common/components/visualization-toggle';
 import {
     VisualizationConfiguration,
@@ -86,7 +85,7 @@ describe('DiagnosticViewToggleTest', () => {
             const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource);
             const props: DiagnosticViewToggleProps = propsBuilder
                 .setupFeatureFlags({ [FeatureFlags.newAssessmentExperience]: true })
-                .setupOpenDetailsViewCall(event, DetailsViewPivotType.fastPass)
+                .setupOpenDetailsViewCall(event)
                 .build();
 
             const wrapper = shallow(<DiagnosticViewToggle {...props} />);
@@ -119,7 +118,7 @@ describe('DiagnosticViewToggleTest', () => {
 
             const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource)
                 .setupVisualizationStoreData(data)
-                .setupOpenDetailsViewCall(event, DetailsViewPivotType.fastPass);
+                .setupOpenDetailsViewCall(event);
 
             const props: DiagnosticViewToggleProps = propsBuilder.build();
 
@@ -133,10 +132,7 @@ describe('DiagnosticViewToggleTest', () => {
             const type = VisualizationType.Issues;
             const event = eventStubFactory.createKeypressEvent();
 
-            const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource).setupOpenDetailsViewCall(
-                event,
-                DetailsViewPivotType.fastPass,
-            );
+            const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource).setupOpenDetailsViewCall(event);
 
             const props: DiagnosticViewToggleProps = propsBuilder.build();
 
@@ -166,9 +162,7 @@ describe('DiagnosticViewToggleTest', () => {
             const type = VisualizationType.TabStops;
             const event = eventStubFactory.createKeypressEvent();
 
-            const contentProviderMock = Mock.ofType<ContentProvider>();
-            const depsMock = Mock.ofType<ContentLinkDeps>();
-            depsMock.setup(deps => deps.contentProvider).returns(() => contentProviderMock.object);
+            const depsMock = createDepsMock();
 
             const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource)
                 .setupOpenDetailsViewCall(event)
@@ -192,9 +186,7 @@ describe('DiagnosticViewToggleTest', () => {
             const type = VisualizationType.TabStops;
             const event = eventStubFactory.createKeypressEvent();
 
-            const contentProviderMock = Mock.ofType<ContentProvider>();
-            const depsMock = Mock.ofType<ContentLinkDeps>();
-            depsMock.setup(deps => deps.contentProvider).returns(() => contentProviderMock.object);
+            const depsMock = createDepsMock();
 
             const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource)
                 .setupOpenDetailsViewCall(event)
@@ -220,9 +212,7 @@ describe('DiagnosticViewToggleTest', () => {
             const type = VisualizationType.TabStops;
             const event = eventStubFactory.createKeypressEvent();
 
-            const contentProviderMock = Mock.ofType<ContentProvider>();
-            const depsMock = Mock.ofType<ContentLinkDeps>();
-            depsMock.setup(deps => deps.contentProvider).returns(() => contentProviderMock.object);
+            const depsMock = createDepsMock();
 
             const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource)
                 .setupOpenDetailsViewCall(event)
@@ -246,9 +236,7 @@ describe('DiagnosticViewToggleTest', () => {
             const type = VisualizationType.TabStops;
             const event = eventStubFactory.createKeypressEvent();
 
-            const contentProviderMock = Mock.ofType<ContentProvider>();
-            const depsMock = Mock.ofType<ContentLinkDeps>();
-            depsMock.setup(deps => deps.contentProvider).returns(() => contentProviderMock.object);
+            const depsMock = createDepsMock();
 
             const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource)
                 .setupOpenDetailsViewCall(event)
@@ -273,9 +261,7 @@ describe('DiagnosticViewToggleTest', () => {
         const type = VisualizationType.TabStops;
         const event = eventStubFactory.createKeypressEvent();
 
-        const contentProviderMock = Mock.ofType<ContentProvider>();
-        const depsMock = Mock.ofType<ContentLinkDeps>();
-        depsMock.setup(deps => deps.contentProvider).returns(() => contentProviderMock.object);
+        const depsMock = createDepsMock();
 
         const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource)
             .setupOpenDetailsViewCall(event)
@@ -295,6 +281,14 @@ describe('DiagnosticViewToggleTest', () => {
         expect((testObject as any)._userEventListenerAdded).toBe(true);
         propsBuilder.addUserListenerVerifyAll();
     });
+
+    function createDepsMock(): IMock<ContentLinkDeps> {
+        const contentProviderMock = Mock.ofType<ContentProvider>();
+        const depsMock = Mock.ofType<ContentLinkDeps>();
+        depsMock.setup(deps => deps.contentProvider).returns(() => contentProviderMock.object);
+
+        return depsMock;
+    }
 });
 
 class DiagnosticViewTogglePropsBuilder {
@@ -331,9 +325,9 @@ class DiagnosticViewTogglePropsBuilder {
         return this;
     }
 
-    public setupOpenDetailsViewCall(event, pivot = DetailsViewPivotType.allTest): DiagnosticViewTogglePropsBuilder {
+    public setupOpenDetailsViewCall(event): DiagnosticViewTogglePropsBuilder {
         this.actionMessageCreatorMock
-            .setup(ac => ac.openDetailsView(event, this.type, this.telemetrySource, pivot))
+            .setup(ac => ac.openDetailsView(event, this.type, this.telemetrySource, DetailsViewPivotType.fastPass))
             .verifiable(Times.once());
 
         return this;
