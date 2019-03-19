@@ -31,7 +31,7 @@ describe('AnalyzerControllerTests', () => {
     let featureFlagStoreStoreMock: IMock<FeatureFlagStore>;
     let testType: VisualizationType;
     let getStoreDataMock: IMock<(data: TestsEnabledState) => IScanData>;
-    let getAnalyzerMock: IMock<(provider: AnalyzerProvider) => Analyzer>>;
+    let getAnalyzerMock: IMock<(provider: AnalyzerProvider) => Analyzer>;
     let getIdentifierMock: IMock<() => string>;
     let identifier: string;
     let configStub: VisualizationConfiguration;
