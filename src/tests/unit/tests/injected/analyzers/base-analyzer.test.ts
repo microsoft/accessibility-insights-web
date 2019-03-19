@@ -4,11 +4,11 @@ import { IMock, It, Mock, Times } from 'typemoq';
 
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { BaseAnalyzer } from '../../../../../injected/analyzers/base-analyzer';
-import { IAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
+import { AnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
 
 describe('BaseAnalyzerTest', () => {
     let testSubject: BaseAnalyzer;
-    let configStub: IAnalyzerConfiguration;
+    let configStub: AnalyzerConfiguration;
     let sendMessageMock: IMock<(message) => void>;
     let typeStub: VisualizationType;
 

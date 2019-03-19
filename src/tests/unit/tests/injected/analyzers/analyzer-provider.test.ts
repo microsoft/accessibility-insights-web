@@ -10,11 +10,7 @@ import { WindowUtils } from '../../../../../common/window-utils';
 import { AnalyzerProvider } from '../../../../../injected/analyzers/analyzer-provider';
 import { BaseAnalyzer } from '../../../../../injected/analyzers/base-analyzer';
 import { BatchedRuleAnalyzer, IResultRuleFilter } from '../../../../../injected/analyzers/batched-rule-analyzer';
-import {
-    IAnalyzerConfiguration,
-    IFocusAnalyzerConfiguration,
-    RuleAnalyzerConfiguration,
-} from '../../../../../injected/analyzers/analyzer';
+import { AnalyzerConfiguration, IFocusAnalyzerConfiguration, RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
 import { RuleAnalyzer } from '../../../../../injected/analyzers/rule-analyzer';
 import { ScannerUtils } from '../../../../../injected/scanner-utils';
 import { TabStopsListener } from '../../../../../injected/tab-stops-listener';
@@ -107,7 +103,7 @@ describe('AnalyzerProviderTests', () => {
     });
 
     test('createBaseAnalyzer', () => {
-        const config: IAnalyzerConfiguration = {
+        const config: AnalyzerConfiguration = {
             testType: typeStub,
             analyzerMessageType: analyzerMessageTypeStub,
             key: keyStub,

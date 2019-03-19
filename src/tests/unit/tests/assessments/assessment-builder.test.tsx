@@ -20,7 +20,7 @@ import { AssessmentTestView } from '../../../../DetailsView/components/assessmen
 import { TestStepLink } from '../../../../DetailsView/components/test-step-link';
 import { TestViewProps } from '../../../../DetailsView/components/test-view';
 import { AnalyzerProvider } from '../../../../injected/analyzers/analyzer-provider';
-import { IAnalyzerConfiguration } from '../../../../injected/analyzers/analyzer';
+import { AnalyzerConfiguration } from '../../../../injected/analyzers/analyzer';
 import { DecoratedAxeNodeResult, ScannerUtils } from '../../../../injected/scanner-utils';
 import { VisualizationInstanceProcessor } from '../../../../injected/visualization-instance-processor';
 import { DrawerProvider } from '../../../../injected/visualization/drawer-provider';
@@ -68,7 +68,7 @@ describe('AssessmentBuilderTest', () => {
             steps: [],
         };
 
-        const expectedConfig: IAnalyzerConfiguration = {
+        const expectedConfig: AnalyzerConfiguration = {
             key: testStep.key,
             testType: baseAssessment.type,
             analyzerMessageType: Messages.Assessment.AssessmentScanCompleted,

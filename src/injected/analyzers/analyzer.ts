@@ -37,21 +37,20 @@ export interface ScanBasePayload extends BaseActionPayload {
     key: string;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IAnalyzerConfiguration {
+export interface AnalyzerConfiguration {
     key: string;
     testType: VisualizationType;
     analyzerMessageType: string;
 }
 
-export interface RuleAnalyzerConfiguration extends IAnalyzerConfiguration {
+export interface RuleAnalyzerConfiguration extends AnalyzerConfiguration {
     rules: string[];
     resultProcessor: (scanner: ScannerUtils) => (results: ScanResults) => DictionaryStringTo<IHtmlElementAxeResults>;
     telemetryProcessor: TelemetryProcessor<IAnalyzerTelemetryCallback>;
 }
 
 // tslint:disable-next-line:interface-name
-export interface IFocusAnalyzerConfiguration extends IAnalyzerConfiguration {
+export interface IFocusAnalyzerConfiguration extends AnalyzerConfiguration {
     analyzerTerminatedMessageType: string;
     analyzerProgressMessageType: string;
 }
