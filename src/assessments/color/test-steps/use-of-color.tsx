@@ -7,7 +7,7 @@ import { link } from '../../../content/link';
 import * as content from '../../../content/test/sensory/use-of-color';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
-import ManualTestRecordYourResults from '../../common/manual-test-record-your-results';
+import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import { TestStep } from '../../types/test-step';
 import { ColorSensoryTestStep } from './test-steps';
 

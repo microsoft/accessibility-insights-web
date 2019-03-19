@@ -5,7 +5,7 @@ import * as React from 'react';
 import { NewTabLink } from '../../../common/components/new-tab-link';
 import { link } from '../../../content/link';
 import * as content from '../../../content/test/sensory/flashing';
-import ManualTestRecordYourResults from '../../common/manual-test-record-your-results';
+import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import { TestStep } from '../../types/test-step';
 import { ColorSensoryTestStep } from './test-steps';
 
