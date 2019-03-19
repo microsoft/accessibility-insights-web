@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { link } from '../../../content/link';
 import * as content from '../../../content/test/page/general-navigation';
-import ManualTestRecordYourResults from '../../common/manual-test-record-your-results';
+import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import { Term } from '../../markup';
 import { TestStep } from '../../types/test-step';
 import { PageTestStep } from './test-steps';

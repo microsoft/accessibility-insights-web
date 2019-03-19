@@ -9,7 +9,7 @@ import { link } from '../../../content/link';
 import * as content from '../../../content/test/keyboard/keyboard-navigation';
 import { RestartScanVisualHelperToggle } from '../../../DetailsView/components/restart-scan-visual-helper-toggle';
 import { VisualizationInstanceProcessor } from '../../../injected/visualization-instance-processor';
-import ManualTestRecordYourResults from '../../common/manual-test-record-your-results';
+import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
 import { KeyboardInteractionTestStep } from './test-steps';

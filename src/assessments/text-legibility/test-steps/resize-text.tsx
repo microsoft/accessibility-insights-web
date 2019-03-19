@@ -5,7 +5,7 @@ import { TextLegibilityTestStep } from '../../../assessments/text-legibility/tes
 import { TestStep } from '../../../assessments/types/test-step';
 import { link } from '../../../content/link';
 import * as content from '../../../content/test/text-legibility/resize-text';
-import ManualTestRecordYourResults from '../../common/manual-test-record-your-results';
+import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
 import { Emphasis } from '../../markup';
 
