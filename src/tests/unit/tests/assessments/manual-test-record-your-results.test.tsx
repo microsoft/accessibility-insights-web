@@ -6,25 +6,12 @@ import * as React from 'react';
 import { ManualTestRecordYourResults } from '../../../../assessments/common/manual-test-record-your-results';
 
 describe('ManualTestRecordYourResultsTest', () => {
-    test('render: isMultipleFailurePossible = false', () => {
-        const props = { isMultipleFailurePossible: false };
-        const wrapper = Enzyme.shallow(<ManualTestRecordYourResults {...props} />);
-        const li = wrapper
-            .find('li')
-            .at(1)
-            .getElement();
-        expect(li.props.children[1]).toBe('a failure');
-        expect(li.props.children[5]).toBe(' then add the failure instance');
-    });
+    const multiple = [false, true];
 
-    test('render: isMultipleFailurePossible = true', () => {
-        const props = { isMultipleFailurePossible: true };
+    it.each(multiple)('- render: isMultipleFailurePossible = %p', isMultipleFailurePossible => {
+        const props = { isMultipleFailurePossible };
         const wrapper = Enzyme.shallow(<ManualTestRecordYourResults {...props} />);
-        const li = wrapper
-            .find('li')
-            .at(1)
-            .getElement();
-        expect(li.props.children[1]).toBe('any failures');
-        expect(li.props.children[5]).toBe(' then add them as failure instances');
+
+        expect(wrapper.getElement()).toMatchSnapshot();
     });
 });
