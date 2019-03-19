@@ -32,10 +32,8 @@ primary **accessibility-insights-web** repository.
 
 ```
 > git remote -v
-
-    origin  https://github.com/adacat/accessibility-insights-web (fetch)
-
-    origin  https://github.com/adacat/accessibility-insights-web (push)
+origin  https://github.com/adacat/accessibility-insights-web (fetch)
+origin  https://github.com/adacat/accessibility-insights-web (push)
 ```
 
 -   Map the primary **accessibility-insights-web** as the upstream remote
@@ -48,14 +46,10 @@ primary **accessibility-insights-web** repository.
 
 ```
 > git remote -v
-
-    origin  https://github.com/adacat/accessibility-insights-web (fetch)
-
-    origin  https://github.com/adacat/accessibility-insights-web (push)
-
-    upstream        https://github.com/Microsoft/accessibility-insights-web (fetch)
-
-    upstream        https://github.com/Microsoft/accessibility-insights-web (push)
+origin  https://github.com/adacat/accessibility-insights-web (fetch)
+origin  https://github.com/adacat/accessibility-insights-web (push)
+upstream        https://github.com/Microsoft/accessibility-insights-web (fetch)
+upstream        https://github.com/Microsoft/accessibility-insights-web (push)
 ```
 
 -   At this point you are ready to start branching and contributing back changes.
@@ -69,10 +63,10 @@ Create a branch from your fork and start making the code changes. Once you are h
 From time to time, your fork will get out of sync with the upstream remote. Use the following commands to get the master branch of your fork up up to date.
 
 ```
-    > git fetch upstream
-    > git checkout master
-    > git pull upstream master
-    > git push
+> git fetch upstream
+> git checkout master
+> git pull upstream master
+> git push
 ```
 
 ## Merging upstream master into your current branch
@@ -80,7 +74,7 @@ From time to time, your fork will get out of sync with the upstream remote. Use 
 Use these commands instead if you would like to update your current branch in your fork from the upstream remote.
 
 ```
-    > git fetch upstream
-    > git pull upstream master
-    > git push
+> git fetch upstream
+> git pull upstream master
+> git push
 ```
