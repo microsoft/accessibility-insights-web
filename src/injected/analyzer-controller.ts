@@ -9,7 +9,7 @@ import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-st
 import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
 import { IScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
-import { DictionaryNumberTo } from '../types/common-types';
+import { DictionaryStringTo } from '../types/common-types';
 import { VisualizationConfigurationFactory } from './../common/configs/visualization-configuration-factory';
 import { AnalyzerStateUpdateHandler } from './analyzer-state-update-handler';
 import { AnalyzerProvider } from './analyzers/analyzer-provider';
