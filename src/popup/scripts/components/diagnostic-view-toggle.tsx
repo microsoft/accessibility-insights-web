@@ -5,11 +5,9 @@ import { Link } from 'office-ui-fabric-react/lib/Link';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import { IToggle } from 'office-ui-fabric-react/lib/Toggle';
 import * as React from 'react';
-
 import { VisualizationToggle } from '../../../common/components/visualization-toggle';
 import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../../../common/configs/visualization-configuration-factory';
 import { KeyCodeConstants } from '../../../common/constants/keycode-constants';
-import { FeatureFlags } from '../../../common/feature-flags';
 import { TelemetryEventSource } from '../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../common/types/details-view-pivot-type';
 import { IVisualizationStoreData } from '../../../common/types/store-data/ivisualization-store-data';
@@ -156,19 +154,21 @@ export class DiagnosticViewToggle extends React.Component<DiagnosticViewTogglePr
     }
 
     private renderLink(linkText: string): JSX.Element {
-        const isAssessmentEnabled = this.props.featureFlags[FeatureFlags.newAssessmentExperience];
-        if (isAssessmentEnabled && this.configuration.guidance) {
+        if (this.configuration.guidance) {
             return <ContentLink deps={this.props.deps} reference={this.configuration.guidance} linkText={linkText} />;
         }
-
-        const pivot = isAssessmentEnabled ? DetailsViewPivotType.fastPass : DetailsViewPivotType.allTest;
 
         return (
             <Link
                 className="insights-link"
                 href="#"
                 onClick={ev =>
-                    this.props.actionMessageCreator.openDetailsView(ev as any, this.props.type, this.props.telemetrySource, pivot)
+                    this.props.actionMessageCreator.openDetailsView(
+                        ev,
+                        this.props.type,
+                        this.props.telemetrySource,
+                        DetailsViewPivotType.fastPass,
+                    )
                 }
             >
                 {linkText}
