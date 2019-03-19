@@ -3,7 +3,6 @@
 import { isMatch } from 'lodash';
 import * as React from 'react';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { buildTestStepsFromRules } from '../../../../../assessments/automated-checks/build-test-steps-from-rules';
 import { InstanceTableColumn } from '../../../../../assessments/types/iinstance-table-column';
 import { TestStep } from '../../../../../assessments/types/test-step';
@@ -15,8 +14,8 @@ import { ManualTestStatus } from '../../../../../common/types/manual-test-status
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { AssessmentInstanceRowData, AssessmentInstanceTable } from '../../../../../DetailsView/components/assessment-instance-table';
 import { TestStepLink } from '../../../../../DetailsView/components/test-step-link';
-import { AnalyzerProvider } from '../../../../../injected/analyzers/analyzer-provider';
 import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
+import { AnalyzerProvider } from '../../../../../injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult, ScannerUtils } from '../../../../../injected/scanner-utils';
 import { DrawerProvider } from '../../../../../injected/visualization/drawer-provider';
 import { ScannerRuleInfo } from '../../../../../scanner/scanner-rule-info';

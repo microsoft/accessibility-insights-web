@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-
 import { InstanceIdentifierGenerator } from '../../background/instance-identifier-generator';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { Messages } from '../../common/messages';
@@ -9,8 +8,8 @@ import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { AssessmentInstanceDetailsColumn } from '../../DetailsView/components/assessment-instance-details-column';
 import { AssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
-import { AnalyzerProvider } from '../../injected/analyzers/analyzer-provider';
 import { RuleAnalyzerConfiguration } from '../../injected/analyzers/analyzer';
+import { AnalyzerProvider } from '../../injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult, ScannerUtils } from '../../injected/scanner-utils';
 import { ScannerRuleInfo } from '../../scanner/scanner-rule-info';
 import { InstanceTableColumn } from '../types/iinstance-table-column';

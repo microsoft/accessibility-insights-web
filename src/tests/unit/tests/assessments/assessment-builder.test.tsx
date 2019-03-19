@@ -3,7 +3,6 @@
 import * as _ from 'lodash';
 import * as React from 'react';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { AssessmentBuilder } from '../../../../assessments/assessment-builder';
 import { AssistedAssessment, ManualAssessment } from '../../../../assessments/types/iassessment';
 import { ReportInstanceField } from '../../../../assessments/types/report-instance-field';
@@ -19,8 +18,8 @@ import { AssessmentInstanceTable } from '../../../../DetailsView/components/asse
 import { AssessmentTestView } from '../../../../DetailsView/components/assessment-test-view';
 import { TestStepLink } from '../../../../DetailsView/components/test-step-link';
 import { TestViewProps } from '../../../../DetailsView/components/test-view';
-import { AnalyzerProvider } from '../../../../injected/analyzers/analyzer-provider';
 import { AnalyzerConfiguration } from '../../../../injected/analyzers/analyzer';
+import { AnalyzerProvider } from '../../../../injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult, ScannerUtils } from '../../../../injected/scanner-utils';
 import { VisualizationInstanceProcessor } from '../../../../injected/visualization-instance-processor';
 import { DrawerProvider } from '../../../../injected/visualization/drawer-provider';

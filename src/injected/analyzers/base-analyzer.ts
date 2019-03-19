@@ -2,9 +2,8 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 import * as Q from 'q';
-
 import { VisualizationType } from '../../common/types/visualization-type';
-import { AxeAnalyzerResult, Analyzer, AnalyzerConfiguration, ScanCompletedPayload } from './analyzer';
+import { Analyzer, AnalyzerConfiguration, AxeAnalyzerResult, ScanCompletedPayload } from './analyzer';
 
 export type MessageType = {
     type: string;

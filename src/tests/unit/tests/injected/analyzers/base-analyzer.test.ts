@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
-
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { BaseAnalyzer } from '../../../../../injected/analyzers/base-analyzer';
 import { AnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
+import { BaseAnalyzer } from '../../../../../injected/analyzers/base-analyzer';
 
 describe('BaseAnalyzerTest', () => {
     let testSubject: BaseAnalyzer;

@@ -11,7 +11,7 @@ import { IScopingStoreData } from '../../common/types/store-data/scoping-store-d
 import { ScanOptions } from '../../scanner/exposed-apis';
 import { ScanResults } from '../../scanner/iruleresults';
 import { ScannerUtils } from '../scanner-utils';
-import { AxeAnalyzerResult, Analyzer, RuleAnalyzerConfiguration } from './analyzer';
+import { Analyzer, AxeAnalyzerResult, RuleAnalyzerConfiguration } from './analyzer';
 import { BaseAnalyzer } from './base-analyzer';
 
 export class RuleAnalyzer extends BaseAnalyzer implements Analyzer {
