@@ -1,0 +1,335 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DiagnosticViewToggleTest renders content link when newAssessmentExperience is on 1`] = `
+<div>
+  <div
+    className="ms-Grid-row view-toggle-row"
+  >
+    <div
+      className="ms-Grid-col ms-sm7"
+    >
+      <div
+        className="ms-fontColor-neutralPrimary ms-fontWeight-semibold ms-fontSize-mPlus"
+      >
+        Headings
+      </div>
+    </div>
+    <div
+      className="ms-Grid-col ms-sm5 view-toggle-col"
+      style={
+        Object {
+          "float": "right",
+        }
+      }
+    >
+      <VisualizationToggle
+        checked={false}
+        componentRef={
+          Object {
+            "current": null,
+          }
+        }
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        visualizationName="Headings"
+      />
+    </div>
+  </div>
+  <div
+    className="ms-Grid-row"
+  >
+    <div
+      className="ms-Grid-col ms-sm8"
+    >
+      <ContentLink
+        deps={Object {}}
+        linkText="How to test headings"
+        reference={[Function]}
+      />
+    </div>
+    <div
+      className="ms-Grid-col ms-sm4 shortcut-label"
+      style={
+        Object {
+          "float": "right",
+        }
+      }
+    >
+      <div
+        className="ms-font-xs"
+      >
+        Ctrl+Shift+3
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`DiagnosticViewToggleTest renders details view link when newAssessmentExperience is on, but the test does not have a guidance 1`] = `
+<div>
+  <div
+    className="ms-Grid-row view-toggle-row"
+  >
+    <div
+      className="ms-Grid-col ms-sm7"
+    >
+      <div
+        className="ms-fontColor-neutralPrimary ms-fontWeight-semibold ms-fontSize-mPlus"
+      >
+        Automated checks
+      </div>
+    </div>
+    <div
+      className="ms-Grid-col ms-sm5 view-toggle-col"
+      style={
+        Object {
+          "float": "right",
+        }
+      }
+    >
+      <VisualizationToggle
+        checked={false}
+        componentRef={
+          Object {
+            "current": null,
+          }
+        }
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        visualizationName="Automated checks"
+      />
+    </div>
+  </div>
+  <div
+    className="ms-Grid-row"
+  >
+    <div
+      className="ms-Grid-col ms-sm8"
+    >
+      <StyledLinkBase
+        className="insights-link"
+        href="#"
+        onClick={[Function]}
+      >
+        List view and filtering
+      </StyledLinkBase>
+    </div>
+    <div
+      className="ms-Grid-col ms-sm4 shortcut-label"
+      style={
+        Object {
+          "float": "right",
+        }
+      }
+    >
+      <div
+        className="ms-font-xs"
+      >
+        Ctrl+Shift+1
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`DiagnosticViewToggleTest renders spinner 1`] = `
+<div>
+  <div
+    className="ms-Grid-row view-toggle-row"
+  >
+    <div
+      className="ms-Grid-col ms-sm7"
+    >
+      <div
+        className="ms-fontColor-neutralPrimary ms-fontWeight-semibold ms-fontSize-mPlus"
+      >
+        Headings
+      </div>
+    </div>
+    <div
+      className="ms-Grid-col ms-sm5 view-toggle-col"
+      style={
+        Object {
+          "float": "right",
+        }
+      }
+    >
+      <StyledSpinnerBase
+        componentRef={[Function]}
+        size={1}
+      />
+    </div>
+  </div>
+  <div
+    className="ms-Grid-row"
+  >
+    <div
+      className="ms-Grid-col ms-sm8"
+    >
+      <StyledLinkBase
+        className="insights-link"
+        href="#"
+        onClick={[Function]}
+      >
+        How to test headings
+      </StyledLinkBase>
+    </div>
+    <div
+      className="ms-Grid-col ms-sm4 shortcut-label"
+      style={
+        Object {
+          "float": "right",
+        }
+      }
+    >
+      <div
+        className="ms-font-xs"
+      >
+        Ctrl+Shift+3
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`DiagnosticViewToggleTest renders toggle when not scanning 1`] = `
+<div>
+  <div
+    className="ms-Grid-row view-toggle-row"
+  >
+    <div
+      className="ms-Grid-col ms-sm7"
+    >
+      <div
+        className="ms-fontColor-neutralPrimary ms-fontWeight-semibold ms-fontSize-mPlus"
+      >
+        Headings
+      </div>
+    </div>
+    <div
+      className="ms-Grid-col ms-sm5 view-toggle-col"
+      style={
+        Object {
+          "float": "right",
+        }
+      }
+    >
+      <VisualizationToggle
+        checked={false}
+        componentRef={
+          Object {
+            "current": null,
+          }
+        }
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        visualizationName="Headings"
+      />
+    </div>
+  </div>
+  <div
+    className="ms-Grid-row"
+  >
+    <div
+      className="ms-Grid-col ms-sm8"
+    >
+      <StyledLinkBase
+        className="insights-link"
+        href="#"
+        onClick={[Function]}
+      >
+        How to test headings
+      </StyledLinkBase>
+    </div>
+    <div
+      className="ms-Grid-col ms-sm4 shortcut-label"
+      style={
+        Object {
+          "float": "right",
+        }
+      }
+    >
+      <div
+        className="ms-font-xs"
+      >
+        Ctrl+Shift+3
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`DiagnosticViewToggleTest renders toggle when scanning 1`] = `
+<div>
+  <div
+    className="ms-Grid-row view-toggle-row"
+  >
+    <div
+      className="ms-Grid-col ms-sm7"
+    >
+      <div
+        className="ms-fontColor-neutralPrimary ms-fontWeight-semibold ms-fontSize-mPlus"
+      >
+        Headings
+      </div>
+    </div>
+    <div
+      className="ms-Grid-col ms-sm5 view-toggle-col"
+      style={
+        Object {
+          "float": "right",
+        }
+      }
+    >
+      <VisualizationToggle
+        checked={false}
+        componentRef={
+          Object {
+            "current": null,
+          }
+        }
+        disabled={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        visualizationName="Headings"
+      />
+    </div>
+  </div>
+  <div
+    className="ms-Grid-row"
+  >
+    <div
+      className="ms-Grid-col ms-sm8"
+    >
+      <StyledLinkBase
+        className="insights-link"
+        href="#"
+        onClick={[Function]}
+      >
+        How to test headings
+      </StyledLinkBase>
+    </div>
+    <div
+      className="ms-Grid-col ms-sm4 shortcut-label"
+      style={
+        Object {
+          "float": "right",
+        }
+      }
+    >
+      <div
+        className="ms-font-xs"
+      >
+        Ctrl+Shift+3
+      </div>
+    </div>
+  </div>
+</div>
+`;

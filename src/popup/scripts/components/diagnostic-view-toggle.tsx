@@ -102,12 +102,12 @@ export class DiagnosticViewToggle extends React.Component<DiagnosticViewTogglePr
         }
     }
 
-    public componentDidMount() {
+    public componentDidMount(): void {
         this._isMounted = true;
         this.setFocus();
     }
 
-    public componentDidUpdate() {
+    public componentDidUpdate(): void {
         this.setFocus();
     }
 
