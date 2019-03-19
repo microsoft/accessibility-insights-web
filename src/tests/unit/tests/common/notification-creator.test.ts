@@ -98,7 +98,7 @@ describe('NotificationCreator', () => {
         verifyAll();
     });
 
-    function verifyAll() {
+    function verifyAll(): void {
         browserAdapterMock.verifyAll();
         configFactoryMock.verifyAll();
     }

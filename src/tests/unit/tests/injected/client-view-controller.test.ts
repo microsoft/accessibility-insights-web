@@ -356,18 +356,16 @@ describe('ClientViewControllerTest', () => {
 
         builder.verifyAll();
     });
-
-    function getPrivateSingleton() {
-        return (ClientViewController as any)._singleton;
-    }
 });
 
 class TestableClientViewController extends ClientViewController {
-    public setPreviousVisualizationStatesStub(stub: DictionaryStringTo<boolean>) {
+    public setPreviousVisualizationStatesStub(stub: DictionaryStringTo<boolean>): void {
         this.previousVisualizationStates = stub;
     }
 
-    public setPreviousVisualizationSelectorMapStatesStub(stub: DictionaryNumberTo<DictionaryStringTo<IAssessmentVisualizationInstance>>) {
+    public setPreviousVisualizationSelectorMapStatesStub(
+        stub: DictionaryNumberTo<DictionaryStringTo<IAssessmentVisualizationInstance>>,
+    ): void {
         this.previousVisualizationSelectorMapStates = stub;
     }
 }

@@ -196,19 +196,19 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
 });
 
 class TestableAnalyzerStateUpdateHandler extends AnalyzerStateUpdateHandler {
-    public setPrevState(prevState: IVisualizationStoreData) {
+    public setPrevState(prevState: IVisualizationStoreData): void {
         this.prevState = prevState;
     }
 
-    public getPrevState() {
+    public getPrevState(): IVisualizationStoreData {
         return this.prevState;
     }
 
-    public getStartScanDelegate() {
+    public getStartScanDelegate(): (id: string) => void {
         return this.startScan;
     }
 
-    public getTeardownDelegate() {
+    public getTeardownDelegate(): (id: string) => void {
         return this.teardown;
     }
 }
