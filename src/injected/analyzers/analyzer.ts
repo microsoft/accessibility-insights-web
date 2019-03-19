@@ -23,17 +23,16 @@ export interface Analyzer {
     teardown(): void;
 }
 
-export interface ScanCompletedPayload<TSelectorValue> extends IScanBasePayload {
+export interface ScanCompletedPayload<TSelectorValue> extends ScanBasePayload {
     selectorMap: DictionaryStringTo<TSelectorValue>;
     scanResult: ScanResults;
 }
 
-export interface ScanUpdatePayload extends IScanBasePayload {
+export interface ScanUpdatePayload extends ScanBasePayload {
     results: ITabStopEvent[];
 }
 
-// tslint:disable-next-line:interface-name
-export interface IScanBasePayload extends BaseActionPayload {
+export interface ScanBasePayload extends BaseActionPayload {
     testType: VisualizationType;
     key: string;
 }

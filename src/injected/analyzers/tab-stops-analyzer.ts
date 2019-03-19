@@ -4,7 +4,7 @@ import { autobind } from '@uifabric/utilities';
 import * as Q from 'q';
 import { WindowUtils } from './../../common/window-utils';
 import { ITabStopEvent, TabStopsListener } from './../tab-stops-listener';
-import { AxeAnalyzerResult, Analyzer, IFocusAnalyzerConfiguration, IScanBasePayload, ScanUpdatePayload } from './analyzer';
+import { AxeAnalyzerResult, Analyzer, IFocusAnalyzerConfiguration, ScanBasePayload, ScanUpdatePayload } from './analyzer';
 import { BaseAnalyzer } from './base-analyzer';
 
 export interface ProgressResult<T> {
@@ -86,7 +86,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer implements Analyzer {
 
     public teardown(): void {
         this.tabStopsListener.stopListenToTabStops();
-        const payload: IScanBasePayload = {
+        const payload: ScanBasePayload = {
             key: this.config.key,
             testType: this.config.testType,
         };

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Action } from '../../common/flux/action';
-import { IScanBasePayload, ScanCompletedPayload, ScanUpdatePayload } from '../../injected/analyzers/analyzer';
+import { ScanBasePayload, ScanCompletedPayload, ScanUpdatePayload } from '../../injected/analyzers/analyzer';
 import {
     AddFailureInstancePayload,
     AssessmentActionInstancePayload,
@@ -34,7 +34,7 @@ export class AssessmentActions {
     public readonly resetData = new Action<ToggleActionPayload>();
     public readonly resetAllAssessmentsData = new Action<number>();
     public readonly scanUpdate = new Action<ScanUpdatePayload>();
-    public readonly trackingCompleted = new Action<IScanBasePayload>();
+    public readonly trackingCompleted = new Action<ScanBasePayload>();
     public readonly updateSelectedPivotChild = new Action<UpdateSelectedDetailsViewPayload>();
     public readonly updateTargetTabId = new Action<number>();
     public readonly continuePreviousAssessment = new Action<number>();

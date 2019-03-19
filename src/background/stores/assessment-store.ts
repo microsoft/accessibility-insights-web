@@ -16,7 +16,7 @@ import {
     ITestStepResult,
     IUserCapturedInstance,
 } from '../../common/types/store-data/iassessment-result-data';
-import { IScanBasePayload, ScanCompletedPayload, ScanUpdatePayload } from '../../injected/analyzers/analyzer';
+import { ScanBasePayload, ScanCompletedPayload, ScanUpdatePayload } from '../../injected/analyzers/analyzer';
 import { DictionaryStringTo } from '../../types/common-types';
 import { SelectTestStepPayload, UpdateVisibilityPayload } from '../actions/action-payloads';
 import { AssessmentDataConverter } from '../assessment-data-converter';
@@ -157,7 +157,7 @@ export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
     }
 
     @autobind
-    private onTrackingCompleted(payload: IScanBasePayload): void {
+    private onTrackingCompleted(payload: ScanBasePayload): void {
         const test = payload.testType;
         const step = payload.key;
         const config = this.assessmentsProvider.forType(test).getVisualizationConfiguration();
