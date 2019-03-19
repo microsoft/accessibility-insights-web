@@ -49,8 +49,7 @@ export interface RuleAnalyzerConfiguration extends AnalyzerConfiguration {
     telemetryProcessor: TelemetryProcessor<IAnalyzerTelemetryCallback>;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IFocusAnalyzerConfiguration extends AnalyzerConfiguration {
+export interface FocusAnalyzerConfiguration extends AnalyzerConfiguration {
     analyzerTerminatedMessageType: string;
     analyzerProgressMessageType: string;
 }

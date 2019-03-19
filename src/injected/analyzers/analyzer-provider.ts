@@ -7,7 +7,7 @@ import { IScopingStoreData } from '../../common/types/store-data/scoping-store-d
 import { WindowUtils } from '../../common/window-utils';
 import { ScannerUtils } from '../scanner-utils';
 import { TabStopsListener } from '../tab-stops-listener';
-import { Analyzer, AnalyzerConfiguration, IFocusAnalyzerConfiguration, RuleAnalyzerConfiguration } from './analyzer';
+import { Analyzer, AnalyzerConfiguration, FocusAnalyzerConfiguration, RuleAnalyzerConfiguration } from './analyzer';
 import { BaseAnalyzer } from './base-analyzer';
 import { BatchedRuleAnalyzer, IResultRuleFilter } from './batched-rule-analyzer';
 import { RuleAnalyzer } from './rule-analyzer';
@@ -64,7 +64,7 @@ export class AnalyzerProvider {
         );
     }
 
-    public createFocusTrackingAnalyzer(config: IFocusAnalyzerConfiguration): Analyzer {
+    public createFocusTrackingAnalyzer(config: FocusAnalyzerConfiguration): Analyzer {
         return new TabStopsAnalyzer(config, this.tabStopsListener, new WindowUtils(), this.sendMessageDelegate);
     }
 

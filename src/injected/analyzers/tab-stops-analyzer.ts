@@ -4,7 +4,7 @@ import { autobind } from '@uifabric/utilities';
 import * as Q from 'q';
 import { WindowUtils } from './../../common/window-utils';
 import { ITabStopEvent, TabStopsListener } from './../tab-stops-listener';
-import { AxeAnalyzerResult, Analyzer, IFocusAnalyzerConfiguration, ScanBasePayload, ScanUpdatePayload } from './analyzer';
+import { AxeAnalyzerResult, Analyzer, FocusAnalyzerConfiguration, ScanBasePayload, ScanUpdatePayload } from './analyzer';
 import { BaseAnalyzer } from './base-analyzer';
 
 export interface ProgressResult<T> {
@@ -18,10 +18,10 @@ export class TabStopsAnalyzer extends BaseAnalyzer implements Analyzer {
 
     private _pendingTabbedElements: ITabStopEvent[] = [];
     private _onTabbedTimeoutId: number;
-    protected config: IFocusAnalyzerConfiguration;
+    protected config: FocusAnalyzerConfiguration;
 
     constructor(
-        config: IFocusAnalyzerConfiguration,
+        config: FocusAnalyzerConfiguration,
         tabStopsListener: TabStopsListener,
         windowUtils: WindowUtils,
         sendMessageDelegate: (message) => void,
