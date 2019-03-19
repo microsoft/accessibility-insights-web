@@ -11,7 +11,7 @@ import { DictionaryStringTo } from '../../types/common-types';
 import { AddTabbedElementPayload } from '../actions/action-payloads';
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
-import { IScanCompletedPayload } from '../../injected/analyzers/analyzer';
+import { ScanCompletedPayload } from '../../injected/analyzers/analyzer';
 import { ITabStopEvent } from './../../injected/tab-stops-listener';
 import { BaseStore } from './base-store';
 
@@ -95,7 +95,7 @@ export class VisualizationScanResultStore extends BaseStore<IVisualizationScanRe
     }
 
     @autobind
-    private onScanCompleted(payload: IScanCompletedPayload<any>): void {
+    private onScanCompleted(payload: ScanCompletedPayload<any>): void {
         const selectorMap = payload.selectorMap;
         const result = payload.scanResult;
         const selectedRows = this.getRowToRuleResultMap(selectorMap);

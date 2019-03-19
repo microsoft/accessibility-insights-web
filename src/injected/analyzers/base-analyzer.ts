@@ -4,11 +4,11 @@ import { autobind } from '@uifabric/utilities';
 import * as Q from 'q';
 
 import { VisualizationType } from '../../common/types/visualization-type';
-import { AxeAnalyzerResult, Analyzer, IAnalyzerConfiguration, IScanCompletedPayload } from './analyzer';
+import { AxeAnalyzerResult, Analyzer, IAnalyzerConfiguration, ScanCompletedPayload } from './analyzer';
 
 export type MessageType = {
     type: string;
-    payload: IScanCompletedPayload<any>;
+    payload: ScanCompletedPayload<any>;
 };
 
 export class BaseAnalyzer implements Analyzer {
@@ -51,7 +51,7 @@ export class BaseAnalyzer implements Analyzer {
     protected createBaseMessage(analyzerResult: AxeAnalyzerResult, config: IAnalyzerConfiguration): MessageType {
         const messageType = config.analyzerMessageType;
         const originalAxeResult = analyzerResult.originalResult;
-        const payload: IScanCompletedPayload<any> = {
+        const payload: ScanCompletedPayload<any> = {
             key: config.key,
             selectorMap: analyzerResult.results,
             scanResult: originalAxeResult,

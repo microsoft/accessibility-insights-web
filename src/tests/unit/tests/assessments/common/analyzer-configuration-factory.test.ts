@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { isFunction } from 'lodash';
-
+import { Mock } from 'typemoq';
 import { AnalyzerConfigurationFactory } from '../../../../../assessments/common/analyzer-configuration-factory';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
+import { ScannerUtils } from '../../../../../injected/scanner-utils';
 
 const baseConfig: Readonly<Partial<RuleAnalyzerConfiguration>> = {
     key: 'test-key',
@@ -28,13 +29,16 @@ describe('AnalyzerConfigurationFactoryTest', () => {
 
     test('default resultProcessor', () => {
         const getInstancesStub = {};
-        const scannerStub = {
-            getAllCompletedInstances: getInstancesStub,
-        };
+        const scannerMock = Mock.ofType<ScannerUtils>();
+        scannerMock
+            .setup(scanner => scanner.getAllCompletedInstances)
+            .returns(() => {
+                return getInstancesStub as any;
+            });
 
         const result = AnalyzerConfigurationFactory.forScanner(baseConfig);
 
-        expect(getInstancesStub).toEqual(result.resultProcessor(scannerStub));
+        expect(getInstancesStub).toEqual(result.resultProcessor(scannerMock.object));
     });
 
     test('default telemetryProcessor', () => {

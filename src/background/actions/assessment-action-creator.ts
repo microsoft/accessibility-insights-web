@@ -5,7 +5,7 @@ import { capitalize } from 'lodash';
 
 import { Messages } from '../../common/messages';
 import * as TelemetryEvents from '../../common/telemetry-events';
-import { IScanBasePayload, IScanCompletedPayload, IScanUpdatePayload } from '../../injected/analyzers/analyzer';
+import { IScanBasePayload, ScanCompletedPayload, IScanUpdatePayload } from '../../injected/analyzers/analyzer';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import {
     AddFailureInstancePayload,
@@ -158,7 +158,7 @@ export class AssessmentActionCreator {
     }
 
     @autobind
-    private onAssessmentScanCompleted(payload: IScanCompletedPayload<any>, tabId: number): void {
+    private onAssessmentScanCompleted(payload: ScanCompletedPayload<any>, tabId: number): void {
         this.assessmentActions.updateTargetTabId.invoke(tabId);
         this.assessmentActions.scanCompleted.invoke(payload);
     }

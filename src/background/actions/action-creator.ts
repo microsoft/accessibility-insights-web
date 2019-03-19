@@ -9,7 +9,7 @@ import { NotificationCreator } from '../../common/notification-creator';
 import * as TelemetryEvents from '../../common/telemetry-events';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewRightContentPanelType } from '../../DetailsView/components/left-nav/details-view-right-content-panel-type';
-import { IScanCompletedPayload } from '../../injected/analyzers/analyzer';
+import { ScanCompletedPayload } from '../../injected/analyzers/analyzer';
 import { DictionaryNumberTo } from '../../types/common-types';
 import { VisualizationActions } from '../actions/visualization-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
@@ -189,7 +189,7 @@ export class ActionCreator {
     }
 
     @autobind
-    private onAssessmentScanCompleted(payload: IScanCompletedPayload<any>, tabId: number): void {
+    private onAssessmentScanCompleted(payload: ScanCompletedPayload<any>, tabId: number): void {
         const eventName = TelemetryEvents.ASSESSMENT_SCAN_COMPLETED;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.visualizationActions.scanCompleted.invoke(null);
@@ -255,7 +255,7 @@ export class ActionCreator {
     }
 
     @autobind
-    private onScanCompleted(payload: IScanCompletedPayload<any>, tabId: number): void {
+    private onScanCompleted(payload: ScanCompletedPayload<any>, tabId: number): void {
         const telemetryEventName = TelemetryEvents.ADHOC_SCAN_COMPLETED;
         this.telemetryEventHandler.publishTelemetry(telemetryEventName, payload);
         this.visualizationScanResultActions.scanCompleted.invoke(payload);

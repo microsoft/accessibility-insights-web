@@ -23,8 +23,7 @@ export interface Analyzer {
     teardown(): void;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IScanCompletedPayload<TSelectorValue> extends IScanBasePayload {
+export interface ScanCompletedPayload<TSelectorValue> extends IScanBasePayload {
     selectorMap: DictionaryStringTo<TSelectorValue>;
     scanResult: ScanResults;
 }
