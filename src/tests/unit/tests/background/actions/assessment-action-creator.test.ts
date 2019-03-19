@@ -3,7 +3,7 @@
 import * as _ from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { BaseActionPayload } from '../../../../../background/actions/action-payloads';
+import { BaseActionPayload, ToggleActionPayload } from '../../../../../background/actions/action-payloads';
 import { AssessmentActionCreator } from '../../../../../background/actions/assessment-action-creator';
 import { AssessmentActions } from '../../../../../background/actions/assessment-actions';
 import { ChromeAdapter } from '../../../../../background/browser-adapter';
@@ -11,6 +11,7 @@ import { TelemetryEventHandler } from '../../../../../background/telemetry/telem
 import { Action } from '../../../../../common/flux/action';
 import { Messages } from '../../../../../common/messages';
 import * as TelemetryEvents from '../../../../../common/telemetry-events';
+import { VisualizationType } from '../../../../../common/types/visualization-type';
 
 describe('AssessmentActionCreatorTest', () => {
     let registerTypeToPayloadCallbackMock: IMock<RegisterTypeToPayloadCallback>;
@@ -224,6 +225,18 @@ describe('AssessmentActionCreatorTest', () => {
         const actionMock = createActionMock(payload);
         setupAssessmentActionsMock('resetData', actionMock);
         setupRegisterTypeToPayloadCallbackMock(AssessmentMessages.StartOver, payload, tabId);
+
+        testObject.registerCallbacks();
+
+        actionMock.verifyAll();
+    });
+
+    test('onUpdateInstanceVisibility', () => {
+        const payload: ToggleActionPayload = { test: -1 as VisualizationType };
+
+        const actionMock = createActionMock(payload);
+        setupAssessmentActionsMock('updateInstanceVisibility', actionMock);
+        setupRegisterTypeToPayloadCallbackMock(AssessmentMessages.UpdateInstanceVisibility, payload, tabId);
 
         testObject.registerCallbacks();
 
