@@ -11,37 +11,7 @@ import { PopupViewControllerHandler } from '../../../../../popup/scripts/handler
 import { LaunchPadRowConfigurationFactory } from '../../../../../popup/scripts/launch-pad-row-configuration-factory';
 
 describe('LaunchPadRowConfigurationFactoryTests', () => {
-    test('createRowConfigs: verify string properties - Feature Flag off', () => {
-        const componentStub = {};
-        const handlerMock = Mock.ofType(PopupViewControllerHandler);
-        const actionMessageCreatorMock = Mock.ofType(PopupActionMessageCreator);
-        const testSubject = new LaunchPadRowConfigurationFactory();
-        const fastPassRowConfig = {
-            iconName: 'Rocket',
-            title: 'FastPass',
-            description: 'Run two tests to find the most common accessibility issues in less than 5 minutes.',
-            onClickTitle: null,
-        };
-        const allTestRowConfig = {
-            iconName: 'testBeaker',
-            title: 'All available tests',
-            description: 'Walk through a guided process for assessing accessibility compliance.',
-            onClickTitle: null,
-        };
-        const adhocRowConfig = {
-            iconName: 'Medical',
-            title: 'Ad hoc tools',
-            description: 'Get quick access to visualizations that help you identify accessibility issues.',
-            onClickTitle: null,
-        };
-        const expectedConfig: LaunchPadRowConfiguration[] = [fastPassRowConfig, allTestRowConfig, adhocRowConfig];
-
-        const configs = testSubject.createRowConfigs(componentStub as any, actionMessageCreatorMock.object, handlerMock.object, false);
-
-        compareStaticProperties(expectedConfig, configs);
-    });
-
-    test('createRowConfigs: verify string properties - Feature Flag on', () => {
+    test('createRowConfigs: verify string properties', () => {
         const componentStub = {};
         const handlerMock = Mock.ofType(PopupViewControllerHandler);
         const actionMessageCreatorMock = Mock.ofType(PopupActionMessageCreator);
@@ -67,7 +37,7 @@ describe('LaunchPadRowConfigurationFactoryTests', () => {
 
         const expectedConfig: LaunchPadRowConfiguration[] = [fastPassRowConfig, assessmentRowConfig, adhocRowConfig];
 
-        const configs = testSubject.createRowConfigs(componentStub as any, actionMessageCreatorMock.object, handlerMock.object, true);
+        const configs = testSubject.createRowConfigs(componentStub as any, actionMessageCreatorMock.object, handlerMock.object);
 
         compareStaticProperties(expectedConfig, configs);
     });
@@ -85,30 +55,16 @@ describe('LaunchPadRowConfigurationFactoryTests', () => {
             .verifiable(Times.once());
 
         actionMessageCreatorMock
-            .setup(a =>
-                a.openDetailsView(null, VisualizationType.Issues, TelemetryEventSource.LaunchPadAllTests, DetailsViewPivotType.allTest),
-            )
-            .verifiable(Times.once());
-
-        actionMessageCreatorMock
             .setup(a => a.openDetailsView(null, null, TelemetryEventSource.LaunchPadAssessment, DetailsViewPivotType.assessment))
             .verifiable(Times.once());
 
         handlerMock.setup(h => h.openAdhocToolsPanel(componentStub as any)).verifiable(Times.once());
 
-        const configs = testSubject.createRowConfigs(componentStub as any, actionMessageCreatorMock.object, handlerMock.object, false);
-
-        const configsForFFEnabled = testSubject.createRowConfigs(
-            componentStub as any,
-            actionMessageCreatorMock.object,
-            handlerMock.object,
-            true,
-        );
+        const configs = testSubject.createRowConfigs(componentStub as any, actionMessageCreatorMock.object, handlerMock.object);
 
         configs[0].onClickTitle(null);
         configs[1].onClickTitle(null);
         configs[2].onClickTitle();
-        configsForFFEnabled[1].onClickTitle(null);
 
         actionMessageCreatorMock.verifyAll();
         handlerMock.verifyAll();

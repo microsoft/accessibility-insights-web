@@ -1,14 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { css } from '@uifabric/utilities';
-import { Link } from 'office-ui-fabric-react/lib/Link';
 import { MessageBar, MessageBarType } from 'office-ui-fabric-react/lib/MessageBar';
 import * as React from 'react';
-
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
-import { FeatureFlags } from '../../common/feature-flags';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
-import { DictionaryStringTo } from '../../types/common-types';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 
 export interface TabInfoProps {
@@ -17,36 +12,12 @@ export interface TabInfoProps {
     title: string;
     actionCreator: DetailsViewActionMessageCreator;
     selectedPivot: DetailsViewPivotType;
-    featureFlags: DictionaryStringTo<boolean>;
     dropdownClickHandler: DropdownClickHandler;
 }
 
 export class TabInfo extends React.Component<TabInfoProps> {
     public render(): JSX.Element {
-        return (
-            <div>
-                {this.renderMessageBarForTargetPageHidden()}
-                {this.renderTargetPageInfo()}
-            </div>
-        );
-    }
-
-    private renderTargetPageInfo(): JSX.Element {
-        const showExportButton = this.props.featureFlags[FeatureFlags.newAssessmentExperience];
-
-        if (showExportButton) {
-            return null;
-        }
-
-        return (
-            <div className="target-tab-info">
-                Target page:&nbsp;
-                <Link role="link" className={css('target-page-link', 'insights-link')} onClick={this.props.actionCreator.switchToTargetTab}>
-                    {this.props.title}
-                </Link>
-                &nbsp;({this.props.url})
-            </div>
-        );
+        return <div>{this.renderMessageBarForTargetPageHidden()}</div>;
     }
 
     private renderMessageBarForTargetPageHidden(): JSX.Element {

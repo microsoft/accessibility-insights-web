@@ -91,7 +91,6 @@ getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
         const tabContextFactory = new TabContextFactory(
             visualizationConfigurationFactory,
             telemetryEventHandler,
-            globalContext.stores.featureFlagStore,
             windowUtils,
             targetTabController,
             globalContext.stores.assessmentStore,
