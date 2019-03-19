@@ -38,7 +38,7 @@ import {
     PersistedTabInfo,
 } from '../../../../../common/types/store-data/iassessment-result-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { IScanBasePayload, ScanCompletedPayload, IScanUpdatePayload } from '../../../../../injected/analyzers/analyzer';
+import { IScanBasePayload, ScanCompletedPayload, ScanUpdatePayload } from '../../../../../injected/analyzers/analyzer';
 import { ITabStopEvent } from '../../../../../injected/tab-stops-listener';
 import { ScanResults } from '../../../../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../../../../types/common-types';
@@ -531,7 +531,7 @@ describe('AssessmentStoreTest', () => {
     test('onScanUpdate', () => {
         const initialState = new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object).build();
 
-        const payload: IScanUpdatePayload = {
+        const payload: ScanUpdatePayload = {
             testType: assessmentType,
             key: stepKey,
             results: {} as ITabStopEvent[],

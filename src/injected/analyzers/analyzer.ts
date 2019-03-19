@@ -28,8 +28,7 @@ export interface ScanCompletedPayload<TSelectorValue> extends IScanBasePayload {
     scanResult: ScanResults;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IScanUpdatePayload extends IScanBasePayload {
+export interface ScanUpdatePayload extends IScanBasePayload {
     results: ITabStopEvent[];
 }
 
