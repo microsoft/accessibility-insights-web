@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import * as Markup from '../markup';
 
-const AssistedTestRecordYourResults = () => (
+export const AssistedTestRecordYourResults = () => (
     <li>
         Record your results:
         <ol>
@@ -18,5 +18,3 @@ const AssistedTestRecordYourResults = () => (
         </ol>
     </li>
 );
-
-export default AssistedTestRecordYourResults;
