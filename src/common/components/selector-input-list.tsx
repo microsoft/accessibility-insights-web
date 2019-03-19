@@ -146,7 +146,7 @@ export class SelectorInputList extends React.Component<SelectorInputListProps, S
     }
 
     @autobind
-    private getDeleteSelectorHandler(item: string[]): (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void {
+    private getDeleteSelectorHandler(item: string[]): (event: React.MouseEvent<HTMLButtonElement>) => void {
         return (event: React.MouseEvent<HTMLButtonElement>) => {
             this.deleteSelector(event, item);
         };

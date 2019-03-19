@@ -19,7 +19,7 @@ import { TabStopsListener } from './tab-stops-listener';
 export class AnalyzerController {
     private analyzerProvider: AnalyzerProvider;
     private tabStopsListener: TabStopsListener;
-    private analyzers: DictionaryNumberTo<IAnalyzer<any>>;
+    private analyzers: DictionaryStringTo<IAnalyzer<any>>;
     private sendMessage: (message) => void;
     private visualizationstore: IBaseStore<IVisualizationStoreData>;
     private scopingStore: IBaseStore<IScopingStoreData>;
@@ -95,7 +95,7 @@ export class AnalyzerController {
         });
     }
 
-    private getAnalyzerByIdentifier(key: string): IAnalyzer<string> {
+    private getAnalyzerByIdentifier(key: string): IAnalyzer<any> {
         if (!this.analyzers[key]) {
             return null;
         }
