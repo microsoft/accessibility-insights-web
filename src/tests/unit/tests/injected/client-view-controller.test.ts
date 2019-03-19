@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { AssessmentsProvider } from '../../../../assessments/assessments-provider';
 import { AssessmentDataConverter } from '../../../../background/assessment-data-converter';
 import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
@@ -28,7 +27,6 @@ import { TargetPageActionMessageCreator } from '../../../../injected/target-page
 import { PropertyBags, VisualizationInstanceProcessorCallback } from '../../../../injected/visualization-instance-processor';
 import { DictionaryNumberTo, DictionaryStringTo } from '../../../../types/common-types';
 import { AssessmentsStoreDataBuilder } from '../../common/assessment-store-data-builder';
-import { StoreStub } from '../../common/store-stub';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 
@@ -37,11 +35,10 @@ describe('ClientViewControllerTest', () => {
         let privateListenerVisStore;
         let privateListenerVisScanStore;
         let privateListenerAssessmentStore;
-        let privateListenerTabStore;
 
         const visualizationStore = Mock.ofType(VisualizationStore, MockBehavior.Strict);
         const visualizationScanResultStoreMock = Mock.ofType(VisualizationScanResultStore, MockBehavior.Strict);
-        const assessmentStoreMock = Mock.ofType<IBaseStore<IAssessmentStoreData>>(StoreStub, MockBehavior.Strict);
+        const assessmentStoreMock = Mock.ofType<IBaseStore<IAssessmentStoreData>>(null, MockBehavior.Strict);
         const tabStoreMock = Mock.ofType<IBaseStore<ITabStoreData>>(TabStore, MockBehavior.Strict);
         const featureFlagStoreMock = Mock.ofType(FeatureFlagStore);
 
@@ -65,9 +62,7 @@ describe('ClientViewControllerTest', () => {
             .verifiable();
         tabStoreMock
             .setup(sm => sm.addChangedListener(It.isAny()))
-            .callback(listener => {
-                privateListenerTabStore = listener;
-            })
+            .callback(listener => {})
             .verifiable();
 
         const testObject = new ClientViewController(
@@ -370,7 +365,6 @@ class TestableClientViewController extends ClientViewController {
     }
 }
 
-// tslint:disable-next-line:max-classes-per-file
 class MocksAndTestSubjectBuilder {
     private _fromVisualizationStoreState: IVisualizationStoreData;
     private _toVisualizationStoreState: IVisualizationStoreData;
@@ -395,8 +389,8 @@ class MocksAndTestSubjectBuilder {
     private _scrollingControllerMock: IMock<ScrollingController>;
     private _dataBuilderForFromVisualizationStoreState: VisualizationStoreDataBuilder = new VisualizationStoreDataBuilder();
     private _dataBuilderForToVisualizationStoreState: VisualizationStoreDataBuilder = new VisualizationStoreDataBuilder();
-    private _dataBuilderForFromVisualizationScanStoreState: VisualizationScanResultStoreDataBuilder = new VisualizationScanResultStoreDataBuilder();
-    private _dataBuilderForToVisualizationScanStoreState: VisualizationScanResultStoreDataBuilder = new VisualizationScanResultStoreDataBuilder();
+    private _dataBuilderForFromVisualizationScanStoreState = new VisualizationScanResultStoreDataBuilder();
+    private _dataBuilderForToVisualizationScanStoreState = new VisualizationScanResultStoreDataBuilder();
     private IsScrollingInitiatorSetup: boolean = false;
     private _initializedVisualizationState: DictionaryStringTo<boolean> = {};
     private _initializedVisualizationSelectorMapState: DictionaryNumberTo<DictionaryStringTo<IAssessmentVisualizationInstance>> = {};
@@ -597,7 +591,7 @@ class MocksAndTestSubjectBuilder {
 
     private setupGetStateMock(): void {
         this._visualizationStore = Mock.ofType(VisualizationStore);
-        this._assessmentStoreMock = Mock.ofType<IBaseStore<IAssessmentStoreData>>(StoreStub);
+        this._assessmentStoreMock = Mock.ofType<IBaseStore<IAssessmentStoreData>>();
         this._tabStoreMock = Mock.ofType<IBaseStore<ITabStoreData>>(TabStore);
         this._visualizationScanResultStoreMock = Mock.ofType(VisualizationScanResultStore);
         this._featureFlagStoreMock = Mock.ofType(FeatureFlagStore);
@@ -658,8 +652,8 @@ class MocksAndTestSubjectBuilder {
         this._visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
         this._visualizationConfigurationFactoryMock
             .setup(vcfm => vcfm.getConfiguration(It.isAny()))
-            .returns(type => {
-                const config = this._actualVisualizationConfigurationFactory.getConfiguration(type);
+            .returns(visualizationType => {
+                const config = this._actualVisualizationConfigurationFactory.getConfiguration(visualizationType);
                 config.visualizationInstanceProcessor = this._getVisualizationInstanceProcessorMock.object;
                 return config;
             });
@@ -694,9 +688,9 @@ class MocksAndTestSubjectBuilder {
                 return this._toVisualizationStoreState.tests.adhoc.issues;
             case VisualizationType.Landmarks:
                 return this._toVisualizationStoreState.tests.adhoc.landmarks;
+            default:
+                return null;
         }
-
-        return null;
     }
 
     private getFromStateForType(type: VisualizationType): IScanData {
@@ -707,8 +701,8 @@ class MocksAndTestSubjectBuilder {
                 return this._fromVisualizationStoreState.tests.adhoc.issues;
             case VisualizationType.Landmarks:
                 return this._fromVisualizationStoreState.tests.adhoc.landmarks;
+            default:
+                return null;
         }
-
-        return null;
     }
 }
