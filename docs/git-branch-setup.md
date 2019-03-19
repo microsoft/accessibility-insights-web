@@ -6,12 +6,15 @@ Licensed under the MIT License.
 ## Git branch setup
 
 This document describes how to set up your development environment and contribute changes to
-[accessibility-insights-web](https://github.com/Microsoft/accessibility-insights-web). This document assumes basic working knowledge with Git and related tools.
-We are providing instructions specific to this project.
+[accessibility-insights-web](https://github.com/Microsoft/accessibility-insights-web). This document assumes basic working knowledge
+with Git and related tools.We are providing instructions specific to this project.
 
 ## Creating your own fork
 
-If you wish to contribute changes back to the [accessibility-insights-web](https://github.com/Microsoft/accessibility-insights-web) repository, start by creating your own fork of the repository. This will keep the number of branches on the main repository to a small count. In your own fork, you can create as many branches as you like.
+If you wish to contribute changes back to the [accessibility-insights-web](https://github.com/Microsoft/accessibility-insights-web)
+repository, start by creating your own [Fork](https://help.github.com/en/articles/fork-a-repo) of the repository. This will keep the
+number of branches on the main repository to a small
+count. In your own fork, you can create as many branches as you like.
 
 -   Navigate to [GitHub](https://github.com/) with a browser and log in to your GitHub account. For the sake of this document, let's assume your username is **adacat**.
 -   Navigate to the [accessibility-insights-web](https://github.com/Microsoft/accessibility-insights-web) repository in the same browser session.
