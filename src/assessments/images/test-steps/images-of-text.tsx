@@ -10,7 +10,7 @@ import * as content from '../../../content/test/images/images-of-text';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
-import { PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
+import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { TestStep } from '../../types/test-step';
@@ -39,7 +39,7 @@ const propertyBagConfig: PropertyBagColumnRendererConfig<ImagesOfTextPropertyBag
     {
         propertyName: 'accessibleName',
         displayName: 'Accessible name',
-        defaultValue: '-',
+        defaultValue: NoValue,
     },
 ];
 

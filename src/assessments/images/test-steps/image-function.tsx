@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { PropertyBagColumnRendererConfig } from '../../../assessments/common/property-bag-column-renderer';
+import { NoValue, PropertyBagColumnRendererConfig } from '../../../assessments/common/property-bag-column-renderer';
 import { ImageFunctionPropertyBag } from '../../../common/types/property-bag/iimage-function';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
@@ -56,12 +56,12 @@ const propertyBagConfig: PropertyBagColumnRendererConfig<ImageFunctionPropertyBa
     {
         propertyName: 'codedAs',
         displayName: 'Coded as',
-        defaultValue: '-',
+        defaultValue: NoValue,
     },
     {
         propertyName: 'accessibleName',
         displayName: 'Accessible name',
-        defaultValue: '-',
+        defaultValue: NoValue,
     },
 ];
 
