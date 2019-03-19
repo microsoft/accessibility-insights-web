@@ -25,7 +25,7 @@ describe('HeaderContextualMenu', () => {
             header: null,
             popupWindow: null,
             featureFlags: {
-                [FeatureFlags.newAssessmentExperience]: true,
+                'test-flag': true,
             },
         };
         const wrapped = shallow(<HeaderContextualMenu {...props} />);
@@ -56,7 +56,7 @@ describe('HeaderContextualMenu', () => {
                     launchPanelHeaderClickHandler: launchPanelHeaderClickHandlerMock.object,
                 },
                 featureFlags: {
-                    [FeatureFlags.newAssessmentExperience]: true,
+                    'test-flag': true,
                 },
                 header: headerMock.object,
                 popupWindow: popupWindowMock.object,

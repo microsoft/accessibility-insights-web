@@ -84,7 +84,7 @@ describe('DiagnosticViewToggleTest', () => {
             const event = eventStubFactory.createKeypressEvent();
             const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource);
             const props: DiagnosticViewToggleProps = propsBuilder
-                .setupFeatureFlags({ [FeatureFlags.newAssessmentExperience]: true })
+                .setupFeatureFlags({ 'test-flag': true })
                 .setupOpenDetailsViewCall(event)
                 .build();
 
