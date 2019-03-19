@@ -54,7 +54,7 @@ class VisualizationWindowMessageStubBuilder {
         return this;
     }
 
-    public setFeatureFlagStoreData(featureFlagStoreData: FeatureFlagStoreData) {
+    public setFeatureFlagStoreData(featureFlagStoreData: FeatureFlagStoreData): VisualizationWindowMessageStubBuilder {
         this.featureFlagStoreData = featureFlagStoreData;
         return this;
     }
@@ -190,7 +190,7 @@ describe('DrawingControllerTest', () => {
         testEnableVisualization(false);
     });
 
-    function testEnableVisualization(showInstanceVisibilityFF: boolean) {
+    function testEnableVisualization(showInstanceVisibilityFF: boolean): void {
         const featureFlagStoreData = getDefaultFeatureFlagValues();
         featureFlagStoreData[FeatureFlags.showInstanceVisibility] = showInstanceVisibilityFF;
 

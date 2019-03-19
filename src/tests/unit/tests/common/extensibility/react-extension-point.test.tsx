@@ -39,7 +39,7 @@ describe('ReactExtensionPoint', () => {
     const myTitle = 'My Title';
     const myChild = 'My Child';
 
-    function componentWithExtensions(ext) {
+    function componentWithExtensions(ext): JSX.Element {
         return (
             <div>
                 <TestExtensionPoint.component extensions={ext} title={myTitle}>

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DialogRenderer } from '../dialog-renderer';
 import { IHtmlElementAxeResults } from '../scanner-utils';
 import { IPartialSVGDrawerConfiguration } from './drawer-provider';
 import { Formatter, SVGDrawerConfiguration } from './formatter';
@@ -74,7 +75,7 @@ export class TabStopsFormatter implements Formatter {
         return TabStopsFormatter.ELLIPSE_RX_CALCULATOR_OFFSET + TabStopsFormatter.ELLIPSE_RX_CALCULATOR_SLOPE * value;
     }
 
-    public getDialogRenderer() {
+    public getDialogRenderer(): DialogRenderer {
         return null;
     }
 }

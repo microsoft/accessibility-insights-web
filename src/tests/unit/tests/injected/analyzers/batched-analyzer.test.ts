@@ -11,7 +11,9 @@ import {
 } from '../../../../../common/configs/visualization-configuration-factory';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { RuleAnalyzerScanTelemetryData } from '../../../../../common/telemetry-events';
+import { IAnalyzerTelemetryCallback } from '../../../../../common/types/analyzer-telemetry-callbacks';
 import { IScopingStoreData } from '../../../../../common/types/store-data/scoping-store-data';
+import { TelemetryProcessor } from '../../../../../common/types/telemetry-processor';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { BatchedRuleAnalyzer, IResultRuleFilter } from '../../../../../injected/analyzers/batched-rule-analyzer';
 import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/ianalyzer';
@@ -19,6 +21,17 @@ import { IHtmlElementAxeResults, ScannerUtils } from '../../../../../injected/sc
 import { ScanOptions } from '../../../../../scanner/exposed-apis';
 import { RuleResult, ScanResults } from '../../../../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../../../../types/common-types';
+
+type MessageType = {
+    type: string;
+    payload: {
+        key: string;
+        selectorMap: DictionaryStringTo<any>;
+        testType: VisualizationType;
+        telemetry: TelemetryProcessor<IAnalyzerTelemetryCallback>;
+        scanResult: ScanResults;
+    };
+};
 
 describe('BatchedRuleAnalyzer', () => {
     let scannerUtilsMock: IMock<ScannerUtils>;
@@ -77,7 +90,7 @@ describe('BatchedRuleAnalyzer', () => {
         testGetResults(done);
     });
 
-    function testGetResults(done: () => void) {
+    function testGetResults(done: () => void): void {
         const key = 'sample key';
         const telemetryProcessorStub = factory => (_, elapsedTime, __) => {
             return createTelemetryStub(elapsedTime, testName, key);
@@ -168,7 +181,7 @@ describe('BatchedRuleAnalyzer', () => {
         config: RuleAnalyzerConfiguration,
         completeResults: ScanResults,
         filteredResults: ScanResults,
-    ) {
+    ): void {
         resultProcessorMock.setup(processor => processor(It.isValue(completeResults))).returns(() => null);
 
         resultProcessorMock.setup(processor => processor(It.isValue(filteredResults))).returns(() => mockAllInstances);
@@ -188,7 +201,7 @@ describe('BatchedRuleAnalyzer', () => {
         return telemetryStub;
     }
 
-    function setupScannerUtilsMock(rules: string[], times: Times) {
+    function setupScannerUtilsMock(rules: string[], times: Times): void {
         const getState = scopingStoreMock.object.getState();
         const include = getState.selectors[ScopingInputTypes.include];
         const exclude = getState.selectors[ScopingInputTypes.exclude];
@@ -207,7 +220,7 @@ describe('BatchedRuleAnalyzer', () => {
             .verifiable(times);
     }
 
-    function getExpectedMessage(config: RuleAnalyzerConfiguration, results: ScanResults, expectedTelemetryStub) {
+    function getExpectedMessage(config: RuleAnalyzerConfiguration, results: ScanResults, expectedTelemetryStub): MessageType {
         return {
             type: config.analyzerMessageType,
             payload: {

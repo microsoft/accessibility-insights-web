@@ -200,11 +200,11 @@ describe('AnalyzerControllerTests', () => {
         analyzerMock.verifyAll();
     });
 
-    function setupAnalyzeCall() {
+    function setupAnalyzeCall(): void {
         analyzerMock.setup(am => am.analyze()).verifiable();
     }
 
-    function setupTeardownCall() {
+    function setupTeardownCall(): void {
         analyzerMock.setup(am => am.teardown()).verifiable();
     }
 
@@ -243,10 +243,10 @@ describe('AnalyzerControllerTests', () => {
 });
 
 class AnalyzerStub implements IAnalyzer<any> {
-    public analyze() {
+    public analyze(): void {
         throw new Error('Method not implemented.');
     }
-    public teardown() {
+    public teardown(): void {
         throw new Error('Method not implemented.');
     }
 }

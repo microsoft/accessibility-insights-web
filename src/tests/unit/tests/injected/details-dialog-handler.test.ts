@@ -542,7 +542,7 @@ describe('DetailsDialogHandlerTest', () => {
         htmlElementUtilsMock.verifyAll();
     });
 
-    function setupInspectButtonQuerySelector(shadowRootMock: IMock<Element>, clickableMock: IMock<any>) {
+    function setupInspectButtonQuerySelector(shadowRootMock: IMock<Element>, clickableMock: IMock<any>): void {
         shadowRootMock
             .setup(x => x.querySelector('.insights-dialog-button-inspect'))
             .returns(selector => {
@@ -551,7 +551,7 @@ describe('DetailsDialogHandlerTest', () => {
             .verifiable(Times.once());
     }
 
-    function setupDialogContainerQuerySelector(shadowRootMock: IMock<Element>, clickableMock: IMock<any>) {
+    function setupDialogContainerQuerySelector(shadowRootMock: IMock<Element>, clickableMock: IMock<any>): void {
         shadowRootMock
             .setup(x => x.querySelector('.insights-dialog-main-override-shadow'))
             .returns(selector => {
@@ -560,7 +560,7 @@ describe('DetailsDialogHandlerTest', () => {
             .verifiable(Times.once());
     }
 
-    function setupCloseButtonQuerySelector(shadowRootMock: IMock<Element>, clickableMock: IMock<any>) {
+    function setupCloseButtonQuerySelector(shadowRootMock: IMock<Element>, clickableMock: IMock<any>): void {
         shadowRootMock
             .setup(x => x.querySelector('.insights-dialog-close'))
             .returns(selector => {
@@ -569,7 +569,7 @@ describe('DetailsDialogHandlerTest', () => {
             .verifiable(Times.once());
     }
 
-    function setupNextButtonQuerySelector(shadowRootMock: IMock<Element>, clickableMock: IMock<any>) {
+    function setupNextButtonQuerySelector(shadowRootMock: IMock<Element>, clickableMock: IMock<any>): void {
         shadowRootMock
             .setup(x => x.querySelector('.insights-dialog-button-right'))
             .returns(selector => {
@@ -578,7 +578,7 @@ describe('DetailsDialogHandlerTest', () => {
             .verifiable(Times.once());
     }
 
-    function setupBackButtonQuerySelector(shadowRootMock: IMock<Element>, clickableMock: IMock<any>) {
+    function setupBackButtonQuerySelector(shadowRootMock: IMock<Element>, clickableMock: IMock<any>): void {
         shadowRootMock
             .setup(x => x.querySelector('.insights-dialog-button-left'))
             .returns(selector => {
@@ -587,7 +587,7 @@ describe('DetailsDialogHandlerTest', () => {
             .verifiable(Times.once());
     }
 
-    function testIsInspectButtonDisabledShouldReflectCanInspect(canInspect: boolean) {
+    function testIsInspectButtonDisabledShouldReflectCanInspect(canInspect: boolean): void {
         const detailsDialogMock = Mock.ofType(DetailsDialog, MockBehavior.Strict);
 
         detailsDialogMock

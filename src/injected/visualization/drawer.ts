@@ -70,7 +70,7 @@ export class Drawer extends BaseDrawer {
 
         let drawerConfig = Drawer.defaultConfiguration;
         if (this.formatter) {
-            drawerConfig = this.formatter.getDrawerConfiguration(element, data);
+            drawerConfig = this.formatter.getDrawerConfiguration(element, data) as DrawerConfiguration;
         }
 
         let elementBoundingClientRect = element.getBoundingClientRect();

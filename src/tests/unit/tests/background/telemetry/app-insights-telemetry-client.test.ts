@@ -180,13 +180,13 @@ describe('AppInsights telemetry client tests', () => {
         });
     });
 
-    function verifyBaseDataProperties(extendedEnvelop: ExtendedEnvelop) {
+    function verifyBaseDataProperties(extendedEnvelop: ExtendedEnvelop): void {
         expect(extendedEnvelop.data.baseData.properties).toMatchObject(coreTelemetryData);
 
         expect(extendedEnvelop.data.baseData).toMatchObject(getEnvelopStub().data.baseData);
     }
 
-    function setupAddTelemetryInitializerCall() {
+    function setupAddTelemetryInitializerCall(): void {
         addTelemetryInitializerStrictMock
             .setup(x =>
                 x(
@@ -213,20 +213,20 @@ describe('AppInsights telemetry client tests', () => {
         } as ExtendedEnvelop;
     }
 
-    function setupAppInsightsContext() {
-        appInsightsStrictMock.setup(ai => ai.context).returns(() => getAppInsightsContext() as any);
+    function setupAppInsightsContext(): void {
+        appInsightsStrictMock.setup(ai => ai.context).returns(() => getAppInsightsContext());
     }
 
-    function getAppInsightsContext() {
+    function getAppInsightsContext(): Microsoft.ApplicationInsights.ITelemetryContext {
         return {
             addTelemetryInitializer: addTelemetryInitializerStrictMock.object,
             user: {
                 id: null,
             },
-        };
+        } as any;
     }
 
-    function setupAppInsightsDownloadAndSetupCall() {
+    function setupAppInsightsDownloadAndSetupCall(): void {
         appInsightsStrictMock
             .setup(ai =>
                 ai.downloadAndSetup(
@@ -240,19 +240,19 @@ describe('AppInsights telemetry client tests', () => {
             .verifiable(Times.once());
     }
 
-    function invokeFirstEnableTelemetryCall() {
+    function invokeFirstEnableTelemetryCall(): void {
         setupAppInsightsQueue();
         setupAppInsightsDownloadAndSetupCall();
 
         testSubject.enableTelemetry();
     }
 
-    function invokeFirstEnableTelemetryCallWithCallbacks() {
+    function invokeFirstEnableTelemetryCallWithCallbacks(): void {
         invokeFirstEnableTelemetryCall();
         invokeCallbacksForFirstEnableTelemetryCall();
     }
 
-    function invokeCallbacksForFirstEnableTelemetryCall() {
+    function invokeCallbacksForFirstEnableTelemetryCall(): void {
         setupAppInsightsContext();
         setupAddTelemetryInitializerCall();
         setupAppInsightsConfig();
@@ -261,19 +261,19 @@ describe('AppInsights telemetry client tests', () => {
         invokeAllFunctionsInQueue();
     }
 
-    function invokeAllFunctionsInQueue() {
+    function invokeAllFunctionsInQueue(): void {
         queue.forEach(q => q());
         queue = [];
     }
 
-    function setupAppInsightsQueue() {
+    function setupAppInsightsQueue(): void {
         appInsightsStrictMock
             .setup(ai => ai.queue)
             .returns(() => queue)
             .verifiable(Times.atLeast(1));
     }
 
-    function setupAppInsightsConfig() {
+    function setupAppInsightsConfig(): void {
         appInsightsStrictMock.setup(ai => ai.config).returns(() => aiConfig);
     }
 });

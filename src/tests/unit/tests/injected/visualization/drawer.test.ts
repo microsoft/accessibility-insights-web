@@ -5,6 +5,7 @@ import { IActionN } from 'typemoq/_all';
 import { getDefaultFeatureFlagValues } from '../../../../../common/feature-flags';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { ClientUtils } from '../../../../../injected/client-utils';
+import { DialogRenderer } from '../../../../../injected/dialog-renderer';
 import { IHtmlElementAxeResults } from '../../../../../injected/scanner-utils';
 import { ShadowUtils } from '../../../../../injected/shadow-utils';
 import { Drawer } from '../../../../../injected/visualization/drawer';
@@ -1153,7 +1154,7 @@ describe('Drawer', () => {
                 throw new Error('Not implemented');
             }
 
-            public getDialogRenderer() {
+            public getDialogRenderer(): DialogRenderer {
                 return null;
             }
         }
@@ -1168,7 +1169,7 @@ describe('Drawer', () => {
 
         const elementResults = createElementResults(['#id1', '#id2', '#id3', '#id4']);
 
-        function addMockForElement(selector: string, config: DrawerConfiguration) {
+        function addMockForElement(selector: string, config: DrawerConfiguration): void {
             const elementResult = elementResults.filter(el => el.target[0] === selector)[0];
             formatterMock
                 .setup(it => it.getDrawerConfiguration(dom.querySelector(selector), elementResult))
@@ -1294,7 +1295,7 @@ describe('Drawer', () => {
         return overlays;
     }
 
-    function findAllOverlayContainers() {
+    function findAllOverlayContainers(): NodeListOf<Element> {
         return shadowContainer.querySelectorAll('.insights-container');
     }
 
@@ -1358,15 +1359,15 @@ describe('Drawer', () => {
         return new DrawerBuilder(shadowUtilsMock.object);
     }
 
-    function setupWindow() {
+    function setupWindow(): void {
         windowUtilsMock.setup(w => w.getWindow()).returns(() => windowStub);
     }
 
-    function setupGetComputedStyleNotCalled() {
+    function setupGetComputedStyleNotCalled(): void {
         windowUtilsMock.setup(it => it.getComputedStyle(It.isAny())).verifiable(Times.never());
     }
 
-    function setupGetComputedStyleCalled() {
+    function setupGetComputedStyleCalled(): void {
         windowUtilsMock
             .setup(it => it.getComputedStyle(It.isAny()))
             .returns(stuff => {
@@ -1378,17 +1379,17 @@ describe('Drawer', () => {
             .verifiable(Times.atLeastOnce());
     }
 
-    function setupRemoveEventListerCalled() {
+    function setupRemoveEventListerCalled(): void {
         windowUtilsMock.setup(x => x.removeEventListener(windowStub, 'resize', It.isAny(), true)).verifiable();
         windowUtilsMock.setup(x => x.removeEventListener(windowStub, 'scroll', It.isAny(), true)).verifiable();
     }
 
-    function setupRemoveEventListerNotCalled() {
+    function setupRemoveEventListerNotCalled(): void {
         windowUtilsMock.setup(x => x.removeEventListener(windowStub, 'resize', It.isAny(), true)).verifiable(Times.never());
         windowUtilsMock.setup(x => x.removeEventListener(windowStub, 'scroll', It.isAny(), true)).verifiable(Times.never());
     }
 
-    function setupAddEventListerCalled(callback: IActionN<any>) {
+    function setupAddEventListerCalled(callback: IActionN<any>): void {
         windowUtilsMock
             .setup(x => x.addEventListener(windowStub, 'resize', It.isAny(), true))
             .callback(callback)
@@ -1399,7 +1400,7 @@ describe('Drawer', () => {
             .verifiable();
     }
 
-    function setupAddEventListerNotCalled() {
+    function setupAddEventListerNotCalled(): void {
         windowUtilsMock.setup(x => x.addEventListener(windowStub, 'resize', It.isAny(), It.isAny())).verifiable(Times.never());
         windowUtilsMock.setup(x => x.addEventListener(windowStub, 'scroll', It.isAny(), It.isAny())).verifiable(Times.never());
     }

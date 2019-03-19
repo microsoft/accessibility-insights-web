@@ -212,13 +212,13 @@ describe('HTMLElementUtilsTest', () => {
         expect(containerElement.querySelectorAll('.do-not-delete').length).toBe(1);
     });
 
-    function createElementWithId(id: string) {
+    function createElementWithId(id: string): Element {
         const element = document.createElement('p');
         element.id = id;
         return element;
     }
 
-    function createElementWithClassName(className: string) {
+    function createElementWithClassName(className: string): Element {
         const element = document.createElement('p');
         element.className = className;
         return element;

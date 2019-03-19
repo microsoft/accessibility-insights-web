@@ -356,18 +356,16 @@ describe('ClientViewControllerTest', () => {
 
         builder.verifyAll();
     });
-
-    function getPrivateSingleton() {
-        return (ClientViewController as any)._singleton;
-    }
 });
 
 class TestableClientViewController extends ClientViewController {
-    public setPreviousVisualizationStatesStub(stub: DictionaryStringTo<boolean>) {
+    public setPreviousVisualizationStatesStub(stub: DictionaryStringTo<boolean>): void {
         this.previousVisualizationStates = stub;
     }
 
-    public setPreviousVisualizationSelectorMapStatesStub(stub: DictionaryNumberTo<DictionaryStringTo<IAssessmentVisualizationInstance>>) {
+    public setPreviousVisualizationSelectorMapStatesStub(
+        stub: DictionaryNumberTo<DictionaryStringTo<IAssessmentVisualizationInstance>>,
+    ): void {
         this.previousVisualizationSelectorMapStates = stub;
     }
 }
@@ -461,7 +459,7 @@ class MocksAndTestSubjectBuilder {
         return this;
     }
 
-    public fromFeatureFlagState(state: FeatureFlagStoreData) {
+    public fromFeatureFlagState(state: FeatureFlagStoreData): MocksAndTestSubjectBuilder {
         this._fromFeatureFlagStoreState = state;
         return this;
     }
@@ -511,7 +509,7 @@ class MocksAndTestSubjectBuilder {
         return controller;
     }
 
-    public verifyAll() {
+    public verifyAll(): void {
         this._drawingInitiatorMock.verifyAll();
         this._visualizationStore.verifyAll();
         if (this.IsScrollingInitiatorSetup) {
@@ -597,7 +595,7 @@ class MocksAndTestSubjectBuilder {
         };
     }
 
-    private setupGetStateMock() {
+    private setupGetStateMock(): void {
         this._visualizationStore = Mock.ofType(VisualizationStore);
         this._assessmentStoreMock = Mock.ofType<IBaseStore<IAssessmentStoreData>>(StoreStub);
         this._tabStoreMock = Mock.ofType<IBaseStore<ITabStoreData>>(TabStore);
@@ -628,7 +626,7 @@ class MocksAndTestSubjectBuilder {
         this._featureFlagStoreMock.setup(sm => sm.getState()).returns(() => this._toFeatureFlagStoreState);
     }
 
-    private setupEnableDisableVisualizationMock(type: VisualizationType) {
+    private setupEnableDisableVisualizationMock(type: VisualizationType): void {
         let enableTimes: Times;
         let disableTimes: Times;
 
