@@ -6,7 +6,6 @@ import { FeatureFlagStoreData } from './types/store-data/feature-flag-store-data
 
 export class FeatureFlags {
     public static readonly logTelemetryToConsole = 'logTelemetryToConsole';
-    public static readonly newAssessmentExperience = 'newAssessmentExperience';
     public static readonly showAllAssessments = 'showAllAssessments';
     public static readonly shadowDialog = 'shadowDialog';
     public static readonly exportResult = 'exportResult';
@@ -45,14 +44,6 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
                 "(You'll need to refresh the target page to see the new dialog styling.)",
             isPreviewFeature: false,
             forceDefault: false,
-        },
-        {
-            id: FeatureFlags.newAssessmentExperience,
-            defaultValue: true,
-            displayableName: 'New assessment experience',
-            displayableDescription: 'Show new Assessment pivot and manual assisted test experiences under development.',
-            isPreviewFeature: false,
-            forceDefault: true,
         },
         {
             id: FeatureFlags.showAllAssessments,
