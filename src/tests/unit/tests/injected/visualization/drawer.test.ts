@@ -5,6 +5,7 @@ import { IActionN } from 'typemoq/_all';
 import { getDefaultFeatureFlagValues } from '../../../../../common/feature-flags';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { ClientUtils } from '../../../../../injected/client-utils';
+import { DialogRenderer } from '../../../../../injected/dialog-renderer';
 import { IHtmlElementAxeResults } from '../../../../../injected/scanner-utils';
 import { ShadowUtils } from '../../../../../injected/shadow-utils';
 import { Drawer } from '../../../../../injected/visualization/drawer';
@@ -1153,7 +1154,7 @@ describe('Drawer', () => {
                 throw new Error('Not implemented');
             }
 
-            public getDialogRenderer(): any {
+            public getDialogRenderer(): DialogRenderer {
                 return null;
             }
         }
