@@ -1,15 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-
 import { InspectMode } from '../background/inspect-modes';
-import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
+import { ConfigurationKey, InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { IBaseStore } from '../common/istore';
 import { IInspectStoreData } from '../common/types/store-data/inspect-store-data';
 import { ScopingListener } from './scoping-listener';
 
 export class InspectController {
-    private currentMode: string;
+    private currentMode: InspectMode;
 
     constructor(
         private readonly inspectStore: IBaseStore<IInspectStoreData>,
@@ -41,7 +40,7 @@ export class InspectController {
     @autobind
     private onInspectClick(event: MouseEvent, selector: string[]): void {
         this.scopingListener.stop();
-        this.inspectConfigurationFactory.getConfigurationByKey(this.currentMode)(event, selector);
+        this.inspectConfigurationFactory.getConfigurationByKey(this.currentMode as ConfigurationKey)(event, selector);
         this.changeInspectMode(event, InspectMode.off);
     }
 }
