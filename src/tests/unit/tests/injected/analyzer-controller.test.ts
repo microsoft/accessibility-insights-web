@@ -243,10 +243,10 @@ describe('AnalyzerControllerTests', () => {
 });
 
 class AnalyzerStub implements IAnalyzer<any> {
-    public analyze(): Error {
+    public analyze(): void {
         throw new Error('Method not implemented.');
     }
-    public teardown(): Error {
+    public teardown(): void {
         throw new Error('Method not implemented.');
     }
 }
