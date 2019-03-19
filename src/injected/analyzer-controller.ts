@@ -11,14 +11,14 @@ import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryStringTo } from '../types/common-types';
 import { VisualizationConfigurationFactory } from './../common/configs/visualization-configuration-factory';
 import { AnalyzerStateUpdateHandler } from './analyzer-state-update-handler';
-import { IAnalyzer } from './analyzers/analyzer';
+import { Analyzer } from './analyzers/analyzer';
 import { AnalyzerProvider } from './analyzers/analyzer-provider';
 import { TabStopsListener } from './tab-stops-listener';
 
 export class AnalyzerController {
     private analyzerProvider: AnalyzerProvider;
     private tabStopsListener: TabStopsListener;
-    private analyzers: DictionaryStringTo<IAnalyzer>;
+    private analyzers: DictionaryStringTo<Analyzer>;
     private sendMessage: (message) => void;
     private visualizationstore: IBaseStore<IVisualizationStoreData>;
     private scopingStore: IBaseStore<IScopingStoreData>;
@@ -94,7 +94,7 @@ export class AnalyzerController {
         });
     }
 
-    private getAnalyzerByIdentifier(key: string): IAnalyzer {
+    private getAnalyzerByIdentifier(key: string): Analyzer {
         if (!this.analyzers[key]) {
             return null;
         }

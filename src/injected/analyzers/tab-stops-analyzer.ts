@@ -4,14 +4,14 @@ import { autobind } from '@uifabric/utilities';
 import * as Q from 'q';
 import { WindowUtils } from './../../common/window-utils';
 import { ITabStopEvent, TabStopsListener } from './../tab-stops-listener';
-import { AxeAnalyzerResult, IAnalyzer, IFocusAnalyzerConfiguration, IScanBasePayload, IScanUpdatePayload } from './analyzer';
+import { AxeAnalyzerResult, Analyzer, IFocusAnalyzerConfiguration, IScanBasePayload, IScanUpdatePayload } from './analyzer';
 import { BaseAnalyzer } from './base-analyzer';
 
 export interface ProgressResult<T> {
     result: T;
 }
 
-export class TabStopsAnalyzer extends BaseAnalyzer implements IAnalyzer {
+export class TabStopsAnalyzer extends BaseAnalyzer implements Analyzer {
     private tabStopsListener: TabStopsListener;
     private deferred: Q.Deferred<AxeAnalyzerResult>;
     private _windowUtils: WindowUtils;

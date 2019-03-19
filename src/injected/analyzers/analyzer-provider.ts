@@ -7,7 +7,7 @@ import { IScopingStoreData } from '../../common/types/store-data/scoping-store-d
 import { WindowUtils } from '../../common/window-utils';
 import { ScannerUtils } from '../scanner-utils';
 import { TabStopsListener } from '../tab-stops-listener';
-import { IAnalyzer, IAnalyzerConfiguration, IFocusAnalyzerConfiguration, RuleAnalyzerConfiguration } from './analyzer';
+import { Analyzer, IAnalyzerConfiguration, IFocusAnalyzerConfiguration, RuleAnalyzerConfiguration } from './analyzer';
 import { BaseAnalyzer } from './base-analyzer';
 import { BatchedRuleAnalyzer, IResultRuleFilter } from './batched-rule-analyzer';
 import { RuleAnalyzer } from './rule-analyzer';
@@ -39,7 +39,7 @@ export class AnalyzerProvider {
         this.dateGetter = dateGetter;
     }
 
-    public createRuleAnalyzer(config: RuleAnalyzerConfiguration): IAnalyzer {
+    public createRuleAnalyzer(config: RuleAnalyzerConfiguration): Analyzer {
         return new RuleAnalyzer(
             config,
             this.scanner,
@@ -51,7 +51,7 @@ export class AnalyzerProvider {
         );
     }
 
-    public createBatchedRuleAnalyzer(config: RuleAnalyzerConfiguration): IAnalyzer {
+    public createBatchedRuleAnalyzer(config: RuleAnalyzerConfiguration): Analyzer {
         return new BatchedRuleAnalyzer(
             config,
             this.scanner,
@@ -64,11 +64,11 @@ export class AnalyzerProvider {
         );
     }
 
-    public createFocusTrackingAnalyzer(config: IFocusAnalyzerConfiguration): IAnalyzer {
+    public createFocusTrackingAnalyzer(config: IFocusAnalyzerConfiguration): Analyzer {
         return new TabStopsAnalyzer(config, this.tabStopsListener, new WindowUtils(), this.sendMessageDelegate);
     }
 
-    public createBaseAnalyzer(config: IAnalyzerConfiguration): IAnalyzer {
+    public createBaseAnalyzer(config: IAnalyzerConfiguration): Analyzer {
         return new BaseAnalyzer(config, this.sendMessageDelegate);
     }
 }

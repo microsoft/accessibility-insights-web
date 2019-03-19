@@ -18,7 +18,7 @@ import { IScopingStoreData } from '../../../../common/types/store-data/scoping-s
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { AnalyzerController } from '../../../../injected/analyzer-controller';
 import { AnalyzerStateUpdateHandler } from '../../../../injected/analyzer-state-update-handler';
-import { IAnalyzer } from '../../../../injected/analyzers/analyzer';
+import { Analyzer } from '../../../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../../../injected/analyzers/analyzer-provider';
 import { TabStopsListener } from '../../../../injected/tab-stops-listener';
 import { ScopingStoreDataBuilder } from '../../common/scoping-store-data-builder';
@@ -31,7 +31,7 @@ describe('AnalyzerControllerTests', () => {
     let featureFlagStoreStoreMock: IMock<FeatureFlagStore>;
     let testType: VisualizationType;
     let getStoreDataMock: IMock<(data: TestsEnabledState) => IScanData>;
-    let getAnalyzerMock: IMock<(provider: AnalyzerProvider) => IAnalyzer>>;
+    let getAnalyzerMock: IMock<(provider: AnalyzerProvider) => Analyzer>>;
     let getIdentifierMock: IMock<() => string>;
     let identifier: string;
     let configStub: VisualizationConfiguration;
@@ -42,7 +42,7 @@ describe('AnalyzerControllerTests', () => {
     let featureFlagStoreState: FeatureFlagStoreData;
     let scopingStoreState: IScopingStoreData;
     let analyzerProviderStrictMock: IMock<AnalyzerProvider>;
-    let analyzerMock: IMock<IAnalyzer>;
+    let analyzerMock: IMock<Analyzer>;
     let tabStopsListenerMock: IMock<TabStopsListener>;
     let sendMessageMock: IMock<(message) => void>;
     let analyzerStateUpdateHandlerStrictMock: IMock<AnalyzerStateUpdateHandler>;
@@ -241,7 +241,7 @@ describe('AnalyzerControllerTests', () => {
     }
 });
 
-class AnalyzerStub implements IAnalyzer {
+class AnalyzerStub implements Analyzer {
     public analyze(): void {
         throw new Error('Method not implemented.');
     }

@@ -18,8 +18,7 @@ export interface AxeAnalyzerResult {
     exclude?: ISingleElementSelector[];
 }
 
-// tslint:disable-next-line:interface-name
-export interface IAnalyzer {
+export interface Analyzer {
     analyze(): void;
     teardown(): void;
 }

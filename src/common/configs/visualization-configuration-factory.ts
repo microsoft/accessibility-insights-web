@@ -10,7 +10,7 @@ import { Assessments } from '../../assessments/assessments';
 import { ToggleActionPayload } from '../../background/actions/action-payloads';
 import { UniquelyIdentifiableInstances } from '../../background/instance-identifier-generator';
 import { TestViewProps } from '../../DetailsView/components/test-view';
-import { IAnalyzer } from '../../injected/analyzers/analyzer';
+import { Analyzer } from '../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../injected/analyzers/analyzer-provider';
 import { IHtmlElementAxeResults, ScannerUtils } from '../../injected/scanner-utils';
 import { PropertyBags, VisualizationInstanceProcessorCallback } from '../../injected/visualization-instance-processor';
@@ -47,7 +47,7 @@ export interface AssesssmentVisualizationConfiguration {
     analyzerProgressMessageType?: string;
     resultProcessor?: (scanner: ScannerUtils) => (results: ScanResults) => DictionaryStringTo<IHtmlElementAxeResults>;
     telemetryProcessor?: TelemetryProcessor<IAnalyzerTelemetryCallback>;
-    getAnalyzer: (analyzerProvider: AnalyzerProvider, testStep?: string) => IAnalyzer;
+    getAnalyzer: (analyzerProvider: AnalyzerProvider, testStep?: string) => Analyzer;
     getIdentifier: (testStep?: string) => string;
     visualizationInstanceProcessor: (testStep?: string) => VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags>;
     getNotificationMessage: (selectorMap: DictionaryStringTo<any>, testStep?: string) => string;
