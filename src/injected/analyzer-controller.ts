@@ -52,7 +52,7 @@ export class AnalyzerController {
         this.analyzerStateUpdateHandler.setupHandlers(this.startScan, this.teardown);
     }
 
-    public listenToStore() {
+    public listenToStore(): void {
         this.initializeAnalyzers();
         this.visualizationstore.addChangedListener(this.onChangedState);
         this.featureFlagStore.addChangedListener(this.onChangedState);
@@ -61,7 +61,7 @@ export class AnalyzerController {
     }
 
     @autobind
-    private onChangedState() {
+    private onChangedState(): void {
         if (this.hasInitializedStores() === false) {
             return;
         }
@@ -95,7 +95,7 @@ export class AnalyzerController {
         });
     }
 
-    private getAnalyzerByIdentifier(key: string) {
+    private getAnalyzerByIdentifier(key: string): IAnalyzer<string> {
         if (!this.analyzers[key]) {
             return null;
         }

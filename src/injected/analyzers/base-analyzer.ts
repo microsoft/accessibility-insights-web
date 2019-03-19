@@ -6,6 +6,11 @@ import * as Q from 'q';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { AxeAnalyzerResult, IAnalyzer, IAnalyzerConfiguration, IScanCompletedPayload } from './ianalyzer';
 
+export type MessageType = {
+    type: string;
+    payload: IScanCompletedPayload<any>;
+};
+
 export class BaseAnalyzer implements IAnalyzer<void> {
     protected sendMessage: (message) => void;
     protected type: VisualizationType;
@@ -43,7 +48,7 @@ export class BaseAnalyzer implements IAnalyzer<void> {
         this.sendMessage(this.createBaseMessage(analyzerResult, this.config));
     }
 
-    protected createBaseMessage(analyzerResult: AxeAnalyzerResult, config: IAnalyzerConfiguration) {
+    protected createBaseMessage(analyzerResult: AxeAnalyzerResult, config: IAnalyzerConfiguration): MessageType {
         const messageType = config.analyzerMessageType;
         const originalAxeResult = analyzerResult.originalResult;
         const payload: IScanCompletedPayload<any> = {

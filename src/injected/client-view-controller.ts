@@ -63,7 +63,7 @@ export class ClientViewController {
         this.targetPageActionMessageCreator = targetPageActionMessageCreator;
     }
 
-    public initialize() {
+    public initialize(): void {
         this.setupVisualizationStates();
         this.visualizationStore.addChangedListener(this.onChangedState);
         this.scanResultStore.addChangedListener(this.onChangedState);
@@ -134,7 +134,7 @@ export class ClientViewController {
         });
     }
 
-    private isAssessment(config: VisualizationConfiguration) {
+    private isAssessment(config: VisualizationConfiguration): boolean {
         return config.testMode === TestMode.Assessments;
     }
 
@@ -146,7 +146,7 @@ export class ClientViewController {
         );
     }
 
-    private executeUpdate(visualizationType: VisualizationType, step: string) {
+    private executeUpdate(visualizationType: VisualizationType, step: string): void {
         const configuration = this.visualizationConfigurationFactory.getConfiguration(visualizationType);
         const visualizationState = configuration.getStoreData(this.currentVisualizationState.tests);
         const selectorMap = this.selectorMapHelper.getSelectorMap(visualizationType);

@@ -94,7 +94,7 @@ export class ElementFinderByPosition {
         return deferred.promise;
     }
 
-    private getElementByPosition(message: ElementFinderByPositionMessage) {
+    private getElementByPosition(message: ElementFinderByPositionMessage): HTMLElement {
         const elements = this.dom.elementsFromPoint(message.x, message.y) as HTMLElement[];
 
         for (let pos = 0; pos < elements.length; pos++) {
