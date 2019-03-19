@@ -57,6 +57,18 @@ describe('DropdownActionMessageCreatorTest', () => {
         telemetryFactoryMock.verifyAll();
     });
 
+    it('dispatch message for openScopingPanel', () => {
+        const expectedMessage = getExpectedMessage(Messages.Scoping.OpenPanel);
+
+        setupTelemetryFactoryWithTriggeredByAndSourceCall();
+        setupPostMessage(expectedMessage);
+
+        testObject.openScopingPanel(event, testSource);
+
+        postMessageMock.verifyAll();
+        telemetryFactoryMock.verifyAll();
+    });
+
     function getExpectedMessage(messageType: string): Message {
         return {
             tabId: tabId,
