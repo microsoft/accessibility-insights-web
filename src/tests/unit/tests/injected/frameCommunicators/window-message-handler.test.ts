@@ -354,7 +354,7 @@ describe('WindowMessageHandlerTests', () => {
         mockWindowUtils.verifyAll();
     });
 
-    function getSampleMessageWithResponseId() {
+    function getSampleMessageWithResponseId(): IWindowMessage {
         return {
             message: {},
             command: 'command1',

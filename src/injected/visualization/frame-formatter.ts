@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DialogRenderer } from '../dialog-renderer';
 import { IAssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
 import { FailureInstanceFormatter } from './failure-instance-formatter';
 import { DrawerConfiguration } from './formatter';
@@ -29,7 +30,7 @@ export class FrameFormatter extends FailureInstanceFormatter {
         },
     };
 
-    public getDialogRenderer() {
+    public getDialogRenderer(): DialogRenderer {
         return null;
     }
 

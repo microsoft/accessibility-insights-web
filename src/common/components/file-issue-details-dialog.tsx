@@ -18,12 +18,12 @@ export interface FileIssueDetailsDialogProps {
 
 export class FileIssueDetailsDialog extends React.Component<FileIssueDetailsDialogProps> {
     @autobind
-    private onLayoutDidMount() {
+    private onLayoutDidMount(): void {
         this.props.fileIssueDetailsHandler.onLayoutDidMount();
     }
 
     @autobind
-    private dismiss(event: React.MouseEvent<any>) {
+    private dismiss(event: React.MouseEvent<any>): void {
         this.props.onDismiss();
     }
 
@@ -78,7 +78,7 @@ export class FileIssueDetailsDialog extends React.Component<FileIssueDetailsDial
         );
     }
 
-    public render() {
+    public render(): JSX.Element {
         const layerClassNames = 'insights-dialog-main-override insights-file-issue-details-dialog-override';
         return (
             <Dialog

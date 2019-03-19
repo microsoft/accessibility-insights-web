@@ -116,12 +116,7 @@ describe('PopupView', () => {
                 .verifiable();
             launchPadRowConfigurationFactoryMock
                 .setup(l =>
-                    l.createRowConfigs(
-                        It.isAny(),
-                        IsSameObject(actionMessageCreatorStrictMock.object),
-                        IsSameObject(handlerMock.object),
-                        false,
-                    ),
+                    l.createRowConfigs(It.isAny(), IsSameObject(actionMessageCreatorStrictMock.object), IsSameObject(handlerMock.object)),
                 )
                 .returns(() => rowConfigStub as any)
                 .verifiable();

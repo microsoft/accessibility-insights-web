@@ -13,7 +13,7 @@ export class DevToolActionMessageCreator extends BaseActionMessageCreator {
         this.telemetryFactory = telemetryFactory;
     }
 
-    public setDevToolStatus(status: boolean) {
+    public setDevToolStatus(status: boolean): void {
         const message: Message = {
             tabId: this._tabId,
             type: Messages.DevTools.DevtoolStatus,
@@ -25,7 +25,7 @@ export class DevToolActionMessageCreator extends BaseActionMessageCreator {
         this.dispatchMessage(message);
     }
 
-    public setInspectElement(event: React.SyntheticEvent<MouseEvent>, target: string[]) {
+    public setInspectElement(event: React.SyntheticEvent<MouseEvent>, target: string[]): void {
         const payload: InspectElementPayload = {
             target: target,
             telemetry: this.telemetryFactory.forInspectElement(event, target),
@@ -39,7 +39,7 @@ export class DevToolActionMessageCreator extends BaseActionMessageCreator {
         this.dispatchMessage(message);
     }
 
-    public setInspectFrameUrl(frameUrl: string) {
+    public setInspectFrameUrl(frameUrl: string): void {
         const payload: InspectFrameUrlPayload = {
             frameUrl: frameUrl,
         };

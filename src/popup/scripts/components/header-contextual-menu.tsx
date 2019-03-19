@@ -48,15 +48,6 @@ export const HeaderContextualMenu = NamedSFC<HeaderContextualMenuProps>('HeaderC
             name: 'FastPass',
         },
         {
-            key: 'full-assessment',
-            iconProps: {
-                iconName: 'testBeakerSolid',
-            },
-            onClick: ev =>
-                popupActionMessageCreator.openDetailsView(ev, VisualizationType.Issues, telemetryEventSource, DetailsViewPivotType.allTest),
-            name: 'Full Assessment',
-        },
-        {
             key: 'assessment',
             iconProps: {
                 iconName: 'testBeakerSolid',
@@ -92,14 +83,6 @@ export const HeaderContextualMenu = NamedSFC<HeaderContextualMenuProps>('HeaderC
         },
     ];
 
-    const items = getItems().filter(item => {
-        if (featureFlags[FeatureFlags.newAssessmentExperience]) {
-            return item.key !== 'full-assessment';
-        }
-
-        return item.key !== 'assessment';
-    });
-
     return (
         <ContextualMenu
             className="popup-menu"
@@ -107,7 +90,7 @@ export const HeaderContextualMenu = NamedSFC<HeaderContextualMenuProps>('HeaderC
             target={props.target}
             onDismiss={event => launchPanelHeaderClickHandler.onDismissFeedbackMenu(header, event)}
             directionalHint={getRTL() ? DirectionalHint.bottomRightEdge : DirectionalHint.bottomLeftEdge}
-            items={items}
+            items={getItems()}
         />
     );
 });

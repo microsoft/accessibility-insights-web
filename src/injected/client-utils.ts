@@ -39,7 +39,7 @@ export class ClientUtils {
         };
     }
 
-    public matchesSelector(element: IElementMatcher, selectorString: string) {
+    public matchesSelector(element: IElementMatcher, selectorString: string): boolean {
         const selector = (element.matches || element.webkitMatchesSelector || element.msMatchesSelector).bind(element);
 
         return selector(selectorString);

@@ -5,17 +5,16 @@ import * as React from 'react';
 import { Mock } from 'typemoq';
 
 import { DropdownClickHandler } from '../../../../../common/dropdown-click-handler';
-import { FeatureFlags } from '../../../../../common/feature-flags';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
 import { Header, HeaderProps } from '../../../../../DetailsView/components/header';
 
 describe('HeaderTest', () => {
-    test('render header: tabClosed is false, new assessment experience enabled', () => {
+    test('render: tabClosed is false', () => {
         const dropdownClickHandlerMock = Mock.ofType(DropdownClickHandler);
         const props: HeaderProps = {
             dropdownClickHandler: dropdownClickHandlerMock.object,
             featureFlagStoreData: {
-                [FeatureFlags.newAssessmentExperience]: true,
+                'test-flag': true,
             },
             avatarUrl: 'avatarUrl',
             tabClosed: false,
@@ -24,14 +23,14 @@ describe('HeaderTest', () => {
         };
 
         const rendered = shallow(<Header {...props} />);
-        expect(rendered.debug()).toMatchSnapshot();
+        expect(rendered.getElement()).toMatchSnapshot();
     });
 
-    test('render header: target tabClosed is true, new assessment experience enabled', () => {
+    test('render: tabClosed is true', () => {
         const props: HeaderProps = {
             dropdownClickHandler: null,
             featureFlagStoreData: {
-                [FeatureFlags.newAssessmentExperience]: true,
+                'test-flag': true,
             },
             connected: null,
             avatarUrl: null,
@@ -41,33 +40,16 @@ describe('HeaderTest', () => {
         };
 
         const rendered = shallow(<Header {...props} />);
-        expect(rendered.debug()).toMatchSnapshot();
+        expect(rendered.getElement()).toMatchSnapshot();
     });
 
-    test('render header: no feature flag store data', () => {
+    test('render: no feature flag store data', () => {
         const props: HeaderProps = {
             dropdownClickHandler: null,
             featureFlagStoreData: null,
             connected: null,
             avatarUrl: null,
             tabClosed: true,
-            deps: null,
-            selectedPivot: DetailsViewPivotType.assessment,
-        };
-
-        const rendered = shallow(<Header {...props} />);
-        expect(rendered.debug()).toMatchSnapshot();
-    });
-
-    test('render header: new assessment experience disabled', () => {
-        const props: HeaderProps = {
-            dropdownClickHandler: null,
-            featureFlagStoreData: {
-                [FeatureFlags.newAssessmentExperience]: false,
-            },
-            connected: null,
-            avatarUrl: null,
-            tabClosed: false,
             deps: null,
             selectedPivot: DetailsViewPivotType.assessment,
         };

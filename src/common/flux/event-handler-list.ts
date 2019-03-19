@@ -5,13 +5,13 @@ import { FunctionPPR } from '../../types/common-types';
 export class EventHandlerList<TSender, TEventArgs> {
     private _handlers: FunctionPPR<TSender, TEventArgs, any>[] = [];
 
-    public subscribe(handler: FunctionPPR<TSender, TEventArgs, any>) {
+    public subscribe(handler: FunctionPPR<TSender, TEventArgs, any>): void {
         if (handler) {
             this._handlers.push(handler);
         }
     }
 
-    public unsubscribe(handler: FunctionPPR<TSender, TEventArgs, any>) {
+    public unsubscribe(handler: FunctionPPR<TSender, TEventArgs, any>): void {
         if (this._handlers) {
             this._handlers = this._handlers.filter(h => h !== handler);
         }

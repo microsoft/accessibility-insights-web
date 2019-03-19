@@ -8,16 +8,14 @@ import { IMock, Mock } from 'typemoq';
 import { AutomatedChecksVisualizationToggle } from '../../../../../assessments/automated-checks/automated-checks-visualization-enabled-toggle';
 import { VisualizationToggle, VisualizationToggleProps } from '../../../../../common/components/visualization-toggle';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
-import {
-    VisualHelperToggleTestPropsBuilder,
-    VisualizationTogglePropsBuilder,
-} from '../../DetailsView/components/restart-scan-visual-helper-toggle.test';
+import { VisualHelperToggleConfigBuilder } from '../../../common/visual-helper-toggle-config-builder';
+import { VisualizationTogglePropsBuilder } from '../../../common/visualization-toggle-props-builder';
 
 describe('AutomatedChecksVisualizationToggle', () => {
     const actionMessageCreatorMock: IMock<DetailsViewActionMessageCreator> = Mock.ofType(DetailsViewActionMessageCreator);
 
     it('render with disabled message', () => {
-        const props = new VisualHelperToggleTestPropsBuilder()
+        const props = new VisualHelperToggleConfigBuilder()
             .withToggleStepEnabled(true)
             .withToggleStepScanned(false)
             .withActionMessageCreator(actionMessageCreatorMock.object)
@@ -50,7 +48,7 @@ describe('AutomatedChecksVisualizationToggle', () => {
     });
 
     it('render: toggle not disabled', () => {
-        const props = new VisualHelperToggleTestPropsBuilder()
+        const props = new VisualHelperToggleConfigBuilder()
             .withToggleStepEnabled(true)
             .withToggleStepScanned(false)
             .withActionMessageCreator(actionMessageCreatorMock.object)
@@ -80,7 +78,7 @@ describe('AutomatedChecksVisualizationToggle', () => {
     });
 
     it('render: toggle disabled when there are no failing instances for automated checks', () => {
-        const props = new VisualHelperToggleTestPropsBuilder()
+        const props = new VisualHelperToggleConfigBuilder()
             .withToggleStepEnabled(true)
             .withToggleStepScanned(false)
             .withActionMessageCreator(actionMessageCreatorMock.object)

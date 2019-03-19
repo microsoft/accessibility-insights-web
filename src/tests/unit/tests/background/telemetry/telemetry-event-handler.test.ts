@@ -123,7 +123,7 @@ describe('TelemetryEventHandlerTest', () => {
         verifyMocks();
     });
 
-    function createExpectedAppInsightsTelemetry(customFields?: DictionaryStringTo<any>) {
+    function createExpectedAppInsightsTelemetry(customFields?: DictionaryStringTo<any>): DictionaryStringTo<string> {
         const telemetry: any = {
             source: undefined,
             triggeredBy: 'triggered by test',
@@ -138,7 +138,7 @@ describe('TelemetryEventHandlerTest', () => {
         return telemetry;
     }
 
-    function verifyMocks() {
+    function verifyMocks(): void {
         browserAdapterMock.verifyAll();
         telemetryClientStrictMock.verifyAll();
     }
@@ -151,7 +151,7 @@ describe('TelemetryEventHandlerTest', () => {
         return telemetryEventHandler;
     }
 
-    function setupTrackEvent(eventName: string, expectedTelemetry: DictionaryStringTo<string>) {
+    function setupTrackEvent(eventName: string, expectedTelemetry: DictionaryStringTo<string>): void {
         telemetryClientStrictMock.setup(te => te.trackEvent(It.isValue(eventName), It.isValue(expectedTelemetry))).verifiable(Times.once());
     }
 });

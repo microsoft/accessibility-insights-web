@@ -904,13 +904,13 @@ div.insights-file-issue-details-dialog-container {
                     }
                 }
                 .issues-table-details {
-                    margin-left: 24px;
                     height: 100%;
                     display: flex;
                     flex-direction: column;
                     min-height: 0;
                 }
                 .issues-details-list {
+                    margin-left: 24px;
                     display: flex;
                     flex-direction: column;
                     height: 60%;
@@ -1222,6 +1222,8 @@ div.insights-file-issue-details-dialog-container {
                     overflow-y: auto;
                     height: 40%;
                     min-height: 150px;
+                    background-color: $neutral-2;
+                    padding-left: 24px;
                     > div {
                         border-top: 1px solid $neutral-8;
                     }

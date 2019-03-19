@@ -13,6 +13,7 @@ import { TelemetryDataFactory } from '../../../../../common/telemetry-data-facto
 import { RuleAnalyzerScanTelemetryData } from '../../../../../common/telemetry-events';
 import { IScopingStoreData } from '../../../../../common/types/store-data/scoping-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
+import { MessageType } from '../../../../../injected/analyzers/base-analyzer';
 import { BatchedRuleAnalyzer, IResultRuleFilter } from '../../../../../injected/analyzers/batched-rule-analyzer';
 import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/ianalyzer';
 import { IHtmlElementAxeResults, ScannerUtils } from '../../../../../injected/scanner-utils';
@@ -77,7 +78,7 @@ describe('BatchedRuleAnalyzer', () => {
         testGetResults(done);
     });
 
-    function testGetResults(done: () => void) {
+    function testGetResults(done: () => void): void {
         const key = 'sample key';
         const telemetryProcessorStub = factory => (_, elapsedTime, __) => {
             return createTelemetryStub(elapsedTime, testName, key);
@@ -168,7 +169,7 @@ describe('BatchedRuleAnalyzer', () => {
         config: RuleAnalyzerConfiguration,
         completeResults: ScanResults,
         filteredResults: ScanResults,
-    ) {
+    ): void {
         resultProcessorMock.setup(processor => processor(It.isValue(completeResults))).returns(() => null);
 
         resultProcessorMock.setup(processor => processor(It.isValue(filteredResults))).returns(() => mockAllInstances);
@@ -188,7 +189,7 @@ describe('BatchedRuleAnalyzer', () => {
         return telemetryStub;
     }
 
-    function setupScannerUtilsMock(rules: string[], times: Times) {
+    function setupScannerUtilsMock(rules: string[], times: Times): void {
         const getState = scopingStoreMock.object.getState();
         const include = getState.selectors[ScopingInputTypes.include];
         const exclude = getState.selectors[ScopingInputTypes.exclude];
@@ -207,7 +208,7 @@ describe('BatchedRuleAnalyzer', () => {
             .verifiable(times);
     }
 
-    function getExpectedMessage(config: RuleAnalyzerConfiguration, results: ScanResults, expectedTelemetryStub) {
+    function getExpectedMessage(config: RuleAnalyzerConfiguration, results: ScanResults, expectedTelemetryStub): MessageType {
         return {
             type: config.analyzerMessageType,
             payload: {

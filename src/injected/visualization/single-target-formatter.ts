@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DialogRenderer } from '../dialog-renderer';
 import { Formatter, SingleTargetDrawerConfiguration } from './formatter';
 
 export class SingleTargetFormatter implements Formatter {
@@ -12,7 +13,7 @@ export class SingleTargetFormatter implements Formatter {
         return config;
     }
 
-    public getDialogRenderer(): void {
+    public getDialogRenderer(): DialogRenderer {
         return;
     }
 }

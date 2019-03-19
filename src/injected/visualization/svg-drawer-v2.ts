@@ -162,7 +162,7 @@ export class SVGDrawerV2 extends BaseDrawer {
             return;
         }
 
-        const drawerConfig: SVGDrawerConfiguration = this.formatter.getDrawerConfiguration(item.element, null);
+        const drawerConfig: SVGDrawerConfiguration = this.formatter.getDrawerConfiguration(item.element, null) as SVGDrawerConfiguration;
 
         const {
             tabIndexLabel: { showTabIndexedLabel },

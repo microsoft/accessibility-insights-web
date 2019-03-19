@@ -6,7 +6,7 @@ import { HTMLElementUtils } from './html-element-utils';
 export class FileIssueDetailsHandler {
     constructor(private htmlElementUtils: HTMLElementUtils) {}
 
-    public onLayoutDidMount() {
+    public onLayoutDidMount(): void {
         const dialogContainer = this.htmlElementUtils.querySelector('.insights-file-issue-details-dialog-override') as HTMLElement;
         if (dialogContainer == null) {
             return;

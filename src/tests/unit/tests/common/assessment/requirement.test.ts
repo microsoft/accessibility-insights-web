@@ -18,7 +18,7 @@ describe('Requirement', () => {
                 { key: 'alpha', name: 'in the middle' },
                 { key: 'beta', name: 'on the bottom' },
             ];
-            function getStep(key) {
+            function getStep(key): RequirementDefinition {
                 return find(steps, s => s.key === key) as RequirementDefinition;
             }
 

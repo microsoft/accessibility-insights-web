@@ -89,7 +89,7 @@ export class VisualizationConfigurationFactory {
         };
     }
 
-    public getConfigurationByKey(key: string) {
+    public getConfigurationByKey(key: string): VisualizationConfiguration {
         return _.find(_.values(this.configurationByType), config => config.key === key);
     }
 

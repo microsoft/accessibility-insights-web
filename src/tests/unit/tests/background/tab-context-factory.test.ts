@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { AssessmentsProvider } from '../../../../assessments/assessments-provider';
 import { ChromeAdapter } from '../../../../background/browser-adapter';
 import { DetailsViewController } from '../../../../background/details-view-controller';
@@ -9,7 +8,6 @@ import { Interpreter } from '../../../../background/interpreter';
 import { AssessmentStore } from '../../../../background/stores/assessment-store';
 import { DetailsViewStore } from '../../../../background/stores/details-view-store';
 import { DevToolStore } from '../../../../background/stores/dev-tools-store';
-import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
 import { InspectStore } from '../../../../background/stores/inspect-store';
 import { TabStore } from '../../../../background/stores/tab-store';
 import { VisualizationScanResultStore } from '../../../../background/stores/visualization-scan-result-store';
@@ -45,7 +43,6 @@ describe('TabContextFactoryTest', () => {
 
     it('createInterpreter', () => {
         const tabId = -1;
-        const featureFlagStore = Mock.ofType(FeatureFlagStore);
         const windowUtilsStub = Mock.ofType(WindowUtils);
         const broadcastMock = Mock.ofInstance(message => {}, MockBehavior.Strict);
         const telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler);
@@ -77,21 +74,11 @@ describe('TabContextFactoryTest', () => {
         const testObject = new TabContextFactory(
             visualizationConfigurationFactoryMock.object,
             telemetryEventHandlerMock.object,
-            featureFlagStore.object,
             windowUtilsStub.object,
             targetTabControllerMock.object,
             assessmentStore.object,
             assessmentProvider.object,
         );
-
-        featureFlagStore
-            .setup(ffsm => ffsm.getState())
-            .returns(() => {
-                return {};
-            })
-            .verifiable();
-
-        featureFlagStore.setup(ffsm => ffsm.addChangedListener(It.isAny())).verifiable();
 
         const tabContext = testObject.createTabContext(
             broadcastMock.object,
@@ -123,6 +110,5 @@ describe('TabContextFactoryTest', () => {
         expect(tabContext.stores.inspectStore).toBeInstanceOf(InspectStore);
 
         broadcastMock.verifyAll();
-        featureFlagStore.verifyAll();
     });
 });

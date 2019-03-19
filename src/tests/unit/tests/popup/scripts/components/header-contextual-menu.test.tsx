@@ -16,40 +16,21 @@ import { LaunchPanelHeaderClickHandler } from '../../../../../../popup/scripts/h
 import { EventStubFactory } from '../../../../common/event-stub-factory';
 
 describe('HeaderContextualMenu', () => {
-    describe('render', () => {
-        it('with newAssessmentExperience on', () => {
-            const props: HeaderContextualMenuProps = {
-                deps: {
-                    popupActionMessageCreator: null,
-                    launchPanelHeaderClickHandler: null,
-                },
-                header: null,
-                popupWindow: null,
-                featureFlags: {
-                    [FeatureFlags.newAssessmentExperience]: true,
-                },
-            };
-            const wrapped = shallow(<HeaderContextualMenu {...props} />);
+    it('render', () => {
+        const props: HeaderContextualMenuProps = {
+            deps: {
+                popupActionMessageCreator: null,
+                launchPanelHeaderClickHandler: null,
+            },
+            header: null,
+            popupWindow: null,
+            featureFlags: {
+                'test-flag': true,
+            },
+        };
+        const wrapped = shallow(<HeaderContextualMenu {...props} />);
 
-            expect(wrapped.getElement()).toMatchSnapshot();
-        });
-
-        it('with newAssessmentExperience off', () => {
-            const props: HeaderContextualMenuProps = {
-                deps: {
-                    popupActionMessageCreator: null,
-                    launchPanelHeaderClickHandler: null,
-                },
-                header: null,
-                popupWindow: null,
-                featureFlags: {
-                    [FeatureFlags.newAssessmentExperience]: false,
-                },
-            };
-            const wrapped = shallow(<HeaderContextualMenu {...props} />);
-
-            expect(wrapped.getElement()).toMatchSnapshot();
-        });
+        expect(wrapped.getElement()).toMatchSnapshot();
     });
 
     describe('user interaction', () => {
@@ -75,7 +56,7 @@ describe('HeaderContextualMenu', () => {
                     launchPanelHeaderClickHandler: launchPanelHeaderClickHandlerMock.object,
                 },
                 featureFlags: {
-                    [FeatureFlags.newAssessmentExperience]: true,
+                    'test-flag': true,
                 },
                 header: headerMock.object,
                 popupWindow: popupWindowMock.object,
@@ -97,39 +78,6 @@ describe('HeaderContextualMenu', () => {
                 .verifiable(Times.once());
 
             const item = testObject.find('button[name="FastPass"]');
-
-            item.simulate('click', event);
-
-            popupActionMessageCreatorMock.verifyAll();
-        });
-
-        it('handles full-assessment', () => {
-            props = {
-                deps: {
-                    popupActionMessageCreator: popupActionMessageCreatorMock.object,
-                    launchPanelHeaderClickHandler: launchPanelHeaderClickHandlerMock.object,
-                },
-                featureFlags: {
-                    [FeatureFlags.newAssessmentExperience]: false,
-                },
-                header: headerMock.object,
-                popupWindow: popupWindowMock.object,
-            };
-
-            testObject = mount(<HeaderContextualMenu {...props} />);
-
-            popupActionMessageCreatorMock
-                .setup(creator =>
-                    creator.openDetailsView(
-                        It.isObjectWith(event),
-                        VisualizationType.Issues,
-                        TelemetryEventSource.HamburgerMenu,
-                        DetailsViewPivotType.allTest,
-                    ),
-                )
-                .verifiable(Times.once());
-
-            const item = testObject.find('button[name="Full Assessment"]');
 
             item.simulate('click', event);
 

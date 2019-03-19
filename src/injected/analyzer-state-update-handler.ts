@@ -21,7 +21,7 @@ export class AnalyzerStateUpdateHandler {
         this.teardown = teardownDelegate;
     }
 
-    public handleUpdate(currState: IVisualizationStoreData) {
+    public handleUpdate(currState: IVisualizationStoreData): void {
         const prevState = this.prevState;
 
         this.terminateAnalyzers(prevState, currState);
@@ -70,7 +70,7 @@ export class AnalyzerStateUpdateHandler {
         return prevState != null && prevEnabled === true && currEnabled === false;
     }
 
-    private getTestKeysFromConfiguration(config: VisualizationConfiguration, currState: IVisualizationStoreData) {
+    private getTestKeysFromConfiguration(config: VisualizationConfiguration, currState: IVisualizationStoreData): string[] {
         const keys = [];
         if (this.isAssessment(config)) {
             const prevScanState = config.getStoreData(currState.tests) as IAssessmentScanData;
@@ -83,7 +83,7 @@ export class AnalyzerStateUpdateHandler {
         return keys;
     }
 
-    private isAssessment(config: VisualizationConfiguration) {
+    private isAssessment(config: VisualizationConfiguration): boolean {
         return config.testMode === TestMode.Assessments;
     }
 }

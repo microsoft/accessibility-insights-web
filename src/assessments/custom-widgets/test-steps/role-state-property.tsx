@@ -12,6 +12,7 @@ import * as content from '../../../content/test/custom-widgets/role-state-proper
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
+import { NoValue } from '../../common/property-bag-column-renderer';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { TestStep } from '../../types/test-step';
@@ -71,12 +72,12 @@ export const RoleStateProperty: TestStep = {
                 {
                     propertyName: 'designPattern',
                     displayName: 'Design pattern',
-                    defaultValue: '-',
+                    defaultValue: NoValue,
                 },
                 {
                     propertyName: 'text',
                     displayName: 'Accessible name',
-                    defaultValue: '-',
+                    defaultValue: NoValue,
                 },
             ]),
         },

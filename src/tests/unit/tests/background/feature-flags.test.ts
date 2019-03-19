@@ -16,7 +16,6 @@ describe('FeatureFlagsTest', () => {
         const expectedValues: FeatureFlagStoreData = {
             [FeatureFlags.exportResult]: true,
             [FeatureFlags.shadowDialog]: false,
-            [FeatureFlags.newAssessmentExperience]: true,
             [FeatureFlags.showAllAssessments]: false,
             [FeatureFlags.logTelemetryToConsole]: false,
             [FeatureFlags.showAllFeatureFlags]: false,

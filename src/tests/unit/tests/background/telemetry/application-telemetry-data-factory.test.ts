@@ -20,13 +20,13 @@ describe('ApplicationTelemetryDataFactoryTest', () => {
     let testSubject: ApplicationTelemetryDataFactory;
 
     beforeEach(() => {
-        const manifestStub = getManifestStub();
+        const manifestStub: chrome.runtime.Manifest = getManifestStub();
 
         browserAdapterMock = Mock.ofType<ChromeAdapter>();
         browserAdapterMock
             .setup(it => it.getManifest())
             .returns(() => {
-                return manifestStub as any;
+                return manifestStub;
             })
             .verifiable();
 
@@ -63,10 +63,10 @@ describe('ApplicationTelemetryDataFactoryTest', () => {
         expect(testSubject.getData()).not.toBe(testSubject.getData());
     });
 
-    function getManifestStub() {
+    function getManifestStub(): chrome.runtime.Manifest {
         return {
             version: '2',
             name: 'test',
-        };
+        } as any;
     }
 });

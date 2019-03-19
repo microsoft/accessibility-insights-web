@@ -7,6 +7,8 @@ import { ColumnValue, ColumnValueBag } from '../../common/types/property-bag/col
 import { AssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
 import { DictionaryStringTo } from '../../types/common-types';
 
+export const NoValue = '(no value)';
+
 export interface PropertyBagColumnRendererConfig<TPropertyBag extends ColumnValueBag> {
     propertyName: keyof TPropertyBag & string;
     displayName: string;

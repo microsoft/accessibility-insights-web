@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DialogRenderer } from '../dialog-renderer';
 import { AxeResultsWithFrameLevel } from '../frameCommunicators/html-element-axe-results-helper';
 
 export interface DrawerConfiguration {
@@ -63,6 +64,9 @@ export interface SingleTargetDrawerConfiguration {
 }
 
 export interface Formatter {
-    getDrawerConfiguration(element: Node, data: AxeResultsWithFrameLevel): any;
-    getDialogRenderer();
+    getDrawerConfiguration(
+        element: Node,
+        data: AxeResultsWithFrameLevel,
+    ): DrawerConfiguration | SVGDrawerConfiguration | SingleTargetDrawerConfiguration;
+    getDialogRenderer(): DialogRenderer;
 }

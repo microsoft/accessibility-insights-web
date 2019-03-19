@@ -68,7 +68,7 @@ describe('gear-options-button-component.test', () => {
         verifyRendering(testCase.featureFlags, testCase.expectedMenuItems);
     });
 
-    function verifyRendering(featureFlags: DictionaryStringTo<boolean>, menuItems: IContextualMenuItem[]) {
+    function verifyRendering(featureFlags: DictionaryStringTo<boolean>, menuItems: IContextualMenuItem[]): void {
         const props: GearOptionsButtonComponentProps = {
             dropdownClickHandler: dropdownClickHandlerMock.object,
             featureFlags: featureFlags,
@@ -117,7 +117,7 @@ describe('gear-options-button-component.test', () => {
         };
     }
 
-    function makeDropdownAssertions(dropDownWrapper: ShallowWrapper<any, any>, expectedDropdown) {
+    function makeDropdownAssertions(dropDownWrapper: ShallowWrapper<any, any>, expectedDropdown): void {
         expect(dropDownWrapper.exists()).toBe(true);
         expect(dropDownWrapper.type()).toEqual(expectedDropdown);
     }
