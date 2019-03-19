@@ -11,27 +11,15 @@ import {
 } from '../../../../../common/configs/visualization-configuration-factory';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { RuleAnalyzerScanTelemetryData } from '../../../../../common/telemetry-events';
-import { IAnalyzerTelemetryCallback } from '../../../../../common/types/analyzer-telemetry-callbacks';
 import { IScopingStoreData } from '../../../../../common/types/store-data/scoping-store-data';
-import { TelemetryProcessor } from '../../../../../common/types/telemetry-processor';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
+import { MessageType } from '../../../../../injected/analyzers/base-analyzer';
 import { BatchedRuleAnalyzer, IResultRuleFilter } from '../../../../../injected/analyzers/batched-rule-analyzer';
 import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/ianalyzer';
 import { IHtmlElementAxeResults, ScannerUtils } from '../../../../../injected/scanner-utils';
 import { ScanOptions } from '../../../../../scanner/exposed-apis';
 import { RuleResult, ScanResults } from '../../../../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../../../../types/common-types';
-
-type MessageType = {
-    type: string;
-    payload: {
-        key: string;
-        selectorMap: DictionaryStringTo<any>;
-        testType: VisualizationType;
-        telemetry: TelemetryProcessor<IAnalyzerTelemetryCallback>;
-        scanResult: ScanResults;
-    };
-};
 
 describe('BatchedRuleAnalyzer', () => {
     let scannerUtilsMock: IMock<ScannerUtils>;

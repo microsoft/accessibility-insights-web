@@ -92,7 +92,7 @@ export class HtmlElementAxeResultsHelper {
         });
     }
 
-    private getFrameSelectorToResultMap(elementResults: AxeResultsWithFrameLevel[]) {
+    private getFrameSelectorToResultMap(elementResults: AxeResultsWithFrameLevel[]): DictionaryStringTo<AxeResultsWithFrameLevel[]> {
         const elementResultsByFrame: DictionaryStringTo<AxeResultsWithFrameLevel[]> = {};
 
         for (let i = 0; i < elementResults.length; i++) {

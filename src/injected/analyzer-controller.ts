@@ -9,7 +9,7 @@ import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-st
 import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
 import { IScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
-import { DictionaryNumberTo } from '../types/common-types';
+import { DictionaryStringTo } from '../types/common-types';
 import { VisualizationConfigurationFactory } from './../common/configs/visualization-configuration-factory';
 import { AnalyzerStateUpdateHandler } from './analyzer-state-update-handler';
 import { AnalyzerProvider } from './analyzers/analyzer-provider';
@@ -19,7 +19,7 @@ import { TabStopsListener } from './tab-stops-listener';
 export class AnalyzerController {
     private analyzerProvider: AnalyzerProvider;
     private tabStopsListener: TabStopsListener;
-    private analyzers: DictionaryNumberTo<IAnalyzer<any>>;
+    private analyzers: DictionaryStringTo<IAnalyzer<any>>;
     private sendMessage: (message) => void;
     private visualizationstore: IBaseStore<IVisualizationStoreData>;
     private scopingStore: IBaseStore<IScopingStoreData>;
@@ -52,7 +52,7 @@ export class AnalyzerController {
         this.analyzerStateUpdateHandler.setupHandlers(this.startScan, this.teardown);
     }
 
-    public listenToStore() {
+    public listenToStore(): void {
         this.initializeAnalyzers();
         this.visualizationstore.addChangedListener(this.onChangedState);
         this.featureFlagStore.addChangedListener(this.onChangedState);
@@ -61,7 +61,7 @@ export class AnalyzerController {
     }
 
     @autobind
-    private onChangedState() {
+    private onChangedState(): void {
         if (this.hasInitializedStores() === false) {
             return;
         }
@@ -95,7 +95,7 @@ export class AnalyzerController {
         });
     }
 
-    private getAnalyzerByIdentifier(key: string) {
+    private getAnalyzerByIdentifier(key: string): IAnalyzer<any> {
         if (!this.analyzers[key]) {
             return null;
         }
