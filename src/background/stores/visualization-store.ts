@@ -126,7 +126,7 @@ export class VisualizationStore extends BaseStore<IVisualizationStoreData> {
     }
 
     @autobind
-    private onTabChange(payload: Tab) {
+    private onTabChange(payload: Tab): void {
         this.state = {
             ...this.getDefaultState(),
             selectedFastPassDetailsView: this.state.selectedFastPassDetailsView,

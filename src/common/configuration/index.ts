@@ -9,7 +9,7 @@ const globalVariableName = 'insights';
 
 interface ConfigAccessor {
     readonly config: InsightsConfiguration;
-    getOption<K extends keyof InsightsConfigurationOptions>(name: K);
+    getOption<K extends keyof InsightsConfigurationOptions>(name: K): InsightsConfigurationOptions[K];
 }
 
 interface ConfigMutator extends ConfigAccessor {
@@ -30,11 +30,11 @@ class Configuration implements ConfigAccessor, ConfigMutator {
         return this;
     }
 
-    public getOption<K extends keyof InsightsConfigurationOptions>(name: K) {
+    public getOption<K extends keyof InsightsConfigurationOptions>(name: K): InsightsConfigurationOptions[K] {
         return this.config.options[name];
     }
 
-    public setOption<K extends keyof InsightsConfigurationOptions>(name: K, value: InsightsConfigurationOptions[K]) {
+    public setOption<K extends keyof InsightsConfigurationOptions>(name: K, value: InsightsConfigurationOptions[K]): Configuration {
         this.config.options[name] = value;
         return this;
     }

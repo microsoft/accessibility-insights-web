@@ -41,7 +41,7 @@ export class SelectorInputList extends React.Component<SelectorInputListProps, S
         };
     }
 
-    public componentDidUpdate(previousProps: SelectorInputListProps) {
+    public componentDidUpdate(previousProps: SelectorInputListProps): void {
         const shouldUpdateState = !_.isEqual(this.props, previousProps);
 
         if (shouldUpdateState) {
@@ -146,14 +146,14 @@ export class SelectorInputList extends React.Component<SelectorInputListProps, S
     }
 
     @autobind
-    private getDeleteSelectorHandler(item: string[]) {
+    private getDeleteSelectorHandler(item: string[]): (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void {
         return (event: React.MouseEvent<HTMLButtonElement>) => {
             this.deleteSelector(event, item);
         };
     }
 
     @autobind
-    private onChangeSelectorHandler(event: React.MouseEvent<HTMLButtonElement>) {
+    private onChangeSelectorHandler(event: React.MouseEvent<HTMLButtonElement>): void {
         this.onChangeSelector(event, this.props.inspectMode);
     }
 

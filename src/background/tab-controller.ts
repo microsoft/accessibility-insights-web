@@ -31,7 +31,7 @@ export class TabController {
         this.tabContextFactory = tabContextFactory;
     }
 
-    public initialize() {
+    public initialize(): void {
         this.chromeAdapter.tabsQuery({}, (tabs: chrome.tabs.Tab[]) => {
             if (tabs) {
                 tabs.forEach(tab => {
@@ -54,7 +54,7 @@ export class TabController {
     }
 
     @autobind
-    private onTabNavigated(details: chrome.webNavigation.WebNavigationFramedCallbackDetails) {
+    private onTabNavigated(details: chrome.webNavigation.WebNavigationFramedCallbackDetails): void {
         if (details.frameId === 0) {
             this.handleTabUpdate(details.tabId);
         }
@@ -95,7 +95,7 @@ export class TabController {
     }
 
     @autobind
-    private handleTabUpdate(tabId: number) {
+    private handleTabUpdate(tabId: number): void {
         if (this.hasTabContext(tabId)) {
             this.sendTabChangedAction(tabId);
         } else {
@@ -108,7 +108,7 @@ export class TabController {
         return tabId in this.tabIdToContextMap;
     }
 
-    private sendTabChangedAction(tabId: number) {
+    private sendTabChangedAction(tabId: number): void {
         this.chromeAdapter.getTab(tabId, (tab: chrome.tabs.Tab) => {
             const tabContext = this.tabIdToContextMap[tabId];
             if (tabContext) {
@@ -122,7 +122,7 @@ export class TabController {
         });
     }
 
-    private sendTabUpdateAction(tabId: number) {
+    private sendTabUpdateAction(tabId: number): void {
         this.chromeAdapter.getTab(tabId, (tab: chrome.tabs.Tab) => {
             const tabContext = this.tabIdToContextMap[tabId];
             if (tabContext) {
@@ -166,7 +166,7 @@ export class TabController {
     }
 
     @autobind
-    private onTabRemoved(tabId: number, type: string) {
+    private onTabRemoved(tabId: number, type: string): void {
         const tabContext = this.tabIdToContextMap[tabId];
         if (tabContext) {
             const interpreter = tabContext.interpreter;
@@ -179,13 +179,13 @@ export class TabController {
     }
 
     @autobind
-    private onTargetTabRemoved(tabId: number) {
+    private onTargetTabRemoved(tabId: number): void {
         this.onTabRemoved(tabId, Messages.Tab.Remove);
         delete this.tabIdToContextMap[tabId];
     }
 
     @autobind
-    private onDetailsViewTabRemoved(tabId: number) {
+    private onDetailsViewTabRemoved(tabId: number): void {
         this.onTabRemoved(tabId, Messages.Visualizations.DetailsView.Close);
     }
 }
