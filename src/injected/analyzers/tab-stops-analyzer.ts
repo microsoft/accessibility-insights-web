@@ -2,17 +2,16 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 import * as Q from 'q';
-
 import { WindowUtils } from './../../common/window-utils';
 import { ITabStopEvent, TabStopsListener } from './../tab-stops-listener';
+import { AxeAnalyzerResult, IAnalyzer, IFocusAnalyzerConfiguration, IScanBasePayload, IScanUpdatePayload } from './analyzer';
 import { BaseAnalyzer } from './base-analyzer';
-import { AxeAnalyzerResult, IAnalyzer, IFocusAnalyzerConfiguration, IScanBasePayload, IScanUpdatePayload } from './ianalyzer';
 
 export interface ProgressResult<T> {
     result: T;
 }
 
-export class TabStopsAnalyzer extends BaseAnalyzer implements IAnalyzer<any> {
+export class TabStopsAnalyzer extends BaseAnalyzer implements IAnalyzer {
     private tabStopsListener: TabStopsListener;
     private deferred: Q.Deferred<AxeAnalyzerResult>;
     private _windowUtils: WindowUtils;

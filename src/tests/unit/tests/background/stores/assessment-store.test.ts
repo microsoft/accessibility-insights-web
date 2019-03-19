@@ -38,7 +38,7 @@ import {
     PersistedTabInfo,
 } from '../../../../../common/types/store-data/iassessment-result-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { IScanBasePayload, IScanCompletedPayload, IScanUpdatePayload } from '../../../../../injected/analyzers/ianalyzer';
+import { IScanBasePayload, IScanCompletedPayload, IScanUpdatePayload } from '../../../../../injected/analyzers/analyzer';
 import { ITabStopEvent } from '../../../../../injected/tab-stops-listener';
 import { ScanResults } from '../../../../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../../../../types/common-types';

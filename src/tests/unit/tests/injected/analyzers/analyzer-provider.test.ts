@@ -14,7 +14,7 @@ import {
     IAnalyzerConfiguration,
     IFocusAnalyzerConfiguration,
     RuleAnalyzerConfiguration,
-} from '../../../../../injected/analyzers/ianalyzer';
+} from '../../../../../injected/analyzers/analyzer';
 import { RuleAnalyzer } from '../../../../../injected/analyzers/rule-analyzer';
 import { ScannerUtils } from '../../../../../injected/scanner-utils';
 import { TabStopsListener } from '../../../../../injected/tab-stops-listener';

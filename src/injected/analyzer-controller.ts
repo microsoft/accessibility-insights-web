@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-
 import { IAssessmentsProvider } from '../assessments/types/iassessments-provider';
 import { EnumHelper } from '../common/enum-helper';
 import { IBaseStore } from '../common/istore';
@@ -12,14 +11,14 @@ import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryStringTo } from '../types/common-types';
 import { VisualizationConfigurationFactory } from './../common/configs/visualization-configuration-factory';
 import { AnalyzerStateUpdateHandler } from './analyzer-state-update-handler';
+import { IAnalyzer } from './analyzers/analyzer';
 import { AnalyzerProvider } from './analyzers/analyzer-provider';
-import { IAnalyzer } from './analyzers/ianalyzer';
 import { TabStopsListener } from './tab-stops-listener';
 
 export class AnalyzerController {
     private analyzerProvider: AnalyzerProvider;
     private tabStopsListener: TabStopsListener;
-    private analyzers: DictionaryStringTo<IAnalyzer<any>>;
+    private analyzers: DictionaryStringTo<IAnalyzer>;
     private sendMessage: (message) => void;
     private visualizationstore: IBaseStore<IVisualizationStoreData>;
     private scopingStore: IBaseStore<IScopingStoreData>;
@@ -95,7 +94,7 @@ export class AnalyzerController {
         });
     }
 
-    private getAnalyzerByIdentifier(key: string): IAnalyzer<any> {
+    private getAnalyzerByIdentifier(key: string): IAnalyzer {
         if (!this.analyzers[key]) {
             return null;
         }

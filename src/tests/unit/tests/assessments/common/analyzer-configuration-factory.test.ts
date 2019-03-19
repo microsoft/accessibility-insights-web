@@ -6,7 +6,7 @@ import { AnalyzerConfigurationFactory } from '../../../../../assessments/common/
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/ianalyzer';
+import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
 
 const baseConfig: Readonly<Partial<RuleAnalyzerConfiguration>> = {
     key: 'test-key',

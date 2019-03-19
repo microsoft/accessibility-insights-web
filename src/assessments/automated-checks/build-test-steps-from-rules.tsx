@@ -10,7 +10,7 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { AssessmentInstanceDetailsColumn } from '../../DetailsView/components/assessment-instance-details-column';
 import { AssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
 import { AnalyzerProvider } from '../../injected/analyzers/analyzer-provider';
-import { RuleAnalyzerConfiguration } from '../../injected/analyzers/ianalyzer';
+import { RuleAnalyzerConfiguration } from '../../injected/analyzers/analyzer';
 import { DecoratedAxeNodeResult, ScannerUtils } from '../../injected/scanner-utils';
 import { ScannerRuleInfo } from '../../scanner/scanner-rule-info';
 import { InstanceTableColumn } from '../types/iinstance-table-column';

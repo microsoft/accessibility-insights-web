@@ -15,7 +15,7 @@ import { IScopingStoreData } from '../../../../../common/types/store-data/scopin
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { MessageType } from '../../../../../injected/analyzers/base-analyzer';
 import { BatchedRuleAnalyzer, IResultRuleFilter } from '../../../../../injected/analyzers/batched-rule-analyzer';
-import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/ianalyzer';
+import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
 import { IHtmlElementAxeResults, ScannerUtils } from '../../../../../injected/scanner-utils';
 import { ScanOptions } from '../../../../../scanner/exposed-apis';
 import { RuleResult, ScanResults } from '../../../../../scanner/iruleresults';

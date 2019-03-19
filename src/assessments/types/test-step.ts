@@ -9,7 +9,7 @@ import { AssessmentNavState, IGeneratedAssessmentInstance } from '../../common/t
 import { DetailsViewActionMessageCreator } from '../../DetailsView/actions/details-view-action-message-creator';
 import { AssessmentInstanceRowData, AssessmentInstanceTable } from '../../DetailsView/components/assessment-instance-table';
 import { TestStepLink } from '../../DetailsView/components/test-step-link';
-import { IAnalyzer } from '../../injected/analyzers/ianalyzer';
+import { IAnalyzer } from '../../injected/analyzers/analyzer';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { PropertyBags, VisualizationInstanceProcessorCallback } from '../../injected/visualization-instance-processor';
 import { DrawerProvider } from '../../injected/visualization/drawer-provider';
@@ -33,7 +33,7 @@ export interface TestStep {
     isManual: boolean;
     guidanceLinks: HyperlinkDefinition[];
     columnsConfig?: InstanceTableColumn[];
-    getAnalyzer?: (provider: AnalyzerProvider) => IAnalyzer<any>;
+    getAnalyzer?: (provider: AnalyzerProvider) => IAnalyzer;
     getVisualHelperToggle?: (props: VisualHelperToggleConfig) => JSX.Element;
     visualizationInstanceProcessor?: VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags>;
     getDrawer?: (provider: DrawerProvider, featureFlagStoreData?: FeatureFlagStoreData) => IDrawer;

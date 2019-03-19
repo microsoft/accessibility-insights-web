@@ -4,14 +4,14 @@ import { autobind } from '@uifabric/utilities';
 import * as Q from 'q';
 
 import { VisualizationType } from '../../common/types/visualization-type';
-import { AxeAnalyzerResult, IAnalyzer, IAnalyzerConfiguration, IScanCompletedPayload } from './ianalyzer';
+import { AxeAnalyzerResult, IAnalyzer, IAnalyzerConfiguration, IScanCompletedPayload } from './analyzer';
 
 export type MessageType = {
     type: string;
     payload: IScanCompletedPayload<any>;
 };
 
-export class BaseAnalyzer implements IAnalyzer<void> {
+export class BaseAnalyzer implements IAnalyzer {
     protected sendMessage: (message) => void;
     protected type: VisualizationType;
     protected config: IAnalyzerConfiguration;

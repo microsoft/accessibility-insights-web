@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { AssessmentsProvider } from '../../../../assessments/assessments-provider';
 import { IAssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
 import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
@@ -19,8 +18,8 @@ import { IScopingStoreData } from '../../../../common/types/store-data/scoping-s
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { AnalyzerController } from '../../../../injected/analyzer-controller';
 import { AnalyzerStateUpdateHandler } from '../../../../injected/analyzer-state-update-handler';
+import { IAnalyzer } from '../../../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../../../injected/analyzers/analyzer-provider';
-import { IAnalyzer } from '../../../../injected/analyzers/ianalyzer';
 import { TabStopsListener } from '../../../../injected/tab-stops-listener';
 import { ScopingStoreDataBuilder } from '../../common/scoping-store-data-builder';
 import { IsSameObject } from '../../common/typemoq-helper';
@@ -32,7 +31,7 @@ describe('AnalyzerControllerTests', () => {
     let featureFlagStoreStoreMock: IMock<FeatureFlagStore>;
     let testType: VisualizationType;
     let getStoreDataMock: IMock<(data: TestsEnabledState) => IScanData>;
-    let getAnalyzerMock: IMock<(provider: AnalyzerProvider) => IAnalyzer<any>>;
+    let getAnalyzerMock: IMock<(provider: AnalyzerProvider) => IAnalyzer>>;
     let getIdentifierMock: IMock<() => string>;
     let identifier: string;
     let configStub: VisualizationConfiguration;
@@ -43,7 +42,7 @@ describe('AnalyzerControllerTests', () => {
     let featureFlagStoreState: FeatureFlagStoreData;
     let scopingStoreState: IScopingStoreData;
     let analyzerProviderStrictMock: IMock<AnalyzerProvider>;
-    let analyzerMock: IMock<IAnalyzer<any>>;
+    let analyzerMock: IMock<IAnalyzer>;
     let tabStopsListenerMock: IMock<TabStopsListener>;
     let sendMessageMock: IMock<(message) => void>;
     let analyzerStateUpdateHandlerStrictMock: IMock<AnalyzerStateUpdateHandler>;
@@ -242,7 +241,7 @@ describe('AnalyzerControllerTests', () => {
     }
 });
 
-class AnalyzerStub implements IAnalyzer<any> {
+class AnalyzerStub implements IAnalyzer {
     public analyze(): void {
         throw new Error('Method not implemented.');
     }

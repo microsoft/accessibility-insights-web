@@ -4,7 +4,7 @@ import { IMock, It, Mock, Times } from 'typemoq';
 
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { BaseAnalyzer } from '../../../../../injected/analyzers/base-analyzer';
-import { IAnalyzerConfiguration } from '../../../../../injected/analyzers/ianalyzer';
+import { IAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
 
 describe('BaseAnalyzerTest', () => {
     let testSubject: BaseAnalyzer;

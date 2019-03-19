@@ -9,7 +9,7 @@ import { NotificationCreator } from '../../common/notification-creator';
 import * as TelemetryEvents from '../../common/telemetry-events';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewRightContentPanelType } from '../../DetailsView/components/left-nav/details-view-right-content-panel-type';
-import { IScanCompletedPayload } from '../../injected/analyzers/ianalyzer';
+import { IScanCompletedPayload } from '../../injected/analyzers/analyzer';
 import { DictionaryNumberTo } from '../../types/common-types';
 import { VisualizationActions } from '../actions/visualization-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
