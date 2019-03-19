@@ -12,7 +12,7 @@ import * as content from '../../../content/test/native-widgets/widget-function';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
-import { PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
+import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { TestStep } from '../../types/test-step';
@@ -45,28 +45,28 @@ const propertyBagConfig: PropertyBagColumnRendererConfig<WidgetFunctionPropertyB
     {
         propertyName: 'element',
         displayName: 'Element',
-        defaultValue: '-',
+        defaultValue: NoValue,
     },
     {
         propertyName: 'accessibleName',
         displayName: 'Accessible name',
-        defaultValue: '-',
+        defaultValue: NoValue,
     },
     {
         propertyName: 'role',
         displayName: 'Role',
-        defaultValue: '-',
+        defaultValue: NoValue,
     },
     {
         propertyName: 'ariaAttributes',
         displayName: 'ARIA attributes',
-        defaultValue: '-',
+        defaultValue: NoValue,
         expand: true,
     },
     {
         propertyName: 'tabIndex',
         displayName: 'Tab index',
-        defaultValue: '-',
+        defaultValue: NoValue,
     },
 ];
 

@@ -11,7 +11,7 @@ import * as content from '../../../content/test/native-widgets/cues';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
-import { PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
+import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
@@ -64,23 +64,23 @@ const propertyBagConfig: PropertyBagColumnRendererConfig<CuesPropertyBag>[] = [
     {
         propertyName: 'element',
         displayName: 'Element',
-        defaultValue: '-',
+        defaultValue: NoValue,
     },
     {
         propertyName: 'accessibleName',
         displayName: 'Accessible name',
-        defaultValue: '-',
+        defaultValue: NoValue,
     },
     {
         propertyName: 'htmlCues',
         displayName: 'HTML cues',
-        defaultValue: '-',
+        defaultValue: NoValue,
         expand: true,
     },
     {
         propertyName: 'ariaCues',
         displayName: 'ARIA cues',
-        defaultValue: '-',
+        defaultValue: NoValue,
         expand: true,
     },
 ];

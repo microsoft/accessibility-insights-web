@@ -12,7 +12,7 @@ import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/compo
 import { ScannerUtils } from '../../../injected/scanner-utils';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
-import { PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
+import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { TestStep } from '../../types/test-step';
@@ -57,17 +57,17 @@ const propertyBagConfig: PropertyBagColumnRendererConfig<LinkPurposePropertyBag>
     {
         propertyName: 'accessibleName',
         displayName: 'Accessible name',
-        defaultValue: '-',
+        defaultValue: NoValue,
     },
     {
         propertyName: 'accessibleDescription',
         displayName: 'Accessible description',
-        defaultValue: '-',
+        defaultValue: NoValue,
     },
     {
         propertyName: 'url',
         displayName: 'URL',
-        defaultValue: '-',
+        defaultValue: NoValue,
     },
 ];
 

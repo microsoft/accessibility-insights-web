@@ -11,6 +11,7 @@ import * as content from '../../../content/test/custom-widgets/cues';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
+import { NoValue } from '../../common/property-bag-column-renderer';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { TestStep } from '../../types/test-step';
@@ -67,23 +68,23 @@ export const Cues: TestStep = {
                 {
                     propertyName: 'role',
                     displayName: 'Widget role',
-                    defaultValue: '-',
+                    defaultValue: NoValue,
                 },
                 {
                     propertyName: 'designPattern',
                     displayName: 'Design pattern',
-                    defaultValue: '-',
+                    defaultValue: NoValue,
                 },
                 {
                     propertyName: 'htmlCues',
                     displayName: 'HTML cues',
-                    defaultValue: '-',
+                    defaultValue: NoValue,
                     expand: true,
                 },
                 {
                     propertyName: 'ariaCues',
                     displayName: 'ARIA cues',
-                    defaultValue: '-',
+                    defaultValue: NoValue,
                     expand: true,
                 },
             ]),
