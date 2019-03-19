@@ -33,17 +33,11 @@ export class Header extends React.Component<HeaderProps> {
     }
 
     private renderSwitcher(): JSX.Element {
-        if (!this.shouldRenderSwitcher()) {
+        if (this.props.tabClosed === true) {
             return null;
         }
 
         return <Switcher deps={this.props.deps} pivotKey={this.props.selectedPivot} />;
-    }
-
-    private shouldRenderSwitcher(): boolean {
-        const { tabClosed } = this.props;
-
-        return tabClosed === false;
     }
 
     private renderButton(): JSX.Element {
