@@ -29,9 +29,9 @@ export class Store {
     }
 }
 
-type IDBResultTarget = EventTarget & {
+type IDBResultTarget = {
     result: IDBValidKey[];
-};
+} & EventTarget;
 
 type IDBEvent = {
     target: IDBResultTarget;
