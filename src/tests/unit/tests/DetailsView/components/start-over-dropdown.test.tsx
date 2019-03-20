@@ -39,7 +39,7 @@ describe('StartOverDropdownTest', () => {
     it('render ContextualMenu', () => {
         const rendered = shallow(<StartOverDropdown {...defaultProps} />);
         rendered.find(ActionButton).simulate('click', event);
-        expect(rendered.debug()).toMatchSnapshot();
+        expect(rendered.getElement()).toMatchSnapshot();
         expect(rendered.state().target).toBe(event.currentTarget);
     });
 
@@ -47,7 +47,7 @@ describe('StartOverDropdownTest', () => {
         defaultProps.detailsViewRightContentPanel = 'Overview';
         const rendered = shallow(<StartOverDropdown {...defaultProps} />);
         rendered.find(ActionButton).simulate('click', event);
-        expect(rendered.debug()).toMatchSnapshot();
+        expect(rendered.getElement()).toMatchSnapshot();
         expect(rendered.state().target).toBe(event.currentTarget);
     });
 
