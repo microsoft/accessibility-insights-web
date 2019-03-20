@@ -40,7 +40,7 @@ export class DrawingInitiator {
         this.drawingController.processRequest(visualizationMessage);
     }
 
-    private initializeTargetIndex(elementResults: AxeResultsWithFrameLevel[]) {
+    private initializeTargetIndex(elementResults: AxeResultsWithFrameLevel[]): void {
         if (elementResults != null) {
             elementResults.forEach(result => {
                 result.targetIndex = 0;
@@ -59,7 +59,7 @@ export class DrawingInitiator {
         this.drawingController.processRequest(visualizationMessage);
     }
 
-    private getElementResults(selectorMap: DictionaryStringTo<IAssessmentVisualizationInstance>) {
+    private getElementResults(selectorMap: DictionaryStringTo<IAssessmentVisualizationInstance>): IAssessmentVisualizationInstance[] {
         return Object.keys(selectorMap).map(key => selectorMap[key]);
     }
 }

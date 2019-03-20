@@ -19,13 +19,13 @@ export class InspectController {
         private readonly onHover: (selector: string[]) => void,
     ) {}
 
-    public listenToStore() {
+    public listenToStore(): void {
         this.inspectStore.addChangedListener(this.onChangedState);
         this.onChangedState();
     }
 
     @autobind
-    private onChangedState() {
+    private onChangedState(): void {
         if (this.inspectStore.getState() == null) {
             return;
         }

@@ -27,24 +27,24 @@ export class WindowMessageHandler {
         this._messageSubscribers = {};
     }
 
-    public addSubscriber(command: string, callback: FrameMessageResponseCallback) {
+    public addSubscriber(command: string, callback: FrameMessageResponseCallback): void {
         if (!this._messageSubscribers[command]) {
             this._messageSubscribers[command] = callback;
         }
     }
 
-    public removeSubscriber(command) {
+    public removeSubscriber(command): void {
         delete this._messageSubscribers[command];
     }
 
-    public initialize() {
+    public initialize(): void {
         if (!this._initialized) {
             this._initialized = true;
             this._windowUtils.addEventListener(window, 'message', this.windowMessageHandler, false);
         }
     }
 
-    public dispose() {
+    public dispose(): void {
         this._windowUtils.removeEventListener(window, 'message', this.windowMessageHandler, false);
     }
 
@@ -76,7 +76,7 @@ export class WindowMessageHandler {
         }
     }
 
-    private updateResponseCallbackMap(messageId, callback) {
+    private updateResponseCallbackMap(messageId, callback): void {
         if (callback) {
             this._callbacksForMessagesSentFromCurrentFrame[messageId] = callback;
         } else {
@@ -84,13 +84,13 @@ export class WindowMessageHandler {
         }
     }
 
-    private processResponseFromPreviousRequest(source: Window, data: IWindowMessage, callback: FrameMessageResponseCallback) {
+    private processResponseFromPreviousRequest(source: Window, data: IWindowMessage, callback: FrameMessageResponseCallback): void {
         const responderCallback = this.createFrameResponderCallback(source, data.command, data.messageId);
         callback(data.message, data.error, source, responderCallback);
         delete this._callbacksForMessagesSentFromCurrentFrame[data.messageId];
     }
 
-    private processNewMessage(source: Window, data: IWindowMessage) {
+    private processNewMessage(source: Window, data: IWindowMessage): void {
         this.notifySubscriber(source, data);
     }
 

@@ -47,7 +47,7 @@ export abstract class BaseDrawer implements IDrawer {
         this.isEnabled = true;
     }
 
-    public eraseLayout() {
+    public eraseLayout(): void {
         this.removeListeners();
         this.removeContainerElement();
         this.isEnabled = false;
@@ -106,14 +106,14 @@ export abstract class BaseDrawer implements IDrawer {
         this.applyContainerClass();
     }
 
-    protected removeContainerElement() {
+    protected removeContainerElement(): void {
         if (this.containerElement) {
             this.containerElement.remove();
             this.containerElement = null;
         }
     }
 
-    private attachContainerToDom() {
+    private attachContainerToDom(): void {
         this._shadowUtils.getShadowContainer().appendChild(this.containerElement);
     }
 }

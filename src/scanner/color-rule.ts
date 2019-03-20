@@ -20,6 +20,6 @@ export const colorConfiguration: RuleConfiguration = {
     },
 };
 
-export function isInTopWindow(win: any) {
+export function isInTopWindow(win: any): boolean {
     return win.top === win;
 }

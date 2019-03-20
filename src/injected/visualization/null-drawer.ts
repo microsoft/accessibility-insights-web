@@ -3,8 +3,8 @@
 import { IDrawer, IDrawerInitData } from './idrawer';
 
 export class NullDrawer implements IDrawer {
-    public initialize(drawerData: IDrawerInitData<any>) {}
+    public initialize(drawerData: IDrawerInitData<any>): void {}
     public isOverlayEnabled: boolean = false;
-    public drawLayout() {}
-    public eraseLayout() {}
+    public drawLayout(): void {}
+    public eraseLayout(): void {}
 }

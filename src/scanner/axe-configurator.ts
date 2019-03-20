@@ -6,7 +6,7 @@ import { IAxeConfiguration, ICheckConfiguration, IRuleConfiguration, RuleConfigu
 import { localeConfiguration } from './locale-configuration';
 
 export class AxeConfigurator {
-    public configureAxe(axe: typeof Axe, configuration: RuleConfiguration[]) {
+    public configureAxe(axe: typeof Axe, configuration: RuleConfiguration[]): void {
         axe.configure({ branding: { brand: 'axe', application: 'msftAI' } });
         axe.configure(this.createAxeConfigurationFromCustomRules(configuration) as any);
         axe.configure({ locale: localeConfiguration });

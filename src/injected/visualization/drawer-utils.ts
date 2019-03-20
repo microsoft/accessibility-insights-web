@@ -17,7 +17,7 @@ export class DrawerUtils {
         return Math.max(this.clientWindowOffsetThreshold, offset.top);
     }
 
-    public getDocumentElement() {
+    public getDocumentElement(): Document {
         return this.dom.ownerDocument || (this.dom as Document);
     }
 

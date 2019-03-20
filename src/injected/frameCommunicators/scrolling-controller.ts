@@ -21,7 +21,7 @@ export class ScrollingController {
         this._htmlElementUtils = HTMLElementUtils;
     }
 
-    public initialize() {
+    public initialize(): void {
         this._frameCommunicator.subscribe(ScrollingController.triggerScrollingCommand, this.onTriggerScrolling);
     }
 
@@ -31,11 +31,11 @@ export class ScrollingController {
         error: IErrorMessageContent,
         sourceWin: Window,
         responder?: FrameMessageResponseCallback,
-    ) {
+    ): void {
         this.processRequest(message);
     }
 
-    public processRequest(message: ScrollingWindowMessage) {
+    public processRequest(message: ScrollingWindowMessage): void {
         const selector: string[] = message.focusedTarget;
         if (selector.length === 1) {
             this.scrollElementInCurrentFrame(selector[0]);
