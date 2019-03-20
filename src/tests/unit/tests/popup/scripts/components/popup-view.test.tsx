@@ -272,9 +272,11 @@ describe('PopupView', () => {
             .with('diagnosticViewToggleFactory', null)
             .build();
 
-        const testObject = new PopupView(props);
+        const wrapped = shallow(<PopupView {...props} />);
+        expect(wrapped.getElement()).toMatchSnapshot();
+        // const testObject = new PopupView(props);
 
-        expect(testObject.render()).toMatchSnapshot();
+        // expect(testObject.render()).toMatchSnapshot();
     });
 
     function createDefaultPropsBuilder(storeHub: BaseClientStoresHub<any>): PopupViewPropsBuilder {
