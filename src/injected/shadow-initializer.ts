@@ -33,7 +33,7 @@ export class ShadowInitializer {
         container.appendChild(styleElement);
     }
 
-    private createShadowHost(): HTMLDivElement {
+    private createShadowHost(): HTMLElement {
         const rootContainer = this.htmlElementUtils.querySelector(`#${rootContainerId}`);
 
         const shadowHostElement = this.createDivWithId('insights-shadow-host');
