@@ -37,6 +37,8 @@ export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<IVi
             case VisualizationType.Color:
                 this.data.color.fullAxeResultsMap = selectorMap;
                 break;
+            default:
+                throw new Error(`Unsupported type ${type}`);
         }
 
         return this;
@@ -47,6 +49,8 @@ export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<IVi
             case VisualizationType.Issues:
                 this.data.issues.fullIdToRuleResultMap = fullIdToRuleResultMap;
                 break;
+            default:
+                throw new Error(`Unsupported type ${type}`);
         }
 
         return this;
@@ -57,6 +61,8 @@ export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<IVi
             case VisualizationType.Issues:
                 this.data.issues.selectedIdToRuleResultMap = selectedIdToRuleResultMap;
                 break;
+            default:
+                throw new Error(`Unsupported type ${type}`);
         }
 
         return this;
@@ -76,6 +82,8 @@ export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<IVi
             case VisualizationType.Color:
                 this.data.color.scanResult = result;
                 break;
+            default:
+                throw new Error(`Unsupported type ${type}`);
         }
         return this;
     }

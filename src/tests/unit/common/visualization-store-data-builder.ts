@@ -86,6 +86,8 @@ export class VisualizationStoreDataBuilder extends BaseDataBuilder<IVisualizatio
             case VisualizationType.Color:
                 this.data.tests.adhoc.color.enabled = true;
                 break;
+            default:
+                throw new Error(`Unsupported type ${type}`);
         }
 
         return this;
@@ -105,6 +107,8 @@ export class VisualizationStoreDataBuilder extends BaseDataBuilder<IVisualizatio
             case VisualizationType.Color:
                 this.data.tests.adhoc.color.enabled = false;
                 break;
+            default:
+                throw new Error(`Unsupported type ${type}`);
         }
 
         return this;
