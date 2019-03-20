@@ -88,7 +88,7 @@ describe('IssuesTableTest', () => {
             });
         });
 
-        it('spinner, issuesEnabled.scanResult == null', () => {
+        it('spinner, issuesEnabled is an empty object', () => {
             const props = new TestPropsBuilder().setIssuesEnabled({} as any).build();
 
             const wrapper = shallow(<IssuesTable {...props} />);

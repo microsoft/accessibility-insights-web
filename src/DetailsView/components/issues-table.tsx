@@ -117,10 +117,6 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
     }
 
     private renderExportDialog(): JSX.Element {
-        if (!this.props.featureFlags[FeatureFlags.exportResult]) {
-            return null;
-        }
-
         return (
             <ExportDialog
                 deps={this.props.deps}

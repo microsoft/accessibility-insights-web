@@ -20,6 +20,14 @@ exports[`IssuesTableTest render automated checks disabled 1`] = `
         visualizationName="Automated checks"
       />
     </div>
+    <ExportDialog
+      description=""
+      exportResultsType="AutomatedChecks"
+      html=""
+      isOpen={false}
+      onClose={[Function]}
+      onDescriptionChange={[Function]}
+    />
     <div
       className="details-disabled-message"
       role="alert"
@@ -43,6 +51,7 @@ exports[`IssuesTableTest render spinner for scanning state 1`] = `
     <div className=\\"details-view-command-bar\\">
       <VisualizationToggle label=\\"Show failures\\" checked={true} disabled={true} onClick={[Function: proxy]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
     </div>
+    <ExportDialog deps={[undefined]} isOpen={false} description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChange={[Function: bound ]} exportResultsType=\\"AutomatedChecks\\" />
     <StyledSpinnerBase className=\\"details-view-spinner\\" size={3} label=\\"Scanning...\\" />
   </div>
 </div>"
@@ -57,7 +66,7 @@ exports[`IssuesTableTest render spinner, issuesEnabled == null 1`] = `
 </div>"
 `;
 
-exports[`IssuesTableTest render spinner, issuesEnabled.scanResult == null 1`] = `
+exports[`IssuesTableTest render spinner, issuesEnabled is an empty object 1`] = `
 <div
   className="issues-table"
 >
@@ -76,6 +85,14 @@ exports[`IssuesTableTest render spinner, issuesEnabled.scanResult == null 1`] = 
         visualizationName="Automated checks"
       />
     </div>
+    <ExportDialog
+      description=""
+      exportResultsType="AutomatedChecks"
+      html=""
+      isOpen={false}
+      onClose={[Function]}
+      onDescriptionChange={[Function]}
+    />
     <StyledSpinnerBase
       className="details-view-spinner"
       label="Loading data..."
