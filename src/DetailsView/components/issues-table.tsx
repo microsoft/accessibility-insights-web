@@ -16,14 +16,15 @@ import { RuleResult, ScanResults } from '../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../types/common-types';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { ReportGenerator } from '../reports/report-generator';
-import { ExportDialog } from './export-dialog';
+import { ExportDialog, ExportDialogDeps } from './export-dialog';
 import { IssuesDetailsList } from './issues-details-list';
 import { IssuesDetailsPane, IssuesDetailsPaneDeps } from './Issues-details-pane';
 import { IssuesTableHandler } from './issues-table-handler';
 
-export type IssuesTableDeps = IssuesDetailsPaneDeps & {
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-};
+export type IssuesTableDeps = IssuesDetailsPaneDeps &
+    ExportDialogDeps & {
+        detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    };
 
 export interface IssuesTableProps {
     deps: IssuesTableDeps;
@@ -119,6 +120,7 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
             <ExportDialog
                 deps={this.props.deps}
                 isOpen={this.state.isExportDialogOpen}
+                fileNameBase="AutomatedChecksReport"
                 description={this.state.exportDescription}
                 html={this.state.exportData}
                 onClose={this.onDismissExportDialog}

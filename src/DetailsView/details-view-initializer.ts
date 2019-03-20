@@ -72,6 +72,7 @@ import {
     outcomeTypeFromTestStatus,
     outcomeTypeSemanticsFromTestStatus,
 } from './reports/components/outcome-type';
+import { ReportFileNameGenerator } from './reports/components/report-file-name-generator';
 import {
     getAssessmentSummaryModelFromProviderAndStatusData,
     getAssessmentSummaryModelFromProviderAndStoreData,
@@ -244,6 +245,9 @@ if (isNaN(tabId) === false) {
                     AxeInfo.Default.version,
                 );
 
+                const dateProvider = () => new Date();
+                const reportFileNameGenerator = new ReportFileNameGenerator({ dateProvider });
+
                 const deps: DetailsViewContainerDeps = {
                     dropdownClickHandler,
                     bugActionMessageCreator,
@@ -273,6 +277,7 @@ if (isNaN(tabId) === false) {
                     storesHub,
                     loadTheme,
                     urlParser,
+                    reportFileNameGenerator,
                 };
 
                 const renderer = new DetailsViewRenderer(

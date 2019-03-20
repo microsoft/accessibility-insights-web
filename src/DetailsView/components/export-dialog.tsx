@@ -8,10 +8,12 @@ import * as React from 'react';
 
 import { ExportResultType } from '../../common/telemetry-events';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
+import { ReportFileNameGenerator } from '../reports/components/report-file-name-generator';
 
 export interface ExportDialogProps {
     deps: ExportDialogDeps;
     isOpen: boolean;
+    fileNameBase: string;
     description: string;
     html: string;
     onClose: () => void;
@@ -21,6 +23,7 @@ export interface ExportDialogProps {
 
 export interface ExportDialogDeps {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    reportFileNameGenerator: ReportFileNameGenerator;
 }
 
 export class ExportDialog extends React.Component<ExportDialogProps> {
@@ -30,6 +33,10 @@ export class ExportDialog extends React.Component<ExportDialogProps> {
 
     public render(): JSX.Element {
         const encodedHtml = encodeURIComponent(this.props.html);
+
+        const { deps, fileNameBase } = this.props;
+        const { reportFileNameGenerator } = deps;
+        const fileName = reportFileNameGenerator.getFileName(fileNameBase, 'html');
 
         return (
             <Dialog
@@ -55,7 +62,7 @@ export class ExportDialog extends React.Component<ExportDialogProps> {
                     ariaLabel="Provide result description"
                 />
                 <DialogFooter>
-                    <PrimaryButton onClick={this.onExportLinkClick} download="AssessmentReport.html" href={'data:text/html,' + encodedHtml}>
+                    <PrimaryButton onClick={this.onExportLinkClick} download={fileName} href={'data:text/html,' + encodedHtml}>
                         Export
                     </PrimaryButton>
                 </DialogFooter>

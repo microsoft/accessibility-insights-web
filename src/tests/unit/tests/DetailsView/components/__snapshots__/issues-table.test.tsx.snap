@@ -124,7 +124,7 @@ exports[`IssuesTableTest render table with 0 issues 1`] = `
         Export result
       </CustomizedActionButton>
     </div>
-    <ExportDialog deps={[undefined]} isOpen={false} description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChange={[Function: bound ]} exportResultsType=\\"AutomatedChecks\\" />
+    <ExportDialog deps={[undefined]} isOpen={false} fileNameBase=\\"AutomatedChecksReport\\" description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChange={[Function: bound ]} exportResultsType=\\"AutomatedChecks\\" />
     <div className=\\"issues-table-details\\">
       <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} />
       <div className=\\"issue-detail-outer-container ms-Fabric\\">
@@ -147,7 +147,7 @@ exports[`IssuesTableTest render table with 1 issues 1`] = `
         Export result
       </CustomizedActionButton>
     </div>
-    <ExportDialog deps={[undefined]} isOpen={false} description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChange={[Function: bound ]} exportResultsType=\\"AutomatedChecks\\" />
+    <ExportDialog deps={[undefined]} isOpen={false} fileNameBase=\\"AutomatedChecksReport\\" description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChange={[Function: bound ]} exportResultsType=\\"AutomatedChecks\\" />
     <div className=\\"issues-table-details\\">
       <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} />
       <div className=\\"issue-detail-outer-container ms-Fabric\\">
@@ -170,7 +170,7 @@ exports[`IssuesTableTest render table with 2 issues 1`] = `
         Export result
       </CustomizedActionButton>
     </div>
-    <ExportDialog deps={[undefined]} isOpen={false} description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChange={[Function: bound ]} exportResultsType=\\"AutomatedChecks\\" />
+    <ExportDialog deps={[undefined]} isOpen={false} fileNameBase=\\"AutomatedChecksReport\\" description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChange={[Function: bound ]} exportResultsType=\\"AutomatedChecks\\" />
     <div className=\\"issues-table-details\\">
       <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} />
       <div className=\\"issue-detail-outer-container ms-Fabric\\">
