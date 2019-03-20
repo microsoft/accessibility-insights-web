@@ -62,6 +62,6 @@ describe('DetailsViewRightPanelTests', () => {
         expect(configuration.GetLeftNavSelectedKey).toEqual(getOverviewKey);
         expect(configuration.GetTitle).toEqual(getOverviewTitle);
         expect(configuration.RightPanel).toEqual(OverviewContainer);
-        expect(configuration.GetStartOverContextualMenuItemKeys).toEqual(['assessment']);
+        expect(configuration.GetStartOverContextualMenuItemKeys()).toEqual(['assessment']);
     }
 });
