@@ -2,16 +2,10 @@
 // Licensed under the MIT License.
 import { DialogRenderer } from '../dialog-renderer';
 import { AxeResultsWithFrameLevel, IAssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
-import { Formatter } from './formatter';
+import { FailureBoxConfig, Formatter } from './formatter';
 
-type failureBoxConfigType = {
-    background: string;
-    fontColor: string;
-    text: string;
-    boxWidth: string;
-};
 export abstract class FailureInstanceFormatter implements Formatter {
-    public static failureBoxConfig: failureBoxConfigType = {
+    public static failureBoxConfig: FailureBoxConfig = {
         background: '#CC0000',
         fontColor: '#FFFFFF',
         text: '!',
@@ -22,7 +16,7 @@ export abstract class FailureInstanceFormatter implements Formatter {
 
     public abstract getDialogRenderer(): DialogRenderer;
 
-    protected getFailureBoxConfig(data: IAssessmentVisualizationInstance): failureBoxConfigType {
+    protected getFailureBoxConfig(data: IAssessmentVisualizationInstance): FailureBoxConfig {
         if (data && data.isFailure) {
             return FailureInstanceFormatter.failureBoxConfig;
         }
