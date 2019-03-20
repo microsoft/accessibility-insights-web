@@ -58,7 +58,7 @@ describe('DetailsViewCommandBar', () => {
         const deps: DetailsViewCommandBarDeps = {
             detailsViewActionMessageCreator: actionMessageCreatorMock.object,
             outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
-            reportFileNameGenerator: null,
+            reportNameGenerator: null,
         };
 
         return {

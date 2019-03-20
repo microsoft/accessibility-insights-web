@@ -11,15 +11,11 @@ import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag
 import { IAssessmentStoreData } from '../../common/types/store-data/iassessment-result-data';
 import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
-import { ReportFileNameGenerator } from '../reports/components/report-file-name-generator';
 import { ReportGenerator, ReportGeneratorDeps } from '../reports/report-generator';
 import { ExportDialog, ExportDialogDeps } from './export-dialog';
 import { StartOverDropdown } from './start-over-dropdown';
 
-export type DetailsViewCommandBarDeps = ExportDialogDeps &
-    ReportGeneratorDeps & {
-        reportFileNameGenerator: ReportFileNameGenerator;
-    };
+export type DetailsViewCommandBarDeps = ExportDialogDeps & ReportGeneratorDeps;
 
 export interface DetailsViewCommandBarProps {
     deps: DetailsViewCommandBarDeps;

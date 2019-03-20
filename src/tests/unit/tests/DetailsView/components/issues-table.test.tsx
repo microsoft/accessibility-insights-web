@@ -165,7 +165,7 @@ describe('IssuesTableTest', () => {
                 issueDetailsTextGenerator: null,
                 windowUtils: null,
                 bugActionMessageCreator: null,
-                reportFileNameGenerator: null,
+                reportNameGenerator: null,
             })
             .build();
         const setStateMock = Mock.ofInstance(state => {});

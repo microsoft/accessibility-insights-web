@@ -2,7 +2,22 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash/index';
 
+type DateProvider = () => Date;
+
+export type ReportNameGeneratorDeps = {
+    dateProvider: DateProvider;
+};
+
 export class ReportNameGenerator {
+    constructor(private readonly deps: ReportNameGeneratorDeps) {}
+
+    public getFileName(baseName: string, extension: string): string {
+        const { dateProvider } = this.deps;
+        const isoString = dateProvider().toISOString();
+        const dateTime = `${isoString.substr(0, 10)} ${isoString.substr(11, 8)}`;
+        return `${baseName} ${dateTime}.${extension}`;
+    }
+
     public generateName(scanDate: Date, pageTitle: string): string {
         return 'InsightsScan_' + this.getDateSegment(scanDate) + '_' + this.getTitleSegment(pageTitle) + '.html';
     }

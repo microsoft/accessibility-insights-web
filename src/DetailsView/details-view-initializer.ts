@@ -72,7 +72,6 @@ import {
     outcomeTypeFromTestStatus,
     outcomeTypeSemanticsFromTestStatus,
 } from './reports/components/outcome-type';
-import { ReportFileNameGenerator } from './reports/components/report-file-name-generator';
 import {
     getAssessmentSummaryModelFromProviderAndStatusData,
     getAssessmentSummaryModelFromProviderAndStoreData,
@@ -101,6 +100,8 @@ if (isNaN(tabId) === false) {
                 renderer.render();
             }
             {
+                const dateProvider = () => new Date();
+
                 const telemetryFactory = new TelemetryDataFactory();
 
                 const visualizationStore = new StoreProxy<IVisualizationStoreData>(
@@ -196,7 +197,7 @@ if (isNaN(tabId) === false) {
                 const extensionVersion = chromeAdapter.getManifest().version;
                 const axeVersion = getVersion();
                 const reactStaticRenderer = new ReactStaticRenderer();
-                const reportNameGenerator = new ReportNameGenerator();
+                const reportNameGenerator = new ReportNameGenerator({ dateProvider });
                 const reportHtmlGenerator = new ReportHtmlGenerator(
                     reactStaticRenderer,
                     new NavigatorUtils(window.navigator).getBrowserSpec(),
@@ -245,9 +246,6 @@ if (isNaN(tabId) === false) {
                     AxeInfo.Default.version,
                 );
 
-                const dateProvider = () => new Date();
-                const reportFileNameGenerator = new ReportFileNameGenerator({ dateProvider });
-
                 const deps: DetailsViewContainerDeps = {
                     dropdownClickHandler,
                     bugActionMessageCreator,
@@ -277,7 +275,7 @@ if (isNaN(tabId) === false) {
                     storesHub,
                     loadTheme,
                     urlParser,
-                    reportFileNameGenerator,
+                    reportNameGenerator,
                 };
 
                 const renderer = new DetailsViewRenderer(

@@ -4,12 +4,12 @@ import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { ExportDialog, ExportDialogProps } from '../../../../../DetailsView/components/export-dialog';
-import { ReportFileNameGenerator } from '../../../../../DetailsView/reports/components/report-file-name-generator';
+import { ReportNameGenerator } from '../../../../../DetailsView/reports/report-name-generator';
 
 describe('ExportDialog', () => {
     const reportFileName = 'THE REPORT FILE NAME';
-    const reportFileNameGeneratorMock = Mock.ofType(ReportFileNameGenerator);
-    reportFileNameGeneratorMock.setup(gen => gen.getFileName('BASE', 'html')).returns(() => reportFileName);
+    const reportNameGeneratorMock = Mock.ofType(ReportNameGenerator);
+    reportNameGeneratorMock.setup(gen => gen.getFileName('BASE', 'html')).returns(() => reportFileName);
 
     let onCloseMock: IMock<() => void>;
     let onDescriptionChangeMock: IMock<(value: string) => void>;
@@ -25,7 +25,7 @@ describe('ExportDialog', () => {
 
         const deps = {
             detailsViewActionMessageCreator: actionMessageCreatorMock.object,
-            reportFileNameGenerator: reportFileNameGeneratorMock.object,
+            reportNameGenerator: reportNameGeneratorMock.object,
         };
 
         props = {

@@ -8,7 +8,7 @@ import * as React from 'react';
 
 import { ExportResultType } from '../../common/telemetry-events';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
-import { ReportFileNameGenerator } from '../reports/components/report-file-name-generator';
+import { ReportNameGenerator } from '../reports/report-name-generator';
 
 export interface ExportDialogProps {
     deps: ExportDialogDeps;
@@ -23,7 +23,7 @@ export interface ExportDialogProps {
 
 export interface ExportDialogDeps {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-    reportFileNameGenerator: ReportFileNameGenerator;
+    reportNameGenerator: ReportNameGenerator;
 }
 
 export class ExportDialog extends React.Component<ExportDialogProps> {
@@ -35,8 +35,8 @@ export class ExportDialog extends React.Component<ExportDialogProps> {
         const encodedHtml = encodeURIComponent(this.props.html);
 
         const { deps, fileNameBase } = this.props;
-        const { reportFileNameGenerator } = deps;
-        const fileName = reportFileNameGenerator.getFileName(fileNameBase, 'html');
+        const { reportNameGenerator } = deps;
+        const fileName = reportNameGenerator.getFileName(fileNameBase, 'html');
 
         return (
             <Dialog

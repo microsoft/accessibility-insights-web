@@ -3,7 +3,20 @@
 import { ReportNameGenerator } from '../../../../../DetailsView/reports/report-name-generator';
 
 describe('ReportNameGeneratorTest', () => {
-    const testObject = new ReportNameGenerator();
+    const theDate = new Date(Date.UTC(2019, 2, 12, 16, 0, 0));
+    const dateProvider = () => theDate;
+    const deps = { dateProvider };
+    const testObject = new ReportNameGenerator(deps);
+
+    it('generates an appropriate file from the current date/time', () => {
+        const theBase = 'BASE';
+        const theExt = 'EXT';
+        const expectedFileName = 'BASE 2019-03-12 16:00:00.EXT';
+
+        const fileName = testObject.getFileName(theBase, theExt);
+
+        expect(fileName).toBe(expectedFileName);
+    });
 
     test('single digit date/time elements with short title', () => {
         const date = new Date(2018, 0, 1, 2, 3);
