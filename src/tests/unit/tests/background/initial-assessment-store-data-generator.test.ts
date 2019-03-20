@@ -7,10 +7,11 @@ import {
     IAssessmentStoreData,
     IGeneratedAssessmentInstance,
     IManualTestStepResult,
+    AssessmentNavState,
 } from '../../../../common/types/store-data/iassessment-result-data';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
 
-describe('InitialAssessmentStoreDataGeneratorTest', () => {
+describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
     const assesssmentsProvider = CreateTestAssessmentProvider();
 
     const targetTab = { id: 1, url: 'url', title: 'title', appRefreshed: false };
@@ -51,135 +52,106 @@ describe('InitialAssessmentStoreDataGeneratorTest', () => {
         unknownManualRequirementResult = createManualRequirementResult(unknownRequirement1, userInput);
     });
 
-    it('get the default state', () => {
-        const defaultState = generator.generateInitialState();
-        expect(defaultState).toEqual(defaultTestState);
+    it('generates the pinned default state from assessmentsProvider data when no persistedData is provided', () => {
+        expect(defaultState).toMatchSnapshot();
     });
 
-    it('generateInitialState with persistedData, where assessments is null', () => {
-        const defaultState = generator.generateInitialState();
-        const persisted: IAssessmentStoreData = {
+    it.each([[undefined], [null], [{}]])('outputs default assessment data if persistedData.assessments is %p', persistedAssessments => {
+        const generatedState = generator.generateInitialState({
+            assessments: persistedAssessments,
+        } as IAssessmentStoreData);
+
+        expect(generatedState.assessments).toEqual(defaultState.assessments);
+    });
+
+    it.each([[undefined], [null]])('propagates unspecified persistedTabInfo values as-is', persistedTabInfo => {
+        const generatedState = generator.generateInitialState({
+            persistedTabInfo,
+        } as IAssessmentStoreData);
+
+        expect(generatedState.persistedTabInfo).toEqual(persistedTabInfo);
+    });
+
+    it.each([[undefined], [true], [false]])(
+        'outputs persistedTabInfo.appRefreshed as true even if it was set to %p in input persistedData',
+        persistedAppRefreshed => {
+            const generatedState = generator.generateInitialState({
+                persistedTabInfo: { ...targetTab, appRefreshed: persistedAppRefreshed },
+                assessmentNavState: null,
+                assessments: null,
+            });
+
+            expect(generatedState.persistedTabInfo.appRefreshed).toBe(true);
+        },
+    );
+
+    it('outputs persistedTabInfo properties other than appRefreshed as they appeared in persistedData', () => {
+        const generatedState = generator.generateInitialState({
             persistedTabInfo: targetTab,
-            assessmentNavState: {
-                selectedTestStep: 'invalid-step',
-                selectedTestType: -100,
-            },
+            assessmentNavState: null,
             assessments: null,
-        };
-        const expected: IAssessmentStoreData = {
-            persistedTabInfo: { ...targetTab, appRefreshed: true },
-            assessmentNavState: defaultState.assessmentNavState,
-            assessments: defaultState.assessments,
-        };
-        expect(generator.generateInitialState(persisted)).toEqual(expected);
+        });
+
+        const { appRefreshed, ...tabInfoPropertiesThatShouldPropagate } = targetTab;
+        expect(generatedState.persistedTabInfo).toMatchObject(tabInfoPropertiesThatShouldPropagate);
     });
 
-    it('generateInitialState with persisitedData, where assessments is empty', () => {
-        const defaultState = generator.generateInitialState();
-        const persisted: IAssessmentStoreData = {
-            persistedTabInfo: targetTab,
-            assessmentNavState: {
-                selectedTestStep: 'invalid-step',
-                selectedTestType: -100,
-            },
-            assessments: {},
-        };
-        const expected: IAssessmentStoreData = {
-            persistedTabInfo: { ...targetTab, appRefreshed: true },
-            assessmentNavState: defaultState.assessmentNavState,
-            assessments: defaultState.assessments,
-        };
-        expect(generator.generateInitialState(persisted)).toEqual(expected);
-    });
+    // prettier-ignore
+    it.each`
+        selectedTestStep         | selectedTestType
+        ${'invalid-step'}        | ${-100}
+        ${'invalid-step'}        | ${-1}
+        ${'assessment-1-step-1'} | ${-100}
+        ${'assessment-1-step-1'} | ${-1}
+        ${'assessment-1-step-2'} | ${-1}
+        ${'assessment-2-step-1'} | ${-2}
+        ${'assessment-2-step-2'} | ${-2}
+    `(
+        'outputs the first test/step for assessmentNavState regardless of the persisted state ($selectedTestStep/$selectedTestType)',
+        ({selectedTestStep, selectedTestType}) => {
+            const generatedState = generator.generateInitialState({
+                assessmentNavState: {
+                    selectedTestStep,
+                    selectedTestType,
+                },
+            } as IAssessmentStoreData);
 
-    it('generateInitialState with persisitedData, where persisitedTabInfo is not present', () => {
-        const persisted: IAssessmentStoreData = {
-            assessmentNavState: {
-                selectedTestStep: 'invalid-step',
-                selectedTestType: -100,
-            },
-            assessments: {},
-        } as IAssessmentStoreData;
-        expect(generator.generateInitialState(persisted).persistedTabInfo).toBeUndefined();
-    });
+            expect(generatedState.assessmentNavState).toEqual(defaultState.assessmentNavState);
+        },
+    );
 
-    it('verify persistedTabInfo and assessmentNavState', () => {
-        const persistedTestData1: IAssessmentData = {
-            fullAxeResultsMap: null,
-            generatedAssessmentInstancesMap: {
-                id1: instanceDataWithKnownRequirementResult,
-                id2: instanceDataWithoutKnownRequirementResult,
-            },
-            manualTestStepResultMap: {},
-            testStepStatus: {},
+    it.todo('outputs default/empty assessment data for new test types missing from persisted data');
+    it.todo('outputs default/empty assessment data for new test steps missing from persisted data');
+    it.todo('omits persisted assessment data for test types that are unknown to the assessment provider');
+    it.todo('omits persisted assessment data for test steps that are unknown to the assessment provider');
+
+    it('outputs generatedAssessmentInstancesMaps filtered to results for recognized requirements only', () => {
+        const persistedMap = {
+            id1: instanceDataWithKnownRequirementResult,
+            id2: instanceDataWithoutKnownRequirementResult,
         };
-
-        const persisted: IAssessmentStoreData = {
-            persistedTabInfo: { ...targetTab, appRefreshed: true },
-            assessmentNavState: {
-                selectedTestStep: 'invalid-step',
-                selectedTestType: -100,
-            },
-            assessments: {
-                [knownTestIds[0]]: persistedTestData1,
-            },
-        };
-        const actual = generator.generateInitialState(persisted);
-
-        expect(actual.persistedTabInfo).toEqual(persisted.persistedTabInfo);
-        expect(actual.assessmentNavState).toEqual(defaultState.assessmentNavState);
-    });
-
-    it('verify generatedAssessmentInstancesMap', () => {
-        const persistedTestData1: IAssessmentData = {
-            fullAxeResultsMap: null,
-            generatedAssessmentInstancesMap: {
-                id1: instanceDataWithKnownRequirementResult,
-                id2: instanceDataWithoutKnownRequirementResult,
-            },
-            manualTestStepResultMap: {},
-            testStepStatus: {},
-        };
-
-        const persisted: IAssessmentStoreData = {
-            persistedTabInfo: targetTab,
-            assessmentNavState: {
-                selectedTestStep: 'invalid-step',
-                selectedTestType: -100,
-            },
-            assessments: {
-                [knownTestIds[0]]: persistedTestData1,
-            },
-        };
-        const expectedGeneratedMap = {
+        const expectedMap = {
             id1: instanceDataWithOnlyKnownRequirementResult,
         };
 
-        const actual = generator.generateInitialState(persisted);
+        const actual = generator.generateInitialState({
+            assessments: {
+                [knownTestIds[0]]: {
+                    fullAxeResultsMap: null,
+                    generatedAssessmentInstancesMap: persistedMap,
+                    manualTestStepResultMap: {},
+                    testStepStatus: {},
+                },
+            },
+        } as IAssessmentStoreData);
 
-        expect(actual.assessments[knownTestIds[0]].generatedAssessmentInstancesMap).toEqual(expectedGeneratedMap);
+        expect(actual.assessments[knownTestIds[0]].generatedAssessmentInstancesMap).toEqual(expectedMap);
     });
 
-    it('verify manualTestStepResultMap', () => {
-        const persistedTestData1: IAssessmentData = {
-            fullAxeResultsMap: null,
-            generatedAssessmentInstancesMap: {},
-            manualTestStepResultMap: {
-                [knownRequirement1]: knownManualRequirementResult,
-                [unknownRequirement1]: unknownManualRequirementResult,
-            },
-            testStepStatus: {},
-        };
-
-        const persisted: IAssessmentStoreData = {
-            persistedTabInfo: targetTab,
-            assessmentNavState: {
-                selectedTestStep: 'invalid-step',
-                selectedTestType: -100,
-            },
-            assessments: {
-                [knownTestIds[0]]: persistedTestData1,
-            },
+    it('outputs manualTestStepResultMap entries for known assessments, propagating the persisted ones', () => {
+        const persistedMap = {
+            [knownRequirement1]: knownManualRequirementResult,
+            [unknownRequirement1]: unknownManualRequirementResult,
         };
         const expectedMap = {
             [knownRequirement1]: knownManualRequirementResult,
@@ -187,43 +159,44 @@ describe('InitialAssessmentStoreDataGeneratorTest', () => {
             [knownRequirement3]: createManualRequirementResult(knownRequirement3, defaultStatus),
         };
 
-        const actual = generator.generateInitialState(persisted);
+        const actual = generator.generateInitialState({
+            assessments: {
+                [knownTestIds[0]]: {
+                    fullAxeResultsMap: null,
+                    generatedAssessmentInstancesMap: {},
+                    manualTestStepResultMap: persistedMap,
+                    testStepStatus: {},
+                },
+            },
+        } as IAssessmentStoreData);
 
         expect(actual.assessments[knownTestIds[0]].manualTestStepResultMap).toEqual(expectedMap);
     });
 
-    it('verify testStepStatus', () => {
-        const persistedTestData1: IAssessmentData = {
-            fullAxeResultsMap: null,
-            generatedAssessmentInstancesMap: {},
-            manualTestStepResultMap: {},
-            testStepStatus: {
-                [knownRequirement1]: createRequirementResult(true, 2),
-                [unknownRequirement1]: createRequirementResult(true, 3),
-            },
+    it('outputs testStepStatus entries for known assessments, propagating the persisted ones', () => {
+        const persistedTestStepStatus = {
+            [knownRequirement1]: createRequirementResult(true, 2),
+            [unknownRequirement1]: createRequirementResult(true, 3),
         };
-
-        const persisted: IAssessmentStoreData = {
-            persistedTabInfo: targetTab,
-            assessmentNavState: {
-                selectedTestStep: 'invalid-step',
-                selectedTestType: -100,
-            },
-            assessments: {
-                [knownTestIds[0]]: persistedTestData1,
-            },
-        };
-        const expectedMap = {
+        const expectedTestStepStatus = {
             [knownRequirement1]: createRequirementResult(true, 2),
             [knownRequirement2]: createDefaultRequirementResult(),
             [knownRequirement3]: createDefaultRequirementResult(),
         };
 
-        const actual = generator.generateInitialState(persisted);
+        const actual = generator.generateInitialState({
+            assessments: {
+                [knownTestIds[0]]: {
+                    fullAxeResultsMap: null,
+                    generatedAssessmentInstancesMap: {},
+                    manualTestStepResultMap: {},
+                    testStepStatus: persistedTestStepStatus,
+                },
+            },
+        } as IAssessmentStoreData);
 
-        expect(actual.assessments[knownTestIds[0]].testStepStatus).toEqual(expectedMap);
+        expect(actual.assessments[knownTestIds[0]].testStepStatus).toEqual(expectedTestStepStatus);
     });
-});
 
 function createDefaultRequirementResult(): TestStepData {
     return createRequirementResult(false, 1);
@@ -258,74 +231,3 @@ function createInstance(instanceId: string, requirementIds: string[]): IGenerate
 
     return instanceData;
 }
-
-const defaultTestState: IAssessmentStoreData = {
-    assessmentNavState: {
-        selectedTestStep: 'assessment-1-step-1',
-        selectedTestType: -1,
-    },
-    assessments: {
-        'assessment-1': {
-            fullAxeResultsMap: null,
-            generatedAssessmentInstancesMap: null,
-            manualTestStepResultMap: {
-                'assessment-1-step-1': {
-                    id: 'assessment-1-step-1',
-                    instances: [],
-                    status: 1,
-                },
-                'assessment-1-step-2': {
-                    id: 'assessment-1-step-2',
-                    instances: [],
-                    status: 1,
-                },
-                'assessment-1-step-3': {
-                    id: 'assessment-1-step-3',
-                    instances: [],
-                    status: 1,
-                },
-            },
-            testStepStatus: {
-                'assessment-1-step-1': {
-                    isStepScanned: false,
-                    stepFinalResult: 1,
-                },
-                'assessment-1-step-2': {
-                    isStepScanned: false,
-                    stepFinalResult: 1,
-                },
-                'assessment-1-step-3': {
-                    isStepScanned: false,
-                    stepFinalResult: 1,
-                },
-            },
-        },
-        'assessment-2': {
-            fullAxeResultsMap: null,
-            generatedAssessmentInstancesMap: null,
-            manualTestStepResultMap: {
-                'assessment-2-step-1': {
-                    id: 'assessment-2-step-1',
-                    instances: [],
-                    status: 1,
-                },
-                'assessment-2-step-2': {
-                    id: 'assessment-2-step-2',
-                    instances: [],
-                    status: 1,
-                },
-            },
-            testStepStatus: {
-                'assessment-2-step-1': {
-                    isStepScanned: false,
-                    stepFinalResult: 1,
-                },
-                'assessment-2-step-2': {
-                    isStepScanned: false,
-                    stepFinalResult: 1,
-                },
-            },
-        },
-    },
-    persistedTabInfo: null,
-};
