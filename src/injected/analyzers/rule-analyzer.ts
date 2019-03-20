@@ -11,10 +11,10 @@ import { IScopingStoreData } from '../../common/types/store-data/scoping-store-d
 import { ScanOptions } from '../../scanner/exposed-apis';
 import { ScanResults } from '../../scanner/iruleresults';
 import { ScannerUtils } from '../scanner-utils';
-import { Analyzer, AxeAnalyzerResult, RuleAnalyzerConfiguration } from './analyzer';
+import { AxeAnalyzerResult, RuleAnalyzerConfiguration } from './analyzer';
 import { BaseAnalyzer } from './base-analyzer';
 
-export class RuleAnalyzer extends BaseAnalyzer implements Analyzer {
+export class RuleAnalyzer extends BaseAnalyzer {
     private startTime: number;
     private elementsScanned: number = 0; // Not implemented
 
