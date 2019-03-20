@@ -84,6 +84,16 @@ exports[`IssuesTableTest render spinner, issuesEnabled is an empty object 1`] = 
         label="Show failures"
         visualizationName="Automated checks"
       />
+      <CustomizedActionButton
+        iconProps={
+          Object {
+            "iconName": "Export",
+          }
+        }
+        onClick={[Function]}
+      >
+        Export result
+      </CustomizedActionButton>
     </div>
     <ExportDialog
       description=""

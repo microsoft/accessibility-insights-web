@@ -104,7 +104,7 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
     }
 
     private renderExportButton(): JSX.Element {
-        const shouldShowButton = this.props.featureFlags[FeatureFlags.exportResult] && this.props.issuesEnabled && !this.props.scanning;
+        const shouldShowButton = this.props.issuesEnabled && !this.props.scanning;
         if (shouldShowButton) {
             return (
                 <ActionButton iconProps={{ iconName: 'Export' }} onClick={this.onExportButtonClick}>
