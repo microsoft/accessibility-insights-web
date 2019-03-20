@@ -14,6 +14,7 @@
         "label-position": true,
         "max-classes-per-file": [true, 2],
         "member-access": true,
+        "switch-default": true,
         "new-parens": true,
         "no-angle-bracket-type-assertion": true,
         "no-any": false,

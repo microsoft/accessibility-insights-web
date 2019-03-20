@@ -70,6 +70,7 @@ export class VisualizationStoreDataBuilder extends BaseDataBuilder<IVisualizatio
     }
 
     public withEnable(type: VisualizationType): VisualizationStoreDataBuilder {
+        // tslint:disable-next-line: switch-default
         switch (type) {
             case VisualizationType.Headings:
                 this.data.tests.adhoc.headings.enabled = true;
@@ -92,6 +93,7 @@ export class VisualizationStoreDataBuilder extends BaseDataBuilder<IVisualizatio
     }
 
     public withDisable(type: VisualizationType): VisualizationStoreDataBuilder {
+        // tslint:disable-next-line: switch-default
         switch (type) {
             case VisualizationType.Headings:
                 this.data.tests.adhoc.headings.enabled = false;

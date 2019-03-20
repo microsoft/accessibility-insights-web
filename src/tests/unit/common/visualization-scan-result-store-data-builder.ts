@@ -24,6 +24,7 @@ export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<IVi
     }
 
     public withSelectorMap(type: VisualizationType, selectorMap: any): VisualizationScanResultStoreDataBuilder {
+        // tslint:disable-next-line: switch-default
         switch (type) {
             case VisualizationType.Headings:
                 this.data.headings.fullAxeResultsMap = selectorMap;
@@ -43,6 +44,7 @@ export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<IVi
     }
 
     public withFullIdToRuleResultMap(type: VisualizationType, fullIdToRuleResultMap: any): VisualizationScanResultStoreDataBuilder {
+        // tslint:disable-next-line: switch-default
         switch (type) {
             case VisualizationType.Issues:
                 this.data.issues.fullIdToRuleResultMap = fullIdToRuleResultMap;
@@ -53,6 +55,7 @@ export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<IVi
     }
 
     public withSelectedIdToRuleResultMap(type: VisualizationType, selectedIdToRuleResultMap: any): VisualizationScanResultStoreDataBuilder {
+        // tslint:disable-next-line: switch-default
         switch (type) {
             case VisualizationType.Issues:
                 this.data.issues.selectedIdToRuleResultMap = selectedIdToRuleResultMap;
@@ -63,6 +66,7 @@ export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<IVi
     }
 
     public withScanResult(type: VisualizationType, result: any): VisualizationScanResultStoreDataBuilder {
+        // tslint:disable-next-line: switch-default
         switch (type) {
             case VisualizationType.Headings:
                 this.data.headings.scanResult = result;
