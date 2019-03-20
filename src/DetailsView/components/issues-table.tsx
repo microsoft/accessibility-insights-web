@@ -6,11 +6,9 @@ import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
-
 import * as Markup from '../../assessments/markup';
 import { VisualizationToggle } from '../../common/components/visualization-toggle';
 import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
-import { FeatureFlags } from '../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
@@ -104,7 +102,7 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
     }
 
     private renderExportButton(): JSX.Element {
-        const shouldShowButton = this.props.featureFlags[FeatureFlags.exportResult] && this.props.issuesEnabled && !this.props.scanning;
+        const shouldShowButton = this.props.issuesEnabled && !this.props.scanning;
         if (shouldShowButton) {
             return (
                 <ActionButton iconProps={{ iconName: 'Export' }} onClick={this.onExportButtonClick}>
@@ -117,10 +115,6 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
     }
 
     private renderExportDialog(): JSX.Element {
-        if (!this.props.featureFlags[FeatureFlags.exportResult]) {
-            return null;
-        }
-
         return (
             <ExportDialog
                 deps={this.props.deps}
