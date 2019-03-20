@@ -37,9 +37,9 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
         this.state = { showingFileIssueDialog: false, showingHelpText: false };
     }
 
-    private static getDerivedStateFromProps(props: FileIssueDetailsButtonProps): FileIssueDetailsButtonState {
-        if (isString(props.issueTrackerPath) && props.issueTrackerPath.length > 0) {
-            return { showingFileIssueDialog: false, showingHelpText: false };
+    public componentDidUpdate(): void {
+        if (this.state.showingHelpText && isString(this.props.issueTrackerPath) && this.props.issueTrackerPath.length > 0) {
+            this.setState({ showingHelpText: false });
         }
     }
 
