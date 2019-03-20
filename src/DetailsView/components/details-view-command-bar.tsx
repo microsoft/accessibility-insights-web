@@ -15,6 +15,7 @@ import { DetailsViewActionMessageCreator } from '../actions/details-view-action-
 import { ReportGenerator, ReportGeneratorDeps } from '../reports/report-generator';
 import { ExportDialog, ExportDialogDeps } from './export-dialog';
 import { StartOverDropdown } from './start-over-dropdown';
+import { DetailsRightPanelConfiguration } from './details-view-right-panel';
 
 export type DetailsViewCommandBarDeps = ExportDialogDeps & ReportGeneratorDeps;
 
@@ -27,7 +28,7 @@ export interface DetailsViewCommandBarProps {
     assessmentsProvider: IAssessmentsProvider;
     reportGenerator: ReportGenerator;
     renderExportAndStartOver: boolean;
-    detailsViewStoreData: IDetailsViewData;
+    rightPanelConfiguration: DetailsRightPanelConfiguration;
 }
 
 export interface DetailsViewCommandBarState {
@@ -96,7 +97,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
                     test={selectedTest}
                     requirementKey={this.props.assessmentStoreData.assessmentNavState.selectedTestStep}
                     actionMessageCreator={this.props.actionMessageCreator}
-                    detailsViewRightContentPanel={this.props.detailsViewStoreData.detailsViewRightContentPanel}
+                    rightPanelConfiguration={this.props.rightPanelConfiguration}
                 />
                 <ExportDialog
                     deps={this.props.deps}

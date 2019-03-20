@@ -10,7 +10,6 @@ import { Assessment } from '../../../../../assessments/types/iassessment';
 import { IAssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../../../../../common/types/store-data/iassessment-result-data';
-import { IDetailsViewData } from '../../../../../common/types/store-data/idetails-view-data';
 import { ITabStoreData } from '../../../../../common/types/store-data/itab-store-data';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import {
@@ -18,6 +17,7 @@ import {
     DetailsViewCommandBarDeps,
     DetailsViewCommandBarProps,
 } from '../../../../../DetailsView/components/details-view-command-bar';
+import { DetailsRightPanelConfiguration } from '../../../../../DetailsView/components/details-view-right-panel';
 import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
 
 describe('DetailsViewCommandBar', () => {
@@ -26,7 +26,7 @@ describe('DetailsViewCommandBar', () => {
     let tabStoreData: ITabStoreData;
     let assessmentsProviderMock: IMock<IAssessmentsProvider>;
     let assessmentStoreData: IAssessmentStoreData;
-    let detailsViewStoreData: IDetailsViewData;
+    let rightPanelConfig: DetailsRightPanelConfiguration;
     let reportGeneratorMock: IMock<ReportGenerator>;
     let descriptionPlaceholder: string;
     let renderExportAndStartOver: boolean;
@@ -45,9 +45,7 @@ describe('DetailsViewCommandBar', () => {
                 selectedTestType: -1,
             },
         } as IAssessmentStoreData;
-        detailsViewStoreData = {
-            detailsViewRightContentPanel: 'Overview',
-        } as IDetailsViewData;
+        rightPanelConfig = {} as DetailsRightPanelConfiguration;
         assessmentsProviderMock
             .setup(provider => provider.forType(-1))
             .returns(() => {
@@ -74,7 +72,7 @@ describe('DetailsViewCommandBar', () => {
             assessmentsProvider: assessmentsProviderMock.object,
             assessmentStoreData,
             reportGenerator: reportGeneratorMock.object,
-            detailsViewStoreData,
+            rightPanelConfiguration: rightPanelConfig,
         };
     }
 
