@@ -26,7 +26,7 @@ export class Launcher {
         private options: ScanOptions,
     ) {}
 
-    public runScan(responseHandler: AxeResponseHandler) {
+    public runScan(responseHandler: AxeResponseHandler): void {
         const scanOptions = this.scanParameterGenerator.getAxeEngineOptions(this.options);
         const scanContext = this.scanParameterGenerator.getContext(this.dom, this.options);
 

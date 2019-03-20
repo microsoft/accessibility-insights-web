@@ -27,7 +27,7 @@ export const uniqueLandmarkConfiguration: RuleConfiguration = {
         selector:
             '[role=banner], [role=complementary], [role=contentinfo], [role=main], [role=navigation], [role=region], [role=search], [role=form], form, footer, header, aside, main, nav, section',
         any: [id],
-        matches: function matches(node: any) {
+        matches: function matches(node: any): boolean {
             return isLandmark(node) && axe.commons.dom.isVisible(node, true);
         },
         ...descriptionHelp,

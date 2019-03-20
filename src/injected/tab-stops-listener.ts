@@ -86,7 +86,7 @@ export class TabStopsListener {
     }
 
     @autobind
-    private sendTabbedElements(tabStopEvent: ITabStopEvent) {
+    private sendTabbedElements(tabStopEvent: ITabStopEvent): void {
         if (this.windowUtils.isTopWindow()) {
             if (this.tabEventListener) {
                 this.tabEventListener(tabStopEvent);
