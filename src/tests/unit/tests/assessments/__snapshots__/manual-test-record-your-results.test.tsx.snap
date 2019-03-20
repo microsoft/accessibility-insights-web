@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ManualTestRecordYourResultsTest - render: isMultipleFailurePossible = false 1`] = `
+exports[`ManualTestRecordYourResultsTest render: isMultipleFailurePossible = false 1`] = `
 <li>
   Record your results:
   <ol>
@@ -26,7 +26,7 @@ exports[`ManualTestRecordYourResultsTest - render: isMultipleFailurePossible = f
 </li>
 `;
 
-exports[`ManualTestRecordYourResultsTest - render: isMultipleFailurePossible = true 1`] = `
+exports[`ManualTestRecordYourResultsTest render: isMultipleFailurePossible = true 1`] = `
 <li>
   Record your results:
   <ol>

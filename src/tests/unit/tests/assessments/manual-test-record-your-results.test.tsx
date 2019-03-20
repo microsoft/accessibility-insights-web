@@ -8,7 +8,7 @@ import { ManualTestRecordYourResults } from '../../../../assessments/common/manu
 describe('ManualTestRecordYourResultsTest', () => {
     const multiple = [false, true];
 
-    it.each(multiple)('- render: isMultipleFailurePossible = %p', isMultipleFailurePossible => {
+    it.each(multiple)('render: isMultipleFailurePossible = %p', isMultipleFailurePossible => {
         const props = { isMultipleFailurePossible };
         const wrapper = Enzyme.shallow(<ManualTestRecordYourResults {...props} />);
 
