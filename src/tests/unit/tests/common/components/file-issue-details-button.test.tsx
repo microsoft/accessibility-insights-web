@@ -92,60 +92,38 @@ describe('FileIssueDetailsButtonTest', () => {
     });
 
     describe('componentDidUpdate', () => {
-        let props: FileIssueDetailsButtonProps;
-        let issueDetailsTextGeneratorMock: IMock<IssueDetailsTextGenerator>;
+        type TestCase = {
+            issueTrackerPath: string;
+            initialShowingHelpText: boolean;
+            expectedShowingHelpText: boolean;
+        };
+        const testCases: Array<TestCase> = [
+            {
+                issueTrackerPath: 'not-empty',
+                initialShowingHelpText: false,
+                expectedShowingHelpText: false,
+            },
+            {
+                issueTrackerPath: undefined,
+                initialShowingHelpText: true,
+                expectedShowingHelpText: true,
+            },
+            {
+                issueTrackerPath: '',
+                initialShowingHelpText: true,
+                expectedShowingHelpText: true,
+            },
+            {
+                issueTrackerPath: 'not-empty',
+                initialShowingHelpText: true,
+                expectedShowingHelpText: false,
+            },
+        ];
 
-        beforeEach(() => {
-            props = undefined;
-            issueDetailsTextGeneratorMock = undefined;
-        });
+        test.each(testCases)('%p', (testCase: TestCase) => {
+            const { issueTrackerPath, initialShowingHelpText, expectedShowingHelpText } = testCase;
 
-        it('preserves showingHelpText state when showingHelpText not set', () => {
-            setPropsWithIssueTrackerPath('not-empty');
-            const testSubject = shallow(<FileIssueDetailsButton {...props} />).instance();
-            testSubject.state = { showingHelpText: false, showingFileIssueDialog: false };
-
-            testSubject.componentDidUpdate(undefined, undefined);
-
-            expect(testSubject.state.showingHelpText).toBe(false);
-            verifyAll();
-        });
-
-        it('preserves showingHelpText state when issueTrackerPath not set', () => {
-            setPropsWithIssueTrackerPath(undefined);
-            const testSubject = shallow(<FileIssueDetailsButton {...props} />).instance();
-            testSubject.state = { showingHelpText: true, showingFileIssueDialog: false };
-
-            testSubject.componentDidUpdate(undefined, undefined);
-
-            expect(testSubject.state.showingHelpText).toBe(true);
-            verifyAll();
-        });
-
-        it('preserves showingHelpText state when issueTrackerPath is empty', () => {
-            setPropsWithIssueTrackerPath('');
-            const testSubject = shallow(<FileIssueDetailsButton {...props} />).instance();
-            testSubject.state = { showingHelpText: true, showingFileIssueDialog: false };
-
-            testSubject.componentDidUpdate(undefined, undefined);
-
-            expect(testSubject.state.showingHelpText).toBe(true);
-            verifyAll();
-        });
-
-        it('clears showingHelpText state when issueTrackerPath set', () => {
-            setPropsWithIssueTrackerPath('not-empty');
-            const testSubject = shallow(<FileIssueDetailsButton {...props} />).instance();
-            testSubject.state = { showingHelpText: true, showingFileIssueDialog: false } as any;
-
-            testSubject.componentDidUpdate(undefined, undefined);
-
-            expect(testSubject.state.showingHelpText).toBe(false);
-            verifyAll();
-        });
-
-        function setPropsWithIssueTrackerPath(issueTrackerPath: string): void {
-            issueDetailsTextGeneratorMock = Mock.ofType(IssueDetailsTextGenerator);
+            const issueDetailsTextGeneratorMock = Mock.ofType(IssueDetailsTextGenerator);
             if (issueTrackerPath) {
                 issueDetailsTextGeneratorMock
                     .setup(generator => generator.buildTitle(It.isAny()))
@@ -157,24 +135,28 @@ describe('FileIssueDetailsButtonTest', () => {
                     .verifiable(Times.atLeastOnce());
             }
 
-            props = {
+            const props: FileIssueDetailsButtonProps = {
                 deps: {
                     issueDetailsTextGenerator: issueDetailsTextGeneratorMock.object,
                     bugActionMessageCreator: undefined,
                 },
-                onOpenSettings: (ev: React.MouseEvent<HTMLElement>) => {},
+                onOpenSettings: undefined,
                 issueTrackerPath,
                 issueDetailsData: {
                     pageTitle: 'pageTitle',
                     pageUrl: 'http://pageUrl',
                     ruleResult: null,
                 },
-                restoreFocus: false,
+                restoreFocus: undefined,
             };
-        }
 
-        function verifyAll(): void {
+            const testSubject = shallow(<FileIssueDetailsButton {...props} />).instance();
+            testSubject.state = { showingHelpText: initialShowingHelpText, showingFileIssueDialog: false };
+
+            testSubject.componentDidUpdate(undefined, undefined);
+
+            expect(testSubject.state.showingHelpText).toBe(expectedShowingHelpText);
             issueDetailsTextGeneratorMock.verifyAll();
-        }
+        });
     });
 });
