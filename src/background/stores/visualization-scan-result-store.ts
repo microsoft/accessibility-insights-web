@@ -2,16 +2,15 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 import * as _ from 'lodash/index';
-
 import { forOwn } from 'lodash/index';
 import { StoreNames } from '../../common/stores/store-names';
 import { IVisualizationScanResultData } from '../../common/types/store-data/ivisualization-scan-result-data';
+import { ScanCompletedPayload } from '../../injected/analyzers/analyzer';
 import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from '../../injected/scanner-utils';
 import { DictionaryStringTo } from '../../types/common-types';
 import { AddTabbedElementPayload } from '../actions/action-payloads';
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
-import { IScanCompletedPayload } from './../../injected/analyzers/ianalyzer';
 import { ITabStopEvent } from './../../injected/tab-stops-listener';
 import { BaseStore } from './base-store';
 
@@ -95,7 +94,7 @@ export class VisualizationScanResultStore extends BaseStore<IVisualizationScanRe
     }
 
     @autobind
-    private onScanCompleted(payload: IScanCompletedPayload<any>): void {
+    private onScanCompleted(payload: ScanCompletedPayload<any>): void {
         const selectorMap = payload.selectorMap;
         const result = payload.scanResult;
         const selectedRows = this.getRowToRuleResultMap(selectorMap);

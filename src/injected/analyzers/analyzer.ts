@@ -1,58 +1,55 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { BaseActionPayload } from '../../background/actions/action-payloads';
+import { IAnalyzerTelemetryCallback } from '../../common/types/analyzer-telemetry-callbacks';
 import { ISingleElementSelector } from '../../common/types/store-data/scoping-store-data';
 import { TelemetryProcessor } from '../../common/types/telemetry-processor';
 import { VisualizationType } from '../../common/types/visualization-type';
+import { ScanResults } from '../../scanner/iruleresults';
+import { DictionaryStringTo } from '../../types/common-types';
+import { IHtmlElementAxeResults, ScannerUtils } from '../scanner-utils';
 import { ITabStopEvent } from '../tab-stops-listener';
-import { BaseActionPayload } from './../../background/actions/action-payloads';
-import { ScanResults } from './../../scanner/iruleresults.d';
 
 export interface AxeAnalyzerResult {
-    results: DictionaryStringTo<TResult>;
+    results: DictionaryStringTo<any>;
     originalResult: ScanResults;
     include?: ISingleElementSelector[];
     exclude?: ISingleElementSelector[];
 }
 
-// tslint:disable-next-line:interface-name
-interface IAnalyzer<TResult> {
+export interface Analyzer {
     analyze(): void;
     teardown(): void;
 }
 
-// tslint:disable-next-line:interface-name
-interface IScanCompletedPayload<TSelectorValue> extends IScanBasePayload {
+export interface ScanCompletedPayload<TSelectorValue> extends ScanBasePayload {
     selectorMap: DictionaryStringTo<TSelectorValue>;
     scanResult: ScanResults;
 }
 
-// tslint:disable-next-line:interface-name
-interface IScanUpdatePayload extends IScanBasePayload {
+export interface ScanUpdatePayload extends ScanBasePayload {
     results: ITabStopEvent[];
 }
 
-// tslint:disable-next-line:interface-name
-interface IScanBasePayload extends BaseActionPayload {
+export interface ScanBasePayload extends BaseActionPayload {
     testType: VisualizationType;
     key: string;
 }
 
-// tslint:disable-next-line:interface-name
-interface IAnalyzerConfiguration {
+export interface AnalyzerConfiguration {
     key: string;
     testType: VisualizationType;
     analyzerMessageType: string;
 }
 
-interface RuleAnalyzerConfiguration extends IAnalyzerConfiguration {
+export interface RuleAnalyzerConfiguration extends AnalyzerConfiguration {
     rules: string[];
     resultProcessor: (scanner: ScannerUtils) => (results: ScanResults) => DictionaryStringTo<IHtmlElementAxeResults>;
     telemetryProcessor: TelemetryProcessor<IAnalyzerTelemetryCallback>;
 }
 
-// tslint:disable-next-line:interface-name
-interface IFocusAnalyzerConfiguration extends IAnalyzerConfiguration {
+export interface FocusAnalyzerConfiguration extends AnalyzerConfiguration {
     analyzerTerminatedMessageType: string;
     analyzerProgressMessageType: string;
 }

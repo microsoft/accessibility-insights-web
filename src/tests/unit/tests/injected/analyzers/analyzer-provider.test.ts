@@ -1,20 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, Mock } from 'typemoq';
-
 import { ScopingStore } from '../../../../../background/stores/global/scoping-store';
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { WindowUtils } from '../../../../../common/window-utils';
+import { AnalyzerConfiguration, FocusAnalyzerConfiguration, RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../../../../injected/analyzers/analyzer-provider';
 import { BaseAnalyzer } from '../../../../../injected/analyzers/base-analyzer';
 import { BatchedRuleAnalyzer, IResultRuleFilter } from '../../../../../injected/analyzers/batched-rule-analyzer';
-import {
-    IAnalyzerConfiguration,
-    IFocusAnalyzerConfiguration,
-    RuleAnalyzerConfiguration,
-} from '../../../../../injected/analyzers/ianalyzer';
 import { RuleAnalyzer } from '../../../../../injected/analyzers/rule-analyzer';
 import { ScannerUtils } from '../../../../../injected/scanner-utils';
 import { TabStopsListener } from '../../../../../injected/tab-stops-listener';
@@ -89,7 +84,7 @@ describe('AnalyzerProviderTests', () => {
     });
 
     test('createFocusTrackingAnalyzer', () => {
-        const config: IFocusAnalyzerConfiguration = {
+        const config: FocusAnalyzerConfiguration = {
             testType: typeStub,
             analyzerMessageType: analyzerMessageTypeStub,
             key: keyStub,
@@ -107,7 +102,7 @@ describe('AnalyzerProviderTests', () => {
     });
 
     test('createBaseAnalyzer', () => {
-        const config: IAnalyzerConfiguration = {
+        const config: AnalyzerConfiguration = {
             testType: typeStub,
             analyzerMessageType: analyzerMessageTypeStub,
             key: keyStub,

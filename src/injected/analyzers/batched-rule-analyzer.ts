@@ -8,7 +8,7 @@ import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
 import { IScopingStoreData } from '../../common/types/store-data/scoping-store-data';
 import { ScanResults } from '../../scanner/iruleresults';
 import { ScannerUtils } from '../scanner-utils';
-import { AxeAnalyzerResult, RuleAnalyzerConfiguration } from './ianalyzer';
+import { AxeAnalyzerResult, RuleAnalyzerConfiguration } from './analyzer';
 import { RuleAnalyzer } from './rule-analyzer';
 
 export type IResultRuleFilter = (results: ScanResults, rules: string[]) => ScanResults;

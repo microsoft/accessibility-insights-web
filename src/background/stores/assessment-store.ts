@@ -16,7 +16,7 @@ import {
     ITestStepResult,
     IUserCapturedInstance,
 } from '../../common/types/store-data/iassessment-result-data';
-import { IScanBasePayload, IScanCompletedPayload, IScanUpdatePayload } from '../../injected/analyzers/ianalyzer';
+import { ScanBasePayload, ScanCompletedPayload, ScanUpdatePayload } from '../../injected/analyzers/analyzer';
 import { DictionaryStringTo } from '../../types/common-types';
 import { SelectTestStepPayload, UpdateVisibilityPayload } from '../actions/action-payloads';
 import { AssessmentDataConverter } from '../assessment-data-converter';
@@ -157,7 +157,7 @@ export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
     }
 
     @autobind
-    private onTrackingCompleted(payload: IScanBasePayload): void {
+    private onTrackingCompleted(payload: ScanBasePayload): void {
         const test = payload.testType;
         const step = payload.key;
         const config = this.assessmentsProvider.forType(test).getVisualizationConfiguration();
@@ -323,7 +323,7 @@ export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
     }
 
     @autobind
-    private onScanCompleted(payload: IScanCompletedPayload<any>): void {
+    private onScanCompleted(payload: ScanCompletedPayload<any>): void {
         const test = payload.testType;
         const step = payload.key;
         const config = this.assessmentsProvider.forType(test).getVisualizationConfiguration();
@@ -344,7 +344,7 @@ export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
     }
 
     @autobind
-    private onScanUpdate(payload: IScanUpdatePayload): void {
+    private onScanUpdate(payload: ScanUpdatePayload): void {
         const test = payload.testType;
         const step = payload.key;
         const config = this.assessmentsProvider.forType(test).getVisualizationConfiguration();

@@ -4,14 +4,14 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { WindowUtils } from '../../../../../common/window-utils';
-import { IFocusAnalyzerConfiguration, IScanBasePayload } from '../../../../../injected/analyzers/ianalyzer';
+import { FocusAnalyzerConfiguration, ScanBasePayload } from '../../../../../injected/analyzers/analyzer';
 import { TabStopsAnalyzer } from '../../../../../injected/analyzers/tab-stops-analyzer';
 import { ITabStopEvent, TabStopsListener } from '../../../../../injected/tab-stops-listener';
 
 describe('TabStopsAnalyzerTests', () => {
     let windowUtilsMock: IMock<WindowUtils>;
     let sendMessageMock: IMock<(message) => void>;
-    let configStub: IFocusAnalyzerConfiguration;
+    let configStub: FocusAnalyzerConfiguration;
     let typeStub: VisualizationType;
     let testSubject: TabStopsAnalyzer;
     let tabStopsListenerMock: IMock<TabStopsListener>;
@@ -129,7 +129,7 @@ describe('TabStopsAnalyzerTests', () => {
     test('teardown', () => {
         tabStopsListenerMock.setup(tslm => tslm.stopListenToTabStops()).verifiable(Times.once());
 
-        const payload: IScanBasePayload = {
+        const payload: ScanBasePayload = {
             key: configStub.key,
             testType: configStub.testType,
         };

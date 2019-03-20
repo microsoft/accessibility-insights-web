@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 import * as Q from 'q';
-
 import { ScopingInputTypes } from '../../background/scoping-input-types';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { IBaseStore } from '../../common/istore';
@@ -11,11 +10,11 @@ import { ForRuleAnalyzerScanCallback } from '../../common/types/analyzer-telemet
 import { IScopingStoreData } from '../../common/types/store-data/scoping-store-data';
 import { ScanOptions } from '../../scanner/exposed-apis';
 import { ScanResults } from '../../scanner/iruleresults';
-import { IHtmlElementAxeResults, ScannerUtils } from '../scanner-utils';
+import { ScannerUtils } from '../scanner-utils';
+import { AxeAnalyzerResult, RuleAnalyzerConfiguration } from './analyzer';
 import { BaseAnalyzer } from './base-analyzer';
-import { AxeAnalyzerResult, IAnalyzer, RuleAnalyzerConfiguration } from './ianalyzer';
 
-export class RuleAnalyzer extends BaseAnalyzer implements IAnalyzer<IHtmlElementAxeResults> {
+export class RuleAnalyzer extends BaseAnalyzer {
     private startTime: number;
     private elementsScanned: number = 0; // Not implemented
 

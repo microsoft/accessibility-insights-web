@@ -21,7 +21,7 @@ import {
 } from '../../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../../common/types/visualization-type';
-import { AxeAnalyzerResult } from '../../../../injected/analyzers/ianalyzer';
+import { AxeAnalyzerResult } from '../../../../injected/analyzers/analyzer';
 import { EventStubFactory } from './../../common/event-stub-factory';
 
 describe('TelemetryDataFactoryTest', () => {

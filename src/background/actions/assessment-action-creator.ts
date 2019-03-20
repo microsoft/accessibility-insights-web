@@ -5,7 +5,7 @@ import { capitalize } from 'lodash';
 
 import { Messages } from '../../common/messages';
 import * as TelemetryEvents from '../../common/telemetry-events';
-import { IScanBasePayload, IScanCompletedPayload, IScanUpdatePayload } from '../../injected/analyzers/ianalyzer';
+import { ScanBasePayload, ScanCompletedPayload, ScanUpdatePayload } from '../../injected/analyzers/analyzer';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import {
     AddFailureInstancePayload,
@@ -158,7 +158,7 @@ export class AssessmentActionCreator {
     }
 
     @autobind
-    private onAssessmentScanCompleted(payload: IScanCompletedPayload<any>, tabId: number): void {
+    private onAssessmentScanCompleted(payload: ScanCompletedPayload<any>, tabId: number): void {
         this.assessmentActions.updateTargetTabId.invoke(tabId);
         this.assessmentActions.scanCompleted.invoke(payload);
     }
@@ -175,14 +175,14 @@ export class AssessmentActionCreator {
     }
 
     @autobind
-    private onScanUpdate(payload: IScanUpdatePayload): void {
+    private onScanUpdate(payload: ScanUpdatePayload): void {
         const telemetryEventName = 'ScanUpdate' + capitalize(payload.key);
         this.telemetryEventHandler.publishTelemetry(telemetryEventName, payload);
         this.assessmentActions.scanUpdate.invoke(payload);
     }
 
     @autobind
-    private onTrackingCompleted(payload: IScanBasePayload): void {
+    private onTrackingCompleted(payload: ScanBasePayload): void {
         const telemetryEventName = 'TrackingCompleted' + capitalize(payload.key);
         this.telemetryEventHandler.publishTelemetry(telemetryEventName, payload);
         this.assessmentActions.trackingCompleted.invoke(payload);

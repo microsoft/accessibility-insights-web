@@ -2,27 +2,26 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 import * as Q from 'q';
-
 import { WindowUtils } from './../../common/window-utils';
 import { ITabStopEvent, TabStopsListener } from './../tab-stops-listener';
+import { AxeAnalyzerResult, FocusAnalyzerConfiguration, ScanBasePayload, ScanUpdatePayload } from './analyzer';
 import { BaseAnalyzer } from './base-analyzer';
-import { AxeAnalyzerResult, IAnalyzer, IFocusAnalyzerConfiguration, IScanBasePayload, IScanUpdatePayload } from './ianalyzer';
 
 export interface ProgressResult<T> {
     result: T;
 }
 
-export class TabStopsAnalyzer extends BaseAnalyzer implements IAnalyzer<any> {
+export class TabStopsAnalyzer extends BaseAnalyzer {
     private tabStopsListener: TabStopsListener;
     private deferred: Q.Deferred<AxeAnalyzerResult>;
     private _windowUtils: WindowUtils;
 
     private _pendingTabbedElements: ITabStopEvent[] = [];
     private _onTabbedTimeoutId: number;
-    protected config: IFocusAnalyzerConfiguration;
+    protected config: FocusAnalyzerConfiguration;
 
     constructor(
-        config: IFocusAnalyzerConfiguration,
+        config: FocusAnalyzerConfiguration,
         tabStopsListener: TabStopsListener,
         windowUtils: WindowUtils,
         sendMessageDelegate: (message) => void,
@@ -71,7 +70,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer implements IAnalyzer<any> {
 
     @autobind
     protected onProgress(progressResult: ProgressResult<ITabStopEvent[]>): void {
-        const payload: IScanUpdatePayload = {
+        const payload: ScanUpdatePayload = {
             key: this.config.key,
             testType: this.config.testType,
             tabbedElements: progressResult.result,
@@ -87,7 +86,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer implements IAnalyzer<any> {
 
     public teardown(): void {
         this.tabStopsListener.stopListenToTabStops();
-        const payload: IScanBasePayload = {
+        const payload: ScanBasePayload = {
             key: this.config.key,
             testType: this.config.testType,
         };

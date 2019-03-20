@@ -13,7 +13,7 @@ import { TelemetryDataFactory } from '../../../../../common/telemetry-data-facto
 import { RuleAnalyzerScanTelemetryData } from '../../../../../common/telemetry-events';
 import { IScopingStoreData } from '../../../../../common/types/store-data/scoping-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/ianalyzer';
+import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
 import { RuleAnalyzer } from '../../../../../injected/analyzers/rule-analyzer';
 import { IHtmlElementAxeResults, ScannerUtils } from '../../../../../injected/scanner-utils';
 import { ScanOptions } from '../../../../../scanner/exposed-apis';

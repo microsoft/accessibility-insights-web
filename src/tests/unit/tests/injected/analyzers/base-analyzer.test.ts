@@ -1,14 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
-
 import { VisualizationType } from '../../../../../common/types/visualization-type';
+import { AnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
 import { BaseAnalyzer } from '../../../../../injected/analyzers/base-analyzer';
-import { IAnalyzerConfiguration } from '../../../../../injected/analyzers/ianalyzer';
 
 describe('BaseAnalyzerTest', () => {
     let testSubject: BaseAnalyzer;
-    let configStub: IAnalyzerConfiguration;
+    let configStub: AnalyzerConfiguration;
     let sendMessageMock: IMock<(message) => void>;
     let typeStub: VisualizationType;
 

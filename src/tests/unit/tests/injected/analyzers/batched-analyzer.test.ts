@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { clone, isFunction } from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { ScopingInputTypes } from '../../../../../background/scoping-input-types';
 import { ScopingStore } from '../../../../../background/stores/global/scoping-store';
 import {
@@ -13,9 +12,9 @@ import { TelemetryDataFactory } from '../../../../../common/telemetry-data-facto
 import { RuleAnalyzerScanTelemetryData } from '../../../../../common/telemetry-events';
 import { IScopingStoreData } from '../../../../../common/types/store-data/scoping-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
+import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
 import { MessageType } from '../../../../../injected/analyzers/base-analyzer';
 import { BatchedRuleAnalyzer, IResultRuleFilter } from '../../../../../injected/analyzers/batched-rule-analyzer';
-import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/ianalyzer';
 import { IHtmlElementAxeResults, ScannerUtils } from '../../../../../injected/scanner-utils';
 import { ScanOptions } from '../../../../../scanner/exposed-apis';
 import { RuleResult, ScanResults } from '../../../../../scanner/iruleresults';

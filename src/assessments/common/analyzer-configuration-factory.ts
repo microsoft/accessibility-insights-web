@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Messages } from '../../common/messages';
-import { RuleAnalyzerConfiguration } from '../../injected/analyzers/ianalyzer';
+import { RuleAnalyzerConfiguration } from '../../injected/analyzers/analyzer';
 import { ScannerUtils } from './../../injected/scanner-utils';
 
 export class AnalyzerConfigurationFactory {
