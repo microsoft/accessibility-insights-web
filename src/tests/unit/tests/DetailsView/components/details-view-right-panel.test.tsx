@@ -55,11 +55,13 @@ describe('DetailsViewRightPanelTests', () => {
         expect(configuration.GetLeftNavSelectedKey).toEqual(getTestViewKey);
         expect(configuration.GetTitle).toEqual(getTestViewTitle);
         expect(configuration.RightPanel).toEqual(TestViewContainer);
+        expect(configuration.GetStartOverContextualMenuItemKeys()).toEqual(['assessment', 'test']);
     }
 
     function validateOverview(configuration: DetailsRightPanelConfiguration): void {
         expect(configuration.GetLeftNavSelectedKey).toEqual(getOverviewKey);
         expect(configuration.GetTitle).toEqual(getOverviewTitle);
         expect(configuration.RightPanel).toEqual(OverviewContainer);
+        expect(configuration.GetStartOverContextualMenuItemKeys).toEqual(['assessment']);
     }
 });

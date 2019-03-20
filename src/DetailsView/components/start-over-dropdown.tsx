@@ -75,7 +75,7 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
             },
         ];
 
-        return rightPanelConfiguration.GetStartOverContextualMenuItemKeys().map(key => items.find(item => item.key == key));
+        return rightPanelConfiguration.GetStartOverContextualMenuItemKeys().map(key => items.find(item => item.key === key));
     }
 
     @autobind

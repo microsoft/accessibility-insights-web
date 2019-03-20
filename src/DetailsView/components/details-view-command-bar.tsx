@@ -9,13 +9,12 @@ import * as React from 'react';
 import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../../common/types/store-data/iassessment-result-data';
-import { IDetailsViewData } from '../../common/types/store-data/idetails-view-data';
 import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { ReportGenerator, ReportGeneratorDeps } from '../reports/report-generator';
+import { DetailsRightPanelConfiguration } from './details-view-right-panel';
 import { ExportDialog, ExportDialogDeps } from './export-dialog';
 import { StartOverDropdown } from './start-over-dropdown';
-import { DetailsRightPanelConfiguration } from './details-view-right-panel';
 
 export type DetailsViewCommandBarDeps = ExportDialogDeps & ReportGeneratorDeps;
 
