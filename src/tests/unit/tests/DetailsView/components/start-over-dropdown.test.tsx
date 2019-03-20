@@ -26,6 +26,7 @@ describe('StartOverDropdownTest', () => {
             actionMessageCreator: actionCreatorMock.object,
             test: -1 as VisualizationType,
             requirementKey: 'test key',
+            detailsViewRightContentPanel: 'TestView',
         };
     });
 
@@ -36,6 +37,14 @@ describe('StartOverDropdownTest', () => {
     });
 
     it('render ContextualMenu', () => {
+        const rendered = shallow(<StartOverDropdown {...defaultProps} />);
+        rendered.find(ActionButton).simulate('click', event);
+        expect(rendered.debug()).toMatchSnapshot();
+        expect(rendered.state().target).toBe(event.currentTarget);
+    });
+
+    it('render ContextualMenu with only one option', () => {
+        defaultProps.detailsViewRightContentPanel = 'Overview';
         const rendered = shallow(<StartOverDropdown {...defaultProps} />);
         rendered.find(ActionButton).simulate('click', event);
         expect(rendered.debug()).toMatchSnapshot();
