@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import {
     SetBugServicePayload,
     SetBugServicePropertyPayload,
@@ -18,6 +17,7 @@ import { LaunchPanelStateActions } from '../../../../../background/actions/launc
 import { ScopingActions, ScopingPayload } from '../../../../../background/actions/scoping-actions';
 import { UserConfigurationActions } from '../../../../../background/actions/user-configuration-actions';
 import { ChromeAdapter } from '../../../../../background/browser-adapter';
+import { Interpreter } from '../../../../../background/interpreter';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
 import { Action } from '../../../../../common/flux/action';
 import { Messages } from '../../../../../common/messages';
@@ -25,7 +25,6 @@ import * as TelemetryEvents from '../../../../../common/telemetry-events';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { LaunchPanelType } from '../../../../../popup/scripts/components/popup-view';
 import { DictionaryStringTo } from '../../../../../types/common-types';
-import { InterpreterStub } from '../../../stubs/interpreter-stub';
 
 describe('GlobalActionCreatorTest', () => {
     test('onGetCommands', () => {
@@ -318,7 +317,7 @@ class GlobalActionCreatorValidator {
     private scopingActionsContainerMock = Mock.ofType(ScopingActions);
     private assessmentActionsContainerMock = Mock.ofType(AssessmentActions);
     private userConfigActionsContainerMock = Mock.ofType(UserConfigurationActions);
-    private interpreterMock = Mock.ofType(InterpreterStub);
+    private interpreterMock = Mock.ofType<Interpreter>();
     private browserAdapterMock = Mock.ofType(ChromeAdapter, MockBehavior.Strict);
     private telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler, MockBehavior.Strict);
 
@@ -360,11 +359,6 @@ class GlobalActionCreatorValidator {
                 cb(commands);
             });
 
-        return this;
-    }
-
-    public setupSetUserData(data: any): GlobalActionCreatorValidator {
-        this.browserAdapterMock.setup(bam => bam.setUserData(It.isValue(data))).verifiable(Times.once());
         return this;
     }
 

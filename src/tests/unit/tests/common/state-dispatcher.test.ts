@@ -1,14 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { StoreHub } from '../../../../background/stores/istore-hub';
 import { GenericStoreMessageTypes } from '../../../../common/constants/generic-store-messages-types';
 import { IBaseStore } from '../../../../common/istore';
 import { StateDispatcher } from '../../../../common/state-dispatcher';
 import { StoreType } from '../../../../common/types/store-type';
 import { StoreUpdateMessage } from '../../../../common/types/store-update-message';
-import { StoreStub } from '../../common/store-stub';
 
 describe('StateDispatcherTest', () => {
     test('fire changed event on initialize', () => {
@@ -63,7 +61,7 @@ describe('StateDispatcherTest', () => {
         };
 
         let privateDispatcher: Function;
-        const storeMock: IMock<IBaseStore<StoreStubData>> = Mock.ofType<IBaseStore<StoreStubData>>(StoreStub);
+        const storeMock: IMock<IBaseStore<StoreStubData>> = Mock.ofType<IBaseStore<StoreStubData>>();
         const storeHubMock = Mock.ofType<StoreHubStub>(null, MockBehavior.Strict);
 
         storeHubMock.setup(x => x.getAllStores()).returns(() => [storeMock.object]);
