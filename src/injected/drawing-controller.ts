@@ -62,7 +62,7 @@ export class DrawingController {
         this._assessmentProvider = assessmentProvider;
     }
 
-    public initialize() {
+    public initialize(): void {
         this._frameCommunicator.subscribe(DrawingController.triggerVisualizationCommand, this.onTriggerVisualization);
         this.setupDrawers();
     }
@@ -85,7 +85,7 @@ export class DrawingController {
     }
 
     @autobind
-    public processRequest(message: VisualizationWindowMessage) {
+    public processRequest(message: VisualizationWindowMessage): void {
         this._featureFlagStoreData = message.featureFlagStoreData;
         if (message.isEnabled) {
             const elementResultsByFrames = message.elementResults
@@ -103,7 +103,7 @@ export class DrawingController {
         error: IErrorMessageContent,
         sourceWindow: Window,
         responder?: FrameMessageResponseCallback,
-    ) {
+    ): void {
         this.processRequest(result);
         this.invokeMethodIfExists(responder, null);
     }
@@ -135,7 +135,7 @@ export class DrawingController {
         }
     }
 
-    private enableVisualizationInCurrentFrame(currentFrameResults: IAssessmentVisualizationInstance[], configId: string) {
+    private enableVisualizationInCurrentFrame(currentFrameResults: IAssessmentVisualizationInstance[], configId: string): void {
         const drawer = this.getDrawer(configId);
         drawer.initialize({
             data: this.getInitialElements(currentFrameResults),
@@ -149,7 +149,7 @@ export class DrawingController {
         frame: HTMLIFrameElement,
         frameResults: IAssessmentVisualizationInstance[],
         configId: string,
-    ) {
+    ): void {
         const message: VisualizationWindowMessage = {
             elementResults: frameResults,
             isEnabled: true,
@@ -214,7 +214,7 @@ export class DrawingController {
         }
     }
 
-    private getInitialElements(currentFrameResults: IAssessmentVisualizationInstance[]) {
+    private getInitialElements(currentFrameResults: IAssessmentVisualizationInstance[]): IAssessmentVisualizationInstance[] {
         if (currentFrameResults == null) {
             return null;
         }

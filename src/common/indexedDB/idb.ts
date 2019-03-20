@@ -29,6 +29,14 @@ export class Store {
     }
 }
 
+type IDBResultTarget = EventTarget & {
+    result: IDBValidKey[];
+};
+
+type IDBEvent = {
+    target: IDBResultTarget;
+} & Event;
+
 let store: Store;
 
 function getDefaultStore(): Store {
@@ -64,7 +72,7 @@ export function keys(defaultStore = getDefaultStore()): Promise<IDBValidKey[]> {
 
     return defaultStore
         ._withIDBStore('readonly', (s: any) => {
-            s.getAllKeys().onsuccess = function(event) {
+            s.getAllKeys().onsuccess = function(event: IDBEvent): void {
                 keyArray = event.target.result;
             };
         })
