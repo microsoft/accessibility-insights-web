@@ -4,7 +4,10 @@ import { isEmpty } from 'lodash/index';
 import * as React from 'react';
 
 import { ColumnValue, ColumnValueBag } from '../../common/types/property-bag/column-value-bag';
-import { IAssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
+import { AssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
+import { DictionaryStringTo } from '../../types/common-types';
+
+export const NoValue = '(no value)';
 
 export interface PropertyBagColumnRendererConfig<TPropertyBag extends ColumnValueBag> {
     propertyName: keyof TPropertyBag & string;
@@ -14,7 +17,7 @@ export interface PropertyBagColumnRendererConfig<TPropertyBag extends ColumnValu
 }
 
 export function propertyBagColumnRenderer<TPropertyBag extends ColumnValueBag>(
-    item: IAssessmentInstanceRowData<TPropertyBag>,
+    item: AssessmentInstanceRowData<TPropertyBag>,
     configs: PropertyBagColumnRendererConfig<TPropertyBag>[],
 ): JSX.Element {
     const mapper = (config: PropertyBagColumnRendererConfig<TPropertyBag>, index: number) => {
@@ -43,7 +46,7 @@ export function propertyBagColumnRenderer<TPropertyBag extends ColumnValueBag>(
         return <React.Fragment>{value || config.defaultValue}</React.Fragment>;
     };
 
-    const renderProperties = (config: PropertyBagColumnRendererConfig<TPropertyBag>, propertyMap: IDictionaryStringTo<string>) => {
+    const renderProperties = (config: PropertyBagColumnRendererConfig<TPropertyBag>, propertyMap: DictionaryStringTo<string>) => {
         if (isEmpty(propertyMap)) {
             return <React.Fragment>{config.defaultValue}</React.Fragment>;
         }

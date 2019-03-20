@@ -1,16 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-import * as _ from 'lodash/index';
+import * as _ from 'lodash';
 
 import { TestMode } from '../common/configs/test-mode';
-import { IVisualizationConfiguration, VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../common/enum-helper';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { ITabStoreData } from '../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
 import { IAssessmentScanData, IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
+import { DictionaryNumberTo, DictionaryStringTo } from '../types/common-types';
 import { IBaseStore } from './../common/istore';
 import { IAssessmentStoreData } from './../common/types/store-data/iassessment-result-data.d';
 import { DrawingInitiator } from './drawing-initiator';
@@ -32,11 +33,11 @@ export class ClientViewController {
     private currentAssessmentState: IAssessmentStoreData;
     private currentTabState: ITabStoreData;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
-    private featureFlagStore: IBaseStore<IDictionaryStringTo<boolean>>;
+    private featureFlagStore: IBaseStore<DictionaryStringTo<boolean>>;
     private selectorMapHelper: SelectorMapHelper;
     private targetPageActionMessageCreator: TargetPageActionMessageCreator;
-    protected previousVisualizationStates: IDictionaryStringTo<boolean> = {};
-    protected previousVisualizationSelectorMapStates: IDictionaryNumberTo<IDictionaryStringTo<IAssessmentVisualizationInstance>> = {};
+    protected previousVisualizationStates: DictionaryStringTo<boolean> = {};
+    protected previousVisualizationSelectorMapStates: DictionaryNumberTo<DictionaryStringTo<IAssessmentVisualizationInstance>> = {};
 
     constructor(
         visualizationStore: IBaseStore<IVisualizationStoreData>,
@@ -44,7 +45,7 @@ export class ClientViewController {
         drawingInitiator,
         scrollingController,
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
-        featureFlagStore: IBaseStore<IDictionaryStringTo<boolean>>,
+        featureFlagStore: IBaseStore<DictionaryStringTo<boolean>>,
         assessmentStore: IBaseStore<IAssessmentStoreData>,
         tabStore: IBaseStore<ITabStoreData>,
         selectorMapHelper: SelectorMapHelper,
@@ -62,7 +63,7 @@ export class ClientViewController {
         this.targetPageActionMessageCreator = targetPageActionMessageCreator;
     }
 
-    public initialize() {
+    public initialize(): void {
         this.setupVisualizationStates();
         this.visualizationStore.addChangedListener(this.onChangedState);
         this.scanResultStore.addChangedListener(this.onChangedState);
@@ -133,11 +134,11 @@ export class ClientViewController {
         });
     }
 
-    private isAssessment(config: IVisualizationConfiguration) {
+    private isAssessment(config: VisualizationConfiguration): boolean {
         return config.testMode === TestMode.Assessments;
     }
 
-    private isAssessmentDataForCurrentPage(config: IVisualizationConfiguration): boolean {
+    private isAssessmentDataForCurrentPage(config: VisualizationConfiguration): boolean {
         return (
             !this.isAssessment(config) ||
             this.currentAssessmentState.persistedTabInfo === null ||
@@ -145,7 +146,7 @@ export class ClientViewController {
         );
     }
 
-    private executeUpdate(visualizationType: VisualizationType, step: string) {
+    private executeUpdate(visualizationType: VisualizationType, step: string): void {
         const configuration = this.visualizationConfigurationFactory.getConfiguration(visualizationType);
         const visualizationState = configuration.getStoreData(this.currentVisualizationState.tests);
         const selectorMap = this.selectorMapHelper.getSelectorMap(visualizationType);
@@ -173,7 +174,7 @@ export class ClientViewController {
     private isVisualizationStateUnchanged(
         type: VisualizationType,
         newVisualizationEnabledState: boolean,
-        newSelectorMapState: IDictionaryStringTo<IAssessmentVisualizationInstance>,
+        newSelectorMapState: DictionaryStringTo<IAssessmentVisualizationInstance>,
         id: string,
     ): boolean {
         if (id in this.previousVisualizationStates === false && newVisualizationEnabledState === false) {

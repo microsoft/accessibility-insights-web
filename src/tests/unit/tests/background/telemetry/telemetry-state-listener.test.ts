@@ -98,7 +98,7 @@ describe('TelemetryStateListenerTest', () => {
         telemetryEventHandlerStrictMock.setup(t => t.enableTelemetry()).verifiable();
     }
 
-    function setupDisableTelemetry() {
+    function setupDisableTelemetry(): void {
         telemetryEventHandlerStrictMock.setup(t => t.disableTelemetry()).verifiable();
     }
 });

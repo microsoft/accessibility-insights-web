@@ -3,11 +3,12 @@
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { EventHandlerList } from '../../../../../common/flux/event-handler-list';
+import { FunctionPPR } from '../../../../../types/common-types';
 
 describe('HandlerTest', () => {
     let testObject: EventHandlerList<any, any>;
-    let firstHandlerMock: IMock<IFunctionPPR<any, any, any>>;
-    let secondHandlerMock: IMock<IFunctionPPR<any, any, any>>;
+    let firstHandlerMock: IMock<FunctionPPR<any, any, any>>;
+    let secondHandlerMock: IMock<FunctionPPR<any, any, any>>;
     const senderStub = { id: 'the-sender' };
     const argsStub = { arg: 'value' };
 

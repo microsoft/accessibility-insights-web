@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash/index';
+import * as _ from 'lodash';
 
 import { BrowserAdapter } from '../background/browser-adapter';
 import { VisualizationType } from '../common/types/visualization-type';
+import { DictionaryStringTo } from '../types/common-types';
 import { VisualizationConfigurationFactory } from './configs/visualization-configuration-factory';
 
 export class NotificationCreator {
@@ -26,7 +27,7 @@ export class NotificationCreator {
         }
     }
 
-    public createNotificationByVisualizationKey(selectorMap: IDictionaryStringTo<any>, key: string, type: VisualizationType): void {
+    public createNotificationByVisualizationKey(selectorMap: DictionaryStringTo<any>, key: string, type: VisualizationType): void {
         if (_.isEmpty(selectorMap)) {
             const configuration = this.visualizationConfigurationFactory.getConfiguration(type);
             const notificationMessage = configuration.getNotificationMessage(selectorMap, key);

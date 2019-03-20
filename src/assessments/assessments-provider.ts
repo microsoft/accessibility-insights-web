@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { VisualizationType } from '../common/types/visualization-type';
+import { DictionaryStringTo } from '../types/common-types';
 import { Assessment } from './types/iassessment';
 import { IAssessmentsProvider } from './types/iassessments-provider';
 import { TestStep } from './types/test-step';
@@ -46,7 +47,7 @@ export class AssessmentsProvider implements IAssessmentsProvider {
         return { ...steps[index], order: index + 1 };
     }
 
-    public getStepMap(type: VisualizationType): IDictionaryStringTo<TestStep> {
+    public getStepMap(type: VisualizationType): DictionaryStringTo<TestStep> {
         const assessment = this.forType(type);
         if (!assessment) {
             return null;

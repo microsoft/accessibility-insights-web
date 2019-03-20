@@ -68,7 +68,7 @@ export function getAssessmentSummaryModelFromResults(assessmentResults: Assessme
         reportSummaryDetailsData,
     };
 
-    function getCounts(assessment: AssessmentSummaryResult) {
+    function getCounts(assessment: AssessmentSummaryResult): OutcomeStats {
         const zeros = zipObject(allOutcomeTypes, [0, 0, 0]) as OutcomeStats;
 
         const counts = chain(assessment.storeData.testStepStatus)

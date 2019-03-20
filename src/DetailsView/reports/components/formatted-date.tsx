@@ -7,8 +7,10 @@ export interface FormattedDateProps {
     date: Date;
 }
 
+type timeRange = 'AM' | 'PM';
+
 export class FormattedDate extends React.Component<FormattedDateProps> {
-    public render() {
+    public render(): JSX.Element {
         return <>{this.formatDateTime(this.props.date)}</>;
     }
 
@@ -30,7 +32,7 @@ export class FormattedDate extends React.Component<FormattedDateProps> {
         );
     }
 
-    private getTwelveHour(hour: number) {
+    private getTwelveHour(hour: number): number {
         hour = hour % 12;
         if (hour === 0) {
             return 12;
@@ -38,7 +40,7 @@ export class FormattedDate extends React.Component<FormattedDateProps> {
         return hour;
     }
 
-    private getAmPm(hour: number) {
+    private getAmPm(hour: number): timeRange {
         if (hour < 12) {
             return 'AM';
         } else {
@@ -46,7 +48,7 @@ export class FormattedDate extends React.Component<FormattedDateProps> {
         }
     }
 
-    private getTimeZone(date: Date) {
+    private getTimeZone(date: Date): string {
         const timeString = date.toLocaleTimeString('en-us', { timeZoneName: 'short' }).replace(/\u200E/g, '');
         return timeString.substr(timeString.lastIndexOf(' ') + 1);
     }

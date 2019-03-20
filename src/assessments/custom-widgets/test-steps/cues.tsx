@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { AnalyzerConfigurationFactory } from '../../../assessments/common/analyzer-configuration-factory';
-import { ICustomWidgetPropertyBag } from '../../../common/types/property-bag/icustom-widgets';
+import { CustomWidgetPropertyBag } from '../../../common/types/property-bag/icustom-widgets';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
@@ -11,6 +11,7 @@ import * as content from '../../../content/test/custom-widgets/cues';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
+import { NoValue } from '../../common/property-bag-column-renderer';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { TestStep } from '../../types/test-step';
@@ -63,39 +64,39 @@ export const Cues: TestStep = {
         {
             key: 'cues-info-custom-widgets',
             name: 'Cues',
-            onRender: CustomWidgetsColumnRendererFactory.getWithoutLink<ICustomWidgetPropertyBag>([
+            onRender: CustomWidgetsColumnRendererFactory.getWithoutLink<CustomWidgetPropertyBag>([
                 {
                     propertyName: 'role',
                     displayName: 'Widget role',
-                    defaultValue: '-',
+                    defaultValue: NoValue,
                 },
                 {
                     propertyName: 'designPattern',
                     displayName: 'Design pattern',
-                    defaultValue: '-',
+                    defaultValue: NoValue,
                 },
                 {
                     propertyName: 'htmlCues',
                     displayName: 'HTML cues',
-                    defaultValue: '-',
+                    defaultValue: NoValue,
                     expand: true,
                 },
                 {
                     propertyName: 'ariaCues',
                     displayName: 'ARIA cues',
-                    defaultValue: '-',
+                    defaultValue: NoValue,
                     expand: true,
                 },
             ]),
         },
     ],
     reportInstanceFields: [
-        ReportInstanceField.fromColumnValueBagField<ICustomWidgetPropertyBag>('Widget role', 'role'),
-        ReportInstanceField.fromPropertyBagFunction<ICustomWidgetPropertyBag>('Design pattern', 'designPattern', pb =>
+        ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>('Widget role', 'role'),
+        ReportInstanceField.fromPropertyBagFunction<CustomWidgetPropertyBag>('Design pattern', 'designPattern', pb =>
             getFlatDesignPatternStringFromRole(pb.role),
         ),
-        ReportInstanceField.fromColumnValueBagField<ICustomWidgetPropertyBag>('HTML cues', 'htmlCues'),
-        ReportInstanceField.fromColumnValueBagField<ICustomWidgetPropertyBag>('ARIA cues', 'ariaCues'),
+        ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>('HTML cues', 'htmlCues'),
+        ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>('ARIA cues', 'ariaCues'),
     ],
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(

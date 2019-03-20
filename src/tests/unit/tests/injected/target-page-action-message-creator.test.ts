@@ -83,7 +83,7 @@ describe('TargetPageActionMessageCreator', () => {
         const payload: BaseActionPayload = {
             telemetry,
         };
-        const expectedMessage: IMessage = {
+        const expectedMessage: Message = {
             type: Messages.SettingsPanel.OpenPanel,
             tabId,
             payload,

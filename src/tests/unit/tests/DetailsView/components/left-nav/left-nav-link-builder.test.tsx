@@ -6,7 +6,7 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 import { AssessmentsProvider } from '../../../../../../assessments/assessments-provider';
 import { Assessment } from '../../../../../../assessments/types/iassessment';
 import { IAssessmentsProvider } from '../../../../../../assessments/types/iassessments-provider';
-import { IVisualizationConfiguration } from '../../../../../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../../../../../common/configs/visualization-configuration-factory';
 import { ManualTestStatus, ManualTestStatusData } from '../../../../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
 import { BaseLeftNavLink, onBaseLeftNavItemClick } from '../../../../../../DetailsView/components/base-left-nav';
@@ -14,12 +14,13 @@ import { LeftNavLinkBuilder, LeftNavLinkBuilderDeps } from '../../../../../../De
 import { IOverviewSummaryReportModel } from '../../../../../../DetailsView/reports/assessment-report-model';
 import { OutcomeStats, OutcomeTypeSemantic } from '../../../../../../DetailsView/reports/components/outcome-type';
 import { GetAssessmentSummaryModelFromProviderAndStatusData } from '../../../../../../DetailsView/reports/get-assessment-summary-model';
+import { DictionaryStringTo } from '../../../../../../types/common-types';
 
 describe('LeftNavBuilder', () => {
     let deps: LeftNavLinkBuilderDeps;
     let onLinkClickMock: IMock<onBaseLeftNavItemClick>;
     let assessmentProviderMock: IMock<IAssessmentsProvider>;
-    let assessmentsDataStub: IDictionaryStringTo<ManualTestStatusData>;
+    let assessmentsDataStub: DictionaryStringTo<ManualTestStatusData>;
     let testSubject: LeftNavLinkBuilder;
     let getAssessmentSummaryModelFromProviderAndStatusDataMock: IMock<GetAssessmentSummaryModelFromProviderAndStatusData>;
     let renderIconStub: (link: BaseLeftNavLink) => JSX.Element;
@@ -99,7 +100,7 @@ describe('LeftNavBuilder', () => {
                 displayableData: {
                     title: titleStub,
                 },
-            } as IVisualizationConfiguration;
+            } as VisualizationConfiguration;
 
             const actual = testSubject.buildVisualizationConfigurationLink(
                 configStub,

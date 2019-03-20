@@ -94,7 +94,7 @@ export class DetailsDialogHandler {
     }
 
     @autobind
-    public onLayoutDidMount() {
+    public onLayoutDidMount(): void {
         const dialogContainer = this.htmlElementUtils.querySelector('.insights-dialog-main-override') as HTMLElement;
 
         if (dialogContainer == null) {

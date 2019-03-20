@@ -22,6 +22,8 @@ body {
 }
 
 .switcher-dropdown-option {
+    display: flex;
+    flex-direction: row;
     i {
         margin-right: 8px;
     }
@@ -238,7 +240,7 @@ div.insights-file-issue-details-dialog-container {
     }
     .no-preview-feature-message {
         font-size: 20px;
-        font-weight: bold;
+        font-family: $semiBoldFontFamily;
     }
 }
 
@@ -256,14 +258,14 @@ div.insights-file-issue-details-dialog-container {
         border-bottom: 0px;
     }
     .ms-Nav-compositeLink.is-selected a {
-        background-color: $communication-tint-40 !important;
+        background-color: $communication-tint-40;
         border-left: $pivotItemLeftBorderWidth $pivotItemBorderStyle $communication-primary;
         .ms-Button-label {
-            color: $always-black !important;
+            color: $highlighted-text;
         }
         .overview-percent,
         .dark-gray {
-            color: $overview-percent-selected !important;
+            color: $overview-percent-selected;
         }
     }
     .ms-DetailsRow,
@@ -335,19 +337,26 @@ div.insights-file-issue-details-dialog-container {
             margin-left: 24px;
             .ms-Dropdown {
                 &:focus {
-                    border: 1px $neutral-0 solid;
+                    .ms-Dropdown-title {
+                        border: 2px $switcher-focus-border solid;
+                        border-style: dotted;
+                    }
                 }
             }
             .ms-Dropdown-title {
                 background-color: $ada-brand-variant;
                 height: 32px;
-                border: none;
+                border: 2px $switcher-border solid;
+                box-sizing: border-box;
                 border-radius: 2px;
                 width: 139px;
                 color: $neutral-0;
                 i {
                     margin-right: 8px;
                 }
+            }
+            .ms-Dropdown-caretDownWrapper {
+                top: 4px;
             }
             .ms-Dropdown-caretDown {
                 color: $neutral-0;
@@ -895,13 +904,13 @@ div.insights-file-issue-details-dialog-container {
                     }
                 }
                 .issues-table-details {
-                    margin-left: 24px;
                     height: 100%;
                     display: flex;
                     flex-direction: column;
                     min-height: 0;
                 }
                 .issues-details-list {
+                    margin-left: 24px;
                     display: flex;
                     flex-direction: column;
                     height: 60%;
@@ -1083,12 +1092,6 @@ div.insights-file-issue-details-dialog-container {
                             min-width: fit-content;
                         }
                     }
-                    .ms-Link {
-                        color: $communication-shade-10;
-                    }
-                    .ms-Link:hover {
-                        color: $communication-shade-30;
-                    }
                     .details-group-header-title {
                         font-size: $fontSizeM;
                         color: $neutral-100;
@@ -1099,7 +1102,7 @@ div.insights-file-issue-details-dialog-container {
                         color: $secondary-text;
                     }
                     .ms-GroupHeader.is-selected {
-                        background-color: $communication-tint-40;
+                        background-color: $group-selected-background;
                     }
                     .ms-GroupHeader .ms-GroupHeader-check {
                         padding: 12px;
@@ -1112,17 +1115,21 @@ div.insights-file-issue-details-dialog-container {
                         min-width: 100% !important;
                         max-width: 100% !important;
                         &.is-selected {
-                            background-color: $communication-tint-40;
+                            background-color: $row-selected-background;
+                            .ms-DetailsRow-fields,
+                            .content-cell {
+                                color: $highlighted-text;
+                            }
                         }
                     }
                     @mixin check-when-checked {
-                        border-color: $neutral-30;
-                        background: $neutral-8;
+                        border-color: $check-box-border;
+                        background: $check-box-background;
                         &:before {
-                            background: $neutral-8;
+                            background: $check-box-background;
                         }
                         .ms-Check-check {
-                            color: $neutral-100;
+                            color: $check-box-tick;
                         }
                     }
                     @mixin check-when-unchecked {
@@ -1137,11 +1144,11 @@ div.insights-file-issue-details-dialog-container {
                     }
                     @mixin check-hover-when-unchecked {
                         @include check-when-unchecked();
-                        border-color: $neutral-30;
-                        background: $neutral-8;
+                        border-color: $check-box-border;
+                        background: $check-box-background;
                         opacity: 1;
                         &:before {
-                            background: $neutral-8;
+                            background: $check-box-background;
                         }
                         .ms-Check-check {
                             opacity: 1;
@@ -1191,11 +1198,6 @@ div.insights-file-issue-details-dialog-container {
                             width: 2px;
                         }
                     }
-                    .ms-DetailsHeader-cell {
-                        &:hover {
-                            background: $neutral-8;
-                        }
-                    }
                     .ms-GroupHeader,
                     .ms-DetailsRow,
                     .ms-DetailsHeader-cell {
@@ -1220,6 +1222,8 @@ div.insights-file-issue-details-dialog-container {
                     overflow-y: auto;
                     height: 40%;
                     min-height: 150px;
+                    background-color: $neutral-2;
+                    padding-left: 24px;
                     > div {
                         border-top: 1px solid $neutral-8;
                     }
@@ -1279,12 +1283,6 @@ div.insights-file-issue-details-dialog-container {
                             margin: 0px;
                             -webkit-padding-start: 20px;
                         }
-                        .ms-Link {
-                            color: $communication-shade-10;
-                        }
-                        .ms-Link:hover {
-                            color: $communication-shade-30;
-                        }
                     }
                     .issue-detail-select-message {
                         padding-top: 10px;
@@ -1333,7 +1331,9 @@ div.insights-file-issue-details-dialog-container {
                             margin-inline-end: 0px;
                         }
                         .overview-help-container {
-                            background-color: $neutral-4;
+                            background-color: $help-links-section-background;
+                            border: 1px solid $help-links-section-border;
+                            box-sizing: border-box;
                             padding: 5%;
                             border-radius: 5px;
                         }

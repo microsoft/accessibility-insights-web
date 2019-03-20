@@ -28,7 +28,7 @@ export class FeatureFlagsController {
             feature: feature,
             enabled: false,
         };
-        const message: IMessage = {
+        const message: Message = {
             type: Messages.FeatureFlags.SetFeatureFlag,
             payload: payload,
             tabId: null,
@@ -41,7 +41,7 @@ export class FeatureFlagsController {
             feature: feature,
             enabled: true,
         };
-        const message: IMessage = {
+        const message: Message = {
             type: Messages.FeatureFlags.SetFeatureFlag,
             payload: payload,
             tabId: null,
@@ -50,7 +50,7 @@ export class FeatureFlagsController {
     }
 
     public resetFeatureFlags(): void {
-        const message: IMessage = {
+        const message: Message = {
             type: Messages.FeatureFlags.ResetFeatureFlag,
             tabId: null,
         };

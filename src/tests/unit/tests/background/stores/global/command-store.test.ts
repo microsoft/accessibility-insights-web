@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { CommandActions, IGetCommandsPayload } from '../../../../../../background/actions/command-actions';
+import { CommandActions, GetCommandsPayload } from '../../../../../../background/actions/command-actions';
 import { CommandStore } from '../../../../../../background/stores/global/command-store';
 import { TelemetryEventHandler } from '../../../../../../background/telemetry/telemetry-event-handler';
 import { StoreNames } from '../../../../../../common/stores/store-names';
@@ -32,7 +32,7 @@ describe('CommandStoreTest', () => {
         const initialState: ICommandStoreData = prototype.getDefaultState();
         const expectedState: ICommandStoreData = prototype.getDefaultState();
 
-        const payload: IGetCommandsPayload = {
+        const payload: GetCommandsPayload = {
             commands: [],
             tabId: 1,
         };
@@ -64,7 +64,7 @@ describe('CommandStoreTest', () => {
         };
 
         const tabId = 1;
-        const payload: IGetCommandsPayload = {
+        const payload: GetCommandsPayload = {
             commands: [newCommand],
             tabId: tabId,
         };
@@ -106,7 +106,7 @@ describe('CommandStoreTest', () => {
         };
 
         const tabId = 1;
-        const payload: IGetCommandsPayload = {
+        const payload: GetCommandsPayload = {
             commands: [newCommand],
             tabId: tabId,
         };

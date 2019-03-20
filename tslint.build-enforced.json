@@ -7,9 +7,12 @@
         "comment-format": [true, "check-space", { "ignore-words": ["TODO", "HACK", "NOTE"] }],
         "curly": true,
         "eofline": true,
+        "forin": true,
+        "indent": [true, "spaces"],
         "interface-name": [true, "never-prefix"],
         "jsdoc-format": true,
         "label-position": true,
+        "max-classes-per-file": [true, 2],
         "member-access": true,
         "new-parens": true,
         "no-angle-bracket-type-assertion": true,
@@ -34,7 +37,9 @@
         "no-this-assignment": true,
         "no-trailing-whitespace": true,
         "no-unused-expression": true,
+        "no-var-keyword": true,
         "no-var-requires": true,
+        "prefer-const": [true, { "destructuring": "all" }],
         "one-line": [true, "check-open-brace", "check-whitespace"],
         "one-variable-per-declaration": [true, "ignore-for-loop"],
         "ordered-imports": true,
@@ -64,7 +69,14 @@
         "use-strict": [false, "check-module", "check-function"],
         "whitespace": [true, "check-branch", "check-decl", "check-operator", "check-separator", "check-type", "check-type-operator"],
 
-        // Security Rules.
+        "variable-name": [
+            true,
+            "ban-keywords",
+            "check-format",
+            "allow-leading-underscore",
+            "allow-trailing-underscore",
+            "allow-pascal-case"
+        ],
         "no-banned-terms": true,
         "no-delete-expression": true,
         "no-disable-auto-sanitization": true,

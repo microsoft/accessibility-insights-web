@@ -9,12 +9,13 @@ import * as React from 'react';
 
 import * as Markup from '../../assessments/markup';
 import { VisualizationToggle } from '../../common/components/visualization-toggle';
-import { IVisualizationConfiguration, VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { FeatureFlags } from '../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { RuleResult, ScanResults } from '../../scanner/iruleresults';
+import { DictionaryStringTo } from '../../types/common-types';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { ReportGenerator } from '../reports/report-generator';
 import { ExportDialog } from './export-dialog';
@@ -31,7 +32,7 @@ export interface IssuesTableProps {
     title: string;
     issuesTableHandler: IssuesTableHandler;
     violations: RuleResult[];
-    selectedIdToRuleResultMap: IDictionaryStringTo<DecoratedAxeNodeResult>;
+    selectedIdToRuleResultMap: DictionaryStringTo<DecoratedAxeNodeResult>;
     issuesEnabled: boolean;
     issuesSelection: ISelection;
     issueTrackerPath: string;
@@ -54,7 +55,7 @@ export interface IssuesTableState {
 }
 
 export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableState> {
-    private configuration: IVisualizationConfiguration;
+    private configuration: VisualizationConfiguration;
     public static readonly exportTextareaLabel: string = 'Provide result description';
     public static readonly exportInstructions: string = 'Optional: please describe the result (it will be saved in the report).';
 

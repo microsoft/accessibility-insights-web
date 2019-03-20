@@ -7,7 +7,7 @@ import { IMock, It, Mock, Times } from 'typemoq';
 
 import { AssessmentNavState } from '../../../../../common/types/store-data/iassessment-result-data';
 import { AssessmentInstanceDetailsColumn } from '../../../../../DetailsView/components/assessment-instance-details-column';
-import { ICapturedInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
+import { CapturedInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
 import { AssessmentTableColumnConfigHandler } from '../../../../../DetailsView/components/assessment-table-column-config-handler';
 import { MasterCheckBoxConfigProvider } from '../../../../../DetailsView/handlers/master-checkbox-config-provider';
 import {
@@ -122,7 +122,7 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
     test('onRenderCapturedHeadingsInstanceDetailsColumn', () => {
         const col = new AssessmentTableColumnConfigHandler(null, null).getColumnConfigsForCapturedInstances()[0];
         const onRender = col.onRender;
-        const item: ICapturedInstanceRowData = {
+        const item: CapturedInstanceRowData = {
             instance: {
                 id: 'id',
                 description: 'comment',

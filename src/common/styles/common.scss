@@ -55,10 +55,34 @@ button::after {
     }
 }
 
+.high-contrast-theme {
+    .insights-link {
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    .is-selected {
+        .status-icon {
+            color: $high-contrast-icon-color !important;
+        }
+    }
+}
+
 .insights-link {
-    color: $communication-shade-10 !important;
+    // marking important to override office fabric style
+    color: $link !important;
     &:hover {
-        color: $communication-shade-30 !important;
+        color: $link-hover !important;
+    }
+}
+
+.ms-Spinner {
+    .ms-Spinner-circle {
+        border-top-color: $spinner-text;
+    }
+
+    .ms-Spinner-label {
+        color: $spinner-text;
     }
 }
 

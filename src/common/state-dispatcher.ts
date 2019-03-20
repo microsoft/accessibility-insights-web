@@ -2,25 +2,25 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 
-import { IStoreHub } from '../background/stores/istore-hub';
+import { StoreHub } from '../background/stores/istore-hub';
 import { GenericStoreMessageTypes } from './constants/generic-store-messages-types';
 import { IBaseStore } from './istore';
 import { StoreUpdateMessage } from './types/store-update-message';
 
 export class StateDispatcher {
     private broadcastMessage: (message: StoreUpdateMessage<any>) => void;
-    private stores: IStoreHub;
+    private stores: StoreHub;
 
-    constructor(broadcastMessage: (message: Object) => void, stores: IStoreHub) {
+    constructor(broadcastMessage: (message: Object) => void, stores: StoreHub) {
         this.broadcastMessage = broadcastMessage;
         this.stores = stores;
     }
 
-    public initialize() {
+    public initialize(): void {
         this.stores.getAllStores().forEach(store => this.addDispatchListenerToStore(store));
     }
 
-    private addDispatchListenerToStore(store: IBaseStore<any>) {
+    private addDispatchListenerToStore(store: IBaseStore<any>): void {
         const dispatchStateUpdateDelegate = this.getDispatchStateUpdateEvent(store);
         store.addChangedListener(dispatchStateUpdateDelegate);
         dispatchStateUpdateDelegate();

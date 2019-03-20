@@ -52,6 +52,10 @@ export const link = {
         'Section 508 - 502.2.2',
         'https://www.access-board.gov/guidelines-and-standards/communications-and-it/about-the-ict-refresh/final-rule/text-of-the-standards-and-guidelines#502-interoperability-assistive-technology',
     ),
+    WAIARIAAuthoringPractices: linkTo(
+        'WAI-ARIA Authoring Practices 1.1: Design Patterns and Widgets',
+        'https://www.w3.org/TR/wai-aria-practices-1.1/',
+    ),
     WCAG21UnderstandingAudioOnlyViewOnlyPrerecorded: linkTo(
         'Understanding Success Criterion 1.2.1: Audio-only and Video-only (Prerecorded)',
         'https://www.w3.org/WAI/WCAG21/Understanding/audio-only-and-video-only-prerecorded.html',

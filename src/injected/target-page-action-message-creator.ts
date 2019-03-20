@@ -11,7 +11,7 @@ import { TelemetryEventSource } from './../common/telemetry-events';
 export class TargetPageActionMessageCreator extends BaseActionMessageCreator {
     protected telemetryFactory: TelemetryDataFactory;
 
-    constructor(postMessage: (message: IMessage) => void, tabId: number, telemetryFactory: TelemetryDataFactory) {
+    constructor(postMessage: (message: Message) => void, tabId: number, telemetryFactory: TelemetryDataFactory) {
         super(postMessage, tabId);
         this.telemetryFactory = telemetryFactory;
     }

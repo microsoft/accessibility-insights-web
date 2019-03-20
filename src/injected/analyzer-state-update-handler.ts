@@ -3,7 +3,7 @@
 import { TestMode } from '../common/configs/test-mode';
 import { EnumHelper } from '../common/enum-helper';
 import { VisualizationType } from '../common/types/visualization-type';
-import { IVisualizationConfiguration, VisualizationConfigurationFactory } from './../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration, VisualizationConfigurationFactory } from './../common/configs/visualization-configuration-factory';
 import { IAssessmentScanData, IScanData, IVisualizationStoreData } from './../common/types/store-data/ivisualization-store-data.d';
 
 export class AnalyzerStateUpdateHandler {
@@ -21,7 +21,7 @@ export class AnalyzerStateUpdateHandler {
         this.teardown = teardownDelegate;
     }
 
-    public handleUpdate(currState: IVisualizationStoreData) {
+    public handleUpdate(currState: IVisualizationStoreData): void {
         const prevState = this.prevState;
 
         this.terminateAnalyzers(prevState, currState);
@@ -58,7 +58,7 @@ export class AnalyzerStateUpdateHandler {
     }
 
     private isTestTerminated(
-        config: IVisualizationConfiguration,
+        config: VisualizationConfiguration,
         prevState: IVisualizationStoreData,
         currState: IVisualizationStoreData,
         step: string,
@@ -70,7 +70,7 @@ export class AnalyzerStateUpdateHandler {
         return prevState != null && prevEnabled === true && currEnabled === false;
     }
 
-    private getTestKeysFromConfiguration(config: IVisualizationConfiguration, currState: IVisualizationStoreData) {
+    private getTestKeysFromConfiguration(config: VisualizationConfiguration, currState: IVisualizationStoreData): string[] {
         const keys = [];
         if (this.isAssessment(config)) {
             const prevScanState = config.getStoreData(currState.tests) as IAssessmentScanData;
@@ -83,7 +83,7 @@ export class AnalyzerStateUpdateHandler {
         return keys;
     }
 
-    private isAssessment(config: IVisualizationConfiguration) {
+    private isAssessment(config: VisualizationConfiguration): boolean {
         return config.testMode === TestMode.Assessments;
     }
 }

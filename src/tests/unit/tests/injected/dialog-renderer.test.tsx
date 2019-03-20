@@ -23,6 +23,7 @@ import { MainWindowContext } from '../../../../injected/main-window-context';
 import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from '../../../../injected/scanner-utils';
 import { ShadowUtils } from '../../../../injected/shadow-utils';
 import { TargetPageActionMessageCreator } from '../../../../injected/target-page-action-message-creator';
+import { DictionaryStringTo } from '../../../../types/common-types';
 
 describe('DialogRendererTests', () => {
     let htmlElementUtilsMock: IMock<HTMLElementUtils>;
@@ -110,7 +111,7 @@ describe('DialogRendererTests', () => {
             fingerprint: 'fp1',
             snippet: 'html',
         };
-        const expectedFailedRules: IDictionaryStringTo<DecoratedAxeNodeResult> = {};
+        const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
         expectedFailedRules[ruleId] = nodeResult;
         const testData: IHtmlElementAxeResults = {
             ruleResults: expectedFailedRules,
@@ -154,7 +155,7 @@ describe('DialogRendererTests', () => {
             fingerprint: 'fp1',
             snippet: 'html',
         };
-        const expectedFailedRules: IDictionaryStringTo<DecoratedAxeNodeResult> = {};
+        const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
         expectedFailedRules[ruleId] = nodeResult;
         const testData: IHtmlElementAxeResults = {
             ruleResults: expectedFailedRules,
@@ -196,7 +197,7 @@ describe('DialogRendererTests', () => {
             fingerprint: 'fp',
             snippet: 'html',
         };
-        const expectedFailedRules: IDictionaryStringTo<DecoratedAxeNodeResult> = {};
+        const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
         expectedFailedRules[ruleId] = nodeResult;
         const testData: IHtmlElementAxeResults = {
             ruleResults: expectedFailedRules,
@@ -240,7 +241,7 @@ describe('DialogRendererTests', () => {
             fingerprint: 'fp1',
             snippet: 'html',
         };
-        const expectedFailedRules: IDictionaryStringTo<DecoratedAxeNodeResult> = {};
+        const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
         expectedFailedRules[ruleId] = nodeResult;
         const testData: IHtmlElementAxeResults = {
             ruleResults: expectedFailedRules,
@@ -386,20 +387,20 @@ describe('DialogRendererTests', () => {
         setupWindowUtilsMockAndFrameCommunicatorVerify();
     });
 
-    function setUpGetMainWindowContextCalledOnce() {
+    function setUpGetMainWindowContextCalledOnce(): void {
         getMainWindoContextMock
             .setup(get => get())
             .returns(() => mainWindowContext)
             .verifiable(Times.once());
     }
-    function setUpGetMainWindowContexNeverCalled() {
+    function setUpGetMainWindowContexNeverCalled(): void {
         getMainWindoContextMock
             .setup(get => get())
             .returns(() => mainWindowContext)
             .verifiable(Times.never());
     }
 
-    function setupRenderMockForVerifiable() {
+    function setupRenderMockForVerifiable(): void {
         renderMock
             .setup(render =>
                 render(
@@ -412,7 +413,7 @@ describe('DialogRendererTests', () => {
             .verifiable(Times.once());
     }
 
-    function setupRenderMockForNeverVisited() {
+    function setupRenderMockForNeverVisited(): void {
         renderMock
             .setup(it => it(It.is((detailsDialog: any) => detailsDialog != null), It.is((container: any) => container != null)))
             .verifiable(Times.never());
@@ -422,7 +423,7 @@ describe('DialogRendererTests', () => {
         renderMock.verifyAll();
     }
 
-    function setupWindowUtilsMockAndFrameCommunicatorInMainWindow() {
+    function setupWindowUtilsMockAndFrameCommunicatorInMainWindow(): void {
         const win = 'this is main window';
         windowUtilsMock
             .setup(wum => wum.getTopWindow())
@@ -467,7 +468,7 @@ describe('DialogRendererTests', () => {
         frameCommunicator.verifyAll();
     }
 
-    function setupWindowUtilsMockAndFrameCommunicatorInIframe(windowMessageRequest: IMessageRequest<DetailsDialogWindowMessage>) {
+    function setupWindowUtilsMockAndFrameCommunicatorInIframe(windowMessageRequest: IMessageRequest<DetailsDialogWindowMessage>): void {
         windowUtilsMock
             .setup(wum => wum.getTopWindow())
             .returns(() => {

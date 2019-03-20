@@ -2,10 +2,11 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 
+import { DictionaryStringTo } from '../types/common-types';
 import { BrowserAdapter } from './browser-adapter';
 
 export class DetailsViewController {
-    private _tabIdToDetailsViewMap: IDictionaryStringTo<number> = {};
+    private _tabIdToDetailsViewMap: DictionaryStringTo<number> = {};
     private _browserAdapter: BrowserAdapter;
     private _detailsViewRemovedHandler: (tabId: number) => void;
 

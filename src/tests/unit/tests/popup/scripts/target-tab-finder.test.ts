@@ -3,7 +3,7 @@
 import { IMock, It, Mock } from 'typemoq';
 
 import { BrowserAdapter } from '../../../../../background/browser-adapter';
-import { ITab } from '../../../../../common/itab';
+import { Tab } from '../../../../../common/itab';
 import { UrlParser } from '../../../../../common/url-parser';
 import { UrlValidator } from '../../../../../common/url-validator';
 import { TargetTabFinder } from '../../../../../popup/scripts/target-tab-finder';
@@ -15,7 +15,7 @@ describe('TargetTabFinderTest', () => {
     let urlParserMock: IMock<UrlParser>;
     let urlValidatorMock: IMock<UrlValidator>;
     const tabId: number = 15;
-    let tabStub: ITab;
+    let tabStub: Tab;
 
     beforeEach(() => {
         windowStub = {
@@ -79,11 +79,11 @@ describe('TargetTabFinderTest', () => {
         });
     });
 
-    function setupGetTabIdParamFromUrl(tabIdValue: number) {
+    function setupGetTabIdParamFromUrl(tabIdValue: number): void {
         urlParserMock.setup(p => p.getIntParam(windowStub.location.href, 'tabId')).returns(() => tabIdValue);
     }
 
-    function setupGetTabCall() {
+    function setupGetTabCall(): void {
         browserAdapterMock
             .setup(b => b.getTab(tabId, It.isAny()))
             .callback((id, cb) => {
@@ -91,7 +91,7 @@ describe('TargetTabFinderTest', () => {
             });
     }
 
-    function setupTabQueryCall() {
+    function setupTabQueryCall(): void {
         browserAdapterMock
             .setup(b =>
                 b.tabsQuery(
@@ -107,7 +107,7 @@ describe('TargetTabFinderTest', () => {
             });
     }
 
-    function setupIsSupportedCall(isSupported: boolean) {
+    function setupIsSupportedCall(isSupported: boolean): void {
         urlValidatorMock.setup(v => v.isSupportedUrl(tabStub.url, browserAdapterMock.object)).returns(() => Promise.resolve(isSupported));
     }
 });

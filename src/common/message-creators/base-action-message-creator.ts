@@ -5,15 +5,15 @@ import { Messages } from '../messages';
 import { TelemetryData } from '../telemetry-events';
 
 export abstract class BaseActionMessageCreator {
-    private postMessageDelegate: (message: IMessage) => void;
+    private postMessageDelegate: (message: Message) => void;
     protected _tabId: number;
 
-    constructor(postMessage: (message: IMessage) => void, tabId: number) {
+    constructor(postMessage: (message: Message) => void, tabId: number) {
         this.postMessageDelegate = postMessage;
         this._tabId = tabId;
     }
 
-    protected dispatchMessage(message: IMessage): void {
+    protected dispatchMessage(message: Message): void {
         this.postMessageDelegate(message);
     }
 
@@ -29,7 +29,7 @@ export abstract class BaseActionMessageCreator {
             eventName: eventName,
             telemetry: eventData,
         };
-        const message: IMessage = {
+        const message: Message = {
             type: Messages.Telemetry.Send,
             payload,
         };

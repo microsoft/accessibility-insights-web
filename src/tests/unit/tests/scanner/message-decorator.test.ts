@@ -9,7 +9,6 @@ import { CustomRulesConfigurationStub } from './custom-rules-configuration-stub'
 
 describe('MessageDecorator', () => {
     let axeResultStub: AxeRule;
-    let passedAxeResultStub: AxeRule;
     let checkMessageTransformerMock: IMock<CheckMessageTransformer>;
     let configuration: RuleConfiguration[];
 
@@ -51,7 +50,7 @@ describe('MessageDecorator', () => {
         });
     });
 
-    function testBasicDecorateMessage(expectedResult: AxeRule, testSubject: MessageDecorator) {
+    function testBasicDecorateMessage(expectedResult: AxeRule, testSubject: MessageDecorator): void {
         checkMessageTransformerMock
             .setup(cmcm => cmcm.addMessagesToChecks(axeResultStub.nodes[0].any, configuration[0].checks))
             .verifiable(Times.once());

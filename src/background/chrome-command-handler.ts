@@ -13,6 +13,7 @@ import { ToggleTelemetryData } from '../common/telemetry-events';
 import { IScanData, IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { UrlValidator } from '../common/url-validator';
+import { DictionaryStringTo } from '../types/common-types';
 import { VisualizationTogglePayload } from './actions/action-payloads';
 import { BrowserAdapter } from './browser-adapter';
 import { UserConfigurationStore } from './stores/global/user-configuration-store';
@@ -22,7 +23,7 @@ const VisualizationMessages = Messages.Visualizations;
 
 export class ChromeCommandHandler {
     private targetTabUrl: string;
-    private commandToVisualizationType: IDictionaryStringTo<VisualizationType>;
+    private commandToVisualizationType: DictionaryStringTo<VisualizationType>;
 
     constructor(
         private tabToContextMap: TabToContextMap,

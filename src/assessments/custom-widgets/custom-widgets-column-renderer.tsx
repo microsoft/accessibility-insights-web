@@ -4,12 +4,13 @@ import * as React from 'react';
 
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { ColumnValueBag } from '../../common/types/property-bag/column-value-bag';
-import { IAssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
+import { AssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
+import { DictionaryStringTo } from '../../types/common-types';
 import { PropertyBagColumnRendererConfig } from '../common/property-bag-column-renderer';
 import { PropertyBagColumnRendererFactory } from '../common/property-bag-column-renderer-factory';
 
 export function customWidgetsColumnRenderer<TPropertyBag extends ColumnValueBag>(
-    item: IAssessmentInstanceRowData<any>,
+    item: AssessmentInstanceRowData<any>,
     configs: PropertyBagColumnRendererConfig<TPropertyBag>[],
     includeLink: boolean,
 ): JSX.Element {
@@ -32,11 +33,11 @@ export function customWidgetsColumnRenderer<TPropertyBag extends ColumnValueBag>
     return propertyBagRenderer(item);
 }
 
-function renderDesignPatternWithLink(pattern: DesignPattern) {
+function renderDesignPatternWithLink(pattern: DesignPattern): JSX.Element {
     return <NewTabLink href={pattern.URL}>{pattern.designPattern}</NewTabLink>;
 }
 
-function renderDesignPatternWithoutLink(pattern: DesignPattern) {
+function renderDesignPatternWithoutLink(pattern: DesignPattern): JSX.Element {
     return <span className="display-name">{pattern.designPattern}</span>;
 }
 
@@ -51,7 +52,7 @@ function makeFlatDesignPatternString(patterns: DesignPattern[]): string {
     return patterns.map(pat => pat.designPattern).join(', ');
 }
 
-const roleToDesignPatternsMapping: IDictionaryStringTo<DesignPattern[]> = {
+const roleToDesignPatternsMapping: DictionaryStringTo<DesignPattern[]> = {
     alert: [{ designPattern: 'Alert', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#alert' }],
     alertdialog: [{ designPattern: 'Alert or Message Dialog', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#alertdialog' }],
     button: [

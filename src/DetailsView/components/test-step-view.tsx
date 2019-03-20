@@ -12,6 +12,7 @@ import {
     IGeneratedAssessmentInstance,
     IManualTestStepResult,
 } from '../../common/types/store-data/iassessment-result-data';
+import { DictionaryStringTo } from '../../types/common-types';
 import { ContentPanelButton, ContentPanelButtonDeps } from '../../views/content/content-panel-button';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
@@ -27,10 +28,10 @@ export interface TestStepViewProps {
     isScanning: boolean;
     testStep: TestStep;
     renderStaticContent: () => JSX.Element;
-    instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance>;
+    instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance>;
     assessmentNavState: AssessmentNavState;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
-    manualTestStepResultMap: IDictionaryStringTo<IManualTestStepResult>;
+    manualTestStepResultMap: DictionaryStringTo<IManualTestStepResult>;
     actionMessageCreator: DetailsViewActionMessageCreator;
     assessmentsProvider: IAssessmentsProvider;
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
@@ -91,7 +92,7 @@ export class TestStepView extends React.Component<TestStepViewProps> {
         );
     }
 
-    private renderScanCompleteAlert() {
+    private renderScanCompleteAlert(): JSX.Element {
         if (!this.props.testStep.isManual && this.props.isStepScanned) {
             return <div role="alert" aria-live="polite" aria-label="Scan Complete" />;
         }

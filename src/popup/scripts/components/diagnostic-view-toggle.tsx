@@ -5,25 +5,21 @@ import { Link } from 'office-ui-fabric-react/lib/Link';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import { IToggle } from 'office-ui-fabric-react/lib/Toggle';
 import * as React from 'react';
-
 import { VisualizationToggle } from '../../../common/components/visualization-toggle';
-import {
-    IVisualizationConfiguration,
-    VisualizationConfigurationFactory,
-} from '../../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../../../common/configs/visualization-configuration-factory';
 import { KeyCodeConstants } from '../../../common/constants/keycode-constants';
-import { FeatureFlags } from '../../../common/feature-flags';
 import { TelemetryEventSource } from '../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../common/types/details-view-pivot-type';
 import { IVisualizationStoreData } from '../../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
+import { DictionaryStringTo } from '../../../types/common-types';
 import { ContentLink, ContentLinkDeps } from '../../../views/content/content-link';
 import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
 import { DiagnosticViewClickHandler } from '../handlers/diagnostic-view-toggle-click-handler';
 
 export interface DiagnosticViewToggleProps {
     deps: DiagnosticViewToggleDeps;
-    featureFlags: IDictionaryStringTo<boolean>;
+    featureFlags: DictionaryStringTo<boolean>;
     type: VisualizationType;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     visualizationStoreData: IVisualizationStoreData;
@@ -41,7 +37,7 @@ export interface DiagnosticViewToggleState {
 }
 
 export class DiagnosticViewToggle extends React.Component<DiagnosticViewToggleProps, DiagnosticViewToggleState> {
-    private configuration: IVisualizationConfiguration;
+    private configuration: VisualizationConfiguration;
     private _toggle: React.RefObject<IToggle> = React.createRef<IToggle>();
     private dom: NodeSelector & Node;
     private _isMounted: boolean;
@@ -74,7 +70,7 @@ export class DiagnosticViewToggle extends React.Component<DiagnosticViewTogglePr
                 <div className="ms-Grid-row">
                     <div className="ms-Grid-col ms-sm8">{this.renderLink(displayableData.linkToDetailsViewText)}</div>
                     <div className="ms-Grid-col ms-sm4 shortcut-label" style={{ float: 'right' }}>
-                        <div className="ms-fontColor-neutralSecondary ms-fontWeight-semilight ms-font-xs">{shortcut}</div>
+                        <div className="ms-font-xs">{shortcut}</div>
                     </div>
                 </div>
             </div>
@@ -104,12 +100,12 @@ export class DiagnosticViewToggle extends React.Component<DiagnosticViewTogglePr
         }
     }
 
-    public componentDidMount() {
+    public componentDidMount(): void {
         this._isMounted = true;
         this.setFocus();
     }
 
-    public componentDidUpdate() {
+    public componentDidUpdate(): void {
         this.setFocus();
     }
 
@@ -158,18 +154,21 @@ export class DiagnosticViewToggle extends React.Component<DiagnosticViewTogglePr
     }
 
     private renderLink(linkText: string): JSX.Element {
-        const isAssessmentEnabled = this.props.featureFlags[FeatureFlags.newAssessmentExperience];
-        if (isAssessmentEnabled && this.configuration.guidance) {
+        if (this.configuration.guidance) {
             return <ContentLink deps={this.props.deps} reference={this.configuration.guidance} linkText={linkText} />;
         }
 
-        const pivot = isAssessmentEnabled ? DetailsViewPivotType.fastPass : DetailsViewPivotType.allTest;
-
         return (
             <Link
+                className="insights-link"
                 href="#"
                 onClick={ev =>
-                    this.props.actionMessageCreator.openDetailsView(ev as any, this.props.type, this.props.telemetrySource, pivot)
+                    this.props.actionMessageCreator.openDetailsView(
+                        ev,
+                        this.props.type,
+                        this.props.telemetrySource,
+                        DetailsViewPivotType.fastPass,
+                    )
                 }
             >
                 {linkText}

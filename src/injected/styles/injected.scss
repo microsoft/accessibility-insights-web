@@ -7,6 +7,17 @@
     visibility: hidden !important;
 }
 
+.insights-grey-scale-container {
+    filter: grayscale(100%) !important;
+}
+
+.insights-pseudo-selector-style-container {
+    *::before,
+    *::after {
+        border: 1px solid red;
+    }
+}
+
 #accessibility-insights-root-container,
 #insights-shadow-container {
     @import '../../common/styles/common.scss';
@@ -415,17 +426,6 @@
         visibility: hidden !important;
         padding: 0 0 0 0 !important;
         margin: 0 0 0 0 !important;
-    }
-
-    .insights-grey-scale-container {
-        filter: grayscale(100%) !important;
-    }
-
-    .insights-pseudo-selector-style-container {
-        *::before,
-        *::after {
-            border: 1px solid red;
-        }
     }
 }
 

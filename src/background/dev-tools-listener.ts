@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { ConnectionNames } from '../common/constants/connection-names';
 import { Messages } from '../common/messages';
-import { IDevToolsOpenMessage } from '../common/types/dev-tools-open-message';
+import { DevToolsOpenMessage } from '../common/types/dev-tools-open-message';
 import { OnDevToolOpenPayload } from './actions/action-payloads';
 import { BrowserAdapter } from './browser-adapter';
 import { TabToContextMap } from './tab-context';
@@ -20,10 +20,10 @@ export class DevToolsListener {
         this._chromeAdapter = chromeAdapter;
     }
 
-    public initialize() {
+    public initialize(): void {
         this._chromeAdapter.addListenerOnConnect((devToolsConnection: PortWithTabId) => {
             if (devToolsConnection.name === ConnectionNames.devTools) {
-                const devToolsListener = (message: IDevToolsOpenMessage, port: chrome.runtime.Port) => {
+                const devToolsListener = (message: DevToolsOpenMessage, port: chrome.runtime.Port) => {
                     devToolsConnection.targetPageTabId = message.tabId;
                     this.sendDevToolStatus(devToolsConnection, true);
                 };
@@ -39,7 +39,7 @@ export class DevToolsListener {
         });
     }
 
-    private sendDevToolStatus(devToolsConnection: PortWithTabId, status: boolean) {
+    private sendDevToolStatus(devToolsConnection: PortWithTabId, status: boolean): void {
         const tabId = devToolsConnection.targetPageTabId;
         const tabContext = this._tabIdToContextMap[tabId];
 

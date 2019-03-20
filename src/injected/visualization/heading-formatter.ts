@@ -1,32 +1,31 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ClientUtils } from '../client-utils';
+import { DialogRenderer } from '../dialog-renderer';
 import { IAssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
 import { FailureInstanceFormatter } from './failure-instance-formatter';
-import { DrawerConfiguration } from './iformatter';
+import { DrawerConfiguration } from './formatter';
 
-// tslint:disable-next-line:interface-name
-export interface IHeadingStyleConfiguration {
+export interface HeadingStyleConfiguration {
     borderColor: string;
     fontColor: string;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IStyleComputer {
+export interface StyleComputer {
     getComputedStyle(elt: Element, pseudoElt?: string): CSSStyleDeclaration;
 }
 
 export class HeadingFormatter extends FailureInstanceFormatter {
-    private styleComputer: IStyleComputer;
+    private styleComputer: StyleComputer;
     private clientUtils: ClientUtils;
 
-    constructor(styleComputer: IStyleComputer, clientUtils: ClientUtils) {
+    constructor(styleComputer: StyleComputer, clientUtils: ClientUtils) {
         super();
         this.styleComputer = styleComputer;
         this.clientUtils = clientUtils;
     }
 
-    public static headingStyles: { [level: string]: IHeadingStyleConfiguration } = {
+    public static headingStyles: { [level: string]: HeadingStyleConfiguration } = {
         '1': {
             borderColor: '#0066CC',
             fontColor: '#FFFFFF',
@@ -57,7 +56,7 @@ export class HeadingFormatter extends FailureInstanceFormatter {
         },
     };
 
-    public getDialogRenderer() {
+    public getDialogRenderer(): DialogRenderer {
         return null;
     }
 

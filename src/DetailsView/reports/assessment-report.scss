@@ -155,9 +155,9 @@ header {
 
 .ms-Link,
 .link {
-    color: $communication-shade-10;
+    color: $link;
     &:hover {
-        color: $communication-shade-30;
+        color: $link-hover;
     }
 }
 

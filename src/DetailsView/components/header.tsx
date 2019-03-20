@@ -5,7 +5,6 @@ import * as React from 'react';
 import { GearOptionsButtonComponent } from '../../common/components/gear-options-button-component';
 import { HeaderIcon, HeaderIconDeps } from '../../common/components/header-icon';
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
-import { FeatureFlags } from '../../common/feature-flags';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { title } from '../../content/strings/application';
@@ -34,17 +33,11 @@ export class Header extends React.Component<HeaderProps> {
     }
 
     private renderSwitcher(): JSX.Element {
-        if (!this.shouldRenderSwitcher()) {
+        if (this.props.tabClosed === true) {
             return null;
         }
 
         return <Switcher deps={this.props.deps} pivotKey={this.props.selectedPivot} />;
-    }
-
-    private shouldRenderSwitcher(): boolean {
-        const { featureFlagStoreData, tabClosed } = this.props;
-
-        return featureFlagStoreData != null && featureFlagStoreData[FeatureFlags.newAssessmentExperience] === true && tabClosed === false;
     }
 
     private renderButton(): JSX.Element {

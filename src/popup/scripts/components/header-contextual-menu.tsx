@@ -9,6 +9,7 @@ import { NamedSFC } from '../../../common/react/named-sfc';
 import { TelemetryEventSource } from '../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../common/types/visualization-type';
+import { DictionaryStringTo } from '../../../types/common-types';
 import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
 import { LaunchPanelHeaderClickHandler } from '../handlers/launch-panel-header-click-handler';
 import { LaunchPanelHeader } from './launch-panel-header';
@@ -22,7 +23,7 @@ export type HeaderContextualMenuProps = {
     deps: HeaderContextualMenuDeps;
     header: LaunchPanelHeader;
     popupWindow: Window;
-    featureFlags: IDictionaryStringTo<boolean>;
+    featureFlags: DictionaryStringTo<boolean>;
 } & Pick<IContextualMenuItem, 'target'>;
 
 const telemetryEventSource = TelemetryEventSource.HamburgerMenu;
@@ -45,15 +46,6 @@ export const HeaderContextualMenu = NamedSFC<HeaderContextualMenuProps>('HeaderC
                     DetailsViewPivotType.fastPass,
                 ),
             name: 'FastPass',
-        },
-        {
-            key: 'full-assessment',
-            iconProps: {
-                iconName: 'testBeakerSolid',
-            },
-            onClick: ev =>
-                popupActionMessageCreator.openDetailsView(ev, VisualizationType.Issues, telemetryEventSource, DetailsViewPivotType.allTest),
-            name: 'Full Assessment',
         },
         {
             key: 'assessment',
@@ -91,14 +83,6 @@ export const HeaderContextualMenu = NamedSFC<HeaderContextualMenuProps>('HeaderC
         },
     ];
 
-    const items = getItems().filter(item => {
-        if (featureFlags[FeatureFlags.newAssessmentExperience]) {
-            return item.key !== 'full-assessment';
-        }
-
-        return item.key !== 'assessment';
-    });
-
     return (
         <ContextualMenu
             className="popup-menu"
@@ -106,7 +90,7 @@ export const HeaderContextualMenu = NamedSFC<HeaderContextualMenuProps>('HeaderC
             target={props.target}
             onDismiss={event => launchPanelHeaderClickHandler.onDismissFeedbackMenu(header, event)}
             directionalHint={getRTL() ? DirectionalHint.bottomRightEdge : DirectionalHint.bottomLeftEdge}
-            items={items}
+            items={getItems()}
         />
     );
 });

@@ -48,7 +48,7 @@ export interface DetailsViewMainContentProps {
 }
 
 export class DetailsViewMainContent extends React.Component<DetailsViewMainContentProps> {
-    public render() {
+    public render(): JSX.Element {
         return (
             <>
                 {this.renderCommandBar()}
@@ -92,7 +92,6 @@ export class DetailsViewMainContent extends React.Component<DetailsViewMainConte
                 title={this.props.tabStoreData.title}
                 actionCreator={this.props.deps.detailsViewActionMessageCreator}
                 selectedPivot={this.props.visualizationStoreData.selectedDetailsViewPivot}
-                featureFlags={this.props.featureFlagStoreData}
                 dropdownClickHandler={this.props.dropdownClickHandler}
             />
         );

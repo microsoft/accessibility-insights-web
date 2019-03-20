@@ -15,7 +15,7 @@ class TestableStoreProxy<TState> extends StoreProxy<TState> {
         super(storeId, chromeAdapter);
     }
 
-    public emitChanged() {
+    public emitChanged(): void {
         this.emitChangedCallCount++;
     }
 }

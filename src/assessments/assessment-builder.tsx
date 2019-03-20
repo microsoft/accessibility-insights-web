@@ -7,21 +7,22 @@ import * as React from 'react';
 import { AssessmentToggleActionPayload } from '../background/actions/action-payloads';
 import { InstanceIdentifierGenerator } from '../background/instance-identifier-generator';
 import { RequirementComparer } from '../common/assessment/requirement-comparer';
-import { IAssesssmentVisualizationConfiguration } from '../common/configs/visualization-configuration-factory';
+import { AssesssmentVisualizationConfiguration } from '../common/configs/visualization-configuration-factory';
 import { Messages } from '../common/messages';
 import { ManualTestStatus } from '../common/types/manual-test-status';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { IAssessmentScanData, IScanData } from '../common/types/store-data/ivisualization-store-data';
-import { AssessmentInstanceTable, IAssessmentInstanceRowData } from '../DetailsView/components/assessment-instance-table';
+import { AssessmentInstanceRowData, AssessmentInstanceTable } from '../DetailsView/components/assessment-instance-table';
 import { AssessmentTestView } from '../DetailsView/components/assessment-test-view';
 import { TestStepLink } from '../DetailsView/components/test-step-link';
 import { AnalyzerProvider } from '../injected/analyzers/analyzer-provider';
 import {
-    IPropertyBags,
-    IVisualizationInstanceProcessorCallback,
+    PropertyBags,
     VisualizationInstanceProcessor,
+    VisualizationInstanceProcessorCallback,
 } from '../injected/visualization-instance-processor';
 import { DrawerProvider } from '../injected/visualization/drawer-provider';
+import { DictionaryStringTo } from '../types/common-types';
 import { DecoratedAxeNodeResult, ScannerUtils } from './../injected/scanner-utils';
 import { Assessment, AssistedAssessment, ManualAssessment } from './types/iassessment';
 import { ReportInstanceField } from './types/report-instance-field';
@@ -77,7 +78,7 @@ export class AssessmentBuilder {
         ];
     }
 
-    private static renderInstanceTableHeader(table: AssessmentInstanceTable, items: IAssessmentInstanceRowData[]): JSX.Element {
+    private static renderInstanceTableHeader(table: AssessmentInstanceTable, items: AssessmentInstanceRowData[]): JSX.Element {
         return table.renderDefaultInstanceTableHeader(items);
     }
 
@@ -125,7 +126,7 @@ export class AssessmentBuilder {
             return stepConfig.key;
         };
 
-        const getNotificationMessage = (selectorMap: IDictionaryStringTo<any>, testStep?: string) => {
+        const getNotificationMessage = (selectorMap: DictionaryStringTo<any>, testStep?: string) => {
             const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
             if (stepConfig.getNotificationMessage == null) {
                 return null;
@@ -133,7 +134,7 @@ export class AssessmentBuilder {
             return stepConfig.getNotificationMessage(selectorMap);
         };
 
-        const visualizationConfiguration: IAssesssmentVisualizationConfiguration = {
+        const visualizationConfiguration: AssesssmentVisualizationConfiguration = {
             getTestView: props => <AssessmentTestView {...props} />,
             getStoreData: data => data.assessments[`${key}Assessment`],
             enableTest: AssessmentBuilder.enableTest,
@@ -194,7 +195,7 @@ export class AssessmentBuilder {
             return stepConfig.getDrawer(provider, featureFlagStoreData);
         };
 
-        const getNotificationMessage = (selectorMap: IDictionaryStringTo<any>, testStep?: string) => {
+        const getNotificationMessage = (selectorMap: DictionaryStringTo<any>, testStep?: string) => {
             const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
             if (stepConfig.getNotificationMessage == null) {
                 return null;
@@ -204,7 +205,7 @@ export class AssessmentBuilder {
 
         assessment.executeAssessmentScanPolicy = assessment.executeAssessmentScanPolicy || AssessmentBuilder.nullScanPolicy;
 
-        const visualizationConfiguration: IAssesssmentVisualizationConfiguration = {
+        const visualizationConfiguration: AssesssmentVisualizationConfiguration = {
             getTestView: props => <AssessmentTestView {...props} />,
             getAssessmentData: data => data.assessments[key],
             setAssessmentData: (data, selectorMap, instanceMap) => {
@@ -228,7 +229,7 @@ export class AssessmentBuilder {
             getSwitchToTargetTabOnScan: AssessmentBuilder.getSwitchToTargetTabOnScan(steps),
             getInstanceIdentiferGenerator: AssessmentBuilder.getInstanceIdentifier(steps),
             getUpdateVisibility: AssessmentBuilder.getUpdateVisibility(steps),
-        } as IAssesssmentVisualizationConfiguration;
+        } as AssesssmentVisualizationConfiguration;
 
         AssessmentBuilder.BuildStepsReportDescription(steps);
 
@@ -243,7 +244,7 @@ export class AssessmentBuilder {
     }
 
     private static getVisualizationInstanceProcessor(steps: TestStep[]) {
-        return (testStep: string): IVisualizationInstanceProcessorCallback<IPropertyBags, IPropertyBags> => {
+        return (testStep: string): VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags> => {
             const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
             if (stepConfig == null || stepConfig.visualizationInstanceProcessor == null) {
                 return VisualizationInstanceProcessor.nullProcessor;

@@ -36,7 +36,7 @@ describe('VisualizationActionMessageCreatorTest', () => {
             telemetry,
         };
 
-        const expectedMessage: IMessage = {
+        const expectedMessage: Message = {
             tabId: tabId,
             type: Messages.Visualizations.Common.Toggle,
             payload,

@@ -4,7 +4,7 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { ChromeAdapter } from '../../../../background/browser-adapter';
 import {
-    IVisualizationConfiguration,
+    VisualizationConfiguration,
     VisualizationConfigurationFactory,
 } from '../../../../common/configs/visualization-configuration-factory';
 import { NotificationCreator } from '../../../../common/notification-creator';
@@ -89,7 +89,7 @@ describe('NotificationCreator', () => {
             .returns(() => {
                 return {
                     getNotificationMessage: getNotificationMessageMock.object,
-                } as IVisualizationConfiguration;
+                } as VisualizationConfiguration;
             });
 
         testObject.createNotificationByVisualizationKey(selectorStub, key, type);
@@ -98,7 +98,7 @@ describe('NotificationCreator', () => {
         verifyAll();
     });
 
-    function verifyAll() {
+    function verifyAll(): void {
         browserAdapterMock.verifyAll();
         configFactoryMock.verifyAll();
     }

@@ -13,7 +13,7 @@ const fixture = createTestFixture('test-fixture', '');
 
 const context = {
     _data: null,
-    data: function(d: any) {
+    data: function(d: any): any {
         // tslint:disable-next-line:no-invalid-this
         this._data = d;
     },
@@ -105,7 +105,6 @@ describe('custom-widget check', () => {
 describe('custom-widget check', () => {
     const selector = customWidgetConfiguration.rule.selector;
     const allRoles = Object.getOwnPropertyNames(axe.commons.aria.lookupTable.role);
-    // tslint:disable-next-line:max-line-length
     const expectedRoles = [
         'alert',
         'alertdialog',
@@ -171,7 +170,6 @@ describe('custom-widget check', () => {
     const allAriaAttributes = Object.getOwnPropertyNames(axe.commons.aria.lookupTable.attributes);
     const overlappingHTMLAttributes = map(allAriaAttributes, s => s.replace('aria-', ''));
     const allAttributes = allAriaAttributes.concat(overlappingHTMLAttributes);
-    // tslint:disable-next-line:max-line-length
     const expectedARIAAttributes = ['aria-disabled', 'aria-readonly', 'aria-required'];
     const unexpectedARIAAttributes = difference(allAttributes, expectedARIAAttributes);
     const expectedHTMLAttributes = ['disabled', 'readonly', 'required'];
@@ -259,10 +257,7 @@ describe('custom-widget check', () => {
 });
 
 function getCheck(checkId: string): ICheckConfiguration {
-    return axe._audit.defaultConfig.checks.find(elem => {
-        // tslint:disable-next-line:no-unused-expression
-        elem.id === checkId;
-    });
+    return axe._audit.defaultConfig.checks.find(elem => elem.id === checkId);
 }
 
 function createTestFixture(id: string, content: string): HTMLDivElement {

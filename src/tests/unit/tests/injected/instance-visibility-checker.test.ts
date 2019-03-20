@@ -4,9 +4,9 @@ import { IMock, It, Mock, Times } from 'typemoq';
 
 import { Assessments } from '../../../../assessments/assessments';
 import { IAssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
-import { IUniquelyIdentifiableInstances } from '../../../../background/instance-identifier-generator';
+import { UniquelyIdentifiableInstances } from '../../../../background/instance-identifier-generator';
 import {
-    IVisualizationConfiguration,
+    VisualizationConfiguration,
     VisualizationConfigurationFactory,
 } from '../../../../common/configs/visualization-configuration-factory';
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
@@ -23,10 +23,10 @@ describe('InstanceVisibilityCheckerTest', () => {
     let testSubject: InstanceVisibilityChecker;
     const assessmentsProvider: IAssessmentsProvider = Assessments;
     let configFactoryMock: IMock<VisualizationConfigurationFactory>;
-    let configStub: IVisualizationConfiguration;
+    let configStub: VisualizationConfiguration;
     let getInstanceIdentiferGeneratorMock: IMock<(step: string) => Function>;
     let getUpdateVisibilityMock: IMock<(step: string) => boolean>;
-    let generateInstanceIdentifierMock: IMock<(instance: IUniquelyIdentifiableInstances) => string>;
+    let generateInstanceIdentifierMock: IMock<(instance: UniquelyIdentifiableInstances) => string>;
     let testType: VisualizationType;
 
     beforeEach(() => {
@@ -41,7 +41,7 @@ describe('InstanceVisibilityCheckerTest', () => {
         configStub = {
             getInstanceIdentiferGenerator: getInstanceIdentiferGeneratorMock.object,
             getUpdateVisibility: getUpdateVisibilityMock.object,
-        } as IVisualizationConfiguration;
+        } as VisualizationConfiguration;
 
         testSubject = new InstanceVisibilityChecker(
             sendMessageMock.object,
@@ -99,11 +99,11 @@ describe('InstanceVisibilityCheckerTest', () => {
             {
                 target: frameResults[0].target,
                 html: elements[0].outerHTML,
-            } as IUniquelyIdentifiableInstances,
+            } as UniquelyIdentifiableInstances,
             {
                 target: frameResults[1].target,
                 html: elements[1].outerHTML,
-            } as IUniquelyIdentifiableInstances,
+            } as UniquelyIdentifiableInstances,
         ];
 
         windowUtilsMock
@@ -125,7 +125,7 @@ describe('InstanceVisibilityCheckerTest', () => {
 
         setupConfigurationFactoryMocks(testType, testStepDrawerId, expectedUniquelyIdentifiableInstances, elementFoundGeneratedIds);
 
-        const expectedPayload: IMessage = {
+        const expectedPayload: Message = {
             type: Messages.Assessment.UpdateInstanceVisibility,
             payload: {
                 payloadBatch: [
@@ -189,7 +189,7 @@ describe('InstanceVisibilityCheckerTest', () => {
 
         setupConfigurationFactoryMocks(testType, testStepDrawerId, [expectedUniquelyIdentifiableInstance], [elementFoundGeneratedId]);
 
-        const expectedPayload: IMessage = {
+        const expectedPayload: Message = {
             type: Messages.Assessment.UpdateInstanceVisibility,
             payload: {
                 payloadBatch: [
@@ -238,7 +238,7 @@ describe('InstanceVisibilityCheckerTest', () => {
             .returns(() => null)
             .verifiable(Times.once());
 
-        const expectedPayload: IMessage = {
+        const expectedPayload: Message = {
             type: Messages.Assessment.UpdateInstanceVisibility,
             payload: {
                 payloadBatch: [
@@ -299,7 +299,7 @@ describe('InstanceVisibilityCheckerTest', () => {
     function setupConfigurationFactoryMocks(
         getConfigType: VisualizationType,
         drawerIdentifier: string,
-        instances: IUniquelyIdentifiableInstances[],
+        instances: UniquelyIdentifiableInstances[],
         returnedIdentifiers: string[],
     ): void {
         getUpdateVisibilityMock.setup(guvm => guvm(drawerIdentifier)).returns(() => true);

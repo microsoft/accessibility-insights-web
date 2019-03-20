@@ -2,11 +2,11 @@
 // Licensed under the MIT License.
 import { VisualizationType } from '../visualization-type';
 import { ManualTestStatusData, ManualTestStatus } from '../manual-test-status';
-import { ITab } from '../../itab';
+import { Tab } from '../../itab';
 
 export type TestStepInstance = IUserCapturedInstance & IGeneratedAssessmentInstance;
 
-export type PersistedTabInfo = ITab & {
+export type PersistedTabInfo = Tab & {
     appRefreshed: boolean;
 };
 // tslint:disable-next-line:interface-name
@@ -18,8 +18,8 @@ export interface IAssessmentStoreData {
     assessmentNavState: AssessmentNavState;
 }
 
-export type InstanceIdToInstanceDataMap = IDictionaryStringTo<IGeneratedAssessmentInstance>;
-export type RequirementIdToResultMap = IDictionaryStringTo<IManualTestStepResult>;
+export type InstanceIdToInstanceDataMap = DictionaryStringTo<IGeneratedAssessmentInstance>;
+export type RequirementIdToResultMap = DictionaryStringTo<IManualTestStepResult>;
 
 // tslint:disable-next-line:interface-name
 export interface IAssessmentData {
@@ -87,6 +87,6 @@ export interface ILandmarksAssessmentProperties {
 }
 
 // tslint:disable-next-line:interface-name
-export type IAssessmentInstancesMap<T = {}, K = {}> = IDictionaryStringTo<IGeneratedAssessmentInstance<T, K>>;
+export type IAssessmentInstancesMap<T = {}, K = {}> = DictionaryStringTo<IGeneratedAssessmentInstance<T, K>>;
 // tslint:disable-next-line:interface-name
 export type IAssessmentResultType<K> = { [testStepName in keyof K]: ITestStepResult };

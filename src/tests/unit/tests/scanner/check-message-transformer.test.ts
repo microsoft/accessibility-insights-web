@@ -5,8 +5,6 @@ import { AxeRule, FormattedCheckResult, ICheckConfiguration, RuleConfiguration }
 import { CustomRulesConfigurationStub } from './custom-rules-configuration-stub';
 
 describe('CheckMessageTransformer', () => {
-    let failedAxeResultStub: AxeRule;
-    let passedAxeResultStub: AxeRule;
     let configuration: RuleConfiguration[];
 
     beforeEach(() => {

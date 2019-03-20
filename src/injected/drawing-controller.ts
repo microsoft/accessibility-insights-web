@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
+import { forOwn } from 'lodash';
 
 import { IAssessmentsProvider } from '../assessments/types/iassessments-provider';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -8,6 +9,7 @@ import { EnumHelper } from '../common/enum-helper';
 import { FeatureFlags } from '../common/feature-flags';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
+import { DictionaryNumberTo } from '../types/common-types';
 import { HTMLElementUtils } from './../common/html-element-utils';
 import { FrameCommunicator, IMessageRequest } from './frameCommunicators/frame-communicator';
 import {
@@ -32,7 +34,7 @@ export interface VisualizationWindowMessage {
 export class DrawingController {
     public static readonly triggerVisualizationCommand = 'insights.draw';
 
-    private _drawers: IDictionaryNumberTo<IDrawer> = {};
+    private _drawers: DictionaryNumberTo<IDrawer> = {};
     private _frameCommunicator: FrameCommunicator;
     private _instanceVisibilityChecker: InstanceVisibilityChecker;
     private _axeResultsHelper: HtmlElementAxeResultsHelper;
@@ -223,8 +225,8 @@ export class DrawingController {
     }
 
     public dispose(): void {
-        for (const key in this._drawers) {
-            this._drawers[key].eraseLayout();
-        }
+        forOwn(this._drawers, currentDrawer => {
+            currentDrawer.eraseLayout();
+        });
     }
 }

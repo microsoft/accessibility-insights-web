@@ -6,7 +6,7 @@ import { IMock, It, Mock, Times } from 'typemoq';
 import { ScopingInputTypes } from '../../../../../background/scoping-input-types';
 import { ScopingStore } from '../../../../../background/stores/global/scoping-store';
 import {
-    IVisualizationConfiguration,
+    VisualizationConfiguration,
     VisualizationConfigurationFactory,
 } from '../../../../../common/configs/visualization-configuration-factory';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
@@ -18,16 +18,17 @@ import { RuleAnalyzer } from '../../../../../injected/analyzers/rule-analyzer';
 import { IHtmlElementAxeResults, ScannerUtils } from '../../../../../injected/scanner-utils';
 import { ScanOptions } from '../../../../../scanner/exposed-apis';
 import { ScanResults } from '../../../../../scanner/iruleresults';
+import { DictionaryStringTo } from '../../../../../types/common-types';
 
 describe('RuleAnalyzer', () => {
     let scannerUtilsMock: IMock<ScannerUtils>;
-    let resultProcessorMock: IMock<(results: ScanResults) => IDictionaryStringTo<IHtmlElementAxeResults>>;
+    let resultProcessorMock: IMock<(results: ScanResults) => DictionaryStringTo<IHtmlElementAxeResults>>;
     let dateGetterMock: IMock<() => Date>;
     let dateMock: IMock<Date>;
     let scopingStoreMock: IMock<ScopingStore>;
     let scopingState: IScopingStoreData;
     let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
-    const mockAllInstances: IDictionaryStringTo<any> = {
+    const mockAllInstances: DictionaryStringTo<any> = {
         test: 'test-result-value',
     };
     let sendMessageMock: IMock<(message) => void>;
@@ -68,7 +69,7 @@ describe('RuleAnalyzer', () => {
             .returns(() => {
                 return {
                     displayableData: { title: testName },
-                } as IVisualizationConfiguration;
+                } as VisualizationConfiguration;
             })
             .verifiable();
     });
@@ -89,7 +90,7 @@ describe('RuleAnalyzer', () => {
         return telemetryStub;
     }
 
-    function testGetResults(done: () => void) {
+    function testGetResults(done: () => void): void {
         const key = 'sample key';
         const telemetryProcessorStub = factory => (_, elapsedTime, __) => {
             return createTelemetryStub(elapsedTime, testName, key);
@@ -157,7 +158,7 @@ describe('RuleAnalyzer', () => {
         scanCallback(scanResults);
     }
 
-    function setupScannerUtilsMock(rules: string[]) {
+    function setupScannerUtilsMock(rules: string[]): void {
         const getState = scopingStoreMock.object.getState();
         const include = getState.selectors[ScopingInputTypes.include];
         const exclude = getState.selectors[ScopingInputTypes.exclude];

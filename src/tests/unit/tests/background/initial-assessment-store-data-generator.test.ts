@@ -215,8 +215,8 @@ describe('InitialAssessmentStoreDataGeneratorTest', () => {
         };
         const expectedMap = {
             [knownRequirement1]: createRequirementResult(true, 2),
-            [knownRequirement2]: creaetDefaultRequirementResult(),
-            [knownRequirement3]: creaetDefaultRequirementResult(),
+            [knownRequirement2]: createDefaultRequirementResult(),
+            [knownRequirement3]: createDefaultRequirementResult(),
         };
 
         const actual = generator.generateInitialState(persisted);
@@ -225,7 +225,7 @@ describe('InitialAssessmentStoreDataGeneratorTest', () => {
     });
 });
 
-function creaetDefaultRequirementResult() {
+function createDefaultRequirementResult(): TestStepData {
     return createRequirementResult(false, 1);
 }
 

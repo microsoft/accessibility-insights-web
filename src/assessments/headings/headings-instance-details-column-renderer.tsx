@@ -3,11 +3,11 @@
 import * as React from 'react';
 import { IHeadingsAssessmentProperties } from '../../common/types/store-data/iassessment-result-data';
 import { AssessmentInstanceDetailsColumn } from '../../DetailsView/components/assessment-instance-details-column';
-import { IAssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
+import { AssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
 import { HeadingFormatter } from '../../injected/visualization/heading-formatter';
 
 export function headingsAssessmentInstanceDetailsColumnRenderer(
-    item: IAssessmentInstanceRowData<IHeadingsAssessmentProperties>,
+    item: AssessmentInstanceRowData<IHeadingsAssessmentProperties>,
 ): JSX.Element {
     const propertyBag = item.instance.propertyBag;
     const textContent = propertyBag ? propertyBag.headingText : null;

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { registerIcons } from '@uifabric/styling/lib/index';
 
-export function initializeFabricIcons() {
+export function initializeFabricIcons(): void {
     registerIcons({
         style: {
             MozOsxFontSmoothing: 'grayscale',

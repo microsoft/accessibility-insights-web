@@ -17,6 +17,7 @@ import { AdHocTestkeys } from '../../../../../common/configs/adhoc-test-keys';
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
+import { IVisualizationStoreData } from '../../../../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
 import { VisualizationStoreDataBuilder } from '../../../common/visualization-store-data-builder';
@@ -799,14 +800,16 @@ describe('VisualizationStoreTest ', () => {
         createStoreTesterForTabActions(actionName).testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    function createStoreTesterForTabActions(actionName: keyof TabActions) {
+    function createStoreTesterForTabActions(actionName: keyof TabActions): StoreTester<IVisualizationStoreData, TabActions> {
         const factory = (actions: TabActions) =>
             new VisualizationStore(new VisualizationActions(), actions, new VisualizationConfigurationFactory());
 
         return new StoreTester(TabActions, actionName, factory);
     }
 
-    function createStoreTesterForVisualizationActions(actionName: keyof VisualizationActions) {
+    function createStoreTesterForVisualizationActions(
+        actionName: keyof VisualizationActions,
+    ): StoreTester<IVisualizationStoreData, VisualizationActions> {
         const factory = (actions: VisualizationActions) =>
             new VisualizationStore(actions, new TabActions(), new VisualizationConfigurationFactory());
 

@@ -1,18 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow, ShallowWrapper } from 'enzyme';
-import * as Enzyme from 'enzyme';
-import * as _ from 'lodash';
+import { mount, shallow } from 'enzyme';
 import { Link } from 'office-ui-fabric-react/lib/Link';
-import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
-import { IToggle, Toggle, ToggleBase } from 'office-ui-fabric-react/lib/Toggle';
 import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
-import { It, Mock, Times } from 'typemoq';
-
+import { IMock, It, Mock, Times } from 'typemoq';
 import { VisualizationToggle } from '../../../../../../common/components/visualization-toggle';
 import {
-    IVisualizationConfiguration,
+    VisualizationConfiguration,
     VisualizationConfigurationFactory,
 } from '../../../../../../common/configs/visualization-configuration-factory';
 import { FeatureFlags } from '../../../../../../common/feature-flags';
@@ -21,13 +16,11 @@ import { DetailsViewPivotType } from '../../../../../../common/types/details-vie
 import { IVisualizationStoreData } from '../../../../../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
 import { PopupActionMessageCreator } from '../../../../../../popup/scripts/actions/popup-action-message-creator';
-import {
-    DiagnosticViewToggle,
-    DiagnosticViewToggleProps,
-    DiagnosticViewToggleState,
-} from '../../../../../../popup/scripts/components/diagnostic-view-toggle';
+import { DiagnosticViewToggle, DiagnosticViewToggleProps } from '../../../../../../popup/scripts/components/diagnostic-view-toggle';
 import { DiagnosticViewClickHandler } from '../../../../../../popup/scripts/handlers/diagnostic-view-toggle-click-handler';
-import { ContentLink, ContentLinkDeps } from '../../../../../../views/content/content-link';
+import { DictionaryStringTo } from '../../../../../../types/common-types';
+import { ContentLinkDeps } from '../../../../../../views/content/content-link';
+import { ContentProvider } from '../../../../../../views/content/content-page';
 import { EventStubFactory } from '../../../../common/event-stub-factory';
 import { ShortcutCommandsTestData } from '../../../../common/sample-test-data';
 import { VisualizationStoreDataBuilder } from '../../../../common/visualization-store-data-builder';
@@ -37,238 +30,242 @@ describe('DiagnosticViewToggleTest', () => {
     const testTelemetrySource: TelemetryEventSource = -1 as TelemetryEventSource;
     const eventStubFactory = new EventStubFactory();
 
-    test('render spinner', () => {
-        const type = VisualizationType.Headings;
-        const data = new VisualizationStoreDataBuilder().with('scanning', 'headings').build();
+    describe('renders', () => {
+        it('spinner while scanning', () => {
+            const type = VisualizationType.Headings;
+            const data = new VisualizationStoreDataBuilder().with('scanning', 'headings').build();
 
-        const props: DiagnosticViewToggleProps = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource)
-            .setupVisualizationStoreData(data)
-            .build();
+            const props: DiagnosticViewToggleProps = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource)
+                .setupVisualizationStoreData(data)
+                .build();
 
-        const wrapper = shallow(<DiagnosticViewToggle {...props} />);
+            const wrapper = shallow(<DiagnosticViewToggle {...props} />);
 
-        assertSpinner(wrapper);
-        assertDetailsViewLink(wrapper, type);
-        assertShortcut(wrapper, type, props);
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
+
+        it('toggle when scanning for a different visualization', () => {
+            const type = VisualizationType.Headings;
+            const data = new VisualizationStoreDataBuilder().with('scanning', 'landmarks').build();
+
+            const props: DiagnosticViewToggleProps = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource)
+                .setupVisualizationStoreData(data)
+                .build();
+
+            const wrapper = shallow(<DiagnosticViewToggle {...props} />);
+
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
+
+        it('toggle when not scanning', () => {
+            const type = VisualizationType.Headings;
+
+            const props: DiagnosticViewToggleProps = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource).build();
+
+            const wrapper = shallow(<DiagnosticViewToggle {...props} />);
+
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
+
+        it('details view link when the test does not have a guidance', () => {
+            const type = VisualizationType.Issues;
+
+            const props: DiagnosticViewToggleProps = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource).build();
+
+            const wrapper = shallow(<DiagnosticViewToggle {...props} />);
+
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
     });
 
-    test('render toggle when scanning', () => {
-        const type = VisualizationType.Headings;
-        const data = new VisualizationStoreDataBuilder().with('scanning', 'landmarks').build();
+    describe('user interaction: ', () => {
+        it('hanldes click on details view link, it will open fastpass when Assessment enabled', () => {
+            const type = VisualizationType.Issues;
+            const event = eventStubFactory.createKeypressEvent();
+            const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource);
+            const props: DiagnosticViewToggleProps = propsBuilder
+                .setupFeatureFlags({ 'test-flag': true })
+                .setupOpenDetailsViewCall(event)
+                .build();
 
-        const props: DiagnosticViewToggleProps = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource)
-            .setupVisualizationStoreData(data)
-            .build();
+            const wrapper = shallow(<DiagnosticViewToggle {...props} />);
 
-        const wrapper = shallow(<DiagnosticViewToggle {...props} />);
+            wrapper.find(Link).simulate('click', event);
 
-        assertVisualizationToggle(wrapper, type, data);
-        assertDetailsViewLink(wrapper, type);
-        assertShortcut(wrapper, type, props);
+            propsBuilder.verifyAll();
+        });
+
+        it('handles click the visualization toggle', () => {
+            const type = VisualizationType.Headings;
+            const event = eventStubFactory.createKeypressEvent();
+
+            const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource).setupToggleVisualizationCall(event);
+
+            const props: DiagnosticViewToggleProps = propsBuilder.build();
+
+            const wrapper = shallow(<DiagnosticViewToggle {...props} />);
+
+            wrapper.find(VisualizationToggle).simulate('click', event);
+
+            propsBuilder.verifyAll();
+        });
+
+        it('handles click on the link when spinner is present', () => {
+            const type = VisualizationType.Issues;
+            const data = new VisualizationStoreDataBuilder().with('scanning', 'issues').build();
+
+            const event = eventStubFactory.createKeypressEvent();
+
+            const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource)
+                .setupVisualizationStoreData(data)
+                .setupOpenDetailsViewCall(event);
+
+            const props: DiagnosticViewToggleProps = propsBuilder.build();
+
+            const wrapper = shallow(<DiagnosticViewToggle {...props} />);
+            wrapper.find(Link).simulate('click', event);
+
+            propsBuilder.verifyAll();
+        });
+
+        it('hanldes click on the link when toggle is present', () => {
+            const type = VisualizationType.Issues;
+            const event = eventStubFactory.createKeypressEvent();
+
+            const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource).setupOpenDetailsViewCall(event);
+
+            const props: DiagnosticViewToggleProps = propsBuilder.build();
+
+            const wrapper = shallow(<DiagnosticViewToggle {...props} />);
+            wrapper.find(Link).simulate('click', event);
+
+            propsBuilder.verifyAll();
+        });
+
+        it('handles command not found', () => {
+            const type = VisualizationType.Color;
+            const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource).setupShortcutCommands([]);
+
+            const props: DiagnosticViewToggleProps = propsBuilder.build();
+
+            const component = new DiagnosticViewToggle(props);
+
+            const renderAction = () => component.render();
+
+            const commandName = visualizationConfigurationFactory.getConfiguration(type).chromeCommand;
+            expect(renderAction).toThrowError(`Cannot find command for name: ${commandName}`);
+        });
     });
 
-    test('render toggle when not scanning', () => {
-        const type = VisualizationType.Headings;
+    describe('lifecycle events', () => {
+        it('sets focus when componentDidMount', () => {
+            const type = VisualizationType.TabStops;
+            const event = eventStubFactory.createKeypressEvent();
 
-        const props: DiagnosticViewToggleProps = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource).build();
+            const depsMock = createDepsMock();
 
-        const wrapper = shallow(<DiagnosticViewToggle {...props} />);
+            const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource)
+                .setupOpenDetailsViewCall(event)
+                .setupDeps(depsMock.object);
 
-        assertVisualizationToggle(wrapper, type, props.visualizationStoreData, false);
-        assertDetailsViewLink(wrapper, type);
-        assertShortcut(wrapper, type, props);
+            const props = propsBuilder.build();
+
+            const wrapper = mount(<DiagnosticViewToggle {...props} />);
+            wrapper.setState({
+                isFocused: true,
+            });
+            const toggle = wrapper.find(VisualizationToggle).props().componentRef.current;
+            jest.spyOn(toggle, 'focus');
+
+            wrapper.instance().componentDidMount();
+
+            expect(toggle.focus).toHaveBeenCalledTimes(1);
+        });
+
+        it('sets focus when componentDidUpdate', () => {
+            const type = VisualizationType.TabStops;
+            const event = eventStubFactory.createKeypressEvent();
+
+            const depsMock = createDepsMock();
+
+            const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource)
+                .setupOpenDetailsViewCall(event)
+                .setupDeps(depsMock.object);
+
+            const props: DiagnosticViewToggleProps = propsBuilder.build();
+
+            const wrapper = mount(<DiagnosticViewToggle {...props} />);
+            wrapper.setState({
+                isFocused: true,
+            });
+            const toggle = wrapper.find(VisualizationToggle).props().componentRef.current;
+            jest.spyOn(toggle, 'focus');
+
+            wrapper.instance().componentDidUpdate(props, props);
+
+            expect(toggle.focus).toHaveBeenCalledTimes(1);
+        });
     });
 
-    test('verify content link rendered when newAssessmentExperience is on', () => {
-        const type = VisualizationType.Headings;
+    describe('focus-like events', () => {
+        it('handles onFocus event on the VisualizationToggle', () => {
+            const type = VisualizationType.TabStops;
+            const event = eventStubFactory.createKeypressEvent();
 
-        const props: DiagnosticViewToggleProps = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource)
-            .setupFeatureFlags({ [FeatureFlags.newAssessmentExperience]: true })
-            .build();
+            const depsMock = createDepsMock();
 
-        const wrapper = shallow(<DiagnosticViewToggle {...props} />);
+            const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource)
+                .setupOpenDetailsViewCall(event)
+                .setupDeps(depsMock.object);
 
-        assertVisualizationToggle(wrapper, type, props.visualizationStoreData, false);
-        assertContentLink(wrapper, type);
-        assertShortcut(wrapper, type, props);
+            const props: DiagnosticViewToggleProps = propsBuilder.build();
+
+            const component = React.createElement(DiagnosticViewToggle, props);
+
+            const testObject = TestUtils.renderIntoDocument(component);
+
+            (testObject as any)._isMounted = true;
+
+            const onFocusHandlerFunction = (testObject as any).onFocusHandler;
+            onFocusHandlerFunction();
+
+            expect((testObject as any).state.isFocused).toBeTruthy();
+        });
+
+        it('onBlurHandler', () => {
+            const type = VisualizationType.TabStops;
+            const event = eventStubFactory.createKeypressEvent();
+
+            const depsMock = createDepsMock();
+
+            const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource)
+                .setupOpenDetailsViewCall(event)
+                .setupDeps(depsMock.object);
+
+            const props: DiagnosticViewToggleProps = propsBuilder.build();
+
+            const component = React.createElement(DiagnosticViewToggle, props);
+
+            const testObject = TestUtils.renderIntoDocument(component);
+
+            (testObject as any)._isMounted = true;
+
+            const onBlurHandlerFunction = (testObject as any).onBlurHandler;
+            onBlurHandlerFunction();
+
+            expect((testObject as any).state.isFocused).toBeFalsy();
+        });
     });
 
-    test('verify details view link rendered when newAssessmentExperience is on, but the test does not have a guidance', () => {
-        const type = VisualizationType.Issues;
-
-        const props: DiagnosticViewToggleProps = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource)
-            .setupFeatureFlags({ [FeatureFlags.newAssessmentExperience]: true })
-            .build();
-
-        const wrapper = shallow(<DiagnosticViewToggle {...props} />);
-
-        assertVisualizationToggle(wrapper, type, props.visualizationStoreData, false);
-        assertDetailsViewLink(wrapper, type);
-        assertShortcut(wrapper, type, props);
-    });
-
-    test('verify details view link will open fastpass when Assessment enabled', () => {
-        const type = VisualizationType.Issues;
+    it('addUserEventListener', () => {
+        const type = VisualizationType.TabStops;
         const event = eventStubFactory.createKeypressEvent();
-        const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource);
-        const props: DiagnosticViewToggleProps = propsBuilder
-            .setupFeatureFlags({ [FeatureFlags.newAssessmentExperience]: true })
-            .setupOpenDetailsViewCall(event, DetailsViewPivotType.fastPass)
-            .build();
 
-        const wrapper = shallow(<DiagnosticViewToggle {...props} />);
-
-        wrapper.find(Link).simulate('click', event);
-
-        propsBuilder.verifyAll();
-    });
-
-    test('click the visualization toggle', () => {
-        const type = VisualizationType.Headings;
-        const event = eventStubFactory.createKeypressEvent();
-
-        const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource).setupToggleVisualizationCall(event);
-
-        const props: DiagnosticViewToggleProps = propsBuilder.build();
-
-        const wrapper = shallow(<DiagnosticViewToggle {...props} />);
-
-        wrapper.find(VisualizationToggle).simulate('click', event);
-
-        propsBuilder.verifyAll();
-    });
-
-    test('click details view toggle when spinner is present', () => {
-        const type = VisualizationType.Issues;
-        const data = new VisualizationStoreDataBuilder().with('scanning', 'issues').build();
-
-        const event = eventStubFactory.createKeypressEvent();
+        const depsMock = createDepsMock();
 
         const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource)
-            .setupVisualizationStoreData(data)
-            .setupOpenDetailsViewCall(event);
-
-        const props: DiagnosticViewToggleProps = propsBuilder.build();
-
-        const wrapper = shallow(<DiagnosticViewToggle {...props} />);
-        wrapper.find(Link).simulate('click', event);
-
-        propsBuilder.verifyAll();
-    });
-
-    test('click details view toggle when toggle is present', () => {
-        const type = VisualizationType.TabStops;
-        const event = eventStubFactory.createKeypressEvent();
-
-        const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource).setupOpenDetailsViewCall(event);
-
-        const props: DiagnosticViewToggleProps = propsBuilder.build();
-
-        const wrapper = shallow(<DiagnosticViewToggle {...props} />);
-        wrapper.find(Link).simulate('click', event);
-
-        propsBuilder.verifyAll();
-    });
-
-    test('command not found', () => {
-        const type = VisualizationType.Color;
-        const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource).setupShortcutCommands([]);
-
-        const props: DiagnosticViewToggleProps = propsBuilder.build();
-
-        const component = new DiagnosticViewToggle(props);
-
-        const renderAction = () => component.render();
-
-        const commandName = visualizationConfigurationFactory.getConfiguration(type).chromeCommand;
-        expect(renderAction).toThrowError(`Cannot find command for name: ${commandName}`);
-    });
-
-    test('set focus when componentDidMount', () => {
-        const type = VisualizationType.TabStops;
-        const event = eventStubFactory.createKeypressEvent();
-
-        const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource).setupOpenDetailsViewCall(event);
-
-        const props: DiagnosticViewToggleProps = propsBuilder.build();
-
-        const wrapper = Enzyme.mount(<DiagnosticViewToggle {...props} />);
-        wrapper.setState({
-            isFocused: true,
-        });
-        const toggle = wrapper.find(VisualizationToggle).props().componentRef.current;
-        jest.spyOn(toggle, 'focus');
-
-        wrapper.instance().componentDidMount();
-
-        expect(toggle.focus).toHaveBeenCalledTimes(1);
-    });
-
-    test('componentDidUpdate', () => {
-        const type = VisualizationType.TabStops;
-        const event = eventStubFactory.createKeypressEvent();
-
-        const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource).setupOpenDetailsViewCall(event);
-
-        const props: DiagnosticViewToggleProps = propsBuilder.build();
-
-        const wrapper = Enzyme.mount(<DiagnosticViewToggle {...props} />);
-        wrapper.setState({
-            isFocused: true,
-        });
-        const toggle = wrapper.find(VisualizationToggle).props().componentRef.current;
-        jest.spyOn(toggle, 'focus');
-
-        wrapper.instance().componentDidUpdate(props, props);
-
-        expect(toggle.focus).toHaveBeenCalledTimes(1);
-    });
-
-    test('onFocusHandler', () => {
-        const type = VisualizationType.TabStops;
-        const event = eventStubFactory.createKeypressEvent();
-
-        const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource).setupOpenDetailsViewCall(event);
-
-        const props: DiagnosticViewToggleProps = propsBuilder.build();
-
-        const component = React.createElement(DiagnosticViewToggle, props);
-
-        const testObject = TestUtils.renderIntoDocument(component);
-
-        (testObject as any)._isMounted = true;
-
-        const onFocusHandlerFunction = (testObject as any).onFocusHandler;
-        onFocusHandlerFunction();
-
-        expect((testObject as any).state.isFocused).toBeTruthy();
-    });
-
-    test('onBlurHandler', () => {
-        const type = VisualizationType.TabStops;
-        const event = eventStubFactory.createKeypressEvent();
-
-        const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource).setupOpenDetailsViewCall(event);
-
-        const props: DiagnosticViewToggleProps = propsBuilder.build();
-
-        const component = React.createElement(DiagnosticViewToggle, props);
-
-        const testObject = TestUtils.renderIntoDocument(component);
-
-        (testObject as any)._isMounted = true;
-
-        const onBlurHandlerFunction = (testObject as any).onBlurHandler;
-        onBlurHandlerFunction();
-
-        expect((testObject as any).state.isFocused).toBeFalsy();
-    });
-
-    test('addUserEventListener', () => {
-        const type = VisualizationType.TabStops;
-        const event = eventStubFactory.createKeypressEvent();
-
-        const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource).setupOpenDetailsViewCall(event);
+            .setupOpenDetailsViewCall(event)
+            .setupDeps(depsMock.object);
 
         const props: DiagnosticViewToggleProps = propsBuilder.build();
 
@@ -281,73 +278,16 @@ describe('DiagnosticViewToggleTest', () => {
         const addUserEventListenerFunction = (testObject as any).addUserEventListener;
         addUserEventListenerFunction();
 
-        expect((testObject as any)._userEventListenerAdded).toBeTruthy();
+        expect((testObject as any)._userEventListenerAdded).toBe(true);
         propsBuilder.addUserListenerVerifyAll();
     });
 
-    function assertSpinner(wrapper: ShallowWrapper<DiagnosticViewToggleProps, DiagnosticViewToggleState>): void {
-        const spinner = wrapper.find(Spinner);
+    function createDepsMock(): IMock<ContentLinkDeps> {
+        const contentProviderMock = Mock.ofType<ContentProvider>();
+        const depsMock = Mock.ofType<ContentLinkDeps>();
+        depsMock.setup(deps => deps.contentProvider).returns(() => contentProviderMock.object);
 
-        expect(spinner).toBeDefined();
-        expect(spinner.props().size).toEqual(SpinnerSize.small);
-    }
-
-    function assertDetailsViewLink(
-        wrapper: ShallowWrapper<DiagnosticViewToggleProps, DiagnosticViewToggleState>,
-        type: VisualizationType,
-    ): void {
-        const detailsViewLink = wrapper.find(Link);
-
-        const configuration = visualizationConfigurationFactory.getConfiguration(type);
-        const displayableData = configuration.displayableData;
-
-        expect(detailsViewLink).toBeDefined();
-        expect(detailsViewLink.children().text()).toEqual(displayableData.linkToDetailsViewText);
-        expect(detailsViewLink.props().href).toEqual('#');
-    }
-
-    function assertContentLink(
-        wrapper: ShallowWrapper<DiagnosticViewToggleProps, DiagnosticViewToggleState>,
-        type: VisualizationType,
-    ): void {
-        const detailsViewLink = wrapper.find(ContentLink);
-
-        const configuration = visualizationConfigurationFactory.getConfiguration(type);
-        const displayableData = configuration.displayableData;
-
-        expect(detailsViewLink.props().linkText).toEqual(displayableData.linkToDetailsViewText);
-    }
-
-    function assertShortcut(
-        wrapper: ShallowWrapper<DiagnosticViewToggleProps, DiagnosticViewToggleState>,
-        type: VisualizationType,
-        props: DiagnosticViewToggleProps,
-    ): void {
-        const shortcutDiv = wrapper.findWhere(node => node.hasClass('shortcut-label'));
-
-        expect(shortcutDiv).toBeDefined();
-
-        const commandName = visualizationConfigurationFactory.getConfiguration(type).chromeCommand;
-        const expectedCommand = _.find(props.shortcutCommands, command => command.name === commandName);
-
-        expect(shortcutDiv.text()).toEqual(expectedCommand.shortcut);
-    }
-
-    function assertVisualizationToggle(
-        wrapper: ShallowWrapper<DiagnosticViewToggleProps, DiagnosticViewToggleState>,
-        type: VisualizationType,
-        data: IVisualizationStoreData,
-        isDisabled: boolean = true,
-    ): void {
-        const visualizationToggle = wrapper.find(VisualizationToggle);
-
-        expect(visualizationToggle).toBeDefined();
-
-        const configuration = visualizationConfigurationFactory.getConfiguration(type);
-        const scanData = configuration.getStoreData(data.tests);
-
-        expect(visualizationToggle.props().checked).toEqual(scanData.enabled);
-        expect(visualizationToggle.props().disabled).toEqual(isDisabled);
+        return depsMock;
     }
 });
 
@@ -362,15 +302,19 @@ class DiagnosticViewTogglePropsBuilder {
     private shortcutCommands: chrome.commands.Command[] = ShortcutCommandsTestData;
     private querySelectorMock = Mock.ofInstance(selector => {});
     private addEventListenerMock = Mock.ofInstance((e, ev) => {});
-    private featureFlags: IDictionaryStringTo<boolean> = {};
+    private featureFlags: DictionaryStringTo<boolean> = {};
     private deps: ContentLinkDeps = {} as ContentLinkDeps;
-    private configurationStub: IVisualizationConfiguration;
+    private configurationStub: VisualizationConfiguration;
 
     constructor(type: VisualizationType, telemetrySource: TelemetryEventSource) {
         this.type = type;
         this.telemetrySource = telemetrySource;
     }
 
+    public setupDeps(deps: ContentLinkDeps): DiagnosticViewTogglePropsBuilder {
+        this.deps = deps;
+        return this;
+    }
     public setupShortcutCommands(shortcutCommands: chrome.commands.Command[]): DiagnosticViewTogglePropsBuilder {
         this.shortcutCommands = shortcutCommands;
         return this;
@@ -381,9 +325,9 @@ class DiagnosticViewTogglePropsBuilder {
         return this;
     }
 
-    public setupOpenDetailsViewCall(event, pivot = DetailsViewPivotType.allTest): DiagnosticViewTogglePropsBuilder {
+    public setupOpenDetailsViewCall(event): DiagnosticViewTogglePropsBuilder {
         this.actionMessageCreatorMock
-            .setup(ac => ac.openDetailsView(event, this.type, this.telemetrySource, pivot))
+            .setup(ac => ac.openDetailsView(event, this.type, this.telemetrySource, DetailsViewPivotType.fastPass))
             .verifiable(Times.once());
 
         return this;
@@ -395,7 +339,7 @@ class DiagnosticViewTogglePropsBuilder {
         return this;
     }
 
-    public setupFeatureFlags(featureFlags: IDictionaryStringTo<boolean>): DiagnosticViewTogglePropsBuilder {
+    public setupFeatureFlags(featureFlags: DictionaryStringTo<boolean>): DiagnosticViewTogglePropsBuilder {
         this.featureFlags = featureFlags;
         return this;
     }

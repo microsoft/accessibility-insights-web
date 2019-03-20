@@ -10,6 +10,7 @@ import { FeatureFlagStore } from '../../../../../../background/stores/global/fea
 import { getDefaultFeatureFlagValues } from '../../../../../../common/feature-flags';
 import { StoreNames } from '../../../../../../common/stores/store-names';
 import { FeatureFlagStoreData } from '../../../../../../common/types/store-data/feature-flag-store-data';
+import { DictionaryStringTo } from '../../../../../../types/common-types';
 import { createStoreWithNullParams, StoreTester } from '../../../../common/store-tester';
 
 describe('FeatureFlagStoreTest', () => {
@@ -124,7 +125,7 @@ describe('FeatureFlagStoreTest', () => {
     function createStoreTesterForFeatureFlagActions(
         actionName: keyof FeatureFlagActions,
         userData: ILocalStorageData = null,
-    ): StoreTester<IDictionaryStringTo<boolean>, FeatureFlagActions> {
+    ): StoreTester<DictionaryStringTo<boolean>, FeatureFlagActions> {
         const factory = (actions: FeatureFlagActions) => new FeatureFlagStore(actions, browserAdapterMock.object, userData);
         return new StoreTester(FeatureFlagActions, actionName, factory);
     }

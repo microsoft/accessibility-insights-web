@@ -1,12 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, Mock, Times } from 'typemoq';
-
 import { getDefaultFeatureFlagValues } from '../../../../../common/feature-flags';
 import { IHtmlElementAxeResults } from '../../../../../injected/scanner-utils';
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
+import { SingleTargetDrawerConfiguration } from '../../../../../injected/visualization/formatter';
 import { IDrawerInitData } from '../../../../../injected/visualization/idrawer';
-import { SingleTargetDrawerConfiguration } from '../../../../../injected/visualization/iformatter';
 import { SingleTargetDrawer } from '../../../../../injected/visualization/single-target-drawer';
 import { SingleTargetFormatter } from '../../../../../injected/visualization/single-target-formatter';
 import { TestDocumentCreator } from '../../../common/test-document-creator';
@@ -137,7 +136,7 @@ describe('SingleTargetDrawer Tests', () => {
         formatterMock.verifyAll();
     });
 
-    function setupDrawerUtilsMockDefault(dom) {
+    function setupDrawerUtilsMockDefault(dom): void {
         drawerUtilsMock
             .setup(d => d.getDocumentElement())
             .returns(() => {
@@ -146,7 +145,7 @@ describe('SingleTargetDrawer Tests', () => {
             .verifiable(Times.atLeastOnce());
     }
 
-    function setupFormatterMock() {
+    function setupFormatterMock(): void {
         formatterMock
             .setup(f => f.getDrawerConfiguration())
             .returns(() => {

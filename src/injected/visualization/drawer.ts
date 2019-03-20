@@ -9,8 +9,8 @@ import { IHtmlElementAxeResults } from '../scanner-utils';
 import { ShadowUtils } from '../shadow-utils';
 import { BaseDrawer } from './base-drawer';
 import { DrawerUtils } from './drawer-utils';
+import { BoxConfig, DrawerConfiguration, Formatter } from './formatter';
 import { IDrawerInitData } from './idrawer';
-import { DrawerConfiguration, IBoxConfig, IFormatter } from './iformatter';
 
 export class Drawer extends BaseDrawer {
     protected elementResults: AxeResultsWithFrameLevel[];
@@ -37,7 +37,7 @@ export class Drawer extends BaseDrawer {
         shadowUtils: ShadowUtils,
         drawerUtils: DrawerUtils,
         clientUtils: ClientUtils,
-        formatter: IFormatter = null,
+        formatter: Formatter = null,
     ) {
         super(dom, containerClass, windowUtils, shadowUtils, drawerUtils, formatter);
         this.clientUtils = clientUtils;
@@ -70,7 +70,7 @@ export class Drawer extends BaseDrawer {
 
         let drawerConfig = Drawer.defaultConfiguration;
         if (this.formatter) {
-            drawerConfig = this.formatter.getDrawerConfiguration(element, data);
+            drawerConfig = this.formatter.getDrawerConfiguration(element, data) as DrawerConfiguration;
         }
 
         let elementBoundingClientRect = element.getBoundingClientRect();
@@ -124,7 +124,7 @@ export class Drawer extends BaseDrawer {
     private createtBox(
         wrapper: HTMLDivElement,
         drawerConfig: DrawerConfiguration,
-        boxConfig: IBoxConfig,
+        boxConfig: BoxConfig,
         currentDom: Document,
     ): HTMLDivElement {
         const box = currentDom.createElement('div');

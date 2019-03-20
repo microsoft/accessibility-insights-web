@@ -6,9 +6,10 @@ import { IMock, Mock } from 'typemoq';
 
 import { FeatureFlags } from '../../../../common/feature-flags';
 import { LayeredDetailsDialogComponent, LayeredDetailsDialogProps } from '../../../../injected/layered-details-dialog-component';
+import { DictionaryStringTo } from '../../../../types/common-types';
 
 describe(LayeredDetailsDialogComponent, () => {
-    let featureFlagStoreData: IDictionaryStringTo<boolean>;
+    let featureFlagStoreData: DictionaryStringTo<boolean>;
     let componentProps: LayeredDetailsDialogProps;
     let getRTLMock: IMock<typeof getRTL>;
 

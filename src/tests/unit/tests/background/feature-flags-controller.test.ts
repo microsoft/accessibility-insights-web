@@ -68,7 +68,7 @@ describe('FeatureFlagsControllerTest', () => {
             feature: feature,
             enabled: false,
         };
-        const message: IMessage = {
+        const message: Message = {
             type: Messages.FeatureFlags.SetFeatureFlag,
             payload: payload,
             tabId: null,
@@ -87,7 +87,7 @@ describe('FeatureFlagsControllerTest', () => {
             feature: feature,
             enabled: true,
         };
-        const message: IMessage = {
+        const message: Message = {
             type: Messages.FeatureFlags.SetFeatureFlag,
             payload: payload,
             tabId: null,
@@ -101,7 +101,7 @@ describe('FeatureFlagsControllerTest', () => {
     });
 
     test('resetFeatureFlags', () => {
-        const message: IMessage = {
+        const message: Message = {
             type: Messages.FeatureFlags.ResetFeatureFlag,
             tabId: null,
         };

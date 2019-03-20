@@ -4,9 +4,10 @@ import { map } from 'lodash';
 import * as React from 'react';
 
 import { IAssessmentsProvider } from '../../../assessments/types/iassessments-provider';
-import { IVisualizationConfiguration } from '../../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../../common/configs/visualization-configuration-factory';
 import { ManualTestStatus, ManualTestStatusData } from '../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../common/types/visualization-type';
+import { DictionaryStringTo } from '../../../types/common-types';
 import { OutcomeStats, OutcomeTypeSemantic } from '../../reports/components/outcome-type';
 import { GetAssessmentSummaryModelFromProviderAndStatusData } from '../../reports/get-assessment-summary-model';
 import { BaseLeftNavLink, onBaseLeftNavItemClick, onBaseLeftNavItemRender } from '../base-left-nav';
@@ -32,7 +33,7 @@ export class LeftNavLinkBuilder {
         deps: OverviewLinkBuilderDeps,
         onLinkClick: onBaseLeftNavItemClick,
         assessmentsProvider: IAssessmentsProvider,
-        assessmentsData: IDictionaryStringTo<ManualTestStatusData>,
+        assessmentsData: DictionaryStringTo<ManualTestStatusData>,
         index: number,
     ): BaseLeftNavLink {
         const { getAssessmentSummaryModelFromProviderAndStatusData } = deps;
@@ -61,7 +62,7 @@ export class LeftNavLinkBuilder {
         deps: AssessmentLinkBuilderDeps,
         onLinkClick: onBaseLeftNavItemClick,
         assessmentsProvider: IAssessmentsProvider,
-        assessmentsData: IDictionaryStringTo<ManualTestStatusData>,
+        assessmentsData: DictionaryStringTo<ManualTestStatusData>,
         startingIndex: number,
     ): BaseLeftNavLink[] {
         const { getStatusForTest, outcomeTypeSemanticsFromTestStatus, outcomeStatsFromManualTestStatus } = deps;
@@ -99,7 +100,7 @@ export class LeftNavLinkBuilder {
     }
 
     public buildVisualizationConfigurationLink(
-        configuration: IVisualizationConfiguration,
+        configuration: VisualizationConfiguration,
         onLinkClick: onBaseLeftNavItemClick,
         type: VisualizationType,
         index: number,

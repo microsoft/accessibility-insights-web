@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-import * as _ from 'lodash/index';
+import * as _ from 'lodash';
 
 import { Assessment } from '../assessments/types/iassessment';
 import { IAssessmentsProvider } from '../assessments/types/iassessments-provider';
@@ -12,6 +12,7 @@ import { RequirementStatusTelemetryData } from '../common/telemetry-events';
 import * as TelemetryEvents from '../common/telemetry-events';
 import { ManualTestStatus, ManualTestStatusData } from '../common/types/manual-test-status';
 import { IAssessmentData } from '../common/types/store-data/iassessment-result-data';
+import { DictionaryStringTo } from '../types/common-types';
 import { PayloadWithEventName } from './actions/action-payloads';
 import { Interpreter } from './interpreter';
 import { AssessmentStore } from './stores/assessment-store';
@@ -21,7 +22,7 @@ export class CompletedTestStepTelemetryCreator {
     private provider: IAssessmentsProvider;
     private telemetryFactory: TelemetryDataFactory;
     private interpreter: Interpreter;
-    private oldTestStates: IDictionaryStringTo<ManualTestStatusData>;
+    private oldTestStates: DictionaryStringTo<ManualTestStatusData>;
 
     constructor(store: AssessmentStore, provider: IAssessmentsProvider, factory: TelemetryDataFactory, interpreter: Interpreter) {
         this.store = store;

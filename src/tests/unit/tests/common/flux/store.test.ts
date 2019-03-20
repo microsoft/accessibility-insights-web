@@ -48,7 +48,7 @@ describe('StoreTest', () => {
         constructor() {
             super();
         }
-        public emitChanged() {
+        public emitChanged(): void {
             super.emitChanged();
         }
     }

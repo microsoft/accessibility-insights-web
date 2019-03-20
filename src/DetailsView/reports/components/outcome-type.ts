@@ -8,7 +8,7 @@ export type OutcomeType = 'pass' | 'incomplete' | 'fail';
 
 export const allOutcomeTypes: OutcomeType[] = ['pass', 'incomplete', 'fail'];
 
-export function outcomeTypeFromTestStatus(testStatus: ManualTestStatus) {
+export function outcomeTypeFromTestStatus(testStatus: ManualTestStatus): OutcomeType {
     const statusMap = {
         [ManualTestStatus.PASS]: 'pass',
         [ManualTestStatus.FAIL]: 'fail',

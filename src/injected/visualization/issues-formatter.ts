@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { getRTL } from '@uifabric/utilities';
 import * as ReactDOM from 'react-dom';
-
 import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 import { HTMLElementUtils } from '../../common/html-element-utils';
 import { WindowUtils } from '../../common/window-utils';
@@ -10,10 +9,10 @@ import { DialogRenderer } from '../dialog-renderer';
 import { FrameCommunicator } from '../frameCommunicators/frame-communicator';
 import { IHtmlElementAxeResults } from '../scanner-utils';
 import { ShadowUtils } from '../shadow-utils';
-import { IHeadingStyleConfiguration } from './heading-formatter';
-import { DrawerConfiguration, IFormatter } from './iformatter';
+import { DrawerConfiguration, Formatter } from './formatter';
+import { HeadingStyleConfiguration } from './heading-formatter';
 
-export class IssuesFormatter implements IFormatter {
+export class IssuesFormatter implements Formatter {
     private dialogRenderer: DialogRenderer;
 
     constructor(
@@ -36,7 +35,7 @@ export class IssuesFormatter implements IFormatter {
         );
     }
 
-    public static style: IHeadingStyleConfiguration = {
+    public static style: HeadingStyleConfiguration = {
         borderColor: '#CC0000',
         fontColor: '#FFFFFF',
     };

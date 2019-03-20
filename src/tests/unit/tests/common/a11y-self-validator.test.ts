@@ -7,6 +7,7 @@ import { HTMLElementUtils } from '../../../../common/html-element-utils';
 import { Logger } from '../../../../common/logging/logger';
 import { ScannerUtils } from '../../../../injected/scanner-utils';
 import { ScanResults } from '../../../../scanner/iruleresults';
+import { DictionaryStringTo } from '../../../../types/common-types';
 
 describe('A11YAutoCheckTest', () => {
     let scannerUtilsMock: IMock<ScannerUtils>;
@@ -15,7 +16,7 @@ describe('A11YAutoCheckTest', () => {
     let testObject: A11YSelfValidator;
 
     const failedSelectors: string[] = ['failed-div1', 'failed-div2'];
-    const failedDomElements: IDictionaryStringTo<string> = {
+    const failedDomElements: DictionaryStringTo<string> = {
         [failedSelectors[0]]: failedSelectors[0] + 'element',
         [failedSelectors[1]]: failedSelectors[1] + 'element',
     };

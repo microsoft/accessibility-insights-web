@@ -5,7 +5,7 @@ import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
-import { IDisplayableVisualizationTypeData } from '../../../../../common/configs/visualization-configuration-factory';
+import { DisplayableVisualizationTypeData } from '../../../../../common/configs/visualization-configuration-factory';
 import { ITabStoreData } from '../../../../../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../../../../../common/types/store-data/ivisualization-scan-result-data';
 import { IScanData, IVisualizationStoreData, TestsEnabledState } from '../../../../../common/types/store-data/ivisualization-store-data';
@@ -21,7 +21,7 @@ describe('AdhocIssuesTestView', () => {
     let props: AdhocIssuesTestViewProps;
     let getStoreDataMock: IMock<(data: TestsEnabledState) => IScanData>;
     let clickHandlerFactoryMock: IMock<DetailsViewToggleClickHandlerFactory>;
-    let displayableDataStub: IDisplayableVisualizationTypeData;
+    let displayableDataStub: DisplayableVisualizationTypeData;
     let contentStub: JSX.Element;
     let scanDataStub: IScanData;
     let clickHandlerStub: (event: any) => void;
@@ -41,7 +41,7 @@ describe('AdhocIssuesTestView', () => {
         displayableDataStub = {
             title: 'test title',
             toggleLabel: 'test toggle label',
-        } as IDisplayableVisualizationTypeData;
+        } as DisplayableVisualizationTypeData;
         contentStub = {} as JSX.Element;
         scanDataStub = {
             enabled: true,

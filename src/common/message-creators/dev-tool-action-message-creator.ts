@@ -8,13 +8,13 @@ import { TelemetryDataFactory } from '../telemetry-data-factory';
 export class DevToolActionMessageCreator extends BaseActionMessageCreator {
     protected telemetryFactory: TelemetryDataFactory;
 
-    constructor(postMessage: (message: IMessage) => void, tabId: number, telemetryFactory: TelemetryDataFactory) {
+    constructor(postMessage: (message: Message) => void, tabId: number, telemetryFactory: TelemetryDataFactory) {
         super(postMessage, tabId);
         this.telemetryFactory = telemetryFactory;
     }
 
-    public setDevToolStatus(status: boolean) {
-        const message: IMessage = {
+    public setDevToolStatus(status: boolean): void {
+        const message: Message = {
             tabId: this._tabId,
             type: Messages.DevTools.DevtoolStatus,
             payload: {
@@ -25,12 +25,12 @@ export class DevToolActionMessageCreator extends BaseActionMessageCreator {
         this.dispatchMessage(message);
     }
 
-    public setInspectElement(event: React.SyntheticEvent<MouseEvent>, target: string[]) {
+    public setInspectElement(event: React.SyntheticEvent<MouseEvent>, target: string[]): void {
         const payload: InspectElementPayload = {
             target: target,
             telemetry: this.telemetryFactory.forInspectElement(event, target),
         };
-        const message: IMessage = {
+        const message: Message = {
             tabId: this._tabId,
             type: Messages.DevTools.InspectElement,
             payload,
@@ -39,11 +39,11 @@ export class DevToolActionMessageCreator extends BaseActionMessageCreator {
         this.dispatchMessage(message);
     }
 
-    public setInspectFrameUrl(frameUrl: string) {
+    public setInspectFrameUrl(frameUrl: string): void {
         const payload: InspectFrameUrlPayload = {
             frameUrl: frameUrl,
         };
-        const message: IMessage = {
+        const message: Message = {
             tabId: this._tabId,
             type: Messages.DevTools.InspectFrameUrl,
             payload,

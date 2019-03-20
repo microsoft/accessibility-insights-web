@@ -1,11 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DictionaryStringTo } from '../../types/common-types';
+
 export class Action<TPayload> {
     /**
      * A mutex to ensure that only one action in a given scope is executing at any time.
      * This prevents cascading actions.
      */
-    private static executingScopes: IDictionaryStringTo<boolean> = {};
+    private static executingScopes: DictionaryStringTo<boolean> = {};
 
     private _listeners: ((payload: TPayload) => void)[] = [];
     private _scope: string = 'DEFAULT_SCOPE';

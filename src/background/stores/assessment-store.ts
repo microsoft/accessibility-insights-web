@@ -17,6 +17,7 @@ import {
     IUserCapturedInstance,
 } from '../../common/types/store-data/iassessment-result-data';
 import { IScanBasePayload, IScanCompletedPayload, IScanUpdatePayload } from '../../injected/analyzers/ianalyzer';
+import { DictionaryStringTo } from '../../types/common-types';
 import { SelectTestStepPayload, UpdateVisibilityPayload } from '../actions/action-payloads';
 import { AssessmentDataConverter } from '../assessment-data-converter';
 import { InitialAssessmentStoreDataGenerator } from '../intial-assessment-store-data-generator';
@@ -387,7 +388,7 @@ export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
         }
     }
 
-    private getGroupResult(instanceMap: IDictionaryStringTo<IGeneratedAssessmentInstance>, testStepName: string): ManualTestStatus {
+    private getGroupResult(instanceMap: DictionaryStringTo<IGeneratedAssessmentInstance>, testStepName: string): ManualTestStatus {
         let groupResult = ManualTestStatus.PASS;
         for (let keyIndex = 0; keyIndex < Object.keys(instanceMap).length; keyIndex++) {
             const key = Object.keys(instanceMap)[keyIndex];

@@ -130,7 +130,7 @@ describe('ChromeCommandHandlerTest', () => {
         storeState = new VisualizationStoreDataBuilder().withDisable(visualizationType).build();
         const configuration = visualizationConfigurationFactory.getConfiguration(visualizationType);
 
-        let receivedMessage: IMessage;
+        let receivedMessage: Message;
         interpreterMock
             .setup(x => x.interpret(It.isAny()))
             .returns(message => {
@@ -162,7 +162,7 @@ describe('ChromeCommandHandlerTest', () => {
         storeState = new VisualizationStoreDataBuilder().withEnable(visualizationType).build();
         const configuration = visualizationConfigurationFactory.getConfiguration(visualizationType);
 
-        let receivedMessage: IMessage;
+        let receivedMessage: Message;
         interpreterMock
             .setup(x => x.interpret(It.isAny()))
             .returns(message => {

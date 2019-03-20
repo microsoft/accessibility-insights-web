@@ -1,13 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
+import { autobind, css } from '@uifabric/utilities';
 import { escape } from 'lodash';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
 
 import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
-import { FeatureFlags } from '../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../../common/types/store-data/iassessment-result-data';
 import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
@@ -48,8 +47,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
     }
 
     public render(): JSX.Element {
-        const shouldRender = !this.props.tabStoreData.isClosed && this.props.featureFlagStoreData[FeatureFlags.newAssessmentExperience];
-        if (!shouldRender) {
+        if (this.props.tabStoreData.isClosed) {
             return null;
         }
 
@@ -69,7 +67,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
                 <Link
                     role="link"
                     title="Switch to target page"
-                    className="target-page-link"
+                    className={css('insights-link', 'target-page-link')}
                     onClick={this.props.actionMessageCreator.switchToTargetTab}
                 >
                     {targetPageTitle}

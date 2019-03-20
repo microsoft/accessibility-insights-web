@@ -6,7 +6,7 @@ export class HTMLElementUtils {
         this.clientWindow = clientWindow || window;
     }
 
-    public getContentWindow(frame: HTMLIFrameElement) {
+    public getContentWindow(frame: HTMLIFrameElement): Window {
         return frame.contentWindow;
     }
 

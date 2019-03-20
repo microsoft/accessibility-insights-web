@@ -18,7 +18,7 @@ import { initializeFabricIcons } from '../common/fabric-icons';
 import { getAllFeatureFlagDetails } from '../common/feature-flags';
 import { getInnerTextFromJsxElement } from '../common/get-inner-text-from-jsx-element';
 import { HTMLElementUtils } from '../common/html-element-utils';
-import { ITab } from '../common/itab';
+import { Tab } from '../common/itab';
 import { BugActionMessageCreator } from '../common/message-creators/bug-action-message-creator';
 import { ContentActionMessageCreator } from '../common/message-creators/content-action-message-creator';
 import { DropdownActionMessageCreator } from '../common/message-creators/dropdown-action-message-creator';
@@ -48,6 +48,7 @@ import { contentPages } from '../content';
 import { DetailsDialogHandler } from '../injected/details-dialog-handler';
 import { ScannerUtils } from '../injected/scanner-utils';
 import { getVersion, scan } from '../scanner/exposed-apis';
+import { DictionaryStringTo } from '../types/common-types';
 import { DetailsViewActionMessageCreator } from './actions/details-view-action-message-creator';
 import { IssuesSelectionFactory } from './actions/issues-selection-factory';
 import { AssessmentTableColumnConfigHandler } from './components/assessment-table-column-config-handler';
@@ -93,7 +94,7 @@ initializeFabricIcons();
 if (isNaN(tabId) === false) {
     chromeAdapter.getTab(
         tabId,
-        (tab: ITab): void => {
+        (tab: Tab): void => {
             if (chromeAdapter.getRuntimeLastError()) {
                 const renderer = createNullifiedRenderer(document, ReactDOM.render);
                 renderer.render();
@@ -112,7 +113,7 @@ if (isNaN(tabId) === false) {
                 );
                 const detailsViewStore = new StoreProxy<IDetailsViewData>(StoreNames[StoreNames.DetailsViewStore], chromeAdapter);
                 const assessmentStore = new StoreProxy<IAssessmentStoreData>(StoreNames[StoreNames.AssessmentStore], chromeAdapter);
-                const featureFlagStore = new StoreProxy<IDictionaryStringTo<boolean>>(
+                const featureFlagStore = new StoreProxy<DictionaryStringTo<boolean>>(
                     StoreNames[StoreNames.FeatureFlagStore],
                     chromeAdapter,
                 );

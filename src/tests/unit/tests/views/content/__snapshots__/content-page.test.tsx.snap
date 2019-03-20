@@ -1,15 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ContentPage .create passes options through to Markup 1`] = `
-"<Fragment>
-  <Disclaimer />
-  TEST STRING
-</Fragment>"
+exports[`ContentPage ContentCreator links renders 1`] = `
+<NewTabLink
+  href="href"
+  onClick={[Function]}
+>
+  text
+</NewTabLink>
 `;
 
-exports[`ContentPage .create renders 1`] = `
-"<Fragment>
-  <Disclaimer />
-  MY CONTENT
-</Fragment>"
+exports[`ContentPage ContentCreator links renders, children is text 1`] = `
+<NewTabLink
+  href="href"
+  onClick={[Function]}
+>
+  OVERRIDE
+</NewTabLink>
 `;

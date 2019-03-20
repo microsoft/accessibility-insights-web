@@ -3,9 +3,11 @@
 import { autobind } from '@uifabric/utilities';
 import * as _ from 'lodash/index';
 
+import { forOwn } from 'lodash/index';
 import { StoreNames } from '../../common/stores/store-names';
 import { IVisualizationScanResultData } from '../../common/types/store-data/ivisualization-scan-result-data';
 import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from '../../injected/scanner-utils';
+import { DictionaryStringTo } from '../../types/common-types';
 import { AddTabbedElementPayload } from '../actions/action-payloads';
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
@@ -58,7 +60,7 @@ export class VisualizationScanResultStore extends BaseStore<IVisualizationScanRe
     }
 
     @autobind
-    private onTabStopsDisabled() {
+    private onTabStopsDisabled(): void {
         this.state.tabStops.tabbedElements = null;
         this.emitChanged();
     }
@@ -109,7 +111,7 @@ export class VisualizationScanResultStore extends BaseStore<IVisualizationScanRe
 
     @autobind
     private onUpdateIssuesSelectedTargets(selected: string[]): void {
-        const newSelectedRows: IDictionaryStringTo<DecoratedAxeNodeResult> = {};
+        const newSelectedRows: DictionaryStringTo<DecoratedAxeNodeResult> = {};
 
         selected.forEach(uid => {
             const value = this.state.issues.fullIdToRuleResultMap[uid];
@@ -136,25 +138,24 @@ export class VisualizationScanResultStore extends BaseStore<IVisualizationScanRe
         this.emitChanged();
     }
 
-    private getRowToRuleResultMap(selectorMap: IDictionaryStringTo<IHtmlElementAxeResults>): IDictionaryStringTo<DecoratedAxeNodeResult> {
-        const selectedRows: IDictionaryStringTo<DecoratedAxeNodeResult> = {};
+    private getRowToRuleResultMap(selectorMap: DictionaryStringTo<IHtmlElementAxeResults>): DictionaryStringTo<DecoratedAxeNodeResult> {
+        const selectedRows: DictionaryStringTo<DecoratedAxeNodeResult> = {};
 
-        for (const selector in selectorMap) {
-            const ruleResults = selectorMap[selector].ruleResults;
+        forOwn(selectorMap, (selector: IHtmlElementAxeResults) => {
+            const ruleResults = selector.ruleResults;
 
-            for (const rule in ruleResults) {
-                const result = ruleResults[rule];
-                selectedRows[result.id] = ruleResults[rule];
-            }
-        }
+            forOwn(ruleResults, (rule: DecoratedAxeNodeResult) => {
+                selectedRows[rule.id] = rule;
+            });
+        });
 
         return selectedRows;
     }
 
-    private getSelectorMap(selectedRows: IDictionaryStringTo<DecoratedAxeNodeResult>): IDictionaryStringTo<IHtmlElementAxeResults> {
-        const selectorMap: IDictionaryStringTo<IHtmlElementAxeResults> = {};
-        for (const uid in selectedRows) {
-            const ruleResult = selectedRows[uid];
+    private getSelectorMap(selectedRows: DictionaryStringTo<DecoratedAxeNodeResult>): DictionaryStringTo<IHtmlElementAxeResults> {
+        const selectorMap: DictionaryStringTo<IHtmlElementAxeResults> = {};
+        forOwn(selectedRows, (selectedRow: DecoratedAxeNodeResult) => {
+            const ruleResult = selectedRow;
             const ruleResults = selectorMap[ruleResult.selector] ? selectorMap[ruleResult.selector].ruleResults : {};
             const isVisible = selectorMap[ruleResult.selector] ? selectorMap[ruleResult.selector].isVisible : null;
 
@@ -164,7 +165,7 @@ export class VisualizationScanResultStore extends BaseStore<IVisualizationScanRe
                 target: ruleResult.selector.split(';'),
                 isVisible: isVisible,
             };
-        }
+        });
 
         return selectorMap;
     }

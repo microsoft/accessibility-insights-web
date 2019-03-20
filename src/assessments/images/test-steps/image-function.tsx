@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { PropertyBagColumnRendererConfig } from '../../../assessments/common/property-bag-column-renderer';
-import { IImageFunctionPropertyBag } from '../../../common/types/property-bag/iimage-function';
+import { NoValue, PropertyBagColumnRendererConfig } from '../../../assessments/common/property-bag-column-renderer';
+import { ImageFunctionPropertyBag } from '../../../common/types/property-bag/iimage-function';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
@@ -48,7 +48,7 @@ const howToTest: JSX.Element = (
 
 const key = ImagesTestStep.imageFunction;
 
-const propertyBagConfig: PropertyBagColumnRendererConfig<IImageFunctionPropertyBag>[] = [
+const propertyBagConfig: PropertyBagColumnRendererConfig<ImageFunctionPropertyBag>[] = [
     {
         propertyName: 'imageType',
         displayName: 'Image type',
@@ -56,12 +56,12 @@ const propertyBagConfig: PropertyBagColumnRendererConfig<IImageFunctionPropertyB
     {
         propertyName: 'codedAs',
         displayName: 'Coded as',
-        defaultValue: '-',
+        defaultValue: NoValue,
     },
     {
         propertyName: 'accessibleName',
         displayName: 'Accessible name',
-        defaultValue: '-',
+        defaultValue: NoValue,
     },
 ];
 

@@ -13,10 +13,11 @@ import { VisualizationType } from '../../../../../common/types/visualization-typ
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { AssessmentInstanceEditAndRemoveControl } from '../../../../../DetailsView/components/assessment-instance-edit-and-remove-control';
 import { AssessmentInstanceSelectedButton } from '../../../../../DetailsView/components/assessment-instance-selected-button';
-import { IAssessmentInstanceRowData, ICapturedInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
+import { AssessmentInstanceRowData, CapturedInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
 import { AssessmentTableColumnConfigHandler } from '../../../../../DetailsView/components/assessment-table-column-config-handler';
 import { TestStatusChoiceGroup } from '../../../../../DetailsView/components/test-status-choice-group';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
+import { DictionaryStringTo } from '../../../../../types/common-types';
 import { CreateTestAssessmentProvider } from '../../../common/test-assessment-provider';
 
 describe('AssessmentInstanceTableHandlerTest', () => {
@@ -32,7 +33,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
     });
 
     test('createAssessmentInstanceTableItems', () => {
-        const instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance> = {
+        const instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {
             selector1: {
                 target: ['target1'],
                 html: 'html',
@@ -89,7 +90,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             />
         );
 
-        const expectedRows: IAssessmentInstanceRowData[] = [
+        const expectedRows: AssessmentInstanceRowData[] = [
             {
                 instance: {
                     target: ['target1'],
@@ -142,7 +143,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
                 assessmentsProvider={assessmentsProvider}
             />
         );
-        const expectedRows: ICapturedInstanceRowData[] = [
+        const expectedRows: CapturedInstanceRowData[] = [
             {
                 instance: instance,
                 instanceActionButtons: instanceActionButtons,
@@ -170,7 +171,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
         };
         configFactoryMock.setup(c => c.getColumnConfigs(navState, true, true)).verifiable(Times.once());
 
-        testSubject.getColumnConfigs(instanceMap as IDictionaryStringTo<IGeneratedAssessmentInstance>, navState, true);
+        testSubject.getColumnConfigs(instanceMap as DictionaryStringTo<IGeneratedAssessmentInstance>, navState, true);
 
         configFactoryMock.verifyAll();
     });

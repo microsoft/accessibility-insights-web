@@ -3,6 +3,7 @@
 import { FeatureFlags } from '../../../../../common/feature-flags';
 import { DetailsDialog, DetailsDialogDeps, DetailsDialogProps } from '../../../../../injected/components/details-dialog';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
+import { DictionaryStringTo } from '../../../../../types/common-types';
 
 describe('DetailsDialogTest', () => {
     test('render: isDevToolsOpen = false, shadowDialog = false', () => {
@@ -50,7 +51,7 @@ describe('DetailsDialogTest', () => {
             helpUrl,
             snippet: 'html',
         };
-        const expectedFailedRules: IDictionaryStringTo<DecoratedAxeNodeResult> = {};
+        const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
         expectedFailedRules[ruleId] = expectedNodeResult;
 
         const dialogDetailsHandlerMockObject = {

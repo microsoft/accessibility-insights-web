@@ -16,12 +16,12 @@ import { ITabStoreData } from '../../../../common/types/store-data/itab-store-da
 import { IVisualizationScanResultData } from '../../../../common/types/store-data/ivisualization-scan-result-data';
 import { IVisualizationStoreData } from '../../../../common/types/store-data/ivisualization-store-data';
 import { IScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
-import { VisualizationType } from '../../../../common/types/visualization-type';
 import { IssuesTableHandler } from '../../../../DetailsView/components/issues-table-handler';
 import { DetailsViewContainerDeps, DetailsViewContainerProps } from '../../../../DetailsView/details-view-container';
 import { AssessmentInstanceTableHandler } from '../../../../DetailsView/handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from '../../../../DetailsView/handlers/preview-feature-flags-handler';
+import { DictionaryStringTo } from '../../../../types/common-types';
 import { StoreMocks } from './store-mocks';
 
 export class DetailsViewContainerPropsBuilder {
@@ -29,7 +29,7 @@ export class DetailsViewContainerPropsBuilder {
     private assessmentStore: IBaseStore<IAssessmentStoreData>;
     private visualizationScanResultStore: IBaseStore<IVisualizationScanResultData>;
     private tabStore: IBaseStore<ITabStoreData>;
-    private featureFlagStore: IBaseStore<IDictionaryStringTo<boolean>>;
+    private featureFlagStore: IBaseStore<DictionaryStringTo<boolean>>;
     private scopingStateStore: IBaseStore<IScopingStoreData>;
     private detailsViewStore: IBaseStore<IDetailsViewData>;
     private scopingActionMessageCreator: ScopingActionMessageCreator;

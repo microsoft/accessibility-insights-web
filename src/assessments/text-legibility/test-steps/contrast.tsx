@@ -5,7 +5,7 @@ import * as React from 'react';
 import { PropertyBagColumnRendererFactory } from '../../../assessments/common/property-bag-column-renderer-factory';
 import { TextLegibilityTestStep } from '../../../assessments/text-legibility/test-steps/test-step';
 import { NewTabLink } from '../../../common/components/new-tab-link';
-import { IContrastPropertyBag } from '../../../common/types/property-bag/icontrast';
+import { ContrastPropertyBag } from '../../../common/types/property-bag/icontrast';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName, windowsPlatformTitle } from '../../../content/strings/application';
@@ -14,7 +14,7 @@ import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/compo
 import { ScannerUtils } from '../../../injected/scanner-utils';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
-import { PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
+import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { TestStep } from '../../types/test-step';
@@ -54,11 +54,11 @@ const contrastHowToTest: JSX.Element = (
 
 const key = TextLegibilityTestStep.contrast;
 
-const propertyBagConfig: PropertyBagColumnRendererConfig<IContrastPropertyBag>[] = [
+const propertyBagConfig: PropertyBagColumnRendererConfig<ContrastPropertyBag>[] = [
     {
         propertyName: 'textString',
         displayName: 'Text string',
-        defaultValue: '-',
+        defaultValue: NoValue,
     },
     {
         propertyName: 'size',

@@ -8,7 +8,6 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { AssessmentsProvider } from '../../../../../assessments/assessments-provider';
 import { Assessment } from '../../../../../assessments/types/iassessment';
 import { IAssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
-import { FeatureFlags } from '../../../../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../../../../../common/types/store-data/iassessment-result-data';
 import { ITabStoreData } from '../../../../../common/types/store-data/itab-store-data';
@@ -31,9 +30,7 @@ describe('DetailsViewCommandBar', () => {
     let renderExportAndStartOver: boolean;
 
     beforeEach(() => {
-        featureFlagStoreData = {
-            [FeatureFlags[FeatureFlags.newAssessmentExperience]]: true,
-        };
+        featureFlagStoreData = {};
         actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator, MockBehavior.Loose);
         tabStoreData = {
             title: 'command-bar-test-tab-title',
@@ -85,12 +82,6 @@ describe('DetailsViewCommandBar', () => {
 
     test('renders null when tab closed', () => {
         tabStoreData.isClosed = true;
-
-        expect(render()).toBeNull();
-    });
-
-    test('renders null when newAssessmentExperience FF is false', () => {
-        featureFlagStoreData[FeatureFlags[FeatureFlags.newAssessmentExperience]] = false;
 
         expect(render()).toBeNull();
     });

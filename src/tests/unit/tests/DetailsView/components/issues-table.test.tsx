@@ -19,6 +19,7 @@ import { DetailsRowData, IssuesTableHandler } from '../../../../../DetailsView/c
 import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { RuleResult } from '../../../../../scanner/iruleresults';
+import { DictionaryStringTo } from '../../../../../types/common-types';
 import { ShallowRenderer } from '../../../common/shallow-renderer';
 
 describe('IssuesTableTest', () => {
@@ -206,7 +207,7 @@ describe('IssuesTableTest', () => {
 
     function testRenderTableWithIssues(count: number, exportResult: boolean): void {
         const sampleViolations: RuleResult[] = getSampleViolations(count);
-        const sampleIdToRuleResultMap: IDictionaryStringTo<DecoratedAxeNodeResult> = {};
+        const sampleIdToRuleResultMap: DictionaryStringTo<DecoratedAxeNodeResult> = {};
         const items: DetailsRowData[] = [];
         for (let i: number = 1; i <= count; i++) {
             sampleIdToRuleResultMap['id' + i] = {} as DecoratedAxeNodeResult;

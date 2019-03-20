@@ -8,7 +8,7 @@ import { Messages } from '../../common/messages';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { AssessmentInstanceDetailsColumn } from '../../DetailsView/components/assessment-instance-details-column';
-import { IAssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
+import { AssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
 import { AnalyzerProvider } from '../../injected/analyzers/analyzer-provider';
 import { RuleAnalyzerConfiguration } from '../../injected/analyzers/ianalyzer';
 import { DecoratedAxeNodeResult, ScannerUtils } from '../../injected/scanner-utils';
@@ -79,7 +79,7 @@ const automatedChecksColumns: InstanceTableColumn[] = [
     },
 ];
 
-function onRenderPathColumn(item: IAssessmentInstanceRowData): JSX.Element {
+function onRenderPathColumn(item: AssessmentInstanceRowData): JSX.Element {
     let textContent = '';
     if (item.instance.target) {
         textContent = item.instance.target.join(';');
@@ -96,7 +96,7 @@ function onRenderPathColumn(item: IAssessmentInstanceRowData): JSX.Element {
     );
 }
 
-function onRenderSnippetColumn(item: IAssessmentInstanceRowData): JSX.Element {
+function onRenderSnippetColumn(item: AssessmentInstanceRowData): JSX.Element {
     return (
         <AssessmentInstanceDetailsColumn
             background={null}

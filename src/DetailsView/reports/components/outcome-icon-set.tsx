@@ -7,8 +7,8 @@ import { NamedSFC } from '../../../common/react/named-sfc';
 import { OutcomeIcon } from './outcome-icon';
 import { allOutcomeTypes, OutcomeStats, outcomeTypeSemantics } from './outcome-type';
 
-function getText(stats: OutcomeStats) {
-    function textForOutcome(outcomeType) {
+function getText(stats: OutcomeStats): string {
+    function textForOutcome(outcomeType): string {
         const count = stats[outcomeType];
         const { pastTense } = outcomeTypeSemantics[outcomeType];
         return `${count} ${pastTense}`;

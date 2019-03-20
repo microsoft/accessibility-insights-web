@@ -4,19 +4,12 @@ import * as Axe from 'axe-core';
 
 import { ruleToLinkConfiguration } from '../../../../scanner/rule-to-links-mappings';
 
-describe('rule-to-links-mappings', () => {
-    // tslint:disable-next-line:variable-name
-    let _axe = Axe as any;
-    let config;
+describe('axe.commons.text.accessibleText examples', () => {
+    const axe = Axe as any;
 
-    beforeEach(() => {
-        _axe = Axe;
-        config = ruleToLinkConfiguration;
-    });
-
-    _axe.getRules().forEach(rule => {
+    axe.getRules().forEach(rule => {
         it(`should have mapping for ${rule.ruleId}`, () => {
-            expect(config[rule.ruleId]).not.toEqual(undefined);
+            expect(ruleToLinkConfiguration[rule.ruleId]).not.toEqual(undefined);
         });
     });
 });

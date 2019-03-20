@@ -38,7 +38,7 @@ describe('BugActionMessageCreator', () => {
         const payload: BaseActionPayload = {
             telemetry,
         };
-        const expectedMessage: IMessage = {
+        const expectedMessage: Message = {
             type: Messages.SettingsPanel.OpenPanel,
             tabId,
             payload,
@@ -62,7 +62,7 @@ describe('BugActionMessageCreator', () => {
             eventName: FILE_ISSUE_CLICK,
             telemetry,
         };
-        const expectedMessage: IMessage = {
+        const expectedMessage: Message = {
             type: Messages.Telemetry.Send,
             tabId,
             payload,

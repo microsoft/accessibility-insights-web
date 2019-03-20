@@ -3,8 +3,9 @@
 import * as _ from 'lodash/index';
 
 import { ManualTestStatus } from '../common/types/manual-test-status';
-import { IPartialTabOrderPropertyBag } from '../injected/tab-order-property-bag';
+import { PartialTabOrderPropertyBag } from '../injected/tab-order-property-bag';
 import { ITabStopEvent } from '../injected/tab-stops-listener';
+import { DictionaryStringTo } from '../types/common-types';
 import {
     IAssessmentInstancesMap,
     IGeneratedAssessmentInstance,
@@ -13,7 +14,7 @@ import {
     IUserCapturedInstance,
 } from './../common/types/store-data/iassessment-result-data.d';
 import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from './../injected/scanner-utils';
-import { IUniquelyIdentifiableInstances } from './instance-identifier-generator';
+import { UniquelyIdentifiableInstances } from './instance-identifier-generator';
 
 export class AssessmentDataConverter {
     private generateUID: () => string;
@@ -24,9 +25,9 @@ export class AssessmentDataConverter {
 
     public generateAssessmentInstancesMap(
         previouslyGeneratedInstances: IAssessmentInstancesMap,
-        selectorMap: IDictionaryStringTo<IHtmlElementAxeResults>,
+        selectorMap: DictionaryStringTo<IHtmlElementAxeResults>,
         stepName: string,
-        generateInstanceIdentifier: (instance: IUniquelyIdentifiableInstances) => string,
+        generateInstanceIdentifier: (instance: UniquelyIdentifiableInstances) => string,
         getInstanceStatus: (result: DecoratedAxeNodeResult) => ManualTestStatus,
     ): IAssessmentInstancesMap {
         let instancesMap: IAssessmentInstancesMap = {};
@@ -58,7 +59,7 @@ export class AssessmentDataConverter {
         previouslyGeneratedInstances: IAssessmentInstancesMap,
         events: ITabStopEvent[],
         stepName: string,
-        generateInstanceIdentifier: (instance: IUniquelyIdentifiableInstances) => string,
+        generateInstanceIdentifier: (instance: UniquelyIdentifiableInstances) => string,
     ): IAssessmentInstancesMap {
         let instancesMap: IAssessmentInstancesMap = {};
 
@@ -126,11 +127,11 @@ export class AssessmentDataConverter {
         let testStepResults = {};
         const target: string[] = event.target;
         const html: string = event.html;
-        let propertyBag: IPartialTabOrderPropertyBag = { timestamp: event.timestamp };
+        let propertyBag: PartialTabOrderPropertyBag = { timestamp: event.timestamp };
 
         if (matchingInstance != null) {
             testStepResults = matchingInstance.testStepResults;
-            propertyBag = matchingInstance.propertyBag as IPartialTabOrderPropertyBag;
+            propertyBag = matchingInstance.propertyBag as PartialTabOrderPropertyBag;
         }
 
         testStepResults[testStep] = this.getGenericTestStepResultForEvent();
@@ -174,7 +175,7 @@ export class AssessmentDataConverter {
         return this.getPropertyBagFrom(ruleResult, 'any');
     }
 
-    private getPropertyBagFrom(ruleResult: DecoratedAxeNodeResult, checkName: ChecksType) {
+    private getPropertyBagFrom(ruleResult: DecoratedAxeNodeResult, checkName: ChecksType): any {
         if (ruleResult[checkName] && !_.isEmpty(ruleResult[checkName]) && ruleResult[checkName][0].data) {
             return ruleResult[checkName][0].data;
         }

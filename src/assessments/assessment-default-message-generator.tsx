@@ -13,11 +13,11 @@ export interface DefaultMessageInterface {
     instanceCount: number;
 }
 
-function failingInstances(result: ITestStepResult) {
+function failingInstances(result: ITestStepResult): boolean {
     return result.status !== ManualTestStatus.PASS;
 }
 
-function passingInstances(result: ITestStepResult) {
+function passingInstances(result: ITestStepResult): boolean {
     return result.status === ManualTestStatus.PASS;
 }
 
@@ -77,7 +77,7 @@ export class AssessmentDefaultMessageGenerator {
         };
     }
 
-    private checkRelevantTestSteps(instancesMap: InstanceIdToInstanceDataMap, selectedTestStep: string) {
+    private checkRelevantTestSteps(instancesMap: InstanceIdToInstanceDataMap, selectedTestStep: string): DefaultMessageInterface {
         const relevantTestStepResults = getRelevantTestStepResults(instancesMap, selectedTestStep);
         if (isEmpty(relevantTestStepResults)) {
             return this.getNoMatchingInstancesResult();

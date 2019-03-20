@@ -3,7 +3,7 @@
 import { forOwn } from 'lodash';
 import { IAssessmentData } from '../common/types/store-data/iassessment-result-data';
 
-export function ScanUnscannedRequirement(scanStep: (step: string) => void, data: IAssessmentData) {
+export function ScanUnscannedRequirement(scanStep: (step: string) => void, data: IAssessmentData): void {
     forOwn(data.testStepStatus, (stepResult, step) => {
         if (stepResult.isStepScanned === false) {
             scanStep(step);

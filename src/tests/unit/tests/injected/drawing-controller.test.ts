@@ -5,7 +5,7 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { AssessmentsProvider } from '../../../../assessments/assessments-provider';
 import { IAssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
 import {
-    IVisualizationConfiguration,
+    VisualizationConfiguration,
     VisualizationConfigurationFactory,
 } from '../../../../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../../../../common/enum-helper';
@@ -54,7 +54,7 @@ class VisualizationWindowMessageStubBuilder {
         return this;
     }
 
-    public setFeatureFlagStoreData(featureFlagStoreData: FeatureFlagStoreData) {
+    public setFeatureFlagStoreData(featureFlagStoreData: FeatureFlagStoreData): VisualizationWindowMessageStubBuilder {
         this.featureFlagStoreData = featureFlagStoreData;
         return this;
     }
@@ -77,7 +77,7 @@ describe('DrawingControllerTest', () => {
     let instanceVisibilityCheckerMock: IMock<InstanceVisibilityChecker>;
     let hTMLElementUtils: IMock<HTMLElementUtils>;
     let visualizationConfigFactory: IMock<VisualizationConfigurationFactory>;
-    let visualizationConfigStub: IVisualizationConfiguration;
+    let visualizationConfigStub: VisualizationConfiguration;
     let getIdentifierMock: IMock<(step?: string) => string>;
     let getDrawerMock: IMock<(provider: DrawerProvider, testStep?: string) => IDrawer>;
     let drawerProvider: IMock<DrawerProvider>;
@@ -97,7 +97,7 @@ describe('DrawingControllerTest', () => {
         visualizationConfigStub = {
             getIdentifier: getIdentifierMock.object,
             getDrawer: getDrawerMock.object,
-        } as IVisualizationConfiguration;
+        } as VisualizationConfiguration;
         numVisualizationTypes = EnumHelper.getNumericValues(VisualizationType).length;
     });
 
@@ -190,7 +190,7 @@ describe('DrawingControllerTest', () => {
         testEnableVisualization(false);
     });
 
-    function testEnableVisualization(showInstanceVisibilityFF: boolean) {
+    function testEnableVisualization(showInstanceVisibilityFF: boolean): void {
         const featureFlagStoreData = getDefaultFeatureFlagValues();
         featureFlagStoreData[FeatureFlags.showInstanceVisibility] = showInstanceVisibilityFF;
 

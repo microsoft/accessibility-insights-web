@@ -12,6 +12,7 @@ import {
 import { DropdownClickHandler } from '../../../../../common/dropdown-click-handler';
 import { FeatureFlags } from '../../../../../common/feature-flags';
 import { DetailsViewDropDown } from '../../../../../DetailsView/components/details-view-dropdown';
+import { DictionaryStringTo } from '../../../../../types/common-types';
 
 describe('gear-options-button-component.test', () => {
     let dropdownClickHandlerMock: IMock<DropdownClickHandler>;
@@ -35,7 +36,7 @@ describe('gear-options-button-component.test', () => {
     });
 
     type TestCase = {
-        featureFlags: IDictionaryStringTo<boolean>;
+        featureFlags: DictionaryStringTo<boolean>;
         expectedMenuItems: IContextualMenuItem[];
     };
     test.each([
@@ -67,7 +68,7 @@ describe('gear-options-button-component.test', () => {
         verifyRendering(testCase.featureFlags, testCase.expectedMenuItems);
     });
 
-    function verifyRendering(featureFlags: IDictionaryStringTo<boolean>, menuItems: IContextualMenuItem[]) {
+    function verifyRendering(featureFlags: DictionaryStringTo<boolean>, menuItems: IContextualMenuItem[]): void {
         const props: GearOptionsButtonComponentProps = {
             dropdownClickHandler: dropdownClickHandlerMock.object,
             featureFlags: featureFlags,
@@ -116,7 +117,7 @@ describe('gear-options-button-component.test', () => {
         };
     }
 
-    function makeDropdownAssertions(dropDownWrapper: ShallowWrapper<any, any>, expectedDropdown) {
+    function makeDropdownAssertions(dropDownWrapper: ShallowWrapper<any, any>, expectedDropdown): void {
         expect(dropDownWrapper.exists()).toBe(true);
         expect(dropDownWrapper.type()).toEqual(expectedDropdown);
     }

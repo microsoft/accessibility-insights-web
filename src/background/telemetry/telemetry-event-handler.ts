@@ -3,6 +3,7 @@
 import * as _ from 'lodash';
 
 import { TelemetryEventSource } from '../../common/telemetry-events';
+import { DictionaryStringTo } from '../../types/common-types';
 import { BaseActionPayload } from '../actions/action-payloads';
 import { BrowserAdapter } from '../browser-adapter';
 import { TelemetryClient } from './telemetry-client';
@@ -26,7 +27,7 @@ export class TelemetryEventHandler {
         const telemetryInfo: any = payload.telemetry;
         this.addBasicDataToTelemetry(telemetryInfo);
 
-        const flattenTelemetryInfo: IDictionaryStringTo<string> = this.flattenTelemetryInfo(telemetryInfo);
+        const flattenTelemetryInfo: DictionaryStringTo<string> = this.flattenTelemetryInfo(telemetryInfo);
         this.telemetryClient.trackEvent(eventName, flattenTelemetryInfo);
     }
 
@@ -34,8 +35,8 @@ export class TelemetryEventHandler {
         telemetryInfo.source = TelemetryEventSource[telemetryInfo.source];
     }
 
-    private flattenTelemetryInfo(telemetryInfo: any): IDictionaryStringTo<string> {
-        const flattenTelemetryInfo: IDictionaryStringTo<string> = _.mapValues(telemetryInfo, (value, key) => {
+    private flattenTelemetryInfo(telemetryInfo: any): DictionaryStringTo<string> {
+        const flattenTelemetryInfo: DictionaryStringTo<string> = _.mapValues(telemetryInfo, (value, key) => {
             if (typeof value !== 'string') {
                 return JSON.stringify(value);
             }

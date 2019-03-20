@@ -14,6 +14,7 @@ import {
 } from '../../../../../../DetailsView/components/left-nav/assessment-left-nav';
 import { LeftNavLinkBuilder } from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';
 import { NavLinkHandler } from '../../../../../../DetailsView/components/left-nav/nav-link-handler';
+import { DictionaryStringTo } from '../../../../../../types/common-types';
 
 describe('AssessmentLeftNav', () => {
     let linkStub: AssessmentLeftNavLink;
@@ -22,7 +23,7 @@ describe('AssessmentLeftNav', () => {
     let leftNavLinkBuilderMock: IMock<LeftNavLinkBuilder>;
     let navLinkHandlerMock: NavLinkHandler;
     let assessmentsProviderStub: IAssessmentsProvider;
-    let assessmentsDataStub: IDictionaryStringTo<ManualTestStatusData>;
+    let assessmentsDataStub: DictionaryStringTo<ManualTestStatusData>;
 
     beforeEach(() => {
         assessmentsDataStub = {};

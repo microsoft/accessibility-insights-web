@@ -31,7 +31,7 @@ export class Store {
 
 let store: Store;
 
-function getDefaultStore() {
+function getDefaultStore(): Store {
     if (!store) {
         store = new Store();
     }

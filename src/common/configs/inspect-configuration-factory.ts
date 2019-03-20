@@ -4,6 +4,7 @@ import { autobind } from '@uifabric/utilities';
 
 import { InspectMode } from '../../background/inspect-modes';
 import { ScopingInputTypes } from '../../background/scoping-input-types';
+import { DictionaryNumberTo } from '../../types/common-types';
 import { ScopingActionMessageCreator } from '../message-creators/scoping-action-message-creator';
 import { ISingleElementSelector } from '../types/store-data/scoping-store-data';
 
@@ -15,7 +16,7 @@ export class InspectConfigurationFactory {
         this.scopingActionMessageCreator = scopingActionMessageCreator;
     }
 
-    private configurationByType: IDictionaryNumberTo<IInspectCallback> = {
+    private configurationByType: DictionaryNumberTo<IInspectCallback> = {
         [InspectMode.scopingAddInclude]: this.addIncludeSelector,
         [InspectMode.scopingAddExclude]: this.addExcludeSelector,
     };

@@ -3,12 +3,12 @@
 import { autobind } from '@uifabric/utilities';
 
 import { BrowserAdapter } from '../../background/browser-adapter';
-import { ITab } from '../../common/itab';
+import { Tab } from '../../common/itab';
 import { UrlParser } from '../../common/url-parser';
 import { UrlValidator } from '../../common/url-validator';
 
 export interface TargetTabInfo {
-    tab: ITab;
+    tab: Tab;
     hasAccess: boolean;
 }
 
@@ -26,7 +26,7 @@ export class TargetTabFinder {
     }
 
     @autobind
-    private getTabInfo(): Promise<ITab> {
+    private getTabInfo(): Promise<Tab> {
         return new Promise((resolve, reject) => {
             const tabIdInUrl = this.urlParser.getIntParam(this.win.location.href, 'tabId');
 
@@ -36,12 +36,12 @@ export class TargetTabFinder {
                         active: true,
                         currentWindow: true,
                     },
-                    (tabs: ITab[]): void => {
+                    (tabs: Tab[]): void => {
                         resolve(tabs.pop());
                     },
                 );
             } else {
-                this.browserAdapter.getTab(tabIdInUrl, (tab: ITab) => {
+                this.browserAdapter.getTab(tabIdInUrl, (tab: Tab) => {
                     resolve(tab);
                 });
             }
@@ -49,7 +49,7 @@ export class TargetTabFinder {
     }
 
     @autobind
-    private async createTargetTabInfo(tab: ITab): Promise<TargetTabInfo> {
+    private async createTargetTabInfo(tab: Tab): Promise<TargetTabInfo> {
         const hasAccess = await this.urlValidator.isSupportedUrl(tab.url, this.browserAdapter);
         const targetTab: TargetTabInfo = {
             tab: tab,

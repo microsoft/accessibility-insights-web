@@ -18,15 +18,15 @@ import { HelpLinkDeps, OverviewHelpSection } from './overview-help-section';
 
 const linkDataSource: HyperlinkDefinition[] = [
     {
-        href: 'https://msit.microsoftstream.com/video/7fa02042-3b76-408d-b70b-334ffc269aab?channelId=66d47e66-d99c-488b-b9ea-98a153d2a4d4',
+        href: 'https://go.microsoft.com/fwlink/?linkid=2082219',
         text: 'Getting started',
     },
     {
-        href: 'https://msit.microsoftstream.com/video/8f1183cb-434e-4d0c-8a31-7b277eb7a004',
+        href: 'https://go.microsoft.com/fwlink/?linkid=2082220',
         text: 'How to complete a test',
     },
     {
-        href: 'https://stackoverflow.microsoft.com/questions/ask?tags=accessibility-insights',
+        href: 'https://go.microsoft.com/fwlink/?linkid=2077941',
         text: 'Ask a question',
     },
 ];

@@ -3,6 +3,7 @@
 import { autobind } from '@uifabric/utilities';
 
 import { WindowUtils } from '../../common/window-utils';
+import { DictionaryStringTo } from '../../types/common-types';
 import { IErrorMessageContent, IWindowMessage, WindowMessageMarshaller } from './window-message-marshaller';
 
 export type FrameMessageResponseCallback = (
@@ -18,7 +19,7 @@ export class WindowMessageHandler {
     private _windowMessageParser: WindowMessageMarshaller;
     private _callbacksForMessagesSentFromCurrentFrame: { [messageId: string]: FrameMessageResponseCallback } = {};
 
-    private _messageSubscribers: IDictionaryStringTo<FrameMessageResponseCallback>;
+    private _messageSubscribers: DictionaryStringTo<FrameMessageResponseCallback>;
 
     constructor(windowUtils: WindowUtils, windowMessageParser: WindowMessageMarshaller) {
         this._windowUtils = windowUtils;

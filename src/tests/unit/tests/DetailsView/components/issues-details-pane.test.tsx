@@ -10,6 +10,7 @@ import {
     IssuesDetailsPaneProps,
 } from '../../../../../DetailsView/components/Issues-details-pane';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
+import { DictionaryStringTo } from '../../../../../types/common-types';
 import { HyperlinkDefinition } from '../../../../../views/content/content-page';
 
 describe('IssuesDetailsPaneTest', () => {
@@ -67,7 +68,7 @@ describe('IssuesDetailsPaneTest', () => {
             });
         }
 
-        const ruleMap = {} as IDictionaryStringTo<DecoratedAxeNodeResult>;
+        const ruleMap = {} as DictionaryStringTo<DecoratedAxeNodeResult>;
         for (let i = 1; i <= ruleCount; i++) {
             const id = `id${i}`;
             ruleMap[id] = {

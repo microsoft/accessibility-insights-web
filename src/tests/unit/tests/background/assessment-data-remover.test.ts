@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { AssessmentDataRemover } from '../../../../background/assessment-data-remover';
 import { IGeneratedAssessmentInstance, ITestStepResult } from '../../../../common/types/store-data/iassessment-result-data';
+import { DictionaryStringTo } from '../../../../types/common-types';
 
 describe('AssessmentDataRemoverTest', () => {
     const instanceKey = 'instance-key-1';
@@ -20,7 +21,7 @@ describe('AssessmentDataRemoverTest', () => {
         expect(instanceMap[instanceKey]).toBeUndefined();
     });
 
-    function getInstanceMapWithOnlyOneTestStepResult(): IDictionaryStringTo<IGeneratedAssessmentInstance> {
+    function getInstanceMapWithOnlyOneTestStepResult(): DictionaryStringTo<IGeneratedAssessmentInstance> {
         return {
             [instanceKey]: {
                 testStepResults: {
@@ -35,7 +36,7 @@ describe('AssessmentDataRemoverTest', () => {
         };
     }
 
-    function getInstanceMapWitMultipleTestStepResults(): IDictionaryStringTo<IGeneratedAssessmentInstance> {
+    function getInstanceMapWitMultipleTestStepResults(): DictionaryStringTo<IGeneratedAssessmentInstance> {
         return {
             [instanceKey]: {
                 testStepResults: {

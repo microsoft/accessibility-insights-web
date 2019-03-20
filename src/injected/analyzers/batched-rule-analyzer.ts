@@ -35,7 +35,7 @@ export class BatchedRuleAnalyzer extends RuleAnalyzer {
     }
 
     @autobind
-    protected onResolve(results: AxeAnalyzerResult) {
+    protected onResolve(results: AxeAnalyzerResult): void {
         BatchedRuleAnalyzer.batchConfigs.forEach(config => {
             const filteredScannerResult = this.postScanFilter(results.originalResult, config.rules);
             const processResults = config.resultProcessor(this.scanner);

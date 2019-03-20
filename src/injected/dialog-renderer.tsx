@@ -13,6 +13,7 @@ import { NavigatorUtils } from '../common/navigator-utils';
 import { getPlatform } from '../common/platform';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { WindowUtils } from '../common/window-utils';
+import { DictionaryStringTo } from '../types/common-types';
 import { rootContainerId } from './constants';
 import { DetailsDialogHandler } from './details-dialog-handler';
 import { FrameCommunicator, IMessageRequest } from './frameCommunicators/frame-communicator';
@@ -52,7 +53,7 @@ export class DialogRenderer {
             mainWindowContext.getTargetPageActionMessageCreator().openIssuesDialog();
 
             const elementSelector: string = this.getElementSelector(data);
-            const failedRules: IDictionaryStringTo<DecoratedAxeNodeResult> = this.getFailedRules(data);
+            const failedRules: DictionaryStringTo<DecoratedAxeNodeResult> = this.getFailedRules(data);
             const target: string[] = this.getTarget(data);
             const dialogContainer: HTMLDivElement = featureFlagStoreData[FeatureFlags.shadowDialog]
                 ? this.initializeDialogContainerInShadowDom()
@@ -127,7 +128,7 @@ export class DialogRenderer {
         return dialogContainer;
     }
 
-    private getFailedRules(data: IHtmlElementAxeResults): IDictionaryStringTo<DecoratedAxeNodeResult> {
+    private getFailedRules(data: IHtmlElementAxeResults): DictionaryStringTo<DecoratedAxeNodeResult> {
         return data.ruleResults;
     }
 

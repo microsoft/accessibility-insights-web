@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { link } from '../content/link';
+import { DictionaryStringTo } from '../types/common-types';
 import { HyperlinkDefinition } from '../views/content/content-page';
-import { IDictionaryStringTo } from './dictionary-types';
 
 const BestPractice: HyperlinkDefinition = {
     text: 'Best Practice',
     href: '',
 };
 
-export const ruleToLinkConfiguration: IDictionaryStringTo<HyperlinkDefinition[]> = {
+export const ruleToLinkConfiguration: DictionaryStringTo<HyperlinkDefinition[]> = {
     'area-alt': [link.WCAG_1_1_1],
     'image-alt': [link.WCAG_1_1_1],
     'image-redundant-alt': [BestPractice],

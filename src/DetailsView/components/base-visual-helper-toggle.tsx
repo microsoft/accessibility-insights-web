@@ -6,6 +6,7 @@ import * as React from 'react';
 import { VisualHelperToggleConfig } from '../../assessments/types/test-step';
 import { VisualizationToggle } from '../../common/components/visualization-toggle';
 import { IGeneratedAssessmentInstance } from '../../common/types/store-data/iassessment-result-data';
+import { DictionaryStringTo } from '../../types/common-types';
 
 export abstract class BaseVisualHelperToggle extends React.Component<VisualHelperToggleConfig> {
     public render(): JSX.Element {
@@ -34,7 +35,10 @@ export abstract class BaseVisualHelperToggle extends React.Component<VisualHelpe
 
     protected abstract isChecked(instances: IGeneratedAssessmentInstance<{}, {}>[]): boolean;
 
-    protected filterInstancesByTestStep(assessmentNavState, instancesMap: IDictionaryStringTo<IGeneratedAssessmentInstance>) {
+    protected filterInstancesByTestStep(
+        assessmentNavState,
+        instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance>,
+    ): IGeneratedAssessmentInstance<{}, {}>[] {
         const selectedTestStep = assessmentNavState.selectedTestStep;
 
         return _.filter(instancesMap, instance => {
