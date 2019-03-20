@@ -60,7 +60,7 @@ export class MainWindowInitializer extends WindowInitializer {
     private tabStoreProxy: StoreProxy<ITabStoreData>;
     private devToolStoreProxy: StoreProxy<DevToolState>;
 
-    public async initialize() {
+    public async initialize(): Promise<void> {
         const asyncInitializationSteps: Promise<void>[] = [];
         asyncInitializationSteps.push(super.initialize());
 
@@ -201,7 +201,7 @@ export class MainWindowInitializer extends WindowInitializer {
     }
 
     @autobind
-    protected dispose() {
+    protected dispose(): void {
         super.dispose();
         this.frameCommunicator.dispose();
         this.tabStoreProxy.dispose();

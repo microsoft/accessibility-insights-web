@@ -33,7 +33,7 @@ export class ShadowInitializer {
         container.appendChild(styleElement);
     }
 
-    private createShadowHost() {
+    private createShadowHost(): HTMLDivElement {
         const rootContainer = this.htmlElementUtils.querySelector(`#${rootContainerId}`);
 
         const shadowHostElement = this.createDivWithId('insights-shadow-host');
@@ -43,11 +43,11 @@ export class ShadowInitializer {
         return shadowHostElement;
     }
 
-    private removeExistingShadowHost() {
+    private removeExistingShadowHost(): void {
         this.htmlElementUtils.deleteAllElements('#insights-shadow-host');
     }
 
-    private createShadowContainer() {
+    private createShadowContainer(): HTMLElement {
         this.removeExistingShadowHost();
 
         const shadowHostElement = this.createShadowHost();
@@ -59,7 +59,7 @@ export class ShadowInitializer {
         return shadow.firstChild as HTMLElement;
     }
 
-    private createDivWithId(id: string) {
+    private createDivWithId(id: string): HTMLDivElement {
         const div = document.createElement('div');
 
         div.id = id;

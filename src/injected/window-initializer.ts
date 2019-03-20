@@ -124,7 +124,7 @@ export class WindowInitializer {
     }
 
     @autobind
-    protected dispose() {
+    protected dispose(): void {
         this.drawingController.dispose();
     }
 }

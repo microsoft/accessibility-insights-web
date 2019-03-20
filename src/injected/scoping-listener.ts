@@ -44,14 +44,14 @@ export class ScopingListener {
         this.dom.removeEventListener('mousemove', this.onHover);
     }
 
-    private removeContainer(shadowContainer: HTMLElement) {
+    private removeContainer(shadowContainer: HTMLElement): void {
         const container = shadowContainer.querySelector(`#${ScopingListener.scopeLayoutContainerId}`);
         if (container) {
             shadowContainer.removeChild(container);
         }
     }
 
-    private addContainer(shadowContainer: HTMLElement) {
+    private addContainer(shadowContainer: HTMLElement): void {
         this.removeContainer(shadowContainer);
 
         const scopeLayout = this.dom.createElement('div');
