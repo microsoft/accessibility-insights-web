@@ -79,7 +79,6 @@ describe('IssuesTableTest', () => {
                     .setIssuesSelection(selectionMock.object)
                     .setIssuesTableHandler(issuesTableHandlerMock.object)
                     .setToggleClickHandler(toggleClickHandlerMock.object)
-                    .setFeatureFlag(FeatureFlags.exportResult, true)
                     .build();
 
                 const wrapped = shallow(<IssuesTable {...props} />);

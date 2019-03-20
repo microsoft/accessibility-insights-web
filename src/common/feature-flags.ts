@@ -8,7 +8,6 @@ export class FeatureFlags {
     public static readonly logTelemetryToConsole = 'logTelemetryToConsole';
     public static readonly showAllAssessments = 'showAllAssessments';
     public static readonly shadowDialog = 'shadowDialog';
-    public static readonly exportResult = 'exportResult';
     public static readonly showAllFeatureFlags = 'showAllFeatureFlags';
     public static readonly scoping = 'scoping';
     public static readonly showBugFiling = 'showBugFiling';
@@ -27,14 +26,6 @@ export interface FeatureFlagDetail {
 
 export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
     return [
-        {
-            id: FeatureFlags.exportResult,
-            defaultValue: true,
-            displayableName: 'Export automated checks',
-            displayableDescription: 'Allows you to export a summary of automated check results as a sharable HTML file.',
-            isPreviewFeature: false,
-            forceDefault: true,
-        },
         {
             id: FeatureFlags.shadowDialog,
             defaultValue: false,
