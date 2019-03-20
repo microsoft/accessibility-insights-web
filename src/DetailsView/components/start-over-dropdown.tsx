@@ -70,7 +70,7 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
             },
         ];
 
-        if (detailsViewRightContentPanel != 'Overview') {
+        if (detailsViewRightContentPanel !== 'Overview') {
             items.push({
                 key: 'test',
                 name: `Start over ${testName}`,
