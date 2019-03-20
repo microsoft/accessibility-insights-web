@@ -1,5 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`IssuesTableTest render automated checks disabled 1`] = `
+<div
+  className="issues-table"
+>
+  <h1>
+    test title
+  </h1>
+  <div>
+    <div
+      className="details-view-command-bar"
+    >
+      <VisualizationToggle
+        checked={false}
+        className="automated-checks-details-view-toggle"
+        disabled={false}
+        label="Show failures"
+        onClick={[Function]}
+        visualizationName="Automated checks"
+      />
+    </div>
+    <div
+      className="details-disabled-message"
+      role="alert"
+    >
+      Turn on 
+      <Term>
+        Automated checks
+      </Term>
+       to see a list of failures.
+    </div>
+  </div>
+</div>
+`;
+
 exports[`IssuesTableTest render spinner for scanning state 1`] = `
 "<div className=\\"issues-table\\">
   <h1>
@@ -59,25 +93,6 @@ exports[`IssuesTableTest render table with 0 issues 1`] = `
   <div>
     <div className=\\"details-view-command-bar\\">
       <VisualizationToggle label=\\"Show failures\\" checked={true} disabled={false} onClick={[Function: proxy]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
-    </div>
-    <div className=\\"issues-table-details\\">
-      <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} />
-      <div className=\\"issue-detail-outer-container ms-Fabric\\">
-        <IssuesDetailsPane deps={[undefined]} selectedIdToRuleResultMap={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" issueTrackerPath=\\"example/example\\" featureFlagData={{...}} />
-      </div>
-    </div>
-  </div>
-</div>"
-`;
-
-exports[`IssuesTableTest render table with 0 issues, export FF on 1`] = `
-"<div className=\\"issues-table\\">
-  <h1>
-    test title
-  </h1>
-  <div>
-    <div className=\\"details-view-command-bar\\">
-      <VisualizationToggle label=\\"Show failures\\" checked={true} disabled={false} onClick={[Function: proxy]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
       <CustomizedActionButton iconProps={{...}} onClick={[Function: bound ]}>
         Export result
       </CustomizedActionButton>
@@ -93,26 +108,7 @@ exports[`IssuesTableTest render table with 0 issues, export FF on 1`] = `
 </div>"
 `;
 
-exports[`IssuesTableTest render table with 1 issue 1`] = `
-"<div className=\\"issues-table\\">
-  <h1>
-    test title
-  </h1>
-  <div>
-    <div className=\\"details-view-command-bar\\">
-      <VisualizationToggle label=\\"Show failures\\" checked={true} disabled={false} onClick={[Function: proxy]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
-    </div>
-    <div className=\\"issues-table-details\\">
-      <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} />
-      <div className=\\"issue-detail-outer-container ms-Fabric\\">
-        <IssuesDetailsPane deps={[undefined]} selectedIdToRuleResultMap={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" issueTrackerPath=\\"example/example\\" featureFlagData={{...}} />
-      </div>
-    </div>
-  </div>
-</div>"
-`;
-
-exports[`IssuesTableTest render table with 1 issue, export FF on 1`] = `
+exports[`IssuesTableTest render table with 1 issues 1`] = `
 "<div className=\\"issues-table\\">
   <h1>
     test title
@@ -136,25 +132,6 @@ exports[`IssuesTableTest render table with 1 issue, export FF on 1`] = `
 `;
 
 exports[`IssuesTableTest render table with 2 issues 1`] = `
-"<div className=\\"issues-table\\">
-  <h1>
-    test title
-  </h1>
-  <div>
-    <div className=\\"details-view-command-bar\\">
-      <VisualizationToggle label=\\"Show failures\\" checked={true} disabled={false} onClick={[Function: proxy]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
-    </div>
-    <div className=\\"issues-table-details\\">
-      <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} />
-      <div className=\\"issue-detail-outer-container ms-Fabric\\">
-        <IssuesDetailsPane deps={[undefined]} selectedIdToRuleResultMap={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" issueTrackerPath=\\"example/example\\" featureFlagData={{...}} />
-      </div>
-    </div>
-  </div>
-</div>"
-`;
-
-exports[`IssuesTableTest render table with 2 issues, export FF on 1`] = `
 "<div className=\\"issues-table\\">
   <h1>
     test title
