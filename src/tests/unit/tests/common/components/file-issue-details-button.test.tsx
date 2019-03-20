@@ -3,7 +3,7 @@
 import { mount, shallow } from 'enzyme';
 import { DefaultButton } from 'office-ui-fabric-react';
 import * as React from 'react';
-import { It, Mock, Times } from 'typemoq';
+import { It, Mock, Times, IMock } from 'typemoq';
 
 import { IssueDetailsTextGenerator } from '../../../../../background/issue-details-text-generator';
 import { FileIssueDetailsButton, FileIssueDetailsButtonProps } from '../../../../../common/components/file-issue-details-button';
@@ -91,70 +91,90 @@ describe('FileIssueDetailsButtonTest', () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    test('componentDidUpdate preserves state when showingHelpText not set', () => {
-        const props = { issueTrackerPath: 'not-empty' } as FileIssueDetailsButtonProps;
-        const testSubject = new FileIssueDetailsButton(props);
-        testSubject.state = { showingHelpText: false, showingFileIssueDialog: false };
+    describe('componentDidUpdate', () => {
+        let props: FileIssueDetailsButtonProps;
+        let issueDetailsTextGeneratorMock: IMock<IssueDetailsTextGenerator>;
 
-        testSubject.componentDidUpdate();
+        beforeEach(() => {
+            props = undefined;
+            issueDetailsTextGeneratorMock = undefined;
+        });
 
-        expect(testSubject.state.showingHelpText).toBe(false);
-    });
+        it('preserves showingHelpText state when showingHelpText not set', () => {
+            setPropsWithIssueTrackerPath('not-empty');
+            const testSubject = shallow(<FileIssueDetailsButton {...props} />).instance();
+            testSubject.state = { showingHelpText: false, showingFileIssueDialog: false };
 
-    test('componentDidUpdate preserves state when issueTrackerPath not set', () => {
-        const props = { issueTrackerPath: undefined } as FileIssueDetailsButtonProps;
-        const testSubject = new FileIssueDetailsButton(props);
-        testSubject.state = { showingHelpText: true, showingFileIssueDialog: false };
+            testSubject.componentDidUpdate(undefined, undefined);
 
-        testSubject.componentDidUpdate();
+            expect(testSubject.state.showingHelpText).toBe(false);
+            verifyAll();
+        });
 
-        expect(testSubject.state.showingHelpText).toBe(true);
-    });
+        it('preserves showingHelpText state when issueTrackerPath not set', () => {
+            setPropsWithIssueTrackerPath(undefined);
+            const testSubject = shallow(<FileIssueDetailsButton {...props} />).instance();
+            testSubject.state = { showingHelpText: true, showingFileIssueDialog: false };
 
-    test('componentDidUpdate preserves state when issueTrackerPath is empty', () => {
-        const props = { issueTrackerPath: '' } as FileIssueDetailsButtonProps;
-        const testSubject = new FileIssueDetailsButton(props);
-        testSubject.state = { showingHelpText: true, showingFileIssueDialog: false };
+            testSubject.componentDidUpdate(undefined, undefined);
 
-        testSubject.componentDidUpdate();
+            expect(testSubject.state.showingHelpText).toBe(true);
+            verifyAll();
+        });
 
-        expect(testSubject.state.showingHelpText).toBe(true);
-    });
+        it('preserves showingHelpText state when issueTrackerPath is empty', () => {
+            setPropsWithIssueTrackerPath('');
+            const testSubject = shallow(<FileIssueDetailsButton {...props} />).instance();
+            testSubject.state = { showingHelpText: true, showingFileIssueDialog: false };
 
-    test('componentDidUpdate clears state when issueTrackerPath set', () => {
-        // TODO: Refactor props generation to share across tests
-        const issueTrackerPath = 'not-empty';
+            testSubject.componentDidUpdate(undefined, undefined);
 
-        const issueDetailsTextGeneratorMock = Mock.ofType(IssueDetailsTextGenerator);
-        issueDetailsTextGeneratorMock
-            .setup(generator => generator.buildTitle(It.isAny()))
-            .returns(() => 'buildTitle')
-            .verifiable(Times.never());
-        issueDetailsTextGeneratorMock
-            .setup(generator => generator.buildGithubText(It.isAny()))
-            .returns(() => 'buildText')
-            .verifiable(Times.never());
+            expect(testSubject.state.showingHelpText).toBe(true);
+            verifyAll();
+        });
 
-        const props: FileIssueDetailsButtonProps = {
-            deps: {
-                issueDetailsTextGenerator: issueDetailsTextGeneratorMock.object,
-                bugActionMessageCreator: undefined,
-            },
-            onOpenSettings: (ev: React.MouseEvent<HTMLElement>) => {},
-            issueTrackerPath: issueTrackerPath,
-            issueDetailsData: {
-                pageTitle: 'pageTitle',
-                pageUrl: 'http://pageUrl',
-                ruleResult: null,
-            },
-            restoreFocus: false,
-        };
+        it('clears showingHelpText state when issueTrackerPath set', () => {
+            setPropsWithIssueTrackerPath('not-empty');
+            const testSubject = shallow(<FileIssueDetailsButton {...props} />).instance();
+            testSubject.state = { showingHelpText: true, showingFileIssueDialog: false } as any;
 
-        const testSubject = shallow(<FileIssueDetailsButton {...props} />).instance();
-        testSubject.state = { showingHelpText: true, showingFileIssueDialog: false } as any;
+            testSubject.componentDidUpdate(undefined, undefined);
 
-        testSubject.componentDidUpdate(undefined, undefined);
+            expect(testSubject.state.showingHelpText).toBe(false);
+            verifyAll();
+        });
 
-        expect((testSubject.state as any).showingHelpText).toBe(false);
+        function setPropsWithIssueTrackerPath(issueTrackerPath: string): void {
+            issueDetailsTextGeneratorMock = Mock.ofType(IssueDetailsTextGenerator);
+            if (issueTrackerPath) {
+                issueDetailsTextGeneratorMock
+                    .setup(generator => generator.buildTitle(It.isAny()))
+                    .returns(() => 'buildTitle')
+                    .verifiable(Times.atLeastOnce());
+                issueDetailsTextGeneratorMock
+                    .setup(generator => generator.buildGithubText(It.isAny()))
+                    .returns(() => 'buildText')
+                    .verifiable(Times.atLeastOnce());
+            }
+
+            props = {
+                deps: {
+                    issueDetailsTextGenerator: issueDetailsTextGeneratorMock.object,
+                    bugActionMessageCreator: undefined,
+                },
+                onOpenSettings: (ev: React.MouseEvent<HTMLElement>) => {},
+                issueTrackerPath,
+                issueDetailsData: {
+                    pageTitle: 'pageTitle',
+                    pageUrl: 'http://pageUrl',
+                    ruleResult: null,
+                },
+                restoreFocus: false,
+            };
+        }
+
+        function verifyAll(): void {
+            issueDetailsTextGeneratorMock.verifyAll();
+        }
     });
 });
