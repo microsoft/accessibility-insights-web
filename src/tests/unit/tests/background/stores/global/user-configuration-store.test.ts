@@ -107,52 +107,6 @@ describe('UserConfigurationStoreTest', () => {
         storeTester.testListenerToBeCalledOnce(initialStoreData, cloneDeep(initialStoreData));
     });
 
-    test('onNotifyFeatureFlagChange calls setHighContrast when checks pass', () => {
-        const payload: FeatureFlagPayload = {
-            feature: FeatureFlags.highContrastMode,
-            enabled: false,
-        };
-        const expectedState: UserConfigurationStoreData = {
-            enableTelemetry: true,
-            isFirstTime: false,
-            enableHighContrast: false,
-            bugService: 'none',
-            bugServicePropertiesMap: {},
-        };
-        const storeTester = createStoreToTestAction('notifyFeatureFlagChange');
-        storeTester
-            .withActionParam(payload)
-            .withPostListenerMock(indexDbStrictMock)
-            .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
-    });
-
-    test('if onNotifyFeatureFlagChange wont setHighContrast because one of the check failed', () => {
-        initialStoreData = {
-            enableTelemetry: true,
-            isFirstTime: false,
-            enableHighContrast: true,
-            bugService: 'none',
-            bugServicePropertiesMap: {},
-        };
-        const expectedState: UserConfigurationStoreData = {
-            enableTelemetry: true,
-            isFirstTime: false,
-            enableHighContrast: true,
-            bugService: 'none',
-            bugServicePropertiesMap: {},
-        };
-
-        const payload: FeatureFlagPayload = {
-            feature: FeatureFlags.highContrastMode,
-            enabled: true,
-        };
-        const storeTester = createStoreToTestAction('notifyFeatureFlagChange');
-        storeTester
-            .withActionParam(payload)
-            .withPostListenerMock(indexDbStrictMock)
-            .testListenerToNeverBeCalled(cloneDeep(initialStoreData), expectedState);
-    });
-
     type SetUserConfigTestCase = {
         isFirstTime: boolean;
         enableTelemetry: boolean;

@@ -102,7 +102,6 @@ export class Messages {
         SetHighContrastConfig: 'insights/userConfig/setHighContrastConfig',
         SetBugService: 'insights/userConfig/setBugService',
         SetBugServiceProperty: 'insights/userConfig/setBugServiceProperty',
-        NotifyFeatureFlagChange: 'insights/userConfig/notifyFeatureFlagChange',
         SetIssueTrackerPath: 'insights/userConfig/issueTrackerPath',
     };
 
