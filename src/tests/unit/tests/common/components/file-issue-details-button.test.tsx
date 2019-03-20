@@ -90,4 +90,73 @@ describe('FileIssueDetailsButtonTest', () => {
         bugActionMessageCreatorMock.verifyAll();
         expect(wrapper.getElement()).toMatchSnapshot();
     });
+
+    describe('componentDidUpdate', () => {
+        type TestCase = {
+            issueTrackerPath: string;
+            initialShowingHelpText: boolean;
+            expectedShowingHelpText: boolean;
+        };
+        const testCases: Array<TestCase> = [
+            {
+                issueTrackerPath: 'not-empty',
+                initialShowingHelpText: false,
+                expectedShowingHelpText: false,
+            },
+            {
+                issueTrackerPath: undefined,
+                initialShowingHelpText: true,
+                expectedShowingHelpText: true,
+            },
+            {
+                issueTrackerPath: '',
+                initialShowingHelpText: true,
+                expectedShowingHelpText: true,
+            },
+            {
+                issueTrackerPath: 'not-empty',
+                initialShowingHelpText: true,
+                expectedShowingHelpText: false,
+            },
+        ];
+
+        test.each(testCases)('%p', (testCase: TestCase) => {
+            const { issueTrackerPath, initialShowingHelpText, expectedShowingHelpText } = testCase;
+
+            const issueDetailsTextGeneratorMock = Mock.ofType(IssueDetailsTextGenerator);
+            if (issueTrackerPath) {
+                issueDetailsTextGeneratorMock
+                    .setup(generator => generator.buildTitle(It.isAny()))
+                    .returns(() => 'buildTitle')
+                    .verifiable(Times.atLeastOnce());
+                issueDetailsTextGeneratorMock
+                    .setup(generator => generator.buildGithubText(It.isAny()))
+                    .returns(() => 'buildText')
+                    .verifiable(Times.atLeastOnce());
+            }
+
+            const props: FileIssueDetailsButtonProps = {
+                deps: {
+                    issueDetailsTextGenerator: issueDetailsTextGeneratorMock.object,
+                    bugActionMessageCreator: undefined,
+                },
+                onOpenSettings: undefined,
+                issueTrackerPath,
+                issueDetailsData: {
+                    pageTitle: 'pageTitle',
+                    pageUrl: 'http://pageUrl',
+                    ruleResult: null,
+                },
+                restoreFocus: undefined,
+            };
+
+            const testSubject = shallow(<FileIssueDetailsButton {...props} />).instance();
+            testSubject.state = { showingHelpText: initialShowingHelpText, showingFileIssueDialog: false };
+
+            testSubject.componentDidUpdate(undefined, undefined);
+
+            expect(testSubject.state.showingHelpText).toBe(expectedShowingHelpText);
+            issueDetailsTextGeneratorMock.verifyAll();
+        });
+    });
 });
