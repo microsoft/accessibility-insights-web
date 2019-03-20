@@ -274,9 +274,6 @@ describe('PopupView', () => {
 
         const wrapped = shallow(<PopupView {...props} />);
         expect(wrapped.getElement()).toMatchSnapshot();
-        // const testObject = new PopupView(props);
-
-        // expect(testObject.render()).toMatchSnapshot();
     });
 
     function createDefaultPropsBuilder(storeHub: BaseClientStoresHub<any>): PopupViewPropsBuilder {
