@@ -6,7 +6,7 @@ import * as content from '../../../content/test/language/language-of-parts';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
-import LanguageAttributeLink from './../common/language-attribute-link';
+import { LanguageAttributeLink } from './../common/language-attribute-link';
 import { LanguageTestStep } from './test-steps';
 
 const languageOfPartsDescription: JSX.Element = (

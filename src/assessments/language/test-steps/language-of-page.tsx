@@ -6,7 +6,7 @@ import * as content from '../../../content/test/language/language-of-page';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
-import LanguageAttributeLink from './../common/language-attribute-link';
+import { LanguageAttributeLink } from './../common/language-attribute-link';
 import { LanguageTestStep } from './test-steps';
 
 const languageOfTextDescription: JSX.Element = <span>A page must have the correct default language.</span>;
