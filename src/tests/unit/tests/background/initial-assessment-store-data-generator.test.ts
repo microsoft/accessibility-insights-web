@@ -1,56 +1,31 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { flatMap } from 'lodash';
 import { InitialAssessmentStoreDataGenerator } from '../../../../background/intial-assessment-store-data-generator';
-import { TestStepData } from '../../../../common/types/manual-test-status';
+import { ManualTestStatus, TestStepData } from '../../../../common/types/manual-test-status';
 import {
-    IAssessmentData,
     IAssessmentStoreData,
     IGeneratedAssessmentInstance,
     IManualTestStepResult,
-    AssessmentNavState,
 } from '../../../../common/types/store-data/iassessment-result-data';
+import { VisualizationType } from '../../../../common/types/visualization-type';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
 
 describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
     const assesssmentsProvider = CreateTestAssessmentProvider();
-
-    const targetTab = { id: 1, url: 'url', title: 'title', appRefreshed: false };
     const generator = new InitialAssessmentStoreDataGenerator(assesssmentsProvider);
-    const userInput = 10;
-    let knownTestIds: string[];
-    const knownRequirementIds: string[] = [];
-    const unknownRequirementIds: string[] = ['unknown-requirement-1', 'unknown-requirement-2'];
-    let defaultState;
-    let defaultStatus;
-    let unknownRequirement1;
-    let knownRequirement1;
-    let knownRequirement2;
-    let knownRequirement3;
-    let instanceDataWithKnownRequirementResult;
-    let instanceDataWithOnlyKnownRequirementResult;
-    let instanceDataWithoutKnownRequirementResult;
-    let knownManualRequirementResult;
-    let unknownManualRequirementResult;
 
-    beforeAll(() => {
-        knownTestIds = assesssmentsProvider.all().map(test => test.key);
-        assesssmentsProvider.all().forEach(test => {
-            test.steps.forEach(requirement => {
-                knownRequirementIds.push(requirement.key);
-            });
-        });
-        defaultState = generator.generateInitialState();
-        defaultStatus = 1;
-        knownRequirement1 = knownRequirementIds[0];
-        unknownRequirement1 = unknownRequirementIds[0];
-        knownRequirement2 = knownRequirementIds[1];
-        knownRequirement3 = knownRequirementIds[2];
-        instanceDataWithKnownRequirementResult = createInstance('id1', [knownRequirement1, unknownRequirement1]);
-        instanceDataWithOnlyKnownRequirementResult = createInstance('id1', [knownRequirement1]);
-        instanceDataWithoutKnownRequirementResult = createInstance('id2', [unknownRequirement1]);
-        knownManualRequirementResult = createManualRequirementResult(knownRequirement1, userInput);
-        unknownManualRequirementResult = createManualRequirementResult(unknownRequirement1, userInput);
-    });
+    const defaultState = generator.generateInitialState();
+
+    const validTargetTab = { id: 1, url: 'url', title: 'title', appRefreshed: false };
+    const knownTestIds = assesssmentsProvider.all().map(test => test.key);
+    const knownTestType = assesssmentsProvider.all()[0].type;
+    const unknownTestType = -100 as VisualizationType;
+    const knownRequirementIds = flatMap(assesssmentsProvider.all(), test => test.steps.map(step => step.key));
+    const knownRequirement1 = knownRequirementIds[0];
+    const knownRequirement2 = knownRequirementIds[1];
+    const knownRequirement3 = knownRequirementIds[2];
+    const unknownRequirement: string = 'unknown-requirement';
 
     it('generates the pinned default state from assessmentsProvider data when no persistedData is provided', () => {
         expect(defaultState).toMatchSnapshot();
@@ -76,7 +51,7 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
         'outputs persistedTabInfo.appRefreshed as true even if it was set to %p in input persistedData',
         persistedAppRefreshed => {
             const generatedState = generator.generateInitialState({
-                persistedTabInfo: { ...targetTab, appRefreshed: persistedAppRefreshed },
+                persistedTabInfo: { ...validTargetTab, appRefreshed: persistedAppRefreshed },
                 assessmentNavState: null,
                 assessments: null,
             });
@@ -87,28 +62,24 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
 
     it('outputs persistedTabInfo properties other than appRefreshed as they appeared in persistedData', () => {
         const generatedState = generator.generateInitialState({
-            persistedTabInfo: targetTab,
+            persistedTabInfo: validTargetTab,
             assessmentNavState: null,
             assessments: null,
         });
 
-        const { appRefreshed, ...tabInfoPropertiesThatShouldPropagate } = targetTab;
+        const { appRefreshed, ...tabInfoPropertiesThatShouldPropagate } = validTargetTab;
         expect(generatedState.persistedTabInfo).toMatchObject(tabInfoPropertiesThatShouldPropagate);
     });
 
-    // prettier-ignore
     it.each`
-        selectedTestStep         | selectedTestType
-        ${'invalid-step'}        | ${-100}
-        ${'invalid-step'}        | ${-1}
-        ${'assessment-1-step-1'} | ${-100}
-        ${'assessment-1-step-1'} | ${-1}
-        ${'assessment-1-step-2'} | ${-1}
-        ${'assessment-2-step-1'} | ${-2}
-        ${'assessment-2-step-2'} | ${-2}
+        selectedTestStep      | selectedTestType
+        ${unknownRequirement} | ${unknownTestType}
+        ${unknownRequirement} | ${knownTestType}
+        ${knownRequirement1}  | ${unknownTestType}
+        ${knownRequirement1}  | ${knownTestType}
     `(
         'outputs the first test/step for assessmentNavState regardless of the persisted state ($selectedTestStep/$selectedTestType)',
-        ({selectedTestStep, selectedTestType}) => {
+        ({ selectedTestStep, selectedTestType }) => {
             const generatedState = generator.generateInitialState({
                 assessmentNavState: {
                     selectedTestStep,
@@ -120,18 +91,13 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
         },
     );
 
-    it.todo('outputs default/empty assessment data for new test types missing from persisted data');
-    it.todo('outputs default/empty assessment data for new test steps missing from persisted data');
-    it.todo('omits persisted assessment data for test types that are unknown to the assessment provider');
-    it.todo('omits persisted assessment data for test steps that are unknown to the assessment provider');
-
-    it('outputs generatedAssessmentInstancesMaps filtered to results for recognized requirements only', () => {
+    it('outputs generatedAssessmentInstancesMaps filtered to results for known requirements only', () => {
         const persistedMap = {
-            id1: instanceDataWithKnownRequirementResult,
-            id2: instanceDataWithoutKnownRequirementResult,
+            id1: createGeneratedAssessmentInstance('id1', [knownRequirement1, unknownRequirement]),
+            id2: createGeneratedAssessmentInstance('id2', [unknownRequirement]),
         };
         const expectedMap = {
-            id1: instanceDataWithOnlyKnownRequirementResult,
+            id1: createGeneratedAssessmentInstance('id1', [knownRequirement1]),
         };
 
         const actual = generator.generateInitialState({
@@ -148,15 +114,15 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
         expect(actual.assessments[knownTestIds[0]].generatedAssessmentInstancesMap).toEqual(expectedMap);
     });
 
-    it('outputs manualTestStepResultMap entries for known assessments, propagating the persisted ones', () => {
+    it('outputs manualTestStepResultMap entries for only known assessments, propagating results for the persisted ones', () => {
         const persistedMap = {
-            [knownRequirement1]: knownManualRequirementResult,
-            [unknownRequirement1]: unknownManualRequirementResult,
+            [knownRequirement1]: createManualRequirementResult(knownRequirement1, ManualTestStatus.FAIL),
+            [unknownRequirement]: createManualRequirementResult(unknownRequirement, ManualTestStatus.FAIL),
         };
         const expectedMap = {
-            [knownRequirement1]: knownManualRequirementResult,
-            [knownRequirement2]: createManualRequirementResult(knownRequirement2, defaultStatus),
-            [knownRequirement3]: createManualRequirementResult(knownRequirement3, defaultStatus),
+            [knownRequirement1]: createManualRequirementResult(knownRequirement1, ManualTestStatus.FAIL),
+            [knownRequirement2]: createManualRequirementResult(knownRequirement2, ManualTestStatus.UNKNOWN),
+            [knownRequirement3]: createManualRequirementResult(knownRequirement3, ManualTestStatus.UNKNOWN),
         };
 
         const actual = generator.generateInitialState({
@@ -175,11 +141,11 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
 
     it('outputs testStepStatus entries for known assessments, propagating the persisted ones', () => {
         const persistedTestStepStatus = {
-            [knownRequirement1]: createRequirementResult(true, 2),
-            [unknownRequirement1]: createRequirementResult(true, 3),
+            [knownRequirement1]: createRequirementResult(true, ManualTestStatus.FAIL),
+            [unknownRequirement]: createRequirementResult(true, ManualTestStatus.PASS),
         };
         const expectedTestStepStatus = {
-            [knownRequirement1]: createRequirementResult(true, 2),
+            [knownRequirement1]: createRequirementResult(true, ManualTestStatus.FAIL),
             [knownRequirement2]: createDefaultRequirementResult(),
             [knownRequirement3]: createDefaultRequirementResult(),
         };
@@ -197,9 +163,10 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
 
         expect(actual.assessments[knownTestIds[0]].testStepStatus).toEqual(expectedTestStepStatus);
     });
+});
 
 function createDefaultRequirementResult(): TestStepData {
-    return createRequirementResult(false, 1);
+    return createRequirementResult(false, ManualTestStatus.UNKNOWN);
 }
 
 function createRequirementResult(isScanned: boolean, stepResult: number): TestStepData {
@@ -217,7 +184,7 @@ function createManualRequirementResult(requirementId: string, status: number): I
     };
 }
 
-function createInstance(instanceId: string, requirementIds: string[]): IGeneratedAssessmentInstance {
+function createGeneratedAssessmentInstance(instanceId: string, requirementIds: string[]): IGeneratedAssessmentInstance {
     const instanceData = {
         target: [],
         html: 'html',
