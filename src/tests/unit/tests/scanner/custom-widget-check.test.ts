@@ -7,9 +7,8 @@ import { Mock, MockBehavior } from 'typemoq';
 import { customWidgetConfiguration } from '../../../../scanner/custom-widget';
 import { ICheckConfiguration } from '../../../../scanner/iruleresults';
 
-declare let axe;
 const _rules = Axe.getRules(); // needed to pull in axe;
-
+const axe = Axe as any;
 const fixture = createTestFixture('test-fixture', '');
 
 const context = {
@@ -95,6 +94,7 @@ describe('custom-widget check', () => {
             role="sandwich"/>
             `;
 
+        axe._tree = axe.utils.getFlattenedTree(document.documentElement);
         const node = fixture.querySelector('#myElement');
 
         expect(customWidgetConfiguration.checks[0].evaluate.call(context, node)).toBeTruthy();
@@ -189,6 +189,7 @@ describe('custom-widget check', () => {
                 `="value" />
         `;
 
+            axe._tree = axe.utils.getFlattenedTree(document.documentElement);
             const node = fixture.querySelector('#myElement');
 
             customWidgetConfiguration.checks[0].evaluate.call(context, node);
@@ -207,6 +208,7 @@ describe('custom-widget check', () => {
                 `="value" />
         `;
 
+            axe._tree = axe.utils.getFlattenedTree(document.documentElement);
             const node = fixture.querySelector('#myElement');
 
             customWidgetConfiguration.checks[0].evaluate.call(context, node);
@@ -225,6 +227,7 @@ describe('custom-widget check', () => {
                 `="value" />
         `;
 
+            axe._tree = axe.utils.getFlattenedTree(document.documentElement);
             const node = fixture.querySelector('#myElement');
 
             customWidgetConfiguration.checks[0].evaluate.call(context, node);
@@ -243,6 +246,7 @@ describe('custom-widget check', () => {
                 `="value" />
         `;
 
+            axe._tree = axe.utils.getFlattenedTree(document.documentElement);
             const node = fixture.querySelector('#myElement');
 
             customWidgetConfiguration.checks[0].evaluate.call(context, node);

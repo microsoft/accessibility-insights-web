@@ -28,6 +28,7 @@ export const link = {
     WCAG_2_4_5: linkTo('WCAG 2.4.5', 'https://www.w3.org/WAI/WCAG21/Understanding/multiple-ways.html'),
     WCAG_2_4_6: linkTo('WCAG 2.4.6', 'https://www.w3.org/WAI/WCAG21/Understanding/headings-and-labels'),
     WCAG_2_4_7: linkTo('WCAG 2.4.7', 'https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html'),
+    WCAG_2_5_3: linkTo('WCAG 2.5.3', 'https://www.w3.org/WAI/WCAG21/Understanding/label-in-name'),
     WCAG_3_1_1: linkTo('WCAG 3.1.1', 'https://www.w3.org/WAI/WCAG21/Understanding/language-of-page.html'),
     WCAG_3_1_2: linkTo('WCAG 3.1.2', 'https://www.w3.org/WAI/WCAG21/Understanding/language-of-parts.html'),
     WCAG_3_2_1: linkTo('WCAG 3.2.1', 'https://www.w3.org/WAI/WCAG21/Understanding/on-focus.html'),
