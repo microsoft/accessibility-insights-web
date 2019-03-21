@@ -14,17 +14,13 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { RuleResult, ScanResults } from '../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../types/common-types';
-import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { ReportGenerator } from '../reports/report-generator';
 import { ExportDialog, ExportDialogDeps } from './export-dialog';
 import { IssuesDetailsList } from './issues-details-list';
 import { IssuesDetailsPane, IssuesDetailsPaneDeps } from './Issues-details-pane';
 import { IssuesTableHandler } from './issues-table-handler';
 
-export type IssuesTableDeps = IssuesDetailsPaneDeps &
-    ExportDialogDeps & {
-        detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-    };
+export type IssuesTableDeps = IssuesDetailsPaneDeps & ExportDialogDeps;
 
 export interface IssuesTableProps {
     deps: IssuesTableDeps;
