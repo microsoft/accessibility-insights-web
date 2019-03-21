@@ -172,7 +172,7 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
         ];
     }
 
-    function compareStaticPropertiesForCaptured(expected: IColumn[], actual: IColumn[]) {
+    function compareStaticPropertiesForCaptured(expected: IColumn[], actual: IColumn[]): void {
         expect(actual.length).toBe(expected.length);
         expected.forEach((col: IColumn, index: number) => {
             expect(actual[index].key).toBe(col.key);

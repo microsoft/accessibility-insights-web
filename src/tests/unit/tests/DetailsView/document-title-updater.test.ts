@@ -136,7 +136,7 @@ describe('DocumentTitleUpdater', () => {
         getPanelConfigMock.verifyAll();
     });
 
-    function setupStoreListenersAdded() {
+    function setupStoreListenersAdded(): void {
         storeMocks.tabStoreMock
             .setup(store => store.addChangedListener(It.isAny()))
             .callback(cb => (onStoreChange = cb))
@@ -155,7 +155,7 @@ describe('DocumentTitleUpdater', () => {
             .verifiable();
     }
 
-    function setupStoreGetState() {
+    function setupStoreGetState(): void {
         storeMocks.tabStoreMock.setup(store => store.getState()).returns(() => storeMocks.tabStoreData);
         storeMocks.detailsViewStoreMock.setup(store => store.getState()).returns(() => storeMocks.detailsViewStoreData);
         storeMocks.visualizationStoreMock.setup(store => store.getState()).returns(() => storeMocks.visualizationStoreData);

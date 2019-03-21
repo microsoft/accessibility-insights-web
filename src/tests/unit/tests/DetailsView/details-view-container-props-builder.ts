@@ -48,17 +48,17 @@ export class DetailsViewContainerPropsBuilder {
     private storesHub: BaseClientStoresHub<any>;
     constructor(private deps: DetailsViewContainerDeps) {}
 
-    public setDetailsViewStoreActionMessageCreator(creator: IStoreActionMessageCreator) {
+    public setDetailsViewStoreActionMessageCreator(creator: IStoreActionMessageCreator): DetailsViewContainerPropsBuilder {
         this.storeActionCreator = creator;
         return this;
     }
 
-    public setAssessmentProvider(provider: IAssessmentsProvider) {
+    public setAssessmentProvider(provider: IAssessmentsProvider): DetailsViewContainerPropsBuilder {
         this.assessmentProvider = provider;
         return this;
     }
 
-    public setVisualizationConfigurationFactory(configFactory: VisualizationConfigurationFactory) {
+    public setVisualizationConfigurationFactory(configFactory: VisualizationConfigurationFactory): DetailsViewContainerPropsBuilder {
         this.configFactory = configFactory;
         return this;
     }

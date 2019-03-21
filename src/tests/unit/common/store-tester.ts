@@ -65,7 +65,7 @@ export class StoreTester<TStoreData, TActions> {
         }
     }
 
-    private createActionsMock() {
+    private createActionsMock(): IMock<TActions> {
         const actionMock = this.createActionMock();
 
         const actionsMock = Mock.ofType(this.actions, MockBehavior.Loose);
@@ -74,7 +74,7 @@ export class StoreTester<TStoreData, TActions> {
         return actionsMock;
     }
 
-    private createActionMock() {
+    private createActionMock(): IMock<Action<{}>> {
         const actionMock = Mock.ofType(Action);
 
         actionMock.setup(a => a.addListener(It.is(param => param instanceof Function))).callback(listener => (this.listener = listener));
@@ -82,7 +82,7 @@ export class StoreTester<TStoreData, TActions> {
         return actionMock;
     }
 
-    private createChangeListener(store: IBaseStore<TStoreData>, times: Times) {
+    private createChangeListener(store: IBaseStore<TStoreData>, times: Times): IMock<(store, args) => void> {
         const listenerMock = Mock.ofInstance((store, args) => {});
 
         listenerMock.setup(l => l(this.isSameStoreTypeMatcher(store), It.isAny())).verifiable(times);
