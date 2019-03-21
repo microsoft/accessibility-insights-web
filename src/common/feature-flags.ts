@@ -13,7 +13,6 @@ export class FeatureFlags {
     public static readonly scoping = 'scoping';
     public static readonly showBugFiling = 'showBugFiling';
     public static readonly showInstanceVisibility = 'showInstanceVisibility';
-    public static readonly highContrastMode = 'highContrastMode';
 }
 
 export interface FeatureFlagDetail {
@@ -94,14 +93,6 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
                 "(You'll need to go to a different requirement and come back for it to take effect.)",
             isPreviewFeature: false,
             forceDefault: false,
-        },
-        {
-            id: FeatureFlags.highContrastMode,
-            defaultValue: true,
-            displayableName: 'High contrast mode',
-            displayableDescription: 'Show setting for high contrast mode under development',
-            isPreviewFeature: false,
-            forceDefault: true,
         },
     ];
 }
