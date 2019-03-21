@@ -9,7 +9,7 @@ import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-f
 import { SupportLinkHandler } from '../../support-link-handler';
 import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
 import { LaunchPanelHeaderClickHandler } from '../handlers/launch-panel-header-click-handler';
-import Header from './header';
+import { Header } from './header';
 import { HeaderContextualMenu, HeaderContextualMenuDeps } from './header-contextual-menu';
 
 export type LaunchPanelHeaderDeps = {

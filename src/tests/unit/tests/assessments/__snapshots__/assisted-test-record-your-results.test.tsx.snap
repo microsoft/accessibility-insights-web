@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AssistedTestRecordYourResults renders 1`] = `
+<li>
+  Record your results:
+  <ol>
+    <li>
+      Select 
+      <Term>
+        Fail
+      </Term>
+       for any instances that do not meet the requirement.
+    </li>
+    <li>
+      Otherwise, select 
+      <Term>
+        Pass
+      </Term>
+      . Or, after you have marked all failures, select
+       
+      <Term>
+        Pass unmarked instances.
+      </Term>
+    </li>
+  </ol>
+</li>
+`;

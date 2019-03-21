@@ -8,7 +8,6 @@ import { NewTabLink } from '../../../common/components/new-tab-link';
 import { withStoreSubscription, WithStoreSubscriptionDeps } from '../../../common/components/with-store-subscription';
 import { DisplayableStrings } from '../../../common/constants/displayable-strings';
 import { DropdownClickHandler } from '../../../common/dropdown-click-handler';
-import { FeatureFlags } from '../../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
 import { ICommandStoreData } from '../../../common/types/store-data/icommand-store-data';
 import { ILaunchPanelStoreData } from '../../../common/types/store-data/ilaunch-panel-store-data';
@@ -20,7 +19,7 @@ import { PopupViewControllerHandler } from '../handlers/popup-view-controller-ha
 import { LaunchPadRowConfigurationFactory } from '../launch-pad-row-configuration-factory';
 import { AdHocToolsPanel } from './ad-hoc-tools-panel';
 import { DiagnosticViewToggleFactory } from './diagnostic-view-toggle-factory';
-import Header from './header';
+import { Header } from './header';
 import { LaunchPad, LaunchPadDeps, LaunchPadRowConfiguration } from './launch-pad';
 import { LaunchPanelHeader, LaunchPanelHeaderDeps } from './launch-panel-header';
 import { TelemetryPermissionDialog, TelemetryPermissionDialogDeps } from './telemetry-permission-dialog';

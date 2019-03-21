@@ -50,11 +50,12 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
                     description={enableTelemetrySettingDescription}
                     onClick={this.onEnableTelemetryToggleClick}
                 />
-                <FlaggedComponent
-                    enableJSXElement={this.getHighContrastToggle()}
-                    disableJSXElement={null}
-                    featureFlag={FeatureFlags[FeatureFlags.highContrastMode]}
-                    featureFlagStoreData={this.props.featureFlagData}
+                <GenericToggle
+                    enabled={this.props.userConfigStoreState.enableHighContrast}
+                    id="enable-high-contrast-mode"
+                    name={highContrastSettingsTitle}
+                    description={highContrastSettingsDescription}
+                    onClick={this.onHighContrastModeToggleClick}
                 />
                 <FlaggedComponent
                     enableJSXElement={this.getBugSettingsUx()}
@@ -62,18 +63,6 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
                     featureFlagStoreData={this.props.featureFlagData}
                 />
             </GenericPanel>
-        );
-    }
-
-    private getHighContrastToggle(): JSX.Element {
-        return (
-            <GenericToggle
-                enabled={this.props.userConfigStoreState.enableHighContrast}
-                id="enable-high-contrast-mode"
-                name={highContrastSettingsTitle}
-                description={highContrastSettingsDescription}
-                onClick={this.onHighContrastModeToggleClick}
-            />
         );
     }
 
