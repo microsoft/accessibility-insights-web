@@ -7,10 +7,6 @@ import { ExportDialog, ExportDialogProps } from '../../../../../DetailsView/comp
 import { ReportNameGenerator } from '../../../../../DetailsView/reports/report-name-generator';
 
 describe('ExportDialog', () => {
-    const reportFileName = 'THE REPORT FILE NAME';
-    const reportNameGeneratorMock = Mock.ofType(ReportNameGenerator);
-    reportNameGeneratorMock.setup(gen => gen.getFileName('BASE', 'html')).returns(() => reportFileName);
-
     let onCloseMock: IMock<() => void>;
     let onDescriptionChangeMock: IMock<(value: string) => void>;
     let actionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
@@ -25,14 +21,13 @@ describe('ExportDialog', () => {
 
         const deps = {
             detailsViewActionMessageCreator: actionMessageCreatorMock.object,
-            reportNameGenerator: reportNameGeneratorMock.object,
         };
 
         props = {
             deps,
             isOpen: false,
             html: '<html><body>test-html</body></html>',
-            fileNameBase: 'BASE',
+            fileName: 'BASE',
             description: 'description',
             onClose: onCloseMock.object,
             onDescriptionChange: onDescriptionChangeMock.object,

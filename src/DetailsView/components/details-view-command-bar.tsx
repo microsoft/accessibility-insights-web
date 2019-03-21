@@ -12,10 +12,14 @@ import { IAssessmentStoreData } from '../../common/types/store-data/iassessment-
 import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { ReportGenerator, ReportGeneratorDeps } from '../reports/report-generator';
+import { ReportNameGenerator } from '../reports/report-name-generator';
 import { ExportDialog, ExportDialogDeps } from './export-dialog';
 import { StartOverDropdown } from './start-over-dropdown';
 
-export type DetailsViewCommandBarDeps = ExportDialogDeps & ReportGeneratorDeps;
+export type DetailsViewCommandBarDeps = ExportDialogDeps &
+    ReportGeneratorDeps & {
+        dateProvider: () => Date;
+    };
 
 export interface DetailsViewCommandBarProps {
     deps: DetailsViewCommandBarDeps;
@@ -83,7 +87,11 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
 
         const selectedTest = this.props.assessmentStoreData.assessmentNavState.selectedTestType;
         const test = this.props.assessmentsProvider.forType(selectedTest);
-
+        const fileName = this.props.reportGenerator.generateName(
+            'AssessmentReport',
+            this.props.deps.dateProvider(),
+            this.props.tabStoreData.title,
+        );
         return (
             <div className="details-view-command-buttons">
                 <ActionButton iconProps={{ iconName: 'Export' }} onClick={this.onExportButtonClick}>
@@ -98,7 +106,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
                 <ExportDialog
                     deps={this.props.deps}
                     isOpen={this.state.isExportDialogOpen}
-                    fileNameBase="AssessmentReport"
+                    fileName={fileName}
                     description={this.state.exportDialogDescription}
                     html={this.state.exportHtmlWithDescription}
                     onClose={this.onExportDialogClose}

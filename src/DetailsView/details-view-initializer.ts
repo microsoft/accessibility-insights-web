@@ -100,8 +100,6 @@ if (isNaN(tabId) === false) {
                 renderer.render();
             }
             {
-                const dateProvider = () => new Date();
-
                 const telemetryFactory = new TelemetryDataFactory();
 
                 const visualizationStore = new StoreProxy<IVisualizationStoreData>(
@@ -197,7 +195,7 @@ if (isNaN(tabId) === false) {
                 const extensionVersion = chromeAdapter.getManifest().version;
                 const axeVersion = getVersion();
                 const reactStaticRenderer = new ReactStaticRenderer();
-                const reportNameGenerator = new ReportNameGenerator({ dateProvider });
+                const reportNameGenerator = new ReportNameGenerator();
                 const reportHtmlGenerator = new ReportHtmlGenerator(
                     reactStaticRenderer,
                     new NavigatorUtils(window.navigator).getBrowserSpec(),
@@ -276,6 +274,7 @@ if (isNaN(tabId) === false) {
                     loadTheme,
                     urlParser,
                     reportNameGenerator,
+                    dateProvider: DateProvider.getDate,
                 };
 
                 const renderer = new DetailsViewRenderer(

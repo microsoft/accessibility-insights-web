@@ -20,6 +20,8 @@ import {
 import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
 
 describe('DetailsViewCommandBar', () => {
+    const theDate = new Date(2019, 3, 12, 9, 0);
+
     let featureFlagStoreData: FeatureFlagStoreData;
     let actionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let tabStoreData: ITabStoreData;
@@ -58,7 +60,7 @@ describe('DetailsViewCommandBar', () => {
         const deps: DetailsViewCommandBarDeps = {
             detailsViewActionMessageCreator: actionMessageCreatorMock.object,
             outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
-            reportNameGenerator: null,
+            dateProvider: () => theDate,
         };
 
         return {

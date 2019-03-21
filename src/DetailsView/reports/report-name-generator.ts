@@ -2,24 +2,9 @@
 // Licensed under the MIT License.
 import { padStart } from 'lodash/index';
 
-type DateProvider = () => Date;
-
-export type ReportNameGeneratorDeps = {
-    dateProvider: DateProvider;
-};
-
 export class ReportNameGenerator {
-    constructor(private readonly deps: ReportNameGeneratorDeps) {}
-
-    public getFileName(baseName: string, extension: string): string {
-        const { dateProvider } = this.deps;
-        const isoString = dateProvider().toISOString();
-        const dateTime = `${isoString.substr(0, 10)} ${isoString.substr(11, 8)}`;
-        return `${baseName} ${dateTime}.${extension}`;
-    }
-
-    public generateName(baseName: string, extension: string, scanDate: Date, pageTitle: string): string {
-        return baseName + '_' + this.getDateSegment(scanDate) + '_' + this.getTitleSegment(pageTitle) + '.' + extension;
+    public generateName(baseName: string, scanDate: Date, pageTitle: string): string {
+        return baseName + '_' + this.getDateSegment(scanDate) + '_' + this.getTitleSegment(pageTitle) + '.html';
     }
 
     private getDateSegment(scanDate: Date): string {
@@ -31,20 +16,13 @@ export class ReportNameGenerator {
     }
 
     private getTitleSegment(pageTitle: string): string {
-        let title: string = '';
-        for (let i: number = 0; i < pageTitle.length; i++) {
-            const c = pageTitle[i];
-            if (this.isValidCharForTitle(c)) {
-                title += c;
-                if (title.length >= 20) {
-                    return title;
-                }
-            }
-        }
-        return title;
+        return Array.from(pageTitle)
+            .filter(this.isValidCharForTitle)
+            .slice(0, 20)
+            .join('');
     }
 
     private isValidCharForTitle(character: string): boolean {
-        return ('0' <= character && character <= '9') || ('A' <= character && character <= 'Z') || ('a' <= character && character <= 'z');
+        return /[A-Za-z0-9]/.test(character);
     }
 }

@@ -18,8 +18,8 @@ export class ReportGenerator {
         private assessmentReportHtmlGenerator: AssessmentReportHtmlGenerator,
     ) {}
 
-    public generateName(scanDate: Date, pageTitle: string): string {
-        return this.reportNameGenerator.generateName('InsightsScan', 'html', scanDate, pageTitle);
+    public generateName(baseName: string, scanDate: Date, pageTitle: string): string {
+        return this.reportNameGenerator.generateName(baseName, scanDate, pageTitle);
     }
 
     public generateHtml(scanResult: ScanResults, scanDate: Date, pageTitle: string, pageUrl: string, description: string): string {

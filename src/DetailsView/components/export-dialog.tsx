@@ -13,7 +13,7 @@ import { ReportNameGenerator } from '../reports/report-name-generator';
 export interface ExportDialogProps {
     deps: ExportDialogDeps;
     isOpen: boolean;
-    fileNameBase: string;
+    fileName: string;
     description: string;
     html: string;
     onClose: () => void;
@@ -23,7 +23,6 @@ export interface ExportDialogProps {
 
 export interface ExportDialogDeps {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-    reportNameGenerator: ReportNameGenerator;
 }
 
 export class ExportDialog extends React.Component<ExportDialogProps> {
@@ -33,10 +32,6 @@ export class ExportDialog extends React.Component<ExportDialogProps> {
 
     public render(): JSX.Element {
         const encodedHtml = encodeURIComponent(this.props.html);
-
-        const { deps, fileNameBase } = this.props;
-        const { reportNameGenerator } = deps;
-        const fileName = reportNameGenerator.getFileName(fileNameBase, 'html');
 
         return (
             <Dialog
@@ -62,7 +57,7 @@ export class ExportDialog extends React.Component<ExportDialogProps> {
                     ariaLabel="Provide result description"
                 />
                 <DialogFooter>
-                    <PrimaryButton onClick={this.onExportLinkClick} download={fileName} href={'data:text/html,' + encodedHtml}>
+                    <PrimaryButton onClick={this.onExportLinkClick} download={this.props.fileName} href={'data:text/html,' + encodedHtml}>
                         Export
                     </PrimaryButton>
                 </DialogFooter>

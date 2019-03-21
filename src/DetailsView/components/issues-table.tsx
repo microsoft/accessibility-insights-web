@@ -120,7 +120,7 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
             <ExportDialog
                 deps={this.props.deps}
                 isOpen={this.state.isExportDialogOpen}
-                fileNameBase="AutomatedChecksReport"
+                fileName={this.state.exportName}
                 description={this.state.exportDescription}
                 html={this.state.exportData}
                 onClose={this.onDismissExportDialog}
@@ -202,7 +202,7 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
     @autobind
     private onExportButtonClick(): void {
         const scanDate = new Date(this.props.scanResult.timestamp);
-        const exportName = this.props.reportGenerator.generateName(scanDate, this.props.pageTitle);
+        const exportName = this.props.reportGenerator.generateName('AutomatedChecksReport', scanDate, this.props.pageTitle);
         const exportDataWithPlaceholder = this.props.reportGenerator.generateHtml(
             this.props.scanResult,
             scanDate,
