@@ -88,6 +88,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
 
         const selectedTest = this.props.assessmentStoreData.assessmentNavState.selectedTestType;
         const test = this.props.assessmentsProvider.forType(selectedTest);
+
         return (
             <div className="details-view-command-buttons">
                 <ActionButton iconProps={{ iconName: 'Export' }} onClick={this.onExportButtonClick}>
