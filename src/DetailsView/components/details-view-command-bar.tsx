@@ -12,6 +12,7 @@ import { IAssessmentStoreData } from '../../common/types/store-data/iassessment-
 import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { ReportGenerator, ReportGeneratorDeps } from '../reports/report-generator';
+import { DetailsRightPanelConfiguration } from './details-view-right-panel';
 import { ExportDialog, ExportDialogDeps } from './export-dialog';
 import { StartOverDropdown } from './start-over-dropdown';
 
@@ -26,6 +27,7 @@ export interface DetailsViewCommandBarProps {
     assessmentsProvider: IAssessmentsProvider;
     reportGenerator: ReportGenerator;
     renderExportAndStartOver: boolean;
+    rightPanelConfiguration: DetailsRightPanelConfiguration;
 }
 
 export interface DetailsViewCommandBarState {
@@ -94,6 +96,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
                     test={selectedTest}
                     requirementKey={this.props.assessmentStoreData.assessmentNavState.selectedTestStep}
                     actionMessageCreator={this.props.actionMessageCreator}
+                    rightPanelConfiguration={this.props.rightPanelConfiguration}
                 />
                 <ExportDialog
                     deps={this.props.deps}
