@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { InspectMode } from '../../../../background/inspect-modes';
 import { InspectStore } from '../../../../background/stores/inspect-store';
-import { InspectConfigurationFactory } from '../../../../common/configs/inspect-configuration-factory';
+import { ConfigurationKey, InspectConfigurationFactory } from '../../../../common/configs/inspect-configuration-factory';
 import { IInspectStoreData } from '../../../../common/types/store-data/inspect-store-data';
 import { InspectController } from '../../../../injected/inspect-controller';
 import { ScopingListener } from '../../../../injected/scoping-listener';
@@ -112,7 +111,7 @@ describe('InspectControllerTests', () => {
         scopingListenerMock.setup(sm => sm.stop()).verifiable(Times.never());
 
         inspectConfigurationMock
-            .setup(sm => sm.getConfigurationByKey(defaultState))
+            .setup(sm => sm.getConfigurationByKey(defaultState as ConfigurationKey))
             .returns((ev, selector) => inspectConfigMock.object)
             .verifiable(Times.never());
 
