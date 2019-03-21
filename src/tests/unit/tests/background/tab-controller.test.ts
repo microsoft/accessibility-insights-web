@@ -350,7 +350,7 @@ describe('TabControllerTest', () => {
         };
         const interpreterMock = Mock.ofType(Interpreter);
         interpreterMock.setup(im => im.interpret(It.isValue(interpretInput))).verifiable(Times.once());
-        const tabInterpreterMap: TabToContextMap = {
+        tabInterpreterMap = {
             1: {
                 interpreter: interpreterMock.object,
                 stores: null,
@@ -453,7 +453,7 @@ describe('TabControllerTest', () => {
 
         interpreterMock.setup(im => im.interpret(It.isValue(interpretInput2))).verifiable(Times.once());
 
-        const tabInterpreterMap: TabToContextMap = {
+        tabInterpreterMap = {
             1: {
                 interpreter: interpreterMock.object,
                 stores: null,
@@ -545,7 +545,7 @@ describe('TabControllerTest', () => {
 
         interpreterMock.setup(im => im.interpret(It.isValue(interpretInput2))).verifiable(Times.once());
 
-        const tabInterpreterMap: TabToContextMap = {
+        tabInterpreterMap = {
             1: {
                 interpreter: interpreterMock.object,
                 stores: null,
@@ -617,7 +617,7 @@ describe('TabControllerTest', () => {
 
         interpreterMock.setup(im => im.interpret(It.isValue(interpretInput2))).verifiable(Times.once());
 
-        const tabInterpreterMap: TabToContextMap = {
+        tabInterpreterMap = {
             1: {
                 interpreter: interpreterMock.object,
                 stores: null,
@@ -636,15 +636,7 @@ describe('TabControllerTest', () => {
     });
 
     test('onUpdateTab', () => {
-        const tabId = 1;
-        let tabUpdatedCallback: (details: chrome.tabs.TabChangeInfo) => void = null;
-
-        mockChromeAdapter
-            .setup(ca => ca.addListenerToTabsOnUpdated(It.isAny()))
-            .callback(cb => {
-                tabUpdatedCallback = cb;
-            })
-            .verifiable(Times.once());
+        mockChromeAdapter.setup(ca => ca.addListenerToTabsOnUpdated(It.isAny())).verifiable(Times.once());
 
         testSubject.initialize();
 
