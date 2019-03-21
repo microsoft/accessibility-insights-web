@@ -7,7 +7,7 @@ import { Mock, MockBehavior } from 'typemoq';
 import { BaseLeftNav, BaseLeftNavLink, BaseLeftNavProps } from '../../../../../DetailsView/components/base-left-nav';
 
 class TestableBaseLeftNav extends BaseLeftNav {
-    public getOnNavLinkClick(): (event: React.MouseEvent<HTMLElement, MouseEvent>, item: BaseLeftNavLink) => void {
+    public getOnNavLinkClick(): (event: React.MouseEvent<HTMLElement>, item: BaseLeftNavLink) => void {
         return this.onNavLinkClick;
     }
 
