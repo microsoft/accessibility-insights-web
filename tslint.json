@@ -6,7 +6,6 @@
         "max-line-length": [true, 140],
         "no-default-export": true,
         "no-shadowed-variable": true, // Disallows shadowing variable declarations
-        "switch-default": true,
         "typedef": [true, "call-signature", "property-declaration"]
     }
 }
