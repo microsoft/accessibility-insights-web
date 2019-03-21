@@ -202,7 +202,9 @@ if (isNaN(tabId) === false) {
                     extensionVersion,
                     axeVersion,
                 );
+                const assessmentReportHtmlGeneratorDeps = { outcomeTypeSemanticsFromTestStatus };
                 const assessmentReportHtmlGenerator = new AssessmentReportHtmlGenerator(
+                    assessmentReportHtmlGeneratorDeps,
                     reactStaticRenderer,
                     new AssessmentReportModelBuilderFactory(),
                     DateProvider.getDate,
@@ -273,6 +275,7 @@ if (isNaN(tabId) === false) {
                     storesHub,
                     loadTheme,
                     urlParser,
+                    dateProvider: DateProvider.getDate,
                 };
 
                 const renderer = new DetailsViewRenderer(

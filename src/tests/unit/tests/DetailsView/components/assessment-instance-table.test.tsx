@@ -373,7 +373,7 @@ describe('AssessmentInstanceTableTest', () => {
 });
 
 class TestableAssessmentInstanceTable extends AssessmentInstanceTable {
-    public getOnPassUnmarkedInstances() {
+    public getOnPassUnmarkedInstances(): () => void {
         return this.onPassUnmarkedInstances;
     }
 }

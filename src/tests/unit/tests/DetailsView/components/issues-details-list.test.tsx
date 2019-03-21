@@ -166,7 +166,7 @@ describe('IssuesDetailsListTest', () => {
         ];
     }
 
-    function testRendering(sampleItems: DetailsRowData[], columns: IColumn[]) {
+    function testRendering(sampleItems: DetailsRowData[], columns: IColumn[]): void {
         const sampleViolations: AxeRule[] = getSampleViolations();
         const sampleIdToRuleResultMap: DictionaryStringTo<DecoratedAxeNodeResult> = getSampleIdToRuleResultMap();
         const items: DetailsRowData[] = sampleItems ? sampleItems : getSampleItems();

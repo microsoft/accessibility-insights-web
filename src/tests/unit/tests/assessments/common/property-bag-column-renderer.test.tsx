@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { shallow, ShallowWrapper } from 'enzyme';
 import * as React from 'react';
 
 import { propertyBagColumnRenderer, PropertyBagColumnRendererConfig } from '../../../../../assessments/common/property-bag-column-renderer';
@@ -134,7 +134,7 @@ describe('PropertyBagColumnRendererTest', () => {
     });
 });
 
-function createWrapper(item, configs) {
+function createWrapper(item, configs): ShallowWrapper {
     const renderer = () => propertyBagColumnRenderer(item, configs);
 
     return shallow(<RendererWrapper render={renderer} />);

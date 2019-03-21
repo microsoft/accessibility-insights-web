@@ -4,6 +4,7 @@ import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { ExportDialog, ExportDialogProps } from '../../../../../DetailsView/components/export-dialog';
+import { ReportNameGenerator } from '../../../../../DetailsView/reports/report-name-generator';
 
 describe('ExportDialog', () => {
     let onCloseMock: IMock<() => void>;
@@ -26,6 +27,7 @@ describe('ExportDialog', () => {
             deps,
             isOpen: false,
             html: '<html><body>test-html</body></html>',
+            fileName: 'THE REPORT FILE NAME',
             description: 'description',
             onClose: onCloseMock.object,
             onDescriptionChange: onDescriptionChangeMock.object,

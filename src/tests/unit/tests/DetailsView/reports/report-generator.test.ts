@@ -68,21 +68,13 @@ describe('ReportGeneratorTest', () => {
 
         assessmentReportHtmlGeneratorMock
             .setup(builder =>
-                builder.generateHtml(
-                    deps,
-                    assessmentStoreData,
-                    assessmentsProvider,
-                    featureFlagStoreData,
-                    tabStoreData,
-                    assessmentDescription,
-                ),
+                builder.generateHtml(assessmentStoreData, assessmentsProvider, featureFlagStoreData, tabStoreData, assessmentDescription),
             )
             .returns(() => 'generated-assessment-html')
             .verifiable(Times.once());
 
         const testObject = new ReportGenerator(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
         const actual = testObject.generateAssessmentHtml(
-            deps,
             assessmentStoreData,
             assessmentsProvider,
             featureFlagStoreData,
@@ -96,12 +88,12 @@ describe('ReportGeneratorTest', () => {
 
     test('generateName', () => {
         nameBuilderMock
-            .setup(builder => builder.generateName(It.isValue(date), It.isValue(title)))
+            .setup(builder => builder.generateName('InsightsScan', It.isValue(date), It.isValue(title)))
             .returns(() => 'returned-name')
             .verifiable(Times.once());
 
         const testObject = new ReportGenerator(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
-        const actual = testObject.generateName(date, title);
+        const actual = testObject.generateName('InsightsScan', date, title);
 
         const expected = 'returned-name';
         expect(actual).toEqual(expected);

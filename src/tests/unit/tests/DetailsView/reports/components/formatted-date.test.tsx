@@ -12,7 +12,7 @@ describe('FormattedDate', () => {
             testDate(new Date(2000, 0, 1, 0, 0, 0), '2000-01-01 12:00 AM FTZ');
         });
 
-        function testDate(date: Date, expected: string) {
+        function testDate(date: Date, expected: string): void {
             const dateWithFakeTimeZone = new Date(date);
             dateWithFakeTimeZone.toLocaleTimeString = () => {
                 return 'blah FTZ';

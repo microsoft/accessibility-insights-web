@@ -106,7 +106,7 @@ describe('CustomWidgetsColumnRenderer', () => {
         }
     });
 
-    function checkLink(link: React.ReactElement<any>, name: string, url: string) {
+    function checkLink(link: React.ReactElement<any>, name: string, url: string): void {
         expect(link.props.href).toEqual(url);
         expect(link.props.children).toEqual(name);
     }

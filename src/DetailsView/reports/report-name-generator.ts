@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash/index';
+import { padStart } from 'lodash/index';
 
 export class ReportNameGenerator {
-    public generateName(scanDate: Date, pageTitle: string): string {
-        return 'InsightsScan_' + this.getDateSegment(scanDate) + '_' + this.getTitleSegment(pageTitle) + '.html';
+    public generateName(baseName: string, scanDate: Date, pageTitle: string): string {
+        return baseName + '_' + this.getDateSegment(scanDate) + '_' + this.getTitleSegment(pageTitle) + '.html';
     }
 
     private getDateSegment(scanDate: Date): string {
@@ -12,24 +12,17 @@ export class ReportNameGenerator {
     }
 
     private padStartWithZero(num: number, digits: number): string {
-        return _.padStart(num.toString(), digits, '0');
+        return padStart(num.toString(), digits, '0');
     }
 
     private getTitleSegment(pageTitle: string): string {
-        let title: string = '';
-        for (let i: number = 0; i < pageTitle.length; i++) {
-            const c = pageTitle[i];
-            if (this.isValidCharForTitle(c)) {
-                title += c;
-                if (title.length >= 20) {
-                    return title;
-                }
-            }
-        }
-        return title;
+        return Array.from(pageTitle)
+            .filter(this.isValidCharForTitle)
+            .slice(0, 20)
+            .join('');
     }
 
     private isValidCharForTitle(character: string): boolean {
-        return ('0' <= character && character <= '9') || ('A' <= character && character <= 'Z') || ('a' <= character && character <= 'z');
+        return /[A-Za-z0-9]/.test(character);
     }
 }

@@ -315,7 +315,7 @@ describe('AssessmentBuilderTest', () => {
         expect(config.getAssessmentData(assessmentData as any)).toEqual(expectedData);
     });
 
-    function validateInstanceTableSettings(testStep: TestStep) {
+    function validateInstanceTableSettings(testStep: TestStep): void {
         expect(testStep.getInstanceStatus).toBeDefined();
         expect(testStep.getInstanceStatus({} as DecoratedAxeNodeResult)).toBe(ManualTestStatus.UNKNOWN);
 

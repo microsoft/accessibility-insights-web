@@ -32,7 +32,7 @@ describe('OutcomeType', () => {
         function generateManualTestStatus(pass: number, fail: number, incomplete: number): ManualTestStatusData {
             let i = 0;
             const result: ManualTestStatusData = {};
-            function setStep(status) {
+            function setStep(status): () => { stepFinalResult: string; isStepScanned: boolean } {
                 return () => (result['step' + ++i] = { stepFinalResult: status, isStepScanned: true });
             }
             times(pass, setStep(ManualTestStatus.PASS));

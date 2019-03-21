@@ -14,16 +14,13 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { RuleResult, ScanResults } from '../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../types/common-types';
-import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { ReportGenerator } from '../reports/report-generator';
-import { ExportDialog } from './export-dialog';
+import { ExportDialog, ExportDialogDeps } from './export-dialog';
 import { IssuesDetailsList } from './issues-details-list';
 import { IssuesDetailsPane, IssuesDetailsPaneDeps } from './Issues-details-pane';
 import { IssuesTableHandler } from './issues-table-handler';
 
-export type IssuesTableDeps = IssuesDetailsPaneDeps & {
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-};
+export type IssuesTableDeps = IssuesDetailsPaneDeps & ExportDialogDeps;
 
 export interface IssuesTableProps {
     deps: IssuesTableDeps;
@@ -119,6 +116,7 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
             <ExportDialog
                 deps={this.props.deps}
                 isOpen={this.state.isExportDialogOpen}
+                fileName={this.state.exportName}
                 description={this.state.exportDescription}
                 html={this.state.exportData}
                 onClose={this.onDismissExportDialog}
@@ -200,7 +198,7 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
     @autobind
     private onExportButtonClick(): void {
         const scanDate = new Date(this.props.scanResult.timestamp);
-        const exportName = this.props.reportGenerator.generateName(scanDate, this.props.pageTitle);
+        const exportName = this.props.reportGenerator.generateName('AutomatedChecksReport', scanDate, this.props.pageTitle);
         const exportDataWithPlaceholder = this.props.reportGenerator.generateHtml(
             this.props.scanResult,
             scanDate,

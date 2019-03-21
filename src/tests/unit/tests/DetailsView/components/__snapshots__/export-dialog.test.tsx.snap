@@ -29,7 +29,7 @@ exports[`ExportDialog renders as hidden when not open 1`] = `
   />
   <StyledDialogFooterBase>
     <CustomizedPrimaryButton
-      download="AssessmentReport.html"
+      download="THE REPORT FILE NAME"
       href="data:text/html,%3Chtml%3E%3Cbody%3Etest-html%3C%2Fbody%3E%3C%2Fhtml%3E"
       onClick={[Function]}
     >
@@ -68,7 +68,7 @@ exports[`ExportDialog renders as shown when open 1`] = `
   />
   <StyledDialogFooterBase>
     <CustomizedPrimaryButton
-      download="AssessmentReport.html"
+      download="THE REPORT FILE NAME"
       href="data:text/html,%3Chtml%3E%3Cbody%3Etest-html%3C%2Fbody%3E%3C%2Fhtml%3E"
       onClick={[Function]}
     >
