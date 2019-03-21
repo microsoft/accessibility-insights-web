@@ -273,7 +273,6 @@ if (isNaN(tabId) === false) {
                     storesHub,
                     loadTheme,
                     urlParser,
-                    reportNameGenerator,
                     dateProvider: DateProvider.getDate,
                 };
 
