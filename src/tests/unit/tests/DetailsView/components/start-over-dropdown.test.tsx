@@ -8,6 +8,7 @@ import { IMock, Mock, Times } from 'typemoq';
 
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
+import { DetailsRightPanelConfiguration } from '../../../../../DetailsView/components/details-view-right-panel';
 import { GenericDialog } from '../../../../../DetailsView/components/generic-dialog';
 import { StartOverDropdown, StartOverProps } from '../../../../../DetailsView/components/start-over-dropdown';
 
@@ -26,6 +27,9 @@ describe('StartOverDropdownTest', () => {
             actionMessageCreator: actionCreatorMock.object,
             test: -1 as VisualizationType,
             requirementKey: 'test key',
+            rightPanelConfiguration: {
+                GetStartOverContextualMenuItemKeys: () => ['assessment', 'test'],
+            } as DetailsRightPanelConfiguration,
         };
     });
 
@@ -38,7 +42,17 @@ describe('StartOverDropdownTest', () => {
     it('render ContextualMenu', () => {
         const rendered = shallow(<StartOverDropdown {...defaultProps} />);
         rendered.find(ActionButton).simulate('click', event);
-        expect(rendered.debug()).toMatchSnapshot();
+        expect(rendered.getElement()).toMatchSnapshot();
+        expect(rendered.state().target).toBe(event.currentTarget);
+    });
+
+    it('render ContextualMenu with only one option', () => {
+        defaultProps.rightPanelConfiguration = {
+            GetStartOverContextualMenuItemKeys: () => ['assessment'],
+        } as DetailsRightPanelConfiguration;
+        const rendered = shallow(<StartOverDropdown {...defaultProps} />);
+        rendered.find(ActionButton).simulate('click', event);
+        expect(rendered.getElement()).toMatchSnapshot();
         expect(rendered.state().target).toBe(event.currentTarget);
     });
 

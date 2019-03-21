@@ -2,10 +2,12 @@
 // Licensed under the MIT License.
 import { autobind, IPoint } from '@uifabric/utilities';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
-import { ContextualMenu } from 'office-ui-fabric-react/lib/ContextualMenu';
+import { ContextualMenu, IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import * as React from 'react';
+
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
+import { DetailsRightPanelConfiguration } from './details-view-right-panel';
 import { GenericDialog } from './generic-dialog';
 
 type DialogState = 'none' | 'assessment' | 'test';
@@ -21,6 +23,7 @@ export interface StartOverProps {
     actionMessageCreator: DetailsViewActionMessageCreator;
     test: VisualizationType;
     requirementKey: string;
+    rightPanelConfiguration: DetailsRightPanelConfiguration;
 }
 
 export class StartOverDropdown extends React.Component<StartOverProps, StartOverState> {
@@ -54,26 +57,25 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
             return null;
         }
 
-        const { testName } = this.props;
+        return <ContextualMenu onDismiss={() => this.dismissDropdown()} target={this.state.target} items={this.getMenuItems()} />;
+    }
 
-        return (
-            <ContextualMenu
-                onDismiss={() => this.dismissDropdown()}
-                target={this.state.target}
-                items={[
-                    {
-                        key: 'assessment',
-                        name: 'Start over Assessment',
-                        onClick: this.onStartOverAllTestsMenu,
-                    },
-                    {
-                        key: 'test',
-                        name: `Start over ${testName}`,
-                        onClick: this.onStartOverTestMenu,
-                    },
-                ]}
-            />
-        );
+    private getMenuItems(): IContextualMenuItem[] {
+        const { testName, rightPanelConfiguration } = this.props;
+        const items: IContextualMenuItem[] = [
+            {
+                key: 'assessment',
+                name: 'Start over Assessment',
+                onClick: this.onStartOverAllTestsMenu,
+            },
+            {
+                key: 'test',
+                name: `Start over ${testName}`,
+                onClick: this.onStartOverTestMenu,
+            },
+        ];
+
+        return rightPanelConfiguration.GetStartOverContextualMenuItemKeys().map(key => items.find(item => item.key === key));
     }
 
     @autobind
