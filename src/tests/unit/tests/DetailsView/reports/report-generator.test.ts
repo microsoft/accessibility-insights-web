@@ -96,7 +96,7 @@ describe('ReportGeneratorTest', () => {
 
     test('generateName', () => {
         nameBuilderMock
-            .setup(builder => builder.generateName(It.isValue(date), It.isValue(title)))
+            .setup(builder => builder.generateName('InsightsScan', 'html', It.isValue(date), It.isValue(title)))
             .returns(() => 'returned-name')
             .verifiable(Times.once());
 

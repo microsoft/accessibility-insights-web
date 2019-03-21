@@ -19,7 +19,7 @@ export class ReportGenerator {
     ) {}
 
     public generateName(scanDate: Date, pageTitle: string): string {
-        return this.reportNameGenerator.generateName(scanDate, pageTitle);
+        return this.reportNameGenerator.generateName('InsightsScan', 'html', scanDate, pageTitle);
     }
 
     public generateHtml(scanResult: ScanResults, scanDate: Date, pageTitle: string, pageUrl: string, description: string): string {

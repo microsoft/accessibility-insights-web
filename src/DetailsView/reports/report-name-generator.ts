@@ -18,8 +18,8 @@ export class ReportNameGenerator {
         return `${baseName} ${dateTime}.${extension}`;
     }
 
-    public generateName(scanDate: Date, pageTitle: string): string {
-        return 'InsightsScan_' + this.getDateSegment(scanDate) + '_' + this.getTitleSegment(pageTitle) + '.html';
+    public generateName(baseName: string, extension: string, scanDate: Date, pageTitle: string): string {
+        return baseName + '_' + this.getDateSegment(scanDate) + '_' + this.getTitleSegment(pageTitle) + '.' + extension;
     }
 
     private getDateSegment(scanDate: Date): string {
