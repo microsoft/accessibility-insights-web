@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { NewTabLink } from '../../../common/components/new-tab-link';
 import { link } from '../../../content/link';
-import ManualTestRecordYourResults from '../../common/manual-test-record-your-results';
+import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
 import { TestStep } from '../../types/test-step';
 import { SequenceTestStep } from './test-steps';

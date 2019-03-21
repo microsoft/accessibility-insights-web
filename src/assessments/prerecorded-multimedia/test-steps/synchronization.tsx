@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-
 import { link } from '../../../content/link';
 import * as content from '../../../content/test/multimedia/synchronization';
-import ManualTestRecordYourResults from '../../common/manual-test-record-your-results';
+import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import { TestStep } from '../../types/test-step';
 import { PrerecordedMultimediaTestStep } from './test-steps';
 
