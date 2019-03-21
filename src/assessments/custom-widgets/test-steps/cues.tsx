@@ -26,6 +26,11 @@ const cuesDescription: JSX.Element = (
 const cuesHowToTest: JSX.Element = (
     <div>
         <p>For this requirement, {productName} highlights custom widgets.</p>
+        <p>
+            <Markup.Emphasis>
+                Note: If no matching/failing instances are found, this requirement will automatically be marked as pass.
+            </Markup.Emphasis>
+        </p>
         <ol>
             <li>
                 In the target page, interact with each custom widget to determine whether it adopts any of these states:

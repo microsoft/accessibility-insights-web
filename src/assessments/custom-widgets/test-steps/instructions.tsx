@@ -25,7 +25,12 @@ const instructionsDescription: JSX.Element = (
 
 const instructionsHowToTest: JSX.Element = (
     <div>
-        For this requirement, {productName} highlights custom widgets.
+        <p>For this requirement, {productName} highlights custom widgets.</p>
+        <p>
+            <Markup.Emphasis>
+                Note: If no matching/failing instances are found, this requirement will automatically be marked as pass.
+            </Markup.Emphasis>
+        </p>
         <ol>
             <li>
                 For each widget, verify that any instructions visible in the target page are also visible in the{' '}

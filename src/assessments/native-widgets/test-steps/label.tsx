@@ -25,7 +25,8 @@ const howToTest: JSX.Element = (
         <p>For this requirement, {productName} highlights native widgets.</p>
         <p>
             <Markup.Emphasis>
-                Note: If a native widget has no programmatically-related label, it will fail an automated check.
+                Notes: (1) If no matching/failing instances are found, this requirement will automatically be marked as pass. (2) If a
+                native widget has no programmatically-related label, it will fail an automated check.
             </Markup.Emphasis>
         </p>
         <ol>

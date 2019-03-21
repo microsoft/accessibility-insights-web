@@ -25,7 +25,12 @@ const keyboardInteractionDescription: JSX.Element = (
 
 const keyboardInteractionHowToTest: JSX.Element = (
     <div>
-        For this requirement, {productName} highlights custom widgets.
+        <p>For this requirement, {productName} highlights custom widgets.</p>
+        <p>
+            <Markup.Emphasis>
+                Note: If no matching/failing instances are found, this requirement will automatically be marked as pass.
+            </Markup.Emphasis>
+        </p>
         <ol>
             <li>
                 For each custom widget, open the spec for the design pattern that best describes the widget's function. (If the widget has

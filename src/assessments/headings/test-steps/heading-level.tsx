@@ -26,6 +26,11 @@ const headingLevelDescription: JSX.Element = (
 const headingLevelHowToTest: JSX.Element = (
     <div>
         <p>For this requirement, {productName} highlights coded headings in the target page.</p>
+        <p>
+            <Markup.Emphasis>
+                Note: If no matching/failing instances are found, this requirement will automatically be marked as pass.
+            </Markup.Emphasis>
+        </p>
         <ol>
             <li>
                 In the target page, examine each heading to verify that its <Markup.Emphasis>programmatic</Markup.Emphasis>

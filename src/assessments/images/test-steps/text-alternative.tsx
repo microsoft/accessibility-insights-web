@@ -21,7 +21,12 @@ const description: JSX.Element = <span>A meaningful image must have a text alter
 
 const howToTest: JSX.Element = (
     <div>
-        For this requirement, {productName} highlights images that are coded as meaningful.
+        <p>For this requirement, {productName} highlights images that are coded as meaningful.</p>
+        <p>
+            <Markup.Emphasis>
+                Note: If no matching/failing instances are found, this requirement will automatically be marked as pass.
+            </Markup.Emphasis>
+        </p>
         <ol>
             <li>
                 Examine each image in the <Markup.Term>Instances</Markup.Term> list to verify that its text alternative serves the

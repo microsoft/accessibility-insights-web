@@ -19,7 +19,12 @@ const description: JSX.Element = <span>A landmark region must have the role that
 
 const howToTest: JSX.Element = (
     <div>
-        <p>The visual helper for this requirement highlights all landmarks in the target page. </p>
+        <p>The visual helper for this requirement highlights all landmarks in the target page.</p>
+        <p>
+            <Markup.Emphasis>
+                Note: If no matching/failing instances are found, this requirement will automatically be marked as pass.
+            </Markup.Emphasis>
+        </p>
         <ol>
             <li>
                 In the target page, examine each landmark to verify that it has the <Markup.CodeTerm>role</Markup.CodeTerm> that best

@@ -33,6 +33,11 @@ const howToTest: JSX.Element = (
             <Markup.NonBreakingSpace />
             <Markup.Tag tagName="textarea" isBold={true} /> elements.
         </p>
+        <p>
+            <Markup.Emphasis>
+                Note: If no matching/failing instances are found, this requirement will automatically be marked as pass.
+            </Markup.Emphasis>
+        </p>
         <ol>
             <li>
                 In the target page, interact with each native widget to determine whether it adopts any of these states:

@@ -28,6 +28,11 @@ const headingFunctionHowToTest: JSX.Element = (
             For this requirement, {productName} highlights coded headings in the target page. Coded headings include HTML tags{' '}
             <Markup.Tag tagName="h1" /> through <Markup.Tag tagName="h6" /> and elements with <Markup.Term>role="heading"</Markup.Term>.
         </p>
+        <p>
+            <Markup.Emphasis>
+                Note: If no matching/failing instances are found, this requirement will automatically be marked as pass.
+            </Markup.Emphasis>
+        </p>
         <ol>
             <li>
                 In the target page, examine each highlighted element to verify that it <Markup.Emphasis>functions</Markup.Emphasis> as a

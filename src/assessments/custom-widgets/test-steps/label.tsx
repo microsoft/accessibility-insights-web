@@ -24,7 +24,12 @@ const labelDescription: JSX.Element = <span>A custom widget must have a label an
 const labelHowToTest: JSX.Element = (
     <div>
         For this requirement, {productName} highlights custom widgets. <br />
-        <Markup.Emphasis>Note: If a custom widget has no programmatically-related label, it will fail an automated check.</Markup.Emphasis>
+        <p>
+            <Markup.Emphasis>
+                Note: (1) If no matching/failing instances are found, this requirement will automatically be marked as pass. (2) If a custom
+                widget has no programmatically-related label, it will fail an automated check.
+            </Markup.Emphasis>
+        </p>
         <ol>
             <li>
                 Examine each widget in the <Markup.Term>Instances</Markup.Term> list below to verify that its accessible name and/or

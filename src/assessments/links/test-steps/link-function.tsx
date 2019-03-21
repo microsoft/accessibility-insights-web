@@ -24,9 +24,16 @@ const LinkFunctionDescription: JSX.Element = (
 
 const LinkFunctionHowToTest: JSX.Element = (
     <div>
-        For this requirement, {title} highlights anchor elements that are possible custom widgets. These elements don't have an ARIA widget
-        role, but they do have some custom widget markup, such as <Markup.Term>tabindex="-1"</Markup.Term>, an ARIA attribute, a non-widget
-        role, or no <Markup.Term>href</Markup.Term>.
+        <p>
+            For this requirement, {title} highlights anchor elements that are possible custom widgets. These elements don't have an ARIA
+            widget role, but they do have some custom widget markup, such as <Markup.Term>tabindex="-1"</Markup.Term>, an ARIA attribute, a
+            non-widget role, or no <Markup.Term>href</Markup.Term>.
+        </p>
+        <p>
+            <Markup.Emphasis>
+                Note: If no matching/failing instances are found, this requirement will automatically be marked as pass.
+            </Markup.Emphasis>
+        </p>
         <ol>
             <li>
                 In the target page, examine each highlighted anchor element to verify that it functions as a link (i.e., it navigates to new

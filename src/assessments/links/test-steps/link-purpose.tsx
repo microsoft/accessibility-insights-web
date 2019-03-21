@@ -24,7 +24,12 @@ const LinkPurposeDescription: JSX.Element = (
 
 const LinkPurposeHowToTest: JSX.Element = (
     <div>
-        For this requirement, {title} highlights links in the target page..
+        <p>For this requirement, {title} highlights links in the target page.</p>
+        <p>
+            <Markup.Emphasis>
+                Note: If no matching/failing instances are found, this requirement will automatically be marked as pass.
+            </Markup.Emphasis>
+        </p>
         <ol>
             <li>
                 In the <Markup.Term>Instances</Markup.Term> list below, examine each link to verify that its accessible name describes its

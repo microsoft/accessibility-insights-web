@@ -24,11 +24,13 @@ const frameTitleHowToTest: JSX.Element = (
             For this requirement, {productName} highlights all <Tag tagName="frame" isBold={false} /> and
             <Tag tagName="iframe" isBold={false} /> elements with visible content.
         </p>
-        <Markup.Emphasis>
-            {' '}
-            Note: If a frame or iframe doesn't have a title, it will fail an automated check and will not be displayed in the list of
-            instances for this requirement.{' '}
-        </Markup.Emphasis>
+        <p>
+            <Markup.Emphasis>
+                Notes: (1) If no matching/failing instances are found, this requirement will automatically be marked as pass. (2) If a frame
+                or iframe doesn't have a title, it will fail an automated check and will not be displayed in the list of instances for this
+                requirement.
+            </Markup.Emphasis>
+        </p>
         <ol>
             <li>
                 Examine each <Tag tagName="frame" isBold={false} /> or <Tag tagName="iframe" isBold={false} />

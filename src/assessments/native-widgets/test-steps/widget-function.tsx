@@ -31,6 +31,11 @@ const howToTest: JSX.Element = (
             ARIA widget role, but they do have some custom widget markup, such as
             <Markup.CodeTerm> tabindex="-1"</Markup.CodeTerm>, an ARIA attribute, or a non-widget role.
         </p>
+        <p>
+            <Markup.Emphasis>
+                Note: If no matching/failing instances are found, this requirement will automatically be marked as pass.
+            </Markup.Emphasis>
+        </p>
         <ol>
             <li>
                 In the target page, examine each highlighted widget to verify that it <Markup.Emphasis>functions </Markup.Emphasis>

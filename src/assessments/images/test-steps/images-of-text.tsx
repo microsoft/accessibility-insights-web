@@ -12,6 +12,7 @@ import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuratio
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
 import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
+import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { TestStep } from '../../types/test-step';
 import { ImagesTestStep } from './test-steps';
@@ -20,7 +21,12 @@ const description: JSX.Element = <span>Images of text are allowed only where a s
 
 const howToTest: JSX.Element = (
     <div>
-        For this requirement, {productName} highlights images that are coded as meaningful.
+        <p>For this requirement, {productName} highlights images that are coded as meaningful.</p>
+        <p>
+            <Markup.Emphasis>
+                Note: If no matching/failing instances are found, this requirement will automatically be marked as pass.
+            </Markup.Emphasis>
+        </p>
         <ol>
             <li>In the target page, examine each image to identify any images of text.</li>
             <li>If you find an image of text, verify that it is used only where a specific appearance required, such as text in a logo.</li>

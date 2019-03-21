@@ -26,7 +26,12 @@ const designPatternDescription: JSX.Element = (
 
 const designPatternHowToTest: JSX.Element = (
     <div>
-        For this requirement, {productName} highlights custom widgets. (A custom widget is an element with a valid ARIA widget role.)
+        <p>For this requirement, {productName} highlights custom widgets. (A custom widget is an element with a valid ARIA widget role.)</p>
+        <p>
+            <Markup.Emphasis>
+                Note: If no matching/failing instances are found, this requirement will automatically be marked as pass.
+            </Markup.Emphasis>
+        </p>
         <ol>
             <li>
                 Familiarize yourself with the{' '}

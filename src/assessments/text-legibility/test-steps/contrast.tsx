@@ -25,8 +25,15 @@ const WindowsPlatformLink = () => <NewTabLink href="https://go.microsoft.com/fwl
 
 const contrastHowToTest: JSX.Element = (
     <div>
-        For this requirement, {productName} highlights instances of text where the contrast ratio can't be determined, typically because the
-        background color is not uniform. You must manually verify the contrast for these instances.
+        <p>
+            For this requirement, {productName} highlights instances of text where the contrast ratio can't be determined, typically because
+            the background color is not uniform. You must manually verify the contrast for these instances.
+        </p>
+        <p>
+            <Markup.Emphasis>
+                Note: If no matching/failing instances are found, this requirement will automatically be marked as pass.
+            </Markup.Emphasis>
+        </p>
         <ol>
             <li>
                 Examine each instance in the target page to identify an area where the text and background are most likely to have a low
