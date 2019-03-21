@@ -27,7 +27,7 @@ describe('ExportDialog', () => {
             deps,
             isOpen: false,
             html: '<html><body>test-html</body></html>',
-            fileName: 'BASE',
+            fileName: 'THE REPORT FILE NAME',
             description: 'description',
             onClose: onCloseMock.object,
             onDescriptionChange: onDescriptionChangeMock.object,
