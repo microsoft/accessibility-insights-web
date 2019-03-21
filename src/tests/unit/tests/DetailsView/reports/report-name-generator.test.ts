@@ -6,7 +6,7 @@ import { ReportNameGenerator } from '../../../../../DetailsView/reports/report-n
 describe('ReportNameGenerator', () => {
     const theBase = 'BASE';
     const theTitle = 'Title';
-    const theDate = new Date(Date.UTC(2019, 2, 12, 16, 0, 0));
+    const theDate = new Date(2019, 2, 12, 16, 0, 0);
 
     const testObject = new ReportNameGenerator();
 
