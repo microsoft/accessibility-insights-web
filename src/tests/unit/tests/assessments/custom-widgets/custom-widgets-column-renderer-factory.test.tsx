@@ -52,7 +52,7 @@ describe('CustomWidgetsColumnRendererFactory', () => {
         checkPropertyBagAndTag(result, 'span');
     });
 
-    function checkPropertyBagAndTag(result: Function, tag: string) {
+    function checkPropertyBagAndTag(result: Function, tag: string): void {
         const renderer = () => result(item);
 
         const wrapper = shallow(<RendererWrapper render={renderer} />);

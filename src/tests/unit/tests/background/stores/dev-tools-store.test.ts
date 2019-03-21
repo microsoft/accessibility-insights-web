@@ -3,6 +3,7 @@
 import { DevToolActions } from '../../../../../background/actions/dev-tools-actions';
 import { DevToolStore } from '../../../../../background/stores/dev-tools-store';
 import { StoreNames } from '../../../../../common/stores/store-names';
+import { DevToolState } from '../../../../../common/types/store-data/idev-tool-state';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
 
 describe('DevToolsStoreTest', () => {
@@ -75,11 +76,11 @@ describe('DevToolsStoreTest', () => {
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    function getDefaultState() {
+    function getDefaultState(): DevToolState {
         return new DevToolStore(null).getDefaultState();
     }
 
-    function createStoreTesterForDevToolsActions(actionName: keyof DevToolActions) {
+    function createStoreTesterForDevToolsActions(actionName: keyof DevToolActions): StoreTester<DevToolState, DevToolActions> {
         const factory = (actions: DevToolActions) => new DevToolStore(actions);
 
         return new StoreTester(DevToolActions, actionName, factory);

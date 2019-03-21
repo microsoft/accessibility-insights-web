@@ -174,7 +174,7 @@ class InjectorControllerValidator {
         );
     }
 
-    public setupTimeoutHandler(times: number) {
+    public setupTimeoutHandler(times: number): InjectorControllerValidator {
         this.mockWindowUtils
             .setup(x => x.setTimeout(It.isAny(), It.isAnyNumber()))
             .callback(handler => {
@@ -185,7 +185,7 @@ class InjectorControllerValidator {
         return this;
     }
 
-    public setupVerifyInjectionStartedActionCalled(tabId: number, numTimes: number = 1) {
+    public setupVerifyInjectionStartedActionCalled(tabId: number, numTimes: number = 1): InjectorControllerValidator {
         this.mockInterpreter
             .setup(x => x.interpret(It.isObjectWith({ type: Messages.Visualizations.State.InjectionStarted, tabId: tabId })))
             .verifiable(Times.exactly(numTimes));
@@ -193,7 +193,7 @@ class InjectorControllerValidator {
         return this;
     }
 
-    public setupVerifyInjectionCompletedActionCalled(tabId: number, numTimes: number = 1) {
+    public setupVerifyInjectionCompletedActionCalled(tabId: number, numTimes: number = 1): InjectorControllerValidator {
         this.mockInterpreter
             .setup(x => x.interpret(It.isObjectWith({ type: Messages.Visualizations.State.InjectionCompleted, tabId: tabId })))
             .verifiable(Times.exactly(numTimes));
@@ -201,7 +201,7 @@ class InjectorControllerValidator {
         return this;
     }
 
-    public invokeWindowTimeoutHandler() {
+    public invokeWindowTimeoutHandler(): void {
         this.setTimeoutHandler();
     }
 

@@ -48,7 +48,7 @@ describe('BaseStoreTest', () => {
     test('onGetCurrentState', () => {
         const changedListener = Mock.ofInstance((_testObject: TestStore, _args: any) => {}, MockBehavior.Strict);
 
-        const listenerAdder = function() {
+        const listenerAdder = function(): void {
             // hack to access onGetCurrentState from the BaseStore class
             // tslint:disable-next-line:no-invalid-this
             this.onGetCurrentState();

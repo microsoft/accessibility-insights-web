@@ -112,7 +112,7 @@ describe('AutomatedChecksVisualizationToggle', () => {
     function assertVisualizationToggle(
         expectedProps: VisualizationToggleProps,
         visualizationToggle: Enzyme.ShallowWrapper<VisualizationToggleProps>,
-    ) {
+    ): void {
         expect(visualizationToggle.exists()).toBeTruthy();
 
         const actualProps = visualizationToggle.props();
@@ -122,7 +122,7 @@ describe('AutomatedChecksVisualizationToggle', () => {
         });
     }
 
-    function getDefaultVisualizationTogglePropsBuilder() {
+    function getDefaultVisualizationTogglePropsBuilder(): VisualizationTogglePropsBuilder {
         return new VisualizationTogglePropsBuilder().with('visualizationName', 'Visual helper').with('className', 'visual-helper-toggle');
     }
 });
