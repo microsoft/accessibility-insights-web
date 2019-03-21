@@ -8,7 +8,6 @@ import * as React from 'react';
 
 import { ExportResultType } from '../../common/telemetry-events';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
-import { ReportNameGenerator } from '../reports/report-name-generator';
 
 export interface ExportDialogProps {
     deps: ExportDialogDeps;
