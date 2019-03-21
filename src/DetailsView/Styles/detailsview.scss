@@ -300,7 +300,11 @@ div.insights-file-issue-details-dialog-container {
         justify-content: space-between;
         min-height: fit-content;
         align-items: center;
-        background-color: $neutral-4;
+        background-color: $neutral-0;
+        padding-left: 16px;
+        font-size: 14px;
+        font-weight: 600;
+        border-bottom: 1px solid $neutral-alpha-8;
         .details-view-target-page {
             padding: 13px 8px;
             display: inherit;
@@ -314,6 +318,7 @@ div.insights-file-issue-details-dialog-container {
         }
         .details-view-command-buttons {
             display: flex;
+            margin-right: 24px;
         }
     }
     .header-bar {
