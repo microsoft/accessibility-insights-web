@@ -66,7 +66,7 @@ const devConfig = {
     ...commonConfig,
     name: 'dev',
     mode: 'development',
-    devtool: 'source-map',
+    devtool: 'eval-source-map',
     output: {
         path: path.join(__dirname, 'extension/devBundle'),
         filename: '[name].bundle.js',
