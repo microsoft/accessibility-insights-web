@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash/index';
+import { padStart } from 'lodash/index';
 
 type DateProvider = () => Date;
 
@@ -27,7 +27,7 @@ export class ReportNameGenerator {
     }
 
     private padStartWithZero(num: number, digits: number): string {
-        return _.padStart(num.toString(), digits, '0');
+        return padStart(num.toString(), digits, '0');
     }
 
     private getTitleSegment(pageTitle: string): string {
