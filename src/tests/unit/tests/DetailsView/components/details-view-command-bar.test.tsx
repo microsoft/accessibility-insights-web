@@ -20,7 +20,9 @@ import {
 import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
 
 describe('DetailsViewCommandBar', () => {
-    const theDate = new Date(2019, 3, 12, 9, 0);
+    const theDate = new Date(2019, 2, 12, 9, 0);
+    const thePageTitle = 'command-bar-test-tab-title';
+    const theReportFileName = 'THE REPORT FILE NAME';
 
     let featureFlagStoreData: FeatureFlagStoreData;
     let actionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
@@ -35,7 +37,7 @@ describe('DetailsViewCommandBar', () => {
         featureFlagStoreData = {};
         actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator, MockBehavior.Loose);
         tabStoreData = {
-            title: 'command-bar-test-tab-title',
+            title: thePageTitle,
             isClosed: false,
         } as ITabStoreData;
         renderExportAndStartOver = true;
@@ -108,6 +110,10 @@ describe('DetailsViewCommandBar', () => {
         const testHtmlWithDescription = `<html><body>export-button-click ${description}</body></html>`;
         const deps = getProps().deps;
 
+        reportGeneratorMock
+            .setup(rb => rb.generateName('AssessmentReport', theDate, thePageTitle))
+            .returns(() => theReportFileName)
+            .verifiable();
         reportGeneratorMock
             .setup(rb =>
                 rb.generateAssessmentHtml(

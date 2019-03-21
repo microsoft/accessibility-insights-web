@@ -12,7 +12,6 @@ import { IAssessmentStoreData } from '../../common/types/store-data/iassessment-
 import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { ReportGenerator, ReportGeneratorDeps } from '../reports/report-generator';
-import { ReportNameGenerator } from '../reports/report-name-generator';
 import { ExportDialog, ExportDialogDeps } from './export-dialog';
 import { StartOverDropdown } from './start-over-dropdown';
 
@@ -37,6 +36,7 @@ export interface DetailsViewCommandBarState {
     exportDialogDescription: string;
     exportHtmlWithPlaceholder: string;
     exportHtmlWithDescription: string;
+    exportFileName: string;
 }
 
 export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBarProps, DetailsViewCommandBarState> {
@@ -47,6 +47,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
             exportDialogDescription: '',
             exportHtmlWithPlaceholder: '',
             exportHtmlWithDescription: '',
+            exportFileName: '',
         };
     }
 
@@ -87,11 +88,6 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
 
         const selectedTest = this.props.assessmentStoreData.assessmentNavState.selectedTestType;
         const test = this.props.assessmentsProvider.forType(selectedTest);
-        const fileName = this.props.reportGenerator.generateName(
-            'AssessmentReport',
-            this.props.deps.dateProvider(),
-            this.props.tabStoreData.title,
-        );
         return (
             <div className="details-view-command-buttons">
                 <ActionButton iconProps={{ iconName: 'Export' }} onClick={this.onExportButtonClick}>
@@ -106,7 +102,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
                 <ExportDialog
                     deps={this.props.deps}
                     isOpen={this.state.isExportDialogOpen}
-                    fileName={fileName}
+                    fileName={this.state.exportFileName}
                     description={this.state.exportDialogDescription}
                     html={this.state.exportHtmlWithDescription}
                     onClose={this.onExportDialogClose}
@@ -132,9 +128,15 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
 
         const description = '';
         const exportHtmlWithDescription = exportHtmlWithPlaceholder.replace(this.descriptionPlaceholder, description);
+        const exportFileName = this.props.reportGenerator.generateName(
+            'AssessmentReport',
+            this.props.deps.dateProvider(),
+            this.props.tabStoreData.title,
+        );
 
         this.setState({
             isExportDialogOpen: true,
+            exportFileName,
             exportDialogDescription: description,
             exportHtmlWithPlaceholder: exportHtmlWithPlaceholder,
             exportHtmlWithDescription: exportHtmlWithDescription,
