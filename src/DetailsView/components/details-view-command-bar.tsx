@@ -119,7 +119,6 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
     @autobind
     private onExportButtonClick(): void {
         const exportHtmlWithPlaceholder = this.props.reportGenerator.generateAssessmentHtml(
-            this.props.deps,
             this.props.assessmentStoreData,
             this.props.assessmentsProvider,
             this.props.featureFlagStoreData,

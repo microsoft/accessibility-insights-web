@@ -117,7 +117,6 @@ describe('DetailsViewCommandBar', () => {
         reportGeneratorMock
             .setup(rb =>
                 rb.generateAssessmentHtml(
-                    deps,
                     assessmentStoreData,
                     assessmentsProviderMock.object,
                     featureFlagStoreData,

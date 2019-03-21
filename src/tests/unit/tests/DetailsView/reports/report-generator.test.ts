@@ -68,21 +68,13 @@ describe('ReportGeneratorTest', () => {
 
         assessmentReportHtmlGeneratorMock
             .setup(builder =>
-                builder.generateHtml(
-                    deps,
-                    assessmentStoreData,
-                    assessmentsProvider,
-                    featureFlagStoreData,
-                    tabStoreData,
-                    assessmentDescription,
-                ),
+                builder.generateHtml(assessmentStoreData, assessmentsProvider, featureFlagStoreData, tabStoreData, assessmentDescription),
             )
             .returns(() => 'generated-assessment-html')
             .verifiable(Times.once());
 
         const testObject = new ReportGenerator(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
         const actual = testObject.generateAssessmentHtml(
-            deps,
             assessmentStoreData,
             assessmentsProvider,
             featureFlagStoreData,

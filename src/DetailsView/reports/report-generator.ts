@@ -27,7 +27,6 @@ export class ReportGenerator {
     }
 
     public generateAssessmentHtml(
-        deps: ReportGeneratorDeps,
         assessmentStoreData: IAssessmentStoreData,
         assessmentsProvider: IAssessmentsProvider,
         featureFlagStoreData: FeatureFlagStoreData,
@@ -35,7 +34,6 @@ export class ReportGenerator {
         description: string,
     ): string {
         return this.assessmentReportHtmlGenerator.generateHtml(
-            deps,
             assessmentStoreData,
             assessmentsProvider,
             featureFlagStoreData,
