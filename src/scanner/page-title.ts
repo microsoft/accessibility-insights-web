@@ -27,6 +27,7 @@ function evaluateTitle(node: HTMLElement, options: any): boolean {
     const docUtil = new DocumentUtils(document);
     const title = docUtil.title();
     if (title) {
+        // tslint:disable-next-line: no-invalid-this
         this.data({ pageTitle: title });
     }
     return true;
