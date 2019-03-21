@@ -277,7 +277,7 @@ describe('PopupView', () => {
         expect(testObject.render()).toMatchSnapshot();
     });
 
-    function createDefaultPropsBuilder(storeHub: BaseClientStoresHub<any>): PopupViewPropsBuilder {
+    function createDefaultPropsBuilder(storeHub: BaseClientStoresHub<any>) {
         return new PopupViewPropsBuilder().withStoresHub(storeHub).with('browserAdapter', browserAdapterMock.object);
     }
 

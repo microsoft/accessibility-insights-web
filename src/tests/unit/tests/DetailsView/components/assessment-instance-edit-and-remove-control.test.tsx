@@ -61,7 +61,7 @@ describe('AssessmentInstanceRemoveButton', () => {
 });
 
 class TestableAssessmentInstanceRemoveButton extends AssessmentInstanceEditAndRemoveControl {
-    public getOnRemoveButtonClicked(): (event?: React.MouseEvent) => void {
+    public getOnRemoveButtonClicked(): (event?: React.MouseEvent<HTMLElement | HTMLAnchorElement | HTMLButtonElement, MouseEvent>) => void {
         return this.onRemoveButtonClicked;
     }
 }

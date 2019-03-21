@@ -11,7 +11,7 @@ export abstract class BaseDataBuilder<T> {
         return this.data;
     }
 
-    public with<P extends keyof T>(property: P, value: T[P]) {
+    public with<P extends keyof T>(property: P, value: T[P]): BaseDataBuilder<T> {
         this.data[property] = value;
         return this;
     }

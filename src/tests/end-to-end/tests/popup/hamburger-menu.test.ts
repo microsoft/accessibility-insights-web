@@ -3,6 +3,7 @@
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
+import { Page } from '../../common/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
 describe('Hamburger menu', () => {
@@ -44,7 +45,7 @@ describe('Hamburger menu', () => {
         expect(results).toHaveLength(0);
     });
 
-    async function createPopupPage() {
+    async function createPopupPage(): Promise<Page> {
         const targetPage = await browser.newTestResourcePage('all.html');
 
         await targetPage.bringToFront();
