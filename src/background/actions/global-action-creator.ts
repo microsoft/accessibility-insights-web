@@ -70,7 +70,6 @@ export class GlobalActionCreator {
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetHighContrastConfig, this.onSetHighContrastMode);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetBugService, this.onSetBugService);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetBugServiceProperty, this.onSetBugServiceProperty);
-        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.NotifyFeatureFlagChange, this.onNotifyFeatureFlagChange);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetIssueTrackerPath, this.onSetIssueTrackerPath);
     }
 
@@ -94,7 +93,6 @@ export class GlobalActionCreator {
     private onSetFeatureFlags(payload): void {
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.PREVIEW_FEATURES_TOGGLE, payload);
         this.featureFlagActions.setFeatureFlag.invoke(payload);
-        this.onNotifyFeatureFlagChange(payload);
     }
 
     @autobind
@@ -156,11 +154,6 @@ export class GlobalActionCreator {
     @autobind
     private onSetBugServiceProperty(payload: SetBugServicePropertyPayload): void {
         this.userConfigActions.setBugServiceProperty.invoke(payload);
-    }
-
-    @autobind
-    private onNotifyFeatureFlagChange(payload: FeatureFlagPayload): void {
-        this.userConfigActions.notifyFeatureFlagChange.invoke(payload);
     }
 
     @autobind
