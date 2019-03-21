@@ -888,8 +888,7 @@ div.insights-file-issue-details-dialog-container {
                     .details-view-assessment-content {
                         flex-grow: 1;
                         display: flex;
-                        min-height: 25vh;
-                        max-height: 77vh;
+                        height: 0;
                         border-top: 1px solid $neutral-8;
                     }
                     .assessment-requirements-title {
