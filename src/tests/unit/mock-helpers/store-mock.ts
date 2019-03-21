@@ -55,7 +55,7 @@ export class StoreMock<TStoreState> {
         return this;
     }
 
-    public getObject() {
+    public getObject(): IBaseStore<TStoreState> {
         return this._store.object;
     }
 

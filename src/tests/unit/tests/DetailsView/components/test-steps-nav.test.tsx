@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { INavLink } from 'office-ui-fabric-react/lib/Nav';
 import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';
@@ -15,11 +16,11 @@ import { EventStubFactory } from '../../../common/event-stub-factory';
 import { CreateTestAssessmentProvider, CreateTestAssessmentProviderAutomated } from '../../../common/test-assessment-provider';
 
 class TestableTestStepsNav extends TestStepsNav {
-    public getOnTestStepSelected() {
+    public getOnTestStepSelected(): (event?: React.MouseEvent<HTMLElement>, item?: INavLink) => void {
         return this.onTestStepSelected;
     }
 
-    public getRenderNavLink() {
+    public getRenderNavLink(): (link: INavLink) => JSX.Element {
         return this.renderNavLink;
     }
 }
@@ -33,7 +34,7 @@ describe('TestStepsNav', () => {
         runTest(CreateTestAssessmentProviderAutomated());
     });
 
-    function runTest(assessmentProvider: IAssessmentsProvider) {
+    function runTest(assessmentProvider: IAssessmentsProvider): void {
         const eventFactory = new EventStubFactory();
         const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
         const eventStub = eventFactory.createKeypressEvent() as any;

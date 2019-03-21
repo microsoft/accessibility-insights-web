@@ -4,7 +4,7 @@ import { IRequirementReportModel } from '../../../../..//DetailsView/reports/ass
 import { excludePassingInstancesFromAssessmentReport } from '../../../../../DetailsView/extensions/exclude-passing-instances-from-assessment-report';
 
 describe('excludePassingInstancesFromAssessmentReport', () => {
-    function makeModel(showPassingInstances) {
+    function makeModel(showPassingInstances): IRequirementReportModel {
         return ({ showPassingInstances } as Partial<IRequirementReportModel>) as IRequirementReportModel;
     }
 

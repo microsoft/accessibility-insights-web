@@ -74,11 +74,11 @@ describe('ScopingActionCreatorTest', () => {
         return actionMock;
     }
 
-    function setupScopingActionsMock(actionName: keyof ScopingActions, actionMock: IMock<Action<any>>) {
+    function setupScopingActionsMock(actionName: keyof ScopingActions, actionMock: IMock<Action<any>>): void {
         scopingActionsMock.setup(actions => actions[actionName]).returns(() => actionMock.object);
     }
 
-    function setupRegisterTypeToPayloadCallbackMock(message: string, actionPayload: any, _tabId: number) {
+    function setupRegisterTypeToPayloadCallbackMock(message: string, actionPayload: any, _tabId: number): void {
         registerTypeToPayloadCallbackMock
             .setup(regitrar => regitrar(message, It.is(param => _.isFunction(param))))
             .callback((_message, handler) => handler(actionPayload, _tabId));

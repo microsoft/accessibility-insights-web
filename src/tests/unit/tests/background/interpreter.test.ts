@@ -3,13 +3,14 @@
 import { Mock, Times } from 'typemoq';
 
 import { Interpreter } from '../../../../background/interpreter';
+import { DictionaryStringTo } from '../../../../types/common-types';
 
 class TestableInterpreter extends Interpreter {
-    public getMessageToActionMapping() {
+    public getMessageToActionMapping(): DictionaryStringTo<PayloadCallback> {
         return this.messageToActionMapping;
     }
 
-    public setMessageToActionMapping(messageToActionMapping) {
+    public setMessageToActionMapping(messageToActionMapping: DictionaryStringTo<PayloadCallback>): void {
         this.messageToActionMapping = messageToActionMapping;
     }
 }

@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 export class QStub {
-    public defer() {}
+    public defer(): void {}
 
-    public allSettled() {}
+    public allSettled(): void {}
 
-    public timeout() {}
+    public timeout(): void {}
 }

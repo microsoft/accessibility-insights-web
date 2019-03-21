@@ -27,7 +27,7 @@ export class ChromeEventMock {
         return this;
     }
 
-    public verify() {
+    public verify(): void {
         this._eventMock.verifyAll();
     }
 

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { mount, shallow } from 'enzyme';
-import { ChoiceGroup, IChoiceGroup } from 'office-ui-fabric-react/lib/ChoiceGroup';
+import { shallow } from 'enzyme';
+import { ChoiceGroup, IChoiceGroup, IChoiceGroupOption } from 'office-ui-fabric-react/lib/ChoiceGroup';
 import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';
@@ -153,15 +153,15 @@ describe('TestStatusChoiceGroup', () => {
 });
 
 class TestableTestStatusChoiceGroup extends TestStatusChoiceGroup {
-    public getOnChange() {
+    public getOnChange(): (ev: React.FocusEvent<HTMLElement>, option: IChoiceGroupOption) => void {
         return this.onChange;
     }
 
-    public getOnUndo() {
+    public getOnUndo(): () => void {
         return this.onUndoClicked;
     }
 
-    public getComponentRef() {
+    public getComponentRef(): (component: IChoiceGroup) => void {
         return this.compomentRef;
     }
 

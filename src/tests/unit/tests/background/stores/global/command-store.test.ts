@@ -116,7 +116,7 @@ describe('CommandStoreTest', () => {
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    function createStoreTesterForCommandActions(actionName: keyof CommandActions) {
+    function createStoreTesterForCommandActions(actionName: keyof CommandActions): StoreTester<ICommandStoreData, CommandActions> {
         const factory = (actions: CommandActions) => new CommandStore(actions, telemetryEventHandlerMock.object);
 
         return new StoreTester(CommandActions, actionName, factory);

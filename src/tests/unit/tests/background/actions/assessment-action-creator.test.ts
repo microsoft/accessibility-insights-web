@@ -334,11 +334,11 @@ describe('AssessmentActionCreatorTest', () => {
         return actionMock;
     }
 
-    function setupAssessmentActionsMock(actionName: keyof AssessmentActions, actionMock: IMock<Action<any>>) {
+    function setupAssessmentActionsMock(actionName: keyof AssessmentActions, actionMock: IMock<Action<any>>): void {
         assessmentActionsMock.setup(actions => actions[actionName]).returns(() => actionMock.object);
     }
 
-    function setupRegisterTypeToPayloadCallbackMock(message: string, actionPayload: any, tabId: number) {
+    function setupRegisterTypeToPayloadCallbackMock(message: string, actionPayload: any, tabId: number): void {
         registerTypeToPayloadCallbackMock
             .setup(regitrar => regitrar(message, It.is(param => _.isFunction(param))))
             .callback((message, handler) => handler(actionPayload, tabId));

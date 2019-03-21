@@ -24,7 +24,7 @@ function testBeforeAfterAssessmentData(
     expectedTimes: Times,
     before: IAssessmentStoreData,
     after: IAssessmentStoreData,
-) {
+): void {
     const assessmentStoreMock = Mock.ofType(AssessmentStore, MockBehavior.Strict);
     const assessmentProvider = CreateTestAssessmentProvider();
     const telemetryFactoryMock = Mock.ofType(TelemetryDataFactory, MockBehavior.Strict);
