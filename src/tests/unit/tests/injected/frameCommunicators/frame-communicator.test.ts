@@ -287,28 +287,25 @@ describe('FrameCommunicatorTests', () => {
 
         testSubject.initialize();
 
-        // mock posting ping command
         mockWindowMessageHandler
             .setup(x => x.post(childFrame1Info.window, FrameCommunicator.PingCommand, null, It.isAny(), undefined))
             .verifiable();
 
         const pingTimeoutDeferred = Q.defer();
 
-        // mock for ping timeout
         mockQ
             .setup(x => x.timeout(It.isAny(), 500))
-            .returns((promise: Q.Promise<any>) => {
-                expect(promise.isPending()).toBe(true);
+            .returns((thePromise: Q.Promise<any>) => {
+                expect(thePromise.isPending()).toBe(true);
                 return pingTimeoutDeferred.promise;
             })
             .verifiable(Times.once());
 
-        // mock for whole request timeout
         mockQ
             .setup(x => x.timeout(It.isAny(), FrameCommunicator.minWaitTimeForAllFrameResponse))
-            .returns((promise: Q.Promise<any>, timeout) => {
-                expect(promise.isPending()).toBe(true);
-                return Q.timeout(promise, timeout);
+            .returns((thePromise: Q.Promise<any>, timeout) => {
+                expect(thePromise.isPending()).toBe(true);
+                return Q.timeout(thePromise, timeout);
             })
             .verifiable(Times.once());
 
@@ -430,7 +427,7 @@ describe('FrameCommunicatorTests', () => {
 
         mockQ
             .setup(x => x.timeout(It.isAny(), 500))
-            .returns((promise, timeout) => {
+            .returns(() => {
                 pingDeferered = Q.defer();
                 return pingDeferered.promise;
             })
@@ -488,7 +485,7 @@ describe('FrameCommunicatorTests', () => {
 
         mockQ
             .setup(x => x.timeout(It.isAny(), 500))
-            .returns((promise, timeout) => {
+            .returns(() => {
                 pingDeferered = Q.defer();
                 return pingDeferered.promise;
             })

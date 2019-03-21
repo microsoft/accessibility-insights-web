@@ -974,14 +974,10 @@ describe('SVGDrawerV2Tests', () => {
             });
     }
 
-    function setupWindowUtilsMockDefault(styleStub): void {
+    function setupWindowUtilsMockDefault(style): void {
         const windowMock = {};
 
-        windowUtilsMock
-            .setup(it => it.getComputedStyle(It.isAny()))
-            .returns(stuff => {
-                return styleStub as any;
-            });
+        windowUtilsMock.setup(it => it.getComputedStyle(It.isAny())).returns(() => style as any);
 
         windowUtilsMock
             .setup(w => w.getTopWindow())
