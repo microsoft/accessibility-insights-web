@@ -90,5 +90,5 @@ export const ruleToLinkConfiguration: DictionaryStringTo<HyperlinkDefinition[]> 
     'aria-hidden-focus': [link.WCAG_4_1_2],
     'form-field-multiple-labels': [BestPractice],
     'label-content-name-mismatch': [BestPractice],
-    'landmark-complementary-is-top-level': [link.WCAG_1_3_1],
+    'landmark-complementary-is-top-level': [link.WCAG_1_3_1, BestPractice],
 };
