@@ -176,7 +176,7 @@ describe('IssuesDetailsListTest', () => {
                 passes: [],
                 violations: sampleViolations,
             })
-            .withSelectedIdToRuleResultMap(VisualizationType.Issues, sampleIdToRuleResultMap)
+            .withSelectedIdToRuleResultMapForIssues(sampleIdToRuleResultMap)
             .build().issues;
         const issuesTableHandlerMock = Mock.ofType<IssuesTableHandler>(IssuesTableHandler);
         const listGroups = {

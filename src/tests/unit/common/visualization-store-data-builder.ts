@@ -53,15 +53,6 @@ export class VisualizationStoreDataBuilder extends BaseDataBuilder<IVisualizatio
         return this.withAssessment(this.data.tests.assessments.headingsAssessment, enable, step);
     }
 
-    public withAllAdhocEnabled(): VisualizationStoreDataBuilder {
-        this.data.tests.adhoc.issues.enabled = true;
-        this.data.tests.adhoc.landmarks.enabled = true;
-        this.data.tests.adhoc.headings.enabled = true;
-        this.data.tests.adhoc.tabStops.enabled = true;
-        this.data.tests.adhoc.color.enabled = true;
-        return this;
-    }
-
     public withAllAdhocTestsTo(enabled: boolean): VisualizationStoreDataBuilder {
         _.forOwn(this.data.tests.adhoc, testData => {
             testData.enabled = enabled;
@@ -70,7 +61,6 @@ export class VisualizationStoreDataBuilder extends BaseDataBuilder<IVisualizatio
     }
 
     public withEnable(type: VisualizationType): VisualizationStoreDataBuilder {
-        // tslint:disable-next-line: switch-default
         switch (type) {
             case VisualizationType.Headings:
                 this.data.tests.adhoc.headings.enabled = true;
@@ -87,13 +77,17 @@ export class VisualizationStoreDataBuilder extends BaseDataBuilder<IVisualizatio
             case VisualizationType.Color:
                 this.data.tests.adhoc.color.enabled = true;
                 break;
+            case VisualizationType.HeadingsAssessment:
+                this.data.tests.assessments.headingsAssessment.enabled = true;
+                break;
+            default:
+                throw new Error(`Unsupported type ${type}`);
         }
 
         return this;
     }
 
     public withDisable(type: VisualizationType): VisualizationStoreDataBuilder {
-        // tslint:disable-next-line: switch-default
         switch (type) {
             case VisualizationType.Headings:
                 this.data.tests.adhoc.headings.enabled = false;
@@ -107,6 +101,14 @@ export class VisualizationStoreDataBuilder extends BaseDataBuilder<IVisualizatio
             case VisualizationType.Color:
                 this.data.tests.adhoc.color.enabled = false;
                 break;
+            case VisualizationType.TabStops:
+                this.data.tests.adhoc.tabStops.enabled = false;
+                break;
+            case VisualizationType.HeadingsAssessment:
+                this.data.tests.assessments.headingsAssessment.enabled = false;
+                break;
+            default:
+                throw new Error(`Unsupported type ${type}`);
         }
 
         return this;

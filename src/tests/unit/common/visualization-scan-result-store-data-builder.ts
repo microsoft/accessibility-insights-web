@@ -24,7 +24,6 @@ export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<IVi
     }
 
     public withSelectorMap(type: VisualizationType, selectorMap: any): VisualizationScanResultStoreDataBuilder {
-        // tslint:disable-next-line: switch-default
         switch (type) {
             case VisualizationType.Headings:
                 this.data.headings.fullAxeResultsMap = selectorMap;
@@ -38,35 +37,24 @@ export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<IVi
             case VisualizationType.Color:
                 this.data.color.fullAxeResultsMap = selectorMap;
                 break;
+            default:
+                throw new Error(`Unsupported type %{type}`);
         }
 
         return this;
     }
 
-    public withFullIdToRuleResultMap(type: VisualizationType, fullIdToRuleResultMap: any): VisualizationScanResultStoreDataBuilder {
-        // tslint:disable-next-line: switch-default
-        switch (type) {
-            case VisualizationType.Issues:
-                this.data.issues.fullIdToRuleResultMap = fullIdToRuleResultMap;
-                break;
-        }
-
+    public withFullIdToRuleResultMapForIssues(fullIdToRuleResultMap: any): VisualizationScanResultStoreDataBuilder {
+        this.data.issues.fullIdToRuleResultMap = fullIdToRuleResultMap;
         return this;
     }
 
-    public withSelectedIdToRuleResultMap(type: VisualizationType, selectedIdToRuleResultMap: any): VisualizationScanResultStoreDataBuilder {
-        // tslint:disable-next-line: switch-default
-        switch (type) {
-            case VisualizationType.Issues:
-                this.data.issues.selectedIdToRuleResultMap = selectedIdToRuleResultMap;
-                break;
-        }
-
+    public withSelectedIdToRuleResultMapForIssues(selectedIdToRuleResultMap: any): VisualizationScanResultStoreDataBuilder {
+        this.data.issues.selectedIdToRuleResultMap = selectedIdToRuleResultMap;
         return this;
     }
 
     public withScanResult(type: VisualizationType, result: any): VisualizationScanResultStoreDataBuilder {
-        // tslint:disable-next-line: switch-default
         switch (type) {
             case VisualizationType.Headings:
                 this.data.headings.scanResult = result;
@@ -80,6 +68,8 @@ export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<IVi
             case VisualizationType.Color:
                 this.data.color.scanResult = result;
                 break;
+            default:
+                throw new Error(`Unsupported type ${type}`);
         }
         return this;
     }
