@@ -108,7 +108,6 @@ describe('DetailsViewCommandBar', () => {
         const description = '';
         const testHtmlWithPlaceholder = `<html><body>export-button-click ${descriptionPlaceholder}</body></html>`;
         const testHtmlWithDescription = `<html><body>export-button-click ${description}</body></html>`;
-        const deps = getProps().deps;
 
         reportGeneratorMock
             .setup(rb => rb.generateName('AssessmentReport', theDate, thePageTitle))
@@ -129,6 +128,7 @@ describe('DetailsViewCommandBar', () => {
 
         const stateChange = {
             isExportDialogOpen: true,
+            exportFileName: theReportFileName,
             exportDialogDescription: '',
             exportHtmlWithPlaceholder: testHtmlWithPlaceholder,
             exportHtmlWithDescription: testHtmlWithDescription,
