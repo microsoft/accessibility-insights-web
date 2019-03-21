@@ -1,6 +1,7 @@
 {
     "rulesDirectory": ["tslint-microsoft-contrib"],
     "rules": {
+        "no-shadowed-variable": true,
         "arrow-parens": [true, "ban-single-arg-parens"],
         "await-promise": true,
         "class-name": true,
