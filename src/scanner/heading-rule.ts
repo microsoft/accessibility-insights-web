@@ -35,6 +35,7 @@ function evaluateCodedHeadings(node: HTMLElement, options: any): boolean {
         headingLevel: headingLevel,
         headingText: headingText,
     };
+    // tslint:disable-next-line: no-invalid-this
     this.data(headingResultData);
     return true;
 }
