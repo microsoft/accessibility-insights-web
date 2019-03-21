@@ -39,7 +39,7 @@ describe('AssessmentScanPolicyRunner', () => {
             assessmentStoreMock = Mock.ofType(AssessmentStore, MockBehavior.Strict);
             visualizationStore = Mock.ofType(VisualizationStore, MockBehavior.Strict);
             assessmentProviderMock = Mock.ofType(AssessmentsProvider, MockBehavior.Strict);
-            getSelectedAssessmentTestMock = Mock.ofInstance((testData: TestsEnabledState) => null, MockBehavior.Strict);
+            getSelectedAssessmentTestMock = Mock.ofInstance((testTestData: TestsEnabledState) => null, MockBehavior.Strict);
             scheduleScanMock = Mock.ofInstance((test: VisualizationType, step: string, tabId: number) => null, MockBehavior.Strict);
             testSubject = new AssessmentScanPolicyRunner(
                 assessmentStoreMock.object,

@@ -32,7 +32,7 @@ describe('ContentScriptInjectorTest', () => {
         ContentScriptInjector.jsFiles.forEach(jsFile => {
             mockBrowserAdpater
                 .setup(x => x.injectJs(tabId, jsFile, It.isAny()))
-                .callback((tabId, jsFile, callback) => {
+                .callback((theTabId, theJsFile, callback) => {
                     jsLoadCallback = callback;
                 })
                 .verifiable(Times.once());
@@ -52,19 +52,13 @@ describe('ContentScriptInjectorTest', () => {
 
     it('test inject content scripts timeout', async done => {
         const tabId = 2;
-        let jsLoadCallback: Function;
         testSubject = new ContentScriptInjector(mockBrowserAdpater.object, mockQ.object);
 
         ContentScriptInjector.cssFiles.forEach(cssFile => {
             mockBrowserAdpater.setup(x => x.injectCss(tabId, cssFile, null)).verifiable(Times.once());
         });
 
-        mockBrowserAdpater
-            .setup(x => x.injectJs(tabId, ContentScriptInjector.jsFiles[0], It.isAny()))
-            .callback((tabId, jsFile, callback) => {
-                jsLoadCallback = callback;
-            })
-            .verifiable(Times.once());
+        mockBrowserAdpater.setup(x => x.injectJs(tabId, ContentScriptInjector.jsFiles[0], It.isAny())).verifiable(Times.once());
 
         const timeoutDeferred = Q.defer();
         mockQ
