@@ -19,6 +19,7 @@ export type AssessmentReportHtmlGeneratorDeps = AssessmentReportDeps;
 
 export class AssessmentReportHtmlGenerator {
     constructor(
+        private deps: AssessmentReportHtmlGeneratorDeps,
         private renderer: ReactStaticRenderer,
         private assessmentReportModelBuilderFactory: AssessmentReportModelBuilderFactory,
         private dateGetter: () => Date,
@@ -29,7 +30,6 @@ export class AssessmentReportHtmlGenerator {
     ) {}
 
     public generateHtml(
-        deps: AssessmentReportHtmlGeneratorDeps,
         assessmentStoreData: IAssessmentStoreData,
         assessmentsProvider: IAssessmentsProvider,
         featureFlagStoreData: FeatureFlagStoreData,
@@ -56,7 +56,7 @@ export class AssessmentReportHtmlGenerator {
                 </head>
                 <body>
                     <AssessmentReport
-                        deps={deps}
+                        deps={this.deps}
                         data={model}
                         description={description}
                         extensionVersion={this.extensionVersion}

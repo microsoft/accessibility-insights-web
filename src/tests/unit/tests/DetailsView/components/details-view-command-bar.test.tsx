@@ -21,6 +21,10 @@ import { DetailsRightPanelConfiguration } from '../../../../../DetailsView/compo
 import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
 
 describe('DetailsViewCommandBar', () => {
+    const theDate = new Date(2019, 2, 12, 9, 0);
+    const thePageTitle = 'command-bar-test-tab-title';
+    const theReportFileName = 'THE REPORT FILE NAME';
+
     let featureFlagStoreData: FeatureFlagStoreData;
     let actionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let tabStoreData: ITabStoreData;
@@ -35,7 +39,7 @@ describe('DetailsViewCommandBar', () => {
         featureFlagStoreData = {};
         actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator, MockBehavior.Loose);
         tabStoreData = {
-            title: 'command-bar-test-tab-title',
+            title: thePageTitle,
             isClosed: false,
         } as ITabStoreData;
         renderExportAndStartOver = true;
@@ -61,6 +65,7 @@ describe('DetailsViewCommandBar', () => {
         const deps: DetailsViewCommandBarDeps = {
             detailsViewActionMessageCreator: actionMessageCreatorMock.object,
             outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
+            dateProvider: () => theDate,
         };
 
         return {
@@ -107,12 +112,14 @@ describe('DetailsViewCommandBar', () => {
         const description = '';
         const testHtmlWithPlaceholder = `<html><body>export-button-click ${descriptionPlaceholder}</body></html>`;
         const testHtmlWithDescription = `<html><body>export-button-click ${description}</body></html>`;
-        const deps = getProps().deps;
 
+        reportGeneratorMock
+            .setup(rb => rb.generateName('AssessmentReport', theDate, thePageTitle))
+            .returns(() => theReportFileName)
+            .verifiable();
         reportGeneratorMock
             .setup(rb =>
                 rb.generateAssessmentHtml(
-                    deps,
                     assessmentStoreData,
                     assessmentsProviderMock.object,
                     featureFlagStoreData,
@@ -125,6 +132,7 @@ describe('DetailsViewCommandBar', () => {
 
         const stateChange = {
             isExportDialogOpen: true,
+            exportFileName: theReportFileName,
             exportDialogDescription: '',
             exportHtmlWithPlaceholder: testHtmlWithPlaceholder,
             exportHtmlWithDescription: testHtmlWithDescription,

@@ -12,6 +12,7 @@ import { DetailsViewActionMessageCreator } from '../actions/details-view-action-
 export interface ExportDialogProps {
     deps: ExportDialogDeps;
     isOpen: boolean;
+    fileName: string;
     description: string;
     html: string;
     onClose: () => void;
@@ -55,7 +56,7 @@ export class ExportDialog extends React.Component<ExportDialogProps> {
                     ariaLabel="Provide result description"
                 />
                 <DialogFooter>
-                    <PrimaryButton onClick={this.onExportLinkClick} download="AssessmentReport.html" href={'data:text/html,' + encodedHtml}>
+                    <PrimaryButton onClick={this.onExportLinkClick} download={this.props.fileName} href={'data:text/html,' + encodedHtml}>
                         Export
                     </PrimaryButton>
                 </DialogFooter>

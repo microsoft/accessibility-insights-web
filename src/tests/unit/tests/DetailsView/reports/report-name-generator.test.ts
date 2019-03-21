@@ -1,37 +1,70 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { range } from 'lodash';
 import { ReportNameGenerator } from '../../../../../DetailsView/reports/report-name-generator';
 
-describe('ReportNameGeneratorTest', () => {
+describe('ReportNameGenerator', () => {
+    const theBase = 'BASE';
+    const theTitle = 'Title';
+    const theDate = new Date(2019, 2, 12, 16, 0, 0);
+
     const testObject = new ReportNameGenerator();
 
-    test('single digit date/time elements with short title', () => {
+    it('generates single digit date/time elements', () => {
         const date = new Date(2018, 0, 1, 2, 3);
-        const title = 't';
 
-        const actual = testObject.generateName(date, title);
+        const actual = testObject.generateName(theBase, date, theTitle);
 
-        const expected = 'InsightsScan_20180101_t.html';
+        const expected = 'BASE_20180101_Title.html';
         expect(actual).toEqual(expected);
     });
 
-    test('double digit date/time elements with long title', () => {
+    it('generates double digit date/time elements with long title', () => {
         const date = new Date(2017, 9, 10, 12, 13);
+
+        const actual = testObject.generateName(theBase, date, theTitle);
+
+        const expected = 'BASE_20171010_Title.html';
+        expect(actual).toEqual(expected);
+    });
+
+    it('generates maximum date/time elements with invalid title characters', () => {
+        const date = new Date(2017, 11, 31, 23, 59);
+
+        const actual = testObject.generateName(theBase, date, theTitle);
+
+        const expected = 'BASE_20171231_Title.html';
+        expect(actual).toEqual(expected);
+    });
+
+    it('truncates a long title', () => {
         const title = 'ThisIsALongTitleThatShouldBeTruncated';
 
-        const actual = testObject.generateName(date, title);
+        const actual = testObject.generateName(theBase, theDate, title);
 
-        const expected = 'InsightsScan_20171010_ThisIsALongTitleThat.html';
+        const expected = 'BASE_20190312_ThisIsALongTitleThat.html';
         expect(actual).toEqual(expected);
     });
 
-    test('maximum date/time elements with invalid title characters', () => {
-        const date = new Date(2017, 11, 31, 23, 59);
-        const title = '$T+i(t}l!e 1';
+    function titleFromRange(from: number, to: number): string {
+        return range(from, to).reduce((prev, cur) => prev + String.fromCharCode(cur), '');
+    }
 
-        const actual = testObject.generateName(date, title);
+    it('excludes invalid title characters from 32-95', () => {
+        const title = titleFromRange(32, 96);
 
-        const expected = 'InsightsScan_20171231_Title1.html';
+        const actual = testObject.generateName(theBase, theDate, title);
+
+        const expected = 'BASE_20190312_0123456789ABCDEFGHIJ.html';
+        expect(actual).toEqual(expected);
+    });
+
+    it('excludes invalid title characters from 96-1023', () => {
+        const title = titleFromRange(96, 1023);
+
+        const actual = testObject.generateName(theBase, theDate, title);
+
+        const expected = 'BASE_20190312_abcdefghijklmnopqrst.html';
         expect(actual).toEqual(expected);
     });
 });

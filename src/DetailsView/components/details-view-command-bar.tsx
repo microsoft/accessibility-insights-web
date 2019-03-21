@@ -16,7 +16,10 @@ import { DetailsRightPanelConfiguration } from './details-view-right-panel';
 import { ExportDialog, ExportDialogDeps } from './export-dialog';
 import { StartOverDropdown } from './start-over-dropdown';
 
-export type DetailsViewCommandBarDeps = ExportDialogDeps & ReportGeneratorDeps;
+export type DetailsViewCommandBarDeps = ExportDialogDeps &
+    ReportGeneratorDeps & {
+        dateProvider: () => Date;
+    };
 
 export interface DetailsViewCommandBarProps {
     deps: DetailsViewCommandBarDeps;
@@ -35,6 +38,7 @@ export interface DetailsViewCommandBarState {
     exportDialogDescription: string;
     exportHtmlWithPlaceholder: string;
     exportHtmlWithDescription: string;
+    exportFileName: string;
 }
 
 export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBarProps, DetailsViewCommandBarState> {
@@ -45,6 +49,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
             exportDialogDescription: '',
             exportHtmlWithPlaceholder: '',
             exportHtmlWithDescription: '',
+            exportFileName: '',
         };
     }
 
@@ -101,6 +106,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
                 <ExportDialog
                     deps={this.props.deps}
                     isOpen={this.state.isExportDialogOpen}
+                    fileName={this.state.exportFileName}
                     description={this.state.exportDialogDescription}
                     html={this.state.exportHtmlWithDescription}
                     onClose={this.onExportDialogClose}
@@ -116,7 +122,6 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
     @autobind
     private onExportButtonClick(): void {
         const exportHtmlWithPlaceholder = this.props.reportGenerator.generateAssessmentHtml(
-            this.props.deps,
             this.props.assessmentStoreData,
             this.props.assessmentsProvider,
             this.props.featureFlagStoreData,
@@ -126,9 +131,15 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
 
         const description = '';
         const exportHtmlWithDescription = exportHtmlWithPlaceholder.replace(this.descriptionPlaceholder, description);
+        const exportFileName = this.props.reportGenerator.generateName(
+            'AssessmentReport',
+            this.props.deps.dateProvider(),
+            this.props.tabStoreData.title,
+        );
 
         this.setState({
             isExportDialogOpen: true,
+            exportFileName,
             exportDialogDescription: description,
             exportHtmlWithPlaceholder: exportHtmlWithPlaceholder,
             exportHtmlWithDescription: exportHtmlWithDescription,
