@@ -283,9 +283,9 @@ export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
             return;
         }
 
-        payload.payloadBatch.forEach(payload => {
-            const testStepResult: ITestStepResult = assessmentData.generatedAssessmentInstancesMap[payload.selector].testStepResults[step];
-            testStepResult.isVisible = payload.isVisible;
+        payload.payloadBatch.forEach(batch => {
+            const testStepResult: ITestStepResult = assessmentData.generatedAssessmentInstancesMap[batch.selector].testStepResults[step];
+            testStepResult.isVisible = batch.isVisible;
         });
 
         this.emitChanged();

@@ -133,7 +133,7 @@ describe('DetailsViewContainer', () => {
         it('render twice; should not call details view opened on 2nd render', () => {
             const storeActionCreator = Mock.ofType(StoreActionMessageCreator, MockBehavior.Strict);
             const clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory);
-            const getSelectedDetailsViewMock = Mock.ofInstance((props: GetSelectedDetailsViewProps) => null, MockBehavior.Strict);
+            const getSelectedDetailsViewMock = Mock.ofInstance((theProps: GetSelectedDetailsViewProps) => null, MockBehavior.Strict);
             const rightContentPanelType = 'TestView';
             const viewType = VisualizationType.Headings;
             const switcherNavConfig = {
@@ -343,7 +343,7 @@ describe('DetailsViewContainer', () => {
         const clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory);
         const previewFeatureFlagsHandlerMock = Mock.ofType(PreviewFeatureFlagsHandler);
         const dropdownClickHandler = Mock.ofType(DropdownClickHandler);
-        const getSelectedDetailsViewMock = Mock.ofInstance((props: GetSelectedDetailsViewProps) => null, MockBehavior.Strict);
+        const getSelectedDetailsViewMock = Mock.ofInstance((theProps: GetSelectedDetailsViewProps) => null, MockBehavior.Strict);
         const rightContentPanelType = 'TestView';
         const rightContentPanelConfig = {} as DetailsRightPanelConfiguration;
         const switcherNavConfig = {

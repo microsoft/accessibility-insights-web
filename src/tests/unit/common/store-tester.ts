@@ -83,7 +83,7 @@ export class StoreTester<TStoreData, TActions> {
     }
 
     private createChangeListener(store: IBaseStore<TStoreData>, times: Times): IMock<(store, args) => void> {
-        const listenerMock = Mock.ofInstance((store, args) => {});
+        const listenerMock = Mock.ofInstance((theStore, args) => {});
 
         listenerMock.setup(l => l(this.isSameStoreTypeMatcher(store), It.isAny())).verifiable(times);
 

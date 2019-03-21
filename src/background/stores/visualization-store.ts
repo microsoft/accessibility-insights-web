@@ -107,10 +107,10 @@ export class VisualizationStore extends BaseStore<IVisualizationStoreData> {
         const scanData = configuration.getStoreData(this.state.tests);
 
         if (this.isAssessment(configuration)) {
-            const scanData = configuration.getStoreData(this.state.tests) as IAssessmentScanData;
-            Object.keys(scanData.stepStatus).forEach(step => {
-                if (scanData.enabled) {
-                    configuration.disableTest(scanData, step);
+            const assessmentScanData = configuration.getStoreData(this.state.tests) as IAssessmentScanData;
+            Object.keys(assessmentScanData.stepStatus).forEach(step => {
+                if (assessmentScanData.enabled) {
+                    configuration.disableTest(assessmentScanData, step);
                     isStateChanged = true;
                 }
             });

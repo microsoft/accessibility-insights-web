@@ -110,9 +110,9 @@ export class VisualizationStoreDataBuilder extends BaseDataBuilder<IVisualizatio
         return this;
     }
 
-    private withAssessment(assessment: IAssessmentScanData, enabled: boolean, step?: string): VisualizationStoreDataBuilder {
+    private withAssessment(assessment: IAssessmentScanData, enabled: boolean, step: string): VisualizationStoreDataBuilder {
         assessment.stepStatus[step] = enabled;
-        assessment.enabled = Object.keys(assessment.stepStatus).some(step => assessment.stepStatus[step] === true);
+        assessment.enabled = Object.keys(assessment.stepStatus).some(currentStep => assessment.stepStatus[currentStep] === true);
         return this;
     }
 
