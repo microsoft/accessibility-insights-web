@@ -2,8 +2,9 @@
 // Licensed under the MIT License.
 import * as Axe from 'axe-core';
 
-import { ruleToLinkConfiguration } from '../../../../scanner/rule-to-links-mappings';
 import { difference } from 'lodash';
+import { ruleToLinkConfiguration } from '../../../../scanner/rule-to-links-mappings';
+import { HyperlinkDefinition } from '../../../../views/content/content-page';
 
 describe('ruleToLinkConfiguration', () => {
     const axe = Axe as any;
@@ -24,7 +25,7 @@ describe('ruleToLinkConfiguration', () => {
         },
     );
 
-    function hasBestPracticeLink(links: HyperTextDefinition[]): boolean {
+    function hasBestPracticeLink(links: HyperlinkDefinition[]): boolean {
         return links.findIndex(link => link.text === 'Best Practice') !== -1;
     }
 });
