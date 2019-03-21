@@ -38,7 +38,7 @@ export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<IVi
                 this.data.color.fullAxeResultsMap = selectorMap;
                 break;
             default:
-                throw new Error(`Unsupported type %{type}`);
+                throw new Error(`Unsupported type ${type}`);
         }
 
         return this;
