@@ -998,7 +998,7 @@ describe('AssessmentStoreTest', () => {
 
         const payload: ToggleActionPayload = {
             test: assessmentType,
-            step: requirementKey,
+            requirement: requirementKey,
             selector: 'selector',
         };
 
@@ -1325,7 +1325,7 @@ describe('AssessmentStoreTest', () => {
 
         const payload: ToggleActionPayload = {
             test: assessmentType,
-            step: requirementKey,
+            requirement: requirementKey,
         };
 
         assessmentsProviderMock.setup(apm => apm.forType(payload.test)).returns(() => assessmentMock.object);

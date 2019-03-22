@@ -131,12 +131,12 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
     test('selectRequirement', () => {
         const view = VisualizationType.Headings;
-        const selectedStep = HeadingsTestStep.headingFunction;
+        const selectedRequirement = HeadingsTestStep.headingFunction;
         const event = eventStubFactory.createKeypressEvent() as any;
         const telemetry: RequirementSelectTelemetryData = {
             triggeredBy: 'keypress',
             selectedTest: VisualizationType[view],
-            selectedRequirement: selectedStep,
+            selectedRequirement: selectedRequirement,
             source: testSource,
         };
 
@@ -145,14 +145,14 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             type: Messages.Assessment.SelectTestRequirement,
             payload: {
                 telemetry: telemetry,
-                selectedStep: selectedStep,
+                selectedRequirement: selectedRequirement,
                 selectedTest: view,
             },
         };
         setupPostMessage(expectedMessage);
 
         telemetryFactoryMock
-            .setup(tf => tf.forSelectRequirement(event, view, selectedStep))
+            .setup(tf => tf.forSelectRequirement(event, view, selectedRequirement))
             .returns(() => telemetry)
             .verifiable(Times.once());
 
@@ -296,7 +296,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
     });
 
     test('startOverTest', () => {
-        const stepStub = 'fake-step';
+        const requirementStub = 'fake-requirement';
         const event = eventStubFactory.createMouseClickEvent() as any;
         const telemetry: AssessmentTelemetryData = {
             triggeredBy: 'mouseclick',
@@ -309,7 +309,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             type: Messages.Assessment.StartOver,
             payload: {
                 test: VisualizationType.HeadingsAssessment,
-                step: stepStub,
+                requirement: requirementStub,
                 telemetry,
             },
         };
@@ -320,7 +320,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             .returns(() => telemetry)
             .verifiable(Times.once());
 
-        testSubject.startOverAssessment(event, VisualizationType.HeadingsAssessment, stepStub);
+        testSubject.startOverAssessment(event, VisualizationType.HeadingsAssessment, requirementStub);
     });
 
     test('continuePreviousAssessment', () => {
@@ -372,7 +372,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
     });
 
     test('enableVisualHelper', () => {
-        const step = 'fake-step-name';
+        const requirement = 'fake-requirement-name';
         const telemetry = {
             source: TelemetryEventSource.DetailsView,
             triggeredBy: TriggeredByNotApplicable,
@@ -384,7 +384,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             type: Messages.Assessment.EnableVisualHelper,
             payload: {
                 test: VisualizationType.HeadingsAssessment,
-                step,
+                requirement,
                 telemetry,
             },
         };
@@ -393,11 +393,11 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             .returns(() => telemetry)
             .verifiable(Times.once());
         setupPostMessage(expectedMessage);
-        testSubject.enableVisualHelper(VisualizationType.HeadingsAssessment, step);
+        testSubject.enableVisualHelper(VisualizationType.HeadingsAssessment, requirement);
     });
 
     test('enableVisualHelper without scan', () => {
-        const step = 'fake-step-name';
+        const requirement = 'fake-requirement-name';
         const telemetry = {
             source: TelemetryEventSource.DetailsView,
             triggeredBy: TriggeredByNotApplicable,
@@ -409,7 +409,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             type: Messages.Assessment.EnableVisualHelperWithoutScan,
             payload: {
                 test: VisualizationType.HeadingsAssessment,
-                step,
+                requirement,
                 telemetry,
             },
         };
@@ -418,18 +418,18 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             .returns(() => telemetry)
             .verifiable(Times.once());
         setupPostMessage(expectedMessage);
-        testSubject.enableVisualHelper(VisualizationType.HeadingsAssessment, step, false);
+        testSubject.enableVisualHelper(VisualizationType.HeadingsAssessment, requirement, false);
     });
 
     test('enableVisualHelper, with scan, without telemetry', () => {
-        const step = 'fake-step-name';
+        const requirement = 'fake-requirement-name';
 
         const expectedMessage = {
             tabId: tabId,
             type: Messages.Assessment.EnableVisualHelper,
             payload: {
                 test: VisualizationType.HeadingsAssessment,
-                step,
+                requirement,
                 telemetry: null,
             },
         };
@@ -438,18 +438,18 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             .returns(() => null)
             .verifiable(Times.never());
         setupPostMessage(expectedMessage);
-        testSubject.enableVisualHelper(VisualizationType.HeadingsAssessment, step, true, false);
+        testSubject.enableVisualHelper(VisualizationType.HeadingsAssessment, requirement, true, false);
     });
 
     test('enableVisualHelper, without scan, without telemetry', () => {
-        const step = 'fake-step-name';
+        const requirement = 'fake-requirement-name';
 
         const expectedMessage = {
             tabId: tabId,
             type: Messages.Assessment.EnableVisualHelperWithoutScan,
             payload: {
                 test: VisualizationType.HeadingsAssessment,
-                step,
+                requirement,
                 telemetry: null,
             },
         };
@@ -458,7 +458,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             .returns(() => null)
             .verifiable(Times.never());
         setupPostMessage(expectedMessage);
-        testSubject.enableVisualHelper(VisualizationType.HeadingsAssessment, step, false, false);
+        testSubject.enableVisualHelper(VisualizationType.HeadingsAssessment, requirement, false, false);
     });
 
     test('disableVisualHelpersForTest', () => {
@@ -476,7 +476,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
     test('disableVisualHelper', () => {
         const test = -1;
-        const step = 'step';
+        const requirement = 'requirement';
         const telemetry = {};
 
         const expectedMessage = {
@@ -489,12 +489,12 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         };
 
         telemetryFactoryMock
-            .setup(tfm => tfm.forRequirementFromDetailsView(test, step))
+            .setup(tfm => tfm.forRequirementFromDetailsView(test, requirement))
             .returns(() => telemetry as RequirementActionTelemetryData);
 
         setupPostMessage(expectedMessage);
 
-        testSubject.disableVisualHelper(test, step);
+        testSubject.disableVisualHelper(test, requirement);
     });
 
     test('changeManualTestStatus', () => {
@@ -502,7 +502,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             source: TelemetryEventSource.DetailsView,
             triggeredBy: TriggeredByNotApplicable,
             selectedTest: VisualizationType[1],
-            selectedRequirement: 'step',
+            selectedRequirement: 'requirement',
         };
 
         const expectedMessage = {
@@ -510,18 +510,18 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             type: Messages.Assessment.ChangeStatus,
             payload: {
                 test: 1,
-                step: 'step',
+                requirement: 'requirement',
                 status: 1,
                 selector: 'selector',
                 telemetry: telemetry,
             },
         };
 
-        telemetryFactoryMock.setup(tfm => tfm.forRequirementFromDetailsView(1, 'step')).returns(() => telemetry);
+        telemetryFactoryMock.setup(tfm => tfm.forRequirementFromDetailsView(1, 'requirement')).returns(() => telemetry);
 
         setupPostMessage(expectedMessage);
 
-        testSubject.changeManualTestStatus(1, 1, 'step', 'selector');
+        testSubject.changeManualTestStatus(1, 1, 'requirement', 'selector');
     });
 
     test('undoManualTestStatusChange', () => {
@@ -529,7 +529,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             source: TelemetryEventSource.DetailsView,
             triggeredBy: TriggeredByNotApplicable,
             selectedTest: VisualizationType[1],
-            selectedRequirement: 'step',
+            selectedRequirement: 'requirement',
         };
 
         const expectedMessage = {
@@ -537,25 +537,25 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             type: Messages.Assessment.Undo,
             payload: {
                 test: 1,
-                step: 'step',
+                requirement: 'requirement',
                 selector: 'selector',
                 telemetry: telemetry,
             },
         };
 
-        telemetryFactoryMock.setup(tfm => tfm.forRequirementFromDetailsView(1, 'step')).returns(() => telemetry);
+        telemetryFactoryMock.setup(tfm => tfm.forRequirementFromDetailsView(1, 'requirement')).returns(() => telemetry);
 
         setupPostMessage(expectedMessage);
 
-        testSubject.undoManualTestStatusChange(1, 'step', 'selector');
+        testSubject.undoManualTestStatusChange(1, 'requirement', 'selector');
     });
 
-    test('changeManualTestStepStatus', () => {
+    test('changeManualTestrequirementStatus', () => {
         const telemetry = {
             source: TelemetryEventSource.DetailsView,
             triggeredBy: TriggeredByNotApplicable,
             selectedTest: VisualizationType[1],
-            selectedRequirement: 'step',
+            selectedRequirement: 'requirement',
         };
 
         const expectedMessage = {
@@ -563,16 +563,16 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             type: Messages.Assessment.ChangeRequirementStatus,
             payload: {
                 test: 1,
-                step: 'step',
+                requirement: 'requirement',
                 status: 1,
                 telemetry: telemetry,
             },
         };
 
-        telemetryFactoryMock.setup(tfm => tfm.forRequirementFromDetailsView(1, 'step')).returns(() => telemetry);
+        telemetryFactoryMock.setup(tfm => tfm.forRequirementFromDetailsView(1, 'requirement')).returns(() => telemetry);
         setupPostMessage(expectedMessage);
 
-        testSubject.changeManualRequirementStatus(1, 1, 'step');
+        testSubject.changeManualRequirementStatus(1, 1, 'requirement');
     });
 
     test('undoRequirementStatusChange', () => {
@@ -586,14 +586,14 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             type: Messages.Assessment.UndoChangeRequirementStatus,
             payload: {
                 test: 1,
-                step: 'step',
+                requirement: 'requirement',
                 telemetry: telemetry,
             },
         };
         setupTelemetryFactory('fromDetailsViewNoTriggeredBy', telemetry);
         setupPostMessage(expectedMessage);
 
-        testSubject.undoManualRequirementStatusChange(1, 'step');
+        testSubject.undoManualRequirementStatusChange(1, 'requirement');
     });
 
     test('changeAssessmentVisualizationState', () => {
@@ -607,7 +607,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             type: Messages.Assessment.ChangeVisualizationState,
             payload: {
                 test: 1,
-                step: 'step',
+                requirement: 'requirement',
                 isVisualizationEnabled: true,
                 selector: 'selector',
                 telemetry: telemetry,
@@ -616,14 +616,14 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         setupTelemetryFactory('fromDetailsViewNoTriggeredBy', telemetry);
         setupPostMessage(expectedMessage);
 
-        testSubject.changeAssessmentVisualizationState(true, 1, 'step', 'selector');
+        testSubject.changeAssessmentVisualizationState(true, 1, 'requirement', 'selector');
     });
 
     test('addFailureInstance', () => {
         const telemetry = {
             source: TelemetryEventSource.DetailsView,
             triggeredBy: TriggeredByNotApplicable,
-            selectedRequirement: 'step',
+            selectedRequirement: 'requirement',
             selectedTest: 'test',
         };
 
@@ -632,25 +632,25 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             type: Messages.Assessment.AddFailureInstance,
             payload: {
                 test: 1,
-                step: 'step',
+                requirement: 'requirement',
                 description: 'description',
                 telemetry: telemetry,
             },
         };
         telemetryFactoryMock
-            .setup(tf => tf.forRequirementFromDetailsView(1, 'step'))
+            .setup(tf => tf.forRequirementFromDetailsView(1, 'requirement'))
             .returns(() => telemetry)
             .verifiable(Times.once());
         setupPostMessage(expectedMessage);
 
-        testSubject.addFailureInstance('description', 1, 'step');
+        testSubject.addFailureInstance('description', 1, 'requirement');
     });
 
     test('removeFailureInstance', () => {
         const telemetry = {
             source: TelemetryEventSource.DetailsView,
             triggeredBy: TriggeredByNotApplicable,
-            selectedRequirement: 'step',
+            selectedRequirement: 'requirement',
             selectedTest: 'test',
         };
 
@@ -659,18 +659,18 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             type: Messages.Assessment.RemoveFailureInstance,
             payload: {
                 test: 1,
-                step: 'step',
+                requirement: 'requirement',
                 id: '1',
                 telemetry: telemetry,
             },
         };
         telemetryFactoryMock
-            .setup(tf => tf.forRequirementFromDetailsView(1, 'step'))
+            .setup(tf => tf.forRequirementFromDetailsView(1, 'requirement'))
             .returns(() => telemetry)
             .verifiable(Times.once());
         setupPostMessage(expectedMessage);
 
-        testSubject.removeFailureInstance(1, 'step', '1');
+        testSubject.removeFailureInstance(1, 'requirement', '1');
     });
 
     test('editFailureInstance', () => {
@@ -684,7 +684,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             type: Messages.Assessment.EditFailureInstance,
             payload: {
                 test: 1,
-                step: 'step',
+                requirement: 'requirement',
                 id: '1',
                 description: description,
                 telemetry: telemetry,
@@ -693,12 +693,12 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         setupTelemetryFactory('fromDetailsViewNoTriggeredBy', telemetry);
         setupPostMessage(expectedMessage);
 
-        testSubject.editFailureInstance(description, 1, 'step', '1');
+        testSubject.editFailureInstance(description, 1, 'requirement', '1');
     });
 
     test('passUnmarkedInstances', () => {
         const test = VisualizationType.Headings;
-        const step = 'missingHeadings';
+        const requirement = 'missingHeadings';
         const telemetry = {
             source: TelemetryEventSource.DetailsView,
             triggeredBy: TriggeredByNotApplicable,
@@ -709,14 +709,14 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             type: Messages.Assessment.PassUnmarkedInstances,
             payload: {
                 test: test,
-                step: step,
+                requirement: requirement,
                 telemetry: telemetry,
             },
         };
         setupTelemetryFactory('fromDetailsViewNoTriggeredBy', telemetry);
         setupPostMessage(expectedMessage);
 
-        testSubject.passUnmarkedInstances(test, step);
+        testSubject.passUnmarkedInstances(test, requirement);
     });
 
     test('changeAssessmentVisualizationStateForAll', () => {
@@ -730,7 +730,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             type: Messages.Assessment.ChangeVisualizationStateForAll,
             payload: {
                 test: 1,
-                step: 'step',
+                requirement: 'requirement',
                 isVisualizationEnabled: true,
                 selector: null,
                 telemetry: telemetry,
@@ -739,7 +739,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         setupTelemetryFactory('fromDetailsViewNoTriggeredBy', telemetry);
         setupPostMessage(expectedMessage);
 
-        testSubject.changeAssessmentVisualizationStateForAll(true, 1, 'step');
+        testSubject.changeAssessmentVisualizationStateForAll(true, 1, 'requirement');
     });
 
     test('exportResultsClicked', () => {
@@ -810,12 +810,12 @@ describe('DetailsViewActionMessageCreatorTest', () => {
     test('cancelStartOver', () => {
         const event = eventStubFactory.createMouseClickEvent() as any;
         const test = -1;
-        const step = 'selected step';
+        const requirement = 'selected requirement';
         const telemetry: RequirementSelectTelemetryData = {
             triggeredBy: 'mouseclick',
             source: TelemetryEventSource.DetailsView,
             selectedTest: 'selected test',
-            selectedRequirement: step,
+            selectedRequirement: requirement,
         };
 
         const expectedMessage = {
@@ -827,9 +827,9 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         };
 
         setupPostMessage(expectedMessage);
-        telemetryFactoryMock.setup(tf => tf.forCancelStartOver(event, test, step)).returns(() => telemetry);
+        telemetryFactoryMock.setup(tf => tf.forCancelStartOver(event, test, requirement)).returns(() => telemetry);
 
-        testSubject.cancelStartOver(event, test, step);
+        testSubject.cancelStartOver(event, test, requirement);
     });
 
     test('cancelStartOverAssessment', () => {
