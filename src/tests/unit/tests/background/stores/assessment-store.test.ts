@@ -8,12 +8,12 @@ import { Assessment } from '../../../../../assessments/types/iassessment';
 import { IAssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
 import {
     AddFailureInstancePayload,
-    ChangeAssessmentStepStatusPayload,
+    ChangeRequirementStatusPayload,
     ChangeInstanceSelectionPayload,
     ChangeInstanceStatusPayload,
     EditFailureInstancePayload,
     RemoveFailureInstancePayload,
-    SelectTestStepPayload,
+    SelectRequirementPayload,
     ToggleActionPayload,
     UpdateSelectedDetailsViewPayload,
     UpdateVisibilityPayload,
@@ -625,8 +625,8 @@ describe('AssessmentStoreTest', () => {
             .withSelectedTestStep(step)
             .build();
 
-        const payload: SelectTestStepPayload = {
-            selectedStep: step,
+        const payload: SelectRequirementPayload = {
+            selectedRequirement: step,
             selectedTest: type,
         };
 
@@ -697,7 +697,7 @@ describe('AssessmentStoreTest', () => {
 
         const payload: ChangeInstanceStatusPayload = {
             test: assessmentType,
-            step: stepKey,
+            requirement: stepKey,
             selector: 'selector',
             status: ManualTestStatus.PASS,
         };
@@ -753,9 +753,9 @@ describe('AssessmentStoreTest', () => {
 
         const initialState = getStateWithAssessment(assessmentData);
 
-        const payload: ChangeAssessmentStepStatusPayload = {
+        const payload: ChangeRequirementStatusPayload = {
             test: assessmentType,
-            step: stepKey,
+            requirement: stepKey,
             status: ManualTestStatus.PASS,
         };
 
@@ -778,7 +778,7 @@ describe('AssessmentStoreTest', () => {
 
         const finalState = getStateWithAssessment(expectedAssessment);
 
-        createStoreTesterForAssessmentActions('changeStepStatus')
+        createStoreTesterForAssessmentActions('changeRequirementStatus')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, finalState);
     });
@@ -799,9 +799,9 @@ describe('AssessmentStoreTest', () => {
 
         const initialState = getStateWithAssessment(assessmentData);
 
-        const payload: ChangeAssessmentStepStatusPayload = {
+        const payload: ChangeRequirementStatusPayload = {
             test: assessmentType,
-            step: stepKey,
+            requirement: stepKey,
             status: ManualTestStatus.FAIL,
         };
 
@@ -823,7 +823,7 @@ describe('AssessmentStoreTest', () => {
 
         const finalState = getStateWithAssessment(expectedAssessment);
 
-        createStoreTesterForAssessmentActions('changeStepStatus')
+        createStoreTesterForAssessmentActions('changeRequirementStatus')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, finalState);
     });
@@ -845,7 +845,7 @@ describe('AssessmentStoreTest', () => {
 
         const payload: ChangeInstanceSelectionPayload = {
             test: assessmentType,
-            step: stepKey,
+            requirement: stepKey,
             isVisualizationEnabled: true,
             selector: 'selector',
         };
@@ -949,7 +949,7 @@ describe('AssessmentStoreTest', () => {
 
         const payload: ChangeInstanceSelectionPayload = {
             test: assessmentType,
-            step: stepKey,
+            requirement: stepKey,
             isVisualizationEnabled: true,
             selector: null,
         };
@@ -1038,9 +1038,9 @@ describe('AssessmentStoreTest', () => {
 
         const initialState = getStateWithAssessment(assessmentData);
 
-        const payload: ChangeAssessmentStepStatusPayload = {
+        const payload: ChangeRequirementStatusPayload = {
             test: assessmentType,
-            step: stepKey,
+            requirement: stepKey,
         };
 
         assessmentsProviderMock.setup(apm => apm.forType(payload.test)).returns(() => assessmentMock.object);
@@ -1060,7 +1060,7 @@ describe('AssessmentStoreTest', () => {
 
         const finalState = getStateWithAssessment(expectedAssessment);
 
-        createStoreTesterForAssessmentActions('undoStepStatusChange')
+        createStoreTesterForAssessmentActions('undoRequirementStatusChange')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, finalState);
     });
@@ -1086,7 +1086,7 @@ describe('AssessmentStoreTest', () => {
 
         const payload: ChangeInstanceStatusPayload = {
             test: assessmentType,
-            step: stepKey,
+            requirement: stepKey,
             selector,
             status: ManualTestStatus.FAIL,
         };
@@ -1131,7 +1131,7 @@ describe('AssessmentStoreTest', () => {
 
         const payload: AddFailureInstancePayload = {
             test: assessmentType,
-            step: stepKey,
+            requirement: stepKey,
             description: 'description',
         };
 
@@ -1185,7 +1185,7 @@ describe('AssessmentStoreTest', () => {
 
         const payload: RemoveFailureInstancePayload = {
             test: assessmentType,
-            step: stepKey,
+            requirement: stepKey,
             id: '1',
         };
 
@@ -1233,7 +1233,7 @@ describe('AssessmentStoreTest', () => {
 
         const payload: EditFailureInstancePayload = {
             test: assessmentType,
-            step: stepKey,
+            requirement: stepKey,
             id: '1',
             description: newDescription,
         };

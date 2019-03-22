@@ -779,7 +779,7 @@ describe('ActionCreatorTest', () => {
         const payload: ChangeInstanceStatusPayload = {
             test: VisualizationType.HeadingsAssessment,
             status: null,
-            step: null,
+            requirement: null,
             selector: null,
         };
         const disableActionName = 'disableVisualization';
@@ -816,7 +816,7 @@ describe('ActionCreatorTest', () => {
         const payload: ChangeInstanceStatusPayload = {
             test: VisualizationType.HeadingsAssessment,
             status: null,
-            step: null,
+            requirement: null,
             selector: null,
         };
         const disableActionName = 'disableAssessmentVisualizations';

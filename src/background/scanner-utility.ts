@@ -14,7 +14,7 @@ export class ScannerUtility {
     public executeScan = (test: VisualizationType, step: string, tabId: number): void => {
         const payload: AssessmentToggleActionPayload = {
             test: test,
-            step: step,
+            requirement: step,
             telemetry: null,
         };
 

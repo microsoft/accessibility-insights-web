@@ -10,13 +10,13 @@ import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import {
     AddFailureInstancePayload,
     AssessmentActionInstancePayload,
-    ChangeAssessmentStepStatusPayload,
+    ChangeRequirementStatusPayload,
     ChangeInstanceSelectionPayload,
     ChangeInstanceStatusPayload,
     EditFailureInstancePayload,
     OnDetailsViewOpenPayload,
     RemoveFailureInstancePayload,
-    SelectTestStepPayload,
+    SelectRequirementPayload,
     ToggleActionPayload,
     UpdateVisibilityPayload,
 } from './action-payloads';
@@ -49,8 +49,8 @@ export class AssessmentActionCreator {
         this.registerTypeToPayloadCallback(AssessmentMessages.ChangeVisualizationState, this.onChangeAssessmentVisualizationState);
         this.registerTypeToPayloadCallback(AssessmentMessages.ChangeVisualizationStateForAll, this.onChangeVisualizationStateForAll);
         this.registerTypeToPayloadCallback(AssessmentMessages.Undo, this.onUndoAssessmentInstanceStatusChange);
-        this.registerTypeToPayloadCallback(AssessmentMessages.ChangeStepStatus, this.onChangeManualTestStepStatus);
-        this.registerTypeToPayloadCallback(AssessmentMessages.UndoChangeStepStatus, this.onUndoChangeManualTestStepStatus);
+        this.registerTypeToPayloadCallback(AssessmentMessages.ChangeRequirementStatus, this.onChangeManualRequirementStatus);
+        this.registerTypeToPayloadCallback(AssessmentMessages.UndoChangeRequirementStatus, this.onUndoChangeManualRequirementStatus);
         this.registerTypeToPayloadCallback(AssessmentMessages.AddFailureInstance, this.onAddFailureInstance);
         this.registerTypeToPayloadCallback(AssessmentMessages.RemoveFailureInstance, this.onRemoveFailureInstance);
         this.registerTypeToPayloadCallback(AssessmentMessages.EditFailureInstance, this.onEditFailureInstance);
@@ -99,18 +99,18 @@ export class AssessmentActionCreator {
     }
 
     @autobind
-    private onChangeManualTestStepStatus(payload: ChangeAssessmentStepStatusPayload, tabId: number): void {
+    private onChangeManualRequirementStatus(payload: ChangeRequirementStatusPayload, tabId: number): void {
         const eventName = TelemetryEvents.CHANGE_INSTANCE_STATUS;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.assessmentActions.updateTargetTabId.invoke(tabId);
-        this.assessmentActions.changeStepStatus.invoke(payload);
+        this.assessmentActions.changeRequirementStatus.invoke(payload);
     }
 
     @autobind
-    private onUndoChangeManualTestStepStatus(payload: ChangeAssessmentStepStatusPayload): void {
+    private onUndoChangeManualRequirementStatus(payload: ChangeRequirementStatusPayload): void {
         const eventName = TelemetryEvents.UNDO_REQUIREMENT_STATUS_CHANGE;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        this.assessmentActions.undoStepStatusChange.invoke(payload);
+        this.assessmentActions.undoRequirementStatusChange.invoke(payload);
     }
 
     @autobind
@@ -169,8 +169,8 @@ export class AssessmentActionCreator {
     }
 
     @autobind
-    private onSelectTestStep(payload: SelectTestStepPayload): void {
-        this.assessmentActions.selectTestStep.invoke(payload);
+    private onSelectTestStep(payload: SelectRequirementPayload): void {
+        this.assessmentActions.selectRequirement.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.SELECT_REQUIREMENT, payload);
     }
 

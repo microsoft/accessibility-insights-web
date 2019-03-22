@@ -23,7 +23,7 @@ describe('ScannerUtility', () => {
 
         const expectedPayload: AssessmentToggleActionPayload = {
             test: testStub,
-            step: step,
+            requirement: step,
             telemetry: null,
         };
 

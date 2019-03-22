@@ -5,21 +5,21 @@ import { ScanBasePayload, ScanCompletedPayload, ScanUpdatePayload } from '../../
 import {
     AddFailureInstancePayload,
     AssessmentActionInstancePayload,
-    ChangeAssessmentStepStatusPayload,
+    ChangeRequirementStatusPayload,
     ChangeInstanceSelectionPayload,
     ChangeInstanceStatusPayload,
     EditFailureInstancePayload,
     RemoveFailureInstancePayload,
-    SelectTestStepPayload,
+    SelectRequirementPayload,
     ToggleActionPayload,
     UpdateSelectedDetailsViewPayload,
     UpdateVisibilityPayload,
 } from './action-payloads';
 
 export class AssessmentActions {
-    public readonly selectTestStep = new Action<SelectTestStepPayload>();
+    public readonly selectRequirement = new Action<SelectRequirementPayload>();
     public readonly changeInstanceStatus = new Action<ChangeInstanceStatusPayload>();
-    public readonly changeStepStatus = new Action<ChangeAssessmentStepStatusPayload>();
+    public readonly changeRequirementStatus = new Action<ChangeRequirementStatusPayload>();
     public readonly addFailureInstance = new Action<AddFailureInstancePayload>();
     public readonly removeFailureInstance = new Action<RemoveFailureInstancePayload>();
     public readonly editFailureInstance = new Action<EditFailureInstancePayload>();
@@ -28,7 +28,7 @@ export class AssessmentActions {
     public readonly changeAssessmentVisualizationStateForAll = new Action<ChangeInstanceSelectionPayload>();
     public readonly updateInstanceVisibility = new Action<UpdateVisibilityPayload>();
     public readonly undoInstanceStatusChange = new Action<AssessmentActionInstancePayload>();
-    public readonly undoStepStatusChange = new Action<ChangeAssessmentStepStatusPayload>();
+    public readonly undoRequirementStatusChange = new Action<ChangeRequirementStatusPayload>();
     public readonly getCurrentState = new Action<void>();
     public readonly scanCompleted = new Action<ScanCompletedPayload<null>>();
     public readonly resetData = new Action<ToggleActionPayload>();

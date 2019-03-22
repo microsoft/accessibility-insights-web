@@ -176,7 +176,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
         configFactoryMock.verifyAll();
     });
 
-    test('changeStepStatus', () => {
+    test('changeRequirementStatus', () => {
         const status = ManualTestStatus.FAIL;
         const test = VisualizationType.HeadingsAssessment;
         const step = 'step';
@@ -195,7 +195,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
         testObject.changeStepStatus(status, test, step);
     });
 
-    test('undoStepStatusChange', () => {
+    test('undoRequirementStatusChange', () => {
         const test = VisualizationType.HeadingsAssessment;
         const step = 'step';
         const actionMessageCreatorStub = {

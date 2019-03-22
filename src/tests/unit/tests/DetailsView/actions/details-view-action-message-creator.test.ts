@@ -502,7 +502,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             source: TelemetryEventSource.DetailsView,
             triggeredBy: TriggeredByNotApplicable,
             selectedTest: VisualizationType[1],
-            selectedStep: 'step',
+            selectedRequirement: 'step',
         };
 
         const expectedMessage = {
@@ -529,7 +529,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             source: TelemetryEventSource.DetailsView,
             triggeredBy: TriggeredByNotApplicable,
             selectedTest: VisualizationType[1],
-            selectedStep: 'step',
+            selectedRequirement: 'step',
         };
 
         const expectedMessage = {
@@ -555,12 +555,12 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             source: TelemetryEventSource.DetailsView,
             triggeredBy: TriggeredByNotApplicable,
             selectedTest: VisualizationType[1],
-            selectedStep: 'step',
+            selectedRequirement: 'step',
         };
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Assessment.ChangeStepStatus,
+            type: Messages.Assessment.ChangeRequirementStatus,
             payload: {
                 test: 1,
                 step: 'step',
@@ -575,7 +575,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         testSubject.changeManualTestStepStatus(1, 1, 'step');
     });
 
-    test('undoStepStatusChange', () => {
+    test('undoRequirementStatusChange', () => {
         const telemetry = {
             source: TelemetryEventSource.DetailsView,
             triggeredBy: TriggeredByNotApplicable,
@@ -583,7 +583,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Assessment.UndoChangeStepStatus,
+            type: Messages.Assessment.UndoChangeRequirementStatus,
             payload: {
                 test: 1,
                 step: 'step',
@@ -623,7 +623,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         const telemetry = {
             source: TelemetryEventSource.DetailsView,
             triggeredBy: TriggeredByNotApplicable,
-            selectedStep: 'step',
+            selectedRequirement: 'step',
             selectedTest: 'test',
         };
 
@@ -650,7 +650,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         const telemetry = {
             source: TelemetryEventSource.DetailsView,
             triggeredBy: TriggeredByNotApplicable,
-            selectedStep: 'step',
+            selectedRequirement: 'step',
             selectedTest: 'test',
         };
 

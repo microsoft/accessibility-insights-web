@@ -12,8 +12,8 @@ export interface BaseActionPayload {
     telemetry?: TelemetryData;
 }
 
-export interface SelectTestStepPayload extends BaseActionPayload {
-    selectedStep: string;
+export interface SelectRequirementPayload extends BaseActionPayload {
+    selectedRequirement: string;
     selectedTest: VisualizationType;
 }
 
@@ -27,14 +27,14 @@ export interface UpdateVisibilityPayload {
 }
 
 export interface AssessmentToggleActionPayload extends ToggleActionPayload {
-    step: string;
+    requirement: string;
 }
 
 export interface AssessmentActionInstancePayload extends AssessmentToggleActionPayload {
     selector: string;
 }
 
-export interface ChangeAssessmentStepStatusPayload extends AssessmentToggleActionPayload {
+export interface ChangeRequirementStatusPayload extends AssessmentToggleActionPayload {
     status?: ManualTestStatus;
 }
 

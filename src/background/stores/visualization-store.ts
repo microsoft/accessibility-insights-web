@@ -173,7 +173,7 @@ export class VisualizationStore extends BaseStore<IVisualizationStoreData> {
         this.disableAssessmentVisualizationsWithoutEmitting();
         const scanData = configuration.getStoreData(this.state.tests);
 
-        const step = (payload as AssessmentToggleActionPayload).step;
+        const step = (payload as AssessmentToggleActionPayload).requirement;
         const alreadyEnabled = configuration.getTestStatus(scanData, step);
         if (!alreadyEnabled) {
             if (!skipScanning) {

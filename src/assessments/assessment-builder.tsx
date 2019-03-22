@@ -89,7 +89,7 @@ export class AssessmentBuilder {
     private static enableTest(scanData: IScanData, payload: AssessmentToggleActionPayload): void {
         const scanAssessmentData = scanData as IAssessmentScanData;
         scanAssessmentData.enabled = true;
-        scanAssessmentData.stepStatus[payload.step] = true;
+        scanAssessmentData.stepStatus[payload.requirement] = true;
     }
 
     private static disableTest(scanData: IScanData, step: string): void {
