@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash/index';
+import { isEmpty } from 'lodash';
 import * as React from 'react';
-
 import { AdHocTestkeys } from '../../common/configs/adhoc-test-keys';
 import { TestMode } from '../../common/configs/test-mode';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration-factory';
@@ -46,7 +45,7 @@ export const LandmarksAdHocVisualization: VisualizationConfiguration = {
         }),
     getIdentifier: () => AdHocTestkeys.Landmarks,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
-    getNotificationMessage: selectorMap => (_.isEmpty(selectorMap) ? 'No landmarks found' : null),
+    getNotificationMessage: selectorMap => (isEmpty(selectorMap) ? 'No landmarks found' : null),
     getDrawer: provider => provider.createLandmarksDrawer(),
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,
