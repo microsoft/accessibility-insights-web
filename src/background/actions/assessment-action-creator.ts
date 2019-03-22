@@ -10,9 +10,9 @@ import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import {
     AddFailureInstancePayload,
     AssessmentActionInstancePayload,
-    ChangeRequirementStatusPayload,
     ChangeInstanceSelectionPayload,
     ChangeInstanceStatusPayload,
+    ChangeRequirementStatusPayload,
     EditFailureInstancePayload,
     OnDetailsViewOpenPayload,
     RemoveFailureInstancePayload,

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
+
 import { HeadingsTestStep } from '../../../../../assessments/headings/test-steps/test-steps';
 import { OnDetailsViewPivotSelected } from '../../../../../background/actions/action-payloads';
 import { Messages } from '../../../../../common/messages';
@@ -15,9 +16,9 @@ import {
     EXPORT_RESULTS,
     ExportResultsTelemetryData,
     FeatureFlagToggleTelemetryData,
-    TelemetryEventSource,
     RequirementActionTelemetryData,
     RequirementSelectTelemetryData,
+    TelemetryEventSource,
     TriggeredByNotApplicable,
 } from '../../../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';

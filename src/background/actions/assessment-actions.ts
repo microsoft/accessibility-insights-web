@@ -5,9 +5,9 @@ import { ScanBasePayload, ScanCompletedPayload, ScanUpdatePayload } from '../../
 import {
     AddFailureInstancePayload,
     AssessmentActionInstancePayload,
-    ChangeRequirementStatusPayload,
     ChangeInstanceSelectionPayload,
     ChangeInstanceStatusPayload,
+    ChangeRequirementStatusPayload,
     EditFailureInstancePayload,
     RemoveFailureInstancePayload,
     SelectRequirementPayload,

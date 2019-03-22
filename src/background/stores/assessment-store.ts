@@ -25,9 +25,9 @@ import { VisualizationType } from './../../common/types/visualization-type';
 import {
     AddFailureInstancePayload,
     AssessmentActionInstancePayload,
-    ChangeRequirementStatusPayload,
     ChangeInstanceSelectionPayload,
     ChangeInstanceStatusPayload,
+    ChangeRequirementStatusPayload,
     EditFailureInstancePayload,
     RemoveFailureInstancePayload,
     ToggleActionPayload,

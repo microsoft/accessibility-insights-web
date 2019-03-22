@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-
 import { OnDetailsViewPivotSelected, SelectRequirementPayload } from '../../background/actions/action-payloads';
 import { DevToolActionMessageCreator } from '../../common/message-creators/dev-tool-action-message-creator';
 import { Messages } from '../../common/messages';
@@ -13,9 +12,9 @@ import {
     AssessmentActionInstancePayload,
     AssessmentToggleActionPayload,
     BaseActionPayload,
-    ChangeRequirementStatusPayload,
     ChangeInstanceSelectionPayload,
     ChangeInstanceStatusPayload,
+    ChangeRequirementStatusPayload,
     EditFailureInstancePayload,
     OnDetailsViewOpenPayload,
     RemoveFailureInstancePayload,
