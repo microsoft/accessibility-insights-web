@@ -4,7 +4,6 @@
     "extends": "./tslint.build-enforced.json",
     "rules": {
         "no-default-export": true,
-        "no-shadowed-variable": true, // Disallows shadowing variable declarations
-        "typedef": [true, "call-signature", "property-declaration"]
+        "no-shadowed-variable": true // Disallows shadowing variable declarations
     }
 }
