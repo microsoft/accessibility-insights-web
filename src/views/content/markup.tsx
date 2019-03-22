@@ -1,27 +1,22 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { flatten } from 'lodash';
 import * as React from 'react';
 import Helmet from 'react-helmet';
 
-import { Code, CodeBlock, Emphasis, Tag, Term } from '../../assessments/markup';
+import { Code, Emphasis, Tag, Term } from '../../assessments/markup';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { CheckIcon } from '../../common/icons/check-icon';
 import { CrossIcon } from '../../common/icons/cross-icon';
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
 import { productName } from '../../content/strings/application';
 import { ContentPageComponent, ContentPageOptions } from './content-page';
+import { CodeExample, CodeExampleProps } from './markup/code-example';
 
 type PassFailProps = {
     passText: JSX.Element;
     passExample?: React.ReactNode;
     failText: JSX.Element;
     failExample?: React.ReactNode;
-};
-
-type CodeExampleProps = {
-    title?: React.ReactNode;
-    children: string;
 };
 
 export type Markup = {
@@ -165,64 +160,6 @@ export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
 
     function Column(props: { children: React.ReactNode }): JSX.Element {
         return <div className="column">{props.children}</div>;
-    }
-
-    function CodeExample(props: CodeExampleProps): JSX.Element {
-        const { children } = props;
-
-        function getRegions(code: string): string[] {
-            if (code.length === 0) {
-                return [];
-            }
-
-            if (code[0] === '[') {
-                const end = code.indexOf(']');
-                if (end > 0) {
-                    return [code.slice(0, end + 1), ...getRegions(code.slice(end + 1))];
-                } else {
-                    return [code + ']'];
-                }
-            }
-
-            const start = code.indexOf('[');
-            if (start > 0) {
-                return [code.slice(0, start), ...getRegions(code.slice(start))];
-            } else {
-                return [code];
-            }
-        }
-
-        function renderLineBreaks(str: string): React.ReactNode[] {
-            return flatten(str.split('\n').map(s => [<br />, s])).slice(1);
-        }
-
-        function renderRegion(str: string, index: number): React.ReactNode[] {
-            if (str[0] === '[') {
-                return [
-                    <span key={index} className="highlight">
-                        {renderLineBreaks(str.slice(1, -1))}
-                    </span>,
-                ];
-            } else {
-                return renderLineBreaks(str);
-            }
-        }
-
-        const regions = getRegions(children);
-        const formattedCode = flatten(regions.map(renderRegion));
-
-        return (
-            <div className="code-example">
-                {props.title && (
-                    <div className="code-example-title">
-                        <h4>{props.title}</h4>
-                    </div>
-                )}
-                <div className="code-example-code">
-                    <CodeBlock>{formattedCode}</CodeBlock>
-                </div>
-            </div>
-        );
     }
 
     function PassFail(props: PassFailProps): React.ReactNode {
