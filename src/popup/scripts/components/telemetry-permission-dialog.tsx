@@ -53,7 +53,7 @@ export class TelemetryPermissionDialog extends React.Component<TelemetryPermissi
                     containerClassName: 'insights-dialog-main-override telemetry-permission-dialog',
                 }}
             >
-                <p className="telemetry-permission-details">{telemetryPopupNotice}</p>
+                <div className="telemetry-permission-details">{telemetryPopupNotice}</div>
                 <div className="telemetry-checkbox-section">
                     <Checkbox
                         label={telemetryPopupCheckboxTitle}
