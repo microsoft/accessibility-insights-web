@@ -4,7 +4,7 @@ import { flatten } from 'lodash';
 import * as React from 'react';
 import Helmet from 'react-helmet';
 
-import { Code, Emphasis, Tag, Term, CodeBlock } from '../../assessments/markup';
+import { Code, CodeBlock, Emphasis, Tag, Term } from '../../assessments/markup';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { CheckIcon } from '../../common/icons/check-icon';
 import { CrossIcon } from '../../common/icons/cross-icon';
