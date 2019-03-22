@@ -18,7 +18,7 @@ exports[`TelemetryPermissionDialogTest render dialog 1`] = `
     }
   }
 >
-  <p
+  <div
     className="telemetry-permission-details"
   >
     <React.Fragment>
@@ -38,7 +38,7 @@ exports[`TelemetryPermissionDialogTest render dialog 1`] = `
         </p>
       </React.Fragment>
     </React.Fragment>
-  </p>
+  </div>
   <div
     className="telemetry-checkbox-section"
   >

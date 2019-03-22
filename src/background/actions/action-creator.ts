@@ -129,15 +129,11 @@ export class ActionCreator {
 
     @autobind
     private onEnableVisualHelperWithoutScan(payload: ToggleActionPayload): void {
-        const eventName = TelemetryEvents.ENABLE_VISUAL_HELPER;
-        this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.visualizationActions.enableVisualizationWithoutScan.invoke(payload);
     }
 
     @autobind
     private onEnableVisualHelper(payload: ToggleActionPayload): void {
-        const eventName = TelemetryEvents.ENABLE_VISUAL_HELPER;
-        this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.visualizationActions.enableVisualization.invoke(payload);
     }
 
