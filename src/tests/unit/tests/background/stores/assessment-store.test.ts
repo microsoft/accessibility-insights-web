@@ -632,7 +632,7 @@ describe('AssessmentStoreTest', () => {
 
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
 
-        createStoreTesterForAssessmentActions('selectTestStep')
+        createStoreTesterForAssessmentActions('selectRequirement')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, finalState);
     });

@@ -269,7 +269,7 @@ describe('CompletedTestStepTelemetryCreatorTest', () => {
 
 function getMockTelemetryData(test: number, step: string, passed: boolean, instances: number): RequirementStatusTelemetryData {
     return {
-        selectedStep: step,
+        selectedRequirement: step,
         selectedTest: test.toString(),
         passed: passed,
         numInstances: instances,

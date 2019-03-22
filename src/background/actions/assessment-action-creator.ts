@@ -108,14 +108,14 @@ export class AssessmentActionCreator {
 
     @autobind
     private onUndoChangeManualTestStepStatus(payload: ChangeAssessmentStepStatusPayload): void {
-        const eventName = TelemetryEvents.UNDO_ASSESSMENT_STEP_STATUS_CHANGE;
+        const eventName = TelemetryEvents.UNDO_REQUIREMENT_STATUS_CHANGE;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.assessmentActions.undoStepStatusChange.invoke(payload);
     }
 
     @autobind
     private onUndoAssessmentInstanceStatusChange(payload: AssessmentActionInstancePayload): void {
-        const eventName = TelemetryEvents.UNDO_ASSESSMENT_STATUS_CHANGE;
+        const eventName = TelemetryEvents.UNDO_TEST_STATUS_CHANGE;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.assessmentActions.undoInstanceStatusChange.invoke(payload);
     }
@@ -171,7 +171,7 @@ export class AssessmentActionCreator {
     @autobind
     private onSelectTestStep(payload: SelectTestStepPayload): void {
         this.assessmentActions.selectTestStep.invoke(payload);
-        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.SELECT_TEST_STEP, payload);
+        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.SELECT_REQUIREMENT, payload);
     }
 
     @autobind

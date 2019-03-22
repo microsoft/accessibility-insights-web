@@ -788,7 +788,7 @@ describe('ActionCreatorTest', () => {
             .setupRegistrationCallback(Messages.Assessment.StartOver, [payload, tabId])
             .setupActionOnVisualizationActions(disableActionName)
             .setupVisualizationActionWithInvokeParameter(disableActionName, payload.test)
-            .setupTelemetrySend(TelemetryEvents.START_OVER_ASSESSMENT, payload, 1);
+            .setupTelemetrySend(TelemetryEvents.START_OVER_TEST, payload, 1);
         const actionCreator = validator.buildActionCreator();
 
         actionCreator.registerCallbacks();
@@ -802,7 +802,7 @@ describe('ActionCreatorTest', () => {
 
         const validator = new ActionCreatorValidator()
             .setupRegistrationCallback(Messages.Assessment.CancelStartOver, [payload, tabId])
-            .setupTelemetrySend(TelemetryEvents.CANCEL_START_OVER_ASSESSMENT, payload, tabId);
+            .setupTelemetrySend(TelemetryEvents.CANCEL_START_OVER_TEST, payload, tabId);
 
         const actionCreator = validator.buildActionCreator();
 
@@ -825,7 +825,7 @@ describe('ActionCreatorTest', () => {
             .setupRegistrationCallback(Messages.Assessment.StartOverAllAssessments, [payload, tabId])
             .setupActionOnVisualizationActions(disableActionName)
             .setupVisualizationActionWithInvokeParameter(disableActionName, null)
-            .setupTelemetrySend(TelemetryEvents.START_OVER_ALL_ASSESSMENTS, payload, 1);
+            .setupTelemetrySend(TelemetryEvents.START_OVER_ASSESSMENT, payload, 1);
         const actionCreator = validator.buildActionCreator();
 
         actionCreator.registerCallbacks();
@@ -839,7 +839,7 @@ describe('ActionCreatorTest', () => {
 
         const validator = new ActionCreatorValidator()
             .setupRegistrationCallback(Messages.Assessment.CancelStartOverAllAssessments, [payload, tabId])
-            .setupTelemetrySend(TelemetryEvents.CANCEL_START_OVER_ALL_ASSESSMENTS, payload, tabId);
+            .setupTelemetrySend(TelemetryEvents.CANCEL_START_OVER_ASSESSMENT, payload, tabId);
 
         const actionCreator = validator.buildActionCreator();
 

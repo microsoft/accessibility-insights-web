@@ -23,8 +23,8 @@ import {
     SettingsOpenSourceItem,
     SettingsOpenTelemetryData,
     TelemetryEventSource,
-    TestStepActionTelemetryData,
-    TestStepSelectTelemetryData,
+    RequirementActionTelemetryData,
+    RequirementSelectTelemetryData,
     ToggleTelemetryData,
     TriggeredBy,
     TriggeredByNotApplicable,
@@ -103,11 +103,11 @@ export class TelemetryDataFactory {
         };
     }
 
-    public forSelectTestStep(event: SupportedMouseEvent, type: VisualizationType, step: string): TestStepSelectTelemetryData {
+    public forSelectTestStep(event: SupportedMouseEvent, type: VisualizationType, step: string): RequirementSelectTelemetryData {
         return {
             ...this.withTriggeredByAndSource(event, TelemetryEventSource.DetailsView),
             selectedTest: VisualizationType[type],
-            selectedStep: step,
+            selectedRequirement: step,
         };
     }
 
@@ -121,7 +121,7 @@ export class TelemetryDataFactory {
             triggeredBy: TriggeredByNotApplicable,
             source: TelemetryEventSource.DetailsView,
             selectedTest: VisualizationType[type],
-            selectedStep: step,
+            selectedRequirement: step,
             passed: passed,
             numInstances: numInstances,
         };
@@ -196,20 +196,20 @@ export class TelemetryDataFactory {
         };
     }
 
-    public forTestStepFromDetailsView(test: VisualizationType, step: string): TestStepActionTelemetryData {
+    public forTestStepFromDetailsView(test: VisualizationType, step: string): RequirementActionTelemetryData {
         return {
             triggeredBy: TriggeredByNotApplicable,
             source: TelemetryEventSource.DetailsView,
-            selectedStep: step,
+            selectedRequirement: step,
             selectedTest: VisualizationType[test],
         };
     }
 
-    public forCancelStartOver(event: SupportedMouseEvent, test: VisualizationType, step: string): TestStepSelectTelemetryData {
+    public forCancelStartOver(event: SupportedMouseEvent, test: VisualizationType, step: string): RequirementSelectTelemetryData {
         return {
             ...this.fromDetailsView(event),
             selectedTest: VisualizationType[test],
-            selectedStep: step,
+            selectedRequirement: step,
         };
     }
 

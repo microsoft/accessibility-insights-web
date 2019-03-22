@@ -137,7 +137,7 @@ describe('AssessmentActionCreatorTest', () => {
         const payload: BaseActionPayload = {};
 
         telemetryEventHandlerMock
-            .setup(tp => tp.publishTelemetry(TelemetryEvents.UNDO_ASSESSMENT_STEP_STATUS_CHANGE, payload))
+            .setup(tp => tp.publishTelemetry(TelemetryEvents.UNDO_REQUIREMENT_STATUS_CHANGE, payload))
             .verifiable(Times.once());
 
         const actionMock = createActionMock(payload);
@@ -153,7 +153,7 @@ describe('AssessmentActionCreatorTest', () => {
         const payload: BaseActionPayload = {};
 
         telemetryEventHandlerMock
-            .setup(tp => tp.publishTelemetry(TelemetryEvents.UNDO_ASSESSMENT_STATUS_CHANGE, payload))
+            .setup(tp => tp.publishTelemetry(TelemetryEvents.UNDO_TEST_STATUS_CHANGE, payload))
             .verifiable(Times.once());
 
         const actionMock = createActionMock(payload);
@@ -279,10 +279,10 @@ describe('AssessmentActionCreatorTest', () => {
     test('onSelectTestStep', () => {
         const payload: BaseActionPayload = {};
 
-        telemetryEventHandlerMock.setup(tp => tp.publishTelemetry(TelemetryEvents.SELECT_TEST_STEP, payload)).verifiable(Times.once());
+        telemetryEventHandlerMock.setup(tp => tp.publishTelemetry(TelemetryEvents.SELECT_REQUIREMENT, payload)).verifiable(Times.once());
 
         const actionMock = createActionMock(payload);
-        setupAssessmentActionsMock('selectTestStep', actionMock);
+        setupAssessmentActionsMock('selectRequirement', actionMock);
         setupRegisterTypeToPayloadCallbackMock(AssessmentMessages.SelectTestStep, payload, testTabId);
 
         testObject.registerCallbacks();

@@ -16,8 +16,8 @@ import {
     ExportResultsTelemetryData,
     FeatureFlagToggleTelemetryData,
     TelemetryEventSource,
-    TestStepActionTelemetryData,
-    TestStepSelectTelemetryData,
+    RequirementActionTelemetryData,
+    RequirementSelectTelemetryData,
     TriggeredByNotApplicable,
 } from '../../../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
@@ -129,14 +129,14 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         testSubject.selectDetailsView(event, VisualizationType.Headings, pivot);
     });
 
-    test('selectTestStep', () => {
+    test('selectRequirement', () => {
         const view = VisualizationType.Headings;
         const selectedStep = HeadingsTestStep.headingFunction;
         const event = eventStubFactory.createKeypressEvent() as any;
-        const telemetry: TestStepSelectTelemetryData = {
+        const telemetry: RequirementSelectTelemetryData = {
             triggeredBy: 'keypress',
             selectedTest: VisualizationType[view],
-            selectedStep: selectedStep,
+            selectedRequirement: selectedStep,
             source: testSource,
         };
 
@@ -295,7 +295,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         testSubject.detailsViewOpened(1);
     });
 
-    test('startOverAssessment', () => {
+    test('startOverTest', () => {
         const stepStub = 'fake-step';
         const event = eventStubFactory.createMouseClickEvent() as any;
         const telemetry: AssessmentTelemetryData = {
@@ -490,7 +490,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         telemetryFactoryMock
             .setup(tfm => tfm.forTestStepFromDetailsView(test, step))
-            .returns(() => telemetry as TestStepActionTelemetryData);
+            .returns(() => telemetry as RequirementActionTelemetryData);
 
         setupPostMessage(expectedMessage);
 
@@ -811,11 +811,11 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         const event = eventStubFactory.createMouseClickEvent() as any;
         const test = -1;
         const step = 'selected step';
-        const telemetry: TestStepSelectTelemetryData = {
+        const telemetry: RequirementSelectTelemetryData = {
             triggeredBy: 'mouseclick',
             source: TelemetryEventSource.DetailsView,
             selectedTest: 'selected test',
-            selectedStep: step,
+            selectedRequirement: step,
         };
 
         const expectedMessage = {
@@ -832,7 +832,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         testSubject.cancelStartOver(event, test, step);
     });
 
-    test('cancelStartOverAllAssessments', () => {
+    test('cancelStartOverAssessment', () => {
         const event = eventStubFactory.createMouseClickEvent() as any;
         const telemetry: BaseTelemetryData = {
             triggeredBy: 'mouseclick',

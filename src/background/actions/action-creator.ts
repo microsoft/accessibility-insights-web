@@ -151,27 +151,27 @@ export class ActionCreator {
 
     @autobind
     private onStartOver(payload: ToggleActionPayload): void {
-        const eventName = TelemetryEvents.START_OVER_ASSESSMENT;
+        const eventName = TelemetryEvents.START_OVER_TEST;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.visualizationActions.disableVisualization.invoke(payload.test);
     }
 
     @autobind
     private onCancelStartOver(payload: BaseActionPayload): void {
-        const eventName = TelemetryEvents.CANCEL_START_OVER_ASSESSMENT;
+        const eventName = TelemetryEvents.CANCEL_START_OVER_TEST;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
     }
 
     @autobind
     private onStartOverAllAssessments(payload: ToggleActionPayload): void {
-        const eventName = TelemetryEvents.START_OVER_ALL_ASSESSMENTS;
+        const eventName = TelemetryEvents.START_OVER_ASSESSMENT;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.visualizationActions.disableAssessmentVisualizations.invoke(null);
     }
 
     @autobind
     private onCancelStartOverAllAssessments(payload: BaseActionPayload): void {
-        const eventName = TelemetryEvents.CANCEL_START_OVER_ALL_ASSESSMENTS;
+        const eventName = TelemetryEvents.CANCEL_START_OVER_ASSESSMENT;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
     }
 

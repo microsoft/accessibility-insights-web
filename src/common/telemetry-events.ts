@@ -20,19 +20,19 @@ export const DETAILS_VIEW_PIVOT_ACTIVATED: string = 'DetailsViewPivotActivated';
 export const INSPECT_OPEN: string = 'InspectOpen';
 export const COPY_ISSUE_DETAILS: string = 'CopyIssueDetails';
 export const FILE_ISSUE_CLICK: string = 'FileIssueClick';
-export const SELECT_TEST_STEP: string = 'selectTestStep';
+export const SELECT_REQUIREMENT: string = 'selectRequirement';
+export const START_OVER_TEST: string = 'startOverTest';
+export const CANCEL_START_OVER_TEST: string = 'cancelStartOverTest';
 export const START_OVER_ASSESSMENT: string = 'startOverAssessment';
 export const CANCEL_START_OVER_ASSESSMENT: string = 'cancelStartOverAssessment';
-export const START_OVER_ALL_ASSESSMENTS: string = 'startOverAllAssessments';
-export const CANCEL_START_OVER_ALL_ASSESSMENTS: string = 'cancelStartOverAllAssessments';
 export const ADD_FAILURE_INSTANCE: string = 'addFailureInstance';
 export const REMOVE_FAILURE_INSTANCE: string = 'removeFailureInstance';
 export const EDIT_FAILURE_INSTANCE: string = 'editFailureInstance';
 export const PASS_UNMARKED_INSTANCES: string = 'passUnmarkedInstances';
 export const CONTINUE_PREVIOUS_ASSESSMENT: string = 'ContinuePreviousAssessment';
 export const ENABLE_VISUAL_HELPER: string = 'enableVisualHelper';
-export const UNDO_ASSESSMENT_STATUS_CHANGE: string = 'undoAssessmentStatusChange';
-export const UNDO_ASSESSMENT_STEP_STATUS_CHANGE: string = 'undoAssessmentStatusStepChange';
+export const UNDO_TEST_STATUS_CHANGE: string = 'undoTestStatusChange';
+export const UNDO_REQUIREMENT_STATUS_CHANGE: string = 'undoRequirementStatusChange';
 export const CHANGE_INSTANCE_STATUS: string = 'changeInstanceStatus';
 export const CHANGE_ASSESSMENT_VISUALIZATION_STATUS: string = 'changeAssessmentVisualizationState';
 export const CHANGE_ASSESSMENT_VISUALIZATION_STATUS_FOR_ALL: string = 'changeAssessmentVisualizationStateForAll';
@@ -114,15 +114,15 @@ export type FileIssueClickTelemetryData = {
 } & BaseTelemetryData;
 export type FileIssueClickService = 'none' | 'gitHub';
 
-export type TestStepSelectTelemetryData = {
+export type RequirementSelectTelemetryData = {
     selectedTest: string;
-    selectedStep: string;
+    selectedRequirement: string;
 } & BaseTelemetryData;
 
 export type RequirementStatusTelemetryData = {
     passed: boolean;
     numInstances: number;
-} & TestStepSelectTelemetryData;
+} & RequirementSelectTelemetryData;
 
 export type DetailsViewPivotSelectedTelemetryData = {
     pivotKey: string;
@@ -132,8 +132,8 @@ export type AssessmentTelemetryData = {
     selectedTest: string;
 } & BaseTelemetryData;
 
-export type TestStepActionTelemetryData = {
-    selectedStep: string;
+export type RequirementActionTelemetryData = {
+    selectedRequirement: string;
 } & BaseTelemetryData;
 
 export type ModifiedCommandsTelemetryData = {
@@ -176,12 +176,12 @@ export type TelemetryData =
     | SettingsOpenTelemetryData
     | FileIssueClickTelemetryData
     | DetailsViewPivotSelectedTelemetryData
-    | TestStepSelectTelemetryData
+    | RequirementSelectTelemetryData
     | ModifiedCommandsTelemetryData
     | InspectTelemetryData
     | AssessmentTelemetryData
     | ScopingTelemetryData
-    | TestStepActionTelemetryData
+    | RequirementActionTelemetryData
     | RuleAnalyzerScanTelemetryData
     | IssuesAnalyzerScanTelemetryData
     | AssessmentRequirementScanTelemetryData
