@@ -56,12 +56,12 @@ describe('ContentPage', () => {
         });
 
         it('<Table> renders', () => {
-            const wrapper = shallow(<Table>table contetn</Table>);
+            const wrapper = shallow(<Table>table content</Table>);
             expect(wrapper.getElement()).toMatchSnapshot();
         });
 
         it('<ProblemList> renders', () => {
-            const wrapper = shallow(<ProblemList>list contetn</ProblemList>);
+            const wrapper = shallow(<ProblemList>list content</ProblemList>);
             expect(wrapper.getElement()).toMatchSnapshot();
         });
 
