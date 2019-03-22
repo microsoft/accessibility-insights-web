@@ -13,6 +13,7 @@ import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/compo
 import { ScannerUtils } from '../../../injected/scanner-utils';
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
 import { NoValue } from '../../common/property-bag-column-renderer';
+import TestAutomaticallyPassedNotice from '../../common/test-automatically-pass-notice';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { TestStep } from '../../types/test-step';
@@ -27,11 +28,7 @@ const designPatternDescription: JSX.Element = (
 const designPatternHowToTest: JSX.Element = (
     <div>
         <p>For this requirement, {productName} highlights custom widgets. (A custom widget is an element with a valid ARIA widget role.)</p>
-        <p>
-            <Markup.Emphasis>
-                Note: If no matching/failing instances are found, this requirement will automatically be marked as pass.
-            </Markup.Emphasis>
-        </p>
+        {TestAutomaticallyPassedNotice}
         <ol>
             <li>
                 Familiarize yourself with the{' '}

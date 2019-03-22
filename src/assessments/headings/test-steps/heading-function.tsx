@@ -10,6 +10,7 @@ import * as content from '../../../content/test/headings/heading-function';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
+import TestAutomaticallyPassedNotice from '../../common/test-automatically-pass-notice';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { TestStep } from '../../types/test-step';
@@ -28,11 +29,7 @@ const headingFunctionHowToTest: JSX.Element = (
             For this requirement, {productName} highlights coded headings in the target page. Coded headings include HTML tags{' '}
             <Markup.Tag tagName="h1" /> through <Markup.Tag tagName="h6" /> and elements with <Markup.Term>role="heading"</Markup.Term>.
         </p>
-        <p>
-            <Markup.Emphasis>
-                Note: If no matching/failing instances are found, this requirement will automatically be marked as pass.
-            </Markup.Emphasis>
-        </p>
+        {TestAutomaticallyPassedNotice}
         <ol>
             <li>
                 In the target page, examine each highlighted element to verify that it <Markup.Emphasis>functions</Markup.Emphasis> as a
