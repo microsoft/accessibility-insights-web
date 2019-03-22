@@ -300,8 +300,12 @@ div.insights-file-issue-details-dialog-container {
         justify-content: space-between;
         min-height: fit-content;
         align-items: center;
-        background-color: $neutral-4;
+        background-color: $neutral-0;
+        font-size: 14px;
+        font-weight: 600;
+        border-bottom: 1px solid $neutral-alpha-8;
         .details-view-target-page {
+            margin-left: 12px;
             padding: 13px 8px;
             display: inherit;
             white-space: nowrap;
@@ -314,9 +318,11 @@ div.insights-file-issue-details-dialog-container {
         }
         .details-view-command-buttons {
             display: flex;
+            margin-right: 16px;
         }
     }
     .header-bar {
+        padding-left: 12px;
         position: fixed;
         z-index: 1000;
         .gear-options-button-component {
