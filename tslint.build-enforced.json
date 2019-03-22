@@ -18,6 +18,7 @@
         "new-parens": true,
         "no-angle-bracket-type-assertion": true,
         "no-any": false,
+        "no-default-export": true,
         "no-arg": true,
         "no-bitwise": true,
         "no-conditional-assignment": true,
