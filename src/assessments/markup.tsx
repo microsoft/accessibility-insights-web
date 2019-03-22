@@ -19,6 +19,10 @@ export function Code(props: { children: React.ReactNode }): JSX.Element {
     return <span className="insights-code">{props.children}</span>;
 }
 
+export function CodeBlock(props: { children: React.ReactNode }): JSX.Element {
+    return <div className="insights-code">{props.children}</div>;
+}
+
 export const GreaterThanOrEqualTo = () => <span>&#8805;</span>;
 
 export const NonBreakingSpace = () => <span>&nbsp;</span>;

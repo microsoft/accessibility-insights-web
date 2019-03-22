@@ -1,0 +1,233 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CodeExample> renders with a highlight that breaks in the middle of multiple lines 1`] = `
+<div
+  className="code-example"
+>
+  <div
+    className="code-example-code"
+  >
+    <CodeBlock>
+      Line 1
+      <br />
+      Line 2 
+      <span
+        className="highlight"
+      >
+        HIGHLIGHT
+        <br />
+        HERE
+      </span>
+      Line 3
+      <br />
+      Line 4
+    </CodeBlock>
+  </div>
+</div>
+`;
+
+exports[`<CodeExample> renders with a highlight that spans multiple lines 1`] = `
+<div
+  className="code-example"
+>
+  <div
+    className="code-example-code"
+  >
+    <CodeBlock>
+      Line 1
+      <br />
+      
+      <span
+        className="highlight"
+      >
+        Line 2
+        <br />
+        Line 3
+      </span>
+      
+      <br />
+      Line 4
+    </CodeBlock>
+  </div>
+</div>
+`;
+
+exports[`<CodeExample> renders with a line breaks and a highlighted line 1`] = `
+<div
+  className="code-example"
+>
+  <div
+    className="code-example-code"
+  >
+    <CodeBlock>
+      Line 1
+      <br />
+      
+      <span
+        className="highlight"
+      >
+        Line 2
+      </span>
+      
+      <br />
+      Line 3
+    </CodeBlock>
+  </div>
+</div>
+`;
+
+exports[`<CodeExample> renders with a single line break 1`] = `
+<div
+  className="code-example"
+>
+  <div
+    className="code-example-code"
+  >
+    <CodeBlock>
+      Line 1
+      <br />
+      Line 2
+    </CodeBlock>
+  </div>
+</div>
+`;
+
+exports[`<CodeExample> renders with empty highlighted region 1`] = `
+<div
+  className="code-example"
+>
+  <div
+    className="code-example-code"
+  >
+    <CodeBlock>
+      Empty 
+      <span
+        className="highlight"
+      >
+        
+      </span>
+       highlight
+    </CodeBlock>
+  </div>
+</div>
+`;
+
+exports[`<CodeExample> renders with many highlighted regions 1`] = `
+<div
+  className="code-example"
+>
+  <div
+    className="code-example-code"
+  >
+    <CodeBlock>
+      With 
+      <span
+        className="highlight"
+      >
+        quite
+      </span>
+       a 
+      <span
+        className="highlight"
+      >
+        number
+      </span>
+       of 
+      <span
+        className="highlight"
+      >
+        highlights
+      </span>
+      .
+    </CodeBlock>
+  </div>
+</div>
+`;
+
+exports[`<CodeExample> renders with no highlighted region 1`] = `
+<div
+  className="code-example"
+>
+  <div
+    className="code-example-code"
+  >
+    <CodeBlock>
+      No highlight
+    </CodeBlock>
+  </div>
+</div>
+`;
+
+exports[`<CodeExample> renders with no title 1`] = `
+<div
+  className="code-example"
+>
+  <div
+    className="code-example-code"
+  >
+    <CodeBlock>
+      code
+    </CodeBlock>
+  </div>
+</div>
+`;
+
+exports[`<CodeExample> renders with one highlighted region 1`] = `
+<div
+  className="code-example"
+>
+  <div
+    className="code-example-code"
+  >
+    <CodeBlock>
+      One 
+      <span
+        className="highlight"
+      >
+        single
+      </span>
+       highlight
+    </CodeBlock>
+  </div>
+</div>
+`;
+
+exports[`<CodeExample> renders with title 1`] = `
+<div
+  className="code-example"
+>
+  <div
+    className="code-example-title"
+  >
+    <h4>
+      title
+    </h4>
+  </div>
+  <div
+    className="code-example-code"
+  >
+    <CodeBlock>
+      code
+    </CodeBlock>
+  </div>
+</div>
+`;
+
+exports[`<CodeExample> renders with unterminated highlighted region 1`] = `
+<div
+  className="code-example"
+>
+  <div
+    className="code-example-code"
+  >
+    <CodeBlock>
+      One 
+      <span
+        className="highlight"
+      >
+        unterminated highlight
+      </span>
+    </CodeBlock>
+  </div>
+</div>
+`;

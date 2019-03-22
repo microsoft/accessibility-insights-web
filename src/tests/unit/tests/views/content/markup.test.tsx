@@ -56,12 +56,12 @@ describe('ContentPage', () => {
         });
 
         it('<Table> renders', () => {
-            const wrapper = shallow(<Table>table contetn</Table>);
+            const wrapper = shallow(<Table>table content</Table>);
             expect(wrapper.getElement()).toMatchSnapshot();
         });
 
         it('<ProblemList> renders', () => {
-            const wrapper = shallow(<ProblemList>list contetn</ProblemList>);
+            const wrapper = shallow(<ProblemList>list content</ProblemList>);
             expect(wrapper.getElement()).toMatchSnapshot();
         });
 
@@ -165,58 +165,6 @@ describe('ContentPage', () => {
                 wrapper.simulate('click');
 
                 mock.verify(m => m.openContentHyperLink(It.isAny(), href), Times.once());
-            });
-        });
-
-        describe('<CodeExample>', () => {
-            function getHighlights(wrapper): string[] {
-                const code = wrapper.find('Code');
-                return code.children().map(node => {
-                    if (node.is('span') && node.prop('className') === 'highlight') {
-                        return '[' + node.text() + ']';
-                    } else {
-                        return node.debug();
-                    }
-                });
-            }
-
-            it('renders with title', () => {
-                const wrapper = shallow(<CodeExample title="title">code</CodeExample>);
-                expect(wrapper.find('.code-example-title').getElement()).toEqual(
-                    <div className="code-example-title">
-                        <h4>title</h4>
-                    </div>,
-                );
-            });
-
-            it('renders with no title', () => {
-                const wrapper = shallow(<CodeExample>code</CodeExample>);
-                expect(wrapper.find('.code-example-title').isEmpty()).toEqual(true);
-            });
-
-            it('renders with no highlighted region', () => {
-                const wrapper = shallow(<CodeExample>No highlight</CodeExample>);
-                expect(getHighlights(wrapper)).toEqual(['No highlight']);
-            });
-
-            it('renders with one highlighted region', () => {
-                const wrapper = shallow(<CodeExample>One [single] highlight</CodeExample>);
-                expect(getHighlights(wrapper)).toEqual(['One ', '[single]', ' highlight']);
-            });
-
-            it('renders with empty highlighted region', () => {
-                const wrapper = shallow(<CodeExample>Empty [] highlight</CodeExample>);
-                expect(getHighlights(wrapper)).toEqual(['Empty ', '[]', ' highlight']);
-            });
-
-            it('renders with unterminated highlighted region', () => {
-                const wrapper = shallow(<CodeExample>One [unterminated highlight</CodeExample>);
-                expect(getHighlights(wrapper)).toEqual(['One ', '[unterminated highlight]']);
-            });
-
-            it('renders with many highlighted regions', () => {
-                const wrapper = shallow(<CodeExample>With [quite] a [number] of [highlights].</CodeExample>);
-                expect(getHighlights(wrapper)).toEqual(['With ', '[quite]', ' a ', '[number]', ' of ', '[highlights]', '.']);
             });
         });
 

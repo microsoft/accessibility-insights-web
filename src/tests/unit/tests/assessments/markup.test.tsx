@@ -41,6 +41,12 @@ describe('markup tags', () => {
         expect(rendered).toEqual(expected);
     });
 
+    test('test CodeBlock', () => {
+        const rendered = Markup.CodeBlock({ children: 'children' });
+        const expected = <div className="insights-code">children</div>;
+        expect(rendered).toEqual(expected);
+    });
+
     test('test CodeTerm', () => {
         const rendered = Markup.CodeTerm({ children: 'children' });
         const expected = (
