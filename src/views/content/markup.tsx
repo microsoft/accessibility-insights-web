@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { flatten } from 'lodash';
 import * as React from 'react';
 import Helmet from 'react-helmet';
 
@@ -10,7 +11,6 @@ import { CrossIcon } from '../../common/icons/cross-icon';
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
 import { productName } from '../../content/strings/application';
 import { ContentPageComponent, ContentPageOptions } from './content-page';
-import { flatten } from '@uifabric/utilities';
 
 type PassFailProps = {
     passText: JSX.Element;
