@@ -125,7 +125,7 @@ describe('AppInsights telemetry client tests', () => {
         });
 
         test('when initialization in progress (queue not null)', () => {
-            const aiConfig = { disableTelemetry: false } as Microsoft.ApplicationInsights.IConfig;
+            aiConfig = { disableTelemetry: false } as Microsoft.ApplicationInsights.IConfig;
             invokeFirstEnableTelemetryCall();
             queue = [];
 

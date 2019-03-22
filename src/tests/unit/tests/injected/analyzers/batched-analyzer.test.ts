@@ -33,7 +33,7 @@ describe('BatchedRuleAnalyzer', () => {
     let sendMessageMock: IMock<(message) => void>;
     let telemetryDataFactoryMock: IMock<TelemetryDataFactory>;
     let typeStub: VisualizationType;
-    const testName = 'test-name';
+    const title = 'test-name';
     const scanCallbacks: ((results: ScanResults) => void)[] = [];
     let resultConfigFilterMock: IMock<IResultRuleFilter>;
 
@@ -67,7 +67,7 @@ describe('BatchedRuleAnalyzer', () => {
             .setup(v => v.getConfiguration(typeStub))
             .returns(() => {
                 return {
-                    displayableData: { title: testName },
+                    displayableData: { title },
                 } as VisualizationConfiguration;
             })
             .verifiable();
@@ -80,11 +80,11 @@ describe('BatchedRuleAnalyzer', () => {
     function testGetResults(done: () => void): void {
         const key = 'sample key';
         const telemetryProcessorStub = factory => (_, elapsedTime, __) => {
-            return createTelemetryStub(elapsedTime, testName, key);
+            return createTelemetryStub(elapsedTime, title, key);
         };
         const startTime = 10;
         const endTime = 20;
-        const expectedTelemetryStub = createTelemetryStub(endTime - startTime, testName, key);
+        const expectedTelemetryStub = createTelemetryStub(endTime - startTime, title, key);
         const ruleOne = 'the first rule';
         const resultOne: RuleResult = {
             id: ruleOne,
