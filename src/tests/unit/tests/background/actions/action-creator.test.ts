@@ -848,6 +848,24 @@ describe('ActionCreatorTest', () => {
         validator.verifyAll();
     });
 
+    test('registerCallback for onEnableVisualHelper', () => {
+        const tabId = 1;
+        const payload: ToggleActionPayload = {
+            test: VisualizationType.HeadingsAssessment,
+        };
+        const actionName = 'enableVisualization';
+
+        const validator = new ActionCreatorValidator()
+            .setupRegistrationCallback(Messages.Assessment.EnableVisualHelper, [payload, tabId])
+            .setupActionOnVisualizationActions(actionName)
+            .setupVisualizationActionWithInvokeParameter(actionName, payload);
+        const actionCreator = validator.buildActionCreator();
+
+        actionCreator.registerCallbacks();
+
+        validator.verifyAll();
+    });
+
     test('registerCallback for onEnableVisualHelperWithoutScan', () => {
         const tabId = 1;
         const payload: ToggleActionPayload = {
@@ -858,8 +876,7 @@ describe('ActionCreatorTest', () => {
         const validator = new ActionCreatorValidator()
             .setupRegistrationCallback(Messages.Assessment.EnableVisualHelperWithoutScan, [payload, tabId])
             .setupActionOnVisualizationActions(actionName)
-            .setupVisualizationActionWithInvokeParameter(actionName, payload)
-            .setupTelemetrySend(TelemetryEvents.ENABLE_VISUAL_HELPER, payload, 1);
+            .setupVisualizationActionWithInvokeParameter(actionName, payload);
         const actionCreator = validator.buildActionCreator();
 
         actionCreator.registerCallbacks();

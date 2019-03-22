@@ -15,7 +15,9 @@ export type WithStoreSubscriptionDeps<T> = {
     storeActionMessageCreator: IStoreActionMessageCreator;
 };
 
-export function withStoreSubscription<P extends WithStoreSubscriptionProps<S>, S>(WrappedComponent: React.ComponentType<P>) {
+export function withStoreSubscription<P extends WithStoreSubscriptionProps<S>, S>(
+    WrappedComponent: React.ComponentType<P>,
+): React.ComponentClass<P, S> {
     return class extends React.Component<P, S> {
         constructor(props: P) {
             super(props);

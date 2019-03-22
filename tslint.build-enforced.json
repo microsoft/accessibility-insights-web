@@ -19,6 +19,7 @@
         "new-parens": true,
         "no-angle-bracket-type-assertion": true,
         "no-any": false,
+        "no-default-export": true,
         "no-arg": true,
         "no-bitwise": true,
         "no-conditional-assignment": true,
@@ -51,6 +52,7 @@
         "semicolon": [true, "always", "ignore-bound-class-methods"],
         "trailing-comma": [true, { "multiline": "always", "singleline": "never" }],
         "triple-equals": [true, "allow-null-check", "allow-undefined-check"],
+        "typedef": [true, "call-signature", "property-declaration"],
         "typedef-whitespace": [
             true,
             {
