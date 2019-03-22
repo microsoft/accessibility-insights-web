@@ -117,3 +117,26 @@ jobs:
                 pathtoPublish: '$(System.DefaultWorkingDirectory)/drop'
                 artifactName: 'drop'
             displayName: publish drop
+
+    - job: 'ubuntu_build'
+
+      pool:
+          vmImage: 'ubuntu-16.04'
+
+      steps:
+          - task: NodeTool@0
+            inputs:
+                versionSpec: '10.15.0'
+            displayName: use node 10.15.0
+
+          - task: Npm@1
+            inputs:
+                command: custom
+                customCommand: ci
+            displayName: npm ci
+
+          - task: Npm@1
+            inputs:
+                command: custom
+                customCommand: run build:all
+            displayName: npm run build:all
