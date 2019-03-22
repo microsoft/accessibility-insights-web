@@ -65,6 +65,7 @@ async function launchNewBrowser(): Promise<Puppeteer.Browser> {
             // Required to work around https://github.com/GoogleChrome/puppeteer/pull/774
             `--disable-extensions-except=${extensionPath}`,
             `--load-extension=${extensionPath}`,
+            '--no-sandbox',
         ],
         timeout: DEFAULT_BROWSER_LAUNCH_TIMEOUT_MS,
     });
