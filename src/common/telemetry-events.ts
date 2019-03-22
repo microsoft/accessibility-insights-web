@@ -97,7 +97,7 @@ export type ExportResultsTelemetryData = {
 } & BaseTelemetryData;
 
 export type DetailsViewOpenTelemetryData = {
-    detailsView: string;
+    selectedTest: string;
 } & BaseTelemetryData;
 
 export type DetailsViewOpenedTelemetryData = {

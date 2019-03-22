@@ -120,7 +120,7 @@ export class Messages {
 
     public static readonly Assessment = {
         GetCurrentState: 'insights/assessment/getCurrentState',
-        SelectTestStep: 'insights/details-view/test-steps/select',
+        SelectTestRequirement: 'insights/details-view/requirement/select',
         AssessmentScanCompleted: 'insights/assessment/scanComplete',
         TabbedElementAdded: 'insights/assessment/tab-stops/element-added',
         TrackingCompleted: 'insights/assessment/tab-stops/recording-completed',
@@ -133,10 +133,10 @@ export class Messages {
         DisableVisualHelperForTest: 'insights/assessment/disableVisualHelperForTest',
         DisableVisualHelper: 'insights/assessment/disableVisualHelper',
         ChangeStatus: 'insights/assessment/changeStatus',
-        ChangeRequirementStatus: 'insights/assessment/changeManualTestStepStatus',
+        ChangeRequirementStatus: 'insights/assessment/changeManualRequirementStatus',
         ChangeVisualizationState: 'insights/assessment/changeSVisualizationState',
         Undo: 'insights/assessment/undo',
-        UndoChangeRequirementStatus: 'insights/assessment/undoChangeManualTestStepStatus',
+        UndoChangeRequirementStatus: 'insights/assessment/undoChangeManualRequirementStatus',
         AddFailureInstance: 'insights/assessment/addFailureInstance',
         RemoveFailureInstance: 'insights/assessment/removeFailureInstance',
         EditFailureInstance: 'insights/assessment/editFailureInstance',

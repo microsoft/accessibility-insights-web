@@ -40,7 +40,7 @@ export class AssessmentActionCreator {
     }
 
     public registerCallbacks(): void {
-        this.registerTypeToPayloadCallback(AssessmentMessages.SelectTestStep, this.onSelectTestStep);
+        this.registerTypeToPayloadCallback(AssessmentMessages.SelectTestRequirement, this.onSelectTestStep);
         this.registerTypeToPayloadCallback(AssessmentMessages.GetCurrentState, this.onGetAssessmentCurrentState);
         this.registerTypeToPayloadCallback(AssessmentMessages.AssessmentScanCompleted, this.onAssessmentScanCompleted);
         this.registerTypeToPayloadCallback(AssessmentMessages.StartOver, this.onStartOverAssessment);

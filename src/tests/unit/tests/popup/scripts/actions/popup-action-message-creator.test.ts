@@ -98,7 +98,7 @@ describe('PopupActionMessageCreatorTest', () => {
         const event = eventStubFactory.createKeypressEvent() as any;
 
         const telemetry: DetailsViewOpenTelemetryData = {
-            detailsView: VisualizationType[viewType],
+            selectedTest: VisualizationType[viewType],
             triggeredBy: 'keypress',
             source: testSource,
         };
@@ -135,7 +135,7 @@ describe('PopupActionMessageCreatorTest', () => {
         const event = eventStubFactory.createKeypressEvent() as any;
 
         const telemetry: DetailsViewOpenTelemetryData = {
-            detailsView: VisualizationType[viewType],
+            selectedTest: VisualizationType[viewType],
             triggeredBy: 'keypress',
             source: testSource,
         };

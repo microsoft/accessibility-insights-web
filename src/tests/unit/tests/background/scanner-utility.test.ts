@@ -16,14 +16,14 @@ describe('ScannerUtility', () => {
     describe('executeScan', () => {
         const interpreterMock = Mock.ofType(Interpreter, MockBehavior.Strict);
         const testStub = -1;
-        const step = 'test step';
+        const requirement = 'test step';
         const tabId = -2;
         const windowUtilsMock = Mock.ofType(WindowUtils, MockBehavior.Strict);
         let callback;
 
         const expectedPayload: AssessmentToggleActionPayload = {
             test: testStub,
-            requirement: step,
+            requirement: requirement,
             telemetry: null,
         };
 
@@ -42,7 +42,7 @@ describe('ScannerUtility', () => {
             });
 
         const testSubject = new ScannerUtility(interpreterMock.object, windowUtilsMock.object);
-        testSubject.executeScan(testStub, step, tabId);
+        testSubject.executeScan(testStub, requirement, tabId);
         callback();
 
         interpreterMock.verifyAll();

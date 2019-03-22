@@ -186,7 +186,7 @@ describe('ActionCreatorTest', () => {
         const viewType = null;
         const pivotType = DetailsViewPivotType.allTest;
         const telemetry: DetailsViewOpenTelemetryData = {
-            detailsView: VisualizationType[viewType],
+            selectedTest: VisualizationType[viewType],
             triggeredBy: 'keypress',
             source: testSource,
         };
@@ -217,7 +217,7 @@ describe('ActionCreatorTest', () => {
         const viewType = VisualizationType.Headings;
         const pivotType = DetailsViewPivotType.allTest;
         const telemetry: DetailsViewOpenTelemetryData = {
-            detailsView: VisualizationType[viewType],
+            selectedTest: VisualizationType[viewType],
             triggeredBy: 'keypress',
             source: testSource,
         };
@@ -258,7 +258,7 @@ describe('ActionCreatorTest', () => {
         const viewType = VisualizationType.Issues;
         const pivotType = DetailsViewPivotType.fastPass;
         const telemetry: DetailsViewOpenTelemetryData = {
-            detailsView: VisualizationType[viewType],
+            selectedTest: VisualizationType[viewType],
             triggeredBy: 'keypress',
             source: testSource,
         };
@@ -299,7 +299,7 @@ describe('ActionCreatorTest', () => {
         const viewType = VisualizationType.Color;
         const pivotType = DetailsViewPivotType.allTest;
         const telemetry: DetailsViewOpenTelemetryData = {
-            detailsView: VisualizationType[viewType],
+            selectedTest: VisualizationType[viewType],
             triggeredBy: 'keypress',
             source: testSource,
         };
@@ -341,7 +341,7 @@ describe('ActionCreatorTest', () => {
         const viewType = VisualizationType.Landmarks;
         const pivotType = DetailsViewPivotType.allTest;
         const telemetry: DetailsViewOpenTelemetryData = {
-            detailsView: VisualizationType[viewType],
+            selectedTest: VisualizationType[viewType],
             triggeredBy: 'keypress',
             source: testSource,
         };
@@ -383,7 +383,7 @@ describe('ActionCreatorTest', () => {
         const viewType = VisualizationType.HeadingsAssessment;
         const pivotType = DetailsViewPivotType.assessment;
         const telemetry: DetailsViewOpenTelemetryData = {
-            detailsView: VisualizationType[viewType],
+            selectedTest: VisualizationType[viewType],
             triggeredBy: 'keypress',
             source: testSource,
         };
@@ -617,7 +617,7 @@ describe('ActionCreatorTest', () => {
             detailsViewType: viewType,
             pivotType: pivotType,
             telemetry: {
-                detailsView: VisualizationType[viewType],
+                selectedTest: VisualizationType[viewType],
                 triggeredBy: 'mouseclick',
                 source: testSource,
             },

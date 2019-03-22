@@ -105,7 +105,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         const event = eventStubFactory.createKeypressEvent() as any;
         const telemetry: DetailsViewOpenTelemetryData = {
             triggeredBy: 'keypress',
-            detailsView: VisualizationType[view],
+            selectedTest: VisualizationType[view],
             source: testSource,
         };
         const pivot = DetailsViewPivotType.allTest;
@@ -142,7 +142,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Assessment.SelectTestStep,
+            type: Messages.Assessment.SelectTestRequirement,
             payload: {
                 telemetry: telemetry,
                 selectedStep: selectedStep,
@@ -152,11 +152,11 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         setupPostMessage(expectedMessage);
 
         telemetryFactoryMock
-            .setup(tf => tf.forSelectTestStep(event, view, selectedStep))
+            .setup(tf => tf.forSelectRequirement(event, view, selectedStep))
             .returns(() => telemetry)
             .verifiable(Times.once());
 
-        testSubject.selectTestStep(event, HeadingsTestStep.headingFunction, view);
+        testSubject.selectRequirement(event, HeadingsTestStep.headingFunction, view);
     });
 
     test('setFeatureFlag', () => {
@@ -489,7 +489,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         };
 
         telemetryFactoryMock
-            .setup(tfm => tfm.forTestStepFromDetailsView(test, step))
+            .setup(tfm => tfm.forRequirementFromDetailsView(test, step))
             .returns(() => telemetry as RequirementActionTelemetryData);
 
         setupPostMessage(expectedMessage);
@@ -517,7 +517,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             },
         };
 
-        telemetryFactoryMock.setup(tfm => tfm.forTestStepFromDetailsView(1, 'step')).returns(() => telemetry);
+        telemetryFactoryMock.setup(tfm => tfm.forRequirementFromDetailsView(1, 'step')).returns(() => telemetry);
 
         setupPostMessage(expectedMessage);
 
@@ -543,7 +543,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             },
         };
 
-        telemetryFactoryMock.setup(tfm => tfm.forTestStepFromDetailsView(1, 'step')).returns(() => telemetry);
+        telemetryFactoryMock.setup(tfm => tfm.forRequirementFromDetailsView(1, 'step')).returns(() => telemetry);
 
         setupPostMessage(expectedMessage);
 
@@ -569,10 +569,10 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             },
         };
 
-        telemetryFactoryMock.setup(tfm => tfm.forTestStepFromDetailsView(1, 'step')).returns(() => telemetry);
+        telemetryFactoryMock.setup(tfm => tfm.forRequirementFromDetailsView(1, 'step')).returns(() => telemetry);
         setupPostMessage(expectedMessage);
 
-        testSubject.changeManualTestStepStatus(1, 1, 'step');
+        testSubject.changeManualRequirementStatus(1, 1, 'step');
     });
 
     test('undoRequirementStatusChange', () => {
@@ -593,7 +593,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         setupTelemetryFactory('fromDetailsViewNoTriggeredBy', telemetry);
         setupPostMessage(expectedMessage);
 
-        testSubject.undoManualTestStepStatusChange(1, 'step');
+        testSubject.undoManualRequirementStatusChange(1, 'step');
     });
 
     test('changeAssessmentVisualizationState', () => {
@@ -638,7 +638,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             },
         };
         telemetryFactoryMock
-            .setup(tf => tf.forTestStepFromDetailsView(1, 'step'))
+            .setup(tf => tf.forRequirementFromDetailsView(1, 'step'))
             .returns(() => telemetry)
             .verifiable(Times.once());
         setupPostMessage(expectedMessage);
@@ -665,7 +665,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             },
         };
         telemetryFactoryMock
-            .setup(tf => tf.forTestStepFromDetailsView(1, 'step'))
+            .setup(tf => tf.forRequirementFromDetailsView(1, 'step'))
             .returns(() => telemetry)
             .verifiable(Times.once());
         setupPostMessage(expectedMessage);

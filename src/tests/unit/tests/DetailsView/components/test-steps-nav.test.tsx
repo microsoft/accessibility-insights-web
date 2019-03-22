@@ -69,7 +69,7 @@ describe('TestStepsNav', () => {
 
         generateStepStatus(assessment.steps, props);
 
-        actionMessageCreatorMock.setup(a => a.selectTestStep(eventStub, item.key, props.selectedTest)).verifiable(Times.once());
+        actionMessageCreatorMock.setup(a => a.selectRequirement(eventStub, item.key, props.selectedTest)).verifiable(Times.once());
 
         const component = React.createElement(TestableTestStepsNav, props);
         const testObject = TestUtils.renderIntoDocument(component);

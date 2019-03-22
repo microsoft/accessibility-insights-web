@@ -283,7 +283,7 @@ describe('AssessmentActionCreatorTest', () => {
 
         const actionMock = createActionMock(payload);
         setupAssessmentActionsMock('selectRequirement', actionMock);
-        setupRegisterTypeToPayloadCallbackMock(AssessmentMessages.SelectTestStep, payload, testTabId);
+        setupRegisterTypeToPayloadCallbackMock(AssessmentMessages.SelectTestRequirement, payload, testTabId);
 
         testObject.registerCallbacks();
 

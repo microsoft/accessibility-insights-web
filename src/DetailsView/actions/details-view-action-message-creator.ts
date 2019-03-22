@@ -158,15 +158,15 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     }
 
-    public selectTestStep(event: React.MouseEvent<HTMLElement>, selectedStep: string, type: VisualizationType): void {
+    public selectRequirement(event: React.MouseEvent<HTMLElement>, selectedRequirement: string, type: VisualizationType): void {
         const payload: SelectRequirementPayload = {
-            telemetry: this.telemetryFactory.forSelectTestStep(event, type, selectedStep),
-            selectedRequirement: selectedStep,
+            telemetry: this.telemetryFactory.forSelectRequirement(event, type, selectedRequirement),
+            selectedRequirement: selectedRequirement,
             selectedTest: type,
         };
 
         this.dispatchMessage({
-            type: Messages.Assessment.SelectTestStep,
+            type: Messages.Assessment.SelectTestRequirement,
             tabId: this._tabId,
             payload: payload,
         });
@@ -200,11 +200,11 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     }
 
-    public startOverAssessment(event: React.MouseEvent<any>, test: VisualizationType, step: string): void {
+    public startOverAssessment(event: React.MouseEvent<any>, test: VisualizationType, requirement: string): void {
         const telemetry = this.telemetryFactory.forAssessmentActionFromDetailsView(test, event);
         const payload: ToggleActionPayload = {
             test,
-            step,
+            requirement,
             telemetry,
         };
 
@@ -215,7 +215,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     }
 
-    public enableVisualHelper(test: VisualizationType, step: string, shouldScan = true, sendTelemetry = true): void {
+    public enableVisualHelper(test: VisualizationType, requirement: string, shouldScan = true, sendTelemetry = true): void {
         const telemetry = sendTelemetry ? this.telemetryFactory.forAssessmentActionFromDetailsViewNoTriggeredBy(test) : null;
         const payload: AssessmentToggleActionPayload = {
             test,
@@ -242,8 +242,8 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     }
 
-    public disableVisualHelper(test: VisualizationType, step: string): void {
-        const telemetry = this.telemetryFactory.forTestStepFromDetailsView(test, step);
+    public disableVisualHelper(test: VisualizationType, requirement: string): void {
+        const telemetry = this.telemetryFactory.forRequirementFromDetailsView(test, requirement);
         const payload: ToggleActionPayload = {
             test,
             telemetry,
@@ -257,8 +257,8 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
     }
 
     @autobind
-    public changeManualTestStatus(status: ManualTestStatus, test: VisualizationType, step: string, selector: string): void {
-        const telemetry = this.telemetryFactory.forTestStepFromDetailsView(test, step);
+    public changeManualTestStatus(status: ManualTestStatus, test: VisualizationType, requirement: string, selector: string): void {
+        const telemetry = this.telemetryFactory.forRequirementFromDetailsView(test, requirement);
         const payload: ChangeInstanceStatusPayload = {
             test,
             requirement,
@@ -275,8 +275,8 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
     }
 
     @autobind
-    public changeManualTestStepStatus(status: ManualTestStatus, test: VisualizationType, step: string): void {
-        const telemetry = this.telemetryFactory.forTestStepFromDetailsView(test, step);
+    public changeManualRequirementStatus(status: ManualTestStatus, test: VisualizationType, requirement: string): void {
+        const telemetry = this.telemetryFactory.forRequirementFromDetailsView(test, requirement);
         const payload: ChangeRequirementStatusPayload = {
             test,
             requirement,
@@ -292,8 +292,8 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
     }
 
     @autobind
-    public undoManualTestStatusChange(test: VisualizationType, step: string, selector: string): void {
-        const telemetry = this.telemetryFactory.forTestStepFromDetailsView(test, step);
+    public undoManualTestStatusChange(test: VisualizationType, requirement: string, selector: string): void {
+        const telemetry = this.telemetryFactory.forRequirementFromDetailsView(test, requirement);
         const payload: AssessmentActionInstancePayload = {
             test,
             requirement,
@@ -309,11 +309,11 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
     }
 
     @autobind
-    public undoManualTestStepStatusChange(test: VisualizationType, step: string): void {
+    public undoManualRequirementStatusChange(test: VisualizationType, requirement: string): void {
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
         const payload: ChangeRequirementStatusPayload = {
             test: test,
-            requirement: step,
+            requirement: requirement,
             telemetry: telemetry,
         };
 
@@ -328,7 +328,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
     public changeAssessmentVisualizationState(
         isVisualizationEnabled: boolean,
         test: VisualizationType,
-        step: string,
+        requirement: string,
         selector: string,
     ): void {
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
@@ -347,8 +347,8 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     }
 
-    public addFailureInstance(description: string, test: VisualizationType, step: string): void {
-        const telemetry = this.telemetryFactory.forTestStepFromDetailsView(test, step);
+    public addFailureInstance(description: string, test: VisualizationType, requirement: string): void {
+        const telemetry = this.telemetryFactory.forRequirementFromDetailsView(test, requirement);
         const payload: AddFailureInstancePayload = {
             test,
             requirement,
@@ -364,8 +364,8 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
     }
 
     @autobind
-    public removeFailureInstance(test: VisualizationType, step: string, id: string): void {
-        const telemetry = this.telemetryFactory.forTestStepFromDetailsView(test, step);
+    public removeFailureInstance(test: VisualizationType, requirement: string, id: string): void {
+        const telemetry = this.telemetryFactory.forRequirementFromDetailsView(test, requirement);
         const payload: RemoveFailureInstancePayload = {
             test,
             requirement,
@@ -386,7 +386,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
     }
 
     @autobind
-    public editFailureInstance(description: string, test: VisualizationType, step: string, id: string): void {
+    public editFailureInstance(description: string, test: VisualizationType, requirement: string, id: string): void {
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
         const payload: EditFailureInstancePayload = {
             test,
@@ -403,11 +403,11 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     }
 
-    public passUnmarkedInstances(test: VisualizationType, step: string): void {
+    public passUnmarkedInstances(test: VisualizationType, requirement: string): void {
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
         const payload: ToggleActionPayload = {
             test,
-            step,
+            requirement,
             telemetry,
         };
 
@@ -418,11 +418,11 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     }
 
-    public changeAssessmentVisualizationStateForAll(isVisualizationEnabled: boolean, test: VisualizationType, step: string): void {
+    public changeAssessmentVisualizationStateForAll(isVisualizationEnabled: boolean, test: VisualizationType, requirement: string): void {
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
         const payload: ChangeInstanceSelectionPayload = {
             test: test,
-            requirement: step,
+            requirement: requirement,
             isVisualizationEnabled: isVisualizationEnabled,
             selector: null,
             telemetry: telemetry,

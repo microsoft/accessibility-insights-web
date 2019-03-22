@@ -103,7 +103,7 @@ describe('TelemetryDataFactoryTest', () => {
         const result = testObject.forSelectDetailsView(event, type);
 
         const expected: DetailsViewOpenTelemetryData = {
-            detailsView: VisualizationType[type],
+            selectedTest: VisualizationType[type],
             triggeredBy: 'keypress',
             source,
         };
@@ -119,7 +119,7 @@ describe('TelemetryDataFactoryTest', () => {
         const result = testObject.forSelectDetailsView(event, type);
 
         const expected: DetailsViewOpenTelemetryData = {
-            detailsView: VisualizationType[type],
+            selectedTest: VisualizationType[type],
             triggeredBy: 'mouseclick',
             source,
         };
@@ -161,7 +161,7 @@ describe('TelemetryDataFactoryTest', () => {
         const result = testObject.forOpenDetailsView(event, type, testSource);
 
         const expected: DetailsViewOpenTelemetryData = {
-            detailsView: VisualizationType[type],
+            selectedTest: VisualizationType[type],
             triggeredBy: 'keypress',
             source: testSource,
         };
@@ -176,7 +176,7 @@ describe('TelemetryDataFactoryTest', () => {
         const result = testObject.forOpenDetailsView(event, type, testSource);
 
         const expected: DetailsViewOpenTelemetryData = {
-            detailsView: VisualizationType[type],
+            selectedTest: VisualizationType[type],
             triggeredBy: 'mouseclick',
             source: testSource,
         };
@@ -308,7 +308,7 @@ describe('TelemetryDataFactoryTest', () => {
             selectedRequirement: 'step',
         };
 
-        const actual: RequirementSelectTelemetryData = testObject.forSelectTestStep(event, VisualizationType.Headings, 'step');
+        const actual: RequirementSelectTelemetryData = testObject.forSelectRequirement(event, VisualizationType.Headings, 'step');
 
         expect(actual).toEqual(expected);
     });
@@ -322,7 +322,7 @@ describe('TelemetryDataFactoryTest', () => {
             selectedRequirement: 'step',
         };
 
-        const actual: RequirementSelectTelemetryData = testObject.forSelectTestStep(event, VisualizationType.Headings, 'step');
+        const actual: RequirementSelectTelemetryData = testObject.forSelectRequirement(event, VisualizationType.Headings, 'step');
 
         expect(actual).toEqual(expected);
     });
@@ -361,7 +361,7 @@ describe('TelemetryDataFactoryTest', () => {
             selectedTest: VisualizationType[-1],
         };
 
-        const actual: RequirementActionTelemetryData = testObject.forTestStepFromDetailsView(-1, 'step');
+        const actual: RequirementActionTelemetryData = testObject.forRequirementFromDetailsView(-1, 'step');
 
         expect(actual).toEqual(expected);
     });

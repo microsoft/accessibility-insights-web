@@ -70,7 +70,7 @@ export class TestStepsNav extends React.Component<TestStepNavProps> {
     @autobind
     protected onTestStepSelected(event?: React.MouseEvent<HTMLElement>, item?: INavLink): void {
         if (item) {
-            this.props.deps.detailsViewActionMessageCreator.selectTestStep(event, item.key, this.props.selectedTest);
+            this.props.deps.detailsViewActionMessageCreator.selectRequirement(event, item.key, this.props.selectedTest);
         }
     }
 
