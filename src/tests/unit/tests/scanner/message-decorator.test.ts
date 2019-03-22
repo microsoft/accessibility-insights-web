@@ -71,9 +71,9 @@ describe('MessageDecorator', () => {
         checkMessageTransformerMock.verifyAll();
     }
 
-    function generateAxeResultStubWithStatus(configuration: RuleConfiguration): AxeRule {
+    function generateAxeResultStubWithStatus(config: RuleConfiguration): AxeRule {
         return {
-            id: configuration.rule.id,
+            id: config.rule.id,
             nodes: [
                 {
                     any: [
