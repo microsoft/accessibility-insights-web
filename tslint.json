@@ -3,7 +3,6 @@
     // We eventually want there to only be one tslint.json file, and to have all checks be build-enforced
     "extends": "./tslint.build-enforced.json",
     "rules": {
-        "no-default-export": true,
         "no-shadowed-variable": true // Disallows shadowing variable declarations
     }
 }
