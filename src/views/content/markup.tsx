@@ -3,13 +3,14 @@
 import * as React from 'react';
 import Helmet from 'react-helmet';
 
-import { Code, Emphasis, Tag, Term } from '../../assessments/markup';
+import { Code, Emphasis, Tag, Term, CodeBlock } from '../../assessments/markup';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { CheckIcon } from '../../common/icons/check-icon';
 import { CrossIcon } from '../../common/icons/cross-icon';
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
 import { productName } from '../../content/strings/application';
 import { ContentPageComponent, ContentPageOptions } from './content-page';
+import { flatten } from '@uifabric/utilities';
 
 type PassFailProps = {
     passText: JSX.Element;
@@ -167,7 +168,7 @@ export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
     }
 
     function CodeExample(props: CodeExampleProps): JSX.Element {
-        const { title, children } = props;
+        const { children } = props;
 
         function getRegions(code: string): string[] {
             if (code.length === 0) {
@@ -191,20 +192,24 @@ export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
             }
         }
 
-        function renderRegion(str: string, index: number): string | JSX.Element {
+        function renderLineBreaks(str: string): React.ReactNode[] {
+            return flatten(str.split('\n').map(s => [<br />, s])).slice(1);
+        }
+
+        function renderRegion(str: string, index: number): React.ReactNode[] {
             if (str[0] === '[') {
-                return (
+                return [
                     <span key={index} className="highlight">
-                        {str.slice(1, -1)}
-                    </span>
-                );
+                        {renderLineBreaks(str.slice(1, -1))}
+                    </span>,
+                ];
             } else {
-                return str;
+                return renderLineBreaks(str);
             }
         }
 
         const regions = getRegions(children);
-        const formattedCode = regions.map(renderRegion);
+        const formattedCode = flatten(regions.map(renderRegion));
 
         return (
             <div className="code-example">
@@ -214,7 +219,7 @@ export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
                     </div>
                 )}
                 <div className="code-example-code">
-                    <Code>{formattedCode}</Code>
+                    <CodeBlock>{formattedCode}</CodeBlock>
                 </div>
             </div>
         );

@@ -170,7 +170,7 @@ describe('ContentPage', () => {
 
         describe('<CodeExample>', () => {
             function getHighlights(wrapper): string[] {
-                const code = wrapper.find('Code');
+                const code = wrapper.find('CodeBlock');
                 return code.children().map(node => {
                     if (node.is('span') && node.prop('className') === 'highlight') {
                         return '[' + node.text() + ']';
@@ -187,36 +187,58 @@ describe('ContentPage', () => {
                         <h4>title</h4>
                     </div>,
                 );
+                expect(wrapper.getElement()).toMatchSnapshot();
             });
 
             it('renders with no title', () => {
                 const wrapper = shallow(<CodeExample>code</CodeExample>);
                 expect(wrapper.find('.code-example-title').isEmpty()).toEqual(true);
+                expect(wrapper.getElement()).toMatchSnapshot();
             });
 
             it('renders with no highlighted region', () => {
                 const wrapper = shallow(<CodeExample>No highlight</CodeExample>);
-                expect(getHighlights(wrapper)).toEqual(['No highlight']);
+                expect(wrapper.getElement()).toMatchSnapshot();
             });
 
             it('renders with one highlighted region', () => {
                 const wrapper = shallow(<CodeExample>One [single] highlight</CodeExample>);
-                expect(getHighlights(wrapper)).toEqual(['One ', '[single]', ' highlight']);
+                expect(wrapper.getElement()).toMatchSnapshot();
             });
 
             it('renders with empty highlighted region', () => {
                 const wrapper = shallow(<CodeExample>Empty [] highlight</CodeExample>);
-                expect(getHighlights(wrapper)).toEqual(['Empty ', '[]', ' highlight']);
+                expect(wrapper.getElement()).toMatchSnapshot();
             });
 
             it('renders with unterminated highlighted region', () => {
                 const wrapper = shallow(<CodeExample>One [unterminated highlight</CodeExample>);
-                expect(getHighlights(wrapper)).toEqual(['One ', '[unterminated highlight]']);
+                expect(wrapper.getElement()).toMatchSnapshot();
             });
 
             it('renders with many highlighted regions', () => {
                 const wrapper = shallow(<CodeExample>With [quite] a [number] of [highlights].</CodeExample>);
-                expect(getHighlights(wrapper)).toEqual(['With ', '[quite]', ' a ', '[number]', ' of ', '[highlights]', '.']);
+                expect(wrapper.getElement()).toMatchSnapshot();
+            });
+
+            it('renders with a single line break', () => {
+                const wrapper = shallow(<CodeExample>{`Line 1\nLine 2`}</CodeExample>);
+                expect(wrapper.getElement()).toMatchSnapshot();
+            });
+
+            it('renders with a line breaks and a highlighted line', () => {
+                const wrapper = shallow(<CodeExample>{`Line 1\n[Line 2]\nLine 3`}</CodeExample>);
+                expect(wrapper.getElement()).toMatchSnapshot();
+            });
+
+            it('renders with a highlight that spans multiple lines', () => {
+                const wrapper = shallow(<CodeExample>{`Line 1\n[Line 2\nLine 3]\nLine 4`}</CodeExample>);
+                expect(wrapper.getElement()).toMatchSnapshot();
+            });
+
+            it('renders with a highlight that breaks in the middle of multiple lines', () => {
+                const wrapper = shallow(<CodeExample>{`Line 1\nLine 2 [HIGHLIGHT\nHERE]Line 3\nLine 4`}</CodeExample>);
+                expect(wrapper.getElement()).toMatchSnapshot();
             });
         });
 
