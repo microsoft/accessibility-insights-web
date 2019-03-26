@@ -6,11 +6,11 @@ import { IHeadingsAssessmentProperties } from '../../../common/types/store-data/
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
+import { TestAutomaticallyPassedNotice } from '../../../content/test/common/test-automatically-passed-notice';
 import * as content from '../../../content/test/headings/heading-level';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
-import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
-import TestAutomaticallyPassedNotice from '../../common/test-automatically-passed-notice';
+import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { TestStep } from '../../types/test-step';
@@ -27,7 +27,7 @@ const headingLevelDescription: JSX.Element = (
 const headingLevelHowToTest: JSX.Element = (
     <div>
         <p>For this requirement, {productName} highlights coded headings in the target page.</p>
-        {TestAutomaticallyPassedNotice}
+        <TestAutomaticallyPassedNotice />
         <ol>
             <li>
                 In the target page, examine each heading to verify that its <Markup.Emphasis>programmatic</Markup.Emphasis>

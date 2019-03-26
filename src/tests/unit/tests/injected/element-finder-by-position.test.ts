@@ -70,7 +70,7 @@ describe('ElementFinderByPositionTest', () => {
 
     test('initialize', () => {
         const responderMock = Mock.ofInstance((result: any, error: IErrorMessageContent, messageSourceWindow: Window) => {});
-        const processRequestPromiseHandlerMock = Mock.ofInstance((successCallback, errorCallback) => {});
+        const processRequestPromiseHandlerMock = Mock.ofInstance((successCb, errorCb) => {});
         const processRequestMock = Mock.ofInstance(message => {
             return null;
         });
@@ -126,7 +126,7 @@ describe('ElementFinderByPositionTest', () => {
 
         setupElementsFromPointMock(messageStub, []);
 
-        mockQ.setup(mockQ => mockQ.defer()).returns(() => deferredObjectStub);
+        mockQ.setup(q => q.defer()).returns(() => deferredObjectStub);
 
         setupResolveMock([]);
 
@@ -144,7 +144,7 @@ describe('ElementFinderByPositionTest', () => {
         setupElementsFromPointMock(messageStub, [elementStub]);
         setupGetUniqueSelector(elementStub, selector);
 
-        mockQ.setup(mockQ => mockQ.defer()).returns(() => deferredObjectStub);
+        mockQ.setup(q => q.defer()).returns(() => deferredObjectStub);
 
         setupResolveMock([selector]);
 
@@ -154,7 +154,7 @@ describe('ElementFinderByPositionTest', () => {
     test('process request when element is in iframe', () => {
         let successCallback;
         let errorCallback;
-        const sendMessagePromiseHandlerMock = Mock.ofInstance((successCallback, errorCallback) => {});
+        const sendMessagePromiseHandlerMock = Mock.ofInstance((successCb, errorCb) => {});
         const sendMessageReturnStub = {
             then: sendMessagePromiseHandlerMock.object,
         } as Q.IPromise<string[]>;
@@ -191,7 +191,7 @@ describe('ElementFinderByPositionTest', () => {
             .returns(() => elementRectStub)
             .verifiable();
 
-        mockQ.setup(mockQ => mockQ.defer()).returns(() => deferredObjectStub);
+        mockQ.setup(q => q.defer()).returns(() => deferredObjectStub);
 
         sendMessagePromiseHandlerMock
             .setup(prp => prp(It.isAny(), It.isAny()))

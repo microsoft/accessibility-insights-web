@@ -74,11 +74,11 @@ describe('InspectActionCreatorTest', () => {
         return getCurrentStateMock;
     }
 
-    function setupInspectActionMock(actionName: keyof InspectActions, actionMock: IMock<Action<any>>) {
+    function setupInspectActionMock(actionName: keyof InspectActions, actionMock: IMock<Action<any>>): void {
         inspectActionsMock.setup(actions => actions[actionName]).returns(() => actionMock.object);
     }
 
-    function setupRegisterTypeToPayloadCallbackMock(message: string, payload: any, _tabId: number) {
+    function setupRegisterTypeToPayloadCallbackMock(message: string, payload: any, _tabId: number): void {
         registerTypeToPayloadCallbackMock
             .setup(registrar => registrar(message, It.is(_.isFunction)))
             .callback((_message, listener) => listener(payload, _tabId));

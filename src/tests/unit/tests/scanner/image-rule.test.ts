@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as axe from 'axe-core';
+import * as Axe from 'axe-core';
 import { GlobalMock, GlobalScope, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { imageConfiguration } from '../../../../scanner/image-rule';
@@ -63,7 +63,7 @@ describe('imageRule', () => {
 
         it('should not match', () => {
             const windowMock = GlobalMock.ofInstance(window.getComputedStyle, 'getComputedStyle', window, MockBehavior.Strict);
-            windowMock.setup(m => m(It.isAny())).returns(node => ({ getPropertyValue: property => 'none' } as CSSStyleDeclaration));
+            windowMock.setup(m => m(It.isAny())).returns(() => ({ getPropertyValue: property => 'none' } as CSSStyleDeclaration));
             let result;
             const node = document.createElement('div');
             GlobalScope.using(windowMock).with(() => {
@@ -76,12 +76,12 @@ describe('imageRule', () => {
     describe('verify evaluate', () => {
         let dataSetterMock: IMock<(data) => void>;
         let fixture: HTMLElement;
-        let _axe;
+        let axe;
 
         beforeEach(() => {
             dataSetterMock = Mock.ofInstance(data => {});
             fixture = createTestFixture('test-fixture', '');
-            _axe = axe as any;
+            axe = Axe as any;
         });
 
         afterEach(() => {
@@ -93,10 +93,9 @@ describe('imageRule', () => {
                 <div id="el1" alt="hello"></div>
             `;
             const element1 = fixture.querySelector('#el1');
-            _axe._tree = _axe.utils.getFlattenedTree(document.documentElement);
 
             dataSetterMock.setup(d => d(It.isAny()));
-            const result = imageConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, element1);
+            const result = getResultForCheck({ data: dataSetterMock.object }, element1);
             expect(result).toBeTruthy();
         });
 
@@ -106,7 +105,6 @@ describe('imageRule', () => {
                 <div id="el3"> hello </div>
             `;
             const element1 = fixture.querySelector('#el1');
-            _axe._tree = _axe.utils.getFlattenedTree(document.documentElement);
 
             const expectedData = {
                 imageType: '<img>',
@@ -115,7 +113,7 @@ describe('imageRule', () => {
             };
             dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
 
-            const result = imageConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, element1);
+            const result = getResultForCheck({ data: dataSetterMock.object }, element1);
             expect(result).toBeTruthy();
             dataSetterMock.verifyAll();
         });
@@ -125,7 +123,6 @@ describe('imageRule', () => {
                 <img id="el1"  role="none"/>
             `;
             const node = fixture.querySelector('#el1');
-            _axe._tree = _axe.utils.getFlattenedTree(document.documentElement);
 
             const expectedData = {
                 imageType: '<img>',
@@ -134,7 +131,7 @@ describe('imageRule', () => {
             };
             dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
 
-            const result = imageConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, node);
+            const result = getResultForCheck({ data: dataSetterMock.object }, node);
             expect(result).toBeTruthy();
             dataSetterMock.verifyAll();
         });
@@ -144,7 +141,7 @@ describe('imageRule', () => {
                 <img id="el1"  role="presentation"/>
             `;
             const node = fixture.querySelector('#el1');
-            _axe._tree = _axe.utils.getFlattenedTree(document.documentElement);
+
             const expectedData = {
                 imageType: '<img>',
                 accessibleName: '',
@@ -152,7 +149,7 @@ describe('imageRule', () => {
             };
             dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
 
-            const result = imageConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, node);
+            const result = getResultForCheck({ data: dataSetterMock.object }, node);
             expect(result).toBeTruthy();
             dataSetterMock.verifyAll();
         });
@@ -162,7 +159,7 @@ describe('imageRule', () => {
                 <img id="el1"  alt=""/>
             `;
             const node = fixture.querySelector('#el1');
-            _axe._tree = _axe.utils.getFlattenedTree(document.documentElement);
+
             const expectedData = {
                 imageType: '<img>',
                 accessibleName: '',
@@ -170,7 +167,7 @@ describe('imageRule', () => {
             };
             dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
 
-            const result = imageConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, node);
+            const result = getResultForCheck({ data: dataSetterMock.object }, node);
             expect(result).toBeTruthy();
             dataSetterMock.verifyAll();
         });
@@ -180,7 +177,7 @@ describe('imageRule', () => {
                 <img id="el1"/>
             `;
             const node = fixture.querySelector('#el1');
-            _axe._tree = _axe.utils.getFlattenedTree(document.documentElement);
+
             const expectedData = {
                 imageType: '<img>',
                 accessibleName: '',
@@ -188,7 +185,7 @@ describe('imageRule', () => {
             };
             dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
 
-            const result = imageConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, node);
+            const result = getResultForCheck({ data: dataSetterMock.object }, node);
             expect(result).toBeTruthy();
             dataSetterMock.verifyAll();
         });
@@ -202,8 +199,9 @@ describe('imageRule', () => {
                 codedAs: null,
             };
             dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
+            fixture.appendChild(node);
 
-            const result = imageConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, node);
+            const result = getResultForCheck({ data: dataSetterMock.object }, node);
             expect(result).toBeTruthy();
             dataSetterMock.verifyAll();
         });
@@ -216,8 +214,9 @@ describe('imageRule', () => {
                 codedAs: null,
             };
             dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
+            fixture.appendChild(node);
 
-            const result = imageConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, node);
+            const result = getResultForCheck({ data: dataSetterMock.object }, node);
             expect(result).toBeTruthy();
             dataSetterMock.verifyAll();
         });
@@ -231,14 +230,16 @@ describe('imageRule', () => {
                 codedAs: null,
             };
             dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
+            fixture.appendChild(node);
 
-            const result = imageConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, node);
+            const result = getResultForCheck({ data: dataSetterMock.object }, node);
             expect(result).toBeTruthy();
             dataSetterMock.verifyAll();
         });
 
         it('imageType should be unknown for nodes that is not image', () => {
             const node = document.createElement('div');
+            fixture.appendChild(node);
 
             dataSetterMock.setup(d =>
                 d(
@@ -248,9 +249,14 @@ describe('imageRule', () => {
                 ),
             );
 
-            const result = imageConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, node);
+            const result = getResultForCheck({ data: dataSetterMock.object }, node);
             expect(result).toBeTruthy();
         });
+
+        function getResultForCheck(data, node: Element): boolean {
+            axe._tree = axe.utils.getFlattenedTree(document.documentElement);
+            return imageConfiguration.checks[0].evaluate.call(data, node);
+        }
     });
 
     function createTestFixture(id: string, content: string): HTMLDivElement {

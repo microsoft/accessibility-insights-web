@@ -64,11 +64,11 @@ describe('Ad hoc tools', () => {
         expect(results).toHaveLength(0);
     });
 
-    async function verifyAdhocPanelLoaded() {
+    async function verifyAdhocPanelLoaded(): Promise<void> {
         await popupPage.waitForSelector(popupPageElementIdentifiers.adhocPanel);
     }
 
-    async function verifyLaunchPadLoaded() {
+    async function verifyLaunchPadLoaded(): Promise<void> {
         await popupPage.waitForSelector(popupPageElementIdentifiers.launchPad);
     }
 });

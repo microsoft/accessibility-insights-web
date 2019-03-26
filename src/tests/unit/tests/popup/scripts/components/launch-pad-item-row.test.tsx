@@ -70,15 +70,7 @@ describe('LaunchPadItemRow', () => {
     test('on link click', () => {
         const event = eventStubFactory.createKeypressEvent() as any;
 
-        const onClickTitleMock = Mock.ofInstance((ev?) => {});
         onClickTitleMock.setup(handler => handler(event)).verifiable(Times.once());
-
-        const props: LaunchPadItemRowProps = {
-            title: 'test title',
-            iconName: 'test icon name',
-            description: 'test description',
-            onClickTitle: onClickTitleMock.object,
-        };
 
         const component = React.createElement(LaunchPadItemRow, props);
         const testObject = TestUtils.renderIntoDocument(component);

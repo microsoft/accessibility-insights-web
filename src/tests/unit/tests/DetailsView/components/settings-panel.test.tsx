@@ -4,6 +4,7 @@ import { IChoiceGroupOption } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
+import { shallow } from 'enzyme';
 import { FeatureFlags } from '../../../../../common/feature-flags';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { BugServicePropertiesMap, UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
@@ -107,11 +108,11 @@ describe('SettingsPanelTest', () => {
                 userConfigMessageCreator: userConfigMessageCreatorMock.object,
             },
             userConfigStoreState: userConfigStoreData,
-            featureFlagData: { [FeatureFlags.highContrastMode]: false },
+            featureFlagData: { 'test-flag': false },
         };
 
-        const testSubject = new TestableSettingsPanel(testProps);
-        expect(testSubject.render()).toMatchSnapshot();
+        const wrapped = shallow(<SettingsPanel {...testProps} />);
+        expect(wrapped.getElement()).toMatchSnapshot();
     });
 
     test.each([true, false])('verify toggle click - telemetrySettingState : %s', telemetrySettingState => {
@@ -123,7 +124,7 @@ describe('SettingsPanelTest', () => {
                 userConfigMessageCreator: userConfigMessageCreatorMock.object,
             },
             userConfigStoreState: userConfigStoreData,
-            featureFlagData: { [FeatureFlags.highContrastMode]: true },
+            featureFlagData: { 'test-flag': true },
         };
 
         const testSubject = new TestableSettingsPanel(testProps);
@@ -141,7 +142,7 @@ describe('SettingsPanelTest', () => {
                 userConfigMessageCreator: userConfigMessageCreatorMock.object,
             },
             userConfigStoreState: userConfigStoreData,
-            featureFlagData: { [FeatureFlags.highContrastMode]: true },
+            featureFlagData: { 'test-flag': true },
         };
 
         const testSubject = new TestableSettingsPanel(testProps);

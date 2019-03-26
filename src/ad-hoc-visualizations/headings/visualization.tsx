@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash/index';
+import { isEmpty } from 'lodash';
 import * as React from 'react';
-
 import { AdHocTestkeys } from '../../common/configs/adhoc-test-keys';
 import { TestMode } from '../../common/configs/test-mode';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration-factory';
@@ -22,7 +21,7 @@ export const HeadingsAdHocVisualization: VisualizationConfiguration = {
     key: AdHocTestkeys.Headings,
     testMode: TestMode.Adhoc,
     getStoreData: data => data.adhoc.headings,
-    enableTest: (data, _) => (data.enabled = true),
+    enableTest: data => (data.enabled = true),
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
     displayableData: {
@@ -47,7 +46,7 @@ export const HeadingsAdHocVisualization: VisualizationConfiguration = {
         }),
     getIdentifier: () => AdHocTestkeys.Headings,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
-    getNotificationMessage: selectorMap => (_.isEmpty(selectorMap) ? 'No headings found' : null),
+    getNotificationMessage: selectorMap => (isEmpty(selectorMap) ? 'No headings found' : null),
     getDrawer: provider => provider.createHeadingsDrawer(),
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,

@@ -54,7 +54,7 @@ describe('AssessmentReportModelBuilderTest', () => {
     AssessmentReportBuilderTestHelper.setMessageComponent(expectedMessage);
     const expectedResult = AssessmentReportBuilderTestHelper.getAssessmentReportModel();
 
-    function getBuilder() {
+    function getBuilder(): AssessmentReportModelBuilder {
         return new AssessmentReportModelBuilder(
             assessmentsProviderMock.object,
             assessmentStoreData,

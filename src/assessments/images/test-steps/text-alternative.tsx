@@ -6,10 +6,11 @@ import { TextAlternativePropertyBag } from '../../../common/types/property-bag/i
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
+import { TestAutomaticallyPassedNotice } from '../../../content/test/common/test-automatically-passed-notice';
 import * as content from '../../../content/test/images/text-alternative';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
-import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
+import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
 import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
 import * as Markup from '../../markup';
@@ -22,11 +23,7 @@ const description: JSX.Element = <span>A meaningful image must have a text alter
 const howToTest: JSX.Element = (
     <div>
         <p>For this requirement, {productName} highlights images that are coded as meaningful.</p>
-        <p>
-            <Markup.Emphasis>
-                Note: If no matching/failing instances are found, this requirement will automatically be marked as pass.
-            </Markup.Emphasis>
-        </p>
+        <TestAutomaticallyPassedNotice />
         <ol>
             <li>
                 Examine each image in the <Markup.Term>Instances</Markup.Term> list to verify that its text alternative serves the

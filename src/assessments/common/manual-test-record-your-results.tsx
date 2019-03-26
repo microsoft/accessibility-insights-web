@@ -8,7 +8,7 @@ export interface ManualTestRecordYourResultsProps {
     isMultipleFailurePossible: boolean;
 }
 
-const ManualTestRecordYourResults = (props: ManualTestRecordYourResultsProps) => (
+export const ManualTestRecordYourResults = (props: ManualTestRecordYourResultsProps) => (
     <li>
         Record your results:
         <ol>
@@ -22,5 +22,3 @@ const ManualTestRecordYourResults = (props: ManualTestRecordYourResultsProps) =>
         </ol>
     </li>
 );
-
-export default ManualTestRecordYourResults;

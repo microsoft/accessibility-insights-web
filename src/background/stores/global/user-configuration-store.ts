@@ -46,7 +46,6 @@ export class UserConfigurationStore extends BaseStore<UserConfigurationStoreData
         this.userConfigActions.setHighContrastMode.addListener(this.onSetHighContrastMode);
         this.userConfigActions.setBugService.addListener(this.onSetBugService);
         this.userConfigActions.setBugServiceProperty.addListener(this.onSetBugServiceProperty);
-        this.userConfigActions.notifyFeatureFlagChange.addListener(this.onNotifyFeatureFlagChange);
         this.userConfigActions.setIssueTrackerPath.addListener(this.onSetIssueTrackerPath);
     }
 
@@ -81,13 +80,6 @@ export class UserConfigurationStore extends BaseStore<UserConfigurationStoreData
         this.state.bugServicePropertiesMap[payload.bugServiceName][payload.propertyName] = payload.propertyValue;
 
         this.saveAndEmitChanged();
-    }
-
-    @autobind
-    private onNotifyFeatureFlagChange(payload: FeatureFlagPayload): void {
-        if (payload.feature === FeatureFlags.highContrastMode && payload.enabled === false) {
-            this.onSetHighContrastMode({ enableHighContrast: false });
-        }
     }
 
     @autobind

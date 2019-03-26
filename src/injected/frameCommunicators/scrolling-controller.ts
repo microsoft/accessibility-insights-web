@@ -16,9 +16,9 @@ export class ScrollingController {
     private _htmlElementUtils: HTMLElementUtils;
     private _frameCommunicator: FrameCommunicator;
 
-    constructor(frameCommunicator: FrameCommunicator, HTMLElementUtils: HTMLElementUtils) {
+    constructor(frameCommunicator: FrameCommunicator, htmlElementUtils: HTMLElementUtils) {
         this._frameCommunicator = frameCommunicator;
-        this._htmlElementUtils = HTMLElementUtils;
+        this._htmlElementUtils = htmlElementUtils;
     }
 
     public initialize(): void {

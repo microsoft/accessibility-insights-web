@@ -23,6 +23,7 @@ exports[`IssuesTableTest render automated checks disabled 1`] = `
     <ExportDialog
       description=""
       exportResultsType="AutomatedChecks"
+      fileName=""
       html=""
       isOpen={false}
       onClose={[Function]}
@@ -51,7 +52,7 @@ exports[`IssuesTableTest render spinner for scanning state 1`] = `
     <div className=\\"details-view-command-bar\\">
       <VisualizationToggle label=\\"Show failures\\" checked={true} disabled={true} onClick={[Function: proxy]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
     </div>
-    <ExportDialog deps={[undefined]} isOpen={false} description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChange={[Function: bound ]} exportResultsType=\\"AutomatedChecks\\" />
+    <ExportDialog deps={[undefined]} isOpen={false} fileName=\\"\\" description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChange={[Function: bound ]} exportResultsType=\\"AutomatedChecks\\" />
     <StyledSpinnerBase className=\\"details-view-spinner\\" size={3} label=\\"Scanning...\\" />
   </div>
 </div>"
@@ -98,6 +99,7 @@ exports[`IssuesTableTest render spinner, issuesEnabled is an empty object 1`] = 
     <ExportDialog
       description=""
       exportResultsType="AutomatedChecks"
+      fileName=""
       html=""
       isOpen={false}
       onClose={[Function]}
@@ -124,7 +126,7 @@ exports[`IssuesTableTest render table with 0 issues 1`] = `
         Export result
       </CustomizedActionButton>
     </div>
-    <ExportDialog deps={[undefined]} isOpen={false} description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChange={[Function: bound ]} exportResultsType=\\"AutomatedChecks\\" />
+    <ExportDialog deps={[undefined]} isOpen={false} fileName=\\"\\" description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChange={[Function: bound ]} exportResultsType=\\"AutomatedChecks\\" />
     <div className=\\"issues-table-details\\">
       <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} />
       <div className=\\"issue-detail-outer-container ms-Fabric\\">
@@ -147,7 +149,7 @@ exports[`IssuesTableTest render table with 1 issues 1`] = `
         Export result
       </CustomizedActionButton>
     </div>
-    <ExportDialog deps={[undefined]} isOpen={false} description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChange={[Function: bound ]} exportResultsType=\\"AutomatedChecks\\" />
+    <ExportDialog deps={[undefined]} isOpen={false} fileName=\\"\\" description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChange={[Function: bound ]} exportResultsType=\\"AutomatedChecks\\" />
     <div className=\\"issues-table-details\\">
       <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} />
       <div className=\\"issue-detail-outer-container ms-Fabric\\">
@@ -170,7 +172,7 @@ exports[`IssuesTableTest render table with 2 issues 1`] = `
         Export result
       </CustomizedActionButton>
     </div>
-    <ExportDialog deps={[undefined]} isOpen={false} description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChange={[Function: bound ]} exportResultsType=\\"AutomatedChecks\\" />
+    <ExportDialog deps={[undefined]} isOpen={false} fileName=\\"\\" description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChange={[Function: bound ]} exportResultsType=\\"AutomatedChecks\\" />
     <div className=\\"issues-table-details\\">
       <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} />
       <div className=\\"issue-detail-outer-container ms-Fabric\\">

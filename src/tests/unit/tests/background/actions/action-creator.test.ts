@@ -538,19 +538,6 @@ describe('ActionCreatorTest', () => {
         builder.verifyAll();
     });
 
-    test('registerCallback for onSendTelemetry', () => {
-        const payload = { eventName: 'launch-panel/open', telemetry: {} };
-        const args = [payload, 1];
-        const builder = new ActionCreatorValidator()
-            .setupRegistrationCallback(Messages.Telemetry.Send, args)
-            .setupTelemetrySend('launch-panel/open', payload, 1);
-
-        const actionCreator = builder.buildActionCreator();
-        actionCreator.registerCallbacks();
-
-        builder.verifyAll();
-    });
-
     test('registerCallback for tabbed element added', () => {
         const tabbedElement: AddTabbedElementPayload = {
             tabbedElements: [
@@ -861,6 +848,24 @@ describe('ActionCreatorTest', () => {
         validator.verifyAll();
     });
 
+    test('registerCallback for onEnableVisualHelper', () => {
+        const tabId = 1;
+        const payload: ToggleActionPayload = {
+            test: VisualizationType.HeadingsAssessment,
+        };
+        const actionName = 'enableVisualization';
+
+        const validator = new ActionCreatorValidator()
+            .setupRegistrationCallback(Messages.Assessment.EnableVisualHelper, [payload, tabId])
+            .setupActionOnVisualizationActions(actionName)
+            .setupVisualizationActionWithInvokeParameter(actionName, payload);
+        const actionCreator = validator.buildActionCreator();
+
+        actionCreator.registerCallbacks();
+
+        validator.verifyAll();
+    });
+
     test('registerCallback for onEnableVisualHelperWithoutScan', () => {
         const tabId = 1;
         const payload: ToggleActionPayload = {
@@ -871,8 +876,7 @@ describe('ActionCreatorTest', () => {
         const validator = new ActionCreatorValidator()
             .setupRegistrationCallback(Messages.Assessment.EnableVisualHelperWithoutScan, [payload, tabId])
             .setupActionOnVisualizationActions(actionName)
-            .setupVisualizationActionWithInvokeParameter(actionName, payload)
-            .setupTelemetrySend(TelemetryEvents.ENABLE_VISUAL_HELPER, payload, 1);
+            .setupVisualizationActionWithInvokeParameter(actionName, payload);
         const actionCreator = validator.buildActionCreator();
 
         actionCreator.registerCallbacks();

@@ -7,11 +7,12 @@ import { LinkPurposePropertyBag } from '../../../common/types/property-bag/ilink
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { title } from '../../../content/strings/application';
+import { TestAutomaticallyPassedNotice } from '../../../content/test/common/test-automatically-passed-notice';
 import * as content from '../../../content/test/links/link-purpose';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
-import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
+import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
 import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
@@ -25,11 +26,7 @@ const LinkPurposeDescription: JSX.Element = (
 const LinkPurposeHowToTest: JSX.Element = (
     <div>
         <p>For this requirement, {title} highlights links in the target page.</p>
-        <p>
-            <Markup.Emphasis>
-                Note: If no matching/failing instances are found, this requirement will automatically be marked as pass.
-            </Markup.Emphasis>
-        </p>
+        <TestAutomaticallyPassedNotice />
         <ol>
             <li>
                 In the <Markup.Term>Instances</Markup.Term> list below, examine each link to verify that its accessible name describes its

@@ -16,6 +16,5 @@ export class UserConfigurationActions {
     public readonly setHighContrastMode = new Action<SetHighContrastModePayload>();
     public readonly setBugService = new Action<SetBugServicePayload>();
     public readonly setBugServiceProperty = new Action<SetBugServicePropertyPayload>();
-    public readonly notifyFeatureFlagChange = new Action<FeatureFlagPayload>();
     public readonly setIssueTrackerPath = new Action<SetIssueTrackerPathPayload>();
 }

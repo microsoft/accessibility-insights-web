@@ -4,6 +4,7 @@ import * as _ from 'lodash';
 
 import { AssessmentsProvider } from '../../../../assessments/assessments-provider';
 import { Assessment } from '../../../../assessments/types/iassessment';
+import { IAssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
 import { TestStep } from '../../../../assessments/types/test-step';
 
 describe('AssessmentsProviderTest', () => {
@@ -137,7 +138,7 @@ describe('AssessmentsProviderTest', () => {
         expect(invalidSteps).toBeNull();
     });
 
-    function getProvider() {
+    function getProvider(): IAssessmentsProvider {
         const assessments = [
             { type: firstType, key: firstKey, steps: [{ key: stepOneKey }, { key: stepTwoKey }] } as Assessment,
             { type: secondType, key: secondKey } as Assessment,
@@ -150,7 +151,7 @@ describe('AssessmentsProviderTest', () => {
         return { type, steps: stepKeys.map(makeStep) } as Assessment;
     }
 
-    function makeStep(key: string) {
+    function makeStep(key: string): TestStep {
         return { key } as TestStep;
     }
 });

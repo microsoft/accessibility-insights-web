@@ -176,8 +176,6 @@ describe('Drawer', () => {
                 return { left: 10, top: 10 };
             });
 
-        const windowUtilsMock = Mock.ofType(WindowUtils);
-
         windowUtilsMock
             .setup(it => it.getComputedStyle(bodyStub))
             .returns(stuff => {
@@ -306,8 +304,6 @@ describe('Drawer', () => {
                 return { left: 0, top: 0 };
             });
 
-        const windowUtilsMock = Mock.ofType(WindowUtils);
-
         windowUtilsMock
             .setup(it => it.getComputedStyle(bodyStub))
             .returns(stuff => {
@@ -421,8 +417,6 @@ describe('Drawer', () => {
             .returns(_ => {
                 return { left: 10, top: 10 };
             });
-
-        const windowUtilsMock = Mock.ofType(WindowUtils);
 
         windowUtilsMock
             .setup(it => it.getComputedStyle(bodyStub))
@@ -553,8 +547,6 @@ describe('Drawer', () => {
                 return { left: 0, top: 0 };
             });
 
-        const windowUtilsMock = Mock.ofType(WindowUtils);
-
         windowUtilsMock
             .setup(it => it.getComputedStyle(bodyStub))
             .returns(stuff => {
@@ -683,8 +675,6 @@ describe('Drawer', () => {
                 return { left: 0, top: 0 };
             });
 
-        const windowUtilsMock = Mock.ofType(WindowUtils);
-
         windowUtilsMock
             .setup(it => it.getComputedStyle(bodyStub))
             .returns(stuff => {
@@ -742,8 +732,6 @@ describe('Drawer', () => {
             },
             appendChild: node => {},
         } as any);
-
-        const windowUtilsMock = Mock.ofType(WindowUtils);
 
         const testSubject = createDrawerBuilder()
             .setDomAndDrawerUtils(domMock.object)
@@ -805,7 +793,6 @@ describe('Drawer', () => {
                 <div id='id1'></div>
             `);
 
-        const windowUtilsMock = Mock.ofType(WindowUtils);
         setupWindow();
         setupGetComputedStyleNotCalled();
 
@@ -850,20 +837,16 @@ describe('Drawer', () => {
         const registerHandlerFunc: typeof windowUtilsMock.object.addEventListener = (window, eventName, handler, useCapture) =>
             (scrollCallback = handler);
 
-        // draw
         setupWindow();
         setupAddEventListerCalled(registerHandlerFunc);
         testSubject.drawLayout();
 
         // invoke scroll listener
-        let timeOutCallback: Function;
         const timeOutId = 10;
-        const registerTimeOutHandlerFunc: typeof window.setTimeout = (handler, timeout) => (timeOutCallback = handler);
 
         windowUtilsMock.setup(x => x.clearTimeout(It.isAny())).verifiable(Times.never());
         windowUtilsMock
             .setup(x => x.setTimeout(It.isAny(), Drawer.recalculationTimeout))
-            .callback(registerTimeOutHandlerFunc)
             .returns(() => timeOutId)
             .verifiable();
 
@@ -877,7 +860,6 @@ describe('Drawer', () => {
         windowUtilsMock.setup(x => x.clearTimeout(timeOutId)).verifiable();
         windowUtilsMock
             .setup(x => x.setTimeout(It.isAny(), Drawer.recalculationTimeout))
-            .callback(registerTimeOutHandlerFunc)
             .returns(() => timeOutId)
             .verifiable();
         scrollCallback();
@@ -913,7 +895,10 @@ describe('Drawer', () => {
         // invoke scroll listener
         let timeOutCallback: Function;
         const timeOutId = 10;
-        const registerTimeOutHandlerFunc: typeof window.setTimeout = (handler, timeout) => (timeOutCallback = handler);
+        const registerTimeOutHandlerFunc: typeof window.setTimeout = (handler, timeout, ...args): number => {
+            timeOutCallback = handler as Function;
+            return timeout;
+        };
 
         windowUtilsMock
             .setup(x => x.setTimeout(It.isAny(), Drawer.recalculationTimeout))
@@ -939,7 +924,6 @@ describe('Drawer', () => {
             `);
         const elementResults = [];
 
-        const windowUtilsMock = Mock.ofType(WindowUtils);
         windowUtilsMock
             .setup(it => it.getComputedStyle(It.isAny()))
             .returns(stuff => {
@@ -973,7 +957,6 @@ describe('Drawer', () => {
                 <div id='id1'></div>
             `);
 
-        const windowUtilsMock = Mock.ofType(WindowUtils);
         windowUtilsMock
             .setup(it => it.getComputedStyle(It.isAny()))
             .returns(stuff => {

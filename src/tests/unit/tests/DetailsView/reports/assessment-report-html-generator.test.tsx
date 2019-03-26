@@ -75,6 +75,7 @@ describe('AssessmentReportHtmlGenerator', () => {
         rendererMock.setup(r => r.renderToStaticMarkup(It.isObjectWith(expectedComponent))).returns(() => expectedBody);
 
         const testSubject = new AssessmentReportHtmlGenerator(
+            deps,
             rendererMock.object,
             factoryMock.object,
             dateGetterMock.object,
@@ -85,7 +86,6 @@ describe('AssessmentReportHtmlGenerator', () => {
         );
 
         const actualHtml = testSubject.generateHtml(
-            deps,
             assessmentStoreData,
             assessmentsProvider,
             featureFlagStoreData,

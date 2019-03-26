@@ -1501,7 +1501,9 @@ describe('AssessmentStoreTest', () => {
             .build();
     }
 
-    function createStoreTesterForAssessmentActions(actionName: keyof AssessmentActions) {
+    function createStoreTesterForAssessmentActions(
+        actionName: keyof AssessmentActions,
+    ): AssessmentStoreTester<IAssessmentStoreData, AssessmentActions> {
         const factory = (actions: AssessmentActions) =>
             new AssessmentStore(
                 browserMock.object,

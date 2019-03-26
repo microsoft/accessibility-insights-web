@@ -96,7 +96,7 @@ describe('DevToolsActionCreatorTest', () => {
         telemetryEventHandlerMock.verifyAll();
     });
 
-    function setupDevToolsActionsMock(actionName: keyof DevToolActions, actionMock: IMock<Action<any>>) {
+    function setupDevToolsActionsMock(actionName: keyof DevToolActions, actionMock: IMock<Action<any>>): void {
         devtoolActionsMock.setup(actions => actions[actionName]).returns(() => actionMock.object);
     }
 
@@ -108,7 +108,7 @@ describe('DevToolsActionCreatorTest', () => {
         return getCurrentStateAction;
     }
 
-    function setupRegisterTypeToPayloadCallbackMock(message: string, payload: any, _tabId: number) {
+    function setupRegisterTypeToPayloadCallbackMock(message: string, payload: any, _tabId: number): void {
         registerTypeToPayloadCallback
             .setup(registrar => registrar(message, It.is(_.isFunction)))
             .callback((_message, listener) => listener(payload, _tabId));

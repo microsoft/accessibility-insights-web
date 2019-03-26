@@ -5,7 +5,7 @@ import { TabActions } from '../../../../../background/actions/tab-actions';
 import { VisualizationScanResultActions } from '../../../../../background/actions/visualization-scan-result-actions';
 import { VisualizationScanResultStore } from '../../../../../background/stores/visualization-scan-result-store';
 import { StoreNames } from '../../../../../common/stores/store-names';
-import { ITabbedElementData } from '../../../../../common/types/store-data/ivisualization-scan-result-data';
+import { ITabbedElementData, IVisualizationScanResultData } from '../../../../../common/types/store-data/ivisualization-scan-result-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { IHtmlElementAxeResults } from '../../../../../injected/scanner-utils';
 import { ScanResults } from '../../../../../scanner/iruleresults';
@@ -140,16 +140,16 @@ describe('VisualizationScanResultStoreTest', () => {
 
         const initialState = new VisualizationScanResultStoreDataBuilder()
             .withSelectorMap(type, selectorMap)
-            .withFullIdToRuleResultMap(type, expectedFullIdToResultMap)
-            .withSelectedIdToRuleResultMap(type, expectedFullIdToResultMap)
+            .withFullIdToRuleResultMapForIssues(expectedFullIdToResultMap)
+            .withSelectedIdToRuleResultMapForIssues(expectedFullIdToResultMap)
             .withScanResult(type, scanResult)
             .withIssuesSelectedTargets(selectorMap)
             .build();
 
         const expectedState = new VisualizationScanResultStoreDataBuilder()
             .withSelectorMap(type, selectorMap)
-            .withFullIdToRuleResultMap(type, expectedFullIdToResultMap)
-            .withSelectedIdToRuleResultMap(type, expectedFullIdToResultMap)
+            .withFullIdToRuleResultMapForIssues(expectedFullIdToResultMap)
+            .withSelectedIdToRuleResultMapForIssues(expectedFullIdToResultMap)
             .withIssuesSelectedTargets(selectorMap)
             .build();
 
@@ -289,8 +289,8 @@ describe('VisualizationScanResultStoreTest', () => {
 
         const expectedState = new VisualizationScanResultStoreDataBuilder()
             .withSelectorMap(type, selectorMap)
-            .withFullIdToRuleResultMap(type, expectedFullIdToResultMap)
-            .withSelectedIdToRuleResultMap(type, expectedFullIdToResultMap)
+            .withFullIdToRuleResultMapForIssues(expectedFullIdToResultMap)
+            .withSelectedIdToRuleResultMapForIssues(expectedFullIdToResultMap)
             .withScanResult(type, scanResult)
             .withIssuesSelectedTargets(selectorMap)
             .build();
@@ -393,8 +393,8 @@ describe('VisualizationScanResultStoreTest', () => {
 
         const initialState = new VisualizationScanResultStoreDataBuilder()
             .withSelectorMap(VisualizationType.Issues, selectorMap)
-            .withFullIdToRuleResultMap(VisualizationType.Issues, expectedFullIdToRuleResultMap)
-            .withSelectedIdToRuleResultMap(VisualizationType.Issues, expectedFullIdToRuleResultMap)
+            .withFullIdToRuleResultMapForIssues(expectedFullIdToRuleResultMap)
+            .withSelectedIdToRuleResultMapForIssues(expectedFullIdToRuleResultMap)
             .withIssuesSelectedTargets(selectorMap)
             .build();
 
@@ -444,8 +444,8 @@ describe('VisualizationScanResultStoreTest', () => {
 
         const expectedState = new VisualizationScanResultStoreDataBuilder()
             .withSelectorMap(VisualizationType.Issues, selectorMap)
-            .withFullIdToRuleResultMap(VisualizationType.Issues, expectedFullIdToRuleResultMap)
-            .withSelectedIdToRuleResultMap(VisualizationType.Issues, expectedSelectedIdToRuleResultMap)
+            .withFullIdToRuleResultMapForIssues(expectedFullIdToRuleResultMap)
+            .withSelectedIdToRuleResultMapForIssues(expectedSelectedIdToRuleResultMap)
             .withIssuesSelectedTargets(expectedSelectedMap)
             .build();
 
@@ -536,10 +536,8 @@ describe('VisualizationScanResultStoreTest', () => {
 
     test('onTabChange', () => {
         const initialState = new VisualizationScanResultStoreDataBuilder()
-            .withFullIdToRuleResultMap(VisualizationType.Color, {})
             .withIssuesSelectedTargets({})
             .withScanResult(VisualizationType.Headings, [])
-            .withSelectedIdToRuleResultMap(VisualizationType.Landmarks, {})
             .withTabStopsTabbedElements([])
             .build();
 
@@ -548,13 +546,15 @@ describe('VisualizationScanResultStoreTest', () => {
         createStoreTesterForTabActions('tabChange').testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    function createStoreTesterForVisualizationScanResultActions(actionName: keyof VisualizationScanResultActions) {
+    function createStoreTesterForVisualizationScanResultActions(
+        actionName: keyof VisualizationScanResultActions,
+    ): StoreTester<IVisualizationScanResultData, VisualizationScanResultActions> {
         const factory = (actions: VisualizationScanResultActions) => new VisualizationScanResultStore(actions, new TabActions());
 
         return new StoreTester(VisualizationScanResultActions, actionName, factory);
     }
 
-    function createStoreTesterForTabActions(actionName: keyof TabActions) {
+    function createStoreTesterForTabActions(actionName: keyof TabActions): StoreTester<IVisualizationScanResultData, TabActions> {
         const factory = (actions: TabActions) => new VisualizationScanResultStore(new VisualizationScanResultActions(), actions);
 
         return new StoreTester(TabActions, actionName, factory);

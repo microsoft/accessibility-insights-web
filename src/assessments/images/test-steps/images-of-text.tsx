@@ -6,14 +6,13 @@ import { ImagesOfTextPropertyBag } from '../../../common/types/property-bag/iima
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
+import { TestAutomaticallyPassedNotice } from '../../../content/test/common/test-automatically-passed-notice';
 import * as content from '../../../content/test/images/images-of-text';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
-import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
+import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
 import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
-import TestAutomaticallyPassedNotice from '../../common/test-automatically-passed-notice';
-import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { TestStep } from '../../types/test-step';
 import { ImagesTestStep } from './test-steps';
@@ -23,7 +22,7 @@ const description: JSX.Element = <span>Images of text are allowed only where a s
 const howToTest: JSX.Element = (
     <div>
         <p>For this requirement, {productName} highlights images that are coded as meaningful.</p>
-        {TestAutomaticallyPassedNotice}
+        <TestAutomaticallyPassedNotice />
         <ol>
             <li>In the target page, examine each image to identify any images of text.</li>
             <li>If you find an image of text, verify that it is used only where a specific appearance required, such as text in a logo.</li>

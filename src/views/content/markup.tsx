@@ -10,17 +10,13 @@ import { CrossIcon } from '../../common/icons/cross-icon';
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
 import { productName } from '../../content/strings/application';
 import { ContentPageComponent, ContentPageOptions } from './content-page';
+import { CodeExample, CodeExampleProps } from './markup/code-example';
 
 type PassFailProps = {
     passText: JSX.Element;
     passExample?: React.ReactNode;
     failText: JSX.Element;
     failExample?: React.ReactNode;
-};
-
-type CodeExampleProps = {
-    title?: React.ReactNode;
-    children: string;
 };
 
 export type Markup = {
@@ -164,60 +160,6 @@ export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
 
     function Column(props: { children: React.ReactNode }): JSX.Element {
         return <div className="column">{props.children}</div>;
-    }
-
-    function CodeExample(props: CodeExampleProps): JSX.Element {
-        const { title, children } = props;
-
-        function getRegions(code: string): string[] {
-            if (code.length === 0) {
-                return [];
-            }
-
-            if (code[0] === '[') {
-                const end = code.indexOf(']');
-                if (end > 0) {
-                    return [code.slice(0, end + 1), ...getRegions(code.slice(end + 1))];
-                } else {
-                    return [code + ']'];
-                }
-            }
-
-            const start = code.indexOf('[');
-            if (start > 0) {
-                return [code.slice(0, start), ...getRegions(code.slice(start))];
-            } else {
-                return [code];
-            }
-        }
-
-        function renderRegion(str: string, index: number): string | JSX.Element {
-            if (str[0] === '[') {
-                return (
-                    <span key={index} className="highlight">
-                        {str.slice(1, -1)}
-                    </span>
-                );
-            } else {
-                return str;
-            }
-        }
-
-        const regions = getRegions(children);
-        const formattedCode = regions.map(renderRegion);
-
-        return (
-            <div className="code-example">
-                {props.title && (
-                    <div className="code-example-title">
-                        <h4>{props.title}</h4>
-                    </div>
-                )}
-                <div className="code-example-code">
-                    <Code>{formattedCode}</Code>
-                </div>
-            </div>
-        );
     }
 
     function PassFail(props: PassFailProps): React.ReactNode {

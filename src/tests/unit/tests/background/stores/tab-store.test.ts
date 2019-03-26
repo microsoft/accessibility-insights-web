@@ -148,12 +148,14 @@ describe('TabStoreTest', () => {
         createStoreTesterForVisualizationActions('updateSelectedPivot').testListenerToNeverBeCalled(initialState, finalState);
     });
 
-    function createStoreTesterForTabActions(actionName: keyof TabActions) {
+    function createStoreTesterForTabActions(actionName: keyof TabActions): StoreTester<ITabStoreData, TabActions> {
         const factory = (actions: TabActions) => new TabStore(actions, new VisualizationActions());
         return new StoreTester(TabActions, actionName, factory);
     }
 
-    function createStoreTesterForVisualizationActions(actionName: keyof VisualizationActions) {
+    function createStoreTesterForVisualizationActions(
+        actionName: keyof VisualizationActions,
+    ): StoreTester<ITabStoreData, VisualizationActions> {
         const factory = (actions: VisualizationActions) => new TabStore(new TabActions(), actions);
         return new StoreTester(VisualizationActions, actionName, factory);
     }

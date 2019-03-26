@@ -312,7 +312,7 @@ exports[`ContentPage .Markup <ProblemList> renders 1`] = `
 <ul
   className="accessibility-problems-list"
 >
-  list contetn
+  list content
 </ul>
 `;
 
@@ -320,7 +320,7 @@ exports[`ContentPage .Markup <Table> renders 1`] = `
 <ul
   className="table"
 >
-  table contetn
+  table content
 </ul>
 `;
 

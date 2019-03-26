@@ -29,6 +29,7 @@ export abstract class BaseActionMessageCreator {
             eventName: eventName,
             telemetry: eventData,
         };
+
         const message: Message = {
             type: Messages.Telemetry.Send,
             payload,

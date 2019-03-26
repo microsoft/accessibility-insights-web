@@ -87,7 +87,7 @@ describe('RestartScanVisualHelperToggleTest', () => {
     function assertVisualizationToggle(
         expectedProps: VisualizationToggleProps,
         visualizationToggle: Enzyme.ShallowWrapper<VisualizationToggleProps>,
-    ) {
+    ): void {
         expect(visualizationToggle.exists()).toBe(true);
 
         const actualProps = visualizationToggle.props();
@@ -97,7 +97,7 @@ describe('RestartScanVisualHelperToggleTest', () => {
         });
     }
 
-    function getDefaultVisualizationTogglePropsBuilder() {
+    function getDefaultVisualizationTogglePropsBuilder(): VisualizationTogglePropsBuilder {
         return new VisualizationTogglePropsBuilder().with('visualizationName', 'Visual helper').with('className', 'visual-helper-toggle');
     }
 });

@@ -26,7 +26,7 @@ describe('DetailsViewLeftNav', () => {
         const assessmentsProviderWithFeaturesEnabledMock = Mock.ofInstance((provider, featureFlagData) => null, MockBehavior.Strict);
         const assessmentProviderStub = {} as IAssessmentsProvider;
         const filteredProviderStub = {} as IAssessmentsProvider;
-        const GetLeftNavSelectedKeyMock = Mock.ofInstance((props: GetLeftNavSelectedKeyProps) => null, MockBehavior.Strict);
+        const GetLeftNavSelectedKeyMock = Mock.ofInstance((theProps: GetLeftNavSelectedKeyProps) => null, MockBehavior.Strict);
         const LeftNavStub: Readonly<ReactSFCWithDisplayName<DetailsViewLeftNavProps>> = NamedSFC<DetailsViewLeftNavProps>(
             'test',
             _ => null,

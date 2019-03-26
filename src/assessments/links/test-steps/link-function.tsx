@@ -7,13 +7,13 @@ import { LinkFunctionPropertyBag } from '../../../common/types/property-bag/ilin
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { title } from '../../../content/strings/application';
+import { TestAutomaticallyPassedNotice } from '../../../content/test/common/test-automatically-passed-notice';
 import * as content from '../../../content/test/links/link-function';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
-import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
+import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
 import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
-import TestAutomaticallyPassedNotice from '../../common/test-automatically-passed-notice';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { TestStep } from '../../types/test-step';
@@ -30,7 +30,7 @@ const LinkFunctionHowToTest: JSX.Element = (
             widget role, but they do have some custom widget markup, such as <Markup.Term>tabindex="-1"</Markup.Term>, an ARIA attribute, a
             non-widget role, or no <Markup.Term>href</Markup.Term>.
         </p>
-        {TestAutomaticallyPassedNotice}
+        <TestAutomaticallyPassedNotice />
         <ol>
             <li>
                 In the target page, examine each highlighted anchor element to verify that it functions as a link (i.e., it navigates to new

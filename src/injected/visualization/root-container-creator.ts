@@ -3,12 +3,12 @@
 import { HTMLElementUtils } from './../../common/html-element-utils';
 
 export class RootContainerCreator {
-    constructor(private readonly HTMLElementUtils: HTMLElementUtils) {}
+    constructor(private readonly htmlElementUtils: HTMLElementUtils) {}
 
     public create(id: string): void {
-        this.HTMLElementUtils.deleteAllElements(`#${id}`);
+        this.htmlElementUtils.deleteAllElements(`#${id}`);
         const root = document.createElement('div');
         root.id = id;
-        this.HTMLElementUtils.querySelector('body').appendChild(root);
+        this.htmlElementUtils.querySelector('body').appendChild(root);
     }
 }

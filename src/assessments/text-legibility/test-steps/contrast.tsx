@@ -9,13 +9,13 @@ import { ContrastPropertyBag } from '../../../common/types/property-bag/icontras
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName, windowsPlatformTitle } from '../../../content/strings/application';
+import { TestAutomaticallyPassedNotice } from '../../../content/test/common/test-automatically-passed-notice';
 import * as content from '../../../content/test/text-legibility/contrast';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
-import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
+import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
 import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
-import TestAutomaticallyPassedNotice from '../../common/test-automatically-passed-notice';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { TestStep } from '../../types/test-step';
@@ -30,7 +30,7 @@ const contrastHowToTest: JSX.Element = (
             For this requirement, {productName} highlights instances of text where the contrast ratio can't be determined, typically because
             the background color is not uniform. You must manually verify the contrast for these instances.
         </p>
-        {TestAutomaticallyPassedNotice}
+        <TestAutomaticallyPassedNotice />
         <ol>
             <li>
                 Examine each instance in the target page to identify an area where the text and background are most likely to have a low

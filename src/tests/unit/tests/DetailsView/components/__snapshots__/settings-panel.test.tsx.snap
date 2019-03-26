@@ -39,27 +39,16 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
     name="Help improve Accessibility Insights for Web"
     onClick={[Function]}
   />
-  <FlaggedComponent
-    disableJSXElement={null}
-    enableJSXElement={
-      <GenericToggle
-        description={
-          <React.Fragment>
-            Make text easier to see by using more distinct colors.
-          </React.Fragment>
-        }
-        enabled={false}
-        id="enable-high-contrast-mode"
-        name="Enable high contrast"
-        onClick={[Function]}
-      />
+  <GenericToggle
+    description={
+      <React.Fragment>
+        Make text easier to see by using more distinct colors.
+      </React.Fragment>
     }
-    featureFlag="highContrastMode"
-    featureFlagStoreData={
-      Object {
-        "highContrastMode": false,
-      }
-    }
+    enabled={false}
+    id="enable-high-contrast-mode"
+    name="Enable high contrast"
+    onClick={[Function]}
   />
   <FlaggedComponent
     enableJSXElement={
@@ -79,7 +68,7 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
     featureFlag="showBugFiling"
     featureFlagStoreData={
       Object {
-        "highContrastMode": false,
+        "test-flag": false,
       }
     }
   />
@@ -125,27 +114,16 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
     name="Help improve Accessibility Insights for Web"
     onClick={[Function]}
   />
-  <FlaggedComponent
-    disableJSXElement={null}
-    enableJSXElement={
-      <GenericToggle
-        description={
-          <React.Fragment>
-            Make text easier to see by using more distinct colors.
-          </React.Fragment>
-        }
-        enabled={false}
-        id="enable-high-contrast-mode"
-        name="Enable high contrast"
-        onClick={[Function]}
-      />
+  <GenericToggle
+    description={
+      <React.Fragment>
+        Make text easier to see by using more distinct colors.
+      </React.Fragment>
     }
-    featureFlag="highContrastMode"
-    featureFlagStoreData={
-      Object {
-        "highContrastMode": false,
-      }
-    }
+    enabled={false}
+    id="enable-high-contrast-mode"
+    name="Enable high contrast"
+    onClick={[Function]}
   />
   <FlaggedComponent
     enableJSXElement={
@@ -164,7 +142,7 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
     featureFlag="showBugFiling"
     featureFlagStoreData={
       Object {
-        "highContrastMode": false,
+        "test-flag": false,
       }
     }
   />
@@ -210,27 +188,16 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
     name="Help improve Accessibility Insights for Web"
     onClick={[Function]}
   />
-  <FlaggedComponent
-    disableJSXElement={null}
-    enableJSXElement={
-      <GenericToggle
-        description={
-          <React.Fragment>
-            Make text easier to see by using more distinct colors.
-          </React.Fragment>
-        }
-        enabled={false}
-        id="enable-high-contrast-mode"
-        name="Enable high contrast"
-        onClick={[Function]}
-      />
+  <GenericToggle
+    description={
+      <React.Fragment>
+        Make text easier to see by using more distinct colors.
+      </React.Fragment>
     }
-    featureFlag="highContrastMode"
-    featureFlagStoreData={
-      Object {
-        "highContrastMode": false,
-      }
-    }
+    enabled={false}
+    id="enable-high-contrast-mode"
+    name="Enable high contrast"
+    onClick={[Function]}
   />
   <FlaggedComponent
     enableJSXElement={
@@ -249,7 +216,7 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
     featureFlag="showBugFiling"
     featureFlagStoreData={
       Object {
-        "highContrastMode": false,
+        "test-flag": false,
       }
     }
   />
@@ -295,27 +262,16 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
     name="Help improve Accessibility Insights for Web"
     onClick={[Function]}
   />
-  <FlaggedComponent
-    disableJSXElement={null}
-    enableJSXElement={
-      <GenericToggle
-        description={
-          <React.Fragment>
-            Make text easier to see by using more distinct colors.
-          </React.Fragment>
-        }
-        enabled={false}
-        id="enable-high-contrast-mode"
-        name="Enable high contrast"
-        onClick={[Function]}
-      />
+  <GenericToggle
+    description={
+      <React.Fragment>
+        Make text easier to see by using more distinct colors.
+      </React.Fragment>
     }
-    featureFlag="highContrastMode"
-    featureFlagStoreData={
-      Object {
-        "highContrastMode": false,
-      }
-    }
+    enabled={false}
+    id="enable-high-contrast-mode"
+    name="Enable high contrast"
+    onClick={[Function]}
   />
   <FlaggedComponent
     enableJSXElement={
@@ -334,7 +290,7 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
     featureFlag="showBugFiling"
     featureFlagStoreData={
       Object {
-        "highContrastMode": false,
+        "test-flag": false,
       }
     }
   />
@@ -380,27 +336,16 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
     name="Help improve Accessibility Insights for Web"
     onClick={[Function]}
   />
-  <FlaggedComponent
-    disableJSXElement={null}
-    enableJSXElement={
-      <GenericToggle
-        description={
-          <React.Fragment>
-            Make text easier to see by using more distinct colors.
-          </React.Fragment>
-        }
-        enabled={true}
-        id="enable-high-contrast-mode"
-        name="Enable high contrast"
-        onClick={[Function]}
-      />
+  <GenericToggle
+    description={
+      <React.Fragment>
+        Make text easier to see by using more distinct colors.
+      </React.Fragment>
     }
-    featureFlag="highContrastMode"
-    featureFlagStoreData={
-      Object {
-        "highContrastMode": false,
-      }
-    }
+    enabled={true}
+    id="enable-high-contrast-mode"
+    name="Enable high contrast"
+    onClick={[Function]}
   />
   <FlaggedComponent
     enableJSXElement={
@@ -419,7 +364,7 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
     featureFlag="showBugFiling"
     featureFlagStoreData={
       Object {
-        "highContrastMode": false,
+        "test-flag": false,
       }
     }
   />

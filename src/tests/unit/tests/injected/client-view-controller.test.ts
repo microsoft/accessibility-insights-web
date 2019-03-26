@@ -449,7 +449,7 @@ class MocksAndTestSubjectBuilder {
     }
 
     public setFullIdToRuleResultMap(map): MocksAndTestSubjectBuilder {
-        this._dataBuilderForToVisualizationScanStoreState.withFullIdToRuleResultMap(VisualizationType.Issues, map);
+        this._dataBuilderForToVisualizationScanStoreState.withFullIdToRuleResultMapForIssues(map);
         return this;
     }
 

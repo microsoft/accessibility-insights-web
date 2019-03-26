@@ -109,7 +109,7 @@ describe('IssuesTableTest', () => {
 
             const reportGeneratorMock = Mock.ofType(ReportGenerator);
             reportGeneratorMock
-                .setup(builder => builder.generateName(It.isAny(), It.isAnyString()))
+                .setup(builder => builder.generateName(It.isAnyString(), It.isAny(), It.isAnyString()))
                 .returns(() => 'generateName')
                 .verifiable();
             reportGeneratorMock

@@ -4,7 +4,7 @@ import { ScopingActions, ScopingPayload } from '../../../../../../background/act
 import { ScopingInputTypes } from '../../../../../../background/scoping-input-types';
 import { ScopingStore } from '../../../../../../background/stores/global/scoping-store';
 import { StoreNames } from '../../../../../../common/stores/store-names';
-import { ISingleElementSelector } from '../../../../../../common/types/store-data/scoping-store-data';
+import { IScopingStoreData, ISingleElementSelector } from '../../../../../../common/types/store-data/scoping-store-data';
 import { createStoreWithNullParams, StoreTester } from '../../../../common/store-tester';
 
 describe('ScopingStoreTest', () => {
@@ -93,11 +93,11 @@ describe('ScopingStoreTest', () => {
             .testListenerToNeverBeCalled(initialState, finalState);
     });
 
-    function getDefaultState() {
+    function getDefaultState(): IScopingStoreData {
         return createStoreWithNullParams(ScopingStore).getDefaultState();
     }
 
-    function createStoreForScopingActions(actionName: keyof ScopingActions) {
+    function createStoreForScopingActions(actionName: keyof ScopingActions): StoreTester<IScopingStoreData, ScopingActions> {
         const factory = (actions: ScopingActions) => new ScopingStore(actions);
 
         return new StoreTester(ScopingActions, actionName, factory);
