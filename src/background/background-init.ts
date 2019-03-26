@@ -18,7 +18,7 @@ import { getPersistedData, PersistedData } from './get-persisted-data';
 import { GlobalContextFactory } from './global-context-factory';
 import { deprecatedStorageDataKeys, storageDataKeys } from './local-storage-data-keys';
 import { MessageDistributor } from './message-distributor';
-import { ILocalStorageData } from './storage-data';
+import { LocalStorageData } from './local-storage-data';
 import { TabToContextMap } from './tab-context';
 import { TabContextBroadcaster } from './tab-context-broadcaster';
 import { TabContextFactory } from './tab-context-factory';
@@ -41,7 +41,7 @@ backgroundInitCleaner.cleanUserData(deprecatedStorageDataKeys);
 
 // tslint:disable-next-line:no-floating-promises - top-level entry points are intentionally floating promises
 getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
-    browserAdapter.getUserData(storageDataKeys, (userData: ILocalStorageData) => {
+    browserAdapter.getUserData(storageDataKeys, (userData: LocalStorageData) => {
         const assessmentsProvider = Assessments;
         const windowUtils = new WindowUtils();
         const telemetryDataFactory = new TelemetryDataFactory();
