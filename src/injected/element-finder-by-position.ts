@@ -4,7 +4,7 @@ import { autobind } from '@uifabric/utilities';
 import * as Q from 'q';
 
 import { HTMLElementUtils } from '../common/html-element-utils';
-import { ClientUtils, IBoundRectAccessor } from './client-utils';
+import { BoundRectAccessor, ClientUtils } from './client-utils';
 import { FrameCommunicator } from './frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from './frameCommunicators/window-message-handler';
 import { IErrorMessageContent } from './frameCommunicators/window-message-marshaller';
@@ -69,7 +69,7 @@ export class ElementFinderByPosition {
             return deferred.promise;
         }
 
-        const elementRect = this.clientUtils.getOffset(element as IBoundRectAccessor);
+        const elementRect = this.clientUtils.getOffset(element as BoundRectAccessor);
 
         this.frameCommunicator
             .sendMessage<ElementFinderByPositionMessage, string[]>({
