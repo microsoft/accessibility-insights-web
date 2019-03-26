@@ -13,9 +13,9 @@ import { DictionaryNumberTo } from '../types/common-types';
 import { HTMLElementUtils } from './../common/html-element-utils';
 import { FrameCommunicator, MessageRequest } from './frameCommunicators/frame-communicator';
 import {
+    AssessmentVisualizationInstance,
     HtmlElementAxeResultsHelper,
     HTMLFrameResult,
-    AssessmentVisualizationInstance,
 } from './frameCommunicators/html-element-axe-results-helper';
 import { FrameMessageResponseCallback } from './frameCommunicators/window-message-handler';
 import { ErrorMessageContent } from './frameCommunicators/window-message-marshaller';
