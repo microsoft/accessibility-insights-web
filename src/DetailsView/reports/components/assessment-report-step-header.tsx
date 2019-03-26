@@ -6,7 +6,7 @@ import { DefaultMessageInterface } from '../../../assessments/assessment-default
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { ManualTestStatus } from '../../../common/types/manual-test-status';
 import { GuidanceLinks } from '../../components/guidance-links';
-import { IRequirementHeaderReportModel } from '../assessment-report-model';
+import { RequirementHeaderReportModel } from '../assessment-report-model';
 import { OutcomeChip } from './outcome-chip';
 import { allOutcomeTypes, OutcomeTypeSemantic } from './outcome-type';
 
@@ -17,7 +17,7 @@ export type AssessmentReportStepHeaderDeps = {
 export interface AssessmentReportStepHeaderProps {
     deps: AssessmentReportStepHeaderDeps;
     status: ManualTestStatus;
-    header: IRequirementHeaderReportModel;
+    header: RequirementHeaderReportModel;
     instanceCount: number;
     defaultMessageComponent: DefaultMessageInterface;
 }

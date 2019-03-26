@@ -9,7 +9,7 @@ import { IAssessmentStoreData } from '../../../common/types/store-data/iassessme
 import { ITabStoreData } from '../../../common/types/store-data/itab-store-data';
 import { HyperlinkDefinition } from '../../../views/content/content-page';
 import { DetailsViewActionMessageCreator } from '../../actions/details-view-action-message-creator';
-import { IOverviewSummaryReportModel } from '../../reports/assessment-report-model';
+import { OverviewSummaryReportModel } from '../../reports/assessment-report-model';
 import { AssessmentReportSummary } from '../../reports/components/assessment-report-summary';
 import { GetAssessmentSummaryModelFromProviderAndStoreData } from '../../reports/get-assessment-summary-model';
 import { TargetChangeDialog, TargetChangeDialogDeps } from '../target-change-dialog';
@@ -57,7 +57,7 @@ export const OverviewContainer = NamedSFC<OverviewContainerProps>('OverviewConta
     };
     const filteredProvider = assessmentsProviderWithFeaturesEnabled(assessmentsProvider, featureFlagStoreData);
 
-    const summaryData: IOverviewSummaryReportModel = getAssessmentSummaryModelFromProviderAndStoreData(
+    const summaryData: OverviewSummaryReportModel = getAssessmentSummaryModelFromProviderAndStoreData(
         filteredProvider,
         assessmentStoreData,
     );

@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { ManualTestStatus } from '../../../common/types/manual-test-status';
-import { IInstanceReportModel, IRequirementReportModel } from '../assessment-report-model';
+import { InstanceReportModel, RequirementReportModel } from '../assessment-report-model';
 import { AssessmentReportInstanceList } from './assessment-report-instance-list';
 import { AssessmentReportStepHeader, AssessmentReportStepHeaderDeps } from './assessment-report-step-header';
 
@@ -13,7 +13,7 @@ export type AssessmentReportStepListDeps = AssessmentReportStepHeaderDeps;
 export interface AssessmentReportStepListProps {
     deps: AssessmentReportStepListDeps;
     status: ManualTestStatus;
-    steps: IRequirementReportModel[];
+    steps: RequirementReportModel[];
 }
 
 export const AssessmentReportStepList = NamedSFC<AssessmentReportStepListProps>('AssessmentReportStepList', props => {
@@ -40,7 +40,7 @@ export const AssessmentReportStepList = NamedSFC<AssessmentReportStepListProps>(
         });
     }
 
-    function renderStepInstances(instances: IInstanceReportModel[]): JSX.Element {
+    function renderStepInstances(instances: InstanceReportModel[]): JSX.Element {
         if (status === ManualTestStatus.UNKNOWN) {
             return;
         }
