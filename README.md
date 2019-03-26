@@ -23,6 +23,13 @@ You can install the extension from one of the following links
 
 ### Building the code
 
+#### Prerequisites
+
+Please ensure that you have at least the minimum recommended versions
+
+-   Node - 10.15.0 (Check by running `node --version`)
+-   NPM - 6.4.1 (Check by running `npm --version`)
+
 #### 1. Clone the repository
 
 -   Clone the repository using one of the following commands
