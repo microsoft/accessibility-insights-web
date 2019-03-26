@@ -4,7 +4,7 @@ import { Assessment } from '../../../../../assessments/types/iassessment';
 import { IAssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
 import { ManualTestStatus, TestStepData } from '../../../../../common/types/manual-test-status';
 import { IAssessmentStoreData } from '../../../../../common/types/store-data/iassessment-result-data';
-import { IOverviewSummaryReportModel } from '../../../../../DetailsView/reports/assessment-report-model';
+import { OverviewSummaryReportModel } from '../../../../../DetailsView/reports/assessment-report-model';
 import {
     AssessmentStatusData,
     AssessmentSummaryResult,
@@ -73,7 +73,7 @@ describe('getAssessmentSummaryModel', () => {
     const zeroRequirementsStatusData: AssessmentStatusData = {} as any;
     const zeroRequirementsStoreData: IAssessmentStoreData = {} as any;
     const zeroRequirementsResults: AssessmentSummaryResult[] = [];
-    const zeroRequirementsModel: IOverviewSummaryReportModel = {
+    const zeroRequirementsModel: OverviewSummaryReportModel = {
         byPercentage: {
             fail: NaN,
             incomplete: NaN,
@@ -98,7 +98,7 @@ describe('getAssessmentSummaryModel', () => {
         },
     } as any;
     const singleRequirementResults: AssessmentSummaryResult[] = [sampleResults[sampleTests.test1.key]];
-    const singleRequirementModel: IOverviewSummaryReportModel = {
+    const singleRequirementModel: OverviewSummaryReportModel = {
         byPercentage: {
             fail: 0,
             incomplete: 0,
@@ -135,7 +135,7 @@ describe('getAssessmentSummaryModel', () => {
         sampleResults[sampleTests.test1.key],
         sampleResults[sampleTests.test2.key],
     ];
-    const multipleRequirementsModel: IOverviewSummaryReportModel = {
+    const multipleRequirementsModel: OverviewSummaryReportModel = {
         byPercentage: {
             fail: 30,
             incomplete: 20,

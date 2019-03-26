@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { IOverviewSummaryReportModel } from '../assessment-report-model';
+import { OverviewSummaryReportModel } from '../assessment-report-model';
 import { AssessmentSummaryDetails } from './assessment-summary-details';
 import { OutcomeSummaryBar } from './outcome-summary-bar';
 
 export interface AssessmentReportSummaryProps {
-    summary: IOverviewSummaryReportModel;
+    summary: OverviewSummaryReportModel;
 }
 
 export class AssessmentReportSummary extends React.Component<AssessmentReportSummaryProps> {

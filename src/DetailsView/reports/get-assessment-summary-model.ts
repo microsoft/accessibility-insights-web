@@ -16,17 +16,17 @@ export type AssessmentStatusData = { [key: string]: ManualTestStatusData };
 export type GetAssessmentSummaryModelFromProviderAndStoreData = (
     assessmentsProvider: IAssessmentsProvider,
     assessmentStoreData: IAssessmentStoreData,
-) => Model.IOverviewSummaryReportModel;
+) => Model.OverviewSummaryReportModel;
 
 export type GetAssessmentSummaryModelFromProviderAndStatusData = (
     assessmentsProvider: IAssessmentsProvider,
     statusData: AssessmentStatusData,
-) => Model.IOverviewSummaryReportModel;
+) => Model.OverviewSummaryReportModel;
 
 export function getAssessmentSummaryModelFromProviderAndStoreData(
     assessmentsProvider: IAssessmentsProvider,
     assessmentStoreData: IAssessmentStoreData,
-): Model.IOverviewSummaryReportModel {
+): Model.OverviewSummaryReportModel {
     const assessments = assessmentsProvider.all();
     const assessmentResults: AssessmentSummaryResult[] = assessments.map(a => ({
         title: a.title,
@@ -41,7 +41,7 @@ export function getAssessmentSummaryModelFromProviderAndStoreData(
 export function getAssessmentSummaryModelFromProviderAndStatusData(
     assessmentsProvider: IAssessmentsProvider,
     statusData: AssessmentStatusData,
-): Model.IOverviewSummaryReportModel {
+): Model.OverviewSummaryReportModel {
     const assessments = assessmentsProvider.all();
     const assessmentResults: AssessmentSummaryResult[] = assessments.map(a => ({
         title: a.title,
@@ -53,7 +53,7 @@ export function getAssessmentSummaryModelFromProviderAndStatusData(
     return getAssessmentSummaryModelFromResults(assessmentResults);
 }
 
-export function getAssessmentSummaryModelFromResults(assessmentResults: AssessmentSummaryResult[]): Model.IOverviewSummaryReportModel {
+export function getAssessmentSummaryModelFromResults(assessmentResults: AssessmentSummaryResult[]): Model.OverviewSummaryReportModel {
     const reportSummaryDetailsData = assessmentResults.map(assessmentResult => ({
         displayName: assessmentResult.title,
         ...getCounts(assessmentResult),

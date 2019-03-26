@@ -5,70 +5,61 @@ import { ColumnValue } from '../../common/types/property-bag/column-value-bag';
 import { HyperlinkDefinition } from '../../views/content/content-page';
 import { OutcomeStats } from './components/outcome-type';
 
-// tslint:disable-next-line:interface-name
-export interface IReportModel {
-    summary: IOverviewSummaryReportModel;
-    scanDetails: IScanDetailsReportModel;
-    passedDetailsData: IAssessmentDetailsReportModel[];
-    failedDetailsData: IAssessmentDetailsReportModel[];
-    incompleteDetailsData: IAssessmentDetailsReportModel[];
+export interface ReportModel {
+    summary: OverviewSummaryReportModel;
+    scanDetails: ScanDetailsReportModel;
+    passedDetailsData: AssessmentDetailsReportModel[];
+    failedDetailsData: AssessmentDetailsReportModel[];
+    incompleteDetailsData: AssessmentDetailsReportModel[];
 }
 
-// tslint:disable-next-line:interface-name
-export interface IScanDetailsReportModel {
+export interface ScanDetailsReportModel {
     targetPage: string;
     url: string;
     reportDate: Date;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IAssessmentDetailsReportModel {
+export interface AssessmentDetailsReportModel {
     key: string;
     displayName: string;
-    steps: IRequirementReportModel[];
+    steps: RequirementReportModel[];
 }
 
-// tslint:disable-next-line:interface-name
-export interface IOverviewSummaryReportModel {
+export interface OverviewSummaryReportModel {
     byRequirement: OutcomeStats;
     byPercentage: OutcomeStats;
-    reportSummaryDetailsData: IAssessmentSummaryReportModel[];
+    reportSummaryDetailsData: AssessmentSummaryReportModel[];
 }
 
-// tslint:disable-next-line:interface-name
-export interface IAssessmentSummaryReportStats extends OutcomeStats {}
+export interface AssessmentSummaryReportStats extends OutcomeStats {}
 
-// tslint:disable-next-line:interface-name
-export interface IAssessmentSummaryReportModel extends IAssessmentSummaryReportStats {
+export interface AssessmentSummaryReportModel extends AssessmentSummaryReportStats {
     displayName: string;
 }
 export type RequirementType = 'manual' | 'assisted';
-// tslint:disable-next-line:interface-name
-export interface IRequirementHeaderReportModel {
+
+export interface RequirementHeaderReportModel {
     displayName: string;
     description: JSX.Element;
     guidanceLinks: HyperlinkDefinition[];
     requirementType: RequirementType;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IRequirementReportModel {
+export interface RequirementReportModel {
     key: string;
-    header: IRequirementHeaderReportModel;
-    instances: IInstanceReportModel[];
+    header: RequirementHeaderReportModel;
+    instances: InstanceReportModel[];
     defaultMessageComponent: DefaultMessageInterface;
     showPassingInstances: boolean;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IInstanceReportModel {
-    props: IInstancePairReportModel[];
+export interface InstanceReportModel {
+    props: InstancePairReportModel[];
 }
 
 export type InstanceElementKey = 'Snippet' | 'Path' | 'Comment';
 
-// tslint:disable-next-line:interface-name
-export interface IInstancePairReportModel {
+export interface InstancePairReportModel {
     key: InstanceElementKey;
     value: ColumnValue;
 }

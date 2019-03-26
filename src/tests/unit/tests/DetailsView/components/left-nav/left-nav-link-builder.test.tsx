@@ -11,7 +11,7 @@ import { ManualTestStatus, ManualTestStatusData } from '../../../../../../common
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
 import { BaseLeftNavLink, onBaseLeftNavItemClick } from '../../../../../../DetailsView/components/base-left-nav';
 import { LeftNavLinkBuilder, LeftNavLinkBuilderDeps } from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';
-import { IOverviewSummaryReportModel } from '../../../../../../DetailsView/reports/assessment-report-model';
+import { OverviewSummaryReportModel } from '../../../../../../DetailsView/reports/assessment-report-model';
 import { OutcomeStats, OutcomeTypeSemantic } from '../../../../../../DetailsView/reports/components/outcome-type';
 import { GetAssessmentSummaryModelFromProviderAndStatusData } from '../../../../../../DetailsView/reports/get-assessment-summary-model';
 import { DictionaryStringTo } from '../../../../../../types/common-types';
@@ -58,7 +58,7 @@ describe('LeftNavBuilder', () => {
                 byPercentage: {
                     incomplete,
                 },
-            } as IOverviewSummaryReportModel;
+            } as OverviewSummaryReportModel;
 
             getAssessmentSummaryModelFromProviderAndStatusDataMock
                 .setup(mock => mock(assessmentProviderMock.object, assessmentsDataStub))

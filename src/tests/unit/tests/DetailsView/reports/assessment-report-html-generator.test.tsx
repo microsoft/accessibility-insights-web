@@ -11,7 +11,7 @@ import {
     AssessmentReportHtmlGenerator,
     AssessmentReportHtmlGeneratorDeps,
 } from '../../../../../DetailsView/reports/assessment-report-html-generator';
-import { IReportModel } from '../../../../../DetailsView/reports/assessment-report-model';
+import { ReportModel } from '../../../../../DetailsView/reports/assessment-report-model';
 import { AssessmentReportModelBuilder } from '../../../../../DetailsView/reports/assessment-report-model-builder';
 import { AssessmentReportModelBuilderFactory } from '../../../../../DetailsView/reports/assessment-report-model-builder-factory';
 import * as reportStyles from '../../../../../DetailsView/reports/assessment-report.styles';
@@ -38,7 +38,7 @@ describe('AssessmentReportHtmlGenerator', () => {
         };
 
         const modelBuilderMock = Mock.ofType(AssessmentReportModelBuilder, MockBehavior.Strict);
-        const model: IReportModel = { stub: 'model' } as any;
+        const model: ReportModel = { stub: 'model' } as any;
 
         const expectedComponent = (
             <React.Fragment>
