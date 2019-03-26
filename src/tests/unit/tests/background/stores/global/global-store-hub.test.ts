@@ -7,14 +7,14 @@ import { GlobalActionHub } from '../../../../../../background/actions/global-act
 import { PersistedData } from '../../../../../../background/get-persisted-data';
 import { ILocalStorageData } from '../../../../../../background/storage-data';
 import { AssessmentStore } from '../../../../../../background/stores/assessment-store';
-import { BaseStoreImpl } from '../../../../../../background/stores/base-store';
+import { BaseStoreImpl } from '../../../../../../background/stores/base-store-impl';
 import { FeatureFlagStore } from '../../../../../../background/stores/global/feature-flag-store';
 import { GlobalStoreHub } from '../../../../../../background/stores/global/global-store-hub';
 import { LaunchPanelStore } from '../../../../../../background/stores/global/launch-panel-store';
 import { ScopingStore } from '../../../../../../background/stores/global/scoping-store';
 import { UserConfigurationStore } from '../../../../../../background/stores/global/user-configuration-store';
+import { BaseStore } from '../../../../../../common/base-store';
 import { IndexedDBAPI } from '../../../../../../common/indexedDB/indexedDB';
-import { BaseStore } from '../../../../../../common/istore';
 import { PersistedTabInfo } from '../../../../../../common/types/store-data/iassessment-result-data';
 import { StoreType } from '../../../../../../common/types/store-type';
 import { LaunchPanelType } from '../../../../../../popup/scripts/components/popup-view';

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { BaseStore } from '../istore';
+import { BaseStore } from '../base-store';
 
 // tslint:disable-next-line:interface-name
 export interface IClientStoresHub<T> {

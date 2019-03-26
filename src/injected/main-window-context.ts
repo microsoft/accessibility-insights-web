@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BaseStore } from '../common/istore';
+import { BaseStore } from '../common/base-store';
 import { BugActionMessageCreator } from '../common/message-creators/bug-action-message-creator';
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
 import { DevToolState } from '../common/types/store-data/idev-tool-state';

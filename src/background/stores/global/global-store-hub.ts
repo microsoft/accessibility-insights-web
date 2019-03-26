@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BaseStore } from '../../../common/base-store';
 import { IndexedDBAPI } from '../../../common/indexedDB/indexedDB';
-import { BaseStore } from '../../../common/istore';
 import { StoreType } from '../../../common/types/store-type';
 import { generateUID } from '../../../common/uid-generator';
 import { GlobalActionHub } from '../../actions/global-action-hub';

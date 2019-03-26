@@ -3,8 +3,8 @@
 import { autobind } from '@uifabric/utilities';
 
 import { StoreHub } from '../background/stores/istore-hub';
+import { BaseStore } from './base-store';
 import { GenericStoreMessageTypes } from './constants/generic-store-messages-types';
-import { BaseStore } from './istore';
 import { StoreUpdateMessage } from './types/store-update-message';
 
 export class StateDispatcher {

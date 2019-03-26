@@ -6,12 +6,12 @@ import { AssessmentsProvider } from '../../../../assessments/types/iassessments-
 import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
 import { ScopingStore } from '../../../../background/stores/global/scoping-store';
 import { VisualizationStore } from '../../../../background/stores/visualization-store';
+import { BaseStore } from '../../../../common/base-store';
 import {
     VisualizationConfiguration,
     VisualizationConfigurationFactory,
 } from '../../../../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../../../../common/enum-helper';
-import { BaseStore } from '../../../../common/istore';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 import { IScanData, IVisualizationStoreData, TestsEnabledState } from '../../../../common/types/store-data/ivisualization-store-data';
 import { IScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';

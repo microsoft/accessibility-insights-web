@@ -6,7 +6,7 @@ import { IInspectStoreData } from '../../common/types/store-data/inspect-store-d
 import { InspectActions, InspectPayload } from '../actions/inspect-actions';
 import { TabActions } from '../actions/tab-actions';
 import { InspectMode } from '../inspect-modes';
-import { BaseStoreImpl } from './base-store';
+import { BaseStoreImpl } from './base-store-impl';
 
 export class InspectStore extends BaseStoreImpl<IInspectStoreData> {
     private inspectActions: InspectActions;

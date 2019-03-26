@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { BaseStoreImpl } from '../../../background/stores/base-store';
+import { BaseStoreImpl } from '../../../background/stores/base-store-impl';
+import { BaseStore } from '../../../common/base-store';
 import { Action } from '../../../common/flux/action';
-import { BaseStore } from '../../../common/istore';
 import { DefaultConstructor } from '../../../common/types/idefault-constructor';
 
 export class StoreTester<TStoreData, TActions> {

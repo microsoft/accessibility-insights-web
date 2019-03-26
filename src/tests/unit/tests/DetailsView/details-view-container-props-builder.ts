@@ -3,9 +3,9 @@
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 
 import { AssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
+import { BaseStore } from '../../../../common/base-store';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
-import { BaseStore } from '../../../../common/istore';
 import { InspectActionMessageCreator } from '../../../../common/message-creators/inspect-action-message-creator';
 import { IStoreActionMessageCreator } from '../../../../common/message-creators/istore-action-message-creator';
 import { ScopingActionMessageCreator } from '../../../../common/message-creators/scoping-action-message-creator';

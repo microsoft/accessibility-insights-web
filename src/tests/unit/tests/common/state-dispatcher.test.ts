@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { StoreHub } from '../../../../background/stores/istore-hub';
+import { BaseStore } from '../../../../common/base-store';
 import { GenericStoreMessageTypes } from '../../../../common/constants/generic-store-messages-types';
-import { BaseStore } from '../../../../common/istore';
 import { StateDispatcher } from '../../../../common/state-dispatcher';
 import { StoreType } from '../../../../common/types/store-type';
 import { StoreUpdateMessage } from '../../../../common/types/store-update-message';

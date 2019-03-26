@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 import { InspectMode } from '../background/inspect-modes';
+import { BaseStore } from '../common/base-store';
 import { ConfigurationKey, InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
-import { BaseStore } from '../common/istore';
 import { IInspectStoreData } from '../common/types/store-data/inspect-store-data';
 import { ScopingListener } from './scoping-listener';
 

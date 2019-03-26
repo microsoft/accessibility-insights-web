@@ -7,7 +7,7 @@ import { StoreNames } from '../../common/stores/store-names';
 import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationActions } from '../actions/visualization-actions';
-import { BaseStoreImpl } from './base-store';
+import { BaseStoreImpl } from './base-store-impl';
 
 export class TabStore extends BaseStoreImpl<ITabStoreData> {
     private tabActions: TabActions;

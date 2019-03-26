@@ -3,9 +3,9 @@
 import { map } from 'lodash';
 import * as React from 'react';
 
+import { BaseStore } from '../../../common/base-store';
 import { TestMode } from '../../../common/configs/test-mode';
 import { VisualizationConfigurationFactory } from '../../../common/configs/visualization-configuration-factory';
-import { BaseStore } from '../../../common/istore';
 import { TelemetryEventSource } from '../../../common/telemetry-events';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
 import { ICommandStoreData } from '../../../common/types/store-data/icommand-store-data';

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 
-import { BaseStore } from '../istore';
+import { BaseStore } from '../base-store';
 import { IClientStoresHub } from './iclient-stores-hub';
 
 export class BaseClientStoresHub<T> implements IClientStoresHub<T> {

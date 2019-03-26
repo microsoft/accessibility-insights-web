@@ -12,7 +12,7 @@ import { AddTabbedElementPayload } from '../actions/action-payloads';
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
 import { TabStopEvent } from './../../injected/tab-stops-listener';
-import { BaseStoreImpl } from './base-store';
+import { BaseStoreImpl } from './base-store-impl';
 
 export class VisualizationScanResultStore extends BaseStoreImpl<IVisualizationScanResultData> {
     private visualizationScanResultsActions: VisualizationScanResultActions;

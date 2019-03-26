@@ -8,7 +8,7 @@ import { FeatureFlags, getDefaultFeatureFlagValues, getForceDefaultFlags } from 
 import { StoreNames } from '../../../common/stores/store-names';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
 import { FeatureFlagActions, FeatureFlagPayload } from '../../actions/feature-flag-actions';
-import { BaseStoreImpl } from '../base-store';
+import { BaseStoreImpl } from '../base-store-impl';
 import { BrowserAdapter } from './../../browser-adapter';
 
 export class FeatureFlagStore extends BaseStoreImpl<FeatureFlagStoreData> {

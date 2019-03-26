@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 import { AssessmentsProvider } from '../assessments/types/iassessments-provider';
+import { BaseStore } from '../common/base-store';
 import { EnumHelper } from '../common/enum-helper';
-import { BaseStore } from '../common/istore';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
 import { IScopingStoreData } from '../common/types/store-data/scoping-store-data';

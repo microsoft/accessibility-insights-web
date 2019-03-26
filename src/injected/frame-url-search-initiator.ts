@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 
-import { BaseStore } from '../common/istore';
+import { BaseStore } from '../common/base-store';
 import { DevToolState } from '../common/types/store-data/idev-tool-state';
 import { FrameUrlFinder } from './frame-url-finder';
 

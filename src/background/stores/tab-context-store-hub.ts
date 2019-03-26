@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BaseStore } from '../../common/base-store';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
-import { BaseStore } from '../../common/istore';
 import { StoreType } from '../../common/types/store-type';
 import { ActionHub } from '../actions/action-hub';
 import { DetailsViewStore } from './details-view-store';

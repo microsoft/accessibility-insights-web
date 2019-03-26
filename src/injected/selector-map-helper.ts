@@ -3,7 +3,7 @@
 import * as _ from 'lodash';
 
 import { AssessmentsProvider } from '../assessments/types/iassessments-provider';
-import { BaseStore } from '../common/istore';
+import { BaseStore } from '../common/base-store';
 import { ManualTestStatus } from '../common/types/manual-test-status';
 import { IAssessmentStoreData, IGeneratedAssessmentInstance } from '../common/types/store-data/iassessment-result-data';
 import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';

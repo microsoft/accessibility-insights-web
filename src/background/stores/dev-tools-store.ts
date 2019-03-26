@@ -5,7 +5,7 @@ import { autobind } from '@uifabric/utilities';
 import { StoreNames } from '../../common/stores/store-names';
 import { DevToolState } from '../../common/types/store-data/idev-tool-state';
 import { DevToolActions } from '../actions/dev-tools-actions';
-import { BaseStoreImpl } from './base-store';
+import { BaseStoreImpl } from './base-store-impl';
 
 export class DevToolStore extends BaseStoreImpl<DevToolState> {
     private devToolActions: DevToolActions;

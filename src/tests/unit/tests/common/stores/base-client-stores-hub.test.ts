@@ -3,7 +3,7 @@
 import { clone, forEach, size } from 'lodash';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
-import { BaseStore } from '../../../../../common/istore';
+import { BaseStore } from '../../../../../common/base-store';
 import { BaseClientStoresHub } from '../../../../../common/stores/base-client-stores-hub';
 import { StoreMock } from '../../../mock-helpers/store-mock';
 

@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DevToolsChromeAdapter } from '../background/dev-tools-chrome-adapter';
+import { BaseStore } from '../common/base-store';
 import { ConnectionNames } from '../common/constants/connection-names';
-import { BaseStore } from '../common/istore';
 import { DevToolsOpenMessage } from '../common/types/dev-tools-open-message';
 import { DevToolState } from '../common/types/store-data/idev-tool-state';
 

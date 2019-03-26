@@ -3,8 +3,8 @@
 import { autobind } from '@uifabric/utilities';
 import * as Q from 'q';
 import { ScopingInputTypes } from '../../background/scoping-input-types';
+import { BaseStore } from '../../common/base-store';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
-import { BaseStore } from '../../common/istore';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
 import { ForRuleAnalyzerScanCallback } from '../../common/types/analyzer-telemetry-callbacks';
 import { IScopingStoreData } from '../../common/types/store-data/scoping-store-data';

@@ -5,7 +5,7 @@ import * as _ from 'lodash/index';
 
 import { StoreNames } from '../../../common/stores/store-names';
 import { IScopingStoreData } from '../../../common/types/store-data/scoping-store-data';
-import { BaseStoreImpl } from '../base-store';
+import { BaseStoreImpl } from '../base-store-impl';
 import { ScopingActions, ScopingPayload } from './../../actions/scoping-actions';
 import { ScopingInputTypes } from './../../scoping-input-types';
 

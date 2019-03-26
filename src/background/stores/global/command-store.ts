@@ -7,7 +7,7 @@ import { ModifiedCommandsTelemetryData, SHORTCUT_MODIFIED } from '../../../commo
 import { ICommandStoreData } from '../../../common/types/store-data/icommand-store-data';
 import { CommandActions, GetCommandsPayload } from '../../actions/command-actions';
 import { TelemetryEventHandler } from '../../telemetry/telemetry-event-handler';
-import { BaseStoreImpl } from '../base-store';
+import { BaseStoreImpl } from '../base-store-impl';
 
 export class CommandStore extends BaseStoreImpl<ICommandStoreData> {
     private commandActions: CommandActions;

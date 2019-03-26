@@ -3,6 +3,7 @@
 import { autobind } from '@uifabric/utilities';
 import * as _ from 'lodash';
 
+import { BaseStore } from '../common/base-store';
 import { TestMode } from '../common/configs/test-mode';
 import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../common/enum-helper';
@@ -12,7 +13,6 @@ import { IVisualizationScanResultData } from '../common/types/store-data/ivisual
 import { IAssessmentScanData, IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryNumberTo, DictionaryStringTo } from '../types/common-types';
-import { BaseStore } from './../common/istore';
 import { IAssessmentStoreData } from './../common/types/store-data/iassessment-result-data.d';
 import { DrawingInitiator } from './drawing-initiator';
 import { IAssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';

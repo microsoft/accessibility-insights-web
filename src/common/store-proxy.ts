@@ -3,10 +3,10 @@
 import { autobind } from '@uifabric/utilities';
 import * as _ from 'lodash';
 
+import { BaseStore } from './base-store';
 import { ClientChromeAdapter } from './client-browser-adapter';
 import { GenericStoreMessageTypes } from './constants/generic-store-messages-types';
 import { Store } from './flux/store';
-import { BaseStore } from './istore';
 import { StoreType } from './types/store-type';
 import { StoreUpdateMessage } from './types/store-update-message';
 

@@ -7,11 +7,11 @@ import { FeatureFlagStore } from '../../../../background/stores/global/feature-f
 import { TabStore } from '../../../../background/stores/tab-store';
 import { VisualizationScanResultStore } from '../../../../background/stores/visualization-scan-result-store';
 import { VisualizationStore } from '../../../../background/stores/visualization-store';
+import { BaseStore } from '../../../../common/base-store';
 import { TestMode } from '../../../../common/configs/test-mode';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../../../../common/enum-helper';
 import { getDefaultFeatureFlagValues } from '../../../../common/feature-flags';
-import { BaseStore } from '../../../../common/istore';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
 import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';

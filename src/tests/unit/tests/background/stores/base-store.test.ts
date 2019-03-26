@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { BaseStoreImpl } from '../../../../../background/stores/base-store';
+import { BaseStoreImpl } from '../../../../../background/stores/base-store-impl';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { IsSameObject } from '../../../common/typemoq-helper';
 

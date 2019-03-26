@@ -9,9 +9,9 @@ import { UserConfigurationStore } from '../../../../background/stores/global/use
 import { TabContextStoreHub } from '../../../../background/stores/tab-context-store-hub';
 import { VisualizationStore } from '../../../../background/stores/visualization-store';
 import { TabContext, TabToContextMap } from '../../../../background/tab-context';
+import { BaseStore } from '../../../../common/base-store';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { DisplayableStrings } from '../../../../common/constants/displayable-strings';
-import { BaseStore } from '../../../../common/istore';
 import { Messages } from '../../../../common/messages';
 import { NotificationCreator } from '../../../../common/notification-creator';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';

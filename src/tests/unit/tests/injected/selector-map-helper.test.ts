@@ -5,7 +5,7 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 import { AssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
 import { AssessmentStore } from '../../../../background/stores/assessment-store';
 import { VisualizationScanResultStore } from '../../../../background/stores/visualization-scan-result-store';
-import { BaseStore } from '../../../../common/istore';
+import { BaseStore } from '../../../../common/base-store';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
 import {
     IAssessmentStoreData,

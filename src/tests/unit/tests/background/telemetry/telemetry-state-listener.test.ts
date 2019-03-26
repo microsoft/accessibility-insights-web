@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
 
-import { BaseStoreImpl } from '../../../../../background/stores/base-store';
+import { BaseStoreImpl } from '../../../../../background/stores/base-store-impl';
 import { UserConfigurationStore } from '../../../../../background/stores/global/user-configuration-store';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
 import { TelemetryStateListener } from '../../../../../background/telemetry/telemetry-state-listener';

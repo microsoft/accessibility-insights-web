@@ -17,7 +17,7 @@ import {
 import { FeatureFlagPayload } from '../../actions/feature-flag-actions';
 import { UserConfigurationActions } from '../../actions/user-configuration-actions';
 import { IndexedDBDataKeys } from '../../IndexedDBDataKeys';
-import { BaseStoreImpl } from '../base-store';
+import { BaseStoreImpl } from '../base-store-impl';
 
 export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStoreData> {
     public static readonly defaultState: UserConfigurationStoreData = {

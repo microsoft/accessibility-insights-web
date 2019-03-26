@@ -3,7 +3,7 @@
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { DevToolStore } from '../../../background/stores/dev-tools-store';
-import { BaseStore } from '../../../common/istore';
+import { BaseStore } from '../../../common/base-store';
 
 export class StoreMock<TStoreState> {
     private _store: IMock<BaseStore<TStoreState>> = Mock.ofType(DevToolStore as any);
