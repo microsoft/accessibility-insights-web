@@ -5,16 +5,16 @@ import * as renderer from 'react-test-renderer';
 import { IMock, Mock, Times } from 'typemoq';
 
 import { withStoreSubscription, WithStoreSubscriptionProps } from '../../../../../common/components/with-store-subscription';
-import { StoreActionMessageCreator } from '../../../../../common/message-creators/store-action-message-creator';
+import { StoreActionMessageCreatorImpl } from '../../../../../common/message-creators/store-action-message-creator-impl';
 import { IClientStoresHub } from '../../../../../common/stores/iclient-stores-hub';
 
 describe('withStoreSubscription', () => {
     type testProps = WithStoreSubscriptionProps<{ message: string }>;
     const testComp: React.SFC<testProps> = props => <h1>{props.storeState.message}</h1>;
-    let storeActionCreatorMock: IMock<StoreActionMessageCreator>;
+    let storeActionCreatorMock: IMock<StoreActionMessageCreatorImpl>;
 
     beforeEach(() => {
-        storeActionCreatorMock = Mock.ofType(StoreActionMessageCreator);
+        storeActionCreatorMock = Mock.ofType(StoreActionMessageCreatorImpl);
     });
 
     test('constructor: storesHub is null', () => {
