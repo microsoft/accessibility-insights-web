@@ -30,7 +30,6 @@ export class InlineImage extends React.Component<InlineImageProps> {
         return <img src={imageData} alt={this.props.alt} />;
     }
 
-    // tslint:disable:max-line-length
     private inlineImageTypeToData: DictionaryNumberTo<string> = {
         [InlineImageType.AdaTheCat]: adaMulticolorBubbles,
         [InlineImageType.AdaLaptop]: adaLaptop,
