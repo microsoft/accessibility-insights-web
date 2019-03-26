@@ -4,8 +4,8 @@ import { IMock, It, Mock, Times } from 'typemoq';
 
 import { FeatureFlagActions, FeatureFlagPayload } from '../../../../../../background/actions/feature-flag-actions';
 import { ChromeAdapter } from '../../../../../../background/browser-adapter';
-import { LocalStorageDataKeys } from '../../../../../../background/local-storage-data-keys';
 import { LocalStorageData } from '../../../../../../background/local-storage-data';
+import { LocalStorageDataKeys } from '../../../../../../background/local-storage-data-keys';
 import { FeatureFlagStore } from '../../../../../../background/stores/global/feature-flag-store';
 import { getDefaultFeatureFlagValues } from '../../../../../../common/feature-flags';
 import { StoreNames } from '../../../../../../common/stores/store-names';

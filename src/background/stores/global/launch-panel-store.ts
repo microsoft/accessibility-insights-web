@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-
 import { StoreNames } from '../../../common/stores/store-names';
 import { ILaunchPanelStoreData } from '../../../common/types/store-data/ilaunch-panel-store-data';
 import { LaunchPanelType } from '../../../popup/scripts/components/popup-view';

@@ -4,8 +4,8 @@ import { IMock, It, Mock, Times } from 'typemoq';
 
 import { LaunchPanelStateActions } from '../../../../../../background/actions/launch-panel-state-action';
 import { ChromeAdapter } from '../../../../../../background/browser-adapter';
-import { LocalStorageDataKeys } from '../../../../../../background/local-storage-data-keys';
 import { LocalStorageData } from '../../../../../../background/local-storage-data';
+import { LocalStorageDataKeys } from '../../../../../../background/local-storage-data-keys';
 import { LaunchPanelStore } from '../../../../../../background/stores/global/launch-panel-store';
 import { StoreNames } from '../../../../../../common/stores/store-names';
 import { ILaunchPanelStoreData } from '../../../../../../common/types/store-data/ilaunch-panel-store-data';

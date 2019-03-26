@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
+import { LocalStorageData } from '../../local-storage-data';
 import { LocalStorageDataKeys } from '../../local-storage-data-keys';
-import { ILocalStorageData } from '../../storage-data';
 
 import { FeatureFlags, getDefaultFeatureFlagValues, getForceDefaultFlags } from '../../../common/feature-flags';
 import { StoreNames } from '../../../common/stores/store-names';
