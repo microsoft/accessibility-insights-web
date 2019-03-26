@@ -7,7 +7,7 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { ChromeAdapter } from '../../../../../../background/browser-adapter';
 import { NewTabLink } from '../../../../../../common/components/new-tab-link';
 import { DropdownClickHandler } from '../../../../../../common/dropdown-click-handler';
-import { StoreActionMessageCreator } from '../../../../../../common/message-creators/store-action-message-creator';
+import { StoreActionMessageCreatorImpl } from '../../../../../../common/message-creators/store-action-message-creator';
 import { BaseClientStoresHub } from '../../../../../../common/stores/base-client-stores-hub';
 import { ICommandStoreData } from '../../../../../../common/types/store-data/icommand-store-data';
 import { ILaunchPanelStoreData } from '../../../../../../common/types/store-data/ilaunch-panel-store-data';
@@ -95,7 +95,7 @@ describe('PopupView', () => {
         const shortcutModifyHandlerStub = {};
         const visualizationStoreState = new VisualizationStoreDataBuilder().build();
         const launchPadRowConfigurationFactoryMock = Mock.ofType(LaunchPadRowConfigurationFactory);
-        const popupViewStoreActionMessageCreatorMock = Mock.ofType(StoreActionMessageCreator);
+        const popupViewStoreActionMessageCreatorMock = Mock.ofType(StoreActionMessageCreatorImpl);
         const userConfigStoreData: UserConfigurationStoreData = {
             isFirstTime: true,
             enableTelemetry: false,

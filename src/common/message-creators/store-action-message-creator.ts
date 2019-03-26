@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BaseActionMessageCreator } from './base-action-message-creator';
-import { IStoreActionMessageCreator } from './istore-action-message-creator';
+import { StoreActionMessageCreator } from './istore-action-message-creator';
 
-export class StoreActionMessageCreator extends BaseActionMessageCreator implements IStoreActionMessageCreator {
+export class StoreActionMessageCreatorImpl extends BaseActionMessageCreator implements StoreActionMessageCreator {
     private getStateMessages: string[];
 
     constructor(messages: string[], postMessage: (message: Message) => void, tabId: number) {
