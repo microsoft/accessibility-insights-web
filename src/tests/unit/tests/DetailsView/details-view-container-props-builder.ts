@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 
-import { IAssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
 import { IBaseStore } from '../../../../common/istore';
@@ -43,7 +43,7 @@ export class DetailsViewContainerPropsBuilder {
     private scopingFlagsHandler: PreviewFeatureFlagsHandler;
     private dropdownClickHandler: DropdownClickHandler;
     private assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
-    private assessmentProvider: IAssessmentsProvider;
+    private assessmentProvider: AssessmentsProvider;
     private configFactory: VisualizationConfigurationFactory;
     private storesHub: BaseClientStoresHub<any>;
     constructor(private deps: DetailsViewContainerDeps) {}
@@ -53,7 +53,7 @@ export class DetailsViewContainerPropsBuilder {
         return this;
     }
 
-    public setAssessmentProvider(provider: IAssessmentsProvider): DetailsViewContainerPropsBuilder {
+    public setAssessmentProvider(provider: AssessmentsProvider): DetailsViewContainerPropsBuilder {
         this.assessmentProvider = provider;
         return this;
     }

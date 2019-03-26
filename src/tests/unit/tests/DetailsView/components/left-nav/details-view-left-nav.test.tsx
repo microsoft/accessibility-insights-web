@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { It, Mock, MockBehavior } from 'typemoq';
 
-import { IAssessmentsProvider } from '../../../../../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../../../../../assessments/types/iassessments-provider';
 import { NamedSFC, ReactSFCWithDisplayName } from '../../../../../../common/react/named-sfc';
 import { FeatureFlagStoreData } from '../../../../../../common/types/store-data/feature-flag-store-data';
 import { IAssessmentData, IAssessmentStoreData } from '../../../../../../common/types/store-data/iassessment-result-data';
@@ -24,8 +24,8 @@ describe('DetailsViewLeftNav', () => {
         const selectedKeyStub: string = 'some key';
         const featureFlagDataStub: FeatureFlagStoreData = {};
         const assessmentsProviderWithFeaturesEnabledMock = Mock.ofInstance((provider, featureFlagData) => null, MockBehavior.Strict);
-        const assessmentProviderStub = {} as IAssessmentsProvider;
-        const filteredProviderStub = {} as IAssessmentsProvider;
+        const assessmentProviderStub = {} as AssessmentsProvider;
+        const filteredProviderStub = {} as AssessmentsProvider;
         const GetLeftNavSelectedKeyMock = Mock.ofInstance((theProps: GetLeftNavSelectedKeyProps) => null, MockBehavior.Strict);
         const LeftNavStub: Readonly<ReactSFCWithDisplayName<DetailsViewLeftNavProps>> = NamedSFC<DetailsViewLeftNavProps>(
             'test',

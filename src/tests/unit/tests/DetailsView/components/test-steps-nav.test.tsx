@@ -5,7 +5,7 @@ import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';
 
-import { IAssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
 import { TestStep } from '../../../../../assessments/types/test-step';
 import { getInnerTextFromJsxElement } from '../../../../../common/get-inner-text-from-jsx-element';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
@@ -34,7 +34,7 @@ describe('TestStepsNav', () => {
         runTest(CreateTestAssessmentProviderAutomated());
     });
 
-    function runTest(assessmentProvider: IAssessmentsProvider): void {
+    function runTest(assessmentProvider: AssessmentsProvider): void {
         const eventFactory = new EventStubFactory();
         const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
         const eventStub = eventFactory.createKeypressEvent() as any;

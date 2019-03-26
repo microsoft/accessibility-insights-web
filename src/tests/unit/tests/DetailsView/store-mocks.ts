@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { It, Mock, MockBehavior } from 'typemoq';
 
-import { AssessmentsProvider } from '../../../../assessments/assessments-provider';
+import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
 import { AssessmentDataConverter } from '../../../../background/assessment-data-converter';
 import { ScopingInputTypes } from '../../../../background/scoping-input-types';
 import { AssessmentStore } from '../../../../background/stores/assessment-store';
@@ -39,7 +39,7 @@ export class StoreMocks {
     public tabStoreMock = Mock.ofType(TabStore, MockBehavior.Strict);
     public featureFlagStoreMock = Mock.ofType(FeatureFlagStore, MockBehavior.Strict);
     public assessmentStoreMock = Mock.ofType(AssessmentStore, MockBehavior.Strict);
-    public assessmentsProviderMock = Mock.ofType(AssessmentsProvider);
+    public assessmentsProviderMock = Mock.ofType(AssessmentsProviderImpl);
     public scopingStoreMock = Mock.ofType(ScopingStore, MockBehavior.Strict);
     public inspectStoreMock = Mock.ofType(InspectStore, MockBehavior.Strict);
     public commandStoreMock = Mock.ofType(CommandStore, MockBehavior.Strict);

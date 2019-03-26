@@ -4,7 +4,7 @@ import * as Enzyme from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { AssessmentsProvider } from '../../../../../assessments/assessments-provider';
+import { AssessmentsProviderImpl } from '../../../../../assessments/assessments-provider';
 import { TestStep } from '../../../../../assessments/types/test-step';
 import { CollapsibleComponent } from '../../../../../common/components/collapsible-component';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
@@ -155,7 +155,7 @@ describe('TestStepViewTest', () => {
 
 class TestStepViewPropsBuilder extends BaseDataBuilder<TestStepViewProps> {
     public static default(getVisualHelperToggle: (provider, props) => {}): TestStepViewPropsBuilder {
-        const assessmentsProviderMock = Mock.ofType(AssessmentsProvider, MockBehavior.Strict);
+        const assessmentsProviderMock = Mock.ofType(AssessmentsProviderImpl, MockBehavior.Strict);
         assessmentsProviderMock
             .setup(p => p.getStep(It.isAny(), It.isAny()))
             .returns((test, step) => {
@@ -220,7 +220,7 @@ class TestStepViewPropsBuilder extends BaseDataBuilder<TestStepViewProps> {
     }
 
     public withNoGetToggleConfig(): TestStepViewPropsBuilder {
-        const providerMock = Mock.ofType(AssessmentsProvider);
+        const providerMock = Mock.ofType(AssessmentsProviderImpl);
         providerMock
             .setup(p => p.getStep(It.isAny(), It.isAny()))
             .returns((test, step) => {

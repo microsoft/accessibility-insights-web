@@ -6,7 +6,7 @@ import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
 
-import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../../common/types/store-data/iassessment-result-data';
 import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
@@ -27,7 +27,7 @@ export interface DetailsViewCommandBarProps {
     tabStoreData: ITabStoreData;
     actionMessageCreator: DetailsViewActionMessageCreator;
     assessmentStoreData: IAssessmentStoreData;
-    assessmentsProvider: IAssessmentsProvider;
+    assessmentsProvider: AssessmentsProvider;
     reportGenerator: ReportGenerator;
     renderExportAndStartOver: boolean;
     rightPanelConfiguration: DetailsRightPanelConfiguration;

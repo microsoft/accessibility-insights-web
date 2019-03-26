@@ -5,7 +5,7 @@ import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { AssessmentDefaultMessageGenerator } from '../../../../../assessments/assessment-default-message-generator';
-import { IAssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
 import { AssessmentTestResult } from '../../../../../common/assessment/assessment-test-result';
 import { getInnerTextFromJsxElement } from '../../../../../common/get-inner-text-from-jsx-element';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
@@ -190,9 +190,9 @@ class AssessmentViewPropsBuilder {
     private content: JSX.Element = <div>AssessmentViewTest content</div>;
     private hasScanData: boolean = false;
     private isEnabled: boolean = false;
-    private provider: IAssessmentsProvider;
+    private provider: AssessmentsProvider;
 
-    constructor(provider: IAssessmentsProvider, assessmentGeneratorInstanceMock) {
+    constructor(provider: AssessmentsProvider, assessmentGeneratorInstanceMock) {
         this.actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
         this.assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
         this.assessmentGeneratorInstance = assessmentGeneratorInstanceMock;

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { AssessmentsProvider } from '../../../../assessments/assessments-provider';
+import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
 import { AssessmentDataConverter } from '../../../../background/assessment-data-converter';
 import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
 import { TabStore } from '../../../../background/stores/tab-store';
@@ -550,7 +550,7 @@ class MocksAndTestSubjectBuilder {
     }
 
     private setupStatesAndSelectorMap(): void {
-        const assessmentsProviderMock = Mock.ofType(AssessmentsProvider);
+        const assessmentsProviderMock = Mock.ofType(AssessmentsProviderImpl);
         assessmentsProviderMock.setup(ap => ap.all()).returns(() => []);
         const assessmentDataConverterMock = Mock.ofType(AssessmentDataConverter);
         assessmentDataConverterMock.setup(acdm => acdm.getNewManualTestStepResult(It.isAny())).returns(() => null);

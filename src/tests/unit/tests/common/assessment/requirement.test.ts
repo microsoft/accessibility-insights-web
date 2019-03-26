@@ -3,7 +3,7 @@
 import { find } from 'lodash';
 import { It, Mock } from 'typemoq';
 
-import { IAssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
 import { AssessmentTestDefinition } from '../../../../../common/assessment/assessment-test-result';
 import { getRequirementsResults, RequirementDefinition } from '../../../../../common/assessment/requirement';
 import { RequirementComparer } from '../../../../../common/assessment/requirement-comparer';
@@ -35,7 +35,7 @@ describe('Requirement', () => {
 
             const type = -3 as VisualizationType;
 
-            const providerMock = Mock.ofType<IAssessmentsProvider>();
+            const providerMock = Mock.ofType<AssessmentsProvider>();
             providerMock.setup(p => p.forType(type)).returns(() => test);
             providerMock.setup(p => p.getStep(type, It.isAnyString())).returns((_, key) => getStep(key));
 

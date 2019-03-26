@@ -4,7 +4,7 @@ import { autobind } from '@uifabric/utilities';
 import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
-import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import {
     AssessmentNavState,
     IGeneratedAssessmentInstance,
@@ -23,12 +23,12 @@ import { TestStatusChoiceGroup } from './../components/test-status-choice-group'
 export class AssessmentInstanceTableHandler {
     private actionMessageCreator: DetailsViewActionMessageCreator;
     private assessmentTableColumnConfigHandler: AssessmentTableColumnConfigHandler;
-    private assessmentsProvider: IAssessmentsProvider;
+    private assessmentsProvider: AssessmentsProvider;
 
     constructor(
         actionMessageCreator: DetailsViewActionMessageCreator,
         assessmentTableColumnConfigHandler: AssessmentTableColumnConfigHandler,
-        assessmentsProvider: IAssessmentsProvider,
+        assessmentsProvider: AssessmentsProvider,
     ) {
         this.actionMessageCreator = actionMessageCreator;
         this.assessmentTableColumnConfigHandler = assessmentTableColumnConfigHandler;

@@ -3,7 +3,7 @@
 import { autobind } from '@uifabric/utilities';
 import { forEach, isEmpty } from 'lodash';
 
-import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { IndexedDBDataKeys } from '../../background/IndexedDBDataKeys';
 import { IndexedDBAPI } from '../../common/indexedDB/indexedDB';
 import { StoreNames } from '../../common/stores/store-names';
@@ -42,7 +42,7 @@ export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
     private assessmentActions: AssessmentActions;
     private assessmentDataConverter: AssessmentDataConverter;
     private assessmentDataRemover: AssessmentDataRemover;
-    private assessmentsProvider: IAssessmentsProvider;
+    private assessmentsProvider: AssessmentsProvider;
     private idbInstance: IndexedDBAPI;
     private browserAdapter: BrowserAdapter;
     private persistedData: IAssessmentStoreData;
@@ -53,7 +53,7 @@ export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
         assessmentActions: AssessmentActions,
         assessmentDataConverter: AssessmentDataConverter,
         assessmentDataRemover: AssessmentDataRemover,
-        assessmentsProvider: IAssessmentsProvider,
+        assessmentsProvider: AssessmentsProvider,
         idbInstance: IndexedDBAPI,
         persistedData: IAssessmentStoreData,
     ) {

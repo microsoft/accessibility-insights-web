@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock, MockBehavior } from 'typemoq';
 
-import { IAssessmentsProvider } from '../../../../../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../../../../../assessments/types/iassessments-provider';
 import { IAssessmentStoreData, PersistedTabInfo } from '../../../../../../common/types/store-data/iassessment-result-data';
 import { ITabStoreData } from '../../../../../../common/types/store-data/itab-store-data';
 import { UrlParser } from '../../../../../../common/url-parser';
@@ -32,11 +32,11 @@ describe('OverviewContainer', () => {
         },
     } as HelpLinkDeps;
 
-    const assessmentsProvider: IAssessmentsProvider = {
+    const assessmentsProvider: AssessmentsProvider = {
         all: () => [],
     } as any;
 
-    const filteredProvider = {} as IAssessmentsProvider;
+    const filteredProvider = {} as AssessmentsProvider;
     const detailsViewActionMessageCreatorStub = {} as DetailsViewActionMessageCreator;
     const assessmentsProviderWithFeaturesEnabledMock = Mock.ofInstance((provider, featureFlagData) => null, MockBehavior.Strict);
     const getAssessmentSummaryModelFromProviderAndStoreData = jest.fn();

@@ -3,9 +3,9 @@
 import * as _ from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { AssessmentsProvider } from '../../../../../assessments/assessments-provider';
+import { AssessmentsProviderImpl } from '../../../../../assessments/assessments-provider';
 import { Assessment } from '../../../../../assessments/types/iassessment';
-import { IAssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
 import {
     AddFailureInstancePayload,
     ChangeAssessmentStepStatusPayload,
@@ -51,8 +51,8 @@ import { CreateTestAssessmentProvider } from '../../../common/test-assessment-pr
 let browserMock: IMock<ChromeAdapter>;
 let assessmentDataConverterMock: IMock<AssessmentDataConverter>;
 let assessmentDataRemoverMock: IMock<AssessmentDataRemover>;
-let assessmentsProvider: IAssessmentsProvider;
-let assessmentsProviderMock: IMock<IAssessmentsProvider>;
+let assessmentsProvider: AssessmentsProvider;
+let assessmentsProviderMock: IMock<AssessmentsProvider>;
 let indexDBInstanceMock: IMock<IndexedDBAPI>;
 let assessmentMock: IMock<Assessment>;
 let getInstanceIdentiferGeneratorMock: IMock<(step: string) => Function>;
@@ -76,7 +76,7 @@ describe('AssessmentStoreTest', () => {
         } as AssesssmentVisualizationConfiguration;
 
         assessmentsProvider = CreateTestAssessmentProvider();
-        assessmentsProviderMock = Mock.ofType(AssessmentsProvider, MockBehavior.Strict);
+        assessmentsProviderMock = Mock.ofType(AssessmentsProviderImpl, MockBehavior.Strict);
         assessmentMock = Mock.ofInstance({
             getVisualizationConfiguration: () => {
                 return null;

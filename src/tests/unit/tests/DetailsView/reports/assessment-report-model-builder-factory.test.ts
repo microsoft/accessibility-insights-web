@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentDefaultMessageGenerator } from '../../../../../assessments/assessment-default-message-generator';
-import { IAssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
 import { IAssessmentStoreData } from '../../../../../common/types/store-data/iassessment-result-data';
 import { ITabStoreData } from '../../../../../common/types/store-data/itab-store-data';
 import { AssessmentReportModelBuilderFactory } from '../../../../../DetailsView/reports/assessment-report-model-builder-factory';
@@ -11,7 +11,7 @@ describe('AssessmentReportModelBuilderFactory', () => {
         const testSubject = new AssessmentReportModelBuilderFactory();
 
         const assessmentStoreData: IAssessmentStoreData = { stub: 'assessmentStoreData' } as any;
-        const assessmentsProvider: IAssessmentsProvider = { stub: 'assessmentsProvider' } as any;
+        const assessmentsProvider: AssessmentsProvider = { stub: 'assessmentsProvider' } as any;
         const tabStoreData: ITabStoreData = { stub: 'tabStoreData' } as any;
         const reportDate = new Date(2018, 9, 19, 10, 53);
         const assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator = new AssessmentDefaultMessageGenerator();
