@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IAssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
+import { AssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
 import { DrawerUtils } from './drawer-utils';
 import { DrawerConfiguration } from './formatter';
 import { HighlightBoxFormatter } from './highlight-box-formatter';
@@ -10,7 +10,7 @@ export class CustomWidgetsFormatter extends HighlightBoxFormatter {
         super();
     }
 
-    public getDrawerConfiguration(element: HTMLElement, data: IAssessmentVisualizationInstance): DrawerConfiguration {
+    public getDrawerConfiguration(element: HTMLElement, data: AssessmentVisualizationInstance): DrawerConfiguration {
         const drawerConfig: DrawerConfiguration = {
             ...super.getDrawerConfiguration(element, data),
             getBoundingRect: elem => {

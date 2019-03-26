@@ -20,7 +20,7 @@ import { IScanData, IVisualizationStoreData } from '../../../../common/types/sto
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { ClientViewController } from '../../../../injected/client-view-controller';
 import { DrawingInitiator } from '../../../../injected/drawing-initiator';
-import { IAssessmentVisualizationInstance } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
+import { AssessmentVisualizationInstance } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { ScrollingController, ScrollingWindowMessage } from '../../../../injected/frameCommunicators/scrolling-controller';
 import { SelectorMapHelper } from '../../../../injected/selector-map-helper';
 import { TargetPageActionMessageCreator } from '../../../../injected/target-page-action-message-creator';
@@ -359,7 +359,7 @@ class TestableClientViewController extends ClientViewController {
     }
 
     public setPreviousVisualizationSelectorMapStatesStub(
-        stub: DictionaryNumberTo<DictionaryStringTo<IAssessmentVisualizationInstance>>,
+        stub: DictionaryNumberTo<DictionaryStringTo<AssessmentVisualizationInstance>>,
     ): void {
         this.previousVisualizationSelectorMapStates = stub;
     }
@@ -393,8 +393,8 @@ class MocksAndTestSubjectBuilder {
     private _dataBuilderForToVisualizationScanStoreState = new VisualizationScanResultStoreDataBuilder();
     private IsScrollingInitiatorSetup: boolean = false;
     private _initializedVisualizationState: DictionaryStringTo<boolean> = {};
-    private _initializedVisualizationSelectorMapState: DictionaryNumberTo<DictionaryStringTo<IAssessmentVisualizationInstance>> = {};
-    private _selectorMap: DictionaryStringTo<IAssessmentVisualizationInstance>;
+    private _initializedVisualizationSelectorMapState: DictionaryNumberTo<DictionaryStringTo<AssessmentVisualizationInstance>> = {};
+    private _selectorMap: DictionaryStringTo<AssessmentVisualizationInstance>;
     private _visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
     private _actualVisualizationConfigurationFactory: VisualizationConfigurationFactory;
     private _visualizationInstanceProcessorStub: VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags>;

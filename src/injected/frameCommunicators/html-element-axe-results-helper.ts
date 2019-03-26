@@ -8,18 +8,16 @@ import { DictionaryStringTo } from '../../types/common-types';
 import { HtmlElementAxeResults } from '../scanner-utils';
 import { HTMLElementUtils } from './../../common/html-element-utils';
 
-// tslint:disable-next-line:interface-name
-export interface IFrameResult {
+export interface HTMLFrameResult {
     frame: HTMLIFrameElement;
-    elementResults: IAssessmentVisualizationInstance[];
+    elementResults: AssessmentVisualizationInstance[];
 }
 
 export interface AxeResultsWithFrameLevel extends HtmlElementAxeResults {
     targetIndex?: number;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IAssessmentVisualizationInstance extends AxeResultsWithFrameLevel {
+export interface AssessmentVisualizationInstance extends AxeResultsWithFrameLevel {
     isFailure: boolean;
     isVisualizationEnabled: boolean;
     html: string;
@@ -30,7 +28,7 @@ export interface IAssessmentVisualizationInstance extends AxeResultsWithFrameLev
 export class HtmlElementAxeResultsHelper {
     constructor(private htmlElementUtils: HTMLElementUtils, private logger: Logger = createDefaultLogger()) {}
 
-    public splitResultsByFrame(elementResults: AxeResultsWithFrameLevel[]): IFrameResult[] {
+    public splitResultsByFrame(elementResults: AxeResultsWithFrameLevel[]): HTMLFrameResult[] {
         const frameSelectorToResultsMap = this.getFrameSelectorToResultMap(elementResults);
         const results = this.getFrameResultsFromSelectorMap(frameSelectorToResultsMap);
         this.addMissingFrameResults(results);
@@ -38,8 +36,8 @@ export class HtmlElementAxeResultsHelper {
         return results;
     }
 
-    private getFrameResultsFromSelectorMap(selectorMap: DictionaryStringTo<AxeResultsWithFrameLevel[]>): IFrameResult[] {
-        const results: IFrameResult[] = [];
+    private getFrameResultsFromSelectorMap(selectorMap: DictionaryStringTo<AxeResultsWithFrameLevel[]>): HTMLFrameResult[] {
+        const results: HTMLFrameResult[] = [];
         forOwn(selectorMap, (frameResults, selectorKey) => {
             if (selectorKey) {
                 const iframe = this.htmlElementUtils.querySelector(selectorKey);
@@ -47,7 +45,7 @@ export class HtmlElementAxeResultsHelper {
                     results.push({
                         elementResults: frameResults,
                         frame: iframe,
-                    } as IFrameResult);
+                    } as HTMLFrameResult);
                 } else {
                     this.logger.log('unable to find frame to highlight', selectorKey);
                 }
@@ -55,14 +53,14 @@ export class HtmlElementAxeResultsHelper {
                 results.push({
                     elementResults: frameResults,
                     frame: null,
-                } as IFrameResult);
+                } as HTMLFrameResult);
             }
         });
 
         return results;
     }
 
-    private addMissingFrameResults(frameResults: IFrameResult[]): void {
+    private addMissingFrameResults(frameResults: HTMLFrameResult[]): void {
         const missingFrames: HTMLIFrameElement[] = [];
 
         const allFramesIncludingCurrentFrames = Array.prototype.slice.call(this.htmlElementUtils.getAllElementsByTagName(
