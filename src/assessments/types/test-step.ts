@@ -48,7 +48,7 @@ export interface TestStep {
     getInstanceStatusColumns?: () => Readonly<IColumn>[];
     getDefaultMessage?: IGetMessageGenerator;
     renderInstanceTableHeader?: (table: AssessmentInstanceTable, items: AssessmentInstanceRowData[]) => JSX.Element;
-    renderRequirementDescription?: (testStepLink: RequirementLink) => JSX.Element;
+    renderRequirementDescription?: (requirementLink: RequirementLink) => JSX.Element;
 }
 
 export interface VisualHelperToggleConfig {

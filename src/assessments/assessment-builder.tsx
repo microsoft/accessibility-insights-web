@@ -82,8 +82,8 @@ export class AssessmentBuilder {
         return table.renderDefaultInstanceTableHeader(items);
     }
 
-    private static renderRequirementDescription(testStepLink: RequirementLink): JSX.Element {
-        return testStepLink.renderRequirementDescriptionWithIndex();
+    private static renderRequirementDescription(requirementLink: RequirementLink): JSX.Element {
+        return requirementLink.renderRequirementDescriptionWithIndex();
     }
 
     private static enableTest(scanData: IScanData, payload: AssessmentToggleActionPayload): void {

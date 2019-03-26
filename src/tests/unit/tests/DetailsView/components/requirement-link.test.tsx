@@ -18,7 +18,7 @@ describe('RequirementLink', () => {
         const props: RequirementLinkProps = {
             link: link,
             status: ManualTestStatus.PASS,
-            renderRequirementDescription: testStepLink => testStepLink.renderRequirementDescriptionWithIndex(),
+            renderRequirementDescription: requirementLink => requirementLink.renderRequirementDescriptionWithIndex(),
         };
         const testSubject = new RequirementLink(props);
 
@@ -37,7 +37,7 @@ describe('RequirementLink', () => {
         const props: RequirementLinkProps = {
             link: link,
             status: ManualTestStatus.PASS,
-            renderRequirementDescription: testStepLink => testStepLink.renderRequirementDescriptionWithoutIndex(),
+            renderRequirementDescription: requirementLink => requirementLink.renderRequirementDescriptionWithoutIndex(),
         };
         const testSubject = new RequirementLink(props);
 

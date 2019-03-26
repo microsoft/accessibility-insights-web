@@ -160,7 +160,7 @@ function getInstanceStatusColumns(): Readonly<IColumn>[] {
     return [TestStatusChoiceColumn];
 }
 
-function renderRequirementDescription(testStepLink: RequirementLink): JSX.Element {
+function renderRequirementDescription(requirementLink: RequirementLink): JSX.Element {
     return null;
 }
 
