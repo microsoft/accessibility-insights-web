@@ -6,8 +6,8 @@ import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
-import { StoreActionMessageCreator } from '../../../../common/message-creators/istore-action-message-creator';
-import { StoreActionMessageCreatorImpl } from '../../../../common/message-creators/store-action-message-creator';
+import { StoreActionMessageCreator } from '../../../../common/message-creators/store-action-message-creator';
+import { StoreActionMessageCreatorImpl } from '../../../../common/message-creators/store-action-message-creator-impl';
 import { BaseClientStoresHub } from '../../../../common/stores/base-client-stores-hub';
 import { DetailsViewPivotType } from '../../../../common/types/details-view-pivot-type';
 import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';

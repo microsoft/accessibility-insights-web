@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Messages } from '../messages';
-import { StoreActionMessageCreator } from './istore-action-message-creator';
-import { StoreActionMessageCreatorImpl } from './store-action-message-creator';
+import { StoreActionMessageCreator } from './store-action-message-creator';
+import { StoreActionMessageCreatorImpl } from './store-action-message-creator-impl';
 
 export class StoreActionMessageCreatorFactory {
     private postMessage: (message: Message) => void;

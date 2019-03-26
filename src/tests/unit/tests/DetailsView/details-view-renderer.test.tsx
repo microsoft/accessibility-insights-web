@@ -12,7 +12,7 @@ import { DocumentManipulator } from '../../../../common/document-manipulator';
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
 import { InspectActionMessageCreator } from '../../../../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../../../../common/message-creators/scoping-action-message-creator';
-import { StoreActionMessageCreatorImpl } from '../../../../common/message-creators/store-action-message-creator';
+import { StoreActionMessageCreatorImpl } from '../../../../common/message-creators/store-action-message-creator-impl';
 import { IssuesTableHandler } from '../../../../DetailsView/components/issues-table-handler';
 import { DetailsView, DetailsViewContainerDeps } from '../../../../DetailsView/details-view-container';
 import { DetailsViewRenderer } from '../../../../DetailsView/details-view-renderer';

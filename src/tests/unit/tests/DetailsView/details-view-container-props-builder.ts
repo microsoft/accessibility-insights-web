@@ -7,8 +7,8 @@ import { VisualizationConfigurationFactory } from '../../../../common/configs/vi
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
 import { IBaseStore } from '../../../../common/istore';
 import { InspectActionMessageCreator } from '../../../../common/message-creators/inspect-action-message-creator';
-import { StoreActionMessageCreator } from '../../../../common/message-creators/istore-action-message-creator';
 import { ScopingActionMessageCreator } from '../../../../common/message-creators/scoping-action-message-creator';
+import { StoreActionMessageCreator } from '../../../../common/message-creators/store-action-message-creator';
 import { BaseClientStoresHub } from '../../../../common/stores/base-client-stores-hub';
 import { IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
 import { IDetailsViewData } from '../../../../common/types/store-data/idetails-view-data';

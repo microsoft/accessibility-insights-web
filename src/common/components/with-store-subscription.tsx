@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { StoreActionMessageCreator } from '../message-creators/istore-action-message-creator';
+import { StoreActionMessageCreator } from '../message-creators/store-action-message-creator';
 import { IClientStoresHub } from '../stores/iclient-stores-hub';
 
 export type WithStoreSubscriptionProps<T> = {

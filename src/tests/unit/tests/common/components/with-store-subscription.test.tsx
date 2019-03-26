@@ -5,7 +5,7 @@ import * as renderer from 'react-test-renderer';
 import { IMock, Mock, Times } from 'typemoq';
 
 import { withStoreSubscription, WithStoreSubscriptionProps } from '../../../../../common/components/with-store-subscription';
-import { StoreActionMessageCreatorImpl } from '../../../../../common/message-creators/store-action-message-creator';
+import { StoreActionMessageCreatorImpl } from '../../../../../common/message-creators/store-action-message-creator-impl';
 import { IClientStoresHub } from '../../../../../common/stores/iclient-stores-hub';
 
 describe('withStoreSubscription', () => {
