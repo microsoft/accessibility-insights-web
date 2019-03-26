@@ -3,9 +3,9 @@
 import * as React from 'react';
 
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
-import { TestStepLink, TestStepLinkProps } from '../../../../../DetailsView/components/test-step-link';
+import { RequirementLink, RequirementLinkProps } from '../../../../../DetailsView/components/requirement-link';
 
-describe('TestStepLink', () => {
+describe('RequirementLink', () => {
     it('renders with index', () => {
         const link = {
             key: 'Link with index key',
@@ -15,12 +15,12 @@ describe('TestStepLink', () => {
             index: 5,
             forceAnchor: true,
         };
-        const props: TestStepLinkProps = {
+        const props: RequirementLinkProps = {
             link: link,
             status: ManualTestStatus.PASS,
             renderRequirementDescription: testStepLink => testStepLink.renderRequirementDescriptionWithIndex(),
         };
-        const testSubject = new TestStepLink(props);
+        const testSubject = new RequirementLink(props);
 
         expect(testSubject.render()).toMatchSnapshot();
     });
@@ -34,12 +34,12 @@ describe('TestStepLink', () => {
             index: 17,
             forceAnchor: true,
         };
-        const props: TestStepLinkProps = {
+        const props: RequirementLinkProps = {
             link: link,
             status: ManualTestStatus.PASS,
             renderRequirementDescription: testStepLink => testStepLink.renderRequirementDescriptionWithoutIndex(),
         };
-        const testSubject = new TestStepLink(props);
+        const testSubject = new RequirementLink(props);
 
         expect(testSubject.render()).toMatchSnapshot();
     });

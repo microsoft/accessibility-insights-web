@@ -14,7 +14,7 @@ import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-st
 import { IAssessmentScanData, IScanData } from '../common/types/store-data/ivisualization-store-data';
 import { AssessmentInstanceRowData, AssessmentInstanceTable } from '../DetailsView/components/assessment-instance-table';
 import { AssessmentTestView } from '../DetailsView/components/assessment-test-view';
-import { TestStepLink } from '../DetailsView/components/test-step-link';
+import { RequirementLink } from '../DetailsView/components/requirement-link';
 import { AnalyzerProvider } from '../injected/analyzers/analyzer-provider';
 import {
     PropertyBags,
@@ -82,7 +82,7 @@ export class AssessmentBuilder {
         return table.renderDefaultInstanceTableHeader(items);
     }
 
-    private static renderRequirementDescription(testStepLink: TestStepLink): JSX.Element {
+    private static renderRequirementDescription(testStepLink: RequirementLink): JSX.Element {
         return testStepLink.renderRequirementDescriptionWithIndex();
     }
 

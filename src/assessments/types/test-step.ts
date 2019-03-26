@@ -8,16 +8,16 @@ import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag
 import { AssessmentNavState, IGeneratedAssessmentInstance } from '../../common/types/store-data/iassessment-result-data';
 import { DetailsViewActionMessageCreator } from '../../DetailsView/actions/details-view-action-message-creator';
 import { AssessmentInstanceRowData, AssessmentInstanceTable } from '../../DetailsView/components/assessment-instance-table';
-import { TestStepLink } from '../../DetailsView/components/test-step-link';
+import { RequirementLink } from '../../DetailsView/components/requirement-link';
 import { Analyzer } from '../../injected/analyzers/analyzer';
+import { AnalyzerProvider } from '../../injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { PropertyBags, VisualizationInstanceProcessorCallback } from '../../injected/visualization-instance-processor';
 import { DrawerProvider } from '../../injected/visualization/drawer-provider';
 import { IDrawer } from '../../injected/visualization/idrawer';
+import { DictionaryStringTo } from '../../types/common-types';
 import { ContentPageComponent, HyperlinkDefinition } from '../../views/content/content-page';
 import { IGetMessageGenerator } from '../assessment-default-message-generator';
-import { AnalyzerProvider } from './../../injected/analyzers/analyzer-provider';
-import { DictionaryStringTo } from './../../types/common-types';
 import { InstanceTableColumn } from './iinstance-table-column';
 import { ReportInstanceFields } from './report-instance-field';
 
@@ -48,7 +48,7 @@ export interface TestStep {
     getInstanceStatusColumns?: () => Readonly<IColumn>[];
     getDefaultMessage?: IGetMessageGenerator;
     renderInstanceTableHeader?: (table: AssessmentInstanceTable, items: AssessmentInstanceRowData[]) => JSX.Element;
-    renderRequirementDescription?: (testStepLink: TestStepLink) => JSX.Element;
+    renderRequirementDescription?: (testStepLink: RequirementLink) => JSX.Element;
 }
 
 export interface VisualHelperToggleConfig {

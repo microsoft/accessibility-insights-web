@@ -10,7 +10,7 @@ import { AssesssmentVisualizationConfiguration } from '../../../common/configs/v
 import { FeatureFlags } from '../../../common/feature-flags';
 import { ManualTestStatus } from '../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../common/types/visualization-type';
-import { TestStepLink } from '../../../DetailsView/components/test-step-link';
+import { RequirementLink } from '../../../DetailsView/components/requirement-link';
 import { ContentPage } from '../../../views/content/content-page';
 
 const content = {
@@ -160,7 +160,7 @@ function getInstanceStatusColumns(): Readonly<IColumn>[] {
     return [TestStatusChoiceColumn];
 }
 
-function renderRequirementDescription(testStepLink: TestStepLink): JSX.Element {
+function renderRequirementDescription(testStepLink: RequirementLink): JSX.Element {
     return null;
 }
 

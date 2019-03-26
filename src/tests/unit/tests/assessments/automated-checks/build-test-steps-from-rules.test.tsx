@@ -3,6 +3,7 @@
 import { isMatch } from 'lodash';
 import * as React from 'react';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { buildTestStepsFromRules } from '../../../../../assessments/automated-checks/build-test-steps-from-rules';
 import { InstanceTableColumn } from '../../../../../assessments/types/iinstance-table-column';
 import { TestStep } from '../../../../../assessments/types/test-step';
@@ -13,7 +14,7 @@ import { TelemetryDataFactory } from '../../../../../common/telemetry-data-facto
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { AssessmentInstanceRowData, AssessmentInstanceTable } from '../../../../../DetailsView/components/assessment-instance-table';
-import { TestStepLink } from '../../../../../DetailsView/components/test-step-link';
+import { RequirementLink } from '../../../../../DetailsView/components/requirement-link';
 import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../../../../injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult, ScannerUtils } from '../../../../../injected/scanner-utils';
@@ -115,7 +116,7 @@ describe('buildTestStepsFromRules', () => {
         expect(actual.renderInstanceTableHeader).toBeDefined();
         expect(actual.renderInstanceTableHeader({} as AssessmentInstanceTable, [])).toBeNull();
 
-        const linkMock = Mock.ofType(TestStepLink, MockBehavior.Strict);
+        const linkMock = Mock.ofType(RequirementLink, MockBehavior.Strict);
         const descriptionStub = <div>descriptionWithoutIndexStub</div>;
         linkMock
             .setup(lm => lm.renderRequirementDescriptionWithoutIndex())
