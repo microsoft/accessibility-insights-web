@@ -9,7 +9,7 @@ import { FrameCommunicator, IMessageRequest } from '../../../../injected/frameCo
 import { FrameMessageResponseCallback } from '../../../../injected/frameCommunicators/window-message-handler';
 import { IErrorMessageContent } from '../../../../injected/frameCommunicators/window-message-marshaller';
 import { ScannerUtils } from '../../../../injected/scanner-utils';
-import { ITabStopEvent, TabStopsListener } from '../../../../injected/tab-stops-listener';
+import { TabStopEvent, TabStopsListener } from '../../../../injected/tab-stops-listener';
 
 describe('TabStopsListenerTest', () => {
     const frameCommunicatorMock: IMock<FrameCommunicator> = Mock.ofType(FrameCommunicator);
@@ -161,7 +161,7 @@ describe('TabStopsListenerTest', () => {
         frameCommunicatorMock
             .setup(f =>
                 f.sendMessage(
-                    It.is((req: IMessageRequest<ITabStopEvent>) => {
+                    It.is((req: IMessageRequest<TabStopEvent>) => {
                         expect(req.command).toEqual(TabStopsListener.getTabbedElementsCommand);
                         expect(req.win).toEqual(topWindowStub);
                         expect(req.message.target).toMatchObject(['selector']);
@@ -219,7 +219,7 @@ describe('TabStopsListenerTest', () => {
         const eventStub = {
             target: targetElementStub,
         } as Event;
-        const tabEventListenMock = Mock.ofInstance((tabbedItems: ITabStopEvent) => {});
+        const tabEventListenMock = Mock.ofInstance((tabbedItems: TabStopEvent) => {});
 
         htmlElementUtilsMock
             .setup(h => h.getAllElementsByTagName('iframe'))
@@ -255,7 +255,7 @@ describe('TabStopsListenerTest', () => {
         tabEventListenMock
             .setup(t =>
                 t(
-                    It.is((event: ITabStopEvent) => {
+                    It.is((event: TabStopEvent) => {
                         expect(event.target).toEqual(['selector']);
                         return true;
                     }),
@@ -278,7 +278,7 @@ describe('TabStopsListenerTest', () => {
         const currentFocusedElementStub = {
             outerHTML: 'test html',
         };
-        const tabEventListenerMock = Mock.ofInstance((tabStopEvent: ITabStopEvent) => {});
+        const tabEventListenerMock = Mock.ofInstance((tabStopEvent: TabStopEvent) => {});
 
         windowUtilsMock
             .setup(w => w.isTopWindow())
@@ -300,7 +300,7 @@ describe('TabStopsListenerTest', () => {
         tabEventListenerMock
             .setup(t =>
                 t(
-                    It.is((tabStopEvent: ITabStopEvent) => {
+                    It.is((tabStopEvent: TabStopEvent) => {
                         expect(tabStopEvent.target).toMatchObject(['selector']);
                         expect(tabStopEvent.html).toEqual(currentFocusedElementStub.outerHTML);
                         return true;
@@ -339,7 +339,7 @@ describe('TabStopsListenerTest', () => {
         frameCommunicatorMock
             .setup(f =>
                 f.sendMessage(
-                    It.is((req: IMessageRequest<ITabStopEvent>) => {
+                    It.is((req: IMessageRequest<TabStopEvent>) => {
                         expect(req.command).toEqual(TabStopsListener.stopListeningCommand);
                         expect(req.frame).toEqual(frameStub);
                         return true;
@@ -360,14 +360,14 @@ describe('TabStopsListenerTest', () => {
 
     test('verify onGetTabbedElements in child frame', () => {
         const srcWindowStub = {};
-        const tabStopEventStub: ITabStopEvent = {
+        const tabStopEventStub: TabStopEvent = {
             target: ['selector'],
             html: 'test',
             timestamp: 1,
         };
         const frameStub = {};
         const parentWindowStub = {};
-        const messageStub: IMessageRequest<ITabStopEvent> = {
+        const messageStub: IMessageRequest<TabStopEvent> = {
             win: parentWindowStub as any,
             command: TabStopsListener.getTabbedElementsCommand,
             message: {
@@ -412,7 +412,7 @@ describe('TabStopsListenerTest', () => {
                 (
                     command,
                     onGetTabbedElements: (
-                        tabStopEvent: ITabStopEvent,
+                        tabStopEvent: TabStopEvent,
                         error: IErrorMessageContent,
                         messageSourceWin: Window,
                         responder?: FrameMessageResponseCallback,
@@ -436,13 +436,13 @@ describe('TabStopsListenerTest', () => {
 
     test('verify onGetTabbedElements in main frame', () => {
         const srcWindowStub = {};
-        const tabStopEventStub: ITabStopEvent = {
+        const tabStopEventStub: TabStopEvent = {
             target: ['selector'],
             html: 'test',
             timestamp: 1,
         };
         const frameStub = {};
-        const tabEventListenMock = Mock.ofInstance((tabbedItems: ITabStopEvent) => {});
+        const tabEventListenMock = Mock.ofInstance((tabbedItems: TabStopEvent) => {});
         const finalEventStub = {
             target: ['frame1', 'selector'],
             html: 'test',
@@ -481,7 +481,7 @@ describe('TabStopsListenerTest', () => {
                 (
                     command,
                     onGetTabbedElements: (
-                        tabStopEvent: ITabStopEvent,
+                        tabStopEvent: TabStopEvent,
                         error: IErrorMessageContent,
                         messageSourceWin: Window,
                         responder?: FrameMessageResponseCallback,
@@ -504,14 +504,14 @@ describe('TabStopsListenerTest', () => {
 
     test('verify onGetTabbedElements in main frame', () => {
         const srcWindowStub = {};
-        const tabStopEventStub: ITabStopEvent = {
+        const tabStopEventStub: TabStopEvent = {
             target: ['selector'],
             html: 'test',
             timestamp: 1,
         };
         const frameStub = {};
         let onGetTabbedElementsFunc: (
-            tabStopEvent: ITabStopEvent,
+            tabStopEvent: TabStopEvent,
             error: IErrorMessageContent,
             messageSourceWin: Window,
             responder?: FrameMessageResponseCallback,
@@ -547,7 +547,7 @@ describe('TabStopsListenerTest', () => {
                 (
                     command,
                     onGetTabbedElements: (
-                        tabStopEvent: ITabStopEvent,
+                        tabStopEvent: TabStopEvent,
                         error: IErrorMessageContent,
                         messageSourceWin: Window,
                         responder?: FrameMessageResponseCallback,
@@ -568,20 +568,20 @@ describe('TabStopsListenerTest', () => {
 
     test('unable to get frame element for the tabbed element', () => {
         const srcWindowStub = {};
-        const tabStopEventStub: ITabStopEvent = {
+        const tabStopEventStub: TabStopEvent = {
             target: ['selector'],
             html: 'test',
             timestamp: 1,
         };
         const frameStub = {};
-        const tabEventListenMock = Mock.ofInstance((tabbedItems: ITabStopEvent) => {});
+        const tabEventListenMock = Mock.ofInstance((tabbedItems: TabStopEvent) => {});
         const finalEventStub = {
             target: ['frame1', 'selector'],
             html: 'test',
             timestamp: 1,
         };
         let onGetTabbedElementsFunc: (
-            tabStopEvent: ITabStopEvent,
+            tabStopEvent: TabStopEvent,
             error: IErrorMessageContent,
             messageSourceWin: Window,
             responder?: FrameMessageResponseCallback,
@@ -619,7 +619,7 @@ describe('TabStopsListenerTest', () => {
                 (
                     command,
                     onGetTabbedElements: (
-                        tabStopEvent: ITabStopEvent,
+                        tabStopEvent: TabStopEvent,
                         error: IErrorMessageContent,
                         messageSourceWin: Window,
                         responder?: FrameMessageResponseCallback,

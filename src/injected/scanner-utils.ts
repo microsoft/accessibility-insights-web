@@ -28,8 +28,7 @@ export interface DecoratedAxeNodeResult {
     snippet: string;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IHtmlElementAxeResults {
+export interface HtmlElementAxeResults {
     ruleResults: DictionaryStringTo<DecoratedAxeNodeResult>;
     isVisible: boolean;
     propertyBag?: any;
@@ -66,37 +65,37 @@ export class ScannerUtils {
     }
 
     @autobind
-    public getIncompleteInstances(results: ScanResults): DictionaryStringTo<IHtmlElementAxeResults> {
-        const resultsMap: DictionaryStringTo<IHtmlElementAxeResults> = {};
+    public getIncompleteInstances(results: ScanResults): DictionaryStringTo<HtmlElementAxeResults> {
+        const resultsMap: DictionaryStringTo<HtmlElementAxeResults> = {};
         this.addIncompletesToDictionary(resultsMap, results.incomplete);
         return resultsMap;
     }
 
     @autobind
-    public getFailingInstances(results: ScanResults): DictionaryStringTo<IHtmlElementAxeResults> {
-        const resultsMap: DictionaryStringTo<IHtmlElementAxeResults> = {};
+    public getFailingInstances(results: ScanResults): DictionaryStringTo<HtmlElementAxeResults> {
+        const resultsMap: DictionaryStringTo<HtmlElementAxeResults> = {};
         this.addFailuresToDictionary(resultsMap, results.violations);
         return resultsMap;
     }
 
     @autobind
-    public getPassingInstances(results: ScanResults): DictionaryStringTo<IHtmlElementAxeResults> {
-        const resultsMap: DictionaryStringTo<IHtmlElementAxeResults> = {};
+    public getPassingInstances(results: ScanResults): DictionaryStringTo<HtmlElementAxeResults> {
+        const resultsMap: DictionaryStringTo<HtmlElementAxeResults> = {};
         this.addPassesToDictionary(resultsMap, results.passes);
         return resultsMap;
     }
 
     @autobind
-    public getAllCompletedInstances(results: ScanResults): DictionaryStringTo<IHtmlElementAxeResults> {
-        const resultsMap: DictionaryStringTo<IHtmlElementAxeResults> = {};
+    public getAllCompletedInstances(results: ScanResults): DictionaryStringTo<HtmlElementAxeResults> {
+        const resultsMap: DictionaryStringTo<HtmlElementAxeResults> = {};
         this.addPassesToDictionary(resultsMap, results.passes);
         this.addFailuresToDictionary(resultsMap, results.violations);
         return resultsMap;
     }
 
     @autobind
-    public getFailingOrPassingInstances(results: ScanResults): DictionaryStringTo<IHtmlElementAxeResults> {
-        const resultsMap: DictionaryStringTo<IHtmlElementAxeResults> = {};
+    public getFailingOrPassingInstances(results: ScanResults): DictionaryStringTo<HtmlElementAxeResults> {
+        const resultsMap: DictionaryStringTo<HtmlElementAxeResults> = {};
         this.addFailuresToDictionary(resultsMap, results.violations);
         if (Object.keys(resultsMap).length === 0) {
             this.addPassesToDictionary(resultsMap, results.passes);
@@ -104,19 +103,19 @@ export class ScannerUtils {
         return resultsMap;
     }
 
-    private addPassesToDictionary(dictionary: DictionaryStringTo<IHtmlElementAxeResults>, axeRules: RuleResult[]): void {
+    private addPassesToDictionary(dictionary: DictionaryStringTo<HtmlElementAxeResults>, axeRules: RuleResult[]): void {
         this.addResultstoDictionary(dictionary, axeRules, true);
     }
 
-    private addIncompletesToDictionary(dictionary: DictionaryStringTo<IHtmlElementAxeResults>, axeRules: RuleResult[]): void {
+    private addIncompletesToDictionary(dictionary: DictionaryStringTo<HtmlElementAxeResults>, axeRules: RuleResult[]): void {
         this.addResultstoDictionary(dictionary, axeRules, undefined);
     }
 
-    private addFailuresToDictionary(dictionary: DictionaryStringTo<IHtmlElementAxeResults>, axeRules: RuleResult[]): void {
+    private addFailuresToDictionary(dictionary: DictionaryStringTo<HtmlElementAxeResults>, axeRules: RuleResult[]): void {
         this.addResultstoDictionary(dictionary, axeRules, false);
     }
 
-    private addResultstoDictionary(dictionary: DictionaryStringTo<IHtmlElementAxeResults>, axeRules: RuleResult[], status: boolean): void {
+    private addResultstoDictionary(dictionary: DictionaryStringTo<HtmlElementAxeResults>, axeRules: RuleResult[], status: boolean): void {
         axeRules.forEach(ruleResult => {
             ruleResult.nodes.forEach(node => {
                 const selectorKey = node.target.join(';');

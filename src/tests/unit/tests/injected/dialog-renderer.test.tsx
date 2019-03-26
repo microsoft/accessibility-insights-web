@@ -20,7 +20,7 @@ import { FrameMessageResponseCallback } from '../../../../injected/frameCommunic
 import { IErrorMessageContent } from '../../../../injected/frameCommunicators/window-message-marshaller';
 import { LayeredDetailsDialogComponent } from '../../../../injected/layered-details-dialog-component';
 import { MainWindowContext } from '../../../../injected/main-window-context';
-import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from '../../../../injected/scanner-utils';
+import { DecoratedAxeNodeResult, HtmlElementAxeResults } from '../../../../injected/scanner-utils';
 import { ShadowUtils } from '../../../../injected/shadow-utils';
 import { TargetPageActionMessageCreator } from '../../../../injected/target-page-action-message-creator';
 import { DictionaryStringTo } from '../../../../types/common-types';
@@ -113,7 +113,7 @@ describe('DialogRendererTests', () => {
         };
         const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
         expectedFailedRules[ruleId] = nodeResult;
-        const testData: IHtmlElementAxeResults = {
+        const testData: HtmlElementAxeResults = {
             ruleResults: expectedFailedRules,
             target: [ruleId],
             isVisible: true,
@@ -157,7 +157,7 @@ describe('DialogRendererTests', () => {
         };
         const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
         expectedFailedRules[ruleId] = nodeResult;
-        const testData: IHtmlElementAxeResults = {
+        const testData: HtmlElementAxeResults = {
             ruleResults: expectedFailedRules,
             target: [ruleId],
             isVisible: true,
@@ -199,7 +199,7 @@ describe('DialogRendererTests', () => {
         };
         const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
         expectedFailedRules[ruleId] = nodeResult;
-        const testData: IHtmlElementAxeResults = {
+        const testData: HtmlElementAxeResults = {
             ruleResults: expectedFailedRules,
             target: [ruleId],
             isVisible: true,
@@ -243,7 +243,7 @@ describe('DialogRendererTests', () => {
         };
         const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
         expectedFailedRules[ruleId] = nodeResult;
-        const testData: IHtmlElementAxeResults = {
+        const testData: HtmlElementAxeResults = {
             ruleResults: expectedFailedRules,
             target: [ruleId],
             isVisible: true,
@@ -267,7 +267,7 @@ describe('DialogRendererTests', () => {
     });
 
     test('test render in iframe: shadow FF on', () => {
-        const testData: IHtmlElementAxeResults = {
+        const testData: HtmlElementAxeResults = {
             ruleResults: null,
             target: [],
             isVisible: true,
@@ -295,7 +295,7 @@ describe('DialogRendererTests', () => {
     });
 
     test('test render in iframe: shadow FF off', () => {
-        const testData: IHtmlElementAxeResults = {
+        const testData: HtmlElementAxeResults = {
             ruleResults: null,
             target: [],
             isVisible: true,
@@ -322,7 +322,7 @@ describe('DialogRendererTests', () => {
     });
 
     test('test main window subsribe and processRequest: shadow FF on', () => {
-        const testData: IHtmlElementAxeResults = {
+        const testData: HtmlElementAxeResults = {
             ruleResults: null,
             target: ['test string'],
             isVisible: true,
@@ -349,7 +349,7 @@ describe('DialogRendererTests', () => {
     });
 
     test('test main window subsribe and processRequest: shadowDom FF off', () => {
-        const testData: IHtmlElementAxeResults = {
+        const testData: HtmlElementAxeResults = {
             ruleResults: null,
             target: ['test string'],
             isVisible: true,

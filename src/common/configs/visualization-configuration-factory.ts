@@ -12,7 +12,7 @@ import { UniquelyIdentifiableInstances } from '../../background/instance-identif
 import { TestViewProps } from '../../DetailsView/components/test-view';
 import { Analyzer } from '../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../injected/analyzers/analyzer-provider';
-import { IHtmlElementAxeResults, ScannerUtils } from '../../injected/scanner-utils';
+import { HtmlElementAxeResults, ScannerUtils } from '../../injected/scanner-utils';
 import { PropertyBags, VisualizationInstanceProcessorCallback } from '../../injected/visualization-instance-processor';
 import { DrawerProvider } from '../../injected/visualization/drawer-provider';
 import { IDrawer } from '../../injected/visualization/idrawer';
@@ -45,7 +45,7 @@ export interface AssesssmentVisualizationConfiguration {
     setAssessmentData?: (data: IAssessmentStoreData, selectorMap: DictionaryStringTo<any>, instanceMap?: DictionaryStringTo<any>) => void;
     analyzerMessageType: string;
     analyzerProgressMessageType?: string;
-    resultProcessor?: (scanner: ScannerUtils) => (results: ScanResults) => DictionaryStringTo<IHtmlElementAxeResults>;
+    resultProcessor?: (scanner: ScannerUtils) => (results: ScanResults) => DictionaryStringTo<HtmlElementAxeResults>;
     telemetryProcessor?: TelemetryProcessor<IAnalyzerTelemetryCallback>;
     getAnalyzer: (analyzerProvider: AnalyzerProvider, testStep?: string) => Analyzer;
     getIdentifier: (testStep?: string) => string;

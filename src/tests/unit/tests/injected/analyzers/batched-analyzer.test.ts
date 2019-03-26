@@ -15,7 +15,7 @@ import { VisualizationType } from '../../../../../common/types/visualization-typ
 import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
 import { MessageType } from '../../../../../injected/analyzers/base-analyzer';
 import { BatchedRuleAnalyzer, IResultRuleFilter } from '../../../../../injected/analyzers/batched-rule-analyzer';
-import { IHtmlElementAxeResults, ScannerUtils } from '../../../../../injected/scanner-utils';
+import { HtmlElementAxeResults, ScannerUtils } from '../../../../../injected/scanner-utils';
 import { ScanOptions } from '../../../../../scanner/exposed-apis';
 import { RuleResult, ScanResults } from '../../../../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../../../../types/common-types';
@@ -89,7 +89,7 @@ describe('BatchedRuleAnalyzer', () => {
         const resultOne: RuleResult = {
             id: ruleOne,
         } as RuleResult;
-        const resultProcessorMockOne: IMock<(results: ScanResults) => DictionaryStringTo<IHtmlElementAxeResults>> = Mock.ofInstance(
+        const resultProcessorMockOne: IMock<(results: ScanResults) => DictionaryStringTo<HtmlElementAxeResults>> = Mock.ofInstance(
             results => null,
             MockBehavior.Strict,
         );
@@ -102,7 +102,7 @@ describe('BatchedRuleAnalyzer', () => {
             resultProcessor: scanner => resultProcessorMockOne.object,
         };
         const ruleTwo = 'the second rule';
-        const resultProcessorMockTwo: IMock<(results: ScanResults) => DictionaryStringTo<IHtmlElementAxeResults>> = Mock.ofInstance(
+        const resultProcessorMockTwo: IMock<(results: ScanResults) => DictionaryStringTo<HtmlElementAxeResults>> = Mock.ofInstance(
             results => null,
             MockBehavior.Strict,
         );
@@ -164,7 +164,7 @@ describe('BatchedRuleAnalyzer', () => {
     }
 
     function setupProcessingMocks(
-        resultProcessorMock: IMock<(results: ScanResults) => DictionaryStringTo<IHtmlElementAxeResults>>,
+        resultProcessorMock: IMock<(results: ScanResults) => DictionaryStringTo<HtmlElementAxeResults>>,
         config: RuleAnalyzerConfiguration,
         completeResults: ScanResults,
         filteredResults: ScanResults,

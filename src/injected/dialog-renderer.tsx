@@ -21,11 +21,11 @@ import { FrameMessageResponseCallback } from './frameCommunicators/window-messag
 import { IErrorMessageContent } from './frameCommunicators/window-message-marshaller';
 import { LayeredDetailsDialogComponent, LayeredDetailsDialogDeps } from './layered-details-dialog-component';
 import { MainWindowContext } from './main-window-context';
-import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from './scanner-utils';
+import { DecoratedAxeNodeResult, HtmlElementAxeResults } from './scanner-utils';
 import { ShadowUtils } from './shadow-utils';
 
 export interface DetailsDialogWindowMessage {
-    data: IHtmlElementAxeResults;
+    data: HtmlElementAxeResults;
     featureFlagStoreData: FeatureFlagStoreData;
 }
 
@@ -47,7 +47,7 @@ export class DialogRenderer {
         }
     }
 
-    public render(data: IHtmlElementAxeResults, featureFlagStoreData: FeatureFlagStoreData): void {
+    public render(data: HtmlElementAxeResults, featureFlagStoreData: FeatureFlagStoreData): void {
         if (this.isInMainWindow()) {
             const mainWindowContext = MainWindowContext.get();
             mainWindowContext.getTargetPageActionMessageCreator().openIssuesDialog();
@@ -128,15 +128,15 @@ export class DialogRenderer {
         return dialogContainer;
     }
 
-    private getFailedRules(data: IHtmlElementAxeResults): DictionaryStringTo<DecoratedAxeNodeResult> {
+    private getFailedRules(data: HtmlElementAxeResults): DictionaryStringTo<DecoratedAxeNodeResult> {
         return data.ruleResults;
     }
 
-    private getTarget(data: IHtmlElementAxeResults): string[] {
+    private getTarget(data: HtmlElementAxeResults): string[] {
         return data.target;
     }
 
-    private getElementSelector(data: IHtmlElementAxeResults): string {
+    private getElementSelector(data: HtmlElementAxeResults): string {
         return data.target.join(';');
     }
 
