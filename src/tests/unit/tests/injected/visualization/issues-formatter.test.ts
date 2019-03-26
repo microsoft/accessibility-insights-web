@@ -6,7 +6,7 @@ import { ClientBrowserAdapter } from '../../../../../common/client-browser-adapt
 import { HTMLElementUtils } from '../../../../../common/html-element-utils';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { FrameCommunicator } from '../../../../../injected/frameCommunicators/frame-communicator';
-import { IHtmlElementAxeResults } from '../../../../../injected/scanner-utils';
+import { HtmlElementAxeResults } from '../../../../../injected/scanner-utils';
 import { ShadowUtils } from '../../../../../injected/shadow-utils';
 import { HeadingStyleConfiguration } from '../../../../../injected/visualization/heading-formatter';
 import { IssuesFormatter } from '../../../../../injected/visualization/issues-formatter';
@@ -35,7 +35,7 @@ describe('IssuesFormatterTests', () => {
     });
 
     test('tooltip for the failed rules from the axe result', () => {
-        const axeData: IHtmlElementAxeResults = {
+        const axeData: HtmlElementAxeResults = {
             target: ['html'],
             isVisible: true,
             ruleResults: {

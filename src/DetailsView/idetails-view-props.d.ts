@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { VisualizationType } from '../common/types/visualization-type';
 import { ScanData } from '../background/visualization-store';
-import { IHtmlElementAxeResults } from '../injected/scanner-utils';
+import { HtmlElementAxeResults } from '../injected/scanner-utils';
 
 export interface DetailsViewProps {
     type: VisualizationType;

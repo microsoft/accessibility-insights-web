@@ -3,7 +3,7 @@
 import { autobind } from '@uifabric/utilities';
 import * as Q from 'q';
 import { WindowUtils } from './../../common/window-utils';
-import { ITabStopEvent, TabStopsListener } from './../tab-stops-listener';
+import { TabStopEvent, TabStopsListener } from './../tab-stops-listener';
 import { AxeAnalyzerResult, FocusAnalyzerConfiguration, ScanBasePayload, ScanUpdatePayload } from './analyzer';
 import { BaseAnalyzer } from './base-analyzer';
 
@@ -16,7 +16,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
     private deferred: Q.Deferred<AxeAnalyzerResult>;
     private _windowUtils: WindowUtils;
 
-    private _pendingTabbedElements: ITabStopEvent[] = [];
+    private _pendingTabbedElements: TabStopEvent[] = [];
     private _onTabbedTimeoutId: number;
     protected config: FocusAnalyzerConfiguration;
 
@@ -42,7 +42,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
 
     protected getResults(): Q.Promise<AxeAnalyzerResult> {
         this.deferred = Q.defer<AxeAnalyzerResult>();
-        this.tabStopsListener.setTabEventListenerOnMainWindow((tabEvent: ITabStopEvent) => {
+        this.tabStopsListener.setTabEventListenerOnMainWindow((tabEvent: TabStopEvent) => {
             if (this._onTabbedTimeoutId != null) {
                 this._windowUtils.clearTimeout(this._onTabbedTimeoutId);
                 this._onTabbedTimeoutId = null;
@@ -69,7 +69,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
     }
 
     @autobind
-    protected onProgress(progressResult: ProgressResult<ITabStopEvent[]>): void {
+    protected onProgress(progressResult: ProgressResult<TabStopEvent[]>): void {
         const payload: ScanUpdatePayload = {
             key: this.config.key,
             testType: this.config.testType,
