@@ -186,7 +186,7 @@ describe('ActionCreatorTest', () => {
         const viewType = null;
         const pivotType = DetailsViewPivotType.allTest;
         const telemetry: DetailsViewOpenTelemetryData = {
-            detailsView: VisualizationType[viewType],
+            selectedTest: VisualizationType[viewType],
             triggeredBy: 'keypress',
             source: testSource,
         };
@@ -217,7 +217,7 @@ describe('ActionCreatorTest', () => {
         const viewType = VisualizationType.Headings;
         const pivotType = DetailsViewPivotType.allTest;
         const telemetry: DetailsViewOpenTelemetryData = {
-            detailsView: VisualizationType[viewType],
+            selectedTest: VisualizationType[viewType],
             triggeredBy: 'keypress',
             source: testSource,
         };
@@ -258,7 +258,7 @@ describe('ActionCreatorTest', () => {
         const viewType = VisualizationType.Issues;
         const pivotType = DetailsViewPivotType.fastPass;
         const telemetry: DetailsViewOpenTelemetryData = {
-            detailsView: VisualizationType[viewType],
+            selectedTest: VisualizationType[viewType],
             triggeredBy: 'keypress',
             source: testSource,
         };
@@ -299,7 +299,7 @@ describe('ActionCreatorTest', () => {
         const viewType = VisualizationType.Color;
         const pivotType = DetailsViewPivotType.allTest;
         const telemetry: DetailsViewOpenTelemetryData = {
-            detailsView: VisualizationType[viewType],
+            selectedTest: VisualizationType[viewType],
             triggeredBy: 'keypress',
             source: testSource,
         };
@@ -341,7 +341,7 @@ describe('ActionCreatorTest', () => {
         const viewType = VisualizationType.Landmarks;
         const pivotType = DetailsViewPivotType.allTest;
         const telemetry: DetailsViewOpenTelemetryData = {
-            detailsView: VisualizationType[viewType],
+            selectedTest: VisualizationType[viewType],
             triggeredBy: 'keypress',
             source: testSource,
         };
@@ -383,7 +383,7 @@ describe('ActionCreatorTest', () => {
         const viewType = VisualizationType.HeadingsAssessment;
         const pivotType = DetailsViewPivotType.assessment;
         const telemetry: DetailsViewOpenTelemetryData = {
-            detailsView: VisualizationType[viewType],
+            selectedTest: VisualizationType[viewType],
             triggeredBy: 'keypress',
             source: testSource,
         };
@@ -617,7 +617,7 @@ describe('ActionCreatorTest', () => {
             detailsViewType: viewType,
             pivotType: pivotType,
             telemetry: {
-                detailsView: VisualizationType[viewType],
+                selectedTest: VisualizationType[viewType],
                 triggeredBy: 'mouseclick',
                 source: testSource,
             },
@@ -779,7 +779,7 @@ describe('ActionCreatorTest', () => {
         const payload: ChangeInstanceStatusPayload = {
             test: VisualizationType.HeadingsAssessment,
             status: null,
-            step: null,
+            requirement: null,
             selector: null,
         };
         const disableActionName = 'disableVisualization';
@@ -788,7 +788,7 @@ describe('ActionCreatorTest', () => {
             .setupRegistrationCallback(Messages.Assessment.StartOver, [payload, tabId])
             .setupActionOnVisualizationActions(disableActionName)
             .setupVisualizationActionWithInvokeParameter(disableActionName, payload.test)
-            .setupTelemetrySend(TelemetryEvents.START_OVER_ASSESSMENT, payload, 1);
+            .setupTelemetrySend(TelemetryEvents.START_OVER_TEST, payload, 1);
         const actionCreator = validator.buildActionCreator();
 
         actionCreator.registerCallbacks();
@@ -802,7 +802,7 @@ describe('ActionCreatorTest', () => {
 
         const validator = new ActionCreatorValidator()
             .setupRegistrationCallback(Messages.Assessment.CancelStartOver, [payload, tabId])
-            .setupTelemetrySend(TelemetryEvents.CANCEL_START_OVER_ASSESSMENT, payload, tabId);
+            .setupTelemetrySend(TelemetryEvents.CANCEL_START_OVER_TEST, payload, tabId);
 
         const actionCreator = validator.buildActionCreator();
 
@@ -816,7 +816,7 @@ describe('ActionCreatorTest', () => {
         const payload: ChangeInstanceStatusPayload = {
             test: VisualizationType.HeadingsAssessment,
             status: null,
-            step: null,
+            requirement: null,
             selector: null,
         };
         const disableActionName = 'disableAssessmentVisualizations';
@@ -825,7 +825,7 @@ describe('ActionCreatorTest', () => {
             .setupRegistrationCallback(Messages.Assessment.StartOverAllAssessments, [payload, tabId])
             .setupActionOnVisualizationActions(disableActionName)
             .setupVisualizationActionWithInvokeParameter(disableActionName, null)
-            .setupTelemetrySend(TelemetryEvents.START_OVER_ALL_ASSESSMENTS, payload, 1);
+            .setupTelemetrySend(TelemetryEvents.START_OVER_ASSESSMENT, payload, 1);
         const actionCreator = validator.buildActionCreator();
 
         actionCreator.registerCallbacks();
@@ -839,7 +839,7 @@ describe('ActionCreatorTest', () => {
 
         const validator = new ActionCreatorValidator()
             .setupRegistrationCallback(Messages.Assessment.CancelStartOverAllAssessments, [payload, tabId])
-            .setupTelemetrySend(TelemetryEvents.CANCEL_START_OVER_ALL_ASSESSMENTS, payload, tabId);
+            .setupTelemetrySend(TelemetryEvents.CANCEL_START_OVER_ASSESSMENT, payload, tabId);
 
         const actionCreator = validator.buildActionCreator();
 

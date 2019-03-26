@@ -260,12 +260,12 @@ describe('VisualizationStoreTest ', () => {
         const dataBuilder = new VisualizationStoreDataBuilder();
         const payload: AssessmentToggleActionPayload = {
             test: VisualizationType.HeadingsAssessment,
-            step: HeadingsTestStep.missingHeadings,
+            requirement: HeadingsTestStep.missingHeadings,
         };
 
         const initialState = dataBuilder.build();
         const expectedState = dataBuilder
-            .withHeadingsAssessment(true, payload.step)
+            .withHeadingsAssessment(true, payload.requirement)
             .with('selectedAdhocDetailsView', VisualizationType.Issues)
             .with('injectingInProgress', true)
             .build();
@@ -314,13 +314,13 @@ describe('VisualizationStoreTest ', () => {
         const actionName = 'enableVisualization';
         const payload: AssessmentToggleActionPayload = {
             test: VisualizationType.HeadingsAssessment,
-            step: HeadingsTestStep.missingHeadings,
+            requirement: HeadingsTestStep.missingHeadings,
         };
 
         const initialState = new VisualizationStoreDataBuilder().withHeadingsEnable().build();
 
         const expectedState = new VisualizationStoreDataBuilder()
-            .withHeadingsAssessment(true, payload.step)
+            .withHeadingsAssessment(true, payload.requirement)
             .withHeadingsEnable()
             .with('injectingInProgress', true)
             .with('scanning', HeadingsTestStep.missingHeadings)
@@ -335,14 +335,14 @@ describe('VisualizationStoreTest ', () => {
         const actionName = 'enableVisualization';
         const payload: AssessmentToggleActionPayload = {
             test: VisualizationType.HeadingsAssessment,
-            step: HeadingsTestStep.missingHeadings,
+            requirement: HeadingsTestStep.missingHeadings,
         };
 
         const initialState = new VisualizationStoreDataBuilder().withLandmarksAssessment(true, LandmarkTestStep.landmarkRoles).build();
 
         const expectedState = new VisualizationStoreDataBuilder()
             .withLandmarksAssessment(false, LandmarkTestStep.landmarkRoles)
-            .withHeadingsAssessment(true, payload.step)
+            .withHeadingsAssessment(true, payload.requirement)
             .with('injectingInProgress', true)
             .with('scanning', HeadingsTestStep.missingHeadings)
             .build();
@@ -356,14 +356,14 @@ describe('VisualizationStoreTest ', () => {
         const actionName = 'enableVisualization';
         const payload: AssessmentToggleActionPayload = {
             test: VisualizationType.HeadingsAssessment,
-            step: HeadingsTestStep.missingHeadings,
+            requirement: HeadingsTestStep.missingHeadings,
         };
 
         const initialState = new VisualizationStoreDataBuilder().withHeadingsAssessment(true, HeadingsTestStep.headingFunction).build();
 
         const expectedState = new VisualizationStoreDataBuilder()
             .withHeadingsAssessment(false, HeadingsTestStep.headingFunction)
-            .withHeadingsAssessment(true, payload.step)
+            .withHeadingsAssessment(true, payload.requirement)
             .with('injectingInProgress', true)
             .with('scanning', HeadingsTestStep.missingHeadings)
             .build();

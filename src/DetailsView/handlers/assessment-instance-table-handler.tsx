@@ -36,13 +36,13 @@ export class AssessmentInstanceTableHandler {
     }
 
     @autobind
-    public changeStepStatus(status: ManualTestStatus, test: VisualizationType, step: string): void {
-        this.actionMessageCreator.changeManualTestStepStatus(status, test, step);
+    public changeRequirementStatus(status: ManualTestStatus, test: VisualizationType, step: string): void {
+        this.actionMessageCreator.changeManualRequirementStatus(status, test, step);
     }
 
     @autobind
-    public undoStepStatusChange(test: VisualizationType, step: string): void {
-        this.actionMessageCreator.undoManualTestStepStatusChange(test, step);
+    public undoRequirementStatusChange(test: VisualizationType, step: string): void {
+        this.actionMessageCreator.undoManualRequirementStatusChange(test, step);
     }
 
     @autobind
