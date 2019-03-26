@@ -1,13 +1,13 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 steps:
-  - task: NodeTool@0
-    inputs:
-      versionSpec: '10.15.0'
-    displayName: use node 10.15.0
+    - task: NodeTool@0
+      inputs:
+          versionSpec: '10.15.0'
+      displayName: use node 10.15.0
 
-  - task: Npm@1
-    inputs:
-      command: custom
-      customCommand: ci
-    displayName: npm ci
+    - task: Npm@1
+      inputs:
+          command: custom
+          customCommand: ci
+      displayName: npm ci
