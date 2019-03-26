@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { IStoreActionMessageCreator } from '../message-creators/istore-action-message-creator';
-import { IClientStoresHub } from '../stores/iclient-stores-hub';
+import { StoreActionMessageCreator } from '../message-creators/istore-action-message-creator';
+import { ClientStoresHub } from '../stores/iclient-stores-hub';
 
 export type WithStoreSubscriptionProps<T> = {
     deps: WithStoreSubscriptionDeps<T>;
@@ -11,8 +11,8 @@ export type WithStoreSubscriptionProps<T> = {
 };
 
 export type WithStoreSubscriptionDeps<T> = {
-    storesHub: IClientStoresHub<T>;
-    storeActionMessageCreator: IStoreActionMessageCreator;
+    storesHub: ClientStoresHub<T>;
+    storeActionMessageCreator: StoreActionMessageCreator;
 };
 
 export function withStoreSubscription<P extends WithStoreSubscriptionProps<S>, S>(

@@ -5,16 +5,16 @@ import * as renderer from 'react-test-renderer';
 import { IMock, Mock, Times } from 'typemoq';
 
 import { withStoreSubscription, WithStoreSubscriptionProps } from '../../../../../common/components/with-store-subscription';
-import { StoreActionMessageCreator } from '../../../../../common/message-creators/store-action-message-creator';
-import { IClientStoresHub } from '../../../../../common/stores/iclient-stores-hub';
+import { StoreActionMessageCreatorImpl } from '../../../../../common/message-creators/store-action-message-creator';
+import { ClientStoresHub } from '../../../../../common/stores/iclient-stores-hub';
 
 describe('withStoreSubscription', () => {
     type testProps = WithStoreSubscriptionProps<{ message: string }>;
     const testComp: React.SFC<testProps> = props => <h1>{props.storeState.message}</h1>;
-    let storeActionCreatorMock: IMock<StoreActionMessageCreator>;
+    let storeActionCreatorMock: IMock<StoreActionMessageCreatorImpl>;
 
     beforeEach(() => {
-        storeActionCreatorMock = Mock.ofType(StoreActionMessageCreator);
+        storeActionCreatorMock = Mock.ofType(StoreActionMessageCreatorImpl);
     });
 
     test('constructor: storesHub is null', () => {
@@ -33,7 +33,7 @@ describe('withStoreSubscription', () => {
         const hasStoresMock = jest.fn();
         hasStoresMock.mockReturnValue(true);
         const storeData = { message: 'This is the store data' };
-        const storesHubStub: IClientStoresHub<any> = {} as IClientStoresHub<any>;
+        const storesHubStub: ClientStoresHub<any> = {} as ClientStoresHub<any>;
         storesHubStub.getAllStoreData = () => storeData;
         storesHubStub.hasStores = hasStoresMock;
 
@@ -80,7 +80,7 @@ describe('withStoreSubscription', () => {
     test('componentDidMount: not all store are loaded', () => {
         const hasStoresMock = jest.fn();
         hasStoresMock.mockReturnValue(false);
-        const storesHubStub: IClientStoresHub<any> = {} as IClientStoresHub<any>;
+        const storesHubStub: ClientStoresHub<any> = {} as ClientStoresHub<any>;
         storesHubStub.getAllStoreData = () => null;
         storesHubStub.addChangedListenerToAllStores = jest.fn();
         storesHubStub.hasStores = hasStoresMock;
@@ -104,7 +104,7 @@ describe('withStoreSubscription', () => {
     test('componentDidMount: all store are loaded', () => {
         const hasStoresMock = jest.fn();
         hasStoresMock.mockReturnValue(true);
-        const storesHubStub: IClientStoresHub<any> = {} as IClientStoresHub<any>;
+        const storesHubStub: ClientStoresHub<any> = {} as ClientStoresHub<any>;
         storesHubStub.getAllStoreData = () => null;
         storesHubStub.addChangedListenerToAllStores = jest.fn();
         storesHubStub.hasStores = hasStoresMock;
@@ -126,7 +126,7 @@ describe('withStoreSubscription', () => {
     });
 
     test('componentWillUnmount: storesHub is null', () => {
-        const storesHubStub: IClientStoresHub<any> = {} as IClientStoresHub<any>;
+        const storesHubStub: ClientStoresHub<any> = {} as ClientStoresHub<any>;
         storesHubStub.getAllStoreData = () => null;
         storesHubStub.removeChangedListenerFromAllStores = jest.fn();
         const props: testProps = {
@@ -146,7 +146,7 @@ describe('withStoreSubscription', () => {
     test('componentWillUnmount', () => {
         const hasStoresMock = jest.fn();
         hasStoresMock.mockReturnValue(true);
-        const storesHubStub: IClientStoresHub<any> = {} as IClientStoresHub<any>;
+        const storesHubStub: ClientStoresHub<any> = {} as ClientStoresHub<any>;
         storesHubStub.getAllStoreData = () => null;
         storesHubStub.hasStores = hasStoresMock;
         storesHubStub.removeChangedListenerFromAllStores = jest.fn();
@@ -170,7 +170,7 @@ describe('withStoreSubscription', () => {
         const removeListenerMock = jest.fn();
         let listenerAdded;
         let listenerRemoved;
-        const storesHubStub: IClientStoresHub<any> = {} as IClientStoresHub<any>;
+        const storesHubStub: ClientStoresHub<any> = {} as ClientStoresHub<any>;
         hasStoresMock.mockReturnValue(true);
         storesHubStub.getAllStoreData = () => null;
         addListenerMock.mockImplementation(cb => (listenerAdded = cb));
@@ -207,7 +207,7 @@ describe('withStoreSubscription', () => {
         getStoreDataMock.mockReturnValueOnce({ message: 'before change' }).mockReturnValueOnce({ message: 'after change' });
 
         hasStoresMock.mockReturnValue(true);
-        const storesHubStub: IClientStoresHub<any> = {} as IClientStoresHub<any>;
+        const storesHubStub: ClientStoresHub<any> = {} as ClientStoresHub<any>;
         storesHubStub.getAllStoreData = getStoreDataMock;
         storesHubStub.addChangedListenerToAllStores = addChangedListenerToAllStoresMock;
         storesHubStub.hasStores = hasStoresMock;

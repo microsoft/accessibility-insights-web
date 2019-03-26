@@ -19,7 +19,7 @@ import { VisualizationStore } from '../../../../background/stores/visualization-
 import { FeatureFlags } from '../../../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
-import { ICommandStoreData } from '../../../../common/types/store-data/icommand-store-data';
+import { CommandStoreData } from '../../../../common/types/store-data/icommand-store-data';
 import { IDetailsViewData } from '../../../../common/types/store-data/idetails-view-data';
 import { ILaunchPanelStoreData } from '../../../../common/types/store-data/ilaunch-panel-store-data';
 import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';
@@ -91,7 +91,7 @@ export class StoreMocks {
         return this;
     }
 
-    public setCommandStoreData(data: ICommandStoreData): StoreMocks {
+    public setCommandStoreData(data: CommandStoreData): StoreMocks {
         this.commandStoreData = data;
         return this;
     }

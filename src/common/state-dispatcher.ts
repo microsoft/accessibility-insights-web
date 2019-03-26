@@ -4,7 +4,7 @@ import { autobind } from '@uifabric/utilities';
 
 import { StoreHub } from '../background/stores/istore-hub';
 import { GenericStoreMessageTypes } from './constants/generic-store-messages-types';
-import { IBaseStore } from './istore';
+import { BaseStore } from './istore';
 import { StoreUpdateMessage } from './types/store-update-message';
 
 export class StateDispatcher {
@@ -20,14 +20,14 @@ export class StateDispatcher {
         this.stores.getAllStores().forEach(store => this.addDispatchListenerToStore(store));
     }
 
-    private addDispatchListenerToStore(store: IBaseStore<any>): void {
+    private addDispatchListenerToStore(store: BaseStore<any>): void {
         const dispatchStateUpdateDelegate = this.getDispatchStateUpdateEvent(store);
         store.addChangedListener(dispatchStateUpdateDelegate);
         dispatchStateUpdateDelegate();
     }
 
     @autobind
-    private getDispatchStateUpdateEvent(store: IBaseStore<any>): () => void {
+    private getDispatchStateUpdateEvent(store: BaseStore<any>): () => void {
         return () => {
             this.broadcastMessage({
                 isStoreUpdateMessage: true,

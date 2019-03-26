@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
 
-import { IStoreActionMessageCreator } from '../../../../../common/message-creators/istore-action-message-creator';
 import { StoreActionMessageCreatorFactory } from '../../../../../common/message-creators/store-action-message-creator-factory';
 import { Messages } from '../../../../../common/messages';
+import { StoreActionMessageCreatorImpl } from './../../../../../common/message-creators/store-action-message-creator';
 
 describe('StoreActionMessageCreatorFactoryTest', () => {
     let postMessageMock: IMock<(_message: Message) => void>;
@@ -64,7 +64,7 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
 
     function testWithExpectedMessages(
         messages: string[],
-        getter: (testObject: StoreActionMessageCreatorFactory) => IStoreActionMessageCreator,
+        getter: (testObject: StoreActionMessageCreatorFactory) => StoreActionMessageCreatorImpl,
     ): void {
         messages.forEach(message => setupPostMessageMock(message));
 

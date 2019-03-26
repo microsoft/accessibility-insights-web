@@ -1,7 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-interface IndexedDBObjectStore {
+type IDBResultTarget = {
+    result: IDBValidKey[];
+} & EventTarget;
+
+type IDBEvent = {
+    target: IDBResultTarget;
+} & Event;
+
+interface IndexedDBObjectStore extends IDBObjectStore {
     openKeyCursor(range?: IDBKeyRange | IDBValidKey, direction?: IDBCursorDirection): IDBRequest;
 }
 export class Store {
@@ -20,7 +28,7 @@ export class Store {
         });
     }
 
-    public _withIDBStore(type: IDBTransactionMode, callback: (store: IndexedDBObjectStore) => void): Promise<void> {
+    public _withIDBStore(type: IDBTransactionMode, callback: (store: IndexedDBObjectStore | IDBObjectStore) => void): Promise<void> {
         return this._dbp.then(
             db =>
                 new Promise<void>((resolve, reject) => {
@@ -32,14 +40,6 @@ export class Store {
         );
     }
 }
-
-type IDBResultTarget = {
-    result: IDBValidKey[];
-} & EventTarget;
-
-type IDBEvent = {
-    target: IDBResultTarget;
-} & Event;
 
 let store: Store;
 

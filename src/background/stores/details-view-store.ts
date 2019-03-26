@@ -3,15 +3,15 @@
 import { autobind } from '@uifabric/utilities';
 
 import { StoreNames } from '../../common/stores/store-names';
-import { ICurrentPanel, IDetailsViewData } from '../../common/types/store-data/idetails-view-data';
+import { CurrentPanel, IDetailsViewData } from '../../common/types/store-data/idetails-view-data';
 import { DetailsViewRightContentPanelType } from '../../DetailsView/components/left-nav/details-view-right-content-panel-type';
 import { ContentActions } from '../actions/content-actions';
 import { DetailsViewActions } from '../actions/details-view-actions';
 import { ScopingActions } from '../actions/scoping-actions';
 import { PreviewFeaturesActions } from './../actions/preview-features-actions';
-import { BaseStore } from './base-store';
+import { BaseStoreImpl } from './base-store';
 
-export class DetailsViewStore extends BaseStore<IDetailsViewData> {
+export class DetailsViewStore extends BaseStoreImpl<IDetailsViewData> {
     constructor(
         private previewFeaturesActions: PreviewFeaturesActions,
         private scopingActions: ScopingActions,
@@ -56,7 +56,7 @@ export class DetailsViewStore extends BaseStore<IDetailsViewData> {
     }
 
     @autobind
-    private onOpen(flagName: keyof ICurrentPanel, mutator?: (IDetailsViewData) => void): void {
+    private onOpen(flagName: keyof CurrentPanel, mutator?: (IDetailsViewData) => void): void {
         Object.keys(this.state.currentPanel).forEach(key => {
             this.state.currentPanel[key] = false;
         });
@@ -70,7 +70,7 @@ export class DetailsViewStore extends BaseStore<IDetailsViewData> {
     }
 
     @autobind
-    private onClose(flagName: keyof ICurrentPanel, mutator?: (IDetailsViewData) => void): void {
+    private onClose(flagName: keyof CurrentPanel, mutator?: (IDetailsViewData) => void): void {
         this.state.currentPanel[flagName] = false;
 
         if (mutator != null) {

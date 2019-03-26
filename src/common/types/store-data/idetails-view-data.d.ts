@@ -5,12 +5,11 @@ import { DetailsViewRightContentPanelType } from '../../../DetailsView/component
 // tslint:disable-next-line:interface-name
 export interface IDetailsViewData {
     detailsViewRightContentPanel: DetailsViewRightContentPanelType;
-    currentPanel: ICurrentPanel;
+    currentPanel: CurrentPanel;
     contentPath: string;
 }
 
-// tslint:disable-next-line:interface-name
-export interface ICurrentPanel {
+export interface CurrentPanel {
     isPreviewFeaturesOpen: boolean;
     isScopingOpen: boolean;
     isContentOpen: boolean;

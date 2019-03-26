@@ -18,9 +18,9 @@ import {
 } from '../actions/action-payloads';
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationActions } from '../actions/visualization-actions';
-import { BaseStore } from './base-store';
+import { BaseStoreImpl } from './base-store';
 
-export class VisualizationStore extends BaseStore<IVisualizationStoreData> {
+export class VisualizationStore extends BaseStoreImpl<IVisualizationStoreData> {
     private visualizationActions: VisualizationActions;
     private tabActions: TabActions;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;

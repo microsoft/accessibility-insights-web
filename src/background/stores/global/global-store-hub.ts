@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IndexedDBAPI } from '../../../common/indexedDB/indexedDB';
-import { IBaseStore } from '../../../common/istore';
 import { StoreType } from '../../../common/types/store-type';
 import { generateUID } from '../../../common/uid-generator';
 import { GlobalActionHub } from '../../actions/global-action-hub';
@@ -9,6 +8,7 @@ import { BrowserAdapter } from '../../browser-adapter';
 import { PersistedData } from '../../get-persisted-data';
 import { LocalStorageData } from '../../storage-data';
 import { TelemetryEventHandler } from '../../telemetry/telemetry-event-handler';
+import { BaseStoreImpl } from '../base-store';
 import { StoreHub } from '../istore-hub';
 import { AssessmentsProvider } from './../../../assessments/types/iassessments-provider';
 import { AssessmentDataConverter } from './../../assessment-data-converter';
@@ -66,7 +66,7 @@ export class GlobalStoreHub implements StoreHub {
         this.userConfigurationStore.initialize();
     }
 
-    public getAllStores(): IBaseStore<any>[] {
+    public getAllStores(): BaseStoreImpl<any>[] {
         return [
             this.commandStore,
             this.featureFlagStore,

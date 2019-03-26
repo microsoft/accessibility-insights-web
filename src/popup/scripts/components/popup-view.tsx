@@ -9,7 +9,7 @@ import { withStoreSubscription, WithStoreSubscriptionDeps } from '../../../commo
 import { DisplayableStrings } from '../../../common/constants/displayable-strings';
 import { DropdownClickHandler } from '../../../common/dropdown-click-handler';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
-import { ICommandStoreData } from '../../../common/types/store-data/icommand-store-data';
+import { CommandStoreData } from '../../../common/types/store-data/icommand-store-data';
 import { ILaunchPanelStoreData } from '../../../common/types/store-data/ilaunch-panel-store-data';
 import { IVisualizationStoreData } from '../../../common/types/store-data/ivisualization-store-data';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
@@ -50,7 +50,7 @@ export enum LaunchPanelType {
 
 export interface PopupViewControllerState {
     visualizationStoreData: IVisualizationStoreData;
-    commandStoreData: ICommandStoreData;
+    commandStoreData: CommandStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
     launchPanelStateStoreData: ILaunchPanelStoreData;
     userConfigurationStoreData: UserConfigurationStoreData;
