@@ -7,6 +7,7 @@ import { LinkFunctionPropertyBag } from '../../../common/types/property-bag/ilin
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { title } from '../../../content/strings/application';
+import { TestAutomaticallyPassedNotice } from '../../../content/test/common/test-automatically-passed-notice';
 import * as content from '../../../content/test/links/link-function';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
@@ -24,9 +25,12 @@ const LinkFunctionDescription: JSX.Element = (
 
 const LinkFunctionHowToTest: JSX.Element = (
     <div>
-        For this requirement, {title} highlights anchor elements that are possible custom widgets. These elements don't have an ARIA widget
-        role, but they do have some custom widget markup, such as <Markup.Term>tabindex="-1"</Markup.Term>, an ARIA attribute, a non-widget
-        role, or no <Markup.Term>href</Markup.Term>.
+        <p>
+            For this requirement, {title} highlights anchor elements that are possible custom widgets. These elements don't have an ARIA
+            widget role, but they do have some custom widget markup, such as <Markup.Term>tabindex="-1"</Markup.Term>, an ARIA attribute, a
+            non-widget role, or no <Markup.Term>href</Markup.Term>.
+        </p>
+        <TestAutomaticallyPassedNotice />
         <ol>
             <li>
                 In the target page, examine each highlighted anchor element to verify that it functions as a link (i.e., it navigates to new
