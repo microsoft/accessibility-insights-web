@@ -4,7 +4,7 @@ import { autobind } from '@uifabric/utilities';
 import { INavLink, Nav } from 'office-ui-fabric-react/lib/Nav';
 import * as React from 'react';
 
-import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { getRequirementsResults } from '../../common/assessment/requirement';
 import { ManualTestStatus, ManualTestStatusData } from '../../common/types/manual-test-status';
 import { VisualizationType } from '../../common/types/visualization-type';
@@ -14,7 +14,7 @@ import { TestStepLink } from './test-step-link';
 
 export interface TestStepNavDeps {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-    assessmentsProvider: IAssessmentsProvider;
+    assessmentsProvider: AssessmentsProvider;
     outcomeTypeSemanticsFromTestStatus(testStatus: ManualTestStatus): OutcomeTypeSemantic;
     getInnerTextFromJsxElement(element: JSX.Element): string;
 }

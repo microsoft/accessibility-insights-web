@@ -3,7 +3,7 @@
 import { autobind } from '@uifabric/utilities';
 import { forOwn } from 'lodash';
 
-import { IAssessmentsProvider } from '../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../assessments/types/iassessments-provider';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../common/enum-helper';
 import { FeatureFlags } from '../common/feature-flags';
@@ -42,7 +42,7 @@ export class DrawingController {
     private _featureFlagStoreData: FeatureFlagStoreData;
     private _visualizationConfigurationFactory: VisualizationConfigurationFactory;
     private _drawerProvider: DrawerProvider;
-    private _assessmentProvider: IAssessmentsProvider;
+    private _assessmentProvider: AssessmentsProvider;
 
     constructor(
         frameCommunicator: FrameCommunicator,
@@ -51,7 +51,7 @@ export class DrawingController {
         htmlElementUtils: HTMLElementUtils,
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
         drawerProvider: DrawerProvider,
-        assessmentProvider: IAssessmentsProvider,
+        assessmentProvider: AssessmentsProvider,
     ) {
         this._frameCommunicator = frameCommunicator;
         this._instanceVisibilityChecker = instanceVisibilityChecker;

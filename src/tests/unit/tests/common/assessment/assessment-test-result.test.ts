@@ -3,7 +3,7 @@
 import { Mock } from 'typemoq';
 
 import { Assessment } from '../../../../../assessments/types/iassessment';
-import { IAssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
 import { AssessmentTestProviderDeps, AssessmentTestResult } from '../../../../../common/assessment/assessment-test-result';
 import { RequirementResult } from '../../../../../common/assessment/requirement';
 import { ManualTestStatus, ManualTestStatusData } from '../../../../../common/types/manual-test-status';
@@ -15,7 +15,7 @@ describe('AssessmentTestResult', () => {
     const definition = { key, type } as Assessment;
     const assessmentProvider = {
         forType: t => t === type && definition,
-    } as IAssessmentsProvider;
+    } as AssessmentsProvider;
 
     const testStepStatus = {
         alpha: { stepFinalResult: ManualTestStatus.PASS, isStepScanned: true },

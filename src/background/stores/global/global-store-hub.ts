@@ -10,7 +10,7 @@ import { PersistedData } from '../../get-persisted-data';
 import { ILocalStorageData } from '../../storage-data';
 import { TelemetryEventHandler } from '../../telemetry/telemetry-event-handler';
 import { StoreHub } from '../istore-hub';
-import { IAssessmentsProvider } from './../../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from './../../../assessments/types/iassessments-provider';
 import { AssessmentDataConverter } from './../../assessment-data-converter';
 import { AssessmentDataRemover } from './../../assessment-data-remover';
 import { AssessmentStore } from './../assessment-store';
@@ -33,7 +33,7 @@ export class GlobalStoreHub implements StoreHub {
         telemetryEventHandler: TelemetryEventHandler,
         browserAdapter: BrowserAdapter,
         userData: ILocalStorageData,
-        assessmentsProvider: IAssessmentsProvider,
+        assessmentsProvider: AssessmentsProvider,
         indexedDbInstance: IndexedDBAPI,
         persistedData: PersistedData,
     ) {

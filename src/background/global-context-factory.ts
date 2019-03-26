@@ -3,7 +3,7 @@
 import { IndexedDBAPI } from '../common/indexedDB/indexedDB';
 import { StateDispatcher } from '../common/state-dispatcher';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
-import { IAssessmentsProvider } from './../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from './../assessments/types/iassessments-provider';
 import { AssessmentActionCreator } from './actions/assessment-action-creator';
 import { GlobalActionCreator } from './actions/global-action-creator';
 import { GlobalActionHub } from './actions/global-action-hub';
@@ -22,7 +22,7 @@ export class GlobalContextFactory {
         browserAdapter: BrowserAdapter,
         telemetryEventHandler: TelemetryEventHandler,
         userData: ILocalStorageData,
-        assessmentsProvider: IAssessmentsProvider,
+        assessmentsProvider: AssessmentsProvider,
         telemetryDataFactory: TelemetryDataFactory,
         indexedDBInstance: IndexedDBAPI,
         persistedData: PersistedData,

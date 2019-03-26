@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
-import { IAssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
 import { AssessmentStore } from '../../../../background/stores/assessment-store';
 import { VisualizationScanResultStore } from '../../../../background/stores/visualization-scan-result-store';
 import { IBaseStore } from '../../../../common/istore';
@@ -23,7 +23,7 @@ import { VisualizationScanResultStoreDataBuilder } from '../../common/visualizat
 describe('SelectorMapHelperTest', () => {
     let scanResultStoreMock: IMock<IBaseStore<IVisualizationScanResultData>>;
     let assessmentStoreMock: IMock<IBaseStore<IAssessmentStoreData>>;
-    let assessmentsProvider: IAssessmentsProvider;
+    let assessmentsProvider: AssessmentsProvider;
     let testSelectorMap: DictionaryStringTo<IGeneratedAssessmentInstance<any, any>>;
     let expected: DictionaryStringTo<IAssessmentVisualizationInstance>;
     let testSubject: SelectorMapHelper;

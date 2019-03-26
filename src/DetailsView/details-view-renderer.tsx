@@ -4,7 +4,7 @@ import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { IAssessmentsProvider } from '../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../assessments/types/iassessments-provider';
 import { Theme } from '../common/components/theme';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { config } from '../common/configuration';
@@ -33,7 +33,7 @@ export class DetailsViewRenderer {
     private previewFeatureFlagsHandler: PreviewFeatureFlagsHandler;
     private scopingFlagsHandler: PreviewFeatureFlagsHandler;
     private dropdownClickHandler: DropdownClickHandler;
-    private assessmentsProvider: IAssessmentsProvider;
+    private assessmentsProvider: AssessmentsProvider;
 
     constructor(
         private readonly deps: DetailsViewContainerDeps,
@@ -50,7 +50,7 @@ export class DetailsViewRenderer {
         previewFeatureFlagsHandler: PreviewFeatureFlagsHandler,
         scopingFlagsHandler: PreviewFeatureFlagsHandler,
         dropdownClickHandler: DropdownClickHandler,
-        assessmentsProvider: IAssessmentsProvider,
+        assessmentsProvider: AssessmentsProvider,
         private documentManipulator: DocumentManipulator,
     ) {
         this.renderer = renderer;

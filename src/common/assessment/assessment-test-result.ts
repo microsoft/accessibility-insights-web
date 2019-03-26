@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Assessment } from '../../assessments/types/iassessment';
-import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { OutcomeStats, outcomeStatsFromManualTestStatus } from '../../DetailsView/reports/components/outcome-type';
 import { ManualTestStatusData } from '../types/manual-test-status';
 import { IAssessmentData } from '../types/store-data/iassessment-result-data';
@@ -13,7 +13,7 @@ export type AssessmentTestDefinition = Assessment;
 export type AssessmentTestProviderDeps = {
     outcomeStatsFromManualTestStatus: (testStepStatus: ManualTestStatusData) => OutcomeStats;
     getRequirementsResults: (
-        provider: IAssessmentsProvider,
+        provider: AssessmentsProvider,
         type: VisualizationType,
         stepStatus: ManualTestStatusData,
     ) => RequirementResult[];
@@ -26,7 +26,7 @@ const depDefaults = {
 
 export class AssessmentTestResult {
     constructor(
-        private readonly assessmentProvider: IAssessmentsProvider,
+        private readonly assessmentProvider: AssessmentsProvider,
         public readonly type: VisualizationType,
         public readonly data: IAssessmentData,
         private readonly deps: AssessmentTestProviderDeps = depDefaults,

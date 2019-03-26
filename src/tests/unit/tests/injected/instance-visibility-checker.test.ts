@@ -3,7 +3,7 @@
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { Assessments } from '../../../../assessments/assessments';
-import { IAssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
 import { UniquelyIdentifiableInstances } from '../../../../background/instance-identifier-generator';
 import {
     VisualizationConfiguration,
@@ -21,7 +21,7 @@ describe('InstanceVisibilityCheckerTest', () => {
     let sendMessageMock: IMock<(message) => void>;
     let htmlElementUtilsMock: IMock<HTMLElementUtils>;
     let testSubject: InstanceVisibilityChecker;
-    const assessmentsProvider: IAssessmentsProvider = Assessments;
+    const assessmentsProvider: AssessmentsProvider = Assessments;
     let configFactoryMock: IMock<VisualizationConfigurationFactory>;
     let configStub: VisualizationConfiguration;
     let getInstanceIdentiferGeneratorMock: IMock<(step: string) => Function>;

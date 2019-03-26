@@ -3,7 +3,7 @@
 import { chain, zipObject } from 'lodash/index';
 
 import { Assessment } from '../../assessments/types/iassessment';
-import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { ManualTestStatusData } from '../../common/types/manual-test-status';
 import { IAssessmentData, IAssessmentStoreData } from '../../common/types/store-data/iassessment-result-data';
 import * as Model from './assessment-report-model';
@@ -14,17 +14,17 @@ export type AssessmentSummaryResult = Pick<Assessment, 'title'> & { storeData: P
 export type AssessmentStatusData = { [key: string]: ManualTestStatusData };
 
 export type GetAssessmentSummaryModelFromProviderAndStoreData = (
-    assessmentsProvider: IAssessmentsProvider,
+    assessmentsProvider: AssessmentsProvider,
     assessmentStoreData: IAssessmentStoreData,
 ) => Model.OverviewSummaryReportModel;
 
 export type GetAssessmentSummaryModelFromProviderAndStatusData = (
-    assessmentsProvider: IAssessmentsProvider,
+    assessmentsProvider: AssessmentsProvider,
     statusData: AssessmentStatusData,
 ) => Model.OverviewSummaryReportModel;
 
 export function getAssessmentSummaryModelFromProviderAndStoreData(
-    assessmentsProvider: IAssessmentsProvider,
+    assessmentsProvider: AssessmentsProvider,
     assessmentStoreData: IAssessmentStoreData,
 ): Model.OverviewSummaryReportModel {
     const assessments = assessmentsProvider.all();
@@ -39,7 +39,7 @@ export function getAssessmentSummaryModelFromProviderAndStoreData(
 }
 
 export function getAssessmentSummaryModelFromProviderAndStatusData(
-    assessmentsProvider: IAssessmentsProvider,
+    assessmentsProvider: AssessmentsProvider,
     statusData: AssessmentStatusData,
 ): Model.OverviewSummaryReportModel {
     const assessments = assessmentsProvider.all();

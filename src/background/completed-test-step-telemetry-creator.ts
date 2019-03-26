@@ -4,7 +4,7 @@ import { autobind } from '@uifabric/utilities';
 import * as _ from 'lodash';
 
 import { Assessment } from '../assessments/types/iassessment';
-import { IAssessmentsProvider } from '../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../assessments/types/iassessments-provider';
 import { TestStep } from '../assessments/types/test-step';
 import { Messages } from '../common/messages';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
@@ -19,12 +19,12 @@ import { AssessmentStore } from './stores/assessment-store';
 
 export class CompletedTestStepTelemetryCreator {
     private store: AssessmentStore;
-    private provider: IAssessmentsProvider;
+    private provider: AssessmentsProvider;
     private telemetryFactory: TelemetryDataFactory;
     private interpreter: Interpreter;
     private oldTestStates: DictionaryStringTo<ManualTestStatusData>;
 
-    constructor(store: AssessmentStore, provider: IAssessmentsProvider, factory: TelemetryDataFactory, interpreter: Interpreter) {
+    constructor(store: AssessmentStore, provider: AssessmentsProvider, factory: TelemetryDataFactory, interpreter: Interpreter) {
         this.store = store;
         this.provider = provider;
         this.telemetryFactory = factory;

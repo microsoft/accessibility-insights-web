@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { IAssessmentsProvider } from '../../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../../assessments/types/iassessments-provider';
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../../../common/types/store-data/iassessment-result-data';
@@ -32,10 +32,10 @@ const linkDataSource: HyperlinkDefinition[] = [
 ];
 
 export type OverviewContainerDeps = {
-    assessmentsProvider: IAssessmentsProvider;
+    assessmentsProvider: AssessmentsProvider;
     getAssessmentSummaryModelFromProviderAndStoreData: GetAssessmentSummaryModelFromProviderAndStoreData;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-    assessmentsProviderWithFeaturesEnabled: (assessmentProvider: IAssessmentsProvider, flags: FeatureFlagStoreData) => IAssessmentsProvider;
+    assessmentsProviderWithFeaturesEnabled: (assessmentProvider: AssessmentsProvider, flags: FeatureFlagStoreData) => AssessmentsProvider;
 } & HelpLinkDeps &
     TargetChangeDialogDeps;
 

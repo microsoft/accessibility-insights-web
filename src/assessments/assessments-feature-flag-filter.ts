@@ -3,9 +3,9 @@
 import * as _ from 'lodash';
 
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
-import { AssessmentsProvider } from './assessments-provider';
+import { AssessmentsProviderImpl } from './assessments-provider';
 import { Assessment } from './types/iassessment';
-import { IAssessmentsProvider } from './types/iassessments-provider';
+import { AssessmentsProvider } from './types/iassessments-provider';
 
 function assessmentIsFeatureEnabled(flags: FeatureFlagStoreData): (assessment: Assessment) => boolean {
     return assessment =>
@@ -13,8 +13,8 @@ function assessmentIsFeatureEnabled(flags: FeatureFlagStoreData): (assessment: A
 }
 
 export function assessmentsProviderWithFeaturesEnabled(
-    assessmentProvider: IAssessmentsProvider,
+    assessmentProvider: AssessmentsProvider,
     flags: FeatureFlagStoreData,
-): IAssessmentsProvider {
-    return AssessmentsProvider.Create(assessmentProvider.all().filter(assessmentIsFeatureEnabled(flags)));
+): AssessmentsProvider {
+    return AssessmentsProviderImpl.Create(assessmentProvider.all().filter(assessmentIsFeatureEnabled(flags)));
 }

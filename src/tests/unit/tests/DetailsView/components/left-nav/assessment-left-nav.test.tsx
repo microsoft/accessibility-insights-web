@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
 
-import { IAssessmentsProvider } from '../../../../../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../../../../../assessments/types/iassessments-provider';
 import { ManualTestStatus, ManualTestStatusData } from '../../../../../../common/types/manual-test-status';
 import {
     AssessmentLeftNav,
@@ -22,12 +22,12 @@ describe('AssessmentLeftNav', () => {
     let props: AssessmentLeftNavProps;
     let leftNavLinkBuilderMock: IMock<LeftNavLinkBuilder>;
     let navLinkHandlerMock: NavLinkHandler;
-    let assessmentsProviderStub: IAssessmentsProvider;
+    let assessmentsProviderStub: AssessmentsProvider;
     let assessmentsDataStub: DictionaryStringTo<ManualTestStatusData>;
 
     beforeEach(() => {
         assessmentsDataStub = {};
-        assessmentsProviderStub = {} as IAssessmentsProvider;
+        assessmentsProviderStub = {} as AssessmentsProvider;
         leftNavLinkBuilderMock = Mock.ofType(LeftNavLinkBuilder);
         navLinkHandlerMock = {
             onOverviewClick: () => {},

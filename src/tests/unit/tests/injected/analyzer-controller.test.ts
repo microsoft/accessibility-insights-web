@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { AssessmentsProvider } from '../../../../assessments/assessments-provider';
-import { IAssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
+import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
+import { AssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
 import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
 import { ScopingStore } from '../../../../background/stores/global/scoping-store';
 import { VisualizationStore } from '../../../../background/stores/visualization-store';
@@ -46,7 +46,7 @@ describe('AnalyzerControllerTests', () => {
     let tabStopsListenerMock: IMock<TabStopsListener>;
     let sendMessageMock: IMock<(message) => void>;
     let analyzerStateUpdateHandlerStrictMock: IMock<AnalyzerStateUpdateHandler>;
-    let assessmentsMock: IMock<IAssessmentsProvider>;
+    let assessmentsMock: IMock<AssessmentsProvider>;
     let testObject: AnalyzerController;
     let teardown: (id: string) => void;
     let startScan: (id: string) => void;
@@ -70,7 +70,7 @@ describe('AnalyzerControllerTests', () => {
 
         tabStopsListenerMock = Mock.ofType(TabStopsListener);
         visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
-        assessmentsMock = Mock.ofType(AssessmentsProvider);
+        assessmentsMock = Mock.ofType(AssessmentsProviderImpl);
         visualizationStoreMock = Mock.ofType<VisualizationStore>();
         featureFlagStoreStoreMock = Mock.ofType<FeatureFlagStore>();
         scopingStoreMock = Mock.ofType<ScopingStore>(ScopingStore);

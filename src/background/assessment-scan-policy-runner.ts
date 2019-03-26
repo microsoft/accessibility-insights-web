@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IAssessmentsProvider } from '../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../assessments/types/iassessments-provider';
 import { TestsEnabledState } from '../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { AssessmentStore } from './stores/assessment-store';
@@ -14,7 +14,7 @@ export class AssessmentScanPolicyRunner {
         private assessmentStore: AssessmentStore,
         private visualizationStore: VisualizationStore,
         private scheduleScan: IScheduleScan,
-        private assessmentProvider: IAssessmentsProvider,
+        private assessmentProvider: AssessmentsProvider,
         private getSelectedAssessmentTest: IIsAnAssessmentSelected,
         private tabId: number,
     ) {}

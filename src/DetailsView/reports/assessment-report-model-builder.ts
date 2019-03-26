@@ -4,7 +4,7 @@ import * as _ from 'lodash/index';
 
 import { AssessmentDefaultMessageGenerator, DefaultMessageInterface } from '../../assessments/assessment-default-message-generator';
 import { Assessment } from '../../assessments/types/iassessment';
-import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { IAssessmentData, IAssessmentStoreData, TestStepInstance } from '../../common/types/store-data/iassessment-result-data';
 import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
@@ -22,7 +22,7 @@ type AssessmentResult = Assessment & { storeData: IAssessmentData };
 
 export class AssessmentReportModelBuilder {
     constructor(
-        private readonly assessmentsProvider: IAssessmentsProvider,
+        private readonly assessmentsProvider: AssessmentsProvider,
         private readonly assessmentStoreData: IAssessmentStoreData,
         private readonly tabStoreData: ITabStoreData,
         private readonly reportDate: Date,

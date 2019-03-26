@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-import { IAssessmentsProvider } from '../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../assessments/types/iassessments-provider';
 import { EnumHelper } from '../common/enum-helper';
 import { IBaseStore } from '../common/istore';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
@@ -25,7 +25,7 @@ export class AnalyzerController {
     private featureFlagStore: IBaseStore<FeatureFlagStoreData>;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
     private analyzerStateUpdateHandler: AnalyzerStateUpdateHandler;
-    private assessmentsProvider: IAssessmentsProvider;
+    private assessmentsProvider: AssessmentsProvider;
 
     constructor(
         sendMessage: (message) => void,
@@ -36,7 +36,7 @@ export class AnalyzerController {
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
         analyzerProvider: AnalyzerProvider,
         analyzerStateUpdateHandler: AnalyzerStateUpdateHandler,
-        assessmentsProvider: IAssessmentsProvider,
+        assessmentsProvider: AssessmentsProvider,
     ) {
         this.analyzers = {};
         this.sendMessage = sendMessage;

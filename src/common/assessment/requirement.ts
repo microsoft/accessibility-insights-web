@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { keys, sortBy } from 'lodash';
 
-import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { TestStep } from '../../assessments/types/test-step';
 import { ManualTestStatusData, TestStepData } from '../types/manual-test-status';
 import { VisualizationType } from '../types/visualization-type';
@@ -18,7 +18,7 @@ export type RequirementOrdering = RequirementOrderPart | RequirementOrderPart[];
 export type RequirementOrderPart = (result: RequirementResult) => string | number;
 
 export function getRequirementsResults(
-    provider: IAssessmentsProvider,
+    provider: AssessmentsProvider,
     type: VisualizationType,
     stepStatus: ManualTestStatusData,
 ): RequirementResult[] {

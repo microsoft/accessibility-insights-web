@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { assessmentsProviderWithFeaturesEnabled } from '../../../../assessments/assessments-feature-flag-filter';
-import { AssessmentsProvider } from '../../../../assessments/assessments-provider';
+import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
 import { Assessment } from '../../../../assessments/types/iassessment';
 
 describe('filter by feature flag', () => {
@@ -13,7 +13,7 @@ describe('filter by feature flag', () => {
         { key: 'missing' } as Assessment,
     ];
 
-    const baseProvider = AssessmentsProvider.Create(assessments);
+    const baseProvider = AssessmentsProviderImpl.Create(assessments);
     const create = flags => assessmentsProviderWithFeaturesEnabled(baseProvider, flags);
 
     test('none enabled', () => {

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { IAssessmentsProvider } from '../../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../../assessments/types/iassessments-provider';
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { ManualTestStatus, ManualTestStatusData } from '../../../common/types/manual-test-status';
 import { DictionaryStringTo } from '../../../types/common-types';
@@ -20,7 +20,7 @@ export type AssessmentLeftNavDeps = {
 export type AssessmentLeftNavProps = {
     deps: AssessmentLeftNavDeps;
     selectedKey: string;
-    assessmentsProvider: IAssessmentsProvider;
+    assessmentsProvider: AssessmentsProvider;
     assessmentsData: DictionaryStringTo<ManualTestStatusData>;
 };
 
