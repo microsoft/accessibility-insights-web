@@ -7,7 +7,7 @@ import { HTMLElementUtils } from '../../common/html-element-utils';
 import { WindowUtils } from '../../common/window-utils';
 import { DialogRenderer } from '../dialog-renderer';
 import { FrameCommunicator } from '../frameCommunicators/frame-communicator';
-import { IHtmlElementAxeResults } from '../scanner-utils';
+import { HtmlElementAxeResults } from '../scanner-utils';
 import { ShadowUtils } from '../shadow-utils';
 import { DrawerConfiguration, Formatter } from './formatter';
 import { HeadingStyleConfiguration } from './heading-formatter';
@@ -40,7 +40,7 @@ export class IssuesFormatter implements Formatter {
         fontColor: '#FFFFFF',
     };
 
-    public getDrawerConfiguration(element: HTMLElement, data: IHtmlElementAxeResults): DrawerConfiguration {
+    public getDrawerConfiguration(element: HTMLElement, data: HtmlElementAxeResults): DrawerConfiguration {
         const config: DrawerConfiguration = {
             failureBoxConfig: {
                 background: IssuesFormatter.style.borderColor,
@@ -64,7 +64,7 @@ export class IssuesFormatter implements Formatter {
         return this.dialogRenderer;
     }
 
-    private getText(data: IHtmlElementAxeResults): string {
+    private getText(data: HtmlElementAxeResults): string {
         const ruleIds = Object.keys(data.ruleResults);
         return `Failed rules: ${ruleIds.join(', ')}`;
     }

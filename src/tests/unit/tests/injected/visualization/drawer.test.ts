@@ -6,7 +6,7 @@ import { getDefaultFeatureFlagValues } from '../../../../../common/feature-flags
 import { WindowUtils } from '../../../../../common/window-utils';
 import { ClientUtils } from '../../../../../injected/client-utils';
 import { DialogRenderer } from '../../../../../injected/dialog-renderer';
-import { IHtmlElementAxeResults } from '../../../../../injected/scanner-utils';
+import { HtmlElementAxeResults } from '../../../../../injected/scanner-utils';
 import { ShadowUtils } from '../../../../../injected/shadow-utils';
 import { Drawer } from '../../../../../injected/visualization/drawer';
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
@@ -1194,7 +1194,7 @@ describe('Drawer', () => {
         };
     }
 
-    function createElementResults(ids: string[]): IHtmlElementAxeResults[] {
+    function createElementResults(ids: string[]): HtmlElementAxeResults[] {
         return ids.map(id => {
             return {
                 ruleResults: {},

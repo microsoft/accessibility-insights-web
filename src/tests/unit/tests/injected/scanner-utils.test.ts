@@ -6,7 +6,7 @@ import { ScopingInputTypes } from '../../../../background/scoping-input-types';
 import { ScopingStore } from '../../../../background/stores/global/scoping-store';
 import { Logger } from '../../../../common/logging/logger';
 import { IScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
-import { DecoratedAxeNodeResult, IHtmlElementAxeResults, ScannerUtils } from '../../../../injected/scanner-utils';
+import { DecoratedAxeNodeResult, HtmlElementAxeResults, ScannerUtils } from '../../../../injected/scanner-utils';
 import { scan, ScanOptions } from '../../../../scanner/exposed-apis';
 import { RuleResult, ScanResults } from '../../../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../../../types/common-types';
@@ -382,7 +382,7 @@ describe('ScannerUtilsTest', () => {
     }
 
     function verifyElementSelector(
-        elementResult: IHtmlElementAxeResults,
+        elementResult: HtmlElementAxeResults,
         selector: string,
         ruleResultMap: DictionaryStringTo<boolean>,
         includeSnippet?: boolean,

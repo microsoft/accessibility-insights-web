@@ -5,32 +5,29 @@ export interface ClientRectOffset {
     top: number;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IScrollAccessor {
+export interface ScrollAccessor {
     scrollX: number;
     scrollY: number;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IBoundRectAccessor {
+export interface BoundRectAccessor {
     getBoundingClientRect: () => ClientRectOffset;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IElementMatcher {
+export interface ElementMatcher {
     matches?: (selector: string) => boolean;
     webkitMatchesSelector?: (selector: string) => boolean;
     msMatchesSelector?: (selector: string) => boolean;
 }
 
 export class ClientUtils {
-    private scroll: IScrollAccessor;
+    private scroll: ScrollAccessor;
 
-    constructor(scroll: IScrollAccessor) {
+    constructor(scroll: ScrollAccessor) {
         this.scroll = scroll;
     }
 
-    public getOffset(element: IBoundRectAccessor): ClientRectOffset {
+    public getOffset(element: BoundRectAccessor): ClientRectOffset {
         const elementRect = element.getBoundingClientRect();
 
         return {
@@ -39,7 +36,7 @@ export class ClientUtils {
         };
     }
 
-    public matchesSelector(element: IElementMatcher, selectorString: string): boolean {
+    public matchesSelector(element: ElementMatcher, selectorString: string): boolean {
         const selector = (element.matches || element.webkitMatchesSelector || element.msMatchesSelector).bind(element);
 
         return selector(selectorString);

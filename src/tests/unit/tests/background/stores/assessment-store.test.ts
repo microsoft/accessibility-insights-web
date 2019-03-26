@@ -39,7 +39,7 @@ import {
 } from '../../../../../common/types/store-data/iassessment-result-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { ScanBasePayload, ScanCompletedPayload, ScanUpdatePayload } from '../../../../../injected/analyzers/analyzer';
-import { ITabStopEvent } from '../../../../../injected/tab-stops-listener';
+import { TabStopEvent } from '../../../../../injected/tab-stops-listener';
 import { ScanResults } from '../../../../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 import { AssessmentDataBuilder } from '../../../common/assessment-data-builder';
@@ -536,7 +536,7 @@ describe('AssessmentStoreTest', () => {
         const payload: ScanUpdatePayload = {
             testType: assessmentType,
             key: requirementKey,
-            results: {} as ITabStopEvent[],
+            results: {} as TabStopEvent[],
         };
 
         const expectedInstanceMap = {};

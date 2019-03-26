@@ -11,8 +11,7 @@ import { FrameMessageResponseCallback } from './frameCommunicators/window-messag
 import { IErrorMessageContent } from './frameCommunicators/window-message-marshaller';
 import { ScannerUtils } from './scanner-utils';
 
-// tslint:disable-next-line:interface-name
-export interface ITabStopEvent {
+export interface TabStopEvent {
     timestamp: number;
     target: string[];
     html: string;
@@ -28,7 +27,7 @@ export class TabStopsListener {
     public static readonly stopListeningCommand = 'insights.stopListenToTabstops';
     public static readonly getTabbedElementsCommand = 'insights.getTabbedElements';
 
-    private tabEventListener: (tabbedItems: ITabStopEvent) => void;
+    private tabEventListener: (tabbedItems: TabStopEvent) => void;
 
     constructor(
         frameCommunicator: FrameCommunicator,
@@ -50,7 +49,7 @@ export class TabStopsListener {
         this.frameCommunicator.subscribe(TabStopsListener.stopListeningCommand, this.onStopListenToTabStops);
     }
 
-    public setTabEventListenerOnMainWindow(callback: (tabbedItems: ITabStopEvent) => void): void {
+    public setTabEventListenerOnMainWindow(callback: (tabbedItems: TabStopEvent) => void): void {
         if (this.windowUtils.isTopWindow()) {
             this.tabEventListener = callback;
         } else {
@@ -68,7 +67,7 @@ export class TabStopsListener {
 
     @autobind
     private onGetTabbedElements(
-        tabStopEvent: ITabStopEvent,
+        tabStopEvent: TabStopEvent,
         error: IErrorMessageContent,
         messageSourceWin: Window,
         responder?: FrameMessageResponseCallback,
@@ -86,7 +85,7 @@ export class TabStopsListener {
     }
 
     @autobind
-    private sendTabbedElements(tabStopEvent: ITabStopEvent): void {
+    private sendTabbedElements(tabStopEvent: TabStopEvent): void {
         if (this.windowUtils.isTopWindow()) {
             if (this.tabEventListener) {
                 this.tabEventListener(tabStopEvent);
@@ -99,8 +98,8 @@ export class TabStopsListener {
     }
 
     @autobind
-    private sendTabbedElementsToParent(tabStopEvent: ITabStopEvent): void {
-        const messageRequest: IMessageRequest<ITabStopEvent> = {
+    private sendTabbedElementsToParent(tabStopEvent: TabStopEvent): void {
+        const messageRequest: IMessageRequest<TabStopEvent> = {
             win: this.windowUtils.getParentWindow(),
             command: TabStopsListener.getTabbedElementsCommand,
             message: tabStopEvent,
@@ -169,7 +168,7 @@ export class TabStopsListener {
 
         const timestamp: Date = DateProvider.getDate();
 
-        const tabStopEvent: ITabStopEvent = {
+        const tabStopEvent: TabStopEvent = {
             timestamp: timestamp.getTime(),
             target: [this.scannerUtils.getUniqueSelector(target)],
             html: target.outerHTML,

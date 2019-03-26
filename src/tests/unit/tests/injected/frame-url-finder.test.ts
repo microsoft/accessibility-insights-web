@@ -4,7 +4,7 @@ import { It, Mock, MockBehavior } from 'typemoq';
 
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
 import { WindowUtils } from '../../../../common/window-utils';
-import { FrameUrlFinder, IFrameUrlMessage, ITargetMessage } from '../../../../injected/frame-url-finder';
+import { FrameUrlFinder, FrameUrlMessage, TargetMessage } from '../../../../injected/frame-url-finder';
 import { FrameCommunicator, IMessageRequest } from '../../../../injected/frameCommunicators/frame-communicator';
 
 describe('frameUrlFinderTest', () => {
@@ -31,10 +31,10 @@ describe('frameUrlFinderTest', () => {
             location: { href: 'testURL' },
         };
 
-        const mockProcessRequestMessage: ITargetMessage = {
+        const mockProcessRequestMessage: TargetMessage = {
             target: ['abc'],
         };
-        const mockSentMessage: IMessageRequest<IFrameUrlMessage> = {
+        const mockSentMessage: IMessageRequest<FrameUrlMessage> = {
             command: FrameUrlFinder.SetFrameUrlCommand,
             win: topWindowStub,
             message: {
@@ -70,10 +70,10 @@ describe('frameUrlFinderTest', () => {
         const mockHtmlUtils = Mock.ofType(HTMLElementUtils, MockBehavior.Strict);
         const frameStub = {} as any;
 
-        const mockProcessRequestMessage: ITargetMessage = {
+        const mockProcessRequestMessage: TargetMessage = {
             target: ['abc', 'def'],
         };
-        const mockSentMessage: IMessageRequest<ITargetMessage> = {
+        const mockSentMessage: IMessageRequest<TargetMessage> = {
             command: FrameUrlFinder.GetTargetFrameUrlCommand,
             frame: frameStub,
             message: {
