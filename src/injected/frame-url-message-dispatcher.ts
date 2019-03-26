@@ -4,7 +4,7 @@ import { autobind } from '@uifabric/utilities';
 
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
 import { WindowUtils } from '../common/window-utils';
-import { FrameUrlFinder, IFrameUrlMessage } from './frame-url-finder';
+import { FrameUrlFinder, FrameUrlMessage } from './frame-url-finder';
 import { FrameCommunicator } from './frameCommunicators/frame-communicator';
 
 export class FrameUrlMessageDispatcher {
@@ -27,7 +27,7 @@ export class FrameUrlMessageDispatcher {
     }
 
     @autobind
-    public setTargetFrameUrl(targetFrameUrlMessage: IFrameUrlMessage): void {
+    public setTargetFrameUrl(targetFrameUrlMessage: FrameUrlMessage): void {
         this.devToolActionMessageCreator.setInspectFrameUrl(targetFrameUrlMessage.frameUrl);
     }
 }
