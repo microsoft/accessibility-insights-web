@@ -12,7 +12,7 @@ import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuratio
 import AssistedTestRecordYourResults from '../../common/assisted-test-record-your-results';
 import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
-import TestAutomaticallyPassedNotice from '../../common/test-automatically-pass-notice';
+import TestAutomaticallyPassedNotice from '../../common/test-automatically-passed-notice';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { TestStep } from '../../types/test-step';
