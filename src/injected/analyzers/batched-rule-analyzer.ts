@@ -3,7 +3,7 @@
 import { autobind } from '@uifabric/utilities';
 
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
-import { IBaseStore } from '../../common/istore';
+import { BaseStore } from '../../common/istore';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
 import { IScopingStoreData } from '../../common/types/store-data/scoping-store-data';
 import { ScanResults } from '../../scanner/iruleresults';
@@ -19,7 +19,7 @@ export class BatchedRuleAnalyzer extends RuleAnalyzer {
     constructor(
         protected config: RuleAnalyzerConfiguration,
         protected scanner: ScannerUtils,
-        protected scopingStore: IBaseStore<IScopingStoreData>,
+        protected scopingStore: BaseStore<IScopingStoreData>,
         protected sendMessageDelegate: (message) => void,
         protected dateGetter: () => Date,
         protected telemetryFactory: TelemetryDataFactory,

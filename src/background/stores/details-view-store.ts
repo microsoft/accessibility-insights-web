@@ -9,9 +9,9 @@ import { ContentActions } from '../actions/content-actions';
 import { DetailsViewActions } from '../actions/details-view-actions';
 import { ScopingActions } from '../actions/scoping-actions';
 import { PreviewFeaturesActions } from './../actions/preview-features-actions';
-import { BaseStore } from './base-store';
+import { BaseStoreImpl } from './base-store';
 
-export class DetailsViewStore extends BaseStore<IDetailsViewData> {
+export class DetailsViewStore extends BaseStoreImpl<IDetailsViewData> {
     constructor(
         private previewFeaturesActions: PreviewFeaturesActions,
         private scopingActions: ScopingActions,

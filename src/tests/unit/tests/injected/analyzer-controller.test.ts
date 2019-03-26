@@ -11,7 +11,7 @@ import {
     VisualizationConfigurationFactory,
 } from '../../../../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../../../../common/enum-helper';
-import { IBaseStore } from '../../../../common/istore';
+import { BaseStore } from '../../../../common/istore';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 import { IScanData, IVisualizationStoreData, TestsEnabledState } from '../../../../common/types/store-data/ivisualization-store-data';
 import { IScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
@@ -27,7 +27,7 @@ import { VisualizationStoreDataBuilder } from '../../common/visualization-store-
 
 describe('AnalyzerControllerTests', () => {
     let visualizationStoreMock: IMock<VisualizationStore>;
-    let scopingStoreMock: IMock<IBaseStore<IScopingStoreData>>;
+    let scopingStoreMock: IMock<BaseStore<IScopingStoreData>>;
     let featureFlagStoreStoreMock: IMock<FeatureFlagStore>;
     let testType: VisualizationType;
     let getStoreDataMock: IMock<(data: TestsEnabledState) => IScanData>;

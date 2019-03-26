@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { BaseStore } from '../../../../../background/stores/base-store';
+import { BaseStoreImpl } from '../../../../../background/stores/base-store';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { IsSameObject } from '../../../common/typemoq-helper';
 
@@ -67,7 +67,7 @@ describe('BaseStoreTest', () => {
         value: string;
     }
 
-    class TestStore extends BaseStore<TestData> {
+    class TestStore extends BaseStoreImpl<TestData> {
         private listener: () => void;
 
         constructor(listener: () => void) {

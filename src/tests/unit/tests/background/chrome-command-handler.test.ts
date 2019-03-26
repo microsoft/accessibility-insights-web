@@ -11,7 +11,7 @@ import { VisualizationStore } from '../../../../background/stores/visualization-
 import { TabContext, TabToContextMap } from '../../../../background/tab-context';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { DisplayableStrings } from '../../../../common/constants/displayable-strings';
-import { IBaseStore } from '../../../../common/istore';
+import { BaseStore } from '../../../../common/istore';
 import { Messages } from '../../../../common/messages';
 import { NotificationCreator } from '../../../../common/notification-creator';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
@@ -25,7 +25,7 @@ let testSubject: ChromeCommandHandler;
 let chromeAdapterMock: IMock<BrowserAdapter>;
 let urlValidatorMock: IMock<UrlValidator>;
 let tabToContextMap: TabToContextMap;
-let visualizationStoreMock: IMock<IBaseStore<IVisualizationStoreData>>;
+let visualizationStoreMock: IMock<BaseStore<IVisualizationStoreData>>;
 let interpreterMock: IMock<Interpreter>;
 let commandCallback: (commandId: string) => Promise<void>;
 let existingTabId: number;

@@ -5,7 +5,7 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 import { AssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
 import { AssessmentStore } from '../../../../background/stores/assessment-store';
 import { VisualizationScanResultStore } from '../../../../background/stores/visualization-scan-result-store';
-import { IBaseStore } from '../../../../common/istore';
+import { BaseStore } from '../../../../common/istore';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
 import {
     IAssessmentStoreData,
@@ -21,8 +21,8 @@ import { CreateTestAssessmentProvider } from '../../common/test-assessment-provi
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 
 describe('SelectorMapHelperTest', () => {
-    let scanResultStoreMock: IMock<IBaseStore<IVisualizationScanResultData>>;
-    let assessmentStoreMock: IMock<IBaseStore<IAssessmentStoreData>>;
+    let scanResultStoreMock: IMock<BaseStore<IVisualizationScanResultData>>;
+    let assessmentStoreMock: IMock<BaseStore<IAssessmentStoreData>>;
     let assessmentsProvider: AssessmentsProvider;
     let testSelectorMap: DictionaryStringTo<IGeneratedAssessmentInstance<any, any>>;
     let expected: DictionaryStringTo<IAssessmentVisualizationInstance>;

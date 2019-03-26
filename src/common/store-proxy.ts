@@ -6,11 +6,11 @@ import * as _ from 'lodash';
 import { ClientChromeAdapter } from './client-browser-adapter';
 import { GenericStoreMessageTypes } from './constants/generic-store-messages-types';
 import { Store } from './flux/store';
-import { IBaseStore } from './istore';
+import { BaseStore } from './istore';
 import { StoreType } from './types/store-type';
 import { StoreUpdateMessage } from './types/store-update-message';
 
-export class StoreProxy<TState> extends Store implements IBaseStore<TState> {
+export class StoreProxy<TState> extends Store implements BaseStore<TState> {
     private _state: TState;
     private _storeId: string;
     private _tabId: number;

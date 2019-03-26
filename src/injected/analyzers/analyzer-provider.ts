@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
-import { IBaseStore } from '../../common/istore';
+import { BaseStore } from '../../common/istore';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
 import { IScopingStoreData } from '../../common/types/store-data/scoping-store-data';
 import { WindowUtils } from '../../common/window-utils';
@@ -15,7 +15,7 @@ import { TabStopsAnalyzer } from './tab-stops-analyzer';
 
 export class AnalyzerProvider {
     private tabStopsListener: TabStopsListener;
-    private scopingStore: IBaseStore<IScopingStoreData>;
+    private scopingStore: BaseStore<IScopingStoreData>;
     private sendMessageDelegate: (message) => void;
     private scanner: ScannerUtils;
     private telemetryDataFactory: TelemetryDataFactory;
@@ -23,7 +23,7 @@ export class AnalyzerProvider {
 
     constructor(
         tabStopsListener: TabStopsListener,
-        scopingStore: IBaseStore<IScopingStoreData>,
+        scopingStore: BaseStore<IScopingStoreData>,
         sendMessageDelegate: (message) => void,
         scanner: ScannerUtils,
         telemetryDataFactory: TelemetryDataFactory,

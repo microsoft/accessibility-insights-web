@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
-import { IBaseStore } from '../../common/istore';
+import { BaseStore } from '../../common/istore';
 import { StoreType } from '../../common/types/store-type';
 import { ActionHub } from '../actions/action-hub';
 import { DetailsViewStore } from './details-view-store';
@@ -52,7 +52,7 @@ export class TabContextStoreHub implements StoreHub {
         this.inspectStore.initialize();
     }
 
-    public getAllStores(): IBaseStore<any>[] {
+    public getAllStores(): BaseStore<any>[] {
         return [
             this.tabStore,
             this.visualizationStore,

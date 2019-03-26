@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { TestMode } from '../../../common/configs/test-mode';
 import { VisualizationConfigurationFactory } from '../../../common/configs/visualization-configuration-factory';
-import { IBaseStore } from '../../../common/istore';
+import { BaseStore } from '../../../common/istore';
 import { TelemetryEventSource } from '../../../common/telemetry-events';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
 import { ICommandStoreData } from '../../../common/types/store-data/icommand-store-data';
@@ -18,9 +18,9 @@ import { DiagnosticViewToggle, DiagnosticViewToggleDeps } from './diagnostic-vie
 export class DiagnosticViewToggleFactory {
     private visualizationTypes: VisualizationType[];
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
-    private visualizationStore: IBaseStore<IVisualizationStoreData>;
-    private featureFlagsStore: IBaseStore<FeatureFlagStoreData>;
-    private commandStore: IBaseStore<ICommandStoreData>;
+    private visualizationStore: BaseStore<IVisualizationStoreData>;
+    private featureFlagsStore: BaseStore<FeatureFlagStoreData>;
+    private commandStore: BaseStore<ICommandStoreData>;
     private actionMessageCreator: PopupActionMessageCreator;
     private clickHandler: DiagnosticViewClickHandler;
     private dom: NodeSelector & Node;
@@ -30,9 +30,9 @@ export class DiagnosticViewToggleFactory {
         dom: NodeSelector & Node,
         visualizationTypes: VisualizationType[],
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
-        visualizationStore: IBaseStore<IVisualizationStoreData>,
-        featureFlagStore: IBaseStore<FeatureFlagStoreData>,
-        commandStore: IBaseStore<ICommandStoreData>,
+        visualizationStore: BaseStore<IVisualizationStoreData>,
+        featureFlagStore: BaseStore<FeatureFlagStoreData>,
+        commandStore: BaseStore<ICommandStoreData>,
         actionMessageCreator: PopupActionMessageCreator,
         clickHandler: DiagnosticViewClickHandler,
     ) {

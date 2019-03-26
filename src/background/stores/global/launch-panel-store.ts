@@ -8,10 +8,10 @@ import { LaunchPanelType } from '../../../popup/scripts/components/popup-view';
 import { BrowserAdapter } from '../../browser-adapter';
 import { LocalStorageDataKeys } from '../../local-storage-data-keys';
 import { ILocalStorageData } from '../../storage-data';
-import { BaseStore } from '../base-store';
+import { BaseStoreImpl } from '../base-store';
 import { LaunchPanelStateActions } from './../../actions/launch-panel-state-action';
 
-export class LaunchPanelStore extends BaseStore<ILaunchPanelStoreData> {
+export class LaunchPanelStore extends BaseStoreImpl<ILaunchPanelStoreData> {
     private launchPanelStateActions: LaunchPanelStateActions;
     private browserAdapter: BrowserAdapter;
     private userData: ILocalStorageData;
