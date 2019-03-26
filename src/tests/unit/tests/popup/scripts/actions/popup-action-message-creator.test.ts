@@ -22,7 +22,7 @@ import { EventStubFactory } from '../../../../common/event-stub-factory';
 
 describe('PopupActionMessageCreatorTest', () => {
     const eventStubFactory = new EventStubFactory();
-    const event = eventStubFactory.createKeypressEvent() as any;
+    const stubKeypressEvent = eventStubFactory.createKeypressEvent() as any;
     const testSource: TelemetryEventSource = -1 as TelemetryEventSource;
 
     let mockWindowUtils: IMock<WindowUtils>;
@@ -118,13 +118,13 @@ describe('PopupActionMessageCreatorTest', () => {
         postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
 
         telemetryFactoryMock
-            .setup(tf => tf.forOpenDetailsView(event, viewType, testSource))
+            .setup(tf => tf.forOpenDetailsView(stubKeypressEvent, viewType, testSource))
             .returns(() => telemetry)
             .verifiable();
 
         mockWindowUtils.setup(x => x.closeWindow()).verifiable(Times.once());
 
-        testSubject.openDetailsView(event, VisualizationType.Headings, testSource, pivotType);
+        testSubject.openDetailsView(stubKeypressEvent, VisualizationType.Headings, testSource, pivotType);
 
         postMessageMock.verifyAll();
         telemetryFactoryMock.verifyAll();
@@ -154,13 +154,13 @@ describe('PopupActionMessageCreatorTest', () => {
         postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
 
         telemetryFactoryMock
-            .setup(tf => tf.forOpenDetailsView(event, viewType, testSource))
+            .setup(tf => tf.forOpenDetailsView(stubKeypressEvent, viewType, testSource))
             .returns(() => telemetry)
             .verifiable();
 
         mockWindowUtils.setup(x => x.closeWindow()).verifiable(Times.once());
 
-        testSubject.openDetailsView(event, VisualizationType.Headings, testSource);
+        testSubject.openDetailsView(stubKeypressEvent, VisualizationType.Headings, testSource);
 
         postMessageMock.verifyAll();
         telemetryFactoryMock.verifyAll();
@@ -181,13 +181,13 @@ describe('PopupActionMessageCreatorTest', () => {
         };
 
         telemetryFactoryMock
-            .setup(tf => tf.fromHamburgerMenu(event))
+            .setup(tf => tf.fromHamburgerMenu(stubKeypressEvent))
             .returns(() => telemetry)
             .verifiable();
 
         postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
 
-        testSubject.openShortcutConfigureTab(event);
+        testSubject.openShortcutConfigureTab(stubKeypressEvent);
 
         postMessageMock.verifyAll();
     });
@@ -208,13 +208,13 @@ describe('PopupActionMessageCreatorTest', () => {
         };
 
         telemetryFactoryMock
-            .setup(tf => tf.fromLaunchPad(event))
+            .setup(tf => tf.fromLaunchPad(stubKeypressEvent))
             .returns(() => telemetry)
             .verifiable(Times.once());
 
         postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
 
-        testSubject.openTutorial(event);
+        testSubject.openTutorial(stubKeypressEvent);
 
         postMessageMock.verifyAll();
         telemetryFactoryMock.verifyAll();
