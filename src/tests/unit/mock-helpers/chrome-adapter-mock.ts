@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { DevToolsChromeAdapterImpl, DevToolsChromeAdapter } from '../../../background/dev-tools-chrome-adapter';
+import { DevToolsChromeAdapter, DevToolsChromeAdapterImpl } from '../../../background/dev-tools-chrome-adapter';
 import { PortWithTabId } from '../../../background/dev-tools-listener';
 import { PortDisconnectStub, PortOnMessageStub } from '../stubs/chrome-adapter-stub';
 import { PortStub } from '../stubs/port-stub';
