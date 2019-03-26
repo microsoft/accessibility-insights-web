@@ -8,19 +8,17 @@ import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 // scenarios that would normally block unrecognized messages.
 export const MESSAGE_STABLE_SIGNATURE = 'e467510c-ca1f-47df-ace1-a39f7f0678c9';
 
-// tslint:disable-next-line:interface-name
-export interface IWindowMessage {
+export interface WindowMessage {
     messageId: string;
     command: string;
     message?: any;
-    error?: IErrorMessageContent;
+    error?: ErrorMessageContent;
     messageStableSignature: string;
     messageSourceId: string;
     messageVersion: string;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IErrorMessageContent {
+export interface ErrorMessageContent {
     name: string;
     message: string;
     stack: string;
@@ -35,7 +33,7 @@ export class WindowMessageMarshaller {
         this.messageSourceId = manifest.name;
         this.messageVersion = manifest.version;
     }
-    public parseMessage(serializedData: any): IWindowMessage {
+    public parseMessage(serializedData: any): WindowMessage {
         let data;
         if (typeof serializedData !== 'string' || serializedData == null) {
             return null;
@@ -52,14 +50,14 @@ export class WindowMessageMarshaller {
         return data;
     }
 
-    public createMessage(command: string, payload: any, responseId?: string): IWindowMessage {
+    public createMessage(command: string, payload: any, responseId?: string): WindowMessage {
         let error;
         if (payload instanceof Error) {
             error = {
                 name: payload.name,
                 message: payload.message,
                 stack: payload.stack,
-            } as IErrorMessageContent;
+            } as ErrorMessageContent;
             payload = undefined;
         }
 
@@ -76,7 +74,7 @@ export class WindowMessageMarshaller {
         };
     }
 
-    protected isMessageOurs(postedMessage: IWindowMessage): boolean {
+    protected isMessageOurs(postedMessage: WindowMessage): boolean {
         return (
             postedMessage &&
             postedMessage.messageStableSignature === MESSAGE_STABLE_SIGNATURE &&

@@ -4,7 +4,7 @@ import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-st
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryStringTo } from '../types/common-types';
 import { DrawingController, VisualizationWindowMessage } from './drawing-controller';
-import { AxeResultsWithFrameLevel, IAssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
+import { AxeResultsWithFrameLevel, AssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
 import { PropertyBags, VisualizationInstanceProcessorCallback } from './visualization-instance-processor';
 
 export class DrawingInitiator {
@@ -17,7 +17,7 @@ export class DrawingInitiator {
     public enableVisualization(
         visualizationType: VisualizationType,
         featureFlagStoreData: FeatureFlagStoreData,
-        selectorMap: DictionaryStringTo<IAssessmentVisualizationInstance>,
+        selectorMap: DictionaryStringTo<AssessmentVisualizationInstance>,
         configId: string,
         processor: VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags>,
     ): void {
@@ -25,7 +25,7 @@ export class DrawingInitiator {
             return;
         }
 
-        const elementResults: IAssessmentVisualizationInstance[] = processor(this.getElementResults(selectorMap));
+        const elementResults: AssessmentVisualizationInstance[] = processor(this.getElementResults(selectorMap));
 
         this.initializeTargetIndex(elementResults);
 
@@ -59,7 +59,7 @@ export class DrawingInitiator {
         this.drawingController.processRequest(visualizationMessage);
     }
 
-    private getElementResults(selectorMap: DictionaryStringTo<IAssessmentVisualizationInstance>): IAssessmentVisualizationInstance[] {
+    private getElementResults(selectorMap: DictionaryStringTo<AssessmentVisualizationInstance>): AssessmentVisualizationInstance[] {
         return Object.keys(selectorMap).map(key => selectorMap[key]);
     }
 }

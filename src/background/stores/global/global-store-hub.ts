@@ -7,7 +7,7 @@ import { generateUID } from '../../../common/uid-generator';
 import { GlobalActionHub } from '../../actions/global-action-hub';
 import { BrowserAdapter } from '../../browser-adapter';
 import { PersistedData } from '../../get-persisted-data';
-import { ILocalStorageData } from '../../storage-data';
+import { LocalStorageData } from '../../storage-data';
 import { TelemetryEventHandler } from '../../telemetry/telemetry-event-handler';
 import { StoreHub } from '../istore-hub';
 import { AssessmentsProvider } from './../../../assessments/types/iassessments-provider';
@@ -32,7 +32,7 @@ export class GlobalStoreHub implements StoreHub {
         globalActionHub: GlobalActionHub,
         telemetryEventHandler: TelemetryEventHandler,
         browserAdapter: BrowserAdapter,
-        userData: ILocalStorageData,
+        userData: LocalStorageData,
         assessmentsProvider: AssessmentsProvider,
         indexedDbInstance: IndexedDBAPI,
         persistedData: PersistedData,

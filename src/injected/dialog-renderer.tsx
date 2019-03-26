@@ -16,9 +16,9 @@ import { WindowUtils } from '../common/window-utils';
 import { DictionaryStringTo } from '../types/common-types';
 import { rootContainerId } from './constants';
 import { DetailsDialogHandler } from './details-dialog-handler';
-import { FrameCommunicator, IMessageRequest } from './frameCommunicators/frame-communicator';
+import { FrameCommunicator, MessageRequest } from './frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from './frameCommunicators/window-message-handler';
-import { IErrorMessageContent } from './frameCommunicators/window-message-marshaller';
+import { ErrorMessageContent } from './frameCommunicators/window-message-marshaller';
 import { LayeredDetailsDialogComponent, LayeredDetailsDialogDeps } from './layered-details-dialog-component';
 import { MainWindowContext } from './main-window-context';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from './scanner-utils';
@@ -91,7 +91,7 @@ export class DialogRenderer {
                 dialogContainer,
             );
         } else {
-            const windowMessageRequest: IMessageRequest<DetailsDialogWindowMessage> = {
+            const windowMessageRequest: MessageRequest<DetailsDialogWindowMessage> = {
                 win: this.windowUtils.getTopWindow(),
                 command: DialogRenderer.renderDetailsDialogCommand,
                 message: { data: data, featureFlagStoreData: featureFlagStoreData },
@@ -103,7 +103,7 @@ export class DialogRenderer {
     @autobind
     private processRequest(
         message: DetailsDialogWindowMessage,
-        error: IErrorMessageContent,
+        error: ErrorMessageContent,
         sourceWin: Window,
         responder?: FrameMessageResponseCallback,
     ): void {

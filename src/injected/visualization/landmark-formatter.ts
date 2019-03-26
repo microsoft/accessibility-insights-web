@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DialogRenderer } from '../dialog-renderer';
-import { IAssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
+import { AssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
 import { HtmlElementAxeResults } from '../scanner-utils';
 import { FailureInstanceFormatter } from './failure-instance-formatter';
 import { DrawerConfiguration } from './formatter';
@@ -61,7 +61,7 @@ export class LandmarkFormatter extends FailureInstanceFormatter {
         return null;
     }
 
-    public getDrawerConfiguration(element: Node, data: IAssessmentVisualizationInstance): DrawerConfiguration {
+    public getDrawerConfiguration(element: Node, data: AssessmentVisualizationInstance): DrawerConfiguration {
         // parse down the IHtmlElementAxeResult to see if it is contained in the map
         const elemData = this.decorateLabelText(data.propertyBag || this.getLandmarkInfo(data));
 

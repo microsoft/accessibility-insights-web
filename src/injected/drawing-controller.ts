@@ -11,14 +11,14 @@ import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-st
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryNumberTo } from '../types/common-types';
 import { HTMLElementUtils } from './../common/html-element-utils';
-import { FrameCommunicator, IMessageRequest } from './frameCommunicators/frame-communicator';
+import { FrameCommunicator, MessageRequest } from './frameCommunicators/frame-communicator';
 import {
     HtmlElementAxeResultsHelper,
-    IAssessmentVisualizationInstance,
-    IFrameResult,
+    HTMLFrameResult,
+    AssessmentVisualizationInstance,
 } from './frameCommunicators/html-element-axe-results-helper';
 import { FrameMessageResponseCallback } from './frameCommunicators/window-message-handler';
-import { IErrorMessageContent } from './frameCommunicators/window-message-marshaller';
+import { ErrorMessageContent } from './frameCommunicators/window-message-marshaller';
 import { InstanceVisibilityChecker } from './instance-visibility-checker';
 import { DrawerProvider } from './visualization/drawer-provider';
 import { IDrawer } from './visualization/idrawer';
@@ -27,7 +27,7 @@ export interface VisualizationWindowMessage {
     visualizationType: VisualizationType;
     isEnabled: boolean;
     configId: string;
-    elementResults?: IAssessmentVisualizationInstance[];
+    elementResults?: AssessmentVisualizationInstance[];
     featureFlagStoreData?: FeatureFlagStoreData;
 }
 
@@ -100,7 +100,7 @@ export class DrawingController {
     @autobind
     private onTriggerVisualization(
         result: VisualizationWindowMessage,
-        error: IErrorMessageContent,
+        error: ErrorMessageContent,
         sourceWindow: Window,
         responder?: FrameMessageResponseCallback,
     ): void {
@@ -108,7 +108,7 @@ export class DrawingController {
         this.invokeMethodIfExists(responder, null);
     }
 
-    private enableVisualization(visualizationType: VisualizationType, elementResultsByFrames: IFrameResult[], configId: string): void {
+    private enableVisualization(visualizationType: VisualizationType, elementResultsByFrames: HTMLFrameResult[], configId: string): void {
         if (elementResultsByFrames) {
             for (let pos = 0; pos < elementResultsByFrames.length; pos++) {
                 const resultsForFrame = elementResultsByFrames[pos];
@@ -135,7 +135,7 @@ export class DrawingController {
         }
     }
 
-    private enableVisualizationInCurrentFrame(currentFrameResults: IAssessmentVisualizationInstance[], configId: string): void {
+    private enableVisualizationInCurrentFrame(currentFrameResults: AssessmentVisualizationInstance[], configId: string): void {
         const drawer = this.getDrawer(configId);
         drawer.initialize({
             data: this.getInitialElements(currentFrameResults),
@@ -147,7 +147,7 @@ export class DrawingController {
     private enableVisualizationInIFrames(
         visualizationType: VisualizationType,
         frame: HTMLIFrameElement,
-        frameResults: IAssessmentVisualizationInstance[],
+        frameResults: AssessmentVisualizationInstance[],
         configId: string,
     ): void {
         const message: VisualizationWindowMessage = {
@@ -170,12 +170,12 @@ export class DrawingController {
     private createFrameRequestMessage(
         frame: HTMLIFrameElement,
         message: VisualizationWindowMessage,
-    ): IMessageRequest<VisualizationWindowMessage> {
+    ): MessageRequest<VisualizationWindowMessage> {
         return {
             command: DrawingController.triggerVisualizationCommand,
             frame: frame,
             message: message,
-        } as IMessageRequest<VisualizationWindowMessage>;
+        } as MessageRequest<VisualizationWindowMessage>;
     }
 
     private disableVisualizationInIFrames(visualizationType: VisualizationType, configId: string): void {
@@ -214,7 +214,7 @@ export class DrawingController {
         }
     }
 
-    private getInitialElements(currentFrameResults: IAssessmentVisualizationInstance[]): IAssessmentVisualizationInstance[] {
+    private getInitialElements(currentFrameResults: AssessmentVisualizationInstance[]): AssessmentVisualizationInstance[] {
         if (currentFrameResults == null) {
             return null;
         }

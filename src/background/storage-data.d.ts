@@ -3,8 +3,7 @@
 import { FeatureFlagStoreData } from './../types/store-data/feature-flag-store-data.d';
 import { InstallationData } from './installation-data';
 
-// tslint:disable-next-line:interface-name
-export interface ILocalStorageData {
+export interface LocalStorageData {
     url?: string;
     featureFlags?: FeatureFlagStoreData;
     launchPanelSetting?: LaunchPanelType;
