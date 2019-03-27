@@ -1,3 +1,4 @@
+import { InitialAssessmentStoreDataGenerator } from './../../../background/intial-assessment-store-data-generator';
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from '../../../assessments/types/iassessments-provider';
@@ -8,9 +9,22 @@ import { VisualizationType } from '../../../common/types/visualization-type';
 import { BaseDataBuilder } from './base-data-builder';
 
 export class AssessmentsStoreDataBuilder extends BaseDataBuilder<IAssessmentStoreData> {
-    constructor(provider: AssessmentsProvider, dataConverter: AssessmentDataConverter) {
+    constructor(
+        provider: AssessmentsProvider,
+        dataConverter: AssessmentDataConverter,
+        initialAssessmentStoreDataGenerator?: InitialAssessmentStoreDataGenerator,
+    ) {
         super();
-        this.data = new AssessmentStore(null, null, dataConverter, null, provider, null, null).getDefaultState();
+        this.data = new AssessmentStore(
+            null,
+            null,
+            dataConverter,
+            null,
+            provider,
+            null,
+            null,
+            initialAssessmentStoreDataGenerator || new InitialAssessmentStoreDataGenerator(provider.all()),
+        ).getDefaultState();
     }
 
     public withAssessment(assessmentName: string, data: IAssessmentData): AssessmentsStoreDataBuilder {
