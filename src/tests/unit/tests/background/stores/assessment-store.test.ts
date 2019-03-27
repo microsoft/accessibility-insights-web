@@ -103,41 +103,33 @@ describe('AssessmentStoreTest', () => {
         expect(testObject).toBeDefined();
     });
 
-    // test('getId', () => {
-    //     const testObject = createStoreWithNullParams(AssessmentStore);
-    //     expect(testObject.getId()).toEqual(StoreNames[StoreNames.AssessmentStore]);
-    // });
+    test('getId', () => {
+        const testObject = createStoreWithNullParams(AssessmentStore);
+        expect(testObject.getId()).toEqual(StoreNames[StoreNames.AssessmentStore]);
+    });
 
-    // test('getDefaultState with no assessments', () => {
-    //     assessmentsProviderMock
-    //         .setup(ap => ap.all())
-    //         .returns(() => [])
-    //         .verifiable(Times.once());
-    //     const testObject = new AssessmentStore(
-    //         null,
-    //         null,
-    //         assessmentDataConverterMock.object,
-    //         assessmentDataRemoverMock.object,
-    //         assessmentsProviderMock.object,
-    //         null,
-    //         null,
-    //         initialAssessmentStoreDataGeneratorMock.object,
-    //     );
+    test('getDefaultState with no assessments', () => {
+        const defaultStateStub = {};
+        initialAssessmentStoreDataGeneratorMock
+            .setup(im => im.generateInitialState(null))
+            .returns(() => defaultStateStub as IAssessmentStoreData)
+            .verifiable(Times.once());
 
-    //     const actualState = testObject.getDefaultState();
+        const testObject = new AssessmentStore(
+            null,
+            null,
+            assessmentDataConverterMock.object,
+            assessmentDataRemoverMock.object,
+            assessmentsProviderMock.object,
+            null,
+            null,
+            initialAssessmentStoreDataGeneratorMock.object,
+        );
 
-    //     const expectedState: Partial<IAssessmentStoreData> = {
-    //         persistedTabInfo: null,
-    //         assessments: {},
-    //         assessmentNavState: {
-    //             selectedTestType: null,
-    //             selectedTestStep: null,
-    //         },
-    //     };
+        const actualState = testObject.getDefaultState();
 
-    //     expect(actualState).toEqual(expectedState);
-    //     assessmentsProviderMock.verifyAll();
-    // });
+        expect(actualState).toEqual(defaultStateStub);
+    });
 
     // test('getDefaultState with persistedData', () => {
     //     const targetTab: PersistedTabInfo = { id: 1, url: 'url', title: 'title', appRefreshed: true };
