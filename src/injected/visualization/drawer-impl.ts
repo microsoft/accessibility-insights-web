@@ -8,9 +8,9 @@ import { AxeResultsWithFrameLevel } from '../frameCommunicators/html-element-axe
 import { HtmlElementAxeResults } from '../scanner-utils';
 import { ShadowUtils } from '../shadow-utils';
 import { BaseDrawer } from './base-drawer';
+import { DrawerInitData } from './drawer';
 import { DrawerUtils } from './drawer-utils';
 import { BoxConfig, DrawerConfiguration, Formatter } from './formatter';
-import { DrawerInitData } from './drawer';
 
 export class DrawerImpl extends BaseDrawer {
     protected elementResults: AxeResultsWithFrameLevel[];

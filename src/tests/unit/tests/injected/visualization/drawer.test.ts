@@ -2,17 +2,18 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
 import { IActionN } from 'typemoq/_all';
+
 import { getDefaultFeatureFlagValues } from '../../../../../common/feature-flags';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { ClientUtils } from '../../../../../injected/client-utils';
 import { DialogRenderer } from '../../../../../injected/dialog-renderer';
 import { HtmlElementAxeResults } from '../../../../../injected/scanner-utils';
 import { ShadowUtils } from '../../../../../injected/shadow-utils';
+import { DrawerInitData } from '../../../../../injected/visualization/drawer';
 import { DrawerImpl } from '../../../../../injected/visualization/drawer-impl';
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
 import { DrawerConfiguration, Formatter } from '../../../../../injected/visualization/formatter';
 import { TestDocumentCreator } from '../../../common/test-document-creator';
-import { DrawerInitData } from '../../../../../injected/visualization/drawer';
 
 describe('Drawer', () => {
     const defaultStyleStub: CSSStyleDeclaration = {
