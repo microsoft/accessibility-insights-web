@@ -16,7 +16,7 @@ const d =
     '0.536133 6.60938 0.325195C7.37695 0.108398 8.17383 0 9 0ZM9.99316 9L12.999 5.99414L12.0059 5.00098L9 8.00684L5.99414 ' +
     '5.00098L5.00098 5.99414L8.00684 9L5.00098 12.0059L5.99414 12.999L9 9.99316L12.0059 12.999L12.999 12.0059L9.99316 9Z';
 export const StatusErrorFullIcon = NamedSFC('StatusErrorFullIcon', () => (
-    <svg width="15" height="15" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="14" height="14" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path fillRule="evenodd" clipRule="evenodd" d={d} fill="#E81123" />
     </svg>
 ));
