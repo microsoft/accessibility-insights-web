@@ -13,7 +13,7 @@ import { CreateTestAssessmentProvider } from '../../common/test-assessment-provi
 
 describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
     const assesssmentsProvider = CreateTestAssessmentProvider();
-    const generator = new InitialAssessmentStoreDataGenerator(assesssmentsProvider);
+    const generator = new InitialAssessmentStoreDataGenerator(assesssmentsProvider.all());
 
     const defaultState = generator.generateInitialState();
 

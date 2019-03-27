@@ -15,18 +15,12 @@ import {
     RequirementIdToResultMap,
 } from '../common/types/store-data/iassessment-result-data';
 import { DictionaryStringTo } from '../types/common-types';
-import { AssessmentsProvider } from './../assessments/types/iassessments-provider';
 import { TestStepData } from './../common/types/manual-test-status';
 
 export class InitialAssessmentStoreDataGenerator {
     private readonly NULL_FIRST_TEST: Partial<Readonly<Assessment>> = { type: null, steps: [{ key: null }] as TestStep[] };
-    private tests: ReadonlyArray<Readonly<Assessment>>;
-    private assessmentsProvider: AssessmentsProvider;
 
-    constructor(assessmentsProvider: AssessmentsProvider) {
-        this.assessmentsProvider = assessmentsProvider;
-        this.tests = this.assessmentsProvider.all();
-    }
+    constructor(private readonly tests: ReadonlyArray<Readonly<Assessment>>) {}
 
     public generateInitialState(persistedData: IAssessmentStoreData = null): IAssessmentStoreData {
         const targetTab: PersistedTabInfo = persistedData &&

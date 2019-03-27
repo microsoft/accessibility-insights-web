@@ -46,7 +46,6 @@ export class AssessmentStore extends BaseStoreImpl<IAssessmentStoreData> {
     private idbInstance: IndexedDBAPI;
     private browserAdapter: BrowserAdapter;
     private persistedData: IAssessmentStoreData;
-    private initialAssessmentStoreDataGenerator;
 
     constructor(
         browserAdapter: BrowserAdapter,
@@ -56,6 +55,7 @@ export class AssessmentStore extends BaseStoreImpl<IAssessmentStoreData> {
         assessmentsProvider: AssessmentsProvider,
         idbInstance: IndexedDBAPI,
         persistedData: IAssessmentStoreData,
+        private readonly initialAssessmentStoreDataGenerator: InitialAssessmentStoreDataGenerator,
     ) {
         super(StoreNames.AssessmentStore);
 
@@ -69,7 +69,6 @@ export class AssessmentStore extends BaseStoreImpl<IAssessmentStoreData> {
     }
 
     public generateDefaultState(persistedData: IAssessmentStoreData = null): IAssessmentStoreData {
-        this.initialAssessmentStoreDataGenerator = new InitialAssessmentStoreDataGenerator(this.assessmentsProvider);
         return this.initialAssessmentStoreDataGenerator.generateInitialState(persistedData);
     }
 
