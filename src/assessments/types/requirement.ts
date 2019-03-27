@@ -55,6 +55,6 @@ export interface VisualHelperToggleConfig {
     assessmentNavState: AssessmentNavState;
     instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance>;
     actionMessageCreator: DetailsViewActionMessageCreator;
-    isRequirementEnabled: boolean;
-    isRequirementScanned: boolean;
+    isStepEnabled: boolean;
+    isStepScanned: boolean;
 }

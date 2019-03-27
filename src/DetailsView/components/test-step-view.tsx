@@ -117,8 +117,8 @@ export class TestStepView extends React.Component<TestStepViewProps> {
             assessmentNavState: this.props.assessmentNavState,
             instancesMap: this.props.instancesMap,
             actionMessageCreator: this.props.actionMessageCreator,
-            isRequirementEnabled: this.props.isStepEnabled,
-            isRequirementScanned: this.props.isStepScanned,
+            isStepEnabled: this.props.isStepEnabled,
+            isStepScanned: this.props.isStepScanned,
         };
 
         return this.getSelectedStep().getVisualHelperToggle(visualHelperToggleConfig);
