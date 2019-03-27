@@ -3,10 +3,12 @@
 import * as _ from 'lodash';
 import * as React from 'react';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { AssessmentBuilder } from '../../../../assessments/assessment-builder';
 import { AssistedAssessment, ManualAssessment } from '../../../../assessments/types/iassessment';
 import { ReportInstanceField } from '../../../../assessments/types/report-instance-field';
 import { TestStep } from '../../../../assessments/types/test-step';
+import { createInitialAssesmentTestData } from '../../../../background/create-initial-assessment-test-data';
 import { InstanceIdentifierGenerator } from '../../../../background/instance-identifier-generator';
 import { RequirementComparer } from '../../../../common/assessment/requirement-comparer';
 import { Messages } from '../../../../common/messages';
@@ -80,6 +82,7 @@ describe('AssessmentBuilderTest', () => {
         const manual = AssessmentBuilder.Manual(baseAssessment);
 
         expect(manual.requirementOrder).toBe(RequirementComparer.byOrdinal);
+        expect(manual.initialDataCreator).toBe(createInitialAssesmentTestData);
 
         Object.keys(baseAssessment).forEach(assessmentKey => {
             expect(manual[assessmentKey]).toEqual(baseAssessment[assessmentKey]);

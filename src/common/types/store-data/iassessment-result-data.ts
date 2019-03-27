@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { VisualizationType } from '../visualization-type';
-import { ManualTestStatusData, ManualTestStatus } from '../manual-test-status';
+import { DictionaryStringTo } from '../../../types/common-types';
 import { Tab } from '../../itab';
+import { ManualTestStatus, ManualTestStatusData } from '../manual-test-status';
+import { VisualizationType } from '../visualization-type';
 
 export type TestStepInstance = IUserCapturedInstance & IGeneratedAssessmentInstance;
 

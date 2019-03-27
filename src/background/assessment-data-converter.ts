@@ -1,18 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash/index';
+import * as _ from 'lodash';
 
 import { ManualTestStatus } from '../common/types/manual-test-status';
-import { PartialTabOrderPropertyBag } from '../injected/tab-order-property-bag';
-import { ITabStopEvent } from '../injected/tab-stops-listener';
-import { DictionaryStringTo } from '../types/common-types';
 import {
     IAssessmentInstancesMap,
     IGeneratedAssessmentInstance,
     IManualTestStepResult,
     ITestStepResult,
     IUserCapturedInstance,
-} from './../common/types/store-data/iassessment-result-data.d';
+} from '../common/types/store-data/iassessment-result-data';
+import { PartialTabOrderPropertyBag } from '../injected/tab-order-property-bag';
+import { ITabStopEvent } from '../injected/tab-stops-listener';
+import { DictionaryStringTo } from '../types/common-types';
 import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from './../injected/scanner-utils';
 import { UniquelyIdentifiableInstances } from './instance-identifier-generator';
 
