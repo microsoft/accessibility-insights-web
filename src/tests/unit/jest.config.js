@@ -14,7 +14,7 @@ module.exports = {
     roots: [currentDir],
     collectCoverage: true,
     collectCoverageFrom: ['<rootDir>/src/**/*.{ts,tsx}', '!<rootDir>/src/tests/**/*', '!<rootDir>/src/**/*.d.ts'],
-    coverageReporters: ['json', 'lcov', 'text', 'cobertura', 'html'],
+    coverageReporters: ['json', 'text', 'cobertura', 'html'],
     testEnvironment: 'jsdom',
     testMatch: [`${currentDir}/**/*.test.(ts|tsx|js)`],
     reporters: ['default', ['jest-junit', { outputDirectory: '.', outputName: '<rootDir>/test-results/unit/junit.xml' }]],
