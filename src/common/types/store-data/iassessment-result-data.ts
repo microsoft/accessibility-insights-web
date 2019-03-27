@@ -24,7 +24,7 @@ export type RequirementIdToResultMap = DictionaryStringTo<IManualTestStepResult>
 
 // tslint:disable-next-line:interface-name
 export interface IAssessmentData {
-    fullAxeResultsMap;
+    fullAxeResultsMap: any;
     generatedAssessmentInstancesMap?: InstanceIdToInstanceDataMap;
     manualTestStepResultMap?: RequirementIdToResultMap;
     testStepStatus: ManualTestStatusData;

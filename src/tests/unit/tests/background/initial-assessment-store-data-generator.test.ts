@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { flatMap } from 'lodash';
 
-import { InitialAssessmentStoreDataGenerator } from '../../../../background/intial-assessment-store-data-generator';
+import { InitialAssessmentStoreDataGenerator } from '../../../../background/initial-assessment-store-data-generator';
 import { IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
