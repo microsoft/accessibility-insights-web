@@ -112,13 +112,6 @@ describe('AssessmentStoreTest', () => {
         expect(testObject.getId()).toEqual(StoreNames[StoreNames.AssessmentStore]);
     });
 
-    function setupDataGeneratorMock(persistedData, initialData): void {
-        initialAssessmentStoreDataGeneratorMock
-            .setup(im => im.generateInitialState(persistedData))
-            .returns(() => initialData as IAssessmentStoreData)
-            .verifiable(Times.once());
-    }
-
     test('getDefaultState with no assessments', () => {
         const defaultStateStub = {};
         setupDataGeneratorMock(null, defaultStateStub);
@@ -1424,6 +1417,13 @@ describe('AssessmentStoreTest', () => {
         expect(ManualTestStatus.PASS < ManualTestStatus.UNKNOWN).toBeTruthy();
         expect(ManualTestStatus.UNKNOWN < ManualTestStatus.FAIL).toBeTruthy();
     });
+
+    function setupDataGeneratorMock(persistedData: IAssessmentStoreData, initialData: IAssessmentStoreData): void {
+        initialAssessmentStoreDataGeneratorMock
+            .setup(im => im.generateInitialState(persistedData))
+            .returns(() => initialData as IAssessmentStoreData)
+            .verifiable(Times.once());
+    }
 
     function getSampleTestStepsData(): ManualTestStatusData {
         const defaultData = {
