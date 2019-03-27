@@ -6,16 +6,16 @@ import { IMock, It, Mock, MockBehavior } from 'typemoq';
 import { ISingleElementSelector } from '../../../../common/types/store-data/scoping-store-data';
 import { ClientUtils } from '../../../../injected/client-utils';
 import { ElementFinderByPosition, ElementFinderByPositionMessage } from '../../../../injected/element-finder-by-position';
+import { ErrorMessageContent } from '../../../../injected/frameCommunicators/error-message-content';
 import { FrameCommunicator } from '../../../../injected/frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from '../../../../injected/frameCommunicators/window-message-handler';
-import { IErrorMessageContent } from '../../../../injected/frameCommunicators/window-message-marshaller';
 import { ScannerUtils } from '../../../../injected/scanner-utils';
 import { QStub } from '../../stubs/q-stub';
 
 class TestableElementFinder extends ElementFinderByPosition {
     public getOnfindElementByPosition(): (
         message: ElementFinderByPositionMessage,
-        error: IErrorMessageContent,
+        error: ErrorMessageContent,
         sourceWin: Window,
         responder?: FrameMessageResponseCallback,
     ) => void {
@@ -69,7 +69,7 @@ describe('ElementFinderByPositionTest', () => {
     });
 
     test('initialize', () => {
-        const responderMock = Mock.ofInstance((result: any, error: IErrorMessageContent, messageSourceWindow: Window) => {});
+        const responderMock = Mock.ofInstance((result: any, error: ErrorMessageContent, messageSourceWindow: Window) => {});
         const processRequestPromiseHandlerMock = Mock.ofInstance((successCb, errorCb) => {});
         const processRequestMock = Mock.ofInstance(message => {
             return null;
@@ -79,7 +79,7 @@ describe('ElementFinderByPositionTest', () => {
         let errorCallback;
         const messageStub = {} as ElementFinderByPositionMessage;
         const resultsStub = [];
-        const errorStub = {} as IErrorMessageContent;
+        const errorStub = {} as ErrorMessageContent;
         const windowStub = {} as Window;
 
         const processRequestReturnStub = {

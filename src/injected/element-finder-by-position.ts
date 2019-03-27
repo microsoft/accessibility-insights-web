@@ -5,9 +5,9 @@ import * as Q from 'q';
 
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { BoundRectAccessor, ClientUtils } from './client-utils';
+import { ErrorMessageContent } from './frameCommunicators/error-message-content';
 import { FrameCommunicator } from './frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from './frameCommunicators/window-message-handler';
-import { IErrorMessageContent } from './frameCommunicators/window-message-marshaller';
 import { ScannerUtils } from './scanner-utils';
 
 export interface ElementFinderByPositionMessage {
@@ -38,7 +38,7 @@ export class ElementFinderByPosition {
     @autobind
     protected onfindElementByPosition(
         message: ElementFinderByPositionMessage,
-        error: IErrorMessageContent,
+        error: ErrorMessageContent,
         sourceWin: Window,
         responder?: FrameMessageResponseCallback,
     ): void {
