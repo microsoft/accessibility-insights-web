@@ -5,7 +5,7 @@ import { autobind } from '@uifabric/utilities';
 import { HTMLElementUtils } from './../../common/html-element-utils';
 import { FrameCommunicator, IMessageRequest } from './frame-communicator';
 import { FrameMessageResponseCallback } from './window-message-handler';
-import { IErrorMessageContent } from './window-message-marshaller';
+import { ErrorMessageContent } from './window-message-marshaller';
 
 export interface ScrollingWindowMessage {
     focusedTarget: string[];
@@ -28,7 +28,7 @@ export class ScrollingController {
     @autobind
     private onTriggerScrolling(
         message: ScrollingWindowMessage,
-        error: IErrorMessageContent,
+        error: ErrorMessageContent,
         sourceWin: Window,
         responder?: FrameMessageResponseCallback,
     ): void {

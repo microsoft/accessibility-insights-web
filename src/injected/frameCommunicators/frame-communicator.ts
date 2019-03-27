@@ -7,7 +7,7 @@ import { createDefaultLogger } from '../../common/logging/default-logger';
 import { Logger } from '../../common/logging/logger';
 import { WindowUtils } from '../../common/window-utils';
 import { FrameMessageResponseCallback, WindowMessageHandler } from './window-message-handler';
-import { IErrorMessageContent } from './window-message-marshaller';
+import { ErrorMessageContent } from './window-message-marshaller';
 
 // tslint:disable-next-line:interface-name
 export interface IMessageRequest<T> {
@@ -44,14 +44,14 @@ export class FrameCommunicator {
 
             this.subscribe(
                 FrameCommunicator.PingCommand,
-                (data: any, error: IErrorMessageContent, messageSourceWindow: Window, callback: Function) => {
+                (data: any, error: ErrorMessageContent, messageSourceWindow: Window, callback: Function) => {
                     this.invokeMethodIfExists(callback, data);
                 },
             );
 
             this.subscribe(
                 FrameCommunicator.DisposeCommand,
-                (data: any, error: IErrorMessageContent, messageSourceWindow: Window, callback: Function) => {
+                (data: any, error: ErrorMessageContent, messageSourceWindow: Window, callback: Function) => {
                     this.dispose().then(() => {
                         this.invokeMethodIfExists(callback, data);
                     });

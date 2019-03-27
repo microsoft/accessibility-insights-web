@@ -18,7 +18,7 @@ import { rootContainerId } from './constants';
 import { DetailsDialogHandler } from './details-dialog-handler';
 import { FrameCommunicator, IMessageRequest } from './frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from './frameCommunicators/window-message-handler';
-import { IErrorMessageContent } from './frameCommunicators/window-message-marshaller';
+import { ErrorMessageContent } from './frameCommunicators/window-message-marshaller';
 import { LayeredDetailsDialogComponent, LayeredDetailsDialogDeps } from './layered-details-dialog-component';
 import { MainWindowContext } from './main-window-context';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from './scanner-utils';
@@ -103,7 +103,7 @@ export class DialogRenderer {
     @autobind
     private processRequest(
         message: DetailsDialogWindowMessage,
-        error: IErrorMessageContent,
+        error: ErrorMessageContent,
         sourceWin: Window,
         responder?: FrameMessageResponseCallback,
     ): void {

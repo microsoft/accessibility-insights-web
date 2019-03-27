@@ -5,8 +5,8 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { FrameMessageResponseCallback, WindowMessageHandler } from '../../../../../injected/frameCommunicators/window-message-handler';
 import {
-    IErrorMessageContent,
-    IWindowMessage,
+    ErrorMessageContent,
+    WindowMessage,
     WindowMessageMarshaller,
 } from '../../../../../injected/frameCommunicators/window-message-marshaller';
 
@@ -90,7 +90,7 @@ describe('WindowMessageHandlerTests', () => {
 
         const callback: FrameMessageResponseCallback = (
             result: any,
-            error: IErrorMessageContent,
+            error: ErrorMessageContent,
             source: Window,
             responder?: FrameMessageResponseCallback,
         ) => {
@@ -115,7 +115,7 @@ describe('WindowMessageHandlerTests', () => {
             data: 'responseMessage',
         } as MessageEvent;
 
-        const responseMessage: IWindowMessage = { messageId: 'anotherid', message: '' } as IWindowMessage;
+        const responseMessage: WindowMessage = { messageId: 'anotherid', message: '' } as WindowMessage;
         mockMessageMarshaller.setup(x => x.parseMessage(responseEvent.data)).returns(() => responseMessage);
         messageCallback(responseEvent);
 
@@ -126,13 +126,13 @@ describe('WindowMessageHandlerTests', () => {
         testSubject.initialize();
         const targetWindow = {} as Window;
         const sampleMessage = getSampleMessageWithResponseId();
-        const responseMessage: IWindowMessage = getSampleMessageWithResponseId();
+        const responseMessage: WindowMessage = getSampleMessageWithResponseId();
 
         let isResponseCallbackInvoked = false;
 
         const callback: FrameMessageResponseCallback = (
             result: any,
-            error: IErrorMessageContent,
+            error: ErrorMessageContent,
             source: Window,
             responder?: FrameMessageResponseCallback,
         ) => {
@@ -169,14 +169,14 @@ describe('WindowMessageHandlerTests', () => {
         testSubject.initialize();
         const targetWindow = {} as Window;
         const sampleMessage = getSampleMessageWithResponseId();
-        const responseMessage: IWindowMessage = getSampleMessageWithResponseId();
+        const responseMessage: WindowMessage = getSampleMessageWithResponseId();
 
         let isResponseCallbackInvoked = false;
         let isSubscriberResponseCallbackInvoked = false;
 
         const callback: FrameMessageResponseCallback = (
             result: any,
-            error: IErrorMessageContent,
+            error: ErrorMessageContent,
             source: Window,
             responder?: FrameMessageResponseCallback,
         ) => {
@@ -185,7 +185,7 @@ describe('WindowMessageHandlerTests', () => {
 
         const subscriberCallback: FrameMessageResponseCallback = (
             result: any,
-            error: IErrorMessageContent,
+            error: ErrorMessageContent,
             source: Window,
             responder?: FrameMessageResponseCallback,
         ) => {
@@ -222,13 +222,13 @@ describe('WindowMessageHandlerTests', () => {
     test('shouldCallSubscribersOnMessage', () => {
         testSubject.initialize();
         const targetWindow = {} as Window;
-        const responseMessage: IWindowMessage = getSampleMessageWithResponseId();
+        const responseMessage: WindowMessage = getSampleMessageWithResponseId();
 
         let isResponseCallbackInvoked = false;
 
         const callback: FrameMessageResponseCallback = (
             result: any,
-            error: IErrorMessageContent,
+            error: ErrorMessageContent,
             source: Window,
             responder?: FrameMessageResponseCallback,
         ) => {
@@ -254,13 +254,13 @@ describe('WindowMessageHandlerTests', () => {
     test('shouldNotifyTargetWindowOnException', () => {
         testSubject.initialize();
         const targetWindow = {} as Window;
-        const responseMessage: IWindowMessage = getSampleMessageWithResponseId();
+        const responseMessage: WindowMessage = getSampleMessageWithResponseId();
 
         let isResponseCallbackInvoked = false;
         const sampleError = new Error('sample error');
         const callback: FrameMessageResponseCallback = (
             result: any,
-            error: IErrorMessageContent,
+            error: ErrorMessageContent,
             source: Window,
             responder?: FrameMessageResponseCallback,
         ) => {
@@ -294,13 +294,13 @@ describe('WindowMessageHandlerTests', () => {
     test('shouldNotCallSubscribersAfterRemove', () => {
         testSubject.initialize();
         const targetWindow = {} as Window;
-        const responseMessage: IWindowMessage = getSampleMessageWithResponseId();
+        const responseMessage: WindowMessage = getSampleMessageWithResponseId();
 
         let isResponseCallbackInvoked = false;
 
         const callback: FrameMessageResponseCallback = (
             result: any,
-            error: IErrorMessageContent,
+            error: ErrorMessageContent,
             source: Window,
             responder?: FrameMessageResponseCallback,
         ) => {
@@ -354,12 +354,12 @@ describe('WindowMessageHandlerTests', () => {
         mockWindowUtils.verifyAll();
     });
 
-    function getSampleMessageWithResponseId(): IWindowMessage {
+    function getSampleMessageWithResponseId(): WindowMessage {
         return {
             message: {},
             command: 'command1',
             messageId: 'id1',
             error: {},
-        } as IWindowMessage;
+        } as WindowMessage;
     }
 });

@@ -18,7 +18,7 @@ import {
     IFrameResult,
 } from './frameCommunicators/html-element-axe-results-helper';
 import { FrameMessageResponseCallback } from './frameCommunicators/window-message-handler';
-import { IErrorMessageContent } from './frameCommunicators/window-message-marshaller';
+import { ErrorMessageContent } from './frameCommunicators/window-message-marshaller';
 import { InstanceVisibilityChecker } from './instance-visibility-checker';
 import { DrawerProvider } from './visualization/drawer-provider';
 import { IDrawer } from './visualization/idrawer';
@@ -100,7 +100,7 @@ export class DrawingController {
     @autobind
     private onTriggerVisualization(
         result: VisualizationWindowMessage,
-        error: IErrorMessageContent,
+        error: ErrorMessageContent,
         sourceWindow: Window,
         responder?: FrameMessageResponseCallback,
     ): void {
