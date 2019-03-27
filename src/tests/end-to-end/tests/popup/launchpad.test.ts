@@ -2,57 +2,70 @@
 // Licensed under the MIT License.
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
+import { CommonSelectors } from '../../common/element-identifiers/common-selectors';
 import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
+import { enableHighContrast } from '../../common/enable-high-contrast';
 import { Page } from '../../common/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
+import { setupNewTargetPage, TargetPageInfo } from '../../common/setup-new-target-page';
 
 describe('Launch Pad', () => {
-    let browser: Browser;
-    let targetPage: Page;
-    let targetPageTabId: number;
-    let popupPage: Page;
+    describe('Normal mode', () => {
+        let browser: Browser;
+        let targetPageInfo: TargetPageInfo;
+        let popupPage: Page;
 
-    beforeAll(async () => {
-        browser = await launchBrowser({ suppressFirstTimeDialog: true });
+        beforeAll(async () => {
+            browser = await launchBrowser({ suppressFirstTimeDialog: true });
+            targetPageInfo = await setupNewTargetPage(browser);
+            popupPage = await browser.newExtensionPopupPage(targetPageInfo.tabId);
+            await popupPage.bringToFront();
+            await popupPage.waitForSelector(popupPageElementIdentifiers.launchPad);
+        });
+
+        afterAll(async () => {
+            if (browser) {
+                await browser.close();
+            }
+        });
+
+        it('content should match snapshot', async () => {
+            const element = await popupPage.getPrintableHtmlElement(popupPageElementIdentifiers.launchPad);
+            expect(element).toMatchSnapshot();
+        });
+
+        it('should pass accessibility validation', async () => {
+            const results = await scanForAccessibilityIssues(popupPage, '*');
+            expect(results).toHaveLength(0);
+        });
     });
+    describe('High contrast mode', () => {
+        let browser: Browser;
+        let targetPageInfo: TargetPageInfo;
+        let popupPage: Page;
 
-    beforeEach(async () => {
-        await setupNewTargetPage();
-        popupPage = await browser.newExtensionPopupPage(targetPageTabId);
-        await popupPage.bringToFront();
-    });
+        beforeAll(async () => {
+            browser = await launchBrowser({ suppressFirstTimeDialog: true });
+            targetPageInfo = await setupNewTargetPage(browser);
+            const detailsViewPage = await browser.newExtensionDetailsViewPage(targetPageInfo.tabId);
+            await enableHighContrast(detailsViewPage);
 
-    afterEach(async () => {
-        if (browser) {
-            await browser.closeAllPages();
-        }
-    });
+            popupPage = await browser.newExtensionPopupPage(targetPageInfo.tabId);
+            await popupPage.bringToFront();
 
-    afterAll(async () => {
-        if (browser) {
-            await browser.close();
-            browser = undefined;
-        }
-    });
+            await popupPage.waitForSelector(CommonSelectors.highContrastThemeSelector);
+            await popupPage.waitForSelector(popupPageElementIdentifiers.launchPad);
+        });
 
-    async function setupNewTargetPage(): Promise<void> {
-        targetPage = await browser.newTestResourcePage('all.html');
+        afterAll(async () => {
+            if (browser) {
+                await browser.close();
+            }
+        });
 
-        await targetPage.bringToFront();
-        targetPageTabId = await browser.getActivePageTabId();
-    }
-
-    it('content should match snapshot', async () => {
-        await popupPage.waitForSelector(popupPageElementIdentifiers.launchPad);
-
-        const element = await popupPage.getPrintableHtmlElement(popupPageElementIdentifiers.launchPad);
-        expect(element).toMatchSnapshot();
-    });
-
-    it('should pass accessibility validation', async () => {
-        await popupPage.waitForSelector(popupPageElementIdentifiers.launchPad);
-
-        const results = await scanForAccessibilityIssues(popupPage, '*');
-        expect(results).toHaveLength(0);
+        it('should pass accessibility validation', async () => {
+            const results = await scanForAccessibilityIssues(popupPage, '*');
+            expect(results).toMatchSnapshot();
+        });
     });
 });

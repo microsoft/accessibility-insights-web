@@ -97,6 +97,10 @@ export class Page {
         return new URL(this.underlyingPage.target().url());
     }
 
+    public async press(key: string): Promise<void> {
+        await this.underlyingPage.keyboard.press(key);
+    }
+
     public async getPrintableHtmlElement(selector: string): Promise<Node> {
         return await this.screenshotOnError(async () => {
             const html = await this.underlyingPage.$eval(selector, el => el.outerHTML);

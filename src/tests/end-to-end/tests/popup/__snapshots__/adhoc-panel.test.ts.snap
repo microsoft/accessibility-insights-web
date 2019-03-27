@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Ad hoc tools should pass accessibility validation in high contrast 1`] = `
+Array [
+  Object {
+    "id": "color-contrast",
+    "nodes": Array [
+      Object {
+        "failureSummary": "Fix any of the following:
+  Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 8.3pt, font weight: bold). Expected contrast ratio of 4.5:1",
+        "selector": Array [
+          ":root",
+        ],
+      },
+      Object {
+        "failureSummary": "Fix any of the following:
+  Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+        "selector": Array [
+          "button[aria-describedby=\\"launch-pad-item-description-1\\"]",
+        ],
+      },
+      Object {
+        "failureSummary": "Fix any of the following:
+  Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+        "selector": Array [
+          "button[aria-describedby=\\"launch-pad-item-description-2\\"]",
+        ],
+      },
+      Object {
+        "failureSummary": "Fix any of the following:
+  Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+        "selector": Array [
+          "button[aria-describedby=\\"launch-pad-item-description-3\\"]",
+        ],
+      },
+      Object {
+        "failureSummary": "Fix any of the following:
+  Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 8.3pt, font weight: bold). Expected contrast ratio of 4.5:1",
+        "selector": Array [
+          "a[title=\\"Navigate\\\\ to\\\\ axe-core\\\\ npm\\\\ page\\"]",
+        ],
+      },
+    ],
+  },
+]
+`;
