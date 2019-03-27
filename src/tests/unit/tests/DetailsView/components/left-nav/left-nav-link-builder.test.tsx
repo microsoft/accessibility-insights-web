@@ -3,15 +3,15 @@
 import { isMatch } from 'lodash';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
-import { AssessmentsProvider } from '../../../../../../assessments/assessments-provider';
+import { AssessmentsProviderImpl } from '../../../../../../assessments/assessments-provider';
 import { Assessment } from '../../../../../../assessments/types/iassessment';
-import { IAssessmentsProvider } from '../../../../../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../../../../../assessments/types/iassessments-provider';
 import { VisualizationConfiguration } from '../../../../../../common/configs/visualization-configuration-factory';
 import { ManualTestStatus, ManualTestStatusData } from '../../../../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
 import { BaseLeftNavLink, onBaseLeftNavItemClick } from '../../../../../../DetailsView/components/base-left-nav';
 import { LeftNavLinkBuilder, LeftNavLinkBuilderDeps } from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';
-import { IOverviewSummaryReportModel } from '../../../../../../DetailsView/reports/assessment-report-model';
+import { OverviewSummaryReportModel } from '../../../../../../DetailsView/reports/assessment-report-model';
 import { OutcomeStats, OutcomeTypeSemantic } from '../../../../../../DetailsView/reports/components/outcome-type';
 import { GetAssessmentSummaryModelFromProviderAndStatusData } from '../../../../../../DetailsView/reports/get-assessment-summary-model';
 import { DictionaryStringTo } from '../../../../../../types/common-types';
@@ -19,7 +19,7 @@ import { DictionaryStringTo } from '../../../../../../types/common-types';
 describe('LeftNavBuilder', () => {
     let deps: LeftNavLinkBuilderDeps;
     let onLinkClickMock: IMock<onBaseLeftNavItemClick>;
-    let assessmentProviderMock: IMock<IAssessmentsProvider>;
+    let assessmentProviderMock: IMock<AssessmentsProvider>;
     let assessmentsDataStub: DictionaryStringTo<ManualTestStatusData>;
     let testSubject: LeftNavLinkBuilder;
     let getAssessmentSummaryModelFromProviderAndStatusDataMock: IMock<GetAssessmentSummaryModelFromProviderAndStatusData>;
@@ -33,7 +33,7 @@ describe('LeftNavBuilder', () => {
         getStatusForTestMock = Mock.ofInstance(_ => null, MockBehavior.Strict);
         outcomeTypeFromTestStatusMock = Mock.ofInstance(_ => null, MockBehavior.Strict);
         outcomeStatsFromManualTestStatusMock = Mock.ofInstance(_ => null, MockBehavior.Strict);
-        assessmentProviderMock = Mock.ofType(AssessmentsProvider, MockBehavior.Strict);
+        assessmentProviderMock = Mock.ofType(AssessmentsProviderImpl, MockBehavior.Strict);
         getAssessmentSummaryModelFromProviderAndStatusDataMock = Mock.ofInstance((provider, statusData) => null, MockBehavior.Strict);
         assessmentsDataStub = {};
         renderIconStub = _ => null;
@@ -58,7 +58,7 @@ describe('LeftNavBuilder', () => {
                 byPercentage: {
                     incomplete,
                 },
-            } as IOverviewSummaryReportModel;
+            } as OverviewSummaryReportModel;
 
             getAssessmentSummaryModelFromProviderAndStatusDataMock
                 .setup(mock => mock(assessmentProviderMock.object, assessmentsDataStub))

@@ -5,7 +5,7 @@ import { WindowUtils } from '../../common/window-utils';
 import { ClientUtils } from '../client-utils';
 import { DialogRenderer } from '../dialog-renderer';
 import { AxeResultsWithFrameLevel } from '../frameCommunicators/html-element-axe-results-helper';
-import { IHtmlElementAxeResults } from '../scanner-utils';
+import { HtmlElementAxeResults } from '../scanner-utils';
 import { ShadowUtils } from '../shadow-utils';
 import { BaseDrawer } from './base-drawer';
 import { DrawerUtils } from './drawer-utils';
@@ -46,7 +46,7 @@ export class Drawer extends BaseDrawer {
         }
     }
 
-    public initialize(config: IDrawerInitData<IHtmlElementAxeResults>): void {
+    public initialize(config: IDrawerInitData<HtmlElementAxeResults>): void {
         this.elementResults = config.data;
         this.featureFlagStoreData = config.featureFlagStoreData;
         this.eraseLayout();
@@ -62,7 +62,7 @@ export class Drawer extends BaseDrawer {
         }
     }
 
-    protected createHighlightElement(element: Element, data: IHtmlElementAxeResults): HTMLElement {
+    protected createHighlightElement(element: Element, data: HtmlElementAxeResults): HTMLElement {
         const currentDom = this.drawerUtils.getDocumentElement();
         const offset = this.clientUtils.getOffset(element);
         const body = currentDom.querySelector('body');

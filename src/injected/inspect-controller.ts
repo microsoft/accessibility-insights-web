@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 import { InspectMode } from '../background/inspect-modes';
+import { BaseStore } from '../common/base-store';
 import { ConfigurationKey, InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
-import { IBaseStore } from '../common/istore';
 import { IInspectStoreData } from '../common/types/store-data/inspect-store-data';
 import { ScopingListener } from './scoping-listener';
 
@@ -11,7 +11,7 @@ export class InspectController {
     private currentMode: InspectMode;
 
     constructor(
-        private readonly inspectStore: IBaseStore<IInspectStoreData>,
+        private readonly inspectStore: BaseStore<IInspectStoreData>,
         private readonly scopingListener: ScopingListener,
         private readonly changeInspectMode: (event: React.MouseEvent<HTMLElement> | MouseEvent, inspectMode: InspectMode) => void,
         private readonly inspectConfigurationFactory: InspectConfigurationFactory,

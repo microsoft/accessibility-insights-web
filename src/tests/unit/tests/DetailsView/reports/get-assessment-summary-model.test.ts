@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Assessment } from '../../../../../assessments/types/iassessment';
-import { IAssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
 import { ManualTestStatus, TestStepData } from '../../../../../common/types/manual-test-status';
 import { IAssessmentStoreData } from '../../../../../common/types/store-data/iassessment-result-data';
-import { IOverviewSummaryReportModel } from '../../../../../DetailsView/reports/assessment-report-model';
+import { OverviewSummaryReportModel } from '../../../../../DetailsView/reports/assessment-report-model';
 import {
     AssessmentStatusData,
     AssessmentSummaryResult,
@@ -69,11 +69,11 @@ describe('getAssessmentSummaryModel', () => {
     };
 
     const zeroRequirementsAll: IAssessmentSubsetForSummary[] = [];
-    const zeroAssessmentsProvider: IAssessmentsProvider = createTestAssessmentsProvider(zeroRequirementsAll);
+    const zeroAssessmentsProvider: AssessmentsProvider = createTestAssessmentsProvider(zeroRequirementsAll);
     const zeroRequirementsStatusData: AssessmentStatusData = {} as any;
     const zeroRequirementsStoreData: IAssessmentStoreData = {} as any;
     const zeroRequirementsResults: AssessmentSummaryResult[] = [];
-    const zeroRequirementsModel: IOverviewSummaryReportModel = {
+    const zeroRequirementsModel: OverviewSummaryReportModel = {
         byPercentage: {
             fail: NaN,
             incomplete: NaN,
@@ -88,7 +88,7 @@ describe('getAssessmentSummaryModel', () => {
     };
 
     const singleRequirementAll: IAssessmentSubsetForSummary[] = [sampleTests.test1];
-    const singleAssessmentsProvider: IAssessmentsProvider = createTestAssessmentsProvider(singleRequirementAll);
+    const singleAssessmentsProvider: AssessmentsProvider = createTestAssessmentsProvider(singleRequirementAll);
     const singleRequirementStatusData: AssessmentStatusData = {
         [sampleTests.test1.key]: sampleResults[sampleTests.test1.key].storeData.testStepStatus,
     } as any;
@@ -98,7 +98,7 @@ describe('getAssessmentSummaryModel', () => {
         },
     } as any;
     const singleRequirementResults: AssessmentSummaryResult[] = [sampleResults[sampleTests.test1.key]];
-    const singleRequirementModel: IOverviewSummaryReportModel = {
+    const singleRequirementModel: OverviewSummaryReportModel = {
         byPercentage: {
             fail: 0,
             incomplete: 0,
@@ -120,7 +120,7 @@ describe('getAssessmentSummaryModel', () => {
     };
 
     const multipleRequirementsAll: IAssessmentSubsetForSummary[] = [sampleTests.test1, sampleTests.test2];
-    const multipleAssessmentsProvider: IAssessmentsProvider = createTestAssessmentsProvider(multipleRequirementsAll);
+    const multipleAssessmentsProvider: AssessmentsProvider = createTestAssessmentsProvider(multipleRequirementsAll);
     const multipleRequirementsStatusData: AssessmentStatusData = {
         [sampleTests.test1.key]: sampleResults[sampleTests.test1.key].storeData.testStepStatus,
         [sampleTests.test2.key]: sampleResults[sampleTests.test2.key].storeData.testStepStatus,
@@ -135,7 +135,7 @@ describe('getAssessmentSummaryModel', () => {
         sampleResults[sampleTests.test1.key],
         sampleResults[sampleTests.test2.key],
     ];
-    const multipleRequirementsModel: IOverviewSummaryReportModel = {
+    const multipleRequirementsModel: OverviewSummaryReportModel = {
         byPercentage: {
             fail: 30,
             incomplete: 20,
@@ -162,8 +162,8 @@ describe('getAssessmentSummaryModel', () => {
         ],
     };
 
-    function createTestAssessmentsProvider(requirements: IAssessmentSubsetForSummary[]): IAssessmentsProvider {
-        const testAssessmentsProvider: IAssessmentsProvider = {
+    function createTestAssessmentsProvider(requirements: IAssessmentSubsetForSummary[]): AssessmentsProvider {
+        const testAssessmentsProvider: AssessmentsProvider = {
             all: () => requirements,
         } as any;
         return testAssessmentsProvider;

@@ -6,6 +6,7 @@ import { IHeadingsAssessmentProperties } from '../../../common/types/store-data/
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
+import { TestAutomaticallyPassedNotice } from '../../../content/test/common/test-automatically-passed-notice';
 import * as content from '../../../content/test/headings/heading-level';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
@@ -26,6 +27,7 @@ const headingLevelDescription: JSX.Element = (
 const headingLevelHowToTest: JSX.Element = (
     <div>
         <p>For this requirement, {productName} highlights coded headings in the target page.</p>
+        <TestAutomaticallyPassedNotice />
         <ol>
             <li>
                 In the target page, examine each heading to verify that its <Markup.Emphasis>programmatic</Markup.Emphasis>

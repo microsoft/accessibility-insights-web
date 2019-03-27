@@ -1,11 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BaseStore } from '../base-store';
 
-import { IBaseStore } from '../istore';
-
-// tslint:disable-next-line:interface-name
-export interface IClientStoresHub<T> {
-    stores: IBaseStore<any>[];
+export interface ClientStoresHub<T> {
+    stores: BaseStore<any>[];
     addChangedListenerToAllStores(listener: () => void): void;
     removeChangedListenerFromAllStores(listener: () => void): void;
     hasStores(): boolean;

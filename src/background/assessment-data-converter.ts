@@ -10,10 +10,10 @@ import {
     ITestStepResult,
     IUserCapturedInstance,
 } from '../common/types/store-data/iassessment-result-data';
+import { DecoratedAxeNodeResult, HtmlElementAxeResults } from '../injected/scanner-utils';
 import { PartialTabOrderPropertyBag } from '../injected/tab-order-property-bag';
-import { ITabStopEvent } from '../injected/tab-stops-listener';
+import { TabStopEvent } from '../injected/tab-stops-listener';
 import { DictionaryStringTo } from '../types/common-types';
-import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from './../injected/scanner-utils';
 import { UniquelyIdentifiableInstances } from './instance-identifier-generator';
 
 export class AssessmentDataConverter {
@@ -25,7 +25,7 @@ export class AssessmentDataConverter {
 
     public generateAssessmentInstancesMap(
         previouslyGeneratedInstances: IAssessmentInstancesMap,
-        selectorMap: DictionaryStringTo<IHtmlElementAxeResults>,
+        selectorMap: DictionaryStringTo<HtmlElementAxeResults>,
         stepName: string,
         generateInstanceIdentifier: (instance: UniquelyIdentifiableInstances) => string,
         getInstanceStatus: (result: DecoratedAxeNodeResult) => ManualTestStatus,
@@ -57,7 +57,7 @@ export class AssessmentDataConverter {
 
     public generateAssessmentInstancesMapForEvents(
         previouslyGeneratedInstances: IAssessmentInstancesMap,
-        events: ITabStopEvent[],
+        events: TabStopEvent[],
         stepName: string,
         generateInstanceIdentifier: (instance: UniquelyIdentifiableInstances) => string,
     ): IAssessmentInstancesMap {
@@ -86,7 +86,7 @@ export class AssessmentDataConverter {
 
     private getInitialAssessmentInstance(
         currentInstance: IGeneratedAssessmentInstance,
-        elementAxeResult: IHtmlElementAxeResults,
+        elementAxeResult: HtmlElementAxeResults,
         testStep: string,
         ruleResult: DecoratedAxeNodeResult,
         getInstanceStatus: (result: DecoratedAxeNodeResult) => ManualTestStatus,
@@ -120,7 +120,7 @@ export class AssessmentDataConverter {
 
     private getInitialAssessmentFromEvent(
         matchingInstance: IGeneratedAssessmentInstance,
-        event: ITabStopEvent,
+        event: TabStopEvent,
         testStep: string,
         selector: string,
     ): IGeneratedAssessmentInstance {
@@ -158,7 +158,7 @@ export class AssessmentDataConverter {
 
     private getTestStepResults<T>(
         ruleResult: DecoratedAxeNodeResult,
-        elementAxeResult: IHtmlElementAxeResults,
+        elementAxeResult: HtmlElementAxeResults,
         getInstanceStatus: (result: DecoratedAxeNodeResult) => ManualTestStatus,
     ): ITestStepResult {
         return {

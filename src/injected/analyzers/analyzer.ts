@@ -8,8 +8,8 @@ import { TelemetryProcessor } from '../../common/types/telemetry-processor';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { ScanResults } from '../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../types/common-types';
-import { IHtmlElementAxeResults, ScannerUtils } from '../scanner-utils';
-import { ITabStopEvent } from '../tab-stops-listener';
+import { HtmlElementAxeResults, ScannerUtils } from '../scanner-utils';
+import { TabStopEvent } from '../tab-stops-listener';
 
 export interface AxeAnalyzerResult {
     results: DictionaryStringTo<any>;
@@ -29,7 +29,7 @@ export interface ScanCompletedPayload<TSelectorValue> extends ScanBasePayload {
 }
 
 export interface ScanUpdatePayload extends ScanBasePayload {
-    results: ITabStopEvent[];
+    results: TabStopEvent[];
 }
 
 export interface ScanBasePayload extends BaseActionPayload {
@@ -45,7 +45,7 @@ export interface AnalyzerConfiguration {
 
 export interface RuleAnalyzerConfiguration extends AnalyzerConfiguration {
     rules: string[];
-    resultProcessor: (scanner: ScannerUtils) => (results: ScanResults) => DictionaryStringTo<IHtmlElementAxeResults>;
+    resultProcessor: (scanner: ScannerUtils) => (results: ScanResults) => DictionaryStringTo<HtmlElementAxeResults>;
     telemetryProcessor: TelemetryProcessor<IAnalyzerTelemetryCallback>;
 }
 

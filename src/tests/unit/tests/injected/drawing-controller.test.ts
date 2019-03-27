@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { AssessmentsProvider } from '../../../../assessments/assessments-provider';
-import { IAssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
+import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
+import { AssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
 import {
     VisualizationConfiguration,
     VisualizationConfigurationFactory,
@@ -20,7 +20,7 @@ import {
     IAssessmentVisualizationInstance,
 } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { InstanceVisibilityChecker } from '../../../../injected/instance-visibility-checker';
-import { IHtmlElementAxeResults } from '../../../../injected/scanner-utils';
+import { HtmlElementAxeResults } from '../../../../injected/scanner-utils';
 import { Drawer } from '../../../../injected/visualization/drawer';
 import { DrawerProvider } from '../../../../injected/visualization/drawer-provider';
 import { IDrawer, IDrawerInitData } from '../../../../injected/visualization/idrawer';
@@ -81,7 +81,7 @@ describe('DrawingControllerTest', () => {
     let getIdentifierMock: IMock<(step?: string) => string>;
     let getDrawerMock: IMock<(provider: DrawerProvider, testStep?: string) => IDrawer>;
     let drawerProvider: IMock<DrawerProvider>;
-    let assessmentProvider: IMock<IAssessmentsProvider>;
+    let assessmentProvider: IMock<AssessmentsProvider>;
     let numVisualizationTypes: number;
 
     beforeEach(() => {
@@ -93,7 +93,7 @@ describe('DrawingControllerTest', () => {
         drawerProvider = Mock.ofType(DrawerProvider);
         getIdentifierMock = Mock.ofInstance(step => null);
         getDrawerMock = Mock.ofInstance((provider, testStep) => null);
-        assessmentProvider = Mock.ofType(AssessmentsProvider);
+        assessmentProvider = Mock.ofType(AssessmentsProviderImpl);
         visualizationConfigStub = {
             getIdentifier: getIdentifierMock.object,
             getDrawer: getDrawerMock.object,
@@ -205,8 +205,8 @@ describe('DrawingControllerTest', () => {
             .build();
         const iframeResults = ['iframeContent'];
         const iframeElement = 'iframeElement';
-        const visibleResultStub = {} as IHtmlElementAxeResults;
-        const notVisibleResultStub = { isVisible: false } as IHtmlElementAxeResults;
+        const visibleResultStub = {} as HtmlElementAxeResults;
+        const notVisibleResultStub = { isVisible: false } as HtmlElementAxeResults;
         const disabledResultStub = { isVisualizationEnabled: false } as IAssessmentVisualizationInstance;
         const resultsByFrames = [
             {
@@ -259,7 +259,7 @@ describe('DrawingControllerTest', () => {
 
         hTMLElementUtils.setup(dm => dm.getAllElementsByTagName(It.isAny())).verifiable(Times.never());
 
-        const expected: IDrawerInitData<IHtmlElementAxeResults> = {
+        const expected: IDrawerInitData<HtmlElementAxeResults> = {
             data: [visibleResultStub],
             featureFlagStoreData,
         };

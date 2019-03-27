@@ -9,6 +9,7 @@ import { ContrastPropertyBag } from '../../../common/types/property-bag/icontras
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName, windowsPlatformTitle } from '../../../content/strings/application';
+import { TestAutomaticallyPassedNotice } from '../../../content/test/common/test-automatically-passed-notice';
 import * as content from '../../../content/test/text-legibility/contrast';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
@@ -25,8 +26,11 @@ const WindowsPlatformLink = () => <NewTabLink href="https://go.microsoft.com/fwl
 
 const contrastHowToTest: JSX.Element = (
     <div>
-        For this requirement, {productName} highlights instances of text where the contrast ratio can't be determined, typically because the
-        background color is not uniform. You must manually verify the contrast for these instances.
+        <p>
+            For this requirement, {productName} highlights instances of text where the contrast ratio can't be determined, typically because
+            the background color is not uniform. You must manually verify the contrast for these instances.
+        </p>
+        <TestAutomaticallyPassedNotice />
         <ol>
             <li>
                 Examine each instance in the target page to identify an area where the text and background are most likely to have a low

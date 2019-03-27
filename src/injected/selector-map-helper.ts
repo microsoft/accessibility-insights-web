@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 
-import { IAssessmentsProvider } from '../assessments/types/iassessments-provider';
-import { IBaseStore } from '../common/istore';
+import { AssessmentsProvider } from '../assessments/types/iassessments-provider';
+import { BaseStore } from '../common/base-store';
 import { ManualTestStatus } from '../common/types/manual-test-status';
 import { IAssessmentStoreData, IGeneratedAssessmentInstance } from '../common/types/store-data/iassessment-result-data';
 import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
@@ -12,14 +12,14 @@ import { DictionaryStringTo } from '../types/common-types';
 import { IAssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
 
 export class SelectorMapHelper {
-    private scanResultStore: IBaseStore<IVisualizationScanResultData>;
-    private assessmentStore: IBaseStore<IAssessmentStoreData>;
-    private assessmentsProvider: IAssessmentsProvider;
+    private scanResultStore: BaseStore<IVisualizationScanResultData>;
+    private assessmentStore: BaseStore<IAssessmentStoreData>;
+    private assessmentsProvider: AssessmentsProvider;
 
     constructor(
-        scanResultStore: IBaseStore<IVisualizationScanResultData>,
-        assessmentStore: IBaseStore<IAssessmentStoreData>,
-        assessmentsProvider: IAssessmentsProvider,
+        scanResultStore: BaseStore<IVisualizationScanResultData>,
+        assessmentStore: BaseStore<IAssessmentStoreData>,
+        assessmentsProvider: AssessmentsProvider,
     ) {
         this.scanResultStore = scanResultStore;
         this.assessmentStore = assessmentStore;

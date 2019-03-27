@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { IAssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../../../../../common/types/store-data/iassessment-result-data';
 import { ITabStoreData } from '../../../../../common/types/store-data/itab-store-data';
@@ -61,7 +61,7 @@ describe('ReportGeneratorTest', () => {
 
     test('generateAssessmentHtml', () => {
         const assessmentStoreData: IAssessmentStoreData = { stub: 'assessmentStoreData' } as any;
-        const assessmentsProvider: IAssessmentsProvider = { stub: 'assessmentsProvider' } as any;
+        const assessmentsProvider: AssessmentsProvider = { stub: 'assessmentsProvider' } as any;
         const featureFlagStoreData: FeatureFlagStoreData = { stub: 'featureFlagStoreData' } as any;
         const tabStoreData: ITabStoreData = { stub: 'tabStoreData' } as any;
         const assessmentDescription = 'generateAssessmentHtml-description';

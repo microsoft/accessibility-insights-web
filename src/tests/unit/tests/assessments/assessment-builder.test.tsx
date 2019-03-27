@@ -18,7 +18,7 @@ import { IAssessmentScanData, TestsEnabledState } from '../../../../common/types
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { AssessmentInstanceTable } from '../../../../DetailsView/components/assessment-instance-table';
 import { AssessmentTestView } from '../../../../DetailsView/components/assessment-test-view';
-import { TestStepLink } from '../../../../DetailsView/components/test-step-link';
+import { RequirementLink } from '../../../../DetailsView/components/requirement-link';
 import { TestViewProps } from '../../../../DetailsView/components/test-view';
 import { AnalyzerConfiguration } from '../../../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../../../injected/analyzers/analyzer-provider';
@@ -345,7 +345,7 @@ describe('AssessmentBuilderTest', () => {
         expect(testStep.renderInstanceTableHeader(tableMock.object, [])).toBe(headerStub);
         tableMock.verifyAll();
 
-        const linkMock = Mock.ofType(TestStepLink, MockBehavior.Strict);
+        const linkMock = Mock.ofType(RequirementLink, MockBehavior.Strict);
         const descriptionStub = <div>descriptionStub</div>;
         linkMock
             .setup(lm => lm.renderRequirementDescriptionWithIndex())

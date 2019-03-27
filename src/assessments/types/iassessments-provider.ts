@@ -5,8 +5,7 @@ import { DictionaryStringTo } from './../../types/common-types';
 import { Assessment } from './iassessment';
 import { TestStep } from './test-step';
 
-// tslint:disable-next-line:interface-name
-export interface IAssessmentsProvider {
+export interface AssessmentsProvider {
     all(): ReadonlyArray<Readonly<Assessment>>;
     isValidType(type: VisualizationType): boolean;
     forType(type: VisualizationType): Readonly<Assessment>;

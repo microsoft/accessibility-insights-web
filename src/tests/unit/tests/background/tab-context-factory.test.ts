@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { AssessmentsProvider } from '../../../../assessments/assessments-provider';
+import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
 import { ChromeAdapter } from '../../../../background/browser-adapter';
 import { DetailsViewController } from '../../../../background/details-view-controller';
 import { Interpreter } from '../../../../background/interpreter';
@@ -48,7 +48,7 @@ describe('TabContextFactoryTest', () => {
         const telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler);
         const targetTabControllerMock = Mock.ofType(TargetTabController);
         const assessmentStore = Mock.ofType(AssessmentStore);
-        const assessmentProvider = Mock.ofType(AssessmentsProvider);
+        const assessmentProvider = Mock.ofType(AssessmentsProviderImpl);
 
         const storeNames: StoreNames[] = [
             StoreNames.VisualizationScanResultStore,

@@ -8,6 +8,7 @@ import { WidgetFunctionPropertyBag } from '../../../common/types/property-bag/iw
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
+import { TestAutomaticallyPassedNotice } from '../../../content/test/common/test-automatically-passed-notice';
 import * as content from '../../../content/test/native-widgets/widget-function';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
@@ -31,6 +32,7 @@ const howToTest: JSX.Element = (
             ARIA widget role, but they do have some custom widget markup, such as
             <Markup.CodeTerm> tabindex="-1"</Markup.CodeTerm>, an ARIA attribute, or a non-widget role.
         </p>
+        <TestAutomaticallyPassedNotice />
         <ol>
             <li>
                 In the target page, examine each highlighted widget to verify that it <Markup.Emphasis>functions </Markup.Emphasis>

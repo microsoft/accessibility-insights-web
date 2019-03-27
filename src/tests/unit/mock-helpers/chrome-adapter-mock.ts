@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { DevToolsChromeAdapter, IDevToolsChromeAdapter } from '../../../background/dev-tools-chrome-adapter';
+import { DevToolsChromeAdapter, DevToolsChromeAdapterImpl } from '../../../background/dev-tools-chrome-adapter';
 import { PortWithTabId } from '../../../background/dev-tools-listener';
 import { PortDisconnectStub, PortOnMessageStub } from '../stubs/chrome-adapter-stub';
 import { PortStub } from '../stubs/port-stub';
@@ -19,7 +19,7 @@ export class PortWithTabTabIdStub extends PortStub implements PortWithTabId {
 }
 
 export class ChromeAdapterMock {
-    private _chromeAdapterMock: IMock<IDevToolsChromeAdapter> = Mock.ofType(DevToolsChromeAdapter, MockBehavior.Strict);
+    private _chromeAdapterMock: IMock<DevToolsChromeAdapter> = Mock.ofType(DevToolsChromeAdapterImpl, MockBehavior.Strict);
 
     public setUpAddListenerOnConnect(
         callback?: (onListenerConnect: (port: PortWithTabTabIdStub) => void) => void,
@@ -65,7 +65,7 @@ export class ChromeAdapterMock {
         this._chromeAdapterMock.verifyAll();
     }
 
-    public getObject(): IDevToolsChromeAdapter {
+    public getObject(): DevToolsChromeAdapter {
         return this._chromeAdapterMock.object;
     }
 }

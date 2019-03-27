@@ -3,6 +3,7 @@
 import { autobind } from '@uifabric/utilities';
 import * as _ from 'lodash';
 
+import { BaseStore } from '../common/base-store';
 import { TestMode } from '../common/configs/test-mode';
 import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../common/enum-helper';
@@ -13,7 +14,6 @@ import { IVisualizationScanResultData } from '../common/types/store-data/ivisual
 import { IAssessmentScanData, IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryNumberTo, DictionaryStringTo } from '../types/common-types';
-import { IBaseStore } from './../common/istore';
 import { DrawingInitiator } from './drawing-initiator';
 import { IAssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
 import { ScrollingController, ScrollingWindowMessage } from './frameCommunicators/scrolling-controller';
@@ -25,29 +25,29 @@ export class ClientViewController {
     private scrollingController: ScrollingController;
     private currentVisualizationState: IVisualizationStoreData;
     private currentFeatureFlagState: FeatureFlagStoreData;
-    private visualizationStore: IBaseStore<IVisualizationStoreData>;
-    private assessmentStore: IBaseStore<IAssessmentStoreData>;
-    private tabStore: IBaseStore<ITabStoreData>;
-    private scanResultStore: IBaseStore<IVisualizationScanResultData>;
+    private visualizationStore: BaseStore<IVisualizationStoreData>;
+    private assessmentStore: BaseStore<IAssessmentStoreData>;
+    private tabStore: BaseStore<ITabStoreData>;
+    private scanResultStore: BaseStore<IVisualizationScanResultData>;
     private currentScanResultState: IVisualizationScanResultData;
     private currentAssessmentState: IAssessmentStoreData;
     private currentTabState: ITabStoreData;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
-    private featureFlagStore: IBaseStore<DictionaryStringTo<boolean>>;
+    private featureFlagStore: BaseStore<DictionaryStringTo<boolean>>;
     private selectorMapHelper: SelectorMapHelper;
     private targetPageActionMessageCreator: TargetPageActionMessageCreator;
     protected previousVisualizationStates: DictionaryStringTo<boolean> = {};
     protected previousVisualizationSelectorMapStates: DictionaryNumberTo<DictionaryStringTo<IAssessmentVisualizationInstance>> = {};
 
     constructor(
-        visualizationStore: IBaseStore<IVisualizationStoreData>,
-        scanResultStore: IBaseStore<IVisualizationScanResultData>,
+        visualizationStore: BaseStore<IVisualizationStoreData>,
+        scanResultStore: BaseStore<IVisualizationScanResultData>,
         drawingInitiator,
         scrollingController,
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
-        featureFlagStore: IBaseStore<DictionaryStringTo<boolean>>,
-        assessmentStore: IBaseStore<IAssessmentStoreData>,
-        tabStore: IBaseStore<ITabStoreData>,
+        featureFlagStore: BaseStore<DictionaryStringTo<boolean>>,
+        assessmentStore: BaseStore<IAssessmentStoreData>,
+        tabStore: BaseStore<ITabStoreData>,
         selectorMapHelper: SelectorMapHelper,
         targetPageActionMessageCreator: TargetPageActionMessageCreator,
     ) {

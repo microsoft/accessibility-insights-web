@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DialogRenderer } from '../dialog-renderer';
-import { IHtmlElementAxeResults } from '../scanner-utils';
+import { HtmlElementAxeResults } from '../scanner-utils';
 import { IPartialSVGDrawerConfiguration } from './drawer-provider';
 import { Formatter, SVGDrawerConfiguration } from './formatter';
 
@@ -14,7 +14,7 @@ export class TabStopsFormatter implements Formatter {
         this.givenConfiguration = givenConfiguration;
     }
 
-    public getDrawerConfiguration(element: HTMLElement, data: IHtmlElementAxeResults): SVGDrawerConfiguration {
+    public getDrawerConfiguration(element: HTMLElement, data: HtmlElementAxeResults): SVGDrawerConfiguration {
         let ellipseRx: number = 16;
         const tabindex = element.getAttribute('tabindex');
         if (tabindex && parseInt(tabindex, 10) > 0) {

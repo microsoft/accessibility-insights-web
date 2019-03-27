@@ -6,8 +6,8 @@ import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
-import { IStoreActionMessageCreator } from '../../../../common/message-creators/istore-action-message-creator';
 import { StoreActionMessageCreator } from '../../../../common/message-creators/store-action-message-creator';
+import { StoreActionMessageCreatorImpl } from '../../../../common/message-creators/store-action-message-creator-impl';
 import { BaseClientStoresHub } from '../../../../common/stores/base-client-stores-hub';
 import { DetailsViewPivotType } from '../../../../common/types/details-view-pivot-type';
 import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';
@@ -65,7 +65,7 @@ describe('DetailsViewContainer', () => {
 
     describe('render', () => {
         it('renders spinner when stores not ready', () => {
-            const detailsViewStoreActionMessageCreatorMock = Mock.ofType(StoreActionMessageCreator, MockBehavior.Strict);
+            const detailsViewStoreActionMessageCreatorMock = Mock.ofType(StoreActionMessageCreatorImpl, MockBehavior.Strict);
             detailsViewStoreActionMessageCreatorMock.setup(amc => amc.getAllStates()).verifiable(Times.once());
 
             const storeMocks = new StoreMocks()
@@ -98,7 +98,7 @@ describe('DetailsViewContainer', () => {
         });
 
         it('shows target tab was closed when stores are not loaded', () => {
-            const storeActionCreator = Mock.ofType(StoreActionMessageCreator, MockBehavior.Strict);
+            const storeActionCreator = Mock.ofType(StoreActionMessageCreatorImpl, MockBehavior.Strict);
 
             const visualizationStoreData = new VisualizationStoreDataBuilder()
                 .with('selectedAdhocDetailsView', VisualizationType.Issues)
@@ -117,7 +117,7 @@ describe('DetailsViewContainer', () => {
 
             const storeMocks = new StoreMocks().setVisualizationStoreData(visualizationStoreData).setTabStoreData(tabStoreData);
 
-            const detailsViewStoreActionCreatorMock = Mock.ofType<IStoreActionMessageCreator>();
+            const detailsViewStoreActionCreatorMock = Mock.ofType<StoreActionMessageCreator>();
 
             const props = new DetailsViewContainerPropsBuilder(deps)
                 .setStoreMocks(storeMocks)
@@ -131,7 +131,7 @@ describe('DetailsViewContainer', () => {
         });
 
         it('render twice; should not call details view opened on 2nd render', () => {
-            const storeActionCreator = Mock.ofType(StoreActionMessageCreator, MockBehavior.Strict);
+            const storeActionCreator = Mock.ofType(StoreActionMessageCreatorImpl, MockBehavior.Strict);
             const clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory);
             const getSelectedDetailsViewMock = Mock.ofInstance((theProps: GetSelectedDetailsViewProps) => null, MockBehavior.Strict);
             const rightContentPanelType = 'TestView';
@@ -190,7 +190,7 @@ describe('DetailsViewContainer', () => {
 
             const toggleClickHandlerMock = Mock.ofInstance(event => {});
             const clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory);
-            const storeActionCreator = Mock.ofType(StoreActionMessageCreator, MockBehavior.Strict);
+            const storeActionCreator = Mock.ofType(StoreActionMessageCreatorImpl, MockBehavior.Strict);
 
             const visualizationStoreData = new VisualizationStoreDataBuilder().with('selectedAdhocDetailsView', unsupportedType).build();
 

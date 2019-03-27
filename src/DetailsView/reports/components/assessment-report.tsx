@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { IReportModel } from '../assessment-report-model';
+import { ReportModel } from '../assessment-report-model';
 import { AssessmentReportBody, AssessmentReportBodyDeps } from './assessment-report-body';
 import { AssessmentReportFooter } from './assessment-report-footer';
 import { AssessmentReportHeader } from './assessment-report-header';
@@ -11,7 +11,7 @@ export type AssessmentReportDeps = AssessmentReportBodyDeps;
 
 export interface AssessmentReportProps {
     deps: AssessmentReportDeps;
-    data: IReportModel;
+    data: ReportModel;
     description: string;
     extensionVersion: string;
     axeVersion: string;

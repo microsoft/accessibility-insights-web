@@ -4,7 +4,7 @@ import * as Enzyme from 'enzyme';
 import * as React from 'react';
 
 import { ManualTestStatus } from '../../../../../../common/types/manual-test-status';
-import { IRequirementHeaderReportModel, RequirementType } from '../../../../../../DetailsView/reports/assessment-report-model';
+import { RequirementHeaderReportModel, RequirementType } from '../../../../../../DetailsView/reports/assessment-report-model';
 import {
     AssessmentReportStepHeader,
     AssessmentReportStepHeaderDeps,
@@ -14,7 +14,7 @@ import { OutcomeType } from '../../../../../../DetailsView/reports/components/ou
 import { shallowRender } from '../../../../common/shallow-render';
 
 describe('AssessmentReportStepHeader', () => {
-    function genHeader(requirementType: RequirementType): IRequirementHeaderReportModel {
+    function genHeader(requirementType: RequirementType): RequirementHeaderReportModel {
         return {
             description: <p>DESCRIPTION</p>,
             displayName: 'REQUIREMENT',

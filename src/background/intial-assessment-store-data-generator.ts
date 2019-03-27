@@ -3,17 +3,17 @@
 import { head } from 'lodash';
 
 import { Assessment } from '../assessments/types/iassessment';
+import { AssessmentsProvider } from '../assessments/types/iassessments-provider';
 import { TestStep } from '../assessments/types/test-step';
 import { IAssessmentData, IAssessmentStoreData, PersistedTabInfo } from '../common/types/store-data/iassessment-result-data';
 import { DictionaryStringTo } from '../types/common-types';
-import { IAssessmentsProvider } from './../assessments/types/iassessments-provider';
 import { createInitialAssesmentTestData } from './create-initial-assessment-test-data';
 
 export class InitialAssessmentStoreDataGenerator {
     private readonly NULL_FIRST_TEST: Partial<Readonly<Assessment>> = { type: null, steps: [{ key: null }] as TestStep[] };
     private tests: ReadonlyArray<Readonly<Assessment>>;
 
-    constructor(assessmentsProvider: IAssessmentsProvider) {
+    constructor(assessmentsProvider: AssessmentsProvider) {
         this.tests = assessmentsProvider.all();
     }
 

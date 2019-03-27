@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IHtmlElementAxeResults } from '../scanner-utils';
+import { HtmlElementAxeResults } from '../scanner-utils';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 
 // tslint:disable-next-line:interface-name

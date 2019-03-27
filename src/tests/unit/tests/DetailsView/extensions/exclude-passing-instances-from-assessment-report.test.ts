@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IRequirementReportModel } from '../../../../..//DetailsView/reports/assessment-report-model';
+import { RequirementReportModel } from '../../../../..//DetailsView/reports/assessment-report-model';
 import { excludePassingInstancesFromAssessmentReport } from '../../../../../DetailsView/extensions/exclude-passing-instances-from-assessment-report';
 
 describe('excludePassingInstancesFromAssessmentReport', () => {
-    function makeModel(showPassingInstances): IRequirementReportModel {
-        return ({ showPassingInstances } as Partial<IRequirementReportModel>) as IRequirementReportModel;
+    function makeModel(showPassingInstances): RequirementReportModel {
+        return ({ showPassingInstances } as Partial<RequirementReportModel>) as RequirementReportModel;
     }
 
     it('changes showPassingInstances from true to false', () => {

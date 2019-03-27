@@ -3,7 +3,7 @@
 import { Mock, MockBehavior } from 'typemoq';
 
 import { DevToolActionMessageCreator } from '../../../../common/message-creators/dev-tool-action-message-creator';
-import { FrameUrlFinder, IFrameUrlMessage } from '../../../../injected/frame-url-finder';
+import { FrameUrlFinder, FrameUrlMessage } from '../../../../injected/frame-url-finder';
 import { FrameUrlMessageDispatcher } from '../../../../injected/frame-url-message-dispatcher';
 import { FrameCommunicator } from '../../../../injected/frameCommunicators/frame-communicator';
 
@@ -14,7 +14,7 @@ describe('FrameUrlMessageDispatcherTest', () => {
 
     test('setTargetFrameUrl', () => {
         const devToolActionMessageCreatorMock = Mock.ofType(DevToolActionMessageCreator, MockBehavior.Strict);
-        const targetFrameUrlMessage: IFrameUrlMessage = {
+        const targetFrameUrlMessage: FrameUrlMessage = {
             frameUrl: 'testUrl',
         };
 

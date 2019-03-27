@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentsProvider } from './assessments-provider';
+import { AssessmentsProviderImpl } from './assessments-provider';
 import { AudioVideoOnlyAssessment } from './audio-video-only/assessment';
 import { AutomatedChecks } from './automated-checks/assessment';
 import { ColorSensoryAssessment } from './color/assessment';
@@ -22,10 +22,10 @@ import { SemanticsAssessment } from './semantics/assessment';
 import { SequenceAssessment } from './sequence/assessment';
 import { TextLegibilityAssessment } from './text-legibility/assessment';
 import { TimedEventsAssessment } from './timed-events/assessment';
-import { IAssessmentsProvider } from './types/iassessments-provider';
+import { AssessmentsProvider } from './types/iassessments-provider';
 import { VisibleFocusOrderAssessment } from './visible-focus-order/assessment';
 
-export const Assessments: IAssessmentsProvider = AssessmentsProvider.Create([
+export const Assessments: AssessmentsProvider = AssessmentsProviderImpl.Create([
     AutomatedChecks,
     KeyboardInteraction,
     VisibleFocusOrderAssessment,

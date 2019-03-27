@@ -6,13 +6,11 @@ import { HTMLElementUtils } from '../common/html-element-utils';
 import { WindowUtils } from '../common/window-utils';
 import { FrameCommunicator, IMessageRequest } from './frameCommunicators/frame-communicator';
 
-// tslint:disable-next-line:interface-name
-export interface ITargetMessage {
+export interface TargetMessage {
     target: string[];
 }
 
-// tslint:disable-next-line:interface-name
-export interface IFrameUrlMessage {
+export interface FrameUrlMessage {
     frameUrl: string;
 }
 
@@ -35,7 +33,7 @@ export class FrameUrlFinder {
     }
 
     @autobind
-    public processRequest(message: ITargetMessage): void {
+    public processRequest(message: TargetMessage): void {
         const target = message.target;
 
         if (target.length === 1) {
@@ -45,7 +43,7 @@ export class FrameUrlFinder {
                 message: {
                     frameUrl: this.windowUtils.getWindow().location.href,
                 },
-            } as IMessageRequest<IFrameUrlMessage>);
+            } as IMessageRequest<FrameUrlMessage>);
         } else if (target.length > 1) {
             this.frameCommunicator.sendMessage({
                 command: FrameUrlFinder.GetTargetFrameUrlCommand,
@@ -53,7 +51,7 @@ export class FrameUrlFinder {
                 message: {
                     target: target.slice(1),
                 },
-            } as IMessageRequest<ITargetMessage>);
+            } as IMessageRequest<TargetMessage>);
         }
     }
 }

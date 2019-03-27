@@ -15,14 +15,14 @@ import { IScopingStoreData } from '../../../../../common/types/store-data/scopin
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
 import { RuleAnalyzer } from '../../../../../injected/analyzers/rule-analyzer';
-import { IHtmlElementAxeResults, ScannerUtils } from '../../../../../injected/scanner-utils';
+import { HtmlElementAxeResults, ScannerUtils } from '../../../../../injected/scanner-utils';
 import { ScanOptions } from '../../../../../scanner/exposed-apis';
 import { ScanResults } from '../../../../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 
 describe('RuleAnalyzer', () => {
     let scannerUtilsMock: IMock<ScannerUtils>;
-    let resultProcessorMock: IMock<(results: ScanResults) => DictionaryStringTo<IHtmlElementAxeResults>>;
+    let resultProcessorMock: IMock<(results: ScanResults) => DictionaryStringTo<HtmlElementAxeResults>>;
     let dateGetterMock: IMock<() => Date>;
     let dateMock: IMock<Date>;
     let scopingStoreMock: IMock<ScopingStore>;

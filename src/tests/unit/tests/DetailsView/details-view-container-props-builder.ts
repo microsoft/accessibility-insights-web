@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 
-import { IAssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
+import { BaseStore } from '../../../../common/base-store';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
-import { IBaseStore } from '../../../../common/istore';
 import { InspectActionMessageCreator } from '../../../../common/message-creators/inspect-action-message-creator';
-import { IStoreActionMessageCreator } from '../../../../common/message-creators/istore-action-message-creator';
 import { ScopingActionMessageCreator } from '../../../../common/message-creators/scoping-action-message-creator';
+import { StoreActionMessageCreator } from '../../../../common/message-creators/store-action-message-creator';
 import { BaseClientStoresHub } from '../../../../common/stores/base-client-stores-hub';
 import { IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
 import { IDetailsViewData } from '../../../../common/types/store-data/idetails-view-data';
@@ -25,16 +25,16 @@ import { DictionaryStringTo } from '../../../../types/common-types';
 import { StoreMocks } from './store-mocks';
 
 export class DetailsViewContainerPropsBuilder {
-    private visualizationStore: IBaseStore<IVisualizationStoreData>;
-    private assessmentStore: IBaseStore<IAssessmentStoreData>;
-    private visualizationScanResultStore: IBaseStore<IVisualizationScanResultData>;
-    private tabStore: IBaseStore<ITabStoreData>;
-    private featureFlagStore: IBaseStore<DictionaryStringTo<boolean>>;
-    private scopingStateStore: IBaseStore<IScopingStoreData>;
-    private detailsViewStore: IBaseStore<IDetailsViewData>;
+    private visualizationStore: BaseStore<IVisualizationStoreData>;
+    private assessmentStore: BaseStore<IAssessmentStoreData>;
+    private visualizationScanResultStore: BaseStore<IVisualizationScanResultData>;
+    private tabStore: BaseStore<ITabStoreData>;
+    private featureFlagStore: BaseStore<DictionaryStringTo<boolean>>;
+    private scopingStateStore: BaseStore<IScopingStoreData>;
+    private detailsViewStore: BaseStore<IDetailsViewData>;
     private scopingActionMessageCreator: ScopingActionMessageCreator;
     private inspectActionMessageCreator: InspectActionMessageCreator;
-    private storeActionCreator: IStoreActionMessageCreator;
+    private storeActionCreator: StoreActionMessageCreator;
     private document: Document = document;
     private issuesSelection: ISelection;
     private clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
@@ -43,17 +43,17 @@ export class DetailsViewContainerPropsBuilder {
     private scopingFlagsHandler: PreviewFeatureFlagsHandler;
     private dropdownClickHandler: DropdownClickHandler;
     private assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
-    private assessmentProvider: IAssessmentsProvider;
+    private assessmentProvider: AssessmentsProvider;
     private configFactory: VisualizationConfigurationFactory;
     private storesHub: BaseClientStoresHub<any>;
     constructor(private deps: DetailsViewContainerDeps) {}
 
-    public setDetailsViewStoreActionMessageCreator(creator: IStoreActionMessageCreator): DetailsViewContainerPropsBuilder {
+    public setDetailsViewStoreActionMessageCreator(creator: StoreActionMessageCreator): DetailsViewContainerPropsBuilder {
         this.storeActionCreator = creator;
         return this;
     }
 
-    public setAssessmentProvider(provider: IAssessmentsProvider): DetailsViewContainerPropsBuilder {
+    public setAssessmentProvider(provider: AssessmentsProvider): DetailsViewContainerPropsBuilder {
         this.assessmentProvider = provider;
         return this;
     }
@@ -93,7 +93,7 @@ export class DetailsViewContainerPropsBuilder {
         return this;
     }
 
-    public setStoreActionMessageCreator(creator: IStoreActionMessageCreator): DetailsViewContainerPropsBuilder {
+    public setStoreActionMessageCreator(creator: StoreActionMessageCreator): DetailsViewContainerPropsBuilder {
         this.storeActionCreator = creator;
         return this;
     }

@@ -5,10 +5,10 @@ import * as React from 'react';
 
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { BagOf, isScalarColumnValue, ScalarColumnValue } from '../../../common/types/property-bag/column-value-bag';
-import { IInstanceReportModel } from '../assessment-report-model';
+import { InstanceReportModel } from '../assessment-report-model';
 
 export interface AssessmentReportInstanceListProps {
-    instances: IInstanceReportModel[];
+    instances: InstanceReportModel[];
 }
 
 export const AssessmentReportInstanceList = NamedSFC<AssessmentReportInstanceListProps>('AssessmentReportInstanceList', props => {
@@ -28,7 +28,7 @@ export const AssessmentReportInstanceList = NamedSFC<AssessmentReportInstanceLis
         });
     }
 
-    function renderInstanceRows(instance: IInstanceReportModel): Row[] {
+    function renderInstanceRows(instance: InstanceReportModel): Row[] {
         const rowSets = instance.props.map(({ key, value }, index) =>
             isScalarColumnValue(value) ? [renderScalarRow(key, value, index)] : renderPropertyBagRows(key, value, index),
         );

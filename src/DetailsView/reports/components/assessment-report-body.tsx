@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { ManualTestStatus } from '../../../common/types/manual-test-status';
-import { IAssessmentDetailsReportModel, IReportModel } from '../assessment-report-model';
+import { AssessmentDetailsReportModel, ReportModel } from '../assessment-report-model';
 import { AssessmentReportAssessmentList, AssessmentReportAssessmentListDeps } from './assessment-report-assessment-list';
 import { AssessmentReportBodyHeader } from './assessment-report-body-header';
 import { AssessmentReportSummary } from './assessment-report-summary';
@@ -15,7 +15,7 @@ export type AssessmentReportBodyDeps = AssessmentReportAssessmentListDeps;
 
 export interface AssessmentReportBodyProps {
     deps: AssessmentReportBodyDeps;
-    data: IReportModel;
+    data: ReportModel;
     description: string;
 }
 
@@ -52,7 +52,7 @@ export class AssessmentReportBody extends React.Component<AssessmentReportBodyPr
     }
 
     private renderDetailsSection(
-        detailsData: IAssessmentDetailsReportModel[],
+        detailsData: AssessmentDetailsReportModel[],
         title: string,
         count: number,
         status: ManualTestStatus,

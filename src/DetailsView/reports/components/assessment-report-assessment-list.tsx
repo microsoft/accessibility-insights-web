@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { ManualTestStatus } from '../../../common/types/manual-test-status';
-import { IAssessmentDetailsReportModel } from '../assessment-report-model';
+import { AssessmentDetailsReportModel } from '../assessment-report-model';
 import { AssessmentReportStepList, AssessmentReportStepListDeps } from './assessment-report-step-list';
 import { OutcomeChip } from './outcome-chip';
 import { allOutcomeTypes } from './outcome-type';
@@ -13,7 +13,7 @@ export type AssessmentReportAssessmentListDeps = AssessmentReportStepListDeps;
 export interface AssessmentReportAssessmentListProps {
     deps: AssessmentReportAssessmentListDeps;
     status: ManualTestStatus;
-    assessments: IAssessmentDetailsReportModel[];
+    assessments: AssessmentDetailsReportModel[];
 }
 
 export interface IconWithCountProps {
@@ -37,7 +37,7 @@ export class AssessmentReportAssessmentList extends React.Component<AssessmentRe
         });
     }
 
-    private renderAssessmentHeader(assessment: IAssessmentDetailsReportModel): JSX.Element {
+    private renderAssessmentHeader(assessment: AssessmentDetailsReportModel): JSX.Element {
         return (
             <h3 className="assessment-header">
                 {assessment.displayName}

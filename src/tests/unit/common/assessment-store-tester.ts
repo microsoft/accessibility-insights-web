@@ -3,7 +3,7 @@
 import { IMock, It, Times } from 'typemoq';
 
 import { IndexedDBDataKeys } from '../../../background/IndexedDBDataKeys';
-import { BaseStore } from '../../../background/stores/base-store';
+import { BaseStoreImpl } from '../../../background/stores/base-store-impl';
 import { IndexedDBAPI } from '../../../common/indexedDB/indexedDB';
 import { DefaultConstructor } from '../../../common/types/idefault-constructor';
 import { StoreTester } from './store-tester';
@@ -13,7 +13,7 @@ export class AssessmentStoreTester<TStoreData, TActions> extends StoreTester<TSt
     constructor(
         actions: DefaultConstructor<TActions>,
         actionName: keyof TActions,
-        storeFactory: (actions) => BaseStore<TStoreData>,
+        storeFactory: (actions) => BaseStoreImpl<TStoreData>,
         indexDbMock: any,
     ) {
         super(actions, actionName, storeFactory);

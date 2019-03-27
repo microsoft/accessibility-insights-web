@@ -5,15 +5,15 @@ import * as TelemetryEvents from '../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { VisualizationType } from '../../common/types/visualization-type';
-import { ITabStopEvent } from '../../injected/tab-stops-listener';
+import { TabStopEvent } from '../../injected/tab-stops-listener';
 import { LaunchPanelType } from '../../popup/scripts/components/popup-view';
 
 export interface BaseActionPayload {
     telemetry?: TelemetryData;
 }
 
-export interface SelectTestStepPayload extends BaseActionPayload {
-    selectedStep: string;
+export interface SelectRequirementPayload extends BaseActionPayload {
+    selectedRequirement: string;
     selectedTest: VisualizationType;
 }
 
@@ -27,14 +27,14 @@ export interface UpdateVisibilityPayload {
 }
 
 export interface AssessmentToggleActionPayload extends ToggleActionPayload {
-    step: string;
+    requirement: string;
 }
 
 export interface AssessmentActionInstancePayload extends AssessmentToggleActionPayload {
     selector: string;
 }
 
-export interface ChangeAssessmentStepStatusPayload extends AssessmentToggleActionPayload {
+export interface ChangeRequirementStatusPayload extends AssessmentToggleActionPayload {
     status?: ManualTestStatus;
 }
 
@@ -97,7 +97,7 @@ export interface PageVisibilityChangeTabPayload extends BaseActionPayload {
 }
 
 export interface AddTabbedElementPayload extends BaseActionPayload {
-    tabbedElements: ITabStopEvent[];
+    tabbedElements: TabStopEvent[];
 }
 
 export interface SetLaunchPanelState extends BaseActionPayload {

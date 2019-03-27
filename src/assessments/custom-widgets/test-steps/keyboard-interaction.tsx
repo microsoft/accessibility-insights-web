@@ -7,6 +7,7 @@ import { CustomWidgetPropertyBag } from '../../../common/types/property-bag/icus
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
+import { TestAutomaticallyPassedNotice } from '../../../content/test/common/test-automatically-passed-notice';
 import * as content from '../../../content/test/custom-widgets/keyboard-interaction';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
@@ -25,7 +26,8 @@ const keyboardInteractionDescription: JSX.Element = (
 
 const keyboardInteractionHowToTest: JSX.Element = (
     <div>
-        For this requirement, {productName} highlights custom widgets.
+        <p>For this requirement, {productName} highlights custom widgets.</p>
+        <TestAutomaticallyPassedNotice />
         <ol>
             <li>
                 For each custom widget, open the spec for the design pattern that best describes the widget's function. (If the widget has

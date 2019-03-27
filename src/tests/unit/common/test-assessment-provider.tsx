@@ -3,14 +3,14 @@
 import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
-import { AssessmentsProvider } from '../../../assessments/assessments-provider';
+import { AssessmentsProviderImpl } from '../../../assessments/assessments-provider';
 import { Assessment } from '../../../assessments/types/iassessment';
 import { RequirementComparer } from '../../../common/assessment/requirement-comparer';
 import { AssesssmentVisualizationConfiguration } from '../../../common/configs/visualization-configuration-factory';
 import { FeatureFlags } from '../../../common/feature-flags';
 import { ManualTestStatus } from '../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../common/types/visualization-type';
-import { TestStepLink } from '../../../DetailsView/components/test-step-link';
+import { RequirementLink } from '../../../DetailsView/components/requirement-link';
 import { ContentPage } from '../../../views/content/content-page';
 
 const content = {
@@ -160,7 +160,7 @@ function getInstanceStatusColumns(): Readonly<IColumn>[] {
     return [TestStatusChoiceColumn];
 }
 
-function renderRequirementDescription(testStepLink: TestStepLink): JSX.Element {
+function renderRequirementDescription(requirementLink: RequirementLink): JSX.Element {
     return null;
 }
 
@@ -169,12 +169,12 @@ const simpleAssessmentWithFeatureFlag = {
     featureFlag: { required: [FeatureFlags.showAllAssessments] },
 };
 
-export const CreateTestAssessmentProvider = () => AssessmentsProvider.Create([assessmentWithColumns, simpleAssessment]);
+export const CreateTestAssessmentProvider = () => AssessmentsProviderImpl.Create([assessmentWithColumns, simpleAssessment]);
 
 export const CreateTestAssessmentProviderWithFeatureFlag = () =>
-    AssessmentsProvider.Create([assessmentWithColumns, simpleAssessmentWithFeatureFlag]);
+    AssessmentsProviderImpl.Create([assessmentWithColumns, simpleAssessmentWithFeatureFlag]);
 
-export const CreateTestAssessmentProviderAutomated = () => AssessmentsProvider.Create([automatedAssessment]);
+export const CreateTestAssessmentProviderAutomated = () => AssessmentsProviderImpl.Create([automatedAssessment]);
 
 export const TestStatusChoiceColumn: Readonly<IColumn> = {
     key: 'test - statusChoiceGroup',

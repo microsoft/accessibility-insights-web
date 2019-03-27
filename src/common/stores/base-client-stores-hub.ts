@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 
-import { IBaseStore } from '../istore';
-import { IClientStoresHub } from './iclient-stores-hub';
+import { BaseStore } from '../base-store';
+import { ClientStoresHub } from './client-stores-hub';
 
-export class BaseClientStoresHub<T> implements IClientStoresHub<T> {
-    public stores: IBaseStore<any>[];
+export class BaseClientStoresHub<T> implements ClientStoresHub<T> {
+    public stores: BaseStore<any>[];
 
-    constructor(stores: IBaseStore<any>[]) {
+    constructor(stores: BaseStore<any>[]) {
         this.stores = stores;
     }
 

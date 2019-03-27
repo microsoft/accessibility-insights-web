@@ -3,7 +3,7 @@
 import { chain, zipObject } from 'lodash/index';
 
 import { Assessment } from '../../assessments/types/iassessment';
-import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { ManualTestStatusData } from '../../common/types/manual-test-status';
 import { IAssessmentData, IAssessmentStoreData } from '../../common/types/store-data/iassessment-result-data';
 import * as Model from './assessment-report-model';
@@ -14,19 +14,19 @@ export type AssessmentSummaryResult = Pick<Assessment, 'title'> & { storeData: P
 export type AssessmentStatusData = { [key: string]: ManualTestStatusData };
 
 export type GetAssessmentSummaryModelFromProviderAndStoreData = (
-    assessmentsProvider: IAssessmentsProvider,
+    assessmentsProvider: AssessmentsProvider,
     assessmentStoreData: IAssessmentStoreData,
-) => Model.IOverviewSummaryReportModel;
+) => Model.OverviewSummaryReportModel;
 
 export type GetAssessmentSummaryModelFromProviderAndStatusData = (
-    assessmentsProvider: IAssessmentsProvider,
+    assessmentsProvider: AssessmentsProvider,
     statusData: AssessmentStatusData,
-) => Model.IOverviewSummaryReportModel;
+) => Model.OverviewSummaryReportModel;
 
 export function getAssessmentSummaryModelFromProviderAndStoreData(
-    assessmentsProvider: IAssessmentsProvider,
+    assessmentsProvider: AssessmentsProvider,
     assessmentStoreData: IAssessmentStoreData,
-): Model.IOverviewSummaryReportModel {
+): Model.OverviewSummaryReportModel {
     const assessments = assessmentsProvider.all();
     const assessmentResults: AssessmentSummaryResult[] = assessments.map(a => ({
         title: a.title,
@@ -39,9 +39,9 @@ export function getAssessmentSummaryModelFromProviderAndStoreData(
 }
 
 export function getAssessmentSummaryModelFromProviderAndStatusData(
-    assessmentsProvider: IAssessmentsProvider,
+    assessmentsProvider: AssessmentsProvider,
     statusData: AssessmentStatusData,
-): Model.IOverviewSummaryReportModel {
+): Model.OverviewSummaryReportModel {
     const assessments = assessmentsProvider.all();
     const assessmentResults: AssessmentSummaryResult[] = assessments.map(a => ({
         title: a.title,
@@ -53,7 +53,7 @@ export function getAssessmentSummaryModelFromProviderAndStatusData(
     return getAssessmentSummaryModelFromResults(assessmentResults);
 }
 
-export function getAssessmentSummaryModelFromResults(assessmentResults: AssessmentSummaryResult[]): Model.IOverviewSummaryReportModel {
+export function getAssessmentSummaryModelFromResults(assessmentResults: AssessmentSummaryResult[]): Model.OverviewSummaryReportModel {
     const reportSummaryDetailsData = assessmentResults.map(assessmentResult => ({
         displayName: assessmentResult.title,
         ...getCounts(assessmentResult),

@@ -5,7 +5,7 @@ import { forOwn } from 'lodash';
 import { createDefaultLogger } from '../../common/logging/default-logger';
 import { Logger } from '../../common/logging/logger';
 import { DictionaryStringTo } from '../../types/common-types';
-import { IHtmlElementAxeResults } from '../scanner-utils';
+import { HtmlElementAxeResults } from '../scanner-utils';
 import { HTMLElementUtils } from './../../common/html-element-utils';
 
 // tslint:disable-next-line:interface-name
@@ -14,7 +14,7 @@ export interface IFrameResult {
     elementResults: IAssessmentVisualizationInstance[];
 }
 
-export interface AxeResultsWithFrameLevel extends IHtmlElementAxeResults {
+export interface AxeResultsWithFrameLevel extends HtmlElementAxeResults {
     targetIndex?: number;
 }
 
