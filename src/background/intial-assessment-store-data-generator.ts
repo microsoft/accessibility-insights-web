@@ -3,7 +3,7 @@
 import { head, isEmpty, pick } from 'lodash';
 
 import { Assessment } from '../assessments/types/iassessment';
-import { TestStep } from '../assessments/types/test-step';
+import { Requirement } from '../assessments/types/requirement';
 import { ManualTestStatus, ManualTestStatusData } from '../common/types/manual-test-status';
 import {
     IAssessmentData,
@@ -18,7 +18,7 @@ import { DictionaryStringTo } from '../types/common-types';
 import { TestStepData } from './../common/types/manual-test-status';
 
 export class InitialAssessmentStoreDataGenerator {
-    private readonly NULL_FIRST_TEST: Partial<Readonly<Assessment>> = { type: null, steps: [{ key: null }] as TestStep[] };
+    private readonly NULL_FIRST_TEST: Partial<Readonly<Assessment>> = { type: null, steps: [{ key: null }] as Requirement[] };
 
     constructor(private readonly tests: ReadonlyArray<Readonly<Assessment>>) {}
 

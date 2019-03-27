@@ -15,7 +15,7 @@ import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { NativeWidgetsTestStep } from './test-steps';
 
 const description: JSX.Element = <span>A native widget must have a label and/or instructions that identify the expected input.</span>;
@@ -57,7 +57,7 @@ const propertyBagConfig: PropertyBagColumnRendererConfig<DefaultWidgetPropertyBa
     },
 ];
 
-export const Label: TestStep = {
+export const Label: Requirement = {
     key: NativeWidgetsTestStep.label,
     name: 'Label',
     description,

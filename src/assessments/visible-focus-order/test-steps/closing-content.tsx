@@ -5,7 +5,7 @@ import { link } from '../../../content/link';
 import * as content from '../../../content/test/focus/closing-content';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { visibleFfocusOrderTestStep } from './test-steps';
 
 const description: JSX.Element = <span>Closing revealed content must return input focus to the component that revealed it.</span>;
@@ -30,7 +30,7 @@ const howToTest: JSX.Element = (
     </div>
 );
 
-export const ClosingContent: TestStep = {
+export const ClosingContent: Requirement = {
     key: visibleFfocusOrderTestStep.closingContent,
     name: 'Closing content',
     description,

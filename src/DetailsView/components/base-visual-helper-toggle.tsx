@@ -3,7 +3,7 @@
 import * as _ from 'lodash';
 import * as React from 'react';
 
-import { VisualHelperToggleConfig } from '../../assessments/types/test-step';
+import { VisualHelperToggleConfig } from '../../assessments/types/requirement';
 import { VisualizationToggle } from '../../common/components/visualization-toggle';
 import { IGeneratedAssessmentInstance } from '../../common/types/store-data/iassessment-result-data';
 import { DictionaryStringTo } from '../../types/common-types';

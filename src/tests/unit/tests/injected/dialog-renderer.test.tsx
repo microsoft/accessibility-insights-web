@@ -15,9 +15,9 @@ import { FeatureFlagStoreData } from '../../../../common/types/store-data/featur
 import { WindowUtils } from '../../../../common/window-utils';
 import { rootContainerId } from '../../../../injected/constants';
 import { DetailsDialogWindowMessage, DialogRenderer } from '../../../../injected/dialog-renderer';
+import { ErrorMessageContent } from '../../../../injected/frameCommunicators/error-message-content';
 import { FrameCommunicator, IMessageRequest } from '../../../../injected/frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from '../../../../injected/frameCommunicators/window-message-handler';
-import { IErrorMessageContent } from '../../../../injected/frameCommunicators/window-message-marshaller';
 import { LayeredDetailsDialogComponent } from '../../../../injected/layered-details-dialog-component';
 import { MainWindowContext } from '../../../../injected/main-window-context';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from '../../../../injected/scanner-utils';
@@ -40,7 +40,7 @@ describe('DialogRendererTests', () => {
     let renderMock: IMock<typeof ReactDOM.render>;
     let subscribeCallback: (
         message: DetailsDialogWindowMessage,
-        error: IErrorMessageContent,
+        error: ErrorMessageContent,
         responder?: FrameMessageResponseCallback,
     ) => void;
     let getMainWindoContextMock: IGlobalMock<() => MainWindowContext>;
@@ -446,7 +446,7 @@ describe('DialogRendererTests', () => {
                         (
                             param: (
                                 message: DetailsDialogWindowMessage,
-                                error: IErrorMessageContent,
+                                error: ErrorMessageContent,
                                 sourceWin: Window,
                                 responder?: FrameMessageResponseCallback,
                             ) => void,

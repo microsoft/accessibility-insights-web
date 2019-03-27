@@ -5,9 +5,9 @@ import { IMock, It, Mock, Times } from 'typemoq';
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
 import { WindowUtils } from '../../../../common/window-utils';
 import { VisualizationWindowMessage } from '../../../../injected/drawing-controller';
+import { ErrorMessageContent } from '../../../../injected/frameCommunicators/error-message-content';
 import { FrameCommunicator, IMessageRequest } from '../../../../injected/frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from '../../../../injected/frameCommunicators/window-message-handler';
-import { IErrorMessageContent } from '../../../../injected/frameCommunicators/window-message-marshaller';
 import { ScannerUtils } from '../../../../injected/scanner-utils';
 import { TabStopEvent, TabStopsListener } from '../../../../injected/tab-stops-listener';
 
@@ -413,7 +413,7 @@ describe('TabStopsListenerTest', () => {
                     command,
                     onGetTabbedElements: (
                         tabStopEvent: TabStopEvent,
-                        error: IErrorMessageContent,
+                        error: ErrorMessageContent,
                         messageSourceWin: Window,
                         responder?: FrameMessageResponseCallback,
                     ) => {},
@@ -482,7 +482,7 @@ describe('TabStopsListenerTest', () => {
                     command,
                     onGetTabbedElements: (
                         tabStopEvent: TabStopEvent,
-                        error: IErrorMessageContent,
+                        error: ErrorMessageContent,
                         messageSourceWin: Window,
                         responder?: FrameMessageResponseCallback,
                     ) => {},
@@ -512,7 +512,7 @@ describe('TabStopsListenerTest', () => {
         const frameStub = {};
         let onGetTabbedElementsFunc: (
             tabStopEvent: TabStopEvent,
-            error: IErrorMessageContent,
+            error: ErrorMessageContent,
             messageSourceWin: Window,
             responder?: FrameMessageResponseCallback,
         ) => void;
@@ -548,7 +548,7 @@ describe('TabStopsListenerTest', () => {
                     command,
                     onGetTabbedElements: (
                         tabStopEvent: TabStopEvent,
-                        error: IErrorMessageContent,
+                        error: ErrorMessageContent,
                         messageSourceWin: Window,
                         responder?: FrameMessageResponseCallback,
                     ) => {},
@@ -582,7 +582,7 @@ describe('TabStopsListenerTest', () => {
         };
         let onGetTabbedElementsFunc: (
             tabStopEvent: TabStopEvent,
-            error: IErrorMessageContent,
+            error: ErrorMessageContent,
             messageSourceWin: Window,
             responder?: FrameMessageResponseCallback,
         ) => void;
@@ -620,7 +620,7 @@ describe('TabStopsListenerTest', () => {
                     command,
                     onGetTabbedElements: (
                         tabStopEvent: TabStopEvent,
-                        error: IErrorMessageContent,
+                        error: ErrorMessageContent,
                         messageSourceWin: Window,
                         responder?: FrameMessageResponseCallback,
                     ) => {},

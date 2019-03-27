@@ -4,11 +4,13 @@ import { autobind } from '@uifabric/utilities';
 
 import { WindowUtils } from '../../common/window-utils';
 import { DictionaryStringTo } from '../../types/common-types';
-import { IErrorMessageContent, IWindowMessage, WindowMessageMarshaller } from './window-message-marshaller';
+import { ErrorMessageContent } from './error-message-content';
+import { WindowMessage } from './window-message';
+import { WindowMessageMarshaller } from './window-message-marshaller';
 
 export type FrameMessageResponseCallback = (
     result: any,
-    error: IErrorMessageContent,
+    error: ErrorMessageContent,
     messageSourceWindow: Window,
     responder?: FrameMessageResponseCallback,
 ) => void;
@@ -58,7 +60,7 @@ export class WindowMessageHandler {
 
     @autobind
     private windowMessageHandler(e: MessageEvent): void {
-        const data: IWindowMessage = this._windowMessageParser.parseMessage(e.data);
+        const data: WindowMessage = this._windowMessageParser.parseMessage(e.data);
         if (data == null) {
             return;
         }
@@ -84,23 +86,23 @@ export class WindowMessageHandler {
         }
     }
 
-    private processResponseFromPreviousRequest(source: Window, data: IWindowMessage, callback: FrameMessageResponseCallback): void {
+    private processResponseFromPreviousRequest(source: Window, data: WindowMessage, callback: FrameMessageResponseCallback): void {
         const responderCallback = this.createFrameResponderCallback(source, data.command, data.messageId);
         callback(data.message, data.error, source, responderCallback);
         delete this._callbacksForMessagesSentFromCurrentFrame[data.messageId];
     }
 
-    private processNewMessage(source: Window, data: IWindowMessage): void {
+    private processNewMessage(source: Window, data: WindowMessage): void {
         this.notifySubscriber(source, data);
     }
 
     public createFrameResponderCallback(windowSource: Window, command: string, messageId: string): FrameMessageResponseCallback {
-        return (result: any, error: IErrorMessageContent, messageSourceWin: Window, callback?: FrameMessageResponseCallback) => {
+        return (result: any, error: ErrorMessageContent, messageSourceWin: Window, callback?: FrameMessageResponseCallback) => {
             this.post(windowSource, command, result, callback, messageId);
         };
     }
 
-    private notifySubscriber(target: Window, data: IWindowMessage): void {
+    private notifySubscriber(target: Window, data: WindowMessage): void {
         const subscriber = this._messageSubscribers[data.command];
         if (subscriber) {
             subscriber(data.message, data.error, target, this.createFrameResponderCallback(target, data.command, data.messageId));

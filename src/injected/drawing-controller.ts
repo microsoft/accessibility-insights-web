@@ -11,6 +11,7 @@ import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-st
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryNumberTo } from '../types/common-types';
 import { HTMLElementUtils } from './../common/html-element-utils';
+import { ErrorMessageContent } from './frameCommunicators/error-message-content';
 import { FrameCommunicator, IMessageRequest } from './frameCommunicators/frame-communicator';
 import {
     HtmlElementAxeResultsHelper,
@@ -18,7 +19,6 @@ import {
     IFrameResult,
 } from './frameCommunicators/html-element-axe-results-helper';
 import { FrameMessageResponseCallback } from './frameCommunicators/window-message-handler';
-import { IErrorMessageContent } from './frameCommunicators/window-message-marshaller';
 import { InstanceVisibilityChecker } from './instance-visibility-checker';
 import { DrawerProvider } from './visualization/drawer-provider';
 import { IDrawer } from './visualization/idrawer';
@@ -100,7 +100,7 @@ export class DrawingController {
     @autobind
     private onTriggerVisualization(
         result: VisualizationWindowMessage,
-        error: IErrorMessageContent,
+        error: ErrorMessageContent,
         sourceWindow: Window,
         responder?: FrameMessageResponseCallback,
     ): void {

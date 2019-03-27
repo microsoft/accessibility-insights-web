@@ -6,9 +6,9 @@ import { HTMLElementUtils } from '../common/html-element-utils';
 import { DateProvider } from './../common/date-provider';
 import { WindowUtils } from './../common/window-utils';
 import { VisualizationWindowMessage } from './drawing-controller';
+import { ErrorMessageContent } from './frameCommunicators/error-message-content';
 import { FrameCommunicator, IMessageRequest } from './frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from './frameCommunicators/window-message-handler';
-import { IErrorMessageContent } from './frameCommunicators/window-message-marshaller';
 import { ScannerUtils } from './scanner-utils';
 
 export interface TabStopEvent {
@@ -68,7 +68,7 @@ export class TabStopsListener {
     @autobind
     private onGetTabbedElements(
         tabStopEvent: TabStopEvent,
-        error: IErrorMessageContent,
+        error: ErrorMessageContent,
         messageSourceWin: Window,
         responder?: FrameMessageResponseCallback,
     ): void {

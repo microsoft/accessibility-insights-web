@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { AssessmentDefaultMessageGenerator } from '../../assessments/assessment-default-message-generator';
 import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
-import { TestStep, VisualHelperToggleConfig } from '../../assessments/types/test-step';
+import { Requirement, VisualHelperToggleConfig } from '../../assessments/types/requirement';
 import { CollapsibleComponent } from '../../common/components/collapsible-component';
 import {
     AssessmentNavState,
@@ -26,7 +26,7 @@ export interface TestStepViewProps {
     isStepEnabled: boolean;
     isStepScanned: boolean;
     isScanning: boolean;
-    testStep: TestStep;
+    testStep: Requirement;
     renderStaticContent: () => JSX.Element;
     instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance>;
     assessmentNavState: AssessmentNavState;
@@ -97,7 +97,7 @@ export class TestStepView extends React.Component<TestStepViewProps> {
             return <div role="alert" aria-live="polite" aria-label="Scan Complete" />;
         }
     }
-    private getSelectedStep(): Readonly<TestStep> {
+    private getSelectedStep(): Readonly<Requirement> {
         return this.props.assessmentsProvider.getStep(
             this.props.assessmentNavState.selectedTestType,
             this.props.assessmentNavState.selectedTestStep,

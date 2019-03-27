@@ -6,7 +6,7 @@ import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';
 
 import { AssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
-import { TestStep } from '../../../../../assessments/types/test-step';
+import { Requirement } from '../../../../../assessments/types/requirement';
 import { getInnerTextFromJsxElement } from '../../../../../common/get-inner-text-from-jsx-element';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
@@ -81,7 +81,7 @@ describe('TestStepsNav', () => {
         actionMessageCreatorMock.verifyAll();
     }
 
-    function generateStepStatus(testSteps: TestStep[], props: TestStepNavProps): void {
+    function generateStepStatus(testSteps: Requirement[], props: TestStepNavProps): void {
         testSteps.forEach((step, index) => {
             props.stepStatus[step.key] = {
                 stepFinalResult: index % 2 === 0 ? ManualTestStatus.UNKNOWN : ManualTestStatus.PASS,

@@ -4,7 +4,7 @@ import * as React from 'react';
 import { link } from '../../../content/link';
 import * as content from '../../../content/test/multimedia/no-conflict';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { PrerecordedMultimediaTestStep } from './test-steps';
 
 const noConflictDescription: JSX.Element = <span>An audio description must not conflict with audible information in the sound track.</span>;
@@ -23,7 +23,7 @@ const noConflictHowToTest: JSX.Element = (
     </div>
 );
 
-export const NoConflict: TestStep = {
+export const NoConflict: Requirement = {
     key: PrerecordedMultimediaTestStep.noConflict,
     name: 'No conflict',
     description: noConflictDescription,
