@@ -15,7 +15,7 @@ import { DictionaryStringTo } from '../types/common-types';
 
 export type InitialDataCreator = (test: Readonly<Assessment>, persistedTest: IAssessmentData) => IAssessmentData;
 
-export const createInitialAssesmentTestData: InitialDataCreator = (test: Readonly<Assessment>, persistedTest: IAssessmentData) => {
+export const createInitialAssessmentTestData: InitialDataCreator = (test: Readonly<Assessment>, persistedTest: IAssessmentData) => {
     const requirements = test.steps.map(val => val.key);
     if (persistedTest) {
         return getInitialTestDataUsingPersistedData(
@@ -64,8 +64,8 @@ function getInitialTestDataUsingPersistedData(
 }
 
 function allRequirementsAreScanned(requirements: string[], persistedTest: IAssessmentData): boolean {
-    return !requirements.some(requirement => {
-        return !persistedTest.testStepStatus[requirement] || persistedTest.testStepStatus[requirement].isStepScanned === false;
+    return requirements.every(requirement => {
+        return persistedTest.testStepStatus[requirement] && persistedTest.testStepStatus[requirement].isStepScanned === true;
     });
 }
 

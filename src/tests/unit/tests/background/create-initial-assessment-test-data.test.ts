@@ -4,7 +4,7 @@ import { flatMap } from 'lodash';
 
 import {
     createAutomatedChecksInitialAssessmentTestData,
-    createInitialAssesmentTestData,
+    createInitialAssessmentTestData,
 } from '../../../../background/create-initial-assessment-test-data';
 import { ManualTestStatus, TestStepData } from '../../../../common/types/manual-test-status';
 import { IGeneratedAssessmentInstance, IManualTestStepResult } from '../../../../common/types/store-data/iassessment-result-data';
@@ -28,7 +28,7 @@ describe('createInitialAssessmentTestData', () => {
             id1: createGeneratedAssessmentInstance('id1', [knownRequirement1]),
         };
 
-        const actual = createInitialAssesmentTestData(assessmentsProvider.forKey(knownTestIds[0]), {
+        const actual = createInitialAssessmentTestData(assessmentsProvider.forKey(knownTestIds[0]), {
             fullAxeResultsMap: null,
             generatedAssessmentInstancesMap: persistedMap,
             manualTestStepResultMap: {},
@@ -49,7 +49,7 @@ describe('createInitialAssessmentTestData', () => {
             [knownRequirement3]: createManualRequirementResult(knownRequirement3, ManualTestStatus.UNKNOWN),
         };
 
-        const actual = createInitialAssesmentTestData(assessmentsProvider.forKey(knownTestIds[0]), {
+        const actual = createInitialAssessmentTestData(assessmentsProvider.forKey(knownTestIds[0]), {
             fullAxeResultsMap: null,
             generatedAssessmentInstancesMap: {},
             manualTestStepResultMap: persistedMap,
@@ -70,7 +70,7 @@ describe('createInitialAssessmentTestData', () => {
             [knownRequirement3]: createDefaultRequirementResult(),
         };
 
-        const actual = createInitialAssesmentTestData(assessmentsProvider.forKey(knownTestIds[0]), {
+        const actual = createInitialAssessmentTestData(assessmentsProvider.forKey(knownTestIds[0]), {
             fullAxeResultsMap: null,
             generatedAssessmentInstancesMap: {},
             manualTestStepResultMap: {},
