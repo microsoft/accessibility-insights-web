@@ -2,22 +2,13 @@
 // Licensed under the MIT License.
 import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 import { ErrorMessageContent } from './error-message-content';
+import { WindowMessage } from './window-message';
 
 // This *MUST NOT* vary between different versions or brandings of the extension!
 //
 // This identifier is used by some partner teams to distinguish (and allow) our messages in
 // scenarios that would normally block unrecognized messages.
 export const MESSAGE_STABLE_SIGNATURE = 'e467510c-ca1f-47df-ace1-a39f7f0678c9';
-
-export interface WindowMessage {
-    messageId: string;
-    command: string;
-    message?: any;
-    error?: ErrorMessageContent;
-    messageStableSignature: string;
-    messageSourceId: string;
-    messageVersion: string;
-}
 
 export class WindowMessageMarshaller {
     public readonly messageSourceId: string;

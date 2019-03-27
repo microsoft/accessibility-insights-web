@@ -3,11 +3,8 @@
 import { IMock, Mock } from 'typemoq';
 
 import { ClientBrowserAdapter } from '../../../../../common/client-browser-adapter';
-import {
-    MESSAGE_STABLE_SIGNATURE,
-    WindowMessage,
-    WindowMessageMarshaller,
-} from '../../../../../injected/frameCommunicators/window-message-marshaller';
+import { WindowMessage } from '../../../../../injected/frameCommunicators/window-message';
+import { MESSAGE_STABLE_SIGNATURE, WindowMessageMarshaller } from '../../../../../injected/frameCommunicators/window-message-marshaller';
 
 describe('WindowMessageMarshallerTests', () => {
     let testSubject: WindowMessageMarshaller;

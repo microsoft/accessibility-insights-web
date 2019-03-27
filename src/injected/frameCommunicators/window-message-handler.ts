@@ -5,7 +5,8 @@ import { autobind } from '@uifabric/utilities';
 import { WindowUtils } from '../../common/window-utils';
 import { DictionaryStringTo } from '../../types/common-types';
 import { ErrorMessageContent } from './error-message-content';
-import { WindowMessage, WindowMessageMarshaller } from './window-message-marshaller';
+import { WindowMessage } from './window-message';
+import { WindowMessageMarshaller } from './window-message-marshaller';
 
 export type FrameMessageResponseCallback = (
     result: any,
