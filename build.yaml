@@ -51,7 +51,7 @@ jobs:
                 # We care most about the summary information; adding the detailed files doesn't give enough extra information
                 # to be worth the 1min it adds to the build.
                 # Consider re-enabling this once https://github.com/Microsoft/azure-pipelines-tasks/issues/4945 is resolved.
-                # reportDirectory: $(System.DefaultWorkingDirectory)/test-results/unit/coverage/lcov-report
+                reportDirectory: $(System.DefaultWorkingDirectory)/test-results/unit/coverage
             displayName: publish code coverage
 
           # CI build only
