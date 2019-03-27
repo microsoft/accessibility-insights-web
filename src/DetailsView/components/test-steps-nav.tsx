@@ -10,7 +10,7 @@ import { ManualTestStatus, ManualTestStatusData } from '../../common/types/manua
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { OutcomeTypeSemantic } from '../reports/components/outcome-type';
-import { TestStepLink } from './test-step-link';
+import { RequirementLink } from './requirement-link';
 
 export interface TestStepNavDeps {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
@@ -55,7 +55,7 @@ export class TestStepsNav extends React.Component<TestStepNavProps> {
     @autobind
     protected renderNavLink(link: INavLink): JSX.Element {
         return (
-            <TestStepLink
+            <RequirementLink
                 link={link}
                 status={this.getStepStatus(link.key)}
                 renderRequirementDescription={link.renderRequirementDescription}
