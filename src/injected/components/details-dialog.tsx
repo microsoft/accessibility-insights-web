@@ -5,13 +5,13 @@ import { Dialog, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import * as React from 'react';
 
+import { BaseStore } from '../../common/base-store';
 import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 import { CopyIssueDetailsButton, CopyIssueDetailsButtonDeps } from '../../common/components/copy-issue-details-button';
 import { FileIssueDetailsButton, FileIssueDetailsButtonDeps } from '../../common/components/file-issue-details-button';
 import { FlaggedComponent } from '../../common/components/flagged-component';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { FeatureFlags } from '../../common/feature-flags';
-import { IBaseStore } from '../../common/istore';
 import { DevToolActionMessageCreator } from '../../common/message-creators/dev-tool-action-message-creator';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { DevToolState } from '../../common/types/store-data/idev-tool-state';
@@ -36,12 +36,12 @@ export type DetailsDialogDeps = CopyIssueDetailsButtonDeps &
 
 export interface DetailsDialogProps {
     deps: DetailsDialogDeps;
-    userConfigStore: IBaseStore<UserConfigurationStoreData>;
+    userConfigStore: BaseStore<UserConfigurationStoreData>;
     elementSelector: string;
     failedRules: DictionaryStringTo<DecoratedAxeNodeResult>;
     target: string[];
     dialogHandler: DetailsDialogHandler;
-    devToolStore: IBaseStore<DevToolState>;
+    devToolStore: BaseStore<DevToolState>;
     devToolActionMessageCreator: DevToolActionMessageCreator;
     featureFlagStoreData: DictionaryStringTo<boolean>;
     devToolsShortcut: string;

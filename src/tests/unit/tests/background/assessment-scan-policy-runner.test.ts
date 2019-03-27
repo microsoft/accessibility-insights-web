@@ -7,7 +7,7 @@ import { Assessment } from '../../../../assessments/types/iassessment';
 import { AssessmentScanPolicyRunner, IIsAnAssessmentSelected, IScheduleScan } from '../../../../background/assessment-scan-policy-runner';
 import { AssessmentStore } from '../../../../background/stores/assessment-store';
 import { VisualizationStore } from '../../../../background/stores/visualization-store';
-import { IBaseStore } from '../../../../common/istore';
+import { BaseStore } from '../../../../common/base-store';
 import { IAssessmentData, IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
 import { IVisualizationStoreData, TestsEnabledState } from '../../../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
@@ -187,7 +187,7 @@ describe('AssessmentScanPolicyRunner', () => {
             getSelectedAssessmentTestMock.verifyAll();
         }
 
-        function setupStoreMockForCallback(storeMock: IMock<IBaseStore<any>>): void {
+        function setupStoreMockForCallback(storeMock: IMock<BaseStore<any>>): void {
             storeMock
                 .setup(sm => sm.addChangedListener(It.isAny()))
                 .callback(listener => {
@@ -197,7 +197,7 @@ describe('AssessmentScanPolicyRunner', () => {
                 .verifiable();
         }
 
-        function setupStoreGetState<T>(storeMock: IMock<IBaseStore<T>>, state: T): void {
+        function setupStoreGetState<T>(storeMock: IMock<BaseStore<T>>, state: T): void {
             storeMock
                 .setup(sm => sm.getState())
                 .returns(() => state)

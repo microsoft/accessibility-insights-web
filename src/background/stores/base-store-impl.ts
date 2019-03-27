@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BaseStore } from '../../common/base-store';
 import { Store } from '../../common/flux/store';
-import { IBaseStore } from '../../common/istore';
 import { StoreNames } from '../../common/stores/store-names';
 
-export abstract class BaseStore<TState> extends Store implements IBaseStore<TState> {
+export abstract class BaseStoreImpl<TState> extends Store implements BaseStore<TState> {
     private storeName: StoreNames;
     protected state: TState;
 

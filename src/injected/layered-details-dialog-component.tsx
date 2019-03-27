@@ -4,8 +4,8 @@ import { getRTL } from '@uifabric/utilities';
 import { LayerHost } from 'office-ui-fabric-react';
 import * as React from 'react';
 
+import { BaseStore } from '../common/base-store';
 import { FeatureFlags } from '../common/feature-flags';
-import { IBaseStore } from '../common/istore';
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
 import { DevToolState } from '../common/types/store-data/idev-tool-state';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
@@ -20,12 +20,12 @@ export interface LayeredDetailsDialogDeps extends DetailsDialogDeps {
 
 export interface LayeredDetailsDialogProps {
     deps: LayeredDetailsDialogDeps;
-    userConfigStore: IBaseStore<UserConfigurationStoreData>;
+    userConfigStore: BaseStore<UserConfigurationStoreData>;
     elementSelector: string;
     failedRules: DictionaryStringTo<DecoratedAxeNodeResult>;
     target: string[];
     dialogHandler: DetailsDialogHandler;
-    devToolStore: IBaseStore<DevToolState>;
+    devToolStore: BaseStore<DevToolState>;
     devToolActionMessageCreator: DevToolActionMessageCreator;
     featureFlagStoreData: DictionaryStringTo<boolean>;
     devToolsShortcut: string;

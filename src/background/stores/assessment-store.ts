@@ -36,9 +36,9 @@ import {
 import { AssessmentActions } from './../actions/assessment-actions';
 import { AssessmentDataRemover } from './../assessment-data-remover';
 import { BrowserAdapter } from './../browser-adapter';
-import { BaseStore } from './base-store';
+import { BaseStoreImpl } from './base-store-impl';
 
-export class AssessmentStore extends BaseStore<IAssessmentStoreData> {
+export class AssessmentStore extends BaseStoreImpl<IAssessmentStoreData> {
     private assessmentActions: AssessmentActions;
     private assessmentDataConverter: AssessmentDataConverter;
     private assessmentDataRemover: AssessmentDataRemover;

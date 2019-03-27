@@ -3,8 +3,8 @@
 import { autobind } from '@uifabric/utilities';
 import * as Q from 'q';
 import { ScopingInputTypes } from '../../background/scoping-input-types';
+import { BaseStore } from '../../common/base-store';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
-import { IBaseStore } from '../../common/istore';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
 import { ForRuleAnalyzerScanCallback } from '../../common/types/analyzer-telemetry-callbacks';
 import { IScopingStoreData } from '../../common/types/store-data/scoping-store-data';
@@ -21,7 +21,7 @@ export class RuleAnalyzer extends BaseAnalyzer {
     constructor(
         protected config: RuleAnalyzerConfiguration,
         protected scanner: ScannerUtils,
-        protected scopingStore: IBaseStore<IScopingStoreData>,
+        protected scopingStore: BaseStore<IScopingStoreData>,
         protected sendMessageDelegate: (message) => void,
         protected dateGetter: () => Date,
         protected telemetryFactory: TelemetryDataFactory,

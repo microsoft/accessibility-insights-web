@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IBaseStore } from '../istore';
+import { BaseStore } from '../base-store';
 
 export interface ClientStoresHub<T> {
-    stores: IBaseStore<any>[];
+    stores: BaseStore<any>[];
     addChangedListenerToAllStores(listener: () => void): void;
     removeChangedListenerFromAllStores(listener: () => void): void;
     hasStores(): boolean;

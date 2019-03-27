@@ -1,16 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DevToolsChromeAdapter } from '../background/dev-tools-chrome-adapter';
+import { BaseStore } from '../common/base-store';
 import { ConnectionNames } from '../common/constants/connection-names';
-import { IBaseStore } from '../common/istore';
 import { DevToolsOpenMessage } from '../common/types/dev-tools-open-message';
 import { DevToolState } from '../common/types/store-data/idev-tool-state';
 
 export class InspectHandler {
-    private _devToolsStore: IBaseStore<DevToolState>;
+    private _devToolsStore: BaseStore<DevToolState>;
     private _devToolsChromeAdapter: DevToolsChromeAdapter;
 
-    constructor(devToolsStore: IBaseStore<DevToolState>, devToolsChromeAdapter: DevToolsChromeAdapter) {
+    constructor(devToolsStore: BaseStore<DevToolState>, devToolsChromeAdapter: DevToolsChromeAdapter) {
         this._devToolsStore = devToolsStore;
         this._devToolsChromeAdapter = devToolsChromeAdapter;
     }

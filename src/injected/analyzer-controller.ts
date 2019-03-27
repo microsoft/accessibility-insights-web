@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 import { AssessmentsProvider } from '../assessments/types/iassessments-provider';
+import { BaseStore } from '../common/base-store';
 import { EnumHelper } from '../common/enum-helper';
-import { IBaseStore } from '../common/istore';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
 import { IScopingStoreData } from '../common/types/store-data/scoping-store-data';
@@ -20,18 +20,18 @@ export class AnalyzerController {
     private tabStopsListener: TabStopsListener;
     private analyzers: DictionaryStringTo<Analyzer>;
     private sendMessage: (message) => void;
-    private visualizationstore: IBaseStore<IVisualizationStoreData>;
-    private scopingStore: IBaseStore<IScopingStoreData>;
-    private featureFlagStore: IBaseStore<FeatureFlagStoreData>;
+    private visualizationstore: BaseStore<IVisualizationStoreData>;
+    private scopingStore: BaseStore<IScopingStoreData>;
+    private featureFlagStore: BaseStore<FeatureFlagStoreData>;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
     private analyzerStateUpdateHandler: AnalyzerStateUpdateHandler;
     private assessmentsProvider: AssessmentsProvider;
 
     constructor(
         sendMessage: (message) => void,
-        visualizationstore: IBaseStore<IVisualizationStoreData>,
-        featureFlagStore: IBaseStore<FeatureFlagStoreData>,
-        scopingStore: IBaseStore<IScopingStoreData>,
+        visualizationstore: BaseStore<IVisualizationStoreData>,
+        featureFlagStore: BaseStore<FeatureFlagStoreData>,
+        scopingStore: BaseStore<IScopingStoreData>,
         tabStopsListener: TabStopsListener,
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
         analyzerProvider: AnalyzerProvider,
