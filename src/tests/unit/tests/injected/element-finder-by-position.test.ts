@@ -6,9 +6,9 @@ import { IMock, It, Mock, MockBehavior } from 'typemoq';
 import { ISingleElementSelector } from '../../../../common/types/store-data/scoping-store-data';
 import { ClientUtils } from '../../../../injected/client-utils';
 import { ElementFinderByPosition, ElementFinderByPositionMessage } from '../../../../injected/element-finder-by-position';
+import { ErrorMessageContent } from '../../../../injected/frameCommunicators/error-message-content';
 import { FrameCommunicator } from '../../../../injected/frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from '../../../../injected/frameCommunicators/window-message-handler';
-import { ErrorMessageContent } from '../../../../injected/frameCommunicators/window-message-marshaller';
 import { ScannerUtils } from '../../../../injected/scanner-utils';
 import { QStub } from '../../stubs/q-stub';
 

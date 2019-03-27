@@ -15,9 +15,9 @@ import { FeatureFlagStoreData } from '../../../../common/types/store-data/featur
 import { WindowUtils } from '../../../../common/window-utils';
 import { rootContainerId } from '../../../../injected/constants';
 import { DetailsDialogWindowMessage, DialogRenderer } from '../../../../injected/dialog-renderer';
+import { ErrorMessageContent } from '../../../../injected/frameCommunicators/error-message-content';
 import { FrameCommunicator, IMessageRequest } from '../../../../injected/frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from '../../../../injected/frameCommunicators/window-message-handler';
-import { ErrorMessageContent } from '../../../../injected/frameCommunicators/window-message-marshaller';
 import { LayeredDetailsDialogComponent } from '../../../../injected/layered-details-dialog-component';
 import { MainWindowContext } from '../../../../injected/main-window-context';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from '../../../../injected/scanner-utils';

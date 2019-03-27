@@ -3,12 +3,9 @@
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { WindowUtils } from '../../../../../common/window-utils';
+import { ErrorMessageContent } from '../../../../../injected/frameCommunicators/error-message-content';
 import { FrameMessageResponseCallback, WindowMessageHandler } from '../../../../../injected/frameCommunicators/window-message-handler';
-import {
-    ErrorMessageContent,
-    WindowMessage,
-    WindowMessageMarshaller,
-} from '../../../../../injected/frameCommunicators/window-message-marshaller';
+import { WindowMessage, WindowMessageMarshaller } from '../../../../../injected/frameCommunicators/window-message-marshaller';
 
 describe('WindowMessageHandlerTests', () => {
     let testSubject: WindowMessageHandler;

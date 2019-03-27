@@ -6,8 +6,8 @@ import { HTMLElementUtils } from '../../common/html-element-utils';
 import { createDefaultLogger } from '../../common/logging/default-logger';
 import { Logger } from '../../common/logging/logger';
 import { WindowUtils } from '../../common/window-utils';
+import { ErrorMessageContent } from './error-message-content';
 import { FrameMessageResponseCallback, WindowMessageHandler } from './window-message-handler';
-import { ErrorMessageContent } from './window-message-marshaller';
 
 // tslint:disable-next-line:interface-name
 export interface IMessageRequest<T> {

@@ -3,9 +3,9 @@
 import { autobind } from '@uifabric/utilities';
 
 import { HTMLElementUtils } from './../../common/html-element-utils';
+import { ErrorMessageContent } from './error-message-content';
 import { FrameCommunicator, IMessageRequest } from './frame-communicator';
 import { FrameMessageResponseCallback } from './window-message-handler';
-import { ErrorMessageContent } from './window-message-marshaller';
 
 export interface ScrollingWindowMessage {
     focusedTarget: string[];

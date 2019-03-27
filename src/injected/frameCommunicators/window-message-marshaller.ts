@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
+import { ErrorMessageContent } from './error-message-content';
 
 // This *MUST NOT* vary between different versions or brandings of the extension!
 //
@@ -16,12 +17,6 @@ export interface WindowMessage {
     messageStableSignature: string;
     messageSourceId: string;
     messageVersion: string;
-}
-
-export interface ErrorMessageContent {
-    name: string;
-    message: string;
-    stack: string;
 }
 
 export class WindowMessageMarshaller {

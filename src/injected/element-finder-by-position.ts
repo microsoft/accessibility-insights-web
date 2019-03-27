@@ -5,9 +5,9 @@ import * as Q from 'q';
 
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { BoundRectAccessor, ClientUtils } from './client-utils';
+import { ErrorMessageContent } from './frameCommunicators/error-message-content';
 import { FrameCommunicator } from './frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from './frameCommunicators/window-message-handler';
-import { ErrorMessageContent } from './frameCommunicators/window-message-marshaller';
 import { ScannerUtils } from './scanner-utils';
 
 export interface ElementFinderByPositionMessage {
