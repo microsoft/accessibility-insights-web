@@ -114,7 +114,7 @@ describe('AssessmentStoreTest', () => {
 
     test('getDefaultState with no assessments', () => {
         const defaultStateStub = {};
-        setupDataGeneratorMock(null, defaultStateStub);
+        setupDataGeneratorMock(null, defaultStateStub as IAssessmentStoreData);
 
         const testObject = new AssessmentStore(
             null,
