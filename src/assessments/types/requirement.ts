@@ -13,8 +13,8 @@ import { Analyzer } from '../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { PropertyBags, VisualizationInstanceProcessorCallback } from '../../injected/visualization-instance-processor';
+import { Drawer } from '../../injected/visualization/drawer';
 import { DrawerProvider } from '../../injected/visualization/drawer-provider';
-import { IDrawer } from '../../injected/visualization/idrawer';
 import { DictionaryStringTo } from '../../types/common-types';
 import { ContentPageComponent, HyperlinkDefinition } from '../../views/content/content-page';
 import { IGetMessageGenerator } from '../assessment-default-message-generator';
@@ -36,7 +36,7 @@ export interface Requirement {
     getAnalyzer?: (provider: AnalyzerProvider) => Analyzer;
     getVisualHelperToggle?: (props: VisualHelperToggleConfig) => JSX.Element;
     visualizationInstanceProcessor?: VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags>;
-    getDrawer?: (provider: DrawerProvider, featureFlagStoreData?: FeatureFlagStoreData) => IDrawer;
+    getDrawer?: (provider: DrawerProvider, featureFlagStoreData?: FeatureFlagStoreData) => Drawer;
     updateVisibility?: boolean;
     getNotificationMessage?: (selectorMap: DictionaryStringTo<any>) => string;
     doNotScanByDefault?: boolean;

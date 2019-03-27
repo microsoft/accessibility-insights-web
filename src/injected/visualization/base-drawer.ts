@@ -3,11 +3,11 @@
 import { WindowUtils } from '../../common/window-utils';
 import { DialogRenderer } from '../dialog-renderer';
 import { ShadowUtils } from '../shadow-utils';
+import { Drawer, DrawerInitData } from './drawer';
 import { DrawerUtils } from './drawer-utils';
 import { Formatter } from './formatter';
-import { IDrawer, IDrawerInitData } from './idrawer';
 
-export abstract class BaseDrawer implements IDrawer {
+export abstract class BaseDrawer implements Drawer {
     protected dom: NodeSelector & Node;
     protected formatter: Formatter;
     protected isEnabled = false;
@@ -39,7 +39,7 @@ export abstract class BaseDrawer implements IDrawer {
         this.drawerUtils = drawerUtils;
     }
 
-    public abstract initialize(config: IDrawerInitData<any>): void;
+    public abstract initialize(config: DrawerInitData<any>): void;
 
     public drawLayout(): void {
         this.addListeners();

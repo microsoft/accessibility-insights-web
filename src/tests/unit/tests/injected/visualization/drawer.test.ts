@@ -8,10 +8,10 @@ import { ClientUtils } from '../../../../../injected/client-utils';
 import { DialogRenderer } from '../../../../../injected/dialog-renderer';
 import { HtmlElementAxeResults } from '../../../../../injected/scanner-utils';
 import { ShadowUtils } from '../../../../../injected/shadow-utils';
-import { Drawer } from '../../../../../injected/visualization/drawer';
+import { DrawerInitData } from '../../../../../injected/visualization/drawer';
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
 import { DrawerConfiguration, Formatter } from '../../../../../injected/visualization/formatter';
-import { IDrawerInitData } from '../../../../../injected/visualization/idrawer';
+import { HighlightBoxDrawer } from '../../../../../injected/visualization/highlight-box-drawer';
 import { TestDocumentCreator } from '../../../common/test-document-creator';
 
 describe('Drawer', () => {
@@ -846,7 +846,7 @@ describe('Drawer', () => {
 
         windowUtilsMock.setup(x => x.clearTimeout(It.isAny())).verifiable(Times.never());
         windowUtilsMock
-            .setup(x => x.setTimeout(It.isAny(), Drawer.recalculationTimeout))
+            .setup(x => x.setTimeout(It.isAny(), HighlightBoxDrawer.recalculationTimeout))
             .returns(() => timeOutId)
             .verifiable();
 
@@ -859,7 +859,7 @@ describe('Drawer', () => {
 
         windowUtilsMock.setup(x => x.clearTimeout(timeOutId)).verifiable();
         windowUtilsMock
-            .setup(x => x.setTimeout(It.isAny(), Drawer.recalculationTimeout))
+            .setup(x => x.setTimeout(It.isAny(), HighlightBoxDrawer.recalculationTimeout))
             .returns(() => timeOutId)
             .verifiable();
         scrollCallback();
@@ -901,7 +901,7 @@ describe('Drawer', () => {
         };
 
         windowUtilsMock
-            .setup(x => x.setTimeout(It.isAny(), Drawer.recalculationTimeout))
+            .setup(x => x.setTimeout(It.isAny(), HighlightBoxDrawer.recalculationTimeout))
             .callback(registerTimeOutHandlerFunc)
             .returns(() => timeOutId)
             .verifiable();
@@ -1187,7 +1187,7 @@ describe('Drawer', () => {
         verifyOverlayStyle(overlays[2], element4Config);
     });
 
-    function createDrawerInfo<T>(elementResults: T[]): IDrawerInitData<T> {
+    function createDrawerInfo<T>(elementResults: T[]): DrawerInitData<T> {
         return {
             data: elementResults,
             featureFlagStoreData: getDefaultFeatureFlagValues(),
@@ -1236,7 +1236,7 @@ describe('Drawer', () => {
 
     function verifyOverlayStyle(
         overlay: { container: HTMLDivElement; label: HTMLDivElement; failureLabel: HTMLDivElement },
-        drawerConfig: DrawerConfiguration = Drawer.defaultConfiguration,
+        drawerConfig: DrawerConfiguration = HighlightBoxDrawer.defaultConfiguration,
     ): void {
         expect(overlay.container.style.outlineStyle).toEqual(drawerConfig.outlineStyle);
         expect(overlay.container.style.outlineColor).toEqual(drawerConfig.borderColor);
@@ -1325,8 +1325,8 @@ describe('Drawer', () => {
             return this;
         }
 
-        public build(): Drawer {
-            return new Drawer(
+        public build(): HighlightBoxDrawer {
+            return new HighlightBoxDrawer(
                 this.dom,
                 this.containerClass,
                 this.windowUtils,
