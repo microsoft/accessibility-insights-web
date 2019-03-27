@@ -11,7 +11,7 @@ import { FrameCommunicator } from '../frameCommunicators/frame-communicator';
 import { ShadowUtils } from '../shadow-utils';
 import { CenterPositionCalculator } from './center-position-calculator';
 import { CustomWidgetsFormatter } from './custom-widgets-formatter';
-import { Drawer } from './drawer';
+import { DrawerImpl } from './drawer-impl';
 import { DrawerUtils } from './drawer-utils';
 import { Formatter, SVGDrawerConfiguration } from './formatter';
 import { FrameFormatter } from './frame-formatter';
@@ -111,6 +111,6 @@ export class DrawerProvider {
     }
 
     private createDrawer(containerClass: string, formatter: Formatter): IDrawer {
-        return new Drawer(this.dom, containerClass, this.windowUtils, this.shadowUtils, this.drawerUtils, this.clientUtils, formatter);
+        return new DrawerImpl(this.dom, containerClass, this.windowUtils, this.shadowUtils, this.drawerUtils, this.clientUtils, formatter);
     }
 }

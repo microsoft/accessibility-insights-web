@@ -8,7 +8,7 @@ import { ClientUtils } from '../../../../../injected/client-utils';
 import { DialogRenderer } from '../../../../../injected/dialog-renderer';
 import { HtmlElementAxeResults } from '../../../../../injected/scanner-utils';
 import { ShadowUtils } from '../../../../../injected/shadow-utils';
-import { Drawer } from '../../../../../injected/visualization/drawer';
+import { DrawerImpl } from '../../../../../injected/visualization/drawer-impl';
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
 import { DrawerConfiguration, Formatter } from '../../../../../injected/visualization/formatter';
 import { IDrawerInitData } from '../../../../../injected/visualization/idrawer';
@@ -846,7 +846,7 @@ describe('Drawer', () => {
 
         windowUtilsMock.setup(x => x.clearTimeout(It.isAny())).verifiable(Times.never());
         windowUtilsMock
-            .setup(x => x.setTimeout(It.isAny(), Drawer.recalculationTimeout))
+            .setup(x => x.setTimeout(It.isAny(), DrawerImpl.recalculationTimeout))
             .returns(() => timeOutId)
             .verifiable();
 
@@ -859,7 +859,7 @@ describe('Drawer', () => {
 
         windowUtilsMock.setup(x => x.clearTimeout(timeOutId)).verifiable();
         windowUtilsMock
-            .setup(x => x.setTimeout(It.isAny(), Drawer.recalculationTimeout))
+            .setup(x => x.setTimeout(It.isAny(), DrawerImpl.recalculationTimeout))
             .returns(() => timeOutId)
             .verifiable();
         scrollCallback();
@@ -901,7 +901,7 @@ describe('Drawer', () => {
         };
 
         windowUtilsMock
-            .setup(x => x.setTimeout(It.isAny(), Drawer.recalculationTimeout))
+            .setup(x => x.setTimeout(It.isAny(), DrawerImpl.recalculationTimeout))
             .callback(registerTimeOutHandlerFunc)
             .returns(() => timeOutId)
             .verifiable();
@@ -1236,7 +1236,7 @@ describe('Drawer', () => {
 
     function verifyOverlayStyle(
         overlay: { container: HTMLDivElement; label: HTMLDivElement; failureLabel: HTMLDivElement },
-        drawerConfig: DrawerConfiguration = Drawer.defaultConfiguration,
+        drawerConfig: DrawerConfiguration = DrawerImpl.defaultConfiguration,
     ): void {
         expect(overlay.container.style.outlineStyle).toEqual(drawerConfig.outlineStyle);
         expect(overlay.container.style.outlineColor).toEqual(drawerConfig.borderColor);
@@ -1325,8 +1325,8 @@ describe('Drawer', () => {
             return this;
         }
 
-        public build(): Drawer {
-            return new Drawer(
+        public build(): DrawerImpl {
+            return new DrawerImpl(
                 this.dom,
                 this.containerClass,
                 this.windowUtils,

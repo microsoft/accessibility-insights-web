@@ -12,7 +12,7 @@ import { DrawerUtils } from './drawer-utils';
 import { BoxConfig, DrawerConfiguration, Formatter } from './formatter';
 import { IDrawerInitData } from './idrawer';
 
-export class Drawer extends BaseDrawer {
+export class DrawerImpl extends BaseDrawer {
     protected elementResults: AxeResultsWithFrameLevel[];
     protected dialogRenderer: DialogRenderer;
     private featureFlagStoreData: FeatureFlagStoreData;
@@ -68,7 +68,7 @@ export class Drawer extends BaseDrawer {
         const body = currentDom.querySelector('body');
         const bodyStyle = this.windowUtils.getComputedStyle(body);
 
-        let drawerConfig = Drawer.defaultConfiguration;
+        let drawerConfig = DrawerImpl.defaultConfiguration;
         if (this.formatter) {
             drawerConfig = this.formatter.getDrawerConfiguration(element, data) as DrawerConfiguration;
         }

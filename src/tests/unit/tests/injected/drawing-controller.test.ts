@@ -21,7 +21,7 @@ import {
 } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { InstanceVisibilityChecker } from '../../../../injected/instance-visibility-checker';
 import { HtmlElementAxeResults } from '../../../../injected/scanner-utils';
-import { Drawer } from '../../../../injected/visualization/drawer';
+import { DrawerImpl } from '../../../../injected/visualization/drawer-impl';
 import { DrawerProvider } from '../../../../injected/visualization/drawer-provider';
 import { IDrawer, IDrawerInitData } from '../../../../injected/visualization/idrawer';
 import { NodeListBuilder } from '../../common/node-list-builder';
@@ -108,7 +108,7 @@ describe('DrawingControllerTest', () => {
             .verifiable(times);
     }
 
-    function setupDrawerFetches(drawerMock: IMock<Drawer>, times: Times): void {
+    function setupDrawerFetches(drawerMock: IMock<DrawerImpl>, times: Times): void {
         getDrawerMock
             .setup(m => m(drawerProvider.object, It.isAny()))
             .returns(() => drawerMock.object)
@@ -156,7 +156,7 @@ describe('DrawingControllerTest', () => {
             })
             .verifiable(Times.once());
 
-        const drawerMock = Mock.ofType(Drawer, MockBehavior.Strict);
+        const drawerMock = Mock.ofType(DrawerImpl, MockBehavior.Strict);
         drawerMock.setup(m => m.eraseLayout()).verifiable(Times.once());
 
         setupDrawerFetches(drawerMock, Times.exactly(numVisualizationTypes));
@@ -218,7 +218,7 @@ describe('DrawingControllerTest', () => {
                 elementResults: iframeResults,
             },
         ];
-        const drawerMock = Mock.ofType(Drawer, MockBehavior.Strict);
+        const drawerMock = Mock.ofType(DrawerImpl, MockBehavior.Strict);
 
         frameCommunicatorMock
             .setup(fcm => fcm.subscribe(It.isValue(DrawingController.triggerVisualizationCommand), It.isAny()))
@@ -303,7 +303,7 @@ describe('DrawingControllerTest', () => {
             .build();
         const iframeElement = 'iframeElement';
         const resultsByFrames = null;
-        const drawerMock = Mock.ofType(Drawer, MockBehavior.Strict);
+        const drawerMock = Mock.ofType(DrawerImpl, MockBehavior.Strict);
 
         frameCommunicatorMock
             .setup(fcm => fcm.subscribe(It.isValue(DrawingController.triggerVisualizationCommand), It.isAny()))
@@ -375,7 +375,7 @@ describe('DrawingControllerTest', () => {
             .setVisualizationDisabled()
             .build();
         const iframes = ['1'];
-        const drawerMock = Mock.ofType(Drawer, MockBehavior.Strict);
+        const drawerMock = Mock.ofType(DrawerImpl, MockBehavior.Strict);
 
         hTMLElementUtils
             .setup(dm => dm.getAllElementsByTagName('iframe'))
@@ -438,7 +438,7 @@ describe('DrawingControllerTest', () => {
         const enableMessage: VisualizationWindowMessage = new VisualizationWindowMessageStubBuilder(VisualizationType.Headings, configId)
             .setVisualizationEnabled()
             .build();
-        const drawerMock = Mock.ofType(Drawer, MockBehavior.Strict);
+        const drawerMock = Mock.ofType(DrawerImpl, MockBehavior.Strict);
         drawerMock.setup(dm => dm.initialize(It.isAny())).verifiable(Times.once());
         drawerMock.setup(dm => dm.drawLayout()).verifiable(Times.once());
         drawerMock.setup(dm => dm.eraseLayout()).verifiable(Times.atLeastOnce());
