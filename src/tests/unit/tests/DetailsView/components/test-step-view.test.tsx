@@ -5,7 +5,7 @@ import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { AssessmentsProviderImpl } from '../../../../../assessments/assessments-provider';
-import { Requirement } from '../../../../../assessments/types/test-step';
+import { Requirement } from '../../../../../assessments/types/requirement';
 import { CollapsibleComponent } from '../../../../../common/components/collapsible-component';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../../../common/types/visualization-type';

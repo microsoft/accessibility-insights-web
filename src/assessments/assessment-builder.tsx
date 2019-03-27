@@ -23,10 +23,10 @@ import {
 } from '../injected/visualization-instance-processor';
 import { DrawerProvider } from '../injected/visualization/drawer-provider';
 import { DictionaryStringTo } from '../types/common-types';
-import { DecoratedAxeNodeResult, ScannerUtils } from './../injected/scanner-utils';
+import { DecoratedAxeNodeResult, ScannerUtils } from '../injected/scanner-utils';
 import { Assessment, AssistedAssessment, ManualAssessment } from './types/iassessment';
 import { ReportInstanceField } from './types/report-instance-field';
-import { Requirement } from './types/test-step';
+import { Requirement } from './types/requirement';
 
 export class AssessmentBuilder {
     private static applyDefaultReportFieldMap(step: Requirement): void {

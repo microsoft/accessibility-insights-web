@@ -5,7 +5,7 @@ import * as React from 'react';
 import { link } from '../../../content/link';
 import * as content from '../../../content/test/errors/error-suggestion';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
-import { Requirement } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { ErrorsTestStep } from './test-steps';
 
 const description: JSX.Element = (

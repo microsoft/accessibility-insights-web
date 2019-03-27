@@ -13,7 +13,7 @@ import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuratio
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
-import { Requirement } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { headingsAssessmentInstanceDetailsColumnRenderer } from './../headings-instance-details-column-renderer';
 import { HeadingsTestStep } from './test-steps';
 

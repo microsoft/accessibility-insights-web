@@ -12,7 +12,7 @@ import { AssistedTestRecordYourResults } from '../../common/assisted-test-record
 import * as Markup from '../../markup';
 import { Tag, Term } from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
-import { Requirement } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { frameTitleInstanceDetailsColumnRenderer } from '../frametitle-instance-details-column-renderer';
 import { PageTestStep } from './test-steps';
 

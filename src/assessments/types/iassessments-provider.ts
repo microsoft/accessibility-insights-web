@@ -3,7 +3,7 @@
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DictionaryStringTo } from './../../types/common-types';
 import { Assessment } from './iassessment';
-import { Requirement } from './test-step';
+import { Requirement } from './requirement';
 
 export interface AssessmentsProvider {
     all(): ReadonlyArray<Readonly<Assessment>>;

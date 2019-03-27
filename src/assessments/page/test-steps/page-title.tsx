@@ -9,7 +9,7 @@ import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/compo
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { Term } from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
-import { Requirement } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { pageTitleInstanceDetailsColumnRenderer } from '../pagetitle-instance-details-column-renderer';
 import { PageTestStep } from './test-steps';
 

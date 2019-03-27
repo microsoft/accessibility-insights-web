@@ -15,7 +15,7 @@ import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
-import { Requirement } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { ImagesTestStep } from './test-steps';
 
 const description: JSX.Element = <span>A meaningful image must have a text alternative that serves the equivalent purpose.</span>;

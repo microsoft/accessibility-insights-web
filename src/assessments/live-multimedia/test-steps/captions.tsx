@@ -5,7 +5,7 @@ import { link } from '../../../content/link';
 import * as content from '../../../content/test/live-multimedia/captions';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
-import { Requirement } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { LiveMultimediaTestStep } from './test-steps';
 
 const captionsDescription: JSX.Element = <span>Captions must be provided for live (streaming) video with audio.</span>;

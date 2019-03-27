@@ -6,7 +6,7 @@ import { link } from '../../../content/link';
 import * as content from '../../../content/test/language/text-direction';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
-import { Requirement } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { LanguageTestStep } from './test-steps';
 
 const textDirectionDescription: JSX.Element = (

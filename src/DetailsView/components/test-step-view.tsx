@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { AssessmentDefaultMessageGenerator } from '../../assessments/assessment-default-message-generator';
 import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
-import { Requirement, VisualHelperToggleConfig } from '../../assessments/types/test-step';
+import { Requirement, VisualHelperToggleConfig } from '../../assessments/types/requirement';
 import { CollapsibleComponent } from '../../common/components/collapsible-component';
 import {
     AssessmentNavState,

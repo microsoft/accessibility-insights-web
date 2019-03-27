@@ -7,7 +7,7 @@ import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/compo
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
-import { Requirement } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { SemanticsTestStep } from './test-steps';
 
 const cssContentHowToTest: JSX.Element = (

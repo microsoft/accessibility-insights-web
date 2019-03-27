@@ -4,7 +4,7 @@ import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryStringTo } from '../types/common-types';
 import { Assessment } from './types/iassessment';
 import { AssessmentsProvider } from './types/iassessments-provider';
-import { Requirement } from './types/test-step';
+import { Requirement } from './types/requirement';
 
 export class AssessmentsProviderImpl implements AssessmentsProvider {
     private assessments: Assessment[];

@@ -6,7 +6,7 @@ import { link } from '../../../content/link';
 import * as content from '../../../content/test/keyboard/on-focus';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
-import { Requirement } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { KeyboardInteractionTestStep } from './test-steps';
 
 const description: JSX.Element = <span>Navigating to a component must not trigger any unexpected change of context.</span>;

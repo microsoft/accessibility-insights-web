@@ -12,7 +12,7 @@ import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuratio
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
-import { Requirement } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { landmarksAssessmentInstanceDetailsColumnRenderer } from '../landmarks-instance-details-column-renderer';
 import { LandmarkTestStep } from './test-steps';
 

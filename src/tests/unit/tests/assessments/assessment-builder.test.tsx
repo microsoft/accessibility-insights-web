@@ -7,7 +7,7 @@ import { It, Mock, MockBehavior, Times } from 'typemoq';
 import { AssessmentBuilder } from '../../../../assessments/assessment-builder';
 import { AssistedAssessment, ManualAssessment } from '../../../../assessments/types/iassessment';
 import { ReportInstanceField } from '../../../../assessments/types/report-instance-field';
-import { Requirement } from '../../../../assessments/types/test-step';
+import { Requirement } from '../../../../assessments/types/requirement';
 import { InstanceIdentifierGenerator } from '../../../../background/instance-identifier-generator';
 import { RequirementComparer } from '../../../../common/assessment/requirement-comparer';
 import { Messages } from '../../../../common/messages';

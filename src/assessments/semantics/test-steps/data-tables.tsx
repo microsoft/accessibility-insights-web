@@ -5,7 +5,7 @@ import { NewTabLink } from '../../../common/components/new-tab-link';
 import { link } from '../../../content/link';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
-import { Requirement } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { SemanticsTestStep } from './test-steps';
 
 const dataTablesDescription: JSX.Element = <span>Semantic elements in a data table must not be coded as decorative.</span>;

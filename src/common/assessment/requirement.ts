@@ -3,7 +3,7 @@
 import { keys, sortBy } from 'lodash';
 
 import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
-import { Requirement } from '../../assessments/types/test-step';
+import { Requirement } from '../../assessments/types/requirement';
 import { ManualTestStatusData, TestStepData } from '../types/manual-test-status';
 import { VisualizationType } from '../types/visualization-type';
 

@@ -8,7 +8,7 @@ import * as content from '../../../content/test/sensory/use-of-color';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
-import { Requirement } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { ColorSensoryTestStep } from './test-steps';
 
 const useOfColorHowToTest: JSX.Element = (

@@ -3,7 +3,7 @@
 import { head, isEmpty, pick } from 'lodash';
 
 import { Assessment } from '../assessments/types/iassessment';
-import { Requirement } from '../assessments/types/test-step';
+import { Requirement } from '../assessments/types/requirement';
 import { ManualTestStatus, ManualTestStatusData } from '../common/types/manual-test-status';
 import {
     IAssessmentData,

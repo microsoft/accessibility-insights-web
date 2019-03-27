@@ -4,7 +4,7 @@ import * as React from 'react';
 import { link } from '../../../content/link';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
-import { Requirement } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { SequenceTestStep } from './test-steps';
 
 const description: JSX.Element = <span>White space characters must not be used to create the appearance of columns.</span>;
