@@ -16,6 +16,7 @@ import { AssessmentInstanceRowData, AssessmentInstanceTable } from '../DetailsVi
 import { AssessmentTestView } from '../DetailsView/components/assessment-test-view';
 import { RequirementLink } from '../DetailsView/components/requirement-link';
 import { AnalyzerProvider } from '../injected/analyzers/analyzer-provider';
+import { DecoratedAxeNodeResult, ScannerUtils } from '../injected/scanner-utils';
 import {
     PropertyBags,
     VisualizationInstanceProcessor,
@@ -23,7 +24,6 @@ import {
 } from '../injected/visualization-instance-processor';
 import { DrawerProvider } from '../injected/visualization/drawer-provider';
 import { DictionaryStringTo } from '../types/common-types';
-import { DecoratedAxeNodeResult, ScannerUtils } from '../injected/scanner-utils';
 import { Assessment, AssistedAssessment, ManualAssessment } from './types/iassessment';
 import { ReportInstanceField } from './types/report-instance-field';
 import { Requirement } from './types/requirement';
