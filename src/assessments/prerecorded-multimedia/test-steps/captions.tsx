@@ -6,7 +6,7 @@ import { link } from '../../../content/link';
 import * as content from '../../../content/test/multimedia/captions';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { PrerecordedMultimediaTestStep } from './test-steps';
 
 const captionsDescription: JSX.Element = <span>Pre-recorded multimedia content must have captions.</span>;
@@ -35,7 +35,7 @@ const captionsHowToTest: JSX.Element = (
     </div>
 );
 
-export const Captions: TestStep = {
+export const Captions: Requirement = {
     key: PrerecordedMultimediaTestStep.captions,
     name: 'Captions',
     description: captionsDescription,

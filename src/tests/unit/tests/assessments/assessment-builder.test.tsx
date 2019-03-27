@@ -7,7 +7,7 @@ import { It, Mock, MockBehavior, Times } from 'typemoq';
 import { AssessmentBuilder } from '../../../../assessments/assessment-builder';
 import { AssistedAssessment, ManualAssessment } from '../../../../assessments/types/iassessment';
 import { ReportInstanceField } from '../../../../assessments/types/report-instance-field';
-import { TestStep } from '../../../../assessments/types/test-step';
+import { Requirement } from '../../../../assessments/types/requirement';
 import { createInitialAssessmentTestData } from '../../../../background/create-initial-assessment-test-data';
 import { InstanceIdentifierGenerator } from '../../../../background/instance-identifier-generator';
 import { RequirementComparer } from '../../../../common/assessment/requirement-comparer';
@@ -35,7 +35,7 @@ describe('AssessmentBuilderTest', () => {
         const testViewPropsStub = {} as TestViewProps;
         const expectedTestView = <AssessmentTestView {...testViewPropsStub} />;
 
-        const testStep: TestStep = {
+        const testStep: Requirement = {
             description: (
                 <div>
                     description<span>dot should get removed.</span>
@@ -50,7 +50,7 @@ describe('AssessmentBuilderTest', () => {
             updateVisibility: false,
         };
 
-        const testStep2: TestStep = _.cloneDeep(testStep);
+        const testStep2: Requirement = _.cloneDeep(testStep);
         testStep2.key = 'step2';
         testStep2.generateInstanceIdentifier = null;
         testStep2.updateVisibility = null;
@@ -158,7 +158,7 @@ describe('AssessmentBuilderTest', () => {
         const getDrawerMock = Mock.ofInstance((provider, ffStoreData?) => null);
         getDrawerMock.setup(gdm => gdm(drawerProviderMock.object, undefined)).verifiable(Times.once());
 
-        const testStep1: TestStep = {
+        const testStep1: Requirement = {
             description: (
                 <div>
                     <span>dot should get removed</span>description.
@@ -182,15 +182,15 @@ describe('AssessmentBuilderTest', () => {
         const telemetryFactoryStub = {
             forAssessmentRequirementScan: {},
         };
-        const testStep2: TestStep = _.cloneDeep(testStep1);
+        const testStep2: Requirement = _.cloneDeep(testStep1);
         testStep2.key = 'step2';
-        const testStep3: TestStep = _.cloneDeep(testStep1);
+        const testStep3: Requirement = _.cloneDeep(testStep1);
         testStep3.key = 'step3';
-        const testStep4: TestStep = _.cloneDeep(testStep1);
+        const testStep4: Requirement = _.cloneDeep(testStep1);
         testStep4.key = 'step4';
         const extraField = { key: 'extra', label: 'extra', getValue: i => 'extra' };
         testStep4.reportInstanceFields = [extraField];
-        const testStep5: TestStep = _.cloneDeep(testStep1);
+        const testStep5: Requirement = _.cloneDeep(testStep1);
         testStep5.key = 'step5';
         testStep5.getAnalyzer = null;
         testStep5.visualizationInstanceProcessor = null;
@@ -199,7 +199,7 @@ describe('AssessmentBuilderTest', () => {
         testStep5.generateInstanceIdentifier = null;
         testStep5.updateVisibility = null;
         testStep5.isManual = false;
-        const testStep6: TestStep = _.cloneDeep(testStep1);
+        const testStep6: Requirement = _.cloneDeep(testStep1);
         testStep6.key = 'step6';
         const getInstanceStatus6 = () => ManualTestStatus.PASS;
         testStep6.getInstanceStatus = getInstanceStatus6;
@@ -318,7 +318,7 @@ describe('AssessmentBuilderTest', () => {
         expect(config.getAssessmentData(assessmentData as any)).toEqual(expectedData);
     });
 
-    function validateInstanceTableSettings(testStep: TestStep): void {
+    function validateInstanceTableSettings(testStep: Requirement): void {
         expect(testStep.getInstanceStatus).toBeDefined();
         expect(testStep.getInstanceStatus({} as DecoratedAxeNodeResult)).toBe(ManualTestStatus.UNKNOWN);
 

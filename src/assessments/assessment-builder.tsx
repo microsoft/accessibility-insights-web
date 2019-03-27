@@ -17,6 +17,7 @@ import { AssessmentInstanceRowData, AssessmentInstanceTable } from '../DetailsVi
 import { AssessmentTestView } from '../DetailsView/components/assessment-test-view';
 import { RequirementLink } from '../DetailsView/components/requirement-link';
 import { AnalyzerProvider } from '../injected/analyzers/analyzer-provider';
+import { DecoratedAxeNodeResult, ScannerUtils } from '../injected/scanner-utils';
 import {
     PropertyBags,
     VisualizationInstanceProcessor,
@@ -24,13 +25,12 @@ import {
 } from '../injected/visualization-instance-processor';
 import { DrawerProvider } from '../injected/visualization/drawer-provider';
 import { DictionaryStringTo } from '../types/common-types';
-import { DecoratedAxeNodeResult, ScannerUtils } from './../injected/scanner-utils';
 import { Assessment, AssistedAssessment, ManualAssessment } from './types/iassessment';
 import { ReportInstanceField } from './types/report-instance-field';
-import { TestStep } from './types/test-step';
+import { Requirement } from './types/requirement';
 
 export class AssessmentBuilder {
-    private static applyDefaultReportFieldMap(step: TestStep): void {
+    private static applyDefaultReportFieldMap(step: Requirement): void {
         const { comment, snippet, path } = ReportInstanceField.common;
 
         const defaults = step.isManual ? [comment] : [path, snippet];
@@ -39,7 +39,7 @@ export class AssessmentBuilder {
         step.reportInstanceFields = [...defaults, ...specified];
     }
 
-    private static applyDefaultFunctions(step: TestStep): void {
+    private static applyDefaultFunctions(step: Requirement): void {
         if (!step.getInstanceStatus) {
             step.getInstanceStatus = AssessmentBuilder.getInstanceStatus;
         }
@@ -242,12 +242,12 @@ export class AssessmentBuilder {
         } as Assessment;
     }
 
-    private static getStepConfig(steps: TestStep[], testStep: string): TestStep {
+    private static getStepConfig(steps: Requirement[], testStep: string): Requirement {
         return steps.find(step => step.key === testStep);
     }
 
     private static getVisualizationInstanceProcessor(
-        steps: TestStep[],
+        steps: Requirement[],
     ): (testStep: string) => VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags> {
         return (testStep: string): VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags> => {
             const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
@@ -258,7 +258,7 @@ export class AssessmentBuilder {
         };
     }
 
-    private static getSwitchToTargetTabOnScan(steps: TestStep[]): (testStep: string) => boolean {
+    private static getSwitchToTargetTabOnScan(steps: Requirement[]): (testStep: string) => boolean {
         return (testStep: string): boolean => {
             const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
             if (stepConfig == null || stepConfig.switchToTargetTabOnScan == null) {
@@ -268,7 +268,7 @@ export class AssessmentBuilder {
         };
     }
 
-    private static getInstanceIdentifier(steps: TestStep[]): (testStep: string) => (instance: UniquelyIdentifiableInstances) => string {
+    private static getInstanceIdentifier(steps: Requirement[]): (testStep: string) => (instance: UniquelyIdentifiableInstances) => string {
         return (testStep: string) => {
             const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
             if (stepConfig == null || stepConfig.generateInstanceIdentifier == null) {
@@ -278,7 +278,7 @@ export class AssessmentBuilder {
         };
     }
 
-    private static BuildStepsReportDescription(steps: TestStep[]): void {
+    private static BuildStepsReportDescription(steps: Requirement[]): void {
         steps.forEach(step => {
             step.renderReportDescription = () => {
                 const descriptionCopy = _.cloneDeep(step.description);
@@ -302,7 +302,7 @@ export class AssessmentBuilder {
         return children;
     }
 
-    private static getUpdateVisibility(steps: TestStep[]): (testStep: string) => boolean {
+    private static getUpdateVisibility(steps: Requirement[]): (testStep: string) => boolean {
         return (testStep: string): boolean => {
             const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
             if (stepConfig == null || stepConfig.updateVisibility == null) {

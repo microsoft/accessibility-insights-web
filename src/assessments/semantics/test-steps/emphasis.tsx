@@ -5,7 +5,7 @@ import * as React from 'react';
 import { link } from '../../../content/link';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { SemanticsTestStep } from './test-steps';
 
 const emphasisDescription: JSX.Element = (
@@ -26,7 +26,7 @@ const emphasisHowToTest: JSX.Element = (
     </div>
 );
 
-export const SemanticsEmphasis: TestStep = {
+export const SemanticsEmphasis: Requirement = {
     key: SemanticsTestStep.emphasis,
     name: 'Emphasis',
     description: emphasisDescription,

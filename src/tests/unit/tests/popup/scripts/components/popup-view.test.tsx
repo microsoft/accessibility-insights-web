@@ -122,10 +122,8 @@ describe('PopupView', () => {
                 .verifiable();
 
             storeState = {
-                visualizationStoreData: visualizationStoreState,
                 launchPanelStateStoreData: launchPanelStateStoreState,
                 featureFlagStoreData: featureFlagStoreData,
-                commandStoreData: commandStoreState,
                 userConfigurationStoreData: userConfigStoreData,
             };
 

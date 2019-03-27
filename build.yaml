@@ -7,16 +7,7 @@ jobs:
           vmImage: 'macOS-10.13'
 
       steps:
-          - task: NodeTool@0
-            inputs:
-                versionSpec: '10.15.0'
-            displayName: use node 10.15.0
-
-          - task: Npm@1
-            inputs:
-                command: custom
-                customCommand: ci
-            displayName: npm ci
+          - template: pipeline/prerequisites.yaml
 
           - task: Npm@1
             inputs:
@@ -29,6 +20,12 @@ jobs:
                 command: custom
                 customCommand: run format-check
             displayName: check code formatting
+
+          - task: Npm@1
+            displayName: check copyright headers
+            inputs:
+                command: custom
+                customCommand: run copyrightheaders
 
           - task: Npm@1
             inputs:
@@ -61,41 +58,14 @@ jobs:
             inputs:
                 verbosity: Normal
 
-          - task: Npm@1
-            displayName: check copyright headers
-            inputs:
-                command: custom
-                customCommand: run copyrightheaders
-
     - job: 'e2e_tests_and_publish_drop'
 
       pool:
           vmImage: 'macOS-10.13'
 
       steps:
-          - task: NodeTool@0
-            inputs:
-                versionSpec: '10.15.0'
-            displayName: use node 10.15.0
-
-          - task: Npm@1
-            inputs:
-                command: custom
-                customCommand: ci
-            displayName: npm ci
-
-          - task: Npm@1
-            inputs:
-                command: custom
-                customCommand: run build:all
-            displayName: npm run build:all
-
-          # e2e tests depend on npm run drop
-          - task: Npm@1
-            inputs:
-                command: custom
-                customCommand: run test:e2e -- --ci
-            displayName: run e2e tests
+          - template: pipeline/prerequisites.yaml
+          - template: pipeline/e2e-test.yaml
 
           - task: PublishTestResults@2
             inputs:

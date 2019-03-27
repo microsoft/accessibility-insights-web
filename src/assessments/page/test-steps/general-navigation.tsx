@@ -6,7 +6,7 @@ import { link } from '../../../content/link';
 import * as content from '../../../content/test/page/general-navigation';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import { Term } from '../../markup';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { PageTestStep } from './test-steps';
 
 const generalNavigationDescription: JSX.Element = <span>Users must have multiple ways to navigate to a page.</span>;
@@ -43,7 +43,7 @@ const generalNavigationHowToTest: JSX.Element = (
     </div>
 );
 
-export const GeneralNavigation: TestStep = {
+export const GeneralNavigation: Requirement = {
     key: PageTestStep.generalNavigation,
     name: 'Multiple ways',
     description: generalNavigationDescription,

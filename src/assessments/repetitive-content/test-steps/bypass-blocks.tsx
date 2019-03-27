@@ -6,7 +6,7 @@ import { link } from '../../../content/link';
 import * as content from '../../../content/test/repetitive-content/bypass-blocks';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { RepetitiveContentTestStep } from './test-steps';
 
 const bypassBlocksDescription: JSX.Element = <span>A page must provide a keyboard-accessible method to bypass repetitive content.</span>;
@@ -43,7 +43,7 @@ const bypassBlocksHowToTest: JSX.Element = (
     </div>
 );
 
-export const BypassBlocks: TestStep = {
+export const BypassBlocks: Requirement = {
     key: RepetitiveContentTestStep.bypassBlocks,
     name: 'Bypass blocks',
     description: bypassBlocksDescription,

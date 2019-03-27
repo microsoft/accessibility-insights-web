@@ -6,7 +6,7 @@ import { link } from '../../../content/link';
 import * as content from '../../../content/test/multimedia/audio-description';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { PrerecordedMultimediaTestStep } from './test-steps';
 
 const audioDescription: JSX.Element = <span>Pre-recorded video with audio must have an audio description.</span>;
@@ -30,7 +30,7 @@ const audioHowToTest: JSX.Element = (
     </div>
 );
 
-export const AudioDescription: TestStep = {
+export const AudioDescription: Requirement = {
     key: PrerecordedMultimediaTestStep.audioDescription,
     name: 'Audio description',
     description: audioDescription,

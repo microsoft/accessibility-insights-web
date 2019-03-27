@@ -5,7 +5,7 @@ import * as React from 'react';
 import { link } from '../../../content/link';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { SemanticsTestStep } from './test-steps';
 
 const listsDescription: JSX.Element = <span>Lists must be contained within semantically correct containers.</span>;
@@ -45,7 +45,7 @@ const listsHowToTest: JSX.Element = (
     </div>
 );
 
-export const SemanticsLists: TestStep = {
+export const SemanticsLists: Requirement = {
     key: SemanticsTestStep.lists,
     name: 'Lists',
     description: listsDescription,

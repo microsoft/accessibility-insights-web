@@ -16,7 +16,7 @@ import { AssistedTestRecordYourResults } from '../../common/assisted-test-record
 import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { LinksTestStep } from './test-steps';
 
 const LinkFunctionDescription: JSX.Element = (
@@ -70,7 +70,7 @@ const propertyBagConfig: PropertyBagColumnRendererConfig<LinkFunctionPropertyBag
     },
 ];
 
-export const LinkFunction: TestStep = {
+export const LinkFunction: Requirement = {
     key: LinksTestStep.linkFunction,
     name: 'Link function',
     description: LinkFunctionDescription,
