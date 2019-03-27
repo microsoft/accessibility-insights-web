@@ -14,7 +14,7 @@ import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-st
 import { IAssessmentScanData, IScanData } from '../common/types/store-data/ivisualization-store-data';
 import { AssessmentInstanceRowData, AssessmentInstanceTable } from '../DetailsView/components/assessment-instance-table';
 import { AssessmentTestView } from '../DetailsView/components/assessment-test-view';
-import { TestStepLink } from '../DetailsView/components/test-step-link';
+import { RequirementLink } from '../DetailsView/components/requirement-link';
 import { AnalyzerProvider } from '../injected/analyzers/analyzer-provider';
 import {
     PropertyBags,
@@ -82,14 +82,14 @@ export class AssessmentBuilder {
         return table.renderDefaultInstanceTableHeader(items);
     }
 
-    private static renderRequirementDescription(testStepLink: TestStepLink): JSX.Element {
-        return testStepLink.renderRequirementDescriptionWithIndex();
+    private static renderRequirementDescription(requirementLink: RequirementLink): JSX.Element {
+        return requirementLink.renderRequirementDescriptionWithIndex();
     }
 
     private static enableTest(scanData: IScanData, payload: AssessmentToggleActionPayload): void {
         const scanAssessmentData = scanData as IAssessmentScanData;
         scanAssessmentData.enabled = true;
-        scanAssessmentData.stepStatus[payload.step] = true;
+        scanAssessmentData.stepStatus[payload.requirement] = true;
     }
 
     private static disableTest(scanData: IScanData, step: string): void {

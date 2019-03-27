@@ -17,14 +17,14 @@ import {
     FileIssueClickTelemetryData,
     InspectTelemetryData,
     IssuesAnalyzerScanTelemetryData,
+    RequirementActionTelemetryData,
+    RequirementSelectTelemetryData,
     RequirementStatusTelemetryData,
     RuleAnalyzerScanTelemetryData,
     ScopingTelemetryData,
     SettingsOpenSourceItem,
     SettingsOpenTelemetryData,
     TelemetryEventSource,
-    TestStepActionTelemetryData,
-    TestStepSelectTelemetryData,
     ToggleTelemetryData,
     TriggeredBy,
     TriggeredByNotApplicable,
@@ -99,21 +99,21 @@ export class TelemetryDataFactory {
     public forSelectDetailsView(event: SupportedMouseEvent, type: VisualizationType): DetailsViewOpenTelemetryData {
         return {
             ...this.withTriggeredByAndSource(event, TelemetryEventSource.DetailsView),
-            detailsView: VisualizationType[type],
+            selectedTest: VisualizationType[type],
         };
     }
 
-    public forSelectTestStep(event: SupportedMouseEvent, type: VisualizationType, step: string): TestStepSelectTelemetryData {
+    public forSelectRequirement(event: SupportedMouseEvent, type: VisualizationType, requirement: string): RequirementSelectTelemetryData {
         return {
             ...this.withTriggeredByAndSource(event, TelemetryEventSource.DetailsView),
             selectedTest: VisualizationType[type],
-            selectedStep: step,
+            selectedRequirement: requirement,
         };
     }
 
     public forRequirementStatus(
         type: VisualizationType,
-        step: string,
+        requirement: string,
         passed: boolean,
         numInstances: number,
     ): RequirementStatusTelemetryData {
@@ -121,7 +121,7 @@ export class TelemetryDataFactory {
             triggeredBy: TriggeredByNotApplicable,
             source: TelemetryEventSource.DetailsView,
             selectedTest: VisualizationType[type],
-            selectedStep: step,
+            selectedRequirement: requirement,
             passed: passed,
             numInstances: numInstances,
         };
@@ -134,7 +134,7 @@ export class TelemetryDataFactory {
     ): DetailsViewOpenTelemetryData {
         return {
             ...this.withTriggeredByAndSource(event, source),
-            detailsView: VisualizationType[type],
+            selectedTest: VisualizationType[type],
         };
     }
 
@@ -196,20 +196,20 @@ export class TelemetryDataFactory {
         };
     }
 
-    public forTestStepFromDetailsView(test: VisualizationType, step: string): TestStepActionTelemetryData {
+    public forRequirementFromDetailsView(test: VisualizationType, requirement: string): RequirementActionTelemetryData {
         return {
             triggeredBy: TriggeredByNotApplicable,
             source: TelemetryEventSource.DetailsView,
-            selectedStep: step,
+            selectedRequirement: requirement,
             selectedTest: VisualizationType[test],
         };
     }
 
-    public forCancelStartOver(event: SupportedMouseEvent, test: VisualizationType, step: string): TestStepSelectTelemetryData {
+    public forCancelStartOver(event: SupportedMouseEvent, test: VisualizationType, requirement: string): RequirementSelectTelemetryData {
         return {
             ...this.fromDetailsView(event),
             selectedTest: VisualizationType[test],
-            selectedStep: step,
+            selectedRequirement: requirement,
         };
     }
 

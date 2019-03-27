@@ -12,7 +12,7 @@ describe('selectFirstRequirementAfterAutomatedChecks', () => {
     const getRequirementResults = () => [{ definition: { key: first } }, { definition: { key: second } }];
 
     const actionMessageCreator = {
-        selectTestStep: jest.fn(),
+        selectRequirement: jest.fn(),
     };
 
     const scanningProps = ({
@@ -38,7 +38,7 @@ describe('selectFirstRequirementAfterAutomatedChecks', () => {
     } as Partial<AssessmentViewProps>) as AssessmentViewProps;
 
     beforeEach(() => {
-        actionMessageCreator.selectTestStep.mockClear();
+        actionMessageCreator.selectRequirement.mockClear();
     });
 
     const testObject = selectFirstRequirementAfterAutomatedChecks.component.onAssessmentViewUpdate;
@@ -46,24 +46,24 @@ describe('selectFirstRequirementAfterAutomatedChecks', () => {
     it('selects the first test step when transitioning from scanning to not scanning', () => {
         testObject(scanningProps, notScanningProps);
 
-        expect(actionMessageCreator.selectTestStep).toBeCalledWith(null, first, type);
+        expect(actionMessageCreator.selectRequirement).toBeCalledWith(null, first, type);
     });
 
     it('does not select the first test step when remaining scanning', () => {
         testObject(scanningProps, scanningProps);
 
-        expect(actionMessageCreator.selectTestStep).not.toBeCalled();
+        expect(actionMessageCreator.selectRequirement).not.toBeCalled();
     });
 
     it('does not select the first test step when remaining not scanning', () => {
         testObject(notScanningProps, notScanningProps);
 
-        expect(actionMessageCreator.selectTestStep).not.toBeCalled();
+        expect(actionMessageCreator.selectRequirement).not.toBeCalled();
     });
 
     it('selects the first test step when transitioning from not scanning to scanning', () => {
         testObject(notScanningProps, scanningProps);
 
-        expect(actionMessageCreator.selectTestStep).not.toBeCalled();
+        expect(actionMessageCreator.selectRequirement).not.toBeCalled();
     });
 });

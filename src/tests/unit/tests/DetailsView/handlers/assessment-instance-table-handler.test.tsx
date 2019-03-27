@@ -176,15 +176,15 @@ describe('AssessmentInstanceTableHandlerTest', () => {
         configFactoryMock.verifyAll();
     });
 
-    test('changeStepStatus', () => {
+    test('changeRequirementStatus', () => {
         const status = ManualTestStatus.FAIL;
         const test = VisualizationType.HeadingsAssessment;
-        const step = 'step';
+        const requirement = 'requirement';
         const actionMessageCreatorStub = {
-            changeManualTestStepStatus: (paramA, paramB, paramC) => {
+            changeManualRequirementStatus: (paramA, paramB, paramC) => {
                 expect(paramA).toBe(status);
                 expect(paramB).toBe(test);
-                expect(paramC).toBe(step);
+                expect(paramC).toBe(requirement);
             },
         };
         const testObject = new AssessmentInstanceTableHandler(
@@ -192,16 +192,16 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             configFactoryMock.object,
             assessmentsProvider,
         );
-        testObject.changeStepStatus(status, test, step);
+        testObject.changeRequirementStatus(status, test, requirement);
     });
 
-    test('undoStepStatusChange', () => {
+    test('undoRequirementStatusChange', () => {
         const test = VisualizationType.HeadingsAssessment;
-        const step = 'step';
+        const requirement = 'requirement';
         const actionMessageCreatorStub = {
-            undoManualTestStepStatusChange: (paramA, paramB) => {
+            undoManualRequirementStatusChange: (paramA, paramB) => {
                 expect(paramA).toBe(test);
-                expect(paramB).toBe(step);
+                expect(paramB).toBe(requirement);
             },
         };
         const testObject = new AssessmentInstanceTableHandler(
@@ -209,24 +209,24 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             configFactoryMock.object,
             assessmentsProvider,
         );
-        testObject.undoStepStatusChange(test, step);
+        testObject.undoRequirementStatusChange(test, requirement);
     });
 
     test('addFailureInstance', () => {
         const test = VisualizationType.HeadingsAssessment;
-        const step = 'step';
+        const requirement = 'requirement';
         const description = 'description';
-        actionMessageCreatorMock.setup(a => a.addFailureInstance(description, test, step)).verifiable(Times.once());
+        actionMessageCreatorMock.setup(a => a.addFailureInstance(description, test, requirement)).verifiable(Times.once());
 
-        testSubject.addFailureInstance(description, test, step);
+        testSubject.addFailureInstance(description, test, requirement);
     });
 
     test('passUnmarkedInstances', () => {
         const test = VisualizationType.HeadingsAssessment;
-        const step = 'missingHeadings';
-        actionMessageCreatorMock.setup(a => a.passUnmarkedInstances(test, step)).verifiable(Times.once());
+        const requirement = 'missingHeadings';
+        actionMessageCreatorMock.setup(a => a.passUnmarkedInstances(test, requirement)).verifiable(Times.once());
 
-        testSubject.passUnmarkedInstances(test, step);
+        testSubject.passUnmarkedInstances(test, requirement);
     });
 
     test('updateFocusedInstance', () => {

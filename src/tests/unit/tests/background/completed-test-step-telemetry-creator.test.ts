@@ -267,9 +267,9 @@ describe('CompletedTestStepTelemetryCreatorTest', () => {
     });
 });
 
-function getMockTelemetryData(test: number, step: string, passed: boolean, instances: number): RequirementStatusTelemetryData {
+function getMockTelemetryData(test: number, requirement: string, passed: boolean, instances: number): RequirementStatusTelemetryData {
     return {
-        selectedStep: step,
+        selectedRequirement: requirement,
         selectedTest: test.toString(),
         passed: passed,
         numInstances: instances,

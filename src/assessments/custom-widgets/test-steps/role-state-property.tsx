@@ -8,6 +8,7 @@ import { CustomWidgetPropertyBag } from '../../../common/types/property-bag/icus
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
+import { TestAutomaticallyPassedNotice } from '../../../content/test/common/test-automatically-passed-notice';
 import * as content from '../../../content/test/custom-widgets/role-state-property';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
@@ -26,7 +27,8 @@ const roleStatePropertyDescription: JSX.Element = (
 
 const roleStatePropertyHowToTest: JSX.Element = (
     <div>
-        For this requirement, {productName} highlights custom widgets.
+        <p>For this requirement, {productName} highlights custom widgets.</p>
+        <TestAutomaticallyPassedNotice />
         <ol>
             <li>
                 In the <Markup.Term>Instances</Markup.Term> list below, use the link for the design pattern that best describes the widget's

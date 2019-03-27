@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TestStepLink renders with index 1`] = `
+exports[`RequirementLink renders with index 1`] = `
 <div
   aria-hidden="true"
   className="button-flex-container"
@@ -30,7 +30,7 @@ exports[`TestStepLink renders with index 1`] = `
 </div>
 `;
 
-exports[`TestStepLink renders without index 1`] = `
+exports[`RequirementLink renders without index 1`] = `
 <div
   aria-hidden="true"
   className="button-flex-container"

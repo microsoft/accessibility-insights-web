@@ -6,13 +6,13 @@ import * as React from 'react';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { StatusIcon } from './status-icon';
 
-export interface TestStepLinkProps {
+export interface RequirementLinkProps {
     link: INavLink;
     status: ManualTestStatus;
-    renderRequirementDescription: (testStepLink: TestStepLink) => JSX.Element;
+    renderRequirementDescription: (link: RequirementLink) => JSX.Element;
 }
 
-export class TestStepLink extends React.Component<TestStepLinkProps> {
+export class RequirementLink extends React.Component<RequirementLinkProps> {
     public render(): JSX.Element {
         return (
             <div className={'button-flex-container'} aria-hidden="true">

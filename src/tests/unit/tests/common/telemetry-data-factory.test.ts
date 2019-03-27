@@ -10,12 +10,12 @@ import {
     ExportResultsTelemetryData,
     FeatureFlagToggleTelemetryData,
     InspectTelemetryData,
+    RequirementActionTelemetryData,
+    RequirementSelectTelemetryData,
     RuleAnalyzerScanTelemetryData,
     SettingsOpenSourceItem,
     SettingsOpenTelemetryData,
     TelemetryEventSource,
-    TestStepActionTelemetryData,
-    TestStepSelectTelemetryData,
     ToggleTelemetryData,
     TriggeredByNotApplicable,
 } from '../../../../common/telemetry-events';
@@ -103,7 +103,7 @@ describe('TelemetryDataFactoryTest', () => {
         const result = testObject.forSelectDetailsView(event, type);
 
         const expected: DetailsViewOpenTelemetryData = {
-            detailsView: VisualizationType[type],
+            selectedTest: VisualizationType[type],
             triggeredBy: 'keypress',
             source,
         };
@@ -119,7 +119,7 @@ describe('TelemetryDataFactoryTest', () => {
         const result = testObject.forSelectDetailsView(event, type);
 
         const expected: DetailsViewOpenTelemetryData = {
-            detailsView: VisualizationType[type],
+            selectedTest: VisualizationType[type],
             triggeredBy: 'mouseclick',
             source,
         };
@@ -161,7 +161,7 @@ describe('TelemetryDataFactoryTest', () => {
         const result = testObject.forOpenDetailsView(event, type, testSource);
 
         const expected: DetailsViewOpenTelemetryData = {
-            detailsView: VisualizationType[type],
+            selectedTest: VisualizationType[type],
             triggeredBy: 'keypress',
             source: testSource,
         };
@@ -176,7 +176,7 @@ describe('TelemetryDataFactoryTest', () => {
         const result = testObject.forOpenDetailsView(event, type, testSource);
 
         const expected: DetailsViewOpenTelemetryData = {
-            detailsView: VisualizationType[type],
+            selectedTest: VisualizationType[type],
             triggeredBy: 'mouseclick',
             source: testSource,
         };
@@ -299,30 +299,30 @@ describe('TelemetryDataFactoryTest', () => {
         expect(actual).toEqual(expected);
     });
 
-    test('forSelectTestStep', () => {
+    test('forSelectRequirement', () => {
         const event = mouseClickEvent;
-        const expected: TestStepSelectTelemetryData = {
+        const expected: RequirementSelectTelemetryData = {
             triggeredBy: 'mouseclick',
             source: TelemetryEventSource.DetailsView,
             selectedTest: VisualizationType[VisualizationType.Headings],
-            selectedStep: 'step',
+            selectedRequirement: 'requirement',
         };
 
-        const actual: TestStepSelectTelemetryData = testObject.forSelectTestStep(event, VisualizationType.Headings, 'step');
+        const actual: RequirementSelectTelemetryData = testObject.forSelectRequirement(event, VisualizationType.Headings, 'requirement');
 
         expect(actual).toEqual(expected);
     });
 
     test('forSelectDetailsView without event', () => {
         const event = null;
-        const expected: TestStepSelectTelemetryData = {
+        const expected: RequirementSelectTelemetryData = {
             triggeredBy: TriggeredByNotApplicable,
             source: TelemetryEventSource.DetailsView,
             selectedTest: VisualizationType[VisualizationType.Headings],
-            selectedStep: 'step',
+            selectedRequirement: 'requirement',
         };
 
-        const actual: TestStepSelectTelemetryData = testObject.forSelectTestStep(event, VisualizationType.Headings, 'step');
+        const actual: RequirementSelectTelemetryData = testObject.forSelectRequirement(event, VisualizationType.Headings, 'requirement');
 
         expect(actual).toEqual(expected);
     });
@@ -354,29 +354,29 @@ describe('TelemetryDataFactoryTest', () => {
 
     test('forAddRemoveFailureInstanceFromDetailsView', () => {
         const event = mouseClickEvent;
-        const expected: TestStepActionTelemetryData = {
+        const expected: RequirementActionTelemetryData = {
             triggeredBy: TriggeredByNotApplicable,
             source: TelemetryEventSource.DetailsView,
-            selectedStep: 'step',
+            selectedRequirement: 'requirement',
             selectedTest: VisualizationType[-1],
         };
 
-        const actual: TestStepActionTelemetryData = testObject.forTestStepFromDetailsView(-1, 'step');
+        const actual: RequirementActionTelemetryData = testObject.forRequirementFromDetailsView(-1, 'requirement');
 
         expect(actual).toEqual(expected);
     });
 
     test('fromCancelStartOver', () => {
         const test = VisualizationType.ColorSensoryAssessment;
-        const step = 'step';
+        const requirement = 'requirement';
         const expected = {
-            selectedStep: step,
+            selectedRequirement: requirement,
             selectedTest: VisualizationType[test],
             source: TelemetryEventSource.DetailsView,
             triggeredBy: 'mouseclick',
         };
 
-        const actual = testObject.forCancelStartOver(mouseClickEvent, test, step);
+        const actual = testObject.forCancelStartOver(mouseClickEvent, test, requirement);
 
         expect(actual).toEqual(expected);
     });

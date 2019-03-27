@@ -31,8 +31,8 @@ export class ManualTestStepView extends React.Component<ManualTestStepViewProps>
                         step={this.props.step}
                         status={status}
                         originalStatus={ManualTestStatus.UNKNOWN}
-                        onGroupChoiceChange={this.props.assessmentInstanceTableHandler.changeStepStatus}
-                        onUndoClicked={this.props.assessmentInstanceTableHandler.undoStepStatusChange}
+                        onGroupChoiceChange={this.props.assessmentInstanceTableHandler.changeRequirementStatus}
+                        onUndoClicked={this.props.assessmentInstanceTableHandler.undoRequirementStatusChange}
                         isLabelVisible={true}
                     />
                 </div>

@@ -7,8 +7,8 @@ import { BaseStore } from '../../../../common/base-store';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
 import { InspectActionMessageCreator } from '../../../../common/message-creators/inspect-action-message-creator';
-import { IStoreActionMessageCreator } from '../../../../common/message-creators/istore-action-message-creator';
 import { ScopingActionMessageCreator } from '../../../../common/message-creators/scoping-action-message-creator';
+import { StoreActionMessageCreator } from '../../../../common/message-creators/store-action-message-creator';
 import { BaseClientStoresHub } from '../../../../common/stores/base-client-stores-hub';
 import { IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
 import { IDetailsViewData } from '../../../../common/types/store-data/idetails-view-data';
@@ -34,7 +34,7 @@ export class DetailsViewContainerPropsBuilder {
     private detailsViewStore: BaseStore<IDetailsViewData>;
     private scopingActionMessageCreator: ScopingActionMessageCreator;
     private inspectActionMessageCreator: InspectActionMessageCreator;
-    private storeActionCreator: IStoreActionMessageCreator;
+    private storeActionCreator: StoreActionMessageCreator;
     private document: Document = document;
     private issuesSelection: ISelection;
     private clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
@@ -48,7 +48,7 @@ export class DetailsViewContainerPropsBuilder {
     private storesHub: BaseClientStoresHub<any>;
     constructor(private deps: DetailsViewContainerDeps) {}
 
-    public setDetailsViewStoreActionMessageCreator(creator: IStoreActionMessageCreator): DetailsViewContainerPropsBuilder {
+    public setDetailsViewStoreActionMessageCreator(creator: StoreActionMessageCreator): DetailsViewContainerPropsBuilder {
         this.storeActionCreator = creator;
         return this;
     }
@@ -93,7 +93,7 @@ export class DetailsViewContainerPropsBuilder {
         return this;
     }
 
-    public setStoreActionMessageCreator(creator: IStoreActionMessageCreator): DetailsViewContainerPropsBuilder {
+    public setStoreActionMessageCreator(creator: StoreActionMessageCreator): DetailsViewContainerPropsBuilder {
         this.storeActionCreator = creator;
         return this;
     }
