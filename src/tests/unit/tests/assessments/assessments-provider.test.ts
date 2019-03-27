@@ -5,7 +5,7 @@ import * as _ from 'lodash';
 import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
 import { Assessment } from '../../../../assessments/types/iassessment';
 import { AssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
-import { TestStep } from '../../../../assessments/types/test-step';
+import { Requirement } from '../../../../assessments/types/requirement';
 
 describe('AssessmentsProviderTest', () => {
     const firstType = 45;
@@ -151,7 +151,7 @@ describe('AssessmentsProviderTest', () => {
         return { type, steps: stepKeys.map(makeStep) } as Assessment;
     }
 
-    function makeStep(key: string): TestStep {
-        return { key } as TestStep;
+    function makeStep(key: string): Requirement {
+        return { key } as Requirement;
     }
 });

@@ -3,7 +3,6 @@
 import * as React from 'react';
 
 import { PropertyBagColumnRendererFactory } from '../../../assessments/common/property-bag-column-renderer-factory';
-import { TextLegibilityTestStep } from '../../../assessments/text-legibility/test-steps/test-step';
 import { NewTabLink } from '../../../common/components/new-tab-link';
 import { ContrastPropertyBag } from '../../../common/types/property-bag/icontrast';
 import { VisualizationType } from '../../../common/types/visualization-type';
@@ -18,7 +17,8 @@ import { AssistedTestRecordYourResults } from '../../common/assisted-test-record
 import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
+import { TextLegibilityTestStep } from './test-step';
 
 const contrastDescription: JSX.Element = <span>Text elements must have sufficient contrast.</span>;
 
@@ -70,7 +70,7 @@ const propertyBagConfig: PropertyBagColumnRendererConfig<ContrastPropertyBag>[] 
     },
 ];
 
-export const Contrast: TestStep = {
+export const Contrast: Requirement = {
     key: TextLegibilityTestStep.contrast,
     name: 'Contrast',
     description: contrastDescription,

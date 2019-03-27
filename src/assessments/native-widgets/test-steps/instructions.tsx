@@ -16,7 +16,7 @@ import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { NativeWidgetsTestStep } from './test-steps';
 
 const description: JSX.Element = <span>If a native widget has visible instructions, they must be programmatically related to it.</span>;
@@ -63,7 +63,7 @@ const propertyBagConfig: PropertyBagColumnRendererConfig<DefaultWidgetPropertyBa
     },
 ];
 
-export const Instructions: TestStep = {
+export const Instructions: Requirement = {
     key: NativeWidgetsTestStep.instructions,
     name: 'Instructions',
     description,

@@ -5,7 +5,7 @@ import * as React from 'react';
 import { link } from '../../../content/link';
 import * as content from '../../../content/test/timed-events/auto-updating-content';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { TimedEventsTestStep } from './test-steps';
 
 const description: JSX.Element = (
@@ -30,7 +30,7 @@ const howToTest: JSX.Element = (
     </div>
 );
 
-export const AutoUpdatingContent: TestStep = {
+export const AutoUpdatingContent: Requirement = {
     key: TimedEventsTestStep.autoUpdatingContent,
     name: 'Auto-updating content',
     description,

@@ -3,11 +3,11 @@
 import { keys, sortBy } from 'lodash';
 
 import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
-import { TestStep } from '../../assessments/types/test-step';
+import { Requirement } from '../../assessments/types/requirement';
 import { ManualTestStatusData, TestStepData } from '../types/manual-test-status';
 import { VisualizationType } from '../types/visualization-type';
 
-export type RequirementDefinition = TestStep;
+export type RequirementDefinition = Requirement;
 export type RequirementData = TestStepData;
 
 export type RequirementResult = {
