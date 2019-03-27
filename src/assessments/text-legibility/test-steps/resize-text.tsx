@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 import { TextLegibilityTestStep } from '../../../assessments/text-legibility/test-steps/test-step';
-import { TestStep } from '../../../assessments/types/test-step';
+import { Requirement } from '../../../assessments/types/requirement';
 import { link } from '../../../content/link';
 import * as content from '../../../content/test/text-legibility/resize-text';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
@@ -43,7 +43,7 @@ const resizeTextHowToTest: JSX.Element = (
     </div>
 );
 
-export const ResizeText: TestStep = {
+export const ResizeText: Requirement = {
     key: TextLegibilityTestStep.resizeText,
     name: 'Resize text',
     description: resizeTextDescription,

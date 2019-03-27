@@ -5,7 +5,7 @@ import { link } from '../../../content/link';
 import * as content from '../../../content/test/language/language-of-page';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { LanguageAttributeLink } from './../common/language-attribute-link';
 import { LanguageTestStep } from './test-steps';
 
@@ -29,7 +29,7 @@ const languageOfTextHowToTest: JSX.Element = (
     </div>
 );
 
-export const LanguageOfPage: TestStep = {
+export const LanguageOfPage: Requirement = {
     key: LanguageTestStep.languageOfPage,
     name: 'Language of page',
     description: languageOfTextDescription,

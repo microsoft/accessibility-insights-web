@@ -13,7 +13,7 @@ import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuratio
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { headingsAssessmentInstanceDetailsColumnRenderer } from './../headings-instance-details-column-renderer';
 import { HeadingsTestStep } from './test-steps';
 
@@ -45,7 +45,7 @@ const headingLevelHowToTest: JSX.Element = (
     </div>
 );
 
-export const HeadingLevel: TestStep = {
+export const HeadingLevel: Requirement = {
     key: HeadingsTestStep.headingLevel,
     name: 'Heading level',
     description: headingLevelDescription,
