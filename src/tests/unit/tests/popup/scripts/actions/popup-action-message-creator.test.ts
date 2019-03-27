@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { OnDetailsViewOpenPayload } from '../../../../../../background/actions/action-payloads';
+import { OnDetailsViewOpenPayload, SetLaunchPanelState } from '../../../../../../background/actions/action-payloads';
 import { Messages } from '../../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../../common/telemetry-data-factory';
 import {
@@ -21,16 +21,17 @@ import { LaunchPanelType } from '../../../../../../popup/scripts/components/popu
 import { EventStubFactory } from '../../../../common/event-stub-factory';
 
 describe('PopupActionMessageCreatorTest', () => {
-    let eventStubFactory: EventStubFactory;
+    const eventStubFactory = new EventStubFactory();
+    const stubKeypressEvent = eventStubFactory.createKeypressEvent() as any;
+    const testSource: TelemetryEventSource = -1 as TelemetryEventSource;
+
     let mockWindowUtils: IMock<WindowUtils>;
     let postMessageMock: IMock<(message) => void>;
     let testSubject: PopupActionMessageCreator;
     let telemetryFactoryMock: IMock<TelemetryDataFactory>;
     let tabId: number;
-    const testSource: TelemetryEventSource = -1 as TelemetryEventSource;
 
     beforeEach(() => {
-        eventStubFactory = new EventStubFactory();
         mockWindowUtils = Mock.ofType(WindowUtils, MockBehavior.Strict);
 
         postMessageMock = Mock.ofInstance(message => {}, MockBehavior.Strict);
@@ -61,7 +62,7 @@ describe('PopupActionMessageCreatorTest', () => {
             payload: payload,
         };
 
-        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable();
+        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
 
         testSubject.popupInitialized();
 
@@ -85,7 +86,7 @@ describe('PopupActionMessageCreatorTest', () => {
             payload: payload,
         };
 
-        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable();
+        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
 
         testSubject.openLaunchPad(panelType);
 
@@ -95,7 +96,6 @@ describe('PopupActionMessageCreatorTest', () => {
     test('openDetailsView', () => {
         const viewType = VisualizationType.Headings;
         const pivotType = DetailsViewPivotType.fastPass;
-        const event = eventStubFactory.createKeypressEvent() as any;
 
         const telemetry: DetailsViewOpenTelemetryData = {
             selectedTest: VisualizationType[viewType],
@@ -115,16 +115,16 @@ describe('PopupActionMessageCreatorTest', () => {
             payload: expectedPayload,
         };
 
-        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable();
+        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
 
         telemetryFactoryMock
-            .setup(tf => tf.forOpenDetailsView(event, viewType, testSource))
+            .setup(tf => tf.forOpenDetailsView(stubKeypressEvent, viewType, testSource))
             .returns(() => telemetry)
             .verifiable();
 
         mockWindowUtils.setup(x => x.closeWindow()).verifiable(Times.once());
 
-        testSubject.openDetailsView(event, VisualizationType.Headings, testSource, pivotType);
+        testSubject.openDetailsView(stubKeypressEvent, VisualizationType.Headings, testSource, pivotType);
 
         postMessageMock.verifyAll();
         telemetryFactoryMock.verifyAll();
@@ -132,7 +132,6 @@ describe('PopupActionMessageCreatorTest', () => {
 
     test('openDetailsView (no pivotType param)', () => {
         const viewType = VisualizationType.Headings;
-        const event = eventStubFactory.createKeypressEvent() as any;
 
         const telemetry: DetailsViewOpenTelemetryData = {
             selectedTest: VisualizationType[viewType],
@@ -152,23 +151,22 @@ describe('PopupActionMessageCreatorTest', () => {
             payload: expectedPayload,
         };
 
-        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable();
+        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
 
         telemetryFactoryMock
-            .setup(tf => tf.forOpenDetailsView(event, viewType, testSource))
+            .setup(tf => tf.forOpenDetailsView(stubKeypressEvent, viewType, testSource))
             .returns(() => telemetry)
             .verifiable();
 
         mockWindowUtils.setup(x => x.closeWindow()).verifiable(Times.once());
 
-        testSubject.openDetailsView(event, VisualizationType.Headings, testSource);
+        testSubject.openDetailsView(stubKeypressEvent, VisualizationType.Headings, testSource);
 
         postMessageMock.verifyAll();
         telemetryFactoryMock.verifyAll();
     });
 
     test('openShortcutConfigureTab', () => {
-        const event = eventStubFactory.createKeypressEvent() as any;
         const telemetry: BaseTelemetryData = {
             triggeredBy: 'keypress',
             source: TelemetryEventSource.HamburgerMenu,
@@ -183,19 +181,18 @@ describe('PopupActionMessageCreatorTest', () => {
         };
 
         telemetryFactoryMock
-            .setup(tf => tf.fromHamburgerMenu(event))
+            .setup(tf => tf.fromHamburgerMenu(stubKeypressEvent))
             .returns(() => telemetry)
             .verifiable();
 
-        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable();
+        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
 
-        testSubject.openShortcutConfigureTab(event);
+        testSubject.openShortcutConfigureTab(stubKeypressEvent);
 
         postMessageMock.verifyAll();
     });
 
     test('openTutorial', () => {
-        const event = eventStubFactory.createKeypressEvent() as any;
         const telemetry: BaseTelemetryData = {
             triggeredBy: 'keypress',
             source: TelemetryEventSource.LaunchPad,
@@ -211,15 +208,35 @@ describe('PopupActionMessageCreatorTest', () => {
         };
 
         telemetryFactoryMock
-            .setup(tf => tf.fromLaunchPad(event))
+            .setup(tf => tf.fromLaunchPad(stubKeypressEvent))
             .returns(() => telemetry)
             .verifiable(Times.once());
 
         postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
 
-        testSubject.openTutorial(event);
+        testSubject.openTutorial(stubKeypressEvent);
 
         postMessageMock.verifyAll();
         telemetryFactoryMock.verifyAll();
+    });
+
+    test('setLaunchPanelType', () => {
+        const type = LaunchPanelType.AdhocToolsPanel;
+
+        const payload: SetLaunchPanelState = {
+            launchPanelType: type,
+        };
+
+        const expectedMessage = {
+            tabId: 1,
+            type: Messages.LaunchPanel.Set,
+            payload,
+        };
+
+        postMessageMock.setup(post => post(It.isValue(expectedMessage))).verifiable(Times.once());
+
+        testSubject.setLaunchPanelType(type);
+
+        postMessageMock.verifyAll();
     });
 });
