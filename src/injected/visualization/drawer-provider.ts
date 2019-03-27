@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { getRTL } from '@uifabric/utilities';
-
 import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 import { HTMLElementUtils } from '../../common/html-element-utils';
 import { TabbableElementsHelper } from '../../common/tabbable-elements-helper';
@@ -13,11 +12,11 @@ import { ShadowUtils } from '../shadow-utils';
 import { CenterPositionCalculator } from './center-position-calculator';
 import { CustomWidgetsFormatter } from './custom-widgets-formatter';
 import { Drawer } from './drawer';
-import { DrawerImpl } from './drawer-impl';
 import { DrawerUtils } from './drawer-utils';
 import { Formatter, SVGDrawerConfiguration } from './formatter';
 import { FrameFormatter } from './frame-formatter';
 import { HeadingFormatter } from './heading-formatter';
+import { HighlightBoxDrawer } from './highlight-box-drawer';
 import { HighlightBoxFormatter } from './highlight-box-formatter';
 import { IssuesFormatter } from './issues-formatter';
 import { LandmarkFormatter } from './landmark-formatter';
@@ -112,6 +111,14 @@ export class DrawerProvider {
     }
 
     private createDrawer(containerClass: string, formatter: Formatter): Drawer {
-        return new DrawerImpl(this.dom, containerClass, this.windowUtils, this.shadowUtils, this.drawerUtils, this.clientUtils, formatter);
+        return new HighlightBoxDrawer(
+            this.dom,
+            containerClass,
+            this.windowUtils,
+            this.shadowUtils,
+            this.drawerUtils,
+            this.clientUtils,
+            formatter,
+        );
     }
 }
