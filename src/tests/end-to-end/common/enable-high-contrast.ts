@@ -8,5 +8,5 @@ export async function enableHighContrast(detailsViewPage: Page): Promise<void> {
     await detailsViewPage.clickSelector(DetailsViewCommonSelectors.settingsButton);
     await detailsViewPage.clickSelector(DetailsViewCommonSelectors.highContrastToggle);
     await detailsViewPage.waitForSelector(CommonSelectors.highContrastThemeSelector);
-    await detailsViewPage.press('Escape');
+    await detailsViewPage.keyPress('Escape');
 }

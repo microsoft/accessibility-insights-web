@@ -7,7 +7,6 @@ import { detailsViewSelectors } from '../../common/element-identifiers/details-v
 import { enableHighContrast } from '../../common/enable-high-contrast';
 import { Page } from '../../common/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
-import { setupNewTargetPage } from '../../common/setup-new-target-page';
 
 describe('Preview Features Panel', () => {
     describe('Normal mode', () => {
@@ -17,7 +16,7 @@ describe('Preview Features Panel', () => {
 
         beforeAll(async () => {
             browser = await launchBrowser({ suppressFirstTimeDialog: true });
-            targetTabId = (await setupNewTargetPage(browser)).tabId;
+            targetTabId = (await browser.setupNewTargetPage()).tabId;
             detailsViewPage = await openPreviewFeaturesPanel(browser, targetTabId);
         });
 
@@ -46,7 +45,7 @@ describe('Preview Features Panel', () => {
         beforeAll(async () => {
             browser = await launchBrowser({ suppressFirstTimeDialog: true });
 
-            targetTabId = (await setupNewTargetPage(browser)).tabId;
+            targetTabId = (await browser.setupNewTargetPage()).tabId;
             await setupHighContrastMode();
 
             detailsViewPage = await openPreviewFeaturesPanel(browser, targetTabId);

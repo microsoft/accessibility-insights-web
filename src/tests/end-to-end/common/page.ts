@@ -97,7 +97,7 @@ export class Page {
         return new URL(this.underlyingPage.target().url());
     }
 
-    public async press(key: string): Promise<void> {
+    public async keyPress(key: string): Promise<void> {
         await this.underlyingPage.keyboard.press(key);
     }
 

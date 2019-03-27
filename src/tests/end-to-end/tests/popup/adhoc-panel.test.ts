@@ -1,12 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Browser } from '../../common/browser';
+import { Browser, TargetPageInfo } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
 import { enableHighContrast } from '../../common/enable-high-contrast';
 import { Page } from '../../common/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
-import { setupNewTargetPage, TargetPageInfo } from '../../common/setup-new-target-page';
 
 describe('Ad hoc tools', () => {
     let browser: Browser;
@@ -15,7 +14,7 @@ describe('Ad hoc tools', () => {
 
     beforeEach(async () => {
         browser = await launchBrowser({ suppressFirstTimeDialog: true });
-        targetPageInfo = await setupNewTargetPage(browser);
+        targetPageInfo = await browser.setupNewTargetPage();
         popupPage = await browser.newExtensionPopupPage(targetPageInfo.tabId);
         await popupPage.bringToFront();
     });
@@ -33,7 +32,7 @@ describe('Ad hoc tools', () => {
         await verifyAdhocPanelLoaded();
 
         // verify adhoc panel state is sticky
-        targetPageInfo = await setupNewTargetPage(browser);
+        targetPageInfo = await browser.setupNewTargetPage();
         popupPage = await browser.newExtensionPopupPage(targetPageInfo.tabId);
         await verifyAdhocPanelLoaded();
     });
@@ -45,7 +44,7 @@ describe('Ad hoc tools', () => {
         await verifyLaunchPadLoaded();
 
         // verify adhoc panel state is sticky
-        targetPageInfo = await setupNewTargetPage(browser);
+        targetPageInfo = await browser.setupNewTargetPage();
         popupPage = await browser.newExtensionPopupPage(targetPageInfo.tabId);
         await verifyLaunchPadLoaded();
     });
