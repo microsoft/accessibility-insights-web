@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { AnalyzerConfigurationFactory } from '../../../assessments/common/analyzer-configuration-factory';
-import { IDefaultWidgetPropertyBag } from '../../../common/types/property-bag/idefault-widget';
+import { DefaultWidgetPropertyBag } from '../../../common/types/property-bag/default-widget';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
@@ -45,7 +45,7 @@ const howToTest: JSX.Element = (
     </div>
 );
 
-const propertyBagConfig: PropertyBagColumnRendererConfig<IDefaultWidgetPropertyBag>[] = [
+const propertyBagConfig: PropertyBagColumnRendererConfig<DefaultWidgetPropertyBag>[] = [
     {
         propertyName: 'element',
         displayName: 'Element',
@@ -75,7 +75,7 @@ export const Instructions: TestStep = {
         {
             key: 'instructions-info',
             name: 'Instructions',
-            onRender: PropertyBagColumnRendererFactory.get<IDefaultWidgetPropertyBag>(propertyBagConfig),
+            onRender: PropertyBagColumnRendererFactory.get<DefaultWidgetPropertyBag>(propertyBagConfig),
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),
