@@ -10,7 +10,7 @@ import { ShadowUtils } from '../shadow-utils';
 import { BaseDrawer } from './base-drawer';
 import { DrawerUtils } from './drawer-utils';
 import { BoxConfig, DrawerConfiguration, Formatter } from './formatter';
-import { IDrawerInitData } from './idrawer';
+import { DrawerInitData } from './drawer';
 
 export class DrawerImpl extends BaseDrawer {
     protected elementResults: AxeResultsWithFrameLevel[];
@@ -46,7 +46,7 @@ export class DrawerImpl extends BaseDrawer {
         }
     }
 
-    public initialize(config: IDrawerInitData<HtmlElementAxeResults>): void {
+    public initialize(config: DrawerInitData<HtmlElementAxeResults>): void {
         this.elementResults = config.data;
         this.featureFlagStoreData = config.featureFlagStoreData;
         this.eraseLayout();

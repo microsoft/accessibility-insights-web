@@ -21,9 +21,9 @@ import {
 } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { InstanceVisibilityChecker } from '../../../../injected/instance-visibility-checker';
 import { HtmlElementAxeResults } from '../../../../injected/scanner-utils';
+import { Drawer, DrawerInitData } from '../../../../injected/visualization/drawer';
 import { DrawerImpl } from '../../../../injected/visualization/drawer-impl';
 import { DrawerProvider } from '../../../../injected/visualization/drawer-provider';
-import { IDrawer, IDrawerInitData } from '../../../../injected/visualization/idrawer';
 import { NodeListBuilder } from '../../common/node-list-builder';
 
 class VisualizationWindowMessageStubBuilder {
@@ -79,7 +79,7 @@ describe('DrawingControllerTest', () => {
     let visualizationConfigFactory: IMock<VisualizationConfigurationFactory>;
     let visualizationConfigStub: VisualizationConfiguration;
     let getIdentifierMock: IMock<(step?: string) => string>;
-    let getDrawerMock: IMock<(provider: DrawerProvider, testStep?: string) => IDrawer>;
+    let getDrawerMock: IMock<(provider: DrawerProvider, testStep?: string) => Drawer>;
     let drawerProvider: IMock<DrawerProvider>;
     let assessmentProvider: IMock<AssessmentsProvider>;
     let numVisualizationTypes: number;
@@ -259,7 +259,7 @@ describe('DrawingControllerTest', () => {
 
         hTMLElementUtils.setup(dm => dm.getAllElementsByTagName(It.isAny())).verifiable(Times.never());
 
-        const expected: IDrawerInitData<HtmlElementAxeResults> = {
+        const expected: DrawerInitData<HtmlElementAxeResults> = {
             data: [visibleResultStub],
             featureFlagStoreData,
         };

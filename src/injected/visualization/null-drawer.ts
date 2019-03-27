@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IDrawer, IDrawerInitData } from './idrawer';
+import { Drawer, DrawerInitData } from './drawer';
 
-export class NullDrawer implements IDrawer {
-    public initialize(drawerData: IDrawerInitData<any>): void {}
+export class NullDrawer implements Drawer {
+    public initialize(drawerData: DrawerInitData<any>): void {}
     public isOverlayEnabled: boolean = false;
     public drawLayout(): void {}
     public eraseLayout(): void {}

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { getRTL } from '@uifabric/utilities';
+
 import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 import { HTMLElementUtils } from '../../common/html-element-utils';
 import { TabbableElementsHelper } from '../../common/tabbable-elements-helper';
@@ -11,13 +12,13 @@ import { FrameCommunicator } from '../frameCommunicators/frame-communicator';
 import { ShadowUtils } from '../shadow-utils';
 import { CenterPositionCalculator } from './center-position-calculator';
 import { CustomWidgetsFormatter } from './custom-widgets-formatter';
+import { Drawer } from './drawer';
 import { DrawerImpl } from './drawer-impl';
 import { DrawerUtils } from './drawer-utils';
 import { Formatter, SVGDrawerConfiguration } from './formatter';
 import { FrameFormatter } from './frame-formatter';
 import { HeadingFormatter } from './heading-formatter';
 import { HighlightBoxFormatter } from './highlight-box-formatter';
-import { IDrawer } from './idrawer';
 import { IssuesFormatter } from './issues-formatter';
 import { LandmarkFormatter } from './landmark-formatter';
 import { NullDrawer } from './null-drawer';
@@ -43,15 +44,15 @@ export class DrawerProvider {
         private readonly getRTLFunc: typeof getRTL,
     ) {}
 
-    public createNullDrawer(): IDrawer {
+    public createNullDrawer(): Drawer {
         return new NullDrawer();
     }
 
-    public createSingleTargetDrawer(className: string): IDrawer {
+    public createSingleTargetDrawer(className: string): Drawer {
         return new SingleTargetDrawer(this.drawerUtils, new SingleTargetFormatter(className));
     }
 
-    public createSVGDrawer(config: IPartialSVGDrawerConfiguration = null): IDrawer {
+    public createSVGDrawer(config: IPartialSVGDrawerConfiguration = null): Drawer {
         const tabbableElementsHelper = new TabbableElementsHelper(this.htmlElementUtils);
         const centerPositionCalculator = new CenterPositionCalculator(
             this.drawerUtils,
@@ -73,22 +74,22 @@ export class DrawerProvider {
         );
     }
 
-    public createFrameDrawer(): IDrawer {
+    public createFrameDrawer(): Drawer {
         const formatter = new FrameFormatter();
         return this.createDrawer('insights-frame', formatter);
     }
 
-    public createHeadingsDrawer(): IDrawer {
+    public createHeadingsDrawer(): Drawer {
         const formatter = new HeadingFormatter(window, this.clientUtils);
         return this.createDrawer('insights-heading', formatter);
     }
 
-    public createLandmarksDrawer(): IDrawer {
+    public createLandmarksDrawer(): Drawer {
         const formatter = new LandmarkFormatter();
         return this.createDrawer('insights-landmark', formatter);
     }
 
-    public createIssuesDrawer(): IDrawer {
+    public createIssuesDrawer(): Drawer {
         const formatter = new IssuesFormatter(
             this.frameCommunicator,
             this.htmlElementUtils,
@@ -100,17 +101,17 @@ export class DrawerProvider {
         return this.createDrawer('insights-issues', formatter);
     }
 
-    public createHighlightBoxDrawer(): IDrawer {
+    public createHighlightBoxDrawer(): Drawer {
         const formatter = new HighlightBoxFormatter();
         return this.createDrawer('insights-general-highlight-box', formatter);
     }
 
-    public createCustomWidgetsDrawer(): IDrawer {
+    public createCustomWidgetsDrawer(): Drawer {
         const formatter = new CustomWidgetsFormatter();
         return this.createDrawer('insights-custom-widgets', formatter);
     }
 
-    private createDrawer(containerClass: string, formatter: Formatter): IDrawer {
+    private createDrawer(containerClass: string, formatter: Formatter): Drawer {
         return new DrawerImpl(this.dom, containerClass, this.windowUtils, this.shadowUtils, this.drawerUtils, this.clientUtils, formatter);
     }
 }

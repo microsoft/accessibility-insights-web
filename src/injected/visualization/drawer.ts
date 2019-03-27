@@ -1,18 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { HtmlElementAxeResults } from '../scanner-utils';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 
-// tslint:disable-next-line:interface-name
-interface IDrawer {
-    initialize(config: IDrawerInitData<any>);
+export interface Drawer {
+    initialize(config: DrawerInitData<any>): void;
     isOverlayEnabled: boolean;
-    drawLayout();
-    eraseLayout();
+    drawLayout(): void;
+    eraseLayout(): void;
 }
 
-// tslint:disable-next-line:interface-name
-interface IDrawerInitData<T> {
+export interface DrawerInitData<T> {
     data: T[];
     featureFlagStoreData: FeatureFlagStoreData;
 }

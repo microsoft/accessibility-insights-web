@@ -9,13 +9,13 @@ import { CenterPositionCalculator } from './center-position-calculator';
 import { DrawerUtils } from './drawer-utils';
 import { FocusIndicator } from './focus-indicator';
 import { SVGDrawerConfiguration } from './formatter';
-import { IDrawerInitData } from './idrawer';
 import { Point } from './point';
 import { SVGNamespaceUrl } from './svg-constants';
 import { SVGShapeFactory } from './svg-shape-factory';
 import { SVGSolidShadowFilterFactory } from './svg-solid-shadow-filter-factory';
 import { TabStopsFormatter } from './tab-stops-formatter';
 import { TabbedItem } from './tabbed-item';
+import { DrawerInitData } from './drawer';
 
 export class SVGDrawerV2 extends BaseDrawer {
     protected tabbedElements: TabbedItem[];
@@ -42,7 +42,7 @@ export class SVGDrawerV2 extends BaseDrawer {
         this.centerPositionCalculator = centerPositionCalculator;
     }
 
-    public initialize(drawerInfo: IDrawerInitData<ITabbedElementData>): void {
+    public initialize(drawerInfo: DrawerInitData<ITabbedElementData>): void {
         const tabbedElements = drawerInfo.data.map(element => {
             return {
                 ...element,

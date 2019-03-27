@@ -11,8 +11,8 @@ import { ShadowUtils } from '../../../../../injected/shadow-utils';
 import { DrawerImpl } from '../../../../../injected/visualization/drawer-impl';
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
 import { DrawerConfiguration, Formatter } from '../../../../../injected/visualization/formatter';
-import { IDrawerInitData } from '../../../../../injected/visualization/idrawer';
 import { TestDocumentCreator } from '../../../common/test-document-creator';
+import { DrawerInitData } from '../../../../../injected/visualization/drawer';
 
 describe('Drawer', () => {
     const defaultStyleStub: CSSStyleDeclaration = {
@@ -1187,7 +1187,7 @@ describe('Drawer', () => {
         verifyOverlayStyle(overlays[2], element4Config);
     });
 
-    function createDrawerInfo<T>(elementResults: T[]): IDrawerInitData<T> {
+    function createDrawerInfo<T>(elementResults: T[]): DrawerInitData<T> {
         return {
             data: elementResults,
             featureFlagStoreData: getDefaultFeatureFlagValues(),
