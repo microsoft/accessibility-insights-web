@@ -4,7 +4,7 @@ import * as React from 'react';
 import { link } from '../../../content/link';
 import * as content from '../../../content/test/timed-events/audio-control';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/test-step';
 import { TimedEventsTestStep } from './test-steps';
 
 const description: JSX.Element = (
@@ -34,7 +34,7 @@ const howToTest: JSX.Element = (
     </div>
 );
 
-export const AudioControl: TestStep = {
+export const AudioControl: Requirement = {
     key: TimedEventsTestStep.audioControl,
     name: 'Audio control',
     description,

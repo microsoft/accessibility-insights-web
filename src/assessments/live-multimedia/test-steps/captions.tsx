@@ -5,7 +5,7 @@ import { link } from '../../../content/link';
 import * as content from '../../../content/test/live-multimedia/captions';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/test-step';
 import { LiveMultimediaTestStep } from './test-steps';
 
 const captionsDescription: JSX.Element = <span>Captions must be provided for live (streaming) video with audio.</span>;
@@ -29,7 +29,7 @@ const captionsHowToTest: JSX.Element = (
     </div>
 );
 
-export const Caption: TestStep = {
+export const Caption: Requirement = {
     key: LiveMultimediaTestStep.liveCaptions,
     name: 'Captions',
     description: captionsDescription,

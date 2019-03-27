@@ -9,7 +9,7 @@ import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/compo
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { Term } from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/test-step';
 import { pageTitleInstanceDetailsColumnRenderer } from '../pagetitle-instance-details-column-renderer';
 import { PageTestStep } from './test-steps';
 
@@ -43,7 +43,7 @@ const pageTitleHowToTest: JSX.Element = (
     </div>
 );
 
-export const PageTitle: TestStep = {
+export const PageTitle: Requirement = {
     key: PageTestStep.pageTitle,
     name: 'Page title',
     description: pageTitleDescription,

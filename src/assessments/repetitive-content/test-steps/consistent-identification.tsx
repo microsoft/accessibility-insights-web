@@ -5,7 +5,7 @@ import { NewTabLink } from '../../../common/components/new-tab-link';
 import { link } from '../../../content/link';
 import * as content from '../../../content/test/repetitive-content/consistent-identification';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/test-step';
 import { RepetitiveContentTestStep } from './test-steps';
 
 const consistentIdentificationDescription: JSX.Element = (
@@ -31,7 +31,7 @@ const consistentIdentificationHowToTest: JSX.Element = (
     </div>
 );
 
-export const ConsistentIdentification: TestStep = {
+export const ConsistentIdentification: Requirement = {
     key: RepetitiveContentTestStep.consistentIdentification,
     name: 'Consistent identification',
     description: consistentIdentificationDescription,

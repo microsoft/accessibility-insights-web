@@ -14,7 +14,7 @@ import { AssistedTestRecordYourResults } from '../../common/assisted-test-record
 import { NoValue } from '../../common/property-bag-column-renderer';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/test-step';
 import { getFlatDesignPatternStringFromRole } from '../custom-widgets-column-renderer';
 import { CustomWidgetsColumnRendererFactory } from '../custom-widgets-column-renderer-factory';
 import { CustomWidgetsTestStep } from './test-steps';
@@ -40,7 +40,7 @@ const labelHowToTest: JSX.Element = (
     </div>
 );
 
-export const Label: TestStep = {
+export const Label: Requirement = {
     key: CustomWidgetsTestStep.label,
     name: 'Label',
     description: labelDescription,

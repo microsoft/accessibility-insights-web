@@ -21,7 +21,7 @@ import { IGetMessageGenerator } from '../assessment-default-message-generator';
 import { InstanceTableColumn } from './iinstance-table-column';
 import { ReportInstanceFields } from './report-instance-field';
 
-export interface TestStep {
+export interface Requirement {
     key: string;
     description: JSX.Element;
     order?: number;
@@ -55,6 +55,6 @@ export interface VisualHelperToggleConfig {
     assessmentNavState: AssessmentNavState;
     instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance>;
     actionMessageCreator: DetailsViewActionMessageCreator;
-    isStepEnabled: boolean;
-    isStepScanned: boolean;
+    isRequirementEnabled: boolean;
+    isRequirementScanned: boolean;
 }

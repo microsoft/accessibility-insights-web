@@ -6,7 +6,7 @@ import { link } from '../../../content/link';
 import * as content from '../../../content/test/errors/error-prevention';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/test-step';
 import { ErrorsTestStep } from './test-steps';
 
 const description: JSX.Element = (
@@ -39,7 +39,7 @@ const howToTest: JSX.Element = (
     </div>
 );
 
-export const ErrorPrevention: TestStep = {
+export const ErrorPrevention: Requirement = {
     key: ErrorsTestStep.errorPrevention,
     name: 'Error prevention',
     description,

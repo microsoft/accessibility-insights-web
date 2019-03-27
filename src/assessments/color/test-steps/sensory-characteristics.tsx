@@ -5,7 +5,7 @@ import * as React from 'react';
 import { link } from '../../../content/link';
 import * as content from '../../../content/test/sensory/instructions';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/test-step';
 import { ColorSensoryTestStep } from './test-steps';
 
 const sensoryCharacteristicsDescription: JSX.Element = (
@@ -35,7 +35,7 @@ const sensoryCharacteristicsHowToTest: JSX.Element = (
     </div>
 );
 
-export const SensoryCharacteristics: TestStep = {
+export const SensoryCharacteristics: Requirement = {
     key: ColorSensoryTestStep.sensoryCharacteristics,
     name: 'Instructions',
     description: sensoryCharacteristicsDescription,

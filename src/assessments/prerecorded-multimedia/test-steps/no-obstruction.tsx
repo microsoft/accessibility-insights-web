@@ -4,7 +4,7 @@ import * as React from 'react';
 import { link } from '../../../content/link';
 import * as content from '../../../content/test/multimedia/no-obstruction';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/test-step';
 import { PrerecordedMultimediaTestStep } from './test-steps';
 
 const noObstructionDescription: JSX.Element = <span>Captions must not obscure or obstruct relevant information in the video.</span>;
@@ -21,7 +21,7 @@ const noObstructionHowToTest: JSX.Element = (
     </div>
 );
 
-export const NoObstruction: TestStep = {
+export const NoObstruction: Requirement = {
     key: PrerecordedMultimediaTestStep.noObstruction,
     name: 'No obstruction',
     description: noObstructionDescription,

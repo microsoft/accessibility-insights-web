@@ -11,7 +11,7 @@ import { RestartScanVisualHelperToggle } from '../../../DetailsView/components/r
 import { VisualizationInstanceProcessor } from '../../../injected/visualization-instance-processor';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/test-step';
 import { visibleFfocusOrderTestStep } from './test-steps';
 
 const description: JSX.Element = <span>Components must provide a visible indication when they have the input focus.</span>;
@@ -39,7 +39,7 @@ const howToTest: JSX.Element = (
     </div>
 );
 
-export const VisibleFocus: TestStep = {
+export const VisibleFocus: Requirement = {
     key: visibleFfocusOrderTestStep.visibleFocus,
     name: 'Visible focus',
     description,

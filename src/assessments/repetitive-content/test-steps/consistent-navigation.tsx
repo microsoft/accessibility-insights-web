@@ -4,7 +4,7 @@ import * as React from 'react';
 import { link } from '../../../content/link';
 import * as content from '../../../content/test/repetitive-content/consistent-navigation';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/test-step';
 import { RepetitiveContentTestStep } from './test-steps';
 
 const consistentNavigationDescription: JSX.Element = (
@@ -27,7 +27,7 @@ const consistentNavigationHowToTest: JSX.Element = (
     </div>
 );
 
-export const ConsistentNavigation: TestStep = {
+export const ConsistentNavigation: Requirement = {
     key: RepetitiveContentTestStep.consistentNavigation,
     name: 'Consistent navigation',
     description: consistentNavigationDescription,

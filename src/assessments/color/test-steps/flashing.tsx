@@ -6,7 +6,7 @@ import { NewTabLink } from '../../../common/components/new-tab-link';
 import { link } from '../../../content/link';
 import * as content from '../../../content/test/sensory/flashing';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/test-step';
 import { ColorSensoryTestStep } from './test-steps';
 
 const flashingHowToTest: JSX.Element = (
@@ -45,7 +45,7 @@ const flashingHowToTest: JSX.Element = (
 
 const flashingDescription: JSX.Element = <span>Web pages must not have content that flashes more than three times per second.</span>;
 
-export const Flashing: TestStep = {
+export const Flashing: Requirement = {
     key: ColorSensoryTestStep.flashing,
     name: 'Flashing',
     description: flashingDescription,

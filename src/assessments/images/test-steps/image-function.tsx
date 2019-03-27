@@ -14,7 +14,7 @@ import { AssistedTestRecordYourResults } from '../../common/assisted-test-record
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/test-step';
 import { ImagesTestStep } from './test-steps';
 
 const description: JSX.Element = <span>Every image must be coded as either meaningful or decorative.</span>;
@@ -65,7 +65,7 @@ const propertyBagConfig: PropertyBagColumnRendererConfig<ImageFunctionPropertyBa
     },
 ];
 
-export const ImageFunction: TestStep = {
+export const ImageFunction: Requirement = {
     key,
     name: 'Image function',
     description,

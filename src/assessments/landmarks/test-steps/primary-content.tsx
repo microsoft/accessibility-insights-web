@@ -9,7 +9,7 @@ import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/compo
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/test-step';
 import { LandmarkTestStep } from './test-steps';
 
 const description: JSX.Element = <span>The main landmark must contain all of the page's primary content.</span>;
@@ -27,7 +27,7 @@ const howToTest: JSX.Element = (
     </div>
 );
 
-export const PrimaryContent: TestStep = {
+export const PrimaryContent: Requirement = {
     key: LandmarkTestStep.primaryContent,
     name: 'Primary content',
     description,

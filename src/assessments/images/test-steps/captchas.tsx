@@ -5,7 +5,7 @@ import { link } from '../../../content/link';
 import * as content from '../../../content/test/images/captchas';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/test-step';
 import { ImagesTestStep } from './test-steps';
 
 const description: JSX.Element = (
@@ -32,7 +32,7 @@ const howToTest: JSX.Element = (
     </div>
 );
 
-export const Captchas: TestStep = {
+export const Captchas: Requirement = {
     key: ImagesTestStep.captcha,
     name: 'CAPTCHAs',
     description,

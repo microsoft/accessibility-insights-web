@@ -4,7 +4,7 @@ import * as React from 'react';
 import { link } from '../../../content/link';
 import * as content from '../../../content/test/multimedia/synchronization';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/test-step';
 import { PrerecordedMultimediaTestStep } from './test-steps';
 
 const synchronizationDescription: JSX.Element = <span>An audio description must be synchronized with the video content.</span>;
@@ -20,7 +20,7 @@ const synchronizationHowToTest: JSX.Element = (
     </div>
 );
 
-export const Synchronization: TestStep = {
+export const Synchronization: Requirement = {
     key: PrerecordedMultimediaTestStep.synchronization,
     name: 'Synchronization',
     description: synchronizationDescription,

@@ -9,7 +9,7 @@ import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/compo
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/test-step';
 import { LandmarkTestStep } from './test-steps';
 
 const description: JSX.Element = <span>The main landmark must not contain any blocks of content that repeat across pages.</span>;
@@ -29,7 +29,7 @@ const howToTest: JSX.Element = (
     </div>
 );
 
-export const NoRepeatingContent: TestStep = {
+export const NoRepeatingContent: Requirement = {
     key: LandmarkTestStep.noRepeatingContent,
     name: 'No repeating content',
     description,

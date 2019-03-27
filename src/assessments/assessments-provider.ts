@@ -4,7 +4,7 @@ import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryStringTo } from '../types/common-types';
 import { Assessment } from './types/iassessment';
 import { AssessmentsProvider } from './types/iassessments-provider';
-import { TestStep } from './types/test-step';
+import { Requirement } from './types/test-step';
 
 export class AssessmentsProviderImpl implements AssessmentsProvider {
     private assessments: Assessment[];
@@ -34,7 +34,7 @@ export class AssessmentsProviderImpl implements AssessmentsProvider {
         return this.forKey(key) != null;
     }
 
-    public getStep(type: VisualizationType, key: string): TestStep {
+    public getStep(type: VisualizationType, key: string): Requirement {
         const assessment = this.forType(type);
         if (!assessment) {
             return null;
@@ -47,7 +47,7 @@ export class AssessmentsProviderImpl implements AssessmentsProvider {
         return { ...steps[index], order: index + 1 };
     }
 
-    public getStepMap(type: VisualizationType): DictionaryStringTo<TestStep> {
+    public getStepMap(type: VisualizationType): DictionaryStringTo<Requirement> {
         const assessment = this.forType(type);
         if (!assessment) {
             return null;

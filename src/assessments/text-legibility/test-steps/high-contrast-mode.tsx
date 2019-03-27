@@ -5,7 +5,7 @@ import { TextLegibilityTestStep } from '../../../assessments/text-legibility/tes
 import { link } from '../../../content/link';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/test-step';
 
 const highContrastModeDescription: JSX.Element = (
     <span>Websites and web apps must honor high contrast appearance settings and functions.</span>
@@ -26,7 +26,7 @@ const highContrastModeHowToTest: JSX.Element = (
     </div>
 );
 
-export const HighContrastMode: TestStep = {
+export const HighContrastMode: Requirement = {
     key: TextLegibilityTestStep.highContrastMode,
     name: 'High contrast mode',
     description: highContrastModeDescription,

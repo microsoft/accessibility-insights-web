@@ -6,7 +6,7 @@ import { link } from '../../../content/link';
 import * as content from '../../../content/test/sensory/auditory-cues';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/test-step';
 import { ColorSensoryTestStep } from './test-steps';
 
 const auditoryCuesHowToTest: JSX.Element = (
@@ -29,7 +29,7 @@ const auditoryCuesHowToTest: JSX.Element = (
 
 const auditoryCuesDescription: JSX.Element = <span>Auditory cues must be accompanied by visual cues.</span>;
 
-export const AuditoryCues: TestStep = {
+export const AuditoryCues: Requirement = {
     key: ColorSensoryTestStep.auditoryCues,
     name: 'Auditory cues',
     description: auditoryCuesDescription,

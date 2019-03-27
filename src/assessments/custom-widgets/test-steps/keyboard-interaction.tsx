@@ -15,7 +15,7 @@ import { AssistedTestRecordYourResults } from '../../common/assisted-test-record
 import { NoValue } from '../../common/property-bag-column-renderer';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/test-step';
 import { getFlatDesignPatternStringFromRole } from '../custom-widgets-column-renderer';
 import { CustomWidgetsColumnRendererFactory } from '../custom-widgets-column-renderer-factory';
 import { CustomWidgetsTestStep } from './test-steps';
@@ -41,7 +41,7 @@ const keyboardInteractionHowToTest: JSX.Element = (
     </div>
 );
 
-export const KeyboardInteraction: TestStep = {
+export const KeyboardInteraction: Requirement = {
     key: CustomWidgetsTestStep.keyboardInteraction,
     name: 'Keyboard interaction',
     description: keyboardInteractionDescription,

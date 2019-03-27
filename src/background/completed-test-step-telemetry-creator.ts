@@ -5,7 +5,7 @@ import * as _ from 'lodash';
 
 import { Assessment } from '../assessments/types/iassessment';
 import { AssessmentsProvider } from '../assessments/types/iassessments-provider';
-import { TestStep } from '../assessments/types/test-step';
+import { Requirement } from '../assessments/types/test-step';
 import { Messages } from '../common/messages';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { RequirementStatusTelemetryData } from '../common/telemetry-events';
@@ -61,7 +61,7 @@ export class CompletedTestStepTelemetryCreator {
         return completedStep != undefined;
     }
 
-    private isNewCompletedTestStep(assessment: Assessment, step: TestStep): boolean {
+    private isNewCompletedTestStep(assessment: Assessment, step: Requirement): boolean {
         const newStatus = this.store.getState().assessments[assessment.key].testStepStatus;
         const oldStatus = this.oldTestStates[assessment.key];
         return (
@@ -70,7 +70,7 @@ export class CompletedTestStepTelemetryCreator {
         );
     }
 
-    private createTelemetryInfo(assessment: Assessment, step: TestStep): RequirementStatusTelemetryData {
+    private createTelemetryInfo(assessment: Assessment, step: Requirement): RequirementStatusTelemetryData {
         const assessmentData = assessment.getVisualizationConfiguration().getAssessmentData(this.store.getState());
         const numInstances = this.getNumInstances(step, assessmentData);
         const newStatus = this.store.getState().assessments[assessment.key].testStepStatus;
@@ -82,7 +82,7 @@ export class CompletedTestStepTelemetryCreator {
         );
     }
 
-    private getNumInstances(step: TestStep, assessmentData: IAssessmentData): number {
+    private getNumInstances(step: Requirement, assessmentData: IAssessmentData): number {
         let numInstances = 0;
         if (!step.isManual) {
             numInstances = _.filter(Object.keys(assessmentData.generatedAssessmentInstancesMap), key => {

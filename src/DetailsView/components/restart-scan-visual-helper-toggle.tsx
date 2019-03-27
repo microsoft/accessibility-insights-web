@@ -11,12 +11,12 @@ export class RestartScanVisualHelperToggle extends BaseVisualHelperToggle {
     }
 
     protected isChecked(instances: IGeneratedAssessmentInstance<{}, {}>[]): boolean {
-        return this.props.isStepEnabled;
+        return this.props.isRequirementEnabled;
     }
 
     @autobind
     protected onClick(event): void {
-        if (this.props.isStepEnabled) {
+        if (this.props.isRequirementEnabled) {
             this.props.actionMessageCreator.disableVisualHelper(
                 this.props.assessmentNavState.selectedTestType,
                 this.props.assessmentNavState.selectedTestStep,

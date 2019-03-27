@@ -12,7 +12,7 @@ import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuratio
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/test-step';
 import { landmarksAssessmentInstanceDetailsColumnRenderer } from '../landmarks-instance-details-column-renderer';
 import { LandmarkTestStep } from './test-steps';
 
@@ -68,7 +68,7 @@ const howToTest: JSX.Element = (
     </div>
 );
 
-export const LandmarkRoles: TestStep = {
+export const LandmarkRoles: Requirement = {
     key: LandmarkTestStep.landmarkRoles,
     name: 'Landmark roles',
     description,

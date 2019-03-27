@@ -14,7 +14,7 @@ import { AssistedTestRecordYourResults } from '../../common/assisted-test-record
 import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
 import { ReportInstanceField } from '../../types/report-instance-field';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/test-step';
 import { ImagesTestStep } from './test-steps';
 
 const description: JSX.Element = <span>Images of text are allowed only where a specific appearance is required (e.g., logotypes).</span>;
@@ -45,7 +45,7 @@ const propertyBagConfig: PropertyBagColumnRendererConfig<ImagesOfTextPropertyBag
     },
 ];
 
-export const ImagesOfText: TestStep = {
+export const ImagesOfText: Requirement = {
     key,
     name: 'Images of text',
     description,

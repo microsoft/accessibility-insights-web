@@ -11,7 +11,7 @@ import { RestartScanVisualHelperToggle } from '../../../DetailsView/components/r
 import { VisualizationInstanceProcessor } from '../../../injected/visualization-instance-processor';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/test-step';
 import { KeyboardInteractionTestStep } from './test-steps';
 
 const description: JSX.Element = (
@@ -57,7 +57,7 @@ const howToTest: JSX.Element = (
     </div>
 );
 
-export const KeyboardNavigation: TestStep = {
+export const KeyboardNavigation: Requirement = {
     key: KeyboardInteractionTestStep.keyboardNavigation,
     name: 'Keyboard navigation',
     description,

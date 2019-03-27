@@ -18,7 +18,7 @@ import { AssistedTestRecordYourResults } from '../../common/assisted-test-record
 import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/test-step';
 
 const contrastDescription: JSX.Element = <span>Text elements must have sufficient contrast.</span>;
 
@@ -70,7 +70,7 @@ const propertyBagConfig: PropertyBagColumnRendererConfig<ContrastPropertyBag>[] 
     },
 ];
 
-export const Contrast: TestStep = {
+export const Contrast: Requirement = {
     key: TextLegibilityTestStep.contrast,
     name: 'Contrast',
     description: contrastDescription,

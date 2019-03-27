@@ -5,7 +5,7 @@ import { NewTabLink } from '../../../common/components/new-tab-link';
 import { link } from '../../../content/link';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/test-step';
 import { SequenceTestStep } from './test-steps';
 
 const description: JSX.Element = <span>The content in an HTML layout table must make sense when the table is linearized.</span>;
@@ -46,7 +46,7 @@ const howToTest: JSX.Element = (
     </div>
 );
 
-export const LayoutTables: TestStep = {
+export const LayoutTables: Requirement = {
     key: SequenceTestStep.layoutTables,
     name: 'Layout tables',
     description: description,

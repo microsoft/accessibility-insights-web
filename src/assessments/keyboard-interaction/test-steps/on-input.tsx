@@ -6,7 +6,7 @@ import { link } from '../../../content/link';
 import * as content from '../../../content/test/keyboard/on-input';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/test-step';
 import { KeyboardInteractionTestStep } from './test-steps';
 
 const description: JSX.Element = <span>Changing a component's settings must not trigger any unexpected change of context.</span>;
@@ -35,7 +35,7 @@ const howToTest: JSX.Element = (
     </div>
 );
 
-export const OnInput: TestStep = {
+export const OnInput: Requirement = {
     key: KeyboardInteractionTestStep.onInput,
     name: 'On input',
     description,

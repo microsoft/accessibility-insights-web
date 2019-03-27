@@ -5,7 +5,7 @@ import { NewTabLink } from '../../../common/components/new-tab-link';
 import { link } from '../../../content/link';
 import * as content from '../../../content/test/parsing/parsing';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/test-step';
 import { ParsingTestStep } from './test-steps';
 
 const keyboardBookmarkletInstructionsURL = '/insights.html#/content/test/parsing/keyboardBookmarkletInstructions';
@@ -59,7 +59,7 @@ const howToTest: JSX.Element = (
     </div>
 );
 
-export const Parsing: TestStep = {
+export const Parsing: Requirement = {
     key: ParsingTestStep.parsing,
     name: 'Parsing',
     description,

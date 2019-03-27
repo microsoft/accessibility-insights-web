@@ -10,7 +10,7 @@ import { RestartScanVisualHelperToggle } from '../../../DetailsView/components/r
 import { VisualizationInstanceProcessor } from '../../../injected/visualization-instance-processor';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/test-step';
 import { visibleFfocusOrderTestStep } from './test-steps';
 
 const description: JSX.Element = <span>Components must receive focus in an order that preserves meaning and operability.</span>;
@@ -49,7 +49,7 @@ const howToTest: JSX.Element = (
     </div>
 );
 
-export const FocusOrder: TestStep = {
+export const FocusOrder: Requirement = {
     key: visibleFfocusOrderTestStep.focusOrder,
     name: 'Focus order',
     description,

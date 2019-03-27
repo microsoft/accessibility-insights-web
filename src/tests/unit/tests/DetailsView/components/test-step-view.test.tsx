@@ -5,7 +5,7 @@ import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { AssessmentsProviderImpl } from '../../../../../assessments/assessments-provider';
-import { TestStep } from '../../../../../assessments/types/test-step';
+import { Requirement } from '../../../../../assessments/types/test-step';
 import { CollapsibleComponent } from '../../../../../common/components/collapsible-component';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
@@ -159,7 +159,7 @@ class TestStepViewPropsBuilder extends BaseDataBuilder<TestStepViewProps> {
         assessmentsProviderMock
             .setup(p => p.getStep(It.isAny(), It.isAny()))
             .returns((test, step) => {
-                return { getVisualHelperToggle: getVisualHelperToggle } as TestStep;
+                return { getVisualHelperToggle: getVisualHelperToggle } as Requirement;
             });
         return new TestStepViewPropsBuilder()
             .with('instancesMap', {
@@ -224,7 +224,7 @@ class TestStepViewPropsBuilder extends BaseDataBuilder<TestStepViewProps> {
         providerMock
             .setup(p => p.getStep(It.isAny(), It.isAny()))
             .returns((test, step) => {
-                return { getVisualHelperToggle: null } as TestStep;
+                return { getVisualHelperToggle: null } as Requirement;
             });
 
         this.data.assessmentsProvider = providerMock.object;

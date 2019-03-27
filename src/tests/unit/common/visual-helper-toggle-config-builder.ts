@@ -30,8 +30,8 @@ export class VisualHelperToggleConfigBuilder extends BaseDataBuilder<VisualHelpe
                     target: ['element2'],
                 } as IGeneratedAssessmentInstance,
             } as DictionaryStringTo<IGeneratedAssessmentInstance>,
-            isStepEnabled: true,
-            isStepScanned: false,
+            isRequirementEnabled: true,
+            isRequirementScanned: false,
         };
     }
     public withActionMessageCreator(actionMessageCreator: DetailsViewActionMessageCreator): VisualHelperToggleConfigBuilder {
@@ -39,11 +39,11 @@ export class VisualHelperToggleConfigBuilder extends BaseDataBuilder<VisualHelpe
         return this;
     }
     public withToggleStepEnabled(stepEnabled: boolean): VisualHelperToggleConfigBuilder {
-        this.data.isStepEnabled = stepEnabled;
+        this.data.isRequirementEnabled = stepEnabled;
         return this;
     }
     public withToggleStepScanned(stepScanned: boolean): VisualHelperToggleConfigBuilder {
-        this.data.isStepScanned = stepScanned;
+        this.data.isRequirementScanned = stepScanned;
         return this;
     }
     public withNonEmptyFilteredMap(isVisualizationEnabled: boolean = false): VisualHelperToggleConfigBuilder {
