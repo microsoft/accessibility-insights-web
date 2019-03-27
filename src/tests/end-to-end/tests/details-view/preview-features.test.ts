@@ -4,10 +4,10 @@ import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { CommonSelectors } from '../../common/element-identifiers/common-selectors';
 import { detailsViewSelectors } from '../../common/element-identifiers/details-view-selectors';
+import { enableHighContrast } from '../../common/enable-high-contrast';
 import { Page } from '../../common/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 import { setupNewTargetPage } from '../../common/setup-new-target-page';
-import { enableHighContrast } from '../../common/enable-high-contrast';
 
 describe('Preview Features Panel', () => {
     describe('Normal mode', () => {

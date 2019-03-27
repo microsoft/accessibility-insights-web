@@ -5,9 +5,9 @@ import { launchBrowser } from '../../common/browser-factory';
 import { CommonSelectors } from '../../common/element-identifiers/common-selectors';
 import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
 import { enableHighContrast } from '../../common/enable-high-contrast';
+import { Page } from '../../common/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 import { setupNewTargetPage, TargetPageInfo } from '../../common/setup-new-target-page';
-import { Page } from '../../common/page';
 
 describe('Hamburger menu', () => {
     describe('Normal mode', () => {
