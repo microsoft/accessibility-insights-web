@@ -3,9 +3,9 @@
 import * as _ from 'lodash';
 
 import { IBaseStore } from '../istore';
-import { IClientStoresHub } from './iclient-stores-hub';
+import { ClientStoresHub } from './client-stores-hub';
 
-export class BaseClientStoresHub<T> implements IClientStoresHub<T> {
+export class BaseClientStoresHub<T> implements ClientStoresHub<T> {
     public stores: IBaseStore<any>[];
 
     constructor(stores: IBaseStore<any>[]) {

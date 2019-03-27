@@ -1,9 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-
 import { StoreActionMessageCreator } from '../message-creators/store-action-message-creator';
-import { IClientStoresHub } from '../stores/iclient-stores-hub';
+import { ClientStoresHub } from '../stores/client-stores-hub';
 
 export type WithStoreSubscriptionProps<T> = {
     deps: WithStoreSubscriptionDeps<T>;
@@ -11,7 +10,7 @@ export type WithStoreSubscriptionProps<T> = {
 };
 
 export type WithStoreSubscriptionDeps<T> = {
-    storesHub: IClientStoresHub<T>;
+    storesHub: ClientStoresHub<T>;
     storeActionMessageCreator: StoreActionMessageCreator;
 };
 
