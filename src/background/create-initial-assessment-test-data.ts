@@ -64,9 +64,9 @@ function getInitialTestDataUsingPersistedData(
 }
 
 function allRequirementsAreScanned(requirements: string[], persistedTest: IAssessmentData): boolean {
-    return requirements.every(requirement => {
-        return persistedTest.testStepStatus[requirement] && persistedTest.testStepStatus[requirement].isStepScanned === true;
-    });
+    return requirements.every(
+        requirement => persistedTest.testStepStatus[requirement] && persistedTest.testStepStatus[requirement].isStepScanned === true,
+    );
 }
 
 function getDefaultTestResult(): IAssessmentData {

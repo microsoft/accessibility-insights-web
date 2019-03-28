@@ -10,15 +10,13 @@ import { CreateTestAssessmentProvider } from '../../common/test-assessment-provi
 describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
     const assesssmentsProvider = CreateTestAssessmentProvider();
     const generator = new InitialAssessmentStoreDataGenerator(assesssmentsProvider);
-
-    let defaultState;
-
     const validTargetTab = { id: 1, url: 'url', title: 'title', appRefreshed: false };
     const knownTestType = assesssmentsProvider.all()[0].type;
     const unknownTestType = -100 as VisualizationType;
     const knownRequirementIds = flatMap(assesssmentsProvider.all(), test => test.steps.map(step => step.key));
     const knownRequirement1 = knownRequirementIds[0];
     const unknownRequirement: string = 'unknown-requirement';
+    let defaultState: IAssessmentStoreData;
 
     beforeEach(() => {
         defaultState = generator.generateInitialState();
