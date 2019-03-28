@@ -17,7 +17,7 @@ import { DictionaryStringTo } from '../types/common-types';
 import { rootContainerId } from './constants';
 import { DetailsDialogHandler } from './details-dialog-handler';
 import { ErrorMessageContent } from './frameCommunicators/error-message-content';
-import { FrameCommunicator, IMessageRequest } from './frameCommunicators/frame-communicator';
+import { FrameCommunicator, MessageRequest } from './frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from './frameCommunicators/window-message-handler';
 import { LayeredDetailsDialogComponent, LayeredDetailsDialogDeps } from './layered-details-dialog-component';
 import { MainWindowContext } from './main-window-context';
@@ -91,7 +91,7 @@ export class DialogRenderer {
                 dialogContainer,
             );
         } else {
-            const windowMessageRequest: IMessageRequest<DetailsDialogWindowMessage> = {
+            const windowMessageRequest: MessageRequest<DetailsDialogWindowMessage> = {
                 win: this.windowUtils.getTopWindow(),
                 command: DialogRenderer.renderDetailsDialogCommand,
                 message: { data: data, featureFlagStoreData: featureFlagStoreData },

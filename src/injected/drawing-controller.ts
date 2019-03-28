@@ -12,7 +12,7 @@ import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryNumberTo } from '../types/common-types';
 import { HTMLElementUtils } from './../common/html-element-utils';
 import { ErrorMessageContent } from './frameCommunicators/error-message-content';
-import { FrameCommunicator, IMessageRequest } from './frameCommunicators/frame-communicator';
+import { FrameCommunicator, MessageRequest } from './frameCommunicators/frame-communicator';
 import {
     HtmlElementAxeResultsHelper,
     IAssessmentVisualizationInstance,
@@ -170,12 +170,12 @@ export class DrawingController {
     private createFrameRequestMessage(
         frame: HTMLIFrameElement,
         message: VisualizationWindowMessage,
-    ): IMessageRequest<VisualizationWindowMessage> {
+    ): MessageRequest<VisualizationWindowMessage> {
         return {
             command: DrawingController.triggerVisualizationCommand,
             frame: frame,
             message: message,
-        } as IMessageRequest<VisualizationWindowMessage>;
+        } as MessageRequest<VisualizationWindowMessage>;
     }
 
     private disableVisualizationInIFrames(visualizationType: VisualizationType, configId: string): void {

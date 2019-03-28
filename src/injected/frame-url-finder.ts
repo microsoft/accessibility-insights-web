@@ -4,7 +4,7 @@ import { autobind } from '@uifabric/utilities';
 
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { WindowUtils } from '../common/window-utils';
-import { FrameCommunicator, IMessageRequest } from './frameCommunicators/frame-communicator';
+import { FrameCommunicator, MessageRequest } from './frameCommunicators/frame-communicator';
 
 export interface TargetMessage {
     target: string[];
@@ -43,7 +43,7 @@ export class FrameUrlFinder {
                 message: {
                     frameUrl: this.windowUtils.getWindow().location.href,
                 },
-            } as IMessageRequest<FrameUrlMessage>);
+            } as MessageRequest<FrameUrlMessage>);
         } else if (target.length > 1) {
             this.frameCommunicator.sendMessage({
                 command: FrameUrlFinder.GetTargetFrameUrlCommand,
@@ -51,7 +51,7 @@ export class FrameUrlFinder {
                 message: {
                     target: target.slice(1),
                 },
-            } as IMessageRequest<TargetMessage>);
+            } as MessageRequest<TargetMessage>);
         }
     }
 }
