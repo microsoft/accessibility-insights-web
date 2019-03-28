@@ -2,10 +2,6 @@
 
 (give an overview. Add technical description describing your changes)
 
-#### Notes for reviewers
-
-(put down any questions or special points for reviewers)
-
 #### Pull request checklist
 
 - [ ] Addresses an existing issue: Fixes #0000
