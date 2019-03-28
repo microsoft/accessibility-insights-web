@@ -143,6 +143,10 @@ This project collects usage data and sends it to Microsoft to help improve our p
 
 If you believe you have found a security vulnerability in this project, please follow [these steps](https://technet.microsoft.com/en-us/security/ff852094.aspx) to report it. For more information on how vulnerabilities are disclosed, see [Coordinated Vulnerability Disclosure](https://technet.microsoft.com/en-us/security/dn467923).
 
+## FAQ
+
+Please visit our [FAQ](./FAQ.md) page.
+
 ## Contributing
 
 All contributions are welcome! Please read through our guidelines on [contributions](./CONTRIBUTING.md) to this project.
