@@ -16,6 +16,6 @@ const d =
 
 export const FileHTMLIcon = NamedSFC('FileHTMLIcon', () => (
     <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d={d} fill="#106ebe" fill-opacity="0.9" />
+        <path d={d} fill="#106ebe" fillOpacity="0.9" />
     </svg>
 ));
