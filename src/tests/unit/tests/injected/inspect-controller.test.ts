@@ -4,14 +4,14 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { InspectMode } from '../../../../background/inspect-modes';
 import { InspectStore } from '../../../../background/stores/inspect-store';
 import { ConfigurationKey, InspectConfigurationFactory } from '../../../../common/configs/inspect-configuration-factory';
-import { IInspectStoreData } from '../../../../common/types/store-data/inspect-store-data';
+import { InspectStoreData } from '../../../../common/types/store-data/inspect-store-data';
 import { InspectController } from '../../../../injected/inspect-controller';
 import { ScopingListener } from '../../../../injected/scoping-listener';
 
 describe('InspectControllerTests', () => {
     let inspectStoreMock: IMock<InspectStore>;
     let inspectStoreChangeListener: Function;
-    let inspectStoreState: IInspectStoreData;
+    let inspectStoreState: InspectStoreData;
     let scopingListenerMock: IMock<ScopingListener>;
     let inspectConfigurationMock: IMock<InspectConfigurationFactory>;
     let defaultState: InspectMode;

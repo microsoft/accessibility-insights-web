@@ -17,7 +17,7 @@ import { TelemetryEventSource } from '../common/telemetry-events';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
 import { DevToolState } from '../common/types/store-data/idev-tool-state';
-import { IInspectStoreData } from '../common/types/store-data/inspect-store-data';
+import { InspectStoreData } from '../common/types/store-data/inspect-store-data';
 import { ITabStoreData } from '../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
 import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
@@ -54,7 +54,7 @@ export class MainWindowInitializer extends WindowInitializer {
     private assessmentStoreProxy: StoreProxy<IAssessmentStoreData>;
     private featureFlagStoreProxy: StoreProxy<FeatureFlagStoreData>;
     private userConfigStoreProxy: StoreProxy<UserConfigurationStoreData>;
-    private inspectStoreProxy: StoreProxy<IInspectStoreData>;
+    private inspectStoreProxy: StoreProxy<InspectStoreData>;
     private visualizationScanResultStoreProxy: StoreProxy<IVisualizationScanResultData>;
     private scopingStoreProxy: StoreProxy<IScopingStoreData>;
     private tabStoreProxy: StoreProxy<ITabStoreData>;
@@ -84,7 +84,7 @@ export class MainWindowInitializer extends WindowInitializer {
         this.assessmentStoreProxy = new StoreProxy<IAssessmentStoreData>(StoreNames[StoreNames.AssessmentStore], this.clientChromeAdapter);
         this.tabStoreProxy = new StoreProxy<ITabStoreData>(StoreNames[StoreNames.TabStore], this.clientChromeAdapter);
         this.devToolStoreProxy = new StoreProxy<DevToolState>(StoreNames[StoreNames.DevToolsStore], this.clientChromeAdapter);
-        this.inspectStoreProxy = new StoreProxy<IInspectStoreData>(StoreNames[StoreNames.InspectStore], this.clientChromeAdapter);
+        this.inspectStoreProxy = new StoreProxy<InspectStoreData>(StoreNames[StoreNames.InspectStore], this.clientChromeAdapter);
 
         const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(this.clientChromeAdapter.sendMessageToFrames, null);
 
