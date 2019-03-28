@@ -85,7 +85,7 @@ const simpleAssessment = {
     type: -2 as VisualizationType,
     title: 'assessment 2',
     gettingStarted: null,
-    steps: [
+    requirements: [
         {
             key: 'assessment-2-step-1',
             description: null,
@@ -120,7 +120,7 @@ const automatedAssessment = {
     type: -3 as VisualizationType,
     title: 'assessment 3',
     gettingStarted: null,
-    steps: [
+    requirements: [
         {
             key: 'assessment-3-step-2',
             description: null,
