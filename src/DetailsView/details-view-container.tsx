@@ -13,7 +13,7 @@ import { InspectActionMessageCreator } from '../common/message-creators/inspect-
 import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
-import { IDetailsViewData } from '../common/types/store-data/idetails-view-data';
+import { DetailsViewData } from '../common/types/store-data/details-view-data';
 import { ITabStoreData } from '../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
 import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
@@ -68,7 +68,7 @@ export interface DetailsViewContainerState {
     tabStoreData: ITabStoreData;
     visualizationScanResultStoreData: IVisualizationScanResultData;
     featureFlagStoreData: FeatureFlagStoreData;
-    detailsViewStoreData: IDetailsViewData;
+    detailsViewStoreData: DetailsViewData;
     assessmentStoreData: IAssessmentStoreData;
     scopingPanelStateStoreData: IScopingStoreData;
     userConfigurationStoreData: UserConfigurationStoreData;

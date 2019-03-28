@@ -3,7 +3,7 @@
 import { autobind } from '@uifabric/utilities';
 import { StoreNames } from '../../common/stores/store-names';
 import { CurrentPanel } from '../../common/types/store-data/current-panel';
-import { IDetailsViewData } from '../../common/types/store-data/idetails-view-data';
+import { DetailsViewData } from '../../common/types/store-data/details-view-data';
 import { DetailsViewRightContentPanelType } from '../../DetailsView/components/left-nav/details-view-right-content-panel-type';
 import { ContentActions } from '../actions/content-actions';
 import { DetailsViewActions } from '../actions/details-view-actions';
@@ -11,7 +11,7 @@ import { ScopingActions } from '../actions/scoping-actions';
 import { PreviewFeaturesActions } from './../actions/preview-features-actions';
 import { BaseStoreImpl } from './base-store-impl';
 
-export class DetailsViewStore extends BaseStoreImpl<IDetailsViewData> {
+export class DetailsViewStore extends BaseStoreImpl<DetailsViewData> {
     constructor(
         private previewFeaturesActions: PreviewFeaturesActions,
         private scopingActions: ScopingActions,
@@ -21,8 +21,8 @@ export class DetailsViewStore extends BaseStoreImpl<IDetailsViewData> {
         super(StoreNames.DetailsViewStore);
     }
 
-    public getDefaultState(): IDetailsViewData {
-        const data: IDetailsViewData = {
+    public getDefaultState(): DetailsViewData {
+        const data: DetailsViewData = {
             contentPath: '',
             currentPanel: {
                 isPreviewFeaturesOpen: false,

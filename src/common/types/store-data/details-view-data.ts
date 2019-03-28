@@ -3,8 +3,7 @@
 import { DetailsViewRightContentPanelType } from '../../../DetailsView/components/left-nav/details-view-right-content-panel-type';
 import { CurrentPanel } from './current-panel';
 
-// tslint:disable-next-line:interface-name
-export interface IDetailsViewData {
+export interface DetailsViewData {
     detailsViewRightContentPanel: DetailsViewRightContentPanelType;
     currentPanel: CurrentPanel;
     contentPath: string;

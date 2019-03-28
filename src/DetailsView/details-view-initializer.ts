@@ -35,7 +35,7 @@ import { StoreNames } from '../common/stores/store-names';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { TelemetryEventSource } from '../common/telemetry-events';
 import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
-import { IDetailsViewData } from '../common/types/store-data/idetails-view-data';
+import { DetailsViewData } from '../common/types/store-data/details-view-data';
 import { IInspectStoreData } from '../common/types/store-data/inspect-store-data';
 import { ITabStoreData } from '../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
@@ -111,7 +111,7 @@ if (isNaN(tabId) === false) {
                     StoreNames[StoreNames.VisualizationScanResultStore],
                     chromeAdapter,
                 );
-                const detailsViewStore = new StoreProxy<IDetailsViewData>(StoreNames[StoreNames.DetailsViewStore], chromeAdapter);
+                const detailsViewStore = new StoreProxy<DetailsViewData>(StoreNames[StoreNames.DetailsViewStore], chromeAdapter);
                 const assessmentStore = new StoreProxy<IAssessmentStoreData>(StoreNames[StoreNames.AssessmentStore], chromeAdapter);
                 const featureFlagStore = new StoreProxy<DictionaryStringTo<boolean>>(
                     StoreNames[StoreNames.FeatureFlagStore],

@@ -11,7 +11,7 @@ import { ScopingActionMessageCreator } from '../../../../common/message-creators
 import { StoreActionMessageCreator } from '../../../../common/message-creators/store-action-message-creator';
 import { BaseClientStoresHub } from '../../../../common/stores/base-client-stores-hub';
 import { IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
-import { IDetailsViewData } from '../../../../common/types/store-data/idetails-view-data';
+import { DetailsViewData } from '../../../../common/types/store-data/details-view-data';
 import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../../../../common/types/store-data/ivisualization-scan-result-data';
 import { IVisualizationStoreData } from '../../../../common/types/store-data/ivisualization-store-data';
@@ -31,7 +31,7 @@ export class DetailsViewContainerPropsBuilder {
     private tabStore: BaseStore<ITabStoreData>;
     private featureFlagStore: BaseStore<DictionaryStringTo<boolean>>;
     private scopingStateStore: BaseStore<IScopingStoreData>;
-    private detailsViewStore: BaseStore<IDetailsViewData>;
+    private detailsViewStore: BaseStore<DetailsViewData>;
     private scopingActionMessageCreator: ScopingActionMessageCreator;
     private inspectActionMessageCreator: InspectActionMessageCreator;
     private storeActionCreator: StoreActionMessageCreator;

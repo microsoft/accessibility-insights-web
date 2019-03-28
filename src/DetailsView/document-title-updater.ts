@@ -5,7 +5,7 @@ import { autobind } from '@uifabric/utilities';
 import { BaseStore } from '../common/base-store';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
-import { IDetailsViewData } from '../common/types/store-data/idetails-view-data';
+import { DetailsViewData } from '../common/types/store-data/details-view-data';
 import { ITabStoreData } from '../common/types/store-data/itab-store-data';
 import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
 import { title } from '../content/strings/application';
@@ -15,7 +15,7 @@ import { GetDetailsSwitcherNavConfiguration } from './components/details-view-sw
 export class DocumentTitleUpdater {
     constructor(
         private readonly tabStore: BaseStore<ITabStoreData>,
-        private readonly detailsViewStore: BaseStore<IDetailsViewData>,
+        private readonly detailsViewStore: BaseStore<DetailsViewData>,
         private readonly visualizationStore: BaseStore<IVisualizationStoreData>,
         private readonly assessmentStore: BaseStore<IAssessmentStoreData>,
         private readonly getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration,

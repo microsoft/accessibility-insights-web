@@ -8,7 +8,7 @@ import { VisualizationConfigurationFactory } from '../common/configs/visualizati
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
-import { IDetailsViewData } from '../common/types/store-data/idetails-view-data';
+import { DetailsViewData } from '../common/types/store-data/details-view-data';
 import { ITabStoreData } from '../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
 import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
@@ -30,7 +30,7 @@ export interface DetailsViewMainContentProps {
     tabStoreData: ITabStoreData;
     assessmentStoreData: IAssessmentStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
-    detailsViewStoreData: IDetailsViewData;
+    detailsViewStoreData: DetailsViewData;
     selectedTest: VisualizationType;
     visualizationStoreData: IVisualizationStoreData;
     visualizationScanResultData: IVisualizationScanResultData;
