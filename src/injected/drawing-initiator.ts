@@ -4,7 +4,7 @@ import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-st
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryStringTo } from '../types/common-types';
 import { DrawingController, VisualizationWindowMessage } from './drawing-controller';
-import { AxeResultsWithFrameLevel, AssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
+import { AssessmentVisualizationInstance, AxeResultsWithFrameLevel } from './frameCommunicators/html-element-axe-results-helper';
 import { PropertyBags, VisualizationInstanceProcessorCallback } from './visualization-instance-processor';
 
 export class DrawingInitiator {

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
 import { AssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
 import {
@@ -15,8 +16,8 @@ import { VisualizationType } from '../../../../common/types/visualization-type';
 import { DrawingController, VisualizationWindowMessage } from '../../../../injected/drawing-controller';
 import { FrameCommunicator } from '../../../../injected/frameCommunicators/frame-communicator';
 import {
-    HtmlElementAxeResultsHelper,
     AssessmentVisualizationInstance,
+    HtmlElementAxeResultsHelper,
 } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { InstanceVisibilityChecker } from '../../../../injected/instance-visibility-checker';
 import { HtmlElementAxeResults } from '../../../../injected/scanner-utils';
