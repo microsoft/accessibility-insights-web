@@ -13,7 +13,7 @@ import { StoreHub } from '../istore-hub';
 import { AssessmentsProvider } from './../../../assessments/types/iassessments-provider';
 import { AssessmentDataConverter } from './../../assessment-data-converter';
 import { AssessmentDataRemover } from './../../assessment-data-remover';
-import { InitialAssessmentStoreDataGenerator } from './../../intial-assessment-store-data-generator';
+import { InitialAssessmentStoreDataGenerator } from './../../initial-assessment-store-data-generator';
 import { AssessmentStore } from './../assessment-store';
 import { CommandStore } from './command-store';
 import { FeatureFlagStore } from './feature-flag-store';

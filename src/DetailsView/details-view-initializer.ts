@@ -36,7 +36,7 @@ import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { TelemetryEventSource } from '../common/telemetry-events';
 import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
 import { IDetailsViewData } from '../common/types/store-data/idetails-view-data';
-import { IInspectStoreData } from '../common/types/store-data/inspect-store-data';
+import { InspectStoreData } from '../common/types/store-data/inspect-store-data';
 import { ITabStoreData } from '../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
 import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
@@ -118,7 +118,7 @@ if (isNaN(tabId) === false) {
                     chromeAdapter,
                 );
                 const scopingStore = new StoreProxy<IScopingStoreData>(StoreNames[StoreNames.ScopingPanelStateStore], chromeAdapter);
-                const inspectStore = new StoreProxy<IInspectStoreData>(StoreNames[StoreNames.InspectStore], chromeAdapter);
+                const inspectStore = new StoreProxy<InspectStoreData>(StoreNames[StoreNames.InspectStore], chromeAdapter);
                 const userConfigStore = new StoreProxy<UserConfigurationStoreData>(
                     StoreNames[StoreNames.UserConfigurationStore],
                     chromeAdapter,

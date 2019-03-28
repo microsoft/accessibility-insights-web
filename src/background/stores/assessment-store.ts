@@ -20,7 +20,7 @@ import { ScanBasePayload, ScanCompletedPayload, ScanUpdatePayload } from '../../
 import { DictionaryStringTo } from '../../types/common-types';
 import { SelectRequirementPayload, UpdateVisibilityPayload } from '../actions/action-payloads';
 import { AssessmentDataConverter } from '../assessment-data-converter';
-import { InitialAssessmentStoreDataGenerator } from '../intial-assessment-store-data-generator';
+import { InitialAssessmentStoreDataGenerator } from '../initial-assessment-store-data-generator';
 import { VisualizationType } from './../../common/types/visualization-type';
 import {
     AddFailureInstancePayload,

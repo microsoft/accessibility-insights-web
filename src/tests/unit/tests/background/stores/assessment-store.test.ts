@@ -22,6 +22,7 @@ import { AssessmentActions } from '../../../../../background/actions/assessment-
 import { AssessmentDataConverter } from '../../../../../background/assessment-data-converter';
 import { AssessmentDataRemover } from '../../../../../background/assessment-data-remover';
 import { ChromeAdapter } from '../../../../../background/browser-adapter';
+import { InitialAssessmentStoreDataGenerator } from '../../../../../background/initial-assessment-store-data-generator';
 import { AssessmentStore } from '../../../../../background/stores/assessment-store';
 import { AssesssmentVisualizationConfiguration } from '../../../../../common/configs/visualization-configuration-factory';
 import { IndexedDBAPI } from '../../../../../common/indexedDB/indexedDB';
@@ -47,7 +48,6 @@ import { AssessmentsStoreDataBuilder } from '../../../common/assessment-store-da
 import { AssessmentStoreTester } from '../../../common/assessment-store-tester';
 import { createStoreWithNullParams } from '../../../common/store-tester';
 import { CreateTestAssessmentProvider } from '../../../common/test-assessment-provider';
-import { InitialAssessmentStoreDataGenerator } from './../../../../../background/intial-assessment-store-data-generator';
 
 const assessmentKey: string = 'assessment-1';
 const requirementKey: string = 'assessment-1-step-1';

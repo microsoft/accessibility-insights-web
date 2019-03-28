@@ -1,56 +1,72 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Browser } from '../../common/browser';
+import { Browser, TargetPageInfo } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
+import { CommonSelectors } from '../../common/element-identifiers/common-selectors';
 import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
+import { enableHighContrast } from '../../common/enable-high-contrast';
 import { Page } from '../../common/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
 describe('Hamburger menu', () => {
-    let browser: Browser;
+    describe('Normal mode', () => {
+        let browser: Browser;
+        let targetPageInfo: TargetPageInfo;
+        let popupPage: Page;
 
-    beforeAll(async () => {
-        browser = await launchBrowser({ suppressFirstTimeDialog: true });
+        beforeAll(async () => {
+            browser = await launchBrowser({ suppressFirstTimeDialog: true });
+            targetPageInfo = await browser.setupNewTargetPage();
+            popupPage = await browser.newExtensionPopupPage(targetPageInfo.tabId);
+            await popupPage.clickSelector(popupPageElementIdentifiers.hamburgerMenuButton);
+        });
+
+        afterAll(async () => {
+            if (browser) {
+                await browser.close();
+                browser = undefined;
+            }
+        });
+
+        it('should have content matching snapshot', async () => {
+            const hamburgerMenu = await popupPage.getPrintableHtmlElement(popupPageElementIdentifiers.hamburgerMenu);
+
+            expect(hamburgerMenu).toMatchSnapshot();
+        });
+
+        it('should pass accessibility validation', async () => {
+            const results = await scanForAccessibilityIssues(popupPage, popupPageElementIdentifiers.hamburgerMenu);
+            expect(results).toHaveLength(0);
+        });
     });
 
-    afterEach(async () => {
-        if (browser) {
-            await browser.closeAllPages();
-        }
+    describe('high contrast mode', () => {
+        let browser: Browser;
+        let targetPageInfo: TargetPageInfo;
+        let popupPage: Page;
+
+        beforeAll(async () => {
+            browser = await launchBrowser({ suppressFirstTimeDialog: true });
+            targetPageInfo = await browser.setupNewTargetPage();
+            const detailsViewPage = await browser.newExtensionDetailsViewPage(targetPageInfo.tabId);
+
+            await enableHighContrast(detailsViewPage);
+
+            popupPage = await browser.newExtensionPopupPage(targetPageInfo.tabId);
+            await popupPage.waitForSelector(CommonSelectors.highContrastThemeSelector);
+
+            await popupPage.clickSelector(popupPageElementIdentifiers.hamburgerMenuButton);
+        });
+
+        afterAll(async () => {
+            if (browser) {
+                await browser.close();
+            }
+        });
+
+        it('should pass accessibility validation', async () => {
+            const results = await scanForAccessibilityIssues(popupPage, popupPageElementIdentifiers.hamburgerMenu);
+            expect(results).toHaveLength(0);
+        });
     });
-
-    afterAll(async () => {
-        if (browser) {
-            await browser.close();
-            browser = undefined;
-        }
-    });
-
-    it('should have content matching snapshot', async () => {
-        const popupPage = await createPopupPage();
-
-        await popupPage.clickSelector(popupPageElementIdentifiers.hamburgerMenuButton);
-
-        const hamburgerMenu = await popupPage.getPrintableHtmlElement(popupPageElementIdentifiers.hamburgerMenu);
-
-        expect(hamburgerMenu).toMatchSnapshot();
-    });
-
-    it('should pass accessibility validation', async () => {
-        const popupPage = await createPopupPage();
-
-        await popupPage.clickSelector(popupPageElementIdentifiers.hamburgerMenuButton);
-
-        const results = await scanForAccessibilityIssues(popupPage, popupPageElementIdentifiers.hamburgerMenu);
-        expect(results).toHaveLength(0);
-    });
-
-    async function createPopupPage(): Promise<Page> {
-        const targetPage = await browser.newTestResourcePage('all.html');
-
-        await targetPage.bringToFront();
-        const targetPageTabId = await browser.getActivePageTabId();
-
-        return await browser.newExtensionPopupPage(targetPageTabId);
-    }
 });

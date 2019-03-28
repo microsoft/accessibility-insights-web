@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from '../../../assessments/types/iassessments-provider';
 import { AssessmentDataConverter } from '../../../background/assessment-data-converter';
+import { InitialAssessmentStoreDataGenerator } from '../../../background/initial-assessment-store-data-generator';
 import { AssessmentStore } from '../../../background/stores/assessment-store';
 import { IAssessmentData, IAssessmentStoreData } from '../../../common/types/store-data/iassessment-result-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
-import { InitialAssessmentStoreDataGenerator } from './../../../background/intial-assessment-store-data-generator';
 import { BaseDataBuilder } from './base-data-builder';
 
 export class AssessmentsStoreDataBuilder extends BaseDataBuilder<IAssessmentStoreData> {
