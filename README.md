@@ -145,7 +145,7 @@ If you believe you have found a security vulnerability in this project, please f
 
 ## FAQ
 
-Please visit our [FAQ](./FAQ.md) page.
+Please visit our [FAQ](./docs/FAQ.md) page.
 
 ## Contributing
 
