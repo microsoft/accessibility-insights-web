@@ -100,10 +100,10 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
                 <DefaultButton
                     componentRef={this.button}
                     className={'create-bug-button'}
-                    text="File issue"
                     onClick={this.onClickFileIssueButtonNeedsSettings}
                 >
                     <LadyBugSolidIcon />
+                    <div className="ms-Button-label">File issue</div>
                 </DefaultButton>
                 {this.renderHelpText()}
             </>
@@ -125,12 +125,12 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
             <DefaultButton
                 componentRef={this.button}
                 className={'create-bug-button'}
-                text="File issue"
                 target="_blank"
                 onClick={this.onClickFileIssueButton}
                 href={this.getIssueDetailsUrl(this.props.issueDetailsData.ruleResult)}
             >
                 <LadyBugSolidIcon />
+                <div className="ms-Button-label">File issue</div>
             </DefaultButton>
         );
     }

@@ -22,6 +22,10 @@ import { TargetPageActionMessageCreator } from '../target-page-action-message-cr
 import { DetailsDialogHandler } from './../details-dialog-handler';
 import { FixInstructionPanel } from './fix-instruction-panel';
 
+import { CancelIcon } from '../../common/icons/cancel-icon';
+import { FileHTMLIcon } from '../../common/icons/file-html-icon';
+import { StatusErrorFullIcon } from '../../common/icons/status-error-full-icon';
+
 export enum CheckType {
     All,
     Any,
@@ -147,10 +151,11 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
             <DefaultButton
                 className="insights-dialog-button-inspect"
                 disabled={this.props.dialogHandler.isInspectButtonDisabled(this)}
-                iconProps={{ iconName: 'FileHTML' }}
-                text="Inspect HTML"
                 onClick={this.getOnClickWhenNotInShadowDom(this.onClickInspectButton)}
-            />
+            >
+                <FileHTMLIcon />
+                <div className="ms-Button-label">Inspect HTML</div>
+            </DefaultButton>
         );
     }
 
@@ -241,10 +246,10 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
 
         return (
             <div className="insights-dialog-rule-container">
-                <Icon iconName="StatusErrorFull" />
-                <div className="ms-fontSize-mPlus insights-dialog-rule-link">
+                <StatusErrorFullIcon />
+                <span className="ms-fontSize-mPlus insights-dialog-rule-link">
                     Rule name: <NewTabLink href={fixUrl(rule.helpUrl)}>{rule.ruleId}</NewTabLink>
-                </div>
+                </span>
             </div>
         );
     }

@@ -58,8 +58,9 @@ export class CopyIssueDetailsButton extends React.Component<CopyIssueDetailsButt
                     </Toast>
                 ) : null}
                 <CopyToClipboard text={this.getIssueDetailsText(this.props.issueDetailsData.ruleResult)}>
-                    <DefaultButton className={'copy-issue-details-button'} text="Copy failure details" onClick={this.copyButtonClicked}>
+                    <DefaultButton className={'copy-issue-details-button'} onClick={this.copyButtonClicked}>
                         <CopyIcon />
+                        <div className="ms-Button-label">Copy failure details</div>
                     </DefaultButton>
                 </CopyToClipboard>
             </>
