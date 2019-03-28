@@ -4,8 +4,8 @@ import * as React from 'react';
 
 import { InspectActionMessageCreator } from '../../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../../common/message-creators/scoping-action-message-creator';
-import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { DetailsViewData } from '../../common/types/store-data/details-view-data';
+import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { IScopingStoreData } from '../../common/types/store-data/scoping-store-data';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { ContentPanel, ContentPanelDeps, ContentPanelProps } from '../../views/content/content-panel';

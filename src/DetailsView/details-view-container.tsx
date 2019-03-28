@@ -11,9 +11,9 @@ import { VisualizationConfigurationFactory } from '../common/configs/visualizati
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
+import { DetailsViewData } from '../common/types/store-data/details-view-data';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
-import { DetailsViewData } from '../common/types/store-data/details-view-data';
 import { ITabStoreData } from '../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
 import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';

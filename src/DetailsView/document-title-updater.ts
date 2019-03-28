@@ -4,8 +4,8 @@ import { autobind } from '@uifabric/utilities';
 
 import { BaseStore } from '../common/base-store';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
-import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
 import { DetailsViewData } from '../common/types/store-data/details-view-data';
+import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
 import { ITabStoreData } from '../common/types/store-data/itab-store-data';
 import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
 import { title } from '../content/strings/application';
