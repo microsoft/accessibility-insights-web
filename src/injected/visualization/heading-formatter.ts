@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { ClientUtils } from '../client-utils';
 import { DialogRenderer } from '../dialog-renderer';
-import { IAssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
+import { AssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
 import { FailureInstanceFormatter } from './failure-instance-formatter';
 import { DrawerConfiguration } from './formatter';
 
@@ -60,7 +60,7 @@ export class HeadingFormatter extends FailureInstanceFormatter {
         return null;
     }
 
-    public getDrawerConfiguration(element: HTMLElement, data: IAssessmentVisualizationInstance): DrawerConfiguration {
+    public getDrawerConfiguration(element: HTMLElement, data: AssessmentVisualizationInstance): DrawerConfiguration {
         const level = this.isHTag(element) ? this.getHTagLevel(element) : this.getAriaLevel(element);
         const text = (this.isHTag(element) ? 'H' : 'h') + level;
         const style = HeadingFormatter.headingStyles[level] || HeadingFormatter.headingStyles.blank;

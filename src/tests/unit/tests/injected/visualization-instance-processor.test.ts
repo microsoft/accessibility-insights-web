@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IAssessmentVisualizationInstance } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
+import { AssessmentVisualizationInstance } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { PartialTabOrderPropertyBag, TabOrderPropertyBag } from '../../../../injected/tab-order-property-bag';
 import { VisualizationInstanceProcessor, VisualizationPropertyBag } from '../../../../injected/visualization-instance-processor';
 
 describe('VisualizationInstanceProcessorTest', () => {
     test('nullProcessor', () => {
-        const instancesStub = [{} as IAssessmentVisualizationInstance];
+        const instancesStub = [{} as AssessmentVisualizationInstance];
         expect(VisualizationInstanceProcessor.nullProcessor(instancesStub)).toMatchObject(instancesStub);
     });
 
@@ -47,7 +47,7 @@ describe('VisualizationInstanceProcessorTest', () => {
         expect(actual).toEqual(expectedInstances);
     });
 
-    function createNullifiedAssessmenVisualizationInstance(): IAssessmentVisualizationInstance {
+    function createNullifiedAssessmenVisualizationInstance(): AssessmentVisualizationInstance {
         return {
             isFailure: false,
             isVisualizationEnabled: false,

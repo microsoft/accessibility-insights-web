@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DialogRenderer } from '../dialog-renderer';
-import { AxeResultsWithFrameLevel, IAssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
+import { AssessmentVisualizationInstance, AxeResultsWithFrameLevel } from '../frameCommunicators/html-element-axe-results-helper';
 import { FailureBoxConfig, Formatter } from './formatter';
 
 export abstract class FailureInstanceFormatter implements Formatter {
@@ -16,7 +16,7 @@ export abstract class FailureInstanceFormatter implements Formatter {
 
     public abstract getDialogRenderer(): DialogRenderer;
 
-    protected getFailureBoxConfig(data: IAssessmentVisualizationInstance): FailureBoxConfig {
+    protected getFailureBoxConfig(data: AssessmentVisualizationInstance): FailureBoxConfig {
         if (data && data.isFailure) {
             return FailureInstanceFormatter.failureBoxConfig;
         }

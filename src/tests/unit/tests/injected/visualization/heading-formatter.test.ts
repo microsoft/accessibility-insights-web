@@ -2,15 +2,15 @@
 // Licensed under the MIT License.
 import { It, Mock } from 'typemoq';
 import { ClientUtils } from '../../../../../injected/client-utils';
-import { IAssessmentVisualizationInstance } from '../../../../../injected/frameCommunicators/html-element-axe-results-helper';
+import { AssessmentVisualizationInstance } from '../../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { DrawerConfiguration } from '../../../../../injected/visualization/formatter';
 import { HeadingFormatter, HeadingStyleConfiguration, StyleComputer } from '../../../../../injected/visualization/heading-formatter';
 
 describe('HeadingFormatterTests', () => {
     let testSubject: HeadingFormatter;
     let sandbox: HTMLDivElement;
-    let failedInstanceResult: IAssessmentVisualizationInstance;
-    let failedInstanceNotSelected: IAssessmentVisualizationInstance;
+    let failedInstanceResult: AssessmentVisualizationInstance;
+    let failedInstanceNotSelected: AssessmentVisualizationInstance;
     let styleComputer: StyleComputer;
     const innerText = 'HEADING';
 
@@ -21,8 +21,8 @@ describe('HeadingFormatterTests', () => {
         testSubject = new HeadingFormatter(styleComputer, new ClientUtils(window));
         sandbox = document.createElement('div');
         document.body.appendChild(sandbox);
-        failedInstanceResult = { isFailure: true } as IAssessmentVisualizationInstance;
-        failedInstanceNotSelected = { isFailure: true, isVisualizationEnabled: false } as IAssessmentVisualizationInstance;
+        failedInstanceResult = { isFailure: true } as AssessmentVisualizationInstance;
+        failedInstanceNotSelected = { isFailure: true, isVisualizationEnabled: false } as AssessmentVisualizationInstance;
     });
 
     afterEach(() => {

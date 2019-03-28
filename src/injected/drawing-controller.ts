@@ -14,9 +14,9 @@ import { HTMLElementUtils } from './../common/html-element-utils';
 import { ErrorMessageContent } from './frameCommunicators/error-message-content';
 import { FrameCommunicator, IMessageRequest } from './frameCommunicators/frame-communicator';
 import {
+    AssessmentVisualizationInstance,
     HtmlElementAxeResultsHelper,
-    IAssessmentVisualizationInstance,
-    IFrameResult,
+    HTMLIFrameResult,
 } from './frameCommunicators/html-element-axe-results-helper';
 import { FrameMessageResponseCallback } from './frameCommunicators/window-message-handler';
 import { InstanceVisibilityChecker } from './instance-visibility-checker';
@@ -27,7 +27,7 @@ export interface VisualizationWindowMessage {
     visualizationType: VisualizationType;
     isEnabled: boolean;
     configId: string;
-    elementResults?: IAssessmentVisualizationInstance[];
+    elementResults?: AssessmentVisualizationInstance[];
     featureFlagStoreData?: FeatureFlagStoreData;
 }
 
@@ -108,7 +108,7 @@ export class DrawingController {
         this.invokeMethodIfExists(responder, null);
     }
 
-    private enableVisualization(visualizationType: VisualizationType, elementResultsByFrames: IFrameResult[], configId: string): void {
+    private enableVisualization(visualizationType: VisualizationType, elementResultsByFrames: HTMLIFrameResult[], configId: string): void {
         if (elementResultsByFrames) {
             for (let pos = 0; pos < elementResultsByFrames.length; pos++) {
                 const resultsForFrame = elementResultsByFrames[pos];
@@ -135,7 +135,7 @@ export class DrawingController {
         }
     }
 
-    private enableVisualizationInCurrentFrame(currentFrameResults: IAssessmentVisualizationInstance[], configId: string): void {
+    private enableVisualizationInCurrentFrame(currentFrameResults: AssessmentVisualizationInstance[], configId: string): void {
         const drawer = this.getDrawer(configId);
         drawer.initialize({
             data: this.getInitialElements(currentFrameResults),
@@ -147,7 +147,7 @@ export class DrawingController {
     private enableVisualizationInIFrames(
         visualizationType: VisualizationType,
         frame: HTMLIFrameElement,
-        frameResults: IAssessmentVisualizationInstance[],
+        frameResults: AssessmentVisualizationInstance[],
         configId: string,
     ): void {
         const message: VisualizationWindowMessage = {
@@ -214,7 +214,7 @@ export class DrawingController {
         }
     }
 
-    private getInitialElements(currentFrameResults: IAssessmentVisualizationInstance[]): IAssessmentVisualizationInstance[] {
+    private getInitialElements(currentFrameResults: AssessmentVisualizationInstance[]): AssessmentVisualizationInstance[] {
         if (currentFrameResults == null) {
             return null;
         }
