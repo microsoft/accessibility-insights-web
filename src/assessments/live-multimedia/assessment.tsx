@@ -28,5 +28,5 @@ export const LiveMultimediaAssessment = AssessmentBuilder.Manual({
     title,
     gettingStarted: gettingStartedText,
     guidance,
-    steps: [Caption],
+    requirements: [Caption],
 });

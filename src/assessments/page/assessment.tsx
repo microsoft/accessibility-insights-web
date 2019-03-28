@@ -24,6 +24,6 @@ export const PageAssessment: Assessment = AssessmentBuilder.Assisted({
     gettingStarted: pageGettingStartedText,
     title: pageAssessmentTitle,
     guidance,
-    steps: [PageTitle, FrameTitle, GeneralNavigation],
+    requirements: [PageTitle, FrameTitle, GeneralNavigation],
     storeDataKey: 'pageAssessment',
 });

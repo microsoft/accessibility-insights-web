@@ -21,7 +21,7 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
     const knownTestIds = assesssmentsProvider.all().map(test => test.key);
     const knownTestType = assesssmentsProvider.all()[0].type;
     const unknownTestType = -100 as VisualizationType;
-    const knownRequirementIds = flatMap(assesssmentsProvider.all(), test => test.steps.map(step => step.key));
+    const knownRequirementIds = flatMap(assesssmentsProvider.all(), test => test.requirements.map(step => step.key));
     const knownRequirement1 = knownRequirementIds[0];
     const knownRequirement2 = knownRequirementIds[1];
     const knownRequirement3 = knownRequirementIds[2];

@@ -161,7 +161,7 @@ describe('SelectorMapHelperTest', () => {
     test('getState for assessment, selector map is not null', () => {
         const assessment = assessmentsProvider.all()[0];
         const type = assessment.type;
-        const firstStep = assessment.steps[0];
+        const firstStep = assessment.requirements[0];
 
         const selectorMap = {
             key1: {
@@ -229,7 +229,7 @@ describe('SelectorMapHelperTest', () => {
     test('getState for assessment: selectorMap null', () => {
         const assessment = assessmentsProvider.all()[0];
         const type = assessment.type;
-        const firstStep = assessment.steps[0];
+        const firstStep = assessment.requirements[0];
 
         const selectorMap = null;
         const state = {

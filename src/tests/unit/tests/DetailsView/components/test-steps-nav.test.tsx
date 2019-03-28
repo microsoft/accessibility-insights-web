@@ -41,7 +41,7 @@ describe('TestStepsNav', () => {
 
         const all = assessmentProvider.all();
         const assessment = all[0];
-        const firstStep = assessment.steps[0];
+        const firstStep = assessment.requirements[0];
 
         const item = {
             key: firstStep.key,
@@ -67,7 +67,7 @@ describe('TestStepsNav', () => {
             ariaLabel: 'test',
         };
 
-        generateStepStatus(assessment.steps, props);
+        generateStepStatus(assessment.requirements, props);
 
         actionMessageCreatorMock.setup(a => a.selectRequirement(eventStub, item.key, props.selectedTest)).verifiable(Times.once());
 

@@ -27,7 +27,7 @@ const assessmentWithColumns: Assessment = {
     title: 'assessment 1',
     gettingStarted: null,
     guidance: content.assessment1.guidance,
-    steps: [
+    requirements: [
         {
             key: 'assessment-1-step-1',
             description: <div> assessment-1-step-1 description</div>,

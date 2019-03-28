@@ -26,5 +26,5 @@ export const LanguageAssessment = AssessmentBuilder.Manual({
     title,
     gettingStarted: gettingStartedText,
     guidance,
-    steps: [LanguageOfPage, LanguageOfParts, TextDirection],
+    requirements: [LanguageOfPage, LanguageOfParts, TextDirection],
 });

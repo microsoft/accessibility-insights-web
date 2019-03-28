@@ -29,7 +29,7 @@ describe('Requirement', () => {
             } as ManualTestStatusData;
 
             const test = {
-                steps,
+                requirements,
                 requirementOrder: RequirementComparer.byName,
             } as AssessmentTestDefinition;
 

@@ -29,7 +29,7 @@ const config: AssistedAssessment = {
     type: VisualizationType.AutomatedChecks,
     gettingStarted,
     guidance,
-    steps: buildTestStepsFromRules(getDefaultRules()),
+    requirements: buildTestStepsFromRules(getDefaultRules()),
     requirementOrder: RequirementComparer.byOutcomeAndName,
     extensions: [waitForAllRequirementsToComplete, selectFirstRequirementAfterAutomatedChecks, excludePassingInstancesFromAssessmentReport],
 };

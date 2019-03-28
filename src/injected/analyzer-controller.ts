@@ -84,7 +84,7 @@ export class AnalyzerController {
         EnumHelper.getNumericValues(VisualizationType).forEach((test: VisualizationType) => {
             const config = this.visualizationConfigurationFactory.getConfiguration(test);
             if (this.assessmentsProvider.isValidType(test)) {
-                this.assessmentsProvider.forType(test).steps.forEach(stepConfig => {
+                this.assessmentsProvider.forType(test).requirements.forEach(stepConfig => {
                     this.analyzers[stepConfig.key] = config.getAnalyzer(this.analyzerProvider, stepConfig.key);
                 });
             } else {

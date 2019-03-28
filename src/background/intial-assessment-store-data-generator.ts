@@ -19,7 +19,7 @@ import { AssessmentsProvider } from './../assessments/types/iassessments-provide
 import { TestStepData } from './../common/types/manual-test-status';
 
 export class InitialAssessmentStoreDataGenerator {
-    private readonly NULL_FIRST_TEST: Partial<Readonly<Assessment>> = { type: null, steps: [{ key: null }] as Requirement[] };
+    private readonly NULL_FIRST_TEST: Partial<Readonly<Assessment>> = { type: null, requirements: [{ key: null }] as Requirement[] };
     private tests: ReadonlyArray<Readonly<Assessment>>;
     private assessmentsProvider: AssessmentsProvider;
 
@@ -35,7 +35,7 @@ export class InitialAssessmentStoreDataGenerator {
         // defaulting this.tests values to null instead of doing multiple if
         const first = head(this.tests) || this.NULL_FIRST_TEST;
         const selectedTestType = first.type;
-        const selectedTestStep = first.steps && first.steps[0] && first.steps[0].key;
+        const selectedTestStep = first.requirements && first.requirements[0] && first.requirements[0].key;
 
         const state: Partial<IAssessmentStoreData> = {
             persistedTabInfo: targetTab,
@@ -60,7 +60,7 @@ export class InitialAssessmentStoreDataGenerator {
     }
 
     private constructInitialDataForTest(test: Readonly<Assessment>, persistedTest: IAssessmentData): IAssessmentData {
-        const requirements = test.steps.map(val => val.key);
+        const requirements = test.requirements.map(val => val.key);
         const testData: IAssessmentData = this.getDefaultTestResult();
         const persistedRequirementsStatus = persistedTest && persistedTest.testStepStatus;
         const persistedManualMap = persistedTest && persistedTest.manualTestStepResultMap;

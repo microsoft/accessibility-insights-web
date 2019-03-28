@@ -41,5 +41,5 @@ export const PrerecordedMultimediaAssessment = AssessmentBuilder.Manual({
     gettingStarted: gettingStartedText,
     title,
     guidance,
-    steps: [Captions, NoObstruction, AudioDescription, Synchronization, NoConflict],
+    requirements: [Captions, NoObstruction, AudioDescription, Synchronization, NoConflict],
 });

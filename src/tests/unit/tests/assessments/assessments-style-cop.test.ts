@@ -23,7 +23,7 @@ describe('assessments-style-cop', () => {
                 return;
             }
 
-            assessment.steps.forEach(step => {
+            assessment.requirements.forEach(step => {
                 assertIsProperlyStyled(step.name, assessment.key + '.' + step.key);
             });
         });
@@ -87,7 +87,7 @@ describe('assessments-style-cop', () => {
         let duplicateKey = null;
 
         all.forEach(test => {
-            test.steps.forEach(step => {
+            test.requirements.forEach(step => {
                 if (testStepKeys[step.key] && !duplicateKey) {
                     duplicateKey = step.key;
                 }

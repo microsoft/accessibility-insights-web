@@ -59,13 +59,13 @@ describe('AssessmentBuilderTest', () => {
             type: -1 as VisualizationType,
             title: 'manual assessment title',
             gettingStarted: <span>getting started</span>,
-            steps: [testStep, testStep2],
+            requirements: [testStep, testStep2],
         };
 
         const nonDefaultAssessment: ManualAssessment = {
             ...baseAssessment,
             executeAssessmentScanPolicy: () => null,
-            steps: [],
+            requirements: [],
         };
 
         const expectedConfig: AnalyzerConfiguration = {
@@ -213,7 +213,7 @@ describe('AssessmentBuilderTest', () => {
             type: -1 as VisualizationType,
             title: 'manual assessment title',
             gettingStarted: <span>getting started</span>,
-            steps: [testStep1, testStep2, testStep3, testStep4, testStep5, testStep6],
+            requirements: [testStep1, testStep2, testStep3, testStep4, testStep5, testStep6],
             storeDataKey: 'headingsAssessment',
             visualizationConfiguration: {
                 analyzerMessageType: Messages.Assessment.AssessmentScanCompleted,

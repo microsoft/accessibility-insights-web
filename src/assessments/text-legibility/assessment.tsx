@@ -35,6 +35,6 @@ export const TextLegibilityAssessment: Assessment = AssessmentBuilder.Assisted({
     title,
     gettingStarted,
     guidance,
-    steps: [HighContrastMode, ResizeText, Contrast],
+    requirements: [HighContrastMode, ResizeText, Contrast],
     storeDataKey: 'textLegibilityAssessment',
 });

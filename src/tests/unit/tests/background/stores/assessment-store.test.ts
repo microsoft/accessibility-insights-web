@@ -202,7 +202,7 @@ describe('AssessmentStoreTest', () => {
                 testStepStatus: {},
             } as IAssessmentData;
 
-            assessment.steps.forEach(step => {
+            assessment.requirements.forEach(step => {
                 const assessmentData = expectedState.assessments[assessment.key];
                 assessmentData.testStepStatus[step.key] = getDefaultTestStepData();
                 assessmentData.manualTestStepResultMap[step.key] = getDefaultManualTestStepResult(step.key);
@@ -254,7 +254,7 @@ describe('AssessmentStoreTest', () => {
                 testStepStatus: {},
             } as IAssessmentData;
 
-            assessment.steps.forEach(step => {
+            assessment.requirements.forEach(step => {
                 const assessmentData = expectedState.assessments[assessment.key];
                 assessmentData.testStepStatus[step.key] = getDefaultTestStepData();
                 assessmentData.manualTestStepResultMap[step.key] = getDefaultManualTestStepResult(step.key);
@@ -300,7 +300,7 @@ describe('AssessmentStoreTest', () => {
         const assessmentStub = {
             getVisualizationConfiguration: getVisualizationConfigurationMock.object,
             key: assessmentKey,
-            steps: [
+            requirements: [
                 {
                     key: requirementKey,
                 },
@@ -349,7 +349,7 @@ describe('AssessmentStoreTest', () => {
         const assessmentStub = {
             getVisualizationConfiguration: getVisualizationConfigurationMock.object,
             key: assessmentKey,
-            steps: [
+            requirements: [
                 {
                     key: requirementKey,
                 },
@@ -399,7 +399,7 @@ describe('AssessmentStoreTest', () => {
         const assessmentStub = {
             getVisualizationConfiguration: getVisualizationConfigurationMock.object,
             key: assessmentKey,
-            steps: [
+            requirements: [
                 {
                     key: requirementKey,
                 },

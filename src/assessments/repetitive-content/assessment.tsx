@@ -32,5 +32,5 @@ export const RepetitiveContentAssessment = AssessmentBuilder.Manual({
     gettingStarted: gettingStartedText,
     title,
     guidance,
-    steps: [BypassBlocks, ConsistentNavigation, ConsistentIdentification],
+    requirements: [BypassBlocks, ConsistentNavigation, ConsistentIdentification],
 });

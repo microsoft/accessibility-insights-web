@@ -25,7 +25,7 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
     test('verify configurations for generated instances', () => {
         const provider = CreateTestAssessmentProvider();
         const assessment = provider.all()[0];
-        const step = assessment.steps[0];
+        const step = assessment.requirements[0];
         const navState: AssessmentNavState = {
             selectedTestType: assessment.type,
             selectedTestStep: step.key,
@@ -58,7 +58,7 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
     test('verify configurations for automated instances', () => {
         const provider = CreateTestAssessmentProviderAutomated();
         const assessment = provider.all()[0];
-        const step = assessment.steps[0];
+        const step = assessment.requirements[0];
         const navState: AssessmentNavState = {
             selectedTestType: assessment.type,
             selectedTestStep: step.key,
@@ -83,7 +83,7 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
     test('verify configurations for generated instances without visual helper', () => {
         const provider = CreateTestAssessmentProvider();
         const assessment = provider.all()[0];
-        const step = assessment.steps[0];
+        const step = assessment.requirements[0];
         const navState: AssessmentNavState = {
             selectedTestType: assessment.type,
             selectedTestStep: step.key,

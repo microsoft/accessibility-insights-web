@@ -62,7 +62,7 @@ export class AssessmentReportModelBuilder {
                     return {
                         key: assessment.key,
                         displayName: assessment.title,
-                        steps: assessment.steps
+                        steps: assessment.requirements
                             .filter(step => {
                                 return assessment.storeData.testStepStatus[step.key].stepFinalResult === status;
                             })
@@ -98,7 +98,7 @@ export class AssessmentReportModelBuilder {
 
         function getInstances(assessment: AssessmentResult, stepKey: string): InstanceReportModel[] {
             const { storeData } = assessment;
-            const { reportInstanceFields } = _.find(assessment.steps, s => s.key === stepKey);
+            const { reportInstanceFields } = _.find(assessment.requirements, s => s.key === stepKey);
 
             function getInstanceReportModel(instance: Partial<TestStepInstance>): InstanceReportModel {
                 const props = reportInstanceFields.map(

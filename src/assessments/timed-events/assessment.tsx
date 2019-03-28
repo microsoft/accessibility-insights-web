@@ -32,5 +32,5 @@ export const TimedEventsAssessment: Assessment = AssessmentBuilder.Manual({
     gettingStarted: timedEventAssessmentGettingStarted,
     type: VisualizationType.TimedEventsAssessment,
     guidance,
-    steps: [TimeLimits, MovingContent, AutoUpdatingContent, AudioControl],
+    requirements: [TimeLimits, MovingContent, AutoUpdatingContent, AudioControl],
 });

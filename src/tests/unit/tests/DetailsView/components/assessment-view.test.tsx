@@ -22,7 +22,7 @@ import { contentProvider, CreateTestAssessmentProvider } from '../../../common/t
 describe('AssessmentViewTest', () => {
     const assessmentsProvider = CreateTestAssessmentProvider();
     const firstAssessment = assessmentsProvider.all()[0];
-    const stepName = firstAssessment.steps[0].key;
+    const stepName = firstAssessment.requirements[0].key;
     const assessmentDefaultMessageGenerator = new AssessmentDefaultMessageGenerator();
 
     test('constructor', () => {
@@ -122,7 +122,7 @@ describe('AssessmentViewTest', () => {
     test('componentDidUpdate: step changed, but the step is configured not enabled by default', () => {
         const prevStep = 'prevStep';
         const prevTest = -100 as VisualizationType;
-        const newStep = assessmentsProvider.all()[0].steps[1].key;
+        const newStep = assessmentsProvider.all()[0].requirements[1].key;
         const builder = new AssessmentViewPropsBuilder(assessmentsProvider, assessmentDefaultMessageGenerator);
         const prevProps = builder.buildProps();
         const props = builder.buildProps();
@@ -179,7 +179,7 @@ describe('AssessmentViewTest', () => {
     });
 
     function setStepNotToScanByDefault(props: AssessmentViewProps): void {
-        props.assessmentNavState.selectedTestStep = assessmentsProvider.all()[0].steps[1].key;
+        props.assessmentNavState.selectedTestStep = assessmentsProvider.all()[0].requirements[1].key;
     }
 });
 
@@ -221,7 +221,7 @@ class AssessmentViewPropsBuilder {
             urlParser: Mock.ofType(UrlParser).object,
         };
         const assessment = this.provider.all()[0];
-        const firstStep = assessment.steps[0];
+        const firstStep = assessment.requirements[0];
         const anotherTarget = {
             id: 2,
             url: '2',

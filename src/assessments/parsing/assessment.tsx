@@ -23,6 +23,6 @@ export const ParsingAssessment = AssessmentBuilder.Manual({
     title,
     gettingStarted,
     guidance,
-    steps: [Parsing],
+    requirements: [Parsing],
     isEnabled: true,
 });

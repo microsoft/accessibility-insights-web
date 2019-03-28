@@ -39,7 +39,7 @@ export class AssessmentsProviderImpl implements AssessmentsProvider {
         if (!assessment) {
             return null;
         }
-        const steps = assessment.steps;
+        const steps = assessment.requirements;
         const index = steps.findIndex(s => s.key === key);
         if (index === -1) {
             return null;
@@ -52,7 +52,7 @@ export class AssessmentsProviderImpl implements AssessmentsProvider {
         if (!assessment) {
             return null;
         }
-        const steps = assessment.steps;
+        const steps = assessment.requirements;
 
         let index = 1;
         return steps.reduce((map, step) => {
