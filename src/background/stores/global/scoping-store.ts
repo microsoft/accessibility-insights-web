@@ -20,7 +20,10 @@ export class ScopingStore extends BaseStoreImpl<ScopingStoreData> {
 
     public getDefaultState(): ScopingStoreData {
         const defaultValues: ScopingStoreData = {
-            selectors: {},
+            selectors: {
+                include: [],
+                exclude: [],
+            },
         };
 
         Object.keys(ScopingInputTypes).forEach(inputType => {

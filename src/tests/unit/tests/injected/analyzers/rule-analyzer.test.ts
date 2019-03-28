@@ -56,8 +56,8 @@ describe('RuleAnalyzer', () => {
         dateGetterMock.setup(dgm => dgm()).returns(() => dateMock.object);
         scopingState = {
             selectors: {
-                [ScopingInputTypes.include]: ['fake include selector'],
-                [ScopingInputTypes.exclude]: ['fake exclude selector'],
+                [ScopingInputTypes.include]: [['fake include selector']],
+                [ScopingInputTypes.exclude]: [['fake exclude selector']],
             },
         };
         scopingStoreMock
