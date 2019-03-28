@@ -6,6 +6,11 @@ import { forceTestFailure } from './force-test-failure';
 import { Page } from './page';
 import { getTestResourceUrl } from './test-resources';
 
+export interface TargetPageInfo {
+    page: Page;
+    tabId: number;
+}
+
 export class Browser {
     private memoizedBackgroundPage: Page;
     private pages: Array<Page> = [];
@@ -25,6 +30,17 @@ export class Browser {
         await page.goto(url);
         this.pages.push(page);
         return page;
+    }
+
+    public async setupNewTargetPage(): Promise<TargetPageInfo> {
+        const targetPage = await this.newTestResourcePage('all.html');
+
+        await targetPage.bringToFront();
+        const targetPageTabId = await this.getActivePageTabId();
+        return {
+            page: targetPage,
+            tabId: targetPageTabId,
+        };
     }
 
     public async newExtensionPage(relativePath: string): Promise<Page> {

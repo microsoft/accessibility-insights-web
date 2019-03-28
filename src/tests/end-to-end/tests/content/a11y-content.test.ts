@@ -3,7 +3,7 @@
 import { contentPages } from '../../../../content';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
-import { DetailsViewCommonSelectors } from '../../common/element-identifiers/common-selectors';
+import { enableHighContrast } from '../../common/enable-high-contrast';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
 describe('A11Y for content pages', () => {
@@ -42,9 +42,7 @@ describe('A11Y for content pages', () => {
             browser = await launchBrowser({ suppressFirstTimeDialog: true });
             targetTabId = await generateTargetTabId();
             const detailsViewPage = await browser.newExtensionDetailsViewPage(targetTabId);
-            await detailsViewPage.clickSelector(DetailsViewCommonSelectors.gearButton);
-            await detailsViewPage.clickSelector(DetailsViewCommonSelectors.settingsButton);
-            await detailsViewPage.clickSelector(DetailsViewCommonSelectors.highContrastToggle);
+            await enableHighContrast(detailsViewPage);
         });
 
         afterAll(async () => {
