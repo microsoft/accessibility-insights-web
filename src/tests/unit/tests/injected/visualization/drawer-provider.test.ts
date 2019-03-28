@@ -1,16 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, Mock } from 'typemoq';
-
 import { ClientBrowserAdapter } from '../../../../../common/client-browser-adapter';
 import { HTMLElementUtils } from '../../../../../common/html-element-utils';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { ClientUtils } from '../../../../../injected/client-utils';
 import { FrameCommunicator } from '../../../../../injected/frameCommunicators/frame-communicator';
 import { ShadowUtils } from '../../../../../injected/shadow-utils';
-import { Drawer } from '../../../../../injected/visualization/drawer';
 import { DrawerProvider } from '../../../../../injected/visualization/drawer-provider';
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
+import { HighlightBoxDrawer } from '../../../../../injected/visualization/highlight-box-drawer';
 import { NullDrawer } from '../../../../../injected/visualization/null-drawer';
 import { SingleTargetDrawer } from '../../../../../injected/visualization/single-target-drawer';
 import { SVGDrawerV2 } from '../../../../../injected/visualization/svg-drawer-v2';
@@ -60,7 +59,7 @@ describe('DrawerProviderTests', () => {
 
     test.each(drawerYieldingFunctionNames)('%s', funcName => {
         const drawer = testObject[funcName]();
-        expect(drawer).toBeInstanceOf(Drawer);
+        expect(drawer).toBeInstanceOf(HighlightBoxDrawer);
     });
 
     test('getSingleTargetDrawer', () => {

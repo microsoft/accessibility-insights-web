@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as _ from 'lodash';
+
 import { ColorAdHocVisualization } from '../../ad-hoc-visualizations/color/visualization';
 import { HeadingsAdHocVisualization } from '../../ad-hoc-visualizations/headings/visualization';
 import { IssuesAdHocVisualization } from '../../ad-hoc-visualizations/issues/visualization';
@@ -14,8 +15,8 @@ import { Analyzer } from '../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../injected/analyzers/analyzer-provider';
 import { HtmlElementAxeResults, ScannerUtils } from '../../injected/scanner-utils';
 import { PropertyBags, VisualizationInstanceProcessorCallback } from '../../injected/visualization-instance-processor';
+import { Drawer } from '../../injected/visualization/drawer';
 import { DrawerProvider } from '../../injected/visualization/drawer-provider';
-import { IDrawer } from '../../injected/visualization/idrawer';
 import { ScanResults } from '../../scanner/iruleresults';
 import { DictionaryNumberTo, DictionaryStringTo } from '../../types/common-types';
 import { ContentPageComponent } from '../../views/content/content-page';
@@ -51,7 +52,7 @@ export interface AssesssmentVisualizationConfiguration {
     getIdentifier: (testStep?: string) => string;
     visualizationInstanceProcessor: (testStep?: string) => VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags>;
     getNotificationMessage: (selectorMap: DictionaryStringTo<any>, testStep?: string) => string;
-    getDrawer: (provider: DrawerProvider, testStep?: string) => IDrawer;
+    getDrawer: (provider: DrawerProvider, testStep?: string) => Drawer;
     getSwitchToTargetTabOnScan: (testStep?: string) => boolean;
     getInstanceIdentiferGenerator: (testStep?: string) => (instance: UniquelyIdentifiableInstances) => string;
     getUpdateVisibility: (testStep?: string) => boolean;

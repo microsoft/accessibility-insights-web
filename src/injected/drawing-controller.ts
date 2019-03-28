@@ -20,8 +20,8 @@ import {
 } from './frameCommunicators/html-element-axe-results-helper';
 import { FrameMessageResponseCallback } from './frameCommunicators/window-message-handler';
 import { InstanceVisibilityChecker } from './instance-visibility-checker';
+import { Drawer } from './visualization/drawer';
 import { DrawerProvider } from './visualization/drawer-provider';
-import { IDrawer } from './visualization/idrawer';
 
 export interface VisualizationWindowMessage {
     visualizationType: VisualizationType;
@@ -34,7 +34,7 @@ export interface VisualizationWindowMessage {
 export class DrawingController {
     public static readonly triggerVisualizationCommand = 'insights.draw';
 
-    private _drawers: DictionaryNumberTo<IDrawer> = {};
+    private _drawers: DictionaryNumberTo<Drawer> = {};
     private _frameCommunicator: FrameCommunicator;
     private _instanceVisibilityChecker: InstanceVisibilityChecker;
     private _axeResultsHelper: HtmlElementAxeResultsHelper;
@@ -204,7 +204,7 @@ export class DrawingController {
         return this._htmlElementUtils.getAllElementsByTagName('iframe') as NodeListOf<HTMLIFrameElement>;
     }
 
-    private getDrawer(configId: string): IDrawer {
+    private getDrawer(configId: string): Drawer {
         return this._drawers[configId];
     }
 
