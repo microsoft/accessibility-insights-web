@@ -21,7 +21,7 @@ import { InspectStoreData } from '../common/types/store-data/inspect-store-data'
 import { ITabStoreData } from '../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
 import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
-import { IScopingStoreData } from '../common/types/store-data/scoping-store-data';
+import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 import { generateUID } from '../common/uid-generator';
 import { scan } from '../scanner/exposed-apis';
@@ -56,7 +56,7 @@ export class MainWindowInitializer extends WindowInitializer {
     private userConfigStoreProxy: StoreProxy<UserConfigurationStoreData>;
     private inspectStoreProxy: StoreProxy<InspectStoreData>;
     private visualizationScanResultStoreProxy: StoreProxy<IVisualizationScanResultData>;
-    private scopingStoreProxy: StoreProxy<IScopingStoreData>;
+    private scopingStoreProxy: StoreProxy<ScopingStoreData>;
     private tabStoreProxy: StoreProxy<ITabStoreData>;
     private devToolStoreProxy: StoreProxy<DevToolState>;
 
@@ -68,7 +68,7 @@ export class MainWindowInitializer extends WindowInitializer {
             StoreNames[StoreNames.VisualizationStore],
             this.clientChromeAdapter,
         );
-        this.scopingStoreProxy = new StoreProxy<IScopingStoreData>(StoreNames[StoreNames.ScopingPanelStateStore], this.clientChromeAdapter);
+        this.scopingStoreProxy = new StoreProxy<ScopingStoreData>(StoreNames[StoreNames.ScopingPanelStateStore], this.clientChromeAdapter);
         this.featureFlagStoreProxy = new StoreProxy<FeatureFlagStoreData>(
             StoreNames[StoreNames.FeatureFlagStore],
             this.clientChromeAdapter,

@@ -7,7 +7,7 @@ import { InspectActionMessageCreator } from '../../../../../common/message-creat
 import { ScopingActionMessageCreator } from '../../../../../common/message-creators/scoping-action-message-creator';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { IDetailsViewData } from '../../../../../common/types/store-data/idetails-view-data';
-import { IScopingStoreData } from '../../../../../common/types/store-data/scoping-store-data';
+import { ScopingStoreData } from '../../../../../common/types/store-data/scoping-store-data';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import {
@@ -43,7 +43,7 @@ describe('DetailsViewOverlay', () => {
 
     const userConfigStoreData = {} as UserConfigurationStoreData;
     const featureFlagStoreData = {};
-    const scopingStoreData: IScopingStoreData = {} as IScopingStoreData;
+    const scopingStoreData: ScopingStoreData = {} as ScopingStoreData;
     const deps: DetailsViewOverlayDeps = {
         contentProvider: {} as ContentProvider,
         contentActionMessageCreator: {} as ContentActionMessageCreator,

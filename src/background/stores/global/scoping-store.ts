@@ -4,12 +4,12 @@ import { autobind } from '@uifabric/utilities';
 import * as _ from 'lodash/index';
 
 import { StoreNames } from '../../../common/stores/store-names';
-import { IScopingStoreData } from '../../../common/types/store-data/scoping-store-data';
+import { ScopingStoreData } from '../../../common/types/store-data/scoping-store-data';
 import { BaseStoreImpl } from '../base-store-impl';
 import { ScopingActions, ScopingPayload } from './../../actions/scoping-actions';
 import { ScopingInputTypes } from './../../scoping-input-types';
 
-export class ScopingStore extends BaseStoreImpl<IScopingStoreData> {
+export class ScopingStore extends BaseStoreImpl<ScopingStoreData> {
     private scopingActions: ScopingActions;
 
     constructor(scopingActions: ScopingActions) {
@@ -18,8 +18,8 @@ export class ScopingStore extends BaseStoreImpl<IScopingStoreData> {
         this.scopingActions = scopingActions;
     }
 
-    public getDefaultState(): IScopingStoreData {
-        const defaultValues: IScopingStoreData = {
+    public getDefaultState(): ScopingStoreData {
+        const defaultValues: ScopingStoreData = {
             selectors: {},
         };
 

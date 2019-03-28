@@ -3,7 +3,7 @@
 import * as Q from 'q';
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
 
-import { ISingleElementSelector } from '../../../../common/types/store-data/scoping-store-data';
+import { SingleElementSelector } from '../../../../common/types/store-data/scoping-store-data';
 import { ClientUtils } from '../../../../injected/client-utils';
 import { ElementFinderByPosition, ElementFinderByPositionMessage } from '../../../../injected/element-finder-by-position';
 import { ErrorMessageContent } from '../../../../injected/frameCommunicators/error-message-content';
@@ -54,7 +54,7 @@ describe('ElementFinderByPositionTest', () => {
             promise: promiseStub,
             resolve: resolveMock.object,
             reject: rejectMock.object,
-        } as Q.Deferred<ISingleElementSelector>;
+        } as Q.Deferred<SingleElementSelector>;
         promiseStub = {
             then: promiseHandlerMock.object,
         };

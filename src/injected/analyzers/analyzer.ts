@@ -3,7 +3,7 @@
 
 import { BaseActionPayload } from '../../background/actions/action-payloads';
 import { IAnalyzerTelemetryCallback } from '../../common/types/analyzer-telemetry-callbacks';
-import { ISingleElementSelector } from '../../common/types/store-data/scoping-store-data';
+import { SingleElementSelector } from '../../common/types/store-data/scoping-store-data';
 import { TelemetryProcessor } from '../../common/types/telemetry-processor';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { ScanResults } from '../../scanner/iruleresults';
@@ -14,8 +14,8 @@ import { TabStopEvent } from '../tab-stops-listener';
 export interface AxeAnalyzerResult {
     results: DictionaryStringTo<any>;
     originalResult: ScanResults;
-    include?: ISingleElementSelector[];
-    exclude?: ISingleElementSelector[];
+    include?: SingleElementSelector[];
+    exclude?: SingleElementSelector[];
 }
 
 export interface Analyzer {

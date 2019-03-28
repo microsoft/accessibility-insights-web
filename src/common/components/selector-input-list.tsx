@@ -10,12 +10,12 @@ import { List } from 'office-ui-fabric-react/lib/List';
 import { ITextField, TextField } from 'office-ui-fabric-react/lib/TextField';
 import { InspectMode } from '../../background/inspect-modes';
 import { ScopingInputTypes } from '../../background/scoping-input-types';
-import { ISingleElementSelector } from '../types/store-data/scoping-store-data';
+import { SingleElementSelector } from '../types/store-data/scoping-store-data';
 
 export interface SelectorInputListProps {
     title: string;
     subtitle: string;
-    items: ISingleElementSelector[];
+    items: SingleElementSelector[];
     inputType: string;
     inspectMode: string;
     instructions?: JSX.Element;

@@ -4,7 +4,7 @@ import { ScopingActions, ScopingPayload } from '../../../../../../background/act
 import { ScopingInputTypes } from '../../../../../../background/scoping-input-types';
 import { ScopingStore } from '../../../../../../background/stores/global/scoping-store';
 import { StoreNames } from '../../../../../../common/stores/store-names';
-import { IScopingStoreData, ISingleElementSelector } from '../../../../../../common/types/store-data/scoping-store-data';
+import { SingleElementSelector, ScopingStoreData } from '../../../../../../common/types/store-data/scoping-store-data';
 import { createStoreWithNullParams, StoreTester } from '../../../../common/store-tester';
 
 describe('ScopingStoreTest', () => {
@@ -20,7 +20,7 @@ describe('ScopingStoreTest', () => {
 
     test('test defaultState has empty selectors arrays', () => {
         const defaultState = getDefaultState();
-        const emptyArray: ISingleElementSelector = [];
+        const emptyArray: SingleElementSelector = [];
 
         Object.keys(ScopingInputTypes).forEach(inputType => {
             expect(defaultState.selectors[inputType]).toEqual(emptyArray);
@@ -93,11 +93,11 @@ describe('ScopingStoreTest', () => {
             .testListenerToNeverBeCalled(initialState, finalState);
     });
 
-    function getDefaultState(): IScopingStoreData {
+    function getDefaultState(): ScopingStoreData {
         return createStoreWithNullParams(ScopingStore).getDefaultState();
     }
 
-    function createStoreForScopingActions(actionName: keyof ScopingActions): StoreTester<IScopingStoreData, ScopingActions> {
+    function createStoreForScopingActions(actionName: keyof ScopingActions): StoreTester<ScopingStoreData, ScopingActions> {
         const factory = (actions: ScopingActions) => new ScopingStore(actions);
 
         return new StoreTester(ScopingActions, actionName, factory);
