@@ -4,7 +4,7 @@ import { ScopingActions, ScopingPayload } from '../../../../../../background/act
 import { ScopingInputTypes } from '../../../../../../background/scoping-input-types';
 import { ScopingStore } from '../../../../../../background/stores/global/scoping-store';
 import { StoreNames } from '../../../../../../common/stores/store-names';
-import { SingleElementSelector, ScopingStoreData } from '../../../../../../common/types/store-data/scoping-store-data';
+import { ScopingStoreData, SingleElementSelector } from '../../../../../../common/types/store-data/scoping-store-data';
 import { createStoreWithNullParams, StoreTester } from '../../../../common/store-tester';
 
 describe('ScopingStoreTest', () => {
