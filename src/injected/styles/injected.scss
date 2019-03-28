@@ -183,6 +183,12 @@
     .insights-dialog-main-override .insights-dialog-rule-container,
     .insights-dialog-main-override-shadow .insights-dialog-rule-container {
         margin-bottom: 12px !important;
+
+        svg {
+            float: left !important;
+            margin-right: 1% !important;
+            margin-top: 4px !important;
+        }
     }
 
     .insights-dialog-main-override-shadow .insights-dialog-container {
@@ -305,6 +311,23 @@
 
     .insights-dialog-main-override .insights-dialog-target-button-container {
         margin-top: 4px !important;
+
+        .ms-Button-label {
+            margin-left: 4px;
+            margin-right: 4px;
+            line-height: 100%;
+            font-weight: 600;
+        }
+
+        svg {
+            margin-left: 4px;
+            margin-right: 4px;
+        }
+
+        button:disabled svg path {
+            fill: black;
+            fill-opacity: 0.38;
+        }
     }
 
     .insights-dialog-main-override-shadow .insights-dialog-target-button-container {
@@ -338,12 +361,22 @@
             &:focus {
                 outline: -webkit-focus-ring-color auto 5px;
             }
+
+            svg {
+                margin-left: 4px;
+                margin-right: 4px;
+            }
         }
 
         button:disabled {
             background-color: $neutral-4;
             color: $neutral-30;
             pointer-events: none;
+
+            svg path {
+                fill: black;
+                fill-opacity: 0.38;
+            }
         }
 
         .ms-Button-label {
