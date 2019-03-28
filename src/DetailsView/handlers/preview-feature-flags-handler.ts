@@ -3,8 +3,8 @@
 import * as _ from 'lodash/index';
 
 import { FeatureFlagDetail, FeatureFlags } from '../../common/feature-flags';
+import { DisplayableFeatureFlag } from '../../common/types/store-data/displayable-feature-flag';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
-import { IDisplayableFeatureFlag } from '../../common/types/store-data/idisplayable-feature-flag';
 
 export class PreviewFeatureFlagsHandler {
     private featureFlagDetails: FeatureFlagDetail[];
@@ -13,9 +13,9 @@ export class PreviewFeatureFlagsHandler {
         this.featureFlagDetails = featureFlagDetails;
     }
 
-    public getDisplayableFeatureFlags(featureFlagValues: FeatureFlagStoreData): IDisplayableFeatureFlag[] {
+    public getDisplayableFeatureFlags(featureFlagValues: FeatureFlagStoreData): DisplayableFeatureFlag[] {
         const showAll = featureFlagValues[FeatureFlags.showAllFeatureFlags];
-        const results: IDisplayableFeatureFlag[] = [];
+        const results: DisplayableFeatureFlag[] = [];
 
         _.each(this.featureFlagDetails, detail => {
             if (showAll || detail.isPreviewFeature) {

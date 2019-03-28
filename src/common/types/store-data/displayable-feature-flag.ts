@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-// tslint:disable-next-line:interface-name
-export interface IDisplayableFeatureFlag {
+export interface DisplayableFeatureFlag {
     id: string;
     displayableName: string;
     displayableDescription: string;
