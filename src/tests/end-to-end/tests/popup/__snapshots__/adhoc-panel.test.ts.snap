@@ -7,37 +7,44 @@ Array [
     "nodes": Array [
       Object {
         "failureSummary": "Fix any of the following:
+  Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+        "selector": Array [
+          "a[href=\\"\\\\#\\"]",
+        ],
+      },
+      Object {
+        "failureSummary": "Fix any of the following:
+  Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+        "selector": Array [
+          ".ad-hoc-tools-panel-group-0 > div:nth-child(3) > .ms-Grid-row:nth-child(2) > .ms-sm8.ms-Grid-col > a[target=\\"_blank\\"][title=\\"Guidance\\"]",
+        ],
+      },
+      Object {
+        "failureSummary": "Fix any of the following:
+  Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+        "selector": Array [
+          "div:nth-child(5) > .ms-Grid-row:nth-child(2) > .ms-sm8.ms-Grid-col > a[target=\\"_blank\\"][title=\\"Guidance\\"]",
+        ],
+      },
+      Object {
+        "failureSummary": "Fix any of the following:
+  Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+        "selector": Array [
+          "div:nth-child(1) > .ms-Grid-row:nth-child(2) > .ms-sm8.ms-Grid-col > a[target=\\"_blank\\"][title=\\"Guidance\\"]",
+        ],
+      },
+      Object {
+        "failureSummary": "Fix any of the following:
+  Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+        "selector": Array [
+          ".ad-hoc-tools-panel-group-1 > div:nth-child(3) > .ms-Grid-row:nth-child(2) > .ms-sm8.ms-Grid-col > a[target=\\"_blank\\"][title=\\"Guidance\\"]",
+        ],
+      },
+      Object {
+        "failureSummary": "Fix any of the following:
   Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 8.3pt, font weight: bold). Expected contrast ratio of 4.5:1",
         "selector": Array [
-          ":root",
-        ],
-      },
-      Object {
-        "failureSummary": "Fix any of the following:
-  Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
-        "selector": Array [
-          "button[aria-describedby=\\"launch-pad-item-description-1\\"]",
-        ],
-      },
-      Object {
-        "failureSummary": "Fix any of the following:
-  Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
-        "selector": Array [
-          "button[aria-describedby=\\"launch-pad-item-description-2\\"]",
-        ],
-      },
-      Object {
-        "failureSummary": "Fix any of the following:
-  Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
-        "selector": Array [
-          "button[aria-describedby=\\"launch-pad-item-description-3\\"]",
-        ],
-      },
-      Object {
-        "failureSummary": "Fix any of the following:
-  Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 8.3pt, font weight: bold). Expected contrast ratio of 4.5:1",
-        "selector": Array [
-          "a[title=\\"Navigate\\\\ to\\\\ axe-core\\\\ npm\\\\ page\\"]",
+          "#back-to-launchpad-link",
         ],
       },
     ],

@@ -27,9 +27,7 @@ describe('Ad hoc tools', () => {
     });
 
     it('should have launchpad link that takes us to adhoc panel & is sticky', async () => {
-        await popupPage.clickSelectorXPath(popupPageElementIdentifiers.adhocLaunchPadLinkXPath);
-
-        await verifyAdhocPanelLoaded();
+        await gotoAdhocPanel();
 
         // verify adhoc panel state is sticky
         targetPageInfo = await browser.setupNewTargetPage();
@@ -50,7 +48,7 @@ describe('Ad hoc tools', () => {
     });
 
     it('should pass accessibility validation', async () => {
-        await popupPage.clickSelectorXPath(popupPageElementIdentifiers.adhocLaunchPadLinkXPath);
+        await gotoAdhocPanel();
 
         const results = await scanForAccessibilityIssues(popupPage, '*');
         expect(results).toHaveLength(0);
@@ -61,11 +59,16 @@ describe('Ad hoc tools', () => {
         await enableHighContrast(detailsViewPage);
 
         await popupPage.bringToFront();
-        await popupPage.clickSelectorXPath(popupPageElementIdentifiers.adhocLaunchPadLinkXPath);
+        await gotoAdhocPanel();
 
         const results = await scanForAccessibilityIssues(popupPage, '*');
         expect(results).toMatchSnapshot();
     });
+
+    async function gotoAdhocPanel(): Promise<void> {
+        await popupPage.clickSelectorXPath(popupPageElementIdentifiers.adhocLaunchPadLinkXPath);
+        await verifyAdhocPanelLoaded();
+    }
 
     async function verifyAdhocPanelLoaded(): Promise<void> {
         await popupPage.waitForSelector(popupPageElementIdentifiers.adhocPanel);
