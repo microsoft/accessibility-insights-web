@@ -6,15 +6,15 @@ import { BaseStore } from '../common/base-store';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
 import { IDetailsViewData } from '../common/types/store-data/idetails-view-data';
-import { ITabStoreData } from '../common/types/store-data/itab-store-data';
 import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
+import { TabStoreData } from '../common/types/store-data/tab-store-data';
 import { title } from '../content/strings/application';
 import { GetDetailsRightPanelConfiguration } from './components/details-view-right-panel';
 import { GetDetailsSwitcherNavConfiguration } from './components/details-view-switcher-nav';
 
 export class DocumentTitleUpdater {
     constructor(
-        private readonly tabStore: BaseStore<ITabStoreData>,
+        private readonly tabStore: BaseStore<TabStoreData>,
         private readonly detailsViewStore: BaseStore<IDetailsViewData>,
         private readonly visualizationStore: BaseStore<IVisualizationStoreData>,
         private readonly assessmentStore: BaseStore<IAssessmentStoreData>,

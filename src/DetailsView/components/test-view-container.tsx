@@ -7,9 +7,9 @@ import { VisualizationConfigurationFactory } from '../../common/configs/visualiz
 import { NamedSFC } from '../../common/react/named-sfc';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../../common/types/store-data/iassessment-result-data';
-import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../../common/types/store-data/ivisualization-scan-result-data';
 import { IVisualizationStoreData } from '../../common/types/store-data/ivisualization-store-data';
+import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
@@ -26,7 +26,7 @@ export type TestViewContainerDeps = {
 
 export interface TestViewContainerProps {
     deps: TestViewContainerDeps;
-    tabStoreData: ITabStoreData;
+    tabStoreData: TabStoreData;
     assessmentStoreData: IAssessmentStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
     selectedTest: VisualizationType;

@@ -12,10 +12,10 @@ import { StoreActionMessageCreator } from '../../../../common/message-creators/s
 import { BaseClientStoresHub } from '../../../../common/stores/base-client-stores-hub';
 import { IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
 import { IDetailsViewData } from '../../../../common/types/store-data/idetails-view-data';
-import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../../../../common/types/store-data/ivisualization-scan-result-data';
 import { IVisualizationStoreData } from '../../../../common/types/store-data/ivisualization-store-data';
 import { IScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
+import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
 import { IssuesTableHandler } from '../../../../DetailsView/components/issues-table-handler';
 import { DetailsViewContainerDeps, DetailsViewContainerProps } from '../../../../DetailsView/details-view-container';
 import { AssessmentInstanceTableHandler } from '../../../../DetailsView/handlers/assessment-instance-table-handler';
@@ -28,7 +28,7 @@ export class DetailsViewContainerPropsBuilder {
     private visualizationStore: BaseStore<IVisualizationStoreData>;
     private assessmentStore: BaseStore<IAssessmentStoreData>;
     private visualizationScanResultStore: BaseStore<IVisualizationScanResultData>;
-    private tabStore: BaseStore<ITabStoreData>;
+    private tabStore: BaseStore<TabStoreData>;
     private featureFlagStore: BaseStore<DictionaryStringTo<boolean>>;
     private scopingStateStore: BaseStore<IScopingStoreData>;
     private detailsViewStore: BaseStore<IDetailsViewData>;

@@ -9,9 +9,9 @@ import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
 import { IDetailsViewData } from '../common/types/store-data/idetails-view-data';
-import { ITabStoreData } from '../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
 import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
+import { TabStoreData } from '../common/types/store-data/tab-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DetailsViewCommandBarDeps } from './components/details-view-command-bar';
 import { DetailsRightPanelConfiguration, DetailsViewContentDeps } from './components/details-view-right-panel';
@@ -27,7 +27,7 @@ export type DetailsViewMainContentDeps = DetailsViewContentDeps & DetailsViewLef
 
 export interface DetailsViewMainContentProps {
     deps: DetailsViewMainContentDeps;
-    tabStoreData: ITabStoreData;
+    tabStoreData: TabStoreData;
     assessmentStoreData: IAssessmentStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
     detailsViewStoreData: IDetailsViewData;
