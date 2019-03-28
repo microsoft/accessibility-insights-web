@@ -2,8 +2,7 @@
 // Licensed under the MIT License.
 import { InspectMode } from '../../../background/inspect-modes';
 
-// tslint:disable-next-line:interface-name
-export interface IInspectStoreData {
+export interface InspectStoreData {
     inspectMode: InspectMode;
     hoveredOverSelector: string[];
 }
