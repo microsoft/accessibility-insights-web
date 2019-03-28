@@ -1250,6 +1250,18 @@ div.insights-file-issue-details-dialog-container {
                         font-weight: $fontWeightSemiBold;
                     }
 
+                    .ms-Button-label {
+                        margin-left: 4px;
+                        margin-right: 4px;
+                        line-height: 100%;
+                        font-weight: 600;
+                    }
+
+                    svg {
+                        margin-left: 4px;
+                        margin-right: 4px;
+                    }
+
                     .issue-detail-table {
                         width: 100%;
                         padding: 0;
