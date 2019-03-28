@@ -65,7 +65,7 @@ describe('Ad hoc tools', () => {
         expect(results).toMatchSnapshot();
     });
 
-    async function gotoAdhocPanel() {
+    async function gotoAdhocPanel(): Promise<void> {
         await popupPage.clickSelectorXPath(popupPageElementIdentifiers.adhocLaunchPadLinkXPath);
         await verifyAdhocPanelLoaded();
     }
