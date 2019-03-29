@@ -221,10 +221,10 @@ describe('AssessmentBuilderTest', () => {
             requirementOrder: RequirementComparer.byOutcomeAndName,
         };
 
-        const nonDefaultAssessment = {
+        const nonDefaultAssessment: AssistedAssessment = {
             ...assistedAssessment,
             executeAssessmentScanPolicy: () => null,
-            steps: [],
+            requirements: [],
         };
 
         const assisted = AssessmentBuilder.Assisted(assistedAssessment);

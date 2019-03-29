@@ -52,24 +52,24 @@ describe('assessments-style-cop', () => {
     test('findFirstDuplicateTestStepKey finds first duplicate as promised', () => {
         const assessmentWithNoDuplicates = [
             {
-                steps: [{ key: 'A' }, { key: 'B' }],
+                requirements: [{ key: 'A' }, { key: 'B' }],
             },
             {
-                steps: [{ key: 'C' }, { key: 'D' }],
+                requirements: [{ key: 'C' }, { key: 'D' }],
             },
         ];
 
         const assessmentWithOneDuplicate = [
             ...assessmentWithNoDuplicates,
             {
-                steps: [{ key: 'E' }, { key: 'C' }],
+                requirements: [{ key: 'E' }, { key: 'C' }],
             },
         ];
 
         const assessmentWithTwoDuplicates = [
             ...assessmentWithNoDuplicates,
             {
-                steps: [{ key: 'B' }, { key: 'C' }],
+                requirements: [{ key: 'B' }, { key: 'C' }],
             },
         ];
 
