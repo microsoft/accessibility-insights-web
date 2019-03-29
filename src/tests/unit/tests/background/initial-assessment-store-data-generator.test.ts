@@ -50,7 +50,7 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
         },
     );
 
-    it('passess persisted data to initial data creator if persistedData.assessments is non-nullable', () => {
+    it('passes persisted data to initial data creator if persistedData.assessments is non-nullable', () => {
         const persistedAssessments: DictionaryStringTo<IAssessmentData> = {};
 
         assessments.forEach(assessment => {
