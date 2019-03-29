@@ -10,7 +10,7 @@ import { Messages } from '../common/messages';
 import { NotificationCreator } from '../common/notification-creator';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { ToggleTelemetryData } from '../common/telemetry-events';
-import { IScanData, IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
+import { ScanData, VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { UrlValidator } from '../common/url-validator';
 import { DictionaryStringTo } from '../types/common-types';
@@ -114,7 +114,7 @@ export class ChromeCommandHandler {
         return this.commandToVisualizationType[commandId];
     }
 
-    private createEnableNotificationIfCurrentStateIsDisabled(visualizationType: VisualizationType, data: IVisualizationStoreData): void {
+    private createEnableNotificationIfCurrentStateIsDisabled(visualizationType: VisualizationType, data: VisualizationStoreData): void {
         if (!this.shouldNotifyOnEnable(visualizationType)) {
             return;
         }
@@ -135,9 +135,9 @@ export class ChromeCommandHandler {
         return type !== VisualizationType.TabStops;
     }
 
-    private invokeToggleAction(visualizationType: VisualizationType, state: IVisualizationStoreData, tabId: number): void {
+    private invokeToggleAction(visualizationType: VisualizationType, state: VisualizationStoreData, tabId: number): void {
         const configuration = this.visualizationConfigurationFactory.getConfiguration(visualizationType);
-        const scanData: IScanData = configuration.getStoreData(state.tests);
+        const scanData: ScanData = configuration.getStoreData(state.tests);
         const tabContext = this.tabToContextMap[tabId];
 
         const action = VisualizationMessages.Common.Toggle;

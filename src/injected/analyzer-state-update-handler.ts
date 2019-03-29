@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import { TestMode } from '../common/configs/test-mode';
 import { EnumHelper } from '../common/enum-helper';
+import { AssessmentScanData, ScanData, VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { VisualizationConfiguration, VisualizationConfigurationFactory } from './../common/configs/visualization-configuration-factory';
-import { IAssessmentScanData, IScanData, IVisualizationStoreData } from './../common/types/store-data/ivisualization-store-data.d';
 
 export class AnalyzerStateUpdateHandler {
-    protected prevState: IVisualizationStoreData;
+    protected prevState: VisualizationStoreData;
     protected startScan: (id: string) => void;
     protected teardown: (id: string) => void;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
@@ -21,7 +21,7 @@ export class AnalyzerStateUpdateHandler {
         this.teardown = teardownDelegate;
     }
 
-    public handleUpdate(currState: IVisualizationStoreData): void {
+    public handleUpdate(currState: VisualizationStoreData): void {
         const prevState = this.prevState;
 
         this.terminateAnalyzers(prevState, currState);
@@ -30,7 +30,7 @@ export class AnalyzerStateUpdateHandler {
         this.prevState = currState;
     }
 
-    private terminateAnalyzers(prevState: IVisualizationStoreData, currState: IVisualizationStoreData): void {
+    private terminateAnalyzers(prevState: VisualizationStoreData, currState: VisualizationStoreData): void {
         const types = EnumHelper.getNumericValues<VisualizationType>(VisualizationType);
         types.forEach(type => {
             if (prevState != null) {
@@ -45,7 +45,7 @@ export class AnalyzerStateUpdateHandler {
         });
     }
 
-    private startAnalyzers(prevState: IVisualizationStoreData, currState: IVisualizationStoreData): void {
+    private startAnalyzers(prevState: VisualizationStoreData, currState: VisualizationStoreData): void {
         if (currState.scanning != null && currState.injectingInProgress !== true) {
             if (
                 prevState == null ||
@@ -59,8 +59,8 @@ export class AnalyzerStateUpdateHandler {
 
     private isTestTerminated(
         config: VisualizationConfiguration,
-        prevState: IVisualizationStoreData,
-        currState: IVisualizationStoreData,
+        prevState: VisualizationStoreData,
+        currState: VisualizationStoreData,
         step: string,
     ): boolean {
         const prevScanState = config.getStoreData(prevState.tests);
@@ -70,10 +70,10 @@ export class AnalyzerStateUpdateHandler {
         return prevState != null && prevEnabled === true && currEnabled === false;
     }
 
-    private getTestKeysFromConfiguration(config: VisualizationConfiguration, currState: IVisualizationStoreData): string[] {
+    private getTestKeysFromConfiguration(config: VisualizationConfiguration, currState: VisualizationStoreData): string[] {
         const keys = [];
         if (this.isAssessment(config)) {
-            const prevScanState = config.getStoreData(currState.tests) as IAssessmentScanData;
+            const prevScanState = config.getStoreData(currState.tests) as AssessmentScanData;
             Object.keys(prevScanState.stepStatus).forEach(step => {
                 keys.push(config.getIdentifier(step));
             });

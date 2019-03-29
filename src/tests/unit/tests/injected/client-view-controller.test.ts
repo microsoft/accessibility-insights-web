@@ -16,7 +16,7 @@ import { FeatureFlagStoreData } from '../../../../common/types/store-data/featur
 import { IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
 import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../../../../common/types/store-data/ivisualization-scan-result-data';
-import { IScanData, IVisualizationStoreData } from '../../../../common/types/store-data/ivisualization-store-data';
+import { ScanData, VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { ClientViewController } from '../../../../injected/client-view-controller';
 import { DrawingInitiator } from '../../../../injected/drawing-initiator';
@@ -366,8 +366,8 @@ class TestableClientViewController extends ClientViewController {
 }
 
 class MocksAndTestSubjectBuilder {
-    private _fromVisualizationStoreState: IVisualizationStoreData;
-    private _toVisualizationStoreState: IVisualizationStoreData;
+    private _fromVisualizationStoreState: VisualizationStoreData;
+    private _toVisualizationStoreState: VisualizationStoreData;
     private _fromVisualizationScanStoreState: IVisualizationScanResultData;
     private _toVisualizationScanStoreState: IVisualizationScanResultData;
     private _fromAssessmentStoreState: IAssessmentStoreData;
@@ -379,7 +379,7 @@ class MocksAndTestSubjectBuilder {
 
     private _fromFeatureFlagStoreState: FeatureFlagStoreData = getDefaultFeatureFlagValues();
     private _toFeatureFlagStoreState: FeatureFlagStoreData = getDefaultFeatureFlagValues();
-    private _visualizationStore: IMock<BaseStore<IVisualizationStoreData>>;
+    private _visualizationStore: IMock<BaseStore<VisualizationStoreData>>;
     private _assessmentStoreMock: IMock<BaseStore<IAssessmentStoreData>>;
     private _tabStoreMock: IMock<BaseStore<ITabStoreData>>;
     private _selectorMapHelperMock: IMock<SelectorMapHelper>;
@@ -693,7 +693,7 @@ class MocksAndTestSubjectBuilder {
         }
     }
 
-    private getFromStateForType(type: VisualizationType): IScanData {
+    private getFromStateForType(type: VisualizationType): ScanData {
         switch (type) {
             case VisualizationType.Headings:
                 return this._fromVisualizationStoreState.tests.adhoc.headings;

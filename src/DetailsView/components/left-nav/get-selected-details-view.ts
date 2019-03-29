@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IAssessmentStoreData } from '../../../common/types/store-data/iassessment-result-data';
-import { IVisualizationStoreData } from '../../../common/types/store-data/ivisualization-store-data';
+import { VisualizationStoreData } from '../../../common/types/store-data/visualization-store-data';
 
 export type GetSelectedDetailsViewProps = GetFastPassSelectedDetailsViewProps & GetAssessmentSelectedDetailsViewProps;
 
@@ -10,7 +10,7 @@ export type GetAssessmentSelectedDetailsViewProps = {
 };
 
 export type GetFastPassSelectedDetailsViewProps = {
-    visualizationStoreData: IVisualizationStoreData;
+    visualizationStoreData: VisualizationStoreData;
 };
 
 export const getAssessmentSelectedDetailsView = (props: GetAssessmentSelectedDetailsViewProps) =>

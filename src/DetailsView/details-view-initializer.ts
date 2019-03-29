@@ -38,9 +38,9 @@ import { IAssessmentStoreData } from '../common/types/store-data/iassessment-res
 import { InspectStoreData } from '../common/types/store-data/inspect-store-data';
 import { ITabStoreData } from '../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
-import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
+import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { UrlParser } from '../common/url-parser';
 import { WindowUtils } from '../common/window-utils';
 import { contentPages } from '../content';
@@ -101,10 +101,7 @@ if (isNaN(tabId) === false) {
             {
                 const telemetryFactory = new TelemetryDataFactory();
 
-                const visualizationStore = new StoreProxy<IVisualizationStoreData>(
-                    StoreNames[StoreNames.VisualizationStore],
-                    chromeAdapter,
-                );
+                const visualizationStore = new StoreProxy<VisualizationStoreData>(StoreNames[StoreNames.VisualizationStore], chromeAdapter);
                 const tabStore = new StoreProxy<ITabStoreData>(StoreNames[StoreNames.TabStore], chromeAdapter);
                 const visualizationScanResultStore = new StoreProxy<IVisualizationScanResultData>(
                     StoreNames[StoreNames.VisualizationScanResultStore],

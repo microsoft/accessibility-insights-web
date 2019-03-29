@@ -12,7 +12,7 @@ import { AssesssmentVisualizationConfiguration } from '../common/configs/visuali
 import { Messages } from '../common/messages';
 import { ManualTestStatus } from '../common/types/manual-test-status';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
-import { IAssessmentScanData, IScanData } from '../common/types/store-data/ivisualization-store-data';
+import { AssessmentScanData, ScanData } from '../common/types/store-data/visualization-store-data';
 import { AssessmentInstanceRowData, AssessmentInstanceTable } from '../DetailsView/components/assessment-instance-table';
 import { AssessmentTestView } from '../DetailsView/components/assessment-test-view';
 import { RequirementLink } from '../DetailsView/components/requirement-link';
@@ -87,20 +87,20 @@ export class AssessmentBuilder {
         return requirementLink.renderRequirementDescriptionWithIndex();
     }
 
-    private static enableTest(scanData: IScanData, payload: AssessmentToggleActionPayload): void {
-        const scanAssessmentData = scanData as IAssessmentScanData;
+    private static enableTest(scanData: ScanData, payload: AssessmentToggleActionPayload): void {
+        const scanAssessmentData = scanData as AssessmentScanData;
         scanAssessmentData.enabled = true;
         scanAssessmentData.stepStatus[payload.requirement] = true;
     }
 
-    private static disableTest(scanData: IScanData, step: string): void {
-        const scanAssessmentData = scanData as IAssessmentScanData;
+    private static disableTest(scanData: ScanData, step: string): void {
+        const scanAssessmentData = scanData as AssessmentScanData;
         scanAssessmentData.stepStatus[step] = false;
         scanAssessmentData.enabled = Object.keys(scanAssessmentData.stepStatus).some(key => scanAssessmentData.stepStatus[key] === true);
     }
 
-    private static getTestStatus(scanData: IScanData, step: string): boolean {
-        const scanAssessmentData = scanData as IAssessmentScanData;
+    private static getTestStatus(scanData: ScanData, step: string): boolean {
+        const scanAssessmentData = scanData as AssessmentScanData;
         return step in scanAssessmentData.stepStatus && scanAssessmentData.stepStatus[step];
     }
 

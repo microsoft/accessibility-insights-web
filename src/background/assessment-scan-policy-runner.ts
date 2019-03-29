@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from '../assessments/types/iassessments-provider';
-import { TestsEnabledState } from '../common/types/store-data/ivisualization-store-data';
+import { TestsEnabledState } from '../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { AssessmentStore } from './stores/assessment-store';
 import { VisualizationStore } from './stores/visualization-store';

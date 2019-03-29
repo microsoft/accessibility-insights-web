@@ -11,7 +11,7 @@ import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-st
 import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
 import { ITabStoreData } from '../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
-import { IAssessmentScanData, IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
+import { AssessmentScanData, VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryNumberTo, DictionaryStringTo } from '../types/common-types';
 import { DrawingInitiator } from './drawing-initiator';
@@ -23,9 +23,9 @@ import { TargetPageActionMessageCreator } from './target-page-action-message-cre
 export class ClientViewController {
     private drawingInitiator: DrawingInitiator;
     private scrollingController: ScrollingController;
-    private currentVisualizationState: IVisualizationStoreData;
+    private currentVisualizationState: VisualizationStoreData;
     private currentFeatureFlagState: FeatureFlagStoreData;
-    private visualizationStore: BaseStore<IVisualizationStoreData>;
+    private visualizationStore: BaseStore<VisualizationStoreData>;
     private assessmentStore: BaseStore<IAssessmentStoreData>;
     private tabStore: BaseStore<ITabStoreData>;
     private scanResultStore: BaseStore<IVisualizationScanResultData>;
@@ -40,7 +40,7 @@ export class ClientViewController {
     protected previousVisualizationSelectorMapStates: DictionaryNumberTo<DictionaryStringTo<AssessmentVisualizationInstance>> = {};
 
     constructor(
-        visualizationStore: BaseStore<IVisualizationStoreData>,
+        visualizationStore: BaseStore<VisualizationStoreData>,
         scanResultStore: BaseStore<IVisualizationScanResultData>,
         drawingInitiator,
         scrollingController,
@@ -96,7 +96,7 @@ export class ClientViewController {
         }
     }
 
-    private handleFocusChanges(oldVisualizationState: IVisualizationStoreData): void {
+    private handleFocusChanges(oldVisualizationState: VisualizationStoreData): void {
         if (
             this.currentVisualizationState == null ||
             oldVisualizationState.focusedTarget !== this.currentVisualizationState.focusedTarget
@@ -122,7 +122,7 @@ export class ClientViewController {
         types.forEach(type => {
             const configuration = this.visualizationConfigurationFactory.getConfiguration(type);
             if (this.isAssessment(configuration)) {
-                const visualizationState = configuration.getStoreData(this.currentVisualizationState.tests) as IAssessmentScanData;
+                const visualizationState = configuration.getStoreData(this.currentVisualizationState.tests) as AssessmentScanData;
                 Object.keys(visualizationState.stepStatus).forEach(step => {
                     this.executeUpdate(type, step);
                 });

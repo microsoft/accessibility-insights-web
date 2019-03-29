@@ -11,7 +11,7 @@ import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-st
 import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
 import { ITabStoreData } from '../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
-import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
+import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DetailsViewCommandBarDeps } from './components/details-view-command-bar';
 import { DetailsRightPanelConfiguration, DetailsViewContentDeps } from './components/details-view-right-panel';
@@ -32,7 +32,7 @@ export interface DetailsViewMainContentProps {
     featureFlagStoreData: FeatureFlagStoreData;
     detailsViewStoreData: DetailsViewData;
     selectedTest: VisualizationType;
-    visualizationStoreData: IVisualizationStoreData;
+    visualizationStoreData: VisualizationStoreData;
     visualizationScanResultData: IVisualizationScanResultData;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     assessmentsProvider: AssessmentsProvider;

@@ -5,7 +5,7 @@ import { IMock, It, Mock, Times } from 'typemoq';
 import { HeadingsTestStep } from '../../../../assessments/headings/test-steps/test-steps';
 import { LandmarkTestStep } from '../../../../assessments/landmarks/test-steps/test-steps';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
-import { IVisualizationStoreData } from '../../../../common/types/store-data/ivisualization-store-data';
+import { VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';
 import { AnalyzerStateUpdateHandler } from '../../../../injected/analyzer-state-update-handler';
 import { VisualizationStoreDataBuilder } from './../../common/visualization-store-data-builder';
 
@@ -196,11 +196,11 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
 });
 
 class TestableAnalyzerStateUpdateHandler extends AnalyzerStateUpdateHandler {
-    public setPrevState(prevState: IVisualizationStoreData): void {
+    public setPrevState(prevState: VisualizationStoreData): void {
         this.prevState = prevState;
     }
 
-    public getPrevState(): IVisualizationStoreData {
+    public getPrevState(): VisualizationStoreData {
         return this.prevState;
     }
 

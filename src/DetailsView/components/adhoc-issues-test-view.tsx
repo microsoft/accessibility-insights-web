@@ -8,7 +8,7 @@ import { NamedSFC } from '../../common/react/named-sfc';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../../common/types/store-data/ivisualization-scan-result-data';
-import { IVisualizationStoreData } from '../../common/types/store-data/ivisualization-store-data';
+import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewToggleClickHandlerFactory } from '../handlers/details-view-toggle-click-handler-factory';
 import { ReportGenerator } from '../reports/report-generator';
@@ -24,7 +24,7 @@ export interface AdhocIssuesTestViewProps {
     featureFlagStoreData: FeatureFlagStoreData;
     issueTrackerPath: string;
     selectedTest: VisualizationType;
-    visualizationStoreData: IVisualizationStoreData;
+    visualizationStoreData: VisualizationStoreData;
     visualizationScanResultData: IVisualizationScanResultData;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;

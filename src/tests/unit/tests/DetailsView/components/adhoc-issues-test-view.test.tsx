@@ -8,7 +8,7 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 import { DisplayableVisualizationTypeData } from '../../../../../common/configs/visualization-configuration-factory';
 import { ITabStoreData } from '../../../../../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../../../../../common/types/store-data/ivisualization-scan-result-data';
-import { IScanData, IVisualizationStoreData, TestsEnabledState } from '../../../../../common/types/store-data/ivisualization-store-data';
+import { ScanData, TestsEnabledState, VisualizationStoreData } from '../../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { AdhocIssuesTestView, AdhocIssuesTestViewProps } from '../../../../../DetailsView/components/adhoc-issues-test-view';
@@ -19,13 +19,13 @@ import { VisualizationScanResultStoreDataBuilder } from '../../../common/visuali
 
 describe('AdhocIssuesTestView', () => {
     let props: AdhocIssuesTestViewProps;
-    let getStoreDataMock: IMock<(data: TestsEnabledState) => IScanData>;
+    let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
     let clickHandlerFactoryMock: IMock<DetailsViewToggleClickHandlerFactory>;
     let displayableDataStub: DisplayableVisualizationTypeData;
     let contentStub: JSX.Element;
-    let scanDataStub: IScanData;
+    let scanDataStub: ScanData;
     let clickHandlerStub: (event: any) => void;
-    let visualizationStoreDataStub: IVisualizationStoreData;
+    let visualizationStoreDataStub: VisualizationStoreData;
     let visualizationScanResultStoreDataStub: IVisualizationScanResultData;
     let selectedTest: VisualizationType;
     let actionMessageCreatorStub: DetailsViewActionMessageCreator;
@@ -49,7 +49,7 @@ describe('AdhocIssuesTestView', () => {
         visualizationStoreDataStub = {
             tests: {},
             scanning: 'test-scanning',
-        } as IVisualizationStoreData;
+        } as VisualizationStoreData;
         clickHandlerStub = () => {};
         actionMessageCreatorStub = {} as DetailsViewActionMessageCreator;
         issuesSelectionStub = {} as ISelection;

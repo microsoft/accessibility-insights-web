@@ -20,9 +20,9 @@ import { DevToolState } from '../common/types/store-data/idev-tool-state';
 import { InspectStoreData } from '../common/types/store-data/inspect-store-data';
 import { ITabStoreData } from '../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
-import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
+import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { generateUID } from '../common/uid-generator';
 import { scan } from '../scanner/exposed-apis';
 import { Assessments } from './../assessments/assessments';
@@ -50,7 +50,7 @@ export class MainWindowInitializer extends WindowInitializer {
     private frameUrlSearchInitiator: FrameUrlSearchInitiator;
     private analyzerController: AnalyzerController;
     private inspectController: InspectController;
-    private visualizationStoreProxy: StoreProxy<IVisualizationStoreData>;
+    private visualizationStoreProxy: StoreProxy<VisualizationStoreData>;
     private assessmentStoreProxy: StoreProxy<IAssessmentStoreData>;
     private featureFlagStoreProxy: StoreProxy<FeatureFlagStoreData>;
     private userConfigStoreProxy: StoreProxy<UserConfigurationStoreData>;
@@ -64,7 +64,7 @@ export class MainWindowInitializer extends WindowInitializer {
         const asyncInitializationSteps: Promise<void>[] = [];
         asyncInitializationSteps.push(super.initialize());
 
-        this.visualizationStoreProxy = new StoreProxy<IVisualizationStoreData>(
+        this.visualizationStoreProxy = new StoreProxy<VisualizationStoreData>(
             StoreNames[StoreNames.VisualizationStore],
             this.clientChromeAdapter,
         );

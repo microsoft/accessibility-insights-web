@@ -10,7 +10,7 @@ import { VisualizationConfiguration, VisualizationConfigurationFactory } from '.
 import { KeyCodeConstants } from '../../../common/constants/keycode-constants';
 import { TelemetryEventSource } from '../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../common/types/details-view-pivot-type';
-import { IVisualizationStoreData } from '../../../common/types/store-data/ivisualization-store-data';
+import { VisualizationStoreData } from '../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../../types/common-types';
 import { ContentLink, ContentLinkDeps } from '../../../views/content/content-link';
@@ -22,7 +22,7 @@ export interface DiagnosticViewToggleProps {
     featureFlags: DictionaryStringTo<boolean>;
     type: VisualizationType;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
-    visualizationStoreData: IVisualizationStoreData;
+    visualizationStoreData: VisualizationStoreData;
     actionMessageCreator: PopupActionMessageCreator;
     clickHandler: DiagnosticViewClickHandler;
     shortcutCommands: chrome.commands.Command[];

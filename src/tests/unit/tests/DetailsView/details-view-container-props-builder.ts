@@ -13,8 +13,8 @@ import { DetailsViewData } from '../../../../common/types/store-data/details-vie
 import { IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
 import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../../../../common/types/store-data/ivisualization-scan-result-data';
-import { IVisualizationStoreData } from '../../../../common/types/store-data/ivisualization-store-data';
 import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
+import { VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';
 import { IssuesTableHandler } from '../../../../DetailsView/components/issues-table-handler';
 import { DetailsViewContainerDeps, DetailsViewContainerProps } from '../../../../DetailsView/details-view-container';
 import { AssessmentInstanceTableHandler } from '../../../../DetailsView/handlers/assessment-instance-table-handler';
@@ -24,7 +24,7 @@ import { DictionaryStringTo } from '../../../../types/common-types';
 import { StoreMocks } from './store-mocks';
 
 export class DetailsViewContainerPropsBuilder {
-    private visualizationStore: BaseStore<IVisualizationStoreData>;
+    private visualizationStore: BaseStore<VisualizationStoreData>;
     private assessmentStore: BaseStore<IAssessmentStoreData>;
     private visualizationScanResultStore: BaseStore<IVisualizationScanResultData>;
     private tabStore: BaseStore<ITabStoreData>;

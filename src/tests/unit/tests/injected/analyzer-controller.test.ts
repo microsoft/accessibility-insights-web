@@ -13,8 +13,8 @@ import {
 } from '../../../../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../../../../common/enum-helper';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
-import { IScanData, IVisualizationStoreData, TestsEnabledState } from '../../../../common/types/store-data/ivisualization-store-data';
 import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
+import { ScanData, TestsEnabledState, VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { AnalyzerController } from '../../../../injected/analyzer-controller';
 import { AnalyzerStateUpdateHandler } from '../../../../injected/analyzer-state-update-handler';
@@ -30,7 +30,7 @@ describe('AnalyzerControllerTests', () => {
     let scopingStoreMock: IMock<BaseStore<ScopingStoreData>>;
     let featureFlagStoreStoreMock: IMock<FeatureFlagStore>;
     let testType: VisualizationType;
-    let getStoreDataMock: IMock<(data: TestsEnabledState) => IScanData>;
+    let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
     let getAnalyzerMock: IMock<(provider: AnalyzerProvider) => Analyzer>;
     let getIdentifierMock: IMock<() => string>;
     let identifier: string;
@@ -38,7 +38,7 @@ describe('AnalyzerControllerTests', () => {
 
     let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
 
-    let visualizationStoreState: IVisualizationStoreData;
+    let visualizationStoreState: VisualizationStoreData;
     let featureFlagStoreState: FeatureFlagStoreData;
     let scopingStoreState: ScopingStoreData;
     let analyzerProviderStrictMock: IMock<AnalyzerProvider>;
@@ -236,7 +236,7 @@ describe('AnalyzerControllerTests', () => {
             });
     }
 
-    function setupGetStoreDataMock(tests: TestsEnabledState, scanData: IScanData): void {
+    function setupGetStoreDataMock(tests: TestsEnabledState, scanData: ScanData): void {
         getStoreDataMock.setup(gcdm => gcdm(tests)).returns(() => scanData);
     }
 });

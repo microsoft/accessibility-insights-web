@@ -14,7 +14,7 @@ import { RequirementComparer } from '../../../../common/assessment/requirement-c
 import { Messages } from '../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
-import { IAssessmentScanData, TestsEnabledState } from '../../../../common/types/store-data/ivisualization-store-data';
+import { AssessmentScanData, TestsEnabledState } from '../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { AssessmentInstanceTable } from '../../../../DetailsView/components/assessment-instance-table';
 import { AssessmentTestView } from '../../../../DetailsView/components/assessment-test-view';
@@ -101,7 +101,7 @@ describe('AssessmentBuilderTest', () => {
 
         const config = manual.getVisualizationConfiguration();
         const key = testStep.key;
-        const scanData = { enabled: true, stepStatus: { key: true } } as IAssessmentScanData;
+        const scanData = { enabled: true, stepStatus: { key: true } } as AssessmentScanData;
         const vizStoreData = { assessments: { manualAssessmentKeyAssessment: scanData } } as any;
         expect(config.getStoreData(vizStoreData)).toEqual(scanData);
 
@@ -255,7 +255,7 @@ describe('AssessmentBuilderTest', () => {
 
         const config = assisted.getVisualizationConfiguration();
         const key = testStep1.key;
-        const scanData = { enabled: true, stepStatus: {} } as IAssessmentScanData;
+        const scanData = { enabled: true, stepStatus: {} } as AssessmentScanData;
         scanData.stepStatus[key] = true;
         const vizStoreData = { assessments: { headingsAssessment: scanData }, adhoc: {} } as TestsEnabledState;
 
