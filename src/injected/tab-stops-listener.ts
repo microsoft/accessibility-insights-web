@@ -7,7 +7,7 @@ import { DateProvider } from './../common/date-provider';
 import { WindowUtils } from './../common/window-utils';
 import { VisualizationWindowMessage } from './drawing-controller';
 import { ErrorMessageContent } from './frameCommunicators/error-message-content';
-import { FrameCommunicator, IMessageRequest } from './frameCommunicators/frame-communicator';
+import { FrameCommunicator, MessageRequest } from './frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from './frameCommunicators/window-message-handler';
 import { ScannerUtils } from './scanner-utils';
 
@@ -99,7 +99,7 @@ export class TabStopsListener {
 
     @autobind
     private sendTabbedElementsToParent(tabStopEvent: TabStopEvent): void {
-        const messageRequest: IMessageRequest<TabStopEvent> = {
+        const messageRequest: MessageRequest<TabStopEvent> = {
             win: this.windowUtils.getParentWindow(),
             command: TabStopsListener.getTabbedElementsCommand,
             message: tabStopEvent,
@@ -138,7 +138,7 @@ export class TabStopsListener {
     }
 
     private startListenToTabStopsInFrame(frame: HTMLIFrameElement): void {
-        const message: IMessageRequest<VisualizationWindowMessage> = {
+        const message: MessageRequest<VisualizationWindowMessage> = {
             command: TabStopsListener.startListeningCommand,
             frame: frame,
         };
@@ -147,7 +147,7 @@ export class TabStopsListener {
 
     @autobind
     private stopListenToTabStopsInFrame(frame: HTMLIFrameElement): void {
-        const message: IMessageRequest<VisualizationWindowMessage> = {
+        const message: MessageRequest<VisualizationWindowMessage> = {
             command: TabStopsListener.stopListeningCommand,
             frame: frame,
         };

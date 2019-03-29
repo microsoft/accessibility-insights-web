@@ -6,7 +6,7 @@ import * as React from 'react';
 import { InspectActionMessageCreator } from '../../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../../common/message-creators/scoping-action-message-creator';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
-import { IScopingStoreData } from '../../common/types/store-data/scoping-store-data';
+import { ScopingStoreData } from '../../common/types/store-data/scoping-store-data';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { GenericPanel } from './generic-panel';
 import { ScopingContainer } from './scoping-container';
@@ -17,7 +17,7 @@ export interface ScopingPanelProps {
     scopingActionMessageCreator: ScopingActionMessageCreator;
     inspectActionMessageCreator: InspectActionMessageCreator;
     featureFlagData: FeatureFlagStoreData;
-    scopingSelectorsData: IScopingStoreData;
+    scopingSelectorsData: ScopingStoreData;
 }
 
 export class ScopingPanel extends React.Component<ScopingPanelProps> {

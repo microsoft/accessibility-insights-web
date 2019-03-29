@@ -25,7 +25,7 @@ import { ILaunchPanelStoreData } from '../../../../common/types/store-data/ilaun
 import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../../../../common/types/store-data/ivisualization-scan-result-data';
 import { IVisualizationStoreData } from '../../../../common/types/store-data/ivisualization-store-data';
-import { IScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
+import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
 import { UserConfigurationStoreData } from '../../../../common/types/store-data/user-configuration-store';
 import { AssessmentsStoreDataBuilder } from '../../common/assessment-store-data-builder';
 import { DetailsViewStoreDataBuilder } from '../../common/details-view-store-data-builder';
@@ -79,7 +79,7 @@ export class StoreMocks {
         ).build();
     }
 
-    public scopingSelectorsData: IScopingStoreData = {
+    public scopingSelectorsData: ScopingStoreData = {
         selectors: {
             [ScopingInputTypes.include]: [],
             [ScopingInputTypes.exclude]: [],

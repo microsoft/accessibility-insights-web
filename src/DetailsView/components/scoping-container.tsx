@@ -9,13 +9,13 @@ import { SelectorInputList } from '../../common/components/selector-input-list';
 import { InspectActionMessageCreator } from '../../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../../common/message-creators/scoping-action-message-creator';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
-import { IScopingStoreData } from '../../common/types/store-data/scoping-store-data';
+import { ScopingStoreData } from '../../common/types/store-data/scoping-store-data';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 
 export interface ScopingContainerProps {
     actionMessageCreator: DetailsViewActionMessageCreator;
     featureFlagData: FeatureFlagStoreData;
-    scopingSelectorsData: IScopingStoreData;
+    scopingSelectorsData: ScopingStoreData;
     scopingActionMessageCreator: ScopingActionMessageCreator;
     inspectActionMessageCreator: InspectActionMessageCreator;
 }

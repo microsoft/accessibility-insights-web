@@ -6,7 +6,7 @@ import { InspectActionMessageCreator } from '../../common/message-creators/inspe
 import { ScopingActionMessageCreator } from '../../common/message-creators/scoping-action-message-creator';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { IDetailsViewData } from '../../common/types/store-data/idetails-view-data';
-import { IScopingStoreData } from '../../common/types/store-data/scoping-store-data';
+import { ScopingStoreData } from '../../common/types/store-data/scoping-store-data';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { ContentPanel, ContentPanelDeps, ContentPanelProps } from '../../views/content/content-panel';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
@@ -23,7 +23,7 @@ export interface DetailsViewOverlayProps {
     detailsViewStoreData: IDetailsViewData;
     featureFlagStoreData: FeatureFlagStoreData;
     previewFeatureFlagsHandler: PreviewFeatureFlagsHandler;
-    scopingStoreData: IScopingStoreData;
+    scopingStoreData: ScopingStoreData;
     scopingActionMessageCreator: ScopingActionMessageCreator;
     inspectActionMessageCreator: InspectActionMessageCreator;
     userConfigurationStoreData: UserConfigurationStoreData;

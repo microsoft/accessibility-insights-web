@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
 import { AssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
 import {
@@ -15,8 +16,8 @@ import { VisualizationType } from '../../../../common/types/visualization-type';
 import { DrawingController, VisualizationWindowMessage } from '../../../../injected/drawing-controller';
 import { FrameCommunicator } from '../../../../injected/frameCommunicators/frame-communicator';
 import {
+    AssessmentVisualizationInstance,
     HtmlElementAxeResultsHelper,
-    IAssessmentVisualizationInstance,
 } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { InstanceVisibilityChecker } from '../../../../injected/instance-visibility-checker';
 import { HtmlElementAxeResults } from '../../../../injected/scanner-utils';
@@ -29,7 +30,7 @@ class VisualizationWindowMessageStubBuilder {
     private visualizationType: VisualizationType;
     private isEnabled: boolean;
     private configId: string;
-    private elementResults?: IAssessmentVisualizationInstance[];
+    private elementResults?: AssessmentVisualizationInstance[];
     private featureFlagStoreData?: FeatureFlagStoreData;
 
     public constructor(type: VisualizationType, configId: string) {
@@ -48,7 +49,7 @@ class VisualizationWindowMessageStubBuilder {
         return this;
     }
 
-    public setElementResults(results: IAssessmentVisualizationInstance[]): VisualizationWindowMessageStubBuilder {
+    public setElementResults(results: AssessmentVisualizationInstance[]): VisualizationWindowMessageStubBuilder {
         this.elementResults = results;
         return this;
     }
@@ -206,7 +207,7 @@ describe('DrawingControllerTest', () => {
         const iframeElement = 'iframeElement';
         const visibleResultStub = {} as HtmlElementAxeResults;
         const notVisibleResultStub = { isVisible: false } as HtmlElementAxeResults;
-        const disabledResultStub = { isVisualizationEnabled: false } as IAssessmentVisualizationInstance;
+        const disabledResultStub = { isVisualizationEnabled: false } as AssessmentVisualizationInstance;
         const resultsByFrames = [
             {
                 frame: null,
