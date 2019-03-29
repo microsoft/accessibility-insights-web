@@ -7,8 +7,8 @@ Object {
     "selectedTestType": -1,
   },
   "assessments": Object {
-    "assessment-1": null,
-    "assessment-2": null,
+    "assessment-1": Object {},
+    "assessment-2": Object {},
   },
   "persistedTabInfo": null,
 }

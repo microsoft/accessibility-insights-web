@@ -20,6 +20,7 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
     const knownRequirementIds = flatMap(assessments, test => test.steps.map(step => step.key));
     const knownRequirement1 = knownRequirementIds[0];
     const unknownRequirement: string = 'unknown-requirement';
+    const assessmentDataStub = {} as IAssessmentData;
     let defaultState: IAssessmentStoreData;
     let initialDataCreatorMock: IMock<InitialDataCreator>;
     let generator: InitialAssessmentStoreDataGenerator;
@@ -28,7 +29,7 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
         initialDataCreatorMock = Mock.ofInstance(() => null, MockBehavior.Strict);
         assessments.forEach(assessment => {
             (assessment as Assessment).initialDataCreator = initialDataCreatorMock.object;
-            initialDataCreatorMock.setup(mock => mock(assessment, null)).returns(() => null);
+            initialDataCreatorMock.setup(mock => mock(assessment, null)).returns(() => assessmentDataStub);
         });
         generator = new InitialAssessmentStoreDataGenerator(assessments);
         defaultState = generator.generateInitialState();
@@ -38,21 +39,24 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
         expect(defaultState).toMatchSnapshot();
     });
 
-    it.each([[undefined], [null]])('outputs default assessment data if persistedData.assessments is %p', persistedAssessments => {
-        const generatedState = generator.generateInitialState({
-            assessments: persistedAssessments,
-        } as IAssessmentStoreData);
+    it.each([[undefined], [null]])(
+        'passes nulled persisted data to initial data creator if persistedData.assessments is %p',
+        persistedAssessments => {
+            const generatedState = generator.generateInitialState({
+                assessments: persistedAssessments,
+            } as IAssessmentStoreData);
 
-        expect(generatedState.assessments).toEqual(defaultState.assessments);
-    });
+            expect(generatedState.assessments).toEqual(defaultState.assessments);
+        },
+    );
 
-    it('outputs default assessment data if persistedData.assessments is non-nullable', () => {
+    it('passess persisted data to initial data creator if persistedData.assessments is non-nullable', () => {
         const persistedAssessments: DictionaryStringTo<IAssessmentData> = {};
 
         assessments.forEach(assessment => {
             persistedAssessments[assessment.key] = {} as IAssessmentData;
             (assessment as Assessment).initialDataCreator = initialDataCreatorMock.object;
-            initialDataCreatorMock.setup(mock => mock(assessment, persistedAssessments[assessment.key])).returns(() => null);
+            initialDataCreatorMock.setup(mock => mock(assessment, persistedAssessments[assessment.key])).returns(() => assessmentDataStub);
         });
 
         const generatedState = generator.generateInitialState({

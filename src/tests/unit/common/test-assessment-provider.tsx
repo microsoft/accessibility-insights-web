@@ -20,6 +20,10 @@ const content = {
     },
 };
 
+const initialDataCreator = () => {
+    return {} as IAssessmentData;
+};
+
 export const contentProvider = ContentPage.provider(content);
 
 const assessmentWithColumns: Assessment = {
@@ -28,9 +32,7 @@ const assessmentWithColumns: Assessment = {
     title: 'assessment 1',
     gettingStarted: null,
     guidance: content.assessment1.guidance,
-    initialDataCreator: () => {
-        return {} as IAssessmentData;
-    },
+    initialDataCreator,
     steps: [
         {
             key: 'assessment-1-step-1',
@@ -89,9 +91,7 @@ const simpleAssessment = {
     type: -2 as VisualizationType,
     title: 'assessment 2',
     gettingStarted: null,
-    initialDataCreator: () => {
-        return {} as IAssessmentData;
-    },
+    initialDataCreator,
     steps: [
         {
             key: 'assessment-2-step-1',
@@ -127,9 +127,7 @@ const automatedAssessment = {
     type: -3 as VisualizationType,
     title: 'assessment 3',
     gettingStarted: null,
-    initialDataCreator: () => {
-        return {} as IAssessmentData;
-    },
+    initialDataCreator,
     steps: [
         {
             key: 'assessment-3-step-2',
