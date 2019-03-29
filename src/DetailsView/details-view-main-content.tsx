@@ -2,13 +2,12 @@
 // Licensed under the MIT License.
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
-
 import { AssessmentsProvider } from '../assessments/types/iassessments-provider';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
+import { DetailsViewData } from '../common/types/store-data/details-view-data';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
-import { IDetailsViewData } from '../common/types/store-data/idetails-view-data';
 import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
 import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
@@ -30,7 +29,7 @@ export interface DetailsViewMainContentProps {
     tabStoreData: TabStoreData;
     assessmentStoreData: IAssessmentStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
-    detailsViewStoreData: IDetailsViewData;
+    detailsViewStoreData: DetailsViewData;
     selectedTest: VisualizationType;
     visualizationStoreData: IVisualizationStoreData;
     visualizationScanResultData: IVisualizationScanResultData;

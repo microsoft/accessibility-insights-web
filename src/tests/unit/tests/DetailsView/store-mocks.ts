@@ -17,9 +17,9 @@ import { VisualizationScanResultStore } from '../../../../background/stores/visu
 import { VisualizationStore } from '../../../../background/stores/visualization-store';
 import { FeatureFlags } from '../../../../common/feature-flags';
 import { CommandStoreData } from '../../../../common/types/store-data/command-store-data';
+import { DetailsViewData } from '../../../../common/types/store-data/details-view-data';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
-import { IDetailsViewData } from '../../../../common/types/store-data/idetails-view-data';
 import { ILaunchPanelStoreData } from '../../../../common/types/store-data/ilaunch-panel-store-data';
 import { IVisualizationScanResultData } from '../../../../common/types/store-data/ivisualization-scan-result-data';
 import { IVisualizationStoreData } from '../../../../common/types/store-data/ivisualization-store-data';
@@ -110,7 +110,7 @@ export class StoreMocks {
         return this;
     }
 
-    public setDetailsViewStoreData(data: IDetailsViewData): StoreMocks {
+    public setDetailsViewStoreData(data: DetailsViewData): StoreMocks {
         this.detailsViewStoreData = data;
         return this;
     }
