@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-
 import { StoreNames } from '../../common/stores/store-names';
-import { ICurrentPanel, IDetailsViewData } from '../../common/types/store-data/idetails-view-data';
+import { CurrentPanel } from '../../common/types/store-data/current-panel';
+import { DetailsViewData } from '../../common/types/store-data/details-view-data';
 import { DetailsViewRightContentPanelType } from '../../DetailsView/components/left-nav/details-view-right-content-panel-type';
 import { ContentActions } from '../actions/content-actions';
 import { DetailsViewActions } from '../actions/details-view-actions';
@@ -11,7 +11,7 @@ import { ScopingActions } from '../actions/scoping-actions';
 import { PreviewFeaturesActions } from './../actions/preview-features-actions';
 import { BaseStoreImpl } from './base-store-impl';
 
-export class DetailsViewStore extends BaseStoreImpl<IDetailsViewData> {
+export class DetailsViewStore extends BaseStoreImpl<DetailsViewData> {
     constructor(
         private previewFeaturesActions: PreviewFeaturesActions,
         private scopingActions: ScopingActions,
@@ -21,8 +21,8 @@ export class DetailsViewStore extends BaseStoreImpl<IDetailsViewData> {
         super(StoreNames.DetailsViewStore);
     }
 
-    public getDefaultState(): IDetailsViewData {
-        const data: IDetailsViewData = {
+    public getDefaultState(): DetailsViewData {
+        const data: DetailsViewData = {
             contentPath: '',
             currentPanel: {
                 isPreviewFeaturesOpen: false,
@@ -56,7 +56,7 @@ export class DetailsViewStore extends BaseStoreImpl<IDetailsViewData> {
     }
 
     @autobind
-    private onOpen(flagName: keyof ICurrentPanel, mutator?: (IDetailsViewData) => void): void {
+    private onOpen(flagName: keyof CurrentPanel, mutator?: (IDetailsViewData) => void): void {
         Object.keys(this.state.currentPanel).forEach(key => {
             this.state.currentPanel[key] = false;
         });
@@ -70,7 +70,7 @@ export class DetailsViewStore extends BaseStoreImpl<IDetailsViewData> {
     }
 
     @autobind
-    private onClose(flagName: keyof ICurrentPanel, mutator?: (IDetailsViewData) => void): void {
+    private onClose(flagName: keyof CurrentPanel, mutator?: (IDetailsViewData) => void): void {
         this.state.currentPanel[flagName] = false;
 
         if (mutator != null) {
