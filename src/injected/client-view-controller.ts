@@ -9,9 +9,9 @@ import { VisualizationConfiguration, VisualizationConfigurationFactory } from '.
 import { EnumHelper } from '../common/enum-helper';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
-import { ITabStoreData } from '../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
 import { IAssessmentScanData, IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
+import { TabStoreData } from '../common/types/store-data/tab-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryNumberTo, DictionaryStringTo } from '../types/common-types';
 import { DrawingInitiator } from './drawing-initiator';
@@ -27,11 +27,11 @@ export class ClientViewController {
     private currentFeatureFlagState: FeatureFlagStoreData;
     private visualizationStore: BaseStore<IVisualizationStoreData>;
     private assessmentStore: BaseStore<IAssessmentStoreData>;
-    private tabStore: BaseStore<ITabStoreData>;
+    private tabStore: BaseStore<TabStoreData>;
     private scanResultStore: BaseStore<IVisualizationScanResultData>;
     private currentScanResultState: IVisualizationScanResultData;
     private currentAssessmentState: IAssessmentStoreData;
-    private currentTabState: ITabStoreData;
+    private currentTabState: TabStoreData;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
     private featureFlagStore: BaseStore<DictionaryStringTo<boolean>>;
     private selectorMapHelper: SelectorMapHelper;
@@ -47,7 +47,7 @@ export class ClientViewController {
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
         featureFlagStore: BaseStore<DictionaryStringTo<boolean>>,
         assessmentStore: BaseStore<IAssessmentStoreData>,
-        tabStore: BaseStore<ITabStoreData>,
+        tabStore: BaseStore<TabStoreData>,
         selectorMapHelper: SelectorMapHelper,
         targetPageActionMessageCreator: TargetPageActionMessageCreator,
     ) {

@@ -14,9 +14,9 @@ import { EnumHelper } from '../../../../common/enum-helper';
 import { getDefaultFeatureFlagValues } from '../../../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
-import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../../../../common/types/store-data/ivisualization-scan-result-data';
 import { IScanData, IVisualizationStoreData } from '../../../../common/types/store-data/ivisualization-store-data';
+import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { ClientViewController } from '../../../../injected/client-view-controller';
 import { DrawingInitiator } from '../../../../injected/drawing-initiator';
@@ -39,7 +39,7 @@ describe('ClientViewControllerTest', () => {
         const visualizationStore = Mock.ofType(VisualizationStore, MockBehavior.Strict);
         const visualizationScanResultStoreMock = Mock.ofType(VisualizationScanResultStore, MockBehavior.Strict);
         const assessmentStoreMock = Mock.ofType<BaseStore<IAssessmentStoreData>>(null, MockBehavior.Strict);
-        const tabStoreMock = Mock.ofType<BaseStore<ITabStoreData>>(TabStore, MockBehavior.Strict);
+        const tabStoreMock = Mock.ofType<BaseStore<TabStoreData>>(TabStore, MockBehavior.Strict);
         const featureFlagStoreMock = Mock.ofType(FeatureFlagStore);
 
         visualizationStore
@@ -372,8 +372,8 @@ class MocksAndTestSubjectBuilder {
     private _toVisualizationScanStoreState: IVisualizationScanResultData;
     private _fromAssessmentStoreState: IAssessmentStoreData;
     private _toAssessmentStoreState: IAssessmentStoreData;
-    private _fromTabStoreState: ITabStoreData;
-    private _toTabStoreState: ITabStoreData;
+    private _fromTabStoreState: TabStoreData;
+    private _toTabStoreState: TabStoreData;
     private _fromTargetTabId: number;
     private _toTargetTabId: number;
 
@@ -381,7 +381,7 @@ class MocksAndTestSubjectBuilder {
     private _toFeatureFlagStoreState: FeatureFlagStoreData = getDefaultFeatureFlagValues();
     private _visualizationStore: IMock<BaseStore<IVisualizationStoreData>>;
     private _assessmentStoreMock: IMock<BaseStore<IAssessmentStoreData>>;
-    private _tabStoreMock: IMock<BaseStore<ITabStoreData>>;
+    private _tabStoreMock: IMock<BaseStore<TabStoreData>>;
     private _selectorMapHelperMock: IMock<SelectorMapHelper>;
     private _visualizationScanResultStoreMock: IMock<BaseStore<IVisualizationScanResultData>>;
     private _featureFlagStoreMock: IMock<BaseStore<DictionaryStringTo<boolean>>>;
@@ -564,8 +564,8 @@ class MocksAndTestSubjectBuilder {
         this._toAssessmentStoreState = new AssessmentsStoreDataBuilder(assessmentsProviderMock.object, assessmentDataConverterMock.object)
             .withTargetTab(this._toTargetTabId, null, null, false)
             .build();
-        this._fromTabStoreState = { id: 1 } as ITabStoreData;
-        this._toTabStoreState = { id: 1 } as ITabStoreData;
+        this._fromTabStoreState = { id: 1 } as TabStoreData;
+        this._toTabStoreState = { id: 1 } as TabStoreData;
 
         this._selectorMap = {
             key1: {
@@ -592,7 +592,7 @@ class MocksAndTestSubjectBuilder {
     private setupGetStateMock(): void {
         this._visualizationStore = Mock.ofType(VisualizationStore);
         this._assessmentStoreMock = Mock.ofType<BaseStore<IAssessmentStoreData>>();
-        this._tabStoreMock = Mock.ofType<BaseStore<ITabStoreData>>(TabStore);
+        this._tabStoreMock = Mock.ofType<BaseStore<TabStoreData>>(TabStore);
         this._visualizationScanResultStoreMock = Mock.ofType(VisualizationScanResultStore);
         this._featureFlagStoreMock = Mock.ofType(FeatureFlagStore);
 
