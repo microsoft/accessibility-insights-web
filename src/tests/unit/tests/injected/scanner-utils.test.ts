@@ -5,7 +5,7 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { ScopingInputTypes } from '../../../../background/scoping-input-types';
 import { ScopingStore } from '../../../../background/stores/global/scoping-store';
 import { Logger } from '../../../../common/logging/logger';
-import { IScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
+import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults, ScannerUtils } from '../../../../injected/scanner-utils';
 import { scan, ScanOptions } from '../../../../scanner/exposed-apis';
 import { RuleResult, ScanResults } from '../../../../scanner/iruleresults';
@@ -15,7 +15,7 @@ describe('ScannerUtilsTest', () => {
     let scannerMock: IMock<typeof scan>;
     let testSubject: ScannerUtils;
     let scopingStoreMock: IMock<ScopingStore>;
-    let scopingState: IScopingStoreData;
+    let scopingState: ScopingStoreData;
 
     beforeEach(() => {
         scannerMock = Mock.ofInstance(scan, MockBehavior.Strict);

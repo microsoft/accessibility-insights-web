@@ -40,7 +40,7 @@ import { InspectStoreData } from '../common/types/store-data/inspect-store-data'
 import { ITabStoreData } from '../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
 import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
-import { IScopingStoreData } from '../common/types/store-data/scoping-store-data';
+import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 import { UrlParser } from '../common/url-parser';
 import { WindowUtils } from '../common/window-utils';
@@ -117,7 +117,7 @@ if (isNaN(tabId) === false) {
                     StoreNames[StoreNames.FeatureFlagStore],
                     chromeAdapter,
                 );
-                const scopingStore = new StoreProxy<IScopingStoreData>(StoreNames[StoreNames.ScopingPanelStateStore], chromeAdapter);
+                const scopingStore = new StoreProxy<ScopingStoreData>(StoreNames[StoreNames.ScopingPanelStateStore], chromeAdapter);
                 const inspectStore = new StoreProxy<InspectStoreData>(StoreNames[StoreNames.InspectStore], chromeAdapter);
                 const userConfigStore = new StoreProxy<UserConfigurationStoreData>(
                     StoreNames[StoreNames.UserConfigurationStore],

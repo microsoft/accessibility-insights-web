@@ -14,7 +14,7 @@ import {
 import { EnumHelper } from '../../../../common/enum-helper';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 import { IScanData, IVisualizationStoreData, TestsEnabledState } from '../../../../common/types/store-data/ivisualization-store-data';
-import { IScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
+import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { AnalyzerController } from '../../../../injected/analyzer-controller';
 import { AnalyzerStateUpdateHandler } from '../../../../injected/analyzer-state-update-handler';
@@ -27,7 +27,7 @@ import { VisualizationStoreDataBuilder } from '../../common/visualization-store-
 
 describe('AnalyzerControllerTests', () => {
     let visualizationStoreMock: IMock<VisualizationStore>;
-    let scopingStoreMock: IMock<BaseStore<IScopingStoreData>>;
+    let scopingStoreMock: IMock<BaseStore<ScopingStoreData>>;
     let featureFlagStoreStoreMock: IMock<FeatureFlagStore>;
     let testType: VisualizationType;
     let getStoreDataMock: IMock<(data: TestsEnabledState) => IScanData>;
@@ -40,7 +40,7 @@ describe('AnalyzerControllerTests', () => {
 
     let visualizationStoreState: IVisualizationStoreData;
     let featureFlagStoreState: FeatureFlagStoreData;
-    let scopingStoreState: IScopingStoreData;
+    let scopingStoreState: ScopingStoreData;
     let analyzerProviderStrictMock: IMock<AnalyzerProvider>;
     let analyzerMock: IMock<Analyzer>;
     let tabStopsListenerMock: IMock<TabStopsListener>;
