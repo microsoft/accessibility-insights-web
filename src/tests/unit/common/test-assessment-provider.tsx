@@ -12,6 +12,7 @@ import { ManualTestStatus } from '../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { RequirementLink } from '../../../DetailsView/components/requirement-link';
 import { ContentPage } from '../../../views/content/content-page';
+import { IAssessmentData } from '../../../common/types/store-data/iassessment-result-data';
 
 const content = {
     assessment1: {
@@ -27,6 +28,9 @@ const assessmentWithColumns: Assessment = {
     title: 'assessment 1',
     gettingStarted: null,
     guidance: content.assessment1.guidance,
+    initialDataCreator: () => {
+        return {} as IAssessmentData;
+    },
     steps: [
         {
             key: 'assessment-1-step-1',
@@ -85,6 +89,9 @@ const simpleAssessment = {
     type: -2 as VisualizationType,
     title: 'assessment 2',
     gettingStarted: null,
+    initialDataCreator: () => {
+        return {} as IAssessmentData;
+    },
     steps: [
         {
             key: 'assessment-2-step-1',
@@ -120,6 +127,9 @@ const automatedAssessment = {
     type: -3 as VisualizationType,
     title: 'assessment 3',
     gettingStarted: null,
+    initialDataCreator: () => {
+        return {} as IAssessmentData;
+    },
     steps: [
         {
             key: 'assessment-3-step-2',

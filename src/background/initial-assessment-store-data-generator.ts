@@ -38,7 +38,7 @@ export class InitialAssessmentStoreDataGenerator {
 
         this.tests.forEach(test => {
             const persistedTestData = persistedTests && persistedTests[test.key];
-            assessmentData[test.key] = createInitialAssessmentTestData(test, persistedTestData);
+            assessmentData[test.key] = test.initialDataCreator(test, persistedTestData);
         });
 
         return assessmentData;

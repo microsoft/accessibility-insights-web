@@ -7,67 +7,8 @@ Object {
     "selectedTestType": -1,
   },
   "assessments": Object {
-    "assessment-1": Object {
-      "fullAxeResultsMap": null,
-      "generatedAssessmentInstancesMap": null,
-      "manualTestStepResultMap": Object {
-        "assessment-1-step-1": Object {
-          "id": "assessment-1-step-1",
-          "instances": Array [],
-          "status": 1,
-        },
-        "assessment-1-step-2": Object {
-          "id": "assessment-1-step-2",
-          "instances": Array [],
-          "status": 1,
-        },
-        "assessment-1-step-3": Object {
-          "id": "assessment-1-step-3",
-          "instances": Array [],
-          "status": 1,
-        },
-      },
-      "testStepStatus": Object {
-        "assessment-1-step-1": Object {
-          "isStepScanned": false,
-          "stepFinalResult": 1,
-        },
-        "assessment-1-step-2": Object {
-          "isStepScanned": false,
-          "stepFinalResult": 1,
-        },
-        "assessment-1-step-3": Object {
-          "isStepScanned": false,
-          "stepFinalResult": 1,
-        },
-      },
-    },
-    "assessment-2": Object {
-      "fullAxeResultsMap": null,
-      "generatedAssessmentInstancesMap": null,
-      "manualTestStepResultMap": Object {
-        "assessment-2-step-1": Object {
-          "id": "assessment-2-step-1",
-          "instances": Array [],
-          "status": 1,
-        },
-        "assessment-2-step-2": Object {
-          "id": "assessment-2-step-2",
-          "instances": Array [],
-          "status": 1,
-        },
-      },
-      "testStepStatus": Object {
-        "assessment-2-step-1": Object {
-          "isStepScanned": false,
-          "stepFinalResult": 1,
-        },
-        "assessment-2-step-2": Object {
-          "isStepScanned": false,
-          "stepFinalResult": 1,
-        },
-      },
-    },
+    "assessment-1": null,
+    "assessment-2": null,
   },
   "persistedTabInfo": null,
 }

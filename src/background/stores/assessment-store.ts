@@ -277,14 +277,12 @@ export class AssessmentStore extends BaseStoreImpl<IAssessmentStoreData> {
     @autobind
     private onUpdateInstanceVisibility(payload: UpdateVisibilityPayload): void {
         const step = this.state.assessmentNavState.selectedTestStep;
-        const config = this.assessmentsProvider.forType(this.state.assessmentNavState.selectedTestType).getVisualizationConfiguration();
-        const assessmentData = config.getAssessmentData(this.state);
-
-        if (assessmentData.generatedAssessmentInstancesMap == null) {
-            return;
-        }
-
         payload.payloadBatch.forEach(updateInstanceVisibilityPayload => {
+            const config = this.assessmentsProvider.forType(updateInstanceVisibilityPayload.test).getVisualizationConfiguration();
+            const assessmentData = config.getAssessmentData(this.state);
+            if (assessmentData.generatedAssessmentInstancesMap == null) {
+                return;
+            }
             const testStepResult: ITestStepResult =
                 assessmentData.generatedAssessmentInstancesMap[updateInstanceVisibilityPayload.selector].testStepResults[step];
             testStepResult.isVisible = updateInstanceVisibilityPayload.isVisible;

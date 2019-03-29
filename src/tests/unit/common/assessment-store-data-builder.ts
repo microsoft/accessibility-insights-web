@@ -7,8 +7,11 @@ import { AssessmentStore } from '../../../background/stores/assessment-store';
 import { IAssessmentData, IAssessmentStoreData } from '../../../common/types/store-data/iassessment-result-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { BaseDataBuilder } from './base-data-builder';
+import { Mock, MockBehavior, It } from 'typemoq';
 
 export class AssessmentsStoreDataBuilder extends BaseDataBuilder<IAssessmentStoreData> {
+    private storeDataGeneratorMock = Mock.ofType(InitialAssessmentStoreDataGenerator, MockBehavior.Strict);
+
     constructor(
         provider: AssessmentsProvider,
         dataConverter: AssessmentDataConverter,
@@ -23,8 +26,20 @@ export class AssessmentsStoreDataBuilder extends BaseDataBuilder<IAssessmentStor
             provider,
             null,
             null,
-            initialAssessmentStoreDataGenerator || new InitialAssessmentStoreDataGenerator(provider.all()),
+            initialAssessmentStoreDataGenerator || this.getPreparedMock(),
         ).getDefaultState();
+    }
+
+    private getPreparedMock(): InitialAssessmentStoreDataGenerator {
+        const stubData: IAssessmentStoreData = {
+            persistedTabInfo: null,
+            assessments: {},
+            assessmentNavState: { selectedTestType: null, selectedTestStep: null },
+        };
+
+        this.storeDataGeneratorMock.setup(mock => mock.generateInitialState(It.isAny())).returns(() => stubData);
+
+        return this.storeDataGeneratorMock.object;
     }
 
     public withAssessment(assessmentName: string, data: IAssessmentData): AssessmentsStoreDataBuilder {
