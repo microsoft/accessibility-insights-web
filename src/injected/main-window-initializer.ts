@@ -19,10 +19,10 @@ import { IAssessmentStoreData } from '../common/types/store-data/iassessment-res
 import { DevToolState } from '../common/types/store-data/idev-tool-state';
 import { InspectStoreData } from '../common/types/store-data/inspect-store-data';
 import { ITabStoreData } from '../common/types/store-data/itab-store-data';
-import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
 import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
+import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { generateUID } from '../common/uid-generator';
 import { scan } from '../scanner/exposed-apis';
 import { Assessments } from './../assessments/assessments';
@@ -55,7 +55,7 @@ export class MainWindowInitializer extends WindowInitializer {
     private featureFlagStoreProxy: StoreProxy<FeatureFlagStoreData>;
     private userConfigStoreProxy: StoreProxy<UserConfigurationStoreData>;
     private inspectStoreProxy: StoreProxy<InspectStoreData>;
-    private visualizationScanResultStoreProxy: StoreProxy<IVisualizationScanResultData>;
+    private visualizationScanResultStoreProxy: StoreProxy<VisualizationScanResultData>;
     private scopingStoreProxy: StoreProxy<ScopingStoreData>;
     private tabStoreProxy: StoreProxy<ITabStoreData>;
     private devToolStoreProxy: StoreProxy<DevToolState>;
@@ -77,7 +77,7 @@ export class MainWindowInitializer extends WindowInitializer {
             StoreNames[StoreNames.UserConfigurationStore],
             this.clientChromeAdapter,
         );
-        this.visualizationScanResultStoreProxy = new StoreProxy<IVisualizationScanResultData>(
+        this.visualizationScanResultStoreProxy = new StoreProxy<VisualizationScanResultData>(
             StoreNames[StoreNames.VisualizationScanResultStore],
             this.clientChromeAdapter,
         );

@@ -8,8 +8,8 @@ import { NamedSFC } from '../../common/react/named-sfc';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../../common/types/store-data/iassessment-result-data';
 import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
-import { IVisualizationScanResultData } from '../../common/types/store-data/ivisualization-scan-result-data';
 import { IVisualizationStoreData } from '../../common/types/store-data/ivisualization-store-data';
+import { VisualizationScanResultData } from '../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
@@ -31,7 +31,7 @@ export interface TestViewContainerProps {
     featureFlagStoreData: FeatureFlagStoreData;
     selectedTest: VisualizationType;
     visualizationStoreData: IVisualizationStoreData;
-    visualizationScanResultData: IVisualizationScanResultData;
+    visualizationScanResultData: VisualizationScanResultData;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;

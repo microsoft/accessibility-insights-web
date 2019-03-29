@@ -5,7 +5,7 @@ import { TabActions } from '../../../../../background/actions/tab-actions';
 import { VisualizationScanResultActions } from '../../../../../background/actions/visualization-scan-result-actions';
 import { VisualizationScanResultStore } from '../../../../../background/stores/visualization-scan-result-store';
 import { StoreNames } from '../../../../../common/stores/store-names';
-import { ITabbedElementData, IVisualizationScanResultData } from '../../../../../common/types/store-data/ivisualization-scan-result-data';
+import { TabbedElementData, VisualizationScanResultData } from '../../../../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { HtmlElementAxeResults } from '../../../../../injected/scanner-utils';
 import { ScanResults } from '../../../../../scanner/iruleresults';
@@ -157,7 +157,7 @@ describe('VisualizationScanResultStoreTest', () => {
     });
 
     test('onTabStopDisabled', () => {
-        const tabEvents: ITabbedElementData[] = [
+        const tabEvents: TabbedElementData[] = [
             {
                 target: ['selector'],
                 timestamp: 1,
@@ -467,7 +467,7 @@ describe('VisualizationScanResultStoreTest', () => {
             ],
         };
 
-        const tabbedElements: ITabbedElementData[] = [
+        const tabbedElements: TabbedElementData[] = [
             {
                 timestamp: payload.tabbedElements[0].timestamp,
                 target: payload.tabbedElements[0].target,
@@ -484,7 +484,7 @@ describe('VisualizationScanResultStoreTest', () => {
     });
 
     test('onAddTabbedElement: ensure correct tab order', () => {
-        const initialTabbedElements: ITabbedElementData[] = [
+        const initialTabbedElements: TabbedElementData[] = [
             {
                 timestamp: 10,
                 target: ['selector-10'],
@@ -511,7 +511,7 @@ describe('VisualizationScanResultStoreTest', () => {
             ],
         };
 
-        const expectedTabbedElements: ITabbedElementData[] = [
+        const expectedTabbedElements: TabbedElementData[] = [
             initialTabbedElements[0],
             {
                 timestamp: payload.tabbedElements[0].timestamp,
@@ -548,13 +548,13 @@ describe('VisualizationScanResultStoreTest', () => {
 
     function createStoreTesterForVisualizationScanResultActions(
         actionName: keyof VisualizationScanResultActions,
-    ): StoreTester<IVisualizationScanResultData, VisualizationScanResultActions> {
+    ): StoreTester<VisualizationScanResultData, VisualizationScanResultActions> {
         const factory = (actions: VisualizationScanResultActions) => new VisualizationScanResultStore(actions, new TabActions());
 
         return new StoreTester(VisualizationScanResultActions, actionName, factory);
     }
 
-    function createStoreTesterForTabActions(actionName: keyof TabActions): StoreTester<IVisualizationScanResultData, TabActions> {
+    function createStoreTesterForTabActions(actionName: keyof TabActions): StoreTester<VisualizationScanResultData, TabActions> {
         const factory = (actions: TabActions) => new VisualizationScanResultStore(new VisualizationScanResultActions(), actions);
 
         return new StoreTester(TabActions, actionName, factory);

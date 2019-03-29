@@ -6,18 +6,18 @@ import { AssessmentsProvider } from '../assessments/types/iassessments-provider'
 import { BaseStore } from '../common/base-store';
 import { ManualTestStatus } from '../common/types/manual-test-status';
 import { IAssessmentStoreData, IGeneratedAssessmentInstance } from '../common/types/store-data/iassessment-result-data';
-import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
+import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryStringTo } from '../types/common-types';
 import { AssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
 
 export class SelectorMapHelper {
-    private scanResultStore: BaseStore<IVisualizationScanResultData>;
+    private scanResultStore: BaseStore<VisualizationScanResultData>;
     private assessmentStore: BaseStore<IAssessmentStoreData>;
     private assessmentsProvider: AssessmentsProvider;
 
     constructor(
-        scanResultStore: BaseStore<IVisualizationScanResultData>,
+        scanResultStore: BaseStore<VisualizationScanResultData>,
         assessmentStore: BaseStore<IAssessmentStoreData>,
         assessmentsProvider: AssessmentsProvider,
     ) {

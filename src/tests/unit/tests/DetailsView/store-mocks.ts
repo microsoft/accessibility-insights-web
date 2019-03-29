@@ -22,10 +22,10 @@ import { FeatureFlagStoreData } from '../../../../common/types/store-data/featur
 import { IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
 import { ILaunchPanelStoreData } from '../../../../common/types/store-data/ilaunch-panel-store-data';
 import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';
-import { IVisualizationScanResultData } from '../../../../common/types/store-data/ivisualization-scan-result-data';
 import { IVisualizationStoreData } from '../../../../common/types/store-data/ivisualization-store-data';
 import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
 import { UserConfigurationStoreData } from '../../../../common/types/store-data/user-configuration-store';
+import { VisualizationScanResultData } from '../../../../common/types/store-data/visualization-scan-result-data';
 import { AssessmentsStoreDataBuilder } from '../../common/assessment-store-data-builder';
 import { DetailsViewStoreDataBuilder } from '../../common/details-view-store-data-builder';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
@@ -85,7 +85,7 @@ export class StoreMocks {
         },
     };
 
-    public setVisualizationScanResultStoreData(data: IVisualizationScanResultData): StoreMocks {
+    public setVisualizationScanResultStoreData(data: VisualizationScanResultData): StoreMocks {
         this.visualizationScanResultsStoreData = data;
         return this;
     }

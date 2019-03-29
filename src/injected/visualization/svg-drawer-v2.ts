@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash/index';
 
-import { ITabbedElementData } from '../../common/types/store-data/ivisualization-scan-result-data';
+import { TabbedElementData } from '../../common/types/store-data/visualization-scan-result-data';
 import { ShadowUtils } from '../shadow-utils';
 import { WindowUtils } from './../../common/window-utils';
 import { BaseDrawer } from './base-drawer';
@@ -43,7 +43,7 @@ export class SVGDrawerV2 extends BaseDrawer {
         this.centerPositionCalculator = centerPositionCalculator;
     }
 
-    public initialize(drawerInfo: DrawerInitData<ITabbedElementData>): void {
+    public initialize(drawerInfo: DrawerInitData<TabbedElementData>): void {
         const tabbedElements = drawerInfo.data.map(element => {
             return {
                 ...element,
@@ -53,12 +53,12 @@ export class SVGDrawerV2 extends BaseDrawer {
         this.updateTabbedElements(tabbedElements);
     }
 
-    private updateTabbedElements(newTabbedElements: ITabbedElementData[]): void {
+    private updateTabbedElements(newTabbedElements: TabbedElementData[]): void {
         let diffFound = false;
         const dom: Document = this.drawerUtils.getDocumentElement();
 
         for (let pos = 0; pos < newTabbedElements.length; pos++) {
-            const newStateElement: ITabbedElementData = newTabbedElements[pos];
+            const newStateElement: TabbedElementData = newTabbedElements[pos];
             const oldStateElement: TabbedItem = this.tabbedElements[pos];
 
             if (diffFound || this.shouldRedraw(oldStateElement, newStateElement, pos)) {
@@ -70,7 +70,7 @@ export class SVGDrawerV2 extends BaseDrawer {
         }
     }
 
-    private shouldRedraw(oldStateElement: TabbedItem, newStateElement: ITabbedElementData, pos: number): boolean {
+    private shouldRedraw(oldStateElement: TabbedItem, newStateElement: TabbedElementData, pos: number): boolean {
         const elementsInSvgCount: number = this.tabbedElements.length;
         const isLastElementInSvg: boolean = pos === elementsInSvgCount - 1;
 
@@ -82,7 +82,7 @@ export class SVGDrawerV2 extends BaseDrawer {
         );
     }
 
-    private getNewTabbedElement(oldStateElement: TabbedItem, newStateElement: ITabbedElementData, pos: number, dom: Document): TabbedItem {
+    private getNewTabbedElement(oldStateElement: TabbedItem, newStateElement: TabbedElementData, pos: number, dom: Document): TabbedItem {
         const selector: string = newStateElement.target[newStateElement.target.length - 1];
 
         return {

@@ -15,8 +15,8 @@ import { getDefaultFeatureFlagValues } from '../../../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
 import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';
-import { IVisualizationScanResultData } from '../../../../common/types/store-data/ivisualization-scan-result-data';
 import { IScanData, IVisualizationStoreData } from '../../../../common/types/store-data/ivisualization-store-data';
+import { VisualizationScanResultData } from '../../../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { ClientViewController } from '../../../../injected/client-view-controller';
 import { DrawingInitiator } from '../../../../injected/drawing-initiator';
@@ -368,8 +368,8 @@ class TestableClientViewController extends ClientViewController {
 class MocksAndTestSubjectBuilder {
     private _fromVisualizationStoreState: IVisualizationStoreData;
     private _toVisualizationStoreState: IVisualizationStoreData;
-    private _fromVisualizationScanStoreState: IVisualizationScanResultData;
-    private _toVisualizationScanStoreState: IVisualizationScanResultData;
+    private _fromVisualizationScanStoreState: VisualizationScanResultData;
+    private _toVisualizationScanStoreState: VisualizationScanResultData;
     private _fromAssessmentStoreState: IAssessmentStoreData;
     private _toAssessmentStoreState: IAssessmentStoreData;
     private _fromTabStoreState: ITabStoreData;
@@ -383,7 +383,7 @@ class MocksAndTestSubjectBuilder {
     private _assessmentStoreMock: IMock<BaseStore<IAssessmentStoreData>>;
     private _tabStoreMock: IMock<BaseStore<ITabStoreData>>;
     private _selectorMapHelperMock: IMock<SelectorMapHelper>;
-    private _visualizationScanResultStoreMock: IMock<BaseStore<IVisualizationScanResultData>>;
+    private _visualizationScanResultStoreMock: IMock<BaseStore<VisualizationScanResultData>>;
     private _featureFlagStoreMock: IMock<BaseStore<DictionaryStringTo<boolean>>>;
     private _drawingInitiatorMock: IMock<DrawingInitiator>;
     private _scrollingControllerMock: IMock<ScrollingController>;
