@@ -6,7 +6,7 @@ import { BrowserAdapter } from '../../../../../background/browser-adapter';
 import { Tab } from '../../../../../common/itab';
 import { UrlParser } from '../../../../../common/url-parser';
 import { UrlValidator } from '../../../../../common/url-validator';
-import { TargetTabFinder } from '../../../../../popup/scripts/target-tab-finder';
+import { TargetTabFinder } from '../../../../../popup/target-tab-finder';
 
 describe('TargetTabFinderTest', () => {
     let testSubject: TargetTabFinder;

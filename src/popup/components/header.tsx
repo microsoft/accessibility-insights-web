@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { css } from '@uifabric/utilities';
 import * as React from 'react';
-import { NamedSFC } from '../../../common/react/named-sfc';
+import { NamedSFC } from '../../common/react/named-sfc';
 
 export interface HeaderProps {
     title: string;

@@ -3,16 +3,15 @@
 import { autobind } from '@uifabric/utilities';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
-
-import { BrowserAdapter } from '../../../background/browser-adapter';
-import { NewTabLink } from '../../../common/components/new-tab-link';
-import { withStoreSubscription, WithStoreSubscriptionDeps } from '../../../common/components/with-store-subscription';
-import { DisplayableStrings } from '../../../common/constants/displayable-strings';
-import { DropdownClickHandler } from '../../../common/dropdown-click-handler';
-import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
-import { ILaunchPanelStoreData } from '../../../common/types/store-data/ilaunch-panel-store-data';
-import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
-import { UrlValidator } from '../../../common/url-validator';
+import { BrowserAdapter } from '../../background/browser-adapter';
+import { NewTabLink } from '../../common/components/new-tab-link';
+import { withStoreSubscription, WithStoreSubscriptionDeps } from '../../common/components/with-store-subscription';
+import { DisplayableStrings } from '../../common/constants/displayable-strings';
+import { DropdownClickHandler } from '../../common/dropdown-click-handler';
+import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
+import { ILaunchPanelStoreData } from '../../common/types/store-data/ilaunch-panel-store-data';
+import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
+import { UrlValidator } from '../../common/url-validator';
 import { IPopupHandlers } from '../handlers/ipopup-handlers';
 import { PopupViewControllerHandler } from '../handlers/popup-view-controller-handler';
 import { LaunchPadRowConfigurationFactory } from '../launch-pad-row-configuration-factory';

@@ -9,7 +9,7 @@ import { ILocalStorageData } from '../../../../../../background/storage-data';
 import { LaunchPanelStore } from '../../../../../../background/stores/global/launch-panel-store';
 import { StoreNames } from '../../../../../../common/stores/store-names';
 import { ILaunchPanelStoreData } from '../../../../../../common/types/store-data/ilaunch-panel-store-data';
-import { LaunchPanelType } from '../../../../../../popup/scripts/components/popup-view';
+import { LaunchPanelType } from '../../../../../../popup/components/popup-view';
 import { createStoreWithNullParams, StoreTester } from '../../../../common/store-tester';
 
 describe('LaunchPanelStateStoreTest', () => {

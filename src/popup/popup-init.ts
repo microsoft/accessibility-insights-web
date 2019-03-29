@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { initializeFabricIcons } from '../../common/fabric-icons';
-import { UrlParser } from '../../common/url-parser';
-import { UrlValidator } from '../../common/url-validator';
-import { ChromeAdapter } from './../../background/browser-adapter';
+import { ChromeAdapter } from '../background/browser-adapter';
+import { initializeFabricIcons } from '../common/fabric-icons';
+import { UrlParser } from '../common/url-parser';
+import { UrlValidator } from '../common/url-validator';
 import { PopupInitializer } from './popup-initializer';
 import { TargetTabFinder } from './target-tab-finder';
 

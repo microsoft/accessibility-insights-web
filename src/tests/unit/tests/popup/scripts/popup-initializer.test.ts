@@ -4,8 +4,8 @@ import { It, Mock } from 'typemoq';
 
 import { ChromeAdapter } from '../../../../../background/browser-adapter';
 import { Logger } from '../../../../../common/logging/logger';
-import { PopupInitializer } from '../../../../../popup/scripts/popup-initializer';
-import { TargetTabFinder, TargetTabInfo } from '../../../../../popup/scripts/target-tab-finder';
+import { PopupInitializer } from '../../../../../popup/popup-initializer';
+import { TargetTabFinder, TargetTabInfo } from '../../../../../popup/target-tab-finder';
 
 describe('PopupInitializerTests', () => {
     test('initializePopup', async () => {

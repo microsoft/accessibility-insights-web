@@ -2,15 +2,14 @@
 // Licensed under the MIT License.
 import { map } from 'lodash';
 import * as React from 'react';
-
-import { BaseStore } from '../../../common/base-store';
-import { TestMode } from '../../../common/configs/test-mode';
-import { VisualizationConfigurationFactory } from '../../../common/configs/visualization-configuration-factory';
-import { TelemetryEventSource } from '../../../common/telemetry-events';
-import { CommandStoreData } from '../../../common/types/store-data/command-store-data';
-import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
-import { IVisualizationStoreData } from '../../../common/types/store-data/ivisualization-store-data';
-import { VisualizationType } from '../../../common/types/visualization-type';
+import { BaseStore } from '../../common/base-store';
+import { TestMode } from '../../common/configs/test-mode';
+import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
+import { TelemetryEventSource } from '../../common/telemetry-events';
+import { CommandStoreData } from '../../common/types/store-data/command-store-data';
+import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
+import { IVisualizationStoreData } from '../../common/types/store-data/ivisualization-store-data';
+import { VisualizationType } from '../../common/types/visualization-type';
 import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
 import { DiagnosticViewClickHandler } from '../handlers/diagnostic-view-toggle-click-handler';
 import { DiagnosticViewToggle, DiagnosticViewToggleDeps } from './diagnostic-view-toggle';

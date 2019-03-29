@@ -7,8 +7,8 @@ import {
     LaunchPanelHeaderDeps,
     LaunchPanelHeaderProps,
     LaunchPanelHeaderState,
-} from '../../../../../../popup/scripts/components/launch-panel-header';
-import { LaunchPanelHeaderClickHandler } from '../../../../../../popup/scripts/handlers/launch-panel-header-click-handler';
+} from '../../../../../../popup/components/launch-panel-header';
+import { LaunchPanelHeaderClickHandler } from '../../../../../../popup/handlers/launch-panel-header-click-handler';
 
 describe('FeedbackMenuClickHandlerTest', () => {
     let testObject: LaunchPanelHeaderClickHandler;

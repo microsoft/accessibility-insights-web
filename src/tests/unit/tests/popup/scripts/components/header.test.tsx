@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { Header, HeaderProps } from '../../../../../../popup/scripts/components/header';
+import { Header, HeaderProps } from '../../../../../../popup/components/header';
 
 describe('HeaderTest', () => {
     test('render', () => {

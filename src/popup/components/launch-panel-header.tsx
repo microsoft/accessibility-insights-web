@@ -3,12 +3,12 @@
 import { IconButton } from 'office-ui-fabric-react/lib/Button';
 import { IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import * as React from 'react';
-import { GearOptionsButtonComponent } from '../../../common/components/gear-options-button-component';
-import { DropdownClickHandler } from '../../../common/dropdown-click-handler';
-import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
-import { SupportLinkHandler } from '../../support-link-handler';
+import { GearOptionsButtonComponent } from '../../common/components/gear-options-button-component';
+import { DropdownClickHandler } from '../../common/dropdown-click-handler';
+import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
 import { LaunchPanelHeaderClickHandler } from '../handlers/launch-panel-header-click-handler';
+import { SupportLinkHandler } from '../support-link-handler';
 import { Header } from './header';
 import { HeaderContextualMenu, HeaderContextualMenuDeps } from './header-contextual-menu';
 

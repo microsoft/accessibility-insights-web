@@ -9,10 +9,10 @@ import { FeatureFlags } from '../../../../../../common/feature-flags';
 import { TelemetryEventSource } from '../../../../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
-import { PopupActionMessageCreator } from '../../../../../../popup/scripts/actions/popup-action-message-creator';
-import { HeaderContextualMenu, HeaderContextualMenuProps } from '../../../../../../popup/scripts/components/header-contextual-menu';
-import { LaunchPanelHeader } from '../../../../../../popup/scripts/components/launch-panel-header';
-import { LaunchPanelHeaderClickHandler } from '../../../../../../popup/scripts/handlers/launch-panel-header-click-handler';
+import { PopupActionMessageCreator } from '../../../../../../popup/actions/popup-action-message-creator';
+import { HeaderContextualMenu, HeaderContextualMenuProps } from '../../../../../../popup/components/header-contextual-menu';
+import { LaunchPanelHeader } from '../../../../../../popup/components/launch-panel-header';
+import { LaunchPanelHeaderClickHandler } from '../../../../../../popup/handlers/launch-panel-header-click-handler';
 import { EventStubFactory } from '../../../../common/event-stub-factory';
 
 describe('HeaderContextualMenu', () => {

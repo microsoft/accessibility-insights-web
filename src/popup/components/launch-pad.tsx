@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { AxeInfo } from '../../../common/axe-info';
-import { ExternalLink, ExternalLinkDeps } from '../../../common/components/external-link';
+import { AxeInfo } from '../../common/axe-info';
+import { ExternalLink, ExternalLinkDeps } from '../../common/components/external-link';
 import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
 import { LaunchPadItemRow } from './launch-pad-item-row';
 

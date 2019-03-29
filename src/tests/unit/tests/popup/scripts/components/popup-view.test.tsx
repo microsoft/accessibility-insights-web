@@ -12,18 +12,18 @@ import { BaseClientStoresHub } from '../../../../../../common/stores/base-client
 import { CommandStoreData } from '../../../../../../common/types/store-data/command-store-data';
 import { ILaunchPanelStoreData } from '../../../../../../common/types/store-data/ilaunch-panel-store-data';
 import { UserConfigurationStoreData } from '../../../../../../common/types/store-data/user-configuration-store';
-import { PopupActionMessageCreator } from '../../../../../../popup/scripts/actions/popup-action-message-creator';
-import { LaunchPanelHeader } from '../../../../../../popup/scripts/components/launch-panel-header';
+import { PopupActionMessageCreator } from '../../../../../../popup/actions/popup-action-message-creator';
+import { LaunchPanelHeader } from '../../../../../../popup/components/launch-panel-header';
 import {
     LaunchPanelType,
     PopupView,
     PopupViewControllerDeps,
     PopupViewControllerState,
     PopupViewProps,
-} from '../../../../../../popup/scripts/components/popup-view';
-import { DiagnosticViewClickHandler } from '../../../../../../popup/scripts/handlers/diagnostic-view-toggle-click-handler';
-import { PopupViewControllerHandler } from '../../../../../../popup/scripts/handlers/popup-view-controller-handler';
-import { LaunchPadRowConfigurationFactory } from '../../../../../../popup/scripts/launch-pad-row-configuration-factory';
+} from '../../../../../../popup/components/popup-view';
+import { DiagnosticViewClickHandler } from '../../../../../../popup/handlers/diagnostic-view-toggle-click-handler';
+import { PopupViewControllerHandler } from '../../../../../../popup/handlers/popup-view-controller-handler';
+import { LaunchPadRowConfigurationFactory } from '../../../../../../popup/launch-pad-row-configuration-factory';
 import { SupportLinkHandler } from '../../../../../../popup/support-link-handler';
 import { BaseDataBuilder } from '../../../../common/base-data-builder';
 import { ShortcutCommandsTestData } from '../../../../common/sample-test-data';

@@ -16,8 +16,8 @@ import {
 import { DetailsViewPivotType } from '../../../../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
 import { WindowUtils } from '../../../../../../common/window-utils';
-import { PopupActionMessageCreator } from '../../../../../../popup/scripts/actions/popup-action-message-creator';
-import { LaunchPanelType } from '../../../../../../popup/scripts/components/popup-view';
+import { PopupActionMessageCreator } from '../../../../../../popup/actions/popup-action-message-creator';
+import { LaunchPanelType } from '../../../../../../popup/components/popup-view';
 import { EventStubFactory } from '../../../../common/event-stub-factory';
 
 describe('PopupActionMessageCreatorTest', () => {

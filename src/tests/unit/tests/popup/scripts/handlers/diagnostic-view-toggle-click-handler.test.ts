@@ -7,7 +7,7 @@ import { VisualizationActionMessageCreator } from '../../../../../../common/mess
 import { TelemetryDataFactory } from '../../../../../../common/telemetry-data-factory';
 import { TelemetryEventSource, ToggleTelemetryData } from '../../../../../../common/telemetry-events';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
-import { DiagnosticViewClickHandler } from '../../../../../../popup/scripts/handlers/diagnostic-view-toggle-click-handler';
+import { DiagnosticViewClickHandler } from '../../../../../../popup/handlers/diagnostic-view-toggle-click-handler';
 import { EventStubFactory } from '../../../../common/event-stub-factory';
 import { VisualizationStoreDataBuilder } from '../../../../common/visualization-store-data-builder';
 

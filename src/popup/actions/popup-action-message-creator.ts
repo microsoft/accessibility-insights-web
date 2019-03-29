@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-import { BaseActionPayload, OnDetailsViewOpenPayload, SetLaunchPanelState } from '../../../background/actions/action-payloads';
-import { BaseActionMessageCreator } from '../../../common/message-creators/base-action-message-creator';
-import { Messages } from '../../../common/messages';
-import { SupportedMouseEvent, TelemetryDataFactory } from '../../../common/telemetry-data-factory';
-import * as TelemetryEvents from '../../../common/telemetry-events';
-import { TelemetryEventSource } from '../../../common/telemetry-events';
-import { DetailsViewPivotType } from '../../../common/types/details-view-pivot-type';
-import { VisualizationType } from '../../../common/types/visualization-type';
-import { WindowUtils } from '../../../common/window-utils';
+import { BaseActionPayload, OnDetailsViewOpenPayload, SetLaunchPanelState } from '../../background/actions/action-payloads';
+import { BaseActionMessageCreator } from '../../common/message-creators/base-action-message-creator';
+import { Messages } from '../../common/messages';
+import { SupportedMouseEvent, TelemetryDataFactory } from '../../common/telemetry-data-factory';
+import * as TelemetryEvents from '../../common/telemetry-events';
+import { TelemetryEventSource } from '../../common/telemetry-events';
+import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
+import { VisualizationType } from '../../common/types/visualization-type';
+import { WindowUtils } from '../../common/window-utils';
 import { LaunchPanelType } from '../components/popup-view';
 
 const visualizationMessages = Messages.Visualizations;

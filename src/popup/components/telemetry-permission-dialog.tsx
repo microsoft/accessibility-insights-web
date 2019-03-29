@@ -5,14 +5,13 @@ import { PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 import { Checkbox } from 'office-ui-fabric-react/lib/Checkbox';
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
-
-import { UserConfigMessageCreator } from '../../../common/message-creators/user-config-message-creator';
+import { UserConfigMessageCreator } from '../../common/message-creators/user-config-message-creator';
 import {
     privacyStatementPopupText,
     telemetryPopupCheckboxTitle,
     telemetryPopupNotice,
     telemetryPopupTitle,
-} from '../../../content/settings/improve-accessibility-insights';
+} from '../../content/settings/improve-accessibility-insights';
 
 export interface TelemetryPermissionDialogState {
     isEnableTelemetryChecked: boolean;
