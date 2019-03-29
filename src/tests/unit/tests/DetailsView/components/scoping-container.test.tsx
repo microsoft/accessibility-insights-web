@@ -8,12 +8,12 @@ import { ScopingInputTypes } from '../../../../../background/scoping-input-types
 import { SelectorInputList } from '../../../../../common/components/selector-input-list';
 import { InspectActionMessageCreator } from '../../../../../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../../../../../common/message-creators/scoping-action-message-creator';
-import { IScopingStoreData } from '../../../../../common/types/store-data/scoping-store-data';
+import { ScopingStoreData } from '../../../../../common/types/store-data/scoping-store-data';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { ScopingContainer, ScopingContainerProps } from '../../../../../DetailsView/components/scoping-container';
 
 describe('ScopingContainerTest', () => {
-    const scopingSelectorsStub: IScopingStoreData = {
+    const scopingSelectorsStub: ScopingStoreData = {
         selectors: {
             [ScopingInputTypes.include]: [['include selector 0'], ['include selector 1']],
             [ScopingInputTypes.exclude]: [['exclude selector 0'], ['exclude selector 1']],

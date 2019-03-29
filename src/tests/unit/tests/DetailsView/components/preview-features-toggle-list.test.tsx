@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Mock } from 'typemoq';
 
-import { IDisplayableFeatureFlag } from '../../../../../common/types/store-data/idisplayable-feature-flag';
+import { DisplayableFeatureFlag } from '../../../../../common/types/store-data/displayable-feature-flag';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { GenericToggle } from '../../../../../DetailsView/components/generic-toggle';
 import {
@@ -18,7 +18,7 @@ describe('PreviewFeaturesToggleListTest', () => {
     });
 
     test('render', () => {
-        const displayableFeatureFlagsStub: IDisplayableFeatureFlag[] = [
+        const displayableFeatureFlagsStub: DisplayableFeatureFlag[] = [
             {
                 id: 'test-id-1',
                 displayableName: 'test name 1',

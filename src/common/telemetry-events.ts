@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ISingleElementSelector } from './types/store-data/scoping-store-data';
+import { SingleElementSelector } from './types/store-data/scoping-store-data';
 
 export const POPUP_INITIALIZED: string = 'PopupInitialized';
 export const LAUNCH_PANEL_OPEN: string = 'LaunchPanelOpen';
@@ -156,8 +156,8 @@ export type AssessmentRequirementScanTelemetryData = {
 export type RuleAnalyzerScanTelemetryData = {
     scanDuration: number;
     NumberOfElementsScanned: number;
-    include: ISingleElementSelector[];
-    exclude: ISingleElementSelector[];
+    include: SingleElementSelector[];
+    exclude: SingleElementSelector[];
     testName: string;
 };
 

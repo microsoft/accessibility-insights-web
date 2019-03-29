@@ -6,7 +6,7 @@ import { getDefaultFeatureFlagValues } from '../../../../common/feature-flags';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { DrawingController, VisualizationWindowMessage } from '../../../../injected/drawing-controller';
 import { DrawingInitiator } from '../../../../injected/drawing-initiator';
-import { IAssessmentVisualizationInstance } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
+import { AssessmentVisualizationInstance } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { PropertyBags, VisualizationInstanceProcessorCallback } from '../../../../injected/visualization-instance-processor';
 import { DictionaryStringTo } from '../../../../types/common-types';
 
@@ -33,7 +33,7 @@ describe('DrawingInitiatorTest', () => {
     test('enableVisualization', () => {
         const type = -1 as VisualizationType;
         const configId = 'id';
-        const selectorMap: DictionaryStringTo<IAssessmentVisualizationInstance> = {
+        const selectorMap: DictionaryStringTo<AssessmentVisualizationInstance> = {
             key1: {
                 target: ['element1'],
                 isVisible: true,

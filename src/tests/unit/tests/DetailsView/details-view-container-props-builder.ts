@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
-
 import { AssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
 import { BaseStore } from '../../../../common/base-store';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
@@ -15,7 +14,7 @@ import { IAssessmentStoreData } from '../../../../common/types/store-data/iasses
 import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../../../../common/types/store-data/ivisualization-scan-result-data';
 import { IVisualizationStoreData } from '../../../../common/types/store-data/ivisualization-store-data';
-import { IScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
+import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
 import { IssuesTableHandler } from '../../../../DetailsView/components/issues-table-handler';
 import { DetailsViewContainerDeps, DetailsViewContainerProps } from '../../../../DetailsView/details-view-container';
 import { AssessmentInstanceTableHandler } from '../../../../DetailsView/handlers/assessment-instance-table-handler';
@@ -30,7 +29,7 @@ export class DetailsViewContainerPropsBuilder {
     private visualizationScanResultStore: BaseStore<IVisualizationScanResultData>;
     private tabStore: BaseStore<ITabStoreData>;
     private featureFlagStore: BaseStore<DictionaryStringTo<boolean>>;
-    private scopingStateStore: BaseStore<IScopingStoreData>;
+    private scopingStateStore: BaseStore<ScopingStoreData>;
     private detailsViewStore: BaseStore<DetailsViewData>;
     private scopingActionMessageCreator: ScopingActionMessageCreator;
     private inspectActionMessageCreator: InspectActionMessageCreator;

@@ -4,61 +4,84 @@ import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { CommonSelectors } from '../../common/element-identifiers/common-selectors';
 import { detailsViewSelectors } from '../../common/element-identifiers/details-view-selectors';
+import { enableHighContrast } from '../../common/enable-high-contrast';
 import { Page } from '../../common/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
 describe('Preview Features Panel', () => {
-    let browser: Browser;
-    let targetTabId: number;
+    describe('Normal mode', () => {
+        let browser: Browser;
+        let targetTabId: number;
+        let detailsViewPage: Page;
 
-    beforeAll(async () => {
-        browser = await launchBrowser({ suppressFirstTimeDialog: true });
+        beforeAll(async () => {
+            browser = await launchBrowser({ suppressFirstTimeDialog: true });
+            targetTabId = (await browser.setupNewTargetPage()).tabId;
+            detailsViewPage = await openPreviewFeaturesPanel(browser, targetTabId);
+        });
+
+        afterAll(async () => {
+            if (browser) {
+                await browser.close();
+                browser = undefined;
+            }
+        });
+
+        it('should match content in snapshot', async () => {
+            const previewFeaturesPanel = await detailsViewPage.getPrintableHtmlElement(detailsViewSelectors.previewFeaturesPanel);
+            expect(previewFeaturesPanel).toMatchSnapshot();
+        });
+
+        it('should pass accessibility validation', async () => {
+            const results = await scanForAccessibilityIssues(detailsViewPage, detailsViewSelectors.previewFeaturesPanel);
+            expect(results).toHaveLength(0);
+        });
     });
+    describe('High contrast mode', () => {
+        let browser: Browser;
+        let targetTabId: number;
+        let detailsViewPage: Page;
 
-    beforeEach(async () => {
-        targetTabId = await generateTargetTabId();
-    });
+        beforeAll(async () => {
+            browser = await launchBrowser({ suppressFirstTimeDialog: true });
 
-    afterEach(async () => {
-        if (browser) {
-            await browser.closeAllPages();
+            targetTabId = (await browser.setupNewTargetPage()).tabId;
+            await setupHighContrastMode();
+
+            detailsViewPage = await openPreviewFeaturesPanel(browser, targetTabId);
+        });
+
+        afterAll(async () => {
+            if (browser) {
+                await browser.close();
+            }
+        });
+
+        it('should pass accessibility validation', async () => {
+            const results = await scanForAccessibilityIssues(detailsViewPage, detailsViewSelectors.previewFeaturesPanel);
+            expect(results).toHaveLength(0);
+        });
+
+        async function setupHighContrastMode(): Promise<void> {
+            const tempDetailsViewPage = await browser.newExtensionDetailsViewPage(targetTabId);
+            await enableHighContrast(tempDetailsViewPage);
+            await tempDetailsViewPage.close();
         }
     });
 
-    afterAll(async () => {
-        if (browser) {
-            await browser.close();
-            browser = undefined;
-        }
-    });
-
-    it('should match content in snapshot', async () => {
-        const detailsViewPage = await openPreviewFeaturesPanel();
-
-        const previewFeaturesPanel = await detailsViewPage.getPrintableHtmlElement(detailsViewSelectors.previewFeaturesPanel);
-        expect(previewFeaturesPanel).toMatchSnapshot();
-    });
-
-    it('should pass accessibility validation', async () => {
-        const detailsViewPage = await openPreviewFeaturesPanel();
-
-        const results = await scanForAccessibilityIssues(detailsViewPage, detailsViewSelectors.previewFeaturesPanel);
-        expect(results).toHaveLength(0);
-    });
-
-    async function openPreviewFeaturesPanel(): Promise<Page> {
+    async function openPreviewFeaturesPanel(browser: Browser, targetTabId: number): Promise<Page> {
         const popupPage = await browser.newExtensionPopupPage(targetTabId);
 
         await popupPage.clickSelector(CommonSelectors.settingsGearButton);
 
-        const detailsViewPage = await waitForDetailsViewWithPreviewFeaturesPanel(popupPage);
+        const detailsViewPage = await waitForDetailsViewWithPreviewFeaturesPanel(browser, popupPage, targetTabId);
 
         await detailsViewPage.waitForSelector(detailsViewSelectors.noPreviewFeaturesMessage);
 
         return detailsViewPage;
     }
 
-    async function waitForDetailsViewWithPreviewFeaturesPanel(popupPage: Page): Promise<Page> {
+    async function waitForDetailsViewWithPreviewFeaturesPanel(browser: Browser, popupPage: Page, targetTabId: number): Promise<Page> {
         let detailsViewPage: Page;
 
         await Promise.all([
@@ -67,11 +90,5 @@ describe('Preview Features Panel', () => {
         ]);
 
         return detailsViewPage;
-    }
-
-    async function generateTargetTabId(): Promise<number> {
-        const targetPage = await browser.newTestResourcePage('all.html');
-        await targetPage.bringToFront();
-        return await browser.getActivePageTabId();
     }
 });

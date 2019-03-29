@@ -11,7 +11,7 @@ import {
 } from '../../../../../common/configs/visualization-configuration-factory';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { RuleAnalyzerScanTelemetryData } from '../../../../../common/telemetry-events';
-import { IScopingStoreData } from '../../../../../common/types/store-data/scoping-store-data';
+import { ScopingStoreData } from '../../../../../common/types/store-data/scoping-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
 import { RuleAnalyzer } from '../../../../../injected/analyzers/rule-analyzer';
@@ -26,7 +26,7 @@ describe('RuleAnalyzer', () => {
     let dateGetterMock: IMock<() => Date>;
     let dateMock: IMock<Date>;
     let scopingStoreMock: IMock<ScopingStore>;
-    let scopingState: IScopingStoreData;
+    let scopingState: ScopingStoreData;
     let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
     const mockAllInstances: DictionaryStringTo<any> = {
         test: 'test-result-value',
@@ -56,8 +56,8 @@ describe('RuleAnalyzer', () => {
         dateGetterMock.setup(dgm => dgm()).returns(() => dateMock.object);
         scopingState = {
             selectors: {
-                [ScopingInputTypes.include]: ['fake include selector'],
-                [ScopingInputTypes.exclude]: ['fake exclude selector'],
+                [ScopingInputTypes.include]: [['fake include selector']],
+                [ScopingInputTypes.exclude]: [['fake exclude selector']],
             },
         };
         scopingStoreMock

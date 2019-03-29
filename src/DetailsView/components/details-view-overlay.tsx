@@ -1,12 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-
 import { InspectActionMessageCreator } from '../../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../../common/message-creators/scoping-action-message-creator';
 import { DetailsViewData } from '../../common/types/store-data/details-view-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
-import { IScopingStoreData } from '../../common/types/store-data/scoping-store-data';
+import { ScopingStoreData } from '../../common/types/store-data/scoping-store-data';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { ContentPanel, ContentPanelDeps, ContentPanelProps } from '../../views/content/content-panel';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
@@ -23,7 +22,7 @@ export interface DetailsViewOverlayProps {
     detailsViewStoreData: DetailsViewData;
     featureFlagStoreData: FeatureFlagStoreData;
     previewFeatureFlagsHandler: PreviewFeatureFlagsHandler;
-    scopingStoreData: IScopingStoreData;
+    scopingStoreData: ScopingStoreData;
     scopingActionMessageCreator: ScopingActionMessageCreator;
     inspectActionMessageCreator: InspectActionMessageCreator;
     userConfigurationStoreData: UserConfigurationStoreData;

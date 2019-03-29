@@ -4,6 +4,7 @@ export const CommonSelectors = {
     settingsGearButton: '.gear-button',
     settingsDropdownMenu: '#settings-dropdown-menu',
     previewFeaturesDropdownButton: '.preview-features-drop-down-button',
+    highContrastThemeSelector: 'body.high-contrast-theme',
 };
 
 export const DetailsViewCommonSelectors = {

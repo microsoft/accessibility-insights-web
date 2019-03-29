@@ -16,7 +16,7 @@ import { WindowUtils } from '../../../../common/window-utils';
 import { rootContainerId } from '../../../../injected/constants';
 import { DetailsDialogWindowMessage, DialogRenderer } from '../../../../injected/dialog-renderer';
 import { ErrorMessageContent } from '../../../../injected/frameCommunicators/error-message-content';
-import { FrameCommunicator, IMessageRequest } from '../../../../injected/frameCommunicators/frame-communicator';
+import { FrameCommunicator, MessageRequest } from '../../../../injected/frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from '../../../../injected/frameCommunicators/window-message-handler';
 import { LayeredDetailsDialogComponent } from '../../../../injected/layered-details-dialog-component';
 import { MainWindowContext } from '../../../../injected/main-window-context';
@@ -272,7 +272,7 @@ describe('DialogRendererTests', () => {
             target: [],
             isVisible: true,
         };
-        const windowMessageRequest: IMessageRequest<DetailsDialogWindowMessage> = {
+        const windowMessageRequest: MessageRequest<DetailsDialogWindowMessage> = {
             win: 'this is main window' as any,
             command: 'insights.detailsDialog',
             message: { data: testData, featureFlagStoreData: getDefaultFeatureFlagValuesWithShadowOn() },
@@ -300,7 +300,7 @@ describe('DialogRendererTests', () => {
             target: [],
             isVisible: true,
         };
-        const windowMessageRequest: IMessageRequest<DetailsDialogWindowMessage> = {
+        const windowMessageRequest: MessageRequest<DetailsDialogWindowMessage> = {
             win: 'this is main window' as any,
             command: 'insights.detailsDialog',
             message: { data: testData, featureFlagStoreData: getDefaultFeatureFlagValues() },
@@ -468,7 +468,7 @@ describe('DialogRendererTests', () => {
         frameCommunicator.verifyAll();
     }
 
-    function setupWindowUtilsMockAndFrameCommunicatorInIframe(windowMessageRequest: IMessageRequest<DetailsDialogWindowMessage>): void {
+    function setupWindowUtilsMockAndFrameCommunicatorInIframe(windowMessageRequest: MessageRequest<DetailsDialogWindowMessage>): void {
         windowUtilsMock
             .setup(wum => wum.getTopWindow())
             .returns(() => {

@@ -7,8 +7,8 @@ import { BaseStore } from '../../../common/base-store';
 import { TestMode } from '../../../common/configs/test-mode';
 import { VisualizationConfigurationFactory } from '../../../common/configs/visualization-configuration-factory';
 import { TelemetryEventSource } from '../../../common/telemetry-events';
+import { CommandStoreData } from '../../../common/types/store-data/command-store-data';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
-import { ICommandStoreData } from '../../../common/types/store-data/icommand-store-data';
 import { IVisualizationStoreData } from '../../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
@@ -20,7 +20,7 @@ export class DiagnosticViewToggleFactory {
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
     private visualizationStore: BaseStore<IVisualizationStoreData>;
     private featureFlagsStore: BaseStore<FeatureFlagStoreData>;
-    private commandStore: BaseStore<ICommandStoreData>;
+    private commandStore: BaseStore<CommandStoreData>;
     private actionMessageCreator: PopupActionMessageCreator;
     private clickHandler: DiagnosticViewClickHandler;
     private dom: NodeSelector & Node;
@@ -32,7 +32,7 @@ export class DiagnosticViewToggleFactory {
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
         visualizationStore: BaseStore<IVisualizationStoreData>,
         featureFlagStore: BaseStore<FeatureFlagStoreData>,
-        commandStore: BaseStore<ICommandStoreData>,
+        commandStore: BaseStore<CommandStoreData>,
         actionMessageCreator: PopupActionMessageCreator,
         clickHandler: DiagnosticViewClickHandler,
     ) {

@@ -6,7 +6,7 @@ import { BaseStore } from '../common/base-store';
 import { EnumHelper } from '../common/enum-helper';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
-import { IScopingStoreData } from '../common/types/store-data/scoping-store-data';
+import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryStringTo } from '../types/common-types';
 import { VisualizationConfigurationFactory } from './../common/configs/visualization-configuration-factory';
@@ -21,7 +21,7 @@ export class AnalyzerController {
     private analyzers: DictionaryStringTo<Analyzer>;
     private sendMessage: (message) => void;
     private visualizationstore: BaseStore<IVisualizationStoreData>;
-    private scopingStore: BaseStore<IScopingStoreData>;
+    private scopingStore: BaseStore<ScopingStoreData>;
     private featureFlagStore: BaseStore<FeatureFlagStoreData>;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
     private analyzerStateUpdateHandler: AnalyzerStateUpdateHandler;
@@ -31,7 +31,7 @@ export class AnalyzerController {
         sendMessage: (message) => void,
         visualizationstore: BaseStore<IVisualizationStoreData>,
         featureFlagStore: BaseStore<FeatureFlagStoreData>,
-        scopingStore: BaseStore<IScopingStoreData>,
+        scopingStore: BaseStore<ScopingStoreData>,
         tabStopsListener: TabStopsListener,
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
         analyzerProvider: AnalyzerProvider,

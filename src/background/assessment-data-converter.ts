@@ -1,19 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash/index';
+import * as _ from 'lodash';
 
 import { ManualTestStatus } from '../common/types/manual-test-status';
-import { PartialTabOrderPropertyBag } from '../injected/tab-order-property-bag';
-import { TabStopEvent } from '../injected/tab-stops-listener';
-import { DictionaryStringTo } from '../types/common-types';
 import {
     IAssessmentInstancesMap,
     IGeneratedAssessmentInstance,
     IManualTestStepResult,
     ITestStepResult,
     IUserCapturedInstance,
-} from './../common/types/store-data/iassessment-result-data.d';
-import { DecoratedAxeNodeResult, HtmlElementAxeResults } from './../injected/scanner-utils';
+} from '../common/types/store-data/iassessment-result-data';
+import { DecoratedAxeNodeResult, HtmlElementAxeResults } from '../injected/scanner-utils';
+import { PartialTabOrderPropertyBag } from '../injected/tab-order-property-bag';
+import { TabStopEvent } from '../injected/tab-stops-listener';
+import { DictionaryStringTo } from '../types/common-types';
 import { UniquelyIdentifiableInstances } from './instance-identifier-generator';
 
 export class AssessmentDataConverter {
