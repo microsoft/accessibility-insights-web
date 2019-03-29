@@ -22,6 +22,7 @@ import { AssessmentActions } from '../../../../../background/actions/assessment-
 import { AssessmentDataConverter } from '../../../../../background/assessment-data-converter';
 import { AssessmentDataRemover } from '../../../../../background/assessment-data-remover';
 import { ChromeAdapter } from '../../../../../background/browser-adapter';
+import { InitialAssessmentStoreDataGenerator } from '../../../../../background/initial-assessment-store-data-generator';
 import { AssessmentStore } from '../../../../../background/stores/assessment-store';
 import { AssesssmentVisualizationConfiguration } from '../../../../../common/configs/visualization-configuration-factory';
 import { IndexedDBAPI } from '../../../../../common/indexedDB/indexedDB';
@@ -48,22 +49,23 @@ import { AssessmentStoreTester } from '../../../common/assessment-store-tester';
 import { createStoreWithNullParams } from '../../../common/store-tester';
 import { CreateTestAssessmentProvider } from '../../../common/test-assessment-provider';
 
-let browserMock: IMock<ChromeAdapter>;
-let assessmentDataConverterMock: IMock<AssessmentDataConverter>;
-let assessmentDataRemoverMock: IMock<AssessmentDataRemover>;
-let assessmentsProvider: AssessmentsProvider;
-let assessmentsProviderMock: IMock<AssessmentsProvider>;
-let indexDBInstanceMock: IMock<IndexedDBAPI>;
-let assessmentMock: IMock<Assessment>;
-let getInstanceIdentiferGeneratorMock: IMock<(step: string) => Function>;
-let configStub: AssesssmentVisualizationConfiguration;
-let instanceIdentifierGeneratorStub: (instances) => string;
-
 const assessmentKey: string = 'assessment-1';
 const requirementKey: string = 'assessment-1-step-1';
 const assessmentType = -1 as VisualizationType;
 
 describe('AssessmentStoreTest', () => {
+    let browserMock: IMock<ChromeAdapter>;
+    let assessmentDataConverterMock: IMock<AssessmentDataConverter>;
+    let assessmentDataRemoverMock: IMock<AssessmentDataRemover>;
+    let assessmentsProvider: AssessmentsProvider;
+    let assessmentsProviderMock: IMock<AssessmentsProvider>;
+    let indexDBInstanceMock: IMock<IndexedDBAPI>;
+    let assessmentMock: IMock<Assessment>;
+    let getInstanceIdentiferGeneratorMock: IMock<(step: string) => Function>;
+    let configStub: AssesssmentVisualizationConfiguration;
+    let instanceIdentifierGeneratorStub: (instances) => string;
+    let initialAssessmentStoreDataGeneratorMock: IMock<InitialAssessmentStoreDataGenerator>;
+
     beforeEach(() => {
         instanceIdentifierGeneratorStub = () => null;
         browserMock = Mock.ofType(ChromeAdapter);
@@ -93,6 +95,11 @@ describe('AssessmentStoreTest', () => {
             } as IndexedDBAPI,
             MockBehavior.Strict,
         );
+        initialAssessmentStoreDataGeneratorMock = Mock.ofType(InitialAssessmentStoreDataGenerator);
+    });
+
+    afterEach(() => {
+        initialAssessmentStoreDataGeneratorMock.verifyAll();
     });
 
     test('constructor, no side effect', () => {
@@ -106,10 +113,9 @@ describe('AssessmentStoreTest', () => {
     });
 
     test('getDefaultState with no assessments', () => {
-        assessmentsProviderMock
-            .setup(ap => ap.all())
-            .returns(() => [])
-            .verifiable(Times.once());
+        const defaultStateStub = {};
+        setupDataGeneratorMock(null, defaultStateStub as IAssessmentStoreData);
+
         const testObject = new AssessmentStore(
             null,
             null,
@@ -118,21 +124,12 @@ describe('AssessmentStoreTest', () => {
             assessmentsProviderMock.object,
             null,
             null,
+            initialAssessmentStoreDataGeneratorMock.object,
         );
 
         const actualState = testObject.getDefaultState();
 
-        const expectedState: Partial<IAssessmentStoreData> = {
-            persistedTabInfo: null,
-            assessments: {},
-            assessmentNavState: {
-                selectedTestType: null,
-                selectedTestStep: null,
-            },
-        };
-
-        expect(actualState).toEqual(expectedState);
-        assessmentsProviderMock.verifyAll();
+        expect(actualState).toEqual(defaultStateStub);
     });
 
     test('getDefaultState with persistedData', () => {
@@ -169,17 +166,6 @@ describe('AssessmentStoreTest', () => {
             },
         };
 
-        const testObject = new AssessmentStore(
-            null,
-            null,
-            assessmentDataConverterMock.object,
-            assessmentDataRemoverMock.object,
-            assessmentProvider,
-            null,
-            persisted,
-        );
-        const actualState = testObject.getDefaultState();
-
         const defaultValues: Partial<IAssessmentData> = {
             fullAxeResultsMap: null,
             generatedAssessmentInstancesMap: null,
@@ -211,15 +197,7 @@ describe('AssessmentStoreTest', () => {
 
         expectedState.assessments['assessment-1'].manualTestStepResultMap[expectedTestStep].status = 2;
 
-        expect(actualState).toEqual(expectedState);
-    });
-
-    test('getDefaultState with 2 assessments', () => {
-        const expectedTestType = -1 as VisualizationType;
-        const expectedTestStep: string = 'assessment-1-step-1';
-
-        const assessmentProvider = CreateTestAssessmentProvider();
-        const assessments = assessmentProvider.all();
+        setupDataGeneratorMock(persisted, expectedState);
 
         const testObject = new AssessmentStore(
             null,
@@ -228,40 +206,12 @@ describe('AssessmentStoreTest', () => {
             assessmentDataRemoverMock.object,
             assessmentProvider,
             null,
-            null,
+            persisted,
+            initialAssessmentStoreDataGeneratorMock.object,
         );
         const actualState = testObject.getDefaultState();
 
-        const defaultValues: Partial<IAssessmentData> = {
-            fullAxeResultsMap: null,
-            generatedAssessmentInstancesMap: null,
-            manualTestStepResultMap: null,
-        };
-
-        const expectedState: IAssessmentStoreData = {
-            persistedTabInfo: null,
-            assessments: {},
-            assessmentNavState: {
-                selectedTestType: expectedTestType,
-                selectedTestStep: expectedTestStep,
-            },
-        };
-
-        assessments.forEach(assessment => {
-            expectedState.assessments[assessment.key] = {
-                ...defaultValues,
-                manualTestStepResultMap: {},
-                testStepStatus: {},
-            } as IAssessmentData;
-
-            assessment.requirements.forEach(step => {
-                const assessmentData = expectedState.assessments[assessment.key];
-                assessmentData.testStepStatus[step.key] = getDefaultTestStepData();
-                assessmentData.manualTestStepResultMap[step.key] = getDefaultManualTestStepResult(step.key);
-            });
-        });
-
-        expect(expectedState).toEqual(actualState);
+        expect(actualState).toEqual(expectedState);
     });
 
     test('on getCurrentState', () => {
@@ -282,8 +232,8 @@ describe('AssessmentStoreTest', () => {
             .build();
 
         const initialState = getStateWithAssessment(assessmentData);
-
-        const finalState = getDefaultState();
+        const expectedState = getDefaultStateWithDefaultAssessmentData(assessmentKey, requirementKey);
+        setupDataGeneratorMock(null, expectedState);
         const getVisualizationConfigurationMock = Mock.ofInstance(() => {});
         const visualizationConfigStub = {
             getAssessmentData: state => {
@@ -307,8 +257,6 @@ describe('AssessmentStoreTest', () => {
             ],
         } as Assessment;
 
-        assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
-
         assessmentsProviderMock.setup(apm => apm.forType(assessmentType)).returns(() => assessmentStub);
 
         const payload: ToggleActionPayload = {
@@ -317,7 +265,7 @@ describe('AssessmentStoreTest', () => {
 
         createStoreTesterForAssessmentActions('resetData')
             .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
+            .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     test('test that tests indexedDB and also reset', () => {
@@ -331,8 +279,8 @@ describe('AssessmentStoreTest', () => {
             .build();
 
         const initialState = getStateWithAssessment(assessmentData);
-
-        const finalState = getDefaultState();
+        const finalState = getDefaultStateWithDefaultAssessmentData(assessmentKey, requirementKey);
+        setupDataGeneratorMock(null, finalState);
         const getVisualizationConfigurationMock = Mock.ofInstance(() => {});
         const visualizationConfigStub = {
             getAssessmentData: state => {
@@ -381,8 +329,8 @@ describe('AssessmentStoreTest', () => {
             .build();
 
         const initialState = getStateWithAssessment(assessmentData);
-
-        const finalState = getDefaultState();
+        const finalState = getDefaultStateWithDefaultAssessmentData(assessmentKey, requirementKey);
+        setupDataGeneratorMock(null, finalState);
         const getVisualizationConfigurationMock = Mock.ofInstance(() => {});
         const visualizationConfigStub = {
             getAssessmentData: state => {
@@ -439,9 +387,12 @@ describe('AssessmentStoreTest', () => {
             .withSelectedTestType(VisualizationType.Color)
             .withTargetTab(oldTabId, null, null, true)
             .build();
+
         const finalState = new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object)
             .withTargetTab(tabId, url, title, false)
             .build();
+
+        setupDataGeneratorMock(null, getDefaultState());
 
         createStoreTesterForAssessmentActions('resetAllAssessmentsData')
             .withActionParam(tabId)
@@ -469,6 +420,7 @@ describe('AssessmentStoreTest', () => {
         const finalState = new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object)
             .withTargetTab(tabId, url, title, false)
             .build();
+        setupDataGeneratorMock(null, getDefaultState());
 
         createStoreTesterForAssessmentActions('resetAllAssessmentsData')
             .withActionParam(tabId)
@@ -476,7 +428,14 @@ describe('AssessmentStoreTest', () => {
     });
 
     test('onScanCompleted', () => {
-        const initialState = new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object).build();
+        const initialAssessmentData = new AssessmentDataBuilder()
+            .with('testStepStatus', {
+                ['assessment-1-step-1']: getDefaultTestStepData(),
+                ['assessment-1-step-2']: getDefaultTestStepData(),
+                ['assessment-1-step-3']: getDefaultTestStepData(),
+            })
+            .build();
+        const initialState = getStateWithAssessment(initialAssessmentData);
 
         const payload: ScanCompletedPayload<any> = {
             selectorMap: {},
@@ -486,18 +445,11 @@ describe('AssessmentStoreTest', () => {
         };
 
         const expectedInstanceMap = {};
-        const expectedManualTestStepResultMap = {
-            'assessment-1-step-1': { status: 1, id: 'assessment-1-step-1', instances: [] },
-            'assessment-1-step-2': { status: 1, id: 'assessment-1-step-2', instances: [] },
-            'assessment-1-step-3': { status: 1, id: 'assessment-1-step-3', instances: [] },
-        };
         const stepMapStub = assessmentsProvider.getStepMap(assessmentType);
-        const initialManualTestStepResultMap = initialState.assessments[assessmentKey].manualTestStepResultMap;
         const stepConfig = assessmentsProvider.getStep(assessmentType, 'assessment-1-step-1');
 
         const assessmentData = new AssessmentDataBuilder()
             .with('generatedAssessmentInstancesMap', expectedInstanceMap)
-            .with('manualTestStepResultMap', expectedManualTestStepResultMap)
             .with('testStepStatus', {
                 ['assessment-1-step-1']: generateTestStepData(ManualTestStatus.PASS, true),
                 ['assessment-1-step-2']: getDefaultTestStepData(),
@@ -521,7 +473,13 @@ describe('AssessmentStoreTest', () => {
 
         assessmentDataConverterMock
             .setup(a =>
-                a.generateAssessmentInstancesMap(null, payload.selectorMap, requirementKey, instanceIdentifierGeneratorStub, It.isAny()),
+                a.generateAssessmentInstancesMap(
+                    initialAssessmentData.generatedAssessmentInstancesMap,
+                    payload.selectorMap,
+                    requirementKey,
+                    instanceIdentifierGeneratorStub,
+                    It.isAny(),
+                ),
             )
             .returns(() => expectedInstanceMap);
 
@@ -531,7 +489,14 @@ describe('AssessmentStoreTest', () => {
     });
 
     test('onScanUpdate', () => {
-        const initialState = new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object).build();
+        const initialAssessmentData = new AssessmentDataBuilder()
+            .with('testStepStatus', {
+                ['assessment-1-step-1']: getDefaultTestStepData(),
+                ['assessment-1-step-2']: getDefaultTestStepData(),
+                ['assessment-1-step-3']: getDefaultTestStepData(),
+            })
+            .build();
+        const initialState = getStateWithAssessment(initialAssessmentData);
 
         const payload: ScanUpdatePayload = {
             testType: assessmentType,
@@ -543,7 +508,6 @@ describe('AssessmentStoreTest', () => {
 
         const assessmentData = new AssessmentDataBuilder()
             .with('generatedAssessmentInstancesMap', expectedInstanceMap)
-            .with('manualTestStepResultMap', initialState.assessments[assessmentKey].manualTestStepResultMap)
             .with('testStepStatus', {
                 ['assessment-1-step-1']: generateTestStepData(ManualTestStatus.PASS, false),
                 ['assessment-1-step-2']: getDefaultTestStepData(),
@@ -567,12 +531,10 @@ describe('AssessmentStoreTest', () => {
 
         getInstanceIdentiferGeneratorMock.setup(giim => giim(requirementKey)).returns(() => instanceIdentifierGeneratorStub);
 
-        const currentInstancesMap = null;
-
         assessmentDataConverterMock
             .setup(a =>
                 a.generateAssessmentInstancesMapForEvents(
-                    currentInstancesMap,
+                    initialAssessmentData.generatedAssessmentInstancesMap,
                     payload.results,
                     requirementKey,
                     instanceIdentifierGeneratorStub,
@@ -1466,6 +1428,13 @@ describe('AssessmentStoreTest', () => {
         expect(ManualTestStatus.UNKNOWN < ManualTestStatus.FAIL).toBeTruthy();
     });
 
+    function setupDataGeneratorMock(persistedData: IAssessmentStoreData, initialData: IAssessmentStoreData): void {
+        initialAssessmentStoreDataGeneratorMock
+            .setup(im => im.generateInitialState(persistedData))
+            .returns(() => initialData as IAssessmentStoreData)
+            .verifiable(Times.once());
+    }
+
     function getSampleTestStepsData(): ManualTestStatusData {
         const defaultData = {
             ['assessment-1-step-1']: getDefaultTestStepData(),
@@ -1502,6 +1471,18 @@ describe('AssessmentStoreTest', () => {
         return new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object).build();
     }
 
+    function getDefaultStateWithDefaultAssessmentData(assessment: string, selectedRequirement: string): IAssessmentStoreData {
+        return new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object)
+            .withAssessment(assessmentKey, {
+                fullAxeResultsMap: null,
+                generatedAssessmentInstancesMap: null,
+                manualTestStepResultMap: {},
+                testStepStatus: {},
+            })
+            .withSelectedTestStep(selectedRequirement)
+            .build();
+    }
+
     function getStateWithAssessment(data: IAssessmentData): IAssessmentStoreData {
         return new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object)
             .withAssessment(assessmentKey, data)
@@ -1520,8 +1501,8 @@ describe('AssessmentStoreTest', () => {
                 assessmentsProviderMock.object,
                 indexDBInstanceMock.object,
                 null,
+                initialAssessmentStoreDataGeneratorMock.object,
             );
-
         return new AssessmentStoreTester(AssessmentActions, actionName, factory, indexDBInstanceMock);
     }
 });
