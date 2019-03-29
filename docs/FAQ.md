@@ -7,4 +7,4 @@ Licensed under the MIT License.
 
 #### Which browsers is Accessibility Insights for Web available for?
 
-Accessibility Insights for Web is curently available on Google Chrome only.
+Accessibility Insights for Web is currently available on Google Chrome only.
