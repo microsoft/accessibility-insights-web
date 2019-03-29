@@ -9,6 +9,7 @@ import { RequirementComparer } from '../../../common/assessment/requirement-comp
 import { AssesssmentVisualizationConfiguration } from '../../../common/configs/visualization-configuration-factory';
 import { FeatureFlags } from '../../../common/feature-flags';
 import { ManualTestStatus } from '../../../common/types/manual-test-status';
+import { IAssessmentData } from '../../../common/types/store-data/iassessment-result-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { RequirementLink } from '../../../DetailsView/components/requirement-link';
 import { ContentPage } from '../../../views/content/content-page';
@@ -19,6 +20,10 @@ const content = {
     },
 };
 
+const initialDataCreator = () => {
+    return {} as IAssessmentData;
+};
+
 export const contentProvider = ContentPage.provider(content);
 
 const assessmentWithColumns: Assessment = {
@@ -27,6 +32,7 @@ const assessmentWithColumns: Assessment = {
     title: 'assessment 1',
     gettingStarted: null,
     guidance: content.assessment1.guidance,
+    initialDataCreator,
     steps: [
         {
             key: 'assessment-1-step-1',
@@ -85,6 +91,7 @@ const simpleAssessment = {
     type: -2 as VisualizationType,
     title: 'assessment 2',
     gettingStarted: null,
+    initialDataCreator,
     steps: [
         {
             key: 'assessment-2-step-1',
@@ -120,6 +127,7 @@ const automatedAssessment = {
     type: -3 as VisualizationType,
     title: 'assessment 3',
     gettingStarted: null,
+    initialDataCreator,
     steps: [
         {
             key: 'assessment-3-step-2',
