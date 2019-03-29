@@ -10,7 +10,7 @@ import { DictionaryStringTo } from '../types/common-types';
 import { createInitialAssessmentTestData } from './create-initial-assessment-test-data';
 
 export class InitialAssessmentStoreDataGenerator {
-    private readonly NULL_FIRST_TEST: Partial<Readonly<Assessment>> = { type: null, steps: [{ key: null }] as Requirement[] };
+    private readonly NULL_FIRST_TEST: Partial<Readonly<Assessment>> = { type: null, requirements: [{ key: null }] as Requirement[] };
     private tests: ReadonlyArray<Readonly<Assessment>>;
 
     constructor(assessmentsProvider: AssessmentsProvider) {
