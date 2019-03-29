@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
-
 import { AssessmentDefaultMessageGenerator } from '../assessments/assessment-default-message-generator';
 import { Assessments } from '../assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from '../assessments/assessments-feature-flag-filter';
@@ -36,10 +35,10 @@ import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { TelemetryEventSource } from '../common/telemetry-events';
 import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
 import { IDetailsViewData } from '../common/types/store-data/idetails-view-data';
-import { IInspectStoreData } from '../common/types/store-data/inspect-store-data';
+import { InspectStoreData } from '../common/types/store-data/inspect-store-data';
 import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
 import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
-import { IScopingStoreData } from '../common/types/store-data/scoping-store-data';
+import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 import { UrlParser } from '../common/url-parser';
@@ -117,8 +116,8 @@ if (isNaN(tabId) === false) {
                     StoreNames[StoreNames.FeatureFlagStore],
                     chromeAdapter,
                 );
-                const scopingStore = new StoreProxy<IScopingStoreData>(StoreNames[StoreNames.ScopingPanelStateStore], chromeAdapter);
-                const inspectStore = new StoreProxy<IInspectStoreData>(StoreNames[StoreNames.InspectStore], chromeAdapter);
+                const scopingStore = new StoreProxy<ScopingStoreData>(StoreNames[StoreNames.ScopingPanelStateStore], chromeAdapter);
+                const inspectStore = new StoreProxy<InspectStoreData>(StoreNames[StoreNames.InspectStore], chromeAdapter);
                 const userConfigStore = new StoreProxy<UserConfigurationStoreData>(
                     StoreNames[StoreNames.UserConfigurationStore],
                     chromeAdapter,

@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { IDisplayableFeatureFlag } from '../../common/types/store-data/idisplayable-feature-flag';
+import { DisplayableFeatureFlag } from '../../common/types/store-data/displayable-feature-flag';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { GenericToggle } from './generic-toggle';
 
 export interface PreviewFeaturesToggleListProps {
-    displayedFeatureFlags: IDisplayableFeatureFlag[];
+    displayedFeatureFlags: DisplayableFeatureFlag[];
     actionMessageCreator: DetailsViewActionMessageCreator;
 }
 
@@ -18,7 +18,7 @@ export class PreviewFeaturesToggleList extends React.Component<PreviewFeaturesTo
 
     private generateToggleList(): JSX.Element[] {
         const flags = this.props.displayedFeatureFlags;
-        const toggleList = flags.map((displayableFlag: IDisplayableFeatureFlag) => (
+        const toggleList = flags.map((displayableFlag: DisplayableFeatureFlag) => (
             <GenericToggle
                 name={displayableFlag.displayableName}
                 description={displayableFlag.displayableDescription}

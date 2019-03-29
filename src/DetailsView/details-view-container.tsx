@@ -3,7 +3,6 @@
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
-
 import { AssessmentsProvider } from '../assessments/types/iassessments-provider';
 import { ThemeDeps } from '../common/components/theme';
 import { withStoreSubscription, WithStoreSubscriptionDeps } from '../common/components/with-store-subscription';
@@ -16,7 +15,7 @@ import { IAssessmentStoreData } from '../common/types/store-data/iassessment-res
 import { IDetailsViewData } from '../common/types/store-data/idetails-view-data';
 import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
 import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
-import { IScopingStoreData } from '../common/types/store-data/scoping-store-data';
+import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 import { VisualizationType } from '../common/types/visualization-type';
@@ -70,7 +69,7 @@ export interface DetailsViewContainerState {
     featureFlagStoreData: FeatureFlagStoreData;
     detailsViewStoreData: IDetailsViewData;
     assessmentStoreData: IAssessmentStoreData;
-    scopingPanelStateStoreData: IScopingStoreData;
+    scopingPanelStateStoreData: ScopingStoreData;
     userConfigurationStoreData: UserConfigurationStoreData;
     selectedDetailsView: VisualizationType;
     selectedDetailsRightPanelConfiguration: DetailsRightPanelConfiguration;

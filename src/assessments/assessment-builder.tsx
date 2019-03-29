@@ -5,6 +5,7 @@ import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
 import { AssessmentToggleActionPayload } from '../background/actions/action-payloads';
+import { createInitialAssessmentTestData } from '../background/create-initial-assessment-test-data';
 import { InstanceIdentifierGenerator, UniquelyIdentifiableInstances } from '../background/instance-identifier-generator';
 import { RequirementComparer } from '../common/assessment/requirement-comparer';
 import { AssesssmentVisualizationConfiguration } from '../common/configs/visualization-configuration-factory';
@@ -108,6 +109,7 @@ export class AssessmentBuilder {
 
         assessment.requirementOrder = assessment.requirementOrder || RequirementComparer.byOrdinal;
         assessment.executeAssessmentScanPolicy = assessment.executeAssessmentScanPolicy || AssessmentBuilder.nullScanPolicy;
+        assessment.initialDataCreator = assessment.initialDataCreator || createInitialAssessmentTestData;
 
         steps.forEach(AssessmentBuilder.applyDefaultReportFieldMap);
         steps.forEach(AssessmentBuilder.applyDefaultFunctions);
@@ -166,6 +168,7 @@ export class AssessmentBuilder {
         const { key, steps } = assessment;
 
         assessment.requirementOrder = assessment.requirementOrder || RequirementComparer.byOrdinal;
+        assessment.initialDataCreator = assessment.initialDataCreator || createInitialAssessmentTestData;
 
         steps.forEach(AssessmentBuilder.applyDefaultReportFieldMap);
         steps.forEach(AssessmentBuilder.applyDefaultFunctions);

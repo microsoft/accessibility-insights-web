@@ -2,20 +2,19 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 import * as _ from 'lodash';
-
 import { BaseStore } from '../common/base-store';
 import { TestMode } from '../common/configs/test-mode';
 import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../common/enum-helper';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
+import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
 import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
 import { IAssessmentScanData, IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryNumberTo, DictionaryStringTo } from '../types/common-types';
-import { IAssessmentStoreData } from './../common/types/store-data/iassessment-result-data.d';
 import { DrawingInitiator } from './drawing-initiator';
-import { IAssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
+import { AssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
 import { ScrollingController, ScrollingWindowMessage } from './frameCommunicators/scrolling-controller';
 import { SelectorMapHelper } from './selector-map-helper';
 import { TargetPageActionMessageCreator } from './target-page-action-message-creator';
@@ -37,7 +36,7 @@ export class ClientViewController {
     private selectorMapHelper: SelectorMapHelper;
     private targetPageActionMessageCreator: TargetPageActionMessageCreator;
     protected previousVisualizationStates: DictionaryStringTo<boolean> = {};
-    protected previousVisualizationSelectorMapStates: DictionaryNumberTo<DictionaryStringTo<IAssessmentVisualizationInstance>> = {};
+    protected previousVisualizationSelectorMapStates: DictionaryNumberTo<DictionaryStringTo<AssessmentVisualizationInstance>> = {};
 
     constructor(
         visualizationStore: BaseStore<IVisualizationStoreData>,
@@ -174,7 +173,7 @@ export class ClientViewController {
     private isVisualizationStateUnchanged(
         type: VisualizationType,
         newVisualizationEnabledState: boolean,
-        newSelectorMapState: DictionaryStringTo<IAssessmentVisualizationInstance>,
+        newSelectorMapState: DictionaryStringTo<AssessmentVisualizationInstance>,
         id: string,
     ): boolean {
         if (id in this.previousVisualizationStates === false && newVisualizationEnabledState === false) {

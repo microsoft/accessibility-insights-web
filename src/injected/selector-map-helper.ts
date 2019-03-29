@@ -9,7 +9,7 @@ import { IAssessmentStoreData, IGeneratedAssessmentInstance } from '../common/ty
 import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryStringTo } from '../types/common-types';
-import { IAssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
+import { AssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
 
 export class SelectorMapHelper {
     private scanResultStore: BaseStore<IVisualizationScanResultData>;
@@ -26,7 +26,7 @@ export class SelectorMapHelper {
         this.assessmentsProvider = assessmentsProvider;
     }
 
-    public getSelectorMap(visualizationType: VisualizationType): DictionaryStringTo<IAssessmentVisualizationInstance> {
+    public getSelectorMap(visualizationType: VisualizationType): DictionaryStringTo<AssessmentVisualizationInstance> {
         let selectorMap = {};
 
         if (this.isAdHocVisualization(visualizationType)) {
@@ -58,7 +58,7 @@ export class SelectorMapHelper {
         );
     }
 
-    private getAdHocVisualizationSelectorMap(type: VisualizationType): DictionaryStringTo<IAssessmentVisualizationInstance> {
+    private getAdHocVisualizationSelectorMap(type: VisualizationType): DictionaryStringTo<AssessmentVisualizationInstance> {
         let selectorMap = {};
         const visulizaitonScanResultState = this.scanResultStore.getState();
 
@@ -86,12 +86,12 @@ export class SelectorMapHelper {
     private getFilteredSelectorMap<T, K>(
         generatedAssessmentInstancesMap: DictionaryStringTo<IGeneratedAssessmentInstance<T, K>>,
         testStep: string,
-    ): DictionaryStringTo<IAssessmentVisualizationInstance> {
+    ): DictionaryStringTo<AssessmentVisualizationInstance> {
         if (generatedAssessmentInstancesMap == null) {
             return null;
         }
 
-        const selectorMap: DictionaryStringTo<IAssessmentVisualizationInstance> = {};
+        const selectorMap: DictionaryStringTo<AssessmentVisualizationInstance> = {};
         Object.keys(generatedAssessmentInstancesMap).forEach(identifier => {
             const instance = generatedAssessmentInstancesMap[identifier];
             const stepResult = instance.testStepResults[testStep as keyof K];

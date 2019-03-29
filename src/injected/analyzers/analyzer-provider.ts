@@ -3,7 +3,7 @@
 import { BaseStore } from '../../common/base-store';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
-import { IScopingStoreData } from '../../common/types/store-data/scoping-store-data';
+import { ScopingStoreData } from '../../common/types/store-data/scoping-store-data';
 import { WindowUtils } from '../../common/window-utils';
 import { ScannerUtils } from '../scanner-utils';
 import { TabStopsListener } from '../tab-stops-listener';
@@ -15,7 +15,7 @@ import { TabStopsAnalyzer } from './tab-stops-analyzer';
 
 export class AnalyzerProvider {
     private tabStopsListener: TabStopsListener;
-    private scopingStore: BaseStore<IScopingStoreData>;
+    private scopingStore: BaseStore<ScopingStoreData>;
     private sendMessageDelegate: (message) => void;
     private scanner: ScannerUtils;
     private telemetryDataFactory: TelemetryDataFactory;
@@ -23,7 +23,7 @@ export class AnalyzerProvider {
 
     constructor(
         tabStopsListener: TabStopsListener,
-        scopingStore: BaseStore<IScopingStoreData>,
+        scopingStore: BaseStore<ScopingStoreData>,
         sendMessageDelegate: (message) => void,
         scanner: ScannerUtils,
         telemetryDataFactory: TelemetryDataFactory,

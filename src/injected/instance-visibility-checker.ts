@@ -7,7 +7,7 @@ import { VisualizationType } from '../common/types/visualization-type';
 import { WindowUtils } from '../common/window-utils';
 import { DictionaryNumberTo } from '../types/common-types';
 import { VisualizationConfigurationFactory } from './../common/configs/visualization-configuration-factory';
-import { IAssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
+import { AssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
 
 export class InstanceVisibilityChecker {
     private sendMessage: (message) => void;
@@ -32,7 +32,7 @@ export class InstanceVisibilityChecker {
     public createVisibilityCheckerInterval(
         drawerIdentifier: string,
         visualizationType: VisualizationType,
-        currentFrameResults: IAssessmentVisualizationInstance[],
+        currentFrameResults: AssessmentVisualizationInstance[],
     ): void {
         const skipVisibilityCheck = !this.configurationFactory.getConfiguration(visualizationType).getUpdateVisibility(drawerIdentifier);
         if (skipVisibilityCheck) {
@@ -58,7 +58,7 @@ export class InstanceVisibilityChecker {
     private generateCheckVisibilityFunction(
         drawerIdentifier: string,
         visualizationType: VisualizationType,
-        currentFrameResults: IAssessmentVisualizationInstance[],
+        currentFrameResults: AssessmentVisualizationInstance[],
     ): Function {
         return () => {
             const payloadBatch: UpdateInstanceVisibilityPayload[] = currentFrameResults.map(elementResult => {
@@ -89,7 +89,7 @@ export class InstanceVisibilityChecker {
     private identifiersMatch(
         visualizationType: VisualizationType,
         drawerIdentifier: string,
-        currentElement: IAssessmentVisualizationInstance,
+        currentElement: AssessmentVisualizationInstance,
         foundElement: HTMLElement,
     ): boolean {
         const identifierGenerator = this.configurationFactory
