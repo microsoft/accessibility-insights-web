@@ -9,10 +9,10 @@ import { RequirementComparer } from '../../../common/assessment/requirement-comp
 import { AssesssmentVisualizationConfiguration } from '../../../common/configs/visualization-configuration-factory';
 import { FeatureFlags } from '../../../common/feature-flags';
 import { ManualTestStatus } from '../../../common/types/manual-test-status';
+import { IAssessmentData } from '../../../common/types/store-data/iassessment-result-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { RequirementLink } from '../../../DetailsView/components/requirement-link';
 import { ContentPage } from '../../../views/content/content-page';
-import { IAssessmentData } from '../../../common/types/store-data/iassessment-result-data';
 
 const content = {
     assessment1: {
