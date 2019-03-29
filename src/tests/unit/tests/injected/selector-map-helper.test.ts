@@ -12,7 +12,7 @@ import {
     IGeneratedAssessmentInstance,
     ITestStepResult,
 } from '../../../../common/types/store-data/iassessment-result-data';
-import { IVisualizationScanResultData } from '../../../../common/types/store-data/ivisualization-scan-result-data';
+import { VisualizationScanResultData } from '../../../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { AssessmentVisualizationInstance } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { SelectorMapHelper } from '../../../../injected/selector-map-helper';
@@ -21,7 +21,7 @@ import { CreateTestAssessmentProvider } from '../../common/test-assessment-provi
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 
 describe('SelectorMapHelperTest', () => {
-    let scanResultStoreMock: IMock<BaseStore<IVisualizationScanResultData>>;
+    let scanResultStoreMock: IMock<BaseStore<VisualizationScanResultData>>;
     let assessmentStoreMock: IMock<BaseStore<IAssessmentStoreData>>;
     let assessmentsProvider: AssessmentsProvider;
     let testSelectorMap: DictionaryStringTo<IGeneratedAssessmentInstance<any, any>>;
