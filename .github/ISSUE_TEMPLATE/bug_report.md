@@ -19,7 +19,7 @@ Steps to reproduce the behavior:
 3. Scroll down to '...'
 4. See error
 
-## Code Pen Repro Example
+## CodePen repro example
 
 Please provide a reproduction of the bug in a codepen, if possible. Here’s how
 
