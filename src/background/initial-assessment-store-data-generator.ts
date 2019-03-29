@@ -24,7 +24,7 @@ export class InitialAssessmentStoreDataGenerator {
         // defaulting this.tests values to null instead of doing multiple if
         const first = head(this.tests) || this.NULL_FIRST_TEST;
         const selectedTestType = first.type;
-        const selectedTestStep = first.steps && first.steps[0] && first.steps[0].key;
+        const selectedTestStep = first.requirements && first.requirements[0] && first.requirements[0].key;
 
         const state: Partial<IAssessmentStoreData> = {
             persistedTabInfo: targetTab,
