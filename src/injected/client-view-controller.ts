@@ -15,7 +15,7 @@ import { IAssessmentScanData, IVisualizationStoreData } from '../common/types/st
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryNumberTo, DictionaryStringTo } from '../types/common-types';
 import { DrawingInitiator } from './drawing-initiator';
-import { IAssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
+import { AssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
 import { ScrollingController, ScrollingWindowMessage } from './frameCommunicators/scrolling-controller';
 import { SelectorMapHelper } from './selector-map-helper';
 import { TargetPageActionMessageCreator } from './target-page-action-message-creator';
@@ -37,7 +37,7 @@ export class ClientViewController {
     private selectorMapHelper: SelectorMapHelper;
     private targetPageActionMessageCreator: TargetPageActionMessageCreator;
     protected previousVisualizationStates: DictionaryStringTo<boolean> = {};
-    protected previousVisualizationSelectorMapStates: DictionaryNumberTo<DictionaryStringTo<IAssessmentVisualizationInstance>> = {};
+    protected previousVisualizationSelectorMapStates: DictionaryNumberTo<DictionaryStringTo<AssessmentVisualizationInstance>> = {};
 
     constructor(
         visualizationStore: BaseStore<IVisualizationStoreData>,
@@ -174,7 +174,7 @@ export class ClientViewController {
     private isVisualizationStateUnchanged(
         type: VisualizationType,
         newVisualizationEnabledState: boolean,
-        newSelectorMapState: DictionaryStringTo<IAssessmentVisualizationInstance>,
+        newSelectorMapState: DictionaryStringTo<AssessmentVisualizationInstance>,
         id: string,
     ): boolean {
         if (id in this.previousVisualizationStates === false && newVisualizationEnabledState === false) {
