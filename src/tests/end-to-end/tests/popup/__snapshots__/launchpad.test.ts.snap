@@ -1,6 +1,51 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Launch Pad content should match snapshot 1`] = `
+exports[`Launch Pad High contrast mode should pass accessibility validation 1`] = `
+Array [
+  Object {
+    "id": "color-contrast",
+    "nodes": Array [
+      Object {
+        "failureSummary": "Fix any of the following:
+  Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 8.3pt, font weight: bold). Expected contrast ratio of 4.5:1",
+        "selector": Array [
+          "a[aria-label=\\"demo\\\\ video\\"]",
+        ],
+      },
+      Object {
+        "failureSummary": "Fix any of the following:
+  Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+        "selector": Array [
+          "button[aria-describedby=\\"launch-pad-item-description-1\\"]",
+        ],
+      },
+      Object {
+        "failureSummary": "Fix any of the following:
+  Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+        "selector": Array [
+          "button[aria-describedby=\\"launch-pad-item-description-2\\"]",
+        ],
+      },
+      Object {
+        "failureSummary": "Fix any of the following:
+  Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
+        "selector": Array [
+          "button[aria-describedby=\\"launch-pad-item-description-3\\"]",
+        ],
+      },
+      Object {
+        "failureSummary": "Fix any of the following:
+  Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 8.3pt, font weight: bold). Expected contrast ratio of 4.5:1",
+        "selector": Array [
+          "a[title=\\"Navigate\\\\ to\\\\ axe-core\\\\ npm\\\\ page\\"]",
+        ],
+      },
+    ],
+  },
+]
+`;
+
+exports[`Launch Pad Normal mode content should match snapshot 1`] = `
 <DocumentFragment>
   <div
     class="ms-Fabric launch-panel"
@@ -252,7 +297,7 @@ exports[`Launch Pad content should match snapshot 1`] = `
           >
             axe-core
           </a>
-           3.2.1
+           3.2.2
         </div>
       </div>
     </div>

@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IAssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
+import { AssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
 import { PartialTabOrderPropertyBag, TabOrderPropertyBag } from './tab-order-property-bag';
 
-export interface VisualizationPropertyBag<T> extends IAssessmentVisualizationInstance {
+export interface VisualizationPropertyBag<T> extends AssessmentVisualizationInstance {
     propertyBag?: T;
 }
 

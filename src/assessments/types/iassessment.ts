@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { InitialDataCreator } from '../../background/create-initial-assessment-test-data';
 import { RequirementOrdering } from '../../common/assessment/requirement';
 import { AssesssmentVisualizationConfiguration } from '../../common/configs/visualization-configuration-factory';
 import { AnyExtension } from '../../common/extensibility/extension-point';
@@ -19,6 +20,7 @@ interface BaseAssessment {
     executeAssessmentScanPolicy?: (scheduleScan: (step: string) => void, data: IAssessmentData) => void;
     requirementOrder?: RequirementOrdering;
     extensions?: AnyExtension[];
+    initialDataCreator?: InitialDataCreator;
 }
 
 export interface ManualAssessment extends BaseAssessment {}

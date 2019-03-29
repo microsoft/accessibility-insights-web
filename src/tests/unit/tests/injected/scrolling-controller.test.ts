@@ -3,7 +3,7 @@
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
-import { FrameCommunicator, IMessageRequest } from '../../../../injected/frameCommunicators/frame-communicator';
+import { FrameCommunicator, MessageRequest } from '../../../../injected/frameCommunicators/frame-communicator';
 import { ScrollingController, ScrollingWindowMessage } from '../../../../injected/frameCommunicators/scrolling-controller';
 
 describe('ScrollingControllerTest', () => {
@@ -70,13 +70,13 @@ describe('ScrollingControllerTest', () => {
             })
             .verifiable(Times.once());
 
-        const messageToSend: IMessageRequest<ScrollingWindowMessage> = {
+        const messageToSend: MessageRequest<ScrollingWindowMessage> = {
             command: ScrollingController.triggerScrollingCommand,
             frame: frameStub,
             message: {
                 focusedTarget: ['b'],
             },
-        } as IMessageRequest<ScrollingWindowMessage>;
+        } as MessageRequest<ScrollingWindowMessage>;
 
         frameCommunicatorMock.setup(fcm => fcm.sendMessage(It.isValue(messageToSend))).verifiable(Times.once());
 

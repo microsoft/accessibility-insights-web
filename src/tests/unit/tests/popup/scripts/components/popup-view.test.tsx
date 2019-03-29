@@ -9,7 +9,7 @@ import { NewTabLink } from '../../../../../../common/components/new-tab-link';
 import { DropdownClickHandler } from '../../../../../../common/dropdown-click-handler';
 import { StoreActionMessageCreatorImpl } from '../../../../../../common/message-creators/store-action-message-creator-impl';
 import { BaseClientStoresHub } from '../../../../../../common/stores/base-client-stores-hub';
-import { ICommandStoreData } from '../../../../../../common/types/store-data/icommand-store-data';
+import { CommandStoreData } from '../../../../../../common/types/store-data/command-store-data';
 import { ILaunchPanelStoreData } from '../../../../../../common/types/store-data/ilaunch-panel-store-data';
 import { UserConfigurationStoreData } from '../../../../../../common/types/store-data/user-configuration-store';
 import { PopupActionMessageCreator } from '../../../../../../popup/scripts/actions/popup-action-message-creator';
@@ -32,7 +32,7 @@ import { VisualizationStoreDataBuilder } from '../../../../common/visualization-
 
 describe('PopupView', () => {
     const browserAdapterMock = Mock.ofType(ChromeAdapter);
-    const commandStoreState: ICommandStoreData = {
+    const commandStoreState: CommandStoreData = {
         commands: ShortcutCommandsTestData,
     };
     const launchPanelStateStoreState: ILaunchPanelStoreData = {

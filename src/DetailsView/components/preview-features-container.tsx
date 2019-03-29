@@ -3,8 +3,8 @@
 import * as React from 'react';
 
 import { DisplayableStrings } from '../../common/constants/displayable-strings';
+import { DisplayableFeatureFlag } from '../../common/types/store-data/displayable-feature-flag';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
-import { IDisplayableFeatureFlag } from '../../common/types/store-data/idisplayable-feature-flag';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { PreviewFeatureFlagsHandler } from '../handlers/preview-feature-flags-handler';
 import { NoDisplayableFeatureFlagMessage } from './no-displayable-preview-features-message';
@@ -18,7 +18,7 @@ export interface PreviewFeaturesContainerProps {
 
 export class PreviewFeaturesContainer extends React.Component<PreviewFeaturesContainerProps> {
     public render(): JSX.Element {
-        const displayableFeatureFlags: IDisplayableFeatureFlag[] = this.props.previewFeatureFlagsHandler.getDisplayableFeatureFlags(
+        const displayableFeatureFlags: DisplayableFeatureFlag[] = this.props.previewFeatureFlagsHandler.getDisplayableFeatureFlags(
             this.props.featureFlagData,
         );
         if (displayableFeatureFlags.length === 0) {
