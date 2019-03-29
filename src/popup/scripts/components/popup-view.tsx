@@ -10,7 +10,7 @@ import { withStoreSubscription, WithStoreSubscriptionDeps } from '../../../commo
 import { DisplayableStrings } from '../../../common/constants/displayable-strings';
 import { DropdownClickHandler } from '../../../common/dropdown-click-handler';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
-import { ILaunchPanelStoreData } from '../../../common/types/store-data/ilaunch-panel-store-data';
+import { LaunchPanelStoreData } from '../../../common/types/store-data/launch-panel-store-data';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import { UrlValidator } from '../../../common/url-validator';
 import { IPopupHandlers } from '../handlers/ipopup-handlers';
@@ -49,7 +49,7 @@ export enum LaunchPanelType {
 
 export interface PopupViewControllerState {
     featureFlagStoreData: FeatureFlagStoreData;
-    launchPanelStateStoreData: ILaunchPanelStoreData;
+    launchPanelStateStoreData: LaunchPanelStoreData;
     userConfigurationStoreData: UserConfigurationStoreData;
 }
 

@@ -3,7 +3,7 @@
 import { autobind } from '@uifabric/utilities';
 
 import { StoreNames } from '../../../common/stores/store-names';
-import { ILaunchPanelStoreData } from '../../../common/types/store-data/ilaunch-panel-store-data';
+import { LaunchPanelStoreData } from '../../../common/types/store-data/launch-panel-store-data';
 import { LaunchPanelType } from '../../../popup/scripts/components/popup-view';
 import { BrowserAdapter } from '../../browser-adapter';
 import { LocalStorageDataKeys } from '../../local-storage-data-keys';
@@ -11,7 +11,7 @@ import { ILocalStorageData } from '../../storage-data';
 import { BaseStoreImpl } from '../base-store-impl';
 import { LaunchPanelStateActions } from './../../actions/launch-panel-state-action';
 
-export class LaunchPanelStore extends BaseStoreImpl<ILaunchPanelStoreData> {
+export class LaunchPanelStore extends BaseStoreImpl<LaunchPanelStoreData> {
     private launchPanelStateActions: LaunchPanelStateActions;
     private browserAdapter: BrowserAdapter;
     private userData: ILocalStorageData;
@@ -24,8 +24,8 @@ export class LaunchPanelStore extends BaseStoreImpl<ILaunchPanelStoreData> {
         this.userData = userData;
     }
 
-    public getDefaultState(): ILaunchPanelStoreData {
-        const defaultValues: ILaunchPanelStoreData = {
+    public getDefaultState(): LaunchPanelStoreData {
+        const defaultValues: LaunchPanelStoreData = {
             launchPanelType: LaunchPanelType.LaunchPad,
         };
 

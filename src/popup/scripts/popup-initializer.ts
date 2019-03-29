@@ -26,8 +26,8 @@ import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
 import { TelemetryEventSource } from '../../common/telemetry-events';
 import { CommandStoreData } from '../../common/types/store-data/command-store-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
-import { ILaunchPanelStoreData } from '../../common/types/store-data/ilaunch-panel-store-data';
 import { IVisualizationStoreData } from '../../common/types/store-data/ivisualization-store-data';
+import { LaunchPanelStoreData } from '../../common/types/store-data/launch-panel-store-data';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { WindowUtils } from '../../common/window-utils';
@@ -112,7 +112,7 @@ export class PopupInitializer {
         const userConfigurationStoreName = StoreNames[StoreNames.UserConfigurationStore];
 
         const visualizationStore = new StoreProxy<IVisualizationStoreData>(visualizationStoreName, this.chromeAdapter);
-        const launchPanelStateStore = new StoreProxy<ILaunchPanelStoreData>(launchPanelStateStoreName, this.chromeAdapter);
+        const launchPanelStateStore = new StoreProxy<LaunchPanelStoreData>(launchPanelStateStoreName, this.chromeAdapter);
         const commandStore = new StoreProxy<CommandStoreData>(commandStoreName, this.chromeAdapter);
         const featureFlagStore = new StoreProxy<FeatureFlagStoreData>(featureFlagStoreName, this.chromeAdapter);
         const userConfigurationStore = new StoreProxy<UserConfigurationStoreData>(userConfigurationStoreName, this.chromeAdapter);

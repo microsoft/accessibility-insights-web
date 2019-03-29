@@ -8,7 +8,7 @@ import { LocalStorageDataKeys } from '../../../../../../background/local-storage
 import { ILocalStorageData } from '../../../../../../background/storage-data';
 import { LaunchPanelStore } from '../../../../../../background/stores/global/launch-panel-store';
 import { StoreNames } from '../../../../../../common/stores/store-names';
-import { ILaunchPanelStoreData } from '../../../../../../common/types/store-data/ilaunch-panel-store-data';
+import { LaunchPanelStoreData } from '../../../../../../common/types/store-data/launch-panel-store-data';
 import { LaunchPanelType } from '../../../../../../popup/scripts/components/popup-view';
 import { createStoreWithNullParams, StoreTester } from '../../../../common/store-tester';
 
@@ -72,13 +72,13 @@ describe('LaunchPanelStateStoreTest', () => {
 
     function createStoreForLaunchPanelStateActions(
         actionName: keyof LaunchPanelStateActions,
-    ): StoreTester<ILaunchPanelStoreData, LaunchPanelStateActions> {
+    ): StoreTester<LaunchPanelStoreData, LaunchPanelStateActions> {
         const factory = (actions: LaunchPanelStateActions) => new LaunchPanelStore(actions, browserAdapterMock.object, userDataStub);
 
         return new StoreTester(LaunchPanelStateActions, actionName, factory);
     }
 
-    function getDefaultState(): ILaunchPanelStoreData {
+    function getDefaultState(): LaunchPanelStoreData {
         return createStoreWithNullParams(LaunchPanelStore).getDefaultState();
     }
 });
