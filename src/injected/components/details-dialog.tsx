@@ -2,8 +2,10 @@
 // Licensed under the MIT License.
 import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 import { Dialog, DialogType } from 'office-ui-fabric-react/lib/Dialog';
-import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import * as React from 'react';
+import { CancelIcon } from '../../common/icons/cancel-icon';
+import { FileHTMLIcon } from '../../common/icons/file-html-icon';
+import { StatusErrorFullIcon } from '../../common/icons/status-error-full-icon';
 
 import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 import { CopyIssueDetailsButton, CopyIssueDetailsButtonDeps } from '../../common/components/copy-issue-details-button';
@@ -21,10 +23,6 @@ import { DecoratedAxeNodeResult } from '../scanner-utils';
 import { TargetPageActionMessageCreator } from '../target-page-action-message-creator';
 import { DetailsDialogHandler } from './../details-dialog-handler';
 import { FixInstructionPanel } from './fix-instruction-panel';
-
-import { CancelIcon } from '../../common/icons/cancel-icon';
-import { FileHTMLIcon } from '../../common/icons/file-html-icon';
-import { StatusErrorFullIcon } from '../../common/icons/status-error-full-icon';
 
 export enum CheckType {
     All,
@@ -144,6 +142,10 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
                 {this.renderInspectMessage()}
             </div>
         );
+    }
+
+    private renderCloseButton(): JSX.Element {
+        return <CancelIcon />;
     }
 
     private renderInspectButton(): JSX.Element {
@@ -299,7 +301,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
                                 data-is-focusable="true"
                             >
                                 <div className="ms-button-flex-container">
-                                    <Icon iconName="Cancel" />
+                                    <CancelIcon />
                                 </div>
                             </button>
                         </div>
@@ -315,8 +317,17 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         return (
             <Dialog
                 hidden={!this.state.showDialog}
+                // Used top button instead of default close button to avoid use of fabric icons that might not load due to target page CSP
                 dialogContentProps={{
                     type: DialogType.normal,
+                    showCloseButton: false,
+                    topButtonsProps: [
+                        {
+                            ariaLabel: 'Close',
+                            onRenderIcon: this.renderCloseButton,
+                            onClick: this.onHideDialog,
+                        },
+                    ],
                 }}
                 modalProps={{
                     isBlocking: false,
