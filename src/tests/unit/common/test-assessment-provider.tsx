@@ -33,7 +33,7 @@ const assessmentWithColumns: Assessment = {
     gettingStarted: null,
     guidance: content.assessment1.guidance,
     initialDataCreator,
-    steps: [
+    requirements: [
         {
             key: 'assessment-1-step-1',
             description: <div> assessment-1-step-1 description</div>,
@@ -92,7 +92,7 @@ const simpleAssessment = {
     title: 'assessment 2',
     gettingStarted: null,
     initialDataCreator,
-    steps: [
+    requirements: [
         {
             key: 'assessment-2-step-1',
             description: null,
@@ -128,7 +128,7 @@ const automatedAssessment = {
     title: 'assessment 3',
     gettingStarted: null,
     initialDataCreator,
-    steps: [
+    requirements: [
         {
             key: 'assessment-3-step-2',
             description: null,

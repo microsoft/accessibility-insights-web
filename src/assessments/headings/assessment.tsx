@@ -45,7 +45,7 @@ export const HeadingsAssessment: Assessment = AssessmentBuilder.Assisted({
     gettingStarted,
     title,
     guidance,
-    steps: [HeadingFunction, NoMissingHeadings, HeadingLevel],
+    requirements: [HeadingFunction, NoMissingHeadings, HeadingLevel],
     storeDataKey: 'headingsAssessment',
     isEnabled: true,
 });

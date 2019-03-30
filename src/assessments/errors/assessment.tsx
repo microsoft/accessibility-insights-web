@@ -27,5 +27,5 @@ export const ErrorsAssessment = AssessmentBuilder.Manual({
     title,
     gettingStarted,
     guidance,
-    steps: [ErrorIdentification, ErrorSuggestion, ErrorPrevention],
+    requirements: [ErrorIdentification, ErrorSuggestion, ErrorPrevention],
 });

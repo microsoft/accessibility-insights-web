@@ -15,7 +15,7 @@ interface BaseAssessment {
     title: string;
     gettingStarted: JSX.Element;
     guidance?: ContentPageComponent;
-    steps: Requirement[];
+    requirements: Requirement[];
     featureFlag?: { required?: string[] };
     executeAssessmentScanPolicy?: (scheduleScan: (step: string) => void, data: IAssessmentData) => void;
     requirementOrder?: RequirementOrdering;

@@ -6,10 +6,9 @@ import { Assessment } from '../assessments/types/iassessment';
 import { Requirement } from '../assessments/types/requirement';
 import { IAssessmentData, IAssessmentStoreData, PersistedTabInfo } from '../common/types/store-data/iassessment-result-data';
 import { DictionaryStringTo } from '../types/common-types';
-import { createInitialAssessmentTestData } from './create-initial-assessment-test-data';
 
 export class InitialAssessmentStoreDataGenerator {
-    private readonly NULL_FIRST_TEST: Partial<Readonly<Assessment>> = { type: null, steps: [{ key: null }] as Requirement[] };
+    private readonly NULL_FIRST_TEST: Partial<Readonly<Assessment>> = { type: null, requirements: [{ key: null }] as Requirement[] };
 
     constructor(private readonly tests: ReadonlyArray<Readonly<Assessment>>) {}
 
@@ -20,7 +19,7 @@ export class InitialAssessmentStoreDataGenerator {
         // defaulting this.tests values to null instead of doing multiple if
         const first = head(this.tests) || this.NULL_FIRST_TEST;
         const selectedTestType = first.type;
-        const selectedTestStep = first.steps && first.steps[0] && first.steps[0].key;
+        const selectedTestStep = first.requirements && first.requirements[0] && first.requirements[0].key;
 
         const state: Partial<IAssessmentStoreData> = {
             persistedTabInfo: targetTab,

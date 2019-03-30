@@ -43,6 +43,6 @@ export const CustomWidgets: Assessment = AssessmentBuilder.Assisted({
     title,
     gettingStarted,
     guidance,
-    steps: [DesignPattern, Instructions, Label, RoleStateProperty, Cues, KeyboardInteraction],
+    requirements: [DesignPattern, Instructions, Label, RoleStateProperty, Cues, KeyboardInteraction],
     storeDataKey: 'customWidgetsAssessment',
 });

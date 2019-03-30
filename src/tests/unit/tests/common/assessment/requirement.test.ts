@@ -13,13 +13,13 @@ import { VisualizationType } from '../../../../../common/types/visualization-typ
 describe('Requirement', () => {
     describe('getRequirementsResults', () => {
         it('merges and sorts data as expected', () => {
-            const steps = [
+            const requirements = [
                 { key: 'gamma', name: 'at the top' },
                 { key: 'alpha', name: 'in the middle' },
                 { key: 'beta', name: 'on the bottom' },
             ];
             function getStep(key): RequirementDefinition {
-                return find(steps, s => s.key === key) as RequirementDefinition;
+                return find(requirements, s => s.key === key) as RequirementDefinition;
             }
 
             const stepStatus = {
@@ -29,7 +29,7 @@ describe('Requirement', () => {
             } as ManualTestStatusData;
 
             const test = {
-                steps,
+                requirements,
                 requirementOrder: RequirementComparer.byName,
             } as AssessmentTestDefinition;
 

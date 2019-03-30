@@ -36,5 +36,5 @@ export const AudioVideoOnlyAssessment = AssessmentBuilder.Manual({
     title,
     gettingStarted,
     guidance,
-    steps: [AudioOnlyEquivalent, VideoOnlyEquivalent],
+    requirements: [AudioOnlyEquivalent, VideoOnlyEquivalent],
 });

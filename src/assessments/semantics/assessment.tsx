@@ -36,6 +36,6 @@ export const SemanticsAssessment = AssessmentBuilder.Assisted({
     title,
     gettingStarted,
     type: VisualizationType.SemanticsAssessment,
-    steps: [CssContent, DataTables, SemanticsLists, SemanticsEmphasis, SemanticsQuotes, SemanticsLetterSpacing],
+    requirements: [CssContent, DataTables, SemanticsLists, SemanticsEmphasis, SemanticsQuotes, SemanticsLetterSpacing],
     storeDataKey: 'semanticsAssessment',
 });

@@ -140,7 +140,7 @@ describe('AssessmentsProviderTest', () => {
 
     function getProvider(): AssessmentsProvider {
         const assessments = [
-            { type: firstType, key: firstKey, steps: [{ key: stepOneKey }, { key: stepTwoKey }] } as Assessment,
+            { type: firstType, key: firstKey, requirements: [{ key: stepOneKey }, { key: stepTwoKey }] } as Assessment,
             { type: secondType, key: secondKey } as Assessment,
         ];
         const provider = AssessmentsProviderImpl.Create(assessments);
@@ -148,7 +148,7 @@ describe('AssessmentsProviderTest', () => {
     }
 
     function makeAssessment(type: number, stepKeys: string[]): Assessment {
-        return { type, steps: stepKeys.map(makeStep) } as Assessment;
+        return { type, requirements: stepKeys.map(makeStep) } as Assessment;
     }
 
     function makeStep(key: string): Requirement {

@@ -33,6 +33,6 @@ export const ColorSensoryAssessment: Assessment = AssessmentBuilder.Assisted({
     gettingStarted: colorSensoryGettingStartedText,
     type: VisualizationType.ColorSensoryAssessment,
     guidance,
-    steps: [UseOfColor, SensoryCharacteristics, AuditoryCues, Flashing],
+    requirements: [UseOfColor, SensoryCharacteristics, AuditoryCues, Flashing],
     storeDataKey: 'colorSensoryAssessment',
 });

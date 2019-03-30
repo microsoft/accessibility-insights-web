@@ -41,6 +41,6 @@ export const NativeWidgetsAssessment: Assessment = AssessmentBuilder.Assisted({
     title,
     gettingStarted,
     guidance,
-    steps: [WidgetFunction, Instructions, Label, Cues],
+    requirements: [WidgetFunction, Instructions, Label, Cues],
     storeDataKey: 'nativeWidgetsAssessment',
 });

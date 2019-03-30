@@ -16,7 +16,7 @@ import { DictionaryStringTo } from '../types/common-types';
 export type InitialDataCreator = (test: Readonly<Assessment>, persistedTest: IAssessmentData) => IAssessmentData;
 
 export const createInitialAssessmentTestData: InitialDataCreator = (test: Readonly<Assessment>, persistedTest: IAssessmentData) => {
-    const requirements = test.steps.map(val => val.key);
+    const requirements = test.requirements.map(val => val.key);
     if (persistedTest) {
         return getInitialTestDataUsingPersistedData(
             requirements,
@@ -33,7 +33,7 @@ export const createAutomatedChecksInitialAssessmentTestData: InitialDataCreator 
     test: Readonly<Assessment>,
     persistedTest: IAssessmentData,
 ) => {
-    const requirements = test.steps.map(val => val.key);
+    const requirements = test.requirements.map(val => val.key);
     if (persistedTest && allRequirementsAreScanned(requirements, persistedTest)) {
         return getInitialTestDataUsingPersistedData(
             requirements,

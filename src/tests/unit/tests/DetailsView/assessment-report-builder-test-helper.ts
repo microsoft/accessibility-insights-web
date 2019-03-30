@@ -193,7 +193,7 @@ export class AssessmentReportBuilderTestHelper {
             {
                 key: 'assessment1',
                 title: 'Assessment1',
-                steps: [
+                requirements: [
                     {
                         key: 'step1a',
                         name: 'Step1A',
@@ -249,7 +249,7 @@ export class AssessmentReportBuilderTestHelper {
             {
                 key: 'assessment2',
                 title: 'Assessment2',
-                steps: [
+                requirements: [
                     {
                         key: 'step1b',
                         name: 'Step1B',
@@ -282,7 +282,7 @@ export class AssessmentReportBuilderTestHelper {
             data
                 .filter(assessmentContent => assessmentContent.key === assessmentKey)
                 .map(assessmentContent => {
-                    return assessmentContent.steps.map(step => step.key);
+                    return assessmentContent.requirements.map(step => step.key);
                 }),
         );
     }
