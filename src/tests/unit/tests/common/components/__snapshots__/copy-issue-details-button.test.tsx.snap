@@ -7,14 +7,14 @@ exports[`CopyIssueDetailsButtonTest render 1`] = `
   >
     <CustomizedDefaultButton
       className="copy-issue-details-button"
-      iconProps={
-        Object {
-          "iconName": "Copy",
-        }
-      }
       onClick={[Function]}
     >
-      Copy failure details
+      <CopyIcon />
+      <div
+        className="ms-Button-label"
+      >
+        Copy failure details
+      </div>
     </CustomizedDefaultButton>
   </CopyToClipboard>
 </React.Fragment>
@@ -41,14 +41,14 @@ exports[`CopyIssueDetailsButtonTest render after click shows toast 1`] = `
   >
     <CustomizedDefaultButton
       className="copy-issue-details-button"
-      iconProps={
-        Object {
-          "iconName": "Copy",
-        }
-      }
       onClick={[Function]}
     >
-      Copy failure details
+      <CopyIcon />
+      <div
+        className="ms-Button-label"
+      >
+        Copy failure details
+      </div>
     </CustomizedDefaultButton>
   </CopyToClipboard>
 </React.Fragment>

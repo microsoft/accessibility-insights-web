@@ -4,6 +4,14 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = false 
 <StyledWithResponsiveMode
   dialogContentProps={
     Object {
+      "showCloseButton": false,
+      "topButtonsProps": Array [
+        Object {
+          "ariaLabel": "Close",
+          "onClick": Object {},
+          "onRenderIcon": [Function],
+        },
+      ],
       "type": 0,
     }
   }
@@ -26,10 +34,8 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = false 
     <div
       className="insights-dialog-rule-container"
     >
-      <StyledIconBase
-        iconName="StatusErrorFull"
-      />
-      <div
+      <StatusErrorFullIcon />
+      <span
         className="ms-fontSize-mPlus insights-dialog-rule-link"
       >
         Rule name: 
@@ -38,7 +44,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = false 
         >
           ruleId
         </NewTabLink>
-      </div>
+      </span>
     </div>
     <div
       className="insights-dialog-target-container"
@@ -59,14 +65,15 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = false 
         <CustomizedDefaultButton
           className="insights-dialog-button-inspect"
           disabled={true}
-          iconProps={
-            Object {
-              "iconName": "FileHTML",
-            }
-          }
           onClick={[Function]}
-          text="Inspect HTML"
-        />
+        >
+          <FileHTMLIcon />
+          <div
+            className="ms-Button-label"
+          >
+            Inspect HTML
+          </div>
+        </CustomizedDefaultButton>
         <React.Fragment>
           <CopyIssueDetailsButton
             deps={
@@ -246,9 +253,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 1
           <div
             className="ms-button-flex-container"
           >
-            <StyledIconBase
-              iconName="Cancel"
-            />
+            <CancelIcon />
           </div>
         </button>
       </div>
@@ -257,10 +262,8 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 1
       <div
         className="insights-dialog-rule-container"
       >
-        <StyledIconBase
-          iconName="StatusErrorFull"
-        />
-        <div
+        <StatusErrorFullIcon />
+        <span
           className="ms-fontSize-mPlus insights-dialog-rule-link"
         >
           Rule name: 
@@ -269,7 +272,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 1
           >
             ruleId
           </NewTabLink>
-        </div>
+        </span>
       </div>
       <div
         className="insights-dialog-target-container"
@@ -290,14 +293,15 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 1
           <CustomizedDefaultButton
             className="insights-dialog-button-inspect"
             disabled={true}
-            iconProps={
-              Object {
-                "iconName": "FileHTML",
-              }
-            }
             onClick={null}
-            text="Inspect HTML"
-          />
+          >
+            <FileHTMLIcon />
+            <div
+              className="ms-Button-label"
+            >
+              Inspect HTML
+            </div>
+          </CustomizedDefaultButton>
           <React.Fragment>
             <CopyIssueDetailsButton
               deps={
@@ -450,6 +454,14 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 2
 <StyledWithResponsiveMode
   dialogContentProps={
     Object {
+      "showCloseButton": false,
+      "topButtonsProps": Array [
+        Object {
+          "ariaLabel": "Close",
+          "onClick": Object {},
+          "onRenderIcon": [Function],
+        },
+      ],
       "type": 0,
     }
   }
@@ -472,10 +484,8 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 2
     <div
       className="insights-dialog-rule-container"
     >
-      <StyledIconBase
-        iconName="StatusErrorFull"
-      />
-      <div
+      <StatusErrorFullIcon />
+      <span
         className="ms-fontSize-mPlus insights-dialog-rule-link"
       >
         Rule name: 
@@ -484,7 +494,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 2
         >
           ruleId
         </NewTabLink>
-      </div>
+      </span>
     </div>
     <div
       className="insights-dialog-target-container"
@@ -505,14 +515,15 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 2
         <CustomizedDefaultButton
           className="insights-dialog-button-inspect"
           disabled={false}
-          iconProps={
-            Object {
-              "iconName": "FileHTML",
-            }
-          }
           onClick={[Function]}
-          text="Inspect HTML"
-        />
+        >
+          <FileHTMLIcon />
+          <div
+            className="ms-Button-label"
+          >
+            Inspect HTML
+          </div>
+        </CustomizedDefaultButton>
         <React.Fragment>
           <CopyIssueDetailsButton
             deps={
@@ -687,9 +698,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = true, shadowDialog = true 1`
           <div
             className="ms-button-flex-container"
           >
-            <StyledIconBase
-              iconName="Cancel"
-            />
+            <CancelIcon />
           </div>
         </button>
       </div>
@@ -698,10 +707,8 @@ exports[`DetailsDialogTest render: isDevToolsOpen = true, shadowDialog = true 1`
       <div
         className="insights-dialog-rule-container"
       >
-        <StyledIconBase
-          iconName="StatusErrorFull"
-        />
-        <div
+        <StatusErrorFullIcon />
+        <span
           className="ms-fontSize-mPlus insights-dialog-rule-link"
         >
           Rule name: 
@@ -710,7 +717,7 @@ exports[`DetailsDialogTest render: isDevToolsOpen = true, shadowDialog = true 1`
           >
             ruleId
           </NewTabLink>
-        </div>
+        </span>
       </div>
       <div
         className="insights-dialog-target-container"
@@ -731,14 +738,15 @@ exports[`DetailsDialogTest render: isDevToolsOpen = true, shadowDialog = true 1`
           <CustomizedDefaultButton
             className="insights-dialog-button-inspect"
             disabled={false}
-            iconProps={
-              Object {
-                "iconName": "FileHTML",
-              }
-            }
             onClick={null}
-            text="Inspect HTML"
-          />
+          >
+            <FileHTMLIcon />
+            <div
+              className="ms-Button-label"
+            >
+              Inspect HTML
+            </div>
+          </CustomizedDefaultButton>
           <React.Fragment>
             <CopyIssueDetailsButton
               deps={
@@ -886,6 +894,14 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
 <StyledWithResponsiveMode
   dialogContentProps={
     Object {
+      "showCloseButton": false,
+      "topButtonsProps": Array [
+        Object {
+          "ariaLabel": "Close",
+          "onClick": Object {},
+          "onRenderIcon": [Function],
+        },
+      ],
       "type": 0,
     }
   }
@@ -908,10 +924,8 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
     <div
       className="insights-dialog-rule-container"
     >
-      <StyledIconBase
-        iconName="StatusErrorFull"
-      />
-      <div
+      <StatusErrorFullIcon />
+      <span
         className="ms-fontSize-mPlus insights-dialog-rule-link"
       >
         Rule name: 
@@ -920,7 +934,7 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
         >
           ruleId
         </NewTabLink>
-      </div>
+      </span>
     </div>
     <div
       className="insights-dialog-target-container"
@@ -941,14 +955,15 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
         <CustomizedDefaultButton
           className="insights-dialog-button-inspect"
           disabled={true}
-          iconProps={
-            Object {
-              "iconName": "FileHTML",
-            }
-          }
           onClick={[Function]}
-          text="Inspect HTML"
-        />
+        >
+          <FileHTMLIcon />
+          <div
+            className="ms-Button-label"
+          >
+            Inspect HTML
+          </div>
+        </CustomizedDefaultButton>
         <React.Fragment>
           <CopyIssueDetailsButton
             deps={
