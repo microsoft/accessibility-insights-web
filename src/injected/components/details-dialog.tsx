@@ -317,7 +317,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         return (
             <Dialog
                 hidden={!this.state.showDialog}
-                // Used top button instead of default close button to avoid use of fabric icons that might not load due to target page CSP
+                // Used top button instead of default close button to avoid use of fabric icons that might not load due to target page's Content Security Policy
                 dialogContentProps={{
                     type: DialogType.normal,
                     showCloseButton: false,
