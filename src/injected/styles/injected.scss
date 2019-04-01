@@ -122,20 +122,21 @@
     .insights-dialog-main-override .create-bug-button,
     .insights-dialog-main-override .copy-issue-details-button {
         margin-left: 8px !important;
+
+        svg path {
+            fill: $neutral-100 !important;
+            fill-opacity: 0.9 !important;
+        }
     }
 
-    .insights-dialog-main-override .insights-dialog-button-create-bug i {
-        color: $communication-shade-10 !important;
-    }
-
-    .insights-dialog-main-override-shadow .insights-dialog-button-create-bug {
+    .insights-dialog-main-override-shadow .create-bug-button,
+    .insights-dialog-main-override-shadow .copy-issue-details-button {
         margin-left: 8px !important;
-    }
 
-    .insights-dialog-main-override-shadow .insights-dialog-button-create-bug i {
-        color: $communication-shade-10 !important;
-        font-style: normal;
-        font-family: FabricMDL2Icons;
+        svg path {
+            fill: $neutral-100 !important;
+            fill-opacity: 0.9 !important;
+        }
     }
 
     .insights-dialog-main-override .insights-dialog-button-left {

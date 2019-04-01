@@ -1260,6 +1260,11 @@ div.insights-file-issue-details-dialog-container {
                     svg {
                         margin-left: 4px;
                         margin-right: 4px;
+
+                        path {
+                            fill: $neutral-100 !important;
+                            fill-opacity: 0.9 !important;
+                        }
                     }
 
                     .issue-detail-table {
