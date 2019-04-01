@@ -103,24 +103,20 @@
         padding: 0 19px 20px !important;
     }
 
-    .insights-dialog-main-override .insights-dialog-button-inspect i {
-        color: $communication-shade-10 !important;
+    .insights-dialog-main-override .insights-dialog-button-inspect svg path {
+        fill: $communication-shade-10 !important;
     }
 
-    .insights-dialog-main-override .insights-dialog-button-inspect.is-disabled i {
-        color: $neutral-30 !important;
+    .insights-dialog-main-override .insights-dialog-button-inspect.is-disabled svg path {
+        fill: $neutral-30 !important;
     }
 
-    .insights-dialog-main-override-shadow .insights-dialog-button-inspect i {
-        color: $communication-shade-10 !important;
-        font-style: normal;
-        font-family: FabricMDL2Icons;
+    .insights-dialog-main-override-shadow .insights-dialog-button-inspect svg path {
+        fill: $communication-shade-10 !important;
     }
 
-    .insights-dialog-main-override-shadow .insights-dialog-button-inspect.is-disabled i {
-        color: $neutral-30 !important;
-        font-style: normal;
-        font-family: FabricMDL2Icons;
+    .insights-dialog-main-override-shadow .insights-dialog-button-inspect.is-disabled svg path {
+        fill: $neutral-30 !important;
     }
 
     .insights-dialog-main-override .create-bug-button,
@@ -323,11 +319,6 @@
             margin-left: 4px;
             margin-right: 4px;
         }
-
-        button:disabled svg path {
-            fill: black;
-            fill-opacity: 0.38;
-        }
     }
 
     .insights-dialog-main-override-shadow .insights-dialog-target-button-container {
@@ -372,11 +363,6 @@
             background-color: $neutral-4;
             color: $neutral-30;
             pointer-events: none;
-
-            svg path {
-                fill: black;
-                fill-opacity: 0.38;
-            }
         }
 
         .ms-Button-label {
