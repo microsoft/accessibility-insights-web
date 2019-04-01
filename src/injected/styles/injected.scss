@@ -179,12 +179,6 @@
     .insights-dialog-main-override .insights-dialog-rule-container,
     .insights-dialog-main-override-shadow .insights-dialog-rule-container {
         margin-bottom: 12px !important;
-
-        svg {
-            float: left !important;
-            margin-right: 1% !important;
-            margin-top: 4px !important;
-        }
     }
 
     .insights-dialog-main-override-shadow .insights-dialog-container {
@@ -284,20 +278,24 @@
         }
     }
 
-    .insights-dialog-main-override .insights-dialog-rule-container i {
-        color: $negative-outcome !important;
+    .insights-dialog-main-override .insights-dialog-rule-container svg {
+        path {
+            fill: $negative-outcome !important;
+        }
+
         float: left !important;
         margin-right: 1% !important;
-        margin-top: 3px !important;
+        margin-top: 4px !important;
     }
 
-    .insights-dialog-main-override-shadow .insights-dialog-rule-container i {
-        color: $negative-outcome !important;
+    .insights-dialog-main-override-shadow .insights-dialog-rule-container svg {
+        path {
+            fill: $negative-outcome !important;
+        }
+
         float: left !important;
         margin-right: 1% !important;
-        margin-top: 2px !important;
-        font-style: normal;
-        font-family: FabricMDL2Icons;
+        margin-top: 4px !important;
     }
 
     .insights-dialog-main-override .insights-dialog-target-container {

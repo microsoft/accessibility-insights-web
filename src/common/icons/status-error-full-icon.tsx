@@ -18,6 +18,6 @@ const d =
 
 export const StatusErrorFullIcon = NamedSFC('StatusErrorFullIcon', () => (
     <svg width="14" height="14" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path fillRule="evenodd" clipRule="evenodd" d={d} fill="#E81123" />
+        <path d={d} />
     </svg>
 ));
