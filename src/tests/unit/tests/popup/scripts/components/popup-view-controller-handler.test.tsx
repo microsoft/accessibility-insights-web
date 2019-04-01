@@ -8,7 +8,7 @@ import { PopupViewControllerHandler } from '../../../../../../popup/scripts/hand
 
 describe('PopupViewControllerHandlerTest', () => {
     test('openAdhocToolsPanel', () => {
-        const setlaunchPanelTypeMock = Mock.ofInstance(type => {});
+        const setlaunchPanelTypeMock = Mock.ofInstance(panelType => {});
         const forceUpdateMock = Mock.ofInstance(() => {});
         const testPanelType: LaunchPanelType = LaunchPanelType.AdhocToolsPanel;
 
@@ -38,7 +38,7 @@ describe('PopupViewControllerHandlerTest', () => {
     });
 
     test('openTogglesView', () => {
-        const setlaunchPanelTypeMock = Mock.ofInstance(type => {});
+        const setlaunchPanelTypeMock = Mock.ofInstance(panelType => {});
         const forceUpdateMock = Mock.ofInstance(() => {});
         const testPanelType: LaunchPanelType = LaunchPanelType.LaunchPad;
 
@@ -69,7 +69,7 @@ describe('PopupViewControllerHandlerTest', () => {
 
     test('triggerRerender', () => {
         const testPanelType: LaunchPanelType = LaunchPanelType.LaunchPad;
-        const setlaunchPanelTypeMock = Mock.ofInstance(type => {});
+        const setlaunchPanelTypeMock = Mock.ofInstance(panelType => {});
         setlaunchPanelTypeMock.setup(t => t(It.isValue(testPanelType))).verifiable();
 
         const forceUpdateMock = Mock.ofInstance(() => {});

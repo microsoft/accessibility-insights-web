@@ -119,18 +119,18 @@ export class ClientViewController {
 
     private executeUpdates(): void {
         const types = EnumHelper.getNumericValues<VisualizationType>(VisualizationType);
-        types.forEach(type => {
-            const configuration = this.visualizationConfigurationFactory.getConfiguration(type);
+        types.forEach(visualizationType => {
+            const configuration = this.visualizationConfigurationFactory.getConfiguration(visualizationType);
             if (this.isAssessment(configuration)) {
                 const visualizationState = configuration.getStoreData(this.currentVisualizationState.tests) as IAssessmentScanData;
                 Object.keys(visualizationState.stepStatus).forEach(step => {
-                    this.executeUpdate(type, step);
+                    this.executeUpdate(visualizationType, step);
                 });
             } else {
-                this.executeUpdate(type, null);
+                this.executeUpdate(visualizationType, null);
             }
-            const selectorMap = this.selectorMapHelper.getSelectorMap(type);
-            this.previousVisualizationSelectorMapStates[type] = selectorMap;
+            const selectorMap = this.selectorMapHelper.getSelectorMap(visualizationType);
+            this.previousVisualizationSelectorMapStates[visualizationType] = selectorMap;
         });
     }
 
@@ -172,7 +172,7 @@ export class ClientViewController {
     }
 
     private isVisualizationStateUnchanged(
-        type: VisualizationType,
+        visualizationType: VisualizationType,
         newVisualizationEnabledState: boolean,
         newSelectorMapState: DictionaryStringTo<AssessmentVisualizationInstance>,
         id: string,
@@ -183,7 +183,7 @@ export class ClientViewController {
         return (
             id in this.previousVisualizationStates &&
             this.previousVisualizationStates[id] === newVisualizationEnabledState &&
-            _.isEqual(this.previousVisualizationSelectorMapStates[type], newSelectorMapState)
+            _.isEqual(this.previousVisualizationSelectorMapStates[visualizationType], newSelectorMapState)
         );
     }
 

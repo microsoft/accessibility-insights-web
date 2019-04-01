@@ -17,7 +17,7 @@ function onAssessmentViewUpdate(prevProps: AssessmentViewProps, curProps: Assess
         curProps.deps.detailsViewActionMessageCreator.selectRequirement(
             null,
             assessmentTestResult.getRequirementResults()[0].definition.key,
-            assessmentTestResult.type,
+            assessmentTestResult.visualizationType,
         );
     }
 }

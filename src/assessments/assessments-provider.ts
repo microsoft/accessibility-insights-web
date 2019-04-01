@@ -18,12 +18,12 @@ export class AssessmentsProviderImpl implements AssessmentsProvider {
         return this.assessments.slice();
     }
 
-    public forType(type: VisualizationType): Assessment {
-        return this.all().find(a => a.type === type);
+    public forType(visualizationType: VisualizationType): Assessment {
+        return this.all().find(a => a.visualizationType === visualizationType);
     }
 
-    public isValidType(type: VisualizationType): boolean {
-        return this.forType(type) != null;
+    public isValidType(visualizationType: VisualizationType): boolean {
+        return this.forType(visualizationType) != null;
     }
 
     public forKey(key: string): Assessment {
@@ -34,8 +34,8 @@ export class AssessmentsProviderImpl implements AssessmentsProvider {
         return this.forKey(key) != null;
     }
 
-    public getStep(type: VisualizationType, key: string): Requirement {
-        const assessment = this.forType(type);
+    public getStep(visualizationType: VisualizationType, key: string): Requirement {
+        const assessment = this.forType(visualizationType);
         if (!assessment) {
             return null;
         }
@@ -47,8 +47,8 @@ export class AssessmentsProviderImpl implements AssessmentsProvider {
         return { ...steps[index], order: index + 1 };
     }
 
-    public getStepMap(type: VisualizationType): DictionaryStringTo<Requirement> {
-        const assessment = this.forType(type);
+    public getStepMap(visualizationType: VisualizationType): DictionaryStringTo<Requirement> {
+        const assessment = this.forType(visualizationType);
         if (!assessment) {
             return null;
         }

@@ -23,7 +23,7 @@ const gettingStartedText: JSX.Element = (
 );
 
 export const LiveMultimediaAssessment = AssessmentBuilder.Manual({
-    type: VisualizationType.LiveMultimediaAssessment,
+    visualizationType: VisualizationType.LiveMultimediaAssessment,
     key,
     title,
     gettingStarted: gettingStartedText,

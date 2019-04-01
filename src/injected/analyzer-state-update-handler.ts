@@ -32,9 +32,9 @@ export class AnalyzerStateUpdateHandler {
 
     private terminateAnalyzers(prevState: IVisualizationStoreData, currState: IVisualizationStoreData): void {
         const types = EnumHelper.getNumericValues<VisualizationType>(VisualizationType);
-        types.forEach(type => {
+        types.forEach(visualizationType => {
             if (prevState != null) {
-                const configuration = this.visualizationConfigurationFactory.getConfiguration(type);
+                const configuration = this.visualizationConfigurationFactory.getConfiguration(visualizationType);
                 const keys = this.getTestKeysFromConfiguration(configuration, currState);
                 keys.forEach(testKey => {
                     if (this.isTestTerminated(configuration, prevState, currState, testKey)) {

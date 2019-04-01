@@ -84,42 +84,42 @@ describe('native widgets default', () => {
     describe('getNativeWidgetElementType', () => {
         it('returns button properly', () => {
             const node = createNodeStub('button', {});
-            const type = getNativeWidgetElementType(node);
-            expect(type).toBe('button');
+            const elementType = getNativeWidgetElementType(node);
+            expect(elementType).toBe('button');
         });
 
         it('returns select properly', () => {
             const node = createNodeStub('select', {});
-            const type = getNativeWidgetElementType(node);
-            expect(type).toBe('select');
+            const elementType = getNativeWidgetElementType(node);
+            expect(elementType).toBe('select');
         });
 
         it('returns textarea properly', () => {
             const node = createNodeStub('textarea', {});
-            const type = getNativeWidgetElementType(node);
-            expect(type).toBe('textarea');
+            const elementType = getNativeWidgetElementType(node);
+            expect(elementType).toBe('textarea');
         });
 
         it('returns input with type properly', () => {
             const node = createNodeStub('input', {
                 type: 'text',
             });
-            const type = getNativeWidgetElementType(node);
-            expect(type).toBe('input type="text"');
+            const elementType = getNativeWidgetElementType(node);
+            expect(elementType).toBe('input type="text"');
         });
 
         it('returns input list properly', () => {
             const node = createNodeStub('input', {
                 list: null,
             });
-            const type = getNativeWidgetElementType(node);
-            expect(type).toBe('input list');
+            const elementType = getNativeWidgetElementType(node);
+            expect(elementType).toBe('input list');
         });
 
         it('undefined when div', () => {
             const node = createNodeStub('div', {});
-            const type = getNativeWidgetElementType(node);
-            expect(type).toBeUndefined();
+            const elementType = getNativeWidgetElementType(node);
+            expect(elementType).toBeUndefined();
         });
     });
 });

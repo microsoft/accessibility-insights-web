@@ -68,10 +68,10 @@ export class DrawingController {
     }
 
     private setupDrawers(): void {
-        EnumHelper.getNumericValues(VisualizationType).forEach((type: VisualizationType) => {
-            const config = this._visualizationConfigurationFactory.getConfiguration(type);
-            if (this._assessmentProvider.isValidType(type)) {
-                const steps = this._assessmentProvider.getStepMap(type);
+        EnumHelper.getNumericValues(VisualizationType).forEach((visualizationType: VisualizationType) => {
+            const config = this._visualizationConfigurationFactory.getConfiguration(visualizationType);
+            if (this._assessmentProvider.isValidType(visualizationType)) {
+                const steps = this._assessmentProvider.getStepMap(visualizationType);
                 Object.keys(steps).forEach(key => {
                     const step = steps[key];
                     const id = config.getIdentifier(step.key);

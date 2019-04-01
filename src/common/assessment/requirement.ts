@@ -19,13 +19,13 @@ export type RequirementOrderPart = (result: RequirementResult) => string | numbe
 
 export function getRequirementsResults(
     provider: AssessmentsProvider,
-    type: VisualizationType,
+    visualizationType: VisualizationType,
     stepStatus: ManualTestStatusData,
 ): RequirementResult[] {
-    const test = provider.forType(type);
+    const test = provider.forType(visualizationType);
 
     function result(key): RequirementResult {
-        const definition = provider.getStep(type, key);
+        const definition = provider.getStep(visualizationType, key);
         const data = stepStatus[key];
         return { definition, data };
     }

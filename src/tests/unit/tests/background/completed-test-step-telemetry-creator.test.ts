@@ -63,7 +63,7 @@ function testBeforeAfterAssessmentData(
 
     let callback;
     assessmentStoreMock
-        .setup(as => as.addChangedListener(It.is(param => param instanceof Function)))
+        .setup(store => store.addChangedListener(It.is(param => param instanceof Function)))
         .callback(listenerCallback => {
             callback = listenerCallback;
         })
@@ -187,7 +187,7 @@ describe('CompletedTestStepTelemetryCreatorTest', () => {
 
         let callback;
         assessmentStoreMock
-            .setup(as => as.addChangedListener(It.is(param => param instanceof Function)))
+            .setup(store => store.addChangedListener(It.is(param => param instanceof Function)))
             .callback(listenerCallback => {
                 callback = listenerCallback;
             })
@@ -245,7 +245,7 @@ describe('CompletedTestStepTelemetryCreatorTest', () => {
             .verifiable();
 
         assessmentStoreMock
-            .setup(as => as.addChangedListener(It.is(param => param instanceof Function)))
+            .setup(store => store.addChangedListener(It.is(param => param instanceof Function)))
             .callback(listenerCallback => {
                 callback = listenerCallback;
             })

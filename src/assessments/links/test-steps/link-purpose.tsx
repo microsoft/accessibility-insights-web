@@ -85,7 +85,7 @@ export const LinkPurpose: Requirement = {
         {
             key: 'link-info',
             name: 'Link info',
-            onRender: PropertyBagColumnRendererFactory.get(propertyBagConfig),
+            onRender: PropertyBagColumnRendererFactory.getRenderer(propertyBagConfig),
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),

@@ -132,7 +132,7 @@ describe('LeftNavBuilder', () => {
             const assessmentStub = {
                 key: 'some key',
                 title: 'some title',
-                type: 1,
+                visualizationType: 1,
             } as Assessment;
             const assessmentsStub = [assessmentStub, assessmentStub];
             const stepStatusStub: ManualTestStatusData = {};
@@ -163,7 +163,7 @@ describe('LeftNavBuilder', () => {
             links.forEach((actual, linkIndex) => {
                 const expected = {
                     name: assessmentStub.title,
-                    key: VisualizationType[assessmentStub.type],
+                    key: VisualizationType[assessmentStub.visualizationType],
                     forceAnchor: true,
                     url: '',
                     index: startingIndexStub + linkIndex,

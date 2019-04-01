@@ -228,9 +228,12 @@ describe('AnalyzerControllerTests', () => {
             .verifiable(Times.never());
     }
 
-    function setupVisualizationConfigurationFactory(type: VisualizationType, returnedConfig: VisualizationConfiguration): void {
+    function setupVisualizationConfigurationFactory(
+        visualizationType: VisualizationType,
+        returnedConfig: VisualizationConfiguration,
+    ): void {
         visualizationConfigurationFactoryMock
-            .setup(v => v.getConfiguration(type))
+            .setup(v => v.getConfiguration(visualizationType))
             .returns((visType: VisualizationType) => {
                 return returnedConfig;
             });

@@ -8,7 +8,7 @@ exports[`ReportHeaderTest renders with failures, without inapplicable 1`] = `
   <h1>
     <InlineImage
       alt=""
-      type={0}
+      imageType={0}
     />
     Accessibility Insights for Web
      automated checks result
@@ -20,7 +20,7 @@ exports[`ReportHeaderTest renders with failures, without inapplicable 1`] = `
     <div>
       <InlineImage
         alt=""
-        type={2}
+        imageType={2}
       />
       <a
         href="#failed"
@@ -37,7 +37,7 @@ exports[`ReportHeaderTest renders with failures, without inapplicable 1`] = `
     <div>
       <InlineImage
         alt=""
-        type={3}
+        imageType={3}
       />
       <a
         href="#passed"
@@ -48,7 +48,7 @@ exports[`ReportHeaderTest renders with failures, without inapplicable 1`] = `
     <div>
       <InlineImage
         alt=""
-        type={4}
+        imageType={4}
       />
       <a
         href="#notapplicable"
@@ -68,7 +68,7 @@ exports[`ReportHeaderTest renders without failures, with inapplicable 1`] = `
   <h1>
     <InlineImage
       alt=""
-      type={0}
+      imageType={0}
     />
     Accessibility Insights for Web
      automated checks result
@@ -80,7 +80,7 @@ exports[`ReportHeaderTest renders without failures, with inapplicable 1`] = `
     <div>
       <InlineImage
         alt=""
-        type={2}
+        imageType={2}
       />
       <a
         href="#failed"
@@ -92,7 +92,7 @@ exports[`ReportHeaderTest renders without failures, with inapplicable 1`] = `
     <div>
       <InlineImage
         alt=""
-        type={3}
+        imageType={3}
       />
       <a
         href="#passed"
@@ -103,7 +103,7 @@ exports[`ReportHeaderTest renders without failures, with inapplicable 1`] = `
     <div>
       <InlineImage
         alt=""
-        type={4}
+        imageType={4}
       />
       <a
         href="#notapplicable"

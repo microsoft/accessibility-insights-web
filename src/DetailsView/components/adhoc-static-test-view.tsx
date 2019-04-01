@@ -32,7 +32,9 @@ export const AdhocStaticTestView = NamedSFC<AdhocStaticTestViewProps>('AdhocStat
     const displayableData = props.configuration.displayableData;
 
     if (props.tabStoreData.isChanged) {
-        return <TargetPageChangedView displayableData={displayableData} type={selectedTest} toggleClickHandler={clickHandler} />;
+        return (
+            <TargetPageChangedView displayableData={displayableData} visualizationType={selectedTest} toggleClickHandler={clickHandler} />
+        );
     }
 
     const givenProps: StaticContentDetailsViewProps = {

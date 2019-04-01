@@ -52,7 +52,7 @@ export class MainWindowContext {
         );
     }
 
-    public static get(): MainWindowContext {
+    public static getMainWindowContext(): MainWindowContext {
         return window.mainWindowContext;
     }
 
@@ -60,6 +60,6 @@ export class MainWindowContext {
         if (given) {
             return given;
         }
-        return MainWindowContext.get();
+        return MainWindowContext.getMainWindowContext();
     }
 }

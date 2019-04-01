@@ -10,7 +10,7 @@ export class XmlHttpRequestStubBuilder {
             send: () => {},
             open: (() => {}) as any,
             setRequestHeader: (header, value) => {},
-            addEventListener: (type, listener) => {},
+            addEventListener: (theType, listener) => {},
             responseText: null,
         } as XMLHttpRequest;
 

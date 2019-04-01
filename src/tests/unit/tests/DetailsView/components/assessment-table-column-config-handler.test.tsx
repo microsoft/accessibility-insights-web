@@ -27,7 +27,7 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
         const assessment = provider.all()[0];
         const step = assessment.requirements[0];
         const navState: AssessmentNavState = {
-            selectedTestType: assessment.type,
+            selectedTestType: assessment.visualizationType,
             selectedTestStep: step.key,
         };
 
@@ -60,7 +60,7 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
         const assessment = provider.all()[0];
         const step = assessment.requirements[0];
         const navState: AssessmentNavState = {
-            selectedTestType: assessment.type,
+            selectedTestType: assessment.visualizationType,
             selectedTestStep: step.key,
         };
 
@@ -85,7 +85,7 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
         const assessment = provider.all()[0];
         const step = assessment.requirements[0];
         const navState: AssessmentNavState = {
-            selectedTestType: assessment.type,
+            selectedTestType: assessment.visualizationType,
             selectedTestStep: step.key,
         };
 

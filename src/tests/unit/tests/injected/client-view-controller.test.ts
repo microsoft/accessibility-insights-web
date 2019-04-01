@@ -408,23 +408,23 @@ class MocksAndTestSubjectBuilder {
         return this;
     }
 
-    public toDisabled(type: VisualizationType): MocksAndTestSubjectBuilder {
-        this._dataBuilderForToVisualizationStoreState.withDisable(type);
+    public toDisabled(visualizationType: VisualizationType): MocksAndTestSubjectBuilder {
+        this._dataBuilderForToVisualizationStoreState.withDisable(visualizationType);
         return this;
     }
 
-    public toEnabled(type: VisualizationType): MocksAndTestSubjectBuilder {
-        this._dataBuilderForToVisualizationStoreState.withEnable(type);
+    public toEnabled(visualizationType: VisualizationType): MocksAndTestSubjectBuilder {
+        this._dataBuilderForToVisualizationStoreState.withEnable(visualizationType);
         return this;
     }
 
-    public fromDisabled(type: VisualizationType): MocksAndTestSubjectBuilder {
-        this._dataBuilderForFromVisualizationStoreState.withDisable(type);
+    public fromDisabled(visualizationType: VisualizationType): MocksAndTestSubjectBuilder {
+        this._dataBuilderForFromVisualizationStoreState.withDisable(visualizationType);
         return this;
     }
 
-    public fromEnabled(type: VisualizationType): MocksAndTestSubjectBuilder {
-        this._dataBuilderForFromVisualizationStoreState.withEnable(type);
+    public fromEnabled(visualizationType: VisualizationType): MocksAndTestSubjectBuilder {
+        this._dataBuilderForFromVisualizationStoreState.withEnable(visualizationType);
         return this;
     }
 
@@ -521,18 +521,20 @@ class MocksAndTestSubjectBuilder {
     private buildPreviousStateStub(): void {
         const factory = new VisualizationConfigurationFactory();
         const types = EnumHelper.getNumericValues<VisualizationType>(VisualizationType);
-        types.forEach(type => {
-            const config = factory.getConfiguration(type);
+        types.forEach(visualizationType => {
+            const config = factory.getConfiguration(visualizationType);
             if (config.testMode === TestMode.Adhoc) {
                 const id = config.getIdentifier();
-                this._initializedVisualizationState[id] = this.getFromStateForType(type) ? this.getFromStateForType(type).enabled : false;
+                this._initializedVisualizationState[id] = this.getFromStateForType(visualizationType)
+                    ? this.getFromStateForType(visualizationType).enabled
+                    : false;
             }
         });
     }
 
     private buildPreviousSelectorMapStatesStub(): void {
         const types = EnumHelper.getNumericValues<VisualizationType>(VisualizationType);
-        types.forEach(type => (this._initializedVisualizationSelectorMapState[type] = this._selectorMap));
+        types.forEach(visualizationType => (this._initializedVisualizationSelectorMapState[visualizationType] = this._selectorMap));
     }
 
     private setupScrollingControllerMock(): void {
@@ -620,12 +622,12 @@ class MocksAndTestSubjectBuilder {
         this._featureFlagStoreMock.setup(sm => sm.getState()).returns(() => this._toFeatureFlagStoreState);
     }
 
-    private setupEnableDisableVisualizationMock(type: VisualizationType): void {
+    private setupEnableDisableVisualizationMock(visualizationType: VisualizationType): void {
         let enableTimes: Times;
         let disableTimes: Times;
 
-        const toStateForType = this.getToStateForType(type);
-        const fromStateForType = this.getFromStateForType(type);
+        const toStateForType = this.getToStateForType(visualizationType);
+        const fromStateForType = this.getFromStateForType(visualizationType);
 
         if (toStateForType.enabled === fromStateForType.enabled) {
             enableTimes = Times.never();
@@ -652,8 +654,8 @@ class MocksAndTestSubjectBuilder {
         this._visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
         this._visualizationConfigurationFactoryMock
             .setup(vcfm => vcfm.getConfiguration(It.isAny()))
-            .returns(visualizationType => {
-                const config = this._actualVisualizationConfigurationFactory.getConfiguration(visualizationType);
+            .returns(theVisualizationType => {
+                const config = this._actualVisualizationConfigurationFactory.getConfiguration(theVisualizationType);
                 config.visualizationInstanceProcessor = this._getVisualizationInstanceProcessorMock.object;
                 return config;
             });
@@ -661,7 +663,7 @@ class MocksAndTestSubjectBuilder {
         this._drawingInitiatorMock
             .setup(dw =>
                 dw.enableVisualization(
-                    type,
+                    visualizationType,
                     this._fromFeatureFlagStoreState,
                     this._selectorMap,
                     It.isAny(),
@@ -671,17 +673,17 @@ class MocksAndTestSubjectBuilder {
             .verifiable(enableTimes);
 
         this._drawingInitiatorMock
-            .setup(dw => dw.disableVisualization(type, this._fromFeatureFlagStoreState, It.isAny()))
+            .setup(dw => dw.disableVisualization(visualizationType, this._fromFeatureFlagStoreState, It.isAny()))
             .verifiable(disableTimes);
 
         this._selectorMapHelperMock
-            .setup(sm => sm.getSelectorMap(type))
+            .setup(sm => sm.getSelectorMap(visualizationType))
             .returns(() => this._selectorMap)
             .verifiable(Times.once());
     }
 
-    private getToStateForType(type: VisualizationType): any {
-        switch (type) {
+    private getToStateForType(visualizationType: VisualizationType): any {
+        switch (visualizationType) {
             case VisualizationType.Headings:
                 return this._toVisualizationStoreState.tests.adhoc.headings;
             case VisualizationType.Issues:
@@ -693,8 +695,8 @@ class MocksAndTestSubjectBuilder {
         }
     }
 
-    private getFromStateForType(type: VisualizationType): IScanData {
-        switch (type) {
+    private getFromStateForType(visualizationType: VisualizationType): IScanData {
+        switch (visualizationType) {
             case VisualizationType.Headings:
                 return this._fromVisualizationStoreState.tests.adhoc.headings;
             case VisualizationType.Issues:

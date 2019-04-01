@@ -60,7 +60,7 @@ describe('TestStepsNav', () => {
                 getInnerTextFromJsxElement: getInnerTextFromJsxElementStub(),
                 outcomeTypeSemanticsFromTestStatus: createOutcomeTypeSemanticsFromTestStatusStub(),
             },
-            selectedTest: assessment.type,
+            selectedTest: assessment.visualizationType,
             selectedTestStep: firstStep.key,
             stepStatus: {},
             assessmentsProvider: assessmentProvider,

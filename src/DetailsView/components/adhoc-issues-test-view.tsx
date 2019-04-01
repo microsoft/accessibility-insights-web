@@ -35,9 +35,9 @@ export interface AdhocIssuesTestViewProps {
 }
 
 export const AdhocIssuesTestView = NamedSFC<AdhocIssuesTestViewProps>('AdhocIssuesTestView', ({ children, ...props }) => {
-    const type = props.selectedTest;
+    const selectedTest = props.selectedTest;
     const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
-    const clickHandler = props.clickHandlerFactory.createClickHandler(type, !scanData.enabled);
+    const clickHandler = props.clickHandlerFactory.createClickHandler(selectedTest, !scanData.enabled);
     const isScanning: boolean = props.visualizationStoreData.scanning !== null;
     const scanResult = props.visualizationScanResultData.issues.scanResult;
     const displayableData = props.configuration.displayableData;
@@ -45,7 +45,9 @@ export const AdhocIssuesTestView = NamedSFC<AdhocIssuesTestViewProps>('AdhocIssu
     const title = props.configuration.displayableData.title;
 
     if (props.tabStoreData.isChanged) {
-        return <TargetPageChangedView displayableData={displayableData} type={type} toggleClickHandler={clickHandler} />;
+        return (
+            <TargetPageChangedView displayableData={displayableData} visualizationType={selectedTest} toggleClickHandler={clickHandler} />
+        );
     }
 
     return (

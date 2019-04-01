@@ -22,4 +22,4 @@ exports[`AdhocIssuesTestView should return issues table with violations to null 
 />
 `;
 
-exports[`AdhocIssuesTestView should return target page changed view as tab is changed 1`] = `"<TargetPageChangedView displayableData={{...}} type={-1} toggleClickHandler={[Function: clickHandlerStub]} />"`;
+exports[`AdhocIssuesTestView should return target page changed view as tab is changed 1`] = `"<TargetPageChangedView displayableData={{...}} visualizationType={-1} toggleClickHandler={[Function: clickHandlerStub]} />"`;

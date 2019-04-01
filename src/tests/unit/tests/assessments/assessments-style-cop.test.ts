@@ -19,7 +19,7 @@ describe('assessments-style-cop', () => {
     test('test and step names are properly styled', () => {
         Assessments.all().forEach(assessment => {
             assertIsProperlyStyled(assessment.title, assessment.key);
-            if (assessment.type === VisualizationType.AutomatedChecks) {
+            if (assessment.visualizationType === VisualizationType.AutomatedChecks) {
                 return;
             }
 

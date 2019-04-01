@@ -22,7 +22,7 @@ describe('AssessmentActionCreatorTest', () => {
     beforeEach(() => {
         assessmentActionsMock = Mock.ofType(AssessmentActions, MockBehavior.Strict);
         telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler, MockBehavior.Strict);
-        registerTypeToPayloadCallbackMock = Mock.ofInstance((type, callback) => {});
+        registerTypeToPayloadCallbackMock = Mock.ofInstance((theType, callback) => {});
 
         testObject = new AssessmentActionCreator(
             assessmentActionsMock.object,

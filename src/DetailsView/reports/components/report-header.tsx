@@ -15,13 +15,13 @@ export class ReportHeader extends React.Component<ReportHeaderProps> {
         return (
             <div className="report-header" role="banner">
                 <h1>
-                    <InlineImage type={InlineImageType.InsightsLogo48} alt="" />
+                    <InlineImage imageType={InlineImageType.InsightsLogo48} alt="" />
                     {title} automated checks result
                 </h1>
                 <h2>Summary</h2>
                 <nav>
                     <div>
-                        <InlineImage type={InlineImageType.FailIcon} alt="" />
+                        <InlineImage imageType={InlineImageType.FailIcon} alt="" />
                         <a href="#failed">
                             {this.props.scanResult.violations.length}
                             {' failed checks '}
@@ -29,11 +29,11 @@ export class ReportHeader extends React.Component<ReportHeaderProps> {
                         </a>
                     </div>
                     <div>
-                        <InlineImage type={InlineImageType.PassIcon} alt="" />
+                        <InlineImage imageType={InlineImageType.PassIcon} alt="" />
                         <a href="#passed">{`${this.props.scanResult.passes.length} passed checks`}</a>
                     </div>
                     <div>
-                        <InlineImage type={InlineImageType.NotApplicableIcon} alt="" />
+                        <InlineImage imageType={InlineImageType.NotApplicableIcon} alt="" />
                         <a href="#notapplicable">{`${this.props.scanResult.inapplicable.length} not applicable checks`}</a>
                     </div>
                 </nav>
