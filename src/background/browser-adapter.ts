@@ -1,3 +1,4 @@
+import { Logger } from './../common/logging/logger';
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ClientBrowserAdapter, ClientChromeAdapter } from '../common/client-browser-adapter';
@@ -97,8 +98,6 @@ export class ChromeAdapter extends ClientChromeAdapter implements BrowserAdapter
         chrome.tabs.get(tabId, tab => {
             if (tab) {
                 callback(tab);
-            } else {
-                console.log(`Cannot find tab with id ${tabId}`);
             }
         });
     }
