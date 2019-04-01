@@ -4,8 +4,8 @@ import * as React from 'react';
 
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration-factory';
 import { NamedSFC } from '../../common/react/named-sfc';
-import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
 import { IVisualizationStoreData } from '../../common/types/store-data/ivisualization-store-data';
+import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { ContentReference } from '../../views/content/content-page';
 import { DetailsViewToggleClickHandlerFactory } from '../handlers/details-view-toggle-click-handler-factory';
@@ -16,7 +16,7 @@ export type AdhocStaticTestViewDeps = StaticContentDetailsViewDeps;
 
 export interface AdhocStaticTestViewProps {
     deps: AdhocStaticTestViewDeps;
-    tabStoreData: Pick<ITabStoreData, 'isChanged'>;
+    tabStoreData: Pick<TabStoreData, 'isChanged'>;
     selectedTest: VisualizationType;
     visualizationStoreData: IVisualizationStoreData;
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;

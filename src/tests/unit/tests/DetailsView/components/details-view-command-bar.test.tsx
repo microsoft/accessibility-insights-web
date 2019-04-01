@@ -10,7 +10,7 @@ import { Assessment } from '../../../../../assessments/types/iassessment';
 import { AssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../../../../../common/types/store-data/iassessment-result-data';
-import { ITabStoreData } from '../../../../../common/types/store-data/itab-store-data';
+import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import {
     DetailsViewCommandBar,
@@ -27,7 +27,7 @@ describe('DetailsViewCommandBar', () => {
 
     let featureFlagStoreData: FeatureFlagStoreData;
     let actionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
-    let tabStoreData: ITabStoreData;
+    let tabStoreData: TabStoreData;
     let assessmentsProviderMock: IMock<AssessmentsProvider>;
     let assessmentStoreData: IAssessmentStoreData;
     let rightPanelConfig: DetailsRightPanelConfiguration;
@@ -41,7 +41,7 @@ describe('DetailsViewCommandBar', () => {
         tabStoreData = {
             title: thePageTitle,
             isClosed: false,
-        } as ITabStoreData;
+        } as TabStoreData;
         renderExportAndStartOver = true;
         assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(AssessmentsProviderImpl);
         assessmentStoreData = {

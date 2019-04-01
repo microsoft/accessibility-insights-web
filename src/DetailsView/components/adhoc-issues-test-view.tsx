@@ -6,9 +6,9 @@ import * as React from 'react';
 import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
-import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../../common/types/store-data/ivisualization-scan-result-data';
 import { IVisualizationStoreData } from '../../common/types/store-data/ivisualization-store-data';
+import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewToggleClickHandlerFactory } from '../handlers/details-view-toggle-click-handler-factory';
 import { ReportGenerator } from '../reports/report-generator';
@@ -20,7 +20,7 @@ export type AdhocIssuesTestViewDeps = IssuesTableDeps;
 
 export interface AdhocIssuesTestViewProps {
     deps: AdhocIssuesTestViewDeps;
-    tabStoreData: ITabStoreData;
+    tabStoreData: TabStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
     issueTrackerPath: string;
     selectedTest: VisualizationType;
