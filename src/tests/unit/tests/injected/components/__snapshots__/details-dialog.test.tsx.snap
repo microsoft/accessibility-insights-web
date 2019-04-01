@@ -221,6 +221,8 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = false 
 </StyledWithResponsiveMode>
 `;
 
+exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = false: verify close button for non shadow dom 1`] = `<CancelIcon />`;
+
 exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 1`] = `
 <div
   className="insights-dialog-main-override-shadow"
@@ -666,6 +668,8 @@ exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true 2
 </StyledWithResponsiveMode>
 `;
 
+exports[`DetailsDialogTest render: isDevToolsOpen = false, shadowDialog = true: verify close button for non shadow dom 1`] = `<CancelIcon />`;
+
 exports[`DetailsDialogTest render: isDevToolsOpen = true, shadowDialog = true 1`] = `
 <div
   className="insights-dialog-main-override-shadow"
@@ -1110,3 +1114,5 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
   </div>
 </StyledWithResponsiveMode>
 `;
+
+exports[`DetailsDialogTest render: with relative help url: verify close button for non shadow dom 1`] = `<CancelIcon />`;
