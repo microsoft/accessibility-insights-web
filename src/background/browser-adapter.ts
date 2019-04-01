@@ -1,8 +1,7 @@
-import { Logger } from './../common/logging/logger';
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License.
 import { ClientBrowserAdapter, ClientChromeAdapter } from '../common/client-browser-adapter';
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
 export interface NotificationOptions {
     message: string;
     title: string;
