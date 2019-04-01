@@ -95,11 +95,10 @@ export class ChromeAdapter extends ClientChromeAdapter implements BrowserAdapter
 
     public getTab(tabId: number, callback: (tab: chrome.tabs.Tab) => void): void {
         chrome.tabs.get(tabId, tab => {
-            if (tab === null) {
-                console.log(`Cannot find tab with id ${tabId}`);
-                return;
-            } else {
+            if (tab) {
                 callback(tab);
+            } else {
+                console.log(`Cannot find tab with id ${tabId}`);
             }
         });
     }
