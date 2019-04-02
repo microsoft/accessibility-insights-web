@@ -155,7 +155,7 @@ export class AssessmentBuilder {
             getUpdateVisibility: this.getUpdateVisibility(requirements),
         };
 
-        this.BuildRequirementReportDescription(requirements);
+        this.buildRequirementReportDescription(requirements);
 
         return {
             getVisualizationConfiguration: () => visualizationConfiguration,
@@ -234,7 +234,7 @@ export class AssessmentBuilder {
             getUpdateVisibility: AssessmentBuilder.getUpdateVisibility(requirements),
         } as AssesssmentVisualizationConfiguration;
 
-        AssessmentBuilder.BuildRequirementReportDescription(requirements);
+        AssessmentBuilder.buildRequirementReportDescription(requirements);
 
         return {
             getVisualizationConfiguration: () => visualizationConfiguration,
@@ -280,7 +280,7 @@ export class AssessmentBuilder {
         };
     }
 
-    private static BuildRequirementReportDescription(requirements: Requirement[]): void {
+    private static buildRequirementReportDescription(requirements: Requirement[]): void {
         requirements.forEach(requirement => {
             requirement.renderReportDescription = () => {
                 const descriptionCopy = _.cloneDeep(requirement.description);
