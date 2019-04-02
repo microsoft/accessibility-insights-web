@@ -46,7 +46,6 @@ export class AssessmentStore extends BaseStoreImpl<IAssessmentStoreData> {
     private idbInstance: IndexedDBAPI;
     private browserAdapter: BrowserAdapter;
     private persistedData: IAssessmentStoreData;
-    private initialAssessmentStoreDataGenerator;
 
     constructor(
         browserAdapter: BrowserAdapter,
@@ -56,6 +55,7 @@ export class AssessmentStore extends BaseStoreImpl<IAssessmentStoreData> {
         assessmentsProvider: AssessmentsProvider,
         idbInstance: IndexedDBAPI,
         persistedData: IAssessmentStoreData,
+        private readonly initialAssessmentStoreDataGenerator: InitialAssessmentStoreDataGenerator,
     ) {
         super(StoreNames.AssessmentStore);
 
@@ -69,7 +69,6 @@ export class AssessmentStore extends BaseStoreImpl<IAssessmentStoreData> {
     }
 
     public generateDefaultState(persistedData: IAssessmentStoreData = null): IAssessmentStoreData {
-        this.initialAssessmentStoreDataGenerator = new InitialAssessmentStoreDataGenerator(this.assessmentsProvider);
         return this.initialAssessmentStoreDataGenerator.generateInitialState(persistedData);
     }
 
@@ -278,14 +277,12 @@ export class AssessmentStore extends BaseStoreImpl<IAssessmentStoreData> {
     @autobind
     private onUpdateInstanceVisibility(payload: UpdateVisibilityPayload): void {
         const step = this.state.assessmentNavState.selectedTestStep;
-        const config = this.assessmentsProvider.forType(this.state.assessmentNavState.selectedTestType).getVisualizationConfiguration();
-        const assessmentData = config.getAssessmentData(this.state);
-
-        if (assessmentData.generatedAssessmentInstancesMap == null) {
-            return;
-        }
-
         payload.payloadBatch.forEach(updateInstanceVisibilityPayload => {
+            const config = this.assessmentsProvider.forType(updateInstanceVisibilityPayload.test).getVisualizationConfiguration();
+            const assessmentData = config.getAssessmentData(this.state);
+            if (assessmentData.generatedAssessmentInstancesMap == null) {
+                return;
+            }
             const testStepResult: ITestStepResult =
                 assessmentData.generatedAssessmentInstancesMap[updateInstanceVisibilityPayload.selector].testStepResults[step];
             testStepResult.isVisible = updateInstanceVisibilityPayload.isVisible;
@@ -372,7 +369,7 @@ export class AssessmentStore extends BaseStoreImpl<IAssessmentStoreData> {
         const config = test.getVisualizationConfiguration();
         const defaultTestStatus: IAssessmentData = config.getAssessmentData(this.generateDefaultState());
         this.state.assessments[test.key] = defaultTestStatus;
-        this.state.assessmentNavState.selectedTestStep = test.steps[0].key;
+        this.state.assessmentNavState.selectedTestStep = test.requirements[0].key;
         this.emitChanged();
     }
 
@@ -383,7 +380,7 @@ export class AssessmentStore extends BaseStoreImpl<IAssessmentStoreData> {
     }
 
     private getDefaultTestStepForTest(testType: VisualizationType): string {
-        return this.assessmentsProvider.forType(testType).steps[0].key;
+        return this.assessmentsProvider.forType(testType).requirements[0].key;
     }
 
     private updateTestStepStatusOnScanUpdate(assessmentData: IAssessmentData, testStepName: string, testType: VisualizationType): void {

@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DetailsViewStore } from '../../../background/stores/details-view-store';
-import { IDetailsViewData } from '../../../common/types/store-data/idetails-view-data';
+import { DetailsViewData } from '../../../common/types/store-data/details-view-data';
 import { DetailsViewRightContentPanelType } from '../../../DetailsView/components/left-nav/details-view-right-content-panel-type';
 import { BaseDataBuilder } from './base-data-builder';
 
-export class DetailsViewStoreDataBuilder extends BaseDataBuilder<IDetailsViewData> {
+export class DetailsViewStoreDataBuilder extends BaseDataBuilder<DetailsViewData> {
     constructor() {
         super();
         this.data = new DetailsViewStore(null, null, null, null).getDefaultState();

@@ -76,9 +76,9 @@ export class PopupActionMessageCreator extends BaseActionMessageCreator {
         });
     }
 
-    public setLaunchPanelType(type: LaunchPanelType): void {
+    public setLaunchPanelType(panelType: LaunchPanelType): void {
         const payload: SetLaunchPanelState = {
-            launchPanelType: type,
+            launchPanelType: panelType,
         };
         this.dispatchMessage({
             type: Messages.LaunchPanel.Set,

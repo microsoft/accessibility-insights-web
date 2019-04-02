@@ -25,10 +25,10 @@ const gettingStarted: JSX.Element = (
 
 export const ImagesAssessment: Assessment = AssessmentBuilder.Assisted({
     key,
-    type: VisualizationType.ImagesAssessment,
+    visualizationType: VisualizationType.ImagesAssessment,
     title,
     gettingStarted,
     guidance,
-    steps: [ImageFunction, TextAlternative, ImagesOfText, Captchas],
+    requirements: [ImageFunction, TextAlternative, ImagesOfText, Captchas],
     storeDataKey: 'imageAssessment',
 });

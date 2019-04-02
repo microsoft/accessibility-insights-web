@@ -3,19 +3,17 @@
 import { head } from 'lodash';
 
 import { Assessment } from '../assessments/types/iassessment';
-import { AssessmentsProvider } from '../assessments/types/iassessments-provider';
 import { Requirement } from '../assessments/types/requirement';
 import { IAssessmentData, IAssessmentStoreData, PersistedTabInfo } from '../common/types/store-data/iassessment-result-data';
 import { DictionaryStringTo } from '../types/common-types';
-import { createInitialAssessmentTestData } from './create-initial-assessment-test-data';
 
 export class InitialAssessmentStoreDataGenerator {
-    private readonly NULL_FIRST_TEST: Partial<Readonly<Assessment>> = { type: null, steps: [{ key: null }] as Requirement[] };
-    private tests: ReadonlyArray<Readonly<Assessment>>;
+    private readonly NULL_FIRST_TEST: Partial<Readonly<Assessment>> = {
+        visualizationType: null,
+        requirements: [{ key: null }] as Requirement[],
+    };
 
-    constructor(assessmentsProvider: AssessmentsProvider) {
-        this.tests = assessmentsProvider.all();
-    }
+    constructor(private readonly tests: ReadonlyArray<Readonly<Assessment>>) {}
 
     public generateInitialState(persistedData: IAssessmentStoreData = null): IAssessmentStoreData {
         const targetTab: PersistedTabInfo = persistedData &&
@@ -23,8 +21,8 @@ export class InitialAssessmentStoreDataGenerator {
         const persistedTests = persistedData && persistedData.assessments;
         // defaulting this.tests values to null instead of doing multiple if
         const first = head(this.tests) || this.NULL_FIRST_TEST;
-        const selectedTestType = first.type;
-        const selectedTestStep = first.steps && first.steps[0] && first.steps[0].key;
+        const selectedTestType = first.visualizationType;
+        const selectedTestStep = first.requirements && first.requirements[0] && first.requirements[0].key;
 
         const state: Partial<IAssessmentStoreData> = {
             persistedTabInfo: targetTab,
@@ -42,7 +40,7 @@ export class InitialAssessmentStoreDataGenerator {
 
         this.tests.forEach(test => {
             const persistedTestData = persistedTests && persistedTests[test.key];
-            assessmentData[test.key] = createInitialAssessmentTestData(test, persistedTestData);
+            assessmentData[test.key] = test.initialDataCreator(test, persistedTestData);
         });
 
         return assessmentData;

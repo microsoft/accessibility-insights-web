@@ -16,7 +16,7 @@ import {
 } from '../../../../common/telemetry-events';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
 import { IAssessmentData, IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
-import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';
+import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
 
 function testBeforeAfterAssessmentData(
@@ -45,7 +45,7 @@ function testBeforeAfterAssessmentData(
         },
     };
 
-    const tabStoreData: ITabStoreData = {
+    const tabStoreData: TabStoreData = {
         title: 'DetailsViewContainerTest title',
         url: 'http://detailsViewContainerTest/url/',
         id: 1,
@@ -63,7 +63,7 @@ function testBeforeAfterAssessmentData(
 
     let callback;
     assessmentStoreMock
-        .setup(as => as.addChangedListener(It.is(param => param instanceof Function)))
+        .setup(store => store.addChangedListener(It.is(param => param instanceof Function)))
         .callback(listenerCallback => {
             callback = listenerCallback;
         })
@@ -187,7 +187,7 @@ describe('CompletedTestStepTelemetryCreatorTest', () => {
 
         let callback;
         assessmentStoreMock
-            .setup(as => as.addChangedListener(It.is(param => param instanceof Function)))
+            .setup(store => store.addChangedListener(It.is(param => param instanceof Function)))
             .callback(listenerCallback => {
                 callback = listenerCallback;
             })
@@ -222,7 +222,7 @@ describe('CompletedTestStepTelemetryCreatorTest', () => {
                 telemetry: expectedTelemetry,
             },
         };
-        const tabStoreData: ITabStoreData = {
+        const tabStoreData: TabStoreData = {
             title: 'DetailsViewContainerTest title',
             url: 'http://detailsViewContainerTest/url/',
             id: 1,
@@ -245,7 +245,7 @@ describe('CompletedTestStepTelemetryCreatorTest', () => {
             .verifiable();
 
         assessmentStoreMock
-            .setup(as => as.addChangedListener(It.is(param => param instanceof Function)))
+            .setup(store => store.addChangedListener(It.is(param => param instanceof Function)))
             .callback(listenerCallback => {
                 callback = listenerCallback;
             })

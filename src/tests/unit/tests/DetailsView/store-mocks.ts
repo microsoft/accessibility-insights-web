@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { It, Mock, MockBehavior } from 'typemoq';
-
 import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
 import { AssessmentDataConverter } from '../../../../background/assessment-data-converter';
 import { ScopingInputTypes } from '../../../../background/scoping-input-types';
@@ -18,14 +17,14 @@ import { VisualizationScanResultStore } from '../../../../background/stores/visu
 import { VisualizationStore } from '../../../../background/stores/visualization-store';
 import { FeatureFlags } from '../../../../common/feature-flags';
 import { CommandStoreData } from '../../../../common/types/store-data/command-store-data';
+import { DetailsViewData } from '../../../../common/types/store-data/details-view-data';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
-import { IDetailsViewData } from '../../../../common/types/store-data/idetails-view-data';
 import { ILaunchPanelStoreData } from '../../../../common/types/store-data/ilaunch-panel-store-data';
-import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../../../../common/types/store-data/ivisualization-scan-result-data';
 import { IVisualizationStoreData } from '../../../../common/types/store-data/ivisualization-store-data';
 import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
+import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
 import { UserConfigurationStoreData } from '../../../../common/types/store-data/user-configuration-store';
 import { AssessmentsStoreDataBuilder } from '../../common/assessment-store-data-builder';
 import { DetailsViewStoreDataBuilder } from '../../common/details-view-store-data-builder';
@@ -49,7 +48,7 @@ export class StoreMocks {
     public visualizationStoreData = new VisualizationStoreDataBuilder().build();
     public visualizationScanResultsStoreData = new VisualizationScanResultStoreDataBuilder().build();
     public detailsViewStoreData = new DetailsViewStoreDataBuilder().build();
-    public tabStoreData: ITabStoreData = {
+    public tabStoreData: TabStoreData = {
         title: 'DetailsViewContainerTest title',
         url: 'http://detailsViewContainerTest/url/',
         id: 1,
@@ -101,7 +100,7 @@ export class StoreMocks {
         return this;
     }
 
-    public setTabStoreData(data: ITabStoreData): StoreMocks {
+    public setTabStoreData(data: TabStoreData): StoreMocks {
         this.tabStoreData = data;
         return this;
     }
@@ -111,7 +110,7 @@ export class StoreMocks {
         return this;
     }
 
-    public setDetailsViewStoreData(data: IDetailsViewData): StoreMocks {
+    public setDetailsViewStoreData(data: DetailsViewData): StoreMocks {
         this.detailsViewStoreData = data;
         return this;
     }

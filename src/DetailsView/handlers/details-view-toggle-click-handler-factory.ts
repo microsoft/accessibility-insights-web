@@ -16,13 +16,13 @@ export class DetailsViewToggleClickHandlerFactory {
         this.telemetryFactory = telemetryFactory;
     }
 
-    public createClickHandler(type: VisualizationType, newValue: boolean): (event) => void {
-        return this.toggleVisualization.bind(this, type, newValue);
+    public createClickHandler(visualizationType: VisualizationType, newValue: boolean): (event) => void {
+        return this.toggleVisualization.bind(this, visualizationType, newValue);
     }
 
-    private toggleVisualization(type: VisualizationType, newValue: boolean, event: React.MouseEvent<HTMLElement>): void {
+    private toggleVisualization(visualizationType: VisualizationType, newValue: boolean, event: React.MouseEvent<HTMLElement>): void {
         const source = TelemetryEventSource.DetailsView;
         const telementryInfo = this.telemetryFactory.forToggle(event, newValue, source);
-        this.actionCreator.setVisualizationState(type, newValue, telementryInfo);
+        this.actionCreator.setVisualizationState(visualizationType, newValue, telementryInfo);
     }
 }

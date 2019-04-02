@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
-
 import { AssessmentDefaultMessageGenerator } from '../assessments/assessment-default-message-generator';
 import { Assessments } from '../assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from '../assessments/assessments-feature-flag-filter';
@@ -34,13 +33,13 @@ import { BaseClientStoresHub } from '../common/stores/base-client-stores-hub';
 import { StoreNames } from '../common/stores/store-names';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { TelemetryEventSource } from '../common/telemetry-events';
+import { DetailsViewData } from '../common/types/store-data/details-view-data';
 import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
-import { IDetailsViewData } from '../common/types/store-data/idetails-view-data';
 import { InspectStoreData } from '../common/types/store-data/inspect-store-data';
-import { ITabStoreData } from '../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
 import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
+import { TabStoreData } from '../common/types/store-data/tab-store-data';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 import { UrlParser } from '../common/url-parser';
 import { WindowUtils } from '../common/window-utils';
@@ -106,12 +105,12 @@ if (isNaN(tabId) === false) {
                     StoreNames[StoreNames.VisualizationStore],
                     chromeAdapter,
                 );
-                const tabStore = new StoreProxy<ITabStoreData>(StoreNames[StoreNames.TabStore], chromeAdapter);
+                const tabStore = new StoreProxy<TabStoreData>(StoreNames[StoreNames.TabStore], chromeAdapter);
                 const visualizationScanResultStore = new StoreProxy<IVisualizationScanResultData>(
                     StoreNames[StoreNames.VisualizationScanResultStore],
                     chromeAdapter,
                 );
-                const detailsViewStore = new StoreProxy<IDetailsViewData>(StoreNames[StoreNames.DetailsViewStore], chromeAdapter);
+                const detailsViewStore = new StoreProxy<DetailsViewData>(StoreNames[StoreNames.DetailsViewStore], chromeAdapter);
                 const assessmentStore = new StoreProxy<IAssessmentStoreData>(StoreNames[StoreNames.AssessmentStore], chromeAdapter);
                 const featureFlagStore = new StoreProxy<DictionaryStringTo<boolean>>(
                     StoreNames[StoreNames.FeatureFlagStore],

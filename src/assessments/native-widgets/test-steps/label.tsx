@@ -69,7 +69,7 @@ export const Label: Requirement = {
         {
             key: 'label-info',
             name: 'Label',
-            onRender: PropertyBagColumnRendererFactory.get<DefaultWidgetPropertyBag>(propertyBagConfig),
+            onRender: PropertyBagColumnRendererFactory.getRenderer<DefaultWidgetPropertyBag>(propertyBagConfig),
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),

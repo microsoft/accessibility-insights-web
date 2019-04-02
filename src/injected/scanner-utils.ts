@@ -12,6 +12,7 @@ import { HyperlinkDefinition } from '../views/content/content-page';
 declare var axe: any;
 
 export interface DecoratedAxeNodeResult {
+    // tslint:disable-next-line: no-reserved-keywords
     any: FormattedCheckResult[];
     none: FormattedCheckResult[];
     all: FormattedCheckResult[];

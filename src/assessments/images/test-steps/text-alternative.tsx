@@ -85,7 +85,7 @@ export const TextAlternative: Requirement = {
         {
             key: 'image-info',
             name: 'Image info',
-            onRender: PropertyBagColumnRendererFactory.get(propertyBagConfig),
+            onRender: PropertyBagColumnRendererFactory.getRenderer(propertyBagConfig),
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),

@@ -37,7 +37,7 @@ describe('HTMLElementUtilsTest', () => {
 
         const expectedElement = 'element' as any;
         const getElementsMock = Mock.ofInstance((_: string) => new Element());
-        getElementsMock.setup(get => get(tagName)).returns(() => expectedElement);
+        getElementsMock.setup(getter => getter(tagName)).returns(() => expectedElement);
 
         const dom = {
             getElementsByTagName: getElementsMock.object,

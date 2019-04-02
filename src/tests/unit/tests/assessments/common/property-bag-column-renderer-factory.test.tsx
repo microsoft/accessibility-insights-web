@@ -35,7 +35,7 @@ describe('PropertyBagColumnRendererFactoryTest', () => {
             visualizationButton: null,
         };
 
-        const result = PropertyBagColumnRendererFactory.get(configs);
+        const result = PropertyBagColumnRendererFactory.getRenderer(configs);
 
         const renderer = () => result(item);
 

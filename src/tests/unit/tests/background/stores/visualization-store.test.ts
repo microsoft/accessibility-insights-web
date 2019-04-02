@@ -784,15 +784,15 @@ describe('VisualizationStoreTest ', () => {
 
     test('onTabChange', () => {
         const actionName = 'tabChange';
-        const type = VisualizationType.Headings;
+        const visualizationType = VisualizationType.Headings;
         const pivot = DetailsViewPivotType.allTest;
         const expectedState = new VisualizationStoreDataBuilder()
-            .with('selectedAdhocDetailsView', type)
+            .with('selectedAdhocDetailsView', visualizationType)
             .with('selectedDetailsViewPivot', pivot)
             .build();
 
         const initialState = new VisualizationStoreDataBuilder()
-            .with('selectedAdhocDetailsView', type)
+            .with('selectedAdhocDetailsView', visualizationType)
             .with('selectedDetailsViewPivot', pivot)
             .withLandmarksEnable()
             .build();

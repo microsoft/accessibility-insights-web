@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
-
 import { AssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
 import { BaseStore } from '../../../../common/base-store';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
@@ -10,12 +9,12 @@ import { InspectActionMessageCreator } from '../../../../common/message-creators
 import { ScopingActionMessageCreator } from '../../../../common/message-creators/scoping-action-message-creator';
 import { StoreActionMessageCreator } from '../../../../common/message-creators/store-action-message-creator';
 import { BaseClientStoresHub } from '../../../../common/stores/base-client-stores-hub';
+import { DetailsViewData } from '../../../../common/types/store-data/details-view-data';
 import { IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
-import { IDetailsViewData } from '../../../../common/types/store-data/idetails-view-data';
-import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../../../../common/types/store-data/ivisualization-scan-result-data';
 import { IVisualizationStoreData } from '../../../../common/types/store-data/ivisualization-store-data';
 import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
+import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
 import { IssuesTableHandler } from '../../../../DetailsView/components/issues-table-handler';
 import { DetailsViewContainerDeps, DetailsViewContainerProps } from '../../../../DetailsView/details-view-container';
 import { AssessmentInstanceTableHandler } from '../../../../DetailsView/handlers/assessment-instance-table-handler';
@@ -28,10 +27,10 @@ export class DetailsViewContainerPropsBuilder {
     private visualizationStore: BaseStore<IVisualizationStoreData>;
     private assessmentStore: BaseStore<IAssessmentStoreData>;
     private visualizationScanResultStore: BaseStore<IVisualizationScanResultData>;
-    private tabStore: BaseStore<ITabStoreData>;
+    private tabStore: BaseStore<TabStoreData>;
     private featureFlagStore: BaseStore<DictionaryStringTo<boolean>>;
     private scopingStateStore: BaseStore<ScopingStoreData>;
-    private detailsViewStore: BaseStore<IDetailsViewData>;
+    private detailsViewStore: BaseStore<DetailsViewData>;
     private scopingActionMessageCreator: ScopingActionMessageCreator;
     private inspectActionMessageCreator: InspectActionMessageCreator;
     private storeActionCreator: StoreActionMessageCreator;

@@ -18,11 +18,11 @@ const gettingStarted: JSX.Element = (
 );
 
 export const ParsingAssessment = AssessmentBuilder.Manual({
-    type: VisualizationType.ParsingAssessment,
+    visualizationType: VisualizationType.ParsingAssessment,
     key,
     title,
     gettingStarted,
     guidance,
-    steps: [Parsing],
+    requirements: [Parsing],
     isEnabled: true,
 });

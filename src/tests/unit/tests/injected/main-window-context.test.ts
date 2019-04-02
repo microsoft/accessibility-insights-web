@@ -33,10 +33,10 @@ describe('MainWindowContextTest', () => {
             bugActionMessageCreator,
         );
 
-        expect(MainWindowContext.get().getDevToolStore()).toEqual(devToolStore);
-        expect(MainWindowContext.get().getUserConfigStore()).toEqual(userConfigStore);
-        expect(MainWindowContext.get().getDevToolActionMessageCreator()).toEqual(devToolActionMessageCreator);
-        expect(MainWindowContext.get().getTargetPageActionMessageCreator()).toEqual(targetPageActionMessageCreator);
+        expect(MainWindowContext.getMainWindowContext().getDevToolStore()).toEqual(devToolStore);
+        expect(MainWindowContext.getMainWindowContext().getUserConfigStore()).toEqual(userConfigStore);
+        expect(MainWindowContext.getMainWindowContext().getDevToolActionMessageCreator()).toEqual(devToolActionMessageCreator);
+        expect(MainWindowContext.getMainWindowContext().getTargetPageActionMessageCreator()).toEqual(targetPageActionMessageCreator);
     });
 
     test('getIfNotGiven', () => {

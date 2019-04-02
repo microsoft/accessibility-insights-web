@@ -43,9 +43,9 @@ export class LaunchPanelStore extends BaseStoreImpl<ILaunchPanelStoreData> {
     }
 
     @autobind
-    private onSetLaunchPanelType(type: LaunchPanelType): void {
-        this.state.launchPanelType = type;
-        this.browserAdapter.setUserData({ [LocalStorageDataKeys.launchPanelSetting]: type });
+    private onSetLaunchPanelType(panelType: LaunchPanelType): void {
+        this.state.launchPanelType = panelType;
+        this.browserAdapter.setUserData({ [LocalStorageDataKeys.launchPanelSetting]: panelType });
         this.emitChanged();
     }
 }

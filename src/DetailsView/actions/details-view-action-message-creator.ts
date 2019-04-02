@@ -50,14 +50,14 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
 
     @autobind
     public closePreviewFeaturesPanel(): void {
-        const type = Messages.PreviewFeatures.ClosePanel;
+        const messageType = Messages.PreviewFeatures.ClosePanel;
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
         const payload: BaseActionPayload = {
             telemetry,
         };
 
         this.dispatchMessage({
-            type: type,
+            type: messageType,
             tabId: this._tabId,
             payload,
         });
@@ -65,14 +65,14 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
 
     @autobind
     public closeScopingPanel(): void {
-        const type = Messages.Scoping.ClosePanel;
+        const messageType = Messages.Scoping.ClosePanel;
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
         const payload: BaseActionPayload = {
             telemetry,
         };
 
         this.dispatchMessage({
-            type: type,
+            type: messageType,
             tabId: this._tabId,
             payload,
         });
@@ -80,14 +80,14 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
 
     @autobind
     public closeSettingsPanel(): void {
-        const type = Messages.SettingsPanel.ClosePanel;
+        const messageType = Messages.SettingsPanel.ClosePanel;
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
         const payload: BaseActionPayload = {
             telemetry,
         };
 
         this.dispatchMessage({
-            type: type,
+            type: messageType,
             tabId: this._tabId,
             payload,
         });
@@ -95,7 +95,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
 
     @autobind
     public setFeatureFlag(featureFlagId: string, enabled: boolean, event: React.MouseEvent<HTMLElement>): void {
-        const type = Messages.FeatureFlags.SetFeatureFlag;
+        const messageType = Messages.FeatureFlags.SetFeatureFlag;
         const telemetry = this.telemetryFactory.forFeatureFlagToggle(
             event,
             enabled,
@@ -109,7 +109,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         };
 
         this.dispatchMessage({
-            type: type,
+            type: messageType,
             tabId: this._tabId,
             payload: payload,
         });
@@ -143,10 +143,14 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         this.dispatchMessage(message);
     }
 
-    public selectDetailsView(event: React.MouseEvent<HTMLElement>, type: VisualizationType, pivot: DetailsViewPivotType): void {
+    public selectDetailsView(
+        event: React.MouseEvent<HTMLElement>,
+        visualizationType: VisualizationType,
+        pivot: DetailsViewPivotType,
+    ): void {
         const payload: OnDetailsViewOpenPayload = {
-            telemetry: this.telemetryFactory.forSelectDetailsView(event, type),
-            detailsViewType: type,
+            telemetry: this.telemetryFactory.forSelectDetailsView(event, visualizationType),
+            detailsViewType: visualizationType,
             pivotType: pivot,
         };
 
@@ -157,11 +161,15 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     }
 
-    public selectRequirement(event: React.MouseEvent<HTMLElement>, selectedRequirement: string, type: VisualizationType): void {
+    public selectRequirement(
+        event: React.MouseEvent<HTMLElement>,
+        selectedRequirement: string,
+        visualizationType: VisualizationType,
+    ): void {
         const payload: SelectRequirementPayload = {
-            telemetry: this.telemetryFactory.forSelectRequirement(event, type, selectedRequirement),
+            telemetry: this.telemetryFactory.forSelectRequirement(event, visualizationType, selectedRequirement),
             selectedRequirement: selectedRequirement,
-            selectedTest: type,
+            selectedTest: visualizationType,
         };
 
         this.dispatchMessage({

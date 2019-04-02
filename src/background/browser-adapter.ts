@@ -6,7 +6,7 @@ export interface NotificationOptions {
     message: string;
     title: string;
     iconUrl: string;
-    type?: string;
+    notificationType?: string;
 }
 
 export interface BrowserAdapter extends ClientBrowserAdapter {
@@ -224,7 +224,7 @@ export class ChromeAdapter extends ClientChromeAdapter implements BrowserAdapter
 
     public createNotification(options: NotificationOptions): void {
         chrome.notifications.create({
-            type: options.type || 'basic',
+            type: options.notificationType || 'basic',
             iconUrl: options.iconUrl,
             title: options.title,
             message: options.message,

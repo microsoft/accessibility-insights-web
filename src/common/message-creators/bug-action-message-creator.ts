@@ -17,13 +17,13 @@ export class BugActionMessageCreator extends BaseActionMessageCreator {
     }
 
     public openSettingsPanel(event: React.MouseEvent<HTMLElement>): void {
-        const type = Messages.SettingsPanel.OpenPanel;
+        const messageType = Messages.SettingsPanel.OpenPanel;
         const telemetry = this.telemetryFactory.forSettingsPanelOpen(event, this.source, 'fileIssueSettingsPrompt');
         const payload: BaseActionPayload = {
             telemetry,
         };
         this.dispatchMessage({
-            type: type,
+            type: messageType,
             tabId: this._tabId,
             payload,
         });

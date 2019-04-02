@@ -16,11 +16,11 @@ export class Store {
         });
     }
 
-    public _withIDBStore(type: IDBTransactionMode, callback: (store: IDBObjectStore) => void): Promise<void> {
+    public _withIDBStore(mode: IDBTransactionMode, callback: (store: IDBObjectStore) => void): Promise<void> {
         return this._dbp.then(
             db =>
                 new Promise<void>((resolve, reject) => {
-                    const transaction = db.transaction(this.storeName, type);
+                    const transaction = db.transaction(this.storeName, mode);
                     transaction.oncomplete = () => resolve();
                     transaction.onabort = transaction.onerror = () => reject(transaction.error);
                     callback(transaction.objectStore(this.storeName));
@@ -46,6 +46,7 @@ function getDefaultStore(): Store {
     return store;
 }
 
+// tslint:disable-next-line: no-reserved-keywords
 export function get<Type>(key: IDBValidKey, defaultStore = getDefaultStore()): Promise<Type> {
     let req: IDBRequest;
     return defaultStore
@@ -55,6 +56,7 @@ export function get<Type>(key: IDBValidKey, defaultStore = getDefaultStore()): P
         .then(() => req.result);
 }
 
+// tslint:disable-next-line: no-reserved-keywords
 export function set<Type>(key: IDBValidKey, value: Type, defaultStore = getDefaultStore()): Promise<void> {
     return defaultStore._withIDBStore('readwrite', (s: IDBObjectStore) => {
         s.put(value, key);

@@ -99,7 +99,7 @@ export const Cues: Requirement = {
         {
             key: 'cues-info',
             name: 'Cues',
-            onRender: PropertyBagColumnRendererFactory.get<CuesPropertyBag>(propertyBagConfig),
+            onRender: PropertyBagColumnRendererFactory.getRenderer<CuesPropertyBag>(propertyBagConfig),
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),

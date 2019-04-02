@@ -20,7 +20,7 @@ import { DiagnosticViewClickHandler } from '../handlers/diagnostic-view-toggle-c
 export interface DiagnosticViewToggleProps {
     deps: DiagnosticViewToggleDeps;
     featureFlags: DictionaryStringTo<boolean>;
-    type: VisualizationType;
+    visualizationType: VisualizationType;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     visualizationStoreData: IVisualizationStoreData;
     actionMessageCreator: PopupActionMessageCreator;
@@ -45,7 +45,7 @@ export class DiagnosticViewToggle extends React.Component<DiagnosticViewTogglePr
 
     constructor(props: DiagnosticViewToggleProps) {
         super(props);
-        this.configuration = this.props.visualizationConfigurationFactory.getConfiguration(this.props.type);
+        this.configuration = this.props.visualizationConfigurationFactory.getConfiguration(this.props.visualizationType);
         this.dom = this.props.dom;
         this._isMounted = false;
         this._userEventListenerAdded = false;
@@ -90,7 +90,9 @@ export class DiagnosticViewToggle extends React.Component<DiagnosticViewTogglePr
                 <VisualizationToggle
                     checked={_scanData.enabled}
                     disabled={disabled}
-                    onClick={ev => this.props.clickHandler.toggleVisualization(this.props.visualizationStoreData, this.props.type, ev)}
+                    onClick={ev =>
+                        this.props.clickHandler.toggleVisualization(this.props.visualizationStoreData, this.props.visualizationType, ev)
+                    }
                     visualizationName={this.configuration.displayableData.title}
                     componentRef={this._toggle}
                     onFocus={this.onFocusHandler}
@@ -165,7 +167,7 @@ export class DiagnosticViewToggle extends React.Component<DiagnosticViewTogglePr
                 onClick={ev =>
                     this.props.actionMessageCreator.openDetailsView(
                         ev,
-                        this.props.type,
+                        this.props.visualizationType,
                         this.props.telemetrySource,
                         DetailsViewPivotType.fastPass,
                     )

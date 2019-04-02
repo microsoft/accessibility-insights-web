@@ -48,6 +48,7 @@
         "no-null-keyword": false,
         "no-octal-literal": true,
         "no-require-imports": true,
+        "no-reserved-keywords": true,
         "no-shadowed-variable": true,
         "no-string-based-set-immediate": true,
         "no-string-based-set-interval": true,

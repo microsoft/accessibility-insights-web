@@ -80,7 +80,7 @@ export class LeftNavLinkBuilder {
 
             const baselink = this.buildLink(
                 name,
-                VisualizationType[assessment.type],
+                VisualizationType[assessment.visualizationType],
                 index,
                 (l, ri) => <TestViewLeftNavLink link={l} renderIcon={ri} />,
                 onLinkClick,
@@ -102,14 +102,14 @@ export class LeftNavLinkBuilder {
     public buildVisualizationConfigurationLink(
         configuration: VisualizationConfiguration,
         onLinkClick: onBaseLeftNavItemClick,
-        type: VisualizationType,
+        visualizationType: VisualizationType,
         index: number,
     ): BaseLeftNavLink {
         const displayableData = configuration.displayableData;
 
         const link = this.buildLink(
             displayableData.title,
-            VisualizationType[type],
+            VisualizationType[visualizationType],
             index,
             (l, ri) => <TestViewLeftNavLink link={l} renderIcon={ri} />,
             onLinkClick,

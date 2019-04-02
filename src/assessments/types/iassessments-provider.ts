@@ -7,10 +7,10 @@ import { Requirement } from './requirement';
 
 export interface AssessmentsProvider {
     all(): ReadonlyArray<Readonly<Assessment>>;
-    isValidType(type: VisualizationType): boolean;
-    forType(type: VisualizationType): Readonly<Assessment>;
+    isValidType(visualizationType: VisualizationType): boolean;
+    forType(visualizationType: VisualizationType): Readonly<Assessment>;
     isValidKey(key: string): boolean;
     forKey(key: string): Readonly<Assessment>;
-    getStep(type: VisualizationType, key: string): Readonly<Requirement>;
-    getStepMap(type: VisualizationType): Readonly<DictionaryStringTo<Readonly<Requirement>>>;
+    getStep(visualizationType: VisualizationType, key: string): Readonly<Requirement>;
+    getStepMap(visualizationType: VisualizationType): Readonly<DictionaryStringTo<Readonly<Requirement>>>;
 }
