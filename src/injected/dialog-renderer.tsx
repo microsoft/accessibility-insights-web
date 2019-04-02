@@ -49,7 +49,7 @@ export class DialogRenderer {
 
     public render(data: HtmlElementAxeResults, featureFlagStoreData: FeatureFlagStoreData): void {
         if (this.isInMainWindow()) {
-            const mainWindowContext = MainWindowContext.get();
+            const mainWindowContext = MainWindowContext.getMainWindowContext();
             mainWindowContext.getTargetPageActionMessageCreator().openIssuesDialog();
 
             const elementSelector: string = this.getElementSelector(data);

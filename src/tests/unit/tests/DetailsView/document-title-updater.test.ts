@@ -3,7 +3,7 @@
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
 
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
-import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';
+import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { title } from '../../../../content/strings/application';
 import {
@@ -85,7 +85,7 @@ describe('DocumentTitleUpdater', () => {
     });
 
     test('tab is closed', () => {
-        storeMocks.setTabStoreData({ isClosed: true } as ITabStoreData);
+        storeMocks.setTabStoreData({ isClosed: true } as TabStoreData);
         setupStoreGetState();
 
         testObject.initialize();

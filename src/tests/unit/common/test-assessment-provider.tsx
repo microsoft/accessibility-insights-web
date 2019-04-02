@@ -28,12 +28,12 @@ export const contentProvider = ContentPage.provider(content);
 
 const assessmentWithColumns: Assessment = {
     key: 'assessment-1',
-    type: -1 as VisualizationType,
+    visualizationType: -1 as VisualizationType,
     title: 'assessment 1',
     gettingStarted: null,
     guidance: content.assessment1.guidance,
     initialDataCreator,
-    steps: [
+    requirements: [
         {
             key: 'assessment-1-step-1',
             description: <div> assessment-1-step-1 description</div>,
@@ -88,11 +88,11 @@ const assessmentWithColumns: Assessment = {
 
 const simpleAssessment = {
     key: 'assessment-2',
-    type: -2 as VisualizationType,
+    visualizationType: -2 as VisualizationType,
     title: 'assessment 2',
     gettingStarted: null,
     initialDataCreator,
-    steps: [
+    requirements: [
         {
             key: 'assessment-2-step-1',
             description: null,
@@ -124,11 +124,11 @@ const simpleAssessment = {
 
 const automatedAssessment = {
     key: 'assessment-3',
-    type: -3 as VisualizationType,
+    visualizationType: -3 as VisualizationType,
     title: 'assessment 3',
     gettingStarted: null,
     initialDataCreator,
-    steps: [
+    requirements: [
         {
             key: 'assessment-3-step-2',
             description: null,

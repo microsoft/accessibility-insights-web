@@ -1,19 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
-
 import { LaunchPanelStateActions } from '../../../../../../background/actions/launch-panel-state-action';
 import { ChromeAdapter } from '../../../../../../background/browser-adapter';
 import { LocalStorageDataKeys } from '../../../../../../background/local-storage-data-keys';
-import { ILocalStorageData } from '../../../../../../background/storage-data';
+import { LocalStorageData } from '../../../../../../background/storage-data';
 import { LaunchPanelStore } from '../../../../../../background/stores/global/launch-panel-store';
 import { StoreNames } from '../../../../../../common/stores/store-names';
 import { LaunchPanelStoreData } from '../../../../../../common/types/store-data/launch-panel-store-data';
-import { LaunchPanelType } from '../../../../../../popup/scripts/components/popup-view';
+import { LaunchPanelType } from '../../../../../../popup/components/popup-view';
 import { createStoreWithNullParams, StoreTester } from '../../../../common/store-tester';
 
 describe('LaunchPanelStateStoreTest', () => {
-    let userDataStub: ILocalStorageData;
+    let userDataStub: LocalStorageData;
     let browserAdapterMock: IMock<ChromeAdapter>;
 
     beforeAll(() => {

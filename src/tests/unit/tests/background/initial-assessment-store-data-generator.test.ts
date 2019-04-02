@@ -15,9 +15,9 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
     const assesssmentsProvider = CreateTestAssessmentProvider();
     const assessments = assesssmentsProvider.all();
     const validTargetTab = { id: 1, url: 'url', title: 'title', appRefreshed: false };
-    const knownTestType = assessments[0].type;
+    const knownTestType = assessments[0].visualizationType;
     const unknownTestType = -100 as VisualizationType;
-    const knownRequirementIds = flatMap(assessments, test => test.steps.map(step => step.key));
+    const knownRequirementIds = flatMap(assessments, test => test.requirements.map(step => step.key));
     const knownRequirement1 = knownRequirementIds[0];
     const unknownRequirement: string = 'unknown-requirement';
     const assessmentDataStub = {} as IAssessmentData;

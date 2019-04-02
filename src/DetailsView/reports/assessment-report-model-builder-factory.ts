@@ -3,14 +3,14 @@
 import { AssessmentDefaultMessageGenerator } from '../../assessments/assessment-default-message-generator';
 import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { IAssessmentStoreData } from '../../common/types/store-data/iassessment-result-data';
-import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
+import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { AssessmentReportModelBuilder } from './assessment-report-model-builder';
 
 export class AssessmentReportModelBuilderFactory {
     public create(
         assessmentsProvider: AssessmentsProvider,
         assessmentStoreData: IAssessmentStoreData,
-        tabStoreData: ITabStoreData,
+        tabStoreData: TabStoreData,
         reportDate: Date,
         assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator,
     ): AssessmentReportModelBuilder {

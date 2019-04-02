@@ -24,7 +24,7 @@ describe('ScopingActionCreatorTest', () => {
         scopingActionsMock = Mock.ofType(ScopingActions, MockBehavior.Strict);
         telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler, MockBehavior.Strict);
         detailsViewControllerStrictMock = Mock.ofType<DetailsViewController>(null, MockBehavior.Strict);
-        registerTypeToPayloadCallbackMock = Mock.ofInstance((type, callback) => {});
+        registerTypeToPayloadCallbackMock = Mock.ofInstance((theType, callback) => {});
 
         testObject = new ScopingActionCreator(
             scopingActionsMock.object,

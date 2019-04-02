@@ -6,7 +6,7 @@ import { AssessmentsProvider } from '../../../assessments/types/iassessments-pro
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../../../common/types/store-data/iassessment-result-data';
-import { ITabStoreData } from '../../../common/types/store-data/itab-store-data';
+import { TabStoreData } from '../../../common/types/store-data/tab-store-data';
 import { HyperlinkDefinition } from '../../../views/content/content-page';
 import { DetailsViewActionMessageCreator } from '../../actions/details-view-action-message-creator';
 import { OverviewSummaryReportModel } from '../../reports/assessment-report-model';
@@ -42,7 +42,7 @@ export type OverviewContainerDeps = {
 export interface OverviewContainerProps {
     deps: OverviewContainerDeps;
     assessmentStoreData: IAssessmentStoreData;
-    tabStoreData: ITabStoreData;
+    tabStoreData: TabStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
 }
 

@@ -105,31 +105,31 @@ export class AssessmentBuilder {
     }
 
     public static Manual(assessment: ManualAssessment): Assessment {
-        const { key, steps } = assessment;
+        const { key, requirements } = assessment;
 
         assessment.requirementOrder = assessment.requirementOrder || RequirementComparer.byOrdinal;
         assessment.executeAssessmentScanPolicy = assessment.executeAssessmentScanPolicy || AssessmentBuilder.nullScanPolicy;
         assessment.initialDataCreator = assessment.initialDataCreator || createInitialAssessmentTestData;
 
-        steps.forEach(AssessmentBuilder.applyDefaultReportFieldMap);
-        steps.forEach(AssessmentBuilder.applyDefaultFunctions);
+        requirements.forEach(AssessmentBuilder.applyDefaultReportFieldMap);
+        requirements.forEach(AssessmentBuilder.applyDefaultFunctions);
 
         const getAnalyzer = (provider: AnalyzerProvider, testStep: string) => {
-            const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
+            const stepConfig = AssessmentBuilder.getStepConfig(requirements, testStep);
             return provider.createBaseAnalyzer({
                 key: stepConfig.key,
-                testType: assessment.type,
+                testType: assessment.visualizationType,
                 analyzerMessageType: Messages.Assessment.AssessmentScanCompleted,
             });
         };
 
         const getIdentifier = (testStep: string) => {
-            const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
+            const stepConfig = AssessmentBuilder.getStepConfig(requirements, testStep);
             return stepConfig.key;
         };
 
         const getNotificationMessage = (selectorMap: DictionaryStringTo<any>, testStep?: string) => {
-            const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
+            const stepConfig = AssessmentBuilder.getStepConfig(requirements, testStep);
             if (stepConfig.getNotificationMessage == null) {
                 return null;
             }
@@ -150,12 +150,12 @@ export class AssessmentBuilder {
             visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
             getDrawer: provider => provider.createNullDrawer(),
             getNotificationMessage: getNotificationMessage,
-            getSwitchToTargetTabOnScan: this.getSwitchToTargetTabOnScan(steps),
-            getInstanceIdentiferGenerator: this.getInstanceIdentifier(steps),
-            getUpdateVisibility: this.getUpdateVisibility(steps),
+            getSwitchToTargetTabOnScan: this.getSwitchToTargetTabOnScan(requirements),
+            getInstanceIdentiferGenerator: this.getInstanceIdentifier(requirements),
+            getUpdateVisibility: this.getUpdateVisibility(requirements),
         };
 
-        this.BuildStepsReportDescription(steps);
+        this.BuildStepsReportDescription(requirements);
 
         return {
             getVisualizationConfiguration: () => visualizationConfiguration,
@@ -165,20 +165,20 @@ export class AssessmentBuilder {
     }
 
     public static Assisted(assessment: AssistedAssessment): Assessment {
-        const { key, steps } = assessment;
+        const { key, requirements } = assessment;
 
         assessment.requirementOrder = assessment.requirementOrder || RequirementComparer.byOrdinal;
         assessment.initialDataCreator = assessment.initialDataCreator || createInitialAssessmentTestData;
 
-        steps.forEach(AssessmentBuilder.applyDefaultReportFieldMap);
-        steps.forEach(AssessmentBuilder.applyDefaultFunctions);
+        requirements.forEach(AssessmentBuilder.applyDefaultReportFieldMap);
+        requirements.forEach(AssessmentBuilder.applyDefaultFunctions);
 
         const getAnalyzer = (provider: AnalyzerProvider, testStep: string) => {
-            const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
+            const stepConfig = AssessmentBuilder.getStepConfig(requirements, testStep);
             if (stepConfig.getAnalyzer == null) {
                 return provider.createBaseAnalyzer({
                     key: stepConfig.key,
-                    testType: assessment.type,
+                    testType: assessment.visualizationType,
                     analyzerMessageType: Messages.Assessment.AssessmentScanCompleted,
                 });
             }
@@ -186,12 +186,12 @@ export class AssessmentBuilder {
         };
 
         const getIdentifier = (testStep: string) => {
-            const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
+            const stepConfig = AssessmentBuilder.getStepConfig(requirements, testStep);
             return stepConfig.key;
         };
 
         const getDrawer = (provider: DrawerProvider, testStep: string, featureFlagStoreData?: FeatureFlagStoreData) => {
-            const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
+            const stepConfig = AssessmentBuilder.getStepConfig(requirements, testStep);
             if (stepConfig.getDrawer == null) {
                 return provider.createNullDrawer();
             }
@@ -199,7 +199,7 @@ export class AssessmentBuilder {
         };
 
         const getNotificationMessage = (selectorMap: DictionaryStringTo<any>, testStep?: string) => {
-            const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
+            const stepConfig = AssessmentBuilder.getStepConfig(requirements, testStep);
             if (stepConfig.getNotificationMessage == null) {
                 return null;
             }
@@ -226,15 +226,15 @@ export class AssessmentBuilder {
             key: assessment.storeDataKey,
             getAnalyzer: getAnalyzer,
             getIdentifier: getIdentifier,
-            visualizationInstanceProcessor: AssessmentBuilder.getVisualizationInstanceProcessor(steps),
+            visualizationInstanceProcessor: AssessmentBuilder.getVisualizationInstanceProcessor(requirements),
             getDrawer: getDrawer,
             getNotificationMessage: getNotificationMessage,
-            getSwitchToTargetTabOnScan: AssessmentBuilder.getSwitchToTargetTabOnScan(steps),
-            getInstanceIdentiferGenerator: AssessmentBuilder.getInstanceIdentifier(steps),
-            getUpdateVisibility: AssessmentBuilder.getUpdateVisibility(steps),
+            getSwitchToTargetTabOnScan: AssessmentBuilder.getSwitchToTargetTabOnScan(requirements),
+            getInstanceIdentiferGenerator: AssessmentBuilder.getInstanceIdentifier(requirements),
+            getUpdateVisibility: AssessmentBuilder.getUpdateVisibility(requirements),
         } as AssesssmentVisualizationConfiguration;
 
-        AssessmentBuilder.BuildStepsReportDescription(steps);
+        AssessmentBuilder.BuildStepsReportDescription(requirements);
 
         return {
             getVisualizationConfiguration: () => visualizationConfiguration,

@@ -5,6 +5,7 @@ import { NamedSFC } from '../react/named-sfc';
 import { AnyExtension } from './extension-point';
 
 export type Extension<C> = {
+    // tslint:disable-next-line: no-reserved-keywords
     type: 'Extension';
     extensionPointKey: string;
     extensionType: string;
@@ -12,6 +13,7 @@ export type Extension<C> = {
 };
 
 type ExtensionPoint<C> = {
+    // tslint:disable-next-line: no-reserved-keywords
     type: 'ExtensionPoint';
     extensionPointKey: string;
     extensionType: string;

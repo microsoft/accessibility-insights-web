@@ -16,8 +16,8 @@ import {
     IAssessmentStoreData,
     PersistedTabInfo,
 } from '../../../../common/types/store-data/iassessment-result-data';
-import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';
 import { IScanData, TestsEnabledState } from '../../../../common/types/store-data/ivisualization-store-data';
+import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../DetailsView/actions/details-view-action-message-creator';
 import { DetailsRightPanelConfiguration } from '../../../../DetailsView/components/details-view-right-panel';
@@ -120,9 +120,9 @@ describe('DetailsViewMainContentTest', () => {
         });
 
         test('tab is closed', () => {
-            const tabStoreData: ITabStoreData = {
+            const tabStoreData: TabStoreData = {
                 isClosed: true,
-            } as ITabStoreData;
+            } as TabStoreData;
 
             props.tabStoreData = tabStoreData;
 

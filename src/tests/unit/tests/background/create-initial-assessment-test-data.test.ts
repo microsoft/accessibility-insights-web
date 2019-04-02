@@ -13,7 +13,7 @@ import { CreateTestAssessmentProvider } from '../../common/test-assessment-provi
 describe('createInitialAssessmentTestData', () => {
     const assessmentsProvider = CreateTestAssessmentProvider();
     const knownTestIds = assessmentsProvider.all().map(test => test.key);
-    const knownRequirementIds = flatMap(assessmentsProvider.all(), test => test.steps.map(step => step.key));
+    const knownRequirementIds = flatMap(assessmentsProvider.all(), test => test.requirements.map(step => step.key));
     const knownRequirement1 = knownRequirementIds[0];
     const knownRequirement2 = knownRequirementIds[1];
     const knownRequirement3 = knownRequirementIds[2];
@@ -84,7 +84,7 @@ describe('createInitialAssessmentTestData', () => {
 describe('createAutomatedChecksInitialAssessmentTestData', () => {
     const assessmentsProvider = CreateTestAssessmentProvider();
     const knownTestIds = assessmentsProvider.all().map(test => test.key);
-    const knownRequirementIds = flatMap(assessmentsProvider.all(), test => test.steps.map(step => step.key));
+    const knownRequirementIds = flatMap(assessmentsProvider.all(), test => test.requirements.map(step => step.key));
     const knownRequirement1 = knownRequirementIds[0];
     const knownRequirement2 = knownRequirementIds[1];
     const knownRequirement3 = knownRequirementIds[2];

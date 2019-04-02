@@ -188,7 +188,7 @@ describe('AssessmentStoreTest', () => {
                 testStepStatus: {},
             } as IAssessmentData;
 
-            assessment.steps.forEach(step => {
+            assessment.requirements.forEach(step => {
                 const assessmentData = expectedState.assessments[assessment.key];
                 assessmentData.testStepStatus[step.key] = getDefaultTestStepData();
                 assessmentData.manualTestStepResultMap[step.key] = getDefaultManualTestStepResult(step.key);
@@ -250,7 +250,7 @@ describe('AssessmentStoreTest', () => {
         const assessmentStub = {
             getVisualizationConfiguration: getVisualizationConfigurationMock.object,
             key: assessmentKey,
-            steps: [
+            requirements: [
                 {
                     key: requirementKey,
                 },
@@ -297,7 +297,7 @@ describe('AssessmentStoreTest', () => {
         const assessmentStub = {
             getVisualizationConfiguration: getVisualizationConfigurationMock.object,
             key: assessmentKey,
-            steps: [
+            requirements: [
                 {
                     key: requirementKey,
                 },
@@ -347,7 +347,7 @@ describe('AssessmentStoreTest', () => {
         const assessmentStub = {
             getVisualizationConfiguration: getVisualizationConfigurationMock.object,
             key: assessmentKey,
-            steps: [
+            requirements: [
                 {
                     key: requirementKey,
                 },
@@ -586,17 +586,17 @@ describe('AssessmentStoreTest', () => {
     });
 
     test('on selectTestStep', () => {
-        const type = 1 as VisualizationType;
+        const visualizationType = 1 as VisualizationType;
         const requirement = 'test-step';
         const initialState = new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object).build();
         const finalState = new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object)
-            .withSelectedTestType(type)
+            .withSelectedTestType(visualizationType)
             .withSelectedTestStep(requirement)
             .build();
 
         const payload: SelectRequirementPayload = {
             selectedRequirement: requirement,
-            selectedTest: type,
+            selectedTest: visualizationType,
         };
 
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());

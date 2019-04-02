@@ -19,11 +19,11 @@ describe('assessments-style-cop', () => {
     test('test and step names are properly styled', () => {
         Assessments.all().forEach(assessment => {
             assertIsProperlyStyled(assessment.title, assessment.key);
-            if (assessment.type === VisualizationType.AutomatedChecks) {
+            if (assessment.visualizationType === VisualizationType.AutomatedChecks) {
                 return;
             }
 
-            assessment.steps.forEach(step => {
+            assessment.requirements.forEach(step => {
                 assertIsProperlyStyled(step.name, assessment.key + '.' + step.key);
             });
         });
@@ -52,24 +52,24 @@ describe('assessments-style-cop', () => {
     test('findFirstDuplicateTestStepKey finds first duplicate as promised', () => {
         const assessmentWithNoDuplicates = [
             {
-                steps: [{ key: 'A' }, { key: 'B' }],
+                requirements: [{ key: 'A' }, { key: 'B' }],
             },
             {
-                steps: [{ key: 'C' }, { key: 'D' }],
+                requirements: [{ key: 'C' }, { key: 'D' }],
             },
         ];
 
         const assessmentWithOneDuplicate = [
             ...assessmentWithNoDuplicates,
             {
-                steps: [{ key: 'E' }, { key: 'C' }],
+                requirements: [{ key: 'E' }, { key: 'C' }],
             },
         ];
 
         const assessmentWithTwoDuplicates = [
             ...assessmentWithNoDuplicates,
             {
-                steps: [{ key: 'B' }, { key: 'C' }],
+                requirements: [{ key: 'B' }, { key: 'C' }],
             },
         ];
 
@@ -87,7 +87,7 @@ describe('assessments-style-cop', () => {
         let duplicateKey = null;
 
         all.forEach(test => {
-            test.steps.forEach(step => {
+            test.requirements.forEach(step => {
                 if (testStepKeys[step.key] && !duplicateKey) {
                     duplicateKey = step.key;
                 }

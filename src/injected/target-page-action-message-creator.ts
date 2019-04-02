@@ -45,14 +45,14 @@ export class TargetPageActionMessageCreator extends BaseActionMessageCreator {
 
     @autobind
     public openSettingsPanel(event: React.MouseEvent<HTMLElement>): void {
-        const type = Messages.SettingsPanel.OpenPanel;
+        const messageType = Messages.SettingsPanel.OpenPanel;
         const source = TelemetryEventSource.TargetPage;
         const telemetry = this.telemetryFactory.forSettingsPanelOpen(event, source, 'fileIssueSettingsPrompt');
         const payload: BaseActionPayload = {
             telemetry,
         };
         this.dispatchMessage({
-            type: type,
+            type: messageType,
             tabId: this._tabId,
             payload,
         });

@@ -15,7 +15,7 @@ exports[`ReportCheckListTest render 0 results with congratulations 1`] = `
   >
     <InlineImage
       alt=""
-      type={5}
+      imageType={5}
     />
   </div>
   <div

@@ -44,7 +44,7 @@ export class CompletedTestStepTelemetryCreator {
     }
 
     private sendTelemetryIfNewCompletedTestStep(assessment: Assessment): boolean {
-        const completedStep = assessment.steps.find(step => this.isNewCompletedTestStep(assessment, step));
+        const completedStep = assessment.requirements.find(step => this.isNewCompletedTestStep(assessment, step));
         const targetTab = this.store.getState().persistedTabInfo;
         if (completedStep != undefined && targetTab !== null) {
             const payload: PayloadWithEventName = {
@@ -75,7 +75,7 @@ export class CompletedTestStepTelemetryCreator {
         const numInstances = this.getNumInstances(step, assessmentData);
         const newStatus = this.store.getState().assessments[assessment.key].testStepStatus;
         return this.telemetryFactory.forRequirementStatus(
-            assessment.type,
+            assessment.visualizationType,
             step.key,
             newStatus[step.key].stepFinalResult === ManualTestStatus.PASS,
             numInstances,

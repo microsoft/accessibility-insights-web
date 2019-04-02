@@ -6,7 +6,7 @@ import { Mock, MockBehavior } from 'typemoq';
 
 import { AssessmentsProvider } from '../../../../../../assessments/types/iassessments-provider';
 import { IAssessmentStoreData, PersistedTabInfo } from '../../../../../../common/types/store-data/iassessment-result-data';
-import { ITabStoreData } from '../../../../../../common/types/store-data/itab-store-data';
+import { TabStoreData } from '../../../../../../common/types/store-data/tab-store-data';
 import { UrlParser } from '../../../../../../common/url-parser';
 import { DetailsViewActionMessageCreator } from '../../../../../../DetailsView/actions/details-view-action-message-creator';
 import {
@@ -20,11 +20,11 @@ describe('OverviewContainer', () => {
 
     const openExternalLink = jest.fn();
 
-    const tabStoreDataStub: ITabStoreData = {
+    const tabStoreDataStub: TabStoreData = {
         url: 'some url',
         title: 'some title',
         id: -1,
-    } as ITabStoreData;
+    } as TabStoreData;
 
     const helpLinkDeps = {
         actionInitiators: {

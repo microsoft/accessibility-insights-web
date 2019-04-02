@@ -93,9 +93,9 @@ export class VisualizationConfigurationFactory {
         return _.find(_.values(this.configurationByType), config => config.key === key);
     }
 
-    public getConfiguration(type: VisualizationType): VisualizationConfiguration {
-        if (Assessments.isValidType(type)) {
-            const assessment = Assessments.forType(type);
+    public getConfiguration(visualizationType: VisualizationType): VisualizationConfiguration {
+        if (Assessments.isValidType(visualizationType)) {
+            const assessment = Assessments.forType(visualizationType);
             const defaults = {
                 testMode: TestMode.Assessments,
                 chromeCommand: null,
@@ -113,10 +113,10 @@ export class VisualizationConfigurationFactory {
             return { ...config, ...defaults };
         }
 
-        const configuration = this.configurationByType[type];
+        const configuration = this.configurationByType[visualizationType];
 
         if (configuration == null) {
-            throw new Error(`Unsupported type: ${type}`);
+            throw new Error(`Unsupported type: ${visualizationType}`);
         }
 
         return configuration;
@@ -127,11 +127,11 @@ export class VisualizationConfigurationFactory {
 
         const types = EnumHelper.getNumericValues<VisualizationType>(VisualizationType);
 
-        _.each(types, type => {
-            const configuration = this.configurationByType[type];
+        _.each(types, visualizationType => {
+            const configuration = this.configurationByType[visualizationType];
 
             if (configuration && configuration.chromeCommand != null) {
-                map[configuration.chromeCommand] = type;
+                map[configuration.chromeCommand] = visualizationType;
             }
         });
 

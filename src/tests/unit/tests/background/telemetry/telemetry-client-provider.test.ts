@@ -3,7 +3,7 @@
 import { Mock } from 'typemoq';
 
 import { BrowserAdapter } from '../../../../../background/browser-adapter';
-import { ILocalStorageData } from '../../../../../background/storage-data';
+import { LocalStorageData } from '../../../../../background/storage-data';
 import { AppInsightsTelemetryClient } from '../../../../../background/telemetry/app-insights-telemetry-client';
 import { NullTelemetryClient } from '../../../../../background/telemetry/null-telemetry-client';
 import { getTelemetryClient } from '../../../../../background/telemetry/telemetry-client-provider';
@@ -26,7 +26,7 @@ describe('TelemetryClientProvider', () => {
         browserAdapterMock.setup(adapter => adapter.getManifest()).returns(() => manifestStub);
 
         const result = getTelemetryClient(
-            {} as ILocalStorageData,
+            {} as LocalStorageData,
             browserAdapterMock.object,
             Mock.ofType<TelemetryLogger>().object,
             Mock.ofType<Microsoft.ApplicationInsights.IAppInsights>().object,
@@ -39,7 +39,7 @@ describe('TelemetryClientProvider', () => {
         configMutator.setOption('appInsightsInstrumentationKey', null);
 
         const result = getTelemetryClient(
-            {} as ILocalStorageData,
+            {} as LocalStorageData,
             Mock.ofType<BrowserAdapter>().object,
             Mock.ofType<TelemetryLogger>().object,
             Mock.ofType<Microsoft.ApplicationInsights.IAppInsights>().object,

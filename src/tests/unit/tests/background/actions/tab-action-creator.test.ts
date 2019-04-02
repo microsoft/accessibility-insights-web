@@ -30,7 +30,7 @@ describe('TestActionCreatorTest', () => {
         tabActionsMock = Mock.ofType(TabActions, MockBehavior.Strict);
         browserAdapterMock = Mock.ofType(ChromeAdapter, MockBehavior.Strict);
         telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler, MockBehavior.Strict);
-        registerTypeToPayloadCallbackMock = Mock.ofInstance((type, callback) => {});
+        registerTypeToPayloadCallbackMock = Mock.ofInstance((theType, callback) => {});
 
         testObject = new TabActionCreator(
             registerTypeToPayloadCallbackMock.object,

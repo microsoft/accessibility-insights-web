@@ -10,7 +10,7 @@ import { StoreActionMessageCreator } from '../../../../common/message-creators/s
 import { StoreActionMessageCreatorImpl } from '../../../../common/message-creators/store-action-message-creator-impl';
 import { BaseClientStoresHub } from '../../../../common/stores/base-client-stores-hub';
 import { DetailsViewPivotType } from '../../../../common/types/details-view-pivot-type';
-import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';
+import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
 import { UserConfigurationStoreData } from '../../../../common/types/store-data/user-configuration-store';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../DetailsView/actions/details-view-action-message-creator';
@@ -106,7 +106,7 @@ describe('DetailsViewContainer', () => {
 
             setupActionMessageCreatorMock(detailsViewActionMessageCreator, visualizationStoreData.selectedDetailsViewPivot, 1);
 
-            const tabStoreData: ITabStoreData = {
+            const tabStoreData: TabStoreData = {
                 title: 'DetailsViewContainerTest title',
                 url: 'http://detailsViewContainerTest/url/',
                 id: 1,
@@ -274,13 +274,13 @@ describe('DetailsViewContainer', () => {
     }
 
     function setupGetDetailsRightPanelConfiguration(
-        type: DetailsViewRightContentPanelType,
+        contentPanelType: DetailsViewRightContentPanelType,
         selectedPivot: DetailsViewPivotType,
         returnConfiguration: DetailsRightPanelConfiguration,
     ): void {
         const expected: GetDetailsRightPanelConfigurationProps = {
             selectedDetailsViewPivot: selectedPivot,
-            detailsViewRightContentPanel: type,
+            detailsViewRightContentPanel: contentPanelType,
         };
         getDetailsRightPanelConfiguration.setup(gtrpc => gtrpc(It.isValue(expected))).returns(() => returnConfiguration);
     }

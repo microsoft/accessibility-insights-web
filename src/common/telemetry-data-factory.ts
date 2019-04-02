@@ -96,23 +96,27 @@ export class TelemetryDataFactory {
         };
     }
 
-    public forSelectDetailsView(event: SupportedMouseEvent, type: VisualizationType): DetailsViewOpenTelemetryData {
+    public forSelectDetailsView(event: SupportedMouseEvent, visualizationType: VisualizationType): DetailsViewOpenTelemetryData {
         return {
             ...this.withTriggeredByAndSource(event, TelemetryEventSource.DetailsView),
-            selectedTest: VisualizationType[type],
+            selectedTest: VisualizationType[visualizationType],
         };
     }
 
-    public forSelectRequirement(event: SupportedMouseEvent, type: VisualizationType, requirement: string): RequirementSelectTelemetryData {
+    public forSelectRequirement(
+        event: SupportedMouseEvent,
+        visualizationType: VisualizationType,
+        requirement: string,
+    ): RequirementSelectTelemetryData {
         return {
             ...this.withTriggeredByAndSource(event, TelemetryEventSource.DetailsView),
-            selectedTest: VisualizationType[type],
+            selectedTest: VisualizationType[visualizationType],
             selectedRequirement: requirement,
         };
     }
 
     public forRequirementStatus(
-        type: VisualizationType,
+        visualizationType: VisualizationType,
         requirement: string,
         passed: boolean,
         numInstances: number,
@@ -120,7 +124,7 @@ export class TelemetryDataFactory {
         return {
             triggeredBy: TriggeredByNotApplicable,
             source: TelemetryEventSource.DetailsView,
-            selectedTest: VisualizationType[type],
+            selectedTest: VisualizationType[visualizationType],
             selectedRequirement: requirement,
             passed: passed,
             numInstances: numInstances,
@@ -129,12 +133,12 @@ export class TelemetryDataFactory {
 
     public forOpenDetailsView(
         event: SupportedMouseEvent,
-        type: VisualizationType,
+        visualizationType: VisualizationType,
         source: TelemetryEventSource,
     ): DetailsViewOpenTelemetryData {
         return {
             ...this.withTriggeredByAndSource(event, source),
-            selectedTest: VisualizationType[type],
+            selectedTest: VisualizationType[visualizationType],
         };
     }
 
@@ -181,18 +185,18 @@ export class TelemetryDataFactory {
         };
     }
 
-    public forAssessmentActionFromDetailsViewNoTriggeredBy(type: VisualizationType): AssessmentTelemetryData {
+    public forAssessmentActionFromDetailsViewNoTriggeredBy(visualizationType: VisualizationType): AssessmentTelemetryData {
         return {
             triggeredBy: TriggeredByNotApplicable,
             source: TelemetryEventSource.DetailsView,
-            selectedTest: VisualizationType[type],
+            selectedTest: VisualizationType[visualizationType],
         };
     }
 
-    public forAssessmentActionFromDetailsView(type: VisualizationType, event: SupportedMouseEvent): AssessmentTelemetryData {
+    public forAssessmentActionFromDetailsView(visualizationType: VisualizationType, event: SupportedMouseEvent): AssessmentTelemetryData {
         return {
             ...this.withTriggeredByAndSource(event, TelemetryEventSource.DetailsView),
-            selectedTest: VisualizationType[type],
+            selectedTest: VisualizationType[visualizationType],
         };
     }
 

@@ -9,10 +9,10 @@ export class EnumHelper {
         const result: T[] = [];
         let foundNumericKey = false;
 
-        for (const type in enumType) {
-            if (!isNaN(Number(type))) {
+        for (const currentType in enumType) {
+            if (!isNaN(Number(currentType))) {
                 foundNumericKey = true;
-                const rightHandValue = enumType[type];
+                const rightHandValue = enumType[currentType];
                 const properType = enumType[rightHandValue];
                 result.push(properType);
             }
