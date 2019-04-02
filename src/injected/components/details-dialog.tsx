@@ -144,7 +144,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         );
     }
 
-    private renderCloseButton(): JSX.Element {
+    private renderCloseIcon(): JSX.Element {
         return <CancelIcon />;
     }
 
@@ -324,7 +324,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
                     topButtonsProps: [
                         {
                             ariaLabel: 'Close',
-                            onRenderIcon: this.renderCloseButton,
+                            onRenderIcon: this.renderCloseIcon,
                             onClick: this.onHideDialog,
                         },
                     ],
