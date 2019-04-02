@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import { It, Mock } from 'typemoq';
 
-import { ChromeAdapter } from '../../../../../background/browser-adapter';
-import { Logger } from '../../../../../common/logging/logger';
-import { PopupInitializer } from '../../../../../popup/popup-initializer';
-import { TargetTabFinder, TargetTabInfo } from '../../../../../popup/target-tab-finder';
+import { ChromeAdapter } from '../../../../background/browser-adapter';
+import { Logger } from '../../../../common/logging/logger';
+import { PopupInitializer } from '../../../../popup/popup-initializer';
+import { TargetTabFinder, TargetTabInfo } from '../../../../popup/target-tab-finder';
 
 describe('PopupInitializerTests', () => {
     test('initializePopup', async () => {

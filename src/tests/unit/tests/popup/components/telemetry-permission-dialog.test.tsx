@@ -4,9 +4,9 @@ import * as Enzyme from 'enzyme';
 import { PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 import { Checkbox } from 'office-ui-fabric-react/lib/Checkbox';
 import * as React from 'react';
-import { UserConfigMessageCreator } from '../../../../../../common/message-creators/user-config-message-creator';
-import { FeatureFlagStoreData } from '../../../../../../common/types/store-data/feature-flag-store-data';
-import { TelemetryPermissionDialog, TelemetryPermissionDialogProps } from '../../../../../../popup/components/telemetry-permission-dialog';
+import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
+import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
+import { TelemetryPermissionDialog, TelemetryPermissionDialogProps } from '../../../../../popup/components/telemetry-permission-dialog';
 
 describe('TelemetryPermissionDialogTest', () => {
     let userConfigMessageCreatorStub: UserConfigMessageCreator;

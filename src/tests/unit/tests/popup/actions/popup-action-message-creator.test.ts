@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
-import { OnDetailsViewOpenPayload, SetLaunchPanelState } from '../../../../../../background/actions/action-payloads';
-import { Messages } from '../../../../../../common/messages';
-import { TelemetryDataFactory } from '../../../../../../common/telemetry-data-factory';
+import { OnDetailsViewOpenPayload, SetLaunchPanelState } from '../../../../../background/actions/action-payloads';
+import { Messages } from '../../../../../common/messages';
+import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import {
     BaseTelemetryData,
     DetailsViewOpenTelemetryData,
@@ -12,13 +11,13 @@ import {
     POPUP_INITIALIZED,
     TelemetryEventSource,
     TUTORIAL_OPEN,
-} from '../../../../../../common/telemetry-events';
-import { DetailsViewPivotType } from '../../../../../../common/types/details-view-pivot-type';
-import { VisualizationType } from '../../../../../../common/types/visualization-type';
-import { WindowUtils } from '../../../../../../common/window-utils';
-import { PopupActionMessageCreator } from '../../../../../../popup/actions/popup-action-message-creator';
-import { LaunchPanelType } from '../../../../../../popup/components/popup-view';
-import { EventStubFactory } from '../../../../common/event-stub-factory';
+} from '../../../../../common/telemetry-events';
+import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
+import { VisualizationType } from '../../../../../common/types/visualization-type';
+import { WindowUtils } from '../../../../../common/window-utils';
+import { PopupActionMessageCreator } from '../../../../../popup/actions/popup-action-message-creator';
+import { LaunchPanelType } from '../../../../../popup/components/popup-view';
+import { EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('PopupActionMessageCreatorTest', () => {
     const eventStubFactory = new EventStubFactory();

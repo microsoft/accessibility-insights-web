@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 import { Mock, Times } from 'typemoq';
 
-import { TelemetryEventSource } from '../../../../../common/telemetry-events';
-import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
-import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { PopupActionMessageCreator } from '../../../../../popup/actions/popup-action-message-creator';
-import { LaunchPadRowConfiguration } from '../../../../../popup/components/launch-pad';
-import { PopupViewControllerHandler } from '../../../../../popup/handlers/popup-view-controller-handler';
-import { LaunchPadRowConfigurationFactory } from '../../../../../popup/launch-pad-row-configuration-factory';
+import { TelemetryEventSource } from '../../../../common/telemetry-events';
+import { DetailsViewPivotType } from '../../../../common/types/details-view-pivot-type';
+import { VisualizationType } from '../../../../common/types/visualization-type';
+import { PopupActionMessageCreator } from '../../../../popup/actions/popup-action-message-creator';
+import { LaunchPadRowConfiguration } from '../../../../popup/components/launch-pad';
+import { PopupViewControllerHandler } from '../../../../popup/handlers/popup-view-controller-handler';
+import { LaunchPadRowConfigurationFactory } from '../../../../popup/launch-pad-row-configuration-factory';
 
 describe('LaunchPadRowConfigurationFactoryTests', () => {
     test('createRowConfigs: verify string properties', () => {

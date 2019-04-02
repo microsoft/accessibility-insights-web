@@ -2,14 +2,14 @@
 // Licensed under the MIT License.
 import { It, Mock } from 'typemoq';
 
-import { VisualizationConfigurationFactory } from '../../../../../../common/configs/visualization-configuration-factory';
-import { VisualizationActionMessageCreator } from '../../../../../../common/message-creators/visualization-action-message-creator';
-import { TelemetryDataFactory } from '../../../../../../common/telemetry-data-factory';
-import { TelemetryEventSource, ToggleTelemetryData } from '../../../../../../common/telemetry-events';
-import { VisualizationType } from '../../../../../../common/types/visualization-type';
-import { DiagnosticViewClickHandler } from '../../../../../../popup/handlers/diagnostic-view-toggle-click-handler';
-import { EventStubFactory } from '../../../../common/event-stub-factory';
-import { VisualizationStoreDataBuilder } from '../../../../common/visualization-store-data-builder';
+import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
+import { VisualizationActionMessageCreator } from '../../../../../common/message-creators/visualization-action-message-creator';
+import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
+import { TelemetryEventSource, ToggleTelemetryData } from '../../../../../common/telemetry-events';
+import { VisualizationType } from '../../../../../common/types/visualization-type';
+import { DiagnosticViewClickHandler } from '../../../../../popup/handlers/diagnostic-view-toggle-click-handler';
+import { EventStubFactory } from '../../../common/event-stub-factory';
+import { VisualizationStoreDataBuilder } from '../../../common/visualization-store-data-builder';
 
 describe('DiagnosticViewToggleClickHandlerTest', () => {
     const eventStubFactory = new EventStubFactory();

@@ -7,8 +7,8 @@ import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';
 
-import { AdHocToolsPanel, AdHocToolsPanelProps } from '../../../../../../popup/components/ad-hoc-tools-panel';
-import { DiagnosticViewToggleFactory } from '../../../../../../popup/components/diagnostic-view-toggle-factory';
+import { AdHocToolsPanel, AdHocToolsPanelProps } from '../../../../../popup/components/ad-hoc-tools-panel';
+import { DiagnosticViewToggleFactory } from '../../../../../popup/components/diagnostic-view-toggle-factory';
 
 describe('AdHocToolsPanelTest', () => {
     const diagnosticViewToggleFactoryMock = Mock.ofType(DiagnosticViewToggleFactory);

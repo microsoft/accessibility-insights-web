@@ -5,25 +5,25 @@ import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { IMock, It, Mock, Times } from 'typemoq';
-import { VisualizationToggle } from '../../../../../../common/components/visualization-toggle';
+
+import { VisualizationToggle } from '../../../../../common/components/visualization-toggle';
 import {
     VisualizationConfiguration,
     VisualizationConfigurationFactory,
-} from '../../../../../../common/configs/visualization-configuration-factory';
-import { FeatureFlags } from '../../../../../../common/feature-flags';
-import { TelemetryEventSource } from '../../../../../../common/telemetry-events';
-import { DetailsViewPivotType } from '../../../../../../common/types/details-view-pivot-type';
-import { IVisualizationStoreData } from '../../../../../../common/types/store-data/ivisualization-store-data';
-import { VisualizationType } from '../../../../../../common/types/visualization-type';
-import { PopupActionMessageCreator } from '../../../../../../popup/actions/popup-action-message-creator';
-import { DiagnosticViewToggle, DiagnosticViewToggleProps } from '../../../../../../popup/components/diagnostic-view-toggle';
-import { DiagnosticViewClickHandler } from '../../../../../../popup/handlers/diagnostic-view-toggle-click-handler';
-import { DictionaryStringTo } from '../../../../../../types/common-types';
-import { ContentLinkDeps } from '../../../../../../views/content/content-link';
-import { ContentProvider } from '../../../../../../views/content/content-page';
-import { EventStubFactory } from '../../../../common/event-stub-factory';
-import { ShortcutCommandsTestData } from '../../../../common/sample-test-data';
-import { VisualizationStoreDataBuilder } from '../../../../common/visualization-store-data-builder';
+} from '../../../../../common/configs/visualization-configuration-factory';
+import { TelemetryEventSource } from '../../../../../common/telemetry-events';
+import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
+import { IVisualizationStoreData } from '../../../../../common/types/store-data/ivisualization-store-data';
+import { VisualizationType } from '../../../../../common/types/visualization-type';
+import { PopupActionMessageCreator } from '../../../../../popup/actions/popup-action-message-creator';
+import { DiagnosticViewToggle, DiagnosticViewToggleProps } from '../../../../../popup/components/diagnostic-view-toggle';
+import { DiagnosticViewClickHandler } from '../../../../../popup/handlers/diagnostic-view-toggle-click-handler';
+import { DictionaryStringTo } from '../../../../../types/common-types';
+import { ContentLinkDeps } from '../../../../../views/content/content-link';
+import { ContentProvider } from '../../../../../views/content/content-page';
+import { EventStubFactory } from '../../../common/event-stub-factory';
+import { ShortcutCommandsTestData } from '../../../common/sample-test-data';
+import { VisualizationStoreDataBuilder } from '../../../common/visualization-store-data-builder';
 
 describe('DiagnosticViewToggleTest', () => {
     const visualizationConfigurationFactory = new VisualizationConfigurationFactory();

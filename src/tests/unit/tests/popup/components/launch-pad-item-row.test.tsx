@@ -7,8 +7,8 @@ import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';
 
-import { LaunchPadItemRow, LaunchPadItemRowProps } from '../../../../../../popup/components/launch-pad-item-row';
-import { EventStubFactory } from '../../../../common/event-stub-factory';
+import { LaunchPadItemRow, LaunchPadItemRowProps } from '../../../../../popup/components/launch-pad-item-row';
+import { EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('LaunchPadItemRow', () => {
     const descriptionClassName = 'launch-pad-item-description';

@@ -4,13 +4,13 @@ import { mount, shallow } from 'enzyme';
 import { IconButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 import { It, Mock, Times } from 'typemoq';
-import { DropdownClickHandler } from '../../../../../../common/dropdown-click-handler';
-import { FeatureFlagStoreData } from '../../../../../../common/types/store-data/feature-flag-store-data';
-import { PopupActionMessageCreator } from '../../../../../../popup/actions/popup-action-message-creator';
-import { LaunchPanelHeader, LaunchPanelHeaderDeps, LaunchPanelHeaderProps } from '../../../../../../popup/components/launch-panel-header';
-import { LaunchPanelHeaderClickHandler } from '../../../../../../popup/handlers/launch-panel-header-click-handler';
-import { SupportLinkHandler } from '../../../../../../popup/support-link-handler';
-import { EventStubFactory } from '../../../../common/event-stub-factory';
+import { DropdownClickHandler } from '../../../../../common/dropdown-click-handler';
+import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
+import { PopupActionMessageCreator } from '../../../../../popup/actions/popup-action-message-creator';
+import { LaunchPanelHeader, LaunchPanelHeaderDeps, LaunchPanelHeaderProps } from '../../../../../popup/components/launch-panel-header';
+import { LaunchPanelHeaderClickHandler } from '../../../../../popup/handlers/launch-panel-header-click-handler';
+import { SupportLinkHandler } from '../../../../../popup/support-link-handler';
+import { EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('LaunchPanelHeaderTest', () => {
     let props: LaunchPanelHeaderProps;

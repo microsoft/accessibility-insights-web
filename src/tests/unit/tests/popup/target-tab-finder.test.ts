@@ -2,11 +2,11 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock } from 'typemoq';
 
-import { BrowserAdapter } from '../../../../../background/browser-adapter';
-import { Tab } from '../../../../../common/itab';
-import { UrlParser } from '../../../../../common/url-parser';
-import { UrlValidator } from '../../../../../common/url-validator';
-import { TargetTabFinder } from '../../../../../popup/target-tab-finder';
+import { BrowserAdapter } from '../../../../background/browser-adapter';
+import { Tab } from '../../../../common/itab';
+import { UrlParser } from '../../../../common/url-parser';
+import { UrlValidator } from '../../../../common/url-validator';
+import { TargetTabFinder } from '../../../../popup/target-tab-finder';
 
 describe('TargetTabFinderTest', () => {
     let testSubject: TargetTabFinder;

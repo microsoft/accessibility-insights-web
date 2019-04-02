@@ -4,31 +4,31 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { ChromeAdapter } from '../../../../../../background/browser-adapter';
-import { NewTabLink } from '../../../../../../common/components/new-tab-link';
-import { DropdownClickHandler } from '../../../../../../common/dropdown-click-handler';
-import { StoreActionMessageCreatorImpl } from '../../../../../../common/message-creators/store-action-message-creator-impl';
-import { BaseClientStoresHub } from '../../../../../../common/stores/base-client-stores-hub';
-import { CommandStoreData } from '../../../../../../common/types/store-data/command-store-data';
-import { ILaunchPanelStoreData } from '../../../../../../common/types/store-data/ilaunch-panel-store-data';
-import { UserConfigurationStoreData } from '../../../../../../common/types/store-data/user-configuration-store';
-import { PopupActionMessageCreator } from '../../../../../../popup/actions/popup-action-message-creator';
-import { LaunchPanelHeader } from '../../../../../../popup/components/launch-panel-header';
+import { ChromeAdapter } from '../../../../../background/browser-adapter';
+import { NewTabLink } from '../../../../../common/components/new-tab-link';
+import { DropdownClickHandler } from '../../../../../common/dropdown-click-handler';
+import { StoreActionMessageCreatorImpl } from '../../../../../common/message-creators/store-action-message-creator-impl';
+import { BaseClientStoresHub } from '../../../../../common/stores/base-client-stores-hub';
+import { CommandStoreData } from '../../../../../common/types/store-data/command-store-data';
+import { ILaunchPanelStoreData } from '../../../../../common/types/store-data/ilaunch-panel-store-data';
+import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
+import { PopupActionMessageCreator } from '../../../../../popup/actions/popup-action-message-creator';
+import { LaunchPanelHeader } from '../../../../../popup/components/launch-panel-header';
 import {
     LaunchPanelType,
     PopupView,
     PopupViewControllerDeps,
     PopupViewControllerState,
     PopupViewProps,
-} from '../../../../../../popup/components/popup-view';
-import { DiagnosticViewClickHandler } from '../../../../../../popup/handlers/diagnostic-view-toggle-click-handler';
-import { PopupViewControllerHandler } from '../../../../../../popup/handlers/popup-view-controller-handler';
-import { LaunchPadRowConfigurationFactory } from '../../../../../../popup/launch-pad-row-configuration-factory';
-import { SupportLinkHandler } from '../../../../../../popup/support-link-handler';
-import { BaseDataBuilder } from '../../../../common/base-data-builder';
-import { ShortcutCommandsTestData } from '../../../../common/sample-test-data';
-import { IsSameObject } from '../../../../common/typemoq-helper';
-import { VisualizationStoreDataBuilder } from '../../../../common/visualization-store-data-builder';
+} from '../../../../../popup/components/popup-view';
+import { DiagnosticViewClickHandler } from '../../../../../popup/handlers/diagnostic-view-toggle-click-handler';
+import { PopupViewControllerHandler } from '../../../../../popup/handlers/popup-view-controller-handler';
+import { LaunchPadRowConfigurationFactory } from '../../../../../popup/launch-pad-row-configuration-factory';
+import { SupportLinkHandler } from '../../../../../popup/support-link-handler';
+import { BaseDataBuilder } from '../../../common/base-data-builder';
+import { ShortcutCommandsTestData } from '../../../common/sample-test-data';
+import { IsSameObject } from '../../../common/typemoq-helper';
+import { VisualizationStoreDataBuilder } from '../../../common/visualization-store-data-builder';
 
 describe('PopupView', () => {
     const browserAdapterMock = Mock.ofType(ChromeAdapter);
