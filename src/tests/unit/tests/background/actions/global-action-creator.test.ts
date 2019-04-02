@@ -23,7 +23,7 @@ import { Action } from '../../../../../common/flux/action';
 import { Messages } from '../../../../../common/messages';
 import * as TelemetryEvents from '../../../../../common/telemetry-events';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
-import { LaunchPanelType } from '../../../../../popup/scripts/components/popup-view';
+import { LaunchPanelType } from '../../../../../popup/components/popup-view';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 
 describe('GlobalActionCreatorTest', () => {
