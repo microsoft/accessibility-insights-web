@@ -26,7 +26,7 @@ describe('TabControllerTest', () => {
     let tabContextFactoryMock: IMock<TabContextFactory>;
     let onDetailsViewTabRemoved: (tabId: number) => void;
     let logMock: IMock<(msg: string) => void>;
-    let LoggerStub: Logger = {
+    const LoggerStub: Logger = {
         log: null,
         error: null,
     };
