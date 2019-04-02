@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
 
-import { StoreActionMessageCreator } from '../../../../../common/message-creators/store-action-message-creator';
+import { StoreActionMessageCreatorImpl } from '../../../../../common/message-creators/store-action-message-creator-impl';
 
 describe('StateActionMessageCreator', () => {
     const tabId: number = -1;
@@ -15,7 +15,7 @@ describe('StateActionMessageCreator', () => {
 
         messages.forEach(message => setupPostMessageMock(message));
 
-        const testObject = new StoreActionMessageCreator(messages, postMessageMock.object, tabId);
+        const testObject = new StoreActionMessageCreatorImpl(messages, postMessageMock.object, tabId);
 
         testObject.getAllStates();
 

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as _ from 'lodash';
+
 import { ColorAdHocVisualization } from '../../ad-hoc-visualizations/color/visualization';
 import { HeadingsAdHocVisualization } from '../../ad-hoc-visualizations/headings/visualization';
 import { IssuesAdHocVisualization } from '../../ad-hoc-visualizations/issues/visualization';
@@ -12,10 +13,10 @@ import { UniquelyIdentifiableInstances } from '../../background/instance-identif
 import { TestViewProps } from '../../DetailsView/components/test-view';
 import { Analyzer } from '../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../injected/analyzers/analyzer-provider';
-import { IHtmlElementAxeResults, ScannerUtils } from '../../injected/scanner-utils';
+import { HtmlElementAxeResults, ScannerUtils } from '../../injected/scanner-utils';
 import { PropertyBags, VisualizationInstanceProcessorCallback } from '../../injected/visualization-instance-processor';
+import { Drawer } from '../../injected/visualization/drawer';
 import { DrawerProvider } from '../../injected/visualization/drawer-provider';
-import { IDrawer } from '../../injected/visualization/idrawer';
 import { ScanResults } from '../../scanner/iruleresults';
 import { DictionaryNumberTo, DictionaryStringTo } from '../../types/common-types';
 import { ContentPageComponent } from '../../views/content/content-page';
@@ -45,13 +46,13 @@ export interface AssesssmentVisualizationConfiguration {
     setAssessmentData?: (data: IAssessmentStoreData, selectorMap: DictionaryStringTo<any>, instanceMap?: DictionaryStringTo<any>) => void;
     analyzerMessageType: string;
     analyzerProgressMessageType?: string;
-    resultProcessor?: (scanner: ScannerUtils) => (results: ScanResults) => DictionaryStringTo<IHtmlElementAxeResults>;
+    resultProcessor?: (scanner: ScannerUtils) => (results: ScanResults) => DictionaryStringTo<HtmlElementAxeResults>;
     telemetryProcessor?: TelemetryProcessor<IAnalyzerTelemetryCallback>;
     getAnalyzer: (analyzerProvider: AnalyzerProvider, testStep?: string) => Analyzer;
     getIdentifier: (testStep?: string) => string;
     visualizationInstanceProcessor: (testStep?: string) => VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags>;
     getNotificationMessage: (selectorMap: DictionaryStringTo<any>, testStep?: string) => string;
-    getDrawer: (provider: DrawerProvider, testStep?: string) => IDrawer;
+    getDrawer: (provider: DrawerProvider, testStep?: string) => Drawer;
     getSwitchToTargetTabOnScan: (testStep?: string) => boolean;
     getInstanceIdentiferGenerator: (testStep?: string) => (instance: UniquelyIdentifiableInstances) => string;
     getUpdateVisibility: (testStep?: string) => boolean;
@@ -92,9 +93,9 @@ export class VisualizationConfigurationFactory {
         return _.find(_.values(this.configurationByType), config => config.key === key);
     }
 
-    public getConfiguration(type: VisualizationType): VisualizationConfiguration {
-        if (Assessments.isValidType(type)) {
-            const assessment = Assessments.forType(type);
+    public getConfiguration(visualizationType: VisualizationType): VisualizationConfiguration {
+        if (Assessments.isValidType(visualizationType)) {
+            const assessment = Assessments.forType(visualizationType);
             const defaults = {
                 testMode: TestMode.Assessments,
                 chromeCommand: null,
@@ -112,10 +113,10 @@ export class VisualizationConfigurationFactory {
             return { ...config, ...defaults };
         }
 
-        const configuration = this.configurationByType[type];
+        const configuration = this.configurationByType[visualizationType];
 
         if (configuration == null) {
-            throw new Error(`Unsupported type: ${type}`);
+            throw new Error(`Unsupported type: ${visualizationType}`);
         }
 
         return configuration;
@@ -126,11 +127,11 @@ export class VisualizationConfigurationFactory {
 
         const types = EnumHelper.getNumericValues<VisualizationType>(VisualizationType);
 
-        _.each(types, type => {
-            const configuration = this.configurationByType[type];
+        _.each(types, visualizationType => {
+            const configuration = this.configurationByType[visualizationType];
 
             if (configuration && configuration.chromeCommand != null) {
-                map[configuration.chromeCommand] = type;
+                map[configuration.chromeCommand] = visualizationType;
             }
         });
 

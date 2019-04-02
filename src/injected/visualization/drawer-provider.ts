@@ -16,8 +16,8 @@ import { DrawerUtils } from './drawer-utils';
 import { Formatter, SVGDrawerConfiguration } from './formatter';
 import { FrameFormatter } from './frame-formatter';
 import { HeadingFormatter } from './heading-formatter';
+import { HighlightBoxDrawer } from './highlight-box-drawer';
 import { HighlightBoxFormatter } from './highlight-box-formatter';
-import { IDrawer } from './idrawer';
 import { IssuesFormatter } from './issues-formatter';
 import { LandmarkFormatter } from './landmark-formatter';
 import { NullDrawer } from './null-drawer';
@@ -43,15 +43,15 @@ export class DrawerProvider {
         private readonly getRTLFunc: typeof getRTL,
     ) {}
 
-    public createNullDrawer(): IDrawer {
+    public createNullDrawer(): Drawer {
         return new NullDrawer();
     }
 
-    public createSingleTargetDrawer(className: string): IDrawer {
+    public createSingleTargetDrawer(className: string): Drawer {
         return new SingleTargetDrawer(this.drawerUtils, new SingleTargetFormatter(className));
     }
 
-    public createSVGDrawer(config: IPartialSVGDrawerConfiguration = null): IDrawer {
+    public createSVGDrawer(config: IPartialSVGDrawerConfiguration = null): Drawer {
         const tabbableElementsHelper = new TabbableElementsHelper(this.htmlElementUtils);
         const centerPositionCalculator = new CenterPositionCalculator(
             this.drawerUtils,
@@ -73,22 +73,22 @@ export class DrawerProvider {
         );
     }
 
-    public createFrameDrawer(): IDrawer {
+    public createFrameDrawer(): Drawer {
         const formatter = new FrameFormatter();
         return this.createDrawer('insights-frame', formatter);
     }
 
-    public createHeadingsDrawer(): IDrawer {
+    public createHeadingsDrawer(): Drawer {
         const formatter = new HeadingFormatter(window, this.clientUtils);
         return this.createDrawer('insights-heading', formatter);
     }
 
-    public createLandmarksDrawer(): IDrawer {
+    public createLandmarksDrawer(): Drawer {
         const formatter = new LandmarkFormatter();
         return this.createDrawer('insights-landmark', formatter);
     }
 
-    public createIssuesDrawer(): IDrawer {
+    public createIssuesDrawer(): Drawer {
         const formatter = new IssuesFormatter(
             this.frameCommunicator,
             this.htmlElementUtils,
@@ -100,17 +100,25 @@ export class DrawerProvider {
         return this.createDrawer('insights-issues', formatter);
     }
 
-    public createHighlightBoxDrawer(): IDrawer {
+    public createHighlightBoxDrawer(): Drawer {
         const formatter = new HighlightBoxFormatter();
         return this.createDrawer('insights-general-highlight-box', formatter);
     }
 
-    public createCustomWidgetsDrawer(): IDrawer {
+    public createCustomWidgetsDrawer(): Drawer {
         const formatter = new CustomWidgetsFormatter();
         return this.createDrawer('insights-custom-widgets', formatter);
     }
 
-    private createDrawer(containerClass: string, formatter: Formatter): IDrawer {
-        return new Drawer(this.dom, containerClass, this.windowUtils, this.shadowUtils, this.drawerUtils, this.clientUtils, formatter);
+    private createDrawer(containerClass: string, formatter: Formatter): Drawer {
+        return new HighlightBoxDrawer(
+            this.dom,
+            containerClass,
+            this.windowUtils,
+            this.shadowUtils,
+            this.drawerUtils,
+            this.clientUtils,
+            formatter,
+        );
     }
 }

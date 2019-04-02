@@ -14,10 +14,10 @@ function onAssessmentViewUpdate(prevProps: AssessmentViewProps, curProps: Assess
     const prevIsRunning = isRunning(prevProps);
     const nowIsRunning = isRunning(curProps);
     if (prevIsRunning && !nowIsRunning) {
-        curProps.deps.detailsViewActionMessageCreator.selectTestStep(
+        curProps.deps.detailsViewActionMessageCreator.selectRequirement(
             null,
             assessmentTestResult.getRequirementResults()[0].definition.key,
-            assessmentTestResult.type,
+            assessmentTestResult.visualizationType,
         );
     }
 }

@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { BaseStore } from '../../../background/stores/base-store';
+import { BaseStoreImpl } from '../../../background/stores/base-store-impl';
+import { BaseStore } from '../../../common/base-store';
 import { Action } from '../../../common/flux/action';
-import { IBaseStore } from '../../../common/istore';
 import { DefaultConstructor } from '../../../common/types/idefault-constructor';
 
 export class StoreTester<TStoreData, TActions> {
@@ -12,10 +12,10 @@ export class StoreTester<TStoreData, TActions> {
     private actionParam: any;
     private listener: Function;
     private actions: DefaultConstructor<TActions>;
-    private storeFactory: (actions) => BaseStore<TStoreData>;
+    private storeFactory: (actions) => BaseStoreImpl<TStoreData>;
     private postListenerMock: IMock<any>;
 
-    constructor(actions: DefaultConstructor<TActions>, actionName: keyof TActions, storeFactory: (actions) => BaseStore<TStoreData>) {
+    constructor(actions: DefaultConstructor<TActions>, actionName: keyof TActions, storeFactory: (actions) => BaseStoreImpl<TStoreData>) {
         this.actionName = actionName as string;
         this.storeFactory = storeFactory;
         this.actions = actions;
@@ -82,15 +82,15 @@ export class StoreTester<TStoreData, TActions> {
         return actionMock;
     }
 
-    private createChangeListener(store: IBaseStore<TStoreData>, times: Times): IMock<(store, args) => void> {
-        const listenerMock = Mock.ofInstance((store, args) => {});
+    private createChangeListener(store: BaseStore<TStoreData>, times: Times): IMock<(store, args) => void> {
+        const listenerMock = Mock.ofInstance((theStore, args) => {});
 
         listenerMock.setup(l => l(this.isSameStoreTypeMatcher(store), It.isAny())).verifiable(times);
 
         return listenerMock;
     }
 
-    private isSameStoreTypeMatcher(expectedStore: IBaseStore<TStoreData>): IBaseStore<TStoreData> {
+    private isSameStoreTypeMatcher(expectedStore: BaseStore<TStoreData>): BaseStore<TStoreData> {
         return It.is(actualStore => expectedStore.getId() === actualStore.getId());
     }
 }

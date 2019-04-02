@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { IAssessmentSummaryReportModel } from '../assessment-report-model';
+import { AssessmentSummaryReportModel } from '../assessment-report-model';
 import { OutcomeChipSet } from './outcome-chip-set';
 import { OutcomeIconSet } from './outcome-icon-set';
 
 export interface AssessmentSummaryDetailsProps {
-    testSummaries: IAssessmentSummaryReportModel[];
+    testSummaries: AssessmentSummaryReportModel[];
 }
 
 export class AssessmentSummaryDetails extends React.Component<AssessmentSummaryDetailsProps> {
@@ -25,7 +25,7 @@ export class AssessmentSummaryDetails extends React.Component<AssessmentSummaryD
         return this.getTestDetailsList(this.props.testSummaries, 1);
     }
 
-    private getTestDetailsList(summaries: IAssessmentSummaryReportModel[], colIndex: number): JSX.Element[] {
+    private getTestDetailsList(summaries: AssessmentSummaryReportModel[], colIndex: number): JSX.Element[] {
         return summaries.map((testSummary, index) => {
             return (
                 <div role="row" key={`${colIndex}-${index}`} className="test-summary">

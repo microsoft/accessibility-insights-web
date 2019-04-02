@@ -3,10 +3,12 @@
 import * as _ from 'lodash';
 import * as React from 'react';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { AssessmentBuilder } from '../../../../assessments/assessment-builder';
 import { AssistedAssessment, ManualAssessment } from '../../../../assessments/types/iassessment';
 import { ReportInstanceField } from '../../../../assessments/types/report-instance-field';
-import { TestStep } from '../../../../assessments/types/test-step';
+import { Requirement } from '../../../../assessments/types/requirement';
+import { createInitialAssessmentTestData } from '../../../../background/create-initial-assessment-test-data';
 import { InstanceIdentifierGenerator } from '../../../../background/instance-identifier-generator';
 import { RequirementComparer } from '../../../../common/assessment/requirement-comparer';
 import { Messages } from '../../../../common/messages';
@@ -16,7 +18,7 @@ import { IAssessmentScanData, TestsEnabledState } from '../../../../common/types
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { AssessmentInstanceTable } from '../../../../DetailsView/components/assessment-instance-table';
 import { AssessmentTestView } from '../../../../DetailsView/components/assessment-test-view';
-import { TestStepLink } from '../../../../DetailsView/components/test-step-link';
+import { RequirementLink } from '../../../../DetailsView/components/requirement-link';
 import { TestViewProps } from '../../../../DetailsView/components/test-view';
 import { AnalyzerConfiguration } from '../../../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../../../injected/analyzers/analyzer-provider';
@@ -33,7 +35,7 @@ describe('AssessmentBuilderTest', () => {
         const testViewPropsStub = {} as TestViewProps;
         const expectedTestView = <AssessmentTestView {...testViewPropsStub} />;
 
-        const testStep: TestStep = {
+        const testStep: Requirement = {
             description: (
                 <div>
                     description<span>dot should get removed.</span>
@@ -48,28 +50,28 @@ describe('AssessmentBuilderTest', () => {
             updateVisibility: false,
         };
 
-        const testStep2: TestStep = _.cloneDeep(testStep);
+        const testStep2: Requirement = _.cloneDeep(testStep);
         testStep2.key = 'step2';
         testStep2.generateInstanceIdentifier = null;
         testStep2.updateVisibility = null;
 
         const baseAssessment: ManualAssessment = {
             key: 'manualAssessmentKey',
-            type: -1 as VisualizationType,
+            visualizationType: -1 as VisualizationType,
             title: 'manual assessment title',
             gettingStarted: <span>getting started</span>,
-            steps: [testStep, testStep2],
+            requirements: [testStep, testStep2],
         };
 
         const nonDefaultAssessment: ManualAssessment = {
             ...baseAssessment,
             executeAssessmentScanPolicy: () => null,
-            steps: [],
+            requirements: [],
         };
 
         const expectedConfig: AnalyzerConfiguration = {
             key: testStep.key,
-            testType: baseAssessment.type,
+            testType: baseAssessment.visualizationType,
             analyzerMessageType: Messages.Assessment.AssessmentScanCompleted,
         };
 
@@ -80,6 +82,7 @@ describe('AssessmentBuilderTest', () => {
         const manual = AssessmentBuilder.Manual(baseAssessment);
 
         expect(manual.requirementOrder).toBe(RequirementComparer.byOrdinal);
+        expect(manual.initialDataCreator).toBe(createInitialAssessmentTestData);
 
         Object.keys(baseAssessment).forEach(assessmentKey => {
             expect(manual[assessmentKey]).toEqual(baseAssessment[assessmentKey]);
@@ -155,7 +158,7 @@ describe('AssessmentBuilderTest', () => {
         const getDrawerMock = Mock.ofInstance((provider, ffStoreData?) => null);
         getDrawerMock.setup(gdm => gdm(drawerProviderMock.object, undefined)).verifiable(Times.once());
 
-        const testStep1: TestStep = {
+        const testStep1: Requirement = {
             description: (
                 <div>
                     <span>dot should get removed</span>description.
@@ -179,15 +182,15 @@ describe('AssessmentBuilderTest', () => {
         const telemetryFactoryStub = {
             forAssessmentRequirementScan: {},
         };
-        const testStep2: TestStep = _.cloneDeep(testStep1);
+        const testStep2: Requirement = _.cloneDeep(testStep1);
         testStep2.key = 'step2';
-        const testStep3: TestStep = _.cloneDeep(testStep1);
+        const testStep3: Requirement = _.cloneDeep(testStep1);
         testStep3.key = 'step3';
-        const testStep4: TestStep = _.cloneDeep(testStep1);
+        const testStep4: Requirement = _.cloneDeep(testStep1);
         testStep4.key = 'step4';
         const extraField = { key: 'extra', label: 'extra', getValue: i => 'extra' };
         testStep4.reportInstanceFields = [extraField];
-        const testStep5: TestStep = _.cloneDeep(testStep1);
+        const testStep5: Requirement = _.cloneDeep(testStep1);
         testStep5.key = 'step5';
         testStep5.getAnalyzer = null;
         testStep5.visualizationInstanceProcessor = null;
@@ -196,7 +199,7 @@ describe('AssessmentBuilderTest', () => {
         testStep5.generateInstanceIdentifier = null;
         testStep5.updateVisibility = null;
         testStep5.isManual = false;
-        const testStep6: TestStep = _.cloneDeep(testStep1);
+        const testStep6: Requirement = _.cloneDeep(testStep1);
         testStep6.key = 'step6';
         const getInstanceStatus6 = () => ManualTestStatus.PASS;
         testStep6.getInstanceStatus = getInstanceStatus6;
@@ -209,10 +212,10 @@ describe('AssessmentBuilderTest', () => {
 
         const assistedAssessment: AssistedAssessment = {
             key: 'manual assessment key',
-            type: -1 as VisualizationType,
+            visualizationType: -1 as VisualizationType,
             title: 'manual assessment title',
             gettingStarted: <span>getting started</span>,
-            steps: [testStep1, testStep2, testStep3, testStep4, testStep5, testStep6],
+            requirements: [testStep1, testStep2, testStep3, testStep4, testStep5, testStep6],
             storeDataKey: 'headingsAssessment',
             visualizationConfiguration: {
                 analyzerMessageType: Messages.Assessment.AssessmentScanCompleted,
@@ -220,10 +223,10 @@ describe('AssessmentBuilderTest', () => {
             requirementOrder: RequirementComparer.byOutcomeAndName,
         };
 
-        const nonDefaultAssessment = {
+        const nonDefaultAssessment: AssistedAssessment = {
             ...assistedAssessment,
             executeAssessmentScanPolicy: () => null,
-            steps: [],
+            requirements: [],
         };
 
         const assisted = AssessmentBuilder.Assisted(assistedAssessment);
@@ -315,7 +318,7 @@ describe('AssessmentBuilderTest', () => {
         expect(config.getAssessmentData(assessmentData as any)).toEqual(expectedData);
     });
 
-    function validateInstanceTableSettings(testStep: TestStep): void {
+    function validateInstanceTableSettings(testStep: Requirement): void {
         expect(testStep.getInstanceStatus).toBeDefined();
         expect(testStep.getInstanceStatus({} as DecoratedAxeNodeResult)).toBe(ManualTestStatus.UNKNOWN);
 
@@ -342,7 +345,7 @@ describe('AssessmentBuilderTest', () => {
         expect(testStep.renderInstanceTableHeader(tableMock.object, [])).toBe(headerStub);
         tableMock.verifyAll();
 
-        const linkMock = Mock.ofType(TestStepLink, MockBehavior.Strict);
+        const linkMock = Mock.ofType(RequirementLink, MockBehavior.Strict);
         const descriptionStub = <div>descriptionStub</div>;
         linkMock
             .setup(lm => lm.renderRequirementDescriptionWithIndex())

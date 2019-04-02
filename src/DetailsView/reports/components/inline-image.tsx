@@ -17,20 +17,19 @@ export enum InlineImageType {
 }
 
 export interface InlineImageProps {
-    type: InlineImageType;
+    imageType: InlineImageType;
     alt: string;
 }
 
 export class InlineImage extends React.Component<InlineImageProps> {
     public render(): JSX.Element {
-        const imageData = this.inlineImageTypeToData[this.props.type];
+        const imageData = this.inlineImageTypeToData[this.props.imageType];
         if (imageData === undefined) {
             return null;
         }
         return <img src={imageData} alt={this.props.alt} />;
     }
 
-    // tslint:disable:max-line-length
     private inlineImageTypeToData: DictionaryNumberTo<string> = {
         [InlineImageType.AdaTheCat]: adaMulticolorBubbles,
         [InlineImageType.AdaLaptop]: adaLaptop,

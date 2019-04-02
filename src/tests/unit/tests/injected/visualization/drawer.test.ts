@@ -6,12 +6,12 @@ import { getDefaultFeatureFlagValues } from '../../../../../common/feature-flags
 import { WindowUtils } from '../../../../../common/window-utils';
 import { ClientUtils } from '../../../../../injected/client-utils';
 import { DialogRenderer } from '../../../../../injected/dialog-renderer';
-import { IHtmlElementAxeResults } from '../../../../../injected/scanner-utils';
+import { HtmlElementAxeResults } from '../../../../../injected/scanner-utils';
 import { ShadowUtils } from '../../../../../injected/shadow-utils';
-import { Drawer } from '../../../../../injected/visualization/drawer';
+import { DrawerInitData } from '../../../../../injected/visualization/drawer';
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
 import { DrawerConfiguration, Formatter } from '../../../../../injected/visualization/formatter';
-import { IDrawerInitData } from '../../../../../injected/visualization/idrawer';
+import { HighlightBoxDrawer } from '../../../../../injected/visualization/highlight-box-drawer';
 import { TestDocumentCreator } from '../../../common/test-document-creator';
 
 describe('Drawer', () => {
@@ -176,8 +176,6 @@ describe('Drawer', () => {
                 return { left: 10, top: 10 };
             });
 
-        const windowUtilsMock = Mock.ofType(WindowUtils);
-
         windowUtilsMock
             .setup(it => it.getComputedStyle(bodyStub))
             .returns(stuff => {
@@ -306,8 +304,6 @@ describe('Drawer', () => {
                 return { left: 0, top: 0 };
             });
 
-        const windowUtilsMock = Mock.ofType(WindowUtils);
-
         windowUtilsMock
             .setup(it => it.getComputedStyle(bodyStub))
             .returns(stuff => {
@@ -421,8 +417,6 @@ describe('Drawer', () => {
             .returns(_ => {
                 return { left: 10, top: 10 };
             });
-
-        const windowUtilsMock = Mock.ofType(WindowUtils);
 
         windowUtilsMock
             .setup(it => it.getComputedStyle(bodyStub))
@@ -553,8 +547,6 @@ describe('Drawer', () => {
                 return { left: 0, top: 0 };
             });
 
-        const windowUtilsMock = Mock.ofType(WindowUtils);
-
         windowUtilsMock
             .setup(it => it.getComputedStyle(bodyStub))
             .returns(stuff => {
@@ -683,8 +675,6 @@ describe('Drawer', () => {
                 return { left: 0, top: 0 };
             });
 
-        const windowUtilsMock = Mock.ofType(WindowUtils);
-
         windowUtilsMock
             .setup(it => it.getComputedStyle(bodyStub))
             .returns(stuff => {
@@ -742,8 +732,6 @@ describe('Drawer', () => {
             },
             appendChild: node => {},
         } as any);
-
-        const windowUtilsMock = Mock.ofType(WindowUtils);
 
         const testSubject = createDrawerBuilder()
             .setDomAndDrawerUtils(domMock.object)
@@ -805,7 +793,6 @@ describe('Drawer', () => {
                 <div id='id1'></div>
             `);
 
-        const windowUtilsMock = Mock.ofType(WindowUtils);
         setupWindow();
         setupGetComputedStyleNotCalled();
 
@@ -850,20 +837,16 @@ describe('Drawer', () => {
         const registerHandlerFunc: typeof windowUtilsMock.object.addEventListener = (window, eventName, handler, useCapture) =>
             (scrollCallback = handler);
 
-        // draw
         setupWindow();
         setupAddEventListerCalled(registerHandlerFunc);
         testSubject.drawLayout();
 
         // invoke scroll listener
-        let timeOutCallback: Function;
         const timeOutId = 10;
-        const registerTimeOutHandlerFunc: typeof window.setTimeout = (handler, timeout) => (timeOutCallback = handler);
 
         windowUtilsMock.setup(x => x.clearTimeout(It.isAny())).verifiable(Times.never());
         windowUtilsMock
-            .setup(x => x.setTimeout(It.isAny(), Drawer.recalculationTimeout))
-            .callback(registerTimeOutHandlerFunc)
+            .setup(x => x.setTimeout(It.isAny(), HighlightBoxDrawer.recalculationTimeout))
             .returns(() => timeOutId)
             .verifiable();
 
@@ -876,8 +859,7 @@ describe('Drawer', () => {
 
         windowUtilsMock.setup(x => x.clearTimeout(timeOutId)).verifiable();
         windowUtilsMock
-            .setup(x => x.setTimeout(It.isAny(), Drawer.recalculationTimeout))
-            .callback(registerTimeOutHandlerFunc)
+            .setup(x => x.setTimeout(It.isAny(), HighlightBoxDrawer.recalculationTimeout))
             .returns(() => timeOutId)
             .verifiable();
         scrollCallback();
@@ -913,10 +895,13 @@ describe('Drawer', () => {
         // invoke scroll listener
         let timeOutCallback: Function;
         const timeOutId = 10;
-        const registerTimeOutHandlerFunc: typeof window.setTimeout = (handler, timeout) => (timeOutCallback = handler);
+        const registerTimeOutHandlerFunc: typeof window.setTimeout = (handler, timeout, ...args): number => {
+            timeOutCallback = handler as Function;
+            return timeout;
+        };
 
         windowUtilsMock
-            .setup(x => x.setTimeout(It.isAny(), Drawer.recalculationTimeout))
+            .setup(x => x.setTimeout(It.isAny(), HighlightBoxDrawer.recalculationTimeout))
             .callback(registerTimeOutHandlerFunc)
             .returns(() => timeOutId)
             .verifiable();
@@ -939,7 +924,6 @@ describe('Drawer', () => {
             `);
         const elementResults = [];
 
-        const windowUtilsMock = Mock.ofType(WindowUtils);
         windowUtilsMock
             .setup(it => it.getComputedStyle(It.isAny()))
             .returns(stuff => {
@@ -973,7 +957,6 @@ describe('Drawer', () => {
                 <div id='id1'></div>
             `);
 
-        const windowUtilsMock = Mock.ofType(WindowUtils);
         windowUtilsMock
             .setup(it => it.getComputedStyle(It.isAny()))
             .returns(stuff => {
@@ -1204,14 +1187,14 @@ describe('Drawer', () => {
         verifyOverlayStyle(overlays[2], element4Config);
     });
 
-    function createDrawerInfo<T>(elementResults: T[]): IDrawerInitData<T> {
+    function createDrawerInfo<T>(elementResults: T[]): DrawerInitData<T> {
         return {
             data: elementResults,
             featureFlagStoreData: getDefaultFeatureFlagValues(),
         };
     }
 
-    function createElementResults(ids: string[]): IHtmlElementAxeResults[] {
+    function createElementResults(ids: string[]): HtmlElementAxeResults[] {
         return ids.map(id => {
             return {
                 ruleResults: {},
@@ -1253,7 +1236,7 @@ describe('Drawer', () => {
 
     function verifyOverlayStyle(
         overlay: { container: HTMLDivElement; label: HTMLDivElement; failureLabel: HTMLDivElement },
-        drawerConfig: DrawerConfiguration = Drawer.defaultConfiguration,
+        drawerConfig: DrawerConfiguration = HighlightBoxDrawer.defaultConfiguration,
     ): void {
         expect(overlay.container.style.outlineStyle).toEqual(drawerConfig.outlineStyle);
         expect(overlay.container.style.outlineColor).toEqual(drawerConfig.borderColor);
@@ -1342,8 +1325,8 @@ describe('Drawer', () => {
             return this;
         }
 
-        public build(): Drawer {
-            return new Drawer(
+        public build(): HighlightBoxDrawer {
+            return new HighlightBoxDrawer(
                 this.dom,
                 this.containerClass,
                 this.windowUtils,

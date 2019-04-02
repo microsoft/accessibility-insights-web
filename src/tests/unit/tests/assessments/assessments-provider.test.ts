@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 
-import { AssessmentsProvider } from '../../../../assessments/assessments-provider';
+import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
 import { Assessment } from '../../../../assessments/types/iassessment';
-import { IAssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
-import { TestStep } from '../../../../assessments/types/test-step';
+import { AssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
+import { Requirement } from '../../../../assessments/types/requirement';
 
 describe('AssessmentsProviderTest', () => {
     const firstType = 45;
@@ -30,10 +30,10 @@ describe('AssessmentsProviderTest', () => {
         const provider = getProvider();
 
         const firstAssessment = provider.forType(firstType);
-        expect(firstAssessment.type).toEqual(firstType);
+        expect(firstAssessment.visualizationType).toEqual(firstType);
 
         const secondAssessment = provider.forType(secondType);
-        expect(secondAssessment.type).toEqual(secondType);
+        expect(secondAssessment.visualizationType).toEqual(secondType);
     });
 
     test('forType does not exist', () => {
@@ -55,10 +55,10 @@ describe('AssessmentsProviderTest', () => {
         const provider = getProvider();
 
         const firstAssessment = provider.forKey(firstKey);
-        expect(firstAssessment.type).toEqual(firstType);
+        expect(firstAssessment.visualizationType).toEqual(firstType);
 
         const secondAssessment = provider.forKey(secondKey);
-        expect(secondAssessment.type).toEqual(secondType);
+        expect(secondAssessment.visualizationType).toEqual(secondType);
     });
 
     test('forKey does not exist', () => {
@@ -91,8 +91,8 @@ describe('AssessmentsProviderTest', () => {
 
         const all = provider.all();
         expect(all.length).toBe(2);
-        expect(all[0].type).toBe(firstType);
-        expect(all[1].type).toBe(secondType);
+        expect(all[0].visualizationType).toBe(firstType);
+        expect(all[1].visualizationType).toBe(secondType);
     });
 
     test('all returns a clone', () => {
@@ -111,7 +111,7 @@ describe('AssessmentsProviderTest', () => {
         const gamma = 'GAMMA';
         const delta = 'DELTA';
         const assessments = [makeAssessment(firstType, [alpha, beta]), makeAssessment(secondType, [gamma, delta])];
-        const provider = AssessmentsProvider.Create(assessments);
+        const provider = AssessmentsProviderImpl.Create(assessments);
 
         const firstSteps = provider.getStepMap(firstType);
         const secondSteps = provider.getStepMap(secondType);
@@ -138,20 +138,20 @@ describe('AssessmentsProviderTest', () => {
         expect(invalidSteps).toBeNull();
     });
 
-    function getProvider(): IAssessmentsProvider {
+    function getProvider(): AssessmentsProvider {
         const assessments = [
-            { type: firstType, key: firstKey, steps: [{ key: stepOneKey }, { key: stepTwoKey }] } as Assessment,
-            { type: secondType, key: secondKey } as Assessment,
+            { visualizationType: firstType, key: firstKey, requirements: [{ key: stepOneKey }, { key: stepTwoKey }] } as Assessment,
+            { visualizationType: secondType, key: secondKey } as Assessment,
         ];
-        const provider = AssessmentsProvider.Create(assessments);
+        const provider = AssessmentsProviderImpl.Create(assessments);
         return provider;
     }
 
-    function makeAssessment(type: number, stepKeys: string[]): Assessment {
-        return { type, steps: stepKeys.map(makeStep) } as Assessment;
+    function makeAssessment(assessmentType: number, stepKeys: string[]): Assessment {
+        return { visualizationType: assessmentType, requirements: stepKeys.map(makeStep) } as Assessment;
     }
 
-    function makeStep(key: string): TestStep {
-        return { key } as TestStep;
+    function makeStep(key: string): Requirement {
+        return { key } as Requirement;
     }
 });

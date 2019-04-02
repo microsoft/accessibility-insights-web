@@ -6,9 +6,9 @@ import * as React from 'react';
 import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
-import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../../common/types/store-data/ivisualization-scan-result-data';
 import { IVisualizationStoreData } from '../../common/types/store-data/ivisualization-store-data';
+import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewToggleClickHandlerFactory } from '../handlers/details-view-toggle-click-handler-factory';
 import { ReportGenerator } from '../reports/report-generator';
@@ -20,7 +20,7 @@ export type AdhocIssuesTestViewDeps = IssuesTableDeps;
 
 export interface AdhocIssuesTestViewProps {
     deps: AdhocIssuesTestViewDeps;
-    tabStoreData: ITabStoreData;
+    tabStoreData: TabStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
     issueTrackerPath: string;
     selectedTest: VisualizationType;
@@ -35,9 +35,9 @@ export interface AdhocIssuesTestViewProps {
 }
 
 export const AdhocIssuesTestView = NamedSFC<AdhocIssuesTestViewProps>('AdhocIssuesTestView', ({ children, ...props }) => {
-    const type = props.selectedTest;
+    const selectedTest = props.selectedTest;
     const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
-    const clickHandler = props.clickHandlerFactory.createClickHandler(type, !scanData.enabled);
+    const clickHandler = props.clickHandlerFactory.createClickHandler(selectedTest, !scanData.enabled);
     const isScanning: boolean = props.visualizationStoreData.scanning !== null;
     const scanResult = props.visualizationScanResultData.issues.scanResult;
     const displayableData = props.configuration.displayableData;
@@ -45,7 +45,9 @@ export const AdhocIssuesTestView = NamedSFC<AdhocIssuesTestViewProps>('AdhocIssu
     const title = props.configuration.displayableData.title;
 
     if (props.tabStoreData.isChanged) {
-        return <TargetPageChangedView displayableData={displayableData} type={type} toggleClickHandler={clickHandler} />;
+        return (
+            <TargetPageChangedView displayableData={displayableData} visualizationType={selectedTest} toggleClickHandler={clickHandler} />
+        );
     }
 
     return (

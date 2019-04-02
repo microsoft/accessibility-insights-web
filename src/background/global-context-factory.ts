@@ -3,7 +3,7 @@
 import { IndexedDBAPI } from '../common/indexedDB/indexedDB';
 import { StateDispatcher } from '../common/state-dispatcher';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
-import { IAssessmentsProvider } from './../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from './../assessments/types/iassessments-provider';
 import { AssessmentActionCreator } from './actions/assessment-action-creator';
 import { GlobalActionCreator } from './actions/global-action-creator';
 import { GlobalActionHub } from './actions/global-action-hub';
@@ -13,7 +13,7 @@ import { FeatureFlagsController } from './feature-flags-controller';
 import { PersistedData } from './get-persisted-data';
 import { GlobalContext } from './global-context';
 import { Interpreter } from './interpreter';
-import { ILocalStorageData } from './storage-data';
+import { LocalStorageData } from './storage-data';
 import { GlobalStoreHub } from './stores/global/global-store-hub';
 import { TelemetryEventHandler } from './telemetry/telemetry-event-handler';
 
@@ -21,8 +21,8 @@ export class GlobalContextFactory {
     public static createContext(
         browserAdapter: BrowserAdapter,
         telemetryEventHandler: TelemetryEventHandler,
-        userData: ILocalStorageData,
-        assessmentsProvider: IAssessmentsProvider,
+        userData: LocalStorageData,
+        assessmentsProvider: AssessmentsProvider,
         telemetryDataFactory: TelemetryDataFactory,
         indexedDBInstance: IndexedDBAPI,
         persistedData: PersistedData,

@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IHtmlElementAxeResults } from '../scanner-utils';
+import { HtmlElementAxeResults } from '../scanner-utils';
+import { Drawer, DrawerInitData } from './drawer';
 import { DrawerUtils } from './drawer-utils';
-import { IDrawer, IDrawerInitData } from './idrawer';
 import { SingleTargetFormatter } from './single-target-formatter';
 
-export class SingleTargetDrawer implements IDrawer {
+export class SingleTargetDrawer implements Drawer {
     protected isEnabled = false;
     protected drawerUtils: DrawerUtils;
     private target: HTMLElement;
@@ -16,7 +16,7 @@ export class SingleTargetDrawer implements IDrawer {
         this.formatter = formatter;
     }
 
-    public initialize(drawerInfo: IDrawerInitData<IHtmlElementAxeResults>): void {
+    public initialize(drawerInfo: DrawerInitData<HtmlElementAxeResults>): void {
         this.eraseLayout();
         const elementResults = drawerInfo.data;
         const myDocument = this.drawerUtils.getDocumentElement();
@@ -44,7 +44,7 @@ export class SingleTargetDrawer implements IDrawer {
         return this.isEnabled;
     }
 
-    private getFirstElementTarget(document: Document, elementResults: IHtmlElementAxeResults[]): HTMLElement {
+    private getFirstElementTarget(document: Document, elementResults: HtmlElementAxeResults[]): HTMLElement {
         if (!elementResults[0]) {
             return null;
         }

@@ -5,8 +5,8 @@ import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';
 
-import { IAssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
-import { TestStep } from '../../../../../assessments/types/test-step';
+import { AssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
+import { Requirement } from '../../../../../assessments/types/requirement';
 import { getInnerTextFromJsxElement } from '../../../../../common/get-inner-text-from-jsx-element';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
@@ -34,14 +34,14 @@ describe('TestStepsNav', () => {
         runTest(CreateTestAssessmentProviderAutomated());
     });
 
-    function runTest(assessmentProvider: IAssessmentsProvider): void {
+    function runTest(assessmentProvider: AssessmentsProvider): void {
         const eventFactory = new EventStubFactory();
         const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
         const eventStub = eventFactory.createKeypressEvent() as any;
 
         const all = assessmentProvider.all();
         const assessment = all[0];
-        const firstStep = assessment.steps[0];
+        const firstStep = assessment.requirements[0];
 
         const item = {
             key: firstStep.key,
@@ -60,16 +60,16 @@ describe('TestStepsNav', () => {
                 getInnerTextFromJsxElement: getInnerTextFromJsxElementStub(),
                 outcomeTypeSemanticsFromTestStatus: createOutcomeTypeSemanticsFromTestStatusStub(),
             },
-            selectedTest: assessment.type,
+            selectedTest: assessment.visualizationType,
             selectedTestStep: firstStep.key,
             stepStatus: {},
             assessmentsProvider: assessmentProvider,
             ariaLabel: 'test',
         };
 
-        generateStepStatus(assessment.steps, props);
+        generateStepStatus(assessment.requirements, props);
 
-        actionMessageCreatorMock.setup(a => a.selectTestStep(eventStub, item.key, props.selectedTest)).verifiable(Times.once());
+        actionMessageCreatorMock.setup(a => a.selectRequirement(eventStub, item.key, props.selectedTest)).verifiable(Times.once());
 
         const component = React.createElement(TestableTestStepsNav, props);
         const testObject = TestUtils.renderIntoDocument(component);
@@ -81,7 +81,7 @@ describe('TestStepsNav', () => {
         actionMessageCreatorMock.verifyAll();
     }
 
-    function generateStepStatus(testSteps: TestStep[], props: TestStepNavProps): void {
+    function generateStepStatus(testSteps: Requirement[], props: TestStepNavProps): void {
         testSteps.forEach((step, index) => {
             props.stepStatus[step.key] = {
                 stepFinalResult: index % 2 === 0 ? ManualTestStatus.UNKNOWN : ManualTestStatus.PASS,

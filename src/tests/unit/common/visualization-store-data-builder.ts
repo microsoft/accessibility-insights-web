@@ -60,8 +60,8 @@ export class VisualizationStoreDataBuilder extends BaseDataBuilder<IVisualizatio
         return this;
     }
 
-    public withEnable(type: VisualizationType): VisualizationStoreDataBuilder {
-        switch (type) {
+    public withEnable(visualizationType: VisualizationType): VisualizationStoreDataBuilder {
+        switch (visualizationType) {
             case VisualizationType.Headings:
                 this.data.tests.adhoc.headings.enabled = true;
                 break;
@@ -81,14 +81,14 @@ export class VisualizationStoreDataBuilder extends BaseDataBuilder<IVisualizatio
                 this.data.tests.assessments.headingsAssessment.enabled = true;
                 break;
             default:
-                throw new Error(`Unsupported type ${type}`);
+                throw new Error(`Unsupported type ${visualizationType}`);
         }
 
         return this;
     }
 
-    public withDisable(type: VisualizationType): VisualizationStoreDataBuilder {
-        switch (type) {
+    public withDisable(visualizationType: VisualizationType): VisualizationStoreDataBuilder {
+        switch (visualizationType) {
             case VisualizationType.Headings:
                 this.data.tests.adhoc.headings.enabled = false;
                 break;
@@ -108,15 +108,15 @@ export class VisualizationStoreDataBuilder extends BaseDataBuilder<IVisualizatio
                 this.data.tests.assessments.headingsAssessment.enabled = false;
                 break;
             default:
-                throw new Error(`Unsupported type ${type}`);
+                throw new Error(`Unsupported type ${visualizationType}`);
         }
 
         return this;
     }
 
-    private withAssessment(assessment: IAssessmentScanData, enabled: boolean, step?: string): VisualizationStoreDataBuilder {
+    private withAssessment(assessment: IAssessmentScanData, enabled: boolean, step: string): VisualizationStoreDataBuilder {
         assessment.stepStatus[step] = enabled;
-        assessment.enabled = Object.keys(assessment.stepStatus).some(step => assessment.stepStatus[step] === true);
+        assessment.enabled = Object.keys(assessment.stepStatus).some(currentStep => assessment.stepStatus[currentStep] === true);
         return this;
     }
 

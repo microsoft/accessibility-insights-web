@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import { keys, sortBy } from 'lodash';
 
-import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
-import { TestStep } from '../../assessments/types/test-step';
+import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
+import { Requirement } from '../../assessments/types/requirement';
 import { ManualTestStatusData, TestStepData } from '../types/manual-test-status';
 import { VisualizationType } from '../types/visualization-type';
 
-export type RequirementDefinition = TestStep;
+export type RequirementDefinition = Requirement;
 export type RequirementData = TestStepData;
 
 export type RequirementResult = {
@@ -18,14 +18,14 @@ export type RequirementOrdering = RequirementOrderPart | RequirementOrderPart[];
 export type RequirementOrderPart = (result: RequirementResult) => string | number;
 
 export function getRequirementsResults(
-    provider: IAssessmentsProvider,
-    type: VisualizationType,
+    provider: AssessmentsProvider,
+    visualizationType: VisualizationType,
     stepStatus: ManualTestStatusData,
 ): RequirementResult[] {
-    const test = provider.forType(type);
+    const test = provider.forType(visualizationType);
 
     function result(key): RequirementResult {
-        const definition = provider.getStep(type, key);
+        const definition = provider.getStep(visualizationType, key);
         const data = stepStatus[key];
         return { definition, data };
     }

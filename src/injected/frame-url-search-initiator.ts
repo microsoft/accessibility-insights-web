@@ -2,15 +2,15 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 
-import { IBaseStore } from '../common/istore';
+import { BaseStore } from '../common/base-store';
 import { DevToolState } from '../common/types/store-data/idev-tool-state';
 import { FrameUrlFinder } from './frame-url-finder';
 
 export class FrameUrlSearchInitiator {
-    private devToolStore: IBaseStore<DevToolState>;
+    private devToolStore: BaseStore<DevToolState>;
     private frameUrlFinder: FrameUrlFinder;
 
-    constructor(devToolStore: IBaseStore<DevToolState>, frameUrlFinder: FrameUrlFinder) {
+    constructor(devToolStore: BaseStore<DevToolState>, frameUrlFinder: FrameUrlFinder) {
         this.devToolStore = devToolStore;
         this.frameUrlFinder = frameUrlFinder;
     }

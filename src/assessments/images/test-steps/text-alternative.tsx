@@ -6,6 +6,7 @@ import { TextAlternativePropertyBag } from '../../../common/types/property-bag/i
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
+import { TestAutomaticallyPassedNotice } from '../../../content/test/common/test-automatically-passed-notice';
 import * as content from '../../../content/test/images/text-alternative';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
@@ -14,14 +15,15 @@ import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { ImagesTestStep } from './test-steps';
 
 const description: JSX.Element = <span>A meaningful image must have a text alternative that serves the equivalent purpose.</span>;
 
 const howToTest: JSX.Element = (
     <div>
-        For this requirement, {productName} highlights images that are coded as meaningful.
+        <p>For this requirement, {productName} highlights images that are coded as meaningful.</p>
+        <TestAutomaticallyPassedNotice />
         <ol>
             <li>
                 Examine each image in the <Markup.Term>Instances</Markup.Term> list to verify that its text alternative serves the
@@ -71,7 +73,7 @@ const propertyBagConfig: PropertyBagColumnRendererConfig<TextAlternativeProperty
     },
 ];
 
-export const TextAlternative: TestStep = {
+export const TextAlternative: Requirement = {
     key: ImagesTestStep.textAlternative,
     name: 'Text alternative',
     description,
@@ -83,7 +85,7 @@ export const TextAlternative: TestStep = {
         {
             key: 'image-info',
             name: 'Image info',
-            onRender: PropertyBagColumnRendererFactory.get(propertyBagConfig),
+            onRender: PropertyBagColumnRendererFactory.getRenderer(propertyBagConfig),
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),

@@ -3,19 +3,19 @@
 
 import { BaseActionPayload } from '../../background/actions/action-payloads';
 import { IAnalyzerTelemetryCallback } from '../../common/types/analyzer-telemetry-callbacks';
-import { ISingleElementSelector } from '../../common/types/store-data/scoping-store-data';
+import { SingleElementSelector } from '../../common/types/store-data/scoping-store-data';
 import { TelemetryProcessor } from '../../common/types/telemetry-processor';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { ScanResults } from '../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../types/common-types';
-import { IHtmlElementAxeResults, ScannerUtils } from '../scanner-utils';
-import { ITabStopEvent } from '../tab-stops-listener';
+import { HtmlElementAxeResults, ScannerUtils } from '../scanner-utils';
+import { TabStopEvent } from '../tab-stops-listener';
 
 export interface AxeAnalyzerResult {
     results: DictionaryStringTo<any>;
     originalResult: ScanResults;
-    include?: ISingleElementSelector[];
-    exclude?: ISingleElementSelector[];
+    include?: SingleElementSelector[];
+    exclude?: SingleElementSelector[];
 }
 
 export interface Analyzer {
@@ -29,7 +29,7 @@ export interface ScanCompletedPayload<TSelectorValue> extends ScanBasePayload {
 }
 
 export interface ScanUpdatePayload extends ScanBasePayload {
-    results: ITabStopEvent[];
+    results: TabStopEvent[];
 }
 
 export interface ScanBasePayload extends BaseActionPayload {
@@ -45,7 +45,7 @@ export interface AnalyzerConfiguration {
 
 export interface RuleAnalyzerConfiguration extends AnalyzerConfiguration {
     rules: string[];
-    resultProcessor: (scanner: ScannerUtils) => (results: ScanResults) => DictionaryStringTo<IHtmlElementAxeResults>;
+    resultProcessor: (scanner: ScannerUtils) => (results: ScanResults) => DictionaryStringTo<HtmlElementAxeResults>;
     telemetryProcessor: TelemetryProcessor<IAnalyzerTelemetryCallback>;
 }
 

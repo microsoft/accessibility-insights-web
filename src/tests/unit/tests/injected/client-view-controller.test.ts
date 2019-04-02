@@ -1,26 +1,26 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { AssessmentsProvider } from '../../../../assessments/assessments-provider';
+import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
 import { AssessmentDataConverter } from '../../../../background/assessment-data-converter';
 import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
 import { TabStore } from '../../../../background/stores/tab-store';
 import { VisualizationScanResultStore } from '../../../../background/stores/visualization-scan-result-store';
 import { VisualizationStore } from '../../../../background/stores/visualization-store';
+import { BaseStore } from '../../../../common/base-store';
 import { TestMode } from '../../../../common/configs/test-mode';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../../../../common/enum-helper';
 import { getDefaultFeatureFlagValues } from '../../../../common/feature-flags';
-import { IBaseStore } from '../../../../common/istore';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
-import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';
 import { IVisualizationScanResultData } from '../../../../common/types/store-data/ivisualization-scan-result-data';
 import { IScanData, IVisualizationStoreData } from '../../../../common/types/store-data/ivisualization-store-data';
+import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { ClientViewController } from '../../../../injected/client-view-controller';
 import { DrawingInitiator } from '../../../../injected/drawing-initiator';
-import { IAssessmentVisualizationInstance } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
+import { AssessmentVisualizationInstance } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { ScrollingController, ScrollingWindowMessage } from '../../../../injected/frameCommunicators/scrolling-controller';
 import { SelectorMapHelper } from '../../../../injected/selector-map-helper';
 import { TargetPageActionMessageCreator } from '../../../../injected/target-page-action-message-creator';
@@ -38,8 +38,8 @@ describe('ClientViewControllerTest', () => {
 
         const visualizationStore = Mock.ofType(VisualizationStore, MockBehavior.Strict);
         const visualizationScanResultStoreMock = Mock.ofType(VisualizationScanResultStore, MockBehavior.Strict);
-        const assessmentStoreMock = Mock.ofType<IBaseStore<IAssessmentStoreData>>(null, MockBehavior.Strict);
-        const tabStoreMock = Mock.ofType<IBaseStore<ITabStoreData>>(TabStore, MockBehavior.Strict);
+        const assessmentStoreMock = Mock.ofType<BaseStore<IAssessmentStoreData>>(null, MockBehavior.Strict);
+        const tabStoreMock = Mock.ofType<BaseStore<TabStoreData>>(TabStore, MockBehavior.Strict);
         const featureFlagStoreMock = Mock.ofType(FeatureFlagStore);
 
         visualizationStore
@@ -359,7 +359,7 @@ class TestableClientViewController extends ClientViewController {
     }
 
     public setPreviousVisualizationSelectorMapStatesStub(
-        stub: DictionaryNumberTo<DictionaryStringTo<IAssessmentVisualizationInstance>>,
+        stub: DictionaryNumberTo<DictionaryStringTo<AssessmentVisualizationInstance>>,
     ): void {
         this.previousVisualizationSelectorMapStates = stub;
     }
@@ -372,19 +372,19 @@ class MocksAndTestSubjectBuilder {
     private _toVisualizationScanStoreState: IVisualizationScanResultData;
     private _fromAssessmentStoreState: IAssessmentStoreData;
     private _toAssessmentStoreState: IAssessmentStoreData;
-    private _fromTabStoreState: ITabStoreData;
-    private _toTabStoreState: ITabStoreData;
+    private _fromTabStoreState: TabStoreData;
+    private _toTabStoreState: TabStoreData;
     private _fromTargetTabId: number;
     private _toTargetTabId: number;
 
     private _fromFeatureFlagStoreState: FeatureFlagStoreData = getDefaultFeatureFlagValues();
     private _toFeatureFlagStoreState: FeatureFlagStoreData = getDefaultFeatureFlagValues();
-    private _visualizationStore: IMock<IBaseStore<IVisualizationStoreData>>;
-    private _assessmentStoreMock: IMock<IBaseStore<IAssessmentStoreData>>;
-    private _tabStoreMock: IMock<IBaseStore<ITabStoreData>>;
+    private _visualizationStore: IMock<BaseStore<IVisualizationStoreData>>;
+    private _assessmentStoreMock: IMock<BaseStore<IAssessmentStoreData>>;
+    private _tabStoreMock: IMock<BaseStore<TabStoreData>>;
     private _selectorMapHelperMock: IMock<SelectorMapHelper>;
-    private _visualizationScanResultStoreMock: IMock<IBaseStore<IVisualizationScanResultData>>;
-    private _featureFlagStoreMock: IMock<IBaseStore<DictionaryStringTo<boolean>>>;
+    private _visualizationScanResultStoreMock: IMock<BaseStore<IVisualizationScanResultData>>;
+    private _featureFlagStoreMock: IMock<BaseStore<DictionaryStringTo<boolean>>>;
     private _drawingInitiatorMock: IMock<DrawingInitiator>;
     private _scrollingControllerMock: IMock<ScrollingController>;
     private _dataBuilderForFromVisualizationStoreState: VisualizationStoreDataBuilder = new VisualizationStoreDataBuilder();
@@ -393,8 +393,8 @@ class MocksAndTestSubjectBuilder {
     private _dataBuilderForToVisualizationScanStoreState = new VisualizationScanResultStoreDataBuilder();
     private IsScrollingInitiatorSetup: boolean = false;
     private _initializedVisualizationState: DictionaryStringTo<boolean> = {};
-    private _initializedVisualizationSelectorMapState: DictionaryNumberTo<DictionaryStringTo<IAssessmentVisualizationInstance>> = {};
-    private _selectorMap: DictionaryStringTo<IAssessmentVisualizationInstance>;
+    private _initializedVisualizationSelectorMapState: DictionaryNumberTo<DictionaryStringTo<AssessmentVisualizationInstance>> = {};
+    private _selectorMap: DictionaryStringTo<AssessmentVisualizationInstance>;
     private _visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
     private _actualVisualizationConfigurationFactory: VisualizationConfigurationFactory;
     private _visualizationInstanceProcessorStub: VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags>;
@@ -408,23 +408,23 @@ class MocksAndTestSubjectBuilder {
         return this;
     }
 
-    public toDisabled(type: VisualizationType): MocksAndTestSubjectBuilder {
-        this._dataBuilderForToVisualizationStoreState.withDisable(type);
+    public toDisabled(visualizationType: VisualizationType): MocksAndTestSubjectBuilder {
+        this._dataBuilderForToVisualizationStoreState.withDisable(visualizationType);
         return this;
     }
 
-    public toEnabled(type: VisualizationType): MocksAndTestSubjectBuilder {
-        this._dataBuilderForToVisualizationStoreState.withEnable(type);
+    public toEnabled(visualizationType: VisualizationType): MocksAndTestSubjectBuilder {
+        this._dataBuilderForToVisualizationStoreState.withEnable(visualizationType);
         return this;
     }
 
-    public fromDisabled(type: VisualizationType): MocksAndTestSubjectBuilder {
-        this._dataBuilderForFromVisualizationStoreState.withDisable(type);
+    public fromDisabled(visualizationType: VisualizationType): MocksAndTestSubjectBuilder {
+        this._dataBuilderForFromVisualizationStoreState.withDisable(visualizationType);
         return this;
     }
 
-    public fromEnabled(type: VisualizationType): MocksAndTestSubjectBuilder {
-        this._dataBuilderForFromVisualizationStoreState.withEnable(type);
+    public fromEnabled(visualizationType: VisualizationType): MocksAndTestSubjectBuilder {
+        this._dataBuilderForFromVisualizationStoreState.withEnable(visualizationType);
         return this;
     }
 
@@ -521,18 +521,20 @@ class MocksAndTestSubjectBuilder {
     private buildPreviousStateStub(): void {
         const factory = new VisualizationConfigurationFactory();
         const types = EnumHelper.getNumericValues<VisualizationType>(VisualizationType);
-        types.forEach(type => {
-            const config = factory.getConfiguration(type);
+        types.forEach(visualizationType => {
+            const config = factory.getConfiguration(visualizationType);
             if (config.testMode === TestMode.Adhoc) {
                 const id = config.getIdentifier();
-                this._initializedVisualizationState[id] = this.getFromStateForType(type) ? this.getFromStateForType(type).enabled : false;
+                this._initializedVisualizationState[id] = this.getFromStateForType(visualizationType)
+                    ? this.getFromStateForType(visualizationType).enabled
+                    : false;
             }
         });
     }
 
     private buildPreviousSelectorMapStatesStub(): void {
         const types = EnumHelper.getNumericValues<VisualizationType>(VisualizationType);
-        types.forEach(type => (this._initializedVisualizationSelectorMapState[type] = this._selectorMap));
+        types.forEach(visualizationType => (this._initializedVisualizationSelectorMapState[visualizationType] = this._selectorMap));
     }
 
     private setupScrollingControllerMock(): void {
@@ -550,7 +552,7 @@ class MocksAndTestSubjectBuilder {
     }
 
     private setupStatesAndSelectorMap(): void {
-        const assessmentsProviderMock = Mock.ofType(AssessmentsProvider);
+        const assessmentsProviderMock = Mock.ofType(AssessmentsProviderImpl);
         assessmentsProviderMock.setup(ap => ap.all()).returns(() => []);
         const assessmentDataConverterMock = Mock.ofType(AssessmentDataConverter);
         assessmentDataConverterMock.setup(acdm => acdm.getNewManualTestStepResult(It.isAny())).returns(() => null);
@@ -564,8 +566,8 @@ class MocksAndTestSubjectBuilder {
         this._toAssessmentStoreState = new AssessmentsStoreDataBuilder(assessmentsProviderMock.object, assessmentDataConverterMock.object)
             .withTargetTab(this._toTargetTabId, null, null, false)
             .build();
-        this._fromTabStoreState = { id: 1 } as ITabStoreData;
-        this._toTabStoreState = { id: 1 } as ITabStoreData;
+        this._fromTabStoreState = { id: 1 } as TabStoreData;
+        this._toTabStoreState = { id: 1 } as TabStoreData;
 
         this._selectorMap = {
             key1: {
@@ -591,8 +593,8 @@ class MocksAndTestSubjectBuilder {
 
     private setupGetStateMock(): void {
         this._visualizationStore = Mock.ofType(VisualizationStore);
-        this._assessmentStoreMock = Mock.ofType<IBaseStore<IAssessmentStoreData>>();
-        this._tabStoreMock = Mock.ofType<IBaseStore<ITabStoreData>>(TabStore);
+        this._assessmentStoreMock = Mock.ofType<BaseStore<IAssessmentStoreData>>();
+        this._tabStoreMock = Mock.ofType<BaseStore<TabStoreData>>(TabStore);
         this._visualizationScanResultStoreMock = Mock.ofType(VisualizationScanResultStore);
         this._featureFlagStoreMock = Mock.ofType(FeatureFlagStore);
 
@@ -620,12 +622,12 @@ class MocksAndTestSubjectBuilder {
         this._featureFlagStoreMock.setup(sm => sm.getState()).returns(() => this._toFeatureFlagStoreState);
     }
 
-    private setupEnableDisableVisualizationMock(type: VisualizationType): void {
+    private setupEnableDisableVisualizationMock(visualizationType: VisualizationType): void {
         let enableTimes: Times;
         let disableTimes: Times;
 
-        const toStateForType = this.getToStateForType(type);
-        const fromStateForType = this.getFromStateForType(type);
+        const toStateForType = this.getToStateForType(visualizationType);
+        const fromStateForType = this.getFromStateForType(visualizationType);
 
         if (toStateForType.enabled === fromStateForType.enabled) {
             enableTimes = Times.never();
@@ -652,8 +654,8 @@ class MocksAndTestSubjectBuilder {
         this._visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
         this._visualizationConfigurationFactoryMock
             .setup(vcfm => vcfm.getConfiguration(It.isAny()))
-            .returns(visualizationType => {
-                const config = this._actualVisualizationConfigurationFactory.getConfiguration(visualizationType);
+            .returns(theVisualizationType => {
+                const config = this._actualVisualizationConfigurationFactory.getConfiguration(theVisualizationType);
                 config.visualizationInstanceProcessor = this._getVisualizationInstanceProcessorMock.object;
                 return config;
             });
@@ -661,7 +663,7 @@ class MocksAndTestSubjectBuilder {
         this._drawingInitiatorMock
             .setup(dw =>
                 dw.enableVisualization(
-                    type,
+                    visualizationType,
                     this._fromFeatureFlagStoreState,
                     this._selectorMap,
                     It.isAny(),
@@ -671,17 +673,17 @@ class MocksAndTestSubjectBuilder {
             .verifiable(enableTimes);
 
         this._drawingInitiatorMock
-            .setup(dw => dw.disableVisualization(type, this._fromFeatureFlagStoreState, It.isAny()))
+            .setup(dw => dw.disableVisualization(visualizationType, this._fromFeatureFlagStoreState, It.isAny()))
             .verifiable(disableTimes);
 
         this._selectorMapHelperMock
-            .setup(sm => sm.getSelectorMap(type))
+            .setup(sm => sm.getSelectorMap(visualizationType))
             .returns(() => this._selectorMap)
             .verifiable(Times.once());
     }
 
-    private getToStateForType(type: VisualizationType): any {
-        switch (type) {
+    private getToStateForType(visualizationType: VisualizationType): any {
+        switch (visualizationType) {
             case VisualizationType.Headings:
                 return this._toVisualizationStoreState.tests.adhoc.headings;
             case VisualizationType.Issues:
@@ -693,8 +695,8 @@ class MocksAndTestSubjectBuilder {
         }
     }
 
-    private getFromStateForType(type: VisualizationType): IScanData {
-        switch (type) {
+    private getFromStateForType(visualizationType: VisualizationType): IScanData {
+        switch (visualizationType) {
             case VisualizationType.Headings:
                 return this._fromVisualizationStoreState.tests.adhoc.headings;
             case VisualizationType.Issues:

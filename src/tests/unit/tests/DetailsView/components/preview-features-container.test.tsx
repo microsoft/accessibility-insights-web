@@ -5,7 +5,7 @@ import * as React from 'react';
 import { Mock } from 'typemoq';
 
 import { DisplayableStrings } from '../../../../../common/constants/displayable-strings';
-import { IDisplayableFeatureFlag } from '../../../../../common/types/store-data/idisplayable-feature-flag';
+import { DisplayableFeatureFlag } from '../../../../../common/types/store-data/displayable-feature-flag';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { NoDisplayableFeatureFlagMessage } from '../../../../../DetailsView/components/no-displayable-preview-features-message';
 import { PreviewFeaturesContainer, PreviewFeaturesContainerProps } from '../../../../../DetailsView/components/preview-features-container';
@@ -13,7 +13,7 @@ import { PreviewFeaturesToggleList } from '../../../../../DetailsView/components
 import { PreviewFeatureFlagsHandler } from '../../../../../DetailsView/handlers/preview-feature-flags-handler';
 
 describe('PreviewFeaturesContainerTest', () => {
-    let displayableFeatureFlagsStub: IDisplayableFeatureFlag[] = [
+    let displayableFeatureFlagsStub: DisplayableFeatureFlag[] = [
         {
             id: 'test-id-1',
             displayableName: 'test name 1',

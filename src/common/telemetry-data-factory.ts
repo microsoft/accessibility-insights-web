@@ -17,14 +17,14 @@ import {
     FileIssueClickTelemetryData,
     InspectTelemetryData,
     IssuesAnalyzerScanTelemetryData,
+    RequirementActionTelemetryData,
+    RequirementSelectTelemetryData,
     RequirementStatusTelemetryData,
     RuleAnalyzerScanTelemetryData,
     ScopingTelemetryData,
     SettingsOpenSourceItem,
     SettingsOpenTelemetryData,
     TelemetryEventSource,
-    TestStepActionTelemetryData,
-    TestStepSelectTelemetryData,
     ToggleTelemetryData,
     TriggeredBy,
     TriggeredByNotApplicable,
@@ -96,32 +96,36 @@ export class TelemetryDataFactory {
         };
     }
 
-    public forSelectDetailsView(event: SupportedMouseEvent, type: VisualizationType): DetailsViewOpenTelemetryData {
+    public forSelectDetailsView(event: SupportedMouseEvent, visualizationType: VisualizationType): DetailsViewOpenTelemetryData {
         return {
             ...this.withTriggeredByAndSource(event, TelemetryEventSource.DetailsView),
-            detailsView: VisualizationType[type],
+            selectedTest: VisualizationType[visualizationType],
         };
     }
 
-    public forSelectTestStep(event: SupportedMouseEvent, type: VisualizationType, step: string): TestStepSelectTelemetryData {
+    public forSelectRequirement(
+        event: SupportedMouseEvent,
+        visualizationType: VisualizationType,
+        requirement: string,
+    ): RequirementSelectTelemetryData {
         return {
             ...this.withTriggeredByAndSource(event, TelemetryEventSource.DetailsView),
-            selectedTest: VisualizationType[type],
-            selectedStep: step,
+            selectedTest: VisualizationType[visualizationType],
+            selectedRequirement: requirement,
         };
     }
 
     public forRequirementStatus(
-        type: VisualizationType,
-        step: string,
+        visualizationType: VisualizationType,
+        requirement: string,
         passed: boolean,
         numInstances: number,
     ): RequirementStatusTelemetryData {
         return {
             triggeredBy: TriggeredByNotApplicable,
             source: TelemetryEventSource.DetailsView,
-            selectedTest: VisualizationType[type],
-            selectedStep: step,
+            selectedTest: VisualizationType[visualizationType],
+            selectedRequirement: requirement,
             passed: passed,
             numInstances: numInstances,
         };
@@ -129,12 +133,12 @@ export class TelemetryDataFactory {
 
     public forOpenDetailsView(
         event: SupportedMouseEvent,
-        type: VisualizationType,
+        visualizationType: VisualizationType,
         source: TelemetryEventSource,
     ): DetailsViewOpenTelemetryData {
         return {
             ...this.withTriggeredByAndSource(event, source),
-            detailsView: VisualizationType[type],
+            selectedTest: VisualizationType[visualizationType],
         };
     }
 
@@ -181,35 +185,35 @@ export class TelemetryDataFactory {
         };
     }
 
-    public forAssessmentActionFromDetailsViewNoTriggeredBy(type: VisualizationType): AssessmentTelemetryData {
+    public forAssessmentActionFromDetailsViewNoTriggeredBy(visualizationType: VisualizationType): AssessmentTelemetryData {
         return {
             triggeredBy: TriggeredByNotApplicable,
             source: TelemetryEventSource.DetailsView,
-            selectedTest: VisualizationType[type],
+            selectedTest: VisualizationType[visualizationType],
         };
     }
 
-    public forAssessmentActionFromDetailsView(type: VisualizationType, event: SupportedMouseEvent): AssessmentTelemetryData {
+    public forAssessmentActionFromDetailsView(visualizationType: VisualizationType, event: SupportedMouseEvent): AssessmentTelemetryData {
         return {
             ...this.withTriggeredByAndSource(event, TelemetryEventSource.DetailsView),
-            selectedTest: VisualizationType[type],
+            selectedTest: VisualizationType[visualizationType],
         };
     }
 
-    public forTestStepFromDetailsView(test: VisualizationType, step: string): TestStepActionTelemetryData {
+    public forRequirementFromDetailsView(test: VisualizationType, requirement: string): RequirementActionTelemetryData {
         return {
             triggeredBy: TriggeredByNotApplicable,
             source: TelemetryEventSource.DetailsView,
-            selectedStep: step,
+            selectedRequirement: requirement,
             selectedTest: VisualizationType[test],
         };
     }
 
-    public forCancelStartOver(event: SupportedMouseEvent, test: VisualizationType, step: string): TestStepSelectTelemetryData {
+    public forCancelStartOver(event: SupportedMouseEvent, test: VisualizationType, requirement: string): RequirementSelectTelemetryData {
         return {
             ...this.fromDetailsView(event),
             selectedTest: VisualizationType[test],
-            selectedStep: step,
+            selectedRequirement: requirement,
         };
     }
 

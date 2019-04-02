@@ -4,17 +4,17 @@ import * as _ from 'lodash/index';
 
 import { AssessmentDefaultMessageGenerator, DefaultMessageInterface } from '../../assessments/assessment-default-message-generator';
 import { Assessment } from '../../assessments/types/iassessment';
-import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { IAssessmentData, IAssessmentStoreData, TestStepInstance } from '../../common/types/store-data/iassessment-result-data';
-import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
+import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { assessmentReportExtensionPoint } from '../extensions/assessment-report-extension-point';
 import {
-    IAssessmentDetailsReportModel,
-    IInstancePairReportModel,
-    IInstanceReportModel,
-    IReportModel,
-    IRequirementReportModel,
+    AssessmentDetailsReportModel,
+    InstancePairReportModel,
+    InstanceReportModel,
+    ReportModel,
+    RequirementReportModel,
 } from './assessment-report-model';
 import { getAssessmentSummaryModelFromResults } from './get-assessment-summary-model';
 
@@ -22,14 +22,14 @@ type AssessmentResult = Assessment & { storeData: IAssessmentData };
 
 export class AssessmentReportModelBuilder {
     constructor(
-        private readonly assessmentsProvider: IAssessmentsProvider,
+        private readonly assessmentsProvider: AssessmentsProvider,
         private readonly assessmentStoreData: IAssessmentStoreData,
-        private readonly tabStoreData: ITabStoreData,
+        private readonly tabStoreData: TabStoreData,
         private readonly reportDate: Date,
         private assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator,
     ) {}
 
-    public getReportModelData(): IReportModel {
+    public getReportModelData(): ReportModel {
         const assessmentDefaultMessageGeneratorInstance = this.assessmentDefaultMessageGenerator;
         const assessments: AssessmentResult[] = this.assessmentsProvider.all().map(a => ({
             ...a,
@@ -48,7 +48,7 @@ export class AssessmentReportModelBuilder {
             passedDetailsData: getDetails(ManualTestStatus.PASS),
             failedDetailsData: getDetails(ManualTestStatus.FAIL),
             incompleteDetailsData: getDetails(ManualTestStatus.UNKNOWN),
-        } as IReportModel;
+        } as ReportModel;
 
         function getDefaultMessageComponent(getDefaultMessage, instancesMap, selectedStep): DefaultMessageInterface {
             const defaultMessageGenerator = getDefaultMessage(assessmentDefaultMessageGeneratorInstance);
@@ -56,19 +56,19 @@ export class AssessmentReportModelBuilder {
             return defaultMessageComponent;
         }
 
-        function getDetails(status: ManualTestStatus): IAssessmentDetailsReportModel[] {
+        function getDetails(status: ManualTestStatus): AssessmentDetailsReportModel[] {
             return assessments
                 .map(assessment => {
                     return {
                         key: assessment.key,
                         displayName: assessment.title,
-                        steps: assessment.steps
+                        steps: assessment.requirements
                             .filter(step => {
                                 return assessment.storeData.testStepStatus[step.key].stepFinalResult === status;
                             })
                             .map(step => {
                                 const generatedInstancesMap = assessment.storeData.generatedAssessmentInstancesMap;
-                                const model: IRequirementReportModel = {
+                                const model: RequirementReportModel = {
                                     key: step.key,
                                     header: {
                                         displayName: step.name,
@@ -89,29 +89,29 @@ export class AssessmentReportModelBuilder {
 
                                 return model;
                             }),
-                    } as IAssessmentDetailsReportModel;
+                    } as AssessmentDetailsReportModel;
                 })
                 .filter(assessmentDetails => {
                     return assessmentDetails.steps.length > 0;
-                }) as IAssessmentDetailsReportModel[];
+                }) as AssessmentDetailsReportModel[];
         }
 
-        function getInstances(assessment: AssessmentResult, stepKey: string): IInstanceReportModel[] {
+        function getInstances(assessment: AssessmentResult, stepKey: string): InstanceReportModel[] {
             const { storeData } = assessment;
-            const { reportInstanceFields } = _.find(assessment.steps, s => s.key === stepKey);
+            const { reportInstanceFields } = _.find(assessment.requirements, s => s.key === stepKey);
 
-            function getInstanceReportModel(instance: Partial<TestStepInstance>): IInstanceReportModel {
+            function getInstanceReportModel(instance: Partial<TestStepInstance>): InstanceReportModel {
                 const props = reportInstanceFields.map(
-                    ({ label, getValue }) => ({ key: label, value: getValue(instance) } as IInstancePairReportModel),
+                    ({ label, getValue }) => ({ key: label, value: getValue(instance) } as InstancePairReportModel),
                 );
                 return { props };
             }
 
-            function getManualData(): IInstanceReportModel[] {
+            function getManualData(): InstanceReportModel[] {
                 return storeData.manualTestStepResultMap[stepKey].instances.map(instance => getInstanceReportModel(instance));
             }
 
-            function getAssistedData(): IInstanceReportModel[] {
+            function getAssistedData(): InstanceReportModel[] {
                 if (storeData.generatedAssessmentInstancesMap == undefined) {
                     return [];
                 }

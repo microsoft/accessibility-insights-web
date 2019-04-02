@@ -12,7 +12,7 @@ import { AssistedTestRecordYourResults } from '../../common/assisted-test-record
 import * as Markup from '../../markup';
 import { Tag, Term } from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { frameTitleInstanceDetailsColumnRenderer } from '../frametitle-instance-details-column-renderer';
 import { PageTestStep } from './test-steps';
 
@@ -24,11 +24,13 @@ const frameTitleHowToTest: JSX.Element = (
             For this requirement, {productName} highlights all <Tag tagName="frame" isBold={false} /> and
             <Tag tagName="iframe" isBold={false} /> elements with visible content.
         </p>
-        <Markup.Emphasis>
-            {' '}
-            Note: If a frame or iframe doesn't have a title, it will fail an automated check and will not be displayed in the list of
-            instances for this requirement.{' '}
-        </Markup.Emphasis>
+        <p>
+            <Markup.Emphasis>
+                Notes: (1) If no matching/failing instances are found, this requirement will automatically be marked as pass. (2) If a frame
+                or iframe doesn't have a title, it will fail an automated check and will not be displayed in the list of instances for this
+                requirement.
+            </Markup.Emphasis>
+        </p>
         <ol>
             <li>
                 Examine each <Tag tagName="frame" isBold={false} /> or <Tag tagName="iframe" isBold={false} />
@@ -39,7 +41,7 @@ const frameTitleHowToTest: JSX.Element = (
     </div>
 );
 
-export const FrameTitle: TestStep = {
+export const FrameTitle: Requirement = {
     key: PageTestStep.frameTitle,
     name: 'Frame title',
     description: frameTitleDescription,

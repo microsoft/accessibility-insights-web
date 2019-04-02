@@ -3,9 +3,10 @@
 import { isMatch } from 'lodash';
 import * as React from 'react';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { buildTestStepsFromRules } from '../../../../../assessments/automated-checks/build-test-steps-from-rules';
 import { InstanceTableColumn } from '../../../../../assessments/types/iinstance-table-column';
-import { TestStep } from '../../../../../assessments/types/test-step';
+import { Requirement } from '../../../../../assessments/types/requirement';
 import { InstanceIdentifierGenerator } from '../../../../../background/instance-identifier-generator';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
 import { Messages } from '../../../../../common/messages';
@@ -13,7 +14,7 @@ import { TelemetryDataFactory } from '../../../../../common/telemetry-data-facto
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { AssessmentInstanceRowData, AssessmentInstanceTable } from '../../../../../DetailsView/components/assessment-instance-table';
-import { TestStepLink } from '../../../../../DetailsView/components/test-step-link';
+import { RequirementLink } from '../../../../../DetailsView/components/requirement-link';
 import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../../../../injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult, ScannerUtils } from '../../../../../injected/scanner-utils';
@@ -45,7 +46,7 @@ describe('buildTestStepsFromRules', () => {
             </React.Fragment>
         );
 
-        const baseRuleConfig: TestStep = {
+        const baseRuleConfig: Requirement = {
             key: rule.id,
             description: expectedDescription,
             name: rule.id,
@@ -65,7 +66,7 @@ describe('buildTestStepsFromRules', () => {
         });
     });
 
-    function validateAnalyzerConfiguration(actual: TestStep, rule: ScannerRuleInfo): void {
+    function validateAnalyzerConfiguration(actual: Requirement, rule: ScannerRuleInfo): void {
         const analyzerProviderMock = Mock.ofType(AnalyzerProvider, MockBehavior.Strict);
         const getFailingOrPassingInstances = {};
         const forRuleAnalyzerScanStub = {};
@@ -95,7 +96,7 @@ describe('buildTestStepsFromRules', () => {
         analyzerProviderMock.verifyAll();
     }
 
-    function validateDrawer(actual: TestStep): void {
+    function validateDrawer(actual: Requirement): void {
         const drawerProviderMock = Mock.ofType(DrawerProvider, MockBehavior.Strict);
 
         drawerProviderMock.setup(dpm => dpm.createHighlightBoxDrawer()).verifiable();
@@ -104,7 +105,7 @@ describe('buildTestStepsFromRules', () => {
         drawerProviderMock.verifyAll();
     }
 
-    function validateInstanceTableSettings(actual: TestStep): void {
+    function validateInstanceTableSettings(actual: Requirement): void {
         expect(actual.getInstanceStatus).toBeDefined();
         expect(actual.getInstanceStatus({ status: true } as DecoratedAxeNodeResult)).toBe(ManualTestStatus.PASS);
         expect(actual.getInstanceStatus({ status: false } as DecoratedAxeNodeResult)).toBe(ManualTestStatus.FAIL);
@@ -115,7 +116,7 @@ describe('buildTestStepsFromRules', () => {
         expect(actual.renderInstanceTableHeader).toBeDefined();
         expect(actual.renderInstanceTableHeader({} as AssessmentInstanceTable, [])).toBeNull();
 
-        const linkMock = Mock.ofType(TestStepLink, MockBehavior.Strict);
+        const linkMock = Mock.ofType(RequirementLink, MockBehavior.Strict);
         const descriptionStub = <div>descriptionWithoutIndexStub</div>;
         linkMock
             .setup(lm => lm.renderRequirementDescriptionWithoutIndex())

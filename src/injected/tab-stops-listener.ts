@@ -6,13 +6,12 @@ import { HTMLElementUtils } from '../common/html-element-utils';
 import { DateProvider } from './../common/date-provider';
 import { WindowUtils } from './../common/window-utils';
 import { VisualizationWindowMessage } from './drawing-controller';
-import { FrameCommunicator, IMessageRequest } from './frameCommunicators/frame-communicator';
+import { ErrorMessageContent } from './frameCommunicators/error-message-content';
+import { FrameCommunicator, MessageRequest } from './frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from './frameCommunicators/window-message-handler';
-import { IErrorMessageContent } from './frameCommunicators/window-message-marshaller';
 import { ScannerUtils } from './scanner-utils';
 
-// tslint:disable-next-line:interface-name
-export interface ITabStopEvent {
+export interface TabStopEvent {
     timestamp: number;
     target: string[];
     html: string;
@@ -28,7 +27,7 @@ export class TabStopsListener {
     public static readonly stopListeningCommand = 'insights.stopListenToTabstops';
     public static readonly getTabbedElementsCommand = 'insights.getTabbedElements';
 
-    private tabEventListener: (tabbedItems: ITabStopEvent) => void;
+    private tabEventListener: (tabbedItems: TabStopEvent) => void;
 
     constructor(
         frameCommunicator: FrameCommunicator,
@@ -50,7 +49,7 @@ export class TabStopsListener {
         this.frameCommunicator.subscribe(TabStopsListener.stopListeningCommand, this.onStopListenToTabStops);
     }
 
-    public setTabEventListenerOnMainWindow(callback: (tabbedItems: ITabStopEvent) => void): void {
+    public setTabEventListenerOnMainWindow(callback: (tabbedItems: TabStopEvent) => void): void {
         if (this.windowUtils.isTopWindow()) {
             this.tabEventListener = callback;
         } else {
@@ -68,8 +67,8 @@ export class TabStopsListener {
 
     @autobind
     private onGetTabbedElements(
-        tabStopEvent: ITabStopEvent,
-        error: IErrorMessageContent,
+        tabStopEvent: TabStopEvent,
+        error: ErrorMessageContent,
         messageSourceWin: Window,
         responder?: FrameMessageResponseCallback,
     ): void {
@@ -86,7 +85,7 @@ export class TabStopsListener {
     }
 
     @autobind
-    private sendTabbedElements(tabStopEvent: ITabStopEvent): void {
+    private sendTabbedElements(tabStopEvent: TabStopEvent): void {
         if (this.windowUtils.isTopWindow()) {
             if (this.tabEventListener) {
                 this.tabEventListener(tabStopEvent);
@@ -99,8 +98,8 @@ export class TabStopsListener {
     }
 
     @autobind
-    private sendTabbedElementsToParent(tabStopEvent: ITabStopEvent): void {
-        const messageRequest: IMessageRequest<ITabStopEvent> = {
+    private sendTabbedElementsToParent(tabStopEvent: TabStopEvent): void {
+        const messageRequest: MessageRequest<TabStopEvent> = {
             win: this.windowUtils.getParentWindow(),
             command: TabStopsListener.getTabbedElementsCommand,
             message: tabStopEvent,
@@ -139,7 +138,7 @@ export class TabStopsListener {
     }
 
     private startListenToTabStopsInFrame(frame: HTMLIFrameElement): void {
-        const message: IMessageRequest<VisualizationWindowMessage> = {
+        const message: MessageRequest<VisualizationWindowMessage> = {
             command: TabStopsListener.startListeningCommand,
             frame: frame,
         };
@@ -148,7 +147,7 @@ export class TabStopsListener {
 
     @autobind
     private stopListenToTabStopsInFrame(frame: HTMLIFrameElement): void {
-        const message: IMessageRequest<VisualizationWindowMessage> = {
+        const message: MessageRequest<VisualizationWindowMessage> = {
             command: TabStopsListener.stopListeningCommand,
             frame: frame,
         };
@@ -169,7 +168,7 @@ export class TabStopsListener {
 
         const timestamp: Date = DateProvider.getDate();
 
-        const tabStopEvent: ITabStopEvent = {
+        const tabStopEvent: TabStopEvent = {
             timestamp: timestamp.getTime(),
             target: [this.scannerUtils.getUniqueSelector(target)],
             html: target.outerHTML,

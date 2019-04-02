@@ -16,16 +16,16 @@ import { WindowUtils } from '../common/window-utils';
 import { DictionaryStringTo } from '../types/common-types';
 import { rootContainerId } from './constants';
 import { DetailsDialogHandler } from './details-dialog-handler';
-import { FrameCommunicator, IMessageRequest } from './frameCommunicators/frame-communicator';
+import { ErrorMessageContent } from './frameCommunicators/error-message-content';
+import { FrameCommunicator, MessageRequest } from './frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from './frameCommunicators/window-message-handler';
-import { IErrorMessageContent } from './frameCommunicators/window-message-marshaller';
 import { LayeredDetailsDialogComponent, LayeredDetailsDialogDeps } from './layered-details-dialog-component';
 import { MainWindowContext } from './main-window-context';
-import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from './scanner-utils';
+import { DecoratedAxeNodeResult, HtmlElementAxeResults } from './scanner-utils';
 import { ShadowUtils } from './shadow-utils';
 
 export interface DetailsDialogWindowMessage {
-    data: IHtmlElementAxeResults;
+    data: HtmlElementAxeResults;
     featureFlagStoreData: FeatureFlagStoreData;
 }
 
@@ -47,9 +47,9 @@ export class DialogRenderer {
         }
     }
 
-    public render(data: IHtmlElementAxeResults, featureFlagStoreData: FeatureFlagStoreData): void {
+    public render(data: HtmlElementAxeResults, featureFlagStoreData: FeatureFlagStoreData): void {
         if (this.isInMainWindow()) {
-            const mainWindowContext = MainWindowContext.get();
+            const mainWindowContext = MainWindowContext.getMainWindowContext();
             mainWindowContext.getTargetPageActionMessageCreator().openIssuesDialog();
 
             const elementSelector: string = this.getElementSelector(data);
@@ -91,7 +91,7 @@ export class DialogRenderer {
                 dialogContainer,
             );
         } else {
-            const windowMessageRequest: IMessageRequest<DetailsDialogWindowMessage> = {
+            const windowMessageRequest: MessageRequest<DetailsDialogWindowMessage> = {
                 win: this.windowUtils.getTopWindow(),
                 command: DialogRenderer.renderDetailsDialogCommand,
                 message: { data: data, featureFlagStoreData: featureFlagStoreData },
@@ -103,7 +103,7 @@ export class DialogRenderer {
     @autobind
     private processRequest(
         message: DetailsDialogWindowMessage,
-        error: IErrorMessageContent,
+        error: ErrorMessageContent,
         sourceWin: Window,
         responder?: FrameMessageResponseCallback,
     ): void {
@@ -128,15 +128,15 @@ export class DialogRenderer {
         return dialogContainer;
     }
 
-    private getFailedRules(data: IHtmlElementAxeResults): DictionaryStringTo<DecoratedAxeNodeResult> {
+    private getFailedRules(data: HtmlElementAxeResults): DictionaryStringTo<DecoratedAxeNodeResult> {
         return data.ruleResults;
     }
 
-    private getTarget(data: IHtmlElementAxeResults): string[] {
+    private getTarget(data: HtmlElementAxeResults): string[] {
         return data.target;
     }
 
-    private getElementSelector(data: IHtmlElementAxeResults): string {
+    private getElementSelector(data: HtmlElementAxeResults): string {
         return data.target.join(';');
     }
 

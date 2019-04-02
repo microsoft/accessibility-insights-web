@@ -1,9 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-
-import { IStoreActionMessageCreator } from '../message-creators/istore-action-message-creator';
-import { IClientStoresHub } from '../stores/iclient-stores-hub';
+import { StoreActionMessageCreator } from '../message-creators/store-action-message-creator';
+import { ClientStoresHub } from '../stores/client-stores-hub';
 
 export type WithStoreSubscriptionProps<T> = {
     deps: WithStoreSubscriptionDeps<T>;
@@ -11,11 +10,13 @@ export type WithStoreSubscriptionProps<T> = {
 };
 
 export type WithStoreSubscriptionDeps<T> = {
-    storesHub: IClientStoresHub<T>;
-    storeActionMessageCreator: IStoreActionMessageCreator;
+    storesHub: ClientStoresHub<T>;
+    storeActionMessageCreator: StoreActionMessageCreator;
 };
 
-export function withStoreSubscription<P extends WithStoreSubscriptionProps<S>, S>(WrappedComponent: React.ComponentType<P>) {
+export function withStoreSubscription<P extends WithStoreSubscriptionProps<S>, S>(
+    WrappedComponent: React.ComponentType<P>,
+): React.ComponentClass<P, S> {
     return class extends React.Component<P, S> {
         constructor(props: P) {
             super(props);

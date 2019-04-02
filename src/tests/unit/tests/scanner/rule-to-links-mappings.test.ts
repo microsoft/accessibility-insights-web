@@ -2,14 +2,30 @@
 // Licensed under the MIT License.
 import * as Axe from 'axe-core';
 
+import { difference } from 'lodash';
 import { ruleToLinkConfiguration } from '../../../../scanner/rule-to-links-mappings';
+import { HyperlinkDefinition } from '../../../../views/content/content-page';
 
-describe('axe.commons.text.accessibleText examples', () => {
+describe('ruleToLinkConfiguration', () => {
     const axe = Axe as any;
+    const allAxeRules: string[] = axe.getRules().map(rule => rule.ruleId);
+    const bestPracticeAxeRules: string[] = axe.getRules(['best-practice']).map(rule => rule.ruleId);
 
-    axe.getRules().forEach(rule => {
-        it(`should have mapping for ${rule.ruleId}`, () => {
-            expect(ruleToLinkConfiguration[rule.ruleId]).not.toEqual(undefined);
-        });
+    // We're grandfathering this case in while we validate why axe considers it best-practice
+    const bestPracticeAxeRulesWeWantToEnforceAnyway = ['accesskeys'];
+
+    it.each(allAxeRules)(`should have a mapping for axe rule %s`, rule => {
+        expect(ruleToLinkConfiguration[rule]).toBeDefined();
     });
+
+    it.each(difference(bestPracticeAxeRules, bestPracticeAxeRulesWeWantToEnforceAnyway))(
+        `should map axe best-practice rule %s as BestPractice`,
+        rule => {
+            expect(hasBestPracticeLink(ruleToLinkConfiguration[rule])).toBe(true);
+        },
+    );
+
+    function hasBestPracticeLink(links: HyperlinkDefinition[]): boolean {
+        return links.findIndex(link => link.text === 'Best Practice') !== -1;
+    }
 });

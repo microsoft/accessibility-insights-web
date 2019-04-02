@@ -7,6 +7,7 @@ import { LinkPurposePropertyBag } from '../../../common/types/property-bag/ilink
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { title } from '../../../content/strings/application';
+import { TestAutomaticallyPassedNotice } from '../../../content/test/common/test-automatically-passed-notice';
 import * as content from '../../../content/test/links/link-purpose';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
@@ -15,7 +16,7 @@ import { AssistedTestRecordYourResults } from '../../common/assisted-test-record
 import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { LinksTestStep } from './test-steps';
 
 const LinkPurposeDescription: JSX.Element = (
@@ -24,7 +25,8 @@ const LinkPurposeDescription: JSX.Element = (
 
 const LinkPurposeHowToTest: JSX.Element = (
     <div>
-        For this requirement, {title} highlights links in the target page..
+        <p>For this requirement, {title} highlights links in the target page.</p>
+        <TestAutomaticallyPassedNotice />
         <ol>
             <li>
                 In the <Markup.Term>Instances</Markup.Term> list below, examine each link to verify that its accessible name describes its
@@ -71,7 +73,7 @@ const propertyBagConfig: PropertyBagColumnRendererConfig<LinkPurposePropertyBag>
     },
 ];
 
-export const LinkPurpose: TestStep = {
+export const LinkPurpose: Requirement = {
     key: LinksTestStep.linkPurpose,
     name: 'Link purpose',
     description: LinkPurposeDescription,
@@ -83,7 +85,7 @@ export const LinkPurpose: TestStep = {
         {
             key: 'link-info',
             name: 'Link info',
-            onRender: PropertyBagColumnRendererFactory.get(propertyBagConfig),
+            onRender: PropertyBagColumnRendererFactory.getRenderer(propertyBagConfig),
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),

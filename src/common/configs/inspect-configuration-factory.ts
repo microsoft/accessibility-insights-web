@@ -5,9 +5,9 @@ import { InspectMode } from '../../background/inspect-modes';
 import { ScopingInputTypes } from '../../background/scoping-input-types';
 import { DictionaryStringTo } from '../../types/common-types';
 import { ScopingActionMessageCreator } from '../message-creators/scoping-action-message-creator';
-import { ISingleElementSelector } from '../types/store-data/scoping-store-data';
+import { SingleElementSelector } from '../types/store-data/scoping-store-data';
 
-export type IInspectCallback = (event: MouseEvent, selector: ISingleElementSelector) => void;
+export type IInspectCallback = (event: MouseEvent, selector: SingleElementSelector) => void;
 
 export type ConfigurationKey = Exclude<InspectMode, 'off'>;
 

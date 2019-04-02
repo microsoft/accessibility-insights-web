@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { AnalyzerConfigurationFactory } from '../../../assessments/common/analyzer-configuration-factory';
-import { IDefaultWidgetPropertyBag } from '../../../common/types/property-bag/idefault-widget';
+import { DefaultWidgetPropertyBag } from '../../../common/types/property-bag/default-widget';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
@@ -15,7 +15,7 @@ import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { NativeWidgetsTestStep } from './test-steps';
 
 const description: JSX.Element = <span>A native widget must have a label and/or instructions that identify the expected input.</span>;
@@ -25,7 +25,8 @@ const howToTest: JSX.Element = (
         <p>For this requirement, {productName} highlights native widgets.</p>
         <p>
             <Markup.Emphasis>
-                Note: If a native widget has no programmatically-related label, it will fail an automated check.
+                Notes: (1) If no matching/failing instances are found, this requirement will automatically be marked as pass. (2) If a
+                native widget has no programmatically-related label, it will fail an automated check.
             </Markup.Emphasis>
         </p>
         <ol>
@@ -38,7 +39,7 @@ const howToTest: JSX.Element = (
     </div>
 );
 
-const propertyBagConfig: PropertyBagColumnRendererConfig<IDefaultWidgetPropertyBag>[] = [
+const propertyBagConfig: PropertyBagColumnRendererConfig<DefaultWidgetPropertyBag>[] = [
     {
         propertyName: 'element',
         displayName: 'Element',
@@ -56,7 +57,7 @@ const propertyBagConfig: PropertyBagColumnRendererConfig<IDefaultWidgetPropertyB
     },
 ];
 
-export const Label: TestStep = {
+export const Label: Requirement = {
     key: NativeWidgetsTestStep.label,
     name: 'Label',
     description,
@@ -68,7 +69,7 @@ export const Label: TestStep = {
         {
             key: 'label-info',
             name: 'Label',
-            onRender: PropertyBagColumnRendererFactory.get<IDefaultWidgetPropertyBag>(propertyBagConfig),
+            onRender: PropertyBagColumnRendererFactory.getRenderer<DefaultWidgetPropertyBag>(propertyBagConfig),
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),

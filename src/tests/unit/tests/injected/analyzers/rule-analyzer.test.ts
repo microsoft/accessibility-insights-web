@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
+import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { ScopingInputTypes } from '../../../../../background/scoping-input-types';
@@ -11,22 +11,22 @@ import {
 } from '../../../../../common/configs/visualization-configuration-factory';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { RuleAnalyzerScanTelemetryData } from '../../../../../common/telemetry-events';
-import { IScopingStoreData } from '../../../../../common/types/store-data/scoping-store-data';
+import { ScopingStoreData } from '../../../../../common/types/store-data/scoping-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
 import { RuleAnalyzer } from '../../../../../injected/analyzers/rule-analyzer';
-import { IHtmlElementAxeResults, ScannerUtils } from '../../../../../injected/scanner-utils';
+import { HtmlElementAxeResults, ScannerUtils } from '../../../../../injected/scanner-utils';
 import { ScanOptions } from '../../../../../scanner/exposed-apis';
 import { ScanResults } from '../../../../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 
 describe('RuleAnalyzer', () => {
     let scannerUtilsMock: IMock<ScannerUtils>;
-    let resultProcessorMock: IMock<(results: ScanResults) => DictionaryStringTo<IHtmlElementAxeResults>>;
+    let resultProcessorMock: IMock<(results: ScanResults) => DictionaryStringTo<HtmlElementAxeResults>>;
     let dateGetterMock: IMock<() => Date>;
     let dateMock: IMock<Date>;
     let scopingStoreMock: IMock<ScopingStore>;
-    let scopingState: IScopingStoreData;
+    let scopingState: ScopingStoreData;
     let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
     const mockAllInstances: DictionaryStringTo<any> = {
         test: 'test-result-value',
@@ -34,7 +34,7 @@ describe('RuleAnalyzer', () => {
     let sendMessageMock: IMock<(message) => void>;
     let telemetryDataFactoryMock: IMock<TelemetryDataFactory>;
     let typeStub: VisualizationType;
-    const testName = 'test-name';
+    const name = 'test-name';
     let configStub: RuleAnalyzerConfiguration;
     let scanCallback: (results: ScanResults) => void;
 
@@ -56,8 +56,8 @@ describe('RuleAnalyzer', () => {
         dateGetterMock.setup(dgm => dgm()).returns(() => dateMock.object);
         scopingState = {
             selectors: {
-                [ScopingInputTypes.include]: ['fake include selector'],
-                [ScopingInputTypes.exclude]: ['fake exclude selector'],
+                [ScopingInputTypes.include]: [['fake include selector']],
+                [ScopingInputTypes.exclude]: [['fake exclude selector']],
             },
         };
         scopingStoreMock
@@ -68,7 +68,7 @@ describe('RuleAnalyzer', () => {
             .setup(v => v.getConfiguration(typeStub))
             .returns(() => {
                 return {
-                    displayableData: { title: testName },
+                    displayableData: { title: name },
                 } as VisualizationConfiguration;
             })
             .verifiable();
@@ -93,11 +93,11 @@ describe('RuleAnalyzer', () => {
     function testGetResults(done: () => void): void {
         const key = 'sample key';
         const telemetryProcessorStub = factory => (_, elapsedTime, __) => {
-            return createTelemetryStub(elapsedTime, testName, key);
+            return createTelemetryStub(elapsedTime, name, key);
         };
         const startTime = 10;
         const endTime = 20;
-        const expectedTelemetryStub = createTelemetryStub(endTime - startTime, testName, key);
+        const expectedTelemetryStub = createTelemetryStub(endTime - startTime, name, key);
 
         configStub = {
             rules: ['fake-rule'],
@@ -170,8 +170,8 @@ describe('RuleAnalyzer', () => {
         };
 
         scannerUtilsMock
-            .setup((scanner: ScannerUtils) => scanner.scan(It.isValue(scanOptions), It.is(_.isFunction)))
-            .callback((rules: string[], callback: (results: ScanResults) => void) => {
+            .setup((scanner: ScannerUtils) => scanner.scan(It.isValue(scanOptions), It.is(isFunction)))
+            .callback((theRules: string[], callback: (results: ScanResults) => void) => {
                 scanCallback = callback;
             })
             .verifiable(Times.once());

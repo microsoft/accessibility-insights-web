@@ -3,7 +3,7 @@
 import { clone, forEach, size } from 'lodash';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
-import { IBaseStore } from '../../../../../common/istore';
+import { BaseStore } from '../../../../../common/base-store';
 import { BaseClientStoresHub } from '../../../../../common/stores/base-client-stores-hub';
 import { StoreMock } from '../../../mock-helpers/store-mock';
 
@@ -78,7 +78,7 @@ describe('BaseClientStoresHubTest', () => {
     test('hasStores with stores being null (several scenarios)', () => {
         const constructorArgs = getConstructorArgsForHasStoresReturningFalse();
 
-        forEach(constructorArgs, (args: IBaseStore<TestStoreData>[], index: number) => {
+        forEach(constructorArgs, (args: BaseStore<TestStoreData>[], index: number) => {
             const testObject = buildClientStoresHub(args);
 
             expect(testObject.hasStores()).toBe(false);
@@ -161,17 +161,17 @@ describe('BaseClientStoresHubTest', () => {
         store3Mock.verifyAll();
     }
 
-    function getConstructorArgsForHasStoresReturningFalse(): IBaseStore<TestStoreData>[][] {
-        const argsPrototype: IBaseStore<TestStoreData>[] = [store1Mock.getObject(), store2Mock.getObject(), store3Mock.getObject()];
+    function getConstructorArgsForHasStoresReturningFalse(): BaseStore<TestStoreData>[][] {
+        const argsPrototype: BaseStore<TestStoreData>[] = [store1Mock.getObject(), store2Mock.getObject(), store3Mock.getObject()];
 
         const argsLength = size(argsPrototype);
 
-        const result: IBaseStore<TestStoreData>[][] = [];
+        const result: BaseStore<TestStoreData>[][] = [];
 
         const falseReturningCombination = Math.pow(2, argsLength) - 1; // last combination will have all the stores
 
         for (let combinationIndex = 0; combinationIndex < falseReturningCombination; combinationIndex++) {
-            const combinationArgs: IBaseStore<any>[] = clone(argsPrototype);
+            const combinationArgs: BaseStore<any>[] = clone(argsPrototype);
 
             for (let bitmaskPow = 0; bitmaskPow < argsLength; bitmaskPow++) {
                 const bitmask = Math.pow(2, bitmaskPow);
@@ -188,11 +188,11 @@ describe('BaseClientStoresHubTest', () => {
         return result;
     }
 
-    function buildClientStoresHub(stores: IBaseStore<TestStoreData>[]): BaseClientStoresHub<TestStoreData> {
-        const builder: (stores) => BaseClientStoresHub<TestStoreData> = stores => {
+    function buildClientStoresHub(stores: BaseStore<TestStoreData>[]): BaseClientStoresHub<TestStoreData> {
+        const builder: (stores) => BaseClientStoresHub<TestStoreData> = theStores => {
             function ClientStoresHubFake(): void {
                 // tslint:disable-next-line: no-invalid-this
-                BaseClientStoresHub.call(this, stores);
+                BaseClientStoresHub.call(this, theStores);
             }
             ClientStoresHubFake.prototype = BaseClientStoresHub.prototype;
             return new ClientStoresHubFake();

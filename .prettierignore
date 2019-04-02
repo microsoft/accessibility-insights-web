@@ -12,5 +12,6 @@ docs/NOTICE.html
 docs/LICENSE.txt
 **/*.snap
 **/*.png
+**/*.ico
 **/*.gitignore
 **/*.gitattributes

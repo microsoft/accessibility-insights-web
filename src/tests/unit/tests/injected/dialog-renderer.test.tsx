@@ -15,12 +15,12 @@ import { FeatureFlagStoreData } from '../../../../common/types/store-data/featur
 import { WindowUtils } from '../../../../common/window-utils';
 import { rootContainerId } from '../../../../injected/constants';
 import { DetailsDialogWindowMessage, DialogRenderer } from '../../../../injected/dialog-renderer';
-import { FrameCommunicator, IMessageRequest } from '../../../../injected/frameCommunicators/frame-communicator';
+import { ErrorMessageContent } from '../../../../injected/frameCommunicators/error-message-content';
+import { FrameCommunicator, MessageRequest } from '../../../../injected/frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from '../../../../injected/frameCommunicators/window-message-handler';
-import { IErrorMessageContent } from '../../../../injected/frameCommunicators/window-message-marshaller';
 import { LayeredDetailsDialogComponent } from '../../../../injected/layered-details-dialog-component';
 import { MainWindowContext } from '../../../../injected/main-window-context';
-import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from '../../../../injected/scanner-utils';
+import { DecoratedAxeNodeResult, HtmlElementAxeResults } from '../../../../injected/scanner-utils';
 import { ShadowUtils } from '../../../../injected/shadow-utils';
 import { TargetPageActionMessageCreator } from '../../../../injected/target-page-action-message-creator';
 import { DictionaryStringTo } from '../../../../types/common-types';
@@ -40,7 +40,7 @@ describe('DialogRendererTests', () => {
     let renderMock: IMock<typeof ReactDOM.render>;
     let subscribeCallback: (
         message: DetailsDialogWindowMessage,
-        error: IErrorMessageContent,
+        error: ErrorMessageContent,
         responder?: FrameMessageResponseCallback,
     ) => void;
     let getMainWindoContextMock: IGlobalMock<() => MainWindowContext>;
@@ -52,7 +52,7 @@ describe('DialogRendererTests', () => {
         shadowUtilMock = Mock.ofType(ShadowUtils);
         clientBrowserAdapter = Mock.ofType<ClientBrowserAdapter>();
 
-        getMainWindoContextMock = GlobalMock.ofInstance(MainWindowContext.get, 'get', MainWindowContext);
+        getMainWindoContextMock = GlobalMock.ofInstance(MainWindowContext.getMainWindowContext, 'getMainWindowContext', MainWindowContext);
         frameCommunicator = Mock.ofType(FrameCommunicator);
         domMock = Mock.ofInstance({
             createElement: selector => null,
@@ -113,7 +113,7 @@ describe('DialogRendererTests', () => {
         };
         const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
         expectedFailedRules[ruleId] = nodeResult;
-        const testData: IHtmlElementAxeResults = {
+        const testData: HtmlElementAxeResults = {
             ruleResults: expectedFailedRules,
             target: [ruleId],
             isVisible: true,
@@ -157,7 +157,7 @@ describe('DialogRendererTests', () => {
         };
         const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
         expectedFailedRules[ruleId] = nodeResult;
-        const testData: IHtmlElementAxeResults = {
+        const testData: HtmlElementAxeResults = {
             ruleResults: expectedFailedRules,
             target: [ruleId],
             isVisible: true,
@@ -199,7 +199,7 @@ describe('DialogRendererTests', () => {
         };
         const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
         expectedFailedRules[ruleId] = nodeResult;
-        const testData: IHtmlElementAxeResults = {
+        const testData: HtmlElementAxeResults = {
             ruleResults: expectedFailedRules,
             target: [ruleId],
             isVisible: true,
@@ -243,7 +243,7 @@ describe('DialogRendererTests', () => {
         };
         const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
         expectedFailedRules[ruleId] = nodeResult;
-        const testData: IHtmlElementAxeResults = {
+        const testData: HtmlElementAxeResults = {
             ruleResults: expectedFailedRules,
             target: [ruleId],
             isVisible: true,
@@ -267,12 +267,12 @@ describe('DialogRendererTests', () => {
     });
 
     test('test render in iframe: shadow FF on', () => {
-        const testData: IHtmlElementAxeResults = {
+        const testData: HtmlElementAxeResults = {
             ruleResults: null,
             target: [],
             isVisible: true,
         };
-        const windowMessageRequest: IMessageRequest<DetailsDialogWindowMessage> = {
+        const windowMessageRequest: MessageRequest<DetailsDialogWindowMessage> = {
             win: 'this is main window' as any,
             command: 'insights.detailsDialog',
             message: { data: testData, featureFlagStoreData: getDefaultFeatureFlagValuesWithShadowOn() },
@@ -295,12 +295,12 @@ describe('DialogRendererTests', () => {
     });
 
     test('test render in iframe: shadow FF off', () => {
-        const testData: IHtmlElementAxeResults = {
+        const testData: HtmlElementAxeResults = {
             ruleResults: null,
             target: [],
             isVisible: true,
         };
-        const windowMessageRequest: IMessageRequest<DetailsDialogWindowMessage> = {
+        const windowMessageRequest: MessageRequest<DetailsDialogWindowMessage> = {
             win: 'this is main window' as any,
             command: 'insights.detailsDialog',
             message: { data: testData, featureFlagStoreData: getDefaultFeatureFlagValues() },
@@ -322,7 +322,7 @@ describe('DialogRendererTests', () => {
     });
 
     test('test main window subsribe and processRequest: shadow FF on', () => {
-        const testData: IHtmlElementAxeResults = {
+        const testData: HtmlElementAxeResults = {
             ruleResults: null,
             target: ['test string'],
             isVisible: true,
@@ -349,7 +349,7 @@ describe('DialogRendererTests', () => {
     });
 
     test('test main window subsribe and processRequest: shadowDom FF off', () => {
-        const testData: IHtmlElementAxeResults = {
+        const testData: HtmlElementAxeResults = {
             ruleResults: null,
             target: ['test string'],
             isVisible: true,
@@ -389,15 +389,9 @@ describe('DialogRendererTests', () => {
 
     function setUpGetMainWindowContextCalledOnce(): void {
         getMainWindoContextMock
-            .setup(get => get())
+            .setup(getter => getter())
             .returns(() => mainWindowContext)
             .verifiable(Times.once());
-    }
-    function setUpGetMainWindowContexNeverCalled(): void {
-        getMainWindoContextMock
-            .setup(get => get())
-            .returns(() => mainWindowContext)
-            .verifiable(Times.never());
     }
 
     function setupRenderMockForVerifiable(): void {
@@ -446,7 +440,7 @@ describe('DialogRendererTests', () => {
                         (
                             param: (
                                 message: DetailsDialogWindowMessage,
-                                error: IErrorMessageContent,
+                                error: ErrorMessageContent,
                                 sourceWin: Window,
                                 responder?: FrameMessageResponseCallback,
                             ) => void,
@@ -468,7 +462,7 @@ describe('DialogRendererTests', () => {
         frameCommunicator.verifyAll();
     }
 
-    function setupWindowUtilsMockAndFrameCommunicatorInIframe(windowMessageRequest: IMessageRequest<DetailsDialogWindowMessage>): void {
+    function setupWindowUtilsMockAndFrameCommunicatorInIframe(windowMessageRequest: MessageRequest<DetailsDialogWindowMessage>): void {
         windowUtilsMock
             .setup(wum => wum.getTopWindow())
             .returns(() => {

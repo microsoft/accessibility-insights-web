@@ -4,12 +4,12 @@ import { autobind } from '@uifabric/utilities';
 
 import { Tab } from '../../common/itab.d';
 import { StoreNames } from '../../common/stores/store-names';
-import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
+import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationActions } from '../actions/visualization-actions';
-import { BaseStore } from './base-store';
+import { BaseStoreImpl } from './base-store-impl';
 
-export class TabStore extends BaseStore<ITabStoreData> {
+export class TabStore extends BaseStoreImpl<TabStoreData> {
     private tabActions: TabActions;
     private visualizationActions: VisualizationActions;
 
@@ -20,8 +20,8 @@ export class TabStore extends BaseStore<ITabStoreData> {
         this.visualizationActions = visualizationActions;
     }
 
-    public getDefaultState(): ITabStoreData {
-        const defaultValues: ITabStoreData = {
+    public getDefaultState(): TabStoreData {
+        const defaultValues: TabStoreData = {
             url: null,
             title: null,
             id: null,

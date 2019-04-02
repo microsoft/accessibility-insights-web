@@ -4,11 +4,11 @@ import * as React from 'react';
 
 import { AssessmentDefaultMessageGenerator } from '../../assessments/assessment-default-message-generator';
 import { assessmentsProviderWithFeaturesEnabled } from '../../assessments/assessments-feature-flag-filter';
-import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../../common/types/store-data/iassessment-result-data';
-import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
+import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { AssessmentReportModelBuilderFactory } from './assessment-report-model-builder-factory';
 import * as reportStyles from './assessment-report.styles';
 import { AssessmentReport, AssessmentReportDeps } from './components/assessment-report';
@@ -31,9 +31,9 @@ export class AssessmentReportHtmlGenerator {
 
     public generateHtml(
         assessmentStoreData: IAssessmentStoreData,
-        assessmentsProvider: IAssessmentsProvider,
+        assessmentsProvider: AssessmentsProvider,
         featureFlagStoreData: FeatureFlagStoreData,
-        tabStoreData: ITabStoreData,
+        tabStoreData: TabStoreData,
         description: string,
     ): string {
         const filteredProvider = assessmentsProviderWithFeaturesEnabled(assessmentsProvider, featureFlagStoreData);

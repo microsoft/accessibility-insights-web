@@ -6,12 +6,12 @@ import { It, Mock, MockBehavior } from 'typemoq';
 import { AssessmentDefaultMessageGenerator } from '../../../../../assessments/assessment-default-message-generator';
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../../../../../common/types/store-data/iassessment-result-data';
-import { ITabStoreData } from '../../../../../common/types/store-data/itab-store-data';
+import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
 import {
     AssessmentReportHtmlGenerator,
     AssessmentReportHtmlGeneratorDeps,
 } from '../../../../../DetailsView/reports/assessment-report-html-generator';
-import { IReportModel } from '../../../../../DetailsView/reports/assessment-report-model';
+import { ReportModel } from '../../../../../DetailsView/reports/assessment-report-model';
 import { AssessmentReportModelBuilder } from '../../../../../DetailsView/reports/assessment-report-model-builder';
 import { AssessmentReportModelBuilderFactory } from '../../../../../DetailsView/reports/assessment-report-model-builder-factory';
 import * as reportStyles from '../../../../../DetailsView/reports/assessment-report.styles';
@@ -30,7 +30,7 @@ describe('AssessmentReportHtmlGenerator', () => {
         const assessmentsProvider = CreateTestAssessmentProviderWithFeatureFlag();
         const assessmentStoreData: IAssessmentStoreData = { stub: 'assessmentStoreData' } as any;
         const featureFlagStoreData: FeatureFlagStoreData = { stub: 'featureFlagStoreData' } as any;
-        const tabStoreData: ITabStoreData = { stub: 'tabStoreData' } as any;
+        const tabStoreData: TabStoreData = { stub: 'tabStoreData' } as any;
         const description = 'generateHtml-description';
 
         const deps: AssessmentReportHtmlGeneratorDeps = {
@@ -38,7 +38,7 @@ describe('AssessmentReportHtmlGenerator', () => {
         };
 
         const modelBuilderMock = Mock.ofType(AssessmentReportModelBuilder, MockBehavior.Strict);
-        const model: IReportModel = { stub: 'model' } as any;
+        const model: ReportModel = { stub: 'model' } as any;
 
         const expectedComponent = (
             <React.Fragment>

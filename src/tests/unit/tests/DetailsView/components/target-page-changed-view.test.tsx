@@ -11,14 +11,14 @@ describe('TargetPageChangedView', () => {
     const clickHandlerStub: () => void = () => {};
 
     test('render TargetPageChangedView', () => {
-        const type = VisualizationType.Landmarks;
+        const visualizationType = VisualizationType.Landmarks;
         const displayableData = {
             title: 'test title',
             toggleLabel: 'test toggle label',
         } as DisplayableVisualizationTypeData;
 
         const props: TargetPageChangedViewProps = {
-            type: type,
+            visualizationType: visualizationType,
             toggleClickHandler: clickHandlerStub,
             displayableData,
         };
@@ -44,11 +44,11 @@ describe('TargetPageChangedView', () => {
     });
 
     test('render TargetPageChangedView with unsupported type', () => {
-        const type = VisualizationType.Landmarks;
+        const visualizationType = VisualizationType.Landmarks;
         const displayableData = null;
 
         const props: TargetPageChangedViewProps = {
-            type: type,
+            visualizationType: visualizationType,
             toggleClickHandler: clickHandlerStub,
             displayableData,
         };

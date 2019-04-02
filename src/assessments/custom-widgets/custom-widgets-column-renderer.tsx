@@ -28,7 +28,7 @@ export function customWidgetsColumnRenderer<TPropertyBag extends ColumnValueBag>
         propertyBag.designPattern = patterns.map(mapDesignPatterns);
     }
 
-    const propertyBagRenderer = PropertyBagColumnRendererFactory.get<TPropertyBag>(configs);
+    const propertyBagRenderer = PropertyBagColumnRendererFactory.getRenderer<TPropertyBag>(configs);
 
     return propertyBagRenderer(item);
 }

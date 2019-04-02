@@ -8,6 +8,7 @@ import { CustomWidgetPropertyBag } from '../../../common/types/property-bag/icus
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
+import { TestAutomaticallyPassedNotice } from '../../../content/test/common/test-automatically-passed-notice';
 import * as content from '../../../content/test/custom-widgets/design-pattern';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
@@ -15,7 +16,7 @@ import { AssistedTestRecordYourResults } from '../../common/assisted-test-record
 import { NoValue } from '../../common/property-bag-column-renderer';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { getFlatDesignPatternStringFromRole } from '../custom-widgets-column-renderer';
 import { CustomWidgetsColumnRendererFactory } from '../custom-widgets-column-renderer-factory';
 import { CustomWidgetsTestStep } from './test-steps';
@@ -26,7 +27,8 @@ const designPatternDescription: JSX.Element = (
 
 const designPatternHowToTest: JSX.Element = (
     <div>
-        For this requirement, {productName} highlights custom widgets. (A custom widget is an element with a valid ARIA widget role.)
+        <p>For this requirement, {productName} highlights custom widgets. (A custom widget is an element with a valid ARIA widget role.)</p>
+        <TestAutomaticallyPassedNotice />
         <ol>
             <li>
                 Familiarize yourself with the{' '}
@@ -41,7 +43,7 @@ const designPatternHowToTest: JSX.Element = (
         </ol>
     </div>
 );
-export const DesignPattern: TestStep = {
+export const DesignPattern: Requirement = {
     key: CustomWidgetsTestStep.designPattern,
     name: 'Design pattern',
     description: designPatternDescription,

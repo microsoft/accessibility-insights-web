@@ -10,12 +10,12 @@ import {
 } from '../../../../../common/configs/visualization-configuration-factory';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { RuleAnalyzerScanTelemetryData } from '../../../../../common/telemetry-events';
-import { IScopingStoreData } from '../../../../../common/types/store-data/scoping-store-data';
+import { ScopingStoreData } from '../../../../../common/types/store-data/scoping-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
 import { MessageType } from '../../../../../injected/analyzers/base-analyzer';
 import { BatchedRuleAnalyzer, IResultRuleFilter } from '../../../../../injected/analyzers/batched-rule-analyzer';
-import { IHtmlElementAxeResults, ScannerUtils } from '../../../../../injected/scanner-utils';
+import { HtmlElementAxeResults, ScannerUtils } from '../../../../../injected/scanner-utils';
 import { ScanOptions } from '../../../../../scanner/exposed-apis';
 import { RuleResult, ScanResults } from '../../../../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../../../../types/common-types';
@@ -25,7 +25,7 @@ describe('BatchedRuleAnalyzer', () => {
     let dateGetterMock: IMock<() => Date>;
     let dateMock: IMock<Date>;
     let scopingStoreMock: IMock<ScopingStore>;
-    let scopingState: IScopingStoreData;
+    let scopingState: ScopingStoreData;
     let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
     const mockAllInstances: DictionaryStringTo<any> = {
         test: 'test-result-value',
@@ -33,7 +33,7 @@ describe('BatchedRuleAnalyzer', () => {
     let sendMessageMock: IMock<(message) => void>;
     let telemetryDataFactoryMock: IMock<TelemetryDataFactory>;
     let typeStub: VisualizationType;
-    const testName = 'test-name';
+    const title = 'test-name';
     const scanCallbacks: ((results: ScanResults) => void)[] = [];
     let resultConfigFilterMock: IMock<IResultRuleFilter>;
 
@@ -55,8 +55,8 @@ describe('BatchedRuleAnalyzer', () => {
         dateGetterMock.setup(dgm => dgm()).returns(() => dateMock.object);
         scopingState = {
             selectors: {
-                [ScopingInputTypes.include]: ['fake include selector'],
-                [ScopingInputTypes.exclude]: ['fake exclude selector'],
+                [ScopingInputTypes.include]: [['fake include selector']],
+                [ScopingInputTypes.exclude]: [['fake exclude selector']],
             },
         };
         scopingStoreMock
@@ -67,7 +67,7 @@ describe('BatchedRuleAnalyzer', () => {
             .setup(v => v.getConfiguration(typeStub))
             .returns(() => {
                 return {
-                    displayableData: { title: testName },
+                    displayableData: { title },
                 } as VisualizationConfiguration;
             })
             .verifiable();
@@ -80,16 +80,16 @@ describe('BatchedRuleAnalyzer', () => {
     function testGetResults(done: () => void): void {
         const key = 'sample key';
         const telemetryProcessorStub = factory => (_, elapsedTime, __) => {
-            return createTelemetryStub(elapsedTime, testName, key);
+            return createTelemetryStub(elapsedTime, title, key);
         };
         const startTime = 10;
         const endTime = 20;
-        const expectedTelemetryStub = createTelemetryStub(endTime - startTime, testName, key);
+        const expectedTelemetryStub = createTelemetryStub(endTime - startTime, title, key);
         const ruleOne = 'the first rule';
         const resultOne: RuleResult = {
             id: ruleOne,
         } as RuleResult;
-        const resultProcessorMockOne: IMock<(results: ScanResults) => DictionaryStringTo<IHtmlElementAxeResults>> = Mock.ofInstance(
+        const resultProcessorMockOne: IMock<(results: ScanResults) => DictionaryStringTo<HtmlElementAxeResults>> = Mock.ofInstance(
             results => null,
             MockBehavior.Strict,
         );
@@ -102,7 +102,7 @@ describe('BatchedRuleAnalyzer', () => {
             resultProcessor: scanner => resultProcessorMockOne.object,
         };
         const ruleTwo = 'the second rule';
-        const resultProcessorMockTwo: IMock<(results: ScanResults) => DictionaryStringTo<IHtmlElementAxeResults>> = Mock.ofInstance(
+        const resultProcessorMockTwo: IMock<(results: ScanResults) => DictionaryStringTo<HtmlElementAxeResults>> = Mock.ofInstance(
             results => null,
             MockBehavior.Strict,
         );
@@ -164,7 +164,7 @@ describe('BatchedRuleAnalyzer', () => {
     }
 
     function setupProcessingMocks(
-        resultProcessorMock: IMock<(results: ScanResults) => DictionaryStringTo<IHtmlElementAxeResults>>,
+        resultProcessorMock: IMock<(results: ScanResults) => DictionaryStringTo<HtmlElementAxeResults>>,
         config: RuleAnalyzerConfiguration,
         completeResults: ScanResults,
         filteredResults: ScanResults,

@@ -5,23 +5,23 @@ import { IMock, Mock, Times } from 'typemoq';
 
 import { GlobalActionHub } from '../../../../../../background/actions/global-action-hub';
 import { PersistedData } from '../../../../../../background/get-persisted-data';
-import { ILocalStorageData } from '../../../../../../background/storage-data';
+import { LocalStorageData } from '../../../../../../background/storage-data';
 import { AssessmentStore } from '../../../../../../background/stores/assessment-store';
-import { BaseStore } from '../../../../../../background/stores/base-store';
+import { BaseStoreImpl } from '../../../../../../background/stores/base-store-impl';
 import { FeatureFlagStore } from '../../../../../../background/stores/global/feature-flag-store';
 import { GlobalStoreHub } from '../../../../../../background/stores/global/global-store-hub';
 import { LaunchPanelStore } from '../../../../../../background/stores/global/launch-panel-store';
 import { ScopingStore } from '../../../../../../background/stores/global/scoping-store';
 import { UserConfigurationStore } from '../../../../../../background/stores/global/user-configuration-store';
+import { BaseStore } from '../../../../../../common/base-store';
 import { IndexedDBAPI } from '../../../../../../common/indexedDB/indexedDB';
-import { IBaseStore } from '../../../../../../common/istore';
 import { PersistedTabInfo } from '../../../../../../common/types/store-data/iassessment-result-data';
 import { StoreType } from '../../../../../../common/types/store-type';
-import { LaunchPanelType } from '../../../../../../popup/scripts/components/popup-view';
+import { LaunchPanelType } from '../../../../../../popup/components/popup-view';
 import { CreateTestAssessmentProvider } from '../../../../common/test-assessment-provider';
 
 describe('GlobalStoreHubTest', () => {
-    let userDataStub: ILocalStorageData;
+    let userDataStub: LocalStorageData;
     let idbInstance: IndexedDBAPI;
     let assessmentProvider;
     let persistedDataStub: PersistedData;
@@ -31,7 +31,7 @@ describe('GlobalStoreHubTest', () => {
         assessmentProvider = CreateTestAssessmentProvider();
         userDataStub = {
             launchPanelSetting: LaunchPanelType.LaunchPad,
-        } as ILocalStorageData;
+        } as LocalStorageData;
 
         persistedDataStub = {
             assessmentStoreData: {
@@ -81,7 +81,7 @@ describe('GlobalStoreHubTest', () => {
             idbInstance,
             cloneDeep(persistedDataStub),
         );
-        const allStores = testSubject.getAllStores() as BaseStore<any>[];
+        const allStores = testSubject.getAllStores() as BaseStoreImpl<any>[];
         const initializeMocks: Array<IMock<Function>> = [];
 
         allStores.forEach(store => {
@@ -100,7 +100,7 @@ describe('GlobalStoreHubTest', () => {
         mocks.forEach(mock => mock.verifyAll());
     }
 
-    function verifyStoreExists(stores: Array<IBaseStore<any>>, storeType): IBaseStore<StoreType> {
+    function verifyStoreExists(stores: Array<BaseStore<any>>, storeType): BaseStore<StoreType> {
         const matchingStores = stores.filter(s => s instanceof storeType);
         expect(matchingStores.length).toBe(1);
         return matchingStores[0];

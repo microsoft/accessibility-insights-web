@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-
 import { TestMode } from '../../common/configs/test-mode';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { Messages } from '../../common/messages';
@@ -23,7 +22,6 @@ import {
     BaseActionPayload,
     OnDetailsViewOpenPayload,
     OnDetailsViewPivotSelected,
-    PayloadWithEventName,
     ToggleActionPayload,
     VisualizationTogglePayload,
 } from './action-payloads';
@@ -108,8 +106,6 @@ export class ActionCreator {
             this.onSetDetailsViewRightContentPanel,
         );
 
-        this.registerTypeToPayloadCallback(Messages.Telemetry.Send, this.onSendTelemetry);
-
         this.registerTypeToPayloadCallback(Messages.ChromeFeature.configureCommand, this.onOpenConfigureCommandTab);
 
         this.registerTypeToPayloadCallback(Messages.PreviewFeatures.OpenPanel, this.onOpenPreviewFeaturesPanel);
@@ -133,15 +129,11 @@ export class ActionCreator {
 
     @autobind
     private onEnableVisualHelperWithoutScan(payload: ToggleActionPayload): void {
-        const eventName = TelemetryEvents.ENABLE_VISUAL_HELPER;
-        this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.visualizationActions.enableVisualizationWithoutScan.invoke(payload);
     }
 
     @autobind
     private onEnableVisualHelper(payload: ToggleActionPayload): void {
-        const eventName = TelemetryEvents.ENABLE_VISUAL_HELPER;
-        this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.visualizationActions.enableVisualization.invoke(payload);
     }
 
@@ -159,27 +151,27 @@ export class ActionCreator {
 
     @autobind
     private onStartOver(payload: ToggleActionPayload): void {
-        const eventName = TelemetryEvents.START_OVER_ASSESSMENT;
+        const eventName = TelemetryEvents.START_OVER_TEST;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.visualizationActions.disableVisualization.invoke(payload.test);
     }
 
     @autobind
     private onCancelStartOver(payload: BaseActionPayload): void {
-        const eventName = TelemetryEvents.CANCEL_START_OVER_ASSESSMENT;
+        const eventName = TelemetryEvents.CANCEL_START_OVER_TEST;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
     }
 
     @autobind
     private onStartOverAllAssessments(payload: ToggleActionPayload): void {
-        const eventName = TelemetryEvents.START_OVER_ALL_ASSESSMENTS;
+        const eventName = TelemetryEvents.START_OVER_ASSESSMENT;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.visualizationActions.disableAssessmentVisualizations.invoke(null);
     }
 
     @autobind
     private onCancelStartOverAllAssessments(payload: BaseActionPayload): void {
-        const eventName = TelemetryEvents.CANCEL_START_OVER_ALL_ASSESSMENTS;
+        const eventName = TelemetryEvents.CANCEL_START_OVER_ASSESSMENT;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
     }
 
@@ -328,12 +320,6 @@ export class ActionCreator {
         } else {
             this.visualizationActions.disableVisualization.invoke(payload.test);
         }
-    }
-
-    @autobind
-    private onSendTelemetry(payload: PayloadWithEventName): void {
-        const eventName = payload.eventName;
-        this.telemetryEventHandler.publishTelemetry(eventName, payload);
     }
 
     @autobind

@@ -11,7 +11,8 @@ export abstract class BaseDataBuilder<T> {
         return this.data;
     }
 
-    public with<P extends keyof T>(property: P, value: T[P]) {
+    // tslint:disable-next-line: no-reserved-keywords
+    public with<P extends keyof T>(property: P, value: T[P]): this {
         this.data[property] = value;
         return this;
     }

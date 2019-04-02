@@ -5,7 +5,7 @@ import { TabActions } from '../../../../background/actions/tab-actions';
 import { InspectMode } from '../../../../background/inspect-modes';
 import { InspectStore } from '../../../../background/stores/inspect-store';
 import { StoreNames } from '../../../../common/stores/store-names';
-import { IInspectStoreData } from '../../../../common/types/store-data/inspect-store-data';
+import { InspectStoreData } from '../../../../common/types/store-data/inspect-store-data';
 import { createStoreWithNullParams, StoreTester } from '../../common/store-tester';
 
 describe('InspectStoreTest', () => {
@@ -64,18 +64,18 @@ describe('InspectStoreTest', () => {
             .testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    function getDefaultState(): IInspectStoreData {
+    function getDefaultState(): InspectStoreData {
         return createStoreWithNullParams(InspectStore).getDefaultState();
     }
 
-    function createStoreForInspectActions(actionName: keyof InspectActions): StoreTester<IInspectStoreData, InspectActions> {
+    function createStoreForInspectActions(actionName: keyof InspectActions): StoreTester<InspectStoreData, InspectActions> {
         const tabActions = new TabActions();
         const factory = (actions: InspectActions) => new InspectStore(actions, tabActions);
 
         return new StoreTester(InspectActions, actionName, factory);
     }
 
-    function createStoreForTabActions(actionName: keyof TabActions): StoreTester<IInspectStoreData, TabActions> {
+    function createStoreForTabActions(actionName: keyof TabActions): StoreTester<InspectStoreData, TabActions> {
         const factory = (actions: TabActions) => new InspectStore(new InspectActions(), actions);
         return new StoreTester(TabActions, actionName, factory);
     }

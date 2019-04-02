@@ -63,7 +63,7 @@ describe('imageRule', () => {
 
         it('should not match', () => {
             const windowMock = GlobalMock.ofInstance(window.getComputedStyle, 'getComputedStyle', window, MockBehavior.Strict);
-            windowMock.setup(m => m(It.isAny())).returns(node => ({ getPropertyValue: property => 'none' } as CSSStyleDeclaration));
+            windowMock.setup(m => m(It.isAny())).returns(() => ({ getPropertyValue: property => 'none' } as CSSStyleDeclaration));
             let result;
             const node = document.createElement('div');
             GlobalScope.using(windowMock).with(() => {

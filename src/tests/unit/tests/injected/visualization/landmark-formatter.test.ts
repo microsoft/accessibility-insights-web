@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IAssessmentVisualizationInstance } from '../../../../../injected/frameCommunicators/html-element-axe-results-helper';
+import { AssessmentVisualizationInstance } from '../../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { FailureInstanceFormatter } from '../../../../../injected/visualization/failure-instance-formatter';
 import { DrawerConfiguration } from '../../../../../injected/visualization/formatter';
 import { HeadingStyleConfiguration } from '../../../../../injected/visualization/heading-formatter';
@@ -39,17 +39,17 @@ describe('LandmarkFormatterTests', () => {
         return landmarkStyle;
     }
 
-    function getAssessmentBannerInstance(): IAssessmentVisualizationInstance {
+    function getAssessmentBannerInstance(): AssessmentVisualizationInstance {
         return {
             propertyBag: {
                 role: 'banner',
                 label: 'label',
             },
-        } as IAssessmentVisualizationInstance;
+        } as AssessmentVisualizationInstance;
     }
 
-    function getAxeData(givenRole: string, isFailure = false): IAssessmentVisualizationInstance {
-        const axeData: IAssessmentVisualizationInstance = {
+    function getAxeData(givenRole: string, isFailure = false): AssessmentVisualizationInstance {
+        const axeData: AssessmentVisualizationInstance = {
             isFailure: isFailure,
             isVisualizationEnabled: true,
             html: 'html',

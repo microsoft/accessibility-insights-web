@@ -1,15 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as _ from 'lodash/index';
+
 import { ITabbedElementData } from '../../common/types/store-data/ivisualization-scan-result-data';
 import { ShadowUtils } from '../shadow-utils';
 import { WindowUtils } from './../../common/window-utils';
 import { BaseDrawer } from './base-drawer';
 import { CenterPositionCalculator } from './center-position-calculator';
+import { DrawerInitData } from './drawer';
 import { DrawerUtils } from './drawer-utils';
 import { FocusIndicator } from './focus-indicator';
 import { SVGDrawerConfiguration } from './formatter';
-import { IDrawerInitData } from './idrawer';
 import { Point } from './point';
 import { SVGNamespaceUrl } from './svg-constants';
 import { SVGShapeFactory } from './svg-shape-factory';
@@ -42,7 +43,7 @@ export class SVGDrawerV2 extends BaseDrawer {
         this.centerPositionCalculator = centerPositionCalculator;
     }
 
-    public initialize(drawerInfo: IDrawerInitData<ITabbedElementData>): void {
+    public initialize(drawerInfo: DrawerInitData<ITabbedElementData>): void {
         const tabbedElements = drawerInfo.data.map(element => {
             return {
                 ...element,

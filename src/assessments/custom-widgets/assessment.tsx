@@ -39,10 +39,10 @@ const gettingStarted: JSX.Element = (
 
 export const CustomWidgets: Assessment = AssessmentBuilder.Assisted({
     key,
-    type: VisualizationType.CustomWidgets,
+    visualizationType: VisualizationType.CustomWidgets,
     title,
     gettingStarted,
     guidance,
-    steps: [DesignPattern, Instructions, Label, RoleStateProperty, Cues, KeyboardInteraction],
+    requirements: [DesignPattern, Instructions, Label, RoleStateProperty, Cues, KeyboardInteraction],
     storeDataKey: 'customWidgetsAssessment',
 });

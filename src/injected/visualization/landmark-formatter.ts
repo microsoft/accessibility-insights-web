@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DialogRenderer } from '../dialog-renderer';
-import { IAssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
-import { IHtmlElementAxeResults } from '../scanner-utils';
+import { AssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
+import { HtmlElementAxeResults } from '../scanner-utils';
 import { FailureInstanceFormatter } from './failure-instance-formatter';
 import { DrawerConfiguration } from './formatter';
 import { HeadingStyleConfiguration } from './heading-formatter';
@@ -61,7 +61,7 @@ export class LandmarkFormatter extends FailureInstanceFormatter {
         return null;
     }
 
-    public getDrawerConfiguration(element: Node, data: IAssessmentVisualizationInstance): DrawerConfiguration {
+    public getDrawerConfiguration(element: Node, data: AssessmentVisualizationInstance): DrawerConfiguration {
         // parse down the IHtmlElementAxeResult to see if it is contained in the map
         const elemData = this.decorateLabelText(data.propertyBag || this.getLandmarkInfo(data));
 
@@ -83,7 +83,7 @@ export class LandmarkFormatter extends FailureInstanceFormatter {
         return drawerConfig;
     }
 
-    private getLandmarkInfo(data: IHtmlElementAxeResults): ElemData {
+    private getLandmarkInfo(data: HtmlElementAxeResults): ElemData {
         for (const idx in data.ruleResults) {
             if (data.ruleResults[idx].ruleId === 'unique-landmark') {
                 return this.getData(data.ruleResults[idx].any);

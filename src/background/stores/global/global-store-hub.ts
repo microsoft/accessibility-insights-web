@@ -1,18 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BaseStore } from '../../../common/base-store';
 import { IndexedDBAPI } from '../../../common/indexedDB/indexedDB';
-import { IBaseStore } from '../../../common/istore';
 import { StoreType } from '../../../common/types/store-type';
 import { generateUID } from '../../../common/uid-generator';
 import { GlobalActionHub } from '../../actions/global-action-hub';
 import { BrowserAdapter } from '../../browser-adapter';
 import { PersistedData } from '../../get-persisted-data';
-import { ILocalStorageData } from '../../storage-data';
+import { LocalStorageData } from '../../storage-data';
 import { TelemetryEventHandler } from '../../telemetry/telemetry-event-handler';
 import { StoreHub } from '../istore-hub';
-import { IAssessmentsProvider } from './../../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from './../../../assessments/types/iassessments-provider';
 import { AssessmentDataConverter } from './../../assessment-data-converter';
 import { AssessmentDataRemover } from './../../assessment-data-remover';
+import { InitialAssessmentStoreDataGenerator } from './../../initial-assessment-store-data-generator';
 import { AssessmentStore } from './../assessment-store';
 import { CommandStore } from './command-store';
 import { FeatureFlagStore } from './feature-flag-store';
@@ -32,8 +33,8 @@ export class GlobalStoreHub implements StoreHub {
         globalActionHub: GlobalActionHub,
         telemetryEventHandler: TelemetryEventHandler,
         browserAdapter: BrowserAdapter,
-        userData: ILocalStorageData,
-        assessmentsProvider: IAssessmentsProvider,
+        userData: LocalStorageData,
+        assessmentsProvider: AssessmentsProvider,
         indexedDbInstance: IndexedDBAPI,
         persistedData: PersistedData,
     ) {
@@ -49,6 +50,7 @@ export class GlobalStoreHub implements StoreHub {
             assessmentsProvider,
             indexedDbInstance,
             persistedData.assessmentStoreData,
+            new InitialAssessmentStoreDataGenerator(assessmentsProvider.all()),
         );
         this.userConfigurationStore = new UserConfigurationStore(
             persistedData.userConfigurationData,
@@ -66,7 +68,7 @@ export class GlobalStoreHub implements StoreHub {
         this.userConfigurationStore.initialize();
     }
 
-    public getAllStores(): IBaseStore<any>[] {
+    public getAllStores(): BaseStore<any>[] {
         return [
             this.commandStore,
             this.featureFlagStore,

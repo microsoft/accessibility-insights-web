@@ -3,19 +3,19 @@
 import { autobind } from '@uifabric/utilities';
 import * as _ from 'lodash';
 
+import { BaseStore } from '../common/base-store';
 import { TestMode } from '../common/configs/test-mode';
 import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../common/enum-helper';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
-import { ITabStoreData } from '../common/types/store-data/itab-store-data';
+import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
 import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
 import { IAssessmentScanData, IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
+import { TabStoreData } from '../common/types/store-data/tab-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryNumberTo, DictionaryStringTo } from '../types/common-types';
-import { IBaseStore } from './../common/istore';
-import { IAssessmentStoreData } from './../common/types/store-data/iassessment-result-data.d';
 import { DrawingInitiator } from './drawing-initiator';
-import { IAssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
+import { AssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
 import { ScrollingController, ScrollingWindowMessage } from './frameCommunicators/scrolling-controller';
 import { SelectorMapHelper } from './selector-map-helper';
 import { TargetPageActionMessageCreator } from './target-page-action-message-creator';
@@ -25,29 +25,29 @@ export class ClientViewController {
     private scrollingController: ScrollingController;
     private currentVisualizationState: IVisualizationStoreData;
     private currentFeatureFlagState: FeatureFlagStoreData;
-    private visualizationStore: IBaseStore<IVisualizationStoreData>;
-    private assessmentStore: IBaseStore<IAssessmentStoreData>;
-    private tabStore: IBaseStore<ITabStoreData>;
-    private scanResultStore: IBaseStore<IVisualizationScanResultData>;
+    private visualizationStore: BaseStore<IVisualizationStoreData>;
+    private assessmentStore: BaseStore<IAssessmentStoreData>;
+    private tabStore: BaseStore<TabStoreData>;
+    private scanResultStore: BaseStore<IVisualizationScanResultData>;
     private currentScanResultState: IVisualizationScanResultData;
     private currentAssessmentState: IAssessmentStoreData;
-    private currentTabState: ITabStoreData;
+    private currentTabState: TabStoreData;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
-    private featureFlagStore: IBaseStore<DictionaryStringTo<boolean>>;
+    private featureFlagStore: BaseStore<DictionaryStringTo<boolean>>;
     private selectorMapHelper: SelectorMapHelper;
     private targetPageActionMessageCreator: TargetPageActionMessageCreator;
     protected previousVisualizationStates: DictionaryStringTo<boolean> = {};
-    protected previousVisualizationSelectorMapStates: DictionaryNumberTo<DictionaryStringTo<IAssessmentVisualizationInstance>> = {};
+    protected previousVisualizationSelectorMapStates: DictionaryNumberTo<DictionaryStringTo<AssessmentVisualizationInstance>> = {};
 
     constructor(
-        visualizationStore: IBaseStore<IVisualizationStoreData>,
-        scanResultStore: IBaseStore<IVisualizationScanResultData>,
+        visualizationStore: BaseStore<IVisualizationStoreData>,
+        scanResultStore: BaseStore<IVisualizationScanResultData>,
         drawingInitiator,
         scrollingController,
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
-        featureFlagStore: IBaseStore<DictionaryStringTo<boolean>>,
-        assessmentStore: IBaseStore<IAssessmentStoreData>,
-        tabStore: IBaseStore<ITabStoreData>,
+        featureFlagStore: BaseStore<DictionaryStringTo<boolean>>,
+        assessmentStore: BaseStore<IAssessmentStoreData>,
+        tabStore: BaseStore<TabStoreData>,
         selectorMapHelper: SelectorMapHelper,
         targetPageActionMessageCreator: TargetPageActionMessageCreator,
     ) {
@@ -119,18 +119,18 @@ export class ClientViewController {
 
     private executeUpdates(): void {
         const types = EnumHelper.getNumericValues<VisualizationType>(VisualizationType);
-        types.forEach(type => {
-            const configuration = this.visualizationConfigurationFactory.getConfiguration(type);
+        types.forEach(visualizationType => {
+            const configuration = this.visualizationConfigurationFactory.getConfiguration(visualizationType);
             if (this.isAssessment(configuration)) {
                 const visualizationState = configuration.getStoreData(this.currentVisualizationState.tests) as IAssessmentScanData;
                 Object.keys(visualizationState.stepStatus).forEach(step => {
-                    this.executeUpdate(type, step);
+                    this.executeUpdate(visualizationType, step);
                 });
             } else {
-                this.executeUpdate(type, null);
+                this.executeUpdate(visualizationType, null);
             }
-            const selectorMap = this.selectorMapHelper.getSelectorMap(type);
-            this.previousVisualizationSelectorMapStates[type] = selectorMap;
+            const selectorMap = this.selectorMapHelper.getSelectorMap(visualizationType);
+            this.previousVisualizationSelectorMapStates[visualizationType] = selectorMap;
         });
     }
 
@@ -172,9 +172,9 @@ export class ClientViewController {
     }
 
     private isVisualizationStateUnchanged(
-        type: VisualizationType,
+        visualizationType: VisualizationType,
         newVisualizationEnabledState: boolean,
-        newSelectorMapState: DictionaryStringTo<IAssessmentVisualizationInstance>,
+        newSelectorMapState: DictionaryStringTo<AssessmentVisualizationInstance>,
         id: string,
     ): boolean {
         if (id in this.previousVisualizationStates === false && newVisualizationEnabledState === false) {
@@ -183,7 +183,7 @@ export class ClientViewController {
         return (
             id in this.previousVisualizationStates &&
             this.previousVisualizationStates[id] === newVisualizationEnabledState &&
-            _.isEqual(this.previousVisualizationSelectorMapStates[type], newSelectorMapState)
+            _.isEqual(this.previousVisualizationSelectorMapStates[visualizationType], newSelectorMapState)
         );
     }
 

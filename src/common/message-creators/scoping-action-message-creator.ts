@@ -24,7 +24,7 @@ export class ScopingActionMessageCreator extends BaseActionMessageCreator {
 
     @autobind
     public addSelector(event: React.MouseEvent<HTMLElement> | MouseEvent, inputType: string, selector: string[]): void {
-        const type = Messages.Scoping.AddSelector;
+        const messageType = Messages.Scoping.AddSelector;
         const telemetry = this.telemetryFactory.forAddSelector(event, inputType, this.source);
         const payload: ScopingPayload = {
             inputType,
@@ -33,7 +33,7 @@ export class ScopingActionMessageCreator extends BaseActionMessageCreator {
         };
 
         this.dispatchMessage({
-            type: type,
+            type: messageType,
             tabId: this._tabId,
             payload: payload,
         });
@@ -41,7 +41,7 @@ export class ScopingActionMessageCreator extends BaseActionMessageCreator {
 
     @autobind
     public deleteSelector(event: React.MouseEvent<HTMLElement> | MouseEvent, inputType: string, selector: string[]): void {
-        const type = Messages.Scoping.DeleteSelector;
+        const messageType = Messages.Scoping.DeleteSelector;
         const telemetry = this.telemetryFactory.forDeleteSelector(event, inputType, this.source);
         const payload: ScopingPayload = {
             inputType,
@@ -50,7 +50,7 @@ export class ScopingActionMessageCreator extends BaseActionMessageCreator {
         };
 
         this.dispatchMessage({
-            type: type,
+            type: messageType,
             tabId: this._tabId,
             payload: payload,
         });

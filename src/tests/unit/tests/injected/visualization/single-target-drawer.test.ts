@@ -1,11 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, Mock, Times } from 'typemoq';
+
 import { getDefaultFeatureFlagValues } from '../../../../../common/feature-flags';
-import { IHtmlElementAxeResults } from '../../../../../injected/scanner-utils';
+import { HtmlElementAxeResults } from '../../../../../injected/scanner-utils';
+import { DrawerInitData } from '../../../../../injected/visualization/drawer';
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
 import { SingleTargetDrawerConfiguration } from '../../../../../injected/visualization/formatter';
-import { IDrawerInitData } from '../../../../../injected/visualization/idrawer';
 import { SingleTargetDrawer } from '../../../../../injected/visualization/single-target-drawer';
 import { SingleTargetFormatter } from '../../../../../injected/visualization/single-target-formatter';
 import { TestDocumentCreator } from '../../../common/test-document-creator';
@@ -28,12 +29,12 @@ describe('SingleTargetDrawer Tests', () => {
 
         const testSubject = new SingleTargetDrawer(drawerUtilsMock.object, formatterMock.object);
 
-        const drawerInfo: IDrawerInitData<IHtmlElementAxeResults> = {
+        const drawerInfo: DrawerInitData<HtmlElementAxeResults> = {
             data: [
                 {
                     target: ['body'],
                 },
-            ] as IHtmlElementAxeResults[],
+            ] as HtmlElementAxeResults[],
             featureFlagStoreData: getDefaultFeatureFlagValues(),
         };
 
@@ -52,12 +53,12 @@ describe('SingleTargetDrawer Tests', () => {
 
         const testSubject = new SingleTargetDrawer(drawerUtilsMock.object, formatterMock.object);
 
-        const drawerInfo: IDrawerInitData<IHtmlElementAxeResults> = {
+        const drawerInfo: DrawerInitData<HtmlElementAxeResults> = {
             data: [
                 {
                     target: ['body'],
                 },
-            ] as IHtmlElementAxeResults[],
+            ] as HtmlElementAxeResults[],
             featureFlagStoreData: getDefaultFeatureFlagValues(),
         };
 
@@ -83,12 +84,12 @@ describe('SingleTargetDrawer Tests', () => {
 
         const testSubject = new SingleTargetDrawer(drawerUtilsMock.object, formatterMock.object);
 
-        const drawerInfo: IDrawerInitData<IHtmlElementAxeResults> = {
+        const drawerInfo: DrawerInitData<HtmlElementAxeResults> = {
             data: [
                 {
                     target: ['body'],
                 },
-            ] as IHtmlElementAxeResults[],
+            ] as HtmlElementAxeResults[],
             featureFlagStoreData: getDefaultFeatureFlagValues(),
         };
 
@@ -114,12 +115,12 @@ describe('SingleTargetDrawer Tests', () => {
 
         const testSubject = new SingleTargetDrawer(drawerUtilsMock.object, formatterMock.object);
 
-        const drawerInfo: IDrawerInitData<IHtmlElementAxeResults> = {
+        const drawerInfo: DrawerInitData<HtmlElementAxeResults> = {
             data: [
                 {
                     target: ['body'],
                 },
-            ] as IHtmlElementAxeResults[],
+            ] as HtmlElementAxeResults[],
             featureFlagStoreData: getDefaultFeatureFlagValues(),
         };
 

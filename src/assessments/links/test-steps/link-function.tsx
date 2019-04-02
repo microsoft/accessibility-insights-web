@@ -7,6 +7,7 @@ import { LinkFunctionPropertyBag } from '../../../common/types/property-bag/ilin
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { title } from '../../../content/strings/application';
+import { TestAutomaticallyPassedNotice } from '../../../content/test/common/test-automatically-passed-notice';
 import * as content from '../../../content/test/links/link-function';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
@@ -15,7 +16,7 @@ import { AssistedTestRecordYourResults } from '../../common/assisted-test-record
 import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { LinksTestStep } from './test-steps';
 
 const LinkFunctionDescription: JSX.Element = (
@@ -24,9 +25,12 @@ const LinkFunctionDescription: JSX.Element = (
 
 const LinkFunctionHowToTest: JSX.Element = (
     <div>
-        For this requirement, {title} highlights anchor elements that are possible custom widgets. These elements don't have an ARIA widget
-        role, but they do have some custom widget markup, such as <Markup.Term>tabindex="-1"</Markup.Term>, an ARIA attribute, a non-widget
-        role, or no <Markup.Term>href</Markup.Term>.
+        <p>
+            For this requirement, {title} highlights anchor elements that are possible custom widgets. These elements don't have an ARIA
+            widget role, but they do have some custom widget markup, such as <Markup.Term>tabindex="-1"</Markup.Term>, an ARIA attribute, a
+            non-widget role, or no <Markup.Term>href</Markup.Term>.
+        </p>
+        <TestAutomaticallyPassedNotice />
         <ol>
             <li>
                 In the target page, examine each highlighted anchor element to verify that it functions as a link (i.e., it navigates to new
@@ -66,7 +70,7 @@ const propertyBagConfig: PropertyBagColumnRendererConfig<LinkFunctionPropertyBag
     },
 ];
 
-export const LinkFunction: TestStep = {
+export const LinkFunction: Requirement = {
     key: LinksTestStep.linkFunction,
     name: 'Link function',
     description: LinkFunctionDescription,
@@ -78,7 +82,7 @@ export const LinkFunction: TestStep = {
         {
             key: 'link-function-info',
             name: 'Link info',
-            onRender: PropertyBagColumnRendererFactory.get<LinkFunctionPropertyBag>(propertyBagConfig),
+            onRender: PropertyBagColumnRendererFactory.getRenderer<LinkFunctionPropertyBag>(propertyBagConfig),
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),

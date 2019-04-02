@@ -3,7 +3,7 @@
 import { map } from 'lodash';
 import * as React from 'react';
 
-import { IAssessmentsProvider } from '../../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../../assessments/types/iassessments-provider';
 import { VisualizationConfiguration } from '../../../common/configs/visualization-configuration-factory';
 import { ManualTestStatus, ManualTestStatusData } from '../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../common/types/visualization-type';
@@ -32,7 +32,7 @@ export class LeftNavLinkBuilder {
     public buildOverviewLink(
         deps: OverviewLinkBuilderDeps,
         onLinkClick: onBaseLeftNavItemClick,
-        assessmentsProvider: IAssessmentsProvider,
+        assessmentsProvider: AssessmentsProvider,
         assessmentsData: DictionaryStringTo<ManualTestStatusData>,
         index: number,
     ): BaseLeftNavLink {
@@ -61,7 +61,7 @@ export class LeftNavLinkBuilder {
     public buildAssessmentTestLinks(
         deps: AssessmentLinkBuilderDeps,
         onLinkClick: onBaseLeftNavItemClick,
-        assessmentsProvider: IAssessmentsProvider,
+        assessmentsProvider: AssessmentsProvider,
         assessmentsData: DictionaryStringTo<ManualTestStatusData>,
         startingIndex: number,
     ): BaseLeftNavLink[] {
@@ -80,7 +80,7 @@ export class LeftNavLinkBuilder {
 
             const baselink = this.buildLink(
                 name,
-                VisualizationType[assessment.type],
+                VisualizationType[assessment.visualizationType],
                 index,
                 (l, ri) => <TestViewLeftNavLink link={l} renderIcon={ri} />,
                 onLinkClick,
@@ -102,14 +102,14 @@ export class LeftNavLinkBuilder {
     public buildVisualizationConfigurationLink(
         configuration: VisualizationConfiguration,
         onLinkClick: onBaseLeftNavItemClick,
-        type: VisualizationType,
+        visualizationType: VisualizationType,
         index: number,
     ): BaseLeftNavLink {
         const displayableData = configuration.displayableData;
 
         const link = this.buildLink(
             displayableData.title,
-            VisualizationType[type],
+            VisualizationType[visualizationType],
             index,
             (l, ri) => <TestViewLeftNavLink link={l} renderIcon={ri} />,
             onLinkClick,

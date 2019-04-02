@@ -4,12 +4,12 @@ import { autobind } from '@uifabric/utilities';
 
 import { StoreNames } from '../../../common/stores/store-names';
 import { ModifiedCommandsTelemetryData, SHORTCUT_MODIFIED } from '../../../common/telemetry-events';
-import { ICommandStoreData } from '../../../common/types/store-data/icommand-store-data';
+import { CommandStoreData } from '../../../common/types/store-data/command-store-data';
 import { CommandActions, GetCommandsPayload } from '../../actions/command-actions';
 import { TelemetryEventHandler } from '../../telemetry/telemetry-event-handler';
-import { BaseStore } from '../base-store';
+import { BaseStoreImpl } from '../base-store-impl';
 
-export class CommandStore extends BaseStore<ICommandStoreData> {
+export class CommandStore extends BaseStoreImpl<CommandStoreData> {
     private commandActions: CommandActions;
     private telemetryEventHandler: TelemetryEventHandler;
 
@@ -20,8 +20,8 @@ export class CommandStore extends BaseStore<ICommandStoreData> {
         this.telemetryEventHandler = telemetryEventHandler;
     }
 
-    public getDefaultState(): ICommandStoreData {
-        const defaultValues: ICommandStoreData = {
+    public getDefaultState(): CommandStoreData {
+        const defaultValues: CommandStoreData = {
             commands: [],
         };
 

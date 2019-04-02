@@ -9,16 +9,16 @@ import {
     IGetMessageGenerator,
     IMessageGenerator,
 } from '../../../../assessments/assessment-default-message-generator';
-import { AssessmentsProvider } from '../../../../assessments/assessments-provider';
+import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
 import { Assessment } from '../../../../assessments/types/iassessment';
-import { IAssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
 import { IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
-import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';
+import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
 import { AssessmentReportModelBuilder } from '../../../../DetailsView/reports/assessment-report-model-builder';
 import { AssessmentReportBuilderTestHelper } from './assessment-report-builder-test-helper';
 
 describe('AssessmentReportModelBuilderTest', () => {
-    const assessmentsProviderMock = Mock.ofType<IAssessmentsProvider>(AssessmentsProvider);
+    const assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(AssessmentsProviderImpl);
     const getDefaultMessageStub: IGetMessageGenerator = generator => (map, step) => null;
     const getDefaultMessageMock = Mock.ofInstance(getDefaultMessageStub);
     const assessments = AssessmentReportBuilderTestHelper.getAssessmentProviderAll(getDefaultMessageMock.object);
@@ -42,7 +42,7 @@ describe('AssessmentReportModelBuilderTest', () => {
 
     assessmentsProviderMock.setup(ap => ap.all()).returns(() => assessments);
 
-    const tabStoreData: ITabStoreData = {
+    const tabStoreData: TabStoreData = {
         url: 'url',
         title: 'title',
         id: -1,

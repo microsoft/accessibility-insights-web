@@ -7,6 +7,7 @@ import { CuesPropertyBag } from '../../../common/types/property-bag/icues';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
+import { TestAutomaticallyPassedNotice } from '../../../content/test/common/test-automatically-passed-notice';
 import * as content from '../../../content/test/native-widgets/cues';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
@@ -15,7 +16,7 @@ import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { NativeWidgetsTestStep } from './test-steps';
 
 const description: JSX.Element = <span>If a native widget adopts certain interactive states, it must provide appropriate cues.</span>;
@@ -33,6 +34,7 @@ const howToTest: JSX.Element = (
             <Markup.NonBreakingSpace />
             <Markup.Tag tagName="textarea" isBold={true} /> elements.
         </p>
+        <TestAutomaticallyPassedNotice />
         <ol>
             <li>
                 In the target page, interact with each native widget to determine whether it adopts any of these states:
@@ -85,7 +87,7 @@ const propertyBagConfig: PropertyBagColumnRendererConfig<CuesPropertyBag>[] = [
     },
 ];
 
-export const Cues: TestStep = {
+export const Cues: Requirement = {
     key: NativeWidgetsTestStep.cues,
     name: 'Cues',
     description,
@@ -97,7 +99,7 @@ export const Cues: TestStep = {
         {
             key: 'cues-info',
             name: 'Cues',
-            onRender: PropertyBagColumnRendererFactory.get<CuesPropertyBag>(propertyBagConfig),
+            onRender: PropertyBagColumnRendererFactory.getRenderer<CuesPropertyBag>(propertyBagConfig),
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),

@@ -3,7 +3,7 @@
 import { ColumnActionsMode, IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
-import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { AssessmentNavState } from '../../common/types/store-data/iassessment-result-data';
 import { MasterCheckBoxConfigProvider } from '../handlers/master-checkbox-config-provider';
 import { AssessmentInstanceDetailsColumn } from './assessment-instance-details-column';
@@ -25,7 +25,7 @@ export class AssessmentTableColumnConfigHandler {
     };
 
     private masterCheckBoxConfigProvider: MasterCheckBoxConfigProvider;
-    private assessmentProvider: IAssessmentsProvider;
+    private assessmentProvider: AssessmentsProvider;
 
     private readonly defaultCapturedInstanceTableColumnConfigs: IColumn[] = [
         {
@@ -50,7 +50,7 @@ export class AssessmentTableColumnConfigHandler {
         },
     ];
 
-    constructor(masterCheckBoxConfigProvider: MasterCheckBoxConfigProvider, assessmentProvider: IAssessmentsProvider) {
+    constructor(masterCheckBoxConfigProvider: MasterCheckBoxConfigProvider, assessmentProvider: AssessmentsProvider) {
         this.masterCheckBoxConfigProvider = masterCheckBoxConfigProvider;
         this.assessmentProvider = assessmentProvider;
     }

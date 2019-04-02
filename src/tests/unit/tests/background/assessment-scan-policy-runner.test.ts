@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
 
-import { AssessmentsProvider } from '../../../../assessments/assessments-provider';
+import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
 import { Assessment } from '../../../../assessments/types/iassessment';
 import { AssessmentScanPolicyRunner, IIsAnAssessmentSelected, IScheduleScan } from '../../../../background/assessment-scan-policy-runner';
 import { AssessmentStore } from '../../../../background/stores/assessment-store';
 import { VisualizationStore } from '../../../../background/stores/visualization-store';
-import { IBaseStore } from '../../../../common/istore';
+import { BaseStore } from '../../../../common/base-store';
 import { IAssessmentData, IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
 import { IVisualizationStoreData, TestsEnabledState } from '../../../../common/types/store-data/ivisualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
@@ -23,7 +23,7 @@ describe('AssessmentScanPolicyRunner', () => {
         let storeChangeCallback;
         let assessmentStoreMock: IMock<AssessmentStore>;
         let visualizationStore: IMock<VisualizationStore>;
-        let assessmentProviderMock: IMock<AssessmentsProvider>;
+        let assessmentProviderMock: IMock<AssessmentsProviderImpl>;
         let scheduleScanMock: IMock<IScheduleScan>;
         let getSelectedAssessmentTestMock: IMock<IIsAnAssessmentSelected>;
         let testSubject: AssessmentScanPolicyRunner;
@@ -38,8 +38,8 @@ describe('AssessmentScanPolicyRunner', () => {
             storeChangeCallback = null;
             assessmentStoreMock = Mock.ofType(AssessmentStore, MockBehavior.Strict);
             visualizationStore = Mock.ofType(VisualizationStore, MockBehavior.Strict);
-            assessmentProviderMock = Mock.ofType(AssessmentsProvider, MockBehavior.Strict);
-            getSelectedAssessmentTestMock = Mock.ofInstance((testData: TestsEnabledState) => null, MockBehavior.Strict);
+            assessmentProviderMock = Mock.ofType(AssessmentsProviderImpl, MockBehavior.Strict);
+            getSelectedAssessmentTestMock = Mock.ofInstance((testTestData: TestsEnabledState) => null, MockBehavior.Strict);
             scheduleScanMock = Mock.ofInstance((test: VisualizationType, step: string, tabId: number) => null, MockBehavior.Strict);
             testSubject = new AssessmentScanPolicyRunner(
                 assessmentStoreMock.object,
@@ -142,7 +142,7 @@ describe('AssessmentScanPolicyRunner', () => {
                         getAssessmentData: getAssessmentDataMock.object,
                     };
                 },
-                type: testType,
+                visualizationType: testType,
             } as Assessment;
             const getAssessmentDataMock = Mock.ofInstance((data: IAssessmentStoreData) => null);
             setupStoreMockForCallback(assessmentStoreMock);
@@ -187,7 +187,7 @@ describe('AssessmentScanPolicyRunner', () => {
             getSelectedAssessmentTestMock.verifyAll();
         }
 
-        function setupStoreMockForCallback(storeMock: IMock<IBaseStore<any>>): void {
+        function setupStoreMockForCallback(storeMock: IMock<BaseStore<any>>): void {
             storeMock
                 .setup(sm => sm.addChangedListener(It.isAny()))
                 .callback(listener => {
@@ -197,14 +197,14 @@ describe('AssessmentScanPolicyRunner', () => {
                 .verifiable();
         }
 
-        function setupStoreGetState<T>(storeMock: IMock<IBaseStore<T>>, state: T): void {
+        function setupStoreGetState<T>(storeMock: IMock<BaseStore<T>>, state: T): void {
             storeMock
                 .setup(sm => sm.getState())
                 .returns(() => state)
                 .verifiable();
         }
 
-        function setupAssessmentsProvider(mock: IMock<AssessmentsProvider>, config: Assessment): void {
+        function setupAssessmentsProvider(mock: IMock<AssessmentsProviderImpl>, config: Assessment): void {
             mock.setup(m => m.forType(testType))
                 .returns(() => config)
                 .verifiable();

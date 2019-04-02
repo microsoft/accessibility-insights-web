@@ -4,8 +4,8 @@ import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
 
 import { AssessmentDefaultMessageGenerator } from '../../assessments/assessment-default-message-generator';
-import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
-import { TestStep, VisualHelperToggleConfig } from '../../assessments/types/test-step';
+import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
+import { Requirement, VisualHelperToggleConfig } from '../../assessments/types/requirement';
 import { CollapsibleComponent } from '../../common/components/collapsible-component';
 import {
     AssessmentNavState,
@@ -26,14 +26,14 @@ export interface TestStepViewProps {
     isStepEnabled: boolean;
     isStepScanned: boolean;
     isScanning: boolean;
-    testStep: TestStep;
+    testStep: Requirement;
     renderStaticContent: () => JSX.Element;
     instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance>;
     assessmentNavState: AssessmentNavState;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
     manualTestStepResultMap: DictionaryStringTo<IManualTestStepResult>;
     actionMessageCreator: DetailsViewActionMessageCreator;
-    assessmentsProvider: IAssessmentsProvider;
+    assessmentsProvider: AssessmentsProvider;
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
 }
 
@@ -97,7 +97,7 @@ export class TestStepView extends React.Component<TestStepViewProps> {
             return <div role="alert" aria-live="polite" aria-label="Scan Complete" />;
         }
     }
-    private getSelectedStep(): Readonly<TestStep> {
+    private getSelectedStep(): Readonly<Requirement> {
         return this.props.assessmentsProvider.getStep(
             this.props.assessmentNavState.selectedTestType,
             this.props.assessmentNavState.selectedTestStep,

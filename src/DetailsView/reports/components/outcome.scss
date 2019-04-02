@@ -48,13 +48,13 @@ $outcome-fail-summary-color: $negative-outcome;
     }
     .count {
         font-family: $fontFamily;
-        line-height: $outcome-chip-icon-size;
+        line-height: $outcome-chip-icon-size - 2;
         font-size: 11px;
         border-radius: 0 8px 8px 0;
         padding: 0 6px 0 10px;
         font-weight: 700;
         margin-left: -5px;
-        height: $outcome-chip-icon-size;
+        height: $outcome-chip-icon-size - 2;
     }
     &.outcome-chip-pass {
         @include check-icon-styles($outcome-chip-icon-size, 1px);

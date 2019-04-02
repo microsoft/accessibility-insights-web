@@ -13,7 +13,9 @@ function testTextContrast(
     windowMock: IGlobalMock<typeof window.getComputedStyle>,
     dataSetterMock: IMock<(data) => void>,
 ): void {
-    windowMock.setup(m => m(It.isAny())).returns(node => ({ getPropertyValue: property => node[property] } as CSSStyleDeclaration));
+    windowMock
+        .setup(m => m(It.isAny()))
+        .returns(currentNode => ({ getPropertyValue: property => currentNode[property] } as CSSStyleDeclaration));
 
     dataSetterMock.setup(d => d(expectedData));
 

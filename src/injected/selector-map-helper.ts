@@ -2,31 +2,31 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 
-import { IAssessmentsProvider } from '../assessments/types/iassessments-provider';
-import { IBaseStore } from '../common/istore';
+import { AssessmentsProvider } from '../assessments/types/iassessments-provider';
+import { BaseStore } from '../common/base-store';
 import { ManualTestStatus } from '../common/types/manual-test-status';
 import { IAssessmentStoreData, IGeneratedAssessmentInstance } from '../common/types/store-data/iassessment-result-data';
 import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryStringTo } from '../types/common-types';
-import { IAssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
+import { AssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
 
 export class SelectorMapHelper {
-    private scanResultStore: IBaseStore<IVisualizationScanResultData>;
-    private assessmentStore: IBaseStore<IAssessmentStoreData>;
-    private assessmentsProvider: IAssessmentsProvider;
+    private scanResultStore: BaseStore<IVisualizationScanResultData>;
+    private assessmentStore: BaseStore<IAssessmentStoreData>;
+    private assessmentsProvider: AssessmentsProvider;
 
     constructor(
-        scanResultStore: IBaseStore<IVisualizationScanResultData>,
-        assessmentStore: IBaseStore<IAssessmentStoreData>,
-        assessmentsProvider: IAssessmentsProvider,
+        scanResultStore: BaseStore<IVisualizationScanResultData>,
+        assessmentStore: BaseStore<IAssessmentStoreData>,
+        assessmentsProvider: AssessmentsProvider,
     ) {
         this.scanResultStore = scanResultStore;
         this.assessmentStore = assessmentStore;
         this.assessmentsProvider = assessmentsProvider;
     }
 
-    public getSelectorMap(visualizationType: VisualizationType): DictionaryStringTo<IAssessmentVisualizationInstance> {
+    public getSelectorMap(visualizationType: VisualizationType): DictionaryStringTo<AssessmentVisualizationInstance> {
         let selectorMap = {};
 
         if (this.isAdHocVisualization(visualizationType)) {
@@ -45,7 +45,7 @@ export class SelectorMapHelper {
         return selectorMap;
     }
 
-    private isAdHocVisualization(type: VisualizationType): boolean {
+    private isAdHocVisualization(visualizationType: VisualizationType): boolean {
         return _.includes(
             [
                 VisualizationType.Issues,
@@ -54,15 +54,15 @@ export class SelectorMapHelper {
                 VisualizationType.TabStops,
                 VisualizationType.Color,
             ],
-            type,
+            visualizationType,
         );
     }
 
-    private getAdHocVisualizationSelectorMap(type: VisualizationType): DictionaryStringTo<IAssessmentVisualizationInstance> {
+    private getAdHocVisualizationSelectorMap(visualizationType: VisualizationType): DictionaryStringTo<AssessmentVisualizationInstance> {
         let selectorMap = {};
         const visulizaitonScanResultState = this.scanResultStore.getState();
 
-        switch (type) {
+        switch (visualizationType) {
             case VisualizationType.Issues:
                 selectorMap = visulizaitonScanResultState.issues.selectedAxeResultsMap;
                 break;
@@ -86,12 +86,12 @@ export class SelectorMapHelper {
     private getFilteredSelectorMap<T, K>(
         generatedAssessmentInstancesMap: DictionaryStringTo<IGeneratedAssessmentInstance<T, K>>,
         testStep: string,
-    ): DictionaryStringTo<IAssessmentVisualizationInstance> {
+    ): DictionaryStringTo<AssessmentVisualizationInstance> {
         if (generatedAssessmentInstancesMap == null) {
             return null;
         }
 
-        const selectorMap: DictionaryStringTo<IAssessmentVisualizationInstance> = {};
+        const selectorMap: DictionaryStringTo<AssessmentVisualizationInstance> = {};
         Object.keys(generatedAssessmentInstancesMap).forEach(identifier => {
             const instance = generatedAssessmentInstancesMap[identifier];
             const stepResult = instance.testStepResults[testStep as keyof K];

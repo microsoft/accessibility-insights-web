@@ -6,7 +6,7 @@ import { getDefaultFeatureFlagValues } from '../../../../common/feature-flags';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { DrawingController, VisualizationWindowMessage } from '../../../../injected/drawing-controller';
 import { DrawingInitiator } from '../../../../injected/drawing-initiator';
-import { IAssessmentVisualizationInstance } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
+import { AssessmentVisualizationInstance } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { PropertyBags, VisualizationInstanceProcessorCallback } from '../../../../injected/visualization-instance-processor';
 import { DictionaryStringTo } from '../../../../types/common-types';
 
@@ -31,9 +31,9 @@ describe('DrawingInitiatorTest', () => {
     }
 
     test('enableVisualization', () => {
-        const type = -1 as VisualizationType;
+        const visualizationType = -1 as VisualizationType;
         const configId = 'id';
-        const selectorMap: DictionaryStringTo<IAssessmentVisualizationInstance> = {
+        const selectorMap: DictionaryStringTo<AssessmentVisualizationInstance> = {
             key1: {
                 target: ['element1'],
                 isVisible: true,
@@ -55,7 +55,7 @@ describe('DrawingInitiatorTest', () => {
         };
 
         const expectedvisualizationMessage: VisualizationWindowMessage = {
-            visualizationType: type,
+            visualizationType: visualizationType,
             isEnabled: true,
             elementResults: [
                 {
@@ -90,16 +90,16 @@ describe('DrawingInitiatorTest', () => {
             })
             .verifiable();
 
-        testObject.enableVisualization(type, getDefaultFeatureFlagValues(), selectorMap, configId, processorMock.object);
+        testObject.enableVisualization(visualizationType, getDefaultFeatureFlagValues(), selectorMap, configId, processorMock.object);
 
         verifyAll();
     });
 
     test('disableVisualization', () => {
-        const type = -1 as VisualizationType;
+        const visualizationType = -1 as VisualizationType;
         const configId = 'id';
         const expectedvisualizationMessage: VisualizationWindowMessage = {
-            visualizationType: type,
+            visualizationType: visualizationType,
             isEnabled: false,
             featureFlagStoreData: getDefaultFeatureFlagValues(),
             configId: configId,
@@ -112,29 +112,29 @@ describe('DrawingInitiatorTest', () => {
             })
             .verifiable();
 
-        testObject.disableVisualization(type, getDefaultFeatureFlagValues(), configId);
+        testObject.disableVisualization(visualizationType, getDefaultFeatureFlagValues(), configId);
 
         verifyAll();
     });
 
     test('enableVisualiztion: selectorMap is null', () => {
-        const type = -1 as VisualizationType;
+        const visualizationType = -1 as VisualizationType;
         const step = null;
         const featureFlagStoreData = {};
 
         drawingControllerMock.setup(x => x.processRequest(It.isAny())).verifiable(Times.never());
 
-        testObject.enableVisualization(type, featureFlagStoreData, null, step, processorMock.object);
+        testObject.enableVisualization(visualizationType, featureFlagStoreData, null, step, processorMock.object);
 
         verifyAll();
     });
 
     test('enableVisualization: selectorMap is empty', () => {
-        const type = -1 as VisualizationType;
+        const visualizationType = -1 as VisualizationType;
         const configId = 'id';
 
         const expectedvisualizationMessage: VisualizationWindowMessage = {
-            visualizationType: type,
+            visualizationType: visualizationType,
             isEnabled: true,
             elementResults: [],
             featureFlagStoreData: getDefaultFeatureFlagValues(),
@@ -148,7 +148,7 @@ describe('DrawingInitiatorTest', () => {
             })
             .verifiable();
 
-        testObject.enableVisualization(type, getDefaultFeatureFlagValues(), {}, configId, processorMock.object);
+        testObject.enableVisualization(visualizationType, getDefaultFeatureFlagValues(), {}, configId, processorMock.object);
 
         verifyAll();
     });

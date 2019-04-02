@@ -18,9 +18,9 @@ import {
 } from '../actions/action-payloads';
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationActions } from '../actions/visualization-actions';
-import { BaseStore } from './base-store';
+import { BaseStoreImpl } from './base-store-impl';
 
-export class VisualizationStore extends BaseStore<IVisualizationStoreData> {
+export class VisualizationStore extends BaseStoreImpl<IVisualizationStoreData> {
     private visualizationActions: VisualizationActions;
     private tabActions: TabActions;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
@@ -107,10 +107,10 @@ export class VisualizationStore extends BaseStore<IVisualizationStoreData> {
         const scanData = configuration.getStoreData(this.state.tests);
 
         if (this.isAssessment(configuration)) {
-            const scanData = configuration.getStoreData(this.state.tests) as IAssessmentScanData;
-            Object.keys(scanData.stepStatus).forEach(step => {
-                if (scanData.enabled) {
-                    configuration.disableTest(scanData, step);
+            const assessmentScanData = configuration.getStoreData(this.state.tests) as IAssessmentScanData;
+            Object.keys(assessmentScanData.stepStatus).forEach(step => {
+                if (assessmentScanData.enabled) {
+                    configuration.disableTest(assessmentScanData, step);
                     isStateChanged = true;
                 }
             });
@@ -173,7 +173,7 @@ export class VisualizationStore extends BaseStore<IVisualizationStoreData> {
         this.disableAssessmentVisualizationsWithoutEmitting();
         const scanData = configuration.getStoreData(this.state.tests);
 
-        const step = (payload as AssessmentToggleActionPayload).step;
+        const step = (payload as AssessmentToggleActionPayload).requirement;
         const alreadyEnabled = configuration.getTestStatus(scanData, step);
         if (!alreadyEnabled) {
             if (!skipScanning) {

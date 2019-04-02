@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash/index';
+import { isEmpty } from 'lodash';
 import * as React from 'react';
-
 import { AdHocTestkeys } from '../../common/configs/adhoc-test-keys';
 import { TestMode } from '../../common/configs/test-mode';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration-factory';
@@ -45,7 +44,7 @@ export const IssuesAdHocVisualization: VisualizationConfiguration = {
     getIdentifier: () => AdHocTestkeys.Issues,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
     getNotificationMessage: selectorMap =>
-        _.isEmpty(selectorMap) ? 'Congratulations!\n\nAutomated checks found no issues on this page.' : null,
+        isEmpty(selectorMap) ? 'Congratulations!\n\nAutomated checks found no issues on this page.' : null,
     getDrawer: provider => provider.createIssuesDrawer(),
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,

@@ -1,20 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { AssessmentsProvider } from '../../../../assessments/assessments-provider';
-import { IAssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
+import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
+import { AssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
 import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
 import { ScopingStore } from '../../../../background/stores/global/scoping-store';
 import { VisualizationStore } from '../../../../background/stores/visualization-store';
+import { BaseStore } from '../../../../common/base-store';
 import {
     VisualizationConfiguration,
     VisualizationConfigurationFactory,
 } from '../../../../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../../../../common/enum-helper';
-import { IBaseStore } from '../../../../common/istore';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 import { IScanData, IVisualizationStoreData, TestsEnabledState } from '../../../../common/types/store-data/ivisualization-store-data';
-import { IScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
+import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { AnalyzerController } from '../../../../injected/analyzer-controller';
 import { AnalyzerStateUpdateHandler } from '../../../../injected/analyzer-state-update-handler';
@@ -27,7 +27,7 @@ import { VisualizationStoreDataBuilder } from '../../common/visualization-store-
 
 describe('AnalyzerControllerTests', () => {
     let visualizationStoreMock: IMock<VisualizationStore>;
-    let scopingStoreMock: IMock<IBaseStore<IScopingStoreData>>;
+    let scopingStoreMock: IMock<BaseStore<ScopingStoreData>>;
     let featureFlagStoreStoreMock: IMock<FeatureFlagStore>;
     let testType: VisualizationType;
     let getStoreDataMock: IMock<(data: TestsEnabledState) => IScanData>;
@@ -40,13 +40,13 @@ describe('AnalyzerControllerTests', () => {
 
     let visualizationStoreState: IVisualizationStoreData;
     let featureFlagStoreState: FeatureFlagStoreData;
-    let scopingStoreState: IScopingStoreData;
+    let scopingStoreState: ScopingStoreData;
     let analyzerProviderStrictMock: IMock<AnalyzerProvider>;
     let analyzerMock: IMock<Analyzer>;
     let tabStopsListenerMock: IMock<TabStopsListener>;
     let sendMessageMock: IMock<(message) => void>;
     let analyzerStateUpdateHandlerStrictMock: IMock<AnalyzerStateUpdateHandler>;
-    let assessmentsMock: IMock<IAssessmentsProvider>;
+    let assessmentsMock: IMock<AssessmentsProvider>;
     let testObject: AnalyzerController;
     let teardown: (id: string) => void;
     let startScan: (id: string) => void;
@@ -70,7 +70,7 @@ describe('AnalyzerControllerTests', () => {
 
         tabStopsListenerMock = Mock.ofType(TabStopsListener);
         visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
-        assessmentsMock = Mock.ofType(AssessmentsProvider);
+        assessmentsMock = Mock.ofType(AssessmentsProviderImpl);
         visualizationStoreMock = Mock.ofType<VisualizationStore>();
         featureFlagStoreStoreMock = Mock.ofType<FeatureFlagStore>();
         scopingStoreMock = Mock.ofType<ScopingStore>(ScopingStore);
@@ -228,9 +228,12 @@ describe('AnalyzerControllerTests', () => {
             .verifiable(Times.never());
     }
 
-    function setupVisualizationConfigurationFactory(type: VisualizationType, returnedConfig: VisualizationConfiguration): void {
+    function setupVisualizationConfigurationFactory(
+        visualizationType: VisualizationType,
+        returnedConfig: VisualizationConfiguration,
+    ): void {
         visualizationConfigurationFactoryMock
-            .setup(v => v.getConfiguration(type))
+            .setup(v => v.getConfiguration(visualizationType))
             .returns((visType: VisualizationType) => {
                 return returnedConfig;
             });

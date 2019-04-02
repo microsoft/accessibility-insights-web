@@ -9,7 +9,7 @@ import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/compo
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { HeadingsTestStep } from './test-steps';
 
 const missingHeadingsDescription: JSX.Element = (
@@ -31,7 +31,7 @@ const missingHeadingsHowToTest: JSX.Element = (
     </div>
 );
 
-export const NoMissingHeadings: TestStep = {
+export const NoMissingHeadings: Requirement = {
     key: HeadingsTestStep.missingHeadings,
     name: 'No missing headings',
     description: missingHeadingsDescription,

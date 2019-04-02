@@ -22,10 +22,10 @@ const gettingStarted: JSX.Element = (
 );
 
 export const ErrorsAssessment = AssessmentBuilder.Manual({
-    type: VisualizationType.ErrorsAssessment,
+    visualizationType: VisualizationType.ErrorsAssessment,
     key,
     title,
     gettingStarted,
     guidance,
-    steps: [ErrorIdentification, ErrorSuggestion, ErrorPrevention],
+    requirements: [ErrorIdentification, ErrorSuggestion, ErrorPrevention],
 });

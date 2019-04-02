@@ -186,7 +186,7 @@ describe('ActionCreatorTest', () => {
         const viewType = null;
         const pivotType = DetailsViewPivotType.allTest;
         const telemetry: DetailsViewOpenTelemetryData = {
-            detailsView: VisualizationType[viewType],
+            selectedTest: VisualizationType[viewType],
             triggeredBy: 'keypress',
             source: testSource,
         };
@@ -217,7 +217,7 @@ describe('ActionCreatorTest', () => {
         const viewType = VisualizationType.Headings;
         const pivotType = DetailsViewPivotType.allTest;
         const telemetry: DetailsViewOpenTelemetryData = {
-            detailsView: VisualizationType[viewType],
+            selectedTest: VisualizationType[viewType],
             triggeredBy: 'keypress',
             source: testSource,
         };
@@ -258,7 +258,7 @@ describe('ActionCreatorTest', () => {
         const viewType = VisualizationType.Issues;
         const pivotType = DetailsViewPivotType.fastPass;
         const telemetry: DetailsViewOpenTelemetryData = {
-            detailsView: VisualizationType[viewType],
+            selectedTest: VisualizationType[viewType],
             triggeredBy: 'keypress',
             source: testSource,
         };
@@ -299,7 +299,7 @@ describe('ActionCreatorTest', () => {
         const viewType = VisualizationType.Color;
         const pivotType = DetailsViewPivotType.allTest;
         const telemetry: DetailsViewOpenTelemetryData = {
-            detailsView: VisualizationType[viewType],
+            selectedTest: VisualizationType[viewType],
             triggeredBy: 'keypress',
             source: testSource,
         };
@@ -341,7 +341,7 @@ describe('ActionCreatorTest', () => {
         const viewType = VisualizationType.Landmarks;
         const pivotType = DetailsViewPivotType.allTest;
         const telemetry: DetailsViewOpenTelemetryData = {
-            detailsView: VisualizationType[viewType],
+            selectedTest: VisualizationType[viewType],
             triggeredBy: 'keypress',
             source: testSource,
         };
@@ -383,7 +383,7 @@ describe('ActionCreatorTest', () => {
         const viewType = VisualizationType.HeadingsAssessment;
         const pivotType = DetailsViewPivotType.assessment;
         const telemetry: DetailsViewOpenTelemetryData = {
-            detailsView: VisualizationType[viewType],
+            selectedTest: VisualizationType[viewType],
             triggeredBy: 'keypress',
             source: testSource,
         };
@@ -538,19 +538,6 @@ describe('ActionCreatorTest', () => {
         builder.verifyAll();
     });
 
-    test('registerCallback for onSendTelemetry', () => {
-        const payload = { eventName: 'launch-panel/open', telemetry: {} };
-        const args = [payload, 1];
-        const builder = new ActionCreatorValidator()
-            .setupRegistrationCallback(Messages.Telemetry.Send, args)
-            .setupTelemetrySend('launch-panel/open', payload, 1);
-
-        const actionCreator = builder.buildActionCreator();
-        actionCreator.registerCallbacks();
-
-        builder.verifyAll();
-    });
-
     test('registerCallback for tabbed element added', () => {
         const tabbedElement: AddTabbedElementPayload = {
             tabbedElements: [
@@ -630,7 +617,7 @@ describe('ActionCreatorTest', () => {
             detailsViewType: viewType,
             pivotType: pivotType,
             telemetry: {
-                detailsView: VisualizationType[viewType],
+                selectedTest: VisualizationType[viewType],
                 triggeredBy: 'mouseclick',
                 source: testSource,
             },
@@ -792,7 +779,7 @@ describe('ActionCreatorTest', () => {
         const payload: ChangeInstanceStatusPayload = {
             test: VisualizationType.HeadingsAssessment,
             status: null,
-            step: null,
+            requirement: null,
             selector: null,
         };
         const disableActionName = 'disableVisualization';
@@ -801,7 +788,7 @@ describe('ActionCreatorTest', () => {
             .setupRegistrationCallback(Messages.Assessment.StartOver, [payload, tabId])
             .setupActionOnVisualizationActions(disableActionName)
             .setupVisualizationActionWithInvokeParameter(disableActionName, payload.test)
-            .setupTelemetrySend(TelemetryEvents.START_OVER_ASSESSMENT, payload, 1);
+            .setupTelemetrySend(TelemetryEvents.START_OVER_TEST, payload, 1);
         const actionCreator = validator.buildActionCreator();
 
         actionCreator.registerCallbacks();
@@ -815,7 +802,7 @@ describe('ActionCreatorTest', () => {
 
         const validator = new ActionCreatorValidator()
             .setupRegistrationCallback(Messages.Assessment.CancelStartOver, [payload, tabId])
-            .setupTelemetrySend(TelemetryEvents.CANCEL_START_OVER_ASSESSMENT, payload, tabId);
+            .setupTelemetrySend(TelemetryEvents.CANCEL_START_OVER_TEST, payload, tabId);
 
         const actionCreator = validator.buildActionCreator();
 
@@ -829,7 +816,7 @@ describe('ActionCreatorTest', () => {
         const payload: ChangeInstanceStatusPayload = {
             test: VisualizationType.HeadingsAssessment,
             status: null,
-            step: null,
+            requirement: null,
             selector: null,
         };
         const disableActionName = 'disableAssessmentVisualizations';
@@ -838,7 +825,7 @@ describe('ActionCreatorTest', () => {
             .setupRegistrationCallback(Messages.Assessment.StartOverAllAssessments, [payload, tabId])
             .setupActionOnVisualizationActions(disableActionName)
             .setupVisualizationActionWithInvokeParameter(disableActionName, null)
-            .setupTelemetrySend(TelemetryEvents.START_OVER_ALL_ASSESSMENTS, payload, 1);
+            .setupTelemetrySend(TelemetryEvents.START_OVER_ASSESSMENT, payload, 1);
         const actionCreator = validator.buildActionCreator();
 
         actionCreator.registerCallbacks();
@@ -852,8 +839,26 @@ describe('ActionCreatorTest', () => {
 
         const validator = new ActionCreatorValidator()
             .setupRegistrationCallback(Messages.Assessment.CancelStartOverAllAssessments, [payload, tabId])
-            .setupTelemetrySend(TelemetryEvents.CANCEL_START_OVER_ALL_ASSESSMENTS, payload, tabId);
+            .setupTelemetrySend(TelemetryEvents.CANCEL_START_OVER_ASSESSMENT, payload, tabId);
 
+        const actionCreator = validator.buildActionCreator();
+
+        actionCreator.registerCallbacks();
+
+        validator.verifyAll();
+    });
+
+    test('registerCallback for onEnableVisualHelper', () => {
+        const tabId = 1;
+        const payload: ToggleActionPayload = {
+            test: VisualizationType.HeadingsAssessment,
+        };
+        const actionName = 'enableVisualization';
+
+        const validator = new ActionCreatorValidator()
+            .setupRegistrationCallback(Messages.Assessment.EnableVisualHelper, [payload, tabId])
+            .setupActionOnVisualizationActions(actionName)
+            .setupVisualizationActionWithInvokeParameter(actionName, payload);
         const actionCreator = validator.buildActionCreator();
 
         actionCreator.registerCallbacks();
@@ -871,8 +876,7 @@ describe('ActionCreatorTest', () => {
         const validator = new ActionCreatorValidator()
             .setupRegistrationCallback(Messages.Assessment.EnableVisualHelperWithoutScan, [payload, tabId])
             .setupActionOnVisualizationActions(actionName)
-            .setupVisualizationActionWithInvokeParameter(actionName, payload)
-            .setupTelemetrySend(TelemetryEvents.ENABLE_VISUAL_HELPER, payload, 1);
+            .setupVisualizationActionWithInvokeParameter(actionName, payload);
         const actionCreator = validator.buildActionCreator();
 
         actionCreator.registerCallbacks();
@@ -1132,10 +1136,10 @@ class ActionCreatorValidator {
     public setupCreateNotificationByVisualizationKey(
         selectorMap: DictionaryStringTo<any>,
         key: string,
-        type: VisualizationType,
+        visualizationType: VisualizationType,
     ): ActionCreatorValidator {
         this.notificationCreatorStrictMock
-            .setup(x => x.createNotificationByVisualizationKey(selectorMap, key, type))
+            .setup(x => x.createNotificationByVisualizationKey(selectorMap, key, visualizationType))
             .verifiable(Times.once());
 
         return this;

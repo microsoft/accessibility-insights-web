@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IAssessmentVisualizationInstance } from '../../../../../injected/frameCommunicators/html-element-axe-results-helper';
+import { AssessmentVisualizationInstance } from '../../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { FailureInstanceFormatter } from '../../../../../injected/visualization/failure-instance-formatter';
 import { HighlightBoxFormatter } from '../../../../../injected/visualization/highlight-box-formatter';
 
@@ -22,7 +22,7 @@ describe('HighlightBoxFormatterTests', () => {
     });
 
     test('verify highlight box drawer configs with failure box', () => {
-        const data = { isFailure: true } as IAssessmentVisualizationInstance;
+        const data = { isFailure: true } as AssessmentVisualizationInstance;
         const config = testSubject.getDrawerConfiguration(htmlElement, data);
 
         expect(config.failureBoxConfig).toEqual(FailureInstanceFormatter.failureBoxConfig);

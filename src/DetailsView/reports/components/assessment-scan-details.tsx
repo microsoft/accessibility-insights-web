@@ -6,11 +6,11 @@ import { NewTabLink } from '../../../common/components/new-tab-link';
 import { CommentIcon } from '../../../common/icons/comment-icon';
 import { DateIcon } from '../../../common/icons/date-icon';
 import { UrlIcon } from '../../../common/icons/url-icon';
-import { IScanDetailsReportModel } from '../assessment-report-model';
+import { ScanDetailsReportModel } from '../assessment-report-model';
 import { FormattedDate } from './formatted-date';
 
 export interface AssessmentScanDetailsProps {
-    details: IScanDetailsReportModel;
+    details: ScanDetailsReportModel;
     description: string;
 }
 

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TestStepsNav renders assisted tests: getRenderNavLink 1`] = `
-<TestStepLink
+<RequirementLink
   link={
     Object {
       "description": <div>
@@ -75,7 +75,7 @@ exports[`TestStepsNav renders assisted tests: render 1`] = `
 `;
 
 exports[`TestStepsNav renders automated tests: getRenderNavLink 1`] = `
-<TestStepLink
+<RequirementLink
   link={
     Object {
       "description": null,

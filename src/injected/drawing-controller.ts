@@ -3,7 +3,7 @@
 import { autobind } from '@uifabric/utilities';
 import { forOwn } from 'lodash';
 
-import { IAssessmentsProvider } from '../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../assessments/types/iassessments-provider';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../common/enum-helper';
 import { FeatureFlags } from '../common/feature-flags';
@@ -11,30 +11,30 @@ import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-st
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryNumberTo } from '../types/common-types';
 import { HTMLElementUtils } from './../common/html-element-utils';
-import { FrameCommunicator, IMessageRequest } from './frameCommunicators/frame-communicator';
+import { ErrorMessageContent } from './frameCommunicators/error-message-content';
+import { FrameCommunicator, MessageRequest } from './frameCommunicators/frame-communicator';
 import {
+    AssessmentVisualizationInstance,
     HtmlElementAxeResultsHelper,
-    IAssessmentVisualizationInstance,
-    IFrameResult,
+    HTMLIFrameResult,
 } from './frameCommunicators/html-element-axe-results-helper';
 import { FrameMessageResponseCallback } from './frameCommunicators/window-message-handler';
-import { IErrorMessageContent } from './frameCommunicators/window-message-marshaller';
 import { InstanceVisibilityChecker } from './instance-visibility-checker';
+import { Drawer } from './visualization/drawer';
 import { DrawerProvider } from './visualization/drawer-provider';
-import { IDrawer } from './visualization/idrawer';
 
 export interface VisualizationWindowMessage {
     visualizationType: VisualizationType;
     isEnabled: boolean;
     configId: string;
-    elementResults?: IAssessmentVisualizationInstance[];
+    elementResults?: AssessmentVisualizationInstance[];
     featureFlagStoreData?: FeatureFlagStoreData;
 }
 
 export class DrawingController {
     public static readonly triggerVisualizationCommand = 'insights.draw';
 
-    private _drawers: DictionaryNumberTo<IDrawer> = {};
+    private _drawers: DictionaryNumberTo<Drawer> = {};
     private _frameCommunicator: FrameCommunicator;
     private _instanceVisibilityChecker: InstanceVisibilityChecker;
     private _axeResultsHelper: HtmlElementAxeResultsHelper;
@@ -42,7 +42,7 @@ export class DrawingController {
     private _featureFlagStoreData: FeatureFlagStoreData;
     private _visualizationConfigurationFactory: VisualizationConfigurationFactory;
     private _drawerProvider: DrawerProvider;
-    private _assessmentProvider: IAssessmentsProvider;
+    private _assessmentProvider: AssessmentsProvider;
 
     constructor(
         frameCommunicator: FrameCommunicator,
@@ -51,7 +51,7 @@ export class DrawingController {
         htmlElementUtils: HTMLElementUtils,
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
         drawerProvider: DrawerProvider,
-        assessmentProvider: IAssessmentsProvider,
+        assessmentProvider: AssessmentsProvider,
     ) {
         this._frameCommunicator = frameCommunicator;
         this._instanceVisibilityChecker = instanceVisibilityChecker;
@@ -68,10 +68,10 @@ export class DrawingController {
     }
 
     private setupDrawers(): void {
-        EnumHelper.getNumericValues(VisualizationType).forEach((type: VisualizationType) => {
-            const config = this._visualizationConfigurationFactory.getConfiguration(type);
-            if (this._assessmentProvider.isValidType(type)) {
-                const steps = this._assessmentProvider.getStepMap(type);
+        EnumHelper.getNumericValues(VisualizationType).forEach((visualizationType: VisualizationType) => {
+            const config = this._visualizationConfigurationFactory.getConfiguration(visualizationType);
+            if (this._assessmentProvider.isValidType(visualizationType)) {
+                const steps = this._assessmentProvider.getStepMap(visualizationType);
                 Object.keys(steps).forEach(key => {
                     const step = steps[key];
                     const id = config.getIdentifier(step.key);
@@ -100,7 +100,7 @@ export class DrawingController {
     @autobind
     private onTriggerVisualization(
         result: VisualizationWindowMessage,
-        error: IErrorMessageContent,
+        error: ErrorMessageContent,
         sourceWindow: Window,
         responder?: FrameMessageResponseCallback,
     ): void {
@@ -108,7 +108,7 @@ export class DrawingController {
         this.invokeMethodIfExists(responder, null);
     }
 
-    private enableVisualization(visualizationType: VisualizationType, elementResultsByFrames: IFrameResult[], configId: string): void {
+    private enableVisualization(visualizationType: VisualizationType, elementResultsByFrames: HTMLIFrameResult[], configId: string): void {
         if (elementResultsByFrames) {
             for (let pos = 0; pos < elementResultsByFrames.length; pos++) {
                 const resultsForFrame = elementResultsByFrames[pos];
@@ -135,7 +135,7 @@ export class DrawingController {
         }
     }
 
-    private enableVisualizationInCurrentFrame(currentFrameResults: IAssessmentVisualizationInstance[], configId: string): void {
+    private enableVisualizationInCurrentFrame(currentFrameResults: AssessmentVisualizationInstance[], configId: string): void {
         const drawer = this.getDrawer(configId);
         drawer.initialize({
             data: this.getInitialElements(currentFrameResults),
@@ -147,7 +147,7 @@ export class DrawingController {
     private enableVisualizationInIFrames(
         visualizationType: VisualizationType,
         frame: HTMLIFrameElement,
-        frameResults: IAssessmentVisualizationInstance[],
+        frameResults: AssessmentVisualizationInstance[],
         configId: string,
     ): void {
         const message: VisualizationWindowMessage = {
@@ -170,12 +170,12 @@ export class DrawingController {
     private createFrameRequestMessage(
         frame: HTMLIFrameElement,
         message: VisualizationWindowMessage,
-    ): IMessageRequest<VisualizationWindowMessage> {
+    ): MessageRequest<VisualizationWindowMessage> {
         return {
             command: DrawingController.triggerVisualizationCommand,
             frame: frame,
             message: message,
-        } as IMessageRequest<VisualizationWindowMessage>;
+        } as MessageRequest<VisualizationWindowMessage>;
     }
 
     private disableVisualizationInIFrames(visualizationType: VisualizationType, configId: string): void {
@@ -204,7 +204,7 @@ export class DrawingController {
         return this._htmlElementUtils.getAllElementsByTagName('iframe') as NodeListOf<HTMLIFrameElement>;
     }
 
-    private getDrawer(configId: string): IDrawer {
+    private getDrawer(configId: string): Drawer {
         return this._drawers[configId];
     }
 
@@ -214,7 +214,7 @@ export class DrawingController {
         }
     }
 
-    private getInitialElements(currentFrameResults: IAssessmentVisualizationInstance[]): IAssessmentVisualizationInstance[] {
+    private getInitialElements(currentFrameResults: AssessmentVisualizationInstance[]): AssessmentVisualizationInstance[] {
         if (currentFrameResults == null) {
             return null;
         }

@@ -13,10 +13,10 @@ import { AnalyzerProvider } from '../../injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult, ScannerUtils } from '../../injected/scanner-utils';
 import { ScannerRuleInfo } from '../../scanner/scanner-rule-info';
 import { InstanceTableColumn } from '../types/iinstance-table-column';
-import { TestStep } from '../types/test-step';
+import { Requirement } from '../types/requirement';
 import { AutomatedChecksVisualizationToggle } from './automated-checks-visualization-enabled-toggle';
 
-function buildAutomatedCheckStep(rule: ScannerRuleInfo): TestStep {
+function buildAutomatedCheckStep(rule: ScannerRuleInfo): Requirement {
     const infoElement = <span>{rule.help}.</span>;
     const howToTest = (
         <React.Fragment>
@@ -39,7 +39,7 @@ function buildAutomatedCheckStep(rule: ScannerRuleInfo): TestStep {
         return provider.createBatchedRuleAnalyzer(analyzerConfiguration);
     };
 
-    const testStepConfig: TestStep = {
+    const testStepConfig: Requirement = {
         key: rule.id,
         description: infoElement,
         name: rule.id,
@@ -53,7 +53,7 @@ function buildAutomatedCheckStep(rule: ScannerRuleInfo): TestStep {
         getInstanceStatus: getInstanceStatus,
         getInstanceStatusColumns: () => [],
         renderInstanceTableHeader: () => null,
-        renderRequirementDescription: testStepLink => testStepLink.renderRequirementDescriptionWithoutIndex(),
+        renderRequirementDescription: requirementLink => requirementLink.renderRequirementDescriptionWithoutIndex(),
         getDefaultMessage: defaultMessageGenerator => defaultMessageGenerator.getNoFailingInstanceMessage,
         getVisualHelperToggle: props => <AutomatedChecksVisualizationToggle {...props} />,
     };
@@ -61,7 +61,7 @@ function buildAutomatedCheckStep(rule: ScannerRuleInfo): TestStep {
     return testStepConfig;
 }
 
-export function buildTestStepsFromRules(rules: ScannerRuleInfo[]): TestStep[] {
+export function buildTestStepsFromRules(rules: ScannerRuleInfo[]): Requirement[] {
     return rules.map(rule => buildAutomatedCheckStep(rule));
 }
 

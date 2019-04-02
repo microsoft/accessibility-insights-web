@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { StoreHub } from '../../../../background/stores/istore-hub';
+import { BaseStore } from '../../../../common/base-store';
 import { GenericStoreMessageTypes } from '../../../../common/constants/generic-store-messages-types';
-import { IBaseStore } from '../../../../common/istore';
 import { StateDispatcher } from '../../../../common/state-dispatcher';
 import { StoreType } from '../../../../common/types/store-type';
 import { StoreUpdateMessage } from '../../../../common/types/store-update-message';
@@ -19,7 +19,7 @@ describe('StateDispatcherTest', () => {
             payload: newstoreData,
         };
 
-        const storeMock: IMock<IBaseStore<StoreStubData>> = Mock.ofType<IBaseStore<StoreStubData>>();
+        const storeMock: IMock<BaseStore<StoreStubData>> = Mock.ofType<BaseStore<StoreStubData>>();
         const storeHubStrictMock = Mock.ofType<StoreHubStub>(null, MockBehavior.Strict);
         storeHubStrictMock
             .setup(x => x.getAllStores())
@@ -61,7 +61,7 @@ describe('StateDispatcherTest', () => {
         };
 
         let privateDispatcher: Function;
-        const storeMock: IMock<IBaseStore<StoreStubData>> = Mock.ofType<IBaseStore<StoreStubData>>();
+        const storeMock: IMock<BaseStore<StoreStubData>> = Mock.ofType<BaseStore<StoreStubData>>();
         const storeHubMock = Mock.ofType<StoreHubStub>(null, MockBehavior.Strict);
 
         storeHubMock.setup(x => x.getAllStores()).returns(() => [storeMock.object]);
@@ -94,7 +94,7 @@ describe('StateDispatcherTest', () => {
 });
 
 class StoreHubStub implements StoreHub {
-    public getAllStores(): IBaseStore<any>[] {
+    public getAllStores(): BaseStore<any>[] {
         throw new Error('Method not implemented.');
     }
     public getStoreType(): StoreType {

@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 import { StoreNames } from '../../common/stores/store-names';
-import { IInspectStoreData } from '../../common/types/store-data/inspect-store-data';
+import { InspectStoreData } from '../../common/types/store-data/inspect-store-data';
 import { InspectActions, InspectPayload } from '../actions/inspect-actions';
 import { TabActions } from '../actions/tab-actions';
 import { InspectMode } from '../inspect-modes';
-import { BaseStore } from './base-store';
+import { BaseStoreImpl } from './base-store-impl';
 
-export class InspectStore extends BaseStore<IInspectStoreData> {
+export class InspectStore extends BaseStoreImpl<InspectStoreData> {
     private inspectActions: InspectActions;
     private tabActions: TabActions;
 
@@ -19,8 +19,8 @@ export class InspectStore extends BaseStore<IInspectStoreData> {
         this.tabActions = tabActions;
     }
 
-    public getDefaultState(): IInspectStoreData {
-        const defaultValue: IInspectStoreData = {
+    public getDefaultState(): InspectStoreData {
+        const defaultValue: InspectStoreData = {
             inspectMode: InspectMode.off,
             hoveredOverSelector: null,
         };

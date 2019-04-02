@@ -2,14 +2,14 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { IAssessmentsProvider } from '../../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../../assessments/types/iassessments-provider';
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../../../common/types/store-data/iassessment-result-data';
-import { ITabStoreData } from '../../../common/types/store-data/itab-store-data';
+import { TabStoreData } from '../../../common/types/store-data/tab-store-data';
 import { HyperlinkDefinition } from '../../../views/content/content-page';
 import { DetailsViewActionMessageCreator } from '../../actions/details-view-action-message-creator';
-import { IOverviewSummaryReportModel } from '../../reports/assessment-report-model';
+import { OverviewSummaryReportModel } from '../../reports/assessment-report-model';
 import { AssessmentReportSummary } from '../../reports/components/assessment-report-summary';
 import { GetAssessmentSummaryModelFromProviderAndStoreData } from '../../reports/get-assessment-summary-model';
 import { TargetChangeDialog, TargetChangeDialogDeps } from '../target-change-dialog';
@@ -32,17 +32,17 @@ const linkDataSource: HyperlinkDefinition[] = [
 ];
 
 export type OverviewContainerDeps = {
-    assessmentsProvider: IAssessmentsProvider;
+    assessmentsProvider: AssessmentsProvider;
     getAssessmentSummaryModelFromProviderAndStoreData: GetAssessmentSummaryModelFromProviderAndStoreData;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-    assessmentsProviderWithFeaturesEnabled: (assessmentProvider: IAssessmentsProvider, flags: FeatureFlagStoreData) => IAssessmentsProvider;
+    assessmentsProviderWithFeaturesEnabled: (assessmentProvider: AssessmentsProvider, flags: FeatureFlagStoreData) => AssessmentsProvider;
 } & HelpLinkDeps &
     TargetChangeDialogDeps;
 
 export interface OverviewContainerProps {
     deps: OverviewContainerDeps;
     assessmentStoreData: IAssessmentStoreData;
-    tabStoreData: ITabStoreData;
+    tabStoreData: TabStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
 }
 
@@ -57,7 +57,7 @@ export const OverviewContainer = NamedSFC<OverviewContainerProps>('OverviewConta
     };
     const filteredProvider = assessmentsProviderWithFeaturesEnabled(assessmentsProvider, featureFlagStoreData);
 
-    const summaryData: IOverviewSummaryReportModel = getAssessmentSummaryModelFromProviderAndStoreData(
+    const summaryData: OverviewSummaryReportModel = getAssessmentSummaryModelFromProviderAndStoreData(
         filteredProvider,
         assessmentStoreData,
     );

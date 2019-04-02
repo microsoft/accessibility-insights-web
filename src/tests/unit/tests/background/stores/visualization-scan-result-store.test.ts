@@ -7,7 +7,7 @@ import { VisualizationScanResultStore } from '../../../../../background/stores/v
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { ITabbedElementData, IVisualizationScanResultData } from '../../../../../common/types/store-data/ivisualization-scan-result-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { IHtmlElementAxeResults } from '../../../../../injected/scanner-utils';
+import { HtmlElementAxeResults } from '../../../../../injected/scanner-utils';
 import { ScanResults } from '../../../../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
@@ -84,7 +84,7 @@ describe('VisualizationScanResultStoreTest', () => {
             },
         };
 
-        const selectorMap: DictionaryStringTo<IHtmlElementAxeResults> = {
+        const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {
             target1: {
                 target: ['target1'],
                 isVisible: true,
@@ -136,18 +136,18 @@ describe('VisualizationScanResultStoreTest', () => {
             violations: expectedViolations,
         } as ScanResults;
 
-        const type = VisualizationType.Issues;
+        const visualizationType = VisualizationType.Issues;
 
         const initialState = new VisualizationScanResultStoreDataBuilder()
-            .withSelectorMap(type, selectorMap)
+            .withSelectorMap(visualizationType, selectorMap)
             .withFullIdToRuleResultMapForIssues(expectedFullIdToResultMap)
             .withSelectedIdToRuleResultMapForIssues(expectedFullIdToResultMap)
-            .withScanResult(type, scanResult)
+            .withScanResult(visualizationType, scanResult)
             .withIssuesSelectedTargets(selectorMap)
             .build();
 
         const expectedState = new VisualizationScanResultStoreDataBuilder()
-            .withSelectorMap(type, selectorMap)
+            .withSelectorMap(visualizationType, selectorMap)
             .withFullIdToRuleResultMapForIssues(expectedFullIdToResultMap)
             .withSelectedIdToRuleResultMapForIssues(expectedFullIdToResultMap)
             .withIssuesSelectedTargets(selectorMap)
@@ -174,7 +174,7 @@ describe('VisualizationScanResultStoreTest', () => {
     });
 
     test('onScanCompleted', () => {
-        const type = VisualizationType.Issues;
+        const visualizationType = VisualizationType.Issues;
         const initialState = new VisualizationScanResultStoreDataBuilder().build();
 
         const expectedViolations: AxeRule[] = [
@@ -235,7 +235,7 @@ describe('VisualizationScanResultStoreTest', () => {
             },
         };
 
-        const selectorMap: DictionaryStringTo<IHtmlElementAxeResults> = {
+        const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {
             target1: {
                 target: ['target1'],
                 isVisible: true,
@@ -288,10 +288,10 @@ describe('VisualizationScanResultStoreTest', () => {
         } as ScanResults;
 
         const expectedState = new VisualizationScanResultStoreDataBuilder()
-            .withSelectorMap(type, selectorMap)
+            .withSelectorMap(visualizationType, selectorMap)
             .withFullIdToRuleResultMapForIssues(expectedFullIdToResultMap)
             .withSelectedIdToRuleResultMapForIssues(expectedFullIdToResultMap)
-            .withScanResult(type, scanResult)
+            .withScanResult(visualizationType, scanResult)
             .withIssuesSelectedTargets(selectorMap)
             .build();
 
@@ -309,7 +309,7 @@ describe('VisualizationScanResultStoreTest', () => {
     test('onUpdateIssuesSelectedTargets', () => {
         const actionName = 'updateIssuesSelectedTargets';
 
-        const selectorMap: DictionaryStringTo<IHtmlElementAxeResults> = {
+        const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {
             '#heading-1': {
                 ruleResults: {
                     rule1: {
@@ -398,7 +398,7 @@ describe('VisualizationScanResultStoreTest', () => {
             .withIssuesSelectedTargets(selectorMap)
             .build();
 
-        const expectedSelectedMap: DictionaryStringTo<IHtmlElementAxeResults> = {
+        const expectedSelectedMap: DictionaryStringTo<HtmlElementAxeResults> = {
             '#heading-1': {
                 ruleResults: {
                     rule1: {

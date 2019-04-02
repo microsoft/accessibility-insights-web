@@ -3,24 +3,24 @@
 import * as React from 'react';
 
 import { AssessmentDefaultMessageGenerator } from '../../assessments/assessment-default-message-generator';
-import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { AssessmentTestResult } from '../../common/assessment/assessment-test-result';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration-factory';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { IAssessmentStoreData } from '../../common/types/store-data/iassessment-result-data';
-import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
 import { IVisualizationStoreData } from '../../common/types/store-data/ivisualization-store-data';
+import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 import { AssessmentView, AssessmentViewDeps } from './assessment-view';
 
 export type AssessmentTestViewDeps = AssessmentViewDeps & {
-    assessmentsProvider: IAssessmentsProvider;
+    assessmentsProvider: AssessmentsProvider;
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
 };
 
 export interface AssessmentTestViewProps {
     deps: AssessmentTestViewDeps;
-    tabStoreData: ITabStoreData;
+    tabStoreData: TabStoreData;
     assessmentStoreData: IAssessmentStoreData;
     visualizationStoreData: IVisualizationStoreData;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;

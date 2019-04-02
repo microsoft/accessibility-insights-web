@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ExportDialog renders as hidden when not open 1`] = `
+exports[`ExportDialog renders with open false 1`] = `
 <StyledWithResponsiveMode
   dialogContentProps={
     Object {
@@ -39,7 +39,7 @@ exports[`ExportDialog renders as hidden when not open 1`] = `
 </StyledWithResponsiveMode>
 `;
 
-exports[`ExportDialog renders as shown when open 1`] = `
+exports[`ExportDialog renders with open true 1`] = `
 <StyledWithResponsiveMode
   dialogContentProps={
     Object {

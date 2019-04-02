@@ -6,8 +6,8 @@ import { AssessmentDataConverter } from '../../../../background/assessment-data-
 import { UniquelyIdentifiableInstances } from '../../../../background/instance-identifier-generator';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
 import { IAssessmentInstancesMap, ITestStepResult } from '../../../../common/types/store-data/iassessment-result-data';
-import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from '../../../../injected/scanner-utils';
-import { ITabStopEvent } from '../../../../injected/tab-stops-listener';
+import { DecoratedAxeNodeResult, HtmlElementAxeResults } from '../../../../injected/scanner-utils';
+import { TabStopEvent } from '../../../../injected/tab-stops-listener';
 import { DictionaryStringTo } from '../../../../types/common-types';
 
 describe('AssessmentDataConverterTest', () => {
@@ -41,7 +41,7 @@ describe('AssessmentDataConverterTest', () => {
             someProperty: 1,
         };
 
-        const selectorMap: DictionaryStringTo<IHtmlElementAxeResults> = {
+        const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {
             [selectorStub]: {
                 ruleResults: {
                     rule1: {
@@ -75,7 +75,7 @@ describe('AssessmentDataConverterTest', () => {
 
     test(`generateAssessmentInstancesMap: previouslyGeneratedInstances is null,
             new rule result is not false and any data is there.`, () => {
-        const selectorMap: DictionaryStringTo<IHtmlElementAxeResults> = {
+        const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {
             [selectorStub]: {
                 ruleResults: {
                     rule1: {
@@ -126,7 +126,7 @@ describe('AssessmentDataConverterTest', () => {
 
     test(`generateAssessmentInstancesMap: previouslyGeneratedInstances is null,
             new rule result is null (shouldn't happen but covered).`, () => {
-        const selectorMap: DictionaryStringTo<IHtmlElementAxeResults> = {
+        const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {
             [selectorStub]: {
                 ruleResults: {},
                 target: [selectorStub],
@@ -141,7 +141,7 @@ describe('AssessmentDataConverterTest', () => {
 
     test(`generateAssessmentInstancesMap: previouslyGeneratedInstances is not null,
             new rule result is null (shouldn't happen but covered).`, () => {
-        const selectorMap: DictionaryStringTo<IHtmlElementAxeResults> = {
+        const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {
             [selectorStub]: {
                 ruleResults: {},
                 target: [selectorStub],
@@ -162,7 +162,7 @@ describe('AssessmentDataConverterTest', () => {
 
     test(`generateAssessmentInstancesMap: previouslyGeneratedInstances is
             empty/does not match any new instances and any data is not there`, () => {
-        const selectorMap: DictionaryStringTo<IHtmlElementAxeResults> = {
+        const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {
             [selectorStub]: {
                 ruleResults: {
                     rule1: {
@@ -205,7 +205,7 @@ describe('AssessmentDataConverterTest', () => {
     });
 
     test('generateAssessmentInstancesMap: automated check status should be FAIL', () => {
-        const selectorMap: DictionaryStringTo<IHtmlElementAxeResults> = {
+        const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {
             [selectorStub]: {
                 ruleResults: {
                     rule1: {
@@ -249,7 +249,7 @@ describe('AssessmentDataConverterTest', () => {
 
     test('generateAssessmentInstancesMap: previouslyGeneratedInstances contains matching instance', () => {
         const anotherTestStep = 'another test step';
-        const selectorMap: DictionaryStringTo<IHtmlElementAxeResults> = {
+        const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {
             [selectorStub]: {
                 ruleResults: {
                     rule1: {
@@ -326,7 +326,7 @@ describe('AssessmentDataConverterTest', () => {
     test('generateAssessmentInstancesMapForEvents: previouslyGeneratedInstances is null', () => {
         const stepName = 'random step name';
         const previouslyGeneratedInstances = null;
-        const eventStub: ITabStopEvent = {
+        const eventStub: TabStopEvent = {
             target: [selectorStub],
             html: htmlStub,
             timestamp: 99,
@@ -360,7 +360,7 @@ describe('AssessmentDataConverterTest', () => {
     test("generateAssessmentInstancesMapForEvents: previouslyGeneratedInstances exists but doesn't match event", () => {
         const stepName = 'random step name';
 
-        const eventStub: ITabStopEvent = {
+        const eventStub: TabStopEvent = {
             target: [selectorStub],
             html: htmlStub,
             timestamp: 99,
@@ -399,7 +399,7 @@ describe('AssessmentDataConverterTest', () => {
     test('generateAssessmentInstancesMapForEvents: previouslyGeneratedInstances exists and selector matches event', () => {
         const oldTimestamp = 99;
         const newTimestamp = 88;
-        const eventStub: ITabStopEvent = {
+        const eventStub: TabStopEvent = {
             target: [selectorStub],
             html: htmlStub,
             timestamp: newTimestamp,

@@ -3,10 +3,10 @@
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { DevToolStore } from '../../../background/stores/dev-tools-store';
-import { IBaseStore } from '../../../common/istore';
+import { BaseStore } from '../../../common/base-store';
 
 export class StoreMock<TStoreState> {
-    private _store: IMock<IBaseStore<TStoreState>> = Mock.ofType(DevToolStore as any);
+    private _store: IMock<BaseStore<TStoreState>> = Mock.ofType(DevToolStore as any);
 
     private _listeners: Function[] = [];
     public setupGetId(id: string, times: number = 1): StoreMock<TStoreState> {
@@ -55,7 +55,7 @@ export class StoreMock<TStoreState> {
         return this;
     }
 
-    public getObject(): IBaseStore<TStoreState> {
+    public getObject(): BaseStore<TStoreState> {
         return this._store.object;
     }
 

@@ -7,12 +7,12 @@ import { selectFirstRequirementAfterAutomatedChecks } from '../../../../../Detai
 describe('selectFirstRequirementAfterAutomatedChecks', () => {
     const first = 'first';
     const second = 'second';
-    const type = -2112;
+    const assessmentType = -2112;
 
     const getRequirementResults = () => [{ definition: { key: first } }, { definition: { key: second } }];
 
     const actionMessageCreator = {
-        selectTestStep: jest.fn(),
+        selectRequirement: jest.fn(),
     };
 
     const scanningProps = ({
@@ -22,7 +22,7 @@ describe('selectFirstRequirementAfterAutomatedChecks', () => {
         assessmentTestResult: {
             getOutcomeStats: () => ({ pass: 0, incomplete: 1, fail: 0 }),
             getRequirementResults,
-            type,
+            visualizationType: assessmentType,
         },
     } as Partial<AssessmentViewProps>) as AssessmentViewProps;
 
@@ -33,12 +33,12 @@ describe('selectFirstRequirementAfterAutomatedChecks', () => {
         assessmentTestResult: {
             getOutcomeStats: () => ({ pass: 1, incomplete: 0, fail: 0 }),
             getRequirementResults,
-            type,
+            visualizationType: assessmentType,
         },
     } as Partial<AssessmentViewProps>) as AssessmentViewProps;
 
     beforeEach(() => {
-        actionMessageCreator.selectTestStep.mockClear();
+        actionMessageCreator.selectRequirement.mockClear();
     });
 
     const testObject = selectFirstRequirementAfterAutomatedChecks.component.onAssessmentViewUpdate;
@@ -46,24 +46,24 @@ describe('selectFirstRequirementAfterAutomatedChecks', () => {
     it('selects the first test step when transitioning from scanning to not scanning', () => {
         testObject(scanningProps, notScanningProps);
 
-        expect(actionMessageCreator.selectTestStep).toBeCalledWith(null, first, type);
+        expect(actionMessageCreator.selectRequirement).toBeCalledWith(null, first, assessmentType);
     });
 
     it('does not select the first test step when remaining scanning', () => {
         testObject(scanningProps, scanningProps);
 
-        expect(actionMessageCreator.selectTestStep).not.toBeCalled();
+        expect(actionMessageCreator.selectRequirement).not.toBeCalled();
     });
 
     it('does not select the first test step when remaining not scanning', () => {
         testObject(notScanningProps, notScanningProps);
 
-        expect(actionMessageCreator.selectTestStep).not.toBeCalled();
+        expect(actionMessageCreator.selectRequirement).not.toBeCalled();
     });
 
     it('selects the first test step when transitioning from not scanning to scanning', () => {
         testObject(notScanningProps, scanningProps);
 
-        expect(actionMessageCreator.selectTestStep).not.toBeCalled();
+        expect(actionMessageCreator.selectRequirement).not.toBeCalled();
     });
 });

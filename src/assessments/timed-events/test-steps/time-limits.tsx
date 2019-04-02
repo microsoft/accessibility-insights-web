@@ -5,7 +5,7 @@ import { link } from '../../../content/link';
 import * as content from '../../../content/test/timed-events/time-limits';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
-import { TestStep } from '../../types/test-step';
+import { Requirement } from '../../types/requirement';
 import { TimedEventsTestStep } from './test-steps';
 
 const description: JSX.Element = (
@@ -58,7 +58,7 @@ const howToTest: JSX.Element = (
     </div>
 );
 
-export const TimeLimits: TestStep = {
+export const TimeLimits: Requirement = {
     key: TimedEventsTestStep.timeLimits,
     name: 'Time limits',
     description,

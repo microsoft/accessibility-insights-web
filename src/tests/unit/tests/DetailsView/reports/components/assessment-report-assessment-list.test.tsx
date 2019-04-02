@@ -4,7 +4,7 @@ import * as Enzyme from 'enzyme';
 import * as React from 'react';
 
 import { ManualTestStatus } from '../../../../../../common/types/manual-test-status';
-import { IAssessmentDetailsReportModel } from '../../../../../../DetailsView/reports/assessment-report-model';
+import { AssessmentDetailsReportModel } from '../../../../../../DetailsView/reports/assessment-report-model';
 import {
     AssessmentReportAssessmentList,
     AssessmentReportAssessmentListDeps,
@@ -62,7 +62,7 @@ describe('AssessmentReportAssessmentListTest', () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     }
 
-    function testAssessmentHeader(assessment: IAssessmentDetailsReportModel, assessmentHeader: Enzyme.ShallowWrapper<any, any>): void {
+    function testAssessmentHeader(assessment: AssessmentDetailsReportModel, assessmentHeader: Enzyme.ShallowWrapper<any, any>): void {
         expect(assessmentHeader.hasClass('assessment-header')).toBe(true);
         expect(assessmentHeader.children()).toHaveLength(2);
 

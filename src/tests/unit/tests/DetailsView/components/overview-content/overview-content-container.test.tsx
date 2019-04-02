@@ -4,9 +4,9 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock, MockBehavior } from 'typemoq';
 
-import { IAssessmentsProvider } from '../../../../../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../../../../../assessments/types/iassessments-provider';
 import { IAssessmentStoreData, PersistedTabInfo } from '../../../../../../common/types/store-data/iassessment-result-data';
-import { ITabStoreData } from '../../../../../../common/types/store-data/itab-store-data';
+import { TabStoreData } from '../../../../../../common/types/store-data/tab-store-data';
 import { UrlParser } from '../../../../../../common/url-parser';
 import { DetailsViewActionMessageCreator } from '../../../../../../DetailsView/actions/details-view-action-message-creator';
 import {
@@ -20,11 +20,11 @@ describe('OverviewContainer', () => {
 
     const openExternalLink = jest.fn();
 
-    const tabStoreDataStub: ITabStoreData = {
+    const tabStoreDataStub: TabStoreData = {
         url: 'some url',
         title: 'some title',
         id: -1,
-    } as ITabStoreData;
+    } as TabStoreData;
 
     const helpLinkDeps = {
         actionInitiators: {
@@ -32,11 +32,11 @@ describe('OverviewContainer', () => {
         },
     } as HelpLinkDeps;
 
-    const assessmentsProvider: IAssessmentsProvider = {
+    const assessmentsProvider: AssessmentsProvider = {
         all: () => [],
     } as any;
 
-    const filteredProvider = {} as IAssessmentsProvider;
+    const filteredProvider = {} as AssessmentsProvider;
     const detailsViewActionMessageCreatorStub = {} as DetailsViewActionMessageCreator;
     const assessmentsProviderWithFeaturesEnabledMock = Mock.ofInstance((provider, featureFlagData) => null, MockBehavior.Strict);
     const getAssessmentSummaryModelFromProviderAndStoreData = jest.fn();

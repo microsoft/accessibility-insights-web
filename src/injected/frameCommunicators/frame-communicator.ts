@@ -6,11 +6,10 @@ import { HTMLElementUtils } from '../../common/html-element-utils';
 import { createDefaultLogger } from '../../common/logging/default-logger';
 import { Logger } from '../../common/logging/logger';
 import { WindowUtils } from '../../common/window-utils';
+import { ErrorMessageContent } from './error-message-content';
 import { FrameMessageResponseCallback, WindowMessageHandler } from './window-message-handler';
-import { IErrorMessageContent } from './window-message-marshaller';
 
-// tslint:disable-next-line:interface-name
-export interface IMessageRequest<T> {
+export interface MessageRequest<T> {
     frame?: HTMLIFrameElement;
     win?: Window;
     command: string;
@@ -44,14 +43,14 @@ export class FrameCommunicator {
 
             this.subscribe(
                 FrameCommunicator.PingCommand,
-                (data: any, error: IErrorMessageContent, messageSourceWindow: Window, callback: Function) => {
+                (data: any, error: ErrorMessageContent, messageSourceWindow: Window, callback: Function) => {
                     this.invokeMethodIfExists(callback, data);
                 },
             );
 
             this.subscribe(
                 FrameCommunicator.DisposeCommand,
-                (data: any, error: IErrorMessageContent, messageSourceWindow: Window, callback: Function) => {
+                (data: any, error: ErrorMessageContent, messageSourceWindow: Window, callback: Function) => {
                     this.dispose().then(() => {
                         this.invokeMethodIfExists(callback, data);
                     });
@@ -63,13 +62,13 @@ export class FrameCommunicator {
     public dispose(): Q.IPromise<Q.PromiseState<FrameMessageResponseCallback>[]> {
         const allframes = this.getAllFrames();
         const framesLength = allframes.length;
-        const frameMessageRequests: IMessageRequest<null>[] = [];
+        const frameMessageRequests: MessageRequest<null>[] = [];
 
         for (let i = 0; i < framesLength; i++) {
             frameMessageRequests.push({
                 command: FrameCommunicator.DisposeCommand,
                 frame: allframes[i],
-            } as IMessageRequest<null>);
+            } as MessageRequest<null>);
         }
 
         const promise = this.executeRequestForAllFrameRequests(frameMessageRequests, FrameCommunicator.disposeTimeout);
@@ -84,7 +83,7 @@ export class FrameCommunicator {
         this.windowMessageHandler.addSubscriber(command, callback);
     }
 
-    public sendMessage<TMessage, TResponse>(messageRequest: IMessageRequest<TMessage>): Q.IPromise<TResponse> {
+    public sendMessage<TMessage, TResponse>(messageRequest: MessageRequest<TMessage>): Q.IPromise<TResponse> {
         const win = messageRequest.win ? messageRequest.win : this.htmlElementUtils.getContentWindow(messageRequest.frame);
         const defered = this.q.defer<TResponse>();
         const elementToReportOnFailure = messageRequest.win ? messageRequest.win : messageRequest.frame;
@@ -137,7 +136,7 @@ export class FrameCommunicator {
     }
 
     public executeRequestForAllFrameRequests<T>(
-        frameMessageRequests: IMessageRequest<T>[],
+        frameMessageRequests: MessageRequest<T>[],
         timeOut: number,
     ): Q.IPromise<Q.PromiseState<FrameMessageResponseCallback>[]> {
         const frameMessageRequestsLength = frameMessageRequests.length;

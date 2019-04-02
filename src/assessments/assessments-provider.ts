@@ -3,13 +3,13 @@
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryStringTo } from '../types/common-types';
 import { Assessment } from './types/iassessment';
-import { IAssessmentsProvider } from './types/iassessments-provider';
-import { TestStep } from './types/test-step';
+import { AssessmentsProvider } from './types/iassessments-provider';
+import { Requirement } from './types/requirement';
 
-export class AssessmentsProvider implements IAssessmentsProvider {
+export class AssessmentsProviderImpl implements AssessmentsProvider {
     private assessments: Assessment[];
-    public static Create(assessments: Assessment[]): IAssessmentsProvider {
-        const provider = new AssessmentsProvider();
+    public static Create(assessments: Assessment[]): AssessmentsProvider {
+        const provider = new AssessmentsProviderImpl();
         provider.assessments = assessments.slice();
         return provider;
     }
@@ -18,12 +18,12 @@ export class AssessmentsProvider implements IAssessmentsProvider {
         return this.assessments.slice();
     }
 
-    public forType(type: VisualizationType): Assessment {
-        return this.all().find(a => a.type === type);
+    public forType(visualizationType: VisualizationType): Assessment {
+        return this.all().find(a => a.visualizationType === visualizationType);
     }
 
-    public isValidType(type: VisualizationType): boolean {
-        return this.forType(type) != null;
+    public isValidType(visualizationType: VisualizationType): boolean {
+        return this.forType(visualizationType) != null;
     }
 
     public forKey(key: string): Assessment {
@@ -34,12 +34,12 @@ export class AssessmentsProvider implements IAssessmentsProvider {
         return this.forKey(key) != null;
     }
 
-    public getStep(type: VisualizationType, key: string): TestStep {
-        const assessment = this.forType(type);
+    public getStep(visualizationType: VisualizationType, key: string): Requirement {
+        const assessment = this.forType(visualizationType);
         if (!assessment) {
             return null;
         }
-        const steps = assessment.steps;
+        const steps = assessment.requirements;
         const index = steps.findIndex(s => s.key === key);
         if (index === -1) {
             return null;
@@ -47,12 +47,12 @@ export class AssessmentsProvider implements IAssessmentsProvider {
         return { ...steps[index], order: index + 1 };
     }
 
-    public getStepMap(type: VisualizationType): DictionaryStringTo<TestStep> {
-        const assessment = this.forType(type);
+    public getStepMap(visualizationType: VisualizationType): DictionaryStringTo<Requirement> {
+        const assessment = this.forType(visualizationType);
         if (!assessment) {
             return null;
         }
-        const steps = assessment.steps;
+        const steps = assessment.requirements;
 
         let index = 1;
         return steps.reduce((map, step) => {

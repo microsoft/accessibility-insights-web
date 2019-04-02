@@ -17,9 +17,9 @@ import {
 import { FeatureFlagPayload } from '../../actions/feature-flag-actions';
 import { UserConfigurationActions } from '../../actions/user-configuration-actions';
 import { IndexedDBDataKeys } from '../../IndexedDBDataKeys';
-import { BaseStore } from '../base-store';
+import { BaseStoreImpl } from '../base-store-impl';
 
-export class UserConfigurationStore extends BaseStore<UserConfigurationStoreData> {
+export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStoreData> {
     public static readonly defaultState: UserConfigurationStoreData = {
         isFirstTime: true,
         enableTelemetry: false,

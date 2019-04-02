@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { AssessmentsProvider } from '../../../../assessments/assessments-provider';
+import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
 import { ChromeAdapter } from '../../../../background/browser-adapter';
 import { DetailsViewController } from '../../../../background/details-view-controller';
 import { Interpreter } from '../../../../background/interpreter';
@@ -26,8 +26,8 @@ import { StoreUpdateMessage } from '../../../../common/types/store-update-messag
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { WindowUtils } from '../../../../common/window-utils';
 
-function getConfigs(type: VisualizationType): VisualizationConfiguration {
-    return new VisualizationConfigurationFactory().getConfiguration(type);
+function getConfigs(visualizationType: VisualizationType): VisualizationConfiguration {
+    return new VisualizationConfigurationFactory().getConfiguration(visualizationType);
 }
 
 describe('TabContextFactoryTest', () => {
@@ -48,7 +48,7 @@ describe('TabContextFactoryTest', () => {
         const telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler);
         const targetTabControllerMock = Mock.ofType(TargetTabController);
         const assessmentStore = Mock.ofType(AssessmentStore);
-        const assessmentProvider = Mock.ofType(AssessmentsProvider);
+        const assessmentProvider = Mock.ofType(AssessmentsProviderImpl);
 
         const storeNames: StoreNames[] = [
             StoreNames.VisualizationScanResultStore,
@@ -69,7 +69,7 @@ describe('TabContextFactoryTest', () => {
         mockBrowserAdapter.setup(ba => ba.addListenerToTabsOnUpdated(It.isAny())).verifiable();
 
         const visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
-        visualizationConfigurationFactoryMock.setup(vcfm => vcfm.getConfiguration(It.isAny())).returns(type => getConfigs(type));
+        visualizationConfigurationFactoryMock.setup(vcfm => vcfm.getConfiguration(It.isAny())).returns(theType => getConfigs(theType));
 
         const testObject = new TabContextFactory(
             visualizationConfigurationFactoryMock.object,

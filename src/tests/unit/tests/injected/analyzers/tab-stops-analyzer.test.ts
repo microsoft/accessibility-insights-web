@@ -6,7 +6,7 @@ import { VisualizationType } from '../../../../../common/types/visualization-typ
 import { WindowUtils } from '../../../../../common/window-utils';
 import { FocusAnalyzerConfiguration, ScanBasePayload } from '../../../../../injected/analyzers/analyzer';
 import { TabStopsAnalyzer } from '../../../../../injected/analyzers/tab-stops-analyzer';
-import { ITabStopEvent, TabStopsListener } from '../../../../../injected/tab-stops-listener';
+import { TabStopEvent, TabStopsListener } from '../../../../../injected/tab-stops-listener';
 
 describe('TabStopsAnalyzerTests', () => {
     let windowUtilsMock: IMock<WindowUtils>;
@@ -15,7 +15,7 @@ describe('TabStopsAnalyzerTests', () => {
     let typeStub: VisualizationType;
     let testSubject: TabStopsAnalyzer;
     let tabStopsListenerMock: IMock<TabStopsListener>;
-    let tabEventHandler: (tabEvent: ITabStopEvent) => void;
+    let tabEventHandler: (tabEvent: TabStopEvent) => void;
     let setTimeOutCallBack: () => void;
 
     beforeEach(() => {
@@ -36,7 +36,7 @@ describe('TabStopsAnalyzerTests', () => {
     });
 
     test('analyze', async (completeSignal: () => void) => {
-        const tabEventStub: ITabStopEvent = {
+        const tabEventStub: TabStopEvent = {
             target: ['selector'],
             html: 'test',
             timestamp: 1,
@@ -77,12 +77,12 @@ describe('TabStopsAnalyzerTests', () => {
     });
 
     test('analyze: multiple events together (simulate timeoutId already created)', (completeSignal: () => void) => {
-        const tabEventStub1: ITabStopEvent = {
+        const tabEventStub1: TabStopEvent = {
             target: ['selector'],
             html: 'test',
             timestamp: 1,
         };
-        const tabEventStub2: ITabStopEvent = {
+        const tabEventStub2: TabStopEvent = {
             target: ['selector2'],
             html: 'test',
             timestamp: 2,
@@ -153,7 +153,7 @@ describe('TabStopsAnalyzerTests', () => {
     function setupTabStopsListenerForStartTabStops(): void {
         tabStopsListenerMock
             .setup(tslm => tslm.setTabEventListenerOnMainWindow(It.isAny()))
-            .callback((callback: (tabEvent: ITabStopEvent) => void) => {
+            .callback((callback: (tabEvent: TabStopEvent) => void) => {
                 tabEventHandler = callback;
             })
             .verifiable(Times.once());

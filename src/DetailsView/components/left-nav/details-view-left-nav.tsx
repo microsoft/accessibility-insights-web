@@ -3,7 +3,7 @@
 import { mapValues } from 'lodash';
 import * as React from 'react';
 
-import { IAssessmentsProvider } from '../../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../../assessments/types/iassessments-provider';
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../../../common/types/store-data/iassessment-result-data';
@@ -12,8 +12,8 @@ import { DetailsRightPanelConfiguration } from '../details-view-right-panel';
 import { DetailsViewSwitcherNavConfiguration, LeftNavDeps } from '../details-view-switcher-nav';
 
 export type DetailsViewLeftNavDeps = {
-    assessmentsProvider: IAssessmentsProvider;
-    assessmentsProviderWithFeaturesEnabled: (assessmentProvider: IAssessmentsProvider, flags: FeatureFlagStoreData) => IAssessmentsProvider;
+    assessmentsProvider: AssessmentsProvider;
+    assessmentsProviderWithFeaturesEnabled: (assessmentProvider: AssessmentsProvider, flags: FeatureFlagStoreData) => AssessmentsProvider;
 } & LeftNavDeps;
 
 export type DetailsViewLeftNavProps = {
@@ -30,7 +30,7 @@ export const DetailsViewLeftNav = NamedSFC<DetailsViewLeftNavProps>('DetailsView
 
     const { assessmentsProvider, assessmentsProviderWithFeaturesEnabled } = deps;
 
-    const selectedKey: string = rightPanelConfiguration.GetLeftNavSelectedKey({ type: selectedTest });
+    const selectedKey: string = rightPanelConfiguration.GetLeftNavSelectedKey({ visualizationType: selectedTest });
     const filteredProvider = assessmentsProviderWithFeaturesEnabled(assessmentsProvider, featureFlagStoreData);
 
     const leftNav: JSX.Element = (

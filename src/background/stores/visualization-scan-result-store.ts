@@ -6,15 +6,15 @@ import { forOwn } from 'lodash/index';
 import { StoreNames } from '../../common/stores/store-names';
 import { IVisualizationScanResultData } from '../../common/types/store-data/ivisualization-scan-result-data';
 import { ScanCompletedPayload } from '../../injected/analyzers/analyzer';
-import { DecoratedAxeNodeResult, IHtmlElementAxeResults } from '../../injected/scanner-utils';
+import { DecoratedAxeNodeResult, HtmlElementAxeResults } from '../../injected/scanner-utils';
 import { DictionaryStringTo } from '../../types/common-types';
 import { AddTabbedElementPayload } from '../actions/action-payloads';
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
-import { ITabStopEvent } from './../../injected/tab-stops-listener';
-import { BaseStore } from './base-store';
+import { TabStopEvent } from './../../injected/tab-stops-listener';
+import { BaseStoreImpl } from './base-store-impl';
 
-export class VisualizationScanResultStore extends BaseStore<IVisualizationScanResultData> {
+export class VisualizationScanResultStore extends BaseStoreImpl<IVisualizationScanResultData> {
     private visualizationScanResultsActions: VisualizationScanResultActions;
     private tabActions: TabActions;
 
@@ -70,7 +70,7 @@ export class VisualizationScanResultStore extends BaseStore<IVisualizationScanRe
             this.state.tabStops.tabbedElements = [];
         }
 
-        let tabbedElementsWithoutTabOrder: ITabStopEvent[] = _.map(this.state.tabStops.tabbedElements, element => {
+        let tabbedElementsWithoutTabOrder: TabStopEvent[] = _.map(this.state.tabStops.tabbedElements, element => {
             return {
                 timestamp: element.timestamp,
                 target: element.target,
@@ -137,10 +137,10 @@ export class VisualizationScanResultStore extends BaseStore<IVisualizationScanRe
         this.emitChanged();
     }
 
-    private getRowToRuleResultMap(selectorMap: DictionaryStringTo<IHtmlElementAxeResults>): DictionaryStringTo<DecoratedAxeNodeResult> {
+    private getRowToRuleResultMap(selectorMap: DictionaryStringTo<HtmlElementAxeResults>): DictionaryStringTo<DecoratedAxeNodeResult> {
         const selectedRows: DictionaryStringTo<DecoratedAxeNodeResult> = {};
 
-        forOwn(selectorMap, (selector: IHtmlElementAxeResults) => {
+        forOwn(selectorMap, (selector: HtmlElementAxeResults) => {
             const ruleResults = selector.ruleResults;
 
             forOwn(ruleResults, (rule: DecoratedAxeNodeResult) => {
@@ -151,8 +151,8 @@ export class VisualizationScanResultStore extends BaseStore<IVisualizationScanRe
         return selectedRows;
     }
 
-    private getSelectorMap(selectedRows: DictionaryStringTo<DecoratedAxeNodeResult>): DictionaryStringTo<IHtmlElementAxeResults> {
-        const selectorMap: DictionaryStringTo<IHtmlElementAxeResults> = {};
+    private getSelectorMap(selectedRows: DictionaryStringTo<DecoratedAxeNodeResult>): DictionaryStringTo<HtmlElementAxeResults> {
+        const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {};
         forOwn(selectedRows, (selectedRow: DecoratedAxeNodeResult) => {
             const ruleResult = selectedRow;
             const ruleResults = selectorMap[ruleResult.selector] ? selectorMap[ruleResult.selector].ruleResults : {};

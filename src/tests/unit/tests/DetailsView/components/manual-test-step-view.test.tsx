@@ -40,8 +40,8 @@ describe('ManualTestStepView', () => {
                         step={props.step}
                         status={ManualTestStatus.UNKNOWN}
                         originalStatus={ManualTestStatus.UNKNOWN}
-                        onGroupChoiceChange={props.assessmentInstanceTableHandler.changeStepStatus}
-                        onUndoClicked={props.assessmentInstanceTableHandler.undoStepStatusChange}
+                        onGroupChoiceChange={props.assessmentInstanceTableHandler.changeRequirementStatus}
+                        onUndoClicked={props.assessmentInstanceTableHandler.undoRequirementStatusChange}
                         isLabelVisible={true}
                     />
                 </div>
@@ -86,8 +86,8 @@ describe('ManualTestStepView', () => {
                         step={props.step}
                         status={ManualTestStatus.FAIL}
                         originalStatus={ManualTestStatus.UNKNOWN}
-                        onGroupChoiceChange={props.assessmentInstanceTableHandler.changeStepStatus}
-                        onUndoClicked={props.assessmentInstanceTableHandler.undoStepStatusChange}
+                        onGroupChoiceChange={props.assessmentInstanceTableHandler.changeRequirementStatus}
+                        onUndoClicked={props.assessmentInstanceTableHandler.undoRequirementStatusChange}
                         isLabelVisible={true}
                     />
                 </div>

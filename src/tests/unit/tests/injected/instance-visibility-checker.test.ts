@@ -3,7 +3,7 @@
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { Assessments } from '../../../../assessments/assessments';
-import { IAssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
 import { UniquelyIdentifiableInstances } from '../../../../background/instance-identifier-generator';
 import {
     VisualizationConfiguration,
@@ -13,7 +13,7 @@ import { HTMLElementUtils } from '../../../../common/html-element-utils';
 import { Messages } from '../../../../common/messages';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { WindowUtils } from '../../../../common/window-utils';
-import { IAssessmentVisualizationInstance } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
+import { AssessmentVisualizationInstance } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { InstanceVisibilityChecker } from '../../../../injected/instance-visibility-checker';
 
 describe('InstanceVisibilityCheckerTest', () => {
@@ -21,7 +21,7 @@ describe('InstanceVisibilityCheckerTest', () => {
     let sendMessageMock: IMock<(message) => void>;
     let htmlElementUtilsMock: IMock<HTMLElementUtils>;
     let testSubject: InstanceVisibilityChecker;
-    const assessmentsProvider: IAssessmentsProvider = Assessments;
+    const assessmentsProvider: AssessmentsProvider = Assessments;
     let configFactoryMock: IMock<VisualizationConfigurationFactory>;
     let configStub: VisualizationConfiguration;
     let getInstanceIdentiferGeneratorMock: IMock<(step: string) => Function>;
@@ -58,7 +58,7 @@ describe('InstanceVisibilityCheckerTest', () => {
     test('checkVisibility: new generated identifier does not match current element', () => {
         const frameResultIds = ['found id', 'another id'];
         const elementFoundGeneratedIds = ['found id', 'another found id'];
-        const frameResults: IAssessmentVisualizationInstance[] = [
+        const frameResults: AssessmentVisualizationInstance[] = [
             {
                 ruleResults: {},
                 targetIndex: 0,
@@ -152,7 +152,7 @@ describe('InstanceVisibilityCheckerTest', () => {
     test('checkVisibility: two elements, one identifier matching and one not', () => {
         const frameResultId = 'some id';
         const elementFoundGeneratedId = frameResultId;
-        const frameResult: IAssessmentVisualizationInstance = {
+        const frameResult: AssessmentVisualizationInstance = {
             ruleResults: {},
             targetIndex: 0,
             target: ['target0'],
@@ -210,7 +210,7 @@ describe('InstanceVisibilityCheckerTest', () => {
 
     test('checkVisibility: element is null', () => {
         const frameResultId = 'some id';
-        const frameResult: IAssessmentVisualizationInstance = {
+        const frameResult: AssessmentVisualizationInstance = {
             ruleResults: {},
             targetIndex: 0,
             target: ['target0'],
@@ -272,7 +272,7 @@ describe('InstanceVisibilityCheckerTest', () => {
 
     test('checkVisibility: skipVisibilityCheck', () => {
         const frameResultId = 'some id';
-        const frameResult: IAssessmentVisualizationInstance = {
+        const frameResult: AssessmentVisualizationInstance = {
             ruleResults: {},
             targetIndex: 0,
             target: ['target0'],

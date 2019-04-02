@@ -2,21 +2,21 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 import { LocalStorageDataKeys } from '../../local-storage-data-keys';
-import { ILocalStorageData } from '../../storage-data';
+import { LocalStorageData } from '../../storage-data';
 
 import { FeatureFlags, getDefaultFeatureFlagValues, getForceDefaultFlags } from '../../../common/feature-flags';
 import { StoreNames } from '../../../common/stores/store-names';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
 import { FeatureFlagActions, FeatureFlagPayload } from '../../actions/feature-flag-actions';
-import { BaseStore } from '../base-store';
+import { BaseStoreImpl } from '../base-store-impl';
 import { BrowserAdapter } from './../../browser-adapter';
 
-export class FeatureFlagStore extends BaseStore<FeatureFlagStoreData> {
+export class FeatureFlagStore extends BaseStoreImpl<FeatureFlagStoreData> {
     private featureFlagActions: FeatureFlagActions;
     private browserAdapter: BrowserAdapter;
-    private userData: ILocalStorageData;
+    private userData: LocalStorageData;
 
-    constructor(featureFlagActions: FeatureFlagActions, browserAdapter: BrowserAdapter, userData: ILocalStorageData) {
+    constructor(featureFlagActions: FeatureFlagActions, browserAdapter: BrowserAdapter, userData: LocalStorageData) {
         super(StoreNames.FeatureFlagStore);
 
         this.featureFlagActions = featureFlagActions;

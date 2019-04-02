@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 
+import { BaseStore } from '../../common/base-store';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
-import { IBaseStore } from '../../common/istore';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
-import { IScopingStoreData } from '../../common/types/store-data/scoping-store-data';
+import { ScopingStoreData } from '../../common/types/store-data/scoping-store-data';
 import { ScanResults } from '../../scanner/iruleresults';
 import { ScannerUtils } from '../scanner-utils';
 import { AxeAnalyzerResult, RuleAnalyzerConfiguration } from './analyzer';
@@ -19,7 +19,7 @@ export class BatchedRuleAnalyzer extends RuleAnalyzer {
     constructor(
         protected config: RuleAnalyzerConfiguration,
         protected scanner: ScannerUtils,
-        protected scopingStore: IBaseStore<IScopingStoreData>,
+        protected scopingStore: BaseStore<ScopingStoreData>,
         protected sendMessageDelegate: (message) => void,
         protected dateGetter: () => Date,
         protected telemetryFactory: TelemetryDataFactory,

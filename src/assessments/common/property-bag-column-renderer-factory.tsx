@@ -5,7 +5,7 @@ import { AssessmentInstanceRowData } from '../../DetailsView/components/assessme
 import { propertyBagColumnRenderer, PropertyBagColumnRendererConfig } from './property-bag-column-renderer';
 
 export class PropertyBagColumnRendererFactory {
-    public static get<TPropertyBag extends ColumnValueBag>(
+    public static getRenderer<TPropertyBag extends ColumnValueBag>(
         configs: PropertyBagColumnRendererConfig<TPropertyBag>[],
     ): (item: AssessmentInstanceRowData<TPropertyBag>) => JSX.Element {
         return item => {

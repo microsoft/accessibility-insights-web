@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import { createAutomatedChecksInitialAssessmentTestData } from '../../background/create-initial-assessment-test-data';
 import { RequirementComparer } from '../../common/assessment/requirement-comparer';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { title } from '../../content/strings/application';
@@ -26,10 +27,11 @@ const config: AssistedAssessment = {
     key: 'automated-checks',
     title: 'Automated checks',
     storeDataKey: 'automatedChecks',
-    type: VisualizationType.AutomatedChecks,
+    visualizationType: VisualizationType.AutomatedChecks,
+    initialDataCreator: createAutomatedChecksInitialAssessmentTestData,
     gettingStarted,
     guidance,
-    steps: buildTestStepsFromRules(getDefaultRules()),
+    requirements: buildTestStepsFromRules(getDefaultRules()),
     requirementOrder: RequirementComparer.byOutcomeAndName,
     extensions: [waitForAllRequirementsToComplete, selectFirstRequirementAfterAutomatedChecks, excludePassingInstancesFromAssessmentReport],
 };

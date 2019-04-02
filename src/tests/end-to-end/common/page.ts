@@ -8,8 +8,20 @@ import { DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS, DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS 
 
 export class Page {
     constructor(private readonly underlyingPage: Puppeteer.Page) {
+        underlyingPage.on('error', error => {
+            forceTestFailure(`error occurred - ${error.message}`);
+        });
+
         underlyingPage.on('pageerror', error => {
             forceTestFailure(`Unhandled pageerror (console.error) emitted from page '${underlyingPage.url()}': ${error}`);
+        });
+        underlyingPage.on('requestfailed', request => {
+            forceTestFailure(`request failed - ${request.failure().errorText}, ${request.url()}`);
+        });
+        underlyingPage.on('response', response => {
+            if (response.status() >= 400) {
+                forceTestFailure(`response error - ${response.status()}, ${response.url()}`);
+            }
         });
     }
 
@@ -83,6 +95,10 @@ export class Page {
         // * There is at least one edge case (the background page) where we've seen puppeteer
         //   mis-populating url() but not target().url() as ':'
         return new URL(this.underlyingPage.target().url());
+    }
+
+    public async keyPress(key: string): Promise<void> {
+        await this.underlyingPage.keyboard.press(key);
     }
 
     public async getPrintableHtmlElement(selector: string): Promise<Node> {

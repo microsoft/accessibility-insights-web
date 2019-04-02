@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { AssessmentDefaultMessageGenerator } from '../../assessments/assessment-default-message-generator';
-import { IAssessmentsProvider } from '../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { AssessmentTestResult } from '../../common/assessment/assessment-test-result';
 import { CollapsibleComponent } from '../../common/components/collapsible-component';
 import { reactExtensionPoint } from '../../common/extensibility/react-extension-point';
@@ -29,7 +29,7 @@ export type AssessmentViewDeps = ContentLinkDeps &
     TestStepNavDeps &
     TargetChangeDialogDeps & {
         detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-        assessmentsProvider: IAssessmentsProvider;
+        assessmentsProvider: AssessmentsProvider;
     };
 
 export interface AssessmentViewProps {
@@ -176,7 +176,7 @@ export class AssessmentView extends React.Component<AssessmentViewProps> {
                     <TestStepsNav
                         deps={this.props.deps}
                         ariaLabel={AssessmentView.requirementsTitle}
-                        selectedTest={assessmentTestResult.type}
+                        selectedTest={assessmentTestResult.visualizationType}
                         selectedTestStep={selectedRequirement.definition.key}
                         stepStatus={this.props.assessmentData.testStepStatus}
                     />
