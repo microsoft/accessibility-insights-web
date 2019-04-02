@@ -27,7 +27,7 @@ const gettingStartedText: JSX.Element = (
 );
 
 export const RepetitiveContentAssessment = AssessmentBuilder.Manual({
-    type: VisualizationType.RepetitiveContentAssessment,
+    visualizationType: VisualizationType.RepetitiveContentAssessment,
     key,
     gettingStarted: gettingStartedText,
     title,

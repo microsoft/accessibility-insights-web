@@ -35,14 +35,14 @@ describe('TelemetryDataFactoryTest', () => {
         const event = mouseClickEvent;
 
         const source = TelemetryEventSource.AdHocTools;
-        const type = 'inputType';
+        const inputType = 'inputType';
 
-        const result = testObject.forAddSelector(event, type, source);
+        const result = testObject.forAddSelector(event, inputType, source);
 
         const expected = {
             triggeredBy: 'mouseclick',
             source: source,
-            inputType: type,
+            inputType: inputType,
         };
 
         expect(result).toEqual(expected);
@@ -52,14 +52,14 @@ describe('TelemetryDataFactoryTest', () => {
         const event = mouseClickEvent;
 
         const source = TelemetryEventSource.AdHocTools;
-        const type = 'inputType';
+        const inputType = 'inputType';
 
-        const result = testObject.forDeleteSelector(event, type, source);
+        const result = testObject.forDeleteSelector(event, inputType, source);
 
         const expected = {
             triggeredBy: 'mouseclick',
             source: source,
-            inputType: type,
+            inputType: inputType,
         };
 
         expect(result).toEqual(expected);
@@ -97,13 +97,13 @@ describe('TelemetryDataFactoryTest', () => {
 
     test('forSelectDetailsView by keypress', () => {
         const event = keypressEvent;
-        const type = VisualizationType.Color;
+        const visualizationType = VisualizationType.Color;
         const source = TelemetryEventSource.DetailsView;
 
-        const result = testObject.forSelectDetailsView(event, type);
+        const result = testObject.forSelectDetailsView(event, visualizationType);
 
         const expected: DetailsViewOpenTelemetryData = {
-            selectedTest: VisualizationType[type],
+            selectedTest: VisualizationType[visualizationType],
             triggeredBy: 'keypress',
             source,
         };
@@ -113,13 +113,13 @@ describe('TelemetryDataFactoryTest', () => {
 
     test('forSelectDetailsView by mouseclick', () => {
         const event = mouseClickEvent;
-        const type = VisualizationType.Color;
+        const visualizationType = VisualizationType.Color;
         const source = TelemetryEventSource.DetailsView;
 
-        const result = testObject.forSelectDetailsView(event, type);
+        const result = testObject.forSelectDetailsView(event, visualizationType);
 
         const expected: DetailsViewOpenTelemetryData = {
-            selectedTest: VisualizationType[type],
+            selectedTest: VisualizationType[visualizationType],
             triggeredBy: 'mouseclick',
             source,
         };
@@ -155,13 +155,13 @@ describe('TelemetryDataFactoryTest', () => {
     });
 
     test('forOpenDetailsView by keypress', () => {
-        const type = VisualizationType.Headings;
+        const visualizationType = VisualizationType.Headings;
         const event = keypressEvent;
 
-        const result = testObject.forOpenDetailsView(event, type, testSource);
+        const result = testObject.forOpenDetailsView(event, visualizationType, testSource);
 
         const expected: DetailsViewOpenTelemetryData = {
-            selectedTest: VisualizationType[type],
+            selectedTest: VisualizationType[visualizationType],
             triggeredBy: 'keypress',
             source: testSource,
         };
@@ -170,13 +170,13 @@ describe('TelemetryDataFactoryTest', () => {
     });
 
     test('forOpenDetailsView by mouseclick', () => {
-        const type = VisualizationType.Headings;
+        const visualizationType = VisualizationType.Headings;
         const event = mouseClickEvent;
 
-        const result = testObject.forOpenDetailsView(event, type, testSource);
+        const result = testObject.forOpenDetailsView(event, visualizationType, testSource);
 
         const expected: DetailsViewOpenTelemetryData = {
-            selectedTest: VisualizationType[type],
+            selectedTest: VisualizationType[visualizationType],
             triggeredBy: 'mouseclick',
             source: testSource,
         };

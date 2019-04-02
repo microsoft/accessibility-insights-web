@@ -151,6 +151,7 @@ class FeElementBuilder<TParams> {
 }
 
 export interface FeMergeNodeParams {
+    // tslint:disable-next-line: no-reserved-keywords
     in?: string;
 }
 
@@ -170,6 +171,7 @@ export interface FeFloodParams {
 }
 
 export interface FeOffsetParams {
+    // tslint:disable-next-line: no-reserved-keywords
     in?: string;
     dx?: number;
     dy?: number;
@@ -186,6 +188,7 @@ export interface FilterParams {
 export interface FeMorphologyParams {
     operator?: string;
     radius?: number;
+    // tslint:disable-next-line: no-reserved-keywords
     in?: string;
     result?: string;
 }

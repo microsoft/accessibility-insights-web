@@ -57,7 +57,7 @@ describe('AssessmentBuilderTest', () => {
 
         const baseAssessment: ManualAssessment = {
             key: 'manualAssessmentKey',
-            type: -1 as VisualizationType,
+            visualizationType: -1 as VisualizationType,
             title: 'manual assessment title',
             gettingStarted: <span>getting started</span>,
             requirements: [requirement, requirement2],
@@ -71,7 +71,7 @@ describe('AssessmentBuilderTest', () => {
 
         const expectedConfig: AnalyzerConfiguration = {
             key: requirement.key,
-            testType: baseAssessment.type,
+            testType: baseAssessment.visualizationType,
             analyzerMessageType: Messages.Assessment.AssessmentScanCompleted,
         };
 
@@ -212,7 +212,7 @@ describe('AssessmentBuilderTest', () => {
 
         const assistedAssessment: AssistedAssessment = {
             key: 'manual assessment key',
-            type: -1 as VisualizationType,
+            visualizationType: -1 as VisualizationType,
             title: 'manual assessment title',
             gettingStarted: <span>getting started</span>,
             requirements: [requirement1, requirement2, requirement3, requirement4, requirement5, requirement6],

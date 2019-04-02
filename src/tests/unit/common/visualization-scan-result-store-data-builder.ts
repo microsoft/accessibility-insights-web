@@ -23,8 +23,8 @@ export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<IVi
         return this;
     }
 
-    public withSelectorMap(type: VisualizationType, selectorMap: any): VisualizationScanResultStoreDataBuilder {
-        switch (type) {
+    public withSelectorMap(visualizationType: VisualizationType, selectorMap: any): VisualizationScanResultStoreDataBuilder {
+        switch (visualizationType) {
             case VisualizationType.Headings:
                 this.data.headings.fullAxeResultsMap = selectorMap;
                 break;
@@ -38,7 +38,7 @@ export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<IVi
                 this.data.color.fullAxeResultsMap = selectorMap;
                 break;
             default:
-                throw new Error(`Unsupported type ${type}`);
+                throw new Error(`Unsupported type ${visualizationType}`);
         }
 
         return this;
@@ -54,8 +54,8 @@ export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<IVi
         return this;
     }
 
-    public withScanResult(type: VisualizationType, result: any): VisualizationScanResultStoreDataBuilder {
-        switch (type) {
+    public withScanResult(visualizationType: VisualizationType, result: any): VisualizationScanResultStoreDataBuilder {
+        switch (visualizationType) {
             case VisualizationType.Headings:
                 this.data.headings.scanResult = result;
                 break;
@@ -69,7 +69,7 @@ export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<IVi
                 this.data.color.scanResult = result;
                 break;
             default:
-                throw new Error(`Unsupported type ${type}`);
+                throw new Error(`Unsupported type ${visualizationType}`);
         }
         return this;
     }

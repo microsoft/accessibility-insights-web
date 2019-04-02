@@ -18,6 +18,7 @@ export interface LoggedNode {
     target: string[];
     domElement: HTMLElement;
     all: FormattedCheckResult[];
+    // tslint:disable-next-line: no-reserved-keywords
     any: FormattedCheckResult[];
     none: FormattedCheckResult[];
 }

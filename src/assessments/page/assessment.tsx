@@ -20,7 +20,7 @@ const pageGettingStartedText: JSX.Element = (
 
 export const PageAssessment: Assessment = AssessmentBuilder.Assisted({
     key,
-    type: VisualizationType.PageAssessment,
+    visualizationType: VisualizationType.PageAssessment,
     gettingStarted: pageGettingStartedText,
     title: pageAssessmentTitle,
     guidance,

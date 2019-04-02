@@ -26,8 +26,8 @@ import { StoreUpdateMessage } from '../../../../common/types/store-update-messag
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { WindowUtils } from '../../../../common/window-utils';
 
-function getConfigs(type: VisualizationType): VisualizationConfiguration {
-    return new VisualizationConfigurationFactory().getConfiguration(type);
+function getConfigs(visualizationType: VisualizationType): VisualizationConfiguration {
+    return new VisualizationConfigurationFactory().getConfiguration(visualizationType);
 }
 
 describe('TabContextFactoryTest', () => {
@@ -69,7 +69,7 @@ describe('TabContextFactoryTest', () => {
         mockBrowserAdapter.setup(ba => ba.addListenerToTabsOnUpdated(It.isAny())).verifiable();
 
         const visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
-        visualizationConfigurationFactoryMock.setup(vcfm => vcfm.getConfiguration(It.isAny())).returns(type => getConfigs(type));
+        visualizationConfigurationFactoryMock.setup(vcfm => vcfm.getConfiguration(It.isAny())).returns(theType => getConfigs(theType));
 
         const testObject = new TabContextFactory(
             visualizationConfigurationFactoryMock.object,

@@ -28,14 +28,14 @@ export class ContentActionMessageCreator extends BaseActionMessageCreator {
 
     @autobind
     public openContentPage(event: React.MouseEvent<any> | MouseEvent, contentPath: string): void {
-        const type = Messages.Telemetry.Send;
+        const messageType = Messages.Telemetry.Send;
         const telemetry = this.telemetryFactory.withTriggeredByAndSource(event, this.source);
         const payload = {
             eventName: CONTENT_PAGE_OPENED,
             telemetry: { ...telemetry, contentPath },
         };
         this.dispatchMessage({
-            type: type,
+            type: messageType,
             tabId: this._tabId,
             payload,
         });
@@ -48,14 +48,14 @@ export class ContentActionMessageCreator extends BaseActionMessageCreator {
 
     @autobind
     public openContentHyperLink(event: React.MouseEvent<any> | MouseEvent, href: string): void {
-        const type = Messages.Telemetry.Send;
+        const messageType = Messages.Telemetry.Send;
         const telemetry = this.telemetryFactory.withTriggeredByAndSource(event, this.source);
         const payload = {
             eventName: CONTENT_HYPERLINK_OPENED,
             telemetry: { ...telemetry, href },
         };
         this.dispatchMessage({
-            type: type,
+            type: messageType,
             tabId: this._tabId,
             payload,
         });
@@ -63,14 +63,14 @@ export class ContentActionMessageCreator extends BaseActionMessageCreator {
 
     @autobind
     public openContentPanel(event: React.MouseEvent<HTMLElement> | MouseEvent, contentPath: string): void {
-        const type = Messages.ContentPanel.OpenPanel;
+        const messageType = Messages.ContentPanel.OpenPanel;
         const telemetry = this.telemetryFactory.withTriggeredByAndSource(event, this.source);
         const payload: ContentPayload = {
             telemetry,
             contentPath,
         };
         this.dispatchMessage({
-            type: type,
+            type: messageType,
             tabId: this._tabId,
             payload,
         });
@@ -78,14 +78,14 @@ export class ContentActionMessageCreator extends BaseActionMessageCreator {
 
     @autobind
     public closeContentPanel(): void {
-        const type = Messages.ContentPanel.ClosePanel;
+        const messageType = Messages.ContentPanel.ClosePanel;
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
         const payload: BaseActionPayload = {
             telemetry,
         };
 
         this.dispatchMessage({
-            type: type,
+            type: messageType,
             tabId: this._tabId,
             payload,
         });

@@ -41,7 +41,7 @@ const gettingStarted: JSX.Element = (
 
 export const HeadingsAssessment: Assessment = AssessmentBuilder.Assisted({
     key,
-    type: VisualizationType.HeadingsAssessment,
+    visualizationType: VisualizationType.HeadingsAssessment,
     gettingStarted,
     title,
     guidance,

@@ -166,12 +166,12 @@ export class TabController {
     }
 
     @autobind
-    private onTabRemoved(tabId: number, type: string): void {
+    private onTabRemoved(tabId: number, messageType: string): void {
         const tabContext = this.tabIdToContextMap[tabId];
         if (tabContext) {
             const interpreter = tabContext.interpreter;
             interpreter.interpret({
-                type: type,
+                type: messageType,
                 payload: null,
                 tabId: tabId,
             });

@@ -27,7 +27,7 @@ const config: AssistedAssessment = {
     key: 'automated-checks',
     title: 'Automated checks',
     storeDataKey: 'automatedChecks',
-    type: VisualizationType.AutomatedChecks,
+    visualizationType: VisualizationType.AutomatedChecks,
     initialDataCreator: createAutomatedChecksInitialAssessmentTestData,
     gettingStarted,
     guidance,

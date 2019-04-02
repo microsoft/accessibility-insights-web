@@ -34,7 +34,7 @@ export const VisibleFocusOrderAssessment: Assessment = AssessmentBuilder.Assiste
     title: keyboardInteractionTitle,
     gettingStarted: keyboardInteractionGettingStarted,
     guidance,
-    type: VisualizationType.VisibleFocusOrderAssessment,
+    visualizationType: VisualizationType.VisibleFocusOrderAssessment,
     requirements: [VisibleFocus, RevealingContent, ModalDialogs, ClosingContent, FocusOrder],
     storeDataKey: 'visibleFocusOrderAssessment',
     visualizationConfiguration: {

@@ -49,8 +49,8 @@ export class AssessmentsStoreDataBuilder extends BaseDataBuilder<IAssessmentStor
         return this;
     }
 
-    public withSelectedTestType(type: VisualizationType): AssessmentsStoreDataBuilder {
-        this.data.assessmentNavState.selectedTestType = type;
+    public withSelectedTestType(visualizationType: VisualizationType): AssessmentsStoreDataBuilder {
+        this.data.assessmentNavState.selectedTestType = visualizationType;
         return this;
     }
 

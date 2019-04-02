@@ -118,7 +118,7 @@ export class AssessmentBuilder {
             const requirementConfig = AssessmentBuilder.getRequirementConfig(requirements, requirement);
             return provider.createBaseAnalyzer({
                 key: requirementConfig.key,
-                testType: assessment.type,
+                testType: assessment.visualizationType,
                 analyzerMessageType: Messages.Assessment.AssessmentScanCompleted,
             });
         };
@@ -178,7 +178,7 @@ export class AssessmentBuilder {
             if (requirementConfig.getAnalyzer == null) {
                 return provider.createBaseAnalyzer({
                     key: requirementConfig.key,
-                    testType: assessment.type,
+                    testType: assessment.visualizationType,
                     analyzerMessageType: Messages.Assessment.AssessmentScanCompleted,
                 });
             }

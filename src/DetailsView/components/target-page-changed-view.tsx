@@ -7,7 +7,7 @@ import { DisplayableVisualizationTypeData } from '../../common/configs/visualiza
 import { VisualizationType } from '../../common/types/visualization-type';
 
 export interface TargetPageChangedViewProps {
-    type: VisualizationType;
+    visualizationType: VisualizationType;
     displayableData: DisplayableVisualizationTypeData;
     toggleClickHandler: (event) => void;
 }

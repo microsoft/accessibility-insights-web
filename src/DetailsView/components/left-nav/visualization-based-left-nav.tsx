@@ -28,9 +28,9 @@ export const VisualizationBasedLeftNav = NamedSFC<VisualizationBasedLeftNavProps
     const { leftNavLinkBuilder, visualizationConfigurationFactory } = deps;
 
     const links = [];
-    visualizations.forEach((type, index) => {
-        const config = visualizationConfigurationFactory.getConfiguration(type);
-        links.push(leftNavLinkBuilder.buildVisualizationConfigurationLink(config, onLinkClick, type, index + 1));
+    visualizations.forEach((visualizationType, index) => {
+        const config = visualizationConfigurationFactory.getConfiguration(visualizationType);
+        links.push(leftNavLinkBuilder.buildVisualizationConfigurationLink(config, onLinkClick, visualizationType, index + 1));
     });
 
     return <BaseLeftNav renderIcon={link => <LeftNavIndexIcon item={link} />} selectedKey={selectedKey} links={links} />;

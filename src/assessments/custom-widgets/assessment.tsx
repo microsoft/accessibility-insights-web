@@ -39,7 +39,7 @@ const gettingStarted: JSX.Element = (
 
 export const CustomWidgets: Assessment = AssessmentBuilder.Assisted({
     key,
-    type: VisualizationType.CustomWidgets,
+    visualizationType: VisualizationType.CustomWidgets,
     title,
     gettingStarted,
     guidance,
