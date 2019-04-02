@@ -48,11 +48,11 @@ describe('VisualizationBasedLeftNav', () => {
             visualizations: visualizationsStub,
         };
 
-        visualizationsStub.forEach((type, index) => {
-            configFactoryMock.setup(cfm => cfm.getConfiguration(type)).returns(() => configStub);
+        visualizationsStub.forEach((visualizationType, index) => {
+            configFactoryMock.setup(cfm => cfm.getConfiguration(visualizationType)).returns(() => configStub);
 
             leftNavLinkBuilderMock
-                .setup(lnlbm => lnlbm.buildVisualizationConfigurationLink(configStub, onLinkClickStub, type, index + 1))
+                .setup(lnlbm => lnlbm.buildVisualizationConfigurationLink(configStub, onLinkClickStub, visualizationType, index + 1))
                 .returns(() => linkStub);
         });
     });

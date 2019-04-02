@@ -32,10 +32,10 @@ describe('DiagnosticViewToggleTest', () => {
 
     describe('renders', () => {
         it('spinner while scanning', () => {
-            const type = VisualizationType.Headings;
+            const visualizationType = VisualizationType.Headings;
             const data = new VisualizationStoreDataBuilder().with('scanning', 'headings').build();
 
-            const props: DiagnosticViewToggleProps = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource)
+            const props: DiagnosticViewToggleProps = new DiagnosticViewTogglePropsBuilder(visualizationType, testTelemetrySource)
                 .setupVisualizationStoreData(data)
                 .build();
 
@@ -45,10 +45,10 @@ describe('DiagnosticViewToggleTest', () => {
         });
 
         it('toggle when scanning for a different visualization', () => {
-            const type = VisualizationType.Headings;
+            const visualizationType = VisualizationType.Headings;
             const data = new VisualizationStoreDataBuilder().with('scanning', 'landmarks').build();
 
-            const props: DiagnosticViewToggleProps = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource)
+            const props: DiagnosticViewToggleProps = new DiagnosticViewTogglePropsBuilder(visualizationType, testTelemetrySource)
                 .setupVisualizationStoreData(data)
                 .build();
 
@@ -58,9 +58,9 @@ describe('DiagnosticViewToggleTest', () => {
         });
 
         it('toggle when not scanning', () => {
-            const type = VisualizationType.Headings;
+            const visualizationType = VisualizationType.Headings;
 
-            const props: DiagnosticViewToggleProps = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource).build();
+            const props: DiagnosticViewToggleProps = new DiagnosticViewTogglePropsBuilder(visualizationType, testTelemetrySource).build();
 
             const wrapper = shallow(<DiagnosticViewToggle {...props} />);
 
@@ -68,9 +68,9 @@ describe('DiagnosticViewToggleTest', () => {
         });
 
         it('details view link when the test does not have a guidance', () => {
-            const type = VisualizationType.Issues;
+            const visualizationType = VisualizationType.Issues;
 
-            const props: DiagnosticViewToggleProps = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource).build();
+            const props: DiagnosticViewToggleProps = new DiagnosticViewTogglePropsBuilder(visualizationType, testTelemetrySource).build();
 
             const wrapper = shallow(<DiagnosticViewToggle {...props} />);
 
@@ -80,9 +80,9 @@ describe('DiagnosticViewToggleTest', () => {
 
     describe('user interaction: ', () => {
         it('hanldes click on details view link, it will open fastpass when Assessment enabled', () => {
-            const type = VisualizationType.Issues;
+            const visualizationType = VisualizationType.Issues;
             const event = eventStubFactory.createKeypressEvent();
-            const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource);
+            const propsBuilder = new DiagnosticViewTogglePropsBuilder(visualizationType, testTelemetrySource);
             const props: DiagnosticViewToggleProps = propsBuilder
                 .setupFeatureFlags({ 'test-flag': true })
                 .setupOpenDetailsViewCall(event)
@@ -96,10 +96,12 @@ describe('DiagnosticViewToggleTest', () => {
         });
 
         it('handles click the visualization toggle', () => {
-            const type = VisualizationType.Headings;
+            const visualizationType = VisualizationType.Headings;
             const event = eventStubFactory.createKeypressEvent();
 
-            const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource).setupToggleVisualizationCall(event);
+            const propsBuilder = new DiagnosticViewTogglePropsBuilder(visualizationType, testTelemetrySource).setupToggleVisualizationCall(
+                event,
+            );
 
             const props: DiagnosticViewToggleProps = propsBuilder.build();
 
@@ -111,12 +113,12 @@ describe('DiagnosticViewToggleTest', () => {
         });
 
         it('handles click on the link when spinner is present', () => {
-            const type = VisualizationType.Issues;
+            const visualizationType = VisualizationType.Issues;
             const data = new VisualizationStoreDataBuilder().with('scanning', 'issues').build();
 
             const event = eventStubFactory.createKeypressEvent();
 
-            const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource)
+            const propsBuilder = new DiagnosticViewTogglePropsBuilder(visualizationType, testTelemetrySource)
                 .setupVisualizationStoreData(data)
                 .setupOpenDetailsViewCall(event);
 
@@ -129,10 +131,12 @@ describe('DiagnosticViewToggleTest', () => {
         });
 
         it('hanldes click on the link when toggle is present', () => {
-            const type = VisualizationType.Issues;
+            const visualizationType = VisualizationType.Issues;
             const event = eventStubFactory.createKeypressEvent();
 
-            const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource).setupOpenDetailsViewCall(event);
+            const propsBuilder = new DiagnosticViewTogglePropsBuilder(visualizationType, testTelemetrySource).setupOpenDetailsViewCall(
+                event,
+            );
 
             const props: DiagnosticViewToggleProps = propsBuilder.build();
 
@@ -143,8 +147,8 @@ describe('DiagnosticViewToggleTest', () => {
         });
 
         it('handles command not found', () => {
-            const type = VisualizationType.Color;
-            const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource).setupShortcutCommands([]);
+            const visualizationType = VisualizationType.Color;
+            const propsBuilder = new DiagnosticViewTogglePropsBuilder(visualizationType, testTelemetrySource).setupShortcutCommands([]);
 
             const props: DiagnosticViewToggleProps = propsBuilder.build();
 
@@ -152,19 +156,19 @@ describe('DiagnosticViewToggleTest', () => {
 
             const renderAction = () => component.render();
 
-            const commandName = visualizationConfigurationFactory.getConfiguration(type).chromeCommand;
+            const commandName = visualizationConfigurationFactory.getConfiguration(visualizationType).chromeCommand;
             expect(renderAction).toThrowError(`Cannot find command for name: ${commandName}`);
         });
     });
 
     describe('lifecycle events', () => {
         it('sets focus when componentDidMount', () => {
-            const type = VisualizationType.TabStops;
+            const visualizationType = VisualizationType.TabStops;
             const event = eventStubFactory.createKeypressEvent();
 
             const depsMock = createDepsMock();
 
-            const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource)
+            const propsBuilder = new DiagnosticViewTogglePropsBuilder(visualizationType, testTelemetrySource)
                 .setupOpenDetailsViewCall(event)
                 .setupDeps(depsMock.object);
 
@@ -183,12 +187,12 @@ describe('DiagnosticViewToggleTest', () => {
         });
 
         it('sets focus when componentDidUpdate', () => {
-            const type = VisualizationType.TabStops;
+            const visualizationType = VisualizationType.TabStops;
             const event = eventStubFactory.createKeypressEvent();
 
             const depsMock = createDepsMock();
 
-            const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource)
+            const propsBuilder = new DiagnosticViewTogglePropsBuilder(visualizationType, testTelemetrySource)
                 .setupOpenDetailsViewCall(event)
                 .setupDeps(depsMock.object);
 
@@ -209,12 +213,12 @@ describe('DiagnosticViewToggleTest', () => {
 
     describe('focus-like events', () => {
         it('handles onFocus event on the VisualizationToggle', () => {
-            const type = VisualizationType.TabStops;
+            const visualizationType = VisualizationType.TabStops;
             const event = eventStubFactory.createKeypressEvent();
 
             const depsMock = createDepsMock();
 
-            const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource)
+            const propsBuilder = new DiagnosticViewTogglePropsBuilder(visualizationType, testTelemetrySource)
                 .setupOpenDetailsViewCall(event)
                 .setupDeps(depsMock.object);
 
@@ -233,12 +237,12 @@ describe('DiagnosticViewToggleTest', () => {
         });
 
         it('onBlurHandler', () => {
-            const type = VisualizationType.TabStops;
+            const visualizationType = VisualizationType.TabStops;
             const event = eventStubFactory.createKeypressEvent();
 
             const depsMock = createDepsMock();
 
-            const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource)
+            const propsBuilder = new DiagnosticViewTogglePropsBuilder(visualizationType, testTelemetrySource)
                 .setupOpenDetailsViewCall(event)
                 .setupDeps(depsMock.object);
 
@@ -258,12 +262,12 @@ describe('DiagnosticViewToggleTest', () => {
     });
 
     it('addUserEventListener', () => {
-        const type = VisualizationType.TabStops;
+        const visualizationType = VisualizationType.TabStops;
         const event = eventStubFactory.createKeypressEvent();
 
         const depsMock = createDepsMock();
 
-        const propsBuilder = new DiagnosticViewTogglePropsBuilder(type, testTelemetrySource)
+        const propsBuilder = new DiagnosticViewTogglePropsBuilder(visualizationType, testTelemetrySource)
             .setupOpenDetailsViewCall(event)
             .setupDeps(depsMock.object);
 
@@ -292,7 +296,7 @@ describe('DiagnosticViewToggleTest', () => {
 });
 
 class DiagnosticViewTogglePropsBuilder {
-    private type: VisualizationType;
+    private visualizationType: VisualizationType;
     private data: IVisualizationStoreData = new VisualizationStoreDataBuilder().build();
     private visualizationConfigurationFactory = new VisualizationConfigurationFactory();
     private defaultVisualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
@@ -306,8 +310,8 @@ class DiagnosticViewTogglePropsBuilder {
     private deps: ContentLinkDeps = {} as ContentLinkDeps;
     private configurationStub: VisualizationConfiguration;
 
-    constructor(type: VisualizationType, telemetrySource: TelemetryEventSource) {
-        this.type = type;
+    constructor(visualizationType: VisualizationType, telemetrySource: TelemetryEventSource) {
+        this.visualizationType = visualizationType;
         this.telemetrySource = telemetrySource;
     }
 
@@ -327,14 +331,14 @@ class DiagnosticViewTogglePropsBuilder {
 
     public setupOpenDetailsViewCall(event): DiagnosticViewTogglePropsBuilder {
         this.actionMessageCreatorMock
-            .setup(ac => ac.openDetailsView(event, this.type, this.telemetrySource, DetailsViewPivotType.fastPass))
+            .setup(ac => ac.openDetailsView(event, this.visualizationType, this.telemetrySource, DetailsViewPivotType.fastPass))
             .verifiable(Times.once());
 
         return this;
     }
 
     public setupToggleVisualizationCall(event): DiagnosticViewTogglePropsBuilder {
-        this.clickHandlerMock.setup(ch => ch.toggleVisualization(this.data, this.type, event)).verifiable(Times.once());
+        this.clickHandlerMock.setup(ch => ch.toggleVisualization(this.data, this.visualizationType, event)).verifiable(Times.once());
 
         return this;
     }
@@ -362,14 +366,16 @@ class DiagnosticViewTogglePropsBuilder {
 
         this.defaultVisualizationConfigurationFactoryMock
             .setup(v => v.getConfiguration(It.isAny()))
-            .returns(type => this.configurationStub || this.visualizationConfigurationFactory.getConfiguration(type))
+            .returns(
+                visualizationType => this.configurationStub || this.visualizationConfigurationFactory.getConfiguration(visualizationType),
+            )
             .verifiable();
 
         const props: DiagnosticViewToggleProps = {
             deps: this.deps,
             featureFlags: this.featureFlags,
             dom: domMock as any,
-            type: this.type,
+            visualizationType: this.visualizationType,
             visualizationConfigurationFactory: this.visualizationConfigurationFactory,
             visualizationStoreData: this.data,
             actionMessageCreator: this.actionMessageCreatorMock.object,

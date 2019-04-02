@@ -82,7 +82,7 @@ export const Contrast: Requirement = {
         {
             key: 'contrast-ratio-info',
             name: 'Contrast ratio info',
-            onRender: PropertyBagColumnRendererFactory.get(propertyBagConfig),
+            onRender: PropertyBagColumnRendererFactory.getRenderer(propertyBagConfig),
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),

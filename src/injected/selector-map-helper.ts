@@ -45,7 +45,7 @@ export class SelectorMapHelper {
         return selectorMap;
     }
 
-    private isAdHocVisualization(type: VisualizationType): boolean {
+    private isAdHocVisualization(visualizationType: VisualizationType): boolean {
         return _.includes(
             [
                 VisualizationType.Issues,
@@ -54,15 +54,15 @@ export class SelectorMapHelper {
                 VisualizationType.TabStops,
                 VisualizationType.Color,
             ],
-            type,
+            visualizationType,
         );
     }
 
-    private getAdHocVisualizationSelectorMap(type: VisualizationType): DictionaryStringTo<AssessmentVisualizationInstance> {
+    private getAdHocVisualizationSelectorMap(visualizationType: VisualizationType): DictionaryStringTo<AssessmentVisualizationInstance> {
         let selectorMap = {};
         const visulizaitonScanResultState = this.scanResultStore.getState();
 
-        switch (type) {
+        switch (visualizationType) {
             case VisualizationType.Issues:
                 selectorMap = visulizaitonScanResultState.issues.selectedAxeResultsMap;
                 break;

@@ -274,13 +274,13 @@ describe('DetailsViewContainer', () => {
     }
 
     function setupGetDetailsRightPanelConfiguration(
-        type: DetailsViewRightContentPanelType,
+        contentPanelType: DetailsViewRightContentPanelType,
         selectedPivot: DetailsViewPivotType,
         returnConfiguration: DetailsRightPanelConfiguration,
     ): void {
         const expected: GetDetailsRightPanelConfigurationProps = {
             selectedDetailsViewPivot: selectedPivot,
-            detailsViewRightContentPanel: type,
+            detailsViewRightContentPanel: contentPanelType,
         };
         getDetailsRightPanelConfiguration.setup(gtrpc => gtrpc(It.isValue(expected))).returns(() => returnConfiguration);
     }

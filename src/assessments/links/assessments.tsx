@@ -44,7 +44,7 @@ export const LinksAssessment = AssessmentBuilder.Assisted({
     title: title,
     gettingStarted: LinksAssessmentGettingStarted,
     guidance,
-    type: VisualizationType.LinksAssessment,
+    visualizationType: VisualizationType.LinksAssessment,
     requirements: [LinkFunction, LinkPurpose],
     storeDataKey: 'linksAssessment',
 });

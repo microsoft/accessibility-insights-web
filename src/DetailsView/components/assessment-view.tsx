@@ -176,7 +176,7 @@ export class AssessmentView extends React.Component<AssessmentViewProps> {
                     <TestStepsNav
                         deps={this.props.deps}
                         ariaLabel={AssessmentView.requirementsTitle}
-                        selectedTest={assessmentTestResult.type}
+                        selectedTest={assessmentTestResult.visualizationType}
                         selectedTestStep={selectedRequirement.definition.key}
                         stepStatus={this.props.assessmentData.testStepStatus}
                     />

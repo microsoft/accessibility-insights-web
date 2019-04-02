@@ -142,7 +142,7 @@ describe('AssessmentScanPolicyRunner', () => {
                         getAssessmentData: getAssessmentDataMock.object,
                     };
                 },
-                type: testType,
+                visualizationType: testType,
             } as Assessment;
             const getAssessmentDataMock = Mock.ofInstance((data: IAssessmentStoreData) => null);
             setupStoreMockForCallback(assessmentStoreMock);

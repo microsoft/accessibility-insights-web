@@ -25,14 +25,14 @@ export class InspectActionMessageCreator extends BaseActionMessageCreator {
 
     @autobind
     public changeInspectMode(event: React.MouseEvent<HTMLElement> | MouseEvent, inspectMode: InspectMode): void {
-        const type = Messages.Inspect.ChangeInspectMode;
+        const messageType = Messages.Inspect.ChangeInspectMode;
         const telemetry = this.telemetryFactory.withTriggeredByAndSource(event, this.source);
         const payload: InspectPayload = {
             inspectMode,
             telemetry,
         };
         this.dispatchMessage({
-            type: type,
+            type: messageType,
             tabId: this._tabId,
             payload: payload,
         });

@@ -58,7 +58,7 @@ describe('DetailsViewLeftNav', () => {
             assessmentStoreData: assessmentStoreDataStub,
         } as DetailsViewLeftNavProps;
 
-        GetLeftNavSelectedKeyMock.setup(glnsm => glnsm(It.isValue({ type: selectedTestStub }))).returns(() => selectedKeyStub);
+        GetLeftNavSelectedKeyMock.setup(glnsm => glnsm(It.isValue({ visualizationType: selectedTestStub }))).returns(() => selectedKeyStub);
 
         assessmentsProviderWithFeaturesEnabledMock
             .setup(ap => ap(assessmentProviderStub, featureFlagDataStub))

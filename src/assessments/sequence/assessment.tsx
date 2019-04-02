@@ -26,7 +26,7 @@ export const SequenceAssessment: Assessment = AssessmentBuilder.Assisted({
     key,
     title,
     gettingStarted,
-    type: VisualizationType.SequenceAssessment,
+    visualizationType: VisualizationType.SequenceAssessment,
     requirements: [CssPositioning, LayoutTables, Columns],
     storeDataKey: 'sequenceAssessment',
 });

@@ -82,14 +82,14 @@ export class DiagnosticViewToggleFactory {
         const visualizationStoreData = this.visualizationStore.getState();
         const commandStoreData = this.commandStore.getState();
 
-        const toggles: JSX.Element[] = map(enabledTypes, type => {
+        const toggles: JSX.Element[] = map(enabledTypes, visualizationType => {
             return (
                 <DiagnosticViewToggle
                     deps={this.deps}
                     featureFlags={this.featureFlagsStore.getState()}
                     dom={this.dom}
-                    type={type}
-                    key={this.getToggleKey(type)}
+                    visualizationType={visualizationType}
+                    key={this.getToggleKey(visualizationType)}
                     shortcutCommands={commandStoreData.commands}
                     visualizationConfigurationFactory={this.visualizationConfigurationFactory}
                     actionMessageCreator={this.actionMessageCreator}
@@ -106,8 +106,8 @@ export class DiagnosticViewToggleFactory {
     private getEnabledTypes(): VisualizationType[] {
         const featureFlags = this.featureFlagsStore.getState();
 
-        const enabledTypes: VisualizationType[] = this.visualizationTypes.filter(type => {
-            const config = this.visualizationConfigurationFactory.getConfiguration(type);
+        const enabledTypes: VisualizationType[] = this.visualizationTypes.filter(visualizationType => {
+            const config = this.visualizationConfigurationFactory.getConfiguration(visualizationType);
             if (config.testMode !== TestMode.Adhoc) {
                 return false;
             }
@@ -122,7 +122,7 @@ export class DiagnosticViewToggleFactory {
         return enabledTypes;
     }
 
-    private getToggleKey(type: VisualizationType): string {
-        return `diagnostic_view_toggle_${type}`;
+    private getToggleKey(visualizationType: VisualizationType): string {
+        return `diagnostic_view_toggle_${visualizationType}`;
     }
 }

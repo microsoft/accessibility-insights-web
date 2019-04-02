@@ -75,7 +75,7 @@ export class CompletedTestStepTelemetryCreator {
         const numInstances = this.getNumInstances(step, assessmentData);
         const newStatus = this.store.getState().assessments[assessment.key].testStepStatus;
         return this.telemetryFactory.forRequirementStatus(
-            assessment.type,
+            assessment.visualizationType,
             step.key,
             newStatus[step.key].stepFinalResult === ManualTestStatus.PASS,
             numInstances,

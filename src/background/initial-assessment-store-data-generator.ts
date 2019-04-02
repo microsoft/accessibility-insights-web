@@ -8,7 +8,10 @@ import { IAssessmentData, IAssessmentStoreData, PersistedTabInfo } from '../comm
 import { DictionaryStringTo } from '../types/common-types';
 
 export class InitialAssessmentStoreDataGenerator {
-    private readonly NULL_FIRST_TEST: Partial<Readonly<Assessment>> = { type: null, requirements: [{ key: null }] as Requirement[] };
+    private readonly NULL_FIRST_TEST: Partial<Readonly<Assessment>> = {
+        visualizationType: null,
+        requirements: [{ key: null }] as Requirement[],
+    };
 
     constructor(private readonly tests: ReadonlyArray<Readonly<Assessment>>) {}
 
@@ -18,7 +21,7 @@ export class InitialAssessmentStoreDataGenerator {
         const persistedTests = persistedData && persistedData.assessments;
         // defaulting this.tests values to null instead of doing multiple if
         const first = head(this.tests) || this.NULL_FIRST_TEST;
-        const selectedTestType = first.type;
+        const selectedTestType = first.visualizationType;
         const selectedTestStep = first.requirements && first.requirements[0] && first.requirements[0].key;
 
         const state: Partial<IAssessmentStoreData> = {

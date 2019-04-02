@@ -25,7 +25,7 @@ const gettingStarted: JSX.Element = (
 
 export const ImagesAssessment: Assessment = AssessmentBuilder.Assisted({
     key,
-    type: VisualizationType.ImagesAssessment,
+    visualizationType: VisualizationType.ImagesAssessment,
     title,
     gettingStarted,
     guidance,

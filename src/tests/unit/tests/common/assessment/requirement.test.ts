@@ -33,13 +33,13 @@ describe('Requirement', () => {
                 requirementOrder: RequirementComparer.byName,
             } as AssessmentTestDefinition;
 
-            const type = -3 as VisualizationType;
+            const visualizationType = -3 as VisualizationType;
 
             const providerMock = Mock.ofType<AssessmentsProvider>();
-            providerMock.setup(p => p.forType(type)).returns(() => test);
-            providerMock.setup(p => p.getStep(type, It.isAnyString())).returns((_, key) => getStep(key));
+            providerMock.setup(p => p.forType(visualizationType)).returns(() => test);
+            providerMock.setup(p => p.getStep(visualizationType, It.isAnyString())).returns((_, key) => getStep(key));
 
-            const results = getRequirementsResults(providerMock.object, type, stepStatus);
+            const results = getRequirementsResults(providerMock.object, visualizationType, stepStatus);
 
             expect(results).toEqual([
                 {

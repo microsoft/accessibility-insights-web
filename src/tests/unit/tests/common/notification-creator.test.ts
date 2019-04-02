@@ -16,7 +16,7 @@ describe('NotificationCreator', () => {
     let getNotificationMessageMock: IMock<(selectorMap, key) => string>;
     let testObject: NotificationCreator;
     const key: string = 'the-key';
-    const type: VisualizationType = -1;
+    const visualizationType: VisualizationType = -1;
 
     beforeEach(() => {
         browserAdapterMock = Mock.ofType(ChromeAdapter, MockBehavior.Strict);
@@ -85,14 +85,14 @@ describe('NotificationCreator', () => {
             .verifiable(Times.once());
 
         configFactoryMock
-            .setup(cf => cf.getConfiguration(type))
+            .setup(cf => cf.getConfiguration(visualizationType))
             .returns(() => {
                 return {
                     getNotificationMessage: getNotificationMessageMock.object,
                 } as VisualizationConfiguration;
             });
 
-        testObject.createNotificationByVisualizationKey(selectorStub, key, type);
+        testObject.createNotificationByVisualizationKey(selectorStub, key, visualizationType);
 
         getNotificationMessageMock.verifyAll();
         verifyAll();

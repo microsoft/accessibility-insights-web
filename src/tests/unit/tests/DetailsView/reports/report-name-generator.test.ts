@@ -46,8 +46,8 @@ describe('ReportNameGenerator', () => {
         expect(actual).toEqual(expected);
     });
 
-    function titleFromRange(from: number, to: number): string {
-        return range(from, to).reduce((prev, cur) => prev + String.fromCharCode(cur), '');
+    function titleFromRange(start: number, end: number): string {
+        return range(start, end).reduce((prev, cur) => prev + String.fromCharCode(cur), '');
     }
 
     it('excludes invalid title characters from 32-95', () => {

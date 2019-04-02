@@ -31,7 +31,7 @@ const gettingStarted: JSX.Element = (
 );
 
 export const AudioVideoOnlyAssessment = AssessmentBuilder.Manual({
-    type: VisualizationType.AudioVideOnly,
+    visualizationType: VisualizationType.AudioVideOnly,
     key,
     title,
     gettingStarted,

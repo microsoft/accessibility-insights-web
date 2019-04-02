@@ -221,10 +221,10 @@ describe('PopupActionMessageCreatorTest', () => {
     });
 
     test('setLaunchPanelType', () => {
-        const type = LaunchPanelType.AdhocToolsPanel;
+        const panelType = LaunchPanelType.AdhocToolsPanel;
 
         const payload: SetLaunchPanelState = {
-            launchPanelType: type,
+            launchPanelType: panelType,
         };
 
         const expectedMessage = {
@@ -235,7 +235,7 @@ describe('PopupActionMessageCreatorTest', () => {
 
         postMessageMock.setup(post => post(It.isValue(expectedMessage))).verifiable(Times.once());
 
-        testSubject.setLaunchPanelType(type);
+        testSubject.setLaunchPanelType(panelType);
 
         postMessageMock.verifyAll();
     });

@@ -52,7 +52,7 @@ describe('DialogRendererTests', () => {
         shadowUtilMock = Mock.ofType(ShadowUtils);
         clientBrowserAdapter = Mock.ofType<ClientBrowserAdapter>();
 
-        getMainWindoContextMock = GlobalMock.ofInstance(MainWindowContext.get, 'get', MainWindowContext);
+        getMainWindoContextMock = GlobalMock.ofInstance(MainWindowContext.getMainWindowContext, 'getMainWindowContext', MainWindowContext);
         frameCommunicator = Mock.ofType(FrameCommunicator);
         domMock = Mock.ofInstance({
             createElement: selector => null,
@@ -389,15 +389,9 @@ describe('DialogRendererTests', () => {
 
     function setUpGetMainWindowContextCalledOnce(): void {
         getMainWindoContextMock
-            .setup(get => get())
+            .setup(getter => getter())
             .returns(() => mainWindowContext)
             .verifiable(Times.once());
-    }
-    function setUpGetMainWindowContexNeverCalled(): void {
-        getMainWindoContextMock
-            .setup(get => get())
-            .returns(() => mainWindowContext)
-            .verifiable(Times.never());
     }
 
     function setupRenderMockForVerifiable(): void {

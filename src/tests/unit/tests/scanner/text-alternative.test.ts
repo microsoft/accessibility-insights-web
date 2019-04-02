@@ -101,7 +101,7 @@ describe('text alternative', () => {
             const element1 = fixture.querySelector('#el1');
             axeReference._tree = axeReference.utils.getFlattenedTree(document.documentElement);
 
-            getAccessibleDescriptionMock.setup(get => get(It.isAny())).returns(() => '');
+            getAccessibleDescriptionMock.setup(getter => getter(It.isAny())).returns(() => '');
 
             dataSetterMock.setup(d => d(It.isAny()));
             let result;
@@ -121,7 +121,7 @@ describe('text alternative', () => {
             const element1 = fixture.querySelector('#el1');
 
             axeReference._tree = axeReference.utils.getFlattenedTree(document.documentElement);
-            getAccessibleDescriptionMock.setup(get => get(It.isAny())).returns(() => 'hello');
+            getAccessibleDescriptionMock.setup(geter => geter(It.isAny())).returns(() => 'hello');
 
             const expectedData = {
                 imageType: '<img>',

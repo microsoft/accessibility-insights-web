@@ -21,7 +21,7 @@ const gettingStartedText: JSX.Element = (
 );
 
 export const LanguageAssessment = AssessmentBuilder.Manual({
-    type: VisualizationType.LanguageAssessment,
+    visualizationType: VisualizationType.LanguageAssessment,
     key,
     title,
     gettingStarted: gettingStartedText,

@@ -136,18 +136,18 @@ describe('VisualizationScanResultStoreTest', () => {
             violations: expectedViolations,
         } as ScanResults;
 
-        const type = VisualizationType.Issues;
+        const visualizationType = VisualizationType.Issues;
 
         const initialState = new VisualizationScanResultStoreDataBuilder()
-            .withSelectorMap(type, selectorMap)
+            .withSelectorMap(visualizationType, selectorMap)
             .withFullIdToRuleResultMapForIssues(expectedFullIdToResultMap)
             .withSelectedIdToRuleResultMapForIssues(expectedFullIdToResultMap)
-            .withScanResult(type, scanResult)
+            .withScanResult(visualizationType, scanResult)
             .withIssuesSelectedTargets(selectorMap)
             .build();
 
         const expectedState = new VisualizationScanResultStoreDataBuilder()
-            .withSelectorMap(type, selectorMap)
+            .withSelectorMap(visualizationType, selectorMap)
             .withFullIdToRuleResultMapForIssues(expectedFullIdToResultMap)
             .withSelectedIdToRuleResultMapForIssues(expectedFullIdToResultMap)
             .withIssuesSelectedTargets(selectorMap)
@@ -174,7 +174,7 @@ describe('VisualizationScanResultStoreTest', () => {
     });
 
     test('onScanCompleted', () => {
-        const type = VisualizationType.Issues;
+        const visualizationType = VisualizationType.Issues;
         const initialState = new VisualizationScanResultStoreDataBuilder().build();
 
         const expectedViolations: AxeRule[] = [
@@ -288,10 +288,10 @@ describe('VisualizationScanResultStoreTest', () => {
         } as ScanResults;
 
         const expectedState = new VisualizationScanResultStoreDataBuilder()
-            .withSelectorMap(type, selectorMap)
+            .withSelectorMap(visualizationType, selectorMap)
             .withFullIdToRuleResultMapForIssues(expectedFullIdToResultMap)
             .withSelectedIdToRuleResultMapForIssues(expectedFullIdToResultMap)
-            .withScanResult(type, scanResult)
+            .withScanResult(visualizationType, scanResult)
             .withIssuesSelectedTargets(selectorMap)
             .build();
 
