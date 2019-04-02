@@ -13,7 +13,7 @@ import { FeatureFlagsController } from './feature-flags-controller';
 import { PersistedData } from './get-persisted-data';
 import { GlobalContext } from './global-context';
 import { Interpreter } from './interpreter';
-import { ILocalStorageData } from './storage-data';
+import { LocalStorageData } from './storage-data';
 import { GlobalStoreHub } from './stores/global/global-store-hub';
 import { TelemetryEventHandler } from './telemetry/telemetry-event-handler';
 
@@ -21,7 +21,7 @@ export class GlobalContextFactory {
     public static createContext(
         browserAdapter: BrowserAdapter,
         telemetryEventHandler: TelemetryEventHandler,
-        userData: ILocalStorageData,
+        userData: LocalStorageData,
         assessmentsProvider: AssessmentsProvider,
         telemetryDataFactory: TelemetryDataFactory,
         indexedDBInstance: IndexedDBAPI,

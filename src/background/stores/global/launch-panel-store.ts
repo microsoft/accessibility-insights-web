@@ -7,16 +7,16 @@ import { ILaunchPanelStoreData } from '../../../common/types/store-data/ilaunch-
 import { LaunchPanelType } from '../../../popup/components/popup-view';
 import { BrowserAdapter } from '../../browser-adapter';
 import { LocalStorageDataKeys } from '../../local-storage-data-keys';
-import { ILocalStorageData } from '../../storage-data';
+import { LocalStorageData } from '../../storage-data';
 import { BaseStoreImpl } from '../base-store-impl';
 import { LaunchPanelStateActions } from './../../actions/launch-panel-state-action';
 
 export class LaunchPanelStore extends BaseStoreImpl<ILaunchPanelStoreData> {
     private launchPanelStateActions: LaunchPanelStateActions;
     private browserAdapter: BrowserAdapter;
-    private userData: ILocalStorageData;
+    private userData: LocalStorageData;
 
-    constructor(launchPanelStateActions: LaunchPanelStateActions, browserAdapter: BrowserAdapter, userData: ILocalStorageData) {
+    constructor(launchPanelStateActions: LaunchPanelStateActions, browserAdapter: BrowserAdapter, userData: LocalStorageData) {
         super(StoreNames.LaunchPanelStateStore);
 
         this.launchPanelStateActions = launchPanelStateActions;

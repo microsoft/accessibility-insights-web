@@ -5,7 +5,7 @@ import { IMock, Mock, Times } from 'typemoq';
 
 import { GlobalActionHub } from '../../../../../../background/actions/global-action-hub';
 import { PersistedData } from '../../../../../../background/get-persisted-data';
-import { ILocalStorageData } from '../../../../../../background/storage-data';
+import { LocalStorageData } from '../../../../../../background/storage-data';
 import { AssessmentStore } from '../../../../../../background/stores/assessment-store';
 import { BaseStoreImpl } from '../../../../../../background/stores/base-store-impl';
 import { FeatureFlagStore } from '../../../../../../background/stores/global/feature-flag-store';
@@ -21,7 +21,7 @@ import { LaunchPanelType } from '../../../../../../popup/components/popup-view';
 import { CreateTestAssessmentProvider } from '../../../../common/test-assessment-provider';
 
 describe('GlobalStoreHubTest', () => {
-    let userDataStub: ILocalStorageData;
+    let userDataStub: LocalStorageData;
     let idbInstance: IndexedDBAPI;
     let assessmentProvider;
     let persistedDataStub: PersistedData;
@@ -31,7 +31,7 @@ describe('GlobalStoreHubTest', () => {
         assessmentProvider = CreateTestAssessmentProvider();
         userDataStub = {
             launchPanelSetting: LaunchPanelType.LaunchPad,
-        } as ILocalStorageData;
+        } as LocalStorageData;
 
         persistedDataStub = {
             assessmentStoreData: {

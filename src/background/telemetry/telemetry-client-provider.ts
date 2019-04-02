@@ -6,7 +6,7 @@ import { generateUID } from '../../common/uid-generator';
 import { ApplicationBuildGenerator } from '../application-build-generator';
 import { BrowserAdapter } from '../browser-adapter';
 import { InstallDataGenerator } from '../install-data-generator';
-import { ILocalStorageData } from '../storage-data';
+import { LocalStorageData } from '../storage-data';
 import { AppInsightsTelemetryClient } from './app-insights-telemetry-client';
 import { ApplicationTelemetryDataFactory } from './application-telemetry-data-factory';
 import { NullTelemetryClient } from './null-telemetry-client';
@@ -14,7 +14,7 @@ import { TelemetryClient } from './telemetry-client';
 import { TelemetryLogger } from './telemetry-logger';
 
 export const getTelemetryClient = (
-    userData: ILocalStorageData,
+    userData: LocalStorageData,
     browserAdapter: BrowserAdapter,
     logger: TelemetryLogger,
     appInsights: Microsoft.ApplicationInsights.IAppInsights,
