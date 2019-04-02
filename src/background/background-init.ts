@@ -5,6 +5,7 @@ import { AppInsights } from 'applicationinsights-js';
 import { Assessments } from '../assessments/assessments';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { IndexedDBAPI, IndexedDBUtil } from '../common/indexedDB/indexedDB';
+import { createDefaultLogger } from '../common/logging/default-logger';
 import { NotificationCreator } from '../common/notification-creator';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { UrlValidator } from '../common/url-validator';
@@ -97,7 +98,14 @@ getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
             assessmentsProvider,
         );
 
-        const clientHandler = new TabController(tabToContextMap, broadcaster, browserAdapter, detailsViewController, tabContextFactory);
+        const clientHandler = new TabController(
+            tabToContextMap,
+            broadcaster,
+            browserAdapter,
+            detailsViewController,
+            tabContextFactory,
+            createDefaultLogger(),
+        );
 
         clientHandler.initialize();
 
