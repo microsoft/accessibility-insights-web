@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
+
 import { SingleElementSelector } from '../../../../common/types/store-data/scoping-store-data';
 import { WindowUtils } from '../../../../common/window-utils';
 import { ElementFinderByPosition } from '../../../../injected/element-finder-by-position';
 import { ScopingListener } from '../../../../injected/scoping-listener';
 import { ShadowUtils } from '../../../../injected/shadow-utils';
+import { isFunction } from '../../common/is-function';
 
 class TestableScopingListener extends ScopingListener {
     public getOnClick(): (event: MouseEvent) => void {
@@ -221,7 +222,7 @@ describe('ScopingListenerTest', () => {
 
     function setupOnClickSetTimeout(path: SingleElementSelector, times: number = 1): void {
         windowUtilsMock
-            .setup(wum => wum.setTimeout(It.is(isFunction), ScopingListener.onClickTimeout))
+            .setup(wum => wum.setTimeout(isFunction, ScopingListener.onClickTimeout))
             .callback(handler => {
                 onClickSetTimeoutHandler = handler;
             })
@@ -249,7 +250,7 @@ describe('ScopingListenerTest', () => {
 
     function setupOnHoverSetTimeout(path: SingleElementSelector, times: number = 1): void {
         windowUtilsMock
-            .setup(wum => wum.setTimeout(It.is(isFunction), ScopingListener.onHoverTimeout))
+            .setup(wum => wum.setTimeout(isFunction, ScopingListener.onHoverTimeout))
             .callback(handler => {
                 onHoverSetTimeoutHandler = handler;
             })

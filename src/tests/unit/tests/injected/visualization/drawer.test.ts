@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { IActionN } from 'typemoq/_all';
 import { getDefaultFeatureFlagValues } from '../../../../../common/feature-flags';
@@ -13,6 +12,7 @@ import { DrawerInitData } from '../../../../../injected/visualization/drawer';
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
 import { DrawerConfiguration, Formatter } from '../../../../../injected/visualization/formatter';
 import { HighlightBoxDrawer } from '../../../../../injected/visualization/highlight-box-drawer';
+import { isFunction } from '../../../common/is-function';
 import { TestDocumentCreator } from '../../../common/test-document-creator';
 
 describe('Drawer', () => {
@@ -847,7 +847,7 @@ describe('Drawer', () => {
 
         windowUtilsMock.setup(x => x.clearTimeout(It.isAny())).verifiable(Times.never());
         windowUtilsMock
-            .setup(x => x.setTimeout(It.is(isFunction), HighlightBoxDrawer.recalculationTimeout))
+            .setup(x => x.setTimeout(isFunction, HighlightBoxDrawer.recalculationTimeout))
             .returns(() => timeOutId)
             .verifiable();
 

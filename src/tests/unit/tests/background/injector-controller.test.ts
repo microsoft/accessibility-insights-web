@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { isFunction } from 'lodash';
 import * as Q from 'q';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 
@@ -14,6 +13,7 @@ import { VisualizationStore } from '../../../../background/stores/visualization-
 import { Messages } from '../../../../common/messages';
 import { IVisualizationStoreData } from '../../../../common/types/store-data/ivisualization-store-data';
 import { WindowUtils } from '../../../../common/window-utils';
+import { isFunction } from '../../common/is-function';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 
 describe('InjectorControllerTest', () => {
@@ -177,7 +177,7 @@ class InjectorControllerValidator {
 
     public setupTimeoutHandler(times: number): InjectorControllerValidator {
         this.mockWindowUtils
-            .setup(x => x.setTimeout(It.is(isFunction), It.isAnyNumber()))
+            .setup(x => x.setTimeout(isFunction, It.isAnyNumber()))
             .callback(handler => {
                 this.setTimeoutHandler = handler;
             })

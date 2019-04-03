@@ -1,11 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { isFunction } from 'lodash';
 import { It, Mock } from 'typemoq';
+
 import { ChromeAdapter } from '../../../../background/browser-adapter';
 import { configMutator } from '../../../../common/configuration';
 import { WindowUtils } from '../../../../common/window-utils';
 import { SupportLinkHandler } from '../../../../popup/support-link-handler';
+import { isFunction } from '../../common/is-function';
 
 describe('SupportLinkHandlerTest', () => {
     afterEach(configMutator.reset);
@@ -33,7 +34,7 @@ describe('SupportLinkHandlerTest', () => {
 
         const windowUtilsMock = Mock.ofType(WindowUtils);
         windowUtilsMock
-            .setup(wu => wu.setTimeout(It.is(isFunction), 500))
+            .setup(wu => wu.setTimeout(isFunction, 500))
             .callback((cb, timeout) => {
                 cb();
             })

@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { isFunction } from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { FocusAnalyzerConfiguration, ScanBasePayload } from '../../../../../injected/analyzers/analyzer';
 import { TabStopsAnalyzer } from '../../../../../injected/analyzers/tab-stops-analyzer';
 import { TabStopEvent, TabStopsListener } from '../../../../../injected/tab-stops-listener';
+import { isFunction } from '../../../common/is-function';
 
 describe('TabStopsAnalyzerTests', () => {
     let windowUtilsMock: IMock<WindowUtils>;
@@ -163,7 +164,7 @@ describe('TabStopsAnalyzerTests', () => {
 
     function setupWindowUtils(): void {
         windowUtilsMock
-            .setup(w => w.setTimeout(It.is(isFunction), 50))
+            .setup(w => w.setTimeout(isFunction, 50))
             .callback((callback, timeout) => {
                 setTimeOutCallBack = callback;
             })
