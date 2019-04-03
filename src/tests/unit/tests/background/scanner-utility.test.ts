@@ -6,7 +6,7 @@ import { Interpreter } from '../../../../background/interpreter';
 import { ScannerUtility } from '../../../../background/scanner-utility';
 import { Messages } from '../../../../common/messages';
 import { WindowUtils } from '../../../../common/window-utils';
-import { isFunction } from '../../common/is-function';
+import { itIsFunction } from '../../common/it-is-function';
 
 describe('ScannerUtility', () => {
     it('constructor', () => {
@@ -36,7 +36,7 @@ describe('ScannerUtility', () => {
         interpreterMock.setup(im => im.interpret(It.isValue(expectedMessage))).verifiable();
 
         windowUtilsMock
-            .setup(wum => wum.setTimeout(isFunction, ScannerUtility.scanTimeoutMilliSeconds))
+            .setup(wum => wum.setTimeout(itIsFunction, ScannerUtility.scanTimeoutMilliSeconds))
             .callback(timeoutCallback => {
                 callback = timeoutCallback;
             });

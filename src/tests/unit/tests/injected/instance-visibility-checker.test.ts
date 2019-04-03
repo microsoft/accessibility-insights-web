@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
-
 import { UniquelyIdentifiableInstances } from '../../../../background/instance-identifier-generator';
 import {
     VisualizationConfiguration,
@@ -13,7 +12,7 @@ import { VisualizationType } from '../../../../common/types/visualization-type';
 import { WindowUtils } from '../../../../common/window-utils';
 import { AssessmentVisualizationInstance } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { InstanceVisibilityChecker } from '../../../../injected/instance-visibility-checker';
-import { isFunction } from '../../common/is-function';
+import { itIsFunction } from '../../common/it-is-function';
 
 describe('InstanceVisibilityCheckerTest', () => {
     let windowUtilsMock: IMock<WindowUtils>;
@@ -105,7 +104,7 @@ describe('InstanceVisibilityCheckerTest', () => {
         ];
 
         windowUtilsMock
-            .setup(wU => wU.setInterval(isFunction, InstanceVisibilityChecker.recalculationTimeInterval))
+            .setup(wU => wU.setInterval(itIsFunction, InstanceVisibilityChecker.recalculationTimeInterval))
             .callback((cb, timeout) => {
                 cb();
             })
@@ -174,7 +173,7 @@ describe('InstanceVisibilityCheckerTest', () => {
         };
 
         windowUtilsMock
-            .setup(wU => wU.setInterval(isFunction, InstanceVisibilityChecker.recalculationTimeInterval))
+            .setup(wU => wU.setInterval(itIsFunction, InstanceVisibilityChecker.recalculationTimeInterval))
             .callback((cb, timeout) => {
                 cb();
             })
@@ -287,7 +286,7 @@ describe('InstanceVisibilityCheckerTest', () => {
         configFactoryMock.setup(cfm => cfm.getConfiguration(testType)).returns(() => configStub);
 
         windowUtilsMock
-            .setup(wU => wU.setInterval(isFunction, InstanceVisibilityChecker.recalculationTimeInterval))
+            .setup(wU => wU.setInterval(itIsFunction, InstanceVisibilityChecker.recalculationTimeInterval))
             .verifiable(Times.never());
 
         testSubject.createVisibilityCheckerInterval(testStepDrawerId, testType, [frameResult]);
