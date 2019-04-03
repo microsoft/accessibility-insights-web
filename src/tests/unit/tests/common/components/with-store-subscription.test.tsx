@@ -1,9 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { shallow, render, mount } from 'enzyme';
 import * as React from 'react';
-import * as renderer from 'react-test-renderer';
 import { IMock, Mock, Times } from 'typemoq';
-
 import { withStoreSubscription, WithStoreSubscriptionProps } from '../../../../../common/components/with-store-subscription';
 import { StoreActionMessageCreatorImpl } from '../../../../../common/message-creators/store-action-message-creator-impl';
 import { ClientStoresHub } from '../../../../../common/stores/client-stores-hub';
@@ -218,12 +217,12 @@ describe('withStoreSubscription', () => {
             },
         };
         const WrappedComp = withStoreSubscription<WithStoreSubscriptionProps<any>, any>(testComp);
-        const rendered = renderer.create(<WrappedComp {...props} />);
+        const rendered = shallow(<WrappedComp {...props} />);
 
-        expect(rendered.toJSON()).toMatchSnapshot('before store change');
+        expect(rendered.dive().getElement()).toMatchSnapshot('before store change');
 
         onStoreChange();
 
-        expect(rendered.toJSON()).toMatchSnapshot('after store change');
+        expect(rendered.dive().getElement()).toMatchSnapshot('after store change');
     });
 });
