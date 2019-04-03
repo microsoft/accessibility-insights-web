@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { It, Mock, MockBehavior } from 'typemoq';
 import { isFunction } from 'lodash';
-
+import { It, Mock, MockBehavior } from 'typemoq';
 import { AssessmentToggleActionPayload } from '../../../../background/actions/action-payloads';
 import { Interpreter } from '../../../../background/interpreter';
 import { ScannerUtility } from '../../../../background/scanner-utility';

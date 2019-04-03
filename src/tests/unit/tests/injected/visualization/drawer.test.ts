@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { IActionN } from 'typemoq/_all';
-import { isFunction } from 'lodash';
 import { getDefaultFeatureFlagValues } from '../../../../../common/feature-flags';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { ClientUtils } from '../../../../../injected/client-utils';
