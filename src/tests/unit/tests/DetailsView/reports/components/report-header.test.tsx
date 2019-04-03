@@ -1,9 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { shallow } from 'enzyme';
 import * as React from 'react';
-
 import { ReportHeader, ReportHeaderProps } from '../../../../../../DetailsView/reports/components/report-header';
-import { shallowRender } from '../../../../common/shallow-render';
 
 describe('ReportHeaderTest', () => {
     it('renders with failures, without inapplicable', () => {
@@ -26,7 +25,8 @@ describe('ReportHeaderTest', () => {
             },
         };
 
-        expect(shallowRender(<ReportHeader {...props} />)).toMatchSnapshot();
+        const wrapper = shallow(<ReportHeader {...props} />);
+        expect(wrapper.getElement()).toMatchSnapshot();
     });
 
     it('renders without failures, with inapplicable', () => {
@@ -42,6 +42,7 @@ describe('ReportHeaderTest', () => {
             },
         };
 
-        expect(shallowRender(<ReportHeader {...props} />)).toMatchSnapshot();
+        const wrapper = shallow(<ReportHeader {...props} />);
+        expect(wrapper.getElement()).toMatchSnapshot();
     });
 });
