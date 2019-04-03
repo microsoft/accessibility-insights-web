@@ -2,13 +2,12 @@
 // Licensed under the MIT License.
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
-
 import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
-import { IVisualizationScanResultData } from '../../common/types/store-data/ivisualization-scan-result-data';
 import { IVisualizationStoreData } from '../../common/types/store-data/ivisualization-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
+import { VisualizationScanResultData } from '../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewToggleClickHandlerFactory } from '../handlers/details-view-toggle-click-handler-factory';
 import { ReportGenerator } from '../reports/report-generator';
@@ -25,7 +24,7 @@ export interface AdhocIssuesTestViewProps {
     issueTrackerPath: string;
     selectedTest: VisualizationType;
     visualizationStoreData: IVisualizationStoreData;
-    visualizationScanResultData: IVisualizationScanResultData;
+    visualizationScanResultData: VisualizationScanResultData;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
     issuesSelection: ISelection;

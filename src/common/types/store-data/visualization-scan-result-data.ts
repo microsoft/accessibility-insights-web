@@ -3,36 +3,33 @@
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from '../../../injected/scanner-utils';
 import { TabOrderPropertyBag } from '../../../injected/tab-order-property-bag';
 import { TabStopEvent } from '../../../injected/tab-stops-listener';
+import { ScanResults } from '../../../scanner/iruleresults';
+import { DictionaryStringTo } from '../../../types/common-types';
 
-// tslint:disable-next-line:interface-name
-interface IScanResultData<TSelector> {
+interface ScanResultData<TSelector> {
     fullAxeResultsMap: DictionaryStringTo<TSelector>;
     scanResult?: ScanResults;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IIssuesScanResultData extends IScanResultData<HtmlElementAxeResults> {
+interface IssuesScanResultData extends ScanResultData<HtmlElementAxeResults> {
     selectedAxeResultsMap: DictionaryStringTo<HtmlElementAxeResults>;
     selectedIdToRuleResultMap: DictionaryStringTo<DecoratedAxeNodeResult>;
     fullIdToRuleResultMap: DictionaryStringTo<DecoratedAxeNodeResult>;
 }
 
-// tslint:disable-next-line:interface-name
-export interface ITabbedElementData extends TabStopEvent {
+export interface TabbedElementData extends TabStopEvent {
     tabOrder: number;
     propertyBag?: TabOrderPropertyBag;
 }
 
-// tslint:disable-next-line:interface-name
-export interface ITabStopsScanResultData {
-    tabbedElements: ITabbedElementData[];
+interface TabStopsScanResultData {
+    tabbedElements: TabbedElementData[];
 }
 
-// tslint:disable-next-line:interface-name
-export interface IVisualizationScanResultData {
-    issues: IIssuesScanResultData;
-    landmarks: IIssuesScanResultData;
-    headings: IIssuesScanResultData;
-    color: IIssuesScanResultData;
-    tabStops: ITabStopsScanResultData;
+export interface VisualizationScanResultData {
+    issues: IssuesScanResultData;
+    landmarks: IssuesScanResultData;
+    headings: IssuesScanResultData;
+    color: IssuesScanResultData;
+    tabStops: TabStopsScanResultData;
 }

@@ -1,19 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { VisualizationScanResultStore } from '../../../background/stores/visualization-scan-result-store';
-import { ITabbedElementData, IVisualizationScanResultData } from '../../../common/types/store-data/ivisualization-scan-result-data';
+import { TabbedElementData, VisualizationScanResultData } from '../../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { HtmlElementAxeResults } from '../../../injected/scanner-utils';
 import { DictionaryStringTo } from '../../../types/common-types';
 import { BaseDataBuilder } from './base-data-builder';
 
-export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<IVisualizationScanResultData> {
+export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<VisualizationScanResultData> {
     constructor() {
         super();
         this.data = new VisualizationScanResultStore(null, null).getDefaultState();
     }
 
-    public withTabStopsTabbedElements(elements: ITabbedElementData[]): VisualizationScanResultStoreDataBuilder {
+    public withTabStopsTabbedElements(elements: TabbedElementData[]): VisualizationScanResultStoreDataBuilder {
         this.data.tabStops.tabbedElements = elements;
         return this;
     }

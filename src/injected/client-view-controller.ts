@@ -2,16 +2,15 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 import * as _ from 'lodash';
-
 import { BaseStore } from '../common/base-store';
 import { TestMode } from '../common/configs/test-mode';
 import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../common/enum-helper';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
-import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
 import { IAssessmentScanData, IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
+import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryNumberTo, DictionaryStringTo } from '../types/common-types';
 import { DrawingInitiator } from './drawing-initiator';
@@ -28,8 +27,8 @@ export class ClientViewController {
     private visualizationStore: BaseStore<IVisualizationStoreData>;
     private assessmentStore: BaseStore<IAssessmentStoreData>;
     private tabStore: BaseStore<TabStoreData>;
-    private scanResultStore: BaseStore<IVisualizationScanResultData>;
-    private currentScanResultState: IVisualizationScanResultData;
+    private scanResultStore: BaseStore<VisualizationScanResultData>;
+    private currentScanResultState: VisualizationScanResultData;
     private currentAssessmentState: IAssessmentStoreData;
     private currentTabState: TabStoreData;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
@@ -41,7 +40,7 @@ export class ClientViewController {
 
     constructor(
         visualizationStore: BaseStore<IVisualizationStoreData>,
-        scanResultStore: BaseStore<IVisualizationScanResultData>,
+        scanResultStore: BaseStore<VisualizationScanResultData>,
         drawingInitiator,
         scrollingController,
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
