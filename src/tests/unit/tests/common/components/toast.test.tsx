@@ -1,11 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Enzyme from 'enzyme';
-import { isFunction } from 'lodash';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
+
 import { Toast, ToastProps } from '../../../../../common/components/toast';
 import { WindowUtils } from '../../../../../common/window-utils';
+import { itIsFunction } from '../../../common/it-is-function';
 
 describe('ToastTest', () => {
     let windowUtilsMock: IMock<WindowUtils>;
@@ -32,7 +33,7 @@ describe('ToastTest', () => {
     test('setTimeout upon componentDidMount', () => {
         const timeoutId = 1;
         windowUtilsMock
-            .setup(m => m.setTimeout(It.is(isFunction), 2000))
+            .setup(m => m.setTimeout(itIsFunction, 2000))
             .returns(() => timeoutId)
             .verifiable(Times.once());
         onTimeoutMock.setup(m => m()).verifiable(Times.never());
@@ -47,7 +48,7 @@ describe('ToastTest', () => {
         const timeoutId = 1;
         let callback;
         windowUtilsMock
-            .setup(m => m.setTimeout(It.is(isFunction), 2000))
+            .setup(m => m.setTimeout(itIsFunction, 2000))
             .callback((func, _) => (callback = func))
             .returns(() => timeoutId)
             .verifiable(Times.once());
