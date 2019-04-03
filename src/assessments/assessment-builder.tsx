@@ -93,9 +93,9 @@ export class AssessmentBuilder {
         scanAssessmentData.stepStatus[payload.requirement] = true;
     }
 
-    private static disableTest(scanData: ScanData, step: string): void {
+    private static disableTest(scanData: ScanData, requirement: string): void {
         const scanAssessmentData = scanData as AssessmentScanData;
-        scanAssessmentData.stepStatus[step] = false;
+        scanAssessmentData.stepStatus[requirement] = false;
         scanAssessmentData.enabled = Object.keys(scanAssessmentData.stepStatus).some(key => scanAssessmentData.stepStatus[key] === true);
     }
 
