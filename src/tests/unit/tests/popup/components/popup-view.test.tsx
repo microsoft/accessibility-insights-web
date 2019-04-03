@@ -3,14 +3,13 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { ChromeAdapter } from '../../../../../background/browser-adapter';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
 import { DropdownClickHandler } from '../../../../../common/dropdown-click-handler';
 import { StoreActionMessageCreatorImpl } from '../../../../../common/message-creators/store-action-message-creator-impl';
 import { BaseClientStoresHub } from '../../../../../common/stores/base-client-stores-hub';
 import { CommandStoreData } from '../../../../../common/types/store-data/command-store-data';
-import { ILaunchPanelStoreData } from '../../../../../common/types/store-data/ilaunch-panel-store-data';
+import { LaunchPanelStoreData } from '../../../../../common/types/store-data/launch-panel-store-data';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { PopupActionMessageCreator } from '../../../../../popup/actions/popup-action-message-creator';
 import { LaunchPanelHeader } from '../../../../../popup/components/launch-panel-header';
@@ -35,7 +34,7 @@ describe('PopupView', () => {
     const commandStoreState: CommandStoreData = {
         commands: ShortcutCommandsTestData,
     };
-    const launchPanelStateStoreState: ILaunchPanelStoreData = {
+    const launchPanelStateStoreState: LaunchPanelStoreData = {
         launchPanelType: LaunchPanelType.LaunchPad,
     };
     const featureFlagStoreData = {};
@@ -170,7 +169,7 @@ describe('PopupView', () => {
         });
 
         test('render toggles view: ad-hoc tools', () => {
-            const adHocLaunchPanelStateStoreState: ILaunchPanelStoreData = {
+            const adHocLaunchPanelStateStoreState: LaunchPanelStoreData = {
                 launchPanelType: LaunchPanelType.AdhocToolsPanel,
             };
             storeState.launchPanelStateStoreData = adHocLaunchPanelStateStoreState;

@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { LaunchPanelType } from '../../../popup/components/popup-view';
 
-// tslint:disable-next-line:interface-name
-export interface ILaunchPanelStoreData {
+export interface LaunchPanelStoreData {
     launchPanelType: LaunchPanelType;
 }
