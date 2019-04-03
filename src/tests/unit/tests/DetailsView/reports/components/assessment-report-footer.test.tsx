@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { shallow } from 'enzyme';
 import * as React from 'react';
-import * as renderer from 'react-test-renderer';
-
 import {
     AssessmentReportFooter,
     AssessmentReportFooterProps,
@@ -15,8 +14,9 @@ describe('AssessmentReportFooter', () => {
             axeVersion: 'axeVersion',
             chromeVersion: 'chromeVersion',
         };
-        const tree = renderer.create(<AssessmentReportFooter {...props} />).toJSON();
 
-        expect(tree).toMatchSnapshot();
+        const wrapper = shallow(<AssessmentReportFooter {...props} />);
+
+        expect(wrapper.getElement()).toMatchSnapshot();
     });
 });
