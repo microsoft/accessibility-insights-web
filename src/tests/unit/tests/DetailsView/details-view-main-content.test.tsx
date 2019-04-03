@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
-
 import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
 import {
     VisualizationConfiguration,
@@ -16,7 +15,7 @@ import {
     IAssessmentStoreData,
     PersistedTabInfo,
 } from '../../../../common/types/store-data/iassessment-result-data';
-import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';
+import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
 import { ScanData, TestsEnabledState } from '../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../DetailsView/actions/details-view-action-message-creator';
@@ -120,9 +119,9 @@ describe('DetailsViewMainContentTest', () => {
         });
 
         test('tab is closed', () => {
-            const tabStoreData: ITabStoreData = {
+            const tabStoreData: TabStoreData = {
                 isClosed: true,
-            } as ITabStoreData;
+            } as TabStoreData;
 
             props.tabStoreData = tabStoreData;
 

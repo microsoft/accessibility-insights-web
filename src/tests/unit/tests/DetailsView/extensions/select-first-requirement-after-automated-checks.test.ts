@@ -7,7 +7,7 @@ import { selectFirstRequirementAfterAutomatedChecks } from '../../../../../Detai
 describe('selectFirstRequirementAfterAutomatedChecks', () => {
     const first = 'first';
     const second = 'second';
-    const type = -2112;
+    const assessmentType = -2112;
 
     const getRequirementResults = () => [{ definition: { key: first } }, { definition: { key: second } }];
 
@@ -22,7 +22,7 @@ describe('selectFirstRequirementAfterAutomatedChecks', () => {
         assessmentTestResult: {
             getOutcomeStats: () => ({ pass: 0, incomplete: 1, fail: 0 }),
             getRequirementResults,
-            type,
+            visualizationType: assessmentType,
         },
     } as Partial<AssessmentViewProps>) as AssessmentViewProps;
 
@@ -33,7 +33,7 @@ describe('selectFirstRequirementAfterAutomatedChecks', () => {
         assessmentTestResult: {
             getOutcomeStats: () => ({ pass: 1, incomplete: 0, fail: 0 }),
             getRequirementResults,
-            type,
+            visualizationType: assessmentType,
         },
     } as Partial<AssessmentViewProps>) as AssessmentViewProps;
 
@@ -46,7 +46,7 @@ describe('selectFirstRequirementAfterAutomatedChecks', () => {
     it('selects the first test step when transitioning from scanning to not scanning', () => {
         testObject(scanningProps, notScanningProps);
 
-        expect(actionMessageCreator.selectRequirement).toBeCalledWith(null, first, type);
+        expect(actionMessageCreator.selectRequirement).toBeCalledWith(null, first, assessmentType);
     });
 
     it('does not select the first test step when remaining scanning', () => {

@@ -140,12 +140,12 @@ describe('FailureInstancePanelControlTest', () => {
         addInstanceMock.verifyAll();
     });
 
-    function createPropsWithType(type: CapturedInstanceActionType): FailureInstancePanelControlProps {
+    function createPropsWithType(actionType: CapturedInstanceActionType): FailureInstancePanelControlProps {
         return {
             step: 'missingHeadings',
             test: VisualizationType.HeadingsAssessment,
             addFailureInstance: addInstanceMock.object,
-            actionType: type,
+            actionType: actionType,
             assessmentsProvider: Assessments,
         };
     }

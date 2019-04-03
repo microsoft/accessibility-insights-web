@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { IActionN } from 'typemoq/_all';
 import { getDefaultFeatureFlagValues } from '../../../../../common/feature-flags';
@@ -846,7 +847,7 @@ describe('Drawer', () => {
 
         windowUtilsMock.setup(x => x.clearTimeout(It.isAny())).verifiable(Times.never());
         windowUtilsMock
-            .setup(x => x.setTimeout(It.isAny(), HighlightBoxDrawer.recalculationTimeout))
+            .setup(x => x.setTimeout(It.is(isFunction), HighlightBoxDrawer.recalculationTimeout))
             .returns(() => timeOutId)
             .verifiable();
 

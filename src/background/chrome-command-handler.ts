@@ -131,8 +131,8 @@ export class ChromeCommandHandler {
         }
     }
 
-    private shouldNotifyOnEnable(type: VisualizationType): boolean {
-        return type !== VisualizationType.TabStops;
+    private shouldNotifyOnEnable(visualizationType: VisualizationType): boolean {
+        return visualizationType !== VisualizationType.TabStops;
     }
 
     private invokeToggleAction(visualizationType: VisualizationType, state: VisualizationStoreData, tabId: number): void {

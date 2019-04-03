@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
 import { HTMLElementUtils } from '../common/html-element-utils';
@@ -18,10 +17,10 @@ import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-st
 import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
 import { DevToolState } from '../common/types/store-data/idev-tool-state';
 import { InspectStoreData } from '../common/types/store-data/inspect-store-data';
-import { ITabStoreData } from '../common/types/store-data/itab-store-data';
-import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
+import { TabStoreData } from '../common/types/store-data/tab-store-data';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
+import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { generateUID } from '../common/uid-generator';
 import { scan } from '../scanner/exposed-apis';
@@ -55,9 +54,9 @@ export class MainWindowInitializer extends WindowInitializer {
     private featureFlagStoreProxy: StoreProxy<FeatureFlagStoreData>;
     private userConfigStoreProxy: StoreProxy<UserConfigurationStoreData>;
     private inspectStoreProxy: StoreProxy<InspectStoreData>;
-    private visualizationScanResultStoreProxy: StoreProxy<IVisualizationScanResultData>;
+    private visualizationScanResultStoreProxy: StoreProxy<VisualizationScanResultData>;
     private scopingStoreProxy: StoreProxy<ScopingStoreData>;
-    private tabStoreProxy: StoreProxy<ITabStoreData>;
+    private tabStoreProxy: StoreProxy<TabStoreData>;
     private devToolStoreProxy: StoreProxy<DevToolState>;
 
     public async initialize(): Promise<void> {
@@ -77,12 +76,12 @@ export class MainWindowInitializer extends WindowInitializer {
             StoreNames[StoreNames.UserConfigurationStore],
             this.clientChromeAdapter,
         );
-        this.visualizationScanResultStoreProxy = new StoreProxy<IVisualizationScanResultData>(
+        this.visualizationScanResultStoreProxy = new StoreProxy<VisualizationScanResultData>(
             StoreNames[StoreNames.VisualizationScanResultStore],
             this.clientChromeAdapter,
         );
         this.assessmentStoreProxy = new StoreProxy<IAssessmentStoreData>(StoreNames[StoreNames.AssessmentStore], this.clientChromeAdapter);
-        this.tabStoreProxy = new StoreProxy<ITabStoreData>(StoreNames[StoreNames.TabStore], this.clientChromeAdapter);
+        this.tabStoreProxy = new StoreProxy<TabStoreData>(StoreNames[StoreNames.TabStore], this.clientChromeAdapter);
         this.devToolStoreProxy = new StoreProxy<DevToolState>(StoreNames[StoreNames.DevToolsStore], this.clientChromeAdapter);
         this.inspectStoreProxy = new StoreProxy<InspectStoreData>(StoreNames[StoreNames.InspectStore], this.clientChromeAdapter);
 

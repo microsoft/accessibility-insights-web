@@ -42,7 +42,7 @@ export class AssessmentScanPolicyRunner {
         const visualizationConfig = assessmentConfig.getVisualizationConfiguration();
 
         const scanStep = (step: string) => {
-            this.scheduleScan(assessmentConfig.type, step, this.tabId);
+            this.scheduleScan(assessmentConfig.visualizationType, step, this.tabId);
         };
 
         assessmentConfig.executeAssessmentScanPolicy(scanStep, visualizationConfig.getAssessmentData(assessmentState));

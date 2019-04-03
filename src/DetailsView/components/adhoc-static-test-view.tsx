@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration-factory';
 import { NamedSFC } from '../../common/react/named-sfc';
-import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
+import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { ContentReference } from '../../views/content/content-page';
@@ -16,7 +15,7 @@ export type AdhocStaticTestViewDeps = StaticContentDetailsViewDeps;
 
 export interface AdhocStaticTestViewProps {
     deps: AdhocStaticTestViewDeps;
-    tabStoreData: Pick<ITabStoreData, 'isChanged'>;
+    tabStoreData: Pick<TabStoreData, 'isChanged'>;
     selectedTest: VisualizationType;
     visualizationStoreData: VisualizationStoreData;
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
@@ -32,7 +31,9 @@ export const AdhocStaticTestView = NamedSFC<AdhocStaticTestViewProps>('AdhocStat
     const displayableData = props.configuration.displayableData;
 
     if (props.tabStoreData.isChanged) {
-        return <TargetPageChangedView displayableData={displayableData} type={selectedTest} toggleClickHandler={clickHandler} />;
+        return (
+            <TargetPageChangedView displayableData={displayableData} visualizationType={selectedTest} toggleClickHandler={clickHandler} />
+        );
     }
 
     const givenProps: StaticContentDetailsViewProps = {

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { isFunction } from 'lodash';
 import * as Q from 'q';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 
@@ -176,7 +177,7 @@ class InjectorControllerValidator {
 
     public setupTimeoutHandler(times: number): InjectorControllerValidator {
         this.mockWindowUtils
-            .setup(x => x.setTimeout(It.isAny(), It.isAnyNumber()))
+            .setup(x => x.setTimeout(It.is(isFunction), It.isAnyNumber()))
             .callback(handler => {
                 this.setTimeoutHandler = handler;
             })

@@ -10,11 +10,11 @@ import { ManualTestStatus, ManualTestStatusData } from '../../../../../common/ty
 import { IAssessmentData } from '../../../../../common/types/store-data/iassessment-result-data';
 
 describe('AssessmentTestResult', () => {
-    const type = -2112;
+    const assessmentType = -2112;
     const key = 'TheKey';
-    const definition = { key, type } as Assessment;
+    const definition = { key, visualizationType: assessmentType } as Assessment;
     const assessmentProvider = {
-        forType: t => t === type && definition,
+        forType: t => t === assessmentType && definition,
     } as AssessmentsProvider;
 
     const testStepStatus = {
@@ -42,10 +42,10 @@ describe('AssessmentTestResult', () => {
     const outcomeStats = { pass: 1, fail: 2, incomplete: 3 };
 
     const depsMock = Mock.ofType<AssessmentTestProviderDeps>();
-    depsMock.setup(d => d.getRequirementsResults(assessmentProvider, type, testStepStatus)).returns(() => requirementsResults);
+    depsMock.setup(d => d.getRequirementsResults(assessmentProvider, assessmentType, testStepStatus)).returns(() => requirementsResults);
     depsMock.setup(d => d.outcomeStatsFromManualTestStatus(testStepStatus)).returns(() => outcomeStats);
 
-    const testObject = new AssessmentTestResult(assessmentProvider, type, assessmentData, depsMock.object);
+    const testObject = new AssessmentTestResult(assessmentProvider, assessmentType, assessmentData, depsMock.object);
 
     it('provides definition', () => {
         expect(testObject.definition.key).toEqual(key);
@@ -64,7 +64,7 @@ describe('AssessmentTestResult', () => {
     });
 
     it('provides type', () => {
-        expect(testObject.type).toEqual(type);
+        expect(testObject.visualizationType).toEqual(assessmentType);
     });
 
     it('provides outcomeStats', () => {

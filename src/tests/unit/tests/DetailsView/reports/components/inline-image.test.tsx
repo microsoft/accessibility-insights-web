@@ -17,8 +17,8 @@ describe('InlineImageTest', () => {
         testInvalidImage(1234);
     });
 
-    function testInvalidImage(type: InlineImageType): void {
-        const props: InlineImageProps = { type, alt: '' };
+    function testInvalidImage(imageType: InlineImageType): void {
+        const props: InlineImageProps = { imageType: imageType, alt: '' };
         const testObject = new InlineImage(props);
 
         const element = testObject.render();
@@ -26,8 +26,8 @@ describe('InlineImageTest', () => {
         expect(element).toBeNull();
     }
 
-    function testInlineImage(type: InlineImageType, alt: string): void {
-        const props: InlineImageProps = { type, alt };
+    function testInlineImage(imageType: InlineImageType, alt: string): void {
+        const props: InlineImageProps = { imageType: imageType, alt };
         const testObject = new InlineImage(props);
 
         const element = testObject.render();

@@ -30,34 +30,34 @@ import { ReportInstanceField } from './types/report-instance-field';
 import { Requirement } from './types/requirement';
 
 export class AssessmentBuilder {
-    private static applyDefaultReportFieldMap(step: Requirement): void {
+    private static applyDefaultReportFieldMap(requirement: Requirement): void {
         const { comment, snippet, path } = ReportInstanceField.common;
 
-        const defaults = step.isManual ? [comment] : [path, snippet];
-        const specified = step.reportInstanceFields || [];
+        const defaults = requirement.isManual ? [comment] : [path, snippet];
+        const specified = requirement.reportInstanceFields || [];
 
-        step.reportInstanceFields = [...defaults, ...specified];
+        requirement.reportInstanceFields = [...defaults, ...specified];
     }
 
-    private static applyDefaultFunctions(step: Requirement): void {
-        if (!step.getInstanceStatus) {
-            step.getInstanceStatus = AssessmentBuilder.getInstanceStatus;
+    private static applyDefaultFunctions(requirement: Requirement): void {
+        if (!requirement.getInstanceStatus) {
+            requirement.getInstanceStatus = AssessmentBuilder.getInstanceStatus;
         }
 
-        if (!step.getInstanceStatusColumns) {
-            step.getInstanceStatusColumns = AssessmentBuilder.getInstanceStatusColumns;
+        if (!requirement.getInstanceStatusColumns) {
+            requirement.getInstanceStatusColumns = AssessmentBuilder.getInstanceStatusColumns;
         }
 
-        if (!step.renderInstanceTableHeader) {
-            step.renderInstanceTableHeader = AssessmentBuilder.renderInstanceTableHeader;
+        if (!requirement.renderInstanceTableHeader) {
+            requirement.renderInstanceTableHeader = AssessmentBuilder.renderInstanceTableHeader;
         }
 
-        if (!step.renderRequirementDescription) {
-            step.renderRequirementDescription = AssessmentBuilder.renderRequirementDescription;
+        if (!requirement.renderRequirementDescription) {
+            requirement.renderRequirementDescription = AssessmentBuilder.renderRequirementDescription;
         }
 
-        if (!step.getDefaultMessage) {
-            step.getDefaultMessage = defaultMessageGenerator => defaultMessageGenerator.getNoMatchingInstanceMessage;
+        if (!requirement.getDefaultMessage) {
+            requirement.getDefaultMessage = defaultMessageGenerator => defaultMessageGenerator.getNoMatchingInstanceMessage;
         }
     }
 
@@ -105,35 +105,35 @@ export class AssessmentBuilder {
     }
 
     public static Manual(assessment: ManualAssessment): Assessment {
-        const { key, steps } = assessment;
+        const { key, requirements } = assessment;
 
         assessment.requirementOrder = assessment.requirementOrder || RequirementComparer.byOrdinal;
         assessment.executeAssessmentScanPolicy = assessment.executeAssessmentScanPolicy || AssessmentBuilder.nullScanPolicy;
         assessment.initialDataCreator = assessment.initialDataCreator || createInitialAssessmentTestData;
 
-        steps.forEach(AssessmentBuilder.applyDefaultReportFieldMap);
-        steps.forEach(AssessmentBuilder.applyDefaultFunctions);
+        requirements.forEach(AssessmentBuilder.applyDefaultReportFieldMap);
+        requirements.forEach(AssessmentBuilder.applyDefaultFunctions);
 
-        const getAnalyzer = (provider: AnalyzerProvider, testStep: string) => {
-            const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
+        const getAnalyzer = (provider: AnalyzerProvider, requirement: string) => {
+            const requirementConfig = AssessmentBuilder.getRequirementConfig(requirements, requirement);
             return provider.createBaseAnalyzer({
-                key: stepConfig.key,
-                testType: assessment.type,
+                key: requirementConfig.key,
+                testType: assessment.visualizationType,
                 analyzerMessageType: Messages.Assessment.AssessmentScanCompleted,
             });
         };
 
-        const getIdentifier = (testStep: string) => {
-            const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
-            return stepConfig.key;
+        const getIdentifier = (requirement: string) => {
+            const requirementConfig = AssessmentBuilder.getRequirementConfig(requirements, requirement);
+            return requirementConfig.key;
         };
 
-        const getNotificationMessage = (selectorMap: DictionaryStringTo<any>, testStep?: string) => {
-            const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
-            if (stepConfig.getNotificationMessage == null) {
+        const getNotificationMessage = (selectorMap: DictionaryStringTo<any>, requirement?: string) => {
+            const requirementConfig = AssessmentBuilder.getRequirementConfig(requirements, requirement);
+            if (requirementConfig.getNotificationMessage == null) {
                 return null;
             }
-            return stepConfig.getNotificationMessage(selectorMap);
+            return requirementConfig.getNotificationMessage(selectorMap);
         };
 
         const visualizationConfiguration: AssesssmentVisualizationConfiguration = {
@@ -150,12 +150,12 @@ export class AssessmentBuilder {
             visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
             getDrawer: provider => provider.createNullDrawer(),
             getNotificationMessage: getNotificationMessage,
-            getSwitchToTargetTabOnScan: this.getSwitchToTargetTabOnScan(steps),
-            getInstanceIdentiferGenerator: this.getInstanceIdentifier(steps),
-            getUpdateVisibility: this.getUpdateVisibility(steps),
+            getSwitchToTargetTabOnScan: this.getSwitchToTargetTabOnScan(requirements),
+            getInstanceIdentiferGenerator: this.getInstanceIdentifier(requirements),
+            getUpdateVisibility: this.getUpdateVisibility(requirements),
         };
 
-        this.BuildStepsReportDescription(steps);
+        this.buildRequirementReportDescription(requirements);
 
         return {
             getVisualizationConfiguration: () => visualizationConfiguration,
@@ -165,45 +165,45 @@ export class AssessmentBuilder {
     }
 
     public static Assisted(assessment: AssistedAssessment): Assessment {
-        const { key, steps } = assessment;
+        const { key, requirements } = assessment;
 
         assessment.requirementOrder = assessment.requirementOrder || RequirementComparer.byOrdinal;
         assessment.initialDataCreator = assessment.initialDataCreator || createInitialAssessmentTestData;
 
-        steps.forEach(AssessmentBuilder.applyDefaultReportFieldMap);
-        steps.forEach(AssessmentBuilder.applyDefaultFunctions);
+        requirements.forEach(AssessmentBuilder.applyDefaultReportFieldMap);
+        requirements.forEach(AssessmentBuilder.applyDefaultFunctions);
 
-        const getAnalyzer = (provider: AnalyzerProvider, testStep: string) => {
-            const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
-            if (stepConfig.getAnalyzer == null) {
+        const getAnalyzer = (provider: AnalyzerProvider, requirement: string) => {
+            const requirementConfig = AssessmentBuilder.getRequirementConfig(requirements, requirement);
+            if (requirementConfig.getAnalyzer == null) {
                 return provider.createBaseAnalyzer({
-                    key: stepConfig.key,
-                    testType: assessment.type,
+                    key: requirementConfig.key,
+                    testType: assessment.visualizationType,
                     analyzerMessageType: Messages.Assessment.AssessmentScanCompleted,
                 });
             }
-            return stepConfig.getAnalyzer(provider);
+            return requirementConfig.getAnalyzer(provider);
         };
 
-        const getIdentifier = (testStep: string) => {
-            const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
-            return stepConfig.key;
+        const getIdentifier = (requirement: string) => {
+            const requirementConfig = AssessmentBuilder.getRequirementConfig(requirements, requirement);
+            return requirementConfig.key;
         };
 
-        const getDrawer = (provider: DrawerProvider, testStep: string, featureFlagStoreData?: FeatureFlagStoreData) => {
-            const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
-            if (stepConfig.getDrawer == null) {
+        const getDrawer = (provider: DrawerProvider, requirement: string, featureFlagStoreData?: FeatureFlagStoreData) => {
+            const requirementConfig = AssessmentBuilder.getRequirementConfig(requirements, requirement);
+            if (requirementConfig.getDrawer == null) {
                 return provider.createNullDrawer();
             }
-            return stepConfig.getDrawer(provider, featureFlagStoreData);
+            return requirementConfig.getDrawer(provider, featureFlagStoreData);
         };
 
-        const getNotificationMessage = (selectorMap: DictionaryStringTo<any>, testStep?: string) => {
-            const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
-            if (stepConfig.getNotificationMessage == null) {
+        const getNotificationMessage = (selectorMap: DictionaryStringTo<any>, requirement?: string) => {
+            const requirementConfig = AssessmentBuilder.getRequirementConfig(requirements, requirement);
+            if (requirementConfig.getNotificationMessage == null) {
                 return null;
             }
-            return stepConfig.getNotificationMessage(selectorMap);
+            return requirementConfig.getNotificationMessage(selectorMap);
         };
 
         assessment.executeAssessmentScanPolicy = assessment.executeAssessmentScanPolicy || AssessmentBuilder.nullScanPolicy;
@@ -226,15 +226,15 @@ export class AssessmentBuilder {
             key: assessment.storeDataKey,
             getAnalyzer: getAnalyzer,
             getIdentifier: getIdentifier,
-            visualizationInstanceProcessor: AssessmentBuilder.getVisualizationInstanceProcessor(steps),
+            visualizationInstanceProcessor: AssessmentBuilder.getVisualizationInstanceProcessor(requirements),
             getDrawer: getDrawer,
             getNotificationMessage: getNotificationMessage,
-            getSwitchToTargetTabOnScan: AssessmentBuilder.getSwitchToTargetTabOnScan(steps),
-            getInstanceIdentiferGenerator: AssessmentBuilder.getInstanceIdentifier(steps),
-            getUpdateVisibility: AssessmentBuilder.getUpdateVisibility(steps),
+            getSwitchToTargetTabOnScan: AssessmentBuilder.getSwitchToTargetTabOnScan(requirements),
+            getInstanceIdentiferGenerator: AssessmentBuilder.getInstanceIdentifier(requirements),
+            getUpdateVisibility: AssessmentBuilder.getUpdateVisibility(requirements),
         } as AssesssmentVisualizationConfiguration;
 
-        AssessmentBuilder.BuildStepsReportDescription(steps);
+        AssessmentBuilder.buildRequirementReportDescription(requirements);
 
         return {
             getVisualizationConfiguration: () => visualizationConfiguration,
@@ -242,46 +242,48 @@ export class AssessmentBuilder {
         } as Assessment;
     }
 
-    private static getStepConfig(steps: Requirement[], testStep: string): Requirement {
-        return steps.find(step => step.key === testStep);
+    private static getRequirementConfig(requirements: Requirement[], requirementKey: string): Requirement {
+        return requirements.find(req => req.key === requirementKey);
     }
 
     private static getVisualizationInstanceProcessor(
-        steps: Requirement[],
-    ): (testStep: string) => VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags> {
-        return (testStep: string): VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags> => {
-            const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
-            if (stepConfig == null || stepConfig.visualizationInstanceProcessor == null) {
+        requirements: Requirement[],
+    ): (requirement: string) => VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags> {
+        return (requirementKey: string): VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags> => {
+            const requirementConfig = AssessmentBuilder.getRequirementConfig(requirements, requirementKey);
+            if (requirementConfig == null || requirementConfig.visualizationInstanceProcessor == null) {
                 return VisualizationInstanceProcessor.nullProcessor;
             }
-            return stepConfig.visualizationInstanceProcessor;
+            return requirementConfig.visualizationInstanceProcessor;
         };
     }
 
-    private static getSwitchToTargetTabOnScan(steps: Requirement[]): (testStep: string) => boolean {
-        return (testStep: string): boolean => {
-            const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
-            if (stepConfig == null || stepConfig.switchToTargetTabOnScan == null) {
+    private static getSwitchToTargetTabOnScan(requirements: Requirement[]): (requirementKey: string) => boolean {
+        return (requirement: string): boolean => {
+            const requirementConfig = AssessmentBuilder.getRequirementConfig(requirements, requirement);
+            if (requirementConfig == null || requirementConfig.switchToTargetTabOnScan == null) {
                 return false;
             }
-            return stepConfig.switchToTargetTabOnScan;
+            return requirementConfig.switchToTargetTabOnScan;
         };
     }
 
-    private static getInstanceIdentifier(steps: Requirement[]): (testStep: string) => (instance: UniquelyIdentifiableInstances) => string {
-        return (testStep: string) => {
-            const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
-            if (stepConfig == null || stepConfig.generateInstanceIdentifier == null) {
+    private static getInstanceIdentifier(
+        requirements: Requirement[],
+    ): (requirement: string) => (instance: UniquelyIdentifiableInstances) => string {
+        return (requirementKey: string) => {
+            const requirementConfig = AssessmentBuilder.getRequirementConfig(requirements, requirementKey);
+            if (requirementConfig == null || requirementConfig.generateInstanceIdentifier == null) {
                 return InstanceIdentifierGenerator.defaultHtmlSelectorIdentifier;
             }
-            return stepConfig.generateInstanceIdentifier;
+            return requirementConfig.generateInstanceIdentifier;
         };
     }
 
-    private static BuildStepsReportDescription(steps: Requirement[]): void {
-        steps.forEach(step => {
-            step.renderReportDescription = () => {
-                const descriptionCopy = _.cloneDeep(step.description);
+    private static buildRequirementReportDescription(requirements: Requirement[]): void {
+        requirements.forEach(requirement => {
+            requirement.renderReportDescription = () => {
+                const descriptionCopy = _.cloneDeep(requirement.description);
                 const children = AssessmentBuilder.removeLastDotFromDescription(descriptionCopy.props.children);
                 descriptionCopy.props.children = children;
 
@@ -302,13 +304,13 @@ export class AssessmentBuilder {
         return children;
     }
 
-    private static getUpdateVisibility(steps: Requirement[]): (testStep: string) => boolean {
-        return (testStep: string): boolean => {
-            const stepConfig = AssessmentBuilder.getStepConfig(steps, testStep);
-            if (stepConfig == null || stepConfig.updateVisibility == null) {
+    private static getUpdateVisibility(requirements: Requirement[]): (requirement: string) => boolean {
+        return (requirementKey: string): boolean => {
+            const requirementConfig = AssessmentBuilder.getRequirementConfig(requirements, requirementKey);
+            if (requirementConfig == null || requirementConfig.updateVisibility == null) {
                 return true;
             }
-            return stepConfig.updateVisibility;
+            return requirementConfig.updateVisibility;
         };
     }
 

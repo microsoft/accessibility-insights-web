@@ -29,7 +29,7 @@ export class ReportCheckList extends React.Component<ReportCheckListProps> {
         return (
             <div className="report-congrats" key="report-congrats">
                 <div className="report-congrats-image">
-                    <InlineImage type={InlineImageType.AdaLaptop} alt="" />
+                    <InlineImage imageType={InlineImageType.AdaLaptop} alt="" />
                 </div>
                 <div className="report-congrats-screen">
                     <div className="report-congrats-message">

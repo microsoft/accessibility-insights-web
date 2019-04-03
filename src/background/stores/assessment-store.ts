@@ -369,7 +369,7 @@ export class AssessmentStore extends BaseStoreImpl<IAssessmentStoreData> {
         const config = test.getVisualizationConfiguration();
         const defaultTestStatus: IAssessmentData = config.getAssessmentData(this.generateDefaultState());
         this.state.assessments[test.key] = defaultTestStatus;
-        this.state.assessmentNavState.selectedTestStep = test.steps[0].key;
+        this.state.assessmentNavState.selectedTestStep = test.requirements[0].key;
         this.emitChanged();
     }
 
@@ -380,7 +380,7 @@ export class AssessmentStore extends BaseStoreImpl<IAssessmentStoreData> {
     }
 
     private getDefaultTestStepForTest(testType: VisualizationType): string {
-        return this.assessmentsProvider.forType(testType).steps[0].key;
+        return this.assessmentsProvider.forType(testType).requirements[0].key;
     }
 
     private updateTestStepStatusOnScanUpdate(assessmentData: IAssessmentData, testStepName: string, testType: VisualizationType): void {

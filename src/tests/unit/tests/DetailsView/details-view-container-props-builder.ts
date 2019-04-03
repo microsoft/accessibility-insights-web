@@ -11,9 +11,9 @@ import { StoreActionMessageCreator } from '../../../../common/message-creators/s
 import { BaseClientStoresHub } from '../../../../common/stores/base-client-stores-hub';
 import { DetailsViewData } from '../../../../common/types/store-data/details-view-data';
 import { IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
-import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';
-import { IVisualizationScanResultData } from '../../../../common/types/store-data/ivisualization-scan-result-data';
 import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
+import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
+import { VisualizationScanResultData } from '../../../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';
 import { IssuesTableHandler } from '../../../../DetailsView/components/issues-table-handler';
 import { DetailsViewContainerDeps, DetailsViewContainerProps } from '../../../../DetailsView/details-view-container';
@@ -26,8 +26,8 @@ import { StoreMocks } from './store-mocks';
 export class DetailsViewContainerPropsBuilder {
     private visualizationStore: BaseStore<VisualizationStoreData>;
     private assessmentStore: BaseStore<IAssessmentStoreData>;
-    private visualizationScanResultStore: BaseStore<IVisualizationScanResultData>;
-    private tabStore: BaseStore<ITabStoreData>;
+    private visualizationScanResultStore: BaseStore<VisualizationScanResultData>;
+    private tabStore: BaseStore<TabStoreData>;
     private featureFlagStore: BaseStore<DictionaryStringTo<boolean>>;
     private scopingStateStore: BaseStore<ScopingStoreData>;
     private detailsViewStore: BaseStore<DetailsViewData>;

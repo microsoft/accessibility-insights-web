@@ -7,7 +7,7 @@ import { Assessment } from '../../assessments/types/iassessment';
 import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { IAssessmentData, IAssessmentStoreData, TestStepInstance } from '../../common/types/store-data/iassessment-result-data';
-import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
+import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { assessmentReportExtensionPoint } from '../extensions/assessment-report-extension-point';
 import {
     AssessmentDetailsReportModel,
@@ -24,7 +24,7 @@ export class AssessmentReportModelBuilder {
     constructor(
         private readonly assessmentsProvider: AssessmentsProvider,
         private readonly assessmentStoreData: IAssessmentStoreData,
-        private readonly tabStoreData: ITabStoreData,
+        private readonly tabStoreData: TabStoreData,
         private readonly reportDate: Date,
         private assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator,
     ) {}
@@ -62,7 +62,7 @@ export class AssessmentReportModelBuilder {
                     return {
                         key: assessment.key,
                         displayName: assessment.title,
-                        steps: assessment.steps
+                        steps: assessment.requirements
                             .filter(step => {
                                 return assessment.storeData.testStepStatus[step.key].stepFinalResult === status;
                             })
@@ -98,7 +98,7 @@ export class AssessmentReportModelBuilder {
 
         function getInstances(assessment: AssessmentResult, stepKey: string): InstanceReportModel[] {
             const { storeData } = assessment;
-            const { reportInstanceFields } = _.find(assessment.steps, s => s.key === stepKey);
+            const { reportInstanceFields } = _.find(assessment.requirements, s => s.key === stepKey);
 
             function getInstanceReportModel(instance: Partial<TestStepInstance>): InstanceReportModel {
                 const props = reportInstanceFields.map(

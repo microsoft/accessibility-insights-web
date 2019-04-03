@@ -31,10 +31,10 @@ const gettingStarted: JSX.Element = (
 
 export const TextLegibilityAssessment: Assessment = AssessmentBuilder.Assisted({
     key,
-    type: VisualizationType.TextLegibility,
+    visualizationType: VisualizationType.TextLegibility,
     title,
     gettingStarted,
     guidance,
-    steps: [HighContrastMode, ResizeText, Contrast],
+    requirements: [HighContrastMode, ResizeText, Contrast],
     storeDataKey: 'textLegibilityAssessment',
 });

@@ -1,14 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
-import * as React from 'react';
-
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../../common/types/store-data/iassessment-result-data';
-import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
-import { IVisualizationScanResultData } from '../../common/types/store-data/ivisualization-scan-result-data';
+import { TabStoreData } from '../../common/types/store-data/tab-store-data';
+import { VisualizationScanResultData } from '../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
@@ -26,12 +24,12 @@ export type TestViewContainerDeps = {
 
 export interface TestViewContainerProps {
     deps: TestViewContainerDeps;
-    tabStoreData: ITabStoreData;
+    tabStoreData: TabStoreData;
     assessmentStoreData: IAssessmentStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
     selectedTest: VisualizationType;
     visualizationStoreData: VisualizationStoreData;
-    visualizationScanResultData: IVisualizationScanResultData;
+    visualizationScanResultData: VisualizationScanResultData;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
