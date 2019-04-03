@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { It, Mock, MockBehavior } from 'typemoq';
+import { isFunction } from 'lodash';
 
 import { AssessmentToggleActionPayload } from '../../../../background/actions/action-payloads';
 import { Interpreter } from '../../../../background/interpreter';
@@ -36,7 +37,7 @@ describe('ScannerUtility', () => {
         interpreterMock.setup(im => im.interpret(It.isValue(expectedMessage))).verifiable();
 
         windowUtilsMock
-            .setup(wum => wum.setTimeout(It.isAny(), ScannerUtility.scanTimeoutMilliSeconds))
+            .setup(wum => wum.setTimeout(It.is(isFunction), ScannerUtility.scanTimeoutMilliSeconds))
             .callback(timeoutCallback => {
                 callback = timeoutCallback;
             });

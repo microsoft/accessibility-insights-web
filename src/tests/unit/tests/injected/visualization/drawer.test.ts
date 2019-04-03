@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
 import { IActionN } from 'typemoq/_all';
+import { isFunction } from 'lodash';
 import { getDefaultFeatureFlagValues } from '../../../../../common/feature-flags';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { ClientUtils } from '../../../../../injected/client-utils';
@@ -846,7 +847,7 @@ describe('Drawer', () => {
 
         windowUtilsMock.setup(x => x.clearTimeout(It.isAny())).verifiable(Times.never());
         windowUtilsMock
-            .setup(x => x.setTimeout(It.isAny(), HighlightBoxDrawer.recalculationTimeout))
+            .setup(x => x.setTimeout(It.is(isFunction), HighlightBoxDrawer.recalculationTimeout))
             .returns(() => timeOutId)
             .verifiable();
 
