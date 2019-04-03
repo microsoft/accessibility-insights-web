@@ -45,7 +45,7 @@ const d =
     '3.70312C3.5026 3.63542 3.5 3.56771 3.5 3.5Z';
 
 export const LadyBugSolidIcon = NamedSFC('LadyBugSolidIcon', () => (
-    <svg width="12" height="16" viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="12" height="16" viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg" role="image" aria-hidden="true">
         <path d={d} />
     </svg>
 ));

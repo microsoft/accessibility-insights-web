@@ -17,7 +17,7 @@ const d =
     '5.00098L5.00098 5.99414L8.00684 9L5.00098 12.0059L5.99414 12.999L9 9.99316L12.0059 12.999L12.999 12.0059L9.99316 9Z';
 
 export const StatusErrorFullIcon = NamedSFC('StatusErrorFullIcon', () => (
-    <svg width="14" height="14" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="14" height="14" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" role="image" aria-hidden="true">
         <path d={d} />
     </svg>
 ));

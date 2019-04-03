@@ -9,7 +9,7 @@ const d =
     '7H10V4H5V15H13V7Z';
 
 export const CopyIcon = NamedSFC('CopyIcon', () => (
-    <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg" role="image" aria-hidden="true">
         <path d={d} />
     </svg>
 ));
