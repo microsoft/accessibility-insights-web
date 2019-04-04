@@ -6,7 +6,7 @@ export interface BugFilingOption<Settings = {}> {
     key: string;
     displayName: string;
     renderSettingsForm: React.SFC;
-    buildStoreData: (params: any) => Settings;
+    buildStoreData: (params: any[]) => Settings;
     isSettingsValid: (data: Settings) => boolean;
     fileBug: (data: Settings, bugData: CreateIssueDetailsTextData) => void;
 }
