@@ -4,22 +4,22 @@ import { autobind } from '@uifabric/utilities';
 import { TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
 
-import { FlaggedComponent } from '../../common/components/flagged-component';
-import { FeatureFlags } from '../../common/feature-flags';
-import { UserConfigMessageCreator } from '../../common/message-creators/user-config-message-creator';
-import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
-import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
+import { FlaggedComponent } from '../../../common/components/flagged-component';
+import { FeatureFlags } from '../../../common/feature-flags';
+import { UserConfigMessageCreator } from '../../../common/message-creators/user-config-message-creator';
+import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
+import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import {
     enableHighContrastSettingsTitle as highContrastSettingsTitle,
     highContrastSettingsDescription,
-} from '../../content/settings/high-contrast-mode';
+} from '../../../content/settings/high-contrast-mode';
 import {
     enableTelemetrySettingDescription,
     enableTelemetrySettingsPanelTitle,
-} from '../../content/settings/improve-accessibility-insights';
-import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
-import { GenericPanel } from './generic-panel';
-import { GenericToggle } from './generic-toggle';
+} from '../../../content/settings/improve-accessibility-insights';
+import { DetailsViewActionMessageCreator } from '../../actions/details-view-action-message-creator';
+import { GenericPanel } from '../generic-panel';
+import { GenericToggle } from '../generic-toggle';
 
 export interface SettingsPanelDeps {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
