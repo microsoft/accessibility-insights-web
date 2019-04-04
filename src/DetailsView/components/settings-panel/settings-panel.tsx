@@ -13,14 +13,10 @@ import {
     enableHighContrastSettingsTitle as highContrastSettingsTitle,
     highContrastSettingsDescription,
 } from '../../../content/settings/high-contrast-mode';
-import {
-    enableTelemetrySettingDescription,
-    enableTelemetrySettingsPanelTitle,
-} from '../../../content/settings/improve-accessibility-insights';
 import { DetailsViewActionMessageCreator } from '../../actions/details-view-action-message-creator';
 import { GenericPanel } from '../generic-panel';
 import { GenericToggle } from '../generic-toggle';
-import { TelemetrySettingsDeps, TelemetrySettings } from './settings/telemetry/telemetry-settings';
+import { TelemetrySettings, TelemetrySettingsDeps } from './settings/telemetry/telemetry-settings';
 
 export type SettingsPanelDeps = TelemetrySettingsDeps & {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
@@ -44,12 +40,7 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
                 hasCloseButton={true}
                 title="Settings"
             >
-                <TelemetrySettings
-                    deps={this.props.deps}
-                    name={enableTelemetrySettingsPanelTitle}
-                    description={enableTelemetrySettingDescription}
-                    enabled={this.props.userConfigStoreState.enableTelemetry}
-                />
+                <TelemetrySettings deps={this.props.deps} enabled={this.props.userConfigStoreState.enableTelemetry} />
                 <GenericToggle
                     enabled={this.props.userConfigStoreState.enableHighContrast}
                     id="enable-high-contrast-mode"

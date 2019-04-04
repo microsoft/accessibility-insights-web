@@ -4,6 +4,10 @@ import * as React from 'react';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { NamedSFC } from '../../../../../common/react/named-sfc';
 import { GenericToggle } from '../../../generic-toggle';
+import {
+    enableTelemetrySettingDescription,
+    enableTelemetrySettingsPanelTitle,
+} from '../../../../../content/settings/improve-accessibility-insights';
 
 export type TelemetrySettingsDeps = {
     userConfigMessageCreator: UserConfigMessageCreator;
@@ -11,8 +15,6 @@ export type TelemetrySettingsDeps = {
 
 export type TelemetrySettingsProps = {
     deps: TelemetrySettingsDeps;
-    name: string;
-    description: JSX.Element;
     enabled: boolean;
 };
 
@@ -24,8 +26,8 @@ export const TelemetrySettings = NamedSFC<TelemetrySettingsProps>('TelemetrySett
         <GenericToggle
             enabled={props.enabled}
             id="enable-telemetry"
-            name={props.name}
-            description={props.description}
+            name={enableTelemetrySettingsPanelTitle}
+            description={enableTelemetrySettingDescription}
             onClick={(id, state) => userConfigMessageCreator.setTelemetryState(state)}
         />
     );
