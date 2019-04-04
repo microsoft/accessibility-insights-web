@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TelemetrySettings renders with enabled = false 1`] = `
+<GenericToggle
+  description={
+    <React.Fragment>
+      this is the description
+    </React.Fragment>
+  }
+  enabled={false}
+  id="enable-telemetry"
+  name="telemetry-settings"
+  onClick={[Function]}
+/>
+`;
+
+exports[`TelemetrySettings renders with enabled = true 1`] = `
+<GenericToggle
+  description={
+    <React.Fragment>
+      this is the description
+    </React.Fragment>
+  }
+  enabled={true}
+  id="enable-telemetry"
+  name="telemetry-settings"
+  onClick={[Function]}
+/>
+`;

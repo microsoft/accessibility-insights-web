@@ -20,11 +20,12 @@ import {
 import { DetailsViewActionMessageCreator } from '../../actions/details-view-action-message-creator';
 import { GenericPanel } from '../generic-panel';
 import { GenericToggle } from '../generic-toggle';
+import { TelemetrySettingsDeps, TelemetrySettings } from './settings/telemetry/telemetry-settings';
 
-export interface SettingsPanelDeps {
+export type SettingsPanelDeps = TelemetrySettingsDeps & {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     userConfigMessageCreator: UserConfigMessageCreator;
-}
+};
 
 export interface SettingsPanelProps {
     deps: SettingsPanelDeps;
@@ -43,12 +44,11 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
                 hasCloseButton={true}
                 title="Settings"
             >
-                <GenericToggle
-                    enabled={this.props.userConfigStoreState.enableTelemetry}
-                    id="enable-telemetry"
+                <TelemetrySettings
+                    deps={this.props.deps}
                     name={enableTelemetrySettingsPanelTitle}
                     description={enableTelemetrySettingDescription}
-                    onClick={this.onEnableTelemetryToggleClick}
+                    enabled={this.props.userConfigStoreState.enableTelemetry}
                 />
                 <GenericToggle
                     enabled={this.props.userConfigStoreState.enableHighContrast}
