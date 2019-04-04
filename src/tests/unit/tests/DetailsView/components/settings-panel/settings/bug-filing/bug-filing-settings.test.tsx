@@ -69,7 +69,7 @@ describe('BugFilingSettings', () => {
             expect(wrapped.getElement()).toMatchSnapshot();
         });
 
-        it('renders (dive in)', () => {
+        it('renders the text field properly', () => {
             const userData: UserConfigurationStoreData = {
                 isFirstTime: true,
                 enableTelemetry: true,

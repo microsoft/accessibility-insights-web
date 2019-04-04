@@ -131,7 +131,7 @@ exports[`BugFilingSettings renders { bugFilingEnable: false,
 />
 `;
 
-exports[`BugFilingSettings renders renders (dive in) 1`] = `
+exports[`BugFilingSettings renders renders the text field properly 1`] = `
 <StyledTextFieldBase
   className="issue-setting"
   label="Enter desired GitHub repo link:"
