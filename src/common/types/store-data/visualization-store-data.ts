@@ -1,20 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DictionaryStringTo } from '../../../types/common-types';
 import { DetailsViewPivotType } from '../details-view-pivot-type';
 import { VisualizationType } from '../visualization-type';
 
-// tslint:disable-next-line:interface-name
-export interface IScanData {
+export interface ScanData {
     enabled: boolean;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IAssessmentScanData extends IScanData {
+export interface AssessmentScanData extends ScanData {
     stepStatus: DictionaryStringTo<boolean>;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IVisualizationStoreData {
+export interface VisualizationStoreData {
     tests: TestsEnabledState;
     scanning: string;
     selectedFastPassDetailsView: VisualizationType;
@@ -27,9 +25,9 @@ export interface IVisualizationStoreData {
 
 export interface TestsEnabledState {
     assessments: {
-        [key: string]: IAssessmentScanData;
+        [key: string]: AssessmentScanData;
     };
     adhoc: {
-        [key: string]: IScanData;
+        [key: string]: ScanData;
     };
 }

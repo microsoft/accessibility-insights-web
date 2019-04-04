@@ -11,8 +11,8 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { generateUID } from '../../common/uid-generator';
 import { adhoc as content } from '../../content/adhoc';
 import { AdhocStaticTestView } from '../../DetailsView/components/adhoc-static-test-view';
+import { ScannerUtils } from '../../injected/scanner-utils';
 import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
-import { ScannerUtils } from './../../injected/scanner-utils';
 
 const { guidance } = content.headings;
 

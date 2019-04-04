@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { padStart } from 'lodash/index';
+import { padStart } from 'lodash';
 
 export class ReportNameGenerator {
     public generateName(baseName: string, scanDate: Date, pageTitle: string): string {

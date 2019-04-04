@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash/index';
+import * as _ from 'lodash';
 
 import { TabbedElementData } from '../../common/types/store-data/visualization-scan-result-data';
+import { WindowUtils } from '../../common/window-utils';
 import { ShadowUtils } from '../shadow-utils';
-import { WindowUtils } from './../../common/window-utils';
 import { BaseDrawer } from './base-drawer';
 import { CenterPositionCalculator } from './center-position-calculator';
 import { DrawerInitData } from './drawer';

@@ -5,6 +5,7 @@ import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
 import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
+import { ManualTestStatus } from '../../common/types/manual-test-status';
 import {
     AssessmentNavState,
     IGeneratedAssessmentInstance,
@@ -12,13 +13,12 @@ import {
 } from '../../common/types/store-data/iassessment-result-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../types/common-types';
+import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { AssessmentInstanceEditAndRemoveControl } from '../components/assessment-instance-edit-and-remove-control';
 import { AssessmentInstanceSelectedButton } from '../components/assessment-instance-selected-button';
 import { AssessmentInstanceRowData, CapturedInstanceRowData } from '../components/assessment-instance-table';
 import { AssessmentTableColumnConfigHandler } from '../components/assessment-table-column-config-handler';
-import { ManualTestStatus } from './../../common/types/manual-test-status';
-import { DetailsViewActionMessageCreator } from './../actions/details-view-action-message-creator';
-import { TestStatusChoiceGroup } from './../components/test-status-choice-group';
+import { TestStatusChoiceGroup } from '../components/test-status-choice-group';
 
 export class AssessmentInstanceTableHandler {
     private actionMessageCreator: DetailsViewActionMessageCreator;

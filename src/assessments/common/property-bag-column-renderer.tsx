@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { isEmpty } from 'lodash/index';
+import { isEmpty } from 'lodash';
 import * as React from 'react';
 
 import { ColumnValue, ColumnValueBag } from '../../common/types/property-bag/column-value-bag';

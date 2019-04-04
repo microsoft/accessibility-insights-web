@@ -3,7 +3,7 @@
 import { autobind } from '@uifabric/utilities';
 
 import { FeatureFlags } from '../common/feature-flags';
-import { HTMLElementUtils } from './../common/html-element-utils';
+import { HTMLElementUtils } from '../common/html-element-utils';
 import { DetailsDialog } from './components/details-dialog';
 
 export class DetailsDialogHandler {

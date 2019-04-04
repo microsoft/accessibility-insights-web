@@ -1,12 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-import { OnDetailsViewPivotSelected, SelectRequirementPayload } from '../../background/actions/action-payloads';
-import { DevToolActionMessageCreator } from '../../common/message-creators/dev-tool-action-message-creator';
-import { Messages } from '../../common/messages';
-import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
-import { ManualTestStatus } from '../../common/types/manual-test-status';
-import { DetailsViewRightContentPanelType } from '../components/left-nav/details-view-right-content-panel-type';
 import {
     AddFailureInstancePayload,
     AssessmentActionInstancePayload,
@@ -20,13 +14,19 @@ import {
     RemoveFailureInstancePayload,
     SwitchToTargetTabPayload,
     ToggleActionPayload,
-} from './../../background/actions/action-payloads';
-import { FeatureFlagPayload } from './../../background/actions/feature-flag-actions';
-import { TelemetryDataFactory } from './../../common/telemetry-data-factory';
-import * as TelemetryEvents from './../../common/telemetry-events';
-import { ExportResultType } from './../../common/telemetry-events';
-import { VisualizationType } from './../../common/types/visualization-type';
-import { WindowUtils } from './../../common/window-utils';
+} from '../../background/actions/action-payloads';
+import { OnDetailsViewPivotSelected, SelectRequirementPayload } from '../../background/actions/action-payloads';
+import { FeatureFlagPayload } from '../../background/actions/feature-flag-actions';
+import { DevToolActionMessageCreator } from '../../common/message-creators/dev-tool-action-message-creator';
+import { Messages } from '../../common/messages';
+import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
+import * as TelemetryEvents from '../../common/telemetry-events';
+import { ExportResultType } from '../../common/telemetry-events';
+import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
+import { ManualTestStatus } from '../../common/types/manual-test-status';
+import { VisualizationType } from '../../common/types/visualization-type';
+import { WindowUtils } from '../../common/window-utils';
+import { DetailsViewRightContentPanelType } from '../components/left-nav/details-view-right-content-panel-type';
 
 const messages = Messages.Visualizations;
 

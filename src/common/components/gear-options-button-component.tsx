@@ -3,10 +3,10 @@
 import { IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import * as React from 'react';
 
-import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { DetailsViewDropDown } from '../../DetailsView/components/details-view-dropdown';
 import { DropdownClickHandler } from '../dropdown-click-handler';
 import { FeatureFlags } from '../feature-flags';
+import { FeatureFlagStoreData } from '../types/store-data/feature-flag-store-data';
 
 export interface GearOptionsButtonComponentProps {
     dropdownClickHandler: DropdownClickHandler;

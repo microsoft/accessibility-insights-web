@@ -3,13 +3,13 @@
 import { autobind } from '@uifabric/utilities';
 import { AssessmentsProvider } from '../assessments/types/iassessments-provider';
 import { BaseStore } from '../common/base-store';
+import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../common/enum-helper';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
-import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
+import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryStringTo } from '../types/common-types';
-import { VisualizationConfigurationFactory } from './../common/configs/visualization-configuration-factory';
 import { AnalyzerStateUpdateHandler } from './analyzer-state-update-handler';
 import { Analyzer } from './analyzers/analyzer';
 import { AnalyzerProvider } from './analyzers/analyzer-provider';
@@ -20,7 +20,7 @@ export class AnalyzerController {
     private tabStopsListener: TabStopsListener;
     private analyzers: DictionaryStringTo<Analyzer>;
     private sendMessage: (message) => void;
-    private visualizationstore: BaseStore<IVisualizationStoreData>;
+    private visualizationstore: BaseStore<VisualizationStoreData>;
     private scopingStore: BaseStore<ScopingStoreData>;
     private featureFlagStore: BaseStore<FeatureFlagStoreData>;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
@@ -29,7 +29,7 @@ export class AnalyzerController {
 
     constructor(
         sendMessage: (message) => void,
-        visualizationstore: BaseStore<IVisualizationStoreData>,
+        visualizationstore: BaseStore<VisualizationStoreData>,
         featureFlagStore: BaseStore<FeatureFlagStoreData>,
         scopingStore: BaseStore<ScopingStoreData>,
         tabStopsListener: TabStopsListener,

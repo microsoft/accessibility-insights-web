@@ -2,8 +2,6 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { AnalyzerConfigurationFactory } from '../../../assessments/common/analyzer-configuration-factory';
-import { PropertyBagColumnRendererFactory } from '../../../assessments/common/property-bag-column-renderer-factory';
 import { WidgetFunctionPropertyBag } from '../../../common/types/property-bag/iwidget-function';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
@@ -12,8 +10,10 @@ import { TestAutomaticallyPassedNotice } from '../../../content/test/common/test
 import * as content from '../../../content/test/native-widgets/widget-function';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
+import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
 import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
+import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { Requirement } from '../../types/requirement';

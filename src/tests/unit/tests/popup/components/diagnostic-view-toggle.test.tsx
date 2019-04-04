@@ -13,7 +13,7 @@ import {
 } from '../../../../../common/configs/visualization-configuration-factory';
 import { TelemetryEventSource } from '../../../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
-import { IVisualizationStoreData } from '../../../../../common/types/store-data/ivisualization-store-data';
+import { VisualizationStoreData } from '../../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { PopupActionMessageCreator } from '../../../../../popup/actions/popup-action-message-creator';
 import { DiagnosticViewToggle, DiagnosticViewToggleProps } from '../../../../../popup/components/diagnostic-view-toggle';
@@ -297,7 +297,7 @@ describe('DiagnosticViewToggleTest', () => {
 
 class DiagnosticViewTogglePropsBuilder {
     private visualizationType: VisualizationType;
-    private data: IVisualizationStoreData = new VisualizationStoreDataBuilder().build();
+    private data: VisualizationStoreData = new VisualizationStoreDataBuilder().build();
     private visualizationConfigurationFactory = new VisualizationConfigurationFactory();
     private defaultVisualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
     private actionMessageCreatorMock = Mock.ofType(PopupActionMessageCreator);
@@ -324,7 +324,7 @@ class DiagnosticViewTogglePropsBuilder {
         return this;
     }
 
-    public setupVisualizationStoreData(data: IVisualizationStoreData): DiagnosticViewTogglePropsBuilder {
+    public setupVisualizationStoreData(data: VisualizationStoreData): DiagnosticViewTogglePropsBuilder {
         this.data = data;
         return this;
     }

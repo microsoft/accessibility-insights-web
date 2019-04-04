@@ -14,9 +14,9 @@ import { EnumHelper } from '../../../../common/enum-helper';
 import { getDefaultFeatureFlagValues } from '../../../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
-import { IScanData, IVisualizationStoreData } from '../../../../common/types/store-data/ivisualization-store-data';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
 import { VisualizationScanResultData } from '../../../../common/types/store-data/visualization-scan-result-data';
+import { ScanData, VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { ClientViewController } from '../../../../injected/client-view-controller';
 import { DrawingInitiator } from '../../../../injected/drawing-initiator';
@@ -366,8 +366,8 @@ class TestableClientViewController extends ClientViewController {
 }
 
 class MocksAndTestSubjectBuilder {
-    private _fromVisualizationStoreState: IVisualizationStoreData;
-    private _toVisualizationStoreState: IVisualizationStoreData;
+    private _fromVisualizationStoreState: VisualizationStoreData;
+    private _toVisualizationStoreState: VisualizationStoreData;
     private _fromVisualizationScanStoreState: VisualizationScanResultData;
     private _toVisualizationScanStoreState: VisualizationScanResultData;
     private _fromAssessmentStoreState: IAssessmentStoreData;
@@ -379,7 +379,7 @@ class MocksAndTestSubjectBuilder {
 
     private _fromFeatureFlagStoreState: FeatureFlagStoreData = getDefaultFeatureFlagValues();
     private _toFeatureFlagStoreState: FeatureFlagStoreData = getDefaultFeatureFlagValues();
-    private _visualizationStore: IMock<BaseStore<IVisualizationStoreData>>;
+    private _visualizationStore: IMock<BaseStore<VisualizationStoreData>>;
     private _assessmentStoreMock: IMock<BaseStore<IAssessmentStoreData>>;
     private _tabStoreMock: IMock<BaseStore<TabStoreData>>;
     private _selectorMapHelperMock: IMock<SelectorMapHelper>;
@@ -695,7 +695,7 @@ class MocksAndTestSubjectBuilder {
         }
     }
 
-    private getFromStateForType(visualizationType: VisualizationType): IScanData {
+    private getFromStateForType(visualizationType: VisualizationType): ScanData {
         switch (visualizationType) {
             case VisualizationType.Headings:
                 return this._fromVisualizationStoreState.tests.adhoc.headings;

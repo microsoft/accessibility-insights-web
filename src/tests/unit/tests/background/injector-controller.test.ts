@@ -12,7 +12,7 @@ import { InspectStore } from '../../../../background/stores/inspect-store';
 import { TabStore } from '../../../../background/stores/tab-store';
 import { VisualizationStore } from '../../../../background/stores/visualization-store';
 import { Messages } from '../../../../common/messages';
-import { IVisualizationStoreData } from '../../../../common/types/store-data/ivisualization-store-data';
+import { VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';
 import { WindowUtils } from '../../../../common/window-utils';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 
@@ -228,7 +228,7 @@ class InjectorControllerValidator {
         return this;
     }
 
-    public setupVizStoreGetState(returnState: IVisualizationStoreData): InjectorControllerValidator {
+    public setupVizStoreGetState(returnState: VisualizationStoreData): InjectorControllerValidator {
         this.mockVisualizationStore
             .setup(mockVisualizationStore => mockVisualizationStore.getState())
             .returns(() => {
