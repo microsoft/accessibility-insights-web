@@ -2,14 +2,10 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-
 import {
     AssessmentSummaryDetails,
     AssessmentSummaryDetailsProps,
 } from '../../../../../../DetailsView/reports/components/assessment-summary-details';
-import { OutcomeChipSet } from '../../../../../../DetailsView/reports/components/outcome-chip-set';
-import { OutcomeIconSet } from '../../../../../../DetailsView/reports/components/outcome-icon-set';
-import { shallowRender } from '../../../../common/shallow-render';
 import { AssessmentReportBuilderTestHelper } from '../../assessment-report-builder-test-helper';
 
 describe('AssessmentSummaryDetails', () => {
@@ -19,7 +15,8 @@ describe('AssessmentSummaryDetails', () => {
                 testSummaries: AssessmentReportBuilderTestHelper.getAssessmentsSummaryReportModel().reportSummaryDetailsData,
             };
 
-            expect(shallowRender(<AssessmentSummaryDetails {...props} />)).toMatchSnapshot();
+            const wrapper = shallow(<AssessmentSummaryDetails {...props} />);
+            expect(wrapper.getElement()).toMatchSnapshot();
         });
 
         test('Renders an OutcomeIconSet for 7 items', () => {
@@ -35,8 +32,7 @@ describe('AssessmentSummaryDetails', () => {
             };
 
             const wrapper = shallow(<AssessmentSummaryDetails {...props} />);
-            expect(wrapper.find(OutcomeIconSet)).toHaveLength(1);
-            expect(shallowRender(<AssessmentSummaryDetails {...props} />)).toMatchSnapshot();
+            expect(wrapper.getElement()).toMatchSnapshot();
         });
 
         test('Renders an OutcomeChipSet for 8 items', () => {
@@ -52,8 +48,7 @@ describe('AssessmentSummaryDetails', () => {
             };
 
             const wrapper = shallow(<AssessmentSummaryDetails {...props} />);
-            expect(wrapper.find(OutcomeChipSet)).toHaveLength(1);
-            expect(shallowRender(<AssessmentSummaryDetails {...props} />)).toMatchSnapshot();
+            expect(wrapper.getElement()).toMatchSnapshot();
         });
     });
 });
