@@ -3,11 +3,11 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
-import { FeatureFlags } from '../../../../../common/feature-flags';
-import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
-import { BugServicePropertiesMap, UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
-import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
-import { SettingsPanel, SettingsPanelProps } from '../../../../../DetailsView/components/settings-panel/settings-panel';
+import { FeatureFlags } from '../../../../../../common/feature-flags';
+import { UserConfigMessageCreator } from '../../../../../../common/message-creators/user-config-message-creator';
+import { BugServicePropertiesMap, UserConfigurationStoreData } from '../../../../../../common/types/store-data/user-configuration-store';
+import { DetailsViewActionMessageCreator } from '../../../../../../DetailsView/actions/details-view-action-message-creator';
+import { SettingsPanel, SettingsPanelProps } from '../../../../../../DetailsView/components/settings-panel/settings-panel';
 
 type SettingsPanelProtectedClickFunction = (id: string, state: boolean) => void;
 type SettingsPanelProtectedTextFieldChangeFunction = (

@@ -1,0 +1,717 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SettingsPanelTest render - { isPanelOpen: true,
+  enableTelemetry: false,
+  enableHighContrast: false,
+  bugService: 'gitHub',
+  bugServicePropertiesMap: { gitHub: { repository: 'test-repository' } } } 1`] = `
+<GenericPanel
+  className="settings-panel"
+  closeButtonAriaLabel="Close settings panel"
+  hasCloseButton={true}
+  isOpen={true}
+  title="Settings"
+>
+  <TelemetrySettings
+    deps={
+      Object {
+        "detailsViewActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "_tabId": undefined,
+          "addFailureInstance": [Function],
+          "cancelStartOver": undefined,
+          "cancelStartOverAllAssessments": undefined,
+          "changeAssessmentVisualizationState": undefined,
+          "changeAssessmentVisualizationStateForAll": [Function],
+          "changeManualRequirementStatus": undefined,
+          "changeManualTestStatus": undefined,
+          "changeRightContentPanel": [Function],
+          "closePreviewFeaturesPanel": undefined,
+          "closeScopingPanel": undefined,
+          "closeSettingsPanel": undefined,
+          "constructor": [Function],
+          "continuePreviousAssessment": undefined,
+          "copyIssueDetailsClicked": undefined,
+          "detailsViewOpened": [Function],
+          "disableVisualHelper": [Function],
+          "disableVisualHelpersForTest": [Function],
+          "dispatchMessage": [Function],
+          "dispatchType": [Function],
+          "editFailureInstance": undefined,
+          "enableVisualHelper": [Function],
+          "exportResultsClicked": [Function],
+          "passUnmarkedInstances": [Function],
+          "postMessageDelegate": undefined,
+          "removeFailureInstance": undefined,
+          "selectDetailsView": [Function],
+          "selectRequirement": [Function],
+          "sendPivotItemClicked": [Function],
+          "sendTelemetry": [Function],
+          "setDevToolStatus": [Function],
+          "setFeatureFlag": undefined,
+          "setInspectElement": [Function],
+          "setInspectFrameUrl": [Function],
+          "startOverAllAssessments": undefined,
+          "startOverAssessment": [Function],
+          "switchToTargetTab": undefined,
+          "telemetryFactory": undefined,
+          "undoManualRequirementStatusChange": undefined,
+          "undoManualTestStatusChange": undefined,
+          "updateFocusedInstanceTarget": [Function],
+          "updateIssuesSelectedTargets": [Function],
+          "windowUtils": undefined,
+        },
+        "userConfigMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "_tabId": undefined,
+          "constructor": [Function],
+          "dispatchMessage": [Function],
+          "dispatchType": [Function],
+          "postMessageDelegate": undefined,
+          "sendTelemetry": [Function],
+          "setBugService": [Function],
+          "setBugServiceProperty": [Function],
+          "setHighContrastMode": [Function],
+          "setIssueTrackerPath": [Function],
+          "setTelemetryState": [Function],
+        },
+      }
+    }
+    description={
+      <React.Fragment>
+        <React.Fragment>
+          <p>
+            By opting into telemetry, you
+             
+            <NewTabLink
+              href="https://accessibilityinsights.io/docs/en/telemetry"
+            >
+              help the community
+            </NewTabLink>
+             develop inclusive software.
+          </p>
+          <p>
+            We collect anonymized data to identify the top accessibility issues found by the users. This will help focus the accessibility tools and standards community to improve guidelines, rules engines, and features.
+          </p>
+        </React.Fragment>
+        <React.Fragment>
+          Read our 
+          <NewTabLink
+            href="http://go.microsoft.com/fwlink/?LinkId=521839"
+          >
+             privacy statement
+          </NewTabLink>
+           to learn more.
+        </React.Fragment>
+      </React.Fragment>
+    }
+    enabled={false}
+    name="Help improve Accessibility Insights for Web"
+  />
+  <GenericToggle
+    description={
+      <React.Fragment>
+        Make text easier to see by using more distinct colors.
+      </React.Fragment>
+    }
+    enabled={false}
+    id="enable-high-contrast-mode"
+    name="Enable high contrast"
+    onClick={[Function]}
+  />
+  <FlaggedComponent
+    enableJSXElement={
+      <React.Fragment>
+        <h3>
+          Issue filing
+        </h3>
+        <StyledTextFieldBase
+          className="issue-setting"
+          label="Enter desired GitHub repo link:"
+          onChange={[Function]}
+          placeholder="https://github.com/owner/repo/issues"
+          value="test-repository"
+        />
+      </React.Fragment>
+    }
+    featureFlag="showBugFiling"
+    featureFlagStoreData={
+      Object {
+        "test-flag": false,
+      }
+    }
+  />
+</GenericPanel>
+`;
+
+exports[`SettingsPanelTest render - { isPanelOpen: true,
+  enableTelemetry: false,
+  enableHighContrast: false,
+  bugService: 'gitHub',
+  bugServicePropertiesMap: { gitHub: {} } } 1`] = `
+<GenericPanel
+  className="settings-panel"
+  closeButtonAriaLabel="Close settings panel"
+  hasCloseButton={true}
+  isOpen={true}
+  title="Settings"
+>
+  <TelemetrySettings
+    deps={
+      Object {
+        "detailsViewActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "_tabId": undefined,
+          "addFailureInstance": [Function],
+          "cancelStartOver": undefined,
+          "cancelStartOverAllAssessments": undefined,
+          "changeAssessmentVisualizationState": undefined,
+          "changeAssessmentVisualizationStateForAll": [Function],
+          "changeManualRequirementStatus": undefined,
+          "changeManualTestStatus": undefined,
+          "changeRightContentPanel": [Function],
+          "closePreviewFeaturesPanel": undefined,
+          "closeScopingPanel": undefined,
+          "closeSettingsPanel": undefined,
+          "constructor": [Function],
+          "continuePreviousAssessment": undefined,
+          "copyIssueDetailsClicked": undefined,
+          "detailsViewOpened": [Function],
+          "disableVisualHelper": [Function],
+          "disableVisualHelpersForTest": [Function],
+          "dispatchMessage": [Function],
+          "dispatchType": [Function],
+          "editFailureInstance": undefined,
+          "enableVisualHelper": [Function],
+          "exportResultsClicked": [Function],
+          "passUnmarkedInstances": [Function],
+          "postMessageDelegate": undefined,
+          "removeFailureInstance": undefined,
+          "selectDetailsView": [Function],
+          "selectRequirement": [Function],
+          "sendPivotItemClicked": [Function],
+          "sendTelemetry": [Function],
+          "setDevToolStatus": [Function],
+          "setFeatureFlag": undefined,
+          "setInspectElement": [Function],
+          "setInspectFrameUrl": [Function],
+          "startOverAllAssessments": undefined,
+          "startOverAssessment": [Function],
+          "switchToTargetTab": undefined,
+          "telemetryFactory": undefined,
+          "undoManualRequirementStatusChange": undefined,
+          "undoManualTestStatusChange": undefined,
+          "updateFocusedInstanceTarget": [Function],
+          "updateIssuesSelectedTargets": [Function],
+          "windowUtils": undefined,
+        },
+        "userConfigMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "_tabId": undefined,
+          "constructor": [Function],
+          "dispatchMessage": [Function],
+          "dispatchType": [Function],
+          "postMessageDelegate": undefined,
+          "sendTelemetry": [Function],
+          "setBugService": [Function],
+          "setBugServiceProperty": [Function],
+          "setHighContrastMode": [Function],
+          "setIssueTrackerPath": [Function],
+          "setTelemetryState": [Function],
+        },
+      }
+    }
+    description={
+      <React.Fragment>
+        <React.Fragment>
+          <p>
+            By opting into telemetry, you
+             
+            <NewTabLink
+              href="https://accessibilityinsights.io/docs/en/telemetry"
+            >
+              help the community
+            </NewTabLink>
+             develop inclusive software.
+          </p>
+          <p>
+            We collect anonymized data to identify the top accessibility issues found by the users. This will help focus the accessibility tools and standards community to improve guidelines, rules engines, and features.
+          </p>
+        </React.Fragment>
+        <React.Fragment>
+          Read our 
+          <NewTabLink
+            href="http://go.microsoft.com/fwlink/?LinkId=521839"
+          >
+             privacy statement
+          </NewTabLink>
+           to learn more.
+        </React.Fragment>
+      </React.Fragment>
+    }
+    enabled={false}
+    name="Help improve Accessibility Insights for Web"
+  />
+  <GenericToggle
+    description={
+      <React.Fragment>
+        Make text easier to see by using more distinct colors.
+      </React.Fragment>
+    }
+    enabled={false}
+    id="enable-high-contrast-mode"
+    name="Enable high contrast"
+    onClick={[Function]}
+  />
+  <FlaggedComponent
+    enableJSXElement={
+      <React.Fragment>
+        <h3>
+          Issue filing
+        </h3>
+        <StyledTextFieldBase
+          className="issue-setting"
+          label="Enter desired GitHub repo link:"
+          onChange={[Function]}
+          placeholder="https://github.com/owner/repo/issues"
+        />
+      </React.Fragment>
+    }
+    featureFlag="showBugFiling"
+    featureFlagStoreData={
+      Object {
+        "test-flag": false,
+      }
+    }
+  />
+</GenericPanel>
+`;
+
+exports[`SettingsPanelTest render - { isPanelOpen: true,
+  enableTelemetry: false,
+  enableHighContrast: false,
+  bugService: 'gitHub',
+  bugServicePropertiesMap: {} } 1`] = `
+<GenericPanel
+  className="settings-panel"
+  closeButtonAriaLabel="Close settings panel"
+  hasCloseButton={true}
+  isOpen={true}
+  title="Settings"
+>
+  <TelemetrySettings
+    deps={
+      Object {
+        "detailsViewActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "_tabId": undefined,
+          "addFailureInstance": [Function],
+          "cancelStartOver": undefined,
+          "cancelStartOverAllAssessments": undefined,
+          "changeAssessmentVisualizationState": undefined,
+          "changeAssessmentVisualizationStateForAll": [Function],
+          "changeManualRequirementStatus": undefined,
+          "changeManualTestStatus": undefined,
+          "changeRightContentPanel": [Function],
+          "closePreviewFeaturesPanel": undefined,
+          "closeScopingPanel": undefined,
+          "closeSettingsPanel": undefined,
+          "constructor": [Function],
+          "continuePreviousAssessment": undefined,
+          "copyIssueDetailsClicked": undefined,
+          "detailsViewOpened": [Function],
+          "disableVisualHelper": [Function],
+          "disableVisualHelpersForTest": [Function],
+          "dispatchMessage": [Function],
+          "dispatchType": [Function],
+          "editFailureInstance": undefined,
+          "enableVisualHelper": [Function],
+          "exportResultsClicked": [Function],
+          "passUnmarkedInstances": [Function],
+          "postMessageDelegate": undefined,
+          "removeFailureInstance": undefined,
+          "selectDetailsView": [Function],
+          "selectRequirement": [Function],
+          "sendPivotItemClicked": [Function],
+          "sendTelemetry": [Function],
+          "setDevToolStatus": [Function],
+          "setFeatureFlag": undefined,
+          "setInspectElement": [Function],
+          "setInspectFrameUrl": [Function],
+          "startOverAllAssessments": undefined,
+          "startOverAssessment": [Function],
+          "switchToTargetTab": undefined,
+          "telemetryFactory": undefined,
+          "undoManualRequirementStatusChange": undefined,
+          "undoManualTestStatusChange": undefined,
+          "updateFocusedInstanceTarget": [Function],
+          "updateIssuesSelectedTargets": [Function],
+          "windowUtils": undefined,
+        },
+        "userConfigMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "_tabId": undefined,
+          "constructor": [Function],
+          "dispatchMessage": [Function],
+          "dispatchType": [Function],
+          "postMessageDelegate": undefined,
+          "sendTelemetry": [Function],
+          "setBugService": [Function],
+          "setBugServiceProperty": [Function],
+          "setHighContrastMode": [Function],
+          "setIssueTrackerPath": [Function],
+          "setTelemetryState": [Function],
+        },
+      }
+    }
+    description={
+      <React.Fragment>
+        <React.Fragment>
+          <p>
+            By opting into telemetry, you
+             
+            <NewTabLink
+              href="https://accessibilityinsights.io/docs/en/telemetry"
+            >
+              help the community
+            </NewTabLink>
+             develop inclusive software.
+          </p>
+          <p>
+            We collect anonymized data to identify the top accessibility issues found by the users. This will help focus the accessibility tools and standards community to improve guidelines, rules engines, and features.
+          </p>
+        </React.Fragment>
+        <React.Fragment>
+          Read our 
+          <NewTabLink
+            href="http://go.microsoft.com/fwlink/?LinkId=521839"
+          >
+             privacy statement
+          </NewTabLink>
+           to learn more.
+        </React.Fragment>
+      </React.Fragment>
+    }
+    enabled={false}
+    name="Help improve Accessibility Insights for Web"
+  />
+  <GenericToggle
+    description={
+      <React.Fragment>
+        Make text easier to see by using more distinct colors.
+      </React.Fragment>
+    }
+    enabled={false}
+    id="enable-high-contrast-mode"
+    name="Enable high contrast"
+    onClick={[Function]}
+  />
+  <FlaggedComponent
+    enableJSXElement={
+      <React.Fragment>
+        <h3>
+          Issue filing
+        </h3>
+        <StyledTextFieldBase
+          className="issue-setting"
+          label="Enter desired GitHub repo link:"
+          onChange={[Function]}
+          placeholder="https://github.com/owner/repo/issues"
+        />
+      </React.Fragment>
+    }
+    featureFlag="showBugFiling"
+    featureFlagStoreData={
+      Object {
+        "test-flag": false,
+      }
+    }
+  />
+</GenericPanel>
+`;
+
+exports[`SettingsPanelTest render - { isPanelOpen: true,
+  enableTelemetry: false,
+  enableHighContrast: false,
+  bugService: undefined,
+  bugServicePropertiesMap: null } 1`] = `
+<GenericPanel
+  className="settings-panel"
+  closeButtonAriaLabel="Close settings panel"
+  hasCloseButton={true}
+  isOpen={true}
+  title="Settings"
+>
+  <TelemetrySettings
+    deps={
+      Object {
+        "detailsViewActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "_tabId": undefined,
+          "addFailureInstance": [Function],
+          "cancelStartOver": undefined,
+          "cancelStartOverAllAssessments": undefined,
+          "changeAssessmentVisualizationState": undefined,
+          "changeAssessmentVisualizationStateForAll": [Function],
+          "changeManualRequirementStatus": undefined,
+          "changeManualTestStatus": undefined,
+          "changeRightContentPanel": [Function],
+          "closePreviewFeaturesPanel": undefined,
+          "closeScopingPanel": undefined,
+          "closeSettingsPanel": undefined,
+          "constructor": [Function],
+          "continuePreviousAssessment": undefined,
+          "copyIssueDetailsClicked": undefined,
+          "detailsViewOpened": [Function],
+          "disableVisualHelper": [Function],
+          "disableVisualHelpersForTest": [Function],
+          "dispatchMessage": [Function],
+          "dispatchType": [Function],
+          "editFailureInstance": undefined,
+          "enableVisualHelper": [Function],
+          "exportResultsClicked": [Function],
+          "passUnmarkedInstances": [Function],
+          "postMessageDelegate": undefined,
+          "removeFailureInstance": undefined,
+          "selectDetailsView": [Function],
+          "selectRequirement": [Function],
+          "sendPivotItemClicked": [Function],
+          "sendTelemetry": [Function],
+          "setDevToolStatus": [Function],
+          "setFeatureFlag": undefined,
+          "setInspectElement": [Function],
+          "setInspectFrameUrl": [Function],
+          "startOverAllAssessments": undefined,
+          "startOverAssessment": [Function],
+          "switchToTargetTab": undefined,
+          "telemetryFactory": undefined,
+          "undoManualRequirementStatusChange": undefined,
+          "undoManualTestStatusChange": undefined,
+          "updateFocusedInstanceTarget": [Function],
+          "updateIssuesSelectedTargets": [Function],
+          "windowUtils": undefined,
+        },
+        "userConfigMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "_tabId": undefined,
+          "constructor": [Function],
+          "dispatchMessage": [Function],
+          "dispatchType": [Function],
+          "postMessageDelegate": undefined,
+          "sendTelemetry": [Function],
+          "setBugService": [Function],
+          "setBugServiceProperty": [Function],
+          "setHighContrastMode": [Function],
+          "setIssueTrackerPath": [Function],
+          "setTelemetryState": [Function],
+        },
+      }
+    }
+    description={
+      <React.Fragment>
+        <React.Fragment>
+          <p>
+            By opting into telemetry, you
+             
+            <NewTabLink
+              href="https://accessibilityinsights.io/docs/en/telemetry"
+            >
+              help the community
+            </NewTabLink>
+             develop inclusive software.
+          </p>
+          <p>
+            We collect anonymized data to identify the top accessibility issues found by the users. This will help focus the accessibility tools and standards community to improve guidelines, rules engines, and features.
+          </p>
+        </React.Fragment>
+        <React.Fragment>
+          Read our 
+          <NewTabLink
+            href="http://go.microsoft.com/fwlink/?LinkId=521839"
+          >
+             privacy statement
+          </NewTabLink>
+           to learn more.
+        </React.Fragment>
+      </React.Fragment>
+    }
+    enabled={false}
+    name="Help improve Accessibility Insights for Web"
+  />
+  <GenericToggle
+    description={
+      <React.Fragment>
+        Make text easier to see by using more distinct colors.
+      </React.Fragment>
+    }
+    enabled={false}
+    id="enable-high-contrast-mode"
+    name="Enable high contrast"
+    onClick={[Function]}
+  />
+  <FlaggedComponent
+    enableJSXElement={
+      <React.Fragment>
+        <h3>
+          Issue filing
+        </h3>
+        <StyledTextFieldBase
+          className="issue-setting"
+          label="Enter desired GitHub repo link:"
+          onChange={[Function]}
+          placeholder="https://github.com/owner/repo/issues"
+        />
+      </React.Fragment>
+    }
+    featureFlag="showBugFiling"
+    featureFlagStoreData={
+      Object {
+        "test-flag": false,
+      }
+    }
+  />
+</GenericPanel>
+`;
+
+exports[`SettingsPanelTest render - { isPanelOpen: true,
+  enableTelemetry: false,
+  enableHighContrast: true,
+  bugService: 'gitHub',
+  bugServicePropertiesMap: null } 1`] = `
+<GenericPanel
+  className="settings-panel"
+  closeButtonAriaLabel="Close settings panel"
+  hasCloseButton={true}
+  isOpen={true}
+  title="Settings"
+>
+  <TelemetrySettings
+    deps={
+      Object {
+        "detailsViewActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "_tabId": undefined,
+          "addFailureInstance": [Function],
+          "cancelStartOver": undefined,
+          "cancelStartOverAllAssessments": undefined,
+          "changeAssessmentVisualizationState": undefined,
+          "changeAssessmentVisualizationStateForAll": [Function],
+          "changeManualRequirementStatus": undefined,
+          "changeManualTestStatus": undefined,
+          "changeRightContentPanel": [Function],
+          "closePreviewFeaturesPanel": undefined,
+          "closeScopingPanel": undefined,
+          "closeSettingsPanel": undefined,
+          "constructor": [Function],
+          "continuePreviousAssessment": undefined,
+          "copyIssueDetailsClicked": undefined,
+          "detailsViewOpened": [Function],
+          "disableVisualHelper": [Function],
+          "disableVisualHelpersForTest": [Function],
+          "dispatchMessage": [Function],
+          "dispatchType": [Function],
+          "editFailureInstance": undefined,
+          "enableVisualHelper": [Function],
+          "exportResultsClicked": [Function],
+          "passUnmarkedInstances": [Function],
+          "postMessageDelegate": undefined,
+          "removeFailureInstance": undefined,
+          "selectDetailsView": [Function],
+          "selectRequirement": [Function],
+          "sendPivotItemClicked": [Function],
+          "sendTelemetry": [Function],
+          "setDevToolStatus": [Function],
+          "setFeatureFlag": undefined,
+          "setInspectElement": [Function],
+          "setInspectFrameUrl": [Function],
+          "startOverAllAssessments": undefined,
+          "startOverAssessment": [Function],
+          "switchToTargetTab": undefined,
+          "telemetryFactory": undefined,
+          "undoManualRequirementStatusChange": undefined,
+          "undoManualTestStatusChange": undefined,
+          "updateFocusedInstanceTarget": [Function],
+          "updateIssuesSelectedTargets": [Function],
+          "windowUtils": undefined,
+        },
+        "userConfigMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "_tabId": undefined,
+          "constructor": [Function],
+          "dispatchMessage": [Function],
+          "dispatchType": [Function],
+          "postMessageDelegate": undefined,
+          "sendTelemetry": [Function],
+          "setBugService": [Function],
+          "setBugServiceProperty": [Function],
+          "setHighContrastMode": [Function],
+          "setIssueTrackerPath": [Function],
+          "setTelemetryState": [Function],
+        },
+      }
+    }
+    description={
+      <React.Fragment>
+        <React.Fragment>
+          <p>
+            By opting into telemetry, you
+             
+            <NewTabLink
+              href="https://accessibilityinsights.io/docs/en/telemetry"
+            >
+              help the community
+            </NewTabLink>
+             develop inclusive software.
+          </p>
+          <p>
+            We collect anonymized data to identify the top accessibility issues found by the users. This will help focus the accessibility tools and standards community to improve guidelines, rules engines, and features.
+          </p>
+        </React.Fragment>
+        <React.Fragment>
+          Read our 
+          <NewTabLink
+            href="http://go.microsoft.com/fwlink/?LinkId=521839"
+          >
+             privacy statement
+          </NewTabLink>
+           to learn more.
+        </React.Fragment>
+      </React.Fragment>
+    }
+    enabled={false}
+    name="Help improve Accessibility Insights for Web"
+  />
+  <GenericToggle
+    description={
+      <React.Fragment>
+        Make text easier to see by using more distinct colors.
+      </React.Fragment>
+    }
+    enabled={true}
+    id="enable-high-contrast-mode"
+    name="Enable high contrast"
+    onClick={[Function]}
+  />
+  <FlaggedComponent
+    enableJSXElement={
+      <React.Fragment>
+        <h3>
+          Issue filing
+        </h3>
+        <StyledTextFieldBase
+          className="issue-setting"
+          label="Enter desired GitHub repo link:"
+          onChange={[Function]}
+          placeholder="https://github.com/owner/repo/issues"
+        />
+      </React.Fragment>
+    }
+    featureFlag="showBugFiling"
+    featureFlagStoreData={
+      Object {
+        "test-flag": false,
+      }
+    }
+  />
+</GenericPanel>
+`;
