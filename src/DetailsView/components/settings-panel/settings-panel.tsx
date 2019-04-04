@@ -9,13 +9,9 @@ import { FeatureFlags } from '../../../common/feature-flags';
 import { UserConfigMessageCreator } from '../../../common/message-creators/user-config-message-creator';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
-import {
-    enableHighContrastSettingsTitle as highContrastSettingsTitle,
-    highContrastSettingsDescription,
-} from '../../../content/settings/high-contrast-mode';
 import { DetailsViewActionMessageCreator } from '../../actions/details-view-action-message-creator';
 import { GenericPanel } from '../generic-panel';
-import { GenericToggle } from '../generic-toggle';
+import { HighContrastSettings } from './settings/high-contrast/high-contrast-settings';
 import { TelemetrySettings, TelemetrySettingsDeps } from './settings/telemetry/telemetry-settings';
 
 export type SettingsPanelDeps = TelemetrySettingsDeps & {
@@ -41,13 +37,7 @@ export class SettingsPanel extends React.Component<SettingsPanelProps> {
                 title="Settings"
             >
                 <TelemetrySettings deps={this.props.deps} enabled={this.props.userConfigStoreState.enableTelemetry} />
-                <GenericToggle
-                    enabled={this.props.userConfigStoreState.enableHighContrast}
-                    id="enable-high-contrast-mode"
-                    name={highContrastSettingsTitle}
-                    description={highContrastSettingsDescription}
-                    onClick={this.onHighContrastModeToggleClick}
-                />
+                <HighContrastSettings deps={this.props.deps} enabled={this.props.userConfigStoreState.enableHighContrast} />
                 <FlaggedComponent
                     enableJSXElement={this.getBugSettingsUx()}
                     featureFlag={FeatureFlags[FeatureFlags.showBugFiling]}
