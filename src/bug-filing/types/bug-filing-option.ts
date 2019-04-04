@@ -3,17 +3,8 @@
 export interface BugFilingOption<Settings = {}> {
     key: string;
     displayName: string;
-    baseUrl: string;
-    renderSettings: React.SFC;
+    renderSettingsForm: React.SFC;
     buildStoreData: (params?: any) => Settings;
     isSettingsValid: (data: Settings) => boolean;
-    buildBugFilingUrl: (data: Settings) => string;
-    params: BugFilingParameter<Settings>[];
+    fileBug: (data: Settings) => void;
 }
-
-export type BugFilingParameter<Settings> = {
-    key: keyof Settings;
-    displayName: string;
-    isRequired?: boolean;
-    renderField: React.SFC;
-};
