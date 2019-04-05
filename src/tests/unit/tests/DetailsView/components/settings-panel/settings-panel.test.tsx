@@ -2,33 +2,13 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, Mock, Times } from 'typemoq';
-
-import { FeatureFlags } from '../../../../../../common/feature-flags';
 import { UserConfigMessageCreator } from '../../../../../../common/message-creators/user-config-message-creator';
 import { BugServicePropertiesMap, UserConfigurationStoreData } from '../../../../../../common/types/store-data/user-configuration-store';
 import { DetailsViewActionMessageCreator } from '../../../../../../DetailsView/actions/details-view-action-message-creator';
 import { SettingsPanel, SettingsPanelProps } from '../../../../../../DetailsView/components/settings-panel/settings-panel';
 
-type SettingsPanelProtectedTextFieldChangeFunction = (
-    event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>,
-    newValue?: string,
-) => void;
-
 describe('SettingsPanelTest', () => {
-    let detailsActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
-    let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;
     let userConfigStoreData: UserConfigurationStoreData;
-
-    beforeEach(() => {
-        detailsActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
-        userConfigMessageCreatorMock = Mock.ofType(UserConfigMessageCreator);
-    });
-
-    test('constructor', () => {
-        const testSubject = new SettingsPanel({} as SettingsPanelProps);
-        expect(testSubject).toBeDefined();
-    });
 
     type RenderTestCase = {
         isPanelOpen: boolean;
