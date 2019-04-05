@@ -91,7 +91,7 @@ describe('BugFilingSettings', () => {
             const textField = wrapped.dive().find(TextField);
 
             expect(textField.getElement()).toMatchSnapshot();
-            
+
         });
     });
 });

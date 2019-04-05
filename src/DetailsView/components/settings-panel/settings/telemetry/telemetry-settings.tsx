@@ -3,11 +3,11 @@
 import * as React from 'react';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { NamedSFC } from '../../../../../common/react/named-sfc';
-import { GenericToggle } from '../../../generic-toggle';
 import {
     enableTelemetrySettingDescription,
     enableTelemetrySettingsPanelTitle,
 } from '../../../../../content/settings/improve-accessibility-insights';
+import { GenericToggle } from '../../../generic-toggle';
 
 export type TelemetrySettingsDeps = {
     userConfigMessageCreator: UserConfigMessageCreator;
