@@ -13,9 +13,9 @@ import {
 } from '../../../../../../../../DetailsView/components/settings-panel/settings/high-contrast/high-contrast-settings';
 
 describe('HighContrastSettings', () => {
-    describe('renders', () => {
-        const enableStates = [true, false];
+    const enableStates = [true, false];
 
+    describe('renders', () => {
         it.each(enableStates)('with enabled = %s', enabled => {
             const props: HighContrastSettingsProps = {
                 deps: Mock.ofType<HighContrastSettingsDeps>().object,
@@ -32,7 +32,7 @@ describe('HighContrastSettings', () => {
     });
 
     describe('user interaction', () => {
-        it('handles toggle click', () => {
+        it.each(enableStates)('handles toggle click, with enabled = %s', enabled => {
             const userConfigMessageCreatorMock = Mock.ofType<UserConfigMessageCreator>();
             const deps = {
                 userConfigMessageCreator: userConfigMessageCreatorMock.object,
@@ -40,16 +40,14 @@ describe('HighContrastSettings', () => {
             const props: HighContrastSettingsProps = {
                 deps,
                 userConfigurationStoreState: {
-                    enableHighContrast: true,
+                    enableHighContrast: enabled,
                 } as UserConfigurationStoreData,
                 featureFlagData: {},
             };
 
             const wrapper = shallow(<HighContrastSettings {...props} />);
 
-            userConfigMessageCreatorMock
-                .setup(creator => creator.setHighContrastMode(!props.userConfigurationStoreState.enableHighContrast))
-                .verifiable(Times.once());
+            userConfigMessageCreatorMock.setup(creator => creator.setHighContrastMode(!enabled)).verifiable(Times.once());
 
             wrapper
                 .dive()

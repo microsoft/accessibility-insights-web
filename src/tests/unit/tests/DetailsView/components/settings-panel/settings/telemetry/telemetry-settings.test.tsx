@@ -13,9 +13,9 @@ import {
 } from '../../../../../../../../DetailsView/components/settings-panel/settings/telemetry/telemetry-settings';
 
 describe('TelemetrySettings', () => {
-    describe('- renders', () => {
-        const enableStates = [true, false];
+    const enableStates = [true, false];
 
+    describe('- renders', () => {
         it.each(enableStates)('with enabled = %s', enabled => {
             const props: TelemetrySettingsProps = {
                 deps: Mock.ofType<TelemetrySettingsDeps>().object,
@@ -32,7 +32,7 @@ describe('TelemetrySettings', () => {
     });
 
     describe('- user interaction', () => {
-        it('handles toggle click', () => {
+        it.each(enableStates)('handle toggle click, with enabled = %s', enabled => {
             const userConfigMessageCreatorMock = Mock.ofType<UserConfigMessageCreator>();
             const deps = {
                 userConfigMessageCreator: userConfigMessageCreatorMock.object,
@@ -40,16 +40,14 @@ describe('TelemetrySettings', () => {
             const props: TelemetrySettingsProps = {
                 deps,
                 userConfigurationStoreState: {
-                    enableTelemetry: true,
+                    enableTelemetry: enabled,
                 } as UserConfigurationStoreData,
                 featureFlagData: {},
             };
 
             const wrapper = shallow(<TelemetrySettings {...props} />);
 
-            userConfigMessageCreatorMock
-                .setup(creator => creator.setTelemetryState(!props.userConfigurationStoreState.enableTelemetry))
-                .verifiable(Times.once());
+            userConfigMessageCreatorMock.setup(creator => creator.setTelemetryState(!enabled)).verifiable(Times.once());
 
             wrapper
                 .dive()
