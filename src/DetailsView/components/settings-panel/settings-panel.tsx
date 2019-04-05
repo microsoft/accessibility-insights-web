@@ -9,7 +9,7 @@ import { DetailsViewActionMessageCreator } from '../../actions/details-view-acti
 import { GenericPanel } from '../generic-panel';
 import { BugFilingSettings } from './settings/bug-filing/bug-filing-settings';
 import { HighContrastSettings } from './settings/high-contrast/high-contrast-settings';
-import { TelemetrySettingsDeps, TelemetrySettings } from './settings/telemetry/telemetry-settings';
+import { TelemetrySettings, TelemetrySettingsDeps } from './settings/telemetry/telemetry-settings';
 
 export type SettingsPanelDeps = TelemetrySettingsDeps & {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
@@ -36,7 +36,7 @@ export const SettingsPanel = NamedSFC<SettingsPanelProps>('SettingsPanel', props
             title="Settings"
         >
             <TelemetrySettings deps={deps} featureFlagData={featureFlagData} userConfigigurationStoreSate={userConfigStoreState} />
-            <HighContrastSettings deps={deps} enabled={userConfigStoreState.enableHighContrast} />
+            <HighContrastSettings deps={deps} featureFlagData={featureFlagData} userConfigigurationStoreSate={userConfigStoreState} />
             <BugFilingSettings deps={deps} featureFlagData={featureFlagData} userConfigStoreState={userConfigStoreState} />
         </GenericPanel>
     );

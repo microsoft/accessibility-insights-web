@@ -4,11 +4,12 @@ import { shallow } from 'enzyme';
 import { Toggle } from 'office-ui-fabric-react/lib/Toggle';
 import * as React from 'react';
 import { Mock, Times } from 'typemoq';
-
 import { UserConfigMessageCreator } from '../../../../../../../../common/message-creators/user-config-message-creator';
+import { UserConfigurationStoreData } from '../../../../../../../../common/types/store-data/user-configuration-store';
 import {
     HighContrastSettings,
     HighContrastSettingsDeps,
+    HighContrastSettingsProps,
 } from '../../../../../../../../DetailsView/components/settings-panel/settings/high-contrast/high-contrast-settings';
 
 describe('HighContrastSettings', () => {
@@ -16,9 +17,12 @@ describe('HighContrastSettings', () => {
         const enableStates = [true, false];
 
         it.each(enableStates)('with enabled = %s', enabled => {
-            const props = {
+            const props: HighContrastSettingsProps = {
                 deps: Mock.ofType<HighContrastSettingsDeps>().object,
-                enabled,
+                userConfigigurationStoreSate: {
+                    enableHighContrast: enabled,
+                } as UserConfigurationStoreData,
+                featureFlagData: {},
             };
 
             const wrapper = shallow(<HighContrastSettings {...props} />);
@@ -33,14 +37,19 @@ describe('HighContrastSettings', () => {
             const deps = {
                 userConfigMessageCreator: userConfigMessageCreatorMock.object,
             };
-            const props = {
+            const props: HighContrastSettingsProps = {
                 deps,
-                enabled: true,
+                userConfigigurationStoreSate: {
+                    enableHighContrast: true,
+                } as UserConfigurationStoreData,
+                featureFlagData: {},
             };
 
             const wrapper = shallow(<HighContrastSettings {...props} />);
 
-            userConfigMessageCreatorMock.setup(creator => creator.setHighContrastMode(!props.enabled)).verifiable(Times.once());
+            userConfigMessageCreatorMock
+                .setup(creator => creator.setHighContrastMode(!props.userConfigigurationStoreSate.enableHighContrast))
+                .verifiable(Times.once());
 
             wrapper
                 .dive()
