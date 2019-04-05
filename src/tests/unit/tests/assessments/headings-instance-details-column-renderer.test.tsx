@@ -24,7 +24,7 @@ describe('HeadingsInstanceDetailsColumnRendererTest', () => {
                 customClassName="not-applicable"
             />
         );
-        expect(expected).toEqual(headingsAssessmentInstanceDetailsColumnRenderer(item));
+        expect(headingsAssessmentInstanceDetailsColumnRenderer(item)).toEqual(expected);
     });
 
     test('render', () => {
@@ -45,6 +45,27 @@ describe('HeadingsInstanceDetailsColumnRendererTest', () => {
                 customClassName={null}
             />
         );
-        expect(expected).toEqual(headingsAssessmentInstanceDetailsColumnRenderer(item));
+        expect(headingsAssessmentInstanceDetailsColumnRenderer(item)).toEqual(expected);
+    });
+
+    test('render out of bounds level', () => {
+        const item = {
+            instance: {
+                propertyBag: {
+                    headingText: 'heading',
+                    headingLevel: '7',
+                },
+            },
+        } as AssessmentInstanceRowData<IHeadingsAssessmentProperties>;
+        const expected = (
+            <AssessmentInstanceDetailsColumn
+                background={'#767676'}
+                labelText={'H7'}
+                textContent={'heading'}
+                tooltipId={null}
+                customClassName={null}
+            />
+        );
+        expect(headingsAssessmentInstanceDetailsColumnRenderer(item)).toEqual(expected);
     });
 });
