@@ -302,7 +302,7 @@ if (isNaN(tabId) === false) {
             }
         },
         () => {
-            throw new Error();
+            throw new Error(`Cannot find target tab with Id ${tabId}`);
         },
     );
 }
