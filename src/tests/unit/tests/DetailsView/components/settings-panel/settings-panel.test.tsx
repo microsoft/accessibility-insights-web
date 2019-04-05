@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { UserConfigMessageCreator } from '../../../../../../common/message-creators/user-config-message-creator';
 import { NamedSFC } from '../../../../../../common/react/named-sfc';
-import { BugServicePropertiesMap, UserConfigurationStoreData } from '../../../../../../common/types/store-data/user-configuration-store';
+import { UserConfigurationStoreData } from '../../../../../../common/types/store-data/user-configuration-store';
 import { DetailsViewActionMessageCreator } from '../../../../../../DetailsView/actions/details-view-action-message-creator';
 import { SettingsPanel, SettingsPanelProps } from '../../../../../../DetailsView/components/settings-panel/settings-panel';
 import { SettingsProps } from '../../../../../../DetailsView/components/settings-panel/settings/settings-props';
@@ -13,22 +13,7 @@ import { create } from '../../../../../../DetailsView/components/settings-panel/
 describe('SettingsPanelTest', () => {
     let userConfigStoreData: UserConfigurationStoreData;
 
-    type RenderTestCase = {
-        isPanelOpen: boolean;
-        enableTelemetry?: boolean;
-        enableHighContrast?: boolean;
-        bugService?: string;
-        bugServicePropertiesMap?: BugServicePropertiesMap;
-    };
-
-    test.each([
-        {
-            isPanelOpen: true,
-        } as RenderTestCase,
-        {
-            isPanelOpen: false,
-        } as RenderTestCase,
-    ])('render - %o', (testCase: RenderTestCase) => {
+    it.each([true, false])('render - isPanelOpen = %s', isPanelOpen => {
         userConfigStoreData = {} as UserConfigurationStoreData;
 
         const testSettingsProvider = create([
@@ -38,7 +23,7 @@ describe('SettingsPanelTest', () => {
         ]);
 
         const testProps: SettingsPanelProps = {
-            isOpen: testCase.isPanelOpen,
+            isOpen: isPanelOpen,
             deps: {
                 detailsViewActionMessageCreator: {
                     closeSettingsPanel: () => {},

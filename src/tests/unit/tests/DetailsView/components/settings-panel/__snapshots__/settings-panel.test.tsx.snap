@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SettingsPanelTest render - { isPanelOpen: false } 1`] = `
+exports[`SettingsPanelTest render - isPanelOpen = false 1`] = `
 <GenericPanel
   className="settings-panel"
   closeButtonAriaLabel="Close settings panel"
@@ -69,7 +69,7 @@ exports[`SettingsPanelTest render - { isPanelOpen: false } 1`] = `
 </GenericPanel>
 `;
 
-exports[`SettingsPanelTest render - { isPanelOpen: true } 1`] = `
+exports[`SettingsPanelTest render - isPanelOpen = true 1`] = `
 <GenericPanel
   className="settings-panel"
   closeButtonAriaLabel="Close settings panel"
