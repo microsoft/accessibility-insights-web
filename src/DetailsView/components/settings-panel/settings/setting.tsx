@@ -6,5 +6,5 @@ import { UserConfigurationStoreData } from '../../../../common/types/store-data/
 export type SettingsProps<TDeps> = {
     deps: TDeps;
     featureFlagData: FeatureFlagStoreData;
-    userConfigigurationStoreSate: UserConfigurationStoreData;
+    userConfigurationStoreState: UserConfigurationStoreData;
 };

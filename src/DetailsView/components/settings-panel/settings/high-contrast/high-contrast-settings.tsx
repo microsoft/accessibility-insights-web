@@ -19,7 +19,7 @@ export const HighContrastSettings = NamedSFC<HighContrastSettingsProps>('HighCon
 
     return (
         <GenericToggle
-            enabled={props.userConfigigurationStoreSate.enableHighContrast}
+            enabled={props.userConfigurationStoreState.enableHighContrast}
             id="enable-high-contrast-mode"
             name={enableHighContrastSettingsTitle}
             description={highContrastSettingsDescription}

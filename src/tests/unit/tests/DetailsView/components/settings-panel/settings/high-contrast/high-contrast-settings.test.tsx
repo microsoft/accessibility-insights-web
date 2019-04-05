@@ -19,7 +19,7 @@ describe('HighContrastSettings', () => {
         it.each(enableStates)('with enabled = %s', enabled => {
             const props: HighContrastSettingsProps = {
                 deps: Mock.ofType<HighContrastSettingsDeps>().object,
-                userConfigigurationStoreSate: {
+                userConfigurationStoreState: {
                     enableHighContrast: enabled,
                 } as UserConfigurationStoreData,
                 featureFlagData: {},
@@ -39,7 +39,7 @@ describe('HighContrastSettings', () => {
             };
             const props: HighContrastSettingsProps = {
                 deps,
-                userConfigigurationStoreSate: {
+                userConfigurationStoreState: {
                     enableHighContrast: true,
                 } as UserConfigurationStoreData,
                 featureFlagData: {},
@@ -48,7 +48,7 @@ describe('HighContrastSettings', () => {
             const wrapper = shallow(<HighContrastSettings {...props} />);
 
             userConfigMessageCreatorMock
-                .setup(creator => creator.setHighContrastMode(!props.userConfigigurationStoreSate.enableHighContrast))
+                .setup(creator => creator.setHighContrastMode(!props.userConfigurationStoreState.enableHighContrast))
                 .verifiable(Times.once());
 
             wrapper

@@ -41,11 +41,11 @@ export const BugFilingSettings = NamedSFC<BugFilingSettingsProps>('BugFilingSett
     };
 
     const getBugServiceProperty = (bugService: string, propertyName: string) => {
-        const bugServicePropertiesMap = props.userConfigigurationStoreSate.bugServicePropertiesMap;
+        const bugServicePropertiesMap = props.userConfigurationStoreState.bugServicePropertiesMap;
         if (!bugServicePropertiesMap || !bugServicePropertiesMap[bugService]) {
             return undefined;
         }
-        return props.userConfigigurationStoreSate.bugServicePropertiesMap[bugService][propertyName];
+        return props.userConfigurationStoreState.bugServicePropertiesMap[bugService][propertyName];
     };
 
     return (

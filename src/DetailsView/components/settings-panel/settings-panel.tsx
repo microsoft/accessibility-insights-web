@@ -35,9 +35,9 @@ export const SettingsPanel = NamedSFC<SettingsPanelProps>('SettingsPanel', props
             hasCloseButton={true}
             title="Settings"
         >
-            <TelemetrySettings deps={deps} featureFlagData={featureFlagData} userConfigigurationStoreSate={userConfigStoreState} />
-            <HighContrastSettings deps={deps} featureFlagData={featureFlagData} userConfigigurationStoreSate={userConfigStoreState} />
-            <BugFilingSettings deps={deps} featureFlagData={featureFlagData} userConfigigurationStoreSate={userConfigStoreState} />
+            <TelemetrySettings deps={deps} featureFlagData={featureFlagData} userConfigurationStoreState={userConfigStoreState} />
+            <HighContrastSettings deps={deps} featureFlagData={featureFlagData} userConfigurationStoreState={userConfigStoreState} />
+            <BugFilingSettings deps={deps} featureFlagData={featureFlagData} userConfigurationStoreState={userConfigStoreState} />
         </GenericPanel>
     );
 });

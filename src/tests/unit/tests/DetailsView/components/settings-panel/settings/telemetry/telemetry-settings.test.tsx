@@ -19,7 +19,7 @@ describe('TelemetrySettings', () => {
         it.each(enableStates)('with enabled = %s', enabled => {
             const props: TelemetrySettingsProps = {
                 deps: Mock.ofType<TelemetrySettingsDeps>().object,
-                userConfigigurationStoreSate: {
+                userConfigurationStoreState: {
                     enableTelemetry: enabled,
                 } as UserConfigurationStoreData,
                 featureFlagData: {},
@@ -37,9 +37,9 @@ describe('TelemetrySettings', () => {
             const deps = {
                 userConfigMessageCreator: userConfigMessageCreatorMock.object,
             };
-            const props = {
+            const props: TelemetrySettingsProps = {
                 deps,
-                userConfigigurationStoreSate: {
+                userConfigurationStoreState: {
                     enableTelemetry: true,
                 } as UserConfigurationStoreData,
                 featureFlagData: {},
@@ -48,7 +48,7 @@ describe('TelemetrySettings', () => {
             const wrapper = shallow(<TelemetrySettings {...props} />);
 
             userConfigMessageCreatorMock
-                .setup(creator => creator.setTelemetryState(!props.userConfigigurationStoreSate.enableTelemetry))
+                .setup(creator => creator.setTelemetryState(!props.userConfigurationStoreState.enableTelemetry))
                 .verifiable(Times.once());
 
             wrapper
