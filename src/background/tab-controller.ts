@@ -111,17 +111,23 @@ export class TabController {
     }
 
     private sendTabChangedAction(tabId: number): void {
-        this.chromeAdapter.getTab(tabId, (tab: chrome.tabs.Tab) => {
-            const tabContext = this.tabIdToContextMap[tabId];
-            if (tabContext) {
-                const interpreter = tabContext.interpreter;
-                interpreter.interpret({
-                    type: Messages.Tab.Change,
-                    payload: tab,
-                    tabId: tabId,
-                });
-            }
-        });
+        this.chromeAdapter.getTab(
+            tabId,
+            (tab: chrome.tabs.Tab) => {
+                const tabContext = this.tabIdToContextMap[tabId];
+                if (tabContext) {
+                    const interpreter = tabContext.interpreter;
+                    interpreter.interpret({
+                        type: Messages.Tab.Change,
+                        payload: tab,
+                        tabId: tabId,
+                    });
+                }
+            },
+            () => {
+                this.logger.log(`changed tab with Id ${tabId} not found`);
+            },
+        );
     }
 
     private sendTabUpdateAction(tabId: number): void {

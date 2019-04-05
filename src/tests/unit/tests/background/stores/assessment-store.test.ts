@@ -378,9 +378,13 @@ describe('AssessmentStoreTest', () => {
             url,
             title,
         };
+        let rejectCb;
         browserMock
-            .setup(b => b.getTab(tabId, It.isAny()))
-            .returns((id, cb) => cb(tab))
+            .setup(b => b.getTab(tabId, It.isAny(), It.isAny()))
+            .returns((id, resolve, reject) => {
+                rejectCb = reject;
+                resolve(tab);
+            })
             .verifiable();
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
         const initialState = new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object)
@@ -397,6 +401,8 @@ describe('AssessmentStoreTest', () => {
         createStoreTesterForAssessmentActions('resetAllAssessmentsData')
             .withActionParam(tabId)
             .testListenerToBeCalledOnce(initialState, finalState);
+
+        expect(() => rejectCb()).toThrowErrorMatchingSnapshot();
     });
 
     test('onContinuePreviousAssessment', () => {
@@ -409,9 +415,13 @@ describe('AssessmentStoreTest', () => {
             url,
             title,
         };
+        let onReject;
         browserMock
-            .setup(b => b.getTab(tabId, It.isAny()))
-            .returns((id, cb) => cb(tab))
+            .setup(b => b.getTab(tabId, It.isAny(), It.isAny()))
+            .returns((id, cb, reject) => {
+                onReject = reject;
+                cb(tab);
+            })
             .verifiable();
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
         const initialState = new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object)
@@ -425,6 +435,7 @@ describe('AssessmentStoreTest', () => {
         createStoreTesterForAssessmentActions('resetAllAssessmentsData')
             .withActionParam(tabId)
             .testListenerToBeCalledOnce(initialState, finalState);
+        expect(() => onReject()).toThrowErrorMatchingSnapshot();
     });
 
     test('onScanCompleted', () => {
@@ -615,9 +626,13 @@ describe('AssessmentStoreTest', () => {
             url,
             title,
         };
+        let onReject;
         browserMock
-            .setup(b => b.getTab(tabId, It.isAny()))
-            .returns((id, cb) => cb(tab))
+            .setup(b => b.getTab(tabId, It.isAny(), It.isAny()))
+            .returns((id, cb, reject) => {
+                onReject = reject;
+                cb(tab);
+            })
             .verifiable();
         const initialState = new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object).build();
         const finalState = new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object)
@@ -627,6 +642,7 @@ describe('AssessmentStoreTest', () => {
         createStoreTesterForAssessmentActions('updateTargetTabId')
             .withActionParam(tabId)
             .testListenerToBeCalledOnce(initialState, finalState);
+        expect(() => onReject()).toThrowErrorMatchingSnapshot();
     });
 
     test('onUpdateTargetTabId: tab is null', () => {

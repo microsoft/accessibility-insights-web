@@ -41,9 +41,15 @@ export class TargetTabFinder {
                     },
                 );
             } else {
-                this.browserAdapter.getTab(tabIdInUrl, (tab: Tab) => {
-                    resolve(tab);
-                });
+                this.browserAdapter.getTab(
+                    tabIdInUrl,
+                    (tab: Tab) => {
+                        resolve(tab);
+                    },
+                    () => {
+                        throw new Error(`Tab with Id ${tabIdInUrl} not found`);
+                    },
+                );
             }
         });
     }

@@ -351,6 +351,7 @@ describe('TabControllerTest', () => {
     test('tab change test', () => {
         let tabUpdatedCallback: (details: chrome.webNavigation.WebNavigationFramedCallbackDetails) => void = null;
         let getTabCallback: (tab: chrome.tabs.Tab) => void;
+        let onReject;
         const tabId = 1;
         const getTabCallbackInput = {
             title: 'new title',
@@ -380,17 +381,21 @@ describe('TabControllerTest', () => {
             .verifiable(Times.once());
 
         mockChromeAdapter
-            .setup(mca => mca.getTab(It.isValue(tabId), It.isAny()))
-            .returns((id, cb) => {
+            .setup(mca => mca.getTab(It.isValue(tabId), It.isAny(), It.isAny()))
+            .returns((id, cb, reject) => {
                 getTabCallback = cb;
+                onReject = reject;
             })
             .verifiable(Times.once());
+        logMock.setup(log => log(`changed tab with Id ${tabId} not found`)).verifiable(Times.once());
 
         testSubject = createTabControllerWithoutFeatureFlag(tabInterpreterMap);
         testSubject.initialize();
         tabUpdatedCallback({ frameId: 0, tabId: tabId } as chrome.webNavigation.WebNavigationFramedCallbackDetails);
         getTabCallback(getTabCallbackInput as any);
+        onReject();
 
+        logMock.verifyAll();
         interpreterMock.verifyAll();
         mockChromeAdapter.verifyAll();
     });

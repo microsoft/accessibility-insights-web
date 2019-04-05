@@ -85,9 +85,10 @@ describe('TargetTabFinderTest', () => {
 
     function setupGetTabCall(): void {
         browserAdapterMock
-            .setup(b => b.getTab(tabId, It.isAny()))
-            .callback((id, cb) => {
+            .setup(b => b.getTab(tabId, It.isAny(), It.isAny()))
+            .callback((id, cb, reject) => {
                 cb(tabStub);
+                expect(() => reject()).toThrowError(`Tab with Id ${tabId} not found`);
             });
     }
 
