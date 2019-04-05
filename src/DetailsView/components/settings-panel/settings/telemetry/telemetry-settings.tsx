@@ -8,23 +8,19 @@ import {
     enableTelemetrySettingsPanelTitle,
 } from '../../../../../content/settings/improve-accessibility-insights';
 import { GenericToggle } from '../../../generic-toggle';
+import { SettingsProps } from '../setting';
 
 export type TelemetrySettingsDeps = {
     userConfigMessageCreator: UserConfigMessageCreator;
 };
-
-export type TelemetrySettingsProps = {
-    deps: TelemetrySettingsDeps;
-    enabled: boolean;
-};
-
+export type TelemetrySettingsProps = SettingsProps<TelemetrySettingsDeps>;
 export const TelemetrySettings = NamedSFC<TelemetrySettingsProps>('TelemetrySettings', props => {
     const { deps } = props;
     const { userConfigMessageCreator } = deps;
 
     return (
         <GenericToggle
-            enabled={props.enabled}
+            enabled={props.userConfigigurationStoreSate.enableTelemetry}
             id="enable-telemetry"
             name={enableTelemetrySettingsPanelTitle}
             description={enableTelemetrySettingDescription}

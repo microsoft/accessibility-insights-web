@@ -22,7 +22,23 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
         "userConfigMessageCreator": Object {},
       }
     }
-    enabled={false}
+    featureFlagData={
+      Object {
+        "test-flag": false,
+      }
+    }
+    userConfigigurationStoreSate={
+      Object {
+        "bugService": "gitHub",
+        "bugServicePropertiesMap": Object {
+          "gitHub": Object {
+            "repository": "test-repository",
+          },
+        },
+        "enableHighContrast": false,
+        "enableTelemetry": false,
+      }
+    }
   />
   <HighContrastSettings
     deps={
@@ -87,7 +103,21 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
         "userConfigMessageCreator": Object {},
       }
     }
-    enabled={false}
+    featureFlagData={
+      Object {
+        "test-flag": false,
+      }
+    }
+    userConfigigurationStoreSate={
+      Object {
+        "bugService": "gitHub",
+        "bugServicePropertiesMap": Object {
+          "gitHub": Object {},
+        },
+        "enableHighContrast": false,
+        "enableTelemetry": false,
+      }
+    }
   />
   <HighContrastSettings
     deps={
@@ -150,7 +180,19 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
         "userConfigMessageCreator": Object {},
       }
     }
-    enabled={false}
+    featureFlagData={
+      Object {
+        "test-flag": false,
+      }
+    }
+    userConfigigurationStoreSate={
+      Object {
+        "bugService": "gitHub",
+        "bugServicePropertiesMap": Object {},
+        "enableHighContrast": false,
+        "enableTelemetry": false,
+      }
+    }
   />
   <HighContrastSettings
     deps={
@@ -211,7 +253,19 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
         "userConfigMessageCreator": Object {},
       }
     }
-    enabled={false}
+    featureFlagData={
+      Object {
+        "test-flag": false,
+      }
+    }
+    userConfigigurationStoreSate={
+      Object {
+        "bugService": undefined,
+        "bugServicePropertiesMap": null,
+        "enableHighContrast": false,
+        "enableTelemetry": false,
+      }
+    }
   />
   <HighContrastSettings
     deps={
@@ -272,7 +326,19 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
         "userConfigMessageCreator": Object {},
       }
     }
-    enabled={false}
+    featureFlagData={
+      Object {
+        "test-flag": false,
+      }
+    }
+    userConfigigurationStoreSate={
+      Object {
+        "bugService": "gitHub",
+        "bugServicePropertiesMap": null,
+        "enableHighContrast": true,
+        "enableTelemetry": false,
+      }
+    }
   />
   <HighContrastSettings
     deps={

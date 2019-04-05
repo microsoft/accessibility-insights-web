@@ -1,5 +1,153 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`TelemetrySettings - renders with enabled = false 1`] = `
+<GenericToggle
+  description={
+    <React.Fragment>
+      <React.Fragment>
+        <p>
+          By opting into telemetry, you
+           
+          <NewTabLink
+            href="https://accessibilityinsights.io/docs/en/telemetry"
+          >
+            help the community
+          </NewTabLink>
+           develop inclusive software.
+        </p>
+        <p>
+          We collect anonymized data to identify the top accessibility issues found by the users. This will help focus the accessibility tools and standards community to improve guidelines, rules engines, and features.
+        </p>
+      </React.Fragment>
+      <React.Fragment>
+        Read our 
+        <NewTabLink
+          href="http://go.microsoft.com/fwlink/?LinkId=521839"
+        >
+           privacy statement
+        </NewTabLink>
+         to learn more.
+      </React.Fragment>
+    </React.Fragment>
+  }
+  enabled={false}
+  id="enable-telemetry"
+  name="Help improve Accessibility Insights for Web"
+  onClick={[Function]}
+/>
+`;
+
+exports[`TelemetrySettings - renders with enabled = true 1`] = `
+<GenericToggle
+  description={
+    <React.Fragment>
+      <React.Fragment>
+        <p>
+          By opting into telemetry, you
+           
+          <NewTabLink
+            href="https://accessibilityinsights.io/docs/en/telemetry"
+          >
+            help the community
+          </NewTabLink>
+           develop inclusive software.
+        </p>
+        <p>
+          We collect anonymized data to identify the top accessibility issues found by the users. This will help focus the accessibility tools and standards community to improve guidelines, rules engines, and features.
+        </p>
+      </React.Fragment>
+      <React.Fragment>
+        Read our 
+        <NewTabLink
+          href="http://go.microsoft.com/fwlink/?LinkId=521839"
+        >
+           privacy statement
+        </NewTabLink>
+         to learn more.
+      </React.Fragment>
+    </React.Fragment>
+  }
+  enabled={true}
+  id="enable-telemetry"
+  name="Help improve Accessibility Insights for Web"
+  onClick={[Function]}
+/>
+`;
+
+exports[`TelemetrySettings -renders with enabled = false 1`] = `
+<GenericToggle
+  description={
+    <React.Fragment>
+      <React.Fragment>
+        <p>
+          By opting into telemetry, you
+           
+          <NewTabLink
+            href="https://accessibilityinsights.io/docs/en/telemetry"
+          >
+            help the community
+          </NewTabLink>
+           develop inclusive software.
+        </p>
+        <p>
+          We collect anonymized data to identify the top accessibility issues found by the users. This will help focus the accessibility tools and standards community to improve guidelines, rules engines, and features.
+        </p>
+      </React.Fragment>
+      <React.Fragment>
+        Read our 
+        <NewTabLink
+          href="http://go.microsoft.com/fwlink/?LinkId=521839"
+        >
+           privacy statement
+        </NewTabLink>
+         to learn more.
+      </React.Fragment>
+    </React.Fragment>
+  }
+  enabled={false}
+  id="enable-telemetry"
+  name="Help improve Accessibility Insights for Web"
+  onClick={[Function]}
+/>
+`;
+
+exports[`TelemetrySettings -renders with enabled = true 1`] = `
+<GenericToggle
+  description={
+    <React.Fragment>
+      <React.Fragment>
+        <p>
+          By opting into telemetry, you
+           
+          <NewTabLink
+            href="https://accessibilityinsights.io/docs/en/telemetry"
+          >
+            help the community
+          </NewTabLink>
+           develop inclusive software.
+        </p>
+        <p>
+          We collect anonymized data to identify the top accessibility issues found by the users. This will help focus the accessibility tools and standards community to improve guidelines, rules engines, and features.
+        </p>
+      </React.Fragment>
+      <React.Fragment>
+        Read our 
+        <NewTabLink
+          href="http://go.microsoft.com/fwlink/?LinkId=521839"
+        >
+           privacy statement
+        </NewTabLink>
+         to learn more.
+      </React.Fragment>
+    </React.Fragment>
+  }
+  enabled={true}
+  id="enable-telemetry"
+  name="Help improve Accessibility Insights for Web"
+  onClick={[Function]}
+/>
+`;
+
 exports[`TelemetrySettings renders with enabled = false 1`] = `
 <GenericToggle
   description={
@@ -37,7 +185,81 @@ exports[`TelemetrySettings renders with enabled = false 1`] = `
 />
 `;
 
+exports[`TelemetrySettings renders with enabled = false 2`] = `
+<GenericToggle
+  description={
+    <React.Fragment>
+      <React.Fragment>
+        <p>
+          By opting into telemetry, you
+           
+          <NewTabLink
+            href="https://accessibilityinsights.io/docs/en/telemetry"
+          >
+            help the community
+          </NewTabLink>
+           develop inclusive software.
+        </p>
+        <p>
+          We collect anonymized data to identify the top accessibility issues found by the users. This will help focus the accessibility tools and standards community to improve guidelines, rules engines, and features.
+        </p>
+      </React.Fragment>
+      <React.Fragment>
+        Read our 
+        <NewTabLink
+          href="http://go.microsoft.com/fwlink/?LinkId=521839"
+        >
+           privacy statement
+        </NewTabLink>
+         to learn more.
+      </React.Fragment>
+    </React.Fragment>
+  }
+  enabled={false}
+  id="enable-telemetry"
+  name="Help improve Accessibility Insights for Web"
+  onClick={[Function]}
+/>
+`;
+
 exports[`TelemetrySettings renders with enabled = true 1`] = `
+<GenericToggle
+  description={
+    <React.Fragment>
+      <React.Fragment>
+        <p>
+          By opting into telemetry, you
+           
+          <NewTabLink
+            href="https://accessibilityinsights.io/docs/en/telemetry"
+          >
+            help the community
+          </NewTabLink>
+           develop inclusive software.
+        </p>
+        <p>
+          We collect anonymized data to identify the top accessibility issues found by the users. This will help focus the accessibility tools and standards community to improve guidelines, rules engines, and features.
+        </p>
+      </React.Fragment>
+      <React.Fragment>
+        Read our 
+        <NewTabLink
+          href="http://go.microsoft.com/fwlink/?LinkId=521839"
+        >
+           privacy statement
+        </NewTabLink>
+         to learn more.
+      </React.Fragment>
+    </React.Fragment>
+  }
+  enabled={true}
+  id="enable-telemetry"
+  name="Help improve Accessibility Insights for Web"
+  onClick={[Function]}
+/>
+`;
+
+exports[`TelemetrySettings renders with enabled = true 2`] = `
 <GenericToggle
   description={
     <React.Fragment>
