@@ -38,42 +38,6 @@ describe('SettingsPanelTest', () => {
         const wrapped = shallow(<SettingsPanel {...testProps} />);
         expect(wrapped.getElement()).toMatchSnapshot();
     });
-
-    it('renders the settings component', () => {
-        userConfigStoreData = {} as UserConfigurationStoreData;
-
-        const testSettingsProvider = create([
-            createTestSettings('test-settings-1'),
-            createTestSettings('test-settings-2'),
-            createTestSettings('test-settings-3'),
-        ]);
-
-        const testProps: SettingsPanelProps = {
-            isOpen: true,
-            deps: {
-                detailsViewActionMessageCreator: {
-                    closeSettingsPanel: () => {},
-                } as DetailsViewActionMessageCreator,
-                userConfigMessageCreator: {} as UserConfigMessageCreator,
-                settingsProvider: testSettingsProvider,
-            },
-            userConfigStoreState: userConfigStoreData,
-            featureFlagData: { 'test-flag': false },
-        };
-
-        const wrapped = shallow(<SettingsPanel {...testProps} />);
-
-        const testSettingsWrapper = wrapped.find('TestSettings');
-
-        [0, 1, 2].forEach(index => {
-            expect(
-                testSettingsWrapper
-                    .at(index)
-                    .dive()
-                    .getElement(),
-            ).toMatchSnapshot(`settings ${index + 1}`);
-        });
-    });
 });
 
 const createTestSettings = (name: string) => {
