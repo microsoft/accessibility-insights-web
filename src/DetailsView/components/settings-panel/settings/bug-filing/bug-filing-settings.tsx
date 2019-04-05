@@ -2,22 +2,17 @@
 // Licensed under the MIT License.
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
-
 import { FlaggedComponent } from '../../../../../common/components/flagged-component';
 import { FeatureFlags } from '../../../../../common/feature-flags';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { NamedSFC } from '../../../../../common/react/named-sfc';
-import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
-import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
+import { SettingsProps } from '../setting';
 
 export type BugFilingSettingsDeps = {
     userConfigMessageCreator: UserConfigMessageCreator;
 };
-export type BugFilingSettingsProps = {
-    deps: BugFilingSettingsDeps;
-    featureFlagData: FeatureFlagStoreData;
-    userConfigStoreState: UserConfigurationStoreData;
-};
+
+export type BugFilingSettingsProps = SettingsProps<BugFilingSettingsDeps>;
 
 export const BugFilingSettings = NamedSFC<BugFilingSettingsProps>('BugFilingSettings', props => {
     const getBugSettingsUx = () => {
@@ -46,11 +41,11 @@ export const BugFilingSettings = NamedSFC<BugFilingSettingsProps>('BugFilingSett
     };
 
     const getBugServiceProperty = (bugService: string, propertyName: string) => {
-        const bugServicePropertiesMap = props.userConfigStoreState.bugServicePropertiesMap;
+        const bugServicePropertiesMap = props.userConfigigurationStoreSate.bugServicePropertiesMap;
         if (!bugServicePropertiesMap || !bugServicePropertiesMap[bugService]) {
             return undefined;
         }
-        return props.userConfigStoreState.bugServicePropertiesMap[bugService][propertyName];
+        return props.userConfigigurationStoreSate.bugServicePropertiesMap[bugService][propertyName];
     };
 
     return (

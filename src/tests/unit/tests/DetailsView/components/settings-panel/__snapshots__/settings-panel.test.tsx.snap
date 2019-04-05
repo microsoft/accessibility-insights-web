@@ -81,7 +81,7 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
         "test-flag": false,
       }
     }
-    userConfigStoreState={
+    userConfigigurationStoreSate={
       Object {
         "bugService": "gitHub",
         "bugServicePropertiesMap": Object {
@@ -174,7 +174,7 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
         "test-flag": false,
       }
     }
-    userConfigStoreState={
+    userConfigigurationStoreSate={
       Object {
         "bugService": "gitHub",
         "bugServicePropertiesMap": Object {
@@ -261,7 +261,7 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
         "test-flag": false,
       }
     }
-    userConfigStoreState={
+    userConfigigurationStoreSate={
       Object {
         "bugService": "gitHub",
         "bugServicePropertiesMap": Object {},
@@ -346,7 +346,7 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
         "test-flag": false,
       }
     }
-    userConfigStoreState={
+    userConfigigurationStoreSate={
       Object {
         "bugService": undefined,
         "bugServicePropertiesMap": null,
@@ -431,7 +431,7 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
         "test-flag": false,
       }
     }
-    userConfigStoreState={
+    userConfigigurationStoreSate={
       Object {
         "bugService": "gitHub",
         "bugServicePropertiesMap": null,

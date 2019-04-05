@@ -37,7 +37,7 @@ export const SettingsPanel = NamedSFC<SettingsPanelProps>('SettingsPanel', props
         >
             <TelemetrySettings deps={deps} featureFlagData={featureFlagData} userConfigigurationStoreSate={userConfigStoreState} />
             <HighContrastSettings deps={deps} featureFlagData={featureFlagData} userConfigigurationStoreSate={userConfigStoreState} />
-            <BugFilingSettings deps={deps} featureFlagData={featureFlagData} userConfigStoreState={userConfigStoreState} />
+            <BugFilingSettings deps={deps} featureFlagData={featureFlagData} userConfigigurationStoreSate={userConfigStoreState} />
         </GenericPanel>
     );
 });
