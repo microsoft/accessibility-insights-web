@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BugFilingChoiceGroupTest render 1`] = `
+<StyledChoiceGroupBase
+  className="bug-filing-choice-group"
+  onChange={[Function]}
+  options={
+    Array [
+      Object {
+        "key": "test bug service key",
+        "text": "test bug service name",
+      },
+    ]
+  }
+  selectedKey="MyBugService"
+/>
+`;
