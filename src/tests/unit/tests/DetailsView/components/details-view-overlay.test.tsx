@@ -13,6 +13,7 @@ import {
     DetailsViewOverlayDeps,
     DetailsViewOverlayProps,
 } from '../../../../../DetailsView/components/details-view-overlay';
+import { SettingsProvider } from '../../../../../DetailsView/components/settings-panel/settings/settings-provider';
 import { PreviewFeatureFlagsHandler } from '../../../../../DetailsView/handlers/preview-feature-flags-handler';
 import { ContentProvider } from '../../../../../views/content/content-page';
 
@@ -47,6 +48,7 @@ describe('DetailsViewOverlay', () => {
         contentActionMessageCreator: {} as ContentActionMessageCreator,
         detailsViewActionMessageCreator: actionMessageCreatorStub,
         userConfigMessageCreator: userConfigMessageCreatorStub,
+        settingsProvider: {} as SettingsProvider,
     };
 
     const props: DetailsViewOverlayProps = {

@@ -1,23 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SettingsPanelTest render - { isPanelOpen: true,
-  enableTelemetry: false,
-  enableHighContrast: false,
-  bugService: 'gitHub',
-  bugServicePropertiesMap: { gitHub: { repository: 'test-repository' } } } 1`] = `
+exports[`SettingsPanelTest render - { isPanelOpen: false } 1`] = `
 <GenericPanel
   className="settings-panel"
   closeButtonAriaLabel="Close settings panel"
   hasCloseButton={true}
-  isOpen={true}
+  isOpen={false}
   onDismiss={[Function]}
   title="Settings"
 >
-  <TelemetrySettings
+  <TestSettings
     deps={
       Object {
         "detailsViewActionMessageCreator": Object {
           "closeSettingsPanel": [Function],
+        },
+        "settingsProvider": Object {
+          "all": [Function],
         },
         "userConfigMessageCreator": Object {},
       }
@@ -27,24 +26,16 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
         "test-flag": false,
       }
     }
-    userConfigurationStoreState={
-      Object {
-        "bugService": "gitHub",
-        "bugServicePropertiesMap": Object {
-          "gitHub": Object {
-            "repository": "test-repository",
-          },
-        },
-        "enableHighContrast": false,
-        "enableTelemetry": false,
-      }
-    }
+    userConfigurationStoreState={Object {}}
   />
-  <HighContrastSettings
+  <TestSettings
     deps={
       Object {
         "detailsViewActionMessageCreator": Object {
           "closeSettingsPanel": [Function],
+        },
+        "settingsProvider": Object {
+          "all": [Function],
         },
         "userConfigMessageCreator": Object {},
       }
@@ -54,24 +45,16 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
         "test-flag": false,
       }
     }
-    userConfigurationStoreState={
-      Object {
-        "bugService": "gitHub",
-        "bugServicePropertiesMap": Object {
-          "gitHub": Object {
-            "repository": "test-repository",
-          },
-        },
-        "enableHighContrast": false,
-        "enableTelemetry": false,
-      }
-    }
+    userConfigurationStoreState={Object {}}
   />
-  <BugFilingSettings
+  <TestSettings
     deps={
       Object {
         "detailsViewActionMessageCreator": Object {
           "closeSettingsPanel": [Function],
+        },
+        "settingsProvider": Object {
+          "all": [Function],
         },
         "userConfigMessageCreator": Object {},
       }
@@ -81,27 +64,12 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
         "test-flag": false,
       }
     }
-    userConfigurationStoreState={
-      Object {
-        "bugService": "gitHub",
-        "bugServicePropertiesMap": Object {
-          "gitHub": Object {
-            "repository": "test-repository",
-          },
-        },
-        "enableHighContrast": false,
-        "enableTelemetry": false,
-      }
-    }
+    userConfigurationStoreState={Object {}}
   />
 </GenericPanel>
 `;
 
-exports[`SettingsPanelTest render - { isPanelOpen: true,
-  enableTelemetry: false,
-  enableHighContrast: false,
-  bugService: 'gitHub',
-  bugServicePropertiesMap: { gitHub: {} } } 1`] = `
+exports[`SettingsPanelTest render - { isPanelOpen: true } 1`] = `
 <GenericPanel
   className="settings-panel"
   closeButtonAriaLabel="Close settings panel"
@@ -110,11 +78,14 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
   onDismiss={[Function]}
   title="Settings"
 >
-  <TelemetrySettings
+  <TestSettings
     deps={
       Object {
         "detailsViewActionMessageCreator": Object {
           "closeSettingsPanel": [Function],
+        },
+        "settingsProvider": Object {
+          "all": [Function],
         },
         "userConfigMessageCreator": Object {},
       }
@@ -124,22 +95,16 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
         "test-flag": false,
       }
     }
-    userConfigurationStoreState={
-      Object {
-        "bugService": "gitHub",
-        "bugServicePropertiesMap": Object {
-          "gitHub": Object {},
-        },
-        "enableHighContrast": false,
-        "enableTelemetry": false,
-      }
-    }
+    userConfigurationStoreState={Object {}}
   />
-  <HighContrastSettings
+  <TestSettings
     deps={
       Object {
         "detailsViewActionMessageCreator": Object {
           "closeSettingsPanel": [Function],
+        },
+        "settingsProvider": Object {
+          "all": [Function],
         },
         "userConfigMessageCreator": Object {},
       }
@@ -149,22 +114,16 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
         "test-flag": false,
       }
     }
-    userConfigurationStoreState={
-      Object {
-        "bugService": "gitHub",
-        "bugServicePropertiesMap": Object {
-          "gitHub": Object {},
-        },
-        "enableHighContrast": false,
-        "enableTelemetry": false,
-      }
-    }
+    userConfigurationStoreState={Object {}}
   />
-  <BugFilingSettings
+  <TestSettings
     deps={
       Object {
         "detailsViewActionMessageCreator": Object {
           "closeSettingsPanel": [Function],
+        },
+        "settingsProvider": Object {
+          "all": [Function],
         },
         "userConfigMessageCreator": Object {},
       }
@@ -174,271 +133,88 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
         "test-flag": false,
       }
     }
-    userConfigurationStoreState={
-      Object {
-        "bugService": "gitHub",
-        "bugServicePropertiesMap": Object {
-          "gitHub": Object {},
-        },
-        "enableHighContrast": false,
-        "enableTelemetry": false,
-      }
-    }
+    userConfigurationStoreState={Object {}}
   />
 </GenericPanel>
 `;
 
-exports[`SettingsPanelTest render - { isPanelOpen: true,
-  enableTelemetry: false,
-  enableHighContrast: false,
-  bugService: 'gitHub',
-  bugServicePropertiesMap: {} } 1`] = `
-<GenericPanel
-  className="settings-panel"
-  closeButtonAriaLabel="Close settings panel"
-  hasCloseButton={true}
-  isOpen={true}
-  onDismiss={[Function]}
-  title="Settings"
+exports[`SettingsPanelTest renders the settings component: settings 1 1`] = `
+<div
+  className="test-settings"
 >
-  <TelemetrySettings
-    deps={
-      Object {
+  <div>
+    test-settings-1
+  </div>
+  <div>
+    Object {
+      "deps": Object {
         "detailsViewActionMessageCreator": Object {
           "closeSettingsPanel": [Function],
         },
-        "userConfigMessageCreator": Object {},
-      }
-    }
-    featureFlagData={
-      Object {
-        "test-flag": false,
-      }
-    }
-    userConfigurationStoreState={
-      Object {
-        "bugService": "gitHub",
-        "bugServicePropertiesMap": Object {},
-        "enableHighContrast": false,
-        "enableTelemetry": false,
-      }
-    }
-  />
-  <HighContrastSettings
-    deps={
-      Object {
-        "detailsViewActionMessageCreator": Object {
-          "closeSettingsPanel": [Function],
+        "settingsProvider": Object {
+          "all": [Function],
         },
         "userConfigMessageCreator": Object {},
-      }
-    }
-    featureFlagData={
-      Object {
+      },
+      "featureFlagData": Object {
         "test-flag": false,
-      }
+      },
+      "userConfigurationStoreState": Object {},
     }
-    userConfigurationStoreState={
-      Object {
-        "bugService": "gitHub",
-        "bugServicePropertiesMap": Object {},
-        "enableHighContrast": false,
-        "enableTelemetry": false,
-      }
-    }
-  />
-  <BugFilingSettings
-    deps={
-      Object {
-        "detailsViewActionMessageCreator": Object {
-          "closeSettingsPanel": [Function],
-        },
-        "userConfigMessageCreator": Object {},
-      }
-    }
-    featureFlagData={
-      Object {
-        "test-flag": false,
-      }
-    }
-    userConfigurationStoreState={
-      Object {
-        "bugService": "gitHub",
-        "bugServicePropertiesMap": Object {},
-        "enableHighContrast": false,
-        "enableTelemetry": false,
-      }
-    }
-  />
-</GenericPanel>
+  </div>
+</div>
 `;
 
-exports[`SettingsPanelTest render - { isPanelOpen: true,
-  enableTelemetry: false,
-  enableHighContrast: false,
-  bugService: undefined,
-  bugServicePropertiesMap: null } 1`] = `
-<GenericPanel
-  className="settings-panel"
-  closeButtonAriaLabel="Close settings panel"
-  hasCloseButton={true}
-  isOpen={true}
-  onDismiss={[Function]}
-  title="Settings"
+exports[`SettingsPanelTest renders the settings component: settings 2 1`] = `
+<div
+  className="test-settings"
 >
-  <TelemetrySettings
-    deps={
-      Object {
+  <div>
+    test-settings-2
+  </div>
+  <div>
+    Object {
+      "deps": Object {
         "detailsViewActionMessageCreator": Object {
           "closeSettingsPanel": [Function],
         },
-        "userConfigMessageCreator": Object {},
-      }
-    }
-    featureFlagData={
-      Object {
-        "test-flag": false,
-      }
-    }
-    userConfigurationStoreState={
-      Object {
-        "bugService": undefined,
-        "bugServicePropertiesMap": null,
-        "enableHighContrast": false,
-        "enableTelemetry": false,
-      }
-    }
-  />
-  <HighContrastSettings
-    deps={
-      Object {
-        "detailsViewActionMessageCreator": Object {
-          "closeSettingsPanel": [Function],
+        "settingsProvider": Object {
+          "all": [Function],
         },
         "userConfigMessageCreator": Object {},
-      }
-    }
-    featureFlagData={
-      Object {
+      },
+      "featureFlagData": Object {
         "test-flag": false,
-      }
+      },
+      "userConfigurationStoreState": Object {},
     }
-    userConfigurationStoreState={
-      Object {
-        "bugService": undefined,
-        "bugServicePropertiesMap": null,
-        "enableHighContrast": false,
-        "enableTelemetry": false,
-      }
-    }
-  />
-  <BugFilingSettings
-    deps={
-      Object {
-        "detailsViewActionMessageCreator": Object {
-          "closeSettingsPanel": [Function],
-        },
-        "userConfigMessageCreator": Object {},
-      }
-    }
-    featureFlagData={
-      Object {
-        "test-flag": false,
-      }
-    }
-    userConfigurationStoreState={
-      Object {
-        "bugService": undefined,
-        "bugServicePropertiesMap": null,
-        "enableHighContrast": false,
-        "enableTelemetry": false,
-      }
-    }
-  />
-</GenericPanel>
+  </div>
+</div>
 `;
 
-exports[`SettingsPanelTest render - { isPanelOpen: true,
-  enableTelemetry: false,
-  enableHighContrast: true,
-  bugService: 'gitHub',
-  bugServicePropertiesMap: null } 1`] = `
-<GenericPanel
-  className="settings-panel"
-  closeButtonAriaLabel="Close settings panel"
-  hasCloseButton={true}
-  isOpen={true}
-  onDismiss={[Function]}
-  title="Settings"
+exports[`SettingsPanelTest renders the settings component: settings 3 1`] = `
+<div
+  className="test-settings"
 >
-  <TelemetrySettings
-    deps={
-      Object {
+  <div>
+    test-settings-3
+  </div>
+  <div>
+    Object {
+      "deps": Object {
         "detailsViewActionMessageCreator": Object {
           "closeSettingsPanel": [Function],
         },
-        "userConfigMessageCreator": Object {},
-      }
-    }
-    featureFlagData={
-      Object {
-        "test-flag": false,
-      }
-    }
-    userConfigurationStoreState={
-      Object {
-        "bugService": "gitHub",
-        "bugServicePropertiesMap": null,
-        "enableHighContrast": true,
-        "enableTelemetry": false,
-      }
-    }
-  />
-  <HighContrastSettings
-    deps={
-      Object {
-        "detailsViewActionMessageCreator": Object {
-          "closeSettingsPanel": [Function],
+        "settingsProvider": Object {
+          "all": [Function],
         },
         "userConfigMessageCreator": Object {},
-      }
-    }
-    featureFlagData={
-      Object {
+      },
+      "featureFlagData": Object {
         "test-flag": false,
-      }
+      },
+      "userConfigurationStoreState": Object {},
     }
-    userConfigurationStoreState={
-      Object {
-        "bugService": "gitHub",
-        "bugServicePropertiesMap": null,
-        "enableHighContrast": true,
-        "enableTelemetry": false,
-      }
-    }
-  />
-  <BugFilingSettings
-    deps={
-      Object {
-        "detailsViewActionMessageCreator": Object {
-          "closeSettingsPanel": [Function],
-        },
-        "userConfigMessageCreator": Object {},
-      }
-    }
-    featureFlagData={
-      Object {
-        "test-flag": false,
-      }
-    }
-    userConfigurationStoreState={
-      Object {
-        "bugService": "gitHub",
-        "bugServicePropertiesMap": null,
-        "enableHighContrast": true,
-        "enableTelemetry": false,
-      }
-    }
-  />
-</GenericPanel>
+  </div>
+</div>
 `;

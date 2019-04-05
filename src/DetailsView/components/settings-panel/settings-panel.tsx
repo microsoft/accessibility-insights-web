@@ -7,11 +7,11 @@ import { UserConfigurationStoreData } from '../../../common/types/store-data/use
 import { DetailsViewActionMessageCreator } from '../../actions/details-view-action-message-creator';
 import { GenericPanel } from '../generic-panel';
 import { SettingsDeps } from './settings/settings-props';
-import { SettingsProviderImpl } from './settings/settings-provider-impl';
-import { SettingsComponent } from './settings/settings-provider';
+import { SettingsComponent, SettingsProvider } from './settings/settings-provider';
 
 export type SettingsPanelDeps = SettingsDeps & {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    settingsProvider: SettingsProvider;
 };
 
 export interface SettingsPanelProps {
@@ -23,17 +23,18 @@ export interface SettingsPanelProps {
 
 export const SettingsPanel = NamedSFC<SettingsPanelProps>('SettingsPanel', props => {
     const { deps, userConfigStoreState, featureFlagData, isOpen } = props;
+    const { detailsViewActionMessageCreator, settingsProvider } = deps;
 
     return (
         <GenericPanel
             isOpen={isOpen}
             className="settings-panel"
-            onDismiss={deps.detailsViewActionMessageCreator.closeSettingsPanel}
+            onDismiss={detailsViewActionMessageCreator.closeSettingsPanel}
             closeButtonAriaLabel="Close settings panel"
             hasCloseButton={true}
             title="Settings"
         >
-            {SettingsProviderImpl.all().map((TheComponent: SettingsComponent, index: number) => (
+            {settingsProvider.all().map((TheComponent: SettingsComponent, index: number) => (
                 <TheComponent
                     key={`settings-${index}`}
                     deps={deps}
