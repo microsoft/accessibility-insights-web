@@ -12,7 +12,7 @@ import { RuleAnalyzerConfiguration } from '../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult, ScannerUtils } from '../../injected/scanner-utils';
 import { ScannerRuleInfo } from '../../scanner/scanner-rule-info';
-import { InstanceTableColumn } from '../types/iinstance-table-column';
+import { InstanceTableColumn } from '../types/instance-table-column';
 import { Requirement } from '../types/requirement';
 import { AutomatedChecksVisualizationToggle } from './automated-checks-visualization-enabled-toggle';
 
