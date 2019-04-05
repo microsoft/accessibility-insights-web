@@ -6,6 +6,7 @@ import * as React from 'react';
 import { Mock, Times } from 'typemoq';
 
 import { FeatureFlags } from '../../../../../../../../common/feature-flags';
+import { UserConfigMessageCreator } from '../../../../../../../../common/message-creators/user-config-message-creator';
 import {
     BugServicePropertiesMap,
     UserConfigurationStoreData,
@@ -15,7 +16,6 @@ import {
     BugFilingSettingsDeps,
     BugFilingSettingsProps,
 } from '../../../../../../../../DetailsView/components/settings-panel/settings/bug-filing/bug-filing-settings';
-import { UserConfigMessageCreator } from '../../../../../../../../common/message-creators/user-config-message-creator';
 
 type RenderTestCase = {
     bugFilingEnable: boolean;
