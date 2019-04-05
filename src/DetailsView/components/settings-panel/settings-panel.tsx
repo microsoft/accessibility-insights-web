@@ -8,6 +8,7 @@ import { DetailsViewActionMessageCreator } from '../../actions/details-view-acti
 import { GenericPanel } from '../generic-panel';
 import { SettingsDeps } from './settings/settings-props';
 import { SettingsProviderImpl } from './settings/settings-provider-impl';
+import { SettingsComponent } from './settings/settings-provider';
 
 export type SettingsPanelDeps = SettingsDeps & {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
@@ -32,8 +33,13 @@ export const SettingsPanel = NamedSFC<SettingsPanelProps>('SettingsPanel', props
             hasCloseButton={true}
             title="Settings"
         >
-            {SettingsProviderImpl.all().map(SettingsComponent => (
-                <SettingsComponent deps={deps} featureFlagData={featureFlagData} userConfigurationStoreState={userConfigStoreState} />
+            {SettingsProviderImpl.all().map((TheComponent: SettingsComponent, index: number) => (
+                <TheComponent
+                    key={`settings-${index}`}
+                    deps={deps}
+                    featureFlagData={featureFlagData}
+                    userConfigurationStoreState={userConfigStoreState}
+                />
             ))}
         </GenericPanel>
     );
