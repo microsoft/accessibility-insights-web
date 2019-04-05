@@ -10,71 +10,16 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
   closeButtonAriaLabel="Close settings panel"
   hasCloseButton={true}
   isOpen={true}
+  onDismiss={[Function]}
   title="Settings"
 >
   <TelemetrySettings
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "_tabId": undefined,
-          "addFailureInstance": [Function],
-          "cancelStartOver": undefined,
-          "cancelStartOverAllAssessments": undefined,
-          "changeAssessmentVisualizationState": undefined,
-          "changeAssessmentVisualizationStateForAll": [Function],
-          "changeManualRequirementStatus": undefined,
-          "changeManualTestStatus": undefined,
-          "changeRightContentPanel": [Function],
-          "closePreviewFeaturesPanel": undefined,
-          "closeScopingPanel": undefined,
-          "closeSettingsPanel": undefined,
-          "constructor": [Function],
-          "continuePreviousAssessment": undefined,
-          "copyIssueDetailsClicked": undefined,
-          "detailsViewOpened": [Function],
-          "disableVisualHelper": [Function],
-          "disableVisualHelpersForTest": [Function],
-          "dispatchMessage": [Function],
-          "dispatchType": [Function],
-          "editFailureInstance": undefined,
-          "enableVisualHelper": [Function],
-          "exportResultsClicked": [Function],
-          "passUnmarkedInstances": [Function],
-          "postMessageDelegate": undefined,
-          "removeFailureInstance": undefined,
-          "selectDetailsView": [Function],
-          "selectRequirement": [Function],
-          "sendPivotItemClicked": [Function],
-          "sendTelemetry": [Function],
-          "setDevToolStatus": [Function],
-          "setFeatureFlag": undefined,
-          "setInspectElement": [Function],
-          "setInspectFrameUrl": [Function],
-          "startOverAllAssessments": undefined,
-          "startOverAssessment": [Function],
-          "switchToTargetTab": undefined,
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": undefined,
-          "undoManualTestStatusChange": undefined,
-          "updateFocusedInstanceTarget": [Function],
-          "updateIssuesSelectedTargets": [Function],
-          "windowUtils": undefined,
+        "detailsViewActionMessageCreator": Object {
+          "closeSettingsPanel": [Function],
         },
-        "userConfigMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "_tabId": undefined,
-          "constructor": [Function],
-          "dispatchMessage": [Function],
-          "dispatchType": [Function],
-          "postMessageDelegate": undefined,
-          "sendTelemetry": [Function],
-          "setBugService": [Function],
-          "setBugServiceProperty": [Function],
-          "setHighContrastMode": [Function],
-          "setIssueTrackerPath": [Function],
-          "setTelemetryState": [Function],
-        },
+        "userConfigMessageCreator": Object {},
       }
     }
     enabled={false}
@@ -82,89 +27,38 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
   <HighContrastSettings
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "_tabId": undefined,
-          "addFailureInstance": [Function],
-          "cancelStartOver": undefined,
-          "cancelStartOverAllAssessments": undefined,
-          "changeAssessmentVisualizationState": undefined,
-          "changeAssessmentVisualizationStateForAll": [Function],
-          "changeManualRequirementStatus": undefined,
-          "changeManualTestStatus": undefined,
-          "changeRightContentPanel": [Function],
-          "closePreviewFeaturesPanel": undefined,
-          "closeScopingPanel": undefined,
-          "closeSettingsPanel": undefined,
-          "constructor": [Function],
-          "continuePreviousAssessment": undefined,
-          "copyIssueDetailsClicked": undefined,
-          "detailsViewOpened": [Function],
-          "disableVisualHelper": [Function],
-          "disableVisualHelpersForTest": [Function],
-          "dispatchMessage": [Function],
-          "dispatchType": [Function],
-          "editFailureInstance": undefined,
-          "enableVisualHelper": [Function],
-          "exportResultsClicked": [Function],
-          "passUnmarkedInstances": [Function],
-          "postMessageDelegate": undefined,
-          "removeFailureInstance": undefined,
-          "selectDetailsView": [Function],
-          "selectRequirement": [Function],
-          "sendPivotItemClicked": [Function],
-          "sendTelemetry": [Function],
-          "setDevToolStatus": [Function],
-          "setFeatureFlag": undefined,
-          "setInspectElement": [Function],
-          "setInspectFrameUrl": [Function],
-          "startOverAllAssessments": undefined,
-          "startOverAssessment": [Function],
-          "switchToTargetTab": undefined,
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": undefined,
-          "undoManualTestStatusChange": undefined,
-          "updateFocusedInstanceTarget": [Function],
-          "updateIssuesSelectedTargets": [Function],
-          "windowUtils": undefined,
+        "detailsViewActionMessageCreator": Object {
+          "closeSettingsPanel": [Function],
         },
-        "userConfigMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "_tabId": undefined,
-          "constructor": [Function],
-          "dispatchMessage": [Function],
-          "dispatchType": [Function],
-          "postMessageDelegate": undefined,
-          "sendTelemetry": [Function],
-          "setBugService": [Function],
-          "setBugServiceProperty": [Function],
-          "setHighContrastMode": [Function],
-          "setIssueTrackerPath": [Function],
-          "setTelemetryState": [Function],
-        },
+        "userConfigMessageCreator": Object {},
       }
     }
     enabled={false}
   />
-  <FlaggedComponent
-    enableJSXElement={
-      <React.Fragment>
-        <h3>
-          Issue filing
-        </h3>
-        <StyledTextFieldBase
-          className="issue-setting"
-          label="Enter desired GitHub repo link:"
-          onChange={[Function]}
-          placeholder="https://github.com/owner/repo/issues"
-          value="test-repository"
-        />
-      </React.Fragment>
+  <BugFilingSettings
+    deps={
+      Object {
+        "detailsViewActionMessageCreator": Object {
+          "closeSettingsPanel": [Function],
+        },
+        "userConfigMessageCreator": Object {},
+      }
     }
-    featureFlag="showBugFiling"
-    featureFlagStoreData={
+    featureFlagData={
       Object {
         "test-flag": false,
+      }
+    }
+    userConfigStoreState={
+      Object {
+        "bugService": "gitHub",
+        "bugServicePropertiesMap": Object {
+          "gitHub": Object {
+            "repository": "test-repository",
+          },
+        },
+        "enableHighContrast": false,
+        "enableTelemetry": false,
       }
     }
   />
@@ -181,71 +75,16 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
   closeButtonAriaLabel="Close settings panel"
   hasCloseButton={true}
   isOpen={true}
+  onDismiss={[Function]}
   title="Settings"
 >
   <TelemetrySettings
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "_tabId": undefined,
-          "addFailureInstance": [Function],
-          "cancelStartOver": undefined,
-          "cancelStartOverAllAssessments": undefined,
-          "changeAssessmentVisualizationState": undefined,
-          "changeAssessmentVisualizationStateForAll": [Function],
-          "changeManualRequirementStatus": undefined,
-          "changeManualTestStatus": undefined,
-          "changeRightContentPanel": [Function],
-          "closePreviewFeaturesPanel": undefined,
-          "closeScopingPanel": undefined,
-          "closeSettingsPanel": undefined,
-          "constructor": [Function],
-          "continuePreviousAssessment": undefined,
-          "copyIssueDetailsClicked": undefined,
-          "detailsViewOpened": [Function],
-          "disableVisualHelper": [Function],
-          "disableVisualHelpersForTest": [Function],
-          "dispatchMessage": [Function],
-          "dispatchType": [Function],
-          "editFailureInstance": undefined,
-          "enableVisualHelper": [Function],
-          "exportResultsClicked": [Function],
-          "passUnmarkedInstances": [Function],
-          "postMessageDelegate": undefined,
-          "removeFailureInstance": undefined,
-          "selectDetailsView": [Function],
-          "selectRequirement": [Function],
-          "sendPivotItemClicked": [Function],
-          "sendTelemetry": [Function],
-          "setDevToolStatus": [Function],
-          "setFeatureFlag": undefined,
-          "setInspectElement": [Function],
-          "setInspectFrameUrl": [Function],
-          "startOverAllAssessments": undefined,
-          "startOverAssessment": [Function],
-          "switchToTargetTab": undefined,
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": undefined,
-          "undoManualTestStatusChange": undefined,
-          "updateFocusedInstanceTarget": [Function],
-          "updateIssuesSelectedTargets": [Function],
-          "windowUtils": undefined,
+        "detailsViewActionMessageCreator": Object {
+          "closeSettingsPanel": [Function],
         },
-        "userConfigMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "_tabId": undefined,
-          "constructor": [Function],
-          "dispatchMessage": [Function],
-          "dispatchType": [Function],
-          "postMessageDelegate": undefined,
-          "sendTelemetry": [Function],
-          "setBugService": [Function],
-          "setBugServiceProperty": [Function],
-          "setHighContrastMode": [Function],
-          "setIssueTrackerPath": [Function],
-          "setTelemetryState": [Function],
-        },
+        "userConfigMessageCreator": Object {},
       }
     }
     enabled={false}
@@ -253,88 +92,36 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
   <HighContrastSettings
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "_tabId": undefined,
-          "addFailureInstance": [Function],
-          "cancelStartOver": undefined,
-          "cancelStartOverAllAssessments": undefined,
-          "changeAssessmentVisualizationState": undefined,
-          "changeAssessmentVisualizationStateForAll": [Function],
-          "changeManualRequirementStatus": undefined,
-          "changeManualTestStatus": undefined,
-          "changeRightContentPanel": [Function],
-          "closePreviewFeaturesPanel": undefined,
-          "closeScopingPanel": undefined,
-          "closeSettingsPanel": undefined,
-          "constructor": [Function],
-          "continuePreviousAssessment": undefined,
-          "copyIssueDetailsClicked": undefined,
-          "detailsViewOpened": [Function],
-          "disableVisualHelper": [Function],
-          "disableVisualHelpersForTest": [Function],
-          "dispatchMessage": [Function],
-          "dispatchType": [Function],
-          "editFailureInstance": undefined,
-          "enableVisualHelper": [Function],
-          "exportResultsClicked": [Function],
-          "passUnmarkedInstances": [Function],
-          "postMessageDelegate": undefined,
-          "removeFailureInstance": undefined,
-          "selectDetailsView": [Function],
-          "selectRequirement": [Function],
-          "sendPivotItemClicked": [Function],
-          "sendTelemetry": [Function],
-          "setDevToolStatus": [Function],
-          "setFeatureFlag": undefined,
-          "setInspectElement": [Function],
-          "setInspectFrameUrl": [Function],
-          "startOverAllAssessments": undefined,
-          "startOverAssessment": [Function],
-          "switchToTargetTab": undefined,
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": undefined,
-          "undoManualTestStatusChange": undefined,
-          "updateFocusedInstanceTarget": [Function],
-          "updateIssuesSelectedTargets": [Function],
-          "windowUtils": undefined,
+        "detailsViewActionMessageCreator": Object {
+          "closeSettingsPanel": [Function],
         },
-        "userConfigMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "_tabId": undefined,
-          "constructor": [Function],
-          "dispatchMessage": [Function],
-          "dispatchType": [Function],
-          "postMessageDelegate": undefined,
-          "sendTelemetry": [Function],
-          "setBugService": [Function],
-          "setBugServiceProperty": [Function],
-          "setHighContrastMode": [Function],
-          "setIssueTrackerPath": [Function],
-          "setTelemetryState": [Function],
-        },
+        "userConfigMessageCreator": Object {},
       }
     }
     enabled={false}
   />
-  <FlaggedComponent
-    enableJSXElement={
-      <React.Fragment>
-        <h3>
-          Issue filing
-        </h3>
-        <StyledTextFieldBase
-          className="issue-setting"
-          label="Enter desired GitHub repo link:"
-          onChange={[Function]}
-          placeholder="https://github.com/owner/repo/issues"
-        />
-      </React.Fragment>
+  <BugFilingSettings
+    deps={
+      Object {
+        "detailsViewActionMessageCreator": Object {
+          "closeSettingsPanel": [Function],
+        },
+        "userConfigMessageCreator": Object {},
+      }
     }
-    featureFlag="showBugFiling"
-    featureFlagStoreData={
+    featureFlagData={
       Object {
         "test-flag": false,
+      }
+    }
+    userConfigStoreState={
+      Object {
+        "bugService": "gitHub",
+        "bugServicePropertiesMap": Object {
+          "gitHub": Object {},
+        },
+        "enableHighContrast": false,
+        "enableTelemetry": false,
       }
     }
   />
@@ -351,71 +138,16 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
   closeButtonAriaLabel="Close settings panel"
   hasCloseButton={true}
   isOpen={true}
+  onDismiss={[Function]}
   title="Settings"
 >
   <TelemetrySettings
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "_tabId": undefined,
-          "addFailureInstance": [Function],
-          "cancelStartOver": undefined,
-          "cancelStartOverAllAssessments": undefined,
-          "changeAssessmentVisualizationState": undefined,
-          "changeAssessmentVisualizationStateForAll": [Function],
-          "changeManualRequirementStatus": undefined,
-          "changeManualTestStatus": undefined,
-          "changeRightContentPanel": [Function],
-          "closePreviewFeaturesPanel": undefined,
-          "closeScopingPanel": undefined,
-          "closeSettingsPanel": undefined,
-          "constructor": [Function],
-          "continuePreviousAssessment": undefined,
-          "copyIssueDetailsClicked": undefined,
-          "detailsViewOpened": [Function],
-          "disableVisualHelper": [Function],
-          "disableVisualHelpersForTest": [Function],
-          "dispatchMessage": [Function],
-          "dispatchType": [Function],
-          "editFailureInstance": undefined,
-          "enableVisualHelper": [Function],
-          "exportResultsClicked": [Function],
-          "passUnmarkedInstances": [Function],
-          "postMessageDelegate": undefined,
-          "removeFailureInstance": undefined,
-          "selectDetailsView": [Function],
-          "selectRequirement": [Function],
-          "sendPivotItemClicked": [Function],
-          "sendTelemetry": [Function],
-          "setDevToolStatus": [Function],
-          "setFeatureFlag": undefined,
-          "setInspectElement": [Function],
-          "setInspectFrameUrl": [Function],
-          "startOverAllAssessments": undefined,
-          "startOverAssessment": [Function],
-          "switchToTargetTab": undefined,
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": undefined,
-          "undoManualTestStatusChange": undefined,
-          "updateFocusedInstanceTarget": [Function],
-          "updateIssuesSelectedTargets": [Function],
-          "windowUtils": undefined,
+        "detailsViewActionMessageCreator": Object {
+          "closeSettingsPanel": [Function],
         },
-        "userConfigMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "_tabId": undefined,
-          "constructor": [Function],
-          "dispatchMessage": [Function],
-          "dispatchType": [Function],
-          "postMessageDelegate": undefined,
-          "sendTelemetry": [Function],
-          "setBugService": [Function],
-          "setBugServiceProperty": [Function],
-          "setHighContrastMode": [Function],
-          "setIssueTrackerPath": [Function],
-          "setTelemetryState": [Function],
-        },
+        "userConfigMessageCreator": Object {},
       }
     }
     enabled={false}
@@ -423,88 +155,34 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
   <HighContrastSettings
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "_tabId": undefined,
-          "addFailureInstance": [Function],
-          "cancelStartOver": undefined,
-          "cancelStartOverAllAssessments": undefined,
-          "changeAssessmentVisualizationState": undefined,
-          "changeAssessmentVisualizationStateForAll": [Function],
-          "changeManualRequirementStatus": undefined,
-          "changeManualTestStatus": undefined,
-          "changeRightContentPanel": [Function],
-          "closePreviewFeaturesPanel": undefined,
-          "closeScopingPanel": undefined,
-          "closeSettingsPanel": undefined,
-          "constructor": [Function],
-          "continuePreviousAssessment": undefined,
-          "copyIssueDetailsClicked": undefined,
-          "detailsViewOpened": [Function],
-          "disableVisualHelper": [Function],
-          "disableVisualHelpersForTest": [Function],
-          "dispatchMessage": [Function],
-          "dispatchType": [Function],
-          "editFailureInstance": undefined,
-          "enableVisualHelper": [Function],
-          "exportResultsClicked": [Function],
-          "passUnmarkedInstances": [Function],
-          "postMessageDelegate": undefined,
-          "removeFailureInstance": undefined,
-          "selectDetailsView": [Function],
-          "selectRequirement": [Function],
-          "sendPivotItemClicked": [Function],
-          "sendTelemetry": [Function],
-          "setDevToolStatus": [Function],
-          "setFeatureFlag": undefined,
-          "setInspectElement": [Function],
-          "setInspectFrameUrl": [Function],
-          "startOverAllAssessments": undefined,
-          "startOverAssessment": [Function],
-          "switchToTargetTab": undefined,
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": undefined,
-          "undoManualTestStatusChange": undefined,
-          "updateFocusedInstanceTarget": [Function],
-          "updateIssuesSelectedTargets": [Function],
-          "windowUtils": undefined,
+        "detailsViewActionMessageCreator": Object {
+          "closeSettingsPanel": [Function],
         },
-        "userConfigMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "_tabId": undefined,
-          "constructor": [Function],
-          "dispatchMessage": [Function],
-          "dispatchType": [Function],
-          "postMessageDelegate": undefined,
-          "sendTelemetry": [Function],
-          "setBugService": [Function],
-          "setBugServiceProperty": [Function],
-          "setHighContrastMode": [Function],
-          "setIssueTrackerPath": [Function],
-          "setTelemetryState": [Function],
-        },
+        "userConfigMessageCreator": Object {},
       }
     }
     enabled={false}
   />
-  <FlaggedComponent
-    enableJSXElement={
-      <React.Fragment>
-        <h3>
-          Issue filing
-        </h3>
-        <StyledTextFieldBase
-          className="issue-setting"
-          label="Enter desired GitHub repo link:"
-          onChange={[Function]}
-          placeholder="https://github.com/owner/repo/issues"
-        />
-      </React.Fragment>
+  <BugFilingSettings
+    deps={
+      Object {
+        "detailsViewActionMessageCreator": Object {
+          "closeSettingsPanel": [Function],
+        },
+        "userConfigMessageCreator": Object {},
+      }
     }
-    featureFlag="showBugFiling"
-    featureFlagStoreData={
+    featureFlagData={
       Object {
         "test-flag": false,
+      }
+    }
+    userConfigStoreState={
+      Object {
+        "bugService": "gitHub",
+        "bugServicePropertiesMap": Object {},
+        "enableHighContrast": false,
+        "enableTelemetry": false,
       }
     }
   />
@@ -521,71 +199,16 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
   closeButtonAriaLabel="Close settings panel"
   hasCloseButton={true}
   isOpen={true}
+  onDismiss={[Function]}
   title="Settings"
 >
   <TelemetrySettings
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "_tabId": undefined,
-          "addFailureInstance": [Function],
-          "cancelStartOver": undefined,
-          "cancelStartOverAllAssessments": undefined,
-          "changeAssessmentVisualizationState": undefined,
-          "changeAssessmentVisualizationStateForAll": [Function],
-          "changeManualRequirementStatus": undefined,
-          "changeManualTestStatus": undefined,
-          "changeRightContentPanel": [Function],
-          "closePreviewFeaturesPanel": undefined,
-          "closeScopingPanel": undefined,
-          "closeSettingsPanel": undefined,
-          "constructor": [Function],
-          "continuePreviousAssessment": undefined,
-          "copyIssueDetailsClicked": undefined,
-          "detailsViewOpened": [Function],
-          "disableVisualHelper": [Function],
-          "disableVisualHelpersForTest": [Function],
-          "dispatchMessage": [Function],
-          "dispatchType": [Function],
-          "editFailureInstance": undefined,
-          "enableVisualHelper": [Function],
-          "exportResultsClicked": [Function],
-          "passUnmarkedInstances": [Function],
-          "postMessageDelegate": undefined,
-          "removeFailureInstance": undefined,
-          "selectDetailsView": [Function],
-          "selectRequirement": [Function],
-          "sendPivotItemClicked": [Function],
-          "sendTelemetry": [Function],
-          "setDevToolStatus": [Function],
-          "setFeatureFlag": undefined,
-          "setInspectElement": [Function],
-          "setInspectFrameUrl": [Function],
-          "startOverAllAssessments": undefined,
-          "startOverAssessment": [Function],
-          "switchToTargetTab": undefined,
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": undefined,
-          "undoManualTestStatusChange": undefined,
-          "updateFocusedInstanceTarget": [Function],
-          "updateIssuesSelectedTargets": [Function],
-          "windowUtils": undefined,
+        "detailsViewActionMessageCreator": Object {
+          "closeSettingsPanel": [Function],
         },
-        "userConfigMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "_tabId": undefined,
-          "constructor": [Function],
-          "dispatchMessage": [Function],
-          "dispatchType": [Function],
-          "postMessageDelegate": undefined,
-          "sendTelemetry": [Function],
-          "setBugService": [Function],
-          "setBugServiceProperty": [Function],
-          "setHighContrastMode": [Function],
-          "setIssueTrackerPath": [Function],
-          "setTelemetryState": [Function],
-        },
+        "userConfigMessageCreator": Object {},
       }
     }
     enabled={false}
@@ -593,88 +216,34 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
   <HighContrastSettings
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "_tabId": undefined,
-          "addFailureInstance": [Function],
-          "cancelStartOver": undefined,
-          "cancelStartOverAllAssessments": undefined,
-          "changeAssessmentVisualizationState": undefined,
-          "changeAssessmentVisualizationStateForAll": [Function],
-          "changeManualRequirementStatus": undefined,
-          "changeManualTestStatus": undefined,
-          "changeRightContentPanel": [Function],
-          "closePreviewFeaturesPanel": undefined,
-          "closeScopingPanel": undefined,
-          "closeSettingsPanel": undefined,
-          "constructor": [Function],
-          "continuePreviousAssessment": undefined,
-          "copyIssueDetailsClicked": undefined,
-          "detailsViewOpened": [Function],
-          "disableVisualHelper": [Function],
-          "disableVisualHelpersForTest": [Function],
-          "dispatchMessage": [Function],
-          "dispatchType": [Function],
-          "editFailureInstance": undefined,
-          "enableVisualHelper": [Function],
-          "exportResultsClicked": [Function],
-          "passUnmarkedInstances": [Function],
-          "postMessageDelegate": undefined,
-          "removeFailureInstance": undefined,
-          "selectDetailsView": [Function],
-          "selectRequirement": [Function],
-          "sendPivotItemClicked": [Function],
-          "sendTelemetry": [Function],
-          "setDevToolStatus": [Function],
-          "setFeatureFlag": undefined,
-          "setInspectElement": [Function],
-          "setInspectFrameUrl": [Function],
-          "startOverAllAssessments": undefined,
-          "startOverAssessment": [Function],
-          "switchToTargetTab": undefined,
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": undefined,
-          "undoManualTestStatusChange": undefined,
-          "updateFocusedInstanceTarget": [Function],
-          "updateIssuesSelectedTargets": [Function],
-          "windowUtils": undefined,
+        "detailsViewActionMessageCreator": Object {
+          "closeSettingsPanel": [Function],
         },
-        "userConfigMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "_tabId": undefined,
-          "constructor": [Function],
-          "dispatchMessage": [Function],
-          "dispatchType": [Function],
-          "postMessageDelegate": undefined,
-          "sendTelemetry": [Function],
-          "setBugService": [Function],
-          "setBugServiceProperty": [Function],
-          "setHighContrastMode": [Function],
-          "setIssueTrackerPath": [Function],
-          "setTelemetryState": [Function],
-        },
+        "userConfigMessageCreator": Object {},
       }
     }
     enabled={false}
   />
-  <FlaggedComponent
-    enableJSXElement={
-      <React.Fragment>
-        <h3>
-          Issue filing
-        </h3>
-        <StyledTextFieldBase
-          className="issue-setting"
-          label="Enter desired GitHub repo link:"
-          onChange={[Function]}
-          placeholder="https://github.com/owner/repo/issues"
-        />
-      </React.Fragment>
+  <BugFilingSettings
+    deps={
+      Object {
+        "detailsViewActionMessageCreator": Object {
+          "closeSettingsPanel": [Function],
+        },
+        "userConfigMessageCreator": Object {},
+      }
     }
-    featureFlag="showBugFiling"
-    featureFlagStoreData={
+    featureFlagData={
       Object {
         "test-flag": false,
+      }
+    }
+    userConfigStoreState={
+      Object {
+        "bugService": undefined,
+        "bugServicePropertiesMap": null,
+        "enableHighContrast": false,
+        "enableTelemetry": false,
       }
     }
   />
@@ -691,71 +260,16 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
   closeButtonAriaLabel="Close settings panel"
   hasCloseButton={true}
   isOpen={true}
+  onDismiss={[Function]}
   title="Settings"
 >
   <TelemetrySettings
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "_tabId": undefined,
-          "addFailureInstance": [Function],
-          "cancelStartOver": undefined,
-          "cancelStartOverAllAssessments": undefined,
-          "changeAssessmentVisualizationState": undefined,
-          "changeAssessmentVisualizationStateForAll": [Function],
-          "changeManualRequirementStatus": undefined,
-          "changeManualTestStatus": undefined,
-          "changeRightContentPanel": [Function],
-          "closePreviewFeaturesPanel": undefined,
-          "closeScopingPanel": undefined,
-          "closeSettingsPanel": undefined,
-          "constructor": [Function],
-          "continuePreviousAssessment": undefined,
-          "copyIssueDetailsClicked": undefined,
-          "detailsViewOpened": [Function],
-          "disableVisualHelper": [Function],
-          "disableVisualHelpersForTest": [Function],
-          "dispatchMessage": [Function],
-          "dispatchType": [Function],
-          "editFailureInstance": undefined,
-          "enableVisualHelper": [Function],
-          "exportResultsClicked": [Function],
-          "passUnmarkedInstances": [Function],
-          "postMessageDelegate": undefined,
-          "removeFailureInstance": undefined,
-          "selectDetailsView": [Function],
-          "selectRequirement": [Function],
-          "sendPivotItemClicked": [Function],
-          "sendTelemetry": [Function],
-          "setDevToolStatus": [Function],
-          "setFeatureFlag": undefined,
-          "setInspectElement": [Function],
-          "setInspectFrameUrl": [Function],
-          "startOverAllAssessments": undefined,
-          "startOverAssessment": [Function],
-          "switchToTargetTab": undefined,
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": undefined,
-          "undoManualTestStatusChange": undefined,
-          "updateFocusedInstanceTarget": [Function],
-          "updateIssuesSelectedTargets": [Function],
-          "windowUtils": undefined,
+        "detailsViewActionMessageCreator": Object {
+          "closeSettingsPanel": [Function],
         },
-        "userConfigMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "_tabId": undefined,
-          "constructor": [Function],
-          "dispatchMessage": [Function],
-          "dispatchType": [Function],
-          "postMessageDelegate": undefined,
-          "sendTelemetry": [Function],
-          "setBugService": [Function],
-          "setBugServiceProperty": [Function],
-          "setHighContrastMode": [Function],
-          "setIssueTrackerPath": [Function],
-          "setTelemetryState": [Function],
-        },
+        "userConfigMessageCreator": Object {},
       }
     }
     enabled={false}
@@ -763,88 +277,34 @@ exports[`SettingsPanelTest render - { isPanelOpen: true,
   <HighContrastSettings
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "_tabId": undefined,
-          "addFailureInstance": [Function],
-          "cancelStartOver": undefined,
-          "cancelStartOverAllAssessments": undefined,
-          "changeAssessmentVisualizationState": undefined,
-          "changeAssessmentVisualizationStateForAll": [Function],
-          "changeManualRequirementStatus": undefined,
-          "changeManualTestStatus": undefined,
-          "changeRightContentPanel": [Function],
-          "closePreviewFeaturesPanel": undefined,
-          "closeScopingPanel": undefined,
-          "closeSettingsPanel": undefined,
-          "constructor": [Function],
-          "continuePreviousAssessment": undefined,
-          "copyIssueDetailsClicked": undefined,
-          "detailsViewOpened": [Function],
-          "disableVisualHelper": [Function],
-          "disableVisualHelpersForTest": [Function],
-          "dispatchMessage": [Function],
-          "dispatchType": [Function],
-          "editFailureInstance": undefined,
-          "enableVisualHelper": [Function],
-          "exportResultsClicked": [Function],
-          "passUnmarkedInstances": [Function],
-          "postMessageDelegate": undefined,
-          "removeFailureInstance": undefined,
-          "selectDetailsView": [Function],
-          "selectRequirement": [Function],
-          "sendPivotItemClicked": [Function],
-          "sendTelemetry": [Function],
-          "setDevToolStatus": [Function],
-          "setFeatureFlag": undefined,
-          "setInspectElement": [Function],
-          "setInspectFrameUrl": [Function],
-          "startOverAllAssessments": undefined,
-          "startOverAssessment": [Function],
-          "switchToTargetTab": undefined,
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": undefined,
-          "undoManualTestStatusChange": undefined,
-          "updateFocusedInstanceTarget": [Function],
-          "updateIssuesSelectedTargets": [Function],
-          "windowUtils": undefined,
+        "detailsViewActionMessageCreator": Object {
+          "closeSettingsPanel": [Function],
         },
-        "userConfigMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "_tabId": undefined,
-          "constructor": [Function],
-          "dispatchMessage": [Function],
-          "dispatchType": [Function],
-          "postMessageDelegate": undefined,
-          "sendTelemetry": [Function],
-          "setBugService": [Function],
-          "setBugServiceProperty": [Function],
-          "setHighContrastMode": [Function],
-          "setIssueTrackerPath": [Function],
-          "setTelemetryState": [Function],
-        },
+        "userConfigMessageCreator": Object {},
       }
     }
     enabled={true}
   />
-  <FlaggedComponent
-    enableJSXElement={
-      <React.Fragment>
-        <h3>
-          Issue filing
-        </h3>
-        <StyledTextFieldBase
-          className="issue-setting"
-          label="Enter desired GitHub repo link:"
-          onChange={[Function]}
-          placeholder="https://github.com/owner/repo/issues"
-        />
-      </React.Fragment>
+  <BugFilingSettings
+    deps={
+      Object {
+        "detailsViewActionMessageCreator": Object {
+          "closeSettingsPanel": [Function],
+        },
+        "userConfigMessageCreator": Object {},
+      }
     }
-    featureFlag="showBugFiling"
-    featureFlagStoreData={
+    featureFlagData={
       Object {
         "test-flag": false,
+      }
+    }
+    userConfigStoreState={
+      Object {
+        "bugService": "gitHub",
+        "bugServicePropertiesMap": null,
+        "enableHighContrast": true,
+        "enableTelemetry": false,
       }
     }
   />
