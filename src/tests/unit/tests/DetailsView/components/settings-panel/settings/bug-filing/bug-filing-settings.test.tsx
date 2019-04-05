@@ -3,7 +3,7 @@
 import { shallow } from 'enzyme';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
-import { Mock } from 'typemoq';
+import { Mock, Times } from 'typemoq';
 
 import { FeatureFlags } from '../../../../../../../../common/feature-flags';
 import {
@@ -15,6 +15,7 @@ import {
     BugFilingSettingsDeps,
     BugFilingSettingsProps,
 } from '../../../../../../../../DetailsView/components/settings-panel/settings/bug-filing/bug-filing-settings';
+import { UserConfigMessageCreator } from '../../../../../../../../common/message-creators/user-config-message-creator';
 
 type RenderTestCase = {
     bugFilingEnable: boolean;
@@ -23,6 +24,18 @@ type RenderTestCase = {
 };
 
 describe('BugFilingSettings', () => {
+    let userData: UserConfigurationStoreData;
+
+    beforeEach(() => {
+        userData = {
+            isFirstTime: true,
+            enableTelemetry: true,
+            enableHighContrast: true,
+            bugService: 'gitHub',
+            bugServicePropertiesMap: { gitHub: { repository: 'test-repository' } },
+        };
+    });
+
     describe('renders', () => {
         const testCases: RenderTestCase[] = [
             {
@@ -59,9 +72,10 @@ describe('BugFilingSettings', () => {
                     [FeatureFlags.showBugFiling]: testCase.bugFilingEnable,
                 },
                 userConfigStoreState: {
+                    ...userData,
                     bugService: testCase.bugService,
                     bugServicePropertiesMap: testCase.bugServicePropertiesMap,
-                } as UserConfigurationStoreData,
+                },
             };
 
             const wrapped = shallow(<BugFilingSettings {...props} />);
@@ -70,14 +84,6 @@ describe('BugFilingSettings', () => {
         });
 
         it('renders the text field properly', () => {
-            const userData: UserConfigurationStoreData = {
-                isFirstTime: true,
-                enableTelemetry: true,
-                enableHighContrast: true,
-                bugService: 'GitHub',
-                bugServicePropertiesMap: { gitHub: { repository: 'test-repository' } },
-            };
-
             const props: BugFilingSettingsProps = {
                 deps: Mock.ofType<BugFilingSettingsDeps>().object,
                 featureFlagData: {
@@ -91,6 +97,36 @@ describe('BugFilingSettings', () => {
             const textField = wrapped.dive().find(TextField);
 
             expect(textField.getElement()).toMatchSnapshot();
+        });
+    });
+
+    describe('user interaction', () => {
+        it('handle text field changes', () => {
+            const userConfigMessageCreatorMock = Mock.ofType<UserConfigMessageCreator>();
+
+            const newValue = 'new-value';
+
+            userConfigMessageCreatorMock
+                .setup(creator => creator.setBugServiceProperty('gitHub', 'repository', newValue))
+                .verifiable(Times.once());
+
+            const props: BugFilingSettingsProps = {
+                deps: {
+                    userConfigMessageCreator: userConfigMessageCreatorMock.object,
+                },
+                featureFlagData: {
+                    [FeatureFlags.showBugFiling]: true,
+                },
+                userConfigStoreState: userData,
+            };
+
+            const wrapped = shallow(<BugFilingSettings {...props} />);
+
+            const textField = wrapped.dive().find(TextField);
+
+            textField.simulate('change', null, newValue);
+
+            userConfigMessageCreatorMock.verifyAll();
         });
     });
 });
