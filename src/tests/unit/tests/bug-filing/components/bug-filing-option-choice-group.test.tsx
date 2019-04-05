@@ -5,15 +5,15 @@ import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
 import { ChoiceGroup, IChoiceGroupOption } from 'office-ui-fabric-react/lib/ChoiceGroup';
-import { BugFilingOptionProvider } from '../../../../../bug-filing/bug-filing-option-provider';
+import { BugFilingServiceProvider } from '../../../../../bug-filing/bug-filing-service-provider';
 import { BugFilingChoiceGroup, BugFilingChoiceGroupProps } from '../../../../../bug-filing/components/bug-filing-choice-group';
-import { BugFilingOption } from '../../../../../bug-filing/types/bug-filing-option';
+import { BugFilingService } from '../../../../../bug-filing/types/bug-filing-service';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 
 describe('BugFilingChoiceGroupTest', () => {
     let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;
-    let bugFilingOptionProviderMock: IMock<BugFilingOptionProvider>;
+    let bugFilingServiceProviderMock: IMock<BugFilingServiceProvider>;
     const testKey = 'test bug service key';
     const testName = 'test bug service name';
     const testOption: IChoiceGroupOption = {
@@ -23,16 +23,16 @@ describe('BugFilingChoiceGroupTest', () => {
 
     beforeEach(() => {
         userConfigMessageCreatorMock = Mock.ofType(UserConfigMessageCreator);
-        bugFilingOptionProviderMock = Mock.ofType(BugFilingOptionProvider);
+        bugFilingServiceProviderMock = Mock.ofType(BugFilingServiceProvider);
 
-        bugFilingOptionProviderMock
+        bugFilingServiceProviderMock
             .setup(b => b.all())
             .returns(() => {
                 return [
                     {
                         key: testKey,
                         displayName: testName,
-                    } as BugFilingOption,
+                    } as BugFilingService,
                 ];
             });
     });
@@ -41,7 +41,7 @@ describe('BugFilingChoiceGroupTest', () => {
         const props: BugFilingChoiceGroupProps = {
             deps: {
                 userConfigMessageCreator: userConfigMessageCreatorMock.object,
-                bugFilingOptionProvider: bugFilingOptionProviderMock.object,
+                bugFilingServiceProvider: bugFilingServiceProviderMock.object,
             },
             userConfigurationStoreData: {
                 bugService: 'MyBugService',
@@ -56,7 +56,7 @@ describe('BugFilingChoiceGroupTest', () => {
         const props: BugFilingChoiceGroupProps = {
             deps: {
                 userConfigMessageCreator: userConfigMessageCreatorMock.object,
-                bugFilingOptionProvider: bugFilingOptionProviderMock.object,
+                bugFilingServiceProvider: bugFilingServiceProviderMock.object,
             },
             userConfigurationStoreData: {
                 bugService: 'MyBugService',

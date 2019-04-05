@@ -1,21 +1,21 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BugFilingOptionProvider } from './../../../../bug-filing/bug-filing-option-provider';
-import { BugFilingOption } from './../../../../bug-filing/types/bug-filing-option';
+import { BugFilingServiceProvider } from './../../../../bug-filing/bug-filing-service-provider';
+import { BugFilingService } from './../../../../bug-filing/types/bug-filing-service';
 
-describe('BugFilingOptionProviderTest', () => {
+describe('BugFilingServiceProviderTest', () => {
     test('constructor', () => {
-        expect(new BugFilingOptionProvider([])).not.toBeNull();
+        expect(new BugFilingServiceProvider([])).not.toBeNull();
     });
 
     test('all', () => {
-        const testOptions: BugFilingOption[] = [
+        const testOptions: BugFilingService[] = [
             {
                 key: 'github',
                 displayName: 'Github',
-            } as BugFilingOption,
+            } as BugFilingService,
         ];
 
-        expect(new BugFilingOptionProvider(testOptions).all()).toEqual(testOptions);
+        expect(new BugFilingServiceProvider(testOptions).all()).toEqual(testOptions);
     });
 });

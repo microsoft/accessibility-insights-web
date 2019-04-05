@@ -6,7 +6,7 @@ import * as React from 'react';
 import { UserConfigMessageCreator } from '../../common/message-creators/user-config-message-creator';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
-import { BugFilingOptionProvider } from '../bug-filing-option-provider';
+import { BugFilingServiceProvider } from '../bug-filing-service-provider';
 
 export type BugFilingChoiceGroupProps = {
     deps: BugFilingChoiceGroupDeps;
@@ -15,17 +15,17 @@ export type BugFilingChoiceGroupProps = {
 
 export type BugFilingChoiceGroupDeps = {
     userConfigMessageCreator: UserConfigMessageCreator;
-    bugFilingOptionProvider: BugFilingOptionProvider;
+    bugFilingServiceProvider: BugFilingServiceProvider;
 };
 
 export const BugFilingChoiceGroup = NamedSFC<BugFilingChoiceGroupProps>('BugFilingChoiceGroup', props => {
-    const { userConfigMessageCreator, bugFilingOptionProvider } = props.deps;
+    const { userConfigMessageCreator, bugFilingServiceProvider } = props.deps;
 
     const getOptions: () => IChoiceGroupOption[] = () => {
-        return bugFilingOptionProvider.all().map(option => {
+        return bugFilingServiceProvider.all().map(service => {
             return {
-                key: option.key,
-                text: option.displayName,
+                key: service.key,
+                text: service.displayName,
             };
         });
     };
