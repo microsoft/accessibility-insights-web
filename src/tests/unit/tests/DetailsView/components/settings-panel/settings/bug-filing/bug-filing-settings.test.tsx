@@ -12,7 +12,7 @@ import {
     UserConfigurationStoreData,
 } from '../../../../../../../../common/types/store-data/user-configuration-store';
 import { BugFilingSettings } from '../../../../../../../../DetailsView/components/settings-panel/settings/bug-filing/bug-filing-settings';
-import { SettingsProps, SettingsDeps } from '../../../../../../../../DetailsView/components/settings-panel/settings/settings-props';
+import { SettingsDeps, SettingsProps } from '../../../../../../../../DetailsView/components/settings-panel/settings/settings-props';
 
 type RenderTestCase = {
     bugFilingEnable: boolean;
