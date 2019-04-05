@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { NoValue, PropertyBagColumnRendererConfig } from '../../../assessments/common/property-bag-column-renderer';
-import { ImageFunctionPropertyBag } from '../../../common/types/property-bag/iimage-function';
+import { ImageFunctionPropertyBag } from '../../../common/types/property-bag/image-function';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
