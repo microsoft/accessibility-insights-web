@@ -11,11 +11,8 @@ import {
     BugServicePropertiesMap,
     UserConfigurationStoreData,
 } from '../../../../../../../../common/types/store-data/user-configuration-store';
-import {
-    BugFilingSettings,
-    BugFilingSettingsDeps,
-    BugFilingSettingsProps,
-} from '../../../../../../../../DetailsView/components/settings-panel/settings/bug-filing/bug-filing-settings';
+import { BugFilingSettings } from '../../../../../../../../DetailsView/components/settings-panel/settings/bug-filing/bug-filing-settings';
+import { SettingsProps, SettingsDeps } from '../../../../../../../../DetailsView/components/settings-panel/settings/settings-props';
 
 type RenderTestCase = {
     bugFilingEnable: boolean;
@@ -66,8 +63,8 @@ describe('BugFilingSettings', () => {
         ];
 
         it.each(testCases)('%o', (testCase: RenderTestCase) => {
-            const props: BugFilingSettingsProps = {
-                deps: Mock.ofType<BugFilingSettingsDeps>().object,
+            const props: SettingsProps = {
+                deps: Mock.ofType<SettingsDeps>().object,
                 featureFlagData: {
                     [FeatureFlags.showBugFiling]: testCase.bugFilingEnable,
                 },
@@ -84,8 +81,8 @@ describe('BugFilingSettings', () => {
         });
 
         it('renders the text field properly', () => {
-            const props: BugFilingSettingsProps = {
-                deps: Mock.ofType<BugFilingSettingsDeps>().object,
+            const props: SettingsProps = {
+                deps: Mock.ofType<SettingsDeps>().object,
                 featureFlagData: {
                     [FeatureFlags.showBugFiling]: true,
                 },
@@ -110,7 +107,7 @@ describe('BugFilingSettings', () => {
                 .setup(creator => creator.setBugServiceProperty('gitHub', 'repository', newValue))
                 .verifiable(Times.once());
 
-            const props: BugFilingSettingsProps = {
+            const props: SettingsProps = {
                 deps: {
                     userConfigMessageCreator: userConfigMessageCreatorMock.object,
                 },

@@ -6,19 +6,16 @@ import * as React from 'react';
 import { Mock, Times } from 'typemoq';
 import { UserConfigMessageCreator } from '../../../../../../../../common/message-creators/user-config-message-creator';
 import { UserConfigurationStoreData } from '../../../../../../../../common/types/store-data/user-configuration-store';
-import {
-    HighContrastSettings,
-    HighContrastSettingsDeps,
-    HighContrastSettingsProps,
-} from '../../../../../../../../DetailsView/components/settings-panel/settings/high-contrast/high-contrast-settings';
+import { HighContrastSettings } from '../../../../../../../../DetailsView/components/settings-panel/settings/high-contrast/high-contrast-settings';
+import { SettingsDeps, SettingsProps } from '../../../../../../../../DetailsView/components/settings-panel/settings/settings-props';
 
 describe('HighContrastSettings', () => {
     const enableStates = [true, false];
 
     describe('renders', () => {
         it.each(enableStates)('with enabled = %s', enabled => {
-            const props: HighContrastSettingsProps = {
-                deps: Mock.ofType<HighContrastSettingsDeps>().object,
+            const props: SettingsProps = {
+                deps: Mock.ofType<SettingsDeps>().object,
                 userConfigurationStoreState: {
                     enableHighContrast: enabled,
                 } as UserConfigurationStoreData,
@@ -37,7 +34,7 @@ describe('HighContrastSettings', () => {
             const deps = {
                 userConfigMessageCreator: userConfigMessageCreatorMock.object,
             };
-            const props: HighContrastSettingsProps = {
+            const props: SettingsProps = {
                 deps,
                 userConfigurationStoreState: {
                     enableHighContrast: enabled,

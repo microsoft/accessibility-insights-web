@@ -4,17 +4,10 @@ import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 import { FlaggedComponent } from '../../../../../common/components/flagged-component';
 import { FeatureFlags } from '../../../../../common/feature-flags';
-import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { NamedSFC } from '../../../../../common/react/named-sfc';
-import { SettingsProps } from '../setting';
+import { SettingsProps } from '../settings-props';
 
-export type BugFilingSettingsDeps = {
-    userConfigMessageCreator: UserConfigMessageCreator;
-};
-
-export type BugFilingSettingsProps = SettingsProps<BugFilingSettingsDeps>;
-
-export const BugFilingSettings = NamedSFC<BugFilingSettingsProps>('BugFilingSettings', props => {
+export const BugFilingSettings = NamedSFC<SettingsProps>('BugFilingSettings', props => {
     const getBugSettingsUx = () => {
         return (
             <>
