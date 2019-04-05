@@ -23,7 +23,7 @@ describe('AssessmentReportStepListTest', () => {
         };
 
         const wrapper = shallow(<AssessmentReportStepList {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot(); //
+        expect(wrapper.getElement()).toMatchSnapshot();
     });
 
     it('renders pass without instances when showInstances is false', () => {
