@@ -13,7 +13,7 @@ import { AssessmentsProviderImpl } from '../../../../assessments/assessments-pro
 import { Assessment } from '../../../../assessments/types/iassessment';
 import { AssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
 import { IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
-import { ITabStoreData } from '../../../../common/types/store-data/itab-store-data';
+import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
 import { AssessmentReportModelBuilder } from '../../../../DetailsView/reports/assessment-report-model-builder';
 import { AssessmentReportBuilderTestHelper } from './assessment-report-builder-test-helper';
 
@@ -42,7 +42,7 @@ describe('AssessmentReportModelBuilderTest', () => {
 
     assessmentsProviderMock.setup(ap => ap.all()).returns(() => assessments);
 
-    const tabStoreData: ITabStoreData = {
+    const tabStoreData: TabStoreData = {
         url: 'url',
         title: 'title',
         id: -1,

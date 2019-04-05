@@ -3,9 +3,11 @@
 import { keys } from 'lodash';
 import { Extension as ReactExtension } from './react-extension-point';
 
+// tslint:disable-next-line: no-reserved-keywords
 export type AnyExtension = { type: 'Extension'; extensionType: string } & (Extension<string, string, any, any> | ReactExtension<any>);
 
 type Extension<TYPE extends string, KEY extends string, EXT extends {}, OUT extends {}> = {
+    // tslint:disable-next-line: no-reserved-keywords
     type: 'Extension';
     extensionType: TYPE;
     extensionPoint: ExtensionPoint<TYPE, KEY, EXT, OUT>;

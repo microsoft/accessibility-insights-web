@@ -1,9 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
-
-import { Assessments } from '../../../../assessments/assessments';
-import { AssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
 import { UniquelyIdentifiableInstances } from '../../../../background/instance-identifier-generator';
 import {
     VisualizationConfiguration,
@@ -15,13 +12,13 @@ import { VisualizationType } from '../../../../common/types/visualization-type';
 import { WindowUtils } from '../../../../common/window-utils';
 import { AssessmentVisualizationInstance } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { InstanceVisibilityChecker } from '../../../../injected/instance-visibility-checker';
+import { itIsFunction } from '../../common/it-is-function';
 
 describe('InstanceVisibilityCheckerTest', () => {
     let windowUtilsMock: IMock<WindowUtils>;
     let sendMessageMock: IMock<(message) => void>;
     let htmlElementUtilsMock: IMock<HTMLElementUtils>;
     let testSubject: InstanceVisibilityChecker;
-    const assessmentsProvider: AssessmentsProvider = Assessments;
     let configFactoryMock: IMock<VisualizationConfigurationFactory>;
     let configStub: VisualizationConfiguration;
     let getInstanceIdentiferGeneratorMock: IMock<(step: string) => Function>;
@@ -107,7 +104,7 @@ describe('InstanceVisibilityCheckerTest', () => {
         ];
 
         windowUtilsMock
-            .setup(wU => wU.setInterval(It.isAny(), InstanceVisibilityChecker.recalculationTimeInterval))
+            .setup(wU => wU.setInterval(itIsFunction, InstanceVisibilityChecker.recalculationTimeInterval))
             .callback((cb, timeout) => {
                 cb();
             })
@@ -176,7 +173,7 @@ describe('InstanceVisibilityCheckerTest', () => {
         };
 
         windowUtilsMock
-            .setup(wU => wU.setInterval(It.isAny(), InstanceVisibilityChecker.recalculationTimeInterval))
+            .setup(wU => wU.setInterval(itIsFunction, InstanceVisibilityChecker.recalculationTimeInterval))
             .callback((cb, timeout) => {
                 cb();
             })
@@ -289,7 +286,7 @@ describe('InstanceVisibilityCheckerTest', () => {
         configFactoryMock.setup(cfm => cfm.getConfiguration(testType)).returns(() => configStub);
 
         windowUtilsMock
-            .setup(wU => wU.setInterval(It.isAny(), InstanceVisibilityChecker.recalculationTimeInterval))
+            .setup(wU => wU.setInterval(itIsFunction, InstanceVisibilityChecker.recalculationTimeInterval))
             .verifiable(Times.never());
 
         testSubject.createVisibilityCheckerInterval(testStepDrawerId, testType, [frameResult]);

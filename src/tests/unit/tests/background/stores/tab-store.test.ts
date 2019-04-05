@@ -5,7 +5,7 @@ import { VisualizationActions } from '../../../../../background/actions/visualiz
 import { TabStore } from '../../../../../background/stores/tab-store';
 import { Tab } from '../../../../../common/itab';
 import { StoreNames } from '../../../../../common/stores/store-names';
-import { ITabStoreData } from '../../../../../common/types/store-data/itab-store-data';
+import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
 import { TabStoreDataBuilder } from '../../../common/tab-store-data-builder';
 
@@ -29,7 +29,7 @@ describe('TabStoreTest', () => {
             url: 'test-url',
         };
 
-        const expectedState: ITabStoreData = new TabStoreDataBuilder()
+        const expectedState: TabStoreData = new TabStoreDataBuilder()
             .with('id', payload.id)
             .with('title', payload.title)
             .with('url', payload.url)
@@ -48,15 +48,15 @@ describe('TabStoreTest', () => {
     });
 
     test('onTabRemove', () => {
-        const initialState: ITabStoreData = new TabStoreDataBuilder().build();
+        const initialState: TabStoreData = new TabStoreDataBuilder().build();
 
-        const expectedState: ITabStoreData = new TabStoreDataBuilder().with('isClosed', true).build();
+        const expectedState: TabStoreData = new TabStoreDataBuilder().with('isClosed', true).build();
 
         createStoreTesterForTabActions('tabRemove').testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     test('onTabChange', () => {
-        const initialState: ITabStoreData = new TabStoreDataBuilder()
+        const initialState: TabStoreData = new TabStoreDataBuilder()
             .with('url', 'url 1')
             .with('title', 'title 1')
             .build();
@@ -66,7 +66,7 @@ describe('TabStoreTest', () => {
             url: 'url 2',
         };
 
-        const finalState: ITabStoreData = new TabStoreDataBuilder()
+        const finalState: TabStoreData = new TabStoreDataBuilder()
             .with('url', payload.url)
             .with('title', payload.title)
             .with('isChanged', true)
@@ -78,10 +78,10 @@ describe('TabStoreTest', () => {
     });
 
     test('onVisibilityChange, hidden is true', () => {
-        const initialState: ITabStoreData = new TabStoreDataBuilder().build();
+        const initialState: TabStoreData = new TabStoreDataBuilder().build();
 
         const payload = true;
-        const finalState: ITabStoreData = new TabStoreDataBuilder().with('isPageHidden', payload).build();
+        const finalState: TabStoreData = new TabStoreDataBuilder().with('isPageHidden', payload).build();
 
         createStoreTesterForTabActions('tabVisibilityChange')
             .withActionParam(payload)
@@ -89,9 +89,9 @@ describe('TabStoreTest', () => {
     });
 
     test('onVisibilityChange, hidden is false', () => {
-        const initialState: ITabStoreData = new TabStoreDataBuilder().build();
+        const initialState: TabStoreData = new TabStoreDataBuilder().build();
 
-        const finalState: ITabStoreData = new TabStoreDataBuilder().build();
+        const finalState: TabStoreData = new TabStoreDataBuilder().build();
 
         const payload = false;
 
@@ -101,9 +101,9 @@ describe('TabStoreTest', () => {
     });
 
     test('onEnableVisualization, state.isChanged is true', () => {
-        const initialState: ITabStoreData = new TabStoreDataBuilder().with('isChanged', true).build();
+        const initialState: TabStoreData = new TabStoreDataBuilder().with('isChanged', true).build();
 
-        const finalState: ITabStoreData = new TabStoreDataBuilder().build();
+        const finalState: TabStoreData = new TabStoreDataBuilder().build();
 
         createStoreTesterForVisualizationActions('enableVisualization').testListenerToBeCalledOnce(initialState, finalState);
     });
@@ -133,29 +133,29 @@ describe('TabStoreTest', () => {
     });
 
     test('on updateSelectedPivot, state.isChanged is true', () => {
-        const initialState: ITabStoreData = new TabStoreDataBuilder().with('isChanged', true).build();
+        const initialState: TabStoreData = new TabStoreDataBuilder().with('isChanged', true).build();
 
-        const finalState: ITabStoreData = new TabStoreDataBuilder().build();
+        const finalState: TabStoreData = new TabStoreDataBuilder().build();
 
         createStoreTesterForVisualizationActions('updateSelectedPivot').testListenerToBeCalledOnce(initialState, finalState);
     });
 
     test('on updateSelectedPivot, state.isChange is false', () => {
-        const initialState: ITabStoreData = new TabStoreDataBuilder().build();
+        const initialState: TabStoreData = new TabStoreDataBuilder().build();
 
-        const finalState: ITabStoreData = new TabStoreDataBuilder().build();
+        const finalState: TabStoreData = new TabStoreDataBuilder().build();
 
         createStoreTesterForVisualizationActions('updateSelectedPivot').testListenerToNeverBeCalled(initialState, finalState);
     });
 
-    function createStoreTesterForTabActions(actionName: keyof TabActions): StoreTester<ITabStoreData, TabActions> {
+    function createStoreTesterForTabActions(actionName: keyof TabActions): StoreTester<TabStoreData, TabActions> {
         const factory = (actions: TabActions) => new TabStore(actions, new VisualizationActions());
         return new StoreTester(TabActions, actionName, factory);
     }
 
     function createStoreTesterForVisualizationActions(
         actionName: keyof VisualizationActions,
-    ): StoreTester<ITabStoreData, VisualizationActions> {
+    ): StoreTester<TabStoreData, VisualizationActions> {
         const factory = (actions: VisualizationActions) => new TabStore(new TabActions(), actions);
         return new StoreTester(VisualizationActions, actionName, factory);
     }

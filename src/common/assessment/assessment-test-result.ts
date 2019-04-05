@@ -14,7 +14,7 @@ export type AssessmentTestProviderDeps = {
     outcomeStatsFromManualTestStatus: (testStepStatus: ManualTestStatusData) => OutcomeStats;
     getRequirementsResults: (
         provider: AssessmentsProvider,
-        type: VisualizationType,
+        visualizationType: VisualizationType,
         stepStatus: ManualTestStatusData,
     ) => RequirementResult[];
 };
@@ -27,7 +27,7 @@ const depDefaults = {
 export class AssessmentTestResult {
     constructor(
         private readonly assessmentProvider: AssessmentsProvider,
-        public readonly type: VisualizationType,
+        public readonly visualizationType: VisualizationType,
         public readonly data: IAssessmentData,
         private readonly deps: AssessmentTestProviderDeps = depDefaults,
     ) {}
@@ -37,7 +37,7 @@ export class AssessmentTestResult {
     }
 
     public getRequirementResults(): RequirementResult[] {
-        return this.deps.getRequirementsResults(this.assessmentProvider, this.type, this.data.testStepStatus);
+        return this.deps.getRequirementsResults(this.assessmentProvider, this.visualizationType, this.data.testStepStatus);
     }
 
     public getOutcomeStats(): OutcomeStats {
@@ -45,6 +45,6 @@ export class AssessmentTestResult {
     }
 
     public get definition(): AssessmentTestDefinition {
-        return this.assessmentProvider.forType(this.type);
+        return this.assessmentProvider.forType(this.visualizationType);
     }
 }

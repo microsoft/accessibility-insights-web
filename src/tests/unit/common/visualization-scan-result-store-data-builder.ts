@@ -1,19 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { VisualizationScanResultStore } from '../../../background/stores/visualization-scan-result-store';
-import { ITabbedElementData, IVisualizationScanResultData } from '../../../common/types/store-data/ivisualization-scan-result-data';
+import { TabbedElementData, VisualizationScanResultData } from '../../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { HtmlElementAxeResults } from '../../../injected/scanner-utils';
 import { DictionaryStringTo } from '../../../types/common-types';
 import { BaseDataBuilder } from './base-data-builder';
 
-export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<IVisualizationScanResultData> {
+export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<VisualizationScanResultData> {
     constructor() {
         super();
         this.data = new VisualizationScanResultStore(null, null).getDefaultState();
     }
 
-    public withTabStopsTabbedElements(elements: ITabbedElementData[]): VisualizationScanResultStoreDataBuilder {
+    public withTabStopsTabbedElements(elements: TabbedElementData[]): VisualizationScanResultStoreDataBuilder {
         this.data.tabStops.tabbedElements = elements;
         return this;
     }
@@ -23,8 +23,8 @@ export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<IVi
         return this;
     }
 
-    public withSelectorMap(type: VisualizationType, selectorMap: any): VisualizationScanResultStoreDataBuilder {
-        switch (type) {
+    public withSelectorMap(visualizationType: VisualizationType, selectorMap: any): VisualizationScanResultStoreDataBuilder {
+        switch (visualizationType) {
             case VisualizationType.Headings:
                 this.data.headings.fullAxeResultsMap = selectorMap;
                 break;
@@ -38,7 +38,7 @@ export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<IVi
                 this.data.color.fullAxeResultsMap = selectorMap;
                 break;
             default:
-                throw new Error(`Unsupported type ${type}`);
+                throw new Error(`Unsupported type ${visualizationType}`);
         }
 
         return this;
@@ -54,8 +54,8 @@ export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<IVi
         return this;
     }
 
-    public withScanResult(type: VisualizationType, result: any): VisualizationScanResultStoreDataBuilder {
-        switch (type) {
+    public withScanResult(visualizationType: VisualizationType, result: any): VisualizationScanResultStoreDataBuilder {
+        switch (visualizationType) {
             case VisualizationType.Headings:
                 this.data.headings.scanResult = result;
                 break;
@@ -69,7 +69,7 @@ export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<IVi
                 this.data.color.scanResult = result;
                 break;
             default:
-                throw new Error(`Unsupported type ${type}`);
+                throw new Error(`Unsupported type ${visualizationType}`);
         }
         return this;
     }

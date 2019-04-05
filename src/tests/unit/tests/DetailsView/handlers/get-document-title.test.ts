@@ -15,14 +15,14 @@ describe('getTestViewTitle', () => {
         const displayableDataStub = {
             title: 'fake title',
         } as DisplayableVisualizationTypeData;
-        const type = -1;
+        const visualizationType = -1;
         const configStub = { displayableData: displayableDataStub } as VisualizationConfiguration;
 
-        configFactory.setup(cf => cf.getConfiguration(type)).returns(() => configStub);
+        configFactory.setup(cf => cf.getConfiguration(visualizationType)).returns(() => configStub);
 
         const props: GetTestViewTitleProps = {
             visualizationConfigurationFactory: configFactory.object,
-            selectedDetailsView: type,
+            selectedDetailsView: visualizationType,
         };
 
         expect(getTestViewTitle(props)).toEqual(displayableDataStub.title);

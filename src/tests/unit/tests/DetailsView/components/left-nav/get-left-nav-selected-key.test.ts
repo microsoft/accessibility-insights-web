@@ -12,9 +12,9 @@ describe('getOverviewKey', () => {
 
 describe('getTestviewKey', () => {
     const types = EnumHelper.getNumericValues<VisualizationType>(VisualizationType);
-    describe.each(types)('returns using VisualizationType', type => {
-        it('for ' + VisualizationType[type], () => {
-            expect(getTestViewKey({ type: type })).toEqual(VisualizationType[type]);
+    describe.each(types)('returns using VisualizationType', visualizationType => {
+        it('for ' + VisualizationType[visualizationType], () => {
+            expect(getTestViewKey({ visualizationType: visualizationType })).toEqual(VisualizationType[visualizationType]);
         });
     });
 });

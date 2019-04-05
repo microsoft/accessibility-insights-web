@@ -30,7 +30,7 @@ export const TimedEventsAssessment: Assessment = AssessmentBuilder.Manual({
     key,
     title: timedEventsAssessmentTitle,
     gettingStarted: timedEventAssessmentGettingStarted,
-    type: VisualizationType.TimedEventsAssessment,
+    visualizationType: VisualizationType.TimedEventsAssessment,
     guidance,
     requirements: [TimeLimits, MovingContent, AutoUpdatingContent, AudioControl],
 });

@@ -3,7 +3,7 @@
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { getDefaultFeatureFlagValues } from '../../../../../common/feature-flags';
-import { ITabbedElementData } from '../../../../../common/types/store-data/ivisualization-scan-result-data';
+import { TabbedElementData } from '../../../../../common/types/store-data/visualization-scan-result-data';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { ShadowUtils } from '../../../../../injected/shadow-utils';
 import { CenterPositionCalculator } from '../../../../../injected/visualization/center-position-calculator';
@@ -68,7 +68,7 @@ describe('SVGDrawerV2Tests', () => {
                 selector: '#id1',
             },
         ];
-        const tabbedElements: ITabbedElementData[] = [
+        const tabbedElements: TabbedElementData[] = [
             {
                 tabOrder: 1,
                 timestamp: 60,
@@ -113,7 +113,7 @@ describe('SVGDrawerV2Tests', () => {
                 selector: '#id1',
             },
         ];
-        const tabbedElements: ITabbedElementData[] = [
+        const tabbedElements: TabbedElementData[] = [
             {
                 propertyBag: {
                     tabOrder: 1,
@@ -184,7 +184,7 @@ describe('SVGDrawerV2Tests', () => {
             },
         ];
 
-        const tabbedElements: ITabbedElementData[] = [
+        const tabbedElements: TabbedElementData[] = [
             {
                 tabOrder: 1,
                 timestamp: 60,
@@ -260,7 +260,7 @@ describe('SVGDrawerV2Tests', () => {
             },
         ];
 
-        const tabbedElements: ITabbedElementData[] = [
+        const tabbedElements: TabbedElementData[] = [
             {
                 tabOrder: null,
                 timestamp: 60,
@@ -374,7 +374,7 @@ describe('SVGDrawerV2Tests', () => {
             },
         ];
 
-        const tabbedElements: ITabbedElementData[] = [
+        const tabbedElements: TabbedElementData[] = [
             {
                 tabOrder: 1,
                 timestamp: 60,
@@ -464,7 +464,7 @@ describe('SVGDrawerV2Tests', () => {
         const docMock = dom.ownerDocument || dom;
         const element: HTMLElement = dom.querySelector('#id1') as HTMLElement;
         const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
-        const tabbedElements: ITabbedElementData[] = [
+        const tabbedElements: TabbedElementData[] = [
             {
                 tabOrder: 1,
                 timestamp: 60,
@@ -529,7 +529,7 @@ describe('SVGDrawerV2Tests', () => {
 
         const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
         const element: HTMLElement = dom.querySelector('#id1') as HTMLElement;
-        const tabbedElements: ITabbedElementData[] = [
+        const tabbedElements: TabbedElementData[] = [
             {
                 tabOrder: 1,
                 timestamp: 60,
@@ -589,7 +589,7 @@ describe('SVGDrawerV2Tests', () => {
         document.body.appendChild(dom);
 
         const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig(false, false);
-        const tabbedElements: ITabbedElementData[] = [
+        const tabbedElements: TabbedElementData[] = [
             {
                 tabOrder: 1,
                 timestamp: 60,
@@ -655,7 +655,7 @@ describe('SVGDrawerV2Tests', () => {
         document.body.appendChild(dom);
         // pass true or false in createTestDrawingConfig falseto set showDetailedTabOrder parameter in config
         const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
-        const tabbedElements: ITabbedElementData[] = [
+        const tabbedElements: TabbedElementData[] = [
             {
                 tabOrder: 1,
                 timestamp: 60,
@@ -721,7 +721,7 @@ describe('SVGDrawerV2Tests', () => {
         document.body.appendChild(dom);
         // pass true or false in createTestDrawingConfig falseto set showDetailedTabOrder parameter in config
         const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
-        const tabbedElements: ITabbedElementData[] = [
+        const tabbedElements: TabbedElementData[] = [
             {
                 tabOrder: 1,
                 timestamp: 60,
@@ -789,7 +789,7 @@ describe('SVGDrawerV2Tests', () => {
         const docMock = dom.ownerDocument || dom;
         document.body.appendChild(dom);
         const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
-        const tabbedElements: ITabbedElementData[] = [
+        const tabbedElements: TabbedElementData[] = [
             {
                 tabOrder: 1,
                 timestamp: 60,
@@ -854,7 +854,7 @@ describe('SVGDrawerV2Tests', () => {
         const docMock = dom.ownerDocument || dom;
         document.body.appendChild(dom);
         const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
-        const tabbedElements: ITabbedElementData[] = [
+        const tabbedElements: TabbedElementData[] = [
             {
                 tabOrder: 1,
                 timestamp: 60,

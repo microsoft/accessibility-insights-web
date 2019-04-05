@@ -6,6 +6,7 @@ import { ChromeAdapter } from '../../../../background/browser-adapter';
 import { configMutator } from '../../../../common/configuration';
 import { WindowUtils } from '../../../../common/window-utils';
 import { SupportLinkHandler } from '../../../../popup/support-link-handler';
+import { itIsFunction } from '../../common/it-is-function';
 
 describe('SupportLinkHandlerTest', () => {
     afterEach(configMutator.reset);
@@ -33,7 +34,7 @@ describe('SupportLinkHandlerTest', () => {
 
         const windowUtilsMock = Mock.ofType(WindowUtils);
         windowUtilsMock
-            .setup(wu => wu.setTimeout(It.isAny(), 500))
+            .setup(wu => wu.setTimeout(itIsFunction, 500))
             .callback((cb, timeout) => {
                 cb();
             })

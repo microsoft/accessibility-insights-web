@@ -36,11 +36,11 @@ import { TelemetryEventSource } from '../common/telemetry-events';
 import { DetailsViewData } from '../common/types/store-data/details-view-data';
 import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
 import { InspectStoreData } from '../common/types/store-data/inspect-store-data';
-import { ITabStoreData } from '../common/types/store-data/itab-store-data';
-import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
 import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
+import { TabStoreData } from '../common/types/store-data/tab-store-data';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
+import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { UrlParser } from '../common/url-parser';
 import { WindowUtils } from '../common/window-utils';
 import { contentPages } from '../content';
@@ -105,8 +105,8 @@ if (isNaN(tabId) === false) {
                     StoreNames[StoreNames.VisualizationStore],
                     chromeAdapter,
                 );
-                const tabStore = new StoreProxy<ITabStoreData>(StoreNames[StoreNames.TabStore], chromeAdapter);
-                const visualizationScanResultStore = new StoreProxy<IVisualizationScanResultData>(
+                const tabStore = new StoreProxy<TabStoreData>(StoreNames[StoreNames.TabStore], chromeAdapter);
+                const visualizationScanResultStore = new StoreProxy<VisualizationScanResultData>(
                     StoreNames[StoreNames.VisualizationScanResultStore],
                     chromeAdapter,
                 );

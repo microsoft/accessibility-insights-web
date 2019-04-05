@@ -3,7 +3,7 @@
 import { VisualizationType } from '../../../common/types/visualization-type';
 
 export type GetLeftNavSelectedKeyProps = {
-    type: VisualizationType;
+    visualizationType: VisualizationType;
 };
 
 export function getOverviewKey(): string {
@@ -11,5 +11,5 @@ export function getOverviewKey(): string {
 }
 
 export function getTestViewKey(props: GetLeftNavSelectedKeyProps): string {
-    return VisualizationType[props.type];
+    return VisualizationType[props.visualizationType];
 }

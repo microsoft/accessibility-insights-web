@@ -12,7 +12,7 @@ import {
     IGeneratedAssessmentInstance,
     ITestStepResult,
 } from '../../../../common/types/store-data/iassessment-result-data';
-import { IVisualizationScanResultData } from '../../../../common/types/store-data/ivisualization-scan-result-data';
+import { VisualizationScanResultData } from '../../../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { AssessmentVisualizationInstance } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { SelectorMapHelper } from '../../../../injected/selector-map-helper';
@@ -21,7 +21,7 @@ import { CreateTestAssessmentProvider } from '../../common/test-assessment-provi
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 
 describe('SelectorMapHelperTest', () => {
-    let scanResultStoreMock: IMock<BaseStore<IVisualizationScanResultData>>;
+    let scanResultStoreMock: IMock<BaseStore<VisualizationScanResultData>>;
     let assessmentStoreMock: IMock<BaseStore<IAssessmentStoreData>>;
     let assessmentsProvider: AssessmentsProvider;
     let testSelectorMap: DictionaryStringTo<IGeneratedAssessmentInstance<any, any>>;
@@ -94,9 +94,9 @@ describe('SelectorMapHelperTest', () => {
     });
 
     test('getState: headings', () => {
-        const type = VisualizationType.Headings;
+        const visualizationType = VisualizationType.Headings;
         const selectorMap = { key1: { target: ['element1'] } };
-        const state = new VisualizationScanResultStoreDataBuilder().withSelectorMap(type, selectorMap).build();
+        const state = new VisualizationScanResultStoreDataBuilder().withSelectorMap(visualizationType, selectorMap).build();
 
         scanResultStoreMock
             .setup(ss => ss.getState())
@@ -104,15 +104,15 @@ describe('SelectorMapHelperTest', () => {
             .verifiable();
         setAssessmentStore();
 
-        testSubject.getSelectorMap(type);
+        testSubject.getSelectorMap(visualizationType);
 
         scanResultStoreMock.verifyAll();
     });
 
     test('getState: landmarks', () => {
-        const type = VisualizationType.Landmarks;
+        const visualizationType = VisualizationType.Landmarks;
         const selectorMap = { key1: { target: ['element1'] } };
-        const state = new VisualizationScanResultStoreDataBuilder().withSelectorMap(type, selectorMap).build();
+        const state = new VisualizationScanResultStoreDataBuilder().withSelectorMap(visualizationType, selectorMap).build();
 
         scanResultStoreMock
             .setup(ss => ss.getState())
@@ -120,15 +120,15 @@ describe('SelectorMapHelperTest', () => {
             .verifiable();
         setAssessmentStore();
 
-        testSubject.getSelectorMap(type);
+        testSubject.getSelectorMap(visualizationType);
 
         scanResultStoreMock.verifyAll();
     });
 
     test('getState: color', () => {
-        const type = VisualizationType.Color;
+        const visualizationType = VisualizationType.Color;
         const selectorMap = { key1: { target: ['element1'] } };
-        const state = new VisualizationScanResultStoreDataBuilder().withSelectorMap(type, selectorMap).build();
+        const state = new VisualizationScanResultStoreDataBuilder().withSelectorMap(visualizationType, selectorMap).build();
 
         scanResultStoreMock
             .setup(ss => ss.getState())
@@ -136,13 +136,13 @@ describe('SelectorMapHelperTest', () => {
             .verifiable();
         setAssessmentStore();
 
-        testSubject.getSelectorMap(type);
+        testSubject.getSelectorMap(visualizationType);
 
         scanResultStoreMock.verifyAll();
     });
 
     test('getState: tabStops', () => {
-        const type = VisualizationType.TabStops;
+        const visualizationType = VisualizationType.TabStops;
         const state = new VisualizationScanResultStoreDataBuilder().build();
 
         state.tabStops.tabbedElements = [];
@@ -153,14 +153,14 @@ describe('SelectorMapHelperTest', () => {
             .verifiable();
         setAssessmentStore();
 
-        testSubject.getSelectorMap(type);
+        testSubject.getSelectorMap(visualizationType);
 
         scanResultStoreMock.verifyAll();
     });
 
     test('getState for assessment, selector map is not null', () => {
         const assessment = assessmentsProvider.all()[0];
-        const type = assessment.type;
+        const visualizationType = assessment.visualizationType;
         const firstStep = assessment.requirements[0];
 
         const selectorMap = {
@@ -206,7 +206,7 @@ describe('SelectorMapHelperTest', () => {
             .returns(() => state as any)
             .verifiable();
 
-        const result = testSubject.getSelectorMap(type);
+        const result = testSubject.getSelectorMap(visualizationType);
 
         assessmentStoreMock.verifyAll();
         const expectedSelectedMap = {
@@ -228,7 +228,7 @@ describe('SelectorMapHelperTest', () => {
 
     test('getState for assessment: selectorMap null', () => {
         const assessment = assessmentsProvider.all()[0];
-        const type = assessment.type;
+        const visualizationType = assessment.visualizationType;
         const firstStep = assessment.requirements[0];
 
         const selectorMap = null;
@@ -248,7 +248,7 @@ describe('SelectorMapHelperTest', () => {
             .returns(() => state as any)
             .verifiable();
 
-        const result = testSubject.getSelectorMap(type);
+        const result = testSubject.getSelectorMap(visualizationType);
 
         assessmentStoreMock.verifyAll();
 

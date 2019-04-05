@@ -13,6 +13,7 @@ import { VisualizationStore } from '../../../../background/stores/visualization-
 import { Messages } from '../../../../common/messages';
 import { IVisualizationStoreData } from '../../../../common/types/store-data/ivisualization-store-data';
 import { WindowUtils } from '../../../../common/window-utils';
+import { itIsFunction } from '../../common/it-is-function';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 
 describe('InjectorControllerTest', () => {
@@ -176,7 +177,7 @@ class InjectorControllerValidator {
 
     public setupTimeoutHandler(times: number): InjectorControllerValidator {
         this.mockWindowUtils
-            .setup(x => x.setTimeout(It.isAny(), It.isAnyNumber()))
+            .setup(x => x.setTimeout(itIsFunction, It.isAnyNumber()))
             .callback(handler => {
                 this.setTimeoutHandler = handler;
             })

@@ -75,7 +75,7 @@ export const Instructions: Requirement = {
         {
             key: 'instructions-info',
             name: 'Instructions',
-            onRender: PropertyBagColumnRendererFactory.get<DefaultWidgetPropertyBag>(propertyBagConfig),
+            onRender: PropertyBagColumnRendererFactory.getRenderer<DefaultWidgetPropertyBag>(propertyBagConfig),
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),

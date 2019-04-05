@@ -597,17 +597,17 @@ describe('AssessmentStoreTest', () => {
     });
 
     test('on selectTestStep', () => {
-        const type = 1 as VisualizationType;
+        const visualizationType = 1 as VisualizationType;
         const requirement = 'test-step';
         const initialState = new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object).build();
         const finalState = new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object)
-            .withSelectedTestType(type)
+            .withSelectedTestType(visualizationType)
             .withSelectedTestStep(requirement)
             .build();
 
         const payload: SelectRequirementPayload = {
             selectedRequirement: requirement,
-            selectedTest: type,
+            selectedTest: visualizationType,
         };
 
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());

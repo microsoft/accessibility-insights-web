@@ -37,7 +37,7 @@ const gettingStarted: JSX.Element = (
 
 export const NativeWidgetsAssessment: Assessment = AssessmentBuilder.Assisted({
     key,
-    type: VisualizationType.NativeWidgets,
+    visualizationType: VisualizationType.NativeWidgets,
     title,
     gettingStarted,
     guidance,

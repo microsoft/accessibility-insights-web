@@ -3,7 +3,6 @@
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
-
 import { AssessmentsProvider } from '../assessments/types/iassessments-provider';
 import { ThemeDeps } from '../common/components/theme';
 import { withStoreSubscription, WithStoreSubscriptionDeps } from '../common/components/with-store-subscription';
@@ -14,11 +13,11 @@ import { ScopingActionMessageCreator } from '../common/message-creators/scoping-
 import { DetailsViewData } from '../common/types/store-data/details-view-data';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
-import { ITabStoreData } from '../common/types/store-data/itab-store-data';
-import { IVisualizationScanResultData } from '../common/types/store-data/ivisualization-scan-result-data';
 import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
+import { TabStoreData } from '../common/types/store-data/tab-store-data';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
+import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DetailsViewCommandBarDeps } from './components/details-view-command-bar';
 import { DetailsViewOverlay, DetailsViewOverlayDeps } from './components/details-view-overlay';
@@ -65,8 +64,8 @@ export interface DetailsViewContainerProps {
 
 export interface DetailsViewContainerState {
     visualizationStoreData: IVisualizationStoreData;
-    tabStoreData: ITabStoreData;
-    visualizationScanResultStoreData: IVisualizationScanResultData;
+    tabStoreData: TabStoreData;
+    visualizationScanResultStoreData: VisualizationScanResultData;
     featureFlagStoreData: FeatureFlagStoreData;
     detailsViewStoreData: DetailsViewData;
     assessmentStoreData: IAssessmentStoreData;

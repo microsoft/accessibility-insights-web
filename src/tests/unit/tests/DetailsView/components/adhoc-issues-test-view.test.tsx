@@ -4,11 +4,10 @@ import { shallow } from 'enzyme';
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
-
 import { DisplayableVisualizationTypeData } from '../../../../../common/configs/visualization-configuration-factory';
-import { ITabStoreData } from '../../../../../common/types/store-data/itab-store-data';
-import { IVisualizationScanResultData } from '../../../../../common/types/store-data/ivisualization-scan-result-data';
 import { IScanData, IVisualizationStoreData, TestsEnabledState } from '../../../../../common/types/store-data/ivisualization-store-data';
+import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
+import { VisualizationScanResultData } from '../../../../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { AdhocIssuesTestView, AdhocIssuesTestViewProps } from '../../../../../DetailsView/components/adhoc-issues-test-view';
@@ -26,7 +25,7 @@ describe('AdhocIssuesTestView', () => {
     let scanDataStub: IScanData;
     let clickHandlerStub: (event: any) => void;
     let visualizationStoreDataStub: IVisualizationStoreData;
-    let visualizationScanResultStoreDataStub: IVisualizationScanResultData;
+    let visualizationScanResultStoreDataStub: VisualizationScanResultData;
     let selectedTest: VisualizationType;
     let actionMessageCreatorStub: DetailsViewActionMessageCreator;
     let issuesSelectionStub: ISelection;
@@ -89,7 +88,7 @@ describe('AdhocIssuesTestView', () => {
     it('should return target page changed view as tab is changed', () => {
         props.tabStoreData = {
             isChanged: true,
-        } as ITabStoreData;
+        } as TabStoreData;
 
         const actual = shallow(<AdhocIssuesTestView {...props} />);
         expect(actual.debug()).toMatchSnapshot();
@@ -99,7 +98,7 @@ describe('AdhocIssuesTestView', () => {
     it('should return issues table with scanning to false', () => {
         props.tabStoreData = {
             isChanged: false,
-        } as ITabStoreData;
+        } as TabStoreData;
         props.visualizationStoreData.scanning = null;
 
         const actual = shallow(<AdhocIssuesTestView {...props} />);
@@ -110,7 +109,7 @@ describe('AdhocIssuesTestView', () => {
     it('should return issues table with violations to null', () => {
         props.tabStoreData = {
             isChanged: false,
-        } as ITabStoreData;
+        } as TabStoreData;
         props.visualizationScanResultData.issues.scanResult = null;
 
         const actual = shallow(<AdhocIssuesTestView {...props} />);

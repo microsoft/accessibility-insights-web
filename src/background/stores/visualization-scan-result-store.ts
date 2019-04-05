@@ -4,7 +4,7 @@ import { autobind } from '@uifabric/utilities';
 import * as _ from 'lodash/index';
 import { forOwn } from 'lodash/index';
 import { StoreNames } from '../../common/stores/store-names';
-import { IVisualizationScanResultData } from '../../common/types/store-data/ivisualization-scan-result-data';
+import { VisualizationScanResultData } from '../../common/types/store-data/visualization-scan-result-data';
 import { ScanCompletedPayload } from '../../injected/analyzers/analyzer';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from '../../injected/scanner-utils';
 import { DictionaryStringTo } from '../../types/common-types';
@@ -14,7 +14,7 @@ import { VisualizationScanResultActions } from '../actions/visualization-scan-re
 import { TabStopEvent } from './../../injected/tab-stops-listener';
 import { BaseStoreImpl } from './base-store-impl';
 
-export class VisualizationScanResultStore extends BaseStoreImpl<IVisualizationScanResultData> {
+export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationScanResultData> {
     private visualizationScanResultsActions: VisualizationScanResultActions;
     private tabActions: TabActions;
 
@@ -25,8 +25,8 @@ export class VisualizationScanResultStore extends BaseStoreImpl<IVisualizationSc
         this.tabActions = tabActions;
     }
 
-    public getDefaultState(): IVisualizationScanResultData {
-        const state: Partial<IVisualizationScanResultData> = {
+    public getDefaultState(): VisualizationScanResultData {
+        const state: Partial<VisualizationScanResultData> = {
             tabStops: {
                 tabbedElements: null,
             },
@@ -44,7 +44,7 @@ export class VisualizationScanResultStore extends BaseStoreImpl<IVisualizationSc
             };
         });
 
-        return state as IVisualizationScanResultData;
+        return state as VisualizationScanResultData;
     }
 
     protected addActionListeners(): void {

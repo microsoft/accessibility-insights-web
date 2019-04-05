@@ -6,13 +6,14 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { Analyzer, AnalyzerConfiguration, AxeAnalyzerResult, ScanCompletedPayload } from './analyzer';
 
 export type MessageType = {
+    // tslint:disable-next-line: no-reserved-keywords
     type: string;
     payload: ScanCompletedPayload<any>;
 };
 
 export class BaseAnalyzer implements Analyzer {
     protected sendMessage: (message) => void;
-    protected type: VisualizationType;
+    protected visualizationType: VisualizationType;
     protected config: AnalyzerConfiguration;
     protected emptyResults: AxeAnalyzerResult = {
         results: {},
@@ -22,7 +23,7 @@ export class BaseAnalyzer implements Analyzer {
     constructor(config: AnalyzerConfiguration, sendMessageDelegate: (message) => void) {
         this.config = config;
         this.sendMessage = sendMessageDelegate;
-        this.type = config.testType;
+        this.visualizationType = config.testType;
     }
 
     public analyze(): void {

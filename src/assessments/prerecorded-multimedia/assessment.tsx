@@ -36,7 +36,7 @@ const gettingStartedText: JSX.Element = (
 );
 
 export const PrerecordedMultimediaAssessment = AssessmentBuilder.Manual({
-    type: VisualizationType.PrerecordedMultimediaAssessment,
+    visualizationType: VisualizationType.PrerecordedMultimediaAssessment,
     key,
     gettingStarted: gettingStartedText,
     title,

@@ -33,8 +33,8 @@ class VisualizationWindowMessageStubBuilder {
     private elementResults?: AssessmentVisualizationInstance[];
     private featureFlagStoreData?: FeatureFlagStoreData;
 
-    public constructor(type: VisualizationType, configId: string) {
-        this.visualizationType = type;
+    public constructor(visualizationType: VisualizationType, configId: string) {
+        this.visualizationType = visualizationType;
         this.configId = configId;
         this.featureFlagStoreData = getDefaultFeatureFlagValues();
     }

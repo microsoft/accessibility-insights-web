@@ -1136,10 +1136,10 @@ class ActionCreatorValidator {
     public setupCreateNotificationByVisualizationKey(
         selectorMap: DictionaryStringTo<any>,
         key: string,
-        type: VisualizationType,
+        visualizationType: VisualizationType,
     ): ActionCreatorValidator {
         this.notificationCreatorStrictMock
-            .setup(x => x.createNotificationByVisualizationKey(selectorMap, key, type))
+            .setup(x => x.createNotificationByVisualizationKey(selectorMap, key, visualizationType))
             .verifiable(Times.once());
 
         return this;

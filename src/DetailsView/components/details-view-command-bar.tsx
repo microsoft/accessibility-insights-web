@@ -9,7 +9,7 @@ import * as React from 'react';
 import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../../common/types/store-data/iassessment-result-data';
-import { ITabStoreData } from '../../common/types/store-data/itab-store-data';
+import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { ReportGenerator, ReportGeneratorDeps } from '../reports/report-generator';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
@@ -24,7 +24,7 @@ export type DetailsViewCommandBarDeps = ExportDialogDeps &
 export interface DetailsViewCommandBarProps {
     deps: DetailsViewCommandBarDeps;
     featureFlagStoreData: FeatureFlagStoreData;
-    tabStoreData: ITabStoreData;
+    tabStoreData: TabStoreData;
     actionMessageCreator: DetailsViewActionMessageCreator;
     assessmentStoreData: IAssessmentStoreData;
     assessmentsProvider: AssessmentsProvider;

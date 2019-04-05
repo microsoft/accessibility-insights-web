@@ -7,7 +7,7 @@ import { PersistedData } from '../../../../background/get-persisted-data';
 import { GlobalContext } from '../../../../background/global-context';
 import { GlobalContextFactory } from '../../../../background/global-context-factory';
 import { Interpreter } from '../../../../background/interpreter';
-import { ILocalStorageData } from '../../../../background/storage-data';
+import { LocalStorageData } from '../../../../background/storage-data';
 import { CommandStore } from '../../../../background/stores/global/command-store';
 import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
 import { LaunchPanelStore } from '../../../../background/stores/global/launch-panel-store';
@@ -20,7 +20,7 @@ describe('GlobalContextFactoryTest', () => {
     let _mockChromeAdapter: IMock<BrowserAdapter>;
     let _mocktelemetryEventHandler: IMock<TelemetryEventHandler>;
     let _mockTelemetryDataFactory: IMock<TelemetryDataFactory>;
-    let userDataStub: ILocalStorageData;
+    let userDataStub: LocalStorageData;
     let idbInstance: IndexedDBAPI;
 
     beforeAll(() => {
