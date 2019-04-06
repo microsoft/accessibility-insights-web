@@ -8,8 +8,8 @@ import { AssessmentTestResult } from '../../common/assessment/assessment-test-re
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration-factory';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { IAssessmentStoreData } from '../../common/types/store-data/iassessment-result-data';
-import { IVisualizationStoreData } from '../../common/types/store-data/ivisualization-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
+import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 import { AssessmentView, AssessmentViewDeps } from './assessment-view';
 
@@ -22,7 +22,7 @@ export interface AssessmentTestViewProps {
     deps: AssessmentTestViewDeps;
     tabStoreData: TabStoreData;
     assessmentStoreData: IAssessmentStoreData;
-    visualizationStoreData: IVisualizationStoreData;
+    visualizationStoreData: VisualizationStoreData;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
     configuration: VisualizationConfiguration;
 }

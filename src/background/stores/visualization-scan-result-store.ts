@@ -1,17 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-import * as _ from 'lodash/index';
-import { forOwn } from 'lodash/index';
+import { forOwn } from 'lodash';
+import * as _ from 'lodash';
 import { StoreNames } from '../../common/stores/store-names';
 import { VisualizationScanResultData } from '../../common/types/store-data/visualization-scan-result-data';
 import { ScanCompletedPayload } from '../../injected/analyzers/analyzer';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from '../../injected/scanner-utils';
+import { TabStopEvent } from '../../injected/tab-stops-listener';
 import { DictionaryStringTo } from '../../types/common-types';
 import { AddTabbedElementPayload } from '../actions/action-payloads';
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
-import { TabStopEvent } from './../../injected/tab-stops-listener';
 import { BaseStoreImpl } from './base-store-impl';
 
 export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationScanResultData> {

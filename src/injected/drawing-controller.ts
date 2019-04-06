@@ -7,10 +7,10 @@ import { AssessmentsProvider } from '../assessments/types/iassessments-provider'
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../common/enum-helper';
 import { FeatureFlags } from '../common/feature-flags';
+import { HTMLElementUtils } from '../common/html-element-utils';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryNumberTo } from '../types/common-types';
-import { HTMLElementUtils } from './../common/html-element-utils';
 import { ErrorMessageContent } from './frameCommunicators/error-message-content';
 import { FrameCommunicator, MessageRequest } from './frameCommunicators/frame-communicator';
 import {

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash/index';
+import * as _ from 'lodash';
 
 import { AssessmentDefaultMessageGenerator, DefaultMessageInterface } from '../../assessments/assessment-default-message-generator';
 import { Assessment } from '../../assessments/types/iassessment';

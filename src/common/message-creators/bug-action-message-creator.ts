@@ -3,7 +3,7 @@
 import { BaseActionPayload } from '../../background/actions/action-payloads';
 import { Messages } from '../messages';
 import { TelemetryDataFactory } from '../telemetry-data-factory';
-import { FILE_ISSUE_CLICK, FileIssueClickService, TelemetryEventSource } from './../telemetry-events';
+import { FILE_ISSUE_CLICK, FileIssueClickService, TelemetryEventSource } from '../telemetry-events';
 import { BaseActionMessageCreator } from './base-action-message-creator';
 
 export class BugActionMessageCreator extends BaseActionMessageCreator {

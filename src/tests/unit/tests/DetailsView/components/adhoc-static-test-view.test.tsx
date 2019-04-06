@@ -5,7 +5,7 @@ import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { DisplayableVisualizationTypeData } from '../../../../../common/configs/visualization-configuration-factory';
-import { IScanData, IVisualizationStoreData, TestsEnabledState } from '../../../../../common/types/store-data/ivisualization-store-data';
+import { ScanData, TestsEnabledState, VisualizationStoreData } from '../../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import {
     AdhocStaticTestView,
@@ -17,12 +17,12 @@ import { ContentReference } from '../../../../../views/content/content-page';
 
 describe('AdhocStaticTestView', () => {
     let props: AdhocStaticTestViewProps;
-    let getStoreDataMock: IMock<(data: TestsEnabledState) => IScanData>;
+    let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
     let clickHandlerFactoryMock: IMock<DetailsViewToggleClickHandlerFactory>;
     let displayableDataStub: DisplayableVisualizationTypeData;
-    let scanDataStub: IScanData;
+    let scanDataStub: ScanData;
     let clickHandlerStub: (event: any) => void;
-    let visualizationStoreDataStub: IVisualizationStoreData;
+    let visualizationStoreDataStub: VisualizationStoreData;
     let selectedTest: VisualizationType;
 
     beforeEach(() => {
@@ -37,7 +37,7 @@ describe('AdhocStaticTestView', () => {
         };
         visualizationStoreDataStub = {
             tests: {},
-        } as IVisualizationStoreData;
+        } as VisualizationStoreData;
         clickHandlerStub = () => {};
         selectedTest = -1;
 

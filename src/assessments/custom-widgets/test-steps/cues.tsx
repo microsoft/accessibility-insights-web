@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { AnalyzerConfigurationFactory } from '../../../assessments/common/analyzer-configuration-factory';
 import { CustomWidgetPropertyBag } from '../../../common/types/property-bag/icustom-widgets';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
@@ -11,6 +10,7 @@ import { TestAutomaticallyPassedNotice } from '../../../content/test/common/test
 import * as content from '../../../content/test/custom-widgets/cues';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
+import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
 import { NoValue } from '../../common/property-bag-column-renderer';
 import * as Markup from '../../markup';

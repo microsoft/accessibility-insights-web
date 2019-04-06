@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { UpdateInstanceVisibilityPayload } from '../background/actions/action-payloads';
+import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { Messages } from '../common/messages';
 import { VisualizationType } from '../common/types/visualization-type';
 import { WindowUtils } from '../common/window-utils';
 import { DictionaryNumberTo } from '../types/common-types';
-import { VisualizationConfigurationFactory } from './../common/configs/visualization-configuration-factory';
 import { AssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
 
 export class InstanceVisibilityChecker {

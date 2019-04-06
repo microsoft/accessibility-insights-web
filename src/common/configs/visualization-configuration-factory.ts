@@ -23,7 +23,7 @@ import { ContentPageComponent } from '../../views/content/content-page';
 import { EnumHelper } from '../enum-helper';
 import { IAnalyzerTelemetryCallback } from '../types/analyzer-telemetry-callbacks';
 import { IAssessmentData, IAssessmentStoreData } from '../types/store-data/iassessment-result-data';
-import { IScanData, TestsEnabledState } from '../types/store-data/ivisualization-store-data';
+import { ScanData, TestsEnabledState } from '../types/store-data/visualization-store-data';
 import { TelemetryProcessor } from '../types/telemetry-processor';
 import { VisualizationType } from '../types/visualization-type';
 import { TestMode } from './test-mode';
@@ -38,10 +38,10 @@ export interface DisplayableVisualizationTypeData {
 export interface AssesssmentVisualizationConfiguration {
     key: string;
     getTestView: (props: TestViewProps) => JSX.Element;
-    getStoreData: (data: TestsEnabledState) => IScanData;
-    enableTest: (data: IScanData, payload: ToggleActionPayload) => void;
-    disableTest: (data: IScanData, step?: string) => void;
-    getTestStatus: (data: IScanData, step?: string) => boolean;
+    getStoreData: (data: TestsEnabledState) => ScanData;
+    enableTest: (data: ScanData, payload: ToggleActionPayload) => void;
+    disableTest: (data: ScanData, step?: string) => void;
+    getTestStatus: (data: ScanData, step?: string) => boolean;
     getAssessmentData?: (data: IAssessmentStoreData) => IAssessmentData;
     setAssessmentData?: (data: IAssessmentStoreData, selectorMap: DictionaryStringTo<any>, instanceMap?: DictionaryStringTo<any>) => void;
     analyzerMessageType: string;
@@ -63,7 +63,7 @@ export interface VisualizationConfiguration extends AssesssmentVisualizationConf
     testMode: TestMode;
     featureFlagToEnable?: string;
     getTestView: (props: TestViewProps) => JSX.Element;
-    getStoreData: (data: TestsEnabledState) => IScanData;
+    getStoreData: (data: TestsEnabledState) => ScanData;
     getAssessmentData?: (data: IAssessmentStoreData) => IAssessmentData;
     setAssessmentData?: (data: IAssessmentStoreData, selectorMap: DictionaryStringTo<any>, instanceMap?: DictionaryStringTo<any>) => void;
     displayableData: DisplayableVisualizationTypeData;

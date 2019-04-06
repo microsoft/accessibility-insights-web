@@ -17,9 +17,9 @@ import { CreateIssueDetailsTextData } from '../../common/types/create-issue-deta
 import { DevToolState } from '../../common/types/store-data/idev-tool-state';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { DictionaryStringTo } from '../../types/common-types';
+import { DetailsDialogHandler } from '../details-dialog-handler';
 import { DecoratedAxeNodeResult } from '../scanner-utils';
 import { TargetPageActionMessageCreator } from '../target-page-action-message-creator';
-import { DetailsDialogHandler } from './../details-dialog-handler';
 import { FixInstructionPanel } from './fix-instruction-panel';
 
 export enum CheckType {
