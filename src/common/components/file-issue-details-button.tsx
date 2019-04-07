@@ -6,6 +6,7 @@ import { DefaultButton, IButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 
 import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
+import { LadyBugSolidIcon } from '../../common/icons/lady-bug-solid-icon';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { FileIssueDetailsHandler } from '../file-issue-details-handler';
 import { HTMLElementUtils } from '../html-element-utils';
@@ -98,11 +99,11 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
             <>
                 <DefaultButton
                     componentRef={this.button}
-                    iconProps={{ iconName: 'ladybugSolid' }}
                     className={'create-bug-button'}
                     onClick={this.onClickFileIssueButtonNeedsSettings}
                 >
-                    File issue
+                    <LadyBugSolidIcon />
+                    <div className="ms-Button-label">File issue</div>
                 </DefaultButton>
                 {this.renderHelpText()}
             </>
@@ -123,13 +124,13 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
         return (
             <DefaultButton
                 componentRef={this.button}
-                iconProps={{ iconName: 'ladybugSolid' }}
                 className={'create-bug-button'}
                 target="_blank"
                 onClick={this.onClickFileIssueButton}
                 href={this.getIssueDetailsUrl(this.props.issueDetailsData.ruleResult)}
             >
-                File issue
+                <LadyBugSolidIcon />
+                <div className="ms-Button-label">File issue</div>
             </DefaultButton>
         );
     }
