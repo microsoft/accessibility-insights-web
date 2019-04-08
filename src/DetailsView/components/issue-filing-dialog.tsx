@@ -3,6 +3,7 @@
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
 
+import { BugFilingServiceProvider } from '../../bug-filing/bug-filing-service-provider';
 import { NamedSFC } from '../../common/react/named-sfc';
 
 export interface IssueFilingDialogProps {
@@ -11,20 +12,18 @@ export interface IssueFilingDialogProps {
     onClose: () => void;
 }
 
-export interface IssueFilingDialogDeps {}
+export interface IssueFilingDialogDeps {
+    bugFilingServiceProvider: BugFilingServiceProvider;
+}
 
 const titleLabel = 'Specify issue filing location';
 
 export const IssueFilingDialog = NamedSFC<IssueFilingDialogProps>('IssueFilingDialog', props => {
-    const onDismiss = (): void => {
-        props.onClose();
-    };
-
     return (
         <Dialog
             className={'issue-filing-dialog'}
             hidden={!props.isOpen}
-            onDismiss={onDismiss}
+            onDismiss={props.onClose}
             dialogContentProps={{
                 type: DialogType.normal,
                 title: titleLabel,
