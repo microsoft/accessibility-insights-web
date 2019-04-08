@@ -10,7 +10,7 @@ export type SettingsProvider = {
     all: () => SettingsComponent[];
 };
 
-export const createProvider = (settings: SettingsComponent[]): SettingsProvider => {
+export const createSettingsProvider = (settings: SettingsComponent[]): SettingsProvider => {
     const all = () => {
         return settings;
     };

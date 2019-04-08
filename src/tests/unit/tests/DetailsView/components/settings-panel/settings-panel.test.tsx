@@ -8,7 +8,7 @@ import { UserConfigurationStoreData } from '../../../../../../common/types/store
 import { DetailsViewActionMessageCreator } from '../../../../../../DetailsView/actions/details-view-action-message-creator';
 import { SettingsPanel, SettingsPanelProps } from '../../../../../../DetailsView/components/settings-panel/settings-panel';
 import { SettingsProps } from '../../../../../../DetailsView/components/settings-panel/settings/settings-props';
-import { createProvider } from '../../../../../../DetailsView/components/settings-panel/settings/settings-provider';
+import { createSettingsProvider } from '../../../../../../DetailsView/components/settings-panel/settings/settings-provider';
 
 describe('SettingsPanelTest', () => {
     let userConfigStoreData: UserConfigurationStoreData;
@@ -16,7 +16,7 @@ describe('SettingsPanelTest', () => {
     it.each([true, false])('render - isPanelOpen = %s', isPanelOpen => {
         userConfigStoreData = {} as UserConfigurationStoreData;
 
-        const testSettingsProvider = createProvider([
+        const testSettingsProvider = createSettingsProvider([
             createTestSettings('test-settings-1'),
             createTestSettings('test-settings-2'),
             createTestSettings('test-settings-3'),
