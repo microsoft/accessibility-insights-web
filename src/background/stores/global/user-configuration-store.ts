@@ -3,7 +3,6 @@
 import { autobind } from '@uifabric/utilities';
 import { cloneDeep, isPlainObject } from 'lodash';
 
-import { FeatureFlags } from '../../../common/feature-flags';
 import { IndexedDBAPI } from '../../../common/indexedDB/indexedDB';
 import { StoreNames } from '../../../common/stores/store-names';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
@@ -14,7 +13,6 @@ import {
     SetIssueTrackerPathPayload,
     SetTelemetryStatePayload,
 } from '../../actions/action-payloads';
-import { FeatureFlagPayload } from '../../actions/feature-flag-actions';
 import { UserConfigurationActions } from '../../actions/user-configuration-actions';
 import { IndexedDBDataKeys } from '../../IndexedDBDataKeys';
 import { BaseStoreImpl } from '../base-store-impl';
