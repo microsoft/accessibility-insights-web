@@ -26,7 +26,6 @@ export const BugFilingChoiceGroup = NamedSFC<BugFilingChoiceGroupProps>('BugFili
             return {
                 key: service.key,
                 text: service.displayName,
-                ariaLabel: service.displayName,
             };
         });
     };
