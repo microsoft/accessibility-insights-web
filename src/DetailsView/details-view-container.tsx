@@ -32,6 +32,7 @@ import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-t
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
 import { ReportGenerator } from './reports/report-generator';
+import { IssueFilingDialog } from './components/issue-filing-dialog';
 
 export type DetailsViewContainerDeps = {
     getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration;
@@ -124,6 +125,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
                 {this.renderHeader()}
                 <div className="table column-layout details-view-body">{this.renderDetailsView()}</div>
                 {this.renderOverlay()}
+                <IssueFilingDialog isOpen={true} onClose={() => console.log('close this down')} {...this.props} />
             </div>
         );
     }

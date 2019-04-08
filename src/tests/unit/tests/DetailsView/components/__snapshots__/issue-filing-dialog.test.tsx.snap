@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IssueFilingDialog renders open 1`] = `
+<StyledWithResponsiveMode
+  className="issue-filing-dialog"
+  dialogContentProps={
+    Object {
+      "showCloseButton": false,
+      "subText": "This configuration can be changed again in settings.",
+      "subTextId": "issue-filing-dialog-subtext",
+      "title": "Specify issue filing location",
+      "titleId": "issue-filing-dialog-title",
+      "type": 0,
+    }
+  }
+  hidden={false}
+  modalProps={
+    Object {
+      "containerClassName": "insights-dialog-main-override",
+      "isBlocking": false,
+    }
+  }
+  onDismiss={[Function]}
+>
+  <StyledDialogFooterBase />
+</StyledWithResponsiveMode>
+`;
