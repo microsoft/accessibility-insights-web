@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash/index';
+import * as _ from 'lodash';
 
 import { DrawerUtils } from './drawer-utils';
 import { SVGNamespaceUrl } from './svg-constants';

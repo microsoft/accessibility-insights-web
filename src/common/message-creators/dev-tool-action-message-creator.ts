@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { InspectElementPayload, InspectFrameUrlPayload, OnDevToolOpenPayload } from '../../background/actions/action-payloads';
-import { BaseActionMessageCreator } from '../message-creators/base-action-message-creator';
 import { Messages } from '../messages';
 import { TelemetryDataFactory } from '../telemetry-data-factory';
+import { BaseActionMessageCreator } from './base-action-message-creator';
 
 export class DevToolActionMessageCreator extends BaseActionMessageCreator {
     protected telemetryFactory: TelemetryDataFactory;

@@ -6,8 +6,8 @@ import { BaseStore } from '../common/base-store';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DetailsViewData } from '../common/types/store-data/details-view-data';
 import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
-import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
+import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { title } from '../content/strings/application';
 import { GetDetailsRightPanelConfiguration } from './components/details-view-right-panel';
 import { GetDetailsSwitcherNavConfiguration } from './components/details-view-switcher-nav';
@@ -16,7 +16,7 @@ export class DocumentTitleUpdater {
     constructor(
         private readonly tabStore: BaseStore<TabStoreData>,
         private readonly detailsViewStore: BaseStore<DetailsViewData>,
-        private readonly visualizationStore: BaseStore<IVisualizationStoreData>,
+        private readonly visualizationStore: BaseStore<VisualizationStoreData>,
         private readonly assessmentStore: BaseStore<IAssessmentStoreData>,
         private readonly getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration,
         private readonly getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration,

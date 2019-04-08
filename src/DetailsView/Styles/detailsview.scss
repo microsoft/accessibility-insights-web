@@ -1259,10 +1259,39 @@ div.insights-file-issue-details-dialog-container {
                     .copy-issue-details-button {
                         vertical-align: baseline;
                         margin-left: 24px;
+                        .ms-Button-label {
+                            margin-left: 4px;
+                            margin-right: 4px;
+                            line-height: 100%;
+                            font-weight: 600;
+                        }
+                        svg {
+                            margin-left: 4px;
+                            margin-right: 4px;
+
+                            path {
+                                fill: $neutral-100 !important;
+                                fill-opacity: 0.9 !important;
+                            }
+                        }
                     }
                     .create-bug-button {
                         vertical-align: baseline;
                         margin-left: 8px;
+                        .ms-Button-label {
+                            margin-left: 4px;
+                            margin-right: 4px;
+                            line-height: 100%;
+                            font-weight: 600;
+                        }
+                        svg {
+                            margin-left: 4px;
+                            margin-right: 4px;
+                            path {
+                                fill: $neutral-100 !important;
+                                fill-opacity: 0.9 !important;
+                            }
+                        }
                     }
                     .create-bug-button-help {
                         display: inline-block;

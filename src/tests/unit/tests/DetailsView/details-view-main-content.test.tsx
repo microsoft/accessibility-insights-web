@@ -16,8 +16,8 @@ import {
     IAssessmentStoreData,
     PersistedTabInfo,
 } from '../../../../common/types/store-data/iassessment-result-data';
-import { IScanData, TestsEnabledState } from '../../../../common/types/store-data/ivisualization-store-data';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
+import { ScanData, TestsEnabledState } from '../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../DetailsView/actions/details-view-action-message-creator';
 import { DetailsRightPanelConfiguration } from '../../../../DetailsView/components/details-view-right-panel';
@@ -35,9 +35,9 @@ describe('DetailsViewMainContentTest', () => {
     let configFactoryMock: IMock<VisualizationConfigurationFactory>;
     let clickHandlerFactoryMock: IMock<DetailsViewToggleClickHandlerFactory>;
     let clickHandlerStub: (event: any) => void;
-    let getStoreDataMock: IMock<(data: TestsEnabledState) => IScanData>;
+    let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
     let configStub: VisualizationConfiguration;
-    let scanDataStub: IScanData;
+    let scanDataStub: ScanData;
     let props: DetailsViewMainContentProps;
     let rightPanelConfig: DetailsRightPanelConfiguration;
     let switcherNavConfig: DetailsViewSwitcherNavConfiguration;
@@ -75,7 +75,7 @@ describe('DetailsViewMainContentTest', () => {
 
             scanDataStub = {
                 enabled: false,
-            } as IScanData;
+            } as ScanData;
 
             clickHandlerStub = () => {};
 
@@ -171,9 +171,9 @@ describe('DetailsViewMainContentTest', () => {
 
     function setupConfigFactoryMock(
         factoryMock: IMock<VisualizationConfigurationFactory>,
-        givenGetStoreDataMock: IMock<(data: TestsEnabledState) => IScanData>,
+        givenGetStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>,
         config: VisualizationConfiguration,
-        scanData: IScanData,
+        scanData: ScanData,
         givenProps: DetailsViewMainContentProps,
     ): void {
         factoryMock.setup(cfm => cfm.getConfiguration(givenProps.selectedTest)).returns(() => config);

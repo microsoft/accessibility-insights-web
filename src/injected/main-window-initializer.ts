@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
+import { Assessments } from '../assessments/assessments';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
 import { HTMLElementUtils } from '../common/html-element-utils';
@@ -17,14 +18,13 @@ import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-st
 import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
 import { DevToolState } from '../common/types/store-data/idev-tool-state';
 import { InspectStoreData } from '../common/types/store-data/inspect-store-data';
-import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
+import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { generateUID } from '../common/uid-generator';
 import { scan } from '../scanner/exposed-apis';
-import { Assessments } from './../assessments/assessments';
 import { AnalyzerController } from './analyzer-controller';
 import { AnalyzerStateUpdateHandler } from './analyzer-state-update-handler';
 import { AnalyzerProvider } from './analyzers/analyzer-provider';
@@ -49,7 +49,7 @@ export class MainWindowInitializer extends WindowInitializer {
     private frameUrlSearchInitiator: FrameUrlSearchInitiator;
     private analyzerController: AnalyzerController;
     private inspectController: InspectController;
-    private visualizationStoreProxy: StoreProxy<IVisualizationStoreData>;
+    private visualizationStoreProxy: StoreProxy<VisualizationStoreData>;
     private assessmentStoreProxy: StoreProxy<IAssessmentStoreData>;
     private featureFlagStoreProxy: StoreProxy<FeatureFlagStoreData>;
     private userConfigStoreProxy: StoreProxy<UserConfigurationStoreData>;
@@ -63,7 +63,7 @@ export class MainWindowInitializer extends WindowInitializer {
         const asyncInitializationSteps: Promise<void>[] = [];
         asyncInitializationSteps.push(super.initialize());
 
-        this.visualizationStoreProxy = new StoreProxy<IVisualizationStoreData>(
+        this.visualizationStoreProxy = new StoreProxy<VisualizationStoreData>(
             StoreNames[StoreNames.VisualizationStore],
             this.clientChromeAdapter,
         );

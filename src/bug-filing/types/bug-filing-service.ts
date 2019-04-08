@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { CreateIssueDetailsTextData } from './../../common/types/create-issue-details-text-data';
 
-export interface BugFilingOption<Settings = {}> {
+export interface BugFilingService<Settings = {}> {
     key: string;
     displayName: string;
     renderSettingsForm: React.SFC;

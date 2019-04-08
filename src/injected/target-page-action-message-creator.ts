@@ -4,9 +4,9 @@ import { autobind } from '@uifabric/utilities';
 import { BaseActionPayload } from '../background/actions/action-payloads';
 import { BaseActionMessageCreator } from '../common/message-creators/base-action-message-creator';
 import { Messages } from '../common/messages';
+import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import * as TelemetryEvents from '../common/telemetry-events';
-import { TelemetryDataFactory } from './../common/telemetry-data-factory';
-import { TelemetryEventSource } from './../common/telemetry-events';
+import { TelemetryEventSource } from '../common/telemetry-events';
 
 export class TargetPageActionMessageCreator extends BaseActionMessageCreator {
     protected telemetryFactory: TelemetryDataFactory;

@@ -5,6 +5,7 @@ import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 import * as CopyToClipboard from 'react-copy-to-clipboard';
 import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
+import { CopyIcon } from '../../common/icons/copy-icon';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
 import { WindowUtils } from '../window-utils';
@@ -57,12 +58,9 @@ export class CopyIssueDetailsButton extends React.Component<CopyIssueDetailsButt
                     </Toast>
                 ) : null}
                 <CopyToClipboard text={this.getIssueDetailsText(this.props.issueDetailsData.ruleResult)}>
-                    <DefaultButton
-                        iconProps={{ iconName: 'Copy' }}
-                        className={'copy-issue-details-button'}
-                        onClick={this.copyButtonClicked}
-                    >
-                        Copy failure details
+                    <DefaultButton className={'copy-issue-details-button'} onClick={this.copyButtonClicked}>
+                        <CopyIcon />
+                        <div className="ms-Button-label">Copy failure details</div>
                     </DefaultButton>
                 </CopyToClipboard>
             </>

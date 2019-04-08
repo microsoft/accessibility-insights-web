@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 import * as Q from 'q';
-import { WindowUtils } from './../../common/window-utils';
-import { TabStopEvent, TabStopsListener } from './../tab-stops-listener';
+import { WindowUtils } from '../../common/window-utils';
+import { TabStopEvent, TabStopsListener } from '../tab-stops-listener';
 import { AxeAnalyzerResult, FocusAnalyzerConfiguration, ScanBasePayload, ScanUpdatePayload } from './analyzer';
 import { BaseAnalyzer } from './base-analyzer';
 

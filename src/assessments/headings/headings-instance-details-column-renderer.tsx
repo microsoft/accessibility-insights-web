@@ -13,7 +13,8 @@ export function headingsAssessmentInstanceDetailsColumnRenderer(
     const textContent = propertyBag ? propertyBag.headingText : null;
     const headingLevel = propertyBag ? propertyBag.headingLevel : null;
     const labelText = headingLevel ? `H${item.instance.propertyBag.headingLevel}` : 'N/A';
-    const background = headingLevel ? HeadingFormatter.headingStyles[headingLevel].borderColor : '#767676';
+    const headingStyle = headingLevel ? HeadingFormatter.headingStyles[headingLevel] : null;
+    const background = headingStyle ? headingStyle.borderColor : '#767676';
     let customClass: string = null;
 
     if (headingLevel == null) {

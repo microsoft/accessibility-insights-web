@@ -13,11 +13,11 @@ import { ScopingActionMessageCreator } from '../common/message-creators/scoping-
 import { DetailsViewData } from '../common/types/store-data/details-view-data';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
-import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
+import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DetailsViewCommandBarDeps } from './components/details-view-command-bar';
 import { DetailsViewOverlay, DetailsViewOverlayDeps } from './components/details-view-overlay';
@@ -64,7 +64,7 @@ export interface DetailsViewContainerProps {
 }
 
 export interface DetailsViewContainerState {
-    visualizationStoreData: IVisualizationStoreData;
+    visualizationStoreData: VisualizationStoreData;
     tabStoreData: TabStoreData;
     visualizationScanResultStoreData: VisualizationScanResultData;
     featureFlagStoreData: FeatureFlagStoreData;

@@ -10,15 +10,15 @@ exports[`FileIssueDetailsButtonTest render and click with an issue tracker path 
       }
     }
     href="https://github.com/example/example/issues/new?title=buildTitle&body=buildText"
-    iconProps={
-      Object {
-        "iconName": "ladybugSolid",
-      }
-    }
     onClick={[Function]}
     target="_blank"
   >
-    File issue
+    <LadyBugSolidIcon />
+    <div
+      className="ms-Button-label"
+    >
+      File issue
+    </div>
   </CustomizedDefaultButton>
   <FileIssueDetailsDialog
     buttonRef={
@@ -69,15 +69,15 @@ exports[`FileIssueDetailsButtonTest render and click with an issue tracker path 
       }
     }
     href="https://github.com/example/example/issues/new?title=buildTitle&body=buildText"
-    iconProps={
-      Object {
-        "iconName": "ladybugSolid",
-      }
-    }
     onClick={[Function]}
     target="_blank"
   >
-    File issue
+    <LadyBugSolidIcon />
+    <div
+      className="ms-Button-label"
+    >
+      File issue
+    </div>
   </CustomizedDefaultButton>
   <FileIssueDetailsDialog
     buttonRef={
@@ -128,14 +128,14 @@ exports[`FileIssueDetailsButtonTest render and click without issue tracker set 1
           "current": null,
         }
       }
-      iconProps={
-        Object {
-          "iconName": "ladybugSolid",
-        }
-      }
       onClick={[Function]}
     >
-      File issue
+      <LadyBugSolidIcon />
+      <div
+        className="ms-Button-label"
+      >
+        File issue
+      </div>
     </CustomizedDefaultButton>
   </React.Fragment>
   <FileIssueDetailsDialog
@@ -187,14 +187,14 @@ exports[`FileIssueDetailsButtonTest render and click without issue tracker set 2
           "current": null,
         }
       }
-      iconProps={
-        Object {
-          "iconName": "ladybugSolid",
-        }
-      }
       onClick={[Function]}
     >
-      File issue
+      <LadyBugSolidIcon />
+      <div
+        className="ms-Button-label"
+      >
+        File issue
+      </div>
     </CustomizedDefaultButton>
     <div
       aria-live="polite"
