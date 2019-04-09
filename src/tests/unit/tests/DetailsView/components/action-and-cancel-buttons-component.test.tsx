@@ -16,27 +16,30 @@ describe('ActionAndCancelButtonsComponent', () => {
     test('render', () => {
         const primaryButtonOnClickStub = () => {};
         const cancelButtonOnClickStub = () => {};
+        const sampleHref = 'sample href';
         const props: ActionAndCancelButtonsComponentProps = {
             isHidden: false,
             primaryButtonDisabled: false,
             primaryButtonText: 'Test',
             primaryButtonOnClick: primaryButtonOnClickStub,
             cancelButtonOnClick: cancelButtonOnClickStub,
+            primaryButtonHref: sampleHref,
         };
         const testSubject = new ActionAndCancelButtonsComponent(props);
 
         const expected = (
             <div className="action-and-cancel-buttons-component" hidden={props.isHidden}>
-                <div className="button ms-Grid-col ms-sm2 action-cancel-button-col">
+                <div className="button action-cancel-button-col">
+                    <DefaultButton text="Cancel" onClick={props.cancelButtonOnClick} />
+                </div>
+                <div className="button action-cancel-button-col">
                     <DefaultButton
                         primary={true}
                         text={props.primaryButtonText}
                         onClick={props.primaryButtonOnClick}
                         disabled={props.primaryButtonDisabled}
+                        href={sampleHref}
                     />
-                </div>
-                <div className="button ms-Grid-col ms-sm2 action-cancel-button-col">
-                    <DefaultButton text="Cancel" onClick={props.cancelButtonOnClick} />
                 </div>
             </div>
         );

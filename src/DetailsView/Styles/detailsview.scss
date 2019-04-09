@@ -218,11 +218,6 @@ div.insights-file-issue-details-dialog-container {
     .action-and-cancel-buttons-component {
         padding-top: 12px;
     }
-    .action-cancel-button-col {
-        text-align: right;
-        margin-right: 12px;
-        padding-left: 0px;
-    }
     .add-failure-instruction {
         font-weight: 500;
         margin-bottom: 20px;
@@ -231,6 +226,14 @@ div.insights-file-issue-details-dialog-container {
     .header-text {
         margin-top: 30px;
         font-size: 21px;
+    }
+}
+
+.action-and-cancel-buttons-component {
+    display: flex;
+    justify-content: flex-end;
+    .action-cancel-button-col + .action-cancel-button-col {
+        margin-left: 8px;
     }
 }
 

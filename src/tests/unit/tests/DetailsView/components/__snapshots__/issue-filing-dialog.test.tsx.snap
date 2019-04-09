@@ -1,6 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`IssueFilingDialog renders open 1`] = `
+exports[`IssueFilingDialog renders: Closed Dialog 1`] = `
+<StyledWithResponsiveMode
+  className="issue-filing-dialog"
+  dialogContentProps={
+    Object {
+      "showCloseButton": false,
+      "subText": "This configuration can be changed again in settings.",
+      "subTextId": "issue-filing-dialog-subtext",
+      "title": "Specify issue filing location",
+      "titleId": "issue-filing-dialog-title",
+      "type": 0,
+    }
+  }
+  hidden={true}
+  modalProps={
+    Object {
+      "containerClassName": "insights-dialog-main-override",
+      "isBlocking": false,
+    }
+  }
+>
+  <StyledDialogFooterBase>
+    <ActionAndCancelButtonsComponent
+      cancelButtonOnClick={[Function]}
+      isHidden={false}
+      primaryButtonOnClick={[Function]}
+      primaryButtonText="File issue"
+    />
+  </StyledDialogFooterBase>
+</StyledWithResponsiveMode>
+`;
+
+exports[`IssueFilingDialog renders: Opened Dialog 1`] = `
 <StyledWithResponsiveMode
   className="issue-filing-dialog"
   dialogContentProps={
@@ -20,8 +52,14 @@ exports[`IssueFilingDialog renders open 1`] = `
       "isBlocking": false,
     }
   }
-  onDismiss={[Function]}
 >
-  <StyledDialogFooterBase />
+  <StyledDialogFooterBase>
+    <ActionAndCancelButtonsComponent
+      cancelButtonOnClick={[Function]}
+      isHidden={false}
+      primaryButtonOnClick={[Function]}
+      primaryButtonText="File issue"
+    />
+  </StyledDialogFooterBase>
 </StyledWithResponsiveMode>
 `;
