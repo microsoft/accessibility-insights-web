@@ -13,7 +13,7 @@ import { VisualizationConfigurationFactory } from '../../../../common/configs/vi
 import { EnumHelper } from '../../../../common/enum-helper';
 import { getDefaultFeatureFlagValues } from '../../../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
-import { IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
+import { IAssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
 import { VisualizationScanResultData } from '../../../../common/types/store-data/visualization-scan-result-data';
 import { ScanData, VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';

@@ -10,7 +10,7 @@ import {
     IManualTestStepResult,
     InstanceIdToInstanceDataMap,
     RequirementIdToResultMap,
-} from '../common/types/store-data/iassessment-result-data';
+} from '../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../types/common-types';
 
 export type InitialDataCreator = (test: Readonly<Assessment>, persistedTest: IAssessmentData) => IAssessmentData;

@@ -7,7 +7,7 @@ import { AssessmentsProvider } from '../../../../../assessments/types/iassessmen
 import { AssessmentTestProviderDeps, AssessmentTestResult } from '../../../../../common/assessment/assessment-test-result';
 import { RequirementResult } from '../../../../../common/assessment/requirement';
 import { ManualTestStatus, ManualTestStatusData } from '../../../../../common/types/manual-test-status';
-import { IAssessmentData } from '../../../../../common/types/store-data/iassessment-result-data';
+import { IAssessmentData } from '../../../../../common/types/store-data/assessment-result-data';
 
 describe('AssessmentTestResult', () => {
     const assessmentType = -2112;

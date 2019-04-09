@@ -10,7 +10,7 @@ import { AssessmentTestResult } from '../../../../../common/assessment/assessmen
 import { getInnerTextFromJsxElement } from '../../../../../common/get-inner-text-from-jsx-element';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
-import { IAssessmentData } from '../../../../../common/types/store-data/iassessment-result-data';
+import { IAssessmentData } from '../../../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { UrlParser } from '../../../../../common/url-parser';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';

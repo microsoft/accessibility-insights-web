@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
-import { IAssessmentStoreData } from '../../common/types/store-data/iassessment-result-data';
+import { IAssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { ScanResults } from '../../scanner/iruleresults';
 import { AssessmentReportHtmlGenerator, AssessmentReportHtmlGeneratorDeps } from './assessment-report-html-generator';

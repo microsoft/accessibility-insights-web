@@ -22,7 +22,7 @@ import { DictionaryNumberTo, DictionaryStringTo } from '../../types/common-types
 import { ContentPageComponent } from '../../views/content/content-page';
 import { EnumHelper } from '../enum-helper';
 import { IAnalyzerTelemetryCallback } from '../types/analyzer-telemetry-callbacks';
-import { IAssessmentData, IAssessmentStoreData } from '../types/store-data/iassessment-result-data';
+import { IAssessmentData, IAssessmentStoreData } from '../types/store-data/assessment-result-data';
 import { ScanData, TestsEnabledState } from '../types/store-data/visualization-store-data';
 import { TelemetryProcessor } from '../types/telemetry-processor';
 import { VisualizationType } from '../types/visualization-type';

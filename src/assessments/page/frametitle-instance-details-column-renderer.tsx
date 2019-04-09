@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-import { IFrameAssessmentProperties } from '../../common/types/store-data/iassessment-result-data';
+import { IFrameAssessmentProperties } from '../../common/types/store-data/assessment-result-data';
 import { AssessmentInstanceDetailsColumn } from '../../DetailsView/components/assessment-instance-details-column';
 import { AssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
 import { FrameFormatter } from '../../injected/visualization/frame-formatter';

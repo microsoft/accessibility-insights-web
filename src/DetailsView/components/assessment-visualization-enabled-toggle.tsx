@@ -3,7 +3,7 @@
 import { autobind } from '@uifabric/utilities';
 import * as _ from 'lodash';
 
-import { IGeneratedAssessmentInstance } from '../../common/types/store-data/iassessment-result-data';
+import { IGeneratedAssessmentInstance } from '../../common/types/store-data/assessment-result-data';
 import { BaseVisualHelperToggle } from './base-visual-helper-toggle';
 
 export class AssessmentVisualizationEnabledToggle extends BaseVisualHelperToggle {

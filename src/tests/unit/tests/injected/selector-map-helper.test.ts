@@ -11,7 +11,7 @@ import {
     IAssessmentStoreData,
     IGeneratedAssessmentInstance,
     ITestStepResult,
-} from '../../../../common/types/store-data/iassessment-result-data';
+} from '../../../../common/types/store-data/assessment-result-data';
 import { VisualizationScanResultData } from '../../../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { AssessmentVisualizationInstance } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';

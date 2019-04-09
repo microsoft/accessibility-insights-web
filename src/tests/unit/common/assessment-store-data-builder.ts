@@ -6,7 +6,7 @@ import { AssessmentsProvider } from '../../../assessments/types/iassessments-pro
 import { AssessmentDataConverter } from '../../../background/assessment-data-converter';
 import { InitialAssessmentStoreDataGenerator } from '../../../background/initial-assessment-store-data-generator';
 import { AssessmentStore } from '../../../background/stores/assessment-store';
-import { IAssessmentData, IAssessmentStoreData } from '../../../common/types/store-data/iassessment-result-data';
+import { IAssessmentData, IAssessmentStoreData } from '../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { BaseDataBuilder } from './base-data-builder';
 

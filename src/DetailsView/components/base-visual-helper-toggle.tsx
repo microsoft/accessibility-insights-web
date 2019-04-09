@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { VisualHelperToggleConfig } from '../../assessments/types/requirement';
 import { VisualizationToggle } from '../../common/components/visualization-toggle';
-import { IGeneratedAssessmentInstance } from '../../common/types/store-data/iassessment-result-data';
+import { IGeneratedAssessmentInstance } from '../../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../../types/common-types';
 
 export abstract class BaseVisualHelperToggle extends React.Component<VisualHelperToggleConfig> {

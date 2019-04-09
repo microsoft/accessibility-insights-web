@@ -34,7 +34,7 @@ import { StoreNames } from '../common/stores/store-names';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { TelemetryEventSource } from '../common/telemetry-events';
 import { DetailsViewData } from '../common/types/store-data/details-view-data';
-import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
+import { IAssessmentStoreData } from '../common/types/store-data/assessment-result-data';
 import { InspectStoreData } from '../common/types/store-data/inspect-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';

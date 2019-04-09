@@ -9,7 +9,7 @@ import {
     IManualTestStepResult,
     ITestStepResult,
     IUserCapturedInstance,
-} from '../common/types/store-data/iassessment-result-data';
+} from '../common/types/store-data/assessment-result-data';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from '../injected/scanner-utils';
 import { PartialTabOrderPropertyBag } from '../injected/tab-order-property-bag';
 import { TabStopEvent } from '../injected/tab-stops-listener';

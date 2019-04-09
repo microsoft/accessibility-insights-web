@@ -8,7 +8,7 @@ import { AssessmentScanPolicyRunner, IIsAnAssessmentSelected, IScheduleScan } fr
 import { AssessmentStore } from '../../../../background/stores/assessment-store';
 import { VisualizationStore } from '../../../../background/stores/visualization-store';
 import { BaseStore } from '../../../../common/base-store';
-import { IAssessmentData, IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
+import { IAssessmentData, IAssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
 import { TestsEnabledState, VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 

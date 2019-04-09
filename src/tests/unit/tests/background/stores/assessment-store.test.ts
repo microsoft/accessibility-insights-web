@@ -37,7 +37,7 @@ import {
     IManualTestStepResult,
     ITestStepResult,
     PersistedTabInfo,
-} from '../../../../../common/types/store-data/iassessment-result-data';
+} from '../../../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { ScanBasePayload, ScanCompletedPayload, ScanUpdatePayload } from '../../../../../injected/analyzers/analyzer';
 import { TabStopEvent } from '../../../../../injected/tab-stops-listener';

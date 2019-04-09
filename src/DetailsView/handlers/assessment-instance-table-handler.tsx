@@ -10,7 +10,7 @@ import {
     AssessmentNavState,
     IGeneratedAssessmentInstance,
     IUserCapturedInstance,
-} from '../../common/types/store-data/iassessment-result-data';
+} from '../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../types/common-types';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';

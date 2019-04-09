@@ -15,7 +15,7 @@ import {
     IAssessmentData,
     IAssessmentStoreData,
     PersistedTabInfo,
-} from '../../../../common/types/store-data/iassessment-result-data';
+} from '../../../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
 import { ScanData, TestsEnabledState } from '../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';

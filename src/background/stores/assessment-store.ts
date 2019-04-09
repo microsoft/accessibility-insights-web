@@ -15,7 +15,7 @@ import {
     IGeneratedAssessmentInstance,
     ITestStepResult,
     IUserCapturedInstance,
-} from '../../common/types/store-data/iassessment-result-data';
+} from '../../common/types/store-data/assessment-result-data';
 import { ScanBasePayload, ScanCompletedPayload, ScanUpdatePayload } from '../../injected/analyzers/analyzer';
 import { DictionaryStringTo } from '../../types/common-types';
 import { SelectRequirementPayload, UpdateVisibilityPayload } from '../actions/action-payloads';

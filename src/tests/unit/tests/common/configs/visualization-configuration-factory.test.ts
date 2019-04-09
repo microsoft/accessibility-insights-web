@@ -4,7 +4,7 @@ import * as _ from 'lodash';
 
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../../../../../common/enum-helper';
-import { IAssessmentData, IAssessmentStoreData, PersistedTabInfo } from '../../../../../common/types/store-data/iassessment-result-data';
+import { IAssessmentData, IAssessmentStoreData, PersistedTabInfo } from '../../../../../common/types/store-data/assessment-result-data';
 import { ScanData, VisualizationStoreData } from '../../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { VisualizationStoreDataBuilder } from '../../../common/visualization-store-data-builder';

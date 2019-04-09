@@ -19,7 +19,7 @@ import { FeatureFlags } from '../../../../common/feature-flags';
 import { CommandStoreData } from '../../../../common/types/store-data/command-store-data';
 import { DetailsViewData } from '../../../../common/types/store-data/details-view-data';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
-import { IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
+import { IAssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
 import { LaunchPanelStoreData } from '../../../../common/types/store-data/launch-panel-store-data';
 import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';

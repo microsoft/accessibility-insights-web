@@ -5,7 +5,7 @@ import * as React from 'react';
 import { Mock, MockBehavior } from 'typemoq';
 
 import { AssessmentsProvider } from '../../../../../../assessments/types/iassessments-provider';
-import { IAssessmentStoreData, PersistedTabInfo } from '../../../../../../common/types/store-data/iassessment-result-data';
+import { IAssessmentStoreData, PersistedTabInfo } from '../../../../../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../../../../../common/types/store-data/tab-store-data';
 import { UrlParser } from '../../../../../../common/url-parser';
 import { DetailsViewActionMessageCreator } from '../../../../../../DetailsView/actions/details-view-action-message-creator';

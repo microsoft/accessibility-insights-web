@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
-import { IManualTestStepResult } from '../../common/types/store-data/iassessment-result-data';
+import { IManualTestStepResult } from '../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../types/common-types';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';

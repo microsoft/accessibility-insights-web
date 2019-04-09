@@ -15,7 +15,7 @@ import {
     TriggeredByNotApplicable,
 } from '../../../../common/telemetry-events';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
-import { IAssessmentData, IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
+import { IAssessmentData, IAssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
 

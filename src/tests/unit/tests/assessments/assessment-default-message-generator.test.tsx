@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { AssessmentDefaultMessageGenerator } from '../../../../assessments/assessment-default-message-generator';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
-import { IGeneratedAssessmentInstance } from '../../../../common/types/store-data/iassessment-result-data';
+import { IGeneratedAssessmentInstance } from '../../../../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../../../../types/common-types';
 
 describe('AssessmentDefaultMessageGenerator', () => {

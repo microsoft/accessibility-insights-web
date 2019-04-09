@@ -11,7 +11,7 @@ import {
     IGeneratedAssessmentInstance,
     IManualTestStepResult,
     PersistedTabInfo,
-} from '../../../../common/types/store-data/iassessment-result-data';
+} from '../../../../common/types/store-data/assessment-result-data';
 import { excludePassingInstancesFromAssessmentReport } from '../../../../DetailsView/extensions/exclude-passing-instances-from-assessment-report';
 import {
     AssessmentDetailsReportModel,

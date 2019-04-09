@@ -10,7 +10,7 @@ import { ScopingActionMessageCreator } from '../../../../common/message-creators
 import { StoreActionMessageCreator } from '../../../../common/message-creators/store-action-message-creator';
 import { BaseClientStoresHub } from '../../../../common/stores/base-client-stores-hub';
 import { DetailsViewData } from '../../../../common/types/store-data/details-view-data';
-import { IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
+import { IAssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
 import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
 import { VisualizationScanResultData } from '../../../../common/types/store-data/visualization-scan-result-data';

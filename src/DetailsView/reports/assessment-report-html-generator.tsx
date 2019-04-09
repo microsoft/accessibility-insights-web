@@ -7,7 +7,7 @@ import { assessmentsProviderWithFeaturesEnabled } from '../../assessments/assess
 import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
-import { IAssessmentStoreData } from '../../common/types/store-data/iassessment-result-data';
+import { IAssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { AssessmentReportModelBuilderFactory } from './assessment-report-model-builder-factory';
 import * as reportStyles from './assessment-report.styles';

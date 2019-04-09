@@ -6,7 +6,7 @@ import { AssessmentDefaultMessageGenerator, DefaultMessageInterface } from '../.
 import { Assessment } from '../../assessments/types/iassessment';
 import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
-import { IAssessmentData, IAssessmentStoreData, TestStepInstance } from '../../common/types/store-data/iassessment-result-data';
+import { IAssessmentData, IAssessmentStoreData, TestStepInstance } from '../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { assessmentReportExtensionPoint } from '../extensions/assessment-report-extension-point';
 import {

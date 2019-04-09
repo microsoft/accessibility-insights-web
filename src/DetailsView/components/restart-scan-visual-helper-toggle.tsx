@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 
-import { IGeneratedAssessmentInstance } from '../../common/types/store-data/iassessment-result-data';
+import { IGeneratedAssessmentInstance } from '../../common/types/store-data/assessment-result-data';
 import { BaseVisualHelperToggle } from './base-visual-helper-toggle';
 
 export class RestartScanVisualHelperToggle extends BaseVisualHelperToggle {

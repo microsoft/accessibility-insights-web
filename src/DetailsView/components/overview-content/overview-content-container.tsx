@@ -5,7 +5,7 @@ import * as React from 'react';
 import { AssessmentsProvider } from '../../../assessments/types/iassessments-provider';
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
-import { IAssessmentStoreData } from '../../../common/types/store-data/iassessment-result-data';
+import { IAssessmentStoreData } from '../../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../../common/types/store-data/tab-store-data';
 import { HyperlinkDefinition } from '../../../views/content/content-page';
 import { DetailsViewActionMessageCreator } from '../../actions/details-view-action-message-creator';

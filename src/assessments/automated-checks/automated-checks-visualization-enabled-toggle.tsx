@@ -3,7 +3,7 @@
 import { isEmpty } from 'lodash';
 
 import { ManualTestStatus } from '../../common/types/manual-test-status';
-import { IGeneratedAssessmentInstance, ITestStepResult } from '../../common/types/store-data/iassessment-result-data';
+import { IGeneratedAssessmentInstance, ITestStepResult } from '../../common/types/store-data/assessment-result-data';
 import { AssessmentVisualizationEnabledToggle } from '../../DetailsView/components/assessment-visualization-enabled-toggle';
 
 function failingInstances(result: ITestStepResult): boolean {

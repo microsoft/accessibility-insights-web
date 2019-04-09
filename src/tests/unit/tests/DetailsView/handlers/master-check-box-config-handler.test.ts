@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { Mock, Times } from 'typemoq';
 
-import { AssessmentNavState } from '../../../../../common/types/store-data/iassessment-result-data';
+import { AssessmentNavState } from '../../../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { MasterCheckBoxConfigProvider } from '../../../../../DetailsView/handlers/master-checkbox-config-provider';

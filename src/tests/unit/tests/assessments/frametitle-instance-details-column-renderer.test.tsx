@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { frameTitleInstanceDetailsColumnRenderer } from '../../../../assessments/page/frametitle-instance-details-column-renderer';
-import { IFrameAssessmentProperties } from '../../../../common/types/store-data/iassessment-result-data';
+import { IFrameAssessmentProperties } from '../../../../common/types/store-data/assessment-result-data';
 import { AssessmentInstanceDetailsColumn } from '../../../../DetailsView/components/assessment-instance-details-column';
 import { AssessmentInstanceRowData } from '../../../../DetailsView/components/assessment-instance-table';
 import { FrameFormatter } from '../../../../injected/visualization/frame-formatter';

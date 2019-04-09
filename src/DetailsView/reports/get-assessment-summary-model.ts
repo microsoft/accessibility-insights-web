@@ -5,7 +5,7 @@ import { chain, zipObject } from 'lodash';
 import { Assessment } from '../../assessments/types/iassessment';
 import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { ManualTestStatusData } from '../../common/types/manual-test-status';
-import { IAssessmentData, IAssessmentStoreData } from '../../common/types/store-data/iassessment-result-data';
+import { IAssessmentData, IAssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import * as Model from './assessment-report-model';
 import { OutcomeMath } from './components/outcome-math';
 import { allOutcomeTypes, OutcomeStats, OutcomeType, outcomeTypeFromTestStatus } from './components/outcome-type';

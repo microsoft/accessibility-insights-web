@@ -5,7 +5,7 @@ import { ColumnActionsMode, IColumn } from 'office-ui-fabric-react/lib/DetailsLi
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { AssessmentNavState } from '../../../../../common/types/store-data/iassessment-result-data';
+import { AssessmentNavState } from '../../../../../common/types/store-data/assessment-result-data';
 import { AssessmentInstanceDetailsColumn } from '../../../../../DetailsView/components/assessment-instance-details-column';
 import { CapturedInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
 import { AssessmentTableColumnConfigHandler } from '../../../../../DetailsView/components/assessment-table-column-config-handler';

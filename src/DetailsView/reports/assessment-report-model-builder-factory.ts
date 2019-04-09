@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { AssessmentDefaultMessageGenerator } from '../../assessments/assessment-default-message-generator';
 import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
-import { IAssessmentStoreData } from '../../common/types/store-data/iassessment-result-data';
+import { IAssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { AssessmentReportModelBuilder } from './assessment-report-model-builder';
 

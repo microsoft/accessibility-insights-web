@@ -20,7 +20,7 @@ import {
     AssessmentNavState,
     IGeneratedAssessmentInstance,
     IUserCapturedInstance,
-} from '../../common/types/store-data/iassessment-result-data';
+} from '../../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../../types/common-types';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 

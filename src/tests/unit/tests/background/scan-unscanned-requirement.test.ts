@@ -3,7 +3,7 @@
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { ScanUnscannedRequirement } from '../../../../background/scan-unscanned-requirement';
-import { IAssessmentData } from '../../../../common/types/store-data/iassessment-result-data';
+import { IAssessmentData } from '../../../../common/types/store-data/assessment-result-data';
 
 describe('ScanUnscannedRequirement', () => {
     let scheduleScanMock: IMock<(step: string) => void>;

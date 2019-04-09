@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 
-import { IGeneratedAssessmentInstance } from '../common/types/store-data/iassessment-result-data';
+import { IGeneratedAssessmentInstance } from '../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../types/common-types';
 
 export class AssessmentDataRemover {
