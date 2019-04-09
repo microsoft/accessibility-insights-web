@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
+import { isEmpty, isString } from 'lodash';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 
@@ -22,7 +22,7 @@ function buildStoreData(repository: string): GitHubBugFilingSettings {
 }
 
 function isSettingsValid(data: GitHubBugFilingSettings): boolean {
-    return !_.isEmpty(data) && !_.isEmpty(data.repository) && _.isString(data.repository) && !_.isEmpty(data.repository.trim());
+    return !isEmpty(data) && !isEmpty(data.repository) && isString(data.repository) && !isEmpty(data.repository.trim());
 }
 
 const renderSettingsForm = NamedSFC<SettingsFormProps<GitHubBugFilingSettings>>('BugFilingSettings', props => {
