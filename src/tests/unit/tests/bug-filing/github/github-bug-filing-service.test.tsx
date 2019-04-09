@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
+
 import { GitHubBugFilingService, GitHubBugFilingSettings } from '../../../../../bug-filing/github/github-bug-filing-service';
 import { SettingsFormProps } from '../../../../../bug-filing/types/settings-form-props';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
@@ -11,6 +12,21 @@ import { UserConfigMessageCreator } from '../../../../../common/message-creators
 describe('GithubBugFilingServiceTest', () => {
     let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;
     let props: SettingsFormProps<GitHubBugFilingSettings>;
+    const nullSettings: GitHubBugFilingSettings = null;
+    const emptySettings: GitHubBugFilingSettings = {} as GitHubBugFilingSettings;
+    const invalidSettings1: GitHubBugFilingSettings = {
+        random: ' ',
+    } as any;
+    const invalidSettings2: GitHubBugFilingSettings = {
+        repository: '  ',
+    };
+    const invalidSettings3: GitHubBugFilingSettings = {
+        repository: 3,
+    } as any;
+    const validSettings: GitHubBugFilingSettings = {
+        repository: 'repository',
+    };
+
     beforeEach(() => {
         userConfigMessageCreatorMock = Mock.ofType(UserConfigMessageCreator);
         props = {
@@ -23,12 +39,12 @@ describe('GithubBugFilingServiceTest', () => {
         };
     });
 
-    test('static properties', () => {
+    it('static properties', () => {
         expect(GitHubBugFilingService.key).toBe('gitHub');
         expect(GitHubBugFilingService.displayName).toBe('GitHub');
     });
 
-    test('buildStoreData', () => {
+    it('buildStoreData', () => {
         const url = 'base';
         const expectedStoreData: GitHubBugFilingSettings = {
             repository: url,
@@ -36,36 +52,24 @@ describe('GithubBugFilingServiceTest', () => {
         expect(GitHubBugFilingService.buildStoreData(url)).toEqual(expectedStoreData);
     });
 
-    test('isSettingsValid', () => {
-        const nullSettings: GitHubBugFilingSettings = null;
-        const emptySettings: GitHubBugFilingSettings = {} as GitHubBugFilingSettings;
-        const invalidSettings1: GitHubBugFilingSettings = {
-            random: ' ',
-        } as any;
-        const invalidSettings2: GitHubBugFilingSettings = {
-            repository: '  ',
-        };
-        const invalidSettings3: GitHubBugFilingSettings = {
-            repository: 3,
-        } as any;
-        const validSettings: GitHubBugFilingSettings = {
-            repository: 'repository',
-        };
-        expect(GitHubBugFilingService.isSettingsValid(nullSettings)).toBe(false);
-        expect(GitHubBugFilingService.isSettingsValid(emptySettings)).toBe(false);
-        expect(GitHubBugFilingService.isSettingsValid(invalidSettings1)).toBe(false);
-        expect(GitHubBugFilingService.isSettingsValid(invalidSettings2)).toBe(false);
-        expect(GitHubBugFilingService.isSettingsValid(invalidSettings3)).toBe(false);
+    it.each([nullSettings, emptySettings, invalidSettings1, invalidSettings2, invalidSettings3])(
+        'isSettingsValid - invalid case',
+        settings => {
+            expect(GitHubBugFilingService.isSettingsValid(settings)).toBe(false);
+        },
+    );
+
+    it('isSettingsValid - valid case', () => {
         expect(GitHubBugFilingService.isSettingsValid(validSettings)).toBe(true);
     });
 
-    test('renderSettingsForm', () => {
+    it('renderSettingsForm', () => {
         const Component = GitHubBugFilingService.renderSettingsForm;
         const wrapper = shallow(<Component {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    test('renderSettingsForm: onChange', () => {
+    it('renderSettingsForm: onChange', () => {
         const Component = GitHubBugFilingService.renderSettingsForm;
         const wrapper = shallow(<Component {...props} />);
         userConfigMessageCreatorMock
@@ -78,7 +82,7 @@ describe('GithubBugFilingServiceTest', () => {
         userConfigMessageCreatorMock.verifyAll();
     });
 
-    test('createBugFilingUrl', () => {
+    it('createBugFilingUrl', () => {
         expect(GitHubBugFilingService.createBugFilingUrl).not.toBeNull();
     });
 });
