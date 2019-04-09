@@ -103,43 +103,40 @@
         padding: 0 19px 20px !important;
     }
 
-    .insights-dialog-main-override .insights-dialog-button-inspect i {
-        color: $communication-shade-10 !important;
+    .insights-dialog-main-override .insights-dialog-button-inspect svg path {
+        fill: $communication-shade-10 !important;
     }
 
-    .insights-dialog-main-override .insights-dialog-button-inspect.is-disabled i {
-        color: $neutral-30 !important;
+    .insights-dialog-main-override .insights-dialog-button-inspect.is-disabled svg path {
+        fill: $neutral-30 !important;
     }
 
-    .insights-dialog-main-override-shadow .insights-dialog-button-inspect i {
-        color: $communication-shade-10 !important;
-        font-style: normal;
-        font-family: FabricMDL2Icons;
+    .insights-dialog-main-override-shadow .insights-dialog-button-inspect svg path {
+        fill: $communication-shade-10 !important;
     }
 
-    .insights-dialog-main-override-shadow .insights-dialog-button-inspect.is-disabled i {
-        color: $neutral-30 !important;
-        font-style: normal;
-        font-family: FabricMDL2Icons;
+    .insights-dialog-main-override-shadow .insights-dialog-button-inspect.is-disabled svg path {
+        fill: $neutral-30 !important;
     }
 
     .insights-dialog-main-override .create-bug-button,
     .insights-dialog-main-override .copy-issue-details-button {
         margin-left: 8px !important;
+
+        svg path {
+            fill: $neutral-100 !important;
+            fill-opacity: 0.9 !important;
+        }
     }
 
-    .insights-dialog-main-override .insights-dialog-button-create-bug i {
-        color: $communication-shade-10 !important;
-    }
-
-    .insights-dialog-main-override-shadow .insights-dialog-button-create-bug {
+    .insights-dialog-main-override-shadow .create-bug-button,
+    .insights-dialog-main-override-shadow .copy-issue-details-button {
         margin-left: 8px !important;
-    }
 
-    .insights-dialog-main-override-shadow .insights-dialog-button-create-bug i {
-        color: $communication-shade-10 !important;
-        font-style: normal;
-        font-family: FabricMDL2Icons;
+        svg path {
+            fill: $neutral-100 !important;
+            fill-opacity: 0.9 !important;
+        }
     }
 
     .insights-dialog-main-override .insights-dialog-button-left {
@@ -282,20 +279,24 @@
         }
     }
 
-    .insights-dialog-main-override .insights-dialog-rule-container i {
-        color: $negative-outcome !important;
+    .insights-dialog-main-override .insights-dialog-rule-container svg {
+        path {
+            fill: $negative-outcome !important;
+        }
+
         float: left !important;
         margin-right: 1% !important;
-        margin-top: 3px !important;
+        margin-top: 4px !important;
     }
 
-    .insights-dialog-main-override-shadow .insights-dialog-rule-container i {
-        color: $negative-outcome !important;
+    .insights-dialog-main-override-shadow .insights-dialog-rule-container svg {
+        path {
+            fill: $negative-outcome !important;
+        }
+
         float: left !important;
         margin-right: 1% !important;
-        margin-top: 2px !important;
-        font-style: normal;
-        font-family: FabricMDL2Icons;
+        margin-top: 4px !important;
     }
 
     .insights-dialog-main-override .insights-dialog-target-container {
@@ -305,6 +306,18 @@
 
     .insights-dialog-main-override .insights-dialog-target-button-container {
         margin-top: 4px !important;
+
+        .ms-Button-label {
+            margin-left: 4px;
+            margin-right: 4px;
+            line-height: 100%;
+            font-weight: 600;
+        }
+
+        svg {
+            margin-left: 4px;
+            margin-right: 4px;
+        }
     }
 
     .insights-dialog-main-override-shadow .insights-dialog-target-button-container {
@@ -337,6 +350,11 @@
 
             &:focus {
                 outline: -webkit-focus-ring-color auto 5px;
+            }
+
+            svg {
+                margin-left: 4px;
+                margin-right: 4px;
             }
         }
 

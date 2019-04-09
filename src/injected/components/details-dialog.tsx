@@ -2,8 +2,10 @@
 // Licensed under the MIT License.
 import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 import { Dialog, DialogType } from 'office-ui-fabric-react/lib/Dialog';
-import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import * as React from 'react';
+import { CancelIcon } from '../../common/icons/cancel-icon';
+import { FileHTMLIcon } from '../../common/icons/file-html-icon';
+import { StatusErrorFullIcon } from '../../common/icons/status-error-full-icon';
 
 import { BaseStore } from '../../common/base-store';
 import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
@@ -17,9 +19,9 @@ import { CreateIssueDetailsTextData } from '../../common/types/create-issue-deta
 import { DevToolState } from '../../common/types/store-data/idev-tool-state';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { DictionaryStringTo } from '../../types/common-types';
+import { DetailsDialogHandler } from '../details-dialog-handler';
 import { DecoratedAxeNodeResult } from '../scanner-utils';
 import { TargetPageActionMessageCreator } from '../target-page-action-message-creator';
-import { DetailsDialogHandler } from './../details-dialog-handler';
 import { FixInstructionPanel } from './fix-instruction-panel';
 
 export enum CheckType {
@@ -142,15 +144,20 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         );
     }
 
+    private renderCloseIcon(): JSX.Element {
+        return <CancelIcon />;
+    }
+
     private renderInspectButton(): JSX.Element {
         return (
             <DefaultButton
                 className="insights-dialog-button-inspect"
                 disabled={this.props.dialogHandler.isInspectButtonDisabled(this)}
-                iconProps={{ iconName: 'FileHTML' }}
-                text="Inspect HTML"
                 onClick={this.getOnClickWhenNotInShadowDom(this.onClickInspectButton)}
-            />
+            >
+                <FileHTMLIcon />
+                <div className="ms-Button-label">Inspect HTML</div>
+            </DefaultButton>
         );
     }
 
@@ -241,10 +248,10 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
 
         return (
             <div className="insights-dialog-rule-container">
-                <Icon iconName="StatusErrorFull" />
-                <div className="ms-fontSize-mPlus insights-dialog-rule-link">
+                <StatusErrorFullIcon />
+                <span className="ms-fontSize-mPlus insights-dialog-rule-link">
                     Rule name: <NewTabLink href={fixUrl(rule.helpUrl)}>{rule.ruleId}</NewTabLink>
-                </div>
+                </span>
             </div>
         );
     }
@@ -294,7 +301,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
                                 data-is-focusable="true"
                             >
                                 <div className="ms-button-flex-container">
-                                    <Icon iconName="Cancel" />
+                                    <CancelIcon />
                                 </div>
                             </button>
                         </div>
@@ -310,8 +317,17 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         return (
             <Dialog
                 hidden={!this.state.showDialog}
+                // Used top button instead of default close button to avoid use of fabric icons that might not load due to target page's Content Security Policy
                 dialogContentProps={{
                     type: DialogType.normal,
+                    showCloseButton: false,
+                    topButtonsProps: [
+                        {
+                            ariaLabel: 'Close',
+                            onRenderIcon: this.renderCloseIcon,
+                            onClick: this.onHideDialog,
+                        },
+                    ],
                 }}
                 modalProps={{
                     isBlocking: false,

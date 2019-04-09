@@ -8,7 +8,7 @@ import { EnumHelper } from '../../common/enum-helper';
 import { Tab } from '../../common/itab';
 import { StoreNames } from '../../common/stores/store-names';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
-import { IAssessmentScanData, IVisualizationStoreData, TestsEnabledState } from '../../common/types/store-data/ivisualization-store-data';
+import { AssessmentScanData, TestsEnabledState, VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import {
     AssessmentToggleActionPayload,
@@ -20,7 +20,7 @@ import { TabActions } from '../actions/tab-actions';
 import { VisualizationActions } from '../actions/visualization-actions';
 import { BaseStoreImpl } from './base-store-impl';
 
-export class VisualizationStore extends BaseStoreImpl<IVisualizationStoreData> {
+export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
     private visualizationActions: VisualizationActions;
     private tabActions: TabActions;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
@@ -57,7 +57,7 @@ export class VisualizationStore extends BaseStoreImpl<IVisualizationStoreData> {
         this.visualizationActions.injectionStarted.addListener(this.injectionStarted);
     }
 
-    public getDefaultState(): IVisualizationStoreData {
+    public getDefaultState(): VisualizationStoreData {
         const tests: TestsEnabledState = {
             adhoc: {},
             assessments: {},
@@ -76,7 +76,7 @@ export class VisualizationStore extends BaseStoreImpl<IVisualizationStoreData> {
             });
         }
 
-        const defaultValues: IVisualizationStoreData = {
+        const defaultValues: VisualizationStoreData = {
             tests,
             scanning: null,
             selectedFastPassDetailsView: VisualizationType.Issues,
@@ -107,7 +107,7 @@ export class VisualizationStore extends BaseStoreImpl<IVisualizationStoreData> {
         const scanData = configuration.getStoreData(this.state.tests);
 
         if (this.isAssessment(configuration)) {
-            const assessmentScanData = configuration.getStoreData(this.state.tests) as IAssessmentScanData;
+            const assessmentScanData = configuration.getStoreData(this.state.tests) as AssessmentScanData;
             Object.keys(assessmentScanData.stepStatus).forEach(step => {
                 if (assessmentScanData.enabled) {
                     configuration.disableTest(assessmentScanData, step);

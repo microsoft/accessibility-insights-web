@@ -10,8 +10,8 @@ import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { generateUID } from '../../common/uid-generator';
 import { AdhocIssuesTestView } from '../../DetailsView/components/adhoc-issues-test-view';
+import { ScannerUtils } from '../../injected/scanner-utils';
 import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
-import { ScannerUtils } from './../../injected/scanner-utils';
 
 export const IssuesAdHocVisualization: VisualizationConfiguration = {
     key: AdHocTestkeys.Issues,

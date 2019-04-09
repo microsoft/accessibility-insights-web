@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ClientRectOffset } from './../client-utils';
+import { ClientRectOffset } from '../client-utils';
 export class DrawerUtils {
     private dom: NodeSelector & Node;
     public clientWindowOffsetThreshold: number = 5;

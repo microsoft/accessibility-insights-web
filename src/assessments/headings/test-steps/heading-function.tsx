@@ -14,7 +14,7 @@ import { AssistedTestRecordYourResults } from '../../common/assisted-test-record
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { Requirement } from '../../types/requirement';
-import { headingsAssessmentInstanceDetailsColumnRenderer } from './../headings-instance-details-column-renderer';
+import { headingsAssessmentInstanceDetailsColumnRenderer } from '../headings-instance-details-column-renderer';
 import { HeadingsTestStep } from './test-steps';
 
 const headingFunctionDescription: JSX.Element = (

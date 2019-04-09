@@ -9,7 +9,7 @@ import { AssessmentStore } from '../../../../background/stores/assessment-store'
 import { VisualizationStore } from '../../../../background/stores/visualization-store';
 import { BaseStore } from '../../../../common/base-store';
 import { IAssessmentData, IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
-import { IVisualizationStoreData, TestsEnabledState } from '../../../../common/types/store-data/ivisualization-store-data';
+import { TestsEnabledState, VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 
 describe('AssessmentScanPolicyRunner', () => {
@@ -66,7 +66,7 @@ describe('AssessmentScanPolicyRunner', () => {
             setupStoreMockForCallback(assessmentStoreMock);
             setupStoreMockForCallback(visualizationStore);
             setupGetSelectedAssessmentTest(false);
-            setupStoreGetState<IVisualizationStoreData>(visualizationStore, { tests: testData } as IVisualizationStoreData);
+            setupStoreGetState<VisualizationStoreData>(visualizationStore, { tests: testData } as VisualizationStoreData);
             setupStoreGetState<IAssessmentStoreData>(assessmentStoreMock, {
                 persistedTabInfo: { id: currentTabId },
             } as IAssessmentStoreData);
@@ -81,7 +81,7 @@ describe('AssessmentScanPolicyRunner', () => {
         it('should not do anything, current tab is not the assessment tab', () => {
             setupStoreMockForCallback(assessmentStoreMock);
             setupStoreMockForCallback(visualizationStore);
-            setupStoreGetState<IVisualizationStoreData>(visualizationStore, { tests: testData } as IVisualizationStoreData);
+            setupStoreGetState<VisualizationStoreData>(visualizationStore, { tests: testData } as VisualizationStoreData);
             setupStoreGetState<IAssessmentStoreData>(assessmentStoreMock, { persistedTabInfo: { id: 1 } } as IAssessmentStoreData);
             setupGetSelectedAssessmentTest(true);
 
@@ -95,7 +95,7 @@ describe('AssessmentScanPolicyRunner', () => {
         it('should not do anything, assessment target tab is null', () => {
             setupStoreMockForCallback(assessmentStoreMock);
             setupStoreMockForCallback(visualizationStore);
-            setupStoreGetState<IVisualizationStoreData>(visualizationStore, { tests: testData } as IVisualizationStoreData);
+            setupStoreGetState<VisualizationStoreData>(visualizationStore, { tests: testData } as VisualizationStoreData);
             setupStoreGetState<IAssessmentStoreData>(assessmentStoreMock, { persistedTabInfo: null } as IAssessmentStoreData);
             setupGetSelectedAssessmentTest(true);
 
@@ -107,11 +107,11 @@ describe('AssessmentScanPolicyRunner', () => {
         });
 
         it('should not do anything, as something is already being scanned', () => {
-            const visualizationStateStub: Partial<IVisualizationStoreData> = { tests: testData, scanning: 'something' };
+            const visualizationStateStub: Partial<VisualizationStoreData> = { tests: testData, scanning: 'something' };
             setupStoreMockForCallback(assessmentStoreMock);
             setupStoreMockForCallback(visualizationStore);
             setupGetSelectedAssessmentTest(true);
-            setupStoreGetState<IVisualizationStoreData>(visualizationStore, visualizationStateStub as IVisualizationStoreData);
+            setupStoreGetState<VisualizationStoreData>(visualizationStore, visualizationStateStub as VisualizationStoreData);
             setupStoreGetState<IAssessmentStoreData>(assessmentStoreMock, {
                 persistedTabInfo: { id: currentTabId },
             } as IAssessmentStoreData);
@@ -148,7 +148,7 @@ describe('AssessmentScanPolicyRunner', () => {
             setupStoreMockForCallback(assessmentStoreMock);
             setupStoreMockForCallback(visualizationStore);
             setupGetSelectedAssessmentTest(true);
-            setupStoreGetState<IVisualizationStoreData>(visualizationStore, { tests: testData } as IVisualizationStoreData);
+            setupStoreGetState<VisualizationStoreData>(visualizationStore, { tests: testData } as VisualizationStoreData);
             setupStoreGetState<IAssessmentStoreData>(assessmentStoreMock, assessmentStoreDataStub as IAssessmentStoreData);
             setupAssessmentsProvider(assessmentProviderMock, assessmentConfig);
 

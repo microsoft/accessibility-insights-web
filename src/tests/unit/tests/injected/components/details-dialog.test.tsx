@@ -1,5 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { shallow } from 'enzyme';
+import { Dialog } from 'office-ui-fabric-react';
+import * as React from 'react';
+
 import { FeatureFlags } from '../../../../../common/feature-flags';
 import { DetailsDialog, DetailsDialogDeps, DetailsDialogProps } from '../../../../../injected/components/details-dialog';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
@@ -60,6 +64,7 @@ describe('DetailsDialogTest', () => {
             isNextButtonDisabled: () => true,
             isInspectButtonDisabled: () => !isDevToolOpen,
             getFailureInfo: () => 'Failure 1 of 1 for this target',
+            componentDidMount: () => {},
         };
 
         const deps: DetailsDialogDeps = {
@@ -101,5 +106,14 @@ describe('DetailsDialogTest', () => {
         (testObject as any).onLayoutDidMount = onLayoutDidMountMock;
 
         expect(testObject.render()).toMatchSnapshot();
+        const wrapper = shallow(<DetailsDialog {...props} />);
+        if (!shadowDialog) {
+            expect(
+                wrapper
+                    .find(Dialog)
+                    .props()
+                    .dialogContentProps.topButtonsProps[0].onRenderIcon(),
+            ).toMatchSnapshot('verify close button for non shadow dom');
+        }
     }
 });

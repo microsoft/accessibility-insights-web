@@ -6,7 +6,7 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration-factory';
 import { IAssessmentData, IAssessmentStoreData } from '../../../../../common/types/store-data/iassessment-result-data';
-import { IScanData, IVisualizationStoreData, TestsEnabledState } from '../../../../../common/types/store-data/ivisualization-store-data';
+import { ScanData, TestsEnabledState, VisualizationStoreData } from '../../../../../common/types/store-data/visualization-store-data';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import {
     AssessmentTestView,
@@ -17,11 +17,11 @@ import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handl
 
 describe('AssessmentTestView', () => {
     let props: AssessmentTestViewProps;
-    let getStoreDataMock: IMock<(data: TestsEnabledState) => IScanData>;
+    let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
     let getAssessmentDataMock: IMock<(data: IAssessmentStoreData) => IAssessmentData>;
-    let getTestStatusMock: IMock<(data: IScanData, step: string) => boolean>;
-    let scanDataStub: IScanData;
-    let visualizationStoreDataStub: IVisualizationStoreData;
+    let getTestStatusMock: IMock<(data: ScanData, step: string) => boolean>;
+    let scanDataStub: ScanData;
+    let visualizationStoreDataStub: VisualizationStoreData;
     let actionMessageCreatorStub: DetailsViewActionMessageCreator;
     let assessmentInstanceHandlerStub: AssessmentInstanceTableHandler;
     let configuration: VisualizationConfiguration;
@@ -41,7 +41,7 @@ describe('AssessmentTestView', () => {
         visualizationStoreDataStub = {
             tests: {},
             scanning: 'test-scanning',
-        } as IVisualizationStoreData;
+        } as VisualizationStoreData;
         configuration = {
             getStoreData: getStoreDataMock.object,
             getAssessmentData: getAssessmentDataMock.object,

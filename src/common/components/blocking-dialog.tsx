@@ -3,7 +3,7 @@
 import { Dialog, IDialogProps } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
 
-import { NamedSFC } from '../../common/react/named-sfc';
+import { NamedSFC } from '../react/named-sfc';
 
 export type BlockingDialogProps = IDialogProps;
 

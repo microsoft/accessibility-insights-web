@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-
 import { NoValue, PropertyBagColumnRendererConfig } from '../../../assessments/common/property-bag-column-renderer';
 import { ImageFunctionPropertyBag } from '../../../common/types/property-bag/image-function';
 import { VisualizationType } from '../../../common/types/visualization-type';

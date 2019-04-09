@@ -2,11 +2,11 @@
 // Licensed under the MIT License.
 import { forOwn } from 'lodash';
 
+import { HTMLElementUtils } from '../../common/html-element-utils';
 import { createDefaultLogger } from '../../common/logging/default-logger';
 import { Logger } from '../../common/logging/logger';
 import { DictionaryStringTo } from '../../types/common-types';
 import { HtmlElementAxeResults } from '../scanner-utils';
-import { HTMLElementUtils } from './../../common/html-element-utils';
 
 export interface HTMLIFrameResult {
     frame: HTMLIFrameElement;

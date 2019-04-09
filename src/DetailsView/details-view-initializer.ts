@@ -36,11 +36,11 @@ import { TelemetryEventSource } from '../common/telemetry-events';
 import { DetailsViewData } from '../common/types/store-data/details-view-data';
 import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
 import { InspectStoreData } from '../common/types/store-data/inspect-store-data';
-import { IVisualizationStoreData } from '../common/types/store-data/ivisualization-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
+import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { UrlParser } from '../common/url-parser';
 import { WindowUtils } from '../common/window-utils';
 import { contentPages } from '../content';
@@ -57,6 +57,7 @@ import { IssuesTableHandler } from './components/issues-table-handler';
 import { getStatusForTest } from './components/left-nav/get-status-for-test';
 import { LeftNavLinkBuilder } from './components/left-nav/left-nav-link-builder';
 import { NavLinkHandler } from './components/left-nav/nav-link-handler';
+import { SettingsProviderImpl } from './components/settings-panel/settings/settings-provider-impl';
 import { DetailsViewContainerDeps, DetailsViewContainerState } from './details-view-container';
 import { DetailsViewRenderer } from './details-view-renderer';
 import { DocumentTitleUpdater } from './document-title-updater';
@@ -101,10 +102,7 @@ if (isNaN(tabId) === false) {
             {
                 const telemetryFactory = new TelemetryDataFactory();
 
-                const visualizationStore = new StoreProxy<IVisualizationStoreData>(
-                    StoreNames[StoreNames.VisualizationStore],
-                    chromeAdapter,
-                );
+                const visualizationStore = new StoreProxy<VisualizationStoreData>(StoreNames[StoreNames.VisualizationStore], chromeAdapter);
                 const tabStore = new StoreProxy<TabStoreData>(StoreNames[StoreNames.TabStore], chromeAdapter);
                 const visualizationScanResultStore = new StoreProxy<VisualizationScanResultData>(
                     StoreNames[StoreNames.VisualizationScanResultStore],
@@ -275,6 +273,7 @@ if (isNaN(tabId) === false) {
                     loadTheme,
                     urlParser,
                     dateProvider: DateProvider.getDate,
+                    settingsProvider: SettingsProviderImpl,
                 };
 
                 const renderer = new DetailsViewRenderer(
