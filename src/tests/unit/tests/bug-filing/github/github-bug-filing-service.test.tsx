@@ -68,7 +68,7 @@ describe('GithubBugFilingServiceTest', () => {
         userConfigMessageCreatorMock.verifyAll();
     });
 
-    test('fileBug', () => {
-        expect(GitHubBugFilingService.fileBug).not.toBeNull();
+    test('createBugFilingUrl', () => {
+        expect(GitHubBugFilingService.createBugFilingUrl).not.toBeNull();
     });
 });
