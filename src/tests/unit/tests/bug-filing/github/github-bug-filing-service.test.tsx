@@ -37,15 +37,25 @@ describe('GithubBugFilingServiceTest', () => {
     });
 
     test('isSettingsValid', () => {
-        const emptySettings: GitHubBugFilingSettings = null;
-        const invalidSettings: GitHubBugFilingSettings = {
+        const nullSettings: GitHubBugFilingSettings = null;
+        const emptySettings: GitHubBugFilingSettings = {} as GitHubBugFilingSettings;
+        const invalidSettings1: GitHubBugFilingSettings = {
+            random: ' ',
+        } as any;
+        const invalidSettings2: GitHubBugFilingSettings = {
             repository: '  ',
         };
+        const invalidSettings3: GitHubBugFilingSettings = {
+            repository: 3,
+        } as any;
         const validSettings: GitHubBugFilingSettings = {
             repository: 'repository',
         };
+        expect(GitHubBugFilingService.isSettingsValid(nullSettings)).toBe(false);
         expect(GitHubBugFilingService.isSettingsValid(emptySettings)).toBe(false);
-        expect(GitHubBugFilingService.isSettingsValid(invalidSettings)).toBe(false);
+        expect(GitHubBugFilingService.isSettingsValid(invalidSettings1)).toBe(false);
+        expect(GitHubBugFilingService.isSettingsValid(invalidSettings2)).toBe(false);
+        expect(GitHubBugFilingService.isSettingsValid(invalidSettings3)).toBe(false);
         expect(GitHubBugFilingService.isSettingsValid(validSettings)).toBe(true);
     });
 

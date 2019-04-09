@@ -22,7 +22,7 @@ function buildStoreData(repository: string): GitHubBugFilingSettings {
 }
 
 function isSettingsValid(data: GitHubBugFilingSettings): boolean {
-    return !!data && !_.isEmpty(data.repository.trim());
+    return !_.isEmpty(data) && !_.isEmpty(data.repository) && _.isString(data.repository) && !_.isEmpty(data.repository.trim());
 }
 
 const renderSettingsForm = NamedSFC<SettingsFormProps<GitHubBugFilingSettings>>('BugFilingSettings', props => {
