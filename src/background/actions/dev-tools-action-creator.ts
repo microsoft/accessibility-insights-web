@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { RegisterTypeToPayloadCallback } from '../../common/message';
 import { Messages } from '../../common/messages';
 import * as TelemetryEvents from '../../common/telemetry-events';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';

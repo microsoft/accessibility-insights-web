@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 import { InspectMode } from '../../background/inspect-modes';
+import { Message } from '../message';
 import { Messages } from '../messages';
 import { TelemetryDataFactory } from '../telemetry-data-factory';
 import { InspectPayload } from './../../background/actions/inspect-actions';

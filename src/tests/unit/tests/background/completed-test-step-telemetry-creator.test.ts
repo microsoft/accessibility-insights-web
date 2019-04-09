@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { CompletedTestStepTelemetryCreator } from '../../../../background/completed-test-step-telemetry-creator';
 import { Interpreter } from '../../../../background/interpreter';
 import { AssessmentStore } from '../../../../background/stores/assessment-store';
 import { TabStore } from '../../../../background/stores/tab-store';
+import { Message } from '../../../../common/message';
 import { Messages } from '../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
 import {

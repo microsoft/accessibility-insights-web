@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-
 import { BaseActionPayload } from '../../background/actions/action-payloads';
 import { ContentPayload } from '../../background/actions/content-actions';
 import { ActionInitiators } from '../action/action-initiator';
+import { Message } from '../message';
 import { Messages } from '../messages';
 import { TelemetryDataFactory } from '../telemetry-data-factory';
 import { CONTENT_HYPERLINK_OPENED, CONTENT_PAGE_OPENED, TelemetryEventSource } from '../telemetry-events';

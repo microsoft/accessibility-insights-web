@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
-
+import { Message } from '../../../../../common/message';
 import { StoreActionMessageCreator } from '../../../../../common/message-creators/store-action-message-creator';
 import { StoreActionMessageCreatorFactory } from '../../../../../common/message-creators/store-action-message-creator-factory';
 import { Messages } from '../../../../../common/messages';

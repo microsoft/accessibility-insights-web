@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { PageVisibilityChangeTabPayload, SwitchToTargetTabPayload } from '../../../../../background/actions/action-payloads';
 import { TabActionCreator } from '../../../../../background/actions/tab-action-creator';
 import { TabActions } from '../../../../../background/actions/tab-actions';
@@ -10,6 +9,7 @@ import { BrowserAdapter, ChromeAdapter } from '../../../../../background/browser
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
 import { Action } from '../../../../../common/flux/action';
 import { Tab } from '../../../../../common/itab';
+import { RegisterTypeToPayloadCallback } from '../../../../../common/message';
 import { Messages } from '../../../../../common/messages';
 import { SWITCH_BACK_TO_TARGET, TelemetryEventSource, TriggeredBy } from '../../../../../common/telemetry-events';
 
