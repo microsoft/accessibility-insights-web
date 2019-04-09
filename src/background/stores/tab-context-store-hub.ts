@@ -7,7 +7,7 @@ import { ActionHub } from '../actions/action-hub';
 import { DetailsViewStore } from './details-view-store';
 import { DevToolStore } from './dev-tools-store';
 import { InspectStore } from './inspect-store';
-import { StoreHub } from './istore-hub';
+import { StoreHub } from './store-hub';
 import { TabStore } from './tab-store';
 import { VisualizationScanResultStore } from './visualization-scan-result-store';
 import { VisualizationStore } from './visualization-store';

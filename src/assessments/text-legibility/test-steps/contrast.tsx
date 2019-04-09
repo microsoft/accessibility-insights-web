@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-
 import { PropertyBagColumnRendererFactory } from '../../../assessments/common/property-bag-column-renderer-factory';
 import { NewTabLink } from '../../../common/components/new-tab-link';
-import { ContrastPropertyBag } from '../../../common/types/property-bag/icontrast';
+import { ContrastPropertyBag } from '../../../common/types/property-bag/contrast';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName, windowsPlatformTitle } from '../../../content/strings/application';

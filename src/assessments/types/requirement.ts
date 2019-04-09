@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
-
 import { UniquelyIdentifiableInstances } from '../../background/instance-identifier-generator';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
@@ -18,7 +17,7 @@ import { DrawerProvider } from '../../injected/visualization/drawer-provider';
 import { DictionaryStringTo } from '../../types/common-types';
 import { ContentPageComponent, HyperlinkDefinition } from '../../views/content/content-page';
 import { IGetMessageGenerator } from '../assessment-default-message-generator';
-import { InstanceTableColumn } from './iinstance-table-column';
+import { InstanceTableColumn } from './instance-table-column';
 import { ReportInstanceFields } from './report-instance-field';
 
 export interface Requirement {
