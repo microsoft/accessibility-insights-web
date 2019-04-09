@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Enzyme from 'enzyme';
+import { shallow } from 'enzyme';
 import * as React from 'react';
-
 import { ManualTestStatus } from '../../../../../../common/types/manual-test-status';
 import { RequirementHeaderReportModel, RequirementType } from '../../../../../../DetailsView/reports/assessment-report-model';
 import {
@@ -11,7 +10,6 @@ import {
 } from '../../../../../../DetailsView/reports/components/assessment-report-step-header';
 import { OutcomeChip } from '../../../../../../DetailsView/reports/components/outcome-chip';
 import { OutcomeType } from '../../../../../../DetailsView/reports/components/outcome-type';
-import { shallowRender } from '../../../../common/shallow-render';
 
 describe('AssessmentReportStepHeader', () => {
     function genHeader(requirementType: RequirementType): RequirementHeaderReportModel {
@@ -34,10 +32,10 @@ describe('AssessmentReportStepHeader', () => {
     test('matches snapshot', () => {
         const header = genHeader('assisted');
 
-        const actual = shallowRender(
+        const actual = shallow(
             <AssessmentReportStepHeader deps={deps} status={FAIL} header={header} instanceCount={42} defaultMessageComponent={null} />,
         );
-        expect(actual).toMatchSnapshot();
+        expect(actual.getElement()).toMatchSnapshot();
     });
 
     const outcomePairs: [ManualTestStatus, OutcomeType][] = [[PASS, 'pass'], [UNKNOWN, 'incomplete'], [FAIL, 'fail']];
@@ -72,7 +70,7 @@ describe('AssessmentReportStepHeader', () => {
                                 />
                             );
 
-                            const wrapper = Enzyme.shallow(component);
+                            const wrapper = shallow(component);
 
                             it(`will have OutcomeChip with count of ${expectedCount} and outcomeType of ${outcomeType}`, () => {
                                 const chip = wrapper.find(OutcomeChip).getElement();

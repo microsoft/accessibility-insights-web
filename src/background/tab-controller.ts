@@ -3,6 +3,7 @@
 import { autobind } from '@uifabric/utilities';
 
 import { Messages } from '../common/messages';
+import { Logger } from './../common/logging/logger';
 import { PageVisibilityChangeTabPayload } from './actions/action-payloads';
 import { BrowserAdapter } from './browser-adapter';
 import { DetailsViewController } from './details-view-controller';
@@ -23,6 +24,7 @@ export class TabController {
         chromeAdapter: BrowserAdapter,
         detailsViewController: DetailsViewController,
         tabContextFactory: TabContextFactory,
+        private readonly logger: Logger,
     ) {
         this.tabIdToContextMap = tabToInterpreterMap;
         this.broadcaster = broadcaster;
@@ -109,31 +111,43 @@ export class TabController {
     }
 
     private sendTabChangedAction(tabId: number): void {
-        this.chromeAdapter.getTab(tabId, (tab: chrome.tabs.Tab) => {
-            const tabContext = this.tabIdToContextMap[tabId];
-            if (tabContext) {
-                const interpreter = tabContext.interpreter;
-                interpreter.interpret({
-                    type: Messages.Tab.Change,
-                    payload: tab,
-                    tabId: tabId,
-                });
-            }
-        });
+        this.chromeAdapter.getTab(
+            tabId,
+            (tab: chrome.tabs.Tab) => {
+                const tabContext = this.tabIdToContextMap[tabId];
+                if (tabContext) {
+                    const interpreter = tabContext.interpreter;
+                    interpreter.interpret({
+                        type: Messages.Tab.Change,
+                        payload: tab,
+                        tabId: tabId,
+                    });
+                }
+            },
+            () => {
+                this.logger.log(`changed tab with Id ${tabId} not found`);
+            },
+        );
     }
 
     private sendTabUpdateAction(tabId: number): void {
-        this.chromeAdapter.getTab(tabId, (tab: chrome.tabs.Tab) => {
-            const tabContext = this.tabIdToContextMap[tabId];
-            if (tabContext) {
-                const interpreter = tabContext.interpreter;
-                interpreter.interpret({
-                    type: Messages.Tab.Update,
-                    payload: tab,
-                    tabId: tabId,
-                });
-            }
-        });
+        this.chromeAdapter.getTab(
+            tabId,
+            (tab: chrome.tabs.Tab) => {
+                const tabContext = this.tabIdToContextMap[tabId];
+                if (tabContext) {
+                    const interpreter = tabContext.interpreter;
+                    interpreter.interpret({
+                        type: Messages.Tab.Update,
+                        payload: tab,
+                        tabId: tabId,
+                    });
+                }
+            },
+            () => {
+                this.logger.log(`updated tab with Id ${tabId} not found`);
+            },
+        );
     }
 
     private sendTabVisibilityChangeAction(tabId: number, isHidden: boolean): void {

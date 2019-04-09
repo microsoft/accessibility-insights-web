@@ -79,14 +79,25 @@ describe('TargetTabFinderTest', () => {
         });
     });
 
+    test('no tab found', async () => {
+        setupGetTabIdParamFromUrl(tabId);
+        browserAdapterMock
+            .setup(b => b.getTab(tabId, It.isAny(), It.isAny()))
+            .callback((id, cb, reject) => {
+                reject();
+            });
+        setupIsSupportedCall(true);
+        await testSubject.getTargetTab().catch(error => expect(error).toEqual(`Tab with Id ${tabId} not found`));
+    });
+
     function setupGetTabIdParamFromUrl(tabIdValue: number): void {
         urlParserMock.setup(p => p.getIntParam(windowStub.location.href, 'tabId')).returns(() => tabIdValue);
     }
 
     function setupGetTabCall(): void {
         browserAdapterMock
-            .setup(b => b.getTab(tabId, It.isAny()))
-            .callback((id, cb) => {
+            .setup(b => b.getTab(tabId, It.isAny(), It.isAny()))
+            .callback((id, cb, reject) => {
                 cb(tabStub);
             });
     }

@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-
-import { StoreHub } from '../background/stores/istore-hub';
+import { StoreHub } from '../background/stores/store-hub';
 import { BaseStore } from './base-store';
 import { GenericStoreMessageTypes } from './constants/generic-store-messages-types';
 import { StoreUpdateMessage } from './types/store-update-message';

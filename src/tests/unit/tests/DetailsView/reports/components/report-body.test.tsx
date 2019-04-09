@@ -1,9 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { shallow } from 'enzyme';
 import * as React from 'react';
-
 import { ReportBody, ReportBodyProps } from '../../../../../../DetailsView/reports/components/report-body';
-import { shallowRender } from '../../../../common/shallow-render';
 
 describe('ReportBodyTest', () => {
     it('renders', () => {
@@ -31,6 +30,7 @@ describe('ReportBodyTest', () => {
             axeVersion: 'axe-version',
         };
 
-        expect(shallowRender(<ReportBody {...props} />)).toMatchSnapshot();
+        const wrapper = shallow(<ReportBody {...props} />);
+        expect(wrapper.getElement()).toMatchSnapshot();
     });
 });

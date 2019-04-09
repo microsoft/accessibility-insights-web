@@ -1,22 +1,24 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { shallow } from 'enzyme';
 import * as React from 'react';
-
 import { OutcomeChip } from '../../../../../../DetailsView/reports/components/outcome-chip';
-import { shallowRender } from '../../../../common/shallow-render';
 
 describe('OutcomeChip', () => {
     describe('render', () => {
         test('pass', () => {
-            expect(shallowRender(<OutcomeChip outcomeType="pass" count={3} />)).toMatchSnapshot();
+            const wrapper = shallow(<OutcomeChip outcomeType="pass" count={3} />);
+            expect(wrapper.getElement()).toMatchSnapshot();
         });
 
         test('incomplete', () => {
-            expect(shallowRender(<OutcomeChip outcomeType="incomplete" count={2} />)).toMatchSnapshot();
+            const wrapper = shallow(<OutcomeChip outcomeType="incomplete" count={2} />);
+            expect(wrapper.getElement()).toMatchSnapshot();
         });
 
         test('fail', () => {
-            expect(shallowRender(<OutcomeChip outcomeType="fail" count={4} />)).toMatchSnapshot();
+            const wrapper = shallow(<OutcomeChip outcomeType="fail" count={4} />);
+            expect(wrapper.getElement()).toMatchSnapshot();
         });
     });
 });

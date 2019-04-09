@@ -57,6 +57,7 @@ import { IssuesTableHandler } from './components/issues-table-handler';
 import { getStatusForTest } from './components/left-nav/get-status-for-test';
 import { LeftNavLinkBuilder } from './components/left-nav/left-nav-link-builder';
 import { NavLinkHandler } from './components/left-nav/nav-link-handler';
+import { SettingsProviderImpl } from './components/settings-panel/settings/settings-provider-impl';
 import { DetailsViewContainerDeps, DetailsViewContainerState } from './details-view-container';
 import { DetailsViewRenderer } from './details-view-renderer';
 import { DocumentTitleUpdater } from './document-title-updater';
@@ -272,6 +273,7 @@ if (isNaN(tabId) === false) {
                     loadTheme,
                     urlParser,
                     dateProvider: DateProvider.getDate,
+                    settingsProvider: SettingsProviderImpl,
                 };
 
                 const renderer = new DetailsViewRenderer(
@@ -297,6 +299,9 @@ if (isNaN(tabId) === false) {
                 const a11ySelfValidator = new A11YSelfValidator(new ScannerUtils(scan), new HTMLElementUtils());
                 window.A11YSelfValidator = a11ySelfValidator;
             }
+        },
+        () => {
+            throw new Error(`Cannot find target tab with Id ${tabId}`);
         },
     );
 }

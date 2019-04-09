@@ -1,9 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { shallow } from 'enzyme';
 import * as React from 'react';
-
 import { ReportInstanceList, ReportInstanceListProps } from '../../../../../../DetailsView/reports/components/report-instance-list';
-import { shallowRender } from '../../../../common/shallow-render';
 
 describe('ReportInstanceListTest', () => {
     test('render 0 instances', () => {
@@ -11,7 +10,8 @@ describe('ReportInstanceListTest', () => {
             nodeResults: [],
         };
 
-        expect(shallowRender(<ReportInstanceList {...props} />)).toMatchSnapshot();
+        const wrapper = shallow(<ReportInstanceList {...props} />);
+        expect(wrapper.getElement()).toMatchSnapshot();
     });
 
     test('render 2 instances', () => {
@@ -28,6 +28,7 @@ describe('ReportInstanceListTest', () => {
             ],
         };
 
-        expect(shallowRender(<ReportInstanceList {...props} />)).toMatchSnapshot();
+        const wrapper = shallow(<ReportInstanceList {...props} />);
+        expect(wrapper.getElement()).toMatchSnapshot();
     });
 });
