@@ -1,9 +1,12 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
 import { PayloadWithEventName } from '../../background/actions/action-payloads';
 import { Messages } from '../messages';
 import { TelemetryData } from '../telemetry-events';
 
 export class ActionMessageDispatcher {
-    constructor(private postMessageDelegate: (message: Message) => void, private tabId: number) {}
+    constructor(private postMessageDelegate: (message: Message) => void, private tabId: number) { }
 
     public dispatchMessage(message: Message): void {
         if (this.tabId != null) {
