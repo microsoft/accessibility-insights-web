@@ -7,7 +7,7 @@ import { Messages } from '../../../../../common/messages';
 import { BaseTelemetryData, TelemetryEventSource } from '../../../../../common/telemetry-events';
 
 describe('ActionMessageDispatcher', () => {
-    const postMessageMock = Mock.ofInstance((message: Message) => { });
+    const postMessageMock = Mock.ofInstance((message: Message) => {});
 
     const tabIds = [-1, null];
 
