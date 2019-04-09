@@ -1,7 +1,6 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License.
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
+
 import { AssessmentDefaultMessageGenerator } from '../assessments/assessment-default-message-generator';
 import { Assessments } from '../assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from '../assessments/assessments-feature-flag-filter';
@@ -48,6 +47,7 @@ import { DetailsDialogHandler } from '../injected/details-dialog-handler';
 import { ScannerUtils } from '../injected/scanner-utils';
 import { getVersion, scan } from '../scanner/exposed-apis';
 import { DictionaryStringTo } from '../types/common-types';
+import { BugFilingServiceProviderImpl } from './../bug-filing/bug-filing-service-provider-impl';
 import { DetailsViewActionMessageCreator } from './actions/details-view-action-message-creator';
 import { IssuesSelectionFactory } from './actions/issues-selection-factory';
 import { AssessmentTableColumnConfigHandler } from './components/assessment-table-column-config-handler';
@@ -81,6 +81,8 @@ import { ReportGenerator } from './reports/report-generator';
 import { ReportHtmlGenerator } from './reports/report-html-generator';
 import { ReportNameGenerator } from './reports/report-name-generator';
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
 declare const window: AutoChecker & Window;
 
 const chromeAdapter = new ChromeAdapter();
@@ -274,6 +276,7 @@ if (isNaN(tabId) === false) {
                     urlParser,
                     dateProvider: DateProvider.getDate,
                     settingsProvider: SettingsProviderImpl,
+                    bugFilingServiceProvider: BugFilingServiceProviderImpl,
                 };
 
                 const renderer = new DetailsViewRenderer(
