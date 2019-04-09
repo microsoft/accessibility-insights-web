@@ -18,6 +18,7 @@ import { getAllFeatureFlagDetails } from '../common/feature-flags';
 import { getInnerTextFromJsxElement } from '../common/get-inner-text-from-jsx-element';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { Tab } from '../common/itab';
+import { ActionMessageDispatcher } from '../common/message-creators/action-message-dispatcher';
 import { BugActionMessageCreator } from '../common/message-creators/bug-action-message-creator';
 import { ContentActionMessageCreator } from '../common/message-creators/content-action-message-creator';
 import { DropdownActionMessageCreator } from '../common/message-creators/dropdown-action-message-creator';
@@ -44,7 +45,6 @@ import { VisualizationStoreData } from '../common/types/store-data/visualization
 import { UrlParser } from '../common/url-parser';
 import { WindowUtils } from '../common/window-utils';
 import { contentPages } from '../content';
-import { DetailsDialogHandler } from '../injected/details-dialog-handler';
 import { ScannerUtils } from '../injected/scanner-utils';
 import { getVersion, scan } from '../scanner/exposed-apis';
 import { DictionaryStringTo } from '../types/common-types';
@@ -173,12 +173,14 @@ if (isNaN(tabId) === false) {
                 const userConfigMessageCreator = new UserConfigMessageCreator(chromeAdapter.sendMessageToFrames, tab.id);
                 const storeActionMessageCreator = storeActionMessageCreatorFactory.forDetailsView();
 
-                const visualizationActionCreator = new VisualizationActionMessageCreator(chromeAdapter.sendMessageToFrames, tab.id);
+                const actionMessageDispatcher = new ActionMessageDispatcher(chromeAdapter.sendMessageToFrames, tab.id);
+
+                const visualizationActionCreator = new VisualizationActionMessageCreator(actionMessageDispatcher);
+
                 const issuesSelection = new IssuesSelectionFactory().createSelection(actionMessageCreator);
                 const clickHandlerFactory = new DetailsViewToggleClickHandlerFactory(visualizationActionCreator, telemetryFactory);
                 const visualizationConfigurationFactory = new VisualizationConfigurationFactory();
                 const assessmentDefaultMessageGenerator = new AssessmentDefaultMessageGenerator();
-                const dialogHandler = new DetailsDialogHandler(new HTMLElementUtils());
                 const assessmentInstanceTableHandler = new AssessmentInstanceTableHandler(
                     actionMessageCreator,
                     new AssessmentTableColumnConfigHandler(new MasterCheckBoxConfigProvider(actionMessageCreator), Assessments),

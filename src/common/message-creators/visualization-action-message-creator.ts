@@ -4,9 +4,11 @@ import { VisualizationTogglePayload } from '../../background/actions/action-payl
 import { Messages } from '../messages';
 import { ToggleTelemetryData } from '../telemetry-events';
 import { VisualizationType } from '../types/visualization-type';
-import { BaseActionMessageCreator } from './base-action-message-creator';
+import { ActionMessageDispatcher } from './action-message-dispatcher';
 
-export class VisualizationActionMessageCreator extends BaseActionMessageCreator {
+export class VisualizationActionMessageCreator {
+    constructor(private readonly dispatcher: ActionMessageDispatcher) {}
+
     public setVisualizationState(test: VisualizationType, enabled: boolean, telemetry: ToggleTelemetryData): void {
         const payload: VisualizationTogglePayload = {
             test,
@@ -15,11 +17,10 @@ export class VisualizationActionMessageCreator extends BaseActionMessageCreator 
         };
 
         const message: Message = {
-            tabId: this._tabId,
             type: Messages.Visualizations.Common.Toggle,
             payload,
         };
 
-        this.dispatchMessage(message);
+        this.dispatcher.dispatchMessage(message);
     }
 }

@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
-
 import { VisualizationTogglePayload } from '../../../../background/actions/action-payloads';
+import { ActionMessageDispatcher } from '../../../../common/message-creators/action-message-dispatcher';
 import { VisualizationActionMessageCreator } from '../../../../common/message-creators/visualization-action-message-creator';
 import { Messages } from '../../../../common/messages';
 import { TelemetryEventSource, ToggleTelemetryData, TriggeredBy } from '../../../../common/telemetry-events';
@@ -10,18 +10,16 @@ import { VisualizationType } from '../../../../common/types/visualization-type';
 
 describe('VisualizationActionMessageCreatorTest', () => {
     let testObject: VisualizationActionMessageCreator;
-    let postMessageMock: IMock<(message) => void>;
-
-    const tabId: number = 1;
+    let actionMessageDispatcherMock: IMock<ActionMessageDispatcher>;
 
     const testSource: TelemetryEventSource = -1 as TelemetryEventSource;
 
     beforeEach(() => {
-        postMessageMock = Mock.ofInstance(message => {});
-        testObject = new VisualizationActionMessageCreator(postMessageMock.object, tabId);
+        actionMessageDispatcherMock = Mock.ofType<ActionMessageDispatcher>();
+        testObject = new VisualizationActionMessageCreator(actionMessageDispatcherMock.object);
     });
 
-    test('set visualization state', () => {
+    it('dispatch message for setVisualizationState', () => {
         const enabled = true;
         const telemetry: ToggleTelemetryData = {
             enabled,
@@ -37,19 +35,14 @@ describe('VisualizationActionMessageCreatorTest', () => {
         };
 
         const expectedMessage: Message = {
-            tabId: tabId,
             type: Messages.Visualizations.Common.Toggle,
             payload,
         };
 
-        setupPostMessageMock(expectedMessage);
+        actionMessageDispatcherMock.setup(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage))).verifiable(Times.once());
 
         testObject.setVisualizationState(test, enabled, telemetry);
 
-        postMessageMock.verifyAll();
+        actionMessageDispatcherMock.verifyAll();
     });
-
-    function setupPostMessageMock(expectedMessage): void {
-        postMessageMock.setup(post => post(It.isValue(expectedMessage))).verifiable(Times.once());
-    }
 });
