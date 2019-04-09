@@ -67,10 +67,10 @@ describe('ExtensionPoint', () => {
         expect(componentTwo.two).toBeCalledWith(magicNumber);
     });
 
-    it('works with bad extensions in list', () => {
-        const badExtensions = [null, undefined, [], {}, { type: 'Extension' }];
+    it('works with malformed extensions in list', () => {
+        const malformedExnteions = [null, undefined, [], {}, { type: 'Extension' }];
 
-        const result = ep.apply([extOne, ...badExtensions, extTwo]);
+        const result = ep.apply([extOne, ...malformedExnteions, extTwo]);
 
         result.one(magicString);
         result.two(magicNumber);

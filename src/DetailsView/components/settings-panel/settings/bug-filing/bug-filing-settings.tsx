@@ -8,14 +8,12 @@ import { NamedSFC } from '../../../../../common/react/named-sfc';
 import { SettingsProps } from '../settings-props';
 
 export const BugFilingSettings = NamedSFC<SettingsProps>('BugFilingSettings', props => {
-    const getBugSettingsUx = () => {
-        return (
-            <>
-                <h3>Issue filing</h3>
-                {getGitHubBugSettingsUx()}
-            </>
-        );
-    };
+    const getBugSettingsUx = () => (
+        <>
+            <h3>Issue filing</h3>
+            {getGitHubBugSettingsUx()}
+        </>
+    );
 
     const getGitHubBugSettingsUx = () => {
         return (
@@ -38,7 +36,7 @@ export const BugFilingSettings = NamedSFC<SettingsProps>('BugFilingSettings', pr
         if (!bugServicePropertiesMap || !bugServicePropertiesMap[bugService]) {
             return undefined;
         }
-        return props.userConfigurationStoreState.bugServicePropertiesMap[bugService][propertyName];
+        return bugServicePropertiesMap[bugService][propertyName];
     };
 
     return (

@@ -69,7 +69,6 @@
         "preprocess": "^3.1.0",
         "prettier": "^1.16.1",
         "puppeteer": "^1.11.0",
-        "react-test-renderer": "^16.5.0",
         "script-loader": "0.7.2",
         "serve-static": "^1.13.2",
         "source-map-loader": "^0.2.4",

@@ -9,7 +9,7 @@ import { BrowserAdapter } from '../../browser-adapter';
 import { PersistedData } from '../../get-persisted-data';
 import { LocalStorageData } from '../../storage-data';
 import { TelemetryEventHandler } from '../../telemetry/telemetry-event-handler';
-import { StoreHub } from '../istore-hub';
+import { StoreHub } from '../store-hub';
 import { AssessmentsProvider } from './../../../assessments/types/iassessments-provider';
 import { AssessmentDataConverter } from './../../assessment-data-converter';
 import { AssessmentDataRemover } from './../../assessment-data-remover';

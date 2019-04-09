@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FixInstructionPanelTests render all checks 1`] = `
+<div>
+  <div
+    className="insights-fix-instruction-title"
+  >
+    Fix ALL of the following:
+  </div>
+  <ul
+    className="insights-fix-instruction-list"
+  >
+    <li>
+      message
+    </li>
+    <li>
+      message
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`FixInstructionPanelTests render instruction only one check 1`] = `
+<div>
+  <div
+    className="insights-fix-instruction-title"
+  >
+    Fix the following:
+  </div>
+  <ul
+    className="insights-fix-instruction-list"
+  >
+    <li>
+      message
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`FixInstructionPanelTests render none checks 1`] = `
+<div>
+  <div
+    className="insights-fix-instruction-title"
+  >
+    Fix ALL of the following:
+  </div>
+  <ul
+    className="insights-fix-instruction-list"
+  >
+    <li>
+      message
+    </li>
+    <li>
+      message
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`FixInstructionPanelTests render nothing 1`] = `null`;

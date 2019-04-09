@@ -10,5 +10,5 @@ export interface BugFilingService<Settings = {}> {
     renderSettingsForm: ReactSFCWithDisplayName<SettingsFormProps<Settings>>;
     buildStoreData: (...params: any[]) => Settings;
     isSettingsValid: (data: Settings) => boolean;
-    fileBug: (data: Settings, bugData: CreateIssueDetailsTextData) => void;
+    createBugFilingUrl: (data: Settings, bugData: CreateIssueDetailsTextData) => string;
 }

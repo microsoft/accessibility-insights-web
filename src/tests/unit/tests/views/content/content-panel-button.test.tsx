@@ -1,11 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { shallow } from 'enzyme';
 import * as React from 'react';
-
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
 import { ContentPage } from '../../../../../views/content/content-page';
 import { ContentPanelButton } from '../../../../../views/content/content-panel-button';
-import { shallowRender } from '../../../common/shallow-render';
 
 describe('ContentPanelButton', () => {
     const content = {
@@ -20,20 +19,22 @@ describe('ContentPanelButton', () => {
     };
 
     it('renders from content', () => {
-        const result = shallowRender(
+        const wrapped = shallow(
             <ContentPanelButton deps={deps} reference={content.for.testing} iconName="iconName">
                 TEXT
             </ContentPanelButton>,
         );
-        expect(result).toMatchSnapshot();
+
+        expect(wrapped.getElement()).toMatchSnapshot();
     });
 
     it('renders from path', () => {
-        const result = shallowRender(
+        const wrapped = shallow(
             <ContentPanelButton deps={deps} reference={'for/testing'} iconName="iconName">
                 TEXT
             </ContentPanelButton>,
         );
-        expect(result).toMatchSnapshot();
+
+        expect(wrapped.getElement()).toMatchSnapshot();
     });
 });
