@@ -53,6 +53,9 @@ export const infoAndExamples = create(({ Markup }) => (
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Understanding/audio-description-prerecorded">
                 Understanding Success Criterion 1.2.5: Audio Description (Prerecorded)
             </Markup.HyperLink>
+            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Understanding/audio-description-or-media-alternative-prerecorded">
+                Understanding Success Criterion 1.2.3: Audio Description or Media Alternative (Prerecorded)
+            </Markup.HyperLink>
         </Markup.Links>
 
         <h3>Sufficient techniques</h3>
