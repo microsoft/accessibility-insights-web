@@ -300,6 +300,9 @@ if (isNaN(tabId) === false) {
                 window.A11YSelfValidator = a11ySelfValidator;
             }
         },
+        () => {
+            throw new Error(`Cannot find target tab with Id ${tabId}`);
+        },
     );
 }
 

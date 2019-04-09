@@ -118,20 +118,22 @@ export class AssessmentStore extends BaseStoreImpl<IAssessmentStoreData> {
     }
 
     private updateTargetTabWithId(tabId: number): void {
-        this.browserAdapter.getTab(tabId, tab => {
-            if (tab === null) {
-                return;
-            }
+        this.browserAdapter.getTab(
+            tabId,
+            tab => {
+                this.state.persistedTabInfo = {
+                    id: tab.id,
+                    url: tab.url,
+                    title: tab.title,
+                    appRefreshed: false,
+                };
 
-            this.state.persistedTabInfo = {
-                id: tab.id,
-                url: tab.url,
-                title: tab.title,
-                appRefreshed: false,
-            };
-
-            this.emitChanged();
-        });
+                this.emitChanged();
+            },
+            () => {
+                throw new Error(`tab with Id ${tabId} not found`);
+            },
+        );
     }
 
     @autobind

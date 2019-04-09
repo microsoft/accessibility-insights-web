@@ -24,7 +24,7 @@ export interface BrowserAdapter extends ClientBrowserAdapter {
     createInactiveTab(url: string, callback: (tab: chrome.tabs.Tab) => void): void;
     closeTab(tabId: number): void;
     switchToTab(tabId: number): void;
-    getTab(tabId: number, callback: (tab: chrome.tabs.Tab) => void): void;
+    getTab(tabId: number, onResolve: (tab: chrome.tabs.Tab) => void, onReject?: () => void): void;
     sendMessageToFramesAndTab(tabId: number, message: any): void;
     sendMessageToFrames(message: any): void;
     sendMessageToAllFramesAndTabs(message: any): void;
@@ -93,8 +93,14 @@ export class ChromeAdapter extends ClientChromeAdapter implements BrowserAdapter
         chrome.tabs.query(query, callback);
     }
 
-    public getTab(tabId: number, callback: (tab: chrome.tabs.Tab) => void): void {
-        chrome.tabs.get(tabId, callback);
+    public getTab(tabId: number, onResolve: (tab: chrome.tabs.Tab) => void, onReject?: () => void): void {
+        chrome.tabs.get(tabId, tab => {
+            if (tab) {
+                onResolve(tab);
+            } else {
+                onReject();
+            }
+        });
     }
 
     public injectJs(tabId, file: string, callback?: (result: any[]) => void): void {
