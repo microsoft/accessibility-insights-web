@@ -6,7 +6,7 @@ import { Messages } from '../messages';
 import { TelemetryData } from '../telemetry-events';
 
 export class ActionMessageDispatcher {
-    constructor(private postMessageDelegate: (message: Message) => void, private tabId: number) { }
+    constructor(private postMessageDelegate: (message: Message) => void, private tabId: number) {}
 
     public dispatchMessage(message: Message): void {
         if (this.tabId != null) {
