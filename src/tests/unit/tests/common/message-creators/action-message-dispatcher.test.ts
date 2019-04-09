@@ -7,7 +7,7 @@ import { TelemetryData, TelemetryEventSource, BaseTelemetryData } from '../../..
 import { Messages } from '../../../../../common/messages';
 
 describe('ActionMessageDispatcher', () => {
-    const postMessageMock = Mock.ofInstance((message: Message) => { });
+    const postMessageMock = Mock.ofInstance((message: Message) => {});
 
     const tabIds = [-1, null];
 
@@ -54,7 +54,6 @@ describe('ActionMessageDispatcher', () => {
             }
 
             postMessageMock.verify(post => post(It.isValue(expectedMessage)), Times.once());
-
         });
     });
 
@@ -75,7 +74,7 @@ describe('ActionMessageDispatcher', () => {
                 payload: {
                     eventName,
                     telemetry: eventData,
-                }
+                },
             };
 
             if (tabId != null) {
