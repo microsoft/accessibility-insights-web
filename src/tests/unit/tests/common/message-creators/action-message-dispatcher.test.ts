@@ -3,11 +3,11 @@
 
 import { It, Mock, Times } from 'typemoq';
 import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
-import { TelemetryData, TelemetryEventSource, BaseTelemetryData } from '../../../../../common/telemetry-events';
 import { Messages } from '../../../../../common/messages';
+import { BaseTelemetryData, TelemetryEventSource } from '../../../../../common/telemetry-events';
 
 describe('ActionMessageDispatcher', () => {
-    const postMessageMock = Mock.ofInstance((message: Message) => {});
+    const postMessageMock = Mock.ofInstance((message: Message) => { });
 
     const tabIds = [-1, null];
 
@@ -25,7 +25,7 @@ describe('ActionMessageDispatcher', () => {
 
             testObject.dispatchMessage(message);
 
-            let expectedMessage = {
+            const expectedMessage = {
                 ...message,
             };
 
@@ -41,12 +41,12 @@ describe('ActionMessageDispatcher', () => {
         it.each(tabIds)('with tabId = %o', tabId => {
             const testObject = new ActionMessageDispatcher(postMessageMock.object, tabId);
 
-            const type = 'test-message-type';
+            const messageType = 'test-message-type';
 
-            testObject.dispatchType(type);
+            testObject.dispatchType(messageType);
 
-            let expectedMessage: Message = {
-                type,
+            const expectedMessage: Message = {
+                type: messageType,
             };
 
             if (tabId != null) {
@@ -69,7 +69,7 @@ describe('ActionMessageDispatcher', () => {
 
             testObject.sendTelemetry(eventName, eventData);
 
-            let expectedMessage: Message = {
+            const expectedMessage: Message = {
                 type: Messages.Telemetry.Send,
                 payload: {
                     eventName,
