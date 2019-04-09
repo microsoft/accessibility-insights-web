@@ -46,6 +46,6 @@ export const GithubBugFilingService: BugFilingService<GithubBugFilingSettings> =
     buildStoreData,
     isSettingsValid,
     fileBug: (data: GithubBugFilingSettings, bugData: CreateIssueDetailsTextData) => {
-        // coming in a later PR.
+        // coming in with later PR.
     },
 };
