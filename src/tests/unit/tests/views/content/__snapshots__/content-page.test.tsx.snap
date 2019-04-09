@@ -1,5 +1,58 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ContentPage .create passes options through to Markup 1`] = `
+<React.Fragment>
+  TEST STRING
+</React.Fragment>
+`;
+
+exports[`ContentPage .create renders 1`] = `
+<React.Fragment>
+  MY CONTENT
+</React.Fragment>
+`;
+
+exports[`ContentPage .provider doesn't find extraPath/forest/thePage 1`] = `
+<h1>
+  Cannot find 
+  extraPath/forest/thePage
+</h1>
+`;
+
+exports[`ContentPage .provider doesn't find forest 1`] = `
+<h1>
+  Cannot find 
+  forest
+</h1>
+`;
+
+exports[`ContentPage .provider doesn't find forest/notThePage 1`] = `
+<h1>
+  Cannot find 
+  forest/notThePage
+</h1>
+`;
+
+exports[`ContentPage .provider doesn't find notForest/thePage 1`] = `
+<h1>
+  Cannot find 
+  notForest/thePage
+</h1>
+`;
+
+exports[`ContentPage .provider doesn't find thePage 1`] = `
+<h1>
+  Cannot find 
+  thePage
+</h1>
+`;
+
+exports[`ContentPage .provider finds forest/thePage 1`] = `
+<React.Fragment>
+  THE PAGE
+</React.Fragment>
+`;
+
 exports[`ContentPage ContentCreator links renders 1`] = `
 <NewTabLink
   href="href"

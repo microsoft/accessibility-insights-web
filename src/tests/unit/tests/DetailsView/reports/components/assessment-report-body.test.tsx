@@ -1,13 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { shallow } from 'enzyme';
 import * as React from 'react';
-
 import {
     AssessmentReportBody,
     AssessmentReportBodyDeps,
     AssessmentReportBodyProps,
 } from '../../../../../../DetailsView/reports/components/assessment-report-body';
-import { shallowRender } from '../../../../common/shallow-render';
 import { AssessmentReportBuilderTestHelper } from '../../assessment-report-builder-test-helper';
 
 describe('AssessmentReportBody', () => {
@@ -22,6 +21,7 @@ describe('AssessmentReportBody', () => {
             description: 'test-description',
         };
 
-        expect(shallowRender(<AssessmentReportBody {...props} />)).toMatchSnapshot();
+        const wrapper = shallow(<AssessmentReportBody {...props} />);
+        expect(wrapper.getElement()).toMatchSnapshot();
     });
 });
