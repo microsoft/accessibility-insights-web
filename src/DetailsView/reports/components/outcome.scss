@@ -99,6 +99,9 @@ $outcome-fail-summary-color: $negative-outcome;
     height: 32px;
     $outcome-summary-icon-size: 22px;
     margin-bottom: 40px;
+    line-height: 24px;
+    font-size: 17px;
+    font-weight: 600;
     .block {
         font-family: $fontFamily;
         line-height: 20px;
@@ -110,7 +113,7 @@ $outcome-fail-summary-color: $negative-outcome;
         align-items: center;
     }
     .count {
-        font-weight: 700;
+        font-weight: 600;
     }
     .pass {
         @extend .block;
