@@ -4,13 +4,13 @@ import { shallow } from 'enzyme';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
-import { GitHubBugFilingService, GithubBugFilingSettings } from '../../../../../bug-filing/github/github-bug-filing-service';
+import { GitHubBugFilingService, GitHubBugFilingSettings } from '../../../../../bug-filing/github/github-bug-filing-service';
 import { SettingsFormProps } from '../../../../../bug-filing/types/settings-form-props';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 
 describe('GithubBugFilingServiceTest', () => {
     let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;
-    let props: SettingsFormProps<GithubBugFilingSettings>;
+    let props: SettingsFormProps<GitHubBugFilingSettings>;
     beforeEach(() => {
         userConfigMessageCreatorMock = Mock.ofType(UserConfigMessageCreator);
         props = {
@@ -30,18 +30,18 @@ describe('GithubBugFilingServiceTest', () => {
 
     test('buildStoreData', () => {
         const url = 'base';
-        const expectedStoreData: GithubBugFilingSettings = {
+        const expectedStoreData: GitHubBugFilingSettings = {
             repository: url,
         };
         expect(GitHubBugFilingService.buildStoreData(url)).toEqual(expectedStoreData);
     });
 
     test('isSettingsValid', () => {
-        const emptySettings: GithubBugFilingSettings = null;
-        const invalidSettings: GithubBugFilingSettings = {
+        const emptySettings: GitHubBugFilingSettings = null;
+        const invalidSettings: GitHubBugFilingSettings = {
             repository: '  ',
         };
-        const validSettings: GithubBugFilingSettings = {
+        const validSettings: GitHubBugFilingSettings = {
             repository: 'repository',
         };
         expect(GitHubBugFilingService.isSettingsValid(emptySettings)).toBe(false);
