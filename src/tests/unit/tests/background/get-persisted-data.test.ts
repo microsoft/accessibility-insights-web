@@ -5,12 +5,12 @@ import { IMock, Mock } from 'typemoq';
 import { getPersistedData, PersistedData } from '../../../../background/get-persisted-data';
 import { IndexedDBDataKeys } from '../../../../background/IndexedDBDataKeys';
 import { IndexedDBAPI } from '../../../../common/indexedDB/indexedDB';
-import { IAssessmentStoreData, PersistedTabInfo } from '../../../../common/types/store-data/iassessment-result-data';
+import { AssessmentStoreData, PersistedTabInfo } from '../../../../common/types/store-data/assessment-result-data';
 import { UserConfigurationStoreData } from '../../../../common/types/store-data/user-configuration-store';
 
 describe('GetPersistedDataTest', () => {
     let indexedDBInstanceStrictMock: IMock<IndexedDBAPI>;
-    let assessmentStoreData: IAssessmentStoreData;
+    let assessmentStoreData: AssessmentStoreData;
     let userConfigurationData: UserConfigurationStoreData;
 
     beforeEach(() => {

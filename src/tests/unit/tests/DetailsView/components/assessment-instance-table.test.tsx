@@ -13,7 +13,7 @@ import {
     IMessageGenerator,
 } from '../../../../../assessments/assessment-default-message-generator';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
-import { IAssessmentResultType, IGeneratedAssessmentInstance } from '../../../../../common/types/store-data/iassessment-result-data';
+import { IAssessmentResultType, IGeneratedAssessmentInstance } from '../../../../../common/types/store-data/assessment-result-data';
 import {
     AssessmentInstanceRowData,
     AssessmentInstanceTable,

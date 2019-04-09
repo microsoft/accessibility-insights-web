@@ -6,12 +6,12 @@ import { Assessment } from '../../../../assessments/types/iassessment';
 import { ReportInstanceFields } from '../../../../assessments/types/report-instance-field';
 import { ManualTestStatus, ManualTestStatusData } from '../../../../common/types/manual-test-status';
 import {
+    AssessmentStoreData,
     IAssessmentData,
-    IAssessmentStoreData,
     IGeneratedAssessmentInstance,
     IManualTestStepResult,
     PersistedTabInfo,
-} from '../../../../common/types/store-data/iassessment-result-data';
+} from '../../../../common/types/store-data/assessment-result-data';
 import { excludePassingInstancesFromAssessmentReport } from '../../../../DetailsView/extensions/exclude-passing-instances-from-assessment-report';
 import {
     AssessmentDetailsReportModel,
@@ -170,7 +170,7 @@ export class AssessmentReportBuilderTestHelper {
         } as IAssessmentData;
     }
 
-    public static getAssessmentStoreData(): IAssessmentStoreData {
+    public static getAssessmentStoreData(): AssessmentStoreData {
         return {
             persistedTabInfo: {} as PersistedTabInfo,
             assessments: {
@@ -178,7 +178,7 @@ export class AssessmentReportBuilderTestHelper {
                 ['assessment2']: this.getAssessmentData2(),
             },
             assessmentNavState: null,
-        } as IAssessmentStoreData;
+        } as AssessmentStoreData;
     }
 
     public static getAssessmentProviderAll(getDefaultMessage): Assessment[] {

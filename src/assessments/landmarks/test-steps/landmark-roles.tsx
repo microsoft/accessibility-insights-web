@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { ILandmarksAssessmentProperties } from '../../../common/types/store-data/iassessment-result-data';
+import { ILandmarksAssessmentProperties } from '../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { TestAutomaticallyPassedNotice } from '../../../content/test/common/test-automatically-passed-notice';

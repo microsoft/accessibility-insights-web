@@ -11,7 +11,7 @@ import {
     AssessmentNavState,
     IGeneratedAssessmentInstance,
     IManualTestStepResult,
-} from '../../common/types/store-data/iassessment-result-data';
+} from '../../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../../types/common-types';
 import { ContentPanelButton, ContentPanelButtonDeps } from '../../views/content/content-panel-button';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';

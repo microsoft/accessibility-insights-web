@@ -10,8 +10,8 @@ export type TestStepInstance = IUserCapturedInstance & IGeneratedAssessmentInsta
 export type PersistedTabInfo = Tab & {
     appRefreshed: boolean;
 };
-// tslint:disable-next-line:interface-name
-export interface IAssessmentStoreData {
+
+export interface AssessmentStoreData {
     persistedTabInfo: PersistedTabInfo;
     assessments: {
         [key: string]: IAssessmentData;

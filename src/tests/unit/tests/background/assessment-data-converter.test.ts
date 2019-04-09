@@ -5,7 +5,7 @@ import { IMock, It, Mock } from 'typemoq';
 import { AssessmentDataConverter } from '../../../../background/assessment-data-converter';
 import { UniquelyIdentifiableInstances } from '../../../../background/instance-identifier-generator';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
-import { IAssessmentInstancesMap, ITestStepResult } from '../../../../common/types/store-data/iassessment-result-data';
+import { IAssessmentInstancesMap, ITestStepResult } from '../../../../common/types/store-data/assessment-result-data';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from '../../../../injected/scanner-utils';
 import { TabStopEvent } from '../../../../injected/tab-stops-listener';
 import { DictionaryStringTo } from '../../../../types/common-types';

@@ -7,7 +7,7 @@ import {
     createInitialAssessmentTestData,
 } from '../../../../background/create-initial-assessment-test-data';
 import { ManualTestStatus, TestStepData } from '../../../../common/types/manual-test-status';
-import { IGeneratedAssessmentInstance, IManualTestStepResult } from '../../../../common/types/store-data/iassessment-result-data';
+import { IGeneratedAssessmentInstance, IManualTestStepResult } from '../../../../common/types/store-data/assessment-result-data';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
 
 describe('createInitialAssessmentTestData', () => {

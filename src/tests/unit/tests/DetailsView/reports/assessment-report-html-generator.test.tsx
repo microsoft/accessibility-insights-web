@@ -4,8 +4,8 @@ import * as React from 'react';
 import { It, Mock, MockBehavior } from 'typemoq';
 
 import { AssessmentDefaultMessageGenerator } from '../../../../../assessments/assessment-default-message-generator';
+import { AssessmentStoreData } from '../../../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
-import { IAssessmentStoreData } from '../../../../../common/types/store-data/iassessment-result-data';
 import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
 import {
     AssessmentReportHtmlGenerator,
@@ -28,7 +28,7 @@ describe('AssessmentReportHtmlGenerator', () => {
         }, MockBehavior.Strict);
 
         const assessmentsProvider = CreateTestAssessmentProviderWithFeatureFlag();
-        const assessmentStoreData: IAssessmentStoreData = { stub: 'assessmentStoreData' } as any;
+        const assessmentStoreData: AssessmentStoreData = { stub: 'assessmentStoreData' } as any;
         const featureFlagStoreData: FeatureFlagStoreData = { stub: 'featureFlagStoreData' } as any;
         const tabStoreData: TabStoreData = { stub: 'tabStoreData' } as any;
         const description = 'generateHtml-description';

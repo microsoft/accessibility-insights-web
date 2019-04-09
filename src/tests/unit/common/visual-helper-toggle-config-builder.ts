@@ -6,7 +6,7 @@ import {
     IAssessmentResultType,
     IGeneratedAssessmentInstance,
     ITestStepResult,
-} from '../../../common/types/store-data/iassessment-result-data';
+} from '../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../DetailsView/actions/details-view-action-message-creator';
 import { DictionaryStringTo } from '../../../types/common-types';

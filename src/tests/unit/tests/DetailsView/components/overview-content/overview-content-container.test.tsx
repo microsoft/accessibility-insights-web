@@ -5,7 +5,7 @@ import * as React from 'react';
 import { Mock, MockBehavior } from 'typemoq';
 
 import { AssessmentsProvider } from '../../../../../../assessments/types/iassessments-provider';
-import { IAssessmentStoreData, PersistedTabInfo } from '../../../../../../common/types/store-data/iassessment-result-data';
+import { AssessmentStoreData, PersistedTabInfo } from '../../../../../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../../../../../common/types/store-data/tab-store-data';
 import { UrlParser } from '../../../../../../common/url-parser';
 import { DetailsViewActionMessageCreator } from '../../../../../../DetailsView/actions/details-view-action-message-creator';
@@ -52,9 +52,9 @@ describe('OverviewContainer', () => {
 
     const featureFlagDataStub = {};
 
-    const assessmentStoreData: IAssessmentStoreData = {
+    const assessmentStoreData: AssessmentStoreData = {
         persistedTabInfo: {} as PersistedTabInfo,
-    } as IAssessmentStoreData;
+    } as AssessmentStoreData;
 
     assessmentsProviderWithFeaturesEnabledMock
         .setup(mock => mock(assessmentsProvider, featureFlagDataStub))

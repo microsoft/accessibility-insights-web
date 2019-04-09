@@ -10,9 +10,9 @@ import { VisualizationConfigurationFactory } from '../common/configs/visualizati
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
+import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
 import { DetailsViewData } from '../common/types/store-data/details-view-data';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
-import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
@@ -68,7 +68,7 @@ export interface DetailsViewContainerState {
     visualizationScanResultStoreData: VisualizationScanResultData;
     featureFlagStoreData: FeatureFlagStoreData;
     detailsViewStoreData: DetailsViewData;
-    assessmentStoreData: IAssessmentStoreData;
+    assessmentStoreData: AssessmentStoreData;
     scopingPanelStateStoreData: ScopingStoreData;
     userConfigurationStoreData: UserConfigurationStoreData;
     selectedDetailsView: VisualizationType;

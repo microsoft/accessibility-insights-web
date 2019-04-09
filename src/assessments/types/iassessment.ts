@@ -4,7 +4,7 @@ import { InitialDataCreator } from '../../background/create-initial-assessment-t
 import { RequirementOrdering } from '../../common/assessment/requirement';
 import { AssesssmentVisualizationConfiguration } from '../../common/configs/visualization-configuration-factory';
 import { AnyExtension } from '../../common/extensibility/extension-point';
-import { IAssessmentData } from '../../common/types/store-data/iassessment-result-data';
+import { IAssessmentData } from '../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { ContentPageComponent } from '../../views/content/content-page';
 import { Requirement } from './requirement';

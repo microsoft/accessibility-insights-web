@@ -5,7 +5,7 @@ import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration-factory';
-import { IAssessmentData, IAssessmentStoreData } from '../../../../../common/types/store-data/iassessment-result-data';
+import { AssessmentStoreData, IAssessmentData } from '../../../../../common/types/store-data/assessment-result-data';
 import { ScanData, TestsEnabledState, VisualizationStoreData } from '../../../../../common/types/store-data/visualization-store-data';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import {
@@ -18,14 +18,14 @@ import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handl
 describe('AssessmentTestView', () => {
     let props: AssessmentTestViewProps;
     let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
-    let getAssessmentDataMock: IMock<(data: IAssessmentStoreData) => IAssessmentData>;
+    let getAssessmentDataMock: IMock<(data: AssessmentStoreData) => IAssessmentData>;
     let getTestStatusMock: IMock<(data: ScanData, step: string) => boolean>;
     let scanDataStub: ScanData;
     let visualizationStoreDataStub: VisualizationStoreData;
     let actionMessageCreatorStub: DetailsViewActionMessageCreator;
     let assessmentInstanceHandlerStub: AssessmentInstanceTableHandler;
     let configuration: VisualizationConfiguration;
-    let assessmentStoreDataStub: IAssessmentStoreData;
+    let assessmentStoreDataStub: AssessmentStoreData;
     let assessmentDataStub: IAssessmentData;
     const selectedTestStep = 'step';
     const selectedTest = -1;
@@ -52,7 +52,7 @@ describe('AssessmentTestView', () => {
                 selectedTestType: selectedTest,
                 selectedTestStep: selectedTestStep,
             },
-        } as IAssessmentStoreData;
+        } as AssessmentStoreData;
         actionMessageCreatorStub = {} as DetailsViewActionMessageCreator;
         assessmentInstanceHandlerStub = {} as AssessmentInstanceTableHandler;
         assessmentDataStub = {} as IAssessmentData;

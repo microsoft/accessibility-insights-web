@@ -12,7 +12,7 @@ import {
 import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
 import { Assessment } from '../../../../assessments/types/iassessment';
 import { AssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
-import { IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
+import { AssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
 import { AssessmentReportModelBuilder } from '../../../../DetailsView/reports/assessment-report-model-builder';
 import { AssessmentReportBuilderTestHelper } from './assessment-report-builder-test-helper';
@@ -77,7 +77,7 @@ describe('AssessmentReportModelBuilderTest', () => {
 function setupGeneratorMockWithAssessmentData(
     messageGenerator: IMock<IMessageGenerator>,
     getDefaultMessageMock: IMock<IGetMessageGenerator>,
-    assessmentStoreData: IAssessmentStoreData,
+    assessmentStoreData: AssessmentStoreData,
     assessments: Assessment[],
     stubMessage: DefaultMessageInterface,
     assessmentDefaultMessageGeneratorMock: IMock<AssessmentDefaultMessageGenerator>,

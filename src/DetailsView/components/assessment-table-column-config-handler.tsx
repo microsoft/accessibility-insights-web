@@ -4,7 +4,7 @@ import { ColumnActionsMode, IColumn } from 'office-ui-fabric-react/lib/DetailsLi
 import * as React from 'react';
 
 import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
-import { AssessmentNavState } from '../../common/types/store-data/iassessment-result-data';
+import { AssessmentNavState } from '../../common/types/store-data/assessment-result-data';
 import { MasterCheckBoxConfigProvider } from '../handlers/master-checkbox-config-provider';
 import { AssessmentInstanceDetailsColumn } from './assessment-instance-details-column';
 import { AssessmentInstanceRowData, CapturedInstanceRowData } from './assessment-instance-table';

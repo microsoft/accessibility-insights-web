@@ -11,7 +11,7 @@ import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { RequirementStatusTelemetryData } from '../common/telemetry-events';
 import * as TelemetryEvents from '../common/telemetry-events';
 import { ManualTestStatus, ManualTestStatusData } from '../common/types/manual-test-status';
-import { IAssessmentData } from '../common/types/store-data/iassessment-result-data';
+import { IAssessmentData } from '../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../types/common-types';
 import { PayloadWithEventName } from './actions/action-payloads';
 import { Interpreter } from './interpreter';

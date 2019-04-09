@@ -15,7 +15,7 @@ import { ScopingStore } from '../../../../../../background/stores/global/scoping
 import { UserConfigurationStore } from '../../../../../../background/stores/global/user-configuration-store';
 import { BaseStore } from '../../../../../../common/base-store';
 import { IndexedDBAPI } from '../../../../../../common/indexedDB/indexedDB';
-import { PersistedTabInfo } from '../../../../../../common/types/store-data/iassessment-result-data';
+import { PersistedTabInfo } from '../../../../../../common/types/store-data/assessment-result-data';
 import { StoreType } from '../../../../../../common/types/store-type';
 import { LaunchPanelType } from '../../../../../../popup/components/popup-view';
 import { CreateTestAssessmentProvider } from '../../../../common/test-assessment-provider';

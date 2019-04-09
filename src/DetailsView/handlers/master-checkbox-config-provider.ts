@@ -4,7 +4,7 @@ import { autobind } from '@uifabric/utilities';
 import * as classNames from 'classnames';
 import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 
-import { AssessmentNavState } from '../../common/types/store-data/iassessment-result-data';
+import { AssessmentNavState } from '../../common/types/store-data/assessment-result-data';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 
 export class MasterCheckBoxConfigProvider {

@@ -6,8 +6,8 @@ import { It, Mock, MockBehavior } from 'typemoq';
 
 import { AssessmentsProvider } from '../../../../../../assessments/types/iassessments-provider';
 import { NamedSFC, ReactSFCWithDisplayName } from '../../../../../../common/react/named-sfc';
+import { AssessmentStoreData, IAssessmentData } from '../../../../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../../../../common/types/store-data/feature-flag-store-data';
-import { IAssessmentData, IAssessmentStoreData } from '../../../../../../common/types/store-data/iassessment-result-data';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
 import { DetailsRightPanelConfiguration } from '../../../../../../DetailsView/components/details-view-right-panel';
 import { DetailsViewSwitcherNavConfiguration } from '../../../../../../DetailsView/components/details-view-switcher-nav';
@@ -34,7 +34,7 @@ describe('DetailsViewLeftNav', () => {
         const assessmentDataStub: { [key: string]: IAssessmentData } = { x: { testStepStatus: {} } as IAssessmentData };
         const assessmentStoreDataStub = {
             assessments: assessmentDataStub,
-        } as IAssessmentStoreData;
+        } as AssessmentStoreData;
 
         const rightPanelConfig: DetailsRightPanelConfiguration = {
             GetLeftNavSelectedKey: GetLeftNavSelectedKeyMock.object,

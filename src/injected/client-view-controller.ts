@@ -6,8 +6,8 @@ import { BaseStore } from '../common/base-store';
 import { TestMode } from '../common/configs/test-mode';
 import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../common/enum-helper';
+import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
-import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { AssessmentScanData, VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
@@ -25,11 +25,11 @@ export class ClientViewController {
     private currentVisualizationState: VisualizationStoreData;
     private currentFeatureFlagState: FeatureFlagStoreData;
     private visualizationStore: BaseStore<VisualizationStoreData>;
-    private assessmentStore: BaseStore<IAssessmentStoreData>;
+    private assessmentStore: BaseStore<AssessmentStoreData>;
     private tabStore: BaseStore<TabStoreData>;
     private scanResultStore: BaseStore<VisualizationScanResultData>;
     private currentScanResultState: VisualizationScanResultData;
-    private currentAssessmentState: IAssessmentStoreData;
+    private currentAssessmentState: AssessmentStoreData;
     private currentTabState: TabStoreData;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
     private featureFlagStore: BaseStore<DictionaryStringTo<boolean>>;
@@ -45,7 +45,7 @@ export class ClientViewController {
         scrollingController,
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
         featureFlagStore: BaseStore<DictionaryStringTo<boolean>>,
-        assessmentStore: BaseStore<IAssessmentStoreData>,
+        assessmentStore: BaseStore<AssessmentStoreData>,
         tabStore: BaseStore<TabStoreData>,
         selectorMapHelper: SelectorMapHelper,
         targetPageActionMessageCreator: TargetPageActionMessageCreator,

@@ -15,15 +15,15 @@ import {
     TriggeredByNotApplicable,
 } from '../../../../common/telemetry-events';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
-import { IAssessmentData, IAssessmentStoreData } from '../../../../common/types/store-data/iassessment-result-data';
+import { AssessmentStoreData, IAssessmentData } from '../../../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
 
 function testBeforeAfterAssessmentData(
     expectedTelemetry: RequirementStatusTelemetryData,
     expectedTimes: Times,
-    before: IAssessmentStoreData,
-    after: IAssessmentStoreData,
+    before: AssessmentStoreData,
+    after: AssessmentStoreData,
 ): void {
     const assessmentStoreMock = Mock.ofType(AssessmentStore, MockBehavior.Strict);
     const assessmentProvider = CreateTestAssessmentProvider();
@@ -278,7 +278,7 @@ function getMockTelemetryData(test: number, requirement: string, passed: boolean
     };
 }
 
-function getMockAssessmentStoreDataUnknowns(): IAssessmentStoreData {
+function getMockAssessmentStoreDataUnknowns(): AssessmentStoreData {
     const assessments: { [key: string]: IAssessmentData } = {
         'assessment-1': {
             fullAxeResultsMap: null,
@@ -365,6 +365,6 @@ function getMockAssessmentStoreDataUnknowns(): IAssessmentStoreData {
             url: 'url',
             title: 'title',
         },
-    } as IAssessmentStoreData;
+    } as AssessmentStoreData;
     return assessmentStoreMockData;
 }

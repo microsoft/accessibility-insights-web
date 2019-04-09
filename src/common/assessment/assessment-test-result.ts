@@ -4,7 +4,7 @@ import { Assessment } from '../../assessments/types/iassessment';
 import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { OutcomeStats, outcomeStatsFromManualTestStatus } from '../../DetailsView/reports/components/outcome-type';
 import { ManualTestStatusData } from '../types/manual-test-status';
-import { IAssessmentData } from '../types/store-data/iassessment-result-data';
+import { IAssessmentData } from '../types/store-data/assessment-result-data';
 import { VisualizationType } from '../types/visualization-type';
 import { getRequirementsResults, RequirementResult } from './requirement';
 

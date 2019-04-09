@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { pageTitleInstanceDetailsColumnRenderer } from '../../../../assessments/page/pagetitle-instance-details-column-renderer';
-import { IHeadingsAssessmentProperties } from '../../../../common/types/store-data/iassessment-result-data';
+import { IHeadingsAssessmentProperties } from '../../../../common/types/store-data/assessment-result-data';
 import { AssessmentInstanceDetailsColumn } from '../../../../DetailsView/components/assessment-instance-details-column';
 import { AssessmentInstanceRowData } from '../../../../DetailsView/components/assessment-instance-table';
 

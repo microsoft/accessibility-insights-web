@@ -14,8 +14,8 @@ import { StoreProxy } from '../common/store-proxy';
 import { StoreNames } from '../common/stores/store-names';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { TelemetryEventSource } from '../common/telemetry-events';
+import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
-import { IAssessmentStoreData } from '../common/types/store-data/iassessment-result-data';
 import { DevToolState } from '../common/types/store-data/idev-tool-state';
 import { InspectStoreData } from '../common/types/store-data/inspect-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
@@ -50,7 +50,7 @@ export class MainWindowInitializer extends WindowInitializer {
     private analyzerController: AnalyzerController;
     private inspectController: InspectController;
     private visualizationStoreProxy: StoreProxy<VisualizationStoreData>;
-    private assessmentStoreProxy: StoreProxy<IAssessmentStoreData>;
+    private assessmentStoreProxy: StoreProxy<AssessmentStoreData>;
     private featureFlagStoreProxy: StoreProxy<FeatureFlagStoreData>;
     private userConfigStoreProxy: StoreProxy<UserConfigurationStoreData>;
     private inspectStoreProxy: StoreProxy<InspectStoreData>;
@@ -80,7 +80,7 @@ export class MainWindowInitializer extends WindowInitializer {
             StoreNames[StoreNames.VisualizationScanResultStore],
             this.clientChromeAdapter,
         );
-        this.assessmentStoreProxy = new StoreProxy<IAssessmentStoreData>(StoreNames[StoreNames.AssessmentStore], this.clientChromeAdapter);
+        this.assessmentStoreProxy = new StoreProxy<AssessmentStoreData>(StoreNames[StoreNames.AssessmentStore], this.clientChromeAdapter);
         this.tabStoreProxy = new StoreProxy<TabStoreData>(StoreNames[StoreNames.TabStore], this.clientChromeAdapter);
         this.devToolStoreProxy = new StoreProxy<DevToolState>(StoreNames[StoreNames.DevToolsStore], this.clientChromeAdapter);
         this.inspectStoreProxy = new StoreProxy<InspectStoreData>(StoreNames[StoreNames.InspectStore], this.clientChromeAdapter);

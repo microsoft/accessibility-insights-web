@@ -4,7 +4,7 @@ import { head } from 'lodash';
 
 import { Assessment } from '../assessments/types/iassessment';
 import { Requirement } from '../assessments/types/requirement';
-import { IAssessmentData, IAssessmentStoreData, PersistedTabInfo } from '../common/types/store-data/iassessment-result-data';
+import { AssessmentStoreData, IAssessmentData, PersistedTabInfo } from '../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../types/common-types';
 
 export class InitialAssessmentStoreDataGenerator {
@@ -15,7 +15,7 @@ export class InitialAssessmentStoreDataGenerator {
 
     constructor(private readonly tests: ReadonlyArray<Readonly<Assessment>>) {}
 
-    public generateInitialState(persistedData: IAssessmentStoreData = null): IAssessmentStoreData {
+    public generateInitialState(persistedData: AssessmentStoreData = null): AssessmentStoreData {
         const targetTab: PersistedTabInfo = persistedData &&
             persistedData.persistedTabInfo && { ...persistedData.persistedTabInfo, appRefreshed: true };
         const persistedTests = persistedData && persistedData.assessments;
@@ -24,13 +24,13 @@ export class InitialAssessmentStoreDataGenerator {
         const selectedTestType = first.visualizationType;
         const selectedTestStep = first.requirements && first.requirements[0] && first.requirements[0].key;
 
-        const state: Partial<IAssessmentStoreData> = {
+        const state: Partial<AssessmentStoreData> = {
             persistedTabInfo: targetTab,
             assessmentNavState: { selectedTestType: selectedTestType, selectedTestStep: selectedTestStep },
             assessments: this.constructInitialDataForAssessment(persistedTests),
         };
 
-        return state as IAssessmentStoreData;
+        return state as AssessmentStoreData;
     }
 
     private constructInitialDataForAssessment(

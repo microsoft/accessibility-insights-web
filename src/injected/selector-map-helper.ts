@@ -5,7 +5,7 @@ import * as _ from 'lodash';
 import { AssessmentsProvider } from '../assessments/types/iassessments-provider';
 import { BaseStore } from '../common/base-store';
 import { ManualTestStatus } from '../common/types/manual-test-status';
-import { IAssessmentStoreData, IGeneratedAssessmentInstance } from '../common/types/store-data/iassessment-result-data';
+import { AssessmentStoreData, IGeneratedAssessmentInstance } from '../common/types/store-data/assessment-result-data';
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryStringTo } from '../types/common-types';
@@ -13,12 +13,12 @@ import { AssessmentVisualizationInstance } from './frameCommunicators/html-eleme
 
 export class SelectorMapHelper {
     private scanResultStore: BaseStore<VisualizationScanResultData>;
-    private assessmentStore: BaseStore<IAssessmentStoreData>;
+    private assessmentStore: BaseStore<AssessmentStoreData>;
     private assessmentsProvider: AssessmentsProvider;
 
     constructor(
         scanResultStore: BaseStore<VisualizationScanResultData>,
-        assessmentStore: BaseStore<IAssessmentStoreData>,
+        assessmentStore: BaseStore<AssessmentStoreData>,
         assessmentsProvider: AssessmentsProvider,
     ) {
         this.scanResultStore = scanResultStore;

@@ -12,7 +12,7 @@ import * as Markup from '../../assessments/markup';
 import { BlockingDialog } from '../../common/components/blocking-dialog';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { Tab } from '../../common/itab';
-import { PersistedTabInfo } from '../../common/types/store-data/iassessment-result-data';
+import { PersistedTabInfo } from '../../common/types/store-data/assessment-result-data';
 import { UrlParser } from '../../common/url-parser';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 

@@ -8,7 +8,7 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { BlockingDialog } from '../../../../../common/components/blocking-dialog';
 import { Tab } from '../../../../../common/itab';
-import { PersistedTabInfo } from '../../../../../common/types/store-data/iassessment-result-data';
+import { PersistedTabInfo } from '../../../../../common/types/store-data/assessment-result-data';
 import { UrlParser } from '../../../../../common/url-parser';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { TargetChangeDialog, TargetChangeDialogProps } from '../../../../../DetailsView/components/target-change-dialog';
