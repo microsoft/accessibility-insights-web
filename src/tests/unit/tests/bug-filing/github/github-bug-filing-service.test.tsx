@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
-import { GithubBugFilingService, GithubBugFilingSettings } from '../../../../../bug-filing/github/github-bug-filing-service';
+import { GitHubBugFilingService, GithubBugFilingSettings } from '../../../../../bug-filing/github/github-bug-filing-service';
 import { SettingsFormProps } from '../../../../../bug-filing/types/settings-form-props';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 
@@ -24,8 +24,8 @@ describe('GithubBugFilingServiceTest', () => {
     });
 
     test('static properties', () => {
-        expect(GithubBugFilingService.key).toBe('github');
-        expect(GithubBugFilingService.displayName).toBe('Github');
+        expect(GitHubBugFilingService.key).toBe('gitHub');
+        expect(GitHubBugFilingService.displayName).toBe('GitHub');
     });
 
     test('buildStoreData', () => {
@@ -33,7 +33,7 @@ describe('GithubBugFilingServiceTest', () => {
         const expectedStoreData: GithubBugFilingSettings = {
             repository: url,
         };
-        expect(GithubBugFilingService.buildStoreData(url)).toEqual(expectedStoreData);
+        expect(GitHubBugFilingService.buildStoreData(url)).toEqual(expectedStoreData);
     });
 
     test('isSettingsValid', () => {
@@ -44,19 +44,19 @@ describe('GithubBugFilingServiceTest', () => {
         const validSettings: GithubBugFilingSettings = {
             repository: 'repository',
         };
-        expect(GithubBugFilingService.isSettingsValid(emptySettings)).toBe(false);
-        expect(GithubBugFilingService.isSettingsValid(invalidSettings)).toBe(false);
-        expect(GithubBugFilingService.isSettingsValid(validSettings)).toBe(true);
+        expect(GitHubBugFilingService.isSettingsValid(emptySettings)).toBe(false);
+        expect(GitHubBugFilingService.isSettingsValid(invalidSettings)).toBe(false);
+        expect(GitHubBugFilingService.isSettingsValid(validSettings)).toBe(true);
     });
 
     test('renderSettingsForm', () => {
-        const Component = GithubBugFilingService.renderSettingsForm;
+        const Component = GitHubBugFilingService.renderSettingsForm;
         const wrapper = shallow(<Component {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
     test('renderSettingsForm: onChange', () => {
-        const Component = GithubBugFilingService.renderSettingsForm;
+        const Component = GitHubBugFilingService.renderSettingsForm;
         const wrapper = shallow(<Component {...props} />);
         userConfigMessageCreatorMock
             .setup(ucmm => ucmm.setBugServiceProperty('gitHub', 'repository', 'new value'))
@@ -69,6 +69,6 @@ describe('GithubBugFilingServiceTest', () => {
     });
 
     test('fileBug', () => {
-        expect(GithubBugFilingService.fileBug).not.toBeNull();
+        expect(GitHubBugFilingService.fileBug).not.toBeNull();
     });
 });

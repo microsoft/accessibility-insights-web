@@ -9,6 +9,8 @@ import { CreateIssueDetailsTextData } from '../../common/types/create-issue-deta
 import { BugFilingService } from '../types/bug-filing-service';
 import { SettingsFormProps } from '../types/settings-form-props';
 
+const GitHubBugFilingServiceKey = 'gitHub';
+
 export type GithubBugFilingSettings = {
     repository: string;
 };
@@ -25,7 +27,8 @@ function isSettingsValid(data: GithubBugFilingSettings): boolean {
 
 const renderSettingsForm = NamedSFC<SettingsFormProps<GithubBugFilingSettings>>('BugFilingSettings', props => {
     const onGitHubRepositoryChange = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
-        props.deps.userConfigMessageCreator.setBugServiceProperty('gitHub', 'repository', newValue);
+        const propertyName: keyof GithubBugFilingSettings = 'repository';
+        props.deps.userConfigMessageCreator.setBugServiceProperty(GitHubBugFilingServiceKey, propertyName, newValue);
     };
 
     return (
@@ -39,9 +42,9 @@ const renderSettingsForm = NamedSFC<SettingsFormProps<GithubBugFilingSettings>>(
     );
 });
 
-export const GithubBugFilingService: BugFilingService<GithubBugFilingSettings> = {
-    key: 'github',
-    displayName: 'Github',
+export const GitHubBugFilingService: BugFilingService<GithubBugFilingSettings> = {
+    key: GitHubBugFilingServiceKey,
+    displayName: 'GitHub',
     renderSettingsForm,
     buildStoreData,
     isSettingsValid,
