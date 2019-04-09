@@ -8,8 +8,8 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { AssessmentsProviderImpl } from '../../../../../assessments/assessments-provider';
 import { Assessment } from '../../../../../assessments/types/iassessment';
 import { AssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
+import { AssessmentStoreData } from '../../../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
-import { IAssessmentStoreData } from '../../../../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import {
@@ -29,7 +29,7 @@ describe('DetailsViewCommandBar', () => {
     let actionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let tabStoreData: TabStoreData;
     let assessmentsProviderMock: IMock<AssessmentsProvider>;
-    let assessmentStoreData: IAssessmentStoreData;
+    let assessmentStoreData: AssessmentStoreData;
     let rightPanelConfig: DetailsRightPanelConfiguration;
     let reportGeneratorMock: IMock<ReportGenerator>;
     let descriptionPlaceholder: string;
@@ -48,7 +48,7 @@ describe('DetailsViewCommandBar', () => {
             assessmentNavState: {
                 selectedTestType: -1,
             },
-        } as IAssessmentStoreData;
+        } as AssessmentStoreData;
         rightPanelConfig = {} as DetailsRightPanelConfiguration;
         assessmentsProviderMock
             .setup(provider => provider.forType(-1))

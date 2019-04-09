@@ -22,7 +22,7 @@ import { DictionaryNumberTo, DictionaryStringTo } from '../../types/common-types
 import { ContentPageComponent } from '../../views/content/content-page';
 import { EnumHelper } from '../enum-helper';
 import { IAnalyzerTelemetryCallback } from '../types/analyzer-telemetry-callbacks';
-import { IAssessmentData, IAssessmentStoreData } from '../types/store-data/assessment-result-data';
+import { AssessmentStoreData, IAssessmentData } from '../types/store-data/assessment-result-data';
 import { ScanData, TestsEnabledState } from '../types/store-data/visualization-store-data';
 import { TelemetryProcessor } from '../types/telemetry-processor';
 import { VisualizationType } from '../types/visualization-type';
@@ -42,8 +42,8 @@ export interface AssesssmentVisualizationConfiguration {
     enableTest: (data: ScanData, payload: ToggleActionPayload) => void;
     disableTest: (data: ScanData, step?: string) => void;
     getTestStatus: (data: ScanData, step?: string) => boolean;
-    getAssessmentData?: (data: IAssessmentStoreData) => IAssessmentData;
-    setAssessmentData?: (data: IAssessmentStoreData, selectorMap: DictionaryStringTo<any>, instanceMap?: DictionaryStringTo<any>) => void;
+    getAssessmentData?: (data: AssessmentStoreData) => IAssessmentData;
+    setAssessmentData?: (data: AssessmentStoreData, selectorMap: DictionaryStringTo<any>, instanceMap?: DictionaryStringTo<any>) => void;
     analyzerMessageType: string;
     analyzerProgressMessageType?: string;
     resultProcessor?: (scanner: ScannerUtils) => (results: ScanResults) => DictionaryStringTo<HtmlElementAxeResults>;
@@ -64,8 +64,8 @@ export interface VisualizationConfiguration extends AssesssmentVisualizationConf
     featureFlagToEnable?: string;
     getTestView: (props: TestViewProps) => JSX.Element;
     getStoreData: (data: TestsEnabledState) => ScanData;
-    getAssessmentData?: (data: IAssessmentStoreData) => IAssessmentData;
-    setAssessmentData?: (data: IAssessmentStoreData, selectorMap: DictionaryStringTo<any>, instanceMap?: DictionaryStringTo<any>) => void;
+    getAssessmentData?: (data: AssessmentStoreData) => IAssessmentData;
+    setAssessmentData?: (data: AssessmentStoreData, selectorMap: DictionaryStringTo<any>, instanceMap?: DictionaryStringTo<any>) => void;
     displayableData: DisplayableVisualizationTypeData;
     chromeCommand: string;
     launchPanelDisplayOrder: number;

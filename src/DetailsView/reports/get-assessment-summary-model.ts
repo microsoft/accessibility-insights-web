@@ -5,7 +5,7 @@ import { chain, zipObject } from 'lodash';
 import { Assessment } from '../../assessments/types/iassessment';
 import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { ManualTestStatusData } from '../../common/types/manual-test-status';
-import { IAssessmentData, IAssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
+import { AssessmentStoreData, IAssessmentData } from '../../common/types/store-data/assessment-result-data';
 import * as Model from './assessment-report-model';
 import { OutcomeMath } from './components/outcome-math';
 import { allOutcomeTypes, OutcomeStats, OutcomeType, outcomeTypeFromTestStatus } from './components/outcome-type';
@@ -15,7 +15,7 @@ export type AssessmentStatusData = { [key: string]: ManualTestStatusData };
 
 export type GetAssessmentSummaryModelFromProviderAndStoreData = (
     assessmentsProvider: AssessmentsProvider,
-    assessmentStoreData: IAssessmentStoreData,
+    assessmentStoreData: AssessmentStoreData,
 ) => Model.OverviewSummaryReportModel;
 
 export type GetAssessmentSummaryModelFromProviderAndStatusData = (
@@ -25,7 +25,7 @@ export type GetAssessmentSummaryModelFromProviderAndStatusData = (
 
 export function getAssessmentSummaryModelFromProviderAndStoreData(
     assessmentsProvider: AssessmentsProvider,
-    assessmentStoreData: IAssessmentStoreData,
+    assessmentStoreData: AssessmentStoreData,
 ): Model.OverviewSummaryReportModel {
     const assessments = assessmentsProvider.all();
     const assessmentResults: AssessmentSummaryResult[] = assessments.map(a => ({

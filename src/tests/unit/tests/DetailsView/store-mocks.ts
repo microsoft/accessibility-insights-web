@@ -16,10 +16,10 @@ import { TabStore } from '../../../../background/stores/tab-store';
 import { VisualizationScanResultStore } from '../../../../background/stores/visualization-scan-result-store';
 import { VisualizationStore } from '../../../../background/stores/visualization-store';
 import { FeatureFlags } from '../../../../common/feature-flags';
+import { AssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
 import { CommandStoreData } from '../../../../common/types/store-data/command-store-data';
 import { DetailsViewData } from '../../../../common/types/store-data/details-view-data';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
-import { IAssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
 import { LaunchPanelStoreData } from '../../../../common/types/store-data/launch-panel-store-data';
 import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
@@ -64,7 +64,7 @@ export class StoreMocks {
     public featureFlagStoreData: FeatureFlagStoreData = {
         [FeatureFlags[FeatureFlags.logTelemetryToConsole]]: false,
     };
-    public assessmentStoreData: IAssessmentStoreData;
+    public assessmentStoreData: AssessmentStoreData;
 
     constructor() {
         this.assessmentsProviderMock.setup(ap => ap.all()).returns(() => []);

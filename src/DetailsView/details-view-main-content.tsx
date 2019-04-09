@@ -5,9 +5,9 @@ import * as React from 'react';
 import { AssessmentsProvider } from '../assessments/types/iassessments-provider';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
+import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
 import { DetailsViewData } from '../common/types/store-data/details-view-data';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
-import { IAssessmentStoreData } from '../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
@@ -27,7 +27,7 @@ export type DetailsViewMainContentDeps = DetailsViewContentDeps & DetailsViewLef
 export interface DetailsViewMainContentProps {
     deps: DetailsViewMainContentDeps;
     tabStoreData: TabStoreData;
-    assessmentStoreData: IAssessmentStoreData;
+    assessmentStoreData: AssessmentStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
     detailsViewStoreData: DetailsViewData;
     selectedTest: VisualizationType;

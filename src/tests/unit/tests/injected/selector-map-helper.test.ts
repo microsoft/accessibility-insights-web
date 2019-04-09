@@ -8,7 +8,7 @@ import { VisualizationScanResultStore } from '../../../../background/stores/visu
 import { BaseStore } from '../../../../common/base-store';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
 import {
-    IAssessmentStoreData,
+    AssessmentStoreData,
     IGeneratedAssessmentInstance,
     ITestStepResult,
 } from '../../../../common/types/store-data/assessment-result-data';
@@ -22,7 +22,7 @@ import { VisualizationScanResultStoreDataBuilder } from '../../common/visualizat
 
 describe('SelectorMapHelperTest', () => {
     let scanResultStoreMock: IMock<BaseStore<VisualizationScanResultData>>;
-    let assessmentStoreMock: IMock<BaseStore<IAssessmentStoreData>>;
+    let assessmentStoreMock: IMock<BaseStore<AssessmentStoreData>>;
     let assessmentsProvider: AssessmentsProvider;
     let testSelectorMap: DictionaryStringTo<IGeneratedAssessmentInstance<any, any>>;
     let expected: DictionaryStringTo<AssessmentVisualizationInstance>;

@@ -9,8 +9,8 @@ import { InspectActionMessageCreator } from '../../../../common/message-creators
 import { ScopingActionMessageCreator } from '../../../../common/message-creators/scoping-action-message-creator';
 import { StoreActionMessageCreator } from '../../../../common/message-creators/store-action-message-creator';
 import { BaseClientStoresHub } from '../../../../common/stores/base-client-stores-hub';
+import { AssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
 import { DetailsViewData } from '../../../../common/types/store-data/details-view-data';
-import { IAssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
 import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
 import { VisualizationScanResultData } from '../../../../common/types/store-data/visualization-scan-result-data';
@@ -25,7 +25,7 @@ import { StoreMocks } from './store-mocks';
 
 export class DetailsViewContainerPropsBuilder {
     private visualizationStore: BaseStore<VisualizationStoreData>;
-    private assessmentStore: BaseStore<IAssessmentStoreData>;
+    private assessmentStore: BaseStore<AssessmentStoreData>;
     private visualizationScanResultStore: BaseStore<VisualizationScanResultData>;
     private tabStore: BaseStore<TabStoreData>;
     private featureFlagStore: BaseStore<DictionaryStringTo<boolean>>;

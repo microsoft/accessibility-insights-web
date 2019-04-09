@@ -31,8 +31,8 @@ import { StoreNames } from '../../../../../common/stores/store-names';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
 import { ManualTestStatus, ManualTestStatusData, TestStepData } from '../../../../../common/types/manual-test-status';
 import {
+    AssessmentStoreData,
     IAssessmentData,
-    IAssessmentStoreData,
     IGeneratedAssessmentInstance,
     IManualTestStepResult,
     ITestStepResult,
@@ -114,7 +114,7 @@ describe('AssessmentStoreTest', () => {
 
     test('getDefaultState with no assessments', () => {
         const defaultStateStub = {};
-        setupDataGeneratorMock(null, defaultStateStub as IAssessmentStoreData);
+        setupDataGeneratorMock(null, defaultStateStub as AssessmentStoreData);
 
         const testObject = new AssessmentStore(
             null,
@@ -139,7 +139,7 @@ describe('AssessmentStoreTest', () => {
         const assessmentProvider = CreateTestAssessmentProvider();
         const assessments = assessmentProvider.all();
 
-        const persisted: IAssessmentStoreData = {
+        const persisted: AssessmentStoreData = {
             persistedTabInfo: targetTab,
             assessments: {
                 ['assessment-1']: {
@@ -172,7 +172,7 @@ describe('AssessmentStoreTest', () => {
             manualTestStepResultMap: null,
         };
 
-        const expectedState: IAssessmentStoreData = {
+        const expectedState: AssessmentStoreData = {
             persistedTabInfo: targetTab,
             assessments: {},
             assessmentNavState: {
@@ -1428,10 +1428,10 @@ describe('AssessmentStoreTest', () => {
         expect(ManualTestStatus.UNKNOWN < ManualTestStatus.FAIL).toBeTruthy();
     });
 
-    function setupDataGeneratorMock(persistedData: IAssessmentStoreData, initialData: IAssessmentStoreData): void {
+    function setupDataGeneratorMock(persistedData: AssessmentStoreData, initialData: AssessmentStoreData): void {
         initialAssessmentStoreDataGeneratorMock
             .setup(im => im.generateInitialState(persistedData))
-            .returns(() => initialData as IAssessmentStoreData)
+            .returns(() => initialData as AssessmentStoreData)
             .verifiable(Times.once());
     }
 
@@ -1467,11 +1467,11 @@ describe('AssessmentStoreTest', () => {
         };
     }
 
-    function getDefaultState(): IAssessmentStoreData {
+    function getDefaultState(): AssessmentStoreData {
         return new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object).build();
     }
 
-    function getDefaultStateWithDefaultAssessmentData(assessment: string, selectedRequirement: string): IAssessmentStoreData {
+    function getDefaultStateWithDefaultAssessmentData(assessment: string, selectedRequirement: string): AssessmentStoreData {
         return new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object)
             .withAssessment(assessmentKey, {
                 fullAxeResultsMap: null,
@@ -1483,7 +1483,7 @@ describe('AssessmentStoreTest', () => {
             .build();
     }
 
-    function getStateWithAssessment(data: IAssessmentData): IAssessmentStoreData {
+    function getStateWithAssessment(data: IAssessmentData): AssessmentStoreData {
         return new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object)
             .withAssessment(assessmentKey, data)
             .build();
@@ -1491,7 +1491,7 @@ describe('AssessmentStoreTest', () => {
 
     function createStoreTesterForAssessmentActions(
         actionName: keyof AssessmentActions,
-    ): AssessmentStoreTester<IAssessmentStoreData, AssessmentActions> {
+    ): AssessmentStoreTester<AssessmentStoreData, AssessmentActions> {
         const factory = (actions: AssessmentActions) =>
             new AssessmentStore(
                 browserMock.object,

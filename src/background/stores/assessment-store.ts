@@ -10,8 +10,8 @@ import { StoreNames } from '../../common/stores/store-names';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import {
+    AssessmentStoreData,
     IAssessmentData,
-    IAssessmentStoreData,
     IGeneratedAssessmentInstance,
     ITestStepResult,
     IUserCapturedInstance,
@@ -38,14 +38,14 @@ import { AssessmentDataRemover } from './../assessment-data-remover';
 import { BrowserAdapter } from './../browser-adapter';
 import { BaseStoreImpl } from './base-store-impl';
 
-export class AssessmentStore extends BaseStoreImpl<IAssessmentStoreData> {
+export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
     private assessmentActions: AssessmentActions;
     private assessmentDataConverter: AssessmentDataConverter;
     private assessmentDataRemover: AssessmentDataRemover;
     private assessmentsProvider: AssessmentsProvider;
     private idbInstance: IndexedDBAPI;
     private browserAdapter: BrowserAdapter;
-    private persistedData: IAssessmentStoreData;
+    private persistedData: AssessmentStoreData;
 
     constructor(
         browserAdapter: BrowserAdapter,
@@ -54,7 +54,7 @@ export class AssessmentStore extends BaseStoreImpl<IAssessmentStoreData> {
         assessmentDataRemover: AssessmentDataRemover,
         assessmentsProvider: AssessmentsProvider,
         idbInstance: IndexedDBAPI,
-        persistedData: IAssessmentStoreData,
+        persistedData: AssessmentStoreData,
         private readonly initialAssessmentStoreDataGenerator: InitialAssessmentStoreDataGenerator,
     ) {
         super(StoreNames.AssessmentStore);
@@ -68,15 +68,15 @@ export class AssessmentStore extends BaseStoreImpl<IAssessmentStoreData> {
         this.persistedData = persistedData;
     }
 
-    public generateDefaultState(persistedData: IAssessmentStoreData = null): IAssessmentStoreData {
+    public generateDefaultState(persistedData: AssessmentStoreData = null): AssessmentStoreData {
         return this.initialAssessmentStoreDataGenerator.generateInitialState(persistedData);
     }
 
-    public getDefaultState(): IAssessmentStoreData {
+    public getDefaultState(): AssessmentStoreData {
         return this.generateDefaultState(this.persistedData);
     }
 
-    private async persistAssessmentData(assessmentStoreData: IAssessmentStoreData): Promise<boolean> {
+    private async persistAssessmentData(assessmentStoreData: AssessmentStoreData): Promise<boolean> {
         return await this.idbInstance.setItem(IndexedDBDataKeys.assessmentStore, assessmentStoreData);
     }
 

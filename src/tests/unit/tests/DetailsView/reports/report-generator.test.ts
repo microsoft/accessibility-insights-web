@@ -3,8 +3,8 @@
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { AssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
+import { AssessmentStoreData } from '../../../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
-import { IAssessmentStoreData } from '../../../../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
 import { AssessmentReportHtmlGenerator } from '../../../../../DetailsView/reports/assessment-report-html-generator';
 import { ReportGenerator, ReportGeneratorDeps } from '../../../../../DetailsView/reports/report-generator';
@@ -60,7 +60,7 @@ describe('ReportGeneratorTest', () => {
     });
 
     test('generateAssessmentHtml', () => {
-        const assessmentStoreData: IAssessmentStoreData = { stub: 'assessmentStoreData' } as any;
+        const assessmentStoreData: AssessmentStoreData = { stub: 'assessmentStoreData' } as any;
         const assessmentsProvider: AssessmentsProvider = { stub: 'assessmentsProvider' } as any;
         const featureFlagStoreData: FeatureFlagStoreData = { stub: 'featureFlagStoreData' } as any;
         const tabStoreData: TabStoreData = { stub: 'tabStoreData' } as any;

@@ -5,8 +5,8 @@ import * as React from 'react';
 
 import { AssessmentsProvider } from '../../../assessments/types/iassessments-provider';
 import { NamedSFC } from '../../../common/react/named-sfc';
+import { AssessmentStoreData } from '../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
-import { IAssessmentStoreData } from '../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { DetailsRightPanelConfiguration } from '../details-view-right-panel';
 import { DetailsViewSwitcherNavConfiguration, LeftNavDeps } from '../details-view-switcher-nav';
@@ -22,7 +22,7 @@ export type DetailsViewLeftNavProps = {
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     featureFlagStoreData: FeatureFlagStoreData;
-    assessmentStoreData: IAssessmentStoreData;
+    assessmentStoreData: AssessmentStoreData;
 };
 
 export const DetailsViewLeftNav = NamedSFC<DetailsViewLeftNavProps>('DetailsViewLeftNav', props => {

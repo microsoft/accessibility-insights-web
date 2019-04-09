@@ -3,7 +3,7 @@
 import { Assessment } from '../../../../../assessments/types/iassessment';
 import { AssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
 import { ManualTestStatus, TestStepData } from '../../../../../common/types/manual-test-status';
-import { IAssessmentStoreData } from '../../../../../common/types/store-data/assessment-result-data';
+import { AssessmentStoreData } from '../../../../../common/types/store-data/assessment-result-data';
 import { OverviewSummaryReportModel } from '../../../../../DetailsView/reports/assessment-report-model';
 import {
     AssessmentStatusData,
@@ -71,7 +71,7 @@ describe('getAssessmentSummaryModel', () => {
     const zeroRequirementsAll: IAssessmentSubsetForSummary[] = [];
     const zeroAssessmentsProvider: AssessmentsProvider = createTestAssessmentsProvider(zeroRequirementsAll);
     const zeroRequirementsStatusData: AssessmentStatusData = {} as any;
-    const zeroRequirementsStoreData: IAssessmentStoreData = {} as any;
+    const zeroRequirementsStoreData: AssessmentStoreData = {} as any;
     const zeroRequirementsResults: AssessmentSummaryResult[] = [];
     const zeroRequirementsModel: OverviewSummaryReportModel = {
         byPercentage: {
@@ -92,7 +92,7 @@ describe('getAssessmentSummaryModel', () => {
     const singleRequirementStatusData: AssessmentStatusData = {
         [sampleTests.test1.key]: sampleResults[sampleTests.test1.key].storeData.testStepStatus,
     } as any;
-    const singleRequirementStoreData: IAssessmentStoreData = {
+    const singleRequirementStoreData: AssessmentStoreData = {
         assessments: {
             [sampleTests.test1.key]: sampleResults[sampleTests.test1.key].storeData,
         },
@@ -125,7 +125,7 @@ describe('getAssessmentSummaryModel', () => {
         [sampleTests.test1.key]: sampleResults[sampleTests.test1.key].storeData.testStepStatus,
         [sampleTests.test2.key]: sampleResults[sampleTests.test2.key].storeData.testStepStatus,
     } as any;
-    const multipleRequirementsStoreData: IAssessmentStoreData = {
+    const multipleRequirementsStoreData: AssessmentStoreData = {
         assessments: {
             [sampleTests.test1.key]: sampleResults[sampleTests.test1.key].storeData,
             [sampleTests.test2.key]: sampleResults[sampleTests.test2.key].storeData,

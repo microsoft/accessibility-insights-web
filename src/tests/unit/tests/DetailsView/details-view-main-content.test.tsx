@@ -12,8 +12,8 @@ import { NamedSFC, ReactSFCWithDisplayName } from '../../../../common/react/name
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
 import {
     AssessmentNavState,
+    AssessmentStoreData,
     IAssessmentData,
-    IAssessmentStoreData,
     PersistedTabInfo,
 } from '../../../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
@@ -97,7 +97,7 @@ describe('DetailsViewMainContentTest', () => {
                     } as IAssessmentData,
                 },
                 persistedTabInfo: {} as PersistedTabInfo,
-            } as IAssessmentStoreData;
+            } as AssessmentStoreData;
 
             props = {
                 deps: {

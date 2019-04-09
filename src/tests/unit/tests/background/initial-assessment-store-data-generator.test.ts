@@ -6,7 +6,7 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 import { Assessment } from '../../../../assessments/types/iassessment';
 import { InitialDataCreator } from '../../../../background/create-initial-assessment-test-data';
 import { InitialAssessmentStoreDataGenerator } from '../../../../background/initial-assessment-store-data-generator';
-import { IAssessmentData, IAssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
+import { AssessmentStoreData, IAssessmentData } from '../../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../../../types/common-types';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
@@ -21,7 +21,7 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
     const knownRequirement1 = knownRequirementIds[0];
     const unknownRequirement: string = 'unknown-requirement';
     const assessmentDataStub = {} as IAssessmentData;
-    let defaultState: IAssessmentStoreData;
+    let defaultState: AssessmentStoreData;
     let initialDataCreatorMock: IMock<InitialDataCreator>;
     let generator: InitialAssessmentStoreDataGenerator;
 
@@ -44,7 +44,7 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
         persistedAssessments => {
             const generatedState = generator.generateInitialState({
                 assessments: persistedAssessments,
-            } as IAssessmentStoreData);
+            } as AssessmentStoreData);
 
             expect(generatedState.assessments).toEqual(defaultState.assessments);
         },
@@ -61,7 +61,7 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
 
         const generatedState = generator.generateInitialState({
             assessments: persistedAssessments,
-        } as IAssessmentStoreData);
+        } as AssessmentStoreData);
 
         expect(generatedState.assessments).toEqual(defaultState.assessments);
     });
@@ -69,7 +69,7 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
     it.each([[undefined], [null]])('propagates unspecified persistedTabInfo values as-is', persistedTabInfo => {
         const generatedState = generator.generateInitialState({
             persistedTabInfo,
-        } as IAssessmentStoreData);
+        } as AssessmentStoreData);
 
         expect(generatedState.persistedTabInfo).toEqual(persistedTabInfo);
     });
@@ -112,7 +112,7 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
                     selectedTestStep,
                     selectedTestType,
                 },
-            } as IAssessmentStoreData);
+            } as AssessmentStoreData);
 
             expect(generatedState.assessmentNavState).toEqual(defaultState.assessmentNavState);
         },
