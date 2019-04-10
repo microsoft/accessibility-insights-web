@@ -18,7 +18,7 @@ export class VisualizationActionMessageCreator {
         };
 
         const message: Message = {
-            type: Messages.Visualizations.Common.Toggle,
+            messageType: Messages.Visualizations.Common.Toggle,
             payload,
         };
 

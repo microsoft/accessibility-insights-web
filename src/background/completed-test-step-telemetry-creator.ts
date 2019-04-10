@@ -54,7 +54,7 @@ export class CompletedTestStepTelemetryCreator {
 
             this.interpreter.interpret({
                 tabId: targetTab.id,
-                type: Messages.Telemetry.Send,
+                messageType: Messages.Telemetry.Send,
                 payload,
             });
         }

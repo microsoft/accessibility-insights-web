@@ -37,7 +37,7 @@ function testBeforeAfterAssessmentData(
     );
 
     const expectedMessage: Message = {
-        type: Messages.Telemetry.Send,
+        messageType: Messages.Telemetry.Send,
         tabId: 1,
         payload: {
             eventName: CHANGE_OVERALL_REQUIREMENT_STATUS,
@@ -194,7 +194,7 @@ describe('CompletedTestStepTelemetryCreatorTest', () => {
             .verifiable(Times.atLeastOnce());
 
         const expectedMessage: Message = {
-            type: Messages.Telemetry.Send,
+            messageType: Messages.Telemetry.Send,
         };
         interpreterMock.setup(im => im.interpret(It.isValue(expectedMessage))).verifiable(Times.never());
 
@@ -215,7 +215,7 @@ describe('CompletedTestStepTelemetryCreatorTest', () => {
         const data = getMockAssessmentStoreDataUnknowns();
         const expectedTelemetry = getMockTelemetryData(-1, 'assessment-1-step-1', true, 1);
         const expectedMessage: Message = {
-            type: Messages.Telemetry.Send,
+            messageType: Messages.Telemetry.Send,
             tabId: 1,
             payload: {
                 eventName: CHANGE_OVERALL_REQUIREMENT_STATUS,

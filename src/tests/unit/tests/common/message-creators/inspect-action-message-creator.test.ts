@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { InspectMode } from '../../../../../background/inspect-modes';
+import { Message } from '../../../../../common/message';
 import { InspectActionMessageCreator } from '../../../../../common/message-creators/inspect-action-message-creator';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
@@ -12,15 +12,13 @@ import { EventStubFactory } from './../../../common/event-stub-factory';
 describe('InspectActionMessageCreatorTest', () => {
     const eventStubFactory = new EventStubFactory();
     const testSource: TelemetryEventSource = -1 as TelemetryEventSource;
-    let postMessageMock: IMock<(message) => {}>;
+    let postMessageMock: IMock<(message: Message) => void>;
     let telemetryFactoryMock: IMock<TelemetryDataFactory>;
     let testSubject: InspectActionMessageCreator;
     const tabId: number = -1;
 
     beforeEach(() => {
-        postMessageMock = Mock.ofInstance(message => {
-            return null;
-        });
+        postMessageMock = Mock.ofInstance(message => {});
         telemetryFactoryMock = Mock.ofType(TelemetryDataFactory, MockBehavior.Strict);
         testSubject = new InspectActionMessageCreator(postMessageMock.object, tabId, telemetryFactoryMock.object, testSource);
     });
@@ -36,7 +34,7 @@ describe('InspectActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Inspect.ChangeInspectMode,
+            messageType: Messages.Inspect.ChangeInspectMode,
             payload: {
                 inspectMode,
                 telemetry,
@@ -54,7 +52,7 @@ describe('InspectActionMessageCreatorTest', () => {
         telemetryFactoryMock.verifyAll();
     });
 
-    function setupPostMessage(expectedMessage): void {
+    function setupPostMessage(expectedMessage: Message): void {
         postMessageMock.setup(post => post(It.isValue(expectedMessage))).verifiable(Times.once());
     }
 });

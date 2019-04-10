@@ -17,7 +17,7 @@ export class DevToolActionMessageCreator extends BaseActionMessageCreator {
     public setDevToolStatus(status: boolean): void {
         const message: Message = {
             tabId: this._tabId,
-            type: Messages.DevTools.DevtoolStatus,
+            messageType: Messages.DevTools.DevtoolStatus,
             payload: {
                 status: status,
             } as OnDevToolOpenPayload,
@@ -33,7 +33,7 @@ export class DevToolActionMessageCreator extends BaseActionMessageCreator {
         };
         const message: Message = {
             tabId: this._tabId,
-            type: Messages.DevTools.InspectElement,
+            messageType: Messages.DevTools.InspectElement,
             payload,
         };
 
@@ -46,7 +46,7 @@ export class DevToolActionMessageCreator extends BaseActionMessageCreator {
         };
         const message: Message = {
             tabId: this._tabId,
-            type: Messages.DevTools.InspectFrameUrl,
+            messageType: Messages.DevTools.InspectFrameUrl,
             payload,
         };
 

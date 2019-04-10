@@ -188,7 +188,7 @@ class InjectorControllerValidator {
 
     public setupVerifyInjectionStartedActionCalled(tabId: number, numTimes: number = 1): InjectorControllerValidator {
         this.mockInterpreter
-            .setup(x => x.interpret(It.isObjectWith({ type: Messages.Visualizations.State.InjectionStarted, tabId: tabId })))
+            .setup(x => x.interpret(It.isObjectWith({ messageType: Messages.Visualizations.State.InjectionStarted, tabId: tabId })))
             .verifiable(Times.exactly(numTimes));
 
         return this;
@@ -196,7 +196,7 @@ class InjectorControllerValidator {
 
     public setupVerifyInjectionCompletedActionCalled(tabId: number, numTimes: number = 1): InjectorControllerValidator {
         this.mockInterpreter
-            .setup(x => x.interpret(It.isObjectWith({ type: Messages.Visualizations.State.InjectionCompleted, tabId: tabId })))
+            .setup(x => x.interpret(It.isObjectWith({ messageType: Messages.Visualizations.State.InjectionCompleted, tabId: tabId })))
             .verifiable(Times.exactly(numTimes));
 
         return this;

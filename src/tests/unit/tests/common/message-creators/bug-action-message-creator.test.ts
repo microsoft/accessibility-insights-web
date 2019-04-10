@@ -39,7 +39,7 @@ describe('BugActionMessageCreator', () => {
             telemetry,
         };
         const expectedMessage: Message = {
-            type: Messages.SettingsPanel.OpenPanel,
+            messageType: Messages.SettingsPanel.OpenPanel,
             tabId,
             payload,
         };
@@ -63,7 +63,7 @@ describe('BugActionMessageCreator', () => {
             telemetry,
         };
         const expectedMessage: Message = {
-            type: Messages.Telemetry.Send,
+            messageType: Messages.Telemetry.Send,
             tabId,
             payload,
         };

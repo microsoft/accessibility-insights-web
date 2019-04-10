@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { OnDetailsViewOpenPayload, SetLaunchPanelState } from '../../../../../background/actions/action-payloads';
+import { Message } from '../../../../../common/message';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import {
@@ -25,7 +26,7 @@ describe('PopupActionMessageCreatorTest', () => {
     const testSource: TelemetryEventSource = -1 as TelemetryEventSource;
 
     let mockWindowUtils: IMock<WindowUtils>;
-    let postMessageMock: IMock<(message) => void>;
+    let postMessageMock: IMock<(message: Message) => void>;
     let testSubject: PopupActionMessageCreator;
     let telemetryFactoryMock: IMock<TelemetryDataFactory>;
     let tabId: number;
@@ -57,7 +58,7 @@ describe('PopupActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: 1,
-            type: Messages.Telemetry.Send,
+            messageType: Messages.Telemetry.Send,
             payload: payload,
         };
 
@@ -81,7 +82,7 @@ describe('PopupActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: 1,
-            type: Messages.Telemetry.Send,
+            messageType: Messages.Telemetry.Send,
             payload: payload,
         };
 
@@ -110,7 +111,7 @@ describe('PopupActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: 1,
-            type: Messages.Visualizations.DetailsView.Open,
+            messageType: Messages.Visualizations.DetailsView.Open,
             payload: expectedPayload,
         };
 
@@ -146,7 +147,7 @@ describe('PopupActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: 1,
-            type: Messages.Visualizations.DetailsView.Open,
+            messageType: Messages.Visualizations.DetailsView.Open,
             payload: expectedPayload,
         };
 
@@ -173,7 +174,7 @@ describe('PopupActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: 1,
-            type: Messages.ChromeFeature.configureCommand,
+            messageType: Messages.ChromeFeature.configureCommand,
             payload: {
                 telemetry,
             },
@@ -199,7 +200,7 @@ describe('PopupActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: 1,
-            type: Messages.Telemetry.Send,
+            messageType: Messages.Telemetry.Send,
             payload: {
                 eventName: TUTORIAL_OPEN,
                 telemetry,
@@ -228,7 +229,7 @@ describe('PopupActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: 1,
-            type: Messages.LaunchPanel.Set,
+            messageType: Messages.LaunchPanel.Set,
             payload,
         };
 

@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock } from 'typemoq';
-
 import { InspectElementPayload, InspectFrameUrlPayload, OnDevToolOpenPayload } from '../../../../../background/actions/action-payloads';
+import { Message } from '../../../../../common/message';
 import { DevToolActionMessageCreator } from '../../../../../common/message-creators/dev-tool-action-message-creator';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
@@ -12,7 +12,7 @@ describe('DevToolActionMessageCreatorTest', () => {
     let eventStubFactory: EventStubFactory;
     let testSubject: DevToolActionMessageCreator;
     const tabId: number = 10;
-    let postMessageMock: IMock<(msg: any) => void>;
+    let postMessageMock: IMock<(msg: Message) => void>;
 
     beforeEach(() => {
         eventStubFactory = new EventStubFactory();
@@ -23,7 +23,7 @@ describe('DevToolActionMessageCreatorTest', () => {
     test('setDevToolStatus', () => {
         const status = true;
         const expectedMessage = {
-            type: Messages.DevTools.DevtoolStatus,
+            messageType: Messages.DevTools.DevtoolStatus,
             tabId: tabId,
             payload: {
                 status: status,
@@ -43,7 +43,7 @@ describe('DevToolActionMessageCreatorTest', () => {
         const telemetryFactory = new TelemetryDataFactory();
         const telemetry = telemetryFactory.forInspectElement(event, target);
         const expectedMessage = {
-            type: Messages.DevTools.InspectElement,
+            messageType: Messages.DevTools.InspectElement,
             tabId: tabId,
             payload: {
                 target: target,
@@ -61,7 +61,7 @@ describe('DevToolActionMessageCreatorTest', () => {
     test('setInspectFrameUrl', () => {
         const frameUrl = 'frame url';
         const expectedMessage = {
-            type: Messages.DevTools.InspectFrameUrl,
+            messageType: Messages.DevTools.InspectFrameUrl,
             tabId: tabId,
             payload: {
                 frameUrl: frameUrl,

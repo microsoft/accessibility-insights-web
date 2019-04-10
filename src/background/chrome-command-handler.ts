@@ -153,7 +153,7 @@ export class ChromeCommandHandler {
 
         tabContext.interpreter.interpret({
             tabId: tabId,
-            type: action,
+            messageType: action,
             payload,
         });
     }

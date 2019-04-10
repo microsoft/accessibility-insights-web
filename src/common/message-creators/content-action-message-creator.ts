@@ -35,7 +35,7 @@ export class ContentActionMessageCreator extends BaseActionMessageCreator {
             telemetry: { ...telemetry, contentPath },
         };
         this.dispatchMessage({
-            type: messageType,
+            messageType: messageType,
             tabId: this._tabId,
             payload,
         });
@@ -55,7 +55,7 @@ export class ContentActionMessageCreator extends BaseActionMessageCreator {
             telemetry: { ...telemetry, href },
         };
         this.dispatchMessage({
-            type: messageType,
+            messageType: messageType,
             tabId: this._tabId,
             payload,
         });
@@ -70,7 +70,7 @@ export class ContentActionMessageCreator extends BaseActionMessageCreator {
             contentPath,
         };
         this.dispatchMessage({
-            type: messageType,
+            messageType: messageType,
             tabId: this._tabId,
             payload,
         });
@@ -85,7 +85,7 @@ export class ContentActionMessageCreator extends BaseActionMessageCreator {
         };
 
         this.dispatchMessage({
-            type: messageType,
+            messageType: messageType,
             tabId: this._tabId,
             payload,
         });

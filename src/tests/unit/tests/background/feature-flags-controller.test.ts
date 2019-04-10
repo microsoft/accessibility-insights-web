@@ -69,7 +69,7 @@ describe('FeatureFlagsControllerTest', () => {
             enabled: false,
         };
         const message: Message = {
-            type: Messages.FeatureFlags.SetFeatureFlag,
+            messageType: Messages.FeatureFlags.SetFeatureFlag,
             payload: payload,
             tabId: null,
         };
@@ -88,7 +88,7 @@ describe('FeatureFlagsControllerTest', () => {
             enabled: true,
         };
         const message: Message = {
-            type: Messages.FeatureFlags.SetFeatureFlag,
+            messageType: Messages.FeatureFlags.SetFeatureFlag,
             payload: payload,
             tabId: null,
         };
@@ -102,7 +102,7 @@ describe('FeatureFlagsControllerTest', () => {
 
     test('resetFeatureFlags', () => {
         const message: Message = {
-            type: Messages.FeatureFlags.ResetFeatureFlag,
+            messageType: Messages.FeatureFlags.ResetFeatureFlag,
             tabId: null,
         };
         interpreterMock.setup(i => i.interpret(It.isObjectWith(message))).verifiable();

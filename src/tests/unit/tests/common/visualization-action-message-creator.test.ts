@@ -36,7 +36,7 @@ describe('VisualizationActionMessageCreatorTest', () => {
         };
 
         const expectedMessage: Message = {
-            type: Messages.Visualizations.Common.Toggle,
+            messageType: Messages.Visualizations.Common.Toggle,
             payload,
         };
 

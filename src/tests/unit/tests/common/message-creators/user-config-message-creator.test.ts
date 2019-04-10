@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import {
     SetBugServicePayload,
     SetBugServicePropertyPayload,
@@ -9,11 +8,12 @@ import {
     SetIssueTrackerPathPayload,
     SetTelemetryStatePayload,
 } from '../../../../../background/actions/action-payloads';
+import { Message } from '../../../../../common/message';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { Messages } from '../../../../../common/messages';
 
 describe('UserConfigMessageCreator', () => {
-    let postMessageMock: IMock<(message) => void>;
+    let postMessageMock: IMock<(message: Message) => void>;
     let testSubject: UserConfigMessageCreator;
     let tabId: number;
 
@@ -35,7 +35,7 @@ describe('UserConfigMessageCreator', () => {
         };
         const expectedMessage = {
             tabId: 1,
-            type: Messages.UserConfig.SetTelemetryConfig,
+            messageType: Messages.UserConfig.SetTelemetryConfig,
             payload,
         };
 
@@ -53,7 +53,7 @@ describe('UserConfigMessageCreator', () => {
         };
         const expectedMessage = {
             tabId: 1,
-            type: Messages.UserConfig.SetHighContrastConfig,
+            messageType: Messages.UserConfig.SetHighContrastConfig,
             payload,
         };
 
@@ -71,7 +71,7 @@ describe('UserConfigMessageCreator', () => {
         };
         const expectedMessage = {
             tabId: 1,
-            type: Messages.UserConfig.SetIssueTrackerPath,
+            messageType: Messages.UserConfig.SetIssueTrackerPath,
             payload,
         };
 
@@ -89,7 +89,7 @@ describe('UserConfigMessageCreator', () => {
         };
         const expectedMessage = {
             tabId: 1,
-            type: Messages.UserConfig.SetBugService,
+            messageType: Messages.UserConfig.SetBugService,
             payload,
         };
 
@@ -108,7 +108,7 @@ describe('UserConfigMessageCreator', () => {
         };
         const expectedMessage = {
             tabId: 1,
-            type: Messages.UserConfig.SetBugServiceProperty,
+            messageType: Messages.UserConfig.SetBugServiceProperty,
             payload,
         };
 

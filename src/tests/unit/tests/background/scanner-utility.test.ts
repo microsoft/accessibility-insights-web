@@ -28,7 +28,7 @@ describe('ScannerUtility', () => {
         };
 
         const expectedMessage = {
-            type: Messages.Assessment.EnableVisualHelper,
+            messageType: Messages.Assessment.EnableVisualHelper,
             tabId: tabId,
             payload: expectedPayload,
         };
