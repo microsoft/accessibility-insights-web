@@ -18,12 +18,11 @@ describe('BugFilingChoiceGroupTest', () => {
         key: testKey,
         text: testName,
     };
-    const services = [
-        {
-            key: testKey,
-            displayName: testName,
-        } as BugFilingService,
-    ];
+    const selectedBugFilingService = {
+        key: testKey,
+        displayName: testName,
+    } as BugFilingService;
+    const services = [selectedBugFilingService];
 
     beforeEach(() => {
         userConfigMessageCreatorMock = Mock.ofType(UserConfigMessageCreator);
@@ -34,9 +33,7 @@ describe('BugFilingChoiceGroupTest', () => {
             deps: {
                 userConfigMessageCreator: userConfigMessageCreatorMock.object,
             },
-            userConfigurationStoreData: {
-                bugService: 'MyBugService',
-            } as UserConfigurationStoreData,
+            selectedBugFilingService,
             bugFilingServices: services,
         };
 
@@ -49,9 +46,7 @@ describe('BugFilingChoiceGroupTest', () => {
             deps: {
                 userConfigMessageCreator: userConfigMessageCreatorMock.object,
             },
-            userConfigurationStoreData: {
-                bugService: 'MyBugService',
-            } as UserConfigurationStoreData,
+            selectedBugFilingService,
             bugFilingServices: services,
         };
 

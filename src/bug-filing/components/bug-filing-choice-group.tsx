@@ -5,12 +5,11 @@ import * as React from 'react';
 
 import { UserConfigMessageCreator } from '../../common/message-creators/user-config-message-creator';
 import { NamedSFC } from '../../common/react/named-sfc';
-import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { BugFilingService } from '../types/bug-filing-service';
 
 export type BugFilingChoiceGroupProps = {
     deps: BugFilingChoiceGroupDeps;
-    userConfigurationStoreData: UserConfigurationStoreData;
+    selectedBugFilingService: BugFilingService;
     bugFilingServices: BugFilingService[];
 };
 
@@ -39,7 +38,7 @@ export const BugFilingChoiceGroup = NamedSFC<BugFilingChoiceGroupProps>('BugFili
             className={'bug-filing-choice-group'}
             onChange={onChange}
             options={getOptions()}
-            selectedKey={props.userConfigurationStoreData.bugService}
+            selectedKey={props.selectedBugFilingService.key}
         />
     );
 });

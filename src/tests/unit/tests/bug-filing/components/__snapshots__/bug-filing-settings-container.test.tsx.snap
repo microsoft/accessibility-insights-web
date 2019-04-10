@@ -8,6 +8,7 @@ exports[`BugFilingSettingsContainerTest render 1`] = `
         Object {
           "displayName": "TEST",
           "key": "test",
+          "renderSettingsForm": [Function],
         },
       ]
     }
@@ -29,13 +30,15 @@ exports[`BugFilingSettingsContainerTest render 1`] = `
         },
       }
     }
-    userConfigurationStoreData={
+    selectedBugFilingService={
       Object {
-        "bugService": "test",
+        "displayName": "TEST",
+        "key": "test",
+        "renderSettingsForm": [Function],
       }
     }
   />
-  <UNDEFINED
+  <renderSettingsForm
     deps={
       Object {
         "userConfigMessageCreator": proxy {
