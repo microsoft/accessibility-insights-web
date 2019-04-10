@@ -4,7 +4,6 @@ import * as Enzyme from 'enzyme';
 import * as _ from 'lodash';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
-
 import { AutomatedChecksVisualizationToggle } from '../../../../../assessments/automated-checks/automated-checks-visualization-enabled-toggle';
 import { VisualizationToggle, VisualizationToggleProps } from '../../../../../common/components/visualization-toggle';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
@@ -32,7 +31,7 @@ describe('AutomatedChecksVisualizationToggle', () => {
         const textDiv = toggleDiv.find(`.${visualHelperClass}-text`);
 
         expect(textDiv.exists()).toBeTruthy();
-        expect(textDiv.childAt(0).text()).toEqual('Visual helper');
+        expect(textDiv.childAt(0).text()).toEqual('Highlight instances on target page');
 
         const noMatchesWarningClass = 'no-matching-elements';
         expect(wrapper.find(`.${noMatchesWarningClass}`).exists()).toBeTruthy();
@@ -65,7 +64,7 @@ describe('AutomatedChecksVisualizationToggle', () => {
         const textDiv = toggleDiv.find(`.${visualHelperClass}-text`);
 
         expect(textDiv.exists()).toBeTruthy();
-        expect(textDiv.childAt(0).text()).toEqual('Visual helper');
+        expect(textDiv.childAt(0).text()).toEqual('Highlight instances on target page');
         expect(wrapper.find('strong').exists()).toBeFalsy();
         const toggle = wrapper.find(VisualizationToggle);
 
@@ -94,7 +93,7 @@ describe('AutomatedChecksVisualizationToggle', () => {
         const textDiv = toggleDiv.find(`.${visualHelperClass}-text`);
 
         expect(textDiv.exists()).toBeTruthy();
-        expect(textDiv.childAt(0).text()).toEqual('Visual helper');
+        expect(textDiv.childAt(0).text()).toEqual('Highlight instances on target page');
 
         const noMatchesWarningClass = 'no-matching-elements';
         expect(wrapper.find(`.${noMatchesWarningClass}`).exists()).toBeTruthy();
@@ -123,6 +122,8 @@ describe('AutomatedChecksVisualizationToggle', () => {
     }
 
     function getDefaultVisualizationTogglePropsBuilder(): VisualizationTogglePropsBuilder {
-        return new VisualizationTogglePropsBuilder().with('visualizationName', 'Visual helper').with('className', 'visual-helper-toggle');
+        return new VisualizationTogglePropsBuilder()
+            .with('visualizationName', 'Highlight instances on target page')
+            .with('className', 'visual-helper-toggle');
     }
 });

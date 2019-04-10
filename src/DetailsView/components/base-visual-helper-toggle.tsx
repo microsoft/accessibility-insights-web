@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 import * as React from 'react';
-
 import { VisualHelperToggleConfig } from '../../assessments/types/requirement';
 import { VisualizationToggle } from '../../common/components/visualization-toggle';
 import { IGeneratedAssessmentInstance } from '../../common/types/store-data/assessment-result-data';
@@ -18,13 +17,13 @@ export abstract class BaseVisualHelperToggle extends React.Component<VisualHelpe
 
         return (
             <div className="visual-helper">
-                <div className="visual-helper-text">Visual helper</div>
+                <div className="visual-helper-text">Highlight instances on target page</div>
                 <VisualizationToggle
                     checked={isChecked}
                     disabled={isDisabled}
                     onClick={onClick}
                     className="visual-helper-toggle"
-                    visualizationName="Visual helper"
+                    visualizationName="Highlight instances on target page"
                 />
                 {disabledMessage}
             </div>

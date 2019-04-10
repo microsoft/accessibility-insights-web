@@ -4,7 +4,6 @@ import * as Enzyme from 'enzyme';
 import * as _ from 'lodash';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
-
 import { VisualizationToggle, VisualizationToggleProps } from '../../../../../common/components/visualization-toggle';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { RestartScanVisualHelperToggle } from '../../../../../DetailsView/components/restart-scan-visual-helper-toggle';
@@ -36,7 +35,7 @@ describe('RestartScanVisualHelperToggleTest', () => {
         const textDiv = toggleDiv.find(`.${visualHelperClass}-text`);
 
         expect(textDiv.exists()).toBe(true);
-        expect(textDiv.childAt(0).text()).toBe('Visual helper');
+        expect(textDiv.childAt(0).text()).toBe('Highlight instances on target page');
 
         const toggle = wrapper.find(VisualizationToggle);
 
@@ -98,6 +97,8 @@ describe('RestartScanVisualHelperToggleTest', () => {
     }
 
     function getDefaultVisualizationTogglePropsBuilder(): VisualizationTogglePropsBuilder {
-        return new VisualizationTogglePropsBuilder().with('visualizationName', 'Visual helper').with('className', 'visual-helper-toggle');
+        return new VisualizationTogglePropsBuilder()
+            .with('visualizationName', 'Highlight instances on target page')
+            .with('className', 'visual-helper-toggle');
     }
 });
