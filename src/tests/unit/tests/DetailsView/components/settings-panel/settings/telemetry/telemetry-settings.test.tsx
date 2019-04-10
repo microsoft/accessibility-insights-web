@@ -16,7 +16,7 @@ describe('TelemetrySettings', () => {
         it.each(enableStates)('with enabled = %s', enabled => {
             const props: SettingsProps = {
                 deps: Mock.ofType<SettingsDeps>().object,
-                userConfigurationStoreData: {
+                userConfigurationStoreState: {
                     enableTelemetry: enabled,
                 } as UserConfigurationStoreData,
                 featureFlagData: {},
@@ -36,7 +36,7 @@ describe('TelemetrySettings', () => {
             };
             const props: SettingsProps = {
                 deps,
-                userConfigurationStoreData: {
+                userConfigurationStoreState: {
                     enableTelemetry: enabled,
                 } as UserConfigurationStoreData,
                 featureFlagData: {},

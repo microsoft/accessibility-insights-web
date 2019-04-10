@@ -11,5 +11,5 @@ export type SettingsDeps = {
 export type SettingsProps = {
     deps: SettingsDeps;
     featureFlagData: FeatureFlagStoreData;
-    userConfigurationStoreData: UserConfigurationStoreData;
+    userConfigurationStoreState: UserConfigurationStoreData;
 };

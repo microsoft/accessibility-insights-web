@@ -32,7 +32,7 @@ export const BugFilingSettings = NamedSFC<SettingsProps>('BugFilingSettings', pr
     };
 
     const getBugServiceProperty = (bugService: string, propertyName: string) => {
-        const bugServicePropertiesMap = props.userConfigurationStoreData.bugServicePropertiesMap;
+        const bugServicePropertiesMap = props.userConfigurationStoreState.bugServicePropertiesMap;
         if (!bugServicePropertiesMap || !bugServicePropertiesMap[bugService]) {
             return undefined;
         }
