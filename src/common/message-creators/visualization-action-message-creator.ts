@@ -17,7 +17,7 @@ export class VisualizationActionMessageCreator extends BaseActionMessageCreator 
 
         const message: Message = {
             tabId: this._tabId,
-            type: Messages.Visualizations.Common.Toggle,
+            messageType: Messages.Visualizations.Common.Toggle,
             payload,
         };
 

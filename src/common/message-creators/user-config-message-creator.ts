@@ -17,7 +17,7 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
         };
 
         this.dispatchMessage({
-            type: Messages.UserConfig.SetTelemetryConfig,
+            messageType: Messages.UserConfig.SetTelemetryConfig,
             tabId: this._tabId,
             payload,
         });
@@ -29,7 +29,7 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
         };
 
         this.dispatchMessage({
-            type: Messages.UserConfig.SetHighContrastConfig,
+            messageType: Messages.UserConfig.SetHighContrastConfig,
             tabId: this._tabId,
             payload,
         });
@@ -41,7 +41,7 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
         };
 
         this.dispatchMessage({
-            type: Messages.UserConfig.SetBugService,
+            messageType: Messages.UserConfig.SetBugService,
             tabId: this._tabId,
             payload,
         });
@@ -55,7 +55,7 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
         };
 
         this.dispatchMessage({
-            type: Messages.UserConfig.SetBugServiceProperty,
+            messageType: Messages.UserConfig.SetBugServiceProperty,
             tabId: this._tabId,
             payload,
         });
@@ -67,7 +67,7 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
         };
 
         this.dispatchMessage({
-            type: Messages.UserConfig.SetIssueTrackerPath,
+            messageType: Messages.UserConfig.SetIssueTrackerPath,
             tabId: this._tabId,
             payload,
         });

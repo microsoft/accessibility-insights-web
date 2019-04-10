@@ -42,7 +42,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
     public updateIssuesSelectedTargets(selectedTargets: string[]): void {
         const payload: string[] = selectedTargets;
         const message: Message = {
-            type: messages.Issues.UpdateSelectedTargets,
+            messageType: messages.Issues.UpdateSelectedTargets,
             tabId: this._tabId,
             payload,
         };
@@ -59,7 +59,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         };
 
         this.dispatchMessage({
-            type: messageType,
+            messageType: messageType,
             tabId: this._tabId,
             payload,
         });
@@ -74,7 +74,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         };
 
         this.dispatchMessage({
-            type: messageType,
+            messageType: messageType,
             tabId: this._tabId,
             payload,
         });
@@ -89,7 +89,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         };
 
         this.dispatchMessage({
-            type: messageType,
+            messageType: messageType,
             tabId: this._tabId,
             payload,
         });
@@ -111,7 +111,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         };
 
         this.dispatchMessage({
-            type: messageType,
+            messageType: messageType,
             tabId: this._tabId,
             payload: payload,
         });
@@ -137,7 +137,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
     public updateFocusedInstanceTarget(instanceTarget: string[]): void {
         const payload: string[] = instanceTarget;
         const message: Message = {
-            type: messages.Issues.UpdateFocusedInstance,
+            messageType: messages.Issues.UpdateFocusedInstance,
             tabId: this._tabId,
             payload,
         };
@@ -157,7 +157,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         };
 
         this.dispatchMessage({
-            type: messages.DetailsView.Select,
+            messageType: messages.DetailsView.Select,
             tabId: this._tabId,
             payload,
         });
@@ -175,7 +175,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         };
 
         this.dispatchMessage({
-            type: Messages.Assessment.SelectTestRequirement,
+            messageType: Messages.Assessment.SelectTestRequirement,
             tabId: this._tabId,
             payload: payload,
         });
@@ -190,7 +190,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         };
 
         this.dispatchMessage({
-            type: Messages.Visualizations.DetailsView.PivotSelect,
+            messageType: Messages.Visualizations.DetailsView.PivotSelect,
             tabId: this._tabId,
             payload: payload,
         });
@@ -203,7 +203,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             telemetry,
         };
         this.dispatchMessage({
-            type: Messages.Tab.Switch,
+            messageType: Messages.Tab.Switch,
             tabId: this._tabId,
             payload,
         });
@@ -218,7 +218,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         };
 
         this.dispatchMessage({
-            type: Messages.Assessment.StartOver,
+            messageType: Messages.Assessment.StartOver,
             tabId: this._tabId,
             payload,
         });
@@ -233,7 +233,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         };
 
         this.dispatchMessage({
-            type: shouldScan ? Messages.Assessment.EnableVisualHelper : Messages.Assessment.EnableVisualHelperWithoutScan,
+            messageType: shouldScan ? Messages.Assessment.EnableVisualHelper : Messages.Assessment.EnableVisualHelperWithoutScan,
             tabId: this._tabId,
             payload,
         });
@@ -245,7 +245,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         };
 
         this.dispatchMessage({
-            type: Messages.Assessment.DisableVisualHelperForTest,
+            messageType: Messages.Assessment.DisableVisualHelperForTest,
             tabId: this._tabId,
             payload,
         });
@@ -259,7 +259,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         };
 
         this.dispatchMessage({
-            type: Messages.Assessment.DisableVisualHelper,
+            messageType: Messages.Assessment.DisableVisualHelper,
             tabId: this._tabId,
             payload,
         });
@@ -277,7 +277,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         };
 
         this.dispatchMessage({
-            type: Messages.Assessment.ChangeStatus,
+            messageType: Messages.Assessment.ChangeStatus,
             tabId: this._tabId,
             payload,
         });
@@ -294,7 +294,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         };
 
         this.dispatchMessage({
-            type: Messages.Assessment.ChangeRequirementStatus,
+            messageType: Messages.Assessment.ChangeRequirementStatus,
             tabId: this._tabId,
             payload,
         });
@@ -311,7 +311,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         };
 
         this.dispatchMessage({
-            type: Messages.Assessment.Undo,
+            messageType: Messages.Assessment.Undo,
             tabId: this._tabId,
             payload,
         });
@@ -327,7 +327,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         };
 
         this.dispatchMessage({
-            type: Messages.Assessment.UndoChangeRequirementStatus,
+            messageType: Messages.Assessment.UndoChangeRequirementStatus,
             tabId: this._tabId,
             payload,
         });
@@ -350,7 +350,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         };
 
         this.dispatchMessage({
-            type: Messages.Assessment.ChangeVisualizationState,
+            messageType: Messages.Assessment.ChangeVisualizationState,
             tabId: this._tabId,
             payload,
         });
@@ -366,7 +366,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         };
 
         this.dispatchMessage({
-            type: Messages.Assessment.AddFailureInstance,
+            messageType: Messages.Assessment.AddFailureInstance,
             tabId: this._tabId,
             payload,
         });
@@ -383,7 +383,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         };
 
         this.dispatchMessage({
-            type: Messages.Assessment.RemoveFailureInstance,
+            messageType: Messages.Assessment.RemoveFailureInstance,
             tabId: this._tabId,
             payload,
         });
@@ -406,7 +406,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         };
 
         this.dispatchMessage({
-            type: Messages.Assessment.EditFailureInstance,
+            messageType: Messages.Assessment.EditFailureInstance,
             tabId: this._tabId,
             payload,
         });
@@ -421,7 +421,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         };
 
         this.dispatchMessage({
-            type: Messages.Assessment.PassUnmarkedInstances,
+            messageType: Messages.Assessment.PassUnmarkedInstances,
             tabId: this._tabId,
             payload,
         });
@@ -438,7 +438,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         };
 
         this.dispatchMessage({
-            type: Messages.Assessment.ChangeVisualizationStateForAll,
+            messageType: Messages.Assessment.ChangeVisualizationStateForAll,
             tabId: this._tabId,
             payload,
         });
@@ -451,7 +451,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             telemetry: telemetry,
         };
         this.dispatchMessage({
-            type: Messages.Assessment.ContinuePreviousAssessment,
+            messageType: Messages.Assessment.ContinuePreviousAssessment,
             tabId: this._tabId,
             payload,
         });
@@ -464,7 +464,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             telemetry: telemetry,
         };
         this.dispatchMessage({
-            type: Messages.Assessment.StartOverAllAssessments,
+            messageType: Messages.Assessment.StartOverAllAssessments,
             tabId: this._tabId,
             payload,
         });
@@ -477,7 +477,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             telemetry: telemetry,
         };
         this.dispatchMessage({
-            type: Messages.Assessment.CancelStartOver,
+            messageType: Messages.Assessment.CancelStartOver,
             tabId: this._tabId,
             payload,
         });
@@ -490,7 +490,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             telemetry: telemetry,
         };
         this.dispatchMessage({
-            type: Messages.Assessment.CancelStartOverAllAssessments,
+            messageType: Messages.Assessment.CancelStartOverAllAssessments,
             tabId: this._tabId,
             payload,
         });
@@ -500,7 +500,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         const payload: DetailsViewRightContentPanelType = viewType;
         const message = {
             tabId: this._tabId,
-            type: Messages.Visualizations.DetailsView.SetDetailsViewRightContentPanel,
+            messageType: Messages.Visualizations.DetailsView.SetDetailsViewRightContentPanel,
             payload: payload,
         };
 
