@@ -42,6 +42,8 @@ const renderSettingsForm = NamedSFC<SettingsFormProps<GitHubBugFilingSettings>>(
     );
 });
 
+const createBugFilingUrl()
+
 export const GitHubBugFilingService: BugFilingService<GitHubBugFilingSettings> = {
     key: GitHubBugFilingServiceKey,
     displayName: 'GitHub',
