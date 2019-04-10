@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`IssueFilingDialog renders: Closed Dialog 1`] = `
+exports[`IssueFilingDialog render closed 1`] = `
 <StyledWithResponsiveMode
   className="issue-filing-dialog"
   dialogContentProps={
@@ -20,6 +20,7 @@ exports[`IssueFilingDialog renders: Closed Dialog 1`] = `
       "isBlocking": false,
     }
   }
+  onDismiss={[Function]}
 >
   <StyledDialogFooterBase>
     <ActionAndCancelButtonsComponent
@@ -32,7 +33,7 @@ exports[`IssueFilingDialog renders: Closed Dialog 1`] = `
 </StyledWithResponsiveMode>
 `;
 
-exports[`IssueFilingDialog renders: Opened Dialog 1`] = `
+exports[`IssueFilingDialog render open 1`] = `
 <StyledWithResponsiveMode
   className="issue-filing-dialog"
   dialogContentProps={
@@ -52,6 +53,7 @@ exports[`IssueFilingDialog renders: Opened Dialog 1`] = `
       "isBlocking": false,
     }
   }
+  onDismiss={[Function]}
 >
   <StyledDialogFooterBase>
     <ActionAndCancelButtonsComponent
