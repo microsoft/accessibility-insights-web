@@ -5,9 +5,9 @@ import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 
 import { NamedSFC } from '../../common/react/named-sfc';
-import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { BugFilingService } from '../types/bug-filing-service';
 import { SettingsFormProps } from '../types/settings-form-props';
+import { createGitHubBugFilingUrl } from './create-gitHub-bug-filing-url';
 
 const GitHubBugFilingServiceKey = 'gitHub';
 
@@ -42,13 +42,11 @@ const renderSettingsForm = NamedSFC<SettingsFormProps<GitHubBugFilingSettings>>(
     );
 });
 
-const createBugFilingUrl()
-
 export const GitHubBugFilingService: BugFilingService<GitHubBugFilingSettings> = {
     key: GitHubBugFilingServiceKey,
     displayName: 'GitHub',
     renderSettingsForm,
     buildStoreData,
     isSettingsValid,
-    createBugFilingUrl: (data: GitHubBugFilingSettings, bugData: CreateIssueDetailsTextData) => null,
+    createBugFilingUrl: createGitHubBugFilingUrl,
 };

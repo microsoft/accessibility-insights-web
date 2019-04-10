@@ -3,6 +3,7 @@
 import { ReactSFCWithDisplayName } from './../../common/react/named-sfc';
 import { CreateIssueDetailsTextData } from './../../common/types/create-issue-details-text-data';
 import { SettingsFormProps } from './settings-form-props';
+import { EnvironmentInfo } from './../../common/environment-info.-provider';
 
 export interface BugFilingService<Settings = {}> {
     key: string;
@@ -10,5 +11,5 @@ export interface BugFilingService<Settings = {}> {
     renderSettingsForm: ReactSFCWithDisplayName<SettingsFormProps<Settings>>;
     buildStoreData: (...params: any[]) => Settings;
     isSettingsValid: (data: Settings) => boolean;
-    createBugFilingUrl: (data: Settings, bugData: CreateIssueDetailsTextData) => string;
+    createBugFilingUrl: (data: Settings, bugData: CreateIssueDetailsTextData, environmentInfo: EnvironmentInfo) => string;
 }
