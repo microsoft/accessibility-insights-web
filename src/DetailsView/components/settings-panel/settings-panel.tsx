@@ -39,7 +39,7 @@ export const SettingsPanel = NamedSFC<SettingsPanelProps>('SettingsPanel', props
                     key={`settings-${index}`}
                     deps={deps}
                     featureFlagData={featureFlagData}
-                    userConfigurationStoreState={userConfigStoreState}
+                    userConfigurationStoreData={userConfigStoreState}
                 />
             ))}
         </GenericPanel>

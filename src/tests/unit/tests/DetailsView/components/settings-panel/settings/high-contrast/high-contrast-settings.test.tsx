@@ -16,7 +16,7 @@ describe('HighContrastSettings', () => {
         it.each(enableStates)('with enabled = %s', enabled => {
             const props: SettingsProps = {
                 deps: Mock.ofType<SettingsDeps>().object,
-                userConfigurationStoreState: {
+                userConfigurationStoreData: {
                     enableHighContrast: enabled,
                 } as UserConfigurationStoreData,
                 featureFlagData: {},
@@ -36,7 +36,7 @@ describe('HighContrastSettings', () => {
             };
             const props: SettingsProps = {
                 deps,
-                userConfigurationStoreState: {
+                userConfigurationStoreData: {
                     enableHighContrast: enabled,
                 } as UserConfigurationStoreData,
                 featureFlagData: {},

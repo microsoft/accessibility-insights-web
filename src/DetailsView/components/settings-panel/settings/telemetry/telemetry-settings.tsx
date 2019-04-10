@@ -15,7 +15,7 @@ export const TelemetrySettings = NamedSFC<SettingsProps>('TelemetrySettings', pr
 
     return (
         <GenericToggle
-            enabled={props.userConfigurationStoreState.enableTelemetry}
+            enabled={props.userConfigurationStoreData.enableTelemetry}
             id="enable-telemetry"
             name={enableTelemetrySettingsPanelTitle}
             description={enableTelemetrySettingDescription}

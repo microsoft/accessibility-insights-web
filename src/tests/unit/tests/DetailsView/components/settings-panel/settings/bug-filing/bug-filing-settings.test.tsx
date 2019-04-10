@@ -68,7 +68,7 @@ describe('BugFilingSettings', () => {
                 featureFlagData: {
                     [FeatureFlags.showBugFiling]: testCase.bugFilingEnable,
                 },
-                userConfigurationStoreState: {
+                userConfigurationStoreData: {
                     ...userData,
                     bugService: testCase.bugService,
                     bugServicePropertiesMap: testCase.bugServicePropertiesMap,
@@ -86,7 +86,7 @@ describe('BugFilingSettings', () => {
                 featureFlagData: {
                     [FeatureFlags.showBugFiling]: true,
                 },
-                userConfigurationStoreState: userData,
+                userConfigurationStoreData: userData,
             };
 
             const wrapped = shallow(<BugFilingSettings {...props} />);
@@ -114,7 +114,7 @@ describe('BugFilingSettings', () => {
                 featureFlagData: {
                     [FeatureFlags.showBugFiling]: true,
                 },
-                userConfigurationStoreState: userData,
+                userConfigurationStoreData: userData,
             };
 
             const wrapped = shallow(<BugFilingSettings {...props} />);
