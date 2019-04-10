@@ -10,7 +10,7 @@ export type EnvironmentInfo = {
 
 export class EnvironmentInfoProvider {
     constructor(private extensionVersion: string, private browserSpec: string, private axeVersion: string) {}
-    public get(): EnvironmentInfo {
+    public getEnvironmentInfo(): EnvironmentInfo {
         return {
             extensionVersion: this.extensionVersion,
             browserSpec: this.browserSpec,

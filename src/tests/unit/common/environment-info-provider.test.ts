@@ -15,6 +15,6 @@ describe('EnvironmentInfoProvider', () => {
             browserSpec,
             axeCoreVersion,
         };
-        expect(new EnvironmentInfoProvider(extensionVersion, browserSpec, axeCoreVersion).get()).toEqual(expected);
+        expect(new EnvironmentInfoProvider(extensionVersion, browserSpec, axeCoreVersion).getEnvironmentInfo()).toEqual(expected);
     });
 });
