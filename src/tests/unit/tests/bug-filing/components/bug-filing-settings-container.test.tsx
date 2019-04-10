@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, Mock } from 'typemoq';
 
 import {
     BugFilingSettingsContainer,
@@ -27,10 +26,10 @@ describe('BugFilingSettingsContainerTest', () => {
     const selectedBugFilingServiceData: BugServiceProperties = {
         repository: 'none',
     };
-    const userConfigMessageCreatorMock: IMock<UserConfigMessageCreator> = Mock.ofType(UserConfigMessageCreator);
+    const userConfigMessageCreatorStub: UserConfigMessageCreator = {} as UserConfigMessageCreator;
     const props: BugFilingSettingsContainerProps = {
         deps: {
-            userConfigMessageCreator: userConfigMessageCreatorMock.object,
+            userConfigMessageCreator: userConfigMessageCreatorStub,
         },
         selectedBugFilingService,
         bugFilingServices,

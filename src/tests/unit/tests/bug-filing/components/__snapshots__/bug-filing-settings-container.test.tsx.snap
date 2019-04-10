@@ -14,20 +14,7 @@ exports[`BugFilingSettingsContainerTest render 1`] = `
     }
     deps={
       Object {
-        "userConfigMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "_tabId": undefined,
-          "constructor": [Function],
-          "dispatchMessage": [Function],
-          "dispatchType": [Function],
-          "postMessageDelegate": undefined,
-          "sendTelemetry": [Function],
-          "setBugService": [Function],
-          "setBugServiceProperty": [Function],
-          "setHighContrastMode": [Function],
-          "setIssueTrackerPath": [Function],
-          "setTelemetryState": [Function],
-        },
+        "userConfigMessageCreator": Object {},
       }
     }
     selectedBugFilingService={
@@ -41,20 +28,7 @@ exports[`BugFilingSettingsContainerTest render 1`] = `
   <renderSettingsForm
     deps={
       Object {
-        "userConfigMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "_tabId": undefined,
-          "constructor": [Function],
-          "dispatchMessage": [Function],
-          "dispatchType": [Function],
-          "postMessageDelegate": undefined,
-          "sendTelemetry": [Function],
-          "setBugService": [Function],
-          "setBugServiceProperty": [Function],
-          "setHighContrastMode": [Function],
-          "setIssueTrackerPath": [Function],
-          "setTelemetryState": [Function],
-        },
+        "userConfigMessageCreator": Object {},
       }
     }
     settings={
