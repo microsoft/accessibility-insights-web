@@ -95,7 +95,7 @@ describe('TabContextFactoryTest', () => {
             .verifiable(Times.once());
 
         tabContext.interpreter.interpret({
-            type: Messages.Visualizations.State.GetCurrentVisualizationResultState,
+            messageType: Messages.Visualizations.State.GetCurrentVisualizationResultState,
             tabId: null,
         });
 

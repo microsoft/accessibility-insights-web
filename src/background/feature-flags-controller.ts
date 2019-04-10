@@ -30,7 +30,7 @@ export class FeatureFlagsController {
             enabled: false,
         };
         const message: Message = {
-            type: Messages.FeatureFlags.SetFeatureFlag,
+            messageType: Messages.FeatureFlags.SetFeatureFlag,
             payload: payload,
             tabId: null,
         };
@@ -43,7 +43,7 @@ export class FeatureFlagsController {
             enabled: true,
         };
         const message: Message = {
-            type: Messages.FeatureFlags.SetFeatureFlag,
+            messageType: Messages.FeatureFlags.SetFeatureFlag,
             payload: payload,
             tabId: null,
         };
@@ -52,7 +52,7 @@ export class FeatureFlagsController {
 
     public resetFeatureFlags(): void {
         const message: Message = {
-            type: Messages.FeatureFlags.ResetFeatureFlag,
+            messageType: Messages.FeatureFlags.ResetFeatureFlag,
             tabId: null,
         };
         this.interpreter.interpret(message);

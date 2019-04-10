@@ -13,7 +13,7 @@ import { EventStubFactory } from '../../common/event-stub-factory';
 describe('TargetPageActionMessageCreator', () => {
     const eventStubFactory = new EventStubFactory();
     let testSubject: TargetPageActionMessageCreator;
-    let postMessageMock: IMock<(msg: any) => void>;
+    let postMessageMock: IMock<(msg: Message) => void>;
     let tabId: number;
 
     beforeEach(() => {
@@ -24,7 +24,7 @@ describe('TargetPageActionMessageCreator', () => {
 
     test('scrollRequested', () => {
         const expectedMessage = {
-            type: Messages.Visualizations.Common.ScrollRequested,
+            messageType: Messages.Visualizations.Common.ScrollRequested,
         };
 
         postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable();
@@ -44,7 +44,7 @@ describe('TargetPageActionMessageCreator', () => {
         };
 
         const expectedMessage = {
-            type: Messages.Telemetry.Send,
+            messageType: Messages.Telemetry.Send,
             tabId: tabId,
             payload: payload,
         };
@@ -60,7 +60,7 @@ describe('TargetPageActionMessageCreator', () => {
         const selector = ['some selector'];
 
         const expectedMessage = {
-            type: Messages.Inspect.SetHoveredOverSelector,
+            messageType: Messages.Inspect.SetHoveredOverSelector,
             tabId: tabId,
             payload: selector,
         };
@@ -84,7 +84,7 @@ describe('TargetPageActionMessageCreator', () => {
             telemetry,
         };
         const expectedMessage: Message = {
-            type: Messages.SettingsPanel.OpenPanel,
+            messageType: Messages.SettingsPanel.OpenPanel,
             tabId,
             payload,
         };

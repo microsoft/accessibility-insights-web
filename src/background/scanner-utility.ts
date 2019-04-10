@@ -19,7 +19,7 @@ export class ScannerUtility {
         };
 
         const message = {
-            type: Messages.Assessment.EnableVisualHelper,
+            messageType: Messages.Assessment.EnableVisualHelper,
             tabId: tabId,
             payload: payload,
         };

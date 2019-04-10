@@ -75,7 +75,7 @@ export class InstanceVisibilityChecker {
             });
 
             const message: Message = {
-                type: Messages.Assessment.UpdateInstanceVisibility,
+                messageType: Messages.Assessment.UpdateInstanceVisibility,
                 payload: { payloadBatch },
             };
 

@@ -22,7 +22,7 @@ export class DropdownActionMessageCreator extends BaseActionMessageCreator {
             telemetry,
         };
         this.dispatchMessage({
-            type: messageType,
+            messageType: messageType,
             tabId: this._tabId,
             payload,
         });
@@ -35,7 +35,7 @@ export class DropdownActionMessageCreator extends BaseActionMessageCreator {
             telemetry,
         };
         this.dispatchMessage({
-            type: messageType,
+            messageType: messageType,
             tabId: this._tabId,
             payload,
         });
@@ -48,7 +48,7 @@ export class DropdownActionMessageCreator extends BaseActionMessageCreator {
             telemetry,
         };
         this.dispatchMessage({
-            type: messageType,
+            messageType: messageType,
             tabId: this._tabId,
             payload,
         });

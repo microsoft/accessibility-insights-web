@@ -72,7 +72,7 @@ describe('DropdownActionMessageCreatorTest', () => {
     function getExpectedMessage(messageType: string): Message {
         return {
             tabId: tabId,
-            type: messageType,
+            messageType: messageType,
             payload: {
                 telemetry: telemetryData,
             },

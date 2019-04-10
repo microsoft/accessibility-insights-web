@@ -77,11 +77,11 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
         postMessageMock.verifyAll();
     }
 
-    function setupPostMessageMock(message: string): void {
+    function setupPostMessageMock(messageType: string): void {
         postMessageMock.setup(pm =>
             pm(
                 It.isValue({
-                    type: message,
+                    messageType,
                     tabId: tabId,
                 }),
             ),

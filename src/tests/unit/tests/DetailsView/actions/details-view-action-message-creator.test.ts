@@ -32,16 +32,14 @@ describe('DetailsViewActionMessageCreatorTest', () => {
     const eventStubFactory = new EventStubFactory();
     const testSource: TelemetryEventSource = -1 as TelemetryEventSource;
     let windowUtilsMock: IMock<WindowUtils>;
-    let postMessageMock: IMock<(message) => {}>;
+    let postMessageMock: IMock<(message: Message) => void>;
     let telemetryFactoryMock: IMock<TelemetryDataFactory>;
     let testSubject: DetailsViewActionMessageCreator;
     let tabId: number;
 
     beforeEach(() => {
         windowUtilsMock = Mock.ofType(WindowUtils);
-        postMessageMock = Mock.ofInstance(message => {
-            return null;
-        });
+        postMessageMock = Mock.ofInstance(message => {});
         telemetryFactoryMock = Mock.ofType(TelemetryDataFactory);
         tabId = 1;
         testSubject = new DetailsViewActionMessageCreator(
@@ -61,7 +59,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
     test('updateIssuesSelectedTargets', () => {
         const selectedTargets: string[] = ['#headings-1', '#landmark-1'];
         const expectedMessage = {
-            type: Messages.Visualizations.Issues.UpdateSelectedTargets,
+            messageType: Messages.Visualizations.Issues.UpdateSelectedTargets,
             tabId: tabId,
             payload: selectedTargets,
         };
@@ -73,7 +71,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
     test('updateFocusedInstanceTarget', () => {
         const instanceTarget = ['#headings-1'];
         const expectedMessage = {
-            type: Messages.Visualizations.Issues.UpdateFocusedInstance,
+            messageType: Messages.Visualizations.Issues.UpdateFocusedInstance,
             tabId: tabId,
             payload: instanceTarget,
         };
@@ -89,7 +87,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         };
         const eventStub = {};
         const expectedMessage: Message = {
-            type: Messages.Tab.Switch,
+            messageType: Messages.Tab.Switch,
             tabId: tabId,
             payload: {
                 telemetry: telemetryStub,
@@ -113,7 +111,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Visualizations.DetailsView.Select,
+            messageType: Messages.Visualizations.DetailsView.Select,
             payload: {
                 telemetry: telemetry,
                 detailsViewType: view,
@@ -143,7 +141,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Assessment.SelectTestRequirement,
+            messageType: Messages.Assessment.SelectTestRequirement,
             payload: {
                 telemetry: telemetry,
                 selectedRequirement: selectedRequirement,
@@ -171,7 +169,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.FeatureFlags.SetFeatureFlag,
+            messageType: Messages.FeatureFlags.SetFeatureFlag,
             payload: {
                 feature: 'test-id',
                 enabled: true,
@@ -203,7 +201,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Visualizations.DetailsView.PivotSelect,
+            messageType: Messages.Visualizations.DetailsView.PivotSelect,
             payload: payload,
         };
         setupPostMessage(expectedMessage);
@@ -225,7 +223,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.PreviewFeatures.ClosePanel,
+            messageType: Messages.PreviewFeatures.ClosePanel,
             payload: {
                 telemetry,
             },
@@ -244,7 +242,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Scoping.ClosePanel,
+            messageType: Messages.Scoping.ClosePanel,
             payload: {
                 telemetry,
             },
@@ -263,7 +261,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.SettingsPanel.ClosePanel,
+            messageType: Messages.SettingsPanel.ClosePanel,
             payload: {
                 telemetry,
             },
@@ -283,7 +281,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Telemetry.Send,
+            messageType: Messages.Telemetry.Send,
             payload: {
                 eventName: DETAILS_VIEW_OPEN,
                 telemetry,
@@ -307,7 +305,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Assessment.StartOver,
+            messageType: Messages.Assessment.StartOver,
             payload: {
                 test: VisualizationType.HeadingsAssessment,
                 requirement: requirementStub,
@@ -333,7 +331,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Assessment.ContinuePreviousAssessment,
+            messageType: Messages.Assessment.ContinuePreviousAssessment,
             payload: {
                 telemetry,
             },
@@ -357,7 +355,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Assessment.StartOverAllAssessments,
+            messageType: Messages.Assessment.StartOverAllAssessments,
             payload: {
                 telemetry,
             },
@@ -382,7 +380,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Assessment.EnableVisualHelper,
+            messageType: Messages.Assessment.EnableVisualHelper,
             payload: {
                 test: VisualizationType.HeadingsAssessment,
                 requirement,
@@ -407,7 +405,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Assessment.EnableVisualHelperWithoutScan,
+            messageType: Messages.Assessment.EnableVisualHelperWithoutScan,
             payload: {
                 test: VisualizationType.HeadingsAssessment,
                 requirement,
@@ -427,7 +425,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Assessment.EnableVisualHelper,
+            messageType: Messages.Assessment.EnableVisualHelper,
             payload: {
                 test: VisualizationType.HeadingsAssessment,
                 requirement,
@@ -447,7 +445,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Assessment.EnableVisualHelperWithoutScan,
+            messageType: Messages.Assessment.EnableVisualHelperWithoutScan,
             payload: {
                 test: VisualizationType.HeadingsAssessment,
                 requirement,
@@ -465,7 +463,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
     test('disableVisualHelpersForTest', () => {
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Assessment.DisableVisualHelperForTest,
+            messageType: Messages.Assessment.DisableVisualHelperForTest,
             payload: {
                 test: VisualizationType.HeadingsAssessment,
             },
@@ -482,7 +480,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Assessment.DisableVisualHelper,
+            messageType: Messages.Assessment.DisableVisualHelper,
             payload: {
                 test: test,
                 telemetry,
@@ -508,7 +506,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Assessment.ChangeStatus,
+            messageType: Messages.Assessment.ChangeStatus,
             payload: {
                 test: 1,
                 requirement: 'requirement',
@@ -535,7 +533,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Assessment.Undo,
+            messageType: Messages.Assessment.Undo,
             payload: {
                 test: 1,
                 requirement: 'requirement',
@@ -561,7 +559,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Assessment.ChangeRequirementStatus,
+            messageType: Messages.Assessment.ChangeRequirementStatus,
             payload: {
                 test: 1,
                 requirement: 'requirement',
@@ -584,7 +582,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Assessment.UndoChangeRequirementStatus,
+            messageType: Messages.Assessment.UndoChangeRequirementStatus,
             payload: {
                 test: 1,
                 requirement: 'requirement',
@@ -605,7 +603,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Assessment.ChangeVisualizationState,
+            messageType: Messages.Assessment.ChangeVisualizationState,
             payload: {
                 test: 1,
                 requirement: 'requirement',
@@ -630,7 +628,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Assessment.AddFailureInstance,
+            messageType: Messages.Assessment.AddFailureInstance,
             payload: {
                 test: 1,
                 requirement: 'requirement',
@@ -657,7 +655,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Assessment.RemoveFailureInstance,
+            messageType: Messages.Assessment.RemoveFailureInstance,
             payload: {
                 test: 1,
                 requirement: 'requirement',
@@ -682,7 +680,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         const description = 'des';
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Assessment.EditFailureInstance,
+            messageType: Messages.Assessment.EditFailureInstance,
             payload: {
                 test: 1,
                 requirement: 'requirement',
@@ -707,7 +705,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Assessment.PassUnmarkedInstances,
+            messageType: Messages.Assessment.PassUnmarkedInstances,
             payload: {
                 test: test,
                 requirement: requirement,
@@ -728,7 +726,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Assessment.ChangeVisualizationStateForAll,
+            messageType: Messages.Assessment.ChangeVisualizationStateForAll,
             payload: {
                 test: 1,
                 requirement: 'requirement',
@@ -756,7 +754,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Telemetry.Send,
+            messageType: Messages.Telemetry.Send,
             payload: {
                 eventName: EXPORT_RESULTS,
                 telemetry,
@@ -787,7 +785,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Telemetry.Send,
+            messageType: Messages.Telemetry.Send,
             payload: {
                 eventName: COPY_ISSUE_DETAILS,
                 telemetry,
@@ -821,7 +819,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Assessment.CancelStartOver,
+            messageType: Messages.Assessment.CancelStartOver,
             payload: {
                 telemetry,
             },
@@ -842,7 +840,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Assessment.CancelStartOverAllAssessments,
+            messageType: Messages.Assessment.CancelStartOverAllAssessments,
             payload: {
                 telemetry,
             },
@@ -859,7 +857,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         const viewTypeStub = 'test view type' as DetailsViewRightContentPanelType;
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Visualizations.DetailsView.SetDetailsViewRightContentPanel,
+            messageType: Messages.Visualizations.DetailsView.SetDetailsViewRightContentPanel,
             payload: viewTypeStub,
         };
 
@@ -868,7 +866,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         postMessageMock.verifyAll();
     });
 
-    function setupPostMessage(expectedMessage): void {
+    function setupPostMessage(expectedMessage: Message): void {
         postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
     }
 
