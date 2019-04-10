@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { Mock, MockBehavior, Times, IMock } from 'typemoq';
+import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { BugFilingService } from '../../../../../bug-filing/types/bug-filing-service';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
@@ -12,7 +12,7 @@ import {
     IssueFilingDialogDeps,
     IssueFilingDialogProps,
 } from '../../../../../DetailsView/components/issue-filing-dialog';
-import { EventStubFactory, EventStub } from '../../../common/event-stub-factory';
+import { EventStub, EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('IssueFilingDialog', () => {
     let eventStub: EventStub;

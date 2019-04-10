@@ -4,10 +4,10 @@ import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dia
 import * as React from 'react';
 
 import { BugFilingService } from '../../bug-filing/types/bug-filing-service';
+import { NamedSFC } from '../../common/react/named-sfc';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { BugServiceProperties } from '../../common/types/store-data/user-configuration-store';
 import { ActionAndCancelButtonsComponent } from './action-and-cancel-buttons-component';
-import { NamedSFC } from '../../common/react/named-sfc';
 
 export interface IssueFilingDialogProps {
     deps: IssueFilingDialogDeps;
