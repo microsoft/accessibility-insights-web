@@ -1,15 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-interface Message {
+export interface Message {
+    // tslint:disable-next-line:no-reserved-keywords
     type: string;
     tabId?: number;
     payload?: any;
 }
 
-interface PayloadCallback {
+export interface PayloadCallback {
     (payload: any, tabId): void;
 }
 
-interface RegisterTypeToPayloadCallback {
+export interface RegisterTypeToPayloadCallback {
     (messageType: string, callback: PayloadCallback): void;
 }

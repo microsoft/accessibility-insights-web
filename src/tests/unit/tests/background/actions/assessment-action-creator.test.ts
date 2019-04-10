@@ -7,6 +7,7 @@ import { AssessmentActionCreator } from '../../../../../background/actions/asses
 import { AssessmentActions } from '../../../../../background/actions/assessment-actions';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
 import { Action } from '../../../../../common/flux/action';
+import { RegisterTypeToPayloadCallback } from '../../../../../common/message';
 import { Messages } from '../../../../../common/messages';
 import * as TelemetryEvents from '../../../../../common/telemetry-events';
 import { VisualizationType } from '../../../../../common/types/visualization-type';

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Message } from '../common/message';
 import { Messages } from '../common/messages';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { FeatureFlagPayload } from './actions/feature-flag-actions';

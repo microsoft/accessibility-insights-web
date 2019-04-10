@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
-
 import { BrowserAdapter } from '../../../../background/browser-adapter';
 import { GlobalContext } from '../../../../background/global-context';
 import { Interpreter } from '../../../../background/interpreter';
 import { MessageDistributor, Sender } from '../../../../background/message-distributor';
 import { TabContext, TabToContextMap } from '../../../../background/tab-context';
 import { Logger } from '../../../../common/logging/logger';
+import { Message } from '../../../../common/message';
 
 describe('MessageDistributorTest', () => {
     let mockBrowserAdapter: IMock<BrowserAdapter>;

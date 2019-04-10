@@ -12,6 +12,6 @@ exports[`BugFilingChoiceGroupTest render 1`] = `
       },
     ]
   }
-  selectedKey="MyBugService"
+  selectedKey="test bug service key"
 />
 `;

@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { BaseActionPayload } from '../../../../../background/actions/action-payloads';
 import { ScopingActionCreator } from '../../../../../background/actions/scoping-action-creator';
 import { ScopingActions } from '../../../../../background/actions/scoping-actions';
 import { DetailsViewController } from '../../../../../background/details-view-controller';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
 import { Action } from '../../../../../common/flux/action';
+import { RegisterTypeToPayloadCallback } from '../../../../../common/message';
 import { Messages } from '../../../../../common/messages';
 import { SCOPING_CLOSE, SCOPING_OPEN } from '../../../../../common/telemetry-events';
 

@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GithubBugFilingServiceTest renderSettingsForm 1`] = `
+<StyledTextFieldBase
+  className="issue-setting"
+  label="Enter desired GitHub repo link:"
+  onChange={[Function]}
+  placeholder="https://github.com/owner/repo"
+  value="repo"
+/>
+`;

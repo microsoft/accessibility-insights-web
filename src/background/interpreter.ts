@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-
+import { Message, PayloadCallback } from '../common/message';
 import { DictionaryStringTo } from '../types/common-types';
 
 export class Interpreter {

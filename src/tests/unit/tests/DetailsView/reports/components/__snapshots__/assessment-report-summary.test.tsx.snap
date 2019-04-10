@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AssessmentReportSummary render Correct composition 1`] = `
+<div
+  className="assessment-report-summary"
+>
+  <h2>
+    Summary
+  </h2>
+  <OutcomeSummaryBar
+    units="percentage"
+  />
+  <h3
+    className="test-details-text"
+  >
+    Test details
+  </h3>
+  <AssessmentSummaryDetails
+    testSummaries={Array []}
+  />
+</div>
+`;

@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 import { BaseActionPayload } from '../background/actions/action-payloads';
+import { Message } from '../common/message';
 import { BaseActionMessageCreator } from '../common/message-creators/base-action-message-creator';
 import { Messages } from '../common/messages';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
