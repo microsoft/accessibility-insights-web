@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock } from 'typemoq';
-
 import { BaseActionPayload, PayloadWithEventName } from '../../../../../background/actions/action-payloads';
+import { Message } from '../../../../../common/message';
 import { BugActionMessageCreator } from '../../../../../common/message-creators/bug-action-message-creator';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';

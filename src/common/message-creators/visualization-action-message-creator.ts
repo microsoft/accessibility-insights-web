@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { VisualizationTogglePayload } from '../../background/actions/action-payloads';
+import { Message } from '../message';
 import { Messages } from '../messages';
 import { ToggleTelemetryData } from '../telemetry-events';
 import { VisualizationType } from '../types/visualization-type';

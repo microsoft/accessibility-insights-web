@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
-
 import { VisualizationTogglePayload } from '../../../../background/actions/action-payloads';
+import { Message } from '../../../../common/message';
 import { VisualizationActionMessageCreator } from '../../../../common/message-creators/visualization-action-message-creator';
 import { Messages } from '../../../../common/messages';
 import { TelemetryEventSource, ToggleTelemetryData, TriggeredBy } from '../../../../common/telemetry-events';

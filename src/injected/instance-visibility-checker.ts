@@ -3,6 +3,7 @@
 import { UpdateInstanceVisibilityPayload } from '../background/actions/action-payloads';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { HTMLElementUtils } from '../common/html-element-utils';
+import { Message } from '../common/message';
 import { Messages } from '../common/messages';
 import { VisualizationType } from '../common/types/visualization-type';
 import { WindowUtils } from '../common/window-utils';

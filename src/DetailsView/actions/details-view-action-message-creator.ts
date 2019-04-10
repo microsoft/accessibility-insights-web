@@ -11,12 +11,14 @@ import {
     ChangeRequirementStatusPayload,
     EditFailureInstancePayload,
     OnDetailsViewOpenPayload,
+    OnDetailsViewPivotSelected,
     RemoveFailureInstancePayload,
+    SelectRequirementPayload,
     SwitchToTargetTabPayload,
     ToggleActionPayload,
 } from '../../background/actions/action-payloads';
-import { OnDetailsViewPivotSelected, SelectRequirementPayload } from '../../background/actions/action-payloads';
 import { FeatureFlagPayload } from '../../background/actions/feature-flag-actions';
+import { Message } from '../../common/message';
 import { DevToolActionMessageCreator } from '../../common/message-creators/dev-tool-action-message-creator';
 import { Messages } from '../../common/messages';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';

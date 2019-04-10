@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { forOwn } from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { ActionCreator } from '../../../../../background/actions/action-creator';
 import { ActionHub } from '../../../../../background/actions/action-hub';
 import {
@@ -27,8 +26,10 @@ import { TargetTabController } from '../../../../../background/target-tab-contro
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { Action } from '../../../../../common/flux/action';
+import { PayloadCallback } from '../../../../../common/message';
 import { Messages } from '../../../../../common/messages';
 import { NotificationCreator } from '../../../../../common/notification-creator';
+import * as TelemetryEvents from '../../../../../common/telemetry-events';
 import {
     BaseTelemetryData,
     DetailsViewOpenTelemetryData,
@@ -38,7 +39,6 @@ import {
     ToggleTelemetryData,
     TriggeredBy,
 } from '../../../../../common/telemetry-events';
-import * as TelemetryEvents from '../../../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { ScanCompletedPayload } from '../../../../../injected/analyzers/analyzer';

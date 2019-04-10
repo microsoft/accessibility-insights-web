@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { BrowserAdapter, ChromeAdapter } from '../../../../background/browser-adapter';
 import { ChromeCommandHandler } from '../../../../background/chrome-command-handler';
 import { Interpreter } from '../../../../background/interpreter';
@@ -12,6 +11,7 @@ import { TabContext, TabToContextMap } from '../../../../background/tab-context'
 import { BaseStore } from '../../../../common/base-store';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { DisplayableStrings } from '../../../../common/constants/displayable-strings';
+import { Message } from '../../../../common/message';
 import { Messages } from '../../../../common/messages';
 import { NotificationCreator } from '../../../../common/notification-creator';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';

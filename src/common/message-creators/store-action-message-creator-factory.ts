@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Message } from '../message';
 import { Messages } from '../messages';
 import { StoreActionMessageCreator } from './store-action-message-creator';
 import { StoreActionMessageCreatorImpl } from './store-action-message-creator-impl';

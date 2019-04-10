@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { InspectElementPayload, InspectFrameUrlPayload, OnDevToolOpenPayload } from '../../../../../background/actions/action-payloads';
 import { DevToolsActionCreator } from '../../../../../background/actions/dev-tools-action-creator';
 import { DevToolActions } from '../../../../../background/actions/dev-tools-actions';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
 import { Action } from '../../../../../common/flux/action';
+import { RegisterTypeToPayloadCallback } from '../../../../../common/message';
 import { Messages } from '../../../../../common/messages';
 import * as TelemetryEvents from '../../../../../common/telemetry-events';
 

@@ -3,6 +3,7 @@
 import { autobind } from '@uifabric/utilities';
 import { TestMode } from '../../common/configs/test-mode';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
+import { RegisterTypeToPayloadCallback } from '../../common/message';
 import { Messages } from '../../common/messages';
 import { NotificationCreator } from '../../common/notification-creator';
 import * as TelemetryEvents from '../../common/telemetry-events';
