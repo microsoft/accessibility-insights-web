@@ -7,6 +7,7 @@ import { IMock, Mock, Times } from 'typemoq';
 import { VisualizationToggle, VisualizationToggleProps } from '../../../../../common/components/visualization-toggle';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { AssessmentVisualizationEnabledToggle } from '../../../../../DetailsView/components/assessment-visualization-enabled-toggle';
+import { visualHelperText } from '../../../../../DetailsView/components/base-visual-helper-toggle';
 import { VisualHelperToggleConfigBuilder } from '../../../common/visual-helper-toggle-config-builder';
 import { VisualizationTogglePropsBuilder } from '../../../common/visualization-toggle-props-builder';
 
@@ -31,7 +32,7 @@ describe('AssessmentVisualizationEnabledToggle', () => {
         const textDiv = toggleDiv.find(`.${visualHelperClass}-text`);
 
         expect(textDiv.exists()).toBeTruthy();
-        expect(textDiv.childAt(0).text()).toEqual('Highlight instances on target page');
+        expect(textDiv.childAt(0).text()).toEqual(visualHelperText);
 
         const noMatchesWarningClass = 'no-matching-elements';
         expect(wrapper.find(`.${noMatchesWarningClass}`).exists()).toBeTruthy();
@@ -64,7 +65,7 @@ describe('AssessmentVisualizationEnabledToggle', () => {
         const textDiv = toggleDiv.find(`.${visualHelperClass}-text`);
 
         expect(textDiv.exists()).toBeTruthy();
-        expect(textDiv.childAt(0).text()).toEqual('Highlight instances on target page');
+        expect(textDiv.childAt(0).text()).toEqual(visualHelperText);
         expect(wrapper.find('strong').exists()).toBeFalsy();
         const toggle = wrapper.find(VisualizationToggle);
 
@@ -94,7 +95,7 @@ describe('AssessmentVisualizationEnabledToggle', () => {
         const textDiv = toggleDiv.find(`.${visualHelperClass}-text`);
 
         expect(textDiv.exists()).toBeTruthy();
-        expect(textDiv.childAt(0).text()).toEqual('Highlight instances on target page');
+        expect(textDiv.childAt(0).text()).toEqual(visualHelperText);
         expect(wrapper.find('strong').exists()).toBeFalsy();
 
         const toggle = wrapper.find(VisualizationToggle);
@@ -125,7 +126,7 @@ describe('AssessmentVisualizationEnabledToggle', () => {
         const textDiv = toggleDiv.find(`.${visualHelperClass}-text`);
 
         expect(textDiv.exists()).toBeTruthy();
-        expect(textDiv.childAt(0).text()).toEqual('Highlight instances on target page');
+        expect(textDiv.childAt(0).text()).toEqual(visualHelperText);
         expect(wrapper.find('strong').exists()).toBeFalsy();
         const toggle = wrapper.find(VisualizationToggle);
 
@@ -200,8 +201,6 @@ describe('AssessmentVisualizationEnabledToggle', () => {
     }
 
     function getDefaultVisualizationTogglePropsBuilder(): VisualizationTogglePropsBuilder {
-        return new VisualizationTogglePropsBuilder()
-            .with('visualizationName', 'Highlight instances on target page')
-            .with('className', 'visual-helper-toggle');
+        return new VisualizationTogglePropsBuilder().with('visualizationName', visualHelperText).with('className', 'visual-helper-toggle');
     }
 });

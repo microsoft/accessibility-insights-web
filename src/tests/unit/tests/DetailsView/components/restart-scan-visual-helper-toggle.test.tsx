@@ -6,6 +6,7 @@ import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 import { VisualizationToggle, VisualizationToggleProps } from '../../../../../common/components/visualization-toggle';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
+import { visualHelperText } from '../../../../../DetailsView/components/base-visual-helper-toggle';
 import { RestartScanVisualHelperToggle } from '../../../../../DetailsView/components/restart-scan-visual-helper-toggle';
 import { VisualHelperToggleConfigBuilder } from '../../../common/visual-helper-toggle-config-builder';
 import { VisualizationTogglePropsBuilder } from '../../../common/visualization-toggle-props-builder';
@@ -35,7 +36,7 @@ describe('RestartScanVisualHelperToggleTest', () => {
         const textDiv = toggleDiv.find(`.${visualHelperClass}-text`);
 
         expect(textDiv.exists()).toBe(true);
-        expect(textDiv.childAt(0).text()).toBe('Highlight instances on target page');
+        expect(textDiv.childAt(0).text()).toBe(visualHelperText);
 
         const toggle = wrapper.find(VisualizationToggle);
 
@@ -97,8 +98,6 @@ describe('RestartScanVisualHelperToggleTest', () => {
     }
 
     function getDefaultVisualizationTogglePropsBuilder(): VisualizationTogglePropsBuilder {
-        return new VisualizationTogglePropsBuilder()
-            .with('visualizationName', 'Highlight instances on target page')
-            .with('className', 'visual-helper-toggle');
+        return new VisualizationTogglePropsBuilder().with('visualizationName', visualHelperText).with('className', 'visual-helper-toggle');
     }
 });

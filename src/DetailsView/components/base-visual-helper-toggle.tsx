@@ -7,6 +7,8 @@ import { VisualizationToggle } from '../../common/components/visualization-toggl
 import { IGeneratedAssessmentInstance } from '../../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../../types/common-types';
 
+export const visualHelperText = 'Highlight instances on target page';
+
 export abstract class BaseVisualHelperToggle extends React.Component<VisualHelperToggleConfig> {
     public render(): JSX.Element {
         const filteredInstances = this.filterInstancesByTestStep(this.props.assessmentNavState, this.props.instancesMap);
@@ -17,13 +19,13 @@ export abstract class BaseVisualHelperToggle extends React.Component<VisualHelpe
 
         return (
             <div className="visual-helper">
-                <div className="visual-helper-text">Highlight instances on target page</div>
+                <div className="visual-helper-text">{visualHelperText}</div>
                 <VisualizationToggle
                     checked={isChecked}
                     disabled={isDisabled}
                     onClick={onClick}
                     className="visual-helper-toggle"
-                    visualizationName="Highlight instances on target page"
+                    visualizationName={visualHelperText}
                 />
                 {disabledMessage}
             </div>
