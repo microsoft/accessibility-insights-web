@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { del, get, keys, set, Store } from './idb';
+import { del, get, keys, set, Store } from 'idb-keyval';
 
 /**
  * API for IndexedDB Util
@@ -54,7 +54,7 @@ export class IndexedDBUtil implements IndexedDBAPI {
         if (!window.indexedDB) {
             throw 'IndexedDB is not available';
         }
-        this.store = new Store();
+        this.store = new Store('default-db', 'default-store');
     }
 
     public async getItem(key: string): Promise<any> {
