@@ -9,22 +9,24 @@ export interface ActionAndCancelButtonsComponentProps {
     primaryButtonText: string;
     primaryButtonOnClick: (ev) => void;
     cancelButtonOnClick: (ev) => void;
+    primaryButtonHref?: string;
 }
 
 export class ActionAndCancelButtonsComponent extends React.Component<ActionAndCancelButtonsComponentProps> {
     public render(): JSX.Element {
         return (
             <div className="action-and-cancel-buttons-component" hidden={this.props.isHidden}>
-                <div className="button ms-Grid-col ms-sm2 action-cancel-button-col">
+                <div className="button action-cancel-button-col">
+                    <DefaultButton text={'Cancel'} onClick={this.props.cancelButtonOnClick} />
+                </div>
+                <div className="button action-cancel-button-col">
                     <DefaultButton
                         primary={true}
                         text={this.props.primaryButtonText}
                         onClick={this.props.primaryButtonOnClick}
                         disabled={this.props.primaryButtonDisabled}
+                        href={this.props.primaryButtonHref}
                     />
-                </div>
-                <div className="button ms-Grid-col ms-sm2 action-cancel-button-col">
-                    <DefaultButton text={'Cancel'} onClick={this.props.cancelButtonOnClick} />
                 </div>
             </div>
         );
