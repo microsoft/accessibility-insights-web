@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BugFilingSettingsContainerTest render 1`] = `
+<React.Fragment>
+  <BugFilingChoiceGroup
+    bugFilingServices={
+      Array [
+        Object {
+          "displayName": "TEST",
+          "key": "test",
+          "renderSettingsForm": [Function],
+        },
+      ]
+    }
+    deps={
+      Object {
+        "userConfigMessageCreator": Object {},
+      }
+    }
+    selectedBugFilingService={
+      Object {
+        "displayName": "TEST",
+        "key": "test",
+        "renderSettingsForm": [Function],
+      }
+    }
+  />
+  <renderSettingsForm
+    deps={
+      Object {
+        "userConfigMessageCreator": Object {},
+      }
+    }
+    settings={
+      Object {
+        "repository": "none",
+      }
+    }
+  />
+</React.Fragment>
+`;
