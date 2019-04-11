@@ -75,8 +75,6 @@ describe('GithubBugFilingServiceTest', () => {
     });
 
     describe('create bug filing url', () => {
-        it.each(invalidTestSettings)('with %o', settings => {
-            expect(GitHubBugFilingService.createBugFilingUrl(settings, null)).toBeNull();
-        });
+        expect(GitHubBugFilingService.createBugFilingUrl).not.toBeNull();
     });
 });
