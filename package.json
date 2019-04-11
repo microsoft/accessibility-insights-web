@@ -7,6 +7,10 @@
         "type": "git",
         "url": "https://github.com/Microsoft/accessibility-insights-web"
     },
+    "engines": {
+        "node": ">=10.15.0",
+        "npm": ">=6.4.1"
+    },
     "scripts": {
         "build": "grunt",
         "build:all": "grunt build-all",
