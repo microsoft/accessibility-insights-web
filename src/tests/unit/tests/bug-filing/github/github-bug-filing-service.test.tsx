@@ -12,20 +12,8 @@ import { UserConfigMessageCreator } from '../../../../../common/message-creators
 describe('GithubBugFilingServiceTest', () => {
     let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;
     let props: SettingsFormProps<GitHubBugFilingSettings>;
-    const nullSettings: GitHubBugFilingSettings = null;
-    const emptySettings: GitHubBugFilingSettings = {} as GitHubBugFilingSettings;
-    const invalidSettings1: GitHubBugFilingSettings = {
-        random: ' ',
-    } as any;
-    const invalidSettings2: GitHubBugFilingSettings = {
-        repository: '  ',
-    };
-    const invalidSettings3: GitHubBugFilingSettings = {
-        repository: 3,
-    } as any;
-    const validSettings: GitHubBugFilingSettings = {
-        repository: 'repository',
-    };
+
+    const invalidTestSettings = [null, {}, undefined, { random: '' }, { repository: '' }];
 
     beforeEach(() => {
         userConfigMessageCreatorMock = Mock.ofType(UserConfigMessageCreator);
@@ -42,6 +30,7 @@ describe('GithubBugFilingServiceTest', () => {
     it('static properties', () => {
         expect(GitHubBugFilingService.key).toBe('gitHub');
         expect(GitHubBugFilingService.displayName).toBe('GitHub');
+        expect(GitHubBugFilingService.isHidden).toBeUndefined();
     });
 
     it('buildStoreData', () => {
@@ -52,14 +41,17 @@ describe('GithubBugFilingServiceTest', () => {
         expect(GitHubBugFilingService.buildStoreData(url)).toEqual(expectedStoreData);
     });
 
-    it.each([nullSettings, emptySettings, invalidSettings1, invalidSettings2, invalidSettings3])(
-        'isSettingsValid - invalid case',
-        settings => {
+    describe('check for invalid settings', () => {
+        it.each(invalidTestSettings)('with %o', settings => {
             expect(GitHubBugFilingService.isSettingsValid(settings)).toBe(false);
-        },
-    );
+        });
+    });
 
     it('isSettingsValid - valid case', () => {
+        const validSettings: GitHubBugFilingSettings = {
+            repository: 'repository',
+        };
+
         expect(GitHubBugFilingService.isSettingsValid(validSettings)).toBe(true);
     });
 
@@ -82,7 +74,9 @@ describe('GithubBugFilingServiceTest', () => {
         userConfigMessageCreatorMock.verifyAll();
     });
 
-    it('createBugFilingUrl', () => {
-        expect(GitHubBugFilingService.createBugFilingUrl).not.toBeNull();
+    describe('create bug filing url', () => {
+        it.each(invalidTestSettings)('with %o', settings => {
+            expect(GitHubBugFilingService.createBugFilingUrl(settings, null)).toBeNull();
+        });
     });
 });

@@ -32,7 +32,7 @@ describe('InterpreterTest', () => {
 
         expect(
             testSubject.interpret({
-                type: 'test',
+                messageType: 'test',
                 tabId: 1,
                 payload: 'payload',
             }),
@@ -50,7 +50,7 @@ describe('InterpreterTest', () => {
 
         expect(
             testSubject.interpret({
-                type: 'test2',
+                messageType: 'test2',
                 tabId: 1,
                 payload: 'payload',
             }),

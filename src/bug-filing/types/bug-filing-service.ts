@@ -7,6 +7,7 @@ import { SettingsFormProps } from './settings-form-props';
 
 export interface BugFilingService<Settings = {}> {
     key: string;
+    isHidden?: boolean;
     displayName: string;
     renderSettingsForm: ReactSFCWithDisplayName<SettingsFormProps<Settings>>;
     buildStoreData: (...params: any[]) => Settings;

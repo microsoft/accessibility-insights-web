@@ -26,7 +26,7 @@ describe('StateActionMessageCreator', () => {
         postMessageMock.setup(pm =>
             pm(
                 It.isValue({
-                    type: message,
+                    messageType: message,
                     tabId: tabId,
                 }),
             ),

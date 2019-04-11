@@ -57,7 +57,7 @@ export class PopupActionMessageCreator extends BaseActionMessageCreator {
         };
 
         this.dispatchMessage({
-            type: visualizationMessages.DetailsView.Open,
+            messageType: visualizationMessages.DetailsView.Open,
             tabId: this._tabId,
             payload: payload,
         });
@@ -71,7 +71,7 @@ export class PopupActionMessageCreator extends BaseActionMessageCreator {
             telemetry,
         };
         this.dispatchMessage({
-            type: Messages.ChromeFeature.configureCommand,
+            messageType: Messages.ChromeFeature.configureCommand,
             tabId: this._tabId,
             payload,
         });
@@ -82,7 +82,7 @@ export class PopupActionMessageCreator extends BaseActionMessageCreator {
             launchPanelType: panelType,
         };
         this.dispatchMessage({
-            type: Messages.LaunchPanel.Set,
+            messageType: Messages.LaunchPanel.Set,
             tabId: this._tabId,
             payload,
         });

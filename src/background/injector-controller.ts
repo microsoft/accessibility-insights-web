@@ -56,14 +56,14 @@ export class InjectorController {
         ) {
             this._windowUtils.setTimeout(() => {
                 this._interpreter.interpret({
-                    type: Messages.Visualizations.State.InjectionStarted,
+                    messageType: Messages.Visualizations.State.InjectionStarted,
                     tabId: tabId,
                 });
             }, InjectorController.injectionStartedWaitTime);
 
             this._injector.injectScripts(tabId).then(() => {
                 this._interpreter.interpret({
-                    type: Messages.Visualizations.State.InjectionCompleted,
+                    messageType: Messages.Visualizations.State.InjectionCompleted,
                     tabId: tabId,
                 });
             });

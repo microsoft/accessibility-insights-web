@@ -20,7 +20,7 @@ export abstract class BaseActionMessageCreator {
 
     protected dispatchType(messageType: string): void {
         this.dispatchMessage({
-            type: messageType,
+            messageType: messageType,
             tabId: this._tabId,
         });
     }
@@ -32,7 +32,7 @@ export abstract class BaseActionMessageCreator {
         };
 
         const message: Message = {
-            type: Messages.Telemetry.Send,
+            messageType: Messages.Telemetry.Send,
             payload,
         };
 

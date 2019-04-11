@@ -13,8 +13,8 @@ export class Interpreter {
     }
 
     public interpret(message: Message): boolean {
-        if (this.messageToActionMapping[message.type]) {
-            this.messageToActionMapping[message.type](message.payload, message.tabId);
+        if (this.messageToActionMapping[message.messageType]) {
+            this.messageToActionMapping[message.messageType](message.payload, message.tabId);
             return true;
         }
         return false;

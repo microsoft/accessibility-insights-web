@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Mock } from 'typemoq';
-
+import { Message } from '../../../../../common/message';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
@@ -39,13 +39,13 @@ describe('ContentPanelActionMessageCreator', () => {
 
         creator.openContentPanel(event, contentPath);
 
-        const expectedMessage = {
+        const expectedMessage: Message = {
             payload: {
                 contentPath,
                 telemetry,
             },
             tabId,
-            type: Messages.ContentPanel.OpenPanel,
+            messageType: Messages.ContentPanel.OpenPanel,
         };
         expect(messagesPosted).toEqual([expectedMessage]);
     });
@@ -56,12 +56,12 @@ describe('ContentPanelActionMessageCreator', () => {
 
         creator.closeContentPanel();
 
-        const expectedMessage = {
+        const expectedMessage: Message = {
             payload: {
                 telemetry,
             },
             tabId,
-            type: Messages.ContentPanel.ClosePanel,
+            messageType: Messages.ContentPanel.ClosePanel,
         };
         expect(messagesPosted).toEqual([expectedMessage]);
     });
@@ -78,7 +78,7 @@ describe('ContentPanelActionMessageCreator', () => {
                 telemetry,
             },
             tabId,
-            type: Messages.Telemetry.Send,
+            messageType: Messages.Telemetry.Send,
         };
         expect(messagesPosted).toEqual([expectedMessage]);
     });
@@ -95,7 +95,7 @@ describe('ContentPanelActionMessageCreator', () => {
                 telemetry,
             },
             tabId,
-            type: Messages.Telemetry.Send,
+            messageType: Messages.Telemetry.Send,
         };
         expect(messagesPosted).toEqual([expectedMessage]);
     });

@@ -110,7 +110,7 @@ describe('DevToolsListenerTests', () => {
                             status: true,
                         },
                         tabId: 2,
-                        type: Messages.DevTools.DevtoolStatus,
+                        messageType: Messages.DevTools.DevtoolStatus,
                     }),
                 ),
             )
@@ -160,7 +160,7 @@ describe('DevToolsListenerTests', () => {
                             status: false,
                         },
                         tabId: 2,
-                        type: Messages.DevTools.DevtoolStatus,
+                        messageType: Messages.DevTools.DevtoolStatus,
                     }),
                 ),
             )

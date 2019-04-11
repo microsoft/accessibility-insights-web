@@ -143,7 +143,7 @@ describe('ChromeCommandHandlerTest', () => {
 
         expect(receivedMessage).toEqual({
             tabId: existingTabId,
-            type: Messages.Visualizations.Common.Toggle,
+            messageType: Messages.Visualizations.Common.Toggle,
             payload: {
                 enabled: true,
                 telemetry: {
@@ -175,7 +175,7 @@ describe('ChromeCommandHandlerTest', () => {
 
         expect(receivedMessage).toEqual({
             tabId: existingTabId,
-            type: Messages.Visualizations.Common.Toggle,
+            messageType: Messages.Visualizations.Common.Toggle,
             payload: {
                 enabled: false,
                 telemetry: {

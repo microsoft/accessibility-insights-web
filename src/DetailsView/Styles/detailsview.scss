@@ -513,6 +513,9 @@ div.insights-file-issue-details-dialog-container {
                     padding-bottom: 1.1vh;
                     &-text {
                         padding-right: 0.9vh;
+                        font-family: $fontFamily;
+                        font-size: 14px;
+                        line-height: normal;
                     }
                     .ms-Toggle {
                         margin-bottom: 0;

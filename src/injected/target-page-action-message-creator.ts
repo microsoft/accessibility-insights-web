@@ -19,7 +19,7 @@ export class TargetPageActionMessageCreator extends BaseActionMessageCreator {
 
     public scrollRequested(): void {
         this.dispatchMessage({
-            type: Messages.Visualizations.Common.ScrollRequested,
+            messageType: Messages.Visualizations.Common.ScrollRequested,
         });
     }
     public openIssuesDialog(): void {
@@ -32,7 +32,7 @@ export class TargetPageActionMessageCreator extends BaseActionMessageCreator {
     @autobind
     public setHoveredOverSelector(selector: string[]): void {
         this.dispatchMessage({
-            type: Messages.Inspect.SetHoveredOverSelector,
+            messageType: Messages.Inspect.SetHoveredOverSelector,
             tabId: this._tabId,
             payload: selector,
         });
@@ -53,7 +53,7 @@ export class TargetPageActionMessageCreator extends BaseActionMessageCreator {
             telemetry,
         };
         this.dispatchMessage({
-            type: messageType,
+            messageType: messageType,
             tabId: this._tabId,
             payload,
         });

@@ -1,5 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+
+// reference: https://github.com/jakearchibald/idb-keyval/blob/master/idb-keyval.ts
+// uglifyjs has an issue which prevents us from using the `idb-keyval` npm package with uglifyjs
+// https://github.com/jakearchibald/idb-keyval/issues/51
+// using this code till that issue is fixed
+
 export class Store {
     public readonly _dbp: Promise<IDBDatabase>;
 

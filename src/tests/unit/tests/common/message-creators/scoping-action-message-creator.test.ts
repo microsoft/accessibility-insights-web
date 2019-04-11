@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
+import { Message } from '../../../../../common/message';
 import { ScopingActionMessageCreator } from '../../../../../common/message-creators/scoping-action-message-creator';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
@@ -11,15 +11,13 @@ import { EventStubFactory } from './../../../common/event-stub-factory';
 describe('ScopingActionMessageCreatorTest', () => {
     const eventStubFactory = new EventStubFactory();
     const testSource: TelemetryEventSource = -1 as TelemetryEventSource;
-    let postMessageMock: IMock<(message) => {}>;
+    let postMessageMock: IMock<(message: Message) => void>;
     let telemetryFactoryMock: IMock<TelemetryDataFactory>;
     let testSubject: ScopingActionMessageCreator;
     const tabId: number = -1;
 
     beforeEach(() => {
-        postMessageMock = Mock.ofInstance(message => {
-            return null;
-        });
+        postMessageMock = Mock.ofInstance(message => {});
         telemetryFactoryMock = Mock.ofType(TelemetryDataFactory, MockBehavior.Strict);
         testSubject = new ScopingActionMessageCreator(postMessageMock.object, tabId, telemetryFactoryMock.object, testSource);
     });
@@ -37,7 +35,7 @@ describe('ScopingActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Scoping.AddSelector,
+            messageType: Messages.Scoping.AddSelector,
             payload: {
                 inputType: inputType,
                 selector: testSelector,
@@ -69,7 +67,7 @@ describe('ScopingActionMessageCreatorTest', () => {
 
         const expectedMessage = {
             tabId: tabId,
-            type: Messages.Scoping.DeleteSelector,
+            messageType: Messages.Scoping.DeleteSelector,
             payload: {
                 inputType: inputType,
                 selector: testSelector,
@@ -88,7 +86,7 @@ describe('ScopingActionMessageCreatorTest', () => {
         telemetryFactoryMock.verifyAll();
     });
 
-    function setupPostMessage(expectedMessage): void {
+    function setupPostMessage(expectedMessage: Message): void {
         postMessageMock.setup(post => post(It.isValue(expectedMessage))).verifiable(Times.once());
     }
 });

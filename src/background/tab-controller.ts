@@ -118,7 +118,7 @@ export class TabController {
                 if (tabContext) {
                     const interpreter = tabContext.interpreter;
                     interpreter.interpret({
-                        type: Messages.Tab.Change,
+                        messageType: Messages.Tab.Change,
                         payload: tab,
                         tabId: tabId,
                     });
@@ -138,7 +138,7 @@ export class TabController {
                 if (tabContext) {
                     const interpreter = tabContext.interpreter;
                     interpreter.interpret({
-                        type: Messages.Tab.Update,
+                        messageType: Messages.Tab.Update,
                         payload: tab,
                         tabId: tabId,
                     });
@@ -163,7 +163,7 @@ export class TabController {
             hidden: isHidden,
         };
         const message: Message = {
-            type: Messages.Tab.VisibilityChange,
+            messageType: Messages.Tab.VisibilityChange,
             payload: payload,
             tabId: tabId,
         };
@@ -185,7 +185,7 @@ export class TabController {
         if (tabContext) {
             const interpreter = tabContext.interpreter;
             interpreter.interpret({
-                type: messageType,
+                messageType: messageType,
                 payload: null,
                 tabId: tabId,
             });

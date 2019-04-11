@@ -49,7 +49,7 @@ export class DevToolsListener {
                     status: status,
                 } as OnDevToolOpenPayload,
                 tabId: tabId,
-                type: Messages.DevTools.DevtoolStatus,
+                messageType: Messages.DevTools.DevtoolStatus,
             });
         }
     }

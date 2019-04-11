@@ -34,7 +34,7 @@ export class ScopingActionMessageCreator extends BaseActionMessageCreator {
         };
 
         this.dispatchMessage({
-            type: messageType,
+            messageType: messageType,
             tabId: this._tabId,
             payload: payload,
         });
@@ -51,7 +51,7 @@ export class ScopingActionMessageCreator extends BaseActionMessageCreator {
         };
 
         this.dispatchMessage({
-            type: messageType,
+            messageType: messageType,
             tabId: this._tabId,
             payload: payload,
         });
