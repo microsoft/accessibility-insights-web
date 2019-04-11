@@ -5,7 +5,7 @@ import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { BugFilingService } from '../../../../../bug-filing/types/bug-filing-service';
-import { EnvironmentInfoProvider } from '../../../../../common/environment-info-provider';
+import { EnvironmentInfo, EnvironmentInfoProvider } from '../../../../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 import { ActionAndCancelButtonsComponent } from '../../../../../DetailsView/components/action-and-cancel-buttons-component';
 import {
@@ -27,7 +27,7 @@ describe('IssueFilingDialog', () => {
     let bugFilingServiceStub: BugFilingService;
     let props: IssueFilingDialogProps;
     let envInfoProviderMock: IMock<EnvironmentInfoProvider>;
-    let envInfo;
+    let envInfo: EnvironmentInfo;
 
     beforeEach(() => {
         envInfo = {
