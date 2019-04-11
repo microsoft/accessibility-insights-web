@@ -7,7 +7,7 @@ import * as React from 'react';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { BugFilingService } from '../types/bug-filing-service';
 import { SettingsFormProps } from '../types/settings-form-props';
-import { createGitHubBugFilingUrl } from './create-git-hub-bug-filing-url';
+import { createGitHubBugFilingUrl } from './create-github-bug-filing-url';
 
 const GitHubBugFilingServiceKey = 'gitHub';
 
