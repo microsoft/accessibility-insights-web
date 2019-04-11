@@ -4,7 +4,7 @@ import { head } from 'lodash';
 
 import { Assessment } from '../assessments/types/iassessment';
 import { Requirement } from '../assessments/types/requirement';
-import { AssessmentStoreData, IAssessmentData, PersistedTabInfo } from '../common/types/store-data/assessment-result-data';
+import { AssessmentData, AssessmentStoreData, PersistedTabInfo } from '../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../types/common-types';
 
 export class InitialAssessmentStoreDataGenerator {
@@ -34,9 +34,9 @@ export class InitialAssessmentStoreDataGenerator {
     }
 
     private constructInitialDataForAssessment(
-        persistedTests: DictionaryStringTo<IAssessmentData> = null,
-    ): DictionaryStringTo<IAssessmentData> {
-        const assessmentData: DictionaryStringTo<IAssessmentData> = {};
+        persistedTests: DictionaryStringTo<AssessmentData> = null,
+    ): DictionaryStringTo<AssessmentData> {
+        const assessmentData: DictionaryStringTo<AssessmentData> = {};
 
         this.tests.forEach(test => {
             const persistedTestData = persistedTests && persistedTests[test.key];

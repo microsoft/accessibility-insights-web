@@ -5,12 +5,12 @@ import { chain, zipObject } from 'lodash';
 import { Assessment } from '../../assessments/types/iassessment';
 import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { ManualTestStatusData } from '../../common/types/manual-test-status';
-import { AssessmentStoreData, IAssessmentData } from '../../common/types/store-data/assessment-result-data';
+import { AssessmentData, AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import * as Model from './assessment-report-model';
 import { OutcomeMath } from './components/outcome-math';
 import { allOutcomeTypes, OutcomeStats, OutcomeType, outcomeTypeFromTestStatus } from './components/outcome-type';
 
-export type AssessmentSummaryResult = Pick<Assessment, 'title'> & { storeData: Pick<IAssessmentData, 'testStepStatus'> };
+export type AssessmentSummaryResult = Pick<Assessment, 'title'> & { storeData: Pick<AssessmentData, 'testStepStatus'> };
 export type AssessmentStatusData = { [key: string]: ManualTestStatusData };
 
 export type GetAssessmentSummaryModelFromProviderAndStoreData = (

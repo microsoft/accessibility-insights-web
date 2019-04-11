@@ -3,7 +3,7 @@
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { ScanUnscannedRequirement } from '../../../../background/scan-unscanned-requirement';
-import { IAssessmentData } from '../../../../common/types/store-data/assessment-result-data';
+import { AssessmentData } from '../../../../common/types/store-data/assessment-result-data';
 
 describe('ScanUnscannedRequirement', () => {
     let scheduleScanMock: IMock<(step: string) => void>;
@@ -18,7 +18,7 @@ describe('ScanUnscannedRequirement', () => {
 
     it('calls a non enabled test step', () => {
         const stepStub = 'step stub';
-        const assessmentData: IAssessmentData = {
+        const assessmentData: AssessmentData = {
             fullAxeResultsMap: null,
             testStepStatus: {
                 'scanned step': {
@@ -40,7 +40,7 @@ describe('ScanUnscannedRequirement', () => {
     });
 
     it('do not scan when all steps enabled', () => {
-        const assessmentData: IAssessmentData = {
+        const assessmentData: AssessmentData = {
             fullAxeResultsMap: null,
             testStepStatus: {
                 'scanned step': {

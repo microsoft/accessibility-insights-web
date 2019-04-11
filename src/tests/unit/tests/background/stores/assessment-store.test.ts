@@ -31,8 +31,8 @@ import { StoreNames } from '../../../../../common/stores/store-names';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
 import { ManualTestStatus, ManualTestStatusData, TestStepData } from '../../../../../common/types/manual-test-status';
 import {
+    AssessmentData,
     AssessmentStoreData,
-    IAssessmentData,
     IGeneratedAssessmentInstance,
     IManualTestStepResult,
     ITestStepResult,
@@ -166,7 +166,7 @@ describe('AssessmentStoreTest', () => {
             },
         };
 
-        const defaultValues: Partial<IAssessmentData> = {
+        const defaultValues: Partial<AssessmentData> = {
             fullAxeResultsMap: null,
             generatedAssessmentInstancesMap: null,
             manualTestStepResultMap: null,
@@ -186,7 +186,7 @@ describe('AssessmentStoreTest', () => {
                 ...defaultValues,
                 manualTestStepResultMap: {},
                 testStepStatus: {},
-            } as IAssessmentData;
+            } as AssessmentData;
 
             assessment.requirements.forEach(step => {
                 const assessmentData = expectedState.assessments[assessment.key];
@@ -1499,7 +1499,7 @@ describe('AssessmentStoreTest', () => {
             .build();
     }
 
-    function getStateWithAssessment(data: IAssessmentData): AssessmentStoreData {
+    function getStateWithAssessment(data: AssessmentData): AssessmentStoreData {
         return new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object)
             .withAssessment(assessmentKey, data)
             .build();

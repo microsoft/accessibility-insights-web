@@ -9,7 +9,7 @@ import { RequirementComparer } from '../../../common/assessment/requirement-comp
 import { AssesssmentVisualizationConfiguration } from '../../../common/configs/visualization-configuration-factory';
 import { FeatureFlags } from '../../../common/feature-flags';
 import { ManualTestStatus } from '../../../common/types/manual-test-status';
-import { IAssessmentData } from '../../../common/types/store-data/assessment-result-data';
+import { AssessmentData } from '../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { RequirementLink } from '../../../DetailsView/components/requirement-link';
 import { ContentPage } from '../../../views/content/content-page';
@@ -21,7 +21,7 @@ const content = {
 };
 
 const initialDataCreator = () => {
-    return {} as IAssessmentData;
+    return {} as AssessmentData;
 };
 
 export const contentProvider = ContentPage.provider(content);

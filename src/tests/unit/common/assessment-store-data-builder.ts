@@ -6,7 +6,7 @@ import { AssessmentsProvider } from '../../../assessments/types/iassessments-pro
 import { AssessmentDataConverter } from '../../../background/assessment-data-converter';
 import { InitialAssessmentStoreDataGenerator } from '../../../background/initial-assessment-store-data-generator';
 import { AssessmentStore } from '../../../background/stores/assessment-store';
-import { AssessmentStoreData, IAssessmentData } from '../../../common/types/store-data/assessment-result-data';
+import { AssessmentData, AssessmentStoreData } from '../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { BaseDataBuilder } from './base-data-builder';
 
@@ -44,7 +44,7 @@ export class AssessmentsStoreDataBuilder extends BaseDataBuilder<AssessmentStore
         return this.storeDataGeneratorMock.object;
     }
 
-    public withAssessment(assessmentName: string, data: IAssessmentData): AssessmentsStoreDataBuilder {
+    public withAssessment(assessmentName: string, data: AssessmentData): AssessmentsStoreDataBuilder {
         this.data.assessments[assessmentName] = data;
         return this;
     }
