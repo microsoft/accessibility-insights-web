@@ -4,11 +4,15 @@ import { IssueFilingUrlStringUtils } from './../../../../../bug-filing/common/is
 import { EnvironmentInfo } from './../../../../../common/environment-info-provider';
 
 describe('BugFilingUrlStringUtilsTest', () => {
-    const environmentInfo: EnvironmentInfo = {
-        extensionVersion: '1.1.1',
-        axeCoreVersion: '2.2.2',
-        browserSpec: 'test spec',
-    };
+    let environmentInfo: EnvironmentInfo;
+
+    beforeEach(() => {
+        environmentInfo = {
+            extensionVersion: '1.1.1',
+            axeCoreVersion: '2.2.2',
+            browserSpec: 'test spec',
+        };
+    });
 
     test('footer', () => {
         expect(IssueFilingUrlStringUtils.footer(environmentInfo)).toMatchSnapshot();
