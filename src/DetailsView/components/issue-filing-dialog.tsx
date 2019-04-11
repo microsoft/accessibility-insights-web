@@ -3,12 +3,12 @@
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
 
+import { BugFilingSettingsContainer, BugFilingSettingsContainerDeps } from '../../bug-filing/components/bug-filing-settings-container';
 import { BugFilingService } from '../../bug-filing/types/bug-filing-service';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { BugServiceProperties } from '../../common/types/store-data/user-configuration-store';
 import { ActionAndCancelButtonsComponent } from './action-and-cancel-buttons-component';
-import { BugFilingSettingsContainer, BugFilingSettingsContainerDeps } from '../../bug-filing/components/bug-filing-settings-container';
 
 export interface IssueFilingDialogProps {
     deps: IssueFilingDialogDeps;
