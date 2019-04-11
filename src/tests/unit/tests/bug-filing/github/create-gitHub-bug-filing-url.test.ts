@@ -5,7 +5,7 @@ import { GlobalMock, GlobalScope, It } from 'typemoq';
 import { createGitHubBugFilingUrl } from '../../../../../bug-filing/github/create-gitHub-bug-filing-url';
 import { BugFilingUrlStringUtils } from './../../../../../bug-filing/common/bug-filing-url-string-utils';
 import { GitHubBugFilingSettings } from './../../../../../bug-filing/github/github-bug-filing-service';
-import { EnvironmentInfo } from './../../../../../common/environment-info.-provider';
+import { EnvironmentInfo } from './../../../../../common/environment-info-provider';
 
 describe('createGitHubBugFilingUrlTest', () => {
     const environmentInfo: EnvironmentInfo = {

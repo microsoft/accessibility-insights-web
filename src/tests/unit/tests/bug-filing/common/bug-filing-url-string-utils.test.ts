@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BugFilingUrlStringUtils } from './../../../../../bug-filing/common/bug-filing-url-string-utils';
-import { EnvironmentInfo } from './../../../../../common/environment-info.-provider';
+import { EnvironmentInfo } from './../../../../../common/environment-info-provider';
 
 describe('BugFilingUrlStringUtilsTest', () => {
     const environmentInfo: EnvironmentInfo = {
