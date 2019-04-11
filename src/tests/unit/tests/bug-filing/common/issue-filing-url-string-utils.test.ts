@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BugFilingUrlStringUtils } from './../../../../../bug-filing/common/bug-filing-url-string-utils';
+import { IssueFilingUrlStringUtils } from './../../../../../bug-filing/common/issue-filing-url-string-utils';
 import { EnvironmentInfo } from './../../../../../common/environment-info-provider';
 
 describe('BugFilingUrlStringUtilsTest', () => {
@@ -11,20 +11,20 @@ describe('BugFilingUrlStringUtilsTest', () => {
     };
 
     test('footer', () => {
-        expect(BugFilingUrlStringUtils.footer(environmentInfo)).toMatchSnapshot();
+        expect(IssueFilingUrlStringUtils.footer(environmentInfo)).toMatchSnapshot();
     });
 
     test('collapseConsecutiveSpaces', () => {
-        expect(BugFilingUrlStringUtils.collapseConsecutiveSpaces('This    is   a  test   string')).toEqual('This is a test string');
+        expect(IssueFilingUrlStringUtils.collapseConsecutiveSpaces('This    is   a  test   string')).toEqual('This is a test string');
     });
 
     test('markdownEscapeBlock', () => {
-        expect(BugFilingUrlStringUtils.markdownEscapeBlock('hello\nworld')).toEqual('    hello\n    world');
+        expect(IssueFilingUrlStringUtils.markdownEscapeBlock('hello\nworld')).toEqual('    hello\n    world');
     });
 
     test('getSelectorLastPart', () => {
-        expect(BugFilingUrlStringUtils.getSelectorLastPart('hello world')).toEqual('hello world');
-        expect(BugFilingUrlStringUtils.getSelectorLastPart('hello > world')).toEqual('world');
+        expect(IssueFilingUrlStringUtils.getSelectorLastPart('hello world')).toEqual('hello world');
+        expect(IssueFilingUrlStringUtils.getSelectorLastPart('hello > world')).toEqual('world');
     });
 
     test('standardizeTags', () => {
@@ -44,6 +44,6 @@ describe('BugFilingUrlStringUtilsTest', () => {
         };
 
         const expected = ['WCAG-1.4.1', 'WCAG-2.8.2'];
-        expect(BugFilingUrlStringUtils.standardizeTags(sampleIssueDetailsData)).toEqual(expected);
+        expect(IssueFilingUrlStringUtils.standardizeTags(sampleIssueDetailsData)).toEqual(expected);
     });
 });

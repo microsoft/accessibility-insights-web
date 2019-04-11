@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { EnvironmentInfo } from './../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from './../../common/types/create-issue-details-text-data';
-import { BugFilingUrlStringUtils } from './../common/bug-filing-url-string-utils';
+import { IssueFilingUrlStringUtils } from './../common/issue-filing-url-string-utils';
 import { GitHubBugFilingSettings } from './github-bug-filing-service';
 
 export function createGitHubBugFilingUrl(
@@ -11,13 +11,13 @@ export function createGitHubBugFilingUrl(
     environmentInfo: EnvironmentInfo,
 ): string {
     function buildTitle(data: CreateIssueDetailsTextData): string {
-        const standardTags = BugFilingUrlStringUtils.standardizeTags(data);
+        const standardTags = IssueFilingUrlStringUtils.standardizeTags(data);
         let prefix = standardTags.join(',');
         if (prefix.length > 0) {
             prefix = prefix + ': ';
         }
 
-        const selectorLastPart = BugFilingUrlStringUtils.getSelectorLastPart(data.ruleResult.selector);
+        const selectorLastPart = IssueFilingUrlStringUtils.getSelectorLastPart(data.ruleResult.selector);
 
         return `${prefix}${data.ruleResult.help} (${selectorLastPart})`;
     }
@@ -34,18 +34,18 @@ export function createGitHubBugFilingUrl(
             ``,
             `**Snippet**:`,
             ``,
-            `    ${BugFilingUrlStringUtils.collapseConsecutiveSpaces(result.snippet)}`,
+            `    ${IssueFilingUrlStringUtils.collapseConsecutiveSpaces(result.snippet)}`,
             ``,
             `**How to fix**:`,
             ``,
-            `${BugFilingUrlStringUtils.markdownEscapeBlock(result.failureSummary)}`,
+            `${IssueFilingUrlStringUtils.markdownEscapeBlock(result.failureSummary)}`,
             ``,
             `**Environment**:`,
             `${environmentInfo.browserSpec}`,
             ``,
             `====`,
             ``,
-            BugFilingUrlStringUtils.footer(environmentInfo),
+            IssueFilingUrlStringUtils.footer(environmentInfo),
         ].join('\n');
 
         return text;

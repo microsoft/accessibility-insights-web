@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { GlobalMock, GlobalScope, It } from 'typemoq';
 
-import { createGitHubBugFilingUrl } from '../../../../../bug-filing/github/create-gitHub-bug-filing-url';
-import { BugFilingUrlStringUtils } from './../../../../../bug-filing/common/bug-filing-url-string-utils';
+import { createGitHubBugFilingUrl } from '../../../../../bug-filing/github/create-github-bug-filing-url';
+import { IssueFilingUrlStringUtils } from './../../../../../bug-filing/common/issue-filing-url-string-utils';
 import { GitHubBugFilingSettings } from './../../../../../bug-filing/github/github-bug-filing-service';
 import { EnvironmentInfo } from './../../../../../common/environment-info-provider';
 
@@ -30,28 +30,32 @@ describe('createGitHubBugFilingUrlTest', () => {
     const settingsData: GitHubBugFilingSettings = {
         repository: 'test repo',
     };
-    const footerMock = GlobalMock.ofInstance(BugFilingUrlStringUtils.footer, 'footer', BugFilingUrlStringUtils);
+    const footerMock = GlobalMock.ofInstance(IssueFilingUrlStringUtils.footer, 'footer', IssueFilingUrlStringUtils);
     footerMock.setup(f => f(It.isAny())).returns(() => 'test footer');
     const collapseConsecutiveSpacesMock = GlobalMock.ofInstance(
-        BugFilingUrlStringUtils.collapseConsecutiveSpaces,
+        IssueFilingUrlStringUtils.collapseConsecutiveSpaces,
         'collapseConsecutiveSpaces',
-        BugFilingUrlStringUtils,
+        IssueFilingUrlStringUtils,
     );
     collapseConsecutiveSpacesMock.setup(c => c(It.isAny())).returns(() => 'collapesd');
     const markdownEscapeBlockMock = GlobalMock.ofInstance(
-        BugFilingUrlStringUtils.markdownEscapeBlock,
+        IssueFilingUrlStringUtils.markdownEscapeBlock,
         'markdownEscapeBlock',
-        BugFilingUrlStringUtils,
+        IssueFilingUrlStringUtils,
     );
     markdownEscapeBlockMock.setup(m => m(It.isAny())).returns(() => 'escaped');
 
     const getSelectorLastPartMock = GlobalMock.ofInstance(
-        BugFilingUrlStringUtils.getSelectorLastPart,
+        IssueFilingUrlStringUtils.getSelectorLastPart,
         'getSelectorLastPart',
-        BugFilingUrlStringUtils,
+        IssueFilingUrlStringUtils,
     );
     getSelectorLastPartMock.setup(g => g(It.isAny())).returns(() => 'last part');
-    const standardizeTagsMock = GlobalMock.ofInstance(BugFilingUrlStringUtils.standardizeTags, 'standardizeTags', BugFilingUrlStringUtils);
+    const standardizeTagsMock = GlobalMock.ofInstance(
+        IssueFilingUrlStringUtils.standardizeTags,
+        'standardizeTags',
+        IssueFilingUrlStringUtils,
+    );
 
     test('createGitHubBugFilingUrl: no tag', () => {
         standardizeTagsMock.setup(s => s(It.isAny())).returns(() => []);

@@ -2,11 +2,12 @@
 // Licensed under the MIT License.
 import { EnvironmentInfo } from '../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from './../../common/types/create-issue-details-text-data';
+import { title } from '../../content/strings/application';
 
-export class BugFilingUrlStringUtils {
+export class IssueFilingUrlStringUtils {
     public static footer(environmentInfo: EnvironmentInfo): string {
         return (
-            'This accessibility issue was found using Accessibility Insights for Web ' +
+            `This accessibility issue was found using ${title} ` +
             `${environmentInfo.extensionVersion} (axe-core ${environmentInfo.axeCoreVersion}), ` +
             'a tool that helps find and fix accessibility issues. Get more information & download ' +
             'this tool at http://aka.ms/AccessibilityInsights.'
