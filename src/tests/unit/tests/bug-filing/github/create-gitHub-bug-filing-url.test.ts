@@ -53,7 +53,7 @@ describe('createGitHubBugFilingUrlTest', () => {
     getSelectorLastPartMock.setup(g => g(It.isAny())).returns(() => 'last part');
     const standardizeTagsMock = GlobalMock.ofInstance(BugFilingUrlStringUtils.standardizeTags, 'standardizeTags', BugFilingUrlStringUtils);
 
-    test('createGitHubBugFilingUrl: no prefix', () => {
+    test('createGitHubBugFilingUrl: no tag', () => {
         standardizeTagsMock.setup(s => s(It.isAny())).returns(() => []);
         GlobalScope.using(
             footerMock,
@@ -66,7 +66,7 @@ describe('createGitHubBugFilingUrlTest', () => {
         });
     });
 
-    test('createGitHubBugFilingUrl: no prefix', () => {
+    test('createGitHubBugFilingUrl: with tag', () => {
         standardizeTagsMock.setup(s => s(It.isAny())).returns(() => ['TAG1', 'TAG2']);
         GlobalScope.using(
             footerMock,
