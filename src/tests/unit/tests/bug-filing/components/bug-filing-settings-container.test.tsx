@@ -2,7 +2,9 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { Mock } from 'typemoq';
 
+import { BugFilingServiceProvider } from '../../../../../bug-filing/bug-filing-service-provider';
 import {
     BugFilingSettingsContainer,
     BugFilingSettingsContainerProps,
@@ -12,6 +14,7 @@ import { UserConfigMessageCreator } from '../../../../../common/message-creators
 import { BugServiceProperties, UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 
 describe('BugFilingSettingsContainerTest', () => {
+    const bugFilingServicesProviderMock = Mock.ofType(BugFilingServiceProvider);
     const selectedBugFilingService: BugFilingService = {
         key: 'test',
         displayName: 'TEST',
@@ -30,14 +33,15 @@ describe('BugFilingSettingsContainerTest', () => {
     const props: BugFilingSettingsContainerProps = {
         deps: {
             userConfigMessageCreator: userConfigMessageCreatorStub,
+            bugServiceProvider: bugFilingServicesProviderMock.object,
         },
         selectedBugFilingService,
-        bugFilingServices,
         userConfigurationStoreData,
         selectedBugFilingServiceData,
     };
 
     test('render', () => {
+        bugFilingServicesProviderMock.setup(mock => mock.allVisible()).returns(() => bugFilingServices);
         const wrapper = shallow(<BugFilingSettingsContainer {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
