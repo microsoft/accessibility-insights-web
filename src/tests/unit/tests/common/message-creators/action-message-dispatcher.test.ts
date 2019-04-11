@@ -18,7 +18,7 @@ describe('ActionMessageDispatcher', () => {
     describe('dispatchMessage', () => {
         it.each(tabIds)('with tabId = %o', tabId => {
             const message: Message = {
-                type: 'test-message-type',
+                messageType: 'test-message-type',
             };
 
             const testObject = new ActionMessageDispatcher(postMessageMock.object, tabId);
@@ -46,7 +46,7 @@ describe('ActionMessageDispatcher', () => {
             testObject.dispatchType(messageType);
 
             const expectedMessage: Message = {
-                type: messageType,
+                messageType,
             };
 
             if (tabId != null) {
@@ -70,7 +70,7 @@ describe('ActionMessageDispatcher', () => {
             testObject.sendTelemetry(eventName, eventData);
 
             const expectedMessage: Message = {
-                type: Messages.Telemetry.Send,
+                messageType: Messages.Telemetry.Send,
                 payload: {
                     eventName,
                     telemetry: eventData,

@@ -18,7 +18,7 @@ export class ActionMessageDispatcher {
 
     public dispatchType(messageType: string): void {
         this.dispatchMessage({
-            type: messageType,
+            messageType,
         });
     }
 
@@ -29,7 +29,7 @@ export class ActionMessageDispatcher {
         };
 
         const message: Message = {
-            type: Messages.Telemetry.Send,
+            messageType: Messages.Telemetry.Send,
             payload,
         };
 
