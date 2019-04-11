@@ -1,19 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { PayloadWithEventName } from '../../background/actions/action-payloads';
-import { Message } from '../message';
+import { InterpreterMessage, Message } from '../message';
 import { Messages } from '../messages';
 import { TelemetryData } from '../telemetry-events';
 
 export class ActionMessageDispatcher {
-    constructor(private postMessageDelegate: (message: Message) => void, private tabId: number) {}
+    constructor(private postMessageDelegate: (message: InterpreterMessage) => void, private tabId: number) {}
 
     public dispatchMessage(message: Message): void {
-        if (this.tabId != null) {
-            message.tabId = this.tabId;
-        }
+        const interpreterMessage = this.decorateWithTabId(message);
 
-        this.postMessageDelegate(message);
+        this.postMessageDelegate(interpreterMessage);
     }
 
     public dispatchType(messageType: string): void {
@@ -34,5 +32,17 @@ export class ActionMessageDispatcher {
         };
 
         this.dispatchMessage(message);
+    }
+
+    private decorateWithTabId(message: Message): InterpreterMessage {
+        const decorated: InterpreterMessage = {
+            ...message,
+        };
+
+        if (this.tabId != null) {
+            decorated.tabId = this.tabId;
+        }
+
+        return decorated;
     }
 }

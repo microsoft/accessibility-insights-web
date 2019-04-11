@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { PayloadWithEventName } from '../../background/actions/action-payloads';
-import { Message } from '../message';
+import { InterpreterMessage, Message } from '../message';
 import { Messages } from '../messages';
 import { TelemetryData } from '../telemetry-events';
 
@@ -31,7 +31,7 @@ export abstract class BaseActionMessageCreator {
             telemetry: eventData,
         };
 
-        const message: Message = {
+        const message: InterpreterMessage = {
             messageType: Messages.Telemetry.Send,
             payload,
         };
