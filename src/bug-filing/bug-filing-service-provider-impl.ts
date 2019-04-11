@@ -2,5 +2,6 @@
 // Licensed under the MIT License.
 import { BugFilingServiceProvider } from './bug-filing-service-provider';
 import { GitHubBugFilingService } from './github/github-bug-filing-service';
+import { NullIssueFilingService } from './null-issue-filing-service/null-issue-filing-service';
 
-export const BugFilingServiceProviderImpl = new BugFilingServiceProvider([GitHubBugFilingService]);
+export const BugFilingServiceProviderImpl = new BugFilingServiceProvider([NullIssueFilingService, GitHubBugFilingService]);
