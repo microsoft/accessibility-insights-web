@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Q from 'q';
-import { AssessmentsProvider } from '../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../assessments/types/assessments-provider';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { NotificationCreator } from '../common/notification-creator';
 import { StateDispatcher } from '../common/state-dispatcher';

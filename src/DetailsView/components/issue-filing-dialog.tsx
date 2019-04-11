@@ -3,6 +3,7 @@
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
 
+import { BugFilingSettingsContainer, BugFilingSettingsContainerDeps } from '../../bug-filing/components/bug-filing-settings-container';
 import { BugFilingService } from '../../bug-filing/types/bug-filing-service';
 import { EnvironmentInfoProvider } from '../../common/environment-info-provider';
 import { NamedSFC } from '../../common/react/named-sfc';
@@ -20,9 +21,9 @@ export interface IssueFilingDialogProps {
     onClose: (ev: React.SyntheticEvent) => void;
 }
 
-export interface IssueFilingDialogDeps {
+export type IssueFilingDialogDeps = {
     environmentInfoProvider: EnvironmentInfoProvider;
-}
+} & BugFilingSettingsContainerDeps;
 
 const titleLabel = 'Specify issue filing location';
 
@@ -56,6 +57,11 @@ export const IssueFilingDialog = NamedSFC<IssueFilingDialogProps>('IssueFilingDi
             }}
             onDismiss={onClose}
         >
+            <BugFilingSettingsContainer
+                deps={deps}
+                selectedBugFilingService={selectedBugFilingService}
+                selectedBugFilingServiceData={selectedBugFilingServiceData}
+            />
             <DialogFooter>
                 <ActionAndCancelButtonsComponent
                     isHidden={false}

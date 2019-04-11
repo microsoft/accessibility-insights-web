@@ -22,7 +22,7 @@ import { SemanticsAssessment } from './semantics/assessment';
 import { SequenceAssessment } from './sequence/assessment';
 import { TextLegibilityAssessment } from './text-legibility/assessment';
 import { TimedEventsAssessment } from './timed-events/assessment';
-import { AssessmentsProvider } from './types/iassessments-provider';
+import { AssessmentsProvider } from './types/assessments-provider';
 import { VisibleFocusOrderAssessment } from './visible-focus-order/assessment';
 
 export const Assessments: AssessmentsProvider = AssessmentsProviderImpl.Create([

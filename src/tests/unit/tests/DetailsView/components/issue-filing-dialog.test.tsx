@@ -27,13 +27,14 @@ describe('IssueFilingDialog', () => {
     let bugFilingServiceStub: BugFilingService;
     let props: IssueFilingDialogProps;
     let envInfoProviderMock: IMock<EnvironmentInfoProvider>;
-    const envInfo = {
-        extensionVersion: '1.1.1',
-        browserSpec: '1.2.3',
-        axeCoreVersion: '2.1.1',
-    };
+    let envInfo;
 
     beforeEach(() => {
+        envInfo = {
+            extensionVersion: '1.1.1',
+            browserSpec: '1.2.3',
+            axeCoreVersion: '2.1.1',
+        };
         eventStub = new EventStubFactory().createMouseClickEvent();
         isSettingsValidMock = Mock.ofInstance(data => null, MockBehavior.Strict);
         onCloseMock = Mock.ofInstance(() => null, MockBehavior.Strict);
@@ -51,7 +52,7 @@ describe('IssueFilingDialog', () => {
         deps = {
             bugFilingServiceProvider: null,
             environmentInfoProvider: envInfoProviderMock.object,
-        };
+        } as IssueFilingDialogDeps;
         bugFilingServiceStub = {
             isSettingsValid: isSettingsValidMock.object,
             createBugFilingUrl: createBugFilingUrlMock.object,

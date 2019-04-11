@@ -3,7 +3,7 @@
 import { autobind } from '@uifabric/utilities';
 import { forOwn } from 'lodash';
 
-import { AssessmentsProvider } from '../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../assessments/types/assessments-provider';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../common/enum-helper';
 import { FeatureFlags } from '../common/feature-flags';

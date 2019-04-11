@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { AssessmentDefaultMessageGenerator } from '../../assessments/assessment-default-message-generator';
 import { assessmentsProviderWithFeaturesEnabled } from '../../assessments/assessments-feature-flag-filter';
-import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';

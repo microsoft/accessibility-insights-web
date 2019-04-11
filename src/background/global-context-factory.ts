@@ -3,7 +3,7 @@
 import { IndexedDBAPI } from '../common/indexedDB/indexedDB';
 import { StateDispatcher } from '../common/state-dispatcher';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
-import { AssessmentsProvider } from './../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from './../assessments/types/assessments-provider';
 import { AssessmentActionCreator } from './actions/assessment-action-creator';
 import { GlobalActionCreator } from './actions/global-action-creator';
 import { GlobalActionHub } from './actions/global-action-hub';

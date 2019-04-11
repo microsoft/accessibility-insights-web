@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentDefaultMessageGenerator } from '../../../../../assessments/assessment-default-message-generator';
-import { AssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../../../../assessments/types/assessments-provider';
 import { AssessmentStoreData } from '../../../../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
 import { AssessmentReportModelBuilderFactory } from '../../../../../DetailsView/reports/assessment-report-model-builder-factory';

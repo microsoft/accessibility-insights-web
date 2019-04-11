@@ -3,8 +3,8 @@
 import * as _ from 'lodash';
 
 import { AssessmentDefaultMessageGenerator, DefaultMessageInterface } from '../../assessments/assessment-default-message-generator';
+import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
 import { Assessment } from '../../assessments/types/iassessment';
-import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { AssessmentStoreData, IAssessmentData, TestStepInstance } from '../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
