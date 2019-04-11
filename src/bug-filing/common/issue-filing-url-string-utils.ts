@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { EnvironmentInfo } from '../../common/environment-info-provider';
-import { CreateIssueDetailsTextData } from './../../common/types/create-issue-details-text-data';
 import { title } from '../../content/strings/application';
+import { CreateIssueDetailsTextData } from './../../common/types/create-issue-details-text-data';
 
 export class IssueFilingUrlStringUtils {
     public static footer(environmentInfo: EnvironmentInfo): string {
