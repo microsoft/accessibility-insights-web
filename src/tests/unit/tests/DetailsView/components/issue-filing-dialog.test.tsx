@@ -37,7 +37,7 @@ describe('IssueFilingDialog', () => {
         eventStub = new EventStubFactory().createMouseClickEvent();
         isSettingsValidMock = Mock.ofInstance(data => null, MockBehavior.Strict);
         onCloseMock = Mock.ofInstance(() => null, MockBehavior.Strict);
-        createBugFilingUrlMock = Mock.ofInstance((serviceData, bugData, envInfo) => null, MockBehavior.Strict);
+        createBugFilingUrlMock = Mock.ofInstance((serviceData, bugData, info) => null, MockBehavior.Strict);
         telemetryCallbackMock = Mock.ofInstance(data => null, MockBehavior.Strict);
         envInfoProviderMock = Mock.ofType(EnvironmentInfoProvider);
 
