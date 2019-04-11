@@ -16,14 +16,14 @@ export interface BugFilingSettingsContainerProps {
 }
 
 export type BugFilingSettingsContainerDeps = {
-    bugServiceProvider: BugFilingServiceProvider;
+    bugFilingServiceProvider: BugFilingServiceProvider;
 } & BugFilingChoiceGroupDeps &
     SettingsDeps;
 
 export const BugFilingSettingsContainer = NamedSFC<BugFilingSettingsContainerProps>('BugFilingSettingsContainer', props => {
     const { deps, selectedBugFilingService, selectedBugFilingServiceData } = props;
     const SettingsForm = selectedBugFilingService.renderSettingsForm;
-    const bugFilingServices = deps.bugServiceProvider.allVisible();
+    const bugFilingServices = deps.bugFilingServiceProvider.allVisible();
 
     return (
         <>

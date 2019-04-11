@@ -33,7 +33,7 @@ describe('BugFilingSettingsContainerTest', () => {
     const props: BugFilingSettingsContainerProps = {
         deps: {
             userConfigMessageCreator: userConfigMessageCreatorStub,
-            bugServiceProvider: bugFilingServicesProviderMock.object,
+            bugFilingServiceProvider: bugFilingServicesProviderMock.object,
         },
         selectedBugFilingService,
         userConfigurationStoreData,

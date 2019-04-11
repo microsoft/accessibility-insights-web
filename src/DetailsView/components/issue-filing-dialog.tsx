@@ -8,6 +8,7 @@ import { NamedSFC } from '../../common/react/named-sfc';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { BugServiceProperties } from '../../common/types/store-data/user-configuration-store';
 import { ActionAndCancelButtonsComponent } from './action-and-cancel-buttons-component';
+import { BugFilingSettingsContainer, BugFilingSettingsContainerDeps } from '../../bug-filing/components/bug-filing-settings-container';
 
 export interface IssueFilingDialogProps {
     deps: IssueFilingDialogDeps;
@@ -19,12 +20,20 @@ export interface IssueFilingDialogProps {
     onClose: (ev: React.SyntheticEvent) => void;
 }
 
-export interface IssueFilingDialogDeps {}
+export type IssueFilingDialogDeps = BugFilingSettingsContainerDeps;
 
 const titleLabel = 'Specify issue filing location';
 
 export const IssueFilingDialog = NamedSFC<IssueFilingDialogProps>('IssueFilingDialog', props => {
-    const { selectedBugFilingService, selectedBugFilingServiceData, selectedBugData, bugFileTelemetryCallback, onClose, isOpen } = props;
+    const {
+        deps,
+        selectedBugFilingService,
+        selectedBugFilingServiceData,
+        selectedBugData,
+        bugFileTelemetryCallback,
+        onClose,
+        isOpen,
+    } = props;
 
     return (
         <Dialog
@@ -44,6 +53,11 @@ export const IssueFilingDialog = NamedSFC<IssueFilingDialogProps>('IssueFilingDi
             }}
             onDismiss={onClose}
         >
+            <BugFilingSettingsContainer
+                deps={deps}
+                selectedBugFilingService={selectedBugFilingService}
+                selectedBugFilingServiceData={selectedBugFilingServiceData}
+            />
             <DialogFooter>
                 <ActionAndCancelButtonsComponent
                     isHidden={false}

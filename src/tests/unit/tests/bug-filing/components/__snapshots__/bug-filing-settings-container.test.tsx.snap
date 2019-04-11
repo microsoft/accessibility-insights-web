@@ -14,7 +14,7 @@ exports[`BugFilingSettingsContainerTest render 1`] = `
     }
     deps={
       Object {
-        "bugServiceProvider": proxy {
+        "bugFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "all": [Function],
           "allVisible": [Function],
@@ -34,7 +34,7 @@ exports[`BugFilingSettingsContainerTest render 1`] = `
   <renderSettingsForm
     deps={
       Object {
-        "bugServiceProvider": proxy {
+        "bugFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "all": [Function],
           "allVisible": [Function],
