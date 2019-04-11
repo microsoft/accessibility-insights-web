@@ -3,8 +3,8 @@
 import * as _ from 'lodash';
 
 import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
+import { AssessmentsProvider } from '../../../../assessments/types/assessments-provider';
 import { Assessment } from '../../../../assessments/types/iassessment';
-import { AssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
 import { Requirement } from '../../../../assessments/types/requirement';
 
 describe('AssessmentsProviderTest', () => {

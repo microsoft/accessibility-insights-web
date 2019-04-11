@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryStringTo } from '../types/common-types';
+import { AssessmentsProvider } from './types/assessments-provider';
 import { Assessment } from './types/iassessment';
-import { AssessmentsProvider } from './types/iassessments-provider';
 import { Requirement } from './types/requirement';
 
 export class AssessmentsProviderImpl implements AssessmentsProvider {

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
-import { AssessmentsProvider } from '../../../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../../../assessments/types/assessments-provider';
 import { AssessmentStore } from '../../../../background/stores/assessment-store';
 import { VisualizationScanResultStore } from '../../../../background/stores/visualization-scan-result-store';
 import { BaseStore } from '../../../../common/base-store';

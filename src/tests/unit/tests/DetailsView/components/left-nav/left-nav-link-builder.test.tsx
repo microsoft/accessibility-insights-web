@@ -4,8 +4,8 @@ import { isMatch } from 'lodash';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { AssessmentsProviderImpl } from '../../../../../../assessments/assessments-provider';
+import { AssessmentsProvider } from '../../../../../../assessments/types/assessments-provider';
 import { Assessment } from '../../../../../../assessments/types/iassessment';
-import { AssessmentsProvider } from '../../../../../../assessments/types/iassessments-provider';
 import { VisualizationConfiguration } from '../../../../../../common/configs/visualization-configuration-factory';
 import { ManualTestStatus, ManualTestStatusData } from '../../../../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';

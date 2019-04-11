@@ -5,7 +5,7 @@ import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { AssessmentDefaultMessageGenerator } from '../../../../../assessments/assessment-default-message-generator';
-import { AssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../../../../assessments/types/assessments-provider';
 import { AssessmentTestResult } from '../../../../../common/assessment/assessment-test-result';
 import { getInnerTextFromJsxElement } from '../../../../../common/get-inner-text-from-jsx-element';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';

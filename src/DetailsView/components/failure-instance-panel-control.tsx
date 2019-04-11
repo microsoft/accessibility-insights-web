@@ -7,7 +7,7 @@ import { Link } from 'office-ui-fabric-react/lib/Link';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 
-import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { ActionAndCancelButtonsComponent } from './action-and-cancel-buttons-component';
 import { GenericPanel, GenericPanelProps } from './generic-panel';

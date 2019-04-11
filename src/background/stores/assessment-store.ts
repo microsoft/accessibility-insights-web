@@ -3,7 +3,7 @@
 import { autobind } from '@uifabric/utilities';
 import { forEach, isEmpty } from 'lodash';
 
-import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
 import { IndexedDBDataKeys } from '../../background/IndexedDBDataKeys';
 import { IndexedDBAPI } from '../../common/indexedDB/indexedDB';
 import { StoreNames } from '../../common/stores/store-names';

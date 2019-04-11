@@ -4,8 +4,8 @@ import * as _ from 'lodash';
 
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { AssessmentsProviderImpl } from './assessments-provider';
+import { AssessmentsProvider } from './types/assessments-provider';
 import { Assessment } from './types/iassessment';
-import { AssessmentsProvider } from './types/iassessments-provider';
 
 function assessmentIsFeatureEnabled(flags: FeatureFlagStoreData): (assessment: Assessment) => boolean {
     return assessment =>

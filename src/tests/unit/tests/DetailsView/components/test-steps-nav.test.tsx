@@ -5,7 +5,7 @@ import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';
 
-import { AssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from '../../../../../assessments/types/assessments-provider';
 import { Requirement } from '../../../../../assessments/types/requirement';
 import { getInnerTextFromJsxElement } from '../../../../../common/get-inner-text-from-jsx-element';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
