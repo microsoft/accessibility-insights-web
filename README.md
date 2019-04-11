@@ -25,9 +25,9 @@ You can install the extension from one of the following links
 
 #### Prerequisites
 
-Please ensure that you have at least the minimum recommended versions
+Please ensure that you have at least the **minimum** recommended versions
 
--   Node - 10.15.0 (Check by running `node --version`)
+-   Node - 10.15.0 (Check by running `node --version`) - This is the version being enforced on our builds
 -   NPM - 6.4.1 (Check by running `npm --version`)
 
 #### 1. Clone the repository
