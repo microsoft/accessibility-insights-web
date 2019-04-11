@@ -10,7 +10,7 @@ import { PersistedData } from '../../get-persisted-data';
 import { LocalStorageData } from '../../storage-data';
 import { TelemetryEventHandler } from '../../telemetry/telemetry-event-handler';
 import { StoreHub } from '../store-hub';
-import { AssessmentsProvider } from './../../../assessments/types/iassessments-provider';
+import { AssessmentsProvider } from './../../../assessments/types/assessments-provider';
 import { AssessmentDataConverter } from './../../assessment-data-converter';
 import { AssessmentDataRemover } from './../../assessment-data-remover';
 import { InitialAssessmentStoreDataGenerator } from './../../initial-assessment-store-data-generator';

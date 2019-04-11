@@ -6,8 +6,8 @@ import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { AssessmentsProviderImpl } from '../../../../../assessments/assessments-provider';
+import { AssessmentsProvider } from '../../../../../assessments/types/assessments-provider';
 import { Assessment } from '../../../../../assessments/types/iassessment';
-import { AssessmentsProvider } from '../../../../../assessments/types/iassessments-provider';
 import { AssessmentStoreData } from '../../../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';

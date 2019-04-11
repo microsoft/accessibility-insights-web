@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { chain, zipObject } from 'lodash';
 
+import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
 import { Assessment } from '../../assessments/types/iassessment';
-import { AssessmentsProvider } from '../../assessments/types/iassessments-provider';
 import { ManualTestStatusData } from '../../common/types/manual-test-status';
 import { AssessmentStoreData, IAssessmentData } from '../../common/types/store-data/assessment-result-data';
 import * as Model from './assessment-report-model';

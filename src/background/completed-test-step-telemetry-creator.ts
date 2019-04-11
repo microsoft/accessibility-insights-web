@@ -3,8 +3,8 @@
 import { autobind } from '@uifabric/utilities';
 import * as _ from 'lodash';
 
+import { AssessmentsProvider } from '../assessments/types/assessments-provider';
 import { Assessment } from '../assessments/types/iassessment';
-import { AssessmentsProvider } from '../assessments/types/iassessments-provider';
 import { Requirement } from '../assessments/types/requirement';
 import { Messages } from '../common/messages';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
