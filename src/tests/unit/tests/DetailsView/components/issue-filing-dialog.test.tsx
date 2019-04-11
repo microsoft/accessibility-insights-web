@@ -40,7 +40,7 @@ describe('IssueFilingDialog', () => {
         };
         deps = {
             bugFilingServiceProvider: null,
-        };
+        } as IssueFilingDialogDeps;
         bugFilingServiceStub = {
             isSettingsValid: isSettingsValidMock.object,
             createBugFilingUrl: createBugFilingUrlMock.object,

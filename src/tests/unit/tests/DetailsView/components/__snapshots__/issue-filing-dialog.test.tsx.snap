@@ -22,6 +22,24 @@ exports[`IssueFilingDialog render closed 1`] = `
   }
   onDismiss={[Function]}
 >
+  <BugFilingSettingsContainer
+    deps={
+      Object {
+        "bugFilingServiceProvider": null,
+      }
+    }
+    selectedBugFilingService={
+      Object {
+        "createBugFilingUrl": [Function],
+        "isSettingsValid": [Function],
+      }
+    }
+    selectedBugFilingServiceData={
+      Object {
+        "someServiceData": null,
+      }
+    }
+  />
   <StyledDialogFooterBase>
     <ActionAndCancelButtonsComponent
       cancelButtonOnClick={[Function]}
@@ -55,6 +73,24 @@ exports[`IssueFilingDialog render open 1`] = `
   }
   onDismiss={[Function]}
 >
+  <BugFilingSettingsContainer
+    deps={
+      Object {
+        "bugFilingServiceProvider": null,
+      }
+    }
+    selectedBugFilingService={
+      Object {
+        "createBugFilingUrl": [Function],
+        "isSettingsValid": [Function],
+      }
+    }
+    selectedBugFilingServiceData={
+      Object {
+        "someServiceData": null,
+      }
+    }
+  />
   <StyledDialogFooterBase>
     <ActionAndCancelButtonsComponent
       cancelButtonOnClick={[Function]}

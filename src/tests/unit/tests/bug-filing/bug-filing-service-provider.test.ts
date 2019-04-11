@@ -18,4 +18,22 @@ describe('BugFilingServiceProviderTest', () => {
 
         expect(new BugFilingServiceProvider(testOptions).all()).toEqual(testOptions);
     });
+
+    test('allVisible', () => {
+        const givenTestOptions: BugFilingService[] = [
+            {
+                key: 'github',
+                displayName: 'Github',
+            } as BugFilingService,
+            {
+                key: 'random key',
+                displayName: 'random name',
+                isHidden: true,
+            } as BugFilingService,
+        ];
+
+        const expectedTestOptions = [givenTestOptions[0]];
+
+        expect(new BugFilingServiceProvider(givenTestOptions).allVisible()).toEqual(expectedTestOptions);
+    });
 });
