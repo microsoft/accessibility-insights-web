@@ -3,18 +3,12 @@
 import { autobind } from '@uifabric/utilities';
 import * as Q from 'q';
 
+import { Message } from '../../common/message';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { Analyzer, AnalyzerConfiguration, AxeAnalyzerResult, ScanCompletedPayload } from './analyzer';
 
-export type ScanCompletedMessageType = MessageType<ScanCompletedPayload<any>>;
-
-export type MessageType<Payload = {}> = {
-    messageType: string;
-    payload: Payload;
-};
-
 export class BaseAnalyzer implements Analyzer {
-    protected sendMessage: (message: MessageType) => void;
+    protected sendMessage: (message: Message) => void;
     protected visualizationType: VisualizationType;
     protected config: AnalyzerConfiguration;
     protected emptyResults: AxeAnalyzerResult = {
@@ -50,7 +44,7 @@ export class BaseAnalyzer implements Analyzer {
         this.sendMessage(this.createBaseMessage(analyzerResult, this.config));
     }
 
-    protected createBaseMessage(analyzerResult: AxeAnalyzerResult, config: AnalyzerConfiguration): ScanCompletedMessageType {
+    protected createBaseMessage(analyzerResult: AxeAnalyzerResult, config: AnalyzerConfiguration): Message {
         const messageType = config.analyzerMessageType;
         const originalAxeResult = analyzerResult.originalResult;
         const payload: ScanCompletedPayload<any> = {
@@ -59,8 +53,9 @@ export class BaseAnalyzer implements Analyzer {
             scanResult: originalAxeResult,
             testType: config.testType,
         };
+
         return {
-            messageType: messageType,
+            messageType,
             payload,
         };
     }

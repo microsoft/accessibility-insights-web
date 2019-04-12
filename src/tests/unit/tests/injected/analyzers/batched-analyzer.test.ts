@@ -8,12 +8,12 @@ import {
     VisualizationConfiguration,
     VisualizationConfigurationFactory,
 } from '../../../../../common/configs/visualization-configuration-factory';
+import { Message } from '../../../../../common/message';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { RuleAnalyzerScanTelemetryData } from '../../../../../common/telemetry-events';
 import { ScopingStoreData } from '../../../../../common/types/store-data/scoping-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
-import { ScanCompletedMessageType } from '../../../../../injected/analyzers/base-analyzer';
 import { BatchedRuleAnalyzer, IResultRuleFilter } from '../../../../../injected/analyzers/batched-rule-analyzer';
 import { HtmlElementAxeResults, ScannerUtils } from '../../../../../injected/scanner-utils';
 import { ScanOptions } from '../../../../../scanner/exposed-apis';
@@ -207,7 +207,7 @@ describe('BatchedRuleAnalyzer', () => {
             .verifiable(times);
     }
 
-    function getExpectedMessage(config: RuleAnalyzerConfiguration, results: ScanResults, expectedTelemetryStub): ScanCompletedMessageType {
+    function getExpectedMessage(config: RuleAnalyzerConfiguration, results: ScanResults, expectedTelemetryStub): Message {
         return {
             messageType: config.analyzerMessageType,
             payload: {

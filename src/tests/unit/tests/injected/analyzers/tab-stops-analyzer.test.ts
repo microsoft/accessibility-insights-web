@@ -1,14 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
+import { Message } from '../../../../../common/message';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { FocusAnalyzerConfiguration, ScanBasePayload } from '../../../../../injected/analyzers/analyzer';
 import { TabStopsAnalyzer } from '../../../../../injected/analyzers/tab-stops-analyzer';
 import { TabStopEvent, TabStopsListener } from '../../../../../injected/tab-stops-listener';
 import { itIsFunction } from '../../../common/it-is-function';
-import { MessageType } from './../../../../../injected/analyzers/base-analyzer';
 
 describe('TabStopsAnalyzerTests', () => {
     let windowUtilsMock: IMock<WindowUtils>;
@@ -44,7 +43,7 @@ describe('TabStopsAnalyzerTests', () => {
             timestamp: 1,
         };
         const resultsStub = {};
-        const expectedBaseMessage: MessageType = {
+        const expectedBaseMessage: Message = {
             messageType: configStub.analyzerMessageType,
             payload: {
                 key: configStub.key,
@@ -53,7 +52,7 @@ describe('TabStopsAnalyzerTests', () => {
                 testType: typeStub,
             },
         };
-        const expectedOnProgressMessage: MessageType = {
+        const expectedOnProgressMessage: Message = {
             messageType: configStub.analyzerProgressMessageType,
             payload: {
                 key: configStub.key,
@@ -91,7 +90,7 @@ describe('TabStopsAnalyzerTests', () => {
         };
         const onTabbedTimoutIdStub = -1;
         const resultsStub = {};
-        const expectedBaseMessage: MessageType = {
+        const expectedBaseMessage: Message = {
             messageType: configStub.analyzerMessageType,
             payload: {
                 key: configStub.key,
@@ -100,7 +99,7 @@ describe('TabStopsAnalyzerTests', () => {
                 testType: typeStub,
             },
         };
-        const expectedOnProgressMessage: MessageType = {
+        const expectedOnProgressMessage: Message = {
             messageType: configStub.analyzerProgressMessageType,
             payload: {
                 key: configStub.key,
