@@ -8,7 +8,6 @@ import {
     SetIssueTrackerPathPayload,
     SetTelemetryStatePayload,
 } from './action-payloads';
-import { FeatureFlagPayload } from './feature-flag-actions';
 
 export class UserConfigurationActions {
     public readonly setTelemetryState = new Action<SetTelemetryStatePayload>();
