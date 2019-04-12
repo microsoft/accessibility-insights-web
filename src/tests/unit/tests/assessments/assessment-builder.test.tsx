@@ -100,7 +100,6 @@ describe('AssessmentBuilderTest', () => {
         expect(requirement.reportInstanceFields).toEqual([comment]);
 
         const config = manual.getVisualizationConfiguration();
-        const key = requirement.key;
         const scanData = { enabled: true, stepStatus: { key: true } } as AssessmentScanData;
         const vizStoreData = { assessments: { manualAssessmentKeyAssessment: scanData } } as any;
         expect(config.getStoreData(vizStoreData)).toEqual(scanData);

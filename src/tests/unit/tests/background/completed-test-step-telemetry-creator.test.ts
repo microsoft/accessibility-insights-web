@@ -45,15 +45,6 @@ function testBeforeAfterAssessmentData(
         },
     };
 
-    const tabStoreData: TabStoreData = {
-        title: 'DetailsViewContainerTest title',
-        url: 'http://detailsViewContainerTest/url/',
-        id: 1,
-        isClosed: false,
-        isChanged: false,
-        isPageHidden: false,
-    };
-
     interpreterMock.setup(m => m.interpret(It.isValue(expectedMessage))).verifiable(expectedTimes);
 
     telemetryFactoryMock

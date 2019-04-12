@@ -1,13 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { AssessmentsProvider } from '../../../../../assessments/types/assessments-provider';
 import { AssessmentStoreData } from '../../../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
 import { AssessmentReportHtmlGenerator } from '../../../../../DetailsView/reports/assessment-report-html-generator';
-import { ReportGenerator, ReportGeneratorDeps } from '../../../../../DetailsView/reports/report-generator';
+import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
 import { ReportHtmlGenerator } from '../../../../../DetailsView/reports/report-html-generator';
 import { ReportNameGenerator } from '../../../../../DetailsView/reports/report-name-generator';
 import { ScanResults } from '../../../../../scanner/iruleresults';
@@ -22,10 +21,6 @@ describe('ReportGeneratorTest', () => {
     let dataBuilderMock: IMock<ReportHtmlGenerator>;
     let nameBuilderMock: IMock<ReportNameGenerator>;
     let assessmentReportHtmlGeneratorMock: IMock<AssessmentReportHtmlGenerator>;
-
-    const deps: ReportGeneratorDeps = {
-        outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
-    };
 
     beforeEach(() => {
         nameBuilderMock = Mock.ofType(ReportNameGenerator, MockBehavior.Strict);

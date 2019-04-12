@@ -600,9 +600,6 @@ describe('TabControllerTest', () => {
             active: false,
         };
         const tabs = [tabStub1, tabStub2];
-        const windowStub = {
-            id: 1,
-        };
         const interpretInput1: Message = {
             messageType: Messages.Tab.VisibilityChange,
             payload: {

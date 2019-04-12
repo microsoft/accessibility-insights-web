@@ -5,7 +5,6 @@ import { ISelection, Selection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 import { It, Mock, Times } from 'typemoq';
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
-import { FeatureFlags } from '../../../../../common/feature-flags';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { IssuesTable, IssuesTableDeps, IssuesTableProps, IssuesTableState } from '../../../../../DetailsView/components/issues-table';
 import { DetailsRowData, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';

@@ -4,11 +4,9 @@ import { shallow } from 'enzyme';
 import { ChoiceGroup, IChoiceGroupOption } from 'office-ui-fabric-react/lib/ChoiceGroup';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
-
 import { BugFilingChoiceGroup, BugFilingChoiceGroupProps } from '../../../../../bug-filing/components/bug-filing-choice-group';
 import { BugFilingService } from '../../../../../bug-filing/types/bug-filing-service';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
-import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 
 describe('BugFilingChoiceGroupTest', () => {
     let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;

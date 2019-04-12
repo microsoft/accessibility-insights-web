@@ -1,20 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
+import { IMock, Mock } from 'typemoq';
 import { FileIssueDetailsHandler } from '../../../../common/file-issue-details-handler';
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
 
 describe('FileIssueDetailsHandlerTest', () => {
     let testSubject: FileIssueDetailsHandler;
     let htmlElementUtilsMock: IMock<HTMLElementUtils>;
-    let container: Element;
     let fileIssueDetailsButton: Element;
 
     beforeEach(() => {
         htmlElementUtilsMock = Mock.ofType(HTMLElementUtils);
         testSubject = new FileIssueDetailsHandler(htmlElementUtilsMock.object);
-        container = document.createElement('div');
         fileIssueDetailsButton = document.createElement('div');
         fileIssueDetailsButton.classList.add('.insights-file-issue-details-dialog-override');
     });
