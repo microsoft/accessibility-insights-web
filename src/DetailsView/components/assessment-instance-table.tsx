@@ -19,7 +19,7 @@ import { ManualTestStatus } from '../../common/types/manual-test-status';
 import {
     AssessmentNavState,
     IGeneratedAssessmentInstance,
-    IUserCapturedInstance,
+    UserCapturedInstance,
 } from '../../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../../types/common-types';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
@@ -41,7 +41,7 @@ export interface AssessmentInstanceRowData<P = {}> extends IObjectWithKey {
 }
 
 export interface CapturedInstanceRowData extends IObjectWithKey {
-    instance: IUserCapturedInstance;
+    instance: UserCapturedInstance;
     instanceActionButtons: JSX.Element;
 }
 

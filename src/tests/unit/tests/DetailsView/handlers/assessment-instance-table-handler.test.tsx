@@ -7,7 +7,7 @@ import { ManualTestStatus } from '../../../../../common/types/manual-test-status
 import {
     AssessmentNavState,
     IGeneratedAssessmentInstance,
-    IUserCapturedInstance,
+    UserCapturedInstance,
 } from '../../../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
@@ -115,7 +115,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
     });
 
     test('createCapturedInstanceTableItems', () => {
-        const instance: IUserCapturedInstance = {
+        const instance: UserCapturedInstance = {
             id: '1',
             description: 'des',
         };

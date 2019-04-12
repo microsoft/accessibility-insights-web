@@ -5,7 +5,7 @@ import { Tab } from '../../itab';
 import { ManualTestStatus, ManualTestStatusData } from '../manual-test-status';
 import { VisualizationType } from '../visualization-type';
 
-export type TestStepInstance = IUserCapturedInstance & IGeneratedAssessmentInstance;
+export type TestStepInstance = UserCapturedInstance & IGeneratedAssessmentInstance;
 
 export type PersistedTabInfo = Tab & {
     appRefreshed: boolean;
@@ -32,11 +32,10 @@ export interface AssessmentData {
 export interface ManualTestStepResult {
     status: ManualTestStatus;
     id: string;
-    instances: IUserCapturedInstance[];
+    instances: UserCapturedInstance[];
 }
 
-// tslint:disable-next-line:interface-name
-export interface IUserCapturedInstance {
+export interface UserCapturedInstance {
     id: string;
     description: string;
     html?: string;

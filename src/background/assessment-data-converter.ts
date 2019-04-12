@@ -8,7 +8,7 @@ import {
     IGeneratedAssessmentInstance,
     ManualTestStepResult,
     ITestStepResult,
-    IUserCapturedInstance,
+    UserCapturedInstance,
 } from '../common/types/store-data/assessment-result-data';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from '../injected/scanner-utils';
 import { PartialTabOrderPropertyBag } from '../injected/tab-order-property-bag';
@@ -183,7 +183,7 @@ export class AssessmentDataConverter {
         return null;
     }
 
-    public generateFailureInstance(description: string): IUserCapturedInstance {
+    public generateFailureInstance(description: string): UserCapturedInstance {
         return {
             id: this.generateUID(),
             description: description,

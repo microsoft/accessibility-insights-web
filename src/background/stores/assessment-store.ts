@@ -14,7 +14,7 @@ import {
     AssessmentStoreData,
     IGeneratedAssessmentInstance,
     ITestStepResult,
-    IUserCapturedInstance,
+    UserCapturedInstance,
 } from '../../common/types/store-data/assessment-result-data';
 import { ScanBasePayload, ScanCompletedPayload, ScanUpdatePayload } from '../../injected/analyzers/analyzer';
 import { DictionaryStringTo } from '../../types/common-types';
@@ -219,7 +219,7 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
     private onAddFailureInstance(payload: AddFailureInstancePayload): void {
         const config = this.assessmentsProvider.forType(payload.test).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
-        const newInstance: IUserCapturedInstance = this.assessmentDataConverter.generateFailureInstance(payload.description);
+        const newInstance: UserCapturedInstance = this.assessmentDataConverter.generateFailureInstance(payload.description);
         assessmentData.manualTestStepResultMap[payload.requirement].instances.push(newInstance);
         this.updateManualTestStepStatus(assessmentData, payload.requirement, payload.test);
 

@@ -9,7 +9,7 @@ import { ManualTestStatus } from '../../common/types/manual-test-status';
 import {
     AssessmentNavState,
     IGeneratedAssessmentInstance,
-    IUserCapturedInstance,
+    UserCapturedInstance,
 } from '../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../types/common-types';
@@ -95,11 +95,11 @@ export class AssessmentInstanceTableHandler {
     }
 
     public createCapturedInstanceTableItems(
-        instances: IUserCapturedInstance[],
+        instances: UserCapturedInstance[],
         test: VisualizationType,
         step: string,
     ): CapturedInstanceRowData[] {
-        return instances.map((instance: IUserCapturedInstance) => {
+        return instances.map((instance: UserCapturedInstance) => {
             return {
                 instance: instance,
                 instanceActionButtons: this.renderInstanceActionButtons(instance, test, step),
@@ -146,7 +146,7 @@ export class AssessmentInstanceTableHandler {
     }
 
     @autobind
-    private renderInstanceActionButtons(instance: IUserCapturedInstance, test: VisualizationType, step: string): JSX.Element {
+    private renderInstanceActionButtons(instance: UserCapturedInstance, test: VisualizationType, step: string): JSX.Element {
         return (
             <AssessmentInstanceEditAndRemoveControl
                 test={test}
