@@ -74,8 +74,7 @@ export interface FrameAssessmentProperties {
     frameTitle?: string;
 }
 
-// tslint:disable-next-line:interface-name
-export interface ILandmarksAssessmentProperties {
+export interface LandmarksAssessmentProperties {
     role: string;
     label: string;
 }
