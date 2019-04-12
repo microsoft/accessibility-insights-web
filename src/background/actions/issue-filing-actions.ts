@@ -4,6 +4,7 @@ import { Action } from '../../common/flux/action';
 import { OpenIssueFilingSettingsDialogPayload } from './action-payloads';
 
 export class IssueFilingActions {
+    public readonly getCurrentState = new Action();
     public readonly openIssueFilingSettingsDialog = new Action<OpenIssueFilingSettingsDialogPayload>();
     public readonly closeIssueFilingSettingsDialog = new Action();
 }

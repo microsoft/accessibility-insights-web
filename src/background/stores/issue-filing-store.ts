@@ -14,6 +14,7 @@ export class IssueFilingStore extends BaseStoreImpl<IssueFilingStoreData> {
     }
 
     protected addActionListeners(): void {
+        this.issueFilingActions.getCurrentState.addListener(this.onGetCurrentState);
         this.issueFilingActions.openIssueFilingSettingsDialog.addListener(this.onOpenIssueFilingSettingsDialog);
         this.issueFilingActions.closeIssueFilingSettingsDialog.addListener(this.onCloseIssueFilingSettingsDialog);
     }
