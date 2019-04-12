@@ -19,6 +19,7 @@ import { HtmlElementAxeResults, ScannerUtils } from '../../../../../injected/sca
 import { ScanOptions } from '../../../../../scanner/exposed-apis';
 import { ScanResults } from '../../../../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../../../../types/common-types';
+import { MessageType } from './../../../../../injected/analyzers/base-analyzer';
 
 describe('RuleAnalyzer', () => {
     let scannerUtilsMock: IMock<ScannerUtils>;
@@ -121,8 +122,8 @@ describe('RuleAnalyzer', () => {
 
         const scanResults = createTestResults();
 
-        const expectedMessage = {
-            type: configStub.analyzerMessageType,
+        const expectedMessage: MessageType = {
+            messageType: configStub.analyzerMessageType,
             payload: {
                 key: configStub.key,
                 selectorMap: mockAllInstances,

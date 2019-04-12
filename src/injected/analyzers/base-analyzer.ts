@@ -2,17 +2,19 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 import * as Q from 'q';
+
 import { VisualizationType } from '../../common/types/visualization-type';
 import { Analyzer, AnalyzerConfiguration, AxeAnalyzerResult, ScanCompletedPayload } from './analyzer';
 
-export type MessageType = {
-    // tslint:disable-next-line: no-reserved-keywords
-    type: string;
-    payload: ScanCompletedPayload<any>;
+export type ScanCompletedMessageType = MessageType<ScanCompletedPayload<any>>;
+
+export type MessageType<Payload = {}> = {
+    messageType: string;
+    payload: Payload;
 };
 
 export class BaseAnalyzer implements Analyzer {
-    protected sendMessage: (message) => void;
+    protected sendMessage: (message: MessageType) => void;
     protected visualizationType: VisualizationType;
     protected config: AnalyzerConfiguration;
     protected emptyResults: AxeAnalyzerResult = {
@@ -48,7 +50,7 @@ export class BaseAnalyzer implements Analyzer {
         this.sendMessage(this.createBaseMessage(analyzerResult, this.config));
     }
 
-    protected createBaseMessage(analyzerResult: AxeAnalyzerResult, config: AnalyzerConfiguration): MessageType {
+    protected createBaseMessage(analyzerResult: AxeAnalyzerResult, config: AnalyzerConfiguration): ScanCompletedMessageType {
         const messageType = config.analyzerMessageType;
         const originalAxeResult = analyzerResult.originalResult;
         const payload: ScanCompletedPayload<any> = {
@@ -58,7 +60,7 @@ export class BaseAnalyzer implements Analyzer {
             testType: config.testType,
         };
         return {
-            type: messageType,
+            messageType: messageType,
             payload,
         };
     }
