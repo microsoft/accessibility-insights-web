@@ -4,9 +4,9 @@ import { isEmpty, size } from 'lodash';
 import * as React from 'react';
 
 import { ManualTestStatus } from '../common/types/manual-test-status';
-import { IAssessmentInstancesMap, InstanceIdToInstanceDataMap, TestStepResult } from '../common/types/store-data/assessment-result-data';
+import { AssessmentInstancesMap, InstanceIdToInstanceDataMap, TestStepResult } from '../common/types/store-data/assessment-result-data';
 
-export type IMessageGenerator = (instancesMap: IAssessmentInstancesMap, selectedTestStep: string) => DefaultMessageInterface;
+export type IMessageGenerator = (instancesMap: AssessmentInstancesMap, selectedTestStep: string) => DefaultMessageInterface;
 export type IGetMessageGenerator = (generator: AssessmentDefaultMessageGenerator) => IMessageGenerator;
 export interface DefaultMessageInterface {
     message: JSX.Element;

@@ -4,7 +4,7 @@ import * as _ from 'lodash';
 
 import { ManualTestStatus } from '../common/types/manual-test-status';
 import {
-    IAssessmentInstancesMap,
+    AssessmentInstancesMap,
     GeneratedAssessmentInstance,
     ManualTestStepResult,
     TestStepResult,
@@ -24,13 +24,13 @@ export class AssessmentDataConverter {
     }
 
     public generateAssessmentInstancesMap(
-        previouslyGeneratedInstances: IAssessmentInstancesMap,
+        previouslyGeneratedInstances: AssessmentInstancesMap,
         selectorMap: DictionaryStringTo<HtmlElementAxeResults>,
         stepName: string,
         generateInstanceIdentifier: (instance: UniquelyIdentifiableInstances) => string,
         getInstanceStatus: (result: DecoratedAxeNodeResult) => ManualTestStatus,
-    ): IAssessmentInstancesMap {
-        let instancesMap: IAssessmentInstancesMap = {};
+    ): AssessmentInstancesMap {
+        let instancesMap: AssessmentInstancesMap = {};
 
         if (previouslyGeneratedInstances != null) {
             instancesMap = previouslyGeneratedInstances;
@@ -56,12 +56,12 @@ export class AssessmentDataConverter {
     }
 
     public generateAssessmentInstancesMapForEvents(
-        previouslyGeneratedInstances: IAssessmentInstancesMap,
+        previouslyGeneratedInstances: AssessmentInstancesMap,
         events: TabStopEvent[],
         stepName: string,
         generateInstanceIdentifier: (instance: UniquelyIdentifiableInstances) => string,
-    ): IAssessmentInstancesMap {
-        let instancesMap: IAssessmentInstancesMap = {};
+    ): AssessmentInstancesMap {
+        let instancesMap: AssessmentInstancesMap = {};
 
         if (previouslyGeneratedInstances != null) {
             instancesMap = previouslyGeneratedInstances;

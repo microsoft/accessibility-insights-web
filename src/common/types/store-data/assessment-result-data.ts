@@ -79,7 +79,6 @@ export interface LandmarksAssessmentProperties {
     label: string;
 }
 
-// tslint:disable-next-line:interface-name
-export type IAssessmentInstancesMap<T = {}, K = {}> = DictionaryStringTo<GeneratedAssessmentInstance<T, K>>;
+export type AssessmentInstancesMap<T = {}, K = {}> = DictionaryStringTo<GeneratedAssessmentInstance<T, K>>;
 // tslint:disable-next-line:interface-name
 export type IAssessmentResultType<K> = { [testStepName in keyof K]: TestStepResult };
