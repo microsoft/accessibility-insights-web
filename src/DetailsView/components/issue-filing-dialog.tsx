@@ -68,7 +68,7 @@ export const IssueFilingDialog = NamedSFC<IssueFilingDialogProps>('IssueFilingDi
                     primaryButtonDisabled={selectedBugFilingService.isSettingsValid(selectedBugFilingServiceData)}
                     primaryButtonOnClick={bugFileTelemetryCallback}
                     cancelButtonOnClick={onClose}
-                    primaryButtonHref={selectedBugFilingService.createBugFilingUrl(
+                    primaryButtonHref={selectedBugFilingService.issueFilingUrlProvider(
                         selectedBugFilingServiceData,
                         selectedBugData,
                         environmentInfo,

@@ -46,7 +46,7 @@ function buildGithubText(stringUtils: StringUtils, environmentInfo: EnvironmentI
     return text;
 }
 
-export const createDefaultHandler = (stringUtils: StringUtils) => {
+export const createGitHubIssueFilingUrlProvider = (stringUtils: StringUtils) => {
     return (settingsData: GitHubBugFilingSettings, bugData: CreateIssueDetailsTextData, environmentInfo: EnvironmentInfo): string => {
         const title = buildTitle(stringUtils, bugData);
         const body = buildGithubText(stringUtils, environmentInfo, bugData);
@@ -55,4 +55,4 @@ export const createDefaultHandler = (stringUtils: StringUtils) => {
     };
 };
 
-export const createGitHubBugFilingUrl = createDefaultHandler(IssueFilingUrlStringUtils);
+export const gitHubIssueFilingUrlProvider = createGitHubIssueFilingUrlProvider(IssueFilingUrlStringUtils);

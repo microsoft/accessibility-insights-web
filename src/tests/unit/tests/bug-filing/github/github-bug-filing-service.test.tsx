@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
-import { createGitHubBugFilingUrl } from '../../../../../bug-filing/github/create-github-bug-filing-url';
+import { gitHubIssueFilingUrlProvider } from '../../../../../bug-filing/github/create-github-bug-filing-url';
 import { GitHubBugFilingService, GitHubBugFilingSettings } from '../../../../../bug-filing/github/github-bug-filing-service';
 import { SettingsFormProps } from '../../../../../bug-filing/types/settings-form-props';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
@@ -87,6 +87,6 @@ describe('GithubBugFilingServiceTest', () => {
     });
 
     describe('create bug filing url', () => {
-        expect(GitHubBugFilingService.createBugFilingUrl).toEqual(createGitHubBugFilingUrl);
+        expect(GitHubBugFilingService.issueFilingUrlProvider).toEqual(gitHubIssueFilingUrlProvider);
     });
 });

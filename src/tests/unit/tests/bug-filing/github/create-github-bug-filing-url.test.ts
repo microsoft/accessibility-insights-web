@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock } from 'typemoq';
-import { createDefaultHandler } from '../../../../../bug-filing/github/create-github-bug-filing-url';
-import { issueFilingUrlCreator } from '../../../../../bug-filing/types/bug-filing-service';
+import { createGitHubIssueFilingUrlProvider } from '../../../../../bug-filing/github/create-github-bug-filing-url';
+import { IssueFilingUrlProvider } from '../../../../../bug-filing/types/bug-filing-service';
 import { StringUtils } from './../../../../../bug-filing/common/issue-filing-url-string-utils';
 import { GitHubBugFilingSettings } from './../../../../../bug-filing/github/github-bug-filing-service';
 import { EnvironmentInfo } from './../../../../../common/environment-info-provider';
@@ -12,7 +12,7 @@ describe('createGitHubBugFilingUrlTest', () => {
     let sampleIssueDetailsData;
     let settingsData: GitHubBugFilingSettings;
     let stringUtilsMock: IMock<StringUtils>;
-    let testObject: issueFilingUrlCreator<GitHubBugFilingSettings>;
+    let testObject: IssueFilingUrlProvider<GitHubBugFilingSettings>;
 
     beforeEach(() => {
         environmentInfo = {
@@ -39,7 +39,7 @@ describe('createGitHubBugFilingUrlTest', () => {
         };
 
         stringUtilsMock = Mock.ofType<StringUtils>();
-        testObject = createDefaultHandler(stringUtilsMock.object);
+        testObject = createGitHubIssueFilingUrlProvider(stringUtilsMock.object);
     });
 
     test('createGitHubBugFilingUrl: no tag', () => {
