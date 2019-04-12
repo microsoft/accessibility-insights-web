@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
+
 import { TestMode } from '../../common/configs/test-mode';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { RegisterTypeToPayloadCallback } from '../../common/message';
@@ -23,11 +24,14 @@ import {
     BaseActionPayload,
     OnDetailsViewOpenPayload,
     OnDetailsViewPivotSelected,
+    OpenIssueFilingSettingsDialogPayload,
+    OpenNewWindowPayload,
     ToggleActionPayload,
     VisualizationTogglePayload,
 } from './action-payloads';
 import { DetailsViewActions } from './details-view-actions';
 import { InspectActions } from './inspect-actions';
+import { IssueFilingActions } from './issue-filing-actions';
 import { PreviewFeaturesActions } from './preview-features-actions';
 
 const visualizationMessages = Messages.Visualizations;
@@ -36,6 +40,7 @@ export class ActionCreator {
     private visualizationActions: VisualizationActions;
     private visualizationScanResultActions: VisualizationScanResultActions;
     private detailsViewActions: DetailsViewActions;
+    private issueFilingActions: IssueFilingActions;
     private previewFeaturesActions: PreviewFeaturesActions;
     private registerTypeToPayloadCallback: RegisterTypeToPayloadCallback;
     private detailsViewController: DetailsViewController;
@@ -68,6 +73,7 @@ export class ActionCreator {
         this.detailsViewActions = actionHub.detailsViewActions;
         this.visualizationScanResultActions = actionHub.visualizationScanResultActions;
         this.inspectActions = actionHub.inspectActions;
+        this.issueFilingActions = actionHub.issueFilingActions;
         this.registerTypeToPayloadCallback = registerTypeToPayloadCallback;
         this.detailsViewController = detailsViewController;
         this.chromeFeatureController = chromeFeatureController;
@@ -114,6 +120,10 @@ export class ActionCreator {
 
         this.registerTypeToPayloadCallback(Messages.SettingsPanel.OpenPanel, this.onOpenSettingsPanel);
         this.registerTypeToPayloadCallback(Messages.SettingsPanel.ClosePanel, this.onCloseSettingsPanel);
+
+        this.registerTypeToPayloadCallback(Messages.IssueFiling.OpenDialog, this.onOpenIssueFilingDialog);
+        this.registerTypeToPayloadCallback(Messages.IssueFiling.CloseDialog, this.onCloseIssueFilingDialog);
+        this.registerTypeToPayloadCallback(Messages.IssueFiling.OpenNewWindow, this.onOpenNewWindowForIssueFiling);
 
         this.registerTypeToPayloadCallback(Messages.Assessment.AssessmentScanCompleted, this.onAssessmentScanCompleted);
         this.registerTypeToPayloadCallback(Messages.Assessment.StartOver, this.onStartOver);
@@ -214,6 +224,24 @@ export class ActionCreator {
     private onCloseSettingsPanel(payload: BaseActionPayload): void {
         this.detailsViewActions.closeSettingsPanel.invoke(null);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.SETTINGS_PANEL_CLOSE, payload);
+    }
+
+    @autobind
+    private onOpenIssueFilingDialog(payload: OpenIssueFilingSettingsDialogPayload): void {
+        this.issueFilingActions.openIssueFilingSettingsDialog.invoke(payload);
+        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.ISSUE_FILING_SETTINGS_DIALOG_OPEN, payload);
+    }
+
+    @autobind
+    private onCloseIssueFilingDialog(payload: BaseActionPayload): void {
+        this.issueFilingActions.closeIssueFilingSettingsDialog.invoke(null);
+        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.ISSUE_FILING_SETTINGS_DIALOG_CLOSE, payload);
+    }
+
+    @autobind
+    private onOpenNewWindowForIssueFiling(payload: OpenNewWindowPayload): void {
+        this.chromeFeatureController.openIssueFilingWindow(payload.url);
+        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.ISSUE_FILING_WINDOW_OPEN, payload);
     }
 
     @autobind

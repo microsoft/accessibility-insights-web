@@ -7,9 +7,18 @@ import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { TabStopEvent } from '../../injected/tab-stops-listener';
 import { LaunchPanelType } from '../../popup/components/popup-view';
+import { CreateIssueDetailsTextData } from './../../common/types/create-issue-details-text-data';
 
 export interface BaseActionPayload {
     telemetry?: TelemetryData;
+}
+
+export interface OpenIssueFilingSettingsDialogPayload extends BaseActionPayload {
+    issueDetailsTextData: CreateIssueDetailsTextData;
+}
+
+export interface OpenNewWindowPayload extends BaseActionPayload {
+    url: string;
 }
 
 export interface SelectRequirementPayload extends BaseActionPayload {

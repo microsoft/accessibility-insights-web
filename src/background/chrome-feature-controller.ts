@@ -13,4 +13,8 @@ export class ChromeFeatureController {
     public openCommandConfigureTab(): void {
         this._browserAdapter.createTab(ChromeFeatureController.configureCommandTabUrl);
     }
+
+    public openIssueFilingWindow(url: string): void {
+        this._browserAdapter.createTabInNewWindow(url);
+    }
 }

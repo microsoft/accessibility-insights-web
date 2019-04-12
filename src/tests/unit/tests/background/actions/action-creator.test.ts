@@ -1,3 +1,4 @@
+import { IssueFilingActions } from './../../../../../background/actions/issue-filing-actions';
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { forOwn } from 'lodash';
@@ -1021,6 +1022,7 @@ class ActionCreatorValidator {
     private visualizationScanResultActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
 
     private detailsViewActionsContainerMock = Mock.ofType(DetailsViewActions);
+    private issueFilingActionsContainerMock = Mock.ofType(IssueFilingActions);
     private previewFeaturesActionsContainerMock = Mock.ofType(PreviewFeaturesActions);
     private scopingActionsContainerMock = Mock.ofType(ScopingActions);
     private assessmentActionsContainerMock = Mock.ofType(AssessmentActions);
@@ -1028,6 +1030,7 @@ class ActionCreatorValidator {
     private previewFeaturesActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
     private scopingActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
     private detailsViewActionsMocks: DictionaryStringTo<IMock<Action<any>>> = {};
+    private issueFilingActionsMocks: DictionaryStringTo<IMock<Action<any>>> = {};
 
     private inspectActionsMock: DictionaryStringTo<IMock<Action<any>>> = {};
 
@@ -1052,6 +1055,7 @@ class ActionCreatorValidator {
         inspectActions: this.inspectActionsContainerMock.object,
         contentActions: null,
         detailsViewActions: this.detailsViewActionsContainerMock.object,
+        issueFilingActions: this.issueFilingActionsContainerMock.object,
     };
 
     private telemetryEventHandlerStrictMock = Mock.ofType<TelemetryEventHandler>(null, MockBehavior.Strict);
@@ -1210,6 +1214,11 @@ class ActionCreatorValidator {
 
     public setupActionOnDetailsViewActions(actionName: keyof DetailsViewActions): ActionCreatorValidator {
         this.setupAction(actionName, this.detailsViewActionsMocks, this.detailsViewActionsContainerMock);
+        return this;
+    }
+
+    public setupActionOnIssueFilingActions(actionName: keyof IssueFilingActions): ActionCreatorValidator {
+        this.setupAction(actionName, this.issueFilingActionsMocks, this.issueFilingActionsContainerMock);
         return this;
     }
 

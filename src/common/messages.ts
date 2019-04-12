@@ -177,6 +177,12 @@ export class Messages {
         OpenPanel: 'insights/settingsPanel/openPanel',
     };
 
+    public static readonly IssueFiling = {
+        CloseDialog: 'insights/issueFilingSettingsDialog/closeDialog',
+        OpenDialog: 'insights/issueFilingSettingsDialog/openDialog',
+        OpenNewWindow: 'insights/issueFilingSettingsDialog/openNewWindow',
+    };
+
     public static readonly Scoping = {
         ClosePanel: 'insights/scoping/closePanel',
         OpenPanel: 'insights/scoping/openPanel',
