@@ -1,3 +1,5 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { VisualizationType } from '../../../../../common/types/visualization-type';
@@ -8,8 +10,6 @@ import { TabStopEvent, TabStopsListener } from '../../../../../injected/tab-stop
 import { itIsFunction } from '../../../common/it-is-function';
 import { MessageType } from './../../../../../injected/analyzers/base-analyzer';
 
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License.
 describe('TabStopsAnalyzerTests', () => {
     let windowUtilsMock: IMock<WindowUtils>;
     let sendMessageMock: IMock<(message) => void>;
