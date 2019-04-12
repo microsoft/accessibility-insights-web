@@ -7,7 +7,6 @@ import { Mock, MockBehavior } from 'typemoq';
 import { customWidgetConfiguration } from '../../../../scanner/custom-widget';
 import { ICheckConfiguration } from '../../../../scanner/iruleresults';
 
-const _rules = Axe.getRules(); // needed to pull in axe;
 const axe = Axe as any;
 const fixture = createTestFixture('test-fixture', '');
 

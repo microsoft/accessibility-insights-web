@@ -1,22 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, Mock, MockBehavior } from 'typemoq';
-
 import { AssessmentsProvider } from '../../../../assessments/types/assessments-provider';
 import { AssessmentStore } from '../../../../background/stores/assessment-store';
 import { VisualizationScanResultStore } from '../../../../background/stores/visualization-scan-result-store';
 import { BaseStore } from '../../../../common/base-store';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
-import {
-    AssessmentStoreData,
-    IGeneratedAssessmentInstance,
-    ITestStepResult,
-} from '../../../../common/types/store-data/assessment-result-data';
+import { AssessmentStoreData, ITestStepResult } from '../../../../common/types/store-data/assessment-result-data';
 import { VisualizationScanResultData } from '../../../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
-import { AssessmentVisualizationInstance } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { SelectorMapHelper } from '../../../../injected/selector-map-helper';
-import { DictionaryStringTo } from '../../../../types/common-types';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 
@@ -24,52 +17,12 @@ describe('SelectorMapHelperTest', () => {
     let scanResultStoreMock: IMock<BaseStore<VisualizationScanResultData>>;
     let assessmentStoreMock: IMock<BaseStore<AssessmentStoreData>>;
     let assessmentsProvider: AssessmentsProvider;
-    let testSelectorMap: DictionaryStringTo<IGeneratedAssessmentInstance<any, any>>;
-    let expected: DictionaryStringTo<AssessmentVisualizationInstance>;
     let testSubject: SelectorMapHelper;
 
     beforeEach(() => {
         scanResultStoreMock = Mock.ofType(VisualizationScanResultStore, MockBehavior.Strict);
         assessmentStoreMock = Mock.ofType(AssessmentStore, MockBehavior.Strict);
         assessmentsProvider = CreateTestAssessmentProvider();
-        expected = {
-            key2: {
-                html: 'html',
-                isFailure: true,
-                isVisible: true,
-                isVisualizationEnabled: true,
-                propertyBag: {},
-                target: ['element2'],
-                identifier: 'key2',
-                ruleResults: null,
-            },
-        };
-        testSelectorMap = {
-            key1: {
-                target: ['element1'],
-                testStepResults: {
-                    step1: {
-                        status: ManualTestStatus.FAIL,
-                        isVisualizationEnabled: true,
-                        isVisible: true,
-                    } as ITestStepResult,
-                },
-                ruleResults: null,
-                html: null,
-            },
-            key2: {
-                target: ['element2'],
-                testStepResults: {
-                    step2: {
-                        status: ManualTestStatus.FAIL,
-                        isVisualizationEnabled: true,
-                        isVisible: true,
-                    } as ITestStepResult,
-                },
-                html: 'html',
-                propertyBag: {},
-            },
-        };
 
         testSubject = new SelectorMapHelper(scanResultStoreMock.object, assessmentStoreMock.object, assessmentsProvider);
     });
@@ -257,9 +210,5 @@ describe('SelectorMapHelperTest', () => {
 
     function setAssessmentStore(): void {
         assessmentStoreMock.setup(a => a.getState()).verifiable();
-    }
-
-    function setScanResultStore(): void {
-        scanResultStoreMock.setup(a => a.getState()).verifiable();
     }
 });

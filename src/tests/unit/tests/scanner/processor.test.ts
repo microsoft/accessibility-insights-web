@@ -179,14 +179,6 @@ describe('getDefaultAxeRules', () => {
             target: null,
         };
 
-        const nonRemovedResult: AxeNodeResult = {
-            any: [nonSuppressedCheck],
-            none: [],
-            all: [],
-            html: null,
-            target: null,
-        };
-
         const initialAxeRule: AxeRule = {
             id: '',
             nodes: [removedResult],

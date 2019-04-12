@@ -228,12 +228,10 @@ describe('AxeUtils', () => {
 
     describe('hasBackgoundImage', () => {
         let fixture: HTMLElement;
-        let _axe;
         let windowMock: IGlobalMock<typeof window.getComputedStyle>;
 
         beforeEach(() => {
             fixture = createTestFixture('test-fixture', '');
-            _axe = axe as any;
             windowMock = GlobalMock.ofInstance(window.getComputedStyle, 'getComputedStyle', window, MockBehavior.Strict);
         });
 
@@ -270,12 +268,10 @@ describe('AxeUtils', () => {
 
     describe('getImageType', () => {
         let fixture: HTMLElement;
-        let _axe;
         let windowMock: IGlobalMock<typeof window.getComputedStyle>;
 
         beforeEach(() => {
             fixture = createTestFixture('test-fixture', '');
-            _axe = axe as any;
             windowMock = GlobalMock.ofInstance(window.getComputedStyle, 'getComputedStyle', window, MockBehavior.Strict);
         });
 

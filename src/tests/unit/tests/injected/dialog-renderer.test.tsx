@@ -36,7 +36,6 @@ describe('DialogRendererTests', () => {
     let domMock: IMock<Document>;
     let shadowRootMock: IMock<Element>;
     let getRTLMock: IMock<typeof getRTL>;
-    let shadowRoot: Element;
     let renderMock: IMock<typeof ReactDOM.render>;
     let subscribeCallback: (
         message: DetailsDialogWindowMessage,
@@ -71,9 +70,6 @@ describe('DialogRendererTests', () => {
         shadowRootMock = Mock.ofInstance({
             querySelector: selector => null,
         } as any);
-        shadowRoot = {
-            shadowRoot: shadowRootMock.object,
-        } as any;
         renderMock = Mock.ofInstance(() => null);
         getRTLMock = Mock.ofInstance(() => null);
         rootContainerMock = Mock.ofType<HTMLElement>();
