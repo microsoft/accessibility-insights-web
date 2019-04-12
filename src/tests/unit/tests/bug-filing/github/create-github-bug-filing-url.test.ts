@@ -3,7 +3,7 @@
 import { IMock, It, Mock } from 'typemoq';
 import { createGitHubIssueFilingUrlProvider } from '../../../../../bug-filing/github/create-github-bug-filing-url';
 import { IssueFilingUrlProvider } from '../../../../../bug-filing/types/bug-filing-service';
-import { StringUtils } from './../../../../../bug-filing/common/issue-filing-url-string-utils';
+import { IssueUrlCreationUtils } from './../../../../../bug-filing/common/issue-filing-url-string-utils';
 import { GitHubBugFilingSettings } from './../../../../../bug-filing/github/github-bug-filing-service';
 import { EnvironmentInfo } from './../../../../../common/environment-info-provider';
 
@@ -11,7 +11,7 @@ describe('createGitHubBugFilingUrlTest', () => {
     let environmentInfo: EnvironmentInfo;
     let sampleIssueDetailsData;
     let settingsData: GitHubBugFilingSettings;
-    let stringUtilsMock: IMock<StringUtils>;
+    let stringUtilsMock: IMock<IssueUrlCreationUtils>;
     let testObject: IssueFilingUrlProvider<GitHubBugFilingSettings>;
 
     beforeEach(() => {
@@ -38,7 +38,7 @@ describe('createGitHubBugFilingUrlTest', () => {
             repository: 'test repo',
         };
 
-        stringUtilsMock = Mock.ofType<StringUtils>();
+        stringUtilsMock = Mock.ofType<IssueUrlCreationUtils>();
         testObject = createGitHubIssueFilingUrlProvider(stringUtilsMock.object);
     });
 

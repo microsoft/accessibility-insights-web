@@ -4,7 +4,7 @@ import { EnvironmentInfo } from '../../common/environment-info-provider';
 import { title } from '../../content/strings/application';
 import { CreateIssueDetailsTextData } from './../../common/types/create-issue-details-text-data';
 
-export type StringUtils = {
+export type IssueUrlCreationUtils = {
     footer: (info: EnvironmentInfo) => string;
     collapseConsecutiveSpaces: (input: string) => string;
     markdownEscapeBlock: (input: string) => string;
@@ -12,7 +12,7 @@ export type StringUtils = {
     standardizeTags: (data: CreateIssueDetailsTextData) => string[];
 };
 
-export const IssueFilingUrlStringUtils: StringUtils = {
+export const IssueFilingUrlStringUtils: IssueUrlCreationUtils = {
     footer: (environmentInfo: EnvironmentInfo): string => {
         return (
             `This accessibility issue was found using ${title} ` +

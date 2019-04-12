@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import { EnvironmentInfo } from './../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from './../../common/types/create-issue-details-text-data';
-import { IssueFilingUrlStringUtils, StringUtils } from './../common/issue-filing-url-string-utils';
+import { IssueFilingUrlStringUtils, IssueUrlCreationUtils } from './../common/issue-filing-url-string-utils';
 import { GitHubBugFilingSettings } from './github-bug-filing-service';
 
-function buildTitle(stringUtils: StringUtils, data: CreateIssueDetailsTextData): string {
+function buildTitle(stringUtils: IssueUrlCreationUtils, data: CreateIssueDetailsTextData): string {
     const standardTags = stringUtils.standardizeTags(data);
     let prefix = standardTags.join(',');
     if (prefix.length > 0) {
@@ -17,7 +17,7 @@ function buildTitle(stringUtils: StringUtils, data: CreateIssueDetailsTextData):
     return `${prefix}${data.ruleResult.help} (${selectorLastPart})`;
 }
 
-function buildGithubText(stringUtils: StringUtils, environmentInfo: EnvironmentInfo, data: CreateIssueDetailsTextData): string {
+function buildGithubText(stringUtils: IssueUrlCreationUtils, environmentInfo: EnvironmentInfo, data: CreateIssueDetailsTextData): string {
     const result = data.ruleResult;
 
     const text = [
@@ -46,7 +46,7 @@ function buildGithubText(stringUtils: StringUtils, environmentInfo: EnvironmentI
     return text;
 }
 
-export const createGitHubIssueFilingUrlProvider = (stringUtils: StringUtils) => {
+export const createGitHubIssueFilingUrlProvider = (stringUtils: IssueUrlCreationUtils) => {
     return (settingsData: GitHubBugFilingSettings, bugData: CreateIssueDetailsTextData, environmentInfo: EnvironmentInfo): string => {
         const title = buildTitle(stringUtils, bugData);
         const body = buildGithubText(stringUtils, environmentInfo, bugData);
