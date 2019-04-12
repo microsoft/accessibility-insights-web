@@ -4,7 +4,7 @@ import { isEmpty, size } from 'lodash';
 import * as React from 'react';
 
 import { ManualTestStatus } from '../common/types/manual-test-status';
-import { IAssessmentInstancesMap, InstanceIdToInstanceDataMap, ITestStepResult } from '../common/types/store-data/assessment-result-data';
+import { IAssessmentInstancesMap, InstanceIdToInstanceDataMap, TestStepResult } from '../common/types/store-data/assessment-result-data';
 
 export type IMessageGenerator = (instancesMap: IAssessmentInstancesMap, selectedTestStep: string) => DefaultMessageInterface;
 export type IGetMessageGenerator = (generator: AssessmentDefaultMessageGenerator) => IMessageGenerator;
@@ -13,16 +13,16 @@ export interface DefaultMessageInterface {
     instanceCount: number;
 }
 
-function failingInstances(result: ITestStepResult): boolean {
+function failingInstances(result: TestStepResult): boolean {
     return result.status !== ManualTestStatus.PASS;
 }
 
-function passingInstances(result: ITestStepResult): boolean {
+function passingInstances(result: TestStepResult): boolean {
     return result.status === ManualTestStatus.PASS;
 }
 
-function getRelevantTestStepResults(instancesMap: InstanceIdToInstanceDataMap, selectedTestStep: string): ITestStepResult[] {
-    const getSelectedTestStepResult: (instance: string) => ITestStepResult = (instance: string) => {
+function getRelevantTestStepResults(instancesMap: InstanceIdToInstanceDataMap, selectedTestStep: string): TestStepResult[] {
+    const getSelectedTestStepResult: (instance: string) => TestStepResult = (instance: string) => {
         return instancesMap[instance].testStepResults[selectedTestStep];
     };
 
@@ -70,7 +70,7 @@ export class AssessmentDefaultMessageGenerator {
         };
     }
 
-    private getNoFailingInstanceResult(passingInstanceKeys: ITestStepResult[]): DefaultMessageInterface {
+    private getNoFailingInstanceResult(passingInstanceKeys: TestStepResult[]): DefaultMessageInterface {
         return {
             message: <div className="no-failure-view">No failing instances</div>,
             instanceCount: size(passingInstanceKeys),

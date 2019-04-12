@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentDataRemover } from '../../../../background/assessment-data-remover';
-import { GeneratedAssessmentInstance, ITestStepResult } from '../../../../common/types/store-data/assessment-result-data';
+import { GeneratedAssessmentInstance, TestStepResult } from '../../../../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../../../../types/common-types';
 
 describe('AssessmentDataRemoverTest', () => {
@@ -27,7 +27,7 @@ describe('AssessmentDataRemoverTest', () => {
                 testStepResults: {
                     [selectedStep]: {
                         status: 2,
-                    } as ITestStepResult,
+                    } as TestStepResult,
                 },
                 target: null,
                 html: null,
@@ -42,10 +42,10 @@ describe('AssessmentDataRemoverTest', () => {
                 testStepResults: {
                     [selectedStep]: {
                         status: 2,
-                    } as ITestStepResult,
+                    } as TestStepResult,
                     [anotherStep]: {
                         status: 1,
-                    } as ITestStepResult,
+                    } as TestStepResult,
                 },
                 target: null,
                 html: null,

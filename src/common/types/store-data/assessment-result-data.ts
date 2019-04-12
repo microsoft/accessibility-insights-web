@@ -49,8 +49,7 @@ export interface GeneratedAssessmentInstance<T = {}, K = {}> {
     propertyBag?: T;
 }
 
-// tslint:disable-next-line:interface-name
-export interface ITestStepResult {
+export interface TestStepResult {
     id: string;
     status: ManualTestStatus;
     isCapturedByUser: boolean;
@@ -86,4 +85,4 @@ export interface ILandmarksAssessmentProperties {
 // tslint:disable-next-line:interface-name
 export type IAssessmentInstancesMap<T = {}, K = {}> = DictionaryStringTo<GeneratedAssessmentInstance<T, K>>;
 // tslint:disable-next-line:interface-name
-export type IAssessmentResultType<K> = { [testStepName in keyof K]: ITestStepResult };
+export type IAssessmentResultType<K> = { [testStepName in keyof K]: TestStepResult };

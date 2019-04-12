@@ -5,7 +5,7 @@ import { ManualTestStatus } from '../../../common/types/manual-test-status';
 import {
     IAssessmentResultType,
     GeneratedAssessmentInstance,
-    ITestStepResult,
+    TestStepResult,
 } from '../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../DetailsView/actions/details-view-action-message-creator';
@@ -54,7 +54,7 @@ export class VisualHelperToggleConfigBuilder extends BaseDataBuilder<VisualHelpe
                         id: 'id1',
                         status: ManualTestStatus.UNKNOWN,
                         isVisualizationEnabled: isVisualizationEnabled,
-                    } as ITestStepResult,
+                    } as TestStepResult,
                 } as IAssessmentResultType<any>,
             } as GeneratedAssessmentInstance,
             'selector-2': {
@@ -63,7 +63,7 @@ export class VisualHelperToggleConfigBuilder extends BaseDataBuilder<VisualHelpe
                         id: 'id1',
                         status: ManualTestStatus.FAIL,
                         isVisualizationEnabled: isVisualizationEnabled,
-                    } as ITestStepResult,
+                    } as TestStepResult,
                 } as IAssessmentResultType<any>,
             } as GeneratedAssessmentInstance,
         };
@@ -76,7 +76,7 @@ export class VisualHelperToggleConfigBuilder extends BaseDataBuilder<VisualHelpe
                     [this.otherKey]: {
                         id: 'id2',
                         status: ManualTestStatus.UNKNOWN,
-                    } as ITestStepResult,
+                    } as TestStepResult,
                 } as IAssessmentResultType<any>,
             } as GeneratedAssessmentInstance,
         };
@@ -89,7 +89,7 @@ export class VisualHelperToggleConfigBuilder extends BaseDataBuilder<VisualHelpe
                     [this.stepKey]: {
                         id: 'id2',
                         status: ManualTestStatus.PASS,
-                    } as ITestStepResult,
+                    } as TestStepResult,
                 } as IAssessmentResultType<any>,
             } as GeneratedAssessmentInstance,
             'selector-2': null,

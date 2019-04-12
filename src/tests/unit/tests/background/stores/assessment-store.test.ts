@@ -35,7 +35,7 @@ import {
     AssessmentStoreData,
     GeneratedAssessmentInstance,
     ManualTestStepResult,
-    ITestStepResult,
+    TestStepResult,
     PersistedTabInfo,
 } from '../../../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
@@ -565,7 +565,7 @@ describe('AssessmentStoreTest', () => {
                 testStepResults: {
                     [requirementKey]: {
                         status: 2,
-                    } as ITestStepResult,
+                    } as TestStepResult,
                 },
             } as GeneratedAssessmentInstance,
         };

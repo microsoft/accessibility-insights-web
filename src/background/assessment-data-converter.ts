@@ -7,7 +7,7 @@ import {
     IAssessmentInstancesMap,
     GeneratedAssessmentInstance,
     ManualTestStepResult,
-    ITestStepResult,
+    TestStepResult,
     UserCapturedInstance,
 } from '../common/types/store-data/assessment-result-data';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from '../injected/scanner-utils';
@@ -145,7 +145,7 @@ export class AssessmentDataConverter {
         };
     }
 
-    private getGenericTestStepResultForEvent(): ITestStepResult {
+    private getGenericTestStepResultForEvent(): TestStepResult {
         return {
             id: this.generateUID(),
             status: ManualTestStatus.UNKNOWN,
@@ -160,7 +160,7 @@ export class AssessmentDataConverter {
         ruleResult: DecoratedAxeNodeResult,
         elementAxeResult: HtmlElementAxeResults,
         getInstanceStatus: (result: DecoratedAxeNodeResult) => ManualTestStatus,
-    ): ITestStepResult {
+    ): TestStepResult {
         return {
             id: ruleResult.id,
             status: getInstanceStatus(ruleResult),

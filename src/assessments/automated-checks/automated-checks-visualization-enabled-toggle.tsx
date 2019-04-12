@@ -3,10 +3,10 @@
 import { isEmpty } from 'lodash';
 
 import { ManualTestStatus } from '../../common/types/manual-test-status';
-import { GeneratedAssessmentInstance, ITestStepResult } from '../../common/types/store-data/assessment-result-data';
+import { GeneratedAssessmentInstance, TestStepResult } from '../../common/types/store-data/assessment-result-data';
 import { AssessmentVisualizationEnabledToggle } from '../../DetailsView/components/assessment-visualization-enabled-toggle';
 
-function failingInstances(result: ITestStepResult): boolean {
+function failingInstances(result: TestStepResult): boolean {
     return result.status === ManualTestStatus.FAIL;
 }
 
@@ -24,8 +24,8 @@ export class AutomatedChecksVisualizationToggle extends AssessmentVisualizationE
         return isEmpty(failingInstanceKeys);
     }
 
-    private getRelevantTestStepResults(instances: GeneratedAssessmentInstance<{}, {}>[], selectedTestStep: string): ITestStepResult[] {
-        const getSelectedTestStepResult: (instance: string) => ITestStepResult = (instance: string) => {
+    private getRelevantTestStepResults(instances: GeneratedAssessmentInstance<{}, {}>[], selectedTestStep: string): TestStepResult[] {
+        const getSelectedTestStepResult: (instance: string) => TestStepResult = (instance: string) => {
             return instances[instance].testStepResults[selectedTestStep];
         };
         return Object.keys(instances)
