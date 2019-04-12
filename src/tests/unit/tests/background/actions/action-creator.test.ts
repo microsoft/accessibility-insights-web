@@ -1037,7 +1037,6 @@ describe('ActionCreatorTest', () => {
 
     test('registerCallback for onOpenNewWindowForIssueFiling', () => {
         const tabId = 1;
-        const actionName = 'openIssueFilingWindow';
         const telemetryData: BaseTelemetryData = {
             triggeredBy: 'stub triggered by' as TriggeredBy,
             source: testSource,
