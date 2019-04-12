@@ -6,7 +6,7 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 import { Assessment } from '../../../../assessments/types/iassessment';
 import { InitialDataCreator } from '../../../../background/create-initial-assessment-test-data';
 import { InitialAssessmentStoreDataGenerator } from '../../../../background/initial-assessment-store-data-generator';
-import { AssessmentStoreData, IAssessmentData } from '../../../../common/types/store-data/assessment-result-data';
+import { AssessmentData, AssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../../../types/common-types';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
@@ -20,7 +20,7 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
     const knownRequirementIds = flatMap(assessments, test => test.requirements.map(step => step.key));
     const knownRequirement1 = knownRequirementIds[0];
     const unknownRequirement: string = 'unknown-requirement';
-    const assessmentDataStub = {} as IAssessmentData;
+    const assessmentDataStub = {} as AssessmentData;
     let defaultState: AssessmentStoreData;
     let initialDataCreatorMock: IMock<InitialDataCreator>;
     let generator: InitialAssessmentStoreDataGenerator;
@@ -51,10 +51,10 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
     );
 
     it('passes persisted data to initial data creator if persistedData.assessments is non-nullable', () => {
-        const persistedAssessments: DictionaryStringTo<IAssessmentData> = {};
+        const persistedAssessments: DictionaryStringTo<AssessmentData> = {};
 
         assessments.forEach(assessment => {
-            persistedAssessments[assessment.key] = {} as IAssessmentData;
+            persistedAssessments[assessment.key] = {} as AssessmentData;
             (assessment as Assessment).initialDataCreator = initialDataCreatorMock.object;
             initialDataCreatorMock.setup(mock => mock(assessment, persistedAssessments[assessment.key])).returns(() => assessmentDataStub);
         });

@@ -14,7 +14,7 @@ export type PersistedTabInfo = Tab & {
 export interface AssessmentStoreData {
     persistedTabInfo: PersistedTabInfo;
     assessments: {
-        [key: string]: IAssessmentData;
+        [key: string]: AssessmentData;
     };
     assessmentNavState: AssessmentNavState;
 }
@@ -22,8 +22,7 @@ export interface AssessmentStoreData {
 export type InstanceIdToInstanceDataMap = DictionaryStringTo<IGeneratedAssessmentInstance>;
 export type RequirementIdToResultMap = DictionaryStringTo<IManualTestStepResult>;
 
-// tslint:disable-next-line:interface-name
-export interface IAssessmentData {
+export interface AssessmentData {
     fullAxeResultsMap: any;
     generatedAssessmentInstancesMap?: InstanceIdToInstanceDataMap;
     manualTestStepResultMap?: RequirementIdToResultMap;

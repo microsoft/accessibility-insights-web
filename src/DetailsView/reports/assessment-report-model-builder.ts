@@ -6,7 +6,7 @@ import { AssessmentDefaultMessageGenerator, DefaultMessageInterface } from '../.
 import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
 import { Assessment } from '../../assessments/types/iassessment';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
-import { AssessmentStoreData, IAssessmentData, TestStepInstance } from '../../common/types/store-data/assessment-result-data';
+import { AssessmentData, AssessmentStoreData, TestStepInstance } from '../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { assessmentReportExtensionPoint } from '../extensions/assessment-report-extension-point';
 import {
@@ -18,7 +18,7 @@ import {
 } from './assessment-report-model';
 import { getAssessmentSummaryModelFromResults } from './get-assessment-summary-model';
 
-type AssessmentResult = Assessment & { storeData: IAssessmentData };
+type AssessmentResult = Assessment & { storeData: AssessmentData };
 
 export class AssessmentReportModelBuilder {
     constructor(

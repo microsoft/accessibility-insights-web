@@ -5,7 +5,7 @@ import { isEmpty, pick } from 'lodash';
 import { Assessment } from '../assessments/types/iassessment';
 import { ManualTestStatus, ManualTestStatusData, TestStepData } from '../common/types/manual-test-status';
 import {
-    IAssessmentData,
+    AssessmentData,
     IGeneratedAssessmentInstance,
     IManualTestStepResult,
     InstanceIdToInstanceDataMap,
@@ -13,9 +13,9 @@ import {
 } from '../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../types/common-types';
 
-export type InitialDataCreator = (test: Readonly<Assessment>, persistedTest: IAssessmentData) => IAssessmentData;
+export type InitialDataCreator = (test: Readonly<Assessment>, persistedTest: AssessmentData) => AssessmentData;
 
-export const createInitialAssessmentTestData: InitialDataCreator = (test: Readonly<Assessment>, persistedTest: IAssessmentData) => {
+export const createInitialAssessmentTestData: InitialDataCreator = (test: Readonly<Assessment>, persistedTest: AssessmentData) => {
     const requirements = test.requirements.map(val => val.key);
     if (persistedTest) {
         return getInitialTestDataUsingPersistedData(
@@ -31,7 +31,7 @@ export const createInitialAssessmentTestData: InitialDataCreator = (test: Readon
 
 export const createAutomatedChecksInitialAssessmentTestData: InitialDataCreator = (
     test: Readonly<Assessment>,
-    persistedTest: IAssessmentData,
+    persistedTest: AssessmentData,
 ) => {
     const requirements = test.requirements.map(val => val.key);
     if (persistedTest && allRequirementsAreScanned(requirements, persistedTest)) {
@@ -46,7 +46,7 @@ export const createAutomatedChecksInitialAssessmentTestData: InitialDataCreator 
     return getDefaultInitialTestData(requirements);
 };
 
-function getDefaultInitialTestData(requirements: string[]): IAssessmentData {
+function getDefaultInitialTestData(requirements: string[]): AssessmentData {
     return getInitialTestDataUsingPersistedData(requirements, {}, {}, null);
 }
 
@@ -55,21 +55,21 @@ function getInitialTestDataUsingPersistedData(
     persistedRequirementsStatus: ManualTestStatusData,
     persistedManualMap: RequirementIdToResultMap,
     persistedGeneratedMap: InstanceIdToInstanceDataMap,
-): IAssessmentData {
-    const testData: IAssessmentData = getDefaultTestResult();
+): AssessmentData {
+    const testData: AssessmentData = getDefaultTestResult();
     testData.testStepStatus = constructRequirementStatus(requirements, persistedRequirementsStatus);
     testData.manualTestStepResultMap = constructManualRequirementResultMap(requirements, persistedManualMap);
     testData.generatedAssessmentInstancesMap = constructGeneratedAssessmentInstancesMap(requirements, persistedGeneratedMap);
     return testData;
 }
 
-function allRequirementsAreScanned(requirements: string[], persistedTest: IAssessmentData): boolean {
+function allRequirementsAreScanned(requirements: string[], persistedTest: AssessmentData): boolean {
     return requirements.every(
         requirement => persistedTest.testStepStatus[requirement] && persistedTest.testStepStatus[requirement].isStepScanned === true,
     );
 }
 
-function getDefaultTestResult(): IAssessmentData {
+function getDefaultTestResult(): AssessmentData {
     return { fullAxeResultsMap: null, generatedAssessmentInstancesMap: null, manualTestStepResultMap: {}, testStepStatus: {} };
 }
 

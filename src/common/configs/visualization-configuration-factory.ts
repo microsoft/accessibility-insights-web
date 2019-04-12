@@ -22,7 +22,7 @@ import { DictionaryNumberTo, DictionaryStringTo } from '../../types/common-types
 import { ContentPageComponent } from '../../views/content/content-page';
 import { EnumHelper } from '../enum-helper';
 import { IAnalyzerTelemetryCallback } from '../types/analyzer-telemetry-callbacks';
-import { AssessmentStoreData, IAssessmentData } from '../types/store-data/assessment-result-data';
+import { AssessmentData, AssessmentStoreData } from '../types/store-data/assessment-result-data';
 import { ScanData, TestsEnabledState } from '../types/store-data/visualization-store-data';
 import { TelemetryProcessor } from '../types/telemetry-processor';
 import { VisualizationType } from '../types/visualization-type';
@@ -42,7 +42,7 @@ export interface AssesssmentVisualizationConfiguration {
     enableTest: (data: ScanData, payload: ToggleActionPayload) => void;
     disableTest: (data: ScanData, step?: string) => void;
     getTestStatus: (data: ScanData, step?: string) => boolean;
-    getAssessmentData?: (data: AssessmentStoreData) => IAssessmentData;
+    getAssessmentData?: (data: AssessmentStoreData) => AssessmentData;
     setAssessmentData?: (data: AssessmentStoreData, selectorMap: DictionaryStringTo<any>, instanceMap?: DictionaryStringTo<any>) => void;
     analyzerMessageType: string;
     analyzerProgressMessageType?: string;
@@ -64,7 +64,7 @@ export interface VisualizationConfiguration extends AssesssmentVisualizationConf
     featureFlagToEnable?: string;
     getTestView: (props: TestViewProps) => JSX.Element;
     getStoreData: (data: TestsEnabledState) => ScanData;
-    getAssessmentData?: (data: AssessmentStoreData) => IAssessmentData;
+    getAssessmentData?: (data: AssessmentStoreData) => AssessmentData;
     setAssessmentData?: (data: AssessmentStoreData, selectorMap: DictionaryStringTo<any>, instanceMap?: DictionaryStringTo<any>) => void;
     displayableData: DisplayableVisualizationTypeData;
     chromeCommand: string;

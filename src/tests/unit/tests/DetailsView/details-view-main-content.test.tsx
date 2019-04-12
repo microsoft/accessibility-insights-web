@@ -11,9 +11,9 @@ import {
 import { NamedSFC, ReactSFCWithDisplayName } from '../../../../common/react/named-sfc';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
 import {
+    AssessmentData,
     AssessmentNavState,
     AssessmentStoreData,
-    IAssessmentData,
     PersistedTabInfo,
 } from '../../../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
@@ -94,7 +94,7 @@ describe('DetailsViewMainContentTest', () => {
                         generatedAssessmentInstancesMap: {},
                         manualTestStepResultMap: {},
                         fullAxeResultsMap: {},
-                    } as IAssessmentData,
+                    } as AssessmentData,
                 },
                 persistedTabInfo: {} as PersistedTabInfo,
             } as AssessmentStoreData;

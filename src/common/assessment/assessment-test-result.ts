@@ -4,7 +4,7 @@ import { AssessmentsProvider } from '../../assessments/types/assessments-provide
 import { Assessment } from '../../assessments/types/iassessment';
 import { OutcomeStats, outcomeStatsFromManualTestStatus } from '../../DetailsView/reports/components/outcome-type';
 import { ManualTestStatusData } from '../types/manual-test-status';
-import { IAssessmentData } from '../types/store-data/assessment-result-data';
+import { AssessmentData } from '../types/store-data/assessment-result-data';
 import { VisualizationType } from '../types/visualization-type';
 import { getRequirementsResults, RequirementResult } from './requirement';
 
@@ -28,7 +28,7 @@ export class AssessmentTestResult {
     constructor(
         private readonly assessmentProvider: AssessmentsProvider,
         public readonly visualizationType: VisualizationType,
-        public readonly data: IAssessmentData,
+        public readonly data: AssessmentData,
         private readonly deps: AssessmentTestProviderDeps = depDefaults,
     ) {}
 
