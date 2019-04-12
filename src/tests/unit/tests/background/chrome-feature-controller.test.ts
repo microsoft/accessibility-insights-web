@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Mock, IMock } from 'typemoq';
+import { IMock, Mock } from 'typemoq';
 
 import { ChromeAdapter } from '../../../../background/browser-adapter';
 import { ChromeFeatureController } from '../../../../background/chrome-feature-controller';

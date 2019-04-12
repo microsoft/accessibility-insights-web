@@ -10,10 +10,10 @@ import {
     ChangeInstanceStatusPayload,
     OnDetailsViewOpenPayload,
     OnDetailsViewPivotSelected,
-    ToggleActionPayload,
-    VisualizationTogglePayload,
     OpenIssueFilingSettingsDialogPayload,
     OpenNewWindowPayload,
+    ToggleActionPayload,
+    VisualizationTogglePayload,
 } from '../../../../../background/actions/action-payloads';
 import { DetailsViewActions } from '../../../../../background/actions/details-view-actions';
 import { DevToolActions } from '../../../../../background/actions/dev-tools-actions';
@@ -41,14 +41,14 @@ import {
     ToggleTelemetryData,
     TriggeredBy,
 } from '../../../../../common/telemetry-events';
+import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { ScanCompletedPayload } from '../../../../../injected/analyzers/analyzer';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 import { AssessmentActions } from './../../../../../background/actions/assessment-actions';
-import { PreviewFeaturesActions } from './../../../../../background/actions/preview-features-actions';
-import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 import { IssueFilingActions } from './../../../../../background/actions/issue-filing-actions';
+import { PreviewFeaturesActions } from './../../../../../background/actions/preview-features-actions';
 
 const VisualizationMessage = Messages.Visualizations;
 const PreviewFeaturesMessage = Messages.PreviewFeatures;
