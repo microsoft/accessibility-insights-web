@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { GlobalMock, GlobalScope, IGlobalMock, It } from 'typemoq';
-
 import { createGitHubBugFilingUrl } from '../../../../../bug-filing/github/create-github-bug-filing-url';
 import { IssueFilingUrlStringUtils } from './../../../../../bug-filing/common/issue-filing-url-string-utils';
 import { GitHubBugFilingSettings } from './../../../../../bug-filing/github/github-bug-filing-service';
