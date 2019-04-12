@@ -37,7 +37,7 @@ describe('NullIssueFilingService', () => {
                 pageUrl: '//test-page-url',
                 ruleResult: {} as DecoratedAxeNodeResult,
             };
-            expect(NullIssueFilingService.createBugFilingUrl(settings, issuesData)).toBeNull();
+            expect(NullIssueFilingService.createBugFilingUrl(settings, issuesData, null)).toBeNull();
         });
     });
 

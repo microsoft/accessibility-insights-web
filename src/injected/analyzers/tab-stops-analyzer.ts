@@ -78,7 +78,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
         };
 
         const message = {
-            type: this.config.analyzerProgressMessageType,
+            messageType: this.config.analyzerProgressMessageType,
             payload,
         };
         this.sendMessage(message);
@@ -92,7 +92,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
         };
 
         this.sendMessage({
-            type: this.config.analyzerTerminatedMessageType,
+            messageType: this.config.analyzerTerminatedMessageType,
             payload,
         });
     }

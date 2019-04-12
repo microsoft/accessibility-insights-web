@@ -367,17 +367,4 @@ describe('SVGShapeFactoryTest', () => {
         const y2 = parseFloat(line.getAttributeNS(null, 'y2'));
         expect(y2).toBeCloseTo(expectedDestination.y, fractionDigits);
     }
-
-    function assertAreEqualFixedNumbers(expected: number, actual: number, fractionDigits: number, message?: string): void {
-        const expectedFixed = expected.toFixed(fractionDigits);
-        const actualFixed = actual.toFixed(fractionDigits);
-
-        let actualMessage = `equal number with ${fractionDigits} fraction digits`;
-
-        if (message) {
-            actualMessage = `${message}: ${actualMessage}`;
-        }
-
-        expect(actualFixed).toEqual(expectedFixed);
-    }
 });

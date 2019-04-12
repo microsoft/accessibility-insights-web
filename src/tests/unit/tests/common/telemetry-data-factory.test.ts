@@ -353,7 +353,6 @@ describe('TelemetryDataFactoryTest', () => {
     });
 
     test('forAddRemoveFailureInstanceFromDetailsView', () => {
-        const event = mouseClickEvent;
         const expected: RequirementActionTelemetryData = {
             triggeredBy: TriggeredByNotApplicable,
             source: TelemetryEventSource.DetailsView,
@@ -478,10 +477,6 @@ describe('TelemetryDataFactoryTest', () => {
         const actual = testObject.forIssuesAnalyzerScan(analyzerResultStub, elapsedTime, elementsScanned, testName);
         const passedRuleResultsStub = {
             test: 2,
-        };
-        const failedRuleResultsStub = {
-            test: 1,
-            'test-2': 1,
         };
 
         expect(actual.scanDuration).toBe(elapsedTime);

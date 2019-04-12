@@ -8,7 +8,7 @@ import { AssessmentScanPolicyRunner, IIsAnAssessmentSelected, IScheduleScan } fr
 import { AssessmentStore } from '../../../../background/stores/assessment-store';
 import { VisualizationStore } from '../../../../background/stores/visualization-store';
 import { BaseStore } from '../../../../common/base-store';
-import { AssessmentStoreData, IAssessmentData } from '../../../../common/types/store-data/assessment-result-data';
+import { AssessmentData, AssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
 import { TestsEnabledState, VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 
@@ -28,7 +28,7 @@ describe('AssessmentScanPolicyRunner', () => {
         let getSelectedAssessmentTestMock: IMock<IIsAnAssessmentSelected>;
         let testSubject: AssessmentScanPolicyRunner;
         let testData: TestsEnabledState;
-        let assessmentDataStub: IAssessmentData;
+        let assessmentDataStub: AssessmentData;
 
         const stepStub = 'test step';
         const testType = -1;
@@ -125,7 +125,7 @@ describe('AssessmentScanPolicyRunner', () => {
 
         it('should execute assessment scan policy from configuration.', () => {
             const executeAssessmentScanMock = Mock.ofInstance(
-                (scanStep: (step: string) => void, data: IAssessmentData) => null,
+                (scanStep: (step: string) => void, data: AssessmentData) => null,
                 MockBehavior.Strict,
             );
             const assessmentStoreDataStub = {

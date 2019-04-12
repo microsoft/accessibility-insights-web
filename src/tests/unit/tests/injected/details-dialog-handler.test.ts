@@ -669,35 +669,6 @@ describe('DetailsDialogHandlerTest', () => {
         detailsDialogMock.verifyAll();
     }
 
-    function testIssueTrackerPathEqualsITP(itp: string): void {
-        const detailsDialogMock = Mock.ofType(DetailsDialog, MockBehavior.Strict);
-        const userConfigStoreMock = Mock.ofType(UserConfigurationStore, MockBehavior.Strict);
-
-        userConfigStoreMock
-            .setup(store => store.getState())
-            .returns(() => {
-                return {
-                    issueTrackerPath: itp,
-                } as any;
-            })
-            .verifiable(Times.once());
-
-        detailsDialogMock
-            .setup(dialog => dialog.props)
-            .returns(() => {
-                return {
-                    userConfigStore: userConfigStoreMock.object,
-                } as any;
-            })
-            .verifiable(Times.once());
-
-        const result = testSubject.issueTrackerPath(detailsDialogMock.object);
-
-        expect(result).toEqual(itp);
-        userConfigStoreMock.verifyAll();
-        detailsDialogMock.verifyAll();
-    }
-
     function testCanInspectEqualsIsOpen(isOpen: boolean): void {
         const detailsDialogMock = Mock.ofType(DetailsDialog, MockBehavior.Strict);
         const devToolStoreMock = Mock.ofType(DevToolStore, MockBehavior.Strict);

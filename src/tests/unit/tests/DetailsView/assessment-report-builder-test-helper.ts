@@ -6,8 +6,8 @@ import { Assessment } from '../../../../assessments/types/iassessment';
 import { ReportInstanceFields } from '../../../../assessments/types/report-instance-field';
 import { ManualTestStatus, ManualTestStatusData } from '../../../../common/types/manual-test-status';
 import {
+    AssessmentData,
     AssessmentStoreData,
-    IAssessmentData,
     IGeneratedAssessmentInstance,
     IManualTestStepResult,
     PersistedTabInfo,
@@ -152,22 +152,22 @@ export class AssessmentReportBuilderTestHelper {
         };
     }
 
-    private static getAssessmentData1(): IAssessmentData {
+    private static getAssessmentData1(): AssessmentData {
         return {
             fullAxeResultsMap: null,
             generatedAssessmentInstancesMap: this.getAssistedInstances(),
             manualTestStepResultMap: this.getManualInstance1(),
             testStepStatus: this.getManualTestStatus1(),
-        } as IAssessmentData;
+        } as AssessmentData;
     }
 
-    private static getAssessmentData2(): IAssessmentData {
+    private static getAssessmentData2(): AssessmentData {
         return {
             fullAxeResultsMap: null,
             generatedAssessmentInstancesMap: null,
             manualTestStepResultMap: this.getManualInstance2(),
             testStepStatus: this.getManualTestStatus2(),
-        } as IAssessmentData;
+        } as AssessmentData;
     }
 
     public static getAssessmentStoreData(): AssessmentStoreData {

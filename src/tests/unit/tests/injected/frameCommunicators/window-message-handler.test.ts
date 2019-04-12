@@ -170,7 +170,7 @@ describe('WindowMessageHandlerTests', () => {
         const responseMessage: WindowMessage = getSampleMessageWithResponseId();
 
         let isResponseCallbackInvoked = false;
-        let isSubscriberResponseCallbackInvoked = false;
+        const isSubscriberResponseCallbackInvoked = false;
 
         const callback: FrameMessageResponseCallback = (
             result: any,
@@ -179,15 +179,6 @@ describe('WindowMessageHandlerTests', () => {
             responder?: FrameMessageResponseCallback,
         ) => {
             isResponseCallbackInvoked = true;
-        };
-
-        const subscriberCallback: FrameMessageResponseCallback = (
-            result: any,
-            error: ErrorMessageContent,
-            source: Window,
-            responder?: FrameMessageResponseCallback,
-        ) => {
-            isSubscriberResponseCallbackInvoked = true;
         };
 
         mockMessageMarshaller
@@ -219,7 +210,6 @@ describe('WindowMessageHandlerTests', () => {
 
     test('shouldCallSubscribersOnMessage', () => {
         testSubject.initialize();
-        const targetWindow = {} as Window;
         const responseMessage: WindowMessage = getSampleMessageWithResponseId();
 
         let isResponseCallbackInvoked = false;
@@ -251,7 +241,6 @@ describe('WindowMessageHandlerTests', () => {
 
     test('shouldNotifyTargetWindowOnException', () => {
         testSubject.initialize();
-        const targetWindow = {} as Window;
         const responseMessage: WindowMessage = getSampleMessageWithResponseId();
 
         let isResponseCallbackInvoked = false;
@@ -291,7 +280,6 @@ describe('WindowMessageHandlerTests', () => {
 
     test('shouldNotCallSubscribersAfterRemove', () => {
         testSubject.initialize();
-        const targetWindow = {} as Window;
         const responseMessage: WindowMessage = getSampleMessageWithResponseId();
 
         let isResponseCallbackInvoked = false;

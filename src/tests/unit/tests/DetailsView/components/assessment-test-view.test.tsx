@@ -5,7 +5,7 @@ import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration-factory';
-import { AssessmentStoreData, IAssessmentData } from '../../../../../common/types/store-data/assessment-result-data';
+import { AssessmentData, AssessmentStoreData } from '../../../../../common/types/store-data/assessment-result-data';
 import { ScanData, TestsEnabledState, VisualizationStoreData } from '../../../../../common/types/store-data/visualization-store-data';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import {
@@ -18,7 +18,7 @@ import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handl
 describe('AssessmentTestView', () => {
     let props: AssessmentTestViewProps;
     let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
-    let getAssessmentDataMock: IMock<(data: AssessmentStoreData) => IAssessmentData>;
+    let getAssessmentDataMock: IMock<(data: AssessmentStoreData) => AssessmentData>;
     let getTestStatusMock: IMock<(data: ScanData, step: string) => boolean>;
     let scanDataStub: ScanData;
     let visualizationStoreDataStub: VisualizationStoreData;
@@ -26,7 +26,7 @@ describe('AssessmentTestView', () => {
     let assessmentInstanceHandlerStub: AssessmentInstanceTableHandler;
     let configuration: VisualizationConfiguration;
     let assessmentStoreDataStub: AssessmentStoreData;
-    let assessmentDataStub: IAssessmentData;
+    let assessmentDataStub: AssessmentData;
     const selectedTestStep = 'step';
     const selectedTest = -1;
     const testStatusStub = false;
@@ -55,7 +55,7 @@ describe('AssessmentTestView', () => {
         } as AssessmentStoreData;
         actionMessageCreatorStub = {} as DetailsViewActionMessageCreator;
         assessmentInstanceHandlerStub = {} as AssessmentInstanceTableHandler;
-        assessmentDataStub = {} as IAssessmentData;
+        assessmentDataStub = {} as AssessmentData;
 
         props = {
             deps: {

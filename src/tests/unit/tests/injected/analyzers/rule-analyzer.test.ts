@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
-
 import { ScopingInputTypes } from '../../../../../background/scoping-input-types';
 import { ScopingStore } from '../../../../../background/stores/global/scoping-store';
 import {
     VisualizationConfiguration,
     VisualizationConfigurationFactory,
 } from '../../../../../common/configs/visualization-configuration-factory';
+import { Message } from '../../../../../common/message';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { RuleAnalyzerScanTelemetryData } from '../../../../../common/telemetry-events';
 import { ScopingStoreData } from '../../../../../common/types/store-data/scoping-store-data';
@@ -121,8 +121,8 @@ describe('RuleAnalyzer', () => {
 
         const scanResults = createTestResults();
 
-        const expectedMessage = {
-            type: configStub.analyzerMessageType,
+        const expectedMessage: Message = {
+            messageType: configStub.analyzerMessageType,
             payload: {
                 key: configStub.key,
                 selectorMap: mockAllInstances,

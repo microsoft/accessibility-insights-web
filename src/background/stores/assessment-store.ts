@@ -10,8 +10,8 @@ import { StoreNames } from '../../common/stores/store-names';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import {
+    AssessmentData,
     AssessmentStoreData,
-    IAssessmentData,
     IGeneratedAssessmentInstance,
     ITestStepResult,
     IUserCapturedInstance,
@@ -369,7 +369,7 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
     private onResetData(payload: ToggleActionPayload): void {
         const test = this.assessmentsProvider.forType(payload.test);
         const config = test.getVisualizationConfiguration();
-        const defaultTestStatus: IAssessmentData = config.getAssessmentData(this.generateDefaultState());
+        const defaultTestStatus: AssessmentData = config.getAssessmentData(this.generateDefaultState());
         this.state.assessments[test.key] = defaultTestStatus;
         this.state.assessmentNavState.selectedTestStep = test.requirements[0].key;
         this.emitChanged();
@@ -385,7 +385,7 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         return this.assessmentsProvider.forType(testType).requirements[0].key;
     }
 
-    private updateTestStepStatusOnScanUpdate(assessmentData: IAssessmentData, testStepName: string, testType: VisualizationType): void {
+    private updateTestStepStatusOnScanUpdate(assessmentData: AssessmentData, testStepName: string, testType: VisualizationType): void {
         const isManual = this.assessmentsProvider.getStep(testType, testStepName).isManual;
         if (isManual !== true) {
             this.updateTestStepStatusForGeneratedInstances(assessmentData, testStepName);
@@ -412,13 +412,13 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         return groupResult;
     }
 
-    private updateTestStepStatusForGeneratedInstances(assessmentData: IAssessmentData, testStepName: string): void {
+    private updateTestStepStatusForGeneratedInstances(assessmentData: AssessmentData, testStepName: string): void {
         const instanceMap = assessmentData.generatedAssessmentInstancesMap;
         const groupResult: ManualTestStatus = this.getGroupResult(instanceMap, testStepName);
         assessmentData.testStepStatus[testStepName].stepFinalResult = groupResult;
     }
 
-    private updateManualTestStepStatus(assessmentData: IAssessmentData, testStepName: string, testType: VisualizationType): void {
+    private updateManualTestStepStatus(assessmentData: AssessmentData, testStepName: string, testType: VisualizationType): void {
         const manualResult = assessmentData.manualTestStepResultMap[testStepName];
         const testStepStatus = assessmentData.testStepStatus[testStepName];
 

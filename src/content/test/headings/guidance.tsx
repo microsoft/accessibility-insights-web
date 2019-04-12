@@ -65,9 +65,6 @@ export const guidance = create(({ Markup, Link }) => (
                     <li>
                         Top-level (<Markup.Code>h1</Markup.Code>) headings can be similar, or even identical, to the page title.
                     </li>
-                    <li>
-                        If the page uses headings, an automated check will fail if the page does not have exactly one top-level heading.
-                    </li>
                 </ul>
 
                 <h3>Structure multiple headings on a page hierarchically. (best practice) </h3>

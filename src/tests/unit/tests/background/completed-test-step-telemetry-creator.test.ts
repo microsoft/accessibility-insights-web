@@ -15,7 +15,7 @@ import {
     TriggeredByNotApplicable,
 } from '../../../../common/telemetry-events';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
-import { AssessmentStoreData, IAssessmentData } from '../../../../common/types/store-data/assessment-result-data';
+import { AssessmentData, AssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
 
@@ -43,15 +43,6 @@ function testBeforeAfterAssessmentData(
             eventName: CHANGE_OVERALL_REQUIREMENT_STATUS,
             telemetry: expectedTelemetry,
         },
-    };
-
-    const tabStoreData: TabStoreData = {
-        title: 'DetailsViewContainerTest title',
-        url: 'http://detailsViewContainerTest/url/',
-        id: 1,
-        isClosed: false,
-        isChanged: false,
-        isPageHidden: false,
     };
 
     interpreterMock.setup(m => m.interpret(It.isValue(expectedMessage))).verifiable(expectedTimes);
@@ -279,7 +270,7 @@ function getMockTelemetryData(test: number, requirement: string, passed: boolean
 }
 
 function getMockAssessmentStoreDataUnknowns(): AssessmentStoreData {
-    const assessments: { [key: string]: IAssessmentData } = {
+    const assessments: { [key: string]: AssessmentData } = {
         'assessment-1': {
             fullAxeResultsMap: null,
             testStepStatus: {

@@ -56,8 +56,6 @@ describe('SVGDrawerV2Tests', () => {
                     <div id='id1'></div>
                 `);
 
-        const docMock = dom.ownerDocument || dom;
-
         const element: HTMLElement = dom.querySelector('#id1') as HTMLElement;
         const expectedTabbedElements: TabbedItem[] = [
             {
@@ -100,8 +98,6 @@ describe('SVGDrawerV2Tests', () => {
         const dom = TestDocumentCreator.createTestDocument(`
                     <div id='id1'></div>
                 `);
-
-        const docMock = dom.ownerDocument || dom;
 
         const element: HTMLElement = dom.querySelector('#id1') as HTMLElement;
         const expectedTabbedElements: TabbedItem[] = [
@@ -151,8 +147,6 @@ describe('SVGDrawerV2Tests', () => {
                     <div id='id2'></div>
                     <div id='id3'></div>
                 `);
-
-        const docMock = dom.ownerDocument || dom;
 
         const element1: HTMLElement = dom.querySelector('#id1') as HTMLElement;
         const element2: HTMLElement = dom.querySelector('#id2') as HTMLElement;
@@ -227,11 +221,8 @@ describe('SVGDrawerV2Tests', () => {
                     <div id='id3'></div>
                 `);
 
-        const docMock = dom.ownerDocument || dom;
-
         const element1: HTMLElement = dom.querySelector('#id1') as HTMLElement;
         const element2: HTMLElement = dom.querySelector('#id2') as HTMLElement;
-        const element3: HTMLElement = dom.querySelector('#id3') as HTMLElement;
 
         const existingTabbedElements: TabbedItem[] = [
             {
@@ -311,8 +302,6 @@ describe('SVGDrawerV2Tests', () => {
                     <div id='id3'></div>
                     <div id='id4'></div>
                 `);
-
-        const docMock = dom.ownerDocument || dom;
 
         const element1: HTMLElement = dom.querySelector('#id1') as HTMLElement;
         const element2: HTMLElement = dom.querySelector('#id2') as HTMLElement;

@@ -8,7 +8,6 @@ import { NewTabLink } from '../../../../../common/components/new-tab-link';
 import { DropdownClickHandler } from '../../../../../common/dropdown-click-handler';
 import { StoreActionMessageCreatorImpl } from '../../../../../common/message-creators/store-action-message-creator-impl';
 import { BaseClientStoresHub } from '../../../../../common/stores/base-client-stores-hub';
-import { CommandStoreData } from '../../../../../common/types/store-data/command-store-data';
 import { LaunchPanelStoreData } from '../../../../../common/types/store-data/launch-panel-store-data';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { PopupActionMessageCreator } from '../../../../../popup/actions/popup-action-message-creator';
@@ -25,15 +24,10 @@ import { PopupViewControllerHandler } from '../../../../../popup/handlers/popup-
 import { LaunchPadRowConfigurationFactory } from '../../../../../popup/launch-pad-row-configuration-factory';
 import { SupportLinkHandler } from '../../../../../popup/support-link-handler';
 import { BaseDataBuilder } from '../../../common/base-data-builder';
-import { ShortcutCommandsTestData } from '../../../common/sample-test-data';
 import { IsSameObject } from '../../../common/typemoq-helper';
-import { VisualizationStoreDataBuilder } from '../../../common/visualization-store-data-builder';
 
 describe('PopupView', () => {
     const browserAdapterMock = Mock.ofType(ChromeAdapter);
-    const commandStoreState: CommandStoreData = {
-        commands: ShortcutCommandsTestData,
-    };
     const launchPanelStateStoreState: LaunchPanelStoreData = {
         launchPanelType: LaunchPanelType.LaunchPad,
     };
@@ -56,7 +50,7 @@ describe('PopupView', () => {
             .with('popupHandlers', {} as any)
             .build();
 
-        const testObject = new PopupView(props);
+        (() => new PopupView(props))();
 
         storesHubMock.verifyAll();
     });
@@ -92,7 +86,6 @@ describe('PopupView', () => {
         const manifestStub = getManifestStub();
         const rowConfigStub = {};
         const shortcutModifyHandlerStub = {};
-        const visualizationStoreState = new VisualizationStoreDataBuilder().build();
         const launchPadRowConfigurationFactoryMock = Mock.ofType(LaunchPadRowConfigurationFactory);
         const popupViewStoreActionMessageCreatorMock = Mock.ofType(StoreActionMessageCreatorImpl);
         const userConfigStoreData: UserConfigurationStoreData = {

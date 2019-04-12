@@ -5,17 +5,6 @@ import * as React from 'react';
 import { CodeExample } from '../../../../../../views/content/markup/code-example';
 
 describe('<CodeExample>', () => {
-    function getHighlights(wrapper): string[] {
-        const code = wrapper.find('CodeBlock');
-        return code.children().map(node => {
-            if (node.is('span') && node.prop('className') === 'highlight') {
-                return '[' + node.text() + ']';
-            } else {
-                return node.debug();
-            }
-        });
-    }
-
     it('renders with title', () => {
         const wrapper = shallow(<CodeExample title="title">code</CodeExample>);
         expect(wrapper.find('.code-example-title').getElement()).toEqual(

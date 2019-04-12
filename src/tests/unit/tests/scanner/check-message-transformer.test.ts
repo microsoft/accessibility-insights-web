@@ -1,16 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CheckMessageTransformer } from '../../../../scanner/check-message-transformer';
-import { AxeRule, FormattedCheckResult, ICheckConfiguration, RuleConfiguration } from '../../../../scanner/iruleresults';
-import { CustomRulesConfigurationStub } from './custom-rules-configuration-stub';
+import { FormattedCheckResult, ICheckConfiguration } from '../../../../scanner/iruleresults';
 
 describe('CheckMessageTransformer', () => {
-    let configuration: RuleConfiguration[];
-
-    beforeEach(() => {
-        configuration = CustomRulesConfigurationStub;
-    });
-
     describe('constructor', () => {
         it('should construct the generator', () => {
             const testSubject = new CheckMessageTransformer();

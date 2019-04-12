@@ -302,7 +302,6 @@ describe('DrawingControllerTest', () => {
             .setVisualizationEnabled()
             .build();
         const iframeElement = 'iframeElement';
-        const resultsByFrames = null;
         const drawerMock = Mock.ofType(HighlightBoxDrawer, MockBehavior.Strict);
 
         frameCommunicatorMock

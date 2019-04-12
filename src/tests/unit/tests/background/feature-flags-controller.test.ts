@@ -20,11 +20,6 @@ describe('FeatureFlagsControllerTest', () => {
         interpreterMock = Mock.ofType(Interpreter);
     });
 
-    function testCleanup(): void {
-        featureFlagStoreMock.verifyAll();
-        interpreterMock.verifyAll();
-    }
-
     test('isEnabled', () => {
         const storeDataStub: FeatureFlagStoreData = {
             [FeatureFlags[FeatureFlags.logTelemetryToConsole]]: false,

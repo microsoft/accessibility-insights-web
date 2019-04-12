@@ -2,8 +2,7 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { It, Mock, Times } from 'typemoq';
-
+import { It, Mock } from 'typemoq';
 import { IssueDetailsTextGenerator } from '../../../../../background/issue-details-text-generator';
 import { BugButton } from '../../../../../DetailsView/components/bug-button';
 

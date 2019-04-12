@@ -5,6 +5,7 @@ import * as React from 'react';
 
 import { BugFilingSettingsContainer, BugFilingSettingsContainerDeps } from '../../bug-filing/components/bug-filing-settings-container';
 import { BugFilingService } from '../../bug-filing/types/bug-filing-service';
+import { EnvironmentInfoProvider } from '../../common/environment-info-provider';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { BugServiceProperties } from '../../common/types/store-data/user-configuration-store';
@@ -20,20 +21,23 @@ export interface IssueFilingDialogProps {
     onClose: (ev: React.SyntheticEvent) => void;
 }
 
-export type IssueFilingDialogDeps = BugFilingSettingsContainerDeps;
+export type IssueFilingDialogDeps = {
+    environmentInfoProvider: EnvironmentInfoProvider;
+} & BugFilingSettingsContainerDeps;
 
 const titleLabel = 'Specify issue filing location';
 
 export const IssueFilingDialog = NamedSFC<IssueFilingDialogProps>('IssueFilingDialog', props => {
     const {
-        deps,
         selectedBugFilingService,
         selectedBugFilingServiceData,
         selectedBugData,
         bugFileTelemetryCallback,
         onClose,
         isOpen,
+        deps,
     } = props;
+    const environmentInfo = deps.environmentInfoProvider.getEnvironmentInfo();
 
     return (
         <Dialog
@@ -64,7 +68,11 @@ export const IssueFilingDialog = NamedSFC<IssueFilingDialogProps>('IssueFilingDi
                     primaryButtonDisabled={selectedBugFilingService.isSettingsValid(selectedBugFilingServiceData)}
                     primaryButtonOnClick={bugFileTelemetryCallback}
                     cancelButtonOnClick={onClose}
-                    primaryButtonHref={selectedBugFilingService.createBugFilingUrl(selectedBugFilingServiceData, selectedBugData)}
+                    primaryButtonHref={selectedBugFilingService.createBugFilingUrl(
+                        selectedBugFilingServiceData,
+                        selectedBugData,
+                        environmentInfo,
+                    )}
                     primaryButtonText={'File issue'}
                 />
             </DialogFooter>

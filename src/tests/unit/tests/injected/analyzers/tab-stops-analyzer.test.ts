@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { Message } from '../../../../../common/message';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { FocusAnalyzerConfiguration, ScanBasePayload } from '../../../../../injected/analyzers/analyzer';
@@ -42,8 +43,8 @@ describe('TabStopsAnalyzerTests', () => {
             timestamp: 1,
         };
         const resultsStub = {};
-        const expectedBaseMessage = {
-            type: configStub.analyzerMessageType,
+        const expectedBaseMessage: Message = {
+            messageType: configStub.analyzerMessageType,
             payload: {
                 key: configStub.key,
                 selectorMap: resultsStub,
@@ -51,8 +52,8 @@ describe('TabStopsAnalyzerTests', () => {
                 testType: typeStub,
             },
         };
-        const expectedOnProgressMessage = {
-            type: configStub.analyzerProgressMessageType,
+        const expectedOnProgressMessage: Message = {
+            messageType: configStub.analyzerProgressMessageType,
             payload: {
                 key: configStub.key,
                 testType: configStub.testType,
@@ -89,8 +90,8 @@ describe('TabStopsAnalyzerTests', () => {
         };
         const onTabbedTimoutIdStub = -1;
         const resultsStub = {};
-        const expectedBaseMessage = {
-            type: configStub.analyzerMessageType,
+        const expectedBaseMessage: Message = {
+            messageType: configStub.analyzerMessageType,
             payload: {
                 key: configStub.key,
                 selectorMap: resultsStub,
@@ -98,8 +99,8 @@ describe('TabStopsAnalyzerTests', () => {
                 testType: typeStub,
             },
         };
-        const expectedOnProgressMessage = {
-            type: configStub.analyzerProgressMessageType,
+        const expectedOnProgressMessage: Message = {
+            messageType: configStub.analyzerProgressMessageType,
             payload: {
                 key: configStub.key,
                 testType: configStub.testType,
@@ -135,7 +136,7 @@ describe('TabStopsAnalyzerTests', () => {
         };
 
         setupSendMessageMock({
-            type: configStub.analyzerTerminatedMessageType,
+            messageType: configStub.analyzerTerminatedMessageType,
             payload,
         });
 

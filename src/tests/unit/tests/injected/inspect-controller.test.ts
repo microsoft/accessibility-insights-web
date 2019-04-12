@@ -10,7 +10,6 @@ import { ScopingListener } from '../../../../injected/scoping-listener';
 
 describe('InspectControllerTests', () => {
     let inspectStoreMock: IMock<InspectStore>;
-    let inspectStoreChangeListener: Function;
     let inspectStoreState: InspectStoreData;
     let scopingListenerMock: IMock<ScopingListener>;
     let inspectConfigurationMock: IMock<InspectConfigurationFactory>;
@@ -36,11 +35,7 @@ describe('InspectControllerTests', () => {
 
         defaultState = InspectMode.off;
 
-        inspectStoreMock
-            .setup(sm => sm.addChangedListener(It.isAny()))
-            .callback(listener => {
-                inspectStoreChangeListener = listener;
-            });
+        inspectStoreMock.setup(sm => sm.addChangedListener(It.isAny()));
         inspectStoreMock.setup(sm => sm.getState()).returns(() => inspectStoreState);
     });
 
