@@ -209,7 +209,7 @@ describe('BatchedRuleAnalyzer', () => {
 
     function getExpectedMessage(config: RuleAnalyzerConfiguration, results: ScanResults, expectedTelemetryStub): MessageType {
         return {
-            type: config.analyzerMessageType,
+            messageType: config.analyzerMessageType,
             payload: {
                 key: config.key,
                 selectorMap: mockAllInstances,

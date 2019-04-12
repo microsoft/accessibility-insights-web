@@ -6,8 +6,7 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { Analyzer, AnalyzerConfiguration, AxeAnalyzerResult, ScanCompletedPayload } from './analyzer';
 
 export type MessageType = {
-    // tslint:disable-next-line: no-reserved-keywords
-    type: string;
+    messageType: string;
     payload: ScanCompletedPayload<any>;
 };
 
@@ -58,7 +57,7 @@ export class BaseAnalyzer implements Analyzer {
             testType: config.testType,
         };
         return {
-            type: messageType,
+            messageType: messageType,
             payload,
         };
     }
