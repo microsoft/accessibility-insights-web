@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { frameTitleInstanceDetailsColumnRenderer } from '../../../../assessments/page/frametitle-instance-details-column-renderer';
-import { IFrameAssessmentProperties } from '../../../../common/types/store-data/assessment-result-data';
+import { FrameAssessmentProperties } from '../../../../common/types/store-data/assessment-result-data';
 import { AssessmentInstanceDetailsColumn } from '../../../../DetailsView/components/assessment-instance-details-column';
 import { AssessmentInstanceRowData } from '../../../../DetailsView/components/assessment-instance-table';
 import { FrameFormatter } from '../../../../injected/visualization/frame-formatter';
@@ -15,7 +15,7 @@ describe('FrameTitleInstanceDetailsColumnRendererTest', () => {
             instance: {
                 propertyBag: null,
             },
-        } as AssessmentInstanceRowData<IFrameAssessmentProperties>;
+        } as AssessmentInstanceRowData<FrameAssessmentProperties>;
         const expected = (
             <AssessmentInstanceDetailsColumn
                 background={FrameFormatter.frameStyles[frameType].borderColor}
@@ -37,7 +37,7 @@ describe('FrameTitleInstanceDetailsColumnRendererTest', () => {
                     frameTitle: frameTitle,
                 },
             },
-        } as AssessmentInstanceRowData<IFrameAssessmentProperties>;
+        } as AssessmentInstanceRowData<FrameAssessmentProperties>;
         const expected = (
             <AssessmentInstanceDetailsColumn
                 background={FrameFormatter.frameStyles[frameType].borderColor}
@@ -59,7 +59,7 @@ describe('FrameTitleInstanceDetailsColumnRendererTest', () => {
                     frameTitle: frameTitle,
                 },
             },
-        } as AssessmentInstanceRowData<IFrameAssessmentProperties>;
+        } as AssessmentInstanceRowData<FrameAssessmentProperties>;
         const expected = (
             <AssessmentInstanceDetailsColumn
                 background={FrameFormatter.frameStyles[frameType].borderColor}

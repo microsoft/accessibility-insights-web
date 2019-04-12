@@ -69,8 +69,7 @@ export interface HeadingsAssessmentProperties {
     headingText: string;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IFrameAssessmentProperties {
+export interface FrameAssessmentProperties {
     frameType: string;
     frameTitle?: string;
 }
