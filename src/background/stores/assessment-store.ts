@@ -12,7 +12,7 @@ import { ManualTestStatus } from '../../common/types/manual-test-status';
 import {
     AssessmentData,
     AssessmentStoreData,
-    IGeneratedAssessmentInstance,
+    GeneratedAssessmentInstance,
     ITestStepResult,
     UserCapturedInstance,
 } from '../../common/types/store-data/assessment-result-data';
@@ -392,7 +392,7 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         }
     }
 
-    private getGroupResult(instanceMap: DictionaryStringTo<IGeneratedAssessmentInstance>, testStepName: string): ManualTestStatus {
+    private getGroupResult(instanceMap: DictionaryStringTo<GeneratedAssessmentInstance>, testStepName: string): ManualTestStatus {
         let groupResult = ManualTestStatus.PASS;
         for (let keyIndex = 0; keyIndex < Object.keys(instanceMap).length; keyIndex++) {
             const key = Object.keys(instanceMap)[keyIndex];

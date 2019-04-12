@@ -4,7 +4,7 @@ import * as _ from 'lodash';
 import * as React from 'react';
 import { VisualHelperToggleConfig } from '../../assessments/types/requirement';
 import { VisualizationToggle } from '../../common/components/visualization-toggle';
-import { IGeneratedAssessmentInstance } from '../../common/types/store-data/assessment-result-data';
+import { GeneratedAssessmentInstance } from '../../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../../types/common-types';
 
 export const visualHelperText = 'Highlight instances on target page';
@@ -32,14 +32,14 @@ export abstract class BaseVisualHelperToggle extends React.Component<VisualHelpe
         );
     }
 
-    protected abstract isDisabled(filteredInstances: IGeneratedAssessmentInstance<{}, {}>[]): boolean;
+    protected abstract isDisabled(filteredInstances: GeneratedAssessmentInstance<{}, {}>[]): boolean;
 
-    protected abstract isChecked(instances: IGeneratedAssessmentInstance<{}, {}>[]): boolean;
+    protected abstract isChecked(instances: GeneratedAssessmentInstance<{}, {}>[]): boolean;
 
     protected filterInstancesByTestStep(
         assessmentNavState,
-        instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance>,
-    ): IGeneratedAssessmentInstance<{}, {}>[] {
+        instancesMap: DictionaryStringTo<GeneratedAssessmentInstance>,
+    ): GeneratedAssessmentInstance<{}, {}>[] {
         const selectedTestStep = assessmentNavState.selectedTestStep;
 
         return _.filter(instancesMap, instance => {

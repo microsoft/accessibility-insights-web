@@ -8,7 +8,7 @@ import { ManualTestStatus, ManualTestStatusData } from '../../../../common/types
 import {
     AssessmentData,
     AssessmentStoreData,
-    IGeneratedAssessmentInstance,
+    GeneratedAssessmentInstance,
     ManualTestStepResult,
     PersistedTabInfo,
 } from '../../../../common/types/store-data/assessment-result-data';
@@ -33,7 +33,7 @@ export class AssessmentReportBuilderTestHelper {
 
     public static readonly reportDate = new Date(Date.UTC(2000, 0, 1, 0, 0));
 
-    private static getAssistedInstances(): DictionaryStringTo<IGeneratedAssessmentInstance> {
+    private static getAssistedInstances(): DictionaryStringTo<GeneratedAssessmentInstance> {
         return {
             ['instance1']: {
                 id: 'id1',
@@ -73,7 +73,7 @@ export class AssessmentReportBuilderTestHelper {
                 },
                 target: ['target2'],
             },
-        } as DictionaryStringTo<IGeneratedAssessmentInstance>;
+        } as DictionaryStringTo<GeneratedAssessmentInstance>;
     }
 
     private static getManualInstance1(): DictionaryStringTo<ManualTestStepResult> {

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentDataRemover } from '../../../../background/assessment-data-remover';
-import { IGeneratedAssessmentInstance, ITestStepResult } from '../../../../common/types/store-data/assessment-result-data';
+import { GeneratedAssessmentInstance, ITestStepResult } from '../../../../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../../../../types/common-types';
 
 describe('AssessmentDataRemoverTest', () => {
@@ -21,7 +21,7 @@ describe('AssessmentDataRemoverTest', () => {
         expect(instanceMap[instanceKey]).toBeUndefined();
     });
 
-    function getInstanceMapWithOnlyOneTestStepResult(): DictionaryStringTo<IGeneratedAssessmentInstance> {
+    function getInstanceMapWithOnlyOneTestStepResult(): DictionaryStringTo<GeneratedAssessmentInstance> {
         return {
             [instanceKey]: {
                 testStepResults: {
@@ -32,11 +32,11 @@ describe('AssessmentDataRemoverTest', () => {
                 target: null,
                 html: null,
                 propertyBag: null,
-            } as IGeneratedAssessmentInstance,
+            } as GeneratedAssessmentInstance,
         };
     }
 
-    function getInstanceMapWitMultipleTestStepResults(): DictionaryStringTo<IGeneratedAssessmentInstance> {
+    function getInstanceMapWitMultipleTestStepResults(): DictionaryStringTo<GeneratedAssessmentInstance> {
         return {
             [instanceKey]: {
                 testStepResults: {
@@ -50,7 +50,7 @@ describe('AssessmentDataRemoverTest', () => {
                 target: null,
                 html: null,
                 propertyBag: null,
-            } as IGeneratedAssessmentInstance,
+            } as GeneratedAssessmentInstance,
         };
     }
 });

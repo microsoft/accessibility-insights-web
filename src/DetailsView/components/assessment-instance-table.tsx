@@ -18,14 +18,14 @@ import { AssessmentDefaultMessageGenerator } from '../../assessments/assessment-
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import {
     AssessmentNavState,
-    IGeneratedAssessmentInstance,
+    GeneratedAssessmentInstance,
     UserCapturedInstance,
 } from '../../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../../types/common-types';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 
 export interface AssessmentInstanceTableProps {
-    instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance>;
+    instancesMap: DictionaryStringTo<GeneratedAssessmentInstance>;
     assessmentNavState: AssessmentNavState;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
     renderInstanceTableHeader: (table: AssessmentInstanceTable, items: AssessmentInstanceRowData[]) => JSX.Element;
@@ -37,7 +37,7 @@ export interface AssessmentInstanceTableProps {
 export interface AssessmentInstanceRowData<P = {}> extends IObjectWithKey {
     statusChoiceGroup: JSX.Element;
     visualizationButton?: JSX.Element;
-    instance: IGeneratedAssessmentInstance<P>;
+    instance: GeneratedAssessmentInstance<P>;
 }
 
 export interface CapturedInstanceRowData extends IObjectWithKey {

@@ -7,7 +7,7 @@ import {
     createInitialAssessmentTestData,
 } from '../../../../background/create-initial-assessment-test-data';
 import { ManualTestStatus, TestStepData } from '../../../../common/types/manual-test-status';
-import { IGeneratedAssessmentInstance, ManualTestStepResult } from '../../../../common/types/store-data/assessment-result-data';
+import { GeneratedAssessmentInstance, ManualTestStepResult } from '../../../../common/types/store-data/assessment-result-data';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
 
 describe('createInitialAssessmentTestData', () => {
@@ -208,7 +208,7 @@ function createManualRequirementResult(requirementId: string, status: number): M
     };
 }
 
-function createGeneratedAssessmentInstance(instanceId: string, requirementIds: string[]): IGeneratedAssessmentInstance {
+function createGeneratedAssessmentInstance(instanceId: string, requirementIds: string[]): GeneratedAssessmentInstance {
     const instanceData = {
         target: [],
         html: 'html',

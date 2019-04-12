@@ -2,15 +2,15 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 import * as _ from 'lodash';
-import { IGeneratedAssessmentInstance } from '../../common/types/store-data/assessment-result-data';
+import { GeneratedAssessmentInstance } from '../../common/types/store-data/assessment-result-data';
 import { BaseVisualHelperToggle } from './base-visual-helper-toggle';
 
 export class AssessmentVisualizationEnabledToggle extends BaseVisualHelperToggle {
-    protected isDisabled(filteredInstances: IGeneratedAssessmentInstance<{}, {}>[]): boolean {
+    protected isDisabled(filteredInstances: GeneratedAssessmentInstance<{}, {}>[]): boolean {
         return _.isEmpty(filteredInstances);
     }
 
-    protected isChecked(instances: IGeneratedAssessmentInstance<{}, {}>[]): boolean {
+    protected isChecked(instances: GeneratedAssessmentInstance<{}, {}>[]): boolean {
         return this.isAnyInstanceVisible(instances);
     }
 
@@ -23,7 +23,7 @@ export class AssessmentVisualizationEnabledToggle extends BaseVisualHelperToggle
         );
     }
 
-    private isAnyInstanceVisible(instances: IGeneratedAssessmentInstance<{}, {}>[]): boolean {
+    private isAnyInstanceVisible(instances: GeneratedAssessmentInstance<{}, {}>[]): boolean {
         return instances.some(instance => instance.testStepResults[this.props.assessmentNavState.selectedTestStep].isVisualizationEnabled);
     }
 }

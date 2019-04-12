@@ -9,7 +9,7 @@ import { Requirement, VisualHelperToggleConfig } from '../../assessments/types/r
 import { CollapsibleComponent } from '../../common/components/collapsible-component';
 import {
     AssessmentNavState,
-    IGeneratedAssessmentInstance,
+    GeneratedAssessmentInstance,
     ManualTestStepResult,
 } from '../../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../../types/common-types';
@@ -28,7 +28,7 @@ export interface TestStepViewProps {
     isScanning: boolean;
     testStep: Requirement;
     renderStaticContent: () => JSX.Element;
-    instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance>;
+    instancesMap: DictionaryStringTo<GeneratedAssessmentInstance>;
     assessmentNavState: AssessmentNavState;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
     manualTestStepResultMap: DictionaryStringTo<ManualTestStepResult>;

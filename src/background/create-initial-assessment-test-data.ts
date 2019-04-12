@@ -6,7 +6,7 @@ import { Assessment } from '../assessments/types/iassessment';
 import { ManualTestStatus, ManualTestStatusData, TestStepData } from '../common/types/manual-test-status';
 import {
     AssessmentData,
-    IGeneratedAssessmentInstance,
+    GeneratedAssessmentInstance,
     ManualTestStepResult,
     InstanceIdToInstanceDataMap,
     RequirementIdToResultMap,
@@ -111,7 +111,7 @@ function constructGeneratedAssessmentInstancesMap(
         return null;
     }
     Object.keys(persistedMap).forEach(instanceId => {
-        const instanceData: IGeneratedAssessmentInstance = persistedMap[instanceId];
+        const instanceData: GeneratedAssessmentInstance = persistedMap[instanceId];
         const filteredResultMap = pick(instanceData.testStepResults, requirements);
         if (!isEmpty(filteredResultMap)) {
             instanceData.testStepResults = filteredResultMap;

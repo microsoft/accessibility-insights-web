@@ -5,7 +5,7 @@ import * as _ from 'lodash';
 import { ManualTestStatus } from '../common/types/manual-test-status';
 import {
     IAssessmentInstancesMap,
-    IGeneratedAssessmentInstance,
+    GeneratedAssessmentInstance,
     ManualTestStepResult,
     ITestStepResult,
     UserCapturedInstance,
@@ -85,12 +85,12 @@ export class AssessmentDataConverter {
     }
 
     private getInitialAssessmentInstance(
-        currentInstance: IGeneratedAssessmentInstance,
+        currentInstance: GeneratedAssessmentInstance,
         elementAxeResult: HtmlElementAxeResults,
         testStep: string,
         ruleResult: DecoratedAxeNodeResult,
         getInstanceStatus: (result: DecoratedAxeNodeResult) => ManualTestStatus,
-    ): IGeneratedAssessmentInstance {
+    ): GeneratedAssessmentInstance {
         const target: string[] = elementAxeResult.target;
         let testStepResults = {};
         let html: string = null;
@@ -119,11 +119,11 @@ export class AssessmentDataConverter {
     }
 
     private getInitialAssessmentFromEvent(
-        matchingInstance: IGeneratedAssessmentInstance,
+        matchingInstance: GeneratedAssessmentInstance,
         event: TabStopEvent,
         testStep: string,
         selector: string,
-    ): IGeneratedAssessmentInstance {
+    ): GeneratedAssessmentInstance {
         let testStepResults = {};
         const target: string[] = event.target;
         const html: string = event.html;

@@ -5,7 +5,7 @@ import { Tab } from '../../itab';
 import { ManualTestStatus, ManualTestStatusData } from '../manual-test-status';
 import { VisualizationType } from '../visualization-type';
 
-export type TestStepInstance = UserCapturedInstance & IGeneratedAssessmentInstance;
+export type TestStepInstance = UserCapturedInstance & GeneratedAssessmentInstance;
 
 export type PersistedTabInfo = Tab & {
     appRefreshed: boolean;
@@ -19,7 +19,7 @@ export interface AssessmentStoreData {
     assessmentNavState: AssessmentNavState;
 }
 
-export type InstanceIdToInstanceDataMap = DictionaryStringTo<IGeneratedAssessmentInstance>;
+export type InstanceIdToInstanceDataMap = DictionaryStringTo<GeneratedAssessmentInstance>;
 export type RequirementIdToResultMap = DictionaryStringTo<ManualTestStepResult>;
 
 export interface AssessmentData {
@@ -42,8 +42,7 @@ export interface UserCapturedInstance {
     selector?: string;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IGeneratedAssessmentInstance<T = {}, K = {}> {
+export interface GeneratedAssessmentInstance<T = {}, K = {}> {
     target: string[];
     html: string;
     testStepResults: IAssessmentResultType<K>;
@@ -85,6 +84,6 @@ export interface ILandmarksAssessmentProperties {
 }
 
 // tslint:disable-next-line:interface-name
-export type IAssessmentInstancesMap<T = {}, K = {}> = DictionaryStringTo<IGeneratedAssessmentInstance<T, K>>;
+export type IAssessmentInstancesMap<T = {}, K = {}> = DictionaryStringTo<GeneratedAssessmentInstance<T, K>>;
 // tslint:disable-next-line:interface-name
 export type IAssessmentResultType<K> = { [testStepName in keyof K]: ITestStepResult };

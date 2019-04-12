@@ -4,7 +4,7 @@ import { VisualHelperToggleConfig } from '../../../assessments/types/requirement
 import { ManualTestStatus } from '../../../common/types/manual-test-status';
 import {
     IAssessmentResultType,
-    IGeneratedAssessmentInstance,
+    GeneratedAssessmentInstance,
     ITestStepResult,
 } from '../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
@@ -28,8 +28,8 @@ export class VisualHelperToggleConfigBuilder extends BaseDataBuilder<VisualHelpe
                     html: 'html',
                     propertyBag: {},
                     target: ['element2'],
-                } as IGeneratedAssessmentInstance,
-            } as DictionaryStringTo<IGeneratedAssessmentInstance>,
+                } as GeneratedAssessmentInstance,
+            } as DictionaryStringTo<GeneratedAssessmentInstance>,
             isStepEnabled: true,
             isStepScanned: false,
         };
@@ -56,7 +56,7 @@ export class VisualHelperToggleConfigBuilder extends BaseDataBuilder<VisualHelpe
                         isVisualizationEnabled: isVisualizationEnabled,
                     } as ITestStepResult,
                 } as IAssessmentResultType<any>,
-            } as IGeneratedAssessmentInstance,
+            } as GeneratedAssessmentInstance,
             'selector-2': {
                 testStepResults: {
                     [this.stepKey]: {
@@ -65,7 +65,7 @@ export class VisualHelperToggleConfigBuilder extends BaseDataBuilder<VisualHelpe
                         isVisualizationEnabled: isVisualizationEnabled,
                     } as ITestStepResult,
                 } as IAssessmentResultType<any>,
-            } as IGeneratedAssessmentInstance,
+            } as GeneratedAssessmentInstance,
         };
         return this;
     }
@@ -78,7 +78,7 @@ export class VisualHelperToggleConfigBuilder extends BaseDataBuilder<VisualHelpe
                         status: ManualTestStatus.UNKNOWN,
                     } as ITestStepResult,
                 } as IAssessmentResultType<any>,
-            } as IGeneratedAssessmentInstance,
+            } as GeneratedAssessmentInstance,
         };
         return this;
     }
@@ -91,7 +91,7 @@ export class VisualHelperToggleConfigBuilder extends BaseDataBuilder<VisualHelpe
                         status: ManualTestStatus.PASS,
                     } as ITestStepResult,
                 } as IAssessmentResultType<any>,
-            } as IGeneratedAssessmentInstance,
+            } as GeneratedAssessmentInstance,
             'selector-2': null,
         };
         return this;

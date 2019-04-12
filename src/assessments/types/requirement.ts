@@ -3,7 +3,7 @@
 import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 import { UniquelyIdentifiableInstances } from '../../background/instance-identifier-generator';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
-import { AssessmentNavState, IGeneratedAssessmentInstance } from '../../common/types/store-data/assessment-result-data';
+import { AssessmentNavState, GeneratedAssessmentInstance } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { DetailsViewActionMessageCreator } from '../../DetailsView/actions/details-view-action-message-creator';
 import { AssessmentInstanceRowData, AssessmentInstanceTable } from '../../DetailsView/components/assessment-instance-table';
@@ -52,7 +52,7 @@ export interface Requirement {
 
 export interface VisualHelperToggleConfig {
     assessmentNavState: AssessmentNavState;
-    instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance>;
+    instancesMap: DictionaryStringTo<GeneratedAssessmentInstance>;
     actionMessageCreator: DetailsViewActionMessageCreator;
     isStepEnabled: boolean;
     isStepScanned: boolean;
