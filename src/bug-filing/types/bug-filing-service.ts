@@ -6,6 +6,12 @@ import { ReactSFCWithDisplayName } from './../../common/react/named-sfc';
 import { CreateIssueDetailsTextData } from './../../common/types/create-issue-details-text-data';
 import { SettingsFormProps } from './settings-form-props';
 
+export type issueFilingUrlCreator<TSettings> = (
+    data: TSettings,
+    bugData: CreateIssueDetailsTextData,
+    environmentInfo: EnvironmentInfo,
+) => string;
+
 export interface BugFilingService<Settings = {}> {
     key: string;
     isHidden?: boolean;
@@ -14,5 +20,5 @@ export interface BugFilingService<Settings = {}> {
     buildStoreData: (...params: any[]) => Settings;
     isSettingsValid: (data: Settings) => boolean;
     getSettingsFromStoreData: (data: BugServicePropertiesMap) => Settings;
-    createBugFilingUrl: (data: Settings, bugData: CreateIssueDetailsTextData, environmentInfo: EnvironmentInfo) => string;
+    createBugFilingUrl: issueFilingUrlCreator<Settings>;
 }

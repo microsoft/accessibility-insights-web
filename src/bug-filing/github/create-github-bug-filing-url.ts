@@ -46,7 +46,7 @@ function buildGithubText(stringUtils: StringUtils, environmentInfo: EnvironmentI
     return text;
 }
 
-const createDefaultHandler = (stringUtils: StringUtils) => {
+export const createDefaultHandler = (stringUtils: StringUtils) => {
     return (settingsData: GitHubBugFilingSettings, bugData: CreateIssueDetailsTextData, environmentInfo: EnvironmentInfo): string => {
         const title = buildTitle(stringUtils, bugData);
         const body = buildGithubText(stringUtils, environmentInfo, bugData);
