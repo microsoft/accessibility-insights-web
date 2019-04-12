@@ -1,5 +1,3 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License.
 import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 
@@ -19,7 +17,10 @@ import { HtmlElementAxeResults, ScannerUtils } from '../../../../../injected/sca
 import { ScanOptions } from '../../../../../scanner/exposed-apis';
 import { ScanResults } from '../../../../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../../../../types/common-types';
+import { MessageType } from './../../../../../injected/analyzers/base-analyzer';
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
 describe('RuleAnalyzer', () => {
     let scannerUtilsMock: IMock<ScannerUtils>;
     let resultProcessorMock: IMock<(results: ScanResults) => DictionaryStringTo<HtmlElementAxeResults>>;
@@ -121,8 +122,8 @@ describe('RuleAnalyzer', () => {
 
         const scanResults = createTestResults();
 
-        const expectedMessage = {
-            type: configStub.analyzerMessageType,
+        const expectedMessage: MessageType = {
+            messageType: configStub.analyzerMessageType,
             payload: {
                 key: configStub.key,
                 selectorMap: mockAllInstances,

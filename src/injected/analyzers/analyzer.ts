@@ -24,8 +24,8 @@ export interface Analyzer {
 }
 
 export interface ScanCompletedPayload<TSelectorValue> extends ScanBasePayload {
-    selectorMap: DictionaryStringTo<TSelectorValue>;
-    scanResult: ScanResults;
+    selectorMap?: DictionaryStringTo<TSelectorValue>;
+    scanResult?: ScanResults;
 }
 
 export interface ScanUpdatePayload extends ScanBasePayload {
