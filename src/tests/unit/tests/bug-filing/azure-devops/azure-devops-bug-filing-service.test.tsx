@@ -18,15 +18,14 @@ describe('AzureDevOpsBugFilingServiceTest', () => {
     let projectStub: string;
     let issueDetailsLocationStub: string;
 
-    const invalidTestSettings = [
+    const invalidTestSettings: AzureDevOpsBugFilingSettings[] = [
         null,
-        {},
+        {} as AzureDevOpsBugFilingSettings,
         undefined,
-        { random: '' },
-        { project: '' },
-        { project: '', issueDetailsLocation: '' },
-        { project: 'some project', issueDetailsLocation: '' },
-        { project: '', issueDetailsLocation: 'some issue details location' },
+        { projectURL: '' } as AzureDevOpsBugFilingSettings,
+        { projectURL: '', issueDetailsLocationField: '' },
+        { projectURL: 'some project', issueDetailsLocationField: '' },
+        { projectURL: '', issueDetailsLocationField: 'some issue details location' },
     ];
 
     beforeEach(() => {
@@ -38,8 +37,8 @@ describe('AzureDevOpsBugFilingServiceTest', () => {
                 userConfigMessageCreator: userConfigMessageCreatorMock.object,
             },
             settings: {
-                project: 'some project',
-                issueDetailsLocation: 'some location',
+                projectURL: 'some project',
+                issueDetailsLocationField: 'some location',
             },
         };
     });
@@ -52,16 +51,16 @@ describe('AzureDevOpsBugFilingServiceTest', () => {
 
     it('buildStoreData', () => {
         const expectedStoreData: AzureDevOpsBugFilingSettings = {
-            project: projectStub,
-            issueDetailsLocation: issueDetailsLocationStub,
+            projectURL: projectStub,
+            issueDetailsLocationField: issueDetailsLocationStub,
         };
         expect(AzureDevOpsBugFilingService.buildStoreData(projectStub, issueDetailsLocationStub)).toEqual(expectedStoreData);
     });
 
     it('getSettingsFromStoreData', () => {
         const expectedStoreData: AzureDevOpsBugFilingSettings = {
-            project: projectStub,
-            issueDetailsLocation: issueDetailsLocationStub,
+            projectURL: projectStub,
+            issueDetailsLocationField: issueDetailsLocationStub,
         };
         const givenData: BugServicePropertiesMap = {
             'some other service': {},
@@ -78,8 +77,8 @@ describe('AzureDevOpsBugFilingServiceTest', () => {
 
     it('isSettingsValid - valid case', () => {
         const validSettings: AzureDevOpsBugFilingSettings = {
-            project: 'some project',
-            issueDetailsLocation: 'some issue details location',
+            projectURL: 'some project',
+            issueDetailsLocationField: 'some issue details location',
         };
 
         expect(AzureDevOpsBugFilingService.isSettingsValid(validSettings)).toBe(true);

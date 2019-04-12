@@ -13,14 +13,14 @@ import { SettingsFormProps } from '../types/settings-form-props';
 const AzureDevOpsBugFilingServiceKey = 'azureDevOps';
 
 export type AzureDevOpsBugFilingSettings = {
-    project: string;
-    issueDetailsLocation: string;
+    projectURL: string;
+    issueDetailsLocationField: string;
 };
 
-function buildStoreData(project: string, issueDetailsLocation: string): AzureDevOpsBugFilingSettings {
+function buildStoreData(projectURL: string, issueDetailsLocationField: string): AzureDevOpsBugFilingSettings {
     return {
-        project,
-        issueDetailsLocation,
+        projectURL,
+        issueDetailsLocationField,
     };
 }
 
@@ -29,7 +29,7 @@ function getSettingsFromStoreData(bugServicePropertiesMap: BugServicePropertiesM
 }
 
 function isSettingsValid(data: AzureDevOpsBugFilingSettings): boolean {
-    return !isEmpty(data) && isStringValid(data.project) && isStringValid(data.issueDetailsLocation);
+    return !isEmpty(data) && isStringValid(data.projectURL) && isStringValid(data.issueDetailsLocationField);
 }
 
 function isStringValid(stringToCheck: string): boolean {
