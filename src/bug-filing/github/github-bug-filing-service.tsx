@@ -3,7 +3,6 @@
 import { isEmpty, isString } from 'lodash';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
-
 import { NamedSFC } from '../../common/react/named-sfc';
 import { BugFilingService } from '../types/bug-filing-service';
 import { SettingsFormProps } from '../types/settings-form-props';
