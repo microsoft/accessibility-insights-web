@@ -13,6 +13,8 @@ import {
     OnDetailsViewPivotSelected,
     ToggleActionPayload,
     VisualizationTogglePayload,
+    OpenIssueFilingSettingsDialogPayload,
+    OpenNewWindowPayload,
 } from '../../../../../background/actions/action-payloads';
 import { DetailsViewActions } from '../../../../../background/actions/details-view-actions';
 import { DevToolActions } from '../../../../../background/actions/dev-tools-actions';
@@ -46,6 +48,7 @@ import { ScanCompletedPayload } from '../../../../../injected/analyzers/analyzer
 import { DictionaryStringTo } from '../../../../../types/common-types';
 import { AssessmentActions } from './../../../../../background/actions/assessment-actions';
 import { PreviewFeaturesActions } from './../../../../../background/actions/preview-features-actions';
+import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 
 const VisualizationMessage = Messages.Visualizations;
 const PreviewFeaturesMessage = Messages.PreviewFeatures;
@@ -600,7 +603,7 @@ describe('ActionCreatorTest', () => {
         const builder = new ActionCreatorValidator()
             .setupRegistrationCallback(Messages.ChromeFeature.configureCommand, args)
             .setupTelemetrySend(TelemetryEvents.SHORTCUT_CONFIGURE_OPEN, payload, tabId)
-            .setupChromeFeatureController();
+            .setupBrowserOpenCommandConfigTab();
 
         const actionCreator = builder.buildActionCreator();
         actionCreator.registerCallbacks();
@@ -949,6 +952,114 @@ describe('ActionCreatorTest', () => {
         validator.verifyAll();
     });
 
+    test('registerCallback for onOpenIssueFilingDialog', () => {
+        const tabId = 1;
+        const actionName = 'openIssueFilingSettingsDialog';
+        const telemetryData: BaseTelemetryData = {
+            triggeredBy: 'stub triggered by' as TriggeredBy,
+            source: testSource,
+        };
+
+        const payload: OpenIssueFilingSettingsDialogPayload = {
+            issueDetailsTextData: {
+                pageTitle: 'title',
+            } as CreateIssueDetailsTextData,
+            telemetry: telemetryData,
+        };
+
+        const validator = new ActionCreatorValidator()
+            .setupRegistrationCallback(Messages.IssueFiling.OpenDialog, [payload, tabId])
+            .setupActionOnIssueFilingActions(actionName)
+            .setupTelemetrySend(TelemetryEvents.ISSUE_FILING_SETTINGS_DIALOG_OPEN, payload, tabId)
+            .setupShowDetailsView(tabId)
+            .setupIssueFilingActionWithInvokeParameter(actionName, payload);
+
+        const actionCreator = validator.buildActionCreator();
+
+        actionCreator.registerCallbacks();
+
+        validator.verifyAll();
+    });
+
+    test('registerCallback for onCloseIssueFilingDialog', () => {
+        const tabId = 1;
+        const actionName = 'closeIssueFilingSettingsDialog';
+        const telemetryData: BaseTelemetryData = {
+            triggeredBy: 'stub triggered by' as TriggeredBy,
+            source: testSource,
+        };
+
+        const payload: BaseActionPayload = {
+            telemetry: telemetryData,
+        };
+
+        const validator = new ActionCreatorValidator()
+            .setupRegistrationCallback(Messages.IssueFiling.CloseDialog, [payload, tabId])
+            .setupActionOnIssueFilingActions(actionName)
+            .setupTelemetrySend(TelemetryEvents.ISSUE_FILING_SETTINGS_DIALOG_CLOSE, payload, tabId)
+            .setupIssueFilingActionWithInvokeParameter(actionName, null);
+
+        const actionCreator = validator.buildActionCreator();
+
+        actionCreator.registerCallbacks();
+
+        validator.verifyAll();
+    });
+
+    test('registerCallback for onOpenIssueFilingDialog', () => {
+        const tabId = 1;
+        const actionName = 'openIssueFilingSettingsDialog';
+        const telemetryData: BaseTelemetryData = {
+            triggeredBy: 'stub triggered by' as TriggeredBy,
+            source: testSource,
+        };
+
+        const payload: OpenIssueFilingSettingsDialogPayload = {
+            issueDetailsTextData: {
+                pageTitle: 'title',
+            } as CreateIssueDetailsTextData,
+            telemetry: telemetryData,
+        };
+
+        const validator = new ActionCreatorValidator()
+            .setupRegistrationCallback(Messages.IssueFiling.OpenDialog, [payload, tabId])
+            .setupActionOnIssueFilingActions(actionName)
+            .setupTelemetrySend(TelemetryEvents.ISSUE_FILING_SETTINGS_DIALOG_OPEN, payload, tabId)
+            .setupShowDetailsView(tabId)
+            .setupIssueFilingActionWithInvokeParameter(actionName, payload);
+
+        const actionCreator = validator.buildActionCreator();
+
+        actionCreator.registerCallbacks();
+
+        validator.verifyAll();
+    });
+
+    test('registerCallback for onOpenNewWindowForIssueFiling', () => {
+        const tabId = 1;
+        const actionName = 'openIssueFilingWindow';
+        const telemetryData: BaseTelemetryData = {
+            triggeredBy: 'stub triggered by' as TriggeredBy,
+            source: testSource,
+        };
+
+        const payload: OpenNewWindowPayload = {
+            url: 'url',
+            telemetry: telemetryData,
+        };
+
+        const validator = new ActionCreatorValidator()
+            .setupRegistrationCallback(Messages.IssueFiling.OpenNewWindow, [payload, tabId])
+            .setupTelemetrySend(TelemetryEvents.ISSUE_FILING_WINDOW_OPEN, payload, tabId)
+            .setupBrowserOpenIssueFilingWindow(payload.url);
+
+        const actionCreator = validator.buildActionCreator();
+
+        actionCreator.registerCallbacks();
+
+        validator.verifyAll();
+    });
+
     test('registerCallback for switch focus back to target', () => {
         const pivot = DetailsViewPivotType.fastPass;
         const updatePivotActionName = 'updateSelectedPivot';
@@ -1103,6 +1214,14 @@ class ActionCreatorValidator {
         expectedInvokeParam: any,
     ): ActionCreatorValidator {
         this.setupActionWithInvokeParameter(actionName, expectedInvokeParam, this.previewFeaturesActionMocks);
+        return this;
+    }
+
+    public setupIssueFilingActionWithInvokeParameter(
+        actionName: keyof IssueFilingActions,
+        expectedInvokeParam: any,
+    ): ActionCreatorValidator {
+        this.setupActionWithInvokeParameter(actionName, expectedInvokeParam, this.issueFilingActionsMocks);
         return this;
     }
 
@@ -1281,8 +1400,14 @@ class ActionCreatorValidator {
         this.targetTabControllerStrictMock.verifyAll();
     }
 
-    public setupChromeFeatureController(): ActionCreatorValidator {
+    public setupBrowserOpenCommandConfigTab(): ActionCreatorValidator {
         this.chromeFeatureControllerStrictMock.setup(cfc => cfc.openCommandConfigureTab()).verifiable();
+
+        return this;
+    }
+
+    public setupBrowserOpenIssueFilingWindow(url: string): ActionCreatorValidator {
+        this.chromeFeatureControllerStrictMock.setup(cfc => cfc.openIssueFilingWindow(url)).verifiable();
 
         return this;
     }

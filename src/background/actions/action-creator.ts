@@ -227,8 +227,9 @@ export class ActionCreator {
     }
 
     @autobind
-    private onOpenIssueFilingDialog(payload: OpenIssueFilingSettingsDialogPayload): void {
+    private onOpenIssueFilingDialog(payload: OpenIssueFilingSettingsDialogPayload, tabId: number): void {
         this.issueFilingActions.openIssueFilingSettingsDialog.invoke(payload);
+        this.showDetailsView(tabId);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.ISSUE_FILING_SETTINGS_DIALOG_OPEN, payload);
     }
 
