@@ -10,6 +10,7 @@ import { ScopingActions } from '../../../../../background/actions/scoping-action
 import { TabActions } from '../../../../../background/actions/tab-actions';
 import { VisualizationActions } from '../../../../../background/actions/visualization-actions';
 import { VisualizationScanResultActions } from '../../../../../background/actions/visualization-scan-result-actions';
+import { IssueFilingActions } from './../../../../../background/actions/issue-filing-actions';
 
 describe('ActionHubTest', () => {
     it('tests constructor', () => {
@@ -35,4 +36,5 @@ function runTypeAsserts(hub: ActionHub): void {
     expect(hub.visualizationScanResultActions).toBeInstanceOf(VisualizationScanResultActions);
     expect(hub.inspectActions).toBeInstanceOf(InspectActions);
     expect(hub.contentActions).toBeInstanceOf(ContentActions);
+    expect(hub.issueFilingActions).toBeInstanceOf(IssueFilingActions);
 }
