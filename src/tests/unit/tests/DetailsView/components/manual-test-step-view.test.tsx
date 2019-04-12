@@ -5,7 +5,7 @@ import * as React from 'react';
 import { Mock } from 'typemoq';
 
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
-import { IManualTestStepResult } from '../../../../../common/types/store-data/assessment-result-data';
+import { ManualTestStepResult } from '../../../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import {
     CapturedInstanceActionType,
@@ -26,7 +26,7 @@ describe('ManualTestStepView', () => {
             manualTestStepResultMap: {
                 step: {
                     status: ManualTestStatus.UNKNOWN,
-                } as IManualTestStepResult,
+                } as ManualTestStepResult,
             },
             assessmentsProvider: CreateTestAssessmentProvider(),
         };

@@ -10,7 +10,7 @@ import { CollapsibleComponent } from '../../common/components/collapsible-compon
 import {
     AssessmentNavState,
     IGeneratedAssessmentInstance,
-    IManualTestStepResult,
+    ManualTestStepResult,
 } from '../../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../../types/common-types';
 import { ContentPanelButton, ContentPanelButtonDeps } from '../../views/content/content-panel-button';
@@ -31,7 +31,7 @@ export interface TestStepViewProps {
     instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance>;
     assessmentNavState: AssessmentNavState;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
-    manualTestStepResultMap: DictionaryStringTo<IManualTestStepResult>;
+    manualTestStepResultMap: DictionaryStringTo<ManualTestStepResult>;
     actionMessageCreator: DetailsViewActionMessageCreator;
     assessmentsProvider: AssessmentsProvider;
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;

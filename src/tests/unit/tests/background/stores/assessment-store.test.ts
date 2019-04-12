@@ -34,7 +34,7 @@ import {
     AssessmentData,
     AssessmentStoreData,
     IGeneratedAssessmentInstance,
-    IManualTestStepResult,
+    ManualTestStepResult,
     ITestStepResult,
     PersistedTabInfo,
 } from '../../../../../common/types/store-data/assessment-result-data';
@@ -1468,7 +1468,7 @@ describe('AssessmentStoreTest', () => {
         };
     }
 
-    function getDefaultManualTestStepResult(stepName: string): IManualTestStepResult {
+    function getDefaultManualTestStepResult(stepName: string): ManualTestStepResult {
         return {
             status: ManualTestStatus.UNKNOWN,
             id: stepName,

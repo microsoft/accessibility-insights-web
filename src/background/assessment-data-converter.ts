@@ -6,7 +6,7 @@ import { ManualTestStatus } from '../common/types/manual-test-status';
 import {
     IAssessmentInstancesMap,
     IGeneratedAssessmentInstance,
-    IManualTestStepResult,
+    ManualTestStepResult,
     ITestStepResult,
     IUserCapturedInstance,
 } from '../common/types/store-data/assessment-result-data';
@@ -76,7 +76,7 @@ export class AssessmentDataConverter {
         return instancesMap;
     }
 
-    public getNewManualTestStepResult(step: string): IManualTestStepResult {
+    public getNewManualTestStepResult(step: string): ManualTestStepResult {
         return {
             status: ManualTestStatus.UNKNOWN,
             id: step,

@@ -20,7 +20,7 @@ export interface AssessmentStoreData {
 }
 
 export type InstanceIdToInstanceDataMap = DictionaryStringTo<IGeneratedAssessmentInstance>;
-export type RequirementIdToResultMap = DictionaryStringTo<IManualTestStepResult>;
+export type RequirementIdToResultMap = DictionaryStringTo<ManualTestStepResult>;
 
 export interface AssessmentData {
     fullAxeResultsMap: any;
@@ -29,8 +29,7 @@ export interface AssessmentData {
     testStepStatus: ManualTestStatusData;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IManualTestStepResult {
+export interface ManualTestStepResult {
     status: ManualTestStatus;
     id: string;
     instances: IUserCapturedInstance[];

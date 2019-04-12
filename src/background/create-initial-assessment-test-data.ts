@@ -7,7 +7,7 @@ import { ManualTestStatus, ManualTestStatusData, TestStepData } from '../common/
 import {
     AssessmentData,
     IGeneratedAssessmentInstance,
-    IManualTestStepResult,
+    ManualTestStepResult,
     InstanceIdToInstanceDataMap,
     RequirementIdToResultMap,
 } from '../common/types/store-data/assessment-result-data';
@@ -77,7 +77,7 @@ function getDefaultRequirementStatus(): TestStepData {
     return { stepFinalResult: ManualTestStatus.UNKNOWN, isStepScanned: false };
 }
 
-function getDefaultManualRequirementResult(step: string): IManualTestStepResult {
+function getDefaultManualRequirementResult(step: string): ManualTestStepResult {
     return { status: ManualTestStatus.UNKNOWN, id: step, instances: [] };
 }
 
@@ -86,7 +86,7 @@ function constructRequirementStatus(requirements: string[], persistedMap: Manual
 }
 
 function constructManualRequirementResultMap(requirements: string[], persistedMap: RequirementIdToResultMap): RequirementIdToResultMap {
-    return constructMapFromRequirementTo<IManualTestStepResult>(requirements, persistedMap, getDefaultManualRequirementResult);
+    return constructMapFromRequirementTo<ManualTestStepResult>(requirements, persistedMap, getDefaultManualRequirementResult);
 }
 
 function constructMapFromRequirementTo<T>(

@@ -9,7 +9,7 @@ import {
     AssessmentData,
     AssessmentStoreData,
     IGeneratedAssessmentInstance,
-    IManualTestStepResult,
+    ManualTestStepResult,
     PersistedTabInfo,
 } from '../../../../common/types/store-data/assessment-result-data';
 import { excludePassingInstancesFromAssessmentReport } from '../../../../DetailsView/extensions/exclude-passing-instances-from-assessment-report';
@@ -76,7 +76,7 @@ export class AssessmentReportBuilderTestHelper {
         } as DictionaryStringTo<IGeneratedAssessmentInstance>;
     }
 
-    private static getManualInstance1(): DictionaryStringTo<IManualTestStepResult> {
+    private static getManualInstance1(): DictionaryStringTo<ManualTestStepResult> {
         return {
             ['step1a']: {
                 status: ManualTestStatus.FAIL,
@@ -105,17 +105,17 @@ export class AssessmentReportBuilderTestHelper {
                     },
                 ],
             },
-        } as DictionaryStringTo<IManualTestStepResult>;
+        } as DictionaryStringTo<ManualTestStepResult>;
     }
 
-    private static getManualInstance2(): DictionaryStringTo<IManualTestStepResult> {
+    private static getManualInstance2(): DictionaryStringTo<ManualTestStepResult> {
         return {
             ['step1b']: {
                 status: ManualTestStatus.FAIL,
                 id: 'id1',
                 instances: [],
             },
-        } as DictionaryStringTo<IManualTestStepResult>;
+        } as DictionaryStringTo<ManualTestStepResult>;
     }
 
     private static getManualTestStatus1(): ManualTestStatusData {
