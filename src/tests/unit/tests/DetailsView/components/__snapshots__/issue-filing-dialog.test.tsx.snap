@@ -26,6 +26,13 @@ exports[`IssueFilingDialog render closed 1`] = `
     deps={
       Object {
         "bugFilingServiceProvider": null,
+        "environmentInfoProvider": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "axeVersion": undefined,
+          "browserSpec": undefined,
+          "extensionVersion": undefined,
+          "getEnvironmentInfo": [Function],
+        },
       }
     }
     selectedBugFilingService={
@@ -77,6 +84,13 @@ exports[`IssueFilingDialog render open 1`] = `
     deps={
       Object {
         "bugFilingServiceProvider": null,
+        "environmentInfoProvider": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "axeVersion": undefined,
+          "browserSpec": undefined,
+          "extensionVersion": undefined,
+          "getEnvironmentInfo": [Function],
+        },
       }
     }
     selectedBugFilingService={

@@ -5,6 +5,7 @@ import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { BugFilingService } from '../../../../../bug-filing/types/bug-filing-service';
+import { EnvironmentInfo, EnvironmentInfoProvider } from '../../../../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 import { ActionAndCancelButtonsComponent } from '../../../../../DetailsView/components/action-and-cancel-buttons-component';
 import {
@@ -25,13 +26,23 @@ describe('IssueFilingDialog', () => {
     let deps: IssueFilingDialogDeps;
     let bugFilingServiceStub: BugFilingService;
     let props: IssueFilingDialogProps;
+    let envInfoProviderMock: IMock<EnvironmentInfoProvider>;
+    let envInfo: EnvironmentInfo;
 
     beforeEach(() => {
+        envInfo = {
+            extensionVersion: '1.1.1',
+            browserSpec: '1.2.3',
+            axeCoreVersion: '2.1.1',
+        };
         eventStub = new EventStubFactory().createMouseClickEvent();
         isSettingsValidMock = Mock.ofInstance(data => null, MockBehavior.Strict);
         onCloseMock = Mock.ofInstance(() => null, MockBehavior.Strict);
-        createBugFilingUrlMock = Mock.ofInstance((serviceData, bugData) => null, MockBehavior.Strict);
+        createBugFilingUrlMock = Mock.ofInstance((serviceData, bugData, info) => null, MockBehavior.Strict);
         telemetryCallbackMock = Mock.ofInstance(data => null, MockBehavior.Strict);
+        envInfoProviderMock = Mock.ofType(EnvironmentInfoProvider);
+
+        envInfoProviderMock.setup(p => p.getEnvironmentInfo()).returns(() => envInfo);
         selectedBugDataStub = {
             pageTitle: 'some pageTitle',
         } as CreateIssueDetailsTextData;
@@ -40,6 +51,7 @@ describe('IssueFilingDialog', () => {
         };
         deps = {
             bugFilingServiceProvider: null,
+            environmentInfoProvider: envInfoProviderMock.object,
         } as IssueFilingDialogDeps;
         bugFilingServiceStub = {
             isSettingsValid: isSettingsValidMock.object,
@@ -56,7 +68,9 @@ describe('IssueFilingDialog', () => {
         };
 
         isSettingsValidMock.setup(isSettingsValid => isSettingsValid(selectedServiceData)).verifiable();
-        createBugFilingUrlMock.setup(createBugFilingUrl => createBugFilingUrl(selectedServiceData, selectedBugDataStub)).verifiable();
+        createBugFilingUrlMock
+            .setup(createBugFilingUrl => createBugFilingUrl(selectedServiceData, selectedBugDataStub, envInfo))
+            .verifiable();
     });
 
     it('render open', () => {
@@ -78,7 +92,9 @@ describe('IssueFilingDialog', () => {
 
     it('render: validate correct callbacks (file issue on click and cancel/dismiss)', () => {
         isSettingsValidMock.setup(isSettingsValid => isSettingsValid(selectedServiceData)).verifiable();
-        createBugFilingUrlMock.setup(createBugFilingUrl => createBugFilingUrl(selectedServiceData, selectedBugDataStub)).verifiable();
+        createBugFilingUrlMock
+            .setup(createBugFilingUrl => createBugFilingUrl(selectedServiceData, selectedBugDataStub, envInfo))
+            .verifiable();
         telemetryCallbackMock.setup(telemetryCallback => telemetryCallback(eventStub)).verifiable();
         onCloseMock.setup(onClose => onClose(null)).verifiable();
 
