@@ -8,7 +8,7 @@ exports[`BugFilingSettingsContainerTest render 1`] = `
         Object {
           "displayName": "TEST",
           "key": "test",
-          "renderSettingsForm": [Function],
+          "settingsForm": [Function],
         },
       ]
     }
@@ -27,11 +27,11 @@ exports[`BugFilingSettingsContainerTest render 1`] = `
       Object {
         "displayName": "TEST",
         "key": "test",
-        "renderSettingsForm": [Function],
+        "settingsForm": [Function],
       }
     }
   />
-  <renderSettingsForm
+  <settingsForm
     deps={
       Object {
         "bugFilingServiceProvider": proxy {

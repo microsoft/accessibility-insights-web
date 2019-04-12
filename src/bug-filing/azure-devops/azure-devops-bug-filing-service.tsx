@@ -1,0 +1,50 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+import { isEmpty } from 'lodash';
+import * as React from 'react';
+
+import { NamedSFC } from '../../common/react/named-sfc';
+import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
+import { BugServicePropertiesMap } from '../../common/types/store-data/user-configuration-store';
+import { BugFilingService } from '../types/bug-filing-service';
+import { SettingsFormProps } from '../types/settings-form-props';
+
+const AzureDevOpsBugFilingServiceKey = 'azureDevOps';
+
+export type AzureDevOpsBugFilingSettings = {
+    project: string;
+    issueDetailsLocation: string;
+};
+
+function buildStoreData(project: string, issueDetailsLocation: string): AzureDevOpsBugFilingSettings {
+    return {
+        project,
+        issueDetailsLocation,
+    };
+}
+
+function getSettingsFromStoreData(bugServicePropertiesMap: BugServicePropertiesMap): AzureDevOpsBugFilingSettings {
+    return bugServicePropertiesMap[AzureDevOpsBugFilingServiceKey] as AzureDevOpsBugFilingSettings;
+}
+
+function isSettingsValid(data: AzureDevOpsBugFilingSettings): boolean {
+    return !isEmpty(data) && isStringValid(data.project) && isStringValid(data.issueDetailsLocation);
+}
+
+function isStringValid(stringToCheck: string): boolean {
+    return !isEmpty(stringToCheck) && !isEmpty(stringToCheck.trim());
+}
+
+const settingsForm = NamedSFC<SettingsFormProps<AzureDevOpsBugFilingSettings>>('BugFilingSettings', props => {
+    return <div />;
+});
+
+export const AzureDevOpsBugFilingService: BugFilingService<AzureDevOpsBugFilingSettings> = {
+    key: AzureDevOpsBugFilingServiceKey,
+    displayName: 'AzureDevOps',
+    settingsForm,
+    buildStoreData,
+    getSettingsFromStoreData,
+    isSettingsValid,
+    createBugFilingUrl: (data: AzureDevOpsBugFilingSettings, bugData: CreateIssueDetailsTextData) => null,
+};

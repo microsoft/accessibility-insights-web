@@ -20,6 +20,10 @@ describe('NullIssueFilingService', () => {
         expect(NullIssueFilingService.buildStoreData()).toBeNull();
     });
 
+    it('getSettingsFromStoreData', () => {
+        expect(NullIssueFilingService.getSettingsFromStoreData(null)).toBeNull();
+    });
+
     describe('check settings', () => {
         it.each(testSettings)('with %o', settings => {
             expect(NullIssueFilingService.isSettingsValid(settings)).toBe(false);
@@ -38,7 +42,7 @@ describe('NullIssueFilingService', () => {
     });
 
     it('renders settings form', () => {
-        const Component = NullIssueFilingService.renderSettingsForm;
+        const Component = NullIssueFilingService.settingsForm;
 
         const props = {
             deps: null,

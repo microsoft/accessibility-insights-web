@@ -18,7 +18,7 @@ describe('BugFilingSettingsContainerTest', () => {
     const selectedBugFilingService: BugFilingService = {
         key: 'test',
         displayName: 'TEST',
-        renderSettingsForm: formProps => {
+        settingsForm: formProps => {
             return <>{formProps}</>;
         },
     } as BugFilingService;
