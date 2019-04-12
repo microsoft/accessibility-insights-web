@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { BugFilingSettingsContainer, BugFilingSettingsContainerDeps } from '../../bug-filing/components/bug-filing-settings-container';
 import { BugFilingService } from '../../bug-filing/types/bug-filing-service';
-import { EnvironmentInfoProvider } from '../../common/environment-info-provider';
+import { EnvironmentInfo } from '../../common/environment-info-provider';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { BugServiceProperties } from '../../common/types/store-data/user-configuration-store';
@@ -19,11 +19,10 @@ export interface IssueFilingDialogProps {
     selectedBugFilingServiceData: BugServiceProperties;
     bugFileTelemetryCallback: (ev: React.SyntheticEvent) => void;
     onClose: (ev: React.SyntheticEvent) => void;
+    environmentInfo: EnvironmentInfo;
 }
 
-export type IssueFilingDialogDeps = {
-    environmentInfoProvider: EnvironmentInfoProvider;
-} & BugFilingSettingsContainerDeps;
+export type IssueFilingDialogDeps = {} & BugFilingSettingsContainerDeps;
 
 const titleLabel = 'Specify issue filing location';
 
@@ -35,9 +34,9 @@ export const IssueFilingDialog = NamedSFC<IssueFilingDialogProps>('IssueFilingDi
         bugFileTelemetryCallback,
         onClose,
         isOpen,
+        environmentInfo,
         deps,
     } = props;
-    const environmentInfo = deps.environmentInfoProvider.getEnvironmentInfo();
 
     return (
         <Dialog
@@ -65,7 +64,7 @@ export const IssueFilingDialog = NamedSFC<IssueFilingDialogProps>('IssueFilingDi
             <DialogFooter>
                 <ActionAndCancelButtonsComponent
                     isHidden={false}
-                    primaryButtonDisabled={selectedBugFilingService.isSettingsValid(selectedBugFilingServiceData)}
+                    primaryButtonDisabled={!selectedBugFilingService.isSettingsValid(selectedBugFilingServiceData)}
                     primaryButtonOnClick={bugFileTelemetryCallback}
                     cancelButtonOnClick={onClose}
                     primaryButtonHref={selectedBugFilingService.createBugFilingUrl(

@@ -7,6 +7,7 @@ import { IMock, Mock } from 'typemoq';
 import {
     AzureDevOpsBugFilingService,
     AzureDevOpsBugFilingSettings,
+    AzureDevOpsIssueDetailLocation,
 } from '../../../../../bug-filing/azure-devops/azure-devops-bug-filing-service';
 import { SettingsFormProps } from '../../../../../bug-filing/types/settings-form-props';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
@@ -16,21 +17,21 @@ describe('AzureDevOpsBugFilingServiceTest', () => {
     let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;
     let props: SettingsFormProps<AzureDevOpsBugFilingSettings>;
     let projectStub: string;
-    let issueDetailsLocationStub: string;
+    let issueDetailsLocationStub: AzureDevOpsIssueDetailLocation;
 
     const invalidTestSettings: AzureDevOpsBugFilingSettings[] = [
         null,
         {} as AzureDevOpsBugFilingSettings,
         undefined,
         { projectURL: '' } as AzureDevOpsBugFilingSettings,
-        { projectURL: '', issueDetailsLocationField: '' },
-        { projectURL: 'some project', issueDetailsLocationField: '' },
-        { projectURL: '', issueDetailsLocationField: 'some issue details location' },
+        { projectURL: '', issueDetailsLocationField: '' as AzureDevOpsIssueDetailLocation },
+        { projectURL: 'some project', issueDetailsLocationField: '' as AzureDevOpsIssueDetailLocation },
+        { projectURL: '', issueDetailsLocationField: 'some issue details location' as AzureDevOpsIssueDetailLocation },
     ];
 
     beforeEach(() => {
         projectStub = 'some project';
-        issueDetailsLocationStub = 'some location';
+        issueDetailsLocationStub = 'description';
         userConfigMessageCreatorMock = Mock.ofType(UserConfigMessageCreator);
         props = {
             deps: {
@@ -38,14 +39,14 @@ describe('AzureDevOpsBugFilingServiceTest', () => {
             },
             settings: {
                 projectURL: 'some project',
-                issueDetailsLocationField: 'some location',
+                issueDetailsLocationField: 'description',
             },
         };
     });
 
     it('static properties', () => {
         expect(AzureDevOpsBugFilingService.key).toBe('azureDevOps');
-        expect(AzureDevOpsBugFilingService.displayName).toBe('AzureDevOps');
+        expect(AzureDevOpsBugFilingService.displayName).toBe('Azure DevOps');
         expect(AzureDevOpsBugFilingService.isHidden).toBeUndefined();
     });
 
@@ -78,7 +79,7 @@ describe('AzureDevOpsBugFilingServiceTest', () => {
     it('isSettingsValid - valid case', () => {
         const validSettings: AzureDevOpsBugFilingSettings = {
             projectURL: 'some project',
-            issueDetailsLocationField: 'some issue details location',
+            issueDetailsLocationField: 'description',
         };
 
         expect(AzureDevOpsBugFilingService.isSettingsValid(validSettings)).toBe(true);

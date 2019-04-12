@@ -1,23 +1,29 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { isEmpty } from 'lodash';
+import { IDropdownOption } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { EnvironmentInfo } from '../../common/environment-info-provider';
-import { NamedSFC } from '../../common/react/named-sfc';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { BugServicePropertiesMap } from '../../common/types/store-data/user-configuration-store';
 import { BugFilingService } from '../types/bug-filing-service';
-import { SettingsFormProps } from '../types/settings-form-props';
+import { AzureDevOpsSettingsForm } from './azure-devops-settings-form';
 
 const AzureDevOpsBugFilingServiceKey = 'azureDevOps';
 
+export type AzureDevOpsIssueDetailLocation = 'reproSteps' | 'description';
+
+export interface AzureDevOpsIssueDetailLocationDropdownOption extends IDropdownOption {
+    key: AzureDevOpsIssueDetailLocation;
+}
+
 export type AzureDevOpsBugFilingSettings = {
     projectURL: string;
-    issueDetailsLocationField: string;
+    issueDetailsLocationField: AzureDevOpsIssueDetailLocation;
 };
 
-function buildStoreData(projectURL: string, issueDetailsLocationField: string): AzureDevOpsBugFilingSettings {
+function buildStoreData(projectURL: string, issueDetailsLocationField: AzureDevOpsIssueDetailLocation): AzureDevOpsBugFilingSettings {
     return {
         projectURL,
         issueDetailsLocationField,
@@ -36,14 +42,10 @@ function isStringValid(stringToCheck: string): boolean {
     return !isEmpty(stringToCheck) && !isEmpty(stringToCheck.trim());
 }
 
-const settingsForm = NamedSFC<SettingsFormProps<AzureDevOpsBugFilingSettings>>('BugFilingSettings', props => {
-    return <div />;
-});
-
 export const AzureDevOpsBugFilingService: BugFilingService<AzureDevOpsBugFilingSettings> = {
     key: AzureDevOpsBugFilingServiceKey,
-    displayName: 'AzureDevOps',
-    settingsForm,
+    displayName: 'Azure DevOps',
+    settingsForm: AzureDevOpsSettingsForm,
     buildStoreData,
     getSettingsFromStoreData,
     isSettingsValid,
