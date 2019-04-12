@@ -6,15 +6,16 @@ import { SettingsFormProps } from '../types/settings-form-props';
 
 const nullServiceKey = 'none';
 
-const renderSettingsForm = NamedSFC<SettingsFormProps<{}>>('NullIssueFilingService', () => null);
+const settingsForm = NamedSFC<SettingsFormProps<{}>>('NullIssueFilingService', () => null);
 
 export const NullIssueFilingService: BugFilingService = {
     key: nullServiceKey,
     isHidden: true,
     order: 0,
     displayName: 'None',
-    renderSettingsForm,
+    settingsForm,
     buildStoreData: () => null,
     isSettingsValid: () => false,
     createBugFilingUrl: () => null,
+    getSettingsFromStoreData: () => null,
 };

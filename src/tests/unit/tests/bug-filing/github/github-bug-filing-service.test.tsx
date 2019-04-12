@@ -9,6 +9,7 @@ import { createGitHubBugFilingUrl } from '../../../../../bug-filing/github/creat
 import { GitHubBugFilingService, GitHubBugFilingSettings } from '../../../../../bug-filing/github/github-bug-filing-service';
 import { SettingsFormProps } from '../../../../../bug-filing/types/settings-form-props';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
+import { BugServicePropertiesMap } from '../../../../../common/types/store-data/user-configuration-store';
 
 describe('GithubBugFilingServiceTest', () => {
     let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;
@@ -42,6 +43,17 @@ describe('GithubBugFilingServiceTest', () => {
         expect(GitHubBugFilingService.buildStoreData(url)).toEqual(expectedStoreData);
     });
 
+    it('getSettingsFromStoreData', () => {
+        const expectedStoreData: GitHubBugFilingSettings = {
+            repository: 'some url',
+        };
+        const givenData: BugServicePropertiesMap = {
+            'some other service': {},
+            [GitHubBugFilingService.key]: expectedStoreData,
+        };
+        expect(GitHubBugFilingService.getSettingsFromStoreData(givenData)).toEqual(expectedStoreData);
+    });
+
     describe('check for invalid settings', () => {
         it.each(invalidTestSettings)('with %o', settings => {
             expect(GitHubBugFilingService.isSettingsValid(settings)).toBe(false);
@@ -57,13 +69,13 @@ describe('GithubBugFilingServiceTest', () => {
     });
 
     it('renderSettingsForm', () => {
-        const Component = GitHubBugFilingService.renderSettingsForm;
+        const Component = GitHubBugFilingService.settingsForm;
         const wrapper = shallow(<Component {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
     it('renderSettingsForm: onChange', () => {
-        const Component = GitHubBugFilingService.renderSettingsForm;
+        const Component = GitHubBugFilingService.settingsForm;
         const wrapper = shallow(<Component {...props} />);
         userConfigMessageCreatorMock
             .setup(ucmm => ucmm.setBugServiceProperty('gitHub', 'repository', 'new value'))

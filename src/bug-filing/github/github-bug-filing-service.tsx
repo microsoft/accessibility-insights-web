@@ -21,11 +21,15 @@ function buildStoreData(repository: string): GitHubBugFilingSettings {
     };
 }
 
+function getSettingsFromStoreData(bugServicePropertiesMap: GitHubBugFilingSettings): GitHubBugFilingSettings {
+    return bugServicePropertiesMap[GitHubBugFilingServiceKey] as GitHubBugFilingSettings;
+}
+
 function isSettingsValid(data: GitHubBugFilingSettings): boolean {
     return !isEmpty(data) && !isEmpty(data.repository) && isString(data.repository) && !isEmpty(data.repository.trim());
 }
 
-const renderSettingsForm = NamedSFC<SettingsFormProps<GitHubBugFilingSettings>>('BugFilingSettings', props => {
+const settingsForm = NamedSFC<SettingsFormProps<GitHubBugFilingSettings>>('BugFilingSettings', props => {
     const onGitHubRepositoryChange = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
         const propertyName: keyof GitHubBugFilingSettings = 'repository';
         props.deps.userConfigMessageCreator.setBugServiceProperty(GitHubBugFilingServiceKey, propertyName, newValue);
@@ -45,8 +49,9 @@ const renderSettingsForm = NamedSFC<SettingsFormProps<GitHubBugFilingSettings>>(
 export const GitHubBugFilingService: BugFilingService<GitHubBugFilingSettings> = {
     key: GitHubBugFilingServiceKey,
     displayName: 'GitHub',
-    renderSettingsForm,
+    settingsForm,
     buildStoreData,
+    getSettingsFromStoreData,
     isSettingsValid,
     createBugFilingUrl: createGitHubBugFilingUrl,
 };

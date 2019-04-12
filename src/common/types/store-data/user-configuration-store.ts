@@ -9,11 +9,8 @@ export interface UserConfigurationStoreData {
     bugServicePropertiesMap: BugServicePropertiesMap;
 }
 
-interface BugServicePropertiesMap {
+export interface BugServicePropertiesMap {
     [service: string]: BugServiceProperties;
 }
 
-interface BugServiceProperties {
-    [name: string]: string;
-    issueTrackerPath?: string;
-}
+export type BugServiceProperties = Object;

@@ -22,7 +22,7 @@ export type BugFilingSettingsContainerDeps = {
 
 export const BugFilingSettingsContainer = NamedSFC<BugFilingSettingsContainerProps>('BugFilingSettingsContainer', props => {
     const { deps, selectedBugFilingService, selectedBugFilingServiceData } = props;
-    const SettingsForm = selectedBugFilingService.renderSettingsForm;
+    const SettingsForm = selectedBugFilingService.settingsForm;
     const bugFilingServices = deps.bugFilingServiceProvider.allVisible();
 
     return (
