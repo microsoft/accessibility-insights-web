@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { DevToolsListener } from '../../../../background/dev-tools-listener';
 import { Interpreter } from '../../../../background/interpreter';
 import { TabContext, TabToContextMap } from '../../../../background/tab-context';
@@ -11,12 +10,10 @@ import { DevToolsOpenMessage } from '../../../../common/types/dev-tools-open-mes
 import { ChromeAdapterMock, PortWithTabTabIdStub } from '../../mock-helpers/chrome-adapter-mock';
 import { PortOnDisconnectMock } from '../../mock-helpers/port-on-disconnect-mock';
 import { PortOnMessageMock } from '../../mock-helpers/port-on-message-mock';
-import { PortStub } from '../../stubs/port-stub';
 
 describe('DevToolsListenerTests', () => {
     let _testSubject: DevToolsListener;
     let _chromeAdapterMock: ChromeAdapterMock;
-    let _backgrountConnectionMock: IMock<chrome.runtime.Port>;
     let _tabIdToContextMap: TabToContextMap;
     let _tabId1InterpreterMock: IMock<Interpreter>;
     let _tabId2InterpreterMock: IMock<Interpreter>;
@@ -29,7 +26,6 @@ describe('DevToolsListenerTests', () => {
             2: new TabContext(_tabId2InterpreterMock.object, null),
         };
         _chromeAdapterMock = new ChromeAdapterMock();
-        _backgrountConnectionMock = Mock.ofType(PortStub);
         _testSubject = new DevToolsListener(_tabIdToContextMap, _chromeAdapterMock.getObject());
     });
 

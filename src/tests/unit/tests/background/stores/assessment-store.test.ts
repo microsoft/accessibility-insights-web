@@ -583,8 +583,6 @@ describe('AssessmentStoreTest', () => {
 
         assessmentMock.setup(am => am.getVisualizationConfiguration()).returns(() => configStub);
 
-        const currentInstancesMap = null;
-
         assessmentDataRemoverMock
             .setup(a => a.deleteDataFromGeneratedMapWithStepKey(initialInstanceMap, payload.key))
             .callback(() => {

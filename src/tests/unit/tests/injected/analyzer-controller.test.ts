@@ -238,10 +238,6 @@ describe('AnalyzerControllerTests', () => {
                 return returnedConfig;
             });
     }
-
-    function setupGetStoreDataMock(tests: TestsEnabledState, scanData: ScanData): void {
-        getStoreDataMock.setup(gcdm => gcdm(tests)).returns(() => scanData);
-    }
 });
 
 class AnalyzerStub implements Analyzer {
