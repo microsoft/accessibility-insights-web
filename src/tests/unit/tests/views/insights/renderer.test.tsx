@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 
 import { Theme } from '../../../../../common/components/theme';
 import { configMutator } from '../../../../../common/configuration';

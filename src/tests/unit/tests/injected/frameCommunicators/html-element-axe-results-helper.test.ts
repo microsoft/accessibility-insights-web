@@ -122,18 +122,10 @@ describe('HtmlElementAxeResultsHelperTest', () => {
     });
 
     test('splitResultsByFrame_ShouldNotAddResultsIfFrameDoesntExistAnymore', () => {
-        const frame1 = document.createElement('iframe');
         const framesInWindow = NodeListBuilder.createNodeList([]);
         const frameResult: AxeResultsWithFrameLevel = {
             ruleResults: {},
             target: ['#frame1', '#elementID'],
-            isVisible: true,
-        };
-
-        const expectedFrameResult: AxeResultsWithFrameLevel = {
-            ruleResults: {},
-            target: ['#elementID'],
-            targetIndex: 0,
             isVisible: true,
         };
 
