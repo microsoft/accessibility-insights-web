@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { headingsAssessmentInstanceDetailsColumnRenderer } from '../../../../assessments/headings/headings-instance-details-column-renderer';
-import { IHeadingsAssessmentProperties } from '../../../../common/types/store-data/assessment-result-data';
+import { HeadingsAssessmentProperties } from '../../../../common/types/store-data/assessment-result-data';
 import { AssessmentInstanceDetailsColumn } from '../../../../DetailsView/components/assessment-instance-details-column';
 import { AssessmentInstanceRowData } from '../../../../DetailsView/components/assessment-instance-table';
 import { HeadingFormatter } from '../../../../injected/visualization/heading-formatter';
@@ -14,7 +14,7 @@ describe('HeadingsInstanceDetailsColumnRendererTest', () => {
             instance: {
                 propertyBag: null,
             },
-        } as AssessmentInstanceRowData<IHeadingsAssessmentProperties>;
+        } as AssessmentInstanceRowData<HeadingsAssessmentProperties>;
         const expected = (
             <AssessmentInstanceDetailsColumn
                 background={'#767676'}
@@ -35,7 +35,7 @@ describe('HeadingsInstanceDetailsColumnRendererTest', () => {
                     headingLevel: '3',
                 },
             },
-        } as AssessmentInstanceRowData<IHeadingsAssessmentProperties>;
+        } as AssessmentInstanceRowData<HeadingsAssessmentProperties>;
         const expected = (
             <AssessmentInstanceDetailsColumn
                 background={HeadingFormatter.headingStyles['3'].borderColor}
@@ -56,7 +56,7 @@ describe('HeadingsInstanceDetailsColumnRendererTest', () => {
                     headingLevel: '7',
                 },
             },
-        } as AssessmentInstanceRowData<IHeadingsAssessmentProperties>;
+        } as AssessmentInstanceRowData<HeadingsAssessmentProperties>;
         const expected = (
             <AssessmentInstanceDetailsColumn
                 background={'#767676'}

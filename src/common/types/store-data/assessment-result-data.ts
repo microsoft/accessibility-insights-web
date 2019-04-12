@@ -64,8 +64,7 @@ export interface AssessmentNavState {
     selectedTestType: VisualizationType;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IHeadingsAssessmentProperties {
+export interface HeadingsAssessmentProperties {
     headingLevel: string;
     headingText: string;
 }

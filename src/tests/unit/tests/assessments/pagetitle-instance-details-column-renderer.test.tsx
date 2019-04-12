@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { pageTitleInstanceDetailsColumnRenderer } from '../../../../assessments/page/pagetitle-instance-details-column-renderer';
-import { IHeadingsAssessmentProperties } from '../../../../common/types/store-data/assessment-result-data';
+import { HeadingsAssessmentProperties } from '../../../../common/types/store-data/assessment-result-data';
 import { AssessmentInstanceDetailsColumn } from '../../../../DetailsView/components/assessment-instance-details-column';
 import { AssessmentInstanceRowData } from '../../../../DetailsView/components/assessment-instance-table';
 
@@ -13,7 +13,7 @@ describe('PageTitleInstanceDetailsColumnRendererTest', () => {
             instance: {
                 propertyBag: null,
             },
-        } as AssessmentInstanceRowData<IHeadingsAssessmentProperties>;
+        } as AssessmentInstanceRowData<HeadingsAssessmentProperties>;
         const expected = <AssessmentInstanceDetailsColumn background={null} textContent={null} tooltipId={null} />;
         expect(expected).toEqual(pageTitleInstanceDetailsColumnRenderer(item));
     });
