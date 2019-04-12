@@ -1,14 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { isEmpty, pick } from 'lodash';
-
 import { Assessment } from '../assessments/types/iassessment';
 import { ManualTestStatus, ManualTestStatusData, TestStepData } from '../common/types/manual-test-status';
 import {
     AssessmentData,
     GeneratedAssessmentInstance,
-    ManualTestStepResult,
     InstanceIdToInstanceDataMap,
+    ManualTestStepResult,
     RequirementIdToResultMap,
 } from '../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../types/common-types';

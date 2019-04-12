@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { AssessmentsProviderImpl } from '../../../../../assessments/assessments-provider';
 import { AssessmentsProvider } from '../../../../../assessments/types/assessments-provider';
 import { Assessment } from '../../../../../assessments/types/iassessment';
@@ -35,8 +34,8 @@ import {
     AssessmentStoreData,
     GeneratedAssessmentInstance,
     ManualTestStepResult,
-    TestStepResult,
     PersistedTabInfo,
+    TestStepResult,
 } from '../../../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { ScanBasePayload, ScanCompletedPayload, ScanUpdatePayload } from '../../../../../injected/analyzers/analyzer';
