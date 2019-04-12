@@ -45,7 +45,7 @@ export interface UserCapturedInstance {
 export interface GeneratedAssessmentInstance<T = {}, K = {}> {
     target: string[];
     html: string;
-    testStepResults: IAssessmentResultType<K>;
+    testStepResults: AssessmentResultType<K>;
     propertyBag?: T;
 }
 
@@ -80,5 +80,5 @@ export interface LandmarksAssessmentProperties {
 }
 
 export type AssessmentInstancesMap<T = {}, K = {}> = DictionaryStringTo<GeneratedAssessmentInstance<T, K>>;
-// tslint:disable-next-line:interface-name
-export type IAssessmentResultType<K> = { [testStepName in keyof K]: TestStepResult };
+
+export type AssessmentResultType<K> = { [testStepName in keyof K]: TestStepResult };

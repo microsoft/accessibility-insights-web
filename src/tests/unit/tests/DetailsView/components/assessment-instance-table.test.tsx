@@ -13,7 +13,7 @@ import {
     IMessageGenerator,
 } from '../../../../../assessments/assessment-default-message-generator';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
-import { IAssessmentResultType, GeneratedAssessmentInstance } from '../../../../../common/types/store-data/assessment-result-data';
+import { AssessmentResultType, GeneratedAssessmentInstance } from '../../../../../common/types/store-data/assessment-result-data';
 import {
     AssessmentInstanceRowData,
     AssessmentInstanceTable,
@@ -199,7 +199,7 @@ describe('AssessmentInstanceTableTest', () => {
 
     it('renders default instance table header enabled', () => {
         const selectedTestStep = 'step';
-        const testStepResults = {} as IAssessmentResultType<{}>;
+        const testStepResults = {} as AssessmentResultType<{}>;
         testStepResults[selectedTestStep] = { status: ManualTestStatus.UNKNOWN };
         const props = getProps({}, null, null, null);
         const testObject = new AssessmentInstanceTable(props);
@@ -218,7 +218,7 @@ describe('AssessmentInstanceTableTest', () => {
 
     it('renders default instance table header disabled with instance', () => {
         const selectedTestStep = 'step';
-        const testStepResults = {} as IAssessmentResultType<{}>;
+        const testStepResults = {} as AssessmentResultType<{}>;
         testStepResults[selectedTestStep] = { status: ManualTestStatus.PASS };
         const props = getProps({}, null, null, null);
         const testObject = new AssessmentInstanceTable(props);
