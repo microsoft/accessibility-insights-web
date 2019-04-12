@@ -24,8 +24,6 @@ import {
     BaseActionPayload,
     OnDetailsViewOpenPayload,
     OnDetailsViewPivotSelected,
-    OpenIssueFilingSettingsDialogPayload,
-    OpenNewWindowPayload,
     ToggleActionPayload,
     VisualizationTogglePayload,
 } from './action-payloads';
@@ -120,10 +118,6 @@ export class ActionCreator {
 
         this.registerTypeToPayloadCallback(Messages.SettingsPanel.OpenPanel, this.onOpenSettingsPanel);
         this.registerTypeToPayloadCallback(Messages.SettingsPanel.ClosePanel, this.onCloseSettingsPanel);
-
-        this.registerTypeToPayloadCallback(Messages.IssueFiling.OpenDialog, this.onOpenIssueFilingDialog);
-        this.registerTypeToPayloadCallback(Messages.IssueFiling.CloseDialog, this.onCloseIssueFilingDialog);
-        this.registerTypeToPayloadCallback(Messages.IssueFiling.OpenNewWindow, this.onOpenNewWindowForIssueFiling);
 
         this.registerTypeToPayloadCallback(Messages.Assessment.AssessmentScanCompleted, this.onAssessmentScanCompleted);
         this.registerTypeToPayloadCallback(Messages.Assessment.StartOver, this.onStartOver);
@@ -224,25 +218,6 @@ export class ActionCreator {
     private onCloseSettingsPanel(payload: BaseActionPayload): void {
         this.detailsViewActions.closeSettingsPanel.invoke(null);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.SETTINGS_PANEL_CLOSE, payload);
-    }
-
-    @autobind
-    private onOpenIssueFilingDialog(payload: OpenIssueFilingSettingsDialogPayload, tabId: number): void {
-        this.issueFilingActions.openIssueFilingSettingsDialog.invoke(payload);
-        this.showDetailsView(tabId);
-        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.ISSUE_FILING_SETTINGS_DIALOG_OPEN, payload);
-    }
-
-    @autobind
-    private onCloseIssueFilingDialog(payload: BaseActionPayload): void {
-        this.issueFilingActions.closeIssueFilingSettingsDialog.invoke(null);
-        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.ISSUE_FILING_SETTINGS_DIALOG_CLOSE, payload);
-    }
-
-    @autobind
-    private onOpenNewWindowForIssueFiling(payload: OpenNewWindowPayload): void {
-        this.chromeFeatureController.openIssueFilingWindow(payload.url);
-        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.ISSUE_FILING_WINDOW_OPEN, payload);
     }
 
     @autobind
