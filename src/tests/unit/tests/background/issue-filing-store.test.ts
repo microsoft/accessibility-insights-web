@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License.
 import { IssueFilingActions } from '../../../../background/actions/issue-filing-actions';
 import { StoreNames } from '../../../../common/stores/store-names';
 import { CreateIssueDetailsTextData } from '../../../../common/types/create-issue-details-text-data';

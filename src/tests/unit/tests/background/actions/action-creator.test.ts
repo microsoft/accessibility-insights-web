@@ -1,4 +1,3 @@
-import { IssueFilingActions } from './../../../../../background/actions/issue-filing-actions';
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { forOwn } from 'lodash';
@@ -49,6 +48,7 @@ import { DictionaryStringTo } from '../../../../../types/common-types';
 import { AssessmentActions } from './../../../../../background/actions/assessment-actions';
 import { PreviewFeaturesActions } from './../../../../../background/actions/preview-features-actions';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
+import { IssueFilingActions } from './../../../../../background/actions/issue-filing-actions';
 
 const VisualizationMessage = Messages.Visualizations;
 const PreviewFeaturesMessage = Messages.PreviewFeatures;
@@ -998,35 +998,6 @@ describe('ActionCreatorTest', () => {
             .setupActionOnIssueFilingActions(actionName)
             .setupTelemetrySend(TelemetryEvents.ISSUE_FILING_SETTINGS_DIALOG_CLOSE, payload, tabId)
             .setupIssueFilingActionWithInvokeParameter(actionName, null);
-
-        const actionCreator = validator.buildActionCreator();
-
-        actionCreator.registerCallbacks();
-
-        validator.verifyAll();
-    });
-
-    test('registerCallback for onOpenIssueFilingDialog', () => {
-        const tabId = 1;
-        const actionName = 'openIssueFilingSettingsDialog';
-        const telemetryData: BaseTelemetryData = {
-            triggeredBy: 'stub triggered by' as TriggeredBy,
-            source: testSource,
-        };
-
-        const payload: OpenIssueFilingSettingsDialogPayload = {
-            issueDetailsTextData: {
-                pageTitle: 'title',
-            } as CreateIssueDetailsTextData,
-            telemetry: telemetryData,
-        };
-
-        const validator = new ActionCreatorValidator()
-            .setupRegistrationCallback(Messages.IssueFiling.OpenDialog, [payload, tabId])
-            .setupActionOnIssueFilingActions(actionName)
-            .setupTelemetrySend(TelemetryEvents.ISSUE_FILING_SETTINGS_DIALOG_OPEN, payload, tabId)
-            .setupShowDetailsView(tabId)
-            .setupIssueFilingActionWithInvokeParameter(actionName, payload);
 
         const actionCreator = validator.buildActionCreator();
 
