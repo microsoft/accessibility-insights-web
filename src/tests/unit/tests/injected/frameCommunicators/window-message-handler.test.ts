@@ -170,7 +170,7 @@ describe('WindowMessageHandlerTests', () => {
         const responseMessage: WindowMessage = getSampleMessageWithResponseId();
 
         let isResponseCallbackInvoked = false;
-        let isSubscriberResponseCallbackInvoked = false;
+        const isSubscriberResponseCallbackInvoked = false;
 
         const callback: FrameMessageResponseCallback = (
             result: any,

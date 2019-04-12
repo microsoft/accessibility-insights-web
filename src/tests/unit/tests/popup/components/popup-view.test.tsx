@@ -50,7 +50,7 @@ describe('PopupView', () => {
             .with('popupHandlers', {} as any)
             .build();
 
-        new PopupView(props);
+        (() => new PopupView(props))();
 
         storesHubMock.verifyAll();
     });
