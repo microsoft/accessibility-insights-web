@@ -1,5 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import 'reflect-metadata';
+
+import { injectable } from 'inversify';
 
 export interface ClientBrowserAdapter {
     addListenerOnConnect(callback: (port: chrome.runtime.Port) => void): void;
@@ -18,6 +21,7 @@ export interface ClientBrowserAdapter {
     getUrl(urlPart: string): string;
 }
 
+@injectable()
 export class ClientChromeAdapter implements ClientBrowserAdapter {
     public addListenerOnConnect(callback: (port: chrome.runtime.Port) => void): void {
         chrome.runtime.onConnect.addListener(callback);

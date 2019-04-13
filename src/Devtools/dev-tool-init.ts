@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DevToolsChromeAdapterImpl } from '../background/dev-tools-chrome-adapter';
-import { DevToolInitializer } from './dev-tool-initializer';
+import 'reflect-metadata';
 
-const browserAdapter = new DevToolsChromeAdapterImpl();
-const devToolInitializer: DevToolInitializer = new DevToolInitializer(browserAdapter);
+import { DevToolInitializer } from './dev-tool-initializer';
+import { container } from './dev-tool-ioc-config';
+
+const devToolInitializer: DevToolInitializer = container.get(DevToolInitializer);
 devToolInitializer.initialize();

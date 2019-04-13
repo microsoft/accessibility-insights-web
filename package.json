@@ -90,6 +90,7 @@
         "applicationinsights-js": "^1.0.20",
         "axe-core": "3.2.2",
         "classnames": "^2.2.6",
+        "inversify": "^5.0.1",
         "lodash": "^4.17.11",
         "office-ui-fabric-react": "6.142.0",
         "q": "1.0.1",
@@ -98,6 +99,7 @@
         "react-dom": "^16.7.0",
         "react-helmet": "^5.2.0",
         "react-router-dom": "^4.3.1",
+        "reflect-metadata": "^0.1.13",
         "requirejs": "2.3.5",
         "uuid": "^3.3.2"
     }

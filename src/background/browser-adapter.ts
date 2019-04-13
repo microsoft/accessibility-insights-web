@@ -1,5 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import 'reflect-metadata';
+
+import { injectable } from 'inversify';
+
 import { ClientBrowserAdapter, ClientChromeAdapter } from '../common/client-browser-adapter';
 
 export interface NotificationOptions {
@@ -44,6 +48,7 @@ export interface BrowserAdapter extends ClientBrowserAdapter {
     openManageExtensionPage(): void;
 }
 
+@injectable()
 export class ChromeAdapter extends ClientChromeAdapter implements BrowserAdapter {
     public openManageExtensionPage(): void {
         chrome.tabs.create({
