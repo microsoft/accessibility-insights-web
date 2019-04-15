@@ -13,7 +13,7 @@ import {
     IMessageGenerator,
 } from '../../../../../assessments/assessment-default-message-generator';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
-import { IAssessmentResultType, IGeneratedAssessmentInstance } from '../../../../../common/types/store-data/assessment-result-data';
+import { AssessmentResultType, GeneratedAssessmentInstance } from '../../../../../common/types/store-data/assessment-result-data';
 import {
     AssessmentInstanceRowData,
     AssessmentInstanceTable,
@@ -67,7 +67,7 @@ describe('AssessmentInstanceTableTest', () => {
             {
                 statusChoiceGroup: null,
                 visualizationButton: null,
-                instance: {} as IGeneratedAssessmentInstance,
+                instance: {} as GeneratedAssessmentInstance,
             },
         ];
         const testObject = new AssessmentInstanceTable(props);
@@ -89,7 +89,7 @@ describe('AssessmentInstanceTableTest', () => {
             {
                 statusChoiceGroup: null,
                 visualizationButton: null,
-                instance: {} as IGeneratedAssessmentInstance,
+                instance: {} as GeneratedAssessmentInstance,
             },
         ];
         const cols: IColumn[] = [
@@ -152,7 +152,7 @@ describe('AssessmentInstanceTableTest', () => {
             {
                 statusChoiceGroup: null,
                 visualizationButton: null,
-                instance: {} as IGeneratedAssessmentInstance,
+                instance: {} as GeneratedAssessmentInstance,
             },
         ];
         const cols: IColumn[] = [
@@ -199,7 +199,7 @@ describe('AssessmentInstanceTableTest', () => {
 
     it('renders default instance table header enabled', () => {
         const selectedTestStep = 'step';
-        const testStepResults = {} as IAssessmentResultType<{}>;
+        const testStepResults = {} as AssessmentResultType<{}>;
         testStepResults[selectedTestStep] = { status: ManualTestStatus.UNKNOWN };
         const props = getProps({}, null, null, null);
         const testObject = new AssessmentInstanceTable(props);
@@ -207,7 +207,7 @@ describe('AssessmentInstanceTableTest', () => {
             {
                 statusChoiceGroup: null,
                 visualizationButton: null,
-                instance: { testStepResults } as IGeneratedAssessmentInstance,
+                instance: { testStepResults } as GeneratedAssessmentInstance,
             },
         ];
 
@@ -218,7 +218,7 @@ describe('AssessmentInstanceTableTest', () => {
 
     it('renders default instance table header disabled with instance', () => {
         const selectedTestStep = 'step';
-        const testStepResults = {} as IAssessmentResultType<{}>;
+        const testStepResults = {} as AssessmentResultType<{}>;
         testStepResults[selectedTestStep] = { status: ManualTestStatus.PASS };
         const props = getProps({}, null, null, null);
         const testObject = new AssessmentInstanceTable(props);
@@ -226,7 +226,7 @@ describe('AssessmentInstanceTableTest', () => {
             {
                 statusChoiceGroup: null,
                 visualizationButton: null,
-                instance: { testStepResults } as IGeneratedAssessmentInstance,
+                instance: { testStepResults } as GeneratedAssessmentInstance,
             },
         ];
 
@@ -261,7 +261,7 @@ describe('AssessmentInstanceTableTest', () => {
                 visualizationButton: null,
                 instance: {
                     target: ['target'],
-                } as IGeneratedAssessmentInstance,
+                } as GeneratedAssessmentInstance,
             },
         ];
 
@@ -291,7 +291,7 @@ describe('AssessmentInstanceTableTest', () => {
             {
                 statusChoiceGroup: null,
                 visualizationButton: null,
-                instance: {} as IGeneratedAssessmentInstance,
+                instance: {} as GeneratedAssessmentInstance,
             },
         ];
         const testObject = new TestableAssessmentInstanceTable(props);
@@ -302,7 +302,7 @@ describe('AssessmentInstanceTableTest', () => {
 
     it('if the function returns no failing instances message when there are instances but no failing ones', () => {
         const assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
-        const instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {
+        const instancesMap: DictionaryStringTo<GeneratedAssessmentInstance> = {
             selector1: {
                 target: ['target1'],
                 html: 'html',
@@ -350,7 +350,7 @@ describe('AssessmentInstanceTableTest', () => {
     });
 
     function getProps(
-        instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance>,
+        instancesMap: DictionaryStringTo<GeneratedAssessmentInstance>,
         assessmentInstanceTableHandler: AssessmentInstanceTableHandler,
         defaultMessageGeneratorMock: AssessmentDefaultMessageGenerator,
         defaultMessageMock: IGetMessageGenerator,

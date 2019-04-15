@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
-import { IManualTestStepResult } from '../../common/types/store-data/assessment-result-data';
+import { ManualTestStepResult } from '../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../types/common-types';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
@@ -16,7 +16,7 @@ export interface ManualTestStepViewProps {
     step: string;
     test: VisualizationType;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
-    manualTestStepResultMap: DictionaryStringTo<IManualTestStepResult>;
+    manualTestStepResultMap: DictionaryStringTo<ManualTestStepResult>;
     assessmentsProvider: AssessmentsProvider;
 }
 

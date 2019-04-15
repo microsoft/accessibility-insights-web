@@ -8,8 +8,8 @@ import { AssessmentsProvider } from '../../assessments/types/assessments-provide
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import {
     AssessmentNavState,
-    IGeneratedAssessmentInstance,
-    IUserCapturedInstance,
+    GeneratedAssessmentInstance,
+    UserCapturedInstance,
 } from '../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../types/common-types';
@@ -59,7 +59,7 @@ export class AssessmentInstanceTableHandler {
     }
 
     public createAssessmentInstanceTableItems(
-        instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance>,
+        instancesMap: DictionaryStringTo<GeneratedAssessmentInstance>,
         assessmentNavState: AssessmentNavState,
         hasVisualHelper: boolean,
     ): AssessmentInstanceRowData[] {
@@ -76,7 +76,7 @@ export class AssessmentInstanceTableHandler {
     }
 
     public getColumnConfigs(
-        instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance>,
+        instancesMap: DictionaryStringTo<GeneratedAssessmentInstance>,
         assessmentNavState: AssessmentNavState,
         hasVisualHelper: boolean,
     ): IColumn[] {
@@ -95,11 +95,11 @@ export class AssessmentInstanceTableHandler {
     }
 
     public createCapturedInstanceTableItems(
-        instances: IUserCapturedInstance[],
+        instances: UserCapturedInstance[],
         test: VisualizationType,
         step: string,
     ): CapturedInstanceRowData[] {
-        return instances.map((instance: IUserCapturedInstance) => {
+        return instances.map((instance: UserCapturedInstance) => {
             return {
                 instance: instance,
                 instanceActionButtons: this.renderInstanceActionButtons(instance, test, step),
@@ -112,7 +112,7 @@ export class AssessmentInstanceTableHandler {
     }
 
     @autobind
-    private renderChoiceGroup(instance: IGeneratedAssessmentInstance, key: string, assessmentNavState: AssessmentNavState): JSX.Element {
+    private renderChoiceGroup(instance: GeneratedAssessmentInstance, key: string, assessmentNavState: AssessmentNavState): JSX.Element {
         const step = assessmentNavState.selectedTestStep;
         const test = assessmentNavState.selectedTestType;
         return (
@@ -129,7 +129,7 @@ export class AssessmentInstanceTableHandler {
     }
 
     @autobind
-    private renderSelectedButton(instance: IGeneratedAssessmentInstance, key: string, assessmentNavState: AssessmentNavState): JSX.Element {
+    private renderSelectedButton(instance: GeneratedAssessmentInstance, key: string, assessmentNavState: AssessmentNavState): JSX.Element {
         const step = assessmentNavState.selectedTestStep;
         const test = assessmentNavState.selectedTestType;
 
@@ -146,7 +146,7 @@ export class AssessmentInstanceTableHandler {
     }
 
     @autobind
-    private renderInstanceActionButtons(instance: IUserCapturedInstance, test: VisualizationType, step: string): JSX.Element {
+    private renderInstanceActionButtons(instance: UserCapturedInstance, test: VisualizationType, step: string): JSX.Element {
         return (
             <AssessmentInstanceEditAndRemoveControl
                 test={test}
@@ -161,7 +161,7 @@ export class AssessmentInstanceTableHandler {
     }
 
     private getInstanceKeys(
-        instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance>,
+        instancesMap: DictionaryStringTo<GeneratedAssessmentInstance>,
         assessmentNavState: AssessmentNavState,
     ): string[] {
         return Object.keys(instancesMap).filter(key => {

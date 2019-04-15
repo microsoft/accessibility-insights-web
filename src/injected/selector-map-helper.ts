@@ -5,7 +5,7 @@ import * as _ from 'lodash';
 import { AssessmentsProvider } from '../assessments/types/assessments-provider';
 import { BaseStore } from '../common/base-store';
 import { ManualTestStatus } from '../common/types/manual-test-status';
-import { AssessmentStoreData, IGeneratedAssessmentInstance } from '../common/types/store-data/assessment-result-data';
+import { AssessmentStoreData, GeneratedAssessmentInstance } from '../common/types/store-data/assessment-result-data';
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryStringTo } from '../types/common-types';
@@ -84,7 +84,7 @@ export class SelectorMapHelper {
     }
 
     private getFilteredSelectorMap<T, K>(
-        generatedAssessmentInstancesMap: DictionaryStringTo<IGeneratedAssessmentInstance<T, K>>,
+        generatedAssessmentInstancesMap: DictionaryStringTo<GeneratedAssessmentInstance<T, K>>,
         testStep: string,
     ): DictionaryStringTo<AssessmentVisualizationInstance> {
         if (generatedAssessmentInstancesMap == null) {

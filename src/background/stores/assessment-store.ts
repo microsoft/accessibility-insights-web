@@ -12,9 +12,9 @@ import { ManualTestStatus } from '../../common/types/manual-test-status';
 import {
     AssessmentData,
     AssessmentStoreData,
-    IGeneratedAssessmentInstance,
-    ITestStepResult,
-    IUserCapturedInstance,
+    GeneratedAssessmentInstance,
+    TestStepResult,
+    UserCapturedInstance,
 } from '../../common/types/store-data/assessment-result-data';
 import { ScanBasePayload, ScanCompletedPayload, ScanUpdatePayload } from '../../injected/analyzers/analyzer';
 import { DictionaryStringTo } from '../../types/common-types';
@@ -173,8 +173,7 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         const config = this.assessmentsProvider.forType(payload.test).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
         forEach(Object.keys(assessmentData.generatedAssessmentInstancesMap), key => {
-            const testStepResult: ITestStepResult =
-                assessmentData.generatedAssessmentInstancesMap[key].testStepResults[payload.requirement];
+            const testStepResult: TestStepResult = assessmentData.generatedAssessmentInstancesMap[key].testStepResults[payload.requirement];
             if (testStepResult && testStepResult.status === ManualTestStatus.UNKNOWN && testStepResult.originalStatus == null) {
                 testStepResult.originalStatus = testStepResult.status;
                 testStepResult.status = ManualTestStatus.PASS;
@@ -219,7 +218,7 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
     private onAddFailureInstance(payload: AddFailureInstancePayload): void {
         const config = this.assessmentsProvider.forType(payload.test).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
-        const newInstance: IUserCapturedInstance = this.assessmentDataConverter.generateFailureInstance(payload.description);
+        const newInstance: UserCapturedInstance = this.assessmentDataConverter.generateFailureInstance(payload.description);
         assessmentData.manualTestStepResultMap[payload.requirement].instances.push(newInstance);
         this.updateManualTestStepStatus(assessmentData, payload.requirement, payload.test);
 
@@ -269,7 +268,7 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
     private onChangeAssessmentVisualizationState(payload: ChangeInstanceSelectionPayload): void {
         const config = this.assessmentsProvider.forType(payload.test).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
-        const stepResult: ITestStepResult =
+        const stepResult: TestStepResult =
             assessmentData.generatedAssessmentInstancesMap[payload.selector].testStepResults[payload.requirement];
         stepResult.isVisualizationEnabled = payload.isVisualizationEnabled;
 
@@ -285,7 +284,7 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
             if (assessmentData.generatedAssessmentInstancesMap == null) {
                 return;
             }
-            const testStepResult: ITestStepResult =
+            const testStepResult: TestStepResult =
                 assessmentData.generatedAssessmentInstancesMap[updateInstanceVisibilityPayload.selector].testStepResults[step];
             testStepResult.isVisible = updateInstanceVisibilityPayload.isVisible;
         });
@@ -297,7 +296,7 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
     private onUndoInstanceStatusChange(payload: AssessmentActionInstancePayload): void {
         const config = this.assessmentsProvider.forType(payload.test).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
-        const stepResult: ITestStepResult =
+        const stepResult: TestStepResult =
             assessmentData.generatedAssessmentInstancesMap[payload.selector].testStepResults[payload.requirement];
         stepResult.status = stepResult.originalStatus;
         stepResult.originalStatus = null;
@@ -309,7 +308,7 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
     private onChangeInstanceStatus(payload: ChangeInstanceStatusPayload): void {
         const config = this.assessmentsProvider.forType(payload.test).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
-        const stepResult: ITestStepResult =
+        const stepResult: TestStepResult =
             assessmentData.generatedAssessmentInstancesMap[payload.selector].testStepResults[payload.requirement];
         if (stepResult.originalStatus == null) {
             stepResult.originalStatus = stepResult.status;
@@ -392,11 +391,11 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         }
     }
 
-    private getGroupResult(instanceMap: DictionaryStringTo<IGeneratedAssessmentInstance>, testStepName: string): ManualTestStatus {
+    private getGroupResult(instanceMap: DictionaryStringTo<GeneratedAssessmentInstance>, testStepName: string): ManualTestStatus {
         let groupResult = ManualTestStatus.PASS;
         for (let keyIndex = 0; keyIndex < Object.keys(instanceMap).length; keyIndex++) {
             const key = Object.keys(instanceMap)[keyIndex];
-            const testStepResult: ITestStepResult = instanceMap[key].testStepResults[testStepName];
+            const testStepResult: TestStepResult = instanceMap[key].testStepResults[testStepName];
 
             if (!testStepResult) {
                 continue;

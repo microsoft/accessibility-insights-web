@@ -1,14 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { isEmpty, pick } from 'lodash';
-
 import { Assessment } from '../assessments/types/iassessment';
 import { ManualTestStatus, ManualTestStatusData, TestStepData } from '../common/types/manual-test-status';
 import {
     AssessmentData,
-    IGeneratedAssessmentInstance,
-    IManualTestStepResult,
+    GeneratedAssessmentInstance,
     InstanceIdToInstanceDataMap,
+    ManualTestStepResult,
     RequirementIdToResultMap,
 } from '../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../types/common-types';
@@ -77,7 +76,7 @@ function getDefaultRequirementStatus(): TestStepData {
     return { stepFinalResult: ManualTestStatus.UNKNOWN, isStepScanned: false };
 }
 
-function getDefaultManualRequirementResult(step: string): IManualTestStepResult {
+function getDefaultManualRequirementResult(step: string): ManualTestStepResult {
     return { status: ManualTestStatus.UNKNOWN, id: step, instances: [] };
 }
 
@@ -86,7 +85,7 @@ function constructRequirementStatus(requirements: string[], persistedMap: Manual
 }
 
 function constructManualRequirementResultMap(requirements: string[], persistedMap: RequirementIdToResultMap): RequirementIdToResultMap {
-    return constructMapFromRequirementTo<IManualTestStepResult>(requirements, persistedMap, getDefaultManualRequirementResult);
+    return constructMapFromRequirementTo<ManualTestStepResult>(requirements, persistedMap, getDefaultManualRequirementResult);
 }
 
 function constructMapFromRequirementTo<T>(
@@ -111,7 +110,7 @@ function constructGeneratedAssessmentInstancesMap(
         return null;
     }
     Object.keys(persistedMap).forEach(instanceId => {
-        const instanceData: IGeneratedAssessmentInstance = persistedMap[instanceId];
+        const instanceData: GeneratedAssessmentInstance = persistedMap[instanceId];
         const filteredResultMap = pick(instanceData.testStepResults, requirements);
         if (!isEmpty(filteredResultMap)) {
             instanceData.testStepResults = filteredResultMap;

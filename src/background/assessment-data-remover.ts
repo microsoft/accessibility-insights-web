@@ -2,11 +2,11 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 
-import { IGeneratedAssessmentInstance } from '../common/types/store-data/assessment-result-data';
+import { GeneratedAssessmentInstance } from '../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../types/common-types';
 
 export class AssessmentDataRemover {
-    public deleteDataFromGeneratedMapWithStepKey(instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance>, step: string): void {
+    public deleteDataFromGeneratedMapWithStepKey(instancesMap: DictionaryStringTo<GeneratedAssessmentInstance>, step: string): void {
         Object.keys(instancesMap).forEach(key => {
             const generatedAssessmentInstance = instancesMap[key];
             delete generatedAssessmentInstance.testStepResults[step];

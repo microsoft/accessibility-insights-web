@@ -2,11 +2,7 @@
 // Licensed under the MIT License.
 import { VisualHelperToggleConfig } from '../../../assessments/types/requirement';
 import { ManualTestStatus } from '../../../common/types/manual-test-status';
-import {
-    IAssessmentResultType,
-    IGeneratedAssessmentInstance,
-    ITestStepResult,
-} from '../../../common/types/store-data/assessment-result-data';
+import { AssessmentResultType, GeneratedAssessmentInstance, TestStepResult } from '../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../DetailsView/actions/details-view-action-message-creator';
 import { DictionaryStringTo } from '../../../types/common-types';
@@ -28,8 +24,8 @@ export class VisualHelperToggleConfigBuilder extends BaseDataBuilder<VisualHelpe
                     html: 'html',
                     propertyBag: {},
                     target: ['element2'],
-                } as IGeneratedAssessmentInstance,
-            } as DictionaryStringTo<IGeneratedAssessmentInstance>,
+                } as GeneratedAssessmentInstance,
+            } as DictionaryStringTo<GeneratedAssessmentInstance>,
             isStepEnabled: true,
             isStepScanned: false,
         };
@@ -54,18 +50,18 @@ export class VisualHelperToggleConfigBuilder extends BaseDataBuilder<VisualHelpe
                         id: 'id1',
                         status: ManualTestStatus.UNKNOWN,
                         isVisualizationEnabled: isVisualizationEnabled,
-                    } as ITestStepResult,
-                } as IAssessmentResultType<any>,
-            } as IGeneratedAssessmentInstance,
+                    } as TestStepResult,
+                } as AssessmentResultType<any>,
+            } as GeneratedAssessmentInstance,
             'selector-2': {
                 testStepResults: {
                     [this.stepKey]: {
                         id: 'id1',
                         status: ManualTestStatus.FAIL,
                         isVisualizationEnabled: isVisualizationEnabled,
-                    } as ITestStepResult,
-                } as IAssessmentResultType<any>,
-            } as IGeneratedAssessmentInstance,
+                    } as TestStepResult,
+                } as AssessmentResultType<any>,
+            } as GeneratedAssessmentInstance,
         };
         return this;
     }
@@ -76,9 +72,9 @@ export class VisualHelperToggleConfigBuilder extends BaseDataBuilder<VisualHelpe
                     [this.otherKey]: {
                         id: 'id2',
                         status: ManualTestStatus.UNKNOWN,
-                    } as ITestStepResult,
-                } as IAssessmentResultType<any>,
-            } as IGeneratedAssessmentInstance,
+                    } as TestStepResult,
+                } as AssessmentResultType<any>,
+            } as GeneratedAssessmentInstance,
         };
         return this;
     }
@@ -89,9 +85,9 @@ export class VisualHelperToggleConfigBuilder extends BaseDataBuilder<VisualHelpe
                     [this.stepKey]: {
                         id: 'id2',
                         status: ManualTestStatus.PASS,
-                    } as ITestStepResult,
-                } as IAssessmentResultType<any>,
-            } as IGeneratedAssessmentInstance,
+                    } as TestStepResult,
+                } as AssessmentResultType<any>,
+            } as GeneratedAssessmentInstance,
             'selector-2': null,
         };
         return this;
