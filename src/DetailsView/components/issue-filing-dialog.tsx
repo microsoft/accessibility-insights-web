@@ -22,7 +22,7 @@ export interface IssueFilingDialogProps {
     environmentInfo: EnvironmentInfo;
 }
 
-export type IssueFilingDialogDeps = {} & BugFilingSettingsContainerDeps;
+export type IssueFilingDialogDeps = BugFilingSettingsContainerDeps;
 
 const titleLabel = 'Specify issue filing location';
 
