@@ -28,6 +28,11 @@ export type IssueFilingDialogDeps = {
 const titleLabel = 'Specify issue filing location';
 
 export const IssueFilingDialog = NamedSFC<IssueFilingDialogProps>('IssueFilingDialog', props => {
+    const onPrimaryButtonClick = (ev: React.SyntheticEvent<Element, Event>) => {
+        props.bugFileTelemetryCallback(ev);
+        props.onClose(ev);
+    };
+
     const {
         selectedBugFilingService,
         selectedBugFilingServiceData,
@@ -69,7 +74,7 @@ export const IssueFilingDialog = NamedSFC<IssueFilingDialogProps>('IssueFilingDi
                 <ActionAndCancelButtonsComponent
                     isHidden={false}
                     primaryButtonDisabled={isSettingsValid === false}
-                    primaryButtonOnClick={bugFileTelemetryCallback}
+                    primaryButtonOnClick={onPrimaryButtonClick}
                     cancelButtonOnClick={onClose}
                     primaryButtonHref={href}
                     primaryButtonText={'File issue'}
