@@ -6,8 +6,8 @@ import { ReactSFCWithDisplayName } from './../../common/react/named-sfc';
 import { CreateIssueDetailsTextData } from './../../common/types/create-issue-details-text-data';
 import { SettingsFormProps } from './settings-form-props';
 
-export type IssueFilingUrlProvider<TSettings> = (
-    data: TSettings,
+export type IssueFilingUrlProvider<Settings> = (
+    data: Settings,
     bugData: CreateIssueDetailsTextData,
     environmentInfo: EnvironmentInfo,
 ) => string;
