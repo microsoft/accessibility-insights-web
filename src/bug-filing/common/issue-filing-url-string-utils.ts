@@ -3,6 +3,7 @@
 import { EnvironmentInfo } from '../../common/environment-info-provider';
 import { title } from '../../content/strings/application';
 import { CreateIssueDetailsTextData } from './../../common/types/create-issue-details-text-data';
+import { endsWith } from 'lodash';
 
 export class IssueFilingUrlStringUtils {
     public static footer(environmentInfo: EnvironmentInfo): string {
@@ -35,5 +36,13 @@ export class IssueFilingUrlStringUtils {
 
     public static standardizeTags(data: CreateIssueDetailsTextData): string[] {
         return data.ruleResult.guidanceLinks.map(tag => tag.text.toUpperCase());
+    }
+
+    public static appendSuffixToUrl(url: string, suffix: string): string {
+        if (endsWith(url, suffix) || endsWith(url, `${suffix}/`)) {
+            return url;
+        }
+
+        return `${url}/${suffix}/`;
     }
 }

@@ -26,6 +26,12 @@ describe('BugFilingUrlStringUtilsTest', () => {
         expect(IssueFilingUrlStringUtils.markdownEscapeBlock('hello\nworld')).toEqual('    hello\n    world');
     });
 
+    test('appendSuffixToUrl', () => {
+        expect(IssueFilingUrlStringUtils.appendSuffixToUrl('repo', 'hello')).toEqual('repo/hello/');
+        expect(IssueFilingUrlStringUtils.appendSuffixToUrl('repo/hello', 'hello')).toEqual('repo/hello');
+        expect(IssueFilingUrlStringUtils.appendSuffixToUrl('repo/hello/', 'hello')).toEqual('repo/hello/');
+    });
+
     test('getSelectorLastPart', () => {
         expect(IssueFilingUrlStringUtils.getSelectorLastPart('hello world')).toEqual('hello world');
         expect(IssueFilingUrlStringUtils.getSelectorLastPart('hello > world')).toEqual('world');
