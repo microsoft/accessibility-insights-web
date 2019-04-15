@@ -18,13 +18,13 @@ export interface AzureDevOpsIssueDetailLocationDropdownOption extends IDropdownO
 
 export type AzureDevOpsBugFilingSettings = {
     projectURL: string;
-    issueDetailsLocationField: AzureDevOpsIssueDetailLocation;
+    issueDetailsField: AzureDevOpsIssueDetailLocation;
 };
 
-function buildStoreData(projectURL: string, issueDetailsLocationField: AzureDevOpsIssueDetailLocation): AzureDevOpsBugFilingSettings {
+function buildStoreData(projectURL: string, issueDetailsField: AzureDevOpsIssueDetailLocation): AzureDevOpsBugFilingSettings {
     return {
         projectURL,
-        issueDetailsLocationField,
+        issueDetailsField,
     };
 }
 
@@ -33,7 +33,7 @@ function getSettingsFromStoreData(bugServicePropertiesMap: BugServicePropertiesM
 }
 
 function isSettingsValid(data: AzureDevOpsBugFilingSettings): boolean {
-    return !isEmpty(data) && isStringValid(data.projectURL) && isStringValid(data.issueDetailsLocationField);
+    return !isEmpty(data) && isStringValid(data.projectURL) && isStringValid(data.issueDetailsField);
 }
 
 function isStringValid(stringToCheck: string): boolean {

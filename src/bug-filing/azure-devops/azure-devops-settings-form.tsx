@@ -30,7 +30,7 @@ export const AzureDevOpsSettingsForm = NamedSFC<SettingsFormProps<AzureDevOpsBug
     };
 
     const onIssueDetailLocationChange = (event: React.FormEvent<HTMLElement>, newValue?: IDropdownOption) => {
-        const propertyName: keyof AzureDevOpsBugFilingSettings = 'issueDetailsLocationField';
+        const propertyName: keyof AzureDevOpsBugFilingSettings = 'issueDetailsField';
         props.deps.userConfigMessageCreator.setBugServiceProperty(
             AzureDevOpsBugFilingService.key,
             propertyName,
@@ -51,7 +51,7 @@ export const AzureDevOpsSettingsForm = NamedSFC<SettingsFormProps<AzureDevOpsBug
                 options={options}
                 label="File issue details in:"
                 onChange={onIssueDetailLocationChange}
-                selectedKey={props.settings ? props.settings.issueDetailsLocationField : null}
+                selectedKey={props.settings ? props.settings.issueDetailsField : null}
             />
         </>
     );
