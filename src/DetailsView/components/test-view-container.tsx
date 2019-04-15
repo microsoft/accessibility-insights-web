@@ -6,6 +6,7 @@ import { NamedSFC } from '../../common/react/named-sfc';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
+import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { VisualizationScanResultData } from '../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
@@ -16,7 +17,6 @@ import { ReportGenerator } from '../reports/report-generator';
 import { IssuesTableHandler } from './issues-table-handler';
 import { OverviewContainerDeps } from './overview-content/overview-content-container';
 import { TestViewDeps } from './test-view';
-import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 
 export type TestViewContainerDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;

@@ -6,6 +6,7 @@ import { VisualizationConfiguration, VisualizationConfigurationFactory } from '.
 import { NamedSFC } from '../../common/react/named-sfc';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
+import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { VisualizationScanResultData } from '../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
@@ -14,7 +15,6 @@ import { ReportGenerator } from '../reports/report-generator';
 import { IssuesTable, IssuesTableDeps } from './issues-table';
 import { IssuesTableHandler } from './issues-table-handler';
 import { TargetPageChangedView } from './target-page-changed-view';
-import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 
 export type AdhocIssuesTestViewDeps = IssuesTableDeps;
 

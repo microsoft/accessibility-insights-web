@@ -81,8 +81,8 @@ describe('createGitHubBugFilingUrlTest', () => {
         });
     });
 
-    test('createGitHubBugFilingUrl: ends with /issues/ ', () => {
-        settingsData.repository = 'repo/issues/';
+    test('createGitHubBugFilingUrl: ends with /issues ', () => {
+        settingsData.repository = 'repo/issues';
         standardizeTagsMock.setup(s => s(It.isAny())).returns(() => []);
         GlobalScope.using(
             footerMock,

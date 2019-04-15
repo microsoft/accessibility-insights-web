@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, Mock, MockBehavior, Times, It } from 'typemoq';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { BugFilingService } from '../../../../../bug-filing/types/bug-filing-service';
 import { EnvironmentInfo, EnvironmentInfoProvider } from '../../../../../common/environment-info-provider';
@@ -70,7 +70,7 @@ describe('IssueFilingDialog', () => {
 
     it.each([true, false])('isSettingsValid: %s', isSettingsValid => {
         isSettingsValidMock
-            .setup(isSettingsValid => isSettingsValid(selectedServiceData))
+            .setup(isValid => isValid(selectedServiceData))
             .returns(() => isSettingsValid)
             .verifiable();
 

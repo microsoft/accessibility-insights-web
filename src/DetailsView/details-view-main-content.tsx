@@ -9,6 +9,7 @@ import { AssessmentStoreData } from '../common/types/store-data/assessment-resul
 import { DetailsViewData } from '../common/types/store-data/details-view-data';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
+import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
@@ -21,7 +22,6 @@ import { TabInfo } from './components/tab-info';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { ReportGenerator } from './reports/report-generator';
-import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 
 export type DetailsViewMainContentDeps = DetailsViewContentDeps & DetailsViewLeftNavDeps & DetailsViewCommandBarDeps;
 
