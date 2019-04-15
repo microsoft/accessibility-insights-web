@@ -4,17 +4,17 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
+import { Dropdown } from 'office-ui-fabric-react/lib/Dropdown';
+import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import {
-    AzureBoardsBugFilingSettings,
     AzureBoardsBugFilingService,
+    AzureBoardsBugFilingSettings,
 } from '../../../../../bug-filing/azure-boards/azure-boards-bug-filing-service';
 import { AzureBoardsSettingsForm } from '../../../../../bug-filing/azure-boards/azure-boards-settings-form';
 import { SettingsFormProps } from '../../../../../bug-filing/types/settings-form-props';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { SettingsDeps } from '../../../../../DetailsView/components/settings-panel/settings/settings-props';
 import { EventStubFactory } from '../../../common/event-stub-factory';
-import { Dropdown } from 'office-ui-fabric-react/lib/Dropdown';
-import { TextField } from 'office-ui-fabric-react/lib/TextField';
 
 describe('AzureBoardsSettingsForm', () => {
     let props: SettingsFormProps<AzureBoardsBugFilingSettings>;
