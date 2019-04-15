@@ -3,6 +3,8 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import { FlaggedComponent } from '../../../../../common/components/flagged-component';
+import { FeatureFlags } from '../../../../../common/feature-flags';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import {
@@ -31,6 +33,13 @@ describe('IssuesDetailsPaneTest', () => {
         const props = generateProps(1, 2);
         const wrapper = shallow(<IssuesDetailsPane {...props} />);
         expect(wrapper.debug()).toMatchSnapshot();
+    });
+
+    test('render with single selection, issue filing button', () => {
+        const props = generateProps(1, 2);
+        const wrapper = shallow(<IssuesDetailsPane {...props} />);
+        const flaggedButton = wrapper.find(FlaggedComponent);
+        expect(flaggedButton.getElement()).toMatchSnapshot();
     });
 
     function testRenderNotSingle(count: number): void {
