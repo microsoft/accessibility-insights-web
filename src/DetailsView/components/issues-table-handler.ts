@@ -2,8 +2,6 @@
 // Licensed under the MIT License.
 import { IObjectWithKey } from 'office-ui-fabric-react/lib/DetailsList';
 import { IGroup } from 'office-ui-fabric-react/lib/GroupedList';
-import * as React from 'react';
-
 import { RuleResult } from '../../scanner/iruleresults';
 import { HyperlinkDefinition } from '../../views/content/content-page';
 

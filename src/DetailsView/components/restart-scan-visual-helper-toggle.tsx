@@ -2,15 +2,15 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 
-import { IGeneratedAssessmentInstance } from '../../common/types/store-data/assessment-result-data';
+import { GeneratedAssessmentInstance } from '../../common/types/store-data/assessment-result-data';
 import { BaseVisualHelperToggle } from './base-visual-helper-toggle';
 
 export class RestartScanVisualHelperToggle extends BaseVisualHelperToggle {
-    protected isDisabled(instances: IGeneratedAssessmentInstance<{}, {}>[]): boolean {
+    protected isDisabled(instances: GeneratedAssessmentInstance<{}, {}>[]): boolean {
         return false;
     }
 
-    protected isChecked(instances: IGeneratedAssessmentInstance<{}, {}>[]): boolean {
+    protected isChecked(instances: GeneratedAssessmentInstance<{}, {}>[]): boolean {
         return this.props.isStepEnabled;
     }
 

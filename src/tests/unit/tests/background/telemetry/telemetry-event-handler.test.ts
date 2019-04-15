@@ -2,23 +2,18 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { BaseActionPayload } from '../../../../../background/actions/action-payloads';
-import { BrowserAdapter, ChromeAdapter } from '../../../../../background/browser-adapter';
 import { TelemetryClient } from '../../../../../background/telemetry/telemetry-client';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
 import { TelemetryEventSource, TriggeredBy } from '../../../../../common/telemetry-events';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 
 describe('TelemetryEventHandlerTest', () => {
-    let browserAdapterMock: IMock<BrowserAdapter>;
     let telemetryClientStrictMock: IMock<TelemetryClient>;
     let testEventName;
     let testTelemetryPayload;
-    let testTabId;
 
     beforeEach(() => {
-        testTabId = 1;
         testEventName = 'test event';
         testTelemetryPayload = {
             telemetry: {
@@ -26,8 +21,6 @@ describe('TelemetryEventHandlerTest', () => {
                 triggeredBy: 'triggered by test',
             },
         };
-
-        browserAdapterMock = Mock.ofType(ChromeAdapter);
 
         telemetryClientStrictMock = Mock.ofType<TelemetryClient>(null, MockBehavior.Strict);
     });
@@ -37,21 +30,8 @@ describe('TelemetryEventHandlerTest', () => {
             telemetry: null,
         };
 
-        browserAdapterMock
-            .setup(cam =>
-                cam.getTab(
-                    It.isValue(testTabId),
-                    It.is((param: () => void) => {
-                        return param instanceof Function;
-                    }),
-                ),
-            )
-            .verifiable(Times.never());
-
         const testObject = createAndEnableTelemetryEventHandler();
         testObject.publishTelemetry(testEventName, payload);
-
-        browserAdapterMock.verifyAll();
     });
 
     test('test for when tab is null', () => {
@@ -59,7 +39,6 @@ describe('TelemetryEventHandlerTest', () => {
 
         const testObject = createAndEnableTelemetryEventHandler();
         testObject.publishTelemetry(testEventName, testTelemetryPayload);
-        browserAdapterMock.verifyAll();
         telemetryClientStrictMock.verifyAll();
     });
 
@@ -67,7 +46,7 @@ describe('TelemetryEventHandlerTest', () => {
         const testObject = createAndEnableTelemetryEventHandler();
         expect(testObject).toBeTruthy();
 
-        verifyMocks();
+        telemetryClientStrictMock.verifyAll();
     });
 
     test('test for disableTelemetry in telemetryClient', () => {
@@ -76,7 +55,7 @@ describe('TelemetryEventHandlerTest', () => {
         telemetryClientStrictMock.setup(t => t.disableTelemetry()).verifiable(Times.once());
         testObject.disableTelemetry();
 
-        verifyMocks();
+        telemetryClientStrictMock.verifyAll();
     });
 
     test('test for publishTelemetry when tab is not null', () => {
@@ -88,7 +67,7 @@ describe('TelemetryEventHandlerTest', () => {
 
         testObject.publishTelemetry(testEventName, testTelemetryPayload);
 
-        verifyMocks();
+        telemetryClientStrictMock.verifyAll();
     });
 
     test('test for publishTelemetry with random object as custom property', () => {
@@ -120,7 +99,7 @@ describe('TelemetryEventHandlerTest', () => {
 
         testObject.publishTelemetry(testEventName, customTelemetryPayload);
 
-        verifyMocks();
+        telemetryClientStrictMock.verifyAll();
     });
 
     function createExpectedAppInsightsTelemetry(customFields?: DictionaryStringTo<any>): DictionaryStringTo<string> {
@@ -138,13 +117,8 @@ describe('TelemetryEventHandlerTest', () => {
         return telemetry;
     }
 
-    function verifyMocks(): void {
-        browserAdapterMock.verifyAll();
-        telemetryClientStrictMock.verifyAll();
-    }
-
     function createAndEnableTelemetryEventHandler(): TelemetryEventHandler {
-        const telemetryEventHandler = new TelemetryEventHandler(browserAdapterMock.object, telemetryClientStrictMock.object);
+        const telemetryEventHandler = new TelemetryEventHandler(telemetryClientStrictMock.object);
         telemetryClientStrictMock.setup(ai => ai.enableTelemetry()).verifiable(Times.once());
 
         telemetryEventHandler.enableTelemetry();

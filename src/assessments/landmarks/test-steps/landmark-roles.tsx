@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { ILandmarksAssessmentProperties } from '../../../common/types/store-data/assessment-result-data';
+import { LandmarksAssessmentProperties } from '../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { TestAutomaticallyPassedNotice } from '../../../content/test/common/test-automatically-passed-notice';
@@ -83,7 +83,7 @@ export const LandmarkRoles: Requirement = {
         },
     ],
     reportInstanceFields: [
-        ReportInstanceField.fromPropertyBagFunction<ILandmarksAssessmentProperties>(
+        ReportInstanceField.fromPropertyBagFunction<LandmarksAssessmentProperties>(
             'Role',
             'role',
             pb => pb.role + (pb.label ? ': ' + pb.label : ''),

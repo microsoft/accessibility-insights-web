@@ -23,7 +23,6 @@ import {
 } from '../../../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { WindowUtils } from '../../../../../common/window-utils';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { DetailsViewRightContentPanelType } from '../../../../../DetailsView/components/left-nav/details-view-right-content-panel-type';
 import { EventStubFactory } from '../../../common/event-stub-factory';
@@ -31,27 +30,19 @@ import { EventStubFactory } from '../../../common/event-stub-factory';
 describe('DetailsViewActionMessageCreatorTest', () => {
     const eventStubFactory = new EventStubFactory();
     const testSource: TelemetryEventSource = -1 as TelemetryEventSource;
-    let windowUtilsMock: IMock<WindowUtils>;
     let postMessageMock: IMock<(message: Message) => void>;
     let telemetryFactoryMock: IMock<TelemetryDataFactory>;
     let testSubject: DetailsViewActionMessageCreator;
     let tabId: number;
 
     beforeEach(() => {
-        windowUtilsMock = Mock.ofType(WindowUtils);
         postMessageMock = Mock.ofInstance(message => {});
         telemetryFactoryMock = Mock.ofType(TelemetryDataFactory);
         tabId = 1;
-        testSubject = new DetailsViewActionMessageCreator(
-            postMessageMock.object,
-            tabId,
-            telemetryFactoryMock.object,
-            windowUtilsMock.object,
-        );
+        testSubject = new DetailsViewActionMessageCreator(postMessageMock.object, tabId, telemetryFactoryMock.object);
     });
 
     afterEach(() => {
-        windowUtilsMock.verifyAll();
         postMessageMock.verifyAll();
         telemetryFactoryMock.verifyAll();
     });

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { IHeadingsAssessmentProperties } from '../../../common/types/store-data/assessment-result-data';
+import { HeadingsAssessmentProperties } from '../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import { productName } from '../../../content/strings/application';
@@ -60,7 +60,7 @@ export const HeadingLevel: Requirement = {
             onRender: headingsAssessmentInstanceDetailsColumnRenderer,
         },
     ],
-    reportInstanceFields: [ReportInstanceField.fromPropertyBagField<IHeadingsAssessmentProperties>('Heading text', 'headingText')],
+    reportInstanceFields: [ReportInstanceField.fromPropertyBagField<HeadingsAssessmentProperties>('Heading text', 'headingText')],
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({

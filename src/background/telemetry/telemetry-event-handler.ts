@@ -1,15 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as _ from 'lodash';
-
 import { TelemetryEventSource } from '../../common/telemetry-events';
 import { DictionaryStringTo } from '../../types/common-types';
 import { BaseActionPayload } from '../actions/action-payloads';
-import { BrowserAdapter } from '../browser-adapter';
 import { TelemetryClient } from './telemetry-client';
 
 export class TelemetryEventHandler {
-    constructor(private readonly browserAdapter: BrowserAdapter, private readonly telemetryClient: TelemetryClient) {}
+    constructor(private readonly telemetryClient: TelemetryClient) {}
 
     public enableTelemetry(): void {
         this.telemetryClient.enableTelemetry();

@@ -103,6 +103,7 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
             pageUrl: this.props.pageUrl,
             ruleResult: result,
         };
+
         return (
             <div>
                 <h2>Failure details</h2>

@@ -8,8 +8,8 @@ import { ManualTestStatus, ManualTestStatusData } from '../../../../common/types
 import {
     AssessmentData,
     AssessmentStoreData,
-    IGeneratedAssessmentInstance,
-    IManualTestStepResult,
+    GeneratedAssessmentInstance,
+    ManualTestStepResult,
     PersistedTabInfo,
 } from '../../../../common/types/store-data/assessment-result-data';
 import { excludePassingInstancesFromAssessmentReport } from '../../../../DetailsView/extensions/exclude-passing-instances-from-assessment-report';
@@ -33,7 +33,7 @@ export class AssessmentReportBuilderTestHelper {
 
     public static readonly reportDate = new Date(Date.UTC(2000, 0, 1, 0, 0));
 
-    private static getAssistedInstances(): DictionaryStringTo<IGeneratedAssessmentInstance> {
+    private static getAssistedInstances(): DictionaryStringTo<GeneratedAssessmentInstance> {
         return {
             ['instance1']: {
                 id: 'id1',
@@ -73,10 +73,10 @@ export class AssessmentReportBuilderTestHelper {
                 },
                 target: ['target2'],
             },
-        } as DictionaryStringTo<IGeneratedAssessmentInstance>;
+        } as DictionaryStringTo<GeneratedAssessmentInstance>;
     }
 
-    private static getManualInstance1(): DictionaryStringTo<IManualTestStepResult> {
+    private static getManualInstance1(): DictionaryStringTo<ManualTestStepResult> {
         return {
             ['step1a']: {
                 status: ManualTestStatus.FAIL,
@@ -105,17 +105,17 @@ export class AssessmentReportBuilderTestHelper {
                     },
                 ],
             },
-        } as DictionaryStringTo<IManualTestStepResult>;
+        } as DictionaryStringTo<ManualTestStepResult>;
     }
 
-    private static getManualInstance2(): DictionaryStringTo<IManualTestStepResult> {
+    private static getManualInstance2(): DictionaryStringTo<ManualTestStepResult> {
         return {
             ['step1b']: {
                 status: ManualTestStatus.FAIL,
                 id: 'id1',
                 instances: [],
             },
-        } as DictionaryStringTo<IManualTestStepResult>;
+        } as DictionaryStringTo<ManualTestStepResult>;
     }
 
     private static getManualTestStatus1(): ManualTestStatusData {

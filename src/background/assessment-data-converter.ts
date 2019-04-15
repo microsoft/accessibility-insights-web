@@ -4,11 +4,11 @@ import * as _ from 'lodash';
 
 import { ManualTestStatus } from '../common/types/manual-test-status';
 import {
-    IAssessmentInstancesMap,
-    IGeneratedAssessmentInstance,
-    IManualTestStepResult,
-    ITestStepResult,
-    IUserCapturedInstance,
+    AssessmentInstancesMap,
+    GeneratedAssessmentInstance,
+    ManualTestStepResult,
+    TestStepResult,
+    UserCapturedInstance,
 } from '../common/types/store-data/assessment-result-data';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from '../injected/scanner-utils';
 import { PartialTabOrderPropertyBag } from '../injected/tab-order-property-bag';
@@ -24,13 +24,13 @@ export class AssessmentDataConverter {
     }
 
     public generateAssessmentInstancesMap(
-        previouslyGeneratedInstances: IAssessmentInstancesMap,
+        previouslyGeneratedInstances: AssessmentInstancesMap,
         selectorMap: DictionaryStringTo<HtmlElementAxeResults>,
         stepName: string,
         generateInstanceIdentifier: (instance: UniquelyIdentifiableInstances) => string,
         getInstanceStatus: (result: DecoratedAxeNodeResult) => ManualTestStatus,
-    ): IAssessmentInstancesMap {
-        let instancesMap: IAssessmentInstancesMap = {};
+    ): AssessmentInstancesMap {
+        let instancesMap: AssessmentInstancesMap = {};
 
         if (previouslyGeneratedInstances != null) {
             instancesMap = previouslyGeneratedInstances;
@@ -56,12 +56,12 @@ export class AssessmentDataConverter {
     }
 
     public generateAssessmentInstancesMapForEvents(
-        previouslyGeneratedInstances: IAssessmentInstancesMap,
+        previouslyGeneratedInstances: AssessmentInstancesMap,
         events: TabStopEvent[],
         stepName: string,
         generateInstanceIdentifier: (instance: UniquelyIdentifiableInstances) => string,
-    ): IAssessmentInstancesMap {
-        let instancesMap: IAssessmentInstancesMap = {};
+    ): AssessmentInstancesMap {
+        let instancesMap: AssessmentInstancesMap = {};
 
         if (previouslyGeneratedInstances != null) {
             instancesMap = previouslyGeneratedInstances;
@@ -76,7 +76,7 @@ export class AssessmentDataConverter {
         return instancesMap;
     }
 
-    public getNewManualTestStepResult(step: string): IManualTestStepResult {
+    public getNewManualTestStepResult(step: string): ManualTestStepResult {
         return {
             status: ManualTestStatus.UNKNOWN,
             id: step,
@@ -85,12 +85,12 @@ export class AssessmentDataConverter {
     }
 
     private getInitialAssessmentInstance(
-        currentInstance: IGeneratedAssessmentInstance,
+        currentInstance: GeneratedAssessmentInstance,
         elementAxeResult: HtmlElementAxeResults,
         testStep: string,
         ruleResult: DecoratedAxeNodeResult,
         getInstanceStatus: (result: DecoratedAxeNodeResult) => ManualTestStatus,
-    ): IGeneratedAssessmentInstance {
+    ): GeneratedAssessmentInstance {
         const target: string[] = elementAxeResult.target;
         let testStepResults = {};
         let html: string = null;
@@ -119,11 +119,11 @@ export class AssessmentDataConverter {
     }
 
     private getInitialAssessmentFromEvent(
-        matchingInstance: IGeneratedAssessmentInstance,
+        matchingInstance: GeneratedAssessmentInstance,
         event: TabStopEvent,
         testStep: string,
         selector: string,
-    ): IGeneratedAssessmentInstance {
+    ): GeneratedAssessmentInstance {
         let testStepResults = {};
         const target: string[] = event.target;
         const html: string = event.html;
@@ -145,7 +145,7 @@ export class AssessmentDataConverter {
         };
     }
 
-    private getGenericTestStepResultForEvent(): ITestStepResult {
+    private getGenericTestStepResultForEvent(): TestStepResult {
         return {
             id: this.generateUID(),
             status: ManualTestStatus.UNKNOWN,
@@ -160,7 +160,7 @@ export class AssessmentDataConverter {
         ruleResult: DecoratedAxeNodeResult,
         elementAxeResult: HtmlElementAxeResults,
         getInstanceStatus: (result: DecoratedAxeNodeResult) => ManualTestStatus,
-    ): ITestStepResult {
+    ): TestStepResult {
         return {
             id: ruleResult.id,
             status: getInstanceStatus(ruleResult),
@@ -183,7 +183,7 @@ export class AssessmentDataConverter {
         return null;
     }
 
-    public generateFailureInstance(description: string): IUserCapturedInstance {
+    public generateFailureInstance(description: string): UserCapturedInstance {
         return {
             id: this.generateUID(),
             description: description,

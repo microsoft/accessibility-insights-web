@@ -70,7 +70,6 @@ export class LeftNavLinkBuilder {
         const assessments = assessmentsProvider.all();
         let index = startingIndex;
 
-        const total = assessments.length;
         const testLinks = map(assessments, assessment => {
             const stepStatus = assessmentsData[assessment.key];
             const stats = outcomeStatsFromManualTestStatus(stepStatus);

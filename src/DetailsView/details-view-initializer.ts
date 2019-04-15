@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
-
 import { AssessmentDefaultMessageGenerator } from '../assessments/assessment-default-message-generator';
 import { Assessments } from '../assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from '../assessments/assessments-feature-flag-filter';
@@ -46,7 +45,6 @@ import { VisualizationStoreData } from '../common/types/store-data/visualization
 import { UrlParser } from '../common/url-parser';
 import { WindowUtils } from '../common/window-utils';
 import { contentPages } from '../content';
-import { DetailsDialogHandler } from '../injected/details-dialog-handler';
 import { ScannerUtils } from '../injected/scanner-utils';
 import { getVersion, scan } from '../scanner/exposed-apis';
 import { DictionaryStringTo } from '../types/common-types';
@@ -138,7 +136,6 @@ if (isNaN(tabId) === false) {
                     chromeAdapter.sendMessageToFrames,
                     tab.id,
                     telemetryFactory,
-                    new WindowUtils(),
                 );
                 const scopingActionMessageCreator = new ScopingActionMessageCreator(
                     chromeAdapter.sendMessageToFrames,
@@ -181,7 +178,6 @@ if (isNaN(tabId) === false) {
                 const clickHandlerFactory = new DetailsViewToggleClickHandlerFactory(visualizationActionCreator, telemetryFactory);
                 const visualizationConfigurationFactory = new VisualizationConfigurationFactory();
                 const assessmentDefaultMessageGenerator = new AssessmentDefaultMessageGenerator();
-                const dialogHandler = new DetailsDialogHandler(new HTMLElementUtils());
                 const assessmentInstanceTableHandler = new AssessmentInstanceTableHandler(
                     actionMessageCreator,
                     new AssessmentTableColumnConfigHandler(new MasterCheckBoxConfigProvider(actionMessageCreator), Assessments),
