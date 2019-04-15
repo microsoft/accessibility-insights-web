@@ -74,6 +74,13 @@ describe('GithubBugFilingServiceTest', () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
+    it('renderSettingsForm: no valid settings object', () => {
+        const Component = GitHubBugFilingService.settingsForm;
+        props.settings = null;
+        const wrapper = shallow(<Component {...props} />);
+        expect(wrapper.find(TextField).props().value).toEqual('');
+    });
+
     it('renderSettingsForm: onChange', () => {
         const Component = GitHubBugFilingService.settingsForm;
         const wrapper = shallow(<Component {...props} />);
