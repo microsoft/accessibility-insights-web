@@ -24,7 +24,7 @@ describe('AzureBoardsSettingsForm', () => {
 
     beforeEach(() => {
         userConfigMessageCreatorMock = Mock.ofType(UserConfigMessageCreator, MockBehavior.Strict);
-        settingsStub = { projectURL: 'some project URL', issueDetailsLocationField: 'description' };
+        settingsStub = { projectURL: 'some project URL', issueDetailsField: 'description' };
 
         deps = {
             userConfigMessageCreator: userConfigMessageCreatorMock.object,
@@ -69,7 +69,7 @@ describe('AzureBoardsSettingsForm', () => {
         it('handles issues details field change', () => {
             const newIssueDetailsFieldKey = 'a-different-field-key';
 
-            const issueDetailsFieldProperty: keyof AzureBoardsBugFilingSettings = 'issueDetailsLocationField';
+            const issueDetailsFieldProperty: keyof AzureBoardsBugFilingSettings = 'issueDetailsField';
             userConfigMessageCreatorMock
                 .setup(creator =>
                     creator.setBugServiceProperty(AzureBoardsBugFilingService.key, issueDetailsFieldProperty, newIssueDetailsFieldKey),

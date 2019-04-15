@@ -24,9 +24,9 @@ describe('AzureBoardsBugFilingServiceTest', () => {
         {} as AzureBoardsBugFilingSettings,
         undefined,
         { projectURL: '' } as AzureBoardsBugFilingSettings,
-        { projectURL: '', issueDetailsLocationField: '' as AzureBoardsIssueDetailField },
-        { projectURL: 'some project', issueDetailsLocationField: '' as AzureBoardsIssueDetailField },
-        { projectURL: '', issueDetailsLocationField: 'some issue details location' as AzureBoardsIssueDetailField },
+        { projectURL: '', issueDetailsField: '' as AzureBoardsIssueDetailField },
+        { projectURL: 'some project', issueDetailsField: '' as AzureBoardsIssueDetailField },
+        { projectURL: '', issueDetailsField: 'some issue details location' as AzureBoardsIssueDetailField },
     ];
 
     beforeEach(() => {
@@ -39,7 +39,7 @@ describe('AzureBoardsBugFilingServiceTest', () => {
             },
             settings: {
                 projectURL: 'some project',
-                issueDetailsLocationField: 'some location' as AzureBoardsIssueDetailField,
+                issueDetailsField: 'some location' as AzureBoardsIssueDetailField,
             },
         };
     });
@@ -53,7 +53,7 @@ describe('AzureBoardsBugFilingServiceTest', () => {
     it('buildStoreData', () => {
         const expectedStoreData: AzureBoardsBugFilingSettings = {
             projectURL: projectStub,
-            issueDetailsLocationField: issueDetailsLocationStub,
+            issueDetailsField: issueDetailsLocationStub,
         };
         expect(AzureBoardsBugFilingService.buildStoreData(projectStub, issueDetailsLocationStub)).toEqual(expectedStoreData);
     });
@@ -61,7 +61,7 @@ describe('AzureBoardsBugFilingServiceTest', () => {
     it('getSettingsFromStoreData', () => {
         const expectedStoreData: AzureBoardsBugFilingSettings = {
             projectURL: projectStub,
-            issueDetailsLocationField: issueDetailsLocationStub,
+            issueDetailsField: issueDetailsLocationStub,
         };
         const givenData: BugServicePropertiesMap = {
             'some other service': {},
@@ -79,7 +79,7 @@ describe('AzureBoardsBugFilingServiceTest', () => {
     it('isSettingsValid - valid case', () => {
         const validSettings: AzureBoardsBugFilingSettings = {
             projectURL: 'some project',
-            issueDetailsLocationField: 'some issue details location' as AzureBoardsIssueDetailField,
+            issueDetailsField: 'some issue details location' as AzureBoardsIssueDetailField,
         };
 
         expect(AzureBoardsBugFilingService.isSettingsValid(validSettings)).toBe(true);
