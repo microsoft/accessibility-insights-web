@@ -1,11 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`GithubBugFilingServiceTest renderSettingsForm 1`] = `
-<StyledTextFieldBase
-  className="issue-setting"
-  label="Enter desired GitHub repo link:"
-  onChange={[Function]}
-  placeholder="https://github.com/owner/repo"
-  value="repo"
-/>
+<React.Fragment>
+  <StyledTextFieldBase
+    className="issue-setting"
+    label="Enter the desired GitHub repo link to file issue:"
+    onChange={[Function]}
+    placeholder="https://github.com/owner/repo"
+    value="repo"
+  />
+</React.Fragment>
 `;
