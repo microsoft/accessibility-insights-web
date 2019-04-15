@@ -17,6 +17,7 @@ describe('createGitHubBugFilingUrlTest', () => {
     let markdownEscapeBlockMock: IGlobalMock<(input: string) => string>;
     let getSelectorLastPartMock: IGlobalMock<(selector: string) => string>;
     let standardizeTagsMock: IGlobalMock<(data: CreateIssueDetailsTextData) => string[]>;
+    let appendSuffixToUrlMock: IGlobalMock<(url: string, suffix: string) => string>;
 
     beforeEach(() => {
         environmentInfo = {
@@ -66,23 +67,15 @@ describe('createGitHubBugFilingUrlTest', () => {
             'standardizeTags',
             IssueFilingUrlStringUtils,
         );
+        appendSuffixToUrlMock = GlobalMock.ofInstance(
+            IssueFilingUrlStringUtils.appendSuffixToUrl,
+            'appendSuffixToUrl',
+            IssueFilingUrlStringUtils,
+        );
+        appendSuffixToUrlMock.setup(g => g(It.isAny(), It.isAny())).returns(url => url);
     });
 
     test('createGitHubBugFilingUrl: no tag', () => {
-        standardizeTagsMock.setup(s => s(It.isAny())).returns(() => []);
-        GlobalScope.using(
-            footerMock,
-            collapseConsecutiveSpacesMock,
-            markdownEscapeBlockMock,
-            getSelectorLastPartMock,
-            standardizeTagsMock,
-        ).with(() => {
-            expect(createGitHubBugFilingUrl(settingsData, sampleIssueDetailsData, environmentInfo)).toMatchSnapshot();
-        });
-    });
-
-    test('createGitHubBugFilingUrl: ends with /issues ', () => {
-        settingsData.repository = 'repo/issues';
         standardizeTagsMock.setup(s => s(It.isAny())).returns(() => []);
         GlobalScope.using(
             footerMock,
@@ -102,6 +95,7 @@ describe('createGitHubBugFilingUrlTest', () => {
             collapseConsecutiveSpacesMock,
             markdownEscapeBlockMock,
             getSelectorLastPartMock,
+            appendSuffixToUrlMock,
             standardizeTagsMock,
         ).with(() => {
             expect(createGitHubBugFilingUrl(settingsData, sampleIssueDetailsData, environmentInfo)).toMatchSnapshot();
