@@ -12,13 +12,15 @@ import { EnvironmentInfoProvider } from '../../../../../common/environment-info-
 import { BugActionMessageCreator } from '../../../../../common/message-creators/bug-action-message-creator';
 import { NamedSFC } from '../../../../../common/react/named-sfc';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
+import { EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('IssueFilingButtonTest', () => {
+    const testKey: string = 'test';
+    const eventStubFactory = new EventStubFactory();
     let environmentInfoProviderMock: IMock<EnvironmentInfoProvider>;
     let bugFilingServiceProviderMock: IMock<BugFilingServiceProvider>;
     let bugActionMessageCreatorMock: IMock<BugActionMessageCreator>;
     let userConfigurationStoreData: UserConfigurationStoreData;
-    const testKey: string = 'test';
     let testBugService: BugFilingService;
 
     beforeEach(() => {
@@ -99,8 +101,6 @@ describe('IssueFilingButtonTest', () => {
 
         wrapper.find(DefaultButton).simulate('click');
 
-        environmentInfoProviderMock.verifyAll();
-        bugFilingServiceProviderMock.verifyAll();
         bugActionMessageCreatorMock.verifyAll();
     });
 
