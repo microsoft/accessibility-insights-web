@@ -2,8 +2,6 @@
 // Licensed under the MIT License.
 import { isEmpty } from 'lodash';
 import { IDropdownOption } from 'office-ui-fabric-react';
-import * as React from 'react';
-
 import { EnvironmentInfo } from '../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { BugServicePropertiesMap } from '../../common/types/store-data/user-configuration-store';
