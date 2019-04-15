@@ -92,7 +92,7 @@ describe('AzureDevOpsBugFilingServiceTest', () => {
 
     describe('create bug filing url', () => {
         it.each(invalidTestSettings)('with %o', settings => {
-            expect(AzureDevOpsBugFilingService.createBugFilingUrl(settings, null, null)).toBeNull();
+            expect(AzureDevOpsBugFilingService.issueFilingUrlProvider(settings, null, null)).toBeNull();
         });
     });
 });
