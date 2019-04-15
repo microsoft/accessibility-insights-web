@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, Mock, MockBehavior } from 'typemoq';
+import { IMock, Mock, MockBehavior, Times, It } from 'typemoq';
 
 import { BugFilingService } from '../../../../../bug-filing/types/bug-filing-service';
 import { EnvironmentInfo, EnvironmentInfoProvider } from '../../../../../common/environment-info-provider';
@@ -66,23 +66,18 @@ describe('IssueFilingDialog', () => {
             selectedBugFilingServiceData: selectedServiceData,
             bugFileTelemetryCallback: telemetryCallbackMock.object,
         };
+    });
 
-        isSettingsValidMock.setup(isSettingsValid => isSettingsValid(selectedServiceData)).verifiable();
+    it.each([true, false])('isSettingsValid: %s', isSettingsValid => {
+        isSettingsValidMock
+            .setup(isSettingsValid => isSettingsValid(selectedServiceData))
+            .returns(() => isSettingsValid)
+            .verifiable();
+
         createBugFilingUrlMock
             .setup(createBugFilingUrl => createBugFilingUrl(selectedServiceData, selectedBugDataStub, envInfo))
-            .verifiable();
-    });
+            .verifiable(isSettingsValid ? Times.once() : Times.never());
 
-    it('render open', () => {
-        const testSubject = shallow(<IssueFilingDialog {...props} />);
-
-        isSettingsValidMock.verifyAll();
-        createBugFilingUrlMock.verifyAll();
-        expect(testSubject.getElement()).toMatchSnapshot();
-    });
-
-    it('render closed', () => {
-        props.isOpen = false;
         const testSubject = shallow(<IssueFilingDialog {...props} />);
 
         isSettingsValidMock.verifyAll();
@@ -91,12 +86,15 @@ describe('IssueFilingDialog', () => {
     });
 
     it('render: validate correct callbacks (file issue on click and cancel/dismiss)', () => {
-        isSettingsValidMock.setup(isSettingsValid => isSettingsValid(selectedServiceData)).verifiable();
+        isSettingsValidMock
+            .setup(isSettingsValid => isSettingsValid(selectedServiceData))
+            .returns(() => true)
+            .verifiable();
         createBugFilingUrlMock
             .setup(createBugFilingUrl => createBugFilingUrl(selectedServiceData, selectedBugDataStub, envInfo))
             .verifiable();
         telemetryCallbackMock.setup(telemetryCallback => telemetryCallback(eventStub)).verifiable();
-        onCloseMock.setup(onClose => onClose(null)).verifiable();
+        onCloseMock.setup(onClose => onClose(It.isAny())).verifiable(Times.exactly(2));
 
         const testSubject = shallow(<IssueFilingDialog {...props} />);
         const actionCancelButtons = testSubject.find(ActionAndCancelButtonsComponent);

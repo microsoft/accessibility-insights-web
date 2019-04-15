@@ -33,15 +33,7 @@ export const IssueFilingDialog = NamedSFC<IssueFilingDialogProps>('IssueFilingDi
         props.onClose(ev);
     };
 
-    const {
-        selectedBugFilingService,
-        selectedBugFilingServiceData,
-        selectedBugData,
-        bugFileTelemetryCallback,
-        onClose,
-        isOpen,
-        deps,
-    } = props;
+    const { selectedBugFilingService, selectedBugFilingServiceData, selectedBugData, onClose, isOpen, deps } = props;
     const environmentInfo = deps.environmentInfoProvider.getEnvironmentInfo();
     const isSettingsValid = selectedBugFilingService.isSettingsValid(selectedBugFilingServiceData);
     const href = isSettingsValid
