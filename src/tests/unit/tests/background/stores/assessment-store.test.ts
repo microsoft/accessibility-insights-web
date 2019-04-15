@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { AssessmentsProviderImpl } from '../../../../../assessments/assessments-provider';
 import { AssessmentsProvider } from '../../../../../assessments/types/assessments-provider';
 import { Assessment } from '../../../../../assessments/types/iassessment';
@@ -33,10 +32,10 @@ import { ManualTestStatus, ManualTestStatusData, TestStepData } from '../../../.
 import {
     AssessmentData,
     AssessmentStoreData,
-    IGeneratedAssessmentInstance,
-    IManualTestStepResult,
-    ITestStepResult,
+    GeneratedAssessmentInstance,
+    ManualTestStepResult,
     PersistedTabInfo,
+    TestStepResult,
 } from '../../../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { ScanBasePayload, ScanCompletedPayload, ScanUpdatePayload } from '../../../../../injected/analyzers/analyzer';
@@ -560,14 +559,14 @@ describe('AssessmentStoreTest', () => {
 
     test('onTrackingCompleted', () => {
         const instanceKey = 'instance-1';
-        const initialInstanceMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {
+        const initialInstanceMap: DictionaryStringTo<GeneratedAssessmentInstance> = {
             [instanceKey]: {
                 testStepResults: {
                     [requirementKey]: {
                         status: 2,
-                    } as ITestStepResult,
+                    } as TestStepResult,
                 },
-            } as IGeneratedAssessmentInstance,
+            } as GeneratedAssessmentInstance,
         };
         const initialAssessmentData = new AssessmentDataBuilder().with('generatedAssessmentInstancesMap', initialInstanceMap).build();
         const finalAssessmentData = new AssessmentDataBuilder().with('generatedAssessmentInstancesMap', {}).build();
@@ -659,7 +658,7 @@ describe('AssessmentStoreTest', () => {
     });
 
     test('on changeInstanceStatus, test step status updated', () => {
-        const generatedAssessmentInstancesMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {
+        const generatedAssessmentInstancesMap: DictionaryStringTo<GeneratedAssessmentInstance> = {
             selector: {
                 testStepResults: {
                     [requirementKey]: {
@@ -812,7 +811,7 @@ describe('AssessmentStoreTest', () => {
     });
 
     test('on changeAssessmentVisualizationState', () => {
-        const generatedAssessmentInstancesMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {
+        const generatedAssessmentInstancesMap: DictionaryStringTo<GeneratedAssessmentInstance> = {
             selector: {
                 testStepResults: {
                     [requirementKey]: {
@@ -850,7 +849,7 @@ describe('AssessmentStoreTest', () => {
     });
 
     test('on updateInstanceVisibility', () => {
-        const generatedAssessmentInstancesMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {
+        const generatedAssessmentInstancesMap: DictionaryStringTo<GeneratedAssessmentInstance> = {
             selector: {
                 testStepResults: {
                     [requirementKey]: {
@@ -904,7 +903,7 @@ describe('AssessmentStoreTest', () => {
     });
 
     test('on changeAssessmentVisualizationStateForAll', () => {
-        const generatedAssessmentInstancesMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {
+        const generatedAssessmentInstancesMap: DictionaryStringTo<GeneratedAssessmentInstance> = {
             selector1: {
                 testStepResults: {
                     [requirementKey]: {
@@ -954,7 +953,7 @@ describe('AssessmentStoreTest', () => {
     });
 
     test('on undoInstanceStatusChange', () => {
-        const generatedAssessmentInstancesMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {
+        const generatedAssessmentInstancesMap: DictionaryStringTo<GeneratedAssessmentInstance> = {
             selector: {
                 testStepResults: {
                     [requirementKey]: {
@@ -1248,7 +1247,7 @@ describe('AssessmentStoreTest', () => {
     });
 
     test('on passUnmarkedInstance', () => {
-        const generatedAssessmentInstancesMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {
+        const generatedAssessmentInstancesMap: DictionaryStringTo<GeneratedAssessmentInstance> = {
             selector1: {
                 testStepResults: {
                     [requirementKey]: {
@@ -1259,7 +1258,7 @@ describe('AssessmentStoreTest', () => {
                 },
                 target: [],
                 html: '',
-            } as IGeneratedAssessmentInstance,
+            } as GeneratedAssessmentInstance,
             selector2: {
                 testStepResults: {
                     [requirementKey]: {
@@ -1269,7 +1268,7 @@ describe('AssessmentStoreTest', () => {
                 },
                 target: [],
                 html: '',
-            } as IGeneratedAssessmentInstance,
+            } as GeneratedAssessmentInstance,
             selector3: {
                 testStepResults: {
                     [requirementKey]: {
@@ -1279,7 +1278,7 @@ describe('AssessmentStoreTest', () => {
                 },
                 target: [],
                 html: '',
-            } as IGeneratedAssessmentInstance,
+            } as GeneratedAssessmentInstance,
             selector4: {
                 testStepResults: {
                     ['someOtherKey']: {
@@ -1289,7 +1288,7 @@ describe('AssessmentStoreTest', () => {
                 },
                 target: [],
                 html: '',
-            } as IGeneratedAssessmentInstance,
+            } as GeneratedAssessmentInstance,
         };
 
         const assessmentData = new AssessmentDataBuilder()
@@ -1320,7 +1319,7 @@ describe('AssessmentStoreTest', () => {
                     },
                     target: [],
                     html: '',
-                } as IGeneratedAssessmentInstance,
+                } as GeneratedAssessmentInstance,
                 selector2: {
                     testStepResults: {
                         [requirementKey]: {
@@ -1331,7 +1330,7 @@ describe('AssessmentStoreTest', () => {
                     },
                     target: [],
                     html: '',
-                } as IGeneratedAssessmentInstance,
+                } as GeneratedAssessmentInstance,
                 selector3: {
                     testStepResults: {
                         [requirementKey]: {
@@ -1341,7 +1340,7 @@ describe('AssessmentStoreTest', () => {
                     },
                     target: [],
                     html: '',
-                } as IGeneratedAssessmentInstance,
+                } as GeneratedAssessmentInstance,
                 selector4: {
                     testStepResults: {
                         ['someOtherKey']: {
@@ -1351,7 +1350,7 @@ describe('AssessmentStoreTest', () => {
                     },
                     target: [],
                     html: '',
-                } as IGeneratedAssessmentInstance,
+                } as GeneratedAssessmentInstance,
             })
             .with('testStepStatus', { [requirementKey]: generateTestStepData(ManualTestStatus.FAIL, false) })
             .build();
@@ -1466,7 +1465,7 @@ describe('AssessmentStoreTest', () => {
         };
     }
 
-    function getDefaultManualTestStepResult(stepName: string): IManualTestStepResult {
+    function getDefaultManualTestStepResult(stepName: string): ManualTestStepResult {
         return {
             status: ManualTestStatus.UNKNOWN,
             id: stepName,

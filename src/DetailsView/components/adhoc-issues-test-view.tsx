@@ -6,6 +6,7 @@ import { VisualizationConfiguration, VisualizationConfigurationFactory } from '.
 import { NamedSFC } from '../../common/react/named-sfc';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
+import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { VisualizationScanResultData } from '../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
@@ -31,6 +32,7 @@ export interface AdhocIssuesTestViewProps {
     reportGenerator: ReportGenerator;
     issuesTableHandler: IssuesTableHandler;
     configuration: VisualizationConfiguration;
+    userConfigurationStoreData: UserConfigurationStoreData;
 }
 
 export const AdhocIssuesTestView = NamedSFC<AdhocIssuesTestViewProps>('AdhocIssuesTestView', ({ children, ...props }) => {
@@ -67,6 +69,7 @@ export const AdhocIssuesTestView = NamedSFC<AdhocIssuesTestViewProps>('AdhocIssu
             featureFlags={props.featureFlagStoreData}
             scanResult={scanResult}
             reportGenerator={props.reportGenerator}
+            userConfigurationStoreData={props.userConfigurationStoreData}
         />
     );
 });

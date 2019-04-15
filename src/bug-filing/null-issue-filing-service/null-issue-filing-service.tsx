@@ -16,6 +16,6 @@ export const NullIssueFilingService: BugFilingService = {
     settingsForm,
     buildStoreData: () => null,
     isSettingsValid: () => false,
-    createBugFilingUrl: () => null,
     getSettingsFromStoreData: () => null,
+    issueFilingUrlProvider: () => null,
 };

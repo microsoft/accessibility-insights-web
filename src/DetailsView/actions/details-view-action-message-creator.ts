@@ -21,24 +21,16 @@ import { FeatureFlagPayload } from '../../background/actions/feature-flag-action
 import { Message } from '../../common/message';
 import { DevToolActionMessageCreator } from '../../common/message-creators/dev-tool-action-message-creator';
 import { Messages } from '../../common/messages';
-import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
 import * as TelemetryEvents from '../../common/telemetry-events';
 import { ExportResultType } from '../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { VisualizationType } from '../../common/types/visualization-type';
-import { WindowUtils } from '../../common/window-utils';
 import { DetailsViewRightContentPanelType } from '../components/left-nav/details-view-right-content-panel-type';
 
 const messages = Messages.Visualizations;
 
 export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator {
-    private windowUtils: WindowUtils;
-
-    constructor(postMessage: (message: Message) => void, tabId: number, telemetryFactory: TelemetryDataFactory, windowUtils: WindowUtils) {
-        super(postMessage, tabId, telemetryFactory);
-        this.windowUtils = windowUtils;
-    }
     public updateIssuesSelectedTargets(selectedTargets: string[]): void {
         const payload: string[] = selectedTargets;
         const message: Message = {

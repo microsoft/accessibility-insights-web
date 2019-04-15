@@ -1,11 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import * as content from '../../../content/test/page/page-title';
-import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { Term } from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';

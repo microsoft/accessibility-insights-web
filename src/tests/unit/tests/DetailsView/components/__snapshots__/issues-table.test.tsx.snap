@@ -130,7 +130,7 @@ exports[`IssuesTableTest render table with 0 issues 1`] = `
     <div className=\\"issues-table-details\\">
       <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} />
       <div className=\\"issue-detail-outer-container ms-Fabric\\">
-        <IssuesDetailsPane deps={[undefined]} selectedIdToRuleResultMap={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" issueTrackerPath=\\"example/example\\" featureFlagData={{...}} />
+        <IssuesDetailsPane deps={[undefined]} selectedIdToRuleResultMap={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" issueTrackerPath=\\"example/example\\" featureFlagData={{...}} userConfigurationStoreData={{...}} />
       </div>
     </div>
   </div>
@@ -153,7 +153,7 @@ exports[`IssuesTableTest render table with 1 issues 1`] = `
     <div className=\\"issues-table-details\\">
       <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} />
       <div className=\\"issue-detail-outer-container ms-Fabric\\">
-        <IssuesDetailsPane deps={[undefined]} selectedIdToRuleResultMap={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" issueTrackerPath=\\"example/example\\" featureFlagData={{...}} />
+        <IssuesDetailsPane deps={[undefined]} selectedIdToRuleResultMap={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" issueTrackerPath=\\"example/example\\" featureFlagData={{...}} userConfigurationStoreData={{...}} />
       </div>
     </div>
   </div>
@@ -176,7 +176,7 @@ exports[`IssuesTableTest render table with 2 issues 1`] = `
     <div className=\\"issues-table-details\\">
       <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} />
       <div className=\\"issue-detail-outer-container ms-Fabric\\">
-        <IssuesDetailsPane deps={[undefined]} selectedIdToRuleResultMap={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" issueTrackerPath=\\"example/example\\" featureFlagData={{...}} />
+        <IssuesDetailsPane deps={[undefined]} selectedIdToRuleResultMap={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" issueTrackerPath=\\"example/example\\" featureFlagData={{...}} userConfigurationStoreData={{...}} />
       </div>
     </div>
   </div>

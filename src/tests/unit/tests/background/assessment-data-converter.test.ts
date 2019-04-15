@@ -5,7 +5,7 @@ import { IMock, It, Mock } from 'typemoq';
 import { AssessmentDataConverter } from '../../../../background/assessment-data-converter';
 import { UniquelyIdentifiableInstances } from '../../../../background/instance-identifier-generator';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
-import { IAssessmentInstancesMap, ITestStepResult } from '../../../../common/types/store-data/assessment-result-data';
+import { AssessmentInstancesMap, TestStepResult } from '../../../../common/types/store-data/assessment-result-data';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from '../../../../injected/scanner-utils';
 import { TabStopEvent } from '../../../../injected/tab-stops-listener';
 import { DictionaryStringTo } from '../../../../types/common-types';
@@ -14,7 +14,7 @@ describe('AssessmentDataConverterTest', () => {
     let testSubject: AssessmentDataConverter;
     const uid: string = 'uid123';
     let testStep: string;
-    const expectedGenericTestStepResult: ITestStepResult = {
+    const expectedGenericTestStepResult: TestStepResult = {
         id: uid,
         status: ManualTestStatus.UNKNOWN,
         isCapturedByUser: false,
@@ -268,7 +268,7 @@ describe('AssessmentDataConverterTest', () => {
                 isVisible: true,
             },
         };
-        const previouslyGeneratedInstances: IAssessmentInstancesMap = {
+        const previouslyGeneratedInstances: AssessmentInstancesMap = {
             [identifierStub]: {
                 html: htmlStub,
                 propertyBag: { someProperty: 3 },
@@ -332,7 +332,7 @@ describe('AssessmentDataConverterTest', () => {
             timestamp: 99,
         };
 
-        const expectedGeneratedInstance: IAssessmentInstancesMap = {
+        const expectedGeneratedInstance: AssessmentInstancesMap = {
             [identifierStub]: {
                 target: eventStub.target,
                 html: eventStub.html,
@@ -370,7 +370,7 @@ describe('AssessmentDataConverterTest', () => {
             notARealInstance: null,
         };
 
-        const expectedGeneratedInstance: IAssessmentInstancesMap = {
+        const expectedGeneratedInstance: AssessmentInstancesMap = {
             [identifierStub]: {
                 target: eventStub.target,
                 html: eventStub.html,
@@ -421,7 +421,7 @@ describe('AssessmentDataConverterTest', () => {
             },
         };
 
-        const expectedGeneratedInstance: IAssessmentInstancesMap = {
+        const expectedGeneratedInstance: AssessmentInstancesMap = {
             [identifierStub]: {
                 target: eventStub.target,
                 html: eventStub.html,

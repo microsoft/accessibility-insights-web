@@ -6,8 +6,8 @@ import { IMock, Mock, Times } from 'typemoq';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import {
     AssessmentNavState,
-    IGeneratedAssessmentInstance,
-    IUserCapturedInstance,
+    GeneratedAssessmentInstance,
+    UserCapturedInstance,
 } from '../../../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
@@ -33,7 +33,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
     });
 
     test('createAssessmentInstanceTableItems', () => {
-        const instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance> = {
+        const instancesMap: DictionaryStringTo<GeneratedAssessmentInstance> = {
             selector1: {
                 target: ['target1'],
                 html: 'html',
@@ -115,7 +115,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
     });
 
     test('createCapturedInstanceTableItems', () => {
-        const instance: IUserCapturedInstance = {
+        const instance: UserCapturedInstance = {
             id: '1',
             description: 'des',
         };
@@ -171,7 +171,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
         };
         configFactoryMock.setup(c => c.getColumnConfigs(navState, true, true)).verifiable(Times.once());
 
-        testSubject.getColumnConfigs(instanceMap as DictionaryStringTo<IGeneratedAssessmentInstance>, navState, true);
+        testSubject.getColumnConfigs(instanceMap as DictionaryStringTo<GeneratedAssessmentInstance>, navState, true);
 
         configFactoryMock.verifyAll();
     });
@@ -246,7 +246,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
                     isVisualizationEnabled: true,
                 },
             },
-        } as IGeneratedAssessmentInstance;
+        } as GeneratedAssessmentInstance;
 
         const assessmentNavState: AssessmentNavState = {
             selectedTestStep: 'step1',

@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AxeInfo } from '../common/axe-info';
 import { CreateIssueDetailsTextData } from '../common/types/create-issue-details-text-data';
 
 export class IssueDetailsTextGenerator {

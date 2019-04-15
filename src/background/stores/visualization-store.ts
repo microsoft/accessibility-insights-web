@@ -163,7 +163,6 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
     }
 
     private enableTest(payload: ToggleActionPayload, skipScanning: boolean): void {
-        const isStateChanged: boolean = false;
         if (this.state.scanning != null) {
             // do not change state if currently scanning, not even the toggle
             return;

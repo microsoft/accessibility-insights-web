@@ -50,7 +50,7 @@ getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
 
         const telemetryClient = getTelemetryClient(userData, browserAdapter, telemetryLogger, AppInsights);
 
-        const telemetryEventHandler = new TelemetryEventHandler(browserAdapter, telemetryClient);
+        const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
         const globalContext = GlobalContextFactory.createContext(
             browserAdapter,
             telemetryEventHandler,

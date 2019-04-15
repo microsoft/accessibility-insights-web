@@ -27,17 +27,16 @@ export type IssueFilingDialogDeps = BugFilingSettingsContainerDeps;
 const titleLabel = 'Specify issue filing location';
 
 export const IssueFilingDialog = NamedSFC<IssueFilingDialogProps>('IssueFilingDialog', props => {
-    const {
-        selectedBugFilingService,
-        selectedBugFilingServiceData,
-        selectedBugData,
-        bugFileTelemetryCallback,
-        onClose,
-        isOpen,
-        environmentInfo,
-        deps,
-    } = props;
+    const onPrimaryButtonClick = (ev: React.SyntheticEvent<Element, Event>) => {
+        props.bugFileTelemetryCallback(ev);
+        props.onClose(ev);
+    };
 
+    const { selectedBugFilingService, selectedBugFilingServiceData, selectedBugData, onClose, isOpen, deps, environmentInfo } = props;
+    const isSettingsValid = selectedBugFilingService.isSettingsValid(selectedBugFilingServiceData);
+    const href = isSettingsValid
+        ? selectedBugFilingService.issueFilingUrlProvider(selectedBugFilingServiceData, selectedBugData, environmentInfo)
+        : '#';
     return (
         <Dialog
             className={'issue-filing-dialog'}
@@ -64,14 +63,10 @@ export const IssueFilingDialog = NamedSFC<IssueFilingDialogProps>('IssueFilingDi
             <DialogFooter>
                 <ActionAndCancelButtonsComponent
                     isHidden={false}
-                    primaryButtonDisabled={!selectedBugFilingService.isSettingsValid(selectedBugFilingServiceData)}
-                    primaryButtonOnClick={bugFileTelemetryCallback}
+                    primaryButtonDisabled={isSettingsValid === false}
+                    primaryButtonOnClick={onPrimaryButtonClick}
                     cancelButtonOnClick={onClose}
-                    primaryButtonHref={selectedBugFilingService.createBugFilingUrl(
-                        selectedBugFilingServiceData,
-                        selectedBugData,
-                        environmentInfo,
-                    )}
+                    primaryButtonHref={href}
                     primaryButtonText={'File issue'}
                 />
             </DialogFooter>

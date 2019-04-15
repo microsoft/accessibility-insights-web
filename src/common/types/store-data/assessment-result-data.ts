@@ -5,7 +5,7 @@ import { Tab } from '../../itab';
 import { ManualTestStatus, ManualTestStatusData } from '../manual-test-status';
 import { VisualizationType } from '../visualization-type';
 
-export type TestStepInstance = IUserCapturedInstance & IGeneratedAssessmentInstance;
+export type TestStepInstance = UserCapturedInstance & GeneratedAssessmentInstance;
 
 export type PersistedTabInfo = Tab & {
     appRefreshed: boolean;
@@ -19,8 +19,8 @@ export interface AssessmentStoreData {
     assessmentNavState: AssessmentNavState;
 }
 
-export type InstanceIdToInstanceDataMap = DictionaryStringTo<IGeneratedAssessmentInstance>;
-export type RequirementIdToResultMap = DictionaryStringTo<IManualTestStepResult>;
+export type InstanceIdToInstanceDataMap = DictionaryStringTo<GeneratedAssessmentInstance>;
+export type RequirementIdToResultMap = DictionaryStringTo<ManualTestStepResult>;
 
 export interface AssessmentData {
     fullAxeResultsMap: any;
@@ -29,31 +29,27 @@ export interface AssessmentData {
     testStepStatus: ManualTestStatusData;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IManualTestStepResult {
+export interface ManualTestStepResult {
     status: ManualTestStatus;
     id: string;
-    instances: IUserCapturedInstance[];
+    instances: UserCapturedInstance[];
 }
 
-// tslint:disable-next-line:interface-name
-export interface IUserCapturedInstance {
+export interface UserCapturedInstance {
     id: string;
     description: string;
     html?: string;
     selector?: string;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IGeneratedAssessmentInstance<T = {}, K = {}> {
+export interface GeneratedAssessmentInstance<T = {}, K = {}> {
     target: string[];
     html: string;
-    testStepResults: IAssessmentResultType<K>;
+    testStepResults: AssessmentResultType<K>;
     propertyBag?: T;
 }
 
-// tslint:disable-next-line:interface-name
-export interface ITestStepResult {
+export interface TestStepResult {
     id: string;
     status: ManualTestStatus;
     isCapturedByUser: boolean;
@@ -68,25 +64,21 @@ export interface AssessmentNavState {
     selectedTestType: VisualizationType;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IHeadingsAssessmentProperties {
+export interface HeadingsAssessmentProperties {
     headingLevel: string;
     headingText: string;
 }
 
-// tslint:disable-next-line:interface-name
-export interface IFrameAssessmentProperties {
+export interface FrameAssessmentProperties {
     frameType: string;
     frameTitle?: string;
 }
 
-// tslint:disable-next-line:interface-name
-export interface ILandmarksAssessmentProperties {
+export interface LandmarksAssessmentProperties {
     role: string;
     label: string;
 }
 
-// tslint:disable-next-line:interface-name
-export type IAssessmentInstancesMap<T = {}, K = {}> = DictionaryStringTo<IGeneratedAssessmentInstance<T, K>>;
-// tslint:disable-next-line:interface-name
-export type IAssessmentResultType<K> = { [testStepName in keyof K]: ITestStepResult };
+export type AssessmentInstancesMap<T = {}, K = {}> = DictionaryStringTo<GeneratedAssessmentInstance<T, K>>;
+
+export type AssessmentResultType<K> = { [testStepName in keyof K]: TestStepResult };

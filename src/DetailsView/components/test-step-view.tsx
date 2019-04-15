@@ -9,8 +9,8 @@ import { Requirement, VisualHelperToggleConfig } from '../../assessments/types/r
 import { CollapsibleComponent } from '../../common/components/collapsible-component';
 import {
     AssessmentNavState,
-    IGeneratedAssessmentInstance,
-    IManualTestStepResult,
+    GeneratedAssessmentInstance,
+    ManualTestStepResult,
 } from '../../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../../types/common-types';
 import { ContentPanelButton, ContentPanelButtonDeps } from '../../views/content/content-panel-button';
@@ -28,10 +28,10 @@ export interface TestStepViewProps {
     isScanning: boolean;
     testStep: Requirement;
     renderStaticContent: () => JSX.Element;
-    instancesMap: DictionaryStringTo<IGeneratedAssessmentInstance>;
+    instancesMap: DictionaryStringTo<GeneratedAssessmentInstance>;
     assessmentNavState: AssessmentNavState;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
-    manualTestStepResultMap: DictionaryStringTo<IManualTestStepResult>;
+    manualTestStepResultMap: DictionaryStringTo<ManualTestStepResult>;
     actionMessageCreator: DetailsViewActionMessageCreator;
     assessmentsProvider: AssessmentsProvider;
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;

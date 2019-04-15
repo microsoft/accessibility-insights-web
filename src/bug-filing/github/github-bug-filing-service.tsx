@@ -3,11 +3,10 @@
 import { isEmpty, isString } from 'lodash';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
-
 import { NamedSFC } from '../../common/react/named-sfc';
 import { BugFilingService } from '../types/bug-filing-service';
 import { SettingsFormProps } from '../types/settings-form-props';
-import { createGitHubBugFilingUrl } from './create-github-bug-filing-url';
+import { gitHubIssueFilingUrlProvider } from './create-github-bug-filing-url';
 
 const GitHubBugFilingServiceKey = 'gitHub';
 
@@ -36,15 +35,13 @@ const settingsForm = NamedSFC<SettingsFormProps<GitHubBugFilingSettings>>('BugFi
     };
 
     return (
-        <>
-            <TextField
-                className="issue-setting"
-                label="Enter the desired GitHub repo link to file issue:"
-                onChange={onGitHubRepositoryChange}
-                value={props.settings.repository}
-                placeholder="https://github.com/owner/repo"
-            />
-        </>
+        <TextField
+            className="issue-setting"
+            label="Enter the desired GitHub repo link to file issue:"
+            onChange={onGitHubRepositoryChange}
+            value={isEmpty(props.settings) ? '' : props.settings.repository}
+            placeholder="https://github.com/owner/repo"
+        />
     );
 });
 
@@ -55,5 +52,5 @@ export const GitHubBugFilingService: BugFilingService<GitHubBugFilingSettings> =
     buildStoreData,
     getSettingsFromStoreData,
     isSettingsValid,
-    createBugFilingUrl: createGitHubBugFilingUrl,
+    issueFilingUrlProvider: gitHubIssueFilingUrlProvider,
 };

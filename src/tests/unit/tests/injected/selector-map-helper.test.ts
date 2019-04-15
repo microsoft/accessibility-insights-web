@@ -6,7 +6,7 @@ import { AssessmentStore } from '../../../../background/stores/assessment-store'
 import { VisualizationScanResultStore } from '../../../../background/stores/visualization-scan-result-store';
 import { BaseStore } from '../../../../common/base-store';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
-import { AssessmentStoreData, ITestStepResult } from '../../../../common/types/store-data/assessment-result-data';
+import { AssessmentStoreData, TestStepResult } from '../../../../common/types/store-data/assessment-result-data';
 import { VisualizationScanResultData } from '../../../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { SelectorMapHelper } from '../../../../injected/selector-map-helper';
@@ -124,7 +124,7 @@ describe('SelectorMapHelperTest', () => {
                         status: ManualTestStatus.FAIL,
                         isVisualizationEnabled: true,
                         isVisible: true,
-                    } as ITestStepResult,
+                    } as TestStepResult,
                 },
                 ruleResults: null,
                 html: null,
@@ -136,7 +136,7 @@ describe('SelectorMapHelperTest', () => {
                         status: ManualTestStatus.FAIL,
                         isVisualizationEnabled: true,
                         isVisible: true,
-                    } as ITestStepResult,
+                    } as TestStepResult,
                 },
                 html: 'html',
                 propertyBag: {},

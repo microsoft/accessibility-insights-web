@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { isEmpty } from 'lodash';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 
@@ -26,6 +27,7 @@ export class ActionAndCancelButtonsComponent extends React.Component<ActionAndCa
                         onClick={this.props.primaryButtonOnClick}
                         disabled={this.props.primaryButtonDisabled}
                         href={this.props.primaryButtonHref}
+                        target={isEmpty(this.props.primaryButtonHref) ? '_self' : '_blank'}
                     />
                 </div>
             </div>

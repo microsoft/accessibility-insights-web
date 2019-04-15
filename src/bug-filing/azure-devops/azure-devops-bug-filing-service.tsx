@@ -47,5 +47,6 @@ export const AzureDevOpsBugFilingService: BugFilingService<AzureDevOpsBugFilingS
     buildStoreData,
     getSettingsFromStoreData,
     isSettingsValid,
-    createBugFilingUrl: (data: AzureDevOpsBugFilingSettings, bugData: CreateIssueDetailsTextData, environmentInfo: EnvironmentInfo) => null,
+    issueFilingUrlProvider: (data: AzureDevOpsBugFilingSettings, bugData: CreateIssueDetailsTextData, environmentInfo: EnvironmentInfo) =>
+        null,
 };

@@ -6,11 +6,13 @@ import { IssueDetailsTextGenerator } from '../../background/issue-details-text-g
 import { CopyIssueDetailsButton } from '../../common/components/copy-issue-details-button';
 import { FileIssueDetailsButton, FileIssueDetailsButtonDeps } from '../../common/components/file-issue-details-button';
 import { FlaggedComponent } from '../../common/components/flagged-component';
+import { IssueFilingButton, IssueFilingButtonDeps } from '../../common/components/issue-filing-button';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { ToastDeps } from '../../common/components/toast';
 import { FeatureFlags } from '../../common/feature-flags';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
+import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { CheckType } from '../../injected/components/details-dialog';
 import { FixInstructionPanel } from '../../injected/components/fix-instruction-panel';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
@@ -19,7 +21,8 @@ import { DetailsViewActionMessageCreator } from '../actions/details-view-action-
 import { GuidanceLinks } from './guidance-links';
 
 export type IssuesDetailsPaneDeps = ToastDeps &
-    FileIssueDetailsButtonDeps & {
+    FileIssueDetailsButtonDeps &
+    IssueFilingButtonDeps & {
         issueDetailsTextGenerator: IssueDetailsTextGenerator;
         detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     };
@@ -31,6 +34,7 @@ export interface IssuesDetailsPaneProps {
     pageUrl: string;
     issueTrackerPath: string;
     featureFlagData: FeatureFlagStoreData;
+    userConfigurationStoreData: UserConfigurationStoreData;
 }
 
 interface IssueDetailsState {
@@ -68,12 +72,27 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
     }
 
     private getFileIssueDetailsButton(issueData: CreateIssueDetailsTextData): JSX.Element {
-        return (
+        const oldExperienceButton: JSX.Element = (
             <FileIssueDetailsButton
                 deps={this.props.deps}
                 issueDetailsData={issueData}
                 issueTrackerPath={this.props.issueTrackerPath}
                 restoreFocus={true}
+            />
+        );
+        const newExperienceButton: JSX.Element = (
+            <IssueFilingButton
+                deps={this.props.deps}
+                issueDetailsData={issueData}
+                userConfigurationStoreData={this.props.userConfigurationStoreData}
+            />
+        );
+        return (
+            <FlaggedComponent
+                enableJSXElement={newExperienceButton}
+                featureFlag={FeatureFlags[FeatureFlags.newIssueFilingExperience]}
+                disableJSXElement={oldExperienceButton}
+                featureFlagStoreData={this.props.featureFlagData}
             />
         );
     }
@@ -84,7 +103,7 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
             pageUrl: this.props.pageUrl,
             ruleResult: result,
         };
-        const showBugFiling = this.props.featureFlagData[FeatureFlags.showBugFiling];
+
         return (
             <div>
                 <h2>Failure details</h2>

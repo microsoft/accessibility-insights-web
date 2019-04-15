@@ -15,7 +15,7 @@ describe('BugFilingUrlStringUtilsTest', () => {
     });
 
     test('footer', () => {
-        expect(IssueFilingUrlStringUtils.footer(environmentInfo)).toMatchSnapshot();
+        expect(IssueFilingUrlStringUtils.getFooterContent(environmentInfo)).toMatchSnapshot();
     });
 
     test('collapseConsecutiveSpaces', () => {
@@ -23,7 +23,14 @@ describe('BugFilingUrlStringUtilsTest', () => {
     });
 
     test('markdownEscapeBlock', () => {
-        expect(IssueFilingUrlStringUtils.markdownEscapeBlock('hello\nworld')).toEqual('    hello\n    world');
+        expect(IssueFilingUrlStringUtils.formatAsMarkdownCodeBlock('hello\nworld')).toEqual('    hello\n    world');
+    });
+
+    test('appendSuffixToUrl', () => {
+        expect(IssueFilingUrlStringUtils.appendSuffixToUrl('repo', 'hello')).toEqual('repo/hello/');
+        expect(IssueFilingUrlStringUtils.appendSuffixToUrl('repo/hello', 'hello')).toEqual('repo/hello');
+        expect(IssueFilingUrlStringUtils.appendSuffixToUrl('repo/hello/', 'hello')).toEqual('repo/hello/');
+        expect(IssueFilingUrlStringUtils.appendSuffixToUrl('repo/hello', 'world')).toEqual('repo/hello/world/');
     });
 
     test('getSelectorLastPart', () => {
