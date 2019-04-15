@@ -33,7 +33,7 @@ function buildGithubText(stringUtils: IssueUrlCreationUtils, environmentInfo: En
         ``,
         `**How to fix**:`,
         ``,
-        `${stringUtils.markdownEscapeBlock(result.failureSummary)}`,
+        `${stringUtils.formatAsMarkdownCodeBlock(result.failureSummary)}`,
         ``,
         `**Environment**:`,
         `${environmentInfo.browserSpec}`,

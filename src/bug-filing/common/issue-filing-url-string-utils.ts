@@ -7,7 +7,7 @@ import { CreateIssueDetailsTextData } from './../../common/types/create-issue-de
 export type IssueUrlCreationUtils = {
     footer: (info: EnvironmentInfo) => string;
     collapseConsecutiveSpaces: (input: string) => string;
-    markdownEscapeBlock: (input: string) => string;
+    formatAsMarkdownCodeBlock: (input: string) => string;
     getSelectorLastPart: (selector: string) => string;
     standardizeTags: (data: CreateIssueDetailsTextData) => string[];
 };
@@ -22,7 +22,7 @@ export const IssueFilingUrlStringUtils: IssueUrlCreationUtils = {
         );
     },
     collapseConsecutiveSpaces: (input: string): string => input.replace(/\s+/g, ' '),
-    markdownEscapeBlock: (input: string): string =>
+    formatAsMarkdownCodeBlock: (input: string): string =>
         input
             .split('\n')
             .map(line => `    ${line}`)

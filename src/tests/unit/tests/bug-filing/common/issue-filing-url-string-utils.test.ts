@@ -23,7 +23,7 @@ describe('BugFilingUrlStringUtilsTest', () => {
     });
 
     test('markdownEscapeBlock', () => {
-        expect(IssueFilingUrlStringUtils.markdownEscapeBlock('hello\nworld')).toEqual('    hello\n    world');
+        expect(IssueFilingUrlStringUtils.formatAsMarkdownCodeBlock('hello\nworld')).toEqual('    hello\n    world');
     });
 
     test('getSelectorLastPart', () => {

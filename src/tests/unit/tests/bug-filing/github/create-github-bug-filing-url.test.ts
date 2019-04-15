@@ -46,7 +46,7 @@ describe('createGitHubBugFilingUrlTest', () => {
         stringUtilsMock.setup(utils => utils.standardizeTags(sampleIssueDetailsData)).returns(() => []);
         stringUtilsMock.setup(utils => utils.getSelectorLastPart(It.isAny())).returns(() => 'last part');
         stringUtilsMock.setup(utils => utils.collapseConsecutiveSpaces(It.isAnyString())).returns(() => 'collapsed');
-        stringUtilsMock.setup(utils => utils.markdownEscapeBlock(It.isAnyString())).returns(() => 'escaped');
+        stringUtilsMock.setup(utils => utils.formatAsMarkdownCodeBlock(It.isAnyString())).returns(() => 'escaped');
         stringUtilsMock.setup(utils => utils.footer(environmentInfo)).returns(() => 'test footer');
 
         const result = testObject(settingsData, sampleIssueDetailsData, environmentInfo);
@@ -58,7 +58,7 @@ describe('createGitHubBugFilingUrlTest', () => {
         stringUtilsMock.setup(utils => utils.standardizeTags(sampleIssueDetailsData)).returns(() => ['TAG1', 'TAG2']);
         stringUtilsMock.setup(utils => utils.getSelectorLastPart(It.isAny())).returns(() => 'last part');
         stringUtilsMock.setup(utils => utils.collapseConsecutiveSpaces(It.isAnyString())).returns(() => 'collapsed');
-        stringUtilsMock.setup(utils => utils.markdownEscapeBlock(It.isAnyString())).returns(() => 'escaped');
+        stringUtilsMock.setup(utils => utils.formatAsMarkdownCodeBlock(It.isAnyString())).returns(() => 'escaped');
         stringUtilsMock.setup(utils => utils.footer(environmentInfo)).returns(() => 'test footer');
 
         const result = testObject(settingsData, sampleIssueDetailsData, environmentInfo);
