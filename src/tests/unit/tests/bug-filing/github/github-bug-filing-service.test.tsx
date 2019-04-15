@@ -78,7 +78,9 @@ describe('GithubBugFilingServiceTest', () => {
         const Component = GitHubBugFilingService.settingsForm;
         props.settings = null;
         const wrapper = shallow(<Component {...props} />);
-        expect(wrapper.find(TextField).props().value).toEqual('');
+        const textField = wrapper.find(TextField);
+        expect(textField.exists()).toBe(true);
+        expect(textField.props().value).toEqual('');
     });
 
     it('renderSettingsForm: onChange', () => {

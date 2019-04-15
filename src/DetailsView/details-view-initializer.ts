@@ -246,6 +246,12 @@ if (isNaN(tabId) === false) {
                     AxeInfo.Default.version,
                 );
 
+                const environmentInfoProvider = new EnvironmentInfoProvider(
+                    chromeAdapter.extensionVersion,
+                    browserSpec,
+                    AxeInfo.Default.version,
+                );
+
                 const deps: DetailsViewContainerDeps = {
                     dropdownClickHandler,
                     bugActionMessageCreator,
@@ -277,11 +283,7 @@ if (isNaN(tabId) === false) {
                     urlParser,
                     dateProvider: DateProvider.getDate,
                     settingsProvider: SettingsProviderImpl,
-                    environmentInfoProvider: new EnvironmentInfoProvider(
-                        chromeAdapter.extensionVersion,
-                        browserSpec,
-                        AxeInfo.Default.version,
-                    ),
+                    environmentInfoProvider,
                     bugFilingServiceProvider: BugFilingServiceProviderImpl,
                 };
 
