@@ -68,7 +68,7 @@ describe('IssueFilingDialog', () => {
         };
     });
 
-    it.each([true, false])('isSettingsValid: %s', isSettingsValid => {
+    it.each([true, false])('render with isSettingsValid: %s', isSettingsValid => {
         isSettingsValidMock
             .setup(isValid => isValid(selectedServiceData))
             .returns(() => isSettingsValid)

@@ -119,3 +119,123 @@ exports[`IssueFilingDialog isSettingsValid: true 1`] = `
   </StyledDialogFooterBase>
 </StyledWithResponsiveMode>
 `;
+
+exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
+<StyledWithResponsiveMode
+  className="issue-filing-dialog"
+  dialogContentProps={
+    Object {
+      "showCloseButton": false,
+      "subText": "This configuration can be changed again in settings.",
+      "subTextId": "issue-filing-dialog-subtext",
+      "title": "Specify issue filing location",
+      "titleId": "issue-filing-dialog-title",
+      "type": 0,
+    }
+  }
+  hidden={false}
+  modalProps={
+    Object {
+      "containerClassName": "insights-dialog-main-override",
+      "isBlocking": false,
+    }
+  }
+  onDismiss={[Function]}
+>
+  <BugFilingSettingsContainer
+    deps={
+      Object {
+        "bugFilingServiceProvider": null,
+        "environmentInfoProvider": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "axeVersion": undefined,
+          "browserSpec": undefined,
+          "extensionVersion": undefined,
+          "getEnvironmentInfo": [Function],
+        },
+      }
+    }
+    selectedBugFilingService={
+      Object {
+        "createBugFilingUrl": [Function],
+        "isSettingsValid": [Function],
+      }
+    }
+    selectedBugFilingServiceData={
+      Object {
+        "someServiceData": null,
+      }
+    }
+  />
+  <StyledDialogFooterBase>
+    <ActionAndCancelButtonsComponent
+      cancelButtonOnClick={[Function]}
+      isHidden={false}
+      primaryButtonDisabled={true}
+      primaryButtonHref="#"
+      primaryButtonOnClick={[Function]}
+      primaryButtonText="File issue"
+    />
+  </StyledDialogFooterBase>
+</StyledWithResponsiveMode>
+`;
+
+exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
+<StyledWithResponsiveMode
+  className="issue-filing-dialog"
+  dialogContentProps={
+    Object {
+      "showCloseButton": false,
+      "subText": "This configuration can be changed again in settings.",
+      "subTextId": "issue-filing-dialog-subtext",
+      "title": "Specify issue filing location",
+      "titleId": "issue-filing-dialog-title",
+      "type": 0,
+    }
+  }
+  hidden={false}
+  modalProps={
+    Object {
+      "containerClassName": "insights-dialog-main-override",
+      "isBlocking": false,
+    }
+  }
+  onDismiss={[Function]}
+>
+  <BugFilingSettingsContainer
+    deps={
+      Object {
+        "bugFilingServiceProvider": null,
+        "environmentInfoProvider": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "axeVersion": undefined,
+          "browserSpec": undefined,
+          "extensionVersion": undefined,
+          "getEnvironmentInfo": [Function],
+        },
+      }
+    }
+    selectedBugFilingService={
+      Object {
+        "createBugFilingUrl": [Function],
+        "isSettingsValid": [Function],
+      }
+    }
+    selectedBugFilingServiceData={
+      Object {
+        "someServiceData": null,
+      }
+    }
+  />
+  <StyledDialogFooterBase>
+    <ActionAndCancelButtonsComponent
+      cancelButtonOnClick={[Function]}
+      isHidden={false}
+      primaryButtonDisabled={false}
+      primaryButtonHref="test url"
+      primaryButtonOnClick={[Function]}
+      primaryButtonText="File issue"
+    />
+  </StyledDialogFooterBase>
+</StyledWithResponsiveMode>
+`;

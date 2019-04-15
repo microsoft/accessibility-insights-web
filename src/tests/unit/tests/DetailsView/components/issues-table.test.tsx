@@ -162,14 +162,7 @@ describe('IssuesTableTest', () => {
             .setReportGenerator(reportGenerator)
             .setDeps({
                 detailsViewActionMessageCreator: actionMessageCreator,
-                dropdownClickHandler: null,
-                issueDetailsTextGenerator: null,
-                windowUtils: null,
-                bugActionMessageCreator: null,
-                environmentInfoProvider: null,
-                bugFilingServiceProvider: null,
-                userConfigMessageCreator: null,
-            })
+            } as IssuesTableDeps)
             .build();
         const setStateMock = Mock.ofInstance(state => {});
 

@@ -54,4 +54,22 @@ describe('BugFilingServiceProviderTest', () => {
 
         expect(new BugFilingServiceProvider(givenTestOptions).forKey('github')).toEqual(expectedTestOption);
     });
+
+    test('forKey', () => {
+        const givenTestOptions: BugFilingService[] = [
+            {
+                key: 'github',
+                displayName: 'Github',
+            } as BugFilingService,
+            {
+                key: 'random key',
+                displayName: 'random name',
+                isHidden: true,
+            } as BugFilingService,
+        ];
+
+        const expectedTestOption = givenTestOptions[0];
+
+        expect(new BugFilingServiceProvider(givenTestOptions).forKey('invalid key')).not.toBeDefined();
+    });
 });
