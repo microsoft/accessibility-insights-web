@@ -4,7 +4,9 @@ import { shallow } from 'enzyme';
 import { ISelection, Selection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 import { It, Mock, Times } from 'typemoq';
+
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
+import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { IssuesTable, IssuesTableDeps, IssuesTableProps, IssuesTableState } from '../../../../../DetailsView/components/issues-table';
 import { DetailsRowData, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
@@ -164,6 +166,9 @@ describe('IssuesTableTest', () => {
                 issueDetailsTextGenerator: null,
                 windowUtils: null,
                 bugActionMessageCreator: null,
+                environmentInfoProvider: null,
+                bugFilingServiceProvider: null,
+                userConfigMessageCreator: null,
             })
             .build();
         const setStateMock = Mock.ofInstance(state => {});
@@ -302,6 +307,9 @@ class TestPropsBuilder {
                 targetPageTitle: '',
             },
             reportGenerator: this.reportGenerator,
+            userConfigurationStoreData: {
+                bugService: 'gitHub',
+            } as UserConfigurationStoreData,
         };
     }
 }

@@ -6,10 +6,12 @@ import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
+
 import * as Markup from '../../assessments/markup';
 import { VisualizationToggle } from '../../common/components/visualization-toggle';
 import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
+import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { RuleResult, ScanResults } from '../../scanner/iruleresults';
@@ -39,6 +41,7 @@ export interface IssuesTableProps {
     featureFlags: FeatureFlagStoreData;
     scanResult: ScanResults;
     reportGenerator: ReportGenerator;
+    userConfigurationStoreData: UserConfigurationStoreData;
 }
 
 export interface IssuesTableState {
@@ -189,6 +192,7 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
                 pageUrl={this.props.pageUrl}
                 issueTrackerPath={this.props.issueTrackerPath}
                 featureFlagData={this.props.featureFlags}
+                userConfigurationStoreData={this.props.userConfigurationStoreData}
             />
         );
     }

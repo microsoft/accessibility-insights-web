@@ -271,6 +271,7 @@ describe('DetailsViewContainer', () => {
                 issueTrackerPath={issueTrackerPath}
                 rightPanelConfiguration={rightPanelConfiguration}
                 switcherNavConfiguration={switcherNavConfiguration}
+                userConfigurationStoreData={storeMocks.userConfigurationStoreData}
             />
         );
     }

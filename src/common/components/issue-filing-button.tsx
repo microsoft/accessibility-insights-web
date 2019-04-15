@@ -47,12 +47,13 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
         const href = isSettingValid
             ? selectedBugFilingService.createBugFilingUrl(selectedBugFilingServiceData, issueDetailsData, envInfo)
             : '#';
+        const target: string = isSettingValid ? '_blank' : '_self';
 
         return (
             <>
                 <DefaultButton
                     className={'create-bug-button'}
-                    target="_blank"
+                    target={target}
                     onClick={event => this.onClickFileIssueButton(event, isSettingValid)}
                     href={href}
                 >

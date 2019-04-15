@@ -40,7 +40,7 @@ const settingsForm = NamedSFC<SettingsFormProps<GitHubBugFilingSettings>>('BugFi
             className="issue-setting"
             label="Enter desired GitHub repo link:"
             onChange={onGitHubRepositoryChange}
-            value={props.settings.repository}
+            value={isEmpty(props.settings) ? '' : props.settings.repository}
             placeholder="https://github.com/owner/repo"
         />
     );

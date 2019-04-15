@@ -17,12 +17,14 @@ import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { DictionaryStringTo } from '../../types/common-types';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { GuidanceLinks } from './guidance-links';
+import { IssueFilingButton, IssueFilingButtonDeps } from '../../common/components/issue-filing-button';
+import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 
 export type IssuesDetailsPaneDeps = ToastDeps &
     FileIssueDetailsButtonDeps & {
         issueDetailsTextGenerator: IssueDetailsTextGenerator;
         detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-    };
+    } & IssueFilingButtonDeps;
 
 export interface IssuesDetailsPaneProps {
     deps: IssuesDetailsPaneDeps;
@@ -31,6 +33,7 @@ export interface IssuesDetailsPaneProps {
     pageUrl: string;
     issueTrackerPath: string;
     featureFlagData: FeatureFlagStoreData;
+    userConfigurationStoreData: UserConfigurationStoreData;
 }
 
 interface IssueDetailsState {
@@ -68,12 +71,27 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
     }
 
     private getFileIssueDetailsButton(issueData: CreateIssueDetailsTextData): JSX.Element {
-        return (
+        const oldButton = (
             <FileIssueDetailsButton
                 deps={this.props.deps}
                 issueDetailsData={issueData}
                 issueTrackerPath={this.props.issueTrackerPath}
                 restoreFocus={true}
+            />
+        );
+        const newButton: JSX.Element = (
+            <IssueFilingButton
+                deps={this.props.deps}
+                issueDetailsData={issueData}
+                userConfigurationStoreData={this.props.userConfigurationStoreData}
+            />
+        );
+        return (
+            <FlaggedComponent
+                enableJSXElement={newButton}
+                featureFlag={FeatureFlags[FeatureFlags.newIssueFilingExperience]}
+                disableJSXElement={oldButton}
+                featureFlagStoreData={this.props.featureFlagData}
             />
         );
     }

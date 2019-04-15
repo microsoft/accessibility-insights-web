@@ -14,6 +14,7 @@ import { ReportGenerator } from '../reports/report-generator';
 import { IssuesTable, IssuesTableDeps } from './issues-table';
 import { IssuesTableHandler } from './issues-table-handler';
 import { TargetPageChangedView } from './target-page-changed-view';
+import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 
 export type AdhocIssuesTestViewDeps = IssuesTableDeps;
 
@@ -31,6 +32,7 @@ export interface AdhocIssuesTestViewProps {
     reportGenerator: ReportGenerator;
     issuesTableHandler: IssuesTableHandler;
     configuration: VisualizationConfiguration;
+    userConfigurationStoreData: UserConfigurationStoreData;
 }
 
 export const AdhocIssuesTestView = NamedSFC<AdhocIssuesTestViewProps>('AdhocIssuesTestView', ({ children, ...props }) => {
@@ -67,6 +69,7 @@ export const AdhocIssuesTestView = NamedSFC<AdhocIssuesTestViewProps>('AdhocIssu
             featureFlags={props.featureFlagStoreData}
             scanResult={scanResult}
             reportGenerator={props.reportGenerator}
+            userConfigurationStoreData={props.userConfigurationStoreData}
         />
     );
 });

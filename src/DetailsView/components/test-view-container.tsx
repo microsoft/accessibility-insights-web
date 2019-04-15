@@ -16,6 +16,7 @@ import { ReportGenerator } from '../reports/report-generator';
 import { IssuesTableHandler } from './issues-table-handler';
 import { OverviewContainerDeps } from './overview-content/overview-content-container';
 import { TestViewDeps } from './test-view';
+import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 
 export type TestViewContainerDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
@@ -37,6 +38,7 @@ export interface TestViewContainerProps {
     reportGenerator: ReportGenerator;
     issuesTableHandler: IssuesTableHandler;
     issueTrackerPath: string;
+    userConfigurationStoreData: UserConfigurationStoreData;
 }
 
 export const TestViewContainer = NamedSFC<TestViewContainerProps>('TestViewContainer', props => {

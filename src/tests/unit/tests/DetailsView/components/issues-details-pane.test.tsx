@@ -3,6 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import {
     IssuesDetailsPane,
@@ -96,7 +97,7 @@ describe('IssuesDetailsPaneTest', () => {
             } as DetailsViewActionMessageCreator,
             windowUtils: null,
             bugActionMessageCreator: null,
-        };
+        } as IssuesDetailsPaneDeps;
 
         const props: IssuesDetailsPaneProps = {
             deps,
@@ -105,6 +106,7 @@ describe('IssuesDetailsPaneTest', () => {
             pageUrl: samplePageUrl,
             issueTrackerPath: sampleIssueTrackerPath,
             featureFlagData: {},
+            userConfigurationStoreData: {} as UserConfigurationStoreData,
         };
 
         return props;

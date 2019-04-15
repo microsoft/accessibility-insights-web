@@ -21,6 +21,7 @@ import { TabInfo } from './components/tab-info';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { ReportGenerator } from './reports/report-generator';
+import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 
 export type DetailsViewMainContentDeps = DetailsViewContentDeps & DetailsViewLeftNavDeps & DetailsViewCommandBarDeps;
 
@@ -44,6 +45,7 @@ export interface DetailsViewMainContentProps {
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
     issueTrackerPath: string;
+    userConfigurationStoreData: UserConfigurationStoreData;
 }
 
 export class DetailsViewMainContent extends React.Component<DetailsViewMainContentProps> {

@@ -38,7 +38,10 @@ export const IssueFilingDialog = NamedSFC<IssueFilingDialogProps>('IssueFilingDi
         deps,
     } = props;
     const environmentInfo = deps.environmentInfoProvider.getEnvironmentInfo();
-
+    const isSettingsValid = selectedBugFilingService.isSettingsValid(selectedBugFilingServiceData);
+    const href = isSettingsValid
+        ? selectedBugFilingService.createBugFilingUrl(selectedBugFilingServiceData, selectedBugData, environmentInfo)
+        : '#';
     return (
         <Dialog
             className={'issue-filing-dialog'}
@@ -65,14 +68,10 @@ export const IssueFilingDialog = NamedSFC<IssueFilingDialogProps>('IssueFilingDi
             <DialogFooter>
                 <ActionAndCancelButtonsComponent
                     isHidden={false}
-                    primaryButtonDisabled={selectedBugFilingService.isSettingsValid(selectedBugFilingServiceData)}
+                    primaryButtonDisabled={isSettingsValid === false}
                     primaryButtonOnClick={bugFileTelemetryCallback}
                     cancelButtonOnClick={onClose}
-                    primaryButtonHref={selectedBugFilingService.createBugFilingUrl(
-                        selectedBugFilingServiceData,
-                        selectedBugData,
-                        environmentInfo,
-                    )}
+                    primaryButtonHref={href}
                     primaryButtonText={'File issue'}
                 />
             </DialogFooter>

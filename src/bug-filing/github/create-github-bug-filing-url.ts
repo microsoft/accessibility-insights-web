@@ -54,5 +54,5 @@ export function createGitHubBugFilingUrl(
     const title = buildTitle(bugData);
     const body = buildGithubText(bugData);
     const encodedIssue = `/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
-    return `${settingsData.repository}${encodedIssue}`;
+    return `${settingsData.repository}/issues/${encodedIssue}`;
 }
