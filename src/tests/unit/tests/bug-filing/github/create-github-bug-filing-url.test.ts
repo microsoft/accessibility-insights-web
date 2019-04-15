@@ -81,6 +81,20 @@ describe('createGitHubBugFilingUrlTest', () => {
         });
     });
 
+    test('createGitHubBugFilingUrl: ends with /issues/ ', () => {
+        settingsData.repository = 'repo/issues/';
+        standardizeTagsMock.setup(s => s(It.isAny())).returns(() => []);
+        GlobalScope.using(
+            footerMock,
+            collapseConsecutiveSpacesMock,
+            markdownEscapeBlockMock,
+            getSelectorLastPartMock,
+            standardizeTagsMock,
+        ).with(() => {
+            expect(createGitHubBugFilingUrl(settingsData, sampleIssueDetailsData, environmentInfo)).toMatchSnapshot();
+        });
+    });
+
     test('createGitHubBugFilingUrl: with tag', () => {
         standardizeTagsMock.setup(s => s(It.isAny())).returns(() => ['TAG1', 'TAG2']);
         GlobalScope.using(

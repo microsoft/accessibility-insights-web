@@ -4,6 +4,7 @@ import { EnvironmentInfo } from './../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from './../../common/types/create-issue-details-text-data';
 import { IssueFilingUrlStringUtils } from './../common/issue-filing-url-string-utils';
 import { GitHubBugFilingSettings } from './github-bug-filing-service';
+import { endsWith } from 'lodash';
 
 export function createGitHubBugFilingUrl(
     settingsData: GitHubBugFilingSettings,
@@ -53,6 +54,10 @@ export function createGitHubBugFilingUrl(
 
     const title = buildTitle(bugData);
     const body = buildGithubText(bugData);
+    const repository =
+        endsWith(settingsData.repository, 'issues') || endsWith(settingsData.repository, 'issues')
+            ? settingsData.repository
+            : `${settingsData.repository}/issues/`;
     const encodedIssue = `/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
-    return `${settingsData.repository}/issues/${encodedIssue}`;
+    return `${repository}${encodedIssue}`;
 }
