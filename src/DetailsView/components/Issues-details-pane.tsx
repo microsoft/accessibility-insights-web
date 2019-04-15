@@ -21,10 +21,11 @@ import { DetailsViewActionMessageCreator } from '../actions/details-view-action-
 import { GuidanceLinks } from './guidance-links';
 
 export type IssuesDetailsPaneDeps = ToastDeps &
-    FileIssueDetailsButtonDeps & {
+    FileIssueDetailsButtonDeps &
+    IssueFilingButtonDeps & {
         issueDetailsTextGenerator: IssueDetailsTextGenerator;
         detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-    } & IssueFilingButtonDeps;
+    };
 
 export interface IssuesDetailsPaneProps {
     deps: IssuesDetailsPaneDeps;
@@ -71,7 +72,7 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
     }
 
     private getFileIssueDetailsButton(issueData: CreateIssueDetailsTextData): JSX.Element {
-        const oldButton: JSX.Element = (
+        const oldExperienceButton: JSX.Element = (
             <FileIssueDetailsButton
                 deps={this.props.deps}
                 issueDetailsData={issueData}
@@ -79,7 +80,7 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
                 restoreFocus={true}
             />
         );
-        const newButton: JSX.Element = (
+        const newExperienceButton: JSX.Element = (
             <IssueFilingButton
                 deps={this.props.deps}
                 issueDetailsData={issueData}
@@ -88,9 +89,9 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
         );
         return (
             <FlaggedComponent
-                enableJSXElement={newButton}
+                enableJSXElement={newExperienceButton}
                 featureFlag={FeatureFlags[FeatureFlags.newIssueFilingExperience]}
-                disableJSXElement={oldButton}
+                disableJSXElement={oldExperienceButton}
                 featureFlagStoreData={this.props.featureFlagData}
             />
         );

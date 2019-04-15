@@ -4,7 +4,6 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { FlaggedComponent } from '../../../../../common/components/flagged-component';
-import { FeatureFlags } from '../../../../../common/feature-flags';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import {
