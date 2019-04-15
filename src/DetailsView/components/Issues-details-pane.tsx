@@ -84,7 +84,7 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
             pageUrl: this.props.pageUrl,
             ruleResult: result,
         };
-        const showBugFiling = this.props.featureFlagData[FeatureFlags.showBugFiling];
+
         return (
             <div>
                 <h2>Failure details</h2>

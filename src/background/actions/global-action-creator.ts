@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-
 import { Messages } from '../../common/messages';
 import * as TelemetryEvents from '../../common/telemetry-events';
 import { BrowserAdapter } from '../browser-adapter';
@@ -17,7 +16,7 @@ import {
     SetTelemetryStatePayload,
 } from './action-payloads';
 import { CommandActions, GetCommandsPayload } from './command-actions';
-import { FeatureFlagActions, FeatureFlagPayload } from './feature-flag-actions';
+import { FeatureFlagActions } from './feature-flag-actions';
 import { GlobalActionHub } from './global-action-hub';
 import { LaunchPanelStateActions } from './launch-panel-state-action';
 import { ScopingActions } from './scoping-actions';
