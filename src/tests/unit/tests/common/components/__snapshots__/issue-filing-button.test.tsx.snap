@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IssueFilingButtonTest render: isSettingsValid: false 1`] = `
+"<Fragment>
+  <CustomizedDefaultButton className=\\"create-bug-button\\" target=\\"_self\\" onClick={[Function: onClick]} href=\\"#\\">
+    <LadyBugSolidIcon />
+    <div className=\\"ms-Button-label\\">
+      File issue
+    </div>
+  </CustomizedDefaultButton>
+  <IssueFilingDialog deps={{...}} isOpen={false} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={[undefined]} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
+</Fragment>"
+`;
+
+exports[`IssueFilingButtonTest render: isSettingsValid: true 1`] = `
+"<Fragment>
+  <CustomizedDefaultButton className=\\"create-bug-button\\" target=\\"_blank\\" onClick={[Function: onClick]} href=\\"test url\\">
+    <LadyBugSolidIcon />
+    <div className=\\"ms-Button-label\\">
+      File issue
+    </div>
+  </CustomizedDefaultButton>
+  <IssueFilingDialog deps={{...}} isOpen={false} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={[undefined]} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
+</Fragment>"
+`;

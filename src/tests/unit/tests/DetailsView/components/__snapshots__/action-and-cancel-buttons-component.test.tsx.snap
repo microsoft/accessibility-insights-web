@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActionAndCancelButtonsComponent render with primary button href == null 1`] = `
+<div
+  className="action-and-cancel-buttons-component"
+  hidden={false}
+>
+  <div
+    className="button action-cancel-button-col"
+  >
+    <CustomizedDefaultButton
+      onClick={[Function]}
+      text="Cancel"
+    />
+  </div>
+  <div
+    className="button action-cancel-button-col"
+  >
+    <CustomizedDefaultButton
+      disabled={false}
+      href={null}
+      onClick={[Function]}
+      primary={true}
+      target="_self"
+      text="Test"
+    />
+  </div>
+</div>
+`;
+
+exports[`ActionAndCancelButtonsComponent render with primary button href == sample href 1`] = `
+<div
+  className="action-and-cancel-buttons-component"
+  hidden={false}
+>
+  <div
+    className="button action-cancel-button-col"
+  >
+    <CustomizedDefaultButton
+      onClick={[Function]}
+      text="Cancel"
+    />
+  </div>
+  <div
+    className="button action-cancel-button-col"
+  >
+    <CustomizedDefaultButton
+      disabled={false}
+      href="sample href"
+      onClick={[Function]}
+      primary={true}
+      target="_blank"
+      text="Test"
+    />
+  </div>
+</div>
+`;

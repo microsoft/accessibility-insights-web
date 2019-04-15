@@ -11,4 +11,8 @@ export class BugFilingServiceProvider {
     public allVisible(): BugFilingService[] {
         return this.all().filter(service => !service.isHidden);
     }
+
+    public forKey(key: string): BugFilingService {
+        return this.all().find(service => service.key === key);
+    }
 }

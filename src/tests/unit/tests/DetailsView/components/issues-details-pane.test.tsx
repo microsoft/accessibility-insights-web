@@ -3,6 +3,8 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import { FlaggedComponent } from '../../../../../common/components/flagged-component';
+import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import {
     IssuesDetailsPane,
@@ -30,6 +32,13 @@ describe('IssuesDetailsPaneTest', () => {
         const props = generateProps(1, 2);
         const wrapper = shallow(<IssuesDetailsPane {...props} />);
         expect(wrapper.debug()).toMatchSnapshot();
+    });
+
+    test('render with single selection, issue filing button', () => {
+        const props = generateProps(1, 2);
+        const wrapper = shallow(<IssuesDetailsPane {...props} />);
+        const flaggedButton = wrapper.find(FlaggedComponent);
+        expect(flaggedButton.getElement()).toMatchSnapshot();
     });
 
     function testRenderNotSingle(count: number): void {
@@ -96,7 +105,7 @@ describe('IssuesDetailsPaneTest', () => {
             } as DetailsViewActionMessageCreator,
             windowUtils: null,
             bugActionMessageCreator: null,
-        };
+        } as IssuesDetailsPaneDeps;
 
         const props: IssuesDetailsPaneProps = {
             deps,
@@ -105,6 +114,7 @@ describe('IssuesDetailsPaneTest', () => {
             pageUrl: samplePageUrl,
             issueTrackerPath: sampleIssueTrackerPath,
             featureFlagData: {},
+            userConfigurationStoreData: {} as UserConfigurationStoreData,
         };
 
         return props;

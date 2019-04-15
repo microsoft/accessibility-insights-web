@@ -13,6 +13,7 @@ import { VisualizationConfigurationFactory } from '../common/configs/visualizati
 import { DateProvider } from '../common/date-provider';
 import { DocumentManipulator } from '../common/document-manipulator';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
+import { EnvironmentInfoProvider } from '../common/environment-info-provider';
 import { initializeFabricIcons } from '../common/fabric-icons';
 import { getAllFeatureFlagDetails } from '../common/feature-flags';
 import { getInnerTextFromJsxElement } from '../common/get-inner-text-from-jsx-element';
@@ -47,6 +48,7 @@ import { contentPages } from '../content';
 import { ScannerUtils } from '../injected/scanner-utils';
 import { getVersion, scan } from '../scanner/exposed-apis';
 import { DictionaryStringTo } from '../types/common-types';
+import { BugFilingServiceProviderImpl } from './../bug-filing/bug-filing-service-provider-impl';
 import { DetailsViewActionMessageCreator } from './actions/details-view-action-message-creator';
 import { IssuesSelectionFactory } from './actions/issues-selection-factory';
 import { AssessmentTableColumnConfigHandler } from './components/assessment-table-column-config-handler';
@@ -240,6 +242,12 @@ if (isNaN(tabId) === false) {
                     AxeInfo.Default.version,
                 );
 
+                const environmentInfoProvider = new EnvironmentInfoProvider(
+                    chromeAdapter.extensionVersion,
+                    browserSpec,
+                    AxeInfo.Default.version,
+                );
+
                 const deps: DetailsViewContainerDeps = {
                     dropdownClickHandler,
                     bugActionMessageCreator,
@@ -271,6 +279,8 @@ if (isNaN(tabId) === false) {
                     urlParser,
                     dateProvider: DateProvider.getDate,
                     settingsProvider: SettingsProviderImpl,
+                    environmentInfoProvider,
+                    bugFilingServiceProvider: BugFilingServiceProviderImpl,
                 };
 
                 const renderer = new DetailsViewRenderer(

@@ -9,6 +9,7 @@ import { AssessmentStoreData } from '../common/types/store-data/assessment-resul
 import { DetailsViewData } from '../common/types/store-data/details-view-data';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
+import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
@@ -44,6 +45,7 @@ export interface DetailsViewMainContentProps {
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
     issueTrackerPath: string;
+    userConfigurationStoreData: UserConfigurationStoreData;
 }
 
 export class DetailsViewMainContent extends React.Component<DetailsViewMainContentProps> {

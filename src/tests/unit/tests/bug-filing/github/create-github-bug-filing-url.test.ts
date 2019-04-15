@@ -47,7 +47,8 @@ describe('createGitHubBugFilingUrlTest', () => {
         stringUtilsMock.setup(utils => utils.getSelectorLastPart(It.isAny())).returns(() => 'last part');
         stringUtilsMock.setup(utils => utils.collapseConsecutiveSpaces(It.isAnyString())).returns(() => 'collapsed');
         stringUtilsMock.setup(utils => utils.formatAsMarkdownCodeBlock(It.isAnyString())).returns(() => 'escaped');
-        stringUtilsMock.setup(utils => utils.footer(environmentInfo)).returns(() => 'test footer');
+        stringUtilsMock.setup(utils => utils.getFooterContent(environmentInfo)).returns(() => 'test getFooterContent');
+        stringUtilsMock.setup(utils => utils.appendSuffixToUrl(settingsData.repository, 'issues')).returns(() => 'test appendSuffixToUrl');
 
         const result = testObject(settingsData, sampleIssueDetailsData, environmentInfo);
 
@@ -59,7 +60,8 @@ describe('createGitHubBugFilingUrlTest', () => {
         stringUtilsMock.setup(utils => utils.getSelectorLastPart(It.isAny())).returns(() => 'last part');
         stringUtilsMock.setup(utils => utils.collapseConsecutiveSpaces(It.isAnyString())).returns(() => 'collapsed');
         stringUtilsMock.setup(utils => utils.formatAsMarkdownCodeBlock(It.isAnyString())).returns(() => 'escaped');
-        stringUtilsMock.setup(utils => utils.footer(environmentInfo)).returns(() => 'test footer');
+        stringUtilsMock.setup(utils => utils.getFooterContent(environmentInfo)).returns(() => 'test getFooterContent');
+        stringUtilsMock.setup(utils => utils.appendSuffixToUrl(settingsData.repository, 'issues')).returns(() => 'test appendSuffixToUrl');
 
         const result = testObject(settingsData, sampleIssueDetailsData, environmentInfo);
 

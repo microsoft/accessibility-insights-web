@@ -40,7 +40,7 @@ function buildGithubText(stringUtils: IssueUrlCreationUtils, environmentInfo: En
         ``,
         `====`,
         ``,
-        stringUtils.footer(environmentInfo),
+        stringUtils.getFooterContent(environmentInfo),
     ].join('\n');
 
     return text;
@@ -51,7 +51,8 @@ export const createGitHubIssueFilingUrlProvider = (stringUtils: IssueUrlCreation
         const title = buildTitle(stringUtils, bugData);
         const body = buildGithubText(stringUtils, environmentInfo, bugData);
         const encodedIssue = `/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
-        return `${settingsData.repository}${encodedIssue}`;
+        const repository = stringUtils.appendSuffixToUrl(settingsData.repository, 'issues');
+        return `${repository}${encodedIssue}`;
     };
 };
 

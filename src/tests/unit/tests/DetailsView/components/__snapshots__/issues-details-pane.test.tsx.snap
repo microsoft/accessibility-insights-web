@@ -1,5 +1,147 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`IssuesDetailsPaneTest render with single selection, issue filing button 1`] = `
+<FlaggedComponent
+  enableJSXElement={
+    <FlaggedComponent
+      disableJSXElement={
+        <FileIssueDetailsButton
+          deps={
+            Object {
+              "bugActionMessageCreator": null,
+              "detailsViewActionMessageCreator": Object {
+                "copyIssueDetailsClicked": [Function],
+              },
+              "issueDetailsTextGenerator": null,
+              "windowUtils": null,
+            }
+          }
+          issueDetailsData={
+            Object {
+              "pageTitle": "pageTitle",
+              "pageUrl": "pageUrl",
+              "ruleResult": Object {
+                "all": Array [
+                  Object {
+                    "data": "check-result-data",
+                    "id": "check-result-id",
+                    "message": "check-result-message",
+                  },
+                ],
+                "any": Array [
+                  Object {
+                    "data": "check-result-data",
+                    "id": "check-result-id",
+                    "message": "check-result-message",
+                  },
+                ],
+                "failureSummary": null,
+                "fingerprint": "id1",
+                "guidanceLinks": Array [
+                  Object {
+                    "href": "aka.ms/guidance-url-X.1.1",
+                    "text": "guidance X.1.1",
+                  },
+                  Object {
+                    "href": "aka.ms/guidance-url-X.2.2",
+                    "text": "guidance X.2.2",
+                  },
+                ],
+                "help": "rule-help",
+                "helpUrl": "http://help-url/",
+                "html": null,
+                "id": "id1",
+                "none": Array [
+                  Object {
+                    "data": "check-result-data",
+                    "id": "check-result-id",
+                    "message": "check-result-message",
+                  },
+                ],
+                "ruleId": "rule-id",
+                "selector": null,
+                "snippet": null,
+                "status": false,
+              },
+            }
+          }
+          issueTrackerPath="https://example.com/example"
+          restoreFocus={true}
+        />
+      }
+      enableJSXElement={
+        <IssueFilingButton
+          deps={
+            Object {
+              "bugActionMessageCreator": null,
+              "detailsViewActionMessageCreator": Object {
+                "copyIssueDetailsClicked": [Function],
+              },
+              "issueDetailsTextGenerator": null,
+              "windowUtils": null,
+            }
+          }
+          issueDetailsData={
+            Object {
+              "pageTitle": "pageTitle",
+              "pageUrl": "pageUrl",
+              "ruleResult": Object {
+                "all": Array [
+                  Object {
+                    "data": "check-result-data",
+                    "id": "check-result-id",
+                    "message": "check-result-message",
+                  },
+                ],
+                "any": Array [
+                  Object {
+                    "data": "check-result-data",
+                    "id": "check-result-id",
+                    "message": "check-result-message",
+                  },
+                ],
+                "failureSummary": null,
+                "fingerprint": "id1",
+                "guidanceLinks": Array [
+                  Object {
+                    "href": "aka.ms/guidance-url-X.1.1",
+                    "text": "guidance X.1.1",
+                  },
+                  Object {
+                    "href": "aka.ms/guidance-url-X.2.2",
+                    "text": "guidance X.2.2",
+                  },
+                ],
+                "help": "rule-help",
+                "helpUrl": "http://help-url/",
+                "html": null,
+                "id": "id1",
+                "none": Array [
+                  Object {
+                    "data": "check-result-data",
+                    "id": "check-result-id",
+                    "message": "check-result-message",
+                  },
+                ],
+                "ruleId": "rule-id",
+                "selector": null,
+                "snippet": null,
+                "status": false,
+              },
+            }
+          }
+          userConfigurationStoreData={Object {}}
+        />
+      }
+      featureFlag="newIssueFilingExperience"
+      featureFlagStoreData={Object {}}
+    />
+  }
+  featureFlag="showBugFiling"
+  featureFlagStoreData={Object {}}
+/>
+`;
+
 exports[`IssuesDetailsPaneTest render with single selection, test copy to clipboard 1`] = `
 "<div>
   <div>
