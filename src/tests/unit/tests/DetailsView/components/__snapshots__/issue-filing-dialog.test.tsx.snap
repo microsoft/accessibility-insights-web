@@ -37,8 +37,8 @@ exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
     }
     selectedBugFilingService={
       Object {
-        "createBugFilingUrl": [Function],
         "isSettingsValid": [Function],
+        "issueFilingUrlProvider": [Function],
       }
     }
     selectedBugFilingServiceData={
@@ -97,8 +97,8 @@ exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
     }
     selectedBugFilingService={
       Object {
-        "createBugFilingUrl": [Function],
         "isSettingsValid": [Function],
+        "issueFilingUrlProvider": [Function],
       }
     }
     selectedBugFilingServiceData={

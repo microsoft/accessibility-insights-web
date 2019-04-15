@@ -1,23 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GlobalMock, GlobalScope, IGlobalMock, It } from 'typemoq';
-
-import { createGitHubBugFilingUrl } from '../../../../../bug-filing/github/create-github-bug-filing-url';
-import { IssueFilingUrlStringUtils } from './../../../../../bug-filing/common/issue-filing-url-string-utils';
+import { IMock, It, Mock } from 'typemoq';
+import { createGitHubIssueFilingUrlProvider } from '../../../../../bug-filing/github/create-github-bug-filing-url';
+import { IssueFilingUrlProvider } from '../../../../../bug-filing/types/bug-filing-service';
+import { IssueUrlCreationUtils } from './../../../../../bug-filing/common/issue-filing-url-string-utils';
 import { GitHubBugFilingSettings } from './../../../../../bug-filing/github/github-bug-filing-service';
 import { EnvironmentInfo } from './../../../../../common/environment-info-provider';
-import { CreateIssueDetailsTextData } from './../../../../../common/types/create-issue-details-text-data';
 
 describe('createGitHubBugFilingUrlTest', () => {
     let environmentInfo: EnvironmentInfo;
     let sampleIssueDetailsData;
     let settingsData: GitHubBugFilingSettings;
-    let footerMock: IGlobalMock<(environmentInfo: EnvironmentInfo) => string>;
-    let collapseConsecutiveSpacesMock: IGlobalMock<(input: string) => string>;
-    let markdownEscapeBlockMock: IGlobalMock<(input: string) => string>;
-    let getSelectorLastPartMock: IGlobalMock<(selector: string) => string>;
-    let standardizeTagsMock: IGlobalMock<(data: CreateIssueDetailsTextData) => string[]>;
-    let appendSuffixToUrlMock: IGlobalMock<(url: string, suffix: string) => string>;
+    let stringUtilsMock: IMock<IssueUrlCreationUtils>;
+    let testObject: IssueFilingUrlProvider<GitHubBugFilingSettings>;
 
     beforeEach(() => {
         environmentInfo = {
@@ -42,63 +37,34 @@ describe('createGitHubBugFilingUrlTest', () => {
         settingsData = {
             repository: 'test repo',
         };
-        footerMock = GlobalMock.ofInstance(IssueFilingUrlStringUtils.footer, 'footer', IssueFilingUrlStringUtils);
-        footerMock.setup(f => f(It.isAny())).returns(() => 'test footer');
-        collapseConsecutiveSpacesMock = GlobalMock.ofInstance(
-            IssueFilingUrlStringUtils.collapseConsecutiveSpaces,
-            'collapseConsecutiveSpaces',
-            IssueFilingUrlStringUtils,
-        );
-        collapseConsecutiveSpacesMock.setup(c => c(It.isAny())).returns(() => 'collapesd');
-        markdownEscapeBlockMock = GlobalMock.ofInstance(
-            IssueFilingUrlStringUtils.markdownEscapeBlock,
-            'markdownEscapeBlock',
-            IssueFilingUrlStringUtils,
-        );
-        markdownEscapeBlockMock.setup(m => m(It.isAny())).returns(() => 'escaped');
-        getSelectorLastPartMock = GlobalMock.ofInstance(
-            IssueFilingUrlStringUtils.getSelectorLastPart,
-            'getSelectorLastPart',
-            IssueFilingUrlStringUtils,
-        );
-        getSelectorLastPartMock.setup(g => g(It.isAny())).returns(() => 'last part');
-        standardizeTagsMock = GlobalMock.ofInstance(
-            IssueFilingUrlStringUtils.standardizeTags,
-            'standardizeTags',
-            IssueFilingUrlStringUtils,
-        );
-        appendSuffixToUrlMock = GlobalMock.ofInstance(
-            IssueFilingUrlStringUtils.appendSuffixToUrl,
-            'appendSuffixToUrl',
-            IssueFilingUrlStringUtils,
-        );
-        appendSuffixToUrlMock.setup(g => g(It.isAny(), It.isAny())).returns(url => url);
+
+        stringUtilsMock = Mock.ofType<IssueUrlCreationUtils>();
+        testObject = createGitHubIssueFilingUrlProvider(stringUtilsMock.object);
     });
 
     test('createGitHubBugFilingUrl: no tag', () => {
-        standardizeTagsMock.setup(s => s(It.isAny())).returns(() => []);
-        GlobalScope.using(
-            footerMock,
-            collapseConsecutiveSpacesMock,
-            markdownEscapeBlockMock,
-            getSelectorLastPartMock,
-            standardizeTagsMock,
-        ).with(() => {
-            expect(createGitHubBugFilingUrl(settingsData, sampleIssueDetailsData, environmentInfo)).toMatchSnapshot();
-        });
+        stringUtilsMock.setup(utils => utils.standardizeTags(sampleIssueDetailsData)).returns(() => []);
+        stringUtilsMock.setup(utils => utils.getSelectorLastPart(It.isAny())).returns(() => 'last part');
+        stringUtilsMock.setup(utils => utils.collapseConsecutiveSpaces(It.isAnyString())).returns(() => 'collapsed');
+        stringUtilsMock.setup(utils => utils.formatAsMarkdownCodeBlock(It.isAnyString())).returns(() => 'escaped');
+        stringUtilsMock.setup(utils => utils.getFooterContent(environmentInfo)).returns(() => 'test getFooterContent');
+        stringUtilsMock.setup(utils => utils.appendSuffixToUrl('url', 'suffix')).returns(() => 'test appendSuffixToUrl');
+
+        const result = testObject(settingsData, sampleIssueDetailsData, environmentInfo);
+
+        expect(result).toMatchSnapshot();
     });
 
     test('createGitHubBugFilingUrl: with tag', () => {
-        standardizeTagsMock.setup(s => s(It.isAny())).returns(() => ['TAG1', 'TAG2']);
-        GlobalScope.using(
-            footerMock,
-            collapseConsecutiveSpacesMock,
-            markdownEscapeBlockMock,
-            getSelectorLastPartMock,
-            appendSuffixToUrlMock,
-            standardizeTagsMock,
-        ).with(() => {
-            expect(createGitHubBugFilingUrl(settingsData, sampleIssueDetailsData, environmentInfo)).toMatchSnapshot();
-        });
+        stringUtilsMock.setup(utils => utils.standardizeTags(sampleIssueDetailsData)).returns(() => ['TAG1', 'TAG2']);
+        stringUtilsMock.setup(utils => utils.getSelectorLastPart(It.isAny())).returns(() => 'last part');
+        stringUtilsMock.setup(utils => utils.collapseConsecutiveSpaces(It.isAnyString())).returns(() => 'collapsed');
+        stringUtilsMock.setup(utils => utils.formatAsMarkdownCodeBlock(It.isAnyString())).returns(() => 'escaped');
+        stringUtilsMock.setup(utils => utils.getFooterContent(environmentInfo)).returns(() => 'test getFooterContent');
+        stringUtilsMock.setup(utils => utils.appendSuffixToUrl('url', 'suffix')).returns(() => 'test appendSuffixToUrl');
+
+        const result = testObject(settingsData, sampleIssueDetailsData, environmentInfo);
+
+        expect(result).toMatchSnapshot();
     });
 });

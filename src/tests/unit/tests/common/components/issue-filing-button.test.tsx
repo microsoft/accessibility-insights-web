@@ -12,9 +12,11 @@ import { EnvironmentInfoProvider } from '../../../../../common/environment-info-
 import { BugActionMessageCreator } from '../../../../../common/message-creators/bug-action-message-creator';
 import { NamedSFC } from '../../../../../common/react/named-sfc';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
+import { EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('IssueFilingButtonTest', () => {
     const testKey: string = 'test';
+    const eventStub = new EventStubFactory().createNativeMouseClickEvent();
     let environmentInfoProviderMock: IMock<EnvironmentInfoProvider>;
     let bugFilingServiceProviderMock: IMock<BugFilingServiceProvider>;
     let bugActionMessageCreatorMock: IMock<BugActionMessageCreator>;
@@ -31,7 +33,7 @@ describe('IssueFilingButtonTest', () => {
                 return { testField };
             },
             getSettingsFromStoreData: data => data[testKey],
-            createBugFilingUrl: () => 'test url',
+            issueFilingUrlProvider: () => 'test url',
         };
         userConfigurationStoreData = {
             bugService: testKey,
@@ -80,7 +82,7 @@ describe('IssueFilingButtonTest', () => {
 
     test('onclick: valid settings, file bug', () => {
         bugActionMessageCreatorMock
-            .setup(messageCreator => messageCreator.trackFileIssueClick(It.isAny(), testKey as any))
+            .setup(messageCreator => messageCreator.trackFileIssueClick(eventStub as any, testKey as any))
             .verifiable(Times.once());
         const props: IssueFilingButtonProps = {
             deps: {
@@ -97,7 +99,7 @@ describe('IssueFilingButtonTest', () => {
         };
         const wrapper = shallow(<IssueFilingButton {...props} />);
 
-        wrapper.find(DefaultButton).simulate('click');
+        wrapper.find(DefaultButton).simulate('click', eventStub);
 
         bugActionMessageCreatorMock.verifyAll();
     });
@@ -105,7 +107,7 @@ describe('IssueFilingButtonTest', () => {
     test('onclick: invalid settings, open dialog', () => {
         testBugService.isSettingsValid = () => false;
         bugActionMessageCreatorMock
-            .setup(messageCreator => messageCreator.trackFileIssueClick(It.isAny(), testKey as any))
+            .setup(messageCreator => messageCreator.trackFileIssueClick(eventStub as any, testKey as any))
             .verifiable(Times.never());
         const props: IssueFilingButtonProps = {
             deps: {
@@ -123,7 +125,7 @@ describe('IssueFilingButtonTest', () => {
         const wrapper = shallow(<IssueFilingButton {...props} />);
         expect(wrapper.state().isSettingsDialogOpen).toBe(false);
 
-        wrapper.find(DefaultButton).simulate('click');
+        wrapper.find(DefaultButton).simulate('click', eventStub);
 
         bugActionMessageCreatorMock.verifyAll();
         expect(wrapper.state().isSettingsDialogOpen).toBe(true);

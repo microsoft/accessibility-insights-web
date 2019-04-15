@@ -55,7 +55,7 @@ describe('IssueFilingDialog', () => {
         } as IssueFilingDialogDeps;
         bugFilingServiceStub = {
             isSettingsValid: isSettingsValidMock.object,
-            createBugFilingUrl: createBugFilingUrlMock.object,
+            issueFilingUrlProvider: createBugFilingUrlMock.object,
         } as BugFilingService;
         props = {
             deps,
