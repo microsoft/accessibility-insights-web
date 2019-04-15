@@ -69,15 +69,11 @@ describe('IssueFilingDialog', () => {
     });
 
     it.each([true, false])('render with isSettingsValid: %s', isSettingsValid => {
-        isSettingsValidMock
-            .setup(isValid => isValid(selectedServiceData))
-            .returns(() => isSettingsValid)
-            .verifiable();
+        isSettingsValidMock.setup(isValid => isValid(selectedServiceData)).returns(() => isSettingsValid);
 
         createBugFilingUrlMock
             .setup(createBugFilingUrl => createBugFilingUrl(selectedServiceData, selectedBugDataStub, envInfo))
-            .returns(() => 'test url')
-            .verifiable(isSettingsValid ? Times.once() : Times.never());
+            .returns(() => 'test url');
 
         const testSubject = shallow(<IssueFilingDialog {...props} />);
 
@@ -114,7 +110,7 @@ describe('IssueFilingDialog', () => {
             .setup(createBugFilingUrl => createBugFilingUrl(selectedServiceData, selectedBugDataStub, envInfo))
             .verifiable(Times.once());
         telemetryCallbackMock.setup(telemetryCallback => telemetryCallback(eventStub)).verifiable(Times.once());
-        onCloseMock.setup(onClose => onClose(It.isAny())).verifiable(Times.once());
+        onCloseMock.setup(onClose => onClose(eventStub)).verifiable(Times.once());
 
         const testSubject = shallow(<IssueFilingDialog {...props} />);
         const actionCancelButtons = testSubject.find(ActionAndCancelButtonsComponent);

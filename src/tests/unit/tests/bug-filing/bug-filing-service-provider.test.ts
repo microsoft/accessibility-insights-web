@@ -55,7 +55,7 @@ describe('BugFilingServiceProviderTest', () => {
         expect(new BugFilingServiceProvider(givenTestOptions).forKey('github')).toEqual(expectedTestOption);
     });
 
-    test('forKey', () => {
+    test('forKey: service not found', () => {
         const givenTestOptions: BugFilingService[] = [
             {
                 key: 'github',
