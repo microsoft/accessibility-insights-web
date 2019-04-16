@@ -46,7 +46,7 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
         const isSettingValid = selectedBugFilingService.isSettingsValid(selectedBugFilingServiceData);
         const href = isSettingValid
             ? selectedBugFilingService.issueFilingUrlProvider(selectedBugFilingServiceData, issueDetailsData, envInfo)
-            : '#';
+            : null;
         const target: string = isSettingValid ? '_blank' : '_self';
 
         return (

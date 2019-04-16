@@ -52,7 +52,7 @@ exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
       cancelButtonOnClick={[Function]}
       isHidden={false}
       primaryButtonDisabled={true}
-      primaryButtonHref="#"
+      primaryButtonHref={null}
       primaryButtonOnClick={[Function]}
       primaryButtonText="File issue"
     />
