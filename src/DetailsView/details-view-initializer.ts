@@ -133,6 +133,8 @@ if (isNaN(tabId) === false) {
                     userConfigStore,
                 ]);
 
+                const actionMessageDispatcher = new ActionMessageDispatcher(chromeAdapter.sendMessageToFrames, tab.id);
+
                 const actionMessageCreator = new DetailsViewActionMessageCreator(
                     chromeAdapter.sendMessageToFrames,
                     tab.id,
@@ -155,9 +157,9 @@ if (isNaN(tabId) === false) {
                     tab.id,
                     telemetryFactory,
                 );
+
                 const bugActionMessageCreator = new BugActionMessageCreator(
-                    chromeAdapter.sendMessageToFrames,
-                    tab.id,
+                    actionMessageDispatcher,
                     telemetryFactory,
                     TelemetryEventSource.DetailsView,
                 );
@@ -173,8 +175,6 @@ if (isNaN(tabId) === false) {
 
                 const userConfigMessageCreator = new UserConfigMessageCreator(chromeAdapter.sendMessageToFrames, tab.id);
                 const storeActionMessageCreator = storeActionMessageCreatorFactory.forDetailsView();
-
-                const actionMessageDispatcher = new ActionMessageDispatcher(chromeAdapter.sendMessageToFrames, tab.id);
 
                 const visualizationActionCreator = new VisualizationActionMessageCreator(actionMessageDispatcher);
 
