@@ -8,7 +8,7 @@ import { BugServicePropertiesMap } from '../../common/types/store-data/user-conf
 import { BugFilingService } from '../types/bug-filing-service';
 import { AzureBoardsSettingsForm } from './azure-boards-settings-form';
 
-const AzureDevOpsBugFilingServiceKey = 'azureBoards';
+const AzureBoardsBugFilingServiceKey = 'azureBoards';
 
 export type AzureBoardsIssueDetailField = 'reproSteps' | 'description';
 
@@ -29,7 +29,7 @@ function buildStoreData(projectURL: string, issueDetailsField: AzureBoardsIssueD
 }
 
 function getSettingsFromStoreData(bugServicePropertiesMap: BugServicePropertiesMap): AzureBoardsBugFilingSettings {
-    return bugServicePropertiesMap[AzureDevOpsBugFilingServiceKey] as AzureBoardsBugFilingSettings;
+    return bugServicePropertiesMap[AzureBoardsBugFilingServiceKey] as AzureBoardsBugFilingSettings;
 }
 
 function isSettingsValid(data: AzureBoardsBugFilingSettings): boolean {
@@ -41,7 +41,7 @@ function isStringValid(stringToCheck: string): boolean {
 }
 
 export const AzureBoardsBugFilingService: BugFilingService<AzureBoardsBugFilingSettings> = {
-    key: AzureDevOpsBugFilingServiceKey,
+    key: AzureBoardsBugFilingServiceKey,
     displayName: 'Azure Boards',
     settingsForm: AzureBoardsSettingsForm,
     buildStoreData,
