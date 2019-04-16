@@ -1,21 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`IssueFilingButtonTest test with stateToToggle = showHelpText render with needs more info content showing 1`] = `
-"<Fragment>
-  <CustomizedDefaultButton className=\\"create-bug-button\\" target=\\"_blank\\" onClick={[Function: onClick]} href=\\"test url\\">
-    <LadyBugSolidIcon />
-    <div className=\\"ms-Button-label\\">
-      File issue
-    </div>
-  </CustomizedDefaultButton>
-  <IssueFilingDialog deps={{...}} isOpen={false} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={{...}} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
-  <div role=\\"alert\\" aria-live=\\"polite\\" className=\\"create-bug-button-help\\">
-    Go to Settings to configure issue filing.
-  </div>
-</Fragment>"
-`;
-
-exports[`IssueFilingButtonTest test with stateToToggle = showHelpText render: isSettingsValid: false 1`] = `
+exports[`IssueFilingButtonTest onclick: invalid settings, %s 1`] = `
 "<Fragment>
   <CustomizedDefaultButton className=\\"create-bug-button\\" target=\\"_self\\" onClick={[Function: onClick]} href={{...}}>
     <LadyBugSolidIcon />
@@ -23,11 +8,11 @@ exports[`IssueFilingButtonTest test with stateToToggle = showHelpText render: is
       File issue
     </div>
   </CustomizedDefaultButton>
-  <IssueFilingDialog deps={{...}} isOpen={false} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={{...}} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
+  <testRenderer deps={{...}} isOpen={true} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={{...}} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
 </Fragment>"
 `;
 
-exports[`IssueFilingButtonTest test with stateToToggle = showHelpText render: isSettingsValid: true 1`] = `
+exports[`IssueFilingButtonTest onclick: valid settings, file bug and set %s to false 1`] = `
 "<Fragment>
   <CustomizedDefaultButton className=\\"create-bug-button\\" target=\\"_blank\\" onClick={[Function: onClick]} href=\\"test url\\">
     <LadyBugSolidIcon />
@@ -35,23 +20,11 @@ exports[`IssueFilingButtonTest test with stateToToggle = showHelpText render: is
       File issue
     </div>
   </CustomizedDefaultButton>
-  <IssueFilingDialog deps={{...}} isOpen={false} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={{...}} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
+  <testRenderer deps={{...}} isOpen={false} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={{...}} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
 </Fragment>"
 `;
 
-exports[`IssueFilingButtonTest test with stateToToggle = showSettingsDialog render with needs more info content showing 1`] = `
-"<Fragment>
-  <CustomizedDefaultButton className=\\"create-bug-button\\" target=\\"_blank\\" onClick={[Function: onClick]} href=\\"test url\\">
-    <LadyBugSolidIcon />
-    <div className=\\"ms-Button-label\\">
-      File issue
-    </div>
-  </CustomizedDefaultButton>
-  <IssueFilingDialog deps={{...}} isOpen={true} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={{...}} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
-</Fragment>"
-`;
-
-exports[`IssueFilingButtonTest test with stateToToggle = showSettingsDialog render: isSettingsValid: false 1`] = `
+exports[`IssueFilingButtonTest render: isSettingsValid: false 1`] = `
 "<Fragment>
   <CustomizedDefaultButton className=\\"create-bug-button\\" target=\\"_self\\" onClick={[Function: onClick]} href={{...}}>
     <LadyBugSolidIcon />
@@ -59,11 +32,11 @@ exports[`IssueFilingButtonTest test with stateToToggle = showSettingsDialog rend
       File issue
     </div>
   </CustomizedDefaultButton>
-  <IssueFilingDialog deps={{...}} isOpen={false} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={{...}} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
+  <testRenderer deps={{...}} isOpen={false} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={{...}} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
 </Fragment>"
 `;
 
-exports[`IssueFilingButtonTest test with stateToToggle = showSettingsDialog render: isSettingsValid: true 1`] = `
+exports[`IssueFilingButtonTest render: isSettingsValid: true 1`] = `
 "<Fragment>
   <CustomizedDefaultButton className=\\"create-bug-button\\" target=\\"_blank\\" onClick={[Function: onClick]} href=\\"test url\\">
     <LadyBugSolidIcon />
@@ -71,6 +44,6 @@ exports[`IssueFilingButtonTest test with stateToToggle = showSettingsDialog rend
       File issue
     </div>
   </CustomizedDefaultButton>
-  <IssueFilingDialog deps={{...}} isOpen={false} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={{...}} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
+  <testRenderer deps={{...}} isOpen={false} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={{...}} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
 </Fragment>"
 `;

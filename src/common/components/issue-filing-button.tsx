@@ -5,12 +5,16 @@ import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 
 import { BugFilingService } from '../../bug-filing/types/bug-filing-service';
-import { IssueFilingDialog, IssueFilingDialogDeps } from '../../DetailsView/components/issue-filing-dialog';
+import { IssueFilingDialogDeps } from '../../DetailsView/components/issue-filing-dialog';
 import { EnvironmentInfo } from '../environment-info-provider';
 import { LadyBugSolidIcon } from '../icons/lady-bug-solid-icon';
 import { BugActionMessageCreator } from '../message-creators/bug-action-message-creator';
 import { FileIssueClickService } from '../telemetry-events';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
+import {
+    IssueFilingNeedsSettingsContentRenderer,
+    IssueFilinigNeedsSettingsContentProps,
+} from '../types/issue-filing-needs-setting-content';
 import { BugServiceProperties, UserConfigurationStoreData } from '../types/store-data/user-configuration-store';
 
 export type IssueFilingButtonDeps = {
@@ -21,20 +25,18 @@ export type IssueFilingButtonProps = {
     deps: IssueFilingButtonDeps;
     issueDetailsData: CreateIssueDetailsTextData;
     userConfigurationStoreData: UserConfigurationStoreData;
-    stateToToggleForNeedsSettings: keyof IssueFilingButtonState;
+    needsSettingsContentRenderer: IssueFilingNeedsSettingsContentRenderer;
 };
 
 export type IssueFilingButtonState = {
-    showSettingsDialog: boolean;
-    showHelpText: boolean;
+    showNeedsSettingsContent?: boolean;
 };
 
 export class IssueFilingButton extends React.Component<IssueFilingButtonProps, IssueFilingButtonState> {
     constructor(props) {
         super(props);
         this.state = {
-            showSettingsDialog: false,
-            showHelpText: false,
+            showNeedsSettingsContent: false,
         };
     }
 
@@ -52,6 +54,17 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
             : null;
         const target: string = isSettingValid ? '_blank' : '_self';
 
+        const needsSettingsContentProps: IssueFilinigNeedsSettingsContentProps = {
+            deps,
+            isOpen: this.state.showNeedsSettingsContent,
+            selectedBugFilingService,
+            selectedBugData: issueDetailsData,
+            selectedBugFilingServiceData,
+            onClose: this.closeNeedsSettingsContent,
+            bugFileTelemetryCallback: this.trackFileIssueClick,
+        };
+        const NeedsSettingsContent = this.props.needsSettingsContentRenderer;
+
         return (
             <>
                 <DefaultButton
@@ -63,28 +76,9 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
                     <LadyBugSolidIcon />
                     <div className="ms-Button-label">File issue</div>
                 </DefaultButton>
-                <IssueFilingDialog
-                    deps={deps}
-                    isOpen={this.state.showSettingsDialog}
-                    selectedBugFilingService={selectedBugFilingService}
-                    selectedBugData={issueDetailsData}
-                    selectedBugFilingServiceData={selectedBugFilingServiceData}
-                    onClose={this.closeNeedsMoreInfoContent}
-                    bugFileTelemetryCallback={this.trackFileIssueClick}
-                />
-                {this.renderHelpText()}
+                <NeedsSettingsContent {...needsSettingsContentProps} />
             </>
         );
-    }
-
-    private renderHelpText(): JSX.Element {
-        if (this.state.showHelpText) {
-            return (
-                <div role="alert" aria-live="polite" className="create-bug-button-help">
-                    Go to Settings to configure issue filing.
-                </div>
-            );
-        }
     }
 
     @autobind
@@ -94,23 +88,21 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
     }
 
     @autobind
-    private closeNeedsMoreInfoContent(): void {
-        const newState: Partial<IssueFilingButtonState> = { [this.props.stateToToggleForNeedsSettings]: false };
-        this.setState(newState as IssueFilingButtonState);
+    private closeNeedsSettingsContent(): void {
+        this.setState({ showNeedsSettingsContent: false });
     }
 
-    private openNeedsMoreInfoContent(): void {
-        const newState: Partial<IssueFilingButtonState> = { [this.props.stateToToggleForNeedsSettings]: true };
-        this.setState(newState as IssueFilingButtonState);
+    private openNeedsSettingsContent(): void {
+        this.setState({ showNeedsSettingsContent: true });
     }
 
     @autobind
     private onClickFileIssueButton(event: React.MouseEvent<any>, isSettingValid: boolean): void {
         if (isSettingValid) {
             this.trackFileIssueClick(event);
-            this.closeNeedsMoreInfoContent();
+            this.closeNeedsSettingsContent();
         } else {
-            this.openNeedsMoreInfoContent();
+            this.openNeedsSettingsContent();
         }
     }
 }

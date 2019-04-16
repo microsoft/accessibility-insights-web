@@ -10,8 +10,9 @@ import { NamedSFC } from '../../common/react/named-sfc';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { BugServiceProperties } from '../../common/types/store-data/user-configuration-store';
 import { ActionAndCancelButtonsComponent } from './action-and-cancel-buttons-component';
+import { IssueFilinigNeedsSettingsContentProps } from '../../common/types/issue-filing-needs-setting-content';
 
-export interface IssueFilingDialogProps {
+export interface IssueFilingDialogProps extends IssueFilinigNeedsSettingsContentProps {
     deps: IssueFilingDialogDeps;
     isOpen: boolean;
     selectedBugFilingService: BugFilingService;
