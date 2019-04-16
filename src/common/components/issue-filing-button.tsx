@@ -21,17 +21,20 @@ export type IssueFilingButtonProps = {
     deps: IssueFilingButtonDeps;
     issueDetailsData: CreateIssueDetailsTextData;
     userConfigurationStoreData: UserConfigurationStoreData;
+    stateToToggleForNeedsSettings: keyof IssueFilingButtonState;
 };
 
 export type IssueFilingButtonState = {
-    isSettingsDialogOpen: boolean;
+    showSettingsDialog: boolean;
+    showHelpText: boolean;
 };
 
 export class IssueFilingButton extends React.Component<IssueFilingButtonProps, IssueFilingButtonState> {
     constructor(props) {
         super(props);
         this.state = {
-            isSettingsDialogOpen: false,
+            showSettingsDialog: false,
+            showHelpText: false,
         };
     }
 
@@ -62,15 +65,26 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
                 </DefaultButton>
                 <IssueFilingDialog
                     deps={deps}
-                    isOpen={this.state.isSettingsDialogOpen}
+                    isOpen={this.state.showSettingsDialog}
                     selectedBugFilingService={selectedBugFilingService}
                     selectedBugData={issueDetailsData}
                     selectedBugFilingServiceData={selectedBugFilingServiceData}
-                    onClose={this.closeDialog}
+                    onClose={this.closeNeedsMoreInfoContent}
                     bugFileTelemetryCallback={this.trackFileIssueClick}
                 />
+                {this.renderHelpText()}
             </>
         );
+    }
+
+    private renderHelpText(): JSX.Element {
+        if (this.state.showHelpText) {
+            return (
+                <div role="alert" aria-live="polite" className="create-bug-button-help">
+                    Go to Settings to configure issue filing.
+                </div>
+            );
+        }
     }
 
     @autobind
@@ -80,12 +94,14 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
     }
 
     @autobind
-    private closeDialog(): void {
-        this.setState({ isSettingsDialogOpen: false });
+    private closeNeedsMoreInfoContent(): void {
+        const newState: Partial<IssueFilingButtonState> = { [this.props.stateToToggleForNeedsSettings]: false };
+        this.setState(newState as IssueFilingButtonState);
     }
 
-    private openDialog(): void {
-        this.setState({ isSettingsDialogOpen: true });
+    private openNeedsMoreInfoContent(): void {
+        const newState: Partial<IssueFilingButtonState> = { [this.props.stateToToggleForNeedsSettings]: true };
+        this.setState(newState as IssueFilingButtonState);
     }
 
     @autobind
@@ -93,7 +109,7 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
         if (isSettingValid) {
             this.trackFileIssueClick(event);
         } else {
-            this.openDialog();
+            this.openNeedsMoreInfoContent();
         }
     }
 }

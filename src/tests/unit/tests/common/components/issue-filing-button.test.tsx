@@ -72,6 +72,7 @@ describe('IssueFilingButtonTest', () => {
                 ruleResult: null,
             },
             userConfigurationStoreData: userConfigurationStoreData,
+            stateToToggleForNeedsSettings: 'showSettingsDialog',
         };
         const wrapper = shallow(<IssueFilingButton {...props} />);
         expect(wrapper.debug()).toMatchSnapshot();
@@ -96,6 +97,7 @@ describe('IssueFilingButtonTest', () => {
                 ruleResult: null,
             },
             userConfigurationStoreData: userConfigurationStoreData,
+            stateToToggleForNeedsSettings: 'showSettingsDialog',
         };
         const wrapper = shallow(<IssueFilingButton {...props} />);
 
@@ -121,6 +123,7 @@ describe('IssueFilingButtonTest', () => {
                 ruleResult: null,
             },
             userConfigurationStoreData: userConfigurationStoreData,
+            stateToToggleForNeedsSettings: 'showSettingsDialog',
         };
         const wrapper = shallow(<IssueFilingButton {...props} />);
         expect(wrapper.state().isSettingsDialogOpen).toBe(false);

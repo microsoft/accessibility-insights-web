@@ -85,6 +85,7 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
                 deps={this.props.deps}
                 issueDetailsData={issueData}
                 userConfigurationStoreData={this.props.userConfigurationStoreData}
+                stateToToggleForNeedsSettings={'showHelpText'}
             />
         );
         return (
