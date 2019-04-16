@@ -1,7 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BugFilingSettings renders { bugFilingEnable: false,
-  bugService: 'gitHub',
+exports[`BugFilingSettings renders { bugService: 'gitHub',
   bugServicePropertiesMap: { gitHub: { repository: 'test-repository' } } } 1`] = `
 <FlaggedComponent
   enableJSXElement={
@@ -9,26 +8,73 @@ exports[`BugFilingSettings renders { bugFilingEnable: false,
       <h3>
         Issue filing
       </h3>
-      <StyledTextFieldBase
-        className="issue-setting"
-        label="Enter desired GitHub repo link:"
-        onChange={[Function]}
-        placeholder="https://github.com/owner/repo/issues"
-        value="test-repository"
+      <FlaggedComponent
+        disableJSXElement={
+          <GitHubBugSettingsUx
+            deps={
+              Object {
+                "bugFilingServiceProvider": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "all": [Function],
+                  "allVisible": [Function],
+                  "forKey": [Function],
+                  "services": undefined,
+                },
+              }
+            }
+            featureFlagData={Object {}}
+            userConfigurationStoreState={
+              Object {
+                "bugService": "gitHub",
+                "bugServicePropertiesMap": Object {
+                  "gitHub": Object {
+                    "repository": "test-repository",
+                  },
+                },
+                "enableHighContrast": true,
+                "enableTelemetry": true,
+                "isFirstTime": true,
+              }
+            }
+          />
+        }
+        enableJSXElement={
+          <BugFilingSettingsContainer
+            deps={
+              Object {
+                "bugFilingServiceProvider": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "all": [Function],
+                  "allVisible": [Function],
+                  "forKey": [Function],
+                  "services": undefined,
+                },
+              }
+            }
+            selectedBugFilingService={
+              Object {
+                "buildStoreData": [Function],
+                "displayName": "TEST",
+                "getSettingsFromStoreData": [Function],
+                "isSettingsValid": [Function],
+                "issueFilingUrlProvider": [Function],
+                "key": "test",
+                "settingsForm": [Function],
+              }
+            }
+          />
+        }
+        featureFlag="newIssueFilingExperience"
+        featureFlagStoreData={Object {}}
       />
     </React.Fragment>
   }
   featureFlag="showBugFiling"
-  featureFlagStoreData={
-    Object {
-      "showBugFiling": false,
-    }
-  }
+  featureFlagStoreData={Object {}}
 />
 `;
 
-exports[`BugFilingSettings renders { bugFilingEnable: false,
-  bugService: 'gitHub',
+exports[`BugFilingSettings renders { bugService: 'gitHub',
   bugServicePropertiesMap: { gitHub: {} } } 1`] = `
 <FlaggedComponent
   enableJSXElement={
@@ -36,107 +82,275 @@ exports[`BugFilingSettings renders { bugFilingEnable: false,
       <h3>
         Issue filing
       </h3>
-      <StyledTextFieldBase
-        className="issue-setting"
-        label="Enter desired GitHub repo link:"
-        onChange={[Function]}
-        placeholder="https://github.com/owner/repo/issues"
+      <FlaggedComponent
+        disableJSXElement={
+          <GitHubBugSettingsUx
+            deps={
+              Object {
+                "bugFilingServiceProvider": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "all": [Function],
+                  "allVisible": [Function],
+                  "forKey": [Function],
+                  "services": undefined,
+                },
+              }
+            }
+            featureFlagData={Object {}}
+            userConfigurationStoreState={
+              Object {
+                "bugService": "gitHub",
+                "bugServicePropertiesMap": Object {
+                  "gitHub": Object {},
+                },
+                "enableHighContrast": true,
+                "enableTelemetry": true,
+                "isFirstTime": true,
+              }
+            }
+          />
+        }
+        enableJSXElement={
+          <BugFilingSettingsContainer
+            deps={
+              Object {
+                "bugFilingServiceProvider": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "all": [Function],
+                  "allVisible": [Function],
+                  "forKey": [Function],
+                  "services": undefined,
+                },
+              }
+            }
+            selectedBugFilingService={
+              Object {
+                "buildStoreData": [Function],
+                "displayName": "TEST",
+                "getSettingsFromStoreData": [Function],
+                "isSettingsValid": [Function],
+                "issueFilingUrlProvider": [Function],
+                "key": "test",
+                "settingsForm": [Function],
+              }
+            }
+          />
+        }
+        featureFlag="newIssueFilingExperience"
+        featureFlagStoreData={Object {}}
       />
     </React.Fragment>
   }
   featureFlag="showBugFiling"
-  featureFlagStoreData={
-    Object {
-      "showBugFiling": false,
-    }
-  }
+  featureFlagStoreData={Object {}}
 />
 `;
 
-exports[`BugFilingSettings renders { bugFilingEnable: false,
-  bugService: 'gitHub',
-  bugServicePropertiesMap: {} } 1`] = `
+exports[`BugFilingSettings renders { bugService: 'gitHub', bugServicePropertiesMap: {} } 1`] = `
 <FlaggedComponent
   enableJSXElement={
     <React.Fragment>
       <h3>
         Issue filing
       </h3>
-      <StyledTextFieldBase
-        className="issue-setting"
-        label="Enter desired GitHub repo link:"
-        onChange={[Function]}
-        placeholder="https://github.com/owner/repo/issues"
+      <FlaggedComponent
+        disableJSXElement={
+          <GitHubBugSettingsUx
+            deps={
+              Object {
+                "bugFilingServiceProvider": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "all": [Function],
+                  "allVisible": [Function],
+                  "forKey": [Function],
+                  "services": undefined,
+                },
+              }
+            }
+            featureFlagData={Object {}}
+            userConfigurationStoreState={
+              Object {
+                "bugService": "gitHub",
+                "bugServicePropertiesMap": Object {},
+                "enableHighContrast": true,
+                "enableTelemetry": true,
+                "isFirstTime": true,
+              }
+            }
+          />
+        }
+        enableJSXElement={
+          <BugFilingSettingsContainer
+            deps={
+              Object {
+                "bugFilingServiceProvider": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "all": [Function],
+                  "allVisible": [Function],
+                  "forKey": [Function],
+                  "services": undefined,
+                },
+              }
+            }
+            selectedBugFilingService={
+              Object {
+                "buildStoreData": [Function],
+                "displayName": "TEST",
+                "getSettingsFromStoreData": [Function],
+                "isSettingsValid": [Function],
+                "issueFilingUrlProvider": [Function],
+                "key": "test",
+                "settingsForm": [Function],
+              }
+            }
+          />
+        }
+        featureFlag="newIssueFilingExperience"
+        featureFlagStoreData={Object {}}
       />
     </React.Fragment>
   }
   featureFlag="showBugFiling"
-  featureFlagStoreData={
-    Object {
-      "showBugFiling": false,
-    }
-  }
+  featureFlagStoreData={Object {}}
 />
 `;
 
-exports[`BugFilingSettings renders { bugFilingEnable: false,
-  bugService: 'gitHub',
-  bugServicePropertiesMap: null } 1`] = `
+exports[`BugFilingSettings renders { bugService: 'gitHub', bugServicePropertiesMap: null } 1`] = `
 <FlaggedComponent
   enableJSXElement={
     <React.Fragment>
       <h3>
         Issue filing
       </h3>
-      <StyledTextFieldBase
-        className="issue-setting"
-        label="Enter desired GitHub repo link:"
-        onChange={[Function]}
-        placeholder="https://github.com/owner/repo/issues"
+      <FlaggedComponent
+        disableJSXElement={
+          <GitHubBugSettingsUx
+            deps={
+              Object {
+                "bugFilingServiceProvider": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "all": [Function],
+                  "allVisible": [Function],
+                  "forKey": [Function],
+                  "services": undefined,
+                },
+              }
+            }
+            featureFlagData={Object {}}
+            userConfigurationStoreState={
+              Object {
+                "bugService": "gitHub",
+                "bugServicePropertiesMap": null,
+                "enableHighContrast": true,
+                "enableTelemetry": true,
+                "isFirstTime": true,
+              }
+            }
+          />
+        }
+        enableJSXElement={
+          <BugFilingSettingsContainer
+            deps={
+              Object {
+                "bugFilingServiceProvider": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "all": [Function],
+                  "allVisible": [Function],
+                  "forKey": [Function],
+                  "services": undefined,
+                },
+              }
+            }
+            selectedBugFilingService={
+              Object {
+                "buildStoreData": [Function],
+                "displayName": "TEST",
+                "getSettingsFromStoreData": [Function],
+                "isSettingsValid": [Function],
+                "issueFilingUrlProvider": [Function],
+                "key": "test",
+                "settingsForm": [Function],
+              }
+            }
+            selectedBugFilingServiceData={null}
+          />
+        }
+        featureFlag="newIssueFilingExperience"
+        featureFlagStoreData={Object {}}
       />
     </React.Fragment>
   }
   featureFlag="showBugFiling"
-  featureFlagStoreData={
-    Object {
-      "showBugFiling": false,
-    }
-  }
+  featureFlagStoreData={Object {}}
 />
 `;
 
-exports[`BugFilingSettings renders { bugFilingEnable: false,
-  bugService: 'none',
-  bugServicePropertiesMap: null } 1`] = `
+exports[`BugFilingSettings renders { bugService: 'none', bugServicePropertiesMap: null } 1`] = `
 <FlaggedComponent
   enableJSXElement={
     <React.Fragment>
       <h3>
         Issue filing
       </h3>
-      <StyledTextFieldBase
-        className="issue-setting"
-        label="Enter desired GitHub repo link:"
-        onChange={[Function]}
-        placeholder="https://github.com/owner/repo/issues"
+      <FlaggedComponent
+        disableJSXElement={
+          <GitHubBugSettingsUx
+            deps={
+              Object {
+                "bugFilingServiceProvider": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "all": [Function],
+                  "allVisible": [Function],
+                  "forKey": [Function],
+                  "services": undefined,
+                },
+              }
+            }
+            featureFlagData={Object {}}
+            userConfigurationStoreState={
+              Object {
+                "bugService": "none",
+                "bugServicePropertiesMap": null,
+                "enableHighContrast": true,
+                "enableTelemetry": true,
+                "isFirstTime": true,
+              }
+            }
+          />
+        }
+        enableJSXElement={
+          <BugFilingSettingsContainer
+            deps={
+              Object {
+                "bugFilingServiceProvider": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "all": [Function],
+                  "allVisible": [Function],
+                  "forKey": [Function],
+                  "services": undefined,
+                },
+              }
+            }
+            selectedBugFilingService={
+              Object {
+                "buildStoreData": [Function],
+                "displayName": "TEST",
+                "getSettingsFromStoreData": [Function],
+                "isSettingsValid": [Function],
+                "issueFilingUrlProvider": [Function],
+                "key": "none",
+                "settingsForm": [Function],
+              }
+            }
+            selectedBugFilingServiceData={null}
+          />
+        }
+        featureFlag="newIssueFilingExperience"
+        featureFlagStoreData={Object {}}
       />
     </React.Fragment>
   }
   featureFlag="showBugFiling"
-  featureFlagStoreData={
-    Object {
-      "showBugFiling": false,
-    }
-  }
-/>
-`;
-
-exports[`BugFilingSettings renders renders the text field properly 1`] = `
-<StyledTextFieldBase
-  className="issue-setting"
-  label="Enter desired GitHub repo link:"
-  onChange={[Function]}
-  placeholder="https://github.com/owner/repo/issues"
-  value="test-repository"
+  featureFlagStoreData={Object {}}
 />
 `;

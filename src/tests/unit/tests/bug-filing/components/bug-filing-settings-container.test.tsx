@@ -8,6 +8,7 @@ import { BugFilingServiceProvider } from '../../../../../bug-filing/bug-filing-s
 import {
     BugFilingSettingsContainer,
     BugFilingSettingsContainerProps,
+    BugFilingSettingsContainerDeps,
 } from '../../../../../bug-filing/components/bug-filing-settings-container';
 import { BugFilingService } from '../../../../../bug-filing/types/bug-filing-service';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
@@ -34,7 +35,7 @@ describe('BugFilingSettingsContainerTest', () => {
         deps: {
             userConfigMessageCreator: userConfigMessageCreatorStub,
             bugFilingServiceProvider: bugFilingServicesProviderMock.object,
-        },
+        } as BugFilingSettingsContainerDeps,
         selectedBugFilingService,
         userConfigurationStoreData,
         selectedBugFilingServiceData,

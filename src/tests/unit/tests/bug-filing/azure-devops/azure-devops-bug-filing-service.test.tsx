@@ -11,6 +11,7 @@ import {
 import { SettingsFormProps } from '../../../../../bug-filing/types/settings-form-props';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { BugServicePropertiesMap } from '../../../../../common/types/store-data/user-configuration-store';
+import { SettingsDeps } from '../../../../../DetailsView/components/settings-panel/settings/settings-props';
 
 describe('AzureDevOpsBugFilingServiceTest', () => {
     let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;
@@ -35,7 +36,7 @@ describe('AzureDevOpsBugFilingServiceTest', () => {
         props = {
             deps: {
                 userConfigMessageCreator: userConfigMessageCreatorMock.object,
-            },
+            } as SettingsDeps,
             settings: {
                 projectURL: 'some project',
                 issueDetailsLocationField: 'some location',
