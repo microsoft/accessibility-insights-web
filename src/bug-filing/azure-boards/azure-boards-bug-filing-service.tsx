@@ -4,10 +4,9 @@ import { isEmpty } from 'lodash';
 import { IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
 import { EnvironmentInfo } from '../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
-import { BugServicePropertiesMap } from '../../common/types/store-data/user-configuration-store';
+import { createSettingsGetter } from '../common/create-settings-getter';
 import { BugFilingService } from '../types/bug-filing-service';
 import { AzureBoardsSettingsForm } from './azure-boards-settings-form';
-import { createSettingsGetter } from '../common/create-settings-getter';
 
 const AzureBoardsBugFilingServiceKey = 'azureBoards';
 
