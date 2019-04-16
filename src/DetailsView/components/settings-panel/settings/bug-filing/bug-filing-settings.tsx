@@ -13,14 +13,12 @@ export const BugFilingSettings = NamedSFC<SettingsProps>('BugFilingSettings', pr
     const getBugSettingsUx = () => (
         <>
             <h3>Issue filing</h3>
-            {
-                <FlaggedComponent
-                    enableJSXElement={getNewIssueFilingSettingsUx()}
-                    disableJSXElement={getGitHubBugSettingsUx()}
-                    featureFlag={FeatureFlags[FeatureFlags.newIssueFilingExperience]}
-                    featureFlagStoreData={props.featureFlagData}
-                />
-            }
+            <FlaggedComponent
+                enableJSXElement={getNewIssueFilingSettingsUx()}
+                disableJSXElement={getGitHubBugSettingsUx()}
+                featureFlag={FeatureFlags[FeatureFlags.newIssueFilingExperience]}
+                featureFlagStoreData={props.featureFlagData}
+            />
         </>
     );
 
