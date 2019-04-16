@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 import { Toggle } from 'office-ui-fabric-react/lib/Toggle';
 import * as React from 'react';
 import { Mock, Times } from 'typemoq';
+
 import { UserConfigMessageCreator } from '../../../../../../../../common/message-creators/user-config-message-creator';
 import { UserConfigurationStoreData } from '../../../../../../../../common/types/store-data/user-configuration-store';
 import { HighContrastSettings } from '../../../../../../../../DetailsView/components/settings-panel/settings/high-contrast/high-contrast-settings';
@@ -33,7 +34,7 @@ describe('HighContrastSettings', () => {
             const userConfigMessageCreatorMock = Mock.ofType<UserConfigMessageCreator>();
             const deps = {
                 userConfigMessageCreator: userConfigMessageCreatorMock.object,
-            };
+            } as SettingsDeps;
             const props: SettingsProps = {
                 deps,
                 userConfigurationStoreState: {

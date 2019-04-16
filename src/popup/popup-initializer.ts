@@ -12,6 +12,7 @@ import { EnumHelper } from '../common/enum-helper';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { createDefaultLogger } from '../common/logging/default-logger';
 import { Logger } from '../common/logging/logger';
+import { ActionMessageDispatcher } from '../common/message-creators/action-message-dispatcher';
 import { ContentActionMessageCreator } from '../common/message-creators/content-action-message-creator';
 import { DropdownActionMessageCreator } from '../common/message-creators/dropdown-action-message-creator';
 import { StoreActionMessageCreatorFactory } from '../common/message-creators/store-action-message-creator-factory';
@@ -71,10 +72,8 @@ export class PopupInitializer {
     @autobind
     private initializePopup(): void {
         const telemetryFactory = new TelemetryDataFactory();
-        const visualizationActionCreator = new VisualizationActionMessageCreator(
-            this.chromeAdapter.sendMessageToFrames,
-            this.targetTabInfo.tab.id,
-        );
+        const actionMessageDispatcher = new ActionMessageDispatcher(this.chromeAdapter.sendMessageToFrames, this.targetTabInfo.tab.id);
+        const visualizationActionCreator = new VisualizationActionMessageCreator(actionMessageDispatcher);
 
         const popupActionMessageCreator = new PopupActionMessageCreator(
             this.chromeAdapter.sendMessageToFrames,

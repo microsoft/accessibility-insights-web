@@ -2,7 +2,7 @@
 
 exports[`IssueFilingButtonTest render: isSettingsValid: false 1`] = `
 "<Fragment>
-  <CustomizedDefaultButton className=\\"create-bug-button\\" target=\\"_self\\" onClick={[Function: onClick]} href=\\"#\\">
+  <CustomizedDefaultButton className=\\"create-bug-button\\" target=\\"_self\\" onClick={[Function: onClick]} href={{...}}>
     <LadyBugSolidIcon />
     <div className=\\"ms-Button-label\\">
       File issue

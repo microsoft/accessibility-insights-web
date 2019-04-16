@@ -49,7 +49,7 @@ describe('DetailsViewOverlay', () => {
         detailsViewActionMessageCreator: actionMessageCreatorStub,
         userConfigMessageCreator: userConfigMessageCreatorStub,
         settingsProvider: {} as SettingsProvider,
-    };
+    } as DetailsViewOverlayDeps;
 
     const props: DetailsViewOverlayProps = {
         deps,

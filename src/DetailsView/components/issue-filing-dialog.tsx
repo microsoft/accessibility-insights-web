@@ -38,7 +38,7 @@ export const IssueFilingDialog = NamedSFC<IssueFilingDialogProps>('IssueFilingDi
     const isSettingsValid = selectedBugFilingService.isSettingsValid(selectedBugFilingServiceData);
     const href = isSettingsValid
         ? selectedBugFilingService.issueFilingUrlProvider(selectedBugFilingServiceData, selectedBugData, environmentInfo)
-        : '#';
+        : null;
     return (
         <Dialog
             className={'issue-filing-dialog'}
