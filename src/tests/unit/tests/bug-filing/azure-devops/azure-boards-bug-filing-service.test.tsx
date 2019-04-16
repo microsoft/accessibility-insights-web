@@ -12,6 +12,7 @@ import {
 import { SettingsFormProps } from '../../../../../bug-filing/types/settings-form-props';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { BugServicePropertiesMap } from '../../../../../common/types/store-data/user-configuration-store';
+import { AzureBoardsSettingsForm } from '../../../../../bug-filing/azure-boards/azure-boards-settings-form';
 
 describe('AzureBoardsBugFilingServiceTest', () => {
     let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;
@@ -85,10 +86,8 @@ describe('AzureBoardsBugFilingServiceTest', () => {
         expect(AzureBoardsBugFilingService.isSettingsValid(validSettings)).toBe(true);
     });
 
-    it('renderSettingsForm', () => {
-        const Component = AzureBoardsBugFilingService.settingsForm;
-        const wrapper = shallow(<Component {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
+    it('settingsForm', () => {
+        expect(AzureBoardsBugFilingService.settingsForm).toBe(AzureBoardsSettingsForm);
     });
 
     describe('create bug filing url', () => {

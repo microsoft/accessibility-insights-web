@@ -42,7 +42,7 @@ export const AzureBoardsSettingsForm = NamedSFC<SettingsFormProps<AzureBoardsBug
         <>
             <TextField
                 className="issue-setting"
-                label="Enter the desired Azure DevOps project link:"
+                label="Enter the desired Azure Boards project link:"
                 value={props.settings ? props.settings.projectURL : null}
                 placeholder="https://dev.azure.com/org/project"
                 onChange={onProjectURLChange}
