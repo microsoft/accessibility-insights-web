@@ -24,7 +24,7 @@ exports[`AzureBoardsSettingsForm renders settings is null 1`] = `
         },
       ]
     }
-    selectedKey={null}
+    selectedKey="reproSteps"
   />
 </React.Fragment>
 `;

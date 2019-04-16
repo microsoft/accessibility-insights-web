@@ -13,9 +13,10 @@ import {
 } from './azure-boards-bug-filing-service';
 
 export const AzureBoardsSettingsForm = NamedSFC<SettingsFormProps<AzureBoardsBugFilingSettings>>('AzureBoardsSettingsForm', props => {
+    const defaultKey = 'reproSteps';
     const options: AzureBoardsIssueDetailLocationDropdownOption[] = [
         {
-            key: 'reproSteps',
+            key: defaultKey,
             text: 'Repro steps (default)',
         },
         {
@@ -51,7 +52,7 @@ export const AzureBoardsSettingsForm = NamedSFC<SettingsFormProps<AzureBoardsBug
                 options={options}
                 label="File issue details in:"
                 onChange={onIssueDetailLocationChange}
-                selectedKey={props.settings ? props.settings.issueDetailsField : null}
+                selectedKey={props.settings ? props.settings.issueDetailsField : defaultKey}
             />
         </>
     );
