@@ -7,7 +7,7 @@ exports[`AzureBoardsSettingsForm renders settings is null 1`] = `
     label="Enter the desired Azure Boards project link:"
     onChange={[Function]}
     placeholder="https://dev.azure.com/org/project"
-    value={null}
+    value=""
   />
   <StyledWithResponsiveMode
     label="File issue details in:"
