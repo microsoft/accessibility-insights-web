@@ -4,11 +4,11 @@ import * as React from 'react';
 
 import { NamedSFC } from '../react/named-sfc';
 
-export type IssueFilinigNeedsSettingsHelpTextProps = {
+export type IssueFilingNeedsSettingsHelpTextProps = {
     isOpen: boolean;
 };
 
-export const IssueFilinigNeedsSettingsHelpText = NamedSFC<IssueFilinigNeedsSettingsHelpTextProps>('IssueFilingDialog', props => {
+export const IssueFilingNeedsSettingsHelpText = NamedSFC<IssueFilingNeedsSettingsHelpTextProps>('IssueFilingDialog', props => {
     if (props.isOpen) {
         return (
             <div role="alert" aria-live="polite" className="create-bug-button-help">

@@ -1,5 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`IssueFilingNeedsSettingsHelpTextTest render with isOpen = false 1`] = `null`;
+
+exports[`IssueFilingNeedsSettingsHelpTextTest render with isOpen = true 1`] = `
+<div
+  aria-live="polite"
+  className="create-bug-button-help"
+  role="alert"
+>
+  Go to Settings to configure issue filing.
+</div>
+`;
+
 exports[`IssueFilinigNeedsSettingsHelpTextTest render with isOpen = false 1`] = `null`;
 
 exports[`IssueFilinigNeedsSettingsHelpTextTest render with isOpen = true 1`] = `

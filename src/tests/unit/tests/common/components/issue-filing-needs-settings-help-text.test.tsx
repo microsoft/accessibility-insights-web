@@ -2,16 +2,15 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-
 import {
-    IssueFilinigNeedsSettingsHelpText,
-    IssueFilinigNeedsSettingsHelpTextProps,
+    IssueFilingNeedsSettingsHelpTextProps,
+    IssueFilingNeedsSettingsHelpText,
 } from '../../../../../common/components/needs-settings-help-text';
 
-describe('IssueFilinigNeedsSettingsHelpTextTest', () => {
+describe('IssueFilingNeedsSettingsHelpTextTest', () => {
     test.each([true, false])('render with isOpen = %s', isOpen => {
-        const props: IssueFilinigNeedsSettingsHelpTextProps = { isOpen: isOpen };
-        const wrapper = shallow(<IssueFilinigNeedsSettingsHelpText {...props} />);
+        const props: IssueFilingNeedsSettingsHelpTextProps = { isOpen: isOpen };
+        const wrapper = shallow(<IssueFilingNeedsSettingsHelpText {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 });
