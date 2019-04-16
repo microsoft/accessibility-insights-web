@@ -130,6 +130,7 @@ exports[`IssuesDetailsPaneTest render with single selection, issue filing button
               },
             }
           }
+          stateToToggleForNeedsSettings="showSettingsDialog"
           userConfigurationStoreData={Object {}}
         />
       }
