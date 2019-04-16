@@ -4,6 +4,7 @@ import { EnvironmentInfo } from './../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from './../../common/types/create-issue-details-text-data';
 import { IssueFilingUrlStringUtils, IssueUrlCreationUtils } from './../common/issue-filing-url-string-utils';
 import { GitHubBugFilingSettings } from './github-bug-filing-service';
+import { IssueDetailsGetter, getIssueDetailsMarkdown } from '../common/get-issue-details-markdown';
 
 function buildTitle(stringUtils: IssueUrlCreationUtils, data: CreateIssueDetailsTextData): string {
     const standardTags = stringUtils.standardizeTags(data);
@@ -17,43 +18,14 @@ function buildTitle(stringUtils: IssueUrlCreationUtils, data: CreateIssueDetails
     return `${prefix}${data.ruleResult.help} (${selectorLastPart})`;
 }
 
-function buildGithubText(stringUtils: IssueUrlCreationUtils, environmentInfo: EnvironmentInfo, data: CreateIssueDetailsTextData): string {
-    const result = data.ruleResult;
-
-    const text = [
-        `**Issue**: \`${result.help}\` ([\`${result.ruleId}\`](${result.helpUrl}))`,
-        ``,
-        `**Target application**: [${data.pageTitle}](${data.pageUrl})`,
-        ``,
-        `**Element path**: ${data.ruleResult.selector}`,
-        ``,
-        `**Snippet**:`,
-        ``,
-        `    ${stringUtils.collapseConsecutiveSpaces(result.snippet)}`,
-        ``,
-        `**How to fix**:`,
-        ``,
-        `${stringUtils.formatAsMarkdownCodeBlock(result.failureSummary)}`,
-        ``,
-        `**Environment**:`,
-        `${environmentInfo.browserSpec}`,
-        ``,
-        `====`,
-        ``,
-        stringUtils.getFooterContent(environmentInfo),
-    ].join('\n');
-
-    return text;
-}
-
-export const createGitHubIssueFilingUrlProvider = (stringUtils: IssueUrlCreationUtils) => {
+export const createGitHubIssueFilingUrlProvider = (stringUtils: IssueUrlCreationUtils, issueDetailsGetter: IssueDetailsGetter) => {
     return (settingsData: GitHubBugFilingSettings, bugData: CreateIssueDetailsTextData, environmentInfo: EnvironmentInfo): string => {
         const title = buildTitle(stringUtils, bugData);
-        const body = buildGithubText(stringUtils, environmentInfo, bugData);
+        const body = issueDetailsGetter(stringUtils, environmentInfo, bugData);
         const encodedIssue = `/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
         const repository = stringUtils.appendSuffixToUrl(settingsData.repository, 'issues');
         return `${repository}${encodedIssue}`;
     };
 };
 
-export const gitHubIssueFilingUrlProvider = createGitHubIssueFilingUrlProvider(IssueFilingUrlStringUtils);
+export const gitHubIssueFilingUrlProvider = createGitHubIssueFilingUrlProvider(IssueFilingUrlStringUtils, getIssueDetailsMarkdown);
