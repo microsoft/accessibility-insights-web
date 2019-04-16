@@ -108,6 +108,7 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
     private onClickFileIssueButton(event: React.MouseEvent<any>, isSettingValid: boolean): void {
         if (isSettingValid) {
             this.trackFileIssueClick(event);
+            this.closeNeedsMoreInfoContent();
         } else {
             this.openNeedsMoreInfoContent();
         }
