@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-
 import { GitHubBugFilingSettings } from '../bug-filing/github/github-bug-filing-service';
 import { FeatureFlags } from '../common/feature-flags';
 import { HTMLElementUtils } from '../common/html-element-utils';
@@ -16,7 +15,6 @@ export class DetailsDialogHandler {
     @autobind
     public backButtonClickHandler(dialog: DetailsDialog): void {
         const currentRuleIndex = dialog.state.currentRuleIndex;
-        const showDialog = dialog.state.showDialog;
         dialog.setState({
             currentRuleIndex: currentRuleIndex - 1,
         });
@@ -25,7 +23,6 @@ export class DetailsDialogHandler {
     @autobind
     public nextButtonClickHandler(dialog: DetailsDialog): void {
         const currentRuleIndex = dialog.state.currentRuleIndex;
-        const showDialog = dialog.state.showDialog;
         dialog.setState({
             currentRuleIndex: currentRuleIndex + 1,
         });

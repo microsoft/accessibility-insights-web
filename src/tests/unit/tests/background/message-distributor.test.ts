@@ -7,7 +7,7 @@ import { Interpreter } from '../../../../background/interpreter';
 import { MessageDistributor, Sender } from '../../../../background/message-distributor';
 import { TabContext, TabToContextMap } from '../../../../background/tab-context';
 import { Logger } from '../../../../common/logging/logger';
-import { InterpreterMessage, Message } from '../../../../common/message';
+import { InterpreterMessage } from '../../../../common/message';
 
 describe('MessageDistributorTest', () => {
     let mockBrowserAdapter: IMock<BrowserAdapter>;

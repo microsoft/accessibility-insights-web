@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { autobind, css } from '@uifabric/utilities';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
-import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import * as React from 'react';
 
 export interface CollapsibleComponentProps {

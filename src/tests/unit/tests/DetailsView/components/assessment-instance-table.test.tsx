@@ -63,13 +63,6 @@ describe('AssessmentInstanceTableTest', () => {
             assessmentDefaultMessageGeneratorMock.object,
             getDefaultMessageMock.object,
         );
-        const items: AssessmentInstanceRowData[] = [
-            {
-                statusChoiceGroup: null,
-                visualizationButton: null,
-                instance: {} as GeneratedAssessmentInstance,
-            },
-        ];
         const testObject = new AssessmentInstanceTable(props);
         const expected = <Spinner className="details-view-spinner" size={SpinnerSize.large} label={'Scanning'} />;
         expect(testObject.render()).toEqual(expected);
@@ -287,13 +280,6 @@ describe('AssessmentInstanceTableTest', () => {
             .setup(a => a.passUnmarkedInstances(props.assessmentNavState.selectedTestType, props.assessmentNavState.selectedTestStep))
             .verifiable(Times.once());
 
-        const items: AssessmentInstanceRowData[] = [
-            {
-                statusChoiceGroup: null,
-                visualizationButton: null,
-                instance: {} as GeneratedAssessmentInstance,
-            },
-        ];
         const testObject = new TestableAssessmentInstanceTable(props);
         testObject.getOnPassUnmarkedInstances()();
 
