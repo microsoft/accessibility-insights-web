@@ -2,9 +2,10 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
+
 import {
-    IssueFilingNeedsSettingsHelpTextProps,
     IssueFilingNeedsSettingsHelpText,
+    IssueFilingNeedsSettingsHelpTextProps,
 } from '../../../../../common/components/needs-settings-help-text';
 
 describe('IssueFilingNeedsSettingsHelpTextTest', () => {
