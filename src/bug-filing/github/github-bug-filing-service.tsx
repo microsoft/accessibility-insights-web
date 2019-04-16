@@ -7,6 +7,7 @@ import { NamedSFC } from '../../common/react/named-sfc';
 import { BugFilingService } from '../types/bug-filing-service';
 import { SettingsFormProps } from '../types/settings-form-props';
 import { gitHubIssueFilingUrlProvider } from './create-github-bug-filing-url';
+import { createSettingsGetter } from '../common/create-settings-getter';
 
 const GitHubBugFilingServiceKey = 'gitHub';
 
@@ -18,10 +19,6 @@ function buildStoreData(repository: string): GitHubBugFilingSettings {
     return {
         repository,
     };
-}
-
-function getSettingsFromStoreData(bugServicePropertiesMap: GitHubBugFilingSettings): GitHubBugFilingSettings {
-    return bugServicePropertiesMap[GitHubBugFilingServiceKey] as GitHubBugFilingSettings;
 }
 
 function isSettingsValid(data: GitHubBugFilingSettings): boolean {
@@ -50,7 +47,7 @@ export const GitHubBugFilingService: BugFilingService<GitHubBugFilingSettings> =
     displayName: 'GitHub',
     settingsForm,
     buildStoreData,
-    getSettingsFromStoreData,
+    getSettingsFromStoreData: createSettingsGetter(GitHubBugFilingServiceKey),
     isSettingsValid,
     issueFilingUrlProvider: gitHubIssueFilingUrlProvider,
 };

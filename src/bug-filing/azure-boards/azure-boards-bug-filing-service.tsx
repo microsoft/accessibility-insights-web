@@ -7,6 +7,7 @@ import { CreateIssueDetailsTextData } from '../../common/types/create-issue-deta
 import { BugServicePropertiesMap } from '../../common/types/store-data/user-configuration-store';
 import { BugFilingService } from '../types/bug-filing-service';
 import { AzureBoardsSettingsForm } from './azure-boards-settings-form';
+import { createSettingsGetter } from '../common/create-settings-getter';
 
 const AzureBoardsBugFilingServiceKey = 'azureBoards';
 
@@ -28,10 +29,6 @@ function buildStoreData(projectURL: string, issueDetailsField: AzureBoardsIssueD
     };
 }
 
-function getSettingsFromStoreData(bugServicePropertiesMap: BugServicePropertiesMap): AzureBoardsBugFilingSettings {
-    return bugServicePropertiesMap[AzureBoardsBugFilingServiceKey] as AzureBoardsBugFilingSettings;
-}
-
 function isSettingsValid(data: AzureBoardsBugFilingSettings): boolean {
     return !isEmpty(data) && isStringValid(data.projectURL) && isStringValid(data.issueDetailsField);
 }
@@ -45,7 +42,7 @@ export const AzureBoardsBugFilingService: BugFilingService<AzureBoardsBugFilingS
     displayName: 'Azure Boards',
     settingsForm: AzureBoardsSettingsForm,
     buildStoreData,
-    getSettingsFromStoreData,
+    getSettingsFromStoreData: createSettingsGetter(AzureBoardsBugFilingServiceKey),
     isSettingsValid,
     issueFilingUrlProvider: (data: AzureBoardsBugFilingSettings, bugData: CreateIssueDetailsTextData, environmentInfo: EnvironmentInfo) =>
         null,
