@@ -156,11 +156,9 @@ export class MainWindowInitializer extends WindowInitializer {
         );
         const analyzerStateUpdateHandler = new AnalyzerStateUpdateHandler(this.visualizationConfigurationFactory);
         this.analyzerController = new AnalyzerController(
-            this.clientChromeAdapter.sendMessageToFrames,
             this.visualizationStoreProxy,
             this.featureFlagStoreProxy,
             this.scopingStoreProxy,
-            this.tabStopsListener,
             this.visualizationConfigurationFactory,
             analyzerProvider,
             analyzerStateUpdateHandler,
