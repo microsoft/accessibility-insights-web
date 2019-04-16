@@ -33,7 +33,7 @@ describe('TelemetrySettings', () => {
             const userConfigMessageCreatorMock = Mock.ofType<UserConfigMessageCreator>();
             const deps = {
                 userConfigMessageCreator: userConfigMessageCreatorMock.object,
-            };
+            } as SettingsDeps;
             const props: SettingsProps = {
                 deps,
                 userConfigurationStoreState: {
