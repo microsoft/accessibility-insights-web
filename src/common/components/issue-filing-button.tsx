@@ -29,7 +29,7 @@ export type IssueFilingButtonProps = {
 };
 
 export type IssueFilingButtonState = {
-    showNeedsSettingsContent?: boolean;
+    showNeedsSettingsContent: boolean;
 };
 
 export class IssueFilingButton extends React.Component<IssueFilingButtonProps, IssueFilingButtonState> {
