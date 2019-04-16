@@ -3,8 +3,7 @@
 import { shallow } from 'enzyme';
 import { DefaultButton } from 'office-ui-fabric-react';
 import * as React from 'react';
-import { IMock, It, Mock, Times } from 'typemoq';
-
+import { IMock, Mock, Times } from 'typemoq';
 import { BugFilingServiceProvider } from '../../../../../bug-filing/bug-filing-service-provider';
 import { BugFilingService } from '../../../../../bug-filing/types/bug-filing-service';
 import { IssueFilingButton, IssueFilingButtonDeps, IssueFilingButtonProps } from '../../../../../common/components/issue-filing-button';

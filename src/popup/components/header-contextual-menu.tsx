@@ -27,7 +27,7 @@ export type HeaderContextualMenuProps = {
 const telemetryEventSource = TelemetryEventSource.HamburgerMenu;
 
 export const HeaderContextualMenu = NamedSFC<HeaderContextualMenuProps>('HeaderContextualMenu', props => {
-    const { deps, header, popupWindow, featureFlags } = props;
+    const { deps, header, popupWindow } = props;
     const { popupActionMessageCreator, launchPanelHeaderClickHandler } = deps;
 
     const getItems = (): IContextualMenuItem[] => [
