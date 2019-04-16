@@ -150,7 +150,7 @@ describe('AssessmentViewTest', () => {
             .setup(a => a.enableVisualHelper(firstAssessment.visualizationType, stepName, false, true))
             .verifiable(Times.once());
 
-        const props = builder.setHasScanData(true).buildProps({ selector: {} }, false, true);
+        const props = builder.buildProps({ selector: {} }, false, true);
         const testObject = new AssessmentView(props);
 
         testObject.componentDidMount();
@@ -163,10 +163,7 @@ describe('AssessmentViewTest', () => {
             .setup(a => a.enableVisualHelper(firstAssessment.visualizationType, stepName, false))
             .verifiable(Times.never());
 
-        const props = builder
-            .setHasScanData(true)
-            .setIsEnabled(true)
-            .buildProps({ selector: {} });
+        const props = builder.setIsEnabled(true).buildProps({ selector: {} });
         const testObject = new AssessmentView(props);
 
         testObject.componentDidMount();
@@ -196,7 +193,6 @@ class AssessmentViewPropsBuilder {
     public assessmentInstanceTableHandlerMock: IMock<AssessmentInstanceTableHandler>;
     private assessmentGeneratorInstance: AssessmentDefaultMessageGenerator;
     private content: JSX.Element = <div>AssessmentViewTest content</div>;
-    private hasScanData: boolean = false;
     private isEnabled: boolean = false;
     private provider: AssessmentsProvider;
 
@@ -205,11 +201,6 @@ class AssessmentViewPropsBuilder {
         this.assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
         this.assessmentGeneratorInstance = assessmentGeneratorInstanceMock;
         this.provider = provider;
-    }
-
-    public setHasScanData(hasScanData: true): AssessmentViewPropsBuilder {
-        this.hasScanData = hasScanData;
-        return this;
     }
 
     public setIsEnabled(isEnabled: true): AssessmentViewPropsBuilder {
