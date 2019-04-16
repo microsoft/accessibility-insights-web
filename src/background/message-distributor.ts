@@ -3,7 +3,7 @@
 import { autobind } from '@uifabric/utilities';
 import { createDefaultLogger } from '../common/logging/default-logger';
 import { Logger } from '../common/logging/logger';
-import { Message } from '../common/message';
+import { InterpreterMessage, Message } from '../common/message';
 import { Tab } from './../common/itab.d';
 import { BrowserAdapter } from './browser-adapter';
 import { GlobalContext } from './global-context';
@@ -26,7 +26,7 @@ export class MessageDistributor {
     }
 
     @autobind
-    private distributeMessage(message: Message, sender?: Sender): void {
+    private distributeMessage(message: InterpreterMessage, sender?: Sender): void {
         message.tabId = this.getTabId(message, sender);
 
         const isInterpretedUsingGlobalContext = this.globalContext.interpreter.interpret(message);
@@ -37,7 +37,7 @@ export class MessageDistributor {
         }
     }
 
-    private getTabId(message: Message, sender?: Sender): number {
+    private getTabId(message: InterpreterMessage, sender?: Sender): number {
         if (message != null && message.tabId != null) {
             return message.tabId;
         } else if (sender != null && sender.tab != null && sender.tab.id != null) {
@@ -47,7 +47,7 @@ export class MessageDistributor {
         return null;
     }
 
-    private tryInterpretUsingTabContext(message: Message): boolean {
+    private tryInterpretUsingTabContext(message: InterpreterMessage): boolean {
         let hasInterpreted: boolean;
         const tabContext = this.tabToContextMap[message.tabId];
 

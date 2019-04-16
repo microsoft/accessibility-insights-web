@@ -2,9 +2,10 @@
 // Licensed under the MIT License.
 export interface Message {
     messageType: string;
-    tabId?: number;
     payload?: any;
 }
+
+export type InterpreterMessage = Message & { tabId?: number };
 
 export interface PayloadCallback {
     (payload: any, tabId): void;

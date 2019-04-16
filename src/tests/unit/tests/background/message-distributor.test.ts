@@ -7,7 +7,7 @@ import { Interpreter } from '../../../../background/interpreter';
 import { MessageDistributor, Sender } from '../../../../background/message-distributor';
 import { TabContext, TabToContextMap } from '../../../../background/tab-context';
 import { Logger } from '../../../../common/logging/logger';
-import { Message } from '../../../../common/message';
+import { InterpreterMessage, Message } from '../../../../common/message';
 
 describe('MessageDistributorTest', () => {
     let mockBrowserAdapter: IMock<BrowserAdapter>;
@@ -96,7 +96,7 @@ describe('MessageDistributorTest', () => {
 
     test('should distribute message, when sender has tab id', () => {
         const tabId = 1;
-        const message = { payload: {} } as Message;
+        const message = { payload: {} } as InterpreterMessage;
 
         const globalInterpreterMock = createInterpreterMockWithInteraction();
         globalInterpreter = globalInterpreterMock.object;
