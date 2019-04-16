@@ -28,7 +28,7 @@ describe('AzureBoardsSettingsForm', () => {
 
         deps = {
             userConfigMessageCreator: userConfigMessageCreatorMock.object,
-        };
+        } as SettingsDeps;
 
         props = {
             deps: deps,
