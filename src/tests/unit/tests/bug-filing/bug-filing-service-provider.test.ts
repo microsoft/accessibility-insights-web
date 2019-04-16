@@ -68,8 +68,6 @@ describe('BugFilingServiceProviderTest', () => {
             } as BugFilingService,
         ];
 
-        const expectedTestOption = givenTestOptions[0];
-
         expect(new BugFilingServiceProvider(givenTestOptions).forKey('invalid key')).not.toBeDefined();
     });
 });

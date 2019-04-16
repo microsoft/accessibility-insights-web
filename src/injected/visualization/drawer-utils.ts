@@ -29,7 +29,6 @@ export class DrawerUtils {
         docStyle: CSSStyleDeclaration,
     ): number {
         const leftOffset = this.getContainerLeftOffset(offset);
-        const documentElement = doc.documentElement;
         let containerWidth = elementBoundingClientRectWidth;
 
         if (leftOffset + containerWidth >= this.getDocumentWidth(doc, bodyStyle, docStyle) - this.clientWindowOffsetThreshold) {
@@ -47,7 +46,6 @@ export class DrawerUtils {
         docStyle: CSSStyleDeclaration,
     ): number {
         const topOffset = this.getContainerTopOffset(offset);
-        const documentElement = doc.documentElement;
         let containerHeight = elementBoundingClientRectHeight;
 
         if (topOffset + containerHeight >= this.getDocumentHeight(doc, bodyStyle, docStyle) - this.clientWindowOffsetThreshold) {
@@ -75,8 +73,6 @@ export class DrawerUtils {
     }
 
     public getDocumentWidth(doc: Document, bodyStyle: CSSStyleDeclaration, docStyle: CSSStyleDeclaration): number {
-        const body = this.dom.querySelector('body');
-
         if (bodyStyle.overflowX === 'hidden' || docStyle.overflowX === 'hidden') {
             return doc.documentElement.clientWidth;
         }
@@ -85,8 +81,6 @@ export class DrawerUtils {
     }
 
     public getDocumentHeight(doc: Document, bodyStyle: CSSStyleDeclaration, docStyle: CSSStyleDeclaration): number {
-        const body = this.dom.querySelector('body');
-
         if (bodyStyle.overflowY === 'hidden' || docStyle.overflowY === 'hidden') {
             return doc.documentElement.clientHeight;
         }

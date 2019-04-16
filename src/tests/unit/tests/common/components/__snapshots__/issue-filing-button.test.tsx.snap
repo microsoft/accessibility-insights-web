@@ -8,7 +8,7 @@ exports[`IssueFilingButtonTest test with stateToToggle = showHelpText render wit
       File issue
     </div>
   </CustomizedDefaultButton>
-  <IssueFilingDialog deps={{...}} isOpen={false} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={[undefined]} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
+  <IssueFilingDialog deps={{...}} isOpen={false} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={{...}} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
   <div role=\\"alert\\" aria-live=\\"polite\\" className=\\"create-bug-button-help\\">
     Go to Settings to configure issue filing.
   </div>
@@ -23,7 +23,7 @@ exports[`IssueFilingButtonTest test with stateToToggle = showHelpText render: is
       File issue
     </div>
   </CustomizedDefaultButton>
-  <IssueFilingDialog deps={{...}} isOpen={false} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={[undefined]} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
+  <IssueFilingDialog deps={{...}} isOpen={false} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={{...}} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
 </Fragment>"
 `;
 
@@ -35,7 +35,7 @@ exports[`IssueFilingButtonTest test with stateToToggle = showHelpText render: is
       File issue
     </div>
   </CustomizedDefaultButton>
-  <IssueFilingDialog deps={{...}} isOpen={false} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={[undefined]} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
+  <IssueFilingDialog deps={{...}} isOpen={false} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={{...}} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
 </Fragment>"
 `;
 
@@ -47,7 +47,7 @@ exports[`IssueFilingButtonTest test with stateToToggle = showSettingsDialog rend
       File issue
     </div>
   </CustomizedDefaultButton>
-  <IssueFilingDialog deps={{...}} isOpen={true} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={[undefined]} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
+  <IssueFilingDialog deps={{...}} isOpen={true} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={{...}} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
 </Fragment>"
 `;
 
@@ -59,7 +59,7 @@ exports[`IssueFilingButtonTest test with stateToToggle = showSettingsDialog rend
       File issue
     </div>
   </CustomizedDefaultButton>
-  <IssueFilingDialog deps={{...}} isOpen={false} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={[undefined]} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
+  <IssueFilingDialog deps={{...}} isOpen={false} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={{...}} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
 </Fragment>"
 `;
 
@@ -71,6 +71,6 @@ exports[`IssueFilingButtonTest test with stateToToggle = showSettingsDialog rend
       File issue
     </div>
   </CustomizedDefaultButton>
-  <IssueFilingDialog deps={{...}} isOpen={false} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={[undefined]} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
+  <IssueFilingDialog deps={{...}} isOpen={false} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={{...}} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
 </Fragment>"
 `;

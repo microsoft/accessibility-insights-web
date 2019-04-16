@@ -89,13 +89,6 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
             selectedTestStep: step.key,
         };
 
-        const baseConfig = {
-            iconName: 'iconName',
-            name: 'toggle all visualization',
-            ariaLabel: 'toggle all visualization',
-            onColumnClick: () => null,
-        };
-
         masterCheckboxConfigProviderMock.setup(m => m.getMasterCheckBoxProperty(It.isAny(), It.isAny())).verifiable(Times.never());
 
         const testObject = new AssessmentTableColumnConfigHandler(masterCheckboxConfigProviderMock.object, provider);

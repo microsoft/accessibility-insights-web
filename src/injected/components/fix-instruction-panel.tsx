@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
-import { Label } from 'office-ui-fabric-react/lib/Label';
 import * as React from 'react';
 import { CheckType } from './details-dialog';
 

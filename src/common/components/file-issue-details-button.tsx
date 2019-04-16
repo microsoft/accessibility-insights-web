@@ -63,20 +63,10 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
         this.setState({ showingFileIssueDialog: false });
     }
 
-    private openDialog(): void {
-        this.setState({ showingFileIssueDialog: true });
-    }
-
     @autobind
     private openSettings(event: React.MouseEvent<HTMLDivElement | HTMLAnchorElement | HTMLButtonElement>): void {
         this.props.deps.bugActionMessageCreator.openSettingsPanel(event);
         this.closeDialog();
-    }
-
-    @autobind
-    private onClickOpenSettingsButton(event: React.MouseEvent<HTMLDivElement | HTMLAnchorElement | HTMLButtonElement>): void {
-        this.props.deps.bugActionMessageCreator.trackFileIssueClick(event, 'none');
-        this.openDialog();
     }
 
     @autobind

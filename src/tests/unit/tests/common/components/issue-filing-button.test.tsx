@@ -42,7 +42,9 @@ describe('IssueFilingButtonTest', () => {
         };
         userConfigurationStoreData = {
             bugService: testKey,
-            bugServicePropertiesMap: {},
+            bugServicePropertiesMap: {
+                [testKey]: {},
+            },
         } as UserConfigurationStoreData;
         environmentInfoProviderMock = Mock.ofType(EnvironmentInfoProvider);
         bugFilingServiceProviderMock = Mock.ofType(BugFilingServiceProvider);
