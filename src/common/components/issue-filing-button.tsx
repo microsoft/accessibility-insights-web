@@ -11,10 +11,7 @@ import { LadyBugSolidIcon } from '../icons/lady-bug-solid-icon';
 import { BugActionMessageCreator } from '../message-creators/bug-action-message-creator';
 import { FileIssueClickService } from '../telemetry-events';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
-import {
-    IssueFilingNeedsSettingsContentRenderer,
-    IssueFilinigNeedsSettingsContentProps,
-} from '../types/issue-filing-needs-setting-content';
+import { IssueFilingNeedsSettingsContentProps, IssueFilingNeedsSettingsContentRenderer } from '../types/issue-filing-needs-setting-content';
 import { BugServiceProperties, UserConfigurationStoreData } from '../types/store-data/user-configuration-store';
 
 export type IssueFilingButtonDeps = {
@@ -54,7 +51,7 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
             : null;
         const target: string = isSettingValid ? '_blank' : '_self';
 
-        const needsSettingsContentProps: IssueFilinigNeedsSettingsContentProps = {
+        const needsSettingsContentProps: IssueFilingNeedsSettingsContentProps = {
             deps,
             isOpen: this.state.showNeedsSettingsContent,
             selectedBugFilingService,

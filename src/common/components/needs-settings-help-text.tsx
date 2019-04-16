@@ -3,9 +3,10 @@
 import * as React from 'react';
 
 import { NamedSFC } from '../react/named-sfc';
-import { IssueFilinigNeedsSettingsContentProps } from '../types/issue-filing-needs-setting-content';
 
-export type IssueFilinigNeedsSettingsHelpTextProps = IssueFilinigNeedsSettingsContentProps;
+export type IssueFilinigNeedsSettingsHelpTextProps = {
+    isOpen: boolean;
+};
 
 export const IssueFilinigNeedsSettingsHelpText = NamedSFC<IssueFilinigNeedsSettingsHelpTextProps>('IssueFilingDialog', props => {
     if (props.isOpen) {
