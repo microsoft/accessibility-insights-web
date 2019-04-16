@@ -9,8 +9,8 @@ import { ActionMessageDispatcher } from './action-message-dispatcher';
 export class BugActionMessageCreator {
     constructor(
         private readonly dispatcher: ActionMessageDispatcher,
-        private telemetryFactory: TelemetryDataFactory,
-        private source: TelemetryEventSource,
+        private readonly telemetryFactory: TelemetryDataFactory,
+        private readonly source: TelemetryEventSource,
     ) {}
 
     public openSettingsPanel(event: React.MouseEvent<HTMLElement>): void {
