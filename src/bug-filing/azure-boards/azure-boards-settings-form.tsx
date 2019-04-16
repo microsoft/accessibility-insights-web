@@ -30,7 +30,7 @@ export const AzureBoardsSettingsForm = NamedSFC<SettingsFormProps<AzureBoardsBug
         props.deps.userConfigMessageCreator.setBugServiceProperty(AzureBoardsBugFilingService.key, propertyName, newValue);
     };
 
-    const onIssueDetailLocationChange = (event: React.FormEvent<HTMLElement>, newValue?: IDropdownOption) => {
+    const onIssueDetailLocationChange = (event: React.FormEvent<HTMLElement>, newValue: IDropdownOption) => {
         const propertyName: keyof AzureBoardsBugFilingSettings = 'issueDetailsField';
         props.deps.userConfigMessageCreator.setBugServiceProperty(
             AzureBoardsBugFilingService.key,
