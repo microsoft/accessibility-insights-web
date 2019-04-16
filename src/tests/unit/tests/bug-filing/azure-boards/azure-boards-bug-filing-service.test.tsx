@@ -9,10 +9,10 @@ import {
     AzureBoardsBugFilingSettings,
     AzureBoardsIssueDetailField,
 } from '../../../../../bug-filing/azure-boards/azure-boards-bug-filing-service';
+import { AzureBoardsSettingsForm } from '../../../../../bug-filing/azure-boards/azure-boards-settings-form';
 import { SettingsFormProps } from '../../../../../bug-filing/types/settings-form-props';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { BugServicePropertiesMap } from '../../../../../common/types/store-data/user-configuration-store';
-import { AzureBoardsSettingsForm } from '../../../../../bug-filing/azure-boards/azure-boards-settings-form';
 
 describe('AzureBoardsBugFilingServiceTest', () => {
     let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;
