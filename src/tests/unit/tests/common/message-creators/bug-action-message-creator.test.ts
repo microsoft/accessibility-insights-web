@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, Mock } from 'typemoq';
+import { IMock, Mock, Times } from 'typemoq';
 import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
 import { BugActionMessageCreator } from '../../../../../common/message-creators/bug-action-message-creator';
 import { Messages } from '../../../../../common/messages';
@@ -41,14 +41,16 @@ describe('BugActionMessageCreator', () => {
             .setup(factory => factory.forSettingsPanelOpen(eventStub, source, 'fileIssueSettingsPrompt'))
             .returns(() => telemetry);
 
-        dispatcherMock.setup(dispatcher =>
-            dispatcher.dispatchMessage({
-                messageType: Messages.SettingsPanel.OpenPanel,
-                payload: {
-                    telemetry,
-                },
-            }),
-        );
+        dispatcherMock
+            .setup(dispatcher =>
+                dispatcher.dispatchMessage({
+                    messageType: Messages.SettingsPanel.OpenPanel,
+                    payload: {
+                        telemetry,
+                    },
+                }),
+            )
+            .verifiable(Times.once());
 
         testSubject.openSettingsPanel(eventStub);
 
@@ -61,7 +63,7 @@ describe('BugActionMessageCreator', () => {
 
         telemetryFactoryMock.setup(factory => factory.forFileIssueClick(eventStub, source, testService)).returns(() => telemetry);
 
-        dispatcherMock.setup(dispatcher => dispatcher.sendTelemetry(FILE_ISSUE_CLICK, telemetry));
+        dispatcherMock.setup(dispatcher => dispatcher.sendTelemetry(FILE_ISSUE_CLICK, telemetry)).verifiable(Times.once());
 
         testSubject.trackFileIssueClick(eventStub, testService);
 
