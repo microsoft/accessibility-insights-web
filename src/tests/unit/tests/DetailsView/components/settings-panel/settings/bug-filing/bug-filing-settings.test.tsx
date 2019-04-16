@@ -7,23 +7,14 @@ import { IMock, Mock } from 'typemoq';
 import { BugFilingServiceProvider } from '../../../../../../../../bug-filing/bug-filing-service-provider';
 import { BugFilingService } from '../../../../../../../../bug-filing/types/bug-filing-service';
 import { NamedSFC } from '../../../../../../../../common/react/named-sfc';
-import {
-    BugServicePropertiesMap,
-    UserConfigurationStoreData,
-} from '../../../../../../../../common/types/store-data/user-configuration-store';
+import { UserConfigurationStoreData } from '../../../../../../../../common/types/store-data/user-configuration-store';
 import { BugFilingSettings } from '../../../../../../../../DetailsView/components/settings-panel/settings/bug-filing/bug-filing-settings';
 import { SettingsDeps, SettingsProps } from '../../../../../../../../DetailsView/components/settings-panel/settings/settings-props';
-
-export type RenderTestCase = {
-    bugService: string;
-    bugServicePropertiesMap: BugServicePropertiesMap;
-};
 
 describe('BugFilingSettings', () => {
     let userData: UserConfigurationStoreData;
     let bugFilingServiceProviderMock: IMock<BugFilingServiceProvider>;
     let testIssueFilingService: BugFilingService;
-    let nullFilingService: BugFilingService;
     const testKey: string = 'test';
 
     beforeEach(() => {
@@ -43,62 +34,26 @@ describe('BugFilingSettings', () => {
             buildStoreData: testField => {
                 return { testField };
             },
-            getSettingsFromStoreData: data => data && data[testKey],
+            getSettingsFromStoreData: data => data[testKey],
             issueFilingUrlProvider: () => 'test url',
         };
-        nullFilingService = {
-            key: 'none',
-            displayName: 'TEST',
-            settingsForm: NamedSFC('testForm', () => null),
-            isSettingsValid: () => false,
-            buildStoreData: () => null,
-            getSettingsFromStoreData: () => null,
-            issueFilingUrlProvider: () => null,
-        };
+
         bugFilingServiceProviderMock.setup(provider => provider.forKey(userData.bugService)).returns(() => testIssueFilingService);
-        bugFilingServiceProviderMock.setup(provider => provider.forKey('none')).returns(() => nullFilingService);
     });
 
-    describe('renders', () => {
-        const testCases: RenderTestCase[] = [
-            {
-                bugService: 'none',
-                bugServicePropertiesMap: null,
+    it('renders', () => {
+        const props: SettingsProps = {
+            deps: {
+                bugFilingServiceProvider: bugFilingServiceProviderMock.object,
+            } as SettingsDeps,
+            featureFlagData: {},
+            userConfigurationStoreState: {
+                ...userData,
             },
-            {
-                bugService: 'gitHub',
-                bugServicePropertiesMap: null,
-            },
-            {
-                bugService: 'gitHub',
-                bugServicePropertiesMap: {},
-            },
-            {
-                bugService: 'gitHub',
-                bugServicePropertiesMap: { gitHub: {} },
-            },
-            {
-                bugService: 'gitHub',
-                bugServicePropertiesMap: { gitHub: { repository: 'test-repository' } },
-            },
-        ];
+        };
 
-        it.each(testCases)('%o', (testCase: RenderTestCase) => {
-            const props: SettingsProps = {
-                deps: {
-                    bugFilingServiceProvider: bugFilingServiceProviderMock.object,
-                } as SettingsDeps,
-                featureFlagData: {},
-                userConfigurationStoreState: {
-                    ...userData,
-                    bugService: testCase.bugService,
-                    bugServicePropertiesMap: testCase.bugServicePropertiesMap,
-                },
-            };
+        const wrapped = shallow(<BugFilingSettings {...props} />);
 
-            const wrapped = shallow(<BugFilingSettings {...props} />);
-
-            expect(wrapped.getElement()).toMatchSnapshot();
-        });
+        expect(wrapped.getElement()).toMatchSnapshot();
     });
 });

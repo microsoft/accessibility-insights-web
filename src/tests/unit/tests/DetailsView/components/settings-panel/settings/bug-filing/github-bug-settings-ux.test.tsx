@@ -6,11 +6,17 @@ import * as React from 'react';
 import { Mock, Times } from 'typemoq';
 
 import { UserConfigMessageCreator } from '../../../../../../../../common/message-creators/user-config-message-creator';
-import { UserConfigurationStoreData } from '../../../../../../../../common/types/store-data/user-configuration-store';
+import {
+    BugServicePropertiesMap,
+    UserConfigurationStoreData,
+} from '../../../../../../../../common/types/store-data/user-configuration-store';
 import { GitHubBugSettingsUx } from '../../../../../../../../DetailsView/components/settings-panel/settings/bug-filing/github-bug-settings-ux';
 import { SettingsDeps, SettingsProps } from '../../../../../../../../DetailsView/components/settings-panel/settings/settings-props';
-import { RenderTestCase } from './bug-filing-settings.test';
 
+type RenderTestCase = {
+    bugService: string;
+    bugServicePropertiesMap: BugServicePropertiesMap;
+};
 describe('GitHubBugSettingsUx', () => {
     let userData: UserConfigurationStoreData;
 
