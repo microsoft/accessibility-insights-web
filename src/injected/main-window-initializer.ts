@@ -118,11 +118,7 @@ export class MainWindowInitializer extends WindowInitializer {
 
         const drawingInitiator = new DrawingInitiator(this.drawingController);
         const selectorMapHelper = new SelectorMapHelper(this.visualizationScanResultStoreProxy, this.assessmentStoreProxy, Assessments);
-        const frameUrlMessageDispatcher = new FrameUrlMessageDispatcher(
-            devToolActionMessageCreator,
-            this.frameUrlFinder,
-            this.frameCommunicator,
-        );
+        const frameUrlMessageDispatcher = new FrameUrlMessageDispatcher(devToolActionMessageCreator, this.frameCommunicator);
         frameUrlMessageDispatcher.initialize();
 
         this.clientViewController = new ClientViewController(
@@ -156,11 +152,9 @@ export class MainWindowInitializer extends WindowInitializer {
         );
         const analyzerStateUpdateHandler = new AnalyzerStateUpdateHandler(this.visualizationConfigurationFactory);
         this.analyzerController = new AnalyzerController(
-            this.clientChromeAdapter.sendMessageToFrames,
             this.visualizationStoreProxy,
             this.featureFlagStoreProxy,
             this.scopingStoreProxy,
-            this.tabStopsListener,
             this.visualizationConfigurationFactory,
             analyzerProvider,
             analyzerStateUpdateHandler,

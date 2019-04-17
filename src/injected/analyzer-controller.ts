@@ -13,13 +13,10 @@ import { DictionaryStringTo } from '../types/common-types';
 import { AnalyzerStateUpdateHandler } from './analyzer-state-update-handler';
 import { Analyzer } from './analyzers/analyzer';
 import { AnalyzerProvider } from './analyzers/analyzer-provider';
-import { TabStopsListener } from './tab-stops-listener';
 
 export class AnalyzerController {
     private analyzerProvider: AnalyzerProvider;
-    private tabStopsListener: TabStopsListener;
     private analyzers: DictionaryStringTo<Analyzer>;
-    private sendMessage: (message) => void;
     private visualizationstore: BaseStore<VisualizationStoreData>;
     private scopingStore: BaseStore<ScopingStoreData>;
     private featureFlagStore: BaseStore<FeatureFlagStoreData>;
@@ -28,22 +25,18 @@ export class AnalyzerController {
     private assessmentsProvider: AssessmentsProvider;
 
     constructor(
-        sendMessage: (message) => void,
         visualizationstore: BaseStore<VisualizationStoreData>,
         featureFlagStore: BaseStore<FeatureFlagStoreData>,
         scopingStore: BaseStore<ScopingStoreData>,
-        tabStopsListener: TabStopsListener,
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
         analyzerProvider: AnalyzerProvider,
         analyzerStateUpdateHandler: AnalyzerStateUpdateHandler,
         assessmentsProvider: AssessmentsProvider,
     ) {
         this.analyzers = {};
-        this.sendMessage = sendMessage;
         this.visualizationstore = visualizationstore;
         this.scopingStore = scopingStore;
         this.featureFlagStore = featureFlagStore;
-        this.tabStopsListener = tabStopsListener;
         this.visualizationConfigurationFactory = visualizationConfigurationFactory;
         this.analyzerProvider = analyzerProvider;
         this.assessmentsProvider = assessmentsProvider;

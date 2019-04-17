@@ -119,19 +119,6 @@ describe('TestStepViewTest', () => {
         expect(visualHelper.exists()).toBeFalsy();
     });
 
-    test('render, with visual helper toggle', () => {
-        const props = TestStepViewPropsBuilder.defaultProps(getVisualHelperToggleMock.object)
-            .withIsManual(true)
-            .build();
-        const toggleStub = <div className="toggle-stub">toggle</div>;
-
-        const wrapper = Enzyme.shallow(<TestStepView {...props} />);
-
-        const visualHelper = wrapper.find('.toggle-stub');
-
-        getVisualHelperToggleMock.verifyAll();
-    });
-
     test('render snapshot matches with manual false and scanning is finished', () => {
         const props = TestStepViewPropsBuilder.defaultProps(getVisualHelperToggleMock.object)
             .withIsManual(false)
@@ -238,11 +225,6 @@ class TestStepViewPropsBuilder extends BaseDataBuilder<TestStepViewProps> {
 
     public withScanning(isScanning: boolean): TestStepViewPropsBuilder {
         this.data.isScanning = isScanning;
-        return this;
-    }
-
-    public withoutInstanceMap(): TestStepViewPropsBuilder {
-        this.data.instancesMap = {};
         return this;
     }
 
