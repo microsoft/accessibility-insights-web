@@ -74,15 +74,15 @@ export class DetailsDialogHandler {
 
     @autobind
     public onUserConfigChanged(dialog: DetailsDialog): void {
+        const storeState = dialog.props.userConfigStore.getState();
         dialog.setState({
-            issueTrackerPath: this.issueTrackerPath(dialog),
-            userConfigurationStoreData: dialog.props.userConfigStore.getState(),
+            issueTrackerPath: this.issueTrackerPath(dialog, storeState),
+            userConfigurationStoreData: storeState,
         });
     }
 
     @autobind
-    public issueTrackerPath(dialog: DetailsDialog): string {
-        const userConfigState = dialog.props.userConfigStore.getState();
+    public issueTrackerPath(dialog: DetailsDialog, userConfigState: UserConfigurationStoreData): string {
         return (
             userConfigState &&
             userConfigState.bugServicePropertiesMap &&
