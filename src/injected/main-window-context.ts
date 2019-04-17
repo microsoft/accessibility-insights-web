@@ -5,6 +5,8 @@ import { BugActionMessageCreator } from '../common/message-creators/bug-action-m
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
 import { DevToolState } from '../common/types/store-data/idev-tool-state';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
+import { BugFilingServiceProvider } from './../bug-filing/bug-filing-service-provider';
+import { EnvironmentInfoProvider } from './../common/environment-info-provider';
 import { TargetPageActionMessageCreator } from './target-page-action-message-creator';
 
 export class MainWindowContext {
@@ -14,6 +16,8 @@ export class MainWindowContext {
         private devToolActionMessageCreator: DevToolActionMessageCreator,
         private targetPageActionMessageCreator: TargetPageActionMessageCreator,
         private bugActionMessageCreator: BugActionMessageCreator,
+        private environmentInfoProvider: EnvironmentInfoProvider,
+        private bugFilingServiceProvider: BugFilingServiceProvider,
     ) {}
 
     public getDevToolStore(): BaseStore<DevToolState> {
@@ -36,12 +40,22 @@ export class MainWindowContext {
         return this.bugActionMessageCreator;
     }
 
+    public getEnvironmentInfoProvider(): EnvironmentInfoProvider {
+        return this.environmentInfoProvider;
+    }
+
+    public getBugFilingServiceProvider(): BugFilingServiceProvider {
+        return this.bugFilingServiceProvider;
+    }
+
     public static initialize(
         devToolStore: BaseStore<DevToolState>,
         userConfigStore: BaseStore<UserConfigurationStoreData>,
         devToolActionMessageCreator: DevToolActionMessageCreator,
         targetPageActionMessageCreator: TargetPageActionMessageCreator,
         bugActionMessageCreator: BugActionMessageCreator,
+        environmentInfoProvider: EnvironmentInfoProvider,
+        bugFilingServiceProvider: BugFilingServiceProvider,
     ): void {
         window.mainWindowContext = new MainWindowContext(
             devToolStore,
@@ -49,6 +63,8 @@ export class MainWindowContext {
             devToolActionMessageCreator,
             targetPageActionMessageCreator,
             bugActionMessageCreator,
+            environmentInfoProvider,
+            bugFilingServiceProvider,
         );
     }
 

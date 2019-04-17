@@ -77,7 +77,7 @@ describe('DetailsDialogTest', () => {
             clientBrowserAdapter: {
                 getUrl: url => expectedHelpUrl,
             } as any,
-        };
+        } as DetailsDialogDeps;
 
         const props: DetailsDialogProps = {
             deps,

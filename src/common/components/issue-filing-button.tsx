@@ -4,21 +4,24 @@ import { autobind } from '@uifabric/utilities';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 
+import { BugFilingServiceProvider } from '../../bug-filing/bug-filing-service-provider';
 import { BugFilingService } from '../../bug-filing/types/bug-filing-service';
-import { IssueFilingDialog, IssueFilingDialogDeps } from '../../DetailsView/components/issue-filing-dialog';
-import { EnvironmentInfo } from '../environment-info-provider';
+import { IssueFilingDialog } from '../../DetailsView/components/issue-filing-dialog';
+import { EnvironmentInfo, EnvironmentInfoProvider } from '../environment-info-provider';
 import { LadyBugSolidIcon } from '../icons/lady-bug-solid-icon';
 import { BugActionMessageCreator } from '../message-creators/bug-action-message-creator';
 import { FileIssueClickService } from '../telemetry-events';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
 import { BugServiceProperties, UserConfigurationStoreData } from '../types/store-data/user-configuration-store';
 
-export type IssueFilingButtonDeps = {
+export type IssueFilingButtonDeps<NeedsMoreInfoContentDeps = {}> = {
     bugActionMessageCreator: BugActionMessageCreator;
-} & IssueFilingDialogDeps;
+    environmentInfoProvider: EnvironmentInfoProvider;
+    bugFilingServiceProvider: BugFilingServiceProvider;
+} & NeedsMoreInfoContentDeps;
 
-export type IssueFilingButtonProps = {
-    deps: IssueFilingButtonDeps;
+export type IssueFilingButtonProps<NeedsMoreInfoContentDeps = {}> = {
+    deps: IssueFilingButtonDeps<NeedsMoreInfoContentDeps>;
     issueDetailsData: CreateIssueDetailsTextData;
     userConfigurationStoreData: UserConfigurationStoreData;
 };
@@ -40,10 +43,10 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
         const { environmentInfoProvider, bugFilingServiceProvider } = deps;
         const envInfo: EnvironmentInfo = environmentInfoProvider.getEnvironmentInfo();
         const selectedBugFilingService: BugFilingService = bugFilingServiceProvider.forKey(userConfigurationStoreData.bugService);
-        const selectedBugFilingServiceData: BugServiceProperties = selectedBugFilingService.getSettingsFromStoreData(
-            userConfigurationStoreData.bugServicePropertiesMap,
-        );
-        const isSettingValid = selectedBugFilingService.isSettingsValid(selectedBugFilingServiceData);
+        const selectedBugFilingServiceData: BugServiceProperties =
+            selectedBugFilingService &&
+            selectedBugFilingService.getSettingsFromStoreData(userConfigurationStoreData.bugServicePropertiesMap);
+        const isSettingValid = selectedBugFilingService && selectedBugFilingService.isSettingsValid(selectedBugFilingServiceData);
         const href = isSettingValid
             ? selectedBugFilingService.issueFilingUrlProvider(selectedBugFilingServiceData, issueDetailsData, envInfo)
             : null;
@@ -61,7 +64,7 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
                     <div className="ms-Button-label">File issue</div>
                 </DefaultButton>
                 <IssueFilingDialog
-                    deps={deps}
+                    deps={deps as any}
                     isOpen={this.state.isSettingsDialogOpen}
                     selectedBugFilingService={selectedBugFilingService}
                     selectedBugData={issueDetailsData}

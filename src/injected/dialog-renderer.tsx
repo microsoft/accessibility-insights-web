@@ -5,13 +5,10 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { IssueDetailsTextGenerator } from '../background/issue-details-text-generator';
-import { BugFilingServiceProvider } from '../bug-filing/bug-filing-service-provider';
 import { AxeInfo } from '../common/axe-info';
 import { ClientBrowserAdapter } from '../common/client-browser-adapter';
-import { EnvironmentInfoProvider } from '../common/environment-info-provider';
 import { FeatureFlags } from '../common/feature-flags';
 import { HTMLElementUtils } from '../common/html-element-utils';
-import { BugActionMessageCreator } from '../common/message-creators/bug-action-message-creator';
 import { NavigatorUtils } from '../common/navigator-utils';
 import { getPlatform } from '../common/platform';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
@@ -44,8 +41,6 @@ export class DialogRenderer {
         private readonly shadowUtils: ShadowUtils,
         private readonly clientBrowserAdapter: ClientBrowserAdapter,
         private readonly getRTLFunc: typeof getRTL,
-        private readonly environmentInfoProvider: EnvironmentInfoProvider,
-        private readonly bugFilingServiceProvider: BugFilingServiceProvider,
     ) {
         if (this.isInMainWindow()) {
             this.frameCommunicator.subscribe(DialogRenderer.renderDetailsDialogCommand, this.processRequest);
@@ -78,8 +73,8 @@ export class DialogRenderer {
                 bugActionMessageCreator: mainWindowContext.getBugActionMessageCreator(),
                 clientBrowserAdapter: this.clientBrowserAdapter,
                 getRTL: this.getRTLFunc,
-                environmentInfoProvider: this.environmentInfoProvider,
-                bugFilingServiceProvider: this.bugFilingServiceProvider,
+                environmentInfoProvider: mainWindowContext.getEnvironmentInfoProvider(),
+                bugFilingServiceProvider: mainWindowContext.getBugFilingServiceProvider(),
             };
 
             this.renderer(

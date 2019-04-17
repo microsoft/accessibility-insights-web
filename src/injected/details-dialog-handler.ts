@@ -1,9 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
+
 import { GitHubBugFilingSettings } from '../bug-filing/github/github-bug-filing-service';
 import { FeatureFlags } from '../common/feature-flags';
 import { HTMLElementUtils } from '../common/html-element-utils';
+import { UserConfigurationStoreData } from './../common/types/store-data/user-configuration-store';
 import { DetailsDialog } from './components/details-dialog';
 
 export class DetailsDialogHandler {
@@ -72,7 +74,10 @@ export class DetailsDialogHandler {
 
     @autobind
     public onUserConfigChanged(dialog: DetailsDialog): void {
-        dialog.setState({ issueTrackerPath: this.issueTrackerPath(dialog) });
+        dialog.setState({
+            issueTrackerPath: this.issueTrackerPath(dialog),
+            userConfigurationStoreData: dialog.props.userConfigStore.getState() || ({} as UserConfigurationStoreData),
+        });
     }
 
     @autobind

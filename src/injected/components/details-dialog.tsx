@@ -9,6 +9,7 @@ import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 import { CopyIssueDetailsButton, CopyIssueDetailsButtonDeps } from '../../common/components/copy-issue-details-button';
 import { FileIssueDetailsButton, FileIssueDetailsButtonDeps } from '../../common/components/file-issue-details-button';
 import { FlaggedComponent } from '../../common/components/flagged-component';
+import { IssueFilingButton, IssueFilingButtonDeps } from '../../common/components/issue-filing-button';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { FeatureFlags } from '../../common/feature-flags';
 import { CancelIcon } from '../../common/icons/cancel-icon';
@@ -22,9 +23,7 @@ import { DictionaryStringTo } from '../../types/common-types';
 import { DetailsDialogHandler } from '../details-dialog-handler';
 import { DecoratedAxeNodeResult } from '../scanner-utils';
 import { TargetPageActionMessageCreator } from '../target-page-action-message-creator';
-import { TargetPageIssueFilingButtonDeps } from '../target-page-issue-filing-button-deps';
 import { FixInstructionPanel } from './fix-instruction-panel';
-import { IssueFilingButton } from '../../common/components/issue-filing-button';
 
 export enum CheckType {
     All,
@@ -37,7 +36,7 @@ export type DetailsDialogDeps = {
     clientBrowserAdapter: ClientBrowserAdapter;
 } & CopyIssueDetailsButtonDeps &
     FileIssueDetailsButtonDeps &
-    TargetPageIssueFilingButtonDeps;
+    IssueFilingButtonDeps;
 
 export interface DetailsDialogProps {
     deps: DetailsDialogDeps;
@@ -115,7 +114,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
             currentRuleIndex: 0,
             canInspect: true,
             issueTrackerPath: '',
-            userConfigurationStoreData: null,
+            userConfigurationStoreData: {} as UserConfigurationStoreData,
         };
     }
 
