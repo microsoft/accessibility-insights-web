@@ -1,4 +1,3 @@
-import { UserConfigMessageCreator } from './../common/message-creators/user-config-message-creator';
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BaseStore } from '../common/base-store';
@@ -8,6 +7,7 @@ import { DevToolState } from '../common/types/store-data/idev-tool-state';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 import { BugFilingServiceProvider } from './../bug-filing/bug-filing-service-provider';
 import { EnvironmentInfoProvider } from './../common/environment-info-provider';
+import { UserConfigMessageCreator } from './../common/message-creators/user-config-message-creator';
 import { TargetPageActionMessageCreator } from './target-page-action-message-creator';
 
 export class MainWindowContext {
