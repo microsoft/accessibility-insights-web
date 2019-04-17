@@ -4,6 +4,7 @@ import { ISelection, Selection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
+
 import { Theme } from '../../../../common/components/theme';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { configMutator } from '../../../../common/configuration';
@@ -71,7 +72,6 @@ describe('DetailsViewRendererTest', () => {
                                 reportGenerator={reportGeneratorMock.object}
                                 dropdownClickHandler={dropdownClickHandlerMock.object}
                                 assessmentsProvider={assessmentsProviderMock.object}
-                                storeState={null}
                             />
                         </>,
                     ),
