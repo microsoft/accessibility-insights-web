@@ -20,6 +20,7 @@ import { DictionaryStringTo } from '../../types/common-types';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { GuidanceLinks } from './guidance-links';
 import { IssueFilingDialogDeps } from './issue-filing-dialog';
+import { IssueFilingDialog } from './issue-filing-dialog';
 
 export type IssuesDetailsPaneDeps = ToastDeps &
     FileIssueDetailsButtonDeps &
@@ -86,6 +87,7 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
                 deps={this.props.deps}
                 issueDetailsData={issueData}
                 userConfigurationStoreData={this.props.userConfigurationStoreData}
+                needsSettingsContentRenderer={IssueFilingDialog}
             />
         );
         return (

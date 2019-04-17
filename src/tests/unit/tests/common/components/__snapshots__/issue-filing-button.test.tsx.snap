@@ -1,5 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`IssueFilingButtonTest onclick: invalid settings, %s 1`] = `
+"<Fragment>
+  <CustomizedDefaultButton className=\\"create-bug-button\\" target=\\"_self\\" onClick={[Function: onClick]} href={{...}}>
+    <LadyBugSolidIcon />
+    <div className=\\"ms-Button-label\\">
+      File issue
+    </div>
+  </CustomizedDefaultButton>
+  <testRenderer deps={{...}} isOpen={true} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={{...}} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
+</Fragment>"
+`;
+
+exports[`IssueFilingButtonTest onclick: valid settings, file bug and set %s to false 1`] = `
+"<Fragment>
+  <CustomizedDefaultButton className=\\"create-bug-button\\" target=\\"_blank\\" onClick={[Function: onClick]} href=\\"test url\\">
+    <LadyBugSolidIcon />
+    <div className=\\"ms-Button-label\\">
+      File issue
+    </div>
+  </CustomizedDefaultButton>
+  <testRenderer deps={{...}} isOpen={false} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={{...}} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
+</Fragment>"
+`;
+
 exports[`IssueFilingButtonTest render: isSettingsValid: false 1`] = `
 "<Fragment>
   <CustomizedDefaultButton className=\\"create-bug-button\\" target=\\"_self\\" onClick={[Function: onClick]} href={{...}}>
@@ -8,7 +32,7 @@ exports[`IssueFilingButtonTest render: isSettingsValid: false 1`] = `
       File issue
     </div>
   </CustomizedDefaultButton>
-  <IssueFilingDialog deps={{...}} isOpen={false} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={[undefined]} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
+  <testRenderer deps={{...}} isOpen={false} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={{...}} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
 </Fragment>"
 `;
 
@@ -20,6 +44,6 @@ exports[`IssueFilingButtonTest render: isSettingsValid: true 1`] = `
       File issue
     </div>
   </CustomizedDefaultButton>
-  <IssueFilingDialog deps={{...}} isOpen={false} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={[undefined]} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
+  <testRenderer deps={{...}} isOpen={false} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={{...}} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
 </Fragment>"
 `;
