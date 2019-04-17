@@ -166,7 +166,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         );
     }
 
-    private renderCreateBugButton(issueData: CreateIssueDetailsTextData): JSX.Element {
+    private renderFileIssueButton(issueData: CreateIssueDetailsTextData): JSX.Element {
         const oldExperienceButton: JSX.Element = (
             <FileIssueDetailsButton
                 deps={this.props.deps}
@@ -210,11 +210,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
                     issueDetailsData={issueData}
                     onClick={this.props.deps.targetPageActionMessageCreator.copyIssueDetailsClicked}
                 />
-                <FlaggedComponent
-                    featureFlagStoreData={this.props.featureFlagStoreData}
-                    featureFlag={FeatureFlags.showBugFiling}
-                    enableJSXElement={this.renderCreateBugButton(issueData)}
-                />
+                {this.renderFileIssueButton(issueData)}
             </>
         );
     }

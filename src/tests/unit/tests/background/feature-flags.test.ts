@@ -19,7 +19,6 @@ describe('FeatureFlagsTest', () => {
             [FeatureFlags.logTelemetryToConsole]: false,
             [FeatureFlags.showAllFeatureFlags]: false,
             [FeatureFlags.scoping]: false,
-            [FeatureFlags.showBugFiling]: true,
             [FeatureFlags.newIssueFilingExperience]: false,
             [FeatureFlags.showInstanceVisibility]: false,
         };
