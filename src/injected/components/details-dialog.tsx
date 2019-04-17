@@ -115,7 +115,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
             currentRuleIndex: 0,
             canInspect: true,
             issueTrackerPath: '',
-            userConfigurationStoreData: {} as UserConfigurationStoreData,
+            userConfigurationStoreData: null,
         };
     }
 
