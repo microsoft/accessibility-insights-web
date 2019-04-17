@@ -13,6 +13,7 @@ import { FeatureFlags, getDefaultFeatureFlagValues } from '../../../../common/fe
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
 import { BugActionMessageCreator } from '../../../../common/message-creators/bug-action-message-creator';
 import { DevToolActionMessageCreator } from '../../../../common/message-creators/dev-tool-action-message-creator';
+import { UserConfigMessageCreator } from '../../../../common/message-creators/user-config-message-creator';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 import { WindowUtils } from '../../../../common/window-utils';
 import { rootContainerId } from '../../../../injected/constants';
@@ -26,7 +27,6 @@ import { DecoratedAxeNodeResult, HtmlElementAxeResults } from '../../../../injec
 import { ShadowUtils } from '../../../../injected/shadow-utils';
 import { TargetPageActionMessageCreator } from '../../../../injected/target-page-action-message-creator';
 import { DictionaryStringTo } from '../../../../types/common-types';
-import { UserConfigMessageCreator } from '../../../../common/message-creators/user-config-message-creator';
 
 describe('DialogRendererTests', () => {
     let htmlElementUtilsMock: IMock<HTMLElementUtils>;
