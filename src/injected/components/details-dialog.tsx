@@ -10,7 +10,7 @@ import { CopyIssueDetailsButton, CopyIssueDetailsButtonDeps } from '../../common
 import { FileIssueDetailsButton, FileIssueDetailsButtonDeps } from '../../common/components/file-issue-details-button';
 import { FlaggedComponent } from '../../common/components/flagged-component';
 import { IssueFilingButton, IssueFilingButtonDeps } from '../../common/components/issue-filing-button';
-import { IssueFilingNeedsSettingsHelpText } from '../../common/components/needs-settings-help-text';
+import { IssueFilingNeedsSettingsHelpText } from '../../common/components/issue-filing-needs-settings-help-text';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { FeatureFlags } from '../../common/feature-flags';
 import { CancelIcon } from '../../common/icons/cancel-icon';
