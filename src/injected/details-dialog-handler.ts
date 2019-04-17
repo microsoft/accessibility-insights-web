@@ -76,7 +76,7 @@ export class DetailsDialogHandler {
     public onUserConfigChanged(dialog: DetailsDialog): void {
         dialog.setState({
             issueTrackerPath: this.issueTrackerPath(dialog),
-            userConfigurationStoreData: dialog.props.userConfigStore.getState() || ({} as UserConfigurationStoreData),
+            userConfigurationStoreData: dialog.props.userConfigStore.getState(),
         });
     }
 

@@ -14,6 +14,7 @@ import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
 import { StoreActionMessageCreatorFactory } from '../common/message-creators/store-action-message-creator-factory';
+import { UserConfigMessageCreator } from '../common/message-creators/user-config-message-creator';
 import { NavigatorUtils } from '../common/navigator-utils';
 import { StoreProxy } from '../common/store-proxy';
 import { StoreNames } from '../common/stores/store-names';
@@ -113,6 +114,8 @@ export class MainWindowInitializer extends WindowInitializer {
             TelemetryEventSource.TargetPage,
         );
 
+        const userConfigMessageCreator = new UserConfigMessageCreator(this.clientChromeAdapter.sendMessageToFrames, null);
+
         const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
 
         const environmentInfoProvider = new EnvironmentInfoProvider(
@@ -127,6 +130,7 @@ export class MainWindowInitializer extends WindowInitializer {
             devToolActionMessageCreator,
             targetPageActionMessageCreator,
             bugActionMessageCreator,
+            userConfigMessageCreator,
             environmentInfoProvider,
             BugFilingServiceProviderImpl,
         );

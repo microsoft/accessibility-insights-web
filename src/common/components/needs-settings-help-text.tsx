@@ -8,12 +8,17 @@ export type IssueFilingNeedsSettingsHelpTextProps = {
     isOpen: boolean;
 };
 
-export const IssueFilingNeedsSettingsHelpText = NamedSFC<IssueFilingNeedsSettingsHelpTextProps>('IssueFilingDialog', props => {
-    if (props.isOpen) {
-        return (
-            <div role="alert" aria-live="polite" className="create-bug-button-help">
-                Go to Settings to configure issue filing.
-            </div>
-        );
-    }
-});
+export const IssueFilingNeedsSettingsHelpText = NamedSFC<IssueFilingNeedsSettingsHelpTextProps>(
+    'IssueFilingNeedsSettingsHelpText',
+    props => {
+        if (props.isOpen) {
+            return (
+                <div role="alert" aria-live="polite" className="create-bug-button-help">
+                    Go to Settings to configure issue filing.
+                </div>
+            );
+        }
+
+        return null;
+    },
+);

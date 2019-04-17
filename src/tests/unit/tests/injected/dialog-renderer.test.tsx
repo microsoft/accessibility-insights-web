@@ -26,6 +26,7 @@ import { DecoratedAxeNodeResult, HtmlElementAxeResults } from '../../../../injec
 import { ShadowUtils } from '../../../../injected/shadow-utils';
 import { TargetPageActionMessageCreator } from '../../../../injected/target-page-action-message-creator';
 import { DictionaryStringTo } from '../../../../types/common-types';
+import { UserConfigMessageCreator } from '../../../../common/message-creators/user-config-message-creator';
 
 describe('DialogRendererTests', () => {
     let htmlElementUtilsMock: IMock<HTMLElementUtils>;
@@ -83,6 +84,7 @@ describe('DialogRendererTests', () => {
         const bugActionMessageCreatorMock = Mock.ofType(BugActionMessageCreator);
         const environmentInfoProviderMock = Mock.ofType(EnvironmentInfoProvider);
         const bugFilingServiceProviderMock = Mock.ofType(BugFilingServiceProvider);
+        const userConfigMessageCreatorMock = Mock.ofType(UserConfigMessageCreator);
 
         mainWindowContext = new MainWindowContext(
             devToolStoreStrictMock.object,
@@ -90,6 +92,7 @@ describe('DialogRendererTests', () => {
             devToolActionMessageCreatorMock.object,
             targetActionPageMessageCreatorMock.object,
             bugActionMessageCreatorMock.object,
+            userConfigMessageCreatorMock.object,
             environmentInfoProviderMock.object,
             bugFilingServiceProviderMock.object,
         );

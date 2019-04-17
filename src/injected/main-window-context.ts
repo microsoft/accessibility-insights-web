@@ -1,3 +1,4 @@
+import { UserConfigMessageCreator } from './../common/message-creators/user-config-message-creator';
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BaseStore } from '../common/base-store';
@@ -16,6 +17,7 @@ export class MainWindowContext {
         private devToolActionMessageCreator: DevToolActionMessageCreator,
         private targetPageActionMessageCreator: TargetPageActionMessageCreator,
         private bugActionMessageCreator: BugActionMessageCreator,
+        private userConfigMessageCreator: UserConfigMessageCreator,
         private environmentInfoProvider: EnvironmentInfoProvider,
         private bugFilingServiceProvider: BugFilingServiceProvider,
     ) {}
@@ -40,6 +42,10 @@ export class MainWindowContext {
         return this.bugActionMessageCreator;
     }
 
+    public getUserConfigMessageCreator(): UserConfigMessageCreator {
+        return this.userConfigMessageCreator;
+    }
+
     public getEnvironmentInfoProvider(): EnvironmentInfoProvider {
         return this.environmentInfoProvider;
     }
@@ -54,6 +60,7 @@ export class MainWindowContext {
         devToolActionMessageCreator: DevToolActionMessageCreator,
         targetPageActionMessageCreator: TargetPageActionMessageCreator,
         bugActionMessageCreator: BugActionMessageCreator,
+        userConfigMessageCreator: UserConfigMessageCreator,
         environmentInfoProvider: EnvironmentInfoProvider,
         bugFilingServiceProvider: BugFilingServiceProvider,
     ): void {
@@ -63,6 +70,7 @@ export class MainWindowContext {
             devToolActionMessageCreator,
             targetPageActionMessageCreator,
             bugActionMessageCreator,
+            userConfigMessageCreator,
             environmentInfoProvider,
             bugFilingServiceProvider,
         );

@@ -9,7 +9,6 @@ import { BugFilingServiceProvider } from './../../../../bug-filing/bug-filing-se
 export type SettingsDeps = {
     userConfigMessageCreator: UserConfigMessageCreator;
     bugFilingServiceProvider: BugFilingServiceProvider;
-    environmentInfoProvider: EnvironmentInfoProvider;
 };
 
 export type SettingsProps = {

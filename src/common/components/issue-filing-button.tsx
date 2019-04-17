@@ -6,6 +6,7 @@ import * as React from 'react';
 
 import { BugFilingServiceProvider } from '../../bug-filing/bug-filing-service-provider';
 import { BugFilingService } from '../../bug-filing/types/bug-filing-service';
+import { IssueFilingDialogDeps } from '../../DetailsView/components/issue-filing-dialog';
 import { EnvironmentInfo, EnvironmentInfoProvider } from '../environment-info-provider';
 import { LadyBugSolidIcon } from '../icons/lady-bug-solid-icon';
 import { BugActionMessageCreator } from '../message-creators/bug-action-message-creator';
@@ -14,14 +15,14 @@ import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-d
 import { IssueFilingNeedsSettingsContentProps, IssueFilingNeedsSettingsContentRenderer } from '../types/issue-filing-needs-setting-content';
 import { BugServiceProperties, UserConfigurationStoreData } from '../types/store-data/user-configuration-store';
 
-export type IssueFilingButtonDeps<NeedsMoreInfoContentDeps = {}> = {
+export type IssueFilingButtonDeps = {
     bugActionMessageCreator: BugActionMessageCreator;
     environmentInfoProvider: EnvironmentInfoProvider;
     bugFilingServiceProvider: BugFilingServiceProvider;
-} & NeedsMoreInfoContentDeps;
+} & IssueFilingDialogDeps;
 
-export type IssueFilingButtonProps<NeedsMoreInfoContentDeps = {}> = {
-    deps: IssueFilingButtonDeps<NeedsMoreInfoContentDeps>;
+export type IssueFilingButtonProps = {
+    deps: IssueFilingButtonDeps;
     issueDetailsData: CreateIssueDetailsTextData;
     userConfigurationStoreData: UserConfigurationStoreData;
     needsSettingsContentRenderer: IssueFilingNeedsSettingsContentRenderer;
@@ -44,10 +45,10 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
         const { environmentInfoProvider, bugFilingServiceProvider } = deps;
         const envInfo: EnvironmentInfo = environmentInfoProvider.getEnvironmentInfo();
         const selectedBugFilingService: BugFilingService = bugFilingServiceProvider.forKey(userConfigurationStoreData.bugService);
-        const selectedBugFilingServiceData: BugServiceProperties =
-            selectedBugFilingService &&
-            selectedBugFilingService.getSettingsFromStoreData(userConfigurationStoreData.bugServicePropertiesMap);
-        const isSettingValid = selectedBugFilingService && selectedBugFilingService.isSettingsValid(selectedBugFilingServiceData);
+        const selectedBugFilingServiceData: BugServiceProperties = selectedBugFilingService.getSettingsFromStoreData(
+            userConfigurationStoreData.bugServicePropertiesMap,
+        );
+        const isSettingValid = selectedBugFilingService.isSettingsValid(selectedBugFilingServiceData);
         const href = isSettingValid
             ? selectedBugFilingService.issueFilingUrlProvider(selectedBugFilingServiceData, issueDetailsData, envInfo)
             : null;

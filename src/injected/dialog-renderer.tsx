@@ -75,6 +75,7 @@ export class DialogRenderer {
                 getRTL: this.getRTLFunc,
                 environmentInfoProvider: mainWindowContext.getEnvironmentInfoProvider(),
                 bugFilingServiceProvider: mainWindowContext.getBugFilingServiceProvider(),
+                userConfigMessageCreator: mainWindowContext.getUserConfigMessageCreator(),
             };
 
             this.renderer(

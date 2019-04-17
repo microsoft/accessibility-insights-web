@@ -10,6 +10,7 @@ import { CopyIssueDetailsButton, CopyIssueDetailsButtonDeps } from '../../common
 import { FileIssueDetailsButton, FileIssueDetailsButtonDeps } from '../../common/components/file-issue-details-button';
 import { FlaggedComponent } from '../../common/components/flagged-component';
 import { IssueFilingButton, IssueFilingButtonDeps } from '../../common/components/issue-filing-button';
+import { IssueFilingNeedsSettingsHelpText } from '../../common/components/needs-settings-help-text';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { FeatureFlags } from '../../common/feature-flags';
 import { CancelIcon } from '../../common/icons/cancel-icon';
@@ -174,13 +175,14 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
                 restoreFocus={true}
             />
         );
-        const newExperienceButton: JSX.Element = (
+        const newExperienceButton: JSX.Element = this.state.userConfigurationStoreData ? (
             <IssueFilingButton
                 deps={this.props.deps}
                 issueDetailsData={issueData}
                 userConfigurationStoreData={this.state.userConfigurationStoreData}
+                needsSettingsContentRenderer={IssueFilingNeedsSettingsHelpText}
             />
-        );
+        ) : null;
         return (
             <FlaggedComponent
                 enableJSXElement={newExperienceButton}
