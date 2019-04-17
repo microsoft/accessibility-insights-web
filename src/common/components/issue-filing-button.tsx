@@ -5,12 +5,13 @@ import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 
 import { BugFilingService } from '../../bug-filing/types/bug-filing-service';
-import { IssueFilingDialog, IssueFilingDialogDeps } from '../../DetailsView/components/issue-filing-dialog';
+import { IssueFilingDialogDeps } from '../../DetailsView/components/issue-filing-dialog';
 import { EnvironmentInfo } from '../environment-info-provider';
 import { LadyBugSolidIcon } from '../icons/lady-bug-solid-icon';
 import { BugActionMessageCreator } from '../message-creators/bug-action-message-creator';
 import { FileIssueClickService } from '../telemetry-events';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
+import { IssueFilingNeedsSettingsContentProps, IssueFilingNeedsSettingsContentRenderer } from '../types/issue-filing-needs-setting-content';
 import { BugServiceProperties, UserConfigurationStoreData } from '../types/store-data/user-configuration-store';
 
 export type IssueFilingButtonDeps = {
@@ -21,17 +22,18 @@ export type IssueFilingButtonProps = {
     deps: IssueFilingButtonDeps;
     issueDetailsData: CreateIssueDetailsTextData;
     userConfigurationStoreData: UserConfigurationStoreData;
+    needsSettingsContentRenderer: IssueFilingNeedsSettingsContentRenderer;
 };
 
 export type IssueFilingButtonState = {
-    isSettingsDialogOpen: boolean;
+    showNeedsSettingsContent: boolean;
 };
 
 export class IssueFilingButton extends React.Component<IssueFilingButtonProps, IssueFilingButtonState> {
     constructor(props) {
         super(props);
         this.state = {
-            isSettingsDialogOpen: false,
+            showNeedsSettingsContent: false,
         };
     }
 
@@ -49,6 +51,17 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
             : null;
         const target: string = isSettingValid ? '_blank' : '_self';
 
+        const needsSettingsContentProps: IssueFilingNeedsSettingsContentProps = {
+            deps,
+            isOpen: this.state.showNeedsSettingsContent,
+            selectedBugFilingService,
+            selectedBugData: issueDetailsData,
+            selectedBugFilingServiceData,
+            onClose: this.closeNeedsSettingsContent,
+            bugFileTelemetryCallback: this.trackFileIssueClick,
+        };
+        const NeedsSettingsContent = this.props.needsSettingsContentRenderer;
+
         return (
             <>
                 <DefaultButton
@@ -60,15 +73,7 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
                     <LadyBugSolidIcon />
                     <div className="ms-Button-label">File issue</div>
                 </DefaultButton>
-                <IssueFilingDialog
-                    deps={deps}
-                    isOpen={this.state.isSettingsDialogOpen}
-                    selectedBugFilingService={selectedBugFilingService}
-                    selectedBugData={issueDetailsData}
-                    selectedBugFilingServiceData={selectedBugFilingServiceData}
-                    onClose={this.closeDialog}
-                    bugFileTelemetryCallback={this.trackFileIssueClick}
-                />
+                <NeedsSettingsContent {...needsSettingsContentProps} />
             </>
         );
     }
@@ -80,20 +85,21 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
     }
 
     @autobind
-    private closeDialog(): void {
-        this.setState({ isSettingsDialogOpen: false });
+    private closeNeedsSettingsContent(): void {
+        this.setState({ showNeedsSettingsContent: false });
     }
 
-    private openDialog(): void {
-        this.setState({ isSettingsDialogOpen: true });
+    private openNeedsSettingsContent(): void {
+        this.setState({ showNeedsSettingsContent: true });
     }
 
     @autobind
     private onClickFileIssueButton(event: React.MouseEvent<any>, isSettingValid: boolean): void {
         if (isSettingValid) {
             this.trackFileIssueClick(event);
+            this.closeNeedsSettingsContent();
         } else {
-            this.openDialog();
+            this.openNeedsSettingsContent();
         }
     }
 }

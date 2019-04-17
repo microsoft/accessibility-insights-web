@@ -4,12 +4,14 @@ import { shallow } from 'enzyme';
 import { DefaultButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
+
 import { BugFilingServiceProvider } from '../../../../../bug-filing/bug-filing-service-provider';
 import { BugFilingService } from '../../../../../bug-filing/types/bug-filing-service';
 import { IssueFilingButton, IssueFilingButtonDeps, IssueFilingButtonProps } from '../../../../../common/components/issue-filing-button';
 import { EnvironmentInfoProvider } from '../../../../../common/environment-info-provider';
 import { BugActionMessageCreator } from '../../../../../common/message-creators/bug-action-message-creator';
 import { NamedSFC } from '../../../../../common/react/named-sfc';
+import { IssueFilingNeedsSettingsContentRenderer } from '../../../../../common/types/issue-filing-needs-setting-content';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
@@ -21,6 +23,7 @@ describe('IssueFilingButtonTest', () => {
     let bugActionMessageCreatorMock: IMock<BugActionMessageCreator>;
     let userConfigurationStoreData: UserConfigurationStoreData;
     let testBugService: BugFilingService;
+    let needsSettingsContentRenderer: IssueFilingNeedsSettingsContentRenderer;
 
     beforeEach(() => {
         testBugService = {
@@ -36,7 +39,9 @@ describe('IssueFilingButtonTest', () => {
         };
         userConfigurationStoreData = {
             bugService: testKey,
-            bugServicePropertiesMap: {},
+            bugServicePropertiesMap: {
+                [testKey]: {},
+            },
         } as UserConfigurationStoreData;
         environmentInfoProviderMock = Mock.ofType(EnvironmentInfoProvider);
         bugFilingServiceProviderMock = Mock.ofType(BugFilingServiceProvider);
@@ -55,6 +60,7 @@ describe('IssueFilingButtonTest', () => {
             .setup(bp => bp.forKey(testKey))
             .returns(() => testBugService)
             .verifiable();
+        needsSettingsContentRenderer = NamedSFC('testRenderer', () => <>needs settings</>);
     });
 
     test.each([true, false])('render: isSettingsValid: %s', isSettingsValid => {
@@ -71,6 +77,7 @@ describe('IssueFilingButtonTest', () => {
                 ruleResult: null,
             },
             userConfigurationStoreData: userConfigurationStoreData,
+            needsSettingsContentRenderer,
         };
         const wrapper = shallow(<IssueFilingButton {...props} />);
         expect(wrapper.debug()).toMatchSnapshot();
@@ -79,7 +86,7 @@ describe('IssueFilingButtonTest', () => {
         bugFilingServiceProviderMock.verifyAll();
     });
 
-    test('onclick: valid settings, file bug', () => {
+    test('onclick: valid settings, file bug and set %s to false', () => {
         bugActionMessageCreatorMock
             .setup(messageCreator => messageCreator.trackFileIssueClick(eventStub as any, testKey as any))
             .verifiable(Times.once());
@@ -95,15 +102,18 @@ describe('IssueFilingButtonTest', () => {
                 ruleResult: null,
             },
             userConfigurationStoreData: userConfigurationStoreData,
+            needsSettingsContentRenderer,
         };
         const wrapper = shallow(<IssueFilingButton {...props} />);
 
         wrapper.find(DefaultButton).simulate('click', eventStub);
 
+        expect(wrapper.debug()).toMatchSnapshot();
+        expect(wrapper.state().showNeedsSettingsContent).toBe(false);
         bugActionMessageCreatorMock.verifyAll();
     });
 
-    test('onclick: invalid settings, open dialog', () => {
+    test('onclick: invalid settings, %s', () => {
         testBugService.isSettingsValid = () => false;
         bugActionMessageCreatorMock
             .setup(messageCreator => messageCreator.trackFileIssueClick(eventStub as any, testKey as any))
@@ -120,13 +130,16 @@ describe('IssueFilingButtonTest', () => {
                 ruleResult: null,
             },
             userConfigurationStoreData: userConfigurationStoreData,
+            needsSettingsContentRenderer,
         };
         const wrapper = shallow(<IssueFilingButton {...props} />);
-        expect(wrapper.state().isSettingsDialogOpen).toBe(false);
+        expect(wrapper.state().showNeedsSettingsContent).toBe(false);
 
         wrapper.find(DefaultButton).simulate('click', eventStub);
 
+        expect(wrapper.debug()).toMatchSnapshot();
+
         bugActionMessageCreatorMock.verifyAll();
-        expect(wrapper.state().isSettingsDialogOpen).toBe(true);
+        expect(wrapper.state().showNeedsSettingsContent).toBe(true);
     });
 });
