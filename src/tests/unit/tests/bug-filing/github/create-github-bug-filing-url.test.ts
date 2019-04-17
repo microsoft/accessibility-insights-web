@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock } from 'typemoq';
+import { IssueDetailsGetter } from '../../../../../bug-filing/common/get-issue-details-markdown';
 import { createGitHubIssueFilingUrlProvider } from '../../../../../bug-filing/github/create-github-bug-filing-url';
 import { IssueFilingUrlProvider } from '../../../../../bug-filing/types/bug-filing-service';
 import { IssueUrlCreationUtils } from './../../../../../bug-filing/common/issue-filing-url-string-utils';
@@ -12,6 +13,7 @@ describe('createGitHubBugFilingUrlTest', () => {
     let sampleIssueDetailsData;
     let settingsData: GitHubBugFilingSettings;
     let stringUtilsMock: IMock<IssueUrlCreationUtils>;
+    let issueDetailsGetter: IMock<IssueDetailsGetter>;
     let testObject: IssueFilingUrlProvider<GitHubBugFilingSettings>;
 
     beforeEach(() => {
@@ -39,15 +41,16 @@ describe('createGitHubBugFilingUrlTest', () => {
         };
 
         stringUtilsMock = Mock.ofType<IssueUrlCreationUtils>();
-        testObject = createGitHubIssueFilingUrlProvider(stringUtilsMock.object);
+        issueDetailsGetter = Mock.ofType<IssueDetailsGetter>();
+        issueDetailsGetter
+            .setup(getter => getter(stringUtilsMock.object, environmentInfo, sampleIssueDetailsData))
+            .returns(() => 'test issue details');
+        testObject = createGitHubIssueFilingUrlProvider(stringUtilsMock.object, issueDetailsGetter.object);
     });
 
     test('createGitHubBugFilingUrl: no tag', () => {
         stringUtilsMock.setup(utils => utils.standardizeTags(sampleIssueDetailsData)).returns(() => []);
         stringUtilsMock.setup(utils => utils.getSelectorLastPart(It.isAny())).returns(() => 'last part');
-        stringUtilsMock.setup(utils => utils.collapseConsecutiveSpaces(It.isAnyString())).returns(() => 'collapsed');
-        stringUtilsMock.setup(utils => utils.formatAsMarkdownCodeBlock(It.isAnyString())).returns(() => 'escaped');
-        stringUtilsMock.setup(utils => utils.getFooterContent(environmentInfo)).returns(() => 'test getFooterContent');
         stringUtilsMock.setup(utils => utils.appendSuffixToUrl(settingsData.repository, 'issues')).returns(() => 'test appendSuffixToUrl');
 
         const result = testObject(settingsData, sampleIssueDetailsData, environmentInfo);
@@ -58,9 +61,6 @@ describe('createGitHubBugFilingUrlTest', () => {
     test('createGitHubBugFilingUrl: with tag', () => {
         stringUtilsMock.setup(utils => utils.standardizeTags(sampleIssueDetailsData)).returns(() => ['TAG1', 'TAG2']);
         stringUtilsMock.setup(utils => utils.getSelectorLastPart(It.isAny())).returns(() => 'last part');
-        stringUtilsMock.setup(utils => utils.collapseConsecutiveSpaces(It.isAnyString())).returns(() => 'collapsed');
-        stringUtilsMock.setup(utils => utils.formatAsMarkdownCodeBlock(It.isAnyString())).returns(() => 'escaped');
-        stringUtilsMock.setup(utils => utils.getFooterContent(environmentInfo)).returns(() => 'test getFooterContent');
         stringUtilsMock.setup(utils => utils.appendSuffixToUrl(settingsData.repository, 'issues')).returns(() => 'test appendSuffixToUrl');
 
         const result = testObject(settingsData, sampleIssueDetailsData, environmentInfo);
