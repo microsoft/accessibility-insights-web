@@ -138,6 +138,7 @@ describe('DetailsDialogTest', () => {
         };
 
         wrapper.setState({ userConfigurationStoreData: userConfigStoreDataStub });
+
         expect(wrapper.find(FlaggedComponent).getElement()).toMatchSnapshot('new isssue filing bug UI');
     }
 });

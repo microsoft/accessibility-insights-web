@@ -24,6 +24,8 @@ exports[`IssueFilingButtonTest onclick: valid settings, file bug and set %s to f
 </Fragment>"
 `;
 
+exports[`IssueFilingButtonTest render null when store data is not ready 1`] = `null`;
+
 exports[`IssueFilingButtonTest render: isSettingsValid: false 1`] = `
 "<Fragment>
   <CustomizedDefaultButton className=\\"create-bug-button\\" target=\\"_self\\" onClick={[Function: onClick]} href={{...}}>

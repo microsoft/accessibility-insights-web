@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
+import { isEmpty } from 'lodash';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 
@@ -41,7 +42,12 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
     }
 
     public render(): JSX.Element {
+        if (isEmpty(this.props.userConfigurationStoreData)) {
+            return null;
+        }
+
         const { issueDetailsData, userConfigurationStoreData, deps } = this.props;
+
         const { environmentInfoProvider, bugFilingServiceProvider } = deps;
         const envInfo: EnvironmentInfo = environmentInfoProvider.getEnvironmentInfo();
         const selectedBugFilingService: BugFilingService = bugFilingServiceProvider.forKey(userConfigurationStoreData.bugService);

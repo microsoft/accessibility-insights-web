@@ -175,14 +175,14 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
                 restoreFocus={false}
             />
         );
-        const newExperienceButton: JSX.Element = this.state.userConfigurationStoreData ? (
+        const newExperienceButton: JSX.Element = (
             <IssueFilingButton
                 deps={this.props.deps}
                 issueDetailsData={issueData}
                 userConfigurationStoreData={this.state.userConfigurationStoreData}
                 needsSettingsContentRenderer={IssueFilingNeedsSettingsHelpText}
             />
-        ) : null;
+        );
         return (
             <FlaggedComponent
                 enableJSXElement={newExperienceButton}

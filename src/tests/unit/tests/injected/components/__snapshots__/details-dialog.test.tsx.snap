@@ -155,7 +155,47 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
                 restoreFocus={false}
               />
             }
-            enableJSXElement={null}
+            enableJSXElement={
+              <IssueFilingButton
+                deps={
+                  Object {
+                    "bugActionMessageCreator": null,
+                    "clientBrowserAdapter": Object {
+                      "getUrl": [Function],
+                    },
+                    "issueDetailsTextGenerator": null,
+                    "targetPageActionMessageCreator": Object {
+                      "copyIssueDetailsClicked": [Function],
+                    },
+                    "windowUtils": null,
+                  }
+                }
+                issueDetailsData={
+                  Object {
+                    "pageTitle": "",
+                    "pageUrl": "http://localhost/",
+                    "ruleResult": Object {
+                      "all": Array [],
+                      "any": Array [],
+                      "failureSummary": "failureSummary",
+                      "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                      "guidanceLinks": Array [],
+                      "help": "help",
+                      "helpUrl": "http://extension/help1",
+                      "html": "html",
+                      "id": "id1",
+                      "none": Array [],
+                      "ruleId": "ruleId",
+                      "selector": "selector",
+                      "snippet": "html",
+                      "status": false,
+                    },
+                  }
+                }
+                needsSettingsContentRenderer={[Function]}
+                userConfigurationStoreData={null}
+              />
+            }
             featureFlag="newIssueFilingExperience"
             featureFlagStoreData={
               Object {
@@ -494,7 +534,47 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
                   restoreFocus={false}
                 />
               }
-              enableJSXElement={null}
+              enableJSXElement={
+                <IssueFilingButton
+                  deps={
+                    Object {
+                      "bugActionMessageCreator": null,
+                      "clientBrowserAdapter": Object {
+                        "getUrl": [Function],
+                      },
+                      "issueDetailsTextGenerator": null,
+                      "targetPageActionMessageCreator": Object {
+                        "copyIssueDetailsClicked": [Function],
+                      },
+                      "windowUtils": null,
+                    }
+                  }
+                  issueDetailsData={
+                    Object {
+                      "pageTitle": "",
+                      "pageUrl": "http://localhost/",
+                      "ruleResult": Object {
+                        "all": Array [],
+                        "any": Array [],
+                        "failureSummary": "failureSummary",
+                        "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                        "guidanceLinks": Array [],
+                        "help": "help",
+                        "helpUrl": "http://extension/help1",
+                        "html": "html",
+                        "id": "id1",
+                        "none": Array [],
+                        "ruleId": "ruleId",
+                        "selector": "selector",
+                        "snippet": "html",
+                        "status": false,
+                      },
+                    }
+                  }
+                  needsSettingsContentRenderer={[Function]}
+                  userConfigurationStoreData={null}
+                />
+              }
               featureFlag="newIssueFilingExperience"
               featureFlagStoreData={
                 Object {
@@ -825,7 +905,47 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
                 restoreFocus={false}
               />
             }
-            enableJSXElement={null}
+            enableJSXElement={
+              <IssueFilingButton
+                deps={
+                  Object {
+                    "bugActionMessageCreator": null,
+                    "clientBrowserAdapter": Object {
+                      "getUrl": [Function],
+                    },
+                    "issueDetailsTextGenerator": null,
+                    "targetPageActionMessageCreator": Object {
+                      "copyIssueDetailsClicked": [Function],
+                    },
+                    "windowUtils": null,
+                  }
+                }
+                issueDetailsData={
+                  Object {
+                    "pageTitle": "",
+                    "pageUrl": "http://localhost/",
+                    "ruleResult": Object {
+                      "all": Array [],
+                      "any": Array [],
+                      "failureSummary": "failureSummary",
+                      "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                      "guidanceLinks": Array [],
+                      "help": "help",
+                      "helpUrl": "http://extension/help1",
+                      "html": "html",
+                      "id": "id1",
+                      "none": Array [],
+                      "ruleId": "ruleId",
+                      "selector": "selector",
+                      "snippet": "html",
+                      "status": false,
+                    },
+                  }
+                }
+                needsSettingsContentRenderer={[Function]}
+                userConfigurationStoreData={null}
+              />
+            }
             featureFlag="newIssueFilingExperience"
             featureFlagStoreData={
               Object {
@@ -1159,7 +1279,47 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
                   restoreFocus={false}
                 />
               }
-              enableJSXElement={null}
+              enableJSXElement={
+                <IssueFilingButton
+                  deps={
+                    Object {
+                      "bugActionMessageCreator": null,
+                      "clientBrowserAdapter": Object {
+                        "getUrl": [Function],
+                      },
+                      "issueDetailsTextGenerator": null,
+                      "targetPageActionMessageCreator": Object {
+                        "copyIssueDetailsClicked": [Function],
+                      },
+                      "windowUtils": null,
+                    }
+                  }
+                  issueDetailsData={
+                    Object {
+                      "pageTitle": "",
+                      "pageUrl": "http://localhost/",
+                      "ruleResult": Object {
+                        "all": Array [],
+                        "any": Array [],
+                        "failureSummary": "failureSummary",
+                        "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                        "guidanceLinks": Array [],
+                        "help": "help",
+                        "helpUrl": "http://extension/help1",
+                        "html": "html",
+                        "id": "id1",
+                        "none": Array [],
+                        "ruleId": "ruleId",
+                        "selector": "selector",
+                        "snippet": "html",
+                        "status": false,
+                      },
+                    }
+                  }
+                  needsSettingsContentRenderer={[Function]}
+                  userConfigurationStoreData={null}
+                />
+              }
               featureFlag="newIssueFilingExperience"
               featureFlagStoreData={
                 Object {
@@ -1485,7 +1645,47 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
                 restoreFocus={false}
               />
             }
-            enableJSXElement={null}
+            enableJSXElement={
+              <IssueFilingButton
+                deps={
+                  Object {
+                    "bugActionMessageCreator": null,
+                    "clientBrowserAdapter": Object {
+                      "getUrl": [Function],
+                    },
+                    "issueDetailsTextGenerator": null,
+                    "targetPageActionMessageCreator": Object {
+                      "copyIssueDetailsClicked": [Function],
+                    },
+                    "windowUtils": null,
+                  }
+                }
+                issueDetailsData={
+                  Object {
+                    "pageTitle": "",
+                    "pageUrl": "http://localhost/",
+                    "ruleResult": Object {
+                      "all": Array [],
+                      "any": Array [],
+                      "failureSummary": "failureSummary",
+                      "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                      "guidanceLinks": Array [],
+                      "help": "help",
+                      "helpUrl": "help-relative",
+                      "html": "html",
+                      "id": "id1",
+                      "none": Array [],
+                      "ruleId": "ruleId",
+                      "selector": "selector",
+                      "snippet": "html",
+                      "status": false,
+                    },
+                  }
+                }
+                needsSettingsContentRenderer={[Function]}
+                userConfigurationStoreData={null}
+              />
+            }
             featureFlag="newIssueFilingExperience"
             featureFlagStoreData={
               Object {
