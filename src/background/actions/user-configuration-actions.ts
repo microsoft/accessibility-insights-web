@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { Action } from '../../common/flux/action';
 import {
+    SaveIssueFilingSettingsPayload,
     SetBugServicePayload,
     SetBugServicePropertyPayload,
     SetHighContrastModePayload,
@@ -16,4 +17,5 @@ export class UserConfigurationActions {
     public readonly setBugService = new Action<SetBugServicePayload>();
     public readonly setBugServiceProperty = new Action<SetBugServicePropertyPayload>();
     public readonly setIssueTrackerPath = new Action<SetIssueTrackerPathPayload>();
+    public readonly saveIssueFilingSettings = new Action<SaveIssueFilingSettingsPayload>();
 }
