@@ -7,6 +7,7 @@ import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { TabStopEvent } from '../../injected/tab-stops-listener';
 import { LaunchPanelType } from '../../popup/components/popup-view';
+import { BugServiceProperties } from '../../common/types/store-data/user-configuration-store';
 
 export interface BaseActionPayload {
     telemetry?: TelemetryData;
@@ -126,6 +127,10 @@ export interface SetHighContrastModePayload extends BaseActionPayload {
 
 export interface SetBugServicePayload extends BaseActionPayload {
     bugServiceName: string;
+}
+
+export interface SaveBugFilingSettingsPayload extends SetBugServicePayload {
+    bugFilingSettings: BugServiceProperties;
 }
 
 export interface SetBugServicePropertyPayload extends BaseActionPayload {

@@ -12,6 +12,7 @@ import {
     SetHighContrastModePayload,
     SetIssueTrackerPathPayload,
     SetTelemetryStatePayload,
+    SaveBugFilingSettingsPayload,
 } from '../../actions/action-payloads';
 import { UserConfigurationActions } from '../../actions/user-configuration-actions';
 import { IndexedDBDataKeys } from '../../IndexedDBDataKeys';
@@ -45,6 +46,7 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
         this.userConfigActions.setBugService.addListener(this.onSetBugService);
         this.userConfigActions.setBugServiceProperty.addListener(this.onSetBugServiceProperty);
         this.userConfigActions.setIssueTrackerPath.addListener(this.onSetIssueTrackerPath);
+        this.userConfigActions.saveIssueFilingSettings.addListener(this.onSaveIssueSettings);
     }
 
     @autobind
@@ -83,6 +85,13 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
     @autobind
     private onSetIssueTrackerPath(payload: SetIssueTrackerPathPayload): void {
         this.state.issueTrackerPath = payload.issueTrackerPath;
+        this.saveAndEmitChanged();
+    }
+
+    @autobind
+    private onSaveIssueSettings(payload: SaveBugFilingSettingsPayload): void {
+        const bugService = payload.bugServiceName;
+        this.state.bugServicePropertiesMap[bugService] = payload.bugFilingSettings;
         this.saveAndEmitChanged();
     }
 

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
+    SaveBugFilingSettingsPayload,
     SetBugServicePayload,
     SetBugServicePropertyPayload,
     SetHighContrastModePayload,
@@ -8,6 +9,7 @@ import {
     SetTelemetryStatePayload,
 } from '../../background/actions/action-payloads';
 import { Messages } from '../messages';
+import { BugServiceProperties } from '../types/store-data/user-configuration-store';
 import { BaseActionMessageCreator } from './base-action-message-creator';
 
 export class UserConfigMessageCreator extends BaseActionMessageCreator {
@@ -68,6 +70,19 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
 
         this.dispatchMessage({
             messageType: Messages.UserConfig.SetIssueTrackerPath,
+            tabId: this._tabId,
+            payload,
+        });
+    }
+
+    public saveIssueFilingSettings(bugServiceName: string, bugFilingSettings: BugServiceProperties): void {
+        const payload: SaveBugFilingSettingsPayload = {
+            bugServiceName,
+            bugFilingSettings,
+        };
+
+        this.dispatchMessage({
+            messageType: Messages.UserConfig.SaveIssueFilingSettings,
             tabId: this._tabId,
             payload,
         });
