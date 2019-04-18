@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
 import { AssessmentDataConverter } from '../../../../background/assessment-data-converter';
 import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
@@ -29,6 +30,8 @@ import { DictionaryNumberTo, DictionaryStringTo } from '../../../../types/common
 import { AssessmentsStoreDataBuilder } from '../../common/assessment-store-data-builder';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
+import { UserConfigurationStore } from './../../../../background/stores/global/user-configuration-store';
+import { UserConfigurationStoreData } from './../../../../common/types/store-data/user-configuration-store';
 
 describe('ClientViewControllerTest', () => {
     test('initialize', () => {
@@ -40,6 +43,7 @@ describe('ClientViewControllerTest', () => {
         const visualizationScanResultStoreMock = Mock.ofType(VisualizationScanResultStore, MockBehavior.Strict);
         const assessmentStoreMock = Mock.ofType<BaseStore<AssessmentStoreData>>(null, MockBehavior.Strict);
         const tabStoreMock = Mock.ofType<BaseStore<TabStoreData>>(TabStore, MockBehavior.Strict);
+        const userConfigStoreMock = Mock.ofType<BaseStore<UserConfigurationStoreData>>(UserConfigurationStore, MockBehavior.Strict);
         const featureFlagStoreMock = Mock.ofType(FeatureFlagStore);
 
         visualizationStore
@@ -64,6 +68,10 @@ describe('ClientViewControllerTest', () => {
             .setup(sm => sm.addChangedListener(It.isAny()))
             .callback(listener => {})
             .verifiable();
+        userConfigStoreMock
+            .setup(sm => sm.addChangedListener(It.isAny()))
+            .callback(listener => {})
+            .verifiable();
 
         const testObject = new ClientViewController(
             visualizationStore.object,
@@ -74,6 +82,7 @@ describe('ClientViewControllerTest', () => {
             featureFlagStoreMock.object,
             assessmentStoreMock.object,
             tabStoreMock.object,
+            userConfigStoreMock.object,
             null,
             null,
         );
@@ -82,6 +91,7 @@ describe('ClientViewControllerTest', () => {
         visualizationStore.verifyAll();
         visualizationScanResultStoreMock.verifyAll();
         assessmentStoreMock.verifyAll();
+        userConfigStoreMock.verifyAll();
         expect(privateListenerVisStore).toEqual(testObject.onChangedState);
         expect(privateListenerVisScanStore).toEqual(testObject.onChangedState);
         expect(privateListenerAssessmentStore).toEqual(testObject.onChangedState);
@@ -374,6 +384,8 @@ class MocksAndTestSubjectBuilder {
     private _toAssessmentStoreState: AssessmentStoreData;
     private _fromTabStoreState: TabStoreData;
     private _toTabStoreState: TabStoreData;
+    private _fromUserConfigurationStoreState: UserConfigurationStoreData;
+    private _toUserConfigurationStoreState: UserConfigurationStoreData;
     private _fromTargetTabId: number;
     private _toTargetTabId: number;
 
@@ -382,6 +394,7 @@ class MocksAndTestSubjectBuilder {
     private _visualizationStore: IMock<BaseStore<VisualizationStoreData>>;
     private _assessmentStoreMock: IMock<BaseStore<AssessmentStoreData>>;
     private _tabStoreMock: IMock<BaseStore<TabStoreData>>;
+    private _userConfigStoreMock: IMock<BaseStore<UserConfigurationStoreData>>;
     private _selectorMapHelperMock: IMock<SelectorMapHelper>;
     private _visualizationScanResultStoreMock: IMock<BaseStore<VisualizationScanResultData>>;
     private _featureFlagStoreMock: IMock<BaseStore<DictionaryStringTo<boolean>>>;
@@ -487,6 +500,7 @@ class MocksAndTestSubjectBuilder {
             this._featureFlagStoreMock.object,
             this._assessmentStoreMock.object,
             this._tabStoreMock.object,
+            this._userConfigStoreMock.object,
             this._selectorMapHelperMock.object,
             this._targetPageActionMessageCreatorMock.object,
         );
@@ -495,6 +509,7 @@ class MocksAndTestSubjectBuilder {
         (controller as any).currentScanResultState = this._visualizationScanResultStoreMock.object.getState();
         (controller as any).currentAssessmentState = this._assessmentStoreMock.object.getState();
         (controller as any).currentTabState = this._tabStoreMock.object.getState();
+        (controller as any).currentUserConfigStoreState = this._userConfigStoreMock.object.getState();
 
         controller.setPreviousVisualizationStatesStub(this._initializedVisualizationState);
         controller.setPreviousVisualizationSelectorMapStatesStub(this._initializedVisualizationSelectorMapState);
@@ -568,6 +583,8 @@ class MocksAndTestSubjectBuilder {
             .build();
         this._fromTabStoreState = { id: 1 } as TabStoreData;
         this._toTabStoreState = { id: 1 } as TabStoreData;
+        this._fromUserConfigurationStoreState = {} as UserConfigurationStoreData;
+        this._toUserConfigurationStoreState = {} as UserConfigurationStoreData;
 
         this._selectorMap = {
             key1: {
@@ -595,6 +612,7 @@ class MocksAndTestSubjectBuilder {
         this._visualizationStore = Mock.ofType(VisualizationStore);
         this._assessmentStoreMock = Mock.ofType<BaseStore<AssessmentStoreData>>();
         this._tabStoreMock = Mock.ofType<BaseStore<TabStoreData>>(TabStore);
+        this._userConfigStoreMock = Mock.ofType<BaseStore<UserConfigurationStoreData>>(UserConfigurationStore);
         this._visualizationScanResultStoreMock = Mock.ofType(VisualizationScanResultStore);
         this._featureFlagStoreMock = Mock.ofType(FeatureFlagStore);
 
@@ -614,6 +632,10 @@ class MocksAndTestSubjectBuilder {
             .setup(sm => sm.getState())
             .returns(() => this._fromTabStoreState)
             .verifiable();
+
+        this._userConfigStoreMock.setup(sm => sm.getState()).returns(() => this._fromUserConfigurationStoreState);
+
+        this._userConfigStoreMock.setup(sm => sm.getState()).returns(() => this._toUserConfigurationStoreState);
 
         this._tabStoreMock.setup(sm => sm.getState()).returns(() => this._toTabStoreState);
 

@@ -149,6 +149,7 @@ export class MainWindowInitializer extends WindowInitializer {
             this.featureFlagStoreProxy,
             this.assessmentStoreProxy,
             this.tabStoreProxy,
+            this.userConfigStoreProxy,
             selectorMapHelper,
             targetPageActionMessageCreator,
         );

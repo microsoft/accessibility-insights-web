@@ -63,25 +63,6 @@ describe('IssueFilingButtonTest', () => {
         needsSettingsContentRenderer = NamedSFC('testRenderer', () => <>needs settings</>);
     });
 
-    test('render null when store data is not ready', () => {
-        const props: IssueFilingButtonProps = {
-            deps: {
-                bugActionMessageCreator: bugActionMessageCreatorMock.object,
-                environmentInfoProvider: environmentInfoProviderMock.object,
-                bugFilingServiceProvider: bugFilingServiceProviderMock.object,
-            } as IssueFilingButtonDeps,
-            issueDetailsData: {
-                pageTitle: 'pageTitle',
-                pageUrl: 'http://pageUrl',
-                ruleResult: null,
-            },
-            userConfigurationStoreData: null,
-            needsSettingsContentRenderer,
-        };
-        const wrapper = shallow(<IssueFilingButton {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
-    });
-
     test.each([true, false])('render: isSettingsValid: %s', isSettingsValid => {
         testBugService.isSettingsValid = () => isSettingsValid;
         const props: IssueFilingButtonProps = {

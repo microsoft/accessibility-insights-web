@@ -18,6 +18,8 @@ import { AssessmentVisualizationInstance } from './frameCommunicators/html-eleme
 import { ScrollingController, ScrollingWindowMessage } from './frameCommunicators/scrolling-controller';
 import { SelectorMapHelper } from './selector-map-helper';
 import { TargetPageActionMessageCreator } from './target-page-action-message-creator';
+import { UserConfigurationStoreData } from './../common/types/store-data/user-configuration-store';
+import { UserConfigurationStore } from './../background/stores/global/user-configuration-store';
 
 export class ClientViewController {
     private drawingInitiator: DrawingInitiator;
@@ -27,10 +29,12 @@ export class ClientViewController {
     private visualizationStore: BaseStore<VisualizationStoreData>;
     private assessmentStore: BaseStore<AssessmentStoreData>;
     private tabStore: BaseStore<TabStoreData>;
+    private userConfigurationStore: BaseStore<UserConfigurationStoreData>;
     private scanResultStore: BaseStore<VisualizationScanResultData>;
     private currentScanResultState: VisualizationScanResultData;
     private currentAssessmentState: AssessmentStoreData;
     private currentTabState: TabStoreData;
+    private currentUserConfigStoreState: UserConfigurationStoreData;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
     private featureFlagStore: BaseStore<DictionaryStringTo<boolean>>;
     private selectorMapHelper: SelectorMapHelper;
@@ -47,6 +51,7 @@ export class ClientViewController {
         featureFlagStore: BaseStore<DictionaryStringTo<boolean>>,
         assessmentStore: BaseStore<AssessmentStoreData>,
         tabStore: BaseStore<TabStoreData>,
+        userConfigurationStore: BaseStore<UserConfigurationStoreData>,
         selectorMapHelper: SelectorMapHelper,
         targetPageActionMessageCreator: TargetPageActionMessageCreator,
     ) {
@@ -54,6 +59,7 @@ export class ClientViewController {
         this.visualizationStore = visualizationStore;
         this.scanResultStore = scanResultStore;
         this.assessmentStore = assessmentStore;
+        this.userConfigurationStore = userConfigurationStore;
         this.tabStore = tabStore;
         this.drawingInitiator = drawingInitiator;
         this.scrollingController = scrollingController;
@@ -69,6 +75,7 @@ export class ClientViewController {
         this.assessmentStore.addChangedListener(this.onChangedState);
         this.tabStore.addChangedListener(this.onChangedState);
         this.featureFlagStore.addChangedListener(this.onChangedState);
+        this.userConfigurationStore.addChangedListener(this.onChangedState);
     }
 
     private setupVisualizationStates(): void {
@@ -84,6 +91,7 @@ export class ClientViewController {
         this.currentScanResultState = this.scanResultStore.getState();
         this.currentAssessmentState = this.assessmentStore.getState();
         this.currentTabState = this.tabStore.getState();
+        this.currentUserConfigStoreState = this.userConfigurationStore.getState();
 
         if (this.shouldWaitForAllStoreToLoad()) {
             return;
@@ -112,7 +120,8 @@ export class ClientViewController {
             this.currentScanResultState == null ||
             this.currentFeatureFlagState == null ||
             this.currentAssessmentState == null ||
-            this.currentTabState == null
+            this.currentTabState == null ||
+            this.currentUserConfigStoreState == null
         );
     }
 
