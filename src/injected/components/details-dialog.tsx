@@ -11,7 +11,6 @@ import { BaseStore } from '../../common/base-store';
 import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 import { CopyIssueDetailsButton, CopyIssueDetailsButtonDeps } from '../../common/components/copy-issue-details-button';
 import { FileIssueDetailsButton, FileIssueDetailsButtonDeps } from '../../common/components/file-issue-details-button';
-import { FlaggedComponent } from '../../common/components/flagged-component';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { FeatureFlags } from '../../common/feature-flags';
 import { DevToolActionMessageCreator } from '../../common/message-creators/dev-tool-action-message-creator';
@@ -32,9 +31,9 @@ export enum CheckType {
 
 export type DetailsDialogDeps = CopyIssueDetailsButtonDeps &
     FileIssueDetailsButtonDeps & {
-        targetPageActionMessageCreator: TargetPageActionMessageCreator;
-        clientBrowserAdapter: ClientBrowserAdapter;
-    };
+    targetPageActionMessageCreator: TargetPageActionMessageCreator;
+    clientBrowserAdapter: ClientBrowserAdapter;
+};
 
 export interface DetailsDialogProps {
     deps: DetailsDialogDeps;
