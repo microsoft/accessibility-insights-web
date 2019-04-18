@@ -3,16 +3,15 @@
 import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 import { Dialog, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
-import { CancelIcon } from '../../common/icons/cancel-icon';
-import { FileHTMLIcon } from '../../common/icons/file-html-icon';
-import { StatusErrorFullIcon } from '../../common/icons/status-error-full-icon';
-
 import { BaseStore } from '../../common/base-store';
 import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 import { CopyIssueDetailsButton, CopyIssueDetailsButtonDeps } from '../../common/components/copy-issue-details-button';
 import { FileIssueDetailsButton, FileIssueDetailsButtonDeps } from '../../common/components/file-issue-details-button';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { FeatureFlags } from '../../common/feature-flags';
+import { CancelIcon } from '../../common/icons/cancel-icon';
+import { FileHTMLIcon } from '../../common/icons/file-html-icon';
+import { StatusErrorFullIcon } from '../../common/icons/status-error-full-icon';
 import { DevToolActionMessageCreator } from '../../common/message-creators/dev-tool-action-message-creator';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { DevToolState } from '../../common/types/store-data/idev-tool-state';

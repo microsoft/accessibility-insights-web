@@ -91,10 +91,9 @@ export class PopupInitializer {
         const storeActionMessageCreator = storeActionMessageCreatorFactory.forPopup();
 
         const contentActionMessageCreator = new ContentActionMessageCreator(
-            this.chromeAdapter.sendMessageToFrames,
-            this.targetTabInfo.tab.id,
             telemetryFactory,
             TelemetryEventSource.DetailsView,
+            actionMessageDispatcher,
         );
 
         const dropdownActionMessageCreator = new DropdownActionMessageCreator(
