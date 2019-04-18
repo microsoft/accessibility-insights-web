@@ -3,17 +3,19 @@
 import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 import { Dialog, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
-import { CancelIcon } from '../../common/icons/cancel-icon';
-import { FileHTMLIcon } from '../../common/icons/file-html-icon';
-import { StatusErrorFullIcon } from '../../common/icons/status-error-full-icon';
 
 import { BaseStore } from '../../common/base-store';
 import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 import { CopyIssueDetailsButton, CopyIssueDetailsButtonDeps } from '../../common/components/copy-issue-details-button';
 import { FileIssueDetailsButton, FileIssueDetailsButtonDeps } from '../../common/components/file-issue-details-button';
 import { FlaggedComponent } from '../../common/components/flagged-component';
+import { IssueFilingButton, IssueFilingButtonDeps } from '../../common/components/issue-filing-button';
+import { IssueFilingNeedsSettingsHelpText } from '../../common/components/issue-filing-needs-settings-help-text';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { FeatureFlags } from '../../common/feature-flags';
+import { CancelIcon } from '../../common/icons/cancel-icon';
+import { FileHTMLIcon } from '../../common/icons/file-html-icon';
+import { StatusErrorFullIcon } from '../../common/icons/status-error-full-icon';
 import { DevToolActionMessageCreator } from '../../common/message-creators/dev-tool-action-message-creator';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { DevToolState } from '../../common/types/store-data/idev-tool-state';
@@ -30,11 +32,12 @@ export enum CheckType {
     None,
 }
 
-export type DetailsDialogDeps = CopyIssueDetailsButtonDeps &
-    FileIssueDetailsButtonDeps & {
-        targetPageActionMessageCreator: TargetPageActionMessageCreator;
-        clientBrowserAdapter: ClientBrowserAdapter;
-    };
+export type DetailsDialogDeps = {
+    targetPageActionMessageCreator: TargetPageActionMessageCreator;
+    clientBrowserAdapter: ClientBrowserAdapter;
+} & CopyIssueDetailsButtonDeps &
+    FileIssueDetailsButtonDeps &
+    IssueFilingButtonDeps;
 
 export interface DetailsDialogProps {
     deps: DetailsDialogDeps;
@@ -54,6 +57,7 @@ export interface DetailsDialogState {
     currentRuleIndex: number;
     canInspect: boolean;
     issueTrackerPath: string;
+    userConfigurationStoreData: UserConfigurationStoreData;
 }
 
 export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDialogState> {
@@ -111,6 +115,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
             currentRuleIndex: 0,
             canInspect: true,
             issueTrackerPath: '',
+            userConfigurationStoreData: null,
         };
     }
 
@@ -161,13 +166,29 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         );
     }
 
-    private renderCreateBugButton(issueData: CreateIssueDetailsTextData): JSX.Element {
-        return (
+    private renderFileIssueButton(issueData: CreateIssueDetailsTextData): JSX.Element {
+        const oldExperienceButton: JSX.Element = (
             <FileIssueDetailsButton
                 deps={this.props.deps}
                 issueDetailsData={issueData}
                 issueTrackerPath={this.state.issueTrackerPath}
                 restoreFocus={false}
+            />
+        );
+        const newExperienceButton: JSX.Element = (
+            <IssueFilingButton
+                deps={this.props.deps}
+                issueDetailsData={issueData}
+                userConfigurationStoreData={this.state.userConfigurationStoreData}
+                needsSettingsContentRenderer={IssueFilingNeedsSettingsHelpText}
+            />
+        );
+        return (
+            <FlaggedComponent
+                enableJSXElement={newExperienceButton}
+                featureFlag={FeatureFlags[FeatureFlags.newIssueFilingExperience]}
+                disableJSXElement={oldExperienceButton}
+                featureFlagStoreData={this.props.featureFlagStoreData}
             />
         );
     }
@@ -189,11 +210,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
                     issueDetailsData={issueData}
                     onClick={this.props.deps.targetPageActionMessageCreator.copyIssueDetailsClicked}
                 />
-                <FlaggedComponent
-                    featureFlagStoreData={this.props.featureFlagStoreData}
-                    featureFlag={FeatureFlags.showBugFiling}
-                    enableJSXElement={this.renderCreateBugButton(issueData)}
-                />
+                {this.renderFileIssueButton(issueData)}
             </>
         );
     }

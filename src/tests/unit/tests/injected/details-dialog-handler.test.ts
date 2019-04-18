@@ -10,6 +10,7 @@ import { DetailsDialog } from '../../../../injected/components/details-dialog';
 import { DetailsDialogHandler } from '../../../../injected/details-dialog-handler';
 import { DictionaryStringTo } from '../../../../types/common-types';
 import { EventStubFactory } from '../../common/event-stub-factory';
+import { UserConfigurationStoreData } from './../../../../common/types/store-data/user-configuration-store';
 
 describe('DetailsDialogHandlerTest', () => {
     let testSubject: DetailsDialogHandler;
@@ -298,8 +299,8 @@ describe('DetailsDialogHandlerTest', () => {
     });
 
     test('onUserConfigChanged', () => {
-        testOnUserConfigChangedSetsIssueTrackerPathToITP('example');
-        testOnUserConfigChangedSetsIssueTrackerPathToITP('other example');
+        testOnUserConfigChangedUpdateState('example');
+        testOnUserConfigChangedUpdateState('other example');
     });
 
     test('canInspect', () => {
@@ -368,6 +369,13 @@ describe('DetailsDialogHandlerTest', () => {
         const detailsDialogMock = Mock.ofType(DetailsDialog, MockBehavior.Strict);
         const devToolStoreMock = Mock.ofType(DevToolStore, MockBehavior.Strict);
         const userConfigStoreMock = Mock.ofType(UserConfigurationStore, MockBehavior.Strict);
+        const userConfigStoreData: UserConfigurationStoreData = {
+            bugServicePropertiesMap: {
+                gitHub: {
+                    repository: 'issTrackPath',
+                },
+            },
+        } as any;
         const clickableMock = Mock.ofInstance({
             addEventListener: (ev, cb) => {
                 return null;
@@ -409,15 +417,7 @@ describe('DetailsDialogHandlerTest', () => {
 
         userConfigStoreMock
             .setup(store => store.getState())
-            .returns(() => {
-                return {
-                    bugServicePropertiesMap: {
-                        gitHub: {
-                            repository: 'issTrackPath',
-                        },
-                    },
-                } as any;
-            })
+            .returns(() => userConfigStoreData)
             .verifiable(Times.once());
 
         shadowRootMock
@@ -450,7 +450,11 @@ describe('DetailsDialogHandlerTest', () => {
             .verifiable(Times.atLeastOnce());
 
         detailsDialogMock.setup(dialog => dialog.setState(It.isValue({ canInspect: false }))).verifiable(Times.once());
-        detailsDialogMock.setup(dialog => dialog.setState(It.isValue({ issueTrackerPath: 'issTrackPath' }))).verifiable(Times.once());
+        detailsDialogMock
+            .setup(dialog =>
+                dialog.setState(It.isValue({ issueTrackerPath: 'issTrackPath', userConfigurationStoreData: userConfigStoreData })),
+            )
+            .verifiable(Times.once());
 
         setupDetailsDialogMockForShadowComponents(detailsDialogMock);
 
@@ -635,21 +639,19 @@ describe('DetailsDialogHandlerTest', () => {
         detailsDialogMock.verifyAll();
     }
 
-    function testOnUserConfigChangedSetsIssueTrackerPathToITP(itp: string): void {
+    function testOnUserConfigChangedUpdateState(itp: string): void {
         const detailsDialogMock = Mock.ofType(DetailsDialog, MockBehavior.Strict);
         const userConfigStoreMock = Mock.ofType(UserConfigurationStore, MockBehavior.Strict);
-
+        const storeData: UserConfigurationStoreData = {
+            bugServicePropertiesMap: {
+                gitHub: {
+                    repository: itp,
+                },
+            },
+        } as any;
         userConfigStoreMock
             .setup(store => store.getState())
-            .returns(() => {
-                return {
-                    bugServicePropertiesMap: {
-                        gitHub: {
-                            repository: itp,
-                        },
-                    },
-                } as any;
-            })
+            .returns(() => storeData)
             .verifiable(Times.once());
 
         detailsDialogMock
@@ -661,7 +663,9 @@ describe('DetailsDialogHandlerTest', () => {
             })
             .verifiable(Times.once());
 
-        detailsDialogMock.setup(dialog => dialog.setState(It.isValue({ issueTrackerPath: itp }))).verifiable(Times.once());
+        detailsDialogMock
+            .setup(dialog => dialog.setState(It.isValue({ issueTrackerPath: itp, userConfigurationStoreData: storeData })))
+            .verifiable(Times.once());
 
         testSubject.onUserConfigChanged(detailsDialogMock.object);
 

@@ -6,7 +6,7 @@ import * as React from 'react';
 import {
     IssueFilingNeedsSettingsHelpText,
     IssueFilingNeedsSettingsHelpTextProps,
-} from '../../../../../common/components/needs-settings-help-text';
+} from '../../../../../common/components/issue-filing-needs-settings-help-text';
 
 describe('IssueFilingNeedsSettingsHelpTextTest', () => {
     test.each([true, false])('render with isOpen = %s', isOpen => {

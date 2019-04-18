@@ -20,7 +20,6 @@ import { AnalyzerController } from '../../../../injected/analyzer-controller';
 import { AnalyzerStateUpdateHandler } from '../../../../injected/analyzer-state-update-handler';
 import { Analyzer } from '../../../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../../../injected/analyzers/analyzer-provider';
-import { TabStopsListener } from '../../../../injected/tab-stops-listener';
 import { ScopingStoreDataBuilder } from '../../common/scoping-store-data-builder';
 import { IsSameObject } from '../../common/typemoq-helper';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
@@ -43,8 +42,6 @@ describe('AnalyzerControllerTests', () => {
     let scopingStoreState: ScopingStoreData;
     let analyzerProviderStrictMock: IMock<AnalyzerProvider>;
     let analyzerMock: IMock<Analyzer>;
-    let tabStopsListenerMock: IMock<TabStopsListener>;
-    let sendMessageMock: IMock<(message) => void>;
     let analyzerStateUpdateHandlerStrictMock: IMock<AnalyzerStateUpdateHandler>;
     let assessmentsMock: IMock<AssessmentsProvider>;
     let testObject: AnalyzerController;
@@ -68,7 +65,6 @@ describe('AnalyzerControllerTests', () => {
             getIdentifier: getIdentifierMock.object,
         } as any;
 
-        tabStopsListenerMock = Mock.ofType(TabStopsListener);
         visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
         assessmentsMock = Mock.ofType(AssessmentsProviderImpl);
         visualizationStoreMock = Mock.ofType<VisualizationStore>();
@@ -97,8 +93,6 @@ describe('AnalyzerControllerTests', () => {
         visualizationStoreState = null;
         scopingStoreState = null;
 
-        sendMessageMock = Mock.ofInstance(message => {}, MockBehavior.Strict);
-
         EnumHelper.getNumericValues(VisualizationType).forEach((test: VisualizationType) => {
             setupVisualizationConfigurationFactory(test, configStub);
         });
@@ -109,11 +103,9 @@ describe('AnalyzerControllerTests', () => {
         setupGetAnalyzerMockCalled(times);
 
         testObject = new AnalyzerController(
-            sendMessageMock.object,
             visualizationStoreMock.object,
             featureFlagStoreStoreMock.object,
             scopingStoreMock.object,
-            tabStopsListenerMock.object,
             visualizationConfigurationFactoryMock.object,
             analyzerProviderStrictMock.object,
             analyzerStateUpdateHandlerStrictMock.object,
@@ -126,7 +118,6 @@ describe('AnalyzerControllerTests', () => {
         featureFlagStoreStoreMock.verifyAll();
         scopingStoreMock.verifyAll();
         analyzerProviderStrictMock.verifyAll();
-        sendMessageMock.verifyAll();
         featureFlagStoreState = {};
     });
 

@@ -4,26 +4,39 @@ import { shallow } from 'enzyme';
 import { Dialog } from 'office-ui-fabric-react';
 import * as React from 'react';
 
+import { FlaggedComponent } from '../../../../../common/components/flagged-component';
 import { FeatureFlags } from '../../../../../common/feature-flags';
 import { DetailsDialog, DetailsDialogDeps, DetailsDialogProps } from '../../../../../injected/components/details-dialog';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 
+type DetailsDialogTestCase = {
+    isDevToolsOpen: boolean;
+    shadowDialog: boolean;
+};
+
 describe('DetailsDialogTest', () => {
-    test('render: isDevToolsOpen = false, shadowDialog = false', () => {
-        testRender(false, false);
-    });
+    const testCases: DetailsDialogTestCase[] = [
+        {
+            isDevToolsOpen: false,
+            shadowDialog: false,
+        },
+        {
+            isDevToolsOpen: false,
+            shadowDialog: true,
+        },
+        {
+            isDevToolsOpen: true,
+            shadowDialog: false,
+        },
+        {
+            isDevToolsOpen: true,
+            shadowDialog: true,
+        },
+    ];
 
-    test('render: isDevToolsOpen = false, shadowDialog = true', () => {
-        testRender(false, true);
-    });
-
-    test('render: isDevToolsOpen = false, shadowDialog = true', () => {
-        testRender(true, false);
-    });
-
-    test('render: isDevToolsOpen = true, shadowDialog = true', () => {
-        testRender(true, true);
+    test.each(testCases)('render: %o', (testCase: DetailsDialogTestCase) => {
+        testRender(testCase.isDevToolsOpen, testCase.shadowDialog);
     });
 
     test('render: with relative help url', () => {
@@ -77,7 +90,7 @@ describe('DetailsDialogTest', () => {
             clientBrowserAdapter: {
                 getUrl: url => expectedHelpUrl,
             } as any,
-        };
+        } as DetailsDialogDeps;
 
         const props: DetailsDialogProps = {
             deps,
@@ -107,6 +120,9 @@ describe('DetailsDialogTest', () => {
 
         expect(testObject.render()).toMatchSnapshot();
         const wrapper = shallow(<DetailsDialog {...props} />);
+
+        expect(wrapper.state()).toMatchSnapshot('verify initial state');
+
         if (!shadowDialog) {
             expect(
                 wrapper
@@ -115,5 +131,14 @@ describe('DetailsDialogTest', () => {
                     .dialogContentProps.topButtonsProps[0].onRenderIcon(),
             ).toMatchSnapshot('verify close button for non shadow dom');
         }
+
+        const userConfigStoreDataStub = {
+            bugService: 'service',
+            bugServicePropertiesMap: {},
+        };
+
+        wrapper.setState({ userConfigurationStoreData: userConfigStoreDataStub });
+
+        expect(wrapper.find(FlaggedComponent).getElement()).toMatchSnapshot('new issue filing bug UI');
     }
 });

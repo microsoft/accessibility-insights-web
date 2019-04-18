@@ -1,9 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
+
 import { GitHubBugFilingSettings } from '../bug-filing/github/github-bug-filing-service';
 import { FeatureFlags } from '../common/feature-flags';
 import { HTMLElementUtils } from '../common/html-element-utils';
+import { UserConfigurationStoreData } from './../common/types/store-data/user-configuration-store';
 import { DetailsDialog } from './components/details-dialog';
 
 export class DetailsDialogHandler {
@@ -72,12 +74,15 @@ export class DetailsDialogHandler {
 
     @autobind
     public onUserConfigChanged(dialog: DetailsDialog): void {
-        dialog.setState({ issueTrackerPath: this.issueTrackerPath(dialog) });
+        const storeState = dialog.props.userConfigStore.getState();
+        dialog.setState({
+            issueTrackerPath: this.issueTrackerPath(dialog, storeState),
+            userConfigurationStoreData: storeState,
+        });
     }
 
     @autobind
-    public issueTrackerPath(dialog: DetailsDialog): string {
-        const userConfigState = dialog.props.userConfigStore.getState();
+    public issueTrackerPath(dialog: DetailsDialog, userConfigState: UserConfigurationStoreData): string {
         return (
             userConfigState &&
             userConfigState.bugServicePropertiesMap &&

@@ -114,11 +114,7 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
                     issueDetailsData={issueData}
                     onClick={this.props.deps.detailsViewActionMessageCreator.copyIssueDetailsClicked}
                 />
-                <FlaggedComponent
-                    enableJSXElement={this.getFileIssueDetailsButton(issueData)}
-                    featureFlag={FeatureFlags[FeatureFlags.showBugFiling]}
-                    featureFlagStoreData={this.props.featureFlagData}
-                />
+                {this.getFileIssueDetailsButton(issueData)}
                 <table className="issue-detail-table">
                     <tbody>
                         <tr>

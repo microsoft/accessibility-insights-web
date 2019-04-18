@@ -10,18 +10,6 @@ import { SettingsProps } from '../settings-props';
 import { GitHubBugSettingsUx } from './github-bug-settings-ux';
 
 export const BugFilingSettings = NamedSFC<SettingsProps>('BugFilingSettings', props => {
-    const getBugSettingsUx = () => (
-        <>
-            <h3>Issue filing</h3>
-            <FlaggedComponent
-                enableJSXElement={getNewIssueFilingSettingsUx()}
-                disableJSXElement={getGitHubBugSettingsUx()}
-                featureFlag={FeatureFlags[FeatureFlags.newIssueFilingExperience]}
-                featureFlagStoreData={props.featureFlagData}
-            />
-        </>
-    );
-
     const getNewIssueFilingSettingsUx = () => {
         const { deps, userConfigurationStoreState } = props;
         const { bugFilingServiceProvider, userConfigMessageCreator } = deps;
@@ -45,10 +33,14 @@ export const BugFilingSettings = NamedSFC<SettingsProps>('BugFilingSettings', pr
     };
 
     return (
-        <FlaggedComponent
-            enableJSXElement={getBugSettingsUx()}
-            featureFlag={FeatureFlags[FeatureFlags.showBugFiling]}
-            featureFlagStoreData={props.featureFlagData}
-        />
+        <>
+            <h3>Issue filing</h3>
+            <FlaggedComponent
+                enableJSXElement={getNewIssueFilingSettingsUx()}
+                disableJSXElement={getGitHubBugSettingsUx()}
+                featureFlag={FeatureFlags[FeatureFlags.newIssueFilingExperience]}
+                featureFlagStoreData={props.featureFlagData}
+            />
+        </>
     );
 });

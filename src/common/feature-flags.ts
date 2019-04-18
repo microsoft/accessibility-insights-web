@@ -10,7 +10,6 @@ export class FeatureFlags {
     public static readonly shadowDialog = 'shadowDialog';
     public static readonly showAllFeatureFlags = 'showAllFeatureFlags';
     public static readonly scoping = 'scoping';
-    public static readonly showBugFiling = 'showBugFiling';
     public static readonly newIssueFilingExperience = 'newIssueFilingExperience';
     public static readonly showInstanceVisibility = 'showInstanceVisibility';
 }
@@ -67,14 +66,6 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             displayableDescription: 'Enable scoping to limit scanning to selected portions of the webpage.',
             isPreviewFeature: false,
             forceDefault: false,
-        },
-        {
-            id: FeatureFlags.showBugFiling,
-            defaultValue: true,
-            displayableName: 'Issue filing',
-            displayableDescription: 'Enable File Issue buttons that allow you to create GitHub issues pre-populated with failure details.',
-            isPreviewFeature: false,
-            forceDefault: true,
         },
         {
             id: FeatureFlags.newIssueFilingExperience,
