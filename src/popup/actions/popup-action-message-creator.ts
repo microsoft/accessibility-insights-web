@@ -2,8 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 import { BaseActionPayload, OnDetailsViewOpenPayload, SetLaunchPanelState } from '../../background/actions/action-payloads';
-import { Message } from '../../common/message';
-import { BaseActionMessageCreator } from '../../common/message-creators/base-action-message-creator';
+import { ActionMessageDispatcher } from '../../common/message-creators/action-message-dispatcher';
 import { Messages } from '../../common/messages';
 import { SupportedMouseEvent, TelemetryDataFactory } from '../../common/telemetry-data-factory';
 import * as TelemetryEvents from '../../common/telemetry-events';
@@ -15,29 +14,26 @@ import { LaunchPanelType } from '../components/popup-view';
 
 const visualizationMessages = Messages.Visualizations;
 
-export class PopupActionMessageCreator extends BaseActionMessageCreator {
-    private telemetryFactory: TelemetryDataFactory;
-    private windowUtils: WindowUtils;
-
-    constructor(postMessage: (message: Message) => void, tabId: number, telemetryFactory: TelemetryDataFactory, windowUtils?: WindowUtils) {
-        super(postMessage, tabId);
-        this.telemetryFactory = telemetryFactory;
-        this.windowUtils = windowUtils || new WindowUtils();
-    }
+export class PopupActionMessageCreator {
+    constructor(
+        private readonly telemetryFactory: TelemetryDataFactory,
+        private readonly dispatcher: ActionMessageDispatcher,
+        private readonly windowUtils: WindowUtils,
+    ) {}
 
     public openTutorial(event: React.MouseEvent<HTMLElement>): void {
-        this.sendTelemetry(TelemetryEvents.TUTORIAL_OPEN, this.telemetryFactory.fromLaunchPad(event));
+        this.dispatcher.sendTelemetry(TelemetryEvents.TUTORIAL_OPEN, this.telemetryFactory.fromLaunchPad(event));
     }
 
     public popupInitialized(): void {
-        this.sendTelemetry(TelemetryEvents.POPUP_INITIALIZED, {
+        this.dispatcher.sendTelemetry(TelemetryEvents.POPUP_INITIALIZED, {
             source: TelemetryEventSource.LaunchPad,
             triggeredBy: 'N/A',
         });
     }
 
     public openLaunchPad(panelType: LaunchPanelType): void {
-        this.sendTelemetry(TelemetryEvents.LAUNCH_PANEL_OPEN, {
+        this.dispatcher.sendTelemetry(TelemetryEvents.LAUNCH_PANEL_OPEN, {
             source: TelemetryEventSource.LaunchPad,
             triggeredBy: 'N/A',
             launchPanelType: panelType,
@@ -48,7 +44,7 @@ export class PopupActionMessageCreator extends BaseActionMessageCreator {
         event: SupportedMouseEvent,
         viewType: VisualizationType,
         source: TelemetryEventSource,
-        pivotType = DetailsViewPivotType.allTest,
+        pivotType: DetailsViewPivotType,
     ): void {
         const payload: OnDetailsViewOpenPayload = {
             telemetry: this.telemetryFactory.forOpenDetailsView(event, viewType, source),
@@ -56,9 +52,8 @@ export class PopupActionMessageCreator extends BaseActionMessageCreator {
             pivotType: pivotType,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: visualizationMessages.DetailsView.Open,
-            tabId: this._tabId,
             payload: payload,
         });
 
@@ -70,9 +65,8 @@ export class PopupActionMessageCreator extends BaseActionMessageCreator {
         const payload: BaseActionPayload = {
             telemetry,
         };
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: Messages.ChromeFeature.configureCommand,
-            tabId: this._tabId,
             payload,
         });
     }
@@ -81,9 +75,8 @@ export class PopupActionMessageCreator extends BaseActionMessageCreator {
         const payload: SetLaunchPanelState = {
             launchPanelType: panelType,
         };
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: Messages.LaunchPanel.Set,
-            tabId: this._tabId,
             payload,
         });
     }
