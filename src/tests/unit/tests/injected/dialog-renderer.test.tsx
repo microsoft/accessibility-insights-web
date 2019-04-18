@@ -6,11 +6,14 @@ import { GlobalMock, GlobalScope, IGlobalMock, IMock, It, Mock, MockBehavior, Ti
 
 import { DevToolStore } from '../../../../background/stores/dev-tools-store';
 import { UserConfigurationStore } from '../../../../background/stores/global/user-configuration-store';
+import { BugFilingServiceProvider } from '../../../../bug-filing/bug-filing-service-provider';
 import { ClientBrowserAdapter } from '../../../../common/client-browser-adapter';
+import { EnvironmentInfoProvider } from '../../../../common/environment-info-provider';
 import { FeatureFlags, getDefaultFeatureFlagValues } from '../../../../common/feature-flags';
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
 import { BugActionMessageCreator } from '../../../../common/message-creators/bug-action-message-creator';
 import { DevToolActionMessageCreator } from '../../../../common/message-creators/dev-tool-action-message-creator';
+import { UserConfigMessageCreator } from '../../../../common/message-creators/user-config-message-creator';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 import { WindowUtils } from '../../../../common/window-utils';
 import { rootContainerId } from '../../../../injected/constants';
@@ -79,6 +82,9 @@ describe('DialogRendererTests', () => {
         const devToolActionMessageCreatorMock = Mock.ofType(DevToolActionMessageCreator);
         const targetActionPageMessageCreatorMock = Mock.ofType(TargetPageActionMessageCreator);
         const bugActionMessageCreatorMock = Mock.ofType(BugActionMessageCreator);
+        const environmentInfoProviderMock = Mock.ofType(EnvironmentInfoProvider);
+        const bugFilingServiceProviderMock = Mock.ofType(BugFilingServiceProvider);
+        const userConfigMessageCreatorMock = Mock.ofType(UserConfigMessageCreator);
 
         mainWindowContext = new MainWindowContext(
             devToolStoreStrictMock.object,
@@ -86,6 +92,9 @@ describe('DialogRendererTests', () => {
             devToolActionMessageCreatorMock.object,
             targetActionPageMessageCreatorMock.object,
             bugActionMessageCreatorMock.object,
+            userConfigMessageCreatorMock.object,
+            environmentInfoProviderMock.object,
+            bugFilingServiceProviderMock.object,
         );
     });
 
