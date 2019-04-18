@@ -9,7 +9,7 @@ import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import {
     PayloadWithEventName,
-    SaveBugFilingSettingsPayload,
+    SaveIssueFilingSettingsPayload,
     SetBugServicePayload,
     SetBugServicePropertyPayload,
     SetHighContrastModePayload,
@@ -164,7 +164,7 @@ export class GlobalActionCreator {
     }
 
     @autobind
-    private onSaveIssueFilingSettings(payload: SaveBugFilingSettingsPayload): void {
+    private onSaveIssueFilingSettings(payload: SaveIssueFilingSettingsPayload): void {
         this.userConfigActions.saveIssueFilingSettings.invoke(payload);
     }
 }

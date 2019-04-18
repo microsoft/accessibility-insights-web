@@ -4,7 +4,7 @@ import { cloneDeep } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import {
-    SaveBugFilingSettingsPayload,
+    SaveIssueFilingSettingsPayload,
     SetBugServicePayload,
     SetBugServicePropertyPayload,
     SetHighContrastModePayload,
@@ -286,7 +286,7 @@ describe('UserConfigurationStoreTest', () => {
         const bugServiceProperties: BugServiceProperties = {
             name: 'bug settings',
         };
-        const payload: SaveBugFilingSettingsPayload = {
+        const payload: SaveIssueFilingSettingsPayload = {
             bugServiceName: serviceName,
             bugFilingSettings: bugServiceProperties,
         };

@@ -129,7 +129,7 @@ export interface SetBugServicePayload extends BaseActionPayload {
     bugServiceName: string;
 }
 
-export interface SaveBugFilingSettingsPayload extends SetBugServicePayload {
+export interface SaveIssueFilingSettingsPayload extends SetBugServicePayload {
     bugFilingSettings: BugServiceProperties;
 }
 

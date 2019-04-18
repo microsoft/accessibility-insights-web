@@ -7,7 +7,7 @@ import { IndexedDBAPI } from '../../../common/indexedDB/indexedDB';
 import { StoreNames } from '../../../common/stores/store-names';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import {
-    SaveBugFilingSettingsPayload,
+    SaveIssueFilingSettingsPayload,
     SetBugServicePayload,
     SetBugServicePropertyPayload,
     SetHighContrastModePayload,
@@ -89,7 +89,7 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
     }
 
     @autobind
-    private onSaveIssueSettings(payload: SaveBugFilingSettingsPayload): void {
+    private onSaveIssueSettings(payload: SaveIssueFilingSettingsPayload): void {
         const bugService = payload.bugServiceName;
         this.state.bugService = bugService;
         this.state.bugServicePropertiesMap[bugService] = payload.bugFilingSettings;

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
-    SaveBugFilingSettingsPayload,
+    SaveIssueFilingSettingsPayload,
     SetBugServicePayload,
     SetBugServicePropertyPayload,
     SetHighContrastModePayload,
@@ -76,7 +76,7 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
     }
 
     public saveIssueFilingSettings(bugServiceName: string, bugFilingSettings: BugServiceProperties): void {
-        const payload: SaveBugFilingSettingsPayload = {
+        const payload: SaveIssueFilingSettingsPayload = {
             bugServiceName,
             bugFilingSettings,
         };

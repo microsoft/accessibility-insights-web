@@ -3,7 +3,7 @@
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import {
-    SaveBugFilingSettingsPayload,
+    SaveIssueFilingSettingsPayload,
     SetBugServicePayload,
     SetBugServicePropertyPayload,
     SetHighContrastModePayload,
@@ -125,7 +125,7 @@ describe('UserConfigMessageCreator', () => {
     test('saveIssueFilingSettings', () => {
         const bugServiceName = 'UserConfigMessageCreatorTest bug service name';
         const bugFilingSettings: BugServiceProperties = { name: 'bugFilingSettings' };
-        const payload: SaveBugFilingSettingsPayload = {
+        const payload: SaveIssueFilingSettingsPayload = {
             bugServiceName,
             bugFilingSettings: bugFilingSettings,
         };

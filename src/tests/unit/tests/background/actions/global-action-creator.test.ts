@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import {
-    SaveBugFilingSettingsPayload,
+    SaveIssueFilingSettingsPayload,
     SetBugServicePayload,
     SetBugServicePropertyPayload,
     SetHighContrastModePayload,
@@ -301,7 +301,7 @@ describe('GlobalActionCreatorTest', () => {
     });
 
     test('registerCallback for on UserConfig.SaveIssueFilingSettings', () => {
-        const payload: SaveBugFilingSettingsPayload = {
+        const payload: SaveIssueFilingSettingsPayload = {
             bugServiceName: 'test bug service',
             bugFilingSettings: { name: 'issueFilingSettings' },
         };
