@@ -172,7 +172,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
                 deps={this.props.deps}
                 issueDetailsData={issueData}
                 issueTrackerPath={this.state.issueTrackerPath}
-                restoreFocus={true}
+                restoreFocus={false}
             />
         );
         const newExperienceButton: JSX.Element = this.state.userConfigurationStoreData ? (

@@ -152,7 +152,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
                   }
                 }
                 issueTrackerPath=""
-                restoreFocus={true}
+                restoreFocus={false}
               />
             }
             enableJSXElement={null}
@@ -262,7 +262,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
         }
       }
       issueTrackerPath=""
-      restoreFocus={true}
+      restoreFocus={false}
     />
   }
   enableJSXElement={
@@ -491,7 +491,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
                     }
                   }
                   issueTrackerPath=""
-                  restoreFocus={true}
+                  restoreFocus={false}
                 />
               }
               enableJSXElement={null}
@@ -602,7 +602,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
         }
       }
       issueTrackerPath=""
-      restoreFocus={true}
+      restoreFocus={false}
     />
   }
   enableJSXElement={
@@ -822,7 +822,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
                   }
                 }
                 issueTrackerPath=""
-                restoreFocus={true}
+                restoreFocus={false}
               />
             }
             enableJSXElement={null}
@@ -927,7 +927,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
         }
       }
       issueTrackerPath=""
-      restoreFocus={true}
+      restoreFocus={false}
     />
   }
   enableJSXElement={
@@ -1156,7 +1156,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
                     }
                   }
                   issueTrackerPath=""
-                  restoreFocus={true}
+                  restoreFocus={false}
                 />
               }
               enableJSXElement={null}
@@ -1262,7 +1262,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true }:
         }
       }
       issueTrackerPath=""
-      restoreFocus={true}
+      restoreFocus={false}
     />
   }
   enableJSXElement={
@@ -1482,7 +1482,7 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
                   }
                 }
                 issueTrackerPath=""
-                restoreFocus={true}
+                restoreFocus={false}
               />
             }
             enableJSXElement={null}
@@ -1592,7 +1592,7 @@ exports[`DetailsDialogTest render: with relative help url: new isssue filing bug
         }
       }
       issueTrackerPath=""
-      restoreFocus={true}
+      restoreFocus={false}
     />
   }
   enableJSXElement={
