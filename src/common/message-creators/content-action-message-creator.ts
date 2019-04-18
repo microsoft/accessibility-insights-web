@@ -42,11 +42,6 @@ export class ContentActionMessageCreator extends BaseActionMessageCreator {
     }
 
     @autobind
-    private openExternalLink(event: React.MouseEvent<any> | MouseEvent, details: { href: string }): void {
-        this.openContentHyperLink(event, details.href);
-    }
-
-    @autobind
     public openContentHyperLink(event: React.MouseEvent<any> | MouseEvent, href: string): void {
         const messageType = Messages.Telemetry.Send;
         const telemetry = this.telemetryFactory.withTriggeredByAndSource(event, this.source);
@@ -89,5 +84,10 @@ export class ContentActionMessageCreator extends BaseActionMessageCreator {
             tabId: this._tabId,
             payload,
         });
+    }
+
+    @autobind
+    private openExternalLink(event: React.MouseEvent<any> | MouseEvent, details: { href: string }): void {
+        this.openContentHyperLink(event, details.href);
     }
 }

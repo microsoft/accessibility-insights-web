@@ -33,39 +33,6 @@ describe('ContentPanelActionMessageCreator', () => {
 
     const creator = new ContentActionMessageCreator(postMessage, tabId, telemetryDataFactoryMock.object, source);
 
-    it('creates openContentPanel', () => {
-        const telemetry = { triggeredBy, source };
-        telemetryDataFactoryMock.setup(tdf => tdf.withTriggeredByAndSource(event, source)).returns(() => telemetry);
-
-        creator.openContentPanel(event, contentPath);
-
-        const expectedMessage: Message = {
-            payload: {
-                contentPath,
-                telemetry,
-            },
-            tabId,
-            messageType: Messages.ContentPanel.OpenPanel,
-        };
-        expect(messagesPosted).toEqual([expectedMessage]);
-    });
-
-    it('creates closeContentPanel', () => {
-        const telemetry = Mock.ofType<BaseTelemetryData>().object;
-        telemetryDataFactoryMock.setup(tdf => tdf.fromDetailsViewNoTriggeredBy()).returns(() => telemetry);
-
-        creator.closeContentPanel();
-
-        const expectedMessage: Message = {
-            payload: {
-                telemetry,
-            },
-            tabId,
-            messageType: Messages.ContentPanel.ClosePanel,
-        };
-        expect(messagesPosted).toEqual([expectedMessage]);
-    });
-
     it('creates openContentPage', () => {
         const telemetry = { triggeredBy, source, contentPath };
         telemetryDataFactoryMock.setup(tdf => tdf.withTriggeredByAndSource(event, source)).returns(() => telemetry);
@@ -96,6 +63,39 @@ describe('ContentPanelActionMessageCreator', () => {
             },
             tabId,
             messageType: Messages.Telemetry.Send,
+        };
+        expect(messagesPosted).toEqual([expectedMessage]);
+    });
+
+    it('creates openContentPanel', () => {
+        const telemetry = { triggeredBy, source };
+        telemetryDataFactoryMock.setup(tdf => tdf.withTriggeredByAndSource(event, source)).returns(() => telemetry);
+
+        creator.openContentPanel(event, contentPath);
+
+        const expectedMessage: Message = {
+            payload: {
+                contentPath,
+                telemetry,
+            },
+            tabId,
+            messageType: Messages.ContentPanel.OpenPanel,
+        };
+        expect(messagesPosted).toEqual([expectedMessage]);
+    });
+
+    it('creates closeContentPanel', () => {
+        const telemetry = Mock.ofType<BaseTelemetryData>().object;
+        telemetryDataFactoryMock.setup(tdf => tdf.fromDetailsViewNoTriggeredBy()).returns(() => telemetry);
+
+        creator.closeContentPanel();
+
+        const expectedMessage: Message = {
+            payload: {
+                telemetry,
+            },
+            tabId,
+            messageType: Messages.ContentPanel.ClosePanel,
         };
         expect(messagesPosted).toEqual([expectedMessage]);
     });
