@@ -262,7 +262,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
 </StyledWithResponsiveMode>
 `;
 
-exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false }: new isssue filing bug UI 1`] = `
+exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false }: new issue filing bug UI 1`] = `
 <FlaggedComponent
   disableJSXElement={
     <FileIssueDetailsButton
@@ -642,7 +642,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
 </div>
 `;
 
-exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }: new isssue filing bug UI 1`] = `
+exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }: new issue filing bug UI 1`] = `
 <FlaggedComponent
   disableJSXElement={
     <FileIssueDetailsButton
@@ -1007,7 +1007,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
 </StyledWithResponsiveMode>
 `;
 
-exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }: new isssue filing bug UI 1`] = `
+exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }: new issue filing bug UI 1`] = `
 <FlaggedComponent
   disableJSXElement={
     <FileIssueDetailsButton
@@ -1382,7 +1382,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
 </div>
 `;
 
-exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true }: new isssue filing bug UI 1`] = `
+exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true }: new issue filing bug UI 1`] = `
 <FlaggedComponent
   disableJSXElement={
     <FileIssueDetailsButton
@@ -1752,7 +1752,7 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
 </StyledWithResponsiveMode>
 `;
 
-exports[`DetailsDialogTest render: with relative help url: new isssue filing bug UI 1`] = `
+exports[`DetailsDialogTest render: with relative help url: new issue filing bug UI 1`] = `
 <FlaggedComponent
   disableJSXElement={
     <FileIssueDetailsButton

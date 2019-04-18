@@ -42,7 +42,6 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
 
     public render(): JSX.Element {
         const { issueDetailsData, userConfigurationStoreData, deps } = this.props;
-
         const { environmentInfoProvider, bugFilingServiceProvider } = deps;
         const envInfo: EnvironmentInfo = environmentInfoProvider.getEnvironmentInfo();
         const selectedBugFilingService: BugFilingService = bugFilingServiceProvider.forKey(userConfigurationStoreData.bugService);

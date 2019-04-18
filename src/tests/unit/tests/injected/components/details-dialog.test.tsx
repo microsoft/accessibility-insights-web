@@ -16,7 +16,7 @@ type DetailsDialogTestCase = {
 };
 
 describe('DetailsDialogTest', () => {
-    const testCases = [
+    const testCases: DetailsDialogTestCase[] = [
         {
             isDevToolsOpen: false,
             shadowDialog: false,
@@ -139,6 +139,6 @@ describe('DetailsDialogTest', () => {
 
         wrapper.setState({ userConfigurationStoreData: userConfigStoreDataStub });
 
-        expect(wrapper.find(FlaggedComponent).getElement()).toMatchSnapshot('new isssue filing bug UI');
+        expect(wrapper.find(FlaggedComponent).getElement()).toMatchSnapshot('new issue filing bug UI');
     }
 });

@@ -51,27 +51,21 @@ describe('ClientViewControllerTest', () => {
             .callback(listener => {
                 privateListenerVisStore = listener;
             })
-            .verifiable();
+            .verifiable(Times.once());
         visualizationScanResultStoreMock
             .setup(sm => sm.addChangedListener(It.isAny()))
             .callback(listener => {
                 privateListenerVisScanStore = listener;
             })
-            .verifiable();
+            .verifiable(Times.once());
         assessmentStoreMock
             .setup(sm => sm.addChangedListener(It.isAny()))
             .callback(listener => {
                 privateListenerAssessmentStore = listener;
             })
-            .verifiable();
-        tabStoreMock
-            .setup(sm => sm.addChangedListener(It.isAny()))
-            .callback(listener => {})
-            .verifiable();
-        userConfigStoreMock
-            .setup(sm => sm.addChangedListener(It.isAny()))
-            .callback(listener => {})
-            .verifiable();
+            .verifiable(Times.once());
+        tabStoreMock.setup(sm => sm.addChangedListener(It.isAny())).verifiable(Times.once());
+        userConfigStoreMock.setup(sm => sm.addChangedListener(It.isAny())).verifiable(Times.once());
 
         const testObject = new ClientViewController(
             visualizationStore.object,
