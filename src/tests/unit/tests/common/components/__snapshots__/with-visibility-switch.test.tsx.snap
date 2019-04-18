@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withVisibilitySwitchTest render WrappedComponent 1`] = `
+<testComponent
+  isVisible={false}
+  onHide={[Function]}
+  onShow={[Function]}
+  text="TEXT"
+/>
+`;
