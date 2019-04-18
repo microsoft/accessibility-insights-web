@@ -13,6 +13,7 @@ import { VisualizationScanResultData } from '../common/types/store-data/visualiz
 import { AssessmentScanData, VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryNumberTo, DictionaryStringTo } from '../types/common-types';
+import { UserConfigurationStoreData } from './../common/types/store-data/user-configuration-store';
 import { DrawingInitiator } from './drawing-initiator';
 import { AssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
 import { ScrollingController, ScrollingWindowMessage } from './frameCommunicators/scrolling-controller';
@@ -27,10 +28,12 @@ export class ClientViewController {
     private visualizationStore: BaseStore<VisualizationStoreData>;
     private assessmentStore: BaseStore<AssessmentStoreData>;
     private tabStore: BaseStore<TabStoreData>;
+    private userConfigurationStore: BaseStore<UserConfigurationStoreData>;
     private scanResultStore: BaseStore<VisualizationScanResultData>;
     private currentScanResultState: VisualizationScanResultData;
     private currentAssessmentState: AssessmentStoreData;
     private currentTabState: TabStoreData;
+    private currentUserConfigStoreState: UserConfigurationStoreData;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
     private featureFlagStore: BaseStore<DictionaryStringTo<boolean>>;
     private selectorMapHelper: SelectorMapHelper;
@@ -47,6 +50,7 @@ export class ClientViewController {
         featureFlagStore: BaseStore<DictionaryStringTo<boolean>>,
         assessmentStore: BaseStore<AssessmentStoreData>,
         tabStore: BaseStore<TabStoreData>,
+        userConfigurationStore: BaseStore<UserConfigurationStoreData>,
         selectorMapHelper: SelectorMapHelper,
         targetPageActionMessageCreator: TargetPageActionMessageCreator,
     ) {
@@ -54,6 +58,7 @@ export class ClientViewController {
         this.visualizationStore = visualizationStore;
         this.scanResultStore = scanResultStore;
         this.assessmentStore = assessmentStore;
+        this.userConfigurationStore = userConfigurationStore;
         this.tabStore = tabStore;
         this.drawingInitiator = drawingInitiator;
         this.scrollingController = scrollingController;
@@ -69,6 +74,7 @@ export class ClientViewController {
         this.assessmentStore.addChangedListener(this.onChangedState);
         this.tabStore.addChangedListener(this.onChangedState);
         this.featureFlagStore.addChangedListener(this.onChangedState);
+        this.userConfigurationStore.addChangedListener(this.onChangedState);
     }
 
     private setupVisualizationStates(): void {
@@ -84,6 +90,7 @@ export class ClientViewController {
         this.currentScanResultState = this.scanResultStore.getState();
         this.currentAssessmentState = this.assessmentStore.getState();
         this.currentTabState = this.tabStore.getState();
+        this.currentUserConfigStoreState = this.userConfigurationStore.getState();
 
         if (this.shouldWaitForAllStoreToLoad()) {
             return;
@@ -112,7 +119,8 @@ export class ClientViewController {
             this.currentScanResultState == null ||
             this.currentFeatureFlagState == null ||
             this.currentAssessmentState == null ||
-            this.currentTabState == null
+            this.currentTabState == null ||
+            this.currentUserConfigStoreState == null
         );
     }
 

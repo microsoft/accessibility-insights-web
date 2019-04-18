@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IssueFilingDialogProps } from '../../DetailsView/components/issue-filing-dialog';
 import { ReactSFCWithDisplayName } from '../react/named-sfc';
-import { IssueFilingNeedsSettingsHelpTextProps } from './../components/needs-settings-help-text';
+import { IssueFilingNeedsSettingsHelpTextProps } from './../components/issue-filing-needs-settings-help-text';
 
 export type IssueFilingNeedsSettingsContentProps = IssueFilingDialogProps & IssueFilingNeedsSettingsHelpTextProps;
 

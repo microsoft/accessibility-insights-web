@@ -1,15 +1,21 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
+
 import { Assessments } from '../assessments/assessments';
+import { BugFilingServiceProviderImpl } from '../bug-filing/bug-filing-service-provider-impl';
+import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
+import { EnvironmentInfoProvider } from '../common/environment-info-provider';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { BugActionMessageCreator } from '../common/message-creators/bug-action-message-creator';
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
 import { StoreActionMessageCreatorFactory } from '../common/message-creators/store-action-message-creator-factory';
+import { UserConfigMessageCreator } from '../common/message-creators/user-config-message-creator';
+import { NavigatorUtils } from '../common/navigator-utils';
 import { StoreProxy } from '../common/store-proxy';
 import { StoreNames } from '../common/stores/store-names';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
@@ -108,12 +114,25 @@ export class MainWindowInitializer extends WindowInitializer {
             TelemetryEventSource.TargetPage,
         );
 
+        const userConfigMessageCreator = new UserConfigMessageCreator(this.clientChromeAdapter.sendMessageToFrames, null);
+
+        const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
+
+        const environmentInfoProvider = new EnvironmentInfoProvider(
+            this.clientChromeAdapter.extensionVersion,
+            browserSpec,
+            AxeInfo.Default.version,
+        );
+
         MainWindowContext.initialize(
             this.devToolStoreProxy,
             this.userConfigStoreProxy,
             devToolActionMessageCreator,
             targetPageActionMessageCreator,
             bugActionMessageCreator,
+            userConfigMessageCreator,
+            environmentInfoProvider,
+            BugFilingServiceProviderImpl,
         );
 
         const drawingInitiator = new DrawingInitiator(this.drawingController);
@@ -130,6 +149,7 @@ export class MainWindowInitializer extends WindowInitializer {
             this.featureFlagStoreProxy,
             this.assessmentStoreProxy,
             this.tabStoreProxy,
+            this.userConfigStoreProxy,
             selectorMapHelper,
             targetPageActionMessageCreator,
         );
