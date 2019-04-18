@@ -1,10 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`withVisibilitySwitchTest render WrappedComponent 1`] = `
-<testComponent
-  isVisible={false}
-  onHide={[Function]}
-  onShow={[Function]}
-  text="TEXT"
-/>
+<button
+  class="ms-Button ms-Button--default test-button root-37"
+  data-is-focusable="true"
+  type="button"
+>
+  <div
+    class="ms-Button-flexContainer flexContainer-38"
+  >
+    <div
+      class="ms-Button-textContainer textContainer-39"
+    >
+      <div
+        class="ms-Button-label label-41"
+        id="id__0"
+      >
+        Switch Visibility
+      </div>
+    </div>
+  </div>
+</button>
 `;

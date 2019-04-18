@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { mount, shallow } from 'enzyme';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 
 import { VisibilitySwitchProps, withVisibilitySwitch } from '../../../../../common/components/with-visibility-switch';
 import { NamedSFC } from '../../../../../common/react/named-sfc';
-import { shallow } from 'enzyme';
 
 describe('withVisibilitySwitchTest', () => {
     type TestComponentProps = VisibilitySwitchProps & { text: string };
@@ -24,7 +24,16 @@ describe('withVisibilitySwitchTest', () => {
     const WrappedComponent = withVisibilitySwitch<TestComponentProps>(TestComponent);
 
     test('render WrappedComponent', () => {
+        const wrapper = mount(<WrappedComponent text="TEXT" />);
+        expect(wrapper.getDOMNode()).toMatchSnapshot();
+    });
+
+    test('verify onShow/onHide sets the state properly', () => {
         const wrapper = shallow(<WrappedComponent text="TEXT" />);
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(wrapper.state().isVisible).toBe(false);
+        wrapper.props().onShow();
+        expect(wrapper.state().isVisible).toBe(true);
+        wrapper.props().onHide();
+        expect(wrapper.state().isVisible).toBe(false);
     });
 });
