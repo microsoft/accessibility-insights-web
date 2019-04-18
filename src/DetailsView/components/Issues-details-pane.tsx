@@ -86,7 +86,7 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
                 deps={this.props.deps}
                 issueDetailsData={issueData}
                 userConfigurationStoreData={this.props.userConfigurationStoreData}
-                needsSettingsContentRenderer={IssueFilingDialog}
+                needsSettingsContentRenderer={IssueFilingDialog as any}
             />
         );
         return (

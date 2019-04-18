@@ -35,7 +35,7 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
         });
     }
 
-    public setBugService(bugServiceName: string): void {
+    public setBugService = (bugServiceName: string) => {
         const payload: SetBugServicePayload = {
             bugServiceName,
         };
@@ -45,9 +45,9 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
             tabId: this._tabId,
             payload,
         });
-    }
+    };
 
-    public setBugServiceProperty(bugServiceName: string, propertyName: string, propertyValue: string): void {
+    public setBugServiceProperty = (bugServiceName: string, propertyName: string, propertyValue: string) => {
         const payload: SetBugServicePropertyPayload = {
             bugServiceName,
             propertyName,
@@ -59,9 +59,9 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
             tabId: this._tabId,
             payload,
         });
-    }
+    };
 
-    public setIssueTrackerPath(issueTrackerPath: string): void {
+    public setIssueTrackerPath = (issueTrackerPath: string) => {
         const payload: SetIssueTrackerPathPayload = {
             issueTrackerPath,
         };
@@ -71,5 +71,5 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
             tabId: this._tabId,
             payload,
         });
-    }
+    };
 }

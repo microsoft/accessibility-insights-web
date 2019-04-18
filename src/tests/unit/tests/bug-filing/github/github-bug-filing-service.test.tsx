@@ -26,6 +26,7 @@ describe('GithubBugFilingServiceTest', () => {
             settings: {
                 repository: 'repo',
             },
+            onPropertyUpdateCallback: () => null,
         };
     });
 

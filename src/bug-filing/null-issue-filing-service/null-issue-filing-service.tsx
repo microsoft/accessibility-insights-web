@@ -8,6 +8,8 @@ const nullServiceKey = 'none';
 
 const settingsForm = NamedSFC<SettingsFormProps<{}>>('NullIssueFilingService', () => null);
 
+export type NullIssueFilingServiceSettings = null;
+
 export const NullIssueFilingService: BugFilingService = {
     key: nullServiceKey,
     isHidden: true,

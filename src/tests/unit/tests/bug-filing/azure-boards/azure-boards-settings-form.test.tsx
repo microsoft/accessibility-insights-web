@@ -33,6 +33,7 @@ describe('AzureBoardsSettingsForm', () => {
         props = {
             deps: deps,
             settings: settingsStub,
+            onPropertyUpdateCallback: () => {},
         };
     });
 

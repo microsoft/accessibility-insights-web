@@ -1,14 +1,21 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { cloneDeep, forOwn, isEqual } from 'lodash';
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
 
-import { BugFilingSettingsContainer, BugFilingSettingsContainerDeps } from '../../bug-filing/components/bug-filing-settings-container';
+import { BugFilingServiceProvider } from '../../bug-filing/bug-filing-service-provider';
+import {
+    BugFilingSettingsContainer,
+    BugFilingSettingsContainerDeps,
+    OnPropertyUpdateCallback,
+    OnSelectedServiceChange,
+} from '../../bug-filing/components/bug-filing-settings-container';
 import { BugFilingService } from '../../bug-filing/types/bug-filing-service';
 import { EnvironmentInfoProvider } from '../../common/environment-info-provider';
-import { NamedSFC } from '../../common/react/named-sfc';
+import { UserConfigMessageCreator } from '../../common/message-creators/user-config-message-creator';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
-import { BugServiceProperties } from '../../common/types/store-data/user-configuration-store';
+import { BugServiceProperties, BugServicePropertiesMap } from '../../common/types/store-data/user-configuration-store';
 import { ActionAndCancelButtonsComponent } from './action-and-cancel-buttons-component';
 
 export interface IssueFilingDialogProps {
@@ -18,60 +25,118 @@ export interface IssueFilingDialogProps {
     selectedBugData: CreateIssueDetailsTextData;
     selectedBugFilingServiceData: BugServiceProperties;
     bugFileTelemetryCallback: (ev: React.SyntheticEvent) => void;
+    bugServicePropertiesMap: BugServicePropertiesMap;
     onClose: (ev: React.SyntheticEvent) => void;
 }
 
 export type IssueFilingDialogDeps = {
     environmentInfoProvider: EnvironmentInfoProvider;
+    userConfigMessageCreator: UserConfigMessageCreator;
+    bugFilingServiceProvider: BugFilingServiceProvider;
 } & BugFilingSettingsContainerDeps;
 
 const titleLabel = 'Specify issue filing location';
 
-export const IssueFilingDialog = NamedSFC<IssueFilingDialogProps>('IssueFilingDialog', props => {
-    const onPrimaryButtonClick = (ev: React.SyntheticEvent<Element, Event>) => {
-        props.bugFileTelemetryCallback(ev);
-        props.onClose(ev);
+export interface IssueFilingDialogState {
+    selectedBugFilingService: BugFilingService;
+    bugServicePropertiesMap: BugServicePropertiesMap;
+}
+
+export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, IssueFilingDialogState> {
+    constructor(props: IssueFilingDialogProps) {
+        super(props);
+        this.state = {
+            bugServicePropertiesMap: cloneDeep(props.bugServicePropertiesMap),
+            selectedBugFilingService: props.selectedBugFilingService,
+        };
+    }
+
+    public render(): JSX.Element {
+        const { selectedBugData, onClose, isOpen, deps } = this.props;
+        const { selectedBugFilingService } = this.state;
+        const selectedBugFilingServiceData = this.state.selectedBugFilingService.getSettingsFromStoreData(
+            this.state.bugServicePropertiesMap,
+        );
+        const environmentInfo = deps.environmentInfoProvider.getEnvironmentInfo();
+        const isSettingsValid = selectedBugFilingService.isSettingsValid(selectedBugFilingServiceData);
+        const href = isSettingsValid
+            ? selectedBugFilingService.issueFilingUrlProvider(selectedBugFilingServiceData, selectedBugData, environmentInfo)
+            : null;
+
+        return (
+            <Dialog
+                className={'issue-filing-dialog'}
+                hidden={!isOpen}
+                dialogContentProps={{
+                    type: DialogType.normal,
+                    title: titleLabel,
+                    titleId: 'issue-filing-dialog-title',
+                    subText: 'This configuration can be changed again in settings.',
+                    subTextId: 'issue-filing-dialog-subtext',
+                    showCloseButton: false,
+                }}
+                modalProps={{
+                    isBlocking: false,
+                    containerClassName: 'insights-dialog-main-override',
+                }}
+                onDismiss={onClose}
+            >
+                <BugFilingSettingsContainer
+                    deps={deps}
+                    selectedBugFilingService={selectedBugFilingService}
+                    selectedBugFilingServiceData={selectedBugFilingServiceData}
+                    onPropertyUpdateCallback={this.onPropertyUpdateCallback}
+                    onSelectedServiceChange={this.onSelectedServiceChange}
+                />
+                <DialogFooter>
+                    <ActionAndCancelButtonsComponent
+                        isHidden={false}
+                        primaryButtonDisabled={isSettingsValid === false}
+                        primaryButtonOnClick={this.onPrimaryButtonClick}
+                        cancelButtonOnClick={onClose}
+                        primaryButtonHref={href}
+                        primaryButtonText={'File issue'}
+                    />
+                </DialogFooter>
+            </Dialog>
+        );
+    }
+
+    private onPrimaryButtonClick = (ev: React.SyntheticEvent<Element, Event>) => {
+        const newData = this.state.selectedBugFilingService.getSettingsFromStoreData(this.state.bugServicePropertiesMap);
+        const service = this.state.selectedBugFilingService.key;
+        this.props.deps.userConfigMessageCreator.setBugService(service);
+        forOwn(newData, key => {
+            this.props.deps.userConfigMessageCreator.setBugServiceProperty(service, key, newData[key]);
+        });
+        this.props.bugFileTelemetryCallback(ev);
+        this.props.onClose(ev);
     };
 
-    const { selectedBugFilingService, selectedBugFilingServiceData, selectedBugData, onClose, isOpen, deps } = props;
-    const environmentInfo = deps.environmentInfoProvider.getEnvironmentInfo();
-    const isSettingsValid = selectedBugFilingService.isSettingsValid(selectedBugFilingServiceData);
-    const href = isSettingsValid
-        ? selectedBugFilingService.issueFilingUrlProvider(selectedBugFilingServiceData, selectedBugData, environmentInfo)
-        : null;
-    return (
-        <Dialog
-            className={'issue-filing-dialog'}
-            hidden={!isOpen}
-            dialogContentProps={{
-                type: DialogType.normal,
-                title: titleLabel,
-                titleId: 'issue-filing-dialog-title',
-                subText: 'This configuration can be changed again in settings.',
-                subTextId: 'issue-filing-dialog-subtext',
-                showCloseButton: false,
-            }}
-            modalProps={{
-                isBlocking: false,
-                containerClassName: 'insights-dialog-main-override',
-            }}
-            onDismiss={onClose}
-        >
-            <BugFilingSettingsContainer
-                deps={deps}
-                selectedBugFilingService={selectedBugFilingService}
-                selectedBugFilingServiceData={selectedBugFilingServiceData}
-            />
-            <DialogFooter>
-                <ActionAndCancelButtonsComponent
-                    isHidden={false}
-                    primaryButtonDisabled={isSettingsValid === false}
-                    primaryButtonOnClick={onPrimaryButtonClick}
-                    cancelButtonOnClick={onClose}
-                    primaryButtonHref={href}
-                    primaryButtonText={'File issue'}
-                />
-            </DialogFooter>
-        </Dialog>
-    );
-});
+    private onSelectedServiceChange: OnSelectedServiceChange = service => {
+        this.setState(() => ({
+            selectedBugFilingService: this.props.deps.bugFilingServiceProvider.forKey(service),
+        }));
+    };
+
+    private onPropertyUpdateCallback: OnPropertyUpdateCallback = (service, propertyName, propertyValue) => {
+        const selectedServiceData = this.state.selectedBugFilingService.getSettingsFromStoreData(this.state.bugServicePropertiesMap) || {};
+        selectedServiceData[propertyName] = propertyValue;
+        const newBugServicePropertiesMap = {
+            ...this.state.bugServicePropertiesMap,
+            [service]: selectedServiceData,
+        };
+        this.setState(() => ({
+            bugServicePropertiesMap: newBugServicePropertiesMap,
+        }));
+    };
+
+    public componentDidUpdate(prevProps: Readonly<IssueFilingDialogProps>): void {
+        if (this.props.isOpen && isEqual(prevProps, this.props) === false) {
+            this.setState(() => ({
+                selectedBugFilingService: this.props.selectedBugFilingService,
+                bugServicePropertiesMap: cloneDeep(this.props.bugServicePropertiesMap),
+            }));
+        }
+    }
+}

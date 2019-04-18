@@ -39,6 +39,8 @@ describe('BugFilingSettingsContainerTest', () => {
         selectedBugFilingService,
         userConfigurationStoreData,
         selectedBugFilingServiceData,
+        onPropertyUpdateCallback: () => null,
+        onSelectedServiceChange: () => null,
     };
 
     test('render', () => {

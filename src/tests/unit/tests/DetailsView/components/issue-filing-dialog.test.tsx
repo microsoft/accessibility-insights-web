@@ -64,7 +64,7 @@ describe('IssueFilingDialog', () => {
             selectedBugData: selectedBugDataStub,
             selectedBugFilingServiceData: selectedServiceData,
             bugFileTelemetryCallback: telemetryCallbackMock.object,
-        };
+        } as any;
     });
 
     it.each([true, false])('render with isSettingsValid: %s', isSettingsValid => {

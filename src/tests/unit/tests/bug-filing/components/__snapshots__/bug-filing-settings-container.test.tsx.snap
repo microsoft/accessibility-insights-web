@@ -12,18 +12,7 @@ exports[`BugFilingSettingsContainerTest render 1`] = `
         },
       ]
     }
-    deps={
-      Object {
-        "bugFilingServiceProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "all": [Function],
-          "allVisible": [Function],
-          "forKey": [Function],
-          "services": undefined,
-        },
-        "userConfigMessageCreator": Object {},
-      }
-    }
+    onSelectedServiceChange={[Function]}
     selectedBugFilingService={
       Object {
         "displayName": "TEST",
@@ -45,6 +34,7 @@ exports[`BugFilingSettingsContainerTest render 1`] = `
         "userConfigMessageCreator": Object {},
       }
     }
+    onPropertyUpdateCallback={[Function]}
     settings={
       Object {
         "repository": "none",
