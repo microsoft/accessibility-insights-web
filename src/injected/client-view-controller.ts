@@ -13,13 +13,12 @@ import { VisualizationScanResultData } from '../common/types/store-data/visualiz
 import { AssessmentScanData, VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryNumberTo, DictionaryStringTo } from '../types/common-types';
+import { UserConfigurationStoreData } from './../common/types/store-data/user-configuration-store';
 import { DrawingInitiator } from './drawing-initiator';
 import { AssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
 import { ScrollingController, ScrollingWindowMessage } from './frameCommunicators/scrolling-controller';
 import { SelectorMapHelper } from './selector-map-helper';
 import { TargetPageActionMessageCreator } from './target-page-action-message-creator';
-import { UserConfigurationStoreData } from './../common/types/store-data/user-configuration-store';
-import { UserConfigurationStore } from './../background/stores/global/user-configuration-store';
 
 export class ClientViewController {
     private drawingInitiator: DrawingInitiator;
