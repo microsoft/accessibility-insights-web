@@ -7,6 +7,7 @@ import {
     SetHighContrastModePayload,
     SetLaunchPanelState,
     SetTelemetryStatePayload,
+    SaveBugFilingSettingsPayload,
 } from '../../../../../background/actions/action-payloads';
 import { AssessmentActions } from '../../../../../background/actions/assessment-actions';
 import { CommandActions } from '../../../../../background/actions/command-actions';
@@ -292,6 +293,23 @@ describe('GlobalActionCreatorTest', () => {
             .setupRegistrationCallback(Messages.UserConfig.SetIssueTrackerPath, args)
             .setupActionsOnUserConfig('setIssueTrackerPath')
             .setupUserConfigActionWithInvokeParameter('setIssueTrackerPath', payload);
+
+        const actionCreator = validator.buildActionCreator();
+        actionCreator.registerCallbacks();
+
+        validator.verifyAll();
+    });
+
+    test('registerCallback for on UserConfig.SaveIssueFilingSettings', () => {
+        const payload: SaveBugFilingSettingsPayload = {
+            bugServiceName: 'test bug service',
+            bugFilingSettings: { name: 'issueFilingSettings' },
+        };
+        const args = [payload];
+        const validator = new GlobalActionCreatorValidator()
+            .setupRegistrationCallback(Messages.UserConfig.SaveIssueFilingSettings, args)
+            .setupActionsOnUserConfig('saveIssueFilingSettings')
+            .setupUserConfigActionWithInvokeParameter('saveIssueFilingSettings', payload);
 
         const actionCreator = validator.buildActionCreator();
         actionCreator.registerCallbacks();

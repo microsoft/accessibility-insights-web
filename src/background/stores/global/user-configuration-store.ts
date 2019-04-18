@@ -91,6 +91,7 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
     @autobind
     private onSaveIssueSettings(payload: SaveBugFilingSettingsPayload): void {
         const bugService = payload.bugServiceName;
+        this.state.bugService = payload.bugServiceName;
         this.state.bugServicePropertiesMap[bugService] = payload.bugFilingSettings;
         this.saveAndEmitChanged();
     }
