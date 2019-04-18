@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import {
+    SaveBugFilingSettingsPayload,
     SetBugServicePayload,
     SetBugServicePropertyPayload,
     SetHighContrastModePayload,
     SetLaunchPanelState,
     SetTelemetryStatePayload,
-    SaveBugFilingSettingsPayload,
 } from '../../../../../background/actions/action-payloads';
 import { AssessmentActions } from '../../../../../background/actions/assessment-actions';
 import { CommandActions } from '../../../../../background/actions/command-actions';

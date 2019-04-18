@@ -7,12 +7,12 @@ import { IndexedDBAPI } from '../../../common/indexedDB/indexedDB';
 import { StoreNames } from '../../../common/stores/store-names';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import {
+    SaveBugFilingSettingsPayload,
     SetBugServicePayload,
     SetBugServicePropertyPayload,
     SetHighContrastModePayload,
     SetIssueTrackerPathPayload,
     SetTelemetryStatePayload,
-    SaveBugFilingSettingsPayload,
 } from '../../actions/action-payloads';
 import { UserConfigurationActions } from '../../actions/user-configuration-actions';
 import { IndexedDBDataKeys } from '../../IndexedDBDataKeys';
