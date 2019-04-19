@@ -97,7 +97,7 @@ describe('ContentPanelActionMessageCreator', () => {
         actionMessageDispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(message)), Times.once());
     });
 
-    it('opense external links through the initiators', () => {
+    it('opens external links through the initiators', () => {
         const telemetry = { triggeredBy, source, href };
         telemetryDataFactoryMock.setup(tdf => tdf.withTriggeredByAndSource(event, source)).returns(() => telemetry);
 
