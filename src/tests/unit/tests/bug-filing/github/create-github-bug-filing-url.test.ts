@@ -41,6 +41,10 @@ describe('createGitHubBugFilingUrlTest', () => {
         };
 
         stringUtilsMock = Mock.ofType<IssueUrlCreationUtils>();
+
+        stringUtilsMock.setup(utils => utils.getSelectorLastPart(It.isAny())).returns(() => 'last part');
+        stringUtilsMock.setup(utils => utils.appendSuffixToUrl(settingsData.repository, 'issues')).returns(() => 'test appendSuffixToUrl');
+
         issueDetailsGetter = Mock.ofType<IssueDetailsGetter>();
         issueDetailsGetter
             .setup(getter => getter(stringUtilsMock.object, environmentInfo, sampleIssueDetailsData))
@@ -50,8 +54,6 @@ describe('createGitHubBugFilingUrlTest', () => {
 
     test('createGitHubBugFilingUrl: no tag', () => {
         stringUtilsMock.setup(utils => utils.standardizeTags(sampleIssueDetailsData)).returns(() => []);
-        stringUtilsMock.setup(utils => utils.getSelectorLastPart(It.isAny())).returns(() => 'last part');
-        stringUtilsMock.setup(utils => utils.appendSuffixToUrl(settingsData.repository, 'issues')).returns(() => 'test appendSuffixToUrl');
 
         const result = testObject(settingsData, sampleIssueDetailsData, environmentInfo);
 
@@ -60,8 +62,6 @@ describe('createGitHubBugFilingUrlTest', () => {
 
     test('createGitHubBugFilingUrl: with tag', () => {
         stringUtilsMock.setup(utils => utils.standardizeTags(sampleIssueDetailsData)).returns(() => ['TAG1', 'TAG2']);
-        stringUtilsMock.setup(utils => utils.getSelectorLastPart(It.isAny())).returns(() => 'last part');
-        stringUtilsMock.setup(utils => utils.appendSuffixToUrl(settingsData.repository, 'issues')).returns(() => 'test appendSuffixToUrl');
 
         const result = testObject(settingsData, sampleIssueDetailsData, environmentInfo);
 
