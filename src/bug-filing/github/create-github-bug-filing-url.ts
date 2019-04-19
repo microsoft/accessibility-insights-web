@@ -7,18 +7,6 @@ import { CreateIssueDetailsTextData } from './../../common/types/create-issue-de
 import { IssueFilingUrlStringUtils, IssueUrlCreationUtils } from './../common/issue-filing-url-string-utils';
 import { GitHubBugFilingSettings } from './github-bug-filing-service';
 
-export function buildTitle(stringUtils: IssueUrlCreationUtils, data: CreateIssueDetailsTextData): string {
-    const standardTags = stringUtils.standardizeTags(data);
-    let prefix = standardTags.join(',');
-    if (prefix.length > 0) {
-        prefix = prefix + ': ';
-    }
-
-    const selectorLastPart = stringUtils.getSelectorLastPart(data.ruleResult.selector);
-
-    return `${prefix}${data.ruleResult.help} (${selectorLastPart})`;
-}
-
 export const createGitHubIssueFilingUrlProvider = (stringUtils: IssueUrlCreationUtils, issueDetailsGetter: IssueDetailsGetter) => {
     return (settingsData: GitHubBugFilingSettings, bugData: CreateIssueDetailsTextData, environmentInfo: EnvironmentInfo): string => {
         const title = stringUtils.getTitle(bugData);
