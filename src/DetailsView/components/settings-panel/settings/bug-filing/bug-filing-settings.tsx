@@ -12,7 +12,7 @@ import { GitHubBugSettingsUx } from './github-bug-settings-ux';
 export const BugFilingSettings = NamedSFC<SettingsProps>('BugFilingSettings', props => {
     const getNewIssueFilingSettingsUx = () => {
         const { deps, userConfigurationStoreState } = props;
-        const { bugFilingServiceProvider } = deps;
+        const { bugFilingServiceProvider, userConfigMessageCreator } = deps;
         const selectedBugFilingService = bugFilingServiceProvider.forKey(userConfigurationStoreState.bugService);
         const selectedBugFilingServiceData = selectedBugFilingService.getSettingsFromStoreData(
             userConfigurationStoreState.bugServicePropertiesMap,
@@ -22,6 +22,8 @@ export const BugFilingSettings = NamedSFC<SettingsProps>('BugFilingSettings', pr
                 deps={deps}
                 selectedBugFilingService={selectedBugFilingService}
                 selectedBugFilingServiceData={selectedBugFilingServiceData}
+                onPropertyUpdateCallback={userConfigMessageCreator.setBugServiceProperty}
+                onSelectedServiceChange={userConfigMessageCreator.setBugService}
             />
         );
     };
