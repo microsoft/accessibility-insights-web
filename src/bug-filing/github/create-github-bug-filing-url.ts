@@ -21,7 +21,7 @@ export function buildTitle(stringUtils: IssueUrlCreationUtils, data: CreateIssue
 
 export const createGitHubIssueFilingUrlProvider = (stringUtils: IssueUrlCreationUtils, issueDetailsGetter: IssueDetailsGetter) => {
     return (settingsData: GitHubBugFilingSettings, bugData: CreateIssueDetailsTextData, environmentInfo: EnvironmentInfo): string => {
-        const title = buildTitle(stringUtils, bugData);
+        const title = stringUtils.getTitle(bugData);
         const body = issueDetailsGetter(stringUtils, environmentInfo, bugData);
         const encodedIssue = `/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
         const repository = stringUtils.appendSuffixToUrl(settingsData.repository, 'issues');
