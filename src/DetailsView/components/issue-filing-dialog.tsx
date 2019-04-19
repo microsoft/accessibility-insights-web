@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { cloneDeep, forOwn, isEqual } from 'lodash';
+import { cloneDeep, isEqual } from 'lodash';
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
 
@@ -15,7 +15,7 @@ import { BugFilingService } from '../../bug-filing/types/bug-filing-service';
 import { EnvironmentInfoProvider } from '../../common/environment-info-provider';
 import { UserConfigMessageCreator } from '../../common/message-creators/user-config-message-creator';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
-import { BugServiceProperties, BugServicePropertiesMap } from '../../common/types/store-data/user-configuration-store';
+import { BugServicePropertiesMap } from '../../common/types/store-data/user-configuration-store';
 import { ActionAndCancelButtonsComponent } from './action-and-cancel-buttons-component';
 
 export interface IssueFilingDialogProps {
@@ -23,7 +23,6 @@ export interface IssueFilingDialogProps {
     isOpen: boolean;
     selectedBugFilingService: BugFilingService;
     selectedBugData: CreateIssueDetailsTextData;
-    selectedBugFilingServiceData: BugServiceProperties;
     bugFileTelemetryCallback: (ev: React.SyntheticEvent) => void;
     bugServicePropertiesMap: BugServicePropertiesMap;
     onClose: (ev: React.SyntheticEvent) => void;
@@ -105,10 +104,7 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
     private onPrimaryButtonClick = (ev: React.SyntheticEvent<Element, Event>) => {
         const newData = this.state.selectedBugFilingService.getSettingsFromStoreData(this.state.bugServicePropertiesMap);
         const service = this.state.selectedBugFilingService.key;
-        this.props.deps.userConfigMessageCreator.setBugService(service);
-        forOwn(newData, key => {
-            this.props.deps.userConfigMessageCreator.setBugServiceProperty(service, key, newData[key]);
-        });
+        this.props.deps.userConfigMessageCreator.saveIssueFilingSettings(service, newData);
         this.props.bugFileTelemetryCallback(ev);
         this.props.onClose(ev);
     };
