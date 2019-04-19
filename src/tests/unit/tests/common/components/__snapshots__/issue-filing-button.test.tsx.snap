@@ -8,19 +8,19 @@ exports[`IssueFilingButtonTest onclick: invalid settings, %s 1`] = `
       File issue
     </div>
   </CustomizedDefaultButton>
-  <testRenderer deps={{...}} isOpen={true} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={{...}} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
+  <testRenderer deps={{...}} isOpen={true} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={{...}} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} bugServicePropertiesMap={{...}} />
 </Fragment>"
 `;
 
 exports[`IssueFilingButtonTest onclick: valid settings, file bug and set %s to false 1`] = `
 "<Fragment>
-  <CustomizedDefaultButton className=\\"create-bug-button\\" target=\\"_blank\\" onClick={[Function: onClick]} href=\\"test url\\">
+  <CustomizedDefaultButton className=\\"create-bug-button\\" target=\\"_blank\\" onClick={[Function: onClick]} href=\\"test urla\\">
     <LadyBugSolidIcon />
     <div className=\\"ms-Button-label\\">
       File issue
     </div>
   </CustomizedDefaultButton>
-  <testRenderer deps={{...}} isOpen={false} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={{...}} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
+  <testRenderer deps={{...}} isOpen={false} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={{...}} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} bugServicePropertiesMap={{...}} />
 </Fragment>"
 `;
 
@@ -32,18 +32,18 @@ exports[`IssueFilingButtonTest render: isSettingsValid: false 1`] = `
       File issue
     </div>
   </CustomizedDefaultButton>
-  <testRenderer deps={{...}} isOpen={false} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={{...}} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
+  <testRenderer deps={{...}} isOpen={false} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={{...}} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} bugServicePropertiesMap={{...}} />
 </Fragment>"
 `;
 
 exports[`IssueFilingButtonTest render: isSettingsValid: true 1`] = `
 "<Fragment>
-  <CustomizedDefaultButton className=\\"create-bug-button\\" target=\\"_blank\\" onClick={[Function: onClick]} href=\\"test url\\">
+  <CustomizedDefaultButton className=\\"create-bug-button\\" target=\\"_blank\\" onClick={[Function: onClick]} href=\\"test urla\\">
     <LadyBugSolidIcon />
     <div className=\\"ms-Button-label\\">
       File issue
     </div>
   </CustomizedDefaultButton>
-  <testRenderer deps={{...}} isOpen={false} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={{...}} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} />
+  <testRenderer deps={{...}} isOpen={false} selectedBugFilingService={{...}} selectedBugData={{...}} selectedBugFilingServiceData={{...}} onClose={[Function: bound ]} bugFileTelemetryCallback={[Function: bound ]} bugServicePropertiesMap={{...}} />
 </Fragment>"
 `;

@@ -6,6 +6,7 @@ import { IMock, Mock } from 'typemoq';
 
 import { BugFilingServiceProvider } from '../../../../../../../../bug-filing/bug-filing-service-provider';
 import { BugFilingService } from '../../../../../../../../bug-filing/types/bug-filing-service';
+import { UserConfigMessageCreator } from '../../../../../../../../common/message-creators/user-config-message-creator';
 import { NamedSFC } from '../../../../../../../../common/react/named-sfc';
 import { UserConfigurationStoreData } from '../../../../../../../../common/types/store-data/user-configuration-store';
 import { BugFilingSettings } from '../../../../../../../../DetailsView/components/settings-panel/settings/bug-filing/bug-filing-settings';
@@ -16,8 +17,10 @@ describe('BugFilingSettings', () => {
     let bugFilingServiceProviderMock: IMock<BugFilingServiceProvider>;
     let testIssueFilingService: BugFilingService;
     const testKey: string = 'test';
+    let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;
 
     beforeEach(() => {
+        userConfigMessageCreatorMock = Mock.ofType(UserConfigMessageCreator);
         bugFilingServiceProviderMock = Mock.ofType(BugFilingServiceProvider);
         userData = {
             isFirstTime: true,
@@ -45,6 +48,7 @@ describe('BugFilingSettings', () => {
         const props: SettingsProps = {
             deps: {
                 bugFilingServiceProvider: bugFilingServiceProviderMock.object,
+                userConfigMessageCreator: userConfigMessageCreatorMock.object,
             } as SettingsDeps,
             featureFlagData: {},
             userConfigurationStoreState: {

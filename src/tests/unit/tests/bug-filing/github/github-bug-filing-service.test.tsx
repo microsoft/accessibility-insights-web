@@ -4,29 +4,30 @@ import { shallow } from 'enzyme';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
+
+import { OnPropertyUpdateCallback } from '../../../../../bug-filing/components/bug-filing-settings-container';
 import { gitHubIssueFilingUrlProvider } from '../../../../../bug-filing/github/create-github-bug-filing-url';
 import { GitHubBugFilingService, GitHubBugFilingSettings } from '../../../../../bug-filing/github/github-bug-filing-service';
 import { SettingsFormProps } from '../../../../../bug-filing/types/settings-form-props';
-import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { BugServicePropertiesMap } from '../../../../../common/types/store-data/user-configuration-store';
 import { SettingsDeps } from '../../../../../DetailsView/components/settings-panel/settings/settings-props';
 
 describe('GithubBugFilingServiceTest', () => {
-    let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;
     let props: SettingsFormProps<GitHubBugFilingSettings>;
+    let onPropertyUpdateCallbackMock: IMock<OnPropertyUpdateCallback>;
 
     const invalidTestSettings = [null, {}, undefined, { random: '' }, { repository: '' }];
 
     beforeEach(() => {
-        userConfigMessageCreatorMock = Mock.ofType(UserConfigMessageCreator);
+        onPropertyUpdateCallbackMock = Mock.ofInstance(() => null);
         props = {
             deps: {
-                userConfigMessageCreator: userConfigMessageCreatorMock.object,
+                userConfigMessageCreator: null,
             } as SettingsDeps,
             settings: {
                 repository: 'repo',
             },
-            onPropertyUpdateCallback: () => null,
+            onPropertyUpdateCallback: onPropertyUpdateCallbackMock.object,
         };
     });
 
@@ -87,14 +88,12 @@ describe('GithubBugFilingServiceTest', () => {
     it('renderSettingsForm: onChange', () => {
         const Component = GitHubBugFilingService.settingsForm;
         const wrapper = shallow(<Component {...props} />);
-        userConfigMessageCreatorMock
-            .setup(ucmm => ucmm.setBugServiceProperty('gitHub', 'repository', 'new value'))
-            .verifiable(Times.once());
+        onPropertyUpdateCallbackMock.setup(mock => mock('gitHub', 'repository', 'new value')).verifiable(Times.once());
         wrapper
             .find(TextField)
             .props()
             .onChange(null, 'new value');
-        userConfigMessageCreatorMock.verifyAll();
+        onPropertyUpdateCallbackMock.verifyAll();
     });
 
     describe('create bug filing url', () => {
