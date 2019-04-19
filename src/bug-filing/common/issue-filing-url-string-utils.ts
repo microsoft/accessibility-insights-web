@@ -7,7 +7,8 @@ import { title } from '../../content/strings/application';
 import { CreateIssueDetailsTextData } from './../../common/types/create-issue-details-text-data';
 
 export type IssueUrlCreationUtils = {
-    getFooterContent: (info: EnvironmentInfo) => string;
+    getTitle: (data: CreateIssueDetailsTextData) => string;
+    getFooter: (info: EnvironmentInfo) => string;
     collapseConsecutiveSpaces: (input: string) => string;
     formatAsMarkdownCodeBlock: (input: string) => string;
     getSelectorLastPart: (selector: string) => string;
@@ -16,7 +17,18 @@ export type IssueUrlCreationUtils = {
 };
 
 export const IssueFilingUrlStringUtils: IssueUrlCreationUtils = {
-    getFooterContent: (environmentInfo: EnvironmentInfo): string => {
+    getTitle: (data: CreateIssueDetailsTextData): string => {
+        const standardTags = IssueFilingUrlStringUtils.standardizeTags(data);
+        let prefix = standardTags.join(',');
+        if (prefix.length > 0) {
+            prefix = prefix + ': ';
+        }
+
+        const selectorLastPart = IssueFilingUrlStringUtils.getSelectorLastPart(data.ruleResult.selector);
+
+        return `${prefix}${data.ruleResult.help} (${selectorLastPart})`;
+    },
+    getFooter: (environmentInfo: EnvironmentInfo): string => {
         return (
             `This accessibility issue was found using ${title} ` +
             `${environmentInfo.extensionVersion} (axe-core ${environmentInfo.axeCoreVersion}), ` +
