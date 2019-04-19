@@ -50,9 +50,10 @@ export const AzureBoardsSettingsForm = NamedSFC<SettingsFormProps<AzureBoardsBug
             />
             <Dropdown
                 options={options}
+                placeholder="Select an option"
                 label="File issue details in:"
                 onChange={onIssueDetailLocationChange}
-                selectedKey={props.settings ? props.settings.issueDetailsField : defaultKey}
+                selectedKey={props.settings ? props.settings.issueDetailsField : null}
             />
         </>
     );
