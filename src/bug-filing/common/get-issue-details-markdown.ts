@@ -31,7 +31,7 @@ export const getIssueDetailsMarkdown = (
         ``,
         `====`,
         ``,
-        stringUtils.getFooterContent(environmentInfo),
+        stringUtils.getFooter(environmentInfo),
     ].join('\n');
 
     return text;

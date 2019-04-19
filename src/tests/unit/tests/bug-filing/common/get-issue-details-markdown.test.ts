@@ -35,7 +35,7 @@ describe('getIssueDetailsMarkdown', () => {
     it('returns issue details text as markdown', () => {
         stringUtilsMock.setup(utils => utils.collapseConsecutiveSpaces(It.isAnyString())).returns(() => 'collapsed');
         stringUtilsMock.setup(utils => utils.formatAsMarkdownCodeBlock(It.isAnyString())).returns(() => 'escaped');
-        stringUtilsMock.setup(utils => utils.getFooterContent(environmentInfo)).returns(() => 'test footer content');
+        stringUtilsMock.setup(utils => utils.getFooter(environmentInfo)).returns(() => 'test footer content');
 
         const result = testObject(stringUtilsMock.object, environmentInfo, sampleIssueDetailsData);
 

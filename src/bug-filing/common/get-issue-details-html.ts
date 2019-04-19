@@ -58,7 +58,7 @@ export const getIssueDetailsHtml = (
             'Use <a href="http://aka.ms/AccessibilityInsights">Accessibility Insights for Web</a> to investigate the issue details',
         ) +
         buildBodySection('Environment', escape(environmentInfo.browserSpec)) +
-        stringUtils.getFooterContent(environmentInfo);
+        stringUtils.getFooter(environmentInfo);
 
     return body;
 };

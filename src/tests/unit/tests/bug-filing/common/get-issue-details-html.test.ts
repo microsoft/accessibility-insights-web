@@ -37,7 +37,7 @@ describe('getIssueDetailsHtml', () => {
     });
 
     it('returns issue details text as html', () => {
-        stringUtilsMock.setup(utils => utils.getFooterContent(environmentInfo)).returns(() => 'test footer content');
+        stringUtilsMock.setup(utils => utils.getFooter(environmentInfo)).returns(() => 'test footer content');
 
         const result = testObject(stringUtilsMock.object, environmentInfo, sampleIssueDetailsData);
 
