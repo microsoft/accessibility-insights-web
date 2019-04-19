@@ -23,9 +23,8 @@ const buildIssueDetailsHtml = (help: string, helpUrl: string, ruleId: string): s
 const buildApplicationHtml = (pageTitle: string, pageUrl: string): string => {
     const pageTitleEscapedForHtml = escape(pageTitle);
     const pageUrlEscapedForUrl = encodeURI(pageUrl);
-    const pageUrlEscapedForHtml = escape(pageUrl);
 
-    return `<a href="${pageUrlEscapedForUrl}">${pageTitleEscapedForHtml}<br>${pageUrlEscapedForHtml}</a>`;
+    return `<a href="${pageUrlEscapedForUrl}">${pageTitleEscapedForHtml}</a>`;
 };
 
 const buildSnippetHtml = (snippet: string): string => {
@@ -53,7 +52,7 @@ export const getIssueDetailsHtml: IssueDetailsGetter = (
 ): string => {
     const body =
         buildBodySectionHtml('Issue', buildIssueDetailsHtml(data.ruleResult.help, data.ruleResult.helpUrl, data.ruleResult.ruleId)) +
-        buildBodySectionHtml('Application', buildApplicationHtml(data.pageTitle, data.pageUrl)) +
+        buildBodySectionHtml('Target Application', buildApplicationHtml(data.pageTitle, data.pageUrl)) +
         buildBodySectionHtml('Element Path', escape(data.ruleResult.selector)) +
         buildBodySectionHtml('Snippet', buildSnippetHtml(data.ruleResult.html)) +
         buildBodySectionHtml('How to fix', buildHowToFixHtml(data.ruleResult.failureSummary)) +
