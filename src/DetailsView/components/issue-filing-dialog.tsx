@@ -44,7 +44,11 @@ export interface IssueFilingDialogState {
 export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, IssueFilingDialogState> {
     constructor(props: IssueFilingDialogProps) {
         super(props);
-        this.state = {
+        this.state = this.getState(props);
+    }
+
+    private getState(props: IssueFilingDialogProps): IssueFilingDialogState {
+        return {
             bugServicePropertiesMap: cloneDeep(props.bugServicePropertiesMap),
             selectedBugFilingService: props.selectedBugFilingService,
         };
@@ -129,10 +133,7 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
 
     public componentDidUpdate(prevProps: Readonly<IssueFilingDialogProps>): void {
         if (this.props.isOpen && isEqual(prevProps, this.props) === false) {
-            this.setState(() => ({
-                selectedBugFilingService: this.props.selectedBugFilingService,
-                bugServicePropertiesMap: cloneDeep(this.props.bugServicePropertiesMap),
-            }));
+            this.setState(() => this.getState(this.props));
         }
     }
 }

@@ -35,7 +35,7 @@ describe('IssueFilingButtonTest', () => {
                 return { testField };
             },
             getSettingsFromStoreData: data => data[testKey],
-            issueFilingUrlProvider: () => 'test urla',
+            issueFilingUrlProvider: () => 'test url',
         };
         userConfigurationStoreData = {
             bugService: testKey,
