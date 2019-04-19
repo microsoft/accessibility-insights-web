@@ -3,6 +3,7 @@
 import { escape } from 'lodash';
 import { EnvironmentInfo } from '../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
+import { title } from '../../content/strings/application';
 import { IssueUrlCreationUtils } from './issue-filing-url-string-utils';
 
 const buildBodySection = (headingHtml: string, contentHtml: string): string => {
@@ -55,7 +56,7 @@ export const getIssueDetailsHtml = (
         buildBodySection('How to fix', buildHowToFixHtml(data.ruleResult.failureSummary)) +
         buildBodySection(
             'To reproduce',
-            'Use <a href="http://aka.ms/AccessibilityInsights">Accessibility Insights for Web</a> to investigate the issue details',
+            `Use <a href="http://aka.ms/AccessibilityInsights">${title}</a> to investigate the issue details`,
         ) +
         buildBodySection('Environment', escape(environmentInfo.browserSpec)) +
         stringUtils.getFooter(environmentInfo);
