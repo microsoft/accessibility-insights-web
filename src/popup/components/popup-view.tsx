@@ -33,7 +33,7 @@ export interface PopupViewProps {
     launchPadRowConfigurationFactory: LaunchPadRowConfigurationFactory;
     diagnosticViewToggleFactory: DiagnosticViewToggleFactory;
     dropdownClickHandler: DropdownClickHandler;
-    storeState?: PopupViewControllerState;
+    storeState: PopupViewControllerState;
 }
 
 export type PopupViewControllerDeps = LaunchPadDeps &
