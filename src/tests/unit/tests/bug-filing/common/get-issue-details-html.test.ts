@@ -34,7 +34,7 @@ describe('getIssueDetailsHtml', () => {
                 help: 'RR-help',
                 html: 'RR-html',
                 ruleId: 'RR-rule-id',
-                helpUrl: 'RR-help-url',
+                helpUrl: 'RR help url',
                 selector: 'RR-selector<x>',
                 snippet: 'RR-snippet   space',
             } as DecoratedAxeNodeResult,
