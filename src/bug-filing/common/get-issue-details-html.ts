@@ -17,7 +17,7 @@ const buildIssueDetailsHtml = (help: string, helpUrl: string, ruleId: string): s
     const ruleIdEscapedForHtml = escape(ruleId);
     const helpUrlEscaped = encodeURI(helpUrl);
 
-    return `${helpEscapedForHtml}<br><a href="${helpUrlEscaped}">${ruleIdEscapedForHtml}</a>`;
+    return `${helpEscapedForHtml} (<a href="${helpUrlEscaped}">${ruleIdEscapedForHtml}</a>)`;
 };
 
 const buildApplicationHtml = (pageTitle: string, pageUrl: string): string => {
@@ -52,10 +52,7 @@ export const getIssueDetailsHtml: IssueDetailsGetter = (
     data: CreateIssueDetailsTextData,
 ): string => {
     const body =
-        buildBodySectionHtml(
-            'Issue Details',
-            buildIssueDetailsHtml(data.ruleResult.help, data.ruleResult.helpUrl, data.ruleResult.ruleId),
-        ) +
+        buildBodySectionHtml('Issue', buildIssueDetailsHtml(data.ruleResult.help, data.ruleResult.helpUrl, data.ruleResult.ruleId)) +
         buildBodySectionHtml('Application', buildApplicationHtml(data.pageTitle, data.pageUrl)) +
         buildBodySectionHtml('Element Path', escape(data.ruleResult.selector)) +
         buildBodySectionHtml('Snippet', buildSnippetHtml(data.ruleResult.html)) +
