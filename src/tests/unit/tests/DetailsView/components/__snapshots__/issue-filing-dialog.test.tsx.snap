@@ -1,5 +1,341 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have changed 1`] = `
+<StyledWithResponsiveMode
+  className="issue-filing-dialog"
+  dialogContentProps={
+    Object {
+      "showCloseButton": false,
+      "subText": "This configuration can be changed again in settings.",
+      "subTextId": "issue-filing-dialog-subtext",
+      "title": "Specify issue filing location",
+      "titleId": "issue-filing-dialog-title",
+      "type": 0,
+    }
+  }
+  hidden={true}
+  modalProps={
+    Object {
+      "containerClassName": "insights-dialog-main-override",
+      "isBlocking": false,
+    }
+  }
+  onDismiss={[Function]}
+>
+  <BugFilingSettingsContainer
+    deps={
+      Object {
+        "bugFilingServiceProvider": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "all": [Function],
+          "allVisible": [Function],
+          "forKey": [Function],
+          "services": undefined,
+        },
+        "environmentInfoProvider": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "axeVersion": undefined,
+          "browserSpec": undefined,
+          "extensionVersion": undefined,
+          "getEnvironmentInfo": [Function],
+        },
+        "userConfigMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "_tabId": undefined,
+          "constructor": [Function],
+          "dispatchMessage": [Function],
+          "dispatchType": [Function],
+          "postMessageDelegate": undefined,
+          "saveIssueFilingSettings": [Function],
+          "sendTelemetry": [Function],
+          "setBugService": [Function],
+          "setBugServiceProperty": [Function],
+          "setHighContrastMode": [Function],
+          "setIssueTrackerPath": [Function],
+          "setTelemetryState": [Function],
+        },
+      }
+    }
+    onPropertyUpdateCallback={[Function]}
+    onSelectedServiceChange={[Function]}
+    selectedBugFilingService={
+      Object {
+        "getSettingsFromStoreData": [Function],
+        "isSettingsValid": [Function],
+        "issueFilingUrlProvider": [Function],
+        "key": "gitHub",
+      }
+    }
+    selectedBugFilingServiceData={
+      Object {
+        "someServiceData": null,
+      }
+    }
+  />
+  <StyledDialogFooterBase>
+    <ActionAndCancelButtonsComponent
+      cancelButtonOnClick={[Function]}
+      isHidden={false}
+      primaryButtonDisabled={false}
+      primaryButtonOnClick={[Function]}
+      primaryButtonText="File issue"
+    />
+  </StyledDialogFooterBase>
+</StyledWithResponsiveMode>
+`;
+
+exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have not changed 1`] = `
+<StyledWithResponsiveMode
+  className="issue-filing-dialog"
+  dialogContentProps={
+    Object {
+      "showCloseButton": false,
+      "subText": "This configuration can be changed again in settings.",
+      "subTextId": "issue-filing-dialog-subtext",
+      "title": "Specify issue filing location",
+      "titleId": "issue-filing-dialog-title",
+      "type": 0,
+    }
+  }
+  hidden={true}
+  modalProps={
+    Object {
+      "containerClassName": "insights-dialog-main-override",
+      "isBlocking": false,
+    }
+  }
+  onDismiss={[Function]}
+>
+  <BugFilingSettingsContainer
+    deps={
+      Object {
+        "bugFilingServiceProvider": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "all": [Function],
+          "allVisible": [Function],
+          "forKey": [Function],
+          "services": undefined,
+        },
+        "environmentInfoProvider": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "axeVersion": undefined,
+          "browserSpec": undefined,
+          "extensionVersion": undefined,
+          "getEnvironmentInfo": [Function],
+        },
+        "userConfigMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "_tabId": undefined,
+          "constructor": [Function],
+          "dispatchMessage": [Function],
+          "dispatchType": [Function],
+          "postMessageDelegate": undefined,
+          "saveIssueFilingSettings": [Function],
+          "sendTelemetry": [Function],
+          "setBugService": [Function],
+          "setBugServiceProperty": [Function],
+          "setHighContrastMode": [Function],
+          "setIssueTrackerPath": [Function],
+          "setTelemetryState": [Function],
+        },
+      }
+    }
+    onPropertyUpdateCallback={[Function]}
+    onSelectedServiceChange={[Function]}
+    selectedBugFilingService={
+      Object {
+        "getSettingsFromStoreData": [Function],
+        "isSettingsValid": [Function],
+        "issueFilingUrlProvider": [Function],
+        "key": "gitHub",
+      }
+    }
+    selectedBugFilingServiceData={
+      Object {
+        "differentProperty": "different_property",
+      }
+    }
+  />
+  <StyledDialogFooterBase>
+    <ActionAndCancelButtonsComponent
+      cancelButtonOnClick={[Function]}
+      isHidden={false}
+      primaryButtonDisabled={false}
+      primaryButtonOnClick={[Function]}
+      primaryButtonText="File issue"
+    />
+  </StyledDialogFooterBase>
+</StyledWithResponsiveMode>
+`;
+
+exports[`IssueFilingDialog componentDidUpdate dialog is open & props have changed 1`] = `
+<StyledWithResponsiveMode
+  className="issue-filing-dialog"
+  dialogContentProps={
+    Object {
+      "showCloseButton": false,
+      "subText": "This configuration can be changed again in settings.",
+      "subTextId": "issue-filing-dialog-subtext",
+      "title": "Specify issue filing location",
+      "titleId": "issue-filing-dialog-title",
+      "type": 0,
+    }
+  }
+  hidden={false}
+  modalProps={
+    Object {
+      "containerClassName": "insights-dialog-main-override",
+      "isBlocking": false,
+    }
+  }
+  onDismiss={[Function]}
+>
+  <BugFilingSettingsContainer
+    deps={
+      Object {
+        "bugFilingServiceProvider": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "all": [Function],
+          "allVisible": [Function],
+          "forKey": [Function],
+          "services": undefined,
+        },
+        "environmentInfoProvider": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "axeVersion": undefined,
+          "browserSpec": undefined,
+          "extensionVersion": undefined,
+          "getEnvironmentInfo": [Function],
+        },
+        "userConfigMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "_tabId": undefined,
+          "constructor": [Function],
+          "dispatchMessage": [Function],
+          "dispatchType": [Function],
+          "postMessageDelegate": undefined,
+          "saveIssueFilingSettings": [Function],
+          "sendTelemetry": [Function],
+          "setBugService": [Function],
+          "setBugServiceProperty": [Function],
+          "setHighContrastMode": [Function],
+          "setIssueTrackerPath": [Function],
+          "setTelemetryState": [Function],
+        },
+      }
+    }
+    onPropertyUpdateCallback={[Function]}
+    onSelectedServiceChange={[Function]}
+    selectedBugFilingService={
+      Object {
+        "getSettingsFromStoreData": [Function],
+        "isSettingsValid": [Function],
+        "issueFilingUrlProvider": [Function],
+        "key": "gitHub",
+      }
+    }
+    selectedBugFilingServiceData={
+      Object {
+        "differentProperty": "different_property",
+      }
+    }
+  />
+  <StyledDialogFooterBase>
+    <ActionAndCancelButtonsComponent
+      cancelButtonOnClick={[Function]}
+      isHidden={false}
+      primaryButtonDisabled={false}
+      primaryButtonOnClick={[Function]}
+      primaryButtonText="File issue"
+    />
+  </StyledDialogFooterBase>
+</StyledWithResponsiveMode>
+`;
+
+exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not changed 1`] = `
+<StyledWithResponsiveMode
+  className="issue-filing-dialog"
+  dialogContentProps={
+    Object {
+      "showCloseButton": false,
+      "subText": "This configuration can be changed again in settings.",
+      "subTextId": "issue-filing-dialog-subtext",
+      "title": "Specify issue filing location",
+      "titleId": "issue-filing-dialog-title",
+      "type": 0,
+    }
+  }
+  hidden={false}
+  modalProps={
+    Object {
+      "containerClassName": "insights-dialog-main-override",
+      "isBlocking": false,
+    }
+  }
+  onDismiss={[Function]}
+>
+  <BugFilingSettingsContainer
+    deps={
+      Object {
+        "bugFilingServiceProvider": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "all": [Function],
+          "allVisible": [Function],
+          "forKey": [Function],
+          "services": undefined,
+        },
+        "environmentInfoProvider": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "axeVersion": undefined,
+          "browserSpec": undefined,
+          "extensionVersion": undefined,
+          "getEnvironmentInfo": [Function],
+        },
+        "userConfigMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "_tabId": undefined,
+          "constructor": [Function],
+          "dispatchMessage": [Function],
+          "dispatchType": [Function],
+          "postMessageDelegate": undefined,
+          "saveIssueFilingSettings": [Function],
+          "sendTelemetry": [Function],
+          "setBugService": [Function],
+          "setBugServiceProperty": [Function],
+          "setHighContrastMode": [Function],
+          "setIssueTrackerPath": [Function],
+          "setTelemetryState": [Function],
+        },
+      }
+    }
+    onPropertyUpdateCallback={[Function]}
+    onSelectedServiceChange={[Function]}
+    selectedBugFilingService={
+      Object {
+        "getSettingsFromStoreData": [Function],
+        "isSettingsValid": [Function],
+        "issueFilingUrlProvider": [Function],
+        "key": "gitHub",
+      }
+    }
+    selectedBugFilingServiceData={
+      Object {
+        "differentProperty": "different_property",
+      }
+    }
+  />
+  <StyledDialogFooterBase>
+    <ActionAndCancelButtonsComponent
+      cancelButtonOnClick={[Function]}
+      isHidden={false}
+      primaryButtonDisabled={false}
+      primaryButtonOnClick={[Function]}
+      primaryButtonText="File issue"
+    />
+  </StyledDialogFooterBase>
+</StyledWithResponsiveMode>
+`;
+
 exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
 <StyledWithResponsiveMode
   className="issue-filing-dialog"
@@ -25,7 +361,13 @@ exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
   <BugFilingSettingsContainer
     deps={
       Object {
-        "bugFilingServiceProvider": null,
+        "bugFilingServiceProvider": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "all": [Function],
+          "allVisible": [Function],
+          "forKey": [Function],
+          "services": undefined,
+        },
         "environmentInfoProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "axeVersion": undefined,
@@ -104,7 +446,13 @@ exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
   <BugFilingSettingsContainer
     deps={
       Object {
-        "bugFilingServiceProvider": null,
+        "bugFilingServiceProvider": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "all": [Function],
+          "allVisible": [Function],
+          "forKey": [Function],
+          "services": undefined,
+        },
         "environmentInfoProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "axeVersion": undefined,
@@ -150,7 +498,6 @@ exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
       cancelButtonOnClick={[Function]}
       isHidden={false}
       primaryButtonDisabled={false}
-      primaryButtonHref="test url"
       primaryButtonOnClick={[Function]}
       primaryButtonText="File issue"
     />
@@ -183,7 +530,13 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
   <BugFilingSettingsContainer
     deps={
       Object {
-        "bugFilingServiceProvider": null,
+        "bugFilingServiceProvider": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "all": [Function],
+          "allVisible": [Function],
+          "forKey": [Function],
+          "services": undefined,
+        },
         "environmentInfoProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "axeVersion": undefined,
@@ -262,7 +615,13 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
   <BugFilingSettingsContainer
     deps={
       Object {
-        "bugFilingServiceProvider": null,
+        "bugFilingServiceProvider": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "all": [Function],
+          "allVisible": [Function],
+          "forKey": [Function],
+          "services": undefined,
+        },
         "environmentInfoProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "axeVersion": undefined,
@@ -295,6 +654,95 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
         "isSettingsValid": [Function],
         "issueFilingUrlProvider": [Function],
         "key": "gitHub",
+      }
+    }
+    selectedBugFilingServiceData={
+      Object {
+        "some_property": "some_value",
+      }
+    }
+  />
+  <StyledDialogFooterBase>
+    <ActionAndCancelButtonsComponent
+      cancelButtonOnClick={[Function]}
+      isHidden={false}
+      primaryButtonDisabled={false}
+      primaryButtonOnClick={[Function]}
+      primaryButtonText="File issue"
+    />
+  </StyledDialogFooterBase>
+</StyledWithResponsiveMode>
+`;
+
+exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) sent to settings container 1`] = `
+<StyledWithResponsiveMode
+  className="issue-filing-dialog"
+  dialogContentProps={
+    Object {
+      "showCloseButton": false,
+      "subText": "This configuration can be changed again in settings.",
+      "subTextId": "issue-filing-dialog-subtext",
+      "title": "Specify issue filing location",
+      "titleId": "issue-filing-dialog-title",
+      "type": 0,
+    }
+  }
+  hidden={false}
+  modalProps={
+    Object {
+      "containerClassName": "insights-dialog-main-override",
+      "isBlocking": false,
+    }
+  }
+  onDismiss={[Function]}
+>
+  <BugFilingSettingsContainer
+    deps={
+      Object {
+        "bugFilingServiceProvider": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "all": [Function],
+          "allVisible": [Function],
+          "forKey": [Function],
+          "services": undefined,
+        },
+        "environmentInfoProvider": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "axeVersion": undefined,
+          "browserSpec": undefined,
+          "extensionVersion": undefined,
+          "getEnvironmentInfo": [Function],
+        },
+        "userConfigMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "_tabId": undefined,
+          "constructor": [Function],
+          "dispatchMessage": [Function],
+          "dispatchType": [Function],
+          "postMessageDelegate": undefined,
+          "saveIssueFilingSettings": [Function],
+          "sendTelemetry": [Function],
+          "setBugService": [Function],
+          "setBugServiceProperty": [Function],
+          "setHighContrastMode": [Function],
+          "setIssueTrackerPath": [Function],
+          "setTelemetryState": [Function],
+        },
+      }
+    }
+    onPropertyUpdateCallback={[Function]}
+    onSelectedServiceChange={[Function]}
+    selectedBugFilingService={
+      Object {
+        "getSettingsFromStoreData": [Function],
+        "isSettingsValid": [Function],
+        "issueFilingUrlProvider": [Function],
+        "key": "different_service",
+      }
+    }
+    selectedBugFilingServiceData={
+      Object {
+        "differentProperty": "different_property",
       }
     }
   />
