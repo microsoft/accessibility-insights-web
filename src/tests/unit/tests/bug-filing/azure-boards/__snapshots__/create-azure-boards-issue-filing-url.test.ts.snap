@@ -4,6 +4,6 @@ exports[`createAzureBoardsIssueFilingUrl creates url uses description field, wit
 
 exports[`createAzureBoardsIssueFilingUrl creates url uses description field, without tags 1`] = `"https://builded-url"`;
 
-exports[`createAzureBoardsIssueFilingUrl creates url uses repro steps field, with tabs 1`] = `"https://builded-url"`;
+exports[`createAzureBoardsIssueFilingUrl creates url uses repro steps field, with tags 1`] = `"https://builded-url"`;
 
 exports[`createAzureBoardsIssueFilingUrl creates url uses repro steps field, without tags 1`] = `"https://builded-url"`;

@@ -120,7 +120,7 @@ describe('createAzureBoardsIssueFilingUrl', () => {
             expect(result).toMatchSnapshot();
         });
 
-        it('uses repro steps field, with tabs', () => {
+        it('uses repro steps field, with tags', () => {
             settingsData.issueDetailsField = 'reproSteps';
             stringUtilsMock.setup(utils => utils.standardizeTags(sampleIssueDetailsData)).returns(() => ['TAG1', 'TAG2']);
 
