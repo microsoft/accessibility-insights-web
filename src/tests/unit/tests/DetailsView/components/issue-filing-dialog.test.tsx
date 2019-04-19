@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
+import { BugFilingServiceProvider } from '../../../../../bug-filing/bug-filing-service-provider';
 import { BugFilingSettingsContainer } from '../../../../../bug-filing/components/bug-filing-settings-container';
 import { BugFilingService } from '../../../../../bug-filing/types/bug-filing-service';
 import { EnvironmentInfo, EnvironmentInfoProvider } from '../../../../../common/environment-info-provider';
@@ -17,7 +18,6 @@ import {
     IssueFilingDialogProps,
 } from '../../../../../DetailsView/components/issue-filing-dialog';
 import { EventStub, EventStubFactory } from '../../../common/event-stub-factory';
-import { BugFilingServiceProvider } from '../../../../../bug-filing/bug-filing-service-provider';
 
 describe('IssueFilingDialog', () => {
     let eventStub: EventStub;

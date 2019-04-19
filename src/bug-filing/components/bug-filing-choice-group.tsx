@@ -3,7 +3,6 @@
 import { ChoiceGroup, IChoiceGroupOption } from 'office-ui-fabric-react/lib/ChoiceGroup';
 import * as React from 'react';
 
-import { UserConfigMessageCreator } from '../../common/message-creators/user-config-message-creator';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { BugFilingService } from '../types/bug-filing-service';
 import { OnSelectedServiceChange } from './bug-filing-settings-container';

@@ -8,7 +8,6 @@ import { IMock, Mock, Times } from 'typemoq';
 import { BugFilingChoiceGroup, BugFilingChoiceGroupProps } from '../../../../../bug-filing/components/bug-filing-choice-group';
 import { OnSelectedServiceChange } from '../../../../../bug-filing/components/bug-filing-settings-container';
 import { BugFilingService } from '../../../../../bug-filing/types/bug-filing-service';
-import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 
 describe('BugFilingChoiceGroupTest', () => {
     let onServiceChangeMock: IMock<OnSelectedServiceChange>;
