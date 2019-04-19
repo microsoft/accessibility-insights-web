@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createAzureBoardsIssueFilingUrl creates url not tags 1`] = `"https://builded-url"`;
+
+exports[`createAzureBoardsIssueFilingUrl creates url tags 1`] = `"https://builded-url"`;
+
+exports[`createAzureBoardsIssueFilingUrl creates url uses ddeswithout tags 1`] = `"https://builded-url"`;
+
+exports[`createAzureBoardsIssueFilingUrl creates url uses description field, with tags 1`] = `"https://builded-url"`;
+
+exports[`createAzureBoardsIssueFilingUrl creates url uses description field, without tags 1`] = `"https://builded-url"`;
+
+exports[`createAzureBoardsIssueFilingUrl creates url uses description,without tags 1`] = `"https://builded-url"`;
+
+exports[`createAzureBoardsIssueFilingUrl creates url uses descriptionwithout tags 1`] = `"https://builded-url"`;
+
+exports[`createAzureBoardsIssueFilingUrl creates url uses descripwith tags 1`] = `"https://builded-url"`;
+
+exports[`createAzureBoardsIssueFilingUrl creates url uses descwithout tags 1`] = `"https://builded-url"`;
+
+exports[`createAzureBoardsIssueFilingUrl creates url uses deswith tags 1`] = `"https://builded-url"`;
+
+exports[`createAzureBoardsIssueFilingUrl creates url uses repro steps field, with tabs 1`] = `"https://builded-url"`;
+
+exports[`createAzureBoardsIssueFilingUrl creates url uses repro steps field, without tags 1`] = `"https://builded-url"`;
+
+exports[`createAzureBoardsIssueFilingUrl creates url uses repro stepswith tags 1`] = `"https://builded-url"`;
+
+exports[`createAzureBoardsIssueFilingUrl creates url uses repro stepwith tags 1`] = `"https://builded-url"`;
+
+exports[`createAzureBoardsIssueFilingUrl creates url uses repro stewith tags 1`] = `"https://builded-url"`;
+
+exports[`createAzureBoardsIssueFilingUrl creates url uses repro stpwith tags 1`] = `"https://builded-url"`;
+
+exports[`createAzureBoardsIssueFilingUrl creates url uses repropwith tags 1`] = `"https://builded-url"`;
+
+exports[`createAzureBoardsIssueFilingUrl creates url uses with tags 1`] = `"https://builded-url"`;
+
+exports[`createAzureBoardsIssueFilingUrl creates url useswithout tags 1`] = `"https://builded-url"`;
+
+exports[`createAzureBoardsIssueFilingUrl creates url uwithout tags 1`] = `"https://builded-url"`;
+
+exports[`createAzureBoardsIssueFilingUrl creates url with tags 1`] = `"https://builded-url"`;
+
+exports[`createAzureBoardsIssueFilingUrl creates url without tags 1`] = `"https://builded-url"`;
+
+exports[`createAzureBoardsIssueFilingUrl creates url withoutags 1`] = `"https://builded-url"`;
