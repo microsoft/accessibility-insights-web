@@ -13,6 +13,7 @@ import { title } from '../../../../../content/strings/application';
 
 describe('createAzureBoardsIssueFilingUrl', () => {
     const testIssueDetails = 'html issue details';
+    let baseTags: string;
 
     let environmentInfo: EnvironmentInfo;
     let sampleIssueDetailsData;
@@ -48,6 +49,8 @@ describe('createAzureBoardsIssueFilingUrl', () => {
             issueDetailsField: 'description',
         };
 
+        baseTags = `Accessibility; ${title}; rule: ${sampleIssueDetailsData.ruleResult.ruleId}`;
+
         stringUtilsMock = Mock.ofType<IssueUrlCreationUtils>();
         const testTitle = 'test title';
         stringUtilsMock.setup(utils => utils.getTitle(sampleIssueDetailsData)).returns(() => testTitle);
@@ -79,8 +82,7 @@ describe('createAzureBoardsIssueFilingUrl', () => {
         it('uses description field, without tags', () => {
             stringUtilsMock.setup(utils => utils.standardizeTags(sampleIssueDetailsData)).returns(() => []);
 
-            const expectedTags = `Accessibility; ${title}; rule:${sampleIssueDetailsData.ruleResult.ruleId}`;
-            queryBuilderMock.setup(builder => builder.withParam('[System.Tags]', expectedTags)).returns(() => queryBuilderMock.object);
+            queryBuilderMock.setup(builder => builder.withParam('[System.Tags]', baseTags)).returns(() => queryBuilderMock.object);
 
             queryBuilderMock
                 .setup(builder => builder.withParam('[System.Description]', testIssueDetails))
@@ -94,7 +96,7 @@ describe('createAzureBoardsIssueFilingUrl', () => {
         it('uses description field, with tags', () => {
             stringUtilsMock.setup(utils => utils.standardizeTags(sampleIssueDetailsData)).returns(() => ['TAG1', 'TAG2']);
 
-            const expectedTags = `Accessibility; ${title}; rule:${sampleIssueDetailsData.ruleResult.ruleId}; TAG1; TAG2`;
+            const expectedTags = `${baseTags}; TAG1; TAG2`;
             queryBuilderMock.setup(builder => builder.withParam('[System.Tags]', expectedTags)).returns(() => queryBuilderMock.object);
             queryBuilderMock
                 .setup(builder => builder.withParam('[System.Description]', testIssueDetails))
@@ -109,8 +111,7 @@ describe('createAzureBoardsIssueFilingUrl', () => {
             settingsData.issueDetailsField = 'reproSteps';
             stringUtilsMock.setup(utils => utils.standardizeTags(sampleIssueDetailsData)).returns(() => []);
 
-            const expectedTags = `Accessibility; ${title}; rule:${sampleIssueDetailsData.ruleResult.ruleId}`;
-            queryBuilderMock.setup(builder => builder.withParam('[System.Tags]', expectedTags)).returns(() => queryBuilderMock.object);
+            queryBuilderMock.setup(builder => builder.withParam('[System.Tags]', baseTags)).returns(() => queryBuilderMock.object);
             queryBuilderMock
                 .setup(builder => builder.withParam('[Microsoft.VSTS.TCM.ReproSteps]', testIssueDetails))
                 .returns(() => queryBuilderMock.object);
@@ -124,7 +125,7 @@ describe('createAzureBoardsIssueFilingUrl', () => {
             settingsData.issueDetailsField = 'reproSteps';
             stringUtilsMock.setup(utils => utils.standardizeTags(sampleIssueDetailsData)).returns(() => ['TAG1', 'TAG2']);
 
-            const expectedTags = `Accessibility; ${title}; rule:${sampleIssueDetailsData.ruleResult.ruleId}; TAG1; TAG2`;
+            const expectedTags = `${baseTags}; TAG1; TAG2`;
             queryBuilderMock.setup(builder => builder.withParam('[System.Tags]', expectedTags)).returns(() => queryBuilderMock.object);
             queryBuilderMock
                 .setup(builder => builder.withParam('[Microsoft.VSTS.TCM.ReproSteps]', testIssueDetails))
