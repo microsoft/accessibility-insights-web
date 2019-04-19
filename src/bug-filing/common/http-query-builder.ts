@@ -50,7 +50,14 @@ export class HTTPQueryBuilder {
             return url;
         }
 
-        const truncateIndex = url.substr(0, HTTPQueryBuilder.maxUrlLength).length;
-        return url.substr(0, truncateIndex);
+        const truncated = url.substr(0, HTTPQueryBuilder.maxUrlLength);
+
+        const lastIndexOpeningTag = truncated.lastIndexOf('%3C');
+
+        if (lastIndexOpeningTag >= 0) {
+            return truncated.substr(0, lastIndexOpeningTag);
+        }
+
+        return truncated;
     }
 }

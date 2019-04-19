@@ -45,12 +45,31 @@ describe('HTTPQueryBuilder', () => {
         });
     });
 
-    it('truncates long urls', () => {
-        const result = testSubject
-            .withBaseUrl(testUrl)
-            .withParam('a', repeat('1', HTTPQueryBuilder.maxUrlLength))
-            .build();
+    describe('truncate urls', () => {
+        const actualUrl2990 = repeat('<-10->', 299);
+        const actualUrl3000 = actualUrl2990 + '<-10->';
+        const actualUrl3001 = actualUrl2990 + '<-11!->';
+        const actualUrlNoHtmlTags = repeat('1', HTTPQueryBuilder.maxUrlLength);
 
-        expect(result).toHaveLength(HTTPQueryBuilder.maxUrlLength);
+        const expectedUrl2990 = repeat('%3C-10-%3E', 299);
+        const expectedUrl3000 = expectedUrl2990;
+        const expectedUrl3001 = expectedUrl2990;
+        const expectedUrlNoHtmlTags = actualUrlNoHtmlTags.substr(0, actualUrlNoHtmlTags.length - 3);
+
+        const testCases = [
+            ['length 2990, with html tags', actualUrl2990, expectedUrl2990],
+            ['length 3000, with html tags', actualUrl3000, expectedUrl3000],
+            ['length 3001, with html tags', actualUrl3001, expectedUrl3001],
+            ['no html tags', actualUrlNoHtmlTags, expectedUrlNoHtmlTags],
+        ];
+
+        it.each(testCases)('of length %s', (name, actual, expected) => {
+            const result = testSubject
+                .withBaseUrl('')
+                .withParam('a', actual)
+                .build();
+
+            expect(result).toEqual('?a=' + expected);
+        });
     });
 });
