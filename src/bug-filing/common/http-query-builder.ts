@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DictionaryStringTo } from '../../types/common-types';
 import { size, values } from 'lodash';
+import { DictionaryStringTo } from '../../types/common-types';
 
 export type QueryParam = {
     name: string;
@@ -40,7 +40,7 @@ export class HTTPQueryBuilder {
             .map(param => `${encodeURIComponent(param.name)}=${encodeURIComponent(param.value)}`)
             .join('&');
 
-        let fullUrl = `${this.baseUrl}?${queryParameters}`;
+        const fullUrl = `${this.baseUrl}?${queryParameters}`;
 
         return this.truncate(fullUrl);
     }

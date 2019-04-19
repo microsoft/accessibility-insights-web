@@ -22,7 +22,7 @@ export const createAzureBoardsIssueFilingUrlProvider = (
     return (settingsData: AzureBoardsBugFilingSettings, bugData: CreateIssueDetailsTextData, environmentInfo: EnvironmentInfo) => {
         const standardTags = stringUtils.standardizeTags(bugData);
 
-        const title = stringUtils.getTitle(bugData);
+        const titleField = stringUtils.getTitle(bugData);
         const tags = buildTags(bugData, standardTags);
         const body = issueDetailsGetter(stringUtils, environmentInfo, bugData);
 
@@ -35,7 +35,7 @@ export const createAzureBoardsIssueFilingUrlProvider = (
         return queryBuilderProvider()
             .withBaseUrl(`${settingsData.projectURL}/_workitems/create/Bug`)
             .withParam('fullScreen', 'true')
-            .withParam('[System.Title]', title)
+            .withParam('[System.Title]', titleField)
             .withParam('[System.Tags]', tags)
             .withParam(bodyField, body)
             .build();

@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IssueFilingUrlStringUtils } from './../../../../../bug-filing/common/issue-filing-url-string-utils';
-import { EnvironmentInfo } from './../../../../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
+import { IssueFilingUrlStringUtils } from './../../../../../bug-filing/common/issue-filing-url-string-utils';
+import { EnvironmentInfo } from './../../../../../common/environment-info-provider';
 
 describe('BugFilingUrlStringUtilsTest', () => {
     let environmentInfo: EnvironmentInfo;

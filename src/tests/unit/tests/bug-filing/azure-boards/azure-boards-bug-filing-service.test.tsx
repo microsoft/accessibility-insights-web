@@ -6,8 +6,8 @@ import {
     AzureBoardsIssueDetailField,
 } from '../../../../../bug-filing/azure-boards/azure-boards-bug-filing-service';
 import { AzureBoardsSettingsForm } from '../../../../../bug-filing/azure-boards/azure-boards-settings-form';
-import { BugServicePropertiesMap } from '../../../../../common/types/store-data/user-configuration-store';
 import { azureBoardsIssueFilingUrlProvider } from '../../../../../bug-filing/azure-boards/create-azure-boards-issue-filing-url';
+import { BugServicePropertiesMap } from '../../../../../common/types/store-data/user-configuration-store';
 
 describe('AzureBoardsBugFilingServiceTest', () => {
     const projectUrlStub: string = 'some/project/url';
