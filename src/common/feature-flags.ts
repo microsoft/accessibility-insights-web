@@ -69,10 +69,10 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
         },
         {
             id: FeatureFlags.newIssueFilingExperience,
-            defaultValue: false,
+            defaultValue: true,
             displayableName: 'New issue filing experience',
             displayableDescription: 'Enable the new issue filing experience.',
-            isPreviewFeature: false,
+            isPreviewFeature: true,
             forceDefault: true,
         },
         {
