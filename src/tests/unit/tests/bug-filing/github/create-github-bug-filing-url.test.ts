@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock } from 'typemoq';
-import { IssueDetailsGetter } from '../../../../../bug-filing/common/get-issue-details-markdown';
+import { IssueDetailsGetter } from '../../../../../bug-filing/common/issue-details-getter';
 import { createGitHubIssueFilingUrlProvider } from '../../../../../bug-filing/github/create-github-bug-filing-url';
 import { IssueFilingUrlProvider } from '../../../../../bug-filing/types/bug-filing-service';
 import { IssueUrlCreationUtils } from './../../../../../bug-filing/common/issue-filing-url-string-utils';
