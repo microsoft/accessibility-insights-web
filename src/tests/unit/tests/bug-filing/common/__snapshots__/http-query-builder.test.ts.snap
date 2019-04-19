@@ -5,5 +5,3 @@ exports[`HTTPQueryBuilder encodes { name: '[param]', value: '(value)' } 1`] = `"
 exports[`HTTPQueryBuilder encodes { name: 'a param', value: 'value&' } 1`] = `"https://some-test-url?a%20param=value%26"`;
 
 exports[`HTTPQueryBuilder encodes { name: 'name?', value: 'value"' } 1`] = `"https://some-test-url?name%3F=value%22"`;
-
-exports[`HTTPQueryBuilder truncates long urls 1`] = `""`;
