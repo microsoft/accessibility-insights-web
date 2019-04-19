@@ -35,7 +35,7 @@ const buildSnippetHtml = (snippet: string): string => {
         constrainedSnippet = snippet.substr(0, maxSnippetLength) + '...';
     }
 
-    return escape(constrainedSnippet);
+    return `<code>${escape(constrainedSnippet)}</code>`;
 };
 
 const buildHowToFixHtml = (failureSummary: string): string => {
