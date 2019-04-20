@@ -56,10 +56,6 @@ export const getIssueDetailsHtml: IssueDetailsGetter = (
         buildBodySectionHtml('Element Path', escape(data.ruleResult.selector)) +
         buildBodySectionHtml('Snippet', buildSnippetHtml(data.ruleResult.html)) +
         buildBodySectionHtml('How to fix', buildHowToFixHtml(data.ruleResult.failureSummary)) +
-        buildBodySectionHtml(
-            'To reproduce',
-            `Use <a href="http://aka.ms/AccessibilityInsights">${title}</a> to investigate the issue details`,
-        ) +
         buildBodySectionHtml('Environment', escape(environmentInfo.browserSpec)) +
         stringUtils.getFooter(environmentInfo);
 
