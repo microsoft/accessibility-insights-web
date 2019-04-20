@@ -28,7 +28,7 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
     };
 
     constructor(
-        private readonly initialState: UserConfigurationStoreData,
+        private readonly persistedState: UserConfigurationStoreData,
         private readonly userConfigActions: UserConfigurationActions,
         private readonly indexDbApi: IndexedDBAPI,
     ) {
@@ -42,7 +42,7 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
     }
 
     public getDefaultState(): UserConfigurationStoreData {
-        return this.generateDefaultState(this.initialState);
+        return this.generateDefaultState(this.persistedState);
     }
 
     protected addActionListeners(): void {
