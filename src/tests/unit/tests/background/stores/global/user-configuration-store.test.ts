@@ -72,6 +72,28 @@ describe('UserConfigurationStoreTest', () => {
         expect(testSubject.getState()).toEqual(initialStoreData);
     });
 
+    test('verify initial state when not null, but new properties introduced in new iteration', () => {
+        const persisted: Partial<UserConfigurationStoreData> = {
+            enableTelemetry: false,
+            isFirstTime: true,
+            enableHighContrast: true,
+        };
+        const expected: UserConfigurationStoreData = {
+            bugService: 'none',
+            bugServicePropertiesMap: {},
+            ...persisted,
+        } as UserConfigurationStoreData;
+        const testSubject = new UserConfigurationStore(
+            persisted as UserConfigurationStoreData,
+            new UserConfigurationActions(),
+            indexDbStrictMock.object,
+        );
+
+        testSubject.initialize();
+
+        expect(testSubject.getState()).toEqual(expected);
+    });
+
     test('getDefaultState returns cloned data when initial state is not null', () => {
         const testSubject = new UserConfigurationStore(
             cloneDeep(initialStoreData),

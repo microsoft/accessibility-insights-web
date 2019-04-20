@@ -35,8 +35,14 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
         super(StoreNames.UserConfigurationStore);
     }
 
+    private generateDefaultState(persisted: UserConfigurationStoreData): UserConfigurationStoreData {
+        const persistedState = cloneDeep(persisted);
+        const defaultState = cloneDeep(UserConfigurationStore.defaultState);
+        return Object.assign(defaultState, persistedState);
+    }
+
     public getDefaultState(): UserConfigurationStoreData {
-        return this.initialState ? cloneDeep(this.initialState) : cloneDeep(UserConfigurationStore.defaultState);
+        return this.generateDefaultState(this.initialState);
     }
 
     protected addActionListeners(): void {
