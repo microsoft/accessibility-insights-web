@@ -1,10 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { escape } from 'lodash';
-
 import { EnvironmentInfo } from '../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
-import { title } from '../../content/strings/application';
 import { IssueDetailsGetter } from './issue-details-getter';
 import { IssueUrlCreationUtils } from './issue-filing-url-string-utils';
 
@@ -57,6 +55,7 @@ export const getIssueDetailsHtml: IssueDetailsGetter = (
         buildBodySectionHtml('Snippet', buildSnippetHtml(data.ruleResult.html)) +
         buildBodySectionHtml('How to fix', buildHowToFixHtml(data.ruleResult.failureSummary)) +
         buildBodySectionHtml('Environment', escape(environmentInfo.browserSpec)) +
+        '<br>===<br>' +
         stringUtils.getFooter(environmentInfo);
 
     return body;
