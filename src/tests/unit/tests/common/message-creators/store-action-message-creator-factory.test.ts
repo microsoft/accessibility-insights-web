@@ -51,6 +51,7 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
             Messages.DevTools.Get,
             Messages.Assessment.GetCurrentState,
             Messages.Tab.GetCurrent,
+            Messages.UserConfig.GetCurrentState,
         ];
 
         testWithExpectedMessages(messages, testObject => testObject.forInjected());

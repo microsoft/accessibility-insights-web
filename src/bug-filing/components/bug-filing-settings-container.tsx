@@ -7,18 +7,22 @@ import { BugServiceProperties } from '../../common/types/store-data/user-configu
 import { SettingsDeps } from '../../DetailsView/components/settings-panel/settings/settings-props';
 import { BugFilingServiceProvider } from '../bug-filing-service-provider';
 import { BugFilingService } from '../types/bug-filing-service';
-import { BugFilingChoiceGroup, BugFilingChoiceGroupDeps } from './bug-filing-choice-group';
+import { BugFilingChoiceGroup } from './bug-filing-choice-group';
+
+export type OnPropertyUpdateCallback = (bugService: string, propertyName: string, propertyValue: string) => void;
+export type OnSelectedServiceChange = (service: string) => void;
 
 export interface BugFilingSettingsContainerProps {
     deps: BugFilingSettingsContainerDeps;
     selectedBugFilingService: BugFilingService;
     selectedBugFilingServiceData: BugServiceProperties;
+    onPropertyUpdateCallback: OnPropertyUpdateCallback;
+    onSelectedServiceChange: OnSelectedServiceChange;
 }
 
 export type BugFilingSettingsContainerDeps = {
     bugFilingServiceProvider: BugFilingServiceProvider;
-} & BugFilingChoiceGroupDeps &
-    SettingsDeps;
+} & SettingsDeps;
 
 export const BugFilingSettingsContainer = NamedSFC<BugFilingSettingsContainerProps>('BugFilingSettingsContainer', props => {
     const { deps, selectedBugFilingService, selectedBugFilingServiceData } = props;
@@ -27,8 +31,12 @@ export const BugFilingSettingsContainer = NamedSFC<BugFilingSettingsContainerPro
 
     return (
         <>
-            <BugFilingChoiceGroup deps={deps} selectedBugFilingService={selectedBugFilingService} bugFilingServices={bugFilingServices} />
-            <SettingsForm deps={deps} settings={selectedBugFilingServiceData} />
+            <BugFilingChoiceGroup
+                onSelectedServiceChange={props.onSelectedServiceChange}
+                selectedBugFilingService={selectedBugFilingService}
+                bugFilingServices={bugFilingServices}
+            />
+            <SettingsForm deps={deps} settings={selectedBugFilingServiceData} onPropertyUpdateCallback={props.onPropertyUpdateCallback} />
         </>
     );
 });

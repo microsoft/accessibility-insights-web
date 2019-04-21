@@ -27,16 +27,12 @@ export const AzureBoardsSettingsForm = NamedSFC<SettingsFormProps<AzureBoardsBug
 
     const onProjectURLChange = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
         const propertyName: keyof AzureBoardsBugFilingSettings = 'projectURL';
-        props.deps.userConfigMessageCreator.setBugServiceProperty(AzureBoardsBugFilingService.key, propertyName, newValue);
+        props.onPropertyUpdateCallback(AzureBoardsBugFilingService.key, propertyName, newValue);
     };
 
     const onIssueDetailLocationChange = (event: React.FormEvent<HTMLElement>, newValue: IDropdownOption) => {
         const propertyName: keyof AzureBoardsBugFilingSettings = 'issueDetailsField';
-        props.deps.userConfigMessageCreator.setBugServiceProperty(
-            AzureBoardsBugFilingService.key,
-            propertyName,
-            newValue.key as AzureBoardsIssueDetailField,
-        );
+        props.onPropertyUpdateCallback(AzureBoardsBugFilingService.key, propertyName, newValue.key as AzureBoardsIssueDetailField);
     };
 
     return (
@@ -50,9 +46,10 @@ export const AzureBoardsSettingsForm = NamedSFC<SettingsFormProps<AzureBoardsBug
             />
             <Dropdown
                 options={options}
+                placeholder="Select an option"
                 label="File issue details in:"
                 onChange={onIssueDetailLocationChange}
-                selectedKey={props.settings ? props.settings.issueDetailsField : defaultKey}
+                selectedKey={props.settings ? props.settings.issueDetailsField : null}
             />
         </>
     );

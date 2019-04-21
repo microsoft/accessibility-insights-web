@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
+
 import { StoreActionMessageCreator } from '../message-creators/store-action-message-creator';
 import { ClientStoresHub } from '../stores/client-stores-hub';
 
 export type WithStoreSubscriptionProps<T> = {
     deps: WithStoreSubscriptionDeps<T>;
-    storeState?: T;
+    storeState: T;
 };
 
 export type WithStoreSubscriptionDeps<T> = {
@@ -16,7 +17,7 @@ export type WithStoreSubscriptionDeps<T> = {
 
 export function withStoreSubscription<P extends WithStoreSubscriptionProps<S>, S>(
     WrappedComponent: React.ComponentType<P>,
-): React.ComponentClass<P, S> {
+): React.ComponentClass<Pick<P, Exclude<keyof P, keyof { storeState: S }>>, S> {
     return class extends React.Component<P, S> {
         constructor(props: P) {
             super(props);

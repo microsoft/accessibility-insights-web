@@ -1,9 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { NullIssueFilingService } from '../../../../../bug-filing/null-issue-filing-service/null-issue-filing-service';
+
+import {
+    NullIssueFilingService,
+    NullIssueFilingServiceSettings,
+} from '../../../../../bug-filing/null-issue-filing-service/null-issue-filing-service';
+import { SettingsFormProps } from '../../../../../bug-filing/types/settings-form-props';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 
@@ -44,9 +48,10 @@ describe('NullIssueFilingService', () => {
     it('renders settings form', () => {
         const Component = NullIssueFilingService.settingsForm;
 
-        const props = {
+        const props: SettingsFormProps<NullIssueFilingServiceSettings> = {
             deps: null,
             settings: null,
+            onPropertyUpdateCallback: () => {},
         };
 
         const wrapper = shallow(<Component {...props} />);

@@ -93,7 +93,6 @@ export class DetailsViewRenderer {
                     scopingActionMessageCreator={this.scopingActionMessageCreator}
                     inspectActionMessageCreator={this.inspectActionMessageCreator}
                     assessmentsProvider={this.assessmentsProvider}
-                    storeState={null}
                 />
             </>,
             detailsViewContainer,

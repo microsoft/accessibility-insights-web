@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
+
 import { Messages } from '../../common/messages';
 import * as TelemetryEvents from '../../common/telemetry-events';
 import { BrowserAdapter } from '../browser-adapter';
@@ -8,6 +9,7 @@ import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import {
     PayloadWithEventName,
+    SaveIssueFilingSettingsPayload,
     SetBugServicePayload,
     SetBugServicePropertyPayload,
     SetHighContrastModePayload,
@@ -70,6 +72,7 @@ export class GlobalActionCreator {
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetBugService, this.onSetBugService);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetBugServiceProperty, this.onSetBugServiceProperty);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetIssueTrackerPath, this.onSetIssueTrackerPath);
+        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SaveIssueFilingSettings, this.onSaveIssueFilingSettings);
     }
 
     @autobind
@@ -158,5 +161,10 @@ export class GlobalActionCreator {
     @autobind
     private onSetIssueTrackerPath(payload: SetIssueTrackerPathPayload): void {
         this.userConfigActions.setIssueTrackerPath.invoke(payload);
+    }
+
+    @autobind
+    private onSaveIssueFilingSettings(payload: SaveIssueFilingSettingsPayload): void {
+        this.userConfigActions.saveIssueFilingSettings.invoke(payload);
     }
 }

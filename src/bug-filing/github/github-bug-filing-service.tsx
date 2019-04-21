@@ -28,7 +28,7 @@ function isSettingsValid(data: GitHubBugFilingSettings): boolean {
 const settingsForm = NamedSFC<SettingsFormProps<GitHubBugFilingSettings>>('BugFilingSettings', props => {
     const onGitHubRepositoryChange = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
         const propertyName: keyof GitHubBugFilingSettings = 'repository';
-        props.deps.userConfigMessageCreator.setBugServiceProperty(GitHubBugFilingServiceKey, propertyName, newValue);
+        props.onPropertyUpdateCallback(GitHubBugFilingServiceKey, propertyName, newValue);
     };
 
     return (

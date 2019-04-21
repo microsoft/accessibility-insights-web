@@ -6,6 +6,7 @@ import {
     AzureBoardsIssueDetailField,
 } from '../../../../../bug-filing/azure-boards/azure-boards-bug-filing-service';
 import { AzureBoardsSettingsForm } from '../../../../../bug-filing/azure-boards/azure-boards-settings-form';
+import { azureBoardsIssueFilingUrlProvider } from '../../../../../bug-filing/azure-boards/create-azure-boards-issue-filing-url';
 import { BugServicePropertiesMap } from '../../../../../common/types/store-data/user-configuration-store';
 
 describe('AzureBoardsBugFilingServiceTest', () => {
@@ -67,9 +68,7 @@ describe('AzureBoardsBugFilingServiceTest', () => {
         expect(AzureBoardsBugFilingService.settingsForm).toBe(AzureBoardsSettingsForm);
     });
 
-    describe('create bug filing url', () => {
-        it.each(invalidTestSettings)('with %o', settings => {
-            expect(AzureBoardsBugFilingService.issueFilingUrlProvider(settings, null, null)).toBeNull();
-        });
+    it('has correct issue filing url property', () => {
+        expect(AzureBoardsBugFilingService.issueFilingUrlProvider).toBe(azureBoardsIssueFilingUrlProvider);
     });
 });
