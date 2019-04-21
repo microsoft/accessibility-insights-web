@@ -3,23 +3,17 @@
 import { ChoiceGroup, IChoiceGroupOption } from 'office-ui-fabric-react/lib/ChoiceGroup';
 import * as React from 'react';
 
-import { UserConfigMessageCreator } from '../../common/message-creators/user-config-message-creator';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { BugFilingService } from '../types/bug-filing-service';
+import { OnSelectedServiceChange } from './bug-filing-settings-container';
 
 export type BugFilingChoiceGroupProps = {
-    deps: BugFilingChoiceGroupDeps;
     selectedBugFilingService: BugFilingService;
     bugFilingServices: BugFilingService[];
-};
-
-export type BugFilingChoiceGroupDeps = {
-    userConfigMessageCreator: UserConfigMessageCreator;
+    onSelectedServiceChange: OnSelectedServiceChange;
 };
 
 export const BugFilingChoiceGroup = NamedSFC<BugFilingChoiceGroupProps>('BugFilingChoiceGroup', props => {
-    const { userConfigMessageCreator } = props.deps;
-
     const getOptions: () => IChoiceGroupOption[] = () => {
         return props.bugFilingServices.map(service => {
             return {
@@ -30,7 +24,7 @@ export const BugFilingChoiceGroup = NamedSFC<BugFilingChoiceGroupProps>('BugFili
     };
 
     const onChange = (ev?: React.FormEvent<HTMLElement | HTMLInputElement>, option?: IChoiceGroupOption) => {
-        userConfigMessageCreator.setBugService(option.key);
+        props.onSelectedServiceChange(option.key);
     };
 
     return (

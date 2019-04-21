@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import {
+    SaveIssueFilingSettingsPayload,
     SetBugServicePayload,
     SetBugServicePropertyPayload,
     SetHighContrastModePayload,
@@ -292,6 +293,23 @@ describe('GlobalActionCreatorTest', () => {
             .setupRegistrationCallback(Messages.UserConfig.SetIssueTrackerPath, args)
             .setupActionsOnUserConfig('setIssueTrackerPath')
             .setupUserConfigActionWithInvokeParameter('setIssueTrackerPath', payload);
+
+        const actionCreator = validator.buildActionCreator();
+        actionCreator.registerCallbacks();
+
+        validator.verifyAll();
+    });
+
+    test('registerCallback for on UserConfig.SaveIssueFilingSettings', () => {
+        const payload: SaveIssueFilingSettingsPayload = {
+            bugServiceName: 'test bug service',
+            bugFilingSettings: { name: 'issueFilingSettings' },
+        };
+        const args = [payload];
+        const validator = new GlobalActionCreatorValidator()
+            .setupRegistrationCallback(Messages.UserConfig.SaveIssueFilingSettings, args)
+            .setupActionsOnUserConfig('saveIssueFilingSettings')
+            .setupUserConfigActionWithInvokeParameter('saveIssueFilingSettings', payload);
 
         const actionCreator = validator.buildActionCreator();
         actionCreator.registerCallbacks();

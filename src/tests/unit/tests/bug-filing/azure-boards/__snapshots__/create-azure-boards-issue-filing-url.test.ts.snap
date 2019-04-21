@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createAzureBoardsIssueFilingUrl creates url uses description field, with tags 1`] = `"https://builded-url"`;
+
+exports[`createAzureBoardsIssueFilingUrl creates url uses description field, without tags 1`] = `"https://builded-url"`;
+
+exports[`createAzureBoardsIssueFilingUrl creates url uses repro steps field, with tags 1`] = `"https://builded-url"`;
+
+exports[`createAzureBoardsIssueFilingUrl creates url uses repro steps field, without tags 1`] = `"https://builded-url"`;

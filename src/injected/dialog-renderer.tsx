@@ -73,6 +73,9 @@ export class DialogRenderer {
                 bugActionMessageCreator: mainWindowContext.getBugActionMessageCreator(),
                 clientBrowserAdapter: this.clientBrowserAdapter,
                 getRTL: this.getRTLFunc,
+                environmentInfoProvider: mainWindowContext.getEnvironmentInfoProvider(),
+                bugFilingServiceProvider: mainWindowContext.getBugFilingServiceProvider(),
+                userConfigMessageCreator: mainWindowContext.getUserConfigMessageCreator(),
             };
 
             this.renderer(

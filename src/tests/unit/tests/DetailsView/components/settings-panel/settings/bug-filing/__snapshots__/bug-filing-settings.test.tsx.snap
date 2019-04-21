@@ -17,6 +17,21 @@ exports[`BugFilingSettings renders 1`] = `
               "forKey": [Function],
               "services": undefined,
             },
+            "userConfigMessageCreator": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "_tabId": undefined,
+              "constructor": [Function],
+              "dispatchMessage": [Function],
+              "dispatchType": [Function],
+              "postMessageDelegate": undefined,
+              "saveIssueFilingSettings": [Function],
+              "sendTelemetry": [Function],
+              "setBugService": [Function],
+              "setBugServiceProperty": [Function],
+              "setHighContrastMode": [Function],
+              "setIssueTrackerPath": [Function],
+              "setTelemetryState": [Function],
+            },
           }
         }
         featureFlagData={Object {}}
@@ -46,8 +61,25 @@ exports[`BugFilingSettings renders 1`] = `
               "forKey": [Function],
               "services": undefined,
             },
+            "userConfigMessageCreator": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "_tabId": undefined,
+              "constructor": [Function],
+              "dispatchMessage": [Function],
+              "dispatchType": [Function],
+              "postMessageDelegate": undefined,
+              "saveIssueFilingSettings": [Function],
+              "sendTelemetry": [Function],
+              "setBugService": [Function],
+              "setBugServiceProperty": [Function],
+              "setHighContrastMode": [Function],
+              "setIssueTrackerPath": [Function],
+              "setTelemetryState": [Function],
+            },
           }
         }
+        onPropertyUpdateCallback={[Function]}
+        onSelectedServiceChange={[Function]}
         selectedBugFilingService={
           Object {
             "buildStoreData": [Function],

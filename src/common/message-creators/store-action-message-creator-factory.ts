@@ -57,6 +57,7 @@ export class StoreActionMessageCreatorFactory {
             Messages.DevTools.Get,
             Messages.Assessment.GetCurrentState,
             Messages.Tab.GetCurrent,
+            Messages.UserConfig.GetCurrentState,
         ];
 
         return new StoreActionMessageCreatorImpl(messages, this.postMessage, this.tabId);
