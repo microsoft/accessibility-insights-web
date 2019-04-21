@@ -24,7 +24,8 @@ exports[`AzureBoardsSettingsForm renders settings is null 1`] = `
         },
       ]
     }
-    selectedKey="reproSteps"
+    placeholder="Select an option"
+    selectedKey={null}
   />
 </React.Fragment>
 `;
@@ -53,6 +54,7 @@ exports[`AzureBoardsSettingsForm renders with projectUrl and issueDetailsField 1
         },
       ]
     }
+    placeholder="Select an option"
     selectedKey="description"
   />
 </React.Fragment>

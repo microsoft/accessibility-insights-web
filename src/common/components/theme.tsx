@@ -14,7 +14,7 @@ export interface ThemeInnerState {
 }
 export type ThemeInnerProps = {
     deps: ThemeDeps;
-    storeState?: ThemeInnerState;
+    storeState: ThemeInnerState;
 };
 export type ThemeDeps = WithStoreSubscriptionDeps<ThemeInnerState> & {
     loadTheme: (theme) => void;

@@ -2,11 +2,10 @@
 // Licensed under the MIT License.
 import { isEmpty } from 'lodash';
 import { IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
-import { EnvironmentInfo } from '../../common/environment-info-provider';
-import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { createSettingsGetter } from '../common/create-settings-getter';
 import { BugFilingService } from '../types/bug-filing-service';
 import { AzureBoardsSettingsForm } from './azure-boards-settings-form';
+import { azureBoardsIssueFilingUrlProvider } from './create-azure-boards-issue-filing-url';
 
 const AzureBoardsBugFilingServiceKey = 'azureBoards';
 
@@ -43,6 +42,5 @@ export const AzureBoardsBugFilingService: BugFilingService<AzureBoardsBugFilingS
     buildStoreData,
     getSettingsFromStoreData: createSettingsGetter(AzureBoardsBugFilingServiceKey),
     isSettingsValid,
-    issueFilingUrlProvider: (data: AzureBoardsBugFilingSettings, bugData: CreateIssueDetailsTextData, environmentInfo: EnvironmentInfo) =>
-        null,
+    issueFilingUrlProvider: azureBoardsIssueFilingUrlProvider,
 };

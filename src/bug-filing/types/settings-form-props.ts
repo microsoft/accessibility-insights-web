@@ -5,4 +5,5 @@ import { SettingsDeps } from './../../DetailsView/components/settings-panel/sett
 export type SettingsFormProps<Settings> = {
     deps: SettingsDeps;
     settings: Settings;
+    onPropertyUpdateCallback: (bugService: string, propertyName: string, propertyValue: string) => void;
 };

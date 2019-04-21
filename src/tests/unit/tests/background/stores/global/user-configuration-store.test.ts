@@ -2,7 +2,9 @@
 // Licensed under the MIT License.
 import { cloneDeep } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
+
 import {
+    SaveIssueFilingSettingsPayload,
     SetBugServicePayload,
     SetBugServicePropertyPayload,
     SetHighContrastModePayload,
@@ -14,7 +16,11 @@ import { IndexedDBDataKeys } from '../../../../../../background/IndexedDBDataKey
 import { UserConfigurationStore } from '../../../../../../background/stores/global/user-configuration-store';
 import { IndexedDBAPI } from '../../../../../../common/indexedDB/indexedDB';
 import { StoreNames } from '../../../../../../common/stores/store-names';
-import { BugServicePropertiesMap, UserConfigurationStoreData } from '../../../../../../common/types/store-data/user-configuration-store';
+import {
+    BugServiceProperties,
+    BugServicePropertiesMap,
+    UserConfigurationStoreData,
+} from '../../../../../../common/types/store-data/user-configuration-store';
 import { StoreTester } from '../../../../common/store-tester';
 
 describe('UserConfigurationStoreTest', () => {
@@ -64,6 +70,28 @@ describe('UserConfigurationStoreTest', () => {
         testSubject.initialize();
 
         expect(testSubject.getState()).toEqual(initialStoreData);
+    });
+
+    test('verify initial state when not null, but new properties introduced in new iteration', () => {
+        const persisted: Partial<UserConfigurationStoreData> = {
+            enableTelemetry: false,
+            isFirstTime: true,
+            enableHighContrast: true,
+        };
+        const expected: UserConfigurationStoreData = {
+            bugService: 'none',
+            bugServicePropertiesMap: {},
+            ...persisted,
+        } as UserConfigurationStoreData;
+        const testSubject = new UserConfigurationStore(
+            persisted as UserConfigurationStoreData,
+            new UserConfigurationActions(),
+            indexDbStrictMock.object,
+        );
+
+        testSubject.initialize();
+
+        expect(testSubject.getState()).toEqual(expected);
     });
 
     test('getDefaultState returns cloned data when initial state is not null', () => {
@@ -273,6 +301,32 @@ describe('UserConfigurationStoreTest', () => {
                 .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
         },
     );
+
+    test('saveIssueFilingSettings', () => {
+        const storeTester = createStoreToTestAction('saveIssueFilingSettings');
+        const serviceName = 'test service';
+        const bugServiceProperties: BugServiceProperties = {
+            name: 'bug settings',
+        };
+        const payload: SaveIssueFilingSettingsPayload = {
+            bugServiceName: serviceName,
+            bugFilingSettings: bugServiceProperties,
+        };
+        const expectedState: UserConfigurationStoreData = {
+            ...initialStoreData,
+            bugService: serviceName,
+            bugServicePropertiesMap: { [serviceName]: bugServiceProperties },
+        };
+
+        indexDbStrictMock
+            .setup(indexDb => indexDb.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)))
+            .verifiable(Times.once());
+
+        storeTester
+            .withActionParam(payload)
+            .withPostListenerMock(indexDbStrictMock)
+            .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
+    });
 
     function createStoreToTestAction(
         actionName: keyof UserConfigurationActions,

@@ -4,6 +4,7 @@ import * as TelemetryEvents from '../../common/telemetry-events';
 import { BaseTelemetryData, TelemetryData, ToggleTelemetryData } from '../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
+import { BugServiceProperties } from '../../common/types/store-data/user-configuration-store';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { TabStopEvent } from '../../injected/tab-stops-listener';
 import { LaunchPanelType } from '../../popup/components/popup-view';
@@ -126,6 +127,10 @@ export interface SetHighContrastModePayload extends BaseActionPayload {
 
 export interface SetBugServicePayload extends BaseActionPayload {
     bugServiceName: string;
+}
+
+export interface SaveIssueFilingSettingsPayload extends SetBugServicePayload {
+    bugFilingSettings: BugServiceProperties;
 }
 
 export interface SetBugServicePropertyPayload extends BaseActionPayload {

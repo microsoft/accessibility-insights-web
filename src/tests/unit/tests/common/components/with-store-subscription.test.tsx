@@ -22,6 +22,7 @@ describe('withStoreSubscription', () => {
                 storeActionMessageCreator: storeActionCreatorMock.object,
                 storesHub: null,
             },
+            storeState: null,
         };
         const WrappedComp = withStoreSubscription<testProps, any>(testComp);
         const rendered = new WrappedComp(props);
@@ -41,6 +42,7 @@ describe('withStoreSubscription', () => {
                 storeActionMessageCreator: storeActionCreatorMock.object,
                 storesHub: storesHubStub,
             },
+            storeState: null,
         };
         const WrappedComp = withStoreSubscription<testProps, any>(testComp);
         const rendered = new WrappedComp(props);
@@ -51,6 +53,7 @@ describe('withStoreSubscription', () => {
         storeActionCreatorMock.setup(d => d.getAllStates()).verifiable(Times.never());
         const props: testProps = {
             deps: null,
+            storeState: null,
         };
         const WrappedComp = withStoreSubscription<testProps, any>(testComp);
         const rendered = new WrappedComp(props);
@@ -67,6 +70,7 @@ describe('withStoreSubscription', () => {
                 storeActionMessageCreator: storeActionCreatorMock.object,
                 storesHub: null,
             },
+            storeState: null,
         };
         const WrappedComp = withStoreSubscription<testProps, any>(testComp);
         const rendered = new WrappedComp(props);
@@ -89,6 +93,7 @@ describe('withStoreSubscription', () => {
                 storeActionMessageCreator: storeActionCreatorMock.object,
                 storesHub: storesHubStub,
             },
+            storeState: null,
         };
         const WrappedComp = withStoreSubscription<testProps, any>(testComp);
         const rendered = new WrappedComp(props);
@@ -113,6 +118,7 @@ describe('withStoreSubscription', () => {
                 storeActionMessageCreator: storeActionCreatorMock.object,
                 storesHub: storesHubStub,
             },
+            storeState: null,
         };
         const WrappedComp = withStoreSubscription<testProps, any>(testComp);
         const rendered = new WrappedComp(props);
@@ -133,6 +139,7 @@ describe('withStoreSubscription', () => {
                 storeActionMessageCreator: storeActionCreatorMock.object,
                 storesHub: null,
             },
+            storeState: null,
         };
         const WrappedComp = withStoreSubscription<testProps, any>(testComp);
         const rendered = new WrappedComp(props);
@@ -154,6 +161,7 @@ describe('withStoreSubscription', () => {
                 storeActionMessageCreator: storeActionCreatorMock.object,
                 storesHub: storesHubStub,
             },
+            storeState: null,
         };
         const WrappedComp = withStoreSubscription<testProps, any>(testComp);
         const rendered = new WrappedComp(props);
@@ -183,6 +191,7 @@ describe('withStoreSubscription', () => {
                 storeActionMessageCreator: storeActionCreatorMock.object,
                 storesHub: storesHubStub,
             },
+            storeState: null,
         };
         const WrappedComp = withStoreSubscription<testProps, any>(testComp);
         const rendered = new WrappedComp(props);
@@ -215,6 +224,7 @@ describe('withStoreSubscription', () => {
                 storeActionMessageCreator: storeActionCreatorMock.object,
                 storesHub: storesHubStub,
             },
+            storeState: null,
         };
         const WrappedComp = withStoreSubscription<WithStoreSubscriptionProps<any>, any>(testComp);
         const rendered = shallow(<WrappedComp {...props} />);

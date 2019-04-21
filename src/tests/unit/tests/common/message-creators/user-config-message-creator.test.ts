@@ -1,7 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+
 import {
+    SaveIssueFilingSettingsPayload,
     SetBugServicePayload,
     SetBugServicePropertyPayload,
     SetHighContrastModePayload,
@@ -11,6 +13,7 @@ import {
 import { Message } from '../../../../../common/message';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { Messages } from '../../../../../common/messages';
+import { BugServiceProperties } from '../../../../../common/types/store-data/user-configuration-store';
 
 describe('UserConfigMessageCreator', () => {
     let postMessageMock: IMock<(message: Message) => void>;
@@ -115,6 +118,26 @@ describe('UserConfigMessageCreator', () => {
         postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
 
         testSubject.setBugServiceProperty(payload.bugServiceName, payload.propertyName, payload.propertyValue);
+
+        postMessageMock.verifyAll();
+    });
+
+    test('saveIssueFilingSettings', () => {
+        const bugServiceName = 'UserConfigMessageCreatorTest bug service name';
+        const bugFilingSettings: BugServiceProperties = { name: 'bugFilingSettings' };
+        const payload: SaveIssueFilingSettingsPayload = {
+            bugServiceName,
+            bugFilingSettings: bugFilingSettings,
+        };
+        const expectedMessage = {
+            tabId: 1,
+            messageType: Messages.UserConfig.SaveIssueFilingSettings,
+            payload,
+        };
+
+        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
+
+        testSubject.saveIssueFilingSettings(bugServiceName, bugFilingSettings);
 
         postMessageMock.verifyAll();
     });
