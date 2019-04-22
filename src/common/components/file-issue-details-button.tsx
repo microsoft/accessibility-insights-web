@@ -55,7 +55,13 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
         const body = this.props.deps.issueDetailsTextGenerator.buildGithubText(data);
 
         const encodedIssue = `/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
-        return `${this.props.issueTrackerPath}${encodedIssue}`;
+        let baseUrl = this.props.issueTrackerPath;
+
+        if (baseUrl.indexOf('/issues') == -1) {
+            baseUrl += '/issues';
+        }
+
+        return `${baseUrl}${encodedIssue}`;
     }
 
     @autobind
