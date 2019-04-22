@@ -3,8 +3,9 @@
 import { EnvironmentInfo } from '../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { title } from '../../content/strings/application';
-import { getIssueDetailsHtml } from '../common/get-issue-details-html';
+import { HTMLFactory } from '../common/html-factory';
 import { HTTPQueryBuilder } from '../common/http-query-builder';
+import { createIssueDetailsBuilder } from '../common/issue-details-builder';
 import { IssueDetailsGetter } from '../common/issue-details-getter';
 import { IssueFilingUrlStringUtils, IssueUrlCreationUtils } from '../common/issue-filing-url-string-utils';
 import { AzureBoardsBugFilingSettings } from './azure-boards-bug-filing-service';
@@ -43,6 +44,6 @@ export const createAzureBoardsIssueFilingUrlProvider = (
 
 export const azureBoardsIssueFilingUrlProvider = createAzureBoardsIssueFilingUrlProvider(
     IssueFilingUrlStringUtils,
-    getIssueDetailsHtml,
+    createIssueDetailsBuilder(HTMLFactory),
     () => new HTTPQueryBuilder(),
 );
