@@ -3,18 +3,11 @@
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { IssueFilingUrlStringUtils } from './../../../../../bug-filing/common/issue-filing-url-string-utils';
-import { EnvironmentInfo } from './../../../../../common/environment-info-provider';
 
 describe('BugFilingUrlStringUtilsTest', () => {
-    let environmentInfo: EnvironmentInfo;
     let sampleIssueDetailsData: CreateIssueDetailsTextData;
 
     beforeEach(() => {
-        environmentInfo = {
-            extensionVersion: '1.1.1',
-            axeCoreVersion: '2.2.2',
-            browserSpec: 'test spec',
-        };
         sampleIssueDetailsData = {
             pageTitle: 'pageTitle<x>',
             pageUrl: 'pageUrl',
@@ -40,18 +33,6 @@ describe('BugFilingUrlStringUtilsTest', () => {
             sampleIssueDetailsData.ruleResult.guidanceLinks = [];
             expect(IssueFilingUrlStringUtils.getTitle(sampleIssueDetailsData)).toMatchSnapshot();
         });
-    });
-
-    test('getFooter', () => {
-        expect(IssueFilingUrlStringUtils.getFooter(environmentInfo)).toMatchSnapshot();
-    });
-
-    test('collapseConsecutiveSpaces', () => {
-        expect(IssueFilingUrlStringUtils.collapseConsecutiveSpaces('This    is   a  test   string')).toEqual('This is a test string');
-    });
-
-    test('markdownEscapeBlock', () => {
-        expect(IssueFilingUrlStringUtils.formatAsMarkdownCodeBlock('hello\nworld')).toEqual('    hello\n    world');
     });
 
     test('appendSuffixToUrl', () => {
