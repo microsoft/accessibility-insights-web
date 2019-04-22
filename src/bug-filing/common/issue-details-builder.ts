@@ -7,35 +7,28 @@ import { title } from '../../content/strings/application';
 import { IssueDetailsGetter } from './issue-details-getter';
 
 export const createIssueDetailsBuilder = (markup: MarkupFactory): IssueDetailsGetter => {
-    const buildHowToFix = (failureSummary: string): string => {
-        return failureSummary
-            .split('\n')
-            .map(line => `    ${line}`)
-            .join('\n');
-    };
-
     const getter = (stringUtils, environmentInfo: EnvironmentInfo, data: CreateIssueDetailsTextData): string => {
         const result = data.ruleResult;
 
         const text = [
             `${markup.bold('Issue')}: ${markup.snippet(result.help)} (${markup.link(result.helpUrl, result.ruleId)})`,
-            ``,
-            `${markup.bold('Target application')}: [${data.pageTitle}](${data.pageUrl})`,
-            ``,
+            markup.sectionSeparator(),
+            `${markup.bold('Target application')}: ${markup.link(data.pageUrl, data.pageTitle)}`,
+            markup.sectionSeparator(),
             `${markup.bold('Element path')}: ${data.ruleResult.selector}`,
-            ``,
+            markup.sectionSeparator(),
             `${markup.bold('Snippet')}:`,
             `${markup.snippet(result.snippet)}`,
-            ``,
+            markup.sectionSeparator(),
             `${markup.bold('How to fix')}:`,
-            ``,
-            `${buildHowToFix(result.failureSummary)}`,
-            ``,
+            markup.sectionSeparator(),
+            `${markup.howToFixSection(result.failureSummary)}`,
+            markup.sectionSeparator(),
             `${markup.bold('Environment')}:`,
             `${environmentInfo.browserSpec}`,
-            ``,
+            markup.sectionSeparator(),
             `====`,
-            ``,
+            markup.sectionSeparator(),
             `This accessibility issue was found using ${title} ` +
                 `${environmentInfo.extensionVersion} (axe-core ${environmentInfo.axeCoreVersion}), ` +
                 'a tool that helps find and fix accessibility issues. Get more information & download ' +

@@ -2,22 +2,22 @@
 
 exports[`Name of the group build issue details 1`] = `
 "b-Issue-b: s-RR-help-s (l-RR-help-url-RR-rule-id-l)
-
-b-Target application-b: [pageTitle<x>](pageUrl)
-
+-nl-
+b-Target application-b: l-pageUrl-pageTitle<x>-l
+-nl-
 b-Element path-b: RR-selector<x>
-
+-nl-
 b-Snippet-b:
 s-RR-snippet   space-s
-
+-nl-
 b-How to fix-b:
-
-    RR-failureSummary
-
+-nl-
+h-t--RR-failureSummary--h-t
+-nl-
 b-Environment-b:
 test spec
-
+-nl-
 ====
-
+-nl-
 This accessibility issue was found using Accessibility Insights for Web 1.1.1 (axe-core 2.2.2), a tool that helps find and fix accessibility issues. Get more information & download this tool at l-http://aka.ms/AccessibilityInsights-l."
 `;
