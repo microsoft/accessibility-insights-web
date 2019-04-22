@@ -35,7 +35,8 @@ describe('Name of the group', () => {
         markupMock.setup(factory => factory.snippet(It.isAnyString())).returns(text => `s-${text}-s`);
         markupMock.setup(factory => factory.link(It.isAnyString(), It.isAnyString())).returns((href, text) => `l-${href}-${text}-l`);
         markupMock.setup(factory => factory.link(It.isAnyString())).returns(href => `l-${href}-l`);
-        markupMock.setup(factory => factory.sectionSeparator()).returns(() => '-nl-');
+        markupMock.setup(factory => factory.sectionSeparator()).returns(() => '-ss-');
+        markupMock.setup(factory => factory.newLine()).returns(() => '-nl-');
         markupMock.setup(factory => factory.howToFixSection(It.isAnyString())).returns(text => `h-t--${text}--h-t`);
     });
 

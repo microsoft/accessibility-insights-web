@@ -6,5 +6,6 @@ export type MarkupFactory = {
     snippet(text: string): string;
     link(href: string, text?: string): string;
     sectionSeparator(): string;
+    newLine(): string;
     howToFixSection(failureSummary: string): string;
 };

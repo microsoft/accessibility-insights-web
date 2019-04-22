@@ -27,6 +27,10 @@ const createFactory = (): MarkupFactory => {
         return '<br><br>';
     };
 
+    const newLine = () => {
+        return '<br>';
+    };
+
     const howToFixSection = (failureSummary: string): string => {
         return escape(failureSummary)
             .replace(/\n  /g, '<br>- ')
@@ -39,6 +43,7 @@ const createFactory = (): MarkupFactory => {
         snippet,
         link,
         sectionSeparator,
+        newLine,
         howToFixSection,
     };
 };
