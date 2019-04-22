@@ -47,9 +47,7 @@ describe('createGitHubBugFilingUrlTest', () => {
         stringUtilsMock.setup(utils => utils.appendSuffixToUrl(settingsData.repository, 'issues')).returns(() => 'test appendSuffixToUrl');
 
         issueDetailsGetter = Mock.ofType<IssueDetailsGetter>();
-        issueDetailsGetter
-            .setup(getter => getter(stringUtilsMock.object, environmentInfo, sampleIssueDetailsData))
-            .returns(() => 'test issue details');
+        issueDetailsGetter.setup(getter => getter(environmentInfo, sampleIssueDetailsData)).returns(() => 'test issue details');
         testObject = createGitHubIssueFilingUrlProvider(stringUtilsMock.object, issueDetailsGetter.object);
     });
 

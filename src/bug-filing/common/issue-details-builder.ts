@@ -7,7 +7,7 @@ import { IssueDetailsGetter } from './issue-details-getter';
 import { MarkupFactory } from './markup-factory';
 
 export const createIssueDetailsBuilder = (markup: MarkupFactory): IssueDetailsGetter => {
-    const getter = (stringUtils, environmentInfo: EnvironmentInfo, data: CreateIssueDetailsTextData): string => {
+    const getter = (environmentInfo: EnvironmentInfo, data: CreateIssueDetailsTextData): string => {
         const result = data.ruleResult;
 
         const text = [

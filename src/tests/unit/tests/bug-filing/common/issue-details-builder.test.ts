@@ -43,7 +43,7 @@ describe('Name of the group', () => {
     it('build issue details', () => {
         const testSubject = createIssueDetailsBuilder(markupMock.object);
 
-        const result = testSubject(null, environmentInfo, sampleIssueDetailsData);
+        const result = testSubject(environmentInfo, sampleIssueDetailsData);
 
         expect(result).toMatchSnapshot();
     });

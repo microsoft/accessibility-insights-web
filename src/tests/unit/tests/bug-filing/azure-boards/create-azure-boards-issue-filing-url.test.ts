@@ -56,9 +56,7 @@ describe('createAzureBoardsIssueFilingUrl', () => {
         stringUtilsMock.setup(utils => utils.getTitle(sampleIssueDetailsData)).returns(() => testTitle);
 
         issueDetailsGetterMock = Mock.ofType<IssueDetailsGetter>();
-        issueDetailsGetterMock
-            .setup(getter => getter(stringUtilsMock.object, environmentInfo, sampleIssueDetailsData))
-            .returns(() => testIssueDetails);
+        issueDetailsGetterMock.setup(getter => getter(environmentInfo, sampleIssueDetailsData)).returns(() => testIssueDetails);
 
         queryBuilderMock = Mock.ofType<HTTPQueryBuilder>();
 

@@ -24,7 +24,7 @@ export const createAzureBoardsIssueFilingUrlProvider = (
         const titleField = stringUtils.getTitle(bugData);
         const standardTags = stringUtils.standardizeTags(bugData);
         const tags = buildTags(bugData, standardTags);
-        const body = issueDetailsGetter(stringUtils, environmentInfo, bugData);
+        const body = issueDetailsGetter(environmentInfo, bugData);
 
         let bodyField: string = '[Microsoft.VSTS.TCM.ReproSteps]';
 
