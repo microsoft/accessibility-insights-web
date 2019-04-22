@@ -105,7 +105,7 @@
 
     .insights-dialog-main-override button {
         // This is to prevent conflicts with target page CSS, see issue #578
-        border: 0;
+        border: 0 !important;
     }
 
     .insights-dialog-main-override .insights-dialog-button-inspect svg path {
