@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { MarkupFactory } from './markup-factory';
 import { EnvironmentInfo } from '../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { title } from '../../content/strings/application';
 import { IssueDetailsGetter } from './issue-details-getter';
+import { MarkupFactory } from './markup-factory';
 
 export const createIssueDetailsBuilder = (markup: MarkupFactory): IssueDetailsGetter => {
     const getter = (stringUtils, environmentInfo: EnvironmentInfo, data: CreateIssueDetailsTextData): string => {

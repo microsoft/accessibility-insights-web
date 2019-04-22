@@ -26,7 +26,7 @@ describe('Name of the group', () => {
         browserSpec: 'test spec',
     };
 
-    let markupMock = Mock.ofType<MarkupFactory>(null, MockBehavior.Strict);
+    const markupMock = Mock.ofType<MarkupFactory>(null, MockBehavior.Strict);
 
     beforeEach(() => {
         markupMock.reset();

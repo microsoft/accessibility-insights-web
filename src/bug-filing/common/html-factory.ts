@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { MarkupFactory } from './markup-factory';
 import { escape } from 'lodash';
+import { MarkupFactory } from './markup-factory';
 
 const createFactory = (): MarkupFactory => {
     const bold = (text: string): string => {
