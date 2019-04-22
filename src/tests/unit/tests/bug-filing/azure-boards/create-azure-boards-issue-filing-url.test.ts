@@ -5,7 +5,7 @@ import { IMock, Mock } from 'typemoq';
 import { AzureBoardsBugFilingSettings } from '../../../../../bug-filing/azure-boards/azure-boards-bug-filing-service';
 import { createAzureBoardsIssueFilingUrlProvider } from '../../../../../bug-filing/azure-boards/create-azure-boards-issue-filing-url';
 import { HTTPQueryBuilder } from '../../../../../bug-filing/common/http-query-builder';
-import { IssueDetailsGetter } from '../../../../../bug-filing/common/issue-details-getter';
+import { IssueDetailsBuilder } from '../../../../../bug-filing/common/issue-details-builder';
 import { IssueUrlCreationUtils } from '../../../../../bug-filing/common/issue-filing-url-string-utils';
 import { IssueFilingUrlProvider } from '../../../../../bug-filing/types/bug-filing-service';
 import { EnvironmentInfo } from '../../../../../common/environment-info-provider';
@@ -19,7 +19,7 @@ describe('createAzureBoardsIssueFilingUrl', () => {
     let sampleIssueDetailsData;
     let settingsData: AzureBoardsBugFilingSettings;
     let stringUtilsMock: IMock<IssueUrlCreationUtils>;
-    let issueDetailsGetterMock: IMock<IssueDetailsGetter>;
+    let issueDetailsGetterMock: IMock<IssueDetailsBuilder>;
     let queryBuilderMock: IMock<HTTPQueryBuilder>;
 
     let testSubject: IssueFilingUrlProvider<AzureBoardsBugFilingSettings>;
@@ -55,7 +55,7 @@ describe('createAzureBoardsIssueFilingUrl', () => {
         const testTitle = 'test title';
         stringUtilsMock.setup(utils => utils.getTitle(sampleIssueDetailsData)).returns(() => testTitle);
 
-        issueDetailsGetterMock = Mock.ofType<IssueDetailsGetter>();
+        issueDetailsGetterMock = Mock.ofType<IssueDetailsBuilder>();
         issueDetailsGetterMock.setup(getter => getter(environmentInfo, sampleIssueDetailsData)).returns(() => testIssueDetails);
 
         queryBuilderMock = Mock.ofType<HTTPQueryBuilder>();
