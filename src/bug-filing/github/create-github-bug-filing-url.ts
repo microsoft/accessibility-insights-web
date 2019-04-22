@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { createIssueDetailsBuilder } from '../common/create-issue-details-builder';
 import { IssueDetailsBuilder } from '../common/issue-details-builder';
-import { MarkdownFactory } from '../common/markdown-factory';
+import { MarkdownFactory } from '../common/markup/markdown-factory';
 import { EnvironmentInfo } from './../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from './../../common/types/create-issue-details-text-data';
 import { IssueFilingUrlStringUtils, IssueUrlCreationUtils } from './../common/issue-filing-url-string-utils';

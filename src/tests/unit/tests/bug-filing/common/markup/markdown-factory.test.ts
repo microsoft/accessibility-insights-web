@@ -1,34 +1,34 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { repeat } from 'lodash';
-import { HTMLFactory } from '../../../../../bug-filing/common/html-factory';
+import { MarkdownFactory } from '../../../../../../bug-filing/common/markup/markdown-factory';
 
-describe('HTMLFactory', () => {
-    const testSubject = HTMLFactory;
+describe('MarkdownFactory', () => {
+    const testSubject = MarkdownFactory;
 
     it('applies bold to text', () => {
         const result = testSubject.bold('text');
 
-        expect(result).toEqual('<b>text</b>');
+        expect(result).toEqual('**text**');
     });
 
     it('returns section separator', () => {
-        expect(testSubject.sectionSeparator()).toEqual('<br><br>');
+        expect(testSubject.sectionSeparator()).toEqual('');
     });
 
     it('returns how to fix section', () => {
-        const failureSummary = 'fix\n  1\n 2\n3\n4';
+        const failureSummary = 'fix\n1\n2\n3\n4';
 
         const result = testSubject.howToFixSection(failureSummary);
 
-        expect(result).toEqual('fix<br>- 1<br> 2<br>3<br>4');
+        expect(result).toEqual('    fix\n    1\n    2\n    3\n    4');
     });
 
     describe('creates snippet', () => {
         it('handles short snippet text', () => {
             const result = testSubject.snippet('this is code');
 
-            expect(result).toEqual('<code>this is code</code>');
+            expect(result).toEqual(`\`this is code\``);
         });
 
         it('handles long snippet text', () => {
@@ -38,15 +38,8 @@ describe('HTMLFactory', () => {
 
             let expected = repeat('a', 256);
             expected = expected + '...';
-            expected = `<code>${expected}</code>`;
+            expected = `\`${expected}\``;
 
-            expect(result).toEqual(expected);
-        });
-
-        it('escapes properly', () => {
-            const result = testSubject.snippet('<div>text</div>');
-
-            const expected = '<code>&lt;div&gt;text&lt;/div&gt;</code>';
             expect(result).toEqual(expected);
         });
     });
@@ -55,13 +48,13 @@ describe('HTMLFactory', () => {
         it('handles href only', () => {
             const result = testSubject.link('test-href');
 
-            expect(result).toEqual('<a href="test-href">test-href</a>');
+            expect(result).toEqual(`[test-href](test-href)`);
         });
 
         it('handles href and text', () => {
             const result = testSubject.link('test-href', 'test-text');
 
-            expect(result).toEqual('<a href="test-href">test-text</a>');
+            expect(result).toEqual('[test-text](test-href)');
         });
     });
 });

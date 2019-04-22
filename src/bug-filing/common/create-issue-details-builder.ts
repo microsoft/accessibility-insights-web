@@ -4,7 +4,7 @@ import { EnvironmentInfo } from '../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { title } from '../../content/strings/application';
 import { IssueDetailsBuilder } from './issue-details-builder';
-import { MarkupFactory } from './markup-factory';
+import { MarkupFactory } from './markup/markup-factory';
 
 export const createIssueDetailsBuilder = (markup: MarkupFactory): IssueDetailsBuilder => {
     const getter = (environmentInfo: EnvironmentInfo, data: CreateIssueDetailsTextData): string => {

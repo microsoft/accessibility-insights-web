@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { It, Mock, MockBehavior } from 'typemoq';
 import { createIssueDetailsBuilder } from '../../../../../bug-filing/common/create-issue-details-builder';
-import { MarkupFactory } from '../../../../../bug-filing/common/markup-factory';
+import { MarkupFactory } from '../../../../../bug-filing/common/markup/markup-factory';
 import { EnvironmentInfo } from '../../../../../common/environment-info-provider';
 
 describe('Name of the group', () => {
