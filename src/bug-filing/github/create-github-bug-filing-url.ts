@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { getIssueDetailsMarkdown } from '../common/get-issue-details-markdown';
+import { createIssueDetailsBuilder } from '../common/issue-details-builder';
 import { IssueDetailsGetter } from '../common/issue-details-getter';
+import { MarkdownFactory } from '../common/markdown-factory';
 import { EnvironmentInfo } from './../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from './../../common/types/create-issue-details-text-data';
 import { IssueFilingUrlStringUtils, IssueUrlCreationUtils } from './../common/issue-filing-url-string-utils';
@@ -17,4 +18,7 @@ export const createGitHubIssueFilingUrlProvider = (stringUtils: IssueUrlCreation
     };
 };
 
-export const gitHubIssueFilingUrlProvider = createGitHubIssueFilingUrlProvider(IssueFilingUrlStringUtils, getIssueDetailsMarkdown);
+export const gitHubIssueFilingUrlProvider = createGitHubIssueFilingUrlProvider(
+    IssueFilingUrlStringUtils,
+    createIssueDetailsBuilder(MarkdownFactory),
+);

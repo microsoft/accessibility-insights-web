@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { EnvironmentInfo } from '../../../../../common/environment-info-provider';
-import { Mock, It, MockBehavior } from 'typemoq';
-import { IssueDetailsBuilder } from '../../../../../bug-filing/common/issue-details-builder';
+import { It, Mock, MockBehavior } from 'typemoq';
+import { createIssueDetailsBuilder } from '../../../../../bug-filing/common/issue-details-builder';
 import { MarkupFactory } from '../../../../../bug-filing/common/markup-factory';
+import { EnvironmentInfo } from '../../../../../common/environment-info-provider';
 
 describe('Name of the group', () => {
     const sampleIssueDetailsData = {
@@ -38,9 +38,9 @@ describe('Name of the group', () => {
     });
 
     it('build issue details', () => {
-        const testSubject = new IssueDetailsBuilder(markupMock.object);
+        const testSubject = createIssueDetailsBuilder(markupMock.object);
 
-        const result = testSubject.build(null, environmentInfo, sampleIssueDetailsData);
+        const result = testSubject(null, environmentInfo, sampleIssueDetailsData);
 
         expect(result).toMatchSnapshot();
     });

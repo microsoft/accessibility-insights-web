@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Mock } from 'typemoq';
+import { IMock, Mock } from 'typemoq';
+
 import { IssueDetailsGetter } from '../../../../../bug-filing/common/issue-details-getter';
 import { createGitHubIssueFilingUrlProvider } from '../../../../../bug-filing/github/create-github-bug-filing-url';
 import { IssueFilingUrlProvider } from '../../../../../bug-filing/types/bug-filing-service';
@@ -43,7 +44,6 @@ describe('createGitHubBugFilingUrlTest', () => {
         stringUtilsMock = Mock.ofType<IssueUrlCreationUtils>();
 
         stringUtilsMock.setup(utils => utils.getTitle(sampleIssueDetailsData)).returns(() => 'test title');
-        stringUtilsMock.setup(utils => utils.getSelectorLastPart(It.isAny())).returns(() => 'last part');
         stringUtilsMock.setup(utils => utils.appendSuffixToUrl(settingsData.repository, 'issues')).returns(() => 'test appendSuffixToUrl');
 
         issueDetailsGetter = Mock.ofType<IssueDetailsGetter>();
@@ -53,17 +53,7 @@ describe('createGitHubBugFilingUrlTest', () => {
         testObject = createGitHubIssueFilingUrlProvider(stringUtilsMock.object, issueDetailsGetter.object);
     });
 
-    it('create url: without tags', () => {
-        stringUtilsMock.setup(utils => utils.standardizeTags(sampleIssueDetailsData)).returns(() => []);
-
-        const result = testObject(settingsData, sampleIssueDetailsData, environmentInfo);
-
-        expect(result).toMatchSnapshot();
-    });
-
-    it('creates url: with tags', () => {
-        stringUtilsMock.setup(utils => utils.standardizeTags(sampleIssueDetailsData)).returns(() => ['TAG1', 'TAG2']);
-
+    it('creates url', () => {
         const result = testObject(settingsData, sampleIssueDetailsData, environmentInfo);
 
         expect(result).toMatchSnapshot();

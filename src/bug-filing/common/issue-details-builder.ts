@@ -4,13 +4,18 @@ import { MarkupFactory } from './markup-factory';
 import { EnvironmentInfo } from '../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { title } from '../../content/strings/application';
+import { IssueDetailsGetter } from './issue-details-getter';
 
-export class IssueDetailsBuilder {
-    constructor(private readonly markup: MarkupFactory) {}
+export const createIssueDetailsBuilder = (markup: MarkupFactory): IssueDetailsGetter => {
+    const buildHowToFix = (failureSummary: string): string => {
+        return failureSummary
+            .split('\n')
+            .map(line => `    ${line}`)
+            .join('\n');
+    };
 
-    public build = (stringUtils, environmentInfo: EnvironmentInfo, data: CreateIssueDetailsTextData): string => {
+    const getter = (stringUtils, environmentInfo: EnvironmentInfo, data: CreateIssueDetailsTextData): string => {
         const result = data.ruleResult;
-        const markup = this.markup;
 
         const text = [
             `${markup.bold('Issue')}: ${markup.snippet(result.help)} (${markup.link(result.helpUrl, result.ruleId)})`,
@@ -24,7 +29,7 @@ export class IssueDetailsBuilder {
             ``,
             `${markup.bold('How to fix')}:`,
             ``,
-            `${this.buildHowToFix(result.failureSummary)}`,
+            `${buildHowToFix(result.failureSummary)}`,
             ``,
             `${markup.bold('Environment')}:`,
             `${environmentInfo.browserSpec}`,
@@ -40,10 +45,5 @@ export class IssueDetailsBuilder {
         return text;
     };
 
-    private buildHowToFix(failureSummary: string): string {
-        return failureSummary
-            .split('\n')
-            .map(line => `    ${line}`)
-            .join('\n');
-    }
-}
+    return getter;
+};

@@ -1,5 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`createGitHubBugFilingUrlTest create url: without tags 1`] = `"test appendSuffixToUrl/new?title=test%20title&body=test%20issue%20details"`;
-
-exports[`createGitHubBugFilingUrlTest creates url: with tags 1`] = `"test appendSuffixToUrl/new?title=test%20title&body=test%20issue%20details"`;
+exports[`createGitHubBugFilingUrlTest creates url 1`] = `"test appendSuffixToUrl/new?title=test%20title&body=test%20issue%20details"`;
