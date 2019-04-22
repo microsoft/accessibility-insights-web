@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { size } from 'lodash';
 import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 import { Dialog, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
@@ -226,6 +227,10 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
     }
 
     private renderNextAndBackButton(): JSX.Element {
+        if (size(this.props.failedRules) <= 1) {
+            return null;
+        }
+
         return (
             <div className="ms-Grid">
                 <div className="ms-Grid-row">

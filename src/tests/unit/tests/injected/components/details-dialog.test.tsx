@@ -43,14 +43,16 @@ describe('DetailsDialogTest', () => {
         testRender(false, false, 'help-relative', 'http://extension/help-relative');
     });
 
-    function testRender(
-        isDevToolOpen: boolean,
-        shadowDialog: boolean,
-        helpUrl = 'http://extension/help1',
-        expectedHelpUrl = 'http://extension/help1',
-    ): void {
+    test('render: more than one failure on the same element', () => {
+        const failedRules = {};
+        failedRules['rule-1'] = createFailedRules('1', 'help-relative-1');
+        failedRules['rule-2'] = createFailedRules('2', 'help-relative-2');
+
+        testRender(false, false, 'help-relative', 'http://extension/help-relative', failedRules);
+    });
+
+    function createFailedRules(ruleId: string, helpUrl: string): DecoratedAxeNodeResult {
         const fingerprint: string = '12345678-9ABC-1234-1234-123456789ABC';
-        const ruleId: string = 'ruleId';
         const help: string = 'help';
         const expectedNodeResult: DecoratedAxeNodeResult = {
             any: [],
@@ -68,8 +70,24 @@ describe('DetailsDialogTest', () => {
             helpUrl,
             snippet: 'html',
         };
-        const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
-        expectedFailedRules[ruleId] = expectedNodeResult;
+        return expectedNodeResult;
+    }
+
+    function testRender(
+        isDevToolOpen: boolean,
+        shadowDialog: boolean,
+        helpUrl = 'http://extension/help1',
+        expectedHelpUrl = 'http://extension/help1',
+        expectedFailedRules?: DictionaryStringTo<DecoratedAxeNodeResult>,
+    ): void {
+        const ruleId: string = 'ruleId';
+        let _expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult>;
+        if (expectedFailedRules != null) {
+            _expectedFailedRules = expectedFailedRules;
+        } else {
+            _expectedFailedRules = {};
+            _expectedFailedRules[ruleId] = createFailedRules(ruleId, helpUrl);
+        }
 
         const dialogDetailsHandlerMockObject = {
             getRuleUrl: () => 'test-url',
@@ -95,7 +113,7 @@ describe('DetailsDialogTest', () => {
         const props: DetailsDialogProps = {
             deps,
             elementSelector: ruleId,
-            failedRules: expectedFailedRules,
+            failedRules: _expectedFailedRules,
             target: [],
             dialogHandler: dialogDetailsHandlerMockObject as any,
             featureFlagStoreData: {

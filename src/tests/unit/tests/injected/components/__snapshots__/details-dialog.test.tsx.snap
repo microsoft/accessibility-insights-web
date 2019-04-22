@@ -223,41 +223,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
         checks={Array []}
       />
     </div>
-    <div
-      className="ms-Grid"
-    >
-      <div
-        className="ms-Grid-row"
-      >
-        <div
-          className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left"
-        >
-          <CustomizedPrimaryButton
-            data-automation-id="back"
-            disabled={true}
-            onClick={Object {}}
-            text="< Back"
-          />
-        </div>
-        <div
-          className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 insights-dialog-footer"
-        >
-          <div>
-            Failure 1 of 1 for this target
-          </div>
-        </div>
-        <div
-          className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-right"
-        >
-          <CustomizedPrimaryButton
-            data-automation-id="next"
-            disabled={true}
-            onClick={Object {}}
-            text="Next >"
-          />
-        </div>
-      </div>
-    </div>
   </div>
 </StyledWithResponsiveMode>
 `;
@@ -602,41 +567,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
           checks={Array []}
         />
       </div>
-      <div
-        className="ms-Grid"
-      >
-        <div
-          className="ms-Grid-row"
-        >
-          <div
-            className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left"
-          >
-            <CustomizedPrimaryButton
-              data-automation-id="back"
-              disabled={true}
-              onClick={null}
-              text="< Back"
-            />
-          </div>
-          <div
-            className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 insights-dialog-footer"
-          >
-            <div>
-              Failure 1 of 1 for this target
-            </div>
-          </div>
-          <div
-            className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-right"
-          >
-            <CustomizedPrimaryButton
-              data-automation-id="next"
-              disabled={true}
-              onClick={null}
-              text="Next >"
-            />
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </div>
@@ -967,41 +897,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
         checkType={1}
         checks={Array []}
       />
-    </div>
-    <div
-      className="ms-Grid"
-    >
-      <div
-        className="ms-Grid-row"
-      >
-        <div
-          className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left"
-        >
-          <CustomizedPrimaryButton
-            data-automation-id="back"
-            disabled={true}
-            onClick={Object {}}
-            text="< Back"
-          />
-        </div>
-        <div
-          className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 insights-dialog-footer"
-        >
-          <div>
-            Failure 1 of 1 for this target
-          </div>
-        </div>
-        <div
-          className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-right"
-        >
-          <CustomizedPrimaryButton
-            data-automation-id="next"
-            disabled={true}
-            onClick={Object {}}
-            text="Next >"
-          />
-        </div>
-      </div>
     </div>
   </div>
 </StyledWithResponsiveMode>
@@ -1342,41 +1237,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
           checks={Array []}
         />
       </div>
-      <div
-        className="ms-Grid"
-      >
-        <div
-          className="ms-Grid-row"
-        >
-          <div
-            className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left"
-          >
-            <CustomizedPrimaryButton
-              data-automation-id="back"
-              disabled={true}
-              onClick={null}
-              text="< Back"
-            />
-          </div>
-          <div
-            className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 insights-dialog-footer"
-          >
-            <div>
-              Failure 1 of 1 for this target
-            </div>
-          </div>
-          <div
-            className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-right"
-          >
-            <CustomizedPrimaryButton
-              data-automation-id="next"
-              disabled={true}
-              onClick={null}
-              text="Next >"
-            />
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </div>
@@ -1481,6 +1341,378 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true }:
 `;
 
 exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true }: verify initial state 1`] = `
+Object {
+  "canInspect": true,
+  "currentRuleIndex": 0,
+  "issueTrackerPath": "",
+  "showDialog": true,
+  "userConfigurationStoreData": null,
+}
+`;
+
+exports[`DetailsDialogTest render: more than one failure on the same element 1`] = `
+<StyledWithResponsiveMode
+  dialogContentProps={
+    Object {
+      "showCloseButton": false,
+      "topButtonsProps": Array [
+        Object {
+          "ariaLabel": "Close",
+          "onClick": Object {},
+          "onRenderIcon": [Function],
+        },
+      ],
+      "type": 0,
+    }
+  }
+  hidden={false}
+  modalProps={
+    Object {
+      "containerClassName": "insights-dialog-main-container",
+      "isBlocking": false,
+      "layerProps": Object {
+        "className": "insights-dialog-main-override",
+        "hostId": "insights-dialog-layer-host",
+        "onLayerDidMount": Object {},
+      },
+    }
+  }
+  onDismiss={Object {}}
+  title="help"
+>
+  <div>
+    <div
+      className="insights-dialog-rule-container"
+    >
+      <StatusErrorFullIcon />
+      <span
+        className="ms-fontSize-mPlus insights-dialog-rule-link"
+      >
+        Rule name: 
+        <NewTabLink
+          href="http://extension/help-relative"
+        >
+          1
+        </NewTabLink>
+      </span>
+    </div>
+    <div
+      className="insights-dialog-target-container"
+    >
+      <div
+        className="ms-fontWeight-semibold"
+      >
+        Path:
+      </div>
+      <div
+        className="insights-dialog-instance-selector"
+      >
+        ruleId
+      </div>
+      <div
+        className="insights-dialog-target-button-container"
+      >
+        <CustomizedDefaultButton
+          className="insights-dialog-button-inspect"
+          disabled={true}
+          onClick={[Function]}
+        >
+          <FileHTMLIcon />
+          <div
+            className="ms-Button-label"
+          >
+            Inspect HTML
+          </div>
+        </CustomizedDefaultButton>
+        <React.Fragment>
+          <CopyIssueDetailsButton
+            deps={
+              Object {
+                "bugActionMessageCreator": null,
+                "clientBrowserAdapter": Object {
+                  "getUrl": [Function],
+                },
+                "issueDetailsTextGenerator": null,
+                "targetPageActionMessageCreator": Object {
+                  "copyIssueDetailsClicked": [Function],
+                },
+                "windowUtils": null,
+              }
+            }
+            issueDetailsData={
+              Object {
+                "pageTitle": "",
+                "pageUrl": "http://localhost/",
+                "ruleResult": Object {
+                  "all": Array [],
+                  "any": Array [],
+                  "failureSummary": "failureSummary",
+                  "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                  "guidanceLinks": Array [],
+                  "help": "help",
+                  "helpUrl": "help-relative-1",
+                  "html": "html",
+                  "id": "id1",
+                  "none": Array [],
+                  "ruleId": "1",
+                  "selector": "selector",
+                  "snippet": "html",
+                  "status": false,
+                },
+              }
+            }
+            onClick={[Function]}
+          />
+          <FlaggedComponent
+            disableJSXElement={
+              <FileIssueDetailsButton
+                deps={
+                  Object {
+                    "bugActionMessageCreator": null,
+                    "clientBrowserAdapter": Object {
+                      "getUrl": [Function],
+                    },
+                    "issueDetailsTextGenerator": null,
+                    "targetPageActionMessageCreator": Object {
+                      "copyIssueDetailsClicked": [Function],
+                    },
+                    "windowUtils": null,
+                  }
+                }
+                issueDetailsData={
+                  Object {
+                    "pageTitle": "",
+                    "pageUrl": "http://localhost/",
+                    "ruleResult": Object {
+                      "all": Array [],
+                      "any": Array [],
+                      "failureSummary": "failureSummary",
+                      "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                      "guidanceLinks": Array [],
+                      "help": "help",
+                      "helpUrl": "help-relative-1",
+                      "html": "html",
+                      "id": "id1",
+                      "none": Array [],
+                      "ruleId": "1",
+                      "selector": "selector",
+                      "snippet": "html",
+                      "status": false,
+                    },
+                  }
+                }
+                issueTrackerPath=""
+                restoreFocus={false}
+              />
+            }
+            enableJSXElement={
+              <IssueFilingButton
+                deps={
+                  Object {
+                    "bugActionMessageCreator": null,
+                    "clientBrowserAdapter": Object {
+                      "getUrl": [Function],
+                    },
+                    "issueDetailsTextGenerator": null,
+                    "targetPageActionMessageCreator": Object {
+                      "copyIssueDetailsClicked": [Function],
+                    },
+                    "windowUtils": null,
+                  }
+                }
+                issueDetailsData={
+                  Object {
+                    "pageTitle": "",
+                    "pageUrl": "http://localhost/",
+                    "ruleResult": Object {
+                      "all": Array [],
+                      "any": Array [],
+                      "failureSummary": "failureSummary",
+                      "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                      "guidanceLinks": Array [],
+                      "help": "help",
+                      "helpUrl": "help-relative-1",
+                      "html": "html",
+                      "id": "id1",
+                      "none": Array [],
+                      "ruleId": "1",
+                      "selector": "selector",
+                      "snippet": "html",
+                      "status": false,
+                    },
+                  }
+                }
+                needsSettingsContentRenderer={[Function]}
+                userConfigurationStoreData={null}
+              />
+            }
+            featureFlag="newIssueFilingExperience"
+            featureFlagStoreData={
+              Object {
+                "shadowDialog": false,
+              }
+            }
+          />
+        </React.Fragment>
+        <div
+          className="insights-dialog-inspect-disabled"
+        >
+          To enable the Inspect HTML button, open the Chrome dev tools (shortcut).
+        </div>
+      </div>
+    </div>
+    <div
+      className="insights-dialog-fix-instruction-container"
+    >
+      <FixInstructionPanel
+        checkType={0}
+        checks={Array []}
+      />
+      <FixInstructionPanel
+        checkType={1}
+        checks={Array []}
+      />
+    </div>
+    <div
+      className="ms-Grid"
+    >
+      <div
+        className="ms-Grid-row"
+      >
+        <div
+          className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left"
+        >
+          <CustomizedPrimaryButton
+            data-automation-id="back"
+            disabled={true}
+            onClick={Object {}}
+            text="< Back"
+          />
+        </div>
+        <div
+          className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 insights-dialog-footer"
+        >
+          <div>
+            Failure 1 of 1 for this target
+          </div>
+        </div>
+        <div
+          className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-right"
+        >
+          <CustomizedPrimaryButton
+            data-automation-id="next"
+            disabled={true}
+            onClick={Object {}}
+            text="Next >"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</StyledWithResponsiveMode>
+`;
+
+exports[`DetailsDialogTest render: more than one failure on the same element: new issue filing bug UI 1`] = `
+<FlaggedComponent
+  disableJSXElement={
+    <FileIssueDetailsButton
+      deps={
+        Object {
+          "bugActionMessageCreator": null,
+          "clientBrowserAdapter": Object {
+            "getUrl": [Function],
+          },
+          "issueDetailsTextGenerator": null,
+          "targetPageActionMessageCreator": Object {
+            "copyIssueDetailsClicked": [Function],
+          },
+          "windowUtils": null,
+        }
+      }
+      issueDetailsData={
+        Object {
+          "pageTitle": "",
+          "pageUrl": "http://localhost/",
+          "ruleResult": Object {
+            "all": Array [],
+            "any": Array [],
+            "failureSummary": "failureSummary",
+            "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+            "guidanceLinks": Array [],
+            "help": "help",
+            "helpUrl": "help-relative-1",
+            "html": "html",
+            "id": "id1",
+            "none": Array [],
+            "ruleId": "1",
+            "selector": "selector",
+            "snippet": "html",
+            "status": false,
+          },
+        }
+      }
+      issueTrackerPath=""
+      restoreFocus={false}
+    />
+  }
+  enableJSXElement={
+    <IssueFilingButton
+      deps={
+        Object {
+          "bugActionMessageCreator": null,
+          "clientBrowserAdapter": Object {
+            "getUrl": [Function],
+          },
+          "issueDetailsTextGenerator": null,
+          "targetPageActionMessageCreator": Object {
+            "copyIssueDetailsClicked": [Function],
+          },
+          "windowUtils": null,
+        }
+      }
+      issueDetailsData={
+        Object {
+          "pageTitle": "",
+          "pageUrl": "http://localhost/",
+          "ruleResult": Object {
+            "all": Array [],
+            "any": Array [],
+            "failureSummary": "failureSummary",
+            "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+            "guidanceLinks": Array [],
+            "help": "help",
+            "helpUrl": "help-relative-1",
+            "html": "html",
+            "id": "id1",
+            "none": Array [],
+            "ruleId": "1",
+            "selector": "selector",
+            "snippet": "html",
+            "status": false,
+          },
+        }
+      }
+      needsSettingsContentRenderer={[Function]}
+      userConfigurationStoreData={
+        Object {
+          "bugService": "service",
+          "bugServicePropertiesMap": Object {},
+        }
+      }
+    />
+  }
+  featureFlag="newIssueFilingExperience"
+  featureFlagStoreData={
+    Object {
+      "shadowDialog": false,
+    }
+  }
+/>
+`;
+
+exports[`DetailsDialogTest render: more than one failure on the same element: verify close button for non shadow dom 1`] = `<CancelIcon />`;
+
+exports[`DetailsDialogTest render: more than one failure on the same element: verify initial state 1`] = `
 Object {
   "canInspect": true,
   "currentRuleIndex": 0,
@@ -1712,41 +1944,6 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
         checkType={1}
         checks={Array []}
       />
-    </div>
-    <div
-      className="ms-Grid"
-    >
-      <div
-        className="ms-Grid-row"
-      >
-        <div
-          className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left"
-        >
-          <CustomizedPrimaryButton
-            data-automation-id="back"
-            disabled={true}
-            onClick={Object {}}
-            text="< Back"
-          />
-        </div>
-        <div
-          className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 insights-dialog-footer"
-        >
-          <div>
-            Failure 1 of 1 for this target
-          </div>
-        </div>
-        <div
-          className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-right"
-        >
-          <CustomizedPrimaryButton
-            data-automation-id="next"
-            disabled={true}
-            onClick={Object {}}
-            text="Next >"
-          />
-        </div>
-      </div>
     </div>
   </div>
 </StyledWithResponsiveMode>
