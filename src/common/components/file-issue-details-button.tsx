@@ -57,7 +57,7 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
         const encodedIssue = `/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
         let baseUrl = this.props.issueTrackerPath;
 
-        if (baseUrl.indexOf('/issues') == -1) {
+        if (baseUrl.indexOf('/issues') === -1) {
             baseUrl += '/issues';
         }
 
