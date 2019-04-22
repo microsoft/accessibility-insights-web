@@ -511,8 +511,10 @@ div.insights-file-issue-details-dialog-container {
                     flex-direction: row;
                     padding-top: 1.5vh;
                     padding-bottom: 1.1vh;
+                    flex-wrap: wrap;
                     &-text {
                         padding-right: 0.9vh;
+                        padding-bottom: 0.9vh;
                         font-family: $fontFamily;
                         font-size: 14px;
                         line-height: normal;
