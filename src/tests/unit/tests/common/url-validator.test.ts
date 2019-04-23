@@ -17,6 +17,9 @@ describe('UrlValidatorTest', () => {
         ['https://microsoftedge.microsoft.com/insider-addons/', false],
         ['chrome://are/you/ok?', false],
         ['edge://extensions/', false],
+        ['http://domain-with-no-trailing-slash', true],
+        ['http:/oops', false],
+        ['oops_http://example.com', false],
     ];
 
     test.each(supportedUrlCases)('isSupportedUrl: %s should be %s', async (url, expected) => {
