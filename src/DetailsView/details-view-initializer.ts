@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
+
 import { AssessmentDefaultMessageGenerator } from '../assessments/assessment-default-message-generator';
 import { Assessments } from '../assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from '../assessments/assessments-feature-flag-filter';
@@ -97,221 +98,209 @@ if (isNaN(tabId) === false) {
     chromeAdapter.getTab(
         tabId,
         (tab: Tab): void => {
-            if (chromeAdapter.getRuntimeLastError()) {
-                const renderer = createNullifiedRenderer(document, ReactDOM.render);
-                renderer.render();
-            }
-            {
-                const telemetryFactory = new TelemetryDataFactory();
+            const telemetryFactory = new TelemetryDataFactory();
 
-                const visualizationStore = new StoreProxy<VisualizationStoreData>(StoreNames[StoreNames.VisualizationStore], chromeAdapter);
-                const tabStore = new StoreProxy<TabStoreData>(StoreNames[StoreNames.TabStore], chromeAdapter);
-                const visualizationScanResultStore = new StoreProxy<VisualizationScanResultData>(
-                    StoreNames[StoreNames.VisualizationScanResultStore],
-                    chromeAdapter,
-                );
-                const detailsViewStore = new StoreProxy<DetailsViewData>(StoreNames[StoreNames.DetailsViewStore], chromeAdapter);
-                const assessmentStore = new StoreProxy<AssessmentStoreData>(StoreNames[StoreNames.AssessmentStore], chromeAdapter);
-                const featureFlagStore = new StoreProxy<DictionaryStringTo<boolean>>(
-                    StoreNames[StoreNames.FeatureFlagStore],
-                    chromeAdapter,
-                );
-                const scopingStore = new StoreProxy<ScopingStoreData>(StoreNames[StoreNames.ScopingPanelStateStore], chromeAdapter);
-                const inspectStore = new StoreProxy<InspectStoreData>(StoreNames[StoreNames.InspectStore], chromeAdapter);
-                const userConfigStore = new StoreProxy<UserConfigurationStoreData>(
-                    StoreNames[StoreNames.UserConfigurationStore],
-                    chromeAdapter,
-                );
-                const storesHub = new BaseClientStoresHub<DetailsViewContainerState>([
-                    detailsViewStore,
-                    featureFlagStore,
-                    tabStore,
-                    visualizationScanResultStore,
-                    visualizationStore,
-                    assessmentStore,
-                    scopingStore,
-                    userConfigStore,
-                ]);
+            const visualizationStore = new StoreProxy<VisualizationStoreData>(StoreNames[StoreNames.VisualizationStore], chromeAdapter);
+            const tabStore = new StoreProxy<TabStoreData>(StoreNames[StoreNames.TabStore], chromeAdapter);
+            const visualizationScanResultStore = new StoreProxy<VisualizationScanResultData>(
+                StoreNames[StoreNames.VisualizationScanResultStore],
+                chromeAdapter,
+            );
+            const detailsViewStore = new StoreProxy<DetailsViewData>(StoreNames[StoreNames.DetailsViewStore], chromeAdapter);
+            const assessmentStore = new StoreProxy<AssessmentStoreData>(StoreNames[StoreNames.AssessmentStore], chromeAdapter);
+            const featureFlagStore = new StoreProxy<DictionaryStringTo<boolean>>(StoreNames[StoreNames.FeatureFlagStore], chromeAdapter);
+            const scopingStore = new StoreProxy<ScopingStoreData>(StoreNames[StoreNames.ScopingPanelStateStore], chromeAdapter);
+            const inspectStore = new StoreProxy<InspectStoreData>(StoreNames[StoreNames.InspectStore], chromeAdapter);
+            const userConfigStore = new StoreProxy<UserConfigurationStoreData>(
+                StoreNames[StoreNames.UserConfigurationStore],
+                chromeAdapter,
+            );
+            const storesHub = new BaseClientStoresHub<DetailsViewContainerState>([
+                detailsViewStore,
+                featureFlagStore,
+                tabStore,
+                visualizationScanResultStore,
+                visualizationStore,
+                assessmentStore,
+                scopingStore,
+                userConfigStore,
+            ]);
 
-                const actionMessageDispatcher = new ActionMessageDispatcher(chromeAdapter.sendMessageToFrames, tab.id);
+            const actionMessageDispatcher = new ActionMessageDispatcher(chromeAdapter.sendMessageToFrames, tab.id);
 
-                const actionMessageCreator = new DetailsViewActionMessageCreator(
-                    chromeAdapter.sendMessageToFrames,
-                    tab.id,
-                    telemetryFactory,
-                );
-                const scopingActionMessageCreator = new ScopingActionMessageCreator(
-                    chromeAdapter.sendMessageToFrames,
-                    tab.id,
-                    telemetryFactory,
-                    TelemetryEventSource.DetailsView,
-                );
-                const inspectActionMessageCreator = new InspectActionMessageCreator(
-                    chromeAdapter.sendMessageToFrames,
-                    tab.id,
-                    telemetryFactory,
-                    TelemetryEventSource.DetailsView,
-                );
-                const dropdownActionMessageCreator = new DropdownActionMessageCreator(
-                    chromeAdapter.sendMessageToFrames,
-                    tab.id,
-                    telemetryFactory,
-                );
+            const actionMessageCreator = new DetailsViewActionMessageCreator(chromeAdapter.sendMessageToFrames, tab.id, telemetryFactory);
+            const scopingActionMessageCreator = new ScopingActionMessageCreator(
+                chromeAdapter.sendMessageToFrames,
+                tab.id,
+                telemetryFactory,
+                TelemetryEventSource.DetailsView,
+            );
+            const inspectActionMessageCreator = new InspectActionMessageCreator(
+                chromeAdapter.sendMessageToFrames,
+                tab.id,
+                telemetryFactory,
+                TelemetryEventSource.DetailsView,
+            );
+            const dropdownActionMessageCreator = new DropdownActionMessageCreator(
+                chromeAdapter.sendMessageToFrames,
+                tab.id,
+                telemetryFactory,
+            );
 
-                const bugActionMessageCreator = new BugActionMessageCreator(
-                    actionMessageDispatcher,
-                    telemetryFactory,
-                    TelemetryEventSource.DetailsView,
-                );
+            const bugActionMessageCreator = new BugActionMessageCreator(
+                actionMessageDispatcher,
+                telemetryFactory,
+                TelemetryEventSource.DetailsView,
+            );
 
-                const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(chromeAdapter.sendMessageToFrames, tab.id);
+            const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(chromeAdapter.sendMessageToFrames, tab.id);
 
-                const contentActionMessageCreator = new ContentActionMessageCreator(
-                    telemetryFactory,
-                    TelemetryEventSource.DetailsView,
-                    actionMessageDispatcher,
-                );
+            const contentActionMessageCreator = new ContentActionMessageCreator(
+                telemetryFactory,
+                TelemetryEventSource.DetailsView,
+                actionMessageDispatcher,
+            );
 
-                const userConfigMessageCreator = new UserConfigMessageCreator(chromeAdapter.sendMessageToFrames, tab.id);
-                const storeActionMessageCreator = storeActionMessageCreatorFactory.forDetailsView();
+            const userConfigMessageCreator = new UserConfigMessageCreator(chromeAdapter.sendMessageToFrames, tab.id);
+            const storeActionMessageCreator = storeActionMessageCreatorFactory.forDetailsView();
 
-                const visualizationActionCreator = new VisualizationActionMessageCreator(actionMessageDispatcher);
+            const visualizationActionCreator = new VisualizationActionMessageCreator(actionMessageDispatcher);
 
-                const issuesSelection = new IssuesSelectionFactory().createSelection(actionMessageCreator);
-                const clickHandlerFactory = new DetailsViewToggleClickHandlerFactory(visualizationActionCreator, telemetryFactory);
-                const visualizationConfigurationFactory = new VisualizationConfigurationFactory();
-                const assessmentDefaultMessageGenerator = new AssessmentDefaultMessageGenerator();
-                const assessmentInstanceTableHandler = new AssessmentInstanceTableHandler(
-                    actionMessageCreator,
-                    new AssessmentTableColumnConfigHandler(new MasterCheckBoxConfigProvider(actionMessageCreator), Assessments),
-                    Assessments,
-                );
-                const issuesTableHandler = new IssuesTableHandler();
-                const previewFeatureFlagsHandler = new PreviewFeatureFlagsHandler(getAllFeatureFlagDetails());
-                const scopingFlagsHandler = new PreviewFeatureFlagsHandler(getAllFeatureFlagDetails());
-                const dropdownClickHandler = new DropdownClickHandler(dropdownActionMessageCreator, TelemetryEventSource.DetailsView);
+            const issuesSelection = new IssuesSelectionFactory().createSelection(actionMessageCreator);
+            const clickHandlerFactory = new DetailsViewToggleClickHandlerFactory(visualizationActionCreator, telemetryFactory);
+            const visualizationConfigurationFactory = new VisualizationConfigurationFactory();
+            const assessmentDefaultMessageGenerator = new AssessmentDefaultMessageGenerator();
+            const assessmentInstanceTableHandler = new AssessmentInstanceTableHandler(
+                actionMessageCreator,
+                new AssessmentTableColumnConfigHandler(new MasterCheckBoxConfigProvider(actionMessageCreator), Assessments),
+                Assessments,
+            );
+            const issuesTableHandler = new IssuesTableHandler();
+            const previewFeatureFlagsHandler = new PreviewFeatureFlagsHandler(getAllFeatureFlagDetails());
+            const scopingFlagsHandler = new PreviewFeatureFlagsHandler(getAllFeatureFlagDetails());
+            const dropdownClickHandler = new DropdownClickHandler(dropdownActionMessageCreator, TelemetryEventSource.DetailsView);
 
-                const extensionVersion = chromeAdapter.getManifest().version;
-                const axeVersion = getVersion();
-                const reactStaticRenderer = new ReactStaticRenderer();
-                const reportNameGenerator = new ReportNameGenerator();
-                const reportHtmlGenerator = new ReportHtmlGenerator(
-                    reactStaticRenderer,
-                    new NavigatorUtils(window.navigator).getBrowserSpec(),
-                    extensionVersion,
-                    axeVersion,
-                );
-                const assessmentReportHtmlGeneratorDeps = { outcomeTypeSemanticsFromTestStatus };
-                const assessmentReportHtmlGenerator = new AssessmentReportHtmlGenerator(
-                    assessmentReportHtmlGeneratorDeps,
-                    reactStaticRenderer,
-                    new AssessmentReportModelBuilderFactory(),
-                    DateProvider.getDate,
-                    extensionVersion,
-                    axeVersion,
-                    new NavigatorUtils(window.navigator).getBrowserSpec(),
-                    assessmentDefaultMessageGenerator,
-                );
-                const reportGenerator = new ReportGenerator(reportNameGenerator, reportHtmlGenerator, assessmentReportHtmlGenerator);
+            const extensionVersion = chromeAdapter.getManifest().version;
+            const axeVersion = getVersion();
+            const reactStaticRenderer = new ReactStaticRenderer();
+            const reportNameGenerator = new ReportNameGenerator();
+            const reportHtmlGenerator = new ReportHtmlGenerator(
+                reactStaticRenderer,
+                new NavigatorUtils(window.navigator).getBrowserSpec(),
+                extensionVersion,
+                axeVersion,
+            );
+            const assessmentReportHtmlGeneratorDeps = { outcomeTypeSemanticsFromTestStatus };
+            const assessmentReportHtmlGenerator = new AssessmentReportHtmlGenerator(
+                assessmentReportHtmlGeneratorDeps,
+                reactStaticRenderer,
+                new AssessmentReportModelBuilderFactory(),
+                DateProvider.getDate,
+                extensionVersion,
+                axeVersion,
+                new NavigatorUtils(window.navigator).getBrowserSpec(),
+                assessmentDefaultMessageGenerator,
+            );
+            const reportGenerator = new ReportGenerator(reportNameGenerator, reportHtmlGenerator, assessmentReportHtmlGenerator);
 
-                visualizationStore.setTabId(tab.id);
-                tabStore.setTabId(tab.id);
-                visualizationScanResultStore.setTabId(tab.id);
-                detailsViewStore.setTabId(tab.id);
-                assessmentStore.setTabId(tab.id);
-                scopingStore.setTabId(tab.id);
-                inspectStore.setTabId(tab.id);
+            visualizationStore.setTabId(tab.id);
+            tabStore.setTabId(tab.id);
+            visualizationScanResultStore.setTabId(tab.id);
+            detailsViewStore.setTabId(tab.id);
+            assessmentStore.setTabId(tab.id);
+            scopingStore.setTabId(tab.id);
+            inspectStore.setTabId(tab.id);
 
-                const actionInitiators = {
-                    ...contentActionMessageCreator.initiators,
-                };
+            const actionInitiators = {
+                ...contentActionMessageCreator.initiators,
+            };
 
-                const documentTitleUpdater = new DocumentTitleUpdater(
-                    tabStore,
-                    detailsViewStore,
-                    visualizationStore,
-                    assessmentStore,
-                    GetDetailsRightPanelConfiguration,
-                    GetDetailsSwitcherNavConfiguration,
-                    visualizationConfigurationFactory,
-                    dom,
-                );
-                documentTitleUpdater.initialize();
+            const documentTitleUpdater = new DocumentTitleUpdater(
+                tabStore,
+                detailsViewStore,
+                visualizationStore,
+                assessmentStore,
+                GetDetailsRightPanelConfiguration,
+                GetDetailsSwitcherNavConfiguration,
+                visualizationConfigurationFactory,
+                dom,
+            );
+            documentTitleUpdater.initialize();
 
-                const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
-                const issueDetailsTextGenerator = new IssueDetailsTextGenerator(
-                    chromeAdapter.extensionVersion,
-                    browserSpec,
-                    AxeInfo.Default.version,
-                );
+            const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
+            const issueDetailsTextGenerator = new IssueDetailsTextGenerator(
+                chromeAdapter.extensionVersion,
+                browserSpec,
+                AxeInfo.Default.version,
+            );
 
-                const environmentInfoProvider = new EnvironmentInfoProvider(
-                    chromeAdapter.extensionVersion,
-                    browserSpec,
-                    AxeInfo.Default.version,
-                );
+            const environmentInfoProvider = new EnvironmentInfoProvider(
+                chromeAdapter.extensionVersion,
+                browserSpec,
+                AxeInfo.Default.version,
+            );
 
-                const deps: DetailsViewContainerDeps = {
-                    dropdownClickHandler,
-                    bugActionMessageCreator,
-                    contentProvider: contentPages,
-                    contentActionMessageCreator,
-                    detailsViewActionMessageCreator: actionMessageCreator,
-                    assessmentsProvider: Assessments,
-                    actionInitiators,
-                    assessmentDefaultMessageGenerator: assessmentDefaultMessageGenerator,
-                    issueDetailsTextGenerator,
-                    windowUtils: new WindowUtils(),
-                    getAssessmentSummaryModelFromProviderAndStoreData: getAssessmentSummaryModelFromProviderAndStoreData,
-                    getAssessmentSummaryModelFromProviderAndStatusData: getAssessmentSummaryModelFromProviderAndStatusData,
-                    visualizationConfigurationFactory,
-                    getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration,
-                    navLinkHandler: new NavLinkHandler(actionMessageCreator),
-                    getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration,
-                    userConfigMessageCreator,
-                    leftNavLinkBuilder: new LeftNavLinkBuilder(),
-                    getStatusForTest,
-                    outcomeTypeFromTestStatus,
-                    outcomeStatsFromManualTestStatus,
-                    assessmentsProviderWithFeaturesEnabled,
-                    outcomeTypeSemanticsFromTestStatus,
-                    getInnerTextFromJsxElement,
-                    storeActionMessageCreator,
-                    storesHub,
-                    loadTheme,
-                    urlParser,
-                    dateProvider: DateProvider.getDate,
-                    settingsProvider: SettingsProviderImpl,
-                    environmentInfoProvider,
-                    bugFilingServiceProvider: BugFilingServiceProviderImpl,
-                };
+            const deps: DetailsViewContainerDeps = {
+                dropdownClickHandler,
+                bugActionMessageCreator,
+                contentProvider: contentPages,
+                contentActionMessageCreator,
+                detailsViewActionMessageCreator: actionMessageCreator,
+                assessmentsProvider: Assessments,
+                actionInitiators,
+                assessmentDefaultMessageGenerator: assessmentDefaultMessageGenerator,
+                issueDetailsTextGenerator,
+                windowUtils: new WindowUtils(),
+                getAssessmentSummaryModelFromProviderAndStoreData: getAssessmentSummaryModelFromProviderAndStoreData,
+                getAssessmentSummaryModelFromProviderAndStatusData: getAssessmentSummaryModelFromProviderAndStatusData,
+                visualizationConfigurationFactory,
+                getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration,
+                navLinkHandler: new NavLinkHandler(actionMessageCreator),
+                getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration,
+                userConfigMessageCreator,
+                leftNavLinkBuilder: new LeftNavLinkBuilder(),
+                getStatusForTest,
+                outcomeTypeFromTestStatus,
+                outcomeStatsFromManualTestStatus,
+                assessmentsProviderWithFeaturesEnabled,
+                outcomeTypeSemanticsFromTestStatus,
+                getInnerTextFromJsxElement,
+                storeActionMessageCreator,
+                storesHub,
+                loadTheme,
+                urlParser,
+                dateProvider: DateProvider.getDate,
+                settingsProvider: SettingsProviderImpl,
+                environmentInfoProvider,
+                bugFilingServiceProvider: BugFilingServiceProviderImpl,
+            };
 
-                const renderer = new DetailsViewRenderer(
-                    deps,
-                    dom,
-                    ReactDOM.render,
-                    scopingActionMessageCreator,
-                    inspectActionMessageCreator,
-                    issuesSelection,
-                    clickHandlerFactory,
-                    visualizationConfigurationFactory,
-                    issuesTableHandler,
-                    assessmentInstanceTableHandler,
-                    reportGenerator,
-                    previewFeatureFlagsHandler,
-                    scopingFlagsHandler,
-                    dropdownClickHandler,
-                    Assessments,
-                    documentElementSetter,
-                );
-                renderer.render();
+            const renderer = new DetailsViewRenderer(
+                deps,
+                dom,
+                ReactDOM.render,
+                scopingActionMessageCreator,
+                inspectActionMessageCreator,
+                issuesSelection,
+                clickHandlerFactory,
+                visualizationConfigurationFactory,
+                issuesTableHandler,
+                assessmentInstanceTableHandler,
+                reportGenerator,
+                previewFeatureFlagsHandler,
+                scopingFlagsHandler,
+                dropdownClickHandler,
+                Assessments,
+                documentElementSetter,
+            );
+            renderer.render();
 
-                const a11ySelfValidator = new A11YSelfValidator(new ScannerUtils(scan), new HTMLElementUtils());
-                window.A11YSelfValidator = a11ySelfValidator;
-            }
+            const a11ySelfValidator = new A11YSelfValidator(new ScannerUtils(scan), new HTMLElementUtils());
+            window.A11YSelfValidator = a11ySelfValidator;
         },
         () => {
-            throw new Error(`Cannot find target tab with Id ${tabId}`);
+            const renderer = createNullifiedRenderer(document, ReactDOM.render);
+            renderer.render();
         },
     );
 }
