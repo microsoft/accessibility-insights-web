@@ -7,7 +7,6 @@ import { IMock, Mock } from 'typemoq';
 import { AutomatedChecksVisualizationToggle } from '../../../../../assessments/automated-checks/automated-checks-visualization-enabled-toggle';
 import { VisualizationToggle, VisualizationToggleProps } from '../../../../../common/components/visualization-toggle';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
-import { visualHelperText } from '../../../../../DetailsView/components/base-visual-helper-toggle';
 import { VisualHelperToggleConfigBuilder } from '../../../common/visual-helper-toggle-config-builder';
 import { VisualizationTogglePropsBuilder } from '../../../common/visualization-toggle-props-builder';
 
@@ -32,7 +31,7 @@ describe('AutomatedChecksVisualizationToggle', () => {
         const textDiv = toggleDiv.find(`.${visualHelperClass}-text`);
 
         expect(textDiv.exists()).toBeTruthy();
-        expect(textDiv.childAt(0).text()).toEqual(visualHelperText);
+        expect(textDiv.childAt(0).text()).toEqual('Visual helper');
 
         const noMatchesWarningClass = 'no-matching-elements';
         expect(wrapper.find(`.${noMatchesWarningClass}`).exists()).toBeTruthy();
@@ -65,7 +64,7 @@ describe('AutomatedChecksVisualizationToggle', () => {
         const textDiv = toggleDiv.find(`.${visualHelperClass}-text`);
 
         expect(textDiv.exists()).toBeTruthy();
-        expect(textDiv.childAt(0).text()).toEqual(visualHelperText);
+        expect(textDiv.childAt(0).text()).toEqual('Visual helper');
         expect(wrapper.find('strong').exists()).toBeFalsy();
         const toggle = wrapper.find(VisualizationToggle);
 
@@ -94,7 +93,7 @@ describe('AutomatedChecksVisualizationToggle', () => {
         const textDiv = toggleDiv.find(`.${visualHelperClass}-text`);
 
         expect(textDiv.exists()).toBeTruthy();
-        expect(textDiv.childAt(0).text()).toEqual(visualHelperText);
+        expect(textDiv.childAt(0).text()).toEqual('Visual helper');
 
         const noMatchesWarningClass = 'no-matching-elements';
         expect(wrapper.find(`.${noMatchesWarningClass}`).exists()).toBeTruthy();
@@ -123,6 +122,6 @@ describe('AutomatedChecksVisualizationToggle', () => {
     }
 
     function getDefaultVisualizationTogglePropsBuilder(): VisualizationTogglePropsBuilder {
-        return new VisualizationTogglePropsBuilder().with('visualizationName', visualHelperText).with('className', 'visual-helper-toggle');
+        return new VisualizationTogglePropsBuilder().with('visualizationName', 'Visual helper').with('className', 'visual-helper-toggle');
     }
 });
