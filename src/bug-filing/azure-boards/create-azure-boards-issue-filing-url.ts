@@ -17,14 +17,14 @@ const buildTags = (createBugData: CreateIssueDetailsTextData, standardTags: stri
 
 export const createAzureBoardsIssueFilingUrlProvider = (
     stringUtils: IssueUrlCreationUtils,
-    issueDetailsGetter: IssueDetailsBuilder,
+    issueDetailsBuilder: IssueDetailsBuilder,
     queryBuilderProvider: () => HTTPQueryBuilder,
 ) => {
     return (settingsData: AzureBoardsBugFilingSettings, bugData: CreateIssueDetailsTextData, environmentInfo: EnvironmentInfo) => {
         const titleField = stringUtils.getTitle(bugData);
         const standardTags = stringUtils.standardizeTags(bugData);
         const tags = buildTags(bugData, standardTags);
-        const body = issueDetailsGetter(environmentInfo, bugData);
+        const body = issueDetailsBuilder(environmentInfo, bugData);
 
         let bodyField: string = '[Microsoft.VSTS.TCM.ReproSteps]';
 

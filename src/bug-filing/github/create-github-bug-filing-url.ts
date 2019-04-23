@@ -8,10 +8,10 @@ import { CreateIssueDetailsTextData } from './../../common/types/create-issue-de
 import { IssueFilingUrlStringUtils, IssueUrlCreationUtils } from './../common/issue-filing-url-string-utils';
 import { GitHubBugFilingSettings } from './github-bug-filing-service';
 
-export const createGitHubIssueFilingUrlProvider = (stringUtils: IssueUrlCreationUtils, issueDetailsGetter: IssueDetailsBuilder) => {
+export const createGitHubIssueFilingUrlProvider = (stringUtils: IssueUrlCreationUtils, issueDetailsBuilder: IssueDetailsBuilder) => {
     return (settingsData: GitHubBugFilingSettings, bugData: CreateIssueDetailsTextData, environmentInfo: EnvironmentInfo): string => {
         const title = stringUtils.getTitle(bugData);
-        const body = issueDetailsGetter(environmentInfo, bugData);
+        const body = issueDetailsBuilder(environmentInfo, bugData);
         const encodedIssue = `/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
         const repository = stringUtils.appendSuffixToUrl(settingsData.repository, 'issues');
         return `${repository}${encodedIssue}`;
