@@ -76,7 +76,7 @@ div.insights-dialog-main-override {
 }
 
 .issue-filing-dialog {
-    #issue-filing-dialog-title {
+    .ms-Dialog-title {
         font-size: 21px;
         line-height: 32px;
         letter-spacing: -0.02em;
@@ -84,7 +84,7 @@ div.insights-dialog-main-override {
         padding-bottom: 0;
     }
 
-    #issue-filing-dialog-subtext {
+    .ms-Dialog-subText {
         font-weight: 400;
         font-size: 15px;
         color: $secondary-text;

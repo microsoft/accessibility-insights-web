@@ -73,9 +73,7 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
                 dialogContentProps={{
                     type: DialogType.normal,
                     title: titleLabel,
-                    titleId: 'issue-filing-dialog-title',
                     subText: 'This configuration can be changed again in settings.',
-                    subTextId: 'issue-filing-dialog-subtext',
                     showCloseButton: false,
                 }}
                 modalProps={{
