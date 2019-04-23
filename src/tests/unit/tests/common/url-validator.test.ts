@@ -9,18 +9,23 @@ import { UrlValidator } from '../../../../common/url-validator';
 describe('UrlValidatorTest', () => {
     let testSubject: UrlValidator;
 
-    test('isSupportedUrl: http', async () => {
-        const url: string = 'http://url';
-        testSubject = new UrlValidator();
-        const isSupported = await testSubject.isSupportedUrl(url, It.isAny());
-        expect(isSupported).toBe(true);
-    });
+    const supportedUrlCases = [
+        ['http://url', true],
+        ['https://url', true],
+        ['https://accessibilityinsights.io/docs/en/web/overview', true],
+        ['https://chrome.google.com/webstore/', false],
+        ['https://microsoftedge.microsoft.com/insider-addons/', false],
+        ['chrome://are/you/ok?', false],
+        ['edge://extensions/', false],
+        ['http://domain-with-no-trailing-slash', true],
+        ['http:/oops', false],
+        ['oops_http://example.com', false],
+    ];
 
-    test('isSupportedUrl: https', async () => {
-        const url: string = 'https://url';
+    test.each(supportedUrlCases)('isSupportedUrl: %s should be %s', async (url, expected) => {
         testSubject = new UrlValidator();
         const isSupported = await testSubject.isSupportedUrl(url, It.isAny());
-        expect(isSupported).toBe(true);
+        expect(isSupported).toBe(expected);
     });
 
     test('isSupportedUrl: file', async () => {
@@ -38,13 +43,6 @@ describe('UrlValidatorTest', () => {
         expect(isSupported).toBe(true);
 
         browserAdapterMock.verifyAll();
-    });
-
-    test('isNotSupportedUrl: chrome://', async () => {
-        const url: string = 'chrome://are/you/ok?';
-        testSubject = new UrlValidator();
-        const isSupported = await testSubject.isSupportedUrl(url, It.isAny());
-        expect(isSupported).toBe(false);
     });
 
     test('isFileUrl, but have no access, so isNotSupportedUrl', async () => {
