@@ -3,10 +3,11 @@
 import { EnvironmentInfo } from '../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { title } from '../../content/strings/application';
-import { getIssueDetailsHtml } from '../common/get-issue-details-html';
+import { createIssueDetailsBuilder } from '../common/create-issue-details-builder';
 import { HTTPQueryBuilder } from '../common/http-query-builder';
-import { IssueDetailsGetter } from '../common/issue-details-getter';
+import { IssueDetailsBuilder } from '../common/issue-details-builder';
 import { IssueFilingUrlStringUtils, IssueUrlCreationUtils } from '../common/issue-filing-url-string-utils';
+import { HTMLFormatter } from '../common/markup/html-formatter';
 import { AzureBoardsBugFilingSettings } from './azure-boards-bug-filing-service';
 
 const buildTags = (createBugData: CreateIssueDetailsTextData, standardTags: string[]): string => {
@@ -16,14 +17,14 @@ const buildTags = (createBugData: CreateIssueDetailsTextData, standardTags: stri
 
 export const createAzureBoardsIssueFilingUrlProvider = (
     stringUtils: IssueUrlCreationUtils,
-    issueDetailsGetter: IssueDetailsGetter,
+    issueDetailsBuilder: IssueDetailsBuilder,
     queryBuilderProvider: () => HTTPQueryBuilder,
 ) => {
     return (settingsData: AzureBoardsBugFilingSettings, bugData: CreateIssueDetailsTextData, environmentInfo: EnvironmentInfo) => {
         const titleField = stringUtils.getTitle(bugData);
         const standardTags = stringUtils.standardizeTags(bugData);
         const tags = buildTags(bugData, standardTags);
-        const body = issueDetailsGetter(stringUtils, environmentInfo, bugData);
+        const body = issueDetailsBuilder(environmentInfo, bugData);
 
         let bodyField: string = '[Microsoft.VSTS.TCM.ReproSteps]';
 
@@ -43,6 +44,6 @@ export const createAzureBoardsIssueFilingUrlProvider = (
 
 export const azureBoardsIssueFilingUrlProvider = createAzureBoardsIssueFilingUrlProvider(
     IssueFilingUrlStringUtils,
-    getIssueDetailsHtml,
+    createIssueDetailsBuilder(HTMLFormatter),
     () => new HTTPQueryBuilder(),
 );

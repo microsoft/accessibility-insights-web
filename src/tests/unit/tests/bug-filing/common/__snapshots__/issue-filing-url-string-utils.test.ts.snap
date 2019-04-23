@@ -1,7 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BugFilingUrlStringUtilsTest getFooter 1`] = `"This accessibility issue was found using Accessibility Insights for Web 1.1.1 (axe-core 2.2.2), a tool that helps find and fix accessibility issues. Get more information & download this tool at http://aka.ms/AccessibilityInsights."`;
-
 exports[`BugFilingUrlStringUtilsTest getTitle with tags 1`] = `"WCAG-1.4.1,WCAG-2.8.2: RR-help (RR-selector<x>)"`;
 
 exports[`BugFilingUrlStringUtilsTest getTitle without tags 1`] = `"RR-help (RR-selector<x>)"`;

@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Name of the group build issue details 1`] = `
+"h-Issue-h
+s-RR-help-s (l-RR-help-url-RR-rule-id-l)
+h-Target application-h
+l-pageUrl-pageTitle<x>-l
+h-Element path-h
+RR-selector<x>
+h-Snippet-h
+s-RR-snippet   space-s
+h-How to fix-h
+h-t--RR-failureSummary--h-t
+h-Environment-h
+test spec
+This accessibility issue was found using Accessibility Insights for Web 1.1.1 (axe-core 2.2.2), a tool that helps find and fix accessibility issues. Get more information & download this tool at l-http://aka.ms/AccessibilityInsights-l."
+`;
