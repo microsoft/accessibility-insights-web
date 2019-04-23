@@ -166,8 +166,6 @@ if (isNaN(tabId) === false) {
 
                 const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(chromeAdapter.sendMessageToFrames, tab.id);
 
-                const actionMessageDispatcher = new ActionMessageDispatcher(chromeAdapter.sendMessageToFrames, tab.id);
-
                 const contentActionMessageCreator = new ContentActionMessageCreator(
                     telemetryFactory,
                     TelemetryEventSource.DetailsView,
