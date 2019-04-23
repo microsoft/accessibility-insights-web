@@ -7,18 +7,8 @@ describe('HTMLFormatter', () => {
     const truncateMock = Mock.ofInstance((text: string) => text, MockBehavior.Strict);
     const testSubject = createFormatter(truncateMock.object);
 
-    it('applies bold to text', () => {
-        const result = testSubject.bold('text');
-
-        expect(result).toEqual('<b>text</b>');
-    });
-
-    it('returns section separator', () => {
-        expect(testSubject.sectionSeparator()).toEqual('<br><br>');
-    });
-
-    it('returns new line', () => {
-        expect(testSubject.newLine()).toEqual('<br>');
+    it('returns section header', () => {
+        expect(testSubject.sectionHeader('test-header')).toEqual('<h4>test-header</h4>');
     });
 
     it('returns how to fix section', () => {

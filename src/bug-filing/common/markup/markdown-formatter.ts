@@ -4,10 +4,6 @@ import { MarkupFormatter } from './markup-formatter';
 import { truncateSnippet as truncate } from './truncate-snippet';
 
 export const createFormatter = (truncateSnippet: (text: string) => string): MarkupFormatter => {
-    const bold = (text: string): string => {
-        return `**${text}**`;
-    };
-
     const snippet = (text: string): string => {
         const truncated = truncateSnippet(text);
 
@@ -18,12 +14,8 @@ export const createFormatter = (truncateSnippet: (text: string) => string): Mark
         return `[${text || href}](${href})`;
     };
 
-    const sectionSeparator = (): string => {
-        return '';
-    };
-
-    const newLine = (): string => {
-        return '';
+    const sectionHeader = (text: string) => {
+        return `#### ${text}`;
     };
 
     const howToFixSection = (failureSummary: string): string => {
@@ -34,11 +26,9 @@ export const createFormatter = (truncateSnippet: (text: string) => string): Mark
     };
 
     return {
-        bold,
         snippet,
         link,
-        sectionSeparator,
-        newLine,
+        sectionHeader,
         howToFixSection,
     };
 };

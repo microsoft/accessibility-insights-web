@@ -11,22 +11,24 @@ export const createIssueDetailsBuilder = (markup: MarkupFormatter): IssueDetails
         const result = data.ruleResult;
 
         const text = [
-            `${markup.bold('Issue')}: ${markup.snippet(result.help)} (${markup.link(result.helpUrl, result.ruleId)})`,
-            markup.sectionSeparator(),
-            `${markup.bold('Target application')}: ${markup.link(data.pageUrl, data.pageTitle)}`,
-            markup.sectionSeparator(),
-            `${markup.bold('Element path')}: ${data.ruleResult.selector}`,
-            markup.sectionSeparator(),
-            `${markup.bold('Snippet')}:`,
+            markup.sectionHeader('Issue'),
+            `${markup.snippet(result.help)} (${markup.link(result.helpUrl, result.ruleId)})`,
+
+            markup.sectionHeader('Target application'),
+            markup.link(data.pageUrl, data.pageTitle),
+
+            markup.sectionHeader('Element path'),
+            data.ruleResult.selector,
+
+            markup.sectionHeader('Snippet'),
             markup.snippet(result.snippet),
-            markup.sectionSeparator(),
-            `${markup.bold('How to fix')}:`,
-            markup.newLine(),
+
+            markup.sectionHeader('How to fix'),
             markup.howToFixSection(result.failureSummary),
-            markup.sectionSeparator(),
-            `${markup.bold('Environment')}:`,
+
+            markup.sectionHeader('Environment'),
             environmentInfo.browserSpec,
-            markup.sectionSeparator(),
+
             `This accessibility issue was found using ${title} ` +
                 `${environmentInfo.extensionVersion} (axe-core ${environmentInfo.axeCoreVersion}), ` +
                 'a tool that helps find and fix accessibility issues. Get more information & download ' +
