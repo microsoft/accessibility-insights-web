@@ -1,21 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { MarkupFactory } from './markup-factory';
+import { truncateSnippet as truncate } from './truncate-snippet';
 
-const createFactory = (): MarkupFactory => {
+export const createFactory = (truncateSnippet: (text: string) => string): MarkupFactory => {
     const bold = (text: string): string => {
         return `**${text}**`;
     };
 
     const snippet = (text: string): string => {
-        const maxSnippetLength = 256;
-        let constrainedSnippet = text;
+        const truncated = truncateSnippet(text);
 
-        if (text.length > maxSnippetLength) {
-            constrainedSnippet = text.substr(0, maxSnippetLength) + '...';
-        }
-
-        return `\`${constrainedSnippet}\``;
+        return `\`${truncated}\``;
     };
 
     const link = (href: string, text?: string): string => {
@@ -47,4 +43,4 @@ const createFactory = (): MarkupFactory => {
     };
 };
 
-export const MarkdownFactory = createFactory();
+export const MarkdownFactory = createFactory(truncate);

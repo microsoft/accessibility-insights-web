@@ -1,10 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { repeat } from 'lodash';
-import { HTMLFactory } from '../../../../../../bug-filing/common/markup/html-factory';
+import { It, Mock, MockBehavior } from 'typemoq';
+import { createFactory } from '../../../../../../bug-filing/common/markup/html-factory';
 
 describe('HTMLFactory', () => {
-    const testSubject = HTMLFactory;
+    const truncateMock = Mock.ofInstance((text: string) => text, MockBehavior.Strict);
+    const testSubject = createFactory(truncateMock.object);
 
     it('applies bold to text', () => {
         const result = testSubject.bold('text');
@@ -16,6 +17,10 @@ describe('HTMLFactory', () => {
         expect(testSubject.sectionSeparator()).toEqual('<br><br>');
     });
 
+    it('returns new line', () => {
+        expect(testSubject.newLine()).toEqual('<br>');
+    });
+
     it('returns how to fix section', () => {
         const failureSummary = 'fix\n  1\n 2\n3\n4';
 
@@ -25,22 +30,11 @@ describe('HTMLFactory', () => {
     });
 
     describe('creates snippet', () => {
-        it('handles short snippet text', () => {
+        truncateMock.setup(truncate => truncate(It.isAnyString())).returns(text => text);
+        it('no need to escape', () => {
             const result = testSubject.snippet('this is code');
 
             expect(result).toEqual('<code>this is code</code>');
-        });
-
-        it('handles long snippet text', () => {
-            const text = repeat('a', 257);
-
-            const result = testSubject.snippet(text);
-
-            let expected = repeat('a', 256);
-            expected = expected + '...';
-            expected = `<code>${expected}</code>`;
-
-            expect(result).toEqual(expected);
         });
 
         it('escapes properly', () => {
