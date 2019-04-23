@@ -1,11 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { It, Mock, MockBehavior } from 'typemoq';
+import { IMock, It, Mock, MockBehavior } from 'typemoq';
+
 import { createFormatter } from '../../../../../../bug-filing/common/markup/html-formatter';
+import { MarkupFormatter } from '../../../../../../bug-filing/common/markup/markup-formatter';
 
 describe('HTMLFormatter', () => {
-    const truncateMock = Mock.ofInstance((text: string) => text, MockBehavior.Strict);
-    const testSubject = createFormatter(truncateMock.object);
+    let truncateMock: IMock<(text: string) => string>;
+    let testSubject: MarkupFormatter;
+
+    beforeEach(() => {
+        truncateMock = Mock.ofInstance((text: string) => text, MockBehavior.Strict);
+        testSubject = createFormatter(truncateMock.object);
+    });
 
     it('returns section header', () => {
         expect(testSubject.sectionHeader('test-header')).toEqual('<h4>test-header</h4>');
@@ -20,7 +27,10 @@ describe('HTMLFormatter', () => {
     });
 
     describe('creates snippet', () => {
-        truncateMock.setup(truncate => truncate(It.isAnyString())).returns(text => text);
+        beforeEach(() => {
+            truncateMock.setup(truncate => truncate(It.isAnyString())).returns(text => text);
+        });
+
         it('no need to escape', () => {
             const result = testSubject.snippet('this is code');
 

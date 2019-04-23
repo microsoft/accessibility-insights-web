@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { It, Mock, MockBehavior } from 'typemoq';
+import { It, Mock, MockBehavior, IMock } from 'typemoq';
 import { createIssueDetailsBuilder } from '../../../../../bug-filing/common/create-issue-details-builder';
 import { MarkupFormatter } from '../../../../../bug-filing/common/markup/markup-formatter';
 import { EnvironmentInfo } from '../../../../../common/environment-info-provider';
@@ -26,10 +26,10 @@ describe('Name of the group', () => {
         browserSpec: 'test spec',
     };
 
-    const markupMock = Mock.ofType<MarkupFormatter>(null, MockBehavior.Strict);
+    let markupMock: IMock<MarkupFormatter>;
 
     beforeEach(() => {
-        markupMock.reset();
+        markupMock = Mock.ofType<MarkupFormatter>(null, MockBehavior.Strict);
 
         markupMock.setup(factory => factory.snippet(It.isAnyString())).returns(text => `s-${text}-s`);
         markupMock.setup(factory => factory.link(It.isAnyString(), It.isAnyString())).returns((href, text) => `l-${href}-${text}-l`);
