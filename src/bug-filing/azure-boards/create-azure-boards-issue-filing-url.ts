@@ -7,7 +7,7 @@ import { createIssueDetailsBuilder } from '../common/create-issue-details-builde
 import { HTTPQueryBuilder } from '../common/http-query-builder';
 import { IssueDetailsBuilder } from '../common/issue-details-builder';
 import { IssueFilingUrlStringUtils, IssueUrlCreationUtils } from '../common/issue-filing-url-string-utils';
-import { HTMLFactory } from '../common/markup/html-factory';
+import { HTMLFormatter } from '../common/markup/html-formatter';
 import { AzureBoardsBugFilingSettings } from './azure-boards-bug-filing-service';
 
 const buildTags = (createBugData: CreateIssueDetailsTextData, standardTags: string[]): string => {
@@ -44,6 +44,6 @@ export const createAzureBoardsIssueFilingUrlProvider = (
 
 export const azureBoardsIssueFilingUrlProvider = createAzureBoardsIssueFilingUrlProvider(
     IssueFilingUrlStringUtils,
-    createIssueDetailsBuilder(HTMLFactory),
+    createIssueDetailsBuilder(HTMLFormatter),
     () => new HTTPQueryBuilder(),
 );

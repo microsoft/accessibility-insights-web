@@ -4,9 +4,9 @@ import { EnvironmentInfo } from '../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { title } from '../../content/strings/application';
 import { IssueDetailsBuilder } from './issue-details-builder';
-import { MarkupFactory } from './markup/markup-factory';
+import { MarkupFormatter } from './markup/markup-formatter';
 
-export const createIssueDetailsBuilder = (markup: MarkupFactory): IssueDetailsBuilder => {
+export const createIssueDetailsBuilder = (markup: MarkupFormatter): IssueDetailsBuilder => {
     const getter = (environmentInfo: EnvironmentInfo, data: CreateIssueDetailsTextData): string => {
         const result = data.ruleResult;
 

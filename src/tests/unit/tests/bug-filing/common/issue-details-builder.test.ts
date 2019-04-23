@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { It, Mock, MockBehavior } from 'typemoq';
 import { createIssueDetailsBuilder } from '../../../../../bug-filing/common/create-issue-details-builder';
-import { MarkupFactory } from '../../../../../bug-filing/common/markup/markup-factory';
+import { MarkupFormatter } from '../../../../../bug-filing/common/markup/markup-formatter';
 import { EnvironmentInfo } from '../../../../../common/environment-info-provider';
 
 describe('Name of the group', () => {
@@ -26,7 +26,7 @@ describe('Name of the group', () => {
         browserSpec: 'test spec',
     };
 
-    const markupMock = Mock.ofType<MarkupFactory>(null, MockBehavior.Strict);
+    const markupMock = Mock.ofType<MarkupFormatter>(null, MockBehavior.Strict);
 
     beforeEach(() => {
         markupMock.reset();

@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { It, Mock, MockBehavior } from 'typemoq';
-import { createFactory } from '../../../../../../bug-filing/common/markup/html-factory';
+import { createFormatter } from '../../../../../../bug-filing/common/markup/html-formatter';
 
-describe('HTMLFactory', () => {
+describe('HTMLFormatter', () => {
     const truncateMock = Mock.ofInstance((text: string) => text, MockBehavior.Strict);
-    const testSubject = createFactory(truncateMock.object);
+    const testSubject = createFormatter(truncateMock.object);
 
     it('applies bold to text', () => {
         const result = testSubject.bold('text');

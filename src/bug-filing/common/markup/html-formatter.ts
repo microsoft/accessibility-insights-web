@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { escape } from 'lodash';
-import { MarkupFactory } from './markup-factory';
+import { MarkupFormatter } from './markup-formatter';
 import { truncateSnippet as truncate } from './truncate-snippet';
 
-export const createFactory = (truncateSnippet: (text: string) => string): MarkupFactory => {
+export const createFormatter = (truncateSnippet: (text: string) => string): MarkupFormatter => {
     const bold = (text: string): string => {
         return `<b>${text}</b>`;
     };
@@ -44,4 +44,4 @@ export const createFactory = (truncateSnippet: (text: string) => string): Markup
     };
 };
 
-export const HTMLFactory = createFactory(truncate);
+export const HTMLFormatter = createFormatter(truncate);

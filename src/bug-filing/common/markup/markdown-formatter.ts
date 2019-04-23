@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { MarkupFactory } from './markup-factory';
+import { MarkupFormatter } from './markup-formatter';
 import { truncateSnippet as truncate } from './truncate-snippet';
 
-export const createFactory = (truncateSnippet: (text: string) => string): MarkupFactory => {
+export const createFormatter = (truncateSnippet: (text: string) => string): MarkupFormatter => {
     const bold = (text: string): string => {
         return `**${text}**`;
     };
@@ -43,4 +43,4 @@ export const createFactory = (truncateSnippet: (text: string) => string): Markup
     };
 };
 
-export const MarkdownFactory = createFactory(truncate);
+export const MarkdownFormatter = createFormatter(truncate);
