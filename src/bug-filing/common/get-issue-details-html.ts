@@ -1,10 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { escape } from 'lodash';
-
 import { EnvironmentInfo } from '../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
-import { title } from '../../content/strings/application';
 import { IssueDetailsGetter } from './issue-details-getter';
 import { IssueUrlCreationUtils } from './issue-filing-url-string-utils';
 
@@ -17,15 +15,14 @@ const buildIssueDetailsHtml = (help: string, helpUrl: string, ruleId: string): s
     const ruleIdEscapedForHtml = escape(ruleId);
     const helpUrlEscaped = encodeURI(helpUrl);
 
-    return `${helpEscapedForHtml}<br><a href="${helpUrlEscaped}">${ruleIdEscapedForHtml}</a>`;
+    return `${helpEscapedForHtml} (<a href="${helpUrlEscaped}">${ruleIdEscapedForHtml}</a>)`;
 };
 
 const buildApplicationHtml = (pageTitle: string, pageUrl: string): string => {
     const pageTitleEscapedForHtml = escape(pageTitle);
     const pageUrlEscapedForUrl = encodeURI(pageUrl);
-    const pageUrlEscapedForHtml = escape(pageUrl);
 
-    return `<a href="${pageUrlEscapedForUrl}">${pageTitleEscapedForHtml}<br>${pageUrlEscapedForHtml}</a>`;
+    return `<a href="${pageUrlEscapedForUrl}">${pageTitleEscapedForHtml}</a>`;
 };
 
 const buildSnippetHtml = (snippet: string): string => {
@@ -36,7 +33,7 @@ const buildSnippetHtml = (snippet: string): string => {
         constrainedSnippet = snippet.substr(0, maxSnippetLength) + '...';
     }
 
-    return escape(constrainedSnippet);
+    return `<code>${escape(constrainedSnippet)}</code>`;
 };
 
 const buildHowToFixHtml = (failureSummary: string): string => {
@@ -52,19 +49,13 @@ export const getIssueDetailsHtml: IssueDetailsGetter = (
     data: CreateIssueDetailsTextData,
 ): string => {
     const body =
-        buildBodySectionHtml(
-            'Issue Details',
-            buildIssueDetailsHtml(data.ruleResult.help, data.ruleResult.helpUrl, data.ruleResult.ruleId),
-        ) +
-        buildBodySectionHtml('Application', buildApplicationHtml(data.pageTitle, data.pageUrl)) +
+        buildBodySectionHtml('Issue', buildIssueDetailsHtml(data.ruleResult.help, data.ruleResult.helpUrl, data.ruleResult.ruleId)) +
+        buildBodySectionHtml('Target Application', buildApplicationHtml(data.pageTitle, data.pageUrl)) +
         buildBodySectionHtml('Element Path', escape(data.ruleResult.selector)) +
         buildBodySectionHtml('Snippet', buildSnippetHtml(data.ruleResult.html)) +
         buildBodySectionHtml('How to fix', buildHowToFixHtml(data.ruleResult.failureSummary)) +
-        buildBodySectionHtml(
-            'To reproduce',
-            `Use <a href="http://aka.ms/AccessibilityInsights">${title}</a> to investigate the issue details`,
-        ) +
         buildBodySectionHtml('Environment', escape(environmentInfo.browserSpec)) +
+        '<br>===<br>' +
         stringUtils.getFooter(environmentInfo);
 
     return body;

@@ -10,7 +10,7 @@ import { IssueFilingUrlStringUtils, IssueUrlCreationUtils } from '../common/issu
 import { AzureBoardsBugFilingSettings } from './azure-boards-bug-filing-service';
 
 const buildTags = (createBugData: CreateIssueDetailsTextData, standardTags: string[]): string => {
-    const tags = ['Accessibility', title, `rule:${createBugData.ruleResult.ruleId}`, ...standardTags];
+    const tags = ['Accessibility', title, `rule: ${createBugData.ruleResult.ruleId}`, ...standardTags];
     return tags.join('; ');
 };
 
@@ -20,9 +20,8 @@ export const createAzureBoardsIssueFilingUrlProvider = (
     queryBuilderProvider: () => HTTPQueryBuilder,
 ) => {
     return (settingsData: AzureBoardsBugFilingSettings, bugData: CreateIssueDetailsTextData, environmentInfo: EnvironmentInfo) => {
-        const standardTags = stringUtils.standardizeTags(bugData);
-
         const titleField = stringUtils.getTitle(bugData);
+        const standardTags = stringUtils.standardizeTags(bugData);
         const tags = buildTags(bugData, standardTags);
         const body = issueDetailsGetter(stringUtils, environmentInfo, bugData);
 

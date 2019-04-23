@@ -75,11 +75,8 @@ export class PopupInitializer {
         const actionMessageDispatcher = new ActionMessageDispatcher(this.chromeAdapter.sendMessageToFrames, this.targetTabInfo.tab.id);
         const visualizationActionCreator = new VisualizationActionMessageCreator(actionMessageDispatcher);
 
-        const popupActionMessageCreator = new PopupActionMessageCreator(
-            this.chromeAdapter.sendMessageToFrames,
-            this.targetTabInfo.tab.id,
-            telemetryFactory,
-        );
+        const windowUtils = new WindowUtils();
+        const popupActionMessageCreator = new PopupActionMessageCreator(telemetryFactory, actionMessageDispatcher, windowUtils);
 
         const userConfigMessageCreator = new UserConfigMessageCreator(this.chromeAdapter.sendMessageToFrames, this.targetTabInfo.tab.id);
 
@@ -91,10 +88,9 @@ export class PopupInitializer {
         const storeActionMessageCreator = storeActionMessageCreatorFactory.forPopup();
 
         const contentActionMessageCreator = new ContentActionMessageCreator(
-            this.chromeAdapter.sendMessageToFrames,
-            this.targetTabInfo.tab.id,
             telemetryFactory,
             TelemetryEventSource.DetailsView,
+            actionMessageDispatcher,
         );
 
         const dropdownActionMessageCreator = new DropdownActionMessageCreator(
@@ -114,7 +110,6 @@ export class PopupInitializer {
         const commandStore = new StoreProxy<CommandStoreData>(commandStoreName, this.chromeAdapter);
         const featureFlagStore = new StoreProxy<FeatureFlagStoreData>(featureFlagStoreName, this.chromeAdapter);
         const userConfigurationStore = new StoreProxy<UserConfigurationStoreData>(userConfigurationStoreName, this.chromeAdapter);
-        const windowUtils = new WindowUtils();
 
         visualizationStore.setTabId(this.targetTabInfo.tab.id);
         commandStore.setTabId(this.targetTabInfo.tab.id);

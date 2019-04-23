@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { OnDetailsViewOpenPayload, SetLaunchPanelState } from '../../../../../background/actions/action-payloads';
-import { Message } from '../../../../../common/message';
+import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import {
@@ -10,6 +10,7 @@ import {
     DetailsViewOpenTelemetryData,
     LAUNCH_PANEL_OPEN,
     POPUP_INITIALIZED,
+    TelemetryData,
     TelemetryEventSource,
     TUTORIAL_OPEN,
 } from '../../../../../common/telemetry-events';
@@ -26,71 +27,46 @@ describe('PopupActionMessageCreatorTest', () => {
     const testSource: TelemetryEventSource = -1 as TelemetryEventSource;
 
     let mockWindowUtils: IMock<WindowUtils>;
-    let postMessageMock: IMock<(message: Message) => void>;
-    let testSubject: PopupActionMessageCreator;
     let telemetryFactoryMock: IMock<TelemetryDataFactory>;
-    let tabId: number;
+    let actionMessageDispatcherMock: IMock<ActionMessageDispatcher>;
+
+    let testSubject: PopupActionMessageCreator;
 
     beforeEach(() => {
         mockWindowUtils = Mock.ofType(WindowUtils, MockBehavior.Strict);
 
-        postMessageMock = Mock.ofInstance(message => {}, MockBehavior.Strict);
         telemetryFactoryMock = Mock.ofType(TelemetryDataFactory, MockBehavior.Strict);
-        tabId = 1;
+        actionMessageDispatcherMock = Mock.ofType<ActionMessageDispatcher>();
 
-        testSubject = new PopupActionMessageCreator(postMessageMock.object, tabId, telemetryFactoryMock.object, mockWindowUtils.object);
+        testSubject = new PopupActionMessageCreator(
+            telemetryFactoryMock.object,
+            actionMessageDispatcherMock.object,
+            mockWindowUtils.object,
+        );
     });
 
-    afterEach(() => {
-        mockWindowUtils.verifyAll();
-        telemetryFactoryMock.verifyAll();
-        postMessageMock.verifyAll();
-    });
-
-    test('popupInitialized', () => {
-        const payload = {
-            eventName: POPUP_INITIALIZED,
-            telemetry: {
-                source: TelemetryEventSource.LaunchPad,
-                triggeredBy: 'N/A',
-            },
+    it('dispatches for popupInitialized', () => {
+        const telemetry: BaseTelemetryData = {
+            source: TelemetryEventSource.LaunchPad,
+            triggeredBy: 'N/A',
         };
-
-        const expectedMessage = {
-            tabId: 1,
-            messageType: Messages.Telemetry.Send,
-            payload: payload,
-        };
-
-        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
 
         testSubject.popupInitialized();
 
-        postMessageMock.verifyAll();
+        actionMessageDispatcherMock.verify(dispatcher => dispatcher.sendTelemetry(POPUP_INITIALIZED, It.isValue(telemetry)), Times.once());
     });
 
-    test('openLaunchPad', () => {
+    it('dispatches for openLaunchPad', () => {
         const panelType = LaunchPanelType.AdhocToolsPanel;
-        const payload = {
-            eventName: LAUNCH_PANEL_OPEN,
-            telemetry: {
-                source: TelemetryEventSource.LaunchPad,
-                triggeredBy: 'N/A',
-                launchPanelType: panelType,
-            },
+        const telemetry: TelemetryData = {
+            source: TelemetryEventSource.LaunchPad,
+            triggeredBy: 'N/A',
+            launchPanelType: panelType,
         };
-
-        const expectedMessage = {
-            tabId: 1,
-            messageType: Messages.Telemetry.Send,
-            payload: payload,
-        };
-
-        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
 
         testSubject.openLaunchPad(panelType);
 
-        postMessageMock.verifyAll();
+        actionMessageDispatcherMock.verify(dispatcher => dispatcher.sendTelemetry(LAUNCH_PANEL_OPEN, It.isValue(telemetry)), Times.once());
     });
 
     test('openDetailsView', () => {
@@ -110,117 +86,54 @@ describe('PopupActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            tabId: 1,
             messageType: Messages.Visualizations.DetailsView.Open,
             payload: expectedPayload,
         };
 
-        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
-
-        telemetryFactoryMock
-            .setup(tf => tf.forOpenDetailsView(stubKeypressEvent, viewType, testSource))
-            .returns(() => telemetry)
-            .verifiable();
+        telemetryFactoryMock.setup(tf => tf.forOpenDetailsView(stubKeypressEvent, viewType, testSource)).returns(() => telemetry);
 
         mockWindowUtils.setup(x => x.closeWindow()).verifiable(Times.once());
 
         testSubject.openDetailsView(stubKeypressEvent, VisualizationType.Headings, testSource, pivotType);
 
-        postMessageMock.verifyAll();
-        telemetryFactoryMock.verifyAll();
+        actionMessageDispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
+        mockWindowUtils.verifyAll();
     });
 
-    test('openDetailsView (no pivotType param)', () => {
-        const viewType = VisualizationType.Headings;
-
-        const telemetry: DetailsViewOpenTelemetryData = {
-            selectedTest: VisualizationType[viewType],
-            triggeredBy: 'keypress',
-            source: testSource,
-        };
-
-        const expectedPayload: OnDetailsViewOpenPayload = {
-            telemetry: telemetry,
-            detailsViewType: viewType,
-            pivotType: DetailsViewPivotType.allTest,
-        };
-
-        const expectedMessage = {
-            tabId: 1,
-            messageType: Messages.Visualizations.DetailsView.Open,
-            payload: expectedPayload,
-        };
-
-        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
-
-        telemetryFactoryMock
-            .setup(tf => tf.forOpenDetailsView(stubKeypressEvent, viewType, testSource))
-            .returns(() => telemetry)
-            .verifiable();
-
-        mockWindowUtils.setup(x => x.closeWindow()).verifiable(Times.once());
-
-        testSubject.openDetailsView(stubKeypressEvent, VisualizationType.Headings, testSource);
-
-        postMessageMock.verifyAll();
-        telemetryFactoryMock.verifyAll();
-    });
-
-    test('openShortcutConfigureTab', () => {
+    it('dispatches for openShortcutConfigureTab', () => {
         const telemetry: BaseTelemetryData = {
             triggeredBy: 'keypress',
             source: TelemetryEventSource.HamburgerMenu,
         };
 
-        const expectedMessage = {
-            tabId: 1,
+        const message = {
             messageType: Messages.ChromeFeature.configureCommand,
             payload: {
                 telemetry,
             },
         };
 
-        telemetryFactoryMock
-            .setup(tf => tf.fromHamburgerMenu(stubKeypressEvent))
-            .returns(() => telemetry)
-            .verifiable();
-
-        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
+        telemetryFactoryMock.setup(tf => tf.fromHamburgerMenu(stubKeypressEvent)).returns(() => telemetry);
 
         testSubject.openShortcutConfigureTab(stubKeypressEvent);
 
-        postMessageMock.verifyAll();
+        actionMessageDispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(message)), Times.once());
     });
 
-    test('openTutorial', () => {
+    it('dispatches for openTutorial', () => {
         const telemetry: BaseTelemetryData = {
             triggeredBy: 'keypress',
             source: TelemetryEventSource.LaunchPad,
         };
 
-        const expectedMessage = {
-            tabId: 1,
-            messageType: Messages.Telemetry.Send,
-            payload: {
-                eventName: TUTORIAL_OPEN,
-                telemetry,
-            },
-        };
-
-        telemetryFactoryMock
-            .setup(tf => tf.fromLaunchPad(stubKeypressEvent))
-            .returns(() => telemetry)
-            .verifiable(Times.once());
-
-        postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
+        telemetryFactoryMock.setup(tf => tf.fromLaunchPad(stubKeypressEvent)).returns(() => telemetry);
 
         testSubject.openTutorial(stubKeypressEvent);
 
-        postMessageMock.verifyAll();
-        telemetryFactoryMock.verifyAll();
+        actionMessageDispatcherMock.verify(dispatcher => dispatcher.sendTelemetry(TUTORIAL_OPEN, It.isValue(telemetry)), Times.once());
     });
 
-    test('setLaunchPanelType', () => {
+    it('dispatches for setLaunchPanelType', () => {
         const panelType = LaunchPanelType.AdhocToolsPanel;
 
         const payload: SetLaunchPanelState = {
@@ -228,15 +141,12 @@ describe('PopupActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            tabId: 1,
             messageType: Messages.LaunchPanel.Set,
             payload,
         };
 
-        postMessageMock.setup(post => post(It.isValue(expectedMessage))).verifiable(Times.once());
-
         testSubject.setLaunchPanelType(panelType);
 
-        postMessageMock.verifyAll();
+        actionMessageDispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
     });
 });

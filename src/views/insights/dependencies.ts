@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
-
 import { ChromeAdapter } from '../../background/browser-adapter';
 import { initializeFabricIcons } from '../../common/fabric-icons';
+import { ActionMessageDispatcher } from '../../common/message-creators/action-message-dispatcher';
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
 import { StoreActionMessageCreatorFactory } from '../../common/message-creators/store-action-message-creator-factory';
 import { StoreProxy } from '../../common/store-proxy';
@@ -20,14 +20,14 @@ export const rendererDependencies: () => RendererDeps = () => {
     const chromeAdapter = new ChromeAdapter();
     const url = new URL(window.location.href);
     const tabId = parseInt(url.searchParams.get('tabId'), 10);
+    const actionMessageDispatcher = new ActionMessageDispatcher(chromeAdapter.sendMessageToFrames, tabId);
 
     const telemetryFactory = new TelemetryDataFactory();
 
     const contentActionMessageCreator = new ContentActionMessageCreator(
-        chromeAdapter.sendMessageToFrames,
-        tabId,
         telemetryFactory,
         TelemetryEventSource.ContentPage,
+        actionMessageDispatcher,
     );
 
     const store = new StoreProxy<UserConfigurationStoreData>(StoreNames[StoreNames.UserConfigurationStore], chromeAdapter);

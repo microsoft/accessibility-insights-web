@@ -4,27 +4,21 @@ import { autobind } from '@uifabric/utilities';
 import { BaseActionPayload } from '../../background/actions/action-payloads';
 import { ContentPayload } from '../../background/actions/content-actions';
 import { ActionInitiators } from '../action/action-initiator';
-import { Message } from '../message';
 import { Messages } from '../messages';
 import { TelemetryDataFactory } from '../telemetry-data-factory';
 import { CONTENT_HYPERLINK_OPENED, CONTENT_PAGE_OPENED, TelemetryEventSource } from '../telemetry-events';
-import { BaseActionMessageCreator } from './base-action-message-creator';
+import { ActionMessageDispatcher } from './action-message-dispatcher';
 
-export class ContentActionMessageCreator extends BaseActionMessageCreator {
+export class ContentActionMessageCreator {
     public initiators: Pick<ActionInitiators, 'openExternalLink'> = {
         openExternalLink: this.openExternalLink,
     };
 
     constructor(
-        postMessage: (message: Message) => void,
-        tabId: number,
         private readonly telemetryFactory: TelemetryDataFactory,
         private readonly source: TelemetryEventSource,
-    ) {
-        super(postMessage, tabId);
-        this.telemetryFactory = telemetryFactory;
-        this.source = source;
-    }
+        private readonly dispatcher: ActionMessageDispatcher,
+    ) {}
 
     @autobind
     public openContentPage(event: React.MouseEvent<any> | MouseEvent, contentPath: string): void {
@@ -34,16 +28,11 @@ export class ContentActionMessageCreator extends BaseActionMessageCreator {
             eventName: CONTENT_PAGE_OPENED,
             telemetry: { ...telemetry, contentPath },
         };
-        this.dispatchMessage({
-            messageType: messageType,
-            tabId: this._tabId,
+
+        this.dispatcher.dispatchMessage({
+            messageType,
             payload,
         });
-    }
-
-    @autobind
-    private openExternalLink(event: React.MouseEvent<any> | MouseEvent, details: { href: string }): void {
-        this.openContentHyperLink(event, details.href);
     }
 
     @autobind
@@ -54,9 +43,8 @@ export class ContentActionMessageCreator extends BaseActionMessageCreator {
             eventName: CONTENT_HYPERLINK_OPENED,
             telemetry: { ...telemetry, href },
         };
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: messageType,
-            tabId: this._tabId,
             payload,
         });
     }
@@ -69,9 +57,9 @@ export class ContentActionMessageCreator extends BaseActionMessageCreator {
             telemetry,
             contentPath,
         };
-        this.dispatchMessage({
-            messageType: messageType,
-            tabId: this._tabId,
+
+        this.dispatcher.dispatchMessage({
+            messageType,
             payload,
         });
     }
@@ -84,10 +72,14 @@ export class ContentActionMessageCreator extends BaseActionMessageCreator {
             telemetry,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: messageType,
-            tabId: this._tabId,
             payload,
         });
+    }
+
+    @autobind
+    private openExternalLink(event: React.MouseEvent<any> | MouseEvent, details: { href: string }): void {
+        this.openContentHyperLink(event, details.href);
     }
 }

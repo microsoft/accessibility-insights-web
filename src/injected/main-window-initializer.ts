@@ -9,6 +9,7 @@ import { InspectConfigurationFactory } from '../common/configs/inspect-configura
 import { DateProvider } from '../common/date-provider';
 import { EnvironmentInfoProvider } from '../common/environment-info-provider';
 import { HTMLElementUtils } from '../common/html-element-utils';
+import { ActionMessageDispatcher } from '../common/message-creators/action-message-dispatcher';
 import { BugActionMessageCreator } from '../common/message-creators/bug-action-message-creator';
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
@@ -102,14 +103,15 @@ export class MainWindowInitializer extends WindowInitializer {
             null,
             telemetryDataFactory,
         );
+        const actionMessageDispatcher = new ActionMessageDispatcher(this.clientChromeAdapter.sendMessageToFrames, null);
+
         const targetPageActionMessageCreator = new TargetPageActionMessageCreator(
             this.clientChromeAdapter.sendMessageToFrames,
             null,
             telemetryDataFactory,
         );
         const bugActionMessageCreator = new BugActionMessageCreator(
-            this.clientChromeAdapter.sendMessageToFrames,
-            null,
+            actionMessageDispatcher,
             telemetryDataFactory,
             TelemetryEventSource.TargetPage,
         );

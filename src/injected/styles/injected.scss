@@ -62,7 +62,7 @@
         width: 25%;
         max-width: 25%;
         user-select: text;
-        min-width: 520px;
+        min-width: 550px;
     }
 
     div.insights-file-issue-details-dialog-container {
@@ -101,6 +101,11 @@
 
     .insights-dialog-main-override .insights-dialog-main-container .ms-Dialog-inner {
         padding: 0 19px 20px !important;
+    }
+
+    .insights-dialog-main-override button {
+        // This is to prevent conflicts with target page CSS, see issue #578
+        border: 0 !important;
     }
 
     .insights-dialog-main-override .insights-dialog-button-inspect svg path {
