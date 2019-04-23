@@ -7,9 +7,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
     Object {
       "showCloseButton": false,
       "subText": "This configuration can be changed again in settings.",
-      "subTextId": "issue-filing-dialog-subtext",
       "title": "Specify issue filing location",
-      "titleId": "issue-filing-dialog-title",
       "type": 0,
     }
   }
@@ -91,9 +89,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
     Object {
       "showCloseButton": false,
       "subText": "This configuration can be changed again in settings.",
-      "subTextId": "issue-filing-dialog-subtext",
       "title": "Specify issue filing location",
-      "titleId": "issue-filing-dialog-title",
       "type": 0,
     }
   }
@@ -175,9 +171,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
     Object {
       "showCloseButton": false,
       "subText": "This configuration can be changed again in settings.",
-      "subTextId": "issue-filing-dialog-subtext",
       "title": "Specify issue filing location",
-      "titleId": "issue-filing-dialog-title",
       "type": 0,
     }
   }
@@ -259,9 +253,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
     Object {
       "showCloseButton": false,
       "subText": "This configuration can be changed again in settings.",
-      "subTextId": "issue-filing-dialog-subtext",
       "title": "Specify issue filing location",
-      "titleId": "issue-filing-dialog-title",
       "type": 0,
     }
   }
@@ -343,9 +335,7 @@ exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
     Object {
       "showCloseButton": false,
       "subText": "This configuration can be changed again in settings.",
-      "subTextId": "issue-filing-dialog-subtext",
       "title": "Specify issue filing location",
-      "titleId": "issue-filing-dialog-title",
       "type": 0,
     }
   }
@@ -428,9 +418,7 @@ exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
     Object {
       "showCloseButton": false,
       "subText": "This configuration can be changed again in settings.",
-      "subTextId": "issue-filing-dialog-subtext",
       "title": "Specify issue filing location",
-      "titleId": "issue-filing-dialog-title",
       "type": 0,
     }
   }
@@ -512,9 +500,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
     Object {
       "showCloseButton": false,
       "subText": "This configuration can be changed again in settings.",
-      "subTextId": "issue-filing-dialog-subtext",
       "title": "Specify issue filing location",
-      "titleId": "issue-filing-dialog-title",
       "type": 0,
     }
   }
@@ -597,9 +583,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
     Object {
       "showCloseButton": false,
       "subText": "This configuration can be changed again in settings.",
-      "subTextId": "issue-filing-dialog-subtext",
       "title": "Specify issue filing location",
-      "titleId": "issue-filing-dialog-title",
       "type": 0,
     }
   }
@@ -681,9 +665,7 @@ exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) s
     Object {
       "showCloseButton": false,
       "subText": "This configuration can be changed again in settings.",
-      "subTextId": "issue-filing-dialog-subtext",
       "title": "Specify issue filing location",
-      "titleId": "issue-filing-dialog-title",
       "type": 0,
     }
   }
