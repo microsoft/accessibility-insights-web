@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { It, Mock, MockBehavior, IMock } from 'typemoq';
+import { IMock, It, Mock, MockBehavior } from 'typemoq';
 import { createIssueDetailsBuilder } from '../../../../../bug-filing/common/create-issue-details-builder';
 import { MarkupFormatter } from '../../../../../bug-filing/common/markup/markup-formatter';
 import { EnvironmentInfo } from '../../../../../common/environment-info-provider';
