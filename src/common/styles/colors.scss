@@ -15,11 +15,11 @@
 
     // Text colors
     --primary-text: rgba(0, 0, 0, 0.9);
-    --secondary-text: rgba(0, 0, 0, 0.6);
+    --secondary-text: rgba(0, 0, 0, 0.55);
     --disabled-text: rgba(0, 0, 0, 0.38);
     --primary-text-invert: rgba(255, 255, 255, 1);
-    --secondary-text-invert: rgba(0, 0, 0, 0.55);
-    --disabled-text-invert: rgba(0, 0, 0, 0.38);
+    --secondary-text-invert: rgba(255, 255, 255, 0.65);
+    --disabled-text-invert: rgba(255, 255, 255, 0.32);
 
     // UI colors
     --communication-primary: #0078d4;
@@ -119,6 +119,7 @@
         --communication-shade-10: #ffff00;
         --communication-tint-30: var(--communication-tint-10);
         --communication-tint-40: #38a9ff;
+        --disabled-text: #c285ff;
         --overview-percent-selected: var(--black);
         --index-circle-background: var(--communication-tint-40);
         --header-bar-title-color: var(--brand-blue);
