@@ -9,8 +9,6 @@ export const keyboardBookmarkletInstructions = create(({ Markup }) => (
         <ol>
             <li>
                 Open the Chrome <Markup.Term>Bookmarks Manager</Markup.Term>:
-            </li>
-            <li>
                 <ol type="a">
                     <li>
                         In Chrome, type <Markup.Term>Ctrl + Shift + o</Markup.Term> or <Markup.Term>⌘ + Option + b</Markup.Term>
@@ -23,14 +21,9 @@ export const keyboardBookmarkletInstructions = create(({ Markup }) => (
 
             <li>
                 Add the first bookmarklet (<Markup.Term>Check serialized DOM of current page</Markup.Term>):
-            </li>
-
-            <li>
                 <ol type="a">
                     <li>
                         Open the <Markup.Term>Add bookmark</Markup.Term> dialog:
-                    </li>
-                    <li>
                         <ol type="i">
                             <li>Navigate to the Organize menu button and activate it.</li>
                             <li>Arrow down to Add new bookmark and activate it. The Add bookmark dialog will open.</li>
@@ -43,8 +36,6 @@ export const keyboardBookmarkletInstructions = create(({ Markup }) => (
 
                     <li>
                         Add the bookmarklet's JavaScript code to the <Markup.Term>URL</Markup.Term> field:
-                    </li>
-                    <li>
                         <ol type="i">
                             <li>
                                 Go to{' '}
@@ -64,27 +55,27 @@ export const keyboardBookmarkletInstructions = create(({ Markup }) => (
                         </ol>
                     </li>
 
-                    <li>Save the new bookmark.</li>
-
                     <li>
-                        <ul>
+                        Save the new bookmark.
+                        <ol type="i">
                             <li>
-                                Navigate to the <Markup.Term>Save</Markup.Term> button and activate it. The bookmarklet will be added to the
-                                end of the <Markup.Term>Bookmarks</Markup.Term> bar, and the <Markup.Term>Add bookmark</Markup.Term> dialog
-                                will close.
+                                Navigate to the <Markup.Term>Save</Markup.Term> button and activate it.
                             </li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        Repeat steps 2a through 2d to add the second bookmarklet (
-                        <Markup.Term>Check for WCAG 2.0 parsing compliance</Markup.Term>).
-                    </li>
-
-                    <li>
-                        Close the <Markup.Term>Bookmarks Manager</Markup.Term> tab.
+                            <li>
+                                The bookmarklet will be added to the end of the <Markup.Term>Bookmarks</Markup.Term> bar, and the{' '}
+                                <Markup.Term>Add bookmark</Markup.Term> dialog will close.
+                            </li>
+                        </ol>
                     </li>
                 </ol>
+            </li>
+
+            <li>
+                Repeat steps 2a through 2d to add the second bookmarklet (<Markup.Term>Check for WCAG 2.0 parsing compliance</Markup.Term>).
+            </li>
+
+            <li>
+                Close the <Markup.Term>Bookmarks Manager</Markup.Term> tab.
             </li>
         </ol>
     </>
