@@ -9,9 +9,8 @@ export type QueryParam = {
 };
 
 export class HTTPQueryBuilder {
-    // maxUrlLength needs to consider redirection if the user is not logged in.
-    // run binary search with 2000 as the max value.
-    public static readonly maxUrlLength = 1500;
+    // defacto max lenght for urls
+    public static readonly maxUrlLength = 2000;
     private baseUrl: string;
     private parameters: DictionaryStringTo<QueryParam>;
 
