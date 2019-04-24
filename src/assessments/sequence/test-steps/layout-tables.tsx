@@ -13,15 +13,15 @@ const description: JSX.Element = <span>The content in an HTML layout table must 
 const howToTest: JSX.Element = (
     <div>
         <p>
-            This procedure uses the Chrome{' '}
+            This procedure uses the{' '}
             <NewTabLink href="https://chrome.google.com/webstore/detail/web-developer/bfbameneiokkgbdmiekhjnmfkcnldhhm">
                 Web Developer
             </NewTabLink>{' '}
-            extension.
+            browser extension.
         </p>
         <ol>
             <li>
-                Use the Chrome Web Developer extension (<Markup.Term>Outline > Outline Tables</Markup.Term>) to identify any{' '}
+                Use the Web Developer extension (<Markup.Term>Outline > Outline Tables</Markup.Term>) to identify any{' '}
                 <Markup.Tag tagName="table" /> elements in the target page.
             </li>
             <li>
@@ -37,7 +37,7 @@ const howToTest: JSX.Element = (
                 </ol>
             </li>
             <li>
-                If you find a layout table, use the Chrome Web Developer extension (
+                If you find a layout table, use the Web Developer browser extension (
                 <Markup.Term>Miscellaneous > Linearize page</Markup.Term>) to show the page in DOM order.
             </li>
             <li>Verify that content in layout tables still has the correct reading order when the page is linearized.</li>

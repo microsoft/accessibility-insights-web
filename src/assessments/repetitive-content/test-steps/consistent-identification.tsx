@@ -22,7 +22,7 @@ const consistentIdentificationHowToTest: JSX.Element = (
             <li>
                 Use the{' '}
                 <NewTabLink href="https://developers.google.com/web/updates/2018/01/devtools">
-                    Accessibility pane in the Chrome Developer Tools
+                    Accessibility pane in the browser Developer Tools
                 </NewTabLink>{' '}
                 to verify that the component has the same accessible name each time it appears.
             </li>

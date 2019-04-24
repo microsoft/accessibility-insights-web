@@ -12,7 +12,7 @@ const letterSpacingDescription: JSX.Element = (
 
 const letterSpacingHowToTest: JSX.Element = (
     <div>
-        <p>This procedure uses the Chrome Developer Tools (F12) to inspect the page's HTML.</p>
+        <p>This procedure uses the browser Developer Tools (F12) to inspect the page's HTML.</p>
         <ol>
             <li>Examine the target page to identify any words that appear to have increased spacing between letters.</li>
             <li>

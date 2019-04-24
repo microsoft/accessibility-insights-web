@@ -27,7 +27,7 @@ const resizeTextHowToTest: JSX.Element = (
                     <li>Set scaling to 100%.</li>
                 </ol>
             </li>
-            <li>Use Chrome's settings to set the target page's zoom to 200%.</li>
+            <li>Use the browser's settings to set the target page's zoom to 200%.</li>
             <li>
                 Examine the target page to verify that:
                 <ol>

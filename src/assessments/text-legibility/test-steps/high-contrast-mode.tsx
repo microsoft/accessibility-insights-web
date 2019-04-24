@@ -14,7 +14,7 @@ const highContrastModeDescription: JSX.Element = (
 
 const highContrastModeHowToTest: JSX.Element = (
     <div>
-        Chrome does not support Windows' high contrast mode.
+        Chrome and Edge Insider do not support Windows' high contrast mode.
         <ol>
             <li>Open the target page in Microsoft Edge.</li>
             <li>

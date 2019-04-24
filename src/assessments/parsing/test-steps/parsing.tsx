@@ -28,13 +28,13 @@ const howToTest: JSX.Element = (
                 window.
             </li>
             <li>
-                Add these two bookmarklets to your Chrome bookmarks:
+                Add these two bookmarklets to your browser bookmarks:
                 <ol>
                     <li>Check serialized DOM of current page</li>
                     <li>Check for WCAG 2.0 parsing compliance</li>
                 </ol>
                 <p>
-                    (Mouse users can simply drag the corresponding links from the page to the Chrome bookmarks bar. Keyboard users can
+                    (Mouse users can simply drag the corresponding links from the page to the browser bookmarks bar. Keyboard users can
                     follow <NewTabLink href={keyboardBookmarkletInstructionsURL}>these instructions</NewTabLink>.)
                 </p>
             </li>
