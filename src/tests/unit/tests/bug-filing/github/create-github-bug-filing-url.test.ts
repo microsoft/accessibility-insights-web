@@ -49,7 +49,7 @@ describe('createGitHubBugFilingUrlTest', () => {
         const testTitle = 'test title';
         stringUtilsMock.setup(utils => utils.getTitle(sampleIssueDetailsData)).returns(() => testTitle);
         const testBaseUrl = 'base-url';
-        stringUtilsMock.setup(utils => utils.appendSuffixToUrl(settingsData.repository, 'issues')).returns(() => testBaseUrl);
+        stringUtilsMock.setup(utils => utils.appendIssuesSuffixToGitHubUrl(settingsData.repository)).returns(() => testBaseUrl);
 
         issueDetailsGetter = Mock.ofType<IssueDetailsBuilder>();
         const testIssueDetails = 'test issue details';

@@ -42,6 +42,34 @@ describe('BugFilingUrlStringUtilsTest', () => {
         expect(IssueFilingUrlStringUtils.appendSuffixToUrl('repo/hello', 'world')).toEqual('repo/hello/world');
     });
 
+    describe('appendIssuesSuffixToGitHubUrl', () => {
+        const shouldAddSuffixTestCases = [
+            'https://github.com/me/my-repo',
+            'https://github.com/me/my-repo/',
+            'http://github.com/me/my-repo',
+            'http://github.com/me/my-repo/',
+            // the following 2 cases represent real cases where the repo name is 'issues'
+            // we still want to append the suffix in this cases
+            'http://github.com/me/issues/',
+            'http://github.com/me/issues',
+        ];
+
+        it.each(shouldAddSuffixTestCases)('should append to: %s', (url: string) => {
+            const expected = url + (url[url.length - 1] === '/' ? 'issues' : '/issues');
+            expect(IssueFilingUrlStringUtils.appendIssuesSuffixToGitHubUrl(url)).toEqual(expected);
+        });
+
+        const shouldNotChangeTestCases = [
+            'this doesnt match',
+            'https://github.com/mine/my-repo/pull-request',
+            'file://my-files/issue.text',
+        ];
+
+        it.each(shouldNotChangeTestCases)('should not change: %s', url => {
+            expect(IssueFilingUrlStringUtils.appendIssuesSuffixToGitHubUrl(url)).toEqual(url);
+        });
+    });
+
     test('getSelectorLastPart', () => {
         expect(IssueFilingUrlStringUtils.getSelectorLastPart('hello world')).toEqual('hello world');
         expect(IssueFilingUrlStringUtils.getSelectorLastPart('hello > world')).toEqual('world');

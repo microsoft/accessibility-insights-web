@@ -18,7 +18,7 @@ export const createGitHubIssueFilingUrlProvider = (
         const title = stringUtils.getTitle(bugData);
         const body = issueDetailsBuilder(environmentInfo, bugData);
 
-        const baseUrl = stringUtils.appendSuffixToUrl(settingsData.repository, 'issues');
+        const baseUrl = stringUtils.appendIssuesSuffixToGitHubUrl(settingsData.repository);
 
         return queryBuilderProvider()
             .withBaseUrl(`${baseUrl}/new`)
