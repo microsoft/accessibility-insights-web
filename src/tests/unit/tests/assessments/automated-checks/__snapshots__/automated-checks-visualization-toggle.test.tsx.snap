@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AutomatedChecksVisualizationToggle render with disabled message 1`] = `
+<div
+  className="visual-helper"
+>
+  <div
+    className="visual-helper-text"
+  >
+    Visual helper
+  </div>
+  <VisualizationToggle
+    checked={false}
+    className="visual-helper-toggle"
+    disabled={true}
+    onClick={[Function]}
+    visualizationName="Visual helper"
+  />
+  <span
+    className="no-matching-elements"
+  >
+    No matching/failing instances were found
+  </span>
+</div>
+`;
+
+exports[`AutomatedChecksVisualizationToggle render: toggle disabled when there are no failing instances for automated checks 1`] = `
+<div
+  className="visual-helper"
+>
+  <div
+    className="visual-helper-text"
+  >
+    Visual helper
+  </div>
+  <VisualizationToggle
+    checked={false}
+    className="visual-helper-toggle"
+    disabled={true}
+    onClick={[Function]}
+    visualizationName="Visual helper"
+  />
+  <span
+    className="no-matching-elements"
+  >
+    No matching/failing instances were found
+  </span>
+</div>
+`;
+
+exports[`AutomatedChecksVisualizationToggle render: toggle not disabled 1`] = `
+<div
+  className="visual-helper"
+>
+  <div
+    className="visual-helper-text"
+  >
+    Visual helper
+  </div>
+  <VisualizationToggle
+    checked={false}
+    className="visual-helper-toggle"
+    disabled={false}
+    onClick={[Function]}
+    visualizationName="Visual helper"
+  />
+</div>
+`;
