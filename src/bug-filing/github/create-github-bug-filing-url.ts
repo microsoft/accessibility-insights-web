@@ -12,7 +12,7 @@ import { GitHubBugFilingSettings } from './github-bug-filing-service';
 export const createGitHubIssueFilingUrlProvider = (
     stringUtils: IssueUrlCreationUtils,
     issueDetailsBuilder: IssueDetailsBuilder,
-    queryBuilderProvider?: () => HTTPQueryBuilder,
+    queryBuilderProvider: () => HTTPQueryBuilder,
 ) => {
     return (settingsData: GitHubBugFilingSettings, bugData: CreateIssueDetailsTextData, environmentInfo: EnvironmentInfo): string => {
         const title = stringUtils.getTitle(bugData);
