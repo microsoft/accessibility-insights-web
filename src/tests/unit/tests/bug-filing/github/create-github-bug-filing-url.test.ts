@@ -10,6 +10,7 @@ import { IssueUrlCreationUtils } from './../../../../../bug-filing/common/issue-
 import { GitHubBugFilingSettings } from './../../../../../bug-filing/github/github-bug-filing-service';
 import { EnvironmentInfo } from './../../../../../common/environment-info-provider';
 
+const buildedUrl = 'https://builded-url';
 describe('createGitHubBugFilingUrlTest', () => {
     let environmentInfo: EnvironmentInfo;
     let sampleIssueDetailsData;
@@ -61,7 +62,7 @@ describe('createGitHubBugFilingUrlTest', () => {
         queryBuilderMock.setup(builder => builder.withParam('title', testTitle)).returns(() => queryBuilderMock.object);
         queryBuilderMock.setup(builder => builder.withParam('body', testIssueDetails)).returns(() => queryBuilderMock.object);
 
-        queryBuilderMock.setup(builder => builder.build()).returns(() => 'https://builded-url');
+        queryBuilderMock.setup(builder => builder.build()).returns(() => buildedUrl);
 
         testObject = createGitHubIssueFilingUrlProvider(stringUtilsMock.object, issueDetailsGetter.object, () => queryBuilderMock.object);
     });
@@ -69,6 +70,6 @@ describe('createGitHubBugFilingUrlTest', () => {
     it('creates url', () => {
         const result = testObject(settingsData, sampleIssueDetailsData, environmentInfo);
 
-        expect(result).toMatchSnapshot();
+        expect(result).toEqual(buildedUrl);
     });
 });
