@@ -46,12 +46,12 @@ describe('HTTPQueryBuilder', () => {
     });
 
     describe('truncate urls', () => {
-        const actualUrl2990 = repeat('<-10->', 199);
+        const actualUrl2990 = repeat('<-10->', 149);
         const actualUrl3000 = actualUrl2990 + '<-10->';
         const actualUrl3001 = actualUrl2990 + '<-11!->';
         const actualUrlNoHtmlTags = repeat('1', HTTPQueryBuilder.maxUrlLength);
 
-        const expectedUrl2990 = repeat('%3C-10-%3E', 199);
+        const expectedUrl2990 = repeat('%3C-10-%3E', 149);
         const expectedUrl3000 = expectedUrl2990;
         const expectedUrl3001 = expectedUrl2990;
         const expectedUrlNoHtmlTags = actualUrlNoHtmlTags.substr(0, actualUrlNoHtmlTags.length - 3);
