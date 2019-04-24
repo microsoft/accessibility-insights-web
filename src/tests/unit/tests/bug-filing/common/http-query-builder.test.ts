@@ -46,20 +46,20 @@ describe('HTTPQueryBuilder', () => {
     });
 
     describe('truncate urls', () => {
-        const actualUrl2990 = repeat('<-10->', 199);
-        const actualUrl3000 = actualUrl2990 + '<-10->';
-        const actualUrl3001 = actualUrl2990 + '<-11!->';
+        const actualUrl1 = repeat('<-10->', 199);
+        const actualUrl2 = actualUrl1 + '<-10->';
+        const actualUrl3 = actualUrl1 + '<-11!->';
         const actualUrlNoHtmlTags = repeat('1', HTTPQueryBuilder.maxUrlLength);
 
-        const expectedUrl2990 = repeat('%3C-10-%3E', 199);
-        const expectedUrl3000 = expectedUrl2990;
-        const expectedUrl3001 = expectedUrl2990;
+        const expectedUrl1 = repeat('%3C-10-%3E', 199);
+        const expectedUrl2 = expectedUrl1;
+        const expectedUrl3 = expectedUrl1;
         const expectedUrlNoHtmlTags = actualUrlNoHtmlTags.substr(0, actualUrlNoHtmlTags.length - 3);
 
         const testCases = [
-            [`length ${HTTPQueryBuilder.maxUrlLength - 1}, with html tags`, actualUrl2990, expectedUrl2990],
-            [`length ${HTTPQueryBuilder.maxUrlLength}, with html tags`, actualUrl3000, expectedUrl3000],
-            [`length ${HTTPQueryBuilder.maxUrlLength + 1}, with html tags`, actualUrl3001, expectedUrl3001],
+            [`length ${HTTPQueryBuilder.maxUrlLength - 1}, with html tags`, actualUrl1, expectedUrl1],
+            [`length ${HTTPQueryBuilder.maxUrlLength}, with html tags`, actualUrl2, expectedUrl2],
+            [`length ${HTTPQueryBuilder.maxUrlLength + 1}, with html tags`, actualUrl3, expectedUrl3],
             ['no html tags', actualUrlNoHtmlTags, expectedUrlNoHtmlTags],
         ];
 
