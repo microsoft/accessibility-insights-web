@@ -18,10 +18,8 @@ export const createGitHubIssueFilingUrlProvider = (
         const title = stringUtils.getTitle(bugData);
         const body = issueDetailsBuilder(environmentInfo, bugData);
 
-        const baseUrl = stringUtils.appendIssuesSuffixToGitHubUrl(settingsData.repository);
-
         return queryBuilderProvider()
-            .withBaseUrl(`${baseUrl}/new`)
+            .withBaseUrl(`${settingsData.repository}/new`)
             .withParam('title', title)
             .withParam('body', body)
             .build();

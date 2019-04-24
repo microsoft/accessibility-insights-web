@@ -48,8 +48,6 @@ describe('createGitHubBugFilingUrlTest', () => {
 
         const testTitle = 'test title';
         stringUtilsMock.setup(utils => utils.getTitle(sampleIssueDetailsData)).returns(() => testTitle);
-        const testBaseUrl = 'base-url';
-        stringUtilsMock.setup(utils => utils.appendIssuesSuffixToGitHubUrl(settingsData.repository)).returns(() => testBaseUrl);
 
         issueDetailsGetter = Mock.ofType<IssueDetailsBuilder>();
         const testIssueDetails = 'test issue details';
@@ -57,7 +55,7 @@ describe('createGitHubBugFilingUrlTest', () => {
 
         queryBuilderMock = Mock.ofType<HTTPQueryBuilder>();
 
-        queryBuilderMock.setup(builder => builder.withBaseUrl(`${testBaseUrl}/new`)).returns(() => queryBuilderMock.object);
+        queryBuilderMock.setup(builder => builder.withBaseUrl(`${settingsData.repository}/new`)).returns(() => queryBuilderMock.object);
 
         queryBuilderMock.setup(builder => builder.withParam('title', testTitle)).returns(() => queryBuilderMock.object);
         queryBuilderMock.setup(builder => builder.withParam('body', testIssueDetails)).returns(() => queryBuilderMock.object);

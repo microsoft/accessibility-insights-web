@@ -6,7 +6,6 @@ export type IssueUrlCreationUtils = {
     getTitle: (data: CreateIssueDetailsTextData) => string;
     getSelectorLastPart: (selector: string) => string;
     standardizeTags: (data: CreateIssueDetailsTextData) => string[];
-    appendIssuesSuffixToGitHubUrl: (url: string) => string;
 };
 
 const getTitle = (data: CreateIssueDetailsTextData): string => {
@@ -29,26 +28,10 @@ const getSelectorLastPart = (selector: string): string => {
     return selectorLastPart;
 };
 
-const appendIssuesSuffixToGitHubUrl = (url: string): string => {
-    const ownerAndRepo = new RegExp('^https?://github.com/[^/]+/[^/]+$');
-    const ownerAndRepoAndSlash = new RegExp('^https?://github.com/[^/]+/[^/]+/?$');
-
-    if (ownerAndRepo.test(url)) {
-        return `${url}/issues`;
-    }
-
-    if (ownerAndRepoAndSlash.test(url)) {
-        return `${url}issues`;
-    }
-
-    return url;
-};
-
 const standardizeTags = (data: CreateIssueDetailsTextData): string[] => data.ruleResult.guidanceLinks.map(tag => tag.text.toUpperCase());
 
 export const IssueFilingUrlStringUtils = {
     getTitle,
     getSelectorLastPart,
     standardizeTags,
-    appendIssuesSuffixToGitHubUrl,
 };
