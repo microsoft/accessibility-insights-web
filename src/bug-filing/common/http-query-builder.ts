@@ -9,7 +9,8 @@ export type QueryParam = {
 };
 
 export class HTTPQueryBuilder {
-    public static readonly maxUrlLength = 3000;
+    // de facto max length for urls
+    public static readonly maxUrlLength = 2000;
     private baseUrl: string;
     private parameters: DictionaryStringTo<QueryParam>;
 

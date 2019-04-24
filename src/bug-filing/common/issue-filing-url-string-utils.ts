@@ -1,13 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { endsWith } from 'lodash';
 import { CreateIssueDetailsTextData } from './../../common/types/create-issue-details-text-data';
 
 export type IssueUrlCreationUtils = {
     getTitle: (data: CreateIssueDetailsTextData) => string;
     getSelectorLastPart: (selector: string) => string;
     standardizeTags: (data: CreateIssueDetailsTextData) => string[];
-    appendSuffixToUrl: (url: string, suffix: string) => string;
 };
 
 const getTitle = (data: CreateIssueDetailsTextData): string => {
@@ -30,19 +28,10 @@ const getSelectorLastPart = (selector: string): string => {
     return selectorLastPart;
 };
 
-const appendSuffixToUrl = (url: string, suffix: string): string => {
-    if (endsWith(url, suffix) || endsWith(url, `${suffix}/`)) {
-        return url;
-    }
-
-    return `${url}/${suffix}/`;
-};
-
 const standardizeTags = (data: CreateIssueDetailsTextData): string[] => data.ruleResult.guidanceLinks.map(tag => tag.text.toUpperCase());
 
 export const IssueFilingUrlStringUtils = {
     getTitle,
     getSelectorLastPart,
-    appendSuffixToUrl,
     standardizeTags,
 };

@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, Mock } from 'typemoq';
 
+import { HTTPQueryBuilder } from '../../../../../bug-filing/common/http-query-builder';
 import { IssueDetailsBuilder } from '../../../../../bug-filing/common/issue-details-builder';
 import { createGitHubIssueFilingUrlProvider } from '../../../../../bug-filing/github/create-github-bug-filing-url';
 import { IssueFilingUrlProvider } from '../../../../../bug-filing/types/bug-filing-service';
@@ -9,6 +10,7 @@ import { IssueUrlCreationUtils } from './../../../../../bug-filing/common/issue-
 import { GitHubBugFilingSettings } from './../../../../../bug-filing/github/github-bug-filing-service';
 import { EnvironmentInfo } from './../../../../../common/environment-info-provider';
 
+const buildedUrl = 'https://builded-url';
 describe('createGitHubBugFilingUrlTest', () => {
     let environmentInfo: EnvironmentInfo;
     let sampleIssueDetailsData;
@@ -16,6 +18,7 @@ describe('createGitHubBugFilingUrlTest', () => {
     let stringUtilsMock: IMock<IssueUrlCreationUtils>;
     let issueDetailsGetter: IMock<IssueDetailsBuilder>;
     let testObject: IssueFilingUrlProvider<GitHubBugFilingSettings>;
+    let queryBuilderMock: IMock<HTTPQueryBuilder>;
 
     beforeEach(() => {
         environmentInfo = {
@@ -43,17 +46,28 @@ describe('createGitHubBugFilingUrlTest', () => {
 
         stringUtilsMock = Mock.ofType<IssueUrlCreationUtils>();
 
-        stringUtilsMock.setup(utils => utils.getTitle(sampleIssueDetailsData)).returns(() => 'test title');
-        stringUtilsMock.setup(utils => utils.appendSuffixToUrl(settingsData.repository, 'issues')).returns(() => 'test appendSuffixToUrl');
+        const testTitle = 'test title';
+        stringUtilsMock.setup(utils => utils.getTitle(sampleIssueDetailsData)).returns(() => testTitle);
 
         issueDetailsGetter = Mock.ofType<IssueDetailsBuilder>();
-        issueDetailsGetter.setup(getter => getter(environmentInfo, sampleIssueDetailsData)).returns(() => 'test issue details');
-        testObject = createGitHubIssueFilingUrlProvider(stringUtilsMock.object, issueDetailsGetter.object);
+        const testIssueDetails = 'test issue details';
+        issueDetailsGetter.setup(getter => getter(environmentInfo, sampleIssueDetailsData)).returns(() => testIssueDetails);
+
+        queryBuilderMock = Mock.ofType<HTTPQueryBuilder>();
+
+        queryBuilderMock.setup(builder => builder.withBaseUrl(`${settingsData.repository}/new`)).returns(() => queryBuilderMock.object);
+
+        queryBuilderMock.setup(builder => builder.withParam('title', testTitle)).returns(() => queryBuilderMock.object);
+        queryBuilderMock.setup(builder => builder.withParam('body', testIssueDetails)).returns(() => queryBuilderMock.object);
+
+        queryBuilderMock.setup(builder => builder.build()).returns(() => buildedUrl);
+
+        testObject = createGitHubIssueFilingUrlProvider(stringUtilsMock.object, issueDetailsGetter.object, () => queryBuilderMock.object);
     });
 
     it('creates url', () => {
         const result = testObject(settingsData, sampleIssueDetailsData, environmentInfo);
 
-        expect(result).toMatchSnapshot();
+        expect(result).toEqual(buildedUrl);
     });
 });
