@@ -31,11 +31,14 @@ const getSelectorLastPart = (selector: string): string => {
 };
 
 const appendSuffixToUrl = (url: string, suffix: string): string => {
-    if (endsWith(url, suffix) || endsWith(url, `${suffix}/`)) {
+    if (endsWith(url, suffix)) {
         return url;
     }
+    if (endsWith(url, `${suffix}/`)) {
+        return url.substr(0, url.length - 1);
+    }
 
-    return `${url}/${suffix}/`;
+    return `${url}/${suffix}`;
 };
 
 const standardizeTags = (data: CreateIssueDetailsTextData): string[] => data.ruleResult.guidanceLinks.map(tag => tag.text.toUpperCase());

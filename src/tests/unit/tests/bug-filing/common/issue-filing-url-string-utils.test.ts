@@ -36,10 +36,10 @@ describe('BugFilingUrlStringUtilsTest', () => {
     });
 
     test('appendSuffixToUrl', () => {
-        expect(IssueFilingUrlStringUtils.appendSuffixToUrl('repo', 'hello')).toEqual('repo/hello/');
+        expect(IssueFilingUrlStringUtils.appendSuffixToUrl('repo', 'hello')).toEqual('repo/hello');
         expect(IssueFilingUrlStringUtils.appendSuffixToUrl('repo/hello', 'hello')).toEqual('repo/hello');
-        expect(IssueFilingUrlStringUtils.appendSuffixToUrl('repo/hello/', 'hello')).toEqual('repo/hello/');
-        expect(IssueFilingUrlStringUtils.appendSuffixToUrl('repo/hello', 'world')).toEqual('repo/hello/world/');
+        expect(IssueFilingUrlStringUtils.appendSuffixToUrl('repo/hello/', 'hello')).toEqual('repo/hello');
+        expect(IssueFilingUrlStringUtils.appendSuffixToUrl('repo/hello', 'world')).toEqual('repo/hello/world');
     });
 
     test('getSelectorLastPart', () => {
