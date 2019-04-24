@@ -93,11 +93,7 @@ export class PopupInitializer {
             actionMessageDispatcher,
         );
 
-        const dropdownActionMessageCreator = new DropdownActionMessageCreator(
-            this.chromeAdapter.sendMessageToFrames,
-            this.targetTabInfo.tab.id,
-            telemetryFactory,
-        );
+        const dropdownActionMessageCreator = new DropdownActionMessageCreator(telemetryFactory, actionMessageDispatcher);
 
         const visualizationStoreName = StoreNames[StoreNames.VisualizationStore];
         const commandStoreName = StoreNames[StoreNames.CommandStore];
