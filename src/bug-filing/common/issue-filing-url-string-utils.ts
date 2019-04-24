@@ -1,13 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { endsWith } from 'lodash';
 import { CreateIssueDetailsTextData } from './../../common/types/create-issue-details-text-data';
 
 export type IssueUrlCreationUtils = {
     getTitle: (data: CreateIssueDetailsTextData) => string;
     getSelectorLastPart: (selector: string) => string;
     standardizeTags: (data: CreateIssueDetailsTextData) => string[];
-    appendSuffixToUrl: (url: string, suffix: string) => string;
     appendIssuesSuffixToGitHubUrl: (url: string) => string;
 };
 
@@ -31,17 +29,6 @@ const getSelectorLastPart = (selector: string): string => {
     return selectorLastPart;
 };
 
-const appendSuffixToUrl = (url: string, suffix: string): string => {
-    if (endsWith(url, suffix)) {
-        return url;
-    }
-    if (endsWith(url, `${suffix}/`)) {
-        return url.substr(0, url.length - 1);
-    }
-
-    return `${url}/${suffix}`;
-};
-
 const appendIssuesSuffixToGitHubUrl = (url: string): string => {
     const ownerAndRepo = new RegExp('^https?://github.com/[^/]+/[^/]+$');
     const ownerAndRepoAndSlash = new RegExp('^https?://github.com/[^/]+/[^/]+/?$');
@@ -62,7 +49,6 @@ const standardizeTags = (data: CreateIssueDetailsTextData): string[] => data.rul
 export const IssueFilingUrlStringUtils = {
     getTitle,
     getSelectorLastPart,
-    appendSuffixToUrl,
     standardizeTags,
     appendIssuesSuffixToGitHubUrl,
 };

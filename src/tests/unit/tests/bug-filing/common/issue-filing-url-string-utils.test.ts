@@ -35,13 +35,6 @@ describe('BugFilingUrlStringUtilsTest', () => {
         });
     });
 
-    test('appendSuffixToUrl', () => {
-        expect(IssueFilingUrlStringUtils.appendSuffixToUrl('repo', 'hello')).toEqual('repo/hello');
-        expect(IssueFilingUrlStringUtils.appendSuffixToUrl('repo/hello', 'hello')).toEqual('repo/hello');
-        expect(IssueFilingUrlStringUtils.appendSuffixToUrl('repo/hello/', 'hello')).toEqual('repo/hello');
-        expect(IssueFilingUrlStringUtils.appendSuffixToUrl('repo/hello', 'world')).toEqual('repo/hello/world');
-    });
-
     describe('appendIssuesSuffixToGitHubUrl', () => {
         const shouldAddSuffixTestCases = [
             'https://github.com/me/my-repo',
