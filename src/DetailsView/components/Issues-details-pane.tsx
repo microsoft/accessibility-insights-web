@@ -6,6 +6,7 @@ import { IssueDetailsTextGenerator } from '../../background/issue-details-text-g
 import { CopyIssueDetailsButton } from '../../common/components/copy-issue-details-button';
 import { FileIssueDetailsButton, FileIssueDetailsButtonDeps } from '../../common/components/file-issue-details-button';
 import { FlaggedComponent } from '../../common/components/flagged-component';
+import { GuidanceLinks } from '../../common/components/guidance-links';
 import { IssueFilingButton, IssueFilingButtonDeps } from '../../common/components/issue-filing-button';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { ToastDeps } from '../../common/components/toast';
@@ -18,7 +19,6 @@ import { FixInstructionPanel } from '../../injected/components/fix-instruction-p
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { DictionaryStringTo } from '../../types/common-types';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
-import { GuidanceLinks } from './guidance-links';
 import { IssueFilingDialog } from './issue-filing-dialog';
 
 export type IssuesDetailsPaneDeps = ToastDeps &

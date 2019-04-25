@@ -3,8 +3,8 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import { GuidanceLinks, GuidanceLinksProps } from '../../../../../common/components/guidance-links';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
-import { GuidanceLinks, GuidanceLinksProps } from '../../../../../DetailsView/components/guidance-links';
 
 describe('GuidanceLinksTest', () => {
     test('links is null', () => {
