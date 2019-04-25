@@ -83,10 +83,10 @@ export const keyboardBookmarkletInstructions = create(({ Markup }) => (
         <h2>Microsoft Edge Insider instructions</h2>
         <ol>
             <li>
-                Open the Edge Insider <Markup.Term>Favorites</Markup.Term> manager:
+                Open the Microsoft Edge Insider <Markup.Term>Favorites</Markup.Term> manager:
                 <ol type="a">
                     <li>
-                        In Edge Insider, type <Markup.Term>Ctrl + Shift + o</Markup.Term>.
+                        In Microsoft Edge Insider, type <Markup.Term>Ctrl + Shift + o</Markup.Term>.
                     </li>
                     <li>
                         A new browser tab called <Markup.Term>Favorites</Markup.Term> will open.
