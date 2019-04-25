@@ -16,6 +16,10 @@ import { Interpreter } from './interpreter';
 import { LocalStorageData } from './storage-data';
 import { GlobalStoreHub } from './stores/global/global-store-hub';
 import { TelemetryEventHandler } from './telemetry/telemetry-event-handler';
+import { IssueFilingControllerImpl } from '../bug-filing/common/issue-filing-controller-impl';
+import { IssueFilingActionCreator } from './global-action-creators/issue-filing-action-creator';
+import { BugFilingServiceProvider } from '../bug-filing/bug-filing-service-provider';
+import { EnvironmentInfo } from '../common/environment-info-provider';
 
 export class GlobalContextFactory {
     public static createContext(
@@ -26,6 +30,8 @@ export class GlobalContextFactory {
         telemetryDataFactory: TelemetryDataFactory,
         indexedDBInstance: IndexedDBAPI,
         persistedData: PersistedData,
+        issueFilingServiceProvider?: BugFilingServiceProvider,
+        environmentInfo?: EnvironmentInfo,
     ): GlobalContext {
         const interpreter = new Interpreter();
 
@@ -44,6 +50,9 @@ export class GlobalContextFactory {
 
         globalStoreHub.initialize();
 
+        const issueFilingController = new IssueFilingControllerImpl(issueFilingServiceProvider, browserAdapter, environmentInfo);
+
+        const issueFilingActionCreator = new IssueFilingActionCreator(interpreter, telemetryEventHandler, issueFilingController);
         const actionCreator = new GlobalActionCreator(globalActionsHub, interpreter, browserAdapter, telemetryEventHandler);
         const assessmentActionCreator = new AssessmentActionCreator(
             globalActionsHub.assessmentActions,
@@ -51,6 +60,7 @@ export class GlobalContextFactory {
             interpreter.registerTypeToPayloadCallback,
         );
 
+        issueFilingActionCreator.registerCallbacks();
         actionCreator.registerCallbacks();
         assessmentActionCreator.registerCallbacks();
 
