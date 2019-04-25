@@ -14,10 +14,11 @@ import { NamedSFC } from '../../../../../common/react/named-sfc';
 import { IssueFilingNeedsSettingsContentRenderer } from '../../../../../common/types/issue-filing-needs-setting-content';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { EventStubFactory } from '../../../common/event-stub-factory';
+import { FileIssueClickService } from '../../../../../common/telemetry-events';
 
 describe('IssueFilingButtonTest', () => {
     const testKey: string = 'test';
-    const eventStub = new EventStubFactory().createNativeMouseClickEvent();
+    const eventStub = new EventStubFactory().createNativeMouseClickEvent() as any;
     let environmentInfoProviderMock: IMock<EnvironmentInfoProvider>;
     let bugFilingServiceProviderMock: IMock<BugFilingServiceProvider>;
     let bugActionMessageCreatorMock: IMock<BugActionMessageCreator>;
@@ -82,14 +83,10 @@ describe('IssueFilingButtonTest', () => {
         const wrapper = shallow(<IssueFilingButton {...props} />);
         expect(wrapper.debug()).toMatchSnapshot();
 
-        environmentInfoProviderMock.verifyAll();
         bugFilingServiceProviderMock.verifyAll();
     });
 
     test('onclick: valid settings, file bug and set %s to false', () => {
-        bugActionMessageCreatorMock
-            .setup(messageCreator => messageCreator.trackFileIssueClick(eventStub as any, testKey as any))
-            .verifiable(Times.once());
         const props: IssueFilingButtonProps = {
             deps: {
                 bugActionMessageCreator: bugActionMessageCreatorMock.object,
@@ -104,6 +101,9 @@ describe('IssueFilingButtonTest', () => {
             userConfigurationStoreData: userConfigurationStoreData,
             needsSettingsContentRenderer,
         };
+        bugActionMessageCreatorMock
+            .setup(creator => creator.fileIssue(eventStub, testKey as FileIssueClickService, props.issueDetailsData))
+            .verifiable(Times.once());
         const wrapper = shallow(<IssueFilingButton {...props} />);
 
         wrapper.find(DefaultButton).simulate('click', eventStub);

@@ -7,7 +7,7 @@ import * as React from 'react';
 import { BugFilingServiceProvider } from '../../bug-filing/bug-filing-service-provider';
 import { BugFilingService } from '../../bug-filing/types/bug-filing-service';
 import { IssueFilingDialogDeps } from '../../DetailsView/components/issue-filing-dialog';
-import { EnvironmentInfo, EnvironmentInfoProvider } from '../environment-info-provider';
+import { EnvironmentInfoProvider } from '../environment-info-provider';
 import { LadyBugSolidIcon } from '../icons/lady-bug-solid-icon';
 import { BugActionMessageCreator } from '../message-creators/bug-action-message-creator';
 import { FileIssueClickService } from '../telemetry-events';
@@ -42,17 +42,11 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
 
     public render(): JSX.Element {
         const { issueDetailsData, userConfigurationStoreData, deps } = this.props;
-        const { environmentInfoProvider, bugFilingServiceProvider } = deps;
-        const envInfo: EnvironmentInfo = environmentInfoProvider.getEnvironmentInfo();
+        const { bugFilingServiceProvider } = deps;
         const selectedBugFilingService: BugFilingService = bugFilingServiceProvider.forKey(userConfigurationStoreData.bugService);
         const selectedBugFilingServiceData: BugServiceProperties = selectedBugFilingService.getSettingsFromStoreData(
             userConfigurationStoreData.bugServicePropertiesMap,
         );
-        const isSettingValid = selectedBugFilingService.isSettingsValid(selectedBugFilingServiceData);
-        const href = isSettingValid
-            ? selectedBugFilingService.issueFilingUrlProvider(selectedBugFilingServiceData, issueDetailsData, envInfo)
-            : null;
-        const target: string = isSettingValid ? '_blank' : '_self';
 
         const needsSettingsContentProps: IssueFilingNeedsSettingsContentProps = {
             deps,
@@ -61,31 +55,19 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
             selectedBugData: issueDetailsData,
             selectedBugFilingServiceData,
             onClose: this.closeNeedsSettingsContent,
-            bugFileTelemetryCallback: this.trackFileIssueClick,
             bugServicePropertiesMap: userConfigurationStoreData.bugServicePropertiesMap,
         };
         const NeedsSettingsContent = this.props.needsSettingsContentRenderer;
 
         return (
             <>
-                <DefaultButton
-                    className={'create-bug-button'}
-                    target={target}
-                    onClick={event => this.onClickFileIssueButton(event, isSettingValid)}
-                    href={href}
-                >
+                <DefaultButton className={'create-bug-button'} onClick={event => this.onClickFileIssueButton(event)}>
                     <LadyBugSolidIcon />
                     <div className="ms-Button-label">File issue</div>
                 </DefaultButton>
                 <NeedsSettingsContent {...needsSettingsContentProps} />
             </>
         );
-    }
-
-    @autobind
-    private trackFileIssueClick(event: React.MouseEvent<any>): void {
-        const bugServiceKey = this.props.userConfigurationStoreData.bugService;
-        this.props.deps.bugActionMessageCreator.trackFileIssueClick(event, bugServiceKey as FileIssueClickService);
     }
 
     @autobind
@@ -98,9 +80,18 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
     }
 
     @autobind
-    private onClickFileIssueButton(event: React.MouseEvent<any>, isSettingValid: boolean): void {
+    private onClickFileIssueButton(event: React.MouseEvent<any>): void {
+        const { issueDetailsData, userConfigurationStoreData, deps } = this.props;
+        const { bugFilingServiceProvider, bugActionMessageCreator } = deps;
+
+        const selectedBugFilingService: BugFilingService = bugFilingServiceProvider.forKey(userConfigurationStoreData.bugService);
+        const selectedBugFilingServiceData: BugServiceProperties = selectedBugFilingService.getSettingsFromStoreData(
+            userConfigurationStoreData.bugServicePropertiesMap,
+        );
+        const isSettingValid = selectedBugFilingService.isSettingsValid(selectedBugFilingServiceData);
+
         if (isSettingValid) {
-            this.trackFileIssueClick(event);
+            bugActionMessageCreator.fileIssue(event, userConfigurationStoreData.bugService as FileIssueClickService, issueDetailsData);
             this.closeNeedsSettingsContent();
         } else {
             this.openNeedsSettingsContent();
