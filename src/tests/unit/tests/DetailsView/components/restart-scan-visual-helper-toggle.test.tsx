@@ -45,7 +45,7 @@ describe('RestartScanVisualHelperToggleTest', () => {
             .build();
 
         assertVisualizationToggle(expectedToggleProps, toggle);
-        assertSnapshotMatching(wrapper);
+        assertSnapshotMatch(wrapper);
     });
 
     test.each([true, false])('onClick: step enabled = %s', stepIsEnabled => {
@@ -67,7 +67,7 @@ describe('RestartScanVisualHelperToggleTest', () => {
         wrapper.find(VisualizationToggle).simulate('click');
 
         actionMessageCreatorMock.verifyAll();
-        assertSnapshotMatching(wrapper);
+        assertSnapshotMatch(wrapper);
     });
 
     function assertVisualizationToggle(
@@ -83,7 +83,7 @@ describe('RestartScanVisualHelperToggleTest', () => {
         });
     }
 
-    function assertSnapshotMatching(toggleWrapper: ShallowWrapper): void {
+    function assertSnapshotMatch(toggleWrapper: ShallowWrapper): void {
         expect(toggleWrapper.getElement()).toMatchSnapshot();
     }
 
