@@ -8,10 +8,10 @@ import { SettingsProps } from '../settings-props';
 
 export const GitHubBugSettingsUx = NamedSFC<SettingsProps>('GitHubBugSettingsUx', props => {
     const onGitHubRepositoryChange = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
-        props.deps.userConfigMessageCreator.setBugServiceProperty('gitHub', 'repository', newValue);
+        props.deps.userConfigMessageCreator.setIssueServiceProperty('gitHub', 'repository', newValue);
     };
 
-    const getBugServiceProperty = (bugService: string, propertyName: string) => {
+    const getIssueServiceProperty = (bugService: string, propertyName: string) => {
         const bugServicePropertiesMap = props.userConfigurationStoreState.bugServicePropertiesMap;
         if (!bugServicePropertiesMap || !bugServicePropertiesMap[bugService]) {
             return undefined;
@@ -23,7 +23,7 @@ export const GitHubBugSettingsUx = NamedSFC<SettingsProps>('GitHubBugSettingsUx'
             className="issue-setting"
             label="Enter desired GitHub repo link:"
             onChange={onGitHubRepositoryChange}
-            value={getBugServiceProperty('gitHub', 'repository')}
+            value={getIssueServiceProperty('gitHub', 'repository')}
             placeholder="https://github.com/owner/repo/issues"
         />
     );

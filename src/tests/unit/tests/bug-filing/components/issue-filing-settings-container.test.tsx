@@ -12,7 +12,7 @@ import {
 } from '../../../../../issue-filing/components/issue-filing-settings-container';
 import { IssueFilingService } from '../../../../../issue-filing/types/issue-filing-service';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
-import { BugServiceProperties, UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
+import { IssueServiceProperties, UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 
 describe('IssueFilingSettingsContainerTest', () => {
     const issueFilingServicesProviderMock = Mock.ofType(IssueFilingServiceProvider);
@@ -27,7 +27,7 @@ describe('IssueFilingSettingsContainerTest', () => {
     const userConfigurationStoreData: UserConfigurationStoreData = {
         bugService: 'test',
     } as UserConfigurationStoreData;
-    const selectedIssueFilingServiceData: BugServiceProperties = {
+    const selectedIssueFilingServiceData: IssueServiceProperties = {
         repository: 'none',
     };
     const userConfigMessageCreatorStub: UserConfigMessageCreator = {} as UserConfigMessageCreator;

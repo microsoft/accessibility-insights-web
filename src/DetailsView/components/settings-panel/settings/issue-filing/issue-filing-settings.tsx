@@ -22,8 +22,8 @@ export const IssueFilingSettings = NamedSFC<SettingsProps>('IssueFilingSettings'
                 deps={deps}
                 selectedIssueFilingService={selectedIssueFilingService}
                 selectedIssueFilingServiceData={selectedIssueFilingServiceData}
-                onPropertyUpdateCallback={userConfigMessageCreator.setBugServiceProperty}
-                onSelectedServiceChange={userConfigMessageCreator.setBugService}
+                onPropertyUpdateCallback={userConfigMessageCreator.setIssueServiceProperty}
+                onSelectedServiceChange={userConfigMessageCreator.setIssueService}
             />
         );
     };

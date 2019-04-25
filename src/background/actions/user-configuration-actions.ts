@@ -3,8 +3,8 @@
 import { Action } from '../../common/flux/action';
 import {
     SaveIssueFilingSettingsPayload,
-    SetBugServicePayload,
-    SetBugServicePropertyPayload,
+    SetIssueServicePayload,
+    SetIssueServicePropertyPayload,
     SetHighContrastModePayload,
     SetIssueTrackerPathPayload,
     SetTelemetryStatePayload,
@@ -14,8 +14,8 @@ export class UserConfigurationActions {
     public readonly setTelemetryState = new Action<SetTelemetryStatePayload>();
     public readonly getCurrentState = new Action<void>();
     public readonly setHighContrastMode = new Action<SetHighContrastModePayload>();
-    public readonly setBugService = new Action<SetBugServicePayload>();
-    public readonly setBugServiceProperty = new Action<SetBugServicePropertyPayload>();
+    public readonly setIssueService = new Action<SetIssueServicePayload>();
+    public readonly setIssueServiceProperty = new Action<SetIssueServicePropertyPayload>();
     public readonly setIssueTrackerPath = new Action<SetIssueTrackerPathPayload>();
     public readonly saveIssueFilingSettings = new Action<SaveIssueFilingSettingsPayload>();
 }

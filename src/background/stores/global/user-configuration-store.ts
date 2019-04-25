@@ -8,8 +8,8 @@ import { StoreNames } from '../../../common/stores/store-names';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import {
     SaveIssueFilingSettingsPayload,
-    SetBugServicePayload,
-    SetBugServicePropertyPayload,
+    SetIssueServicePayload,
+    SetIssueServicePropertyPayload,
     SetHighContrastModePayload,
     SetIssueTrackerPathPayload,
     SetTelemetryStatePayload,
@@ -49,8 +49,8 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
         this.userConfigActions.getCurrentState.addListener(this.onGetCurrentState);
         this.userConfigActions.setTelemetryState.addListener(this.onSetTelemetryState);
         this.userConfigActions.setHighContrastMode.addListener(this.onSetHighContrastMode);
-        this.userConfigActions.setBugService.addListener(this.onSetBugService);
-        this.userConfigActions.setBugServiceProperty.addListener(this.onSetBugServiceProperty);
+        this.userConfigActions.setIssueService.addListener(this.onSetIssueService);
+        this.userConfigActions.setIssueServiceProperty.addListener(this.onSetIssueServiceProperty);
         this.userConfigActions.setIssueTrackerPath.addListener(this.onSetIssueTrackerPath);
         this.userConfigActions.saveIssueFilingSettings.addListener(this.onSaveIssueSettings);
     }
@@ -69,21 +69,21 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
     }
 
     @autobind
-    private onSetBugService(payload: SetBugServicePayload): void {
-        this.state.bugService = payload.bugServiceName;
+    private onSetIssueService(payload: SetIssueServicePayload): void {
+        this.state.bugService = payload.issueServiceName;
         this.saveAndEmitChanged();
     }
 
     @autobind
-    private onSetBugServiceProperty(payload: SetBugServicePropertyPayload): void {
+    private onSetIssueServiceProperty(payload: SetIssueServicePropertyPayload): void {
         if (!isPlainObject(this.state.bugServicePropertiesMap)) {
             this.state.bugServicePropertiesMap = {};
         }
-        if (!isPlainObject(this.state.bugServicePropertiesMap[payload.bugServiceName])) {
-            this.state.bugServicePropertiesMap[payload.bugServiceName] = {};
+        if (!isPlainObject(this.state.bugServicePropertiesMap[payload.issueServiceName])) {
+            this.state.bugServicePropertiesMap[payload.issueServiceName] = {};
         }
 
-        this.state.bugServicePropertiesMap[payload.bugServiceName][payload.propertyName] = payload.propertyValue;
+        this.state.bugServicePropertiesMap[payload.issueServiceName][payload.propertyName] = payload.propertyValue;
 
         this.saveAndEmitChanged();
     }
@@ -96,7 +96,7 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
 
     @autobind
     private onSaveIssueSettings(payload: SaveIssueFilingSettingsPayload): void {
-        const bugService = payload.bugServiceName;
+        const bugService = payload.issueServiceName;
         this.state.bugService = bugService;
         this.state.bugServicePropertiesMap[bugService] = payload.issueFilingSettings;
         this.saveAndEmitChanged();

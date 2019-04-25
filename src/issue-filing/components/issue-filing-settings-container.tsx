@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { NamedSFC } from '../../common/react/named-sfc';
-import { BugServiceProperties } from '../../common/types/store-data/user-configuration-store';
+import { IssueServiceProperties } from '../../common/types/store-data/user-configuration-store';
 import { SettingsDeps } from '../../DetailsView/components/settings-panel/settings/settings-props';
 import { IssueFilingServiceProvider } from '../issue-filing-service-provider';
 import { IssueFilingService } from '../types/issue-filing-service';
@@ -15,7 +15,7 @@ export type OnSelectedServiceChange = (service: string) => void;
 export interface IssueFilingSettingsContainerProps {
     deps: IssueFilingSettingsContainerDeps;
     selectedIssueFilingService: IssueFilingService;
-    selectedIssueFilingServiceData: BugServiceProperties;
+    selectedIssueFilingServiceData: IssueServiceProperties;
     onPropertyUpdateCallback: OnPropertyUpdateCallback;
     onSelectedServiceChange: OnSelectedServiceChange;
 }

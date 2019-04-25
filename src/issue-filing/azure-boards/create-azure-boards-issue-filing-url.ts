@@ -10,8 +10,8 @@ import { IssueFilingUrlStringUtils, IssueUrlCreationUtils } from '../common/issu
 import { HTMLFormatter } from '../common/markup/html-formatter';
 import { AzureBoardsIssueFilingSettings } from './azure-boards-issue-filing-service';
 
-const buildTags = (createBugData: CreateIssueDetailsTextData, standardTags: string[]): string => {
-    const tags = ['Accessibility', title, `rule: ${createBugData.ruleResult.ruleId}`, ...standardTags];
+const buildTags = (createIssueData: CreateIssueDetailsTextData, standardTags: string[]): string => {
+    const tags = ['Accessibility', title, `rule: ${createIssueData.ruleResult.ruleId}`, ...standardTags];
     return tags.join('; ');
 };
 
@@ -20,11 +20,11 @@ export const createAzureBoardsIssueFilingUrlProvider = (
     issueDetailsBuilder: IssueDetailsBuilder,
     queryBuilderProvider: () => HTTPQueryBuilder,
 ) => {
-    return (settingsData: AzureBoardsIssueFilingSettings, bugData: CreateIssueDetailsTextData, environmentInfo: EnvironmentInfo) => {
-        const titleField = stringUtils.getTitle(bugData);
-        const standardTags = stringUtils.standardizeTags(bugData);
-        const tags = buildTags(bugData, standardTags);
-        const body = issueDetailsBuilder(environmentInfo, bugData);
+    return (settingsData: AzureBoardsIssueFilingSettings, issueData: CreateIssueDetailsTextData, environmentInfo: EnvironmentInfo) => {
+        const titleField = stringUtils.getTitle(issueData);
+        const standardTags = stringUtils.standardizeTags(issueData);
+        const tags = buildTags(issueData, standardTags);
+        const body = issueDetailsBuilder(environmentInfo, issueData);
 
         let bodyField: string = '[Microsoft.VSTS.TCM.ReproSteps]';
 

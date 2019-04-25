@@ -7,7 +7,7 @@ import { Mock, Times } from 'typemoq';
 
 import { UserConfigMessageCreator } from '../../../../../../../../common/message-creators/user-config-message-creator';
 import {
-    BugServicePropertiesMap,
+    IssueServicePropertiesMap,
     UserConfigurationStoreData,
 } from '../../../../../../../../common/types/store-data/user-configuration-store';
 import { GitHubBugSettingsUx } from '../../../../../../../../DetailsView/components/settings-panel/settings/issue-filing/github-bug-settings-ux';
@@ -15,7 +15,7 @@ import { SettingsDeps, SettingsProps } from '../../../../../../../../DetailsView
 
 type RenderTestCase = {
     bugService: string;
-    bugServicePropertiesMap: BugServicePropertiesMap;
+    bugServicePropertiesMap: IssueServicePropertiesMap;
 };
 describe('GitHubBugSettingsUx', () => {
     let userData: UserConfigurationStoreData;
@@ -78,7 +78,7 @@ describe('GitHubBugSettingsUx', () => {
             const newValue = 'new-value';
 
             userConfigMessageCreatorMock
-                .setup(creator => creator.setBugServiceProperty('gitHub', 'repository', newValue))
+                .setup(creator => creator.setIssueServiceProperty('gitHub', 'repository', newValue))
                 .verifiable(Times.once());
 
             const props: SettingsProps = {

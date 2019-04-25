@@ -15,16 +15,16 @@ import { IssueFilingService } from '../../issue-filing/types/issue-filing-servic
 import { EnvironmentInfoProvider } from '../../common/environment-info-provider';
 import { UserConfigMessageCreator } from '../../common/message-creators/user-config-message-creator';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
-import { BugServicePropertiesMap } from '../../common/types/store-data/user-configuration-store';
+import { IssueServicePropertiesMap } from '../../common/types/store-data/user-configuration-store';
 import { ActionAndCancelButtonsComponent } from './action-and-cancel-buttons-component';
 
 export interface IssueFilingDialogProps {
     deps: IssueFilingDialogDeps;
     isOpen: boolean;
     selectedIssueFilingService: IssueFilingService;
-    selectedBugData: CreateIssueDetailsTextData;
+    selectedIssueData: CreateIssueDetailsTextData;
     bugFileTelemetryCallback: (ev: React.SyntheticEvent) => void;
-    bugServicePropertiesMap: BugServicePropertiesMap;
+    bugServicePropertiesMap: IssueServicePropertiesMap;
     onClose: (ev: React.SyntheticEvent) => void;
 }
 
@@ -38,7 +38,7 @@ const titleLabel = 'Specify issue filing location';
 
 export interface IssueFilingDialogState {
     selectedIssueFilingService: IssueFilingService;
-    bugServicePropertiesMap: BugServicePropertiesMap;
+    bugServicePropertiesMap: IssueServicePropertiesMap;
 }
 
 export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, IssueFilingDialogState> {
@@ -55,7 +55,7 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
     }
 
     public render(): JSX.Element {
-        const { selectedBugData, onClose, isOpen, deps } = this.props;
+        const { selectedIssueData, onClose, isOpen, deps } = this.props;
         const { selectedIssueFilingService } = this.state;
         const selectedIssueFilingServiceData = this.state.selectedIssueFilingService.getSettingsFromStoreData(
             this.state.bugServicePropertiesMap,
@@ -63,7 +63,7 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
         const environmentInfo = deps.environmentInfoProvider.getEnvironmentInfo();
         const isSettingsValid = selectedIssueFilingService.isSettingsValid(selectedIssueFilingServiceData);
         const href = isSettingsValid
-            ? selectedIssueFilingService.issueFilingUrlProvider(selectedIssueFilingServiceData, selectedBugData, environmentInfo)
+            ? selectedIssueFilingService.issueFilingUrlProvider(selectedIssueFilingServiceData, selectedIssueData, environmentInfo)
             : null;
 
         return (
@@ -121,12 +121,12 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
         const selectedServiceData =
             this.state.selectedIssueFilingService.getSettingsFromStoreData(this.state.bugServicePropertiesMap) || {};
         selectedServiceData[propertyName] = propertyValue;
-        const newBugServicePropertiesMap = {
+        const newIssueServicePropertiesMap = {
             ...this.state.bugServicePropertiesMap,
             [service]: selectedServiceData,
         };
         this.setState(() => ({
-            bugServicePropertiesMap: newBugServicePropertiesMap,
+            bugServicePropertiesMap: newIssueServicePropertiesMap,
         }));
     };
 

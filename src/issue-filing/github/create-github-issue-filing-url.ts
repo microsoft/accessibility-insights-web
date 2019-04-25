@@ -14,9 +14,9 @@ export const createGitHubIssueFilingUrlProvider = (
     issueDetailsBuilder: IssueDetailsBuilder,
     queryBuilderProvider: () => HTTPQueryBuilder,
 ) => {
-    return (settingsData: GitHubIssueFilingSettings, bugData: CreateIssueDetailsTextData, environmentInfo: EnvironmentInfo): string => {
-        const title = stringUtils.getTitle(bugData);
-        const body = issueDetailsBuilder(environmentInfo, bugData);
+    return (settingsData: GitHubIssueFilingSettings, issueData: CreateIssueDetailsTextData, environmentInfo: EnvironmentInfo): string => {
+        const title = stringUtils.getTitle(issueData);
+        const body = issueDetailsBuilder(environmentInfo, issueData);
 
         return queryBuilderProvider()
             .withBaseUrl(`${settingsData.repository}/new`)

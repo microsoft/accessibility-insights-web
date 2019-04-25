@@ -2,14 +2,14 @@
 // Licensed under the MIT License.
 import {
     SaveIssueFilingSettingsPayload,
-    SetBugServicePayload,
-    SetBugServicePropertyPayload,
+    SetIssueServicePayload,
+    SetIssueServicePropertyPayload,
     SetHighContrastModePayload,
     SetIssueTrackerPathPayload,
     SetTelemetryStatePayload,
 } from '../../background/actions/action-payloads';
 import { Messages } from '../messages';
-import { BugServiceProperties } from '../types/store-data/user-configuration-store';
+import { IssueServiceProperties } from '../types/store-data/user-configuration-store';
 import { BaseActionMessageCreator } from './base-action-message-creator';
 
 export class UserConfigMessageCreator extends BaseActionMessageCreator {
@@ -37,27 +37,27 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
         });
     }
 
-    public setBugService = (bugServiceName: string) => {
-        const payload: SetBugServicePayload = {
-            bugServiceName,
+    public setIssueService = (issueServiceName: string) => {
+        const payload: SetIssueServicePayload = {
+            issueServiceName,
         };
 
         this.dispatchMessage({
-            messageType: Messages.UserConfig.SetBugService,
+            messageType: Messages.UserConfig.SetIssueService,
             tabId: this._tabId,
             payload,
         });
     };
 
-    public setBugServiceProperty = (bugServiceName: string, propertyName: string, propertyValue: string) => {
-        const payload: SetBugServicePropertyPayload = {
-            bugServiceName,
+    public setIssueServiceProperty = (issueServiceName: string, propertyName: string, propertyValue: string) => {
+        const payload: SetIssueServicePropertyPayload = {
+            issueServiceName,
             propertyName,
             propertyValue,
         };
 
         this.dispatchMessage({
-            messageType: Messages.UserConfig.SetBugServiceProperty,
+            messageType: Messages.UserConfig.SetIssueServiceProperty,
             tabId: this._tabId,
             payload,
         });
@@ -75,9 +75,9 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
         });
     };
 
-    public saveIssueFilingSettings = (bugServiceName: string, issueFilingSettings: BugServiceProperties) => {
+    public saveIssueFilingSettings = (issueServiceName: string, issueFilingSettings: IssueServiceProperties) => {
         const payload: SaveIssueFilingSettingsPayload = {
-            bugServiceName,
+            issueServiceName,
             issueFilingSettings,
         };
 

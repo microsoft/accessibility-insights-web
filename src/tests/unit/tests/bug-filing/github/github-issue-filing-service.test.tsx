@@ -9,7 +9,7 @@ import { OnPropertyUpdateCallback } from '../../../../../issue-filing/components
 import { gitHubIssueFilingUrlProvider } from '../../../../../issue-filing/github/create-github-issue-filing-url';
 import { GitHubIssueFilingService, GitHubIssueFilingSettings } from '../../../../../issue-filing/github/github-issue-filing-service';
 import { SettingsFormProps } from '../../../../../issue-filing/types/settings-form-props';
-import { BugServicePropertiesMap } from '../../../../../common/types/store-data/user-configuration-store';
+import { IssueServicePropertiesMap } from '../../../../../common/types/store-data/user-configuration-store';
 import { SettingsDeps } from '../../../../../DetailsView/components/settings-panel/settings/settings-props';
 
 describe('GithubIssueFilingServiceTest', () => {
@@ -49,7 +49,7 @@ describe('GithubIssueFilingServiceTest', () => {
         const expectedStoreData: GitHubIssueFilingSettings = {
             repository: 'some url',
         };
-        const givenData: BugServicePropertiesMap = {
+        const givenData: IssueServicePropertiesMap = {
             'some other service': {},
             [GitHubIssueFilingService.key]: expectedStoreData,
         };

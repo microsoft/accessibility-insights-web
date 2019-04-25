@@ -4,7 +4,7 @@ import * as TelemetryEvents from '../../common/telemetry-events';
 import { BaseTelemetryData, TelemetryData, ToggleTelemetryData } from '../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
-import { BugServiceProperties } from '../../common/types/store-data/user-configuration-store';
+import { IssueServiceProperties } from '../../common/types/store-data/user-configuration-store';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { TabStopEvent } from '../../injected/tab-stops-listener';
 import { LaunchPanelType } from '../../popup/components/popup-view';
@@ -125,16 +125,16 @@ export interface SetHighContrastModePayload extends BaseActionPayload {
     enableHighContrast: boolean;
 }
 
-export interface SetBugServicePayload extends BaseActionPayload {
-    bugServiceName: string;
+export interface SetIssueServicePayload extends BaseActionPayload {
+    issueServiceName: string;
 }
 
-export interface SaveIssueFilingSettingsPayload extends SetBugServicePayload {
-    issueFilingSettings: BugServiceProperties;
+export interface SaveIssueFilingSettingsPayload extends SetIssueServicePayload {
+    issueFilingSettings: IssueServiceProperties;
 }
 
-export interface SetBugServicePropertyPayload extends BaseActionPayload {
-    bugServiceName: string;
+export interface SetIssueServicePropertyPayload extends BaseActionPayload {
+    issueServiceName: string;
     propertyName: string;
     propertyValue: string;
 }

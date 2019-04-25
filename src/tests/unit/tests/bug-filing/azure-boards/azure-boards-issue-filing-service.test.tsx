@@ -7,7 +7,7 @@ import {
 } from '../../../../../issue-filing/azure-boards/azure-boards-issue-filing-service';
 import { AzureBoardsSettingsForm } from '../../../../../issue-filing/azure-boards/azure-boards-settings-form';
 import { azureBoardsIssueFilingUrlProvider } from '../../../../../issue-filing/azure-boards/create-azure-boards-issue-filing-url';
-import { BugServicePropertiesMap } from '../../../../../common/types/store-data/user-configuration-store';
+import { IssueServicePropertiesMap } from '../../../../../common/types/store-data/user-configuration-store';
 
 describe('AzureBoardsIssueFilingServiceTest', () => {
     const projectUrlStub: string = 'some/project/url';
@@ -42,7 +42,7 @@ describe('AzureBoardsIssueFilingServiceTest', () => {
             projectURL: projectUrlStub,
             issueDetailsField: issueDetailsLocationStub,
         };
-        const givenData: BugServicePropertiesMap = {
+        const givenData: IssueServicePropertiesMap = {
             'some other service': {},
             [AzureBoardsIssueFilingService.key]: expectedStoreData,
         };
