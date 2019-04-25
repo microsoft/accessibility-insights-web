@@ -207,7 +207,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
         <div
           className="insights-dialog-inspect-disabled"
         >
-          To enable the Inspect HTML button, open the Chrome dev tools (shortcut).
+          To enable the Inspect HTML button, open the developer tools (shortcut).
         </div>
       </div>
     </div>
@@ -586,7 +586,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
           <div
             className="insights-dialog-inspect-disabled"
           >
-            To enable the Inspect HTML button, open the Chrome dev tools (shortcut).
+            To enable the Inspect HTML button, open the developer tools (shortcut).
           </div>
         </div>
       </div>
@@ -1697,7 +1697,7 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
         <div
           className="insights-dialog-inspect-disabled"
         >
-          To enable the Inspect HTML button, open the Chrome dev tools (shortcut).
+          To enable the Inspect HTML button, open the developer tools (shortcut).
         </div>
       </div>
     </div>
