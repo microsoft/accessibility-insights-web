@@ -48,36 +48,20 @@ describe('RestartScanVisualHelperToggleTest', () => {
         assertSnapshotMatching(wrapper);
     });
 
-    test('onClick: step enabled', () => {
+    test.each([true, false])('onClick: step enabled = %s', stepIsEnabled => {
         const props = new VisualHelperToggleConfigBuilder()
-            .withToggleStepEnabled(true)
+            .withToggleStepEnabled(stepIsEnabled)
             .withToggleStepScanned(false)
             .withActionMessageCreator(actionMessageCreatorMock.object)
             .build();
-
         const wrapper = shallow(<RestartScanVisualHelperToggle {...props} />);
         actionMessageCreatorMock.reset();
         actionMessageCreatorMock
-            .setup(acm => acm.disableVisualHelper(props.assessmentNavState.selectedTestType, props.assessmentNavState.selectedTestStep))
-            .verifiable(Times.once());
-
-        wrapper.find(VisualizationToggle).simulate('click');
-
-        actionMessageCreatorMock.verifyAll();
-        assertSnapshotMatching(wrapper);
-    });
-
-    test('onClick: step disabled', () => {
-        const props = new VisualHelperToggleConfigBuilder()
-            .withToggleStepEnabled(false)
-            .withToggleStepScanned(false)
-            .withActionMessageCreator(actionMessageCreatorMock.object)
-            .build();
-
-        const wrapper = shallow(<RestartScanVisualHelperToggle {...props} />);
-        actionMessageCreatorMock.reset();
-        actionMessageCreatorMock
-            .setup(acm => acm.enableVisualHelper(props.assessmentNavState.selectedTestType, stepKey))
+            .setup(acm => {
+                return stepIsEnabled
+                    ? acm.disableVisualHelper(props.assessmentNavState.selectedTestType, props.assessmentNavState.selectedTestStep)
+                    : acm.enableVisualHelper(props.assessmentNavState.selectedTestType, stepKey);
+            })
             .verifiable(Times.once());
 
         wrapper.find(VisualizationToggle).simulate('click');

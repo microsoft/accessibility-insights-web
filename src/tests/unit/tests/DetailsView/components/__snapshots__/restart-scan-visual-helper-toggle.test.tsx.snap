@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RestartScanVisualHelperToggleTest onClick: step disabled 1`] = `
+exports[`RestartScanVisualHelperToggleTest onClick: step enabled = false 1`] = `
 <div
   className="visual-helper"
 >
@@ -19,7 +19,7 @@ exports[`RestartScanVisualHelperToggleTest onClick: step disabled 1`] = `
 </div>
 `;
 
-exports[`RestartScanVisualHelperToggleTest onClick: step enabled 1`] = `
+exports[`RestartScanVisualHelperToggleTest onClick: step enabled = true 1`] = `
 <div
   className="visual-helper"
 >
